@@ -1,221 +1,210 @@
-Return-Path: <devicetree+bounces-266042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266043-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6GOUOKkzlGlAAgIAu9opvQ
-	(envelope-from <devicetree+bounces-266042-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:23:53 +0100
+	id 8AW0AE00lGlAAgIAu9opvQ
+	(envelope-from <devicetree+bounces-266043-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:26:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FDF014A581
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:23:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 517A914A5CF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:26:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D0DAB3004044
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:23:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 45CAD3025C49
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D03C304BC6;
-	Tue, 17 Feb 2026 09:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F9D308F30;
+	Tue, 17 Feb 2026 09:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="gKX6Yuta"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jy2UUQ+v";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bOHTQN0u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011043.outbound.protection.outlook.com [52.101.52.43])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4065D303A12;
-	Tue, 17 Feb 2026 09:23:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771320215; cv=fail; b=dDOyZHPPrZI0nYHg4AfySYnAuLkqHpfyuHULY69j4dXQKoqLEAdQ2ctjI/A8+ya2GXlS+dUkL7mkGCMyHIRjl+LsmgTfNQM9EYyoWEfqA1XD4REclop+ERcWUqBe+cwOCDI724nNBojBFCDQ2HhYS9ouXJhKHhG9ax0CV1FL3bQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771320215; c=relaxed/simple;
-	bh=/6Qv3U+vbPTJkpMH7H6TRGklzPdD+LlEvFXu8Okdaeo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JY4+E/IbK3yBteVqqmYCBsjp0Z8eGwgWSbP12rpSAS8JQyyhrjwfqZROswbGqf+Z9jNLpj7lSg4627igQuCgEy3VSG4m5Qzz7PCq/jKsdQ8xy1mH/qwtep/W3fywQJSTJjpNxh5TBZx4z4pZgL5FhdKlvJyXLITQgeA4OFlhQUg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=gKX6Yuta; arc=fail smtp.client-ip=52.101.52.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fCAP7pVUfm4lMx3wfCBpLe2pY7OCvbJOSg2P83/uGdeKjMzI9K2BjPNbeTda9j4K2Y+GTXx9DMX2j1AL9cRDKCuDzkiXux/gZp+trn+DKE6XPg9q66u7hrgAZy5af1xYLV6zf0HEcxClw2IBrsi1kAgFGMNpAANVHZgsQmvh2Im+1WFcjPiHlmsly5V/GJWPjE1lqK1D/k2J7XBHZb5+Idr7erGu7GomuOQO5ho8966s6XTKFsSacnEcZPnSlpU9HgWz6GnTgSlIgNVIMDLvujl1sQX4DZjXqVMedtN/6J7n+o6q4s4mSxoWXtndNrvi0pUZWmbQJDtoRFj9mYsB+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F7EZ/4GSSmEE3IEjFwQrHecd263UsTOtYgXmFF/8ypM=;
- b=nlbLU81skx2XaTrJaKPXZK7+Hb6qK93bjMR9neX5BDKkEIDPeJ50lGcYlqIO05otKPpDAIry0PaOHF4uT4DkQgLecDbczdhf5eC4Ld03x89yK3w1RGCHrTWcUQNBLJlWeRpOa9zy3F6tTwXKH+6R2yAFnFvQDPaOkiWhNA2yIE4BJ4Rf+A87s74gmCgjsaAh6I973SijwMjhDrpgIND46NUETFYUz2Qjbgad0S8hF7ppbqPPUNfDAfVH98j9EE0PjJjCgrKv7t1E6pYCjJ8/4rrwHV3RXB5mxRMB/oQ4AyzLeDBR40PnCVVdS+qp4t5c0o1B/gbttMlcXvG7kUMOLA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
- pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F7EZ/4GSSmEE3IEjFwQrHecd263UsTOtYgXmFF/8ypM=;
- b=gKX6YutaizadKIUdVvJgj13Q0GGzXa3PVlo2YHB6A+HwBEbF1GicVrVlyV3tlmgteR59R9WLJGycuisqEU5rSeXv2eCTejSFH6pkiSUR+pKN6yGXduwvPktiFhayOJ6fGYkihCxWKKcjTVKWgfz6SpI9wViZ4Az2t1FjYQsBx/54kmGTO8vYfHx2e+yKHVcvgsGd/UaBskz8Uf7TlQt5LRHfjbbW0mDnINFbUbQaqDJMWtL9UaahRjC8l12lW1HB9dmqt4j31P5R494V0LO2d1/0c4NC/htkVjpn+0fuIZFW5IO6/g4cSH78ip/AOBYpUpJnUAdc3t3IaLhA+76a+Q==
-Received: from SJ0PR13CA0019.namprd13.prod.outlook.com (2603:10b6:a03:2c0::24)
- by PH3PPFFE85138C4.namprd22.prod.outlook.com (2603:10b6:518:1::6db) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.13; Tue, 17 Feb
- 2026 09:23:31 +0000
-Received: from SJ1PEPF00002314.namprd03.prod.outlook.com
- (2603:10b6:a03:2c0:cafe::8a) by SJ0PR13CA0019.outlook.office365.com
- (2603:10b6:a03:2c0::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.13 via Frontend Transport; Tue,
- 17 Feb 2026 09:23:31 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
- smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
-Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
- not designate 165.85.157.49 as permitted sender)
- receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=mkerelay1.compute.ge-healthcare.net;
-Received: from mkerelay1.compute.ge-healthcare.net (165.85.157.49) by
- SJ1PEPF00002314.mail.protection.outlook.com (10.167.242.168) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 09:23:30 +0000
-Received: from zeus.fihel.lab.ge-healthcare.net (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id EDA51E8F41;
-	Tue, 17 Feb 2026 11:23:27 +0200 (EET)
-From: Ian Ray <ian.ray@gehealthcare.com>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Ian Ray <ian.ray@gehealthcare.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: hwmon: ti,ina2xx: Add INA234 device
-Date: Tue, 17 Feb 2026 11:23:21 +0200
-Message-ID: <20260217092325.15867-1-ian.ray@gehealthcare.com>
-X-Mailer: git-send-email 2.49.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA613081DF
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:26:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771320394; cv=none; b=XP35ZShUc4ziQ6Svm9oVskcwU2CW7e7zWGyFcNsOvdlzleNTRCSTAi5J5o+k/aTLDldPbQHyRnvFO5gydLAtLl/S+mktnd35+GJeJLCKQORV61qtqqp1UK+FK1rTZU5JCuKwjvzcEEspI1MWhe/TSYjEPGUTSpxDEP2othMhyk0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771320394; c=relaxed/simple;
+	bh=91hry9pO4ZNwKwdeo15BNOS4GoTCbyu8ssR+zRQ4240=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tLXwVnKXhUlXOQ9JiDzgYzmOitcjugBmKhRN4IXHnz/O24VbThgKE5kezNGeOO3wm+rqnMiaNSDVkSzp9EmNbzcyKdgjQ8rnOpbM86gx34YQXkcA6HrcLoAmXE0NiIwhKGL7ZZwhsqElwVKLbVdxhLJ397p8irUXz+bCD2RJsDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jy2UUQ+v; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bOHTQN0u; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61GL7qiW850154
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:26:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sm92oAKENnOQEPvWXTMG/8Szy9/9PlOsPy6S0WKSvrI=; b=jy2UUQ+vmTgV6qDS
+	NN8qM3z8U3nE8iYilOQUA66S7co8NHgQIgUHT5sOgHVoJc25PMUOjHHg8HL6tDJ5
+	bSDa0adEnbzciyIYH2xnr9HPkBOi0dPAeCt1DxO8c/Is5n0pD1Ikw8qWAisi9rAz
+	gx7IAo79Bj6yXf/3ZEqjmzF9h51VmWHXg8JHeGIElMip6cwCdiYciFjbcyNfXbmw
+	RYsRP8aL+9eJz5EwUqhz3MdY+eaOl9d4Rq4SAN5zKrD7sS37chQNnGZqO+1nofqr
+	o4ecH4ttUMDkY/f9VkmSrje0ZoSYkcstS03GUaEjpC1Bb7gpnwb0NnzWs3T+q8TK
+	SW1BYg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc6nrsrgy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:26:31 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-5069ad151fcso29736271cf.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 01:26:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771320391; x=1771925191; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sm92oAKENnOQEPvWXTMG/8Szy9/9PlOsPy6S0WKSvrI=;
+        b=bOHTQN0uAytimfWY+fS1QCNv7u3y0LntPxQAnvV25N3rPPuktl+ASF+mTI041MADMu
+         oRk9AACSLE61ovZUSTsi+1Ot7yd+1cM0lst1v2Z5WYFmGfPAYiyUvfM4bZoxWWcPIqTn
+         O9i3TkLef3hN2zHs1g2xz55CYU8CN3+6j8fadZLDJMHk5RMjKDEC90ar/dRPX0OTIJ5J
+         GdhDAsUWofyIICLbl78GzBgHwWSOMobIBYYfRPzaGg9+CdNu1Bf4t4FwNVL+n+k0ce3u
+         uGXt2aFe4VTdtJIbACrtWpdwr585Nue0eQcziLeLEYheAoNGzzUyDAErJ+WoG7cRVKKi
+         HCkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771320391; x=1771925191;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sm92oAKENnOQEPvWXTMG/8Szy9/9PlOsPy6S0WKSvrI=;
+        b=eMIhH5fK4a96Dc9fete21K3P5bvvpMTuwZaE8c2BY/mWbfTTz0etjbweMqrLdkJed3
+         MsK9Kd5QEhs5eW29z4Rrb71w2PZQF5Go1ibiVdOUV7fZ+8pNmpMaWAYCyJeaXbZR0Tl0
+         3YJIokrkgXpqqFaztVCkPOji2hChsd21gxf7Lt2e06ICBjlC7EJ00uibn8KBnsVV9ITD
+         moZ0lNo/mvts2MBkNxBfcUpKHAFHFFw5Fwu4Z3Bqi4p/6AwKlA/mZFYLtU1jPrR5ofKc
+         +l1kryMEKjxicGovznlmZ3vTGKpIVJvTZhbhDljIgfvH5Ehx+lIbx1PIkxEsvzqkaFEj
+         faeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXxOs9n3cZnrOKf5zzxK4djW7JCmiVZlU09fuH8wrCy3EkcPqckl78ukNgiE2s3mThS1O7MvmwnEeKf@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywn6ihGWBc147QdWOCnF0L4ZR/+47RDl/Ni8ncQT6+x6aNFYLLe
+	d1D9vgXicFKHxMZM2KPXCUHn1toXJcvmq8zjtZzpp39ENQSr4VezPIjylSwKafT3FHKlwUbB6JO
+	sGv+G2Xvb9/T3k68CojmXRIwr7YC1aEmEORYh7jzzrCMjDP3DDrBCteochNDJzoRx
+X-Gm-Gg: AZuq6aLdca5hAIvHz4BKdswq9T2n/VsjH86AWbG6elnC10Aw3dXfkp7oly5hvvB/fAt
+	ta/1pDB474ErgFNakrOZESg3siZSVPCIiNpNagRuDZZWqM9pgXxQt84aPNA9ZZBx/5viDChZxyv
+	BxqrZAAKETLDmoXNT4zcXc23Z6I9sQijcphavpEyk6ilS8Rad2rLtfkckhx+3Q0lwaApKHxYzKK
+	RuwlSXCXT2XdRN38OOxGpCVXIxQDcgqnUQjOTTHAZ83vDuTsShPTjOsSLb6xxCQdyauOGuezzS7
+	NF47YuraW4xK8iWS5+W7E8JLQYRcoHb3D/nnX8/OV+xCAH04xnBNBc7Qcxqit2FzD7VXZobmKuB
+	OH7YBgahBXCZmLJ8cc0qEFUwdRhYKBO+BDKKdd3Ky30cuPngALyXKdTWygAfM4PDLKOxrjVh7wa
+	9onLc=
+X-Received: by 2002:a05:622a:148e:b0:501:4767:a64 with SMTP id d75a77b69052e-506a6a4daffmr148257261cf.5.1771320391380;
+        Tue, 17 Feb 2026 01:26:31 -0800 (PST)
+X-Received: by 2002:a05:622a:148e:b0:501:4767:a64 with SMTP id d75a77b69052e-506a6a4daffmr148257111cf.5.1771320390987;
+        Tue, 17 Feb 2026 01:26:30 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad4faca4sm2308272a12.33.2026.02.17.01.26.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Feb 2026 01:26:29 -0800 (PST)
+Message-ID: <f3394308-ee08-45db-a0fb-569d1cdd7fca@oss.qualcomm.com>
+Date: Tue, 17 Feb 2026 10:26:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002314:EE_|PH3PPFFE85138C4:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: ae8dca8f-50be-4372-a383-08de6e06376a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?UMtizHfPBRZycjCFsPaxSdhdCjAcKG89mxjNuCP+IzV46ZD86R+lV5znn5Te?=
- =?us-ascii?Q?vj3A/Y/HwkkZfSuVV/icw0FMpw7ZfcO71vMCmlgaW4NoaGxaj25xi3mZJC2K?=
- =?us-ascii?Q?LRa8sueXwM1wOXAaNK3RI3X7SM406KV3gXcnTY2qLxBv8cWYFFsqfb2WX/tW?=
- =?us-ascii?Q?+BITpFrHTnBv5P7A9ARNYIkqH15jcPS7TzVObe/7MHJNOqXv+edd+qlU8woA?=
- =?us-ascii?Q?J/xgI7ZXjlkFa/ZziX6dPsPaOlHiWaZmFOWroj1EycJAzc54105u9Px8ML/e?=
- =?us-ascii?Q?vicJIsXD1Fl+v+mF3ANqrH9S6Xr8hw9WL2YqKORj0kDlB66E5bXJoTHOTMA9?=
- =?us-ascii?Q?Hqpc0dxMbVEf1gjZGM/2jScUZAIch8K9JIdDGu7SBMrueRukq0kpKCmfZE0C?=
- =?us-ascii?Q?LR7XHTjWu//swj/0JXxZMrBT0qp5Rqb+Gxuwjnpc6o8xnurpYxBt3t8TPzPU?=
- =?us-ascii?Q?YqjyR+eiPKHkg8gXXBS3gwrDz6ZJ/b8kApz4wZ4i3ZtZeJK5K66ge1HvLr2+?=
- =?us-ascii?Q?FFXzmgQGQN93IdVeEFzVLTVUv4iU0zQaxj2B3jLngkjmz/dt301FSO3jw9t9?=
- =?us-ascii?Q?JjVJRYJ5LMf19mnSpMxY0TuXH/xJ1TkQshRNeAU8oT7nB2xbajRsLOawRaOU?=
- =?us-ascii?Q?A6yRQA12Gp+w1H09GOg+2tioB4vWRBYvyD72t+M6YEU3Sb4M5ryG8XJh2jFM?=
- =?us-ascii?Q?2vPagY0UhNVkbnJWmz3g5f4Gtz9bVcWkWd9EkRLKFqQrhZ2LdJySnuFUhR9j?=
- =?us-ascii?Q?EMRqYG6z3nNKkHRQYiC5agEYjmx+2OrRhPTzK320ThfTzcce+pk2e2N3WfYV?=
- =?us-ascii?Q?3QT90efUa4lW2JAIZK+CtnVfjd2kDcXCZqIQVS/3WnGk6dqJ2AFglhO726j6?=
- =?us-ascii?Q?kEBVZhHluDASQFY15euAMAR63c5LWvz/jCt7oV2DxTLrxeBFKzqP7Aklui9x?=
- =?us-ascii?Q?0bjYCQvYm7SiMkz+em3lFIp1zeCUaO4fiAiGVFptKukzniWtVQ5dsjnK5d1y?=
- =?us-ascii?Q?Xs++5H7mdfTcgatjKxKyDcbZZ5aNzwadQdP3dmJsuhWKl0Z95HaPA0UuAZjC?=
- =?us-ascii?Q?uewONWhZce89+1VHoCNkuSl7vZiwf6Me3YwHbknP+5NAtkjVST1OZW8zO2rV?=
- =?us-ascii?Q?ANIk0l6UrmkZcSwnfZrPQHTSHg/cwU2OTGOZbuhFtcHL/OAj0xK/iSIditiu?=
- =?us-ascii?Q?Il/E72n+K51F9q3AeHYvYgG+dV+P2wMFtye5oY6BqGctHSUrWOZ+xa6snxWO?=
- =?us-ascii?Q?j2iCGz7rG6A5dbIWYkX5wPeTK9bqjn/UJDt3tm38w9dLz+QSJpyekcaV3/8O?=
- =?us-ascii?Q?QC7ssCTmVvWKX0BeiJHgFBTEYbL2LHeOd6nSOwlBiLJNpFPLJCXYlXbWYpXO?=
- =?us-ascii?Q?LegxMz/8LB0VC0ChzNeM7El9q1n2MfB2MWiukRDw92lzL326UCK20CkuA4mE?=
- =?us-ascii?Q?Zq36kuKHuUX0mTyANSFb2jXodyj2oUaOlfMWQUwcLEiM4LF0clJz+VKwkPgY?=
- =?us-ascii?Q?Aqf00/Skq6ctwNhNkTgoiyAQZm84cIVSRzMGDHusdotnpkmPiKDh5WYtk0r1?=
- =?us-ascii?Q?LEA/bYRNzogbF67rvuO3K/J1q6JRVkSNSX+f6bI71PvQf7QH6HIpKM/P8VL4?=
- =?us-ascii?Q?NFZAeTRw6nVzg8Wl0FRI/NS9qbBYcHmKsx9CqEqHkHOyDFx1VhClJFdJD6x2?=
- =?us-ascii?Q?WddS3Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mkerelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	Fxe0CrIp2Jy/mzoxgWc3LZCcrZjPlDqMwasuUy6iuXYNITxW9vHy7hdlGgQHKOGWT85oVS4pRY6xehqc8gKiGL+Np+rvqhsB+oB3fLK/BK+HAbBdvhYS+GuYSkOKLzj+Ftqp6bIwusbbQd1mGIzncvXNxKUTbTPgN9hZFeVyhMw4xINLbtT03nPX4WYU30r6gJn2L4AyhWF819eqZu27pW11/dpexn7N/oQIk+MRrVuPfz1QYR5xJ0FhathBEmJ8Siu17mQb8uT+SE7aWB4nGUzQMqkrQ2GHeEv5J/BKcmEQBBGyJzI/91jSoKywW79vtBSPkYT006LQD1WfjXEYmDChCBKfTlElhc/WPqdZi/+Cx6yXQE0XoHWbf3CkFEX0mLG3gC7y1pNYpKzH3iF8AvahZmY31sHnVKzDMuQ6oZGD9OcymCv0J9kSNOkxbyuz
-X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 09:23:30.8005
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae8dca8f-50be-4372-a383-08de6e06376a
-X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[mkerelay1.compute.ge-healthcare.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-SJ1PEPF00002314.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPFFE85138C4
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] clk: qcom: Add support for Global clock controller
+ on Eliza
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Taniya Das
+ <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20260216-eliza-clocks-v3-0-8afc5a7e3a98@oss.qualcomm.com>
+ <20260216-eliza-clocks-v3-5-8afc5a7e3a98@oss.qualcomm.com>
+ <0f3fec98-4d58-4197-82e4-41480066d42b@oss.qualcomm.com>
+ <cqx6t5tcshcqyof4aaeawa7gyocaokzyqjmyxgxis7xsfc4wwg@jeggol3ifwu7>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <cqx6t5tcshcqyof4aaeawa7gyocaokzyqjmyxgxis7xsfc4wwg@jeggol3ifwu7>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=XKo9iAhE c=1 sm=1 tr=0 ts=69943447 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=6ZlnZXRTM0lKxT0uN3UA:9 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE3MDA3OCBTYWx0ZWRfX7E4xS+d507kW
+ YYTyAZoNlASr6S0yJTEaneU1h/kAkdtDb0BU3SJ4b0OgnufVAha4BbojinOZCXgOuUlK1UGYymL
+ Cw10Cr1It1r2kIoJVIl1OMkWxP0GMhPPi8DufGWqplrmkAp0Qg3mNFYsdLbHK6P3h9IjQ8Uf0qE
+ e++Y3lQE6HOAH910eOdnBmhor3WlNeZzCeShhgt2Wah+1BPN/t6mxOOj1XLtoouyuuyllGB54xs
+ kg3Tnc7v1ltFNaVm6G5z/oNrR6Bw2fBfc8Ge1bV+xN/Xjt+kQNE/8wvwkSQTL0FBx6JLQrdCFfY
+ MXAyV+fhRzXoAugXlHO4wNZwhmsSBGk7Gg4bbHVuiCok75iLHlPF4efy77RwPnQBV9z7uAih2k1
+ rDOt1ZZgr1a1JdVJr9XWGHS06hcri/8lOKyD73IHcoWyNH9cqiTGZ36yz8p8/iLmfWOWMYiuEDl
+ ZX6cOyrwpSGPQkI6wNA==
+X-Proofpoint-ORIG-GUID: TH5rk21h-A3ur9E7bfMasOV6uLp8Ta95
+X-Proofpoint-GUID: TH5rk21h-A3ur9E7bfMasOV6uLp8Ta95
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-17_01,2026-02-16_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
+ clxscore=1015 adultscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602170078
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gehealthcare.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gehealthcare.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266043-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266042-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gehealthcare.com:mid,gehealthcare.com:dkim,gehealthcare.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gehealthcare.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0FDF014A581
+X-Rspamd-Queue-Id: 517A914A5CF
 X-Rspamd-Action: no action
 
-Add a compatible string for the INA234 device, which is like INA226 but
-has different scaling.
+On 2/17/26 8:57 AM, Abel Vesa wrote:
+> On 26-02-16 16:57:24, Konrad Dybcio wrote:
+>> On 2/16/26 2:43 PM, Abel Vesa wrote:
+>>> From: Taniya Das <taniya.das@oss.qualcomm.com>
+>>>
+>>> Add support for Global clock controller for Eliza Qualcomm SoC.
+>>>
+>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+>>> ---
+>>
+>> Do we need force_mem_on on UFS clocks?
+> 
+> Not sure yet as UFS isn't up.
 
-Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
----
- Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+FWIW downstream does that for this platform and it seems to be the
+case on most recent platforms too
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-index d3cde8936686..009d78b30859 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-@@ -29,6 +29,7 @@ properties:
-       - ti,ina230
-       - ti,ina231
-       - ti,ina233
-+      - ti,ina234
-       - ti,ina237
-       - ti,ina238
-       - ti,ina260
-@@ -113,6 +114,7 @@ allOf:
-               - ti,ina228
-               - ti,ina230
-               - ti,ina231
-+              - ti,ina234
-               - ti,ina237
-               - ti,ina238
-               - ti,ina260
-@@ -134,6 +136,7 @@ allOf:
-               - ti,ina226
-               - ti,ina230
-               - ti,ina231
-+              - ti,ina234
-               - ti,ina260
-               - ti,ina700
-               - ti,ina780
--- 
-2.49.0
-
+Konrad
 
