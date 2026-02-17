@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-266190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266191-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPSpFi6ClGniFAIAu9opvQ
-	(envelope-from <devicetree+bounces-266190-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:58:54 +0100
+	id SI45DhCElGlBFQIAu9opvQ
+	(envelope-from <devicetree+bounces-266191-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:06:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF15F14D592
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:58:53 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56BAD14D66D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:06:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DB284301B930
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:58:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 93AFE3009E11
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16DC836C0D1;
-	Tue, 17 Feb 2026 14:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAFE636CDEC;
+	Tue, 17 Feb 2026 15:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="OEN1E4TO"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pnXmV2pP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF27329395;
-	Tue, 17 Feb 2026 14:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB7D36C5A9;
+	Tue, 17 Feb 2026 15:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771340331; cv=none; b=rOWZM6wQpU2IVczJPfb5NxT7D0fLOCM4EiyssYBSHA0LUShzYeo9z31IuFUK1vTNgVVSqGmFpkj+RbVukdUAhl92yqjtunfL8LWAM0tNL8VBUbXUBXnDQcaYtepn8IZMdiwC9fdYqqZM0FWyNGo0V04Hi6OoFtKho3frf4OuOJI=
+	t=1771340791; cv=none; b=EQo7wFqr9E4wXbSq1dXjA7LQ09GtlloiuZ6Z3atjaTSnSaDyA9YuVRRygcXDrMX8DfOP4XZ27UkB6UvrywR6sFLsDTk8DoVH/cmCBkRsTG7f4Q2Zfc3qEV969Qe7USdiZd+hZ4Gt3vdUGzXwS3ouTW0tFD+uKF3vtTxk9kM4KBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771340331; c=relaxed/simple;
-	bh=2ofuTKKEQLpK8QNYF9SDuill/+IokH97rgFuVahJFbM=;
+	s=arc-20240116; t=1771340791; c=relaxed/simple;
+	bh=IQJ4U9fGaDm5qPm0TPpCij2pCDqnQ1+ihHmReWt2g9Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MrMGzFm68haHvfQEPsqXpEY/dQrAgS8I7GQLD88WXn5iHNYx4kHtd1jcqBGr3O6N3ikddkYSBWDLKYO3hc7huskNRsE20MUywW2kaqP/pLmV64h7REW2tDKcPvaL/jUuZ8J9oajNCmB2zWYSWqjllme3qNeGqfDLCBouNxLtduo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=OEN1E4TO; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=mjihI2iO3WoasxcfCX7XGXr1LLw6WuulCW1dHvxGvJCMTdaz92kIvPOzKIPNb9VUQGE/TFI1bsnvi9ncJWO0va0xtmKKcPKQpLa8ksjNjGPqgq9FGpDUqUupGhxsuRs9diPP/gxP2Eos3Pr2B6WKu9zvYcaDa2Exz2kd/iPB1js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pnXmV2pP; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -39,13 +39,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=TgrYGzki/8CDchUbygE9S9HTRcJ+spBEW5xPJhmGL2M=; b=OEN1E4TOBXzDVAmqkxj1FpwVUx
-	FszW/y92aT5KnFHR4qT6qgA0GxHMbPOmr5yQsBDGK01GPzWgRn4zWfBArExyhrV7KQcF9B2qN+MaY
-	xkOFffE0LxZvBujfuI6hw5ZFnGL4hjR4Io9ViKOuh14RiFYV6957jiAB0PjQr7Hmc/Pw=;
+	bh=ZMuHuDboJOUu00uJIftapYBECe57uBS1skPmmrMya9I=; b=pnXmV2pPZ3/C/SS6EyXrdqFasH
+	NKqo9klORAGON0S1c7A6pjPqKkHqxGzHdLHCaIdRzD3sIlJr0Exgk+XDraakMeF8p3YJdEhghbJLD
+	tLqQLOYWG+zASBKqVOs3Yo5wLlEn84P4ol+2Zx7zYW3jdMwl6lPbcr3ZxHdEVuTy37iM=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1vsMXC-007eik-1q; Tue, 17 Feb 2026 15:58:42 +0100
-Date: Tue, 17 Feb 2026 15:58:42 +0100
+	id 1vsMec-007elf-58; Tue, 17 Feb 2026 16:06:22 +0100
+Date: Tue, 17 Feb 2026 16:06:22 +0100
 From: Andrew Lunn <andrew@lunn.ch>
 To: Ian Ray <ian.ray@gehealthcare.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -55,10 +55,10 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
 	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] ARM: dts: imx: bx50v3: Configure phy-mode
-Message-ID: <fa3805bd-d242-4399-8175-4b8dcd0f84b6@lunn.ch>
-References: <20260217125952.53997-1-ian.ray@gehealthcare.com>
- <20260217125952.53997-3-ian.ray@gehealthcare.com>
+Subject: Re: [PATCH V2 0/5] ARM: dts: imx: {bx50v3,b850v3}: Update device
+ trees
+Message-ID: <538e99b3-be4b-4f1b-a3e1-dffc6240461b@lunn.ch>
+References: <20260217135521.65742-1-ian.ray@gehealthcare.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260217125952.53997-3-ian.ray@gehealthcare.com>
+In-Reply-To: <20260217135521.65742-1-ian.ray@gehealthcare.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266190-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266191-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
@@ -92,44 +92,31 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim,0.0.0.4:email,0.0.0.3:email]
-X-Rspamd-Queue-Id: AF15F14D592
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
+X-Rspamd-Queue-Id: 56BAD14D66D
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 02:59:49PM +0200, Ian Ray wrote:
-> Set `phy-mode' on network switch CPU ports to eliminate a warning.
+On Tue, Feb 17, 2026 at 03:55:15PM +0200, Ian Ray wrote:
+> Configure PHY speed and mode.
+> Configure b850v3 gpio4 line name.
+> Disable b850v3 usdhc4 interface.
 > 
-> Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
-> ---
->  arch/arm/boot/dts/nxp/imx/imx6q-b450v3.dts | 1 +
->  arch/arm/boot/dts/nxp/imx/imx6q-b650v3.dts | 1 +
->  arch/arm/boot/dts/nxp/imx/imx6q-b850v3.dts | 1 +
->  3 files changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-b450v3.dts b/arch/arm/boot/dts/nxp/imx/imx6q-b450v3.dts
-> index d994b32ad825..7326b8ad08cb 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6q-b450v3.dts
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6q-b450v3.dts
-> @@ -140,6 +140,7 @@ port@3 {
->  	port@4 {
->  		reg = <4>;
->  		label = "cpu";
-> +		phy-mode = "gmii";
+> Changes since v1:
+> - Clarify the exact warning message in patch 2
+> - Add patch 3 to order reference modififcations correctly
+> - Correct the ordering of reference modification in patch 4
 
-Are the PHYs external to the switch?
+Please wait at least 24 hours between versions. You need to give
+reviewers time to actually review our patches.
 
->  	port@4 {
->  		reg = <4>;
->  		label = "cpu";
-> +		phy-mode = "gmii";
->  		ethernet = <&switch_nic>;
->  		phy-handle = <&switchphy4>;
+At the moment, because the merge window is open, your patches are
+going to be rejected anyway, and you will need to repost in two weeks
+time.
 
-You have back to back PHYs on the CPU port? This is not wrong, but
-unusual.
+Please go back to version 1 and answer my questions.
 
-	Andrew
+       Andrew
 
