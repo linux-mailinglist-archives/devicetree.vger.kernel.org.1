@@ -1,107 +1,103 @@
-Return-Path: <devicetree+bounces-265948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265949-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2IIjO9axk2kY7wEAu9opvQ
-	(envelope-from <devicetree+bounces-265948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:09:58 +0100
+	id mA6IMO21k2l17wEAu9opvQ
+	(envelope-from <devicetree+bounces-265949-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:27:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF601483DE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 281D714843B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:27:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 95842301DAE0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:09:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 63D2F301D058
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7384F1E5718;
-	Tue, 17 Feb 2026 00:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3BA24E4C3;
+	Tue, 17 Feb 2026 00:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d+6ETe99"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V+ErnJVX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1831D88AC
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 00:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC6B231A3B
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 00:27:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771286983; cv=none; b=C7RDxaHSTXib8zMowShEAd8cFLn9xWeVDyMEShAU8KH4PKcj6g4UUrRFgwyLi8W0AJ8g9m3Cdl3v02mfMZ+MGebg94I9tfdHuC87XxWOtrXwWpTMg8fRt5IYfpoJAF8j7qnLea2bEHALmSiBJC0Fz4zfNoAES50xwdfbBoF6g/E=
+	t=1771288034; cv=none; b=qfiHh3lF04uRDJcGLPF8ewahAv+Unz3/s6EpFAmq0581SicwXOxE+9pZglwjtsXg4aMJihRtIJ3WHAitYfMqwv/NSr8148+WWXgi5deULwwQUMCpkivekzjlp10+M7TUZoIMm5tj7le78zTblP42HnCwUjxk4bChgFeVBAzt2H4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771286983; c=relaxed/simple;
-	bh=zzNxe9u3lf2lSadLbWYR6AZjhGM3dAkiT6CQiyOQ15U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QJ9JN7YeKQ6vodjZL2z6w0MjuTiMz8pzzlIGa47Mbxa4pLlDnAfSpsZzjjKhOiDvEtUknYBNyb/yVOXACw+o91Bz6rrQOOpm/Zvqm1siAAyNFrVM7vE9edyLVI0r7ZFb9zJ7xZfE6uWcdI1xDEqsqxdWa/RWoWJVktaoos8wu5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d+6ETe99; arc=none smtp.client-ip=209.85.222.169
+	s=arc-20240116; t=1771288034; c=relaxed/simple;
+	bh=y8zY+jB7047Hqz0G2nsBkPFynGKhy1MWI9oaZkNNTpc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S/N59v6N9OUhlQr7dfyXy2pHRvbSOesDxCjReCRo4z7TN2q258wYfUVg/DKVNzgqOR4liEXQXLA/BzqHlbpYeKLZKX3dzidsU5cJSaxZMjCcKbe9JzCxnTvsghOFtxMRQmtJiIoBlaNwgJolY/MUMj1xI+9MWxJNofFv0dXUIsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V+ErnJVX; arc=none smtp.client-ip=209.85.160.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-8cb48234b08so327838285a.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:09:40 -0800 (PST)
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-503347e8715so46779041cf.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:27:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771286980; x=1771891780; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Oa4VVnq/PmbRXPOCA0iMVFkR6b/DwoIi4kzwka75JGM=;
-        b=d+6ETe9975wpBKqttsPcETh9OGXywODNkqhryDhB45YmS0MAzgFwMIiii4QFse3gXs
-         FvPKbmcknKh8rBsFrVFdss4ikfkh5XXruQozveGIJ1IdNgzgsy2sFWZ7Kexx44/uZ0SK
-         gcXtxbtxuGiLs5qrncAUJvgWiVtsSKsmC2WWGJJp4QsfbLKkBTJT7IvxbXMJxG/Qh7z+
-         JY/ouVQWbZmV3pfOwe5ALVc5yDyLmcMvgv6I4FiiMPZiZciLjFKVE5VUMwNosFpVXrNh
-         seOluSEyxqJ8gxS2lFUavWrSidaFg4LOQFjGrRQJcSWaD1XRrQzJuoLClm9H+rX6ur+U
-         6QRg==
+        d=gmail.com; s=20230601; t=1771288031; x=1771892831; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CN+EmxdCFVl4S/1oavyLxRyMCRPdWOSDmH8hJQng4jI=;
+        b=V+ErnJVXqfRy+ESIRBCSzSNSeTvwcuLmAPzE/haTMziZ1RvLIwKUQ5Rz6VsyDA7zdZ
+         m+XF8M5gkvaDgMwr17i2L6tCKjyTZ78Fg5KiBMmiGiGHvv2NTKiX7SmSs9nBrgd5/50K
+         Q9DriPiq16fjBT+otGS8hCTKKCwFqlEBU1zHTfGxpaa+QTQsRNlYooJI2HEg5MvLkzgr
+         IOfbAo+4MEyIGq71O6mUMu3b+ZL/zJc3lERmQ8GAlwn6CzjayiMauO6mEWY/UvWlnQ4G
+         OPHlz3TdM5KATUf6+7U1HOzhswrhJp3F+kvN/44Fw21yiP0E1Hc2/BVxWS9EmiFwoi7c
+         G0hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771286980; x=1771891780;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Oa4VVnq/PmbRXPOCA0iMVFkR6b/DwoIi4kzwka75JGM=;
-        b=bmz/sc7dS6R/3dB7r/6k5bX7kiQiqh8Y9UaVRIWkVNZuLXn2BjD3wBeQ/A+sAKiIy8
-         ZzF7mHLLVBRVH1BJXD9auH74TyPjfSm0j+kGEqK0dB6A2DNOYMgzQK4iyazVK+ZPhv2j
-         8PLRhIJDays9azC//yQKsNyKwy6YdX2alvnQ2nPtXT6xbgM6uX3ttRWcS+Y/qAX0YpKw
-         Tg0dPb/JrWnRrUiRmIdPY5Eje3hi5WPwnDHq2QoYu9e4jjE2LNfMEWWhFOaIBtIoSLXB
-         q1T/y9kiLdMid8glLFmznYAsxDzMNG/M2Tkz0myYRBuq20z9G9LfKRWDSoe3JXH1PvW9
-         iOrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFa07R5NOMqk7iJPmONadg3+d3huSvxTJp8XJjiPSXrmfXTCSI9XsqVw8ui8FVMsKkH9ygX+AOuqPo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6cq+N+zSkDhI++jzyAJ2F2jzfyOeVhHvI7L7Nhktj/J4QYx7V
-	WYFUjCPELhnI8BgAJE2kqWGeCRQGRxjxTlUK9WbT30y0LEabAB0e86uX
-X-Gm-Gg: AZuq6aKf5mQA651xXikFi1QX8o8I3OBSvubA3YiNN2DqPLHUju91U/5pyzzJsC31I7D
-	LOfZwiaMCEVllJl20wZsfb5KscqayfIibXFoHOCbQn0L3Jxjb1u/dMPRZ8oFb5pVdp1AghIkxv4
-	5I+QXWdjWre+8N9ffEOwkcOLVmWgHjvj7FoXldxDXRjOmq1hqwLRLuydiTTqo4rppaZGkua9rE8
-	U1LcIj2aodWJEcQukEDhnoTmU5VpU5ZQgvpIfi3q2n+EvRFqZ+KZic0Iu7a7e9E1eTpUUZewXLh
-	pQ9wasiSjeEDwh5nZAypNxImAogvlk+i/h+2d7rrJcO1Ye0ti/iW3ybPeuijybFjG6af01VK8JC
-	I4GLLuV7cVuLHolUZDdwi8q6eQKm13pQm4MMHQSr0ufy6pYQE7y7NxVssdm4LlCwx7eDhuuL5D1
-	D/SRobH30bULr6IKW1dlhaSUUXO3zrtA==
-X-Received: by 2002:a05:620a:2952:b0:8cb:4289:6c1a with SMTP id af79cd13be357-8cb4c01e31amr1045501585a.75.1771286979891;
-        Mon, 16 Feb 2026 16:09:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771288031; x=1771892831;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CN+EmxdCFVl4S/1oavyLxRyMCRPdWOSDmH8hJQng4jI=;
+        b=wtmqU541TP3CGSL5YxbRiQwG8o2L2C7Hf4IgS9jhwbMjrPZfRlN95O+WRVYx/fTx2M
+         6uDuB4RF7c7E4Iwih6sY1G3Urqc4qyQ8YbsVFO2W0dQFRK5/sWNTgPbmna04AewN4fB/
+         0svwZhGeXmXevKVZ8+c3//+1HiM1GWOUbQeY2Jfk0NdvuTHM2uuNEVaqEG//3fSSe/qc
+         bWSPlxNTEtPC5Yw+CSZJFbd5pv1I31mKfQJ55YZGaIpSIQpzA2DyRakLCX+LIF9NvXas
+         9jZoQQUGEhyZGfSk2MKnLrglTFgnl7CKW4FL8vDlXw4QXF1IJYqwXHS/uJDv/lOvuAX9
+         xCkw==
+X-Forwarded-Encrypted: i=1; AJvYcCWs3AC7llassh2t3lE21bXLDY4F5VnyQWEm+LGpb6QXpKlELzJGoSXcbIiomKSiNABD1LWhqB9rnREU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzumLdgbuS1Ls0Ij9I7O8HRrSo3n6MFUuc8uFVRTv0yXFKKU+Oj
+	KXyNOkG+FhNiYPkg29V4xJDpExqSt0cZZSOQzj/HwSxQfLJ3RpTuaIBZ
+X-Gm-Gg: AZuq6aIOedpqw3c/M+p+jXrkXsfYDjf7LEOs0OCs398VK8Uad8ablQalx0SyH2z/pqp
+	mSw936RRjt0BnWWwqJ/RBMgzamOik43Glk1bMsGbnA/CHW3nX+fsmlcZeV+6MCun19oYaGk14IZ
+	sZ7/euUa608kbeCgBlCkaURe2jMcFUmEzEiR8aEzphiBwvcK5PBUGUiz2Pwsa38MlLrJarsuN19
+	ULdLux3nhlRBzIegOz2/IYDssER2yt994lyTiYV+VwKA1yYW2QtOogzdYoee1nqrNehjr0TUmaR
+	hFPGvb4ZD7UeE1QpURL3/ftO5UfXDM+DJH7G7t1qRf1pgb5+06v3tvmY8/Rl/8X9TOdESHsSs8a
+	wYINXREtE6pWcdo9WSE/jVdpv0cbq8UELcaWIE1zI6StxO34d93oWGsmjDo7p0d1TPQ6b9Y/ctS
+	Sbqf8lB6ndz6goc6vEO/o7Zp6Qzgr13Q==
+X-Received: by 2002:a05:622a:1355:b0:4f5:fd34:bb02 with SMTP id d75a77b69052e-506b4012a86mr119670311cf.57.1771288031589;
+        Mon, 16 Feb 2026 16:27:11 -0800 (PST)
 Received: from localhost ([184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cdc554fsm150087946d6.48.2026.02.16.16.09.39
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-506bab11e14sm72798281cf.0.2026.02.16.16.27.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Feb 2026 16:09:39 -0800 (PST)
+        Mon, 16 Feb 2026 16:27:11 -0800 (PST)
 From: Richard Acayan <mailingradian@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	linux-arm-msm@vger.kernel.org,
+	Robert Foss <rfoss@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Cc: yifei@zhan.science,
+	linux-arm-msm@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>,
+	David Heidelberg <david@ixit.cz>,
+	phone-devel@vger.kernel.org,
 	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v2 6/6] arm64: dts: qcom: add support for pixel 3a xl with the tianma panel
-Date: Mon, 16 Feb 2026 19:08:54 -0500
-Message-ID: <20260217000854.131242-7-mailingradian@gmail.com>
+Subject: [PATCH v9 0/7] media: i2c: IMX355 for the Pixel 3a
+Date: Mon, 16 Feb 2026 19:27:31 -0500
+Message-ID: <20260217002738.133534-1-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260217000854.131242-1-mailingradian@gmail.com>
-References: <20260217000854.131242-1-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -121,96 +117,125 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265948-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265949-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com,linux.intel.com,suse.de,ffwll.ch,ravnborg.org,vger.kernel.org,lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org,intel.com,linux.intel.com,vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[zhan.science,gmail.com];
+	FREEMAIL_CC(0.00)[collabora.com,ixit.cz,vger.kernel.org,gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8FF601483DE
+X-Rspamd-Queue-Id: 281D714843B
 X-Rspamd-Action: no action
 
-The Pixel 3a XL has variants with either a Samsung Display Controller (SDC)
-panel or a Tianma panel. Add the device tree for the variant with the
-Tianma panel.
+This adds support for the IMX355 in devicetree and adds support for the
+Pixel 3a front camera.
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |  1 +
- .../dts/qcom/sdm670-google-bonito-tianma.dts  | 38 +++++++++++++++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
+Changes since v8 (https://lore.kernel.org/r/20260210020207.10246-1-mailingradian@gmail.com):
+- allow clock-lanes, but make it optional (1/7)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 6f34d5ed331c..6237aeb0e36d 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -245,6 +245,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-motorola-ocean.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-bonito-tianma.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
- 
- sdm845-db845c-navigation-mezzanine-dtbs	:= sdm845-db845c.dtb sdm845-db845c-navigation-mezzanine.dtbo
-diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts b/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
-new file mode 100644
-index 000000000000..da309434b511
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Device tree for Google Pixel 3a XL with the panel connected to the Samsung
-+ * Display Controller.
-+ *
-+ * Copyright (c) 2023-2024, Richard Acayan. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sdm670-google-common.dtsi"
-+
-+/ {
-+	model = "Google Pixel 3a XL (with Tianma panel)";
-+	compatible = "google,bonito-tianma", "google,bonito", "qcom,sdm670";
-+};
-+
-+&battery {
-+	charge-full-design-microamp-hours = <3700000>;
-+};
-+
-+&framebuffer {
-+	reg = <0 0x9c000000 0 (1080 * 2160 * 4)>;
-+	width = <1080>;
-+	height = <2160>;
-+	stride = <(1080 * 4)>;
-+	status = "okay";
-+};
-+
-+&panel {
-+	compatible = "novatek,nt37700f";
-+	status = "okay";
-+};
-+
-+&rmi4_f12 {
-+	touchscreen-x-mm = <69>;
-+	touchscreen-y-mm = <137>;
-+};
+Changes since v7 (https://lore.kernel.org/r/20260117040657.27043-1-mailingradian@gmail.com):
+- restrict data-lanes to 4 (4/7)
+- include first patch (1/7)
+- add back optional data-lanes in bindings (2/7)
+- remove assert low on power on again (Bryan's review retained) (3/7)
+- use dev_err_probe in power on (3/7)
+- remove second error on probe power on (3/7)
+- add review tags (2/7, 3/7, 7/7)
+
+Changes since v6 (https://lore.kernel.org/r/20260107043044.92485-1-mailingradian@gmail.com):
+- remove NAK from Krzysztof (3/6)
+- assert reset GPIO on probe (3/6)
+- change delays in reset sequence (3/6)
+- remove __maybe_unused from OF match table (3/6)
+- fix alignment for arguments to devm_regulator_bulk_get_const (3/6)
+- remove front camera pin configuration (6/6)
+- remove clock-lanes from camss endpoint (1/6, 6/6)
+- remove data-lanes from camera sensor endpoint (2/6, 6/6)
+- remove blank line at top of binding (2/6)
+- add review tags (2/6, 3/6, 5/6, 6/6)
+
+Changes since v5 (https://lore.kernel.org/r/20260107042451.92048-1-mailingradian@gmail.com):
+- add Bryan to CC who added a Reviewed-by
+
+Changes since v4 (https://lore.kernel.org/r/20251211014846.16602-1-mailingradian@gmail.com):
+- add NAK from Krzysztof (2/5)
+- label the camss ports (3/5, 5/5)
+- define endpoint properties correctly (1/5)
+- use devm_regulator_bulk_get_const (2/5)
+- remove clock-names (1/5, 5/5)
+- set reset GPIO as active low (1/5, 2/5, 5/5)
+- explicitly drive reset low at start of sequence (2/5)
+- make data-lanes in endpoint optional and start at 1 (1/5, 5/5)
+- add mclk3 pin (4/5)
+- add Reviewed-by's (4/5)
+
+Changes since v3 (https://lore.kernel.org/r/20250905215516.289998-6-mailingradian@gmail.com):
+- separate camera mclk pins and move to different patch (4/5, 5/5)
+- remove polarity from rear camera pin (5/5)
+- remove output-low from front camera pins (5/5)
+- mention effects of dcf6fb89e6f7 ("media: qcom: camss: remove a check for unavailable CAMSS endpoint") (3/5)
+- specify single clock-name without items nesting (1/5)
+- rebase on 49c6ac166cf7 ("media: i2c: imx355: Replace client->dev
+  usage") and eaa7d46d9654 ("media: i2c: imx335: Use V4L2 sensor clock
+  helper") (2/5)
+- do not use of_match_ptr for OF match table (2/5)
+- remove redundant GPIO validity checks (2/5)
+- describe endpoint data-lanes (1/5)
+
+Changes since v2 (https://lore.kernel.org/r/20250714210227.714841-6-mailingradian@gmail.com):
+- use devm_v4l2_sensor_clk_get (2/4)
+- require supplies and clock-names (1/4)
+- move unevaluatedProperties down (1/4)
+- disable clocks as last power-off action (2/4)
+- use 0 in gpio pin power-supply (4/4)
+
+Changes since v1 (https://lore.kernel.org/r/20250630225944.320755-7-mailingradian@gmail.com):
+- too much to have a complete list (1-4/4)
+- squash camera orientation patch (4/4, previously 5/5)
+- squash driver changes (2/4, previously 3/5)
+- remove labelled endpoint node in sdm670.dtsi (3/4, 4/4)
+- change init sequence to match other similar drivers (2/4)
+- retrieve clock frequency from devicetree-defined clock (4/4)
+- remove clock-frequency from dt-bindings (1/4)
+- remove redundant descriptions of child nodes (1/4)
+- switch initial drive of the reset GPIO to low (2/4)
+- set mclk frequency to 19.2 MHz (4/4)
+- add vdda-pll supply for camss (4/4)
+- use common power on and off functions (2/4)
+- use devm_clk_get_optional (2/4)
+- remove extra layer when describing mclk pin (4/4)
+- rename regulators (1/4, 2/4, 4/4)
+
+Richard Acayan (7):
+  dt-bindings: media: qcom,sdm670-camss: Remove clock-lanes requirement
+  dt-bindings: media: i2c: Add Sony IMX355
+  media: i2c: imx355: Support devicetree and power management
+  media: i2c: imx355: Restrict data lanes to 4
+  arm64: dts: qcom: sdm670: label the camss ports instead of endpoints
+  arm64: dts: qcom: sdm670: add camera mclk pins
+  arm64: dts: qcom: sdm670-google-sargo: add imx355 front camera
+
+ .../bindings/media/i2c/sony,imx355.yaml       | 111 ++++++++++++++++
+ .../bindings/media/qcom,sdm670-camss.yaml     |   3 -
+ .../boot/dts/qcom/sdm670-google-sargo.dts     |  95 ++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  46 ++++---
+ drivers/media/i2c/imx355.c                    | 118 ++++++++++++++++--
+ 5 files changed, 347 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
+
 -- 
 2.53.0
 
