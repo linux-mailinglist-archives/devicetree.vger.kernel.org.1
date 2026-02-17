@@ -1,292 +1,183 @@
-Return-Path: <devicetree+bounces-265956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265957-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPK1Di62k2l17wEAu9opvQ
-	(envelope-from <devicetree+bounces-265956-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:28:30 +0100
+	id QFQzONO/k2m48AEAu9opvQ
+	(envelope-from <devicetree+bounces-265957-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 02:09:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6453C1484BC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:28:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 819E714862A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 02:09:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 045973004411
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:28:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 45DD4300832C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9FB248880;
-	Tue, 17 Feb 2026 00:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0568F22A1D4;
+	Tue, 17 Feb 2026 01:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UtA+1sQ5"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="d9bDnz0+";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="WYVPQFqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA7726B2D2
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 00:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C239118A956
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 01:09:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771288106; cv=none; b=c2tmvAKa39p4SFIfRP/vmOs75+Jz5/V+KKBwsc3fP6L3doGZ+zCCOZkwzEthAGClTSoTbuQLWfriaiNqD2NTRuUpFLuXW9qoZXWOkNM2TkvQIoViM6L+Td6rab5CCeHhWX172oylDrkXt2bI9STPtcTykR0mqbuGd9KLNLGGTLs=
+	t=1771290573; cv=none; b=RdFbUatMno4k7MmBrdEeVon1g+97K1t2FhKaCpJA00uptkcaUJDdtKO18mLgxdGr13haHPTscIaQEiexe0txjgumYM0FBmlpQVFYNGjDyJ7bGA960hS6o3cR+B0tsmbglTjYzrg1vtH3mrch/ioMI87J85MLooIGPST2Y06Aix0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771288106; c=relaxed/simple;
-	bh=EcTRKDBc1veGtECuqy6AI3PYeK9xENvrGwMb1X7Kpbw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TIGQ+vBLHGyvoHzBMtAkrDDAIlX1SO25LEVjKzqAT3PhCnCnhdxJXa6sdJlPgHifBWYbk+ixCW+g82oSVQZllvUeePysEggtRVQFL6PrBfee2ylov/r0jVpSI12ECr6+OzLNj0H+8GbOMTKFg1UBhhqWMfoJWATHH7ljDdFxLbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UtA+1sQ5; arc=none smtp.client-ip=209.85.222.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-8cb3dfb3461so393883085a.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:28:25 -0800 (PST)
+	s=arc-20240116; t=1771290573; c=relaxed/simple;
+	bh=YnXGBxQb2yQTIsJPsA76f33oYDBAi82tICtV3X+cWVk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mpxUVe5zrc8VZjZjDEVB2eSGFrPNzmqxmP3sxohhN1FJbIYvqcJf3EWMSWX0tl3jk32j5MThH9b8GHIHpC+6i2EY2ZOjXNKoVmk9I1y4BsL0sFpISGhbgiiZpkWeOZfXvRA/c6tRsoPh6E2mT1frI5XnPf2VAb1NFsT+JaUhCdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=d9bDnz0+; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=WYVPQFqk; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1771290571;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xPKbRNPHyosMAfxhwpYDOU+GJ6u5P872HLfNECxcQQY=;
+	b=d9bDnz0+9APiqMHcBCRwu9iiry3fYKLN+uZwaBXshHXfr8Kz7yLFqcw5/m7L6X0PsYY00O
+	QC48O45XLjZdUYm3JT0tdGXQS/LY9zxL6mE0jGhtnm5EgimokRG4PIlCsXLfWNH7yRbp+c
+	4k13sFK7XxS8iCpkKr0sVJ4U1XBNwkw=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-260-QfA4XxZpPTC2RFF4rJXy4w-1; Mon, 16 Feb 2026 20:09:29 -0500
+X-MC-Unique: QfA4XxZpPTC2RFF4rJXy4w-1
+X-Mimecast-MFC-AGG-ID: QfA4XxZpPTC2RFF4rJXy4w_1771290569
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-896f8dde688so294090926d6.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 17:09:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771288104; x=1771892904; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=redhat.com; s=google; t=1771290569; x=1771895369; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JLRIaf1mXyXFgjmYj7clQ+v1OirQdgTMmdH6PpF9IHw=;
-        b=UtA+1sQ5l4f4RNGmavrlB6y0MohCS8lTN2Wn/IKmV1htTSe/8B1J22dBmyYs1wRH4c
-         l3mYHpndvy5Wbo2xx7rRLFvwkikGKoJfZQhCPCtfck6tCYICZ6tn/PgFA06fFBhswRdm
-         qdoYet1iRR85Jp+nPJekj3T9MZOzM240oaOpkIhPa2O+fngTmGAPEZ7zoPAeGFKA/BZb
-         F7mEuEQq21qsB3GLRjv9NrouMvfA+Axkg1lXUtxbbnoqmTyaqCoqaptexc6PaBtksq/a
-         5df7wHzNba0dyg9vM93RHJx5rpxNfOFJi5CIaoGlZqyQYjz8PNACX+4y3IxO9tXAj+pL
-         1agQ==
+        bh=xPKbRNPHyosMAfxhwpYDOU+GJ6u5P872HLfNECxcQQY=;
+        b=WYVPQFqkCtQD77+HoZVUn9/eVBLgfupSqGiX1m2hU+p7lKvmRwY/+ImtWFhad3n22l
+         Zi1Hzjjx6QRytsLGCjxYEJOhnjVs1WrQRFDSXmdF57/nvLiknpcw0lQCRJlt8kiI7RIW
+         cbKsiOhgzApyGPCEHZgj92uT1Gpaq42r4pkmowtGcz4AeA1/Z0TwddNSHQegqon5F/vR
+         w1KIr33bBvOJ3VYt8DgLrSrvDHdh+uNpni+FslWGvNF3RDeleyxypG+4Z6oL+Cu1f/Mz
+         4ms+E9IR3A58PSQwzGnn5OnfJ8V9bH7W3FrSwGyMomfAY54NFJOJQo4kla3Ci7VtVoHN
+         d6Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771288104; x=1771892904;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+        d=1e100.net; s=20230601; t=1771290569; x=1771895369;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=JLRIaf1mXyXFgjmYj7clQ+v1OirQdgTMmdH6PpF9IHw=;
-        b=gVYeyTpWTBwWkuJmfCJIo4vmM3u7bXQ9a20P8ZhvtfAxnBMp6cPrayllbkdW+zF5VN
-         B0ZRNhWHikgR5kAKykehw2RfyVsGbkD8KeCuetLq8mkRsG7xKB4smk9JdWCqsmgyJmKb
-         ISQaR0IbYzUaSb8OiY4gx1Lau5cej/IBqQQ5s1VvwcvHkIfPWiGK5hQZmL3FJlpAoeXD
-         7XG8S12GmIom9078E4y2n6iCcjQlcD6vmP/xCl5Cb0ba20GjO+XVWXRJF1NSN7QjwDol
-         asvQz0tALTRxY6H9SDZR4LFV2AG/hDTqsVlsPlVpQWz3goZrmKd578JZ9O+r455gHBqW
-         99Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCXHu3mX1E2Cn5M6wVAslmmk/M5Wf5Smo6h107sT+FdA9L9lD4FZNDIj0oaSf1PydcRbgPf+m6MJW2Vs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8LyJ7cqS2fjMog2mgCZmnby3/FYUSME8y9kELUK71XdWVrRAE
-	uVGgMIQTIdRzrqzlxKatcBgbZU+U1tn/OpX/6qrNFDigY7FenGm+AmQa
-X-Gm-Gg: AZuq6aKFzU/4sKE3XZy9KswhZLmYggd1xGxUR+c0x47BeOlF4h2YR+4ccJCckG/KY13
-	yiY7igXN5myF3A78Hpo/cIh33dfTnsIv/qrHnqq8om8eKu9mLqJJ/dvDgUwhi1Wf58jmL4xZ14/
-	fqd27vLC50fTkG4L0MzRihSj3UT8By+HguQ4l1sm8EkdzFL8obGVME1+AiSDxkXtAZpZCn1PX1Y
-	xNSlqVRlONYFM4832F+2YWblCbB6loGDZ+Gm+ECkIcwRnkd6s+rxSdPLyM3PWxdEeVlbIgRzZg3
-	peUgt6xOrJlmr1iTpivr+S71clpbaAOh8uvnQ76TQcKcprjNjoHDlVSe0VcDJ4chrn1phdtYoDY
-	xhvQ1AfyS761Vtdn10NFVGy4eXRjNZsspT2wKNDxzM+8A0ZJIkgZWsL2s9Z6f7NrHIwLnlq3pVp
-	TSfqTssw3KGQiPbfCkbNWbOXNmmLbCK4cfhfkfMLdomPLZq2/BC6XlOUhw3IQjx4ZI632FGuraQ
-	tgboqxXla5Alx2gyig=
-X-Received: by 2002:a05:620a:3711:b0:8cb:668f:b7a0 with SMTP id af79cd13be357-8cb668fb89bmr268485885a.82.1771288104126;
-        Mon, 16 Feb 2026 16:28:24 -0800 (PST)
-Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cb2b1c7ef7sm1509044485a.28.2026.02.16.16.28.23
+        bh=xPKbRNPHyosMAfxhwpYDOU+GJ6u5P872HLfNECxcQQY=;
+        b=p4e/4Bb6Ga09NZ+ylToipVlzhJ5rLqoVRPBSZVPQOEZ3ah3FNILIKAXRd2yxi0E+nH
+         rDP85/ygHhMAZz5qGFJu6K5URkpDpdhoz63nGr53gJZKQyVQ2m/2y3RUNmyBDZoHPsYf
+         ij8HGKFmjP8OosNnbIxBBdOF2X2iQRHHyDG+vXx0XsIysztwHpTIKmNz2H4IWq4lwwev
+         PKr9+O/pxOFuS+H0UMT0szIZjLGvOgLcuVRVLazU+m1lCyfOHr28jpqs4HpjWUJwa0Y3
+         X87GvUWmCNhfjwBHdd9BW8HdRKYGs5sLGVetrBzqFleIxx5qT/KcgwLb4YPUaqNyUmUj
+         s5sQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1qPu9boSJTbuhYARij3dOYdKEQrfJ9Ai3IuDmSW9qrL6BAh8GgacsUbYILXxEFtP4z2jy4D63wOzA@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMBm0YbR7M2ytn/nedpClItn085DNwavc0VvuxyBOz3CF5koJH
+	8O0sd1WsvYZzn6MiDUjEe5tWqiIQdp3P8J+kSGkhKAYdX3RT6pK0sU/1OYdsDW87i1k9DrWEKbi
+	01SVy/hcYbZYnq2bWj9pg4dqMRB9znBrknVkzg97CmJCKt2wNoRhs8XI7hIMc9VU=
+X-Gm-Gg: AZuq6aKJrnE9ohVH33t3bWcxBj5c/qohrQ5WDq31eghwdVOwyIL5iO6q1PuQPYsorV4
+	i7mzAlBhq43vOZ3LBmfRxTzqX3tyIJqd67tJ8gQt2XQsUJJu3RzsWkBLNnEW0BQMVvPTyYTLXFH
+	yFSc8T9K9Oz8ZXINlRUu79PrFtMqOaZwr7iKfT+hJ8ekdPcKlO2lzVaCzp2C8qrejqwm44QUcSa
+	PDAKciFEKPm/GUyBL9+Ii+gA32Ee6O2g+aTzkJLyLrcujQfy7WXM3pa2dWuIRa8fj1Zt4PS/pdo
+	W4DjB7CnuljwCof2/mt/84YYRYze1Ocw9qprXchVrIjjFQnuW7WIsAyhIXS/ZSTdr1WbQyGZ022
+	e/eTCq+ylGNTxy8S6fCmZRDrW1lqyuw0POOApi8g4TE50eqVmgt1zzL/p
+X-Received: by 2002:a05:6214:2588:b0:88f:d216:6fef with SMTP id 6a1803df08f44-8973621458bmr165774806d6.50.1771290569128;
+        Mon, 16 Feb 2026 17:09:29 -0800 (PST)
+X-Received: by 2002:a05:6214:2588:b0:88f:d216:6fef with SMTP id 6a1803df08f44-8973621458bmr165774616d6.50.1771290568801;
+        Mon, 16 Feb 2026 17:09:28 -0800 (PST)
+Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cd8a5ccsm151660686d6.25.2026.02.16.17.09.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Feb 2026 16:28:23 -0800 (PST)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Cc: Robert Mader <robert.mader@collabora.com>,
-	David Heidelberg <david@ixit.cz>,
-	phone-devel@vger.kernel.org,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v9 7/7] arm64: dts: qcom: sdm670-google-sargo: add imx355 front camera
-Date: Mon, 16 Feb 2026 19:27:38 -0500
-Message-ID: <20260217002738.133534-8-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260217002738.133534-1-mailingradian@gmail.com>
-References: <20260217002738.133534-1-mailingradian@gmail.com>
+        Mon, 16 Feb 2026 17:09:28 -0800 (PST)
+Date: Mon, 16 Feb 2026 20:09:26 -0500
+From: Brian Masney <bmasney@redhat.com>
+To: dongxuyang@eswincomputing.com
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	troy.mitchell@linux.dev, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, ganboing@gmail.com,
+	marcel@ziswiler.com
+Subject: Re: [PATCH v13 2/3] clk: eswin: Add eic7700 clock driver
+Message-ID: <aZO_xgoix_SvJRxb@redhat.com>
+References: <20260214101421.228-1-dongxuyang@eswincomputing.com>
+ <20260214101519.341-1-dongxuyang@eswincomputing.com>
+ <aZNRFYs_QuGRI8PV@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aZNRFYs_QuGRI8PV@redhat.com>
+User-Agent: Mutt/2.2.14 (2025-02-20)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265956-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,vger.kernel.org,linux.dev,eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org,intel.com,linux.intel.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[collabora.com,ixit.cz,vger.kernel.org,gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265957-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[redhat.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,collabora.com:email]
-X-Rspamd-Queue-Id: 6453C1484BC
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,eswincomputing.com:email]
+X-Rspamd-Queue-Id: 819E714862A
 X-Rspamd-Action: no action
 
-The Sony IMX355 is the front camera on the Pixel 3a, mounted in portrait
-mode. It is connected to CSIPHY1 and CCI I2C1, and uses MCLK2. Add
-support for it.
+On Mon, Feb 16, 2026 at 12:17:09PM -0500, Brian Masney wrote:
+> On Sat, Feb 14, 2026 at 06:15:19PM +0800, dongxuyang@eswincomputing.com wrote:
+> > +static const struct of_device_id eic7700_clock_dt_ids[] = {
+> > +	{ .compatible = "eswin,eic7700-clock", },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, eic7700_clock_dt_ids);
+> > +
+> > +static struct platform_driver eic7700_clock_driver = {
+> > +	.probe	= eic7700_clk_probe,
+> > +	.driver = {
+> > +		.name	= "eic7700-clock",
+> > +		.of_match_table	= eic7700_clock_dt_ids,
+> > +	},
+> > +};
+> > +module_platform_driver(eic7700_clock_driver);
+> > +
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_AUTHOR("Yifeng Huang<huangyifeng@eswincomputing.com>");
+> > +MODULE_AUTHOR("Xuyang Dong<dongxuyang@eswincomputing.com>");
+> > +MODULE_DESCRIPTION("ESWIN EIC7700 clock controller driver");
+> 
+> MODULE_ALIAS("platform:eic7700-clk")
 
-Co-developed-by: Robert Mader <robert.mader@collabora.com>
-Signed-off-by: Robert Mader <robert.mader@collabora.com>
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- .../boot/dts/qcom/sdm670-google-sargo.dts     | 95 +++++++++++++++++++
- 1 file changed, 95 insertions(+)
+Ignore the MODULE_ALIAS suggestion from me. The list of aliases will be
+automatically generated based on what's in MODULE_DEVICE_TABLE(). I
+verified this with modinfo.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-index ed55646ca419..e925cba0381f 100644
---- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-@@ -172,6 +172,34 @@ vreg_s2b_1p05: vreg-s2b-regulator {
- 		regulator-min-microvolt = <1050000>;
- 		regulator-max-microvolt = <1050000>;
- 	};
-+
-+	cam_front_ldo: cam-front-ldo-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cam_front_ldo";
-+		regulator-min-microvolt = <1352000>;
-+		regulator-max-microvolt = <1352000>;
-+		regulator-enable-ramp-delay = <135>;
-+
-+		gpios = <&pm660l_gpios 4 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&cam_front_ldo_pin>;
-+		pinctrl-names = "default";
-+	};
-+
-+	cam_vio_ldo: cam-vio-ldo-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cam_vio_ldo";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-enable-ramp-delay = <233>;
-+
-+		gpios = <&pm660_gpios 13 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&cam_vio_pin>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &apps_rsc {
-@@ -392,6 +420,59 @@ vreg_bob: bob {
- 	};
- };
- 
-+&camss {
-+	vdda-phy-supply = <&vreg_l1a_1p225>;
-+	vdda-pll-supply = <&vreg_s6a_0p87>;
-+
-+	status = "okay";
-+};
-+
-+&camss_port1 {
-+	camss_endpoint1: endpoint {
-+		data-lanes = <0 1 2 3>;
-+		remote-endpoint = <&cam_front_endpoint>;
-+	};
-+};
-+
-+&cci {
-+	pinctrl-0 = <&cci1_default>;
-+	pinctrl-1 = <&cci1_sleep>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+};
-+
-+&cci_i2c1 {
-+	camera@1a {
-+		compatible = "sony,imx355";
-+		reg = <0x1a>;
-+
-+		clocks = <&camcc CAM_CC_MCLK2_CLK>;
-+
-+		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-+		assigned-clock-rates = <19200000>;
-+
-+		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-+
-+		avdd-supply = <&cam_front_ldo>;
-+		dvdd-supply = <&cam_front_ldo>;
-+		dovdd-supply = <&cam_vio_ldo>;
-+
-+		pinctrl-0 = <&cam_mclk2_default>;
-+		pinctrl-names = "default";
-+
-+		rotation = <270>;
-+		orientation = <0>;
-+
-+		port {
-+			cam_front_endpoint: endpoint {
-+				link-frequencies = /bits/ 64 <360000000>;
-+				remote-endpoint = <&camss_endpoint1>;
-+			};
-+		};
-+	};
-+};
-+
- &gcc {
- 	protected-clocks = <GCC_QSPI_CORE_CLK>,
- 			   <GCC_QSPI_CORE_CLK_SRC>,
-@@ -490,6 +571,14 @@ &pm660_charger {
- 	status = "okay";
- };
- 
-+&pm660_gpios {
-+	cam_vio_pin: cam-vio-state {
-+		pins = "gpio13";
-+		function = "normal";
-+		power-source = <0>;
-+	};
-+};
-+
- &pm660_rradc {
- 	status = "okay";
- };
-@@ -508,6 +597,12 @@ led-0 {
- };
- 
- &pm660l_gpios {
-+	cam_front_ldo_pin: cam-front-state {
-+		pins = "gpio4";
-+		function = "normal";
-+		power-source = <0>;
-+	};
-+
- 	vol_up_pin: vol-up-state {
- 		pins = "gpio7";
- 		function = "normal";
--- 
-2.53.0
+Brian
 
 
