@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-265944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265945-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YBr3Kcmxk2kK7wEAu9opvQ
-	(envelope-from <devicetree+bounces-265944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:09:45 +0100
+	id 8OHtIc2xk2kK7wEAu9opvQ
+	(envelope-from <devicetree+bounces-265945-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:09:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD2F1483B1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:09:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E178B1483B9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D627C30221C9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:08:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 50DA03019517
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 00:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBB81D9A5F;
-	Tue, 17 Feb 2026 00:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A21A1E260C;
+	Tue, 17 Feb 2026 00:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GWu6N/v2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MAR9jADI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D711A0728
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 00:08:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6DC61D9A5F
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 00:09:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771286934; cv=none; b=lXNuZjfifbn3lC6NtiSrhxHzY33SM6s79qrWE8d42z3J2gcb+td43iNq75RCKFDtlrenNL7BDvU8xy468XN1HCeRhEz2CE/wnJ8YQjBYGDR89V4OxDpPzlbTx129zW3jsZDHjP+RHwk7PAcXJhwbtftTAM9Y2ial/Ex+HwUSH0k=
+	t=1771286947; cv=none; b=gXPuf4F2CG9+ULL/5jiVclO9PRtwHq5pHnoxzNmmXlShuojwZrtI/NpsuJWieEGoFTpd04kBHJgweUw484wKmO1pfbI6dzuIb9W3hBHSWRRWv+WmUWX0kfe3vYstI6WU2YDcYJIECoID8i6yylwhFXhhcVegL2hFhYMuAHG4A/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771286934; c=relaxed/simple;
-	bh=Mwr9xilZhP1ekJ4/MGltrG/12/eSsM6/Bnf15Y+na6A=;
+	s=arc-20240116; t=1771286947; c=relaxed/simple;
+	bh=0WMGNCJbLj8Zu2WiR32oCY/M51G+oZLo9Arh6qwW12E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gCf/G64eMk/ya/3cOaz7ryelLG2an/3NKcuYJOMg9QBK4VjzeqcNvNdTpZcE7MPNZrFf6mF+gjn3eE3JvGLYpYTNpnCiYk5C5W2PkSKuEpLwqZrZV2tDIPd7IL0GIABQ19BtCf1/f2UcqmqR8hgfHkilTZR6Rb1V14h1W5BrKE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GWu6N/v2; arc=none smtp.client-ip=209.85.160.178
+	 MIME-Version; b=mSUr3YSWf+EA2u3cD1+d+Due+INf1BPyDtm9oIxFbeLPimfeNkDA/N7c8/zUUYbRBSghFa7KC/jm2tII2Tgk0doi2Zz9SXhwhBjs6gdQeo594Nv/vnuE9CRt+VP4U+5w/XcVXgQ1dNBH1NnSmQ+oItgRhN1j2KJkXODeQ1W9axA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MAR9jADI; arc=none smtp.client-ip=209.85.219.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-503347e8715so46642901cf.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:08:53 -0800 (PST)
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-89545bd3324so50225996d6.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 16:09:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771286932; x=1771891732; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771286945; x=1771891745; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EfrCcwMt9Miameh+PUap2dL04J6Ma+4K1r37+UmYok0=;
-        b=GWu6N/v2SXCrufTa61Po94dyh8+klyc7cICf6wsapVzCvNLcIqdkWoW++14krGy7na
-         sSt7HobiQsprVretv2qJjx9EUo6qwvUSsPHUN7oI2lYR0UGMgBbypF/sYThbEFSFqhEe
-         us/936NWLUL/xkdWo3uvb3mw/8dodQM1Pzq5qmz7WIpgmLF0DftksrheYYls1RL+h1Id
-         dwN0JuN3vH/zmQhcdP0GpjU1sg3QWHr7hAX7xd8WFUFB75F2ggEZvvwB6KEPr7lR5+fl
-         d/A/acZtaqtY7FBeov4R5xIO57aVKqscrKxn0DJ1vjiPdjFdaUwQsBwJIcRWCa6f9vgT
-         4qZA==
+        bh=fZSyqzJsc7mwiDZ+ttivOXehqly7aCETswTJzVmvER4=;
+        b=MAR9jADIeFp7IRbP9qBgkVYQh57Js2MGUnb2S3iZF9EF47kGFH8eb3VJfitD7wy3hY
+         LiXUnKOozm/Zd7ULbFIWclnfKXVGQYAuSTXASbeTdiEBvCyMkcA756bHOfpZ/IgwmGdz
+         h6BSweza5YSQzkP1exm2ZGKLnVJ+DzGHA84ATEtZESQMopjwocfmz5js0nKa9PpaCG8v
+         bSPB6NHbRP9LWo1cv9uX4rBT/R+6mqPr+m+WnJTqpJMaOvIiFqXeoKKIfF5TdNXh2eLI
+         9JQ1hZtwiKRPoqnmH+bJNRxOOsoIiSHAIO6cv2V7Hlh//OHsYaG2zZRK8KokDmYWl870
+         H3jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771286932; x=1771891732;
+        d=1e100.net; s=20230601; t=1771286945; x=1771891745;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=EfrCcwMt9Miameh+PUap2dL04J6Ma+4K1r37+UmYok0=;
-        b=D94SOxT/Dn3APAWWe1Uv8Q9/1WLfZySdlTdurx76AIGLXQAQNXkPcn77sBxDKP5CEb
-         3EoVi+ioFR61Pn6Q00Bgtyd+7cijmZKHWFUshGbgoMezW7QkNuFjZTNZNzi+Gf9L3w32
-         FYv/1sciz4K4Q2FMowtfqg4rFRyunF4FAO9LbxrIh6fsYUIw/hXneNntfoqHBJxLc6aB
-         l6Tc6sx01TF7Rx1H8Ar5l+84kCV0eMQhP2Zip+CT/dyZMRaXlsdIVQrcxL/Ka5yB7lhP
-         gbpqhM+/MuCnDBasrr6Sq79Sq9yLH2vW266mMgxUXPO5KTs28Z2JSZ6IYefPoz524QSm
-         oKbw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5cxeaIyaeGDCoEbygNgaIjObqPIByuzdo9rMil4UTp/jbS3/lBgb3Ix9TT340CFD5VQ1C80baxqku@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyZMItdazNSm7wXktqn4I1oj9mhTKxWP+4dNZk7NMuMFXB52a5
-	zUS5ZSe/zN3N42XbaPyv5mM2VKLx33jf9AMFsNtmIjQHcRJAL/9kSCnp
-X-Gm-Gg: AZuq6aKtdOOr2Sr3DdCKmRyakvm6BSqO491i3E6Y+YGLb8XcgaK1HdAS5rKp+HcKX+Z
-	lBmRuRL0daU12rSK9UDrhcS46hGr9snzmCJm4b2HvVwHDfYVxpvl6tNvY8QhbJON20Gxv1a0116
-	kJraHIDrGfRYvnPF3l5NJWjfbA05bpuNJuckkHzSayG8UBJ5zPrLYJSIbkyvbvWZaRNgbI45Cbx
-	nkjxKxfB/x7lRq+UESgnAbYowLqnX/kQQuQJO86Jhd6Uyba/ygoVLWJhiAYL7ZmEHfpMXmZFZDW
-	yCjPu3WuddE9IxJfecw9bn1hPzLlHkbOr03bEiDbFAciY7QAZXxMxOnniUXWUd97cTUA6JyXTJH
-	GLMwoMVmOjw+W9ei2vekQuvwE2ywGKWZRBP+E+vbFj+RDQ8R7htBKxVB4dzZ0V5myGB4qzdq5TM
-	Aj8LF28MOa6o0cquiOKz0kgSeF0Bs/8w==
-X-Received: by 2002:ac8:5d46:0:b0:501:17a9:5ff5 with SMTP id d75a77b69052e-506b3fa2151mr131086721cf.21.1771286932589;
-        Mon, 16 Feb 2026 16:08:52 -0800 (PST)
+        bh=fZSyqzJsc7mwiDZ+ttivOXehqly7aCETswTJzVmvER4=;
+        b=deyDBBlqcTeCWE0Xi8K8TsH+UGnoUwMw2au8RxluSiiyxsa3MrDrl3Cxqc3yd3phz5
+         2RAuJfI3+atGL7/boUzlpyFC4oAyWdui6akBBjMmkORR8KKAb4ONgTmQ1cp2ocuuu9a8
+         unL8Zj2nPjbipdex2p+QiEqKWHIIeE3+Xqd7K0b4DNsph0NnSjS7LFMU2BdEXW0GMZw5
+         hOv9NNacuetjrSpIrdIcCiDstDiEuytdsAZ39Rgoqg3pJHF2OkMLvauYxlRM58EJiuFN
+         qe6v1ag9DjQBDBfwT1IQq9sRhhj+jZRE6/54p1iavzEI4ZVv4U19gQUqCGSnTnabn4s4
+         X7mw==
+X-Forwarded-Encrypted: i=1; AJvYcCXjxv/WyC1PrSHv+aqnyDTtq6xXwu4/YS/NknJIHtE6iOWDREnvDglGL/45yHONZ8KPZnYO3+lCC7BC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOv8v32hxIxp63us3cZvAWS7wq+pEgBJ/Qna0xiwcEREcot9jD
+	YDF0pt/KgarJ4UDm5Xe8RrsQstnV0bwoD05PpmVF5vNZ9Hb3Mjja8HVM
+X-Gm-Gg: AZuq6aK5cRbOqK3FaanBiclSoeRyuUnYLlX6Vu+8Qp6YCqzJ3znxzPopQPMG74Uu/wA
+	XNoA9FccwFp7mhf+NfuQPcXVDYgiEWQOA71HEcD2DvYXUsoQDkSOjt/IkPT8aUsYgekHYCSNUgs
+	W1qkTK6TS28BaYcdCWOzWIZ25O8YFXsrVo/lPPwg+AYXIDVMn8C7LQZ705zVjZxxN5k7ZZzyhiY
+	blGTsRmUW9laHjtfRUz3FTah4mkdRJLLgeXem4v2VJqLLzcUq3k2PPsKKMge8dROlOxIub3vHdz
+	+8odluuQizH7qL44bBDuYB/B+ydr4b8TPDlKiOgUoSyZlQLCWbyEsTa2Eg4H0xcYvZ0ikfQ8SyZ
+	uA75JTMmD7G7NGoLVAzzFhCLp9eLN2CQiXfZcuf4kfLScCjUYtFvoFl8vpVfGZRnPraPMP//Z/e
+	f0DSVWnEQUelZwYzxETcUYlqSTHtqT3Q==
+X-Received: by 2002:a05:622a:1ba9:b0:4e8:838d:1992 with SMTP id d75a77b69052e-506a836444cmr161321341cf.63.1771286944499;
+        Mon, 16 Feb 2026 16:09:04 -0800 (PST)
 Received: from localhost ([184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cb45f13a61sm857362585a.7.2026.02.16.16.08.51
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cddb9efsm171494546d6.51.2026.02.16.16.09.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Feb 2026 16:08:52 -0800 (PST)
+        Mon, 16 Feb 2026 16:09:04 -0800 (PST)
 From: Richard Acayan <mailingradian@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -96,9 +96,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	dri-devel@lists.freedesktop.org
 Cc: yifei@zhan.science,
 	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v2 2/6] dt-bindings: panel-simple-dsi: add nt37700f compatible
-Date: Mon, 16 Feb 2026 19:08:50 -0500
-Message-ID: <20260217000854.131242-3-mailingradian@gmail.com>
+Subject: [PATCH v2 3/6] drm/panel: Add Novatek/Tianma NT37700F panel
+Date: Mon, 16 Feb 2026 19:08:51 -0500
+Message-ID: <20260217000854.131242-4-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260217000854.131242-1-mailingradian@gmail.com>
 References: <20260217000854.131242-1-mailingradian@gmail.com>
@@ -117,11 +117,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-265944-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-265945-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[19];
@@ -139,32 +139,344 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 2CD2F1483B1
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,zhan.science:email]
+X-Rspamd-Queue-Id: E178B1483B9
 X-Rspamd-Action: no action
 
-Add the compatible for the NT37700F panel found on the Pixel 3a XL.
+Some Pixel 3a XL devices have a Tianma panel. Add support for it, with
+the aid of linux-mdss-dsi-panel-driver-generator.
 
+Link: https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
 Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Tested-by: Yifei Zhan <yifei@zhan.science>
 ---
- .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-novatek-nt37700f.c    | 282 ++++++++++++++++++
+ 3 files changed, 292 insertions(+)
+ create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt37700f.c
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-index 8d668979b62d..e56865d2771b 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-@@ -49,6 +49,8 @@ properties:
-       - lg,lh500wx1-sd03
-         # Lincoln LCD197 5" 1080x1920 LCD panel
-       - lincolntech,lcd197
-+        # Novatek NT37700F 1080x2160 AMOLED panel
-+      - novatek,nt37700f
-         # One Stop Displays OSD101T2587-53TS 10.1" 1920x1200 panel
-       - osddisplays,osd101t2587-53ts
-         # Panasonic 10" WUXGA TFT LCD panel
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index 76f6af819037..138d617e8195 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -553,6 +553,15 @@ config DRM_PANEL_NOVATEK_NT36672E
+ 	  LCD panel module. The panel has a resolution of 1080x2408 and uses 24 bit
+ 	  RGB per pixel.
+ 
++config DRM_PANEL_NOVATEK_NT37700F
++	tristate "Novatek NT37700F DSI panel"
++	depends on OF
++	depends on DRM_MIPI_DSI
++	depends on BACKLIGHT_CLASS_DEVICE
++	help
++	  Say Y here if you want to enable support for Novatek NT37700F DSI
++	  panel module. The panel has a resolution of 1080x2160.
++
+ config DRM_PANEL_NOVATEK_NT37801
+ 	tristate "Novatek NT37801/NT37810 AMOLED DSI panel"
+ 	depends on OF
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+index b9562a6fdcb3..9218a7d7ff34 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -54,6 +54,7 @@ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35950) += panel-novatek-nt35950.o
+ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36523) += panel-novatek-nt36523.o
+ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672A) += panel-novatek-nt36672a.o
+ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36672E) += panel-novatek-nt36672e.o
++obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37700F) += panel-novatek-nt37700f.o
+ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT37801) += panel-novatek-nt37801.o
+ obj-$(CONFIG_DRM_PANEL_NOVATEK_NT39016) += panel-novatek-nt39016.o
+ obj-$(CONFIG_DRM_PANEL_MANTIX_MLAF057WE51) += panel-mantix-mlaf057we51.o
+diff --git a/drivers/gpu/drm/panel/panel-novatek-nt37700f.c b/drivers/gpu/drm/panel/panel-novatek-nt37700f.c
+new file mode 100644
+index 000000000000..e7e6343b2963
+--- /dev/null
++++ b/drivers/gpu/drm/panel/panel-novatek-nt37700f.c
+@@ -0,0 +1,282 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (c) 2024, The Linux Foundation. All rights reserved.
++ * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
++ *   Copyright (c) 2013, The Linux Foundation. All rights reserved.
++ */
++
++#include <linux/backlight.h>
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/module.h>
++#include <linux/of.h>
++
++#include <video/mipi_display.h>
++
++#include <drm/drm_mipi_dsi.h>
++#include <drm/drm_modes.h>
++#include <drm/drm_panel.h>
++#include <drm/drm_probe_helper.h>
++
++struct nt37700f_tianma {
++	struct drm_panel panel;
++	struct mipi_dsi_device *dsi;
++	struct gpio_desc *reset_gpio;
++};
++
++static inline
++struct nt37700f_tianma *to_nt37700f_tianma(struct drm_panel *panel)
++{
++	return container_of(panel, struct nt37700f_tianma, panel);
++}
++
++static void nt37700f_tianma_reset(struct nt37700f_tianma *ctx)
++{
++	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++	usleep_range(1000, 2000);
++	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
++	usleep_range(10000, 11000);
++}
++
++static int nt37700f_tianma_on(struct nt37700f_tianma *ctx)
++{
++	struct mipi_dsi_device *dsi = ctx->dsi;
++	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
++
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc0, 0x56);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca, 0x52);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x06);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb5, 0x2b, 0x1a);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x01);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcd, 0x04, 0x82);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x02);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcc, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x80);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x55);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf6, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x56);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf6, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xff, 0xaa, 0x55, 0xa5, 0x81);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x07);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3, 0x07);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x05);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3, 0x25);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x90, 0x01);
++
++	mipi_dsi_dcs_set_column_address_multi(&dsi_ctx, 0x0000, 1080 - 1);
++	mipi_dsi_dcs_set_page_address_multi(&dsi_ctx, 0x0000, 2160 - 1);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x20);
++	mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
++
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc0, 0x56);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x02);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcd, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x04);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd0, 0x11, 0x64);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x09);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb1, 0x20);
++
++	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
++	mipi_dsi_msleep(&dsi_ctx, 120);
++	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
++
++	return dsi_ctx.accum_err;
++}
++
++static int nt37700f_tianma_disable(struct drm_panel *panel)
++{
++	struct nt37700f_tianma *ctx = to_nt37700f_tianma(panel);
++	struct mipi_dsi_device *dsi = ctx->dsi;
++	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
++
++	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
++	mipi_dsi_msleep(&dsi_ctx, 50);
++	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
++	mipi_dsi_msleep(&dsi_ctx, 100);
++
++	return dsi_ctx.accum_err;
++}
++
++static int nt37700f_tianma_prepare(struct drm_panel *panel)
++{
++	struct nt37700f_tianma *ctx = to_nt37700f_tianma(panel);
++	struct device *dev = &ctx->dsi->dev;
++	int ret;
++
++	nt37700f_tianma_reset(ctx);
++
++	ret = nt37700f_tianma_on(ctx);
++	if (ret < 0) {
++		dev_err(dev, "Failed to initialize panel: %d\n", ret);
++		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++		return ret;
++	}
++
++	return 0;
++}
++
++static int nt37700f_tianma_unprepare(struct drm_panel *panel)
++{
++	struct nt37700f_tianma *ctx = to_nt37700f_tianma(panel);
++
++	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++
++	return 0;
++}
++
++static const struct drm_display_mode nt37700f_tianma_mode = {
++	.clock = (1080 + 32 + 32 + 98) * (2160 + 32 + 4 + 98) * 60 / 1000,
++	.hdisplay = 1080,
++	.hsync_start = 1080 + 32,
++	.hsync_end = 1080 + 32 + 32,
++	.htotal = 1080 + 32 + 32 + 98,
++	.vdisplay = 2160,
++	.vsync_start = 2160 + 32,
++	.vsync_end = 2160 + 32 + 4,
++	.vtotal = 2160 + 32 + 4 + 98,
++	.width_mm = 69,
++	.height_mm = 137,
++	.type = DRM_MODE_TYPE_DRIVER,
++};
++
++static int nt37700f_tianma_get_modes(struct drm_panel *panel,
++				     struct drm_connector *connector)
++{
++	return drm_connector_helper_get_modes_fixed(connector, &nt37700f_tianma_mode);
++}
++
++static const struct drm_panel_funcs nt37700f_tianma_panel_funcs = {
++	.prepare = nt37700f_tianma_prepare,
++	.unprepare = nt37700f_tianma_unprepare,
++	.disable = nt37700f_tianma_disable,
++	.get_modes = nt37700f_tianma_get_modes,
++};
++
++static int nt37700f_tianma_bl_update_status(struct backlight_device *bl)
++{
++	struct mipi_dsi_device *dsi = bl_get_data(bl);
++	u16 brightness = backlight_get_brightness(bl);
++	int ret;
++
++	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
++
++	ret = mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
++	if (ret < 0)
++		return ret;
++
++	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
++
++	return 0;
++}
++
++static int nt37700f_tianma_bl_get_brightness(struct backlight_device *bl)
++{
++	struct mipi_dsi_device *dsi = bl_get_data(bl);
++	u16 brightness;
++	int ret;
++
++	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
++
++	ret = mipi_dsi_dcs_get_display_brightness_large(dsi, &brightness);
++	if (ret < 0)
++		return ret;
++
++	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
++
++	return brightness;
++}
++
++static const struct backlight_ops nt37700f_tianma_bl_ops = {
++	.update_status = nt37700f_tianma_bl_update_status,
++	.get_brightness = nt37700f_tianma_bl_get_brightness,
++};
++
++static struct backlight_device *
++nt37700f_tianma_create_backlight(struct mipi_dsi_device *dsi)
++{
++	struct device *dev = &dsi->dev;
++	const struct backlight_properties props = {
++		.type = BACKLIGHT_RAW,
++		.brightness = 2047,
++		.max_brightness = 2047,
++	};
++
++	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
++					      &nt37700f_tianma_bl_ops, &props);
++}
++
++static int nt37700f_tianma_probe(struct mipi_dsi_device *dsi)
++{
++	struct device *dev = &dsi->dev;
++	struct nt37700f_tianma *ctx;
++	int ret;
++
++	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
++	if (!ctx)
++		return -ENOMEM;
++
++	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
++	if (IS_ERR(ctx->reset_gpio))
++		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
++				     "Failed to get reset-gpios\n");
++
++	ctx->dsi = dsi;
++	mipi_dsi_set_drvdata(dsi, ctx);
++
++	dsi->lanes = 4;
++	dsi->format = MIPI_DSI_FMT_RGB888;
++	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
++			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
++
++	drm_panel_init(&ctx->panel, dev, &nt37700f_tianma_panel_funcs,
++		       DRM_MODE_CONNECTOR_DSI);
++	ctx->panel.prepare_prev_first = true;
++
++	ctx->panel.backlight = nt37700f_tianma_create_backlight(dsi);
++	if (IS_ERR(ctx->panel.backlight))
++		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
++				     "Failed to create backlight\n");
++
++	drm_panel_add(&ctx->panel);
++
++	ret = mipi_dsi_attach(dsi);
++	if (ret < 0) {
++		drm_panel_remove(&ctx->panel);
++		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
++	}
++
++	return 0;
++}
++
++static void nt37700f_tianma_remove(struct mipi_dsi_device *dsi)
++{
++	struct nt37700f_tianma *ctx = mipi_dsi_get_drvdata(dsi);
++	int ret;
++
++	ret = mipi_dsi_detach(dsi);
++	if (ret < 0)
++		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
++
++	drm_panel_remove(&ctx->panel);
++}
++
++static const struct of_device_id nt37700f_tianma_of_match[] = {
++	{ .compatible = "novatek,nt37700f" },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, nt37700f_tianma_of_match);
++
++static struct mipi_dsi_driver nt37700f_tianma_driver = {
++	.probe = nt37700f_tianma_probe,
++	.remove = nt37700f_tianma_remove,
++	.driver = {
++		.name = "panel-novatek-nt37700f",
++		.of_match_table = nt37700f_tianma_of_match,
++	},
++};
++module_mipi_dsi_driver(nt37700f_tianma_driver);
++
++MODULE_DESCRIPTION("DRM driver for nt37700f cmd mode dsi tianma panel");
++MODULE_LICENSE("GPL");
 -- 
 2.53.0
 
