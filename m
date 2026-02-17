@@ -1,157 +1,227 @@
-Return-Path: <devicetree+bounces-266112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266113-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QIjTDlBflGnODAIAu9opvQ
-	(envelope-from <devicetree+bounces-266112-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:30:08 +0100
+	id MBScAW1flGnODAIAu9opvQ
+	(envelope-from <devicetree+bounces-266113-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:30:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 912AF14BF65
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:30:07 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E21514BF92
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:30:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 170A030125F8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:30:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ECE80300E5A8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA5733CEB0;
-	Tue, 17 Feb 2026 12:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F49342503;
+	Tue, 17 Feb 2026 12:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VVaqjOUl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lpvQK+Mn";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Z2vVqiyo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE90733C182
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 12:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F7C33DEDB
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 12:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771331405; cv=none; b=uqeHPbGPacPAiDMda4VlMV+GLQiQlPqM/RcaUrRoVD9aFrDPdF+G8ouY1+Gt8qZv63+ksP9mutDdEkDei8DavjXCsq8kXhSOz4NSeFIEl0ZgMqbPx3zRtwDswM4iQccqU+FG5h0wSppKsZPApGsu61Avb2DWGl6d/mwFw20qc7U=
+	t=1771331428; cv=none; b=RsvjfE28O1aoVYok/bc8CZNaGKz3IWcDawFvcXovSZryrx2YTJEDu+yQjd6OPtE6LM9+1+sp0mazg1C5V5BB2JeNgtAmumkUgvCmfpVef/NVon7z8l+FHlBtDC9V8Zy7D5ejxa1ifClEcmWE02HHrY4f/cCSAAItnw8HgAjR+9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771331405; c=relaxed/simple;
-	bh=veW04ITIm+kS0Va3WwG1j5wGlLSf3zAowo/9T/TxpYk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jA779xduJ3gNHP2gU8go+LSHL1xX3M0K4IalZZgiHfK+XwsipquFtbfaHeo7IDDbJnnLDYrh6dPsJaUQwj8xBMFuQ1M8N8Te1FEAgSw/WWi1MnGoOK1RSK3tbNC4rkHQcSP5ogFEMpu4d3ObrzpzZBvfaEtsEm5gzryOsqHp5tM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VVaqjOUl; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-48068127f00so44372615e9.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 04:30:00 -0800 (PST)
+	s=arc-20240116; t=1771331428; c=relaxed/simple;
+	bh=iaOjQh6oj22SQAOvuDXoKCh79HvL3yEC6boAm8Sbarw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FjkB9qt2EOZmngDWbfKA/CGBKGQ527SDSOx394RIX1o52WdIENvK/LmgMO+4HYQ6R/fX1dNc9WhS0T4PW/GW6V3QGoNFU7RoyF6HrNRwNf0hwSLNQaksz3IG5OWUtJxJTIJleerznEXjXkYuUquhNdULZCsOAq3Nm7lv3Ww65II=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lpvQK+Mn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Z2vVqiyo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61H6Na0Z3392807
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 12:30:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fXjw2GmP4lQdAtjniPE9MY2CqejpG7o6YmHO6qB4zSQ=; b=lpvQK+Mnpsr1OXoG
+	gGSCb37+QAeYAHvYCzWdmMGX4kzOYeT4i9K1YtQRtonZvF6HNWv1bbdiiEmy+7WE
+	ooIHyk0PLYeq1V1QnFCVODEJWJZm78gF6gqnlNkuP+3JcnGQomzqIytit5Qc93QQ
+	Ft/3EQPgGIOHJgzSnzWEKk018nd+Vasq8hHWj9ZVjQC/Ao6RyrEN2zLTw+iGE5Si
+	FiYGeXJUmEq+NOyitvYqdlvHRPxNbABIUoZfQbuUlTnoBhX4Ggowb8YcwHF+q2PK
+	x1ZLfMGlXae+jwQhS1O0ChZcu/SM4zr0Ps1QhTUqog2mwpLfNwvl4J7STbrVvx14
+	k3BQVA==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc5khah03-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 12:30:23 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-897193937baso31780406d6.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 04:30:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1771331399; x=1771936199; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=veW04ITIm+kS0Va3WwG1j5wGlLSf3zAowo/9T/TxpYk=;
-        b=VVaqjOUlEnbQTJphLvsPvgl4lkEKSy4SyceAemvE1XVLVwgZW65D6T8/t5uU+loLX5
-         RSu4hZ8sXzUlckC3vMKUTvP6unNvI1IC4pkil2Vz7YWZ0LklilbHqY3gq9/HZJtevgWK
-         kF1oLzDGjFwhTgbnafuDz+XwySMKwyGDr8zGuEMvUwFZFZZGUCZo+GiCiidzMVCzVoue
-         QouAVgMpfofzxLSJKRq3xmU+eBi4RKYEPX/B1GkwuYufz299O4VeZU3/OpnK0biO8FU5
-         FM1lIDdJoWkrog+qhsrBpp0OylUGNdbzWF1mRQ6MiP0IM1Su+TDXzBjfWUMNmKCdHB3b
-         KmSg==
+        d=oss.qualcomm.com; s=google; t=1771331422; x=1771936222; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fXjw2GmP4lQdAtjniPE9MY2CqejpG7o6YmHO6qB4zSQ=;
+        b=Z2vVqiyoHhajwwzDyt0pnqGQJPBcZj/7BT4h6RCRlSuv+ylWc/ra8x6caw6b/rUR36
+         ZSIB3YQhckYFm8SYEo473Y8TWoA8GLDKQ0NTFU35/kXshSMAOzHR5Opr7cFmNtbL9aXC
+         mW94RLay4rYzMNBCftU99WOpuqjg1gTP7echJCcFi9RWWIBhGVtvin+cMJwjy+uTi7ii
+         bCmb26SFyFpe19DnbPjeULs7AtGHk/G9bNzGsnzb+C23f3kyzkZumm37E5k7UojAS9M3
+         aiIB1fUJasTzXLNA9y/CSsp13C1KIpjC4XWELxF87yQHXoOvJGfTDyP4ESUEtw6F6JI8
+         5AeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771331399; x=1771936199;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=veW04ITIm+kS0Va3WwG1j5wGlLSf3zAowo/9T/TxpYk=;
-        b=h/fhs6YattnzJpdjx+K09XpisBHRJx0mH1fhsNYWeKQcQ2nOS5MU6SOOqXacEjly/S
-         /5btgoGa2moa/HOWRfKnO6Ht5bRwXDBKgZtGy1H2CxZk92uBjx/TcGRC8oOmcJrz1YF4
-         SAqodwt1f7Qqovv6vZMTUyCpe+tkn6oGk893Og3tA8bQ/O2ee6qLuPww7yGm31lkPpWF
-         +Wt3wIB7iVEib18cckcm6VYP2yvJWT16HfvneuLjmKXMNWdm9aGloTcGnpWs9/Wb/STe
-         9JpTgIykNE0pTq+Hsyzaxk2WUMOmCwNrAmmnOXrApOfcoE5R1U29qTqnod39aUergZCO
-         qr5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUD4us48tdf8NMnAMfGg0jr10be2qlcUkalIdYGXTRFORiyHo8SAMLrzKl0wM4QD6/bGZYQF7w02b0j@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXWs6dSFlNRdFlnaPeLk35xjOXnj/EVocVCbOfO5LvXGSQvlzD
-	70T2OPnjkr4KCQWUyimi//krIYvVGR/u5veIVMO21Z7gcUJEUbpwTZPa4vSR2Yricp4=
-X-Gm-Gg: AZuq6aKtM0tZ8p4y1ba4eVWk2iMyHXmjiCdeKHVjqtDQEsBXTKHXWnCr1caBM0e+1WO
-	4bMkFORQx+1wykMRVW0oGaGsYjcG5C3zt+j4Ff/lWbwt/KDOUL2/TWWGdgzB9WBFlJQvGWV+XCt
-	wS+qKZ0PGFAW/uwH3B/5nIO9eEyBYzy7o/nLIMIoBdzI5JUNsu37N/hqsmsT+hlywhrvq3lMgL6
-	1nZgOT945VxFvUEDkSB/sL4G6FS7pmrR5NTeq3uKTRJxN3lAWzE6GwILOUAzyQoT66IOpvKHYDT
-	wfSmQ+2c2p1iexo1XYjiqypUbDiqRUSwqpneC55Xtq4pIz9xCoQn5jrkyflQJ74tECM4wODwLQr
-	5i7P5zauVDEXUeK7/lyxwHfbWuoDfHCZT8P4FCD0DXgicYS7m30Qp/mtDGLkn1wb1Cr0GiyLNnC
-	UMrFX9u66UYR5pdu/yeupZeoukJnE=
-X-Received: by 2002:a05:600c:1381:b0:483:4a95:66da with SMTP id 5b1f17b1804b1-48373a1ad50mr231637905e9.13.1771331398916;
-        Tue, 17 Feb 2026 04:29:58 -0800 (PST)
-Received: from draszik.lan ([212.129.84.5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48371a44ae0sm99721435e9.29.2026.02.17.04.29.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 04:29:58 -0800 (PST)
-Message-ID: <9ac93f5456adb209bbc0e750434c356000eec6d6.camel@linaro.org>
-Subject: Re: [PATCH v6 3/6] mfd: max77759: add register bitmasks and modify
- irq configs for charger
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, Mark Brown	 <broonie@kernel.org>, Matti
- Vaittinen <mazziesaccount@gmail.com>, Andrew Morton	
- <akpm@linux-foundation.org>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
- Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Date: Tue, 17 Feb 2026 12:30:17 +0000
-In-Reply-To: <20260214-max77759-charger-v6-3-28c09bda74b4@google.com>
-References: <20260214-max77759-charger-v6-0-28c09bda74b4@google.com>
-	 <20260214-max77759-charger-v6-3-28c09bda74b4@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build4 
+        d=1e100.net; s=20230601; t=1771331422; x=1771936222;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fXjw2GmP4lQdAtjniPE9MY2CqejpG7o6YmHO6qB4zSQ=;
+        b=d/rjXiyvubkd5tA7UaPOvMITfGAEUhvm1t2HdwMxCjjpIaERJiZMRHnhJc/P8+P4C1
+         I6rIjRisuE8xpDLPbre7F94KF9z4i22KFMngcTnlh0x/K05MxbbepDB1VpgS1XuEFtku
+         UCA3VHVnAHZ7957nCUF79SkNWf8DjhOC/kt7IbSlRSdn21rIeL0h2mM9Kj2ElDXrwVHt
+         GSrIzQCuNdHDWvw4VaLQPVof46hU0OiA9PA8DVy50EH1onDd3IB8cEQyL3wKU6llc4Ji
+         AgsUHWkybOlDkDasPAayYARe615eQz5zU8LcOFeiZBn3a2CsD3ulG/U9arppEGGI5DLP
+         WGXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUKGAl0alX7czmmC9muSNOJk+iQi54ZulJ/2reaDrjtUcEb5gmRSz8ANXgDXnmQ+gmhkOjf1CyJI2nM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOFiQUMMNLD57Q9MhqTSXZgU/g+VmS9E6gt1PqlR4LQFxZv/oQ
+	a4p3vAHE9tHNowBmz6xfqzcQdvJEOmifPIl34LCS8JafK7UI1L7jOlSuW9IICVxuKYL/zFkJxSC
+	nk1UZY06a0QKIV/qFA7QTl74gwnQcm+2u92Ze/Kc8WtZo78mMAb0CA6nUMQGvlvof
+X-Gm-Gg: AZuq6aIWj/KjMQzXAGDhZQMGyxSnKRKlzqHKrDp2kt4z97dLniJgCMxdVz6pMbejWVp
+	rlWtyTbud0VAk9s9J0a4Wdews/owSGAKHhou7hNUeKLMxpyqS4jP6zIF2LOLvHcyKobqyP9Jjr3
+	xpnDvb+PfjxROGesL+zdpTJzgd9gZ9agBm8OVwi79gUHnKU7IyOYzelWODsktB+5Wgvjdv6bWqZ
+	A8pt393OMSphGPqMCc0qaxmEKB8huNE3sdxdQTdRYzR06PxwjgG5fH6lPMwFOYYsU+cAIQbP842
+	VYY4+JglV4oaXIPmCJCB+NsmeXn8fvkaX1c3RG+/543o9ozlQSKQHMT5AjmEnzN5L8qqdgBLN4Y
+	LxFH2BDc8GNjOBcm1cy+464IKvvrx1VJMNGcYLOnQPGvp7TbUddDR7hX/2HwVGhq6X6bzamAj2A
+	3rVE4=
+X-Received: by 2002:a05:6214:4f03:b0:896:f9ed:be98 with SMTP id 6a1803df08f44-897347ce6f2mr139048306d6.5.1771331422406;
+        Tue, 17 Feb 2026 04:30:22 -0800 (PST)
+X-Received: by 2002:a05:6214:4f03:b0:896:f9ed:be98 with SMTP id 6a1803df08f44-897347ce6f2mr139047476d6.5.1771331421773;
+        Tue, 17 Feb 2026 04:30:21 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc735d66esm336267166b.4.2026.02.17.04.30.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Feb 2026 04:30:21 -0800 (PST)
+Message-ID: <253ca948-07cd-4ded-8e15-619589f2d314@oss.qualcomm.com>
+Date: Tue, 17 Feb 2026 13:30:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: monaco-pmics: Add PON power key
+ and reset inputs
+To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Courtney Cavin <courtney.cavin@sonymobile.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-input@vger.kernel.org
+References: <20260209-add_pwrkey_and_resin-v2-0-f944d87b9a93@oss.qualcomm.com>
+ <20260209-add_pwrkey_and_resin-v2-3-f944d87b9a93@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260209-add_pwrkey_and_resin-v2-3-f944d87b9a93@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Coyys34D c=1 sm=1 tr=0 ts=69945f5f cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=1fdw4J3Q9qDLbzPSb8EA:9 a=QEXdDO2ut3YA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-GUID: Q3S89LZS8vcf2NBDLXCRg4o3tYGzc3x9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE3MDEwMyBTYWx0ZWRfXzIlLuwh3HimS
+ pq+ywRiXw/NsQXuCX8o2ftpQDkEYLOoHSOzxDAb1ucLIpdjJZ3dQhbx8rVibzk76rw22iSArD53
+ SZeQcLSOhM/Ef9sYyFnPBWRB60fJf9VOy3DoUc/IDBT04GGYmuDRfwXP+RWOsdjIsYhkw1Qruw8
+ dLBU+9fZ+Tu38uJLdEr2deZ9FubeuB56FiLp3Nb0D+6fnNzIOcM3/XEGqIkNszI0yfPbOcVxPKa
+ Ys6Yhm8/FYzbZSg86DXIeaUEeE/Eg9BkGvgomVbNmWFFw6NGn9AO/HoXiGPA26gyxbb3fQ7aBdk
+ upYQZibNko9dvFqVJkL1Cyd5ByEYJ9ekIF80hq/U9ndOXG7dwbALcLX1Dj4yYJUx7sAPol2NooQ
+ 3QSTRevkIhcMu2D7pRaImlRFAgSsejkhmHzDFLl32jlU+5tdh3DVn5aCISKIn6ZevtngSF0y6Ti
+ TLG4d8eMaiy2GvAudRg==
+X-Proofpoint-ORIG-GUID: Q3S89LZS8vcf2NBDLXCRg4o3tYGzc3x9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-17_01,2026-02-16_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 lowpriorityscore=0 spamscore=0 bulkscore=0 impostorscore=0
+ priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602170103
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266112-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[google.com,kernel.org,linuxfoundation.org,linux.intel.com,linaro.org,samsung.com,gmail.com,linux-foundation.org];
+	TAGGED_FROM(0.00)[bounces-266113-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,sonymobile.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.4.176:email];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:mid,linaro.org:dkim,linaro.org:email]
-X-Rspamd-Queue-Id: 912AF14BF65
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 9E21514BF92
 X-Rspamd-Action: no action
 
-On Sat, 2026-02-14 at 03:12 +0000, Amit Sunil Dhamne via B4 Relay wrote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
->=20
-> Add register bitmasks for charger function.
-> In addition split the charger IRQs further such that each bit represents
-> an IRQ downstream of charger regmap irq chip. In addition populate the
-> ack_base to offload irq ack to the regmap irq chip framework.
->=20
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+On 2/9/26 2:23 PM, Rakesh Kota wrote:
+> Add the Power On (PON) peripheral with power key and reset input
+> support for the PMM8654AU PMIC on Monaco platforms.
+> 
+> Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
 > ---
-> =C2=A0drivers/mfd/max77759.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
-91 ++++++++++++++++++++--
-> =C2=A0include/linux/mfd/max77759.h | 176 ++++++++++++++++++++++++++++++++=
-++++-------
-> =C2=A02 files changed, 230 insertions(+), 37 deletions(-)
+>  arch/arm64/boot/dts/qcom/monaco-pmics.dtsi | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi b/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
+> index e990d7367719beaa9e0cea87d9c183ae18c3ebc8..182c2339bb11af40275050a36c4688227e89497a 100644
+> --- a/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/monaco-pmics.dtsi
+> @@ -13,6 +13,26 @@ pmm8620au_0: pmic@0 {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  
+> +		pmm8654au_0_pon: pon@1200 {
+> +			compatible = "qcom,pmm8654au-pon", "qcom,pmk8350-pon";
+> +			reg = <0x1200>, <0x800>;
+> +			reg-names = "hlos", "pbs";
+> +
+> +			pmm8654au_0_pon_pwrkey: pwrkey {
+> +				compatible = "qcom,pmm8654au-pwrkey", "qcom,pmk8350-pwrkey";
+> +				interrupts-extended = <&spmi_bus 0x0 0x12 0x7 IRQ_TYPE_EDGE_BOTH>;
+> +				linux,code = <KEY_POWER>;
+> +				debounce = <15625>;
+> +			};
+> +
+> +			pmm8654au_0_pon_resin: resin {
+> +				compatible = "qcom,pmm8654au-resin", "qcom,pmk8350-resin";
+> +				interrupts-extended = <&spmi_bus 0x0 0x12 0x6 IRQ_TYPE_EDGE_BOTH>;
+> +				linux,code = <KEY_VOLUMEDOWN>;
+> +				debounce = <15625>;
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+FWIW we tend to disable RESIN by default, as it's not as ubiquitous as
+the power key and only assign the keycode in board DT, since it may
+commonly be reused for either of the volume keys (or something else
+entirely)
+
+Konrad
 
