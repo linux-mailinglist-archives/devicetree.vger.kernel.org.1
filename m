@@ -1,222 +1,318 @@
-Return-Path: <devicetree+bounces-266058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266059-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MIlyJIw+lGmYBAIAu9opvQ
-	(envelope-from <devicetree+bounces-266058-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:10:20 +0100
+	id qH8MElg/lGmYBAIAu9opvQ
+	(envelope-from <devicetree+bounces-266059-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:13:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B008914AB3F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:10:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B43A14AB81
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:13:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9B3493001F92
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:10:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 034173002D08
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4784320CA9;
-	Tue, 17 Feb 2026 10:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A71F322B72;
+	Tue, 17 Feb 2026 10:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="em6jUaPK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hQAnI2uv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010031.outbound.protection.outlook.com [40.93.198.31])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F74D2D5C6C;
-	Tue, 17 Feb 2026 10:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.31
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771323013; cv=fail; b=nYDfkhfuUlzIakKEc2jGQIRgXISNnQpt98AdY1fKPt7u/3SgYPwxFgBcS6vRstwZmEFw4adNDW4XoVFVT+bQIapHxNZBvoR8QpQ0NMWBr4Cqt6nYi17n4m++wUFShjvme3BV2VCg2ll8rrni7V9fycmGLmxXk3IQlnn0+RBzG0E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771323013; c=relaxed/simple;
-	bh=KJgZmEDNBH2p35zGYPxo5HNLu5z2nwVT75BP4rnr18M=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF681EB5B;
+	Tue, 17 Feb 2026 10:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771323218; cv=none; b=jKVGDkze65vhxHtyzb681H57z8nKIeeB4RuVrO3+iey2NSaAjaMQiAUM1pf1w9HUSctaJnyuXeTO0N/+iJZoHJlMpIj5FaXvdaiS+zB/jrWr08lAwcAX19fKBnx60D8jrczvmTA6x6Joa5zc9TKkgsXsp/Q3TWz6AOia2tAh/pk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771323218; c=relaxed/simple;
+	bh=R36PQk8KyDr9x04rIC9BdVGjwABrAY+q1kN3Q0uXFL4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uLxHpT3G60d7L/d04KTU8kqxZE+wqvRfF7ObytCt5NeDM0+6FjsVbF0JAwJiiynTAnZgRsmAfhehAz9GWCDHBu5jEHNa2Zh4Kie825zb67fD5FFAUlxfANAKEx2hD3aU0+IaUp+jI6WKiLBYtWwypFVy3LZNLt14Chwolj2wZzc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=em6jUaPK; arc=fail smtp.client-ip=40.93.198.31
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z2/frvM4SBzDUFf7nvStcV4JaBUkhAoTotw69ywi7VTbGHp50ty2EnH5QcT/7jPGjhyJtOBXpRbCuZfcFKzaineThr3bSpuZYyCp03KIa/jSjx5xFhZUw1EaMHIsri1kV0rBRqjVpwkm8Tv2/SmCdFelWEGSKDJk+tKeBddxACHVmnVvUWvHzGr15jTJRL6BmlRi+ypvVbNuexbsIyPiWvmrv2DuuD4bx3ogirmxdzXWdOpH7P4DENCy30TxnWDJxjJF7/5vRLg7EXmFTl1GyV+HDhgJRVQDzl4L2T5ykjJh8Q5IAXYivEu1hHZNDqkvcx7CQK7QFgC0BKrrEyu+iA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JkbAKj6uQSxIzwdO33/U1MbuYmo8otVsMc1RTwLroD4=;
- b=BxwXMgyBGdeE+yAeIITTOjhmX0YsOW5dzT/gg4cvbmokAVTwTw8T//FOM4MGSmtO23DJKAB77UGKM/14lPGHvIzQIFSnExxGjAhO+DXQD0po79LCdfNDt/pUUSTll3xHWbbbzAAKzxylB61HwQVpPcGy4bTp3A5erlgIWnJ8ar83JjyPpb1QA0bI4gvev+vYJb1ZMF8wgi1sabguy6+pmEWUsmaNwIlTKd1RR7CHYkrsAzwXk2U+gylUXu+8BlOmX5Mx1rgh/UUUeH7xxEAKPeVIwELqJ/BnVPbuflgbi4FS8Ug9AYUOp8MbHAg22EfLjfO/ahyD1TZkPlLJt438cw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
- pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JkbAKj6uQSxIzwdO33/U1MbuYmo8otVsMc1RTwLroD4=;
- b=em6jUaPKJbLYYqwdZ4n//b+X6Pya8APJMJBUwWHxXqPj9EXSzYp8C+Dl6HjGjO/CkkGkqxOpYlYhfOkLVdJpNscinbyGmJGG95BqHeUts+PBesMCZil0srSzTLgn3PKWjiI07TUP2gyXpEWUQUE35Wi+WVkdHrVT9I4tKWeyYygfPJSm5nQfHJytC5gNx602dS7+DZPd3i0by0dPJGS/HGtTXT1wZuCwY26UWeUgJNaRbb+M5G/wFIJGuzszSw0UIntjCJmEQjOHwobD2l2O6oazVNMEogi8HxccbGDyCY2Vjoybm7JFEV8GFtj1C3w+JkAMNqBu1sZ94ThM0fysEA==
-Received: from SJ0PR13CA0018.namprd13.prod.outlook.com (2603:10b6:a03:2c0::23)
- by DM3PPF4E0899F31.namprd22.prod.outlook.com (2603:10b6:f:fc00::e1e) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Tue, 17 Feb
- 2026 10:10:09 +0000
-Received: from SJ5PEPF000001EC.namprd05.prod.outlook.com
- (2603:10b6:a03:2c0:cafe::1) by SJ0PR13CA0018.outlook.office365.com
- (2603:10b6:a03:2c0::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.13 via Frontend Transport; Tue,
- 17 Feb 2026 10:10:02 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
- smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
-Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
- not designate 165.85.157.49 as permitted sender)
- receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=mkerelay2.compute.ge-healthcare.net;
-Received: from mkerelay2.compute.ge-healthcare.net (165.85.157.49) by
- SJ5PEPF000001EC.mail.protection.outlook.com (10.167.242.200) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 10:10:08 +0000
-Received: from zeus (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id 9DEF7E8F41;
-	Tue, 17 Feb 2026 12:10:05 +0200 (EET)
-Date: Tue, 17 Feb 2026 12:10:05 +0200
-From: Ian Ray <ian.ray@gehealthcare.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ti,ina2xx: Add INA234 device
-Message-ID: <aZQ-fWR8_ISD4Y8U@zeus>
-References: <20260217092325.15867-1-ian.ray@gehealthcare.com>
- <8e23ba87-b6c9-4ad8-97ed-3e203a81121b@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UA2+ZZ/zK2D3NDmmutFjc4IkxQRBuWnLe5chuC59gcMcNjHJOkQQPWz+6kwYhnfowerIyjPCVmsLSrnPZOtkeX6yHtLx0s/+XNcmHvUNQUdCttaZb478p+ZgjMmVc4a2Pa9sVbIowTgksRGQZHLY3njgEQoNGuEorTtfXemMwOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hQAnI2uv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 698C1C4CEF7;
+	Tue, 17 Feb 2026 10:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771323217;
+	bh=R36PQk8KyDr9x04rIC9BdVGjwABrAY+q1kN3Q0uXFL4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hQAnI2uvRBc/dRyxJCCW1QFY8U59rFXk81Yepf+QcTtAYjzasqX1zRZt70YnPwE5J
+	 SJN9YGww/I+sQQKg6HtA8MmNU4xgqQNzHMeeVzcW976P5jlxxeyH4/KIJtxcKXfefg
+	 7XMctAWnI3aQZlLpPOG1VBcSRHzohNbz867AcbKwlTj6S1h8VvQvBQ7EzPq3xqiHyi
+	 WQ1xAjtb+04IhABAIUQqWjBCYGqrU/GXAAt7utYE2vpODKA7P3GuwUqVKwVoeG0Jqd
+	 Iy5rSIghxw6b/8iN/ymFhJxINtuhHGg9CEp4kwhX7c7w3KaNATJchFNwo4scPgmU9y
+	 XAZdv667zZ26w==
+Date: Tue, 17 Feb 2026 11:13:35 +0100
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Mikko Perttunen <mperttunen@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, 
+	Aaron Kling <webgeek1234@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] Revert "arm64: tegra: Disable ISO SMMU for Tegra194"
+Message-ID: <aZQ-cMn-3vI7UH7t@orome>
+References: <20251101-tegra194-dc-mmu-v1-0-8401c45d8f13@gmail.com>
+ <CALHNRZ-YQe7_7UGfFNsBe6pdvFjK+1sS0Sye7od6WF+yqAYttQ@mail.gmail.com>
+ <5289895.R56niFO833@senjougahara>
+ <6462154.GXAFRqVoOG@senjougahara>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fetqgeupq2ey7hvw"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8e23ba87-b6c9-4ad8-97ed-3e203a81121b@kernel.org>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001EC:EE_|DM3PPF4E0899F31:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59eaafe7-81da-443e-f911-08de6e0cbadf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?eUZjdkJTZnNsSWNkb0djVG94cGVKYjlaWXZjMDRUV3A4dUVVQ2Nia2YxeW9I?=
- =?utf-8?B?M0U4N3JGMS9PYTh3S0dUN3Z2NDBTWi9MTE90TEVMcTRKNGIxMjRqZStpaW1i?=
- =?utf-8?B?bytMYW4rYXJYR3k4bzdYUzFkOG5CQnJzcEI4N2VSdzk3K2poenlWTWRPQk5U?=
- =?utf-8?B?TVVlSFcraTA2clJDeWdUaHJ6STA4WVk3dUg5ZWFuRnFaNDVMaGN6cnRYZWJ6?=
- =?utf-8?B?UHkrbHoyTDJEd2pQZmRTbjdKaTQ1ZW83dlFIRkhjVFd3YjE2SXZjTitYZVNU?=
- =?utf-8?B?amR5aGFOUTBtTHk4bjVwZ1liUGY3S1hDVDFGODgzdGhnTzZMY3c5OFYwY0h0?=
- =?utf-8?B?bURMS0lHQldGZzVXOVpSeS9pUExrZW1VMUlKd3J0cC9MRm9ybVB6cmRMQlJR?=
- =?utf-8?B?anBJanhOeE90QXZXTENwTUFGWkZLOUIySDRmUDhDYzF2cElGRjdqYTdzYzln?=
- =?utf-8?B?ZVQ3c05kdGNWQ01oUW9VV0x4bDNzby9XSHFkRHQrNG9GMXNMNFE0UlpaUGZD?=
- =?utf-8?B?S1pzLzMyb0RCQUhyaUxVa0lYWXp6KzVEOU9CeXJlMkZvbzlLdmcwc0xuZnh4?=
- =?utf-8?B?Vng2YTJTL3J4VythL0NTcThqTVZqMDRhcGNjaEtrb08rTFh0V3RRZzJkS0VH?=
- =?utf-8?B?NUZpVm5zWWROM01VbGpnS0pGeGtEQ2tHOC9aTUx5dVN2eTdNUkVCeXNEVXZy?=
- =?utf-8?B?b1h3Ymk5NWhlVXpnZ2pWWkp2ZGFLSE1KcHR2RmFLSnVvNkRCdnR5L3JwM0xW?=
- =?utf-8?B?dFNIUkt6Sll1UkN6WlpkSFd5NFZaTWJ3c1RzQUVNNmdJbUJJVWZYcHVLUGxm?=
- =?utf-8?B?a3ZUekJXb3JWWWhXQ3hSMTl5QnNVYWdWaTNXVXQ3LyszQkNkMTk1QnF0YXhG?=
- =?utf-8?B?djNlaHF6NWdFemptdFFCNzNyMDVFbUZOamhpN1Z5RE1rWkhOcHRHN2tTVU5t?=
- =?utf-8?B?aUxpZXJoNFZaTE93UmdFS1hPMWVNYjhtaS90THpWSTFnRmE2WTNTRm5DY2V0?=
- =?utf-8?B?L1RqYzVHS3FoQUZxOCtKWm8zR29rb0RLbGlwUXV0YVRVVzhlVng3SEFxRU9w?=
- =?utf-8?B?WC9uSEtaSG5OSXBmMnJtdmlwN3l3N0tlWlNiV04yZHA2ZUplbzlBTDdqakVt?=
- =?utf-8?B?MGZhTUkrRU1QTTdrdERMS3JFa3U1NitJZVdWZzUyUFdOcWR0SWMrbFMxUzN2?=
- =?utf-8?B?U2IwS2ZvOVlabkhNQTNmNFpXSGNYcndEWW0zVTN0RnlMZUUwaGE3QmJnejc2?=
- =?utf-8?B?ait6N2QvK0JSYVY3ODZmZkRhMzdwdnpyRElYQlljQnBRcFJzNUpRUDkweVQv?=
- =?utf-8?B?bStadjZOSWk1a3FWUmZscEp3YlZEbWE4NVJwd2V0ck5PTWtQbXV2SEdFcFNv?=
- =?utf-8?B?MUNycjhxSzcxUWJjVjQ1YkY2eWZRZFJuNS9icjZKZWZWSnlEaURlcG1pK1lP?=
- =?utf-8?B?ZkhhUXdlVHZaNTl2OWZMWW1GREV0UzZqckpoM0Znb0FRU2tJcVFNYzYyeU40?=
- =?utf-8?B?VFpuRS94Um1rT1ZWayszV2hQcXpSOEYwUmhyeVZ3V1o0VkFpKzFwZG9rVGVt?=
- =?utf-8?B?dHAyc1puN1kvdWlRaGVHNGN4RDF4NGE0OFhYMjBsZmF0MCtOU05MaXZ1YU5P?=
- =?utf-8?B?RXI0WFJncUtvWW1lOXlxdVc3d2Y0cVE3VFl2V1VGNjlBT1o2aG1hNmlDN2tq?=
- =?utf-8?B?bXUvL1pGbXJuQ1dDdlhtQVBrMVVkZnk0cUM0WTJSeHk0WlUxaEt0NlFtN1Fl?=
- =?utf-8?B?MWN3clNDMm5menN5VU5IMWJPZlBXalpaNHZRWWJjNC9FK3h5U0lic3ZDMm5B?=
- =?utf-8?B?YUt3NWVyczZ1TEoxelRoNjViRU9aZCt0ZjNYVStYZlBVRkFyamFhejBmZUYw?=
- =?utf-8?B?Vno1cHlnSTRQeW5wVjdvMzdZUHNOR0FIL0lSYVZTTDdJU0lYWHhTUklxbG55?=
- =?utf-8?B?UVVUZkVIcjdmSnlCTHViK0pnUGhaMFhlS0dtZmVuTmw5ZDFqdDV1dk5zRjRX?=
- =?utf-8?B?dzV3eWhUMndGNkN5WU03dlhMZzdnc3hXRTV1S2tmcnlzRFpCcUV2ZTFsZ0Nw?=
- =?utf-8?B?SHMyYWtodXVPNXhpK2c4NHRLY3hOSkUrV0hMSkFkK2RCZDRVc2tacVIrT01h?=
- =?utf-8?B?KzJISk8yREo0ZEdBWC9hUEhrL0I2N0R1MkN3bGVOOTRtandRcDJJSWVudUtW?=
- =?utf-8?B?TmZTU1BrODFPTE9reVM4VHFMa1NYVUZLdzBwNDZRa0hDdU8yZWNhTUtKMVIv?=
- =?utf-8?B?TlhNZWlGeUw1RVZiM2JiQkNYblJRPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mkerelay2.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	Bmfr2/cTxB4COPP2rLITQwUdReWuD2VAJnhytOCc0zzapVH4/oKcLRyVtO5mpnrHuDgEgQ0MPwfVJw0NimvFDMr/nc37VZnW/vRd5vRP39cU2zG7HCHo2jna3TtiVFxw4V99gqd1sy/u1W3WiMa10OcjF4a4sR7dOvE/KLs98k7La1ttCmLKZ4sKT7L7sV+EyadhN+znhE6Aq4rsgtp7tBzhyCyoIbuVzN6lX6STl+xhJFZYVBwSfW85IX6Pv8uzznOMm8NH9nVBHv9ZXG3EaExio7bw1nvBt3oCtkFOLL7QBxaoKztFsgXjEGqUfu74IBRz04O1WLgDkDrx6ZSLdOzPuP0Jcz/EwOEVZdbtBwyLD3Vt7rhrcVGGSgNBHd1GzHUoAfcz25Y7NaCdqhSZKSGuPGnhr/AM9EaX6GKghg7E+h/LeQxV+DDS7zPmcIjG
-X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 10:10:08.3384
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59eaafe7-81da-443e-f911-08de6e0cbadf
-X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[mkerelay2.compute.ge-healthcare.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-SJ5PEPF000001EC.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF4E0899F31
+In-Reply-To: <6462154.GXAFRqVoOG@senjougahara>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gehealthcare.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[gehealthcare.com:s=selector1];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266058-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,gehealthcare.com:email,gehealthcare.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-266059-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gehealthcare.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: B008914AB3F
+	MISSING_XM_UA(0.00)[];
+	DBL_PROHIBIT(0.00)[0.152.150.128:email,0.183.27.0:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nvidia.com:email]
+X-Rspamd-Queue-Id: 4B43A14AB81
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 11:05:47AM +0100, Krzysztof Kozlowski wrote:
-> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
-> 
-> On 17/02/2026 10:23, Ian Ray wrote:
-> > Add a compatible string for the INA234 device, which is like INA226 but
-> > has different scaling.
-> >
-> > Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
-> > ---
-> >  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 3 +++
-> 
-> I got 1/2 but no cover letter, no 2/2 and no explanation in the
-> changelog of that. Usually I use driver code to avoid you questions
-> about compatibility, but since you decided not to send it to me, then
-> you have question:
 
-Sincere apologies, I used scripts/get_maintainer.pl with git-send-email
-and failed to notice that you were not cc'd.
+--fetqgeupq2ey7hvw
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/2] Revert "arm64: tegra: Disable ISO SMMU for Tegra194"
+MIME-Version: 1.0
 
-Patch [2/2] is here:
-https://lore.kernel.org/all/20260217092325.15867-2-ian.ray@gehealthcare.com/
+On Tue, Feb 17, 2026 at 12:53:54PM +0900, Mikko Perttunen wrote:
+> On Thursday, January 22, 2026 7:22=E2=80=AFPM Mikko Perttunen wrote:
+> > On Tuesday, December 9, 2025 1:21=E2=80=AFPM Aaron Kling wrote:
+> > > On Mon, Nov 3, 2025 at 12:05=E2=80=AFPM Aaron Kling <webgeek1234@gmai=
+l.com> wrote:
+> > > >
+> > > > On Mon, Nov 3, 2025 at 5:07=E2=80=AFAM Thierry Reding <thierry.redi=
+ng@gmail.com> wrote:
+> > > > >
+> > > > > On Sat, Nov 01, 2025 at 06:13:26PM -0500, Aaron Kling wrote:
+> > > > > > On Sat, Nov 1, 2025 at 6:01=E2=80=AFPM Aaron Kling via B4 Relay
+> > > > > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
+> > > > > > >
+> > > > > > > From: Aaron Kling <webgeek1234@gmail.com>
+> > > > > > >
+> > > > > > > This reverts commit ebea268ea583ba4970df425dfef8c8e21d0a4e12.
+> > > > > > >
+> > > > > > > Mmu is now being enabled for the display controllers.
+> > > > > > >
+> > > > > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > > > > > > ---
+> > > > > > >  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 2 +-
+> > > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > > > >
+> > > > > > > diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/=
+arm64/boot/dts/nvidia/tegra194.dtsi
+> > > > > > > index 1399342f23e1c4f73b278adc66dfb948fc30d326..854ed6d46aa1d=
+8eedcdfbae1fdde1374adf40337 100644
+> > > > > > > --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> > > > > > > +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> > > > > > > @@ -1807,7 +1807,7 @@ iommu@10000000 {
+> > > > > > >                         #iommu-cells =3D <1>;
+> > > > > > >
+> > > > > > >                         nvidia,memory-controller =3D <&mc>;
+> > > > > > > -                       status =3D "disabled";
+> > > > > > > +                       status =3D "okay";
+> > > > > > >                 };
+> > > > > > >
+> > > > > > >                 smmu: iommu@12000000 {
+> > > > > > >
+> > > > > > > --
+> > > > > > > 2.51.0
+> > > > > > >
+> > > > > > >
+> > > > > >
+> > > > > > Question for Jon as the author of the commit being reverted. The
+> > > > > > commit message states "we do not have a way to pass frame-buffer
+> > > > > > memory from the bootloader to the kernel". If I understand this
+> > > > > > correctly, this is talking about seamless handoff. What does th=
+is have
+> > > > > > to do with enabling mmu on the display controllers? Seamless do=
+es not
+> > > > > > work on any tegra arch as far as I'm aware, but Tegra194 is the=
+ only
+> > > > > > one that doesn't have mmu enabled for the dc's. But enabling mmu
+> > > > > > allows for better and faster memory allocation. My initial atte=
+mpts to
+> > > > > > enable this didn't work because I tried to attach them to the m=
+ain mmu
+> > > > > > unit, see the related freedesktop issue [0]. After noticing in =
+the
+> > > > > > downstream dt that the dc's are on a separate unit, I made it w=
+ork.
+> > > > > > And so far, it seems to work just as well as Tegra186. Then whe=
+n I was
+> > > > > > packaging up the change to submit, I found that this had been
+> > > > > > explicitly disabled. But I'm not seeing why. Am I missing some
+> > > > > > additional factors?
+> > > > >
+> > > > > This isn't seamless handoff to the Tegra DRM driver for display, =
+but
+> > > > > rather to simple-framebuffer. While this does technically work, i=
+t also
+> > > > > causes a spew of SMMU faults during early boot because the firmwa=
+re does
+> > > > > not properly pass the SMMU mapping information to the kernel.
+> > > > >
+> > > > > In a nutshell what happens is that the firmware sets up the displ=
+ay
+> > > > > controller to scan out from a reserved memory region, but it does=
+ so
+> > > > > without involving the SMMU, so it uses physical addresses directl=
+y. When
+> > > > > the kernel boots and the SMMU is enabled the continued accesses f=
+rom
+> > > > > display hardware cause SMMU faults (because there is no mapping f=
+or the
+> > > > > framebuffer addresses).
+> > > > >
+> > > > > That said, we did solve these issues and this may not be happening
+> > > > > anymore with the most recent L4T releases, so it may be okay to r=
+evert
+> > > > > this now. We should find out exactly which release includes all t=
+he
+> > > > > needed changes so that it can be referenced in the commit message=
+=2E I
+> > > > > want to avoid people running new kernels with an old L4T release =
+and
+> > > > > then seeing these errors without any reference as to why that mig=
+ht
+> > > > > suddenly happen.
+> > > >
+> > > > For reference, I have rolled back my Android usecase to use the L4T
+> > > > r32.7.6 bootloaders on T194 for a variety of reasons. So I am using
+> > > > cboot as the final bootloader and not edk2 as in L4T r34/r35. I hav=
+e a
+> > > > pending cboot patch to support simple-framebuffer handoff, but have=
+n't
+> > > > fully verified it as tegra-drm is currently unable to takeover from
+> > > > simplefb like openrm does for t234. But all that to say that since I
+> > > > no longer use r35 for t194 I don't have the setup to easily verify
+> > > > which point release works here and what doesn't.
+> > >=20
+> > > Any further thoughts on this patch?
+> > >=20
+> > > Aaron
+> >=20
+> > FWIW,
+> >=20
+> > looks like the edk2 patch to update iommu-addresses --
+> >=20
+> > commit 6071946461389221d2314cbbae0377610b5b1f6a
+> > Author: Jan Bobek <jbobek@nvidia.com>
+> > Date:   Tue Mar 21 00:15:27 2023 +0000
+> >=20
+> >     feat(NvDisplayControllerDxe): update FDT with framebuffer info
+> >    =20
+> >     On ready-to-boot and whenever FDT is installed, update FDT with
+> >     framebuffer mode information, base address and size.
+> >    =20
+> >     Signed-off-by: Jan Bobek <jbobek@nvidia.com>
+> >     Reviewed-by: Ashish Singhal <ashishsingha@nvidia.com>
+> >=20
+> > is in since r36.2
+> >=20
+> > $ git tag --contains 6071946461389221d2314cbbae0377610b5b1f6a | grep "^=
+r"                                                                =20
+> > r36.2
+> > r36.3.0
+> > r36.4.0
+> > r36.4.3
+> > r36.4.4
+> > r36.4.5
+> > r38.2
+> > r38.4
+> >=20
+> > Not so good for T194 since r36 only supports Orin.
+> >=20
+> > I'll look into getting this cherry-picked to r35.
+> >=20
+> > Mikko
+> >=20
+> >=20
+>=20
+> I looked into this and it appears a version of this is in r35, but it
+> only supports T234. However, I also found that at one point, L4T
+> bootloader configuration has been modified to place the display
+> controllers into SMMU bypass until otherwise configured by the kernel
+> -- which the kernel does in tegra_mc_probe_device.
+>=20
+> I think that means there is still potential for an issue where the
+> display continues to be on between tegra_mc_probe_device and tegradrm
+> reconfiguring it. However, I cannot reproduce that happening -- most
+> likely the display is being turned off before that because of a clock
+> or power domain being turned off.
+>=20
+> In any case, this means that we no longer need to pass the
+> framebuffer's information to the kernel. I think it would be good to
+> have some clarity to ensure the issue described above cannot happen,
+> but otherwise we should be able to enable IOMMU.
 
-> 
-> Does "different scaling" mean devices are not compatible in terms of DT
-> compatibility (subset/superset)?
+The problem would happen if you enable some sort of early framebuffer
+support, such as simple-drm or simple-framebuffer. Maybe even efifb. I
+think it'd still be worth getting the iommu-addresses code into r35 if
+for nothing else but to have a bit more of a safety buffer for the
+future.
 
-That's correct, the device tree compatible must be different since the
-driver uses the compatible to configure the scaling.
+If we don't and for some reason decide that we want early framebuffer
+support, it might be too late to get UEFI updated for Tegra194. I recall
+that the UEFI code for Tegra194 is different from the one for Tegra234,
+so it is probably not as trivial as a simple cherry-pick, but I'll try
+to do some digging and find the code that does this for Xavier.
 
-> 
-> Best regards,
-> Krzysztof
+Thierry
+
+--fetqgeupq2ey7hvw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmmUP08ACgkQ3SOs138+
+s6GFIQ//XG1Xz0l+YHGhvpD8IrLPSdzfmENzskMj3hFAcMeGg0ieOVSwcuodCJsw
+ggJ2dOWI+NMp9zPILp/mUCzpo4RpR2GgLkeWwhgvgTTSXDSIV60hWTdTCUG8812r
+zxJu9TbLHwvRFROTp1Y16AJDEWHw3bSritplZQf4bVCrJwUOyG/qQ7BBHnRzogPG
+kVP6EBCVYQXtyBBhPAXuqdXwNpzB0j02116/AmIDJ21lGeNlBgXtla/uvDXVsNq7
+zPP1feX7yvp5uZ2Kr/KxH/mHQq4sPZp9uso5O5ittm2XLkMzf4g0CTKjcZRKUXLn
+xdipU2/FwWyi2tJEN7vYVhS652zeO5CzFEWUhYSsf9Nq2Kmg3HCQa2tfdwwWR+nM
+4cr3F9JGCMtFwzkbfpq9zHYI3X1GbdTNPjNBEEQ28FkPXMhdXgQEiE2P5RSCGBD9
+phzJ8Ra+nrEhaHQxJxEeeXpUIXSZfvNhYElZykjmyTCzFjoPo8ZjaU/EhQxXtdlr
+JqaiEVHxWtIHALBELwT4+m0E+TYkr90mz7QKVMfIgVkuIX1z6cDKdwXIJ04YYXgj
+TWO4BRMB5xXAro9Yt3oAI54tZDuD9hvk8ClMLHi/VDYNSdbQ8eqDvaFRH29QUJ0f
+AYfR3K7nvKripzY0iCXyvrMrdFSuat+mzek/22ZXI4N9FZVg1rI=
+=tagu
+-----END PGP SIGNATURE-----
+
+--fetqgeupq2ey7hvw--
 
