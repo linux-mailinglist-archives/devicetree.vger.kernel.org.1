@@ -1,268 +1,360 @@
-Return-Path: <devicetree+bounces-266078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KJlQINhNlGktCQIAu9opvQ
-	(envelope-from <devicetree+bounces-266078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:15:36 +0100
+	id 6CDkMD1QlGktCQIAu9opvQ
+	(envelope-from <devicetree+bounces-266079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:25:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB14C14B3C1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:15:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CC2914B545
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:25:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F34343020859
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:15:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F266C302A2E9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1F333033B;
-	Tue, 17 Feb 2026 11:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD99331A52;
+	Tue, 17 Feb 2026 11:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AXqVugyX";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g9PxTVOE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VrV9oxPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 522593271FB
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 11:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0A26330B04
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 11:23:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771326922; cv=none; b=I1IKJSKSMRYkUHKPOvgEolIDPGClDIwvOjPsIwDMjqpEYU5blfpgBYTaCWi2KYgLmgO7DIB6Abw2LzYI1CdWNdYxEPLv8vrPld2qgaXeq+KSXgpM555MGB/d8hJOxZDlKDWZLWN1vR5FWVjhBhg2aMl5SRRptJM3QBaEZ9dgDnQ=
+	t=1771327437; cv=none; b=DhISH2HBPQfv2y1rMdzJWealipiq+GBc83+hwhjKqV3kqjmHJjZ3DdwnWzAtfxqUpjN/14pldr+7vCvZlDVRBrnfVIVVoC3vJEJZJrhZvqWJjmmyCQwPtn3jgy+tNUZOSdaBV53GFo/gW5iIGjgONf90gmWB7QH/GQRJJcFTkyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771326922; c=relaxed/simple;
-	bh=+fijnD0Orpou5zkoCNt/U4oi6qz2glc6GWXMBDIZue0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BU97GyXpP6l9dS7rGk03A1m2v+QXCvnM6MEXLX7MNLPd0AFb0upOzXLerktTj24rElslzYEzIxTHMXL0b8uJKKqa/qixru2Wd1KHeGnYLamXS5kBZ7l4Kz27dL/C2j3OJnNZfIjsx4z47TSnbVcrrWJH1sHRNzgeD0gYmQLneEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AXqVugyX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g9PxTVOE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61H8OphC982450
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 11:15:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ejYTyEPMYZOCpO/IUcxs5fnrHWD1qqqFGZBOuXIwebw=; b=AXqVugyXbJ27KHzt
-	zDbdh9EO+L/lB4uaw9JejUk7XN+ms6SpYxsVurwGGzbtNUKijwxIcPzaSOogJ6Jr
-	9LbQBsMtnsYNVOvuTbLq/tX3Pc9ozVPb/jRA6Z/yhUfjhCxGDMx8yz/A1InuObhd
-	zV1lkvcp84+Ibr5EIg9mS3pARlqJlG8ceoQbVaT720Cr5lTucpkTHw8cJvkPUjg8
-	dJhvFtRe1g6ItZdKsi5Da7kbbryqvMbq0fxKFVcrgg8SzVmuI77jsOz8Ztda2G5P
-	6XJclM/BoU4aKzbTTL30AD54v4ah1vimg1id3/1e1LAFBqgXkiS+Mp207aLhAjda
-	iwKXOw==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc662t4h0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 11:15:20 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-89547ddf32bso30930796d6.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 03:15:20 -0800 (PST)
+	s=arc-20240116; t=1771327437; c=relaxed/simple;
+	bh=bvMCKzjSdNRLDXP2YG0zNiGofwkPC1h2YSOCCwfB2W0=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=FEIyXu8IjA1fsgEDLF5Ud5VsRYLdojcUkVJAI/5md114sQwkhPNeghDP6k8XKGOPG+UkkChIss9I/W6h1t334vXynO+z9YPelG1V5edpjc/qwerMMlZBh25hwAxCL9ijVG/Sf9HjO/+YYym96xGd9X1nx19PeBNVQm+oN0+0ql8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VrV9oxPB; arc=none smtp.client-ip=209.85.208.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f67.google.com with SMTP id 4fb4d7f45d1cf-65baa72399fso5521145a12.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 03:23:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771326919; x=1771931719; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ejYTyEPMYZOCpO/IUcxs5fnrHWD1qqqFGZBOuXIwebw=;
-        b=g9PxTVOEuYSEalHy1qpd20zeO54nwXwdEfUgdQj57Udyse9hejU2hPloxXNW4z2PYP
-         XqbwnFgTwkIPwzUYBd+0e0lff9XG5Td6A+il6b0y2GOq/UoVkKCzVGogwg6/0R8Y8h5E
-         OdIcyFmZ0pAm1ItwGyKrBION4+mZIhQpJ9pLJT11NIjX5XgigoMokLIjLKXKwmhXv1Gz
-         zw5psafBZLBfFBfns+aLW72GEoKardd18BYrbF1lEMTsnRKC1RyxHaaoQazssyHbVv3P
-         QLLo4bJymWjIOPWXIIYEflQWKg06c0uVgU631LSbdklbIgmUkExOwsQpAhN68SGBhrfQ
-         IiQg==
+        d=gmail.com; s=20230601; t=1771327434; x=1771932234; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XZQyHeREapolcjQia1InNcB2r3IZhhNtVTrC1gmVA/o=;
+        b=VrV9oxPB5Mf23su6A0z6yOQG9T36cbFt5MWUzR8j6+VOep8t7UIyLzF8Gf15QcO/kn
+         WXjJlNV+sbDMobLLr7o6VTBGp0HKz/RweFMH+Ad+b2h08p+XLaoTYzzr8meCOaNaVh/o
+         V2K24zGVwRcbFSuqz4DEY4OWuQx9jxM98ArmltmG1+Dw86HLC3f5xbrJoIkli3PoYe/f
+         7aXUTmEke2uH6uU6BuN7h8298I5PAHw7vXU0TNZlEndKoe+rANp02aO8NvjTqVE/bXk2
+         AIkQAbn+Gx2J1rIyLHDZd5lgabzRkFC6+4YfmUUSBVKFrE3R6pdkv3cau7UejJbQ166x
+         5J4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771326919; x=1771931719;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ejYTyEPMYZOCpO/IUcxs5fnrHWD1qqqFGZBOuXIwebw=;
-        b=GAgDZhYFqFOJZUw1A4Mk023G+UTDAaN4gsEaTnxSnQDmW6ntqQNSpxVjROQxz5yEVR
-         Pt1l+aBce2NDNkUg2INBgb0uQ2bZxh2HyLHAgpA63xVli6FQHQQfIY9TXOIW/iAvIyoL
-         xsF42KEa/1C6zA3wYV92tD5kX+CdOkdUSVio+LSMTdC3Q+dKgTH9hSP4vlydmfhet9Py
-         jhsfV1v4FxL69b0fiEdMhDc+4x0g1FXydVd95g3i/8BTanZ9KTmnHOQ7fPzJ/atNqmNb
-         Ia7FpCTp9mhdPeNZRWrhD6EGNpty6qMf5Mh8OUsmbhovCPDgMJxqLJTfsPV70x+mQvJA
-         qHrA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3EoSeDkftqE5JUlmVVzcpGaDx3MjsTprKlLTAbDnBx2iRirO7LQCmfzy09avFhVfWIPvVKTvDLjk1@vger.kernel.org
-X-Gm-Message-State: AOJu0YykFCAw32gY2muisgWw1HfBdOHJtmUlCG7+1iA0ULFaueaaJDs8
-	jf/TcPD9Tnbm2xKIFxozH+qSNrdHiy2feru048wryfoiS7mykP20AvxWunrSBMFPNKTwpOttEsI
-	WgYUPhcsXAmo9sGHeI6tlDbYBMtZUmtAbJ05uf5qkFEGLaf5rTRmgVbJnV20SwpJu
-X-Gm-Gg: AZuq6aI53Ox3rQxkQG/8nbLhPgyN5HUzUeieFb2ImKivhYY328irarbecbG66r9Rd7n
-	Ox6VwkSD/Ta5YoFXV20ymZDOlQT/cUO97J5uI7zP6pI4KUD6YQrQxlGkXtNJdmqBb2Dj41MKT8x
-	SS7l8b2//jf17lUx4gaXnG4lLTZ4YkW8XdTLL9nO821fdNYlKoZ7Mu/qX/FnZtWF/gZZevgiGVn
-	i07r3Zew2hcuWViF7D1sNJohp3BVrTxh1Qda96unv0eZ0ofuBHbv5Xq5zHxvOvwFUsspg4FZLYI
-	Kdv2+bNJ8ZjUuzlU7NUithz/DGPuCLoSuuRwYvue8r7jG9dfKEtZCHyon77m4Zi+rykqxNOL6Yq
-	dM+aVABMSF+0CqiV/Xr9nxXixJGA0EoyFz90ZISnGIFlFzcOVeMWcV37031coJqRVaN3+85zOHz
-	/2RWs=
-X-Received: by 2002:a0c:e002:0:b0:895:3b2c:7708 with SMTP id 6a1803df08f44-897346241b8mr140536256d6.0.1771326919492;
-        Tue, 17 Feb 2026 03:15:19 -0800 (PST)
-X-Received: by 2002:a0c:e002:0:b0:895:3b2c:7708 with SMTP id 6a1803df08f44-897346241b8mr140535866d6.0.1771326918904;
-        Tue, 17 Feb 2026 03:15:18 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc766554bsm343137766b.46.2026.02.17.03.15.13
+        d=1e100.net; s=20230601; t=1771327434; x=1771932234;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XZQyHeREapolcjQia1InNcB2r3IZhhNtVTrC1gmVA/o=;
+        b=koOamXVQXmov/x/91xSntpEHOcXvBwDcxxC3zC6ra8xZ0UUzeohNQyPHqyKx+y6Q1g
+         WlnLAqkF8H5olmuj3SJN1j/vewr3hOsmollBttlEFIOY5AWOS+Pb3nauomETmCImKDB2
+         qPLajAYb0GCIy55EndAb7U1/jDqDBGD3szXEIxK5xJWJ5V+zIr2CmFpdPcGSJZ9fPpRa
+         5XRcJSxkgW4XHFE2mJ1c1o1pHny/pDWLtgOr2jX2c8M2GR7Hbx3HwzQ734OoHaDwGiz4
+         lGG8Bps2SXoLFFEBT/SopC6uTs7vLRwD3DDzpqeTA/BQHjqkXitmWhx6UCBLxxJ+NHq+
+         tfAA==
+X-Forwarded-Encrypted: i=1; AJvYcCURfLwq2K5V2d4NAeq/Pvf+KLgSDfBQYSSSfAfd4eIzkZdddwNY76xkvEPAteUSnPqUO4jZ6of2Yh/z@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxS2HnyHi38w9Ra8KfqoJmPHvwwfGbQaPxRAsCKe0giaTEPBK3
+	uva+tHWrK6krQLiBtA3bfxNrzU8Yb0RyaKulKgl8JLJIXqXMm72ziiq9
+X-Gm-Gg: AZuq6aJ+3qoJqS2jyEYcb+r8CLd2IS6epBl+O5tGaUrMC/wL2nUA7hDuvM860TE46dB
+	ZYMFztshgjDQBjQDq+7eM8afUCZD4hLvuf6BcndALR/S1UoAA44HZL6jmMS2DPuPK2dhdevuf0P
+	A04oLJAx9+qsKWdcfC7Yt9bb//CGvVNmAsidGgjwN7QRC//nTD3a8GHwBwKM8oU3QSRN5mUvp2z
+	4JDzOGnXRH10PaIcwgTaqJ/3OcjCaJxdHx09SHizZeoV16E4DQrWe8xTb0dECgpqo8nOPjpUQwE
+	5n04r9gHbYY6MuTDMshf4hzTJkla8wx+NCFOuJIQCOX6ehGG/Q77Y6+rth0+lmlEbzAQFU9F8vK
+	QP1L+FOo8gclfn89ZZyq+rIQSlQRjU7scxt0Uf+zKkVRtH9RvNLKx5sdgMj1/1WfK4rtelIrqJO
+	sdaKFC7JJdbaLxgl8zZ37YQ/wvPgI5ynw=
+X-Received: by 2002:a05:6402:254a:b0:659:4d41:9f4e with SMTP id 4fb4d7f45d1cf-65bc785e248mr4815234a12.11.1771327434040;
+        Tue, 17 Feb 2026 03:23:54 -0800 (PST)
+Received: from ehlo.thunderbird.net ([178.137.63.129])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad29d471sm2404863a12.9.2026.02.17.03.23.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Feb 2026 03:15:17 -0800 (PST)
-Message-ID: <465ab63f-3d0c-46f7-a08e-cdc5fc26b600@oss.qualcomm.com>
-Date: Tue, 17 Feb 2026 12:15:12 +0100
+        Tue, 17 Feb 2026 03:23:53 -0800 (PST)
+Date: Tue, 17 Feb 2026 13:23:06 +0200
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Ion Agorria <ion@agorria.com>,
+ =?UTF-8?Q?Micha=C5=82_Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+ linux-pm@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_1/7=5D_dt-bindings=3A_embedded?=
+ =?US-ASCII?Q?-controller=3A_document_ASUS_Transformer_EC?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20260217-vowed-botany-b1c47c7e40b8@spud>
+References: <20260214180959.30714-1-clamor95@gmail.com> <20260214180959.30714-2-clamor95@gmail.com> <20260216-sprung-scallop-de7b64bf528c@spud> <CAPVz0n06+uLCSfY_bYS9v7KJ-hXotye7ej-rze6-Q8_JAF7XVA@mail.gmail.com> <20260216-plunder-defense-de11cf56dd3d@spud> <CAPVz0n0-LbTUZBCaO=oN3PpPLpwAqzNo29r687pKY8NbEE9giA@mail.gmail.com> <20260217-vowed-botany-b1c47c7e40b8@spud>
+Message-ID: <55C30023-4175-48F2-BCB0-12EC23C48F01@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus
- controller
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Cc: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com,
-        mailhol@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com
-References: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
- <20260108125200.2803112-3-viken.dadhaniya@oss.qualcomm.com>
- <n6affntgff5wy4xmm255v5h2ejpepicpz2cybcuvsxmry5td6u@jucskv7zrzvv>
- <5cdfe5a5-3c78-45a2-886c-768b224ad776@oss.qualcomm.com>
- <wbx2qrkhpsntggzqkzkpi4sa6qv3buhkjbwmjoa7zgw2oc4b7u@qugyhcxb6qrh>
- <316fa702-6cd8-4842-aecf-c176a5a53e2e@oss.qualcomm.com>
- <qvuokwiqllm6zmlzj3pfvziylrr5krjya5rnf3ojeycdoutlro@fl5qukh4vorm>
- <5486697e-d02e-4b12-9a60-99d0de343515@oss.qualcomm.com>
- <2ho25tzct6t7gsuyufyg7m4a2ikmblhukb4uddwc7p35wd6yne@heippz3lh4kj>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <2ho25tzct6t7gsuyufyg7m4a2ikmblhukb4uddwc7p35wd6yne@heippz3lh4kj>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE3MDA5MyBTYWx0ZWRfX9yKlZF4zIiLJ
- Qo7r0d5uLkoeAfyBs+eCH8nynSrrUHU7iS1vWsPC96JecYEZOaxI8ZIH3ZSBTb36TuGB2X/bdQl
- Cr5IPJuQbGtVvvQ54WUpDYjxMiQ7fdvp1GyroZpjyKmBQ1PiZiAXOqdBqeR/LMCzxjaeQh+iffm
- bqGcdAEbzzFAhey0K4dpVvrMtdAMIvSkh+u/3Zv6uwngcUffKiuV3J+p4V5pQwtxwfBcISknfsf
- FbhRydJ4q1XLNgZM1Tn51icVKbMroG6jBucLJL+AylJXHJ419kwkDkgh7X75DdKE05jWj9thq2d
- AfWQWqNABM4srw7YJ4WHKVUU+kR+bzGm4PCFk26TYSI4fX0e0dmjquHD5CWspI7DijxbEiXHRJc
- 0IWkNjQ4j0juMLlPyZCZn7YMQ8m6S839Sf2rWAPeJji9aDPHbNCuT5rQFSbf3EXzVuPjgGPfl/x
- krdu2fMmdI0+ecLEL5g==
-X-Authority-Analysis: v=2.4 cv=Y6b1cxeN c=1 sm=1 tr=0 ts=69944dc8 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=l_9iY-1xcGPmI7VCd-QA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-GUID: 6vfXsZoU8-aDEXisLEedZKJeMBqBpkUQ
-X-Proofpoint-ORIG-GUID: 6vfXsZoU8-aDEXisLEedZKJeMBqBpkUQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-17_01,2026-02-16_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 adultscore=0 priorityscore=1501 impostorscore=0
- bulkscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602170093
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	SUBJ_EXCESS_QP(1.20)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266078-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266079-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: DB14C14B3C1
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 3CC2914B545
 X-Rspamd-Action: no action
 
-On 2/4/26 2:09 AM, Dmitry Baryshkov wrote:
-> On Tue, Feb 03, 2026 at 05:07:11PM +0530, Viken Dadhaniya wrote:
->>
->>
->> On 1/19/2026 11:59 AM, Dmitry Baryshkov wrote:
->>> On Mon, Jan 19, 2026 at 10:21:37AM +0530, Viken Dadhaniya wrote:
->>>>
->>>>
->>>> On 1/9/2026 7:35 PM, Dmitry Baryshkov wrote:
->>>>> On Fri, Jan 09, 2026 at 06:23:39PM +0530, Viken Dadhaniya wrote:
->>>>>>
->>>>>>
->>>>>> On 1/8/2026 7:33 PM, Dmitry Baryshkov wrote:
->>>>>>> On Thu, Jan 08, 2026 at 06:22:00PM +0530, Viken Dadhaniya wrote:
->>>>>>>> Enable the MCP2518FD CAN controller on the QCS6490 RB3 Gen2 platform.
->>>>>>>> The controller is connected via SPI3 and uses a 40 MHz oscillator.
->>>>>>>> A GPIO hog for GPIO0 is included to configure the CAN transceiver in
->>>>>>>> Normal mode during boot.
->>>>>>>
->>>>>>> The main question is: what is so different between RB3 Gen2 and previous
->>>>>>> RB boards which also incorporated this CAN controller? Are there any
->>>>>>> board differences or is it that nobody tested the CAN beforehand?
->>>>>>>
->>>>>>
->>>>>> The behavior is consistent across platforms, but I do not have details on
->>>>>> how other platforms were tested.
->>>>>>
->>>>>> On the RB3Gen2 board, communication with the PCAN interface requires the
->>>>>> CAN transceiver to be in normal mode. Since the GPIO-controller support
->>>>>> was recently integrated into the driver, I configured the transceiver using a
->>>>>> GPIO hog property. Without this configuration, the transceiver is not set
->>>>>> to normal mode, and CAN communication does not work.
->>>>>
->>>>> How do we verify the mode on a running system? I have the boards, but I
->>>>> don't have anything connected to them over the CAN bus.
->>>>>
->>>>> BTW: can you recommend any simple setup to actually test the CAN bus on
->>>>> those devices?
->>>>>
->>>>
->>>> I tested the CAN controller using the following commands:
->>>>
->>>> 1. Loopback Mode Testing (GPIO hog not required)
->>>>
->>>> ip link set can0 down
->>>> ip link set can0 type can bitrate 500000 loopback on
->>>> ip link set can0 up
->>>> cansend can0 12345678#1122334455667788_B
->>>> candump can0
->>>>
->>>> 2. Testing with External CAN FD Adapter (PCAN-USB FD)
->>>
->>> Thanks! It's price doesn't make it esily available, but it answers the
->>> most imporant question: by the USB CAN adapter.
->>>
->>> Did you add
->>>
->>>> A GPIO hog was required to configure the transceiver in normal mode.
->>>
->>> I'd phrase it differently: to pull the transceiver out of standby mode.
->>> By using the GPIO pin you make it always stay in the normal mode. It is
->>> fine, but it is not optimal. Instead a proper solution would be to use
->>> the MCP251XFD_REG_IOCON_XSTBYEN bit. Could you please instead implement
->>> support for setting that bit, based on the DT property.
->>
->> Thanks for the suggestion.
->>
->> I tested enabling IOCON.XSTBYEN, but on this hardware it doesn’t bring
->> the transceiver out of standby by itself. With only XSTBYEN set, the bus
->> remains inactive and no frames reach the CAN adapter. Clearing LAT0
->> (driving GPIO0 low) is required to put the transceiver into normal mode;
->> data transfer works only after LAT0 is cleared.
-> 
-> Why? It should be doing exactly what is required. Could you please check
-> the voltage on the pin with the XSTBYEN bit set?
 
-If I'm interpreting the datasheet correctly, XSTBYEN only muxes the pin
-into its function and does *not* actually impact the operating mode,
-which would match what Viken is observing
 
-Konrad
+17 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2026=E2=80=AF=D1=80=2E 13:05:09 GM=
+T+02:00, Conor Dooley <conor@kernel=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
+>On Mon, Feb 16, 2026 at 09:14:40PM +0200, Svyatoslav Ryhel wrote:
+>> =D0=BF=D0=BD, 16 =D0=BB=D1=8E=D1=82=2E 2026=E2=80=AF=D1=80=2E =D0=BE 20=
+:50 Conor Dooley <conor@kernel=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
+>> >
+>> > On Mon, Feb 16, 2026 at 08:22:38PM +0200, Svyatoslav Ryhel wrote:
+>> > > =D0=BF=D0=BD, 16 =D0=BB=D1=8E=D1=82=2E 2026=E2=80=AF=D1=80=2E =D0=
+=BE 20:04 Conor Dooley <conor@kernel=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
+>> > > >
+>> > > > On Sat, Feb 14, 2026 at 08:09:53PM +0200, Svyatoslav Ryhel wrote:
+>> > > > > Document embedded controller used in ASUS Transformer device se=
+ries=2E
+>> > > > >
+>> > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail=2Ecom>
+>> > > > > ---
+>> > > > >  =2E=2E=2E/asus,transformer-ec=2Eyaml                  | 98 +++=
+++++++++++++++++
+>> > > > >  1 file changed, 98 insertions(+)
+>> > > > >  create mode 100644 Documentation/devicetree/bindings/embedded-=
+controller/asus,transformer-ec=2Eyaml
+>> > > > >
+>> > > > > diff --git a/Documentation/devicetree/bindings/embedded-control=
+ler/asus,transformer-ec=2Eyaml b/Documentation/devicetree/bindings/embedded=
+-controller/asus,transformer-ec=2Eyaml
+>> > > > > new file mode 100644
+>> > > > > index 000000000000=2E=2E670c4c2d339d
+>> > > > > --- /dev/null
+>> > > > > +++ b/Documentation/devicetree/bindings/embedded-controller/asu=
+s,transformer-ec=2Eyaml
+>> > > > > @@ -0,0 +1,98 @@
+>> > > > > +# SPDX-License-Identifier: (GPL-2=2E0 OR BSD-2-Clause)
+>> > > > > +%YAML 1=2E2
+>> > > > > +---
+>> > > > > +$id: http://devicetree=2Eorg/schemas/embedded-controller/asus,=
+transformer-ec=2Eyaml#
+>> > > > > +$schema: http://devicetree=2Eorg/meta-schemas/core=2Eyaml#
+>> > > > > +
+>> > > > > +title: ASUS Transformer's Embedded Controller
+>> > > > > +
+>> > > > > +description:
+>> > > > > +  Several Nuvoton based Embedded Controllers attached to an I2=
+C bus,
+>> > > > > +  running a custom ASUS firmware, specific to the ASUS Transfo=
+rmer
+>> > > > > +  device series=2E
+>> > > > > +
+>> > > > > +maintainers:
+>> > > > > +  - Svyatoslav Ryhel <clamor95@gmail=2Ecom>
+>> > > > > +
+>> > > > > +allOf:
+>> > > > > +  - $ref: /schemas/power/supply/power-supply=2Eyaml
+>> > > > > +
+>> > > > > +properties:
+>> > > > > +  compatible:
+>> > > > > +    oneOf:
+>> > > > > +      - enum:
+>> > > > > +          - asus,p1801-t-ec-pad
+>> > > > > +          - asus,sl101-ec-dock
+>> > > > > +          - asus,tf600t-ec-pad
+>> > > > > +          - asus,tf701t-ec-pad
+>> > > > > +
+>> > > > > +      - items:
+>> > > > > +          - enum:
+>> > > > > +              - asus,tf101-ec-dock
+>> > > > > +              - asus,tf101g-ec-dock
+>> > > > > +              - asus,tf201-ec-dock
+>> > > > > +              - asus,tf300t-ec-dock
+>> > > > > +              - asus,tf300tg-ec-dock
+>> > > > > +              - asus,tf300tl-ec-dock
+>> > > > > +              - asus,tf700t-ec-dock
+>> > > > > +          - const: asus,transformer-ec-dock
+>> > > > > +
+>> > > > > +      - items:
+>> > > > > +          - enum:
+>> > > > > +              - asus,tf201-ec-pad
+>> > > > > +              - asus,tf300t-ec-pad
+>> > > > > +              - asus,tf300tg-ec-pad
+>> > > > > +              - asus,tf300tl-ec-pad
+>> > > > > +              - asus,tf700t-ec-pad
+>> > > > > +          - const: asus,transformer-ec-pad
+>
+>> > > > Also, why are some of the compatibles permitted standalone? That =
+should
+>> > > > be mentioned in your commit message too=2E Also, other than the s=
+l101, the
+>> > > > standalone ones seem to have the same match data in the mfd drive=
+r=2E Why
+>> > > > are fallbacks not made use of there?
+>> > > >
+>> > >
+>> > > Because standalone compatibles describe a unique hw configuration
+>> > > which cannot be grouped into something meaningful=2E asus,p1801-t-e=
+c-pad
+>> > > is for EC of Tegra30/Intel based p1801-t AIO, asus,sl101-ec-dock is
+>> > > for EC of Tegra20 slider tablet, asus,tf600t-ec-pad is for altered =
+EC
+>> > > in Win8 Tegra30 tablet, asus,tf701t-ec-pad is for Tegra114 tablet=
+=2E
+>> > > Different generations, different form-factors=2E
+>> >
+>> > I don't see any reasons here that eliminate fallback compatibles=2E
+>> > +       { =2Ecompatible =3D "asus,p1801-t-ec-pad", =2Edata =3D &asus_=
+ec_pad_charger_data },
+>> > +       { =2Ecompatible =3D "asus,tf600t-ec-pad", =2Edata =3D &asus_e=
+c_pad_charger_data },
+>> > +       { =2Ecompatible =3D "asus,tf701t-ec-pad", =2Edata =3D &asus_e=
+c_pad_charger_data },
+>> > +       { }
+>> > Three of them use the same match data, so you need to explain why you=
+'ve
+>> > made these three standalone when all the others that share a programm=
+ing
+>> > model got a generic fallback=2E Fallback usage is based on programmin=
+g
+>> > model, not based on whether the devices are a physically different, s=
+o
+>> > your explanation must reflect this=2E
+>> >
+>> > > > Since this transformer series seems to have multiple programming =
+models
+>> > > > for "ec-pad" devices, it calls into question your use of the gene=
+ric
+>> > > > fallback compatibles is appropriate and makes it seem like you sh=
+ould be
+>> > > > using device compatibles as a fallback=2E
+>> > >
+>> > > That is redundant=2E
+>> >
+>> > I don't understand how that is a response to what I said=2E
+>> >
+>>=20
+>> in other words you propose this:
+>>=20
+>> properties:
+>>   compatible:
+>>     oneOf:
+>>       - items:
+>>           - enum:
+>>               - asus,sl101-ec-dock
+>>               - asus,tf101-ec-dock
+>>               - asus,tf101g-ec-dock
+>>               - asus,tf201-ec-dock
+>>               - asus,tf300t-ec-dock
+>>               - asus,tf300tg-ec-dock
+>>               - asus,tf300tl-ec-dock
+>>               - asus,tf700t-ec-dock
+>>           - const: asus,transformer-ec-dock
+>>=20
+>>       - items:
+>>           - enum:
+>>               - asus,p1801-t-ec-pad
+>>               - asus,tf201-ec-pad
+>>               - asus,tf300t-ec-pad
+>>               - asus,tf300tg-ec-pad
+>>               - asus,tf300tl-ec-pad
+>>               - asus,tf700t-ec-pad
+>>               - asus,tf600t-ec-pad
+>>               - asus,tf701t-ec-pad
+>>           - const: asus,transformer-ec-pad
+>>=20
+>> And in the driver add match to every single entry of enums?
+>
+>No, I was talking about removing the generic compatibles entirely, since
+>they are not suitably generic to cover all devices at the point of
+>addition=2E So like:
+>
+
+Actually, they all can be grouped under asus,transformer-ec fallback if th=
+at is needed, both pad and dock EC have the same core functions just differ=
+ent set of cells=2E And then in the driver each compatible will get a dedic=
+ated matching data=2E Will this work?
+
+properties:
+  compatible:
+      - items:
+          - enum:
+              - asus,p1801-t-ec-pad
+              - asus,sl101-ec-dock
+              - asus,tf101-ec-dock
+              - asus,tf101g-ec-dock
+              - asus,tf201-ec-dock
+              - asus,tf201-ec-pad
+              - asus,tf300t-ec-dock
+              - asus,tf300t-ec-pad
+              - asus,tf300tg-ec-dock
+              - asus,tf300tg-ec-pad
+              - asus,tf300tl-ec-dock
+              - asus,tf300tl-ec-pad
+              - asus,tf700t-ec-dock
+              - asus,tf700t-ec-pad
+              - asus,tf600t-ec-pad
+              - asus,tf701t-ec-pad
+          - const: asus,transformer-ec
+
+And them schema name will match the genetic compatible=2E
+
+>items:
+>  - enum:
+>      - asus,tf101-ec-dock
+>      - asus,tf101g-ec-dock
+>      - asus,tf201-ec-dock
+>      - asus,tf300t-ec-dock
+>      - asus,tf300tg-ec-dock
+>      - asus,tf300tl-ec-dock
+>  - const: asus,tf700t-ec-dock
+>
+>and
+>
+>items:
+>  - enum:
+>      - asus,p1801-t-ec-pad
+>      - asus,tf600t-ec-pad
+>  - const: asus,tf701t-ec-pad
+>
+>I dunno about these particular devices, but if there's already two
+>programming models for these devices, what's to stop there being more
+>added if/when a new generation of produces arrives?
+
+There will be no new devices with this EC, last one was around 2013=2E
 
