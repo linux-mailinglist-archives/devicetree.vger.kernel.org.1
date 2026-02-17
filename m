@@ -1,114 +1,88 @@
-Return-Path: <devicetree+bounces-265957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265958-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QFQzONO/k2m48AEAu9opvQ
-	(envelope-from <devicetree+bounces-265957-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 02:09:39 +0100
+	id YKr8OUbOk2kL8wEAu9opvQ
+	(envelope-from <devicetree+bounces-265958-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 03:11:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 819E714862A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 02:09:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B795148756
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 03:11:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 45DD4300832C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 01:09:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 42ECF3014949
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 02:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0568F22A1D4;
-	Tue, 17 Feb 2026 01:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0581F0E2E;
+	Tue, 17 Feb 2026 02:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="d9bDnz0+";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="WYVPQFqk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="irUTmhPN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C239118A956
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 01:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2254C1A238C;
+	Tue, 17 Feb 2026 02:11:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771290573; cv=none; b=RdFbUatMno4k7MmBrdEeVon1g+97K1t2FhKaCpJA00uptkcaUJDdtKO18mLgxdGr13haHPTscIaQEiexe0txjgumYM0FBmlpQVFYNGjDyJ7bGA960hS6o3cR+B0tsmbglTjYzrg1vtH3mrch/ioMI87J85MLooIGPST2Y06Aix0=
+	t=1771294272; cv=none; b=Qs0To4bDdYRo46MNlupauoZcCdQtZzFrT1Tfl37G8pWjCCZ2B8nkP2rlSE59Unbqe4bX2U0kDyol8xlyfqkgKAUnA1RmD05HOTqk+eb8A1RD6JMNe7RqY/w5OYI2eVaJii01mOA5oEDNCv8p7CU4n0MhW9SSIKuWd9vRmfu/ULs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771290573; c=relaxed/simple;
-	bh=YnXGBxQb2yQTIsJPsA76f33oYDBAi82tICtV3X+cWVk=;
+	s=arc-20240116; t=1771294272; c=relaxed/simple;
+	bh=0qymbNElgib6r1FznhZrtBtEs7BBV4CRV8trvFO2AVo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mpxUVe5zrc8VZjZjDEVB2eSGFrPNzmqxmP3sxohhN1FJbIYvqcJf3EWMSWX0tl3jk32j5MThH9b8GHIHpC+6i2EY2ZOjXNKoVmk9I1y4BsL0sFpISGhbgiiZpkWeOZfXvRA/c6tRsoPh6E2mT1frI5XnPf2VAb1NFsT+JaUhCdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=d9bDnz0+; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=WYVPQFqk; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1771290571;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xPKbRNPHyosMAfxhwpYDOU+GJ6u5P872HLfNECxcQQY=;
-	b=d9bDnz0+9APiqMHcBCRwu9iiry3fYKLN+uZwaBXshHXfr8Kz7yLFqcw5/m7L6X0PsYY00O
-	QC48O45XLjZdUYm3JT0tdGXQS/LY9zxL6mE0jGhtnm5EgimokRG4PIlCsXLfWNH7yRbp+c
-	4k13sFK7XxS8iCpkKr0sVJ4U1XBNwkw=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-260-QfA4XxZpPTC2RFF4rJXy4w-1; Mon, 16 Feb 2026 20:09:29 -0500
-X-MC-Unique: QfA4XxZpPTC2RFF4rJXy4w-1
-X-Mimecast-MFC-AGG-ID: QfA4XxZpPTC2RFF4rJXy4w_1771290569
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-896f8dde688so294090926d6.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Feb 2026 17:09:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1771290569; x=1771895369; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xPKbRNPHyosMAfxhwpYDOU+GJ6u5P872HLfNECxcQQY=;
-        b=WYVPQFqkCtQD77+HoZVUn9/eVBLgfupSqGiX1m2hU+p7lKvmRwY/+ImtWFhad3n22l
-         Zi1Hzjjx6QRytsLGCjxYEJOhnjVs1WrQRFDSXmdF57/nvLiknpcw0lQCRJlt8kiI7RIW
-         cbKsiOhgzApyGPCEHZgj92uT1Gpaq42r4pkmowtGcz4AeA1/Z0TwddNSHQegqon5F/vR
-         w1KIr33bBvOJ3VYt8DgLrSrvDHdh+uNpni+FslWGvNF3RDeleyxypG+4Z6oL+Cu1f/Mz
-         4ms+E9IR3A58PSQwzGnn5OnfJ8V9bH7W3FrSwGyMomfAY54NFJOJQo4kla3Ci7VtVoHN
-         d6Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771290569; x=1771895369;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=xPKbRNPHyosMAfxhwpYDOU+GJ6u5P872HLfNECxcQQY=;
-        b=p4e/4Bb6Ga09NZ+ylToipVlzhJ5rLqoVRPBSZVPQOEZ3ah3FNILIKAXRd2yxi0E+nH
-         rDP85/ygHhMAZz5qGFJu6K5URkpDpdhoz63nGr53gJZKQyVQ2m/2y3RUNmyBDZoHPsYf
-         ij8HGKFmjP8OosNnbIxBBdOF2X2iQRHHyDG+vXx0XsIysztwHpTIKmNz2H4IWq4lwwev
-         PKr9+O/pxOFuS+H0UMT0szIZjLGvOgLcuVRVLazU+m1lCyfOHr28jpqs4HpjWUJwa0Y3
-         X87GvUWmCNhfjwBHdd9BW8HdRKYGs5sLGVetrBzqFleIxx5qT/KcgwLb4YPUaqNyUmUj
-         s5sQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV1qPu9boSJTbuhYARij3dOYdKEQrfJ9Ai3IuDmSW9qrL6BAh8GgacsUbYILXxEFtP4z2jy4D63wOzA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMBm0YbR7M2ytn/nedpClItn085DNwavc0VvuxyBOz3CF5koJH
-	8O0sd1WsvYZzn6MiDUjEe5tWqiIQdp3P8J+kSGkhKAYdX3RT6pK0sU/1OYdsDW87i1k9DrWEKbi
-	01SVy/hcYbZYnq2bWj9pg4dqMRB9znBrknVkzg97CmJCKt2wNoRhs8XI7hIMc9VU=
-X-Gm-Gg: AZuq6aKJrnE9ohVH33t3bWcxBj5c/qohrQ5WDq31eghwdVOwyIL5iO6q1PuQPYsorV4
-	i7mzAlBhq43vOZ3LBmfRxTzqX3tyIJqd67tJ8gQt2XQsUJJu3RzsWkBLNnEW0BQMVvPTyYTLXFH
-	yFSc8T9K9Oz8ZXINlRUu79PrFtMqOaZwr7iKfT+hJ8ekdPcKlO2lzVaCzp2C8qrejqwm44QUcSa
-	PDAKciFEKPm/GUyBL9+Ii+gA32Ee6O2g+aTzkJLyLrcujQfy7WXM3pa2dWuIRa8fj1Zt4PS/pdo
-	W4DjB7CnuljwCof2/mt/84YYRYze1Ocw9qprXchVrIjjFQnuW7WIsAyhIXS/ZSTdr1WbQyGZ022
-	e/eTCq+ylGNTxy8S6fCmZRDrW1lqyuw0POOApi8g4TE50eqVmgt1zzL/p
-X-Received: by 2002:a05:6214:2588:b0:88f:d216:6fef with SMTP id 6a1803df08f44-8973621458bmr165774806d6.50.1771290569128;
-        Mon, 16 Feb 2026 17:09:29 -0800 (PST)
-X-Received: by 2002:a05:6214:2588:b0:88f:d216:6fef with SMTP id 6a1803df08f44-8973621458bmr165774616d6.50.1771290568801;
-        Mon, 16 Feb 2026 17:09:28 -0800 (PST)
-Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cd8a5ccsm151660686d6.25.2026.02.16.17.09.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Feb 2026 17:09:28 -0800 (PST)
-Date: Mon, 16 Feb 2026 20:09:26 -0500
-From: Brian Masney <bmasney@redhat.com>
-To: dongxuyang@eswincomputing.com
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ganboing@gmail.com,
-	marcel@ziswiler.com
-Subject: Re: [PATCH v13 2/3] clk: eswin: Add eic7700 clock driver
-Message-ID: <aZO_xgoix_SvJRxb@redhat.com>
-References: <20260214101421.228-1-dongxuyang@eswincomputing.com>
- <20260214101519.341-1-dongxuyang@eswincomputing.com>
- <aZNRFYs_QuGRI8PV@redhat.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hUGUibtgilcd7f8LBzTx55IH/rbIjPi5k4DJY8AGrQ2UM6ar94WjOH/SGd093wU4uPeg1fwIlZsHnvIMLFzH1UuLrt6fs8RsIGPOLXqKvdawqyoSBaAmjv4ZdIkmma85Uoaky02nc1yeFBDYuWgoiHcOwL2Py6sxI/WqEYYwpoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=irUTmhPN; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771294270; x=1802830270;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0qymbNElgib6r1FznhZrtBtEs7BBV4CRV8trvFO2AVo=;
+  b=irUTmhPNO9qEU272azGm4TsNP8u3QDBYG8XZzbqcWyZ7i2Ae9X/Tut3S
+   PYSzJoxNzwfTOakk88A5K32qPaJN9AFZJvtCfvZ43GcSb40X1pEd/bRDE
+   L8XweOutRygf42Z7AK/vf6h/S3cTeflljtejhAJw/iAKGKz/1V+wJjMLE
+   qY0WLCuXxs97hBwByOP2LEdwXsnXrFaweadaj+jDqD7TBh2/cXezGsohV
+   rSYnoJfD7IQuLLo/6xXgZL1dc1I1RVUdU3/MEV+YE1le8olDc6saUTvAD
+   D3wmXZa/En+zr7pOGGh3C2wNoXmWrdz+hzK7r0kOP3RaSgSKx7n/gP828
+   g==;
+X-CSE-ConnectionGUID: /9YE2JPGRSyHB6tvERqj4g==
+X-CSE-MsgGUID: 5g3bK6tIQ7yjw77/KsiwFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="71563056"
+X-IronPort-AV: E=Sophos;i="6.21,295,1763452800"; 
+   d="scan'208";a="71563056"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2026 18:11:09 -0800
+X-CSE-ConnectionGUID: rPAGHqP/QWucPPRrEkZIKw==
+X-CSE-MsgGUID: QFF6m9X/RK2X2EkSyTn2FQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,295,1763452800"; 
+   d="scan'208";a="213762143"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 16 Feb 2026 18:11:06 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vsAYI-000000010WG-43j6;
+	Tue, 17 Feb 2026 02:11:02 +0000
+Date: Tue, 17 Feb 2026 10:10:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Luca Weiss <luca.weiss@fairphone.com>,
+	Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Abel Vesa <abel.vesa@oss.qualcomm.com>,
+	Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v3 6/6] clk: qcom: Add TCSR clock driver for Eliza
+Message-ID: <202602171020.eP0Y69zD-lkp@intel.com>
+References: <20260216-eliza-clocks-v3-6-8afc5a7e3a98@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -117,67 +91,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aZNRFYs_QuGRI8PV@redhat.com>
-User-Agent: Mutt/2.2.14 (2025-02-20)
+In-Reply-To: <20260216-eliza-clocks-v3-6-8afc5a7e3a98@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,vger.kernel.org,linux.dev,eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265957-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265958-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,eswincomputing.com:email]
-X-Rspamd-Queue-Id: 819E714862A
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4B795148756
 X-Rspamd-Action: no action
 
-On Mon, Feb 16, 2026 at 12:17:09PM -0500, Brian Masney wrote:
-> On Sat, Feb 14, 2026 at 06:15:19PM +0800, dongxuyang@eswincomputing.com wrote:
-> > +static const struct of_device_id eic7700_clock_dt_ids[] = {
-> > +	{ .compatible = "eswin,eic7700-clock", },
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, eic7700_clock_dt_ids);
-> > +
-> > +static struct platform_driver eic7700_clock_driver = {
-> > +	.probe	= eic7700_clk_probe,
-> > +	.driver = {
-> > +		.name	= "eic7700-clock",
-> > +		.of_match_table	= eic7700_clock_dt_ids,
-> > +	},
-> > +};
-> > +module_platform_driver(eic7700_clock_driver);
-> > +
-> > +MODULE_LICENSE("GPL");
-> > +MODULE_AUTHOR("Yifeng Huang<huangyifeng@eswincomputing.com>");
-> > +MODULE_AUTHOR("Xuyang Dong<dongxuyang@eswincomputing.com>");
-> > +MODULE_DESCRIPTION("ESWIN EIC7700 clock controller driver");
-> 
-> MODULE_ALIAS("platform:eic7700-clk")
+Hi Abel,
 
-Ignore the MODULE_ALIAS suggestion from me. The list of aliases will be
-automatically generated based on what's in MODULE_DEVICE_TABLE(). I
-verified this with modinfo.
+kernel test robot noticed the following build errors:
 
-Brian
+[auto build test ERROR on 635c467cc14ebdffab3f77610217c1dacaf88e8c]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Abel-Vesa/dt-bindings-clock-qcom-document-the-Eliza-Global-Clock-Controller/20260216-215148
+base:   635c467cc14ebdffab3f77610217c1dacaf88e8c
+patch link:    https://lore.kernel.org/r/20260216-eliza-clocks-v3-6-8afc5a7e3a98%40oss.qualcomm.com
+patch subject: [PATCH v3 6/6] clk: qcom: Add TCSR clock driver for Eliza
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20260217/202602171020.eP0Y69zD-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260217/202602171020.eP0Y69zD-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602171020.eP0Y69zD-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/qcom/tcsrcc-eliza.c:126:10: error: 'TCSR_HDMI_CLKREF_EN' undeclared here (not in a function); did you mean 'TCSR_UFS_CLKREF_EN'?
+     126 |         [TCSR_HDMI_CLKREF_EN] = &tcsr_hdmi_clkref_en.clkr,
+         |          ^~~~~~~~~~~~~~~~~~~
+         |          TCSR_UFS_CLKREF_EN
+>> drivers/clk/qcom/tcsrcc-eliza.c:126:10: error: array index in initializer not of integer type
+   drivers/clk/qcom/tcsrcc-eliza.c:126:10: note: (near initialization for 'tcsr_cc_eliza_clocks')
+   drivers/clk/qcom/tcsrcc-eliza.c:127:35: warning: initialized field overwritten [-Woverride-init]
+     127 |         [TCSR_PCIE_0_CLKREF_EN] = &tcsr_pcie_0_clkref_en.clkr,
+         |                                   ^
+   drivers/clk/qcom/tcsrcc-eliza.c:127:35: note: (near initialization for 'tcsr_cc_eliza_clocks[0]')
+>> drivers/clk/qcom/tcsrcc-eliza.c:128:10: error: 'TCSR_PCIE_1_CLKREF_EN' undeclared here (not in a function); did you mean 'TCSR_PCIE_0_CLKREF_EN'?
+     128 |         [TCSR_PCIE_1_CLKREF_EN] = &tcsr_pcie_1_clkref_en.clkr,
+         |          ^~~~~~~~~~~~~~~~~~~~~
+         |          TCSR_PCIE_0_CLKREF_EN
+   drivers/clk/qcom/tcsrcc-eliza.c:128:10: error: array index in initializer not of integer type
+   drivers/clk/qcom/tcsrcc-eliza.c:128:10: note: (near initialization for 'tcsr_cc_eliza_clocks')
+   drivers/clk/qcom/tcsrcc-eliza.c:129:32: warning: initialized field overwritten [-Woverride-init]
+     129 |         [TCSR_UFS_CLKREF_EN] = &tcsr_ufs_clkref_en.clkr,
+         |                                ^
+   drivers/clk/qcom/tcsrcc-eliza.c:129:32: note: (near initialization for 'tcsr_cc_eliza_clocks[1]')
+
+
+vim +126 drivers/clk/qcom/tcsrcc-eliza.c
+
+   124	
+   125	static struct clk_regmap *tcsr_cc_eliza_clocks[] = {
+ > 126		[TCSR_HDMI_CLKREF_EN] = &tcsr_hdmi_clkref_en.clkr,
+   127		[TCSR_PCIE_0_CLKREF_EN] = &tcsr_pcie_0_clkref_en.clkr,
+ > 128		[TCSR_PCIE_1_CLKREF_EN] = &tcsr_pcie_1_clkref_en.clkr,
+   129		[TCSR_UFS_CLKREF_EN] = &tcsr_ufs_clkref_en.clkr,
+   130		[TCSR_USB2_CLKREF_EN] = &tcsr_usb2_clkref_en.clkr,
+   131		[TCSR_USB3_CLKREF_EN] = &tcsr_usb3_clkref_en.clkr,
+   132	};
+   133	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
