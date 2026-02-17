@@ -1,69 +1,62 @@
-Return-Path: <devicetree+bounces-266282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266283-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eDN+K/DSlGmfIAIAu9opvQ
-	(envelope-from <devicetree+bounces-266282-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:43:28 +0100
+	id aFMRFRPWlGnnIAIAu9opvQ
+	(envelope-from <devicetree+bounces-266283-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:56:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C1B6150242
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:43:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95871508C2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:56:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C49753013D4A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:43:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 719FE300DA71
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174C9372B2D;
-	Tue, 17 Feb 2026 20:43:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F512D781B;
+	Tue, 17 Feb 2026 20:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="i+51ALd7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dbF9f0VK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0130320CD9;
-	Tue, 17 Feb 2026 20:43:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9D5280CC1;
+	Tue, 17 Feb 2026 20:56:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771361002; cv=none; b=l7x+Ysf+SWzDXfNxiKT+wQ4lOfaSjiHqcJxjamcyaMP3V7qIg0uuNFHGLwuOra6yCn7Si8CELfQiog33E/akj46jyjWhNTDVyDdP3y+N239zGmkngiL1TFmCWtAE0kOryKbvKP27YDZ+dj5H9GuiBgMrvmfq9MMd2Z9oTRZQ+R0=
+	t=1771361806; cv=none; b=V3Hh5IAaFrg4OMdFrjJF6erFT6O754fdOjYILolV/6NiDIoCbcG7sdavlNSURX1XsXPBcmkOH3WL/1OqbKTSUlp2JKbz51s7g/c48ImuYPFc/qNEyBUV7FcTlGHs7kRh3+m6zuwwe1+axxUhbxY4kxFr+91kyYk8srpjZ3u7Lwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771361002; c=relaxed/simple;
-	bh=xaNCkDVtXSVSu+DM8ddQ+7wjR8XHf3WU4okD6GFRVsQ=;
+	s=arc-20240116; t=1771361806; c=relaxed/simple;
+	bh=ddazgefXY01usFR9AKqxg+wsTQXWF7mkXJdCdpb+UIU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RA/Cjt6fbWzC3C3UAM+f2T26bQ6fjTMPo2nS2ZfGT/6mDUTzBblAo80lxF9Z9dWG+Vo1yIqAuovs47CTQdF/76OrQ7X88WMwRiJAJkb6uDpEh6ny2HYQZ0j+cHH8/eb7VyaNyBalqysSbD8oRyYojxgf/fRSrqCsPGrLjnPsK5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=i+51ALd7; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Wlg17Kj/wYC+KcEPPN4TByd+mHs/UERfyc2emJHo0cc=; b=i+51ALd7gisJbAn50Bu8vXVC2/
-	6y0UR/QhvSBWqdN5tqTwjnWh5VLwllXxHc1VMKEV2+7QaixWChmNc11D8uLCRe3d5pnlvoktWIiBO
-	Bhjo6abQHteJe+8zpmGcNFYmWALs3T6RDzSXKCs80cQ5wTIbAq3kp/DdZl3Uqx00rfu8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vsRue-007geQ-Nf; Tue, 17 Feb 2026 21:43:16 +0100
-Date: Tue, 17 Feb 2026 21:43:16 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v1 03/11] arm64: dts: freescale: imx8mm-var-som: Update
- FEC support with MaxLinear PHY
-Message-ID: <fceeda41-66cc-4bb2-ab53-d4b1ec25348a@lunn.ch>
-References: <cover.1771353301.git.stefano.r@variscite.com>
- <3b984b93a43a07bc9c4f6414a08a3a0f45daaaa8.1771353301.git.stefano.r@variscite.com>
- <31f30651-7c99-42cb-9e27-e4806529d137@lunn.ch>
- <aZTCGH1rKWdvYg5-@Lord-Beerus.station>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FPP9S5zzii/RP5ImvEZTQTqjkXbAMwNDFRR7GCjrsJ6jbWPG+4IbugCkXy53bWEZ2fV4lCkL//8dLQoBxsNs4tiK7UIPwY6bN3a1/n0Df4iB28weVE2rH5yfogFEkGXGq8GiwoMch3+ij2sTRmUrJDCM0+fHSYnX2xsgJKYZ30k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dbF9f0VK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 466BFC4CEF7;
+	Tue, 17 Feb 2026 20:56:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771361806;
+	bh=ddazgefXY01usFR9AKqxg+wsTQXWF7mkXJdCdpb+UIU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dbF9f0VK+eojdZWnZKakypfJ+D4fG4axH1PWlYcjA8Ob9R56MjrB4ReBAlUzJEHXG
+	 eveF3OZsC6EClhzHqdgjEs9ZD1Wxmc5fvD8RqjH78D96fsh3x1SPbKoFUgab/+dY1g
+	 Gl7Ca1Q8vHiUhGAR6qpkGNFABOdUduh9f/4oOJenru0OIjFnZI6mDiISxbrrI1saG1
+	 zzEtMpYHHKGCox+CDCYniYK9lKsqI2bw7qHh+TCbQ0o1IG7Zpes2fSYBBxyGXj9tUZ
+	 YC8oGKV7d378f5jrRiEDYbZgouezy0mDsfXe64dcdlgMezVlfru0u4HI3ZDhNCnYYZ
+	 mK5jqSiDCTYjA==
+Date: Tue, 17 Feb 2026 14:56:43 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Umang Chheda <umang.chheda@oss.qualcomm.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, richardcochran@gmail.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com, 
+	krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: monaco-evk: Add Mezzanine
+Message-ID: <xdnbcpwm6cibkmy3dzyzmllqaax5rihbdevdbi6nl37orblcgi@glmdzirllpst>
+References: <20260210103821.4169-1-umang.chheda@oss.qualcomm.com>
+ <20260210103821.4169-2-umang.chheda@oss.qualcomm.com>
+ <z7y7gpfhrxgsxsqlsxmkwyr3zemvwpnpfuegv43ne56g5rsfl4@pehu3vloqjsy>
+ <ec672f6b-2b8f-4241-825e-4b3e6d910762@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,80 +65,132 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aZTCGH1rKWdvYg5-@Lord-Beerus.station>
+In-Reply-To: <ec672f6b-2b8f-4241-825e-4b3e6d910762@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266282-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-266283-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.1:email]
-X-Rspamd-Queue-Id: 1C1B6150242
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.52:email]
+X-Rspamd-Queue-Id: A95871508C2
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 08:31:36PM +0100, Stefano Radaelli wrote:
-> Hi Andrew!
-> > 
-> > I don't think you say this explicitly anywhere, so i will ask. The PHY
-> > is on the SOM? The carrier just has magnetics and the RJ45?
+On Mon, Feb 16, 2026 at 01:44:40PM +0530, Umang Chheda wrote:
+> Hello Bjorn,
 > 
-> Yes, the Ethernet PHY (MXL86110) is physically mounted on the VAR-SOM.
+> On 2/13/2026 1:33 AM, Bjorn Andersson wrote:
+> > On Tue, Feb 10, 2026 at 04:08:21PM +0530, Umang Chheda wrote:
+> >> diff --git a/arch/arm64/boot/dts/qcom/monaco-evk-mezzanine.dtso b/arch/arm64/boot/dts/qcom/monaco-evk-mezzanine.dtso
+> > [..]
+> >> +&i2c15 {
+> >> +	#address-cells = <1>;
+> >> +	#size-cells = <0>;
+> > Do we need to repeat this? It's in the top-level i2c15 definition
+> > already?
+> 
+> Yes this is required to be repeated in case of DTSO -- else seeing DT
+> binding error if these cells are not added here. Seems the compiler is
+> not looking at what is present in the Base DT first and is considering
+> the default values for address and size cells and throwing error. Had
+> to add similarly add for PCIe node as well to suppress binding errors.
+> 
 
-O.K. so far.
+Understood, no concerns then. Thanks for helping me understand.
 
-> All RGMII signals, MDIO and the LED outputs are routed to the SOM
-> board-to-board connector. The carrier board only provides the magnetics
-> and the RJ45 connector.
-
-And here you loose me. RGMII is between the MAC and the PHY. The PHY
-is on the SOM, so there is no need for RGMII to leave the SOM.
-
-MDIO is can understand going to the carrier, because there can be
-other devices on the bus, such as an Ethernet switch.
-
-You say the LEDs are not on the SOM. So they should not be listed in
-the .dtsi file for the SOM. It could be the RJ45 is a cheap one,
-without LEDs. The colours will depend on the RJ45 socket. It could be
-a single LED is connected to the front panel, which is typical of STB
-etc. So the LEDs are a board property, not a SOM property.
-
-> > >   Two LEDs are defined to match the VAR-SOM carrier design:
-> > >     * LED@0: Yellow, netdev trigger.
-> > >     * LED@1: Green, netdev trigger.
-> > 
-> > Where are the LEDs? You say "carrier design", so are they on the
-> > carrier? The DT properties should then be in the .dts file for the
-> > carrier.
 > >
+> >> +
+> >> +	status = "okay";
+> > I presume this overlay is used on top of monaco-evk.dtb, which already
+> > says that status is okay.
 > 
-> The LED signals are driven directly by the PHY and originate on the SOM.
-> They are exposed on the SOM connector and are typically routed straight
-> to the RJ45 integrated LEDs on the carrier.
+> Ack
+> 
+> >
+> >
+> > That said, I don't see a "clock-frequency" in either node, so I presume
+> > you have an error/warning in your kernel log about this. But unless you
+> > have reason to change that in your overlay, I think that's a unrelated
+> > patch on the monaco-evk.dts - which I would like you to send, separately.
+> 
+> 
+> Ack, will share a separate patch to fix this issue.
+> 
+> >
+> >> +
+> >> +	eeprom1: eeprom@52 {
+> >> +		compatible = "giantec,gt24c256c", "atmel,24c256";
+> >> +		reg = <0x52>;
+> >> +		pagesize = <64>;
+> >> +
+> >> +		nvmem-layout {
+> >> +			compatible = "fixed-layout";
+> >> +			#address-cells = <1>;
+> >> +			#size-cells = <1>;
+> >> +		};
+> >> +	};
+> >> +};
+> >> +
+> > [..]
+> >> +&tlmm {
+> >> +	tc9563_resx_n: tc9563-resx-state {
+> >> +		pins = "gpio124";
+> >> +		function = "gpio";
+> >> +
+> >> +		bias-disable;
+> >> +		input-disable;
+> >> +		output-enable;
+> >> +		power-source = <0>;
+> > Does these properties really match the TLMM binding? Please double
+> > check.
+> 
+> Double checked on this -- all the properties match the TLMM bindings.
+> 
 
-The problem here is 'typically', not absolutely required, otherwise
-the magic smoke will escape making the box useless.
+I do believe the logic is binary, so input-disable == output-enable (in
+contrast to the SPMI gpio binding, where those two are configured
+separately). It's not listed among the valid properties for a
+qcom-tlmm-state object, but perhaps I'm misremembering how the
+dt-validator uses those properties.
 
-	Andrew
+But there's no "power-source" for TLMM, you should see an "Unsupported
+config parameter" in the kernel log when you try to apply this setting.
+
+Regards,
+Bjorn
+
+> >
+> > Regards,
+> > Bjorn
+> >
+> >> +	};
+> >> +};
+> >> --
+> >> 2.34.1
+> 
+> 
+> Thanks,
+> Umang
+> 
 
