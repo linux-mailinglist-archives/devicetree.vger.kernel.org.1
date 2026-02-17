@@ -1,235 +1,275 @@
-Return-Path: <devicetree+bounces-266108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266109-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OOVHHYZblGmrDAIAu9opvQ
-	(envelope-from <devicetree+bounces-266108-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:13:58 +0100
+	id cBxDDSxelGnODAIAu9opvQ
+	(envelope-from <devicetree+bounces-266109-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:25:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3793B14BD1B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:13:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 862F014BE6F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:25:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BCE1630101E5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:13:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D4D193014C2A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45C03385A2;
-	Tue, 17 Feb 2026 12:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A83339B39;
+	Tue, 17 Feb 2026 12:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YBjhCn7m"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VCSvKPaV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Vg9dkPST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DAA339840
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 12:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C750339850
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 12:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771330421; cv=none; b=YcAZ+gFoaMrJacA6WS4zchyM+h27WRLvxsEB19Ggi7wdNKNZvxRgCeCQQGI9KaCP+iXvoZgL/wVedXu1ZxPM9l707Lc8Sm1Z9owXtAarNPk5t3+4F6o/CPMXX1RObQa24e/3Pd6EpQfU2gwRul1fQnF5MDsx2xf2utmdfIeWXRI=
+	t=1771331111; cv=none; b=PvopzCW3KfqR8VhaVnqV1tsLuNJbWDCYygVjAf05bCXuvZOedGT5PkE48Wv1kBGbxXp0i8FGk+CcF9LjSFchVfVc6dOuol5aQ+IrqyvnkE5dfzK50jkWmFadNTHTj4g21K98NLDjhUhCpwkfUJgS9g8OKslUosDrIU+AZsmbLQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771330421; c=relaxed/simple;
-	bh=YJwAdc9YN+Ork+lkKKTLcj/O0ofn3u7uG2j/EDfwnM4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MuDJrM4osyE+kqXQArRp6ev7eU+1Eb5+23WOMbHU7y+PbSPb9Mief2pmtV+mt/hbBK50HUPQ2qGOFtY4xagpYuTUQcIzDBANA1mvFoQXjDuoTh5wH/jYBtVqJoDanT6zlsSqwnLrjTg/zkXWR6UKPCEQdi1VibosTup4Xp+gW5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YBjhCn7m; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-7950881727cso25253047b3.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 04:13:40 -0800 (PST)
+	s=arc-20240116; t=1771331111; c=relaxed/simple;
+	bh=DrDwj/Cbmj8Cu+rIbWYsfU928hPLy7N+65tW0GD+GdE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OaCh1qNLsB1D9p+jo5J3LLUq/ORX1uQJ2iwy0Dgh9z/Reov2q16qD/rNo3Wmk9OJGSDOpYqI8aHiMvDbVH4kPzCTxM2NHrDH9wiRyvqF3rvXM+D5jED7MHwl6xyauZ7QVSV2NAxqw7R9nKrcpp8IEVC/rEQau4uD9H3Zkcyek20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VCSvKPaV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Vg9dkPST; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61HBEmUF850080
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 12:25:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NmWWvqkr1dj9SgTFDELa5mkiI7lMFXhwkqqx5kev2EE=; b=VCSvKPaVlhaILGcm
+	J9VANFxubFsURjP9cDbqwPLnUqdUN/r5Iw0AmTp3aDS8QdiFdCjsusBHhvj8hrqW
+	Vq38SpMFNtyc8X8sXUW224MM/Fce8DPB3nxJVaXV9bh4RLQ4neyofSrxCeXn0smY
+	KEWBXmipLiwjug/MgC2rN8fCYFFeW5Yg1Qq2gIx/0pN8lOlSGVa8wNUEIaqkrFa3
+	p8o/W261klZ5lOD8hIV06r2G2UfgVSXEQdScom8RaXsgVfkoGV7cEJI764fKEhwB
+	+2qjhYQ2ngy9X4/E3Ep3HecGKzj33lmaJLbv6nGihT2jvIPEL9//Lb54/Za8UBSy
+	YSQ5fg==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc6nrt924-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 12:25:09 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-89545f12461so29488346d6.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 04:25:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771330419; x=1771935219; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JnctnXD+vW2hwHaBIXjEArJKKlKzrQnCanQjG6cUX0E=;
-        b=YBjhCn7mcDBt3F835kH3Nt9ts9UiHcI90dYZIGPVhgqQ8hC8LbV1vxdJi7IfR0ZZE9
-         5i9bNkGyJFvTstxhHH7MZywNe4+hpEtLIoOOlmKwZPicyIRqFhtCULCJ5I3KfNSrA/+t
-         dUavoZgOZFi0tUb2Dx+9386t/XhKJ8IiIKlXAGc1WAuU/Pm3B/A9hG2Plfh/OH4ot9un
-         9r8FB+jislQH918hiVXReIh+T730BI0+FHqJnqjZoI7rNJtsEc2EM2MiSKCN5iPT6+Fl
-         +R2w2p0GXVYFSlLgK4BM3+Aqnw08Pz1dNO87h7HhYJRF10CGipam7VpehyLVVHYDMY3A
-         nt/g==
+        d=oss.qualcomm.com; s=google; t=1771331109; x=1771935909; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NmWWvqkr1dj9SgTFDELa5mkiI7lMFXhwkqqx5kev2EE=;
+        b=Vg9dkPSThoCNlCXwUg4nbmRSv6LA7LDNj8oamzJAp2so0ZKlsIJi08sM2gEwQctAFq
+         aempXvUJaEyK8fCyk9eGuq3/xlS/QQBJ+4tlPRsK5IFpcE26HE98Am9J435d4SolG/Zg
+         INfndSuFnOd2x6F5Qbwj9PXmRFdwLrQygdJ9raehmuCk42+1g8DgVbRsoiMt38J1M/Zi
+         S2BzPMW50rCDrIXX4V5UxHFojFk0cb2o8qkATERD+H8oeCnmIrL/vwq82pbG26Ydq4kk
+         6Abr+pPa++JKvkFz/DUIir9wUiOThegrf2liqHfNmrYmp1S/HMulSFVvu74G2JnEt7Dy
+         y8/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771330419; x=1771935219;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JnctnXD+vW2hwHaBIXjEArJKKlKzrQnCanQjG6cUX0E=;
-        b=i+OS3/pV7ep62ZPhW3XxIWBxZq4fOjlFVK2eM9X5hl0jKo6BptxcOHNPAGRbY67llj
-         8JkAy1KJj9eucb9PehTLCYw3gvD9GGr7IShac0LtdnxUBiE2cmwP3vuGSi3wsjZuHzaR
-         p1+mm7o80SWA3M1BFJ1DoJmez5KIKSM6Sr2tM3RUiRzXMgdoXReTBC/wavM+Y3GBa4r4
-         ouPR7cHts4GfzkSGXB0BU2wbomcjaqm2KuZTXCrlgek8VwA3lKYzn9qRSJRF5M6iaqpH
-         gzD1afXwN5xg8SELO+G9ptw9lz7qZUa8B1ZfB2HH24y28GqjrpvIZc8JbzHuk+kq75ss
-         x5rg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFAGV/Id9SxgmT8UXoZZK6OP6qtAqj+7Dry5G0zEbvfHhmZ3NLEe96l9S42ioQqhexkUuIkzWV4AcL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXCSDqOoGmUDcTAvP1HI9ZcVx7qvNfJcOEMG0gY5Q8SKNJq+QP
-	TTTNvCeVe8n4JIdJfkkrLGI2wBIH0O0BgiNKA8FHB4Bnpp1mpAYpDPhW
-X-Gm-Gg: AZuq6aJnGGHdxpJhD5ZScCG7DcFFIbWvCTp5Ul6EwkllNte7p98108Wqyjm9NINmqGI
-	wG24KysLchBQJZO9Gv/Qktw5PDViluDwA47m0F0nEs1T4chBx8o5yL0f8izRqOUbvzsvNnfxwlL
-	SbLBxS+u6Nech/TJT/NEEe/5Vr6ieFqRvFtbkGbP4+Rh3bbXRvwcdCsuE+vkIPprzw5ZygviKCL
-	lHBTuqolCiNPsE/tG+lPOgRIdL70cquMcMex0riMHiTw76K8GznssGjozDa0e9b9Lo+rec8cUZb
-	PNtSnaMWVZgLfpUyfo8jIZ5FTkODiXoR0TqTAD2iC1UDEUqxy6yMXj7FjKdGDMUrlGMO9JbY+M9
-	UuyGEkIUl0Y5WExKUi8/jbNhv485WBbJuNrZRPLmHLKFv1RjAGM7QoxJQbNdPQ10Gs87kiK3Nly
-	KQWWh9Wy2olxxRjrrwdzdTSjhxmA==
-X-Received: by 2002:a05:690c:318:b0:797:ef49:a48c with SMTP id 00721157ae682-797ef49a9bdmr5077777b3.36.1771330419207;
-        Tue, 17 Feb 2026 04:13:39 -0800 (PST)
-Received: from [192.168.0.40] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-7966c16eb07sm115610727b3.7.2026.02.17.04.13.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 04:13:38 -0800 (PST)
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Date: Tue, 17 Feb 2026 14:13:16 +0200
-Subject: [PATCH v5 2/2] iio: light: vcnl4000: add support for Capella
- CM36686 and CM36672P
+        d=1e100.net; s=20230601; t=1771331109; x=1771935909;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NmWWvqkr1dj9SgTFDELa5mkiI7lMFXhwkqqx5kev2EE=;
+        b=n0gx91zK1D6osLYCX8jdD122S5MttVDB7K1haBAMnhDLeXFs0HW+vJKrmg7ruNNQLg
+         ywpnVSQ6YlrYFJW/N2TnWHHjTry0OALL7u5E80QrMpV7wCJEnoFEtNC2XUWXz/qQZjHf
+         FyVNcFiLZ1FE3J7WyGHk61VMm7CgLUcAD3cIYPEl/ggbFwXNfherG8mQs9C0lvwOJIJT
+         lB/gB0fUIpJEfmJuySXxs1AnmUmcTRShC8XsDrhbh0ka4rpwuE5dpzjqY0KmOQpD+qEg
+         H1c02IbfFAjmeWeqwvR00nruWu58+xjFUBqr1IN61elP++/m4ULqKhsDLNNht8IH8mhC
+         ncNg==
+X-Forwarded-Encrypted: i=1; AJvYcCXahsA/evQab8i/X7Fd/uaoac4sgXCBB6wgetPFd352j3/KqUWYIIGVeBcAGbRErBxQUM1ELtoNeTSY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7aXlXnqV/IWJjzMIPWjUZp8HgskN8/pYw4pEruinT5YvuLnQC
+	1V0b+jSNb1A4Y41/77k0dqV70rA0/qnOQAgPxX6dLUnYsTICrZ+k+DMu9hdzFTg8HFNGdnZXkol
+	sIZlQ1uif31cxIENDssb4jQZ2oabjx5bJI80j+HKSjVWnz5dtHJdOsexic6WXMKpG
+X-Gm-Gg: AZuq6aJwqqY1zJcFFlR9FqbLsTJxTZToXccjaiX0GfCJ8VNZOHRRLErz7ehQj6VmNxG
+	IEYN4Tk4VRBiH60PwcS7lWyfLJaCwnikrj9JORRRfWjEjcJIcPThFHT0rWUv4rsCnBvd5bMhzix
+	6gQhJL6t0KjbNrlRU+HvrUIj6LZVIaMBLvcd+clcxrcJhHvJAlVrRBw/pU+QpmK8snae54+A2Yw
+	ASeVE0KGTa7rdkCtdUouy5wF7BHgwZfLoWmtD8DpdqnzD2UJPw7D4JQdx3rpTi5Wt8DhHWPaveB
+	88UbRx/5c3R3ayjhkiyM3h++M7+HuXF5hZ3IbEzQMjML21F+r1tdu0VJnPa+4exZlv0G9fPtgVB
+	MTRb4Lzr+r+ETIMDXTORtlkYnZ2X/O8xiZf/WG2i9XVylc/r92D34j67rQo6LpoBf8t6Gz8aZNa
+	q1EG4=
+X-Received: by 2002:a05:6214:8101:b0:897:430:df71 with SMTP id 6a1803df08f44-897347af709mr139686006d6.4.1771331108837;
+        Tue, 17 Feb 2026 04:25:08 -0800 (PST)
+X-Received: by 2002:a05:6214:8101:b0:897:430:df71 with SMTP id 6a1803df08f44-897347af709mr139685626d6.4.1771331108399;
+        Tue, 17 Feb 2026 04:25:08 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc7385f5dsm351920966b.20.2026.02.17.04.25.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Feb 2026 04:25:07 -0800 (PST)
+Message-ID: <ac490ba8-18d0-47fc-a662-5a202c5ba95d@oss.qualcomm.com>
+Date: Tue, 17 Feb 2026 13:25:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260217-cm36686-v5-2-63c2de9709d8@gmail.com>
-References: <20260217-cm36686-v5-0-63c2de9709d8@gmail.com>
-In-Reply-To: <20260217-cm36686-v5-0-63c2de9709d8@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>, 
- Andy Shevchenko <andriy.shevchenko@intel.com>
-X-Mailer: b4 0.14.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 06/12] soc: qcom: geni-se: Introduce helper APIs for
+ performance control
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
+        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org,
+        dmitry.baryshkov@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com
+Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
+        aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com
+References: <20260112104722.591521-1-praveen.talari@oss.qualcomm.com>
+ <20260112104722.591521-7-praveen.talari@oss.qualcomm.com>
+ <af0eba46-329f-4979-8b8a-fb5dbe2ad992@oss.qualcomm.com>
+ <b918cfa9-1f40-4aee-ad91-d6425798bd07@oss.qualcomm.com>
+ <24f967b5-0f15-4aed-a81f-ad54f8e541fa@oss.qualcomm.com>
+ <92dc98b7-8047-420b-9743-4bcbc7e30fed@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <92dc98b7-8047-420b-9743-4bcbc7e30fed@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=XKo9iAhE c=1 sm=1 tr=0 ts=69945e25 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=mwp93uWdNOBgBzRbo8QA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE3MDEwMiBTYWx0ZWRfXzvSzcnC5WPsD
+ iQUs5cvCj/FEZQpVFSogF5HtUX8sNYow4+sZHdeO/DkE58GZUHPj8k8U+EhdpPmL9n74EV9GjPy
+ o9/7iGhDZvOIChEXem4BnxEYIxlGI1r23gOHwap0/4kk3RnNpm5Mj4+M+SIfk5F/bTFkjTQSL+T
+ H5HX/Vw19jhRFPStfJD1gRusKGYJ4eZiqmYWu9o6bXO/VYzCxh5lAvDrgLM0RjpDXf7appXdBzl
+ w6RZrO6Ck/9qNp9wDGHTCChEk1tUdOWVc3HFvzHXDdZH7vmvHyTL+Yx0zvy7b6jSCiyAuldtWPv
+ 6Ua1zOny47pqjhWstm2EbSH12BgqHqO2DZlCPzkI6EoX6B+5DgiPCeySXevdAxYKfQPJOBT6m+/
+ a6cp49ud52m2hvzteB9/CX3YpM0JKZV8mw8QXyGVNXhNtZuRwXw22V9SMIY06GqlKH1MnnEUYxo
+ igoAYKIcl0dwfEyioyw==
+X-Proofpoint-ORIG-GUID: p5FAYBkqemh1KHdc0RfDZCooufa0v2jS
+X-Proofpoint-GUID: p5FAYBkqemh1KHdc0RfDZCooufa0v2jS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-17_01,2026-02-16_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
+ clxscore=1015 adultscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602170102
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266108-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266109-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,intel.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: 3793B14BD1B
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 862F014BE6F
 X-Rspamd-Action: no action
 
-Add support for Capella's CM36686 and CM36672P sensors. Capella
-CM36686 is an ambient light and proximity sensor that is fully
-compatible with VCNL4040 and can be used as is.
-CM36672P is partially compatible with VCNL4040 - it uses the same
-register fields for proximity sensing, but the ambient light registers
-are reserved. For CM36672P, we reuse vcnl4040_channels, but remove the
-IIO_LIGHT channel and ambient light integration time.
+On 2/4/26 6:42 AM, Praveen Talari wrote:
+> Hi Konrad,
+> 
+> On 2/3/2026 4:44 PM, Konrad Dybcio wrote:
+>> On 1/30/26 5:54 PM, Praveen Talari wrote:
+>>> Hi Konrad
+>>>
+>>> On 1/30/2026 5:53 PM, Konrad Dybcio wrote:
+>>>> On 1/12/26 11:47 AM, Praveen Talari wrote:
+>>>>> The GENI Serial Engine (SE) drivers (I2C, SPI, and SERIAL) currently
+>>>>> manage performance levels and operating points directly. This resulting
+>>>>> in code duplication across drivers. such as configuring a specific level
+>>>>> or find and apply an OPP based on a clock frequency.
+>>>>>
+>>>>> Introduce two new helper APIs, geni_se_set_perf_level() and
+>>>>> geni_se_set_perf_opp(), addresses this issue by providing a streamlined
+>>>>> method for the GENI Serial Engine (SE) drivers to find and set the OPP
+>>>>> based on the desired performance level, thereby eliminating redundancy.
+>>>>>
+>>>>> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+>>>>> ---
+>>>>
+>>>> [...]
+>>>>
+>>>>> +/**
+>>>>> + * geni_se_set_perf_level() - Set performance level for GENI SE.
+>>>>> + * @se: Pointer to the struct geni_se instance.
+>>>>> + * @level: The desired performance level.
+>>>>> + *
+>>>>> + * Sets the performance level by directly calling dev_pm_opp_set_level
+>>>>> + * on the performance device associated with the SE.
+>>>>> + *
+>>>>> + * Return: 0 on success, or a negative error code on failure.
+>>>>> + */
+>>>>> +int geni_se_set_perf_level(struct geni_se *se, unsigned long level)
+>>>>> +{
+>>>>> +    return dev_pm_opp_set_level(se->pd_list->pd_devs[DOMAIN_IDX_PERF], level);
+>>>>> +}
+>>>>> +EXPORT_SYMBOL_GPL(geni_se_set_perf_level);
+>>>>
+>>>> This function is never used
+>>>
+>>> it will be used by UART driver, not for I2C/SPI.
+>>
+>> Adding unused exported symbols is "eeeh"..
+> 
+> I keep in mind for UART, i have added this API.
+>>
+>>>>
+>>>>> +
+>>>>> +/**
+>>>>> + * geni_se_set_perf_opp() - Set performance OPP for GENI SE by frequency.
+>>>>> + * @se: Pointer to the struct geni_se instance.
+>>>>> + * @clk_freq: The requested clock frequency.
+>>>>> + *
+>>>>> + * Finds the nearest operating performance point (OPP) for the given
+>>>>> + * clock frequency and applies it to the SE's performance device.
+>>>>> + *
+>>>>> + * Return: 0 on success, or a negative error code on failure.
+>>>>> + */
+>>>>> +int geni_se_set_perf_opp(struct geni_se *se, unsigned long clk_freq)
+>>>>
+>>>> I think with the SPI driver in mind (which seems to do a simple rateset
+>>>
+>>> APIs were added as generic interfaces shared across I²C/SPI which is specific to firmware control, not Linux control.
+>>>
+>>>> for both backends) we could do:
+>>>>
+>>>>> +{
+>>>>> +    struct device *perf_dev = se->pd_list->pd_devs[DOMAIN_IDX_PERF];
+>>>>
+>>>> Then, we can do struct device * perf_dev = se->dev;
+>>> I don't think, it is needed since this is specific to firmware control, not Linux control.
+>>
+>> My point is that it doesn't have to be specific to the auto usecase,
+>> further commonizing the code.
+> 
+> This API will not useful for non-auto cases as well.
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
----
- drivers/iio/light/vcnl4000.c | 41 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+This is only because you make it so, with the above suggestion we could
+do without the .set_rate abstraction in the SPI driver which only does
+an opp_set_rate in the generic case
 
-diff --git a/drivers/iio/light/vcnl4000.c b/drivers/iio/light/vcnl4000.c
-index a36c23813679..5e03c3d8874b 100644
---- a/drivers/iio/light/vcnl4000.c
-+++ b/drivers/iio/light/vcnl4000.c
-@@ -185,6 +185,7 @@ static const int vcnl4040_ps_oversampling_ratio[] = {1, 2, 4, 8};
- #define VCNL4000_SLEEP_DELAY_MS	2000 /* before we enter pm_runtime_suspend */
- 
- enum vcnl4000_device_ids {
-+	CM36672P,
- 	VCNL4000,
- 	VCNL4010,
- 	VCNL4040,
-@@ -235,6 +236,8 @@ struct vcnl4000_chip_spec {
- };
- 
- static const struct i2c_device_id vcnl4000_id[] = {
-+	{ "cm36672p", CM36672P },
-+	{ "cm36686", VCNL4040 },
- 	{ "vcnl4000", VCNL4000 },
- 	{ "vcnl4010", VCNL4010 },
- 	{ "vcnl4020", VCNL4010 },
-@@ -1842,6 +1845,22 @@ static const struct iio_chan_spec vcnl4040_channels[] = {
- 	}
- };
- 
-+static const struct iio_chan_spec cm36672p_channels[] = {
-+	{
-+		.type = IIO_PROXIMITY,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+			BIT(IIO_CHAN_INFO_INT_TIME) |
-+			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO) |
-+			BIT(IIO_CHAN_INFO_CALIBBIAS),
-+		.info_mask_separate_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-+			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO) |
-+			BIT(IIO_CHAN_INFO_CALIBBIAS),
-+		.ext_info = vcnl4000_ext_info,
-+		.event_spec = vcnl4040_event_spec,
-+		.num_event_specs = ARRAY_SIZE(vcnl4040_event_spec),
-+	},
-+};
-+
- static const struct iio_info vcnl4000_info = {
- 	.read_raw = vcnl4000_read_raw,
- };
-@@ -1867,6 +1886,19 @@ static const struct iio_info vcnl4040_info = {
- };
- 
- static const struct vcnl4000_chip_spec vcnl4000_chip_spec_cfg[] = {
-+	[CM36672P] = {
-+		.prod = "CM36672P",
-+		.init = vcnl4200_init,
-+		.measure_proximity = vcnl4200_measure_proximity,
-+		.set_power_state = vcnl4200_set_power_state,
-+		.channels = cm36672p_channels,
-+		.num_channels = ARRAY_SIZE(cm36672p_channels),
-+		.info = &vcnl4040_info,
-+		.irq_thread = vcnl4040_irq_thread,
-+		.int_reg = VCNL4040_INT_FLAGS,
-+		.ps_it_times = &vcnl4040_ps_it_times,
-+		.num_ps_it_times = ARRAY_SIZE(vcnl4040_ps_it_times),
-+	},
- 	[VCNL4000] = {
- 		.prod = "VCNL4000",
- 		.init = vcnl4000_init,
-@@ -2033,6 +2065,15 @@ static int vcnl4000_probe(struct i2c_client *client)
- }
- 
- static const struct of_device_id vcnl_4000_of_match[] = {
-+	{
-+		.compatible = "capella,cm36672p",
-+		.data = (void *)CM36672P,
-+	},
-+	/* Capella CM36686 is fully compatible with Vishay VCNL4040 */
-+	{
-+		.compatible = "capella,cm36686",
-+		.data = (void *)VCNL4040,
-+	},
- 	{
- 		.compatible = "vishay,vcnl4000",
- 		.data = (void *)VCNL4000,
-
--- 
-2.53.0
-
+Konrad
 
