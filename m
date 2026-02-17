@@ -1,245 +1,237 @@
-Return-Path: <devicetree+bounces-266153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266155-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0CB/OvBqlGmqDgIAu9opvQ
-	(envelope-from <devicetree+bounces-266153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:19:44 +0100
+	id aIAfB3hrlGmqDgIAu9opvQ
+	(envelope-from <devicetree+bounces-266155-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:22:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E65914C826
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:19:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7407C14C84C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:21:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD91130037F5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:19:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EF2DA300DF5E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:21:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42AC835FF62;
-	Tue, 17 Feb 2026 13:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F862361DDD;
+	Tue, 17 Feb 2026 13:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="hvSr0NJ7"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="SkdI9nmL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013030.outbound.protection.outlook.com [52.101.83.30])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011053.outbound.protection.outlook.com [52.101.62.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6AE1DF27F;
-	Tue, 17 Feb 2026 13:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.30
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50ED93563E8;
+	Tue, 17 Feb 2026 13:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.53
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771334382; cv=fail; b=ImGYe1MiDVN3xA8IG1wrs0TpvopusAXjkB+R52xMG6YwUW1YSJw9mLihZehPG3XYrN+igpCPoLmhyHPmtsGfQkCvnxJtneZ7kFF8RvKPKLJLF94x5vD+m5o9SSzCD0/ClgDE8PAhjxAZfHMErGFqto4AeEr9AsD3BXCobEnh6V0=
+	t=1771334508; cv=fail; b=qhwKzTWLSFLuDvSi4H3pWd7arXmy8JLYFNbb8fzO8QsrzNGkkysDyr/Sg8P15Zubu0rG5CNocky46TfeCXAZhv+KPa5cE7muTGczbtT4jr4nHUzCUS403VyUvetNdhefuj58Hyjt0SNQuGuQfvpvbdi5NIc3vORitFgDLBRubvE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771334382; c=relaxed/simple;
-	bh=zOBTHa5zEyw4bEStE0UwwLMeaaBMvE0LOGJFp5ZwAC8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=AVbfyNiQFn1nzmn2MJMWF7kHWDsL1S3R+mcyGX9r1meeJBoDslv12YVlhZR2wq1O1/dNz3bSBM04cmIS8nYjAwCjoAX4w8P8v28boaIDf6NxdS3URVG+0AZBT9v7Cj5H9sE5E+sDpTkZDnqz0kMlKVfPsz+e888ZW5hZgWo3JEg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=hvSr0NJ7; arc=fail smtp.client-ip=52.101.83.30
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
+	s=arc-20240116; t=1771334508; c=relaxed/simple;
+	bh=431+z0oFO8C6eTIhYYHFbB0wBs+O9hCm3nMdmFRUCKE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bwmTkMJwXQNl8iAGVFql/Nqh97041uQdIFXGNhf1FlVsfse9dKKMusOg+KvwxA35KuBM5j939tUMMr+i/orczuCj7OwwRXaOx/R8m5qE3dLmUd7OrImNhSboOSOn3p7ni4Ch0HxZTI5vVJa17nLuTAmi1Bm29G2fpHVbqMVvDmM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=SkdI9nmL; arc=fail smtp.client-ip=52.101.62.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YQLLF8HBhDXd3JgDIg8zb0vxUhVs8etpAXk2iXP2AsCxK/YfqXQL3YT3fZhGsAcIHSho3XJPq19b9V52Yb+zxFn5zLCs76VwCyjAa9TMhPbFMbaM3qUA08juayLABNnH5W7R66C1Dy6ClFIijWvbkTRHJY2Gs7xLn7KwPHcmP17tiNQlay+qxa0Gjh1UQ2CVZeUWb4PTATYgv+k9q/xrrWUVpYN/UEcJuH08+CcDXUm7UnuT64sCgq97eVrIrF5GdEy88GEXwdGChGqD9ERVifvWzDl5oNH1f7TF9ZcWU2oW4oacI/Pz6JSgS1wz5tjuNjhqvPI9sbu6bRQbVHFf2Q==
+ b=exxAW2w5yp3yyyB9a2G+jW9DyOqnhcJouISKc6zyush8GHx3N9NAQiTX9UHQMMmOSCdz4Dfttk3Ww11TIN7debbD9TcFaOtNHgXaWPV1pVY3MZOvQ5L44kU9pwxX60jCTwcIE0GIHj9EDR+JUb7WkZnSfBLp1wxGAVSIw8cEncPfEM2yD/xiE4YcFJvRYKPTK21FPWHj6mT5PreBG6I0tbY81Omj3Neck/By3Dq4S6QpPo/fyC1yU2JtaRwNbRh6Etk4C1YjtXvu1nTnDY32onVLi2q+jPi9s+56a6zs3TVNu9DFl4tW1Fg4FFSNlUndVTmkJb0nZ2Yx3uaV7TBa1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zOBTHa5zEyw4bEStE0UwwLMeaaBMvE0LOGJFp5ZwAC8=;
- b=gUBvnj7HcN1trAwSDY9Qyd+7vKLtv5pXOM6uqY5iyCaMuAYIeanuFhBnHqKUd7zQqi5cNfsvO86yMAafpsm08R7YU3cHzD1HyJcYTS7xdgXmj6GMpnHKyKV1egamBXZIjHlsfRkkyMVKGSa/2dTlDorcTDSHkVI++Dl/mHAPLt5qQrWH8lA9jjqcuZGV71YXpfXnjLdy2TEkWF4UAwBqYgVhIYmQco1sdSoUtVksr13rG6ka+YxAHtC+wPhyDJrNMyMVBlrNzMnFsbZZWGzNXOFh+/N7VJEs9L1f3t2Htwdj24XiRkBtYBbhOiq43j2BtcTTIHU+e5e1Nrlfdw+JaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
+ bh=4wps+YWuB/ATh5Lui4/BAtJTg/W0Am0d3K7J1MIwT1s=;
+ b=oZ4MDlDKHPZAVn5/DFFpC23bjMLyGUpo8klfe6DNzzWZuz96QdavhK5xoCq9p4TP8CDRXqvpYkwtLVCAeUHXBN/1gkfl1gdEph0tqLE9NZcSfdL6JdusFtYU9W4FZBZKJknrFXjwe/f7UPx/Xls9T8hEv4VQCs93PQHfjPaPHCULc93AUGw1Q3RWOeeklODHQ08WaOdOZSGXb7PVa5kr0vLjSDVdxBO1fPXM30X6wUONllxz63/GCMMQlytP7NYy/rJQe8Utd8qAtoZ6WjGHIE8IjmsDxyWXCsQtlAsGWZHrg6Fqifuc5U0V8BAmwZmrJ6Bu2BLR1fRdmKf9Jv69+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zOBTHa5zEyw4bEStE0UwwLMeaaBMvE0LOGJFp5ZwAC8=;
- b=hvSr0NJ7zJhGw3EUwfquv0n8JA8IZ9uupjI9GZD/U0xOtDPTxRZoqBmdSaLLNNn7E9r/DB10FFLIwK+i8A3xgZBECgBmt9nCjhMdneSxhqQgYH7QfPLV49K8Wv6maiwwQEZVEo2R1+qUoqdI+Ss0MWMynIR2CMdT34gSoejoodAErHmvhvM8uvwRevDX+4TqB2yhpJ6roQo1LRk4y10sHOLTlnon44OG0qkqupigfla+gISOj7l0MQKHnnIkcEJlA1ZPqYWdWsAjnrNSzhlsjFzxqdTvxtRodBAV8wmqnmHBmD/jzVRoLs/XZgVbFUAPnf6bS6ZdHxvuJM0P1mHJMg==
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
- by DU4PR10MB9592.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:617::17) with
+ bh=4wps+YWuB/ATh5Lui4/BAtJTg/W0Am0d3K7J1MIwT1s=;
+ b=SkdI9nmLJu7vAJd8Qxk0P1Uc/3ceTfLBep3s8mWM6yzWJQxQTeZE/FNyaw+MtAbPSEnT+4aW9vIOZ3uBcpsmQygRVZfhANoF6lUCELR/v1SxjJBk1Z74Ay2lUr1lv1lrPIZJjP5wiujEHPwpFC2jWr9BE3NUdr7e2hNDhvCvvE1nWugUFCuhmf6EESxQBYDDE7PLIr3rpUJFeShyMHHKm3eyh/JlBpzv5c8FYJNvzllrPBTPesuDfcRLzkYaSiy7qIQXtEAKmi4AdzZUzCl12qs75fKMXJvlPImCKyDxCzoASjPOd/Swg1RQX3PhA51Nl+YHeA2IKr1DoyxGK7RY8Q==
+Received: from SJ0PR05CA0107.namprd05.prod.outlook.com (2603:10b6:a03:334::22)
+ by IA1PR22MB5984.namprd22.prod.outlook.com (2603:10b6:208:597::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Tue, 17 Feb
- 2026 13:19:36 +0000
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::9126:d21d:31c4:1b9f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::9126:d21d:31c4:1b9f%5]) with mapi id 15.20.9632.010; Tue, 17 Feb 2026
- 13:19:36 +0000
-From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-To: "alexander.sverdlin@gmail.com" <alexander.sverdlin@gmail.com>, "jm@ti.com"
-	<jm@ti.com>, "msp@baylibre.com" <msp@baylibre.com>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt Trigger
-Thread-Topic: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt
- Trigger
-Thread-Index: AQHcoAz+v8NLvcx+EE++zWoSs7wclLWG3/+A
-Date: Tue, 17 Feb 2026 13:19:36 +0000
-Message-ID: <5c604e259e412f9a49f42d6557d52a2d82c1d8f8.camel@siemens.com>
-References:
- <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
-		 <c47697b4-6ebb-4af9-be96-c964d990835d@ti.com>
-		 <DFO764ES0FNP.1SUQK9R0EUUDQ@baylibre.com>
-		 <1a91fd40-e814-4b4c-8914-d8f0c4768e07@ti.com>
-		 <DG59D7WGM35A.1WNIIMNCQ8U3C@baylibre.com>
-		 <7ae7f6a1-0ee1-4d56-b1d0-f038a7d22b4c@ti.com>
-	 <b649669afe4e2c829389a6bedabe47446d2f3d2b.camel@siemens.com>
-In-Reply-To: <b649669afe4e2c829389a6bedabe47446d2f3d2b.camel@siemens.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.54.3 (3.54.3-2.fc41) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|DU4PR10MB9592:EE_
-x-ms-office365-filtering-correlation-id: 7ed0a707-ca3a-4e4e-cdcb-08de6e273273
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?VE1WbmNqMi9GNGFkNzc4cDFTR0J1M2E1K2ltck1jZ3J3eVV5MVV5b2sybU9R?=
- =?utf-8?B?TmVwaWVQMFBhK1R4R1VYZnR2dEpvN2hldXZaeDZCZHZhMEV3N3pwL1U0Vm44?=
- =?utf-8?B?ZHpNY1Y4QlpVWDlnbWgvVlRpVjlKRzRsbXk3RitXK3VxRHE3aTJlYXFLTzJV?=
- =?utf-8?B?bHorN0IvUXhxODlxUGU3OGVzNkpkaXptbk03RzBKb2lHOXliOE1PZ29JcEgr?=
- =?utf-8?B?M09iVW85NnR3d2xqZjZXN09lZk9HWG13ZkxoQlU3RW9jb1d6WHdyVkM4VW82?=
- =?utf-8?B?bU5mWkV5RXUvdzlENVl6KzNDSUs2cXkzSnF4RnhudEVEOW8zaUZKY0ZwdjAw?=
- =?utf-8?B?RTBuczl6MUZSeTJRMWc2NHNkZFdEVFZFRU9Bd0lBM092UEhmVWpyRU9TV3lN?=
- =?utf-8?B?NytrMkc5Szg1TlIyZmJCd2ZybVZobjMwejNUNUQvamROSEJjNXFNZ0EyREhY?=
- =?utf-8?B?ZVNRVWM4VjZTcEN2em5hUXhNMGxsbjFVOCtIUUNKbms0TVdPR2tFNER4bkhL?=
- =?utf-8?B?T2Z6eS90U29QU0JOQ3JwdW9JMzgxd1dzZk5BMzhtTzI5MU1YWjlSWC9rdEF1?=
- =?utf-8?B?MWVZbmx3Rlo5WUw5Q04xWVFXQXBPdE9UeWNGSThjZ3pOYzV3bUFpMEJSOURx?=
- =?utf-8?B?UlZKUjF1RkZ0ZmtDMHdQVmZBeXdwaVZlb0Qyd3hwYmZicWFNc0x6aVBIVTJz?=
- =?utf-8?B?V0dHV3NPV1NXUzE0Wkw0M3RKenVuTnFSNVZjTU54NHJCRVR1ek4xNjFYQWhu?=
- =?utf-8?B?MVovd3M1U1did0lhU2gzYUMvTXpMNmdmaEc1NWNaNDEwMEF3UEJrWHoyNTR0?=
- =?utf-8?B?L1hhUm4xQnJxWXlnSnA5Q1ErcDVkYVdFeTVMU0RLRjVneGRZUGQwNWxHYVNO?=
- =?utf-8?B?d1c1V1BFb1JUTGdjcXgzYUxRckQxOGhWK1E5ME9NRFZJTHlPZ2pYcXVWT0ZY?=
- =?utf-8?B?UDBmYjBMUVFlMFk3RjFzODh2cTZVMnpXQUpHeDR6d3c5aUNZVExKdG1QVXp1?=
- =?utf-8?B?eTNlQVcyVXdtd1dINEtpWGFmRHY0M0Y1V3RaK05nYVh5L1RxN3NDTEpqN1Y1?=
- =?utf-8?B?OFZqWHlOZVNlbmlHNFJOb2JGK2kwb0VXVjF6bHpRbFFpVkM2TTZxWUZNK2xk?=
- =?utf-8?B?S3B5ODBxdDNLSEZWZ0ROc3IyYjhodjBjM1BaN01JenUzWlU4eXBaVjh6MWxn?=
- =?utf-8?B?NnllTU5adHRJL0NBTjlWOG12SGlNYy9xV3JmbmcxU0VYL1UvcTBxQzBINFhq?=
- =?utf-8?B?V0k1ckJwZ3ZwbFhMK2h3LzRHYS80Z2xHWVlTWGphN2gxcyt6UnJsODdNMXBn?=
- =?utf-8?B?TmdnWm1tWjI1Nm9wSnJTL0x3bVlqVENORHBxTmJkUk8vdzMyTHVDUW1ld0xu?=
- =?utf-8?B?SDlwckMrT3VuZ1NxQXZpTHZPNUR0b1VQNzBBZ1FBYjIvd2VnK3AzNy82WGRE?=
- =?utf-8?B?N3VEdEFidkZnSEY5Ulp1d2g1ZGdibXBLT1VUQTNHQ1NKWktnMWZwY0ZHZkk2?=
- =?utf-8?B?aEdmaWFDWElyZVg3a3BvWDduLzFYMGNoWG5JM01LVExYbDM0LzRWY01RN2NS?=
- =?utf-8?B?QTBGOG5nTTdaa0Z6dXJmRXRiU1VybEtydDdtSE5mNFR0VzI3b3ZRSWdBQ3ZJ?=
- =?utf-8?B?eWpZbGtNWTl6YTNPL1BhaWhKOE9iZHJCcjUyb3doUjloajcyM0I4ck11dFow?=
- =?utf-8?B?Q3NINHRMNHpPaFEydk5rbVZhWVVIOVhyQkVaS2gvS05HOHVyRCtydWc0eXhJ?=
- =?utf-8?B?dFg0VlgvOHdST3R5TzVRdlI5K1I3YkRlamI2UkNDYmN1cm1ISkdac0NaSlVE?=
- =?utf-8?B?VmpycTZKMnoyMHV0Umx2OCtCU1NSL1Jsd0I4ejYyaVZRajgwamh6bldtL1hR?=
- =?utf-8?B?WlhBQ0U0bVVGbkJrOFhRSXRYUmlaZk9KRjRYOFVleUEzalZteVQrb0pMUHpO?=
- =?utf-8?B?dk1sb3M3bVU4ZnRLNlNWaFNEais5N01aQ3JCUjV6ZFI4dlgzclhKOVhuU0Jv?=
- =?utf-8?B?c1pUbmtsZzVtRXpISzM3dE51UUUyblpZZDNLSU1SazhkVkJaUzU0SEo2ZnVH?=
- =?utf-8?B?bGxNVlAwQ3pPN0d0ZW1EQlBXMFVsNmprbGdEWCt6RzhsVjhTeUFoUHJnRGNa?=
- =?utf-8?Q?vBgw=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?SHByRzNQSng4SkR2UnIwdU9JelpIYkxPcGVuMnVnVzgwdWdRcStUTmM1TWhx?=
- =?utf-8?B?T013NXdCWEcybEh0VzdBVlFvK2VyNmxKMGtYQ1VrVE4wVlpzM2pSbEgxOHlp?=
- =?utf-8?B?ZFdOL3hDcHpnUksyQmRiYVhmZ3o2VWFnL1NYMUxMNVh5aTBTdWlKZTMzbFZW?=
- =?utf-8?B?SEF0SFFrQmpFL216UVBLY0MwUndadDBBb2R0SnFaVUFFZGJhbzdqRkdkcUlE?=
- =?utf-8?B?dmhEY0xaQktocVFlYkRoaEd2V3pCcnE5L3MwN3hseGhqcWJielFSSVNsaUY5?=
- =?utf-8?B?U01FYXN4ZUVYYWpoUGVSNXNOZmtvUkdEejB3eFNyT21QZCtxcWNlNE1hcWIw?=
- =?utf-8?B?S0hvZjNsVW1lUi9sQ1owQ2ZyeHVOcGx5bDFmcXdLdkl4Nm9rVS9pc2xwelU2?=
- =?utf-8?B?L0VNbitETk94eWY3T1QxK0dsUk9LWFZQRml3OHZkSzJJZnNYVm8za3NLU3A4?=
- =?utf-8?B?amw1cUxvOGpnampqRmU2ZjZLSnVBUkdpdmpSZHB3K1I4N0FqK25mMlVWNUFF?=
- =?utf-8?B?d2RYSkFQdWxNY21BWlJJdDVDcHY3blR0cGVmdjUwV1JGOXV2bzR6algvcEUx?=
- =?utf-8?B?bTJMdkRBaDZhcHR2RmdUMGdOM0lOS3oxQ1VrbmFHQTlmNFZ3a0hUMlNaU2FP?=
- =?utf-8?B?VTJSQTY3WXQ2WVRKQjhQVVhnVWhNdXk5RERkdVNvQ1BPdm1seDRld0NyN0lE?=
- =?utf-8?B?SHdOeEozTWlQUHVBUGFNdC9ZcGJYZkRBSURUaE5DVG8xbkhMdS9NWTFxM083?=
- =?utf-8?B?ckcxTENFd0prMVBCK2E1VUpRNzU4Wm85WnBnQVZUUU9LUnUxbzcrQWVYYlFq?=
- =?utf-8?B?dEhNZUJvRW9ZdmZUYkhQcjc4TFFlM01OWXcxVjZEN3F5ckl6eENRTTFNVXpG?=
- =?utf-8?B?THVYOUs4VFdMLzBmdlk5SUwrZDJRMTNNTVQzaDNQNEp5MmNaL2s4Sm52M2Jx?=
- =?utf-8?B?TG1kVUJxVWJSaDl1UkU5TnlNMlNBOE5obWoyTTY3NUozejZQL3BqYk82SzFN?=
- =?utf-8?B?R1ZiZkVZWGtHbVhocC93dEV4K2ZHOTVvUnJlQXg5MUFTNVZLWGE4eTFVQUU5?=
- =?utf-8?B?aUdVa1AzdUVEUGdIbXZZNjZaOU5xS0s4ZEJOTE5yditYVyt1RVVybWRwWmpT?=
- =?utf-8?B?WGNxcXVnNUNVQmZQS29MekVleEVQa0h4VDZQWktLdVJ3YW9YSFJmdXlhcHZJ?=
- =?utf-8?B?UlFuY3VQSlFyQ295T3J6dk0xdmIwZlJGL3RxRGQ0eXFTWStscWxYM3VYMFBZ?=
- =?utf-8?B?Q041VWN5MWVJdkFhclI0QXJYR0ZRYzFybnM4R3NIYnBaV01RVFg0Wi9WUFZl?=
- =?utf-8?B?aHZvUGV0NVBITUxFQjQ2TGQ3aXFjSStqVnlTVjQzbXk4bXpOem1ZYnBFbDN2?=
- =?utf-8?B?WVBJaGgwR0RlcGtGOUxIOFc1UWFHaWNya3IrSnlZdXRpbWxRQWVqNmt0UE9R?=
- =?utf-8?B?RStBRjZOODB6QmowaE5BRGU4S1lVRGR1NEFMY0lPaWVYQVNPSnNLem92R1VF?=
- =?utf-8?B?NmVnNHIvVHZiWGhzQnVOR3pUWEJzZHQ1VnY0d28rL29pQ3RBZDgrdXVuK3dt?=
- =?utf-8?B?RkROanI4NjJMM3padWd4OHo0R2d2Y2xZRVRpRkNXYUpEaS9xNkF0ZFN1ZzZB?=
- =?utf-8?B?MnhwWS9vYnU1dnpyU2JmdWN5czlYb0NhbDh4MTZEc3BoRWFwb3kxcktTbnpm?=
- =?utf-8?B?WFBiRXVSMGN6RS8zcEcvU3N0d0oyVDVaMFhJcjYxUjl2K0xxVnR4L01IaE9o?=
- =?utf-8?B?WDc2NjNVT1lYUXhUSkJ0bkdMK0dUQ3JkZ2dlU2huZ0FMMFh3YTd5dXpDRVhv?=
- =?utf-8?B?cFdNaXUrVyt2RVBPZFlkQThPSjZnR2lKNHR3aW1aOXo0b0VaZ3J1ZUtYMlVs?=
- =?utf-8?B?V1FPNDJteHRGZlQ5dCtkUFhGVHFJbzlMY0VldEh0Rnk2WlRuRnY3MkR3c0RW?=
- =?utf-8?B?N2JMREs0RlV2TUR2SlJNQk5SY2cxNFhjWElZcWdMWktCYjNBT24rL1RQS1N0?=
- =?utf-8?B?TC8zczFPMnA5Tk1xSFhSNHI1VERkS0tIU3JCT2luUFQ3dlVkZFQ5VVZWQnEz?=
- =?utf-8?B?NGJWL1FMRjBuNzBzQ0NvbGkrQUJqNjZQbWtrMXpkc2x5MUNueDExd2YxVUNP?=
- =?utf-8?B?WnNqSG0vYTdmWWZTZzlhZHRXSllkUVJ3QU9BU0dqcE4wdDRlUHU0NTBBTmpM?=
- =?utf-8?B?Z3pxVXVXNnRkcTdia0F2NU5VcjFNV2psZUF5UHREcnJ6MnhUQjg2Z2R3RjVP?=
- =?utf-8?B?Z0JVdnJpbXduVTVNalE2eFhKZTkzQjhVRlhZdlM5dEt5ZGx0VGZHcXF3V2Iy?=
- =?utf-8?B?WTFaejJ5RUlNWkNwbCtrV2l5aVYrcjh6Qmc3ZDBJUXBGOUpQMmZadUJWUi9R?=
- =?utf-8?Q?W7AUSjJGW98AHk+U=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0C3EB139194D5F43B837ED9E03F40FB5@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Tue, 17 Feb
+ 2026 13:21:42 +0000
+Received: from CO1PEPF000066ED.namprd05.prod.outlook.com
+ (2603:10b6:a03:334:cafe::6a) by SJ0PR05CA0107.outlook.office365.com
+ (2603:10b6:a03:334::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.13 via Frontend Transport; Tue,
+ 17 Feb 2026 13:21:42 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
+ smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
+Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
+ not designate 165.85.157.49 as permitted sender)
+ receiver=protection.outlook.com; client-ip=165.85.157.49;
+ helo=atlrelay2.compute.ge-healthcare.net;
+Received: from atlrelay2.compute.ge-healthcare.net (165.85.157.49) by
+ CO1PEPF000066ED.mail.protection.outlook.com (10.167.249.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 13:21:41 +0000
+Received: from zeus (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
+	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id A88E1E8F41;
+	Tue, 17 Feb 2026 15:21:38 +0200 (EET)
+Date: Tue, 17 Feb 2026 15:21:38 +0200
+From: Ian Ray <ian.ray@gehealthcare.com>
+To: Daniel Baluta <daniel.baluta@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] ARM: dts: imx: b850v3: Define GPIO line names
+Message-ID: <aZRrYoz7nwdkJxAW@zeus>
+References: <20260217125952.53997-1-ian.ray@gehealthcare.com>
+ <20260217125952.53997-4-ian.ray@gehealthcare.com>
+ <600ec825-4402-46a5-85df-1e57f0ade49d@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ed0a707-ca3a-4e4e-cdcb-08de6e273273
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2026 13:19:36.1826
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <600ec825-4402-46a5-85df-1e57f0ade49d@oss.nxp.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000066ED:EE_|IA1PR22MB5984:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0049acf7-2c9c-46b7-e6fb-08de6e277d69
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?dnRwZnNQVC92OTRIVHRYRjVmSkFXOExYbFRKS25pb1F3L3Bma0JZcW9wMUZ6?=
+ =?utf-8?B?VG0zSUZQOXQwMHczTnlBSHkxc0NrY3BtK1lJaCthSUxidlBhSUw4M296cVBQ?=
+ =?utf-8?B?ZXYybDR4WmU5cDNZd3ltYWR6RXo3c0FaMXFjQjlJeFBvZnRmQUI0a0hBNXB6?=
+ =?utf-8?B?WWZUOGYxUEo2TTVRN1JPejFPTThZdWNIb09OdmpNNFlrT2FLMG4vNnRPL1lm?=
+ =?utf-8?B?dGRuRWNMSGJCVkVGYnVKdEN0Q05YQUpaYjVRbVpHT2pWaGxIZDNEZEM4dUhB?=
+ =?utf-8?B?ODJ6aitEWVY2SDRXZHNIcWc3K05aMTVkRGFvSnFuWjBVWU1waFUxN2NNWG1k?=
+ =?utf-8?B?V1FFdm00RzhwOVA4ZE9Vc2RUMGw3OTFwVTQ1K3VHYzYyMEhtZVExZHBFb1Ar?=
+ =?utf-8?B?a2xqVDZrWVdhVTBxSUNVWSswNXZCTU5jNEV3QU5Qazk1UDZoRFpveW5qajh5?=
+ =?utf-8?B?QUlwM2hPL1hsQmI3ZlBSWmZpWVZRSXRVeVVJUGdCVUR3eFJrSHExbkhvRnU2?=
+ =?utf-8?B?NW9tYlFmeUhTWjVjeE93WTlEbFpMaTBpZ0FIZTVuSDVCdWdYN0FneU5NMDdl?=
+ =?utf-8?B?MTBPR0t0UXRlOVN4aUkyK3NoWDVQMVBpWVdlTm1wUzNYeVY2dUlxZFRKUVVG?=
+ =?utf-8?B?YTgyVWlDbzl1dUZ5dXpseEF1Wkpyak4rNU13YWpNMStha1NkKzR6YUc3bSt2?=
+ =?utf-8?B?cXpWU2ZpczhhLytHSm5IUCtNQ1Y1VEw3Y2kydVJDN0hhUis2UTdRc1NheEpY?=
+ =?utf-8?B?WDk5NUQ4WktCRmFRT1JyVi9QUnFFNWR6R2JZelI5ZUo5SEhCN1RlczFUREl1?=
+ =?utf-8?B?MHBHT1NWdE1MMkEyZ2dMSjR3V0tSU1NzWlF4d3NIRkdVZjl0MVVCWWtIMnNS?=
+ =?utf-8?B?d2h0d2QwOXBrS0REY2dWb3pHbXFuMnIrcTU3cmxlWlEvZ21QQXQ4RDdBT3A3?=
+ =?utf-8?B?ODA5SktEZUkvQ3FuMTMzQS8zbm90cVloMlpiNW1Fc3ZhVTVwRG9HSEM2RjZu?=
+ =?utf-8?B?L3NpT05ReWRQZjBRQW1jSmNodlpWTW1lVGFFbERGaE5vVzhWQVF1alZUbnp5?=
+ =?utf-8?B?cFN3VGxnTGhuRzFDUk41YXVsK2NuT1pvWUJuSlJUUm52WHVhanJEMEpLMlNh?=
+ =?utf-8?B?bE5EV1NwRnFVdkJOam5MK285U3NkNDNXU1RGKzFwVGZNeWZYclRSYnhabHN0?=
+ =?utf-8?B?T05tWmcwd01IOTFoRk9kTzFkSmY2ZjNxRnhxRURTWkFpR1VnV0NrUDVnSkMy?=
+ =?utf-8?B?NG1wVjZwczZSbnpPMVRZK3hKb1IySXdCU2Q0azdDQjAvejZRc2VlWWN2OTcw?=
+ =?utf-8?B?MlNlRENTeHNGN21HRjg0enJiOHI0Mm5QR0J3eDl2Nm1La29sTi9kTlBxNWVj?=
+ =?utf-8?B?VURXMUU1UGYvelFVdDd4TEZFN1cvSm4vRXJzZmE5blN6bUhpM2FWQXBydGx0?=
+ =?utf-8?B?VVRtbnpTQ2VCMHlkR1FlTU0ybFoxTWtsbXhHVTZoTWIvdUtkd0RIT2s3S0tK?=
+ =?utf-8?B?UGU0M0NvVEx1cjRkT1BLQ2Z0c1U5QVR4elNsbkhIcEZ0eXRzdWZFUmxZZlZG?=
+ =?utf-8?B?NWloY1lkZzRNQUVCTDRXQXd6ZHF2L1dVK01RcW82UGhrTDZ2d014cXFRcUJq?=
+ =?utf-8?B?QzkxWFR3MFUxSjlJQStVV2lWaElGUkp6YkV2RnpvR3FvWnhVTUpRVFFhd0lx?=
+ =?utf-8?B?VVpWUE9YU0pzQk8vckhPZ25kWVRZdFY4UTdIUFkrU282ZWZ6a3JJUHVpa0RU?=
+ =?utf-8?B?QWRjejRzNytyZHJrY0l5cDVJQ2ZERDcybDByUnZNR3ZIZDNqRzBPSDZXemhr?=
+ =?utf-8?B?TEd1M1ZpekdDOGVsU1FUcE0rNHBHVldaOUw5MUlEWHVucGdYeU9wVkZCOEtp?=
+ =?utf-8?B?ck5wUDhqTS9ocVFhbVFMR21HK295ZDVtVmhiZk9qUFVGZFVUNC9RUWVqWUhh?=
+ =?utf-8?B?d3VaclN6eTMrMXhYTEFHY1doSFhZYkdYUzMzejdBaEx5cHFvaElpRkhsbWJ1?=
+ =?utf-8?B?cFQ2NUwxSkdHbmhXcGVkaERNYkRZMWVKUmlYMFlNUEFqS3h3MUE2YlVMYXph?=
+ =?utf-8?B?b3JNanVCUktJdVRIUTVBU0RqMFRiSGZRMDUzQ1BNNGd4SGtwMFVESDZtaHlP?=
+ =?utf-8?B?WVR2M3hCc3ZRSzFkMTJ2OHUyQTJaY3pCcG4xdXpUOHRmdkVOdWRlNTgzcnpy?=
+ =?utf-8?B?OU5GS3BVdmJ1cUoxc0FuVklJemtjSy9XQitzeUM4Q0lFUEt2bWorSUZQWEJi?=
+ =?utf-8?B?aGNSdi9XR0FBQncxUmlnUUJ2bFNBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay2.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	IlmK/rDI+uQ58F8QeSgayBpkU1Dl9ovZpwgLCbtlEkftfZ6G4Zc18Ka/gTmS/9I3QSNCK1yiobsbcOjgMMMwbo0/DwNUowhgp/zQgpbXaCtDF3MItqhniZ3hwlpJM+FNTwnGazpLEKv8bAAJn3xRh73Kh9lCnUOGmJKbyn5s4MaqhwnEPUuKVb+7bCSoaZoPxM1cFKj4I/s3s8Y9Xo9RVnGcyaEfyAWyvgYkipB7ZKBQurupGV0q8/KcgS1DaqQ57qI0TSplE6g8RAYqH3gmEQgHtB4mjowGyNeSRrro9Yt7u0I1dhn5T2Djpz2aG85kPObO7r4EAzog3IXtuZKQGdbtkcnuMCS6S8HAEfbEbI1Upbt8Ku4oZyV60xcSsw5zjvyjfNQXQRnIvwzBIYb5eLofX+CUW6KLSsIyu1W1IWV+DcFtFERdj1MOQyFrk4cT
+X-OriginatorOrg: gehealthcare.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 13:21:41.6986
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: u+GclHwMN9E0S8XyoAPY8JUE4gfFZXH/3+BEA5FK4R+Ko0kW+4EYvg6IqioILAmm9cyz0iGz6fdWE1XRsC2jiGdJFva5LNsQzns2duvM3xU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR10MB9592
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0049acf7-2c9c-46b7-e6fb-08de6e277d69
+X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay2.compute.ge-healthcare.net]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-CO1PEPF000066ED.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR22MB5984
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[siemens.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[siemens.com:s=selector2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gehealthcare.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[gehealthcare.com:s=selector1];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266155-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,ti.com,baylibre.com];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gehealthcare.com:dkim];
+	DKIM_TRACE(0.00)[gehealthcare.com:+];
 	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266153-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[siemens.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.sverdlin@siemens.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,siemens.com:mid,siemens.com:url,siemens.com:dkim]
-X-Rspamd-Queue-Id: 4E65914C826
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 7407C14C84C
 X-Rspamd-Action: no action
 
-T24gVHVlLCAyMDI2LTAyLTE3IGF0IDEzOjU3ICswMTAwLCBBbGV4YW5kZXIgU3ZlcmRsaW4gd3Jv
-dGU6DQo+ID4gPiA+ID4gPiBDYW4geW91IHBsZWFzZSBydW4gYSBxdWljayB0YXAgc3dlZXAgb24g
-TU1DMSBhbmQgTU1DMCBpbnRlcmZhY2VzIGxpa2UNCj4gPiA+ID4gPiA+IHNvPyBodHRwczovL2dp
-c3QuZ2l0aHViLmNvbS9qbWVudGkvZjRhNzNhODMyM2U0NGJmNzE3YzZkMmM1MjhjNDk5Y2ENCj4g
-PiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gVGhpcyB3aWxsIGdpdmUgbWUgYW4gaWRlYSBpZiB3aGV0
-aGVyIHdlIHNob3VsZCBiZSB0YWxraW5nIGFib3V0DQo+ID4gPiA+ID4gPiByZXZpc2l0aW5nIGNo
-YXJhY3Rlcml6YXRpb24gd2l0aCBTVF9FTkE9MS4NCj4gDQo+IEkgd2FudGVkIHRvIGFwcGx5IHlv
-dXIgcGF0Y2ggYW5kIHRlc3Qgb24gb3VyIEhXLCBidXQgSSBoYXZlIHNvbWUgZG91YnRzLCBpZg0K
-PiB0aGUgcGF0Y2ggbWF5YmUgbWlzc2luZyBzb21ldGhpbmc6DQo+IA0KPiAtIGFtNjU0X3NkaGNp
-X3dyaXRlX290YXBkbHkoKSB0dXJucyBvdXQgdG8gYmUgdW51c2VkIGluIGFueSB1cHN0cmVhbSBV
-LUJvb3QgdmVyc2lvbg0KPiAtIG5ldyAib21hcCIgdmFyaWFibGUgaW4gYW02NTRfc2RoY2lfZXhl
-Y3V0ZV90dW5pbmcoKSBpcyBpbiBmYWN0IHVudXNlZCBhcyB3ZWxsDQoNCnR5cG86ICJvbWFwIiAt
-PiAib3RhcCINCg0KPiANCj4gd2hhdCBkbyBJIG1pc3M/DQoNCi0tIA0KQWxleGFuZGVyIFN2ZXJk
-bGluDQpTaWVtZW5zIEFHDQp3d3cuc2llbWVucy5jb20NCg==
+On Tue, Feb 17, 2026 at 03:23:02PM +0200, Daniel Baluta wrote:
+> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
+> 
+> On 2/17/26 14:59, Ian Ray wrote:
+> > @@ -72,6 +72,18 @@ lvds0_out: endpoint {
+> >         };
+> >  };
+> >
+> > +&gpio4 {
+> > +       gpio-line-names =
+> > +               "", "", "", "",
+> > +               "", "", "", "",
+> > +               "", "", "", "",
+> > +               "", "", "PWGIN", "",
+> > +               "", "", "", "",
+> > +               "", "", "", "",
+> > +               "", "", "", "",
+> > +               "", "", "", "";
+> > +};
+> 
+> Looking at my latest version of code this node should be a little bit up in the
+> 
+> file to preserve the alphabetical sorting of references modification.
+
+Good catch, thanks!  Will include in V2.
+
+> 
+> e.g
+> 
+> +&gpio4 {
+> 
+> ... then
+> 
+> comes
+> 
+> &ldb {
+> 
+> 
+> etc.
+> 
+> 
 
