@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-266222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266223-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8MrJOamklGmwGAIAu9opvQ
-	(envelope-from <devicetree+bounces-266222-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:26:01 +0100
+	id 6MRBFmiklGmwGAIAu9opvQ
+	(envelope-from <devicetree+bounces-266223-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:24:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FB3214E962
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:26:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D93F414E936
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:24:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB6BE30214FB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:24:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1A8AC302C30D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:24:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B43136F419;
-	Tue, 17 Feb 2026 17:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D930436E49E;
+	Tue, 17 Feb 2026 17:24:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gyVA+x00"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="acvP/8Jg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1207836C58C
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D8136EA9B
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771349084; cv=none; b=pUNfTNNYTQ6wKYRdKBwMUc6qH8FzliVFNfw+u5FxxPKsAROnso28aiOCeJMD52LNFN7cXezxRzv+hxrMTCdm9ss1tke//XvZd7SBGH6YUl8H2L3xyOwoBxuDV3GcjQ+/aExYRxx0iCClDSFuYwodEs9/WOAdyyLfH6wJnixh244=
+	t=1771349088; cv=none; b=RaFNEY/ObWNHGUAHMmjAUddkFYhREULX9kzdtykvC+DofKWZUWxTCh/N93jgK7Ejgu9O45hwRv4x6sZU+FY1VagiEXx+N8KtqPidYZdR3XcDh3YwLVjZDZDBzoEu6v+ttsESHDi8EVVZCBnCdza5j7q+LOGVSfS5HYR+BPRoCmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771349084; c=relaxed/simple;
-	bh=WT/Nex6LhWJuxQIQqYevEIvzCquwHFS8ilGh7u90V20=;
+	s=arc-20240116; t=1771349088; c=relaxed/simple;
+	bh=yMpbG2qW/Og++aL06RmLkgLqBJ+EyfaWP4nTUFw7Z+o=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bhVOQjPFx0a3zbbfjaRXThQIn44RLGcsemRPG8r2ctRVQHAQ9gxwEeFaln7IGRdecYLLGb6xAg6Fq6xwmzMBeLNuYB639AWTz8QUt7uf7HUTv1XL+FX2RpXSQKnrSB3/UZBHi8E1fLHI9UBuNW4PLv708FJt0GH/qjmS8aDZjsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gyVA+x00; arc=none smtp.client-ip=209.85.214.176
+	 In-Reply-To:To:Cc; b=CAfkad9X3jxI61Koo0wVfPBkY9NtPxsnQPFEjIKnLs+5RSIahCv5RdOiXMDsWKMSgTzoWPJXH4xPEDyEG5TI+rfawprdWruKWOL0pyzpaYgE3pJtkyE6PSnbNHg27sqzf05AT7u0OSefClX1k5gujw48BtmLLIkrj3OWgu6YnaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=acvP/8Jg; arc=none smtp.client-ip=209.85.214.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2a962230847so37517235ad.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:24:42 -0800 (PST)
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2a8fba3f769so19801355ad.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:24:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771349082; x=1771953882; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771349087; x=1771953887; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Nrbi/BNck6gogzlmgUXX3Bih1hj4rkVvdTxnIGaO4yo=;
-        b=gyVA+x00gJS8Bcw3HVL1HNRoBaum8OlY7F+HlJfmQTDw1iwvOSqape6SMqY8fNgEQV
-         6qL2Yn82kTWPjeZ/VOgXKtnBQz1Qn4RDjcxbcrDiVzY/UJvlKl2ZMxn+zLhSF3ksGvba
-         PYGuFm4ShAkh8ZFWn7yOLJ2Usc5pKgkJlk6jhPhANvg2zcEeg7oq9B0GICOogg1qHRho
-         9jrCe3Pq/e+xNk53M2I1szeGYUFjP+O7WvFZTZdD7vnu2pqrY9AWQxgbA/A0XwqEF4CR
-         B76CNp1GXL2L3R9izRoJmQuAY1YhSzkU+LnMR85zbH/Rntk/NvScBqLQvx9xlFSEni3Z
-         ktSw==
+        bh=wltfpER1EX3NZ0J7DGYiBhlkNSq+usE1Anaap9AMNVc=;
+        b=acvP/8JgiMKdlCPs3M9cHG565BpgSupvz0NhTOkN7PZhpUuXUsXHleAOctPNi5LEIO
+         Pl/0Vs8Z3JdF2BJwL8XSX2ZxDUO5tSDD1byrH9QoPLZ8rXRzjOrTxuDcFNwyWpnHr6QY
+         /QRMdlpBf+30pQLruwERDzB0PfIVDtBYlrZtc5+/UXCPTIY6Ye3z1lAXE/DaXtLTR6L0
+         oTSJRY28yioKx8CL6DmsQNEAer3eb391rACAFYagPDnKeFSmN3Nmo2kGKiMLE+7lwFCM
+         aWQ4jXQ6qDa1wd2/rFv0MkvEJ8UoQYE3pgR2wjWnXUnVjUBO41icj+5m+xW/f8xKirtP
+         T4Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771349082; x=1771953882;
+        d=1e100.net; s=20230601; t=1771349087; x=1771953887;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Nrbi/BNck6gogzlmgUXX3Bih1hj4rkVvdTxnIGaO4yo=;
-        b=m/Z4bd+ltaEb/tXX+FEqA/EK6+K3x+D07TmikmleAA5vcikQRWwe4R2NGcV/uf+dF/
-         oZqnEUPxoJAhgwJIDW4y8FVNJJ0167pZXIIehQHooPOCq6/fGtockpUm1W6sookWN10s
-         vcCarrkPNIL7H9nE9KhLtoIR+vCQp2XnDTiMn/pvjzJ+qxEvy1BxigJv3bi2jSQ7qk/9
-         j7QQST8I9igUVMos85aI4lluSXhGtjWmFm7FZspAESUZPN5M3LZT/HxaUyxb0PYAmGX7
-         PqYRyBLppIbcFGZODeFf9M3iW5SwrFnhRUTU/mzVciez2GXLTRTY41gE80W2zTclt4Dn
-         BtaQ==
-X-Gm-Message-State: AOJu0Yz1EDj12g0qlAUgZs0vKtPZOKij5pDvjX2RlGrQ9tU4FyvuQi9D
-	tkSTNMpySCGkIBsOTrSc4SxCgEgNLuhjda/MUXQYE2y0ew6ozed8iaDM
-X-Gm-Gg: AZuq6aI3Z3l1y5Tmf+4S6f86iNIuucyPDrgjD1EivKBjhrOWQKIspMqtGUQjYlBcLYW
-	ayYD72uXAsVrowBTDoxeityEgq/OUlVQTwj1bj2Kgm23VwW8eKl0ZdC9nr9XXlWy8c6aTeriwDe
-	19Zt8M2s2cVxrw6L0SmiFAxybTMLc7S4xPSCH5OW0iRowHDFxuJ6/78P2/0BYc0sf9Azj70eSU5
-	WQ5oMMaBXFnydzcIXkeCtH7VNnqUhMUpRQB8+bpll2pgNEskJJ5PHDyA0j1F12dJXxXd1Ri2Stw
-	4JjwSw8dHO++vbHZSsDC+bm1Lq2wEy8z/8xpTSqB0LanBx4fA+FbAEw3i4omMcNfQZRLIAgaumN
-	A/BO+2aFvYQ5W6GtgrxslSNBCfl8ryJg1zD5GpHt0vw13nuo2KhVRcFswomqF2DKR5Qw+Kg0JST
-	Ptr+hO72L/pPTVw7329n2nFjcVP/IgP3rCmkgN4/fIVZWQ/qtY8c82OPVkCIk=
-X-Received: by 2002:a17:903:1b6f:b0:2a7:5751:5b27 with SMTP id d9443c01a7336-2ab5059ac0emr180983385ad.39.1771349082331;
-        Tue, 17 Feb 2026 09:24:42 -0800 (PST)
+        bh=wltfpER1EX3NZ0J7DGYiBhlkNSq+usE1Anaap9AMNVc=;
+        b=BhOZsNbhcAUNXWnWiGSmBHm/8VtzQ+c/C+/+GIgNaakFgAJ+ecxIfE5fqnjHPqydWI
+         OUv5g5wUfzqAxccgRXr5FQ1DELH2iVAZGEai0pRAR7dTlepbdr6FTNqmgmH5OwfDHTH9
+         nRDrsjN7633DXhSK35MtVGtB+PPPEJnBKGanrGHCXi1SWT4U2O1GRz3jCFD9Z/hrq79d
+         R7qQhNeEHlJYoSoaVgmmLw2F00n/h4ivWfMDDCjI2ahxqAP2H8JXnEN1sbbM0ZT7/4zY
+         RPVW3HSsJTGYykC1nfTDrwZdBAK+HYNu/Og8k64m2187uE/GjfLPrOcWK/XwFhxwSfkk
+         2TeQ==
+X-Gm-Message-State: AOJu0YwDG1X+DYU9hTj7ajhdQNcJuyIskCXsYUolQVTkmc2+J8OU6ags
+	IGxmbdBGKPvYk/KgBv0FavjwyQvenW4RVTnB9jmoXTqFBFZaBcd5Wp0u
+X-Gm-Gg: AZuq6aKdZxH9R/SuqqQgiBPu2TRM/HH2DWDc8in3Eh6IFxuvOfGa9aULhkdoM0OyYru
+	Ua8ALQbhBNwq1Yvv762J7bdSYNcIrTvVEvDC8t+P+R8OWkdvoyMgiNWIy+2XwA+KLwFcN4++hwn
+	KQgdKMFhMnFetxC03EBWyhjBebWd/LLytqJLGqjhtg6AUt1BsLVl861kHXtA8IzwXuSbgBY71yD
+	WgF4abKHpTRnZyXIgt+x91iATaL3+4DGinSoq1NeqUWkWiqU2yOjlhN6fva6UqxjnFpzptB3UTw
+	TIdBp24G7N38LUw4BEAw57jJfAUsNsaiJGdu77yHUyUj4LlM70vwSXCECcjMkGCKm/2+5FsnpG+
+	gI09rkc2/TiVTaGjzPOQgoPDwtXzQnLiAhOqchLryAVGR/C0+P8QijsJGKP4ZrNxzEub+Yc4SU4
+	8gv5I4dN6YofJbxM30se4Kl4c4TDfcc/CoWh1OBWXTSytCIvOK
+X-Received: by 2002:a17:903:1b43:b0:2aa:de7e:efae with SMTP id d9443c01a7336-2ab5061ea4bmr150303725ad.53.1771349086846;
+        Tue, 17 Feb 2026 09:24:46 -0800 (PST)
 Received: from LAPTOP-872M7T80.localdomain ([223.181.109.65])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ad1a7145cbsm146880305ad.30.2026.02.17.09.24.38
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ad1a7145cbsm146880305ad.30.2026.02.17.09.24.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 09:24:41 -0800 (PST)
+        Tue, 17 Feb 2026 09:24:46 -0800 (PST)
 From: Akhila YS <akhilayalmati@gmail.com>
-Date: Tue, 17 Feb 2026 17:24:21 +0000
-Subject: [PATCH 3/5] dt-bindings: arm: microchip,sam9x60-pit64b : convert
- to DT schema
+Date: Tue, 17 Feb 2026 17:24:22 +0000
+Subject: [PATCH 4/5] dt-bindings: arm: atmel,at91rm9200-st: convert to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +87,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260217-arm-microchip-v1-3-ae5d907e10e3@gmail.com>
+Message-Id: <20260217-arm-microchip-v1-4-ae5d907e10e3@gmail.com>
 References: <20260217-arm-microchip-v1-0-ae5d907e10e3@gmail.com>
 In-Reply-To: <20260217-arm-microchip-v1-0-ae5d907e10e3@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -103,20 +103,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-266222-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266223-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -126,60 +126,47 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,microchip.com:email]
-X-Rspamd-Queue-Id: 5FB3214E962
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: D93F414E936
 X-Rspamd-Action: no action
 
-Convert Atmel Periodic interval timer of 64bit (PIT64b) binding to YAML
-format.
-Changes during conversion:
-- Add missing compatible "microchip,sama7g5-pit64b" along with a fallback
-compatible "microchip,sam9x60-pit64b".
+Convert System Timer binding to YAML format.
 
 Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 ---
- .../bindings/arm/microchip,sam9x60-pit64b.yaml     | 71 ++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
+ .../bindings/arm/atmel,at91rm9200-st.yaml          | 65 ++++++++++++++++++++++
+ 1 file changed, 65 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/microchip,sam9x60-pit64b.yaml b/Documentation/devicetree/bindings/arm/microchip,sam9x60-pit64b.yaml
+diff --git a/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml
 new file mode 100644
-index 000000000000..6bf8e81d4c72
+index 000000000000..ac6e2c71969e
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/microchip,sam9x60-pit64b.yaml
-@@ -0,0 +1,71 @@
++++ b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml
+@@ -0,0 +1,65 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/microchip,sam9x60-pit64b.yaml#
++$id: http://devicetree.org/schemas/arm/atmel,at91rm9200-st.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Microchip PIT64B 64-bit Periodic Interval Timer
++title: Atmel System Timer
 +
 +maintainers:
 +  - Nicolas Ferre <nicolas.ferre@microchip.com>
 +  - Claudiu Beznea <claudiu.beznea@microchip.com>
 +
 +description:
-+  The Microchip PIT64B is a 64-bit periodic interval timer used in
-+  several modern Microchip ARM SoCs including SAM9X60, SAM9X7 and
-+  SAMA7D65 families. It provides extended timing range, flexible
-+  clock selection and supports both periodic and one-shot interrupt
-+  generation modes.
++  The System Timer (ST) module in AT91RM9200 provides periodic tick and
++  alarm capabilities. It is exposed as a simple multi-function device
++  (simple-mfd + syscon) because it shares its register space and interrupt
++  with other System Controller blocks.
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - const: microchip,sam9x60-pit64b
-+      - items:
-+          - const: microchip,sama7d65-pit64b
-+          - const: microchip,sam9x60-pit64b
-+      - items:
-+          - const: microchip,sama7g5-pit64b
-+          - const: microchip,sam9x60-pit64b
-+      - items:
-+          - const: microchip,sam9x7-pit64b
-+          - const: microchip,sam9x60-pit64b
-+
++    items:
++      - const: atmel,at91rm9200-st
++      - const: syscon
++      - const: simple-mfd
 +
 +  reg:
 +    maxItems: 1
@@ -188,15 +175,16 @@ index 000000000000..6bf8e81d4c72
 +    maxItems: 1
 +
 +  clocks:
-+    minItems: 1
-+    maxItems: 2
++    maxItems: 1
 +
-+  clock-names:
-+    oneOf:
-+      - const: pclk
-+      - items:
-+          - const: pclk
-+          - const: gclk
++  watchdog:
++    type: object
++    description: Watchdog timer subnode.
++    properties:
++      compatible:
++        const: atmel,at91rm9200-wdt
++    required:
++      - compatible
 +
 +required:
 +  - compatible
@@ -209,13 +197,15 @@ index 000000000000..6bf8e81d4c72
 +examples:
 +  - |
 +    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    timer@f0028000 {
-+        compatible = "microchip,sama7g5-pit64b", "microchip,sam9x60-pit64b";
-+        reg = <0xf0028000 0x100>;
-+        interrupts = <37 IRQ_TYPE_LEVEL_HIGH 7>;
-+        clocks = <&pmc PMC_TYPE_PERIPHERAL 37>, <&pmc PMC_TYPE_GCK 37>;
-+        clock-names = "pclk", "gclk";
++    timer@fffffd00 {
++        compatible = "atmel,at91rm9200-st", "syscon", "simple-mfd";
++        reg = <0xfffffd00 0x100>;
++        interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
++        clocks = <&slow_xtal>;
++
++        watchdog {
++                compatible = "atmel,at91rm9200-wdt";
++        };
 +    };
 +...
 
