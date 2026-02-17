@@ -1,290 +1,278 @@
-Return-Path: <devicetree+bounces-266148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266149-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +MFlJk9plGlFDgIAu9opvQ
-	(envelope-from <devicetree+bounces-266148-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:12:47 +0100
+	id AFREHJpplGlFDgIAu9opvQ
+	(envelope-from <devicetree+bounces-266149-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:14:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB3414C701
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:12:46 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1463C14C725
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:14:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD00E3006B16
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:12:45 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7D36C3001330
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:14:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE82360758;
-	Tue, 17 Feb 2026 13:12:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9D136165D;
+	Tue, 17 Feb 2026 13:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="cv/5WOAQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OAPNoYdu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011060.outbound.protection.outlook.com [40.107.130.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6319A360745;
-	Tue, 17 Feb 2026 13:12:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771333964; cv=fail; b=pIFh7WmsanOwKcKz5GBOfU8KuoNpHydVT5icgIiBzJtcyj75op0bX50d4DAxzJs7fPvga/aBAIE7iobhNmEVtCY5aNkIkMCPaW4o+jFdrMDvGZP0RwA0D7x81vEO0e/gwi0cd4JpP01XTqLS8zTaFS92lv5XoQ41eKahZ+Bflxw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771333964; c=relaxed/simple;
-	bh=DfEfdgEUCgkUQ4ZB68WZy+keyNcL3u0TJgXQ0cHSuSE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=neWZBULYad7gS4YGjLXGKwg5bjwaH1w+ABGJFbM2IAZXyDU/jrrQymHN/T//ZAAZm8xaJWlS4WVt2B5RCh5LzaDk5QGoXFMgFI9ikOLVo/oBDxNnN45GNCcK3ZX/KWtMLDm/UKTXlm62pc12Uf3XvDVNJtoDrWyoetJAGnNzJwg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=cv/5WOAQ; arc=fail smtp.client-ip=40.107.130.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sI5eBCeOGIF/xL+i/Ks+0CQWDH3vjGFp2hBDsj5NoETZtOUl1FAx1n1w1yBL1bJonPFLy42A+tmB8D6ZkibMjArOFOtAr8dp1GuNigZFCwa/xR6mSRpipbmTTFcX3qOLHbZOLnHS7kUIcRRN+VHEDa2ssKb3Sd38LjjAiZU8CxFp9Rdantr41RWcDyJ5f+ZTW2ky4R9wjI62oKe0MjPxMitQ82vfEU5jzYna0UmIAKWeDFMnaNXpnnTWk5JD01Sg7FVsUyL2Sd13rMpMpQoQDLEaqoOTS25RUHNyYqcrjjnzE85BUSw9HJk/aiGwerRKDHaA5GmM3zzJTtwkU9vMQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IalDf49Dmtq25qr5oFu6SL7wU3OXRTvja0UTkWOUWZg=;
- b=vCgwrYpMaav7Y2q6LLN33EqvG4KpNICC5nj2ZHCcheA+yyZnLoXfluAxt9gZUAzgjJZNmwJDjgT2ZCEh/uJTUESuZHWZDGNXpeQKRqrbIbkdQjaTb118tRoDMIOBHf8eSTw2qnZll+56DmponIBKgFdJ/NolXNDdYHOdHoicpjIDAPdZSTw0zje+ZyFNL/nCSjLhzSV2AOwZk1ecrJNef34NktXja4LsUpfRYry6hVgtxDKDsugaz9d2x6HkJkG03Knhmerrbdd6MRKYiJ92Z/R+ix9OOiL6onGfo4/V1sCXJd5Ozaqent29nmVnkufyvk3Y39hgHD+KLf3XDwWFAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IalDf49Dmtq25qr5oFu6SL7wU3OXRTvja0UTkWOUWZg=;
- b=cv/5WOAQykI+7Y3aQLeerbE3eMnmtb8NGbJgzEyFx3xXURwgw/csPwyxzdo9bDAshdtEoSxGI1UP8PGAPFF8jmcKxvg1ZvIEuktXq6JKtqd/0n+6EjrV2/DKuPxOpu9LI/DCIyz32bFz7qKKkng1skypvuhGExN+8R9/HUVYmM+bUU7d+XVDj9Y7pka8Q/FRMbPW8G6qDRL7w0HlufvF/tQ+MYi3Lm55hjyMOmQbwAOCY92OOFsOCLbg+Wgy3HAxv+z6Y08v/OUAdRegaTLixIFa/5DkKKEQWY8JAp9CqLZEXajbzzLCxdDX6MMu/Xdpi9AX7wXgzSmNs5bxwiS7zQ==
-Received: from DUZPR01CA0335.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b8::19) by DU0PR10MB7237.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:10:44b::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Tue, 17 Feb
- 2026 13:12:35 +0000
-Received: from DU2PEPF00028CFC.eurprd03.prod.outlook.com
- (2603:10a6:10:4b8:cafe::d8) by DUZPR01CA0335.outlook.office365.com
- (2603:10a6:10:4b8::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.16 via Frontend Transport; Tue,
- 17 Feb 2026 13:12:26 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DU2PEPF00028CFC.mail.protection.outlook.com (10.167.242.180) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 13:12:35 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 17 Feb
- 2026 14:14:30 +0100
-Received: from [10.48.86.212] (10.48.86.212) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 17 Feb
- 2026 14:12:34 +0100
-Message-ID: <66ecf6a5-cc1f-4872-971d-6bc32894dbac@foss.st.com>
-Date: Tue, 17 Feb 2026 14:12:29 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E090361DB4
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:13:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771334040; cv=none; b=ImaiJo+l9BOjAXw6pFl+Ygi1J+XG6BbwvHAjohwxLRhJSyrdf8L6rmhnesWuGDk1ag0oGkAxLOBqyarMOidCI0M1fuO7cUdzR0ZXn6w0ZeUBzVEYKbkqWVO0S5JNMSB1kgJ3XKcCDWicPnrJP+/3WUJz7ZhBS1YOH2LVWJvXAUU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771334040; c=relaxed/simple;
+	bh=ghiYn5zctv6YevvmbOXMIchikB5+PZqKiOLbd6hIvi0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aRFRwYjtBAPTVjD3X3XrBIgmR93CReUuo6iTS9K+ph+dqqcv0YwzjIQLDcwHMXe4LLIOjInjmB7hxP2dz1lUFgDct4REaUbN4mT2PPRey0QKzO9TdEjMO/kDGDBTmt4tmDH70uUXIpLH5wFdLaAkNQ8prIyYsqe2oo1A/tV9Oeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OAPNoYdu; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-658b6757f7fso7942378a12.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 05:13:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1771334035; x=1771938835; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=x1C0IPnydug6rw3V3fM8YPHePn3LBKfIJJtqgR74b5I=;
+        b=OAPNoYduWYQSL32nmW69nrWuR03uaN696N+g+GsecDLfcQGnKikRKlnwjFXm7jZIvC
+         VoUbx7IkICPpby2qPD748XaG4VJS0thzOiDW5SBPdgEdPEKLH1Q+W+yf75nnkHf68qN7
+         JEQloHR++epOZTLfmKq90FhtXesttZPXg8/S2nFvytEY1oyGxqS1EsW0P3n89H77zDaA
+         M+HtcBqQX1L0pNaoiIeMDg00dLoF0r3BhFlL6hmkeqN4bWToklocg6n6hiBKVShGqr+P
+         Vsvc0o2lFLkLYbnhoulvgEESi2/EFr5uHYV66j/ChgtXBh+MXCpJDl0XtChzUdEssfOT
+         xD4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771334036; x=1771938836;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x1C0IPnydug6rw3V3fM8YPHePn3LBKfIJJtqgR74b5I=;
+        b=q9fVNSUK1HhnjkIK1UWD9PMrkgBoVI+ura0ZIb8216rzzuYMxDp3/g/0E2m3e9HSEq
+         s3ToWHOjjBY0KX3fR+w9jlTp32X9HpRCxSE1SbZtdkpjO/CKHj/Gl5YWsZY/XlbXug74
+         DYpbW7tDsGQeUDoOSD5ua6nddJU7keXsu+xs7PhfjUDdui5nYXT3Wefeow5y1D8F5OB7
+         ksNc8a+nZQptZl2sKnfyH/Vrg/QpxRd1F6ua5lpzyVX33VRjt5qcJukzcMN0ml4nGPRL
+         STtnSLl//c+vRVmHQTbEL1rH5hYFHliYbSHUdM9bzeZ0TDXkmpcb6S7DKrDb31XW9Wu0
+         nldg==
+X-Forwarded-Encrypted: i=1; AJvYcCUaaFUB8olhXrVsT821TXOtLBq8YMdENxpj+a4Ae3lMKBLbLRD8J/TPWmA+gkedmqtlMa4oJJT2vYTZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzdhm3SKw8MqYweG4uxAIY08eKsHY3o3Uc/YUS/BkyY+BAEdFYv
+	FhlTZWLTwe6mJYFIwAAf8OfvAhoNN3BjcuEDlbHInxb0PwMKK4PuUbkBCH5UbYGuEkM=
+X-Gm-Gg: AZuq6aKktqB3eNTTtqzXKpLl2BZI3IB4WbIVapYdn7CRWK1d23Ea5hbxNbKiVe3Y89G
+	TlQfAVT3Gki4r4p58nIEeY3EPQeYUhTOodfaJErmRB9xG/9Pt3dpJo4yjdCL3kYEPid5mGsWLHA
+	+aEJSsoVxFLN4RKGVfBTRFUlPyGI1jYayFKyz7DGyxOFZlkQ1PbLiZS7S1KcIXYylRIHzJ+SNSy
+	EPqgkzfmGz4rIDye/6k0TBwPFGjSlW+xrNUpeCWxKUt0Zj+TFG96q+7Uh1RJlmOuGMjSewRTEAf
+	cedNkbAWS2C80JD1jFR/75xAVOj/qdqvIzS1W+vAsDuG4IcSF9vVXw17b+nmA8M5qJrOlEkuxzN
+	MR/F+2MpzNweOlxDOcIHzc4cEImwwbXsgvz/Upd3rOpoLXYBTeYQ2EmCs6eWDP3T2O24DTNDJly
+	6LuqKpKrxGck85XMkaq2tuNyuy8vU=
+X-Received: by 2002:aa7:d719:0:b0:641:88ff:10ad with SMTP id 4fb4d7f45d1cf-65bc4298c44mr4741148a12.14.1771334035506;
+        Tue, 17 Feb 2026 05:13:55 -0800 (PST)
+Received: from draszik.lan ([212.129.84.5])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad4fa7c7sm2473768a12.31.2026.02.17.05.13.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Feb 2026 05:13:55 -0800 (PST)
+Message-ID: <0b6e7cb7223e553d9b53df464959e97fd3d1ce43.camel@linaro.org>
+Subject: Re: [PATCH v6 5/6] power: supply: max77759: add charger driver
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
+ <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Mark Brown	 <broonie@kernel.org>, Matti
+ Vaittinen <mazziesaccount@gmail.com>, Andrew Morton	
+ <akpm@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
+ Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Date: Tue, 17 Feb 2026 13:14:14 +0000
+In-Reply-To: <20260214-max77759-charger-v6-5-28c09bda74b4@google.com>
+References: <20260214-max77759-charger-v6-0-28c09bda74b4@google.com>
+	 <20260214-max77759-charger-v6-5-28c09bda74b4@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
- peripheral
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
- <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
- <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
- <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
- <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
-Content-Language: en-US
-In-Reply-To: <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PEPF00028CFC:EE_|DU0PR10MB7237:EE_
-X-MS-Office365-Filtering-Correlation-Id: c17b532e-4037-4cc0-9659-08de6e26379e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aEJraVAyTHpSWUFZc2diUWE5S0VUY1FCRjdraS9aMHZNSnZKRGZudVp6eTFz?=
- =?utf-8?B?Y1pyZWZ3WmJSbXNHUTdtRStyRmNwNGdDa3pFdi96VTdMWk10NzBSUytBbHJW?=
- =?utf-8?B?ZXB0OXFrcndqK2xWSmtVZ2M1d0dzVU9EaUw2aVZmaU5VelExYnJneEZPWmE1?=
- =?utf-8?B?dTBod3YvMXBUaUh5QzFTL0crLzBWVEROV1ZoK2pmV2JBSzFwOGYzMHR2SGlI?=
- =?utf-8?B?S1FDVEpHRTVOYk12ai9WU0lEWlVxL0x3QVA0bDU2UEpnTGJ2WVhJZFRMUFNL?=
- =?utf-8?B?b1lIOGpvZHkraHVrNTVmaHpSNENoYzdVcWh2TktRWlhQcWVQdmFOK3lubStQ?=
- =?utf-8?B?Y2xBcE04ZXJCOEM2ajBRUTNpTUdjNTVBUWUraStMSnRJai9IcmpYL3pvVW1G?=
- =?utf-8?B?aHlOT0htamdCbU5QVXo1cUJhaEVhQ1pwYmlkS3NTTmt5eE1MaGloT2Roa3BK?=
- =?utf-8?B?TGZJdUtJcmdoKzJBUWFRcG1ZQzRVVWUyRDlXT0pndm1xS28yMkREQzZCQmtK?=
- =?utf-8?B?MUJPRXZPQVM2Z1c4UDA5SGJINHFHQk4rUk1WNld0K3I3T2JLZnB3K015Z2gz?=
- =?utf-8?B?ejkvWTJkc2tyT3JvUG9keFlwRTJWd1dtZjJjVDRGdGg1NzU4YzBTOWVCRmFk?=
- =?utf-8?B?czdaWlNYR3hMSmxoRzBsVnE0cUh1Q09jakNIK3NOZmt4QzM5ZTZoV1RZclM0?=
- =?utf-8?B?YWRhMmd0M1hhdHhJQVpKUG0rTE5tUnJzUUo0bUp2aFVCbVRwQy9iTlpYSHVl?=
- =?utf-8?B?QWtzc1lYRmhONFdhZkhDZmhnMXFKSm5ac21hZzJjNzA2Q21kL29hK3diejV6?=
- =?utf-8?B?bmNOWUtJV1RKZHZvV21NbG1Fb3VNM2Y3Q1BGNEhYUUlPYWFrRm90QVhsRDVE?=
- =?utf-8?B?QzhzbGpRSGVqMndwN3MxYStLZWdwR2o5ZmNqcFlzdW5nblNKYzM4L2dnUHhh?=
- =?utf-8?B?VXMxT1dXSStDSGFGbkpJMk45Z0UyOHRyMHdJcFZTVzBuYlhMWldYRFEwYTZk?=
- =?utf-8?B?c1kySy9pbmJzSXEzcnRCNVlRbmY5em02aC9Nb2lSamNTajVDZTl4SHMvTnc4?=
- =?utf-8?B?dGtMQ0VYaXFUdzFrMXZpL2paNmxIZlF2OFNMM1dyQ0IybG01L2xXV1VSVWFK?=
- =?utf-8?B?aWVIUEQ2cDB2RnRTN2dGc3ZiK1NldDYwL3JqY05DQ2NXVVN6SnEwUmcwTlo0?=
- =?utf-8?B?dWp0R3VPQ3ZLQzB0T0NzeTR6TStJUEN1cDV5c1lML1dYc1daMFcyc0djaDRl?=
- =?utf-8?B?U0IzcHJwYmVjTDFGblNmYngrM2ErczM1SWt5QWZxVjNvOUVVemFMMHBYV3E5?=
- =?utf-8?B?RkhKRCtFMG04by8yZU0wdEhVRk00VnM1K1dqYVY4Q3c4UElxd2YzN09PdzNx?=
- =?utf-8?B?MzdGaUVpUlpvcjE2bXhSK2VxeitpdGpIQUNVcEJIRG9kN2FCaGhFMFVnL3E0?=
- =?utf-8?B?eFh0MEdzdEtTZzlCbUNQUkNlUzJGNjNHcjhrbGp4TS9hS3FTS2VZN1lpZklJ?=
- =?utf-8?B?VkpSOTZ4Q0FSTStSUnpqRm9nU0l3TXFDVy9sMTIwQnhla3k0dC9BNUZEeGdF?=
- =?utf-8?B?dE1hODhRVitmSEI0SjNrMmc3NWlaMksySDA0OUdDc2Q2QWZQSzFhTzlKRWor?=
- =?utf-8?B?SVdXR3Bpa3JtWFg5VkVDMm9DQ25kS3EwbE1LVXhMYUxsaWtENlFZdjRya2ti?=
- =?utf-8?B?K2J6MXplZ0crR2lzWFJXK0hKVk5yMWh5WWZjOHk0NE54WWdYeFRSVTBjMWRE?=
- =?utf-8?B?OWFpVktPZ0Z2OU9ia0hTbjdSbHU0TTd3bms4L2hEVUorelR4bmgweTNncnhC?=
- =?utf-8?B?M3U4blA3dlFBaytMRFMwWlNMVDdzMlFIQWViOFlHOGJxdTZTSklZU3RPVWcw?=
- =?utf-8?B?ZEIwTENSNmZsMGZjRmo1VGtDdENJTkhhdUk4Umk1dzFESzNoc3JnVjV4alpw?=
- =?utf-8?B?WkxPQ3dEMUlYMzNvSmtTMWM2L3NyemtsV290UTBPWGtKNVF0S3FPb2lnZTkx?=
- =?utf-8?B?d3U1NTdRNWdSL2lpeUx0cldhSUU5SCtZSEVEcTlnMWVTaTM2OUh4dy9OaHIv?=
- =?utf-8?B?a2xsZndWNjhwUlBTd0UzL0ZlZ1UxaEhRcnJOQVVMZjZLL1BLSXAxd0tVUzdB?=
- =?utf-8?B?UTI3RjlIUXJVRVBNRm93YkRHc0ZoM3JMb1ZGcDIzUzNRRnFrTEh6YTduQ25Y?=
- =?utf-8?B?eTYvK0V5TDhPL0U5ZTNmZmZWbDB2c1NqYVFyemRPcy8wL2JSVm9pNEc4dWVO?=
- =?utf-8?B?KzlRRlFFL0h5ejNqSWhCYkRFWlBBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	qT8hvMmezgk5FstRSXyXUELRf37I3rQC3KyeaVhZE18Cz2JHT+XSwBeVtttS25yU11Gc/OkjBvxOGV5sibPRqx76Hn6rDTmyfQ8aS96zsh5FSv2PBFg4W1Sbf0zgKnXtheN78J8gmeJM8rEuKst5cnBTOZqyROloKqWvb8v4P+dMBlNsWJFyxPQe1WSIyyt8u1l26c3oQT74f7rwLN6u0FidMXQ07GHrJG+ptH5a2RZX16RYInD/x6BDArNKYqw9UZmHpgqzCfJreTzzGxi8U716fI4XtQayyc9/qOAa0WWU+S3UuEi7TPPnNHBrOVFEJoHcfGXdNKOhYtrSsVRwYuGUGtuhxvy5c14VR/F+8MI/K8AWlUXe7nbu3p9uwRRE7ep/cJ7SjTdDJxDJRwIAw6uV0U/n/Phy/DiiqVM7oSyo/LZm6MfiYpoN3LvqUJYn
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 13:12:35.3026
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c17b532e-4037-4cc0-9659-08de6e26379e
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU2PEPF00028CFC.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7237
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
-	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-266148-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,foss.st.com:mid,foss.st.com:dkim];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gatien.chevallier@foss.st.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-266149-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[google.com,kernel.org,linuxfoundation.org,linux.intel.com,linaro.org,samsung.com,gmail.com,linux-foundation.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[foss.st.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: EFB3414C701
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:mid,linaro.org:dkim,linaro.org:email]
+X-Rspamd-Queue-Id: 1463C14C725
 X-Rspamd-Action: no action
 
+Hi Amit,
+
+All below comments are only minor, feel free to ignore them.
+
+On Sat, 2026-02-14 at 03:12 +0000, Amit Sunil Dhamne via B4 Relay wrote:
+> From: Amit Sunil Dhamne <amitsd@google.com>
+>=20
+> Add support for MAX77759 battery charger driver. This is a 4A 1-Cell
+> Li+/LiPoly dual input switch mode charger. While the device can support
+> USB & wireless charger inputs, this implementation only supports USB
+> input. This implementation supports both buck and boost modes.
+>=20
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> ---
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
+> =C2=A0drivers/power/supply/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +
+> =C2=A0drivers/power/supply/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0drivers/power/supply/max77759_charger.c | 768 +++++++++++++++++++++=
++++++++++++
+> =C2=A04 files changed, 786 insertions(+)
+
+[...]
+
+> diff --git a/drivers/power/supply/max77759_charger.c b/drivers/power/supp=
+ly/max77759_charger.c
+> new file mode 100644
+> index 000000000000..d4e02764ba04
+> --- /dev/null
+> +++ b/drivers/power/supply/max77759_charger.c
+> @@ -0,0 +1,768 @@
+
+[...]
+
+> +
+> +/* USB input current limits (in uA) */
+> +static const struct linear_range chgin_ilim_ranges[] =3D {
+> +	LINEAR_RANGE(100000, 0x3, 0x7F, 25000),
+> +};
+
+Shouldn't this one also have a entry for 0x00...0x02:
+	LINEAR_RANGE(100000, 0x0, 0x2, 0),
+
+Then you can also drop the umax() call in get_input_current_limit().
+
+Ah, I see now there is no linear_range_get_selector_within_array(),
+meaning the code is fine as-is, unless you want to add that as
+well :-)
 
 
-On 2/13/26 16:06, Krzysztof Kozlowski wrote:
-> On 10/02/2026 10:55, Gatien CHEVALLIER wrote:
->>>> +  memory-region:
->>>> +    minItems: 1
->>>> +    maxItems: 32
->>>> +    description:
->>>> +      Phandle to nodes describing memory regions to be configured in the RISAB
->>>> +      by the trusted domain of at least a RISAB page size.
->>>> +      These regions cannot overlap. A zone must be within st,mem-map range and
->>>> +      can be represented by one or more pages.
->>>> +
->>>> +  st,mem-map:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>>> +    description: Memory address range covered by the RISAB.
->>>> +    items:
->>>> +      - description: Memory range base address
->>>> +      - description: Memory range size
->>>
->>> Why do you need this property if you have memory-region already? This
->>> also should be part of <reg>, although this mixing with memory-region is
->>> anyway confusing.
->>>
->>
->> The RISAB is a memory firewall peripheral covering internal RAMs. It is
->> possible to configure multiple memory regions within these RAMs (done by
->> the Trusted Domain) with security, privilege and compartment isolation.
->> This peripheral allow 4kBytes page granularity. Each page can hold
->> different access rights, with 32 pages at most (hence the maxItems: 32).
->> That is some information that can be added to the documentation.
->>
->> Moreover, when a region is delegated to a non-secure privileged
->> component, this component can configure the privilege level necessary to
->> access the region.
->>
->> This property gives me the opportunity to get the memory range covered
->> by the RISAB. "reg" here is used to access the actual RISAB registers
->> holding the configuration.
-> 
-> Looks awfully like memory regions still :/
-> 
+[...]
 
-IIUC the memory-region property references memory regions within
-a reserved memory. Which is not really what I want to describe
-here as I want to get the boundaries of the whole range. The
-memory-region property would be used by the Trusted Domain / kernel
-to get each regions (or only one that represents the whole range) of the
-internal RAM to apply desired access rights to them / use them.
+> +static int max77759_charger_init(struct max77759_charger *chg)
+> +{
+> +	struct power_supply_battery_info *info;
+> +	u32 regval, fast_chg_curr, fv;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_00, &regval=
+);
+> +	if (ret)
+> +		return ret;
+> +
+> +	chg->mode =3D FIELD_GET(MAX77759_CHGR_REG_CHG_CNFG_00_MODE, regval);
+> +	ret =3D charger_set_mode(chg, MAX77759_CHGR_MODE_OFF);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (power_supply_get_battery_info(chg->psy, &info)) {
+> +		fv =3D CHG_FV_DEFAULT_MV;
+> +		fast_chg_curr =3D CHG_CC_DEFAULT_UA;
+> +	} else {
+> +		fv =3D info->constant_charge_voltage_max_uv / 1000;
+> +		fast_chg_curr =3D info->constant_charge_current_max_ua;
+> +	}
+> +
+> +	ret =3D set_fast_charge_current_limit(chg, fast_chg_curr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D set_float_voltage_limit(chg, fv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D unlock_prot_regs(chg, true);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Disable wireless charging input */
+> +	ret =3D regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_12,
+> +				 MAX77759_CHGR_REG_CHG_CNFG_12_WCINSEL, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_18,
+> +				 MAX77759_CHGR_REG_CHG_CNFG_18_WDTEN, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return unlock_prot_regs(chg, false);
 
-Describing the memory range using a reserved memory would make the
-kernel exclude this memory range from the normal usage, no?
+Should early error returns here try to lock the protection again? Something
+like:
 
-I think declaring a "boundaries" memory region with no usage for the
-kernel wouldn't make sense. The kernel may not be able to access the
-whole memory range.
++	ret =3D unlock_prot_regs(chg, true);
++	if (ret)
++		return ret;
++
++	/* Disable wireless charging input */
++	ret =3D regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_12,
++				 MAX77759_CHGR_REG_CHG_CNFG_12_WCINSEL, 0);
++	if (ret)
++		goto relock;
++
++	ret =3D regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_18,
++				 MAX77759_CHGR_REG_CHG_CNFG_18_WDTEN, 0);
++	if (ret)
++		goto relock;
++
++	return unlock_prot_regs(chg, false);
++
++relock:
++	(void) unlock_prot_regs(chg, false);
++	return ret;
 
->>
->>>> +
->>>> +  st,srwiad:
->>>> +    description:
->>>> +      When set, the trusted domain configures the RISAB to allow secure
->>>> +      read/write data accesses to non-secure blocks and pages. Secure execute
->>>> +      remains illegal.
->>>> +    type: boolean
->>>
->>> Shouldn't this be a property of given block from memory-regions, not
->>> entire RISAB?
->>>
->>
->> It is a global setting for the whole RISAB (in RISAB_CR register) so I
->> think it's fine keeping it at RISAB level.
-> 
-> And in the next version of your IP? It really feels like description of
-> memory region, not the entire device.
-> 
+I guess if one of the regmap_update_bits() failed, then locking the
+registers might not work either, so I have no strong opinion on
+adding that.
 
-Then I would expect it to be part of the page-based configuration and
-this property could be constrained to current platforms. Is that fine?
+With or without updates:
 
-Best regards,
-Gatien
+Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
-> 
-> Best regards,
-> Krzysztof
 
+Cheers,
+Andre'
 
