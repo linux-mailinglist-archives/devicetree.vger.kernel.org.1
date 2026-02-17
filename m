@@ -1,199 +1,200 @@
-Return-Path: <devicetree+bounces-266296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266299-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id TjfnLAX6lGmNJgIAu9opvQ
-	(envelope-from <devicetree+bounces-266296-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 00:30:13 +0100
+	id SFrVLV3/lGlOJwIAu9opvQ
+	(envelope-from <devicetree+bounces-266299-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 00:53:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27629151EE9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 00:30:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257D21520BF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 00:53:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D49C73028377
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:30:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1EE11305FBD5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B7631960D;
-	Tue, 17 Feb 2026 23:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9047837B3ED;
+	Tue, 17 Feb 2026 23:51:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="Q0/v2xlB"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="eslt17Z4";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="d5+j2TIv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com [74.125.224.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A742F31B123
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 23:30:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771371010; cv=pass; b=QwyIGDAXsBFHXfQy3jqOosyJ2C7YOn3prRis+GH4Iu41lRCqELi61JtM6oy0pS73ul4mwetJpkIspJTdOQPCgh8GwHSuCgx0WUdGDy0s2fMDnIPbS5NNHc+qZ3U9gQvk2KNd5JTUOjVrKYVv0OYEW/2NYWXTRQBrlxsgaAwC0XU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771371010; c=relaxed/simple;
-	bh=0iqgQ0iC08pETndYz+OYiMyT+2bia4CvGsqBmREgTlg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pXB9AXLnaFgVNfvGKx4Vzml+X5HZsQiqhezVYk2Qb6OSQ1E7yo4HfqqxQSdtzWiiSIFobndUM61AJLARwNwWEexN9KOirdxshLAfTjl2NlvmoAK44oPLgNCaEtPvsCNixPJqWm/Z350Fh4WqnOrhjTZcnQhRmC7RtWeLFMzWMwM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=Q0/v2xlB; arc=pass smtp.client-ip=74.125.224.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-yx1-f41.google.com with SMTP id 956f58d0204a3-64ad79dfb6eso4407934d50.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 15:30:08 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771371008; cv=none;
-        d=google.com; s=arc-20240605;
-        b=YSBc0bvLWWESmC/7QHhnyidcqi6sUDsWiJVItus+2aETZGXY/emddrRKA2JStyIuOS
-         I1maaBpgOS/ORpqCHek1yRsOHUmT39DScBvzXoNMTfRGgYTSACtEDkagDRdwV6r+A9Ao
-         NLASaeIV5leBmzEvgC0bc2UMSvuCpoVeiJskGpbeQAK454IzeMIH+qZ1pCLL0XVwNLDW
-         1ZNAZTiB9KUZRqHllOqD1CZom0WvxyO0b43TzmNM+WQsgM0q3/1qUeKgWRpqxzY3lPhf
-         ASiWNmPg3QMaWENTR+JX1h7G6D+hL8VTnc2nrm0gKzGChVc7dUA4SjpBrR0ngqflydBV
-         9d5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=RTnOou82ckQE54SQrVzimf0IaJoxyiz9fz7f1nWejVk=;
-        fh=U2vjMHxUuurqhJuauV5yhwiJkzAiwQGaYj7PVn8o1bI=;
-        b=Hi505XatJX3lTWZhdfWB9VFfhtdjuiHeYD1KLGhmZDMqi7jAlUH6cwCHy+KnOz1l96
-         s5rCdOiY93XEwWqT+DquPwXqmvlkHdKK93gnC5ez5KnBSWkzEm9iAclXsfUehedMHKc1
-         HSvvHg4ZuemtE78lgMSfrwzt6SKvautphDfKvPmizgzE4ZyZ8CWOEDdjqSRAWQkfWDeC
-         BTKf1zAtwIhGGyfk3zUe+nKRf1gQY/cm0Isco4WQIJQMGXMy/1db4HNPR9NqencaS9Rz
-         66UuwyggAe5bfTUC/RvL7BN4S47xLMnkA2IxhaFvSnRq+myJu0n8JikFCtecnHfVorCn
-         1LMQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1771371008; x=1771975808; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RTnOou82ckQE54SQrVzimf0IaJoxyiz9fz7f1nWejVk=;
-        b=Q0/v2xlBcwXuN2qEiSfa/RBNxfyYfzg55GYWugN2GbvxUdO3INYhg655GKRGSCfheq
-         rmibYSyY2wknPIuDKPuyNEzyFbiOKGh+7CyH3U+it5al/w4FG2dE/wugPTOuu1Z73+56
-         oQl5J08HGqNmDsdwwo8TkUdAOcvIkJ6MEdis45spAsc+JQMpqXICEyD7I75An2XK+xFk
-         ysqxkoVHe1TPBSBGUY70UD6h0MENoDlKvswr5J3S67HQAImRRkfqK4zkS1qoaL0Y90yV
-         aT/nxShqg7AR/Ocpw1KU7Pz7e1SKUZsBKICatRBgr7ksXHRV8Hz3J8N3NPRewsIvxeiX
-         ySAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771371008; x=1771975808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=RTnOou82ckQE54SQrVzimf0IaJoxyiz9fz7f1nWejVk=;
-        b=vWclmr0nPV0x+MFAh1L8vo6fabgODm2h0ogQLwlQi/jtovdLtvptWwPiBbpIFOi3D2
-         V9pmQVrRe3rVIdttssRwGZXQ6Ei7GWpCfoVNHvUuo7XD4zoobwIhMJcFSU62da9Mtc2G
-         RSX1utlFSD1TX8ImFZsjRKho6MledvgtFrfptRraWvLHOJsUflPP7030ZUT7Tv7ps80p
-         fju8mpygrgiWaVHo2LkY3/OXeGzszzEGtW02zp/4BpSMZWK27fFxfCwXfHdh+hEwyuBX
-         qwSsoUsuR47Eg3wkIjdN8cDfzQQrZINqTd28h8pa1AHJE8gL26Q0G/Hz61/peYJ6DlYX
-         MNeg==
-X-Forwarded-Encrypted: i=1; AJvYcCWB1JyLXlo2kEiCpz4uZCr8i26pKfUWJJzFwW2gUtKldBJDmRDshMcsqARwH6McQEGVfpIhSIBdI319@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOLMyhy5Jpa4PQUKnCbjTZV1cSB+rXUS4FxOBuSSnGLInvQOyD
-	e4CQDGR/42c0UU3j2f9oNSKqGN6Y6OrV14GR9wZrJuQs0KPm5GHXZxt8gSxnAjF2jAb6ViL6U5y
-	sqlOhe8/OwxQOxAKJyjUJEs+nGnC5+byEJrESCKRbqg==
-X-Gm-Gg: AZuq6aL3GzYn7iwMPuLwo30s6t2nS6o/gdZfMhHCbQkgmgVtgQTQcYytTbL47EfVcDh
-	q4XFSXYp8xly0dFRRy0d9cKYeW9tlFLFl/gZBffk+uJ2dZUKA/Qou9MNptR/v+jZUhEq5tW8ggC
-	D//cQUj72QdoswkblH8C0cjVa01fcxNwDPJ+hYLXcFkvQ3N9gJ5oQdnpUvpja9UpYNK4S/lSLPR
-	DItXW2a3cpcb8731e2xR9kT9QO/+Vo5CsGOXO9I7/q1Re+hrCsrxHyHQR2hkWbDiOhDntoNlNHy
-	Sb8NuGpVVOayPMDzX2fgWSSUWzPmlBebP2au/ekVaj+3tpI7/RtaoxCb9wkL7/9Sdat4pXXo
-X-Received: by 2002:a05:690e:400a:b0:64a:e543:cabd with SMTP id
- 956f58d0204a3-64c556c9ad7mr114487d50.70.1771371007641; Tue, 17 Feb 2026
- 15:30:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F45037AA7D;
+	Tue, 17 Feb 2026 23:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771372287; cv=none; b=OyHS1VIWUrHCPQZ4pRzYbS5kR+v+I2nHhjePEHgHGCv43OBW4a2CW52GO/opxmhjkR1jOVr7/y+GbcV5kj0VxvtzuCTZQKS3hIReCWY5uof0ERpQcBSJrLqnoweSeOxvoTFAdtZJyAtvUkxB1Ajm76X/cwjcJ5c8x5K0hY7XeIw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771372287; c=relaxed/simple;
+	bh=V4lYhvGez5NstvE3sO//SCiK7cfXd/7zxDapXm2/kO8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=I1jWM2uCKN9069JkwEAPlUqKV0f6sD/3h3S9kHVD9Vx+x7Vbi06l5ckql3k6NA81LlF8nKO4G2OKmlPw8MxYWE0j3bGWUfvOymvUKeOFWWehHn02nuxYdy620Ck06IVTsd1ApQbBBtn85bJrho5vYqGJ0fJP4Q3vrO4ZZ2v6Iho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=eslt17Z4; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=d5+j2TIv; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1771372264; bh=U2oC9fJRrr6fCBnB7lOeT1V
+	vVvgBUC1uE8T8CLh6uKc=; b=eslt17Z4+WbB296LOt0I4uwFnhZEWAlUQidlnXh0rYfQkLXx7F
+	KarLrz+tjeQqIQyxJAosyLkzdxSOdxCcP3yq+8fLwL/AlZjsEFkV4qEv07AlutagZnzKBowUhEf
+	TsT7Fse1lLIU10u4eo6Cn/Z2WEDJ8lgp39g1fWiGxVkw0LTNzdJ10IV+axNI4Za0QsEbdy62dNJ
+	3daQ6ndkDZlwcQ4/U75iB777XVmkmfnT3Tx+djR21EFaMc17ebvaOkq/kxxbNfqJDbsM9HzXQab
+	G0WTkUaFjtoRTVBXjAgzKNnf1Gci+T/20legxw69XaXsbIxfulGj3mQPKP+3lvOF3uw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1771372264; bh=U2oC9fJRrr6fCBnB7lOeT1V
+	vVvgBUC1uE8T8CLh6uKc=; b=d5+j2TIv4rVzv/SU2XF1A+fVPhBoe//3iZy3KEKkhMRioIDif0
+	XBwozHraQ8FpnjDGjleor8ECLeYITjQtTnDw==;
+From: Aelin Reidel <aelin@mainlining.org>
+Subject: [PATCH 0/3] Input: add initial support for Goodix GTX8 touchscreen
+ ICs
+Date: Wed, 18 Feb 2026 00:50:46 +0100
+Message-Id: <20260218-gtx8-v1-0-0d575b3dedc5@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260216-atlantis-clocks-v6-0-cb46d6a59c73@oss.tenstorrent.com>
- <20260216-atlantis-clocks-v6-3-cb46d6a59c73@oss.tenstorrent.com>
- <aZST4Yywv09u65MP@redhat.com> <CAEev2e_XjxD3kHbOxVYwbf0Q0cwEr96dSQ3hWZE9eLdgeXhs4g@mail.gmail.com>
- <aZT4RsGnu1qlZl-l@redhat.com>
-In-Reply-To: <aZT4RsGnu1qlZl-l@redhat.com>
-From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Date: Tue, 17 Feb 2026 17:29:56 -0600
-X-Gm-Features: AaiRm52TAk-yyamOoXmwj8fFo7BsCbo2w-ZlTEB2IeiGt4tNj-r_C0lIrKQFA3c
-Message-ID: <CAEev2e8hwN1FBR6yMr_NeZrFx3BXNz88RHfHLhSM=GrpExsUyw@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] clk: tenstorrent: Add Atlantis clock controller driver
-To: Brian Masney <bmasney@redhat.com>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, mpe@kernel.org, 
-	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, agross@kernel.org, 
-	agross@oss.tenstorrent.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/13MQQrDIBCF4auEWdeiIYPaVe8RsrDGmoFWiwZJC
+ d49Nssu/8fj2yG7RC7DrdshuUKZYmghLh3YxQTvGM2toec9ci0U8+umGGqD3NpZKoPQrp/knrS
+ dzDi1XiivMX1PtYjf+gcUwTizD6OktmqQEu9vQ+FFgYK/xuRhqrUeALTn750AAAA=
+X-Change-ID: 20250918-gtx8-59a50ccd78a5
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux@mainlining.org, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Aelin Reidel <aelin@mainlining.org>, 
+ Piyush Raj Chouhan <pc1598@mainlining.org>
+X-Mailer: b4 0.14.2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266296-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,bitmath.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-266299-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[mainlining.org:+];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[tenstorrent.com:+];
+	FROM_NEQ_ENVFROM(0.00)[aelin@mainlining.org,devicetree@vger.kernel.org];
+	URIBL_MULTI_FAIL(0.00)[tor.lore.kernel.org:server fail,mainlining.org:server fail];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 27629151EE9
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:mid,mainlining.org:dkim,mainlining.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 257D21520BF
 X-Rspamd-Action: no action
 
-Hi Brian,
+These ICs support SPI and I2C interfaces, up to 10 finger touch, stylus
+and gesture events.
 
-On Tue, Feb 17, 2026 at 5:22=E2=80=AFPM Brian Masney <bmasney@redhat.com> w=
-rote:
-> >
-> > We have a group of gate clocks that have a single enable bit shared
-> > among them (instead of individual enable bits for each clock). We need
-> > to keep track of the number of clocks within a group that have
-> > requested an enable, and only unset the bit if all the clocks are
-> > disabled. share_count is used to keep track of this. It gets updated
-> > by each clock. Hence it's a pointer (and the mutexes around access to
-> > it).
->
-> The code currently has:
->
-> struct atlantis_clk_gate_shared_config {
->         ...
->         unsigned int *share_count;
-> }
->
-> That pointer is dereferenced like this in several places:
->
->     need_enable =3D (*gate->config.share_count)++ =3D=3D 0;
->
-> I don't see why the pointer is needed. Can you drop the pointer
-> and the dereference like this?
->
-> struct atlantis_clk_gate_shared_config {
->         ...
->         unsigned int share_count;
-> }
->
->     need_enable =3D gate->config.share_count++ =3D=3D 0;
->
+This driver is derived from the Goodix gtx8_driver_linux available at
+[1] and only supports the GT9886 and GT9896 ICs present in the Xiaomi
+Mi 9T and Xiaomi Redmi Note 10 Pro smartphones.
 
-In this case, wouldn't each atlantis_clk_gate_shared end up getting
-its own copy of share_count? Which is not what we want. Or maybe I'm
-not quite understanding what you're saying.
+The current implementation only supports Normandy and Yellowstone type
+ICs, aka only GT9886 and GT9896. It is also limited to I2C only, since I
+don't have a device with GTX8 over SPI at hand. Adding support for SPI
+should be fairly easy in the future, since the code uses a regmap.
 
-Every time we create a group of these shared gate clks, we create a
-refcnt variable like this and pass the var to all clks that share it.
+Support for advanced features like:
+- Firmware updates
+- Stylus events
+- Gesture events
+- Nanjing IC support
+is not included in current version.
 
-static unsigned int refcnt_qspi;
-ATLANTIS_GATE_SHARED_DEFINE(CLK_QSPI_SCLK, qspi_sclk, nocc_clk_mux,
-                           LSIO_BLK_CG_REG, BIT(0), &refcnt_qspi, 0);
-ATLANTIS_GATE_SHARED_DEFINE(CLK_QSPI_HCLK, qspi_hclk, nocc_div2_clk,
-                           LSIO_BLK_CG_REG, BIT(0), &refcnt_qspi, 0);
+The current support requires a previously flashed firmware to be
+present.
+
+As I did not have access to datasheets for these ICs, I extracted the
+addresses from a couple of config files using a small tool [2]. The
+addresses are identical for the same IC families in all configs I
+observed, however not all of them make sense and I stubbed out firmware
+request support due to this.
+
+I've taken a lot of inspiration from the goodix_berlin driver, but the 
+Berlin and GTX8 series of touchscreen ICs differ quite a bit. The driver 
+architecture is the same overall, i.e. the power-up sequence and general 
+concepts are the mostly same, but it is very clear that they are 
+different generations when looking at it in more detail.
+
+Some of the differences:
+- There is no equivalent to the bootoption reg that I can find in the 
+public GTX8 drivers
+- Firmware version struct layout is different yet again
+- GTX8 does not expose IC information at runtime as far as I can tell
+- The checksum method differs yet again
+- The vendor driver reads only 1 touch upfront rather than 2
+- Register addresses are 16-bit on GTX8 and 32-bit on Berlin
+- Firmware requests don't appear to really exist on GTX8
+
+From what I can tell, the evolution seems to be:
+Normandy -> Yellowstone -> Berlin
+since Normandy and Yellowstone are already quite different (especially 
+with the way checksums work) and Yellowstone has a couple of things 
+(checksum, fw_version) that appear similar to Berlin series ICs.
+
+I've tried to make the Berlin driver work for GTX8 ICs before, but 
+they're so different (and I lack documentation for registers to perhaps 
+make some parts work on GTX8) that I'd rather support these ICs in a new 
+and tiny driver. I hope that makes sense. I took heavy inspiration from 
+the Berlin driver, but the only parts that are really common between 
+them are very trivial things like e.g. the input dev config or power on, 
+which I don't think are worth putting in a separate header.
+
+[1] https://github.com/goodix/gtx8_driver_linux
+[2] https://github.com/sm7150-mainline/goodix-cfg-bin
+
+Signed-off-by: Aelin Reidel <aelin@mainlining.org>
+---
+Changes in v1 (post-RFC):
+- Drop RFC prefix, the series has been tested enough and works well
+  as-is
+- Update my name and email address
+- Add some reasoning for a new driver to the cover letter
+- Add Rob's R-b on the dt-bindings patch
+- Add Piyush's T-b to the driver patch
+- Link to RFC: https://lore.kernel.org/r/20250918-gtx8-v1-0-cba879c84775@mainlining.org
+
+---
+Aelin Reidel (3):
+      dt-bindings: input: document Goodix GTX8 Touchscreen ICs
+      Input: add support for Goodix GTX8 Touchscreen ICs
+      MAINTAINERS: add an entry for Goodix GTX8 Touchscreen driver
+
+ .../bindings/input/touchscreen/goodix,gt9886.yaml  |  71 +++
+ MAINTAINERS                                        |   7 +
+ drivers/input/touchscreen/Kconfig                  |  15 +
+ drivers/input/touchscreen/Makefile                 |   1 +
+ drivers/input/touchscreen/goodix_gtx8.c            | 562 +++++++++++++++++++++
+ drivers/input/touchscreen/goodix_gtx8.h            | 137 +++++
+ 6 files changed, 793 insertions(+)
+---
+base-commit: fe9e3edb6a215515d1148d32a5c445c5bdd7916f
+change-id: 20250918-gtx8-59a50ccd78a5
+
+Best regards,
+-- 
+Aelin Reidel <aelin@mainlining.org>
+
 
