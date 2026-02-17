@@ -1,45 +1,46 @@
-Return-Path: <devicetree+bounces-266127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266130-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0CEfCG1mlGkFDgIAu9opvQ
-	(envelope-from <devicetree+bounces-266127-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:00:29 +0100
+	id sHxRNndmlGkpDgIAu9opvQ
+	(envelope-from <devicetree+bounces-266130-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:00:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E8514C3E3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:00:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE5F214C3F3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:00:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 66EA73009397
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:00:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BA3B130117D4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC47C356A0E;
-	Tue, 17 Feb 2026 13:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A38D359714;
+	Tue, 17 Feb 2026 13:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="O3U/TqRB"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="HHeudQeX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010046.outbound.protection.outlook.com [52.101.193.46])
+Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012056.outbound.protection.outlook.com [52.101.53.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7773559E1;
-	Tue, 17 Feb 2026 13:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 361BA35773A;
+	Tue, 17 Feb 2026 13:00:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.56
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771333201; cv=fail; b=URx9G3U1lQ6AXOHeJA/ZZkGmSlHKBH8vxN/ji9qyUI6zPjhlQpGvWBeOiXR5R/8hxeOqmYIAvleNsKFGVh8BHOEGsDjcQ6BLS+84cOWpDV+ffEoqeSqm0SS0/FsclvhFQEhbtpn8MVNGGIcfzEq9Sdfiw76qf7f7CFkU4x7TEEo=
+	t=1771333206; cv=fail; b=W4irfPR3O0AxC1IYFJ4f1p7WrG/czNEjpMDxQxrfryOLcid+FtqyTpDaOJ9mRr5fdAQowVtwoTSQT+xedehh704V1V3yCkbrDF8wt4nFeKIe9EZEuxIfODQiB9AX44f5TJ7Ta4/sE70fDuehzRcunVhpza4ypEBGNkRj5wKsob0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771333201; c=relaxed/simple;
-	bh=zH7Z2ZhowapiHc6myVJ22txCXplMjk3tjaDmnggaSwY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Hmxa/U4QweKQzAoURIas52hChi6Vo7F9yL7s0+Au94oCKt6xdWzfRa54+xjA4sFtuvXlXEYqkxQiVOGEa7LUYsGu+XOj5JZsZrSvEaTVvTCc99jMkm8RHLA0FtO0VxbiAtdpPQXw7fzmqs6qHmHrYWo9DGh0gz49mm2jTeXSN/g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=O3U/TqRB; arc=fail smtp.client-ip=52.101.193.46
+	s=arc-20240116; t=1771333206; c=relaxed/simple;
+	bh=HRVfnrgyfjnEF8JNTgU5QYJSJ5QDwAEQK9xpfRmTAvI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jF7zxkC494W03PVR5a3BXchhsgVg8LFPTGlE1OZzubyTg6ZnkYr0MPL83ahiK+TllVCx6Z7XCea0/lw0FS9ZgqubI0LenezGeQfs9Ov3zstk5h/Dg6RaAuYdqwVfokzZ20JtuPAMcqjHxMIAJQIpJvnQ/v9WIWIX20iMjtbvrSU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=HHeudQeX; arc=fail smtp.client-ip=52.101.53.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eMqR8tu2DVeMomQRJC3vkyNX/ct/wFyfJOlug1CFhDlxBP4DHS6Q9NRjSKxleRs7/xGcMEA30hPPdTI8Xfq7o3qi1VGCCjNrrE9olqBZr9TMRt37VnRSqPYy75p9UzsWJjd+aEteEJne7Pz8qN7ncNWJpI5iMjFGvXW6vZz0uJWh4uQ82MgFdmbtsb3GNqVPmYOAWb7cKtVrEgV1fC+IoMFj02hI37eKkeuSMNqX0Py87CN8dVTlO7Vfkkz3NFWK80TAYMvWBu7FfcXIcAhDYK01B5Yma+cRT8kaGlz7BGIyIegN13j+syyt9I8dI6Fte52fA4L5l8GNUVCOWohhSA==
+ b=d54Pq4gDAvpCV4i+bo6MjceGzYcU6xRAGtxjrtPi087Scvwn4IsZj68TnVZ0Bk0QO0VDeOp8Uu+I6aCMb8TmmCeqCq3Kg9LFAcJIvTYaGtBYC1CREkTYVfAhf7QsIqAJve6BRVy7HID6phzIAXE21RNUqxU1L4J7RiL8vqI7p6zgazXeXEmV/Ig3nuCZKGEfcqijA30vHjpU5tsga6IeAdDjYFUve5I8aMGSx7z+E66aiEDkeTrq0fYvXdU3GuNjHS9bePtbL7e5QaaOMknROLUJQhJbV6ADzWeXaAUoDrxm/QouedUbfy9b+EWYti36zxSzAiFFky6UT2/3c4vhHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e3OR6/EXxYEZnYWebb1opRXAJi/f0pCvukd/4Hhuiq0=;
- b=X+ZDa+4ynNJJuyQtBMeR+Rddn4iHOIXviVwZaYe24YCf/otvLP09dk3R6ozvRlsBKlN7TuU9q1wKySbcAVX9enkGj9q8xEnO714+BAU3lnZBanRfdxKAcT/nmy/4/GrPQlbtjWGMPav5zupXOw5tQ2fKRpO5F1uClzLMeS41+2udcI3bekmiOx4+COfKLzPMuDwFu3kJp9DPC0N8Jj4rOkRv4ZBGdO16ulPsRcSezuhcAB476m6fWfEzVsDlLc73cRRHTqnv89I8IaGdOWyXWeBsa5YAoyoJEhdBft50GVv29gb1Shro1oRrqcG0AkkdMeJfsFLaOQZD25LeAzNIxQ==
+ bh=K6EZdjdOBRPE6p/IMq+rwytd79S4yFPyGgvWh6elfD0=;
+ b=VLWWjK4LiuB8eyDTucKZJS61Et5mgEAzA/8xxMPQtooJvvZp6wS//K3+vDGgOfY9OOZKtuiTLHlhl410z/547A5/85QcEDGxZDsZ87vIV2ixIwYrpmmzaoxvokg6TtP3MG4o+NJZ98I+Md3CMY+9lFYOT84vYdwEJR3FpG5ICAbz7agt97l88b4EYY8fIbyr9v1IzqazTom7woLj2dXKPOqSpThXvTuq5dhTn9eNoZVQj4H8s2PwUJuafConPT9CBmx5MkRGT/O/6bf+Dcyh55pnF839zUEts5ul9OOnMs8l/MdHavwz9MTpl/zlU+RHxaMOh1oIEmtfPdGvQVZLAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
  165.85.157.49) smtp.rcpttodomain=vger.kernel.org
  smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
@@ -48,16 +49,16 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e3OR6/EXxYEZnYWebb1opRXAJi/f0pCvukd/4Hhuiq0=;
- b=O3U/TqRBnzvwv4fbHUsUnKT7GKP5/5I//xlChDqZrgPc5DzI7IEXLDDzRFZqQoVr7mB4A4HaRe3h7RwbXCyp1IgT0fOqBdgj8vr86/+capExk8lP998CWeFgwvCrK+V3oBGF/0WXGJsuACxShWxq37F9IfkqEYhmyLan2uQu8ZHmOiOKuT7kMID+BuI0MyujObt69Co4Xoegfq2kCA6SNx5YnzkcXSg8nGKfYcTENG8ioULBUNHtLyiPWKaFgDmrz0yiF08DlM2LtakH96Hwx3mhdsILNP5U/0S+iebnbkJlXUFO9aYpXJ7Tn+DWOBO/m3ty6lJLJ08teVR3mEq9hA==
-Received: from BN9PR03CA0748.namprd03.prod.outlook.com (2603:10b6:408:110::33)
- by IA3PR22MB5808.namprd22.prod.outlook.com (2603:10b6:208:51c::9) with
+ bh=K6EZdjdOBRPE6p/IMq+rwytd79S4yFPyGgvWh6elfD0=;
+ b=HHeudQeXAMhKOUyIVsVmd4MVQb/fKwB+ORSn7CShstd9VBC7cyWCvutkUdOB5Qn8f7HDdCf7W3emtwms93MD7xOluYa9mHE8ktlkiPpIr7v9c/TKxg8+75WWReAXH+cfv0LOOGZ5JOAkZHNtazEUd0lgN8qLvwXM1E0JpzjemFsxNHU/k7pZQekbD5bxWnSD74iwY2f6jkdpw3xNhr+WaXxSUDmfJGi6z9ZY2CB9CKanqKnRyjfrfcczeDNZldBk9H1beEmHey2Y2stnLdGotxh+v7zyYiZoYM9wP8BTCwK9gPQVBtaa6dFoufAh/KSgH4YiQiqfuJOyWtP4aYQXyQ==
+Received: from SJ0PR13CA0060.namprd13.prod.outlook.com (2603:10b6:a03:2c2::35)
+ by PH3PPFBF7E92FB6.namprd22.prod.outlook.com (2603:10b6:518:1::6c5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Tue, 17 Feb
- 2026 12:59:58 +0000
-Received: from BN1PEPF0000468C.namprd05.prod.outlook.com
- (2603:10b6:408:110:cafe::92) by BN9PR03CA0748.outlook.office365.com
- (2603:10b6:408:110::33) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 13:00:00 +0000
+Received: from CO1PEPF000075F4.namprd03.prod.outlook.com
+ (2603:10b6:a03:2c2:cafe::ed) by SJ0PR13CA0060.outlook.office365.com
+ (2603:10b6:a03:2c2::35) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.13 via Frontend Transport; Tue,
  17 Feb 2026 12:59:58 +0000
 X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
@@ -66,13 +67,13 @@ X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
 Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
  not designate 165.85.157.49 as permitted sender)
  receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=atlrelay1.compute.ge-healthcare.net;
-Received: from atlrelay1.compute.ge-healthcare.net (165.85.157.49) by
- BN1PEPF0000468C.mail.protection.outlook.com (10.167.243.137) with Microsoft
+ helo=mkerelay1.compute.ge-healthcare.net;
+Received: from mkerelay1.compute.ge-healthcare.net (165.85.157.49) by
+ CO1PEPF000075F4.mail.protection.outlook.com (10.167.249.43) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 12:59:57 +0000
+ 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 12:59:59 +0000
 Received: from zeus.fihel.lab.ge-healthcare.net (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id 220CCE8F41;
+	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id 29827F884B;
 	Tue, 17 Feb 2026 14:59:55 +0200 (EET)
 From: Ian Ray <ian.ray@gehealthcare.com>
 To: Rob Herring <robh@kernel.org>,
@@ -87,10 +88,12 @@ Cc: Ian Ray <ian.ray@gehealthcare.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/4] ARM: dts: imx: {bx50v3,b850v3}: Update device trees
-Date: Tue, 17 Feb 2026 14:59:47 +0200
-Message-ID: <20260217125952.53997-1-ian.ray@gehealthcare.com>
+Subject: [PATCH 1/4] ARM: dts: imx: bx50v3: Configure switch PHY max-speed
+Date: Tue, 17 Feb 2026 14:59:48 +0200
+Message-ID: <20260217125952.53997-2-ian.ray@gehealthcare.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20260217125952.53997-1-ian.ray@gehealthcare.com>
+References: <20260217125952.53997-1-ian.ray@gehealthcare.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,106 +103,131 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF0000468C:EE_|IA3PR22MB5808:EE_
+X-MS-TrafficTypeDiagnostic: CO1PEPF000075F4:EE_|PH3PPFBF7E92FB6:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 3517218d-0c85-4be1-1094-08de6e24743d
+X-MS-Office365-Filtering-Correlation-Id: a412c932-ead7-4f26-499b-08de6e247560
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
+	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?/Y3c8ZMcEOI52cM1AwcayR61XtBQ+LD0hTNxcTIN/wPSKtP7c/iK3KRdCMTZ?=
- =?us-ascii?Q?Zfnk+7/XoJ7/XxFK93MB6l8BKS67Y5VDCUmZovnF3yiBwnTPiU61QzCEPrpT?=
- =?us-ascii?Q?msRApJv3h8p4u2jMHSbePUGK6kYOV6EfaDLC/UYP1oZ7w+deRcHJsk7EXweV?=
- =?us-ascii?Q?cCwCeV7Odwlm0Z68+/HBxizFdPPDteFxZCx3mQg0QY86QE6SidGIRljQNNU9?=
- =?us-ascii?Q?9AMvUwwSB/9CuSJtbnF911uhnAkWihzEK95aN6MYa76IQ8pgSWRJKmD5ihY1?=
- =?us-ascii?Q?+YLj5xUiltQZDqQxlGgu4FW/Gj3QmBGZNhfu4mlXOAttbWvcokDqkhl8i4ZC?=
- =?us-ascii?Q?gNJweO3aNbD74S17H6TfB1+x1BBwtrPzW8d3ytfV0bx+1aa5i1exZgSjUUIV?=
- =?us-ascii?Q?RXULNhcjEW8PoLDXAvz+cxhuLb9+LSkqArFj+QDt25gqWO8vzkCB9Z5lz8p2?=
- =?us-ascii?Q?RGT7vMen4xdggrOTIdxeYtabtbxBmv7Hhb+UvEiFsr4AHyo3MxMCYjLr8BDl?=
- =?us-ascii?Q?ixkYbIVByY4eqYJavzvBx1v3d6OIcvuKHnZ0JT7xSSrPfMYrb+ZjpAp7gdt8?=
- =?us-ascii?Q?T+3ebegO4h8yh/YgT3VzcfQBiYixgKpmX8/1uSgVbGE3vHEzYk4sqoSe38Pp?=
- =?us-ascii?Q?6qlnOD3NClTVbgoGIYd7oSROsFz78pleuN1zJJNDyraAUv8TCTOcdduvEP58?=
- =?us-ascii?Q?gQVAJRw0D7htIhrur98NABXBoDlZ7qklxB1lLrogwjKYgJTzDao6IyIiSM/4?=
- =?us-ascii?Q?yrJ1mTX2qHW0+KkLh8N1zlwUl+z+d0FYzQHp5Z3Ii29jMCLQ22rOThzWa92W?=
- =?us-ascii?Q?wO2yX5GNNhmnqhwp9bBngqWNlB6uIkgApmaSD43MY0u+KNJGEU46NNGNHk48?=
- =?us-ascii?Q?ob/rwBYJK8/8CMhrfeolf2TPSeXXAbMqsiJIxkf+R75UE3LIk/2Sw2Km2+13?=
- =?us-ascii?Q?vYrXfuEbtpqLRyn+gGV+01YIQFyog5hWYoLgSqGHY4cC7iAb+8Co0SYf49ef?=
- =?us-ascii?Q?S5swLdRT6SimbqF5p6RBvn/PeOLvSQv316vKxRwxvV2l4RyoZ3jO0kEUpJL6?=
- =?us-ascii?Q?lR0Bs0vLIA86o8y4bqNk/BHmsosC+Rxk2zYzzZpYjMInD420sec0gJ+n7o3z?=
- =?us-ascii?Q?ubeB7nAWN1n4q0LDNJVTKEmo0lGyhc2FySen2ISPQ+pk0SOD/EICBE32YJWx?=
- =?us-ascii?Q?5eRV99OA/eTDlElsFbDdjIzlag+9XWzdwpOnXwUtD93DbiiGA32FoMnkteKl?=
- =?us-ascii?Q?sNJ3qU0/zxbk4TmXn1UrZ9sJ5XQB56cJRit+zqXpM0YxSBqG+K24cvT34Ng0?=
- =?us-ascii?Q?iEKt+x50a06sZzOaPkJ1loLzlZC5IL8o2dsCJBPYvAHAvAG0rnnKGzoP5/dN?=
- =?us-ascii?Q?rtQ27MuAN/IyVjK5tcjB90qDwL0Nlfe4DzCb+D08tVOMidkJOYD6lK2+UMwv?=
- =?us-ascii?Q?RDfzqK7Box55Sf1ppU5RTWNdzoIn/fI5S93ygjMdBeZ2oi6wmUtlbBXzyx5Q?=
- =?us-ascii?Q?xv/cPTuB+MG5OfD67vhPesTNKSeNrMfWANktfYjxqeEqn3N8OkbJPbQf/o+U?=
- =?us-ascii?Q?mmrFHWeOootALDYo166LrWLlSWTeBbIdhLSyiSmOMnM4XOeHmMRw11uTDK2z?=
- =?us-ascii?Q?bbNb5JRANB8tR1Xw7TWkJGNdEOeLppE06IFPE1H6o81/kGmkr5cw7UUTrR2p?=
- =?us-ascii?Q?2pAhfw=3D=3D?=
+	=?us-ascii?Q?c0uFUm/ytHV0UzEVNVfazntBcJ6vCt52Kxv110vFt/vqEULLwu9c/td5KG8i?=
+ =?us-ascii?Q?z8Wo69DVTHXm1kWwKLwJ/5frGVv9N5VR1RwdXDijZS21jcoo6fGh49s4qxjW?=
+ =?us-ascii?Q?ybG22dPVkqcN40KZfxxLvXTikps1hVz0luX/DxTBf/8Xg79+QO5P7/3HKXmY?=
+ =?us-ascii?Q?Sqh0p1Wd7ZkLI6IGonau6RiCETOKwMBKRSsOgxbnHrfaLDnyOSlMa+KWbXHr?=
+ =?us-ascii?Q?dZP46oY95+MS6KATCuC0PwqYHpxELuYvkVyXpTZo032VISixICn01bnow3RC?=
+ =?us-ascii?Q?9hsqDXyVNB6Pl0IQC1M2nMBXSK/tyi0eXBerC7mmKJIyIHWfh/rvt7/EiX/l?=
+ =?us-ascii?Q?bwtBiOeWQ8s076wILAmBK0Vd62Yt/YmsoCbc3XBLycLKe7wzUugCT7wqn6yQ?=
+ =?us-ascii?Q?uxHF2LI4Mx7n6dS9UgEl8CzGpkJnebAVOq1cIW4CTMTeDdgh4pha4rYcvBRT?=
+ =?us-ascii?Q?RYA3o7Qj3HoL064iYyQTks4cSaeVdhezjsIqstQQwnJdDpljv/do2Z429cd7?=
+ =?us-ascii?Q?d+PrnwDdSj/vzd4blBsuUQk0uWYqMnesuoXpYhgpUr2+HlIMWakqNyBIkEYn?=
+ =?us-ascii?Q?zRYtDMNIiCDIyX5yLeRYLr1YziLm2W4lDBt8KOXDVyRHE1rZRrH3XKRmJhhA?=
+ =?us-ascii?Q?TGcPuuejzlty/Wb9dn9AA0FMI+RIHrFKdbWGHSVt7axnf2wBBp7e4OjVmerx?=
+ =?us-ascii?Q?puMb2zgIfC6OFtlmcRkIxcv1v/7fPgXsXOOI+4qlwzzr8A4mFmQVoOxyvHz/?=
+ =?us-ascii?Q?z3Fid3qUU/Kfbgwx4B80LttHRcEiKuGFO1omlODJNj2Ml3Keb6tiwD2Nrial?=
+ =?us-ascii?Q?eOpTNrUIJif+0Kt5hF4gmANCBElpyQS95I1MBsPy7oRjFO5xLj+Ya8CuCeIl?=
+ =?us-ascii?Q?8kgFPXV17dpXlONAGgjJVJJaiu3r4+juHjnYJ+D+Z9YBTR3ykedWZ2bFvlSx?=
+ =?us-ascii?Q?nfZBnw8zojXKABoTjgU6BPRCtn9IZKIiKN2DVWMJllWxlnNWsYXpMaYKomi/?=
+ =?us-ascii?Q?tXuyO8Gf+38ERGeHN6+sjABwJC6dyn9lQgmN03p6IjqiFc1lI7IToJdSUc4V?=
+ =?us-ascii?Q?BswFY8yOaV3npFusGGv92mPFPNODnVhjRcd4HwXUYDmwgQJ5khvpiYoIenHv?=
+ =?us-ascii?Q?RFhJKSFoacxRVm8eGRlMOrmf0f+If5zgtcPJO7IuTHU9Nr0MDz6N3MoqdSEi?=
+ =?us-ascii?Q?aFV7lL0N0QX7oxpVgUWgUriyvrgrvaqps9fLVi8RnVuJGkU/p88Je75TEa3/?=
+ =?us-ascii?Q?UhdqI11HsLDouzH/TbImCGlOPkxXOGHBM6+bypBf1cDiFhEr8avZYF5VzhgG?=
+ =?us-ascii?Q?L9Gbcg0jOwGHlRg2Uk/T+J0uawZNUJ8097uMjV13OtEEhBKCwe6sh1IWxyDT?=
+ =?us-ascii?Q?HROUevA+KeHDab2SX5seJGtIWW7HAjaTbodlYSZjnoy/YwsJ5+oncJ4AtlJp?=
+ =?us-ascii?Q?owWQEO1o20SEbN25jhJw4Nq0BqjL20qMm6wtim6+r0Pg85iTX26t9oaHjUMv?=
+ =?us-ascii?Q?K8aLcDRCRK1tyQPvq5pqFcw0zQtXjuidIXURQH11/5DypZddo6m/MxutLKHI?=
+ =?us-ascii?Q?SfoxnoMBmO0N5YlQONbRLjBU1ZnTK1s24yRNw9V8pN7bwkkB/Q2jLgATeFkW?=
+ =?us-ascii?Q?fW0iNAYvr5A2htHsARQxz6HsqM5/AqWEdjzs5wuVANNyBgT67qbu3qeSdRN/?=
+ =?us-ascii?Q?BIUPfA=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
+	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mkerelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	yOOgJMPbY5tT1QdWfofPDkc66Gam1SgL2Lga2cBek/AC5yKt1GzjCXj4xtn90JV6YmKuY2FobaIsJGmB25381BYO7NO4/TON8/4ldyN9h0tO77dsjquz0F43eScHKjeCenGPi+liQ56n3GhmqrLIwMu9vDi+y9Au3RJsM55hjY3qfPdN9pKn1hKbS8nUtDtj23HDXiu8G6KWnuyg5iaj62f4IaCyNL+iC9g2KDx2a14YwwiVaTuK21m4t1D9lMoEVf6Kra9DXrPcGvIYfB0RAcWzHp3R1zv7Shavs1Cpe60G/6Ei0equb2dQQAQb8HJGqgDlZUgzkkApFlO4ARrAzOo90+gBDmKtYeppqC7aVwelFxXo14f5xAX/ihhO8Oju1pie0pFirzhPOvAXkqzYgjkKuV0UM/ETggaPpuL7mZOgFWmYo1amTI9Fw5yrldoU
+	NJGS0DU8wkJ3oiUjojGZIiwQPgx4VjxEVD8sWwz59e9cU37uvgXwEpLtIJeH3atwV+oHZr9oQ1EKjxps9Ey9VEKr3Q/SF6dW1WKZg6ql6Z7M6faKWxFVkfXGMN8zTUboY9Mf53XHbqpsrBpxfZXG0A7TjsNgeLegFoUMlRLsq0wyhJSMcfQZC7S37FsHcyNljCl9anHG0dqEkvbECcgxHqckFiHM3Y+f33sphdRYpqeLcv4MPOjwDMpzrKoxVSPnWAM21QCdzk4kZqegATOFIwjN1uMz04Z3lBOTK6j4fqfobRv2JbF+r0LiwZwa+X4AS3wIYcgZqjV7Q+YyvPV/bik+i0SYNagGcBuO1BcZpShLx3Jm6u6qhcbDO8LSgE6SIVXYBqOQ6otfHDhx0NBitA57HQ9xi53WDy4Ukv/o0zQ/XB63vhMz1wibcmJ4Qiha
 X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 12:59:57.9053
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 12:59:59.7148
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3517218d-0c85-4be1-1094-08de6e24743d
+X-MS-Exchange-CrossTenant-Network-Message-Id: a412c932-ead7-4f26-499b-08de6e247560
 X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay1.compute.ge-healthcare.net]
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[mkerelay1.compute.ge-healthcare.net]
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-BN1PEPF0000468C.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-CO1PEPF000075F4.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR22MB5808
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPFBF7E92FB6
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gehealthcare.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[gehealthcare.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-266127-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-266130-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[gehealthcare.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.3:email,0.0.0.2:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_PROHIBIT(0.00)[0.0.0.4:email,0.0.0.1:email];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 36E8514C3E3
+X-Rspamd-Queue-Id: AE5F214C3F3
 X-Rspamd-Action: no action
 
-Configure PHY speed and mode.
-Configure b850v3 gpio4 line name.
-Disable b850v3 usdhc4 interface.
+Configure maximum speed for the switch PHYs according to the electrical
+connections from PHY to RJ45 connector.
 
 Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
 ---
-Ian Ray (4):
-  ARM: dts: imx: bx50v3: Configure switch PHY max-speed
-  ARM: dts: imx: bx50v3: Configure phy-mode
-  ARM: dts: imx: b850v3: Define GPIO line names
-  ARM: dts: imx: b850v3: Disable usdhc4
+ arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- arch/arm/boot/dts/nxp/imx/imx6q-b450v3.dts  |  1 +
- arch/arm/boot/dts/nxp/imx/imx6q-b650v3.dts  |  1 +
- arch/arm/boot/dts/nxp/imx/imx6q-b850v3.dts  | 17 +++++++++++++++++
- arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi |  4 ++++
- 4 files changed, 23 insertions(+)
-
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi b/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
+index 1e2266a2368b..2c8d2ab8cda1 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
+@@ -124,24 +124,28 @@ switchphy0: switchphy@0 {
+ 					reg = <0>;
+ 					interrupt-parent = <&switch>;
+ 					interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++					max-speed = <100>; /* only 100Mbit/s lanes are routed */
+ 				};
+ 
+ 				switchphy1: switchphy@1 {
+ 					reg = <1>;
+ 					interrupt-parent = <&switch>;
+ 					interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
++					max-speed = <100>; /* only 100Mbit/s lanes are routed */
+ 				};
+ 
+ 				switchphy2: switchphy@2 {
+ 					reg = <2>;
+ 					interrupt-parent = <&switch>;
+ 					interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
++					max-speed = <100>; /* only 100Mbit/s lanes are routed */
+ 				};
+ 
+ 				switchphy3: switchphy@3 {
+ 					reg = <3>;
+ 					interrupt-parent = <&switch>;
+ 					interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
++					max-speed = <100>; /* only 100Mbit/s lanes are routed */
+ 				};
+ 
+ 				switchphy4: switchphy@4 {
 -- 
 2.49.0
 
