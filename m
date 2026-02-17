@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-266277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MN2UHM3LlGluHwIAu9opvQ
-	(envelope-from <devicetree+bounces-266277-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:13:01 +0100
+	id +FNJCyzNlGluHwIAu9opvQ
+	(envelope-from <devicetree+bounces-266278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:18:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0908014FE22
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:13:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7899614FECF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:18:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7B03E307245E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:11:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 91C7730036FA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013DE378D6B;
-	Tue, 17 Feb 2026 20:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8967529B8D3;
+	Tue, 17 Feb 2026 20:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uFB/SZR5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JAKM5OuA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D194B378831;
-	Tue, 17 Feb 2026 20:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662051339B1;
+	Tue, 17 Feb 2026 20:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771359096; cv=none; b=cLXPlBrHhRCnspNtzGwtYL0vd6vpv6y+uns32xFFYNxFCS3Kw0ux+lNj9PxbAnbiQqiFiGuJD18rDGZZao4Zvzk08RQkQOu1t4H94j4hOufAQcmywp+TiACzzJmrgqg4oQCrPkNrASzGYnCHNt2LKS63MBzi209Hw8dlq7vxkFw=
+	t=1771359404; cv=none; b=BG4vOlLXV6+KeiYTT6vzyACnAXRYcd7VpY5WVXrN5ZvQ/qilM03Vc035TRAYENhVzLXbNw42VUXHqnUECBZ5hH4Iig8u6Xd4QavNf91e64a7M/zETPaNgVNsb8dO3Wo8WjT+yLNLLCs5QUWd5tbtQj1T0AOF1n0+m/aT2GdbFdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771359096; c=relaxed/simple;
-	bh=VRortkRssClWyauWydKvrhMIGGwcbJExtslqtcY7y80=;
+	s=arc-20240116; t=1771359404; c=relaxed/simple;
+	bh=k72CnIyG3U/2d7xBlHzW7BOSD9hu587CCzmetLgqILM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ADV/HMHH98az6ZuM9rxu8kwoE7gaQAnieqe+vEHQuNy8Aoj1bjG6dW/mu1GKDMyhARdRkXdMYI7hdGMZg0JTdlo0zt7ReUER39uqSPln8TrB8tr8RlgW9p47Nj+Z3KFHGfnAPsoi8RIGTkBtJgmNE9+CoZ0iwfbybhAHrZv0+oA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uFB/SZR5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB9DEC4CEF7;
-	Tue, 17 Feb 2026 20:11:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ei5hbgZUOEB9f+yy1rLUtm/YeBBGCgOk7AQS0nKLPVSpvN/BOB47UsgrR08hoEUqa+CmZ4YNBTdIt/PcTgOuq90DOAq2cUiSHjWrroAlkyQgGy50uJR65+gr/LVymzZUauj+HGhM/TmVqa/OqQFqvA6hUgP/jLtBx/aTysrBLo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JAKM5OuA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 705FBC4CEF7;
+	Tue, 17 Feb 2026 20:16:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771359096;
-	bh=VRortkRssClWyauWydKvrhMIGGwcbJExtslqtcY7y80=;
+	s=k20201202; t=1771359404;
+	bh=k72CnIyG3U/2d7xBlHzW7BOSD9hu587CCzmetLgqILM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uFB/SZR5UsBV6GN3Tn3cXr4aXLTd++DUOgj9U8rheVXP/p3LnxZzJArqrRNdtyaOz
-	 odRF5TZIrsF86DErdirBigDwXpRyVrRv9IDTIBmAyrRZjsaTnWr18FpgQ7WlrEBptu
-	 xfOqxpvqaEw+oGT5rk3JECBu9nyFhgWYZ4bPTPINPrja4qhK8PZzp94TNaHEhkHyqh
-	 NheWTz2q5nTY2ronvO4jG326GCJim4SWJ2yoQBsf3e4Y1+hHt3Q4pGivEIUgvvEudn
-	 EP3YMc5UwJ6USBGGSmPjfizkKMF0KzLR1F4yH3hUCPZLSZ8w0qcj4GZJWh3HJv8NLL
-	 u4ThXss64O2aQ==
-Date: Tue, 17 Feb 2026 21:11:32 +0100
+	b=JAKM5OuA4LjGL1bUeFY4+42U1PIJjhn7tFYW0PBWyPBd4g5FFGl133a4dGiIknKcx
+	 2PMGTp/yXZC2evyElCorJZhxBgFNI9eTTzGmhO7V1VaHV779GaIVxb2IJbpp6ixLDn
+	 SjqIeZQDWZ0lj/wD530sTExOIXNyRbiNiJs/UOOTQ7XSqNilXF+GfFExCRENxHKPgB
+	 a6yqnZa4NOdFzHsDIOy8B9emz8HavzgWLJkywpp/sMgmTn75S1qN+c/cjr7HhxYI6R
+	 RNq7NJe2eR1LFebUq8mm2NO40+XQoIKPI/9Aj5a0xoGExdGnZOIHWxnKPKpMP4AaRp
+	 aDeGIE70f/n3g==
+Date: Tue, 17 Feb 2026 21:16:41 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Victor Duicu <victor.duicu@microchip.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, marius.cristea@microchip.com
-Subject: Re: [PATCH v10 1/2] dt-bindings: hwmon: add support for MCP998X
-Message-ID: <20260217-sincere-spotted-lionfish-d7abca@quoll>
-References: <20260217-add-mcp9982-hwmon-v10-0-5e0aaae6f289@microchip.com>
- <20260217-add-mcp9982-hwmon-v10-1-5e0aaae6f289@microchip.com>
+To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Abel Vesa <abel.vesa@linaro.org>, Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
+Message-ID: <20260217-berserk-puma-of-focus-bcbe82@quoll>
+References: <20260217052526.2335759-1-neeraj.soni@oss.qualcomm.com>
+ <20260217052526.2335759-2-neeraj.soni@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,172 +63,110 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260217-add-mcp9982-hwmon-v10-1-5e0aaae6f289@microchip.com>
+In-Reply-To: <20260217052526.2335759-2-neeraj.soni@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266277-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266278-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 0908014FE22
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7899614FECF
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 04:06:13PM +0200, Victor Duicu wrote:
-> This is the devicetree schema for Microchip MCP998X/33 and MCP998XD/33D
+On Tue, Feb 17, 2026 at 10:55:24AM +0530, Neeraj Soni wrote:
+> Starting with sc7280(kodiak), the ICE will have its own device-tree node.
+> So add the qcom,ice property to reference it.
+> 
+> To avoid double-modeling, when qcom,ice is present, disallow an embedded ICE
 
-"Add"
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-See submitting patches.
-
-> Multichannel Automotive Temperature Monitor Family.
-
-...
-
-
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,mcp9933
-> +      - microchip,mcp9933d
-> +      - microchip,mcp9982
-> +      - microchip,mcp9982d
-> +      - microchip,mcp9983
-> +      - microchip,mcp9983d
-> +      - microchip,mcp9984
-> +      - microchip,mcp9984d
-> +      - microchip,mcp9985
-> +      - microchip,mcp9985d
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-
-Your interrupt-names say 1 item is correct, so these are de-synced. They
-should be always constrained the same way.
-
-> +    maxItems: 2
-> +
-> +  interrupt-names:
+> register region in the SDHCI node. Older SoCs without ICE remain valid as
+> no additional requirement is imposed.
+> 
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Co-developed-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+> Signed-off-by: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+> 
+> ---
+> 
+> Some initial work is done by Abel here:
+> https://lore.kernel.org/all/ba3da82d-999b-b040-5230-36e60293e0fd@linaro.org/
+> and by Abhinaba here:
+> https://lore.kernel.org/all/20251009-add-separate-ice-ufs-and-emmc-device-nodes-for-qcs615-platform-v1-1-2a34d8d03c72@oss.qualcomm.com/
+> 
+> This patch adds the purpose and usage for phandle in the description and encodes
+> it properly in the schema.
+> ---
+>  .../devicetree/bindings/mmc/sdhci-msm.yaml        | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 938be8228d66..9b902e0c8d09 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -140,6 +140,11 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: platform specific settings for DLL_CONFIG reg.
+>  
+> +  qcom,ice:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 > +    description:
-> +      The chip family has three different interrupt pins divided among them.
-> +      The chips without "D" have alert-therm and therm-addr.
-> +      The chips with "D" have alert-therm and sys-shtdwn.
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      enum: [alert-therm, therm-addr, sys-shtdwn]
+> +      phandle to the Inline Crypto Engine (ICE) hardware block for this controller.
+
+
+Srsly, I asked once and not much improved. What is explicitly written in
+coding style which I asked you twice to read?
+
+And how long is this line? Why such trivialities cannot be fixed and I
+need to remind this every time?
+
 > +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  microchip,enable-anti-parallel:
-> +    description:
-> +      Enable anti-parallel diode mode operation.
-> +      MCP9984/84D/85/85D and MCP9933/33D support reading two external diodes
-> +      in anti-parallel connection on the same set of pins.
-> +    type: boolean
-> +
-> +  microchip,parasitic-res-on-channel1-2:
-> +    description:
-> +      Indicates that the chip and the diodes/transistors are sufficiently far
-> +      apart that a parasitic resistance is added to the wires, which can affect
-> +      the measurements. Due to the anti-parallel diode connections, channels
-> +      1 and 2 are affected together.
-> +    type: boolean
-> +
-> +  microchip,parasitic-res-on-channel3-4:
-> +    description:
-> +      Indicates that the chip and the diodes/transistors are sufficiently far
-> +      apart that a parasitic resistance is added to the wires, which can affect
-> +      the measurements. Due to the anti-parallel diode connections, channels
-> +      3 and 4 are affected together.
-> +    type: boolean
-> +
-> +  microchip,power-state:
-> +    description:
-> +      The chip can be set in Run state or Standby state. In Run state the ADC
-> +      is converting on all channels at the programmed conversion rate.
-> +      In Standby state the host must initiate a conversion cycle by writing
-> +      to the One-Shot register.
-> +      True value sets Run state.
-> +      Chips with "D" in the name can only be set in Run mode.
-> +    type: boolean
-> +
-> +  vdd-supply: true
-> +
-> +patternProperties:
-> +  "^channel@[1-4]$":
-> +    description:
-> +      Represents the external temperature channels to which
-> +      a remote diode is connected.
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        items:
-> +          maxItems: 1
-> +
-> +      label:
-> +        description: Unique name to identify which channel this is.
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +
-> +allOf:
+>    iommus:
+>      minItems: 1
+>      maxItems: 8
+> @@ -223,6 +228,16 @@ allOf:
+>              - const: cqhci
+>              - const: ice
+>  
 > +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - microchip,mcp9982d
-> +              - microchip,mcp9983d
-> +              - microchip,mcp9984d
-> +              - microchip,mcp9985d
-> +              - microchip,mcp9933d
+> +      required:
+> +        - qcom,ice
 > +    then:
 > +      properties:
-
-Missing constraints for interrupt:
-
-> +        interrupt-names:
+> +        reg-names:
 > +          not:
 > +            contains:
-> +              const: therm-addr
+> +              const: ice
 
-No, you need to list the items. This *must* be strictly constrained.
-It's explicitly requested by writing bindings.
+And reg is still 4? This is not correct syntax. You need to define
+proper and final constraints per each device. I would write example, but
+why... more things you could just ignore.
 
 Best regards,
 Krzysztof
