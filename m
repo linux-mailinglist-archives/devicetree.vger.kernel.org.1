@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266158-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAotFPBrlGmqDgIAu9opvQ
-	(envelope-from <devicetree+bounces-266157-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:24:00 +0100
+	id YP4kMSRslGmqDgIAu9opvQ
+	(envelope-from <devicetree+bounces-266158-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:24:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A5214C873
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:23:59 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4577014C8A7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:24:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 12FDF3004601
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:23:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 48E1430053A1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0905E3644BF;
-	Tue, 17 Feb 2026 13:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8341736AB52;
+	Tue, 17 Feb 2026 13:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MyMgO3lf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tPhpKQB3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8381361DD4;
-	Tue, 17 Feb 2026 13:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 604EE2DF6E9;
+	Tue, 17 Feb 2026 13:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771334637; cv=none; b=PYE2M6FY2UwBbdbssGbY2Vk7sBn485uwXsyRNHjgM8kcjsJzecwjFyUbWw8aw19ak5DNe9VleNpvyceC1Tpi3z/QmwCF1BYRvXHQ2bEr7Lbo2CffR3KDG2Q+inS7AR7NZvSFoJfEkb8nah05KjOsaIE9PAsP60WRNp3OziGpbFk=
+	t=1771334687; cv=none; b=RTTlvIm9CSHZQrh5Bf9kgtvaxA7pOQa8u/dYGaqFLMqcGwJI/uQGbJCzKrHXT48niU4fK7QTWamM4v1u1lwFZoyEiwsiO0qA6vhdCiXrSalrYk3tk7DCGIqv2lkVB9hEyop9YAN7V4lYdhNOBizt8Kk++lMT0N66aVQdkdckv5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771334637; c=relaxed/simple;
-	bh=Zls0GErGtaDfzPX4W4Y8VqqJI+OaXJqC/DRdN/TwR/Y=;
+	s=arc-20240116; t=1771334687; c=relaxed/simple;
+	bh=j5sNG2rPMR6fkTZsaybkkA4M+T7HkvshTUHhVkRsjRo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CD769reaaC22ZJWZcHBJ/xB51Rc1z0yikBa497DByN3Ca/YP089JamvwWcdhXhy9MHxxNpiMxL/QH28YDV2ERHvqnhA2fQXm4Dl+4xUBmtySBHMF3Cb99I4QtHF1YjINogTjBPvZOjFPGxI1X+7kWdHUaKVRvu6jjMLOIgKPZPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MyMgO3lf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE915C4CEF7;
-	Tue, 17 Feb 2026 13:23:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ajVhLrNJnHIlXjucZ5RHM/0K+4tYKVXH7li9hmMfiR/6f/jfiXDMNhzIRmsAE3VAG45FXcx3q+YkW57qB7h9u4KJ+i0sBVuZYFSR2cDKkVaPLD+0IQHdkjJvh64OPHpdhWwGToWUVwWyWRwIF66EzrCZEp3uti423AUqz8RFmWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tPhpKQB3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85D14C19423;
+	Tue, 17 Feb 2026 13:24:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771334637;
-	bh=Zls0GErGtaDfzPX4W4Y8VqqJI+OaXJqC/DRdN/TwR/Y=;
+	s=k20201202; t=1771334687;
+	bh=j5sNG2rPMR6fkTZsaybkkA4M+T7HkvshTUHhVkRsjRo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MyMgO3lfEj8tSIhRrmBVfPQgpR4SUjfFRxMid6B8NQlZccqrg5ITICUoEpnaqTS6u
-	 7YebdOhNLQkAbW15vgwH9SswscsNBWU9wirC1maIbmu6DKnbkay7jUAcFFJaNfy+wP
-	 2w17h9CbFeT3bvrk7l9qtcCoA2XCgtbmE1Py00NVCXv/BLlYHB4SdDircOSfdXBAZ7
-	 OXviaJsQekErO9/s4S/Owb6AaiGUFu2X9tC47xZAyMeuEDbxORrtseqTu5WKtW3cAN
-	 vbkKf4RvgnzW9BbolxZHNDiF3ZWwubO3D6Tht1+SmnXxQjvpm2Ui0U7SMlZ7nOqy+A
-	 eBBNO3ShPbSYQ==
-Message-ID: <af349cc1-cd30-497e-a36a-81d50ef3e659@kernel.org>
-Date: Tue, 17 Feb 2026 14:23:54 +0100
+	b=tPhpKQB3DQjX/vWZifm9N/ZAnNyE7J1UkO3laR+wLP+Kv3e8mm0vefjqQU42DM7mw
+	 JZiDiCw/mtRPT7K+JBZbxAKCvCMkn5lrj9HzCGd+Tfw84VQYMqBYRSMIKtaGqT4Ook
+	 5AJYlttHGzIugd86ro0MkQ6+m+QdHjq+cKtFjxW3Gzs9k3cQ5AK2PxjKegGV5szhVh
+	 zqBJee0VvFHRl1UJfAl2T/KJ5san/hr9e1aKlKJiZBPdZxe8oMBxXvQvpHZLvKTEBc
+	 tj0+DRe94gvNN5BHFhj8LrP5mYHaTPTKFR4DOYFxJF6IuGnXIZ5rAGAHig0p3xm7nI
+	 1aK0YAL1XWaAg==
+Message-ID: <82db0453-243d-4ea6-a8dc-f12c91d0f2e8@kernel.org>
+Date: Tue, 17 Feb 2026 14:24:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +53,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/3] dt-bindings: net: wireless: mt76: add more PCI
- devices
-To: Ryder Lee <Ryder.Lee@mediatek.com>
-Cc: "robh@kernel.org" <robh@kernel.org>, "nbd@nbd.name" <nbd@nbd.name>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
-References: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1771205424.git.ryder.lee@mediatek.com>
- <5022737c82052132702004ab0fdc073f5cf6df69.1771205424.git.ryder.lee@mediatek.com>
- <20260217-lavender-dove-from-tartarus-fca40c@quoll>
- <23f43fb875ca41a945caceba5c9fcf05331afd58.camel@mediatek.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add Powertip
+ PH800480T032-ZHC19 panel
+To: Florijan Plohl <florijan.plohl@norik.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+References: <20260217123759.169317-1-florijan.plohl@norik.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,85 +112,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <23f43fb875ca41a945caceba5c9fcf05331afd58.camel@mediatek.com>
+In-Reply-To: <20260217123759.169317-1-florijan.plohl@norik.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266158-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-266157-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[norik.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mediatek.com:email]
-X-Rspamd-Queue-Id: F2A5214C873
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[norik.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 4577014C8A7
 X-Rspamd-Action: no action
 
-On 17/02/2026 13:59, Ryder Lee wrote:
-> On Tue, 2026-02-17 at 08:48 +0100, Krzysztof Kozlowski wrote:
->> On Mon, Feb 16, 2026 at 08:01:15AM -0800, Ryder Lee wrote:
->>> This adds support for mt7915/mt7916/mt7990/mt7992/mt7996 PCI
->>> devices.
->>
->> No, it does not add any support. I asked you to provide rationale why
->> this is needed.
->>
->> Also, read submitting patches finally - it is not "This adds...".
+On 17/02/2026 13:37, Florijan Plohl wrote:
+> Add Powertip PH800480T032-ZHC19 7" LCD-TFT RGB panel compatible string.
 > 
-> Are you referring to this - Describe your changes in imperative mood...
+> Signed-off-by: Florijan Plohl <florijan.plohl@norik.com>
+> ---
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Yes
-
-> So, what would you like me to describe this change? what about this
-> "Add platform IDs for known devices"?
-
-First comment - provide rationale why discoverable devices needs to be
-described in non-discoverable way...
-
-
-> 
->>
->>>
->>> Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
->>> ---
->>> v7: add missing dts mailing list and maintainers
->>
->> No, you still did not bother to Cc maintainers. I gave you detailed
->> instruction which you just ignored.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Oh, I used to do it this way. But aren’t you all on the devicetree
-> mailing list?
-
-No, I am not. None of us supposed to be anymore, although we can use
-korgalore to achieve same result. Patchwork is on DT list, but the docs
-still ask you to send to the maintainers directly and maintainers
-organized their workflow around this.
-
-> I did notice that running get_maintainer added some more people.
-> I’ll include all dts maintainers as well.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
