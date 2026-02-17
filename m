@@ -1,461 +1,215 @@
-Return-Path: <devicetree+bounces-266151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266150-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBMGMilqlGlFDgIAu9opvQ
-	(envelope-from <devicetree+bounces-266151-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:16:25 +0100
+	id 5WeHM+9plGmNDgIAu9opvQ
+	(envelope-from <devicetree+bounces-266150-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:15:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 275ED14C7C3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:16:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 449B314C771
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:15:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1F0E3304CCF7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:15:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 01D8B3013B43
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8CE362147;
-	Tue, 17 Feb 2026 13:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E64361DC4;
+	Tue, 17 Feb 2026 13:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lb0bsrf8";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d2tLWr/5"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="g/tv1Yya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010060.outbound.protection.outlook.com [52.101.61.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFE0362137
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:15:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771334132; cv=none; b=LsTyitxanIpDSxQv8DsAWoCQGyohmXbg75oXALRmWXD8hxDuDt2rta7Jas/Elfn3hW5f9HTh28yeTQa/DN3aKoq50+/cqsb6JwVlmdDVDmB194hfGKN3Xokj8qegCzhn89K979ZkYRj/5/yNlSCmhT9KLQaGrEiGv9I/ucFDn5E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771334132; c=relaxed/simple;
-	bh=bykETRd58Dgk1h8sjkjLrRt+Ejl+t02vqtwhc6NEw2I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q2o2QMTvgqTIjZw2bwUs2uPWmL/ATzvreC4YDrUdTvzB7MB2wItTIlNv9NSk1oDi8qftWxH3qA/D/ic1NnCaAF1YsVkseVRXxpm8cw93VG6NJC0ozi8Yao4yw2xPiYrLcEhMpxMDM/c3gWjPrSvNSuW60oml2+hRzgZaCThsDr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lb0bsrf8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=d2tLWr/5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61HAvjEw850154
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:15:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cDJXIOFVhcsv24XAXUhX4av9F5wMERJmoHTDSIHUUv0=; b=lb0bsrf80ot+EW9J
-	AVQkcMyfQolDxZx+BEZeXoQ5CEnPD9rva4zulcKyPNDvGyTuMmNkr9tW3M+Tc8Yz
-	s/wygVjk/vFou0M4aqr9iklS39rKevj9NKTk1t+FcHCaxpUB+5ZrisM6gIYkU8Ij
-	cBtGu6oKlZiIEObRVVV8JPlGccCcbCyzmI7rhfgd6cX0483kX7wUVUzWA6c/uYxk
-	7lC1ioCtBnr5e8wF5rY7EW/JQSYn6CGIq0foeNJS4GKrQglyZ4gaTjLH3N+tnJwp
-	Zwe8wQk8MXQZYqgsqZzzPh9vXM8rz21Vedujw3F8Vlxy1bgbh2S+PfNKQ7Dx8HuG
-	5pRf3g==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc6nrtec7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:15:29 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a7701b6353so56813625ad.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 05:15:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771334129; x=1771938929; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cDJXIOFVhcsv24XAXUhX4av9F5wMERJmoHTDSIHUUv0=;
-        b=d2tLWr/5/Al2RsBAfZsGhAYOcjsaAI/8qRYtFTnhxD0BuV1fVBidQywlpkCPrys3p7
-         sKQ0451yUbCOWl6QoLSkNmFog3pRUUdC3HV+H32maV8JoGRDt6PGEPNx0vP+WDqQz0W8
-         qLNyoUijbWa9O5TlQxnXzoTI91QDCPeZi3q9ve+jtK6/DfceQ82JV/ZXBtKLze7OTlpD
-         f0MM5rSVRDBPY5s9GvfInLfCHXPbggmJE0Mbo9on6X7Tkn2hcwhsQez7FjWzEqrHWpnd
-         VH+Z5OFMKGVMwkVgxSbFeS40amVYikvdzJLeTf1kntc3//V3wIh3uTKzON+hdGG9a5qd
-         dObw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771334129; x=1771938929;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cDJXIOFVhcsv24XAXUhX4av9F5wMERJmoHTDSIHUUv0=;
-        b=VZr1sHwnc7LIsuyEvOXXpIMZykz4iELI8H7/5GEIqax6/pRDteGtNTY5US4S9WevJc
-         oGiWVUT4xTNlBkvT2gs2XN067e93MFmpONypsMFFrRZkMVHt06uDP4IJI8t62xWw04vB
-         /xRAOpxNZbeL9VjGq2wwzTDU5YdN9e++RecsY5Ua6fCNKemVpJk+C1lJSNtAFUP98Ivk
-         OvfCroQTW9h+pwqWbecapc7cAFrb97fiq3E/1TGYdxIguwr5+W1MT43f/DtaOB2//TgP
-         kVlXTwXvA1doQy0fQqYwA3GO6irLVMB9ZqVTiSX24qOcTjjRyRR5Dhgf9Tn81X6BE1Oo
-         ToeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8AVeucO9JjOAJyMzCwqUFSq8PW4HHM65ipAz+0cyzUhglG59YX86PpAYW60k4a694wtinsDVruAed@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHpbJG71ixxL0Xc4gi11dW2p33LaxDdfjaXBFE8q4VLL19PBO1
-	qezLXKeBKpC7qHV5L8jd0wha2RjfjTw2JvCN/GrxUEGVvwFxUa9Phms7DJhN1gS7K90YX5EYoJL
-	+jMLKYz1gVQ9zSO+4cS5ith9mJXzfMhBiFmpbEKEvKI6J4+W9yDemSIfvq5w6jGPA
-X-Gm-Gg: AZuq6aKwoICu0ywjYNwPU0wcFsOIzr1Bd46bzzhjm061Leopr3a6xZ5sKcaDLSWlP9B
-	ltHTg5MtFZxwfE7QDSuBKZTM0bfaLi5ApWWfb3FFEtTF5MmqnaZf7oB7G3zHQHqFDsV00C0Flk1
-	MUXl+zZdXuCNcGRbc3tMVjZ8Vl5m4/U5vWmIbVd7IjkjqxHLfbbGmi63cxGCKSquh7+ojixzCPN
-	F37zG3PdwcMD9pR22EoeY/UDmsB7C5tqhlb1Jr+O4i0iuq3/Vgf+ohYqNrRoEsfcSyfzqN7XlKS
-	8bLkHDOwf3Ps3tydbNyMqx3V9ZaQA3ad9vBOtKqcIBdYgQbJDluPbM2Sova9Q9UXEdqV0bQLqHV
-	sNNMVB2vpTyU9SkK3udtINseRVw1GsdJ5o8/VqoV6hlHQ8KYUGZ6img==
-X-Received: by 2002:a17:903:b43:b0:2aa:f469:fa23 with SMTP id d9443c01a7336-2ad17432168mr95805805ad.4.1771334128719;
-        Tue, 17 Feb 2026 05:15:28 -0800 (PST)
-X-Received: by 2002:a17:903:b43:b0:2aa:f469:fa23 with SMTP id d9443c01a7336-2ad17432168mr95805145ad.4.1771334127877;
-        Tue, 17 Feb 2026 05:15:27 -0800 (PST)
-Received: from [10.204.100.45] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aaeab38sm99970525ad.82.2026.02.17.05.15.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Feb 2026 05:15:27 -0800 (PST)
-Message-ID: <aae75a6b-35d6-47ac-9852-d95b42849f2d@oss.qualcomm.com>
-Date: Tue, 17 Feb 2026 18:45:13 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2415F33D51D;
+	Tue, 17 Feb 2026 13:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771334122; cv=fail; b=lfUAnGc3d3oe4y8Ob6DORYaf97964QHEIKNvqoIsbTk29vUqKHRH4tHO6F6TGdstd9t+43RSFd+vKrjv1+5SBfDJPxsFIwSbU6WKfzM+/SN3uyMCTvDm9I5G3ImWJ2q9F6kQEpFOOU4DhEpA6uPCybZtfXc+RgAuSC1X3KzfV8g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771334122; c=relaxed/simple;
+	bh=u9SxWKyIPlbyp+oLr1KOoOziRg/8FfUycjB6QR+1g2s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X9CVmWP444hmmbojm5jaUrCFhTmevEckqLMk1FpJsIJIERqFan1exYlF9sTzNXpWz11kI99DfCCDkDNg0SBueU1+Y3QxsXJYZc4fTxfKnQsqSC6/6AaXaCvcpkANJFkl/BJbjpEGPJu+KJ4G8N98tGN8OWzz9vWdZgnbMYjCmcY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=g/tv1Yya; arc=fail smtp.client-ip=52.101.61.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tOTyvkCshA+tKRoR/ubH/Pq+uMgRU5wqkCSysDVCbAdlwlJGxZnFpcna+Q5B/fDsn51NYP6Ml+RnYIB7rxBvZXae1WdUkkNJhR/olKoFGQ3SeqNAH9W43fNMG7WG9tFTd2/8SB4dIL42Oa3IYlgC50EgX2dVxtVSfsePqSh1NpxhkzIzJikQEVyrvvptB1iqRI8JyFWGY9zeXh4pk5Uz5MEbW0sO0zLY1DQfwczIpzv+LQ4aABt7D7ZmDXaI2gY6rRghc20D2DFYmwuYTIyxKCZHmDwsyIiVNRNTJRlYiIL1hN64bfk6NMNJ9jm3SBC0fN/OWfmb9yhkFMHNFSnPKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CQCVNJ0xhxgMaoaFhTWQILaSB8T+RgQ3cn2tYyBCj7Q=;
+ b=v1kqHGMFgDMksbt7mgY5fNUzD5nHvJp2XjB5bwh1kXjCRwW0g6ydDW5CZ+wPYBvdZHNNBnbh5Q1vvUpI1325nrJfbScTx0DDw6dBLeVC6RPbJvhCbbKTyDrLDwMBrmU3ILhdkmfCcuZdrxhfzDYkphutzMzBLS+vCHD/CJLFvBqXJDpRoLh369Kt35fSWEjWWrR5HjwIlyfSSHUJ24+NjHWH2JNRdQWl35K8Ac0ezKvrdyk27ChrBm2Cb2wXy3UdTHEC1hbr4jZTZngo/hLIJqHKbrvJzK2CJoDxm6GnqPwyFKfWIr1ewi24nszX6PJv+RBL+d0N2nD/wPVCtbbrRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CQCVNJ0xhxgMaoaFhTWQILaSB8T+RgQ3cn2tYyBCj7Q=;
+ b=g/tv1YyaD5fOUhuq8WJ7UA2SWKqyC0rBynwyBK20SQpXRDfTJ4KsVYAYoChPOOCAuKiO/GAXvz1r6y7kuM4DktmRKximotdOndg1p2Eb+8PQXiwjSbLBsF57URS+5pZEm/4s2QpnNsxMYamsNNTR6BzPEjbGkCML7qFLs+c8u7m3UQcV/IFwlEOBvkllEKlHqBtKSfCzr+7XrO4IdY50zH66UnND+sl4VFgZw4v3VwycIqy9gdsbkyhdrPEThCirqYU7fXMh7p2AxoIR7wVYt4wEt0MuNaRuVALjwr2d+dd2j8zdBNf2X9zISwAvtnQ+eCSTHcshZ8ggI51Qi/Juvw==
+Received: from SJ0PR03CA0051.namprd03.prod.outlook.com (2603:10b6:a03:33e::26)
+ by IA2PR22MB5618.namprd22.prod.outlook.com (2603:10b6:208:4aa::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Tue, 17 Feb
+ 2026 13:15:18 +0000
+Received: from BY1PEPF0001AE19.namprd04.prod.outlook.com
+ (2603:10b6:a03:33e:cafe::6) by SJ0PR03CA0051.outlook.office365.com
+ (2603:10b6:a03:33e::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.13 via Frontend Transport; Tue,
+ 17 Feb 2026 13:15:18 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
+ smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
+Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
+ not designate 165.85.157.49 as permitted sender)
+ receiver=protection.outlook.com; client-ip=165.85.157.49;
+ helo=atlrelay1.compute.ge-healthcare.net;
+Received: from atlrelay1.compute.ge-healthcare.net (165.85.157.49) by
+ BY1PEPF0001AE19.mail.protection.outlook.com (10.167.242.101) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 13:15:17 +0000
+Received: from zeus (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
+	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id C47D0E8F41;
+	Tue, 17 Feb 2026 15:15:14 +0200 (EET)
+Date: Tue, 17 Feb 2026 15:15:14 +0200
+From: Ian Ray <ian.ray@gehealthcare.com>
+To: Daniel Baluta <daniel.baluta@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] ARM: dts: imx: bx50v3: Configure phy-mode
+Message-ID: <aZRp4tqggA83BcYT@zeus>
+References: <20260217125952.53997-1-ian.ray@gehealthcare.com>
+ <20260217125952.53997-3-ian.ray@gehealthcare.com>
+ <1fe4e13d-cc0f-4168-9c5d-db372433c384@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] media: iris: add context bank devices using iommu-map
-To: Robin Murphy <robin.murphy@arm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
-        Hans Verkuil <hverkuil+cisco@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
- <20260126-kaanapali-iris-v1-5-e2646246bfc1@oss.qualcomm.com>
- <02b3d0f5-f94c-43cd-93af-97cfcf7751b1@arm.com>
-Content-Language: en-US
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <02b3d0f5-f94c-43cd-93af-97cfcf7751b1@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=XKo9iAhE c=1 sm=1 tr=0 ts=699469f1 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=EUspDBNiAAAA:8 a=8ZOrhM5FIgLh972jGGIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE3MDEwNyBTYWx0ZWRfX2amdTzZTVHgu
- aFSIeEmB0ATHVfplbx5WhL7n1bJJnfEZ/lAgTPoHtwEK/qlbx+gbozgSsQzKrTB07lOpiA0xwTx
- YRVKLWgw0hCn9M9gk3rnRTFnolaQMFQxRT8ereInw62jw65yUA5R/QgsojKKGHPUmVW8tn4q48b
- ecWpkVWs5G30jNg5zL4TaRvGrxsipcQZUUZufKHUIMharFhyD9Ar4qppWlkOGvMmzGNscEqda6N
- AYAMNsfG6uYuzVlgAIeg94gVkDPOXvWgiEsAMbaD17mvcAfmAKQBZqo1GkTG4rYyk6PGMFYpE7y
- 44VNSVHHGfZzHcrnT/TZCkeXiI1CYNL+sfrJJJsFfKc/dYEJw53DxtD2zkC3zuMuJ7lIeD/TU58
- pTaIb02jb6FI3TKkSv6cvh0no9Yb2d4bVkfh8U55F8oAyicGHJa1U5ZiNPHsWTa9V+sTyK+z2jS
- G3/0bJF7ww2rSY0M2ig==
-X-Proofpoint-ORIG-GUID: NNMwlJpsLbPa834Fv1SMwoqOcjcUClSZ
-X-Proofpoint-GUID: NNMwlJpsLbPa834Fv1SMwoqOcjcUClSZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-17_01,2026-02-16_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
- clxscore=1015 adultscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602170107
+In-Reply-To: <1fe4e13d-cc0f-4168-9c5d-db372433c384@oss.nxp.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE19:EE_|IA2PR22MB5618:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6caac805-a745-4c9e-e181-08de6e269894
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?VU1Oem1VODkvWnlwWUJNWVlXYjljWUhKVzYrNmJuMnd3aWt0REErNFpMeGJT?=
+ =?utf-8?B?VUFmNDkwZ1BNb1oxWW1FZnBkZ3psVzV2VHBkRDZsQkNFWHl6ZFZoOGRRSmdN?=
+ =?utf-8?B?c1JBaTRKUUVTWnYvZ1praUlxTGc4WkQ2K1VoNWZWMW9VMUNZUk5ma3JPN1FG?=
+ =?utf-8?B?a3ErbFdhQStIemQrU1RRMGQyT2VwZGlDWFVuNzVQTk5HSnhQWmtDcVlMc0dJ?=
+ =?utf-8?B?K1pxUzFYaE1xcVN1S3VIaGk5Z2U1VElLMUtsdlI5UnA2bERwOFdUdzhOaGRy?=
+ =?utf-8?B?N09UcGE5R2ZBaFBicmZwK1U4cFBsRWRLMU5sTGtuZExiN3ppYmxEb0I3dVBZ?=
+ =?utf-8?B?dU4vUWV1UTh4UWFUK2RZWExldlNZYWVhK1Z4NlFFU2svb0VsREJNTzdWT2Iz?=
+ =?utf-8?B?M0hRSGYwQkJnbGtuMEo5NmdsQzV3QWVFd3RtZllrdE40VFh4VndadEhpcU5w?=
+ =?utf-8?B?QTdUaDRGOXRQaW1FeFdETGtJbDlubTRKQ3pRS1VPcHJ2MjdMU3FJVXVtbjY4?=
+ =?utf-8?B?Q0t1Rm1SeVdsUjhFN2JYZ2lQc3QzTWJGamhQbXQ5MXRscHBpSlo5VTE4V2Rv?=
+ =?utf-8?B?Z0RsTGZscHIrV3pLaityL29DU0MyOU1qS01pa2pUMWUvUE54UUJnbEJqQWlO?=
+ =?utf-8?B?dGFuUzhYNE5oV0oxZUR3YzJiNnljRUM4TGliODhwYUlRbTZGQTRWVTFKSm9z?=
+ =?utf-8?B?Y3NDTmhtbmMrRGhpUWYzQzRXazdZV210eUJxZk1RMU1FRzJQSERwd2hkMGt2?=
+ =?utf-8?B?b3FyWmFPZGU3V0xwaWhmVEVYbytFV0NrVVVMNlA2S0Z5U01JWlRqTDQ5R3BP?=
+ =?utf-8?B?Y2lvM2ZZOFFsck1TUWo2c2FCSnNoOGFuNmdVK2VZbDk0ZnhST3Z3Tlp0ZFMr?=
+ =?utf-8?B?ZERXekpCSmtDekJ4T2ErdjQ0cnhhOXBkYlI1MHlYek9Tdyt3bUJaREsydWZ2?=
+ =?utf-8?B?ajlpaDZGYjZKYldTYkhSaEJKVVZHV1ZhcStDM014VHFMZVNVb2Q5WXAwTVM2?=
+ =?utf-8?B?NHVlclhoRGVGcTQyQm11Z3JTRmJrdExSZjBTQkJwSFErandzT3UvQk5ua3Zj?=
+ =?utf-8?B?dXh6S3BYeGNyWVhKVzRuRm44OTYvK1QzOFY5RzJYeVdLdnJsZmtPUCtxWDF2?=
+ =?utf-8?B?V01DaWZOcjF1bUFyZERDaVNSVU1jdWJ3SkJQb2xpL2hVQ3hFbW4ycXYxN3p1?=
+ =?utf-8?B?blVjSG5mOTZCU015SjlUQzkwaVVFdXg5NmZ1SFRMT2p6VFl2OEIrSmQrYUZy?=
+ =?utf-8?B?Z0Y2dEszUHhPMFlQMlUvTGUxOWkvZnF2WHlVS01kdDd2T2tjMDFBbHluWXk1?=
+ =?utf-8?B?MjY2ZnZ4bkVvZFNmUi9Cc05NZis4STdDZVptK1NkUkxaRHltWXY0aEIyV1Fr?=
+ =?utf-8?B?ZUlrWXhmT3V1clhwM2RzQkIwQ093SkplQkxJVVgyZ1U3d0ZlQldlaXMrMm9y?=
+ =?utf-8?B?ZWNQSGJTTGFsaWhNM3l2RlRQZUZqUE8zdTdUMnlESGRQZnhTODBWSGNtME95?=
+ =?utf-8?B?enF3OU5DMVpCTXQvWW5GSnFRcmtXUnVVckZoS1YwQUUvOXhkR2V2blJCd0VW?=
+ =?utf-8?B?QkVaQVlpV1pvbllDV0ZxeU5lV2xqNEMxTklXSk1uQlpaM01HWXpvMnUwZUcz?=
+ =?utf-8?B?SVdIRGhKbExMSzUrY0lDRnZlS1JDZ0NUdXZmRmFLL283eVBWMDBJczA2eE16?=
+ =?utf-8?B?UGY2clpDRjdwL2xmOVRsc1V6TW1ZMTFZL1EvU2s4R21jaG4vRXBBc0VCK0dU?=
+ =?utf-8?B?cnBsUzJJOXB2WGNBL2pSUnlFUG4xMHVwRFY4SUtoVlJMejI1aUkxMEFwRWQ2?=
+ =?utf-8?B?ZVRnaHYzaXFOaUQyMXh6YjBHYzJNdUR3UFMvTzV1YmVSVzRrMXc3U0xUWXc2?=
+ =?utf-8?B?NHlsRHZPZVVsOENpNGNJR2J4WlNUWDNoL2h2UjVncTl0dVllQW9mWHdoWFR1?=
+ =?utf-8?B?Z2ZWYjdwOXBqcFBHVGxkRi9VZUYybDJ2RlNVK0JQMlViejhUT1hxclYyNm1N?=
+ =?utf-8?B?dTlGNm1vWUR4OW9sZmZSODRvY1ozVWxwVE5NSXBZL2pTTldJQm5ENVhZWDdJ?=
+ =?utf-8?B?VENLZzNBdlZ0TjhiZ0ZFUkdKbWtoUlp1UW9CaGhiNWxwazhlTmkwNXEwOXda?=
+ =?utf-8?B?Qzh6bTRTSzFHNmlUbVZXZWRDcGtncThwVWozejgwdUxTa0p1QjdwZkZQNGJM?=
+ =?utf-8?B?YzRSb210L1lFY3RzOHlPSXB2ZGwwNS9rODVPTHNjQnV2SkRSb2J0dEx3VlpZ?=
+ =?utf-8?B?aUptM1NWYWVuaElpeWxKeGgzTDZ3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	iq/ZI5OMdGbS0rS1gU/c7ERn1ooj4mxr7u1ZrhjUIJ4scpICcGxMkyysWQAYSJX7oCBGjnxLpx2NEzQd0NeJheX9jWrCsT+v0kk1OAz6cukUpoMUk6jEUY7uuIrr0BkZLYwQcPu72RbepvNp5+qqJ2ddXoADKz0YFNO1eyHt53cZCD9TcAEv1vhoN7cDyd0YbuHt+QL1kWpRk+V+HF/CFhBBLYA8MOaAsNQioU86MJ9nBAvV+4WS3e6nP7/UaCdCZ7r4H/WszliEeqX/ZHmjRICUyMdJtr9UZq7jRELAuMf3upTIl8eBSkE2ChEVMu2HrXcIOBuiPN2yljqMNnM2XtYxl21oM6lnYsiquiMW6mWDtJDz+Q+aQh8PdnK+64iakbg1biyxSB3ny1ZHgZm5S9A3oo7rMl9zdj+8choQlvhG7Ylvq0C6MccNvgp8Q2Jl
+X-OriginatorOrg: gehealthcare.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 13:15:17.8034
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6caac805-a745-4c9e-e181-08de6e269894
+X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay1.compute.ge-healthcare.net]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-BY1PEPF0001AE19.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA2PR22MB5618
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gehealthcare.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gehealthcare.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266151-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266150-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,gehealthcare.com:dkim,0.0.0.4:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	DKIM_TRACE(0.00)[gehealthcare.com:+];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 275ED14C7C3
+X-Rspamd-Queue-Id: 449B314C771
 X-Rspamd-Action: no action
 
-
-On 1/27/2026 8:19 PM, Robin Murphy wrote:
-> On 2026-01-26 12:25 pm, Vikash Garodia wrote:
->> Introduce different context banks(CB) and the associated buffer region.
->> Different stream IDs from VPU would be associated to one of these CB.
->> The patch ensures to handle CBs which are described as iommu-map in DT.
->> Multiple CBs are needed to increase the IOVA for the video usecases like
->> higher concurrent sessions.
->>
->> Co-developed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
->> Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
->> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
->> ---
->>   .../platform/qcom/iris/iris_platform_common.h      | 29 ++++++++++++
->>   drivers/media/platform/qcom/iris/iris_probe.c      | 55 ++++++++++++ 
->> ++++++++--
->>   drivers/media/platform/qcom/iris/iris_resources.c  | 35 ++++++++++++++
->>   drivers/media/platform/qcom/iris/iris_resources.h  |  1 +
->>   4 files changed, 116 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h 
->> b/drivers/media/platform/qcom/iris/iris_platform_common.h
->> index 
->> 5a489917580eb10022fdcb52f7321a915e8b239d..d2d7c898fc8ef0de1b16aebd72681ea3c5b736ae 100644
->> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
->> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
->> @@ -204,6 +204,33 @@ struct icc_vote_data {
->>       u32 fps;
->>   };
->> +enum iris_iommu_map_function_id {
->> +    IRIS_CB_NON_SECURE_NON_PIXEL    = 0x100,
->> +    IRIS_CB_NON_SECURE_PIXEL    = 0x101,
->> +    IRIS_CB_NON_SECURE_BITSTREAM    = 0x102,
->> +    IRIS_CB_SECURE_NON_PIXEL    = 0x200,
->> +    IRIS_CB_SECURE_PIXEL        = 0x201,
->> +    IRIS_CB_SECURE_BITSTREAM    = 0x202,
->> +    IRIS_CB_FIRMWARE        = 0x300,
->> +};
->> +
->> +enum iris_buffer_region {
->> +    IRIS_NON_SECURE_NON_PIXEL    = BIT(0),
->> +    IRIS_NON_SECURE_PIXEL        = BIT(1),
->> +    IRIS_NON_SECURE_BITSTREAM    = BIT(2),
->> +    IRIS_SECURE_NON_PIXEL        = BIT(3),
->> +    IRIS_SECURE_PIXEL        = BIT(4),
->> +    IRIS_SECURE_BITSTREAM        = BIT(5),
->> +};
->> +
->> +struct iris_context_bank {
->> +    struct device *dev;
->> +    const char *name;
->> +    const enum iris_iommu_map_function_id f_id;
->> +    const enum iris_buffer_region region;
->> +    const u64 dma_mask;
->> +};
->> +
->>   enum platform_pm_domain_type {
->>       IRIS_CTRL_POWER_DOMAIN,
->>       IRIS_HW_POWER_DOMAIN,
->> @@ -246,6 +273,8 @@ struct iris_platform_data {
->>       u32 inst_fw_caps_enc_size;
->>       const struct tz_cp_config *tz_cp_config_data;
->>       u32 tz_cp_config_data_size;
->> +    struct iris_context_bank *cb_data;
->> +    u32 cb_data_size;
->>       u32 core_arch;
->>       u32 hw_response_timeout;
->>       struct ubwc_config_data *ubwc_config;
->> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/ 
->> media/platform/qcom/iris/iris_probe.c
->> index 
->> ddaacda523ecb9990af0dd0640196223fbcc2cab..c1a6aac5a3d65d980c5a34ba5fa1c1dbcf790ec5 100644
->> --- a/drivers/media/platform/qcom/iris/iris_probe.c
->> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
->> @@ -123,6 +123,37 @@ static int iris_init_resets(struct iris_core *core)
->>                        core->iris_platform_data- 
->> >controller_rst_tbl_size);
->>   }
->> +static int iris_init_context_bank_devices(struct iris_core *core)
->> +{
->> +    struct iris_context_bank *cb;
->> +    const __be32 *map_data;
->> +    int tupple_size = 5;
->> +    int i, j, ret, len;
->> +    u32 fid;
->> +
->> +    map_data = of_get_property(core->dev->of_node, "iommu-map", &len);
+On Tue, Feb 17, 2026 at 03:08:17PM +0200, Daniel Baluta wrote:
+> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
 > 
-> If despite proposing all this hackery in the common OF code you're then 
-> _still_ going to open-code your own parsing of the property, with hard- 
-> coded assumptions to boot, then clearly this is not the appropriate 
-> approach at all...
+> On 2/17/26 14:59, Ian Ray wrote:
+> > Set `phy-mode' on network switch CPU ports to eliminate a warning.
+> 
+> Can you mention in the commit message what is the warning
 
-Ack. Driver should not be doing the parsing which OF code is already 
-doing it.
+Apologies for not being clearer. (Checks notes.) The warning was:
+
+-- >8 --
+mv88e6085 gpio-0:00: OF node /mdio-gpio/switch@0/ports/port@4 of CPU port 4 lacks the required "phy-mode" property
+-- >8 --
+
+I will prepare a V2.
 
 > 
->> +    if (!map_data)
->> +        return 0;
->> +
->> +    len /= sizeof(__be32);
->> +
->> +    for (i = 0; i < len; i += tupple_size) {
->> +        fid = be32_to_cpu(map_data[i]);
->> +
->> +        for (j = 0; j < core->iris_platform_data->cb_data_size; j++) {
->> +            cb = &core->iris_platform_data->cb_data[j];
->> +
->> +            if (fid == cb->f_id && !cb->dev) {
->> +                ret = iris_create_child_device_and_map(core, cb);
->> +                if (ret)
->> +                    return ret;
->> +            }
->> +        }
->> +    }
->> +
->> +    return 0;
->> +}
->> +
->>   static int iris_init_resources(struct iris_core *core)
->>   {
->>       int ret;
->> @@ -139,7 +170,11 @@ static int iris_init_resources(struct iris_core 
->> *core)
->>       if (ret)
->>           return ret;
->> -    return iris_init_resets(core);
->> +    ret = iris_init_resets(core);
->> +    if (ret)
->> +        return ret;
->> +
->> +    return iris_init_context_bank_devices(core);
->>   }
->>   static int iris_register_video_device(struct iris_core *core, enum 
->> domain_type type)
->> @@ -187,6 +222,8 @@ static int iris_register_video_device(struct 
->> iris_core *core, enum domain_type t
->>   static void iris_remove(struct platform_device *pdev)
->>   {
->>       struct iris_core *core;
->> +    struct device *dev;
->> +    int i;
->>       core = platform_get_drvdata(pdev);
->>       if (!core)
->> @@ -194,6 +231,14 @@ static void iris_remove(struct platform_device 
->> *pdev)
->>       iris_core_deinit(core);
->> +    for (i = 0; i < core->iris_platform_data->cb_data_size; i++) {
->> +        dev = core->iris_platform_data->cb_data[i].dev;
->> +        if (dev) {
->> +            platform_device_unregister(to_platform_device(dev));
->> +            core->iris_platform_data->cb_data[i].dev = NULL;
->> +        }
->> +    }
->> +
->>       video_unregister_device(core->vdev_dec);
->>       video_unregister_device(core->vdev_enc);
->> @@ -277,9 +322,11 @@ static int iris_probe(struct platform_device *pdev)
->>       dma_mask = core->iris_platform_data->dma_mask;
->> -    ret = dma_set_mask_and_coherent(dev, dma_mask);
->> -    if (ret)
->> -        goto err_vdev_unreg_enc;
->> +    if (device_iommu_mapped(core->dev)) {
->> +        ret = dma_set_mask_and_coherent(core->dev, dma_mask);
+> and how did you get it?
 > 
-> Huh? Why would this be conditional? If it's a DMA device then it's a DMA 
-> device, regardless of whether an IOMMU driver happens to be present or not.
-
-To support existing SOC which are described by iommus, and not yet 
-migrated to iommu-map.
-
-> 
->> +        if (ret)
->> +            goto err_vdev_unreg_enc;
->> +    }
->>       dma_set_max_seg_size(&pdev->dev, DMA_BIT_MASK(32));
->>       dma_set_seg_boundary(&pdev->dev, DMA_BIT_MASK(32));
->> diff --git a/drivers/media/platform/qcom/iris/iris_resources.c b/ 
->> drivers/media/platform/qcom/iris/iris_resources.c
->> index 
->> 773f6548370a257b8ae7332242544266cbbd61a9..647f6760f2b7a6bab8a585a13eb03cf60a9c047e 100644
->> --- a/drivers/media/platform/qcom/iris/iris_resources.c
->> +++ b/drivers/media/platform/qcom/iris/iris_resources.c
->> @@ -6,6 +6,7 @@
->>   #include <linux/clk.h>
->>   #include <linux/devfreq.h>
->>   #include <linux/interconnect.h>
->> +#include <linux/of_device.h>
->>   #include <linux/pm_domain.h>
->>   #include <linux/pm_opp.h>
->>   #include <linux/pm_runtime.h>
->> @@ -141,3 +142,37 @@ int iris_disable_unprepare_clock(struct iris_core 
->> *core, enum platform_clk_type
->>       return 0;
->>   }
->> +
->> +int iris_create_child_device_and_map(struct iris_core *core, struct 
->> iris_context_bank *cb)
->> +{
->> +    struct platform_device *pdev;
->> +    int ret;
->> +
->> +    pdev = platform_device_alloc(cb->name, 0);
->> +    if (!pdev)
->> +        return -ENOMEM;
->> +
->> +    ret = platform_device_add(pdev);
->> +    if (ret) {
->> +        platform_device_put(pdev);
->> +        return ret;
->> +    }
->> +
->> +    ret = of_dma_configure_id(&pdev->dev, core->dev->of_node, true,
->> +                  (const u32 *)&cb->f_id);
-> 
-> No. As I already said before, of_dma_configure() is for bus drivers; if 
-> you want to act like a bus, implement a proper bus_type with 
-> a .dma_configure callback. If you don't want to do that then describe 
-> the individual functional blocks of the codec appropriately as distinct 
-> devices with distinct hardware properties so the platform bus code can 
-> handle them correctly. It is not reasonable to advertise physical 
-> hardware to Linux as a single monolithic device, but then have a driver 
-> try to pull a "well actually..." by abusing all the internal 
-> abstractions. The fact that you might happen to avoid the warning from 
-> iommu_probe_device() because you're not binding drivers to these fake 
-> platform devices doesn't make this design any less wrong.
-
-Ack. Agree to define a proper bus_type to handle the .dma_configure 
-callback. Will update this in v2.
-
-Regards,
-Vikash
-> 
-> Thanks,
-> Robin.
-> 
->> +    if (ret)
->> +        goto error_unregister;
->> +
->> +    ret = dma_set_mask_and_coherent(&pdev->dev, cb->dma_mask);
->> +    if (ret)
->> +        goto error_unregister;
->> +
->> +    cb->dev = &pdev->dev;
->> +
->> +    return 0;
->> +
->> +error_unregister:
->> +    platform_device_unregister(to_platform_device(&pdev->dev));
->> +
->> +    return ret;
->> +}
->> diff --git a/drivers/media/platform/qcom/iris/iris_resources.h b/ 
->> drivers/media/platform/qcom/iris/iris_resources.h
->> index 
->> 6bfbd2dc6db095ec05e53c894e048285f82446c6..b7efe15facb203eea9ae13d5f0abdcc2ea718b4d 100644
->> --- a/drivers/media/platform/qcom/iris/iris_resources.h
->> +++ b/drivers/media/platform/qcom/iris/iris_resources.h
->> @@ -15,5 +15,6 @@ int iris_unset_icc_bw(struct iris_core *core);
->>   int iris_set_icc_bw(struct iris_core *core, unsigned long icc_bw);
->>   int iris_disable_unprepare_clock(struct iris_core *core, enum 
->> platform_clk_type clk_type);
->>   int iris_prepare_enable_clock(struct iris_core *core, enum 
->> platform_clk_type clk_type);
->> +int iris_create_child_device_and_map(struct iris_core *core, struct 
->> iris_context_bank *cb);
->>   #endif
->>
-> 
-
 
