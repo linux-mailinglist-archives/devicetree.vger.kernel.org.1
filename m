@@ -1,223 +1,236 @@
-Return-Path: <devicetree+bounces-266082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266083-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QLoAFMJSlGlFCgIAu9opvQ
-	(envelope-from <devicetree+bounces-266082-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:36:34 +0100
+	id EMNJLoZTlGl3CgIAu9opvQ
+	(envelope-from <devicetree+bounces-266083-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:39:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3DAF14B76B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:36:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FDBD14B7DE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:39:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DCD13068F1C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:34:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4F6C73007F47
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:38:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96440334C3D;
-	Tue, 17 Feb 2026 11:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 132F5333434;
+	Tue, 17 Feb 2026 11:38:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IvDB00Wg"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="TGaBze4q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010011.outbound.protection.outlook.com [52.101.201.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51EE9334698
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 11:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771328046; cv=none; b=j6HLLnQL5pssXbfg5CsCFjCLtfOtKMXe+9yGEbM56jIbRyESCq65z563tSChSi4IyREX2kjyEJJw247pH80B/5sMO8o13ZSlc9M2rVUsHhmIzEjwbQA1ZP1voTTiNVOW5v3XeEOxZ8RTrU+sfPL1OJFJ4yA9E6kCPbT2AhYWI/s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771328046; c=relaxed/simple;
-	bh=fQ8E5acDbAblxMkbnCnCAJWUBT9isNE0OZ0UrEJWNjA=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=ntguVnHV1n77MLwk1XZpwY7PATHUIW0L2ycBfdgbiAU76pfTEgvEKf4lIiLHQkn+uuAp3FYF0ml51MNj4cI4WOzXXGu7iS5dF6+JoshkW0LpGy6JYrUND3xqI40REg6eNXv4VX9C0bjGRAI4egCJf4IVBJ3MLnHzfw7mJ2azZII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IvDB00Wg; arc=none smtp.client-ip=209.85.218.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-b8fa79b9fcdso691991666b.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 03:34:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771328044; x=1771932844; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9ig/smemhQzs72G8UP4RStDyB0Ks5cZKeOVkcJVdGZI=;
-        b=IvDB00WgoJIDfnyQs3YgF7X4Bjvz6cRdDeEkYZ5be8u3xVnF6jPCa3NqfYEeG8ZPwG
-         UpsQeb+weCs7FZsYsj2Er/9cNRCy/PyvwUtChfy9objRuhvTY/OvZ/OzrDB7LDFVelZm
-         WxdpIwPcH2dfZT40/R3rRU2092xGYF2O/37CDT/O6ViRjMpywuc3sok6tg/fnQsFQ4Gc
-         +KbckEWrx5jbsaDJGfWoEeIYHKbiV6f6Q6tMCPx7HANWvx5XMvVfXiy8lf6fWT5K3wSq
-         Hjil/mOsTls/l8vjuUtmqjyVNVP54ahVRfDXnWipQp0wwuOhrLOJvvdfmMR+5vFlu30t
-         pA3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771328044; x=1771932844;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9ig/smemhQzs72G8UP4RStDyB0Ks5cZKeOVkcJVdGZI=;
-        b=I7zm+i0FzEJ79vtp81KUAlOWrR6A3IoTyq66AxslAjUYFh3MaosocW0yFMpkZIGku+
-         P0ORcskKMFpDelGF2IIK4YPNh6kBVgM/miboa1E6HyPiOJ3Apr9jnUvNRXw88CXdOhdq
-         zyt7XPPij78ssVbKEofnHxqtzouG322DIOOwCAoaJrdf8Psq2XX4twHmBepwn1N0EtDW
-         LBaNlIUauwXh1cVNqAMs9FamgPfCkoUYhlV9RJ73emJnP/2RG8MkRKze9HkEKDzBxrZM
-         ydvzYLfLuxaW1n4vv9h5WrUU5uLVtFuu4My+IwIYpHKLDrt3yLxh4iHnf+XMD6THWHMC
-         uWew==
-X-Forwarded-Encrypted: i=1; AJvYcCVlqDssceXe5VmAlDw4ePoCDOadRn0I46t0MLDKsWAcg+kuyw3gZfSE+Idr2m1mqYoFSpUlS+WKS0nt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzE2+mVcQIdxsYp6WURJjb8PK9nDfk9E2yMqxKbL9GneYBKlHVz
-	P9BPoHnHv4Kdd68PipaSBlKaYRBiWFByR0tLDYxw9aZc+gTXfojBVIf6
-X-Gm-Gg: AZuq6aK3VFCh+TpHKl6yeb9JlHMDhZNZtg+yDmjAdmIZ9I07N3rFrtM7/WG7mT86o5F
-	3B0KXzEckG7qIuamQgqzuDE9bqgqdnAw/rjJ7C2gwBfqby6FN0o0T/rOtvHnQGTHBUuo4O8TzUo
-	vhH9HAS2WS+Jk0Xy0QqXQsmhXYpR2QVYyOxUK9wpZRu4Kj33uk/h+EyFoXjqjXRHF8ztBTU/zz9
-	IlTUGXSDVbX0ymVURF8DNqq7rcNQhotnosCJFH5nQVbxg3x+OaXFLKILuZow53JvEZVD8HEYl18
-	Z5eMYsFThXufkhh56iKUijv3AvAjV77cohcSIym/JU4wS44wqiGdudFTBO90euz8dEJQw5sQrcG
-	Dh81y0FEFJo4wbo3AMypGB+DFTA8oWosBT4XF07+9lihgvc6xZ+17pBPxlnvKQ+COB7XIMj6Cef
-	DReqA3bZEWy78piWO+6Y9ewnxNjwWOI5M=
-X-Received: by 2002:a17:907:86a2:b0:b07:87f1:fc42 with SMTP id a640c23a62f3a-b8fc066218cmr713013666b.16.1771328043629;
-        Tue, 17 Feb 2026 03:34:03 -0800 (PST)
-Received: from ehlo.thunderbird.net ([178.137.63.129])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc735e4cbsm352054066b.13.2026.02.17.03.34.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Feb 2026 03:34:03 -0800 (PST)
-Date: Tue, 17 Feb 2026 13:34:01 +0200
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Ion Agorria <ion@agorria.com>,
- =?UTF-8?Q?Micha=C5=82_Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-pm@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v3_1/7=5D_dt-bindings=3A_embedded?=
- =?US-ASCII?Q?-controller=3A_document_ASUS_Transformer_EC?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <1519143e-4fc3-490d-ab8d-e65edd2c4eec@kernel.org>
-References: <20260214180959.30714-1-clamor95@gmail.com> <20260214180959.30714-2-clamor95@gmail.com> <20260216-sprung-scallop-de7b64bf528c@spud> <CAPVz0n06+uLCSfY_bYS9v7KJ-hXotye7ej-rze6-Q8_JAF7XVA@mail.gmail.com> <20260216-plunder-defense-de11cf56dd3d@spud> <CAPVz0n0-LbTUZBCaO=oN3PpPLpwAqzNo29r687pKY8NbEE9giA@mail.gmail.com> <20260217-vowed-botany-b1c47c7e40b8@spud> <55C30023-4175-48F2-BCB0-12EC23C48F01@gmail.com> <1519143e-4fc3-490d-ab8d-e65edd2c4eec@kernel.org>
-Message-ID: <81844CC9-5355-4B1D-AEBD-6DD67FB8C81B@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1701EBA19;
+	Tue, 17 Feb 2026 11:38:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.11
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771328296; cv=fail; b=uMSXXTxAhPbB+2bhrHZLl8IPemq1Qq6gOj7ZgFyah9zH61iKhAeCn9BjmEdUrSkI2QDKCIX4rycFMQfZ5h4jVaONeOfdPXtRfx3P6K0Cf7UIbuhfhUU/CEUgczKu4c/rMDky7wHkWAjvunLmx1Nl72JFI9Yda5RDGoNAJGj4W0g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771328296; c=relaxed/simple;
+	bh=AwkWmkos0wjl135/pRyhJcsngrbvBEZ5X/19yvzEhLM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=n0wybSKufTBXiakh/95trnekYL4LqwvZM3hwFqKk1nqDjgubePcPtro1gDAHTBWGJHzWtJB9stn1VKjk2BgZkvAy5vjIZ1GhNZO6wO5ZcosRxqaf/RF1fAStmY+HBXn+2bQucYSKkfU9Ch7DuJ2UVeagIWzP1JxQVUArNoq7uMc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=TGaBze4q; arc=fail smtp.client-ip=52.101.201.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aEvTV8uqCYKSV2XygAlYl4+GsPA//4cbDoCuGkay2KkoRrLJJUYoXzV8YGL5fbILa09+YuU/WtlvNzt48QM17vPx69qFprW/nkjPRR6PDIFc7RpMfAUuHK9TGO2/VpDJGCPYkfcFTgzMXDpBVv15j9SWmC0Rw6pQZMvXQ54+mD+HUrWo/DJjOdlg5jX9jl07ZKk/rvpy7Yjtka3zrDtDLhpAqvIU63a672NXNjWb1iUcbdGDb9Nh91hx7PVrkTFOUHZcmLMApdAxmDp/brFnfud7fnqnmZNJPVIh+XCVwkq3seV0YqmQFAoiC3gAAkjBvcZtL+yXK77O0gjxT5iDCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AwkWmkos0wjl135/pRyhJcsngrbvBEZ5X/19yvzEhLM=;
+ b=YMYC2r75YWoV56mj85YmRJDUKWZRcMrf/3Kw2jPbmy4O09rs6ycpXJX5mjYOMiEwkx3zytwFNCPq/7DR8yaYGAXQL82xBVDCC579jfGxf3ztI8lu6PbRvtp8gRb0slTiFcqltiF3PHWUPzljpmdOMf4y+o4Ct6eSIEpK6zKMl5SCheJOknPuBGZXfHrDXXdqfCIj4Rz5SwIrH8Ft0bbyA4zQm2wny5k+LQNR0hfH88N/S9HhF14v433WBfgi/XQ0Eb2AW3aPLLekq/rI9KtEuD1RachWEZIWY7omG+YOExPW2u2kEku4jXX9ZPjAsHcBeB0cKpwr+CpMy+IABFKHdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AwkWmkos0wjl135/pRyhJcsngrbvBEZ5X/19yvzEhLM=;
+ b=TGaBze4qJTmScH/WBCsDungcNFxl5R0AxqBJ8iJks0Dgw0KzA2SLLnNF4JCUJNkos+cwdvZqm83wa0xTnTKnfh4jp5wV8SFt/FbEJ6nez/5xqKK+G8H8ejmT/vxMatatFIcrG8jSozJWFhLF8J6Q1bs1G9k6ui50Xp6524xVy+fRFObS7LFO63XZEltf9SwdSUC+LDTjYT48KXyGq6vnsC07eIP5ODrGy0kwgkGqGTB6M+3DewxJR4F8YtNcLi5rKyem4faXU62TLKupxy1/PjoBMCqMjgAFWc225tnz4ejZkGKAxDdzbhL6Eg6ogyaYLeJsXTjaPbbJsMgD5yStSw==
+Received: from PH7PR11MB8251.namprd11.prod.outlook.com (2603:10b6:510:1a9::9)
+ by SJ1PR11MB6275.namprd11.prod.outlook.com (2603:10b6:a03:456::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Tue, 17 Feb
+ 2026 11:38:10 +0000
+Received: from PH7PR11MB8251.namprd11.prod.outlook.com
+ ([fe80::e81b:3e24:1804:5c7c]) by PH7PR11MB8251.namprd11.prod.outlook.com
+ ([fe80::e81b:3e24:1804:5c7c%5]) with mapi id 15.20.9632.010; Tue, 17 Feb 2026
+ 11:38:10 +0000
+From: <Ariana.Lazar@microchip.com>
+To: <andriy.shevchenko@intel.com>
+CC: <dlechner@baylibre.com>, <nuno.sa@analog.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, <robh@kernel.org>,
+	<jic23@kernel.org>, <andy@kernel.org>, <krzk+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] iio: dac: add support for Microchip MCP48FEB02
+Thread-Topic: [PATCH 2/2] iio: dac: add support for Microchip MCP48FEB02
+Thread-Index: AQHcnB4CEkxJgPuKSkiQaY7LrEYHMrV/I3aAgAYlLQCAAURWAIAAKA2A
+Date: Tue, 17 Feb 2026 11:38:10 +0000
+Message-ID: <d910218942390c6cbb9be403b6ff6261b84260d3.camel@microchip.com>
+References: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
+	 <20260212-mcp48feb02-v1-2-ce5843db65db@microchip.com>
+	 <aY3m5V05FOH5sut6@smile.fi.intel.com>
+	 <f8e45b0ef7af336dbde04ce53d117c6e47d2190d.camel@microchip.com>
+	 <aZQepHXptVvBsQuL@smile.fi.intel.com>
+In-Reply-To: <aZQepHXptVvBsQuL@smile.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB8251:EE_|SJ1PR11MB6275:EE_
+x-ms-office365-filtering-correlation-id: 8d027aa1-66b2-4cea-f095-08de6e190730
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?ZlRaQW8xNW1BVEZjcWVqSTU2aTdpMXovRE5hSTF0VkF1cHFsYnhPTno2bTli?=
+ =?utf-8?B?OWh6cjhxcjZIMHZFYW0zSmNLSEZvRW44ME1DVms5TC9Ea256ejdoL09tS3Jr?=
+ =?utf-8?B?YUFLWExNb2FKdEpuUExuTDBEMVF1ZTdYUEtoTHVlZGU1R2kxS2hmSjU4Q01s?=
+ =?utf-8?B?eHZVTHlSRGxsNmNNVDdBVjc1SEI4elgybXg2em9IUy9aSWxPZ1dGcUJjNTlF?=
+ =?utf-8?B?bFRUeG9MRW5Sc3NHb2o5VjFJQ2pod214RWVzTkR4R2xLWUhzc2lGSU9OQkhO?=
+ =?utf-8?B?Rm5NUlFwdU0zM3VJODAybDZ3cmtTd2ZSZU5kbE16bGNpYnNBa09meW9RZVZo?=
+ =?utf-8?B?NVpKVkUrNStodGFNUzJJS1Mxb0lRVFNONkxsWnowWStWb1VGV1plYjcySGJN?=
+ =?utf-8?B?aERwdmt2VEdWSHU2UTk2UjFUS0EvY2IxeEd5blp0SUNQcG1EeEJaa0trelJl?=
+ =?utf-8?B?NGlyenVLOXpkRldYY0EwTlV5QW5obFdaeU52aDlFSndoNXlndi9CSEVzZTNC?=
+ =?utf-8?B?YVFzSm1vR0MzQmVvWmRKQ0JXZTI1Ukd3ODRnVXdzRGxKcXVYZTBUdUljUytx?=
+ =?utf-8?B?aW9JN3huSWNuUlV6TkNOL25tcFdIdkl1ZG83SktzZFE3Z0tqYko3MnpPVUxX?=
+ =?utf-8?B?SXNxSHdYZHNKNmpCVlpwY0tBVjhFS1BjQ0hhUnp4eEFXREZjYXZ3WEwzZVFs?=
+ =?utf-8?B?ZmxKU0pkSXZKOEd2MzNUT1FOWUJaYTlKenZsUlpCbjJSYW9td2pjb0NLNk5G?=
+ =?utf-8?B?dTJLQUs2NGdUMy9EUHBjM1ZXMmZrL0pEYzRpQm4vMnFQMWJhVVpqTm8rdFVn?=
+ =?utf-8?B?TjhUTmhuOVU2eU03dlIrNXc2Z2FCWGloaVdEQlhZQlZScXllZjZUTTViRzg4?=
+ =?utf-8?B?VHdIWTZaNWljalAzNkVnek5WenZBK0FaS1N0bkxTdnhJcEtsd1dsMVdZVDky?=
+ =?utf-8?B?ZGprc3NLUTRvQ3ljVWxYSFBvRnVpTWl4NS9ueDkzckNCMDkycjN6N0oyeUhi?=
+ =?utf-8?B?RlhDZlhLb1d4SWY0cnFhUTRVMDBuaVlkeG03N0pmbjlWQ1Z0NHBIL0ZuRVhM?=
+ =?utf-8?B?a2psYXJPYlllQjF2SlF0cGgzNUhTT2syN0dodHJDb2V3OFVXUzFzUnBhbU1n?=
+ =?utf-8?B?S2FPRkEzQnZ4OXBOQll2UnVCaGVGSTlCMS9HbGgzak9qeGhrK1d2RzJuNzFZ?=
+ =?utf-8?B?TWRyUG9lOG1sbStSNjFUU05WUi9nYmV5Y2NscXROTUl4S291ZnkzRDR1SldO?=
+ =?utf-8?B?OVdHRS9Sc2JnM3dreFRjQUlmKzJhR2N3Y0MxUjMvVDd4L0RUcnZGRDZma2xy?=
+ =?utf-8?B?WGptZDN0eEtiMnU3a3JUYVV3dEFRZnJBekcxOVR0Qzg5VTY2bjhTNHpmbVc5?=
+ =?utf-8?B?NzhUdTNDWktSalRNbFh5NG5KTGVHckJvVlVIYVJEMU9ONTNnM1lTWFphM1BX?=
+ =?utf-8?B?S2l5Rk15cHFGelBLcWF0OHVveUlVTi95S2JjNUV1ZmlCK3dSOXhVMWd2WFFD?=
+ =?utf-8?B?REFDY2JobHRNTk8rMkJSQUtMMTVEUjdOdFozU2FUYzhTTXRCaWNvTW12VGJL?=
+ =?utf-8?B?VG9iWkVHd1VVNHFWYlFvajBkY3VpemZBR3VyWVRFY1pFVjNCdkRrekZXcEdw?=
+ =?utf-8?B?by9oNGxJU3UwNGkyaTVsNXBXUGVuUEh3RGlUbTJQSlVIM20rQ2RFTU9pQVZJ?=
+ =?utf-8?B?UHVvaFZJT2hvT0NkSjh6a2NkQWEzM2NzNFVxVDVDZWE1d3F4OEt5SUZwN3dM?=
+ =?utf-8?B?UXYwZmIrbTJhYjBUZlVOaUx3aDMwMlJMT3QrWkMwbE56MW9wc1B2bE1xVGx3?=
+ =?utf-8?B?a0sxNW1lOWNjMHRZc204Y3Ztd1ExU29HK21iSmNKRXRwVFhIa2FNbnU4MEZ5?=
+ =?utf-8?B?WWFMcGRlTC9uM014Z2tKM2lLME56VzFpRGZBNktyTjZLWVJKUTFlZnhuZElY?=
+ =?utf-8?B?aGJrRThZT1RoTFQwcHNPVGp6eFc5LzloYUpIVFlnbFp3SGdtU2ZER012SDJT?=
+ =?utf-8?B?L3RSdnVDdlQ3R1pnSTl3dExKRFUrZlFrZk96dXorRm13VUZ2WHg3akVtc3hu?=
+ =?utf-8?B?T05MVVRFa0RCZ0d0Sk45bk92QWd6cmsxdjZhLzVUeW5DWUp4TmJ1bnh5T1Nt?=
+ =?utf-8?B?VVRIaVVqSVlkSTRyMWk3dXR6cVZ2L05JZi9yblVmdGNUeEtIRmhqcWU4cEV1?=
+ =?utf-8?Q?MOMfePM/quz5skLTFv5/CSc=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB8251.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?QVdiekZnb0FjMHRHYlBRaGMrWlBVS2pXMzNNZXZ3T2RVUEZ0dFh0dGZKMVZz?=
+ =?utf-8?B?NWx2dVV5OXpZclo1Tkp2SEpqdFIzUFRwaWxFTzROc0IzN0JUZXBiejVCNnVW?=
+ =?utf-8?B?Sk0vRVVIUkxvVFdtMHZkdjM5VDF2eDFENm9FWHYwcFFkSHJmb2lnaGIyaSty?=
+ =?utf-8?B?TVdXbE5JS2JpdWUxZjBXbG9wRlV6OUVaQnl5cGZIQzRvVzVBNlFicFB0a2pJ?=
+ =?utf-8?B?TmNJd2ZGd0N4VVNQSDJGK3dwZjQ0SCtnWkk2b0dQMUwrMU4zY0RwTGlEMkQy?=
+ =?utf-8?B?UURYYkFJTEFKTWJxVm9hVVFmZ3FyQmVwaGlqMWNaaVF1Z0Z6cnl2aXNZVFVF?=
+ =?utf-8?B?OHIwVEo3emg3UWp6Tk9rdWhiMmxldGk3cDByczlxd2ZzbEZ2azlQUHVTWGI2?=
+ =?utf-8?B?Nyt0cnRnd29jWUJoUnREd3hMWCtJbHRRUVQydnU4SGN1VW53d0NkVENtNG5y?=
+ =?utf-8?B?cmRyWTMrNEhmVDVWdVNtWHlzMkRjbjA4NjlFcXRlWnVDZjFHSVNQcEV6azF3?=
+ =?utf-8?B?SmNoL0Y3Znk1WGUxUkZGM0N4WjREdWtZbkw5RlhpSzVoSUQxUG5YMmMxR1BP?=
+ =?utf-8?B?QWRnK2kvVWE4YUFOYmkrdlRWalMyaG5wUUtsRk1ITDduZ2JSckZYWks1YTVO?=
+ =?utf-8?B?MVJIUjRpY3pKK1MrdmRoZnZDS1lHRlA0a1lhSkphRXRab3J6MnZ3YmVNemxu?=
+ =?utf-8?B?TEtFZ3V6SDVGcVZQM0k0NUlLOEpmejFWdi8yZlRkaENTMCtsTWNFY3BnSVNp?=
+ =?utf-8?B?NHIzZ0U3S3hEMTN0S3p3YUZDVkt3aS9BalV5eENBQ25sUXYrMis2Z1BEd25i?=
+ =?utf-8?B?ZjJkbUNLSDRmTFdsYmgzSkV6cXBPMmhkbWZDLzdZd1NUbnBXQ2JjeTk0M1VW?=
+ =?utf-8?B?ZDE2VUdNVWtTVzY0d2tRRXhSMG1iVzBCQitobmp1eGc4ZThnUzJzY3RLOXlQ?=
+ =?utf-8?B?dFZ5d2tVS1lvNjg3azFwbWx3cWxUeHQ4WkI3U2wzQlZ0cUFHbzB5YWtIK2s2?=
+ =?utf-8?B?Y01OcVpzcDk1Ri9pSHZzb2xhVzlXaGxLT2Q5T1htcjNWdFUzUFFoUDQ1ekJB?=
+ =?utf-8?B?cTZEVU0wTThkeTArdTV6M1c2aVNlbU9sR29zTU5GTUgrcWVUaEpNU2sxUndI?=
+ =?utf-8?B?TS9FSzVhYSt2WkZaV244bXRVZFIyeVJUYmd5czR6N29MRHBVblBIM21xYTBr?=
+ =?utf-8?B?ZEk0QktObUY0aHR1RjgrR1lCWllUTzFMSDVtcmZUNWRDSDJJeUhid2pEcjJF?=
+ =?utf-8?B?ZHhyNUhaK2IraGZnTFVDVUIvNTFQMDJCREd1eHFMMldvUStndUo3Q1BHcWg3?=
+ =?utf-8?B?MnJlclZTK0lVbUwyM1M5K2xxQmdrWkRPYTEzNGJRVU5saFRWZXBXQ3NHSUVW?=
+ =?utf-8?B?OHozU1l5MGl6anh3dHB4c0dqS0FzTmhXWWpabUtSaFU4V0RCV2dVeTlYQ2xH?=
+ =?utf-8?B?ejFLUFNhWm9vRDFKYlI3QTlpRldOdVRhVUd6bGFycW9zNkk3UjFYQWRWTW5n?=
+ =?utf-8?B?OFMzSC9hYjQvanZibEtIdExQa2Vod2NCaWZZbGk3N0x5TXNkNC9YWW1jUGVV?=
+ =?utf-8?B?UXVtTzgyaHU2NnlRbkZ5L1I4NnNqOFM3cEZTbmNuU290TlRKdnM1bk11K25n?=
+ =?utf-8?B?M2lWOGxCRlU5U0JJclozRnA5T1R2cGZGRnptKy9zM3dIai80T1ZzMU9ybkE4?=
+ =?utf-8?B?amdBTjNBVmRvRHFHMDR1bFd3dG1FN3ErbVFLZittakNUSlB3aFNmaG9weHlZ?=
+ =?utf-8?B?UGNtL1p3RGVqOUlCOHdqNkJMS0QxUmtiRUViV1JSZndjUU9vOFoxSEFJdDhB?=
+ =?utf-8?B?Z1FyNjVnVDA4WHgyUGVsZ3FuTmNhR0FwcGxuN0d3YzRuNTU4MHpzV0U2dnBt?=
+ =?utf-8?B?cmRweElpZ0VSdldiWlJoSzR4SUt2dnIxRHo1SHd6YTFkd3BOdGd2UXFEYWkz?=
+ =?utf-8?B?Q29zR0F3U2FvWFdRVEJUUVRVbllTWkhhMUZCWllubG00cXZvRnZ4RVpkM0xQ?=
+ =?utf-8?B?Qnc0T3BtbmxObW1qaXIyZFVabFB6dWZlZys2M0R2VlhObXgrK2RJTjdGdDJN?=
+ =?utf-8?B?d1dOWWYwRFV5WnA1ekxyZFRaMWl3bDFqd0ZEc3JWSnllcUxRTmprUEhGTmpL?=
+ =?utf-8?B?RGlKQ3lLZkQwcm5EMGdDVit2a1I3ZXdLN0M3VFpldGdMRm9qSGIvQkZQNDBR?=
+ =?utf-8?B?ZWN0YWdSMkxMaVZGaDJyYUkvSy8zdGFmRjlsemo1d29paC9md3Zma3p0VElr?=
+ =?utf-8?B?U0k4bUpuMXRrZlltRGk3cCtrNDRBTHpwNWpKMXdhbGtIN29XTk5OalFFa0lv?=
+ =?utf-8?B?RDA0YlM1U2RBV25zRW1QTWorQVFFRmE1bVVycDVITU1sSTB4NEYzSWN0YnZQ?=
+ =?utf-8?Q?ddwkdpJC0E+01erc=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <6CEAB2D987772D4A8ED64EF6D5C8E1E7@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8251.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d027aa1-66b2-4cea-f095-08de6e190730
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2026 11:38:10.6698
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3r+nPT4mnag07MBbox0jtkSQ6d7z8xrzaBJkgHnGaplCGxPk18DythMEwYr05b6oWgGdQ6LEZz9/i4C1UCoTcJzQWCVhWLFdnylbAbmPKD4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6275
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	SUBJ_EXCESS_QP(1.20)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-266082-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[Ariana.Lazar@microchip.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	TAGGED_FROM(0.00)[bounces-266083-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_NONE(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: B3DAF14B76B
+	MIME_TRACE(0.00)[0:+]
+X-Rspamd-Queue-Id: 1FDBD14B7DE
 X-Rspamd-Action: no action
 
-
-
-17 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2026=E2=80=AF=D1=80=2E 13:32:26 GM=
-T+02:00, Krzysztof Kozlowski <krzk@kernel=2Eorg> =D0=BF=D0=B8=D1=88=D0=B5:
->On 17/02/2026 12:23, Svyatoslav Ryhel wrote:
->>>> in other words you propose this:
->>>>
->>>> properties:
->>>>   compatible:
->>>>     oneOf:
->>>>       - items:
->>>>           - enum:
->>>>               - asus,sl101-ec-dock
->>>>               - asus,tf101-ec-dock
->>>>               - asus,tf101g-ec-dock
->>>>               - asus,tf201-ec-dock
->>>>               - asus,tf300t-ec-dock
->>>>               - asus,tf300tg-ec-dock
->>>>               - asus,tf300tl-ec-dock
->>>>               - asus,tf700t-ec-dock
->>>>           - const: asus,transformer-ec-dock
->>>>
->>>>       - items:
->>>>           - enum:
->>>>               - asus,p1801-t-ec-pad
->>>>               - asus,tf201-ec-pad
->>>>               - asus,tf300t-ec-pad
->>>>               - asus,tf300tg-ec-pad
->>>>               - asus,tf300tl-ec-pad
->>>>               - asus,tf700t-ec-pad
->>>>               - asus,tf600t-ec-pad
->>>>               - asus,tf701t-ec-pad
->>>>           - const: asus,transformer-ec-pad
->>>>
->>>> And in the driver add match to every single entry of enums?
->>>
->>> No, I was talking about removing the generic compatibles entirely, sin=
-ce
->>> they are not suitably generic to cover all devices at the point of
->>> addition=2E So like:
->>>
->>=20
->> Actually, they all can be grouped under asus,transformer-ec fallback if=
- that is needed, both pad and dock EC have the same core functions just dif=
-ferent set of cells=2E And then in the driver each compatible will get a de=
-dicated matching data=2E Will this work?
->
->Then what does the generic compatible express if it is not used by the SW=
-=2E
->
->Wrap your emails to mailing list style=2E
->
->>=20
->> properties:
->>   compatible:
->>       - items:
->>           - enum:
->>               - asus,p1801-t-ec-pad
->>               - asus,sl101-ec-dock
->>               - asus,tf101-ec-dock
->>               - asus,tf101g-ec-dock
->>               - asus,tf201-ec-dock
->>               - asus,tf201-ec-pad
->>               - asus,tf300t-ec-dock
->>               - asus,tf300t-ec-pad
->>               - asus,tf300tg-ec-dock
->>               - asus,tf300tg-ec-pad
->>               - asus,tf300tl-ec-dock
->>               - asus,tf300tl-ec-pad
->>               - asus,tf700t-ec-dock
->>               - asus,tf700t-ec-pad
->>               - asus,tf600t-ec-pad
->>               - asus,tf701t-ec-pad
->>           - const: asus,transformer-ec
->>=20
->> And them schema name will match the genetic compatible=2E
->
->Then what does the generic compatible express?
->
-
-Then enum it is
-
->
->Best regards,
->Krzysztof
+SGVsbG8gQW5keSwNCg0KDQo+IEkgdGhpbmsgc29tZXRoaW5nIGxpa2UgYSBzZWNvbmQgdmFyaWFu
+dC4gQnV0IGFzIGl0IHNlZW1zIGdvaW5nIHRvIGJlDQo+IGFuDQo+IGFncmVlbWVudCB0aGF0IHRo
+aXMgZHJpdmVyIGlzIG5vdCBuZWVkZWQgYW5kIHJhdGhlciB3ZSBuZWVkIHRvDQo+IHJlZmFjdG9y
+DQo+IGV4aXN0aW5nIG9uZSB0byBhZGQgdGhlIHN1cHBvcnQgZm9yIFNQSSBjaGlwcywgdGhlc2Ug
+Y29tbWVudHMgd29uJ3QNCj4gbWFrZQ0KPiBtdWNoIHZhbHVlLg0KPiANCj4gLS0NClRoYW5rIHlv
+dSBmbyB0aGUgcmV2aWV3LiBJIHRoaW5rIHRoZXNlIGNvbW1lbnRzIGFyZSByZXZlbGVudCBiZWNh
+dXNlDQp0aGF0IGNvZGUgaXMgY29tbW9uIGZvciBib3RoIGRyaXZlcnMsIHRoZSBTUEkgYW5kIEky
+Qy4NCkkgd2lsbCByZWZhY3RvciBib3RoIGRyaXZlcnMgdG8gYmUgbWVyZ2VkIGludG8gYSBzaW5n
+bGUgb25lIGFuZCBpbg0Kb3JkZXIgdG8gYXZvaWQgbXVsdGlwbGUgY29kZSByZWZhY3RvcmluZywg
+aWYgeW91IGFncmVlLCBJIHdpbGwNCmltcGxlbWVudCB0aG9zZSBjaGFuZ2VzIGFzIHdlbGwuDQoN
+CkJlc3QgcmVnYXJkcywNCkFyaWFuYQ0KDQo+IFdpdGggQmVzdCBSZWdhcmRzLA0KPiBBbmR5IFNo
+ZXZjaGVua28NCj4gDQoNCg==
 
