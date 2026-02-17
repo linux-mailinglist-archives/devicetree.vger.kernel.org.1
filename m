@@ -1,273 +1,450 @@
-Return-Path: <devicetree+bounces-265979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265980-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AB8xMosVlGl//wEAu9opvQ
-	(envelope-from <devicetree+bounces-265979-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:15:23 +0100
+	id CCOTDwwXlGmW/wEAu9opvQ
+	(envelope-from <devicetree+bounces-265980-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:21:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB3A14929D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:15:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A61281492C7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:21:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 83F34301840E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 07:15:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 448A4300FB4D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 07:21:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB88F2D47F1;
-	Tue, 17 Feb 2026 07:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6267229E10C;
+	Tue, 17 Feb 2026 07:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eCp3gnLQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NRep5pqp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7756B2D46D6;
-	Tue, 17 Feb 2026 07:15:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4243EBF2F;
+	Tue, 17 Feb 2026 07:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771312511; cv=none; b=XLZLlCqGyrOIhJSImXOdRj0yMfCj7kMG0vZ0gqPwrZFmgdP3IGEDBBSehYt73nQjxV2a+pWlwWFR3tLszU/I2L8XfB5/wrvH5Z/9NtIj1fAWa91NxcM1zVhgN1sYmFkcFd28uYx+CfCQmVG9xxu7y3tFzsmR7/2WVL2Bhhlcw0w=
+	t=1771312905; cv=none; b=kl+N3qi1RV5ZyJ0mNLY6JeqT0kxMKpkv0IzXxn0iwtV/P0vTKSu3mwYzd5pL5gtM9qYImjKa1h3Vq3LHtUMu9v4QCtwIHKUcY3cTqk6qqt3xvOHnbX7dWebWWAv0xY0QnbFvOnMikBoxlcrO4IlL+ISg+9KEbpgCtCNhOLLQxOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771312511; c=relaxed/simple;
-	bh=pA0cnsLSSAmS/1wair5Sm1DBUSv6Zhuqfpmh2dh3fmo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tHKevqHXBlW+RULmhxMCJ5/p7DodntR+cTHQ25KoCyuOLrcbRP7PLBxfPqUPb6HfXpyBTLNUyLiMDG9X0kcaaVX3+MpSw0gkCJHcK8/kxi6d0ChrOFwOUKuyV0sq/Sa4pGucuy+zQrJ7+KJjhDfX7kUtXcm2sADZLUxC6GvkC9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eCp3gnLQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61GH4S5G985268;
-	Tue, 17 Feb 2026 07:14:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=a9thpeIp40M
-	fH9q7I1E2VqXkD6Ks8gqHDNM6SrYHW4M=; b=eCp3gnLQRbvzqYgcXPt//n4ftR4
-	kwfjTO5vPNBQDmZDv1Fy/xgRtRTYArk0A9YRqJ4Lfgy1oEnebf617kAmQ6G/P15x
-	8ohR+SwOIYM+hkgjwaLsYcZ21cmtbkNC8PMQBtJTebwiKpY3Kf7aYQLIOWLIKPLL
-	Ve3l1z6I5GnScwHI7wld3kftqgXC9FzmO3+1hpzZt7+QCmF1vNJGxmcqRBqVlFNn
-	7opODgejq7bNahRfn+VKDVROJCIrpu3p0WVG12zqNnk5B73oNlxEV6Fil5dYBzyE
-	+E1HF0tGVZ2o5WG5cxUkLqpp5/vUjO7rO4/9C3JJxiuIA/KYEyrBTlUYq3w==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc7ap1c48-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Feb 2026 07:14:51 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 61H7EmS3006293;
-	Tue, 17 Feb 2026 07:14:48 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4caj4m5s9j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Feb 2026 07:14:48 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 61H7EmQB006285;
-	Tue, 17 Feb 2026 07:14:48 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-mkuntuma-hyd.qualcomm.com [10.213.97.145])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 61H7Elwk006281
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Feb 2026 07:14:48 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4582077)
-	id 4BC6A5D5; Tue, 17 Feb 2026 12:44:47 +0530 (+0530)
-From: Mani Chandana Ballary Kuntumalla <mkuntuma@qti.qualcomm.com>
-To: dmitry.baryshkov@oss.qualcomm.com, marijn.suijten@somainline.org,
-        swboyd@chromium.org, mripard@kernel.org, abel.vesa@linaro.org,
-        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, robin.clark@oss.qualcomm.com,
-        jessica.zhang@oss.qualcomm.com, abhinav.kumar@linux.dev,
-        sean@poorly.run, airlied@gmail.com, simona@ffwll.ch,
-        alex.vinarskis@gmail.com
-Cc: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        freedreno@lists.freedesktop.org, quic_rajeevny@quicinc.com,
-        quic_vproddut@quicinc.com, dri-devel@lists.freedesktop.org,
-        quic_riteshk@quicinc.com
-Subject: [PATCH v3 2/2] arm64: dts: qcom: lemans-ride: Enable mdss1 display Port
-Date: Tue, 17 Feb 2026 12:44:20 +0530
-Message-Id: <20260217071420.2240380-3-mkuntuma@qti.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260217071420.2240380-1-mkuntuma@qti.qualcomm.com>
-References: <20260217071420.2240380-1-mkuntuma@qti.qualcomm.com>
+	s=arc-20240116; t=1771312905; c=relaxed/simple;
+	bh=NScBpNFfPiW86nEc+8FBb87NJSa6r5SP797BXMmILYU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dqyrmevCl/Til1SdO6UxoKuuP6kxpVQFeFb1VriqidaRRceCftmjAIKn+Tez9Qo7CePg/2CvmR/A7TBMVENxldrx/C7OLF4CsK5GpjKIDBvlt9TJ98wHj5uNg7jD/iQGIOc26B8BSVatw7qTXwx4q8bgu5bKAHuIMrhTtkFuFaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NRep5pqp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A87BC4CEF7;
+	Tue, 17 Feb 2026 07:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771312904;
+	bh=NScBpNFfPiW86nEc+8FBb87NJSa6r5SP797BXMmILYU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NRep5pqpGu9w73Nu2Ea/vtb83y9+Odrqd65zIoNu1HlxVTGJv+nVTVnTnwNRLi5X+
+	 KFG/z7x548kOmQiFqZCq+PuilrQE7kk5cuvLr5Fu69hgaK3z+A9WW2/+Vhd0zXY7Oj
+	 1xWHJd59+KHKLvyEzq/1IEBgb8bZLXly+3dT/mO2eonWG/T6m9xjqP6Tmozpdqyi3b
+	 r+Ckmah6bcUfS86DuM3qd/ussLvCPUeLehGITy0eJ5ZmQCzHZk0M/Nbqk09l7pqCo3
+	 txzKsZtQDsesKpR1lT6uJXM7at/I9nCSSNcc1CdCkg3kNhd8QYCyEgOgHUerPnn3v2
+	 wysk/0eG8+IdQ==
+Message-ID: <6f143fdd-1e2d-428d-9b05-cf1124b179e8@kernel.org>
+Date: Tue, 17 Feb 2026 08:21:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE3MDA1OCBTYWx0ZWRfXx8GgcTq+fRlB
- BoMg6yKGgTicMV7VcXR4u/M0Wn8Wt/0EPRlh1hc7hXbcEUWosIKBVZ6YK3hLaMUMJwDHiP0YPHb
- /5eKUaqFSQXuJIua6O/KPASGxk81QEHrJnkDv0G5J64rdlRg4CaeTgBr0vPArx1AtpGc8PuDtxK
- KE/Id5KgcOms8QN6Oq3lqZUWRUQdzJElHeWUaCwONpHUjLCcpwCK1UhVQGr0EwrZRiWF5Anzhfh
- hHwPOCMTm5vm32s7EehIaR9fRrDtE+I8Nb+cf3na8aOVl3irmGX6WatRhVuKQCxwPi/5Hngwsrz
- KaS6ePc4oKz7vBXhFYoSA8pLJXgVhhFbc6S5alyEU57nuDExxr82p8n6rAiuB1tuqpnTeBLaZ1U
- 7qLZTvsMPf/MX4pT2Cy3CYD5Mb3d17bt782gmy1FrYJ4Ud0vBXSSiYClk4tc0yMC4Dky7iOGRMX
- PUX5ZgEPv7rtMCFT5kw==
-X-Proofpoint-ORIG-GUID: s7pih29GowKt0_kyqBbT7r26rkDyXrQ4
-X-Proofpoint-GUID: s7pih29GowKt0_kyqBbT7r26rkDyXrQ4
-X-Authority-Analysis: v=2.4 cv=Rfydyltv c=1 sm=1 tr=0 ts=6994156c cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22
- a=GgsMoib0sEa3-_RKJdDe:22 a=COk6AnOGAAAA:8 a=lcgM4KOETyTTvZj5T8AA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-17_01,2026-02-16_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0
- clxscore=1011 phishscore=0 priorityscore=1501 adultscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602170058
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 5/5] memory: tegra: Add Tegra114 EMC driver
+To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>,
+ Dmitry Osipenko <digetx@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20260126190755.78475-1-clamor95@gmail.com>
+ <20260126190755.78475-6-clamor95@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260126190755.78475-6-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,somainline.org,chromium.org,kernel.org,linaro.org,linux.dev,poorly.run,gmail.com,ffwll.ch];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265979-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkuntuma@qti.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-265980-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:dkim,qti.qualcomm.com:mid];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nvidia.com];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 5BB3A14929D
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nvidia.com:email]
+X-Rspamd-Queue-Id: A61281492C7
 X-Rspamd-Action: no action
 
-From: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>
+On 26/01/2026 20:07, Svyatoslav Ryhel wrote:
+> Introduce driver for the External Memory Controller (EMC) found in
+> Tegra114 SoC. It controls the external DRAM on the board. The purpose of
+> this driver is to program memory timing for external memory on the EMC
+> clock rate change.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
+> ---
+>  drivers/memory/tegra/Kconfig        |   12 +
+>  drivers/memory/tegra/Makefile       |    1 +
+>  drivers/memory/tegra/tegra114-emc.c | 1463 +++++++++++++++++++++++++++
 
-This change enables DP controllers, DPTX0 and DPTX1 alongside
-their corresponding PHYs of mdss1 which corresponds to edp2
-and edp3.
+Please rebase on top of Mikko's patch removing duplicated code.
 
-Signed-off-by: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>
----
- .../boot/dts/qcom/lemans-ride-common.dtsi     | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
+>  3 files changed, 1476 insertions(+)
+>  create mode 100644 drivers/memory/tegra/tegra114-emc.c
+> 
+> diff --git a/drivers/memory/tegra/Kconfig b/drivers/memory/tegra/Kconfig
+> index fc5a27791826..11e7cc357d39 100644
+> --- a/drivers/memory/tegra/Kconfig
+> +++ b/drivers/memory/tegra/Kconfig
+> @@ -35,6 +35,18 @@ config TEGRA30_EMC
+>  	  This driver is required to change memory timings / clock rate for
+>  	  external memory.
+>  
+> +config TEGRA114_EMC
+> +	tristate "NVIDIA Tegra114 External Memory Controller driver"
+> +	default y
+> +	depends on ARCH_TEGRA_114_SOC || COMPILE_TEST
+> +	select TEGRA124_CLK_EMC if ARCH_TEGRA
+> +	select PM_OPP
+> +	help
+> +	  This driver is for the External Memory Controller (EMC) found on
+> +	  Tegra114 chips. The EMC controls the external DRAM on the board.
+> +	  This driver is required to change memory timings / clock rate for
+> +	  external memory.
+> +
+>  config TEGRA124_EMC
+>  	tristate "NVIDIA Tegra124 External Memory Controller driver"
+>  	default ARCH_TEGRA_124_SOC
+> diff --git a/drivers/memory/tegra/Makefile b/drivers/memory/tegra/Makefile
+> index 6334601e6120..6b9156de4b66 100644
+> --- a/drivers/memory/tegra/Makefile
+> +++ b/drivers/memory/tegra/Makefile
+> @@ -16,6 +16,7 @@ obj-$(CONFIG_TEGRA_MC) += tegra-mc.o
+>  
+>  obj-$(CONFIG_TEGRA20_EMC)  += tegra20-emc.o
+>  obj-$(CONFIG_TEGRA30_EMC)  += tegra30-emc.o
+> +obj-$(CONFIG_TEGRA114_EMC) += tegra114-emc.o
+>  obj-$(CONFIG_TEGRA124_EMC) += tegra124-emc.o
+>  obj-$(CONFIG_TEGRA210_EMC_TABLE) += tegra210-emc-table.o
+>  obj-$(CONFIG_TEGRA210_EMC) += tegra210-emc.o
+> diff --git a/drivers/memory/tegra/tegra114-emc.c b/drivers/memory/tegra/tegra114-emc.c
+> new file mode 100644
+> index 000000000000..789b8e959a68
+> --- /dev/null
+> +++ b/drivers/memory/tegra/tegra114-emc.c
+> @@ -0,0 +1,1463 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Tegra114 External Memory Controller driver
+> + *
+> + * Based on downstream driver from NVIDIA and tegra124-emc.c
+> + * Copyright (C) 2011-2014 NVIDIA Corporation
+> + *
+> + * Copyright (C) 2024 Svyatoslav Ryhel <clamor95@gmail.com>
+> + */
+> +
+> +#include <linux/clk-provider.h>
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi b/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-index 8fb7d1fc6d56..abeb4cca0a6e 100644
---- a/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans-ride-common.dtsi
-@@ -180,6 +180,30 @@ dp1_connector_in: endpoint {
- 		};
- 	};
- 
-+	dp2-connector {
-+		compatible = "dp-connector";
-+		label = "eDP2";
-+		type = "full-size";
-+
-+		port {
-+			dp2_connector_in: endpoint {
-+				remote-endpoint = <&mdss1_dp0_out>;
-+			};
-+		};
-+	};
-+
-+	dp3-connector {
-+		compatible = "dp-connector";
-+		label = "eDP3";
-+		type = "full-size";
-+
-+		port {
-+			dp3_connector_in: endpoint {
-+				remote-endpoint = <&mdss1_dp1_out>;
-+			};
-+		};
-+	};
-+
- 	dp-dsi0-connector {
- 		compatible = "dp-connector";
- 		label = "DSI0";
-@@ -639,6 +663,50 @@ &mdss0_dsi1_phy {
- 	status = "okay";
- };
- 
-+&mdss1 {
-+	status = "okay";
-+};
-+
-+&mdss1_dp0 {
-+	pinctrl-0 = <&dp2_hot_plug_det>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&mdss1_dp0_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+	remote-endpoint = <&dp2_connector_in>;
-+};
-+
-+&mdss1_dp0_phy {
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
-+&mdss1_dp1 {
-+	pinctrl-0 = <&dp3_hot_plug_det>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&mdss1_dp1_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+	remote-endpoint = <&dp3_connector_in>;
-+};
-+
-+&mdss1_dp1_phy {
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
- &pmm8654au_0_gpios {
- 	gpio-line-names = "DS_EN",
- 			  "POFF_COMPLETE",
-@@ -816,6 +884,18 @@ dp1_hot_plug_det: dp1-hot-plug-det-state {
- 		bias-disable;
- 	};
- 
-+	dp2_hot_plug_det: dp2-hot-plug-det-state {
-+		pins = "gpio104";
-+		function = "edp2_hot";
-+		bias-disable;
-+	};
-+
-+	dp3_hot_plug_det: dp3-hot-plug-det-state {
-+		pins = "gpio103";
-+		function = "edp3_hot";
-+		bias-disable;
-+	};
-+
- 	io_expander_intr_active: io-expander-intr-active-state {
- 		pins = "gpio98";
- 		function = "gpio";
--- 
-2.34.1
+Where is it used?
 
+> +#include <linux/clk.h>
+> +#include <linux/clkdev.h>
+
+Where is it used?
+
+> +#include <linux/clk/tegra.h>
+
+Where is it used?
+
+> +#include <linux/debugfs.h>
+> +#include <linux/delay.h>
+> +#include <linux/interconnect-provider.h>
+
+Where is it used?
+
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_platform.h>
+
+I don't see these used. OTOH, I see you use other of_ which needs their
+header.
+
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_opp.h>
+> +#include <linux/sort.h>
+> +#include <linux/string.h>
+> +
+> +#include <soc/tegra/common.h>
+> +#include <soc/tegra/fuse.h>
+> +#include <soc/tegra/mc.h>
+> +
+> +#include "mc.h"
+> +
+> +#define EMC_INTSTATUS				0x0
+> +#define EMC_INTSTATUS_REFRESH_OVERFLOW		BIT(3)
+> +#define EMC_INTSTATUS_CLKCHANGE_COMPLETE	BIT(4)
+> +
+> +#define EMC_INTMASK				0x4
+> +
+> +#define EMC_DBG					0x8
+> +#define EMC_DBG_READ_MUX_ASSEMBLY		BIT(0)
+> +#define EMC_DBG_WRITE_MUX_ACTIVE		BIT(1)
+> +#define EMC_DBG_FORCE_UPDATE			BIT(2)
+> +#define EMC_DBG_CFG_PRIORITY			BIT(24)
+> +
+
+...
+
+> +
+> +static int tegra_emc_debug_available_rates_show(struct seq_file *s,
+> +						void *data)
+> +{
+> +	struct tegra_emc *emc = s->private;
+> +	const char *prefix = "";
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < emc->num_timings; i++) {
+> +		seq_printf(s, "%s%lu", prefix, emc->timings[i].rate);
+> +		prefix = " ";
+> +	}
+> +
+> +	seq_puts(s, "\n");
+> +
+> +	return 0;
+> +}
+> +
+> +DEFINE_SHOW_ATTRIBUTE(tegra_emc_debug_available_rates);
+
+Where is the ABI documented for all these?
+
+> +
+> +static int tegra_emc_debug_min_rate_get(void *data, u64 *rate)
+> +{
+> +	struct tegra_emc *emc = data;
+> +
+> +	*rate = emc->debugfs.min_rate;
+> +
+> +	return 0;
+> +}
+> +
+> +static int tegra_emc_debug_min_rate_set(void *data, u64 rate)
+> +{
+> +	struct tegra_emc *emc = data;
+> +	int err;
+> +
+> +	if (!tegra_emc_validate_rate(emc, rate))
+> +		return -EINVAL;
+> +
+> +	err = emc_set_min_rate(emc, rate, EMC_RATE_DEBUG);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	emc->debugfs.min_rate = rate;
+> +
+> +	return 0;
+> +}
+> +
+> +DEFINE_DEBUGFS_ATTRIBUTE(tegra_emc_debug_min_rate_fops,
+> +			 tegra_emc_debug_min_rate_get,
+> +			 tegra_emc_debug_min_rate_set, "%llu\n");
+> +
+
+...
+
+> +
+> +static int tegra_emc_probe(struct platform_device *pdev)
+> +{
+> +	struct tegra_core_opp_params opp_params = {};
+> +	struct device_node *np;
+> +	struct tegra_emc *emc;
+> +	u32 ram_code;
+> +	int err;
+> +
+> +	emc = devm_kzalloc(&pdev->dev, sizeof(*emc), GFP_KERNEL);
+> +	if (!emc)
+> +		return -ENOMEM;
+> +
+> +	mutex_init(&emc->rate_lock);
+> +	emc->dev = &pdev->dev;
+> +
+> +	emc->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(emc->regs))
+> +		return PTR_ERR(emc->regs);
+> +
+> +	emc->mc = devm_tegra_memory_controller_get(&pdev->dev);
+> +	if (IS_ERR(emc->mc))
+> +		return PTR_ERR(emc->mc);
+> +
+> +	ram_code = tegra_read_ram_code();
+> +
+> +	np = tegra_emc_find_node_by_ram_code(pdev->dev.of_node, ram_code);
+> +	if (np) {
+> +		err = tegra_emc_load_timings_from_dt(emc, np);
+> +		of_node_put(np);
+> +		if (err)
+> +			return err;
+> +	} else {
+> +		dev_info_once(&pdev->dev,
+> +			      "no memory timings for RAM code %u found in DT\n",
+> +			      ram_code);
+> +	}
+> +
+> +	err = emc_init(emc);
+> +	if (err) {
+> +		dev_err(&pdev->dev, "EMC initialization failed: %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, emc);
+> +
+> +	tegra124_clk_set_emc_callbacks(tegra_emc_prepare_timing_change,
+> +				       tegra_emc_complete_timing_change);
+> +
+> +	err = devm_add_action_or_reset(&pdev->dev, devm_tegra_emc_unset_callback,
+> +				       NULL);
+> +	if (err)
+> +		return err;
+> +
+> +	err = platform_get_irq(pdev, 0);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	emc->irq = err;
+> +
+> +	err = devm_request_irq(&pdev->dev, emc->irq, tegra_emc_isr, 0,
+> +			       dev_name(&pdev->dev), emc);
+> +	if (err) {
+> +		dev_err(&pdev->dev, "failed to request irq: %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	emc->clk = devm_clk_get(&pdev->dev, "emc");
+> +	if (IS_ERR(emc->clk)) {
+> +		err = PTR_ERR(emc->clk);
+> +		dev_err(&pdev->dev, "failed to get EMC clock: %d\n", err);
+
+Syntax is return dev_err_probe. Since some years and all the existing
+code was already fixed, no?
+
+> +		return err;
+> +	}
+> +
+> +	opp_params.init_state = true;
+> +
+> +	err = devm_tegra_core_dev_init_opp_table(&pdev->dev, &opp_params);
+> +	if (err)
+> +		return err;
+> +
+> +	tegra_emc_rate_requests_init(emc);
+> +
+> +	if (IS_ENABLED(CONFIG_DEBUG_FS))
+> +		emc_debugfs_init(&pdev->dev, emc);
+> +
+> +	tegra_emc_interconnect_init(emc);
+> +
+> +	/*
+> +	 * Don't allow the kernel module to be unloaded. Unloading adds some
+> +	 * extra complexity which doesn't really worth the effort in a case of
+> +	 * this driver.
+> +	 */
+> +	try_module_get(THIS_MODULE);
+> +
+> +	return 0;
+> +};
+> +
+> +static const struct of_device_id tegra_emc_of_match[] = {
+> +	{ .compatible = "nvidia,tegra114-emc" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, tegra_emc_of_match);
+> +
+> +static struct platform_driver tegra_emc_driver = {
+> +	.probe = tegra_emc_probe,
+> +	.driver = {
+> +		.name = "tegra114-emc",
+> +		.of_match_table = tegra_emc_of_match,
+> +		.suppress_bind_attrs = true,
+> +		.sync_state = icc_sync_state,
+> +	},
+> +};
+> +module_platform_driver(tegra_emc_driver);
+> +
+> +MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
+> +MODULE_DESCRIPTION("NVIDIA Tegra114 EMC driver");
+> +MODULE_LICENSE("GPL");
+
+
+Best regards,
+Krzysztof
 
