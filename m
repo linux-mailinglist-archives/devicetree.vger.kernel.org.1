@@ -1,60 +1,65 @@
-Return-Path: <devicetree+bounces-265989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265990-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WD8PO4UdlGkpAAIAu9opvQ
-	(envelope-from <devicetree+bounces-265989-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:49:25 +0100
+	id kJVcGZEdlGn0/wEAu9opvQ
+	(envelope-from <devicetree+bounces-265990-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:49:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7238314951D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:49:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C611149526
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:49:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5EEE9302AD2B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 07:48:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0D8C53002D09
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 07:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2432D780E;
-	Tue, 17 Feb 2026 07:48:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3CCD2D7398;
+	Tue, 17 Feb 2026 07:49:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jitJvq7p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V/bNmmGh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D14F13AF2;
-	Tue, 17 Feb 2026 07:48:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811F313AF2;
+	Tue, 17 Feb 2026 07:49:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771314533; cv=none; b=B66mbaaILygPa8pdc6Ds0RMJxp6ZX50wAYPP7aDwvKoRUticHp4LwT/VOk7M7cvFWnO3+cXrjLrl5j7EIglJ1QiWr9KxUtLrgU80qXv96tIQVZtlL/TZzew7AYe79TekaKEgCar7PgurCrV1Tsuc4Am+R6fvA5xSuAm08eYIVqI=
+	t=1771314570; cv=none; b=ONWN1ACEKnsHxlHAa9ELBNKw9LbmIPg56XJtGgBU/S93SQYh2CwtZRlJIKb2nlO4A7AH39CpTPRsmZoezLlPzm6pqY7N/e1FnzdFW7aKUU2jjEf9HwjeKUu7Kl+1HaRA0SLJzpAfpZjj7Mqw70QIkJDS42RWdDYOS54mIAfUE+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771314533; c=relaxed/simple;
-	bh=SYQPZwM9BPeO0KCiELHpwM0G8Xx03g90P7N90VDHreA=;
+	s=arc-20240116; t=1771314570; c=relaxed/simple;
+	bh=kYYBancBu+lFZyanAuxjxi4SoPi2qUnGY2AgwrpfAVQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I6hsrQDAO34VIPfTeWbiAE7EOsLZEJS42KRZXvJjIjgJ7nL12cY7MVVzELRNz0VHB/uGq8Vu0rwSeIRxv74OIm55BnIAFDWNUoodc6jLWnDyAZSpAU8ZGqxQ4TGaLdSz7esb5yom15vZsyse7QI0V4/Y7KZEfu/FX7XjMQ4suFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jitJvq7p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CEDEC19424;
-	Tue, 17 Feb 2026 07:48:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tZfSknlIMsWYNzuPrrjmxlAe6Xqtc1GzlS85Iq6jU97vsau6TJmrEdkPajJbOACYGdqZN07AeJfTEPQ3JRMhDLWzaLdtsTL1Y/Ow+38E82Mr4Eh4GBQM4tLMWTxN6sJG/9Xsh1fTgc32MC6QQ9MLFYyXdHXEeDpIuw+HpzFQE50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V/bNmmGh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F4CEC19421;
+	Tue, 17 Feb 2026 07:49:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771314532;
-	bh=SYQPZwM9BPeO0KCiELHpwM0G8Xx03g90P7N90VDHreA=;
+	s=k20201202; t=1771314570;
+	bh=kYYBancBu+lFZyanAuxjxi4SoPi2qUnGY2AgwrpfAVQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jitJvq7pLsXhnmdDqHUyEM7sK2Jg0iUAzBw/vJkaxkg0iCjwlmOX0RsZSlNYIjsDV
-	 sxbcLsrxM77NprVI0X+yKTrAY3c6rSaNOE++FBgKRgjzYkoWxgn3gxIytBdbzdI+qg
-	 Hag5er9O2VqGWKdWGvqLLBb0As5dJFa/TH3SqkZP3AaJAXaLnMBciXJ9bAcZrzVdtu
-	 bHkLYlXO/xrHXgH9M3r1gJ93PCyt9l6zTjyoT/Aao+g5w2gqinjHxJV3WWwt1iO+Vl
-	 tC5gY6QpJSy/cFFC5QOzPgP9gZeLaDqW3OZOmaj7iXhUO5vn+eizlJgsHjLgRZwmlk
-	 Wdf4WaGbxECdw==
-Date: Tue, 17 Feb 2026 08:48:50 +0100
+	b=V/bNmmGhKprNWY1Lt8qHYzZpmiiDGpyjXBPe9Sor9UqW2d9eT3FMd1JokwnteqkGW
+	 kBkK72mBNWTdMGVAT1RVdTnWMg3KPPCKtO0QPwknj1OSdk7yQ3+dElaK4JCmlo3LMC
+	 z4yprDA9Ugonq/pzqvvHrDGOIiJG75yeaQC/OFbAQh+E8M1c01Jx3JnrH8Zh7P2LuG
+	 FsGakJbevg3YTr/hOoCRgqihgSlo1h7V7IaoSfiN2trHqpWpA8MUAnURKdC9mks7py
+	 nEfGqmmJVxJEaoz+f29Zaio/MdXbfGjIwg1xzbveBXje/93JYIon7PD+8ewZIZWQSl
+	 SqzEwHhqILo+Q==
+Date: Tue, 17 Feb 2026 08:49:27 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryder Lee <ryder.lee@mediatek.com>
-Cc: Felix Fietkau <nbd@nbd.name>, Rob Herring <robh@kernel.org>, 
-	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v7 2/3] dt-bindings: net: wireless: mt76: add more PCI
- devices
-Message-ID: <20260217-lavender-dove-from-tartarus-fca40c@quoll>
-References: <8fa8ec500b3d4de7b1966c6887f1dfbe5c46a54c.1771205424.git.ryder.lee@mediatek.com>
- <5022737c82052132702004ab0fdc073f5cf6df69.1771205424.git.ryder.lee@mediatek.com>
+To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, 
+	Joel Stanley <jms@oss.tenstorrent.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, 
+	mpe@kernel.org, mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, 
+	agross@kernel.org, agross@oss.tenstorrent.com, bmasney@redhat.com
+Subject: Re: [PATCH v6 1/3] dt-bindings: clk: tenstorrent: Add
+ tenstorrent,atlantis-prcm-rcpu
+Message-ID: <20260217-nostalgic-manipulative-saluki-eecf43@quoll>
+References: <20260216-atlantis-clocks-v6-0-cb46d6a59c73@oss.tenstorrent.com>
+ <20260216-atlantis-clocks-v6-1-cb46d6a59c73@oss.tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,53 +68,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <5022737c82052132702004ab0fdc073f5cf6df69.1771205424.git.ryder.lee@mediatek.com>
+In-Reply-To: <20260216-atlantis-clocks-v6-1-cb46d6a59c73@oss.tenstorrent.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265989-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-265990-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:email]
-X-Rspamd-Queue-Id: 7238314951D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,tenstorrent.com:email]
+X-Rspamd-Queue-Id: 8C611149526
 X-Rspamd-Action: no action
 
-On Mon, Feb 16, 2026 at 08:01:15AM -0800, Ryder Lee wrote:
-> This adds support for mt7915/mt7916/mt7990/mt7992/mt7996 PCI devices.
-
-No, it does not add any support. I asked you to provide rationale why
-this is needed.
-
-Also, read submitting patches finally - it is not "This adds...".
-
-
+On Mon, Feb 16, 2026 at 04:16:32PM -0600, Anirudh Srinivasan wrote:
+> Document bindings for Tenstorrent Atlantis PRCM that manages clocks
+> and resets. This block is instantiated multiple times in the SoC.
+> This commit documents the clocks from the RCPU PRCM block.
 > 
-> Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
+> Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
 > ---
-> v7: add missing dts mailing list and maintainers
+>  .../clock/tenstorrent,atlantis-prcm-rcpu.yaml      |  54 +++++++++++
+>  MAINTAINERS                                        |   2 +
+>  .../clock/tenstorrent,atlantis-prcm-rcpu.h         | 103 +++++++++++++++++++++
+>  3 files changed, 159 insertions(+)
 
-No, you still did not bother to Cc maintainers. I gave you detailed
-instruction which you just ignored.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
