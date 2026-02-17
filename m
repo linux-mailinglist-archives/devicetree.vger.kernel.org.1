@@ -1,318 +1,997 @@
-Return-Path: <devicetree+bounces-266059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266060-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qH8MElg/lGmYBAIAu9opvQ
-	(envelope-from <devicetree+bounces-266059-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:13:44 +0100
+	id HG2mMrM/lGlfBQIAu9opvQ
+	(envelope-from <devicetree+bounces-266060-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:15:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B43A14AB81
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:13:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536DA14AB97
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:15:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 034173002D08
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:13:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8AF0F300ACB7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:15:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A71F322B72;
-	Tue, 17 Feb 2026 10:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0BF27991A;
+	Tue, 17 Feb 2026 10:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hQAnI2uv"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="TLc63z9Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ixit.cz [185.100.197.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF681EB5B;
-	Tue, 17 Feb 2026 10:13:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6B2281532;
+	Tue, 17 Feb 2026 10:15:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771323218; cv=none; b=jKVGDkze65vhxHtyzb681H57z8nKIeeB4RuVrO3+iey2NSaAjaMQiAUM1pf1w9HUSctaJnyuXeTO0N/+iJZoHJlMpIj5FaXvdaiS+zB/jrWr08lAwcAX19fKBnx60D8jrczvmTA6x6Joa5zc9TKkgsXsp/Q3TWz6AOia2tAh/pk=
+	t=1771323313; cv=none; b=mBkQdSmkj6qBvGJW9TRXX54n/do1dfL2G4cmBls+S8KPiQl2PUqeMuZrpsANRSARJEdNbeenbvb3Goklq8KZZ7yTROtYHlyA1W/ELZpLuFGbfxwxX+/k1YST6E6iQc8vq4oXoskrs491a7jEzbdc9HumwdOKoSeFjOJwFrWm6Ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771323218; c=relaxed/simple;
-	bh=R36PQk8KyDr9x04rIC9BdVGjwABrAY+q1kN3Q0uXFL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UA2+ZZ/zK2D3NDmmutFjc4IkxQRBuWnLe5chuC59gcMcNjHJOkQQPWz+6kwYhnfowerIyjPCVmsLSrnPZOtkeX6yHtLx0s/+XNcmHvUNQUdCttaZb478p+ZgjMmVc4a2Pa9sVbIowTgksRGQZHLY3njgEQoNGuEorTtfXemMwOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hQAnI2uv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 698C1C4CEF7;
-	Tue, 17 Feb 2026 10:13:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771323217;
-	bh=R36PQk8KyDr9x04rIC9BdVGjwABrAY+q1kN3Q0uXFL4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hQAnI2uvRBc/dRyxJCCW1QFY8U59rFXk81Yepf+QcTtAYjzasqX1zRZt70YnPwE5J
-	 SJN9YGww/I+sQQKg6HtA8MmNU4xgqQNzHMeeVzcW976P5jlxxeyH4/KIJtxcKXfefg
-	 7XMctAWnI3aQZlLpPOG1VBcSRHzohNbz867AcbKwlTj6S1h8VvQvBQ7EzPq3xqiHyi
-	 WQ1xAjtb+04IhABAIUQqWjBCYGqrU/GXAAt7utYE2vpODKA7P3GuwUqVKwVoeG0Jqd
-	 Iy5rSIghxw6b/8iN/ymFhJxINtuhHGg9CEp4kwhX7c7w3KaNATJchFNwo4scPgmU9y
-	 XAZdv667zZ26w==
-Date: Tue, 17 Feb 2026 11:13:35 +0100
-From: Thierry Reding <thierry.reding@kernel.org>
-To: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
-	Aaron Kling <webgeek1234@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] Revert "arm64: tegra: Disable ISO SMMU for Tegra194"
-Message-ID: <aZQ-cMn-3vI7UH7t@orome>
-References: <20251101-tegra194-dc-mmu-v1-0-8401c45d8f13@gmail.com>
- <CALHNRZ-YQe7_7UGfFNsBe6pdvFjK+1sS0Sye7od6WF+yqAYttQ@mail.gmail.com>
- <5289895.R56niFO833@senjougahara>
- <6462154.GXAFRqVoOG@senjougahara>
+	s=arc-20240116; t=1771323313; c=relaxed/simple;
+	bh=mYVV7WwXLzgnnHZ6MpHcSjyKSH7tZOBo+8Gei0Ms6/U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JqBDSenqcfpiRs+hLRcuesu+rSbyYQxLQouol5JhRLtVdnixnsUTIcwq1T9ZmjyuWy6nil5i790beOWWiGjLOW85lLgT5tukKT/L/9mGsqOwwiTfe3VAqV0/sDdUzD5AFqqur19nasaVlURuN4tVm994u1+PJqlhbiOcThWOqso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=TLc63z9Y; arc=none smtp.client-ip=185.100.197.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 9851B5340602;
+	Tue, 17 Feb 2026 11:15:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1771323306;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=qf3xXdt06hjsqXbVAHMi3GSkZagvu9CTJh8dfs1FkaA=;
+	b=TLc63z9YlJH5YKwzfYYK16fE5yd/JloyNtRNLuzEyV4uuHDKYOkL3Tp8Zvage4nUJJfz7v
+	XpHihtbuCivlbsx3ofCIX7d68MYgyY5Aei6EEF8MBYQRVPCykCwXPEILYQ2Q2dgOqjcebW
+	qfJthI2qB0A9hTnQLvQ9DiYb+ujVPZA=
+Message-ID: <0b0fcaaf-0c29-4145-b9cb-aaa401514ed9@ixit.cz>
+Date: Tue, 17 Feb 2026 11:15:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fetqgeupq2ey7hvw"
-Content-Disposition: inline
-In-Reply-To: <6462154.GXAFRqVoOG@senjougahara>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: sdm670-google: add common device
+ tree include
+To: Richard Acayan <mailingradian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Cc: yifei@zhan.science
+References: <20260217000854.131242-1-mailingradian@gmail.com>
+ <20260217000854.131242-6-mailingradian@gmail.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20260217000854.131242-6-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-266059-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266060-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,linux.intel.com,suse.de,ffwll.ch,ravnborg.org,vger.kernel.org,lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	DBL_PROHIBIT(0.00)[0.152.150.128:email,0.183.27.0:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ixit.cz:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nvidia.com:email]
-X-Rspamd-Queue-Id: 4B43A14AB81
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 536DA14AB97
 X-Rspamd-Action: no action
 
+On 17/02/2026 01:08, Richard Acayan wrote:
+> The Pixel 3a XL can be supported by reusing most of the device tree from
+> the Pixel 3a. Move the common elements to a common device tree include
+> like with other devices.
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>   ...le-sargo.dts => sdm670-google-common.dtsi} |  18 +-
+>   .../boot/dts/qcom/sdm670-google-sargo.dts     | 710 +-----------------
+>   2 files changed, 21 insertions(+), 707 deletions(-)
+>   copy arch/arm64/boot/dts/qcom/{sdm670-google-sargo.dts => sdm670-google-common.dtsi} (97%)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi
+> similarity index 97%
+> copy from arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> copy to arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi
+> index 2e86bed9ea8c..c47e78aeef9e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-common.dtsi
+> @@ -6,8 +6,6 @@
+>    * Copyright (c) 2022, Richard Acayan. All rights reserved.
+>    */
+>   
+> -/dts-v1/;
+> -
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/input/input.h>
+>   #include <dt-bindings/leds/common.h>
+> @@ -28,9 +26,6 @@
+>   /delete-node/ &gpu_mem;
+>   
+>   / {
+> -	model = "Google Pixel 3a";
+> -	compatible = "google,sargo", "qcom,sdm670";
+> -
+>   	aliases { };
+>   
+>   	battery: battery {
+> @@ -38,7 +33,6 @@ battery: battery {
+>   
+>   		voltage-min-design-microvolt = <3312000>;
+>   		voltage-max-design-microvolt = <4400000>;
+> -		charge-full-design-microamp-hours = <3000000>;
+>   	};
+>   
+>   	chosen {
+> @@ -50,11 +44,9 @@ chosen {
+>   
+>   		framebuffer: framebuffer@9c000000 {
+>   			compatible = "simple-framebuffer";
+> -			reg = <0 0x9c000000 0 (1080 * 2220 * 4)>;
+> -			width = <1080>;
+> -			height = <2220>;
+> -			stride = <(1080 * 4)>;
+> +			/* dimensions and size are in specific device trees */
+>   			format = "a8r8g8b8";
+> +			status = "disabled";
+>   		};
+>   	};
+>   
+> @@ -518,8 +510,6 @@ rmi4-f01@1 {
+>   
+>   		rmi4_f12: rmi4-f12@12 {
+>   			reg = <0x12>;
+> -			touchscreen-x-mm = <62>;
+> -			touchscreen-y-mm = <127>;
+>   			syna,sensor-type = <1>;
+>   		};
+>   	};
+> @@ -534,7 +524,7 @@ &mdss_dsi0 {
+>   	status = "okay";
+>   
+>   	panel: panel@0 {
+> -		compatible = "samsung,s6e3fa7-ams559nk06";
+> +		/* compatible is provided in specific device trees */
+>   		reg = <0>;
+>   
+>   		reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
+> @@ -544,6 +534,8 @@ panel: panel@0 {
+>   
+>   		power-supply = <&vreg_l6b_3p3>;
+>   
+> +		status = "disabled";
+> +
+>   		port {
+>   			panel_in: endpoint {
+>   				remote-endpoint = <&mdss_dsi0_out>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> index 2e86bed9ea8c..7a3e24997232 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> @@ -1,715 +1,37 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only
+>   /*
+> - * Device tree for Google Pixel 3a, adapted from google-blueline device tree,
+> - * xiaomi-lavender device tree, and oneplus-common device tree.
+> + * Device tree for Google Pixel 3a (non-XL).
+>    *
+> - * Copyright (c) 2022, Richard Acayan. All rights reserved.
+> + * Copyright (c) 2023, Richard Acayan. All rights reserved.
 
---fetqgeupq2ey7hvw
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/2] Revert "arm64: tegra: Disable ISO SMMU for Tegra194"
-MIME-Version: 1.0
+You can happily omit the year in the copyright (and updates are 
+discouraged).
 
-On Tue, Feb 17, 2026 at 12:53:54PM +0900, Mikko Perttunen wrote:
-> On Thursday, January 22, 2026 7:22=E2=80=AFPM Mikko Perttunen wrote:
-> > On Tuesday, December 9, 2025 1:21=E2=80=AFPM Aaron Kling wrote:
-> > > On Mon, Nov 3, 2025 at 12:05=E2=80=AFPM Aaron Kling <webgeek1234@gmai=
-l.com> wrote:
-> > > >
-> > > > On Mon, Nov 3, 2025 at 5:07=E2=80=AFAM Thierry Reding <thierry.redi=
-ng@gmail.com> wrote:
-> > > > >
-> > > > > On Sat, Nov 01, 2025 at 06:13:26PM -0500, Aaron Kling wrote:
-> > > > > > On Sat, Nov 1, 2025 at 6:01=E2=80=AFPM Aaron Kling via B4 Relay
-> > > > > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> > > > > > >
-> > > > > > > From: Aaron Kling <webgeek1234@gmail.com>
-> > > > > > >
-> > > > > > > This reverts commit ebea268ea583ba4970df425dfef8c8e21d0a4e12.
-> > > > > > >
-> > > > > > > Mmu is now being enabled for the display controllers.
-> > > > > > >
-> > > > > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > > > > > ---
-> > > > > > >  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 2 +-
-> > > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > > >
-> > > > > > > diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/=
-arm64/boot/dts/nvidia/tegra194.dtsi
-> > > > > > > index 1399342f23e1c4f73b278adc66dfb948fc30d326..854ed6d46aa1d=
-8eedcdfbae1fdde1374adf40337 100644
-> > > > > > > --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> > > > > > > +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> > > > > > > @@ -1807,7 +1807,7 @@ iommu@10000000 {
-> > > > > > >                         #iommu-cells =3D <1>;
-> > > > > > >
-> > > > > > >                         nvidia,memory-controller =3D <&mc>;
-> > > > > > > -                       status =3D "disabled";
-> > > > > > > +                       status =3D "okay";
-> > > > > > >                 };
-> > > > > > >
-> > > > > > >                 smmu: iommu@12000000 {
-> > > > > > >
-> > > > > > > --
-> > > > > > > 2.51.0
-> > > > > > >
-> > > > > > >
-> > > > > >
-> > > > > > Question for Jon as the author of the commit being reverted. The
-> > > > > > commit message states "we do not have a way to pass frame-buffer
-> > > > > > memory from the bootloader to the kernel". If I understand this
-> > > > > > correctly, this is talking about seamless handoff. What does th=
-is have
-> > > > > > to do with enabling mmu on the display controllers? Seamless do=
-es not
-> > > > > > work on any tegra arch as far as I'm aware, but Tegra194 is the=
- only
-> > > > > > one that doesn't have mmu enabled for the dc's. But enabling mmu
-> > > > > > allows for better and faster memory allocation. My initial atte=
-mpts to
-> > > > > > enable this didn't work because I tried to attach them to the m=
-ain mmu
-> > > > > > unit, see the related freedesktop issue [0]. After noticing in =
-the
-> > > > > > downstream dt that the dc's are on a separate unit, I made it w=
-ork.
-> > > > > > And so far, it seems to work just as well as Tegra186. Then whe=
-n I was
-> > > > > > packaging up the change to submit, I found that this had been
-> > > > > > explicitly disabled. But I'm not seeing why. Am I missing some
-> > > > > > additional factors?
-> > > > >
-> > > > > This isn't seamless handoff to the Tegra DRM driver for display, =
-but
-> > > > > rather to simple-framebuffer. While this does technically work, i=
-t also
-> > > > > causes a spew of SMMU faults during early boot because the firmwa=
-re does
-> > > > > not properly pass the SMMU mapping information to the kernel.
-> > > > >
-> > > > > In a nutshell what happens is that the firmware sets up the displ=
-ay
-> > > > > controller to scan out from a reserved memory region, but it does=
- so
-> > > > > without involving the SMMU, so it uses physical addresses directl=
-y. When
-> > > > > the kernel boots and the SMMU is enabled the continued accesses f=
-rom
-> > > > > display hardware cause SMMU faults (because there is no mapping f=
-or the
-> > > > > framebuffer addresses).
-> > > > >
-> > > > > That said, we did solve these issues and this may not be happening
-> > > > > anymore with the most recent L4T releases, so it may be okay to r=
-evert
-> > > > > this now. We should find out exactly which release includes all t=
-he
-> > > > > needed changes so that it can be referenced in the commit message=
-=2E I
-> > > > > want to avoid people running new kernels with an old L4T release =
-and
-> > > > > then seeing these errors without any reference as to why that mig=
-ht
-> > > > > suddenly happen.
-> > > >
-> > > > For reference, I have rolled back my Android usecase to use the L4T
-> > > > r32.7.6 bootloaders on T194 for a variety of reasons. So I am using
-> > > > cboot as the final bootloader and not edk2 as in L4T r34/r35. I hav=
-e a
-> > > > pending cboot patch to support simple-framebuffer handoff, but have=
-n't
-> > > > fully verified it as tegra-drm is currently unable to takeover from
-> > > > simplefb like openrm does for t234. But all that to say that since I
-> > > > no longer use r35 for t194 I don't have the setup to easily verify
-> > > > which point release works here and what doesn't.
-> > >=20
-> > > Any further thoughts on this patch?
-> > >=20
-> > > Aaron
-> >=20
-> > FWIW,
-> >=20
-> > looks like the edk2 patch to update iommu-addresses --
-> >=20
-> > commit 6071946461389221d2314cbbae0377610b5b1f6a
-> > Author: Jan Bobek <jbobek@nvidia.com>
-> > Date:   Tue Mar 21 00:15:27 2023 +0000
-> >=20
-> >     feat(NvDisplayControllerDxe): update FDT with framebuffer info
-> >    =20
-> >     On ready-to-boot and whenever FDT is installed, update FDT with
-> >     framebuffer mode information, base address and size.
-> >    =20
-> >     Signed-off-by: Jan Bobek <jbobek@nvidia.com>
-> >     Reviewed-by: Ashish Singhal <ashishsingha@nvidia.com>
-> >=20
-> > is in since r36.2
-> >=20
-> > $ git tag --contains 6071946461389221d2314cbbae0377610b5b1f6a | grep "^=
-r"                                                                =20
-> > r36.2
-> > r36.3.0
-> > r36.4.0
-> > r36.4.3
-> > r36.4.4
-> > r36.4.5
-> > r38.2
-> > r38.4
-> >=20
-> > Not so good for T194 since r36 only supports Orin.
-> >=20
-> > I'll look into getting this cherry-picked to r35.
-> >=20
-> > Mikko
-> >=20
-> >=20
->=20
-> I looked into this and it appears a version of this is in r35, but it
-> only supports T234. However, I also found that at one point, L4T
-> bootloader configuration has been modified to place the display
-> controllers into SMMU bypass until otherwise configured by the kernel
-> -- which the kernel does in tegra_mc_probe_device.
->=20
-> I think that means there is still potential for an issue where the
-> display continues to be on between tegra_mc_probe_device and tegradrm
-> reconfiguring it. However, I cannot reproduce that happening -- most
-> likely the display is being turned off before that because of a clock
-> or power domain being turned off.
->=20
-> In any case, this means that we no longer need to pass the
-> framebuffer's information to the kernel. I think it would be good to
-> have some clarity to ensure the issue described above cannot happen,
-> but otherwise we should be able to enable IOMMU.
+>    */
+>   
+>   /dts-v1/;
+>   
+> -#include <dt-bindings/gpio/gpio.h>
+> -#include <dt-bindings/input/input.h>
+> -#include <dt-bindings/leds/common.h>
+> -#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> -#include <dt-bindings/power/qcom-rpmpd.h>
+> -#include "sdm670.dtsi"
+> -#include "pm660.dtsi"
+> -#include "pm660l.dtsi"
+> -
+> -/delete-node/ &mpss_region;
+> -/delete-node/ &venus_mem;
+> -/delete-node/ &wlan_msa_mem;
+> -/delete-node/ &cdsp_mem;
+> -/delete-node/ &mba_region;
+> -/delete-node/ &adsp_mem;
+> -/delete-node/ &ipa_fw_mem;
+> -/delete-node/ &ipa_gsi_mem;
+> -/delete-node/ &gpu_mem;
+> +#include "sdm670-google-common.dtsi"
+>   
+>   / {
+>   	model = "Google Pixel 3a";
+>   	compatible = "google,sargo", "qcom,sdm670";
+> -
+> -	aliases { };
+> -
+> -	battery: battery {
+> -		compatible = "simple-battery";
+> -
+> -		voltage-min-design-microvolt = <3312000>;
+> -		voltage-max-design-microvolt = <4400000>;
+> -		charge-full-design-microamp-hours = <3000000>;
+> -	};
+> -
+> -	chosen {
+> -		stdout-path = "serial0:115200n8";
+> -
+> -		#address-cells = <2>;
+> -		#size-cells = <2>;
+> -		ranges;
+> -
+> -		framebuffer: framebuffer@9c000000 {
+> -			compatible = "simple-framebuffer";
+> -			reg = <0 0x9c000000 0 (1080 * 2220 * 4)>;
+> -			width = <1080>;
+> -			height = <2220>;
+> -			stride = <(1080 * 4)>;
+> -			format = "a8r8g8b8";
+> -		};
+> -	};
+> -
+> -	gpio-keys {
+> -		compatible = "gpio-keys";
+> -		autorepeat;
+> -
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&vol_up_pin>;
+> -
+> -		key-vol-up {
+> -			label = "Volume Up";
+> -			linux,code = <KEY_VOLUMEUP>;
+> -			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
+> -		};
+> -	};
+> -
+> -	reserved-memory {
+> -		#address-cells = <2>;
+> -		#size-cells = <2>;
+> -
+> -		mpss_region: mpss@8b000000 {
+> -			reg = <0 0x8b000000 0 0x9800000>;
+> -			no-map;
+> -		};
+> -
+> -		venus_mem: venus@94800000 {
+> -			reg = <0 0x94800000 0 0x500000>;
+> -			no-map;
+> -		};
+> -
+> -		wlan_msa_mem: wlan-msa@94d00000 {
+> -			reg = <0 0x94d00000 0 0x100000>;
+> -			no-map;
+> -		};
+> -
+> -		cdsp_mem: cdsp@94e00000 {
+> -			reg = <0 0x94e00000 0 0x800000>;
+> -			no-map;
+> -		};
+> -
+> -		mba_region: mba@95600000 {
+> -			reg = <0 0x95600000 0 0x200000>;
+> -			no-map;
+> -		};
+> -
+> -		adsp_mem: adsp@95800000 {
+> -			reg = <0 0x95800000 0 0x2200000>;
+> -			no-map;
+> -		};
+> -
+> -		ipa_fw_mem: ipa-fw@97a00000 {
+> -			reg = <0 0x97a00000 0 0x10000>;
+> -			no-map;
+> -		};
+> -
+> -		ipa_gsi_mem: ipa-gsi@97a10000 {
+> -			reg = <0 0x97a10000 0 0x5000>;
+> -			no-map;
+> -		};
+> -
+> -		gpu_mem: gpu@97a15000 {
+> -			reg = <0 0x97a15000 0 0x2000>;
+> -			no-map;
+> -		};
+> -
+> -		framebuffer-region@9c000000 {
+> -			reg = <0 0x9c000000 0 0x2400000>;
+> -			no-map;
+> -		};
+> -
+> -		/* Also includes ramoops regions */
+> -		debug_info_mem: debug-info@a1800000 {
+> -			reg = <0 0xa1800000 0 0x411000>;
+> -			no-map;
+> -		};
+> -	};
+> -
+> -	/*
+> -	 * The touchscreen regulator seems to be controlled somehow by a gpio.
+> -	 * Model it as a fixed regulator and keep it on. Without schematics we
+> -	 * don't know how this is actually wired up...
+> -	 */
+> -	ts_1p8_supply: ts-1p8-regulator {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "ts_1p8_supply";
+> -
+> -		regulator-min-microvolt = <1800000>;
+> -		regulator-max-microvolt = <1800000>;
+> -
+> -		gpio = <&pm660_gpios 12 GPIO_ACTIVE_HIGH>;
+> -		enable-active-high;
+> -	};
+> -
+> -	vph_pwr: vph-pwr-regulator {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "vph_pwr";
+> -		regulator-min-microvolt = <3312000>;
+> -		regulator-max-microvolt = <3312000>;
+> -
+> -		regulator-always-on;
+> -		regulator-boot-on;
+> -	};
+> -
+> -	/*
+> -	 * Supply map from xiaomi-lavender specifies this as the supply for
+> -	 * ldob1, ldob9, ldob10, ldoa2, and ldoa3, while downstream specifies
+> -	 * this as a power domain. Set this as a fixed regulator with the same
+> -	 * voltage as lavender until display is needed to avoid unneccessarily
+> -	 * using a deprecated binding (regulator-fixed-domain).
+> -	 */
+> -	vreg_s2b_1p05: vreg-s2b-regulator {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "vreg_s2b";
+> -		regulator-min-microvolt = <1050000>;
+> -		regulator-max-microvolt = <1050000>;
+> -	};
+> -
+> -	cam_front_ldo: cam-front-ldo-regulator {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "cam_front_ldo";
+> -		regulator-min-microvolt = <1352000>;
+> -		regulator-max-microvolt = <1352000>;
+> -		regulator-enable-ramp-delay = <135>;
+> -
+> -		gpios = <&pm660l_gpios 4 GPIO_ACTIVE_HIGH>;
+> -		enable-active-high;
+> -
+> -		pinctrl-0 = <&cam_front_ldo_pin>;
+> -		pinctrl-names = "default";
+> -	};
+> -
+> -	cam_vio_ldo: cam-vio-ldo-regulator {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "cam_vio_ldo";
+> -		regulator-min-microvolt = <1800000>;
+> -		regulator-max-microvolt = <1800000>;
+> -		regulator-enable-ramp-delay = <233>;
+> -
+> -		gpios = <&pm660_gpios 13 GPIO_ACTIVE_HIGH>;
+> -		enable-active-high;
+> -
+> -		pinctrl-0 = <&cam_vio_pin>;
+> -		pinctrl-names = "default";
+> -	};
+> -};
+> -
+> -&apps_rsc {
+> -	regulators-0 {
+> -		compatible = "qcom,pm660-rpmh-regulators";
+> -		qcom,pmic-id = "a";
+> -
+> -		vdd-s1-supply = <&vph_pwr>;
+> -		vdd-s2-supply = <&vph_pwr>;
+> -		vdd-s3-supply = <&vph_pwr>;
+> -		vdd-s4-supply = <&vph_pwr>;
+> -		vdd-s5-supply = <&vph_pwr>;
+> -		vdd-s6-supply = <&vph_pwr>;
+> -
+> -		vdd-l1-l6-l7-supply = <&vreg_s6a_0p87>;
+> -		vdd-l2-l3-supply = <&vreg_s2b_1p05>;
+> -		vdd-l5-supply = <&vreg_s2b_1p05>;
+> -		vdd-l8-l9-l10-l11-l12-l13-l14-supply = <&vreg_s4a_2p04>;
+> -		vdd-l15-l16-l17-l18-l19-supply = <&vreg_bob>;
+> -
+> -		/*
+> -		 * S1A (FTAPC0), S2A (FTAPC1), S3A (HFAPC1) are managed
+> -		 * by the Core Power Reduction hardened (CPRh) and the
+> -		 * Operating State Manager (OSM) HW automatically.
+> -		 */
+> -
+> -		vreg_s4a_2p04: smps4 {
+> -			regulator-min-microvolt = <1808000>;
+> -			regulator-max-microvolt = <2040000>;
+> -			regulator-enable-ramp-delay = <200>;
+> -		};
+> -
+> -		vreg_s6a_0p87: smps6 {
+> -			regulator-min-microvolt = <1224000>;
+> -			regulator-max-microvolt = <1352000>;
+> -			regulator-enable-ramp-delay = <150>;
+> -		};
+> -
+> -		/* LDOs */
+> -		vreg_l1a_1p225: ldo1 {
+> -			regulator-min-microvolt = <1200000>;
+> -			regulator-max-microvolt = <1250000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l2a_1p0: ldo2 {
+> -			regulator-min-microvolt = <1000000>;
+> -			regulator-max-microvolt = <1000000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l3a_1p0: ldo3 {
+> -			regulator-min-microvolt = <1000000>;
+> -			regulator-max-microvolt = <1000000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l5a_0p848: ldo5 {
+> -			regulator-min-microvolt = <800000>;
+> -			regulator-max-microvolt = <800000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l6a_1p3: ldo6 {
+> -			regulator-min-microvolt = <1248000>;
+> -			regulator-max-microvolt = <1304000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l7a_1p2: ldo7 {
+> -			regulator-min-microvolt = <1200000>;
+> -			regulator-max-microvolt = <1200000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l8a_1p8: ldo8 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -			regulator-always-on;
+> -		};
+> -
+> -		vreg_l9a_1p8: ldo9 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l10a_1p8: ldo10 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l11a_1p8: ldo11 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l12a_1p8: ldo12 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l13a_1p8: ldo13 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l14a_1p8: ldo14 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l15a_1p8: ldo15 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <2950000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l16a_2p7: ldo16 {
+> -			regulator-min-microvolt = <2696000>;
+> -			regulator-max-microvolt = <2696000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l17a_1p8: ldo17 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <2950000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l19a_3p3: ldo19 {
+> -			regulator-min-microvolt = <3000000>;
+> -			regulator-max-microvolt = <3312000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -	};
+> -
+> -	regulators-1 {
+> -		compatible = "qcom,pm660l-rpmh-regulators";
+> -		qcom,pmic-id = "b";
+> -
+> -		vdd-s1-supply = <&vph_pwr>;
+> -		vdd-s2-supply = <&vph_pwr>;
+> -		vdd-s3-s4-supply = <&vph_pwr>;
+> -		vdd-s5-supply = <&vph_pwr>;
+> -
+> -		vdd-l1-l9-l10-supply = <&vreg_s2b_1p05>;
+> -		vdd-l2-supply = <&vreg_bob>;
+> -		vdd-l3-l5-l7-l8-supply = <&vreg_bob>;
+> -		vdd-l4-l6-supply = <&vreg_bob>;
+> -		vdd-bob-supply = <&vph_pwr>;
+> -
+> -		/* LDOs */
+> -		vreg_l1b_0p925: ldo1 {
+> -			regulator-min-microvolt = <880000>;
+> -			regulator-max-microvolt = <900000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l2b_2p95: ldo2 {
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <2960000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l3b_3p0: ldo3 {
+> -			regulator-min-microvolt = <2850000>;
+> -			regulator-max-microvolt = <3008000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l4b_2p95: ldo4 {
+> -			regulator-min-microvolt = <2960000>;
+> -			regulator-max-microvolt = <2960000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l5b_2p95: ldo5 {
+> -			regulator-min-microvolt = <2960000>;
+> -			regulator-max-microvolt = <2960000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l6b_3p3: ldo6 {
+> -			regulator-min-microvolt = <3008000>;
+> -			regulator-max-microvolt = <3300000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l7b_3p125: ldo7 {
+> -			regulator-min-microvolt = <3088000>;
+> -			regulator-max-microvolt = <3100000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		vreg_l8b_3p3: ldo8 {
+> -			regulator-min-microvolt = <3300000>;
+> -			regulator-max-microvolt = <3312000>;
+> -			regulator-enable-ramp-delay = <250>;
+> -		};
+> -
+> -		/*
+> -		 * Downstream specifies a fixed voltage of 3.312 V, but the
+> -		 * PMIC4 BOB ranges don't support that. Widen the range a
+> -		 * little to avoid adding a new BOB regulator type.
+> -		 */
+> -		vreg_bob: bob {
+> -			regulator-min-microvolt = <3296000>;
+> -			regulator-max-microvolt = <3328000>;
+> -			regulator-enable-ramp-delay = <500>;
+> -		};
+> -	};
+> -};
+> -
+> -&camss {
+> -	vdda-phy-supply = <&vreg_l1a_1p225>;
+> -	vdda-pll-supply = <&vreg_s6a_0p87>;
+> -
+> -	status = "okay";
+> -};
+> -
+> -&camss_port1 {
+> -	camss_endpoint1: endpoint {
+> -		data-lanes = <0 1 2 3>;
+> -		remote-endpoint = <&cam_front_endpoint>;
+> -	};
+> -};
+> -
+> -&cci {
+> -	pinctrl-0 = <&cci1_default>;
+> -	pinctrl-1 = <&cci1_sleep>;
+> -	pinctrl-names = "default", "sleep";
+> -
+> -	status = "okay";
+> -};
+> -
+> -&cci_i2c1 {
+> -	camera@1a {
+> -		compatible = "sony,imx355";
+> -		reg = <0x1a>;
+> -
+> -		clocks = <&camcc CAM_CC_MCLK2_CLK>;
+> -
+> -		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
+> -		assigned-clock-rates = <19200000>;
+> -
+> -		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
+> -
+> -		avdd-supply = <&cam_front_ldo>;
+> -		dvdd-supply = <&cam_front_ldo>;
+> -		dovdd-supply = <&cam_vio_ldo>;
+> -
+> -		pinctrl-0 = <&cam_mclk2_default>;
+> -		pinctrl-names = "default";
+> -
+> -		rotation = <270>;
+> -		orientation = <0>;
+> -
+> -		port {
+> -			cam_front_endpoint: endpoint {
+> -				link-frequencies = /bits/ 64 <360000000>;
+> -				remote-endpoint = <&camss_endpoint1>;
+> -			};
+> -		};
+> -	};
+> -};
+> -
+> -&gcc {
+> -	protected-clocks = <GCC_QSPI_CORE_CLK>,
+> -			   <GCC_QSPI_CORE_CLK_SRC>,
+> -			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
+> -};
+> -
+> -&gpi_dma1 {
+> -	status = "okay";
+> -};
+> -
+> -&gpu {
+> -	status = "okay";
+> -};
+> -
+> -&gpu_zap_shader {
+> -	firmware-name = "qcom/sdm670/sargo/a615_zap.mbn";
+> -};
+> -
+> -&i2c9 {
+> -	clock-frequency = <100000>;
+> -	status = "okay";
+> -
+> -	synaptics-rmi4-i2c@20 {
+> -		compatible = "syna,rmi4-i2c";
+> -		reg = <0x20>;
+> -		interrupts-extended = <&tlmm 125 IRQ_TYPE_EDGE_FALLING>;
+> -
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&touchscreen_default>;
+> -
+> -		vio-supply = <&ts_1p8_supply>;
+> -
+> -		syna,reset-delay-ms = <200>;
+> -		syna,startup-delay-ms = <200>;
+> -
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		rmi4-f01@1 {
+> -			reg = <0x01>;
+> -			syna,nosleep-mode = <1>;
+> -		};
+> -
+> -		rmi4_f12: rmi4-f12@12 {
+> -			reg = <0x12>;
+> -			touchscreen-x-mm = <62>;
+> -			touchscreen-y-mm = <127>;
+> -			syna,sensor-type = <1>;
+> -		};
+> -	};
+>   };
+>   
+> -&mdss {
+> -	status = "okay";
+> +&battery {
+> +	charge-full-design-microamp-hours = <3000000>;
+>   };
+>   
+> -&mdss_dsi0 {
+> -	vdda-supply = <&vreg_l1a_1p225>;
+> +&framebuffer {
+> +	reg = <0 0x9c000000 0 (1080 * 2220 * 4)>;
+> +	width = <1080>;
+> +	height = <2220>;
+> +	stride = <(1080 * 4)>;
+>   	status = "okay";
+> -
+> -	panel: panel@0 {
+> -		compatible = "samsung,s6e3fa7-ams559nk06";
+> -		reg = <0>;
+> -
+> -		reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
+> -
+> -		pinctrl-names = "default";
+> -		pinctrl-0 = <&panel_default>;
+> -
+> -		power-supply = <&vreg_l6b_3p3>;
+> -
+> -		port {
+> -			panel_in: endpoint {
+> -				remote-endpoint = <&mdss_dsi0_out>;
+> -			};
+> -		};
+> -	};
+>   };
+>   
+> -&mdss_dsi0_out {
+> -	remote-endpoint = <&panel_in>;
+> -	data-lanes = <0 1 2 3>;
+> -};
+> -
+> -&mdss_dsi0_phy {
+> -	vdds-supply = <&vreg_l1b_0p925>;
+> -	status = "okay";
+> -};
+> -
+> -&mdss_mdp {
+> +&panel {
+> +	compatible = "samsung,s6e3fa7-ams559nk06";
 
-The problem would happen if you enable some sort of early framebuffer
-support, such as simple-drm or simple-framebuffer. Maybe even efifb. I
-think it'd still be worth getting the iommu-addresses code into r35 if
-for nothing else but to have a bit more of a safety buffer for the
-future.
+newline
 
-If we don't and for some reason decide that we want early framebuffer
-support, it might be too late to get UEFI updated for Tegra194. I recall
-that the UEFI code for Tegra194 is different from the one for Tegra234,
-so it is probably not as trivial as a simple cherry-pick, but I'll try
-to do some digging and find the code that does this for Xavier.
+LGTM,
 
-Thierry
+Reviewed-by: David Heidelberg <david@ixit.cz>
 
---fetqgeupq2ey7hvw
-Content-Type: application/pgp-signature; name="signature.asc"
+>   	status = "okay";
+>   };
+>   
+> -&pm660_charger {
+> -	monitored-battery = <&battery>;
+> -	status = "okay";
+> -};
+> -
+> -&pm660_gpios {
+> -	cam_vio_pin: cam-vio-state {
+> -		pins = "gpio13";
+> -		function = "normal";
+> -		power-source = <0>;
+> -	};
+> -};
+> -
+> -&pm660_rradc {
+> -	status = "okay";
+> -};
+> -
+> -&pm660l_flash {
+> -	status = "okay";
+> -
+> -	led-0 {
+> -		function = LED_FUNCTION_FLASH;
+> -		color = <LED_COLOR_ID_WHITE>;
+> -		led-sources = <1>, <2>;
+> -		led-max-microamp = <500000>;
+> -		flash-max-microamp = <1500000>;
+> -		flash-max-timeout-us = <1280000>;
+> -	};
+> -};
+> -
+> -&pm660l_gpios {
+> -	cam_front_ldo_pin: cam-front-state {
+> -		pins = "gpio4";
+> -		function = "normal";
+> -		power-source = <0>;
+> -	};
+> -
+> -	vol_up_pin: vol-up-state {
+> -		pins = "gpio7";
+> -		function = "normal";
+> -		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
+> -		input-enable;
+> -		bias-pull-up;
+> -	};
+> -};
+> -
+> -&pon_pwrkey {
+> -	status = "okay";
+> -};
+> -
+> -&pon_resin {
+> -	linux,code = <KEY_VOLUMEDOWN>;
+> -	status = "okay";
+> -};
+> -
+> -&qupv3_id_1 {
+> -	status = "okay";
+> -};
+> -
+> -&sdhc_1 {
+> -	supports-cqe;
+> -	mmc-hs200-1_8v;
+> -	mmc-hs400-1_8v;
+> -	mmc-ddr-1_8v;
+> -
+> -	qcom,ddr-config = <0xc3040873>;
+> -
+> -	vmmc-supply = <&vreg_l4b_2p95>;
+> -	vqmmc-supply = <&vreg_l8a_1p8>;
+> -
+> -	status = "okay";
+> -};
+> -
+> -&tlmm {
+> -	gpio-reserved-ranges = <0 4>, <81 4>;
+> -
+> -	panel_default: panel-default-state {
+> -		te-pins {
+> -			pins = "gpio10";
+> -			function = "mdp_vsync";
+> -			drive-strength = <2>;
+> -			bias-pull-down;
+> -		};
+> -
+> -		reset-pins {
+> -			pins = "gpio75";
+> -			function = "gpio";
+> -			drive-strength = <8>;
+> -			bias-disable;
+> -		};
+> -
+> -		mode-pins {
+> -			pins = "gpio76";
+> -			function = "gpio";
+> -			drive-strength = <8>;
+> -			bias-disable;
+> -		};
+> -	};
+> -
+> -	touchscreen_default: ts-default-state {
+> -		ts-reset-pins {
+> -			pins = "gpio99";
+> -			function = "gpio";
+> -			drive-strength = <2>;
+> -			bias-pull-up;
+> -			output-high;
+> -		};
+> -
+> -		ts-irq-pins {
+> -			pins = "gpio125";
+> -			function = "gpio";
+> -			drive-strength = <2>;
+> -			bias-disable;
+> -		};
+> -
+> -		ts-switch-pins {
+> -			pins = "gpio135";
+> -			function = "gpio";
+> -			drive-strength = <2>;
+> -			bias-disable;
+> -			output-low;
+> -		};
+> -	};
+> -};
+> -
+> -&usb_1_hsphy {
+> -	vdd-supply = <&vreg_l1b_0p925>;
+> -	vdda-pll-supply = <&vreg_l10a_1p8>;
+> -	vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
+> -
+> -	status = "okay";
+> -};
+> -
+> -&usb_1 {
+> -	qcom,select-utmi-as-pipe-clk;
+> -	status = "okay";
+> -};
+> -
+> -&usb_1_dwc3 {
+> -	/* Only peripheral works for now */
+> -	dr_mode = "peripheral";
+> -
+> -	/* Do not assume that sdm670.dtsi will never support USB 3.0 */
+> -	phys = <&usb_1_hsphy>;
+> -	phy-names = "usb2-phy";
+> -	maximum-speed = "high-speed";
+> +&rmi4_f12 {
+> +	touchscreen-x-mm = <63>;
+> +	touchscreen-y-mm = <127>;
+>   };
 
------BEGIN PGP SIGNATURE-----
+-- 
+David Heidelberg
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmmUP08ACgkQ3SOs138+
-s6GFIQ//XG1Xz0l+YHGhvpD8IrLPSdzfmENzskMj3hFAcMeGg0ieOVSwcuodCJsw
-ggJ2dOWI+NMp9zPILp/mUCzpo4RpR2GgLkeWwhgvgTTSXDSIV60hWTdTCUG8812r
-zxJu9TbLHwvRFROTp1Y16AJDEWHw3bSritplZQf4bVCrJwUOyG/qQ7BBHnRzogPG
-kVP6EBCVYQXtyBBhPAXuqdXwNpzB0j02116/AmIDJ21lGeNlBgXtla/uvDXVsNq7
-zPP1feX7yvp5uZ2Kr/KxH/mHQq4sPZp9uso5O5ittm2XLkMzf4g0CTKjcZRKUXLn
-xdipU2/FwWyi2tJEN7vYVhS652zeO5CzFEWUhYSsf9Nq2Kmg3HCQa2tfdwwWR+nM
-4cr3F9JGCMtFwzkbfpq9zHYI3X1GbdTNPjNBEEQ28FkPXMhdXgQEiE2P5RSCGBD9
-phzJ8Ra+nrEhaHQxJxEeeXpUIXSZfvNhYElZykjmyTCzFjoPo8ZjaU/EhQxXtdlr
-JqaiEVHxWtIHALBELwT4+m0E+TYkr90mz7QKVMfIgVkuIX1z6cDKdwXIJ04YYXgj
-TWO4BRMB5xXAro9Yt3oAI54tZDuD9hvk8ClMLHi/VDYNSdbQ8eqDvaFRH29QUJ0f
-AYfR3K7nvKripzY0iCXyvrMrdFSuat+mzek/22ZXI4N9FZVg1rI=
-=tagu
------END PGP SIGNATURE-----
-
---fetqgeupq2ey7hvw--
 
