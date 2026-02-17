@@ -1,67 +1,63 @@
-Return-Path: <devicetree+bounces-266012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kJaPDWoilGmqAAIAu9opvQ
-	(envelope-from <devicetree+bounces-266012-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:10:18 +0100
+	id EMqANvYilGmqAAIAu9opvQ
+	(envelope-from <devicetree+bounces-266013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:12:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3943149B77
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:10:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F2AE149C39
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:12:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C200F3016490
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:10:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DF7C2300A10B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:11:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0792E040E;
-	Tue, 17 Feb 2026 08:10:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1ED2D8793;
+	Tue, 17 Feb 2026 08:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P5VdzwvW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpRANsfB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572EC2DB7AA;
-	Tue, 17 Feb 2026 08:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 155871E3DED;
+	Tue, 17 Feb 2026 08:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771315812; cv=none; b=UEO+FX0d5J7vzyEBEQRGesBagfJ00rKDp21RwUwVYRsWK5W8q4mG2vGhny7uxbdj7vxLKofJBhgRkAL2ORBUChDDk0jJETbdmtb5MmEqQZeH2r571sRe/FfvOMyAYimO8G9R0GNnPDWAZVlRwzNWgOXwC5n/uldxdzxRUygZ9T0=
+	t=1771315891; cv=none; b=UFkHdndmAuclPf/wkxqJB/Ucxc2sljPEGrxyFVPGfY3YErPPhysK0ipFf8IqViHJ+wvOXKnYCmO2qgqe6S3AtKsDolbJnE1JfHpirV0kWxVZcQop2VbjeXkluX63yCmwnn0kpTZt2LY0y9pVx2mYU0KQYyKFjKkXd4XEM8pL/fQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771315812; c=relaxed/simple;
-	bh=JES+IBXkN/OopuNkWeM8rDx8cY1hL5qNmn2SSvSLDww=;
+	s=arc-20240116; t=1771315891; c=relaxed/simple;
+	bh=nFY1vSabPgCfBeXJBl3p55eqBUinLpounWMuYH7A8XQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MmZanL0Mwmyi9jpPRQ57nr7VaTtdGUEyC7xzM4Fe0fRt78ugMQvTepTrlRzcL+hbKCFFithbLQ2/e2BGy3CoUGPTy6UAM1gkXEMLabuxM0yA/kecvr12RYpatn2qs2huWPd86zH+PnCrmwfUP21+KxMVjV9pcHIyoYOS0d9DdQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P5VdzwvW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37FC4C19424;
-	Tue, 17 Feb 2026 08:10:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RUR7jicnVjy4n204doJQCDPSME4mfk7FSQd243nRBM4nKLBIOdHyfRhyJ9K04dsPctd7y2YopMnVS3WIU+mna6HfJ446D/LpyIQgYKKrMAzWlPXPleSDC4men1DnQQxR/M8nkMU2RjAhArvd25L3vsAGl7i67byUM5QYKSYh+E4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpRANsfB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ED1EC2BC86;
+	Tue, 17 Feb 2026 08:11:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771315811;
-	bh=JES+IBXkN/OopuNkWeM8rDx8cY1hL5qNmn2SSvSLDww=;
+	s=k20201202; t=1771315890;
+	bh=nFY1vSabPgCfBeXJBl3p55eqBUinLpounWMuYH7A8XQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P5VdzwvWLXGyzf38GdKR0DP1zmbtvU7hfd3hlDwwRkW80X4l1SWwX85/mwayZB4/i
-	 SNrxQLgJxPOUitED/rP9uOf0WeWZdIRg7+iV/SVR3Vaujf3JtmftZDR0u4ab1nywlH
-	 ElR11J92kF75uTgTLkjvF1p5qCJu+TSTTDpKcp5z3WMKkTCYKnViNy96BWo6fuWxX1
-	 KScScxH49TMGFhxMjUldGPC/sdm2/Mg5ywYdAAmJ7nC+vLcfzIZHfEP+MhH6bP86jL
-	 VR7Xml8I39h3w+kxZt/yxdzWvOXuSPJn5BEs/4AyFYkPXjExqMUg+U7GeCux68/TX6
-	 nGfyp/ia8y6gg==
-Date: Tue, 17 Feb 2026 09:10:09 +0100
+	b=LpRANsfB4DVY0GonZpgCgVup5ZWSVYo5aGZGn9UE0/FHiNzssEZeRRcKcU+AKFdHN
+	 /QUSNDgYzlZCaJXJ5ljtCc4O4kN88e8Jy+4mOvXXSXuNYaU8B8LinvE4joIHZZypAz
+	 1TD2w9q9R/GLRtlas/T8ABRqOfE9jdHRULQE05Mmli3f3HEoepB4AY1/NN1lPENSOM
+	 YROOBKKwXpIeC+HUZn/ZCS1UlLAU0dVOUE4ryzsj7DoF12s9LX4bGOOGSMCD32Z9QV
+	 q6D3tbEJYV1LG4e9DiM7PGfGWDlHtO5hwWnKanMFTLd1lObjne8HR72JMuff8t+Vxz
+	 czBgQVPBNWUTw==
+Date: Tue, 17 Feb 2026 09:11:28 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Daniel Baluta <daniel.baluta@oss.nxp.com>
-Cc: Larisa Grigore <larisa.grigore@oss.nxp.com>, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, sumit.semwal@linaro.org, christian.koenig@amd.com, 
-	chester62515@gmail.com, cosmin.stoica@nxp.com, adrian.nitu@freescale.com, 
-	stefan-gabriel.mirea@nxp.com, Mihaela.Martinas@freescale.com, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, s32@nxp.com, imx@lists.linux.dev, 
-	clizzi@redhat.com, aruizrui@redhat.com, eballetb@redhat.com, echanude@redhat.com, 
-	jkangas@redhat.com, Radu Pirea <radu-nicolae.pirea@nxp.com>
-Subject: Re: [PATCH 09/13] dt-bindings: serial: fsl-linflexuart: add dma
- properties
-Message-ID: <20260217-stirring-warping-partridge-dd9531@quoll>
-References: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
- <20260216150205.212318-10-larisa.grigore@oss.nxp.com>
- <5c0251b6-5228-4077-a21f-4da179949b90@oss.nxp.com>
+To: Val Packett <val@packett.cool>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adam Skladowski <a39.skl@gmail.com>, linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom,sm6115-dispcc: Define MDSS
+ resets
+Message-ID: <20260217-gentle-ambitious-newt-21c4a4@quoll>
+References: <20260216233600.13098-2-val@packett.cool>
+ <20260216233600.13098-3-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,70 +66,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <5c0251b6-5228-4077-a21f-4da179949b90@oss.nxp.com>
+In-Reply-To: <20260216233600.13098-3-val@packett.cool>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266012-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-266013-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[oss.nxp.com,linuxfoundation.org,kernel.org,linaro.org,amd.com,gmail.com,nxp.com,freescale.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev,redhat.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REDIRECTOR_URL(0.00)[aka.ms];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,gmail.com,vger.kernel.org,lists.sr.ht];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,aka.ms:url]
-X-Rspamd-Queue-Id: A3943149B77
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3F2AE149C39
 X-Rspamd-Action: no action
 
-On Mon, Feb 16, 2026 at 05:29:57PM +0200, Daniel Baluta wrote:
+On Mon, Feb 16, 2026 at 08:25:19PM -0300, Val Packett wrote:
+> Add the missing defines for MDSS resets.
+> While here, align comment style with other SoCs.
 > 
-> On 2/16/26 17:02, Larisa Grigore wrote:
-> > [You don't often get email from larisa.grigore@oss.nxp.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> >
-> > From: Radu Pirea <radu-nicolae.pirea@nxp.com>
-> >
-> > Add 'dmas' and 'dma-names' properties to describe optional DMA support
-> > for RX and TX channels in the LINFlexD UART controller.
-> >
-> > This allows the device tree to specify DMA channels used for UART data
-> > transfers. If not specified, the driver will fall to interrupt-based
-> > operations.
-> >
-> > Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
-> > Co-developed-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
-> > Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
-> 
-> If both of you worked on this patch then the last lines must read:
-> 
-> Co-developed-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
-> 
-> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
-> 
-> Co-developed-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
-> 
-> Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
+> Fixes: 38557c6fc077 ("dt-bindings: clock: add QCOM SM6115 display clock bindings")
 
-No, the DCO with this authorship is correct if they both worked. Nothing
-has to be changed here.
+Not a fix or explain the impact of the bug.
+
+> Signed-off-by: Val Packett <val@packett.cool>
+> ---
+>  include/dt-bindings/clock/qcom,sm6115-dispcc.h | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
 
 Best regards,
 Krzysztof
