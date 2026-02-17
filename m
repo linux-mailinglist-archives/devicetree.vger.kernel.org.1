@@ -1,182 +1,288 @@
-Return-Path: <devicetree+bounces-266292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266293-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oIzOMXXwlGmOJAIAu9opvQ
-	(envelope-from <devicetree+bounces-266292-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:49:25 +0100
+	id T2j7EgTylGnyJAIAu9opvQ
+	(envelope-from <devicetree+bounces-266293-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:56:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3C81519E7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:49:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B7D8151A49
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:56:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6727300B05B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 22:49:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0872E3015C8F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 22:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643302BE7AB;
-	Tue, 17 Feb 2026 22:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672552D781E;
+	Tue, 17 Feb 2026 22:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="FTbCNC2i"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YLfKeH+I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FDB727FD76
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 22:49:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771368563; cv=pass; b=A0fKWXTfkZ45NVuh2ij+9soaMbg6yJaDTuASk9rIiW8Y83raWW7+I45LnAdBkzCPkBSMFMXVZXza/6IaJQ86hOa5nMdHdnDdOEO/ZM8zyyShV1f/H0CRbuyppPejjhgghfNkQkmqB/5QayEFMH8jADfQAY8LZaf5YNpmFtJRBrc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771368563; c=relaxed/simple;
-	bh=nsna6x3edOZVDgHaZx8mdX2v6amo8aiMzBSafaXBTkc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Tj1w825JfWgUgAmQTTZ+fKqDx+iES3Wz3nSXlflnJyPNu0/3hz+ynjALpC830yQLiEeZdT7L+JYquC/PrVv1L2NfpUbQYWLkLf3QF5OEzi0XfvpzUW5F6j4GfZ1lLW7G7m4Qqg3Ji4G3+/r6MpG3ZpjBeVkg9Dar1+IT4ByOBtw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=FTbCNC2i; arc=pass smtp.client-ip=74.125.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-64ad2a2851cso4251969d50.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 14:49:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771368560; cv=none;
-        d=google.com; s=arc-20240605;
-        b=DPerd3BKLiwuQF8OaJPdFab123+1D+Zp00Elo5ZafczS0waRPsJ9VC+FOqlK+sv6ev
-         DEoZYdRL6DfLxdxcMBpBJMrg573HHQey0TNMfVZzkPwMq+VhPQNW8DqUBCjcdrsGgrer
-         q4vr8gM4wb3CXggF2Sc1aSj9uqcFSs9O+Z8qozoWVvUDV/Rjr8jxeClY6KGIvK9W6nbC
-         8cSRlT37SY12a2eyIzHpklEe+NhX2jF34p3pY9zVL8WDfG/+z1n3IrnvJYJM/BqCxC13
-         YbQ7zVpKa4cqnvM/Ph9urwUeETCh0TLYCX/jkhFiwJlVD1mvV92ZG0u96XZImurZdoEN
-         gheg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=nsna6x3edOZVDgHaZx8mdX2v6amo8aiMzBSafaXBTkc=;
-        fh=FqkI/Mwn/E1/C0ZU9AmrIgONhYWFfjlYZJ+09NuCREI=;
-        b=IaxkjP9m06Y6UsG62zCe1lyQ1Ofvu8nMpFSmF9pnHt7XlD4IB0lx33Vi46SuHUcMdI
-         niuwCBPRbl5yONRUf5zrT+upmDZWkrNNCtcIiAdgDcjPowgJDM8SvOCi3d1pFYXHezVV
-         AchN1pi01X5QLYt72HcJ/cvJH7lw8razPejnPHVnayO5kvtzr8Y71myE/BzpCf328pMn
-         pXhifn6GIpTBtcInXOjIucvy00xEcqSOUijh6CwmvNrQWyKKRLt0jU2NHDaa6aeoPtHi
-         HpLO+kscPbazhzctUoXqyBMTjl9h8AulqAx8dWykZ+H37Nb0c77ymchcyXQIy6xKMU3y
-         ZP4Q==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4831ADC7E
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 22:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771368961; cv=none; b=Av59+FETzkLIrhE+rMSE83ZhNJZyrrT/WcJexy6irYULrxtXAwJqPehe4FpW0xwnObnJp43lfgsnmjewuwrMCfXpvMu+RJh2QTr9pg0a+JQuUCVsCtrYvQ3ynQp8l9ZV/TGvVKbhDOrEANIzAZU0jkgARd0kb3cE57u0zg7ikX8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771368961; c=relaxed/simple;
+	bh=bvssL15XbSOxdAicqWiYiUk8ct54+EWZ0TdCukvko44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mwqm3XwJvRsHLJCm6Xft6OCxsQlsaobv13+R6ASXWKox8VK9JKwx2x8HL/jibh7x2h5YO1rCh3lVgRfmt4mc7169M9G3WMV3+XOFFo27jFQ3Kd+gaCwL7Z0Q0zk++5vXvLPH0OdW8GO3Ys3k+b7GQAyz8j9mJScqO+ixtlEyJyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YLfKeH+I; arc=none smtp.client-ip=209.85.210.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7d4c9537f90so2936740a34.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 14:55:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1771368560; x=1771973360; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nsna6x3edOZVDgHaZx8mdX2v6amo8aiMzBSafaXBTkc=;
-        b=FTbCNC2iAyTE8xl5QGlZjJTJhvgNud2veQJz/drkMVJ4jwvXRB4FLiEY1nDGYtSJNF
-         dR/2mVQcHly52eDpRLbnHr4WcaxplpDCTXZeSG1KTwA54Uxy8Y8PoizA21+ln3yOoWDD
-         L7xfYJoqxjH5caVWtV/LmVr6W5Ub77CJIfsusItb9Q8D6u0GR8hWXG04jtbaHKS5cKxH
-         H4pOrk2P2uxEgd0a8e7KvqjPV2UjhXcUR52XFpiNNwc+Xi44ltkUY+pgMrkpkWYG/E7g
-         BVjp/PtkbcczvLeCfloKMa1CcXuQVsZBxZndq5JcJFKFPz22OO+eQDi8Aj5k/n5QdZFM
-         tQEA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771368958; x=1771973758; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zdYxc/QZBQVS0ui5sfFiWK7cBCBspR4q9y+sv+w894M=;
+        b=YLfKeH+IvRqrBVujSqg1fdtFhA+0enzYxjspS/ApFZLxg4d7D0eyDR2riW8pWCoQWY
+         jLqNKtpb2MEctnkfpPkB8GnOtMVOKse3dY+C/L1HWTfmYmjDNjh7c1wIqghFNICYOa6M
+         FvtBb+nVRjZM/LXIRhLjPCVy75BpqRx5MrdWAEnW7rVCxAsTPrPiQgk2tzyaYs1DTPCn
+         +0H6uLL4Xzg9xvloGJOKMEqatN945/w9DhlDmVOHKUJLzjay9GyqLWfpZ5h7sEKhWeB9
+         SpQP7AGo8VLontMe+l5v4xIE+tUUjJd9luOrCPV0pG2n3iShAm8ED/JZ0V5TVaT/+uWM
+         r5/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771368560; x=1771973360;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=nsna6x3edOZVDgHaZx8mdX2v6amo8aiMzBSafaXBTkc=;
-        b=Xc/1MXDuQAlUu1sXK14pM2vMkRIyHK53kEYA+rNsJekMJ8yzc12z7N3YyILYkeM7VW
-         tdjeXh3yXlsHqaUlzdjljZEX2cUsznp6IAxlKSEoLpV72Fo9/KVIgFasEHYDZM+BleCl
-         coIWPcb6dR/HKSOyYnobx0dTjuEUTZwqtS2KM21kB0R2pyO3q8COQI5uOimbRn9kCwDc
-         aBjKGxTsqIgbpNCRZi2nI5JOR7Kts/+kUQs1cV2eKgX6ur+sVfCdmyIA310FWjyUWDgz
-         Jop6OixDXu85ZKrd0Wu8GVeKEZ8xYGg2zBe9CTg1QNPDBjK+ASqOx+H/j6e6WdbUtU99
-         jISA==
-X-Forwarded-Encrypted: i=1; AJvYcCVQOc4V8xQiCrpZt8N34SU4rSxSZG73O6mzgxwaUaCatk2UsupC+1u7Qypr6SeTfiagjRFKojvNlxqS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgUpur4UJIADN9N7N0tmSPMSOV9kRHPiw7dx43g6IzVadbXBkc
-	gBeBYUkH0g+ckTI8x1brTWOpysef6bqnxRuO9vQsdrcBa/K8j9//dN87Il3EQYadQiYBH2qa7N7
-	/kxI3p7fB2f+UG99CZ4pcWhO8ONNUNHkBWKCKR/3aeg==
-X-Gm-Gg: AZuq6aJWFg5SUX5I05yXM1+TlVrvBxOs3e2p8+SNLljDh0QIYmG/bG4stxqqYK1A7pI
-	xyrVDgxBqsJOXq/hgFkfHbl7B9N1SJuY5OfufshnRNjtOExZagsRQQGK727JnXQD7gkW2CvAbdd
-	CxOB7ESQZtDU2uUVLdaD0Ufeu5TkZpB7tf5wt6vMkSuevTROTBoupQd662TC/e+Ge3Ro5zgBwvU
-	HDhiAkhp2XrCQ+nj54hF3WiI2iL+JIi2yBj9RhTZA+XDaQQJWI3LZPfVHn/owHxRNHZEQqiwZrp
-	bTj5vgLFTC0Bzwc9lUHfBV65g0dp8P+HF896xjIA+qVKcmMqU3jmS6UkpGV4z+X2P4f7l6+f
-X-Received: by 2002:a05:690e:400a:b0:649:422e:a68a with SMTP id
- 956f58d0204a3-64c21b18c69mr9328991d50.57.1771368560092; Tue, 17 Feb 2026
- 14:49:20 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771368958; x=1771973758;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zdYxc/QZBQVS0ui5sfFiWK7cBCBspR4q9y+sv+w894M=;
+        b=NQB6+57su8m+29SBy7jillVoaO9W6XtFxc8LyubiGdpYCi5pXGvYV02r/F9swtziex
+         a6lsRyIpYxueYLe5IC9L8yZE83SquGQG9lWZOJAkcfGuWHWV8BaBVpx5H/EoRk3zjgWQ
+         Y7A3JycvI+g7pXepSzRXHHzJTKUnshHIynhq+Solc5H7zBNy0zkjSuWI8QJtIqU41rd5
+         9snSXwcClpkewbMHevhR9R9IMELb9Lb+RgXEsTUmplfjjTvRyFgPOlfRoVhxWXeSezpW
+         wMVotLF1Q+PL8jWXN8ymbFLsuiY0Oe093uJssKK2uK8pEASNvEa7BXKD6kYQ7vsuvLIB
+         HBpw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6y2axrzjjMxwRqocuWgepQzWdKkj/RmaMlUpczqbuc6QJ6/2P7k/tx63OD/ttGFmI5kYRSOmCND5r@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYYDa5cWLXVUGm+f2KTfCi6+7FxHuIvcZAp/breLeMp30cQIuA
+	H8w314x2bU+PaMfZ8W5AojLffTFm7VvoMSRddiO1K0XGQci0N078UX71UFU8NkqGiN4=
+X-Gm-Gg: AZuq6aII3E491gFtj1ld5P9+GD8RPHOS+2kE8Qrn69dN8esJ6v2XFXrgUwLyLwsPE23
+	Lw/P/0NlC82kPXL5MEFHjFFVawvHnytTb8n5FIyni8SuhJlinFgV99AcjS3hyc3hIvLDbxerPni
+	TddPgpvMhR1y5u+iMxXVC6ti/wAf9qHPr08TWvNDVRONoKHlPOgbbGIxFFre7+TRKPb7e9Nl7gJ
+	XSN4uWa2ognglLi8zjIHdd8WFOO1W4d5Z5x/1TiwrhWzwiL1oShbAhI8GxSocKA4gMQW9BhHPkP
+	RGDYT5BxVqppSqTWdWDOYPE5ofnpbwnxyp0uA8e+khYaBfpO9Wyg8z/teY51iSd7G6G1VA9ZaT3
+	x4PaBvJxtPZIy3ZmyKSRVFUSX7ypxLO2B1MuZr/LvRmMJOfcJ+yU9v5fr2nrzUNeeg6wzcyntrf
+	yJpCQvul5zUN0V8vGcrD76YaiJ7nAOsElX5v97050sTpgcF2GklpTrWYYBGHk3sbSOFi5rxw==
+X-Received: by 2002:a05:6830:61c3:b0:7d1:9832:4796 with SMTP id 46e09a7af769-7d505dc0720mr134079a34.16.1771368958017;
+        Tue, 17 Feb 2026 14:55:58 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:b8c6:5b3:8109:1f08? ([2600:8803:e7e4:500:b8c6:5b3:8109:1f08])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d4a771c495sm15983215a34.26.2026.02.17.14.55.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Feb 2026 14:55:57 -0800 (PST)
+Message-ID: <d22c8fa8-1e8b-4f0a-80a1-3f13d75cd52c@baylibre.com>
+Date: Tue, 17 Feb 2026 16:55:56 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260216-atlantis-clocks-v6-0-cb46d6a59c73@oss.tenstorrent.com>
- <20260216-atlantis-clocks-v6-2-cb46d6a59c73@oss.tenstorrent.com> <015b88b520db434fca21e83958c68cf6308f0f79.camel@pengutronix.de>
-In-Reply-To: <015b88b520db434fca21e83958c68cf6308f0f79.camel@pengutronix.de>
-From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Date: Tue, 17 Feb 2026 16:49:09 -0600
-X-Gm-Features: AaiRm51UZzG8LJuJLKm629r92R1FdsrpU_nWD2avCGXRFaV4lXSvAPtvhubd62w
-Message-ID: <CAEev2e-tHySkWQBE6qUNQq+zayc+P30DV0=0LJw09saSoh8fNA@mail.gmail.com>
-Subject: Re: [PATCH v6 2/3] reset: tenstorrent: Add reset controller for Atlantis
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, joel@jms.id.au, 
-	fustini@kernel.org, mpe@kernel.org, mpe@oss.tenstorrent.com, 
-	npiggin@oss.tenstorrent.com, agross@kernel.org, agross@oss.tenstorrent.com, 
-	bmasney@redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
+ dual-channel ADC
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
+ Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org
+References: <cover.1770393792.git.antoniu.miclaus@analog.com>
+ <aYiGj_TYelvJdVaR@smile.fi.intel.com> <20260214160852.6862b58d@jic23-huawei>
+ <aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
+ <897bd4d4-bbdf-4cbf-84f6-05c110d75d03@baylibre.com>
+ <aZF9zoWHL9iHSK3q@smile.fi.intel.com>
+ <dce24f01-2a8e-4b36-9685-6ff4293e2d5a@baylibre.com>
+ <aZLDyWICGB_j0Z1Y@smile.fi.intel.com>
+ <2f9fc7fa-dd55-44f2-9b78-c9902b8b1bbf@baylibre.com>
+ <aZQmkm9Xt3PivqmX@smile.fi.intel.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <aZQmkm9Xt3PivqmX@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266293-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266292-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[tenstorrent.com:+];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,pengutronix.de:email,tenstorrent.com:email,tenstorrent.com:dkim]
-X-Rspamd-Queue-Id: 2B3C81519E7
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,0.0.0.0:email,baylibre.com:mid]
+X-Rspamd-Queue-Id: 8B7D8151A49
 X-Rspamd-Action: no action
 
-Helo Philipp,
+On 2/17/26 2:28 AM, Andy Shevchenko wrote:
+> On Mon, Feb 16, 2026 at 12:53:10PM -0600, David Lechner wrote:
+>> On 2/16/26 1:14 AM, Andy Shevchenko wrote:
+>>> On Sun, Feb 15, 2026 at 05:16:47PM -0600, David Lechner wrote:
+>>>> On 2/15/26 2:03 AM, Andy Shevchenko wrote:
+>>>>> On Sat, Feb 14, 2026 at 12:31:12PM -0600, David Lechner wrote:
+>>>>>> On 2/14/26 12:11 PM, Andy Shevchenko wrote:
+>>>>>>> On Sat, Feb 14, 2026 at 04:08:52PM +0000, Jonathan Cameron wrote:
+>>>>>>>> On Sun, 8 Feb 2026 14:50:23 +0200
+>>>>>>>> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+>>>>>>>>> On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:
+> 
+> ...
+> 
+>>>>>>>>> I believe there is a better approach, what you need is rather a flag
+>>>>>>>>> to SPI core to tell that this is the device with shared CS.
+>>>>>>>>
+>>>>>>>> Antoniu, this comment from Andy needs addressing before we move
+>>>>>>>> on. It seems fairly fundamental and I'm not seeing a reply to it on list.
+>>>>>>>>
+>>>>>>>> I'm not entirely sure what Andy is suggesting will work but this
+>>>>>>>> is perhaps a mismatch in really understanding what is going on here.
+>>>>>>>> Andy, how would a flag work given they seem to be separately addressable
+>>>>>>>> SPI buses. I think this isn't a shared SPI CS, but rather a device
+>>>>>>>> with two entirely separate SPI buses. I think the only reason
+>>>>>>>> we are bothering to implement it as a single device at all is the
+>>>>>>>> shared backend.
+>>>>>>>
+>>>>>>> My understanding that there are two devices that for whatever reason share
+>>>>>>
+>>>>>> It is the opposite. It is a _single_ device with _two_ CS lines.
+>>>>>
+>>>>> Don't we have already support for that? This changes the picture even more towards
+>>>>> NAKing this. See below why.
+>>>>
+>>>> Yes, spi_new_ancillary_device() was introduced exactly for this sort
+>>>> of thing, which is why I think it makes sense to use it.
+>>>>
+>>>>>> adc@0 {
+>>>>>> 	reg = <0>, <1>;
+>>>>>> 	...
+>>>>>> };
+>>>>>>
+>>>>>>> the same CS line. Yes, I probably misread the idea behind, but I meant
+>>>>>>> some flag for SPI device that tells SPI core that the CS it wants is shared
+>>>>>>> (maybe a high bit in the cs field or so), then CS core won't complain on
+>>>>>>> validation about using the same cs number which is "already in use".
+>>>>>>
+>>>>>> There was one existing user in the kernel of spi_new_ancillary_device()
+>>>>>> that looked like this, so it seemed the right way to approach it. However,
+>>>>>> code was added later that caused the primary SPI device to "claim" both
+>>>>>> CS lines for itself and probably broke the one existing user of
+>>>>>> spi_new_ancillary_device() (hard to tell without hardware to test).
+>>>>>>
+>>>>>> The idea here was to unbreak that so we could use spi_new_ancillary_device()
+>>>>>> just as in the existing use case.
+>>>>>>
+>>>>>> The patch for that could have been a bit more strict to only allow the
+>>>>>> spi_new_ancillary_device() to take CS 1 and fail otherwise, but users
+>>>>>> are going to notice if it isn't working right anyway, so I didn't ask
+>>>>>> for more checking.
+>>>>>
+>>>>>>>> There is an argument that maybe we should be looking at how
+>>>>>>>> to do data muxing backends to support the more general case of two
+>>>>>>>> separate chips feeding into a single buffer, but that's a complex
+>>>>>>>> beast and I'm not sure if it is something we actually need.
+>>>>>>
+>>>>>> I think it would actually be quite similar to what is done in this
+>>>>>> series.
+>>>>>
+>>>>> TBH, the change sounds to me like a hack. It doesn't cover other potential ways
+>>>>> of the multi-cs devices come into play. Given that SPI core supports multi-cs
+>>>>> I don't see a good justification for this patch.
+>>>>>
+>>>>> What did I miss?
+>>>>
+>>>> As far as I can tell, other than the one existing user of
+>>>> spi_new_ancillary_device(), other SPI multi-CS stuff is only used
+>>>> by SPI flash memory devices, not general SPI devices. There code
+>>>> that is being modified here was introduced to support the SPI
+>>>> flash memory devices, so that use case is already covered by
+>>>> existing code.
+>>>
+>>> Right. And obvious question why can't we apply the same approach
+>>> to any SPI device? Like extending existing code to cover generic
+>>> cases.
+>>
+>> spi_new_ancillary_device() was already accepted in the kernel as the
+>> solution for this sort of use case, so isn't it already the generic
+>> approach?
+> 
+> I don't think the single user functionality is considered generic.
+> 
+>> I can see that it could possibly be nice if the SPI core saw that
+>> there was more than one CS and called spi_new_ancillary_device()
+>> automatically and somehow passed that along with the main SPI device
+>> to the driver probe function. But since this is only the second user
+>> of spi_new_ancillary_device(), I don't think we have enough data
+>> points to be able to say if this is really what all peripheral drivers
+>> would want.
+> 
+> Also, if that one designed for the case, why is needed patching?
 
-On Tue, Feb 17, 2026 at 5:59=E2=80=AFAM Philipp Zabel <p.zabel@pengutronix.=
-de> wrote:
->
-> On Mo, 2026-02-16 at 16:16 -0600, Anirudh Srinivasan wrote:
-> > Adds Atlantis Reset Controller driver, which shares the same regmap as
-> > prcm ( clock controller).
-> >
-> > This version of the reset controller driver covers resets from the RCPU
-> > prcm.
-> >
-> > Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
->
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
->
-> and
->
-> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+Because the multi-CS stuff for SPI flash memory was added later
+and broke it. There is only one obscure user, so it is not entirely
+surprising if no one noticed yet.
 
-You seem to have added a Rb and an Acked-By. Did you intend to add
-both or just a Rb?
+> 
+> ...
+> 
+> The  mentioned approach predates the SPI memory chip support being
+> integrated into SPI core. I think we should consider to kill
+> spi_new_ancillary_device() in favour of using the same mechanism
+> as being used for SPI mem chips.
+> 
 
->
-> to be merged via the clock tree, since this depends on patch 1.
+I'm not sure the SPI mem work ever actually got finished. In the code, see:
 
-We have a tenstorrent soc tree now and were thinking of taking this
-series for 7.1 via that.
+	if ((of_property_present(nc, "parallel-memories")) &&
+	    (!(ctlr->flags & SPI_CONTROLLER_MULTI_CS))) {
+		dev_err(&ctlr->dev, "SPI controller doesn't support multi CS\n");
+		return -EINVAL;
+	}
 
->
-> regards
-> Philipp
+But there is no SPI controller that has that flag. So I'm not sure if
+anyone is actually using this yet. And anyway I think the aim there was
+to be able to assert two CS at the same time, which is not what we are
+aiming to do here.
+
+And the other potential user of multi-cs is stacked-memories, but this
+is only mentioned in dt-bindings docs and nowhere else.
+
+There doesn't seem to be any other code besides the validation that is
+done when the SPI device is added that makes use of more than one CS line.
+
+I would like to agree with you that there should be a better way, but I
+still don't see an obvious way to do it if there is one (other than the
+suggestion I already gave that probe should somehow give you two spi
+devices instead of one).
+
+
 
