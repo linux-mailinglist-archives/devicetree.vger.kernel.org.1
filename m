@@ -1,190 +1,183 @@
-Return-Path: <devicetree+bounces-266140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266115-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBe/GkJnlGlFDgIAu9opvQ
-	(envelope-from <devicetree+bounces-266140-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:04:02 +0100
+	id uBDXHo9hlGlfDQIAu9opvQ
+	(envelope-from <devicetree+bounces-266115-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:39:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2564C14C510
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:04:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99EE514C063
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:39:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1A85B300D353
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:03:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 23203301D050
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 869E3337118;
-	Tue, 17 Feb 2026 13:03:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EAEB352FA5;
+	Tue, 17 Feb 2026 12:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="Sp+RJkDL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UT4S7+jo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C511C27472;
-	Tue, 17 Feb 2026 13:03:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7920D28D8DB;
+	Tue, 17 Feb 2026 12:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771333416; cv=none; b=bps7+4vuZaDvhgnQMIQBHKHebnuHpP9N5Ix3UyXMi28QVUS/zwr5lXNKnK2eTY5Q8B5W2r4k/WeezRaK7kyhKsxowazceDyZKDaQ3dppfKnig1KMM8eItED4yNwKB6h0cYDy/up1P1GHohLn18QhOvu2owftqPXSVQGNSjH+R/0=
+	t=1771331979; cv=none; b=ABuu00PBHUQxVJyF649BW3KkaZi4e2BivCM9L6jmJG0Xd5z3aCBNlxMFxnQmfZmYRzUUah7F2Nfgs0RMnwilucINm1ajwPdvifV8ZABN/sEjd7+WKDzjSbluUh6pZLdbEqZLAsi1zaOO1iYF00/exvK66IlqXmAVXN9iwDNVl4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771333416; c=relaxed/simple;
-	bh=P6NP8XyPuBs0+oQqVjZeyvp5hlB1q01l271czqMkaA4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Kel48W0i29BD6lNkSVPYfmUVKMA5VKtfoT6tIJCIVWU5EI8rkWF2xg3Fdhw8KhaFT21MmgNqHqFV42WqynGHMI200rX2oEKU+k1eEkp17aX2cSzFOhHueI/r3rUqHrkVyOFFSJzu5ZGUMwJc/wRzKlE767Cynuu36P9HflFS18M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=Sp+RJkDL; arc=none smtp.client-ip=46.19.12.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=QKhL5LaAcg+3T1EQz8Hq3UjAWUKkwldiyqgcrHgYjEs=; b=Sp+RJkDLpd6Pzfnd0sGsgv1Xvp
-	vY5dFa0SjYwDJO0cQS/cj6oeWHHOOe9+tdsdMKsv2wXXEKvVTZ84O8d5GC+EKxYQEcluSRzV1deBS
-	EfmXh78MJSjoQnl1BQ4Tr7GYftOz4KjKcQww5HVHjar/nhLsDXvHMlo6Ym1Im9XymbBLkwRBrsZQE
-	wwyBo1xVIhPvV1K2oESv3pAzG36jil+RSsSj7eT/wqyKnJFVrUzoTWv1d7xMZZDjA7JLkofF3JWy6
-	Uw0vIxgp6P4pcgGpdaUGVLsWVwTVGGaRnfjDY0l5D8ttLkieRVC0CX4rK8Hp0BGg6QSMXlFi+I9I0
-	aENJlW0g==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:56892 helo=florijan-nb..)
-	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.1)
-	(envelope-from <florijan.plohl@norik.com>)
-	id 1vsKL3-00000007pWE-1QWi;
-	Tue, 17 Feb 2026 13:38:01 +0100
-From: Florijan Plohl <florijan.plohl@norik.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH 2/2] drm/panel: simple: Add Powertip PH800480T032-ZHC19 panel
-Date: Tue, 17 Feb 2026 13:37:59 +0100
-Message-ID: <20260217123759.169317-2-florijan.plohl@norik.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260217123759.169317-1-florijan.plohl@norik.com>
-References: <20260217123759.169317-1-florijan.plohl@norik.com>
+	s=arc-20240116; t=1771331979; c=relaxed/simple;
+	bh=LLYf0at6RGo6TNuIGcbEKML7gNSPDGWF6UuTzG7b0oU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TRIs/VHc3zLCPgm+jM3++OgsaHrHZU192dN/uVxbDve5hOKxs1v3M8oZqmeGZGK/oTwIK3yPUhU6uuGhS2qTIJiXIh98RGUJZVAABVgwPVHnQEyTRcLkFCfNEbl/HT7gZyvmGQwA0MEaY+Icup+6v9+Lu5XMzvbjUEIzyp3JuVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UT4S7+jo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFFBDC4CEF7;
+	Tue, 17 Feb 2026 12:39:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771331979;
+	bh=LLYf0at6RGo6TNuIGcbEKML7gNSPDGWF6UuTzG7b0oU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UT4S7+jo8hENpS+XEy/C1k9MdIkuVVvGuwMsRNPmFYWXnKcAJNKNxn5HDzJ4Ybugp
+	 QL64EDcaoTQsNsdYz8t4kHjMkOdOibrb3dQTyCvMx1TFNOP99U/SDNhuYbOOEVlUOE
+	 S0qN2q7Evb8mqZJ6F7lOLinqoLFn5kowPq0HbR8Yiq2gRPp3mHnIUpY9oGi7J57jgu
+	 mKhYCzRPL1ODd40dM8YQaop8GOoMRbSsl1q4M18vvdxXhSzWXcME8v1zdCs9r5NbTs
+	 mzBt8PY/9C9CMtgjRxFTi7nUIbMIShGD9D26BYyuFlZJkIe8v2w9EN34FaGJrXsEy5
+	 0bcSlD2BjeFaA==
+Message-ID: <d81849fd-dc32-44fb-b523-2026f2c0db52@kernel.org>
+Date: Tue, 17 Feb 2026 13:39:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cp2.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: florijan.plohl@norik.com
-X-Authenticated-Sender: cp2.siel.si: florijan.plohl@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 5/8] arm64: dts: qcom: Remove inexistent TCSR_CC
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Taniya Das <taniya.das@oss.qualcomm.com>, Linus Walleij <linusw@kernel.org>,
+ Melody Olvera <quic_molvera@quicinc.com>, Taniya Das
+ <quic_tdas@quicinc.com>, Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Jishnu Prakash <quic_jprakash@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, stable+noautosel@kernel.org
+References: <20260202-topic-8750_tcsr-v1-0-cd7e6648c64f@oss.qualcomm.com>
+ <20260202-topic-8750_tcsr-v1-5-cd7e6648c64f@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260202-topic-8750_tcsr-v1-5-cd7e6648c64f@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[norik.com:s=default];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[norik.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266115-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org];
-	HAS_X_GMSV(0.00)[florijan.plohl@norik.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	HAS_X_AS(0.00)[florijan.plohl@norik.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_X_SOURCE(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[florijan.plohl@norik.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266140-lists,devicetree=lfdr.de];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[norik.com:-];
-	HAS_X_ANTIABUSE(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2564C14C510
+	TAGGED_RCPT(0.00)[devicetree,dt,noautosel];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 99EE514C063
 X-Rspamd-Action: no action
 
-Add support for the Powertip PH800480T032-ZHC19 7" (800x480) parallel
-LCD-TFT panel.
+On 02/02/2026 15:57, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> On SM8750 specifically, the block which provides various reference
+> clocks does *NOT* live inside TCSR, but rather TLMM.
+> 
+> With the former now being able to properly expose them, switch over to
+> the proper source.
+> 
+> Now, the TCSR still exists as a block for various tunables and
+> switches, however the prior misuse resulted in its 8750-specifc
+> compatible being already in use. With it freed up, it is now free again
+> to be described properly.
+> 
+> Fixes: 068c3d3c83be ("arm64: dts: qcom: Add base SM8750 dtsi")
+> Cc: <stable+noautosel@kernel.org> # complex dependencies, no immediate gain
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 22 ++++++++--------------
 
-Signed-off-by: Florijan Plohl <florijan.plohl@norik.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 30 ++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 91ab280869ba..aa74f310d455 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -4068,6 +4068,33 @@ static const struct panel_desc powertip_ph800480t013_idf02  = {
- 	.connector_type = DRM_MODE_CONNECTOR_DPI,
- };
- 
-+static const struct drm_display_mode powertip_ph800480t032_zhc19_mode = {
-+	.clock = 27200,
-+	.hdisplay = 800,
-+	.hsync_start = 800 + 52,
-+	.hsync_end = 800 + 52 + 2,
-+	.htotal = 800 + 52 + 2 + 44,
-+	.vdisplay = 480,
-+	.vsync_start = 480 + 7,
-+	.vsync_end = 480 + 7 + 2,
-+	.vtotal = 480 + 7 + 2 + 2,
-+};
-+
-+static const struct panel_desc powertip_ph800480t032_zhc19 = {
-+	.modes = &powertip_ph800480t032_zhc19_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 152,
-+		.height = 91,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
-+		DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
-+		DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+};
-+
- static const struct drm_display_mode primeview_pm070wl4_mode = {
- 	.clock = 32000,
- 	.hdisplay = 800,
-@@ -5481,6 +5508,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "powertip,ph800480t013-idf02",
- 		.data = &powertip_ph800480t013_idf02,
-+	}, {
-+		.compatible = "powertip,ph800480t032-zhc19",
-+		.data = &powertip_ph800480t032_zhc19,
- 	}, {
- 		.compatible = "primeview,pm070wl4",
- 		.data = &primeview_pm070wl4,
--- 
-2.43.0
+This will break all the users of this DTS and commit msg is silent about
+this. It's also silent on actual bug being supposedly fixed here.
 
+So again - as explained many times to other Qualcomm engineers - you
+cannot just break the users silently and without justified reason.
+
+That's RFC, so maybe you planned to rewrite it later, dunno. That's why
+I did not review the rest.
+
+Best regards,
+Krzysztof
 
