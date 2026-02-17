@@ -1,165 +1,151 @@
-Return-Path: <devicetree+bounces-266114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266141-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aFEvF2FglGnODAIAu9opvQ
-	(envelope-from <devicetree+bounces-266114-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:34:41 +0100
+	id KIYuAFxolGlFDgIAu9opvQ
+	(envelope-from <devicetree+bounces-266141-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:08:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E7A14C006
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:34:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E53E14C66A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:08:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EAD7830160E0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 12:34:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7A75830614D3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:03:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156EA344DAD;
-	Tue, 17 Feb 2026 12:34:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E4E3382DB;
+	Tue, 17 Feb 2026 13:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L2Ap+dpp"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="h1QqkzxW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F25A3330313;
-	Tue, 17 Feb 2026 12:34:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6770A3559EF;
+	Tue, 17 Feb 2026 13:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771331678; cv=none; b=YlzoSteRbDbG6qlfQXqtWclmkC4NNrAXnEdnOghWLQEP45HBTwf5L0kvbrr4QZ0AlKTbGS/XgC3ztZC1pGWONfSmjYFhHw95NGBDsLcjvZ3nNU97DBsIFDyytb6FwF+YDPPBXes0nY5Qt0OKG40b3k+yGzQ1zpwBKKsXg/YTpqU=
+	t=1771333419; cv=none; b=t3wyy/w7B7uoZLsU812wphB/vDALyojltChA/Z9rBepUpgJsrxMfDyP+SnPBiIp3AYhPmJdoAn/54h4Lx4xOpyamEuu9MANIKSzTrGkw/dSDO/7EStTI/FaKr3JAq604L9PpbO3941LAR9SA5Ntt+D4tXk0M7KSLyh/Jsp2igjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771331678; c=relaxed/simple;
-	bh=ps2JQbMMBe7HNeNKMtaXs+psEO5BlW34P2MtxOKEKlA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FhQaPZR7B/Qr2waHz4z/OxdBm+euCWg8B5o9UtEMIxCScfb+PEwrqfokxBwMj3d9eE3z+kPR3yDo/g5iIVXn1GcOjmQ2bqfWF9M5gR3Lkoiy3jLSd/dhHdIXLoUu8H+5S4lHm/MDIeuigsqY70ytVP1VpLJx3Dp1YgHIoF2oi4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L2Ap+dpp; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771331676; x=1802867676;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ps2JQbMMBe7HNeNKMtaXs+psEO5BlW34P2MtxOKEKlA=;
-  b=L2Ap+dppoxjLlu16R9Ou+elUObcx7FOZjvqPml8gjFGC2Ty/jEKTqXeq
-   zRlXDc2mbbpzyMe2CkJ4zsfQGPKFzjcFE+aLyyAbBOQlR5ZxAhte64wXq
-   HKS96/9v0eIOOlpY+puQddjpAHIGQmaJufgOuigTd70qmKT+DSE4rk6Bm
-   0nmmXvle1cC7vnINqlZAZhkoHp+h/grOYQI9t84f1n0TfurPK/9HVyf8a
-   W5DEdibRdmaoOTNHmrEbB3IKk5PtTAIYoO+aczVtOfLna51s8gtkXqtOl
-   i3Y8553OMGEKO1bDWTUu9TVfwqDSgpSY/UFas3DSOVh1odXkitfv5ReOe
-   Q==;
-X-CSE-ConnectionGUID: EEGsQMQ0Rm2+A5nVprSiDg==
-X-CSE-MsgGUID: /YzHGQNyT6O1laLk1G2EAw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="97858347"
-X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; 
-   d="scan'208";a="97858347"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2026 04:34:35 -0800
-X-CSE-ConnectionGUID: Jg4Otk/uQmiIDyReM6qF0Q==
-X-CSE-MsgGUID: t6sdRDg/QFaEe5DeEUegpg==
-X-ExtLoop1: 1
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.123])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2026 04:34:31 -0800
-Date: Tue, 17 Feb 2026 14:34:28 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jic23@kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, marcelo.schmitt1@gmail.com,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Axel Haslam <ahaslam@baylibre.com>
-Subject: Re: [PATCH v9 5/8] iio: adc: ad4030: Add SPI offload support
-Message-ID: <aZRgVGJXN-EFsYLY@smile.fi.intel.com>
-References: <cover.1771253601.git.marcelo.schmitt@analog.com>
- <20f1dc8eb6bb692eb6eb814a49e54309d973a9e4.1771253601.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1771333419; c=relaxed/simple;
+	bh=x1T/44VshD17eeqnZzfOgaT+NZ5UmXhyaElsbfnM31g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gylapeU/0Y9ntTfdnNBew+kxMIDQE+GCaRrlcV8PBUsPAt/vL6bOrFHdjTNII7t6NgDiXSkDOSY1BN0JVjSLs7rn67KHXatxCT/4WIZDYvjlz7O6ETAx3Uhiogyv6kM3wOZESBKFDq4jkTNM9Hl30RRxy13HvxF18EcQ0lcKmJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=h1QqkzxW; arc=none smtp.client-ip=46.19.12.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=HuGxPeUUoTAA7Z545fu8xoCOKPxhp7y1R0SdhD9LNdc=; b=h1QqkzxWex9sTxpAVrNtTh5hQe
+	bB7jEws4b/FYTSsswSRytEKeOzAtwIHAbFViFKRZeWGZZEI3vbUItOqksvtPCRWOBNULTfiOuTD8q
+	BRTkIea572eDZW3YuZQudPYpO5RD9IDi8YOhXPjgU7o8IlWwHH3l3oljWxcKz/TiPCL2yqdTGfKCr
+	ryL1sth9+/tstWam5wUJ/fmNUnbPvgQMZLV7t1HXGdx0o4/AAk8l0VI9tkQg6J07ruyTkkwpdbpOp
+	GPUbzUTEI6lff1waIX4nNnzeg9uAcxVXAI+unql00saNnXznIW8uLijWHfbtTxrjJNXYZl46M5KS4
+	/eOILsRw==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:56892 helo=florijan-nb..)
+	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.1)
+	(envelope-from <florijan.plohl@norik.com>)
+	id 1vsKL3-00000007pWE-0rdF;
+	Tue, 17 Feb 2026 13:38:01 +0100
+From: Florijan Plohl <florijan.plohl@norik.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH 1/2] dt-bindings: display: simple: Add Powertip PH800480T032-ZHC19 panel
+Date: Tue, 17 Feb 2026 13:37:58 +0100
+Message-ID: <20260217123759.169317-1-florijan.plohl@norik.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20f1dc8eb6bb692eb6eb814a49e54309d973a9e4.1771253601.git.marcelo.schmitt@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cp2.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: florijan.plohl@norik.com
+X-Authenticated-Sender: cp2.siel.si: florijan.plohl@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [2.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[norik.com:s=default];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,lwn.net,gmail.com];
-	TAGGED_FROM(0.00)[bounces-266114-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[norik.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org];
+	HAS_X_GMSV(0.00)[florijan.plohl@norik.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	HAS_X_AS(0.00)[florijan.plohl@norik.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	HAS_X_SOURCE(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: B7E7A14C006
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[florijan.plohl@norik.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266141-lists,devicetree=lfdr.de];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[norik.com:-];
+	HAS_X_ANTIABUSE(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[norik.com:mid,norik.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6E53E14C66A
 X-Rspamd-Action: no action
 
-On Mon, Feb 16, 2026 at 12:00:39PM -0300, Marcelo Schmitt wrote:
-> AD4030 and similar ADCs can capture data at sample rates up to 2 mega
-> samples per second (MSPS). Not all SPI controllers are able to achieve such
-> high throughputs and even when the controller is fast enough to run
-> transfers at the required speed, it may be costly to the CPU to handle
-> transfer data at such high sample rates. Add SPI offload support for AD4030
-> and similar ADCs to enable data capture at maximum sample rates.
+Add Powertip PH800480T032-ZHC19 7" LCD-TFT RGB panel compatible string.
 
-...
+Signed-off-by: Florijan Plohl <florijan.plohl@norik.com>
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> +	depends on PWM
-
-Seeing this without being mentioned in the commit message is confusing.
-Would be nice to add a sentence explaining that "The offload is initiated by
-pulses from PWM..." (or in your own words, but make it clear).
-
-...
-
-> +static int ad4030_set_sampling_freq(struct iio_dev *indio_dev, int freq_hz)
-> +{
-> +	struct ad4030_state *st = iio_priv(indio_dev);
-> +
-> +	if (!in_range(freq_hz, 1, st->chip->max_sample_rate_hz))
-
-Hmm... Isn't it a off-by-one issue here (because the start == 1)?
-
-Maybe
-
-	if (freq_hz == 0)
-		return -EINVAL;
-
-	if (!in_range(freq_hz, 0, st->chip->max_sample_rate_hz))
-		return -ERANGE;
-
-> +		return -EINVAL;
-
-?
-
-> +	return ad4030_update_conversion_rate(st, freq_hz, st->avg_log2);
-> +}
-
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 868edb04989a..b85071648968 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -268,6 +268,8 @@ properties:
+       - powertip,ph128800t006-zhc01
+         # POWERTIP PH800480T013-IDF2 7.0" WVGA TFT LCD panel
+       - powertip,ph800480t013-idf02
++        # POWERTIP PH800480T032-ZHC19 7.0" WVGA TFT LCD panel
++      - powertip,ph800480t032-zhc19
+         # PrimeView PM070WL4 7.0" 800x480 TFT LCD panel
+       - primeview,pm070wl4
+         # QiaoDian XianShi Corporation 4"3 TFT LCD panel
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
