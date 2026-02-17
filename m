@@ -1,150 +1,290 @@
-Return-Path: <devicetree+bounces-266147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266148-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CG7hND1plGlFDgIAu9opvQ
-	(envelope-from <devicetree+bounces-266147-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:12:29 +0100
+	id +MFlJk9plGlFDgIAu9opvQ
+	(envelope-from <devicetree+bounces-266148-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:12:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D40A14C6EF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:12:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB3414C701
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:12:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 35AEF30107B0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:12:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AD00E3006B16
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C719A35FF5B;
-	Tue, 17 Feb 2026 13:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE82360758;
+	Tue, 17 Feb 2026 13:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J5S11HTn"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="cv/5WOAQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011060.outbound.protection.outlook.com [40.107.130.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE8F2C21ED
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771333946; cv=none; b=l9A1N4TOKluLRXv9dkHo4niHvI0ZYJoKrBt6OSF8roLY1vNM36RLJoMwU2DphrnNtGdCslx5s4eEsZovVi79SLFY7rf6Vl8ncpLJFY/H/8QgRKJqpljnCOsCG7XjZ9R/NwJ37gi802bIxjdKP4druMF+T1JeOHKfK8d2lb56Xo0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771333946; c=relaxed/simple;
-	bh=E+mqOESSVBjSqiFnhnpG8g7Vrm1sJAcBoyOztPYkI9M=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BeCBfTGZu8micQP0gY0tv05tLQj4/+QxFHqhU2VjOGPuaQWj5ZU3RT5clojS68WMy03PsJ/5ayL79QrPyZVHvvkJbtfpRsMdU8QoU8Pm+rZWoUTx8X13Ar32/hxshG12c1RQ1zkkGnMSkho0mOXPYEyeQJoHBLsDYCE+2NAPW1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J5S11HTn; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-354bc7c2c46so2671250a91.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 05:12:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771333945; x=1771938745; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=shgQILtznBovwoTlB3ZwkWPGxdgyGAqq3XVFEoRE4u0=;
-        b=J5S11HTndFmtH5fQWLFFzyyK3hmHPfC7gSwypUUmuH3tlXZ997g2tTaQwKh/p7fJ/r
-         bGGiw65+5k8yH23jY9p+eGHRmW2s7QTd7S2WgkT+7J6vWHkGz7QtmZ1yWZEfXH+h+8Bs
-         ZIozxpShXOprx28lNy0Qb+nh+5q5WdFo6zqG9yI7AhRqxGkStAjkscBuoUdMVUQB4vKp
-         ClmNkTbNQ39opaSOmJRY/kb9pP52WkoFabKT2UtqlGdzzbwmCn/7anm2jCaz+tT1SMgY
-         H3yqvt2jHJ51y9MEFmn6jEGWjsnjmBZ1s8tvY/B/wSv1ng/T+xL49++sAkqBIlWE02Ks
-         g0+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771333945; x=1771938745;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=shgQILtznBovwoTlB3ZwkWPGxdgyGAqq3XVFEoRE4u0=;
-        b=r5gmkQlsRTOmp1AX9iP6KEAMES/6TaIjqfVGnoKuqNobewmQqMRV/aosxPR0JFcoHV
-         4RBPv/8GWVwm97Z3Ohdm8c7+0lau1DQgzvEm9a3JPIJYgcituvCmSb5kTIMHNgS+ivZK
-         ejCOvKeLcEmqUmZkS0DVzVpfp8LxImd+UpDADez/t4AAGEHNCz/+5G/OM6m6fGEISOnK
-         eEZi7v1mUivNMsPm81q9qXO/RiyaUz+NnYzOkip+dHf/eTUgXdx71JJNC5xi5D85gfvo
-         S7T6gW2FIjgI215vaN6PocTSofYOfR20MUw2ajiV09EyuU3NuS4MMTjKS7VKucKnz3GF
-         En5w==
-X-Forwarded-Encrypted: i=1; AJvYcCUTAifLM4l1hwOeGLYDnKUsEOR94LTkGqtbE3tXAo5rUuc42vJfrvTlbLEyfFErDI1jEbxdUNGi5sDV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGiIK5FOyo1Ox2L7seF+mFdviZ5B2oqFqa5IBirU5c6GnRe5ii
-	KGJRqv5ptVgNKyGYOLGdF6BX8k1gIn24s09r+W3w91otTi2cWHO2arEk
-X-Gm-Gg: AZuq6aIp/grBspmbbz76QxVrOlMrxwNWXNm5uwigGMFCLtD2ZmmvMnReaNke/q5j0TW
-	3cYLcorN1jlr6tIKUvzBz1osaLZWtI+sOWh8JKXFMmucUT6PfiQYRACgf1K7ygta1yUStWtbes2
-	WdJdlnjrF1h4BFoRyToSnfe/KX/HPB9729tyLw1zQdg4ta5Gw5nUTppFIE/FB9cwTcrqofoYAQl
-	Gd4UgQUwJCM3KvXOgpkhgTON8h4SOr9QqFgaSL1CQ7qEuoAqTYUAgtvZOfgwqH0mjmt/gIz2VKv
-	aSeVdriwciMdCVNa5Nlhf9dvcJZ/X6IGSXX3vEljN/4B2T2le5W8De+zZ4qQSHDnjKoXl/6+0LM
-	DZXpQoiJ/bcKjRBu7MvCPx/NMpllnkdFNNtURXk/lEXfbSpHev8CKyhfCcstd98Kfw/rCrcFgBN
-	fEz0G4zgbRaKmrIVU7mHf0Ktk92Vg713/6WUFnP/52wwQkervgdMVxwxoLkUAyOsAXCgv5BJ5Rq
-	8AEHzkMgF6leiB4
-X-Received: by 2002:a17:90b:2c90:b0:34a:b8e0:dd64 with SMTP id 98e67ed59e1d1-356aaa9bb34mr10777742a91.1.1771333944790;
-        Tue, 17 Feb 2026 05:12:24 -0800 (PST)
-Received: from pranav.. ([2401:4900:79d5:5d22:bcf8:754:c50b:1bd6])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3567e7d95c0sm18752229a91.3.2026.02.17.05.12.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 05:12:24 -0800 (PST)
-From: PranavKharche24 <pranavkharche7@gmail.com>
-To: ribalda@kernel.org,
-	jic23@kernel.org
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	PranavKharche24 <pranavkharche7@gmail.com>
-Subject: [PATCH] dt-bindings: iio: dac: Fix typo in ti,dac7611.yaml
-Date: Tue, 17 Feb 2026 18:41:32 +0530
-Message-Id: <20260217131132.297180-1-pranavkharche7@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6319A360745;
+	Tue, 17 Feb 2026 13:12:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771333964; cv=fail; b=pIFh7WmsanOwKcKz5GBOfU8KuoNpHydVT5icgIiBzJtcyj75op0bX50d4DAxzJs7fPvga/aBAIE7iobhNmEVtCY5aNkIkMCPaW4o+jFdrMDvGZP0RwA0D7x81vEO0e/gwi0cd4JpP01XTqLS8zTaFS92lv5XoQ41eKahZ+Bflxw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771333964; c=relaxed/simple;
+	bh=DfEfdgEUCgkUQ4ZB68WZy+keyNcL3u0TJgXQ0cHSuSE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=neWZBULYad7gS4YGjLXGKwg5bjwaH1w+ABGJFbM2IAZXyDU/jrrQymHN/T//ZAAZm8xaJWlS4WVt2B5RCh5LzaDk5QGoXFMgFI9ikOLVo/oBDxNnN45GNCcK3ZX/KWtMLDm/UKTXlm62pc12Uf3XvDVNJtoDrWyoetJAGnNzJwg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=cv/5WOAQ; arc=fail smtp.client-ip=40.107.130.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sI5eBCeOGIF/xL+i/Ks+0CQWDH3vjGFp2hBDsj5NoETZtOUl1FAx1n1w1yBL1bJonPFLy42A+tmB8D6ZkibMjArOFOtAr8dp1GuNigZFCwa/xR6mSRpipbmTTFcX3qOLHbZOLnHS7kUIcRRN+VHEDa2ssKb3Sd38LjjAiZU8CxFp9Rdantr41RWcDyJ5f+ZTW2ky4R9wjI62oKe0MjPxMitQ82vfEU5jzYna0UmIAKWeDFMnaNXpnnTWk5JD01Sg7FVsUyL2Sd13rMpMpQoQDLEaqoOTS25RUHNyYqcrjjnzE85BUSw9HJk/aiGwerRKDHaA5GmM3zzJTtwkU9vMQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IalDf49Dmtq25qr5oFu6SL7wU3OXRTvja0UTkWOUWZg=;
+ b=vCgwrYpMaav7Y2q6LLN33EqvG4KpNICC5nj2ZHCcheA+yyZnLoXfluAxt9gZUAzgjJZNmwJDjgT2ZCEh/uJTUESuZHWZDGNXpeQKRqrbIbkdQjaTb118tRoDMIOBHf8eSTw2qnZll+56DmponIBKgFdJ/NolXNDdYHOdHoicpjIDAPdZSTw0zje+ZyFNL/nCSjLhzSV2AOwZk1ecrJNef34NktXja4LsUpfRYry6hVgtxDKDsugaz9d2x6HkJkG03Knhmerrbdd6MRKYiJ92Z/R+ix9OOiL6onGfo4/V1sCXJd5Ozaqent29nmVnkufyvk3Y39hgHD+KLf3XDwWFAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IalDf49Dmtq25qr5oFu6SL7wU3OXRTvja0UTkWOUWZg=;
+ b=cv/5WOAQykI+7Y3aQLeerbE3eMnmtb8NGbJgzEyFx3xXURwgw/csPwyxzdo9bDAshdtEoSxGI1UP8PGAPFF8jmcKxvg1ZvIEuktXq6JKtqd/0n+6EjrV2/DKuPxOpu9LI/DCIyz32bFz7qKKkng1skypvuhGExN+8R9/HUVYmM+bUU7d+XVDj9Y7pka8Q/FRMbPW8G6qDRL7w0HlufvF/tQ+MYi3Lm55hjyMOmQbwAOCY92OOFsOCLbg+Wgy3HAxv+z6Y08v/OUAdRegaTLixIFa/5DkKKEQWY8JAp9CqLZEXajbzzLCxdDX6MMu/Xdpi9AX7wXgzSmNs5bxwiS7zQ==
+Received: from DUZPR01CA0335.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b8::19) by DU0PR10MB7237.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:10:44b::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Tue, 17 Feb
+ 2026 13:12:35 +0000
+Received: from DU2PEPF00028CFC.eurprd03.prod.outlook.com
+ (2603:10a6:10:4b8:cafe::d8) by DUZPR01CA0335.outlook.office365.com
+ (2603:10a6:10:4b8::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9611.16 via Frontend Transport; Tue,
+ 17 Feb 2026 13:12:26 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DU2PEPF00028CFC.mail.protection.outlook.com (10.167.242.180) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 13:12:35 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 17 Feb
+ 2026 14:14:30 +0100
+Received: from [10.48.86.212] (10.48.86.212) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 17 Feb
+ 2026 14:12:34 +0100
+Message-ID: <66ecf6a5-cc1f-4872-971d-6bc32894dbac@foss.st.com>
+Date: Tue, 17 Feb 2026 14:12:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
+ peripheral
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
+ <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
+ <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
+ <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
+ <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
+Content-Language: en-US
+In-Reply-To: <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028CFC:EE_|DU0PR10MB7237:EE_
+X-MS-Office365-Filtering-Correlation-Id: c17b532e-4037-4cc0-9659-08de6e26379e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?aEJraVAyTHpSWUFZc2diUWE5S0VUY1FCRjdraS9aMHZNSnZKRGZudVp6eTFz?=
+ =?utf-8?B?Y1pyZWZ3WmJSbXNHUTdtRStyRmNwNGdDa3pFdi96VTdMWk10NzBSUytBbHJW?=
+ =?utf-8?B?ZXB0OXFrcndqK2xWSmtVZ2M1d0dzVU9EaUw2aVZmaU5VelExYnJneEZPWmE1?=
+ =?utf-8?B?dTBod3YvMXBUaUh5QzFTL0crLzBWVEROV1ZoK2pmV2JBSzFwOGYzMHR2SGlI?=
+ =?utf-8?B?S1FDVEpHRTVOYk12ai9WU0lEWlVxL0x3QVA0bDU2UEpnTGJ2WVhJZFRMUFNL?=
+ =?utf-8?B?b1lIOGpvZHkraHVrNTVmaHpSNENoYzdVcWh2TktRWlhQcWVQdmFOK3lubStQ?=
+ =?utf-8?B?Y2xBcE04ZXJCOEM2ajBRUTNpTUdjNTVBUWUraStMSnRJai9IcmpYL3pvVW1G?=
+ =?utf-8?B?aHlOT0htamdCbU5QVXo1cUJhaEVhQ1pwYmlkS3NTTmt5eE1MaGloT2Roa3BK?=
+ =?utf-8?B?TGZJdUtJcmdoKzJBUWFRcG1ZQzRVVWUyRDlXT0pndm1xS28yMkREQzZCQmtK?=
+ =?utf-8?B?MUJPRXZPQVM2Z1c4UDA5SGJINHFHQk4rUk1WNld0K3I3T2JLZnB3K015Z2gz?=
+ =?utf-8?B?ejkvWTJkc2tyT3JvUG9keFlwRTJWd1dtZjJjVDRGdGg1NzU4YzBTOWVCRmFk?=
+ =?utf-8?B?czdaWlNYR3hMSmxoRzBsVnE0cUh1Q09jakNIK3NOZmt4QzM5ZTZoV1RZclM0?=
+ =?utf-8?B?YWRhMmd0M1hhdHhJQVpKUG0rTE5tUnJzUUo0bUp2aFVCbVRwQy9iTlpYSHVl?=
+ =?utf-8?B?QWtzc1lYRmhONFdhZkhDZmhnMXFKSm5ac21hZzJjNzA2Q21kL29hK3diejV6?=
+ =?utf-8?B?bmNOWUtJV1RKZHZvV21NbG1Fb3VNM2Y3Q1BGNEhYUUlPYWFrRm90QVhsRDVE?=
+ =?utf-8?B?QzhzbGpRSGVqMndwN3MxYStLZWdwR2o5ZmNqcFlzdW5nblNKYzM4L2dnUHhh?=
+ =?utf-8?B?VXMxT1dXSStDSGFGbkpJMk45Z0UyOHRyMHdJcFZTVzBuYlhMWldYRFEwYTZk?=
+ =?utf-8?B?c1kySy9pbmJzSXEzcnRCNVlRbmY5em02aC9Nb2lSamNTajVDZTl4SHMvTnc4?=
+ =?utf-8?B?dGtMQ0VYaXFUdzFrMXZpL2paNmxIZlF2OFNMM1dyQ0IybG01L2xXV1VSVWFK?=
+ =?utf-8?B?aWVIUEQ2cDB2RnRTN2dGc3ZiK1NldDYwL3JqY05DQ2NXVVN6SnEwUmcwTlo0?=
+ =?utf-8?B?dWp0R3VPQ3ZLQzB0T0NzeTR6TStJUEN1cDV5c1lML1dYc1daMFcyc0djaDRl?=
+ =?utf-8?B?U0IzcHJwYmVjTDFGblNmYngrM2ErczM1SWt5QWZxVjNvOUVVemFMMHBYV3E5?=
+ =?utf-8?B?RkhKRCtFMG04by8yZU0wdEhVRk00VnM1K1dqYVY4Q3c4UElxd2YzN09PdzNx?=
+ =?utf-8?B?MzdGaUVpUlpvcjE2bXhSK2VxeitpdGpIQUNVcEJIRG9kN2FCaGhFMFVnL3E0?=
+ =?utf-8?B?eFh0MEdzdEtTZzlCbUNQUkNlUzJGNjNHcjhrbGp4TS9hS3FTS2VZN1lpZklJ?=
+ =?utf-8?B?VkpSOTZ4Q0FSTStSUnpqRm9nU0l3TXFDVy9sMTIwQnhla3k0dC9BNUZEeGdF?=
+ =?utf-8?B?dE1hODhRVitmSEI0SjNrMmc3NWlaMksySDA0OUdDc2Q2QWZQSzFhTzlKRWor?=
+ =?utf-8?B?SVdXR3Bpa3JtWFg5VkVDMm9DQ25kS3EwbE1LVXhMYUxsaWtENlFZdjRya2ti?=
+ =?utf-8?B?K2J6MXplZ0crR2lzWFJXK0hKVk5yMWh5WWZjOHk0NE54WWdYeFRSVTBjMWRE?=
+ =?utf-8?B?OWFpVktPZ0Z2OU9ia0hTbjdSbHU0TTd3bms4L2hEVUorelR4bmgweTNncnhC?=
+ =?utf-8?B?M3U4blA3dlFBaytMRFMwWlNMVDdzMlFIQWViOFlHOGJxdTZTSklZU3RPVWcw?=
+ =?utf-8?B?ZEIwTENSNmZsMGZjRmo1VGtDdENJTkhhdUk4Umk1dzFESzNoc3JnVjV4alpw?=
+ =?utf-8?B?WkxPQ3dEMUlYMzNvSmtTMWM2L3NyemtsV290UTBPWGtKNVF0S3FPb2lnZTkx?=
+ =?utf-8?B?d3U1NTdRNWdSL2lpeUx0cldhSUU5SCtZSEVEcTlnMWVTaTM2OUh4dy9OaHIv?=
+ =?utf-8?B?a2xsZndWNjhwUlBTd0UzL0ZlZ1UxaEhRcnJOQVVMZjZLL1BLSXAxd0tVUzdB?=
+ =?utf-8?B?UTI3RjlIUXJVRVBNRm93YkRHc0ZoM3JMb1ZGcDIzUzNRRnFrTEh6YTduQ25Y?=
+ =?utf-8?B?eTYvK0V5TDhPL0U5ZTNmZmZWbDB2c1NqYVFyemRPcy8wL2JSVm9pNEc4dWVO?=
+ =?utf-8?B?KzlRRlFFL0h5ejNqSWhCYkRFWlBBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	qT8hvMmezgk5FstRSXyXUELRf37I3rQC3KyeaVhZE18Cz2JHT+XSwBeVtttS25yU11Gc/OkjBvxOGV5sibPRqx76Hn6rDTmyfQ8aS96zsh5FSv2PBFg4W1Sbf0zgKnXtheN78J8gmeJM8rEuKst5cnBTOZqyROloKqWvb8v4P+dMBlNsWJFyxPQe1WSIyyt8u1l26c3oQT74f7rwLN6u0FidMXQ07GHrJG+ptH5a2RZX16RYInD/x6BDArNKYqw9UZmHpgqzCfJreTzzGxi8U716fI4XtQayyc9/qOAa0WWU+S3UuEi7TPPnNHBrOVFEJoHcfGXdNKOhYtrSsVRwYuGUGtuhxvy5c14VR/F+8MI/K8AWlUXe7nbu3p9uwRRE7ep/cJ7SjTdDJxDJRwIAw6uV0U/n/Phy/DiiqVM7oSyo/LZm6MfiYpoN3LvqUJYn
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 13:12:35.3026
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c17b532e-4037-4cc0-9659-08de6e26379e
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF00028CFC.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7237
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266147-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266148-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,foss.st.com:mid,foss.st.com:dkim];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pranavkharche7@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[gatien.chevallier@foss.st.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ribalda.com:email]
-X-Rspamd-Queue-Id: 7D40A14C6EF
+	DKIM_TRACE(0.00)[foss.st.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: EFB3414C701
 X-Rspamd-Action: no action
 
-Fix a typo in the description where "Is is" should be "It is".
 
-Signed-off-by: PranavKharche24 <pranavkharche7@gmail.com>
----
- Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml b/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
-index 20dd13706..624c640be 100644
---- a/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
-+++ b/Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
-@@ -9,7 +9,7 @@ title: Texas Instruments DAC7612 family of DACs
- description:
-   The DAC7612 is a dual, 12-bit digital-to-analog converter (DAC) with
-   guaranteed 12-bit monotonicity performance over the industrial temperature
--  range. Is is programmable through an SPI interface.
-+  range. It is programmable through an SPI interface.
- 
- maintainers:
-   - Ricardo Ribalda Delgado <ricardo@ribalda.com>
--- 
-2.34.1
+On 2/13/26 16:06, Krzysztof Kozlowski wrote:
+> On 10/02/2026 10:55, Gatien CHEVALLIER wrote:
+>>>> +  memory-region:
+>>>> +    minItems: 1
+>>>> +    maxItems: 32
+>>>> +    description:
+>>>> +      Phandle to nodes describing memory regions to be configured in the RISAB
+>>>> +      by the trusted domain of at least a RISAB page size.
+>>>> +      These regions cannot overlap. A zone must be within st,mem-map range and
+>>>> +      can be represented by one or more pages.
+>>>> +
+>>>> +  st,mem-map:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>> +    description: Memory address range covered by the RISAB.
+>>>> +    items:
+>>>> +      - description: Memory range base address
+>>>> +      - description: Memory range size
+>>>
+>>> Why do you need this property if you have memory-region already? This
+>>> also should be part of <reg>, although this mixing with memory-region is
+>>> anyway confusing.
+>>>
+>>
+>> The RISAB is a memory firewall peripheral covering internal RAMs. It is
+>> possible to configure multiple memory regions within these RAMs (done by
+>> the Trusted Domain) with security, privilege and compartment isolation.
+>> This peripheral allow 4kBytes page granularity. Each page can hold
+>> different access rights, with 32 pages at most (hence the maxItems: 32).
+>> That is some information that can be added to the documentation.
+>>
+>> Moreover, when a region is delegated to a non-secure privileged
+>> component, this component can configure the privilege level necessary to
+>> access the region.
+>>
+>> This property gives me the opportunity to get the memory range covered
+>> by the RISAB. "reg" here is used to access the actual RISAB registers
+>> holding the configuration.
+> 
+> Looks awfully like memory regions still :/
+> 
+
+IIUC the memory-region property references memory regions within
+a reserved memory. Which is not really what I want to describe
+here as I want to get the boundaries of the whole range. The
+memory-region property would be used by the Trusted Domain / kernel
+to get each regions (or only one that represents the whole range) of the
+internal RAM to apply desired access rights to them / use them.
+
+Describing the memory range using a reserved memory would make the
+kernel exclude this memory range from the normal usage, no?
+
+I think declaring a "boundaries" memory region with no usage for the
+kernel wouldn't make sense. The kernel may not be able to access the
+whole memory range.
+
+>>
+>>>> +
+>>>> +  st,srwiad:
+>>>> +    description:
+>>>> +      When set, the trusted domain configures the RISAB to allow secure
+>>>> +      read/write data accesses to non-secure blocks and pages. Secure execute
+>>>> +      remains illegal.
+>>>> +    type: boolean
+>>>
+>>> Shouldn't this be a property of given block from memory-regions, not
+>>> entire RISAB?
+>>>
+>>
+>> It is a global setting for the whole RISAB (in RISAB_CR register) so I
+>> think it's fine keeping it at RISAB level.
+> 
+> And in the next version of your IP? It really feels like description of
+> memory region, not the entire device.
+> 
+
+Then I would expect it to be part of the page-based configuration and
+this property could be constrained to current platforms. Is that fine?
+
+Best regards,
+Gatien
+
+> 
+> Best regards,
+> Krzysztof
 
 
