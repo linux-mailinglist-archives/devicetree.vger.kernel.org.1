@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266023-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPE6JlYklGnXAAIAu9opvQ
-	(envelope-from <devicetree+bounces-266022-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:18:30 +0100
+	id 0IFyNs0klGnXAAIAu9opvQ
+	(envelope-from <devicetree+bounces-266023-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:20:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12DC4149D76
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:18:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F9E5149DC7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:20:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9314A301DEFE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:18:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F96230097EA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:20:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D21D2D59FA;
-	Tue, 17 Feb 2026 08:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0062D8382;
+	Tue, 17 Feb 2026 08:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FMb6DctH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="psxFgtjR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AE133993;
-	Tue, 17 Feb 2026 08:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32A227707;
+	Tue, 17 Feb 2026 08:20:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771316303; cv=none; b=CNKFWaH9VJy44FCQ7U4DYYIzEm9ETDVfClkshagf/Znfv9+MJd3WeY+Zn5d6D74mjdrvAkjq9ogIfATDISC1qdhbTSwpdxARD9sPUg5OFAd5xgTfLNE8H0WsQFPadviqyu/Aqc5TBYwxRvqAPpbAx7/XPxfYx0pKsXYXDqoXTAA=
+	t=1771316400; cv=none; b=j0gWbbXaG1whgJ/3DJtk68AbepwIMQxqQxRS5vIZF7oz7Jgo5GcWucEWLuz6/iXTriCNYDji5G5I0NNHVruVl01OuSnNhIP9IEyuiQGRLKeYJ2U2JtaMc0EQ2lHuJ91hFbsH/PTrXQQwsfBoztbVsTL/5VdxuTi4oQgrdT8LUls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771316303; c=relaxed/simple;
-	bh=t8EF5zJ4Ib7/+4xeguOma5i5fWqBUayxEnM7ya6pBBQ=;
+	s=arc-20240116; t=1771316400; c=relaxed/simple;
+	bh=PaWM6ACSEcUTk311qDrsXm+IDxxZbEZEAj8v3XvZ2t0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hwojWWOu0lPOT6wasnlp9ijnBx5/yQMd2K8LMcVmxeBLL9jTaC4hY5s+faJyHRBUuGFwtHPz4d7eKs8YicJZ7zOXKWxcYQMtiS0gJvlHbiTXBFbf+EWoeLjjjXdxxG7sVliC5duYOmxKUAI6FdAJH+b4ySWX8CA52Ex7w7OjBt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FMb6DctH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6128DC4CEF7;
-	Tue, 17 Feb 2026 08:18:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hmHKssiwFSBveI0axtNnZ0rkQZT4NM8SbhCw2CHgGPHBVbmJqZbaMRQ/CchzGVy2SV9Ot874sPfB2cj0FWl5HLr/2OfyTS/BeBsuN5b2PFb2m7AOfzEHU36Hi7V+ai7sQqTBKoZ+PKuMoR6+3hnUsrC8p3EjSxPaC5zV6OolY08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=psxFgtjR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4623C4CEF7;
+	Tue, 17 Feb 2026 08:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771316302;
-	bh=t8EF5zJ4Ib7/+4xeguOma5i5fWqBUayxEnM7ya6pBBQ=;
+	s=k20201202; t=1771316400;
+	bh=PaWM6ACSEcUTk311qDrsXm+IDxxZbEZEAj8v3XvZ2t0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FMb6DctHZVuywSaP+NkDxnexlYugvAiynmlkT4/PsIJ8qJWY8F1/kZoeqWsrRi+sF
-	 p8uBT+UtOeEnNWeifpZ7shY5GHFsS5gMm53ZQotRec/Eog2MDJeSWlxlJw592MyNxy
-	 GQRAzYfLTPWh1+Scim9N4A+JiEDX/+B2ZTU2j+I5KWoPl7qkOeHEajVIu+H24yeDND
-	 iOQ8iy/+1bDQxkVwpi/Cyxr0GOJg44vYekI1D37IJFhwm7z9Krgtx+VYvEQYAzXPCp
-	 EUZf0vwlOQHrCDfXOMiDdOKFka7Tswv61alfdCiXE4Jm3yMxFngoCnkzJ/w1xyj78N
-	 B0ye3VUOWxHaA==
-Message-ID: <b19dcc48-33be-4eb7-8b69-d7ddebefe257@kernel.org>
-Date: Tue, 17 Feb 2026 09:18:18 +0100
+	b=psxFgtjRcNZUZGwJdGJFaHNekx9O1ikJNEE8r/aQfLO1x0Rd22OkdEXcCzW6osehf
+	 8i5IxG9vhfmjJDZk3iXAEiGOZ2JRVE5WDT8D0UwqvyawBLF77pmN4OwwJLyZu1LmjV
+	 BcQKlEdFUlO9I0v1B76BLNnxJEL3T3GdQViLEAB6kCK4LJ+Unyun67Qrr1uVPu4z8J
+	 Ak3xLzp0qmK6CyTJDljnjZ0GDETIWY+80zhNd94mgbupAt297ARE+chbwSVoU9miU5
+	 Le1u8gWn29uD0tf1G1TzSbLKfK/Fgjvm9QeA8CQVXVu08iC8apP0loFgU7MXy2v2P8
+	 l9Q91kMuj+qcw==
+Message-ID: <f134b6b7-1d98-478c-b476-8c3849c21942@kernel.org>
+Date: Tue, 17 Feb 2026 09:19:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,18 +53,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 5/5] memory: tegra: Add Tegra114 EMC driver
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Mikko Perttunen <mperttunen@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>,
- Dmitry Osipenko <digetx@gmail.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20260126190755.78475-1-clamor95@gmail.com>
- <20260126190755.78475-6-clamor95@gmail.com>
- <6f143fdd-1e2d-428d-9b05-cf1124b179e8@kernel.org>
- <CAPVz0n0Ep_YAJfm0R_PexKo5WwrTDbJfFKUbLVKtG5q1qLONUg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] ARM: multi_v7_defconfig: omap2plus_defconfig:
+ Enable ITE IT66121 driver
+To: "Kory Maincent (TI)" <kory.maincent@bootlin.com>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+ <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Bajjuri Praneeth <praneeth@ti.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Louis Chauvet <louis.chauvet@bootlin.com>
+References: <20260216-feature_bbge-v2-0-22805cfdbf62@bootlin.com>
+ <20260216-feature_bbge-v2-2-22805cfdbf62@bootlin.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,133 +116,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAPVz0n0Ep_YAJfm0R_PexKo5WwrTDbJfFKUbLVKtG5q1qLONUg@mail.gmail.com>
+In-Reply-To: <20260216-feature_bbge-v2-2-22805cfdbf62@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266022-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266023-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,nvidia.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 12DC4149D76
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:email]
+X-Rspamd-Queue-Id: 3F9E5149DC7
 X-Rspamd-Action: no action
 
-On 17/02/2026 08:51, Svyatoslav Ryhel wrote:
-> вт, 17 лют. 2026 р. о 09:21 Krzysztof Kozlowski <krzk@kernel.org> пише:
->>
->> On 26/01/2026 20:07, Svyatoslav Ryhel wrote:
->>> Introduce driver for the External Memory Controller (EMC) found in
->>> Tegra114 SoC. It controls the external DRAM on the board. The purpose of
->>> this driver is to program memory timing for external memory on the EMC
->>> clock rate change.
->>>
->>> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
->>> Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
->>> ---
->>>  drivers/memory/tegra/Kconfig        |   12 +
->>>  drivers/memory/tegra/Makefile       |    1 +
->>>  drivers/memory/tegra/tegra114-emc.c | 1463 +++++++++++++++++++++++++++
->>
->> Please rebase on top of Mikko's patch removing duplicated code.
->>
->>>  3 files changed, 1476 insertions(+)
->>>  create mode 100644 drivers/memory/tegra/tegra114-emc.c
->>>
->>> diff --git a/drivers/memory/tegra/Kconfig b/drivers/memory/tegra/Kconfig
->>> index fc5a27791826..11e7cc357d39 100644
->>> --- a/drivers/memory/tegra/Kconfig
->>> +++ b/drivers/memory/tegra/Kconfig
->>> @@ -35,6 +35,18 @@ config TEGRA30_EMC
->>>         This driver is required to change memory timings / clock rate for
->>>         external memory.
->>>
->>> +config TEGRA114_EMC
->>> +     tristate "NVIDIA Tegra114 External Memory Controller driver"
->>> +     default y
->>> +     depends on ARCH_TEGRA_114_SOC || COMPILE_TEST
->>> +     select TEGRA124_CLK_EMC if ARCH_TEGRA
->>> +     select PM_OPP
->>> +     help
->>> +       This driver is for the External Memory Controller (EMC) found on
->>> +       Tegra114 chips. The EMC controls the external DRAM on the board.
->>> +       This driver is required to change memory timings / clock rate for
->>> +       external memory.
->>> +
->>>  config TEGRA124_EMC
->>>       tristate "NVIDIA Tegra124 External Memory Controller driver"
->>>       default ARCH_TEGRA_124_SOC
->>> diff --git a/drivers/memory/tegra/Makefile b/drivers/memory/tegra/Makefile
->>> index 6334601e6120..6b9156de4b66 100644
->>> --- a/drivers/memory/tegra/Makefile
->>> +++ b/drivers/memory/tegra/Makefile
->>> @@ -16,6 +16,7 @@ obj-$(CONFIG_TEGRA_MC) += tegra-mc.o
->>>
->>>  obj-$(CONFIG_TEGRA20_EMC)  += tegra20-emc.o
->>>  obj-$(CONFIG_TEGRA30_EMC)  += tegra30-emc.o
->>> +obj-$(CONFIG_TEGRA114_EMC) += tegra114-emc.o
->>>  obj-$(CONFIG_TEGRA124_EMC) += tegra124-emc.o
->>>  obj-$(CONFIG_TEGRA210_EMC_TABLE) += tegra210-emc-table.o
->>>  obj-$(CONFIG_TEGRA210_EMC) += tegra210-emc.o
->>> diff --git a/drivers/memory/tegra/tegra114-emc.c b/drivers/memory/tegra/tegra114-emc.c
->>> new file mode 100644
->>> index 000000000000..789b8e959a68
->>> --- /dev/null
->>> +++ b/drivers/memory/tegra/tegra114-emc.c
->>> @@ -0,0 +1,1463 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only
->>> +/*
->>> + * Tegra114 External Memory Controller driver
->>> + *
->>> + * Based on downstream driver from NVIDIA and tegra124-emc.c
->>> + * Copyright (C) 2011-2014 NVIDIA Corporation
->>> + *
->>> + * Copyright (C) 2024 Svyatoslav Ryhel <clamor95@gmail.com>
->>> + */
->>> +
->>> +#include <linux/clk-provider.h>
->>
->> Where is it used?
->>
->>> +#include <linux/clk.h>
->>> +#include <linux/clkdev.h>
->>
->> Where is it used?
->>
->>> +#include <linux/clk/tegra.h>
->>
->> Where is it used?
->>
+On 16/02/2026 17:55, Kory Maincent (TI) wrote:
+> Enable the ITE IT66121 HDMI bridge driver to support HDMI output on
+> the BeagleBone Green with the Seeed Studio HDMI cape.
 > 
-> All 4 by tegra124_clk_set_emc_callbacks
+> Enable CONFIG_DRM_TILCDC as a module on multi_v7_defconfig to provide
+> display support for TI AM335x-based SoCs in this kernel configuration.
+> 
+> Signed-off-by: Kory Maincent (TI) <kory.maincent@bootlin.com>
+> ---
+> 
+> Changes in v2:
+> - Squash defconfig changes in one patch.
 
-What? That's not how C works.
-
-There is no definition of tegra124_clk_set_emc_callbacks here in this
-patch, so the headers are not used. Point me to any symbols from these
-headers being used in this patch.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
