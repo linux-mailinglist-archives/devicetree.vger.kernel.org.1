@@ -1,246 +1,222 @@
-Return-Path: <devicetree+bounces-266057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266058-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yF3KLbE9lGk6BAIAu9opvQ
-	(envelope-from <devicetree+bounces-266057-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:06:41 +0100
+	id MIlyJIw+lGmYBAIAu9opvQ
+	(envelope-from <devicetree+bounces-266058-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:10:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3202314AB00
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:06:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B008914AB3F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 249183017BF3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:06:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9B3493001F92
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F1F320A0D;
-	Tue, 17 Feb 2026 10:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4784320CA9;
+	Tue, 17 Feb 2026 10:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="iX+oh7dq"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="em6jUaPK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010031.outbound.protection.outlook.com [40.93.198.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B442D3220;
-	Tue, 17 Feb 2026 10:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771322797; cv=none; b=uzNiDA0b8jN+T+V7N42J2pQ+rPmCLMZ5hB5vwONhXu+pYuWQ0H15UNnPFcXn0L5T+ehV1kD2j4SLv4Vf2HIZXpWuKqNF1HxN2Cg2UYb7FxNDOIjcbZsMp1HrTcROC5wlhUgoavMQk/I8sEynq/iOtY9Jsd2vQVXloLn7MxrCnrY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771322797; c=relaxed/simple;
-	bh=AdK8LnW/Bx53n/lVXk3PiLpD4HK+YjYVt1vCDPMO6jc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oNBuIJgLs8h6laN9M836YDNDs3vFS6CBI0Sn6J0ZaJacsMEk4d6e0w5p2BbApErf1kUDuTIAQ5nl2j9MlCQhNPsqknZ1Ay9hQ7zz+auZj1QOLWWiDbSMjfODGFZhYLu30yweA6jgNI76reY7sUfW9+6DO+zro/dXejYFcwaskV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=iX+oh7dq; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 4C4365341487;
-	Tue, 17 Feb 2026 11:06:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1771322793;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=JdKJTF7zaACXesVjm8bcMb+9T+QLCOrHvL/F2wjpOm8=;
-	b=iX+oh7dqkfI1THhrvqKc8TNBWd2yaFsd7DhRv/Ceq2Q6KZgsqJ1OiFHm45zUlNcorfUK8A
-	hHj8J4S8mjC5WeBucKvAqKj3IsANFanZ6z7J51E+PhegaEU47haawYvQASTl/QDEur4KN9
-	BcEsCzyiclzspKwLHFPymmhM668OmnI=
-Message-ID: <e73a3b72-ad0e-4c22-82ae-13754c0d141e@ixit.cz>
-Date: Tue, 17 Feb 2026 11:06:33 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F74D2D5C6C;
+	Tue, 17 Feb 2026 10:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771323013; cv=fail; b=nYDfkhfuUlzIakKEc2jGQIRgXISNnQpt98AdY1fKPt7u/3SgYPwxFgBcS6vRstwZmEFw4adNDW4XoVFVT+bQIapHxNZBvoR8QpQ0NMWBr4Cqt6nYi17n4m++wUFShjvme3BV2VCg2ll8rrni7V9fycmGLmxXk3IQlnn0+RBzG0E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771323013; c=relaxed/simple;
+	bh=KJgZmEDNBH2p35zGYPxo5HNLu5z2nwVT75BP4rnr18M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uLxHpT3G60d7L/d04KTU8kqxZE+wqvRfF7ObytCt5NeDM0+6FjsVbF0JAwJiiynTAnZgRsmAfhehAz9GWCDHBu5jEHNa2Zh4Kie825zb67fD5FFAUlxfANAKEx2hD3aU0+IaUp+jI6WKiLBYtWwypFVy3LZNLt14Chwolj2wZzc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=em6jUaPK; arc=fail smtp.client-ip=40.93.198.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Z2/frvM4SBzDUFf7nvStcV4JaBUkhAoTotw69ywi7VTbGHp50ty2EnH5QcT/7jPGjhyJtOBXpRbCuZfcFKzaineThr3bSpuZYyCp03KIa/jSjx5xFhZUw1EaMHIsri1kV0rBRqjVpwkm8Tv2/SmCdFelWEGSKDJk+tKeBddxACHVmnVvUWvHzGr15jTJRL6BmlRi+ypvVbNuexbsIyPiWvmrv2DuuD4bx3ogirmxdzXWdOpH7P4DENCy30TxnWDJxjJF7/5vRLg7EXmFTl1GyV+HDhgJRVQDzl4L2T5ykjJh8Q5IAXYivEu1hHZNDqkvcx7CQK7QFgC0BKrrEyu+iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JkbAKj6uQSxIzwdO33/U1MbuYmo8otVsMc1RTwLroD4=;
+ b=BxwXMgyBGdeE+yAeIITTOjhmX0YsOW5dzT/gg4cvbmokAVTwTw8T//FOM4MGSmtO23DJKAB77UGKM/14lPGHvIzQIFSnExxGjAhO+DXQD0po79LCdfNDt/pUUSTll3xHWbbbzAAKzxylB61HwQVpPcGy4bTp3A5erlgIWnJ8ar83JjyPpb1QA0bI4gvev+vYJb1ZMF8wgi1sabguy6+pmEWUsmaNwIlTKd1RR7CHYkrsAzwXk2U+gylUXu+8BlOmX5Mx1rgh/UUUeH7xxEAKPeVIwELqJ/BnVPbuflgbi4FS8Ug9AYUOp8MbHAg22EfLjfO/ahyD1TZkPlLJt438cw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JkbAKj6uQSxIzwdO33/U1MbuYmo8otVsMc1RTwLroD4=;
+ b=em6jUaPKJbLYYqwdZ4n//b+X6Pya8APJMJBUwWHxXqPj9EXSzYp8C+Dl6HjGjO/CkkGkqxOpYlYhfOkLVdJpNscinbyGmJGG95BqHeUts+PBesMCZil0srSzTLgn3PKWjiI07TUP2gyXpEWUQUE35Wi+WVkdHrVT9I4tKWeyYygfPJSm5nQfHJytC5gNx602dS7+DZPd3i0by0dPJGS/HGtTXT1wZuCwY26UWeUgJNaRbb+M5G/wFIJGuzszSw0UIntjCJmEQjOHwobD2l2O6oazVNMEogi8HxccbGDyCY2Vjoybm7JFEV8GFtj1C3w+JkAMNqBu1sZ94ThM0fysEA==
+Received: from SJ0PR13CA0018.namprd13.prod.outlook.com (2603:10b6:a03:2c0::23)
+ by DM3PPF4E0899F31.namprd22.prod.outlook.com (2603:10b6:f:fc00::e1e) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Tue, 17 Feb
+ 2026 10:10:09 +0000
+Received: from SJ5PEPF000001EC.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c0:cafe::1) by SJ0PR13CA0018.outlook.office365.com
+ (2603:10b6:a03:2c0::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.13 via Frontend Transport; Tue,
+ 17 Feb 2026 10:10:02 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
+ smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
+Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
+ not designate 165.85.157.49 as permitted sender)
+ receiver=protection.outlook.com; client-ip=165.85.157.49;
+ helo=mkerelay2.compute.ge-healthcare.net;
+Received: from mkerelay2.compute.ge-healthcare.net (165.85.157.49) by
+ SJ5PEPF000001EC.mail.protection.outlook.com (10.167.242.200) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Tue, 17 Feb 2026 10:10:08 +0000
+Received: from zeus (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
+	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id 9DEF7E8F41;
+	Tue, 17 Feb 2026 12:10:05 +0200 (EET)
+Date: Tue, 17 Feb 2026 12:10:05 +0200
+From: Ian Ray <ian.ray@gehealthcare.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ti,ina2xx: Add INA234 device
+Message-ID: <aZQ-fWR8_ISD4Y8U@zeus>
+References: <20260217092325.15867-1-ian.ray@gehealthcare.com>
+ <8e23ba87-b6c9-4ad8-97ed-3e203a81121b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: add support for pixel 3a xl with
- the tianma panel
-To: Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Cc: yifei@zhan.science
-References: <20260217000854.131242-1-mailingradian@gmail.com>
- <20260217000854.131242-7-mailingradian@gmail.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- xsFNBF5v1x4BEADS3EddwsNsvVAI1XF8uQKbdYPY/GhjaSLziwVnbwv5BGwqB1tfXoHnccoA
- 9kTgKAbiXG/CiZFhD6l4WCIskQDKzyQN3JhCUIxh16Xyw0lECI7iqoW9LmMoN1dNKcUmCO9g
- lZxQaOl+1bY/7ttd7DapLh9rmBXJ2lKiMEaIpUwb/Nw0d7Enp4Jy2TpkhPywIpUn8CoJCv3/
- 61qbvI9y5utB/UhfMAUXsaAgwEJyGPAqHlC0YZjaTwOu+YQUE3AFzhCbksq95CwDz4U4gdls
- dmv9tkATfu2OmzERZQ6vJTehK0Pu4l5KmCAzYg42I9Dy4E6b17x6NncKbcByQFOXMtG0qVUk
- F1yeeOQUHwu+8t3ZDMBUhCkRL/juuoqLmyDWKMc0hKNNeZ9BNXgB8fXkRLWEUfgDXsFyEkKp
- NxUy5bDRlivf6XfExnikk5kj9l2gGlNQwqROti/46bfbmlmc/a2GM4k8ZyalHNEAdwtXYSpP
- 8JJmlbQ7hNTLkc3HQLRsIocN5th/ur7pPMz1Beyp0gbE9GcOceqmdZQB80vJ01XDyCAihf6l
- AMnzwpXZsjqIqH9r7T7tM6tVEVbPSwPt4eZYXSoJijEBC/43TBbmxDX+5+3txRaSCRQrG9dY
- k3mMGM3xJLCps2KnaqMcgUnvb1KdTgEFUZQaItw7HyRd6RppewARAQABzSBEYXZpZCBIZWlk
- ZWxiZXJnIDxkYXZpZEBpeGl0LmN6PsLBlAQTAQgAPgIbAwULCQgHAgYVCgkICwIEFgIDAQIe
- AQIXgBYhBNd6Cc/u3Cu9U6cEdGACP8TTSSByBQJl+KksBQkPDaAOAAoJEGACP8TTSSBy6IAQ
- AMqFqVi9LLxCEcUWBn82ssQGiVSDniKpFE/tp7lMXflwhjD5xoftoWOmMYkiWE86t5x5Fsp7
- afALx7SEDz599F1K1bLnaga+budu55JEAYGudD2WwpLJ0kPzRhqBwGFIx8k6F+goZJzxPDsf
- loAtXQE62UvEKa4KRRcZmF0GGoRsgA7vE7OnV8LMeocdD3eb2CuXLzauHAfdvqF50IfPH/sE
- jbzROiAZU+WgrwU946aOzrN8jVU+Cy8XAccGAZxsmPBfhTY5f2VN1IqvfaRdkKKlmWVJWGw+
- ycFpAEJKFRdfcc5PSjUJcALn5C+hxzL2hBpIZJdfdfStn+DWHXNgBeRDiZj1x6vvyaC43RAb
- VXvRzOQfG4EaMVMIOvBjBA/FtIpb1gtXA42ewhvPnd5RVCqD9YYUxsVpJ9d+XsAy7uib3BsV
- W2idAEsPtoqhVhq8bCUs/G4sC2DdyGZK8MRFDJqciJSUbqA+5z1ZCuE8UOPDpZKiW6H/OuOM
- zDcjh0lOzr4p+/1TSg1PbUh7fQ+nbMuiT044sC1lLtJK0+Zyn0GwhR82oNM4fldNsaHRW42w
- QGD35+eNo5Pvb3We5XRMlBdhFnj7Siggp4J8/PJ6MJvRyC+RIJPGtbdMB2/RxWunFLn87e5w
- UgwR9jPMHAstuTR1yR23c4SIYoQ2fzkrRzuazsFNBF5v1x4BEADnlrbta2WL87BlEOotZUh0
- zXANMrNV15WxexsirLetfqbs0AGCaTRNj+uWlTUDJRXOVIwzmF76Us3I2796+Od2ocNpLheZ
- 7EIkq8budtLVd1c06qJ+GMraz51zfgSIazVInNMPk9T6fz0lembji5yEcNPNNBA4sHiFmXfo
- IhepHFOBApjS0CiOPqowYxSTPe/DLcJ/LDwWpTi37doKPhBwlHev1BwVCbrLEIFjY0MLM0aT
- jiBBlyLJaTqvE48gblonu2SGaNmGtkC3VoQUQFcVYDXtlL9CVbNo7BAt5gwPcNqEqkUL60Jh
- FtvVSKyQh6gn7HHsyMtgltjZ3NKjv8S3yQd7zxvCn79tCKwoeNevsvoMq/bzlKxc9QiKaRPO
- aDj3FtW7R/3XoKJBY8Hckyug6uc2qYWRpnuXc0as6S0wfek6gauExUttBKrtSbPPHiuTeNHt
- NsT4+dyvaJtQKPBTbPHkXpTO8e1+YAg7kPj3aKFToE/dakIh8iqUHLNxywDAamRVn8Ha67WO
- AEAA3iklJ49QQk2ZyS1RJ2Ul28ePFDZ3QSr9LoJiOBZv9XkbhXS164iRB7rBZk6ZRVgCz3V6
- hhhjkipYvpJ/fpjXNsVL8jvel1mYNf0a46T4QQDQx4KQj0zXJbC2fFikAtu1AULktF4iEXEI
- rSjFoqhd4euZ+QARAQABwsF8BBgBCAAmAhsMFiEE13oJz+7cK71TpwR0YAI/xNNJIHIFAmX4
- qVAFCQ8NoDIACgkQYAI/xNNJIHKN4A/+Ine2Ii7JiuGITjJkcV6pgKlfwYdEs4eFD1pTRb/K
- 5dprUz3QSLP41u9OJQ23HnESMvn31UENk9ffebNoW7WxZ/8cTQY0JY/cgTTrlNXtyAlGbR3/
- 3Q/VBJptf04Er7I6TaKAmqWzdVeKTw33LljpkHp02vrbOdylb4JQG/SginLV9purGAFptYRO
- 8JNa2J4FAQtQTrfOUjulOWMxy7XRkqK3QqLcPW79/CFn7q1yxamPkpoXUJq9/fVjlhk7P+da
- NYQpe4WQQnktBY29SkFnvfIAwqIVU8ix5Oz8rghuCcAdR7lEJ7hCX9bR0EE05FOXdZy5FWL9
- GHvFa/Opkq3DPmFl/0nt4HJqq1Nwrr+WR6d0414oo1n2hPEllge/6iD3ZYwptTvOFKEw/v0A
- yqOoYSiKX9F7Ko7QO+VnYeVDsDDevKic2T/4GDpcSVd9ipiKxCQvUAzKUH7RUpqDTa+rYurm
- zRKcgRumz2Tc1ouHj6qINlzEe3a5ldctIn/dvR1l2Ko7GBTG+VGp9U5NOAEkGpxHG9yg6eeY
- fFYnMme51H/HKiyUlFiE3yd5LSmv8Dhbf+vsI4x6BOOOq4Iyop/Exavj1owGxW0hpdUGcCl1
- ovlwVPO/6l/XLAmSGwdnGqok5eGZQzSst0tj9RC9O0dXO1TZocOsf0tJ8dR2egX4kxM=
-In-Reply-To: <20260217000854.131242-7-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8e23ba87-b6c9-4ad8-97ed-3e203a81121b@kernel.org>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001EC:EE_|DM3PPF4E0899F31:EE_
+X-MS-Office365-Filtering-Correlation-Id: 59eaafe7-81da-443e-f911-08de6e0cbadf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eUZjdkJTZnNsSWNkb0djVG94cGVKYjlaWXZjMDRUV3A4dUVVQ2Nia2YxeW9I?=
+ =?utf-8?B?M0U4N3JGMS9PYTh3S0dUN3Z2NDBTWi9MTE90TEVMcTRKNGIxMjRqZStpaW1i?=
+ =?utf-8?B?bytMYW4rYXJYR3k4bzdYUzFkOG5CQnJzcEI4N2VSdzk3K2poenlWTWRPQk5U?=
+ =?utf-8?B?TVVlSFcraTA2clJDeWdUaHJ6STA4WVk3dUg5ZWFuRnFaNDVMaGN6cnRYZWJ6?=
+ =?utf-8?B?UHkrbHoyTDJEd2pQZmRTbjdKaTQ1ZW83dlFIRkhjVFd3YjE2SXZjTitYZVNU?=
+ =?utf-8?B?amR5aGFOUTBtTHk4bjVwZ1liUGY3S1hDVDFGODgzdGhnTzZMY3c5OFYwY0h0?=
+ =?utf-8?B?bURMS0lHQldGZzVXOVpSeS9pUExrZW1VMUlKd3J0cC9MRm9ybVB6cmRMQlJR?=
+ =?utf-8?B?anBJanhOeE90QXZXTENwTUFGWkZLOUIySDRmUDhDYzF2cElGRjdqYTdzYzln?=
+ =?utf-8?B?ZVQ3c05kdGNWQ01oUW9VV0x4bDNzby9XSHFkRHQrNG9GMXNMNFE0UlpaUGZD?=
+ =?utf-8?B?S1pzLzMyb0RCQUhyaUxVa0lYWXp6KzVEOU9CeXJlMkZvbzlLdmcwc0xuZnh4?=
+ =?utf-8?B?Vng2YTJTL3J4VythL0NTcThqTVZqMDRhcGNjaEtrb08rTFh0V3RRZzJkS0VH?=
+ =?utf-8?B?NUZpVm5zWWROM01VbGpnS0pGeGtEQ2tHOC9aTUx5dVN2eTdNUkVCeXNEVXZy?=
+ =?utf-8?B?b1h3Ymk5NWhlVXpnZ2pWWkp2ZGFLSE1KcHR2RmFLSnVvNkRCdnR5L3JwM0xW?=
+ =?utf-8?B?dFNIUkt6Sll1UkN6WlpkSFd5NFZaTWJ3c1RzQUVNNmdJbUJJVWZYcHVLUGxm?=
+ =?utf-8?B?a3ZUekJXb3JWWWhXQ3hSMTl5QnNVYWdWaTNXVXQ3LyszQkNkMTk1QnF0YXhG?=
+ =?utf-8?B?djNlaHF6NWdFemptdFFCNzNyMDVFbUZOamhpN1Z5RE1rWkhOcHRHN2tTVU5t?=
+ =?utf-8?B?aUxpZXJoNFZaTE93UmdFS1hPMWVNYjhtaS90THpWSTFnRmE2WTNTRm5DY2V0?=
+ =?utf-8?B?L1RqYzVHS3FoQUZxOCtKWm8zR29rb0RLbGlwUXV0YVRVVzhlVng3SEFxRU9w?=
+ =?utf-8?B?WC9uSEtaSG5OSXBmMnJtdmlwN3l3N0tlWlNiV04yZHA2ZUplbzlBTDdqakVt?=
+ =?utf-8?B?MGZhTUkrRU1QTTdrdERMS3JFa3U1NitJZVdWZzUyUFdOcWR0SWMrbFMxUzN2?=
+ =?utf-8?B?U2IwS2ZvOVlabkhNQTNmNFpXSGNYcndEWW0zVTN0RnlMZUUwaGE3QmJnejc2?=
+ =?utf-8?B?ait6N2QvK0JSYVY3ODZmZkRhMzdwdnpyRElYQlljQnBRcFJzNUpRUDkweVQv?=
+ =?utf-8?B?bStadjZOSWk1a3FWUmZscEp3YlZEbWE4NVJwd2V0ck5PTWtQbXV2SEdFcFNv?=
+ =?utf-8?B?MUNycjhxSzcxUWJjVjQ1YkY2eWZRZFJuNS9icjZKZWZWSnlEaURlcG1pK1lP?=
+ =?utf-8?B?ZkhhUXdlVHZaNTl2OWZMWW1GREV0UzZqckpoM0Znb0FRU2tJcVFNYzYyeU40?=
+ =?utf-8?B?VFpuRS94Um1rT1ZWayszV2hQcXpSOEYwUmhyeVZ3V1o0VkFpKzFwZG9rVGVt?=
+ =?utf-8?B?dHAyc1puN1kvdWlRaGVHNGN4RDF4NGE0OFhYMjBsZmF0MCtOU05MaXZ1YU5P?=
+ =?utf-8?B?RXI0WFJncUtvWW1lOXlxdVc3d2Y0cVE3VFl2V1VGNjlBT1o2aG1hNmlDN2tq?=
+ =?utf-8?B?bXUvL1pGbXJuQ1dDdlhtQVBrMVVkZnk0cUM0WTJSeHk0WlUxaEt0NlFtN1Fl?=
+ =?utf-8?B?MWN3clNDMm5menN5VU5IMWJPZlBXalpaNHZRWWJjNC9FK3h5U0lic3ZDMm5B?=
+ =?utf-8?B?YUt3NWVyczZ1TEoxelRoNjViRU9aZCt0ZjNYVStYZlBVRkFyamFhejBmZUYw?=
+ =?utf-8?B?Vno1cHlnSTRQeW5wVjdvMzdZUHNOR0FIL0lSYVZTTDdJU0lYWHhTUklxbG55?=
+ =?utf-8?B?UVVUZkVIcjdmSnlCTHViK0pnUGhaMFhlS0dtZmVuTmw5ZDFqdDV1dk5zRjRX?=
+ =?utf-8?B?dzV3eWhUMndGNkN5WU03dlhMZzdnc3hXRTV1S2tmcnlzRFpCcUV2ZTFsZ0Nw?=
+ =?utf-8?B?SHMyYWtodXVPNXhpK2c4NHRLY3hOSkUrV0hMSkFkK2RCZDRVc2tacVIrT01h?=
+ =?utf-8?B?KzJISk8yREo0ZEdBWC9hUEhrL0I2N0R1MkN3bGVOOTRtandRcDJJSWVudUtW?=
+ =?utf-8?B?TmZTU1BrODFPTE9reVM4VHFMa1NYVUZLdzBwNDZRa0hDdU8yZWNhTUtKMVIv?=
+ =?utf-8?B?TlhNZWlGeUw1RVZiM2JiQkNYblJRPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mkerelay2.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	Bmfr2/cTxB4COPP2rLITQwUdReWuD2VAJnhytOCc0zzapVH4/oKcLRyVtO5mpnrHuDgEgQ0MPwfVJw0NimvFDMr/nc37VZnW/vRd5vRP39cU2zG7HCHo2jna3TtiVFxw4V99gqd1sy/u1W3WiMa10OcjF4a4sR7dOvE/KLs98k7La1ttCmLKZ4sKT7L7sV+EyadhN+znhE6Aq4rsgtp7tBzhyCyoIbuVzN6lX6STl+xhJFZYVBwSfW85IX6Pv8uzznOMm8NH9nVBHv9ZXG3EaExio7bw1nvBt3oCtkFOLL7QBxaoKztFsgXjEGqUfu74IBRz04O1WLgDkDrx6ZSLdOzPuP0Jcz/EwOEVZdbtBwyLD3Vt7rhrcVGGSgNBHd1GzHUoAfcz25Y7NaCdqhSZKSGuPGnhr/AM9EaX6GKghg7E+h/LeQxV+DDS7zPmcIjG
+X-OriginatorOrg: gehealthcare.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 10:10:08.3384
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59eaafe7-81da-443e-f911-08de6e0cbadf
+X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[mkerelay2.compute.ge-healthcare.net]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-SJ5PEPF000001EC.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF4E0899F31
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gehealthcare.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[gehealthcare.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266057-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,linux.intel.com,suse.de,ffwll.ch,ravnborg.org,vger.kernel.org,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-266058-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,gehealthcare.com:email,gehealthcare.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gehealthcare.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ixit.cz:mid,ixit.cz:dkim,9c000000:email]
-X-Rspamd-Queue-Id: 3202314AB00
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: B008914AB3F
 X-Rspamd-Action: no action
 
-On 17/02/2026 01:08, Richard Acayan wrote:
-> The Pixel 3a XL has variants with either a Samsung Display Controller (SDC)
-> panel or a Tianma panel. Add the device tree for the variant with the
-> Tianma panel.
+On Tue, Feb 17, 2026 at 11:05:47AM +0100, Krzysztof Kozlowski wrote:
+> CAUTION: This email originated from outside of GE HealthCare. Only open links or attachments if you trust the sender. Report suspicious emails using Outlook’s “Report” button.
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/Makefile             |  1 +
->   .../dts/qcom/sdm670-google-bonito-tianma.dts  | 38 +++++++++++++++++++
->   2 files changed, 39 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
+> On 17/02/2026 10:23, Ian Ray wrote:
+> > Add a compatible string for the INA234 device, which is like INA226 but
+> > has different scaling.
+> >
+> > Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
+> > ---
+> >  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 3 +++
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6f34d5ed331c..6237aeb0e36d 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -245,6 +245,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-motorola-ocean.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-bonito-tianma.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
->   
->   sdm845-db845c-navigation-mezzanine-dtbs	:= sdm845-db845c.dtb sdm845-db845c-navigation-mezzanine.dtbo
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts b/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
-> new file mode 100644
-> index 000000000000..da309434b511
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
-> @@ -0,0 +1,38 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Device tree for Google Pixel 3a XL with the panel connected to the Samsung
-> + * Display Controller.
-> + *
-> + * Copyright (c) 2023-2024, Richard Acayan. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sdm670-google-common.dtsi"
-> +
-> +/ {
-> +	model = "Google Pixel 3a XL (with Tianma panel)";
-> +	compatible = "google,bonito-tianma", "google,bonito", "qcom,sdm670";
-> +};
-> +
-> +&battery {
-> +	charge-full-design-microamp-hours = <3700000>;
-> +};
-> +
-> +&framebuffer {
-> +	reg = <0 0x9c000000 0 (1080 * 2160 * 4)>;
+> I got 1/2 but no cover letter, no 2/2 and no explanation in the
+> changelog of that. Usually I use driver code to avoid you questions
+> about compatibility, but since you decided not to send it to me, then
+> you have question:
 
-Since you already touching the code, try to use memory-region mapped to
+Sincere apologies, I used scripts/get_maintainer.pl with git-send-email
+and failed to notice that you were not cc'd.
 
-                 framebuffer-region@9c000000 {
-                         reg = <0 0x9c000000 0 0x2400000>;
-                         no-map;
-                 };
+Patch [2/2] is here:
+https://lore.kernel.org/all/20260217092325.15867-2-ian.ray@gehealthcare.com/
 
-The size is usually common for whole qcom sub architecture, so no need 
-to worry about that in specific device-trees.
+> 
+> Does "different scaling" mean devices are not compatible in terms of DT
+> compatibility (subset/superset)?
 
-I assume only custom part is height, and status can be kept in common, 
-see sdm845-oneplus-enchilada.dts for and example.
+That's correct, the device tree compatible must be different since the
+driver uses the compatible to configure the scaling.
 
-> +	width = <1080>;
-> +	height = <2160>;
-> +	stride = <(1080 * 4)>;
-> +	status = "okay";
-> +};
-> +
-> +&panel {
-> +	compatible = "novatek,nt37700f";
-
-newline before status (when it's not only property in the node).> + 
-status = "okay";
-> +};
-> +
-> +&rmi4_f12 {
-> +	touchscreen-x-mm = <69>;
-> +	touchscreen-y-mm = <137>;
-> +};
-
--- 
-David Heidelberg
-
+> 
+> Best regards,
+> Krzysztof
 
