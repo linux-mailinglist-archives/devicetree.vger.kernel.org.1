@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266276-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2EGYEV3HlGn+HgIAu9opvQ
-	(envelope-from <devicetree+bounces-266275-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:54:05 +0100
+	id aBkUJEHKlGluHwIAu9opvQ
+	(envelope-from <devicetree+bounces-266276-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:06:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C391E14FC43
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E5C14FD0F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:06:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1C71630338B9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 19:53:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B4AA3039884
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290233783CF;
-	Tue, 17 Feb 2026 19:53:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A02378822;
+	Tue, 17 Feb 2026 20:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FfhYCAKI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dzdzmtJX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0170D3783AF;
-	Tue, 17 Feb 2026 19:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61F937881F;
+	Tue, 17 Feb 2026 20:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771358038; cv=none; b=lJ8LkjoGg7lvSHuCrkehnscekmW+eOMLl1NVl64j2TxVGYe2KkyBet74RjOqLCCFUNEQ8hDV3D2mkXojVrtTD+ZyAFaSREULAltk7CveFs4NPoIJS63t6bgu5WPHGTU/IIzHRMdk1I0AnBamr9Ec0374fkbs78n/jU4zeTvFjec=
+	t=1771358764; cv=none; b=bLVLLtfAA4CZuJpF82PfhFOGsxw/gK4r6sGavhVXGdIECcLh0K/HOJNOvZNqB7gkuc9XP4K5Ac+GuADL6lH/DlWj6KN4ybCYLkvhXHTMjPjvJOVjNOCoyOkdTF35FHBMGuMhyLkn5O7wKexzl7vYkUlFsek92ZqMwU9nOCwqcmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771358038; c=relaxed/simple;
-	bh=HK7itZqeKApbNDsQcyQecXDptVi5WMxi+gitm8NIKlk=;
+	s=arc-20240116; t=1771358764; c=relaxed/simple;
+	bh=pB8XSOQnXS9spkcF/dY7JICgWxaL/46DvpLGgS0hD64=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HYQvUHgCpkcWn8Pofb75JX/fHZA6UBCE2B1oiMnuSFB5krktI/E6QiWM/1FgAUAbTcQY8Yz+59/NF8agQlmCla7yKi7MTlSys3Ztn9elekpYIUQGYlvnrWt7rlYDK2oR6VeYMi3S2NGyiQ9vTRfqht3Y29S4LRBVIjFV5d3ieOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FfhYCAKI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 151E3C4CEF7;
-	Tue, 17 Feb 2026 19:53:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HKY3rnjEtqOfKQrR6M/kOLzgrEM7PQk/jfLgjpPimBym0dv+2IjfRfwSV+8TV8L+9O/Uvz+Psgv1XxDUDgo1VuEXd3+UWd1i346pflkSCvFeNyKZuVuGhjJwvbaPZQeU8U8MrZ60IyIQjI9bP3fCYIXqWaROirWtDlhiaMuU968=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dzdzmtJX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEC70C19425;
+	Tue, 17 Feb 2026 20:06:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771358037;
-	bh=HK7itZqeKApbNDsQcyQecXDptVi5WMxi+gitm8NIKlk=;
+	s=k20201202; t=1771358764;
+	bh=pB8XSOQnXS9spkcF/dY7JICgWxaL/46DvpLGgS0hD64=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FfhYCAKICpAolKgDzMHk6a/6Bir13dMMkGebbN94gxPNWTFva2OLvxMS921es9D6y
-	 tbo1v0nWeqc8vpK/be/OQb82opXA4L0+Uj4/TfJh35Cc8N7rUXXv6Oj3b6TYyjSgsz
-	 tgrYAAkIz0iwnV8+8G5qGEh3gGMAGYu7tfbdDnkpwUKfKSOVPjOCVf7GWF0zC0FxtZ
-	 IP4T1EO6hyMrEPq4cKtxg6Yzxcnzds/kItTDCIGJCkXHkAh+Odf3K4RoexmFJlghwN
-	 wmx9GY/GhNLNKCG78TWY/fYfHeRL+V8XnLMvzaRIQ7Ytk/UZxNmtD2EMaurcPTs2Ay
-	 umtCAWgiGU5jw==
-Message-ID: <e26ac880-c397-46ee-a308-be2de608e3d4@kernel.org>
-Date: Tue, 17 Feb 2026 20:53:53 +0100
+	b=dzdzmtJXntv6tZ3xrZ5/5KDFCpCaBwCJWdFrb1Gf1xl4GzW/CTwauy2hAF96iXdMt
+	 i0n5nvdbl296y7+sk9fmCAdIEIp/B2q31R6sz0B7BZ0RfsOmRurQk0ko9xZSA7Lmk1
+	 PKmfgL66joDhQNzsadZvTYNPseLmcLyi3aw3I2ltNx2Gjqx7pF5YIplrzgDvMSewt7
+	 uXSp4O6mltdcHOorb8+irJInXtOGvGGUnPEd1NlAsbyF/CSMFU/Kv+71nUE/hocMTY
+	 B5pQU357Jc3Q7ljfy/adc26KdCkkol4HtfbeVY2NxVUIPr0pHqZ+e6FTXPAjZ/dXm2
+	 4krqz4VMaRI0w==
+Message-ID: <fd73947a-289a-43f9-9506-573fee935d12@kernel.org>
+Date: Tue, 17 Feb 2026 21:06:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,16 +53,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] dt-bindings: dma: nvidia,tegra186-gpc-dma: Add
- iommu-map property
-To: Akhil R <akhilrajeev@nvidia.com>, dmaengine@vger.kernel.org,
- linux-tegra@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- vkoul@kernel.org, Frank.Li@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
- p.zabel@pengutronix.de
-References: <20260217173457.18628-1-akhilrajeev@nvidia.com>
- <20260217173457.18628-2-akhilrajeev@nvidia.com>
+Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
+ peripheral
+To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
+ <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
+ <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
+ <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
+ <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
+ <66ecf6a5-cc1f-4872-971d-6bc32894dbac@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,11 +113,12 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260217173457.18628-2-akhilrajeev@nvidia.com>
+In-Reply-To: <66ecf6a5-cc1f-4872-971d-6bc32894dbac@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
@@ -120,81 +126,109 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266275-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266276-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,nvidia.com,pengutronix.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C391E14FC43
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 14E5C14FD0F
 X-Rspamd-Action: no action
 
-On 17/02/2026 18:34, Akhil R wrote:
-> Add iommu-map property which helps when each channel requires its own
-> stream ID for the transfer. Use iommu-map to specify separate stream
-> ID for each channel. This enables each channel to be in its own iommu
-> domain and keeps the memory isolated from other devices sharing the
-> same DMA controller.
+On 17/02/2026 14:12, Gatien CHEVALLIER wrote:
 > 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> ---
->  .../devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml  | 8 ++++++++
->  1 file changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
-> index 0dabe9bbb219..542e9cb9f641 100644
-> --- a/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
-> @@ -14,6 +14,7 @@ description: |
->  maintainers:
->    - Jon Hunter <jonathanh@nvidia.com>
->    - Rajesh Gumasta <rgumasta@nvidia.com>
-> +  - Akhil R <akhilrajeev@nvidia.com>
+> On 2/13/26 16:06, Krzysztof Kozlowski wrote:
+>> On 10/02/2026 10:55, Gatien CHEVALLIER wrote:
+>>>>> +  memory-region:
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 32
+>>>>> +    description:
+>>>>> +      Phandle to nodes describing memory regions to be configured in the RISAB
+>>>>> +      by the trusted domain of at least a RISAB page size.
+>>>>> +      These regions cannot overlap. A zone must be within st,mem-map range and
+>>>>> +      can be represented by one or more pages.
+>>>>> +
+>>>>> +  st,mem-map:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>>> +    description: Memory address range covered by the RISAB.
+>>>>> +    items:
+>>>>> +      - description: Memory range base address
+>>>>> +      - description: Memory range size
+>>>>
+>>>> Why do you need this property if you have memory-region already? This
+>>>> also should be part of <reg>, although this mixing with memory-region is
+>>>> anyway confusing.
+>>>>
+>>>
+>>> The RISAB is a memory firewall peripheral covering internal RAMs. It is
+>>> possible to configure multiple memory regions within these RAMs (done by
+>>> the Trusted Domain) with security, privilege and compartment isolation.
+>>> This peripheral allow 4kBytes page granularity. Each page can hold
+>>> different access rights, with 32 pages at most (hence the maxItems: 32).
+>>> That is some information that can be added to the documentation.
+>>>
+>>> Moreover, when a region is delegated to a non-secure privileged
+>>> component, this component can configure the privilege level necessary to
+>>> access the region.
+>>>
+>>> This property gives me the opportunity to get the memory range covered
+>>> by the RISAB. "reg" here is used to access the actual RISAB registers
+>>> holding the configuration.
+>>
+>> Looks awfully like memory regions still :/
+>>
+> 
+> IIUC the memory-region property references memory regions within
+> a reserved memory. Which is not really what I want to describe
+> here as I want to get the boundaries of the whole range. The
+> memory-region property would be used by the Trusted Domain / kernel
+> to get each regions (or only one that represents the whole range) of the
+> internal RAM to apply desired access rights to them / use them.
+> 
+> Describing the memory range using a reserved memory would make the
+> kernel exclude this memory range from the normal usage, no?
 
-With 4.5 trillion USD capitalization of Nvidia one could assume they can
-spare few resources to test the patch before sending it... instead of
-relying on Rob's and my machines to do that for them.
+In general yes, but also depends on the use case/drivers/purpose. I do
+not understand why would you mark some memory for generic use by kernel
+(so not reserved for specific purpose) and still configure it somehow
+for trusted firmware to allow secure read/write access.
 
-Expect grumpy review because you do not care about our time.
+If you mark some part of memory as a meaning for TF for secure access,
+you already claim it is not a generic memory. Otherwise TF just writes
+all over malloced() pages?
 
->  
->  allOf:
->    - $ref: dma-controller.yaml#
-> @@ -51,6 +52,13 @@ properties:
->    iommus:
->      maxItems: 1
->  
-> +  iommu-map:
-> +    description: |
-> +      The mapping of DMA controller channels to IOMMU stream IDs. Each entry in the map specifies the
+> 
+> I think declaring a "boundaries" memory region with no usage for the
+> kernel wouldn't make sense. The kernel may not be able to access the
+> whole memory range.
 
-Please read Linux coding style.
+I don't understand that. reserved-memory is for cases with "no usage for
+the kernel", so it would perfectly make sense.
 
-> +      relationship between a DMA channel and its corresponding IOMMU stream ID. The format is:
-> +      "<ch_no &smmu stream_id length>". Example: "<1 &smmu 0x801 1>"
+Look what your description said:
 
-Missing constraints.
+"used to protect internal RAMs by applying access"
 
-Anyway, do not redefine or explain standard properties. See dtschema.
+and
 
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +
->    dma-coherent: true
->  
->    dma-channel-mask:
+" a trusted domain, or the domain to whom the page configuration has
+been delegated,"
 
+so how it is not a dedicated, special memory delegated to specific
+devices and/or TF?
 
 Best regards,
 Krzysztof
