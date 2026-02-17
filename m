@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-266220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266221-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eDbgJWyklGmwGAIAu9opvQ
-	(envelope-from <devicetree+bounces-266220-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:25:00 +0100
+	id 6JzXDI+klGmwGAIAu9opvQ
+	(envelope-from <devicetree+bounces-266221-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:25:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19D314E93D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:24:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A90214E954
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:25:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B8CDB301A926
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:24:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 32B21301F4A5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E8B36E49C;
-	Tue, 17 Feb 2026 17:24:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3D1D36F419;
+	Tue, 17 Feb 2026 17:24:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VvsVswyD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EEze+cwu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E62421D5B0
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8363721D5B0
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771349075; cv=none; b=gpkgcZx4KjussmjLyQDzWOMXlL8DYnNh0yV1uNlbLBhiYSd5SwV2+E3QR3Lo9rfpXUhIHy0aFnh3xhjQlZJy2VpTuNgiKi/As2fSJJgMvnIHsnGmgX4mYcuFsolbiVp8fE1PhuPIRP1jvB9PiMA+EP7AV/xeDDoPIeVQubILevU=
+	t=1771349079; cv=none; b=jj3LHLsHhIK89qtgi0vGKPrPrgYCmknQu7tfTSEuZ8jaGpcDSrAXfLMLPOA4wHOtNswWobrlxmdbrhlKIUx9wPZlPwo/VLvHwETF0RKnK4AGPehr1gKawSkwKmnMcuP0UPpb2pmn+9iBNqeXs9fzaWygPhGuYsEOkbaaEUW+6HM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771349075; c=relaxed/simple;
-	bh=Lm+If8v0n9ZzqlY8OLZOp6s5/3TL8aa+xDq0I/7MaGk=;
+	s=arc-20240116; t=1771349079; c=relaxed/simple;
+	bh=/IumJo2wfiLxkURjAVtdha5zqZEcACkLKRwXGmiMbz4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ODZtekpDeND68pEYgJbYggUTk4WG7DFC61il9RTFXLLS3WCzpCZ4WPe8ZVvd3zWbDZALY+/iHTgREjM1tbqw9fNdgoIuqmKKtlfTQ4PY8h9dcaIXALHqQASM85wedVSvBM0btZddtKWe4J+AknVXvDlCFukmtSi6O52kn4x/LfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VvsVswyD; arc=none smtp.client-ip=209.85.214.176
+	 In-Reply-To:To:Cc; b=CRq8UjCFFVPonjKoPEOpToiWvu8mzuLL3mag6UxevaBOVfuVyER4WAJlGANFhcAF0PaCzYvRPX1O7Mk20gfNTWzMSAGCMxS0u+fI6hNYo0QI69ptlEv3nt8mqoItPSKvT2iIN1CBMH0Uc553i+bxy/xzlzsRTZSHbUFEhMmAkGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EEze+cwu; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2aad1bb5058so45287715ad.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:24:33 -0800 (PST)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2ad4d639db3so697375ad.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:24:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771349073; x=1771953873; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771349078; x=1771953878; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Bau6uafrQZEyhO8IyYecaXoONB6+S5GZTLPA52Q4cME=;
-        b=VvsVswyDaHNeq/VSgNBHSUZMLk6gWouMUGj8akUUE5sm/6gq2PpVxO0XZl4xNGgpdb
-         m9BtEp+PpIWbeMOOsYQDlKB1hbXGk3E++uscvqo4jcgtnaBgVUEyVHeiKOdqy9EQbRRr
-         SiX0e7RLL7EAcjjk4bWl/Z7nXyI87m+1uoSVqUasEo5gVHv1+lSnEjQFiy8hlA6fnv9x
-         6WyQ3WVKPuRR/VI60W6wH2iL2RnEP6iDvj2teE86bSBfHik5y5eswKc1qfuPcvGIk8+V
-         zTU/sw7eKJUFGS2P3xN2eEIerhUnG3t3x5pfhtbRhVinSZAmWl8HTO6IFfpHcwcUlSyr
-         JLwA==
+        bh=48uzX4AC3kmorumjWvelh24/92P7g/49N7P//38GtHE=;
+        b=EEze+cwugrFHV0XUqekVSa2sfvTW/15BD57F9WOvgVVtPpA5GapKRYPvxy576WKBfj
+         3WhXf6CX7Dp/c5Yv8l9eMWEWcByTj2RkxqdS6zwg0cTJ11G+EWx9llTJH/bwaVO17h6Q
+         1QmE1S+lIX1s2g2RVlGopzb3T0NZgz6YxKhAtuU1UfLd/POaAJ9LHj2RkYVryQWjZGeN
+         IYJ9Yk93+t9Jdj9WFiTwVE0l63fw4/3dBXrcfqetVOL2nUzmWYBkhTgBVzi/vKxATfLX
+         xBYZFwPY64Q1pNvi3N2fSKolHsgQvsbN08qSca0l0Ss6O/ZNgW8LG6yJmTBnQwQLvmru
+         XGdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771349073; x=1771953873;
+        d=1e100.net; s=20230601; t=1771349078; x=1771953878;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Bau6uafrQZEyhO8IyYecaXoONB6+S5GZTLPA52Q4cME=;
-        b=AN5zyi77t0yRLMfCel4k1j++sWXJgdDELjh2F85MO3+nkWtRSCjGJmPogiW/VF78mi
-         tP4W1FG6CPe3F49SMB0BEF3sKxiSbtg0WY7JBLdKExc6G0BmfDGcGbtCnVuXJwcwpwIq
-         EB/s3rvTfks0OA4czzOkVaVvXExJRn6kdAC2rZ7gv6jSgqdXOzOElDKtWYa0IFoeRjuH
-         wgoXd3M4G5bEHeAKti5gp/sTx0GDkryLDOrkK7ZmSsJCpPs/uKZVaHx4Xnf/5P7k7NlR
-         5IrsNx64sYET3lU3o+w47Lh8OrJI1sD9wR1VmmaQqEbU8LnwijNbi+1/ItIdUQVyyXug
-         bUhg==
-X-Gm-Message-State: AOJu0YxWwcz1l4aQygWcCD53osOKmt88n9ytQfGi5eolhjm4wlMrdWsm
-	vGN2npg1CCUcp2jedkOHpt9XRBI7XHblTvpEdXv3aOiMFIFpAznOiU2Y
-X-Gm-Gg: AZuq6aIKF4+1soNZUWnSCTiELQmAOWTaEdErdrMXH3cbMY0UCxIN9RcyqvEzunhdNEP
-	OK/XotH3gBH+hy4BirxlXpD2piUMYN1pedlEcZKorQ4EPO09aVmx8E2nsEyoyDn1Ms69SJPkvUP
-	Xs5LlI7rqtSeRXZx7S7/ue4l966ijqipAEZxoH+IPSKLLHBksQ3gY0xZ9K0xcBqsOA/Sq+sOHVZ
-	cq7ItKlORBMKDmJHiN7UXaGgG2hkoMmSiUVSgM0q8NgsZ7kfL6KxZrGyvoVQd/aGQj55fSOnPyS
-	GEWj0/knbYlSGs3WBoIIf1qABMHjexTqMYQa8LfGCvUO5wLy4rFUwnNAmJTNvk49gsQxJ0MxxI+
-	4QgZq0UWon5y7bc4zk6k3Z3F7YOGYO2eogz0f/JKRTUyXlBuRAcDQBFQMpJpnDxbG0UP9mU0DP7
-	gR4JpdDl/UZCYwb3ZF2Cg5zYPUpyzUtYRkkC8pSQyOv7JLzfoS
-X-Received: by 2002:a17:902:e885:b0:2a9:451d:a69 with SMTP id d9443c01a7336-2ab504e974fmr163450765ad.10.1771349073454;
-        Tue, 17 Feb 2026 09:24:33 -0800 (PST)
+        bh=48uzX4AC3kmorumjWvelh24/92P7g/49N7P//38GtHE=;
+        b=hwilqRjBdQ4frJWLF990JkR5z0Ki97AHSNZEufPcwIsvyTK16iD01iIUkXN1hDM9jY
+         PUyqf9kVksVxAW4gFm5aTTgOoE6CbGCLeJq51+6HdNKBp5KDSaiVvvoaesZ8vcbqDwM7
+         Ddmon41uMcMwLM7w/olXWc+I2VfR3opM/XSGfQHLr77h96tX6p1oY9nLsrNTfI79+TaE
+         XhcbO/L9mIwpwMVE8G0YyHLUOEhOEO5dR0tIECDTVPBjq1YKrrgJKRKcnG3+37bt+mfZ
+         mlgIdjgHXucISNloRfbTu47wojbQ4yXunLIddtY0wpp0AmtDB7QssiRjiYdEW60yjvSR
+         ti4A==
+X-Gm-Message-State: AOJu0YytDU2JkYEa7f6eWIh7peAmi3AZX0JlyuVSjtAz6ZndHZkUrCJS
+	NnNGXGUyF92phsTpKPBHX/na16W6h+hCUK4lz4HtIfezu1rFmcHQx61gXvdwNw==
+X-Gm-Gg: AZuq6aJAwEXJZ8Oi+7DH4FLEM1DuJ8BMOq3zJakkaTsJmLeCxrgdnpdcKJvufZ9e2ep
+	tDSbXtKIXsvrRaBcD4xzzhMvaUtiCaaT5PWYzkpaCXvOB9NprFpIsUPBeJa7EtTlEklTheP/1lr
+	M8uol7/B1oYlZMXAm7mMPtt0K0UWG8GBcK7QcPHAIsYPtgjkDkS3AKLAJyvw3hg/zernfrkMkSL
+	FtSkkatfdF0edlZTJ6DTu35E7pXqgioiOSVK9Gv1xKHsvF5MjHSUzia5Btg6hVzZ3WKHOM4iTsM
+	UXxmIvEjYDUWRveatbD3eaoNT1W4kKF19HFDeY1kAndhQzIg7YsAPREYDQp7goxBGWXiuX36pPp
+	NYszHFig/+CZsVFgVPDdgcC4uDpOzQXb2XMgv1rro6k2n7POy6j2pe5VSFxjZfDtMxq74L7jzmr
+	KASWnpNsbk5tCKZhXudke4VvKR3fygic9BPATCkmI0ITHq9xN2
+X-Received: by 2002:a17:903:2b0c:b0:2aa:3ec2:376a with SMTP id d9443c01a7336-2ad175be049mr120134365ad.60.1771349077878;
+        Tue, 17 Feb 2026 09:24:37 -0800 (PST)
 Received: from LAPTOP-872M7T80.localdomain ([223.181.109.65])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ad1a7145cbsm146880305ad.30.2026.02.17.09.24.29
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ad1a7145cbsm146880305ad.30.2026.02.17.09.24.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 09:24:32 -0800 (PST)
+        Tue, 17 Feb 2026 09:24:37 -0800 (PST)
 From: Akhila YS <akhilayalmati@gmail.com>
-Date: Tue, 17 Feb 2026 17:24:19 +0000
-Subject: [PATCH 1/5] dt-bindings: arm: microchip,sama7g5-chipid : convert
- to DT schema
+Date: Tue, 17 Feb 2026 17:24:20 +0000
+Subject: [PATCH 2/5] dt-bindings: arm: atmel,at91sam9260-pit: convert to DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +87,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260217-arm-microchip-v1-1-ae5d907e10e3@gmail.com>
+Message-Id: <20260217-arm-microchip-v1-2-ae5d907e10e3@gmail.com>
 References: <20260217-arm-microchip-v1-0-ae5d907e10e3@gmail.com>
 In-Reply-To: <20260217-arm-microchip-v1-0-ae5d907e10e3@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -109,7 +109,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-266220-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266221-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -126,62 +126,70 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F19D314E93D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,microchip.com:email,fffffd30:email]
+X-Rspamd-Queue-Id: 6A90214E954
 X-Rspamd-Action: no action
 
-Convert Atmel system registers binding to YAML format.
+Convert Atmel Periodic interval timer (PIT) binding to YAML format.
 
 Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 ---
- .../bindings/arm/microchip,sama7g5-chipid.yaml     | 41 ++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+ .../bindings/arm/atmel,at91sam9260-pit.yaml        | 49 ++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/microchip,sama7g5-chipid.yaml b/Documentation/devicetree/bindings/arm/microchip,sama7g5-chipid.yaml
+diff --git a/Documentation/devicetree/bindings/arm/atmel,at91sam9260-pit.yaml b/Documentation/devicetree/bindings/arm/atmel,at91sam9260-pit.yaml
 new file mode 100644
-index 000000000000..4227f308d43a
+index 000000000000..954cd14ac1c1
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/microchip,sama7g5-chipid.yaml
-@@ -0,0 +1,41 @@
++++ b/Documentation/devicetree/bindings/arm/atmel,at91sam9260-pit.yaml
+@@ -0,0 +1,49 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/microchip,sama7g5-chipid.yaml#
++$id: http://devicetree.org/schemas/arm/atmel,at91sam9260-pit.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Atmel/Microchip RAMC SDRAM/DDR Controller
++title: Atmel AT91SAM9260 Periodic Interval Timer (PIT)
 +
 +maintainers:
 +  - Nicolas Ferre <nicolas.ferre@microchip.com>
 +  - Claudiu Beznea <claudiu.beznea@microchip.com>
 +
 +description:
-+  This binding describes the Atmel/Microchip Chip ID register block used
-+  for SoC identification and revision information. It requires compatible
-+  strings matching specific SoC families and a reg property defining the
-+  register address and size.
++  The Periodic Interval Timer (PIT) is part of the System Controller of
++  various Microchip 32-bit ARM-based SoCs (formerly Atmel AT91 series).
++  It is a simple down-counter timer used mainly as the kernel tick source.
++  The PIT is clocked from the slow clock and shares a single IRQ line with
++  other System Controller peripherals.
 +
 +properties:
 +  compatible:
-+    enum:
-+      - atmel,sama5d2-chipid
-+      - microchip,sama7g5-chipid
-+      - microchip,sama7d65-chipid
++    const: atmel,at91sam9260-pit
 +
 +  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
 +    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
++  - interrupts
 +
 +unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    chipid@fc069000 {
-+        compatible = "atmel,sama5d2-chipid";
-+        reg = <0xfc069000 0x8>;
++    #include <dt-bindings/interrupt-controller/irq.h>
++    timer@fffffd30 {
++        compatible = "atmel,at91sam9260-pit";
++        reg = <0xfffffd30 0x10>;
++        interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clk32k>;
 +    };
 +...
 
