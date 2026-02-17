@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-266219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266220-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0MivKFGklGmwGAIAu9opvQ
-	(envelope-from <devicetree+bounces-266219-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:24:33 +0100
+	id eDbgJWyklGmwGAIAu9opvQ
+	(envelope-from <devicetree+bounces-266220-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:25:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B5B14E927
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:24:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F19D314E93D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C457A302B207
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:24:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B8CDB301A926
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD69336E49C;
-	Tue, 17 Feb 2026 17:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E8B36E49C;
+	Tue, 17 Feb 2026 17:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VFR3HJ1J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VvsVswyD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A345D36C0BD
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E62421D5B0
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:24:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771349070; cv=none; b=sm6lzTKOyBVZayDDJ4wS73JW4mts/zDI3SDQicv72cVoKv34euM5CHZpAvVSJjAJHFxShU/obp2dfOXmSvSMXjbFg0fvz2GSs2sVsPt9/nwn+Mgh4WdWyjIYr1b951aXWrT30yDH5H5XYxd5OBwIx6gYLQt4/gruPyYWeFls6IA=
+	t=1771349075; cv=none; b=gpkgcZx4KjussmjLyQDzWOMXlL8DYnNh0yV1uNlbLBhiYSd5SwV2+E3QR3Lo9rfpXUhIHy0aFnh3xhjQlZJy2VpTuNgiKi/As2fSJJgMvnIHsnGmgX4mYcuFsolbiVp8fE1PhuPIRP1jvB9PiMA+EP7AV/xeDDoPIeVQubILevU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771349070; c=relaxed/simple;
-	bh=XcaGFT1isDNTFfiGQLEYjzZthPCV8JRLkjiswzHuawU=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=vEwcUKDRgUUldq8NBVlvrFOfGSiOz9ZaHlMMFIVqGaZend6NjrD1zVe5+2XFPN/BbkJORedDgPBojJAvKVlDIMl147DPIvU5DbHglwAGmSY7ReAzxlqOLwI0eGvJR8lSBTU8f49vgWBcDoHrGqIqULqYv+Y+LChlvdUZDA9aBuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VFR3HJ1J; arc=none smtp.client-ip=209.85.214.175
+	s=arc-20240116; t=1771349075; c=relaxed/simple;
+	bh=Lm+If8v0n9ZzqlY8OLZOp6s5/3TL8aa+xDq0I/7MaGk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ODZtekpDeND68pEYgJbYggUTk4WG7DFC61il9RTFXLLS3WCzpCZ4WPe8ZVvd3zWbDZALY+/iHTgREjM1tbqw9fNdgoIuqmKKtlfTQ4PY8h9dcaIXALHqQASM85wedVSvBM0btZddtKWe4J+AknVXvDlCFukmtSi6O52kn4x/LfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VvsVswyD; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2aae146b604so32529485ad.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:24:29 -0800 (PST)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2aad1bb5058so45287715ad.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:24:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771349069; x=1771953869; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lvvufgkhUDdE/Bqpji9LIc9wg44ul+E6WiDw+AU4u0U=;
-        b=VFR3HJ1JzMMZ8l1FJWW8v0iVLHpXmEwyiUwh4sosdfUR0Y6XeNyHGNMZF6LSSKHUas
-         WiJXtpWmMwDtSxa+Rhu+jE6zbKtsZPCSO0pZ7XkoMGS+k5ABMAx1YaF11AuoHJp44GKH
-         +eE/aYqXePt4eqGKDtHL3goGzWnhCHdGljs2AlXprqfw0MEQhQ9FADzs5v2ixKjUNFDf
-         gAQgG/qX7rTM+n/8d+Jck/2VUWc/GWJqp66frNd2RLNNBrz5XDWVY+6EfOWrYGv8u9Kr
-         FYcfkUvoyOpkbdPCYITSSEPoL4k5I/3aVdDfjOD0mzRFcDQbn/Kk65PEyaD4VrrAMowf
-         dasw==
+        d=gmail.com; s=20230601; t=1771349073; x=1771953873; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Bau6uafrQZEyhO8IyYecaXoONB6+S5GZTLPA52Q4cME=;
+        b=VvsVswyDaHNeq/VSgNBHSUZMLk6gWouMUGj8akUUE5sm/6gq2PpVxO0XZl4xNGgpdb
+         m9BtEp+PpIWbeMOOsYQDlKB1hbXGk3E++uscvqo4jcgtnaBgVUEyVHeiKOdqy9EQbRRr
+         SiX0e7RLL7EAcjjk4bWl/Z7nXyI87m+1uoSVqUasEo5gVHv1+lSnEjQFiy8hlA6fnv9x
+         6WyQ3WVKPuRR/VI60W6wH2iL2RnEP6iDvj2teE86bSBfHik5y5eswKc1qfuPcvGIk8+V
+         zTU/sw7eKJUFGS2P3xN2eEIerhUnG3t3x5pfhtbRhVinSZAmWl8HTO6IFfpHcwcUlSyr
+         JLwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771349069; x=1771953869;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lvvufgkhUDdE/Bqpji9LIc9wg44ul+E6WiDw+AU4u0U=;
-        b=fJKFVxFprseI9gxBf76IoAPov9yPyotA4x03NZu2v/D4CgfEv7lDVpGFJdCWeGff8F
-         WyH+H7lKNlFPLfuPWtY7JlPUw4IalBiS6wBpnRrkpxeriNA5xl4eMsVoTyF4IdA6bFjP
-         uFFhxAgatqQnxenKkSSPwVmia8UoZV1afZPCodcsBaF+6Anv5+YVBjbxPhkKh8f8Ck2T
-         Zup4yXT/vreIk9oWJgi0P2XwqpznLVoJDEIURorqNavemAk9mji2xtwE5H6sunvvC9EJ
-         qrrbIdBNdcIZEUzaa0kFlIeCK1YNyLBh+SU6UP5rJkPlusiUD/n2scnUq3nVXN/CpMH6
-         Ry8g==
-X-Gm-Message-State: AOJu0YxrmPpIaKH500bIuN05LHIinKsnuIHYsEYgyC9/U27d1cuU8VWe
-	UoAjcISSPiOZI7oV8br2n/9gqgOGAWUq/bLB0wBeG1NuRRUSRj+lI39p
-X-Gm-Gg: AZuq6aJDM23gVe3c8s/TfR2GJFbRBpVZhckUJcx5bMGEgBpQOHfFp5chw5Nasp3uSS3
-	eL2oVhCv3pCXadbwesEbTXcL67rVRi5tW46mCgCAp7SMYEhwaKdnwcAMPsoubD3A3LGJ9nTDQ19
-	moJ1SedQZ/cvZ2aoJD3woCiyrelbyYWnVvwXmZjcdiCkA/SrUllX03TcGIVCFwUE/acgJRrdniG
-	P/bdOT245ywlkXWMh9ZvnQDLZln0nb3GhBENbK5DPfgfa/Ah9pL9DriIbldUk2zFMnfzaKXa+0F
-	HE8+C5X/lKmd+ysF02CtZ9/mwPwGfY8rtPglZuPs8l3/2MXIaRIHQn2r9GkzCvnxVHrREnHkdZV
-	qc5Q6e+1b6z41te+XCX50Xt4OKRwBC2espVE1cQ8rDPY9cIH5TRprFGHvYWYfS0Kjgm57Jkw1lT
-	3vwp2V1hITEaJQQS9zvQ+a5tDGDyrOBQcEh0h8Nh+uWFniQbGM
-X-Received: by 2002:a17:903:2f85:b0:2ab:333:22e8 with SMTP id d9443c01a7336-2ab4cfbc6b7mr142195775ad.24.1771349068951;
-        Tue, 17 Feb 2026 09:24:28 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771349073; x=1771953873;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Bau6uafrQZEyhO8IyYecaXoONB6+S5GZTLPA52Q4cME=;
+        b=AN5zyi77t0yRLMfCel4k1j++sWXJgdDELjh2F85MO3+nkWtRSCjGJmPogiW/VF78mi
+         tP4W1FG6CPe3F49SMB0BEF3sKxiSbtg0WY7JBLdKExc6G0BmfDGcGbtCnVuXJwcwpwIq
+         EB/s3rvTfks0OA4czzOkVaVvXExJRn6kdAC2rZ7gv6jSgqdXOzOElDKtWYa0IFoeRjuH
+         wgoXd3M4G5bEHeAKti5gp/sTx0GDkryLDOrkK7ZmSsJCpPs/uKZVaHx4Xnf/5P7k7NlR
+         5IrsNx64sYET3lU3o+w47Lh8OrJI1sD9wR1VmmaQqEbU8LnwijNbi+1/ItIdUQVyyXug
+         bUhg==
+X-Gm-Message-State: AOJu0YxWwcz1l4aQygWcCD53osOKmt88n9ytQfGi5eolhjm4wlMrdWsm
+	vGN2npg1CCUcp2jedkOHpt9XRBI7XHblTvpEdXv3aOiMFIFpAznOiU2Y
+X-Gm-Gg: AZuq6aIKF4+1soNZUWnSCTiELQmAOWTaEdErdrMXH3cbMY0UCxIN9RcyqvEzunhdNEP
+	OK/XotH3gBH+hy4BirxlXpD2piUMYN1pedlEcZKorQ4EPO09aVmx8E2nsEyoyDn1Ms69SJPkvUP
+	Xs5LlI7rqtSeRXZx7S7/ue4l966ijqipAEZxoH+IPSKLLHBksQ3gY0xZ9K0xcBqsOA/Sq+sOHVZ
+	cq7ItKlORBMKDmJHiN7UXaGgG2hkoMmSiUVSgM0q8NgsZ7kfL6KxZrGyvoVQd/aGQj55fSOnPyS
+	GEWj0/knbYlSGs3WBoIIf1qABMHjexTqMYQa8LfGCvUO5wLy4rFUwnNAmJTNvk49gsQxJ0MxxI+
+	4QgZq0UWon5y7bc4zk6k3Z3F7YOGYO2eogz0f/JKRTUyXlBuRAcDQBFQMpJpnDxbG0UP9mU0DP7
+	gR4JpdDl/UZCYwb3ZF2Cg5zYPUpyzUtYRkkC8pSQyOv7JLzfoS
+X-Received: by 2002:a17:902:e885:b0:2a9:451d:a69 with SMTP id d9443c01a7336-2ab504e974fmr163450765ad.10.1771349073454;
+        Tue, 17 Feb 2026 09:24:33 -0800 (PST)
 Received: from LAPTOP-872M7T80.localdomain ([223.181.109.65])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ad1a7145cbsm146880305ad.30.2026.02.17.09.24.24
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ad1a7145cbsm146880305ad.30.2026.02.17.09.24.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 09:24:28 -0800 (PST)
+        Tue, 17 Feb 2026 09:24:32 -0800 (PST)
 From: Akhila YS <akhilayalmati@gmail.com>
-Subject: [PATCH 0/5] dt-bindings: Microchip/Atmel AT91/SAMA system
- peripherals: convert to YAML
-Date: Tue, 17 Feb 2026 17:24:18 +0000
-Message-Id: <20260217-arm-microchip-v1-0-ae5d907e10e3@gmail.com>
+Date: Tue, 17 Feb 2026 17:24:19 +0000
+Subject: [PATCH 1/5] dt-bindings: arm: microchip,sama7g5-chipid : convert
+ to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,10 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEKklGkC/x3MMQqAMAxA0auUzBbSoiJeRRxKjDZDq6QggvTuF
- sc3/P9CYRUuMJsXlG8pcuYG1xmgGPLBVrZm8OhHdH6yQZNNQnpSlMsSEg5uQN/zCK25lHd5/t+
- y1voBLIErF18AAAA=
-X-Change-ID: 20260128-arm-microchip-c0c0515024e6
+Message-Id: <20260217-arm-microchip-v1-1-ae5d907e10e3@gmail.com>
+References: <20260217-arm-microchip-v1-0-ae5d907e10e3@gmail.com>
+In-Reply-To: <20260217-arm-microchip-v1-0-ae5d907e10e3@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Nicolas Ferre <nicolas.ferre@microchip.com>, 
@@ -103,20 +103,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-266219-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266220-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -126,41 +126,66 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 10B5B14E927
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: F19D314E93D
 X-Rspamd-Action: no action
 
-Convert various legacy .txt bindings for Microchip (formerly Atmel) AT91/SAMA
-family system peripherals to proper YAML schemas. This includes:
-
-- CHIPID (SoC ID register block)
-- PIT (Period Interval Timer, old style)
-- PIT64B (64-bit Period Interval Timer, newer parts)
-- ST (System Timer, including watchdog subnode)
-- RAMC/SDRAMC/DDRAMC/UDDRC (SDRAM/DDR memory controller
+Convert Atmel system registers binding to YAML format.
 
 Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 ---
-Akhila YS (5):
-      dt-bindings: arm: microchip,sama7g5-chipid : convert to DT schema
-      dt-bindings: arm: atmel,at91sam9260-pit: convert to DT schema
-      dt-bindings: arm: microchip,sam9x60-pit64b : convert to DT schema
-      dt-bindings: arm: atmel,at91rm9200-st: convert to DT schema
-      dt-bindings: arm: atmel,at91rm9200-sdramc: convert to DT schema
+ .../bindings/arm/microchip,sama7g5-chipid.yaml     | 41 ++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
- .../bindings/arm/atmel,at91rm9200-sdramc.yaml      | 67 ++++++++++++++++++++
- .../bindings/arm/atmel,at91rm9200-st.yaml          | 65 ++++++++++++++++++++
- .../bindings/arm/atmel,at91sam9260-pit.yaml        | 49 +++++++++++++++
- .../devicetree/bindings/arm/atmel-sysregs.txt      | 48 ---------------
- .../bindings/arm/microchip,sam9x60-pit64b.yaml     | 71 ++++++++++++++++++++++
- .../bindings/arm/microchip,sama7g5-chipid.yaml     | 41 +++++++++++++
- 6 files changed, 293 insertions(+), 48 deletions(-)
----
-base-commit: ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea
-change-id: 20260128-arm-microchip-c0c0515024e6
+diff --git a/Documentation/devicetree/bindings/arm/microchip,sama7g5-chipid.yaml b/Documentation/devicetree/bindings/arm/microchip,sama7g5-chipid.yaml
+new file mode 100644
+index 000000000000..4227f308d43a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/microchip,sama7g5-chipid.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/microchip,sama7g5-chipid.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel/Microchip RAMC SDRAM/DDR Controller
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++  - Claudiu Beznea <claudiu.beznea@microchip.com>
++
++description:
++  This binding describes the Atmel/Microchip Chip ID register block used
++  for SoC identification and revision information. It requires compatible
++  strings matching specific SoC families and a reg property defining the
++  register address and size.
++
++properties:
++  compatible:
++    enum:
++      - atmel,sama5d2-chipid
++      - microchip,sama7g5-chipid
++      - microchip,sama7d65-chipid
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    chipid@fc069000 {
++        compatible = "atmel,sama5d2-chipid";
++        reg = <0xfc069000 0x8>;
++    };
++...
 
-Best regards,
 -- 
-Akhila YS <akhilayalmati@gmail.com>
+2.43.0
 
 
