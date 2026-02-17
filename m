@@ -1,288 +1,306 @@
-Return-Path: <devicetree+bounces-266293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id T2j7EgTylGnyJAIAu9opvQ
-	(envelope-from <devicetree+bounces-266293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:56:04 +0100
+	id wFNmEgj2lGlzJQIAu9opvQ
+	(envelope-from <devicetree+bounces-266294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 00:13:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7D8151A49
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:56:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C70C151BCE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 00:13:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0872E3015C8F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 22:56:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73701303C4E1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 23:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672552D781E;
-	Tue, 17 Feb 2026 22:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3619231282E;
+	Tue, 17 Feb 2026 23:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YLfKeH+I"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="eBOtkI5N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4831ADC7E
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 22:55:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771368961; cv=none; b=Av59+FETzkLIrhE+rMSE83ZhNJZyrrT/WcJexy6irYULrxtXAwJqPehe4FpW0xwnObnJp43lfgsnmjewuwrMCfXpvMu+RJh2QTr9pg0a+JQuUCVsCtrYvQ3ynQp8l9ZV/TGvVKbhDOrEANIzAZU0jkgARd0kb3cE57u0zg7ikX8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771368961; c=relaxed/simple;
-	bh=bvssL15XbSOxdAicqWiYiUk8ct54+EWZ0TdCukvko44=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mwqm3XwJvRsHLJCm6Xft6OCxsQlsaobv13+R6ASXWKox8VK9JKwx2x8HL/jibh7x2h5YO1rCh3lVgRfmt4mc7169M9G3WMV3+XOFFo27jFQ3Kd+gaCwL7Z0Q0zk++5vXvLPH0OdW8GO3Ys3k+b7GQAyz8j9mJScqO+ixtlEyJyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YLfKeH+I; arc=none smtp.client-ip=209.85.210.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7d4c9537f90so2936740a34.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 14:55:58 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8904E30AD1A
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 23:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.174
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771369972; cv=pass; b=XkboKLDUI8F+nkwm9H9eZbYv933EzDciKAMQTatm5FWbh+Az3ZT4ghuJbnCvAIBAbtHN2s6u4KROPS9Ne/TVhszFjLvtR9j9w6nkTu1xEnz7rbU5UjtUsizebnpElfJ8FQsgwD2375Eb1iUBoYmRqoOg17otwPb/UKn9iIBowM0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771369972; c=relaxed/simple;
+	bh=TFhE/3nm/eNuFUAsYaPzWXKDQdMXz6mmhFERgmch1Co=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jpKwqCELogEuIJJ32wo2TIs3hJC31sxvzjHqZN3y2sd2oVu6AU0KXXV5op3qcOE7oR8qip2aKmrgCz9RxiS2orNOo6NxGO2QmTYO/vAD1xmblQgcFa0mWKV/hooBVt0V1zDBoqBUHu+wE/N5FOJlgcms5b9Ew/kavXA+5vO+bd0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=eBOtkI5N; arc=pass smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-797d3864d89so22829117b3.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 15:12:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771369969; cv=none;
+        d=google.com; s=arc-20240605;
+        b=a3Rd6K/k+f6osag/2vY2RNhNE+oNhtfAUEUBVdYPvNG7KaKg4H/EEhJqpWYGGM6IPZ
+         zyEFXnmq5Fb739h62Q6twbCk5JQYz7z2AHb/27kJsgIP7amF02leyZLCrBN4P/njkkN6
+         TelSCn+mJ2/1LERkvwRuLdYnKFPloT756GlO9Mz2ZSVgXP2dk2v42VpMSWI2wk9lHLI6
+         vcA5fiTYJQFQ6SR2wcnySdloDFZhoNNAAtHvYaevlQctzERfiNSZSiRHa9FQH3A5JxTR
+         KgKzN2tXlKD7KdEU90rfxg3m+zkc/IKxKU+ql7xY7fvQAyREwgqDyUTlViVOCxyzssCG
+         V/rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=zP/wT+ORYJYEWXPTfGliwdU0mYdU90fsImuNVpM/pjY=;
+        fh=Da5fFdUgpB8dP4ROkIBHF8HKrIJXrgHXveQJwbkXuBk=;
+        b=Xa9nMwW9O1kX/vEVjjjkJGRS+ii6PdcoTmXnLMZYn5JX+jsnDqO9bdmbCY9iw65uiM
+         IHu/UDeA9iBHFLwdJztTdObmNkUfcGt3ReD7kwF0ke38JkmS5KyAB4t53Rf3TI82DCnL
+         KPGZh6SI1kZM8YcGlZVDwhMJ0Pr1ULMok+cC/V2rIbkuDdbKb+/dtloNBKDsN5hHpNxm
+         0ejvw686b8kRIB8CloVvGNWAokXOZsqyqwzYHJhuZg/VqZp8Jl0IyqYKMmmgLyGs6JHf
+         SgRbebFoqwsToTQZ6VrPMPdIA6pZo6ZZGYibaIhz4ZZVtUwsMwAHuPAK4lQdtOuwjpte
+         j6HQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771368958; x=1771973758; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zdYxc/QZBQVS0ui5sfFiWK7cBCBspR4q9y+sv+w894M=;
-        b=YLfKeH+IvRqrBVujSqg1fdtFhA+0enzYxjspS/ApFZLxg4d7D0eyDR2riW8pWCoQWY
-         jLqNKtpb2MEctnkfpPkB8GnOtMVOKse3dY+C/L1HWTfmYmjDNjh7c1wIqghFNICYOa6M
-         FvtBb+nVRjZM/LXIRhLjPCVy75BpqRx5MrdWAEnW7rVCxAsTPrPiQgk2tzyaYs1DTPCn
-         +0H6uLL4Xzg9xvloGJOKMEqatN945/w9DhlDmVOHKUJLzjay9GyqLWfpZ5h7sEKhWeB9
-         SpQP7AGo8VLontMe+l5v4xIE+tUUjJd9luOrCPV0pG2n3iShAm8ED/JZ0V5TVaT/+uWM
-         r5/A==
+        d=tenstorrent.com; s=google; t=1771369969; x=1771974769; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zP/wT+ORYJYEWXPTfGliwdU0mYdU90fsImuNVpM/pjY=;
+        b=eBOtkI5NwGtuPM0kfDxh8ugWBSs2gLKi3k1y2kgGsbl/cVJVr2ELxRWkV0RGfA6ssw
+         3bgYYVbukRhhY+aSzyWD2d473gCJMEe965cBU4CJFP/1hx2Fm+S9aOUxX2/+1556LFPC
+         dAf5KIgnf+Iib58tDBMgw4fmwhmyn6lYxNERbaMJxnfXkR4jm1FipQeOO6Th1r3todYU
+         RYwLwAEwMQPXLwD7xttzDP+OkRQVXE9/JbagcukcuFbqRgdrSnR8/NynznrKz0TGTj9K
+         a4KGgsqAMW/c7l4WvPFgpZAy/aph+ezx0kat3b+XNcN6L/+gLdErIpfA0s4Id+9xT1Ym
+         mRXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771368958; x=1771973758;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zdYxc/QZBQVS0ui5sfFiWK7cBCBspR4q9y+sv+w894M=;
-        b=NQB6+57su8m+29SBy7jillVoaO9W6XtFxc8LyubiGdpYCi5pXGvYV02r/F9swtziex
-         a6lsRyIpYxueYLe5IC9L8yZE83SquGQG9lWZOJAkcfGuWHWV8BaBVpx5H/EoRk3zjgWQ
-         Y7A3JycvI+g7pXepSzRXHHzJTKUnshHIynhq+Solc5H7zBNy0zkjSuWI8QJtIqU41rd5
-         9snSXwcClpkewbMHevhR9R9IMELb9Lb+RgXEsTUmplfjjTvRyFgPOlfRoVhxWXeSezpW
-         wMVotLF1Q+PL8jWXN8ymbFLsuiY0Oe093uJssKK2uK8pEASNvEa7BXKD6kYQ7vsuvLIB
-         HBpw==
-X-Forwarded-Encrypted: i=1; AJvYcCU6y2axrzjjMxwRqocuWgepQzWdKkj/RmaMlUpczqbuc6QJ6/2P7k/tx63OD/ttGFmI5kYRSOmCND5r@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYYDa5cWLXVUGm+f2KTfCi6+7FxHuIvcZAp/breLeMp30cQIuA
-	H8w314x2bU+PaMfZ8W5AojLffTFm7VvoMSRddiO1K0XGQci0N078UX71UFU8NkqGiN4=
-X-Gm-Gg: AZuq6aII3E491gFtj1ld5P9+GD8RPHOS+2kE8Qrn69dN8esJ6v2XFXrgUwLyLwsPE23
-	Lw/P/0NlC82kPXL5MEFHjFFVawvHnytTb8n5FIyni8SuhJlinFgV99AcjS3hyc3hIvLDbxerPni
-	TddPgpvMhR1y5u+iMxXVC6ti/wAf9qHPr08TWvNDVRONoKHlPOgbbGIxFFre7+TRKPb7e9Nl7gJ
-	XSN4uWa2ognglLi8zjIHdd8WFOO1W4d5Z5x/1TiwrhWzwiL1oShbAhI8GxSocKA4gMQW9BhHPkP
-	RGDYT5BxVqppSqTWdWDOYPE5ofnpbwnxyp0uA8e+khYaBfpO9Wyg8z/teY51iSd7G6G1VA9ZaT3
-	x4PaBvJxtPZIy3ZmyKSRVFUSX7ypxLO2B1MuZr/LvRmMJOfcJ+yU9v5fr2nrzUNeeg6wzcyntrf
-	yJpCQvul5zUN0V8vGcrD76YaiJ7nAOsElX5v97050sTpgcF2GklpTrWYYBGHk3sbSOFi5rxw==
-X-Received: by 2002:a05:6830:61c3:b0:7d1:9832:4796 with SMTP id 46e09a7af769-7d505dc0720mr134079a34.16.1771368958017;
-        Tue, 17 Feb 2026 14:55:58 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:b8c6:5b3:8109:1f08? ([2600:8803:e7e4:500:b8c6:5b3:8109:1f08])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d4a771c495sm15983215a34.26.2026.02.17.14.55.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Feb 2026 14:55:57 -0800 (PST)
-Message-ID: <d22c8fa8-1e8b-4f0a-80a1-3f13d75cd52c@baylibre.com>
-Date: Tue, 17 Feb 2026 16:55:56 -0600
+        d=1e100.net; s=20230601; t=1771369969; x=1771974769;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zP/wT+ORYJYEWXPTfGliwdU0mYdU90fsImuNVpM/pjY=;
+        b=MFce+5lD4MKHeV1o7LMqF8Xv0uZiCDCmzDMByfiwRsrFFCHSmtI6rWXyMM37YCOHz/
+         kG6VTVawpLYgAqVfyoPjBypVhAPwkJweOFcDghd+3EoIrhu9GrB9aDklvN5BUJ7+oUDC
+         bH9TrtUuX1GjhKNvGYzrKk+OCpB45I/ypEgSe7Tq7KFM+8zaemjYLyEM2auxsMpQt6or
+         u70PIY5THSjehCFP6Ng1KmnL736Ww22WhPoolT5gP9QOB/OE16Hkc0qT0RMSYUIXCjsB
+         P2Rj/oMjli7trmyiuzzkLgvTjb3S+bsa+xwfq+PlMDLhx6nVqnRuSWPgUEzE9i1FNGxm
+         3CZw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJnGauYDHGoRubdFw2P5HwVCYtSzIlc2yuS+FcXaepTUUGRyvAjLxGKIGkALTFowFG9Wl8cW3io2Zw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdcSqQi/r+lw7tBjwqlVVYqTyFgXt392/6mJ2QY6FjS8kMrMNP
+	yIrf5IM3ROdoFt+eOIJ9V33PCnG0jCZQQCFsCFXQg15if1NG95XMJRP5qPUxh7wuFmWLReCSeaX
+	v87qsMsnauIFVoQFxvRaI/enMUAbJOLM90dMoOHKn4Q==
+X-Gm-Gg: AZuq6aJbfzDa4YRWyVIavzg9wbryWCfJq3P1spiFTJUFkFjjqjbcbM6+/qntUM5RPqR
+	GjG+4SVOLHTjxcFHfINsq44WLYYi4yrC7RxcX+JpT9R9TmwFs9cpYKqo0egVRrvs/cdz/XCY4Ci
+	nh97lBjG56cBgzX3AExS1Inj/U+gHy0sVBC3J92n+LQ+OXOKrS4rvJVjfRfjY7ObLQDYSFwbM2j
+	92ntMTOm1UIWfV3cYMTe2EExrJothvTqzIhenB30nawXmxW19xKXQXzGQUX6xFsr1VuqNfxDa54
+	Ji90h9oB8dZQp2lGUuKSXmzlhasc+AyXalrd9SBjOkQmV0DUR5YucnWI5azB6gkKffe6IMWA
+X-Received: by 2002:a05:690c:dd4:b0:794:77da:aa40 with SMTP id
+ 00721157ae682-797ac5cdf09mr105123407b3.43.1771369969517; Tue, 17 Feb 2026
+ 15:12:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
- dual-channel ADC
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org
-References: <cover.1770393792.git.antoniu.miclaus@analog.com>
- <aYiGj_TYelvJdVaR@smile.fi.intel.com> <20260214160852.6862b58d@jic23-huawei>
- <aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
- <897bd4d4-bbdf-4cbf-84f6-05c110d75d03@baylibre.com>
- <aZF9zoWHL9iHSK3q@smile.fi.intel.com>
- <dce24f01-2a8e-4b36-9685-6ff4293e2d5a@baylibre.com>
- <aZLDyWICGB_j0Z1Y@smile.fi.intel.com>
- <2f9fc7fa-dd55-44f2-9b78-c9902b8b1bbf@baylibre.com>
- <aZQmkm9Xt3PivqmX@smile.fi.intel.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aZQmkm9Xt3PivqmX@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260216-atlantis-clocks-v6-0-cb46d6a59c73@oss.tenstorrent.com>
+ <20260216-atlantis-clocks-v6-3-cb46d6a59c73@oss.tenstorrent.com> <aZST4Yywv09u65MP@redhat.com>
+In-Reply-To: <aZST4Yywv09u65MP@redhat.com>
+From: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+Date: Tue, 17 Feb 2026 17:12:38 -0600
+X-Gm-Features: AaiRm53ZgMX5zL3OnOXtCGVJ3U5aMlR3Ss87ookwvkWmf5kHgzV6nQtkNYJPn7M
+Message-ID: <CAEev2e_XjxD3kHbOxVYwbf0Q0cwEr96dSQ3hWZE9eLdgeXhs4g@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] clk: tenstorrent: Add Atlantis clock controller driver
+To: Brian Masney <bmasney@redhat.com>
+Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley <jms@oss.tenstorrent.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, joel@jms.id.au, fustini@kernel.org, mpe@kernel.org, 
+	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com, agross@kernel.org, 
+	agross@oss.tenstorrent.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[tenstorrent.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[tenstorrent.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266293-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266294-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[asrinivasan@oss.tenstorrent.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[tenstorrent.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,0.0.0.0:email,baylibre.com:mid]
-X-Rspamd-Queue-Id: 8B7D8151A49
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tenstorrent.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9C70C151BCE
 X-Rspamd-Action: no action
 
-On 2/17/26 2:28 AM, Andy Shevchenko wrote:
-> On Mon, Feb 16, 2026 at 12:53:10PM -0600, David Lechner wrote:
->> On 2/16/26 1:14 AM, Andy Shevchenko wrote:
->>> On Sun, Feb 15, 2026 at 05:16:47PM -0600, David Lechner wrote:
->>>> On 2/15/26 2:03 AM, Andy Shevchenko wrote:
->>>>> On Sat, Feb 14, 2026 at 12:31:12PM -0600, David Lechner wrote:
->>>>>> On 2/14/26 12:11 PM, Andy Shevchenko wrote:
->>>>>>> On Sat, Feb 14, 2026 at 04:08:52PM +0000, Jonathan Cameron wrote:
->>>>>>>> On Sun, 8 Feb 2026 14:50:23 +0200
->>>>>>>> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
->>>>>>>>> On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:
-> 
-> ...
-> 
->>>>>>>>> I believe there is a better approach, what you need is rather a flag
->>>>>>>>> to SPI core to tell that this is the device with shared CS.
->>>>>>>>
->>>>>>>> Antoniu, this comment from Andy needs addressing before we move
->>>>>>>> on. It seems fairly fundamental and I'm not seeing a reply to it on list.
->>>>>>>>
->>>>>>>> I'm not entirely sure what Andy is suggesting will work but this
->>>>>>>> is perhaps a mismatch in really understanding what is going on here.
->>>>>>>> Andy, how would a flag work given they seem to be separately addressable
->>>>>>>> SPI buses. I think this isn't a shared SPI CS, but rather a device
->>>>>>>> with two entirely separate SPI buses. I think the only reason
->>>>>>>> we are bothering to implement it as a single device at all is the
->>>>>>>> shared backend.
->>>>>>>
->>>>>>> My understanding that there are two devices that for whatever reason share
->>>>>>
->>>>>> It is the opposite. It is a _single_ device with _two_ CS lines.
->>>>>
->>>>> Don't we have already support for that? This changes the picture even more towards
->>>>> NAKing this. See below why.
->>>>
->>>> Yes, spi_new_ancillary_device() was introduced exactly for this sort
->>>> of thing, which is why I think it makes sense to use it.
->>>>
->>>>>> adc@0 {
->>>>>> 	reg = <0>, <1>;
->>>>>> 	...
->>>>>> };
->>>>>>
->>>>>>> the same CS line. Yes, I probably misread the idea behind, but I meant
->>>>>>> some flag for SPI device that tells SPI core that the CS it wants is shared
->>>>>>> (maybe a high bit in the cs field or so), then CS core won't complain on
->>>>>>> validation about using the same cs number which is "already in use".
->>>>>>
->>>>>> There was one existing user in the kernel of spi_new_ancillary_device()
->>>>>> that looked like this, so it seemed the right way to approach it. However,
->>>>>> code was added later that caused the primary SPI device to "claim" both
->>>>>> CS lines for itself and probably broke the one existing user of
->>>>>> spi_new_ancillary_device() (hard to tell without hardware to test).
->>>>>>
->>>>>> The idea here was to unbreak that so we could use spi_new_ancillary_device()
->>>>>> just as in the existing use case.
->>>>>>
->>>>>> The patch for that could have been a bit more strict to only allow the
->>>>>> spi_new_ancillary_device() to take CS 1 and fail otherwise, but users
->>>>>> are going to notice if it isn't working right anyway, so I didn't ask
->>>>>> for more checking.
->>>>>
->>>>>>>> There is an argument that maybe we should be looking at how
->>>>>>>> to do data muxing backends to support the more general case of two
->>>>>>>> separate chips feeding into a single buffer, but that's a complex
->>>>>>>> beast and I'm not sure if it is something we actually need.
->>>>>>
->>>>>> I think it would actually be quite similar to what is done in this
->>>>>> series.
->>>>>
->>>>> TBH, the change sounds to me like a hack. It doesn't cover other potential ways
->>>>> of the multi-cs devices come into play. Given that SPI core supports multi-cs
->>>>> I don't see a good justification for this patch.
->>>>>
->>>>> What did I miss?
->>>>
->>>> As far as I can tell, other than the one existing user of
->>>> spi_new_ancillary_device(), other SPI multi-CS stuff is only used
->>>> by SPI flash memory devices, not general SPI devices. There code
->>>> that is being modified here was introduced to support the SPI
->>>> flash memory devices, so that use case is already covered by
->>>> existing code.
->>>
->>> Right. And obvious question why can't we apply the same approach
->>> to any SPI device? Like extending existing code to cover generic
->>> cases.
->>
->> spi_new_ancillary_device() was already accepted in the kernel as the
->> solution for this sort of use case, so isn't it already the generic
->> approach?
-> 
-> I don't think the single user functionality is considered generic.
-> 
->> I can see that it could possibly be nice if the SPI core saw that
->> there was more than one CS and called spi_new_ancillary_device()
->> automatically and somehow passed that along with the main SPI device
->> to the driver probe function. But since this is only the second user
->> of spi_new_ancillary_device(), I don't think we have enough data
->> points to be able to say if this is really what all peripheral drivers
->> would want.
-> 
-> Also, if that one designed for the case, why is needed patching?
+Hello Brian
 
-Because the multi-CS stuff for SPI flash memory was added later
-and broke it. There is only one obscure user, so it is not entirely
-surprising if no one noticed yet.
+On Tue, Feb 17, 2026 at 10:14=E2=80=AFAM Brian Masney <bmasney@redhat.com> =
+wrote:
+>
+> Hi Anirudh,
+>
+> On Mon, Feb 16, 2026 at 04:16:34PM -0600, Anirudh Srinivasan wrote:
+> > Add driver for clock controller in Tenstorrent Atlantis SoC. This versi=
+on
+> > of the driver coves clocks from RCPU syscon.
+>
+> ...covers clocks..
 
-> 
-> ...
-> 
-> The  mentioned approach predates the SPI memory chip support being
-> integrated into SPI core. I think we should consider to kill
-> spi_new_ancillary_device() in favour of using the same mechanism
-> as being used for SPI mem chips.
-> 
+Thank you for your comments. I will address the typos and add the
+static modifier for the different variables that you suggested.
 
-I'm not sure the SPI mem work ever actually got finished. In the code, see:
+> > +
+> > +struct atlantis_clk_gate_shared_config {
+> > +     u32 reg_offset;
+> > +     u32 enable;
+> > +     unsigned int *share_count;
+>
+> Why is this a pointer? Could this just be a plain unsigned int since
+> all occurrences of this are dereferenced?
 
-	if ((of_property_present(nc, "parallel-memories")) &&
-	    (!(ctlr->flags & SPI_CONTROLLER_MULTI_CS))) {
-		dev_err(&ctlr->dev, "SPI controller doesn't support multi CS\n");
-		return -EINVAL;
-	}
+We have a group of gate clocks that have a single enable bit shared
+among them (instead of individual enable bits for each clock). We need
+to keep track of the number of clocks within a group that have
+requested an enable, and only unset the bit if all the clocks are
+disabled. share_count is used to keep track of this. It gets updated
+by each clock. Hence it's a pointer (and the mutexes around access to
+it).
 
-But there is no SPI controller that has that flag. So I'm not sure if
-anyone is actually using this yet. And anyway I think the aim there was
-to be able to assert two CS at the same time, which is not what we are
-aiming to do here.
+> > +static int atlantis_clk_gate_is_enabled(struct clk_hw *hw)
+> > +{
+> > +     struct atlantis_clk_gate *gate =3D hw_to_atlantis_clk_gate(hw);
+> > +     u32 val;
+> > +
+> > +     regmap_read(gate->common.regmap, gate->config.reg_offset, &val);
+> > +
+> > +     val &=3D gate->config.enable;
+> > +
+> > +     return val ? 1 : 0;
+>
+> What do you think about this instead?
+>
+>     return !!val;
 
-And the other potential user of multi-cs is stacked-memories, but this
-is only mentioned in dt-bindings docs and nowhere else.
+Ack
 
-There doesn't seem to be any other code besides the validation that is
-done when the SPI device is added that makes use of more than one CS line.
+> > +static int atlantis_clk_gate_shared_enable(struct clk_hw *hw)
+> > +{
+> > +     struct atlantis_clk_gate_shared *gate =3D
+> > +             hw_to_atlantis_clk_gate_shared(hw);
+> > +     bool need_enable;
+> > +     u32 reg;
+> > +
+> > +     scoped_guard(spinlock_irqsave, gate->config.refcount_lock)
+> > +     {
+> > +             need_enable =3D (*gate->config.share_count)++ =3D=3D 0;
+> > +             if (need_enable) {
+> > +                     regmap_read(gate->common.regmap,
+> > +                                 gate->config.reg_offset, &reg);
+> > +                     reg |=3D gate->config.enable;
+> > +                     regmap_write(gate->common.regmap,
+> > +                                  gate->config.reg_offset, reg);
+> > +             }
+> > +     }
+> > +
+> > +     if (need_enable) {
+> > +             regmap_read(gate->common.regmap, gate->config.reg_offset,=
+ &reg);
+> > +
+> > +             if (!(reg & gate->config.enable)) {
+> > +                     pr_warn("%s: gate enable %d failed to enable\n",
+> > +                             clk_hw_get_name(hw), gate->config.enable)=
+;
+> > +                     return -EIO;
+> > +             }
+> > +     }
+>
+> Should this check be done within the scoped_guard?
 
-I would like to agree with you that there should be a better way, but I
-still don't see an obvious way to do it if there is one (other than the
-suggestion I already gave that probe should somehow give you two spi
-devices instead of one).
+The lock is used only for access to *gate->config.share_count. Since
+we aren't reading that here, it isn't put inside the lock.
 
+> > +static int atlantis_prcm_clocks_register(struct device *dev,
+> > +                                      struct regmap *regmap,
+> > +                                      const struct atlantis_prcm_data =
+*data)
+> > +{
+> > +     struct clk_hw_onecell_data *clk_data;
+> > +     int i, ret;
+> > +     size_t num_clks =3D data->num;
+> > +
+> > +     clk_data =3D devm_kzalloc(dev, struct_size(clk_data, hws, data->n=
+um),
+> > +                             GFP_KERNEL);
+> > +     if (!clk_data)
+> > +             return -ENOMEM;
+> > +
+> > +     for (i =3D 0; i < data->num; i++) {
+> > +             struct clk_hw *hw =3D data->hws[i];
+> > +             const char *name =3D hw->init->name;
+> > +             struct atlantis_clk_common *common =3D
+> > +                     hw_to_atlantis_clk_common(hw);
+>
+> You can join these two lines into one and you'll be at 83 characters.
+> checkpatch.pl now allows up to 100.
 
+>
+> > +             common->regmap =3D regmap;
+> > +
+> > +             ret =3D devm_clk_hw_register(dev, hw);
+> > +
+> > +             if (ret) {
+> > +                     dev_err(dev, "Cannot register clock %d - %s\n", i=
+,
+> > +                             name);
+>
+> This will be at 81 characters if the lines are joined.
+
+I used clang-format to do the formatting here and it seems to have
+picked a line length of 80? I can change this
+
+>
+> However, bigger question is if this message should be dropped entirely? I=
+f
+> this condition occurs, an error is logged here, and a second message will=
+ be
+> logged in atlantis_prcm_probe() below.
+>
+> > +                     return ret;
+> > +             }
+> > +
+> > +             clk_data->hws[common->clkid] =3D hw;
+> > +     }
+> > +
+> > +     clk_data->num =3D num_clks;
+> > +
+> > +     ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, c=
+lk_data);
+> > +     if (ret)
+> > +             dev_err(dev, "failed to add clock hardware provider (%d)\=
+n",
+> > +                     ret);
+>
+> Should this message also be dropped as well?
+
+So you're suggesting that we just print a single error message instead
+of multiple. I can change it to be like that.
+
+>
+> Brian
+>
 
