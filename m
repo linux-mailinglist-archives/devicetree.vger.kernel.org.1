@@ -1,117 +1,151 @@
-Return-Path: <devicetree+bounces-266281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266282-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aCTDCoPPlGlGIAIAu9opvQ
-	(envelope-from <devicetree+bounces-266281-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:28:51 +0100
+	id eDN+K/DSlGmfIAIAu9opvQ
+	(envelope-from <devicetree+bounces-266282-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:43:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE6114FF6D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:28:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C1B6150242
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 21:43:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 20A67304C7FE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:26:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C49753013D4A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3608436B074;
-	Tue, 17 Feb 2026 20:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174C9372B2D;
+	Tue, 17 Feb 2026 20:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O9lqDfIG"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="i+51ALd7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1197B1A9F91;
-	Tue, 17 Feb 2026 20:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0130320CD9;
+	Tue, 17 Feb 2026 20:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771360006; cv=none; b=P/3XGCY/72yWNGTBKHmhEoj7x4+yNoQBLvpIcglWo26ftnf+lagp1IEloFgOutkgqkmBr5COTg/hJjoy2uYJ7zXIUE7ynyTpZ9LfC5So81Xm93DFB6MRv8OZavDQ4UqVWqH67ZTN/QTfDMt+HGRJzFHBWCLbmSLaCtSHLrCZpB4=
+	t=1771361002; cv=none; b=l7x+Ysf+SWzDXfNxiKT+wQ4lOfaSjiHqcJxjamcyaMP3V7qIg0uuNFHGLwuOra6yCn7Si8CELfQiog33E/akj46jyjWhNTDVyDdP3y+N239zGmkngiL1TFmCWtAE0kOryKbvKP27YDZ+dj5H9GuiBgMrvmfq9MMd2Z9oTRZQ+R0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771360006; c=relaxed/simple;
-	bh=TfqrVkjjhQ67a7UsK1c6lgmC8THfQq3eSm+drD+TQ28=;
+	s=arc-20240116; t=1771361002; c=relaxed/simple;
+	bh=xaNCkDVtXSVSu+DM8ddQ+7wjR8XHf3WU4okD6GFRVsQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gNfDw2vg4RXFY442J6SsMGNQZb1dn8GJlgiy17Y9n+mGfyLBY1sXucjqnfKSU2bDcxwvv/UXiMZ9SCJHZ1yWQ9jsyrIX+wOWRPGy86FykukGT+RpzV/+ek5PluHDjOuwEef3+BOJiOSRnaZFSoIbzclD7A++SlJC4kmWsm2m8lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O9lqDfIG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ECA9C4CEF7;
-	Tue, 17 Feb 2026 20:26:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771360005;
-	bh=TfqrVkjjhQ67a7UsK1c6lgmC8THfQq3eSm+drD+TQ28=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O9lqDfIGImavMes8hSxkv32hGSnFhtd7sW3epyRa6pqd3ScI4T77tMGVq5ly0bV7v
-	 BBLpivkPZqL2/XolV0zJuAMihHalyvNIinAy5hN/wYPxsdeJSI2AKjKNpGLJDtFw7e
-	 /UXQ6X3h4k40kkHxkmN1TNt8drISWfi+XmA5K6CN5zUUvERjcVhX3Ot/j+9fFwe0mm
-	 ZPAmvs6nYu8Y5+l8/MsGGecQ1VvGkSGwiYG+EMuW/kLGWX44g7CF0FJY4U9pS5Zkye
-	 F990Xc/7HyRZDvQcILoR+oltQe07QfsCX8wWLSOLLrsWYTGTWYpnc5IUhvO21oTVZU
-	 PaTBk5GSG9MLw==
-Date: Tue, 17 Feb 2026 21:26:43 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Val Packett <val@packett.cool>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <jesszhan0024@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Cong Yang <yangcong5@huaqin.corp-partner.google.com>, dri-devel@lists.freedesktop.org, phone-devel@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: display: panel: Add compatible for
- Holitech HTF065H045
-Message-ID: <20260217-massive-juicy-shrimp-2d32fd@quoll>
-References: <20260217070121.190108-1-val@packett.cool>
- <20260217070121.190108-3-val@packett.cool>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RA/Cjt6fbWzC3C3UAM+f2T26bQ6fjTMPo2nS2ZfGT/6mDUTzBblAo80lxF9Z9dWG+Vo1yIqAuovs47CTQdF/76OrQ7X88WMwRiJAJkb6uDpEh6ny2HYQZ0j+cHH8/eb7VyaNyBalqysSbD8oRyYojxgf/fRSrqCsPGrLjnPsK5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=i+51ALd7; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Wlg17Kj/wYC+KcEPPN4TByd+mHs/UERfyc2emJHo0cc=; b=i+51ALd7gisJbAn50Bu8vXVC2/
+	6y0UR/QhvSBWqdN5tqTwjnWh5VLwllXxHc1VMKEV2+7QaixWChmNc11D8uLCRe3d5pnlvoktWIiBO
+	Bhjo6abQHteJe+8zpmGcNFYmWALs3T6RDzSXKCs80cQ5wTIbAq3kp/DdZl3Uqx00rfu8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vsRue-007geQ-Nf; Tue, 17 Feb 2026 21:43:16 +0100
+Date: Tue, 17 Feb 2026 21:43:16 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v1 03/11] arm64: dts: freescale: imx8mm-var-som: Update
+ FEC support with MaxLinear PHY
+Message-ID: <fceeda41-66cc-4bb2-ab53-d4b1ec25348a@lunn.ch>
+References: <cover.1771353301.git.stefano.r@variscite.com>
+ <3b984b93a43a07bc9c4f6414a08a3a0f45daaaa8.1771353301.git.stefano.r@variscite.com>
+ <31f30651-7c99-42cb-9e27-e4806529d137@lunn.ch>
+ <aZTCGH1rKWdvYg5-@Lord-Beerus.station>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260217070121.190108-3-val@packett.cool>
+In-Reply-To: <aZTCGH1rKWdvYg5-@Lord-Beerus.station>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266281-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266282-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,huaqin.corp-partner.google.com,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7EE6114FF6D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.1:email]
+X-Rspamd-Queue-Id: 1C1B6150242
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 04:00:10AM -0300, Val Packett wrote:
-> Add a new compatible for the Holitech HTF065H045 panel that uses the
-> Himax HX83102 controller IC.
+On Tue, Feb 17, 2026 at 08:31:36PM +0100, Stefano Radaelli wrote:
+> Hi Andrew!
+> > 
+> > I don't think you say this explicitly anywhere, so i will ask. The PHY
+> > is on the SOM? The carrier just has magnetics and the RJ45?
 > 
-> Signed-off-by: Val Packett <val@packett.cool>
-> ---
->  .../devicetree/bindings/display/panel/himax,hx83102.yaml        | 2 ++
->  1 file changed, 2 insertions(+)
+> Yes, the Ethernet PHY (MXL86110) is physically mounted on the VAR-SOM.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+O.K. so far.
 
-Best regards,
-Krzysztof
+> All RGMII signals, MDIO and the LED outputs are routed to the SOM
+> board-to-board connector. The carrier board only provides the magnetics
+> and the RJ45 connector.
 
+And here you loose me. RGMII is between the MAC and the PHY. The PHY
+is on the SOM, so there is no need for RGMII to leave the SOM.
+
+MDIO is can understand going to the carrier, because there can be
+other devices on the bus, such as an Ethernet switch.
+
+You say the LEDs are not on the SOM. So they should not be listed in
+the .dtsi file for the SOM. It could be the RJ45 is a cheap one,
+without LEDs. The colours will depend on the RJ45 socket. It could be
+a single LED is connected to the front panel, which is typical of STB
+etc. So the LEDs are a board property, not a SOM property.
+
+> > >   Two LEDs are defined to match the VAR-SOM carrier design:
+> > >     * LED@0: Yellow, netdev trigger.
+> > >     * LED@1: Green, netdev trigger.
+> > 
+> > Where are the LEDs? You say "carrier design", so are they on the
+> > carrier? The DT properties should then be in the .dts file for the
+> > carrier.
+> >
+> 
+> The LED signals are driven directly by the PHY and originate on the SOM.
+> They are exposed on the SOM connector and are typically routed straight
+> to the RJ45 integrated LEDs on the carrier.
+
+The problem here is 'typically', not absolutely required, otherwise
+the magic smoke will escape making the box useless.
+
+	Andrew
 
