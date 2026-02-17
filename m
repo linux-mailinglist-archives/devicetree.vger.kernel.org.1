@@ -1,211 +1,190 @@
-Return-Path: <devicetree+bounces-265976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-265977-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id zsKXHPMUlGl1/wEAu9opvQ
-	(envelope-from <devicetree+bounces-265976-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:12:51 +0100
+	id SMl0BnYVlGl//wEAu9opvQ
+	(envelope-from <devicetree+bounces-265977-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:15:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D18F014922F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:12:50 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D21314926B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:15:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3C716301485E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 07:12:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 813C0300645A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 07:15:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D4D52C2374;
-	Tue, 17 Feb 2026 07:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16DDE2D0605;
+	Tue, 17 Feb 2026 07:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Js5ko99Z"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EGCRCNGk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37DE0263F44;
-	Tue, 17 Feb 2026 07:12:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5C1263F44;
+	Tue, 17 Feb 2026 07:14:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771312368; cv=none; b=paG/QGtmcdNBH33xGC37ErlQwUCC4z/iZZkmF9B1fT1G2odRVL0eN21AXwKyS33fCiNGUUco41yxh60SshsLZsrCyqnj7qdT/rfP9E0Sxqf6cccTkVuLEae7bShncRDC8GUkyYKeydJ7vNuUThJkLDyF/0inhNOl+w/93uGrOZg=
+	t=1771312499; cv=none; b=dLfjjqmCiwsoT7xSDWs/on4pnLEbSASQD5B6POJXBfYKvmk7BntxCWG4q8U4RyoPSnfrzMvJIoyCHzT+EHaETV3ARqz6XSZbBGAVPdfYNZFCQvyAn4hgTbzMpzRD/9kPPrCPgKh7VQqeHPb5qe52ihUVLT6VCzAbLy50OpHKJb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771312368; c=relaxed/simple;
-	bh=6+s4JBK+CggRvSFesWlOOA/6Z+GGRCbcScDCm4A/cUk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RjE/J2UefJCm0MZ/II4BYS/rqpdGCer06g9gfVwNwehNDjcZLKhdz8VuMFsmA9xSEGgIpEgAPYssgBJZGeGYIYGth2MlqxSzLTYNqt7Z/IvjUYmw9i1Bf2X67av6vRwC7nxSRrRdhlK4FyyqBTn8XuZ1EjD6rGbfya4cxHJlvB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Js5ko99Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56576C4CEF7;
-	Tue, 17 Feb 2026 07:12:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771312367;
-	bh=6+s4JBK+CggRvSFesWlOOA/6Z+GGRCbcScDCm4A/cUk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Js5ko99ZLjvo9Zy7tfuyP5DSv9dF+szhLIcHkH2S0TTZabHrZkHPiZ6Vf3WJ9XHEK
-	 qIO2CUaFZRmcjkNQvxSe1/56r6eHksaorjeKPbsPc8u43DQVIf98Ck5zT4obNF4ID3
-	 IwOgM2/4xr2qYWamMGWVndTRBdIa6p+/JQrVuF2fKYNLI3Bw+j/BXXHSkyU/FLGW9P
-	 bj7V+16v7LE0aDHKvf17e3FIR+wHJzyL4CcNlrAm105dXcFr+v/akw74RZVvqxaBWe
-	 kYZMJIJ9zmWmXjkjTGVTPBfQsEkJ1l0YazsnhXyNVbNdUY+0X8/oKQMjeEK9Wfx+28
-	 ucp9DLqC+6lyA==
-Message-ID: <52f9b04a-256a-4559-b3e6-28fe695e1b6d@kernel.org>
-Date: Tue, 17 Feb 2026 08:12:42 +0100
+	s=arc-20240116; t=1771312499; c=relaxed/simple;
+	bh=zI/QfA5i9fdt5s9obGJIxvglkPQE4dmnCxXjrCv2vhA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QQQPE/Q9M4j0mOGWwvbs9rVPzZNGZmur8J9yG2JCkdAVQnT77XMGZyICym3ZVOP3g+AtvbirVgIyxa0oWQy7PwaxzfudsBi4ZjKLOq283KdHCEY/XWQy4fsAFW+R5J3jXPqcRppP5PhLa2V6U0vwOrA0nfvAROigk6urpgZJ84o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EGCRCNGk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61H3RlxS2178782;
+	Tue, 17 Feb 2026 07:14:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=68dSNlIqSuNSwsdT3P/zsSiAKuuLihUwYct
+	ME7b8hno=; b=EGCRCNGk4kMvU715/FN7pPcw2v5MWessjAXgKiz8SJWGnYXzOxm
+	db6Eftdfm7r4myPp568ACQfgZTBnB3lbCTP+X9Ms5SSE4v9eSc/RZkdkWZQkokmD
+	/XDjwxFtZz6di4Nv1jHz22JZDQYTUvUZoo8ofX3Hg22iNAgGKZ10nz31GGV6csea
+	vFGKfO/oq0fw9BblRDTgVZ2L9YlK80QQ3ylvBtxSOxrKHYpZMBh+YdhISdrieqxV
+	zBZugSk3MtLxPh1CuVY4Yn7rpXDtezjCKZS402soOw2eJWwTdcYPN7C/xvSjdPHe
+	QYaF1PWyQTmp4XlifQ4tVXB3VvfgVnjs9FA==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cbnv9kkrt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Feb 2026 07:14:32 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 61H7ETlh005748;
+	Tue, 17 Feb 2026 07:14:29 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4caj4m5s77-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Feb 2026 07:14:29 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 61H7ES1a005740;
+	Tue, 17 Feb 2026 07:14:28 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-mkuntuma-hyd.qualcomm.com [10.213.97.145])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 61H7ESbA005738
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Feb 2026 07:14:28 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4582077)
+	id 965795D5; Tue, 17 Feb 2026 12:44:27 +0530 (+0530)
+From: Mani Chandana Ballary Kuntumalla <mkuntuma@qti.qualcomm.com>
+To: dmitry.baryshkov@oss.qualcomm.com, marijn.suijten@somainline.org,
+        swboyd@chromium.org, mripard@kernel.org, abel.vesa@linaro.org,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, robin.clark@oss.qualcomm.com,
+        jessica.zhang@oss.qualcomm.com, abhinav.kumar@linux.dev,
+        sean@poorly.run, airlied@gmail.com, simona@ffwll.ch,
+        alex.vinarskis@gmail.com
+Cc: Mani Chandana Ballary Kuntumalla <mkuntuma@qti.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        freedreno@lists.freedesktop.org, quic_rajeevny@quicinc.com,
+        quic_vproddut@quicinc.com, dri-devel@lists.freedesktop.org,
+        quic_riteshk@quicinc.com
+Subject: [PATCH v3 0/2] Enable mdss1 Display Port for Qualcomm lemans-ride platform
+Date: Tue, 17 Feb 2026 12:44:18 +0530
+Message-Id: <20260217071420.2240380-1-mkuntuma@qti.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: watchdog: Add NPCM reset status
- support
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: andrew@codeconstruct.com.au, avifishman70@gmail.com,
- tali.perry1@gmail.com, wim@linux-watchdog.org, linux@roeck-us.net,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- joel@jms.id.au, openbmc@lists.ozlabs.org, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260210133843.1078463-1-tmaimon77@gmail.com>
- <20260210133843.1078463-2-tmaimon77@gmail.com>
- <b746dd7d-550c-4877-9210-754ae278e1a2@kernel.org>
- <CAP6Zq1jZorLxXQYqm5KzcYdoRzcFtD1KQqzmgaa6KKy-+Tpv+Q@mail.gmail.com>
- <92197c45-2921-47ad-9680-7339d6308b8f@kernel.org>
- <CAP6Zq1hLkT-xMwV99yVE-hLsf_nT+V_3v7sEshfqEkkRCkEevA@mail.gmail.com>
- <1522cec8-8259-4404-86fa-18bd91473087@kernel.org>
- <CAP6Zq1iWpHc-Rsq62iBN0VtYmYS2=KhU12TE_5nxztr+HbB+tA@mail.gmail.com>
- <20260216-prompt-boisterous-worm-fed8d9@quoll>
- <CAP6Zq1gRd8zDi1rOkX+2x3WP0ZGnULaJ0cGS6bwpRpcmQNmRCA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAP6Zq1gRd8zDi1rOkX+2x3WP0ZGnULaJ0cGS6bwpRpcmQNmRCA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LY6NhJ9EQlMByd5kbJln890jx30DJgsb
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE3MDA1OCBTYWx0ZWRfX9XjIwUxzhzK/
+ Aw4uXGa0g5U6hfh88p9167ZYphZBzZow4dOSrT+S/wFkYKhIM2saV9Njlha043+62nlqS8TU+rn
+ 3xWtV4gTL9VtTxuMnRvJ/g4+h929ukn1ZRvJ9kyOg06G3OWFhE/C5DywZmBQ+a2GmodAR426LbR
+ GBjD7k8p8mmDrtKU/3QRgin/5Zbi5m3ie5Ed/t0uv0IAIHThvxV31UKta7qWbFdwjKxk6izBh0A
+ y0OB27Fa1E89chJMbhcx2JxX+XDgkPMJCprFs3ImpBmMmgmfgW5GxAXgSa9dquCdiLvzzVNF0Gd
+ QrMWuw40/GYR1Lz9B5+QYqHraPJjLQ+0B4zpOrEfDJTAYuxfPOMG1jU3X23krsboCX5p0yL1mHF
+ ffqtw4cQVn3BxeQBxbF6TVO0DdOgHZ2hBAuOSBSYJVv+IfYON1eTWtN4PS0GpoiapJbxZiCrLXe
+ HOUDnrKi1AYDQjVYgAg==
+X-Authority-Analysis: v=2.4 cv=b7K/I9Gx c=1 sm=1 tr=0 ts=69941558 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22
+ a=GgsMoib0sEa3-_RKJdDe:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=e5mUnYsNAAAA:8
+ a=EUspDBNiAAAA:8 a=0IT7fpZdUoEMrN4OoH4A:9 a=TjNXssC_j7lpFel5tvFf:22
+ a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-GUID: LY6NhJ9EQlMByd5kbJln890jx30DJgsb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-17_01,2026-02-16_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
+ phishscore=0 spamscore=0 clxscore=1011 priorityscore=1501 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602170058
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-265976-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,somainline.org,chromium.org,kernel.org,linaro.org,linux.dev,poorly.run,gmail.com,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-265977-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[codeconstruct.com.au,gmail.com,linux-watchdog.org,roeck-us.net,kernel.org,google.com,jms.id.au,lists.ozlabs.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkuntuma@qti.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: D18F014922F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,gitlab.freedesktop.org:url];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 9D21314926B
 X-Rspamd-Action: no action
 
-On 17/02/2026 07:53, Tomer Maimon wrote:
-> On Mon, 16 Feb 2026 at 20:03, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
->> On Mon, Feb 16, 2026 at 04:59:18PM +0200, Tomer Maimon wrote:
->>> On Mon, 16 Feb 2026 at 16:48, Krzysztof Kozlowski <krzk@kernel.org>
->> wrote:
->>>>>>>>> +  syscon:
->>>>>>>>
->>>>>>>> First iteration. See "How to Get Your DT Schema Bindings Accepted
->> in
->>>>>>>> Less Than 10 Iterations"
->>>>>>>>
->>>>>>> Thanks, it was very helpful.
->>>>>>> the syscon property is already found in the WD node
->>>>>>> in nuvoton-common-npcm8xx.dtsi file, what should I do:
->>>>>>
->>>>>> How is that file related to this binding?
->>>>>>
->>>>>> Either you document existing ABI or you add new (for new device).
->> Commit
->>>>>> msg MUST be explicit about it and provide the reasons. If wrong
->> (e.g.
->>>>>> discouraged) ABI was already used then it depends how and when it
->> got
->>>>>> into the kernel, e.g. if someone bypassed DT completely just to get
->> it
->>>>>> inside.
->>>>>>
->>>>> The syscon property is already used in the upstream NPCM8xx DTSI
->> watchdog
->>>>> node, so I will document it as existing ABI and mark it deprecated. I
->>>> will
->>>>
->>>> And how it is used? I cannot find its usage, so I do not agree on
->>>> documenting it. Property should be removed or at least provide the
->>>> justification/impact of removal, if you need it to stay.
->>>>
->>>> Understood. The syscon phandle is used by the watchdog driver to read
->> and
->>
->> You messed up quotes.
->>
->> Can you point me to the line? I REALLY want to be sure that we are not
->> wasting each other time, e.g. me looking at wrong code or you telling me
->> some bollocks from downstream.
->>
-> The syscon property is not used in the current upstream npcm_wdt driver.
-> It is used *in this patch set*, which introduces the function
+This series adds the DPTX0 and DPTX1 nodes, as a part of mdss1
+on Qualcomm lemans SoC. It also enables Display Port on Qualcomm
+lemans-ride platform.
 
-Why would that matter for the ABI?
+---
+This series is dependent on below series:
+https://lore.kernel.org/all/20260128114853.2543416-1-quic_riteshk@quicinc.com/
 
-So no, your buggy DTS sneaked into the kernel before submitting bindings
-is not acceptable thus ABI which was NEVER reviewed must be removed.
+Change in v3:
+- Patchset v2 [1/3] got merged
+  https://gitlab.freedesktop.org/lumag/msm/-/commit/1338e8ae4084
+- Rebased on top of linux-next and picked the latest patch from the dependent series.
+- Removed additional instance of opp table [Dmitry]
+- Link to v2: https://lore.kernel.org/all/20251125105622.1755651-1-quic_mkuntuma@quicinc.com/
 
+Change in v2:
+- Added fixes tag for the DP driver patch [Dmitry]
+- Included below patch in this series after addressing comments [Dmitry and Konrad]
+  https://lore.kernel.org/all/20250925-lemans_dual-v1-1-9c371803198d@oss.qualcomm.com/
+	- Removed the misleading comment: "same path used twice" [Konrad]
+	- Removed unused label in 'display-controller' [Dmitry]
+- Removed extra zeroes in dispcc1 node [Konrad]
+- Enbaled dispcc1 by default in main dtsi file [Dmitry]
+- Added EDP ref clock and updated dependency series.
+- Link to v1: https://lore.kernel.org/all/20250926085956.2346179-1-quic_mkuntuma@quicinc.com/
 
-Best regards,
-Krzysztof
+---
+Mani Chandana Ballary Kuntumalla (2):
+  arm64: dts: qcom: lemans: add mdss1 display device nodes
+  arm64: dts: qcom: lemans-ride: Enable mdss1 display Port
+
+ .../boot/dts/qcom/lemans-ride-common.dtsi     |  80 +++++
+ arch/arm64/boot/dts/qcom/lemans.dtsi          | 315 +++++++++++++++++-
+ 2 files changed, 393 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
+
 
