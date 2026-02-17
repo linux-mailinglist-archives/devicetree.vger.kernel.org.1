@@ -1,278 +1,461 @@
-Return-Path: <devicetree+bounces-266149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266151-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFREHJpplGlFDgIAu9opvQ
-	(envelope-from <devicetree+bounces-266149-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:14:02 +0100
+	id eBMGMilqlGlFDgIAu9opvQ
+	(envelope-from <devicetree+bounces-266151-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:16:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1463C14C725
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:14:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 275ED14C7C3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7D36C3001330
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:14:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F0E3304CCF7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 13:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9D136165D;
-	Tue, 17 Feb 2026 13:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8CE362147;
+	Tue, 17 Feb 2026 13:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OAPNoYdu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lb0bsrf8";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d2tLWr/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E090361DB4
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFE0362137
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:15:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771334040; cv=none; b=ImaiJo+l9BOjAXw6pFl+Ygi1J+XG6BbwvHAjohwxLRhJSyrdf8L6rmhnesWuGDk1ag0oGkAxLOBqyarMOidCI0M1fuO7cUdzR0ZXn6w0ZeUBzVEYKbkqWVO0S5JNMSB1kgJ3XKcCDWicPnrJP+/3WUJz7ZhBS1YOH2LVWJvXAUU=
+	t=1771334132; cv=none; b=LsTyitxanIpDSxQv8DsAWoCQGyohmXbg75oXALRmWXD8hxDuDt2rta7Jas/Elfn3hW5f9HTh28yeTQa/DN3aKoq50+/cqsb6JwVlmdDVDmB194hfGKN3Xokj8qegCzhn89K979ZkYRj/5/yNlSCmhT9KLQaGrEiGv9I/ucFDn5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771334040; c=relaxed/simple;
-	bh=ghiYn5zctv6YevvmbOXMIchikB5+PZqKiOLbd6hIvi0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=aRFRwYjtBAPTVjD3X3XrBIgmR93CReUuo6iTS9K+ph+dqqcv0YwzjIQLDcwHMXe4LLIOjInjmB7hxP2dz1lUFgDct4REaUbN4mT2PPRey0QKzO9TdEjMO/kDGDBTmt4tmDH70uUXIpLH5wFdLaAkNQ8prIyYsqe2oo1A/tV9Oeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OAPNoYdu; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-658b6757f7fso7942378a12.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 05:13:57 -0800 (PST)
+	s=arc-20240116; t=1771334132; c=relaxed/simple;
+	bh=bykETRd58Dgk1h8sjkjLrRt+Ejl+t02vqtwhc6NEw2I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=q2o2QMTvgqTIjZw2bwUs2uPWmL/ATzvreC4YDrUdTvzB7MB2wItTIlNv9NSk1oDi8qftWxH3qA/D/ic1NnCaAF1YsVkseVRXxpm8cw93VG6NJC0ozi8Yao4yw2xPiYrLcEhMpxMDM/c3gWjPrSvNSuW60oml2+hRzgZaCThsDr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lb0bsrf8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=d2tLWr/5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61HAvjEw850154
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:15:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cDJXIOFVhcsv24XAXUhX4av9F5wMERJmoHTDSIHUUv0=; b=lb0bsrf80ot+EW9J
+	AVQkcMyfQolDxZx+BEZeXoQ5CEnPD9rva4zulcKyPNDvGyTuMmNkr9tW3M+Tc8Yz
+	s/wygVjk/vFou0M4aqr9iklS39rKevj9NKTk1t+FcHCaxpUB+5ZrisM6gIYkU8Ij
+	cBtGu6oKlZiIEObRVVV8JPlGccCcbCyzmI7rhfgd6cX0483kX7wUVUzWA6c/uYxk
+	7lC1ioCtBnr5e8wF5rY7EW/JQSYn6CGIq0foeNJS4GKrQglyZ4gaTjLH3N+tnJwp
+	Zwe8wQk8MXQZYqgsqZzzPh9vXM8rz21Vedujw3F8Vlxy1bgbh2S+PfNKQ7Dx8HuG
+	5pRf3g==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cc6nrtec7-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 13:15:29 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a7701b6353so56813625ad.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 05:15:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1771334035; x=1771938835; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=x1C0IPnydug6rw3V3fM8YPHePn3LBKfIJJtqgR74b5I=;
-        b=OAPNoYduWYQSL32nmW69nrWuR03uaN696N+g+GsecDLfcQGnKikRKlnwjFXm7jZIvC
-         VoUbx7IkICPpby2qPD748XaG4VJS0thzOiDW5SBPdgEdPEKLH1Q+W+yf75nnkHf68qN7
-         JEQloHR++epOZTLfmKq90FhtXesttZPXg8/S2nFvytEY1oyGxqS1EsW0P3n89H77zDaA
-         M+HtcBqQX1L0pNaoiIeMDg00dLoF0r3BhFlL6hmkeqN4bWToklocg6n6hiBKVShGqr+P
-         Vsvc0o2lFLkLYbnhoulvgEESi2/EFr5uHYV66j/ChgtXBh+MXCpJDl0XtChzUdEssfOT
-         xD4w==
+        d=oss.qualcomm.com; s=google; t=1771334129; x=1771938929; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cDJXIOFVhcsv24XAXUhX4av9F5wMERJmoHTDSIHUUv0=;
+        b=d2tLWr/5/Al2RsBAfZsGhAYOcjsaAI/8qRYtFTnhxD0BuV1fVBidQywlpkCPrys3p7
+         sKQ0451yUbCOWl6QoLSkNmFog3pRUUdC3HV+H32maV8JoGRDt6PGEPNx0vP+WDqQz0W8
+         qLNyoUijbWa9O5TlQxnXzoTI91QDCPeZi3q9ve+jtK6/DfceQ82JV/ZXBtKLze7OTlpD
+         f0MM5rSVRDBPY5s9GvfInLfCHXPbggmJE0Mbo9on6X7Tkn2hcwhsQez7FjWzEqrHWpnd
+         VH+Z5OFMKGVMwkVgxSbFeS40amVYikvdzJLeTf1kntc3//V3wIh3uTKzON+hdGG9a5qd
+         dObw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771334036; x=1771938836;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x1C0IPnydug6rw3V3fM8YPHePn3LBKfIJJtqgR74b5I=;
-        b=q9fVNSUK1HhnjkIK1UWD9PMrkgBoVI+ura0ZIb8216rzzuYMxDp3/g/0E2m3e9HSEq
-         s3ToWHOjjBY0KX3fR+w9jlTp32X9HpRCxSE1SbZtdkpjO/CKHj/Gl5YWsZY/XlbXug74
-         DYpbW7tDsGQeUDoOSD5ua6nddJU7keXsu+xs7PhfjUDdui5nYXT3Wefeow5y1D8F5OB7
-         ksNc8a+nZQptZl2sKnfyH/Vrg/QpxRd1F6ua5lpzyVX33VRjt5qcJukzcMN0ml4nGPRL
-         STtnSLl//c+vRVmHQTbEL1rH5hYFHliYbSHUdM9bzeZ0TDXkmpcb6S7DKrDb31XW9Wu0
-         nldg==
-X-Forwarded-Encrypted: i=1; AJvYcCUaaFUB8olhXrVsT821TXOtLBq8YMdENxpj+a4Ae3lMKBLbLRD8J/TPWmA+gkedmqtlMa4oJJT2vYTZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzdhm3SKw8MqYweG4uxAIY08eKsHY3o3Uc/YUS/BkyY+BAEdFYv
-	FhlTZWLTwe6mJYFIwAAf8OfvAhoNN3BjcuEDlbHInxb0PwMKK4PuUbkBCH5UbYGuEkM=
-X-Gm-Gg: AZuq6aKktqB3eNTTtqzXKpLl2BZI3IB4WbIVapYdn7CRWK1d23Ea5hbxNbKiVe3Y89G
-	TlQfAVT3Gki4r4p58nIEeY3EPQeYUhTOodfaJErmRB9xG/9Pt3dpJo4yjdCL3kYEPid5mGsWLHA
-	+aEJSsoVxFLN4RKGVfBTRFUlPyGI1jYayFKyz7DGyxOFZlkQ1PbLiZS7S1KcIXYylRIHzJ+SNSy
-	EPqgkzfmGz4rIDye/6k0TBwPFGjSlW+xrNUpeCWxKUt0Zj+TFG96q+7Uh1RJlmOuGMjSewRTEAf
-	cedNkbAWS2C80JD1jFR/75xAVOj/qdqvIzS1W+vAsDuG4IcSF9vVXw17b+nmA8M5qJrOlEkuxzN
-	MR/F+2MpzNweOlxDOcIHzc4cEImwwbXsgvz/Upd3rOpoLXYBTeYQ2EmCs6eWDP3T2O24DTNDJly
-	6LuqKpKrxGck85XMkaq2tuNyuy8vU=
-X-Received: by 2002:aa7:d719:0:b0:641:88ff:10ad with SMTP id 4fb4d7f45d1cf-65bc4298c44mr4741148a12.14.1771334035506;
-        Tue, 17 Feb 2026 05:13:55 -0800 (PST)
-Received: from draszik.lan ([212.129.84.5])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad4fa7c7sm2473768a12.31.2026.02.17.05.13.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 05:13:55 -0800 (PST)
-Message-ID: <0b6e7cb7223e553d9b53df464959e97fd3d1ce43.camel@linaro.org>
-Subject: Re: [PATCH v6 5/6] power: supply: max77759: add charger driver
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>, Mark Brown	 <broonie@kernel.org>, Matti
- Vaittinen <mazziesaccount@gmail.com>, Andrew Morton	
- <akpm@linux-foundation.org>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
- Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Date: Tue, 17 Feb 2026 13:14:14 +0000
-In-Reply-To: <20260214-max77759-charger-v6-5-28c09bda74b4@google.com>
-References: <20260214-max77759-charger-v6-0-28c09bda74b4@google.com>
-	 <20260214-max77759-charger-v6-5-28c09bda74b4@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build4 
+        d=1e100.net; s=20230601; t=1771334129; x=1771938929;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cDJXIOFVhcsv24XAXUhX4av9F5wMERJmoHTDSIHUUv0=;
+        b=VZr1sHwnc7LIsuyEvOXXpIMZykz4iELI8H7/5GEIqax6/pRDteGtNTY5US4S9WevJc
+         oGiWVUT4xTNlBkvT2gs2XN067e93MFmpONypsMFFrRZkMVHt06uDP4IJI8t62xWw04vB
+         /xRAOpxNZbeL9VjGq2wwzTDU5YdN9e++RecsY5Ua6fCNKemVpJk+C1lJSNtAFUP98Ivk
+         OvfCroQTW9h+pwqWbecapc7cAFrb97fiq3E/1TGYdxIguwr5+W1MT43f/DtaOB2//TgP
+         kVlXTwXvA1doQy0fQqYwA3GO6irLVMB9ZqVTiSX24qOcTjjRyRR5Dhgf9Tn81X6BE1Oo
+         ToeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8AVeucO9JjOAJyMzCwqUFSq8PW4HHM65ipAz+0cyzUhglG59YX86PpAYW60k4a694wtinsDVruAed@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHpbJG71ixxL0Xc4gi11dW2p33LaxDdfjaXBFE8q4VLL19PBO1
+	qezLXKeBKpC7qHV5L8jd0wha2RjfjTw2JvCN/GrxUEGVvwFxUa9Phms7DJhN1gS7K90YX5EYoJL
+	+jMLKYz1gVQ9zSO+4cS5ith9mJXzfMhBiFmpbEKEvKI6J4+W9yDemSIfvq5w6jGPA
+X-Gm-Gg: AZuq6aKwoICu0ywjYNwPU0wcFsOIzr1Bd46bzzhjm061Leopr3a6xZ5sKcaDLSWlP9B
+	ltHTg5MtFZxwfE7QDSuBKZTM0bfaLi5ApWWfb3FFEtTF5MmqnaZf7oB7G3zHQHqFDsV00C0Flk1
+	MUXl+zZdXuCNcGRbc3tMVjZ8Vl5m4/U5vWmIbVd7IjkjqxHLfbbGmi63cxGCKSquh7+ojixzCPN
+	F37zG3PdwcMD9pR22EoeY/UDmsB7C5tqhlb1Jr+O4i0iuq3/Vgf+ohYqNrRoEsfcSyfzqN7XlKS
+	8bLkHDOwf3Ps3tydbNyMqx3V9ZaQA3ad9vBOtKqcIBdYgQbJDluPbM2Sova9Q9UXEdqV0bQLqHV
+	sNNMVB2vpTyU9SkK3udtINseRVw1GsdJ5o8/VqoV6hlHQ8KYUGZ6img==
+X-Received: by 2002:a17:903:b43:b0:2aa:f469:fa23 with SMTP id d9443c01a7336-2ad17432168mr95805805ad.4.1771334128719;
+        Tue, 17 Feb 2026 05:15:28 -0800 (PST)
+X-Received: by 2002:a17:903:b43:b0:2aa:f469:fa23 with SMTP id d9443c01a7336-2ad17432168mr95805145ad.4.1771334127877;
+        Tue, 17 Feb 2026 05:15:27 -0800 (PST)
+Received: from [10.204.100.45] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aaeab38sm99970525ad.82.2026.02.17.05.15.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Feb 2026 05:15:27 -0800 (PST)
+Message-ID: <aae75a6b-35d6-47ac-9852-d95b42849f2d@oss.qualcomm.com>
+Date: Tue, 17 Feb 2026 18:45:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/7] media: iris: add context bank devices using iommu-map
+To: Robin Murphy <robin.murphy@arm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Hans Verkuil <hverkuil+cisco@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
+ <20260126-kaanapali-iris-v1-5-e2646246bfc1@oss.qualcomm.com>
+ <02b3d0f5-f94c-43cd-93af-97cfcf7751b1@arm.com>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <02b3d0f5-f94c-43cd-93af-97cfcf7751b1@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=XKo9iAhE c=1 sm=1 tr=0 ts=699469f1 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=8ZOrhM5FIgLh972jGGIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE3MDEwNyBTYWx0ZWRfX2amdTzZTVHgu
+ aFSIeEmB0ATHVfplbx5WhL7n1bJJnfEZ/lAgTPoHtwEK/qlbx+gbozgSsQzKrTB07lOpiA0xwTx
+ YRVKLWgw0hCn9M9gk3rnRTFnolaQMFQxRT8ereInw62jw65yUA5R/QgsojKKGHPUmVW8tn4q48b
+ ecWpkVWs5G30jNg5zL4TaRvGrxsipcQZUUZufKHUIMharFhyD9Ar4qppWlkOGvMmzGNscEqda6N
+ AYAMNsfG6uYuzVlgAIeg94gVkDPOXvWgiEsAMbaD17mvcAfmAKQBZqo1GkTG4rYyk6PGMFYpE7y
+ 44VNSVHHGfZzHcrnT/TZCkeXiI1CYNL+sfrJJJsFfKc/dYEJw53DxtD2zkC3zuMuJ7lIeD/TU58
+ pTaIb02jb6FI3TKkSv6cvh0no9Yb2d4bVkfh8U55F8oAyicGHJa1U5ZiNPHsWTa9V+sTyK+z2jS
+ G3/0bJF7ww2rSY0M2ig==
+X-Proofpoint-ORIG-GUID: NNMwlJpsLbPa834Fv1SMwoqOcjcUClSZ
+X-Proofpoint-GUID: NNMwlJpsLbPa834Fv1SMwoqOcjcUClSZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-17_01,2026-02-16_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
+ clxscore=1015 adultscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602170107
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266149-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[google.com,kernel.org,linuxfoundation.org,linux.intel.com,linaro.org,samsung.com,gmail.com,linux-foundation.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266151-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:mid,linaro.org:dkim,linaro.org:email]
-X-Rspamd-Queue-Id: 1463C14C725
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 275ED14C7C3
 X-Rspamd-Action: no action
 
-Hi Amit,
 
-All below comments are only minor, feel free to ignore them.
+On 1/27/2026 8:19 PM, Robin Murphy wrote:
+> On 2026-01-26 12:25 pm, Vikash Garodia wrote:
+>> Introduce different context banks(CB) and the associated buffer region.
+>> Different stream IDs from VPU would be associated to one of these CB.
+>> The patch ensures to handle CBs which are described as iommu-map in DT.
+>> Multiple CBs are needed to increase the IOVA for the video usecases like
+>> higher concurrent sessions.
+>>
+>> Co-developed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+>> Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+>> ---
+>>   .../platform/qcom/iris/iris_platform_common.h      | 29 ++++++++++++
+>>   drivers/media/platform/qcom/iris/iris_probe.c      | 55 ++++++++++++ 
+>> ++++++++--
+>>   drivers/media/platform/qcom/iris/iris_resources.c  | 35 ++++++++++++++
+>>   drivers/media/platform/qcom/iris/iris_resources.h  |  1 +
+>>   4 files changed, 116 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h 
+>> b/drivers/media/platform/qcom/iris/iris_platform_common.h
+>> index 
+>> 5a489917580eb10022fdcb52f7321a915e8b239d..d2d7c898fc8ef0de1b16aebd72681ea3c5b736ae 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+>> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+>> @@ -204,6 +204,33 @@ struct icc_vote_data {
+>>       u32 fps;
+>>   };
+>> +enum iris_iommu_map_function_id {
+>> +    IRIS_CB_NON_SECURE_NON_PIXEL    = 0x100,
+>> +    IRIS_CB_NON_SECURE_PIXEL    = 0x101,
+>> +    IRIS_CB_NON_SECURE_BITSTREAM    = 0x102,
+>> +    IRIS_CB_SECURE_NON_PIXEL    = 0x200,
+>> +    IRIS_CB_SECURE_PIXEL        = 0x201,
+>> +    IRIS_CB_SECURE_BITSTREAM    = 0x202,
+>> +    IRIS_CB_FIRMWARE        = 0x300,
+>> +};
+>> +
+>> +enum iris_buffer_region {
+>> +    IRIS_NON_SECURE_NON_PIXEL    = BIT(0),
+>> +    IRIS_NON_SECURE_PIXEL        = BIT(1),
+>> +    IRIS_NON_SECURE_BITSTREAM    = BIT(2),
+>> +    IRIS_SECURE_NON_PIXEL        = BIT(3),
+>> +    IRIS_SECURE_PIXEL        = BIT(4),
+>> +    IRIS_SECURE_BITSTREAM        = BIT(5),
+>> +};
+>> +
+>> +struct iris_context_bank {
+>> +    struct device *dev;
+>> +    const char *name;
+>> +    const enum iris_iommu_map_function_id f_id;
+>> +    const enum iris_buffer_region region;
+>> +    const u64 dma_mask;
+>> +};
+>> +
+>>   enum platform_pm_domain_type {
+>>       IRIS_CTRL_POWER_DOMAIN,
+>>       IRIS_HW_POWER_DOMAIN,
+>> @@ -246,6 +273,8 @@ struct iris_platform_data {
+>>       u32 inst_fw_caps_enc_size;
+>>       const struct tz_cp_config *tz_cp_config_data;
+>>       u32 tz_cp_config_data_size;
+>> +    struct iris_context_bank *cb_data;
+>> +    u32 cb_data_size;
+>>       u32 core_arch;
+>>       u32 hw_response_timeout;
+>>       struct ubwc_config_data *ubwc_config;
+>> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/ 
+>> media/platform/qcom/iris/iris_probe.c
+>> index 
+>> ddaacda523ecb9990af0dd0640196223fbcc2cab..c1a6aac5a3d65d980c5a34ba5fa1c1dbcf790ec5 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+>> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+>> @@ -123,6 +123,37 @@ static int iris_init_resets(struct iris_core *core)
+>>                        core->iris_platform_data- 
+>> >controller_rst_tbl_size);
+>>   }
+>> +static int iris_init_context_bank_devices(struct iris_core *core)
+>> +{
+>> +    struct iris_context_bank *cb;
+>> +    const __be32 *map_data;
+>> +    int tupple_size = 5;
+>> +    int i, j, ret, len;
+>> +    u32 fid;
+>> +
+>> +    map_data = of_get_property(core->dev->of_node, "iommu-map", &len);
+> 
+> If despite proposing all this hackery in the common OF code you're then 
+> _still_ going to open-code your own parsing of the property, with hard- 
+> coded assumptions to boot, then clearly this is not the appropriate 
+> approach at all...
 
-On Sat, 2026-02-14 at 03:12 +0000, Amit Sunil Dhamne via B4 Relay wrote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
->=20
-> Add support for MAX77759 battery charger driver. This is a 4A 1-Cell
-> Li+/LiPoly dual input switch mode charger. While the device can support
-> USB & wireless charger inputs, this implementation only supports USB
-> input. This implementation supports both buck and boost modes.
->=20
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> ---
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +
-> =C2=A0drivers/power/supply/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +
-> =C2=A0drivers/power/supply/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/power/supply/max77759_charger.c | 768 +++++++++++++++++++++=
-+++++++++++
-> =C2=A04 files changed, 786 insertions(+)
+Ack. Driver should not be doing the parsing which OF code is already 
+doing it.
 
-[...]
+> 
+>> +    if (!map_data)
+>> +        return 0;
+>> +
+>> +    len /= sizeof(__be32);
+>> +
+>> +    for (i = 0; i < len; i += tupple_size) {
+>> +        fid = be32_to_cpu(map_data[i]);
+>> +
+>> +        for (j = 0; j < core->iris_platform_data->cb_data_size; j++) {
+>> +            cb = &core->iris_platform_data->cb_data[j];
+>> +
+>> +            if (fid == cb->f_id && !cb->dev) {
+>> +                ret = iris_create_child_device_and_map(core, cb);
+>> +                if (ret)
+>> +                    return ret;
+>> +            }
+>> +        }
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>>   static int iris_init_resources(struct iris_core *core)
+>>   {
+>>       int ret;
+>> @@ -139,7 +170,11 @@ static int iris_init_resources(struct iris_core 
+>> *core)
+>>       if (ret)
+>>           return ret;
+>> -    return iris_init_resets(core);
+>> +    ret = iris_init_resets(core);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    return iris_init_context_bank_devices(core);
+>>   }
+>>   static int iris_register_video_device(struct iris_core *core, enum 
+>> domain_type type)
+>> @@ -187,6 +222,8 @@ static int iris_register_video_device(struct 
+>> iris_core *core, enum domain_type t
+>>   static void iris_remove(struct platform_device *pdev)
+>>   {
+>>       struct iris_core *core;
+>> +    struct device *dev;
+>> +    int i;
+>>       core = platform_get_drvdata(pdev);
+>>       if (!core)
+>> @@ -194,6 +231,14 @@ static void iris_remove(struct platform_device 
+>> *pdev)
+>>       iris_core_deinit(core);
+>> +    for (i = 0; i < core->iris_platform_data->cb_data_size; i++) {
+>> +        dev = core->iris_platform_data->cb_data[i].dev;
+>> +        if (dev) {
+>> +            platform_device_unregister(to_platform_device(dev));
+>> +            core->iris_platform_data->cb_data[i].dev = NULL;
+>> +        }
+>> +    }
+>> +
+>>       video_unregister_device(core->vdev_dec);
+>>       video_unregister_device(core->vdev_enc);
+>> @@ -277,9 +322,11 @@ static int iris_probe(struct platform_device *pdev)
+>>       dma_mask = core->iris_platform_data->dma_mask;
+>> -    ret = dma_set_mask_and_coherent(dev, dma_mask);
+>> -    if (ret)
+>> -        goto err_vdev_unreg_enc;
+>> +    if (device_iommu_mapped(core->dev)) {
+>> +        ret = dma_set_mask_and_coherent(core->dev, dma_mask);
+> 
+> Huh? Why would this be conditional? If it's a DMA device then it's a DMA 
+> device, regardless of whether an IOMMU driver happens to be present or not.
 
-> diff --git a/drivers/power/supply/max77759_charger.c b/drivers/power/supp=
-ly/max77759_charger.c
-> new file mode 100644
-> index 000000000000..d4e02764ba04
-> --- /dev/null
-> +++ b/drivers/power/supply/max77759_charger.c
-> @@ -0,0 +1,768 @@
+To support existing SOC which are described by iommus, and not yet 
+migrated to iommu-map.
 
-[...]
+> 
+>> +        if (ret)
+>> +            goto err_vdev_unreg_enc;
+>> +    }
+>>       dma_set_max_seg_size(&pdev->dev, DMA_BIT_MASK(32));
+>>       dma_set_seg_boundary(&pdev->dev, DMA_BIT_MASK(32));
+>> diff --git a/drivers/media/platform/qcom/iris/iris_resources.c b/ 
+>> drivers/media/platform/qcom/iris/iris_resources.c
+>> index 
+>> 773f6548370a257b8ae7332242544266cbbd61a9..647f6760f2b7a6bab8a585a13eb03cf60a9c047e 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_resources.c
+>> +++ b/drivers/media/platform/qcom/iris/iris_resources.c
+>> @@ -6,6 +6,7 @@
+>>   #include <linux/clk.h>
+>>   #include <linux/devfreq.h>
+>>   #include <linux/interconnect.h>
+>> +#include <linux/of_device.h>
+>>   #include <linux/pm_domain.h>
+>>   #include <linux/pm_opp.h>
+>>   #include <linux/pm_runtime.h>
+>> @@ -141,3 +142,37 @@ int iris_disable_unprepare_clock(struct iris_core 
+>> *core, enum platform_clk_type
+>>       return 0;
+>>   }
+>> +
+>> +int iris_create_child_device_and_map(struct iris_core *core, struct 
+>> iris_context_bank *cb)
+>> +{
+>> +    struct platform_device *pdev;
+>> +    int ret;
+>> +
+>> +    pdev = platform_device_alloc(cb->name, 0);
+>> +    if (!pdev)
+>> +        return -ENOMEM;
+>> +
+>> +    ret = platform_device_add(pdev);
+>> +    if (ret) {
+>> +        platform_device_put(pdev);
+>> +        return ret;
+>> +    }
+>> +
+>> +    ret = of_dma_configure_id(&pdev->dev, core->dev->of_node, true,
+>> +                  (const u32 *)&cb->f_id);
+> 
+> No. As I already said before, of_dma_configure() is for bus drivers; if 
+> you want to act like a bus, implement a proper bus_type with 
+> a .dma_configure callback. If you don't want to do that then describe 
+> the individual functional blocks of the codec appropriately as distinct 
+> devices with distinct hardware properties so the platform bus code can 
+> handle them correctly. It is not reasonable to advertise physical 
+> hardware to Linux as a single monolithic device, but then have a driver 
+> try to pull a "well actually..." by abusing all the internal 
+> abstractions. The fact that you might happen to avoid the warning from 
+> iommu_probe_device() because you're not binding drivers to these fake 
+> platform devices doesn't make this design any less wrong.
 
-> +
-> +/* USB input current limits (in uA) */
-> +static const struct linear_range chgin_ilim_ranges[] =3D {
-> +	LINEAR_RANGE(100000, 0x3, 0x7F, 25000),
-> +};
+Ack. Agree to define a proper bus_type to handle the .dma_configure 
+callback. Will update this in v2.
 
-Shouldn't this one also have a entry for 0x00...0x02:
-	LINEAR_RANGE(100000, 0x0, 0x2, 0),
+Regards,
+Vikash
+> 
+> Thanks,
+> Robin.
+> 
+>> +    if (ret)
+>> +        goto error_unregister;
+>> +
+>> +    ret = dma_set_mask_and_coherent(&pdev->dev, cb->dma_mask);
+>> +    if (ret)
+>> +        goto error_unregister;
+>> +
+>> +    cb->dev = &pdev->dev;
+>> +
+>> +    return 0;
+>> +
+>> +error_unregister:
+>> +    platform_device_unregister(to_platform_device(&pdev->dev));
+>> +
+>> +    return ret;
+>> +}
+>> diff --git a/drivers/media/platform/qcom/iris/iris_resources.h b/ 
+>> drivers/media/platform/qcom/iris/iris_resources.h
+>> index 
+>> 6bfbd2dc6db095ec05e53c894e048285f82446c6..b7efe15facb203eea9ae13d5f0abdcc2ea718b4d 100644
+>> --- a/drivers/media/platform/qcom/iris/iris_resources.h
+>> +++ b/drivers/media/platform/qcom/iris/iris_resources.h
+>> @@ -15,5 +15,6 @@ int iris_unset_icc_bw(struct iris_core *core);
+>>   int iris_set_icc_bw(struct iris_core *core, unsigned long icc_bw);
+>>   int iris_disable_unprepare_clock(struct iris_core *core, enum 
+>> platform_clk_type clk_type);
+>>   int iris_prepare_enable_clock(struct iris_core *core, enum 
+>> platform_clk_type clk_type);
+>> +int iris_create_child_device_and_map(struct iris_core *core, struct 
+>> iris_context_bank *cb);
+>>   #endif
+>>
+> 
 
-Then you can also drop the umax() call in get_input_current_limit().
-
-Ah, I see now there is no linear_range_get_selector_within_array(),
-meaning the code is fine as-is, unless you want to add that as
-well :-)
-
-
-[...]
-
-> +static int max77759_charger_init(struct max77759_charger *chg)
-> +{
-> +	struct power_supply_battery_info *info;
-> +	u32 regval, fast_chg_curr, fv;
-> +	int ret;
-> +
-> +	ret =3D regmap_read(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_00, &regval=
-);
-> +	if (ret)
-> +		return ret;
-> +
-> +	chg->mode =3D FIELD_GET(MAX77759_CHGR_REG_CHG_CNFG_00_MODE, regval);
-> +	ret =3D charger_set_mode(chg, MAX77759_CHGR_MODE_OFF);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (power_supply_get_battery_info(chg->psy, &info)) {
-> +		fv =3D CHG_FV_DEFAULT_MV;
-> +		fast_chg_curr =3D CHG_CC_DEFAULT_UA;
-> +	} else {
-> +		fv =3D info->constant_charge_voltage_max_uv / 1000;
-> +		fast_chg_curr =3D info->constant_charge_current_max_ua;
-> +	}
-> +
-> +	ret =3D set_fast_charge_current_limit(chg, fast_chg_curr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D set_float_voltage_limit(chg, fv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D unlock_prot_regs(chg, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Disable wireless charging input */
-> +	ret =3D regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_12,
-> +				 MAX77759_CHGR_REG_CHG_CNFG_12_WCINSEL, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_18,
-> +				 MAX77759_CHGR_REG_CHG_CNFG_18_WDTEN, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return unlock_prot_regs(chg, false);
-
-Should early error returns here try to lock the protection again? Something
-like:
-
-+	ret =3D unlock_prot_regs(chg, true);
-+	if (ret)
-+		return ret;
-+
-+	/* Disable wireless charging input */
-+	ret =3D regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_12,
-+				 MAX77759_CHGR_REG_CHG_CNFG_12_WCINSEL, 0);
-+	if (ret)
-+		goto relock;
-+
-+	ret =3D regmap_update_bits(chg->regmap, MAX77759_CHGR_REG_CHG_CNFG_18,
-+				 MAX77759_CHGR_REG_CHG_CNFG_18_WDTEN, 0);
-+	if (ret)
-+		goto relock;
-+
-+	return unlock_prot_regs(chg, false);
-+
-+relock:
-+	(void) unlock_prot_regs(chg, false);
-+	return ret;
-
-I guess if one of the regmap_update_bits() failed, then locking the
-registers might not work either, so I have no strong opinion on
-adding that.
-
-With or without updates:
-
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-
-
-Cheers,
-Andre'
 
