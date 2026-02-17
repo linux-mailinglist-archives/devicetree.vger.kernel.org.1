@@ -1,235 +1,166 @@
-Return-Path: <devicetree+bounces-266218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266219-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MLv/GQOglGknGAIAu9opvQ
-	(envelope-from <devicetree+bounces-266218-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:06:11 +0100
+	id 0MivKFGklGmwGAIAu9opvQ
+	(envelope-from <devicetree+bounces-266219-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:24:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 892AE14E841
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:06:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10B5B14E927
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 18:24:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 276B13004C82
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:06:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C457A302B207
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C69336E487;
-	Tue, 17 Feb 2026 17:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD69336E49C;
+	Tue, 17 Feb 2026 17:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZO8u/UQh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VFR3HJ1J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FB72BD030;
-	Tue, 17 Feb 2026 17:06:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A345D36C0BD
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771347966; cv=none; b=HHr4zEDwTGQ4xtz+VT/8xKxeR6X179PBnq2UMW3GJTbcM+mYtx3q+0YcdABVo/cuPF9UhOacnm8Z+tXNs+LaNZON/gXm1dqYv5omqeqJNJt8F1DyxiBqBTP1bURMhUNg8p2cqQfHutAjplrVZg2VpkQ0D7Lr+Lvfo7xFfUqFjpU=
+	t=1771349070; cv=none; b=sm6lzTKOyBVZayDDJ4wS73JW4mts/zDI3SDQicv72cVoKv34euM5CHZpAvVSJjAJHFxShU/obp2dfOXmSvSMXjbFg0fvz2GSs2sVsPt9/nwn+Mgh4WdWyjIYr1b951aXWrT30yDH5H5XYxd5OBwIx6gYLQt4/gruPyYWeFls6IA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771347966; c=relaxed/simple;
-	bh=OIiUD/1C3K/G4eVgh0WXMWAxBp0KWfvZbf0rdNyWZgY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cpDtc3+6CgNm8Qa4WoiwAU++laOJStZef9AERT282OgGJFscLt5hC15BvpcSAQyMDUT/hzD8fHMGJ7Eax/HaIqfsxaz7UMWsg67YVMwteEP5r+Zz20ortwithZdxPyEJrJ27LVu6fr1TXhYsp/3U6f00NIjegFsCO0K1pgoiO/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZO8u/UQh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 266E1C4CEF7;
-	Tue, 17 Feb 2026 17:06:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771347965;
-	bh=OIiUD/1C3K/G4eVgh0WXMWAxBp0KWfvZbf0rdNyWZgY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZO8u/UQhSdUBE9q1WYCbf+6xSm2cbvdJJucPkVGbEjK1rA2e67hUf/sfPGG+oOJ3v
-	 nw9m+Fgm4Xp7iMk5gvvi+ArZk6p5W2ReONTeK4XifluGAkVYoy6hdaB/7nbK9GdGoO
-	 fV68oaFgFYb8uNBrtx6BBUPTEXJ5hmvEFKvHGOe5UmmwsYrkVvLU2WOyrPdwQUfRhr
-	 9XlM8ZCG3v9i/msc8NigofULclq0tkilIuQuOEHsVJRDktv2IxnJVP0fjLybp0aQCj
-	 RAA16YZnautyXvTAduhYVGqd8Y0fINQawV9qS7MKtzIGG86MX+p0MExhs3espJlxwD
-	 Wnnu57xwUHxmA==
-Message-ID: <0bce5fdd-0035-4962-a929-c6e5e0f9308f@kernel.org>
-Date: Tue, 17 Feb 2026 18:05:58 +0100
+	s=arc-20240116; t=1771349070; c=relaxed/simple;
+	bh=XcaGFT1isDNTFfiGQLEYjzZthPCV8JRLkjiswzHuawU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=vEwcUKDRgUUldq8NBVlvrFOfGSiOz9ZaHlMMFIVqGaZend6NjrD1zVe5+2XFPN/BbkJORedDgPBojJAvKVlDIMl147DPIvU5DbHglwAGmSY7ReAzxlqOLwI0eGvJR8lSBTU8f49vgWBcDoHrGqIqULqYv+Y+LChlvdUZDA9aBuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VFR3HJ1J; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2aae146b604so32529485ad.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 09:24:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771349069; x=1771953869; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lvvufgkhUDdE/Bqpji9LIc9wg44ul+E6WiDw+AU4u0U=;
+        b=VFR3HJ1JzMMZ8l1FJWW8v0iVLHpXmEwyiUwh4sosdfUR0Y6XeNyHGNMZF6LSSKHUas
+         WiJXtpWmMwDtSxa+Rhu+jE6zbKtsZPCSO0pZ7XkoMGS+k5ABMAx1YaF11AuoHJp44GKH
+         +eE/aYqXePt4eqGKDtHL3goGzWnhCHdGljs2AlXprqfw0MEQhQ9FADzs5v2ixKjUNFDf
+         gAQgG/qX7rTM+n/8d+Jck/2VUWc/GWJqp66frNd2RLNNBrz5XDWVY+6EfOWrYGv8u9Kr
+         FYcfkUvoyOpkbdPCYITSSEPoL4k5I/3aVdDfjOD0mzRFcDQbn/Kk65PEyaD4VrrAMowf
+         dasw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771349069; x=1771953869;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lvvufgkhUDdE/Bqpji9LIc9wg44ul+E6WiDw+AU4u0U=;
+        b=fJKFVxFprseI9gxBf76IoAPov9yPyotA4x03NZu2v/D4CgfEv7lDVpGFJdCWeGff8F
+         WyH+H7lKNlFPLfuPWtY7JlPUw4IalBiS6wBpnRrkpxeriNA5xl4eMsVoTyF4IdA6bFjP
+         uFFhxAgatqQnxenKkSSPwVmia8UoZV1afZPCodcsBaF+6Anv5+YVBjbxPhkKh8f8Ck2T
+         Zup4yXT/vreIk9oWJgi0P2XwqpznLVoJDEIURorqNavemAk9mji2xtwE5H6sunvvC9EJ
+         qrrbIdBNdcIZEUzaa0kFlIeCK1YNyLBh+SU6UP5rJkPlusiUD/n2scnUq3nVXN/CpMH6
+         Ry8g==
+X-Gm-Message-State: AOJu0YxrmPpIaKH500bIuN05LHIinKsnuIHYsEYgyC9/U27d1cuU8VWe
+	UoAjcISSPiOZI7oV8br2n/9gqgOGAWUq/bLB0wBeG1NuRRUSRj+lI39p
+X-Gm-Gg: AZuq6aJDM23gVe3c8s/TfR2GJFbRBpVZhckUJcx5bMGEgBpQOHfFp5chw5Nasp3uSS3
+	eL2oVhCv3pCXadbwesEbTXcL67rVRi5tW46mCgCAp7SMYEhwaKdnwcAMPsoubD3A3LGJ9nTDQ19
+	moJ1SedQZ/cvZ2aoJD3woCiyrelbyYWnVvwXmZjcdiCkA/SrUllX03TcGIVCFwUE/acgJRrdniG
+	P/bdOT245ywlkXWMh9ZvnQDLZln0nb3GhBENbK5DPfgfa/Ah9pL9DriIbldUk2zFMnfzaKXa+0F
+	HE8+C5X/lKmd+ysF02CtZ9/mwPwGfY8rtPglZuPs8l3/2MXIaRIHQn2r9GkzCvnxVHrREnHkdZV
+	qc5Q6e+1b6z41te+XCX50Xt4OKRwBC2espVE1cQ8rDPY9cIH5TRprFGHvYWYfS0Kjgm57Jkw1lT
+	3vwp2V1hITEaJQQS9zvQ+a5tDGDyrOBQcEh0h8Nh+uWFniQbGM
+X-Received: by 2002:a17:903:2f85:b0:2ab:333:22e8 with SMTP id d9443c01a7336-2ab4cfbc6b7mr142195775ad.24.1771349068951;
+        Tue, 17 Feb 2026 09:24:28 -0800 (PST)
+Received: from LAPTOP-872M7T80.localdomain ([223.181.109.65])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ad1a7145cbsm146880305ad.30.2026.02.17.09.24.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Feb 2026 09:24:28 -0800 (PST)
+From: Akhila YS <akhilayalmati@gmail.com>
+Subject: [PATCH 0/5] dt-bindings: Microchip/Atmel AT91/SAMA system
+ peripherals: convert to YAML
+Date: Tue, 17 Feb 2026 17:24:18 +0000
+Message-Id: <20260217-arm-microchip-v1-0-ae5d907e10e3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] media: dt-bindings: qcom-kaanapali-iris: Add
- kaanapali video codec binding
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Stefan Schmidt <stefan.schmidt@linaro.org>,
- Hans Verkuil <hverkuil@kernel.org>,
- Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
- Hans Verkuil <hverkuil+cisco@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20260126-kaanapali-iris-v1-0-e2646246bfc1@oss.qualcomm.com>
- <20260126-kaanapali-iris-v1-1-e2646246bfc1@oss.qualcomm.com>
- <r642meaclfme7thmb6spkna6xiuhbjuqw6x32jndjqhwqjtbbr@qkcziz3cyxb6>
- <b5ac0ab7-2540-4691-99b8-18d67ac63717@oss.qualcomm.com>
- <dhcsnc6y2r2bcjlc54ebo2hakc4tufub6f4oluqq6etjzdlas2@ggwzwoz24kjc>
- <5170c5df-e22e-46c0-9713-3c4e7bbdbf63@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <5170c5df-e22e-46c0-9713-3c4e7bbdbf63@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEKklGkC/x3MMQqAMAxA0auUzBbSoiJeRRxKjDZDq6QggvTuF
+ sc3/P9CYRUuMJsXlG8pcuYG1xmgGPLBVrZm8OhHdH6yQZNNQnpSlMsSEg5uQN/zCK25lHd5/t+
+ y1voBLIErF18AAAA=
+X-Change-ID: 20260128-arm-microchip-c0c0515024e6
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Akhila YS <akhilayalmati@gmail.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266218-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-266219-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 892AE14E841
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 10B5B14E927
 X-Rspamd-Action: no action
 
-On 17/02/2026 16:34, Vikash Garodia wrote:
-> 
-> On 2/17/2026 8:06 PM, Dmitry Baryshkov wrote:
->> On Tue, Feb 17, 2026 at 07:13:39PM +0530, Vikash Garodia wrote:
->>>
->>> On 1/27/2026 8:39 PM, Dmitry Baryshkov wrote:
->>>> On Mon, Jan 26, 2026 at 05:55:44PM +0530, Vikash Garodia wrote:
->>>>> Kaanapali SOC brings in the new generation of video IP i.e iris4. When
->>>>> compared to previous generation, iris3x, it has,
->>>>> - separate power domains for stream and pixel processing hardware blocks
->>>>>     (bse and vpp).
->>>>> - additional power domain for apv codec.
->>>>> - power domains for individual pipes (VPPx).
->>>>> - different clocks and reset lines.
->>>>>
->>>>> iommu-map include all the different stream-ids which can be possibly
->>>>> generated by vpu4 hardware.
->>>>
->>>> It's not how it can be defined.
->>>
->>> Do you mean to elaborate the different entries within iommu-map or to
->>> elaborate the different stream ids and how they are grouped into different
->>> functions ?
->>
->> The comment was sent three weeks ago.
-> 
-> yeah, if you could still recollect, you can comment.
-> 
->>
->>>
->>>>
->>>>>
->>>>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
->>>>> ---
->>>>>    .../bindings/media/qcom,kaanapali-iris.yaml        | 234 +++++++++++++++++++++
->>>>>    1 file changed, 234 insertions(+)
->>>>>
->>>>> +
->>>>> +  iommu-map: true
->>>>
->>>> This is totally underspecifified.
->>>
->>> oneof would be a better approach describing the possible stream-ids.
->>
->> oneOf of what? It is items with the definition of each item.
-> 
-> something like below,
-> 
-> properties:
->    iommu-map:
->      description: |
->        List of IOMMU stream IDs corresponding to hardware function IDs.
->        The number of entries depends on the SoC variant.
->      type: array
->      oneOf:
->        - minItems: 8
->          maxItems: 8
->          items:
->            type: integer
->            description: IOMMU stream IDs
-> 
->        - minItems: 9
->          maxItems: 9
->          items:
->            type: integer
->            description: IOMMU stream IDs
+Convert various legacy .txt bindings for Microchip (formerly Atmel) AT91/SAMA
+family system peripherals to proper YAML schemas. This includes:
 
+- CHIPID (SoC ID register block)
+- PIT (Period Interval Timer, old style)
+- PIT64B (64-bit Period Interval Timer, newer parts)
+- ST (System Timer, including watchdog subnode)
+- RAMC/SDRAMC/DDRAMC/UDDRC (SDRAM/DDR memory controller
 
-This gives no useful description. Can it be something else than IOMMU
-stream ID? No, it cannot. Saying then that this is stream ID is like
-saying listing clocks and calling them "clock input".
+Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+---
+Akhila YS (5):
+      dt-bindings: arm: microchip,sama7g5-chipid : convert to DT schema
+      dt-bindings: arm: atmel,at91sam9260-pit: convert to DT schema
+      dt-bindings: arm: microchip,sam9x60-pit64b : convert to DT schema
+      dt-bindings: arm: atmel,at91rm9200-st: convert to DT schema
+      dt-bindings: arm: atmel,at91rm9200-sdramc: convert to DT schema
 
-This should be list of descriptions explaining their function/purpose or
-whatever region is there mapped.
+ .../bindings/arm/atmel,at91rm9200-sdramc.yaml      | 67 ++++++++++++++++++++
+ .../bindings/arm/atmel,at91rm9200-st.yaml          | 65 ++++++++++++++++++++
+ .../bindings/arm/atmel,at91sam9260-pit.yaml        | 49 +++++++++++++++
+ .../devicetree/bindings/arm/atmel-sysregs.txt      | 48 ---------------
+ .../bindings/arm/microchip,sam9x60-pit64b.yaml     | 71 ++++++++++++++++++++++
+ .../bindings/arm/microchip,sama7g5-chipid.yaml     | 41 +++++++++++++
+ 6 files changed, 293 insertions(+), 48 deletions(-)
+---
+base-commit: ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea
+change-id: 20260128-arm-microchip-c0c0515024e6
 
 Best regards,
-Krzysztof
+-- 
+Akhila YS <akhilayalmati@gmail.com>
+
 
