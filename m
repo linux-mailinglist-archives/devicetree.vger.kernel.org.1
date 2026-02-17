@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-266067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266068-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UK75IG9FlGmcBwIAu9opvQ
-	(envelope-from <devicetree+bounces-266067-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:39:43 +0100
+	id KIEUAY1FlGmcBwIAu9opvQ
+	(envelope-from <devicetree+bounces-266068-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:40:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E309114AEFB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:39:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5467914AF02
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 11:40:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ECCD3305BFEF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:38:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 77025303A907
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5C9326D5D;
-	Tue, 17 Feb 2026 10:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1742C326D51;
+	Tue, 17 Feb 2026 10:38:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cSD/oyfp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yquk+dV9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882FE326D55
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 10:38:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05473326953
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 10:38:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771324684; cv=none; b=X3wKwZIUP1rJadgp7jOBFjspWio00QmETBH0U/xAudsODZafyFbhxSv92DCav8V01xHOv0bgamosc4kghwgMpE8STWNn0CQhwq6xcOguCwLkvLiWwmz69zDbaRDz61R23Cb10B9Uoj0dXJsx4gCUpA420DmNWXK/wgAH4srKpjs=
+	t=1771324690; cv=none; b=beZBnxixXXfnw/kvlT29NhsgS3vAxeNV+DgppGeLIIFffqjedP8V3E2XwbleM30XD+tMGq8UdkoVQvBo7+stKCt798N0J7lkTuPwNEeB+xH8TRoK4sSurWU+q5fZtogKlOPh47FQUWZrF2dsdCyRuv3eyzLu7mckQ5T26Dz0a44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771324684; c=relaxed/simple;
-	bh=hUYScQaRX0QfzkUatVOP/WusQlNS1mD4mV/UULK5pUw=;
+	s=arc-20240116; t=1771324690; c=relaxed/simple;
+	bh=Tpg7zSRy62+j7kpS0ZdgFhzUVtTCoi/LUR1IuhM9Pos=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NCEvSBbdrg1ka7pNjfzxMpji68BD6KgXeTJwKbq6fJ5wnLdFYs5AmWIwNb4eNwtMu/wgoLFefHhr40k5ZU/ew2SB4kuXaCRobg0FbIRaRi/yzpZSo0LijdNcgczRwO6Ksk5YV2ap0atK8WEnXW3jRSolacqAHHW3GinAWTX/Vws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cSD/oyfp; arc=none smtp.client-ip=209.85.210.174
+	 MIME-Version; b=QtAKA+6XtYqOyotQBEJ2XzmoJdeF7796f4Kh4GtDl+oXTqOH1VVoBRWj55XN5OJJ8zQwdzN8qPmhQb802lAgq6+FLpZ7O7owbm1yrw0rEMJYD7ULQTP4q+WqriE2I4avz6eT3cYyuPC9wgFuoNZ8RfCs+BHZz4EpTk6xhHTlH40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yquk+dV9; arc=none smtp.client-ip=209.85.214.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-8230f2140beso2470025b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 02:38:03 -0800 (PST)
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2ad21f437eeso19786545ad.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 02:38:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771324683; x=1771929483; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771324688; x=1771929488; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+G6pf8+5EFoESwai3MJ4dA07jKvv0MdZ3B0YqUEleVY=;
-        b=cSD/oyfp4NaKxlCNSOViwbxR7X/sXCZYXzhH2x9VZv9qGSisskhzZjdy9PjNGJ0qTT
-         bCqKKykjrhqzfjSMnIMoOQq0jQrvDqmAUDu30hB1HavNcZuzjwGXFUf5I0qihqCUtbsq
-         9+4T+bNNrJvypa5HwxTnQH0CU+R3i6Zy/2JNg0IPG1l0Gjm5P+Pr5xTrSlJOPUK7BJzc
-         QYpEyRZZB3rtuwB4EKAJmxrcjg7EG8R1fACF9elvmiMEBifajo01Lcz1v/lQWYjPeD9I
-         W9LP9Xrw62rtrNKmkOHvQ0x/jluvAwHeO3vgMd3n16CxLid7ZLvV4e8dD+41eN9zJSMU
-         DPmQ==
+        bh=seDpjvldkVh4x8HmY2iZCQm4/m99ewrE6bkyICaW74A=;
+        b=Yquk+dV9Z7UDH9D00u0iDNqogbqC3uL10N5bBMNSYpeNWvlgUBnUhme08wM/c4+NmK
+         rG7AQPLmmvJ09KysG4kPCYxAjEVVwfgF8zjFYzTsOSdBqqm37zH4a116XJy6rzG4OK2i
+         JtUWP7JTOECxFNkl3KP5cAD5wms8JySE4pxHZp87NhQHvL8YwvrpOrF5PxDcDxexY1jD
+         g9bWpmfBWGrKgAG7ycaIpXkTa1wSZ3Qh7LvCTJD4eS75D3/Ji119X93JQ/DLXb0Zqrl4
+         U7kGQqgRYBP/aeo+gyHrlOYK6w64B5J1/blwInBlGHGlcRMxh+zAXHT3QKf2NSc4F5sS
+         iXFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771324683; x=1771929483;
+        d=1e100.net; s=20230601; t=1771324688; x=1771929488;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=+G6pf8+5EFoESwai3MJ4dA07jKvv0MdZ3B0YqUEleVY=;
-        b=VhGWlorTntP8h8ZI1eR6hPn0q0MQFkCSgNCxwO+s2SQnG1YeBXbun7FSi0754mUbkZ
-         MTihJWH0JpJRuuooRUiclawx85qhisAJNIAETPdvsVbw3iFaRaCEV+q2B6BlC1uIPXck
-         SfnJBnz9DEdVpPkASvg+f+OYIIIhcMNojs+NNjQvlqOoMPmCDx2ppG72hQWJFNlZDm9i
-         z/91UsQjxAsMd1HDKXlI/cbZI705kAXNXphUV0w+DJt4ZHKnlwGmwjV38ekfR9dx2gGm
-         RBNJcwW8q0+rb9h/bdOX1rKheljADFGk6EkBLOlZFj0D9dZcT2M1NjqxMCJgza5rpMd4
-         ePQA==
-X-Forwarded-Encrypted: i=1; AJvYcCUkF68fh8p7Q6yJiw3TfPoxyzk/yPcsezoyys6r6VutafKeLLXtGmOkDFTN9Xk96U67oA8OzNdF6eAC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMVcj80f2Yqp+hmcUBjWeqDGd0kIIbrkr5IDqu7eKE/vGmtZtG
-	OAAhkPL6chAtcUhzhA+LP/NBQC0AmXatglQg6YtzTQyzE1seLyaV0ukZ
-X-Gm-Gg: AZuq6aKijR8WZG+2cb7/kwJoNatyi7SIMVYd16JRwBG85jrv/iZD/3VbMRpGIB2Ahw/
-	JRwIjQY3bOJwHYsr6KJz4g1bFayVu1QOJ0cQM8pzqPrT+kCm2iENcRaoMCZOcMYRS8jsMevQoVd
-	leeH2WRzEqvxTu6gW4bbnlurRZFjuDFuFsU0RemyxcOJ6L1AQh8giH3ckS8Z8/9OoJpl4nEgQyD
-	IBRhZlvnS9QQFmwmN5HLit6lcwmZBRe3mD4baofO5TYty9hev4fbrHldWfs88RrVkMNjd8vTL2X
-	K88zXr987OrvwGQhdL8TY10V+Z6/v7kgtLsy9rE5H7Wc4cWgcl14HxQ6vWFMbCMnZGinAn6bs6D
-	oYJ7XQwDWgazPHPM/1DAUkKl2jaku2peNsmz80biZ8eQLnR7Kqhi2RoovINHlbAVn3yEJsJhPGt
-	oJBRn5HA2A1QbQa7R7OECKacL5BZNFBLxt4HLcgqrRzhX1ZHZc
-X-Received: by 2002:a05:6a21:6f06:b0:38e:99a0:1057 with SMTP id adf61e73a8af0-3947f03a6fcmr11654195637.34.1771324682901;
-        Tue, 17 Feb 2026 02:38:02 -0800 (PST)
+        bh=seDpjvldkVh4x8HmY2iZCQm4/m99ewrE6bkyICaW74A=;
+        b=jQmmIQn9sd5T1F8STOBtm4xYVuPFXq6KWqVTHGMKOZ8hUlpoxZ+HIbTON3yOqVBZJ8
+         ef9wJe3myIyHvLUHrSjEmlI0oDG4qBO+jmkFDgGKPMUDk9ZehMWxcCaL4RXRU/LN8KI1
+         9JH4Rff5HRqW/r7nvGrZI+3qezGYbbzhX18h15Cod8aQhYBmU1Rnwvq2RhZEdf0CQXBe
+         Lw+X1z1SgEasnSRasFgIzwIjEAFeW/8Xzo6mMm6FZJURZHp4Jn579kIbyp+VSR7rUISr
+         3AQEQ4r37QG31CS6Omw0J68s8Udbq11CqIXZfwNmJj+1BCJMulCFkkMfjQfUoOqb+e0i
+         Vaxg==
+X-Forwarded-Encrypted: i=1; AJvYcCWSZn+w670hBgvGj5oQUhbsnA+6S4m0vhwZ2jFYdBws8pW36jQRfrQ7p/wFaaPe5/136TtvCoEWXCbC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxeU35Kydps/snb4r5UVREhCMVO2sEDgau9GNw2SJwvhRUPulMa
+	JJAjlaCk/cwOEK/vFbeMXNl03NgRlivaPcdDWyrDWemigs7R4cJXp9khjLzsvg==
+X-Gm-Gg: AZuq6aIaVslUE2zts431pgsKb7NRm/E5KRNZ+gKICpVxZNpXgn1pZouZfusM3EIgpRt
+	IxGVf8iicmUedctJIO7O9kdMspMPNXPSFPA2We141r4CnLfCktKYKO3sv2yXvw+j60DU1qgYgBR
+	p4d7YTB9HRc3+NsG62heEWNcoj/RU5yhwYWiI1+dx1DOsiwhUhfV7etz/d1l1B16RjcaNHwavD3
+	/cuygQ8t4lyKkdwTBc8U2byqKjDdu6KkOQ46R9YaP80+LVj5D2hn232eGHxcR3XL4IC4cYCmpO4
+	nxD4c2ggFpTo3vv5as3wAbf2pRDoIU/yvAz+NwEzKRmW81S64+5l2yJF0CLH0LAcNLBxahXIqlr
+	Cf4mJY30bmDVTXzYTbUh+5oTAYW6gI4Gi1x1fDdoTxPYWGvwXgEbc5hQoTRjJeK2nnTPQz24K/+
+	KpOkTX1u3O9eidZfzpetjmZsyTqZ0riKfNpD96HdosaYMdx8wB
+X-Received: by 2002:a17:902:e84d:b0:2a9:616c:1716 with SMTP id d9443c01a7336-2acba48df66mr115760535ad.26.1771324688214;
+        Tue, 17 Feb 2026 02:38:08 -0800 (PST)
 Received: from test-HP-Desktop-Pro-G3.. ([103.218.174.23])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1a6fa21dsm94337205ad.12.2026.02.17.02.37.59
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1a6fa21dsm94337205ad.12.2026.02.17.02.38.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 02:38:02 -0800 (PST)
+        Tue, 17 Feb 2026 02:38:07 -0800 (PST)
 From: Sudarshan Shetty <tessolveupstream@gmail.com>
 To: andersson@kernel.org,
 	konradybcio@kernel.org
@@ -86,10 +86,10 @@ Cc: robh@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Sudarshan Shetty <tessolveupstream@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v14 1/3] dt-bindings: arm: qcom: talos-evk: Add QCS615 Talos EVK SMARC platform
-Date: Tue, 17 Feb 2026 16:07:47 +0530
-Message-Id: <20260217103749.1249718-2-tessolveupstream@gmail.com>
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v14 2/3] arm64: dts: qcom: talos/qcs615-ride: Fix inconsistent USB PHY node naming
+Date: Tue, 17 Feb 2026 16:07:48 +0530
+Message-Id: <20260217103749.1249718-3-tessolveupstream@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260217103749.1249718-1-tessolveupstream@gmail.com>
 References: <20260217103749.1249718-1-tessolveupstream@gmail.com>
@@ -107,18 +107,18 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,linaro.org];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,oss.qualcomm.com];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-266067-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266068-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
@@ -129,31 +129,59 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
-X-Rspamd-Queue-Id: E309114AEFB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,88e3000:email]
+X-Rspamd-Queue-Id: 5467914AF02
 X-Rspamd-Action: no action
 
-Add binding support for the Qualcomm Technologies, Inc. Talos EVK
-SMARC platform based on the QCS615 SoC.
+The USB PHY nodes has inconsistent labels as 'usb_1_hsphy'
+and 'usb_hsphy_2' across talos.dtsi and qcs615-ride.dts.
+This patch renames them to follow a consistent naming
+scheme.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No functional changes, only label renaming.
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
 ---
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts | 2 +-
+ arch/arm64/boot/dts/qcom/talos.dtsi      | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 4eb0a7a9ee4a..c081746636d1 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -876,6 +876,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,qcs615-ride
-+              - qcom,talos-evk
-           - const: qcom,qcs615
-           - const: qcom,sm6150
+diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+index be67eb173046..a5f763cf1a55 100644
+--- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
++++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+@@ -632,7 +632,7 @@ &usb_1_dwc3 {
+ 	dr_mode = "peripheral";
+ };
  
+-&usb_hsphy_2 {
++&usb_2_hsphy {
+ 	vdd-supply = <&vreg_l5a>;
+ 	vdda-pll-supply = <&vreg_l12a>;
+ 	vdda-phy-dpdm-supply = <&vreg_l13a>;
+diff --git a/arch/arm64/boot/dts/qcom/talos.dtsi b/arch/arm64/boot/dts/qcom/talos.dtsi
+index 95d26e313622..cb32bfe732fb 100644
+--- a/arch/arm64/boot/dts/qcom/talos.dtsi
++++ b/arch/arm64/boot/dts/qcom/talos.dtsi
+@@ -4319,7 +4319,7 @@ usb_1_hsphy: phy@88e2000 {
+ 			status = "disabled";
+ 		};
+ 
+-		usb_hsphy_2: phy@88e3000 {
++		usb_2_hsphy: phy@88e3000 {
+ 			compatible = "qcom,qcs615-qusb2-phy";
+ 			reg = <0x0 0x088e3000 0x0 0x180>;
+ 
+@@ -4476,7 +4476,7 @@ usb_2_dwc3: usb@a800000 {
+ 				iommus = <&apps_smmu 0xe0 0x0>;
+ 				interrupts = <GIC_SPI 664 IRQ_TYPE_LEVEL_HIGH>;
+ 
+-				phys = <&usb_hsphy_2>;
++				phys = <&usb_2_hsphy>;
+ 				phy-names = "usb2-phy";
+ 
+ 				snps,dis_u2_susphy_quirk;
 -- 
 2.34.1
 
