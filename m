@@ -1,66 +1,63 @@
-Return-Path: <devicetree+bounces-266181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266182-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YAp3I9t2lGlmEAIAu9opvQ
-	(envelope-from <devicetree+bounces-266181-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:10:35 +0100
+	id UELiEl13lGlmEAIAu9opvQ
+	(envelope-from <devicetree+bounces-266182-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:12:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FBB814D075
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:10:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4D9C14D0CB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:12:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3C05430333EA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:10:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D6E943007E3D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 14:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DED36BCC0;
-	Tue, 17 Feb 2026 14:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFB6361DD1;
+	Tue, 17 Feb 2026 14:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yr3T16Y+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p618uH+6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38B7332EB0;
-	Tue, 17 Feb 2026 14:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071AE338581;
+	Tue, 17 Feb 2026 14:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771337415; cv=none; b=MdMPQXuWWgF8JXcxHKwx9d0awI5rTyNBCuYnxNzWKKveIZSiSW3FdbREoON+Lggbt4DInhjCn9UJT8J0j+1DPrWKUCqpIF+9xWQx9k4Lrw9f9xMl8VwI2Ur2KYtrmMXXrZnuqjXEnebeD2kiHsTP0WqN1oJqL7MkLWgRZWnPsnw=
+	t=1771337492; cv=none; b=QlJ29KqYYgI07eCcAj43/kGDheySRAKqM1KtvsbkHxpx39wufheAwR6U7bjhNEBJAkP+POySJD/TEofBrGXQUFysFO2q8kQinz8nOBhU5QVUHOZbVMOINLhqYUw+l0/s8hmkWgEUmuollWudEXxAD7GO+t/xTzhJZ17qSEbRsjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771337415; c=relaxed/simple;
-	bh=vTbSQEsSE8u+24OYbcc6B0HuNs2Lq3FmPPQ2RJxcH8c=;
+	s=arc-20240116; t=1771337492; c=relaxed/simple;
+	bh=AplVAgVsgW1FQgK8A+IS7848kQ4DrCjDVVGDxLzxzUA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CjkGoZiug4oHQPdaa1guE7lUj1AECl2dJF1JEwGZp4QuFaGPluZJCl3wiJBgPG1CsQf6KxLUbPjfsrVzSx51ED++CBSogF+pQlEZSrHSwUaH/yBygkZdutEHo2y+tKd7wBr2b1CFnsX3zOTyl2XgjCL3JRScuIaupJ/65OvYKRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yr3T16Y+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCECDC4CEF7;
-	Tue, 17 Feb 2026 14:10:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mg+HFb1zp0BcPZiICaUKhLRvs7wzPB2MukD84Qk2ST8oTetxxlXqwejTHXdeyXS9TZ3CnhzvG45+gCF8u60Yw7OesWL2Xy+8zOviEpQQXv8bOsjm7soGepvMPMAGlktdngjx9fTm3wYQpr1wcDua0t4WsekyXpcyHxBhsDMI16o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p618uH+6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 625B0C4CEF7;
+	Tue, 17 Feb 2026 14:11:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771337415;
-	bh=vTbSQEsSE8u+24OYbcc6B0HuNs2Lq3FmPPQ2RJxcH8c=;
+	s=k20201202; t=1771337491;
+	bh=AplVAgVsgW1FQgK8A+IS7848kQ4DrCjDVVGDxLzxzUA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yr3T16Y+mq9EgUFPoISna1IfoaKURU7W3FzNyANzrp9ExRMXw/iz0HhL5Z5QDEM7D
-	 pE1CZElyyrIFnn83ECBeZwDS0jHeFZdY0anTUsKByhNn3kVGZ4nBGmatV5n1YkCcvE
-	 RNr3NXb+J/G64Fi8lbSlKCAFPT3weKvn9vr0rL4RugM9riXRZ9HZX2YQ5elewZKz9d
-	 8Y4dXZOY0wYocSibOTrs4xcwGqKdJe9c6bdJfBNbSbv5p600XtUrsrzGFDqCY+Dm0G
-	 dNiJCVFta62S6DEnaQvokxJbll5eugxpWdgtaQYFj06Bghu9nAcGpAyRaqOnr+A6G7
-	 iVVNxJDWL0idg==
-Date: Tue, 17 Feb 2026 19:40:04 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Randolph <randolph@andestech.com>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, jingoohan1@gmail.com, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr, aou@eecs.berkeley.edu, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, ben717@andestech.com, 
-	inochiama@gmail.com, thippeswamy.havalige@amd.com, namcao@linutronix.de, 
-	shradha.t@samsung.com, pjw@kernel.org, christian.bruel@foss.st.com, 
-	quic_wenbyao@quicinc.com, vincent.guittot@linaro.org, elder@riscstar.com, 
-	s-vadapalli@ti.com, randolph.sklin@gmail.com, tim609@andestech.com
-Subject: Re: [PATCH v10 3/4] PCI: qilai: Add Andes QiLai SoC PCIe host driver
- support
-Message-ID: <gun4nwn7zrutg3ebcg224jiektnf4sfh3zd3bcf3q56klxjndt@fhzelxv7t2fk>
-References: <20260116110234.1908263-1-randolph@andestech.com>
- <20260116110234.1908263-4-randolph@andestech.com>
+	b=p618uH+6mUYB/IhAfz5L6pqlGi85iS5ogIIiEyIfgAb/mabWaq2RVoJ2quAhHIhEN
+	 spoOfqWgStq+mKna2MbESWpuw1CE2TZDLTe/QiG5uveOIBkGoDTMXpVa8Qa2STe0Ey
+	 RCLSOXnbnzFUIbipxXEmbhOYfASbQiyjiDTGin/8CvvePK7PwhDm4IgLbY5x4kcJmm
+	 whly2/j/WRxrp2igsu7qUtCWbUxacw4tx6cc3sURliapT4vzJ03STvnfqXpIFtZDZs
+	 a7lR0kM2zdJy/UavTQ1RwVtcTpNHN9/mdR6ExCMYGiGFrrK+a6zU5CIHEyDKni/bzx
+	 QJl3O/p0h4kQg==
+Date: Tue, 17 Feb 2026 08:11:30 -0600
+From: Rob Herring <robh@kernel.org>
+To: Bartosz Golaszewski <brgl@kernel.org>,
+	James Hilliard <james.hilliard1@gmail.com>
+Cc: linux-gpio@vger.kernel.org, Linus Walleij <linusw@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/1] gpiolib: of: add gpio-line node support
+Message-ID: <20260217141130.GA2953125-robh@kernel.org>
+References: <20260214213239.2546012-1-james.hilliard1@gmail.com>
+ <CAMRc=MfK8k88PfQPvP=p1r3KQ40dwcZq4Z4f5fnRFakpYcknvA@mail.gmail.com>
+ <CADvTj4r4mR0_HxcOOZFqJTVfoD=YdrGd2AD+hQNw6ciGUC=C1A@mail.gmail.com>
+ <CAMRc=Me6v2E1zKGQzukJmP45cVkRWOGzYoO9=LKh63rPFRqfqA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,300 +67,110 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260116110234.1908263-4-randolph@andestech.com>
+In-Reply-To: <CAMRc=Me6v2E1zKGQzukJmP45cVkRWOGzYoO9=LKh63rPFRqfqA@mail.gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266181-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266182-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,google.com,ghiti.fr,eecs.berkeley.edu,dabbelt.com,sifive.com,andestech.com,amd.com,linutronix.de,samsung.com,foss.st.com,quicinc.com,linaro.org,riscstar.com,ti.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,andestech.com:email]
-X-Rspamd-Queue-Id: 1FBB814D075
+	RCPT_COUNT_SEVEN(0.00)[8];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C4D9C14D0CB
 X-Rspamd-Action: no action
 
-On Fri, Jan 16, 2026 at 07:02:33PM +0800, Randolph wrote:
-> From: Randolph Lin <randolph@andestech.com>
+On Tue, Feb 17, 2026 at 05:18:18AM -0800, Bartosz Golaszewski wrote:
+> On Mon, 16 Feb 2026 22:20:10 +0100, James Hilliard
+> <james.hilliard1@gmail.com> said:
+> > On Mon, Feb 16, 2026 at 4:38 AM Bartosz Golaszewski <brgl@kernel.org> wrote:
+> >>
+> >> On Sat, 14 Feb 2026 22:32:37 +0100, James Hilliard
+> >> <james.hilliard1@gmail.com> said:
+> >> > Allow GPIO controller child nodes marked with "gpio-line" to
+> >> > configure direction/flags at probe time without hogging the line.
+> >> >
+> >> > Teach OF gpiochip scanning and OF dynamic reconfiguration handlers to
+> >> > process gpio-line nodes in addition to gpio-hog nodes.
+> >> >
+> >> > Also parse "gpio-line-name" and apply it to desc->name. For gpio-hog
+> >> > nodes, keep "line-name" semantics as the hog consumer label.
+> >> >
+> >>
+> >> One important thing that's missing from this commit description is: what is
+> >> the use-case and why do you need this.
+> >
+> > Added some more use-case details in v3:
+> > https://lore.kernel.org/all/20260216211021.3019827-1-james.hilliard1@gmail.com/
+> >
+> > In my case I'm setting up the GPIO line initial state and names for
+> > userspace consumers mostly. I want to be able to configure the
+> > individual line names from a combination of the dts file and multiple
+> > dtso files for the same gpiochip along with setting up an initial state
+> > before userspace consumers operate on the lines.
+> >
+> >> The DT binding patch should be sent together with this in a single series. It
+> >> should also be documented in the relevant .rst file.
+> >
+> > Which file would that be?
+> >
 > 
-> Add driver support for DesignWare based PCIe controller in Andes
-> QiLai SoC. The driver only supports the Root Complex mode.
+> Documentation/driver-api/gpio/board.rst would fit best.
 > 
-> Signed-off-by: Randolph Lin <randolph@andestech.com>
-
-Just a couple of nits. Overall this driver LGTM!
-
-> ---
->  drivers/pci/controller/dwc/Kconfig            |  13 ++
->  drivers/pci/controller/dwc/Makefile           |   1 +
->  drivers/pci/controller/dwc/pcie-andes-qilai.c | 198 ++++++++++++++++++
->  3 files changed, 212 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-andes-qilai.c
+> > I had previously added docs to gpio.txt but was told here to just
+> > drop the docs:
+> > https://lore.kernel.org/all/b851bfd4-3c35-489f-a32d-dcd7a37ca99a@kernel.org/
+> >
 > 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index 519b59422b47..de5ff883e2ba 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -61,6 +61,19 @@ config PCI_MESON
->  	  and therefore the driver re-uses the DesignWare core functions to
->  	  implement the driver.
->  
-> +config PCIE_ANDES_QILAI
-> +	tristate "Andes QiLai PCIe controller"
-> +	depends on ARCH_ANDES || COMPILE_TEST
-> +	depends on PCI_MSI
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Say Y here to enable PCIe controller support on Andes QiLai SoCs,
-> +	  which operate in Root Complex mode. The Andes QiLai SoC PCIe
-> +	  controller is based on DesignWare IP (5.97a version) and therefore
+> There's a difference between device-tree bindings (formal, machine-readable
+> definition of the firmware ABI) under Documentation/devicetree/bindings/ and
+> documentation for humans residing elsewhere in Documentation/. Make sure to
+> not confuse the two. I would expect both to be supplied with such a change.
+> 
+> >> I suppose it's another shot at defining what we previously called
+> >> "initial-line-state", "default-line-state", etc. What happens when someone
+> >> requests the line, reconfigures it and then releases it?
+> >
+> > This should just provide an initial configuration, subsequent consumers
+> > would override whatever is set here AFAIU.
+> >
+> 
+> Yeah, that's what I was afraid of. This is not hardware description, this is
+> user-convencience and as such I don't think it has place in DT bindings and -
+> by extension - in DTS.
 
-Avoid mentioning IP revision here as this driver may evolve to support multiple
-IP versions.
+I agree.
 
-> +	  the driver re-uses the DesignWare core functions to implement the
-> +	  driver. The Andes QiLai SoC features three Root Complexes, each
-> +	  operating on PCIe 4.0.
-> +
->  config PCIE_ARTPEC6
->  	bool
->  
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index 67ba59c02038..9e61458dff00 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -5,6 +5,7 @@ obj-$(CONFIG_PCIE_DW_HOST) += pcie-designware-host.o
->  obj-$(CONFIG_PCIE_DW_EP) += pcie-designware-ep.o
->  obj-$(CONFIG_PCIE_DW_PLAT) += pcie-designware-plat.o
->  obj-$(CONFIG_PCIE_AMD_MDB) += pcie-amd-mdb.o
-> +obj-$(CONFIG_PCIE_ANDES_QILAI) += pcie-andes-qilai.o
->  obj-$(CONFIG_PCIE_BT1) += pcie-bt1.o
->  obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
->  obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
-> diff --git a/drivers/pci/controller/dwc/pcie-andes-qilai.c b/drivers/pci/controller/dwc/pcie-andes-qilai.c
-> new file mode 100644
-> index 000000000000..daa0281abd24
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-andes-qilai.c
-> @@ -0,0 +1,198 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Driver for the PCIe Controller in QiLai from Andes
-> + *
-> + * Copyright (C) 2025 Andes Technology Corporation
+> I'm afraid I don't have good alternatives to offer, solving this has been
+> attempted several times in the past without success. Even gpio-hog would likely
+> not get past DT maintainer review these days but it's ABI now so will stay
+> supported.
 
-2026
+I might still... I don't love the binding and didn't at the time either. 
+There was enough justification which this one completely lacks.
 
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/types.h>
-> +
-> +#include "pcie-designware.h"
-> +
-> +#define PCIE_INTR_CONTROL1			0x15c
-> +#define PCIE_MSI_CTRL_INT_EN			BIT(28)
-> +
-> +#define PCIE_LOGIC_COHERENCY_CONTROL3		0x8e8
-> +
-> +/*
-> + * Refer to Table A4-5 (Memory type encoding) in the
-> + * AMBA AXI and ACE Protocol Specification.
-> + *
-> + * The selected value corresponds to the Memory type field:
-> + * "Write-back, Read and Write-allocate".
-> + *
-> + * The last three rows in the table A4-5 in
-> + * AMBA AXI and ACE Protocol Specification:
-> + * ARCACHE        AWCACHE        Memory type
-> + * ------------------------------------------------------------------
-> + * 1111 (0111)    0111           Write-back Read-allocate
-> + * 1011           1111 (1011)    Write-back Write-allocate
-> + * 1111           1111           Write-back Read and Write-allocate (selected)
-> + */
-> +#define IOCP_ARCACHE				0b1111
-> +#define IOCP_AWCACHE				0b1111
-> +
-> +#define PCIE_CFG_MSTR_ARCACHE_MODE		GENMASK(6, 3)
-> +#define PCIE_CFG_MSTR_AWCACHE_MODE		GENMASK(14, 11)
-> +#define PCIE_CFG_MSTR_ARCACHE_VALUE		GENMASK(22, 19)
-> +#define PCIE_CFG_MSTR_AWCACHE_VALUE		GENMASK(30, 27)
-> +
-> +#define PCIE_GEN_CONTROL2			0x54
-> +#define PCIE_CFG_LTSSM_EN			BIT(0)
-> +
-> +#define PCIE_REGS_PCIE_SII_PM_STATE		0xc0
-> +#define SMLH_LINK_UP				BIT(6)
-> +#define RDLH_LINK_UP				BIT(7)
-> +#define PCIE_REGS_PCIE_SII_LINK_UP		(SMLH_LINK_UP | RDLH_LINK_UP)
-> +
-> +struct qilai_pcie {
-> +	struct dw_pcie pci;
-> +	void __iomem *apb_base;
-> +};
-> +
-> +#define to_qilai_pcie(_pci) container_of(_pci, struct qilai_pcie, pci)
-> +
-> +static bool qilai_pcie_link_up(struct dw_pcie *pci)
-> +{
-> +	struct qilai_pcie *pcie = to_qilai_pcie(pci);
-> +	u32 val;
-> +
-> +	/* Read smlh & rdlh link up by checking debug port */
+Please slow down your pace and give folks time to review. You're on v3 
+already and it's the first I see it. People are in different timezones, 
+take days off, get busy on other work, etc. 
 
-No need of this comment.
-
-> +	val = readl(pcie->apb_base + PCIE_REGS_PCIE_SII_PM_STATE);
-> +
-> +	return (val & PCIE_REGS_PCIE_SII_LINK_UP) == PCIE_REGS_PCIE_SII_LINK_UP;
-
-Use FIELD_ macros throughout the driver.
-
-> +}
-> +
-> +static int qilai_pcie_start_link(struct dw_pcie *pci)
-> +{
-> +	struct qilai_pcie *pcie = to_qilai_pcie(pci);
-> +	u32 val;
-> +
-> +	val = readl(pcie->apb_base + PCIE_GEN_CONTROL2);
-> +	val |= PCIE_CFG_LTSSM_EN;
-> +	writel(val, pcie->apb_base + PCIE_GEN_CONTROL2);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dw_pcie_ops qilai_pcie_ops = {
-> +	.link_up = qilai_pcie_link_up,
-> +	.start_link = qilai_pcie_start_link,
-> +};
-> +
-> +/*
-> + * Set up the QiLai PCIe IOCP (IO Coherence Port) Read/Write Behaviors to the
-> + * Write-Back, Read and Write Allocate mode.
-> + *
-> + * The IOCP HW target is SoC last-level cache (L2 Cache), which serves as the
-> + * system cache. The IOCP HW helps maintain cache monitoring, ensuring that
-> + * the device can snoop data from/to the cache.
-
-If the IP allows device to snoop data to/from the cache, the controller should
-be marked as 'dma-coherent' in devicetree. And you need to add this property in
-the binding too.
-
-> + */
-> +static void qilai_pcie_iocp_cache_setup(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	u32 val;
-> +
-> +	dw_pcie_dbi_ro_wr_en(pci);
-> +
-> +	dw_pcie_read(pci->dbi_base + PCIE_LOGIC_COHERENCY_CONTROL3,
-> +		     sizeof(val), &val);
-> +	FIELD_MODIFY(PCIE_CFG_MSTR_ARCACHE_MODE, &val, IOCP_ARCACHE);
-> +	FIELD_MODIFY(PCIE_CFG_MSTR_AWCACHE_MODE, &val, IOCP_AWCACHE);
-> +	FIELD_MODIFY(PCIE_CFG_MSTR_ARCACHE_VALUE, &val, IOCP_ARCACHE);
-> +	FIELD_MODIFY(PCIE_CFG_MSTR_AWCACHE_VALUE, &val, IOCP_AWCACHE);
-> +	dw_pcie_write(pci->dbi_base + PCIE_LOGIC_COHERENCY_CONTROL3,
-> +		      sizeof(val), val);
-> +
-> +	dw_pcie_dbi_ro_wr_dis(pci);
-> +}
-> +
-> +static void qilai_pcie_enable_msi(struct qilai_pcie *pcie)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(pcie->apb_base + PCIE_INTR_CONTROL1);
-> +	val |= PCIE_MSI_CTRL_INT_EN;
-> +	writel(val, pcie->apb_base + PCIE_INTR_CONTROL1);
-> +}
-> +
-> +static int qilai_pcie_host_init(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct qilai_pcie *pcie = to_qilai_pcie(pci);
-> +
-> +	qilai_pcie_enable_msi(pcie);
-> +
-> +	return 0;
-> +}
-> +
-> +static void qilai_pcie_host_post_init(struct dw_pcie_rp *pp)
-> +{
-> +	qilai_pcie_iocp_cache_setup(pp);
-> +}
-> +
-> +static const struct dw_pcie_host_ops qilai_pcie_host_ops = {
-> +	.init = qilai_pcie_host_init,
-> +	.post_init = qilai_pcie_host_post_init,
-> +};
-> +
-> +static int qilai_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct qilai_pcie *pcie;
-> +	struct dw_pcie *pci;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	pcie = devm_kzalloc(&pdev->dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	pci = &pcie->pci;
-> +	pcie->pci.dev = dev;
-> +	pcie->pci.ops = &qilai_pcie_ops;
-> +	pcie->pci.pp.ops = &qilai_pcie_host_ops;
-> +	pci->use_parent_dt_ranges = true;
-> +
-> +	dw_pcie_cap_set(&pcie->pci, REQ_RES);
-> +
-> +	pcie->apb_base = devm_platform_ioremap_resource_byname(pdev, "apb");
-> +	if (IS_ERR(pcie->apb_base))
-> +		return PTR_ERR(pcie->apb_base);
-> +
-
-Mark controller PM runtime status as enabled:
-
-        pm_runtime_set_active(dev);
-        pm_runtime_no_callbacks(dev);
-        devm_pm_runtime_enable(dev);
-
-> +	ret = dw_pcie_host_init(&pcie->pci.pp);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to initialize PCIe host\n");
-
-return dev_err_probe()...
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Rob
 
