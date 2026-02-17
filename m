@@ -1,185 +1,123 @@
-Return-Path: <devicetree+bounces-266003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266004-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WIGxMyEflGk1AAIAu9opvQ
-	(envelope-from <devicetree+bounces-266003-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:56:17 +0100
+	id qN3BDQQflGk1AAIAu9opvQ
+	(envelope-from <devicetree+bounces-266004-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:55:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521DF149729
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:56:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5046149718
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 08:55:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6698A301D4CF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 07:54:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 448A63015716
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 07:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827602D97A6;
-	Tue, 17 Feb 2026 07:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9252C2D7392;
+	Tue, 17 Feb 2026 07:55:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KXHxOA5t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="poNW0uGE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CFC82D7392;
-	Tue, 17 Feb 2026 07:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E853134CF;
+	Tue, 17 Feb 2026 07:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771314859; cv=none; b=GhR5WZwr2Gku4Gz8y6gVHdRIQBYSLg4mGSGyigd8k85uBLUrYG6g4TJflF8+NmgQc78m5BscofCXU0RZdE/f1TrVhq+Lr5M8oYzafHbKaoNWp7B6QFkBHUzuKDsEHCEajEenPm4sSwNp6F7lLPw/79eCUGFbiKZxzJcVuwT/vW8=
+	t=1771314939; cv=none; b=BbjbWZe40/XUKvZteYgaD8yGsyy948sXX/yuKu2TZIvaGilgIe9rtO6kB1G7hzSd/BNLqf7dp8srg9rEIEpDVgXcoTamzsTQMe32fTr7ZY+DJjn6JN5pXNKw8tXKs/kSjFJmW5+M2yuYpgPFhWpPgzFnmsmoimxZ4IXC1vDaNV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771314859; c=relaxed/simple;
-	bh=/T9s6SgDIcUJ77yD7qCEjbsPbIBB8hVIiGK9LLe5g+c=;
+	s=arc-20240116; t=1771314939; c=relaxed/simple;
+	bh=RIT9q7ZjgzCwi6a+GrgVFx/hK7w839qVlIXKzRBoBTI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iXSInzUONx4yxPdzfhRIBRSYBH1OYny30kCydvAF5Fl2d7Acdfpz17V5lmZhi2tk2U9H8x8llyuH5Zdlm9nk8qK9Yf8nAmt2syAcbTcQZrVa0KSwkxSumUipK56FVo4Zb+UGDBDhpMU+Ro5J4X06X35bBP/0WhBG4U3F2FFkYQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KXHxOA5t; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771314857; x=1802850857;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=/T9s6SgDIcUJ77yD7qCEjbsPbIBB8hVIiGK9LLe5g+c=;
-  b=KXHxOA5tdorklsU+gkGOc4Y5mOaz2YfKZ1oZMROyxnE1XwxGVf5qSrus
-   zxTgn7Nbn2z72n+fD6ttTdf/ojeUZDiUX9t4q8/jVJwFsi5B6vUcFIUtJ
-   1iaLH/U9Fq8b1yZuDFeiEs5cHYQPpM6GZBQR2B763/CLIMQBtxXiulsAw
-   W9vj0T/Azgg0L3mK7ZFhcaPKW4UUnIFwXXMXALXQoBQzd88pULjJxR12O
-   sTf3jTIyESrH1mwoDBIVf121dgQPUZMVpItVC1NnPnikCObp20mtvCejY
-   dmxHTQDdYaD9H8S/zweD7XBfBAGqZmWPA3CecK5a3qUq/Ok5E3B+CXRSm
-   A==;
-X-CSE-ConnectionGUID: tg53sXOvRPOwL9JzgDhYQg==
-X-CSE-MsgGUID: I1/AWXL6R0u9lblYQzSw9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="59946718"
-X-IronPort-AV: E=Sophos;i="6.21,295,1763452800"; 
-   d="scan'208";a="59946718"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2026 23:54:17 -0800
-X-CSE-ConnectionGUID: v6Wt1x+aTFS9Rw+LMuFhAQ==
-X-CSE-MsgGUID: kUF5bsJnQyid8FjHFw25dg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,295,1763452800"; 
-   d="scan'208";a="212044800"
-Received: from lstrano-mobl6.amr.corp.intel.com (HELO localhost) ([10.124.220.245])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2026 23:54:14 -0800
-Date: Tue, 17 Feb 2026 09:54:12 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Ariana.Lazar@microchip.com
-Cc: dlechner@baylibre.com, nuno.sa@analog.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org, jic23@kernel.org,
-	andy@kernel.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH 2/2] iio: dac: add support for Microchip MCP48FEB02
-Message-ID: <aZQepHXptVvBsQuL@smile.fi.intel.com>
-References: <20260212-mcp48feb02-v1-0-ce5843db65db@microchip.com>
- <20260212-mcp48feb02-v1-2-ce5843db65db@microchip.com>
- <aY3m5V05FOH5sut6@smile.fi.intel.com>
- <f8e45b0ef7af336dbde04ce53d117c6e47d2190d.camel@microchip.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bLZofZrGg1rF8F1AN8wxW05TbmvAw3PFDGJML+DFSvETkXZ3iLnl7MF5FmtNP0ACjhmWlamzGWGDRRmpwlXq8bTsoV6gCHTYiH1xvdEbUQqi3FxkRjUo2UA6iI96s7sKSwT35RCtamCpICaR/ScuOE/qFIJXOoFQH4iDjiOujQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=poNW0uGE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88372C4CEF7;
+	Tue, 17 Feb 2026 07:55:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771314939;
+	bh=RIT9q7ZjgzCwi6a+GrgVFx/hK7w839qVlIXKzRBoBTI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=poNW0uGENYq2wzDEQmx/QG2h3DW3WMtP/85H00VmpkKRZYXeCqxKcDvdv7zelcSIu
+	 9OzMybvVH5HZdXRi+IPnvxTAte4yRnClsBb2uUWlyWSJonI+RJlvYRQuYgY5F1IsVM
+	 jHr22nyGKprUUznuHfXtRk1+LR9WZL6NGbAObmVXnOBm9EoWaOONVmuMluUJBSagU2
+	 AVUMePee6iRG8nrOy8BPTrO4bpz79Volj5zoYsvalQQExcA+CMGkOuvGRcH8NqBXaB
+	 lfhxsk5EUgStGEp0I7Xf0iqt9VsrMMtLu8T/34DvHcKfbIJ1ow0vK4ps3r6+iObkNx
+	 L8TbvrTbqu0rw==
+Date: Tue, 17 Feb 2026 08:55:36 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Cc: linux-mediatek@lists.infradead.org, 
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Jitao Shi <jitao.shi@mediatek.com>, 
+	Fabien Parent <fparent@baylibre.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 4/6] dt-bindings: phy: mediatek,dsi-phy: Add support
+ for mt8167
+Message-ID: <20260217-loyal-rapid-firefly-edcdf1@quoll>
+References: <cover.1771258407.git.l.scorcia@gmail.com>
+ <66fbd5dd3604ffc4fda45022c1db68e4e0be6714.1771258407.git.l.scorcia@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f8e45b0ef7af336dbde04ce53d117c6e47d2190d.camel@microchip.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <66fbd5dd3604ffc4fda45022c1db68e4e0be6714.1771258407.git.l.scorcia@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	HAS_ORG_HEADER(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266003-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266004-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: 521DF149729
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,pengutronix.de,linux.intel.com,suse.de,gmail.com,ffwll.ch,mediatek.com,linaro.org,collabora.com,baylibre.com,lists.freedesktop.org,vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: A5046149718
 X-Rspamd-Action: no action
 
-On Mon, Feb 16, 2026 at 02:29:19PM +0000, Ariana.Lazar@microchip.com wrote:
-
-...
-
-> > > +static int mcp48feb02_read_avail(struct iio_dev *indio_dev, struct
-> > > iio_chan_spec const *ch,
-> > > +                              const int **vals, int *type, int
-> > > *length, long info)
-> > > +{
-> > > +     struct mcp48feb02_data *data = iio_priv(indio_dev);
-> > > +
-> > > +     switch (info) {
-> > > +     case IIO_CHAN_INFO_SCALE:
-> > > +             switch (ch->type) {
-> > > +             case IIO_VOLTAGE:
-> > > +                     if (data->phys_channels >= 4 && (ch->address
-> > > % 2))
-> > > +                             *vals = data->scale_1;
-> > > +                     else
-> > > +                             *vals = data->scale;
-> > 
-> > Actually, if you put the scales as
-> > 
-> >         int scales[2][2 * MCP48FEB02_MAX_SCALES_CH];
-> > 
-> > this will become as simple as
-> > 
-> >                         if (data->phys_channels >= 4)
-> >                                 *vals = data->scales[ch->address];
-> >                         else
-> >                                 *vals = data->scales[0];
-> > 
-> > OTOH, I am not sure if it can be always as
-> > 
-> >                         *vals = data->scales[ch->address];
-> > 
-> > which would be the best approach.
+On Mon, Feb 16, 2026 at 04:22:15PM +0000, Luca Leonardo Scorcia wrote:
+> Add support for the MediaTek mt8167 SoC: the DSI PHY found
+> in this chip is fully compatible with the one found in the mt2701 SoC.
 > 
-> I am not quite sure I have understood your point of view. In order to
-> remove the channel parity check, I would have to declare int
-> scales[MCP48FEB02_MAX_CH][2 * MCP48FEB02_MAX_SCALES_CH] (int
-> scales[8][6])
-> regardless of device's number of channels and number of voltage
-> references. This will be quite a lot unnecessary space allocated
-> compared to using only two arrays of [2 * MCP48FEB02_MAX_SCALES_CH].
-> 
-> Another way to avoid these checks is to use a dynamically allocated
-> array of scales. Each member points to an array of [2 *
-> MCP48FEB02_MAX_SCALES_CH]
-> and stores corresponding scale values for each channel, while allowing
-> to allocate the actual number of channels the device has rather than
-> the maximum.
-> 
-> Please tell me which version you prefer.
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-I think something like a second variant. But as it seems going to be an
-agreement that this driver is not needed and rather we need to refactor
-existing one to add the support for SPI chips, these comments won't make
-much value.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
