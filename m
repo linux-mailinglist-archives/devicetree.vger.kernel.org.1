@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-266270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266271-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id nLn9DCHClGlWHgIAu9opvQ
-	(envelope-from <devicetree+bounces-266270-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:31:45 +0100
+	id sM12OKfElGmqHgIAu9opvQ
+	(envelope-from <devicetree+bounces-266271-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:42:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C386F14FA93
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:31:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 126F014FB2B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 20:42:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3788130107B9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 19:31:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 76B5630074C7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 19:42:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9533836C0B0;
-	Tue, 17 Feb 2026 19:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2900D3783A0;
+	Tue, 17 Feb 2026 19:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZwX7UhWJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HwjeF6l2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483421F0991
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 19:31:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD00636C5A6
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 19:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771356702; cv=none; b=KT/ug8GqQbzLcG2KKRgEQNzxmI0p7j1BJxgAZAb5vc8aKz8wp2vdgrtPdn38sBG32ERaRH5qmNbiTR57Zm21D4Kc1QHuhMpJxjEz6Iio+oyKIRF7E0Ilv4tASzih/DJOnU31ZaPeUsWdCkVXrbCz8H4fMMPFIYk5eHGPJ3N+tr4=
+	t=1771357345; cv=none; b=iZd3p1+FdsO3DkvrPpTjz0VDhmQaqbQ/j4yZfv7tgIiv19LQSOal1LYqta28IrKhJK6OlCYrEOQRUn8o1uavPGGMKWBtHPpa/unwRkzS3uVtbNVOB5yZjRIWTdsPeTvmxocdTJzRqUUi551KIwNWSuWTXpAQFJUxSC2Y9muaqWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771356702; c=relaxed/simple;
-	bh=lJvDpTHJVNBn3MgGbOS1Jg31wusVoMPQ1a05J0GJwgk=;
+	s=arc-20240116; t=1771357345; c=relaxed/simple;
+	bh=IOYrMdtCWt/Op0E8/4vt5NFeKKiy+7VItgEUcwnuASw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iJ0sHUEGuRV7TCaw19vkLdl03jCtywM0gmQApMxi/2GIyBIcHgoL7iymlLbNijOQYlMxmKSJfGCoRUbTxax/w1adKGJghF6GEqeqgjD0h/QKxuhZTUNMnqcS4zgGqVV0XVSjHJOtOWdTcLwRLv+TsM4zLN1CZ0uS0olh+zPz+Pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZwX7UhWJ; arc=none smtp.client-ip=209.85.128.52
+	 Content-Type:Content-Disposition:In-Reply-To; b=r0K+DFna4KFJMunXdi5FSczhRZ8wgpYo+QiAGrUsGAkCbMqvLp7bC/tP/KuKTfWQzJpzwzyYhPbdoBeIn42FuPhPTcvtx+xVsMNXaAikLtFiIHP0qpj5ok39PlU1Er6i6/h3Pyhrr8lySCqnUnH03mlGci1bYiAHY81tj/2UaXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HwjeF6l2; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4834826e555so45855615e9.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 11:31:41 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-436234ef0f0so3253377f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 11:42:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771356700; x=1771961500; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771357342; x=1771962142; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xEvfYLLw3IiT9UwT6PYubkbnZroYjQk8ROv2tQqe9bc=;
-        b=ZwX7UhWJtyyeWKEhWfbHzrG8EW/bryICsLQoJViXsUqYLJ/diqYvpkkYqJpJ0n9a63
-         4Xsq1d7SSzytWuMPWspQtsvavJclC7yL/CVIT6sBnTixCr7EZHfqn7J5bXT1r6fdxJkU
-         rYS7w5lPKbZh7nG7Mh/piuqA7p20hecqUqVAT7XEisydAc9KJBT0ob4UBUR2zWJn/a7J
-         IlIep08BF/fnBBOP1BhJYIsOwJMOOIoVURuJZZqetYax94ByxTSgxoKNMbnQCIFBVb54
-         2E97L3wCfFQDA8c5G9th+HFryCnW8skVN9g+WGrZvKq0/je/wkemXIYQLCbE2TLsmAo2
-         npEg==
+        bh=YUeQvtbcJRcoGuHYQKHXUnAyTG1dJFRZwd94Z/kLSnc=;
+        b=HwjeF6l2jiib6S6LS3cI3Xjd3ZRF1tqLAgSpTggdyUSS1w0s5S4QCdcKIbzTzUDvye
+         XSzGjb29uzrk3YTV9eF5zuNcd3K2ZveOEXUzmNITX/L08huBM40jc5lpuXvatyzgpmMU
+         McYA0zM4ZlsFGh5xQiZFrghkNRKvPKQZEHl8BLgyDM0lJX3wpkCizwcrq7PIez+duYDd
+         SYJxCbclN/zdDHD4gRB3oiDAJbmph9bX9z81N8HecCS+601ZMYPIphY0i18K18x6pKCf
+         zENgNMgI17/aIGV2BRvGy0WL5mIdWHoGHvRNruK5kdCSgqgBxYMaEH7l3/c2l11xVM55
+         KKRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771356700; x=1771961500;
+        d=1e100.net; s=20230601; t=1771357342; x=1771962142;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xEvfYLLw3IiT9UwT6PYubkbnZroYjQk8ROv2tQqe9bc=;
-        b=Uvwq8CfFaPxMqpmEYKm3qDBI+DUc38wjr5IqcaZ7/9Ec6gTI8UE2QO8zNE+5DIw1ob
-         VkwjPTk7RspNkfQk+XSzJ5knESulPYAB9frjY7v69f8sXdDuDoeiYSeHYOgnwR/r8QUq
-         PpLLEjg3iGUOQ6vaZAjeKWryE+TDQzQhN/1zbtcWGHqoBdVZwI96udrbFB0qGsQ7bX9y
-         1biWoa5LFfUvEQTNFYzoIO13l3n0aOtuAXwMGk68aNeJhIvaElZ4sfP5v2PsvOr9I5Ks
-         fnxKhHya+R4Z1eR5qhAPXEgPYpeA3OOuGdLot0wazqYVbRVdUyvlppw9/IrSzsDANNU5
-         mfoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVv/2fu9HgDjV+y6eYKQqMzm0/d0ouXMyVShKU0TolUr/M2XohClZXMnKNPzWNWYR0hA8Zs9ik1zlDp@vger.kernel.org
-X-Gm-Message-State: AOJu0YydOXjFpUG21r3KHwRPraOFm5oc7+LOw7oLO2erGoHH1s+ExRDu
-	TWcB/+xtYeDbLIPAfcVakLY/AkkG9Ks/uEJHIbdwijbIH926IRE7Py/i
-X-Gm-Gg: AZuq6aIw7P1qxbxy5W+CKnhBkZutYS9fJ/kii79K549tDMpozh6FME5Ez7tve2UnuI2
-	xkvTK/OXvcny/1+6g9dDECq9sRlpn4b528mmSgsboP6HTWRhCJ1H4PZF8WnO/IElCriRQLkAC8S
-	kHPJm8JcinMakztnJ2biPrOU/jp+4JCAbV448EbTjvC8I5upAuMs/t/zBf3tcMdlV3S8tYt2tiJ
-	/ctSD3koFmB3nqcOp5sqDYNkgbiadvBgHtqklD7Na6GDN9TALa6DOk1sluKpIq991EYitmAorTs
-	TViN3tkHnEubm1/Fw/jDAzJmtGaNHSplttvy2TWA3kZJz2Ff91YF6UINDwlqsKVLRh2Kx8ZlQo2
-	KOLMW1jy1B46Jq21UHSBVDFRUUr3GqCs1109fGULh1EXApc+/qbc8/gaCFyHesD9JTFfYfGZNp2
-	CGudgPcUT7JNZ45N6tYxcghQoz5BehWhcQNszDubvDdKVMF2bQWuNWpAyEvXcbuvaiZfYkVrcOl
-	aaCReXZV3dDVsyFH9uDZbHHXrbvAdBjhWUiwlsY77EmfR0=
-X-Received: by 2002:a05:600c:1c19:b0:483:5310:dc67 with SMTP id 5b1f17b1804b1-48379be817cmr234399105e9.20.1771356699475;
-        Tue, 17 Feb 2026 11:31:39 -0800 (PST)
+        bh=YUeQvtbcJRcoGuHYQKHXUnAyTG1dJFRZwd94Z/kLSnc=;
+        b=DHMs2nVEZkDuLXIyMC2rjbXqC/ogyoh7cnUxSsEoAxXmqtJFM0mlEtRAZ8ArhbxIQx
+         +1S2SUFzyXoIHtwWvf+m1T0cYWOUScdF6znrm+VkW/CDyYTWAbRXfqJBV2MCNuk1bdlT
+         vyv5i6p6gWHNTH0n8YIUkmvY+I2bL1q9Pm4rx676tgmnVgO8I7v7IchFyS09hTr/mQVF
+         lP0C56aI0pkh/vfjTpg6ORHFydDQw79C9tRzX1gFz1UqnGmEq+9NDw/epY+7ZT81i7Gr
+         SIjoY76/2rSSxmGUROljJ+8d0/K1j7fezGNm0qZ7w18S8rbUfF5Cxw6Dv8zlBYUAMcN5
+         iLcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXjQuiIwB0pJdQ+p/BCTrQioq2ejgK85iylF4rDU0dk/aXJ+fL3UOvjPXCoGgEWffHmBFpL5EtBoa2T@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWfiobTE48nKF8gsgLtlSlHZi0cNLxCF0h6KuHZwlJ+aZBnskQ
+	RTYjaMiv20n+XozR6IqK6FpGcOMCiXYLmv1wSUnHm8IXAeu0Qu5KBVVK
+X-Gm-Gg: AZuq6aJfVpVuAqNhpWhkVSTmAWn/VXoDUZFKBOTbsvIN74nrpNJTHiv877Kkg/6YfBA
+	XZrvd0vCb0MUHzWXYVFX3ffU78ELnn5T49SuS8ST3jnCCMbBj7Ip2wAN9MfD+DCxNxtDo8ib8Hx
+	kuj8HWLgcWnJlCvq8rS0Qh+ih6SP7J4oVVzKbJ93t1pduw1y/hsOuKPjJz0XxXrPPs76A6aSS3/
+	qeN98uC8z1vkL0xVJjIo8TvSL3MhBi8/sbywrsji7jp4oHe/XsIdB4doJL+gpmnxlnFfivBS7Os
+	rKnipTx8C/LRGPhf1Ia2KN5nnDWqjixJgbUvGz8wWbb1Qj1GMrvpFPLmcYFtsiYH4dmcX8Ytxgh
+	g1hxIIMTmmSj/65FJ0T0SehMJU5tbxiI3Kd435sxOek/ZvnESa853CYwgz5EZgn8iVbpAPbfNgd
+	rNUjBDahsST2GQx8vOIy9CXWcaCGz9a8t9yAR9DWjxDFJoJzb5J69d88uXXMF4y8l6YgIReysZ3
+	juFnn0F25Xyj9UUVI+lVQ0khobUh0oHoXdmWfAePSbna3c=
+X-Received: by 2002:a05:6000:2586:b0:432:dc1f:6982 with SMTP id ffacd0b85a97d-437978cd85emr24996379f8f.16.1771357342109;
+        Tue, 17 Feb 2026 11:42:22 -0800 (PST)
 Received: from Lord-Beerus.station (net-188-152-100-94.cust.vodafonedsl.it. [188.152.100.94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48397317e84sm1751885e9.5.2026.02.17.11.31.38
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796acf5b9sm34488531f8f.34.2026.02.17.11.42.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 11:31:39 -0800 (PST)
-Date: Tue, 17 Feb 2026 20:31:36 +0100
+        Tue, 17 Feb 2026 11:42:21 -0800 (PST)
+Date: Tue, 17 Feb 2026 20:42:19 +0100
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
+To: Fabio Estevam <festevam@gmail.com>
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
 	Stefano Radaelli <stefano.r@variscite.com>,
@@ -86,14 +86,13 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v1 03/11] arm64: dts: freescale: imx8mm-var-som: Update
- FEC support with MaxLinear PHY
-Message-ID: <aZTCGH1rKWdvYg5-@Lord-Beerus.station>
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v1 06/11] arm64: dts: freescale: imx8mm-var-som: Update
+ WiFi/BT configuration
+Message-ID: <aZTEm8nUUVcKZH0v@Lord-Beerus.station>
 References: <cover.1771353301.git.stefano.r@variscite.com>
- <3b984b93a43a07bc9c4f6414a08a3a0f45daaaa8.1771353301.git.stefano.r@variscite.com>
- <31f30651-7c99-42cb-9e27-e4806529d137@lunn.ch>
+ <3e79c4d806b8b8024b71bc99c36b09a2fbb90a65.1771353301.git.stefano.r@variscite.com>
+ <CAOMZO5CAb8738HdH49WcY-JPTzQ90n4Bnmyn96_3jfw47mxOug@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,24 +101,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <31f30651-7c99-42cb-9e27-e4806529d137@lunn.ch>
+In-Reply-To: <CAOMZO5CAb8738HdH49WcY-JPTzQ90n4Bnmyn96_3jfw47mxOug@mail.gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266271-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266270-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -128,46 +127,37 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.1:email,Lord-Beerus.station:mid]
-X-Rspamd-Queue-Id: C386F14FA93
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Lord-Beerus.station:mid]
+X-Rspamd-Queue-Id: 126F014FB2B
 X-Rspamd-Action: no action
 
-Hi Andrew!
+Hi Fabio!
+
+On Tue, Feb 17, 2026 at 03:59:33PM -0300, Fabio Estevam wrote:
 > 
-> I don't think you say this explicitly anywhere, so i will ask. The PHY
-> is on the SOM? The carrier just has magnetics and the RJ45?
-
-Yes, the Ethernet PHY (MXL86110) is physically mounted on the VAR-SOM.
-All RGMII signals, MDIO and the LED outputs are routed to the SOM
-board-to-board connector. The carrier board only provides the magnetics
-and the RJ45 connector.
-
+> What about users who still have boards with the Broadcom Wi-Fi chip?
 > 
-> >   Two LEDs are defined to match the VAR-SOM carrier design:
-> >     * LED@0: Yellow, netdev trigger.
-> >     * LED@1: Green, netdev trigger.
-> 
-> Where are the LEDs? You say "carrier design", so are they on the
-> carrier? The DT properties should then be in the .dts file for the
-> carrier.
->
+> Will Wifi on the old boards stop working?
 
-The LED signals are driven directly by the PHY and originate on the SOM.
-They are exposed on the SOM connector and are typically routed straight
-to the RJ45 integrated LEDs on the carrier. For this reason, the LED
-configuration belongs in the SOM .dtsi rather than the carrier .dts.
+The Broadcom-based WiFi module was used on earlier revisions of the
+VAR-SOM-MX8MM. That hardware revision is no longer in production and
+is not available for new orders. All currently manufactured and shipped
+VAR-SOM-MX8MM modules integrate the NXP IW61x instead.
 
-That said, you are right that describing them as "Yellow" and "Green"
-ties the description to a specific carrier implementation.
-I will drop the `color` property and keep only the LED function and trigger
-so that carrier designs can reflect the actual LED implementation if needed.
+Since the wireless module is soldered on the SOM and not selectable via
+the carrier board, the device tree must reflect the hardware that is
+actually present on the module. This series aligns mainline with the
+current production revision of the SOM.
 
-Does that approach sound acceptable?
+Customers using older hardware revisions still have access to the
+corresponding device tree descriptions in earlier kernel versions.
+Upstream support is being aligned with the actively produced hardware.
 
-As always, thank you for your review.
+The same applies to the Ethernet PHY update included in this series,
+which reflects the PHY used on the current (and future) SOM revision.
 
 Best regards,
 Stefano
