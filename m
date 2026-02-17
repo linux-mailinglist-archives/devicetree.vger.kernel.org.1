@@ -1,144 +1,146 @@
-Return-Path: <devicetree+bounces-266198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266200-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0GPvIuuKlGnTFQIAu9opvQ
-	(envelope-from <devicetree+bounces-266198-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:36:11 +0100
+	id 4IcjEBuNlGn6FQIAu9opvQ
+	(envelope-from <devicetree+bounces-266200-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:45:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3481514D9C1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:36:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1A6F14DAA7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:45:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E722D3018683
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:35:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 91B053028F74
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:45:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64BFA36CE01;
-	Tue, 17 Feb 2026 15:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A05D242D9D;
+	Tue, 17 Feb 2026 15:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jKnQR2cr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3017436CDE0
-	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 15:35:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27FFC2FF;
+	Tue, 17 Feb 2026 15:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771342538; cv=none; b=bi4FZZi026MyiM/SwquCbDEjwoBfCUvyKZKS5Q9Q+KguSKkD2HwcA19ixMV4B9pQ6j5TKmEjnPt6F2zzXWg8W7ToKeIGhMebBLVTtIQZ7A/bvd+HbWNtd1/+iIk2Wrtpw2xsNX0s1W2CAq5W7KdTfQqrhZbUTc8sTWFWwispRr8=
+	t=1771343128; cv=none; b=FZ2FeCDVaXjA4wrsnV0QDuTDeFYSl5lTt6jpmObeM299dRX2EO8bJURV3zP4MvyIZ+YTU0JJ8Kfr41uhZqGRCjTuxXhLPvO8CnLaph+3+KTkvmrg8rX/QaRHri6WmpcEdixqjdfuh6XU70TPZC1MjQrmfeNBSwgxymfbV3BZawo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771342538; c=relaxed/simple;
-	bh=G9W/WwvH/cZgvoHOUuCzymt2TsfUyNC0gH1UFBKLnwU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CAjWDSCAO18ubDl7iAryFRBm4uKMlh0Uo/O2d+AZKmhvjbCxwO3CR9O+nMGhkoYr74KkGNtLJcwRLakOAcDJUo5zN6fhDsK9vB/bpz1bJbde0bqNxgr4QPNVKUmrF+WtQvj1z8fuaeDo0HXSxCpNo16S4RCuRUxKiuzZEV+qZQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1vsN6l-00024r-MM; Tue, 17 Feb 2026 16:35:27 +0100
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Tue, 17 Feb 2026 16:35:17 +0100
-Subject: [PATCH 2/2] leds: rgb: lp5860: add enable-gpio
+	s=arc-20240116; t=1771343128; c=relaxed/simple;
+	bh=9OFR4oH3Zk84H3xfRvdUSrHB2a6gJ5ZvV7zt654XCrI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XSNusGGyCWn4nLCCecyiADlPju0mMB6mhbayEgk8IsG27QwTiRiVBGqbGKk2LszQ/XcIPevX2StkcrUmiFLtk1D4uaLnf5lzjMFl4tfNqVj5m1y1Qodi1vpLANeDh7vXmYh6dyg5NebTHRU1IfqjK9HtZL8kXoy38LIiT40SIBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jKnQR2cr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F578C4CEF7;
+	Tue, 17 Feb 2026 15:45:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771343128;
+	bh=9OFR4oH3Zk84H3xfRvdUSrHB2a6gJ5ZvV7zt654XCrI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jKnQR2cr1XLg2EolDlgOOsJJvW5kynO8j6yNVGsRIDnUXfll6v6Reco+E6qPaE7nE
+	 EKdbWwSrPUUCBi7wG96d28bGUVIXtTtVbEaziiMRJeFaBGbeAUv+C2Mr/p7uN0Co6p
+	 Bq3lGuicCZR8YR4wdoZ1oj803QSmbRH6hKq64AslV7n4EVYZeapSUv5Xb4EjxRdae7
+	 qOSNKf0KYR0cqtYBvjg1wSdZq+NF7iOpX6Ry3Wj2XiYMgUITrSW3hde/XvOhmdRyUW
+	 2R7M1Z9AAW3Msu1ymEjqmihLdWZMPIWg9ZJ02fFwfSP0tRW89HXq9L/9iNXjzlBVwp
+	 ntkiCOSSCHYGw==
+Date: Tue, 17 Feb 2026 15:45:22 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Praveen Talari <praveen.talari@oss.qualcomm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com, andersson@kernel.org,
+	bjorn.andersson@oss.qualcomm.com, prasad.sodagudi@oss.qualcomm.com,
+	mukesh.savaliya@oss.qualcomm.com, quic_vtanuku@quicinc.com,
+	aniket.randive@oss.qualcomm.com,
+	chandana.chiluveru@oss.qualcomm.com
+Subject: Re: [PATCH v1 0/4] Enable SPI on SA8255p Qualcomm platforms
+Message-ID: <dde7127a-7341-427c-817c-35be6310dfff@sirena.org.uk>
+References: <20260112190134.1526646-1-praveen.talari@oss.qualcomm.com>
+ <20260114-truthful-just-boobook-16494b@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260217-v6-19-topic-ti-lp5860-enable-gpio-v1-2-f5e8edeb5d74@pengutronix.de>
-References: <20260217-v6-19-topic-ti-lp5860-enable-gpio-v1-0-f5e8edeb5d74@pengutronix.de>
-In-Reply-To: <20260217-v6-19-topic-ti-lp5860-enable-gpio-v1-0-f5e8edeb5d74@pengutronix.de>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Steffen Trumtrar <kernel@pengutronix.de>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Steffen Trumtrar <s.trumtrar@pengutronix.de>
-X-Mailer: b4 0.14.3
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="k5qFPc8EOj1BI2pK"
+Content-Disposition: inline
+In-Reply-To: <20260114-truthful-just-boobook-16494b@quoll>
+X-Cookie: I'm into SOFTWARE!
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DMARC_NA(0.00)[pengutronix.de];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s.trumtrar@pengutronix.de,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	R_DKIM_NA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266198-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266200-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 3481514D9C1
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid]
+X-Rspamd-Queue-Id: A1A6F14DAA7
 X-Rspamd-Action: no action
 
-The VIO_EN pin can either be connected with VIO power supply or GPIO.
-Get the GPIO from DT if provided and set it on chip enable and disable.
 
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
----
- drivers/leds/rgb/leds-lp5860-core.c       | 10 ++++++++++
- include/linux/platform_data/leds-lp5860.h |  1 +
- 2 files changed, 11 insertions(+)
+--k5qFPc8EOj1BI2pK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/leds/rgb/leds-lp5860-core.c b/drivers/leds/rgb/leds-lp5860-core.c
-index 28b4d86e11f1a..1f349aa53f7a9 100644
---- a/drivers/leds/rgb/leds-lp5860-core.c
-+++ b/drivers/leds/rgb/leds-lp5860-core.c
-@@ -61,6 +61,9 @@ static int lp5860_set_mc_brightness(struct led_classdev *cdev,
- 
- static int lp5860_chip_enable_toggle(struct lp5860 *led, int enable)
- {
-+	if (led->enable_gpiod)
-+		gpiod_direction_output(led->enable_gpiod, enable);
-+
- 	return regmap_write(led->regmap, LP5860_REG_CHIP_EN, enable);
- }
- 
-@@ -170,6 +173,13 @@ int lp5860_device_init(struct device *dev)
- 	struct lp5860 *lp = dev_get_drvdata(dev);
- 	int ret;
- 
-+	lp->enable_gpiod = devm_gpiod_get_optional(lp->dev, "enable", GPIOD_ASIS);
-+	if (IS_ERR(lp->enable_gpiod))
-+		return PTR_ERR(lp->enable_gpiod);
-+
-+	if (lp->enable_gpiod)
-+		gpiod_set_consumer_name(lp->enable_gpiod, "LP5860 VIO enable");
-+
- 	ret = lp5860_chip_enable_toggle(lp, LP5860_CHIP_ENABLE);
- 	if (ret)
- 		return ret;
-diff --git a/include/linux/platform_data/leds-lp5860.h b/include/linux/platform_data/leds-lp5860.h
-index 7bc69a7a550dd..7258d0674ce59 100644
---- a/include/linux/platform_data/leds-lp5860.h
-+++ b/include/linux/platform_data/leds-lp5860.h
-@@ -257,6 +257,7 @@ struct lp5860_led {
- struct lp5860 {
- 	struct device *dev;
- 	struct regmap *regmap;
-+	struct gpio_desc *enable_gpiod;
- 	unsigned int leds_count;
- 
- 	DECLARE_FLEX_ARRAY(struct lp5860_led, leds);
+On Wed, Jan 14, 2026 at 10:00:06AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Jan 13, 2026 at 12:31:30AM +0530, Praveen Talari wrote:
 
--- 
-2.51.0
+> > Dependencies:
+> > This series depends on Enable I2C on SA8255p Qualcomm platforms
+> > https://lore.kernel.org/all/20260112104722.591521-1-praveen.talari@oss.qualcomm.com/
 
+> It should not because it means it cannot be easily applied by
+> maintainers.
+
+> Why can't you decouple the dependencies?
+
+I assume that was the soc changes mixed into that series rather than
+something I2C specifc, there should really be a shared branch with just
+that stuff that driver subsystems can pull.  In any case none of the
+dependencies landed so I'll discard this, please resubmit when there's a
+clearer story with dependencies.
+
+--k5qFPc8EOj1BI2pK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmUjREACgkQJNaLcl1U
+h9AUSgf9HxRu/lpm0ydOjbz6RqYmUoYPIKSLnPcwvcvhmWLtzpXY9RFsPe/b0oZs
+x4VvH8Z4dASHwXd1oMl3tx9fOxo5RaVxky5TE4CbWK3HntGVLcFCKoAADQ3OpyGS
+qtbPpEQGbbgfmTgVrnqL7RTCrmcIXyyF2ar12dyQFCGaLf5/fMViNCrXSvvV7u6i
+6rL4GNl+oSDfq/0RYA6KXzOv1feGLbOTyRVKp4QXyo1sIqKBjVlfj2blHh0o5tpB
+OS5KfL1Gdhzu89wzPXPUdCJKmqKyyhQcPxIaHTDxynjfpPI2FOggy5TfdVbqw6+H
+htetCfMeP6a8hv6Xkff0poO/XkirSA==
+=Y04F
+-----END PGP SIGNATURE-----
+
+--k5qFPc8EOj1BI2pK--
 
