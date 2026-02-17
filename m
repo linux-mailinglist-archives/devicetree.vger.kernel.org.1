@@ -1,190 +1,204 @@
-Return-Path: <devicetree+bounces-266034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266031-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WEgAHn4vlGnQAQIAu9opvQ
-	(envelope-from <devicetree+bounces-266034-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:06:06 +0100
+	id +Nd5KeUulGnQAQIAu9opvQ
+	(envelope-from <devicetree+bounces-266031-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:03:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0549E14A32C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:06:05 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B63114A299
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 10:03:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CA3403037D43
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:04:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AE8A9300C319
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 09:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 679502F0685;
-	Tue, 17 Feb 2026 09:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D30C2EAB8E;
+	Tue, 17 Feb 2026 09:03:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="ospiU61I";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="kQ+nSb1N"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CtfYHGR2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0AF22E22B5;
-	Tue, 17 Feb 2026 09:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.168
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771319069; cv=pass; b=UUmaQYBvQmaEPcs4jPYdMU7UkO/u2LhwvJJiFUcki9IzsC+wszNmmERjbsOoJIpuKaLZ1xb+KEms6YlfGOpS6ZW9hp9rEUJIMteMXM0beUkD5LcuFeiNqjvSlH8kA0qcFqwnhUgFQmSuuJOBclm/8m4NDzU0b57SYThYUlmOr0A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771319069; c=relaxed/simple;
-	bh=g3Lh3x5eN1+MwtWPxLGVQJB3/EkXY4ib2jrNj8kojNw=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=Sa2uJxkDe2m5QGoixVI2JC06p4KCXYvR4shd7FzZQo7AwC4J14L+V0/7cjOmaLGhFDQM/ZDl2pUU6WPzhqW4l9skCBEvIiI1Vo7XhvzxIRrE/4iD5IZN4v69cJPcHS+OxfOjI6PJBgMupqCpCAWw0cI5bN/qC30pOjAdtrXqejw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=ospiU61I; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=kQ+nSb1N; arc=pass smtp.client-ip=81.169.146.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1771318696; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=N5NKF5qAWVzJW+9JMfXCXbw2ItDwUYZWhfe7AU+TWofdBR4juLd4ArujgyYBtXMzNz
-    UGOdeyRsoPTrWD0gqHdSAgdGQJ+5fiFogrgUBbrvOJFsD83wHCUEyDLTb19a39lrxSQC
-    JFiE/pTxgQjKwxsAODL4rqv1U5+cGu4F1pZmrqxXPD2mPvlPup0SLI5umwi43HdEt0x5
-    vF6APsjpehu525hHh7ylNtvhRcbEEQPQ7q4q0B9IzbWCZ/GLGxuWFKD60wGuukKuy8Aw
-    p0sU02zt1ReA9lmmZgjzJdyPWoMnXvPVAHf8HnaZ6i4RujGP95+z64lQECQ+Kih01g/x
-    pFzQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1771318696;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=g3Lh3x5eN1+MwtWPxLGVQJB3/EkXY4ib2jrNj8kojNw=;
-    b=QH+d/vpdbYmj9NK8PdjOhn+YiZ/9uEcQLREq0zZYXnfaWrGkFqEj2sAEWgs3QDMOuR
-    zafahhwt3Xj/RIHUaagdkrSGzqx1wWNM7lO8cRt69uhu8TuCKMdRy1wtcT+9TRuhitYN
-    OZMmxfLfmnVmlDdkQ/7OI8eqrbLgpZUt4PoOIou879y38ln8Vsa+bbgiyNeJB6oJS8bX
-    VgKn7VB47Wb1bSYtgDpnths4v94RMLIeGjQEEb5v9K3KiDEgFh3qki26OSYdz9fZowxF
-    uZ6DgvWj6n0biJHANTcxH1w4CGS0tJT5Y4ilI1NgUwfgbLAGuZLcD9qtx1tpqYDvahSz
-    AEVg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1771318696;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=g3Lh3x5eN1+MwtWPxLGVQJB3/EkXY4ib2jrNj8kojNw=;
-    b=ospiU61IeMuOvrYdBQ8qog14QOBf7+miFN95tjWj/dkts49K4qfjMKxiEEf+o6ntWl
-    5zaYbNCej2WNzNX7Z1nt5QxglEnFt5lkuqm5c0nIiPwzJ+qS2cDMLKINNHLKdNJ6pFM5
-    dGOLaYWHGeUk4D18bna2dud8J4ipcC1dgONJ3bp4kUm1xKN/VgjEHTb/9768FjpdK6qv
-    zJnTaNUER4yBEi3ujslmN0VW5bB2jO+1hAeALgtFeupTdwi/7U3on13Vd9siIjp3yo7F
-    Xa56YbfhvYXJH99uZWECkWw30WNAzRVTBNF0b4jSgCtBY4eg4rykA7uV3ver6LUl61al
-    zJZg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1771318696;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=g3Lh3x5eN1+MwtWPxLGVQJB3/EkXY4ib2jrNj8kojNw=;
-    b=kQ+nSb1NwmDiy76JK9jHniF2lNp/mbBDQQr+pP4XCihUEW3zVMwDH/Hk/vqTzzYn+I
-    6IdIOOrDd7FiYy16vcBA==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeD0Z"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 55.0.1 DYNA|AUTH)
-    with ESMTPSA id Q3a36b21H8wE9wS
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Tue, 17 Feb 2026 09:58:14 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D7C2F0C70;
+	Tue, 17 Feb 2026 09:03:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771319012; cv=none; b=DmhEPjamCmU/EQclvuHw3X6QJOYBHfIWlvv7dE4CdcoVkteFp7uY4R3dZwniIJ5hdrjAoiLIUokbGWovJKrMhWYNwccstp44xPEhq8+8DuXVEeKn+o8sWCzfNnCoQ+dvKZE7+gsOanmhaXp+xcYPKIVqGg1z0gcndzu4LWGP/X0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771319012; c=relaxed/simple;
+	bh=9GbJRlEzOKhvUfPYVZkq7x2pTPJxlFsurchmoJs+GK4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PsmpqLzY9HtsDlthe2TR/YPwnYzKXHjM5BxnqycScQxtQgif7awrwITiHfsMYoNxZzw/dYI6h9oZi0aMDzFX24kejB+XINfaCFqmy/VBgpY2giXcMFvGj5nLMXZ52eTbG6lbAJNawGgTIRWSPvcXFiB7PyTsRapYyWUrEhYMCdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CtfYHGR2; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771319008;
+	bh=9GbJRlEzOKhvUfPYVZkq7x2pTPJxlFsurchmoJs+GK4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CtfYHGR2qb6+VbmtAWTPsiAJVFmA0YWByKmTGWIgnyD7Gr1gBMN2y/7VQg2FJHKYj
+	 SSEPSuC2goNPL+OBycqn7GTaBjGkWc6e9RRUo6zIiy5EXHHCZWf9z2zvuZuC8OipRa
+	 9v8sgckzmoMj0cSVLVheSHYY+qj1qhxVTkd37GJirm06XMd5TRPaJy9OzHWF3gWP32
+	 GcvC7wYo72tXDlePRa4lJZWYeUspU+ZGT9rV7kloqL1h59Bb5gXI1axSuLKG0GKV04
+	 IwM8VMAiR/Ynm9rtP8lWKYok+PVG6V6jhEGGhzu5G9BQncbySjGW5b0i+H16X4pncK
+	 wp7T3YvEscqVQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E9D3717E0C21;
+	Tue, 17 Feb 2026 10:03:27 +0100 (CET)
+Message-ID: <04a3d18b-80cc-4d1d-8657-cb35c4b5b797@collabora.com>
+Date: Tue, 17 Feb 2026 10:03:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.4\))
-Subject: Re: [PATCH 1/5] ARM: dts: ti: Enable overlays for all DTB files
-From: H. Nikolaus Schaller <hns@goldelico.com>
-In-Reply-To: <20260216161155.09fae580@kmaincent-XPS-13-7390>
-Date: Tue, 17 Feb 2026 09:58:04 +0100
-Cc: Robert Nelson <robertcnelson@gmail.com>,
- Andreas Kemnade <andreas@kemnade.info>,
- Aaro Koskinen <aaro.koskinen@iki.fi>,
- Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>,
- Tony Lindgren <tony@atomide.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Bajjuri Praneeth <praneeth@ti.com>,
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/6] dt-bindings: display: mediatek: Correct
+ compatibility for mt8167-dsi
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Cc: linux-mediatek@lists.infradead.org,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Louis Chauvet <louis.chauvet@bootlin.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <0EE0658D-56A7-480C-BF71-6B2EB81DC41C@goldelico.com>
-References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
- <20260212-feature_bbge-v1-1-29014a212f35@bootlin.com>
- <B3366A17-641F-4E02-A5D4-978F525E0A96@goldelico.com>
- <20260212174718.7daccb70@kemnade.info>
- <719BF710-26DF-49AB-A016-D2306F0389E2@goldelico.com>
- <20260212231907.6120a2e2@kemnade.info>
- <CAOCHtYicmeSzH5Q2_qTwAZw3s+__JRwUrXvz01+KCsJJHAznUw@mail.gmail.com>
- <20260216161155.09fae580@kmaincent-XPS-13-7390>
-To: Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: Apple Mail (2.3826.700.81.1.4)
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chunfeng Yun
+ <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Jitao Shi
+ <jitao.shi@mediatek.com>, Fabien Parent <fparent@baylibre.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-phy@lists.infradead.org
+References: <cover.1771258407.git.l.scorcia@gmail.com>
+ <ff920a7cc94f2b0c03d4bb55142030fded30d07c.1771258407.git.l.scorcia@gmail.com>
+ <20260217-stereotyped-dazzling-loon-f06e18@quoll>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260217-stereotyped-dazzling-loon-f06e18@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[goldelico.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[goldelico.com:s=strato-dkim-0002,goldelico.com:s=strato-dkim-0003];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266031-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266034-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_CC(0.00)[gmail.com,kemnade.info,iki.fi,baylibre.com,kernel.org,atomide.com,armlinux.org.uk,bootlin.com,vger.kernel.org,lists.infradead.org,lists.freedesktop.org,ti.com,linux.intel.com,suse.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[goldelico.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,pengutronix.de,gmail.com,ffwll.ch,linux.intel.com,suse.de,mediatek.com,linaro.org,baylibre.com,lists.freedesktop.org,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,goldelico.com:mid,goldelico.com:dkim]
-X-Rspamd-Queue-Id: 0549E14A32C
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: 4B63114A299
 X-Rspamd-Action: no action
 
-Hi Kory,
+Il 17/02/26 08:58, Krzysztof Kozlowski ha scritto:
+> On Mon, Feb 16, 2026 at 04:22:14PM +0000, Luca Leonardo Scorcia wrote:
+>> Remove the dedicated "mediatek,mt8167-dsi" compatible from the device list and
+>> describe it as compatible with mt2701 instead. It is safe to do so because:
+> 
+> You are not doing what you wrote. The dedicated mediatek,mt8167-dsi is
+> still there.
+ >
+> And if you want to describe mediatek,mt8167-dsi with OTHER
+> compatible (mt2701), it is a NAK. It is wrong and not allowed by writing
+> bindings doc.
 
-> Am 16.02.2026 um 16:11 schrieb Kory Maincent =
-<kory.maincent@bootlin.com>:
->=20
->>>>>=20
->>>>>>> Am 12.02.2026 um 16:26 schrieb Kory Maincent (TI)
->>>>>>> <kory.maincent@bootlin.com>:
->>>>>>>=20
->>>>>>> Allow overlays to be applied to any DTB. This adds around ~40% =
-to the
->>>>>>> total size of the DTB files on average. =20
->=20
-> Yes, I will move on to this solution for now to avoid too many =
-complaints about
-> the devicetree size increases.
+Sorry, that was my apparently very-bad advice - and I recognize that, as a
+maintainer, I should have given different advices.
 
-I have done some experimentation with this patch (on top of v6.19 and =
-our private defconfig)
-but could not find any DTB size increase.
+Still, check below the (bad, and not enough) reasons why I said that....
 
-Does it require another patch or CONFIG change?
+> 
+> You just added fallback, didn't you?
+> 
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+> 
+> Please run scripts/checkpatch.pl on the patches and fix reported
+> warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+> patches and (probably) fix more warnings. Some warnings can be ignored,
+> especially from --strict run, but the code here looks like it needs a
+> fix. Feel free to get in touch if the warning is not clear.
+> 
+>>
+>> - Bootloader doesn't rely on this single compatible; and
+> 
+> Does not matter. You still CANNOT remove a compatible. If bootloader
+> starts to rely on this single compatible, you add it back? No.
+> 
 
-BR,
-Nikolaus
+The issue here is that "mediatek,mt8167-dsi" was never used anywhere, and that
+alone makes zero sense as it is - by hardware - identical to mt2701.
+
+That, leaving alone the fact that nothing anywhere can make use of a node with
+just `compatible = "mediatek,mt8167-dsi"`.
+
+If it is not acceptable to remove something that was never used and should've never
+been there "alone" without fallbacks, it's ok. I'm sure that avoiding to delete the
+one line is not a big deal there.
+Also remember that we are talking about an old SoC that will never see a bootchain
+overhaul, nor will it see new bootloaders.
+
+Though, just a small note - please please please: when we see new contributors,
+especially when they're community ones, can we try and encourage them to do the
+right things, and follow the right processes, without being harsh in any way?
+
+And P.S.: Yeah I know you haven't been as harsh as you can (rightfully) be, so
+thanks for that.
+
+Luca, I'm sorry again, at this point - it would be great if you could please send
+a v3 without the removal of that line. Just add the fallback and that's it :-)
+
+>> - There was never any upstreamed devicetree using this single compatible; and
+>> - The MT8167 DSI Controller is fully compatible with the one found in MT2701.
+>>
+>> Fixes: 8867c4b39361 ("dt-bindings: display: mediatek: dsi: add documentation for MT8167 SoC")
+>>
+> 
+> There is never a blank line between tags.
+
+Yeah, agreed.
+
+Cheers,
+Angelo
+
+> 
+>> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+>> ---
+>>   .../devicetree/bindings/display/mediatek/mediatek,dsi.yaml   | 5 ++++-
+>>   1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
