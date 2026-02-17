@@ -1,198 +1,178 @@
-Return-Path: <devicetree+bounces-266201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266202-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFKYLHaOlGn6FQIAu9opvQ
-	(envelope-from <devicetree+bounces-266201-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:51:18 +0100
+	id EPsiLKeQlGlXFgIAu9opvQ
+	(envelope-from <devicetree+bounces-266202-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:00:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351F214DB73
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:51:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121BF14DCD6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 17:00:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 20B3830333AC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 15:51:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 22080302BA6D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Feb 2026 16:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07D2D36CE0A;
-	Tue, 17 Feb 2026 15:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9B636C0D8;
+	Tue, 17 Feb 2026 16:00:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MNw6hdMT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ij0ThohW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69D736C581;
-	Tue, 17 Feb 2026 15:51:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771343460; cv=none; b=AprBNymwSdDQ9qTeldNRF4bKuV931ZROgI5hZ2+ddC/2F5mYdcgsQCryw7RrW/3D74gnrZMpIjCVkX1kJ6DBOrKn2en6Fm/GCLE6qAyfVkPqnKwTEhH6P9iwt+IOSI8MSRndgEog+C9cfwobJkpx/wzzlUQOFWBtdjDEo3ONJRU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771343460; c=relaxed/simple;
-	bh=F3tr3dTMqJx3SD92fKDrGHKnROwGZ6bJ78jeAepD7a4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ejh9EoALS2prHLwkHifzDq0Q5GNqY5OXTAYrhQbZgQB6zrR42gmwii/IP0AVNj3eKIhbdmz2e0klMFNaq683dmutODDv93BX9urwjimZb0PMiWsFCphtfRXK4TmTDsLumgNgnNLkAO4f4pbW/W1wbpH0LPiGESPZGbdyVuz3OOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MNw6hdMT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84071C4CEF7;
-	Tue, 17 Feb 2026 15:50:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771343460;
-	bh=F3tr3dTMqJx3SD92fKDrGHKnROwGZ6bJ78jeAepD7a4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MNw6hdMTPCx7nqnz+wvSOwxVvNZ0I/reKjeODpt36xYllBHz1Rh+MlQhUAz0HzUtA
-	 m5rSpqP1FNE1yBLk3SRm1RhvmDF3wHln9KJO3y4YxVgajtf72Ogl+dHANCqKy0VU3R
-	 O2h42mALLS/iDwxKS6KYIIt+OncvDeRY0IyK2Lz7ODueiYx6NvsSEoi49UkYo5xggX
-	 94Sm+1a79cVVqV+5bRpVdgbfQU6bO0n0b7Jd7YV9vRPLcQTvbKQ0R7xozwS1UsLO4l
-	 h0PTRTUhuos5CSJqQVm7MW+lJqvedInn/xifPZAo1qyOjlDpHPZ/sMQ6sbkGxHefpp
-	 bmq+P0cIoNCxQ==
-Date: Tue, 17 Feb 2026 15:50:55 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Ion Agorria <ion@agorria.com>,
-	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 1/7] dt-bindings: embedded-controller: document ASUS
- Transformer EC
-Message-ID: <20260217-tableful-arbitrate-169030e4fb11@spud>
-References: <20260216-sprung-scallop-de7b64bf528c@spud>
- <CAPVz0n06+uLCSfY_bYS9v7KJ-hXotye7ej-rze6-Q8_JAF7XVA@mail.gmail.com>
- <20260216-plunder-defense-de11cf56dd3d@spud>
- <CAPVz0n0-LbTUZBCaO=oN3PpPLpwAqzNo29r687pKY8NbEE9giA@mail.gmail.com>
- <20260217-vowed-botany-b1c47c7e40b8@spud>
- <55C30023-4175-48F2-BCB0-12EC23C48F01@gmail.com>
- <1519143e-4fc3-490d-ab8d-e65edd2c4eec@kernel.org>
- <81844CC9-5355-4B1D-AEBD-6DD67FB8C81B@gmail.com>
- <20260217-dig-husked-8a59b6a19aee@spud>
- <CAPVz0n0u7uhL8_FQFiuB7DrnL++ecbaEKEoV7N2PgTVRBVECkw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A22636A03D
+	for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 16:00:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771344034; cv=pass; b=JSJNCE9Ba0QlAskwWVu+lNpNHfyEdDrWOCcp+3IEZoSvrZ2Iou+15QCzGWncldVzuApwjAVowZSiy1iyM8/ES7ieoMXn4HRH+cIYYaT8OR+WI2xFTEejNW4QYAJgY5WulTdLjQgxvXydhKDwp67FoWxVskhuVqhjRKHwPNvwyr0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771344034; c=relaxed/simple;
+	bh=lBO6AhQqWag/0+NNJRZQvsAXIIMwJp6QA15wbRYbOcE=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pj1ifApLVcoZkgNoOHCQnuYz3s7y7YVnhbcuWFZp6GJha5hEq1ZJxDCrA/Hk2monPkJxCfPBlQS3QEGy3iZCtXv0qXp5lMWzs7bLASZwHaBp+6AI7OSdxxcc7wbVGayO/fTrqBWiUEQZCxgin9WsIrw4APl58l9hlfEyqoOV3v4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ij0ThohW; arc=pass smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-65c4152313fso1402080a12.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 08:00:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771344032; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Vmy0fNwuSNY6kGUCPZernyjm/AzYHunVp3bqnjwyKrmTZJcsPNxbkT/qQTCe22mFVW
+         jfqIu/AZCiXfzhFAvTuaUYXd/wffS2kwdUxZ/3kTqoA5YbgLBJ2Kn5m4T4n8NF7VaO4N
+         hiN2+5G3F/ub9m5MwWlYJJc+kVRryV3xJa+rvr52WcCLRknQnAJEj1yRZCOBKezQXzcj
+         BL1liEyiiJ/XHZqieC45h9Cva5D8KaufmUbNsxc+K8F8K9LrC371eKd6ePeDTpvQPW58
+         SBcq1g0YegM3oCAOVMpnDJiuv0sVQNJA+fyszMuuP9FdHlmqMtdnDbJvbKwOa6dEXisU
+         winw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:dkim-signature;
+        bh=lBO6AhQqWag/0+NNJRZQvsAXIIMwJp6QA15wbRYbOcE=;
+        fh=8cSdXE39qtAC0vim4+wQiRGqw+y6Vij4L97KCARdUtc=;
+        b=ChQZ2bg9Hzk4nv/hfwQ2JgmfHcNx4H/dxVkI6evpY6AG101sdKhJqBrxnPWvI29IJp
+         mbm+CHnfYhkIrcx3MprLJb+BVMDEazVm7VpBudI7hQRsvETtShFnzvsJtfsZtLxHvPxN
+         01AYYQi6U7JQ3OHHvFQfs9xZ+eCoZlztzB3yP9YyL8AKI3jHUXqHO/3LjXs8xIeV8EiK
+         WvF6L/XtEdiIQwP2XRLA29Rcuw9WROBR9Kanak/nmIMUZLwUDoH6QEhStrZfyO3QiIXV
+         LfHxQby+1/IfcbveSks8hln5Xg4w8e8hesUvxuMNeHA4Er6PDWV5aDbvELOkhnCq7O53
+         FxRg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771344032; x=1771948832; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lBO6AhQqWag/0+NNJRZQvsAXIIMwJp6QA15wbRYbOcE=;
+        b=Ij0ThohWVcfVtsLYIxefYarHxtdzXqbEJpUU4Bk8Tcg9No/tJgnYOlud6elzmm1i6c
+         DegqUJHkCGvGpZSsFyt/0ypDxbS6eQolBN4fYvF1i7fc9LKXGj7G+3krEhsTIaKEn0/9
+         PnUWSSfjzhtlHSElRTsTajjowbiGvev93gPn7O/SNiCqocgBCl8CL0h+t7JQHVliCtTu
+         0YkG+NiDQ5nHuDFhTHYbD48qFcImtBhNCGerGmlye4cqxeMyd2umEC/7elaDbAqcr0S/
+         +nFCCb+iZBo3QQQr+7T2loGf8kSykWI7PudqNzAWOkPBDDYxUMK3b2Dg6+aM3YQFN4Ha
+         iRZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771344032; x=1771948832;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lBO6AhQqWag/0+NNJRZQvsAXIIMwJp6QA15wbRYbOcE=;
+        b=GT1nipSsgTN9S0dbXE85VPeZPwdAvTf8J864WFKElcxyLTp46pERYQJE6oLk8R0TAe
+         KtCKuaxdYWPEGXRkdpvGghI4R/OA66KIJM4iXR9/QgHKc0ODVzon4qdYEPYNIkuheJga
+         0Gi+PSHZSbuhZeT5wP6F00DIVzAGoIIOzPKLSYWdlOKebl1eJpc7Z482Zh8FTiRkSz+t
+         uruNSiZx+z0tGxx5ZIn0yXlNOL/UQ3TEJ8Jma+JJbcWqXejMGS3pJjnlJl1lp5ThshKA
+         1mPNrNtuS9nR2thlf5zW3KxD2wNMZ7B30LCSo/uYMgdv7mE/BIkvb6Wtg99reaHkit7N
+         20hA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSWrud4VnR9StoG2xpdN696sLlZFaQxVe86mgj/Mw+iTK7t6JopsXZ676izColOLNWaaoVLNlkQVAx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyou4tWP/JjPvsp/JtwPxVBE7JpGf+QxS8CScbEa6KbX9GLfb8Z
+	Et/qo2YEV5t/W+M9O/lk73BO96Ao+80/YkWdf927xTehigVmicXyaP4IyqgscY1dEHWEmgPtCgX
+	CZ/FSo4keOwzR2NaxQg+4n0/SeS5F+ZY=
+X-Gm-Gg: AZuq6aIkxizTCRZUCjoA+72S29kRyNrc1DGnDUR0Bh0uFgvuGrXIEbTiWZoYHH9G8Nz
+	ELcE0tLMc/Bc+np3BL2BNisPjXeiybqUxuJBPGiM2YhAMXWbZT7w5zPV6aHOCtDj4vK7k3Yh9UB
+	6XZ5Ot2Pr7JpXcWa2aLU0TgEJHvAXNEsjv4NjyQ+O4EsLTzb5MvtjwOe1OwGfRfKhIbgANP2A8v
+	rIZxb0TtoEFJ4uTVnEqeOsU9yCAkgvXWaCdUOAuCJRmtXp206f/KHL2qSoUmwATjZWauyAqz90m
+	E4kz8g==
+X-Received: by 2002:a05:6402:1ece:b0:659:329a:bc12 with SMTP id
+ 4fb4d7f45d1cf-65bb13b7f0amr6896476a12.29.1771344031210; Tue, 17 Feb 2026
+ 08:00:31 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 17 Feb 2026 10:00:29 -0600
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 17 Feb 2026 10:00:29 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CFX4Gs6NaZQ9iQTz"
-Content-Disposition: inline
-In-Reply-To: <CAPVz0n0u7uhL8_FQFiuB7DrnL++ecbaEKEoV7N2PgTVRBVECkw@mail.gmail.com>
+In-Reply-To: <20260130022705.1059214-1-inochiama@gmail.com>
+References: <20260130022705.1059214-1-inochiama@gmail.com>
+From: Emil Renner Berthing <emil.renner.berthing@gmail.com>
+User-Agent: alot/0.0.0
+Date: Tue, 17 Feb 2026 10:00:29 -0600
+X-Gm-Features: AaiRm52I-Ps0aB0W3gGP80VOXo7IKX3SoIAUz1UAML5FnQLUef3qoiKkhjg5t58
+Message-ID: <CANBLGczi6o4NwDF0fge0_RZ+TVX2dQ=vYD2PYMSupb5xSnabZQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 0/3] riscv: spacemit: Add ethernet support for K3
+To: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, Boon Khai Ng <boon.khai.ng@altera.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Jose Abreu <joabreu@synopsys.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paolo Abeni <pabeni@redhat.com>, Paul Walmsley <pjw@kernel.org>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Richard Cochran <richardcochran@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
+	Yanteng Si <siyanteng@cqsoftware.com.cn>, Yao Zi <ziyao@disroot.org>, 
+	Yixun Lan <dlan@gentoo.org>, Zhi Li <lizhi2@eswincomputing.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Longbin Li <looong.bin@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266202-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-266201-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[armlinux.org.uk,eecs.berkeley.edu,ghiti.fr,foss.st.com,lunn.ch,altera.com,kernel.org,davemloft.net,google.com,st.com,gmail.com,synopsys.com,bp.renesas.com,bootlin.com,dabbelt.com,redhat.com,cherry.de,eswincomputing.com,cqsoftware.com.cn,disroot.org,gentoo.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[37];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl,vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[emilrennerberthing@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gmail.com];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,kernel,netdev,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 351F214DB73
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 121BF14DCD6
 X-Rspamd-Action: no action
 
+Quoting Inochi Amaoto (2026-01-30 03:27:01)
+> Add initial support for ethernet controller of the Spacemit K3 SoC.
+> This ethernet controller is almost a standard Synopsys DesignWare
+> MAC (version 5.40a). This controller require a syscon device to
+> configure some basic features, like interface type and internal delay.
 
---CFX4Gs6NaZQ9iQTz
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Inochi,
 
-On Tue, Feb 17, 2026 at 04:29:59PM +0200, Svyatoslav Ryhel wrote:
-> =D0=B2=D1=82, 17 =D0=BB=D1=8E=D1=82. 2026=E2=80=AF=D1=80. =D0=BE 16:03 Co=
-nor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> > On Tue, Feb 17, 2026 at 01:34:01PM +0200, Svyatoslav Ryhel wrote:
-> > > 17 =D0=BB=D1=8E=D1=82=D0=BE=D0=B3=D0=BE 2026=E2=80=AF=D1=80. 13:32:26=
- GMT+02:00, Krzysztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+Do you have a tree that includes the dt entries?
+Otherwise how are we going to test this?
 
-> > > >> properties:
-> > > >>   compatible:
-> > > >>       - items:
-> > > >>           - enum:
-> > > >>               - asus,p1801-t-ec-pad
-> > > >>               - asus,sl101-ec-dock
-> > > >>               - asus,tf101-ec-dock
-> > > >>               - asus,tf101g-ec-dock
-> > > >>               - asus,tf201-ec-dock
-> > > >>               - asus,tf201-ec-pad
-> > > >>               - asus,tf300t-ec-dock
-> > > >>               - asus,tf300t-ec-pad
-> > > >>               - asus,tf300tg-ec-dock
-> > > >>               - asus,tf300tg-ec-pad
-> > > >>               - asus,tf300tl-ec-dock
-> > > >>               - asus,tf300tl-ec-pad
-> > > >>               - asus,tf700t-ec-dock
-> > > >>               - asus,tf700t-ec-pad
-> > > >>               - asus,tf600t-ec-pad
-> > > >>               - asus,tf701t-ec-pad
-> > > >>           - const: asus,transformer-ec
-> > > >>
-> > > >> And them schema name will match the genetic compatible.
-> > > >
-> > > >Then what does the generic compatible express?
-> > > >
-> > >
-> > > Then enum it is
-> >
-> >
-> > Why would you do that, instead of what I posted earlier in the thread?
-> > If you send a flat enum with all devices listed, I'm gonna just be there
-> > telling you to consolidate into one device-specific fallback compatible
-> > per programming model.
->=20
-> There is no one device-specific fallback compatible! Schema describes
-> HARDWARE not drivers no? I will not use random device compatible from
-> the list as a fallback compatible for a different random unrelated
-> device, that is plain wrong.
-
-Which is why I am not mentioning drivers at all, and instead talking about
-programming models. Fallback compatibles represent similarities in
-programming model, even if the laptop that these devices are contained
-in are different, so whatever device compatible you pick might be random
-(but going chronologically is usually my recommendation) but it won't be
-unrelated.
-
-> Discuss this with Krzysztof and come up with something meaningful please.
-
-If you don't consider my reviews to be meaningful, you're welcome to
-carry a Nacked-by: Conor Dooley <conor.dooley@microchip.com> with a link
-to this discussion instead.
-
-Thanks,
-Conor.
-
---CFX4Gs6NaZQ9iQTz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaZSOXwAKCRB4tDGHoIJi
-0lKEAQCMn1RQWiz2XuWSwPyIQrFeNcdgS1xJdgNETKYUnIvdvAD/a48ii+2SjLok
-p8k8vgDRIULg8VXMLV8Zc8SI2pGg9QA=
-=w/4u
------END PGP SIGNATURE-----
-
---CFX4Gs6NaZQ9iQTz--
+/Emil
 
