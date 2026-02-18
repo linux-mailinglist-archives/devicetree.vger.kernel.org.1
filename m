@@ -1,69 +1,67 @@
-Return-Path: <devicetree+bounces-266438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266436-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DCSD4fBlWlrUgIAu9opvQ
-	(envelope-from <devicetree+bounces-266438-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:41:27 +0100
+	id oKNqBh6/lWkfUgIAu9opvQ
+	(envelope-from <devicetree+bounces-266436-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:31:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 801EF156C93
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 657C3156AC3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:31:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3F5653026AA1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:31:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BDA853018771
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:31:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E809E32825D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C892327BEC;
 	Wed, 18 Feb 2026 13:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="Ud6sNglD"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="NIYooHC9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail2.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD77631A7F8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD7F931ED7C;
 	Wed, 18 Feb 2026 13:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771421467; cv=none; b=kmBdlQqAgA0nu+64yOeRFnNMDhAN4zvw6vquW+DnCnzx7BM8yxbBlbvMH/NdWRszFHza2wlI3IF+e+f5pUDEsE59mPBLnSTECnd90NdVCiYq0s0559LoHT/j0f6tRXjWS9TU8dD0L64Ob+F1Qj74YszJAF4+r53N37s3S2F5FLw=
+	t=1771421467; cv=none; b=t0ox363h0eYWCI2Hgx/lZXg9mLktZq2nlMuoI08ZTXB7CPcN8OvYgozI6XOrGSVo4GiUFkBP+6Rlj+rJachRwF+iF8cP48f0QKZsjHVmJWIkDDVQoA21WbL5gR0Gtu/io+zaLaWBTwQPNSUoMmXk8ihYW4M1drfR5JTgaJR8m2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1771421467; c=relaxed/simple;
-	bh=cuQvL8BI8iOkp/0NVSsyyYOrJzK1E4le2JhX4MjuvdA=;
+	bh=3UlIxoARU7Rl12u86tYZ0jerFAiRm41TAJlT6SFSo+E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nJ+5pMeMzDhues8S434fWZzLCOnmir0s88GTcgUxa3u3prdD8/L0zEkHBNclfC/BYWhvqdgs57aYYTNC8WAb8rZON1nvkGb0v4L0tFCH/AWXSfGUgLY4+e3/Nlnux0aJoJtsbJ8Symyz6H/N7dSTkDhG5cfd/CYcpA1F9lFC/lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=Ud6sNglD; arc=none smtp.client-ip=116.203.77.234
+	 MIME-Version; b=TnGFvZPZB+CV9FIwSS7PVLAnrkvNZ/hUSTSZNufxLGHXSdLqRJYbbwU16Ab/FZfJh8xvl2NAneZiM+LS7DMZuZknNT4WNBJ4aGPIV2Boc5v4UC3SDl1x8GFYKwJOTi+40+rMjpIiZdob6rfImrdHTza78cCGA+LuR0CCEfje9i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=NIYooHC9; arc=none smtp.client-ip=116.203.77.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
 From: Frieder Schrempf <frieder@fris.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=mail;
-	t=1771421127;
+	t=1771421128;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=WOmq4oIh50CVOlYgICncz5bv3GLxzZaAhwh07HpubHg=;
-	b=Ud6sNglDE/M4quzvkVUl9ctLNQQRyC3b0bqyX1JCEJ5NbvOUOehiskILyFIUaOWIQ3TZTg
-	GUjlqfdQicx5qhIkCpfvzTqtw6wlkPNae2hUYzPKCufT6q2xTN/IyWzQOrRYdKZ7EdlDPF
-	m8lhc/VASPWqlC5ArDnvPus7ZjXEk+zCr029tGYn9DEj2cJ2mgH7GivDq+l9fc9zJUAqzi
-	kUSQ4h7ITbfUAG6/o39r9rA2a8XvF8EZwNroagMVM0SR+jvjzdBKTJpRdgZmkfIk4aqs0y
-	2WoVxLn8D6kFyMgtgRblRQngADzf8sM9JbfvP3HkC5uT1wX7ZwgAj7o3XgoAzg==
+	bh=mGeo8dYdvtlQJ0tSEweLlRpTjA9CiDK23fAEfe4GJ3I=;
+	b=NIYooHC9JWGN5V42jrdND52uDeFM87SsrJYbw+1Up4KNbOXMh4fn4USAjofro0Of1pO1DX
+	c8HkXG5rjMNWf1dVOBBE0TRjaxirYpW0v7YSYMx3QnGu4nF+JgZuMo1o2uDt8o9/nFE7sJ
+	BDISRBuIQpgFg6W1YdN+j+7EA1zaR60EyPs6Bl6dEJ54UKkYNH4vQm/8Jf0qjR+jTbXRzt
+	bc66/ZROYbtfCScYGpqqzPK/WN/GSxX4TD6yZ5wb9CaU8nDAH3vrQyRxDOTqVqsbI4XU2W
+	TVQ+m/kDM9kEDqKf+gQhaS4ttKHhaC9mXhwWdkLzd9GWjtOjFnNaXX0R1UfQLw==
 To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	Frank Li <Frank.Li@nxp.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
 	imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Annette Kobou <annette.kobou@kontron.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
 	Fabio Estevam <festevam@gmail.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH 3/4] arm64: dts: imx8mp-kontron: Fix boot order for PMIC and RTC
-Date: Wed, 18 Feb 2026 14:25:07 +0100
-Message-ID: <20260218132519.74570-4-frieder@fris.de>
+Subject: [PATCH 4/4] arm64: dts: imx8mp-kontron: Use GPIO/IRQ defines in DL devicetree
+Date: Wed, 18 Feb 2026 14:25:08 +0100
+Message-ID: <20260218132519.74570-5-frieder@fris.de>
 In-Reply-To: <20260218132519.74570-1-frieder@fris.de>
 References: <20260218132519.74570-1-frieder@fris.de>
 Precedence: bulk
@@ -74,11 +72,10 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.84 / 15.00];
-	SPAM_FLAG(5.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
 	R_DKIM_ALLOW(-0.20)[fris.de:s=mail];
@@ -86,62 +83,60 @@ X-Spamd-Result: default: False [5.84 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	GREYLIST(0.00)[pass,body];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-266438-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266436-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kontron.de,gmail.com,pengutronix.de];
+	DKIM_TRACE(0.00)[fris.de:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_CC(0.00)[kontron.de,gmail.com,pengutronix.de];
 	MISSING_XM_UA(0.00)[];
-	DKIM_TRACE(0.00)[fris.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.52:email,fris.de:mid,fris.de:dkim,kontron.de:email]
-X-Rspamd-Queue-Id: 801EF156C93
+	DBL_BLOCKED_OPENRESOLVER(0.00)[5d:email]
+X-Rspamd-Queue-Id: 657C3156AC3
 X-Rspamd-Action: no action
 
-From: Annette Kobou <annette.kobou@kontron.de>
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-The PMIC provides a level-shifter for the I2C lines to the RTC.
-As the level shifter needs to be enabled before the RTC can be
-accessed, we need to make sure that the PMIC driver is probed
-first.
+To make the code more readable, use the macros for the GPIO and IRQ
+settings.
 
-As the PMIC also provides the supply voltage for the RTC through
-the 3.3V regulator, we can simply express this in the DT to
-create the required dependency.
-
-This fixes sporadic boot hangs that occurred when the RTC was
-accessed before the level-shifter was enabled.
-
-Fixes: 946ab10e3f40f ("arm64: dts: Add support for Kontron OSM-S i.MX8MP SoM and BL carrier board")
-Signed-off-by: Annette Kobou <annette.kobou@kontron.de>
 Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-index b97bfeb1c30f8..bc1a261bb000e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-@@ -330,6 +330,12 @@ rv3028: rtc@52 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso b/arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
+index 7131e9a499ae1..41a2bb74f1565 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
++++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
+@@ -7,6 +7,7 @@
+ /plugin/;
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
+ #include "imx8mp-pinfunc.h"
+ 
+ &{/} {
+@@ -80,11 +81,11 @@ touchscreen@5d {
  		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_rtc>;
- 		interrupts-extended = <&gpio3 24 IRQ_TYPE_LEVEL_LOW>;
-+		/*
-+		 * While specifying the vdd-supply is normally not strictly necessary,
-+		 * here it also makes sure that the PMIC driver enables the level-
-+		 * shifter for the RTC before the RTC is probed.
-+		 */
-+		vdd-supply = <&reg_vdd_3v3>;
+ 		pinctrl-0 = <&pinctrl_touch>;
+ 		interrupt-parent = <&gpio1>;
+-		interrupts = <6 8>;
+-		irq-gpios = <&gpio1 6 0>;
++		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
++		irq-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
+ 		AVDD28-supply = <&reg_vcc_panel>;
+ 		VDDIO-supply = <&reg_vcc_panel>;
+-		reset-gpios = <&gpio1 7 0>;
++		reset-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
  	};
  };
  
