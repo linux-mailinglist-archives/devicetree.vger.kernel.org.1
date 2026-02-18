@@ -1,207 +1,160 @@
-Return-Path: <devicetree+bounces-266418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266423-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qOWsM/68lWntUQIAu9opvQ
-	(envelope-from <devicetree+bounces-266418-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:22:06 +0100
+	id ICkIGI+9lWkfUgIAu9opvQ
+	(envelope-from <devicetree+bounces-266423-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:24:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD3C156926
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:22:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D71AF156979
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:24:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD36D3018BFF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:22:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 96A06301023E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D772C159E;
-	Wed, 18 Feb 2026 13:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649902C3259;
+	Wed, 18 Feb 2026 13:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rcu6sarx"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Nw1b2R3O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx-relay154-hz1.antispameurope.com (mx-relay154-hz1.antispameurope.com [94.100.133.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9392C0266;
-	Wed, 18 Feb 2026 13:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771420923; cv=none; b=oy71mesCm/rZzljVGat7lo/cJHTFNGGiRLYQmocKrclOF3KMDzKawurgtncq1yGQ2fFcvMg66U0lo4yayRYzTgYoAyzKKk43dtdLfqz1ISDqmIIbZZMvHaYi5faDQ6VJt3GjAP3dRDqMUXnou+dXTWlM7gwPG32yOh05f64nz94=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771420923; c=relaxed/simple;
-	bh=RtjePkww0hw8ZMwtNPB3pR4A7ItkOV7dbFLkqdtP194=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KSNEEMXksTvgqzoQx7reo8JW17uJto7SpIUNDK46ObfchVPjOEeYsXElDqUMXO7vxvZ+7cz3rRKC0TfFQyOj4djfTiJ3VmiqUrr2y04q+w+m3LTD9E20oDXWuyK29NpIGysyqzk+uQb+t/Vc2jxKwVbNAm4nTTtUiF+Ocbna2WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rcu6sarx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6EAAC19421;
-	Wed, 18 Feb 2026 13:21:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771420922;
-	bh=RtjePkww0hw8ZMwtNPB3pR4A7ItkOV7dbFLkqdtP194=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Rcu6sarx6DzcS3b4UmBtDKUimvxJtmougnDqFbsIcCpRmQPxnA6ddZ+zJ/zyxWdpn
-	 85wcjx9xAOWqIwW1d2PjLkC97NI7xXye4QC7sgh+/qu+TIgYqsYyer/cPnlrkpUFoM
-	 IkmGYkOqrPWDHTgfb51a69l5OnAOPElOb3luuLRnbmc4IqIiKOrZWfx5D/2BhPAHCz
-	 UJz98rXhYyo5pUA+B/FEKjI8hRwhbE96/h6i8izoKK0P7LfrGJTHetWrTSAEdeD56B
-	 ukbXSw9QAszunJz32fPgKiBLjsB4GSIIP0Rp1BqY/+lD3IoRs11r474rtrCHl5EnUK
-	 i7rFt+XU9YcBw==
-Message-ID: <9bfb4ef0-49a1-4127-aad4-2ba1b9dd8e95@kernel.org>
-Date: Wed, 18 Feb 2026 14:21:57 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D352D12ED
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 13:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.133.195
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771421045; cv=pass; b=YYZYWCexRga5M6qK/ZGlOAxVaLtrunoQMIZRrlk5eA6xmywzamlZhzsP0RO1k1EoTTVuyS/VubMIjK8aaidj3pAvvLq2taZdII0jPnV9FH2QA8v/mnLte2FjHgSriyvlCY9b0BsrYOkQYS1lpRQJtNLDq4NnM+VwwZvhFI7G9r0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771421045; c=relaxed/simple;
+	bh=UlU8u45N+iRUHhs+x+q8Eg58og+sPs+uhkmSpDxADd0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=syVJFK3Eqr4e55uNugXM31U4uAKXBG4VHzuPEpq5XqHIWzOWAg+rg1bUXv6oJoE/QF9wMC9PGJ2jxypVjUg2kv2zX//sCPQqsKxYGAq+bADgmunLwkYyXAwkqzfCWy1Em7+acnGKjlgIlzl3dMJlwsg1YOls+FZ5e8zhRqaEXB4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Nw1b2R3O; arc=pass smtp.client-ip=94.100.133.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate154-hz1.hornetsecurity.com 1;
+ spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com
+ smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
+ header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=Xp6NT0DBPlQZavb5HOX3AnM891/YuQXLWauhDrKKecs=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1771420998;
+ b=SnLPj/3ybqn2K7oRLBQNOsag2b5D0t8JGOBLpBiRsCX/tWqF+LMhA5985liKbH3y90w9Ph8j
+ 0RKiQl+TTNwQcBwG289rYA7ZN7Gi4hwmr+BwmThROgRvObHZoN/2x1VUsq6k0D/lJGlQatzz6xY
+ SYkpDm+MBEbIOSxqf4WbtUGz0dYiy7ApfCf+0KmUiLivMtUKekdTkI6NRYWediRWCl8zFEqvQem
+ SsZRlARJ3AXMIrq+Zx5GXykers4bUUPFrliYofAfwWQqFryrCwnefcvMft+Xl0lBipWHjJdkfS5
+ uxd1tDfmpFCGzf/yZ7PLBctFgIrvpzCIEgqGUUlmeB7Gw==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1771420998;
+ b=Lxp0B8Bl7o4M0oWUcJjL5WVL6F+YcDJULHfUEYHwFXUarGhGKWSqfal8hrCHP60Mei3TXqZo
+ EgroKpADq+7M/LbKK8zaBzd+j93E13SygW1nC7pRtfUR9Skaq68TKPY/rQa9pYWbm4Eg67KU7tW
+ B03xjYeZUQd62b3OfAwzlPRXCn+LaR2UqO0xTKY2LzxZizsCewInq2ixCjRCsT9fxZ6GhH+xC7G
+ l+vmBjzA5sOCBvX4GloQXllvh52t/CnAPMaitqU7S1+7ICFCRfZCmL5QtbbZe/PNSPdLlUQKCwX
+ HvbH5dvJ0ge2XGRHHtbDBWkxZWPHaS6NQjNGJHpq8HsGg==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay154-hz1.antispameurope.com;
+ Wed, 18 Feb 2026 14:23:17 +0100
+Received: from merchelm-W2.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: max.merchel@ew.tq-group.com)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 1A25FCC0CB7;
+	Wed, 18 Feb 2026 14:23:11 +0100 (CET)
+From: Max Merchel <Max.Merchel@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Max Merchel <Max.Merchel@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] ARM: dts: TQMa6: modify for use in bootloaders
+Date: Wed, 18 Feb 2026 14:22:21 +0100
+Message-ID: <20260218132228.32056-1-Max.Merchel@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 1/3] dt-bindings: sram: qcom,imem: Allow
- modem-tables subnode
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Alex Elder <elder@kernel.org>, Marijn Suijten
- <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20260217-topic-ipa_imem-v3-0-d6d8ed1dfb67@oss.qualcomm.com>
- <20260217-topic-ipa_imem-v3-1-d6d8ed1dfb67@oss.qualcomm.com>
- <20260217-godlike-silent-owl-0a8487@quoll>
- <36f0a71c-a8b7-4aaa-81c3-1945b268c57f@oss.qualcomm.com>
- <0bfcb292-4e49-4047-b631-dd3029b43f1c@kernel.org>
- <193d236b-864b-45bd-b0a9-6efbdccf6db9@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <193d236b-864b-45bd-b0a9-6efbdccf6db9@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:max.merchel@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: max.merchel@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay154-hz1.antispameurope.com with 4fGHJH68KVz3K5Dn
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:c9bad0062c84e180e2c681c5257030e8
+X-cloud-security:scantime:2.185
+DKIM-Signature: a=rsa-sha256;
+ bh=Xp6NT0DBPlQZavb5HOX3AnM891/YuQXLWauhDrKKecs=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1771420997; v=1;
+ b=Nw1b2R3OoAiY9VRapdNcdgA8abILR+jmRShTKf617G+Hrh2scq56SfmrmsZEVtorpEx5aAg9
+ y4ct0sfeCrbas0IKx/xQx9z/w3Sz9iU/Y/4QNm7WFz9XeCzdFmR7d0W8Cb6znnFALVVxNM1imWn
+ 1LxABhL3jDbkoiAbJUkWF6TxZWNNpe2aTquED5yvssSN7h3Nc6fQZ3WyoYaaWIzjbD6QFPWYGzg
+ 13PXPHeNrbfNy5SRyEjgoXg6MkbuEuDIxnGtOs+UhAUo29OBJ9p3+DGv6Y3mhLXHYjWFAz79gO7
+ u2EzGuuvMMFvbvbaeB6xgZSWaLd27dn46ADEVIqpLX1Jw==
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266418-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-266423-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.4.210:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,146a5000:email,qualcomm.com:email,devicetree.org:url]
-X-Rspamd-Queue-Id: 2FD3C156926
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Max.Merchel@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ew.tq-group.com:mid,ew.tq-group.com:dkim]
+X-Rspamd-Queue-Id: D71AF156979
 X-Rspamd-Action: no action
 
-On 18/02/2026 13:26, Konrad Dybcio wrote:
-> 
-> 
-> On 18-Feb-26 12:56, Krzysztof Kozlowski wrote:
->> On 18/02/2026 12:05, Konrad Dybcio wrote:
->>> On 2/17/26 9:25 PM, Krzysztof Kozlowski wrote:
->>>> On Tue, Feb 17, 2026 at 02:30:31PM +0100, Konrad Dybcio wrote:
->>>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>>>
->>>>> The IP Accelerator hardware/firmware owns a sizeable region within the
->>>>> IMEM, named 'modem-tables', containing various packet processing
->>>>> configuration data.
->>>>>
->>>>> It's not actually accessed by the OS, although we have to IOMMU-map it
->>>>> with the IPA device, so that presumably the firmware can act upon it.
->>>>>
->>>>> Allow it as a subnode of IMEM.
->>>>
->>>> You do not have compatible, so rely on the node name as ABI, which is
->>>> fine in general but... I do not see usage of it in the driver. Why do
->>>> you need to define modem-tables child then?
->>>
->>> I don't really *need* the node name to be an ABI. However, the current
->>> binding for IMEM only allows a named "pil-reloc@.." subnode (which is
->>> consumed via of_find_compatible_node() in the remoteproc subsystem) so I
->>> figured the intention was to keep the list of allowed subnodes strictly
->>> moderated
->>>
->>> If you'd prefer a blanket pattern declaration with say '^[a-z]@[0-9a-z]+$'
->>> with just a reg requirement inside, I'm fine with that too
->>
->> No, the problem is that you do not use the ABI here at all. Neither
->> would you use the blanket pattern, so my question stays: why adding ABI
->> which is not used?
-> 
-> The subnode I'm trying to introduce is going to be consumed (via a
-> phandle reference) from the IPA node, as done by the remaining 2
-> patches in this series.
+This series contains modifications for using Linux device trees
+in bootloaders. Changes from U-Boot bootloader are incorporated
+directly into the Linux device trees.
 
-And that's the problem - I do not see consuming child. I see
-of_parse_phandle to sram node, not the child.
+Max Merchel (4):
+  ARM: dts: imx6qdl-tqma6: add missing labels
+  ARM: dts: imx6qdl: add boot phase properties
+  ARM: dts: imx6qdl-tqma6: add boot phase properties
+  ARM: dts: imx6qdl-mba6: add boot phase properties
 
-> 
-> I would much prefer not to touch this binding file, but there's an
-> additionalProperties: false and just adding it as-is results in a:
-> 
-> arch/arm64/boot/dts/qcom/sc7280-idp.dtb: sram@146a5000: 'modem-tables@1234' does not match any of the regexes: '^pil-reloc@[0-9a-f]+$', 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/sram/qcom,imem.yaml#
-> 
-> Konrad
+ arch/arm/boot/dts/nxp/imx/imx6qdl-mba6.dtsi   | 12 ++++++++++++
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6.dtsi  | 11 +++++++++++
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi |  5 +++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi |  6 ++++--
+ arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi        |  6 ++++++
+ 5 files changed, 36 insertions(+), 4 deletions(-)
 
-Best regards,
-Krzysztof
+-- 
+2.43.0
+
 
