@@ -1,272 +1,213 @@
-Return-Path: <devicetree+bounces-266304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266305-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eFOADuEZlWnnLAIAu9opvQ
-	(envelope-from <devicetree+bounces-266304-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 02:46:09 +0100
+	id yN/fGL8elWlqLgIAu9opvQ
+	(envelope-from <devicetree+bounces-266305-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 03:06:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45FE152924
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 02:46:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2469152A1C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 03:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9889B303DF63
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 01:45:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D12D13011749
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 02:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601752DB7A3;
-	Wed, 18 Feb 2026 01:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442ED2C0F8C;
+	Wed, 18 Feb 2026 02:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="deKmsegR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cvJn3KiX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com [74.125.82.179])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDE6283FC5
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 01:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771379146; cv=none; b=cfrfPCuQyMpsc1RkrVt9AfZFlklvxmUV5ZbbOxVlMsIbFLslcmBz5700lMuSGit7K4UCUMzhpmfF4RK2TBlPR351Udl/H5y6bXhgbtVzU5xoiACPVocMGQlirYpO6TFXU0VukxSD8r4oClTbwsPZVNCio+36mExKHXUak6VoLMI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771379146; c=relaxed/simple;
-	bh=yQeoW4MqfwzTgrBMlSHdUdLyFckPUP27F2W5vrcbNCg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S1PrNHMHsJ54YmGXr+AM1/uVSDZ5P4erQgj4fh6x3wpd5Iog1BUu2yd3YA8ymhnmRgHs+rYdEqu2YGFWesCDsSOJNgd3JxbyfZZk8TMPtYeBJR/QlMXoEG9kZx++qZrxy9yjWG2ATmhMnZvtL56y9MQZ9LIXIC7hleL2Ew9vxM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=deKmsegR; arc=none smtp.client-ip=74.125.82.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-2baab3137bcso4495439eec.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:45:44 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4669238159
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 02:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.173
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771380412; cv=pass; b=S025DPgtum08X03trDJYpFaOxV+LtKEje5CLWH1zNBvMYiYqPq2ZJSMwNjviYVWJIKC44+VXVxxauQDz27mfd8YScrq/Wwa5YFl2kCjAPPlFOSay7Gj5XgjYQx4jXKUmNKQwa/jm/TL8Y7+4Txhytxz4gVdjulUy0ZDaAaTfxGw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771380412; c=relaxed/simple;
+	bh=M6NCi4rhy/mIRioIeYnEztP+rrp7HjoTf4jpdqUafkk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rssE25IvJOrv64CvAxshNZu7ujcF2ZhUR4RkWosOwUHS7Vfqr8Xf3F7JKJ/lLRNuIHjjsw06Ar2mg6b+tQDXL3pMnjL5Zgs6MEENVsUWHIac6TWoE89BSuxQ6tpDF1z/Nw5gf4LuzreUZpL/ksD5fhtNQVtF7ASgzqaW4wur4+Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cvJn3KiX; arc=pass smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-385e7cafef9so39599791fa.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 18:06:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771380409; cv=none;
+        d=google.com; s=arc-20240605;
+        b=fri8g4Y7tzFPn7n8hv7CkExtdldyMSQP/k1YN56bndmQsoCiavYH5fB5shgsoYWc9J
+         avrMbhm8DvXVpvIOMDfA0jrBz4g2iHFhLQyhF0BPIpqKunrosKBU5LhJjMD0SWfuCS14
+         Iaqh/qhFzEKIsIcAn2v+vgDZ4/GQIjBIBjt/9RICLpvw/30rQyLAHUCGIXIQLQcC4qQD
+         dHuW9sFkp+2dG0RM0D/6CTGNink7/uWWxFhANUWUwFvqLnhrLBNpWIndYJzv+i2bdJHy
+         wQGm8XKO671kKZNtE2zhW6bwP5XReJU01I68M0HE6hxWlKXa4LRFBobDCBLTlVEnXcss
+         sAlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ZCF0RDcQyUaSEbuyiR76kjbm62t96nDS6KjleK6rA6I=;
+        fh=PH/r6MQfIT7LNsfd4WfMoqF5wXaHNsoKnYNqdANEhgo=;
+        b=Rf/unS9Y3fYWiNvPXWb02gJ8NSQy48z3lK+bA8FzaUpGJzkg5b9DNwPPO529aTaVbO
+         TjZyCuIhuS/z9J0Oo6L9ogEyEdCYM3be5si6Axf0q77ceb9IbZFcczNWr8b20izpuzpu
+         ROGDccATbfpjOp4smeOHetnF7RFxF8G6+mqisihW7EOpAmTZi6ZNlAQutC5LnSIcfDVV
+         UfecjhzBpo9ptlV7xZ5OV6Ezg2k8Zu4n8EsUAP2aWA7B1MH1Mog45G4Eb7Kk6/ALa1oX
+         Yh47TQOOq37G4KcP3Gctat6w80roD35XVVNphmtKD0bKpouP1G54Ip/JE+Tf+9fK/c89
+         dkNg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1771379144; x=1771983944; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SzRez6id0tGCW3l1fRGMuvRJWCHYhvgSDSCiIHHHPic=;
-        b=deKmsegRLQHlKTeYYjEyqOZDbPT9lm7vvpbOJK0dKQ3JSLSddLlEw9hR7WNK3PnB+S
-         nPQZeipF+m1Tozp8onOYCJC6VqhdPdeNMmwiLNkzK8LiU2sI3D8ZlNySIsJ1Qs3TtxEq
-         PTKwqw/RLTdnZHjvUXUJ4YRmH2yyo6gsVnvsniD5M0BFBb4M9KGx6CfSyCIC8Gr6o4Az
-         NHipjdp+8+odThpoYB/EEyucN+Pj3E/Tfg/cipnbQoavXiD+0EIgDooLWweQNFImS6R1
-         VrhIxRWUtVWGAOYjXala7kefYl82R9MHK2ArB/PowIPHcSI/RubWYLiYj6vj0P8FPrml
-         m7fg==
+        d=gmail.com; s=20230601; t=1771380409; x=1771985209; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZCF0RDcQyUaSEbuyiR76kjbm62t96nDS6KjleK6rA6I=;
+        b=cvJn3KiX87igytLvMCwopyNPmY4ZN5XR/01sZ2uY13EzJKr3blbosweSa973qqbnKO
+         iGtBJqtaQzLxbIa8ISKrg5dbGXrRAQhwSIyN/Wbe3z8VQvzQOM9FZzDM2rLawW33kmms
+         g7NCxqg6MwmlW9xwQCoeM0DSAZAqli5Jz4JToiRbU5LJJIKg24CUkJlADDathSNQaxR8
+         zXWUf083hp15PY6A9iohOZV+u5CXxMu8bOycd1TV5r4rVWBI92d/1q59Wp4A7oaCSFsS
+         whCpT2ohrB9kOkpY16sKRuS5jEglT37y5TwN5oOa2uPHj8/s7ZQT8OxhufnPmmmO61Xc
+         1HHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771379144; x=1771983944;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SzRez6id0tGCW3l1fRGMuvRJWCHYhvgSDSCiIHHHPic=;
-        b=gm5oL4Bs0pv0n+3wt3bcLLj6fZwRpJjfVkgzurV7nSFuG4lvkgeB3wl4+Yz6Dp4IH9
-         wzkaT/XiX7ljLcEPThdoxI+l/AizQzw9zI4u7mISgPNzvoqeh/VPO6HcEbGMIXqlCFeI
-         17yvES/TaMZJ9jQK3tWlB0rXuElEWOPB0Q5Mcoi8lxiKQtx2v9TrrmEd0DXIstNuVA7v
-         6nOv6z6UbfT70WW9j7Xflq37hXkkmc/tkd9Eh4Nk/DJLcp/zVD/cbmaLpHv6Jw30+hCX
-         EyH3d/vZm0lsgBfHggd6hX/SZGrd4jS8UHnuybn/SHr96S2yxhi/oxT73IXK9DjgQbIO
-         9u8g==
-X-Forwarded-Encrypted: i=1; AJvYcCW6H5mSY4DqQ0fkevY+EhvHVy3dBMleLlB0mKEZU7xfDkgPqzzARy+y0+rKuCpAnhcj4CWItOlApXRr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBmPKld0NiXIDW9KbqZevOcJ1Gnt9N4GPQsURuc8Sv7RGKycFB
-	Cw9qQMqta4eh2QFuQhHaNjAgpREciP5/up6D/mlU5V0hlYY5Vu+VtupabE6IDjIqow==
-X-Gm-Gg: AZuq6aLy52fImyJaQluCF9OD8tCKz6YsHlmlzdKw4UTaxi6nmRbhbCu7qNG01/G9MXI
-	rxE/sZLJb2uFU886VgckLyAgRxieXGu5+nMhbxh17R1VoQL0eViddoaXiUIA2ixa6RoBYWIGOwA
-	zRLbStL54/wB3wDjixrEYT5cgG2UDKQTVbVikmYFwk9VMR+E/dzqoeemK9JZcY559SJN1gUXM9S
-	punn6I8V+6/MJZPMpaYs0KIArnjZDgiy3pMrgZVxZ/VlGPxr1wMhRmOD/INPJ2HSGrKb6Vpt4p/
-	ky/qZC+B4NTQf6CmOF1GqYqnFz+GWp4Lnmrbtwuuj+FLFs1QHHdyBhzH3veCYT/5p7t1ZvbgUKr
-	ZFVtMfyHabwB6IRSWIZ6NIOaYYoYSfXAcIXsbUjtIWKVfvlQOscC7zLFYUce55YfnqgVzNWVuvF
-	wiAFTKITurZNzC4CX1X50T03y9YZiivp8Hb/r0Nyj13B4BuPC69D/+DGaOH4Yc3AM2p48nzCJKW
-	yY52+bOvIzeRw3Pzmj+vSjwtQ==
-X-Received: by 2002:a05:7301:2b06:b0:2ba:964f:fa67 with SMTP id 5a478bee46e88-2bac97ad329mr5688952eec.24.1771379143326;
-        Tue, 17 Feb 2026 17:45:43 -0800 (PST)
-Received: from ?IPV6:2a00:79e0:2e7c:8:c8f1:53bf:725c:563b? ([2a00:79e0:2e7c:8:c8f1:53bf:725c:563b])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12742cba192sm15951817c88.13.2026.02.17.17.45.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Feb 2026 17:45:42 -0800 (PST)
-Message-ID: <b1df24fd-bbb6-4991-be52-dc1ef694db25@google.com>
-Date: Tue, 17 Feb 2026 17:45:40 -0800
+        d=1e100.net; s=20230601; t=1771380409; x=1771985209;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ZCF0RDcQyUaSEbuyiR76kjbm62t96nDS6KjleK6rA6I=;
+        b=vcykCx4KFq8CZZS0M9EHxZ26WCU1KnJUvOd16Rm/TG6N9/xbEgjjtZrGpeaM9ryHC8
+         iWLQxG53DXHdPGM5xZjTqr9ET2NhOJmm8WG7rD/EfSz9SmzroKvcQO+0mpeqkq9nXWxl
+         VxWrEFhyOrdPL461VwfWcwSNIBpuRInm/7yqOfhOToCBHTIcFX1TlCe7/N9Tu/GCTUCS
+         tSXk/e0O7BnznoOp6/Ia7FjMR8X+x7TzXVglfdBUvbV5vNt2Yzn2BDfzkMNHBrAnTGqC
+         lYo1dfjlTjSnE5ovvZxTLY+GU6+RpaRrk7vDGY6WHz65caa5NMC9THhj6LVfECVkZrro
+         rIUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUf4KHbiD5U4YBKa4td1UABPfvm1x+kceq/dVZw11UzLHbwhRNhkHtfLP20IObQ7gJg3ilK+CO5m9Oe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRGkPd7JrcEot3q/S6K7SNtb0CpmT1owpcwBrj3tHraRSGSXOn
+	24xU5RwtoSvt8De35JIwH25uAcRRWkzvPg1YvThBzM7Hs1OrKzVbB5Rv0nSda/lN2GuaGK4udnW
+	/Cn2W8nfUnkJQi7De5uqNOSCgyJOQWhg=
+X-Gm-Gg: AZuq6aLawetyr18TAwXQHwWuJa8DaowfSKq1V688d2fS1cUZU0ikIQjS+pRPnB+lFJs
+	sMjq0oV/mn6Qk2EC34NCb1UWIAjLzGUevmVz4Mpe6X4geNaJ5qS0gNqeGnlK9f4rWTXqJHSGR4M
+	Tx1kZQfi15kWgjwEOKyRBRi/TtVzgrR0xbM7M/rJ2Uckc/Z20I29DfEyPVsMMlCjwcXb0yCJNPo
+	TnXoIFJGj4ds9oczOQk5l+o8peJuu+4xIwN24YqUdzeN7WkEY4BSMDH+6EOATFwnNBzw7QGLjbu
+	A9Ng3pClu5u3xCncyMA464MibRRVpnHKmp8cq3MYdsa/rB3TWa/Zm0Nu+3KH2LNcGF/mvoFwawT
+	/3sE=
+X-Received: by 2002:a05:6512:1052:b0:59e:58fb:da42 with SMTP id
+ 2adb3069b0e04-59ef97fb163mr4855112e87.18.1771380408876; Tue, 17 Feb 2026
+ 18:06:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] lib/linear_ranges: Add
- linear_range_get_selector_high_array
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Mark Brown <broonie@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-References: <20260214-max77759-charger-v6-0-28c09bda74b4@google.com>
- <20260214-max77759-charger-v6-4-28c09bda74b4@google.com>
- <5d889f66-7697-4a39-beed-33ace693a1ef@gmail.com>
-Content-Language: en-US
-From: Amit Sunil Dhamne <amitsd@google.com>
-In-Reply-To: <5d889f66-7697-4a39-beed-33ace693a1ef@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20260207-sm8550-ddr-bw-scaling-v1-0-d96c3f39ac4b@gmail.com>
+ <20260207-sm8550-ddr-bw-scaling-v1-3-d96c3f39ac4b@gmail.com> <2c2a4e27-fea6-46f5-8d8f-b5869e8dc54b@oss.qualcomm.com>
+In-Reply-To: <2c2a4e27-fea6-46f5-8d8f-b5869e8dc54b@oss.qualcomm.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Tue, 17 Feb 2026 20:06:37 -0600
+X-Gm-Features: AaiRm53CguSsQgntYlxtDYA_uwi5z7LMqcd0-2UNQ6k5OWG__siOmUzm-gGs_wk
+Message-ID: <CALHNRZ98kp_uymSrjAGyCSus17tP9iGMYZ6T5HaAecEFyrw3mg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8550: add cpu OPP table with DDR,
+ LLCC & L3 bandwidths
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266304-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,linuxfoundation.org,google.com,linux.intel.com,samsung.com,linux-foundation.org];
+	TAGGED_FROM(0.00)[bounces-266305-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amitsd@google.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[google.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A45FE152924
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[webgeek1234@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: B2469152A1C
 X-Rspamd-Action: no action
 
-
-On 2/16/26 5:58 AM, Matti Vaittinen wrote:
-> On 14/02/2026 05:12, Amit Sunil Dhamne via B4 Relay wrote:
->> From: Amit Sunil Dhamne <amitsd@google.com>
->>
->> Add a helper function to find the selector for a given value in a linear
->> range array. The selector should be such that the value it represents
->> should be higher or equal to the given value.
->>
->> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->> ---
->>   include/linux/linear_range.h |  3 +++
->>   lib/linear_ranges.c          | 36 ++++++++++++++++++++++++++++++++++++
->>   2 files changed, 39 insertions(+)
->>
->> diff --git a/include/linux/linear_range.h b/include/linux/linear_range.h
->> index 2e4f4c3539c0..0f3037f1a94f 100644
->> --- a/include/linux/linear_range.h
->> +++ b/include/linux/linear_range.h
->> @@ -57,5 +57,8 @@ void linear_range_get_selector_within(const struct 
->> linear_range *r,
->>   int linear_range_get_selector_low_array(const struct linear_range *r,
->>                       int ranges, unsigned int val,
->>                       unsigned int *selector, bool *found);
->> +int linear_range_get_selector_high_array(const struct linear_range *r,
->> +                     int ranges, unsigned int val,
->> +                     unsigned int *selector, bool *found);
->>     #endif
->> diff --git a/lib/linear_ranges.c b/lib/linear_ranges.c
->> index a1a7dfa881de..c85583678f6b 100644
->> --- a/lib/linear_ranges.c
->> +++ b/lib/linear_ranges.c
->> @@ -241,6 +241,42 @@ int linear_range_get_selector_high(const struct 
->> linear_range *r,
->>   }
->>   EXPORT_SYMBOL_GPL(linear_range_get_selector_high);
->>   +/**
->> + * linear_range_get_selector_high_array - return linear range 
->> selector for value
->> + * @r:        pointer to array of linear ranges where selector is 
->> looked from
->> + * @ranges:    amount of ranges to scan from array
->> + * @val:    value for which the selector is searched
->> + * @selector:    address where found selector value is updated
->> + * @found:    flag to indicate that given value was in the range
->> + *
->> + * Scan array of ranges for selector for which range value matches 
->> given
->> + * input value. Value is matching if it is equal or higher than 
->> given value
->> + * If given value is found to be in a range scanning is stopped and 
->> @found is
->> + * set true. If a range with values greater than given value is found
->> + * but the range min is being greater than given value, then the 
->> range's
->> + * lowest selector is updated to @selector and scanning is stopped.
+On Thu, Feb 12, 2026 at 5:59=E2=80=AFAM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
 >
-> Is there a reason why the scanning is stopped here? What ensures that 
-> the rest of the ranges wouldn't contain a better match?
+> On 2/8/26 2:28 AM, Aaron Kling via B4 Relay wrote:
+> > From: Aaron Kling <webgeek1234@gmail.com>
+> >
+> > Add the OPP tables for each CPU clusters (cpu0-1-2, cpu3-4-5-6 & cpu7)
+> > to permit scaling the Last Level Cache Controller (LLCC), DDR and L3 ca=
+che
+> > frequency by aggregating bandwidth requests of all CPU core with refere=
+nc
+> > to the current OPP they are configured in by the LMH/EPSS hardware.
+> >
+> > The effect is a proper caches & DDR frequency scaling when CPU cores
+> > changes frequency.
+> >
+> > The OPP tables were built using the downstream memlat ddr, llcc & l3
+> > tables for each cluster types with the actual EPSS cpufreq LUT tables
+> > from running a QCS8550 device.
+> >
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
 >
-> The logic is now different from the 
-> linear_range_get_selector_low_array(), and I would like to understand 
-> why? It'd be nice if these APIs were 'symmetric' to avoid confusion. 
-> Hence, I would like to know rationale behind making them different.
-
-
-The rationale for this being asymmetric is to find the tightest upper 
-bound for `value` < minimum value across the linear range array.
-
-To better illustrate this with an example. I have 2 entries in the 
-linear range array [ [4, 8], [11, 15] ]. Let's assume I pass a value of "2".
-
-Based on my current approach, the call to get_selector_high() would 
-successfully return with `found`=false and a selector value 
-corresponding to "4".
-
-However, if I continued to search, I would end up the selector 
-corresponding to "11". A selector corresponding to "4" is much 
-closer/tighter than "2".
-
-For values higher than the highest value in any range, this would keep 
-iterating and end up returning an -EINVAL.
-
-For in range values this would work as expected.
-
-This implementation assumes that the linear ranges are provided in 
-sorted order, an assumption that I believe already underlies the 
-existing *_low_array() logic.
-
-
-Regards,
-
-Amit
-
+> [...]
 >
->> + *
->> + * Return: 0 on success, -EINVAL if range array is invalid or does 
->> not contain
->> + * range with a value greater or equal to given value
->> + */
->> +int linear_range_get_selector_high_array(const struct linear_range *r,
->> +                     int ranges, unsigned int val,
->> +                     unsigned int *selector, bool *found)
->> +{
->> +    int i;
->> +    int ret;
->> +
->> +    for (i = 0; i < ranges; i++) {
->> +        ret = linear_range_get_selector_high(&r[i], val, selector,
->> +                             found);
->> +        if (!ret)
->> +            return 0;
->> +    }
->> +
->> +    return -EINVAL;
->> +}
->> +EXPORT_SYMBOL_GPL(linear_range_get_selector_high_array);
->> +
->>   /**
->>    * linear_range_get_selector_within - return linear range selector 
->> for value
->>    * @r:        pointer to linear range where selector is looked from
->>
+> > +     cpu0_opp_table: opp-table-cpu0 {
+> > +             compatible =3D "operating-points-v2";
+> > +             opp-shared;
+> > +
+> > +             opp-307200000 {
+> > +                     opp-hz =3D /bits/ 64 <307200000>;
+> > +                     opp-peak-kBps =3D <(300000 * 16) (547000 * 4) (30=
+7200 * 32)>;
 >
+> I think that entries below the first in that memlat table should use the =
+lowest
+> frequency (i.e. if (freq > tbl_entry.min_freq) { vote_for(tbl_entry.bw) }=
+), etc.
+
+Let me make sure I understand what you're saying. Given the following
+example from the downstream dt:
+
+        silver {
+            qcom,cpufreq-memfreq-tbl =3D
+                < 1113600  547000 >,
+                < 1555200  768000 >,
+                < 2016000 1555000 >;
+        };
+
+you're saying that everything up to but not including 1555200 should
+using 547000? So in effect, round down instead of round up like I did?
+
+> You can retrieve the list of supported frequencies through debugfs if you=
+ apply
+> patch1 from my my in-flight patchset:
 >
+> https://lore.kernel.org/linux-arm-msm/20260108-topic-smem_dramc-v3-0-6b64=
+df58a017@oss.qualcomm.com/
+>
+> via /sys/kernel/debug/qcom_smem/dram_frequencies
+>
+> Konrad
+
+Aaron
 
