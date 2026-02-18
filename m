@@ -1,148 +1,156 @@
-Return-Path: <devicetree+bounces-266324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266325-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ULjmFW1+lWl8RwIAu9opvQ
-	(envelope-from <devicetree+bounces-266324-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:55:09 +0100
+	id wCkgCox+lWl8RwIAu9opvQ
+	(envelope-from <devicetree+bounces-266325-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:55:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE6F154586
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:55:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADB011545BC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:55:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 294BC300A268
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:54:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 36C29302C34E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B40F32C95F;
-	Wed, 18 Feb 2026 08:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3EB329C70;
+	Wed, 18 Feb 2026 08:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zc9byjHW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFE132ABCE
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 08:54:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4780C322537;
+	Wed, 18 Feb 2026 08:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771404878; cv=none; b=lmKi5PT8xBXULiu87aDNosUSVi5yTKHtbIu+qwiUenDgcngBq8xjXK35O8ESf5gzyBllWI6o6RyntqUfEao2ZYrn1Ozc8bgs2bplpgX5gGiUtcuvExf4hUVVEvOeBnG5FKINurEAYPr0d2aqSRDXp/O2Ah2ShdkLbkmW9JsNO3Y=
+	t=1771404925; cv=none; b=Xkxhme9wqJr9HuxKZ71sWSZNGCN3laEpmHyD8RKtF3zJzLkyDDc/FHiVt3Jk/3AiUXp5NHKGRxnuVeBXvHGsBlhYNj+NKPQP913jGmQEd5xdpVYRasqENS9Pra9VGNqZmIEgNpxPfitqTQbed1InVwOiP20cvmPNOKXqOaCk5KE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771404878; c=relaxed/simple;
-	bh=B0LX9IIPSQh0nxiusnWB2RbTaT3+xl4JMsPNGQemMKg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=vD719Mh3AIxqyJudWQxxgHmHjifVAVsyHNXlx2BUEnYSJXfZKY3wf8Ryeh0XlDnNIBdb/aUzm1vJTZr5/lCR3kLkfkYyLfhIeA65pZEW+muZaTh/MLKRQgfVJ5sfMqg1L3SoftGlcmwrE4t2kW1izt3kht90G/PFvxnBOxN/NoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vsdKI-0007hc-GA; Wed, 18 Feb 2026 09:54:30 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vsdKG-001NLe-0Q;
-	Wed, 18 Feb 2026 09:54:29 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vsdKH-000000001Hj-1f9a;
-	Wed, 18 Feb 2026 09:54:29 +0100
-Message-ID: <d5c50646f309f82009e2fcac0607d0a485ed1174.camel@pengutronix.de>
-Subject: Re: [PATCH v6 2/3] reset: tenstorrent: Add reset controller for
- Atlantis
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>, Joel Stanley	
- <jms@oss.tenstorrent.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette	 <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, 	linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, joel@jms.id.au, 	fustini@kernel.org,
- mpe@kernel.org, mpe@oss.tenstorrent.com, 	npiggin@oss.tenstorrent.com,
- agross@kernel.org, agross@oss.tenstorrent.com, 	bmasney@redhat.com
-Date: Wed, 18 Feb 2026 09:54:29 +0100
-In-Reply-To: <CAEev2e-tHySkWQBE6qUNQq+zayc+P30DV0=0LJw09saSoh8fNA@mail.gmail.com>
-References: <20260216-atlantis-clocks-v6-0-cb46d6a59c73@oss.tenstorrent.com>
-	 <20260216-atlantis-clocks-v6-2-cb46d6a59c73@oss.tenstorrent.com>
-	 <015b88b520db434fca21e83958c68cf6308f0f79.camel@pengutronix.de>
-	 <CAEev2e-tHySkWQBE6qUNQq+zayc+P30DV0=0LJw09saSoh8fNA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1771404925; c=relaxed/simple;
+	bh=bF2+HNWB1WiX1g59q+OMGNDTaA0gVIg1MYtXD/mCRRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=txHW4qVSmzUpCS023qirlNKAhs8DT3J9M+RRoOQG7UmAep+zPiEvoliov5NKi9IbL7ISiHv7x2KGbroR20V5eH/JfvssXfcKMyjawPgIXVyjf9Sfgmyjhmc2a91m6IfV3QPvlCZl3DWidGsHRrjM72x55STqNguMEERcZq+GQEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zc9byjHW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 307D9C19421;
+	Wed, 18 Feb 2026 08:55:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771404924;
+	bh=bF2+HNWB1WiX1g59q+OMGNDTaA0gVIg1MYtXD/mCRRQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Zc9byjHWu1aVv4A2OcVNDXQue2GdXDn/8QeqQkML0SRQvKOZEaP2dcvVlAgZhRfll
+	 kimwwJxUGtVfb8oSZYFg51fhOuosUf2emVjFZwnzGmOvfMRPIIZO6FqOeoqx59Lzk3
+	 wOUYPaw0Dwnb9FisF7Z85tXuw1+FW/sof52zGxzmGwOEgrQELtZf6obIFenrAHc0BV
+	 tBuy6itLheakVqDVpwA9m2zrsEn7CSspERn2nGh++R6iYAfcEIKYkUwprsuAjcAe+0
+	 QNe273UFG91EGdeaYYMs2F9XeYCKeanI8odpNkCGVWf+5gaQ/YWkoa+Lv5HiGHMpAK
+	 XE9I5hrMsEGdg==
+Message-ID: <fe12b2cc-c7ed-409c-876a-8583269c9b5d@kernel.org>
+Date: Wed, 18 Feb 2026 09:55:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: mfd: syscon: add qcom,msm8960-sps-sic
+To: Antony Kurniawan Soemardi <linux@smankusors.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org
+References: <20260218-msm8960-sps-rpm-bindings-v1-0-bbc11c0d4f24@smankusors.com>
+ <20260218-msm8960-sps-rpm-bindings-v1-2-bbc11c0d4f24@smankusors.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260218-msm8960-sps-rpm-bindings-v1-2-bbc11c0d4f24@smankusors.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266325-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	R_DKIM_NA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266324-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 9EE6F154586
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: ADB011545BC
 X-Rspamd-Action: no action
 
-On Di, 2026-02-17 at 16:49 -0600, Anirudh Srinivasan wrote:
-> Helo Philipp,
->=20
-> On Tue, Feb 17, 2026 at 5:59=E2=80=AFAM Philipp Zabel <p.zabel@pengutroni=
-x.de> wrote:
-> >=20
-> > On Mo, 2026-02-16 at 16:16 -0600, Anirudh Srinivasan wrote:
-> > > Adds Atlantis Reset Controller driver, which shares the same regmap a=
-s
-> > > prcm ( clock controller).
-> > >=20
-> > > This version of the reset controller driver covers resets from the RC=
-PU
-> > > prcm.
-> > >=20
-> > > Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-> >=20
-> > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> >=20
-> > and
-> >=20
-> > Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
->=20
-> You seem to have added a Rb and an Acked-By. Did you intend to add
-> both or just a Rb?
+On 18/02/2026 07:59, Antony Kurniawan Soemardi wrote:
+> Add compat for Smart Peripheral System (SPS) Interrupt Controller (SIC)
+> present on Qualcomm MSM8960 SoC.
+> 
 
-Both. R-b for the content, A-b for the patch going through another tree
-than reset.
+Where is any user of this new compatible? I typed in lore and did not
+find anything.
 
-> > to be merged via the clock tree, since this depends on patch 1.
->=20
-> We have a tenstorrent soc tree now and were thinking of taking this
-> series for 7.1 via that.
-
-I'd be fine with that as well.
-
-regards
-Philipp
+Best regards,
+Krzysztof
 
