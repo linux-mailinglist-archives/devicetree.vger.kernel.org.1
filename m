@@ -1,211 +1,160 @@
-Return-Path: <devicetree+bounces-266452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266453-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8DbLIZbUlWnFVAIAu9opvQ
-	(envelope-from <devicetree+bounces-266452-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 16:02:46 +0100
+	id 0M89E5jflWneVgIAu9opvQ
+	(envelope-from <devicetree+bounces-266453-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 16:49:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF59D1573CB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 16:02:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6C615779D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 16:49:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 12ED4302172E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:59:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E3AA30125DD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 15:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C58633F364;
-	Wed, 18 Feb 2026 14:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B690343216;
+	Wed, 18 Feb 2026 15:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S4f0g6+p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dulDhNSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1527233EB0A
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 14:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550FE34253D
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 15:49:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771426798; cv=none; b=W3ojq2zKMPrpjJm5rbvILObaEuFZ3jCL+KHX3y3ZrSTtO3McJK5v1zpIeSYN/zw7rxvbupRFU2HH9WtAYPHOrp8qfnIWT5arA+HrW4dWoKiCw1EDx2XdBMuYeYW175CF8ADtrREmmLMkXJR3Y6qZkmvMQXSgUfzacEuaiAre9dk=
+	t=1771429781; cv=none; b=crWJ+oJguyoOx21IOzj8ZQt4sjBqGLUhn6U/4MJXSCQ+HEsk2byRcNJY7FnR8CQdEt3ZHP1IZFQvhZ9j62O72/IX8O0eJmt5T3Tz/kIV3C/ABNswAW7FpfZayq97wucWUQFoEi5WQiOq4NcoCmkfWaritO68oPs0nhsnDmi4+3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771426798; c=relaxed/simple;
-	bh=pPNYtcnldBrPhM4I4orLxdZKoSHcMtjskKXNyUJf+ws=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=afvj+0CoGBDZkihVS3VbKOW1F2BRbVWB4wsTx1oRu4gsUOJ/AxI1vp/Nt5/Nw9c4pbSYt0kAgGPPxg04vmhIitmLts0N2mu1FziPPI+Rk7tFh0oqW6LpMuehIBbL416GebTzorayUNGhN54qeaLPClhUcsuKBinuqIq1M12CLhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S4f0g6+p; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso43994915e9.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 06:59:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771426795; x=1772031595; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=BM49FiMQXgN+7Fdf3v/nHey34rwS+KTTASqzDHMee7U=;
-        b=S4f0g6+pUdnhc6PkK9xI1osCFnbAwQerGIFEqudp6mR/pakwnoXUVkxYWO1o3C4J6i
-         BsPdXDGbDUWdfd7DuBXxtLd8lGFFqo7g/kGCIdDSSvEMj2Kqwdfity7xhhakDWI0TL5F
-         7YSv4KxhR/Th/2+vvl9rI6VJxcaZk0MysXM9CmMRJziTjK0+qAICvfvJNm24pnN61tQj
-         48htZnhClQvvTb98KrkgZV/xNI3xhb4E3d2CLbcsP3QkWcsZEq44N0ciD1aToQ9/7qch
-         2FT5nDzTyZ90K8VZc5TSZVY7JknpkLAiT2s9xR+7LFzaenrYSXhnS81fefGQApT2skYJ
-         hVcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771426795; x=1772031595;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BM49FiMQXgN+7Fdf3v/nHey34rwS+KTTASqzDHMee7U=;
-        b=DJT+QdC/6ruF0jJgMmw9lo+z4ND1KTK/XDqIMCyhFduw5pufcjFGFi/2uSWBwkORYd
-         R4xoEfaoNWgf1OYy0C57Mgbmm+Mmw5+aSo7HqqqwVFuaQihAoyXytvB2eMPRUvPqkRe4
-         TM8X+wkA9Hxu+ZaKEVvLo9Pw3OoB8yaSFnoNLi29v2UCdyhRUQnL9Oi51sbW0PDzlYnK
-         sOYhu+KDFrmOoiPT1lhDotQ+wpdvSWFtC6/GkXZzS6EFdcAxRaJ79bnkMzG5dYwfdtam
-         GAIu/vz7pCxZ4sRKul1VOeXKBtPQd979Ck63FUSXfV6MyQH1x8jslzeKryCy6PBmv0zA
-         KWrg==
-X-Forwarded-Encrypted: i=1; AJvYcCXFnmbxOnbA3R5UuW7cTUvmF1y+dCOb1CC47lTnNTlEiRINNatOUpkhx0vb3gFi5I796biR7whr3/CB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlOnfbNN+FvgDdTuOO44XWE2HJlfdkgKvwYudjndM4k+kKpy7M
-	hJbQYieEoN0LeSBLvwtr1CZ1F4Mim4jfYncqYjFVbR2Y9Fc5LyQuiUEI
-X-Gm-Gg: AZuq6aIR1cRjmmtLHa28IDwK5wkmuvHNcfQEULj2ODK/dCT+q5icUX5tcTrl7I20hNv
-	1D0QAB9DvHes2RzZhRsNxMR32yRjsL5nbzwfReo8vuQwRpjPM+z7c3Y1ep9cN6zuO8ucty4ypTh
-	RKErouhOoUVirwfeZ/oRInhSRdpnAaBNx5bysqMpUZv7/UBC9vCoKVgDcti93DjiZUIZdHQ8pf2
-	tFXnhW4Tst274v005Oc4Z3MsABbAQYUTHB1aCU5F7rG7r1JR0YupX9166GDJBi+ccScCDZ0EvLT
-	bk/EftEq4Xcmt0xE6iAPmkjRXJMuVmHpnjrMJK4rBiTmjZOzvwbdEtj/EoghP7KJuTyQRr4muXg
-	fkHBNKBqZ/j7qw98Sg99XZO6vaILZsK6tT+4cMsvHGsEjVZfFuIqOZQbO28y2qZ4F7y6vlDOdSH
-	FHV4gqKKAU0ONqGskqwYpdthabqPx85acEvxR/+QcCnvATR62f2OCWVylmTwULCn2a4AwOVLICv
-	00/QDALf8GWxRYCUTfqRc+q9Z26kod2HI1hSVbRpCU3h6o=
-X-Received: by 2002:a05:600c:348a:b0:46f:d682:3c3d with SMTP id 5b1f17b1804b1-48398a52fe5mr34213645e9.13.1771426795105;
-        Wed, 18 Feb 2026 06:59:55 -0800 (PST)
-Received: from Lord-Beerus.station (net-188-152-100-94.cust.vodafonedsl.it. [188.152.100.94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483970ce7d2sm48744945e9.0.2026.02.18.06.59.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Feb 2026 06:59:54 -0800 (PST)
-Date: Wed, 18 Feb 2026 15:59:51 +0100
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v1 03/11] arm64: dts: freescale: imx8mm-var-som: Update
- FEC support with MaxLinear PHY
-Message-ID: <aZXT5wMGQgMKHCXQ@Lord-Beerus.station>
-References: <cover.1771353301.git.stefano.r@variscite.com>
- <3b984b93a43a07bc9c4f6414a08a3a0f45daaaa8.1771353301.git.stefano.r@variscite.com>
- <31f30651-7c99-42cb-9e27-e4806529d137@lunn.ch>
- <aZTCGH1rKWdvYg5-@Lord-Beerus.station>
- <fceeda41-66cc-4bb2-ab53-d4b1ec25348a@lunn.ch>
- <aZV_c0lmBwjOI_Ep@Lord-Beerus.station>
- <fac81a12-92c9-4e29-96ca-473c18fca675@lunn.ch>
+	s=arc-20240116; t=1771429781; c=relaxed/simple;
+	bh=6s/DRXe74fLPKwvA6jsEImtBpQp1apKjuEkG2xpenu8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=G6eXReKRLjKcCW67+y5B8uTGUDuoKkf+i1/W9tIOGwkvU1TeTlZzXdA98WpdAmZVZdkqe6iXCgQXndm2Y8bUouA/o1zrIk1LvvWEseRYLSx2Sfk+rmPK+ElWP0m+0u1ZWBlBiOuN5Bh+/w2xXmSX9TlmPc94V2sirXaPkfpwtVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dulDhNSj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22BCEC2BCB2
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 15:49:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771429781;
+	bh=6s/DRXe74fLPKwvA6jsEImtBpQp1apKjuEkG2xpenu8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=dulDhNSjiR4mEtDJA4ZsVMQmZmTFuohmKaWJNV27y7lLuy92UTuRIYTm9YO9gJBIH
+	 8f7aImf1f6HGcUOvLhyKCiIRl2H8anWf/LAGPM3lncGRw57sGsQQ5HfGtGTEoYXu1i
+	 5r0rERtcHVeyoa3vgHhAJPG9uRmHWYBMZN0hQI3smQTIlTz9IKOGzx/fDzsRmdb43x
+	 NyMQlMrCiC5E7LDqH6/id4uFIUXEz8gF0K5EJCxZ4MwvV9UH+OZdHKkRr0N/QbGaIi
+	 FXLRRJDu6hbrfjjx8B4q1ajBiFVwrBFFneR3xdx6E/yOgtT/mYH2TYpFc9TvGN+XDZ
+	 DIaMJCrTcpdPQ==
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b8fa449e618so4349866b.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 07:49:41 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWYRZe12UGg4pvDolZr4bn/dNqFSELHxaKyyJ3K3MdxjVaYsoDTnT34g5z+MN2adr6OlnqR34MF65aD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzedSqlKHPwr0XQbeaArZImnPjKPxex3MlWOVwkBlbIXUdEmZj+
+	kBbbA4BNPVuw/aXUOmLlJC+FUsOMSWONQFCegyS6Pmrx8iX+9VI85gBNcOHaG00mWL84trbOMad
+	1Xz5uOaCDRWDmQefJywK2/1v7sdakEg==
+X-Received: by 2002:a17:907:86aa:b0:b73:4d06:bc8 with SMTP id
+ a640c23a62f3a-b8fb450a23fmr946321666b.53.1771429779464; Wed, 18 Feb 2026
+ 07:49:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fac81a12-92c9-4e29-96ca-473c18fca675@lunn.ch>
+References: <20260217173457.18628-1-akhilrajeev@nvidia.com>
+ <20260217173457.18628-2-akhilrajeev@nvidia.com> <e26ac880-c397-46ee-a308-be2de608e3d4@kernel.org>
+ <eb42fefd-758f-4c02-86fe-01d21a08e101@nvidia.com>
+In-Reply-To: <eb42fefd-758f-4c02-86fe-01d21a08e101@nvidia.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 18 Feb 2026 09:49:28 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL6+U__jOGyoZCHA1KMopP+=QoKuLC0K90rb_XJfqq9xA@mail.gmail.com>
+X-Gm-Features: AaiRm52YUr-ugyU80YIG6Uftdjkq2NKQ_2lfpPCd9EUbe6TXgMNQrQzHTFBaJg0
+Message-ID: <CAL_JsqL6+U__jOGyoZCHA1KMopP+=QoKuLC0K90rb_XJfqq9xA@mail.gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: dma: nvidia,tegra186-gpc-dma: Add
+ iommu-map property
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Akhil R <akhilrajeev@nvidia.com>, dmaengine@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, vkoul@kernel.org, Frank.Li@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com, 
+	p.zabel@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,vger.kernel.org,gmail.com,pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-266453-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266452-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DF59D1573CB
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9F6C615779D
 X-Rspamd-Action: no action
 
-Hi Andrew,
+On Wed, Feb 18, 2026 at 3:59=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> w=
+rote:
+>
+>
+> On 17/02/2026 19:53, Krzysztof Kozlowski wrote:
+> > On 17/02/2026 18:34, Akhil R wrote:
+> >> Add iommu-map property which helps when each channel requires its own
+> >> stream ID for the transfer. Use iommu-map to specify separate stream
+> >> ID for each channel. This enables each channel to be in its own iommu
+> >> domain and keeps the memory isolated from other devices sharing the
+> >> same DMA controller.
+> >>
+> >> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> >> ---
+> >>   .../devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml  | 8 ++++++=
+++
+> >>   1 file changed, 8 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc=
+-dma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.y=
+aml
+> >> index 0dabe9bbb219..542e9cb9f641 100644
+> >> --- a/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.ya=
+ml
+> >> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.ya=
+ml
+> >> @@ -14,6 +14,7 @@ description: |
+> >>   maintainers:
+> >>     - Jon Hunter <jonathanh@nvidia.com>
+> >>     - Rajesh Gumasta <rgumasta@nvidia.com>
+> >> +  - Akhil R <akhilrajeev@nvidia.com>
+> >
+> > With 4.5 trillion USD capitalization of Nvidia one could assume they ca=
+n
+> > spare few resources to test the patch before sending it... instead of
+> > relying on Rob's and my machines to do that for them.
+> >
+> > Expect grumpy review because you do not care about our time.
+>
+>
+> ACK! We need to do a better job here. I will work with Akhil to improve
+> this.
 
-On Wed, Feb 18, 2026 at 02:23:40PM +0100, Andrew Lunn wrote:
-> On Wed, Feb 18, 2026 at 09:59:31AM +0100, Stefano Radaelli wrote:
-> > Hi Andrew,
-> > 
-> > On Tue, Feb 17, 2026 at 09:43:16PM +0100, Andrew Lunn wrote:
-> > > 
-> > > And here you loose me. RGMII is between the MAC and the PHY. The PHY
-> > > is on the SOM, so there is no need for RGMII to leave the SOM.
-> > > 
-> > > MDIO is can understand going to the carrier, because there can be
-> > > other devices on the bus, such as an Ethernet switch.
-> > > 
-> > > You say the LEDs are not on the SOM. So they should not be listed in
-> > > the .dtsi file for the SOM. It could be the RJ45 is a cheap one,
-> > > without LEDs. The colours will depend on the RJ45 socket. It could be
-> > > a single LED is connected to the front panel, which is typical of STB
-> > > etc. So the LEDs are a board property, not a SOM property.
-> > > 
-> > > > > >   Two LEDs are defined to match the VAR-SOM carrier design:
-> > > > > >     * LED@0: Yellow, netdev trigger.
-> > > > > >     * LED@1: Green, netdev trigger.
-> > > > > 
-> > > > > Where are the LEDs? You say "carrier design", so are they on the
-> > > > > carrier? The DT properties should then be in the .dts file for the
-> > > > > carrier.
-> > > > >
-> > > > 
-> > > > The LED signals are driven directly by the PHY and originate on the SOM.
-> > > > They are exposed on the SOM connector and are typically routed straight
-> > > > to the RJ45 integrated LEDs on the carrier.
-> > > 
-> > > The problem here is 'typically', not absolutely required, otherwise
-> > > the magic smoke will escape making the box useless.
-> > > 
-> > 
-> > You are right sorry for the confusion: RGMII is internal between the MAC
-> > and the PHY and does not leave the SOM. What is exposed on the SOM
-> > connector are the MDI pairs towards the magnetics/RJ45 and the PHY LED
-> > output signals.
-> 
-> O.K, that is what i expected.
-> 
-> > Given that the actual LEDs are implemented on the carrier side (RJ45
-> > with integrated LEDs, pull-ups and LED supply), would you prefer that
-> > the LED description is moved out of the SOM .dtsi and into the carrier
-> > .dts?
-> 
-> Yes please.
-> 
-> > My idea would be to keep the Ethernet controller/PHY node fully
-> > described in the SOM .dtsi (since the PHY is on-module), and add only
-> > the LED subnode/definition in the carrier .dts where the LEDs are
-> > actually present.
-> 
-> Yes. That is good.
-> 
-> Thanks
->      Andrew
+Anyone that wants to run a gitlab-runner (and docker) on one of their
+machines to add to the test capacity would be more than welcomed. It's
+pretty trivial to set up. The only requirement is something faster
+than gitlab shared runners. My 2 machines are M1 and M3 MBPs.
 
-
-I will send the v2 with led descriptions in Symphony dts instead of SOM
-dtsi.
-
-Thank you again,
-
-Best Regards,
-Stefano
+Rob
 
