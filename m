@@ -1,164 +1,153 @@
-Return-Path: <devicetree+bounces-266499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266500-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CE0UI6QBlmlHYAIAu9opvQ
-	(envelope-from <devicetree+bounces-266499-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:15:00 +0100
+	id uKVjB/oBlmnQYAIAu9opvQ
+	(envelope-from <devicetree+bounces-266500-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:16:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0502E1589CB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:14:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C52158A08
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:16:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EACB73010B88
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:14:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7AAF63013A4E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76306346AC3;
-	Wed, 18 Feb 2026 18:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0A3345741;
+	Wed, 18 Feb 2026 18:16:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GLzC1rHK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RpK+O2+Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DFAB2F5A06
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 18:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.169
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771438498; cv=pass; b=XWnJEDbUuZXqxhoEeCMCcN6KUrnLciy1jVgcXKxM53aeS6hfsDul1FomHjKvUPX8b4hRPidvAkk/k7UEp3vEz0sqSK9xNqsSTevxBAGuMRvY/vVPeGo667pDJSHi5NkU0dFboq9+0g/JNc4Pw++6l6hXMZaKkSte/j1iqiA3ATg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771438498; c=relaxed/simple;
-	bh=YviV1LJUtPqR1ffjnWUweO4RqwvYdHYZDmBnJ4iJYEk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hOwP4oZjRHSQamlTsNGKHZeg3CcYtnI5YiXjZJw1zfZ3iQQFSuP9xpmz2YHjdoUq0yjpXDXinDdFH4e8aMImKKhGq/EaTBnjU5ZqHTT8gwlbpK4IWJWX0DkQ1SyKR3UbuNOe/7ahbJGZousegHPhPMNXhXIXuPXGd2xo3f6s2xU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GLzC1rHK; arc=pass smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-3870d178a9aso1579831fa.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 10:14:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771438494; cv=none;
-        d=google.com; s=arc-20240605;
-        b=eUqzJUcPIHu4dOGJAxWHP3ZQqvJkUkMiEJNgy6OHFYty92BTJou12mThMMqjRIhrHQ
-         UEGCYqRCjf/zbVTvHr34lv5DL9k1LEKrTcdVQduU1dyTKtbaHsS9WTc5ryJJr7pKC8/V
-         MEunnHLw+QD30+SUzhz6zh7OJsjcd//scLPBtQodC4Y2FFE71d54i0ZIAbbwLrlbHbUq
-         KyhdLfVxj+8lJVEjCDC682qy8UFeGWv5Qqc6EJePTCjIzWip6/q8Blc3OzljGcqIY2VN
-         hoSJpUmY10S3HuoOox4WVVPrOMdMNB/ldFhGN6JZmldXm0W+Ih3AJBh+K9B8Js3U9xu0
-         A+KA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=YviV1LJUtPqR1ffjnWUweO4RqwvYdHYZDmBnJ4iJYEk=;
-        fh=TCqj2n7dRMuJCTEqbqeK/vIWTb4u2B+Cr6yX3Tqn8oA=;
-        b=PLLiLfJVaf01hQ2gv9CkcoNeu4RQAR0QZNqOk1bWclF7yd3s3H/4trr04a5mWTZWNs
-         ztGrV1Ju6yg4sEBwWIAPdXYRARpLvs4W1SYj2i9TcYPjI2vDdJJ8bsYUjIfaV29MrVT0
-         24w649Csj3S2Q/H2GqN1PtEknJw4jGd1FtJXV0yClTefPrG0w9gaZq6I9U5kIMW/UlVg
-         q8MIrzK7WEhz/cA0U7lHMmRxogcfMDaCYFURSUI4snSAqxQkWKIWwCMv+3FPUJ+jZd6d
-         UvgzOCoD8SpJ8yHY9nmVYMkTa3i4AZ63e5yWbXNBmUbnfbi96lHSpWKLEocF1WM4/59R
-         cUEg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771438494; x=1772043294; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YviV1LJUtPqR1ffjnWUweO4RqwvYdHYZDmBnJ4iJYEk=;
-        b=GLzC1rHK/vQeqRi8bFJWzbqHbnTYEtJ3NlKXO587ach3vDHevm1lKuUOrf7/OOAS30
-         I2YALdHIQAfbV9Rze6NInQk+GWZfCjK9vSyaBOcgYo0oHTf1JqyvPlIiAlhn8iqSJuct
-         eEsGZdDaOtk7xvMup13Au2uwX6kYYT0yAE3iJw3zvxmJaFSR4/9oYFxUQZDC7WTKGxdG
-         f5vGnMa/YmSCFaWzusTLBA1ZMK1tvTlYMGVgDFChRjb1pD50vS2yi8Tnfnv1hnYnhoOw
-         lOTPxmqydWfeuKgFIL6mbCjTR2G68j13wvwHlfhnNrou9kh0LtdKt/7kDWXrTlqetj9i
-         eXBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771438494; x=1772043294;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=YviV1LJUtPqR1ffjnWUweO4RqwvYdHYZDmBnJ4iJYEk=;
-        b=P0AnUJ5ZDIRT3ngDCjHncebtpK4VSMGD46qkn89fPfAq7qL2Zu9qiyu+kzlpWgBWsY
-         eDsWBw/42zUjdYpStGa4JbRTHIzNf2U4CgaNsqaaJPL8IVEg/PWvaENWKx8aM4hzfX5h
-         fshjmtdzHOlROXwpMCzCucGfT50hm0GocbmxpC2JE+0b6a2q40gmyF3wrH3HckOXQkuP
-         gj/02wmF6PAKZxN4mw/8WUeJ59jAcoPvbJn5V52r6MhJSwfcLhC3Qg7fRFyr0jGB4iFF
-         uogE78VX+YRl0JOpXsLOl6lKjWkMKbHPS2EQ+K/GPEbahT99BtiNEW4ZUG2ffxVvbWM0
-         QaYw==
-X-Forwarded-Encrypted: i=1; AJvYcCWqOMR387a/6+bFn8bPilS+ouGnLXl21tbDNaBxqnlW+Szfu3oQLhwWkXAwQnsMRF0jI/1ezPXevEBo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzX2QdtjSN/MIFNHxjAHtdO/ds9WZm+q0zAvmAEYAh+fGHuwrhb
-	jk3PaA1BedLyDePyVTJMOaW/oUr28gGj6xvc5Ws9qBHk9oWVcwd5P7CCXgExRvc8HnOeJEAUEB2
-	rWBLjjvjYitmQCIcE8pcI4qQjbMnIcVE=
-X-Gm-Gg: AZuq6aIiD3ct4dL6pmSYHUeDja1J8Pxt61xVvcGvd0YsBlpNHx33DcuSqOy93RkLU/M
-	nLSrOlIJswl2xapko4JliFeRQwYw6TOoTcX2iidaziPkP5uas7T8hz1GsPWNi02oR/v51FP41yK
-	n8dcI0rbTln3UdC6IEcdkmLd1ieMthxIbTJnrui0a8j/cmD5sOBpB47SrHQs+EEPE7DeyTdJsYr
-	fNhzOmlP6jN8TltoUvjlwmXaemN+AGUHgNV0UuZDxpofsUMmDFT0lyhjYn+RCBGX8aF6v7CUi8n
-	dX7PT31OyiO0UHpFnW+FUhXJ8lhrUpPhgXj39vARCEOtOfe9uzjuR9Pbw2BBGoSxVN8usWw=
-X-Received: by 2002:a05:651c:1505:b0:37a:34e2:88e7 with SMTP id
- 38308e7fff4ca-38846ded488mr8325581fa.22.1771438494066; Wed, 18 Feb 2026
- 10:14:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87FBF2FFDDE;
+	Wed, 18 Feb 2026 18:16:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771438581; cv=none; b=TNur021NT4ShFdEW85K7jaYxmiNVFVjRsMWXACtMVzdKeo1NmvtCOzC2S5Lr9p4rj24SS0+rd0UXtgNWfPpa0WxYM1ALUbblQnLBgPbwG098LhT4cKYSbJMVSvNnaoqv6+yBsaLtWtXy41arGJe/CT9Jk7jeD30Prs+hXnRv8zw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771438581; c=relaxed/simple;
+	bh=Gcm4qVHExOEVMXPGeceeOhHrV8lE0lvyc/lJzKXr9KE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Wgl3W/NbGPqMYNy2SDVZqcAvb/qMT9Xh2/TQTjyKfGDGN6U/fI8/egJRjWJSCw+0QNoIX8C4+quUnipnJtl1nqDCRcTTW2lqBWwfI7Y5HE8VRCjx0DSr6j8ihEHNNsXyaOEeW8rEkmVBsGg14DTR7jwboAbDMzCmvAe62y+0KPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RpK+O2+Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 12AD2C116D0;
+	Wed, 18 Feb 2026 18:16:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771438581;
+	bh=Gcm4qVHExOEVMXPGeceeOhHrV8lE0lvyc/lJzKXr9KE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=RpK+O2+Qn2qOKH1w4vmhjOsXCxQCJHceEFZnmwD2f2L9a8OQqG+3SwTMSbTC6bIIO
+	 5LqzOD6LYA+9ZF11X6FQXNiuxYJtNt7v+E3gjdzFv+qDAhgJLtPGmp4sxrXrN3dtRR
+	 VBk+Q2V751++EArb0cesvnsVOAdKHn6FBfgfwc1LT5gkdmsvqi8Tc2E5Qrqje/AIt5
+	 0QHkJndq9+oLTD60ngwa/0D9iexgHXgXy8vM5sp2HODsbZbs/b0mh1KBbZHoCoGKcZ
+	 DyhufY+8aWLbj2Rf0ofGF0d0J3xrcel4l7yDoAMeOH+276c7gyrNlt9jDeegf2QXdc
+	 eWt++79XgL+PQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 06AA3E9A03E;
+	Wed, 18 Feb 2026 18:16:21 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v2 0/3] arm64: qcom: sm8550: add DDR, LLCC & L3 CPU
+ bandwidth scaling
+Date: Wed, 18 Feb 2026 12:16:17 -0600
+Message-Id: <20260218-sm8550-ddr-bw-scaling-v2-0-43a2b6d47e70@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260218132339.32157-1-Max.Merchel@ew.tq-group.com> <20260218132339.32157-2-Max.Merchel@ew.tq-group.com>
-In-Reply-To: <20260218132339.32157-2-Max.Merchel@ew.tq-group.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 18 Feb 2026 15:14:42 -0300
-X-Gm-Features: AaiRm53RLXHEYghXfgNRCuxfYIbnDQ70cmKmTheE3k1c4d-bmc6cBGsAlV-rhj8
-Message-ID: <CAOMZO5B5k_i_q4cd7SMNAkicF4WfEYNVUSrg8AamQHNpGys5mA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] ARM: dts: imx6ul/imx6ull: add boot phase properties
-To: Max Merchel <Max.Merchel@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, linux@ew.tq-group.com, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WNSw6CMBRFt0Le2GdK+TtyH4ZBf8BLaEtaUzWEv
+ VvZgMNzcj87RBPIRLgVOwSTKJJ3GfilALUINxsknRk44y3jrMNo+6ZhqHVA+cKoxEpuRlk2vO5
+ 5N+UI5O4WzETvc/cxZl4oPn34nDep/Nl/i6nE7IZWVVM1CFXL+2wFrVflLYzHcXwB0XFx0boAA
+ AA=
+X-Change-ID: 20260207-sm8550-ddr-bw-scaling-b1524827f207
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Georgi Djakov <djakov@kernel.org>, 
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771438580; l=1135;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=Gcm4qVHExOEVMXPGeceeOhHrV8lE0lvyc/lJzKXr9KE=;
+ b=C0HAxvfbORFTufxT5rgl1D1byfeP3nL2nahiROonuwq8HhU+DsdwxGWAjHXR4Kuq4Qy14BCit
+ uP03bwJo/RWA13hOEmn4myjiZaCKehyv0DUCM1m0+CLrIPh4pH5Djsb
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266500-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266499-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,tq-group.com:email]
-X-Rspamd-Queue-Id: 0502E1589CB
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C4C52158A08
 X-Rspamd-Action: no action
 
-Hi Max,
+Add the OSM L3 controller node then add the necessary interconnect
+properties with the appropriate OPP table for each CPU cluster to
+allow the DDR, LLCC & L3 CPU bandwidth to scale along the CPU
+cluster operating point.
 
-On Wed, Feb 18, 2026 at 10:24=E2=80=AFAM Max Merchel
-<Max.Merchel@ew.tq-group.com> wrote:
->
-> Add boot phase properties from U-Boot device tree.
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Changes in v2:
+- Squash first two patches
+- Update opp tables in last patch to match how the downstream driver
+  parses those tables
+- Link to v1: https://lore.kernel.org/r/20260207-sm8550-ddr-bw-scaling-v1-0-d96c3f39ac4b@gmail.com
 
-The commit logs of this series could be improved. Please take a look
-at these examples:
+---
+Aaron Kling (3):
+      dt-bindings: interconnect: OSM L3: Document sm8550 OSM L3 compatible
+      arm64: dts: qcom: sm8550: add OSM L3 node and cpu interconnect nodes
+      arm64: dts: qcom: sm8550: add cpu OPP table with DDR, LLCC & L3 bandwidths
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-h=3Dv6.19&id=3D256feb5be482315a91c1bd1a1808276f57ef76dd
+ .../bindings/interconnect/qcom,osm-l3.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               | 367 +++++++++++++++++++++
+ 2 files changed, 368 insertions(+)
+---
+base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
+change-id: 20260207-sm8550-ddr-bw-scaling-b1524827f207
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-h=3Dv6.19&id=3D2285ea3f8065f47a6a1b62e6fcfa85105c8c261b
+Best regards,
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
