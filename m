@@ -1,347 +1,249 @@
-Return-Path: <devicetree+bounces-266336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266337-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BPEG2mGlWm9SAIAu9opvQ
-	(envelope-from <devicetree+bounces-266336-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:29:13 +0100
+	id kGSGApeHlWnqSAIAu9opvQ
+	(envelope-from <devicetree+bounces-266337-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:34:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7EE5154B95
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:29:12 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16872154BE6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:34:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EFAFA3019903
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:28:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1B3803004615
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF86233C19F;
-	Wed, 18 Feb 2026 09:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0666E33A9CB;
+	Wed, 18 Feb 2026 09:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="D90tF9GN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lFAamR6M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D221633C1A6
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 09:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B742EC0A4
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 09:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771406931; cv=none; b=lAl/Ho+q7KVyTFW4I0PzmceYvloInM17H1QQ4rw6ZMvOe66e7r3gNvuBjkGJWW7aTYa/Bv41JrUB65TbEfdnzTvMpZS9rLSh0nkgiwcHIj1hkJwPQF5Uk1uEnlG6CLiyKX2f33SWebmcu4tixj96nEsP3V3CC8oHp8Hmt1YfETc=
+	t=1771407249; cv=none; b=C22A5tCA3qrI6g/l25+QFQ4DWNQvQGdLm0QsL6FAoj/6aeB9GuP1hYNsIBCO4UIzEV3+Ddp54r4WZnWyAW7ieYL2ZIXlCp/nkSH528z6hgSKoxdT3DNS70gIXHytFWVFijQ70oO5BGxbjTbnXClBwGJa5ggRdgwAyTtU4QUwY+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771406931; c=relaxed/simple;
-	bh=hjgDR+M62i3dLJJ3R+9MFvTcATxJrvJQve1Wk5thDsI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=sq8Y8w6c5SIsA2STmS4jUqBqD6LPtSq535+4r+2Kq8I4O4m3LmOWbzjUkCTovG9+49OYjl1Yvs3dIgVfpvXYMS3ToXTlz0yYdjf6lOAHbh4IvZvl6HqW4xsukQB3Q/Wo3fulXC1zicQWccCNJk0W0fG6dJw6rQqCpd4Ny3F0NVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=D90tF9GN; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20260218092842epoutp03c049aa0033bea61d93adc436338018f8~VTTXssLZQ2429524295epoutp03h
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 09:28:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20260218092842epoutp03c049aa0033bea61d93adc436338018f8~VTTXssLZQ2429524295epoutp03h
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1771406922;
-	bh=4e3tv1xNKbYMfR4tMSvH4s7rnaxHOgZeeoPQiSoUN0M=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=D90tF9GNDWl5e5prLf2vxxB1ScK/jOBQvdhfCp9mHbJ0+MRJ65NqG9srgh2rdBuUg
-	 5Z7DHIAg5N4bmn2ZwMP9zGNJLn9ZlkRHoTgngp1pjkQFWpASLJXVDR99IBWSbFcxZw
-	 kIBo72YUbKaNOMmMyAczVEDYooKZYfmi/HhSFu0E=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20260218092841epcas5p22642078f78df8fd20e61ec3d7c41bf79~VTTW8I5zp0869308693epcas5p2c;
-	Wed, 18 Feb 2026 09:28:41 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.91]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4fGB5h4bSdz6B9m5; Wed, 18 Feb
-	2026 09:28:40 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260218092839epcas5p114565db47fc89a2a06f4b1fbfc8f2bb7~VTTVKpjoh3202332023epcas5p1r;
-	Wed, 18 Feb 2026 09:28:39 +0000 (GMT)
-Received: from INBRO007194 (unknown [107.122.3.105]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20260218092837epsmtip256210e6c41614d4b1be8376b87ab5716~VTTTWhBSz0044900449epsmtip2B;
-	Wed, 18 Feb 2026 09:28:37 +0000 (GMT)
-From: <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
-Subject: RE: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add
- regulators for the USB
-Date: Wed, 18 Feb 2026 14:58:36 +0530
-Message-ID: <019001dca0b8$f709e640$e51db2c0$@samsung.com>
+	s=arc-20240116; t=1771407249; c=relaxed/simple;
+	bh=S2fAqnp/pYHLw/y2nvO8RwQgZHk6o0/SJezYNuscCws=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gNCvWpXDeXSVmZPbcltN0aURyDUMuZCLm2ZQO0UaCA1D9ehMwK0TPpH8O0Ciu9EBKOKQ7oZRGfJLfPqfo/Y98mS3Hql170cTxiESyesfZB7Xn61yXVDJVb6Cd92vpL9h5O2EtwjIXRUUzkDYjZRPrQAA35mI3ItxUSubpt8BAfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lFAamR6M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72864C2BC87
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 09:34:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771407249;
+	bh=S2fAqnp/pYHLw/y2nvO8RwQgZHk6o0/SJezYNuscCws=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=lFAamR6M5QFXupgM6YZBksrVr+Dfvq1yhmfdul36U9MfK1nnfP1ossjNXrK+l1lz9
+	 M4/zfQ4JX3wk+jY+ZNMlQHeiDwPB65RW5fh68tggMpgKO2yTe4KJZWCVq16jnFOICx
+	 7vBX1ihMTletfM+J3gOUnq4Evh7Ma9SYgiNkX8koCCj595a4PzAY0qo51K7AQIIS5u
+	 nQnI5CzpNxkoLzQ3ZPXmh4zHM1lozkm9ZWMTvDPTYNPzIKvOF2O6uZLpsrK4Th2bz9
+	 8Pr38d7uQFo9hfIdS36H5bb7RjiX7bwipiMncotJY4O19SWByJ7ccUqsTZtVORGSzZ
+	 whtGTvEdDuBdQ==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-59e60925251so5552950e87.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 01:34:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWZMk/stBYf7s5hO6tniIsxVXvoDUAPWJCyXWzMb6kgJrcpCHfDUE8FFqbQ0TS7Nq8bvfQDVbelHFs/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxduCD39jzv5GgmhB3SmyiP2jRfyz/ujvBmjskZjg3Z9C0sEpIE
+	O3JGPJcImp2OTxkatJ13rksiuUXtgHFvS/1dI1KpDb5NY7vyint2IC6Qk/QQo5p8gHCsGCWKNpZ
+	d0gO0JnqhlgRhuWSc0twd4uRxO3sqKUGAbHbs5Svnag==
+X-Received: by 2002:a05:6512:1193:b0:59e:6098:325c with SMTP id
+ 2adb3069b0e04-59f69c0f332mr4656697e87.2.1771407248008; Wed, 18 Feb 2026
+ 01:34:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20260214213239.2546012-1-james.hilliard1@gmail.com>
+ <CAMRc=MfK8k88PfQPvP=p1r3KQ40dwcZq4Z4f5fnRFakpYcknvA@mail.gmail.com>
+ <CADvTj4r4mR0_HxcOOZFqJTVfoD=YdrGd2AD+hQNw6ciGUC=C1A@mail.gmail.com>
+ <CAMRc=Me6v2E1zKGQzukJmP45cVkRWOGzYoO9=LKh63rPFRqfqA@mail.gmail.com> <CADvTj4ovM1faNGoUa4HoTCN7avAqwkZfY5v9P8okgx87or8gDA@mail.gmail.com>
+In-Reply-To: <CADvTj4ovM1faNGoUa4HoTCN7avAqwkZfY5v9P8okgx87or8gDA@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Wed, 18 Feb 2026 10:33:54 +0100
+X-Gmail-Original-Message-ID: <CAMRc=McR613nBkUehva0bidxrUz2eQ1Ud9g1m4gKdXyGzHo_PA@mail.gmail.com>
+X-Gm-Features: AaiRm51TpfF5TpICSocGEksfNwterWtJl28o32HV6sZvtB9frFQDrJMQ9pCp8rc
+Message-ID: <CAMRc=McR613nBkUehva0bidxrUz2eQ1Ud9g1m4gKdXyGzHo_PA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] gpiolib: of: add gpio-line node support
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: linux-gpio@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AQEa27yOGkcSyej7W4JCG0x5iKXFKwI+5auhAd1pMcUC7yIEuAId+/jbAjLLeay2sNbGsA==
-X-CMS-MailID: 20260218092839epcas5p114565db47fc89a2a06f4b1fbfc8f2bb7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20260122125134epcas5p36625b7ac70b8dfba9430831a11955682
-References: <20260122130721.205664-1-pritam.sutar@samsung.com>
-	<CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
-	<20260122130721.205664-3-pritam.sutar@samsung.com>
-	<352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
-	<000001dc9c13$ea305520$be90ff60$@samsung.com>
-	<2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:mid,samsung.com:dkim,samsung.com:email,o.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TAGGED_FROM(0.00)[bounces-266336-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266337-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_NO_DN(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: C7EE5154B95
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 16872154BE6
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: Sunday, February 15, 2026 2:27 PM
-> To: pritam.sutar=40samsung.com; robh=40kernel.org; krzk+dt=40kernel.org;
-> conor+dt=40kernel.org; alim.akhtar=40samsung.com
-> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
- linux-
-> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
-> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: Re: =5BPATCH v2 2/3=5D arm64: dts: exynos: ExynosAutov920: Add
-> regulators for the USB
->=20
-> On 12/02/2026 12:37, pritam.sutar=40samsung.com wrote:
-> > Hi Krzysztof,
+On Tue, Feb 17, 2026 at 8:07=E2=80=AFPM James Hilliard
+<james.hilliard1@gmail.com> wrote:
+>
+> On Tue, Feb 17, 2026 at 6:18=E2=80=AFAM Bartosz Golaszewski <brgl@kernel.=
+org> wrote:
 > >
-> >> -----Original Message-----
-> >> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> >> Sent: Thursday, January 22, 2026 7:04 PM
-> >> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>;
-> robh=40kernel.org;
-> >> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com
-> >> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.o=
-rg;
-> >> linux- samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
-> >> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com;
-> >> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
-> >> Subject: Re: =5BPATCH v2 2/3=5D arm64: dts: exynos: ExynosAutov920: Ad=
-d
-> >> regulators for the USB
-> >>
-> >> On 22/01/2026 14:07, Pritam Manohar Sutar wrote:
-> >>> Add dummy regulator for USB and PHY supplies.
-> >>>
-> >>> Add vbus regulator that is enabled by GPIO pin.
-> >>>
-> >>> Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> >>> ---
-> >>>  .../boot/dts/exynos/exynosautov920-sadk.dts   =7C 139
-> >> ++++++++++++++++++
-> >>>  1 file changed, 139 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> >>> b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> >>> index a397f068ed53..f90f7704597c 100644
-> >>> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> >>> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> >>> =40=40 -52,6 +52,76 =40=40 memory=4080000000 =7B
-> >>>  		      <0x8 0x80000000 0x1 0xfba00000>,
-> >>>  		      <0xa 0x00000000 0x2 0x00000000>;
-> >>>  	=7D;
-> >>> +
-> >>> +	/* TODO: Remove this once PMIC is implemented  */
-> >>> +	dummy_regulator: regulator-0 =7B
-> >>> +		 compatible =3D =22regulator-fixed=22;
-> >>> +		 regulator-name =3D =22dummy_regulator=22;
-> >>> +	=7D;
-> >>> +
-> >>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
-> >>
-> >> Please use name for all fixed regulators which matches current format
-> >> recommendation: 'regulator-=5B0-9=5Dv=5B0-9=5D'
-> >>
-> >> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.gi
-> >> t/tree/
-> >> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> >>
-> >> None of the regulators are called like you wrote. Really NONE.
-> >>
+> > On Mon, 16 Feb 2026 22:20:10 +0100, James Hilliard
+> > <james.hilliard1@gmail.com> said:
+> > > On Mon, Feb 16, 2026 at 4:38=E2=80=AFAM Bartosz Golaszewski <brgl@ker=
+nel.org> wrote:
+> > >>
+> > >> On Sat, 14 Feb 2026 22:32:37 +0100, James Hilliard
+> > >> <james.hilliard1@gmail.com> said:
+> > >> > Allow GPIO controller child nodes marked with "gpio-line" to
+> > >> > configure direction/flags at probe time without hogging the line.
+> > >> >
+> > >> > Teach OF gpiochip scanning and OF dynamic reconfiguration handlers=
+ to
+> > >> > process gpio-line nodes in addition to gpio-hog nodes.
+> > >> >
+> > >> > Also parse "gpio-line-name" and apply it to desc->name. For gpio-h=
+og
+> > >> > nodes, keep "line-name" semantics as the hog consumer label.
+> > >> >
+> > >>
+> > >> One important thing that's missing from this commit description is: =
+what is
+> > >> the use-case and why do you need this.
+> > >
+> > > Added some more use-case details in v3:
+> > > https://lore.kernel.org/all/20260216211021.3019827-1-james.hilliard1@=
+gmail.com/
+> > >
+> > > In my case I'm setting up the GPIO line initial state and names for
+> > > userspace consumers mostly. I want to be able to configure the
+> > > individual line names from a combination of the dts file and multiple
+> > > dtso files for the same gpiochip along with setting up an initial sta=
+te
+> > > before userspace consumers operate on the lines.
+> > >
+> > >> The DT binding patch should be sent together with this in a single s=
+eries. It
+> > >> should also be documented in the relevant .rst file.
+> > >
+> > > Which file would that be?
+> > >
 > >
-> > Thank you for the references. Will bring changes for regulator's name
-> > and labels as
+> > Documentation/driver-api/gpio/board.rst would fit best.
+>
+> Should gpio-hog docs be moved here as well?
+>
+
+Not moved from DT bindings, just added as they are missing.
+
 > >
-> > -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
-> > +       reg_usbdrd31_dwc3_vbus: regulator-1 =7B
->=20
-> Did you read the binding? That's not what I asked.
->=20
-
-Yes.=20
-Sorry for misinterpreting above comment. Is it expected as below?
-
-This is based on our understanding by referring binding and other vendor dt=
-s.
-
---- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-=40=40 -59,7 +59,7 =40=40 dummy_regulator: regulator-0 =7B
-                 regulator-name =3D =22dummy_regulator=22;
-        =7D;
-
--       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
-+       reg_usb_vbus0: regulator-5v0-vbus0 =7B
-               compatible =3D =22regulator-fixed=22;
-               regulator-name =3D =22usbdrd31_dwc3-vbus=22;
-               regulator-min-microvolt =3D <5000000>;
-=40=40 -75,7 +75,7 =40=40 usb_phy0: usb-phy0 =7B
-                vbus-supply =3D <&usbdrd31_dwc3_vbus>;
-        =7D;
-
--       usbdrd20_dwc3_0_vbus: usbdrd20_dwc3_0-vbus =7B
-+       reg_usb_vbus1: regulator-5v0-vbus1 =7B
-               compatible =3D =22regulator-fixed=22;
-               regulator-name =3D =22usbdrd20_dwc3_0-vbus=22;
-               regulator-min-microvolt =3D <5000000>;
-=40=40 -91,7 +91,7 =40=40 usb_phy1: usb-phy1 =7B
-                vbus-supply =3D <&usbdrd20_dwc3_0_vbus>;
-        =7D;
-
--       usbdrd20_dwc3_1_vbus: usbdrd20_dwc3_1-vbus =7B
-+       reg_usb_vbus2: regulator-5v0-vbus2 =7B
-               compatible =3D =22regulator-fixed=22;
-               regulator-name =3D =22usbdrd20_dwc3_1-vbus=22;
-               regulator-min-microvolt =3D <5000000>;
-=40=40 -107,7 +107,7 =40=40 usb_phy2: usb-phy2 =7B
-                vbus-supply =3D <&usbdrd20_dwc3_1_vbus>;
-        =7D;
-
--       usbdrd20_dwc3_2_vbus: usbdrd20_dwc3_2-vbus =7B
-+       reg_usb_vbus3: regulator-5v0-vbus3 =7B
-               compatible =3D =22regulator-fixed=22;
-               regulator-name =3D =22usbdrd20_dwc3_2-vbus=22;
-               regulator-min-microvolt =3D <5000000>;
-
->=20
+> > > I had previously added docs to gpio.txt but was told here to just
+> > > drop the docs:
+> > > https://lore.kernel.org/all/b851bfd4-3c35-489f-a32d-dcd7a37ca99a@kern=
+el.org/
+> > >
 > >
-> >> Also, carefully follow DTS coding style.
-> >>
-> >
-> > Sorry for that. Checking the code and will update in next patchset
-> > version (v3).
-> >
-> >>> +	       compatible =3D =22regulator-fixed=22;
-> >>> +	       regulator-name =3D =22usbdrd31_dwc3-vbus=22;
-> >>> +	       regulator-min-microvolt =3D <5000000>;
-> >>> +	       regulator-max-microvolt =3D <5000000>;
-> >>> +	       enable-active-high;
-> >>> +	       regulator-always-on;
-> >>> +	       gpio =3D <&gpp2 0 GPIO_ACTIVE_HIGH>;
-> >>> +	=7D;
-> >>> +
-> >>> +	/* Use gpio for enabling vbus regulator */
-> >>> +	usb_phy0: usb-phy0 =7B
-> >>
-> >> usb-phy-0
-> >>
-> >>> +		compatible =3D =22usb-nop-xceiv=22;
-> >>> +		vbus-supply =3D <&usbdrd31_dwc3_vbus>;
-> >>
-> >> That's pretty incomplete. Why do you need such node - just to toggle
-> >> regulator?
-> >>
-> >
-> > There is no external controller to detect or switch the USB modes
-> > automatically rather it is switched using userspace control (sysfs
-> > attributes) for this SoC.  GPIO pins are required to enable vbus
-> > regulators. Existing phy-generic and fixed regulator are used to avoid
-> > making any USB driver changes for the same purpose and it is
-> > referenced from below -
-> >
-> > https://lore.kernel.org/r/20230825215445.28309-3-semen.protsenko=40lina=
-r
-> > o.org
-> > a12af1c20751340ab6e449a5ef78b37d31123aca: ARM64: dts: marvell:
-> > armada-3720-db: Add phy for USB3
-> >
-> >>> +	=7D;
-> >>
-> >> ...
-> >>
-> >>> +&usbdrd20_phy2 =7B
-> >>> +	dvdd-supply =3D <&dummy_regulator>;
-> >>> +	vdd18-supply =3D <&dummy_regulator>;
-> >>> +	vdd33-supply =3D <&dummy_regulator>; =7D;
-> >>> +
-> >>> +&usbdrd20_dwc3_2 =7B
-> >>> +	maximum-speed =3D =22high-speed=22;
-> >>> +	usb-phy =3D <&usb_phy3>;
-> >>> +=7D;
-> >>> +
-> >>> +&usbdrd20_2 =7B
-> >>> +	vdd10-supply =3D <&dummy_regulator>;
-> >>> +	vdd33-supply =3D <&dummy_regulator>; =7D;
-> >>
-> >> That's a bit too much of dummies. This is heavily incomplete. You
-> >> need to bring back the PMIC first.
-> >>
-> >
-> > Presently, relying on USB LDOs being enabled by the bootloader in this
-> > automotive SoC. However, we understand the concern and it is added in
-> > case if anyone wants to use implemented PMIC in future. For now, would
-> > like to proceed with the dummy regulators to enable the required USB
-> features.
->=20
-> And I don't see the point of these dummies. Solves nothing.
->=20
+> > There's a difference between device-tree bindings (formal, machine-read=
+able
+> > definition of the firmware ABI) under Documentation/devicetree/bindings=
+/ and
+> > documentation for humans residing elsewhere in Documentation/. Make sur=
+e to
+> > not confuse the two. I would expect both to be supplied with such a cha=
+nge.
+>
+> What file under bindings would this go in?
+>
 
-Are you expecting details as mentioned in above section in commit message?=
-=20
-However, we have mentioned these details in cover letter.
+Typically the top-level GPIO bindings document but we don't have it
+yet. Or rather: we have the old .txt format and not yaml. I need to
+start chipping away at it at some point...
 
-if not, please provide more details on this comment.
-
-> > Dummy regulators are clearly marked so that they will be replaced once
-> > the PMIC driver is fully up.
 > >
->=20
->=20
-> Best regards,
-> Krzysztof
+> > >> I suppose it's another shot at defining what we previously called
+> > >> "initial-line-state", "default-line-state", etc. What happens when s=
+omeone
+> > >> requests the line, reconfigures it and then releases it?
+> > >
+> > > This should just provide an initial configuration, subsequent consume=
+rs
+> > > would override whatever is set here AFAIU.
+> > >
+> >
+> > Yeah, that's what I was afraid of. This is not hardware description, th=
+is is
+> > user-convencience and as such I don't think it has place in DT bindings=
+ and -
+> > by extension - in DTS.
+>
+> I guess this is more describing a hardware configuration, but is that
+> not allowed in DT bindings? There seems to be plenty of DT stuff
+> that's effectively describing the way the hardware should be configured
+> initially.
+>
+> For example uart/serial nodes have a current-speed property that
+> can be used to configure the initial speed, but this can also be
+> overridden by userspace consumers at runtime as well via
+> termios configurations AFAIU. That seems to be a pretty similar
+> case to what I'm trying to do here with gpios.
+>
+> What's the reason user-convenience hardware configuration stuff
+> like this shouldn't go in DT bindings?
+>
 
-Thank you,
+We do have many cases like that back from before DT schema and
+validation. Bindings have become much stricter since and it's assumed
+that DTS should only describe hardware, not its configuration.
 
-Regards,
-Pritam
+> > I'm afraid I don't have good alternatives to offer, solving this has be=
+en
+> > attempted several times in the past without success. Even gpio-hog woul=
+d likely
+> > not get past DT maintainer review these days but it's ABI now so will s=
+tay
+> > supported.
+>
+> What did previous attempts look like? At least this is minimally invasive
+> and shares most of the code paths with gpio-hog.
+>
 
+They focused more on the "default" state of GPIOs. State to which you
+would revert if not requested. If anything: this makes more sense than
+"initial" state to me which we forget after the first request. Right
+now this is something driver-specific. I'll let DT maintainers speak
+if that's something we could put into DT.
+
+Bart
+
+> > How early do you need to set these settings?
+>
+> Well, before userspace applications can interact with the gpio lines I
+> suppose. Essentially so that it acts as a failsafe configuration in case
+> the userspace app doesn't get started for whatever reason as well as
+> giving some initial starting configuration for a userspace app to act
+> upon.
 
