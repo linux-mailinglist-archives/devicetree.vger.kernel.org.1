@@ -1,192 +1,266 @@
-Return-Path: <devicetree+bounces-266312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266313-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJkYEqpnlWk/QgIAu9opvQ
-	(envelope-from <devicetree+bounces-266312-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:18:02 +0100
+	id 2HBFIS9qlWkzQwIAu9opvQ
+	(envelope-from <devicetree+bounces-266313-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:28:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6B71539A0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:18:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D83153A9F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:28:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8C4833012C4B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 07:17:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48B783015719
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 07:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E191B30DD3A;
-	Wed, 18 Feb 2026 07:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB12C30E0E9;
+	Wed, 18 Feb 2026 07:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="EgjzMTmE"
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="dPiOy1kD";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="8Y33m6qL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from dormouse.ash.relay.mailchannels.net (dormouse.ash.relay.mailchannels.net [23.83.222.50])
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4DFC2848BB;
-	Wed, 18 Feb 2026 07:17:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7468D30DD2C;
+	Wed, 18 Feb 2026 07:28:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.168
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771399074; cv=pass; b=Opamx6Eedbl/G4ZMI+DUgozoM83nN5HpDNlumUnQftStVkN5tZeSGQU5aWR38OF3g7d/aJZagJhfMoxBuALsP14cfBjBBxkEztapFNwkuxc6CH98C8aX2PCRTMMZAzN42eiAWLoAXGzHMV4JeyNhHS1SI5vEZuCX9ynViXDIAvo=
+	t=1771399723; cv=pass; b=K3Y0Og/rZxzXBHZkMWfEJ85qVMJ44YR0GUmu+p61RTzIuuwnX0qh1wwWfnBgNzchnu6KInR6o53CeGpUkhcd7YIiv2tC79+BZ+ET+MWzHITeQNpME8pWOiqPQrWkSluFcWfjfZF6E9BTaQ1vTw4qAmzFco7Q3vdA7katm2cY65Q=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771399074; c=relaxed/simple;
-	bh=fEw/y24WYxs3hZSqPEGoague+XwX1gBkuWg1clx2OLM=;
-	h=From:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc:Date; b=nr1eETfBcgsxX1qISPIKo+v88rjuxkGIr1qYQ2As0mJ0HEZ8CeR5eoe+rGds8PIlB7Yc9CyCSezUN9d+d6L6GWV95i6wIs20hxl6MKjp981BMRXdB8oFHIYxWcLGw4utsHLMmixyqZ54rn6cXvX/2yYtWO8+wVlmzu5pBya6fe8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=EgjzMTmE; arc=pass smtp.client-ip=23.83.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id C6C088221C7;
-	Wed, 18 Feb 2026 06:59:15 +0000 (UTC)
-Received: from fr-int-smtpout18.hostinger.io (trex-green-3.trex.outbound.svc.cluster.local [100.99.12.77])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 337A98221C2;
-	Wed, 18 Feb 2026 06:59:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1771397955;
-	b=k46qzY8lz5//YwcXORpt4uib8Umz4Po1QAVFMQ2PhdcPdyCDpZ/rTpxOSCdTeQwIZiO72q
-	xwu9ogQSntGfmhi8TeEMPDos+7NH3x6JdkDvD9XlVcAbLywcFcQXkYVs+DgkLeIevuRaFr
-	o1sW4f/ha8qMZoVILcjaxq4Hb0j5w3DcdZsL7/KXxvyy8RDF5YQzVYZbMIJE0kDRCeUWMr
-	Uqki10eeArfkfUb4oX081OGOaFlUW37rg4u+pW3M5NMWFyEslS0VY7MB0vlxgdXV4K8PKD
-	akDGu2tlPIuKMjTeu1iYkSibufPpIZJ+O3E5rX5wtCVjZFuh8BSmh5dFTWeU1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1771397955;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=OLUnfi6HeX0ASpLx7V0UtygFHbY07vXAaWDDvuPcoso=;
-	b=IGZIsV1Q6DOTRHVhOH9IK+AnFInanArk3m2ebU+UEyZumnmXsYQmaaDPugLLGtMHDeIgsm
-	r/u4V6Hgc1EsYBOsCqUQHn+BgrNijyT5/7B7dP3PQfL+ApFhpJe5jaOOVZP+h12o86Rvna
-	e9jXHAbGfjROkdRUc71gYECIXaSlARP55b5XIwUML32wRwOzz+6te3A+A2HJZYsIKmHEwa
-	TVtX07qFfjySrIAz3lZdYRpQAyFuUwYpCg+rjU49Q7YUrdvFg1c2aUmTSvAWlK0ifJGE2C
-	dLEhUtP4IYMakTTGZGPk/ktUHTyror2iASfkPEK/hLH1cLAxLJwYJz1dURw55A==
-ARC-Authentication-Results: i=1;
-	rspamd-659f7bc6cc-w45qc;
-	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
-X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Decisive-Tart: 531994080228eef7_1771397955706_3347118843
-X-MC-Loop-Signature: 1771397955706:2749205356
-X-MC-Ingress-Time: 1771397955706
-Received: from fr-int-smtpout18.hostinger.io (fr-int-smtpout18.hostinger.io
- [148.222.54.9])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.99.12.77 (trex/7.1.3);
-	Wed, 18 Feb 2026 06:59:15 +0000
-Received: from [172.17.0.2] (unknown [125.163.207.118])
-	(Authenticated sender: linux@smankusors.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fG6n84kxGz1xnT;
-	Wed, 18 Feb 2026 06:59:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
-	s=hostingermail-a; t=1771397951;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OLUnfi6HeX0ASpLx7V0UtygFHbY07vXAaWDDvuPcoso=;
-	b=EgjzMTmEVHZcbj8jFAZWG4MyR6to6AqUF0jgyJXn1+M0c0a/8zfGOEovg4H52Te6XuD8Am
-	OX6yo8l+WAx0bYiKHtnudsY7OAhNcCdg/JOqaESYOhjpMbYxgCUbf0W0STF6bbngS1k761
-	zudkdTWXBgcYYgEkeVRRjhxochEPBkfQXn1AhUIwt5bniDJtTjCFCnzexolm3SUjhLQS7A
-	O3o98YSWI5Q8Whk5We+KdqE2P8D3nNxicnhbyyJLv9UtD4u3ci2ou/R/CtxVdnVizEAUlD
-	sEg5bYYgBZo7nSdREjSrNp/7jc72l1f/GmGAg2NZRqadF/eCGy4gEk8MxrACvw==
-From: Antony Kurniawan Soemardi <linux@smankusors.com>
-Subject: [PATCH 2/2] dt-bindings: mfd: syscon: add qcom,msm8960-sps-sic
+	s=arc-20240116; t=1771399723; c=relaxed/simple;
+	bh=szPjih8StXjtpoWpw5AU4Nh/8ZKCaGLIvtLe3Q7WVpM=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=oUGBYLYhQUuGluN4NucTSKw8c2NeNKvEU74YU+IO9WPc0VW5TyfBlluQjBsNBRl+QFzdFVGu1mQmHYeNy8kdwsERz0AuLgAs/+VmhoTGAGeztS90tsxn1SCLhvGhpP1kUewxjaAxekcH1FUWu72/8KJ8kfQeLKIjvsDqwjJlPnM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=dPiOy1kD; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=8Y33m6qL; arc=pass smtp.client-ip=81.169.146.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1771399700; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=qlQTB35yqRaleZiARsUXNGgfLr7+6uDXK627aisjzVBk65OfF/HxSYKGa/Wd/7PJwT
+    ib0nsaIeENa4U+SGqw249cJXec8IWHzPSSThrcdJfmJfXRs6Q+lGkxpM/Cytx4h2Mkcn
+    BW2jWSHvq55tupo2t6dis8xVONLXQ9D3xidvoUebDImyN3S+6pw/pvztK9eI1URCAFIk
+    73XMbpZHXYGAU4oL9eAYe8ynvRkfM2KXDWdlGpKFsGJoSSKczKLdejP1sd05kwi5zQn2
+    BVNv0jGcKg4h8ksN+CityhpEwCDMkiPW1XG7ux8xJW9h8OZl/7eLhqqMkCKBbvQuc8qH
+    XErA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1771399700;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=u86cw3tjl8hdVmS71Xuy45XeU5ZCNXcT6zOzax89Suw=;
+    b=DCZKBR2FOOyS0qYuvpebUxS35GpI1uXZ8fAsmCY6FKUIltMb1YKwH3RwnNa0vh/egA
+    oZmZJ8XIRXOVsZh9PrDR1mZHUscb1Jtshe4Up7jDYGyRLTVLGt/0ySv5FtpNGUX3k/Lb
+    W75PWf7qHlkX7LDw+wefO1GDyNxXI/0XO22Gv4yUVlB7DtaUxD0s9LbbqYtG5er+6n17
+    6vt+m7LsvK5iKblK7G1hHOGwV6P6pl/rPNMjeRHTBOxAfs8g2HDkDAcNThnT7RyO/2WF
+    EUKP4vRz3C0JIm+Nkc3ojZ4yTnQpMO173sdX3wY7IblVyUrijE2R+Bs6VsPkMF1ntp0E
+    QZ7A==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1771399700;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=u86cw3tjl8hdVmS71Xuy45XeU5ZCNXcT6zOzax89Suw=;
+    b=dPiOy1kD3OJQLdZeDi/510rxp3uOjpwjlhbgAP4+BRwPGHumfotxrJ8P2W5AdNUgJd
+    9Xua+Loxfvp7/XbVPMF3DzbR0iNRT7y+RQ+q22kD5FLLzr1AuW++UPQSYuVv2nMbeMwX
+    tijWmkFKDlswd0ABYEfuN4W9uzgtapfCyJcP77pBVovvUhgSFhzmaXpJPu2vPJWRISSX
+    TLn0vmlxGPXtJgRDlhOl/g3Kj7sv/P4eJs6fJj4/6NeTXu+xJ6tf/T7kSR4sGus99J5J
+    WoJQRYXKRmudbzlmursTwTCsEe5Ek2aEWLFxJznDpTX9VyNI/w8czSqTuKqmvRRSf0LI
+    ZjRg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1771399700;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=u86cw3tjl8hdVmS71Xuy45XeU5ZCNXcT6zOzax89Suw=;
+    b=8Y33m6qLBiNtqtrUtnJK+4LKyYvRmzP/2O5N0XA5jzP5BRRcwbAvs0E220qraSoWH9
+    398tRVTxaXqSWk4DQSBQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeDAZ"
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 55.0.1 DYNA|AUTH)
+    with ESMTPSA id Q3a36b21I7SHJkR
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Wed, 18 Feb 2026 08:28:17 +0100 (CET)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260218-msm8960-sps-rpm-bindings-v1-2-bbc11c0d4f24@smankusors.com>
-References: <20260218-msm8960-sps-rpm-bindings-v1-0-bbc11c0d4f24@smankusors.com>
-In-Reply-To: <20260218-msm8960-sps-rpm-bindings-v1-0-bbc11c0d4f24@smankusors.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Antony Kurniawan Soemardi <linux@smankusors.com>, 
- phone-devel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771397941; l=1176;
- i=linux@smankusors.com; s=20250609; h=from:subject:message-id;
- bh=fEw/y24WYxs3hZSqPEGoague+XwX1gBkuWg1clx2OLM=;
- b=fS3ERPEii6z/P3sgvTDTdr3RSXI6MOt3o6FHaoDXb8JoDsl1p+W1oH/L7Nn8wF+qawReGCInG
- CeyWMB/lKx2CxgMqS7Y18NYXCTEUNYZJ0NkGRqHkF7FjQZOvHeDEfrg
-X-Developer-Key: i=linux@smankusors.com; a=ed25519;
- pk=65wTy06fJl2/h/EJwjr704YG+yjHFhZObJBWzzK+N00=
-Date: Wed, 18 Feb 2026 06:59:08 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=GMJaEfNK c=1 sm=1 tr=0 ts=6995633f a=QVpbo7x4j/ax8PIbKattOw==:117 a=QVpbo7x4j/ax8PIbKattOw==:17 a=IkcTkHD0fZMA:10 a=wxLWbCv9AAAA:8 a=Gjla_oY5Z_Fy-GYXBTcA:9 a=QEXdDO2ut3YA:10 a=QJY96suAAestDpCc5Gi9:22
-X-CM-Envelope: MS4xfBW7MvezkzdNDYgaPmkHEKwVlhXyiWFRef1AjUlhGEuz/PNKZoeOhgrqWk44JyHrH/oW0g6ZBgKMrxRTeQz8wzPMTfd9orWYUS8cwU+4uwTIznrxVdxH QZXKzXa8FVTP+MuBW4XMkDUX9q9IDWMjetYV9VZNT2Kdl0RAaL/tIYzmnJZ/BtycsI1Cd0taGC1vOZYmFUcKMAjf6236aoOFQvPcx7vZ7K+9xexNDfV8lxfm gp7OzRKWFucO6w6UysD+HFKuKIC9ZkFWX5MtO5Uz352lCsotFgBM783JShd6PlgGoyZch4/fQntt/g1E9iXwcYaWrPOk/AwJ50BUhZJIwQp5PxfaCBe5hkn4 tgO8dioBFQEjk8NJuX5SBy4y89YreZvhSpqdGBlflW4pbSrkhqayWzjeo0r+yDNwE9x+riNMzS5YaAKSWdsHR7/e8nGRH8TNwB/irWhVkhAOC/TB5JZS39PT ZTPyt4xBzsTaLiLaDznKvemwslA90JyoMAJpP3D1t2RYNzeFvTd7WJTR6aWtYFnVSzxW6GyRP5y4IeQmtlR6Y5yX6lD/el554FZAtYF98jcC3BmwdojA+dUu zZY/r2g0cMn9U4ZgTrju7BLH/hbEEFjBaxhTO9AULC1Tow==
-X-AuthUser: linux@smankusors.com
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.4\))
+Subject: Re: [PATCH 1/5] ARM: dts: ti: Enable overlays for all DTB files
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20260217103638.30149f16@kmaincent-XPS-13-7390>
+Date: Wed, 18 Feb 2026 08:28:06 +0100
+Cc: Robert Nelson <robertcnelson@gmail.com>,
+ Andreas Kemnade <andreas@kemnade.info>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>,
+ Tony Lindgren <tony@atomide.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Russell King <linux@armlinux.org.uk>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Bajjuri Praneeth <praneeth@ti.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Louis Chauvet <louis.chauvet@bootlin.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <FDFC6C9E-710B-4723-A453-5CAE25CBBC1B@goldelico.com>
+References: <20260212-feature_bbge-v1-0-29014a212f35@bootlin.com>
+ <20260212-feature_bbge-v1-1-29014a212f35@bootlin.com>
+ <B3366A17-641F-4E02-A5D4-978F525E0A96@goldelico.com>
+ <20260212174718.7daccb70@kemnade.info>
+ <719BF710-26DF-49AB-A016-D2306F0389E2@goldelico.com>
+ <20260212231907.6120a2e2@kemnade.info>
+ <CAOCHtYicmeSzH5Q2_qTwAZw3s+__JRwUrXvz01+KCsJJHAznUw@mail.gmail.com>
+ <20260216161155.09fae580@kmaincent-XPS-13-7390>
+ <0EE0658D-56A7-480C-BF71-6B2EB81DC41C@goldelico.com>
+ <20260217103638.30149f16@kmaincent-XPS-13-7390>
+To: Kory Maincent <kory.maincent@bootlin.com>
+X-Mailer: Apple Mail (2.3826.700.81.1.4)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[smankusors.com,none];
-	R_DKIM_ALLOW(-0.20)[smankusors.com:s=hostingermail-a];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[goldelico.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[goldelico.com:s=strato-dkim-0002,goldelico.com:s=strato-dkim-0003];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266312-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266313-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_CC(0.00)[gmail.com,kemnade.info,iki.fi,baylibre.com,kernel.org,atomide.com,armlinux.org.uk,bootlin.com,vger.kernel.org,lists.infradead.org,lists.freedesktop.org,ti.com,linux.intel.com,suse.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@smankusors.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[smankusors.com:+];
+	FROM_NEQ_ENVFROM(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[goldelico.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 9E6B71539A0
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D3D83153A9F
 X-Rspamd-Action: no action
 
-Add compat for Smart Peripheral System (SPS) Interrupt Controller (SIC)
-present on Qualcomm MSM8960 SoC.
+Hi Kory,
 
-Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
----
- Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+> Am 17.02.2026 um 10:36 schrieb Kory Maincent =
+<kory.maincent@bootlin.com>:
+>=20
+> On Tue, 17 Feb 2026 09:58:04 +0100
+> H. Nikolaus Schaller <hns@goldelico.com> wrote:
+>=20
+>> Hi Kory,
+>>=20
+>>> Am 16.02.2026 um 16:11 schrieb Kory Maincent =
+<kory.maincent@bootlin.com>:
+>>>=20
+>>>>>>>=20
+>>>>>>>>> Am 12.02.2026 um 16:26 schrieb Kory Maincent (TI)
+>>>>>>>>> <kory.maincent@bootlin.com>:
+>>>>>>>>>=20
+>>>>>>>>> Allow overlays to be applied to any DTB. This adds around ~40% =
+to the
+>>>>>>>>> total size of the DTB files on average.   =20
+>>>=20
+>>> Yes, I will move on to this solution for now to avoid too many =
+complaints
+>>> about the devicetree size increases. =20
+>>=20
+>> I have done some experimentation with this patch (on top of v6.19 and =
+our
+>> private defconfig) but could not find any DTB size increase.
+>>=20
+>> Does it require another patch or CONFIG change?
+>=20
+> No, but maybe you had already the "DTC_FLAGS=3D-@" option enabled =
+while building
+> you image.
+> This options add the "__symbols__" node listing the symbols to the =
+built
+> devicetree:
+> $ fdtdump arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dtb =
+2>/dev/null | grep symbols
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index e57add2bacd30b0582e037ae69dd9f2b55d13066..39a24c3ff9cfb543d46ef30a21edbd074e22a0de 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -106,6 +106,7 @@ select:
-           - nxp,s32g3-gpr
-           - qcom,apq8064-mmss-sfpb
-           - qcom,apq8064-sps-sic
-+          - qcom,msm8960-sps-sic
-           - rockchip,px30-qos
-           - rockchip,rk3036-qos
-           - rockchip,rk3066-qos
-@@ -219,6 +220,7 @@ properties:
-               - nxp,s32g3-gpr
-               - qcom,apq8064-mmss-sfpb
-               - qcom,apq8064-sps-sic
-+              - qcom,msm8960-sps-sic
-               - rockchip,px30-qos
-               - rockchip,rk3036-qos
-               - rockchip,rk3066-qos
+Yes, indeed there is a __symbols__ node in all .dtb I have checked.
 
--- 
-2.34.1
+With make V=3D1 (on v6.19.0 + some local extensions) I see
+
+./scripts/dtc/dtc -o arch/arm/boot/dts/ti/omap/am335x-bonegreen.dtb -b 0 =
+-iarch/arm/boot/dts/ti/omap/ -i./scripts/dtc/include-prefixes =
+-Wno-interrupt_provider --symbol -Wno-unique_unit_address =
+-Wno-unit_address_vs_reg -Wno-avoid_unnecessary_addr_size =
+-Wno-alias_paths -Wno-graph_child_address -Wno-simple_bus_reg   =
+-Wno-unique_unit_address -Wno-unit_address_vs_reg =
+-Wno-avoid_unnecessary_addr_size -Wno-alias_paths =
+-Wno-graph_child_address -Wno-interrupt_map -Wno-simple_bus_reg   -d =
+arch/arm/boot/dts/ti/omap/.am335x-bonegreen.dtb.d.dtc.tmp =
+arch/arm/boot/dts/ti/omap/.am335x-bonegreen.dtb.dts.tmp
+
+So --symbol is already included, even without your patch.
+
+With your patch I see:
+
+./scripts/dtc/dtc -o arch/arm/boot/dts/ti/omap/am335x-bonegreen.dtb -b 0 =
+-iarch/arm/boot/dts/ti/omap/ -i./scripts/dtc/include-prefixes -@ =
+-Wno-interrupt_provider --symbol -Wno-unique_unit_address =
+-Wno-unit_address_vs_reg -Wno-avoid_unnecessary_addr_size =
+-Wno-alias_paths -Wno-graph_child_address -Wno-simple_bus_reg   =
+-Wno-unique_unit_address -Wno-unit_address_vs_reg =
+-Wno-avoid_unnecessary_addr_size -Wno-alias_paths =
+-Wno-graph_child_address -Wno-interrupt_map -Wno-simple_bus_reg   -d =
+arch/arm/boot/dts/ti/omap/.am335x-bonegreen.dtb.d.dtc.tmp =
+arch/arm/boot/dts/ti/omap/.am335x-bonegreen.dtb.dts.tmp
+
+Here we have -@ and --symbol (synonyms for dtc).
+
+Well, I finally could trace it down to a malicious infection of our =
+LetuxOS tree
+by some ODROID kernel patch to scripts/Makefile.lib (0ac84640f12c). That =
+patch
+globally modifies the DTC_FLAGS mechanism and permanently adds --symbol =
+instead of adding
+-@ in the arch/board specific Makefile like you propose here.
+
+So now I know why I didn't see any increase in size (because it was =
+never reduced).
+
+With removing this I now get 67179 bytes as default for =
+am335x-bonegreen.dtb.
+And with your patch I get (back) to 94260 bytes so I can confirm a 40.3% =
+increase.
+
+Please proceed as planned (I don't think it necessarily has to be =
+limited to
+motherboards with an expansion card system, although that would be a =
+good
+indication of its usefulness), and thank you for bringing our local =
+issue
+to my attention.
+
+BR and thanks,
+Nikolaus
+
 
 
