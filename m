@@ -1,202 +1,117 @@
-Return-Path: <devicetree+bounces-266522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266523-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0OHrNF4VlmlOZwIAu9opvQ
-	(envelope-from <devicetree+bounces-266522-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:39:10 +0100
+	id aLd4CIwVlmlOZwIAu9opvQ
+	(envelope-from <devicetree+bounces-266523-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:39:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B26C1591F1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:39:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA5D159211
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:39:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C84713007487
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:39:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F1A5E3004435
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:39:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BDC347BCA;
-	Wed, 18 Feb 2026 19:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1A5E347FF4;
+	Wed, 18 Feb 2026 19:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TvHmEyn3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RI+hyUgq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB8230275E;
-	Wed, 18 Feb 2026 19:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4A6346FDA;
+	Wed, 18 Feb 2026 19:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771443547; cv=none; b=txse+ZymoYg+mH/NluUzUt0x17nA+DuRYs6mJj9jAUmEgwW62Q7vxCVooNqXe9/u/yZP6KJROZiV++N0oUp/5l1ktu09rEDMxq6E7KmgQqrGxJ718Ud8mUYvnyuM9uq6J9G+80JEDajF5g1ows7NqJKYe2jjpSz+fjlRMShFdys=
+	t=1771443591; cv=none; b=HZP5Bl55AQ6GqtBzbX6mzTBHbbfWZ5RZOF5LRkOsy5UCxx1l/1zmRQGFBIG4+WDed37VgnHKew8VYNPgSHJUuYtPDQZkXGeYev+YHJZ2zpyt6SsHoZ453wJXGGacaJIRLKbM3Y9DT0q0usePVxb80G/HQ34LAfc2GgIE3+6ZQpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771443547; c=relaxed/simple;
-	bh=NzbIsmjObZ1OO7Q+OaE1b5Bf4ezXavlaqQd3CWFVMfQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=T0LBhWcoWsA4OiWhdDV5fZznlJYLrYZhAgaTEk9v7k4xKUb+lFT9vFw616/eNkXwh2NdOEJCNVNpsoRUFkAruq4DCoLFjwlJckxz8juuwHd2U1cf+fnjtfceRlKKwzsqYbFxQOu1Pf0HmJ4UPOtxxwGlBb6C/0jNWTlRaOzgF1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TvHmEyn3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAF78C116D0;
-	Wed, 18 Feb 2026 19:39:04 +0000 (UTC)
+	s=arc-20240116; t=1771443591; c=relaxed/simple;
+	bh=D+sEqreT8KH5MvuumZ7pq26QX38YMqgmFXHC5MpUHIU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OVUYC9PGjNuL2+Ku8LF4ZkXxadlc5wT0IGWUrPKSJgVYJcHfvgypKr0J4QzE/Kpf10df9yNojIy5Vua5p6f53eSL85XcnGcRPMWahHMt471SOot1+LhkHXs5bq6/oDr75QWFHCNclSgjKvXQRX61gjQJ2GbyEY9wvI4/jdaNIyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RI+hyUgq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B24AC116D0;
+	Wed, 18 Feb 2026 19:39:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771443547;
-	bh=NzbIsmjObZ1OO7Q+OaE1b5Bf4ezXavlaqQd3CWFVMfQ=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=TvHmEyn3C5Gsp1d90B5hABpFRwzd9RFB5yjLevVnbp9ZVng6L30dlIDSAgloVAPij
-	 BH0B5lZBG5rop/i5sAmx9Ag1xtVPJGYfIRTrl2tzB/8r1BFsvjbYcIGPFaUG2wwm9l
-	 W2bbEOrjKqqpck1/EucOY9Bo1a7reLYFGOTxkPbzOxZtFkX6pMR1+1UsFDkJ4G+UC+
-	 AB3nKU4QOSvgu+lCRm/sWPMYsuwnZTI7FnezG0X9hVH0FXzykXW7TxiOxwFVgG03cJ
-	 PDwIKyyqS5bluJPL99mloGnrw8cFNoxQaLSl0q06Z5ExtNMyN2zSthEUEKiTNLGeOn
-	 mP16MOBJ++JNg==
-Message-ID: <837e6519-da8e-45dc-8c90-3fbf087e4317@kernel.org>
-Date: Wed, 18 Feb 2026 20:39:02 +0100
+	s=k20201202; t=1771443591;
+	bh=D+sEqreT8KH5MvuumZ7pq26QX38YMqgmFXHC5MpUHIU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=RI+hyUgqI5cailj1bpFIIXs3zptVPHPX93Xkr5Re4wSoXIbRLMHjD1aXMwKbjKs+B
+	 mTiCFNEElZy8jB3/lGLMeqqbGycz97SV30exS2xB0bRGwJdsvVz8QpEs0tUS7HadqQ
+	 6XV8TTrPIoa8ALF3yZ3RQ22OYVirOye9ACou8eRzXmz82R2plyhgC4qKdBBaDB1+f4
+	 C3Di2Z9/fv8xVrwfBt0LMQZ3G/HMSIMSgvnN2/KQXZ1Z/7c6FlOmu3o23atMYzQzH3
+	 CpwM//95xUMlqGIuiE18JZ2zmfEtgkEP6UFCB+zob/w9FnW+qxKY+0ShKMUSBVCLhP
+	 X/xBG9aWgtpbQ==
+Date: Wed, 18 Feb 2026 19:39:42 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Meerwald <pmeerw@pmeerw.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, Andy Shevchenko <andriy.shevchenko@intel.com>
+Subject: Re: [PATCH v5 0/2] iio: light: Add support for Capella cm36686 and
+ cm36672p sensors
+Message-ID: <20260218193942.192faeef@jic23-huawei>
+In-Reply-To: <20260217-cm36686-v5-0-63c2de9709d8@gmail.com>
+References: <20260217-cm36686-v5-0-63c2de9709d8@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: clk: meson: Add Amlogic T7 fix pll
- support
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>,
- linux-amlogic@lists.infradead.org,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260218101709.35450-1-linux-kernel-dev@aliel.fr>
- <20260218105611.36216-1-linux-kernel-dev@aliel.fr>
- <594f4fcc-ad88-4969-b9e5-98061fd5b73c@kernel.org>
- <1j8qcp6ed1.fsf@starbuckisacylon.baylibre.com>
- <fc25180a-859a-45da-b3f8-7ccb2e4d73cf@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <fc25180a-859a-45da-b3f8-7ccb2e4d73cf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266522-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266523-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7B26C1591F1
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2EA5D159211
 X-Rspamd-Action: no action
 
-On 18/02/2026 20:37, Krzysztof Kozlowski wrote:
-> On 18/02/2026 20:28, Jerome Brunet wrote:
->> On mer. 18 févr. 2026 at 20:17, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->>> On 18/02/2026 11:56, Ronald Claveau wrote:
->>>> Add PLL for the clock controller of the Amlogic T7 SoC family.
->>>>
->>>> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
->>>> ---
->>>>  include/dt-bindings/clock/amlogic,t7-pll-clkc.h | 16 ++++++++++++++++
->>>>  1 file changed, 16 insertions(+)
->>>
->>> So you ignored my comments?
->>>
->>> And that's v2, not v1. You sent v1 and GOT the comments.
->>
->> I think this was still v1 and if you look at timestamps, Patch 1 was sent
-> 
-> No
-> 
->> before your first reply, then there is lot of time between the different
->> patches - probably done manually  ... at patch 6 (the one you've
->> commented fist) was sent twice.
-> 
-> 1. v1:
-> https://lore.kernel.org/all/20260218101728.35497-1-linux-kernel-dev@aliel.fr/
-> Wed, 18 Feb 2026 11:17:26 +0100
-> 
-> 2. My reply 5 minutes later:
-> https://lore.kernel.org/all/a848fa43-6a46-4fd6-86a4-96aaf82e2a02@kernel.org/
-> Wed, 18 Feb 2026 11:21:13 +0100	
-> 
-> 3. This patch send half an hour later:
-> https://lore.kernel.org/all/20260218105611.36216-1-linux-kernel-dev@aliel.fr/
-> Wed, 18 Feb 2026 *11:56:09* +0100	
+On Tue, 17 Feb 2026 14:13:14 +0200
+Erikas Bitovtas <xerikasxx@gmail.com> wrote:
 
-Ah, and I forgot to mention - author replied to me in private at:
-Wed, 18 Feb 2026 11:28:23 +0100
-
-So BEFORE this was sent, thus he already received my first reply to v1
-and this had to be conscious sending of next version, thus v2.
-
+> This patch series adds support for Capella cm36686 and cm36672p ambient
+> light and proximity sensors.
 > 
-> after I already provided feedback about wrong threading.
-> 
-> 
-> Best regards,
-> Krzysztof
+Series applied to the testing branch of iio.git.
 
+I'll be rebasing on rc1 after the weekend and then pushing out as togreg for
+linux-next to pick up.
 
-Best regards,
-Krzysztof
+Thanks,
+
+Jonathan
 
