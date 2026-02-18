@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-266512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266513-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAbCK4QOlmmNZQIAu9opvQ
-	(envelope-from <devicetree+bounces-266512-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:09:56 +0100
+	id WBO+JjsQlmk8ZgIAu9opvQ
+	(envelope-from <devicetree+bounces-266513-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:17:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A711158F19
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:09:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00054158F86
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:17:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 531CE301FC8D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:09:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1AC553013A5F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE766346FA2;
-	Wed, 18 Feb 2026 19:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27E6346783;
+	Wed, 18 Feb 2026 19:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cS6xEKO/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qTrjwQYg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99941346E51
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 19:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF37B3093DE;
+	Wed, 18 Feb 2026 19:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771441739; cv=none; b=my3I/hp1DU7fuHCEeW31vLoDCaWMFN9SwW2xr7odkRk9sK4wp2i1Ue7NXHf9gx9XSafzEzuw7Yj9yfoF6QExRjNXOZctJMPyr0N+61bG2yZgv+VDL2WXIoMr1bDG1c3kbrpwe+2FpzNHOh7kaoaZbEcu3yRfqw0sgWbEIsvGsVs=
+	t=1771442231; cv=none; b=qNsjAV0kIpzEQNi6LN7IW34odxpOMYLWYfedHLZRaGdUdnk9UH+xqiLd4+i8az3tEZDAlyMYmamN2cDu4Z0PyJ5Mts5YFGF64EOsCothnes3IWsXB5v77kILB+f45sLvnKoQSDHbI1vHpOyuzphTSsOkLbZd0ORmwRFrp7/cBHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771441739; c=relaxed/simple;
-	bh=QxU71u/txwN1B4iJgCT/24cVG+48SULld5RzGEaPkbU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=brgwrBsKXumHirsMFsBheuF4jhJpwtppR2rU/eDWMJvf0OOcyyhse6+LSy2+OC3UF+q5t92W6LbP/q2NNCUtlBxHv5JzFgFmjxtVUvleuvHUxip3FqiVlyxSMO7FbAIJ9Aljji4F4ErwuKF5quT5wJtkw6kY5BKczQEeum8Wm00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cS6xEKO/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3FDAC116D0;
-	Wed, 18 Feb 2026 19:08:55 +0000 (UTC)
+	s=arc-20240116; t=1771442231; c=relaxed/simple;
+	bh=fKuevwwhI2xp7pWreOA8JHIqo5Rd4VvkNUM2yNkN1No=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=q5flZrQE6lvNXsbswoZyCh1j1xd2gwFIyXUrS7Ge7F4I6rjGkhrGnipq++Qh7sGZeGraCC54kyC418mMZBls/9lKjb5sxbYW5ffgaZMRMWCl8k6C/4nqm53knwvmPCge18FCskcHOe1lG0wGEXXjl0YlAa7chkSsBfoaeytNFb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qTrjwQYg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BF54C19422;
+	Wed, 18 Feb 2026 19:17:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771441739;
-	bh=QxU71u/txwN1B4iJgCT/24cVG+48SULld5RzGEaPkbU=;
-	h=Date:From:Subject:To:Cc:From;
-	b=cS6xEKO/StYKADtXXZc5gtU9qxnFeO/9/pbxjSxm5unkfzpFu1QLzfVb6xBhgkNaY
-	 oRADgDa6OH5ASlNwMZ6t4MMoiOo0m57RKNgGc0otqD64roWfJQ/eK3oE1zt6JEU6mr
-	 vEN4ccxf/t9s8FxcNcpC8EukQTdOLs/LEAbeuETsergdVlIqWKQydV/JDCzWDYy7zK
-	 PIR5F7LFPFHANajsHWWa/2FCFipWW9Ev1/EQN+VcZRI7JNQOPFO/W6JmiUaRHNLenM
-	 gJ34fGXIA7czZUoB7uBpGRkvGTvFy43iyoT6INZLRLBToSOXtAgWYDr4CYgjt2hWwG
-	 LmBKJ80vT/P+A==
-Message-ID: <efa22692-c332-40ca-896f-f3064494c063@kernel.org>
-Date: Wed, 18 Feb 2026 20:08:54 +0100
+	s=k20201202; t=1771442231;
+	bh=fKuevwwhI2xp7pWreOA8JHIqo5Rd4VvkNUM2yNkN1No=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qTrjwQYg+ZVVc+NwK3ZafRxbm/+56bYgKydGiu/2L+bAy44MJ3AF3wvSDMyAhW6d+
+	 bvlSQg3IPFLZtDn74XtTB1lnH6XXDMVMp6NoG/rjRDcvL5u9y+sxHE8Im2zmkGtmb9
+	 ENA/ja76dNgxc0/wTom4NezGKWwQnwIoqt5mjx2fgRWiy/4YXD7aUEZBPWvAnaWAW9
+	 nJpw9dFQdmOYPnK4b+DxlzgQnYaygwPj3PlepgrqOjBQXGzAo6EbLpSbwc8QrOFVt/
+	 s8be85RZaJ9w3nKE1AUNFp0Dm9UlzwikvLPDjC8ssviQATV+oMd6dhQR4ZW0xXLBvp
+	 hB9y31xpEFwpw==
+Message-ID: <54bac6b7-46b5-4a1e-beb0-e8a64bd16d3f@kernel.org>
+Date: Wed, 18 Feb 2026 20:17:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,18 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: nuvoton: drop unused syscon property from
+ watchdog node
+To: Tomer Maimon <tmaimon77@gmail.com>, andrew@codeconstruct.com.au
+Cc: avifishman70@gmail.com, tali.perry1@gmail.com, venture@google.com,
+ yuenn@google.com, benjaminfair@google.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, openbmc@lists.ozlabs.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260218184800.2261674-1-tmaimon77@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Devicetree Microconference notes published
-To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Marek Vasut <marex@denx.de>,
- Wolfram Sang <wsa@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Sarav <sarav.devel@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Kevin Hilman <khilman@kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Andersson <andersson@kernel.org>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor@kernel.org>, Doug Anderson <dianders@chromium.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Konrad Dybcio <konradybcio@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -108,6 +106,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260218184800.2261674-1-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -116,41 +115,83 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266512-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266513-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[linux-m68k.org,denx.de,kernel.org,csie.org,gmail.com,sholland.org,bgdev.pl,chromium.org,ideasonboard.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_TO(0.00)[gmail.com,codeconstruct.com.au];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,google.com,kernel.org,lists.ozlabs.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2A711158F19
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,901c:email,qualcomm.com:email,a01c:email,801c:email]
+X-Rspamd-Queue-Id: 00054158F86
 X-Rspamd-Action: no action
 
-Hey everyone,
+On 18/02/2026 19:48, Tomer Maimon wrote:
+> The NPCM8XX DTSI currently includes a 'syscon' phandle in the watchdog
+> node, but this property is not used by any upstream driver and is not
+> documented in the NPCM watchdog binding. Since it was never reviewed and
+> does not form part of the DT ABI, it can be safely removed.
 
-Thanks for attending the Devicetree MC. It took me some time to get back
-to this but finally I uploaded the final notes from DT MC. Thanks for
-the comments and updates I asked some time ago!
+"Safely" is not certain or not true, because other users might rely on
+that, but that's acceptable impact of undocumented ABI.
 
-Notes are attached to the session:
-https://lpc.events/event/19/sessions/237/#20251213
+However such wording should be avoided, because it creates impression
+that it is safe which later might be used by other developers ("but I
+saw patch saying it is safe...").
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> index 24133528b8e9..c781190b42c5 100644
+> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> @@ -145,7 +145,6 @@ watchdog0: watchdog@801c {
+>  				reg = <0x801c 0x4>;
+>  				status = "disabled";
+>  				clocks = <&refclk>;
+> -				syscon = <&gcr>;
+>  			};
+>  
+>  			watchdog1: watchdog@901c {
+> @@ -154,7 +153,6 @@ watchdog1: watchdog@901c {
+>  				reg = <0x901c 0x4>;
+>  				status = "disabled";
+>  				clocks = <&refclk>;
+> -				syscon = <&gcr>;
+>  			};
+>  
+>  			watchdog2: watchdog@a01c {
+> @@ -163,7 +161,6 @@ watchdog2: watchdog@a01c {
+>  				reg = <0xa01c 0x4>;
+>  				status = "disabled";
+>  				clocks = <&refclk>;
+> -				syscon = <&gcr>;
+>  			};
+>  		};
+>  	};
+
 
 Best regards,
 Krzysztof
