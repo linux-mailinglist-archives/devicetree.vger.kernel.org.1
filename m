@@ -1,272 +1,157 @@
-Return-Path: <devicetree+bounces-266511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266512-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UO9oJUAOlmmNZQIAu9opvQ
-	(envelope-from <devicetree+bounces-266511-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:08:48 +0100
+	id wAbCK4QOlmmNZQIAu9opvQ
+	(envelope-from <devicetree+bounces-266512-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:09:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7577158ED6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:08:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A711158F19
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:09:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 635643013D67
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:08:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 531CE301FC8D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C700B30DEC1;
-	Wed, 18 Feb 2026 19:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE766346FA2;
+	Wed, 18 Feb 2026 19:08:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jy5DC0DV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cS6xEKO/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34603090C2;
-	Wed, 18 Feb 2026 19:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99941346E51
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 19:08:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771441725; cv=none; b=DyRJP34As3C9OdGufC7qD7mK2MgiDsvK5iDMLvV2DKdOFYLQ3KXuXEGRCU/2UjKPe1qYH0w4uThhp5VVNB38q+ql5hh69Jjqk8Bg8AXiJvElZG/zRfXj/uP/RPDRJXA6eRp6fNkA9sjWruR7eyV2JPfLd+G8GqBidE/TeMLOzJ8=
+	t=1771441739; cv=none; b=my3I/hp1DU7fuHCEeW31vLoDCaWMFN9SwW2xr7odkRk9sK4wp2i1Ue7NXHf9gx9XSafzEzuw7Yj9yfoF6QExRjNXOZctJMPyr0N+61bG2yZgv+VDL2WXIoMr1bDG1c3kbrpwe+2FpzNHOh7kaoaZbEcu3yRfqw0sgWbEIsvGsVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771441725; c=relaxed/simple;
-	bh=CMQGqura8+TThVVZW/aOy3BN90vZ9BDqk3A9fZh8KNA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UDKXFxJt9VfC3d5x1f7NTRDgUUOcVztTiBT9X+dL6cOUsc7rwU9SqIGV05fnChFIQ0q3xyb37SoCR+9gza6tlacG8tahCknjqg9t/IgczhusYJeOFZw5LszvhTXtPTJtb5/ZEpkZY1dXwgj7jA1OvEjSA5bMALUTJTIAb7yA2JA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jy5DC0DV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C8F3C116D0;
-	Wed, 18 Feb 2026 19:08:39 +0000 (UTC)
+	s=arc-20240116; t=1771441739; c=relaxed/simple;
+	bh=QxU71u/txwN1B4iJgCT/24cVG+48SULld5RzGEaPkbU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=brgwrBsKXumHirsMFsBheuF4jhJpwtppR2rU/eDWMJvf0OOcyyhse6+LSy2+OC3UF+q5t92W6LbP/q2NNCUtlBxHv5JzFgFmjxtVUvleuvHUxip3FqiVlyxSMO7FbAIJ9Aljji4F4ErwuKF5quT5wJtkw6kY5BKczQEeum8Wm00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cS6xEKO/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3FDAC116D0;
+	Wed, 18 Feb 2026 19:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771441725;
-	bh=CMQGqura8+TThVVZW/aOy3BN90vZ9BDqk3A9fZh8KNA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jy5DC0DVGO7Wb9v3jQtRmlgGIeeId0tg5Y3JyCa4J99Ar5mLGmNokFIYgKswGqLQa
-	 d2bsqlM4jpN+6rUiey1EnFE0/vmgGtO/YC+mLFBleYitodOhEP8QbYvXeeisXePGrr
-	 P6J3TW7uirLGkR/U0BVHWe90//1Sn3XTP9RbYyxB9Ij6rG9mUdiUynZB6BZMGZGU1Y
-	 sMLd1jVcIRIwinOptFNdxBDhTaVneQOlkL7oDAE2u/n4U7i3gXM/uj6KHn2Y04fegX
-	 GrsDDY9jQ4aILX4oeXBl3nTewwaVo5l/sDt8Klrv0d5qVXS94Ecbt3haPKiXnvo4I3
-	 E2mXwkXyNXDoA==
-Date: Wed, 18 Feb 2026 19:08:34 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Antoniu Miclaus
- <antoniu.miclaus@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, Mark
- Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] iio: adc: ad4080: add support for AD4880
- dual-channel ADC
-Message-ID: <20260218190834.642caae0@jic23-huawei>
-In-Reply-To: <d22c8fa8-1e8b-4f0a-80a1-3f13d75cd52c@baylibre.com>
-References: <cover.1770393792.git.antoniu.miclaus@analog.com>
-	<aYiGj_TYelvJdVaR@smile.fi.intel.com>
-	<20260214160852.6862b58d@jic23-huawei>
-	<aZC6wIWDdS8J_1eJ@smile.fi.intel.com>
-	<897bd4d4-bbdf-4cbf-84f6-05c110d75d03@baylibre.com>
-	<aZF9zoWHL9iHSK3q@smile.fi.intel.com>
-	<dce24f01-2a8e-4b36-9685-6ff4293e2d5a@baylibre.com>
-	<aZLDyWICGB_j0Z1Y@smile.fi.intel.com>
-	<2f9fc7fa-dd55-44f2-9b78-c9902b8b1bbf@baylibre.com>
-	<aZQmkm9Xt3PivqmX@smile.fi.intel.com>
-	<d22c8fa8-1e8b-4f0a-80a1-3f13d75cd52c@baylibre.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1771441739;
+	bh=QxU71u/txwN1B4iJgCT/24cVG+48SULld5RzGEaPkbU=;
+	h=Date:From:Subject:To:Cc:From;
+	b=cS6xEKO/StYKADtXXZc5gtU9qxnFeO/9/pbxjSxm5unkfzpFu1QLzfVb6xBhgkNaY
+	 oRADgDa6OH5ASlNwMZ6t4MMoiOo0m57RKNgGc0otqD64roWfJQ/eK3oE1zt6JEU6mr
+	 vEN4ccxf/t9s8FxcNcpC8EukQTdOLs/LEAbeuETsergdVlIqWKQydV/JDCzWDYy7zK
+	 PIR5F7LFPFHANajsHWWa/2FCFipWW9Ev1/EQN+VcZRI7JNQOPFO/W6JmiUaRHNLenM
+	 gJ34fGXIA7czZUoB7uBpGRkvGTvFy43iyoT6INZLRLBToSOXtAgWYDr4CYgjt2hWwG
+	 LmBKJ80vT/P+A==
+Message-ID: <efa22692-c332-40ca-896f-f3064494c063@kernel.org>
+Date: Wed, 18 Feb 2026 20:08:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Devicetree Microconference notes published
+To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Marek Vasut <marex@denx.de>,
+ Wolfram Sang <wsa@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Sarav <sarav.devel@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Kevin Hilman <khilman@kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Andersson <andersson@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor@kernel.org>, Doug Anderson <dianders@chromium.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266511-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266512-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[linux-m68k.org,denx.de,kernel.org,csie.org,gmail.com,sholland.org,bgdev.pl,chromium.org,ideasonboard.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: E7577158ED6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2A711158F19
 X-Rspamd-Action: no action
 
-On Tue, 17 Feb 2026 16:55:56 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+Hey everyone,
 
-> On 2/17/26 2:28 AM, Andy Shevchenko wrote:
-> > On Mon, Feb 16, 2026 at 12:53:10PM -0600, David Lechner wrote:  
-> >> On 2/16/26 1:14 AM, Andy Shevchenko wrote:  
-> >>> On Sun, Feb 15, 2026 at 05:16:47PM -0600, David Lechner wrote:  
-> >>>> On 2/15/26 2:03 AM, Andy Shevchenko wrote:  
-> >>>>> On Sat, Feb 14, 2026 at 12:31:12PM -0600, David Lechner wrote:  
-> >>>>>> On 2/14/26 12:11 PM, Andy Shevchenko wrote:  
-> >>>>>>> On Sat, Feb 14, 2026 at 04:08:52PM +0000, Jonathan Cameron wrote:  
-> >>>>>>>> On Sun, 8 Feb 2026 14:50:23 +0200
-> >>>>>>>> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:  
-> >>>>>>>>> On Fri, Feb 06, 2026 at 06:07:12PM +0200, Antoniu Miclaus wrote:  
-> > 
-> > ...
-> >   
-> >>>>>>>>> I believe there is a better approach, what you need is rather a flag
-> >>>>>>>>> to SPI core to tell that this is the device with shared CS.  
-> >>>>>>>>
-> >>>>>>>> Antoniu, this comment from Andy needs addressing before we move
-> >>>>>>>> on. It seems fairly fundamental and I'm not seeing a reply to it on list.
-> >>>>>>>>
-> >>>>>>>> I'm not entirely sure what Andy is suggesting will work but this
-> >>>>>>>> is perhaps a mismatch in really understanding what is going on here.
-> >>>>>>>> Andy, how would a flag work given they seem to be separately addressable
-> >>>>>>>> SPI buses. I think this isn't a shared SPI CS, but rather a device
-> >>>>>>>> with two entirely separate SPI buses. I think the only reason
-> >>>>>>>> we are bothering to implement it as a single device at all is the
-> >>>>>>>> shared backend.  
-> >>>>>>>
-> >>>>>>> My understanding that there are two devices that for whatever reason share  
-> >>>>>>
-> >>>>>> It is the opposite. It is a _single_ device with _two_ CS lines.  
-> >>>>>
-> >>>>> Don't we have already support for that? This changes the picture even more towards
-> >>>>> NAKing this. See below why.  
-> >>>>
-> >>>> Yes, spi_new_ancillary_device() was introduced exactly for this sort
-> >>>> of thing, which is why I think it makes sense to use it.
-> >>>>  
-> >>>>>> adc@0 {
-> >>>>>> 	reg = <0>, <1>;
-> >>>>>> 	...
-> >>>>>> };
-> >>>>>>  
-> >>>>>>> the same CS line. Yes, I probably misread the idea behind, but I meant
-> >>>>>>> some flag for SPI device that tells SPI core that the CS it wants is shared
-> >>>>>>> (maybe a high bit in the cs field or so), then CS core won't complain on
-> >>>>>>> validation about using the same cs number which is "already in use".  
-> >>>>>>
-> >>>>>> There was one existing user in the kernel of spi_new_ancillary_device()
-> >>>>>> that looked like this, so it seemed the right way to approach it. However,
-> >>>>>> code was added later that caused the primary SPI device to "claim" both
-> >>>>>> CS lines for itself and probably broke the one existing user of
-> >>>>>> spi_new_ancillary_device() (hard to tell without hardware to test).
-> >>>>>>
-> >>>>>> The idea here was to unbreak that so we could use spi_new_ancillary_device()
-> >>>>>> just as in the existing use case.
-> >>>>>>
-> >>>>>> The patch for that could have been a bit more strict to only allow the
-> >>>>>> spi_new_ancillary_device() to take CS 1 and fail otherwise, but users
-> >>>>>> are going to notice if it isn't working right anyway, so I didn't ask
-> >>>>>> for more checking.  
-> >>>>>  
-> >>>>>>>> There is an argument that maybe we should be looking at how
-> >>>>>>>> to do data muxing backends to support the more general case of two
-> >>>>>>>> separate chips feeding into a single buffer, but that's a complex
-> >>>>>>>> beast and I'm not sure if it is something we actually need.  
-> >>>>>>
-> >>>>>> I think it would actually be quite similar to what is done in this
-> >>>>>> series.  
-> >>>>>
-> >>>>> TBH, the change sounds to me like a hack. It doesn't cover other potential ways
-> >>>>> of the multi-cs devices come into play. Given that SPI core supports multi-cs
-> >>>>> I don't see a good justification for this patch.
-> >>>>>
-> >>>>> What did I miss?  
-> >>>>
-> >>>> As far as I can tell, other than the one existing user of
-> >>>> spi_new_ancillary_device(), other SPI multi-CS stuff is only used
-> >>>> by SPI flash memory devices, not general SPI devices. There code
-> >>>> that is being modified here was introduced to support the SPI
-> >>>> flash memory devices, so that use case is already covered by
-> >>>> existing code.  
-> >>>
-> >>> Right. And obvious question why can't we apply the same approach
-> >>> to any SPI device? Like extending existing code to cover generic
-> >>> cases.  
-> >>
-> >> spi_new_ancillary_device() was already accepted in the kernel as the
-> >> solution for this sort of use case, so isn't it already the generic
-> >> approach?  
-> > 
-> > I don't think the single user functionality is considered generic.
-> >   
-> >> I can see that it could possibly be nice if the SPI core saw that
-> >> there was more than one CS and called spi_new_ancillary_device()
-> >> automatically and somehow passed that along with the main SPI device
-> >> to the driver probe function. But since this is only the second user
-> >> of spi_new_ancillary_device(), I don't think we have enough data
-> >> points to be able to say if this is really what all peripheral drivers
-> >> would want.  
-> > 
-> > Also, if that one designed for the case, why is needed patching?  
-> 
-> Because the multi-CS stuff for SPI flash memory was added later
-> and broke it. There is only one obscure user, so it is not entirely
-> surprising if no one noticed yet.
-> 
-> > 
-> > ...
-> > 
-> > The  mentioned approach predates the SPI memory chip support being
-> > integrated into SPI core. I think we should consider to kill
-> > spi_new_ancillary_device() in favour of using the same mechanism
-> > as being used for SPI mem chips.
-> >   
-> 
-> I'm not sure the SPI mem work ever actually got finished. In the code, see:
-> 
-> 	if ((of_property_present(nc, "parallel-memories")) &&
-> 	    (!(ctlr->flags & SPI_CONTROLLER_MULTI_CS))) {
-> 		dev_err(&ctlr->dev, "SPI controller doesn't support multi CS\n");
-> 		return -EINVAL;
-> 	}
-> 
-> But there is no SPI controller that has that flag. So I'm not sure if
-> anyone is actually using this yet. And anyway I think the aim there was
-> to be able to assert two CS at the same time, which is not what we are
-> aiming to do here.
-> 
-> And the other potential user of multi-cs is stacked-memories, but this
-> is only mentioned in dt-bindings docs and nowhere else.
-> 
-> There doesn't seem to be any other code besides the validation that is
-> done when the SPI device is added that makes use of more than one CS line.
-> 
-> I would like to agree with you that there should be a better way, but I
-> still don't see an obvious way to do it if there is one (other than the
-> suggestion I already gave that probe should somehow give you two spi
-> devices instead of one).
-> 
+Thanks for attending the Devicetree MC. It took me some time to get back
+to this but finally I uploaded the final notes from DT MC. Thanks for
+the comments and updates I asked some time ago!
 
-I wonder a bit if a single SPI device but with explicit control of which
-CS index in the spi_messages or similar would work?  The disadvantage is you'd
-probably want a lot of helpers to have variants with a selection parameter.
+Notes are attached to the session:
+https://lpc.events/event/19/sessions/237/#20251213
 
-Would end up smelling like paged registers, just with a chip select to pick
-the page rather than a page register.
-
-If this isn't common, may not be worth the effort.
-
-Jonathan
-
-> 
-> 
-
+Best regards,
+Krzysztof
 
