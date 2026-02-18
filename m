@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266528-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IJEUIcEXlmkSaAIAu9opvQ
-	(envelope-from <devicetree+bounces-266527-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:49:21 +0100
+	id AGKDHwwZlmkSaAIAu9opvQ
+	(envelope-from <devicetree+bounces-266528-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:54:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC0A9159337
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:49:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6BA71593FB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:54:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 32E1A300441A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:49:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A90733008232
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:54:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071403451B5;
-	Wed, 18 Feb 2026 19:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039D4348895;
+	Wed, 18 Feb 2026 19:54:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KC2Nid4Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ki7KQPRd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6496309EE9;
-	Wed, 18 Feb 2026 19:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3DA34845C;
+	Wed, 18 Feb 2026 19:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771444156; cv=none; b=cMfCCgdgkMrllIHSxyQWwj97BOBz4FaEjwr3MHeR91qsW/4OzVtQoPQe1LCy+Gq4Tw77uXdBAogtVT5Rt9EOqUACsoS0D5h6GmVKlTg94ZT0MIDB/O4PO//Md73FK6wW7OkLxL82RPlFHdVY/ykUo5JLfDpuIwfKDGfa7MU4AoE=
+	t=1771444467; cv=none; b=nwafn5ETu0rkeVKZiF5e6DSKvRgvnZcWuXIltrC8B5U5o537Oxcr5Mip0TRTP8G4vgBvzaiy/lszyK3ptqk8msXYuJ3x0LGDvKR8HwPxiPKzuY/vRv/xxerYJZgBkILR1256uxZ9OcGfVJBXbt+7v335MrrO7qsur9jy/6ng6q8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771444156; c=relaxed/simple;
-	bh=ngekcYppEAPkwMAMnhzBjLY3vzHSNc1ZTfejCfmz6xM=;
+	s=arc-20240116; t=1771444467; c=relaxed/simple;
+	bh=KwR7Qx4Tq8mj28cxomJ98ZhpYCkpEiUTX7F8Mbj2A2A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XNB1e8xIllMWV1QZeyb72Zyz1uGDiDaLSBrVRk7HftsT0rni2bhXTV0S3S2wbIeb9iHossYjckqqAZ9UDhjRXEacMFDHAgFthhM5jDdZDS3q74cwUmnaHYrmRNLaKOHwQwYvfUAFk7lwwLRrvN/KtwYk5E3w16EG14TCd354Q90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KC2Nid4Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD25CC116D0;
-	Wed, 18 Feb 2026 19:49:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XRQwN2aSJ5y7q8txFsUJAbkMNo9TewYnT18nhYt756eFMRnhGmflItxoxV59HeHfW+SpQS0eB9Bzcd68HBzSaz/l7OZIxEKe7AdsUTJKHgve6kWvDB32d8LnLP19lJvt2DOmcSqF7IjqfEZ4/NCyabWDvAAz8/l70nnXIPHBIOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ki7KQPRd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75C6EC2BCC7;
+	Wed, 18 Feb 2026 19:54:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771444156;
-	bh=ngekcYppEAPkwMAMnhzBjLY3vzHSNc1ZTfejCfmz6xM=;
+	s=k20201202; t=1771444467;
+	bh=KwR7Qx4Tq8mj28cxomJ98ZhpYCkpEiUTX7F8Mbj2A2A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KC2Nid4Q32vRoFa2ufKk/16bp+ftxTSRXMLMdyDdXFB2z2UOEHSRCaBlitbkoakps
-	 cHyI9K4grDMyY7enXyWp0s4+E0s8JWKIiH73/Ud3LweOPr9vMfjoap5lkjED/Gh5Yh
-	 Oa0a5fuGeRKduXlbkHZRneIOoA3MuIXQ1ppb7a7weww+HUTVdUcYaUGATSD0HWjYgU
-	 kLOrbR8NBSh41iPmwFFE3q7zQr9dId2o7l8Qhh+4UDXBfs01OL/apeq8P8iJGXQQUv
-	 r7ggXsQ+En8p0DHIWOLO4Q40JI85Lqy3owy5XudR3DouEHVnoPm1sGwTRSM1jS/nqK
-	 pZO703CLzlrzQ==
-Message-ID: <4dc1efb0-b814-41c1-936b-6a39a46ddc10@kernel.org>
-Date: Wed, 18 Feb 2026 20:49:08 +0100
+	b=Ki7KQPRdWlKE0bmrbUS/r2tfQj+AkwZ5a9iIPQzv92suGsOvMofkIYijaJm1g6Qcd
+	 llrzML/R0DDF2wXn/3q6haV9J9bcPBhBpavm47scHegTWUsbjiyxSftDD/nIiqci4I
+	 u4IprFFzva5neIkWvP/s2r0J1iLe6qG0EIfyXHnpoFYsaz3mTChHk6+BW5NnFd4kJP
+	 jPUL1zdemKv9T2gotJqfmaP5n2Vd8ZQbr6kzfREWu11lP/7VERP2//XBJNpxWSCw+I
+	 HBZEwxCPLzqzWUn4x/QbOxBNXZ4n1FfL+/8axbqWHZkFD5g0RM0OcUrlCQ9vLf6c5X
+	 eXFj/7TfGAihg==
+Message-ID: <a7c5c5df-28d9-4b4e-87f0-572b7f637d26@kernel.org>
+Date: Wed, 18 Feb 2026 20:54:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,24 +53,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/13] dt-bindings: serial: fsl-linflexuart: add dma
- properties
-To: Larisa Ileana Grigore <larisa.grigore@oss.nxp.com>,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, sumit.semwal@linaro.org,
- christian.koenig@amd.com, chester62515@gmail.com, cosmin.stoica@nxp.com,
- adrian.nitu@freescale.com, stefan-gabriel.mirea@nxp.com,
- Mihaela.Martinas@freescale.com
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- s32@nxp.com, imx@lists.linux.dev, clizzi@redhat.com, aruizrui@redhat.com,
- eballetb@redhat.com, echanude@redhat.com, jkangas@redhat.com,
- Radu Pirea <radu-nicolae.pirea@nxp.com>
-References: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
- <20260216150205.212318-10-larisa.grigore@oss.nxp.com>
- <be18bbef-02f1-416b-ad2a-739261b3cd97@kernel.org>
- <4ad41c4c-3319-403b-93c7-c52a58658e84@oss.nxp.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add regulators
+ for the USB
+To: pritam.sutar@samsung.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alim.akhtar@samsung.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rosa.pila@samsung.com, dev.tailor@samsung.com, faraz.ata@samsung.com,
+ muhammed.ali@samsung.com, selvarasu.g@samsung.com
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+ <CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
+ <20260122130721.205664-3-pritam.sutar@samsung.com>
+ <352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
+ <000001dc9c13$ea305520$be90ff60$@samsung.com>
+ <2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
+ <019001dca0b8$f709e640$e51db2c0$@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,56 +113,121 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <4ad41c4c-3319-403b-93c7-c52a58658e84@oss.nxp.com>
+In-Reply-To: <019001dca0b8$f709e640$e51db2c0$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266527-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.nxp.com,linuxfoundation.org,kernel.org,linaro.org,amd.com,gmail.com,nxp.com,freescale.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[27];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266528-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AC0A9159337
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email]
+X-Rspamd-Queue-Id: D6BA71593FB
 X-Rspamd-Action: no action
 
-On 18/02/2026 15:44, Larisa Ileana Grigore wrote:
-> On 2/16/2026 5:10 PM, Krzysztof Kozlowski wrote:
->> On 16/02/2026 16:02, Larisa Grigore wrote:
->>> From: Radu Pirea <radu-nicolae.pirea@nxp.com>
+On 18/02/2026 10:28, pritam.sutar@samsung.com wrote:
+>>>>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
+>>>>
+>>>> Please use name for all fixed regulators which matches current format
+>>>> recommendation: 'regulator-[0-9]v[0-9]'
+>>>>
+>>>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.gi
+>>>> t/tree/
+>>>> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+>>>>
+>>>> None of the regulators are called like you wrote. Really NONE.
+>>>>
 >>>
->>> Add 'dmas' and 'dma-names' properties to describe optional DMA support
->>> for RX and TX channels in the LINFlexD UART controller.
+>>> Thank you for the references. Will bring changes for regulator's name
+>>> and labels as
+>>>
+>>> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
+>>> +       reg_usbdrd31_dwc3_vbus: regulator-1 {
 >>
->> Same question as in other patch about existing devices.
+>> Did you read the binding? That's not what I asked.
 >>
-> I will update the bindings so that `dmas`/`dma-names` are optional for 
-> S32G and not present on S32V234. Would this be acceptable?
+> 
+> Yes. 
+> Sorry for misinterpreting above comment. Is it expected as below?
+> 
+> This is based on our understanding by referring binding and other vendor dts.
+> 
+> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> @@ -59,7 +59,7 @@ dummy_regulator: regulator-0 {
+>                  regulator-name = "dummy_regulator";
+>         };
+> 
+> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
+> +       reg_usb_vbus0: regulator-5v0-vbus0 {
+
+Yes, that's better.
+
+Only under the assumption these are actually dedicated single-enable-pin
+regulators, not pins going to the PMIC.
+
+>                compatible = "regulator-fixed";
+>                regulator-name = "usbdrd31_dwc3-vbus";
+>                regulator-min-microvolt = <5000000>;
+> @@ -75,7 +75,7 @@ usb_phy0: usb-phy0 {
+>                 vbus-supply = <&usbdrd31_dwc3_vbus>;
+>         };
 > 
 
-Yes, with reason in the commit msg.
+...
+
+>>>>
+>>>> That's a bit too much of dummies. This is heavily incomplete. You
+>>>> need to bring back the PMIC first.
+>>>>
+>>>
+>>> Presently, relying on USB LDOs being enabled by the bootloader in this
+>>> automotive SoC. However, we understand the concern and it is added in
+>>> case if anyone wants to use implemented PMIC in future. For now, would
+>>> like to proceed with the dummy regulators to enable the required USB
+>> features.
+>>
+>> And I don't see the point of these dummies. Solves nothing.
+>>
+> 
+> Are you expecting details as mentioned in above section in commit message? 
+> However, we have mentioned these details in cover letter.
+
+No, I am expecting proper PMIC to be represented here. One dummy
+regulator during the fast development phase is okay. Dummy added by
+community contributors without resources and schematics would also fly.
+
+But Samsung, with all the resources, schematics doing development since
+2023 and still adding 20 dummies to every device? Nope, no, sorry.
+
+Please start doing this properly. Look how entire new SoC was upstreamed
+by Linaro:
+https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org/
+
+Or something newer by Qualcomm:
+https://lore.kernel.org/linux-arm-msm/?q=s%3Aglymur
+
 
 Best regards,
 Krzysztof
