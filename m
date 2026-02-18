@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-266334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266335-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJyENDeFlWmwSAIAu9opvQ
-	(envelope-from <devicetree+bounces-266334-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:24:07 +0100
+	id qOMeKEiFlWmwSAIAu9opvQ
+	(envelope-from <devicetree+bounces-266335-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:24:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 689B3154B2F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 268A6154B3D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:24:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C82C930358A9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:23:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BA66C305CA25
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E36E33C52C;
-	Wed, 18 Feb 2026 09:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2F633CEB2;
+	Wed, 18 Feb 2026 09:23:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="W134a5d1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RWACkuJk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38EA33A71F;
-	Wed, 18 Feb 2026 09:23:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B619833C502;
+	Wed, 18 Feb 2026 09:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771406630; cv=none; b=RPDKM8XHFGADzhq+iQaon91RtIvV4s6tJxp59IsCqvbomp+x3pGqATjRgwagtaUYxlAjuzXPgBMWqD3r2DYRi5mJsvwOoPiWGJqv6UijOvX6NejztQZ4q21M9d2KE6AfxQvWO9eUooH+AonmPx3CLOsQ1laYsZkdSRClsCRfhZM=
+	t=1771406631; cv=none; b=KDy4N/noLsqToKKQig3KTHFI+YFGHv9EZ4YCbsSsk70K7i+sMLRwoSFfMnK2NmN4T1Sdw4aauxsNwkdDEAIj9IMdWaR7AyX9cENBXMoZJt3DaFoarw1QwRzoNZ+gAuFxhDaZ/kg1OkxjX3xGEjYNn64o9HmPESabn0QRYA4lEKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771406630; c=relaxed/simple;
-	bh=OtiUP6H58bH2B9BYy78Cc3KDhijHLwzAQd8zkOtzvMU=;
+	s=arc-20240116; t=1771406631; c=relaxed/simple;
+	bh=3D8WQoaBuVJDthUioSmU/QbK1HNlGUVg/GvxA17VnHg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ji6JRgdEi0JrG/oFWnnzwbm2J/CxTQV2+wNoCMCGGm/4UQ2iP2OVHAN0cSWH8gQUNBYyDC3mDcI4JW7Qt4k48xLaHGonMJd8Jn+ArEG8IKlzWzIqVQ64dInCDfZOLZm4/bfOkCapXbj9f04XjelKwJME2mzBMP2SqBTUsNnrJDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=W134a5d1; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=qfZWaPVTwvEUMSBDUZZ3Q+OHPju+PTKtBsEAtUoahFmtgdW3dIe6vJQ/TCnj9dPZzYPZpVEAsc6mCqMXxJVTgiDNX+GsPQHZKHKBlYyNdbbOlBbWou6dTUZTXTHObIcLsUBlFtHnt5brEs7x6FrJ+6lSg0rxUmDdpQu436qI0S4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RWACkuJk; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771406627;
-	bh=OtiUP6H58bH2B9BYy78Cc3KDhijHLwzAQd8zkOtzvMU=;
+	s=mail; t=1771406628;
+	bh=3D8WQoaBuVJDthUioSmU/QbK1HNlGUVg/GvxA17VnHg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=W134a5d1nCr3rz3gQ9cU1YPNqo9zbncRoff22hQKRC6YU2kwccf8t2bgy2BrV9LO7
-	 34u9x2mHP8krnFGEVfKzWgHiRrflSrpNPh7GzCS5DRujKO/vXLcifXNXwKI/EyCPH8
-	 NaWL2Ja1GhCy2tSm/Flnt7GYu0jiD+fd7Stl44bNOqnhq0XWWdymx/+6KgKFwHE/Dd
-	 oRw6VO3BjEKXUK/uHjsPPXfdscbCIpDKBUlzFb5pG9PmQACciL4lmJO/qmY8giEOMK
-	 gTkAopoI9cescVVQ9pKhY1w4BqbYJIDrUAyWkmqnFffRKOmIYqGLSMlG7u0U4JbaZA
-	 KMgnYD8S8Mspg==
+	b=RWACkuJkTlXZPeSXnL+tY30C4VGAceUv5SzxRhe+9SiplAir673BtIw2wptGl00/Q
+	 ee/dzMUlIS7BQjrmKVxMNEz+KzT9H5anSm8h2l1KjlfHvvjbMH+nlxZoDOh3hBlt+W
+	 OtKC9HmjhR7k6SNSx9HTQd+vf7M1C0jVWUCmcDbrQP9icuAst3FRWpQIzc2sXfHJGa
+	 hwb5ZffJJRzvmGa981pk5Kp/8NlumcFZCMOLbczD2T9pwkAVHdOgN5oP8WWr8nBoc8
+	 e//LMtRijgKHVrvDy66bnzt6zbJyafTQ+yRsyp86epGFwhp6X2lQVRDTiH4gIeKb8B
+	 icXE6YMF7AP6w==
 Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CE69517E1523;
-	Wed, 18 Feb 2026 10:23:46 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 90A4517E1525;
+	Wed, 18 Feb 2026 10:23:47 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Wed, 18 Feb 2026 10:23:03 +0100
-Subject: [PATCH 2/3] arm64: dts: mediatek: mt8395-radxa-nio-12l: add mmc
- aliases
+Date: Wed, 18 Feb 2026 10:23:04 +0100
+Subject: [PATCH 3/3] arm64: dts: mediatek: mt8365-evk: add mmc aliases
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260218-mtk-genio-mmc-aliases-v1-2-e218e9f771c5@collabora.com>
+Message-Id: <20260218-mtk-genio-mmc-aliases-v1-3-e218e9f771c5@collabora.com>
 References: <20260218-mtk-genio-mmc-aliases-v1-0-e218e9f771c5@collabora.com>
 In-Reply-To: <20260218-mtk-genio-mmc-aliases-v1-0-e218e9f771c5@collabora.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -75,11 +74,11 @@ Cc: kernel@collabora.com, devicetree@vger.kernel.org,
  linux-mediatek@lists.infradead.org, 
  Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771406625; l=1105;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771406625; l=944;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=OtiUP6H58bH2B9BYy78Cc3KDhijHLwzAQd8zkOtzvMU=;
- b=jNPAyn/57bzsJ3JvieHVUaGkG5TcF3dpmdD02u83fU4/ccye/1j5aNS+YlStqYYL4PYP/K3nW
- qwl0SNoBO2qDylhRWsivy0pu9MXbsvVl2i08SwsQBqNxgRlCW1io/yS
+ bh=3D8WQoaBuVJDthUioSmU/QbK1HNlGUVg/GvxA17VnHg=;
+ b=yB9pG51AuwxoABSH+RUS8W4fd8hH0d+dPkxrerms0/q3Nd4Lr62aMB0tiYKwkScgLkZhG0T25
+ rvhaM/RPAmABerlsIJQZl/2oWuf5CMEvGbIxxQ2WyJib/R5E3/pbfBd
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-Rspamd-Server: lfdr
@@ -92,7 +91,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266334-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266335-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -109,38 +108,35 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
-X-Rspamd-Queue-Id: 689B3154B2F
+X-Rspamd-Queue-Id: 268A6154B3D
 X-Rspamd-Action: no action
 
 Add aliases for mmc nodes, so that the eMMC and SDCard host controllers
-get enumerated in a consistent order for the Radxa NIO-12L board.
-Also, reorder ethernet0 so all aliases are sorted alphanumerically.
+get enumerated in a consistent order for the Mediatek Genio 350-EVK
+board.
+Also, reorder serial0 so all aliases are sorted alphanumerically.
 
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts | 4 +++-
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-index 1cd4b84e98615be6c5cb13d01b7baed0e017c3be..bf91305e8e4a5d49d438e43b7e6f2e6bbbff5bad 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-@@ -21,12 +21,14 @@ / {
- 	compatible = "radxa,nio-12l", "mediatek,mt8395", "mediatek,mt8195";
+diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+index b5dd5ef9fa11ae1d54aa754325bac2e184b90dd3..a30ee523b0b587977f9427767d09b21894eb7ae3 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+@@ -20,8 +20,10 @@ / {
+ 	compatible = "mediatek,mt8365-evk", "mediatek,mt8365";
  
  	aliases {
-+		ethernet0 = &eth;
- 		i2c0 = &i2c2;
- 		i2c1 = &i2c3;
- 		i2c2 = &i2c4;
- 		i2c3 = &i2c0;
- 		i2c4 = &i2c1;
--		ethernet0 = &eth;
+-		serial0 = &uart0;
+ 		ethernet = &ethernet;
 +		mmc0 = &mmc0;
 +		mmc1 = &mmc1;
- 		serial0 = &uart0;
- 		serial1 = &uart1;
- 		spi0 = &spi1;
++		serial0 = &uart0;
+ 	};
+ 
+ 	chosen {
 
 -- 
 2.53.0
