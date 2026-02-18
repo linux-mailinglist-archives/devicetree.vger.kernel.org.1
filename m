@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266529-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AGKDHwwZlmkSaAIAu9opvQ
-	(envelope-from <devicetree+bounces-266528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:54:52 +0100
+	id izFTB/4almnsaAIAu9opvQ
+	(envelope-from <devicetree+bounces-266529-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 21:03:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6BA71593FB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:54:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D501594CA
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 21:03:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A90733008232
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:54:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5ADD33011863
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039D4348895;
-	Wed, 18 Feb 2026 19:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFF52D9EC8;
+	Wed, 18 Feb 2026 20:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ki7KQPRd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AOfw8yPk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3DA34845C;
-	Wed, 18 Feb 2026 19:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87AB7199920;
+	Wed, 18 Feb 2026 20:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771444467; cv=none; b=nwafn5ETu0rkeVKZiF5e6DSKvRgvnZcWuXIltrC8B5U5o537Oxcr5Mip0TRTP8G4vgBvzaiy/lszyK3ptqk8msXYuJ3x0LGDvKR8HwPxiPKzuY/vRv/xxerYJZgBkILR1256uxZ9OcGfVJBXbt+7v335MrrO7qsur9jy/6ng6q8=
+	t=1771444986; cv=none; b=TwLGjGPjE4QEJ/ptoONONNzLT5kdFEjVvLnIxALE1HaGpH6jEwENG81SQLNoNE0Zti7xAJTELDEBJrmWMr8GQbgYZFGhvqhOVIyoLTHWU2TXzt/eE4QVSN5ljDeACrwHnwtcC5amk/dIESAUOVSxu9eNCW1UAG0+/OO77HKNvPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771444467; c=relaxed/simple;
-	bh=KwR7Qx4Tq8mj28cxomJ98ZhpYCkpEiUTX7F8Mbj2A2A=;
+	s=arc-20240116; t=1771444986; c=relaxed/simple;
+	bh=x74pCM8g+AY+IDvVyRtaHl/FTxvqT89D/tM1i9imlbg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XRQwN2aSJ5y7q8txFsUJAbkMNo9TewYnT18nhYt756eFMRnhGmflItxoxV59HeHfW+SpQS0eB9Bzcd68HBzSaz/l7OZIxEKe7AdsUTJKHgve6kWvDB32d8LnLP19lJvt2DOmcSqF7IjqfEZ4/NCyabWDvAAz8/l70nnXIPHBIOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ki7KQPRd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75C6EC2BCC7;
-	Wed, 18 Feb 2026 19:54:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Efn6fQushwOh8Tk/ZSqkt7ulmqpOM3p2KX0Qs/vIFJunjhV6OHThI2teBYvp75cMrJZGJKi1TtQHRRcHR5H2LH20FodSg2i0uSrrZifK33MfA6ltdDHwT/HESRDFOWSEA0dBdPohrrKBdZF0I/bKnZSv1a9+Hr8iFQsclAlt9n0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AOfw8yPk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 106CDC116D0;
+	Wed, 18 Feb 2026 20:03:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771444467;
-	bh=KwR7Qx4Tq8mj28cxomJ98ZhpYCkpEiUTX7F8Mbj2A2A=;
+	s=k20201202; t=1771444986;
+	bh=x74pCM8g+AY+IDvVyRtaHl/FTxvqT89D/tM1i9imlbg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ki7KQPRdWlKE0bmrbUS/r2tfQj+AkwZ5a9iIPQzv92suGsOvMofkIYijaJm1g6Qcd
-	 llrzML/R0DDF2wXn/3q6haV9J9bcPBhBpavm47scHegTWUsbjiyxSftDD/nIiqci4I
-	 u4IprFFzva5neIkWvP/s2r0J1iLe6qG0EIfyXHnpoFYsaz3mTChHk6+BW5NnFd4kJP
-	 jPUL1zdemKv9T2gotJqfmaP5n2Vd8ZQbr6kzfREWu11lP/7VERP2//XBJNpxWSCw+I
-	 HBZEwxCPLzqzWUn4x/QbOxBNXZ4n1FfL+/8axbqWHZkFD5g0RM0OcUrlCQ9vLf6c5X
-	 eXFj/7TfGAihg==
-Message-ID: <a7c5c5df-28d9-4b4e-87f0-572b7f637d26@kernel.org>
-Date: Wed, 18 Feb 2026 20:54:22 +0100
+	b=AOfw8yPkYUVfE0XzMMnTFWb8x0XKa2txAwWs2tZFiN24w2OoQevCM7rmbFLGAw8bu
+	 6rqHJ1sxhHf16gOspxOAWXfVj+Oz+SVlfifIm2NpWmixM1abunvsdBkKm9TGSMrUMx
+	 /ZDder/ip+O5T8lBZuG1ui29GSyEoYJSRd+6/ifO5FIpfMBcbT+8uQQ2zPHIKm67fM
+	 BQRPHOTT5pJxfk+MvYlomFLd/CYl8FWAj2eC7dcHCv42FDXwyv3QTkn9WyMsEBEyIy
+	 druZOh8uev8KLqSO71szxxaPrVqpcwvesoNu4v9/29M6T+/Mom9euEbm/r9VZcQufH
+	 B2/OlQJNysewQ==
+Message-ID: <c588720a-6a7d-4179-afb5-bb7e89e0e7e1@kernel.org>
+Date: Wed, 18 Feb 2026 21:03:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,21 +53,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add regulators
- for the USB
-To: pritam.sutar@samsung.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, alim.akhtar@samsung.com
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- rosa.pila@samsung.com, dev.tailor@samsung.com, faraz.ata@samsung.com,
- muhammed.ali@samsung.com, selvarasu.g@samsung.com
-References: <20260122130721.205664-1-pritam.sutar@samsung.com>
- <CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
- <20260122130721.205664-3-pritam.sutar@samsung.com>
- <352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
- <000001dc9c13$ea305520$be90ff60$@samsung.com>
- <2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
- <019001dca0b8$f709e640$e51db2c0$@samsung.com>
+Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
+ peripheral
+To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
+ <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
+ <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
+ <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
+ <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
+ <66ecf6a5-cc1f-4872-971d-6bc32894dbac@foss.st.com>
+ <fd73947a-289a-43f9-9506-573fee935d12@kernel.org>
+ <ed0ab69f-7aff-423f-8b93-980e79705b6d@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,121 +115,205 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <019001dca0b8$f709e640$e51db2c0$@samsung.com>
+In-Reply-To: <ed0ab69f-7aff-423f-8b93-980e79705b6d@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-266528-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266529-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email]
-X-Rspamd-Queue-Id: D6BA71593FB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 39D501594CA
 X-Rspamd-Action: no action
 
-On 18/02/2026 10:28, pritam.sutar@samsung.com wrote:
->>>>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
+On 18/02/2026 11:38, Gatien CHEVALLIER wrote:
+> 
+> 
+> On 2/17/26 21:06, Krzysztof Kozlowski wrote:
+>> On 17/02/2026 14:12, Gatien CHEVALLIER wrote:
+>>>
+>>>
+>>> On 2/13/26 16:06, Krzysztof Kozlowski wrote:
+>>>> On 10/02/2026 10:55, Gatien CHEVALLIER wrote:
+>>>>>>> +  memory-region:
+>>>>>>> +    minItems: 1
+>>>>>>> +    maxItems: 32
+>>>>>>> +    description:
+>>>>>>> +      Phandle to nodes describing memory regions to be configured in the RISAB
+>>>>>>> +      by the trusted domain of at least a RISAB page size.
+>>>>>>> +      These regions cannot overlap. A zone must be within st,mem-map range and
+>>>>>>> +      can be represented by one or more pages.
+>>>>>>> +
+>>>>>>> +  st,mem-map:
+>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>>>>> +    description: Memory address range covered by the RISAB.
+>>>>>>> +    items:
+>>>>>>> +      - description: Memory range base address
+>>>>>>> +      - description: Memory range size
+>>>>>>
+>>>>>> Why do you need this property if you have memory-region already? This
+>>>>>> also should be part of <reg>, although this mixing with memory-region is
+>>>>>> anyway confusing.
+>>>>>>
+>>>>>
+>>>>> The RISAB is a memory firewall peripheral covering internal RAMs. It is
+>>>>> possible to configure multiple memory regions within these RAMs (done by
+>>>>> the Trusted Domain) with security, privilege and compartment isolation.
+>>>>> This peripheral allow 4kBytes page granularity. Each page can hold
+>>>>> different access rights, with 32 pages at most (hence the maxItems: 32).
+>>>>> That is some information that can be added to the documentation.
+>>>>>
+>>>>> Moreover, when a region is delegated to a non-secure privileged
+>>>>> component, this component can configure the privilege level necessary to
+>>>>> access the region.
+>>>>>
+>>>>> This property gives me the opportunity to get the memory range covered
+>>>>> by the RISAB. "reg" here is used to access the actual RISAB registers
+>>>>> holding the configuration.
 >>>>
->>>> Please use name for all fixed regulators which matches current format
->>>> recommendation: 'regulator-[0-9]v[0-9]'
->>>>
->>>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.gi
->>>> t/tree/
->>>> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
->>>>
->>>> None of the regulators are called like you wrote. Really NONE.
+>>>> Looks awfully like memory regions still :/
 >>>>
 >>>
->>> Thank you for the references. Will bring changes for regulator's name
->>> and labels as
+>>> IIUC the memory-region property references memory regions within
+>>> a reserved memory. Which is not really what I want to describe
+>>> here as I want to get the boundaries of the whole range. The
+>>> memory-region property would be used by the Trusted Domain / kernel
+>>> to get each regions (or only one that represents the whole range) of the
+>>> internal RAM to apply desired access rights to them / use them.
 >>>
->>> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
->>> +       reg_usbdrd31_dwc3_vbus: regulator-1 {
+>>> Describing the memory range using a reserved memory would make the
+>>> kernel exclude this memory range from the normal usage, no?
 >>
->> Did you read the binding? That's not what I asked.
+>> In general yes, but also depends on the use case/drivers/purpose. I do
+>> not understand why would you mark some memory for generic use by kernel
+>> (so not reserved for specific purpose) and still configure it somehow
+>> for trusted firmware to allow secure read/write access.
+>>
+>> If you mark some part of memory as a meaning for TF for secure access,
+>> you already claim it is not a generic memory. Otherwise TF just writes
+>> all over malloced() pages?
 >>
 > 
-> Yes. 
-> Sorry for misinterpreting above comment. Is it expected as below?
+> While the Trusted Domain applies the configuration, it is entirely
+> possible for the Trusted domain to give himself access to, let's say,
+> the first RISAB page to store whatever data, and give the rest to the
+> kernel. Actually, this is what we do to store OTP data mirrors
+
+And what happens with the rest of that memory? Why the first page cannot
+be the reserved region?
+
+> or DDR context and give the rest to the kernel or the co-processor.
 > 
-> This is based on our understanding by referring binding and other vendor dts.
+> Now, using internal RAM for generic use by the kernel is unlikely but
+> I have in mind the last firewall controller of the stm32mp2x platforms,
+> which is the RISAF. It has the same purpose as the RISAB but for
+> external memories. One protects the DDR so I do want DDR regions as
+> accessible for general use (memory node).
 > 
-> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> @@ -59,7 +59,7 @@ dummy_regulator: regulator-0 {
->                  regulator-name = "dummy_regulator";
->         };
+> This property allows me to describe the boundaries of what is protected
+> without having to imply anything from frameworks about the regions as I
+> have no way of knowing what is accessible and what is not.
+
+Frameworks do not matter here - we don't even talk about them yet.
+
+You want to describe boundaries of some dedicated memory region and you
+should not have a custom property for that.
+
 > 
-> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
-> +       reg_usb_vbus0: regulator-5v0-vbus0 {
-
-Yes, that's better.
-
-Only under the assumption these are actually dedicated single-enable-pin
-regulators, not pins going to the PMIC.
-
->                compatible = "regulator-fixed";
->                regulator-name = "usbdrd31_dwc3-vbus";
->                regulator-min-microvolt = <5000000>;
-> @@ -75,7 +75,7 @@ usb_phy0: usb-phy0 {
->                 vbus-supply = <&usbdrd31_dwc3_vbus>;
->         };
-> 
-
-...
-
->>>>
->>>> That's a bit too much of dummies. This is heavily incomplete. You
->>>> need to bring back the PMIC first.
->>>>
 >>>
->>> Presently, relying on USB LDOs being enabled by the bootloader in this
->>> automotive SoC. However, we understand the concern and it is added in
->>> case if anyone wants to use implemented PMIC in future. For now, would
->>> like to proceed with the dummy regulators to enable the required USB
->> features.
+>>> I think declaring a "boundaries" memory region with no usage for the
+>>> kernel wouldn't make sense. The kernel may not be able to access the
+>>> whole memory range.
 >>
->> And I don't see the point of these dummies. Solves nothing.
+>> I don't understand that. reserved-memory is for cases with "no usage for
+>> the kernel", so it would perfectly make sense.
+> 
+>>
+>> Look what your description said:
+>>
+>> "used to protect internal RAMs by applying access"
+> 
+> Yes, access rights are applied by the Trusted Domain. These firewalls
+> are very flexible because access rights on secure and privilege levels
+> along with Compartment ID (SoC is divided into multiple compartments
+> holding a compartment ID) can be configured. Some bits of the
+> firewall configuration can also be delegated. e.g: When a memory
+> region is configured for privileged, non-secure access for the
+> cortex running Linux; then the kernel could reconfigure the
+> privilege level (unlikely but feasible).
+> 
+> It would be quite complex to explain the whole mechanism without
+> pointing to some documentation [1].
+> 
+> Anyway, access rights are applied, but access may very well be given to
+> the privileged non-secure compartment running the kernel. Meaning that
+> only the kernel can access such memory. Not the Trusted Domain, not the
+> user-space, not the co-processor.
+
+This implies that if you do not reserve such memory that way, then
+Trusted Domain or user-space could just poke and use it...
+
+If kernel explicitly has to tell TD to do something with specific region
+of memory, this is somehow a reserved memory. It is distinctive,
+special, selected, chosen.
+> 
+> So you could give some bits of internal RAM to the kernel for whatever
+> purpose you'd like (Storing particular data you want to keep in some
+> low-power mode, etc...).
+
+All RAM is for that purpose...
+
+> 
+> 
+> [1]: https://wiki.st.com/stm32mpu/wiki/Resource_Isolation_Framework_overview
+> 
+>>
+>> and
+>>
+>> " a trusted domain, or the domain to whom the page configuration has
+>> been delegated,"
+>>
+>> so how it is not a dedicated, special memory delegated to specific
+>> devices and/or TF?
 >>
 > 
-> Are you expecting details as mentioned in above section in commit message? 
-> However, we have mentioned these details in cover letter.
+> The memory is delegated to some contexts. These can be the processor
+> running Linux, a co-processor, some initiator ports of peripherals
+> having DMAs, etc...
+> 
 
-No, I am expecting proper PMIC to be represented here. One dummy
-regulator during the fast development phase is okay. Dummy added by
-community contributors without resources and schematics would also fly.
+So pretty close to what the purpose of reserved-memory is...
 
-But Samsung, with all the resources, schematics doing development since
-2023 and still adding 20 dummies to every device? Nope, no, sorry.
-
-Please start doing this properly. Look how entire new SoC was upstreamed
-by Linaro:
-https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org/
-
-Or something newer by Qualcomm:
-https://lore.kernel.org/linux-arm-msm/?q=s%3Aglymur
-
+Well, we keep discussing and I am really not convinced. You can try to
+catch @Rob tomorrow on IRC and maybe get his approval, but for me this
+is clearly some sort of reserved memory thus you cannot go with own
+bindings. Another way would be to prove me wrong by using the reserved
+memory binding and showing how it could not possible work, ever (such
+counter examples sometimes help to look at the problem from a new angle).
 
 Best regards,
 Krzysztof
