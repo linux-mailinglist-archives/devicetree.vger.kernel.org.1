@@ -1,147 +1,118 @@
-Return-Path: <devicetree+bounces-266367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266366-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBJMDJSVlWk1SgIAu9opvQ
-	(envelope-from <devicetree+bounces-266367-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 11:33:56 +0100
+	id kF7rG4qTlWn1SQIAu9opvQ
+	(envelope-from <devicetree+bounces-266366-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 11:25:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F00E1557F5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 11:33:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7BB1555F2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 11:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 62E423088AF0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:21:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9B28D306F96C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDEA2FF651;
-	Wed, 18 Feb 2026 10:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E612FE578;
+	Wed, 18 Feb 2026 10:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="j+fNq8Zn"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ELYwlYbw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9322FDC40;
-	Wed, 18 Feb 2026 10:19:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D692FDC40;
+	Wed, 18 Feb 2026 10:19:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771409995; cv=none; b=ak5WOFzW7Hi2GAAleaRMnO/MqWAzWyCiXYX9vnvvunn74h1/hi64cNfrW2uoDEIB9Zv44rwe7mMXyND2+pDZikCdskkvakhUN27DZeLLH/RXu+n8zOySSP/D67YKbNNP2w7ulRFiUhCBSCRsNO3x5F35ii1AuRbOxAs8bCinU64=
+	t=1771409948; cv=none; b=s1/m65Fo/ntSGBxk3aUrWxA8vowBS2s/OBGoWrdzw/swDwBLepJDVy9lrJqlnSflieioR6A1UembdGFxJu0Q/WOM9k2i2dAWnP3EZbJ7tH3Ij84u25aXfTgl5snQdOIEq90dede7d1YkBgq17NjlWoxvq8AwCHd0pvE1inc1iGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771409995; c=relaxed/simple;
-	bh=1mPXmmMne05pYAaucmru6rWTvugDQH1iZH4JWLruXfI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mT8GxIGPSKhymxHN8D1ZmvSABGIMhCVT+l2mDK8ItMIELZJZts+tVhis/mCXjXiWDjQu/YQnfgIQ92nWX8xQrBorRjkNQQmE4dSyN24lHola7U5Tefa84WuvCoOY73PmxlswyfmaY2wEQfr11ul0gQo14G+qyGVtaBzl7SyxHfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=j+fNq8Zn; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Received: from localhost.localdomain (2A02-842B-8136-0001-B865-661d-5641-E7C6.rev.sfr.net [IPv6:2a02:842b:8136:1:b865:661d:5641:e7c6])
-	by courrier.aliel.fr (Postfix) with ESMTPSA id 9E0B14A551;
-	Wed, 18 Feb 2026 10:19:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1771409991;
-	bh=1mPXmmMne05pYAaucmru6rWTvugDQH1iZH4JWLruXfI=;
-	h=From:To:Cc:Subject:Date;
-	b=j+fNq8ZnvCqilBeAnFnjfbYRubTFgYCojnKlGGQ0cd8iJJRFhFJ7C/H0ES/a3oUC7
-	 LU2RAVJbNLMtib7tpnwImc+rG9ki1afJfF+Kq4hVkS0/jVYzMyGZ3riL4O2vuqM40R
-	 4jdFOvVJDHh4B07YFyDm2JuB7StrhuJSGikg0RFQ=
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-To: linux-amlogic@lists.infradead.org
-Cc: Ronald Claveau <linux-kernel-dev@aliel.fr>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jian Hu <jian.hu@amlogic.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/7] dt-bindings: clk: meson: Add Amlogic T7 fix pll support
-Date: Wed, 18 Feb 2026 11:19:02 +0100
-Message-ID: <20260218101904.35541-1-linux-kernel-dev@aliel.fr>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1771409948; c=relaxed/simple;
+	bh=2coN9jW71FYXIRiPrOpZ5PPRf8y8jTjKFd2PO6U15is=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Hw/Je9d4mp8nDsQO9zeeGdtybjjOPiIgERCzRx3b8Sa3Vy+PlrenzerYrPpALC204JzzgOG4lxUfdhE8KqN12Vx+EfaTMFnOVKtviZKNqOLLw+zE5untuOV4mCSHjdHIOkn0GXZsaWtqNP4/GAcAPmPFR4T2s0MoGjSzP8m7A3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ELYwlYbw; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771409945;
+	bh=2coN9jW71FYXIRiPrOpZ5PPRf8y8jTjKFd2PO6U15is=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ELYwlYbwvYuEeyCRJa6Cbo1oxczDp7T7m7cu48avxC3nno4XuXzlL1dIfeB7uCYFh
+	 al0JsyEa3GpaPicOo1u9zyqWHHlDeUmZn3GmEcTvUghobbbT2c5jp6SfxY7rQ38KKr
+	 dYvyhx/Mu68AFRovpLWUZh3Owy0BkgsVezHtG273HRjYIuGSm6DCys9aaRv3MtRmdT
+	 Lmpz77dt7aFU5GUnl0SoxFJlJh0XOS4hQk0LJIAGCukjNB2XLKcddLPwo14tKsOakF
+	 mqd+rtvgNyZDJYDb/CKLWyssHnP0Nd5FQ+ym5Ne2DMurYtBEpmLImLf16Uiezen5bi
+	 X8tbH5LNvMh9w==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B719E17E13CB;
+	Wed, 18 Feb 2026 11:19:04 +0100 (CET)
+Message-ID: <d08b312d-0b40-48c0-ac4f-47fa9924f629@collabora.com>
+Date: Wed, 18 Feb 2026 11:19:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Add mmc aliases for Mediatek Genio boards
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20260218-mtk-genio-mmc-aliases-v1-0-e218e9f771c5@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260218-mtk-genio-mmc-aliases-v1-0-e218e9f771c5@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266367-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266366-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[collabora.com,kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[aliel.fr];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[aliel.fr:+];
 	PRECEDENCE_BULK(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,aliel.fr:mid,aliel.fr:dkim,aliel.fr:email]
-X-Rspamd-Queue-Id: 4F00E1557F5
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
+X-Rspamd-Queue-Id: 2E7BB1555F2
 X-Rspamd-Action: no action
 
-Add PLL for the clock controller of the Amlogic T7 SoC family.
+Il 18/02/26 10:23, Louis-Alexis Eyraud ha scritto:
+> This series adds mmc for the Mediatek Genio boards mmc aliases in the
+> board devicetrees that do not have them, so that mmc host controllers
+> get enumerated in a consistent order.
+> 
+> This series is based on linux-next next-20260217 tag.
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- .../devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml       | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
-index 49c61f65deff..6a1598e6c359 100644
---- a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
-+++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
-@@ -23,6 +23,7 @@ properties:
-       - amlogic,t7-mpll
-       - amlogic,t7-hdmi-pll
-       - amlogic,t7-mclk-pll
-+      - amlogic,t7-fpll
- 
-   reg:
-     maxItems: 1
-@@ -42,6 +43,7 @@ properties:
-       - const: in0
-       - const: in1
-       - const: in2
-+      - const: xtal
-     minItems: 1
- 
- required:
-@@ -72,11 +74,12 @@ allOf:
-           contains:
-             enum:
-               - amlogic,t7-gp0-pll
--              - amlogic,t7-gp1--pll
-+              - amlogic,t7-gp1-pll
-               - amlogic,t7-hifi-pll
-               - amlogic,t7-pcie-pll
-               - amlogic,t7-mpll
-               - amlogic,t7-hdmi-pll
-+              - amlogic,t7-fpll
- 
-     then:
-       properties:
--- 
-2.49.0
 
 
