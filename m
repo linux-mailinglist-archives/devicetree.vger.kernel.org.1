@@ -1,206 +1,253 @@
-Return-Path: <devicetree+bounces-266434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266435-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kA0TIgK/lWkfUgIAu9opvQ
-	(envelope-from <devicetree+bounces-266434-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:30:42 +0100
+	id CKpzG+O+lWkfUgIAu9opvQ
+	(envelope-from <devicetree+bounces-266435-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:30:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A471156AB4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:30:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18FAA156A8F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:30:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2A7D9305BBA6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:30:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BF33630219D5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A789A3112B7;
-	Wed, 18 Feb 2026 13:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8F53254AE;
+	Wed, 18 Feb 2026 13:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iTXg9L3Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hQXgmrs1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15772FD7BE;
-	Wed, 18 Feb 2026 13:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0121031A548;
+	Wed, 18 Feb 2026 13:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771421399; cv=none; b=NnbIRzODWF8+46lkXqIr6/IymJAr7DpSSbQeM2hb0ETwt2VgpMsEEmyzDGi1iAmQbcpdbml8ujhnnPv+OoR+KPzGbJf39FDGdqZ0u3d/DQxwGJKvJzAZi9vmY4AFsTr1xvSzAK71anT+cgm/UR4HS02xPHWGjy8MtQo5r9gO6ds=
+	t=1771421402; cv=none; b=nCCSeLU3vWCc4QYb6Uad64uQNIY5sGnRdv7HRdIYUjyBDLY6soPJkRm5c+wtniDTnsUx90NYNdkSXDDr4qLtdkQV7T/oPn7gkLo/UvZLfE8E8HQPsD+l8H+XPZ93aGxoJ7oWnD9YUbwKNllwTMFRV5fkmaNIDJHpDqVLmHAreuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771421399; c=relaxed/simple;
-	bh=+eEDQP7ZC+Sn7kLzL0NEWHh05rcZXqlQQIEzWs0DxtA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hBBjJ946VoAEobVW0mosKYNRLNCcR2lNVPQKk/Qd8hQ/Vipt6FUcLAvW9aJrpWbnw1l/YFOgQargvvMIWyCDm/3SrvPcifl7zg+M8RPQFcywagqiG/lfR1r1+oscpoQas3EeImMeJwfVdL11hN5FvvOmZ/d8hpCZ12rnbs9R/fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iTXg9L3Q; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771421398; x=1802957398;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+eEDQP7ZC+Sn7kLzL0NEWHh05rcZXqlQQIEzWs0DxtA=;
-  b=iTXg9L3QjcJGmZGwJfzHj5LvLIq7/6MHSZXXufH675aOhyUPwGgNZ1lo
-   fths+1YDowTq3325CawCXjxOG7Qj7JtnBuaIvXY2NJubWjK40WKUFeer8
-   pMEo5Xw98cL/TZ3E+Mf84gioERUGuHSWoGnFuf95r/uTjacmNKurCtKbb
-   l361tM/PyJqTjis2OUEYNkP0cCc+BMEcqkuUGuezibXXpHpSk8/FVtQo7
-   k9DGpQa1mUVNOKw5x+qzU+xlICAVOaPhiaqsHMeH375m/4+wOk09UHfvr
-   EDG4GmMbmOmf3RU2zMvhY4yr2KerK5QGqets6lRAUnl7hjrnfTXwg1ZoL
-   g==;
-X-CSE-ConnectionGUID: bs9PubYfTPuoNxddtyPrkg==
-X-CSE-MsgGUID: dsN50TnrS52eR//c+pmEqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="97956449"
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; 
-   d="scan'208";a="97956449"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2026 05:29:57 -0800
-X-CSE-ConnectionGUID: Izloa6RIRcudyY2e/WdIxA==
-X-CSE-MsgGUID: dQzn2tmzSRSZRYfKJ5n1tA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; 
-   d="scan'208";a="212553047"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 18 Feb 2026 05:29:52 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vshck-000000012Nc-1WO1;
-	Wed, 18 Feb 2026 13:29:50 +0000
-Date: Wed, 18 Feb 2026 21:28:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Aelin Reidel <aelin@mainlining.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Henrik Rydberg <rydberg@bitmath.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux@mainlining.org,
-	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	Aelin Reidel <aelin@mainlining.org>,
-	Piyush Raj Chouhan <pc1598@mainlining.org>
-Subject: Re: [PATCH 2/3] Input: add support for Goodix GTX8 Touchscreen ICs
-Message-ID: <202602182104.ONBwXzkn-lkp@intel.com>
-References: <20260218-gtx8-v1-2-0d575b3dedc5@mainlining.org>
+	s=arc-20240116; t=1771421402; c=relaxed/simple;
+	bh=gN2cljJea4XLY82kVunjPVPH2WX7LYqJDp0lJ1rpnJE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d6miHnjLTFrjgd4p42d+jbnhvmBbKvvSW5iHq2LyuavhfHOXLhX1bKCZAkMFy2UVmuB3pGFBnuVqPrcVthPliTx9GZ4z9JO83H55myrJ9uRyE8yBh60Pc4m478LWWE2ZKAbuqBIc/aoris6JCRE5bL9LqR6uWv7cdqibVWQm174=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hQXgmrs1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D00EC19424;
+	Wed, 18 Feb 2026 13:29:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771421401;
+	bh=gN2cljJea4XLY82kVunjPVPH2WX7LYqJDp0lJ1rpnJE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hQXgmrs1Qlib2Iq+e1k/vkhWvMgVnJzznWpXjKLKlL/k+U6Tv2xdc10MIVg/SeCDM
+	 A66aqE5wdPpuA5lTlGH60KZ0ZkszhElLCWKFSjtPvfAQkVmYcuhim3wEn+6JjbOJ3S
+	 CgqItgBO+/0Zz/5xyOfURJ6rhOX58rpT2RyVXY3PV2l6/m1wkzMcN1gHGt8Wq2oyAk
+	 LggaivlXv0p5S8ianw7fhxrVvurLmiSsCQt0MqR7ibOzj5kmVXiosLSTUrFIiv1ULe
+	 1h69+BXZAAztSjkxDEOWwl00dfgmEHtRvKxwHhRS6tpZNfNtp4CcSEavVs/fKwledH
+	 OtF7zRlwkP7mQ==
+Message-ID: <b7adddfc-db7a-466d-a2e8-72bc6a87ae81@kernel.org>
+Date: Wed, 18 Feb 2026 14:29:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260218-gtx8-v1-2-0d575b3dedc5@mainlining.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/13] dt-bindings: serial: fsl-linflexuart: add clock
+ input properties
+To: Larisa Ileana Grigore <larisa.grigore@oss.nxp.com>,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, sumit.semwal@linaro.org,
+ christian.koenig@amd.com, chester62515@gmail.com, cosmin.stoica@nxp.com,
+ adrian.nitu@freescale.com, stefan-gabriel.mirea@nxp.com,
+ Mihaela.Martinas@freescale.com
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ s32@nxp.com, imx@lists.linux.dev, clizzi@redhat.com, aruizrui@redhat.com,
+ eballetb@redhat.com, echanude@redhat.com, jkangas@redhat.com,
+ Radu Pirea <radu-nicolae.pirea@nxp.com>
+References: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
+ <20260216150205.212318-9-larisa.grigore@oss.nxp.com>
+ <24443e02-886e-48e2-911e-e4093d251155@kernel.org>
+ <e9c214be-840a-43fe-b24d-610fe90269b2@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e9c214be-840a-43fe-b24d-610fe90269b2@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266435-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266434-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[mainlining.org,gmail.com,kernel.org,linaro.org,bitmath.org];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[oss.nxp.com,linuxfoundation.org,kernel.org,linaro.org,amd.com,gmail.com,nxp.com,freescale.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 4A471156AB4
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[401c8000:email,nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 18FAA156A8F
 X-Rspamd-Action: no action
 
-Hi Aelin,
+On 18/02/2026 14:26, Larisa Ileana Grigore wrote:
+> On 2/16/2026 5:10 PM, Krzysztof Kozlowski wrote:
+>> On 16/02/2026 16:02, Larisa Grigore wrote:
+>>> From: Radu Pirea <radu-nicolae.pirea@nxp.com>
+>>>
+>>> Add optional support for the two clock inputs used by the LINFlexD UART
+>>> controller:
+>>> - "lin": LIN_BAUD_CLK
+>>> - "ipg": LINFLEXD_CLK
+>>>
+>>> The clock inputs are kept optional to maintain compatibility with the
+>>> S32V234 platform.
+>>
+>> Does S32V234 have the clocks? I don't understand the "maintain
+>> compatibility" in this context. Either you have or you have not clocks,
+>> which should be expressed in schema (: false, see example schema).
+>>
+> Hello Krzysztof,
+> 
+> Thanks for pointing this out! I will update both the schema and the 
+> commit description.
+> S32V234 does not expose these clocks in its device tree—on this platform 
+> the LINFlexD clocks are set up and enabled by U‑Boot, so they are not 
+> available to the kernel.
 
-kernel test robot noticed the following build errors:
+So there are clocks. DTS is being used by bootloader, so how bootloader
+is going to set up clocks for S32V234 if no one provides them?
 
-[auto build test ERROR on fe9e3edb6a215515d1148d32a5c445c5bdd7916f]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Aelin-Reidel/dt-bindings-input-document-Goodix-GTX8-Touchscreen-ICs/20260218-075424
-base:   fe9e3edb6a215515d1148d32a5c445c5bdd7916f
-patch link:    https://lore.kernel.org/r/20260218-gtx8-v1-2-0d575b3dedc5%40mainlining.org
-patch subject: [PATCH 2/3] Input: add support for Goodix GTX8 Touchscreen ICs
-config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20260218/202602182104.ONBwXzkn-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project e86750b29fa0ff207cd43213d66dabe565417638)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260218/202602182104.ONBwXzkn-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602182104.ONBwXzkn-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/input/touchscreen/goodix_gtx8.c:110:16: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     110 |                         finger_id = FIELD_GET(
-         |                                     ^
-   drivers/input/touchscreen/goodix_gtx8.c:135:14: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     135 |         touch_num = FIELD_GET(GOODIX_GTX8_TOUCH_COUNT_MASK, touch_num);
-         |                     ^
-   2 errors generated.
+This looks like buggy/incomplete approach, although I understand that
+the original binding had the issue.
 
 
-vim +/FIELD_GET +110 drivers/input/touchscreen/goodix_gtx8.c
+> The changes in this patch are intended specifically for S32G2/G3, where 
+> the clocks are provided in the DT and required by the driver.
+> 
+>>>
+>>> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
+>>> Co-developed-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
+>>> Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
+>>> ---
+>>>   .../bindings/serial/fsl,s32-linflexuart.yaml   | 18 ++++++++++++++++++
+>>>   1 file changed, 18 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+>>> index 4171f524a928..885f0b1b3492 100644
+>>> --- a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+>>> +++ b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+>>> @@ -34,6 +34,14 @@ properties:
+>>>     interrupts:
+>>>       maxItems: 1
+>>>   
+>>> +  clocks:
+>>> +    maxItems: 2
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: lin
+>>> +      - const: ipg
+>>> +
+>>>   required:
+>>>     - compatible
+>>>     - reg
+>>> @@ -48,3 +56,13 @@ examples:
+>>>           reg = <0x40053000 0x1000>;
+>>>           interrupts = <0 59 4>;
+>>>       };
+>>> +
+>>> +  - |
+>>> +    serial@401c8000 {
+>>> +        compatible = "nxp,s32g2-linflexuart",
+>>> +                     "fsl,s32v234-linflexuart";
+>>> +        reg = <0x401C8000 0x3000>;
+>>> +        interrupts = <0 82 1>;
+>>> +        clocks = <&clks 14>, <&clks 13>;
+>>> +        clock-names = "lin", "ipg";
+>>
+>> Just add the clocks to existing example. No need for new example for
+>> each new property.
+>>
+>>> +    };
+> 
+> The existing node refers to S32V234 which does not expose any clock 
+> properties in its device tree. Because of this, I couldn’t extend that 
 
-    87	
-    88	static void goodix_gtx8_report_state(struct goodix_gtx8_core *cd, u8 touch_num,
-    89					     union goodix_gtx8_touch *touch_data)
-    90	{
-    91		union goodix_gtx8_touch *t;
-    92		int i;
-    93		u8 finger_id;
-    94	
-    95		for (i = 0; i < touch_num; i++) {
-    96			t = &touch_data[i];
-    97	
-    98			if (cd->ic_data->ic_type == IC_TYPE_NORMANDY) {
-    99				input_mt_slot(cd->input_dev, t->normandy.finger_id);
-   100				input_mt_report_slot_state(cd->input_dev,
-   101							   MT_TOOL_FINGER, true);
-   102	
-   103				touchscreen_report_pos(cd->input_dev, &cd->props,
-   104						       __le16_to_cpu(t->normandy.x),
-   105						       __le16_to_cpu(t->normandy.y),
-   106						       true);
-   107				input_report_abs(cd->input_dev, ABS_MT_TOUCH_MAJOR,
-   108						 t->normandy.w);
-   109			} else {
- > 110				finger_id = FIELD_GET(
-   111					GOODIX_GTX8_FINGER_ID_MASK_YELLOWSTONE,
-   112					t->yellowstone.finger_id);
-   113				input_mt_slot(cd->input_dev, finger_id);
-   114				input_mt_report_slot_state(cd->input_dev,
-   115							   MT_TOOL_FINGER, true);
-   116	
-   117				touchscreen_report_pos(cd->input_dev, &cd->props,
-   118						       __be16_to_cpu(t->yellowstone.x),
-   119						       __be16_to_cpu(t->yellowstone.y),
-   120						       true);
-   121				input_report_abs(cd->input_dev, ABS_MT_TOUCH_MAJOR,
-   122						 t->yellowstone.w);
-   123			}
-   124		}
-   125	
-   126		input_mt_sync_frame(cd->input_dev);
-   127		input_sync(cd->input_dev);
-   128	}
-   129	
+You just said S32V234 has clocks...
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> example with clocks and clock-names. The additional example is there 
+> only to illustrate the S32G2 case, where the clocks are required and 
+> actually present in the device tree. Should I remove it?
+> 
+> Best regards,
+> Larisa
+>>
+>> Best regards,
+>> Krzysztof
+> 
+
+
+Best regards,
+Krzysztof
 
