@@ -1,144 +1,347 @@
-Return-Path: <devicetree+bounces-266335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266336-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qOMeKEiFlWmwSAIAu9opvQ
-	(envelope-from <devicetree+bounces-266335-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:24:24 +0100
+	id +BPEG2mGlWm9SAIAu9opvQ
+	(envelope-from <devicetree+bounces-266336-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:29:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 268A6154B3D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:24:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7EE5154B95
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 10:29:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BA66C305CA25
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:24:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EFAFA3019903
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 09:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2F633CEB2;
-	Wed, 18 Feb 2026 09:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF86233C19F;
+	Wed, 18 Feb 2026 09:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RWACkuJk"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="D90tF9GN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B619833C502;
-	Wed, 18 Feb 2026 09:23:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D221633C1A6
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 09:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771406631; cv=none; b=KDy4N/noLsqToKKQig3KTHFI+YFGHv9EZ4YCbsSsk70K7i+sMLRwoSFfMnK2NmN4T1Sdw4aauxsNwkdDEAIj9IMdWaR7AyX9cENBXMoZJt3DaFoarw1QwRzoNZ+gAuFxhDaZ/kg1OkxjX3xGEjYNn64o9HmPESabn0QRYA4lEKI=
+	t=1771406931; cv=none; b=lAl/Ho+q7KVyTFW4I0PzmceYvloInM17H1QQ4rw6ZMvOe66e7r3gNvuBjkGJWW7aTYa/Bv41JrUB65TbEfdnzTvMpZS9rLSh0nkgiwcHIj1hkJwPQF5Uk1uEnlG6CLiyKX2f33SWebmcu4tixj96nEsP3V3CC8oHp8Hmt1YfETc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771406631; c=relaxed/simple;
-	bh=3D8WQoaBuVJDthUioSmU/QbK1HNlGUVg/GvxA17VnHg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qfZWaPVTwvEUMSBDUZZ3Q+OHPju+PTKtBsEAtUoahFmtgdW3dIe6vJQ/TCnj9dPZzYPZpVEAsc6mCqMXxJVTgiDNX+GsPQHZKHKBlYyNdbbOlBbWou6dTUZTXTHObIcLsUBlFtHnt5brEs7x6FrJ+6lSg0rxUmDdpQu436qI0S4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RWACkuJk; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771406628;
-	bh=3D8WQoaBuVJDthUioSmU/QbK1HNlGUVg/GvxA17VnHg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=RWACkuJkTlXZPeSXnL+tY30C4VGAceUv5SzxRhe+9SiplAir673BtIw2wptGl00/Q
-	 ee/dzMUlIS7BQjrmKVxMNEz+KzT9H5anSm8h2l1KjlfHvvjbMH+nlxZoDOh3hBlt+W
-	 OtKC9HmjhR7k6SNSx9HTQd+vf7M1C0jVWUCmcDbrQP9icuAst3FRWpQIzc2sXfHJGa
-	 hwb5ZffJJRzvmGa981pk5Kp/8NlumcFZCMOLbczD2T9pwkAVHdOgN5oP8WWr8nBoc8
-	 e//LMtRijgKHVrvDy66bnzt6zbJyafTQ+yRsyp86epGFwhp6X2lQVRDTiH4gIeKb8B
-	 icXE6YMF7AP6w==
-Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 90A4517E1525;
-	Wed, 18 Feb 2026 10:23:47 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Wed, 18 Feb 2026 10:23:04 +0100
-Subject: [PATCH 3/3] arm64: dts: mediatek: mt8365-evk: add mmc aliases
+	s=arc-20240116; t=1771406931; c=relaxed/simple;
+	bh=hjgDR+M62i3dLJJ3R+9MFvTcATxJrvJQve1Wk5thDsI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=sq8Y8w6c5SIsA2STmS4jUqBqD6LPtSq535+4r+2Kq8I4O4m3LmOWbzjUkCTovG9+49OYjl1Yvs3dIgVfpvXYMS3ToXTlz0yYdjf6lOAHbh4IvZvl6HqW4xsukQB3Q/Wo3fulXC1zicQWccCNJk0W0fG6dJw6rQqCpd4Ny3F0NVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=D90tF9GN; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20260218092842epoutp03c049aa0033bea61d93adc436338018f8~VTTXssLZQ2429524295epoutp03h
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 09:28:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20260218092842epoutp03c049aa0033bea61d93adc436338018f8~VTTXssLZQ2429524295epoutp03h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1771406922;
+	bh=4e3tv1xNKbYMfR4tMSvH4s7rnaxHOgZeeoPQiSoUN0M=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=D90tF9GNDWl5e5prLf2vxxB1ScK/jOBQvdhfCp9mHbJ0+MRJ65NqG9srgh2rdBuUg
+	 5Z7DHIAg5N4bmn2ZwMP9zGNJLn9ZlkRHoTgngp1pjkQFWpASLJXVDR99IBWSbFcxZw
+	 kIBo72YUbKaNOMmMyAczVEDYooKZYfmi/HhSFu0E=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20260218092841epcas5p22642078f78df8fd20e61ec3d7c41bf79~VTTW8I5zp0869308693epcas5p2c;
+	Wed, 18 Feb 2026 09:28:41 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.91]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4fGB5h4bSdz6B9m5; Wed, 18 Feb
+	2026 09:28:40 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260218092839epcas5p114565db47fc89a2a06f4b1fbfc8f2bb7~VTTVKpjoh3202332023epcas5p1r;
+	Wed, 18 Feb 2026 09:28:39 +0000 (GMT)
+Received: from INBRO007194 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260218092837epsmtip256210e6c41614d4b1be8376b87ab5716~VTTTWhBSz0044900449epsmtip2B;
+	Wed, 18 Feb 2026 09:28:37 +0000 (GMT)
+From: <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
+Subject: RE: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add
+ regulators for the USB
+Date: Wed, 18 Feb 2026 14:58:36 +0530
+Message-ID: <019001dca0b8$f709e640$e51db2c0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQEa27yOGkcSyej7W4JCG0x5iKXFKwI+5auhAd1pMcUC7yIEuAId+/jbAjLLeay2sNbGsA==
+X-CMS-MailID: 20260218092839epcas5p114565db47fc89a2a06f4b1fbfc8f2bb7
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260218-mtk-genio-mmc-aliases-v1-3-e218e9f771c5@collabora.com>
-References: <20260218-mtk-genio-mmc-aliases-v1-0-e218e9f771c5@collabora.com>
-In-Reply-To: <20260218-mtk-genio-mmc-aliases-v1-0-e218e9f771c5@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771406625; l=944;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=3D8WQoaBuVJDthUioSmU/QbK1HNlGUVg/GvxA17VnHg=;
- b=yB9pG51AuwxoABSH+RUS8W4fd8hH0d+dPkxrerms0/q3Nd4Lr62aMB0tiYKwkScgLkZhG0T25
- rvhaM/RPAmABerlsIJQZl/2oWuf5CMEvGbIxxQ2WyJib/R5E3/pbfBd
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20260122125134epcas5p36625b7ac70b8dfba9430831a11955682
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+	<CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
+	<20260122130721.205664-3-pritam.sutar@samsung.com>
+	<352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
+	<000001dc9c13$ea305520$be90ff60$@samsung.com>
+	<2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:mid,samsung.com:dkim,samsung.com:email,o.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TAGGED_FROM(0.00)[bounces-266336-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266335-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NO_DN(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[louisalexis.eyraud@collabora.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
-X-Rspamd-Queue-Id: 268A6154B3D
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: C7EE5154B95
 X-Rspamd-Action: no action
 
-Add aliases for mmc nodes, so that the eMMC and SDCard host controllers
-get enumerated in a consistent order for the Mediatek Genio 350-EVK
-board.
-Also, reorder serial0 so all aliases are sorted alphanumerically.
+Hi Krzysztof,
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Sunday, February 15, 2026 2:27 PM
+> To: pritam.sutar=40samsung.com; robh=40kernel.org; krzk+dt=40kernel.org;
+> conor+dt=40kernel.org; alim.akhtar=40samsung.com
+> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
+ linux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v2 2/3=5D arm64: dts: exynos: ExynosAutov920: Add
+> regulators for the USB
+>=20
+> On 12/02/2026 12:37, pritam.sutar=40samsung.com wrote:
+> > Hi Krzysztof,
+> >
+> >> -----Original Message-----
+> >> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> >> Sent: Thursday, January 22, 2026 7:04 PM
+> >> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>;
+> robh=40kernel.org;
+> >> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com
+> >> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.o=
+rg;
+> >> linux- samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> >> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com;
+> >> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
+> >> Subject: Re: =5BPATCH v2 2/3=5D arm64: dts: exynos: ExynosAutov920: Ad=
+d
+> >> regulators for the USB
+> >>
+> >> On 22/01/2026 14:07, Pritam Manohar Sutar wrote:
+> >>> Add dummy regulator for USB and PHY supplies.
+> >>>
+> >>> Add vbus regulator that is enabled by GPIO pin.
+> >>>
+> >>> Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> >>> ---
+> >>>  .../boot/dts/exynos/exynosautov920-sadk.dts   =7C 139
+> >> ++++++++++++++++++
+> >>>  1 file changed, 139 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> >>> b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> >>> index a397f068ed53..f90f7704597c 100644
+> >>> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> >>> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> >>> =40=40 -52,6 +52,76 =40=40 memory=4080000000 =7B
+> >>>  		      <0x8 0x80000000 0x1 0xfba00000>,
+> >>>  		      <0xa 0x00000000 0x2 0x00000000>;
+> >>>  	=7D;
+> >>> +
+> >>> +	/* TODO: Remove this once PMIC is implemented  */
+> >>> +	dummy_regulator: regulator-0 =7B
+> >>> +		 compatible =3D =22regulator-fixed=22;
+> >>> +		 regulator-name =3D =22dummy_regulator=22;
+> >>> +	=7D;
+> >>> +
+> >>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
+> >>
+> >> Please use name for all fixed regulators which matches current format
+> >> recommendation: 'regulator-=5B0-9=5Dv=5B0-9=5D'
+> >>
+> >> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.gi
+> >> t/tree/
+> >> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> >>
+> >> None of the regulators are called like you wrote. Really NONE.
+> >>
+> >
+> > Thank you for the references. Will bring changes for regulator's name
+> > and labels as
+> >
+> > -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
+> > +       reg_usbdrd31_dwc3_vbus: regulator-1 =7B
+>=20
+> Did you read the binding? That's not what I asked.
+>=20
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index b5dd5ef9fa11ae1d54aa754325bac2e184b90dd3..a30ee523b0b587977f9427767d09b21894eb7ae3 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -20,8 +20,10 @@ / {
- 	compatible = "mediatek,mt8365-evk", "mediatek,mt8365";
- 
- 	aliases {
--		serial0 = &uart0;
- 		ethernet = &ethernet;
-+		mmc0 = &mmc0;
-+		mmc1 = &mmc1;
-+		serial0 = &uart0;
- 	};
- 
- 	chosen {
+Yes.=20
+Sorry for misinterpreting above comment. Is it expected as below?
 
--- 
-2.53.0
+This is based on our understanding by referring binding and other vendor dt=
+s.
+
+--- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
++++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+=40=40 -59,7 +59,7 =40=40 dummy_regulator: regulator-0 =7B
+                 regulator-name =3D =22dummy_regulator=22;
+        =7D;
+
+-       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
++       reg_usb_vbus0: regulator-5v0-vbus0 =7B
+               compatible =3D =22regulator-fixed=22;
+               regulator-name =3D =22usbdrd31_dwc3-vbus=22;
+               regulator-min-microvolt =3D <5000000>;
+=40=40 -75,7 +75,7 =40=40 usb_phy0: usb-phy0 =7B
+                vbus-supply =3D <&usbdrd31_dwc3_vbus>;
+        =7D;
+
+-       usbdrd20_dwc3_0_vbus: usbdrd20_dwc3_0-vbus =7B
++       reg_usb_vbus1: regulator-5v0-vbus1 =7B
+               compatible =3D =22regulator-fixed=22;
+               regulator-name =3D =22usbdrd20_dwc3_0-vbus=22;
+               regulator-min-microvolt =3D <5000000>;
+=40=40 -91,7 +91,7 =40=40 usb_phy1: usb-phy1 =7B
+                vbus-supply =3D <&usbdrd20_dwc3_0_vbus>;
+        =7D;
+
+-       usbdrd20_dwc3_1_vbus: usbdrd20_dwc3_1-vbus =7B
++       reg_usb_vbus2: regulator-5v0-vbus2 =7B
+               compatible =3D =22regulator-fixed=22;
+               regulator-name =3D =22usbdrd20_dwc3_1-vbus=22;
+               regulator-min-microvolt =3D <5000000>;
+=40=40 -107,7 +107,7 =40=40 usb_phy2: usb-phy2 =7B
+                vbus-supply =3D <&usbdrd20_dwc3_1_vbus>;
+        =7D;
+
+-       usbdrd20_dwc3_2_vbus: usbdrd20_dwc3_2-vbus =7B
++       reg_usb_vbus3: regulator-5v0-vbus3 =7B
+               compatible =3D =22regulator-fixed=22;
+               regulator-name =3D =22usbdrd20_dwc3_2-vbus=22;
+               regulator-min-microvolt =3D <5000000>;
+
+>=20
+> >
+> >> Also, carefully follow DTS coding style.
+> >>
+> >
+> > Sorry for that. Checking the code and will update in next patchset
+> > version (v3).
+> >
+> >>> +	       compatible =3D =22regulator-fixed=22;
+> >>> +	       regulator-name =3D =22usbdrd31_dwc3-vbus=22;
+> >>> +	       regulator-min-microvolt =3D <5000000>;
+> >>> +	       regulator-max-microvolt =3D <5000000>;
+> >>> +	       enable-active-high;
+> >>> +	       regulator-always-on;
+> >>> +	       gpio =3D <&gpp2 0 GPIO_ACTIVE_HIGH>;
+> >>> +	=7D;
+> >>> +
+> >>> +	/* Use gpio for enabling vbus regulator */
+> >>> +	usb_phy0: usb-phy0 =7B
+> >>
+> >> usb-phy-0
+> >>
+> >>> +		compatible =3D =22usb-nop-xceiv=22;
+> >>> +		vbus-supply =3D <&usbdrd31_dwc3_vbus>;
+> >>
+> >> That's pretty incomplete. Why do you need such node - just to toggle
+> >> regulator?
+> >>
+> >
+> > There is no external controller to detect or switch the USB modes
+> > automatically rather it is switched using userspace control (sysfs
+> > attributes) for this SoC.  GPIO pins are required to enable vbus
+> > regulators. Existing phy-generic and fixed regulator are used to avoid
+> > making any USB driver changes for the same purpose and it is
+> > referenced from below -
+> >
+> > https://lore.kernel.org/r/20230825215445.28309-3-semen.protsenko=40lina=
+r
+> > o.org
+> > a12af1c20751340ab6e449a5ef78b37d31123aca: ARM64: dts: marvell:
+> > armada-3720-db: Add phy for USB3
+> >
+> >>> +	=7D;
+> >>
+> >> ...
+> >>
+> >>> +&usbdrd20_phy2 =7B
+> >>> +	dvdd-supply =3D <&dummy_regulator>;
+> >>> +	vdd18-supply =3D <&dummy_regulator>;
+> >>> +	vdd33-supply =3D <&dummy_regulator>; =7D;
+> >>> +
+> >>> +&usbdrd20_dwc3_2 =7B
+> >>> +	maximum-speed =3D =22high-speed=22;
+> >>> +	usb-phy =3D <&usb_phy3>;
+> >>> +=7D;
+> >>> +
+> >>> +&usbdrd20_2 =7B
+> >>> +	vdd10-supply =3D <&dummy_regulator>;
+> >>> +	vdd33-supply =3D <&dummy_regulator>; =7D;
+> >>
+> >> That's a bit too much of dummies. This is heavily incomplete. You
+> >> need to bring back the PMIC first.
+> >>
+> >
+> > Presently, relying on USB LDOs being enabled by the bootloader in this
+> > automotive SoC. However, we understand the concern and it is added in
+> > case if anyone wants to use implemented PMIC in future. For now, would
+> > like to proceed with the dummy regulators to enable the required USB
+> features.
+>=20
+> And I don't see the point of these dummies. Solves nothing.
+>=20
+
+Are you expecting details as mentioned in above section in commit message?=
+=20
+However, we have mentioned these details in cover letter.
+
+if not, please provide more details on this comment.
+
+> > Dummy regulators are clearly marked so that they will be replaced once
+> > the PMIC driver is fully up.
+> >
+>=20
+>=20
+> Best regards,
+> Krzysztof
+
+Thank you,
+
+Regards,
+Pritam
 
 
