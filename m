@@ -1,189 +1,176 @@
-Return-Path: <devicetree+bounces-266544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yHBlJe9DlmmYdAIAu9opvQ
-	(envelope-from <devicetree+bounces-266544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 23:57:51 +0100
+	id mAXEB8pHlmmCdQIAu9opvQ
+	(envelope-from <devicetree+bounces-266545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 00:14:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02A5515ABBA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 23:57:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C8A015AD6E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 00:14:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BE58D30166C6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 22:57:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EC08C304925C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 23:10:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144163385BE;
-	Wed, 18 Feb 2026 22:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F0033A9EB;
+	Wed, 18 Feb 2026 23:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="O66KIAXF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fR+LkAX+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward502a.mail.yandex.net (forward502a.mail.yandex.net [178.154.239.82])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78DE02E7BB5;
-	Wed, 18 Feb 2026 22:57:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.82
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F7333A9E4
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 23:10:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771455469; cv=none; b=Ul7CQLOcTYmpCrWN+6+OIgQK5Zzs5Eu3H2s6Fz4JAMJ6zKMTlL4BBFnU0dDsEiR7QgRAyOnYBoZjzxxji1sFrsgW5RECjivvORDIjbnxYreWdhbZ5Lp5nDkrGNUAcaVsFA1uCaMFBQOWvg4LwCT8OmM4bJoGZm0Y7pbkMKgBd1g=
+	t=1771456245; cv=none; b=r25Q4EX7UB/91rPbgraEcBHyO+FWcmVBCdaXakNVzB1g6NRyEXGW57MUMbqrD7/mjoGhMXeVM/lz9dVQ76MaV9DxEZILVa4qe/lsAZT4Yp14QLKM2YRSBWczX31B31jWdbREnBoth9J+J2WcFxv8/VV5SxKbURwj439UGSVrsxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771455469; c=relaxed/simple;
-	bh=fgMmZnbKYp0KDcEBDm/iIMxSRDGGCagD+0uhWbcuGRg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gwfMxJ2Zpm1LocSe7WhZsf1fa4byYdKwGtMqyDssf4wLc8GylN6xdz4CS0urDcK76H5ruwoLx4S8BmAPV95OhioqzncHBJsnxEq6P+j+LHaJ10X6rtTq4lJ41kT0NjHaecNSepX1wqbKgXYGp0OaZSwxXI/y+YkjvfSE5fZjc7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=O66KIAXF; arc=none smtp.client-ip=178.154.239.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
-Received: from mail-nwsmtp-smtp-production-main-94.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-94.vla.yp-c.yandex.net [IPv6:2a02:6b8:c15:290e:0:640:f317:0])
-	by forward502a.mail.yandex.net (Yandex) with ESMTPS id 8729889CF4;
-	Thu, 19 Feb 2026 01:52:05 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-94.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 1qjcVXSGC4Y0-8pHEunKh;
-	Thu, 19 Feb 2026 01:52:04 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
-	t=1771455124; bh=CKsYIBP1nS9baNuNPf0y7xcvIP54RWOTm98i27xusoI=;
-	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
-	b=O66KIAXFmfXw8rz4pI+7zzue0DPxJrPIy0aeyjkO+U5tkkEkgxOltbJc9noMwz41e
-	 3f9Up+VtsxkvBYrT3f+TEddoOWmDlbun1b1OcoveKDg3YfFMn5/gAYkLLgE9rUkEba
-	 fu98ukhOnyvr9PBN86WEp1TJGPNRinIP2W3AmBaw=
-Authentication-Results: mail-nwsmtp-smtp-production-main-94.vla.yp-c.yandex.net; dkim=pass header.i=@yandex.com
-Message-ID: <bd10ba64-2e56-4f1b-ba82-73ef59c87e2a@yandex.com>
-Date: Wed, 18 Feb 2026 23:52:01 +0100
+	s=arc-20240116; t=1771456245; c=relaxed/simple;
+	bh=xIpqj1kuLqc6C8Cj1tBcVrLxr/YWHZwSJW+5Q5a7RoI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UtzH/47nuJnizqvPoyHL9GlR1BsSr7OzZI6ngScSKM8RrVM4ym7YcCHbsluUzIl6/yMZHNBA8VSxcn3iFBnzCRJ9HjPAbMKuaXb63BcMDM8vPuwGUorH1ydCePV1MGCb0oZrwuLpK/wZnUrF3ESpdObVki0L+L9ZNw3kuJHzPIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fR+LkAX+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91D30C2BC86
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 23:10:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771456244;
+	bh=xIpqj1kuLqc6C8Cj1tBcVrLxr/YWHZwSJW+5Q5a7RoI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=fR+LkAX+MnnZB+MZzPczigiqfLi4vR2peae10WdFdNjLnr/N0R61OSofz68OhaiXp
+	 MQpp8ZQ11oGQ+WCnVEeQ7xKdmEfCtRf6Hvhr72ppdxcTUhJrobtZgzpojQPPi/E0yY
+	 c2B1ZSoWyz74A3DglXIigGaE/NZ1/AWhsqlMH1G1hCM7TN3FKN4hC2YAlT7AxKMBlj
+	 6mdFiwvnuOf62M9XHc9ufyLgQGUnZHpj4GfMTVE5djZGnHC/mnxJcCTovZHvlJ0gIZ
+	 XbeZvvUw+uYjXaB0uWHnPkoBqq6/NhiO5hH1SotkoAgitQwX8au7rMVRYFFofhuOPB
+	 GPyHj6zOwjMdw==
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-79495b1aaa7so3235687b3.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 15:10:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXd5xp4CfB0o/FChvOVj9zQeW3wTmgk1MbSqdKb0Ilmsu0BmHgOt/H7NukOtMgY4nJxXHGJV7Hf+IpB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvgBXnHa4mr/9v3ULJ7ChD8OuyFTG+0ixPx9+eymY+jnh1aYRX
+	D7MehJjogHARyY/qk/yB6jQHbZmvbR48RkphLRnAmNBMAQncSBmPOj1zFn2KNsjMxYI31gnBV1D
+	qRdcRsHYVwflB3emTD1RjvYhrWKr4MYg=
+X-Received: by 2002:a05:690c:c223:b0:78e:6176:2c8b with SMTP id
+ 00721157ae682-7979e8cd2afmr163717277b3.49.1771456243913; Wed, 18 Feb 2026
+ 15:10:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] arm64: dts: rockchip: Add USB2.0 PHY for RK3368
-To: Vladimir Oltean <olteanv@gmail.com>, WeiHao Li <cn.liweihao@gmail.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250909132958.26423-1-cn.liweihao@gmail.com>
- <20250909132958.26423-3-cn.liweihao@gmail.com>
- <20260212165550.mju3377fvphdsqoe@skbuf>
-Content-Language: en-US, ar-EG
-From: Johan Jonker <jbx6244@yandex.com>
-In-Reply-To: <20260212165550.mju3377fvphdsqoe@skbuf>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260214213239.2546012-1-james.hilliard1@gmail.com>
+ <CAMRc=MfK8k88PfQPvP=p1r3KQ40dwcZq4Z4f5fnRFakpYcknvA@mail.gmail.com>
+ <CADvTj4r4mR0_HxcOOZFqJTVfoD=YdrGd2AD+hQNw6ciGUC=C1A@mail.gmail.com>
+ <CAMRc=Me6v2E1zKGQzukJmP45cVkRWOGzYoO9=LKh63rPFRqfqA@mail.gmail.com> <CADvTj4ovM1faNGoUa4HoTCN7avAqwkZfY5v9P8okgx87or8gDA@mail.gmail.com>
+In-Reply-To: <CADvTj4ovM1faNGoUa4HoTCN7avAqwkZfY5v9P8okgx87or8gDA@mail.gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 19 Feb 2026 00:10:32 +0100
+X-Gmail-Original-Message-ID: <CAD++jLk0Frxd2ixJwHXSq+LYg-5HLbTxEraUYqNPjHxD-EaZBQ@mail.gmail.com>
+X-Gm-Features: AaiRm50HcS7Xf4MZmWf2rrmn2goboKgfnz03cNdzQxbeXDy0YJqTbatc-MoiXw8
+Message-ID: <CAD++jLk0Frxd2ixJwHXSq+LYg-5HLbTxEraUYqNPjHxD-EaZBQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] gpiolib: of: add gpio-line node support
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, linux-gpio@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[yandex.com,none];
-	R_DKIM_ALLOW(-0.20)[yandex.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[yandex.com:+];
-	TAGGED_FROM(0.00)[bounces-266544-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266545-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbx6244@yandex.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[yandex.com]
-X-Rspamd-Queue-Id: 02A5515ABBA
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7C8A015AD6E
 X-Rspamd-Action: no action
 
+On Tue, Feb 17, 2026 at 8:07=E2=80=AFPM James Hilliard
+<james.hilliard1@gmail.com> wrote:
 
+> What did previous attempts look like? At least this is minimally invasive
+> and shares most of the code paths with gpio-hog.
 
-On 2/12/26 17:55, Vladimir Oltean wrote:
-> On Tue, Sep 09, 2025 at 09:29:56PM +0800, WeiHao Li wrote:
->> RK3368 has one USB2.0 PHY with two ports, This adds device tree node for
->> it.
->>
->> Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3368.dtsi | 29 ++++++++++++++++++++++++
->>  1 file changed, 29 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3368.dtsi b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
->> index 1b21787269..b09e431a64 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3368.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
->> @@ -766,11 +766,40 @@ cru: clock-controller@ff760000 {
->>  	grf: syscon@ff770000 {
->>  		compatible = "rockchip,rk3368-grf", "syscon", "simple-mfd";
->>  		reg = <0x0 0xff770000 0x0 0x1000>;
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
-> 
+Gemini gives the following (rather accurate) rundown to the prompt
+"Can you find the conversations on the linux-gpio@vger.kernel.org
+ mailing list where people have in the past suggested to extend the
+ gpio hog functionality to define initial line states for GPIO lines?"
 
-> This introduces a device tree warning. You cannot mix nodes with no unit
-> address (io-domains) with nodes with a unit address (usb2-phy@700) on
-> the same hierarchical level. You have to pick a format and stick to it.
+This is based on the response but cleaned from obvious hallucinations...
 
-nope
+1. The Original "Hogging" Proposal (2013)
 
-Please add rockchip,rk3368-usb2phy to the list in grf.yaml in the same patch that you change rockchip,inno-usb2phy.yaml
-Requires a bit of SOC and PHY maintainers coordination.
+The mechanism was first proposed by Boris Brezillon and later attempt upstr=
+eamed
+by Benoit Parrot.
 
-Place dt-binding compatible change patches before the patch that uses it. (patch 3 before patch 1)
-due to: ./scripts/checkpatch.pl --strict 
+Version v1 thru v6, enjoy:
+https://lore.kernel.org/linux-gpio/1387463671-1164-2-git-send-email-b.brezi=
+llon@overkiz.com/
+https://lore.kernel.org/linux-gpio/1416527684-19017-1-git-send-email-bparro=
+t@ti.com/
+https://lore.kernel.org/linux-gpio/1417726922-10376-1-git-send-email-bparro=
+t@ti.com/
+https://lore.kernel.org/linux-gpio/1418422051-9471-1-git-send-email-bparrot=
+@ti.com/
+https://lore.kernel.org/linux-gpio/1419019671-25377-1-git-send-email-bparro=
+t@ti.com/
+https://lore.kernel.org/linux-gpio/1422899085-678-1-git-send-email-bparrot@=
+ti.com/
 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/soc/rockchip/grf.yaml#n244
+Markus Pargmanns proposal to add gpio-initval (2015):
 
-> 
->>  
->>  		io_domains: io-domains {
->>  			compatible = "rockchip,rk3368-io-voltage-domain";
->>  			status = "disabled";
->>  		};
->> +
->> +		u2phy: usb2-phy@700 {
->> +			compatible = "rockchip,rk3368-usb2phy";
->> +			reg = <0x700 0x2c>;
->> +			clocks = <&cru SCLK_OTGPHY0>;
->> +			clock-names = "phyclk";
->> +			clock-output-names = "usb480m_phy";
->> +			#clock-cells = <0>;
->> +			status = "disabled";
->> +
->> +			u2phy_otg: otg-port {
->> +				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
->> +					     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
->> +					     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
->> +				interrupt-names = "otg-bvalid", "otg-id",
->> +						  "linestate";
->> +				#phy-cells = <0>;
->> +				status = "disabled";
->> +			};
->> +
->> +			u2phy_host: host-port {
->> +				interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
->> +				interrupt-names = "linestate";
->> +				#phy-cells = <0>;
->> +				status = "disabled";
->> +			};
->> +		};
->>  	};
->>  
->>  	wdt: watchdog@ff800000 {
->> -- 
->> 2.47.2
->>
->>
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
+https://lore.kernel.org/linux-gpio/1439979512-3894-1-git-send-email-mpa@pen=
+gutronix.de/
+https://lore.kernel.org/linux-gpio/1439979512-3894-4-git-send-email-mpa@pen=
+gutronix.de/
 
+The Argument: Users wanted a way to say, "At probe time, set this pin to X,=
+"
+but allow a later driver to take over.
+
+All initiatives stalled on the following: you have to provide a DT binding =
+that
+the DT maintainers can accept. From a gpiolib point of view this is easy to
+support, and to us it seemed (seems) neat.
+
+> > How early do you need to set these settings?
+>
+> Well, before userspace applications can interact with the gpio lines I
+> suppose. Essentially so that it acts as a failsafe configuration in case
+> the userspace app doesn't get started for whatever reason as well as
+> giving some initial starting configuration for a userspace app to act
+> upon.
+
+This essentially becomes a kernel intialization of a userspace driver.
+
+Nothing wrong with that I guess, but it raises the question why it is not
+a kernel driver (there are valid reasons for this) but also why, if it is a
+pure userspace driver, it has to be initialized so early and can't wait for
+that userspace process to start.
+
+Yours,
+Linus Walleij
 
