@@ -1,177 +1,184 @@
-Return-Path: <devicetree+bounces-266507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cDPdC2sJlmldYwIAu9opvQ
-	(envelope-from <devicetree+bounces-266507-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:48:11 +0100
+	id cK+xAdAKlmmaZAIAu9opvQ
+	(envelope-from <devicetree+bounces-266508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:54:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59BC2158D0B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:48:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7506D158D3E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CD5F63002915
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:48:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 03EA6300B3D0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8894346A19;
-	Wed, 18 Feb 2026 18:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB8C3446CF;
+	Wed, 18 Feb 2026 18:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L8cKpp88"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S6w9KTNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4383A3009DE
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 18:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74773016F5;
+	Wed, 18 Feb 2026 18:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771440486; cv=none; b=hQeK9I9Wa9IZY2YKfEkYCkMV4ss8fyTP50aIIakyjgwrRb7XdRT6944Hy2znYEuUSSF5XB9cLNxmuv0EZM8z7E5VAJhtW/T6ttTy1L3Rmc2Eu715NK7J/4h9fcxHYfV9/2qxyRyiQe0D/58qQIu9VKRoUIFkGdHh24cR3MjG/YA=
+	t=1771440842; cv=none; b=N7/sYfDaifH2bk4DHWVkPPuSLYHrpr903YWEMbX8y5sSEl1NDONKoZCSVPFZAPfIxl6gdzeKs1up24Hgj4RpdG6XMVFVoOZpJqlfUFEGyD1avW3DPBB2z10nvgmagqANJaBdfXTQ+mblwlf3PchRvBMDfJZu8/GYYmXxV9/jsQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771440486; c=relaxed/simple;
-	bh=Sg/gUkPnWAfAkmTjB8er5pU7U6H1nsheqxn/Up3fD8E=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ufIBkfWcTsfW4JSD1PxeQsI0WNg2X/hOo7I4w+gR8It52nBI+eAWKd+2DzDdIyZAVgB0jZTO6sKU6q6RfJywxDf7kT3VgAOdVtWNGpP5gg7vrE52P0MUSVuGBO9dI8wpL41ywc6RlZS5zdQgK0806fJENRo1IaKI/35keK1ymgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L8cKpp88; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4836f363d0dso1536315e9.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 10:48:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771440484; x=1772045284; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lBeRIT1ZnYSEgc/ip22Oe8Z70VaBVeO7A7faCs3mOuk=;
-        b=L8cKpp88QV0wUiyhevZw5QkXXm7i8zCh2syKl+JKcyGLs1cMOBmqJDztwY0HGwDlP6
-         5vxf89Y5jgCk3yx0U+O/rNLjT/hOsCaExdfhZ4UjjAq939coBE70wt+dRFj9oqkvqn/y
-         6UJb0uLZ2b3k9jh/lUZcBAkcbr4Ba9pkn1yKVbONKEBs5BhcFbsaTpj/FEZOAn79Tk/n
-         W6HOrGbYsU4EUs5kLoDaOwCgNsBQvlUL63BAtc5NoFjGcbKgWEO3pjnNt5vwtrGYjZ3z
-         Z+9HDe7XVqZ425nEx/ERUCnax4yuFToe8X6gXx7fUG3nK5fgXofVlUwloBhy7LFrCyja
-         mYKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771440484; x=1772045284;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lBeRIT1ZnYSEgc/ip22Oe8Z70VaBVeO7A7faCs3mOuk=;
-        b=JxFu4BTtWC1S5Y5EOWp4oUE7IGlKYF/2l73h+3FsMQzq5p/sqvz1QCY9zWkZCYHTfb
-         cgVgipCDOKBuNPDJg8Y1LHBkAXTupGIqd4CH9ciVGrZaIZLu3xzZYI/npWllw50jq5m3
-         U7xbdX37sXvq067T/q1RbCY858mX9h4gZxlPeJCx+R9rrANYE0FsuoAvtiQHOnZgeB2U
-         MPe2iOWqYMcGKct2URupFy+6ocIraeYSlOuJUwATzK6Dco494CQ/mbPB+MpVaNRxcljW
-         p5+G6vSS51fE0S/gAzY/+sfNmxO8MnO3uE/qLcX/+Ttt7F3naALK3A8/jpBnFIvQDdiY
-         VKeA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDyJbWW+29DG4iBDgwC+pX9NHRqUTZ64uWIXkW2qqz5G7n3xhiv4JpER1iHNNJcMYnS8zfmqftlgyp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyR5pmen7uf73/sj7DEfwSebsil/pZSej4ydA4W3XND1AFoKNsx
-	QB0+cRM3scLxfAygpQ0xo6CIUk/ZqoPE6f0B8grUVMRtpIG59F3xzNj7
-X-Gm-Gg: AZuq6aIg91QaePYWgPnVCR4TLICJnA/hua+yqx43xcUSRolPXqXmVds9GeXXD2Q6xQW
-	B6FhA+dwM7P8u8S2SOL3GhIrp8ceCOf7fXKsZlE2FLLtSur3q4BJvLaN3wsjlZqgVDYoT7If6P1
-	eMf6DfP24GwzUC1E2ZBOvSFe6/XzPw+/BFZVb0KLbW4iJzMAaKK53TKpjPdWA3o/15o0iDbWoHQ
-	G3Z4SmwuJl+nqNELTDlKz6RCdUOk09BNE04ZRkz4Lote08Oj3Bu1biBHZ6ag1x9cpwFox2P+mW2
-	O/Qkc8pe71BLGx2E0yRfF5K0I7rDe40vMYGVdPFYt77ldo1yt+8qI9lm5pVnXU6WRfSPGm9ta2W
-	wUovvvtWTWWg9FD++VJR9Szu9I753oaziSe/qsl8YozO+qRccEkdoI/qvQ9PyrRY3emVnIJOPuv
-	qwpAmklwwSkk8MQu0P+3pRN+JUw7BZ/1zEoA==
-X-Received: by 2002:a05:600c:6389:b0:477:7af8:c8ad with SMTP id 5b1f17b1804b1-48379c1f4d3mr290728595e9.31.1771440483441;
-        Wed, 18 Feb 2026 10:48:03 -0800 (PST)
-Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4837e565f5esm440990555e9.10.2026.02.18.10.48.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Feb 2026 10:48:03 -0800 (PST)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: andrew@codeconstruct.com.au
-Cc: avifishman70@gmail.com,
-	tmaimon77@gmail.com,
-	tali.perry1@gmail.com,
-	venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: nuvoton: drop unused syscon property from watchdog node
-Date: Wed, 18 Feb 2026 20:48:00 +0200
-Message-Id: <20260218184800.2261674-1-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1771440842; c=relaxed/simple;
+	bh=xNvNOm9l67Vz/Gje40W/kpdQB7SebXZ4Fg6SUTfPbIw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qSzKwmEdSjgdIQ0q3xjWfWgLwewpHu5d//0IoL8GCVNOF3Y2X5QVZs9Ae7aHFJyHgN25cmCg/yFq5FHJP7HFkJqucBNKCgSvNFHD3PCp0wd5aPRPUVWGqU7Bn16R9sG7tpG6k0N7HTN6+dmcS3d7XBYfjnOFR3Mzww4QBNHem4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S6w9KTNb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C27FEC116D0;
+	Wed, 18 Feb 2026 18:53:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771440842;
+	bh=xNvNOm9l67Vz/Gje40W/kpdQB7SebXZ4Fg6SUTfPbIw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=S6w9KTNbxPyf42yuJADmJ/NRT5ago7D1KXh4+c2/izRPM8+sgXQdgbAe+JJVYagVY
+	 bl1+jro7bHZ5YqZfPfCbIIvsYZWrJRwI3M3XhG+E3D1XHc3eHDBC2yyj/Nb39FlxR2
+	 jWouVFxNu9FEEVDSjbDVNaOk4mSv6RsdlG9Li70deKusLzIR3WyPqCFwQwM6o4RkBB
+	 8sS7BRf6SGn7P2QB1UJUGHIZ3mLJyc10hxD4K9m4SRApsiX0z5RBHs0yBkDxpYC051
+	 0ZKB7iL3jFcxxUINSAMPxWN5yW3BHtPaqSM7Llhpylhzh+PxJeXZFuTWoZuqnB82Re
+	 LlpsTCVu0CfQA==
+Date: Wed, 18 Feb 2026 18:53:51 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Cameron <jonathan.cameron@huawei.com>
+Cc: Mark Brown <broonie@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Michael Hennerich
+ <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Sean Anderson <sean.anderson@linux.dev>,
+ <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v6 0/9] spi: add multi-lane support
+Message-ID: <20260218185351.40a744d9@jic23-huawei>
+In-Reply-To: <20260204135315.0000580b@huawei.com>
+References: <20260123-spi-add-multi-bus-support-v6-0-12af183c06eb@baylibre.com>
+	<ed1331d4-2e34-4b30-a0d7-f0e1d6093af8@sirena.org.uk>
+	<20260204135315.0000580b@huawei.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[gmail.com,google.com,kernel.org,lists.ozlabs.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-266508-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266507-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[801c:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,a01c:email]
-X-Rspamd-Queue-Id: 59BC2158D0B
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:email]
+X-Rspamd-Queue-Id: 7506D158D3E
 X-Rspamd-Action: no action
 
-The NPCM8XX DTSI currently includes a 'syscon' phandle in the watchdog
-node, but this property is not used by any upstream driver and is not
-documented in the NPCM watchdog binding. Since it was never reviewed and
-does not form part of the DT ABI, it can be safely removed.
+On Wed, 4 Feb 2026 13:53:15 +0000
+Jonathan Cameron <jonathan.cameron@huawei.com> wrote:
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+> On Mon, 2 Feb 2026 23:22:59 +0000
+> Mark Brown <broonie@kernel.org> wrote:
+> 
+> > On Fri, Jan 23, 2026 at 02:37:23PM -0600, David Lechner wrote:  
+> > > This series is adding support for SPI controllers and peripherals that
+> > > have multiple SPI data lanes (data lanes being independent sets of
+> > > SDI/SDO lines, each with their own serializer/deserializer).    
+> > 
+> > The following changes since commit 8f0b4cce4481fb22653697cced8d0d04027cb1e8:
+> > 
+> >   Linux 6.19-rc1 (2025-12-14 16:05:07 +1200)
+> > 
+> > are available in the Git repository at:
+> > 
+> >   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git tags/spi-multi-lane  
+> 
+> Thanks. Given timing, I plan to hold the last two patches until next cycle.
+> I'll pick them up nice and early though so they'll be in next shortly after
+> rc1.
+> 
+I've rebased so now have the bits that went through SPI.  I'll rebase again
+on rc1, but for now applied patches 8 and 9 to the testing branch of iio.git
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-index 24133528b8e9..c781190b42c5 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-@@ -145,7 +145,6 @@ watchdog0: watchdog@801c {
- 				reg = <0x801c 0x4>;
- 				status = "disabled";
- 				clocks = <&refclk>;
--				syscon = <&gcr>;
- 			};
- 
- 			watchdog1: watchdog@901c {
-@@ -154,7 +153,6 @@ watchdog1: watchdog@901c {
- 				reg = <0x901c 0x4>;
- 				status = "disabled";
- 				clocks = <&refclk>;
--				syscon = <&gcr>;
- 			};
- 
- 			watchdog2: watchdog@a01c {
-@@ -163,7 +161,6 @@ watchdog2: watchdog@a01c {
- 				reg = <0xa01c 0x4>;
- 				status = "disabled";
- 				clocks = <&refclk>;
--				syscon = <&gcr>;
- 			};
- 		};
- 	};
--- 
-2.34.1
+Thanks,
+
+Jonathan
+
+> Thanks,
+> 
+> Jonathan
+> 
+> > 
+> > for you to fetch changes up to 0ec5ed7c95d1ba6a74491928ff38abb351dbed36:
+> > 
+> >   spi: axi-spi-engine: support SPI_MULTI_LANE_MODE_STRIPE (2026-02-02 12:12:47 +0000)
+> > 
+> > ----------------------------------------------------------------
+> > spi: Add multi-lane support
+> > 
+> > This series is adding support for SPI controllers and peripherals that
+> > have multiple SPI data lanes (data lanes being independent sets of
+> > SDI/SDO lines, each with their own serializer/deserializer).
+> > 
+> > ----------------------------------------------------------------
+> > CL Wang (1):
+> >       spi: dt-bindings: Add support for ATCSPI200 SPI controller
+> > 
+> > David Lechner (7):
+> >       spi: dt-bindings: change spi-{rx,tx}-bus-width to arrays
+> >       spi: dt-bindings: add spi-{tx,rx}-lane-map properties
+> >       spi: support controllers with multiple data lanes
+> >       spi: add multi_lane_mode field to struct spi_transfer
+> >       spi: Documentation: add page on multi-lane support
+> >       spi: dt-bindings: adi,axi-spi-engine: add multi-lane support
+> >       spi: axi-spi-engine: support SPI_MULTI_LANE_MODE_STRIPE
+> > 
+> >  .../bindings/display/panel/sitronix,st7789v.yaml   |   5 +-
+> >  .../devicetree/bindings/iio/adc/adi,ad4030.yaml    |  42 +++-
+> >  .../devicetree/bindings/iio/adc/adi,ad4695.yaml    |   5 +-
+> >  .../bindings/spi/adi,axi-spi-engine.yaml           |  15 ++
+> >  .../bindings/spi/allwinner,sun4i-a10-spi.yaml      |   6 +-
+> >  .../bindings/spi/allwinner,sun6i-a31-spi.yaml      |   6 +-
+> >  .../bindings/spi/andestech,ae350-spi.yaml          |  87 +++++++++
+> >  .../bindings/spi/nvidia,tegra210-quad.yaml         |   6 +-
+> >  .../bindings/spi/spi-peripheral-props.yaml         |  40 +++-
+> >  Documentation/spi/index.rst                        |   1 +
+> >  Documentation/spi/multiple-data-lanes.rst          | 217 +++++++++++++++++++++
+> >  drivers/spi/spi-axi-spi-engine.c                   | 145 +++++++++++++-
+> >  drivers/spi/spi.c                                  | 144 +++++++++++++-
+> >  include/linux/spi/spi.h                            |  30 +++
+> >  14 files changed, 724 insertions(+), 25 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/spi/andestech,ae350-spi.yaml
+> >  create mode 100644 Documentation/spi/multiple-data-lanes.rst
+> >   
+> 
+> 
 
 
