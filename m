@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-266437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266440-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2N1DBnK/lWkfUgIAu9opvQ
-	(envelope-from <devicetree+bounces-266437-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:32:34 +0100
+	id CHY/M3C/lWkfUgIAu9opvQ
+	(envelope-from <devicetree+bounces-266440-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:32:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6931156B1E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:32:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34450156B17
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:32:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B8390305D489
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:31:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C342E301E960
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:31:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6BAD327797;
-	Wed, 18 Feb 2026 13:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE9C0329C4D;
+	Wed, 18 Feb 2026 13:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="tydotcxO"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="A9BtxREd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail2.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD9D73271E0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD64D30CDB0;
 	Wed, 18 Feb 2026 13:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771421467; cv=none; b=DP+GMnOxJDjJmOkuaEhL5BdcqV6xsJI/OKPfXjZK/c3BCGFv6xAJnwXFFE+CjJw2sa2653oQduWOlO/k1444goVB6B2AUa/7evDjt1+tnFxBYHy9qj+bv+GO1IOXS2gx1v6eZHbik26SrUWLKYnBp6P0YnzenNF6z97enqJ0Muo=
+	t=1771421469; cv=none; b=BO+gGYiUwtouQLjojmh+hBHO2iMsYFp5ns/i9sDJavHnhkNnSJs3dW93lFhgoW2YfV6syQoDt6zi9eUWD/ukYsi5l2SGGiog+xYVkfu7JiUHwOTB9BvBfD3bPljR3G2zoKWPdGYCPwuLk0jAu871xNNCz8H0GK3B1P/bj/1MUvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771421467; c=relaxed/simple;
-	bh=e91Bf0/4F0jSKanW5IP/0WxNZq2xDtnxjA6XIHqZcQ0=;
+	s=arc-20240116; t=1771421469; c=relaxed/simple;
+	bh=wLp8Vx2xDX3zudNkp8Sd58yem/MLCzlw3B6cs7yvBuQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uJyXvCc78AQJO8a1vH/oItLPoTJ0SiugzZh0hpH6KmTWYKqRG6A2zjordHC0jxfpOO1aumAaZcIZC3wxpx4olCF8/w7oKR1aE8f9zkgkpr7wodhkclPVtRwMAz4QGYlnXxkCgiGLRyg8dCs3LbcWDN4IF1WFeQIfEcJvIrVXigY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=tydotcxO; arc=none smtp.client-ip=116.203.77.234
+	 MIME-Version; b=hHwgprMeEnH2jkG46MX0JixyA7AMaPzICCgUTIghqKUacTfkMgzwfOrvErgRXMnpW+dI3TyPQlua6LOMVOS4Nfd4p5rYvpEaVRjbwcQwTyMYW7ZExQcVyQzNrOR7avgQafC05hBElvNWxU9tlVlwwBuJtSmL936HgBx2OJpCaw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=A9BtxREd; arc=none smtp.client-ip=116.203.77.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
 From: Frieder Schrempf <frieder@fris.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=mail;
-	t=1771421124;
+	t=1771421125;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=o37TNlF0kYb11kTviCYiAyIK3p/HW+yTrLpm+YqS1P4=;
-	b=tydotcxOf2sVdLATrRJpdSfzWtdmiUkSWD7O+3+1tSLsEL6iv/iXGFtgDOBHIchv9bBMri
-	WzOtG6HWnp3IMDeu3GXomKVidWw7bFUo95zpa04eTpqwYDyZN8GSwa/b970VZ+ue31coeJ
-	MBLKliiXHqlXv+gQjwWI0Ozl20P/WGN2ixJIykocZzQGjBaWwF4FCL1eZV7uuc3ejNQbO1
-	JJ/O2GaBuF1Hm8EjGDI4buuOlYY+84Qa2G2eZ8vM7YMn2GeMYPesBbUpmyPPi5b81ZCITb
-	o01AVUJxWifjlaxpfls4cCLH2XRfZJb+ClJt25YNcYqyMjs1P5fJ01WEyHL0hA==
+	bh=OkuqcMPgMhOvktAdO4R0HEr+0KhxRtMn3MM65yMphGE=;
+	b=A9BtxREd6FMLfp7RNjEc2V3SW2Q/lX2PmWk1ZcrmL5SS9WRR/JrmkZ1Ni+as3fUyufn6lZ
+	YLpJ3UgJhTvRACai4t//8PGHf3iJ0+QnQ7eqI9aCpSD2s/Vwcies8SfjZ5hyv6tVWKO+jw
+	XdD777G9VAm+BSZOMaIIAebvMHQDieprpwFyreAdJcYdTbuXrcNnGK8D8S6Z6+TkZ+ulbG
+	W2hxdUa1Za+LRFIt3XjOrE9Gh/WT1gXsc2vUsy35KpGO+N0/62uhUhRqLTlz6siFHfRfrt
+	fcyN22mecKB7AhPv3wsE8Mj9T81K28+BHKYzUv/Kcm5XLOvXn4bYYMuSlV5+Ag==
 To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	Frank Li <Frank.Li@nxp.com>,
@@ -60,9 +60,9 @@ To: Conor Dooley <conor+dt@kernel.org>,
 	Shawn Guo <shawnguo@kernel.org>
 Cc: Fabio Estevam <festevam@gmail.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH 1/4] arm64: dts: imx8mp-kontron: Fix touch reset configuration on DL devices
-Date: Wed, 18 Feb 2026 14:25:05 +0100
-Message-ID: <20260218132519.74570-2-frieder@fris.de>
+Subject: [PATCH 2/4] arm64: dts: imx8mp-kontron: Fix SD card supply on SMARC eval carrier
+Date: Wed, 18 Feb 2026 14:25:06 +0100
+Message-ID: <20260218132519.74570-3-frieder@fris.de>
 In-Reply-To: <20260218132519.74570-1-frieder@fris.de>
 References: <20260218132519.74570-1-frieder@fris.de>
 Precedence: bulk
@@ -80,7 +80,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
 	R_DKIM_ALLOW(-0.20)[fris.de:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -89,7 +89,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266437-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266440-lists,devicetree=lfdr.de];
 	FREEMAIL_CC(0.00)[gmail.com,pengutronix.de];
 	DKIM_TRACE(0.00)[fris.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -97,69 +97,37 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[5d:email,kontron.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,fris.de:mid,fris.de:dkim]
-X-Rspamd-Queue-Id: A6931156B1E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[kontron.de:email,fris.de:mid,fris.de:dkim]
+X-Rspamd-Queue-Id: 34450156B17
 X-Rspamd-Action: no action
 
 From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-The reset signal needs a pullup, but there is no hardware pullup.
-As a workaround, enable the internal pullup to fix the touchscreen.
+The SMARC eval carrier has a power switch for the SD card compliant
+to the OSM standard definition. To use this as already specified in
+the OSM base devicetree, stop overriding it in the board tree.
 
-As this deviates from the default generic GPIO settings in the OSM
-devicetree, add a new node for the touch pinctrl and redefine the
-generic gpio1 pinctrl.
+This fixes the power-supply for the SC card.
 
-Fixes: 946ab10e3f40f ("arm64: dts: Add support for Kontron OSM-S i.MX8MP SoM and BL carrier board")
+Fixes: 6fe1ced5ccab7 ("arm64: dts: Add support for Kontron i.MX8MP SMARC module and eval carrier")
 Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- .../boot/dts/freescale/imx8mp-kontron-dl.dtso | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ .../boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts     | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso b/arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
-index a3cba41d2b531..7131e9a499ae1 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
-@@ -77,6 +77,8 @@ &i2c1 {
- 	touchscreen@5d {
- 		compatible = "goodix,gt928";
- 		reg = <0x5d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touch>;
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <6 8>;
- 		irq-gpios = <&gpio1 6 0>;
-@@ -98,6 +100,16 @@ &lvds_bridge {
- 	status = "okay";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts b/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
+index 2173a36ff6917..74d620dd06b7b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
+@@ -249,6 +249,5 @@ &usb3_phy1 {
  };
  
-+/* redefine to remove touch controller GPIOs */
-+&pinctrl_gpio1 {
-+	fsl,pins = <
-+		MX8MP_IOMUXC_GPIO1_IO00__GPIO1_IO00		0x19 /* GPIO_A_0 */
-+		MX8MP_IOMUXC_GPIO1_IO01__GPIO1_IO01		0x19 /* GPIO_A_1 */
-+		MX8MP_IOMUXC_GPIO1_IO05__GPIO1_IO05		0x19 /* GPIO_A_2 */
-+		MX8MP_IOMUXC_GPIO1_IO08__GPIO1_IO08		0x19 /* GPIO_A_5 */
-+	>;
-+};
-+
- &pwm1 {
+ &usdhc2 {
+-	vmmc-supply = <&reg_vdd_3v3>;
  	status = "okay";
- };
-@@ -108,4 +120,11 @@ pinctrl_panel_stby: panelstbygrp {
- 			MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28		0x19
- 		>;
- 	};
-+
-+	pinctrl_touch: touchgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO06__GPIO1_IO06		0x19
-+			MX8MP_IOMUXC_GPIO1_IO07__GPIO1_IO07		0x150
-+		>;
-+	};
  };
 -- 
 2.52.0
