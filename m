@@ -1,244 +1,129 @@
-Return-Path: <devicetree+bounces-266466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266467-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sEgfJAfwlWlTWwIAu9opvQ
-	(envelope-from <devicetree+bounces-266466-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 17:59:51 +0100
+	id QE26OlXwlWlTWwIAu9opvQ
+	(envelope-from <devicetree+bounces-266467-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:01:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23ECD157FD6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 17:59:51 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5640615800A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:01:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 70837300A8C4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 16:59:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0596B30028C2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 17:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA307344DAC;
-	Wed, 18 Feb 2026 16:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82D92DC352;
+	Wed, 18 Feb 2026 17:01:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WsTtJBXP"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="nTSIaoNe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011011.outbound.protection.outlook.com [52.101.65.11])
+Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702E733A9C5;
-	Wed, 18 Feb 2026 16:59:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.11
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771433974; cv=fail; b=PFUccXptD1xGBWdZL9hOl6jn+YWa1tqC2W2I00QR/IkS5grvxtfPwqfk7CRXcUrXvbSVr9SUhFgKjoqIh8sDB/sFZMkQVHFk9sfRoDc+FOmBr4PSOWErRVChR6cx8Qq/XCP75+ycsxEt7eaqEZI2m178YVOslnlSSJRSh8PoE4c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771433974; c=relaxed/simple;
-	bh=v7Wq9uo0shoqAsHCHFRo8vceQdWFHgRJqkQ8oB0IGSw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=MVDgP/MTQQP4Tx+BUc/sU+vR0KCUS+8Pk8WMTMu/tcVg/+p+79zeqf47tfiXMBBAysaf5WiJSFTfbydrHG9dKzBTcQpZYKF6GYUEo4REAb56Uew5aKPZscWLlKB9V3FAzgoOcWiX+Oj80GkE2AmwnHgzDg7idQq5Gsx4QW1GBq8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WsTtJBXP; arc=fail smtp.client-ip=52.101.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b9zk6yeXp+Mf8FxXlySdRLhWDBcSeujhATNSrUX5lTmXTobukCtErdsjstn6DePAXEGp5UWMt2kkELKZbrhU4D/XlgNko/UuFGOiWZJL8PnCLzFr4dv+QWwCfhEw4owcpbBVV2T51S843sVq64u6q+fBuHUbZo6/H4uzsyMpRGyoyLTz+Fgy7Leh95S9k02jn+ni0Txy3sqYgdhBv7HFttrkMdfAOEnOXeb6ELTbuC/eiNTUUwnkM6CdwzYFLG9oAhdL8fzpP4Y1TxzvoQ7UK5E4/QEoDktuqFXxsHti2lfqj2Zv2ne6/xdB2sg3Fjm5mxtAyI+rHSE9eUQLRq0S+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DqPYwI3ECyf7uVwG2DPFeVwVrrKHOG1yjGXnPtbIOv4=;
- b=Ju8Tm6w3Rpug7wWOJukOBxrFPJ/Ux7eG5EdoQM7MHBQvawyj9FmB+PPcEMGHbGUF47nST44N/qxWYgZqbnzATol1lrGmv+myBznziY1bAh4nUUFGPc/3En1ycf3HawOLUAH0PnZZYqNAkYYrB36SyTPWEwRpWbkwA+IfLlP69OuphvScAKwQybHI7bQHa6iZwTMZMicZFOMdIYTkkgb/TDBe6Jf6wNhhjnW2D4hgMfcm7OjOu6pxDStIHk2dUB5Zs/1qEx8PyV32+FZqzfBAfDXDA9vuufJW6vSnQT3+eQUIBA2esMWHn4UiOiR6X9/HHMqB0Us4m/WAUi+oUfq9mQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DqPYwI3ECyf7uVwG2DPFeVwVrrKHOG1yjGXnPtbIOv4=;
- b=WsTtJBXPQ8aZXx/Y5/InZYBGzw7E7Ph5i82bTsv0zhDSGwSg155mPRlXH7iAA3YkcAHHYkXHm1r7nwhdRVZpUnWudxp12KyyxhveHSi+dWBWdAYj/SM+MpA1CCI5nvp5YlV62YmzBuE12Owf48pOxzrdW5q8Bs5K1/gBhaSi1luDPMXxInrKuQjOCOYHzRfdQJwTixvINApzKyjK5f0/X3V8khImnNkUuhkkPtL9pxeKcikSXEBS4K/xHpCZk7MUN5JIXNXxp1AQuGd2S2ohRTAQ1OqeR6Fka8qOAJytaYQ2V+mqTuE134IaalZXU2gyb7PPmqE7JG1crlT5gWs+vA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AM8PR04MB7969.eurprd04.prod.outlook.com (2603:10a6:20b:24c::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Wed, 18 Feb
- 2026 16:59:30 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
- 16:59:30 +0000
-Date: Wed, 18 Feb 2026 11:59:21 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Frieder Schrempf <frieder.schrempf@kontron.de>, imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH 2/4] arm64: dts: imx8mp-kontron: Fix SD card supply on
- SMARC eval carrier
-Message-ID: <aZXv6QSq-ydOX5Wt@lizhi-Precision-Tower-5810>
-References: <20260218132519.74570-1-frieder@fris.de>
- <20260218132519.74570-3-frieder@fris.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260218132519.74570-3-frieder@fris.de>
-X-ClientProxiedBy: SJ0PR05CA0075.namprd05.prod.outlook.com
- (2603:10b6:a03:332::20) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E3B22D4DC;
+	Wed, 18 Feb 2026 17:00:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771434060; cv=none; b=oU3vTwYUYuWLrZzcWffaI14vGrrDZVW3AYTRrEN2iKZ1kWdWQ3CIISmLFsxNYDqyCEyyh1iMsthH3rY8925O7b1NudZ4jjBZ9eN3rvzvMbBmigkU2OkPQphACLq6APfTXMOTNC8EDaifi8J79qCrucBesZNYnw5KYWNPm20bd9w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771434060; c=relaxed/simple;
+	bh=CfvbqxEGqLIstZIbfTF6jYSXXOfDbT5deJahXMkpfHM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hmeinWE03EgS8uiX7VX2E+cQoivjO+xiQbs7RWWJ0P/1Ms8S8mIsb4GgA3hqt74gPq5FU8XMlCMtHeT4KAtELR6GUjhya5ZcJmgY0p1ujJ6NMRUXwx4pFPkRErh+0VgpJaBdmFwx37Zay9OfAnsfJjmIlvEk1mzpuhEfYU2t/Jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=nTSIaoNe; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+Received: from [IPV6:2a01:cb06:a05c:5374:3961:b3cf:cce7:dce0] (2a01cb06A05c53743961B3cFcCE7Dce0.ipv6.abo.wanadoo.fr [IPv6:2a01:cb06:a05c:5374:3961:b3cf:cce7:dce0])
+	by courrier.aliel.fr (Postfix) with ESMTPSA id 67E144A574;
+	Wed, 18 Feb 2026 17:00:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1771434055;
+	bh=CfvbqxEGqLIstZIbfTF6jYSXXOfDbT5deJahXMkpfHM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=nTSIaoNez7Rhd3lfu8TJdVMFZGIuiQPEPuX7/ei6mCEnGgAp4iMQm20z5SMLlznrA
+	 fucCSIHuetiYN4gECV9YS1IdOIFEl7xu40mrhWmbg+6dUBkN9SjZo2kRbuGnYMg1dS
+	 qFnz/srKy5POt+xlMNeh9Q+08Kr44LSGQmoh1Mp4=
+Message-ID: <5e0b6a3c-23e0-4c2b-9a89-6b3632ecc7f1@aliel.fr>
+Date: Wed, 18 Feb 2026 18:00:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM8PR04MB7969:EE_
-X-MS-Office365-Filtering-Correlation-Id: c5fff5a2-d07b-491a-8352-08de6f0f14d5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|19092799006|1800799024|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?v1lRw6rRKZ3BV3UMgQh/YOl7YVdX14bnfZXengLU4VFHBtyqApBQpApYV255?=
- =?us-ascii?Q?adKzmZPCKgLgOmQgHyPcjW4zhbtUGWYeMji7/ZheAiZUfHBm3WDL4wfi+19y?=
- =?us-ascii?Q?7wZxWetpx0Qph+/IRPw+fQDUn5JMcHYvZRP2ISFYNEMIsngtt7SNYG8Ma86N?=
- =?us-ascii?Q?PcjScntYATgx3yyKWa40+va3cBnbmnKkmp/9UiZVt9Jo4PvG3NhGuEjbV5Uk?=
- =?us-ascii?Q?otyUfLW8oUpRxV1Bee1eKYxks+yqUIY7WwyT34Fi80O55dyFyv2+9Ewbdt2T?=
- =?us-ascii?Q?Ubn3O0EHubILY7z0K2H5nzbxJnOHhfSW6jt2JJNby0t0s6MEtdhQbpMhfE08?=
- =?us-ascii?Q?P8k/OLpHsjZrfnjtxgrwUF72AKivzxl3iobjgpJro0uDj5R0GJQDwi6t64aL?=
- =?us-ascii?Q?sYbcJ3UqDbha7uujSPTP8l+xmugNBp1Dex01qh/ydraj2xNbYCnWSx4KrFFy?=
- =?us-ascii?Q?S9KNYpJyNeaxU0W7M0s6jg06bFRAPqykkZ0sw8mFsGYep3hDG9DOVsCclXLA?=
- =?us-ascii?Q?tUObZ3Gn6qwApxPHpcLdgAN2RC9EN9Xn/LxPH6LcyOZ1ilSpdBZv3rPoFwRT?=
- =?us-ascii?Q?ceenClPbgbQzJBljJWxRHMhC+cer80P+x01OKdO04jiFLvf+vANolnnXam5C?=
- =?us-ascii?Q?gClGjgnXd7D77ztTo2T9vK159LGa5VzbHKV50SW8WO8p+cXZSvyjEqQixYuO?=
- =?us-ascii?Q?lWpe3Hms9qwENE5euVyNJHAWOksdtyX9G5y1dnjrj1XkPT+g2SZSu4/ODj5/?=
- =?us-ascii?Q?m3ZvchHAkSqc+uOCdZrTS4apa+NWOx+k5m+SL/RIwRhGHkguMMVXDd162ib4?=
- =?us-ascii?Q?wWFbPeayhKY8BqhNjg++beNL8RBFwD6S4p1Y6P+bo+26Nk5av7L/FU1NEfJz?=
- =?us-ascii?Q?SJT70UPnR5pusBK7CLHLBx5ezccGEEX9YryFS8wbjJ2E6sJY1cRTu1gIeyz9?=
- =?us-ascii?Q?XAE4uIiIUS6lvmzt+1cNbMGtMQfy6/3rEajkFowY3f24VgL2TPwsElBaihM1?=
- =?us-ascii?Q?bzNnGLoh73144QMMHKbNTP5WtvF+YsfpGewdx3fe8wQgCGiVx/sxHTgtOKfI?=
- =?us-ascii?Q?+uOACg/C/7FkHpNH5+C5W0VHZwwlNEdMK0qVIyLXw3FrqoALobxyncR2NZeJ?=
- =?us-ascii?Q?mZu6CnJl57wCFjHf0L68VtuVQNemlBMytkF74BgAjfQaCfHuh4zzP/xf7geT?=
- =?us-ascii?Q?IWEfSIngSz3AHXvJj0nO8sZk/rYz4ckqBcCvMoTyi5BQLdWNu52dsLmjk/Cc?=
- =?us-ascii?Q?1B6Qa/iCJNc58eS/B/R+4R2pMEciJqNPERlCR+Pm/PXRyBqdGNBteSkNaYJu?=
- =?us-ascii?Q?hJzw2QWgv/hUMKmIcp5N//zIxIkPLLBjYWSkGrJdk7OoCENH4WkxObCqX5fv?=
- =?us-ascii?Q?pzXebKv37ond2nJ0B9+zQLFYRO3E7I86KyL7sEHhwqM+xYt0WoO0v2/aQnD8?=
- =?us-ascii?Q?FVyXq5pzBbBdasWtGrL+Py4LX58l95ABRkCoXS8aGdckO7qxN6K+PlvIHbCM?=
- =?us-ascii?Q?tkYPEF7ulju6v4O+noBwiZKbOHHARc44dBSuX8lGINJMekGD5RfZZVoIBpEB?=
- =?us-ascii?Q?I262MNFvx5KSB+ZDrLVUXTwASMW0JKVa9wg/gipm8+KkuKqwKMc6NPBPjiGT?=
- =?us-ascii?Q?3zB0uQ+U+ZXQvhPn5QewQlA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(19092799006)(1800799024)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?mdZA7XfKdy7ErAWAK7zFZzLt1gKjSiZ4o5GrsXnasGtOPv6W5bYuYJtEHq0T?=
- =?us-ascii?Q?ra4Dd30OqhazaLlWGHyLLc2BDzPBo0IgFq9e+BHdyJPp0BBiHNDZTohNS37J?=
- =?us-ascii?Q?PqE3eYZCH55qJ/ZQQ2MusGlwDK4UHpBgLhi+0vZ0oDxb5PQ2dtEfxIxqCw2p?=
- =?us-ascii?Q?RcnYz3HDHI/E7EmSpXkMfBtjfbr5gwat4PeiwDAuXsQVz/Ik8O5Omc/y1SIy?=
- =?us-ascii?Q?UyyDVaEMaSrcPJLaPpHs1BloVfiU8vwYvPrSMw0KlFlN0US4Su9LprEAHBaQ?=
- =?us-ascii?Q?IPXmOv/RPHvLqEzSdHw2qULVNEq2YtbTwoA767sdpbUUXHusndqZMHJQ9BAo?=
- =?us-ascii?Q?uqL8QyTJOLPXfUdyeEtJKJjdENE0RLXCm6+K/VcdISPcgNcSRL9sXjV2Klpf?=
- =?us-ascii?Q?MVm30x7HE8ECgx+4dIpaDlooxBEuHY3mJnyhUIa1uhNJveUpk7aVIq6hFu01?=
- =?us-ascii?Q?c0ygQ+Gg9AqAHRBj0y6BFazbDNLMdhQTO3ty0NuNeWPF2bmaJ1MsXzsMXjtz?=
- =?us-ascii?Q?lKmtBxC9JR3hljbL+gKC1obVtpFy1LKzP38bHtfxy0c1O5LVx6jSQm4AgKTK?=
- =?us-ascii?Q?+Fx+ayKuBvOekUXsDpDm6IVLyv0m07Jw48yQLu1zLrCAr4MCj2ZVwV0D9M+Q?=
- =?us-ascii?Q?lm7Jf7CMIbQlrPmMPA1fIRI29sNrIySGMQCvhK7/nvH2VASiLkg5AX6m4aAu?=
- =?us-ascii?Q?3+mtahH153SE57fb9hPZOotAeGWtmXZ35p8seHWYATmz8aFfGaN/cfNcjB3q?=
- =?us-ascii?Q?/4lFReCniblNCySGBBsC6QSaZGm14Ku+TCgpfiEZUXgrbJGz8LY4DVXOzm8u?=
- =?us-ascii?Q?03C5AJ6d8wzwKkJKiz+ZKosP3JH8VZymMXZ2BPsK7LF2WDqjyVTPiPtfl4ac?=
- =?us-ascii?Q?HK9jdUl7pqipAHO+E23KfzHYx35jvNKwz5DojxL6mW9OrZn6w4j626Zb6X6N?=
- =?us-ascii?Q?tJXJIMsEA3SEuk6mFeMoD7P+PX5nYGeJhtkZcc4BvOe6eBthbKbzOy9J/fQ2?=
- =?us-ascii?Q?utlk5fXb4Fl9XzbT23VZWVeuio/JBvxGxYcwA2lxjgF/77rZl3UhOzM4AUoY?=
- =?us-ascii?Q?0TY4N15lnUureg4ihjr01ZV4I7QBKIQEBU9oeyfRH2PMMKRwiC0m9LtkmPH0?=
- =?us-ascii?Q?qUpLkDyFRQxmjIZXH5nA63KEO8Rm7qRVBBr4/tB6I6NBCUWMBM8aXaYhjnqs?=
- =?us-ascii?Q?Zjh61fVIg32wXDJumAjB3nAJJnh2eHGHrtLDRTxZjUK1dHiWs5jQIiCTbXcE?=
- =?us-ascii?Q?DuO5vu5bPNyKun1ySYmEzASornQZZv0XDTLqhKjfOS8JYeO6tiljQWVsst8t?=
- =?us-ascii?Q?oD/CcNV34qYZSNIsvIK7BfaHcLhcdo9QJaM4IPVgFf6P1FBZHWwsykYHJfMV?=
- =?us-ascii?Q?qgQx2ZqWgMVLJxzdqf234yinq04n6dREnZ3n/18UzkvRzlRVWSKujXOU4Vwc?=
- =?us-ascii?Q?8LSYDANrbp9abJgTzE4BzOPkTgcRLyHP/cltXSmWFzuXLO33Pl3m3+j8mscj?=
- =?us-ascii?Q?ib/K30GFbM7vDio3YuhbtvqSCimsE5SDRmszeyOmgGaMZs0oF7Cieo+WRG6x?=
- =?us-ascii?Q?GtEZipov6FZlkKZsL0grOvsEQe/2jrcc1ZH7qgdBfm4agRZVUPjgcBESJW49?=
- =?us-ascii?Q?TkIUKmlV50usIJBux/Zh2076BCdIcP65IFr9+YqhQ7siNLkDcTiyPAGYJtR4?=
- =?us-ascii?Q?aNa1D613jn72USqSaz5gEowgWJy1rLw0MEIQrQhn8vXzHjkf+OlHk7yxFRD3?=
- =?us-ascii?Q?v+uu3Zz1+A=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5fff5a2-d07b-491a-8352-08de6f0f14d5
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 16:59:30.1006
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iv1WjwOgcx62CjqoErhosK6Q2if3anQ52dguPadpp2YTGjudHw03WDE7UhPjBucqIM/ianmCtFRFl+B4IlYUqg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7969
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH 6/7] arm64: dts: amlogic: Add clock and EMMC for T7
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-amlogic@lists.infradead.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260218102045.35633-1-linux-kernel-dev@aliel.fr>
+ <6d86917f-5326-4ce2-91e3-c57534e5e8a2@kernel.org>
+ <0af0667d-c140-4f6d-86cc-6be0460bf81a@aliel.fr>
+ <f7e662db-63aa-49f3-842c-10a8346b70a6@kernel.org>
+Content-Language: en-US
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+In-Reply-To: <f7e662db-63aa-49f3-842c-10a8346b70a6@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266466-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,kontron.de,lists.linux.dev,lists.infradead.org,pengutronix.de,gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[aliel.fr];
+	RSPAMD_URIBL_FAIL(0.00)[8c000:query timed out];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266467-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:dkim,kontron.de:email]
-X-Rspamd-Queue-Id: 23ECD157FD6
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RSPAMD_EMAILBL_FAIL(0.00)[mmc.8c000:query timed out];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,aliel.fr:mid,aliel.fr:dkim,8c000:email]
+X-Rspamd-Queue-Id: 5640615800A
 X-Rspamd-Action: no action
 
-On Wed, Feb 18, 2026 at 02:25:06PM +0100, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
->
-> The SMARC eval carrier has a power switch for the SD card compliant
-> to the OSM standard definition. To use this as already specified in
-> the OSM base devicetree, stop overriding it in the board tree.
->
-> This fixes the power-supply for the SC card.
+On 2/18/26 5:39 PM, Krzysztof Kozlowski wrote:
+> On 18/02/2026 17:36, Ronald Claveau wrote:
+>>>> +
+>>>> +			sd_emmc_c: mmc@8c000{
+>>>> +				compatible = "amlogic,meson-axg-mmc";
+>>>
+>>> Compatible says axg, DTS says T7, so something does not feel right.
+>>>
+>>
+>> The SOC family is T7, but the emmc is fully compatible with this same
+>> axg code.
+>> I did the same as used in meson-g12-common.dtsi or meson-s4.dtsi, which
+>> use the same compatible.
+> 
+> You still should have a dedicated front compatible (needs documenting in
+> the binding) expressing full compatibility.
+> 
 
-Is below commit better?
+ok, I will use something like that:
 
-ARM: dts: imx8mp-sm2s-imx8mp: Drop SD power-supply override
+compatible = "amlogic,t7-mmc", "amlogic,meson-axg-mmc";
 
-The SMARC evaluation carrier provides an SD card power switch that complies
-with the OSM standard definition. The OSM base device tree already
-describes this correctly.
-
-Stop overriding the SD power-supply in the board device tree and rely on
-the definition from the OSM base DTS instead to fix the power-supply
-configuration for the SD card.
-
->
-> Fixes: 6fe1ced5ccab7 ("arm64: dts: Add support for Kontron i.MX8MP SMARC module and eval carrier")
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  .../boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts     | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts b/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
-> index 2173a36ff6917..74d620dd06b7b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
-> @@ -249,6 +249,5 @@ &usb3_phy1 {
->  };
->
->  &usdhc2 {
-> -	vmmc-supply = <&reg_vdd_3v3>;
->  	status = "okay";
->  };
-> --
-> 2.52.0
->
+Best regards,
+Ronald
 
