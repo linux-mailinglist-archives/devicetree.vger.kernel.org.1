@@ -1,59 +1,64 @@
-Return-Path: <devicetree+bounces-266314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266315-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id npDKEl1tlWk2RAIAu9opvQ
-	(envelope-from <devicetree+bounces-266314-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:42:21 +0100
+	id kda8JX1ulWmZRAIAu9opvQ
+	(envelope-from <devicetree+bounces-266315-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:47:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D23C153BC4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:42:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F304F153BDF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 08:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DAC093014C02
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 07:42:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A854B3022549
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 07:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECBC2F6930;
-	Wed, 18 Feb 2026 07:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F35309DC0;
+	Wed, 18 Feb 2026 07:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/5mWpkb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VupicOOc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2EE38D;
-	Wed, 18 Feb 2026 07:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3413EBF02;
+	Wed, 18 Feb 2026 07:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771400537; cv=none; b=dI+2ksXjHzVpICSvtQDm46Cpjme+X3M1u1Wkp0KADimssB9PioO3IiGvFBqleBE0B1/wJVoshUYel2rOvHkJ7I7+s9H+HcIOO3IbBBbuztx3urZpy8PqDg9aODCBAO9GbImZoAnxBJH1Vdbw9Kk3COalW/ovUpD+c7eKRJvoueM=
+	t=1771400824; cv=none; b=XryVULgF5gXlqjfuaFIO6j3owQMstxp901VqP5QwpNrd8BbZdywm6HMVIhZzrdw+xvNpyLWI2Yr3RZMD6JtI/GRt3oHD7AL2Jddu9vn0mBXuFdYR4edOcoRbAWxjQhPkXOxxqugQSaOOrH3kAgqWTg/m9xMxLWeaWJDVYdwp/Yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771400537; c=relaxed/simple;
-	bh=jcMnCozEI8eJNdxonGZxqWb8wVWlpDHbonfw1Xiz8B0=;
+	s=arc-20240116; t=1771400824; c=relaxed/simple;
+	bh=x3uMMgrQz5LgkjVbNCzGY+sKvBJr5F05qUWXDzQChdM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hp10PxHfNAcZBc6VYcFAf2LkWc/bf40HFozbuFCaVIcjFA2mN6LoUf8/g/9QDJQjo0BREMrJ+ef3GsjHBOfF7eg1xvmveHhJJhkZ98LGriE+BdtapZIB+paLoJCrM1ESGaXw6P899xZY5EcvpIMe2npI0saQGWgFIhSGlMwF1jo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/5mWpkb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80EB9C19421;
-	Wed, 18 Feb 2026 07:42:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bT/XQH8cLIN0aeA+LNip0qOb7Rzz26kIvyKWa0AOPURYlfOSl7WGyEFQS7IHJWXcZymsOLjKcITL1GMfzyXJJSOxaJNelXq0cPvSpj+TvX9XIyAPDHI/j0IyHs+5EkwT2FFDFuZHmZlviXvhVzqBjqUxrkNojddMMI/eQ6lSM8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VupicOOc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20721C19421;
+	Wed, 18 Feb 2026 07:47:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771400537;
-	bh=jcMnCozEI8eJNdxonGZxqWb8wVWlpDHbonfw1Xiz8B0=;
+	s=k20201202; t=1771400823;
+	bh=x3uMMgrQz5LgkjVbNCzGY+sKvBJr5F05qUWXDzQChdM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q/5mWpkbb9hJHuOG9R+ag1fuszszszomrrJc+Rn39EAuIcX9U+lIHT6s/PKFUsIzB
-	 vHwbra5XxHPYpJn4aAhahc9CsmXA/F4HNZJWDd6vdsSAkArdoE9LIhJ7VuAeLuMbPo
-	 UjLB1oM3zrdXz3DSyur4M8aFWKzpDCQ2i/8hvr/iBIg/K0Ekcgvvh+yTY5qnlcBxkh
-	 DPpsO8U6cn0m2q6T4mIVP2HbR3iUxb7fZwDHO/LxqmY3s5pTMOIaLmQ0I3Cfe7BVmG
-	 SG08xM4Ge9sRAFiBzOq1Z4e46isRksa/vJRlorPFP+r0rQ5DFZEE23yQZmBvbeYfiv
-	 Q7RvnssSxP75A==
-Date: Wed, 18 Feb 2026 08:42:14 +0100
+	b=VupicOOcDLjE7thhBzdPmlHxO/R7scUlUGDRMXtpFCbWNXWP+5TYIRpJp0bI35Sm/
+	 uOa3Z9yNWow3EcHs2Z8goxqS0zRpAknz0GmTEryr8asmZGGAAW1najVGzuF4wjGeSC
+	 FZRf+dtY6EE+T2i/u9K5wrjlct4zJ+ljZu4uh40zTsvs/jPKGldeHqyvQVp9SykNBy
+	 qB5A0GSY8yNrgcx55sRjbut41Ekd51LdEkwYY+SRtAdAhLDXNSoyrlZbLQ5ML7+B5I
+	 DRwp6amOS1Eds89CXF6MyTvOqZLJHBxJwg/RcOlyQVDC1XnzH9GU4eHsUHnU+02pDY
+	 OddIM5djHWwqQ==
+Date: Wed, 18 Feb 2026 08:47:01 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: st,st-ohci-300x: convert to DT schema
-Message-ID: <20260218-loose-rose-anteater-01abef@quoll>
-References: <20260217-st-usb-v1-1-ba347f30d0e0@gmail.com>
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/5] spi: dt-bindings: renesas,rzv2h-rspi: Document dmas
+ property
+Message-ID: <20260218-handsome-wakeful-swift-7be541@quoll>
+References: <cover.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
+ <ea6ed3b82c5a326732adfc0fcdb2922bfcad2591.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,88 +67,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260217-st-usb-v1-1-ba347f30d0e0@gmail.com>
+In-Reply-To: <ea6ed3b82c5a326732adfc0fcdb2922bfcad2591.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266315-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266314-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,bp.renesas.com,renesas.com,kernel.org,glider.be,baylibre.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8D23C153BC4
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: F304F153BDF
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 02:55:34PM +0000, Charan Pedumuru wrote:
-> +description:
-> +  The STMicroelectronics USB Open Host Controller Interface (OHCI)
-> +  compliant USB host controller found in ST platforms. The controller
-> +  provides full- and low-speed USB host functionality and interfaces
-> +  with an external USB PHY. It requires dedicated clock, reset, and
-> +  interrupt resources for proper operation.
-> +
-> +allOf:
-> +  - $ref: /schemas/usb/usb.yaml#
+On Tue, Feb 17, 2026 at 05:23:46PM +0100, Tommaso Merciai wrote:
+> Document the dmas property to state it must be specified as TX/RX DMA
+> specifier pairs.
+> This clarifies the expected ordering and improves binding readability
+> without changing behavior.
+> 
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> ---
+>  - This patch depend up on [0]
+>  - [0] https://lore.kernel.org/all/20260128215132.1353381-2-cosmin-gabriel.tanislav.xa@renesas.com/
 
-You should reference rather usb-hcd.yaml
+So just squash it there....
 
-> +
-> +properties:
-> +  compatible:
-> +    const: st,st-ohci-300x
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 2
-
-Drop
-
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ic
-> +      - const: clk48
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    items:
-> +      - const: usb
-> +
-> +  resets:
-> +    minItems: 2
-
-Drop
-
-> +    maxItems: 2
+Why are you adding comment to correct code which is in-flight, not
+applied? Just REVIEW the other!
 
 Best regards,
 Krzysztof
