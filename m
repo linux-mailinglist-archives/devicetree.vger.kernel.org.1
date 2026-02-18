@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-266422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266420-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4BiKNoq9lWkfUgIAu9opvQ
-	(envelope-from <devicetree+bounces-266422-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:24:26 +0100
+	id 4B1YGHe9lWkfUgIAu9opvQ
+	(envelope-from <devicetree+bounces-266420-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:24:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CC3115696B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:24:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6967D15694E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 14:24:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5F5813034303
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:24:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5F09B3010703
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 13:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5332D3A6A;
-	Wed, 18 Feb 2026 13:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA36F2BF001;
+	Wed, 18 Feb 2026 13:23:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="d/pkFvuL"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="UrPktcs3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay13-hz2.antispameurope.com (mx-relay13-hz2.antispameurope.com [83.246.65.99])
+Received: from mx-relay49-hz3.antispameurope.com (mx-relay49-hz3.antispameurope.com [94.100.134.238])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738E82C3268
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 13:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859882D46B2
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 13:23:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.238
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771421045; cv=pass; b=cw4awkOj4Tah26BG6BBdlU1jZnpInCXu4lAOQb9lwa2BmR7qR9aSRKOWwaek2d7egQ/GQj0At/pM9p3YlpEwcqbW7fSnErb2KzarBChv4s11w3foekC5bjYY2nF7RcFXEyketdy/hgiGL4dOTKm6+U+Qz2nXnu6ZrWc/Tjinnqc=
+	t=1771421031; cv=pass; b=LVjWR6TnoHZMsWXJcCA47WR2d3q33O799MR0xuSG9dMqlzNw4mkOSfCtvnoIuoENOdpV/ec+XBGm9Oqwb3IfxY/QkigfGUT1QvjTBxX4camPr3BiIj8nqgVoATzpamFxzAub+0tkQSeJLrXxG3mlDcqwq5UkkOWkxRJUesVEJUQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771421045; c=relaxed/simple;
-	bh=Lqa+W/InJiMsJcFaCqPhqA0VqCeAVMN/8wOxNHkZJ0I=;
+	s=arc-20240116; t=1771421031; c=relaxed/simple;
+	bh=Z1bTBRY6zw1t6uaJj2BKThq7pUXsKletLWM65laNWaw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NDGpYshAcUUy7UBWQLNRDrysyKjOHW7+2TM5P/Hvvfd7F3AtZXZci6hTUBZBPLQEeun4b7SYfkM4EkB4TgoccMOZFjis5WQ1D0yhDLX9YfWPshxNGAOpGdMFOhS5SHWhRwYOUu5m7Lux7RUddZhEqMkI92CcQPrVVT9OrKn39rs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=d/pkFvuL; arc=pass smtp.client-ip=83.246.65.99
+	 MIME-Version; b=NEFhYqSs2uXmRkW7jkJFkCRQ/L6lGsCnEnLjLOmOvLT0WZORVK7FUvetthiWVarBrG4kZUC4aFKkuGV4VcyslzT63tiV4Jw4h9TfP9tvZwzJVFPipGVme6uxLKxBmdgTXL6yca7bZ1Rv8ElM2wezEiIMFc3AO5QShLx0ssoypms=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=UrPktcs3; arc=pass smtp.client-ip=94.100.134.238
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate13-hz2.hornetsecurity.com 1; spf=pass
+ARC-Authentication-Results: i=1; mx-gate49-hz3.hornetsecurity.com 1; spf=pass
  reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com
  smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
  header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=3X41+/DDb79VlrAXhpveO5mOonDaOzhaJoIuv+461r4=; c=relaxed/relaxed;
+ bh=8Zcx4Gwsq0t5HYafz2dIuwiCTKeT7XB0utiZMiUPk6Y=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1771420999;
- b=Qjoi9DrYBPRxT1KbR24xgVSfi47ekazKw0dho84Fq5CYYcYMXgCTJR84hz+Fh2ZRb/+zCiaB
- cnixyglOQnZKhcO5Zw7Lul8LxKkpoKecqJpkvokn1xleJl9HcEOxemw67AzgeqkIWHJueP3YEs4
- zpMxRx1kGcah+B86mmlk6pXuyAkoBy7jo+JOdswLfdqhUoC9Oy0LV/Lib1GKP2UK5GHmMyQ0IIg
- ftXiu5n+gTNdvRPlG+VUJuS5vKbh6CpsP1PXmqKBRyyshjaxtstpxol6UiyX+Y+2+kZSHyn/nD2
- dusrM+XcgcQuposPq8Y06XY4BCIRURSWg7gSJ/auZo7IA==
+ t=1771421002;
+ b=pRHmH4+2/JPH6gRi1bAWc4fQrw8Nuba8/rg3AF0d83QmUDQCeDM7yu+C8Wi7ZuxJzlttanxu
+ 513tS9Hy5h4+2soAIVcWlAAHriCpF7AjtXVEwVg3DKO/JW+FoLYX7gjCSr0ku1JQ4/SrGFPK6yQ
+ kyBfAb0HM4eUB/rw2Ue7160wXH4zxCGac7KXwC6qmb+s75lGdVvoio4TUQOnOb2u9KWhknsXBvi
+ AFhBFehEWni54VIaA9GOPgUlOseTXok1j3JE4sL8nMNdH8ntmkw959KOeV2cM+vNfAZ+yDnNlku
+ KKSLlF81wdAyUSYZkSFo8MDd3tbzCVWJh83a6lmM5EQKg==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1771420999;
- b=kDLsHlNHm7Cb3QKjl23nGNKuvjLpR8a6R+lwU/iyMshB0ieT+E6YV1BCdLRtro460PK1hOjF
- BPD4OYh0Mqj9LreMyJElB3pEZEQAGzvoQv7jFdGsjdbBw+HwNZS7tUuBjbK04/vlfIPXoA0UM25
- 0kNbx27LmCb+DesrABnKBhBFzt6WOag+tkQF3Ou/j7jxIgoZnV2mkpKHzcH9JfslCEpALCTfJ7k
- uYEZ+VVZrEuO2UvEwOqtaZYmk9srUXQ759Jm5RbSHLuik5duQ5QP0j+Cfrfc5jpFzPHBgVSnHgT
- f2P8GjJx5OnKS81dE6Ap1MREcQ6LILp6VhP6lKPWuAMfA==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay13-hz2.antispameurope.com;
- Wed, 18 Feb 2026 14:23:18 +0100
+ t=1771421003;
+ b=fj/Qxbs7LGz1EU5QXGpUVAkH2aMDlHXGDjrwjuaKku4bqmuGePJPoFN9bbSE1syDeSCe45tK
+ jBslZULQd3rqXsKpaa7rIaFF4ONpVlA9qns0hCvSluE+tA4xcO+fFMe+DV9iHVdiQbVpfbxEDcb
+ +Folkaq8NRLypo7nIH/uCBnybwkXy4pgw0OnFulLy89iPtsaQEU+0QLkwLRseR+Bu21bE0BxZLs
+ nYyQx4l/wqrdZm1CBwjyHstLk1XAtuaFCWRe12kk+0sYEygaZUwaQ+6lem5Ipjo2Psx6CUeFgTA
+ dDRskFteoK71KPAgeFOwWKWbL3ALTp3KTupNhLljKE5IQ==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay49-hz3.antispameurope.com;
+ Wed, 18 Feb 2026 14:23:22 +0100
 Received: from merchelm-W2.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: max.merchel@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 89519CC0CC2;
-	Wed, 18 Feb 2026 14:23:12 +0100 (CET)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 39FA4CC0CC4;
+	Wed, 18 Feb 2026 14:23:13 +0100 (CET)
 From: Max Merchel <Max.Merchel@ew.tq-group.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -75,9 +75,9 @@ Cc: Max Merchel <Max.Merchel@ew.tq-group.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/4] ARM: dts: imx6qdl: add boot phase properties
-Date: Wed, 18 Feb 2026 14:22:23 +0100
-Message-ID: <20260218132228.32056-3-Max.Merchel@ew.tq-group.com>
+Subject: [PATCH 3/4] ARM: dts: imx6qdl-tqma6: add boot phase properties
+Date: Wed, 18 Feb 2026 14:22:24 +0100
+Message-ID: <20260218132228.32056-4-Max.Merchel@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260218132228.32056-1-Max.Merchel@ew.tq-group.com>
 References: <20260218132228.32056-1-Max.Merchel@ew.tq-group.com>
@@ -94,20 +94,20 @@ X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: max.merchel@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay13-hz2.antispameurope.com with 4fGHJK21JZz3skYp
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay49-hz3.antispameurope.com with 4fGHJP11XQz3yb9j
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:6bfe6034a05854dbc69e031af52159fd
-X-cloud-security:scantime:1.909
+X-cloud-security-Digest:cf7061861399f4e6f66565e8def3d525
+X-cloud-security:scantime:1.925
 DKIM-Signature: a=rsa-sha256;
- bh=3X41+/DDb79VlrAXhpveO5mOonDaOzhaJoIuv+461r4=; c=relaxed/relaxed;
+ bh=8Zcx4Gwsq0t5HYafz2dIuwiCTKeT7XB0utiZMiUPk6Y=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1771420998; v=1;
- b=d/pkFvuLlTJ/ZQw5mkOg69v5V7Vq1vHKFVYenIR/nELxAkR5g4swXhr4hv1QsCrr9YFaM5ZX
- 8iTWzMcmWKCfzFnmsJq3qZQZN23RErggngA41ixSZke11byhUzOD74QfPSA2JTKa2gW0otItGZM
- kyAcc+9XttsQ8T1UHRdD3AiSW99UC/F/T+9mlhM5QX/IWjsPToYuAxApFsM7cZv+Uv6w+G4uvT1
- I9wuT2hhZ2qVOjMh1foSWGA9yv5IsIzNdoJCy+p3GxeDq5uQUSFs4ATjW/v12I0KtBVxbkd2ju5
- DD4zSNxf3z3DHVh1htetrqWqL2toRpo1JbTtGBA8r/kWA==
+ t=1771421002; v=1;
+ b=UrPktcs36wKqmqTCJ0t7egqHbFfDA+/F0YZYKj16MH0TkuWLU16VHybFBcPG1woPS/QEonGu
+ pcFFfmup/nTucyQbMA8rHLhLh5QWTUm2BMLjACBFes9An8zpDTamWsPnGjDhqT5Q9M3ioVK0M5z
+ V5PZtZpVGQCjVnFsgwQM6DPPzwpkx5sI1FTc+sXotcp35oMP+CpCIzK+9C0Nt6crzOJqyBzy/Xy
+ TRuUsrekXloFWbV7iw+wf+UXscApPytQUJh8H/QOE/1nOkSoXz/BJIkGAuwJa7RGWn9VfH+FUXz
+ LbbQwaB/RVKBv1YBLbsI+Q9z1ZvY9pEE1sI54YswTQDBA==
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -116,14 +116,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
 	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266422-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266420-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -135,70 +135,123 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5CC3115696B
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,tq-group.com:email,ew.tq-group.com:mid,ew.tq-group.com:dkim,0.0.0.8:email]
+X-Rspamd-Queue-Id: 6967D15694E
 X-Rspamd-Action: no action
 
-Add boot phase properties from U-Boot device tree.
+Add boot phase properties to TQMa6 device trees.
 
 Signed-off-by: Max Merchel <Max.Merchel@ew.tq-group.com>
 ---
- arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6.dtsi  | 11 +++++++++++
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi |  1 +
+ arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi |  2 ++
+ 3 files changed, 14 insertions(+)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-index 76e6043e1f91..1fcfe0751327 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-@@ -149,6 +149,7 @@ soc: soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&gpc>;
- 		ranges;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6.dtsi
+index 07492f63a1f8..14676d1d905a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6.dtsi
+@@ -11,6 +11,7 @@ &ecspi1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_ecspi1>;
+ 	cs-gpios = <&gpio3 19 GPIO_ACTIVE_LOW>;
++	bootph-pre-ram;
+ 	status = "okay";
+ 
+ 	m25p80: flash@0 {
+@@ -19,6 +20,7 @@ m25p80: flash@0 {
+ 		spi-max-frequency = <50000000>;
+ 		vcc-supply = <&sw4_reg>;
+ 		m25p,fast-read;
++		bootph-pre-ram;
+ 
+ 		partitions {
+ 			compatible = "fixed-partitions";
+@@ -28,6 +30,10 @@ partitions {
+ 	};
+ };
+ 
++&gpio3 {
++	bootph-pre-ram;
++};
++
+ &iomuxc {
+ 	pinctrl_ecspi1: ecspi1grp {
+ 		fsl,pins = <
+@@ -38,6 +44,7 @@ MX6QDL_PAD_EIM_D16__ECSPI1_SCLK 0xb099
+ 			 /* eCSPI1 SS1 */
+ 			MX6QDL_PAD_EIM_D19__GPIO3_IO19 0xb099
+ 		>;
++		bootph-pre-ram;
+ 	};
+ 
+ 	pinctrl_i2c1: i2c1grp {
+@@ -45,6 +52,7 @@ pinctrl_i2c1: i2c1grp {
+ 			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA 0x4001b899
+ 			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL 0x4001b899
+ 		>;
++		bootph-pre-ram;
+ 	};
+ 
+ 	pinctrl_i2c1_recovery: i2c1recoverygrp {
+@@ -73,6 +81,7 @@ MX6QDL_PAD_SD3_DAT5__SD3_DATA5 0x17059
+ 			MX6QDL_PAD_SD3_DAT6__SD3_DATA6 0x17059
+ 			MX6QDL_PAD_SD3_DAT7__SD3_DATA7 0x17059
+ 		>;
 +		bootph-all;
+ 	};
+ };
  
- 		dma_apbh: dma-controller@110000 {
- 			compatible = "fsl,imx6q-dma-apbh", "fsl,imx28-dma-apbh";
-@@ -297,6 +298,7 @@ aips1: bus@2000000 { /* AIPS1 */
- 			#size-cells = <1>;
- 			reg = <0x02000000 0x100000>;
- 			ranges;
+@@ -117,6 +126,7 @@ sw4_reg: sw4 {
+ 			regulator-min-microvolt = <3300000>;
+ 			regulator-max-microvolt = <3300000>;
+ 			regulator-always-on;
 +			bootph-pre-ram;
+ 		};
  
- 			spba-bus@2000000 {
- 				compatible = "fsl,spba-bus", "simple-bus";
-@@ -304,6 +306,7 @@ spba-bus@2000000 {
- 				#size-cells = <1>;
- 				reg = <0x02000000 0x40000>;
- 				ranges;
-+				bootph-pre-ram;
+ 		reg_5v_600mA: swbst {
+@@ -186,6 +196,7 @@ &usdhc3 {
+ 	bus-width = <8>;
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
++	bootph-all;
+ 	status = "okay";
  
- 				spdif: spdif@2004000 {
- 					compatible = "fsl,imx35-spdif";
-@@ -920,6 +923,7 @@ mux: mux-controller {
- 			iomuxc: pinctrl@20e0000 {
- 				compatible = "fsl,imx6dl-iomuxc", "fsl,imx6q-iomuxc";
- 				reg = <0x20e0000 0x4000>;
-+				bootph-pre-ram;
- 			};
+ 	mmccard: mmccard@0 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi
+index 1251749a8dd0..67f8f59aff5a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6a.dtsi
+@@ -20,6 +20,7 @@ &i2c1 {
+ 	scl-gpios = <&gpio5 27 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	sda-gpios = <&gpio5 26 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	clock-frequency = <100000>;
++	bootph-pre-ram;
+ 	status = "okay";
  
- 			dcic1: dcic@20e4000 {
-@@ -950,6 +954,7 @@ aips2: bus@2100000 { /* AIPS2 */
- 			#size-cells = <1>;
- 			reg = <0x02100000 0x100000>;
- 			ranges;
-+			bootph-pre-ram;
+ 	pmic: pmic@8 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi
+index 7f526f39e0f2..db552802554d 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tqma6b.dtsi
+@@ -13,6 +13,7 @@ &i2c3 {
+ 	scl-gpios = <&gpio1 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	sda-gpios = <&gpio1 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 	clock-frequency = <100000>;
++	bootph-pre-ram;
+ 	status = "okay";
  
- 			crypto: crypto@2100000 {
- 				compatible = "fsl,sec-v4.0";
-@@ -1320,6 +1325,7 @@ ipu1: ipu@2400000 {
- 				 <&clks IMX6QDL_CLK_IPU1_DI1>;
- 			clock-names = "bus", "di0", "di1";
- 			resets = <&src 2>;
-+			bootph-all;
+ 	pmic: pmic@8 {
+@@ -40,6 +41,7 @@ pinctrl_i2c3: i2c3grp {
+ 			MX6QDL_PAD_GPIO_5__I2C3_SCL 0x4001b899
+ 			MX6QDL_PAD_GPIO_6__I2C3_SDA 0x4001b899
+ 		>;
++		bootph-pre-ram;
+ 	};
  
- 			ipu1_csi0: port@0 {
- 				reg = <0>;
+ 	pinctrl_i2c3_recovery: i2c3recoverygrp {
 -- 
 2.43.0
 
