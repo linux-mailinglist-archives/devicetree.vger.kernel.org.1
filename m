@@ -1,143 +1,265 @@
-Return-Path: <devicetree+bounces-266548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNCHHaRMlmlUdgIAu9opvQ
-	(envelope-from <devicetree+bounces-266548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 00:35:00 +0100
+	id 6PgqJQpPlmnddgIAu9opvQ
+	(envelope-from <devicetree+bounces-266549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 00:45:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D567315AF2C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 00:34:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3F9315AFF4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 00:45:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DD13D300B8DC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 23:34:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1474301AD28
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 23:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E8CE33B6DC;
-	Wed, 18 Feb 2026 23:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE5E303CA0;
+	Wed, 18 Feb 2026 23:45:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tDnZ2EFz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MwdAJmTo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B5F02F49EB;
-	Wed, 18 Feb 2026 23:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDAC12848BB
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 23:45:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771457694; cv=none; b=e7XBXK5ga6cSab5mSJgWyjuAW8Jos3niwHRai4kQxgB7iyBbDuKqslFAAVlGwZQEne2BcFkea8XH4oN5/oEA6ArRuWhxT3JsiOQxMb1BwwFyVu/B2SUxNT4mwBobRhOSPwVg1MrjMqDGL3sMs8asLZG0lKooe68q/Mk9dOI6lrY=
+	t=1771458312; cv=none; b=SbZntipm0wIJK/aGxf+/1/xTem2PI05Bufr3WfNe58nZKl6f+kJNYJ4Krvvn+/RIYbb6weJ8PzW/YB8NN6P/qJ9C1ebWLvukeMj5oi718YBGrQk+UobHV7PPVVQR74oVEFR7jz+/+wKt3dnhRXWvKyC6iexJk80CXcfrVCg+zkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771457694; c=relaxed/simple;
-	bh=KT5Dw3IpFGRyOt2RzNiqycDyZwdvt3eYyDUGYMMFHHo=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Ge2OiiOKZpioTMJqWssJjgI7BMG92on2/SgibLrOeBRV9m6MIHcgNqhVaSAcDrCTKVwZyhZnnxYC+uTtHc3Bj9lVOm4ebNPJDp2ELfFsDbsmSnysjexUgUmMt5Q3+AojzlDYngnaNVjHxmM2y+NfIbUAJYH9laYQLtec+RMf9O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tDnZ2EFz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99785C19425;
-	Wed, 18 Feb 2026 23:34:51 +0000 (UTC)
+	s=arc-20240116; t=1771458312; c=relaxed/simple;
+	bh=g/zBQ9fYhQkODOs80qTbI69FY29uErszLlmjFbFzIdY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y9YItPm9G0DO6hWtg/oxC4+QPvRbN9vk95xi/B4Cpzqm9bXlp+4zZD+LdFKWQtV0kHAHl0NcfOEMsE94r2ZAs5stSWsAE0i+Fji8rVPhhRhnFwel9wrQxvdMzfuXLHpGgd1VpH4WrwoTxezGn5CettDXP2dY00IM7RbsQ40APwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MwdAJmTo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 914B8C116D0
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 23:45:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771457694;
-	bh=KT5Dw3IpFGRyOt2RzNiqycDyZwdvt3eYyDUGYMMFHHo=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=tDnZ2EFzGLZlmoorJ5sCzqZy4H8lf1RnKseaWaiQHEcz14MXRJBFI8fBFIbYr2wch
-	 /Nk+EC6JgXGwZ2aMeVIXxCnrU2s6HORFK5CegSpOLBbGScZAJi2HTB0yWyItBXADdY
-	 nwH93wK6hAxXeQdeOv4JWPZ2jLdmgDeUt+Bk7QK1qkFU2n8QHiPEnd6lC466AHR2d/
-	 QFtwMxou8NZDTcIKElPCsvcP6gb6WTRY7B5zRvfDNRwCSpZYUz0LxUC1CCYLk510ah
-	 E1Dz0YHWe6KQxPyv892fzjjnCM7qW3h9GoRPMbxmURopsR5h0GAO8u1hYnSi0hR3Jm
-	 W2NSre8YKVScg==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, perex@perex.cz, 
- tiwai@suse.com, ckeepax@opensource.cirrus.com, 
- andriy.shevchenko@linux.intel.com, nichen@iscas.ac.cn, 
- kuninori.morimoto.gx@renesas.com, Shengjiu Wang <shengjiu.wang@nxp.com>
-In-Reply-To: <20260212021829.3244736-1-shengjiu.wang@nxp.com>
-References: <20260212021829.3244736-1-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v2 0/3] ASoC: dt-bindings: fix the ak4458 and ak5558
- binding doc
-Message-Id: <177145769138.2257280.5500868757051833326.b4-ty@kernel.org>
-Date: Wed, 18 Feb 2026 23:34:51 +0000
+	s=k20201202; t=1771458311;
+	bh=g/zBQ9fYhQkODOs80qTbI69FY29uErszLlmjFbFzIdY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=MwdAJmTogHrCc/zGrLePfEWB4DSEoluxfNQ5kHwNjTh57iO20DMQM+gBZeUM3EN78
+	 A+tJsYMrUjaoh4vTptDFNLO6ER5FDKuzphYXBqY9qZypMKJaG+dQ7nHRn3nY03sQBB
+	 aSK2EXAiYw0JGp1QwYSN5OG0CAFFuWWGkA0Fb0Xf5bGvhoA5qhPLVr850JpVh1sIPq
+	 qyIF+RJag0gMCYh1E6oeFDeyqUbDReiYardw653dOPr/mdaXXuKaMtwhX2Peh58FXW
+	 6UjRYdXCiVLv7EkpVeDtgynz100jzJe4aF7uA8sPJiFt5UCYC6XcVzFT6G/GqIgZb8
+	 KeE4rL3O6wcoA==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b883787268fso58426466b.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 15:45:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWpA2MDFJn6Ab2biOdoyVBl9Qh9MM+342SXOexDrBsxgyFN83D3vZvLamq+lsAPGCXZRlDKXpvfrXgi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMMWFLdMLVJX2JRhel3rJfTQGFBw0vNoDzs1Xu4mrTHLPVYsi1
+	In4fRyQJlL9CZoH2l+ZW0VP9V+01XLYdGSoVQmN3H7NWOi3UXlbAtJSaDkPh1uhNVIBpIijV4Eo
+	lZIRcFubreBYImMuzQvjhEtM2NCQ+lg==
+X-Received: by 2002:a17:907:1b0c:b0:b87:2bd6:6bc3 with SMTP id
+ a640c23a62f3a-b8fc3d3223bmr885836166b.61.1771458310110; Wed, 18 Feb 2026
+ 15:45:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+References: <20260214213239.2546012-1-james.hilliard1@gmail.com>
+ <CAMRc=MfK8k88PfQPvP=p1r3KQ40dwcZq4Z4f5fnRFakpYcknvA@mail.gmail.com>
+ <CADvTj4r4mR0_HxcOOZFqJTVfoD=YdrGd2AD+hQNw6ciGUC=C1A@mail.gmail.com>
+ <CAMRc=Me6v2E1zKGQzukJmP45cVkRWOGzYoO9=LKh63rPFRqfqA@mail.gmail.com>
+ <CADvTj4ovM1faNGoUa4HoTCN7avAqwkZfY5v9P8okgx87or8gDA@mail.gmail.com> <CAMRc=McR613nBkUehva0bidxrUz2eQ1Ud9g1m4gKdXyGzHo_PA@mail.gmail.com>
+In-Reply-To: <CAMRc=McR613nBkUehva0bidxrUz2eQ1Ud9g1m4gKdXyGzHo_PA@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 18 Feb 2026 17:44:58 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLEKr6G4qZe=vvJzP+KC_WWh0SHOjg14rxQvAvxV7wNUA@mail.gmail.com>
+X-Gm-Features: AaiRm52LQxuy6RjUyjTSU6zyoqOBZR4zKCvs5X3EupLezk7vaOVLkTFnKSzUPFY
+Message-ID: <CAL_JsqLEKr6G4qZe=vvJzP+KC_WWh0SHOjg14rxQvAvxV7wNUA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] gpiolib: of: add gpio-line node support
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: James Hilliard <james.hilliard1@gmail.com>, linux-gpio@vger.kernel.org, 
+	Linus Walleij <linusw@kernel.org>, Saravana Kannan <saravanak@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266548-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,vger.kernel.org,perex.cz,suse.com,opensource.cirrus.com,linux.intel.com,iscas.ac.cn,renesas.com,nxp.com];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266549-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: D567315AF2C
+X-Rspamd-Queue-Id: E3F9315AFF4
 X-Rspamd-Action: no action
 
-On Thu, 12 Feb 2026 10:18:26 +0800, Shengjiu Wang wrote:
-> Set unevaluatedProperties:false in ak4458 dt-binding doc.
-> Fix supply name in ak4458 and ak5558 dt-binding doc.
-> 
-> Changes in v2:
-> - update the commit message for patch 1/3.
-> - Fix the supply name in dt-binding doc, not in driver, replace the
->   patch 2/3 and 3/3.
-> 
-> [...]
+On Wed, Feb 18, 2026 at 3:34=E2=80=AFAM Bartosz Golaszewski <brgl@kernel.or=
+g> wrote:
+>
+> On Tue, Feb 17, 2026 at 8:07=E2=80=AFPM James Hilliard
+> <james.hilliard1@gmail.com> wrote:
+> >
+> > On Tue, Feb 17, 2026 at 6:18=E2=80=AFAM Bartosz Golaszewski <brgl@kerne=
+l.org> wrote:
+> > >
+> > > On Mon, 16 Feb 2026 22:20:10 +0100, James Hilliard
+> > > <james.hilliard1@gmail.com> said:
+> > > > On Mon, Feb 16, 2026 at 4:38=E2=80=AFAM Bartosz Golaszewski <brgl@k=
+ernel.org> wrote:
+> > > >>
+> > > >> On Sat, 14 Feb 2026 22:32:37 +0100, James Hilliard
+> > > >> <james.hilliard1@gmail.com> said:
+> > > >> > Allow GPIO controller child nodes marked with "gpio-line" to
+> > > >> > configure direction/flags at probe time without hogging the line=
+.
+> > > >> >
+> > > >> > Teach OF gpiochip scanning and OF dynamic reconfiguration handle=
+rs to
+> > > >> > process gpio-line nodes in addition to gpio-hog nodes.
+> > > >> >
+> > > >> > Also parse "gpio-line-name" and apply it to desc->name. For gpio=
+-hog
+> > > >> > nodes, keep "line-name" semantics as the hog consumer label.
+> > > >> >
+> > > >>
+> > > >> One important thing that's missing from this commit description is=
+: what is
+> > > >> the use-case and why do you need this.
+> > > >
+> > > > Added some more use-case details in v3:
+> > > > https://lore.kernel.org/all/20260216211021.3019827-1-james.hilliard=
+1@gmail.com/
+> > > >
+> > > > In my case I'm setting up the GPIO line initial state and names for
+> > > > userspace consumers mostly. I want to be able to configure the
+> > > > individual line names from a combination of the dts file and multip=
+le
+> > > > dtso files for the same gpiochip along with setting up an initial s=
+tate
+> > > > before userspace consumers operate on the lines.
+> > > >
+> > > >> The DT binding patch should be sent together with this in a single=
+ series. It
+> > > >> should also be documented in the relevant .rst file.
+> > > >
+> > > > Which file would that be?
+> > > >
+> > >
+> > > Documentation/driver-api/gpio/board.rst would fit best.
+> >
+> > Should gpio-hog docs be moved here as well?
+> >
+>
+> Not moved from DT bindings, just added as they are missing.
+>
+> > >
+> > > > I had previously added docs to gpio.txt but was told here to just
+> > > > drop the docs:
+> > > > https://lore.kernel.org/all/b851bfd4-3c35-489f-a32d-dcd7a37ca99a@ke=
+rnel.org/
+> > > >
+> > >
+> > > There's a difference between device-tree bindings (formal, machine-re=
+adable
+> > > definition of the firmware ABI) under Documentation/devicetree/bindin=
+gs/ and
+> > > documentation for humans residing elsewhere in Documentation/. Make s=
+ure to
+> > > not confuse the two. I would expect both to be supplied with such a c=
+hange.
+> >
+> > What file under bindings would this go in?
+> >
+>
+> Typically the top-level GPIO bindings document but we don't have it
+> yet. Or rather: we have the old .txt format and not yaml. I need to
+> start chipping away at it at some point...
 
-Applied to
+Most or all of it can be deleted. The same text exists in dtschema
+gpio.yaml already. There might have been some parts not moved yet as I
+didn't have rights to dual license.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> > > >> I suppose it's another shot at defining what we previously called
+> > > >> "initial-line-state", "default-line-state", etc. What happens when=
+ someone
+> > > >> requests the line, reconfigures it and then releases it?
+> > > >
+> > > > This should just provide an initial configuration, subsequent consu=
+mers
+> > > > would override whatever is set here AFAIU.
+> > > >
+> > >
+> > > Yeah, that's what I was afraid of. This is not hardware description, =
+this is
+> > > user-convencience and as such I don't think it has place in DT bindin=
+gs and -
+> > > by extension - in DTS.
+> >
+> > I guess this is more describing a hardware configuration, but is that
+> > not allowed in DT bindings? There seems to be plenty of DT stuff
+> > that's effectively describing the way the hardware should be configured
+> > initially.
+> >
+> > For example uart/serial nodes have a current-speed property that
+> > can be used to configure the initial speed, but this can also be
+> > overridden by userspace consumers at runtime as well via
+> > termios configurations AFAIU. That seems to be a pretty similar
+> > case to what I'm trying to do here with gpios.
+> >
+> > What's the reason user-convenience hardware configuration stuff
+> > like this shouldn't go in DT bindings?
+> >
+>
+> We do have many cases like that back from before DT schema and
+> validation. Bindings have become much stricter since and it's assumed
+> that DTS should only describe hardware, not its configuration.
 
-Thanks!
+No, configuration is allowed. The oldest example is probably uart baud
+rate. pinctrl is completely the configuration of pins. But there is a
+limit and it's a judgment call.
 
-[1/3] ASoC: dt-bindings: asahi-kasei,ak4458: set unevaluatedProperties:false
-      commit: 50a634f1d795721ce68583c78ba493f1d7aa8bc2
-[2/3] ASoC: dt-bindings: asahi-kasei,ak4458: Fix the supply names
-      commit: e570a5ca307f6d7a6acd080fc219db2ce3c0737b
-[3/3] ASoC: dt-bindings: asahi-kasei,ak5558: Fix the supply names
-      commit: 80ca113671a005430207d351cb403c1637106212
+> > > I'm afraid I don't have good alternatives to offer, solving this has =
+been
+> > > attempted several times in the past without success. Even gpio-hog wo=
+uld likely
+> > > not get past DT maintainer review these days but it's ABI now so will=
+ stay
+> > > supported.
+> >
+> > What did previous attempts look like? At least this is minimally invasi=
+ve
+> > and shares most of the code paths with gpio-hog.
+> >
+>
+> They focused more on the "default" state of GPIOs. State to which you
+> would revert if not requested. If anything: this makes more sense than
+> "initial" state to me which we forget after the first request.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Agreed.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> Right
+> now this is something driver-specific. I'll let DT maintainers speak
+> if that's something we could put into DT.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+If the argument was wanting to do this in early boot firmware, I'd be
+more convinced. But to say it is needed for userspace, I'm not really
+convinced. My main concern is wanting to describe the state, but not
+what the GPIOs are connected to. Is it really nothing and we'd never
+ever possibly want to describe that.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Rob
 
