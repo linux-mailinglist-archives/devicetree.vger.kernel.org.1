@@ -1,211 +1,272 @@
-Return-Path: <devicetree+bounces-266303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266304-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EL33JkcJlWk2KQIAu9opvQ
-	(envelope-from <devicetree+bounces-266303-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 01:35:19 +0100
+	id eFOADuEZlWnnLAIAu9opvQ
+	(envelope-from <devicetree+bounces-266304-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 02:46:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1716152567
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 01:35:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A45FE152924
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 02:46:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 040E830107C0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 00:35:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9889B303DF63
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 01:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A041254AF5;
-	Wed, 18 Feb 2026 00:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601752DB7A3;
+	Wed, 18 Feb 2026 01:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Qkb265rx";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="cHbnzZH1"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="deKmsegR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com [74.125.82.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 447E823EAB4
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 00:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDE6283FC5
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 01:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771374916; cv=none; b=OpNdymPqzvIuDtNSgXdcYNGeXEsWZF/qVyn5G/cGQk8RTe069DXNS38QDRc3/WuXsQe3XGMG0LlLcuO1llnLdgWM9+sHjwKTQuxShpNCmoVvU6H9V2OLz9VzBWDBrGPqKY/8U94tlsJi/aZ/VGN/rpH6FrzT01W/RAGpAVoLaCo=
+	t=1771379146; cv=none; b=cfrfPCuQyMpsc1RkrVt9AfZFlklvxmUV5ZbbOxVlMsIbFLslcmBz5700lMuSGit7K4UCUMzhpmfF4RK2TBlPR351Udl/H5y6bXhgbtVzU5xoiACPVocMGQlirYpO6TFXU0VukxSD8r4oClTbwsPZVNCio+36mExKHXUak6VoLMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771374916; c=relaxed/simple;
-	bh=qdvgxZcv0ESuBA1Jt7oAm5we9rLZ1s8OEqGJPW/lJcA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SLR3215727PlEPGP1/DiwXR9G2S3uxN1i81LIAWzYFU6W/xEkTDgKXqZzEjrrGGm/7+s8Jdfr5PBONdRqm+x83ZkqJ+iFQSWHMyN61+J+mRx6Zh1H/u0bYXg6FdyZi0UO0t/8EItjMf7AYxAsXpFx8advNFWSlq5UVbdaX1qsqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Qkb265rx; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=cHbnzZH1; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1771374914;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2GFKu2pbS4lNbKn6Jz4fUhg2OnmZkDZP9P6vjWAZkDc=;
-	b=Qkb265rxBzDOP4OGZNlzl/wdPwfxqkqWpII2D6emQKX+Yl+itLWQftLFRmmBRnjrfGy4ST
-	DrTCPmodQPrgeJF3nJxqJlmKB4DW89Od5gfSU5PDpD5yYrDIcPcr1ktVYK7f8mFcPh8wna
-	9sjaxzNVw3vct73EH604WA9T63VsH7I=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-252-euvCkg2LP4aW1wSWrmyOYw-1; Tue, 17 Feb 2026 19:35:13 -0500
-X-MC-Unique: euvCkg2LP4aW1wSWrmyOYw-1
-X-Mimecast-MFC-AGG-ID: euvCkg2LP4aW1wSWrmyOYw_1771374912
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-50341fddb89so380476841cf.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 16:35:13 -0800 (PST)
+	s=arc-20240116; t=1771379146; c=relaxed/simple;
+	bh=yQeoW4MqfwzTgrBMlSHdUdLyFckPUP27F2W5vrcbNCg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S1PrNHMHsJ54YmGXr+AM1/uVSDZ5P4erQgj4fh6x3wpd5Iog1BUu2yd3YA8ymhnmRgHs+rYdEqu2YGFWesCDsSOJNgd3JxbyfZZk8TMPtYeBJR/QlMXoEG9kZx++qZrxy9yjWG2ATmhMnZvtL56y9MQZ9LIXIC7hleL2Ew9vxM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=deKmsegR; arc=none smtp.client-ip=74.125.82.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-2baab3137bcso4495439eec.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Feb 2026 17:45:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1771374912; x=1771979712; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2GFKu2pbS4lNbKn6Jz4fUhg2OnmZkDZP9P6vjWAZkDc=;
-        b=cHbnzZH1WSqWqtrHWUVvdat7hwMwBx/BDT3756rn4fgaq4WrTTDVLo9RqVRc5hh13o
-         4m3cEmlSLtdbA3Qn3QUXHD0OG4iZnhaURTx6Y7kv64BCxd6tVzzY+ZqFjdogkf9wk7B0
-         4ArTC/nBK7kO2013zQYvBt9cTiFLF7NUKVtr6qe8cKU75CL09goP9nBPBRcxWsBJAGAQ
-         8gGDBeJOxb24G5N69OdAq7idCFvPEqTSm839IGtSVQC5esvpbKJmpEpgWP83Z5YwpHvO
-         s8UVzgIwYR3V6qQOm+IL3qulqxiX/QfdW3sF+uiSZ8Fnajn+ZYWuoISQLClEavQa7nf2
-         muLw==
+        d=google.com; s=20230601; t=1771379144; x=1771983944; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SzRez6id0tGCW3l1fRGMuvRJWCHYhvgSDSCiIHHHPic=;
+        b=deKmsegRLQHlKTeYYjEyqOZDbPT9lm7vvpbOJK0dKQ3JSLSddLlEw9hR7WNK3PnB+S
+         nPQZeipF+m1Tozp8onOYCJC6VqhdPdeNMmwiLNkzK8LiU2sI3D8ZlNySIsJ1Qs3TtxEq
+         PTKwqw/RLTdnZHjvUXUJ4YRmH2yyo6gsVnvsniD5M0BFBb4M9KGx6CfSyCIC8Gr6o4Az
+         NHipjdp+8+odThpoYB/EEyucN+Pj3E/Tfg/cipnbQoavXiD+0EIgDooLWweQNFImS6R1
+         VrhIxRWUtVWGAOYjXala7kefYl82R9MHK2ArB/PowIPHcSI/RubWYLiYj6vj0P8FPrml
+         m7fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771374912; x=1771979712;
-        h=user-agent:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2GFKu2pbS4lNbKn6Jz4fUhg2OnmZkDZP9P6vjWAZkDc=;
-        b=Fuu3+xOJHJQQk/OB4GATpXC8q6OzRaLSH9AwJf7Oqn74yGj/ogMAGv96Yrj5RgC2dw
-         dphZI83Y4AzlZEn/21wOCwgqfu/lKLowaSBNtClGZxCgD7gMQiypMF0QhLwwjTDHmW3/
-         xqklz/DYodnJV+7tRBMnJ308qCo3+1gdeT9oImKFsLqPvnD5aNWxszxj2wmRVptR290i
-         8oFpMDcyckgeZciktXe8Gq3+gR7oGegLmByNXZ0hBplMjsEo6oWaBX5p8n3SxahcwhjB
-         EVZoLRvQQn72Br8zUFRLrBpKqbPo6xmRkl7kGVQaR7vTJkjc1U1WvIMRlqt8dgbNuxZv
-         WiBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUh1st4CYzpzCLxQ5pU1qdqSMWGqW9yjnpStvZVY0wOFuvA4McbZZm93Ae/RniiAg/NvWneHCAUmC9S@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwU5l6HuzShdowzP7qgH3F8YNZ4JI3eoWcwqhdWHYLOhfGQGZ5
-	dxWgH/HiOlcxsdVn8SI0DwGrca4rTg6IAfc114Iq8p3VDV8L/dDQVTikV/7X7HbwP8TO+opWlaZ
-	TdGIWjuMK6zAd86n2iSzYYk9ecW6yHN2IJnerQc5n5ZH4IZsIkvwjkS0HTLnfIT8=
-X-Gm-Gg: AZuq6aIzNU5/Ggl1ulbvHWO6LIUDZc8ShrEdWTds3nc+tBubwT2eGZ3K8rgGg/F3Hsn
-	+qqorZgrCRf4Rl0KPbApXAXJwqErFkXjllmZrdM4HM/sikkjXWoxRpWElaxdxpQcefhP/FDqDQD
-	O+KLkLaqXr9xaG571jpb15S68Hi82AMjunQVOSyKHx+EE6XrIA92f7KrHXYM38Uz48y1GqXDStD
-	xGIqUy71bZDhbNbZEmVSbOQDBlNiZC4e1au67o6F3dECjUhqDXAhAi242C0nxHrbA/DEiUP2ijU
-	P2Mo0Y90rIXnSF8TMqKCMO16bbeguvHykwULLCsHKkeIVUgRG/Y5f8Ztj3CupwROFbo5GHd26Jm
-	LpSh4Yp7vB+kgSNmmIM+qe4hBSKfT7auB5wQFyQkWGG17TUfj7fiHzIuE
-X-Received: by 2002:a05:622a:1443:b0:502:9abb:c919 with SMTP id d75a77b69052e-506e9153b78mr3429751cf.10.1771374912629;
-        Tue, 17 Feb 2026 16:35:12 -0800 (PST)
-X-Received: by 2002:a05:622a:1443:b0:502:9abb:c919 with SMTP id d75a77b69052e-506e9153b78mr3429291cf.10.1771374912045;
-        Tue, 17 Feb 2026 16:35:12 -0800 (PST)
-Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cd8aff6sm174993256d6.27.2026.02.17.16.35.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Feb 2026 16:35:11 -0800 (PST)
-Date: Tue, 17 Feb 2026 19:35:09 -0500
-From: Brian Masney <bmasney@redhat.com>
-To: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
-Cc: Drew Fustini <dfustini@oss.tenstorrent.com>,
-	Joel Stanley <jms@oss.tenstorrent.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	joel@jms.id.au, fustini@kernel.org, mpe@kernel.org,
-	mpe@oss.tenstorrent.com, npiggin@oss.tenstorrent.com,
-	agross@kernel.org, agross@oss.tenstorrent.com
-Subject: Re: [PATCH v6 3/3] clk: tenstorrent: Add Atlantis clock controller
- driver
-Message-ID: <aZUJPb2jQIx2evWN@redhat.com>
-References: <20260216-atlantis-clocks-v6-0-cb46d6a59c73@oss.tenstorrent.com>
- <20260216-atlantis-clocks-v6-3-cb46d6a59c73@oss.tenstorrent.com>
- <aZST4Yywv09u65MP@redhat.com>
- <CAEev2e_XjxD3kHbOxVYwbf0Q0cwEr96dSQ3hWZE9eLdgeXhs4g@mail.gmail.com>
- <aZT4RsGnu1qlZl-l@redhat.com>
- <CAEev2e8hwN1FBR6yMr_NeZrFx3BXNz88RHfHLhSM=GrpExsUyw@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1771379144; x=1771983944;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SzRez6id0tGCW3l1fRGMuvRJWCHYhvgSDSCiIHHHPic=;
+        b=gm5oL4Bs0pv0n+3wt3bcLLj6fZwRpJjfVkgzurV7nSFuG4lvkgeB3wl4+Yz6Dp4IH9
+         wzkaT/XiX7ljLcEPThdoxI+l/AizQzw9zI4u7mISgPNzvoqeh/VPO6HcEbGMIXqlCFeI
+         17yvES/TaMZJ9jQK3tWlB0rXuElEWOPB0Q5Mcoi8lxiKQtx2v9TrrmEd0DXIstNuVA7v
+         6nOv6z6UbfT70WW9j7Xflq37hXkkmc/tkd9Eh4Nk/DJLcp/zVD/cbmaLpHv6Jw30+hCX
+         EyH3d/vZm0lsgBfHggd6hX/SZGrd4jS8UHnuybn/SHr96S2yxhi/oxT73IXK9DjgQbIO
+         9u8g==
+X-Forwarded-Encrypted: i=1; AJvYcCW6H5mSY4DqQ0fkevY+EhvHVy3dBMleLlB0mKEZU7xfDkgPqzzARy+y0+rKuCpAnhcj4CWItOlApXRr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBmPKld0NiXIDW9KbqZevOcJ1Gnt9N4GPQsURuc8Sv7RGKycFB
+	Cw9qQMqta4eh2QFuQhHaNjAgpREciP5/up6D/mlU5V0hlYY5Vu+VtupabE6IDjIqow==
+X-Gm-Gg: AZuq6aLy52fImyJaQluCF9OD8tCKz6YsHlmlzdKw4UTaxi6nmRbhbCu7qNG01/G9MXI
+	rxE/sZLJb2uFU886VgckLyAgRxieXGu5+nMhbxh17R1VoQL0eViddoaXiUIA2ixa6RoBYWIGOwA
+	zRLbStL54/wB3wDjixrEYT5cgG2UDKQTVbVikmYFwk9VMR+E/dzqoeemK9JZcY559SJN1gUXM9S
+	punn6I8V+6/MJZPMpaYs0KIArnjZDgiy3pMrgZVxZ/VlGPxr1wMhRmOD/INPJ2HSGrKb6Vpt4p/
+	ky/qZC+B4NTQf6CmOF1GqYqnFz+GWp4Lnmrbtwuuj+FLFs1QHHdyBhzH3veCYT/5p7t1ZvbgUKr
+	ZFVtMfyHabwB6IRSWIZ6NIOaYYoYSfXAcIXsbUjtIWKVfvlQOscC7zLFYUce55YfnqgVzNWVuvF
+	wiAFTKITurZNzC4CX1X50T03y9YZiivp8Hb/r0Nyj13B4BuPC69D/+DGaOH4Yc3AM2p48nzCJKW
+	yY52+bOvIzeRw3Pzmj+vSjwtQ==
+X-Received: by 2002:a05:7301:2b06:b0:2ba:964f:fa67 with SMTP id 5a478bee46e88-2bac97ad329mr5688952eec.24.1771379143326;
+        Tue, 17 Feb 2026 17:45:43 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e7c:8:c8f1:53bf:725c:563b? ([2a00:79e0:2e7c:8:c8f1:53bf:725c:563b])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12742cba192sm15951817c88.13.2026.02.17.17.45.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Feb 2026 17:45:42 -0800 (PST)
+Message-ID: <b1df24fd-bbb6-4991-be52-dc1ef694db25@google.com>
+Date: Tue, 17 Feb 2026 17:45:40 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/6] lib/linear_ranges: Add
+ linear_range_get_selector_high_array
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Mark Brown <broonie@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+References: <20260214-max77759-charger-v6-0-28c09bda74b4@google.com>
+ <20260214-max77759-charger-v6-4-28c09bda74b4@google.com>
+ <5d889f66-7697-4a39-beed-33ace693a1ef@gmail.com>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <5d889f66-7697-4a39-beed-33ace693a1ef@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEev2e8hwN1FBR6yMr_NeZrFx3BXNz88RHfHLhSM=GrpExsUyw@mail.gmail.com>
-User-Agent: Mutt/2.2.14 (2025-02-20)
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266303-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-266304-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,linuxfoundation.org,google.com,linux.intel.com,samsung.com,linux-foundation.org];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[amitsd@google.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[google.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F1716152567
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A45FE152924
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 05:29:56PM -0600, Anirudh Srinivasan wrote:
-> Hi Brian,
-> 
-> On Tue, Feb 17, 2026 at 5:22 PM Brian Masney <bmasney@redhat.com> wrote:
-> > >
-> > > We have a group of gate clocks that have a single enable bit shared
-> > > among them (instead of individual enable bits for each clock). We need
-> > > to keep track of the number of clocks within a group that have
-> > > requested an enable, and only unset the bit if all the clocks are
-> > > disabled. share_count is used to keep track of this. It gets updated
-> > > by each clock. Hence it's a pointer (and the mutexes around access to
-> > > it).
-> >
-> > The code currently has:
-> >
-> > struct atlantis_clk_gate_shared_config {
-> >         ...
-> >         unsigned int *share_count;
-> > }
-> >
-> > That pointer is dereferenced like this in several places:
-> >
-> >     need_enable = (*gate->config.share_count)++ == 0;
-> >
-> > I don't see why the pointer is needed. Can you drop the pointer
-> > and the dereference like this?
-> >
-> > struct atlantis_clk_gate_shared_config {
-> >         ...
-> >         unsigned int share_count;
-> > }
-> >
-> >     need_enable = gate->config.share_count++ == 0;
-> >
-> 
-> In this case, wouldn't each atlantis_clk_gate_shared end up getting
-> its own copy of share_count? Which is not what we want. Or maybe I'm
-> not quite understanding what you're saying.
-> 
-> Every time we create a group of these shared gate clks, we create a
-> refcnt variable like this and pass the var to all clks that share it.
 
-OK, I see now. Thanks for the explanation.
+On 2/16/26 5:58 AM, Matti Vaittinen wrote:
+> On 14/02/2026 05:12, Amit Sunil Dhamne via B4 Relay wrote:
+>> From: Amit Sunil Dhamne <amitsd@google.com>
+>>
+>> Add a helper function to find the selector for a given value in a linear
+>> range array. The selector should be such that the value it represents
+>> should be higher or equal to the given value.
+>>
+>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>> ---
+>>   include/linux/linear_range.h |  3 +++
+>>   lib/linear_ranges.c          | 36 ++++++++++++++++++++++++++++++++++++
+>>   2 files changed, 39 insertions(+)
+>>
+>> diff --git a/include/linux/linear_range.h b/include/linux/linear_range.h
+>> index 2e4f4c3539c0..0f3037f1a94f 100644
+>> --- a/include/linux/linear_range.h
+>> +++ b/include/linux/linear_range.h
+>> @@ -57,5 +57,8 @@ void linear_range_get_selector_within(const struct 
+>> linear_range *r,
+>>   int linear_range_get_selector_low_array(const struct linear_range *r,
+>>                       int ranges, unsigned int val,
+>>                       unsigned int *selector, bool *found);
+>> +int linear_range_get_selector_high_array(const struct linear_range *r,
+>> +                     int ranges, unsigned int val,
+>> +                     unsigned int *selector, bool *found);
+>>     #endif
+>> diff --git a/lib/linear_ranges.c b/lib/linear_ranges.c
+>> index a1a7dfa881de..c85583678f6b 100644
+>> --- a/lib/linear_ranges.c
+>> +++ b/lib/linear_ranges.c
+>> @@ -241,6 +241,42 @@ int linear_range_get_selector_high(const struct 
+>> linear_range *r,
+>>   }
+>>   EXPORT_SYMBOL_GPL(linear_range_get_selector_high);
+>>   +/**
+>> + * linear_range_get_selector_high_array - return linear range 
+>> selector for value
+>> + * @r:        pointer to array of linear ranges where selector is 
+>> looked from
+>> + * @ranges:    amount of ranges to scan from array
+>> + * @val:    value for which the selector is searched
+>> + * @selector:    address where found selector value is updated
+>> + * @found:    flag to indicate that given value was in the range
+>> + *
+>> + * Scan array of ranges for selector for which range value matches 
+>> given
+>> + * input value. Value is matching if it is equal or higher than 
+>> given value
+>> + * If given value is found to be in a range scanning is stopped and 
+>> @found is
+>> + * set true. If a range with values greater than given value is found
+>> + * but the range min is being greater than given value, then the 
+>> range's
+>> + * lowest selector is updated to @selector and scanning is stopped.
+>
+> Is there a reason why the scanning is stopped here? What ensures that 
+> the rest of the ranges wouldn't contain a better match?
+>
+> The logic is now different from the 
+> linear_range_get_selector_low_array(), and I would like to understand 
+> why? It'd be nice if these APIs were 'symmetric' to avoid confusion. 
+> Hence, I would like to know rationale behind making them different.
 
-Brian
 
+The rationale for this being asymmetric is to find the tightest upper 
+bound for `value` < minimum value across the linear range array.
+
+To better illustrate this with an example. I have 2 entries in the 
+linear range array [ [4, 8], [11, 15] ]. Let's assume I pass a value of "2".
+
+Based on my current approach, the call to get_selector_high() would 
+successfully return with `found`=false and a selector value 
+corresponding to "4".
+
+However, if I continued to search, I would end up the selector 
+corresponding to "11". A selector corresponding to "4" is much 
+closer/tighter than "2".
+
+For values higher than the highest value in any range, this would keep 
+iterating and end up returning an -EINVAL.
+
+For in range values this would work as expected.
+
+This implementation assumes that the linear ranges are provided in 
+sorted order, an assumption that I believe already underlies the 
+existing *_low_array() logic.
+
+
+Regards,
+
+Amit
+
+>
+>> + *
+>> + * Return: 0 on success, -EINVAL if range array is invalid or does 
+>> not contain
+>> + * range with a value greater or equal to given value
+>> + */
+>> +int linear_range_get_selector_high_array(const struct linear_range *r,
+>> +                     int ranges, unsigned int val,
+>> +                     unsigned int *selector, bool *found)
+>> +{
+>> +    int i;
+>> +    int ret;
+>> +
+>> +    for (i = 0; i < ranges; i++) {
+>> +        ret = linear_range_get_selector_high(&r[i], val, selector,
+>> +                             found);
+>> +        if (!ret)
+>> +            return 0;
+>> +    }
+>> +
+>> +    return -EINVAL;
+>> +}
+>> +EXPORT_SYMBOL_GPL(linear_range_get_selector_high_array);
+>> +
+>>   /**
+>>    * linear_range_get_selector_within - return linear range selector 
+>> for value
+>>    * @r:        pointer to linear range where selector is looked from
+>>
+>
+>
 
