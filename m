@@ -1,173 +1,190 @@
-Return-Path: <devicetree+bounces-266477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266478-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WCWMGbT0lWlTWwIAu9opvQ
-	(envelope-from <devicetree+bounces-266477-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:19:48 +0100
+	id 6L4BDND0lWlTWwIAu9opvQ
+	(envelope-from <devicetree+bounces-266478-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:20:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD1BE158371
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:19:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77BC2158395
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:20:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EE526300AB1B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 17:18:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4A084302BEBB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 17:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F81343D74;
-	Wed, 18 Feb 2026 17:18:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB432FD697;
+	Wed, 18 Feb 2026 17:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="jvNZysy6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="agcVb1Yg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay129-hz1.antispameurope.com (mx-relay129-hz1.antispameurope.com [94.100.132.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E85A2FFDE4
-	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 17:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.195
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771435085; cv=pass; b=CXPUNsB2hCefhnV/FlUMhRFpwuA5QCy+yEKUyVwvWxV9lOB3BgKWwS731dqhK9DgA5VwhBBHrhMnqotFRCgyIxJYNCHumY/sa4WepwZ8Oyy+L8MO1NhSEnRoSjR11tbpa7uwGpA7Kp85tAESjKvjPM4Nm6tohmv6QL+8wgyUmgI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771435085; c=relaxed/simple;
-	bh=V5JXvkgPes+hEMu1PWoguk//7xNtXcWgtFp+Z8moPEY=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=YmNSlzC8OXTUihe1HDTSRupigXYHtf589luBw0+TvLbRUnW5ReiLpzlUa9nURNjAir0+badi53U83fk47us664auMXslKVKFXEoctgRaOBja6RrD04QVrI0KWIsY+crmSEmX3v69HehoJbrkccpImnV5vS26J/W+bOYpXZYlGV4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=jvNZysy6; arc=pass smtp.client-ip=94.100.132.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate129-hz1.hornetsecurity.com 1;
- spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com
- smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
- header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=H2vVKZ6E3yqlSTMvSj3TrmKQh+r9SzJHEpVVUrZRg/A=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1771435047;
- b=bIe/CFK8PoQJ8gDyfAA1Y7EgP96Kz549WROi1rLV28vK2OX9k7xc53raNBNmGn62l2Likp11
- TtQudnaF+eDNNmXFc0uIjqWLILmWvT3lsfUjkFALeDAYhLULuKS1P9gy3/ub46m7BcLU20Aow7A
- fLZZ2wG8jSTFdfS2Bo2I4jx4aPsJHaF9+ugKJCDdhnvWhNObdLpi80nKbXy8ONyf7hT47cSMiNA
- ZhZTJ7RcTweFwI7cczqpJy53ysaUINlyJfGV6m5Dx2ia94krfqR3OesrAoSE2tTw3t88NbUdJqg
- XN+dJPYlPri7/S3g7WqevogDpTKKHkx7mXkT/oTUkWSbw==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1771435047;
- b=X6Qsp0axMcPn1G30RKr1KxLWk+b9HdPPRzre5gsrU7Wl40Cg8R1kKYB0E3pglNgP4aL8vKgW
- 0IJd+i0swHZznKlYrK1T9NEGT0w535In71S1jmWq8w8nGPd+8PF1kJVEhgHul+UZ3IZlCSkSQjO
- I8FvODIO9QoTBKuwaB86S8TjxNziI/cS792RmJcVjOf4wnj7uJ/GxiqyCOxuQk6SA/8WKS5pLVk
- CpZLleOwYneHUVJ+QMuCoU0Is+snWNjBk0f7u8nvRUwkCvrJAtUZ/IUyYPCJSJIru/oe4EM/TRw
- nk5T2YpMvnMko59B0oLubm1CqZ07oPnJJAjYbfai6AVKw==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay129-hz1.antispameurope.com;
- Wed, 18 Feb 2026 18:17:26 +0100
-Received: from 10.1.31.92 (unknown [10.1.31.92])
-	(Authenticated sender: alexander.feilke@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 4E951CC0CC3;
-	Wed, 18 Feb 2026 18:17:19 +0100 (CET)
-From: =?utf-8?q?alexander=2Efeilke=40ew=2Etq-group=2Ecom?= <alexander.feilke@ew.tq-group.com>
-In-Reply-To: <20260218135415.204974-4-Alexander.Feilke@ew.tq-group.com>
-Content-Type: text/plain; charset="utf-8"
-X-Forward: 127.0.0.1
-References: <20260218135415.204974-1-Alexander.Feilke@ew.tq-group.com> <20260218135415.204974-4-Alexander.Feilke@ew.tq-group.com>
-Date: Wed, 18 Feb 2026 18:17:19 +0100
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Frank Li" <Frank.Li@nxp.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>, linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-To: "Alexander Feilke" <Alexander.Feilke@ew.tq-group.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C3F2FFDE4
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 17:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771435104; cv=none; b=PglT2NgNtuTfRu96xdYEMRyh4zi7dCeutZSWu51USJZlAifJXpzbFYaoMJIkQBEPaGeXIgbnpPuEV5XS2mvD6dSv3WeuqVy4XXhJ/lpWhziWZTUiF4jjc3ViWci8wPVCtcGGLgCOiRtmZRYWDGfu5C9lARtijJkogEgfz1NlFzI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771435104; c=relaxed/simple;
+	bh=szlnzjR28V+AV/VL45WXLE0et4t0WODgRR+kZ4Kcqa8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZbVdvMlOH0EnYlNrWM+kW/bNU8S3xH6bqBPpgRiq/uNYi26Om7g+6Y408FfK+Da1VEZv9wst3p/O9A3VQG2P8ka0cddC1WgCt+5p79dmndiNd46xWOCDlHANXsiIfTL/Rkq3dJ2skqkA4jv4TENYVulOLzyEViCmT6DwjsFEzbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=agcVb1Yg; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-386714da2a2so861281fa.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 09:18:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771435101; x=1772039901; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DCcdS7x3lDtrIEUvGJcyqRB9D89Wp2xuvJCS6WrEmgQ=;
+        b=agcVb1YgYX/JGrHa0rgC9XXk1Bk+V9UgkwnKTWW/A9sgeZVyUip8YeCAKy0CmxmGM6
+         wlx51BM4kyrw2dAjsR3aqTvehoexNKi8LwvaPBCriPbT9N+p5z2ndP5ue7IhU0ZH+iFJ
+         KKY8mifddJG03cUBZZFMAynJdDpObwVWHBdFE4wPeUy6NSeJqCgv2PYeVjk+rFije93B
+         +zYFxuPY2sSkSe99/NDChhuXX2NYbh38l+MGZ3F0PrDVo6GIq4cbhFZK5Y11bTquEUYa
+         HYpR4ZurmlJhgiDNl9d6s6iVSi6gAsOQOLcV7VXw1d5JgtVHyIKOewe7PbRGXrMmRy/c
+         ED9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771435101; x=1772039901;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DCcdS7x3lDtrIEUvGJcyqRB9D89Wp2xuvJCS6WrEmgQ=;
+        b=Q8cBeV779evdstyM0yLSjyJKhhZlKH2X6EVsW2rq5NfQmQyZqTDoS+LpYD9ccK8dLz
+         otH56VnbOr9NI87Id9kY+scwnH4NPM4Lh2bmwR/mAoqDE1BeRx1Tn3ESAiJVKTf5Pcin
+         WVB0Nnbq1wdgyO5cuz3i375/sbTOMeb6JaC3LssLNAzqbCEm3pF3yuJQOQw8DpZdzbie
+         SlCG3uXRUw4Ggrjy9l1ibjMq0HTXF53WZ8euTgsL+qQVJkVN5QpLrnaK5hkGItu9wEaG
+         8q74XU+7ucEECUuRoQdkKUiegFba6l1PSK7DDtxIlcJBQHFMUON3yWyyvxdvWjA17QFM
+         LaxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVu154e9T1GDG7SA9vhn1CO1f/omNXnA7WxERh32iK86lpzGNFDm+Hk6UwfyS7c1xzZU6UEroO/87Z6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwC9qODIOy1z8hgaW0+3lg2bNicw9WLd83XvVrPyAzsUlHBhicf
+	FyqhIFTJ3DXqp6r8al1iohA1+a/pdM2H4JToNhi5a73xJ0+9ZYgVB/lG
+X-Gm-Gg: AZuq6aLZ5igaFuG7PwgXQS6xNVVfxZNeSh8090wIWfmyDzeXwiUeI6xEbH3x4wwx6j3
+	gFrKjKwcFI4YxTQnFsDjLaZX8BFXv7Y4WX7tpcqkHZJtzo/qn7H/5h4HwB5150zj0NTsC/Fm+zv
+	nixwLzxwRIhMyBthqT0njY/44dl35a2t+IpIz4EuuQ7CzQ0zSwl0UOQEqH+gR8AOIknCn/Lp2Hq
+	1A6n/gwnndDP6RgwHnlxBV2ztnzbTWcv43kHtErrepnHuCOwHYBmRrXv3lsQ4yOHKhJOP1IujWT
+	F0uhtRB9O18jDV+y7U95oe+Dd4CTZInInsHcicn1A0vmSOn73qnQ5NQH8rCfV/oh2NeGnKh/QmR
+	axoyJljO/ywLMjEkR9UnCQsFX3xUKaptM82UsJHZ7rpLFqZUoWUoVWSRUI5EicHs0xMT2WivTuD
+	8g7UcGkebhHOhU+icd7JXks2BkPX9mVNjsU7zs9vCVcMaN2GrKelVO2aVEJedWpSB4/NuHqu1/6
+	v/X1QUbYzbCSb4fFujOsEgERy8fV+qCXCEtHtNFeKM/cAjgAhDfZRx9
+X-Received: by 2002:a05:6512:32c7:b0:59f:6947:7e7c with SMTP id 2adb3069b0e04-59f6d34d001mr4165286e87.9.1771435101026;
+        Wed, 18 Feb 2026 09:18:21 -0800 (PST)
+Received: from Lord-Beerus.station (net-188-152-100-94.cust.dsl.teletu.it. [188.152.100.94])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59e5f568d95sm4644958e87.30.2026.02.18.09.18.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Feb 2026 09:18:20 -0800 (PST)
+Date: Wed, 18 Feb 2026 18:18:16 +0100
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v1 06/11] arm64: dts: freescale: imx8mm-var-som: Update
+ WiFi/BT configuration
+Message-ID: <aZX0WB_6qPoCYVvC@Lord-Beerus.station>
+References: <cover.1771353301.git.stefano.r@variscite.com>
+ <3e79c4d806b8b8024b71bc99c36b09a2fbb90a65.1771353301.git.stefano.r@variscite.com>
+ <CAOMZO5CAb8738HdH49WcY-JPTzQ90n4Bnmyn96_3jfw47mxOug@mail.gmail.com>
+ <aZTEm8nUUVcKZH0v@Lord-Beerus.station>
+ <aZXqSz_OsCC64P7i@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <19fdaa-6995f400-39-279b5680@147531990>
-Subject: =?utf-8?q?Re=3A?= [PATCH 3/3 v2] =?utf-8?q?ARM=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_imx7-mba7=3A?= separate =?utf-8?q?BOOT=5FCFG?= circuits after 
- boot
-User-Agent: SOGoMail 5.12.1
-Content-Transfer-Encoding: quoted-printable
-X-cloud-security-sender:alexander.feilke@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.feilke@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay129-hz1.antispameurope.com with 4fGNVR4dr8z4FgGF
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:2d2b41fe47441c95072726fa908a7ece
-X-cloud-security:scantime:2.174
-DKIM-Signature: a=rsa-sha256;
- bh=H2vVKZ6E3yqlSTMvSj3TrmKQh+r9SzJHEpVVUrZRg/A=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1771435046; v=1;
- b=jvNZysy6sLSz6EBms3de3CQ/r2iXbqOybIWA7zMyLDujiF+Md81DrsKZM53fvPQQr/AWcuDQ
- 6y5oo1etsigbnDEVz3fQ/+Yo68pSxOfWsrmf6YUGKB27b8AsL7/MGlxuNRSrfwXK/34C1Vn2O5h
- +8z8+Laaupk4E1LCegQuCtiAL0BbisD3Phx8iLkwgSyYsByp9HCZ1q+DWBmJI3M3UYILOJyhJoI
- gy85IF8ijPB2VJ76pFUomtr6H7L8vJZNqWFBs0WKz5YzrsgDHk+pkgVEQi9bWN94+oRuYH6Zaw5
- JgG6sW5ZxPbTZmvjgpcY29TLzsUWLfKxZpVPFxDNmPb8g==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aZXqSz_OsCC64P7i@lizhi-Precision-Tower-5810>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.24 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	SUBJ_EXCESS_QP(1.20)[];
-	FROM_EXCESS_QP(1.20)[];
-	FROM_DN_EQ_ADDR(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-266477-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,ew.tq-group.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-266478-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.feilke@ew.tq-group.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,pengutronix.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ew.tq-group.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tq-group.com:email,0.0.0.49:email]
-X-Rspamd-Queue-Id: BD1BE158371
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,Lord-Beerus.station:mid]
+X-Rspamd-Queue-Id: 77BC2158395
 X-Rspamd-Action: no action
 
-Deassert BOOT=5FEN after boot to separate BOOT=5FCFG
-circuits from LCD signals.
+Hi Frank,
 
-Signed-off-by: Alexander Feilke <Alexander.Feilke@ew.tq-group.com>
----
-V1 -> V2: Updated Commit Message
+On Wed, Feb 18, 2026 at 11:35:23AM -0500, Frank Li wrote:
+> On Tue, Feb 17, 2026 at 08:42:19PM +0100, Stefano Radaelli wrote:
+> > Hi Fabio!
+> >
+> > On Tue, Feb 17, 2026 at 03:59:33PM -0300, Fabio Estevam wrote:
+> > >
+> > > What about users who still have boards with the Broadcom Wi-Fi chip?
+> > >
+> > > Will Wifi on the old boards stop working?
+> >
+> > The Broadcom-based WiFi module was used on earlier revisions of the
+> > VAR-SOM-MX8MM. That hardware revision is no longer in production and
+> > is not available for new orders. All currently manufactured and shipped
+> > VAR-SOM-MX8MM modules integrate the NXP IW61x instead.
+> 
+> This common problem, we met similar case. After replace new compenent, it
+> should be new boards, or new revision.
+> 
+> I don't suggest directly replace it to broken old one. You can create dt
+> overlay files for new boards.
+> 
+> Krzysztof Kozlowski:
+> 	how about other vendor handle similar case? Any guide line for
+> that?
+> 
+> Frank
+> 
 
- arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thanks for the feedback!
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi b/arch/arm/boot/d=
-ts/nxp/imx/imx7-mba7.dtsi
-index 03f2f2cbdfbc..4192adb27223 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi
-@@ -287,6 +287,15 @@ &flexcan2 {
- 	status =3D "okay";
- };
-=20
-+&gpio4 {
-+	/* Deassert BOOT=5FEN after boot to separate BOOT=5FCFG circuits from=
- LCD signals */
-+	boot-en-hog {
-+		gpio-hog;
-+		gpios =3D <3 GPIO=5FACTIVE=5FLOW>;
-+		output-low;
-+	};
-+};
-+
- &i2c1 {
- 	lm75: temperature-sensor@49 {
- 		compatible =3D "national,lm75a";
---=20
-2.43.0
+We understand the concern about potential regressions on older SOM
+revisions. However, since the wireless module is soldered on the SOM
+and not configurable, we are aligning the upstream device tree with
+the hardware revision that is currently in production.
 
+This change also aligns the i.MX8MM VAR-SOM with other VAR-SOM
+platforms already present in mainline (e.g. i.MX8MP, i.MX93), which
+use the IW61x wireless module as well. The intention is to keep the
+VAR-SOM family consistent in mainline with the hardware that is
+actively produced.
+
+If there is a strong requirement to preserve an explicit description
+of the older Broadcom-based revision in mainline, we can evaluate
+adding a separate description.
+
+Best regards,
+Stefano
 
