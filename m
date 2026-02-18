@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266525-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id dVqhCDwWlmnBZwIAu9opvQ
-	(envelope-from <devicetree+bounces-266524-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:42:52 +0100
+	id UFBnNJ0WlmnBZwIAu9opvQ
+	(envelope-from <devicetree+bounces-266525-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:44:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61ABA159255
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:42:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63209159291
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:44:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1046E301AF48
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:42:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 596C53019476
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:44:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067ED347BDB;
-	Wed, 18 Feb 2026 19:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75246348465;
+	Wed, 18 Feb 2026 19:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HB3DS3IX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SwGdG5AT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70FE34405F;
-	Wed, 18 Feb 2026 19:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51567347FED;
+	Wed, 18 Feb 2026 19:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771443768; cv=none; b=OEVvUkk7X6Ls4zyYcU0p8LQK1VDbWwC4Axuj8tSGjbCJ1te4npKPHBrBJcE1h/QNJrKNmkqn//Ytgth2DcEixbCqWF/w4mr1TYCLcV0DGOqOe4pq322kpJH07rextR6jZSfo92UYXXqGK11Vg9JbGJHd+pLZxWdSHM41oeUF2JI=
+	t=1771443862; cv=none; b=tBaSEC6t1E4M+mutEepit3FFSf3MS4W337CQbUl++oKrsO7uSmVt5cYaNlkh/n4ZWrwS48LiuAgCdoEFKMsHk4ivMNF5BsYrZioH3wkkkct54Wt+XKGH0X6rmVULG9kUMhys7mm1EmSg5i72yKqz/phd/JHIGkAsZvhWNZvdDVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771443768; c=relaxed/simple;
-	bh=6EXR7CnctWgAhaEQQY9rwHergJ8wPPKWrPygc4TLEe0=;
+	s=arc-20240116; t=1771443862; c=relaxed/simple;
+	bh=Nxc51OZFvWQ7CJax0Y4YjDs1seO2jYaYlzojY84ULhA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gHdA6Knbk/4ARak3wrRAfnHB6kGoLBarhr91cSFWe56SEgTwCsZvnTF2MLIF3GebvcZgxrp7QYl19XJ3fyPQk3xplbBoIGDVWiA1/E45j4pNKCtkSbebZfEelAjfBmcLhSuyXGeNVmHhMf3IcPGPLu/+7wVlpnGiaN7LfiLMMNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HB3DS3IX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A26A0C116D0;
-	Wed, 18 Feb 2026 19:42:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TzcvskXQz46xNhhIUOCPvKXmhFXQ8WdmYZ6MWNhcntLZAB9cUUAPFd0xoUH6yDOoFDiSWlObf/q47WGBkyTf1xe5gk/FO0r5ZVEm3ORMbIu88AXSFwU9EyZBMjkIHeECS1U+87ngLUbz5g6Cgt3vBWXaW593Fj7GMWf81mk9axI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SwGdG5AT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A52C116D0;
+	Wed, 18 Feb 2026 19:44:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771443768;
-	bh=6EXR7CnctWgAhaEQQY9rwHergJ8wPPKWrPygc4TLEe0=;
+	s=k20201202; t=1771443861;
+	bh=Nxc51OZFvWQ7CJax0Y4YjDs1seO2jYaYlzojY84ULhA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HB3DS3IXZIBSM7czFyCFsqUYxeHIUK3mSkLSGDK1mbuh9y4vfzkajRtzfA8fqhJcx
-	 3D1VFRWEC3gHdZkZccVZfDggPraK2RKivyA6U3jqItlxfznUZPRTs1dcHQYjHE78XU
-	 vyWJkIfASMxnCPyBtsF26Cc4JssGLMmVX9IPThBPj+iWlPGAhzX3gxIiuATp5hwR0L
-	 9nR2KQYoNpvaUEKeO1N5AvXAJmoKYQAgnCYGERO35XgQ9HSFJv7InjonYNyJllH4Wu
-	 qJPLUq7UOaJPZsjjhcDvok4B1VeLxHrTXL2PlU8Z+zFMQ02cKkN0nNrm5wfDSEX3f2
-	 wdjFP+Ghp2nSg==
-Message-ID: <0d6e728f-4677-4267-9dff-8d089d2dc187@kernel.org>
-Date: Wed, 18 Feb 2026 20:42:43 +0100
+	b=SwGdG5ATkMTZ8yEB5LkURONG5rkpF2XO+ansffQI49leAQLTFNHA42G5doEeNDxYi
+	 /eKWr1RoVOqfAx1y/jt0ptaK+YDyZIAEyNHg/XU+MZwmrypNmF+v5w1cQWVmvcC2Ho
+	 SQyRfkQVudR46fBMg7g7JJfxJ+WV72+M4IboF7QR/Ss4APRh+k5CX2FtTM1rRwkVrN
+	 tcvHJWgYr/9HheM4Gk2cQvd551cxna/9B6EbNwSS3+xYrS5vut/vgn9lWopN1Adyr9
+	 sFfGOtZMa7snHI1LCNdrG7y9G8aJZX7SdibOGhiFcnq6FCRXi01mzT1LI73pHc7Y9f
+	 7dos+tdwiY8rg==
+Message-ID: <6c001865-c8e3-4133-bf10-46384fdaf511@kernel.org>
+Date: Wed, 18 Feb 2026 20:44:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +53,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] ARM: dts: imx6qdl-tqma6: add missing labels
-To: Max Merchel <Max.Merchel@ew.tq-group.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
+Subject: Re: [PATCH 0/4] ARM: dts: TQMa6UL: modify for use in bootloaders
+To: Frank Li <Frank.li@nxp.com>, Max Merchel <Max.Merchel@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260218132228.32056-1-Max.Merchel@ew.tq-group.com>
- <20260218132228.32056-2-Max.Merchel@ew.tq-group.com>
+References: <20260218132339.32157-1-Max.Merchel@ew.tq-group.com>
+ <aZXw76CuH9u8csFk@lizhi-Precision-Tower-5810>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,7 +108,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260218132228.32056-2-Max.Merchel@ew.tq-group.com>
+In-Reply-To: <aZXw76CuH9u8csFk@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -118,45 +117,43 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266525-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266524-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[ew.tq-group.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,ew.tq-group.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 61ABA159255
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 63209159291
 X-Rspamd-Action: no action
 
-On 18/02/2026 14:22, Max Merchel wrote:
-> Add the missing labels for the temperature sensor and the EEPROM.
-> In SoM variants A and B, the components are connected to different
-> I2C buses. These labels are needed to reference them in subsequent
-> device trees.
+On 18/02/2026 18:03, Frank Li wrote:
+> On Wed, Feb 18, 2026 at 02:23:33PM +0100, Max Merchel wrote:
+>> This series contains modifications for using Linux device trees
+>> in bootloaders. Changes from U-Boot bootloader are incorporated
+>> directly into the Linux device trees.
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-That's not a change on its own. It makes no impact, no effect and is
-confusing because unused labels shall be removed.
+Hi Frank,
 
-So you apply this patch and immediately revert it because these labels
-are unused.
-
-No, squash it instead with the USER of the label.
+Why are you giving review tags instead of applying the patches? Aren't
+you the maintainer which handles the patches for IMX?
 
 Best regards,
 Krzysztof
