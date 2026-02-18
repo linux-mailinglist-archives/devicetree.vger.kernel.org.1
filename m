@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266518-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2C7kMh0RlmkXZgIAu9opvQ
-	(envelope-from <devicetree+bounces-266517-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:21:01 +0100
+	id iGoWLngRlmkXZgIAu9opvQ
+	(envelope-from <devicetree+bounces-266518-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:22:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8A4115900F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:21:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5898815903F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:22:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2BBBD3005ABA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:21:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41C3B30378A1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79250346FDA;
-	Wed, 18 Feb 2026 19:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76975344046;
+	Wed, 18 Feb 2026 19:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I71beO5f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PaA7hgy6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E0430C62D;
-	Wed, 18 Feb 2026 19:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EDD1A239A;
+	Wed, 18 Feb 2026 19:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771442457; cv=none; b=YlkQ2TQmEspg5zBNBEz2J6Iiza3kP3iJeOxwLPBK7pjH4SGA2+uCm6CnZEyMvgqEu5HatjWg0MAm+utAt4lSHAGJKN1eTpSnlNLKWl4d9jOtv7n7RWFAn0Fcg+Li6DZZ+clF4aCZIdMiyGku4uLkZM9S0b4ebK9YxylAxw2E62k=
+	t=1771442531; cv=none; b=ZHjbU+TYuaSpCP6mNn3GMQEiFHyYR3F5yHowr1FVSyQsfQXeuRD+BJvYYIOh7aLY5lhDKT4VgNiEp0QvrH0E5GRS+QY4o2LoyjM1xHI3B3U2A4xEu46f70ah6PYGWYsjFtvJhI1sXrvO56or4LMJWzHB2uG2TRmodpgey3ZRqIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771442457; c=relaxed/simple;
-	bh=WE3gHOnoKcgDRea+V+pjq13RdKecQzV1HfRse3UiVhw=;
+	s=arc-20240116; t=1771442531; c=relaxed/simple;
+	bh=mzJ8mSRAQfM4brfuaMm3mGScuG/ny5uNXmOzxcPbqy0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FtvApttbvdBut49yO3uiXi24r0Ye0NRYCGqDaJtTaYyRD+Gcneft8XEmLNwrrQexkuYNGA1b99cGrAVyD+oA6LSTmDxHMhKhxUEs2Z7W6ybqpkVWJPwPrPXUFruKmh3HiCh8BM/RRGayce1BXd8+/zAHVAMQlBOp8opuV+u9hew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I71beO5f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22BDDC116D0;
-	Wed, 18 Feb 2026 19:20:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rBfVaIhlONAgG1aH6oHBz5IrxyASG3ygPCg4jlofXFAULBXR/iZJe01L0GACXlV9MjSSafO4kiTgbEFj3cHa6F8DTvbRDMPxo5SOWeQsSqk4HPuIBr4cXmvaFTIkfHQXUmEiD6/08hcldF1HcMR+9Z+Pm2lYcT9ycepp6Az/WNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PaA7hgy6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C63B0C116D0;
+	Wed, 18 Feb 2026 19:22:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771442457;
-	bh=WE3gHOnoKcgDRea+V+pjq13RdKecQzV1HfRse3UiVhw=;
+	s=k20201202; t=1771442531;
+	bh=mzJ8mSRAQfM4brfuaMm3mGScuG/ny5uNXmOzxcPbqy0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I71beO5fqFYwRwc/CWb9Gp+GRga9P9hMAb80YAtMxCsWWnWJpgeqsVX6JSnsidoz7
-	 XUcqAteH8KTZeuUP8M15i5Z2v3I+XND/RkTDCmhXlciDZPU4I+jR6qraQ1jbC1wyMK
-	 B1b/gbwgpOJgCGgCGrVeQTcH0Mu6/0qnP9XMRMZTv6HqKLll+bWjKwtYCNcUwPCIUs
-	 gmmXFDc4DEz5kSastSEioQg/l8vDzBZpsb2MsUT555bBjLlLUthvWi2hAFZoziAuUy
-	 wcYodXkBMzDXoIIWV2RHQhyyvWaentgMBfD8EV2PyoFKUPRJyS+yyJV9LCtQjuEfdx
-	 ISmcL6fyJ51zw==
-Message-ID: <a0d4c59e-db0e-4bb6-a1cb-7837f513f7e2@kernel.org>
-Date: Wed, 18 Feb 2026 20:20:53 +0100
+	b=PaA7hgy6ut84G460I4CHrKqYHf6KwnKEacHfaUzlDTIm6eCOlCkm1ZO8acU8dznxg
+	 l+z1XUvrgD74JvyB38T4iyN3pix08SWpTKs1+T0QIwLWoTT4j5x/dspnbihnWI6vQn
+	 F5nswngD+p5mXRAzqsPmbxGKbrSD/6VVfx1KwhsV/uujXnc8+VAt2Q/pZTHh3iucr0
+	 tkYR4P7qMakOiux6HdBMa2LiPQKjXOLeq4f0TdtnvhM4JU2MfDPch/wAcKDX4xlxGy
+	 9ENdxrP9byg3CQ9nC5m1ImR6/xvl3a9F2aQOvgDtDVwYBaQmiYU7ZXRu09SO8UTpjA
+	 ZOVTYPVGZszFg==
+Message-ID: <716d6c53-4d1b-4221-b3e8-de2b355dad06@kernel.org>
+Date: Wed, 18 Feb 2026 20:22:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,12 +53,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: rtc: isl12026: convert to YAML schema
-To: Piyush Patle <piyushpatle228@gmail.com>, alexandre.belloni@bootlin.com
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260218190213.429892-1-piyushpatle228@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: qcom,rpmpd: document the Eliza
+ RPMh Power Domains
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20260216-eliza-pmdomain-v1-0-c51260a47d6d@oss.qualcomm.com>
+ <20260216-eliza-pmdomain-v1-1-c51260a47d6d@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,7 +108,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260218190213.429892-1-piyushpatle228@gmail.com>
+In-Reply-To: <20260216-eliza-pmdomain-v1-1-c51260a47d6d@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -112,47 +116,39 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266517-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,bootlin.com];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266518-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B8A4115900F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5898815903F
 X-Rspamd-Action: no action
 
-On 18/02/2026 20:02, Piyush Patle wrote:
-> Convert the ISL12026 RTC binding to DT schema format.
+On 16/02/2026 15:23, Abel Vesa wrote:
+> Document the RPMh Power Domains on the Eliza Platform.
 > 
-> The binding was previously documented in text format.
-> This converts it to YAML and enables dtbs_check validation.
-
-You already said it in the first sentence.
-
-> 
-> Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 > ---
->  .../bindings/rtc/isil,isl12026.yaml           | 57 +++++++++++++++++++
 
-Where is the conversion?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
