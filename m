@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266515-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OMyWFGkQlmkXZgIAu9opvQ
-	(envelope-from <devicetree+bounces-266514-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:18:01 +0100
+	id 6FnvN5IQlmkXZgIAu9opvQ
+	(envelope-from <devicetree+bounces-266515-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:18:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3483158FA5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:18:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66401158FCD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 20:18:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 923B93011791
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:17:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 134E3301809C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6923346FD0;
-	Wed, 18 Feb 2026 19:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025F1346FB8;
+	Wed, 18 Feb 2026 19:18:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewlKHB97"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HYdaoq7J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0F82345CC3;
-	Wed, 18 Feb 2026 19:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2CCF3451AB;
+	Wed, 18 Feb 2026 19:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771442277; cv=none; b=Ff6MxkgT9jPJ3jFtW+wXYBb9yr/9/Wl+ay/T2SW3IPQVBAa01PugEAmBzVPcnmoyl+iC23ZA/mk7DJ5PMpXVLdILqvfsxNMjq5kAhW6mUqi4YoxKqSUem7zUel0DuSkx7CJ7JmZXjQndwIF8eLQTeMvjJrU0BLNn/6TsTH2yKbc=
+	t=1771442313; cv=none; b=eetgRUKISUuYnnvVK9cYG4wEGYnHvsURV3Ej7fJk5Vjk6WK1r6pU7Vc6XhCdmHeT0a6jVhNU3AsSgBQBLh+VhH5tfeb1/kU4/ADYMtQqLbDEKrwZBERHGQ2WxKRbCnDZAUDYWgf6fiiGCZ5XbV4DJ/37O27bUp5N9gn/X77vMBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771442277; c=relaxed/simple;
-	bh=a9xnkv8eKON2vAhTrVvPB76d/7ub/Brn7L3iNnp1vIU=;
+	s=arc-20240116; t=1771442313; c=relaxed/simple;
+	bh=2M6wZGG+9s9L094CSFI5DWX5f9oGZL7Xa8jIt97zaIY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ULHtz3FlKxQKGJYkFsTTBqdPZPVLraq9M7zvLz9JI6086AuIMtMaLVu4lZZ69t3r/SVp0S9KqAnTK331CnJH/34A2UVLDLnMTiJP0gUJ+wp9oHcxiIxRaogtp6R06hRW+uNHDp3NdXqAvOND+GMw/Klj0PW3jgy4sgCRfcWKKY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewlKHB97; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BF01C116D0;
-	Wed, 18 Feb 2026 19:17:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Nno6wBMYtGHK7d8A3roGqH3K6fhIoV+NjV39rm3Wguu6H0gNrOK6xP+j8BvBcTXR8brwDr4lXxjgX4QP3SnrNLaA5t5Pnrt5SGu6rsk9Cr6EK+1vAJ/sTNAo2HXEc9Vns5+wcixrLg8p3En3N29y00CTaVqvciSqMrCcvDNZwvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HYdaoq7J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58539C116D0;
+	Wed, 18 Feb 2026 19:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771442277;
-	bh=a9xnkv8eKON2vAhTrVvPB76d/7ub/Brn7L3iNnp1vIU=;
+	s=k20201202; t=1771442313;
+	bh=2M6wZGG+9s9L094CSFI5DWX5f9oGZL7Xa8jIt97zaIY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ewlKHB97343qPi7IjJ7tCc//Kko777MRvQ/H4oF7piU9mkLYjG9lzq05uK6X9yYW7
-	 zHsh6XWDlgQR9l9xJ0etJNQ65Qfsqv50pGvF5rcfCUEhheloLbbn5W5HRwVByhgUGK
-	 IFI6GBgtWZOBf16OxNofjnH9j48ZiaM3arO/jNaYoHJ09+ZLEx0hiG63Fta4XbrRAY
-	 pn8HqmE4eKEJaroEcyUQKYWs56iiXWSzMg4XHBSxV3Yih6IM4yYcpTiueLF/5AbDVW
-	 QD0zX3jorMgIKKFdLtfWhsv1u7CxsbhNR/YTtgtucnLcWb3VvXVx4y7IhK5b1AqfGa
-	 VLIkS46ZERqlw==
-Message-ID: <594f4fcc-ad88-4969-b9e5-98061fd5b73c@kernel.org>
-Date: Wed, 18 Feb 2026 20:17:53 +0100
+	b=HYdaoq7JI6fyvUIcVyOe+uh4t3AYIysWf2kIxPaBaR9OAdhSvGyURV3WD6qd/XlqF
+	 zE2KA7dsHNQOqhNUdnTl/KcsK8lTbt27pUUNXpG8zm++iwov5KegI9pMMxRE/ycKAC
+	 rn4em59STUqg408yVPZrg9eNEgJmcmwJjUV5AePDBmVQzS52ZsMhsfvdR+YlMHzTRa
+	 TzdnBfy3DSlZ5cbDxk3ik00N+ARe7AupwqunNxAlcrmu38piXUdvguQIzceYNagune
+	 8jo73mbBtUi0EwUwioJwWO6N9heZLxKQqCTotX1XNuIhFomCNkjMiK6j9xxZcmvZ7w
+	 L4mvp7ZN9GwCg==
+Message-ID: <e7080f4b-eaff-45f8-8ce8-bdf501c915b1@kernel.org>
+Date: Wed, 18 Feb 2026 20:18:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +53,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: clk: meson: Add Amlogic T7 fix pll
+Subject: Re: [PATCH 5/7] dt-bindings: clk: meson: Add Amlogic T7 sys pll
  support
 To: Ronald Claveau <linux-kernel-dev@aliel.fr>,
  linux-amlogic@lists.infradead.org
@@ -63,7 +63,7 @@ Cc: Michael Turquette <mturquette@baylibre.com>,
  <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20260218101709.35450-1-linux-kernel-dev@aliel.fr>
- <20260218105611.36216-1-linux-kernel-dev@aliel.fr>
+ <20260218110127.36394-1-linux-kernel-dev@aliel.fr>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,7 +109,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260218105611.36216-1-linux-kernel-dev@aliel.fr>
+In-Reply-To: <20260218110127.36394-1-linux-kernel-dev@aliel.fr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -117,14 +117,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266514-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266515-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -134,26 +134,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,aliel.fr:email]
-X-Rspamd-Queue-Id: C3483158FA5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 66401158FCD
 X-Rspamd-Action: no action
 
-On 18/02/2026 11:56, Ronald Claveau wrote:
-> Add PLL for the clock controller of the Amlogic T7 SoC family.
-> 
-> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
-> ---
->  include/dt-bindings/clock/amlogic,t7-pll-clkc.h | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+On 18/02/2026 12:01, Ronald Claveau wrote:
+> Add SYS PLL for the clock controller of the Amlogic T7 SoC family.
 
-So you ignored my comments?
 
-And that's v2, not v1. You sent v1 and GOT the comments.
+You already sent v1 and received feedback. Implement that one.
 
 Best regards,
 Krzysztof
