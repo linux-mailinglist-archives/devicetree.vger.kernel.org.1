@@ -1,122 +1,177 @@
-Return-Path: <devicetree+bounces-266506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266507-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aDzRB00HlmnxYgIAu9opvQ
-	(envelope-from <devicetree+bounces-266506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:39:09 +0100
+	id cDPdC2sJlmldYwIAu9opvQ
+	(envelope-from <devicetree+bounces-266507-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:48:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5834A158C61
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:39:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59BC2158D0B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 19:48:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CFF673009CCB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:39:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CD5F63002915
+	for <lists+devicetree@lfdr.de>; Wed, 18 Feb 2026 18:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0AE346E4F;
-	Wed, 18 Feb 2026 18:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8894346A19;
+	Wed, 18 Feb 2026 18:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N9P4A5Z7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L8cKpp88"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E7B346E45;
-	Wed, 18 Feb 2026 18:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4383A3009DE
+	for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 18:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771439946; cv=none; b=ngDyYFgabts7pPWxLshT/OUmWa8oeZ5bcFJVGDEi3eQAP+l8Us8bFDCQVE8tDrDWUZBSAQpos3YCknZ5iQj89rPHRYTuo1TF3U8I2S+pIKYdj0RYe5O6PbfTsIYLcrLwW4KB3hfEozSZPbhSae9+fu7TQ2/1QfqJbqEFMiFMByY=
+	t=1771440486; cv=none; b=hQeK9I9Wa9IZY2YKfEkYCkMV4ss8fyTP50aIIakyjgwrRb7XdRT6944Hy2znYEuUSSF5XB9cLNxmuv0EZM8z7E5VAJhtW/T6ttTy1L3Rmc2Eu715NK7J/4h9fcxHYfV9/2qxyRyiQe0D/58qQIu9VKRoUIFkGdHh24cR3MjG/YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771439946; c=relaxed/simple;
-	bh=MU38ojQtO5E1uk6qyEB+YcDaosdVNcaLAaFz0GYcRdo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FfepfOEKbY9v22cGnyIGCz7Im5lYzsHn/ivaoEdmZXNp1o2ZS/QGYaku9dGVhuAKMpu4HeUDsRNXBRJ+Q/K4braY2tWq1K88xWrSm/uVVyOQh1l/tFEQj9P4PsA55lhQSMw/wHB8ujMUqpBFzUy1X0/0P3ff5opiN50L/xnbWXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N9P4A5Z7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EA1FC116D0;
-	Wed, 18 Feb 2026 18:39:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771439945;
-	bh=MU38ojQtO5E1uk6qyEB+YcDaosdVNcaLAaFz0GYcRdo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N9P4A5Z7UsNKxy2bGtUdJv8kjCwMCMQXCyCFpNgjeEcaH1MF2VZmFL4z/pUSDv0QV
-	 8pD2EmpA83r7rRDYgUHYLZTs1bs22Yyf3WxDT6YqMwEkNnfW0OIsapycYKk0cAWJ5i
-	 qXgsUIG1Vh0r4IVhLd0jOv38RWFCrTspgLmLVsPYynKl1ds8KpYILcdiPafSDDQqPc
-	 qhpnV1JDUNRl7xlf0m236fzMPEJKfCwFaVXi8s2qNbr4+1gLo1l7/Iu7UGnXK0La/d
-	 MPPSK0okTzUTX6sDpPLMvh/SfXRocmuGqzopPR/pmWM/x5nJYCZNca7bbkjn8bw8Fg
-	 fwqkwfdWhdvaQ==
-Date: Wed, 18 Feb 2026 12:39:03 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
-	Jacky Bai <ping.bai@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: convert fsl,imx27-pinctrl.txt
- to YAML
-Message-ID: <20260218183903.GA472024-robh@kernel.org>
-References: <20260211-imx2_iomux_warning-v1-0-1c5233771b32@nxp.com>
- <20260211-imx2_iomux_warning-v1-1-1c5233771b32@nxp.com>
+	s=arc-20240116; t=1771440486; c=relaxed/simple;
+	bh=Sg/gUkPnWAfAkmTjB8er5pU7U6H1nsheqxn/Up3fD8E=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ufIBkfWcTsfW4JSD1PxeQsI0WNg2X/hOo7I4w+gR8It52nBI+eAWKd+2DzDdIyZAVgB0jZTO6sKU6q6RfJywxDf7kT3VgAOdVtWNGpP5gg7vrE52P0MUSVuGBO9dI8wpL41ywc6RlZS5zdQgK0806fJENRo1IaKI/35keK1ymgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L8cKpp88; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4836f363d0dso1536315e9.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 10:48:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771440484; x=1772045284; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lBeRIT1ZnYSEgc/ip22Oe8Z70VaBVeO7A7faCs3mOuk=;
+        b=L8cKpp88QV0wUiyhevZw5QkXXm7i8zCh2syKl+JKcyGLs1cMOBmqJDztwY0HGwDlP6
+         5vxf89Y5jgCk3yx0U+O/rNLjT/hOsCaExdfhZ4UjjAq939coBE70wt+dRFj9oqkvqn/y
+         6UJb0uLZ2b3k9jh/lUZcBAkcbr4Ba9pkn1yKVbONKEBs5BhcFbsaTpj/FEZOAn79Tk/n
+         W6HOrGbYsU4EUs5kLoDaOwCgNsBQvlUL63BAtc5NoFjGcbKgWEO3pjnNt5vwtrGYjZ3z
+         Z+9HDe7XVqZ425nEx/ERUCnax4yuFToe8X6gXx7fUG3nK5fgXofVlUwloBhy7LFrCyja
+         mYKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771440484; x=1772045284;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lBeRIT1ZnYSEgc/ip22Oe8Z70VaBVeO7A7faCs3mOuk=;
+        b=JxFu4BTtWC1S5Y5EOWp4oUE7IGlKYF/2l73h+3FsMQzq5p/sqvz1QCY9zWkZCYHTfb
+         cgVgipCDOKBuNPDJg8Y1LHBkAXTupGIqd4CH9ciVGrZaIZLu3xzZYI/npWllw50jq5m3
+         U7xbdX37sXvq067T/q1RbCY858mX9h4gZxlPeJCx+R9rrANYE0FsuoAvtiQHOnZgeB2U
+         MPe2iOWqYMcGKct2URupFy+6ocIraeYSlOuJUwATzK6Dco494CQ/mbPB+MpVaNRxcljW
+         p5+G6vSS51fE0S/gAzY/+sfNmxO8MnO3uE/qLcX/+Ttt7F3naALK3A8/jpBnFIvQDdiY
+         VKeA==
+X-Forwarded-Encrypted: i=1; AJvYcCVDyJbWW+29DG4iBDgwC+pX9NHRqUTZ64uWIXkW2qqz5G7n3xhiv4JpER1iHNNJcMYnS8zfmqftlgyp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyR5pmen7uf73/sj7DEfwSebsil/pZSej4ydA4W3XND1AFoKNsx
+	QB0+cRM3scLxfAygpQ0xo6CIUk/ZqoPE6f0B8grUVMRtpIG59F3xzNj7
+X-Gm-Gg: AZuq6aIg91QaePYWgPnVCR4TLICJnA/hua+yqx43xcUSRolPXqXmVds9GeXXD2Q6xQW
+	B6FhA+dwM7P8u8S2SOL3GhIrp8ceCOf7fXKsZlE2FLLtSur3q4BJvLaN3wsjlZqgVDYoT7If6P1
+	eMf6DfP24GwzUC1E2ZBOvSFe6/XzPw+/BFZVb0KLbW4iJzMAaKK53TKpjPdWA3o/15o0iDbWoHQ
+	G3Z4SmwuJl+nqNELTDlKz6RCdUOk09BNE04ZRkz4Lote08Oj3Bu1biBHZ6ag1x9cpwFox2P+mW2
+	O/Qkc8pe71BLGx2E0yRfF5K0I7rDe40vMYGVdPFYt77ldo1yt+8qI9lm5pVnXU6WRfSPGm9ta2W
+	wUovvvtWTWWg9FD++VJR9Szu9I753oaziSe/qsl8YozO+qRccEkdoI/qvQ9PyrRY3emVnIJOPuv
+	qwpAmklwwSkk8MQu0P+3pRN+JUw7BZ/1zEoA==
+X-Received: by 2002:a05:600c:6389:b0:477:7af8:c8ad with SMTP id 5b1f17b1804b1-48379c1f4d3mr290728595e9.31.1771440483441;
+        Wed, 18 Feb 2026 10:48:03 -0800 (PST)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4837e565f5esm440990555e9.10.2026.02.18.10.48.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Feb 2026 10:48:03 -0800 (PST)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: andrew@codeconstruct.com.au
+Cc: avifishman70@gmail.com,
+	tmaimon77@gmail.com,
+	tali.perry1@gmail.com,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: nuvoton: drop unused syscon property from watchdog node
+Date: Wed, 18 Feb 2026 20:48:00 +0200
+Message-Id: <20260218184800.2261674-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260211-imx2_iomux_warning-v1-1-1c5233771b32@nxp.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nxp.com,gmail.com,pengutronix.de,kernel.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-266506-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[gmail.com,google.com,kernel.org,lists.ozlabs.org,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266507-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5834A158C61
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[801c:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,a01c:email]
+X-Rspamd-Queue-Id: 59BC2158D0B
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 04:00:00PM -0500, Frank Li wrote:
-> Convert fsl,imx27-pinctrl.txt to YAML format.
-> 
-> Additional changes:
-> - Add the compatible string "fsl,imx1-iomuxc".
-> - Add gpio@... child nodes.
-> - Add ranges property.
-> - Remove the redundant intermediate node between pinmux and group nodes.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../bindings/pinctrl/fsl,imx27-iomuxc.yaml         | 126 +++++++++++++++++++++
->  .../bindings/pinctrl/fsl,imx27-pinctrl.txt         | 121 --------------------
->  2 files changed, 126 insertions(+), 121 deletions(-)
+The NPCM8XX DTSI currently includes a 'syscon' phandle in the watchdog
+node, but this property is not used by any upstream driver and is not
+documented in the NPCM watchdog binding. Since it was never reviewed and
+does not form part of the DT ABI, it can be safely removed.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+---
+ arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+index 24133528b8e9..c781190b42c5 100644
+--- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
++++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+@@ -145,7 +145,6 @@ watchdog0: watchdog@801c {
+ 				reg = <0x801c 0x4>;
+ 				status = "disabled";
+ 				clocks = <&refclk>;
+-				syscon = <&gcr>;
+ 			};
+ 
+ 			watchdog1: watchdog@901c {
+@@ -154,7 +153,6 @@ watchdog1: watchdog@901c {
+ 				reg = <0x901c 0x4>;
+ 				status = "disabled";
+ 				clocks = <&refclk>;
+-				syscon = <&gcr>;
+ 			};
+ 
+ 			watchdog2: watchdog@a01c {
+@@ -163,7 +161,6 @@ watchdog2: watchdog@a01c {
+ 				reg = <0xa01c 0x4>;
+ 				status = "disabled";
+ 				clocks = <&refclk>;
+-				syscon = <&gcr>;
+ 			};
+ 		};
+ 	};
+-- 
+2.34.1
+
 
