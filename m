@@ -1,447 +1,353 @@
-Return-Path: <devicetree+bounces-266664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266665-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLMMDPUXl2mtugIAu9opvQ
-	(envelope-from <devicetree+bounces-266664-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 15:02:29 +0100
+	id OHY+LKkYl2nKugIAu9opvQ
+	(envelope-from <devicetree+bounces-266665-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 15:05:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 180B615F4C6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 15:02:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 258DF15F4F0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 15:05:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9B30E3010D8A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:02:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 42BF5301C10D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23EBE253359;
-	Thu, 19 Feb 2026 14:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1195433893A;
+	Thu, 19 Feb 2026 14:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="CvftScjb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KSpYveHX";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Flqja1v5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010017.outbound.protection.outlook.com [52.101.69.17])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102D624B45;
-	Thu, 19 Feb 2026 14:02:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771509744; cv=fail; b=uqZTv3g/TMDvdmCjZhxQCR8xQquiwzrpWmIhKJhuiZ6iK2w7kNaXE9kOleFoLNn0K0ZRiQ9ltQyCS9m4jmkqSaA5z2F9hNMz+qC0sGAfOv9NuMpL6aEiLjhnrJqxKTl0my/okD5gp+FXiwjB4sO+FFOBa7n4y5Pv36OaYjW2nW0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771509744; c=relaxed/simple;
-	bh=oHwRRpvfa75kc1kpB9PozAhcFGy0x9Ht7hD8AIHKvok=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hdlDR5QLHufku0NJRcoWo/vokhNNKDrMiYVrY5McjtkzQ91ZO9fp+6IMeQii9DFTTLUWimTbP21J02PuLIoQTfed4mdT79AC99r6yftIzcTZhImOieF2iJdfuLymK//FpkSDjUxyLkE7Amc5WYmkYEuLYRAVrqac1StwAxevvAM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=CvftScjb; arc=fail smtp.client-ip=52.101.69.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=krxT0mMQjVRO4gs2KXUESe26MzxUBd2lvscDmX4vGgeeE1sdGUfHSvhk6DLv9nQbMoAp1NVtGlQ8RRMUPhckQfm9tdm8jlEX96DddMiWvNHxwdr4wQ/9bngXTc0AJcIJyx1sQrGM/g5H59ogxSRySIodJ4Jrqf1ljhYW4l0qLR5uLIKPIRVwHtdsX+B+/bZ5Bz6ZcTU6joviQmC8hOr4JsLAHTf8pQANsv6ROS7c2LoavcybNPAEMMYcyWUUjDLAD09BgYeRvPpBEWOr5JFMd0GeO0CV2M82d1qjrT43QrYMJv2h7vLgrqR9icti880FZ8Vkcj6nl7Ms1Lilcqol9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QHprSa7SE8GgE4fVxXPSaDj/BYIhqdgyCLDJBYwznOQ=;
- b=UAKpBH4BMqswuR/OEwtkUWWM2rTN4nQuXiCDjI7KIX/7GZiTox+FHXOUTwrroVnPI1eF1HMDaYhf19av1OObHh5LkzPqJHAeIruEtcteBnhFANApSlEUwTJxvG/td4fcYv81UQsEr/WFc7MdAeDLfeB6kslfBC/81cixPsUR+s3wOdY2fO1egKQ38wnjZFNnXr/U0eH816iVXGuXe/61ztaxLtvtYNYSFiINAUAjmYCHQv5jEAp5ZFn+sFHdwI/cb7rXqnGgb6ARYc8TPz+LTurOhRV+k7LEzya/NXCOZUYnJ7W66Kpe6jzdCnKYkBYA0nPhcrmBYw1hEud2Isd0/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QHprSa7SE8GgE4fVxXPSaDj/BYIhqdgyCLDJBYwznOQ=;
- b=CvftScjbOXNjSGtJesG9hFZtbf9w2t/LlHGgM+VtXVM68lJmn0mHlNpHxVETxGf8O9Twzc0WqWP1ZST9drvDaM4AekkDjyEmFbRDcDkyXzhd2Czoer71qfpYnOmRwM/yxMBCM/g+CwzGA6l0KiWn8eIZicV1hrP7CXTcXuMnrXSn3Hhk2bhlGnoBLdZFf1QRzMVOnM2/582oTyzihVcrx90I8Rv95RikWXi5I8S7dF/T1oB6lbaOzwZ5n+juCcOTwYYQ+pPS9rAq0SehUEvqFvtGv/6tJJTDdoCVVLpzmPZT/hMmKnvaxL+/LZnhhm4T4jWvL/M0M2jyf3Pmc4c41A==
-Received: from DUZPR01CA0285.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b7::23) by PAXPR10MB7925.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:24b::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Thu, 19 Feb
- 2026 14:02:12 +0000
-Received: from DB1PEPF000509FB.eurprd03.prod.outlook.com
- (2603:10a6:10:4b7:cafe::6f) by DUZPR01CA0285.outlook.office365.com
- (2603:10a6:10:4b7::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.15 via Frontend Transport; Thu,
- 19 Feb 2026 14:02:10 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DB1PEPF000509FB.mail.protection.outlook.com (10.167.242.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Thu, 19 Feb 2026 14:02:10 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 19 Feb
- 2026 15:04:06 +0100
-Received: from [10.48.86.212] (10.48.86.212) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 19 Feb
- 2026 15:02:09 +0100
-Message-ID: <b535dfd6-e4a6-4831-a868-c152574144c8@foss.st.com>
-Date: Thu, 19 Feb 2026 15:02:05 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B112848BB
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 14:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771509922; cv=none; b=Cr4ILQSDl7FeEVQXy4+374ey+lrbLClOXVqmHHD4Vji10+3FSl1a/NRucGzBH3AvR2Zm0txfaleAVMX8Gh8Bj1q2eEcJmy61uU/MCcL+vIlA4S+I+F0YB9EF47696dv/SoYKpPhOM7eoA6W61iBhWtaMMNCfu43rKBdpd+ZQiYc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771509922; c=relaxed/simple;
+	bh=QNj9CkSL63p09bYQPcFcXGu9Fil4w8mAzmvxMZmMJiU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=g2aq7psAkKXZHdK57SN3Wc4o/btqOdpR6VhWmAuHtYcHWqp54lu55/mOVYmGf+Q6ZOjs4/ihxrSYxBBJYetO4LrMoPNIJJkvlIjhjNrlaFRPgSpFi+Qz5qgl/7c16sfCUvzE8s9cWguTFZ9nKrLh9qQPGs4Oz3ePah4g7jv0TVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KSpYveHX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Flqja1v5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61JB0meh2004686
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 14:05:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=I+e0vSt3X6F9zV8MU1NdhT
+	DrcSYxiUtVR1c5S5Jw8Bk=; b=KSpYveHXUCpfFYVfJXypuGrfMyY1sVfTllD8DP
+	AcXFB2xhALzsPKqLs0rwO933T6+vlJapB7RhcNIGLmZLZc/SB4MNMy8PGnlZBPND
+	sKkKn4rxBi7f/0sJyD2a2zMhjcaQ/5dQiEYnh/3U0OM6O0pG8QS45Ao0YKxh0FVg
+	WJhlOGuSZ4viqq0gBuU7+BRh1tqSK3n+vRNNrqYzo2ZnkEJeOXml+gwzUI/Vq/bk
+	EnNGJ1mcBsMZw/K3F/RiCQecoGtXb2lIXJ3WoECnue76QwbprGtuODdzcafKaHxK
+	pxjt9H7skFYUZRJFDrC4+7BGXJzm6XzaopxSgGzEXvfNqZJw==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cdn1qj5u1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 14:05:19 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c6df833e1efso4074490a12.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 06:05:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771509918; x=1772114718; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I+e0vSt3X6F9zV8MU1NdhTDrcSYxiUtVR1c5S5Jw8Bk=;
+        b=Flqja1v5r4mqJdkHjS9I/Y3A7ChLcca/FLEEo5mDOo5jrYkNrFHXACb05qLOo54EvB
+         ZIM603tgoPoC3BFDV58A8eygmdKRBWdMFGhRP8/MLkE+XUYDXHt9mCKh3o4l3oVbZV0i
+         R7MWdC7l5adRLK8+Z0Pet/Wq4NhnzxzRBXHNhxNpXLrX5lMWfVHPrs85KAjgzQKJsyCp
+         Z4YEaXYnV8txRggojTmO0ZO34Pk3tAwYOL+GjANYVxtimyMip2uNyZHSUZCPHMa8d/xw
+         Rz+paK7VPOMtrB7CGyMVPX0yMM8Sh1/TvjLj0TSz+gNfywF898bDpk8m+tAfDGuewqGe
+         9gsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771509918; x=1772114718;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I+e0vSt3X6F9zV8MU1NdhTDrcSYxiUtVR1c5S5Jw8Bk=;
+        b=p+GMkLy0C/H7gbYSWZrTmAIXGAJc3G285VvXaHmUCjaIdqTbgc/EGayacFSND0ZJrk
+         dD3lgmZRyF6/ZQbv8ULGFnaSjho3eEe17qmed5oo7xW/5WsOCPw6bB7cO75u/eO/h8oX
+         Tt+gIPhN12mstheTG48l7iVIv7uAjdTcRCJnf7YOc3oIoZ6Ds0MPi/ClLhNEGpUH70fC
+         V+5ihk/6ZSRGg8vXbgtPq9pMZxyhekPJXH6cZRLpAp+MwqBwJWvpGjy+rPySzmpf7WCy
+         tpx0+r8mmf3PYElk8eVTe3xMSE1OW3M3sdt3d0ufqpyrsijDZB7QqCBWcFyYlOhcIyD5
+         QQHw==
+X-Forwarded-Encrypted: i=1; AJvYcCVcESDvi3gxFXU6q/4UXp6zVkPgJ5OO05ql5vBT3RYyX0aqDcFilhRfCcmjtt6iMXS/183VFUkId/C8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRosJRUxhod1XZKswPIkc9diyIVcTLmCv5oUSNLCz0JM16aPmk
+	dor+ZXmxHVpRsw1KlyifhKipyo2dxbE+I5/b0eo8LyugcinBtZRlPb1/AJLmQ8QM4wOxfNdeXoV
+	XNnnhQzBOm4TmqiOrCs3eu6VVK1T/4QGOmnatUG3o+DqwW0kNo3FymUkE9/PciYkI
+X-Gm-Gg: AZuq6aLV9JKM0MvLXNlEWpzFVqvjnwzqu634gOGoH0cWDYaV7ZLnXdHVWoJKfSh/X7n
+	EosLWrooszXItdOL1aNdmz5+zUp4CwBOh9ZEbA9rQzECk03otNdmEpigp0KwOyt1MvZm6PNcNWa
+	SA0zRPgWZETfARe10t87GCrYrTk51JXfGGcsxeddaYvSOOkUuh69vUkfzXGpq80IMpGHSLyUbeR
+	0qPicRMxR0uIMQujOiHin4wYvQsfiZNc4Z4+a1bjx9Ir7Bewd2B2KBNT/cA6/wX9uXRI3cQOCjm
+	XxY+r0PqKQs/IDiEmv82KPLibgwvGum7/pYwAmCgTk2oKB83RnlvtRBoumCCRbFHl3ZRHVJXkfl
+	cpG0Lewx0+EERQaS5L3nsJmKoYr3k1j8RXOUVAHjxz86YoZjKDeWbngYtx+MSSg==
+X-Received: by 2002:a05:6a21:a247:b0:366:14ac:e1ec with SMTP id adf61e73a8af0-3946733de5cmr20497922637.62.1771509918350;
+        Thu, 19 Feb 2026 06:05:18 -0800 (PST)
+X-Received: by 2002:a05:6a21:a247:b0:366:14ac:e1ec with SMTP id adf61e73a8af0-3946733de5cmr20497887637.62.1771509917850;
+        Thu, 19 Feb 2026 06:05:17 -0800 (PST)
+Received: from hu-botlagun-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c6e52ed96ebsm16536305a12.0.2026.02.19.06.05.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Feb 2026 06:05:17 -0800 (PST)
+From: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
+Date: Thu, 19 Feb 2026 19:35:12 +0530
+Subject: [PATCH] arm64: dts: qcom: Enable lvds panel-DV215FHM-R01 for
+ lemans-evk Mezzanine
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
- peripheral
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
- <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
- <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
- <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
- <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
- <66ecf6a5-cc1f-4872-971d-6bc32894dbac@foss.st.com>
- <fd73947a-289a-43f9-9506-573fee935d12@kernel.org>
- <ed0ab69f-7aff-423f-8b93-980e79705b6d@foss.st.com>
- <c588720a-6a7d-4179-afb5-bb7e89e0e7e1@kernel.org>
-Content-Language: en-US
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <c588720a-6a7d-4179-afb5-bb7e89e0e7e1@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509FB:EE_|PAXPR10MB7925:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2b8fb800-4f54-40f2-d7e5-08de6fbf79f3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?QTkwUG90OEFQZzdaYlpCNFhNTGEyVGVSS3Z4L0J6ekJqSWVBUjJycHZHcTlz?=
- =?utf-8?B?d0dSWTg3TnFTRWlveWtPNlZUZXU3UDdNNTNKc29pWjBjbEZyU2diWUhyc1M4?=
- =?utf-8?B?Rjg0TXNBcTRkMk9sTndYZXQ2aUNDemJZeTVCdUc5RW5aa1U3WXFvYng4aDZI?=
- =?utf-8?B?QUlzeXc3RHF3QmRqb2tGeTZ3Ni9FdXdSUnovMTNUY0N5THpDc2FDOXdZVHNG?=
- =?utf-8?B?SzRneEIzdlJrL3doYjBrVUVSRzd1Ry96Q1hkOTdFazNsOHIxaWM3U1Vib3JB?=
- =?utf-8?B?N1NLZXgyWFI0RmNFaEN2dFhPVEsxWkxBbkQ1VkpTVFptcGtUblhvMGs2Qko3?=
- =?utf-8?B?TkVDVHREUGd0aXRzckU3M1UycG9PTjhXNzM0RUg2OWxDRUdNZWVJd1VVNzRt?=
- =?utf-8?B?N0pZTGhJVkFjcm9YZHZEV244amw3dmg1dmpIaS9XdFZQZFlVTDhQdVRJZ0RG?=
- =?utf-8?B?b2Y1U1Fpc2JuK3lML2E4a2g1VVFSUkxwaUJDRUU3RVN2cmtCWkNTbitnSDlv?=
- =?utf-8?B?N3lqL3JMeXNnU0VFUDZuU25JVysvQTA5WFArWVhCSUljY2JObkUzWXA5ZjFS?=
- =?utf-8?B?OU1VN1hlUkVGTndUQjNaNmZSTmdsN0lISzN4c3pMUXpCbWZTZExTL1RLRmJ0?=
- =?utf-8?B?R0JBb1p2Q3I5Zm5rZFlweUEzN0NJR01Kd0pEb1lUenBxRnBJZXBVcFJLTTA0?=
- =?utf-8?B?NmxYZWlhMElqaHNreHdwOVE1azlUcWpFTG9KY1lCTy8xYXRoWWZ6NEllNWdE?=
- =?utf-8?B?QkRMM2NEWWtuNTNhZFJPc1ZBTXhTMlZjdTkzc0ZHdEhiOWwrTkg4VFdDWkxX?=
- =?utf-8?B?Vld1VnlTcEg4OEcwMkpBRlEvRjJTUkpTN0Y0RkVCbmdsWDhUeWhBTlRTYi85?=
- =?utf-8?B?Z0VlNCtpbU9na3pDT1Jkd2Q0UGtlUUUyVkFpUEFoWlo5ajhONGVqSjlHY3U2?=
- =?utf-8?B?SmpJV3BIU0c3dUMxcVVNSi9meVBLVVk0djhyQ2kveVBSbU92NkJvTXpubS9O?=
- =?utf-8?B?S0IrRFZET1Erb01PQmJrLzAxY2pKdTRtcWpER1Ezcm5aZXZOOEVsSlBFWDAy?=
- =?utf-8?B?NzZVeDF4YnVjdGU3dmszVDBVRGdmMWdIaC9WZ0pseVo4NWNnUzJ1YnZkNXA0?=
- =?utf-8?B?N1ZLNW12QUh3am9sK2lBVDFidG5WbFdMQ1lOb0VLbk02QzZaTEVVWW1kQjRL?=
- =?utf-8?B?WjIrQkxDQW5JR2ZUdFY3d3F0dW9zMVRlOFFtWUZQdW5tT1VaaVlXK2w4WjRj?=
- =?utf-8?B?YmpyVFV6OCtZMWxsMjIyTkdZamphcnVqUWMvMTh2N295bGtqQXQrRkl6K2NW?=
- =?utf-8?B?Rm50dTJNUG1jL3hKbHA4UXkzcU1jRjNQanJsYmN2dnpsb0djTGhkdi9MTU1m?=
- =?utf-8?B?M0RLcUcyQUthWEptN29heUpObng3VE1oMmdhK2ZQTFR3T2pNOGIrczUxa292?=
- =?utf-8?B?THVBUmhOVmhXREd4THBqOXVvelR1M3RqQmUxbEVsc1VLcWgvZ0VIdC85dUpv?=
- =?utf-8?B?ZHdsTDlsazZlUjk4YVpXdnMzS2xHa1cxeE5CL3ZLYXo1WEszRmFRcGY4RDk4?=
- =?utf-8?B?Qmtsb3NyelBtUTA3MzFBaDlSWjM2TmRBNGloU0JHSmo5T2hBb25vTVhBc1J2?=
- =?utf-8?B?RFNuYmNkWElTcDNjTmhoUEYwNy9sd0V6TGxoQnIrdkNkMndhZTUvVjRQdnly?=
- =?utf-8?B?b1FXMTVmQkNuSTR3N29iUm5acUVLektNWGZXNm5GblY2Q2tHSWgvQWFEalZ4?=
- =?utf-8?B?VjJkRjV6M1lzbjZMemFyYmVaRXduVmd1VTNaeEd1bmw1Um83M0kvKzVXMjhN?=
- =?utf-8?B?blN3UUtobGZmN0dMSmtPRFB6bHpHa2NvL3RXYjc4TjFIRURPMmZXZlZpMlo3?=
- =?utf-8?B?eXczWnpNTng5OTRFOVJGUVkyait6OEoxdGR4WnJWZlB3R29TZlVHZ0dkRGFs?=
- =?utf-8?B?V0hxOGkrMDZIcGg5Q2cyOG1zdHpaZkFSTXdzd1NaRVJPQUh4S09rd3oxdm9N?=
- =?utf-8?B?Rm9JZk1aMTVMcGlZUVBYV2tQWDZ0bkwzeTMzQVdDSUlheWdDbVNTeW1rREN2?=
- =?utf-8?B?MlVjOC9XSDgwZVZtUlh2TXcxcktDY1AxMENFNVh6cDMwYnJFVUtoZkpDWFhE?=
- =?utf-8?B?R1RHeG5OQWhNbk9JK2RTVmplTHJqZW4zZFRubE4rSEFJdnZEVzBZV2pWSlEw?=
- =?utf-8?B?UndvbzBheXRXRDdjRllDblZQOHdCN2Vpd3RwYXpYTDQxOXRlejRFM21NVjl2?=
- =?utf-8?B?ZGNYTkdVVXFLWTZrbGdlQVVyMmF3PT0=?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	+FvKZbsDLipkgFlRDYVaGbt38FhxW6I63yeGAJdEnP7bn7BwZk2Z5g2Quf9PjtfamXehHw59ymmv2V+0/5khR/xD3kNAaCoOAMUv0drFyRx/EY3ojF6P1Fel20DZGXjGc8dTrAAQr1rNH47hpc6qNVlEaKXVmmJssAcpwgh3cjLHFmYVAv82Ex5g03DR1XTv487qtEenkwhsM+V06nsqhEnh/CL02zT0uYhKCLYfpptD7ctD5WcPFTGhZAYiCvOcwMAMrBTQ4Q4wRqaxxPqtpxlT47ldong8ZKOlaa3/1w6vVhD65X4arleUYhDDrcYCKoMOK+pWZk/W8S4pVOMYjK9uivKTLZvEXR3cnTaijpTNZiIULkROcBPZA3J5lve4R035qCe33F+URHBlN9sYL0ogK9c+PDeHB/4MkZqmn3Gwn8WY66CboYLP77/NX1le
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2026 14:02:10.7476
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b8fb800-4f54-40f2-d7e5-08de6fbf79f3
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509FB.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR10MB7925
+Message-Id: <20260219-enable-lvds-lemans-mezzanine-v1-1-9cb2075f7c18@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAJcYl2kC/yWOQW6DMBBFr4K87iAzBttEUdVFb1FlMcbjYAlMg
+ kNUJcrd65TNSO8v3punyLxGzuJQPcXK95jjkgo0H5UYRkpnhugLC5SoJTYWOJGbGKa7zzDxTCn
+ DzI8HpZgYWtPZ1hvtqCNRFJeVQ/z91/+cdl75upXKbR/FN184FdWSDtVxj0jV9Mq2tm5QKWkAY
+ SuZcz2MI3v6WnKurxtNwzLPdTmf75CjzPBe4q08T9Ji36Oh4ALrrh20QnbIxvSBFPpgsXNSi9P
+ r9Qe9pL+eAQEAAA==
+X-Change-ID: 20260218-enable-lvds-lemans-mezzanine-47584d76ba5a
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, venkata.valluru@oss.qualcomm.com,
+        jessica.zhang@oss.qualcomm.com,
+        Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771509913; l=3535;
+ i=venkata.botlagunta@oss.qualcomm.com; s=20251110; h=from:subject:message-id;
+ bh=QNj9CkSL63p09bYQPcFcXGu9Fil4w8mAzmvxMZmMJiU=;
+ b=A+c6GYF8pF3nWNNW3/qsc0AZuAfU4JzUhux9EyoeZGFjDSrKaM1YKdrMHr/mO7GewhInf33uL
+ 0xCc2f43OKdD156OeBw/lzTd+BY41GuN+T6ozD9t3nRg7NUyZJ8Bzoh
+X-Developer-Key: i=venkata.botlagunta@oss.qualcomm.com; a=ed25519;
+ pk=/SnYBwlkTzDCLnHFgEY0qFwPgKIV+aQWRbc3naiLzrk=
+X-Proofpoint-ORIG-GUID: aot9B9STf9HeU0HbIem71w_vbaGsk2EX
+X-Proofpoint-GUID: aot9B9STf9HeU0HbIem71w_vbaGsk2EX
+X-Authority-Analysis: v=2.4 cv=c7umgB9l c=1 sm=1 tr=0 ts=6997189f cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=pbok0ahNxPM2TqRZ_awA:9 a=QEXdDO2ut3YA:10
+ a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE5MDEyOCBTYWx0ZWRfXwyH5CUuwI+2b
+ QrgJ9GaijChoVYQx7EaN8qJu9ORmZb8B/8hL0gj9SBCgp7vNNQbLj3iTA6y4k32JreyO3UtsIZk
+ Mjy8lJiw2tWTY5kSv/R79qF2i2vbeYY1KYmDt/6+T/RH5aBoO+ofKss0DiBTY1Xf/tCXOUsvCLf
+ fsAqnOKGE9tZTmiCshRzwNjLtwgPBPuQCe/TXptYpU/UkY52duPuiV1jlxduuS1Se9LqS4U9u6o
+ qk2D70Qm0jInjh70KZ+99uvLXdRadGKyRenawiJY1V74DrX0Q7LdkO5UH8HAn+HWYevfm6UhNze
+ 4QO+MjbhxVCEEEKJho3pGPk4JxuQj6AMSD8cjw8UIlVAhPHXF0LaE0XaDggH0W4rhcNPeLfYTAP
+ lTdOptg1gOYqvs8Ujc3JZ3GHTQZ1u3Y173W0MfzLnoG0OhN7IfVe9cd9GN8jwUaFVpuo3au9zUP
+ F/2mMQ+jnBiM7mGvSTQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-19_04,2026-02-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0 suspectscore=0
+ priorityscore=1501 spamscore=0 phishscore=0 clxscore=1015 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602190128
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN_FAIL(0.00)[1.2.3.5.c.f.2.1.0.0.0.0.0.0.0.0.b.d.0.0.1.0.0.e.a.0.c.3.0.0.6.2.asn6.rspamd.com:server fail];
-	TAGGED_FROM(0.00)[bounces-266664-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
-	RCVD_COUNT_SEVEN(0.00)[8];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266665-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,0.0.0.1:email,qualcomm.com:email,qualcomm.com:dkim,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gatien.chevallier@foss.st.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[venkata.botlagunta@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[foss.st.com:+];
-	DBL_PROHIBIT(0.00)[4.196.180.0:email];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.2:email,0.0.0.3:email];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,st.com:url]
-X-Rspamd-Queue-Id: 180B615F4C6
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 258DF15F4F0
 X-Rspamd-Action: no action
 
-Hello Krzysztof,
+LT9211c bridge and lvds panel node.
+LT9211c is powered by default with reset gpio connected to 37.
 
-On 2/18/26 21:03, Krzysztof Kozlowski wrote:
-> On 18/02/2026 11:38, Gatien CHEVALLIER wrote:
->>
->>
->> On 2/17/26 21:06, Krzysztof Kozlowski wrote:
->>> On 17/02/2026 14:12, Gatien CHEVALLIER wrote:
->>>>
->>>>
->>>> On 2/13/26 16:06, Krzysztof Kozlowski wrote:
->>>>> On 10/02/2026 10:55, Gatien CHEVALLIER wrote:
->>>>>>>> +  memory-region:
->>>>>>>> +    minItems: 1
->>>>>>>> +    maxItems: 32
->>>>>>>> +    description:
->>>>>>>> +      Phandle to nodes describing memory regions to be configured in the RISAB
->>>>>>>> +      by the trusted domain of at least a RISAB page size.
->>>>>>>> +      These regions cannot overlap. A zone must be within st,mem-map range and
->>>>>>>> +      can be represented by one or more pages.
->>>>>>>> +
->>>>>>>> +  st,mem-map:
->>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>>>>> +    description: Memory address range covered by the RISAB.
->>>>>>>> +    items:
->>>>>>>> +      - description: Memory range base address
->>>>>>>> +      - description: Memory range size
->>>>>>>
->>>>>>> Why do you need this property if you have memory-region already? This
->>>>>>> also should be part of <reg>, although this mixing with memory-region is
->>>>>>> anyway confusing.
->>>>>>>
->>>>>>
->>>>>> The RISAB is a memory firewall peripheral covering internal RAMs. It is
->>>>>> possible to configure multiple memory regions within these RAMs (done by
->>>>>> the Trusted Domain) with security, privilege and compartment isolation.
->>>>>> This peripheral allow 4kBytes page granularity. Each page can hold
->>>>>> different access rights, with 32 pages at most (hence the maxItems: 32).
->>>>>> That is some information that can be added to the documentation.
->>>>>>
->>>>>> Moreover, when a region is delegated to a non-secure privileged
->>>>>> component, this component can configure the privilege level necessary to
->>>>>> access the region.
->>>>>>
->>>>>> This property gives me the opportunity to get the memory range covered
->>>>>> by the RISAB. "reg" here is used to access the actual RISAB registers
->>>>>> holding the configuration.
->>>>>
->>>>> Looks awfully like memory regions still :/
->>>>>
->>>>
->>>> IIUC the memory-region property references memory regions within
->>>> a reserved memory. Which is not really what I want to describe
->>>> here as I want to get the boundaries of the whole range. The
->>>> memory-region property would be used by the Trusted Domain / kernel
->>>> to get each regions (or only one that represents the whole range) of the
->>>> internal RAM to apply desired access rights to them / use them.
->>>>
->>>> Describing the memory range using a reserved memory would make the
->>>> kernel exclude this memory range from the normal usage, no?
->>>
->>> In general yes, but also depends on the use case/drivers/purpose. I do
->>> not understand why would you mark some memory for generic use by kernel
->>> (so not reserved for specific purpose) and still configure it somehow
->>> for trusted firmware to allow secure read/write access.
->>>
->>> If you mark some part of memory as a meaning for TF for secure access,
->>> you already claim it is not a generic memory. Otherwise TF just writes
->>> all over malloced() pages?
->>>
->>
->> While the Trusted Domain applies the configuration, it is entirely
->> possible for the Trusted domain to give himself access to, let's say,
->> the first RISAB page to store whatever data, and give the rest to the
->> kernel. Actually, this is what we do to store OTP data mirrors
-> 
-> And what happens with the rest of that memory? Why the first page cannot
-> be the reserved region?
-> 
+Signed-off-by: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso | 125 +++++++++++++++++++++
+ 1 file changed, 125 insertions(+)
 
-First page should be a reserved memory. As the rest should be. Maybe we
-have misunderstood each other here.
+diff --git a/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso b/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
+index 4fab96ba873c..16f757952ff7 100644
+--- a/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
++++ b/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
+@@ -11,6 +11,62 @@
+ &{/} {
+ 	model = "Qualcomm Technologies, Inc. Lemans-evk Mezzanine";
+ 
++	panel_lvds: panel-lvds@0 {
++		compatible = "panel-lvds";
++
++		data-mapping = "vesa-24";
++
++		width-mm = <476>;
++		height-mm = <268>;
++
++		status = "okay";
++
++		panel-timing {
++			clock-frequency = <148500000>;
++			hactive = <1920>;
++			vactive = <1080>;
++			hfront-porch = <88>;
++			hback-porch = <148>;
++			hsync-len = <44>;
++			vfront-porch = <4>;
++			vback-porch = <36>;
++			vsync-len = <5>;
++			de-active = <1>;
++		};
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				dual-lvds-odd-pixels;
++				panel_in_lvds_odd: endpoint {
++					remote-endpoint = <&lt9211c_out_odd>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				dual-lvds-even-pixels;
++				panel_in_lvds_even: endpoint {
++					remote-endpoint = <&lt9211c_out_even>;
++				};
++			};
++		};
++	};
++
++	lcd_disp_bias: regulator-lcd-disp-bias {
++		compatible = "regulator-fixed";
++		regulator-name = "lcd_disp_bias";
++		regulator-min-microvolt = <5500000>;
++		regulator-max-microvolt = <5500000>;
++		gpio = <&expander3 1 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
+ 	vreg_0p9: regulator-vreg-0p9 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VREG_0P9";
+@@ -158,6 +214,55 @@ queue3 {
+ 	};
+ };
+ 
++&i2c1 {
++	qcom,load-firmware;
++	qcom,xfer-mode = <1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&qup_i2c1_default>;
++
++	status = "okay";
++
++	lt9211c_codec: lvds-bridge@2d {
++		compatible = "lontium,lt9211c";
++		reg = <0x2d>;
++		reset-gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
++		vcc-supply = <&vreg_s4a>;
++
++		status = "okay";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				lt9211c_in: endpoint {
++					data-lanes = <0 1 2 3>;
++					remote-endpoint = <&mdss0_dsi0_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				lt9211c_out_odd: endpoint {
++					remote-endpoint = <&panel_in_lvds_odd>;
++				};
++			};
++
++			port@3 {
++				reg = <3>;
++
++				lt9211c_out_even: endpoint {
++					remote-endpoint = <&panel_in_lvds_even>;
++				};
++			};
++		};
++	};
++
++};
++
+ &i2c18 {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+@@ -179,6 +284,26 @@ mac_addr1: mac-addr@0 {
+ 	};
+ };
+ 
++&mdss0 {
++	status = "okay";
++};
++
++&mdss0_dsi0 {
++	vdda-supply = <&vreg_l1c>;
++	power-supply = <&lcd_disp_bias>;
++	status = "okay";
++};
++
++&mdss0_dsi0_out {
++	data-lanes = <0 1 2 3>;
++	remote-endpoint = <&lt9211c_in>;
++};
++
++&mdss0_dsi0_phy {
++	vdds-supply = <&vreg_l4a>;
++	status = "okay";
++};
++
+ &pcie0 {
+ 	iommu-map = <0x0 &pcie_smmu 0x0 0x1>,
+ 		    <0x100 &pcie_smmu 0x1 0x1>,
 
->> or DDR context and give the rest to the kernel or the co-processor.
->>
->> Now, using internal RAM for generic use by the kernel is unlikely but
->> I have in mind the last firewall controller of the stm32mp2x platforms,
->> which is the RISAF. It has the same purpose as the RISAB but for
->> external memories. One protects the DDR so I do want DDR regions as
->> accessible for general use (memory node).
->>
->> This property allows me to describe the boundaries of what is protected
->> without having to imply anything from frameworks about the regions as I
->> have no way of knowing what is accessible and what is not.
-> 
-> Frameworks do not matter here - we don't even talk about them yet.
-> 
-> You want to describe boundaries of some dedicated memory region and you
-> should not have a custom property for that.
-> 
->>
->>>>
->>>> I think declaring a "boundaries" memory region with no usage for the
->>>> kernel wouldn't make sense. The kernel may not be able to access the
->>>> whole memory range.
->>>
->>> I don't understand that. reserved-memory is for cases with "no usage for
->>> the kernel", so it would perfectly make sense.
->>
->>>
->>> Look what your description said:
->>>
->>> "used to protect internal RAMs by applying access"
->>
->> Yes, access rights are applied by the Trusted Domain. These firewalls
->> are very flexible because access rights on secure and privilege levels
->> along with Compartment ID (SoC is divided into multiple compartments
->> holding a compartment ID) can be configured. Some bits of the
->> firewall configuration can also be delegated. e.g: When a memory
->> region is configured for privileged, non-secure access for the
->> cortex running Linux; then the kernel could reconfigure the
->> privilege level (unlikely but feasible).
->>
->> It would be quite complex to explain the whole mechanism without
->> pointing to some documentation [1].
->>
->> Anyway, access rights are applied, but access may very well be given to
->> the privileged non-secure compartment running the kernel. Meaning that
->> only the kernel can access such memory. Not the Trusted Domain, not the
->> user-space, not the co-processor.
-> 
-> This implies that if you do not reserve such memory that way, then
-> Trusted Domain or user-space could just poke and use it...
-> 
-> If kernel explicitly has to tell TD to do something with specific region
-> of memory, this is somehow a reserved memory. It is distinctive,
-> special, selected, chosen.
->>
->> So you could give some bits of internal RAM to the kernel for whatever
->> purpose you'd like (Storing particular data you want to keep in some
->> low-power mode, etc...).
-> 
-> All RAM is for that purpose...
-> 
-
-Not really, some RAMs can be powered off during some low-power modes.
-
->>
->>
->> [1]: https://wiki.st.com/stm32mpu/wiki/Resource_Isolation_Framework_overview
->>
->>>
->>> and
->>>
->>> " a trusted domain, or the domain to whom the page configuration has
->>> been delegated,"
->>>
->>> so how it is not a dedicated, special memory delegated to specific
->>> devices and/or TF?
->>>
->>
->> The memory is delegated to some contexts. These can be the processor
->> running Linux, a co-processor, some initiator ports of peripherals
->> having DMAs, etc...
->>
-> 
-> So pretty close to what the purpose of reserved-memory is...
-> 
-> Well, we keep discussing and I am really not convinced. You can try to
-> catch @Rob tomorrow on IRC and maybe get his approval, but for me this
-> is clearly some sort of reserved memory thus you cannot go with own
-> bindings. Another way would be to prove me wrong by using the reserved
-> memory binding and showing how it could not possible work, ever (such
-> counter examples sometimes help to look at the problem from a new angle).
-> 
-
-Sure, good suggestion, let me state why I think a dedicated property is
-preferred for those peripherals. For this part, I will take into account
-the RISABs and also the RISAF mentioned previously. The RISAF kind of
-works the same but protects external memories such as the DDR.
-
-Just a small reintroduction of the issue:
-We need to provide three sets of information to the drivers of RISAx:
-- The registers of the RISAx device, handled through property "reg"
-- The global range of memory addresses protected by the RISAx devices
-(currently through the custom property "st,mem-map")
-- Each individual memory range protected, handled through property
-"memory-region" that points to children of "/reserved-memory". Memory
-regions may not cover the whole range covered by the RISAx.
-
-To replace the custom property, I have explored a few ways:
-
-1) Describe the memory range covered by the memory firewall as a
-reserved memory: Cannot be done because, for the memory firewall
-covering the DDR, the reserved memory would overlap with the memory
-node used to describe the memory available for regular kernel use.
-The memory node represents part of the DDR in that case.
-
-	memory@80000000 {
-		device_type = "memory";
-		reg = <0x0 0x80000000 0x1 0x0>;
-	};
-
-	reserved-memory {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		ranges;
-
-		risaf_range: risaf-range@80000000 {
-			reg = <0x0 0x80000000 0x0 0x80000000>;
-			no-map;
-		};
-	}
-
-Overlapping is not permitted, nor hierarchies of such regions.
-
-2) Use, as for some Quad/Octo-spi or PCIE drivers, two regs. One for
-the peripheral register and one for the memory range covered. Cannot be
-done as the reg cannot be out of the SoC range. E.g, on stm32mp2
-platforms, the SoC node range is 0x00000000 -> 0x80000000 and the
-DDR is 0x80000000 -> 0x<Depends on DDR density>. So the peripheral
-would be under the SoC node and the memory it covers (DDR) would be
-out of range. It would require an artificial extension of the range
-creating potential undesired effects
-
-3) Use the ranges property: cannot be done because of the same SoC
-range reason.
-
-Therefore, I still think having a dedicated property is the best
-option, but I'm ready to evaluate other suggestions.
+---
+base-commit: 1a0829927afbfe654c632eb2e779fa32df825b06
+change-id: 20260218-enable-lvds-lemans-mezzanine-47584d76ba5a
 
 Best regards,
-Gatien
-
-
-> Best regards,
-> Krzysztof
+-- 
+Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
 
 
