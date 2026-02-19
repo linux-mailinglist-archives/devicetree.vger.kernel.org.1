@@ -1,222 +1,192 @@
-Return-Path: <devicetree+bounces-266597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266598-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NA6EMPJlmminQIAu9opvQ
-	(envelope-from <devicetree+bounces-266597-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 09:28:51 +0100
+	id KIZiIdDKlmmWngIAu9opvQ
+	(envelope-from <devicetree+bounces-266598-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 09:33:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0E315D0F8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 09:28:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0148515D12C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 09:33:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 436B93007518
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:28:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AEAD3301B174
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F57336EE5;
-	Thu, 19 Feb 2026 08:28:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95699333445;
+	Thu, 19 Feb 2026 08:33:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y03mdI9t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D9Mr9LYC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07DEF23DEB6
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 08:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F09726A0DD;
+	Thu, 19 Feb 2026 08:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771489727; cv=none; b=fTOU+KXm6IeaqTZ8uIjX2VmELuXxKMKxr6F38qPcMQenr2PNtU1SNw+z82paalh0Vy2k5l9umAl3bGaBeaWad4UIZjlNe63RlTH67txUrjYA8VVpMSp5iSG0Wn99Iv6+REJJr4SSAqnnH1C+/mVf6yu2FAOX1+0cpJnpRv73Hf0=
+	t=1771489994; cv=none; b=D/L+1D/aY8omKqGFL354MhXSXsoWu5zgpgS+BLQgAwbn+oDWNa+Oupv2q6gfkYRi+Z5N6bJItTJrei4J5QM6fYatmOeXGHTlNFSg7AgTv3YsWO98feLl2qBlOrTnyW2mtyiq6DAOaIodL6IxsaFYKYaUSt6vwbD6UbP5BXMkIIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771489727; c=relaxed/simple;
-	bh=CZdvF0NSmvpT3FQaL3yhFOnbzjIg5pEomEvylH7mBNs=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Jz8ji2NxOS3zL0m8PmeIbywIYhrI8m5i6tTIcEPzqe8h2v1hqPHJ1NMjiX/iD9rigR6iM9K2TQubk04vCWPMcXjZNCbosJJJ7DiVvqu1posoRLjWzzH7J8l4q1p9qQv2FdtuqWGnc7vJ7i8+A/xp7mxRtATdguNv8Eg6Pja9aLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y03mdI9t; arc=none smtp.client-ip=209.85.221.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-43770c94dfaso686864f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 00:28:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1771489723; x=1772094523; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LlA0MoNwLthJ3WbFXT1GsIbvdxg0vIHk87hmvUw3AEo=;
-        b=Y03mdI9tvY00dYQhfNv5kT2SYD0ADW0aJpU0ED70lX79qO6fKJxENWQ3Gi6cHxd2SN
-         WgmmNsIsXrPNDwqTQ1e+00MSBVQe+aet/J0J4ecOXqpjovd+VAR6SaFVmyETM1fNtU5E
-         m98kh4fhisGlK/IKd9WMX9jVlPbnoGCv/JdLu6tA1QfmmDICyW/v2CG4q9i9d0nhefE+
-         4z31/rgtR5cRLtiv158IBwbRYBM3UxjuUUraJ0eryKu4Dw2921NaLjquNDa+umbXStBl
-         QuKSdT78t3nk6bk77J6pqseJdxFAoERgt2mivot2s2/F1DAreEaPA7qqKU5pceQhVMwY
-         55Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771489723; x=1772094523;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LlA0MoNwLthJ3WbFXT1GsIbvdxg0vIHk87hmvUw3AEo=;
-        b=LEVof6km2O4JUkLCi4TxbCT4HRWAGEwfw8A5FF6dICMgScKUIpn8fOaCHUrOnjYqiw
-         43s3EHQFlPAPyqgI/k2D7beOapiBBZAIohSHrRsebnnityYY3LzLofMbKPHo9bJ8htdM
-         zlbOZin9s1u9uSHbNMc0pwLgFDnFyxPXy/qVgeywFs1hkMVgLzD6EfbS+JDsgEmC2TLA
-         HgnAGDkYEZYVEhIu0nXjKjjHJhZkhF/gFgDrL5shjy9fII7RpdSKyZVf+RwA3oy8FpHA
-         w7Bjpfn2VfiVwlH79TJXtH19YKkC36t7gMj1rwhJkyHPyigL6M4fDtRXWD7X+j/oROHq
-         M9AA==
-X-Forwarded-Encrypted: i=1; AJvYcCUCIjUaBqsPrAo2ck2DbxYFlrrLJYV4z/Zug4aCoGZMVmi1xpiMLST6JUxo6+RobQzhLdvQrsRzG5nc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgNWqjoOZ9ADJRcOkkEIYwpdL5cWk4QLh/H5a1TvZoBdwGOO16
-	kmhmvvWaeUpo1Tyv/abdtcFbS9180S7Br6wqfxgWrD9C5V85JdYCvDD80jH+3MwzsII=
-X-Gm-Gg: AZuq6aKTfyVWxjWA9m77fASCa/ZaQ4EGGK8t1UWKWbXSiPeVTouof8dPp0ngttGel+d
-	vEtJZwUM1hkpF8tn2Yuu5w6VxmFTNArcXpNkO2nRdRv/YYf2P1+86Pw3X5AxUj81rc2FbjfQG92
-	azMRTfwew8/jfvJM1BKl3/Jc9BW1gbUBrxB1lWscRYbL9c9ISqY0sVKPPni4xNHpJow1gl0hGtO
-	0rZCjyqyqxOSKMUViwMv9TqlCh6WJBAWBwAuWUiWdVS2eMGrqIq8aXC+L3a2YreVF3QfEjA5Fym
-	7vFxEU684pVJOIZ1gOVncqtnY5g4M3QyYRyixgv5VjxHsjbTjx+dmLL+3bKCW4LFxbYznezJi8F
-	xD6/bwhdsuZQKDHnbgRsHf+JtUkuN9dvCEC/saIob/YPvOAd3tn9+/6q5xjnOiycZiGf9So3v4Z
-	E03kEE/NxiM6almAReJdBKzNDqASVX
-X-Received: by 2002:a05:6000:402b:b0:437:678b:83c2 with SMTP id ffacd0b85a97d-43958e5794dmr8711741f8f.54.1771489723133;
-        Thu, 19 Feb 2026 00:28:43 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796a5ac7csm44982348f8f.7.2026.02.19.00.28.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 00:28:42 -0800 (PST)
-Date: Thu, 19 Feb 2026 11:28:39 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Akhil R <akhilrajeev@nvidia.com>,
-	dmaengine@vger.kernel.org, linux-tegra@vger.kernel.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	vkoul@kernel.org, Frank.Li@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
-	jonathanh@nvidia.com, p.zabel@pengutronix.de,
-	Akhil R <akhilrajeev@nvidia.com>
-Subject: Re: [PATCH 6/8] dmaengine: tegra: Use iommu-map for stream ID
-Message-ID: <202602181757.Amx49qCP-lkp@intel.com>
+	s=arc-20240116; t=1771489994; c=relaxed/simple;
+	bh=7CuuK/0ziAW4syVDA6KX77tamFKsOSxget6SwWeQIlk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=eh9hd5k7kruf6VZ/6WsqzeUlXNJFdN8dV1NroNTx9I7pntUa7dH6Q56KEFtP0hNS3bxy1nuCGxhu4AdFKfvaoPTPPRxGu4/2LVfbgtwebOQAftAjLWoQMSprpAFQAHjQ6IQhIpWb7jbSL3/KPTyEXYCDILEZ35gcxoL6186X23I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D9Mr9LYC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DC66C4CEF7;
+	Thu, 19 Feb 2026 08:33:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771489994;
+	bh=7CuuK/0ziAW4syVDA6KX77tamFKsOSxget6SwWeQIlk=;
+	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
+	b=D9Mr9LYCm37L/N1CWOpScJRdqgnZLzw4qLlvMjs+U00wtD7L8FxIQgmfyJq6xksQL
+	 OAN8I/siEyhOeWyxAzw7tKW1rHgcWRCtG+2KcOOONTvuQr6RAV1VhKvC/8sfDYjjf4
+	 IRbtuSI/rrxB5oIQPKbv36fnl8PjnBY1DuBHNJmUJZbfgtc4nrAQPZNfHmw2E1IuGI
+	 bvY/ScaFuLc6wK/UGnsHPf2AvvHygy95AGF7eC/9vneFb8kwH/4t95qZX84vnZsjz7
+	 E16MGADpdkNdgRZeERs5NXewPl+d6hCNykOiiEqukdVPfoYga3iVPAWm1Ac7/T8scz
+	 SKsxbN6W4tZAQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260217173457.18628-7-akhilrajeev@nvidia.com>
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=8180e7ca633d8ac0d60acc5bb8be376c76d43e2963a101100fb17d52ff94;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Thu, 19 Feb 2026 09:33:09 +0100
+Message-Id: <DGISSIKZERL6.22GCNLNJG9KBY@kernel.org>
+Subject: Re: [RFC PATCH v2 09/12] spi: cadence-quadspi: add PHY tuning
+ infrastructure
+Cc: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <richard@nod.at>, <vigneshr@ti.com>,
+ <tudor.ambarus@linaro.org>, <pratyush@kernel.org>,
+ <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+ <praneeth@ti.com>, <u-kumar1@ti.com>, <p-mantena@ti.com>, <a-dutta@ti.com>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Santhosh Kumar K" <s-k6@ti.com>, "Miquel Raynal"
+ <miquel.raynal@bootlin.com>
+X-Mailer: aerc 0.20.0
+References: <20260113141617.1905039-1-s-k6@ti.com>
+ <20260113141617.1905039-10-s-k6@ti.com>
+ <DGAC4N62UZQQ.3R7TLX87PECU3@kernel.org> <87qzqqxml7.fsf@bootlin.com>
+ <DGCXTWSCAH6R.22SIL82AUVGYI@kernel.org> <87fr76xgsl.fsf@bootlin.com>
+ <54964ad3-64d7-4f4e-bcf9-f0b92b1df034@ti.com>
+In-Reply-To: <54964ad3-64d7-4f4e-bcf9-f0b92b1df034@ti.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266597-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266598-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[intel.com,lists.linux.dev,vger.kernel.org,kernel.org,gmail.com,nvidia.com,pengutronix.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[mwalle@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,01.org:url,intel.com:mid,intel.com:email,git-scm.com:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DE0E315D0F8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0148515D12C
 X-Rspamd-Action: no action
 
-Hi Akhil,
+--8180e7ca633d8ac0d60acc5bb8be376c76d43e2963a101100fb17d52ff94
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-kernel test robot noticed the following build warnings:
+On Wed Feb 18, 2026 at 7:07 PM CET, Santhosh Kumar K wrote:
+> Hello Michael and Miquel,
+>
+> On 12/02/26 18:25, Miquel Raynal wrote:
+>> Hello,
+>>=20
+>>>>>> +	for_each_child_of_node(partition_np, part_np) {
+>>>>>> +		if (of_property_read_string(part_np, "label", &label) ||
+>>>>>> +		    !strstr(label, "phypattern"))
+>>>>>> +			continue;
+>>>>>
+>>>>> There was already a review comment on the last version. Moving this
+>>>>> into the driver doesn't make it any better. In fact this might
+>>>>> create a (bad) precedent for future drivers.
+>>>>
+>>>> I remember complaining about it but not if there was a solution
+>>>> foreseen. In SPI NAND the solution has been found: the pattern is in t=
+he
+>>>> driver and we load it into cache before PHY tuning. But for SPI NOR I
+>>>> understood this wasn't possible. What would be an alternative?
+>>>
+>>> I'm not complaining about using a partition for the pattern but
+>>> about the hardcoded name of it.
+>>>
+>>> It was proposed to use at least a device tree phandle to point to a
+>>> partition (or so).
+>>=20
+>> Ah, yes indeed, thanks for clarifying this up (again) for me. I also
+>> agree the hardcoded name is not ideal.
+>
+> I remember this was discussed in the previous version. As mentioned
+> in v1, using a phandle may not be ideal since a single controller can
+> be associated with multiple flashes. Regarding the suggestion to
+> maintain an array of phandles - consider a configuration with three
+> flashes (NAND, NOR, and another NAND). In such a case, we would not
+> need a phandle for the NAND devices, right?
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Miquel said:
+ | I find pretty strange to have this property in the flash node,
+ | even though I understand the reason. Perhaps an array of phandles
+ | may work in the controller node instead?  So maybe the phandle
+ | should be inside the flash node?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Akhil-R/dt-bindings-dma-nvidia-tegra186-gpc-dma-Add-iommu-map-property/20260218-014114
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
-patch link:    https://lore.kernel.org/r/20260217173457.18628-7-akhilrajeev%40nvidia.com
-patch subject: [PATCH 6/8] dmaengine: tegra: Use iommu-map for stream ID
-config: sparc64-randconfig-r072-20260218 (https://download.01.org/0day-ci/archive/20260218/202602181757.Amx49qCP-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 10.5.0
-smatch version: v0.5.0-8994-gd50c5a4c
+But why is this strange? Can't we treat it as some kind of hint for
+the controller, esp. because as we now learned, that it's not needed
+for NAND flashes?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202602181757.Amx49qCP-lkp@intel.com/
+I.e. for phy tuning to work you'll have either:
+ - nand flash, there it just works out of the box
+ - nor flash, you'll need a phy-calibration-pattern-hint property in
+   the flash node pointing to a flash partition.
 
-smatch warnings:
-drivers/dma/tegra186-gpc-dma.c:1543 tegra_dma_probe() warn: missing error code 'ret'
+If you think about it, a flash partition with a fixed name is also
+part of the flash node. You just add one more indirection to get rid
+of the hardcoded name and have a proper DT ABI.
 
-vim +/ret +1543 drivers/dma/tegra186-gpc-dma.c
+> Also, I'm trying to understand the practical difference between using
+> the partition name versus a phandle. Since the phandle would still be
+> named something like "phy_partition", it seems functionally similar.
+> Please let me know if I'm missing something here.
 
-ee17028009d49f Akhil R         2022-02-25  1514  	tdma->dma_dev.residue_granularity = DMA_RESIDUE_GRANULARITY_BURST;
-ee17028009d49f Akhil R         2022-02-25  1515  
-ee17028009d49f Akhil R         2022-02-25  1516  	ret = dma_async_device_register(&tdma->dma_dev);
-ee17028009d49f Akhil R         2022-02-25  1517  	if (ret < 0) {
-ee17028009d49f Akhil R         2022-02-25  1518  		dev_err_probe(&pdev->dev, ret,
-ee17028009d49f Akhil R         2022-02-25  1519  			      "GPC DMA driver registration failed\n");
-ee17028009d49f Akhil R         2022-02-25  1520  		return ret;
-ee17028009d49f Akhil R         2022-02-25  1521  	}
-ee17028009d49f Akhil R         2022-02-25  1522  
-43f59d3fa0deca Akhil R         2026-02-17  1523  	list_for_each_entry(chan, &tdma->dma_dev.channels, device_node) {
-43f59d3fa0deca Akhil R         2026-02-17  1524  		struct device *chdev = &chan->dev->device;
-43f59d3fa0deca Akhil R         2026-02-17  1525  
-43f59d3fa0deca Akhil R         2026-02-17  1526  		tdc = to_tegra_dma_chan(chan);
-43f59d3fa0deca Akhil R         2026-02-17  1527  		if (use_iommu_map) {
-43f59d3fa0deca Akhil R         2026-02-17  1528  			chdev->coherent_dma_mask = pdev->dev.coherent_dma_mask;
-43f59d3fa0deca Akhil R         2026-02-17  1529  			chdev->dma_mask = &chdev->coherent_dma_mask;
-43f59d3fa0deca Akhil R         2026-02-17  1530  			chdev->bus = pdev->dev.bus;
-43f59d3fa0deca Akhil R         2026-02-17  1531  
-43f59d3fa0deca Akhil R         2026-02-17  1532  			ret = of_dma_configure_id(chdev, pdev->dev.of_node,
-43f59d3fa0deca Akhil R         2026-02-17  1533  						  true, &tdc->id);
-43f59d3fa0deca Akhil R         2026-02-17  1534  			if (ret) {
-43f59d3fa0deca Akhil R         2026-02-17  1535  				dev_err(chdev, "Failed to configure IOMMU for channel %d: %d\n",
-43f59d3fa0deca Akhil R         2026-02-17  1536  					tdc->id, ret);
-43f59d3fa0deca Akhil R         2026-02-17  1537  				goto err_unregister;
-43f59d3fa0deca Akhil R         2026-02-17  1538  			}
-43f59d3fa0deca Akhil R         2026-02-17  1539  
-43f59d3fa0deca Akhil R         2026-02-17  1540  			if (!tegra_dev_iommu_get_stream_id(chdev, &stream_id)) {
-43f59d3fa0deca Akhil R         2026-02-17  1541  				dev_err(chdev, "Failed to get stream ID for channel %d\n",
-43f59d3fa0deca Akhil R         2026-02-17  1542  					tdc->id);
-43f59d3fa0deca Akhil R         2026-02-17 @1543  				goto err_unregister;
+A phandle will be part of the DT ABI. And it will be configurable by
+the user.
 
-ret = -EINVAL;
+-michael
 
-43f59d3fa0deca Akhil R         2026-02-17  1544  			}
-43f59d3fa0deca Akhil R         2026-02-17  1545  
-43f59d3fa0deca Akhil R         2026-02-17  1546  			chan->dev->chan_dma_dev = true;
-43f59d3fa0deca Akhil R         2026-02-17  1547  		}
-43f59d3fa0deca Akhil R         2026-02-17  1548  
-43f59d3fa0deca Akhil R         2026-02-17  1549  		/* program stream-id for this channel */
-43f59d3fa0deca Akhil R         2026-02-17  1550  		tegra_dma_program_sid(tdc, stream_id);
-43f59d3fa0deca Akhil R         2026-02-17  1551  		tdc->stream_id = stream_id;
-43f59d3fa0deca Akhil R         2026-02-17  1552  	}
-43f59d3fa0deca Akhil R         2026-02-17  1553  
-ee17028009d49f Akhil R         2022-02-25  1554  	ret = of_dma_controller_register(pdev->dev.of_node,
-ee17028009d49f Akhil R         2022-02-25  1555  					 tegra_dma_of_xlate, tdma);
-ee17028009d49f Akhil R         2022-02-25  1556  	if (ret < 0) {
-ee17028009d49f Akhil R         2022-02-25  1557  		dev_err_probe(&pdev->dev, ret,
-ee17028009d49f Akhil R         2022-02-25  1558  			      "GPC DMA OF registration failed\n");
-43f59d3fa0deca Akhil R         2026-02-17  1559  		goto err_unregister;
-ee17028009d49f Akhil R         2022-02-25  1560  	}
-ee17028009d49f Akhil R         2022-02-25  1561  
-43f59d3fa0deca Akhil R         2026-02-17  1562  	dev_info(&pdev->dev, "GPC DMA driver registered %lu channels\n",
-3a0c95b61385f5 Akhil R         2022-11-10  1563  		 hweight_long(tdma->chan_mask));
-ee17028009d49f Akhil R         2022-02-25  1564  
-ee17028009d49f Akhil R         2022-02-25  1565  	return 0;
-43f59d3fa0deca Akhil R         2026-02-17  1566  
-43f59d3fa0deca Akhil R         2026-02-17  1567  err_unregister:
-43f59d3fa0deca Akhil R         2026-02-17  1568  	dma_async_device_unregister(&tdma->dma_dev);
-43f59d3fa0deca Akhil R         2026-02-17  1569  	return ret;
-ee17028009d49f Akhil R         2022-02-25  1570  }
+--8180e7ca633d8ac0d60acc5bb8be376c76d43e2963a101100fb17d52ff94
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-----BEGIN PGP SIGNATURE-----
 
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaZbKxhIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/gfIQGAhm4BHvpagP/nqVzn2KYHGkLZLYVEFUXO
+Eu1rxUUExUUxthrES6MNO5nq1l0/ShbSAYDvtKFe7f4djqUowfoczDGG2uyRYY+Q
+C5mflOiigfpnGTVRUXm0MTFX+V7jb9vpNWc=
+=Mowf
+-----END PGP SIGNATURE-----
+
+--8180e7ca633d8ac0d60acc5bb8be376c76d43e2963a101100fb17d52ff94--
 
