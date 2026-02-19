@@ -1,84 +1,85 @@
-Return-Path: <devicetree+bounces-266768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266767-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iPQkE1eVl2nO1QIAu9opvQ
-	(envelope-from <devicetree+bounces-266768-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:57:27 +0100
+	id gGIREQOVl2nO1QIAu9opvQ
+	(envelope-from <devicetree+bounces-266767-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:56:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CAB21636AF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:57:26 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA6D16367D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:56:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8D6C83070DD4
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2AE59301688E
 	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:55:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D82D32E13B;
-	Thu, 19 Feb 2026 22:55:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C7B32E13E;
+	Thu, 19 Feb 2026 22:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="QSNZmoOA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lsH/pO/D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE7D32E6BF
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 22:55:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E7C2F3C26
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 22:55:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771541758; cv=none; b=mx3ci68sFlnmJrCG2te303Y2fy20y1HFxuThfWNdh61tjxU+UqnNo76GOy8iKAhT8zytRLegfK/YYxaRzO7XtDCK1K607pJd+aAVC50Rq8T+RbGrepnvK+5+OtauXqUo6kmE7VgiRdnQXOGqBGALu82KrfeleRcEfkaY9cpAc5g=
+	t=1771541757; cv=none; b=sCUkseFfz5BJPfYjS/4EHjFTpDIwjUtNWsXLV6/m4sHmp8HIqDAe5Tpbl/gJOyQ/SFXwLGX2VyaFYkUNQbahl44Na5hohc/5pjuUCX5PO9Zhe0XYikx1GsaCyiJkgCr/pGcRYHU9bQg7p0Hkd1dTv2TDa/idsKqNtTGYY4gw71U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771541758; c=relaxed/simple;
-	bh=hJfG4u45vdCvSUtHigkyFONhukFUc6nMEAYruquPqJg=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MtIGCONufdt50/yRowwMg4B8dQqkF+6D56HaamyffvgTliGWEjIP+ywcry/zv0AUXy2AQTfrD6plYG5krIQkpzZMBwWVSQEA0lR9aZGbdAmYK/ytfCteaJpKzFHzDGRDJZa6gVH6qnqa2lo1MrjAWT1hsZ8xz01gV1oryYaDY2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=QSNZmoOA; arc=none smtp.client-ip=209.85.210.44
+	s=arc-20240116; t=1771541757; c=relaxed/simple;
+	bh=xXiKD4lBzQGOHXS63TgwS//+Jh77xLfimj0o5Ix5Ov8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=purewB/63bWN7D3d6YV8v8G3JI1oNaSTXFDtkljKhSBsufsjmldhw0sA3NzZi9qyM5rFZMOAGo/mg8wqAoWAkU9mAwHm0SMW7WRBX3JxAxa16b6rNLgO6tvR0CZVDfa22q4+0kxvfjE5CPDWnT3stUfY0NanAPDJklBFx5XVhPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lsH/pO/D; arc=none smtp.client-ip=209.85.210.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-7d4cb7e10efso1304371a34.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 14:55:55 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7d4c9537f90so991779a34.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 14:55:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771541754; x=1772146554; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WfGnMtYSvSKtoJnZqrv9UGQYGmLqGwp6t5dpvCm2nwQ=;
-        b=QSNZmoOAp+qQQRG4ogKhlBrL/+/0SF7Qde5lNTi4F2wTUyeV6cHMWKKyhOLhPaSGnR
-         MqpdLfn5MRNlk4C05MX7JWj86KBtxYsuIdEums9/zVnDhUd5wbe5+POMepszxuwxZFrz
-         J1xBjooMadlpG6W7a7EJ+HI5MYSxB26gAh6VdCBYjnYf7pkyqUpTRbqWkc43G5vyysvZ
-         yH4AFaHLUg6zWXn1gwRbQLagI7gsKEbXTCP5F25qjMg2ifdwpOW0H4O3YUKmMu3SnY0V
-         sX6T1w4zEUFG11ttiUBL6mt09xyNOpqf6cTYKejdWjyAABxW+EoaL2hCY7lAIpjf0Eqv
-         oWGA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771541755; x=1772146555; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=081DBHJ9byQhuCIF18IP6rSG8pXIUMsZt7o8E3vwHTM=;
+        b=lsH/pO/DEeW1edC9y2vjMZxHZmiAZSns/Gq+xNEoYYv35qDql/nF9zE2BOyDk4hzRK
+         j7JWWbainqN/lv23rwVEcWUoTUJ/c2aK7c2rVbS5G8h/nGVKY3OhvuGedBrCeYJEvroP
+         MpJbcbwow6ptYRjsaqiFqVADMZCVXxXQDfUuoqG4mE+7cQRUkhkrsJiNobVEuGakBkX8
+         78Xpw13RcuyWPOCnlXb0vU7GgWvLEBLix63LsqPqiHtMmuOdXQswwmt6zz6Zbw204mZQ
+         FwSFiIOwekExfo2QRewUZ4MD5nXmf/EMlAbEH3Sy5m3KVa3m0VpOmqaya1v+o/MKwB3X
+         BhjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771541754; x=1772146554;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WfGnMtYSvSKtoJnZqrv9UGQYGmLqGwp6t5dpvCm2nwQ=;
-        b=uRmk2BcQAaFydCqmuoRkoPU5qcNCXI7nuce5zsLn7E6bVMzDwA11Vn+wlrzFxB3wZ2
-         Kf4nz6ID7aqTjvAlFWbt/dkMCV4hNQI/tdESp5/AX+fNZdaqIj9jO1h7YFYaiHZTSMvz
-         ALmyuGyB+ss+7gn9JkI7dzsT/CYcUyBff8sz/6sKgipVUJep9DHRl4zYvuWx3G2f5bmk
-         h0GlO166WjYcLqQz01+hJ9tfx0TryRYN+XD7hZgbUxnbDSKPqj3Z4yBnXbgYv/0Vxey5
-         8vGEueVwZZHHDoCGvTlNfsM4HRCCEyfqyiW1QW5gq6OW5dTQ+OmsF2GSf16VFVskvR0N
-         orWA==
-X-Gm-Message-State: AOJu0Yxt+iIgdUQiHXjTsLO3SQUrI2mBSXz2/wpV5nyT6pXhiwOZBo2G
-	ESzZ5w8ovKIdC7b+RCw8OVOHs54AYd0phEyUYXc/MDyPIivlyX3/9Tg9U2GSTp35M3hpCSbLY0t
-	nYMxN
-X-Gm-Gg: AZuq6aLIhU2mSvC7isF/3IfCHFwfEeoQymDJ4BagQExn6BJ6E76beCtSpe3XRtidPN6
-	6DWPj82rsSq1mh+TfDvsMB4QomyYt3qQ2ShLrLTITDdhRBUK3l4P90VrG7Hb4rijjg9CA6AvfbX
-	AwEF8BFjEf1kNo1unQ1ZrdYw5np9UImyq9XOUTb9iE52T0gOEy9saJQatwfyKYzGLf7lc2Xmkjp
-	GvNrC0rBYXAbDw4Q+P+7mZLG1PK9nAMbuqpk+n7DDCTKH7+SXavFcrwXtDO9K7x1ub6VRpP/Hkd
-	i0753m/eIWRN2nPcUoaGMuuTFZ3MdYMmVpUf9VVgD9PPtp8b0jWxclKxHQ9g3O/3vMKwp6hrFV3
-	OMoCjBAyfnc6i8C32AZZL72pkw6rcyRWtAePJpC9iJhT3LVlWPMKF0ZjAzoD9i5/VgzTMsqlCOh
-	z67iGcjRho5U+n3ukdil9OQ+56dw==
-X-Received: by 2002:a05:6830:67f3:b0:7cf:f7c1:d9ac with SMTP id 46e09a7af769-7d4d0acc297mr12600516a34.9.1771541754355;
-        Thu, 19 Feb 2026 14:55:54 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771541755; x=1772146555;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=081DBHJ9byQhuCIF18IP6rSG8pXIUMsZt7o8E3vwHTM=;
+        b=LaZ5UA8E4/2gqvXawPRRj6ja6BLNYEtaMNNBdY8Jg70TjhgWI1njlV+UVgML9qjfjq
+         ctMfo8BuZ4r+xCdyLMx5IOrZ/ep4xZ/4x60QQZOorSfTKxnJonuCl+gNMS8KqZ+I0FV6
+         y/TtbkznV+qjeqd7X38xSCCQtlawJ4Dr3FhQ67xs2wT2vG/WgVMDT/kDvIie0w2Bu2AB
+         enFeraNBDgD30a+YUrHQg2JeIp3CBLeo3rCyhFHXfwqO3J6pvMoTCatmhIElXKkcdqli
+         M0TLFl5kKAAVSwi3KfS/376uPuGkB+/gMSVImgFhx6pVJS3TWNA45fYhsDrt1PuHuHOG
+         Zx0g==
+X-Gm-Message-State: AOJu0YwYfUWsQZGTXU5CNrcFz6YxseL+eM2nocZeuNkGwZSqMMJC8Fzr
+	XzQxDdB3dIifnFPmt9hMckdGRjd9kutmd2kWoeVlvaq8UDLjVR0GeHPxVGMT1KOoDdRGYtllW8N
+	2egNR
+X-Gm-Gg: AZuq6aK3A8A0LcRDiwFl7dt5ZNOwBXD+2HoSbGFNs75ibylFZT8whiiqJh1TckB+rwL
+	IC1lLhtvtDX2Qu+z/smz+jROrDAGhVBZAF0RzkL2gA1lnmSFRrfuMcTOrfSzCVptMgauPojqoNG
+	e4OtQOUZKJnrKpLsQUgFa2PTyiVyFP6QwQ5zcDN4TnyjanXNv/11s3SOzpDaZf6R0Lzk30Zs0q5
+	C6AuYndmfZXQsHY0N74ITnaVz13sPWJ1hZVRjNsrxXAxlP3xRVWkF3uvpoEF9W3KpEdRx0v2vIH
+	Tm2UEt0zgqWridltmEbjqytZS53gl7d0FWwpwvLqYop1UssHbWaII9KwlXfy+qJd9ZDDkLV6m41
+	HTXmJjcPctaioUyiGvxbWlx46c8kZxUwNu1mh48oQZNRf9NwnO/Usv34CaN+JpwYIULPG7ncmkM
+	5QyvEVmdokj+wyYeq+OkI/lUs2rnY0AT4WV+Rd
+X-Received: by 2002:a05:6830:2a0a:b0:7c6:9eac:2385 with SMTP id 46e09a7af769-7d505db43admr4518064a34.5.1771541755291;
+        Thu, 19 Feb 2026 14:55:55 -0800 (PST)
 Received: from [127.0.1.1] ([2600:8803:e7e4:500:d4c1:bce:26a1:c903])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d4a7720a95sm20565585a34.29.2026.02.19.14.55.53
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d4a7720a95sm20565585a34.29.2026.02.19.14.55.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 14:55:53 -0800 (PST)
+        Thu, 19 Feb 2026 14:55:54 -0800 (PST)
 From: David Lechner <dlechner@baylibre.com>
-Subject: [PATCH 0/2] arm64: dts: mediatek: mt6359: give regulators unique
+Date: Thu, 19 Feb 2026 16:55:29 -0600
+Subject: [PATCH 1/2] arm64: dts: mediatek: mt6359: give regulators unique
  names
-Date: Thu, 19 Feb 2026 16:55:28 -0600
-Message-Id: <20260219-mtk-mt6359-fix-regulator-names-v1-0-ee0fcebfe1d9@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,10 +88,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2NQQqDMBBFryKzdkAjpsSrFBchmaRDNZaJloJ4d
- 4cu3uLB4/8TKglThak5QejLlbei0rcNhJcvmZCjOpjO2M70Dtf9rdhhdJj4h0L5WPy+CRa/UsV
- A3sQYrHukAXTkI6TZ/+A5X9cNZXdb9XAAAAA=
-X-Change-ID: 20260219-mtk-mt6359-fix-regulator-names-cea2ddc697f3
+Message-Id: <20260219-mtk-mt6359-fix-regulator-names-v1-1-ee0fcebfe1d9@baylibre.com>
+References: <20260219-mtk-mt6359-fix-regulator-names-v1-0-ee0fcebfe1d9@baylibre.com>
+In-Reply-To: <20260219-mtk-mt6359-fix-regulator-names-v1-0-ee0fcebfe1d9@baylibre.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -101,27 +101,27 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1054; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=hJfG4u45vdCvSUtHigkyFONhukFUc6nMEAYruquPqJg=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpl5TlJcv80s/C/Okoq3TlYmeApRt7FhXmVQch/
- AycgWxpsYeJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaZeU5QAKCRDCzCAB/wGP
- wHH1B/9qHLMxyOde09UGuNhGJ6MzrXJAsPOna4RlNdG4C50Su876Rz/GwXwUTF0CJuuDACjekAV
- rhgitrHiyMuaC2PWeIZIsG5XCwzAdy9iOzpV3Yl2DnpQtoP9APz8vCc64YeSl5zgs9ljCEtKGVw
- w5l56Prt46rL8oLShOp5diD+BNQlQPvSKe+JwwT7MaZ9Zl2rspSDzvPTVst4pWw28ysshT4xvL+
- rgCn6SMFnn8L7/a1gumT2tbdPVgCod8Q1zWgiBg063uQwi8UQitgQM0AE8siYN+kE0BABZn8AFU
- nKPHGoyxCym8Bikoh9aePjwcvL+qTiicPPNYKwLWFTqCHibP
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1137; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=xXiKD4lBzQGOHXS63TgwS//+Jh77xLfimj0o5Ix5Ov8=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpl5TszZbjrmAd5pml3aXjip8WgoYU3VpfTDz+K
+ O3loN2g4biJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaZeU7AAKCRDCzCAB/wGP
+ wJ4+B/0Q41N9GaCv2pSsvORzYWEFvNeBrjIpaCnJbMMNs9538cNjdcZIoKbtOvqDRlK3pdzRGkr
+ qJiDG/+z/Y75ZYoEPAdNrsPbbEhZ168oPvvI7A1JYCtSfktpQD2VdDeNB5d2/olYEn1n/wzi43O
+ WXECxwu5beRFL3NYDQ/fv5gcb1UVuLJXUNnn8eotmG8qNiTy1j4/+vMjloUvA2bgCwzrAPV8ak3
+ r0pGlFN7aZdd2fZp0HVnl95LJr+3OCThwD31UttQ7FhZ69VYO6R9ct2/p5F6ryW37ySEQDsAHgz
+ lkiUqoB+yFYfT0gz3RVpi0U9xl0Qxxx/U54FbRka77olKgMg
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266768-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266767-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com];
@@ -130,7 +130,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -140,35 +140,42 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:mid,baylibre.com:email]
-X-Rspamd-Queue-Id: 9CAB21636AF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,baylibre.com:mid,baylibre.com:email,baylibre-com.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: CAA6D16367D
 X-Rspamd-Action: no action
 
-While working on this regulator in U-Boot, I noticed that the regulator
-names were not unique. This is considered an error in U-Boot and we get
-the following error messages:
-
-mt6359_regulator ldo_vrfck_1: 'regulator-name' has nonunique value: 'vrfck
-mt6359_regulator ldo_vemc_1: 'regulator-name' has nonunique value: 'vemc
-
-To fix, we add the _1 suffix regulator-name devicetree property to match
-the same pattern seen in the node names.
+Change the regulator-name properties to be unique for all regulators.
+U-Boot cannot handle duplicate names.
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
-David Lechner (2):
-      arm64: dts: mediatek: mt6359: give regulators unique names
-      dt-bindings: regulator: mt6359: make regulator names unique
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml | 4 ++--
- arch/arm64/boot/dts/mediatek/mt6359.dtsi                          | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
----
-base-commit: 44982d352c33767cd8d19f8044e7e1161a587ff7
-change-id: 20260219-mtk-mt6359-fix-regulator-names-cea2ddc697f3
+diff --git a/arch/arm64/boot/dts/mediatek/mt6359.dtsi b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
+index 467d8a4c2aa7..45ad69ee49ed 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6359.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt6359.dtsi
+@@ -205,7 +205,7 @@ mt6359_vrfck_ldo_reg: ldo_vrfck {
+ 				regulator-max-microvolt = <1700000>;
+ 			};
+ 			mt6359_vrfck_1_ldo_reg: ldo_vrfck_1 {
+-				regulator-name = "vrfck";
++				regulator-name = "vrfck_1";
+ 				regulator-min-microvolt = <1240000>;
+ 				regulator-max-microvolt = <1600000>;
+ 			};
+@@ -227,7 +227,7 @@ mt6359_vemc_ldo_reg: ldo_vemc {
+ 				regulator-max-microvolt = <3300000>;
+ 			};
+ 			mt6359_vemc_1_ldo_reg: ldo_vemc_1 {
+-				regulator-name = "vemc";
++				regulator-name = "vemc_1";
+ 				regulator-min-microvolt = <2500000>;
+ 				regulator-max-microvolt = <3300000>;
+ 			};
 
-Best regards,
 -- 
-David Lechner <dlechner@baylibre.com>
+2.43.0
 
 
