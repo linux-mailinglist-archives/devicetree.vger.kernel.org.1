@@ -1,289 +1,173 @@
-Return-Path: <devicetree+bounces-266726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266728-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oB5wIa97l2nmzAIAu9opvQ
-	(envelope-from <devicetree+bounces-266726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:07:59 +0100
+	id GOY4BV58l2nmzAIAu9opvQ
+	(envelope-from <devicetree+bounces-266728-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:10:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D217B1629B7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:07:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37277162A11
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:10:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 18B2C308CE53
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:04:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 78D113003812
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE61327202;
-	Thu, 19 Feb 2026 21:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CBF326953;
+	Thu, 19 Feb 2026 21:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kQQe93VI"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XZFY59iG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB363271F0
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3718335977
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:10:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771535078; cv=none; b=lm7DmW/C4q6ZWkVQYizK5N4rBQfrRknjEnhPNcRCGT/cRnVqUoIS+acYgvifA13BZEDT7rVL+F2n5rTwarg7Is+Ac5W8lVbqSnYF0mkKfoi781PKi3C/DrZTIamP+lrzOdSiIButRv709vcggxSkQ4BVZLJ9Y3CeYKEFVBcJqpE=
+	t=1771535449; cv=none; b=PlcwiUw0MmmPqmVEXFzCwjcG4hnU9so14tfRD7YGpFCKlvp6dlFEIZ9AVwbbURAHdclukJb3AP78e9cvdSs/jpKWt6MHfDnR0kehZopzaoY4ehpthZM9rdeqB47tQRRTi6Ws5qtSNbL2aA71qXmxIqI/wYR2hLVngmvT19A9/sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771535078; c=relaxed/simple;
-	bh=AUhhKwGaM9grtdftiWmb9K3MniiTndfrY7S51xLJzEI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qkoN2xRoqGhbTuxsveQdqY51RaV6plaOxmB47cTzaAPwny+G8P/BAshuQSuAjIHsIlYP9oQH8FBFLsANls4tuE7x+JdPyGuDsWzz84j/dMiypyCzRCNp/U6SG9f4xg0L4U9HsUMEepgHSgnMRptMzjr7S0iL/BDXqR7pop1mhIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kQQe93VI; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-5069b3e0c66so28069971cf.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:04:37 -0800 (PST)
+	s=arc-20240116; t=1771535449; c=relaxed/simple;
+	bh=JN6SNwJz/PklshsvOgeHq8ajH+qHNKzC5uQ86LGzgXc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=irRaKn+1IJU/0G7iXc2Nn0PwsMMWrszYgsd9S99xlRAoYZHwSK4L3uWy2tKidbvXzcoyXuKt3//QQuKVTj1RrP1X0d9/4iLeC01JonUIsk0fYhvUTWVBPyko41Ck7nxN7jKwUXmnSBbxj1WD8iMP2XZl/KOvXDypcFfVnXXvoDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XZFY59iG; arc=none smtp.client-ip=209.85.160.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-40f0e14b9f9so812908fac.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:10:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771535076; x=1772139876; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=meO53koivOwOs9Bd8q7AbA+V+PS952tTGxoKR0dH/Dg=;
-        b=kQQe93VIP5548TjxJfVwTI9xCLlx5ZA89cszLVTiY71kfL1Rv5eJnxePKf6D2lYUOu
-         R3IHCG0/WcmVrliDZYsI9Z7ADfGdh+tM4c7MrD90QG2u0SdR+ipw8v+/69Jj/7NnIEef
-         H/+JN3Lic93AV0jhSktTCZ5irmfSlUFf1enQbsung/N4JspR1gjvEJ/ioi/YHiuR4lxK
-         AzIN8pgt4QJ3HjPv/TgbFmb84O7d7WX3i5qTWMIW02BTOWSdBFi6hvw81DoVtWTJLhCX
-         aSFv9kcYNcmFSpeFrOLtFshQ6Z53PH7j+r0JDqgSUstcQUWg/jGs0fwHN3WqKgZWQd4t
-         oGXQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771535446; x=1772140246; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UrC+PLfTea68FI9Rr5zEv0pamcCsfXyApvn8rTrZCCo=;
+        b=XZFY59iG+ON0v2A+mE7aPxY7ovQXFXZCFqAvxBBG7+znDIMC7LE84n2RNsgUlXmY6P
+         tp6Q5b/iZDA9YJluflyDw919fSkX/x+aN9tQX8PDM4JN26ufv4WNR17sBNmLZMMHMJjH
+         ceDYrln1/COWBy/vuFrK6p3xSjqWjjhLC2L+ILcynRG0Dq8FwbeeQtp2Er4mFJ14FFlu
+         b2bQy0rIHQJzTyCq6RoqFE7W9WAWknQjLTYS/o/ov98roir3oapCYFDnhT4WLB/+uAQc
+         nkC6cWWsUmWDDRNmOEOP+HxsR+aCf+GhQ2DYEuD1C/qtv6O/ID2FrjJU7AErBk7ZK43x
+         mxyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771535076; x=1772139876;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=meO53koivOwOs9Bd8q7AbA+V+PS952tTGxoKR0dH/Dg=;
-        b=DtKpbwEmOVgk8rQZJdzvCtRrlctY5wubw3HvfS/NmVYFDc4gmRgDaPmGTIDP31PN32
-         6jpISXknNAUTTfsEl/UXzGHO9yY/daiPXsDzHvjaWDKH1GATZjaHkbhTEFcLZOnVSimM
-         2w0gORNBoWvb/SlIBzS53JdpfgD4Eam+VfpYthwywtujbfNOPRiNmPT5Gwz316gCE36P
-         nH05ZQsnzhAdQSjMSYVMmx3ETO2pr3Ml9ePJHd8E3GPpKL5juyRHhEn2R3rBnEdLtl3F
-         s45kCGOZhPoHTgVfpwmcBpSGk7/pKP/FEmt0265IuTEOyjWuhjnWh6kKjQsTwYdmULky
-         BOyw==
-X-Gm-Message-State: AOJu0Yy5BtxIoMte4mpd1yWhqTlvtKpzdN3s3pNSxycX64wLUD/ckXGr
-	gDyz+rX1ZoqKfcGw05N+Hmz9UJI9zflQe+D5R+nhPAry0cDreqMm1H8q
-X-Gm-Gg: AZuq6aI4g9bX/pAR5OKGdpieTUpUq9bfJsrxaSnGlYROkP6XfLeXeTmSWGohb5RxMkt
-	o6XgEcGKAVWC7BIFp4ZHPo+zj8q1MwvAo2sxjswCud2OQ/+ksjfjsLpOmnWzhAiAIT/mYbK2FBF
-	Qv52cQYMvKiLgOqSRjmJcH35Ufo6ZwyodzP6EQeUyl+xvNqxGsEfkSefEvNykEdLYyZgMHX3GXe
-	aDYYWgZQNAhydVFAY/tLuzEiFO6G0IsuvrOt/m7j4qr26lGes+2M0t7AvY6sLIlKrTB1fWZKB+d
-	Nj8mFhDgwm0ymUwKyXFfMZgIOOamEmcSXX9sP7pGGp8dJj60D5U0njhwecr2UAu7xphO7alkOX2
-	vx0y0P22MgrMAlqEu6hw4rAXZR+zjPoLJFpPHL871RykDD17+rG1Yl1buTsnamPT2PPXw1YtDdt
-	Fxjlvs+srRmRK40eJSdg5INsiiaz7akaY0ae0Ld+DRMAaePt4hVL9VaXBOUSajPAcrbKcLopFXa
-	wOcRNvOJtE=
-X-Received: by 2002:a05:622a:142:b0:4ee:232e:4950 with SMTP id d75a77b69052e-506f33285c4mr39123511cf.8.1771535076074;
-        Thu, 19 Feb 2026 13:04:36 -0800 (PST)
-Received: from mighty.stonybrook.edu (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-506b275d59fsm153971511cf.32.2026.02.19.13.04.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 13:04:35 -0800 (PST)
-From: Mithil Bavishi <bavishimithil@gmail.com>
-To: aaro.koskinen@iki.fi,
-	airlied@gmail.com,
-	andreas@kemnade.info,
-	conor+dt@kernel.org,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	khilman@baylibre.com,
-	krzk+dt@kernel.org,
-	laurent.pinchart@ideasonboard.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	jesszhan0024@gmail.com,
-	rfoss@kernel.org,
-	robh@kernel.org,
-	rogerq@kernel.org,
-	simona@ffwll.ch,
-	thierry.reding@gmail.com,
-	tony@atomide.com,
-	tzimmermann@suse.de,
-	andrzej.hajda@intel.com,
-	bavishimithil@gmail.com
-Cc: devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: [PATCH v6 8/8] ARM: dts: ti: omap: samsung-espresso10: Add initial support for Galaxy Tab 2 10.1
-Date: Thu, 19 Feb 2026 16:04:07 -0500
-Message-ID: <20260219210408.5451-9-bavishimithil@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260219210408.5451-1-bavishimithil@gmail.com>
-References: <20260219210408.5451-1-bavishimithil@gmail.com>
+        d=1e100.net; s=20230601; t=1771535446; x=1772140246;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UrC+PLfTea68FI9Rr5zEv0pamcCsfXyApvn8rTrZCCo=;
+        b=SdS/VNNTHrzlrxi6OQ/Kqxqlj/3L/eVwt1OKY+hcCBpkuFVd4Wwt15a8riIVtxeHsD
+         9LLHXOoymKF26fiahJZSTncjKqs2Up+HKTdLs26exJ70BD3ICdlHMsHpQR2PSvVcfc6l
+         Ivu0yO7hleE5DTxB8DCYGapmRlVxsrdU6TjT/ey/2UeeL8Onmv1gfGEnfO6Pu4eNKqvv
+         5Qk3nzJzliDlrdPWx0T8tUEhrQFvvRgGpTE3rabETXC/rGcvIznUweKojJm0LMcRYQV5
+         LTdi+EoUrmStr+2rDq+dyreq8jQaPHy/ynmspqnth3u8KR0yoCSPnco45Mntc7I0BRhH
+         vibw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6wrrgF9jQv4SDKYz8vc5W3t7gZER9V42jedR3Q4sciyBzesEceR9W5/UtPhoW6Pl2jFU4qoHqdOsP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyPnj6yrMLoB7q3jlXbEYxumBdFU+IF0RZhVy9fA1FDKeaJkro
+	KWM3mEhcETHOeE/X7HgxxnqREwanlLhY5aHAfd4CKRbEMyuf+epvYB9SW+SMr+i8QBc=
+X-Gm-Gg: AZuq6aJ/tglnIgzs8Z6a7yzTgYJDytloKxXVtsavAVNey4g7gDzCENCn3Lgu+JUnodl
+	DFZkfFwY1NosgTOIokPkXEHmd79YAyp52rke8NyooVhmW2Y7XprEvBQxweoGk2ErQZ4Z12ZzdA5
+	cM5hTx4DTkvkkHg/ElGi8ELrAXclkCAONY8nl9nh3WXAd+vqR3KQ42ScX/FDaLWneQhic0TegDQ
+	qV9/tRN1lqiuJpyoaP7R0HPQG1Fe40EHTbXmYtLvY3sJsCxeRjfAkwVQaStTL79WC+h+uQEZxJI
+	YbWLb+dZPr5UqNEi4QCt7BrVvx6U1VJtXKWPmGLdkuIwRdOacAElb491GpX3XlmHPHimKSGThXY
+	tcT1oZ9wRgliMo5sV85A0haeCzhFnX/TkLfnLRuCNmfp4vBZRrlESYtdXnULqP1dorsA3+gEW2J
+	/QbcJ7fmEnRmTxaGTgTzuwdsnpTGZ2tfE6iZfd5LZq/n9pWHdtI/9l9yx+Md/ykuC2+dZ1dQ==
+X-Received: by 2002:a05:6870:4596:b0:40a:5a07:3598 with SMTP id 586e51a60fabf-4152913c255mr4207227fac.36.1771535446056;
+        Thu, 19 Feb 2026 13:10:46 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:d4c1:bce:26a1:c903? ([2600:8803:e7e4:500:d4c1:bce:26a1:c903])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-40ee06756easm22066534fac.13.2026.02.19.13.10.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Feb 2026 13:10:45 -0800 (PST)
+Message-ID: <e0b39f90-f4a4-46c5-90ff-54a261c075b4@baylibre.com>
+Date: Thu, 19 Feb 2026 15:10:43 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 05/18] clk: mediatek: Add MT8189 vlpckgen clock support
+To: "irving.ch.lin" <irving-ch.lin@mediatek.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Bartosz Golaszewski <brgl@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>,
+ Miles Chen <miles.chen@mediatek.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ Qiqi Wang <qiqi.wang@mediatek.com>, sirius.wang@mediatek.com,
+ vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
+References: <20260202062840.342707-1-irving-ch.lin@mediatek.com>
+ <20260202062840.342707-6-irving-ch.lin@mediatek.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260202062840.342707-6-irving-ch.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266728-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266726-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FROM_NEQ_ENVFROM(0.00)[bavishimithil@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_TO(0.00)[mediatek.com,baylibre.com,kernel.org,gmail.com,collabora.com,chromium.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.20:email];
 	PRECEDENCE_BULK(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.11:email,0.0.0.6:email]
-X-Rspamd-Queue-Id: D217B1629B7
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:mid,mediatek.com:email,baylibre-com.20230601.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: 37277162A11
 X-Rspamd-Action: no action
 
-Create a device tree for the 10 inch variants (P5100, P5110, P5113)
+On 2/2/26 12:28 AM, irving.ch.lin wrote:
+> From: Irving-CH Lin <irving-ch.lin@mediatek.com>
+> 
+> Add support for the MT8189 vlpckgen clock controller, which provides
+> muxes and dividers for clock selection in vlp domain for other IP blocks.
+> 
+> Signed-off-by: Irving-CH Lin <irving-ch.lin@mediatek.com>
+> ---
 
-Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
----
- arch/arm/boot/dts/ti/omap/Makefile            |   1 +
- .../dts/ti/omap/omap4-samsung-espresso10.dts  | 104 ++++++++++++++++++
- 2 files changed, 105 insertions(+)
- create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
+...
 
-diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
-index d24f13efd..140ac39b3 100644
---- a/arch/arm/boot/dts/ti/omap/Makefile
-+++ b/arch/arm/boot/dts/ti/omap/Makefile
-@@ -81,6 +81,7 @@ dtb-$(CONFIG_ARCH_OMAP4) += \
- 	omap4-var-dvk-om44.dtb \
- 	omap4-var-stk-om44.dtb \
- 	omap4-samsung-espresso7.dtb \
-+	omap4-samsung-espresso10.dtb \
- 	omap4-xyboard-mz609.dtb \
- 	omap4-xyboard-mz617.dtb
- dtb-$(CONFIG_SOC_AM33XX) += \
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
-new file mode 100644
-index 000000000..5c00d67ac
---- /dev/null
-+++ b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
-@@ -0,0 +1,104 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/dts-v1/;
-+
-+#include "omap4-samsung-espresso-common.dtsi"
-+#include <dt-bindings/power/summit,smb347-charger.h>
-+/ {
-+	model = "Samsung Galaxy Tab 2 (10 inch)";
-+	compatible = "samsung,espresso10", "ti,omap4430", "ti,omap4";
-+
-+	i2c-gpio5 {
-+		smb347: charger@6 {
-+			compatible = "summit,smb347";
-+			reg = <0x6>; // 0x0C >> 1
-+			interrupt-parent = <&gpio2>;
-+			interrupts = <0 IRQ_TYPE_EDGE_BOTH>;
-+
-+			summit,enable-usb-charging;
-+			summit,enable-charge-control = <SMB3XX_CHG_ENABLE_SW>;
-+			summit,chip-temperature-threshold-celsius = <120>;
-+			summit,usb-current-limit-microamp = <1800000>;
-+		};
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&backlight_pins>;
-+		pwms = <&pwm10 0 1600 0>;
-+		power-supply = <&reg_lcd>;
-+		enable-gpios = <&gpio3 31 GPIO_ACTIVE_HIGH>;
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <7>;
-+	};
-+
-+	panel {
-+		compatible = "samsung,ltn101al03", "panel-lvds";
-+		power-supply = <&reg_lcd>;
-+		width-mm = <223>;
-+		height-mm = <125>;
-+		data-mapping = "vesa-24";
-+		backlight = <&backlight>;
-+
-+		panel-timing {
-+			clock-frequency = <69818000>;
-+
-+			hback-porch = <64>;
-+			hactive = <1280>;
-+			hfront-porch = <16>;
-+			hsync-len = <48>;
-+
-+			vback-porch = <11>;
-+			vactive = <800>;
-+			vfront-porch = <16>;
-+			vsync-len = <3>;
-+
-+			hsync-active = <0>;
-+			vsync-active = <0>;
-+			de-active = <1>;
-+			pixelclk-active = <1>;
-+		};
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&bridge_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	touchscreen@20 {
-+		compatible = "syna,rmi4-i2c";
-+		reg = <0x20>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touch_pins>;
-+
-+		//avdd-supply = <&reg_touch_ldo_en>;
-+		vdd-supply = <&ldo6>;
-+
-+		syna,reset-delay-ms = <200>;
-+		syna,startup-delay-ms = <200>;
-+
-+		touchscreen-size-x = <1280>;
-+		touchscreen-size-y = <800>;
-+
-+		rmi4-f01@1 {
-+			reg = <0x01>;
-+			syna,nosleep-mode = <1>;
-+		};
-+
-+		rmi4-f11@11 {
-+			reg = <0x11>;
-+			touchscreen-size-x = <1280>;
-+			touchscreen-size-y = <800>;
-+			syna,sensor-type = <1>;
-+		};
-+	};
-+};
--- 
-2.43.0
+> +static const struct mtk_gate vlp_ck_clks[] = {
+> +	GATE_VLP_CK(CLK_VLP_CK_VADSYS_VLP_26M_EN, "vlp_vadsys_vlp_26m", "clk26m", 1),
 
+In mediatek,mt8189-clk.h, we have:
+
+#define CLK_VLP_CK_VADSYS_VLP_26M_EN			24
+#define CLK_VLP_CK_SEJ_13M_EN				25
+#define CLK_VLP_CK_SEJ_26M_EN				26
+#define CLK_VLP_CK_FMIPI_CSI_UP26M_CK_EN		27
+
+Are we missing the middle two clocks here?
+
+Or should the be omitted from the header file?
+
+> +	GATE_VLP_CK_FLAGS(CLK_VLP_CK_FMIPI_CSI_UP26M_CK_EN, "VLP_fmipi_csi_up26m",
+> +			  "osc_d10", 11, CLK_IS_CRITICAL),
+> +};
+> +
 
