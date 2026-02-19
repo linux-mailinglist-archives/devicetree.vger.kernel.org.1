@@ -1,312 +1,252 @@
-Return-Path: <devicetree+bounces-266644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266646-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QB1BEawKl2nvtwIAu9opvQ
-	(envelope-from <devicetree+bounces-266644-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:05:48 +0100
+	id 8C+nAVILl2kcuAIAu9opvQ
+	(envelope-from <devicetree+bounces-266646-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:08:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C8915EE12
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:05:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC8215EE9D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:08:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A8413091799
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 13:01:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D78DD3070B3F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 13:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28FD33B6E7;
-	Thu, 19 Feb 2026 13:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5CF33ADAF;
+	Thu, 19 Feb 2026 13:04:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="w/x3PmW5"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="g/xLzWYa";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hb1k7hsU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (mail-southcentralusazon11011007.outbound.protection.outlook.com [40.93.194.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0FA33B6E3;
-	Thu, 19 Feb 2026 13:01:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.194.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771506100; cv=fail; b=D2rcy+o7hZs7I9EwKo3BX1+21M8tJY+iups2YHesgXaop8/nu0fwjeWx8lgCG68HQzJrYh9eQ/CUSs8mzY2Qa/0CVsD4aN+6LjJb7feSRUs2twgu/QF70NPioghsoL5G32dJl1LDGyZw254XVLEWtx21zP//DlznchLgwCQD0d4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771506100; c=relaxed/simple;
-	bh=wPGwWpzGzOiRyh8mAVsNZ2WJdkg1+xfU6SXc8xJJRVs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sSsmfe3VQfNmyOOIajyOtfM7KeKfhHJh1UK4bqyUQ+2kCOcmbInYNrLbTR2ha1AXVRJaEvark5acQtEQUrAOInBweYVPLlWtmV0NDshPSPMFp+JldFG2cvo2WklsAR+C3Ieb1T/gl7f0ofWuUyTHfNHtaQ9mq32ciTss4cW3ATU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=w/x3PmW5; arc=fail smtp.client-ip=40.93.194.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sKcL68ks+bmKHChKKcOTLRPRyDm19A+/mD/GuJltkXV9iOKs/w52XCftASJww8LsFUXp7F6v1mLRC+d02zBAGhpTY7T3E36nl6E/90MLMJGESrL3k6x7rW3Z4yxoOl0VGck3/kPiRVv+rddNgkEF8/444753l8aSfZkS080+a5ZKp5se/kPhBsh4ZCdWVQTVPBlpZPpTPXk+Ha9sIEY6vBlWx/hXJ9/7VBnMlmfJEAzUDQuMf+9d+Bx98so8OSovrZtGwAw/nTUaC9D3f390qI7BB0TXit6tCdd71q0mm2qLhg5U3iX2m3A7tQEBUirp+GOlGwzVtVOphYJVU0tGoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Zn/YjKO7q6k/Ly/TAPwDNvswDziYzMAFLS6mvshx4h8=;
- b=mXperVuBgBEjefW/KtK7Lz/adHhZ3CrRiKyR8GDAl36HnKMSlFNG2TakSeM2okZ0Yh2CcN7U9rgL++YzFE1WLaJJrTPRHvShthEXu2vgkdbRqvDkZU7ZfC3ji6ZSOzgYVj3Z12nPA59KM9ODDUp8hFbdv5i/SKWwd92FTrHBRq6y4WTWDZlOtkAITAGyRrEOm5JdskkjBHr4aZhhzGfNZpjmQqbvqHIcC4Qgo4RQViipruf0nOtlYQAKp2SOjfWNZjNPh9I7+xMnvNVHe1jTSEXgt35DV+6tVO1XSUUkMtFuNrvSotMDtv7eY2169WMO095tPfE70swUaii1AZ8Jrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
- pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zn/YjKO7q6k/Ly/TAPwDNvswDziYzMAFLS6mvshx4h8=;
- b=w/x3PmW5naDlyug0ZU2JmwSMbQCEyVmYM6AakUO8WaVoAe2V/GlIQODz5q53C6Ng9EjyvEMKVJ2OnYnsiKpb0wwr9JuTgmKQvoBchYhIrjQRSDE1hELOpfx5jAyFpykE2FxOgzG8/7EFRwy7JzS0V+1+C6vb3/Rc//vD7Y4CMpkv6oWPAkc1pv8lo4wrK9o5sKZ0u5qwXrqAGIhtii5ihMOtv3wlAHQKEeHWSpL1HySjJTrORMIrMCE5RsqvQ+3hjjrLdLg2oF6ig+yXWIefyRnR06B18olK4hzMygZXr/c2rGgPndu5VXRI6GdoGwiw0U1K3m+O3GOdDiikrIChCw==
-Received: from CH0PR03CA0085.namprd03.prod.outlook.com (2603:10b6:610:cc::30)
- by DS4PPF7F045B8D9.namprd22.prod.outlook.com (2603:10b6:f:fc00::b31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.11; Thu, 19 Feb
- 2026 13:01:35 +0000
-Received: from DS3PEPF0000C37A.namprd04.prod.outlook.com
- (2603:10b6:610:cc:cafe::89) by CH0PR03CA0085.outlook.office365.com
- (2603:10b6:610:cc::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.16 via Frontend Transport; Thu,
- 19 Feb 2026 13:01:23 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
- smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
-Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
- not designate 165.85.157.49 as permitted sender)
- receiver=protection.outlook.com; client-ip=165.85.157.49;
- helo=atlrelay1.compute.ge-healthcare.net;
-Received: from atlrelay1.compute.ge-healthcare.net (165.85.157.49) by
- DS3PEPF0000C37A.mail.protection.outlook.com (10.167.23.4) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Thu, 19 Feb 2026 13:01:34 +0000
-Received: from zeus.fihel.lab.ge-healthcare.net (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
-	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id 71D07FFDA4;
-	Thu, 19 Feb 2026 15:01:31 +0200 (EET)
-From: Ian Ray <ian.ray@gehealthcare.com>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Ian Ray <ian.ray@gehealthcare.com>,
-	=?UTF-8?q?Bence=20Cs=C3=B3k=C3=A1s?= <bence98@sch.bme.hu>,
-	=?UTF-8?q?Toma=C5=BE=20Zaman?= <tomaz@mono.si>,
-	linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH V2 3/3] hwmon: (ina2xx) Add support for INA234
-Date: Thu, 19 Feb 2026 15:01:24 +0200
-Message-ID: <20260219130127.87901-4-ian.ray@gehealthcare.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260219130127.87901-1-ian.ray@gehealthcare.com>
-References: <20260219130127.87901-1-ian.ray@gehealthcare.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F68D1CEAC2
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:04:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771506268; cv=none; b=tubtTSO9bs7fRWJCuD8OQ0WKVQKpj/giyAVcn+9hTjeEv6JUY8y4SeRnQvBsClQSsJG0b735TfzrnAa1SuSo9EMrP/C6COr9pME6a8hphLi8tW6kKgUCbEVzJwF7G6/hfoysEHVC/0Klf5nqo+jB1oYfPEkFNVasHIniuHpISLs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771506268; c=relaxed/simple;
+	bh=1NeJm8sPIVVg4lGdDswPtIieqlhK9RJ0JG6NPd8z2MI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WGuDKhNVc0Q1CeO4EP6GBXb0WshS5JJnWMlGfrV7lN1MC45FANtWvZ0LraxKus09J1ma418ILUN0vplFEj8LPVsAsZYZ0yuuzX+a/BWJdGn2xV57YZFAqWaf4r+9XiDiR0SEUpvCcpfYdzlTUFgqYheJKav7iP1HuAksJbteMOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g/xLzWYa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hb1k7hsU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61JBMRr43564631
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:04:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Tta6p1UfArJB2f1ZLaS24vMXG5SGG6hI3ls4c9vUi0s=; b=g/xLzWYaZAS2bBWg
+	JWzT/LveWvegH3N7zrFO6QdRNJTcLZNISsMN/krf3tyC9PLv1D8EtakrRm/X+nUO
+	QTiwOgOcHeYp0b7TBQFkyqMuoBSt8ySJQIxK/gY2CIWczSrNWOgaN3sHXNoOVfbg
+	1PRjlp5l9CJfTUom8JpT3ILdYazTR/mhBTo5T25pPdChfjWvaahZ9XbmiLMnTVlE
+	Yrhuwspltlf7Q/5xFgiD5tqR903bwKKN38k8csF6m/+xbTKATAe4JBoPSlmLTnqt
+	CQUf1pv5UaKqCToE/zboS2IO9fJdhZKHCQQClxWTgz2l89s5oin6V5K7O0n08ivJ
+	Uq1ygA==
+Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ce1k808fk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:04:24 +0000 (GMT)
+Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5fdf45ead1eso180968137.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 05:04:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771506264; x=1772111064; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Tta6p1UfArJB2f1ZLaS24vMXG5SGG6hI3ls4c9vUi0s=;
+        b=hb1k7hsUmcebMIUlmFtPvkIh5d6NiF/OhfBrZCPF/7oAOFE1MhRSxshgRV8PfZyEyt
+         5e3A+Gppc8Twp6nXBXkJMawf3pxwXg4PxTw9QfMcJB69u4HdahX8AiOh2sA9M95ZGzec
+         CZdsqGAKnCnY7+7JgW9rO9XkQmYIZARsFQbSsDTkTzs4KSm4TbZVXxa3iS1erztOXWJf
+         szgSmD4VrFXzPgY0DaF2v0YPvhPymg/8b1/I4ZZP1d2bgOtrK3aln7LfHucutQRKn2ks
+         NrDJ3UYLXguUzxQPbQ6g6Kuk1IMWDjw6bbDpS2gPpgXv/s8hJEsl0v9AXGceUCrfcgnn
+         fM6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771506264; x=1772111064;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Tta6p1UfArJB2f1ZLaS24vMXG5SGG6hI3ls4c9vUi0s=;
+        b=eFx2QZnr4CQoNrMR1qCG9um4oxSUCjC7V4aVm813GyQBmY5xNposeGrhlqXFwr4lUC
+         BwWrog7uVFMld8d0AXuYTjhgWQ24AlKIl3OX9DTLIfW0Pg2lCe4M90DAU7W3m3pGtEue
+         vsrOnSnx+TYXm1g8BSYJc9ntasqM1Oim7dlMsbLAnGDMvNqtNSIFM6dz2CpCS/x6oRBB
+         EVKdbjcvST8YtJ29svNEQzw2db91kp8wLFSeJZiLg7DDJcItdCGiAKXOrkSpjmT36GlF
+         0KGsBCvXoiMf0DbpW5hIKaEbUZDTsmwoHrgJEulzbueG/gdzyVrwugaLGVDsUfEW3jGf
+         Em4w==
+X-Forwarded-Encrypted: i=1; AJvYcCXe//qLJZ+aPf/KIKsuwpe89zEbpvvdqcnB2PcEoy4M3IEGD4Pr51BpDzymAqbXdt4u6l3ha9Bthpsa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnuhR1rW0i/8q+8exLWxQoqjvms3sH1u/6sLUra4WlG4KPrzVI
+	GS7DLK+vjjBrRlhu2V+qyQ1JPcpP7ROj+zt7wusAaJEhq4lPM6XOip5RRchgV8dqcy66XbjAJJc
+	bV1P+Vl8qEAn1s4B6Qv25TXgGyfPQdVZRQcnMBwZRtzz5a8PArbs7+1TT6KT9MDE7
+X-Gm-Gg: AZuq6aJQzBrY8aBcLQ+hdBgL/H/mfp/id3YngEFZ/fsJgoolTddO2IZZaEaYktWuHj4
+	VVRpVn8BOnUNNlO562nqergPTJBd+SX+cw8VBvmCcsR7SHNz+nsFnzFnmNGW7+xp6vuTXlYqskK
+	wIaO1yPJbRoCk7jPZJ/oawALzZ3pGW/ExcrWCfVK9TGr2Vf8jD/TUR6Qotw6R5Hqtxxjuf/QLQf
+	nvMmFRLUbrds++UktQ6ACquvQMQF12JgYeHxcCFyjuKH7TAblPJXlcJj0Jf0mbb7xUVLMePeS2L
+	3rbhFHr8WAQ2VmANTmqiHDyqSSF8MDpRKNOZMYcblgDPTP6re6Q/c6+FrCXQpq0X0Q5nG38Wysh
+	FZrpF2RF6pWnuCJ/KwrrAmEWiVAcQlxFNzSSrjRd0F72P8oQTYPys3fsZIxBeROmZy12kda/oL+
+	WhN/M=
+X-Received: by 2002:a05:6102:3f09:b0:5ec:95a0:6aac with SMTP id ada2fe7eead31-5fe16e93895mr4524646137.4.1771506264141;
+        Thu, 19 Feb 2026 05:04:24 -0800 (PST)
+X-Received: by 2002:a05:6102:3f09:b0:5ec:95a0:6aac with SMTP id ada2fe7eead31-5fe16e93895mr4524635137.4.1771506263611;
+        Thu, 19 Feb 2026 05:04:23 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc7627895sm583473766b.31.2026.02.19.05.04.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Feb 2026 05:04:23 -0800 (PST)
+Message-ID: <81d31750-f301-4332-84fa-a5c1aa401507@oss.qualcomm.com>
+Date: Thu, 19 Feb 2026 14:04:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: pm7250b: Enable Qualcomm BCL device
+To: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, amit.kucheria@oss.qualcomm.com,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Cc: linux-hwmon@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260206-qcom-bcl-hwmon-v1-0-7b426f0b77a1@oss.qualcomm.com>
+ <20260206-qcom-bcl-hwmon-v1-3-7b426f0b77a1@oss.qualcomm.com>
+ <98ad13d8-82d0-4def-917d-b99cf455c5f1@oss.qualcomm.com>
+ <fa6ce650-42b8-4090-9c80-7f4e4c85a96e@oss.qualcomm.com>
+ <91425550-35f6-4941-917c-f639dfadb42d@oss.qualcomm.com>
+ <f62c0595-16ce-4af3-b0e1-0ebb84dc4236@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <f62c0595-16ce-4af3-b0e1-0ebb84dc4236@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37A:EE_|DS4PPF7F045B8D9:EE_
-X-MS-Office365-Filtering-Correlation-Id: 755afe0f-042b-48e8-e46b-08de6fb702cf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TDVqbFMyVS9lbHI5RVdaNUJDcG1sMk5jaFVoUVV2ckNNUTVzNk5xNTNidTE4?=
- =?utf-8?B?SEtabXg4NU9TdGNoeWEyRC9mSWZlS2dNWmpRNnI3aFRqamtDT3F4Vk9oYnl2?=
- =?utf-8?B?OGtqaG4vWVYzeDltSGRENFhuUmdIbXhOYVpRU3BnazlWK1BZUE5uLytRQXZx?=
- =?utf-8?B?eENVek1mb3E4YjYra0s1czM5UDd1RlBJL0xEckRScU9JUVEzZ3UyOHF0U09o?=
- =?utf-8?B?VHVDMk5laWdtTmR2Ym91eTlGU0F6UVM0UXhJL3BOSHdMckwrT3h6RWJNVFVQ?=
- =?utf-8?B?UEhjcWhWYTl0cmRhUFlTWDAzVm51SDdPdjdlWjl4Vld2ZDRucUc4ekQ1UEZt?=
- =?utf-8?B?L3UrQkp6a1JmeW91ajFDTk1NQkxHQ2t6bm1SQy94aS9MMS94aUs0YWtqV2p1?=
- =?utf-8?B?amdSVGdrNTJUQ2s4dERRK2ZWb2NLb1hGaC9PWFZVTFI3UVVDZXFXZzBGWlZY?=
- =?utf-8?B?UWhXc2dzWVdZWS9jNlg2WmZ2Qm9wWkQ3UVVza2E1TzFjemJld3dBV25mS2c4?=
- =?utf-8?B?UGROOStHOTFwWlh0SHM3empXQzRUWU93cVlaaFd6TE01dEdHTVB2VmZwTGMv?=
- =?utf-8?B?V2h1Z3E5cjNoeittdDA3OFFNMW1saFd1NlpMQk9GNCtKUGM3REdoOVFPSGJY?=
- =?utf-8?B?Q1pmSVBvbzNEd0ZIWGs5ZzduMkRyT040cW9PcEdPNmtJcW9uQVc1NjYxcjRl?=
- =?utf-8?B?S3B3YnB0WFY5ZlpqUFc0MDVCZDdPQ0Vic0RaOUlwWUNmYjhoQ2dWSHZyRlNH?=
- =?utf-8?B?MnBiSFVNeXBMdUZRK1JHaGZUNHQ3NXczKzA0YVVGQWttUWtOTXFXU0J0bDZ6?=
- =?utf-8?B?ODFVenZaSGJ1RlpzdWlTMnIySXpiQ2hxVXpQWGo3cUl0OG40QVpzT0ZFYXJP?=
- =?utf-8?B?U3JLOHdzRUR1Zm56SGUxNVRweEJrSkN0cWxFWVd2dzRaSWxIWjBlNHpBMFp5?=
- =?utf-8?B?MlA4a3BtYk1tN0tXV3BSRVhUdEZmYnNHSVowbk5OTkxsMjduQmNjMHZUK1ZB?=
- =?utf-8?B?UktiWUNJajJTUUt5R3dFdzVTRVUvTTZDMGRyVzcvL0pmc01zbjZhTFlweC9z?=
- =?utf-8?B?Y2hiWldzUG9DUTVKNEMzWktmNjNZcHdGYjVsWUJJUmZjYy9RTC9UNXhRSE8x?=
- =?utf-8?B?dUJON2FxS0dHR1VoS2t3SGtlWlhMS0ZZSlUyUzJlc2JPVUVndjhtdHN2dGpn?=
- =?utf-8?B?OVRoRkowMVhtT1k1SjZaNXN0eHVmaVp0WFkzc1VTMENvTVBsSnRIVWhPZ1F2?=
- =?utf-8?B?R0hab0FDYUkwM0NXaWpNY3hvNTFhODZ4QlFtanprQ1JRV1JaZ21WUDBqOTNY?=
- =?utf-8?B?TkkxYWhVbWlLK0JwZWdzeWtMSnJWZGhGS0k0dzZDUlhhTDZrNEg3Wmx0MkxG?=
- =?utf-8?B?UnpFSG5pcTB6K0VvZkJJR21LOVdsbTNYSVR2cEQ5aGxyZ0pKUmZVVkt5UHFD?=
- =?utf-8?B?SHJoWjE2a3E3OXNqQXZFbU5KQ2k4SHUwTEJwM3NZQ3B6ZlBBdXhvRjVyOTRH?=
- =?utf-8?B?ZU1MN25USjl6am1ucDd3RS9DcURyVVBkaVVxbkR0YU14am41MlIxcWFyWWJp?=
- =?utf-8?B?bkdZeDAyVHFMTklMU0plYVE3WVF1SWdnUndLWVcrb2VISnBINU9yL1QvVkpR?=
- =?utf-8?B?SWlTbkVFdk5MMVFrWkRUMDZ6WW1abW9XM3FKU0ZTY3lTUTBKV2lPR3JGdzlS?=
- =?utf-8?B?WEo0enRYNUsyc1pyK0UyOFZPN1pubjM1b3ZRS2UyWU1BUWVtNkxkTllnZjMz?=
- =?utf-8?B?N0FERlJCZlUwUDR3SUEvalovVENjT0tzeTl6aHZzaVJhZjJKNFlwRE5DM2x6?=
- =?utf-8?B?VDNNQkkxeTJ0di8xVmtIanVwTXVHWVY3RWdKZUp5YVNYRSs4WitMeVZqNlo5?=
- =?utf-8?B?aVJmOHZ2VTZYRUZoejRQd210eGtxSU5GSnpRWGZUK1JwUW5uam5vemNLczVx?=
- =?utf-8?B?a3ViNDI2UTF2cHgwOTBxYWROZmdyWGpuV1FvdW83cHU1M1VEaDF0VjBFWmpt?=
- =?utf-8?B?OE94aGlycnhZSEp6QnIwN2lHeDVkY1EzeGw3SDBZZ0NIRHZlRHNMR3pUZC9D?=
- =?utf-8?B?Y0g2N3FWL2hFaXloSkZKSlEvWW1ERWdlMUJTREV2a3kwSDBjWDdBUjc5ODY2?=
- =?utf-8?B?TG5qRitjM3p5ODROM1QzUFprZmYzR08wYjN4NURzaWxzTkVDWldqOElWU29E?=
- =?utf-8?B?bHc9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	oKPAgEMFAQFIqiZdP6RNCliKNdXu96RwTxdpr7ECTfYqFn7BKgiD/O35aAUg1x7LRDpi03WyKpnQPNl0DO8hhNtU534EsV3RpdCt0p044vdO90yF5dYqMYxu5BRbpzLKZVKZ46fjqesJdSsZY4GPWeElCsw1+CWDjLbD3knzOFLBlgk5h2ghpsSH9BoBd2tkRAM54JarkEb/sRUTecXem1zvvMXI4WJbtrz7L6csqdPgKobdqc4YKGr84qPYOgC+LFeF3Mr/I2M5EBVDS4rE9BUtNboEAJkhjdfZTWnrAFFrI2AtgVuGtfA7/ESp/cbawKrVs9X+aWLoVwHGvqHAiknm6o0BKvN+VeVkG2D6+DAox75uBGVdWDlc4VchNBuKlz7yOnJe1884TDGf4wHEiScOP9PNIF/jJETsb//j6mFxTnxhja5p74oU9BztOej1
-X-OriginatorOrg: gehealthcare.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2026 13:01:34.7252
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 755afe0f-042b-48e8-e46b-08de6fb702cf
-X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay1.compute.ge-healthcare.net]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-DS3PEPF0000C37A.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF7F045B8D9
+X-Proofpoint-GUID: 9Ihza9VKTNIMY-St_X26IPAemZcsd8XL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE5MDExOSBTYWx0ZWRfX1fAjSXeg23A0
+ U55feueIM/vC/LXJLuE8Cqi/tCrCn7DzyiIRxF+HZjvUyS6sDxr1hsE/APHlGAPthYrSUi8nYko
+ IEMaB7qaG0Dg9Dcmv4SE3fnfuuU+9ZuaI5FwlzTSI5012VASTqdrxXR7KDnvnIup4AUOn17S/W5
+ I1kTbgezjK/gATl7PMu3COHbsknji1GaY6zcdQ/t1/A71r/W8NlUgNhxWTSze8KV4fLU2k2Iq4d
+ zOH0QutyfrVw8cpVi/pHFojCgu6CppGaygLqXbkm0zsaJMGkiNsmXqy0KGYxo23Ey4P4LPlkIwS
+ uqQnGYbe+/DMEqES/QzX5ZsoWgCHENen7Vrl8r+B2QWn1KZ5Wu86pFwOHVNdrDHvxlVkXp9gyJ9
+ GDRq6CtvWDjbDsgg6hSXJIfPzmwPpiakgaqTl7r/4tG0Z3HjnSzg3JwZbQTxZ76VoXlpf4ddCzs
+ K03JcScUPOnILHQH+Ng==
+X-Authority-Analysis: v=2.4 cv=cdrfb3DM c=1 sm=1 tr=0 ts=69970a58 cx=c_pps
+ a=P2rfLEam3zuxRRdjJWA2cw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=EUspDBNiAAAA:8 a=MO18dg7sMrBkYyaxiDMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=ODZdjJIeia2B_SHc_B0f:22
+X-Proofpoint-ORIG-GUID: 9Ihza9VKTNIMY-St_X26IPAemZcsd8XL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-19_03,2026-02-18_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 adultscore=0 priorityscore=1501 phishscore=0
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2602190119
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gehealthcare.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gehealthcare.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-266644-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,gehealthcare.com:mid,gehealthcare.com:dkim,gehealthcare.com:email,silergy.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	DKIM_TRACE(0.00)[gehealthcare.com:+];
+	TAGGED_FROM(0.00)[bounces-266646-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,1d00:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,c000:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: D9C8915EE12
+X-Rspamd-Queue-Id: 8DC8215EE9D
 X-Rspamd-Action: no action
 
-INA234 is register compatible to INA226 (excepting manufacturer and die
-or device id registers) but has different scaling.
+On 2/19/26 12:34 PM, Manaf Meethalavalappu Pallikunhi wrote:
+> Hi Konrad,
+> 
+> On 2/16/2026 5:18 PM, Konrad Dybcio wrote:
+>> On 2/13/26 12:55 PM, Manaf Meethalavalappu Pallikunhi wrote:
+>>> Hi Konrad,
+>>>
+>>> On 2/6/2026 2:41 PM, Konrad Dybcio wrote:
+>>>> On 2/5/26 10:14 PM, Manaf Meethalavalappu Pallikunhi wrote:
+>>>>> Enable Qualcomm BCL hardware devicetree binding configuration
+>>>>> for pm7250b.
+>>>>>
+>>>>> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/pm7250b.dtsi | 10 ++++++++++
+>>>>>    1 file changed, 10 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+>>>>> index 0761e6b5fd8d..69ad76831cde 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+>>>>> @@ -202,6 +202,16 @@ pm7250b_gpios: gpio@c000 {
+>>>>>                interrupt-controller;
+>>>>>                #interrupt-cells = <2>;
+>>>>>            };
+>>>>> +
+>>>>> +        bcl@1d00 {
+>>>>> +            compatible = "qcom,pm7250b-bcl", "qcom,bcl-v1";
+>>>>> +            reg = <0x1d00>;
+>>>>> +            interrupts = <PM7250B_SID 0x1d 0x0 IRQ_TYPE_EDGE_RISING>,
+>>>>> +                     <PM7250B_SID 0x1d 0x1 IRQ_TYPE_EDGE_RISING>;
+>>>>> +            interrupt-names = "bcl-max-min",
+>>>>> +                      "bcl-critical";
+>>>> We should strip the "bcl-" prefix, since these interrupts happen
+>>>> to be under the bcl device
+>>> Ack
+>>>>
+>>>>> +            overcurrent-thresholds-milliamp = <5500 6000>;
+>>>> Is that something that we expect to change between boards, or is
+>>>> that an electrical characteristic of the PM7250B?
+>>> Yes,  It can change based on battery used for that board as these thresholds will be close below battery OCP spec.
+>>> It is not based on pmic spec. Max current threshold support for specific pmic bcl is taken care in driver pmic data.
+>>
+>> Okay, so this property must not live in the common PMIC DTSI then..
+> 
+> Ack, I will move it into board file wherever it is required in next revision
+> 
+>>
+>> I think ideally this could be communicated over battmgr, since it already
+>> has a lot of information about the battery that's currently connected to
+>> the device. Do you think that would be reasonable? Would you know who we
+>> could talk to internally?
+> 
+> We are not adding any battery information here. This configuration is specifically for the BCL peripheral to monitor current and trigger an over‑current alarm. While the BCL settings are derived from battery specifications, they are not the same as the battery’s own limits,the BCL thresholds will always be set below the battery’s OCP specification.
+> The intent of the BCL is to provide early detection of over‑current or under‑voltage conditions, notify the SoC/peripherals, and allow corrective action before the system ever reaches the battery’s actual protection limits.
 
-Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
----
- Documentation/hwmon/ina2xx.rst | 13 ++++++++++++-
- drivers/hwmon/Kconfig          |  2 +-
- drivers/hwmon/ina2xx.c         | 18 ++++++++++++++++++
- 3 files changed, 31 insertions(+), 2 deletions(-)
+Right, but as you say they are derived from the battery spec, I would
+guesstimate it's something like "90% max current", so swapping out different
+batteries for the same device could potentially affect this value. Since we
+already have a place where OEMs are required to add the battery specs, I
+would imagine this could be beneficial to move over to battmgr in the future
 
-diff --git a/Documentation/hwmon/ina2xx.rst b/Documentation/hwmon/ina2xx.rst
-index a4ddf4bd2b08..d64e7af46a12 100644
---- a/Documentation/hwmon/ina2xx.rst
-+++ b/Documentation/hwmon/ina2xx.rst
-@@ -74,6 +74,16 @@ Supported chips:
- 	       https://us1.silergy.com/
- 
- 
-+  * Texas Instruments INA234
-+
-+    Prefix: 'ina234'
-+
-+    Addresses: I2C 0x40 - 0x43
-+
-+    Datasheet: Publicly available at the Texas Instruments website
-+
-+	       https://www.ti.com/
-+
- Author: Lothar Felten <lothar.felten@gmail.com>
- 
- Description
-@@ -89,7 +99,7 @@ interface. The INA220 monitors both shunt drop and supply voltage.
- The INA226 is a current shunt and power monitor with an I2C interface.
- The INA226 monitors both a shunt voltage drop and bus supply voltage.
- 
--INA230 and INA231 are high or low side current shunt and power monitors
-+INA230, INA231, and INA234 are high or low side current shunt and power monitors
- with an I2C interface. The chips monitor both a shunt voltage drop and
- bus supply voltage.
- 
-@@ -132,6 +142,7 @@ Additional entries are available for the following chips:
-   * ina226
-   * ina230
-   * ina231
-+  * ina234
-   * ina260
-   * sy24655
- 
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 41c381764c2b..6aa8a89f4747 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -2284,7 +2284,7 @@ config SENSORS_INA2XX
- 	select REGMAP_I2C
- 	help
- 	  If you say yes here you get support for INA219, INA220, INA226,
--	  INA230, INA231, INA260, and SY24655 power monitor chips.
-+	  INA230, INA231, INA234, INA260, and SY24655 power monitor chips.
- 
- 	  The INA2xx driver is configured for the default configuration of
- 	  the part as described in the datasheet.
-diff --git a/drivers/hwmon/ina2xx.c b/drivers/hwmon/ina2xx.c
-index 4bf609e25f8a..d6032183b055 100644
---- a/drivers/hwmon/ina2xx.c
-+++ b/drivers/hwmon/ina2xx.c
-@@ -140,6 +140,7 @@ static const struct regmap_config ina2xx_regmap_config = {
- enum ina2xx_ids {
- 	ina219,
- 	ina226,
-+	ina234,
- 	ina260,
- 	sy24655
- };
-@@ -193,6 +194,18 @@ static const struct ina2xx_config ina2xx_config[] = {
- 		.has_power_average = false,
- 		.has_update_interval = true,
- 	},
-+	[ina234] = {
-+		.config_default = INA226_CONFIG_DEFAULT,
-+		.calibration_value = 2048,
-+		.shunt_div = 400, /* 2.5 µV/LSB raw ADC reading from INA2XX_SHUNT_VOLTAGE */
-+		.bus_voltage_shift = 4,
-+		.bus_voltage_lsb = 25600,
-+		.power_lsb_factor = 32,
-+		.has_alerts = true,
-+		.has_ishunt = false,
-+		.has_power_average = false,
-+		.has_update_interval = true,
-+	},
- 	[ina260] = {
- 		.config_default = INA260_CONFIG_DEFAULT,
- 		.shunt_div = 400,
-@@ -995,6 +1008,7 @@ static const struct i2c_device_id ina2xx_id[] = {
- 	{ "ina226", ina226 },
- 	{ "ina230", ina226 },
- 	{ "ina231", ina226 },
-+	{ "ina234", ina234 },
- 	{ "ina260", ina260 },
- 	{ "sy24655", sy24655 },
- 	{ }
-@@ -1026,6 +1040,10 @@ static const struct of_device_id __maybe_unused ina2xx_of_match[] = {
- 		.compatible = "ti,ina231",
- 		.data = (void *)ina226
- 	},
-+	{
-+		.compatible = "ti,ina234",
-+		.data = (void *)ina234
-+	},
- 	{
- 		.compatible = "ti,ina260",
- 		.data = (void *)ina260
--- 
-2.49.0
-
+Konrad
 
