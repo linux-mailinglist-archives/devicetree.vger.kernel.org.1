@@ -1,236 +1,212 @@
-Return-Path: <devicetree+bounces-266619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266620-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFqvCgLjlmlbqgIAu9opvQ
-	(envelope-from <devicetree+bounces-266619-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 11:16:34 +0100
+	id sCJ/HBvmlmkuqwIAu9opvQ
+	(envelope-from <devicetree+bounces-266620-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 11:29:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9561615DB55
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 11:16:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 071E315DC84
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 11:29:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 26A46301A428
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 10:16:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B0721301981C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 10:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C511E332EC1;
-	Thu, 19 Feb 2026 10:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TaVJfH2F";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Tvncm2Qb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0453314BF;
+	Thu, 19 Feb 2026 10:29:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A83328B7C
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 10:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A78492C0F7F
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 10:29:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771496189; cv=none; b=hfuEhMLYVrd1rl+/cRkENuH09ivrnzBu9M9f4UG0ppBo+ZB15yIMU0UaaWXIakpn4bcIzuFat7xKFbTQlyBa6u8RcRm7GP9RrDq+4ODN9TPsVxar0s7RzaaDFsiPnxTRO5Woned0NZRzwV+gyl6wlmrR+2VWoqAC75jxjCCQFns=
+	t=1771496980; cv=none; b=eK6f1NcjRwjrUa41OK/f7gKc/DIspTYuczEGzFIGL1IgeUyHr6ajXltiCokTF4q7viAP2cV/E0nbYXfnY+wzCkM1fbLkZ961NrLb0PZxZTbp6+yRIU6uj5U2ZgSUWVCPufUmqcKfqhcvmoYXj9ESMQLsuYvKlONyqOu+SOdxOhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771496189; c=relaxed/simple;
-	bh=ZlxuKUVIb1SVqc3Ha3QwyhP1WMf3XlGlPsjwG4TMhqY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MtVrZYaWUd2NMrcpO6LTdfcjon0tGA+RTghN5hhXbHQ80A31t94048ShGu46RjcxpKbenjhuKdlYFfzbE6rxTu4sWRRrmbOpDZAYYLO7rJCKedsCEMvU6Tiexe+D3hmivn+DwhIWvEsWzawzveD4l9jPRQV+rAFn9bgUH0lAtnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TaVJfH2F; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Tvncm2Qb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61J4fgLP421076
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 10:16:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4ENxyK49X8RDDGbPQRVRi1Jj0dBJbe2aind76FbEKxw=; b=TaVJfH2FqBTkwZUt
-	A3ZwG58kmlehDP6WXBCx9EN8/51XeeVRVltEyobXvowsXIiG9rgEO6a9KXQ3CAhY
-	vwBF6pHm5OnScj2Pp3WI65Pl5hGxvbHHhQkQtRqD66h4JrEDFQqB+Hh38hQlvLJw
-	Ry+k1q5SKav29jOZ3XGNyoR4AbCaM7mbwjpEG4dm0CJ9eggEXr1tY0kgtgbFnzOd
-	HeataRxZTFqnTV8FHouQVdlMeB7fLZFA6QzOO5UDe2IQ3ZLquvpHPOjZUcvHdrBJ
-	P7U3o2LmfNLPlOLzcxaeqc5G+g7lpzXqMk9RKixFuhPmTlsQfx4GnrXNwd66swKg
-	qkxALA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cd76e42sr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 10:16:27 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a75ed2f89dso8247805ad.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 02:16:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771496187; x=1772100987; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4ENxyK49X8RDDGbPQRVRi1Jj0dBJbe2aind76FbEKxw=;
-        b=Tvncm2QbyTWw4BjcRAHb+nuDYl0SXf23IjSGbJS+qkCjnlW0Z3hKQSTvARSRVSfPgP
-         unDQRxPUEYluBKIbZeSn21wZ0+PAz9OVUnDJi+GscoTT8oTXdjU8o939KGX7WyxcNqDs
-         2WFbAB6jKT5RtvYvjFM4PswSSt2NPtZ6wN8yJfWLuklfAgasa8nPNNwL+aG5EXkcWcLc
-         BEdmSyWVotYdJudkq9C3RqqqQcB+L8PgxwSNUr9nNmfUE6dh+GYA5ZIVAviQ5vIsr9W3
-         CBQcNSQcakItoGDBethGo255c6m98/p4I0rr+jj1QdTKO7NQWc/k/+NNQYuQp0TCAifL
-         EqpQ==
+	s=arc-20240116; t=1771496980; c=relaxed/simple;
+	bh=2wVcxigiWF7bmx5zDNOy2YgF6Z3jZwMF/ktrBkzISyk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=K23IHbtpCj7du9x55DtrcJrwVphD5Vd+hw6SA5tNjSM5JP6OCT94uYTbTEHc2Q7X1Jf6kkcmhhem4dAyniJZRI2n4qQtr4JlfWCcIiNX3lss8o1RYdqQ3dch3pT1vpFQMhasLfgS18YG/kknQY36LUs6HlPN4B5Lx2CDFNxlIM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5fe086fb0baso496644137.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 02:29:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771496187; x=1772100987;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4ENxyK49X8RDDGbPQRVRi1Jj0dBJbe2aind76FbEKxw=;
-        b=dwsz785JUEaeFKR/TyASLbyrEbVvRyqV+ctx2Yp4Ey5t1AdBHgw/WSny29RM54Ik6J
-         E5iFt7KUgsXCszv2qYyXfPSySpp+OG7+Fp4H1+urIfbzWS/rmM0X7Ao+Jz59euo1ZY1m
-         scq/QMO1lN6VRjPCd5vFajCGVTqgR56wTjPfafAcFPP/mvggLndOhH3ScU0HoLI7ZbCl
-         720zxWO4qeoOpyjPWneLEcwt5aEu5pYAMYq/fCwhYlugAfUXZAzktWRvBMWAfYipKiGt
-         hxEfbIkymhOezHeitc76kSUEnCUIMrGTgygPnBlX9wqVB682kPwkb7xK6IJKLd89dNuP
-         PWHA==
-X-Forwarded-Encrypted: i=1; AJvYcCVSPujfb5ez8jj8cTJxNvHnANjM3RqUJ9yZM2vANI1Ls0sRKdSzD1bbQlN5zg++hfi4X4HKsh2lO3BZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTWdbkSb6W50GNALbiCjmG+ODFIrp7aLUbkyOfCvvcNbJanmWM
-	AccLwvV25VP4vurRR47X3dggwjoSn8bDVK1Y5NU8EgAcB8z9eiByLK3Rjv6xbq+othOyEqsTLyb
-	RgVSQbCEYh+3UJU40q8wCn1DC+R7P2JQzDM3zg2Vlwq1mE2z16EYLztEMdNcebYMn
-X-Gm-Gg: AZuq6aIXTtcJ3hLSNwsl72WgNtc2gJ2DyFS/eKMeEx+je6NKsnxN/AX3iNO+IRYv2hm
-	/Zzv3Qw0KB/NsPu5xl5YG+s+TaZI1B9Arw//P4vkVB3T7nvVCpAYKcjXjxi8FG5Jtun1GHRhQFI
-	flnT4Kfi5MZing5oonIn29PVv1bs5aMLx3f/gzfN5CRo23HkxcZMSVhH91uaeNo3Q+F0G2y/wIX
-	XjrpSA7ruIoK84HyhHpdCD4h1IjdDgXCeH6sEHWpatPceE83wjGgBqIGOOkqO5OavlxK94xPA5M
-	V084qLDHYIjcYwpgoRIsyd2f6soeadlWmqfL1EYAc/5ayon35u6X3CbBehuaACMevttHwQxhqI9
-	KPh+2r/Rxm8/vL0+M6PUaVudqf712p+EmlF9hi8MDxtomJ5TjrInvtA0=
-X-Received: by 2002:a17:902:f612:b0:2a9:616c:1705 with SMTP id d9443c01a7336-2ad1745d9cdmr173111455ad.22.1771496187060;
-        Thu, 19 Feb 2026 02:16:27 -0800 (PST)
-X-Received: by 2002:a17:902:f612:b0:2a9:616c:1705 with SMTP id d9443c01a7336-2ad1745d9cdmr173111205ad.22.1771496186575;
-        Thu, 19 Feb 2026 02:16:26 -0800 (PST)
-Received: from [10.218.18.194] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aadd47csm157600955ad.65.2026.02.19.02.16.23
+        d=1e100.net; s=20230601; t=1771496977; x=1772101777;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F/iP8fek36cTZj7uGuQwlk+a5PJBqWvYn07ZjqPzOHk=;
+        b=kMcKH7vZMFszSskIOWBUjgBFoE2vM4ViuZDqFkKLD6m4CMUquv10evVsYdMwJ93qgd
+         /hxRFjSW58tfSt5L6E4Jz8x/G1IXIeO6I0hIak3HPxbfEC94xnVcTCqxLK9Q3baxoMIp
+         FslIW6L4yFHHkaHx5Ebw7zyKWanGABZtWKpFcPxl5KiHQW/YRlScnf+aL2DH6BRgX5OP
+         wTRdtTDBnfeFhRH1BOLEgxCFPaFQCZdOfoNDefQyeAm6RQt5GaQrStTltDNoByDniBUZ
+         u+MWbics+7u69O1hjXBprhD22fTGsNUZFQo/aWSruYh5Yig3Ve7usGOddHXEwS7sh81D
+         UAjA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJgLNUuS+WiBYFARyYAPH8mmLixy3PbpDNstYHjN42Gf3HQrkeNmGGS3BQO8rGxffczIcf60Ig+gW4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXzmN0S4idHO3QvVSvcgbtmVOWJO8867+4CwFnkLGrNukfJo+8
+	b9CNpTP+jM7vwyJ4VR2871nOkqbOliW9t18U8ocYT/r/kYKPw+H37DV+FXHKpRn3
+X-Gm-Gg: AZuq6aIa76acf3GCSWiIxCgEurdUdTOWsIUFvcdxYUYK/C9wCJoQxSHSY6FFOuk82zS
+	CvKGMt8D9IKvF37/nQ23FV4DGTBnnVc6ePHmR3+siktl5P3KqmKZjxeYocmEa5LmPGmyKuqul3r
+	vp1umT0FUKezveXDsjrd/X3wrYfdc/zgOnSR2R8ztuIB9Q11DbInSLIRehrQYGWD0wrJwbFBD5D
+	/g1ECVWoglUAvV2PNkToOKF40E/r+ALy5fs7qpwohG9Uv2eo49YuURsBe8cNlzEWufXFJXr7msn
+	ukc++BGPOxGahcrIi9cn0wXAKhcQgYEpmWIf8VPFNJPqbPz5oUNmU8Bog7521MSUEFbLOGcOy9Q
+	iXko12CyOHR/eFNveRY2FkDJLfTZJI+9dB3tNuJdwklBCgVWThF2Dlsz5EH+amFrz/asgmNEcA0
+	XgBvdHbmCUEhUMJSgqPZqfD2bc5eyhZpfJYEsk3vIGnh1BWexVtua4fUYOnDkpTBB8M0914JM00
+	go=
+X-Received: by 2002:a05:6102:304a:b0:5ee:a8c4:18d4 with SMTP id ada2fe7eead31-5fe7fdd7fa4mr2426275137.35.1771496977527;
+        Thu, 19 Feb 2026 02:29:37 -0800 (PST)
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5fde8adf700sm13186926137.12.2026.02.19.02.29.36
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Feb 2026 02:16:26 -0800 (PST)
-Message-ID: <aac6bf18-0529-416a-b10a-c72b56532010@oss.qualcomm.com>
-Date: Thu, 19 Feb 2026 15:46:21 +0530
+        Thu, 19 Feb 2026 02:29:37 -0800 (PST)
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56637565faaso708822e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 02:29:36 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX7Vb1DHNgnvlbdDhSH5ifSiH02bU/DVv4bn5Fw/nj2g/vMt1wMzubtbe11437q/fj4BjJ8DBmmQQiM@vger.kernel.org
+X-Received: by 2002:a05:6122:2494:b0:567:2b94:2e6c with SMTP id
+ 71dfb90a1353d-568bf59a621mr2370313e0c.11.1771496976112; Thu, 19 Feb 2026
+ 02:29:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-idp: Enable PCIe1
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260212-qcm6490-idp-v1-1-80a45bd46ac5@oss.qualcomm.com>
- <5f62d384-cd53-4e35-87c3-67b45241b90f@oss.qualcomm.com>
-Content-Language: en-US
-From: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-In-Reply-To: <5f62d384-cd53-4e35-87c3-67b45241b90f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=OKsqHCaB c=1 sm=1 tr=0 ts=6996e2fb cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=yW33yQ_1kbtctqWuQ_4A:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjE5MDA5NCBTYWx0ZWRfX2KS6Qgt51vO3
- umK55cRGN0MCpqxuntAsBOH7FEqqMf6YuqbMc8K4bjprioOpbKC2ozCg9yneGl02emztXXrwP5A
- a1MYMeSCpRDSsB90IfSDRfEKdu5Pw6syoEVA3pheH8kmHdnZoXrjxLioPtfcI8YdrwKBU5/F2rK
- smmSJ73dWTJ9jZGN0vSnuTHr7YGKS7ji6t5XiiE76lB1PhK8rbBXO0dso0r602HC/O4qls7O4aC
- Bp1NIG7i8OuwBBByJ7qa/D0pnoDDPTySVvkMeawvtUIVxlG2X3VWlVnNtIbr8nU0jihnV9FrnFo
- bEFwuiEAc62hyPe0yrukX/+Zof3gREf8/48qWLXJJGamjnRbseMYyodM/0zynawvSADRVy3THVc
- YTvb9BQcxS3mAX0RWW/TGmpOgVyoq/ISVjHxt5YT6YpmwzE3b2b+zVD26HyryZvAMGlUWOBAP68
- 5ULp7eD+2KQLl7QNjbA==
-X-Proofpoint-GUID: HW0GncoI4-XNR-ZrMS9-URXXSUxKAMf_
-X-Proofpoint-ORIG-GUID: HW0GncoI4-XNR-ZrMS9-URXXSUxKAMf_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-19_03,2026-02-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 impostorscore=0 adultscore=0 suspectscore=0
- clxscore=1015 spamscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602190094
+References: <20260122-pmdomain-hierarchy-onecell-v5-0-76855ec856bd@baylibre.com>
+ <20260122-pmdomain-hierarchy-onecell-v5-1-76855ec856bd@baylibre.com>
+ <20260127151735.GA1699112-robh@kernel.org> <7hjywtzaiy.fsf@baylibre.com>
+In-Reply-To: <7hjywtzaiy.fsf@baylibre.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 19 Feb 2026 11:29:25 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdURxN=kBQHJKnsTVEQPeuB41r5kZy4sgFNqg=U2ynuZMw@mail.gmail.com>
+X-Gm-Features: AaiRm519SaRshXGNVfvg14cRnmfkYROkGvJOkhQFEH8pcasVxqZP2kH1_tN-rv8
+Message-ID: <CAMuHMdURxN=kBQHJKnsTVEQPeuB41r5kZy4sgFNqg=U2ynuZMw@mail.gmail.com>
+Subject: Re: [PATCH RFC v5 1/2] pmdomain: core: support domain hierarchy via power-domain-map
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Cristian Marussi <cristian.marussi@arm.com>, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	TAGGED_FROM(0.00)[bounces-266620-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266619-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[sushrut.trivedi@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 9561615DB55
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.967];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-m68k.org:email,mail.gmail.com:mid,0.0.0.11:email]
+X-Rspamd-Queue-Id: 071E315DC84
 X-Rspamd-Action: no action
 
+Hi Kevin,
 
-On 2/12/2026 5:49 PM, Konrad Dybcio wrote:
-> On 2/12/26 1:06 PM, Sushrut Shree Trivedi wrote:
->> Remove PCIe1 clocks from protected-list and enable PCIe1 controller
->> and its corresponding PHY nodes on qcm6490-idp platform.
->>
->> PCIe1 is used to connect NVMe based SSD's on this platform.
-> Is that a M.2 slot? What key (B/M etc.)?
-The NVMe is actually soldered onto the board.
->
-> [...]
->
->>   &pm7250b_gpios {
->>   	lcd_disp_bias_en: lcd-disp-bias-en-state {
->>   		pins = "gpio2";
->> @@ -920,6 +931,22 @@ &tlmm {
->>   	gpio-reserved-ranges = <32 2>, /* ADSP */
->>   			       <48 4>; /* NFC */
->>   
->> +	pcie1_reset_n: pcie1-reset-n-state {
->> +		pins = "gpio2";
->> +		function = "gpio";
->> +		drive-strength = <16>;
->> +		output-low;
-> You're asserting the active state of a pin permanently this way, unless
-> the driver takes over, please drop this line
-If we de-assert the reset, it is an indication to the endpoint that it 
-can participate
-in link-training with the host. Hence, until the host driver is probed 
-and necessary
-resources enabled, we keep the perst asserted so endpoint doesn't try to
-participate in link training.
->
->> +		bias-disable;
->> +		};
-> Wrong indentation
-Ack'd.
->
->> +
->> +	pcie1_wake_n: pcie1-wake-n-state {
->> +		pins = "gpio3";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-pull-up;
->> +	};
->> +
->> +
-> Double \n
-Ack'd.
->
->>   	sd_cd: sd-cd-state {
->>   		pins = "gpio91";
->>   		function = "gpio";
->>
->> ---
->> base-commit: 4f938c7d3b25d87b356af4106c2682caf8c835a2
->> change-id: 20260212-qcm6490-idp-24f7b6a1812d
->>
->> Best regards,
+Thanks for your series! I became aware of it only recently, and read
+it and its history with great interest...
+
+On Wed, 4 Feb 2026 at 00:13, Kevin Hilman <khilman@baylibre.com> wrote:
+> Rob Herring <robh@kernel.org> writes:
+> > On Thu, Jan 22, 2026 at 05:14:00PM -0800, Kevin Hilman (TI) wrote:
+> >> Add of_genpd_[add|remove]_subdomain_map() helper functions to support
+> >> hierarchical PM domains defined by using power-domains-map
+> >
+> > power-domain-map. No 's'.
+> >
+> >> property (c.f. nexus node maps in DT spec, section 2.5.1).
+> >>
+> >> This enables PM domain providers with #power-domain-cells > 0 to
+> >> establish subdomain relationships via the power-domain-map property,
+> >> which was not previously possible.
+> >>
+> >> These new helper functions:
+> >> - uses an OF helper to iterate to over entries in power-domain-map
+> >> - For each mapped entry: extracts child specifier, resolves parent phandle,
+> >>   extracts parent specifier args, and establishes subdomain relationship
+> >> - Calls genpd_[add|remove]_subdomain() with proper gpd_list_lock mutex protection
+> >>
+> >> Example from k3-am62l.dtsi:
+> >>
+> >>   scmi_pds: protocol@11 {
+> >>       #power-domain-cells = <1>;
+> >>       power-domain-map = <15 &MAIN_PD>,  /* TIMER0 */
+> >>                          <19 &WKUP_PD>;  /* WKUP_TIMER0 */
+> >>   };
+> >>
+> >>   MAIN_PD: power-controller-main {
+> >>       #power-domain-cells = <0>;
+> >>   };
+> >>
+> >>   WKUP_PD: power-controller-main {
+> >>       #power-domain-cells = <0>;
+> >>   };
+> >>
+> >> This allows SCMI power domain 15 to become a subdomain of MAIN_PD, and
+> >> domain 19 to become a subdomain of WKUP_PD.
+> >
+> > One concern I have here is generally *-map is transparent meaning when
+> > you lookup <&scmi_pds 15>, &MAIN_PD is returned as the provider. It's
+> > also possible to have a map point to another map until you get to the
+> > final provider. The only way we have to support both behaviors is the
+> > consumer has to specify (i.e. with of_parse_phandle_with_args_map() vs.
+> > of_parse_phandle_with_args()), but the consumer shouldn't really know
+> > this detail.
+
+This is also the first thing I was worried about, when I noticed you are
+not doing transparent mapping, but add an explicit hierarchy instead,
+based on the map.
+
+> > Maybe a transparent map of power-domains would never make sense. IDK. If
+> > so, then there's not really any issue since the pmdomain core handles
+> > everyone the same way.
+
+AFAIUI, SCMI is not limited to the SoC, but may be used for the whole
+hardware platform, so it could control power to external devices, too.
+Once we need to map a power domain through a connector, we need
+support for transparent mapping through a nexus node.
+
+> I don't really know enough about potential usage of maps to know if
+> there's ever a usecase for transparent maps.  However, the problem I'm
+> trying to solve is less about transparent maps, and more about
+> describing hierarchy in a situation where "leaf" domains of the same
+> type (e.g. SCMI) can have different parent domains.
+
+Hierarchy is indeed something that cannot be described with the current
+SCMI power domain management protocol.  This includes external hierarchy
+(your use case), and internal hierarchy: AFAIK, Linux cannot be made
+aware of the hierarchical relationship among the different power
+domains controlled through SCMI either.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
