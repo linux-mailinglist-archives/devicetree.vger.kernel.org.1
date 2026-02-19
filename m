@@ -1,73 +1,61 @@
-Return-Path: <devicetree+bounces-266658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266659-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIruOJwTl2n7uAIAu9opvQ
-	(envelope-from <devicetree+bounces-266658-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:43:56 +0100
+	id iHHwBv8Tl2nWuQIAu9opvQ
+	(envelope-from <devicetree+bounces-266659-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:45:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB7915F332
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:43:56 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB0A715F35E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 14:45:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 811ED302DF62
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 13:42:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D1CC0301CDA9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 13:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888AA33A711;
-	Thu, 19 Feb 2026 13:42:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181501D5160;
+	Thu, 19 Feb 2026 13:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZQ+CO1Cu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QoaomqNf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E3C86277;
-	Thu, 19 Feb 2026 13:42:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4EB3CA6F;
+	Thu, 19 Feb 2026 13:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771508554; cv=none; b=N8tlKRwYrVZTT0zMaU4JaZRQH5rGp4ZixioCMdIbiFJUpNoFqZ3+MqGX75RlFwaGrcPm26pfcFoLdYVu55c+KQLf9ufaSxuh8Z8JHy84QDVQuUNmA2wB0cNC/XtJp4iBdGp11s6k38wXZEZ0eD1frjwWEbPr9WnQ9QBW+/DnXUk=
+	t=1771508729; cv=none; b=W7bqr28MNOYlmtA2CgvqZzS4k3UVzq3KTRaxrbIK3Lc6q2WSE7ifuXqV3Vt0hMouEEvx4WC2REyKNv+uPcRncJkDVLv1bGsx/oXwjymqUMtJclnK/AZfBm4OEnu9CjS8F/GjNBZiSYlpeWw3xS38dakvyxGsNhd142owwjnjCnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771508554; c=relaxed/simple;
-	bh=MPW4DEn5P3My4mx8HNR2D1Qa3+cpIreLCA5+A4gMwYU=;
+	s=arc-20240116; t=1771508729; c=relaxed/simple;
+	bh=YNhO5Ar2EvZfD+jNSpkur8t2JjgD5F5KFNpP+al4NSI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i/O/w+EGVJYjk6XLcd5AenzkznropJB2LA0D2lMU+cF8qzDdoE9IqjkR1tsnWOTJFUO91dGPR5JdK5IKw8cgoazbLc/F/BiPbSc+8SPVvmrwmnD4xyb3pMEzjxNi5GHAID0QMFDLL38MTHXRlEXsXSL+ZJYX4qTEZukFZhPNZg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZQ+CO1Cu; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=m71zW88H7K19uDqB/mJVa6SLvXopmaXhdyjRMA5F7Ug=; b=ZQ+CO1CuHmS7qG0gJgND/e2zBA
-	/ubCjr4WIUdnz0YjIla8GiDmOEPHMbPXJFH2bv/HTmr4xfkGKBqUFqcA4c3jySyxFZM4s03A0s2GQ
-	9g8b2lZ2UOhZudKslVqwCiLVlV81XNuoZ5oZ6RPNggjSHFkeqIASVLsOy26sY9Zax3Ec=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vt4IR-007v3K-BB; Thu, 19 Feb 2026 14:42:23 +0100
-Date: Thu, 19 Feb 2026 14:42:23 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Cc: Shenwei Wang <shenwei.wang@nxp.com>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Shuah Khan <skhan@linuxfoundation.org>, linux-gpio@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com, Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
-Message-ID: <13f9d767-61d6-4e29-b36e-6dcc860ccb11@lunn.ch>
-References: <20260212213656.662437-1-shenwei.wang@nxp.com>
- <20260212213656.662437-4-shenwei.wang@nxp.com>
- <aae7c851-a93b-4d57-a118-43c6e68c4790@foss.st.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qFccK24IJhqtKROGVN/dnZDRzwWRQBG35k+Hci9ET214VL79xxNAlug110H9/osZ50wRpR6NOKQdYA6PxyxmK3MZ28lWbFlDSvXctx1PdR+6QB2v1dxMmX72ECaiXppu8bpQ/S7LyzoWty8bWnFn5D73wAwyG+RFhLgCbFEWj2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QoaomqNf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 551C2C4CEF7;
+	Thu, 19 Feb 2026 13:45:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771508728;
+	bh=YNhO5Ar2EvZfD+jNSpkur8t2JjgD5F5KFNpP+al4NSI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QoaomqNfKl5dE/L3S0IJ5q5qwRKsGNgjqxKICtkDVgc8Y3YiWO2z6RybGxQ2s/dk0
+	 DHbnzA9idwGFAiZ5ZgBwf/MM4Cgxv2lENCZ0P8eHcI9dnXGfMZ+Fz2Hrkp85beOtZ6
+	 locSoQ/8WbJnfBY/WhJIOcuzfvVuqBC5ecCa/WmI4KnY/uYMvRzclvqsNgeastPXTC
+	 P8shbDMXsiEiohi3A5vdZXr4hblcUNds2srGUrD45AnCD8HwRhczEubmIUaZwlM1iT
+	 c+J0EPf2BUbHAmXEi8V0P8TmNTM/NujOx3SgDBkBT0DDa8xDNsjHgduT9ern3PaSXs
+	 vayYfKEaqlGZA==
+Date: Thu, 19 Feb 2026 07:45:27 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: andersson@kernel.org, mani@kernel.org, krzk@kernel.org,
+	helgaas@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
+	conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	lukas@wunner.de
+Subject: Re: [PATCH v4] schemas: pci: Document PCIe T_POWER_ON
+Message-ID: <20260219134527.GA2438773-robh@kernel.org>
+References: <20260205093346.667898-1-krishna.chundru@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,71 +64,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aae7c851-a93b-4d57-a118-43c6e68c4790@foss.st.com>
+In-Reply-To: <20260205093346.667898-1-krishna.chundru@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266658-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266659-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,lwn.net,linaro.org,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
-	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
-X-Rspamd-Queue-Id: 4DB7915F332
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: CB0A715F35E
 X-Rspamd-Action: no action
 
-> > +	u8 id;		/* Message ID Code */
-> > +	u8 vendor;	/* Vendor ID number */
+On Thu, Feb 05, 2026 at 03:03:46PM +0530, Krishna Chaitanya Chundru wrote:
+> >From PCIe r7, sec 5.5.4 & Table 5-11 in sec 5.5.5 T_POWER_ON is the
+> minimum amount of time (in us) that each component must wait in L1.2.Exit
+> after sampling CLKREQ# asserted before actively driving the interface to
+> ensure no device is ever actively driving into an unpowered component and
+> these values are based on the components and AC coupling capacitors used
+> in the connection linking the two components.
 > 
-> Does this fields above are mandatory, seems that it is just some constant
-> values that are useless.
+> This property should be used to indicate the T_POWER_ON and drivers using
+> this property are responsible for programming both the scale and the value
+> of T_POWER_ON to comply with the PCIe specification.
 > 
-> > +	u8 version;	/* Vendor-specific version number */
-> 
-> Why it is vendor specific? the version should represent the rpmsg-tty
-> protocol version.
-> 
-> > +	u8 type;	/* Message type */
-> > +	u8 cmd;		/* Command code */
-> > +	u8 reserved[5];
-> 
-> What is the purpose of this reserved field?
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
 
-They have an implementation of the other end running on there systems,
-and it sounds like it is widely deployed, and they are trying to keep
-backwards compatibility. The protocol also implements more than
-GPIO. There is also I2C, maybe watchdog, i don't remember, but early
-versions of this patchset had a list. Some of these fields are used
-for some of these other devices.
-
-I've been arguing it should be a clean design, with the protocol
-focusing on GPIO. And that the rpmsg channel makes it clear this is a
-GPIO device, the protocol itself does not need to include fields to
-differentiate between GPIO, I2C etc.
-
-When they start submitting I2C over rpmsg, i expect the same sort of
-discussion will start again, so the likelihood of keeping backwards
-compatible with there firmware seems low to me.
-
-	   Andrew
+Applied, thanks.
 
