@@ -1,195 +1,216 @@
-Return-Path: <devicetree+bounces-266732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266733-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +AT/HNKBl2kOzQIAu9opvQ
-	(envelope-from <devicetree+bounces-266732-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:34:10 +0100
+	id cMY3LTuHl2kgzwIAu9opvQ
+	(envelope-from <devicetree+bounces-266733-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:57:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC18162D2D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:34:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20DBD162FB4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:57:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B3A1830125FF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:34:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D3A5330067A3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9B532AAAF;
-	Thu, 19 Feb 2026 21:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFB432AABC;
+	Thu, 19 Feb 2026 21:57:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AQN+sSyq"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="YooRy1Mb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f228.google.com (mail-pg1-f228.google.com [209.85.215.228])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC803112AB
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F053009EE
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:57:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.228
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771536846; cv=none; b=PAYNfPnxGQi2oT0/TfGTr8WZWBLLxZXYquq9fkERs/jbn3MVOQR+7zMV5J4MdyBC5doCgeyacBPFiJjeqVDfl8C9LACUqPCBTI2Vwz1dLEpowOlmQh3cl/K6aHhwpnz03gzkNRa9i0dkB7Bnmqb6Cap4QgiHN38u/1SvWeBLqDM=
+	t=1771538233; cv=none; b=cmCjq/vPzNmfu3ANDPUhXOAvuIR+p+C83taLPkUfK8tQsagubauVNE7LpJi4Q0o0KgibUxW9anSzuHLx9ZC0cOcrj/XCAew1hAoKWzSyw6qq/0y0VFJpYXozX5Cu5ELlZ5ucx/p9CXVLpc79mhKksXFex2iXVufD+CDgU59PNQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771536846; c=relaxed/simple;
-	bh=uMHaZcAOYrpN7P5ZdCKx9I0gRTqmqJT4tE+lEzFJ/ps=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dqW7u+pGuX2QYeg/eG7OXXJxtMJsyjmPqqNawmdZ2Dxcuzu3pN+qIDkdXhY2+uql+15S+qpd/2lljb7m+/mxl+1if6h3qqaOzrUIoREo/dc2LajlOJxAQxM4710ISVnD6pu933TJ7drDYVh35UlFF2RjzMyebrLr/QsKFKtVxEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AQN+sSyq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA2B5C2BCAF
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:34:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771536845;
-	bh=uMHaZcAOYrpN7P5ZdCKx9I0gRTqmqJT4tE+lEzFJ/ps=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=AQN+sSyqjzkBSpuIlV9eMaIP7cmoj6UGNl5f7Ypx1uGsYhgchrp2i7dn4q9Ga9ASE
-	 fK1LAEW9B0hdDi1bdmZfawnKAJmVTnzeOqUUdVkxVIQdN+ny90ZbHmuTcm23WRKyHD
-	 27+HGJSt5zlIA47gp1J3HXMRQKZg2SUEeiqNg9ntRx3sSfs2K3mExyGaydyj3K2+cr
-	 xkZt+EGVWLIQrPdi6Fq8JqIs3JC2eDBwsjrOXGu42YS4Kt0/IPnBST/H/rY8lZj9XB
-	 zmWOrhLq8uRbzv8W84f3v6KG8EcJ2ZSwaX7J9QzAQ1VKR7g/cP8EGjcXgZPCSTxgiV
-	 m7QgOC84UVQSQ==
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b8876d1a39bso192358066b.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:34:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUzU3A+N6ToxpxYrr6vA0WX0LBYWDv6lqdSr+pziK5v4IJeI5+7BTS7RVl7MPI/DzmHs86AhU70KQam@vger.kernel.org
-X-Gm-Message-State: AOJu0YyY4u9noWuYdXKZyF0fcV/csg60IfNT6cCMsdzZa+1yjGITT5VP
-	9U7ZwpJUiN5UnTHsXoe//GXOKj+vPLJy7oe/1A9vj7k6yTl9FUbfdEnrvu8uFkDQE6mTSG0G1i7
-	ZnihUYzyzezAJvPGQgeB+wZsY5U3MkQ==
-X-Received: by 2002:a17:907:3e8f:b0:b88:5b21:b16b with SMTP id
- a640c23a62f3a-b8fc3b59ed1mr1249300266b.25.1771536844305; Thu, 19 Feb 2026
- 13:34:04 -0800 (PST)
+	s=arc-20240116; t=1771538233; c=relaxed/simple;
+	bh=M13rRdKkj48+l10Frz4L86bVw/CZ75WBD1Ms+1T541k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tF+txZ9zSV85Jc5DJyoKXPScGhR07czoe/ccpYLj7KU7Aik5kSg+ixmp3MIusMjkhVoZdi8qc8KvMT/UxLKlfPs4B/1kmsrCVGdqWAWwBsZMNiz1ANi+DLuQ6blUw3HJKIruMp9oFtf4M1W/ot/SqTaOKgvYd8dtcqCo0c1qH5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=YooRy1Mb; arc=none smtp.client-ip=209.85.215.228
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pg1-f228.google.com with SMTP id 41be03b00d2f7-bde0f62464cso579605a12.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:57:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771538231; x=1772143031;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:dkim-signature:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LrI6BpFC3eI6yOKYRJrMT8qJD2DqNlsDbhGThIhmnQs=;
+        b=VYfeEfu3SCsgweJGWXXWjv4cqREb4snVFmGMx07oIf7LtjELPDjoJvMIgDK704Iz3I
+         NIDmHrJCUXHqPIFlCjaTDGj+nqqTlbdAs17Bmh4mIjpV5J9NjtW7ulZddFJTxgEAY9KP
+         W9jkBawTHvYkHyrAJXGTOhETixcV0M1LikjBhSip20FZUdHMriPF1imzbv3Zt3fyb91E
+         u5ITVQqJkVRIwwHMJqkYc90WIpeYG7w0Mq6w+2dMYEXivzflfi//x4b3lHNC64ryOUqz
+         de9qVrcJouLOi68GDDX0a3c8y0/7L/pZ6depcDTGcE42OOa6ACVVSMxQ1ndJxXOqg5rN
+         MxIw==
+X-Forwarded-Encrypted: i=1; AJvYcCV36DiZ83BnRgjG950bO7e0TpIFzEwpaYVa0q7hskQXfPYE974Gv2fmsItWfjo2G+WQjBMMe/O2yrE+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzR4FWWvlAp8+BQPoFd9uXAAbbjGMXGp1TvdzPYpDVB9ug4kY7
+	qXVHU5/BTecdaJNbFo+Ywlx2AgApc0uxOdPqYapjdE4frMGRwwac9IKx6reNd881PwqhgnsjX2M
+	Yej/xgyIsHKIMT1JNntPL/Wuv6L3PLKikaD2Qidq8UhOaPkehxoOJFmJXhpnepB4wDnu0Ng2WDD
+	bI8/oGbfoRoxX9Hed1XJspJFCQyLaV9ZtmbIeVMpVk6qXoVwIG/k6bcs2o63TAFLdgGJwat6+GK
+	5jxE8t/1udSJA==
+X-Gm-Gg: AZuq6aIdE+FbBoGVITVVBMr9RYyx+kqLsi7rdoaMlZ/tJX7Oq40zOXkeAo67nqnMkoc
+	WqZvA3ABw6u3EcEADPQXB90crj4KojUyHEiSuhHiuLMEa9zBGNsiyMNk+fQLcbKTrQ2PSJL6Vbm
+	oAEdDCn3Aq3RmFb5kpCNOIdqxCOGi4om77o+V1YPFdnytTByTDbk7l1IIWJsPsqe94UCBJbVtzq
+	/Sz8yDB1db6ttFTwP3XRu9Mzm5Litsld39MKtk4L/XXRcj859GPYKAnYp13qVaYs/DGmiJYoNH3
+	smT3EPy4bKelweHNNwEhxqyivwoz03PWhnU2peNSUG9axSbK85woID9OVoVqx8UvZOKt4ztMtaG
+	ELk5QdSJC/k5hKfq+bIr5RRWpwE/xLk2ZP76FUvxOPVrMQxZpEdjsegbu5qDaLhh3ea8M2ns9oG
+	P+ml02igecfx1VF/w+m8/n58iFqCZFG2WyupSTcU4+bEd5BpFRPYIbb817
+X-Received: by 2002:a17:90b:3d83:b0:354:c6ac:6e3 with SMTP id 98e67ed59e1d1-358450c98c3mr16292434a91.32.1771538231314;
+        Thu, 19 Feb 2026 13:57:11 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-117.dlp.protect.broadcom.com. [144.49.247.117])
+        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3589d817408sm198164a91.3.2026.02.19.13.57.10
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 19 Feb 2026 13:57:11 -0800 (PST)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a7701b6353so16510105ad.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:57:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1771538229; x=1772143029; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LrI6BpFC3eI6yOKYRJrMT8qJD2DqNlsDbhGThIhmnQs=;
+        b=YooRy1MbEzA+TPPyKk6bKdlKsTi7nRo9oDFPpcHclFwh3ja1pICm83OPV9TQmbnxWV
+         yBbhB4icMXEHYd6tvG19YO/blwljJSuTSXEJIZ5SFJKOqbOZe2NEZVVsCD1v5OXP5gr4
+         k4AY8WsrQA3PPQ7zYo+c9ujFu/4URgfxLWGGY=
+X-Forwarded-Encrypted: i=1; AJvYcCVfIJPFPRE0+xtfE6UEcJWodv2X4j+4/cBkHI+KM0gWD7GABdjLKUf5NEVBQVB0AMyOTA3hl0ahBzQR@vger.kernel.org
+X-Received: by 2002:a17:902:f647:b0:2aa:d2a7:ad2e with SMTP id d9443c01a7336-2ad17515e97mr214771145ad.36.1771538229586;
+        Thu, 19 Feb 2026 13:57:09 -0800 (PST)
+X-Received: by 2002:a17:902:f647:b0:2aa:d2a7:ad2e with SMTP id d9443c01a7336-2ad17515e97mr214770935ad.36.1771538229117;
+        Thu, 19 Feb 2026 13:57:09 -0800 (PST)
+Received: from mail.broadcom.net ([192.19.144.250])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aae9d73sm156416065ad.77.2026.02.19.13.57.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Feb 2026 13:57:08 -0800 (PST)
+From: Kamal Dasu <kamal.dasu@broadcom.com>
+To: andersson@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: baolin.wang@linux.alibaba.com,
+	florian.fainelli@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Kamal Dasu <kamal.dasu@broadcom.com>
+Subject: [PATCH v4 0/3] Adding brcmstb-hwspinlock support
+Date: Thu, 19 Feb 2026 16:56:59 -0500
+Message-Id: <20260219215702.63321-1-kamal.dasu@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260214213239.2546012-1-james.hilliard1@gmail.com>
- <CAMRc=MfK8k88PfQPvP=p1r3KQ40dwcZq4Z4f5fnRFakpYcknvA@mail.gmail.com>
- <CADvTj4r4mR0_HxcOOZFqJTVfoD=YdrGd2AD+hQNw6ciGUC=C1A@mail.gmail.com>
- <CAMRc=Me6v2E1zKGQzukJmP45cVkRWOGzYoO9=LKh63rPFRqfqA@mail.gmail.com>
- <CADvTj4ovM1faNGoUa4HoTCN7avAqwkZfY5v9P8okgx87or8gDA@mail.gmail.com>
- <CAMRc=McR613nBkUehva0bidxrUz2eQ1Ud9g1m4gKdXyGzHo_PA@mail.gmail.com>
- <CAL_JsqLEKr6G4qZe=vvJzP+KC_WWh0SHOjg14rxQvAvxV7wNUA@mail.gmail.com>
- <CADvTj4pfuV1s7VzS-cw+66N9HxijZ8x4Gr_jgTqPEqDvpz-hqg@mail.gmail.com>
- <CAMRc=MfBt3ae2tdRKQT-AvjocN9OmC-jAtw0206rT3qGmSJDig@mail.gmail.com> <CAD++jLk4Z1S-3Pitafv8Ok5HCB+K9o8PG53wsqLL1RNXM7753w@mail.gmail.com>
-In-Reply-To: <CAD++jLk4Z1S-3Pitafv8Ok5HCB+K9o8PG53wsqLL1RNXM7753w@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 19 Feb 2026 15:33:53 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLR0mcGsDcGeFyS_ZK-hMz6LshTvtETyeNhcq_PCC8_WA@mail.gmail.com>
-X-Gm-Features: AaiRm51hHQngkWKqO2Zli8sMCEqc-0XS_FMWPsa2jUBIlM58SNPGUVt-842hqLY
-Message-ID: <CAL_JsqLR0mcGsDcGeFyS_ZK-hMz6LshTvtETyeNhcq_PCC8_WA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] gpiolib: of: add gpio-line node support
-To: Linus Walleij <linusw@kernel.org>
-Cc: Bartosz Golaszewski <brgl@kernel.org>, James Hilliard <james.hilliard1@gmail.com>, 
-	linux-gpio@vger.kernel.org, Saravana Kannan <saravanak@kernel.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[broadcom.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266732-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-266733-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[broadcom.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kamal.dasu@broadcom.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[broadcom.com:mid,broadcom.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BEC18162D2D
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 20DBD162FB4
 X-Rspamd-Action: no action
 
-On Thu, Feb 19, 2026 at 12:23=E2=80=AFPM Linus Walleij <linusw@kernel.org> =
-wrote:
->
-> On Thu, Feb 19, 2026 at 10:15=E2=80=AFAM Bartosz Golaszewski <brgl@kernel=
-.org> wrote:
->
-> > The problem here is that the state of a GPIO that's not requested is co=
-nsidered
-> > "undefined" and controlled by the GPIO chip driver. The whole "initial =
-state"
-> > sounds very hacky. You would have a much better case if you instead wor=
-ked on
-> > a "default state". It seems Rob is not entirely against it. Neither am =
-I. It
-> > would make sense to tell the GPIO driver: "if nobody's using it, do thi=
-s".
->
-> Pin control actually has both initial state and default state...
+This is a standalone patch for the hardware semaphore feature for
+all brcmstb SoCs that have the same hardware semaphore registers.
 
-I'm drawing a blank on how we define initial states.
+The semaphore registers belong to the sundry hardware block. The
+node describes only the semaphore register range carved out of the
+larger sundry block address space, consistent with how other upstream
+hwspinlock drivers represent their standalone hardware blocks.
 
->
-> Maybe it's a bit of a game of definitions here.
+The compatible string has been renamed from "brcm,brcmstb-hwspinlock"
+to "brcm,brcmstb-sun-top-ctrl-semaphore" to reflect the actual
+hardware block name rather than the Linux subsystem name.
 
-Default here means when no one is using it. Default for pinctrl is in
-use for normal operation.
+The patch has been tested to work as builtin as well as a module.
 
-But I do wonder how pinctrl and GPIO would interact here as you can't
-set a GPIO state with GPIO alone. First, pinctrl might need to be
-setup to put a pin into GPIO mode. And what about non-GPIOs that also
-need some initial and default state.
+v4 changes:
+Addressed review comments from Krzysztof Kozlowski and Rob Herring:
+ - Renamed compatible from "brcm,brcmstb-hwspinlock" to
+   "brcm,brcmstb-sun-top-ctrl-semaphore" to use the hardware name
+ - Added description block to the DT binding YAML explaining what
+   the semaphore registers are and their relationship to the sundry
+   block
+ - Fixed typo in Kconfig "Setttop" -> "Settop"
+ - Fixed email typo in MODULE_AUTHOR
 
-Are folks putting pinctrl properties in hog nodes?
+v3 changes:
+Added detailed explanation in the all commit messages as per review
+comments
+ - Added description of 'sundry' ip block that the hardware semaphore
+   belongs to
+ - Added reasoning for using common compatible string
 
-> And for Linux: if nobody is using it ... is that after all deferred probe=
-s?
-> Someone can load a module using these lines at any time. Etc.
->
-> > Please don't use a property called "gpio-line-name" to define a state o=
-f
-> > a GPIO, it makes no sense. The line-name property of a GPIO hog is the
-> > label we assign to the line when requesting it. There's no requesting h=
-ere
-> > so let's just not use any new line names. I'd go with something like:
-> >
-> > gpio@1 {
-> >         compatible =3D "foo,bar";
-> >         reg =3D <0x1>;
-> >         gpio-controller;
-> >         #gpio-cells =3D <2>;
-> >
-> >         gpio-line-names =3D "foo", "bar", "", "xyz";
-> >
-> >         foo-gpio {
-> >                 default-state;
-> >                 gpios =3D <3 GPIO_ACTIVE_LOW>;
-> >                 output-high;
-> >         };
-> > };
->
-> And that makes the name of line 3 "foo".
->
-> Fair enough, I didn't think of that. This is a good pattern,
-> whether default-state or initial-state.
+v2 changes:
+Addressed following review comments:
+ - fixed ordering of obj brcmstb_hwspinlock.o in Makefile
+ - fixed ordering of 'config HWSPINLOCK_BRCMSTB' block in Kconfig
+ - Renamed BRCMSTB_MAX_SEMAPHORES to BRCMSTB_NUM_SEMAPHORES
+ - Removed unnecessary platform_set_drvdata(pdev, bank);
 
-That makes the node name important (aka ABI) which we generally try to
-avoid. That also collides with the existing foo-gpio(s) properties.
+Also addressing duplicate PATCH 1/3 sent in error as part of v1 change.
 
-If you are doing all this in early boot, then we're taking something
-that's just stuff some number of GPIO direction and data registers
-with fixed values to parsing lots of nodes and multiple properties in
-those nodes. And early (even u-boot which isn't early anymore) boot
-code just parses the FDT as-is which isn't very efficient. Size and
-processing time (single core, possibly disabled caches) are important
-for boot code. So again, I'm not interested in any binding that can't
-support that use case.
+v1 changes:
+based on fixes made to Initial patch:
+Link: https://github.com/intel-lab-lkp/linux/commits/
+  Kamal-Dasu/dt-bindings-brcmstb-hwspinlock-support-
+  for-hwspinlock/20250712-034624
+Link: https://lore.kernel.org/r/20250711154221.928164-
+  4-kamal.dasu%40broadcom.com
+  [PATCH 2/4] hwspinlock: brcmstb hardware semaphore support
 
+All the review comments and build warning have been fixed.
 
-Rob
+Kamal Dasu (3):
+  dt-bindings: hwlock: Adding brcmstb-hwspinlock support
+  hwspinlock: brcmstb hardware semaphore support
+  MAINTAINERS: adding entry for BRCMSTB HWSPINLOCK driver
+
+ .../hwlock/brcm,brcmstb-hwspinlock.yaml       | 45 +++++++++
+ MAINTAINERS                                   |  8 ++
+ drivers/hwspinlock/Kconfig                    | 11 ++-
+ drivers/hwspinlock/Makefile                   |  1 +
+ drivers/hwspinlock/brcmstb_hwspinlock.c       | 96 +++++++++++++++++++
+ 5 files changed, 160 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
+ create mode 100644 drivers/hwspinlock/brcmstb_hwspinlock.c
+
+-- 
+2.34.1
+
 
