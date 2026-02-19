@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-266758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266722-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8PXkG3ORl2mR0gIAu9opvQ
-	(envelope-from <devicetree+bounces-266758-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:40:51 +0100
+	id wEgiLyh7l2m6zAIAu9opvQ
+	(envelope-from <devicetree+bounces-266722-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:05:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBAC81634E7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:40:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A4D9162941
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:05:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E988C302F695
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:40:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 25C29305B45E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681D932D0CF;
-	Thu, 19 Feb 2026 22:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01845324B1E;
+	Thu, 19 Feb 2026 21:04:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fuldnE3O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q/lXx4U5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED92732571A
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 22:40:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F711325496
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771540809; cv=none; b=fiTev3Ra9kcbAwnrq4C2KMrhO/hG4i64dUcW0UoOXjW6UlxNXSayZahxBObTY5XTaokFe0V+czKxdkc/yG6d0q9oKIK8B6gN6MBNXs9qXrJdqvPOJemGCpwzQbz0t8EHFLrpSoR4OOwDDkuYYT/dx6UqkFLDOIyvtjGVcj0Hgz8=
+	t=1771535067; cv=none; b=b2ShLXoUUeYjDX+D6bZcWjhX9+GliENBN5fk4INIwXLFAk/Sn24VD9Uu3LpwsR7cTqc+qUG3DpqaTH35awomxSnbtXwxRx8orvsa0EG8UruN4WFPBRRmDlQQVOgVD7mLqo3mTiqbhG2GBrW89OiQkkSlM0O0nmcOtctM3LN4cB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771540809; c=relaxed/simple;
-	bh=KAvlbY0yYL9PaaTueRuO9yIwL2QGgENhM1iet7MXCjM=;
+	s=arc-20240116; t=1771535067; c=relaxed/simple;
+	bh=pi1fLBggw2w5nq+ku9XGxrPVz6Xc+gXO0i/5XkcUNq8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=R06kxcAcQ/itQyQALnsNYjzULM7daY0WtNfCBz3wd6jK4309KHJbZh1s4dHwWSLV3CANfgur+wiC4ByFOZdyaRL41GhSjacJ8DFKeohpQgafmUK7jDZbNwFp1EGlXuBbagbi8/zEEqg1kZ6Pbj/f2SOv8d4qLi6UvIhTwWGarvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fuldnE3O; arc=none smtp.client-ip=209.85.222.182
+	 MIME-Version; b=coPqUv6s6NY8Y2vvoRIjQNpWnHB+i5s/jTVdTOGzAkrVZfXIE7TM+uayrZN/YEFrrK4cq6cHsopSJCPXw77/ARmGDbYKy8ReuR2xOzxzQpkCGIO7X0eF44sUHM/YzzKUFODfiPsABZP4kw21N5fG0vh4MV2e4cdytT3sA5u75hU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q/lXx4U5; arc=none smtp.client-ip=209.85.160.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-8c7199e7f79so180910685a.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 14:40:07 -0800 (PST)
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-506a1627a09so7688351cf.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:04:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771540807; x=1772145607; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771535062; x=1772139862; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MfQfBaf9AAlms3smQ5+Ri25UHHgHjEr008f22TiaTqo=;
-        b=fuldnE3OG4NmfyYLLaWoGGAwjdUn9d97BD2QIrE+6UA37Z/8avFVlb5Nll5KNXWqds
-         QlHvvftvUOxGSBhdVO+/MvMrDQPMsJBeHbZMZz8I5jTgGxHBZWkQqE4Y725jtKsvY5gZ
-         os7vCyF5K3a/zGkBO0x1qZTb0Id+yewSd55CSs9Vs8WzLI6yxp1VDpkJqdsRjo3amqFs
-         XJUTPdeAyA3aWwFFvUMH6lWvdSfLouJ7IIgkGmJ6L+rVFguOw3OGBCy3xyhB+3S0Thhi
-         81yaXj/1ppqomvL4aOt2g3wlft++TWFs2n26IzZNxcqQuaGacO2AMZRNk7nEFfpkgRDD
-         Kiow==
+        bh=Gnop4z34aVye00gIQguUoewYT5lM9SytbUgSGtePF4w=;
+        b=Q/lXx4U5Jm0EPamJb0hescTCYgC8eMtNhM3GnPwyJrtBObkBbWwD7WfCuY2as90OYm
+         HqghXxuHPxfvXJJIpgA95CHrAYkXvVOSfIjiQOc4NDbR9JFJz0JvwExxwFHtvr4MLDw7
+         r6JS8qIErG12I0+jGWzZnlyXhwUOX1p4yd2SexLRn+OVcY9Z2nDgDfAhY17FK+A9kQBx
+         iIRHTIoGg+tpSJJiMwZhH1KRzY34lBJo/ugphsMeIf4PQ8BWuqOzKsA/O0UH2TsMT8th
+         hXYW1YBW9qcQR+EfmiyRdDct4DWVk7Gt+kwZV+Dk/Ws/NgS23TZHy1vWnsrcn4Tv81Jh
+         fN3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771540807; x=1772145607;
+        d=1e100.net; s=20230601; t=1771535062; x=1772139862;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=MfQfBaf9AAlms3smQ5+Ri25UHHgHjEr008f22TiaTqo=;
-        b=Rt/psD7TcheKSFXJmaEoA7DUvye0+X/5cd6ERt5ItkecHv3DGC8HS7Hhw/KWw+YW3L
-         cm2phKRL5VX2BR6hCPzKusm8XBIhHtzHaHNdgmJ56e3VTmHKckxaFmiJ+9Imn+Cgzxs/
-         Dk9hJpAqObTdDvYA5hLkMnj/1C9uoFodxA/1MibJt2VyLXt9wTso2EMN7nKL1nOy2cyV
-         IrrLF15qWfo+ZgS3wOleI05G+LPdDAuIFV0cOGZ9JKZg7XzACCs0VbAIHzLNI7TflinT
-         uQS2K4amRyBeFt1RM4DgHnCbAJiD4qizIMq6TnIHxRPi1D2bjp/nxlOVN/ptt9EQc8qU
-         IKNw==
-X-Gm-Message-State: AOJu0YxH1F/cupGBp8ip+jX57hKYVwZYDYcmDghlTlIAoFHN2SqzMDPt
-	SMR4vvTliEk2g31zjJZJkhSffzlUpgpWnOJPBQo1SAaOQ4frY/znkRkfFpKdD7gm
-X-Gm-Gg: AZuq6aJTnqF4qMZRijfmZi01WD7Hz/G8lbCL/x1UPtLgSpYUqKbY+uu2uvMwfBoWh+p
-	cFKnNbhUD/oSURlhj4htc5Xht+zdIm6bEu03jZZBesJ8/rcotI0icvr44YTkU96U6FcCKkdaNYZ
-	tj+A/gs85le6vpRhAeJGXM+97Q2MA7CCE9vCi/KtjcYAn2N9cOmg4iMdFT3OBoBQfzSi9KFQOo7
-	zLZCVJ+QU6NjW/Gh2i6wtasOga/oUwRqH43bq4SZeJiflovU2D6sQlLf+X2U9H96l5sCuxUJX1g
-	lZKUwYOWRbUeUt1u6H/7G+rs/WLm64RDICilLIY2XCqL3b34B0ON0Y7EjKQ9U9rkBxTki4WEsC0
-	lLOCx+hi608mbARbbDG0dVJIIAxAH8ABDXAjbVBQ/tdiIC7T9EmFSUwq14edeQjXHh2avngZV9z
-	L+XqSP62i/XwnYL9N52UCMQdLfLSnjxtYnCu5mWbQOfvnfr1wUA2WAf1lYT6962ozc2OOCIzcv+
-	y4WZ8/V1ew=
-X-Received: by 2002:a05:622a:613:b0:4f1:d85c:d7c3 with SMTP id d75a77b69052e-506b4020b97mr249828281cf.66.1771535059258;
-        Thu, 19 Feb 2026 13:04:19 -0800 (PST)
+        bh=Gnop4z34aVye00gIQguUoewYT5lM9SytbUgSGtePF4w=;
+        b=W93MI9pQbTyUlUrN7oRm1mSBbBzwD6pzrt5gUyqeFIB1Mmdlkf//QL67LFlpU2hJJ6
+         rs3ZSkDguGmq/sJdjWTr5NkDHERe0PArXfcOeF15uYSOh4dckEEEY6birlWIjphxJdOU
+         GTbq/5pbi6En+qoZKtH0+E2xb+5oDygktEa43aph4ndL8MCyyEnNB5ZaEd1bEtm1KS87
+         oHBnxCUP8sDACT97EdI41143c2mVhIDqmeeCCUBjc7g+QJWVvm5VDqNcKISXHgvTo2z0
+         GKxl6bGWlnHjD4X5otkk2nDq7yqwvvP5SXIAxsthbgjfsdqunRcX4VKhKYcjSsjEuAVD
+         yuEQ==
+X-Gm-Message-State: AOJu0YyUPhaZD61M0X3KTHSKx22ZfXh8VL3VXvO9UgwwMq4MMFxtv3Xi
+	hFReRYkYBlyAJtC/y5u+zHmm5DQjKYOkw8Gsat2sXP/CWs57UmMH7BBz
+X-Gm-Gg: AZuq6aK5TWXsdXOJpv4H1rAqTQQmnwMYxkxerTFD9Oq9kTAIicOn+muAPoyncDP6t2A
+	JiKcj+fjQG8mppTlBqxOoahyxy0iCaz3pbruBITL55wBTzBhFL89OmYmVa3WWQt1OgfPcpMFpva
+	sRivw9+4h9ijK2K4QiYmKRK793LA+kHpQVs1fVzpZHcoUrUv25n7oq0NXg3jUy74MWEinL3cC/e
+	zX9dLkU1qweZf/j5g1oBboV2fh5mYQGuCWP0PiOD8Y5Kxlm6j4HGEjRj9ZqSassV8IIO56c0en8
+	LvnDuNEZCS3bF3hB5yFfTndwMKpQTqYXQy0t1MxBr6Co3OX72BLeF4HLVZ7Qay1Y90uqf04+tGV
+	lRjdH8RLlCSn3DO8db7Ui99KsCxUtAqnEs4KoJ4IvfTr08ZVQXbe6Fu650lqnBPMlOn961yXQ9R
+	zyYGAvqVNeJodSWgxYmUUPrHGHEyYulNNoMZrZo2iqGtniUZEnpdu1+mgx2OFbjpWleEtRv6GVG
+	POh4aV1d4g=
+X-Received: by 2002:ac8:7d55:0:b0:502:9e5b:2d83 with SMTP id d75a77b69052e-506e9264731mr79699451cf.75.1771535062155;
+        Thu, 19 Feb 2026 13:04:22 -0800 (PST)
 Received: from mighty.stonybrook.edu (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-506b275d59fsm153971511cf.32.2026.02.19.13.04.17
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-506b275d59fsm153971511cf.32.2026.02.19.13.04.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 13:04:18 -0800 (PST)
+        Thu, 19 Feb 2026 13:04:21 -0800 (PST)
 From: Mithil Bavishi <bavishimithil@gmail.com>
 To: aaro.koskinen@iki.fi,
 	airlied@gmail.com,
@@ -103,10 +103,11 @@ To: aaro.koskinen@iki.fi,
 Cc: devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: [PATCH v6 1/8] ARM: dts: twl6032: Add DTS file for TWL6032 PMIC
-Date: Thu, 19 Feb 2026 16:04:00 -0500
-Message-ID: <20260219210408.5451-2-bavishimithil@gmail.com>
+	linux-omap@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v6 2/8] dt-bindings: vendor-prefixes: Add Doestek
+Date: Thu, 19 Feb 2026 16:04:01 -0500
+Message-ID: <20260219210408.5451-3-bavishimithil@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260219210408.5451-1-bavishimithil@gmail.com>
 References: <20260219210408.5451-1-bavishimithil@gmail.com>
@@ -120,147 +121,59 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[27];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266758-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266722-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[bavishimithil@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.48:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ti.com:url]
-X-Rspamd-Queue-Id: DBAC81634E7
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[doestek.co.kr:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6A4D9162941
 X-Rspamd-Action: no action
 
-Add a dedicated DTS file for the TWL6032 PMIC (Phoenix Lite). Already
-has driver support with TWL6030 (Phoenix) since both of them are so
-similar, some nodes can be reused from TWL6030 as well
-
-This can be included in the board files like twl6030
-Example:
-...
-&i2c1 {
-    twl: twl@48 {
-        reg = <0x48>;
-        interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-        interrupt-controller;
-        interrupt-parent = <&gic>;
-    };
-};
-
-/include/ "twl6032.dtsi"
-...
-
-Used in devices like samsung-espresso, amazon-jem, epson-embt2ws etc
+Add vendor prefix for Doestek Co., Ltd.
+Link: http://www.doestek.co.kr/
 
 Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- arch/arm/boot/dts/ti/omap/twl6032.dtsi | 77 ++++++++++++++++++++++++++
- 1 file changed, 77 insertions(+)
- create mode 100644 arch/arm/boot/dts/ti/omap/twl6032.dtsi
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/ti/omap/twl6032.dtsi b/arch/arm/boot/dts/ti/omap/twl6032.dtsi
-new file mode 100644
-index 000000000..d599a2ca6
---- /dev/null
-+++ b/arch/arm/boot/dts/ti/omap/twl6032.dtsi
-@@ -0,0 +1,77 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Integrated Power Management Chip
-+ * https://www.ti.com/lit/ds/symlink/twl6032.pdf
-+ */
-+
-+&twl {
-+	compatible = "ti,twl6032";
-+	interrupt-controller;
-+	#interrupt-cells = <1>;
-+
-+	rtc {
-+		compatible = "ti,twl4030-rtc";
-+		interrupts = <11>;
-+	};
-+
-+	vio: regulator-vio {
-+		compatible = "ti,twl6032-vio";
-+	};
-+
-+	ldo1: regulator-ldo1 {
-+		compatible = "ti,twl6032-ldo1";
-+	};
-+
-+	ldo2: regulator-ldo2 {
-+		compatible = "ti,twl6032-ldo2";
-+	};
-+
-+	ldo3: regulator-ldo3 {
-+		compatible = "ti,twl6032-ldo3";
-+	};
-+
-+	ldo4: regulator-ldo4 {
-+		compatible = "ti,twl6032-ldo4";
-+	};
-+
-+	ldo5: regulator-ldo5 {
-+		compatible = "ti,twl6032-ldo5";
-+	};
-+
-+	ldo6: regulator-ldo6 {
-+		compatible = "ti,twl6032-ldo6";
-+	};
-+
-+	ldoln: regulator-ldoln {
-+		compatible = "ti,twl6032-ldoln";
-+	};
-+
-+	ldousb: regulator-ldousb {
-+		compatible = "ti,twl6032-ldousb";
-+	};
-+
-+	smps4: regulator-smps4 {
-+		compatible = "ti,twl6032-smps4";
-+	};
-+
-+	gpadc: gpadc {
-+		compatible = "ti,twl6032-gpadc";
-+		interrupts = <3>;
-+		#io-channel-cells = <1>;
-+	};
-+
-+	twl_usb_comparator: usb-comparator {
-+		compatible = "ti,twl6030-usb";
-+		interrupts = <4>, <10>;
-+	};
-+
-+	twl_pwm: pwm {
-+		compatible = "ti,twl6030-pwm";
-+		#pwm-cells = <2>;
-+	};
-+
-+	twl_pwmled: pwmled {
-+		compatible = "ti,twl6030-pwmled";
-+		#pwm-cells = <2>;
-+	};
-+};
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index c7591b2ae..70a195fc6 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -437,6 +437,8 @@ patternProperties:
+     description: D-Link Corporation
+   "^dmo,.*":
+     description: Data Modul AG
++  "^doestek,.*":
++    description: Doestek Co., Ltd.
+   "^domintech,.*":
+     description: Domintech Co., Ltd.
+   "^dongwoon,.*":
 -- 
 2.43.0
 
