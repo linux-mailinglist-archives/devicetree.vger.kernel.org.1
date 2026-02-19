@@ -1,172 +1,195 @@
-Return-Path: <devicetree+bounces-266731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266732-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIT5NkWAl2kOzQIAu9opvQ
-	(envelope-from <devicetree+bounces-266731-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:27:33 +0100
+	id +AT/HNKBl2kOzQIAu9opvQ
+	(envelope-from <devicetree+bounces-266732-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:34:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56171162CA2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:27:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC18162D2D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:34:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 49E663015885
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:27:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B3A1830125FF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:34:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA1532938E;
-	Thu, 19 Feb 2026 21:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9B532AAAF;
+	Thu, 19 Feb 2026 21:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="GgpKtR6a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AQN+sSyq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960D8329365
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:27:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC803112AB
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771536450; cv=none; b=kmL+ZtyTItyJ0b8DlYhzQTzn+Aztqm42ed5/iLaYF+5jWqlycq8cb0NZANPIo3QjNTf96hE1eFBNszRLBwqDcM+b0dssGwctP8kINBG5ns8xj1t1TlOwlLuUizefQbMehHPJ/i8zuxVZJjAh7sJXodbw2UfkyN5MKVcvDCt6lDg=
+	t=1771536846; cv=none; b=PAYNfPnxGQi2oT0/TfGTr8WZWBLLxZXYquq9fkERs/jbn3MVOQR+7zMV5J4MdyBC5doCgeyacBPFiJjeqVDfl8C9LACUqPCBTI2Vwz1dLEpowOlmQh3cl/K6aHhwpnz03gzkNRa9i0dkB7Bnmqb6Cap4QgiHN38u/1SvWeBLqDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771536450; c=relaxed/simple;
-	bh=uAGBrIf0G4PtksC5eMQdKnqhc6vXfYYkalF3B3xNnBA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=nP4cjYKDBEiJkHpbp87o8EXPamaJdboLnWRxVNNnqchBWH/nZW339l8CYXEqH+kqgNEG/WPJjbjDNUN36xFseby/FaygaML7DhAQVvxovDsW0z2CMS9bFenHUXcqeimQxY7cvRwJ5U5RxCcm2kkJ7cR+eUWqmsXLNEiyZexWWDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=GgpKtR6a; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-404254ffe8aso908926fac.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:27:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771536446; x=1772141246; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UA1VERvz5151jt2KdPat2DgK+V02UUk6l4sZ04x/A1s=;
-        b=GgpKtR6aGP7idiUYNt2cYM6FhXS49LEVdgkg+d5gPQOk6ooxYU+JrN9UMretVowqUR
-         Jj+AVBu3zTavQ4UQKfWJCDTfwP3ECznoPWhty2152bdA2EgJ8PBJgRV9eiB8t+ue/lW3
-         myYZrV+MGB62O5uJEK/QLBYE/9WthXH/YePRs6hQd2/52x71u70l5bOu7TXwwjGRb97o
-         4Bv7xAR/DH9WPmVh4GJxmtBSi0x/6YCwdmszVL/bsQUPVUjM9hWkQ5ddxDR8wy6/nCv+
-         XHUm17PE9aQekZgTDdoh1Tvb6Lr60oKO3eWHoP3426toYsYSuO0DtD5xvIaSb8kfCFYt
-         /Zog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771536446; x=1772141246;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UA1VERvz5151jt2KdPat2DgK+V02UUk6l4sZ04x/A1s=;
-        b=N/FJoiSa8bV663YuveXL1hu7P1wGOcsR/ULJmxAx8UUMAheNpqQbXtaUWWyJBQtV37
-         IXwL2sZACygkGPdhcETqfpvgBs8muYW7PDmltTOuztYcVC+zEzT1Rj3JoL5HEZCPXqIV
-         k1/oCKKEd9o1CwBx3c0Of67idHmlSoYQlfqN90kTnlP6XZ495uJ3rpmDQ0mdqGbIq6Jb
-         cVzL/8b9LD59Z/hImveS8b8r2kQuQTWdXoIik8lPAr1lRWNZIn9GKqNLH7mTI2nMhJ8c
-         FjmAPYwO2oic8c9C7TrL7faynnztSLe6TNIXv612ReFUrS/UfsUrgTS83FYCtiwum7qk
-         kpBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX678ZpG4rwUBv2Ov/Fyubvk+KAuQTvvhObnuSo0QX5EyeLXpiwRuIrsZoAhHqKUo+Di3LVrGruy6BK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmPiV4AK3s1qByNDENH6REEd8C4PqdvYCpggBI7lnZe5IfSFmn
-	gg+zW9LggGjEkzXjwRRxZmq6J8LMElqee4o9boH79ERMG/6dFVORVmzs8LuEJFVkr4c=
-X-Gm-Gg: AZuq6aLfVsUNx/uEp6jZl6GwTZge5ZcvHNDgKbf5MgyfL3ndc4pWI+dgdTOYK/SR0PR
-	kI2z56o1JbOA27TFvVr41S6W/VeUkOtvFqq8OiOiPbRp+SNVnPSkzIm39lgFJiahhtFs+uVSOUn
-	qANZElXmHPgorJ1ZnI3hcEfguVdobHpcNIcd1LVEdSk+WLMKJKEuqD26BARDRjTwwGy1qg3HoKX
-	1TxZAd7EQUvJ3TZtqvEEfEAqasUQLvON/d8f+LkyYJvHWKNbnysdkugby1XsVDH39BivSd90e7L
-	he8NQ3vmoAm+C32aWg9DUjvtuNc94ijcw570pMCIB1qB4+RGFKRd5hTRaqRXp2JbNI/Kk6RmmY2
-	8ce5uBbLuTu1yK8edXmMyLEbTKPpDiAPrFcGSxOkQuMurazTlBJ2PIZKdq3ZeC1kqZ0UrA3Q8wQ
-	YsgNL/b8rxEZUR5rcBu/rjLSgSrIPkZEIvVahKL1fcNYFFa3z1nJR0k8L2AFIuJAQ2do+JWg==
-X-Received: by 2002:a05:6870:326e:b0:404:1ec2:562c with SMTP id 586e51a60fabf-4154539ed1emr1793941fac.6.1771536446376;
-        Thu, 19 Feb 2026 13:27:26 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:d4c1:bce:26a1:c903? ([2600:8803:e7e4:500:d4c1:bce:26a1:c903])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-40f062ee328sm18930333fac.4.2026.02.19.13.27.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Feb 2026 13:27:25 -0800 (PST)
-Message-ID: <5e6fbdcc-6a19-4d99-af5f-50ba8fa529bb@baylibre.com>
-Date: Thu, 19 Feb 2026 15:27:24 -0600
+	s=arc-20240116; t=1771536846; c=relaxed/simple;
+	bh=uMHaZcAOYrpN7P5ZdCKx9I0gRTqmqJT4tE+lEzFJ/ps=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dqW7u+pGuX2QYeg/eG7OXXJxtMJsyjmPqqNawmdZ2Dxcuzu3pN+qIDkdXhY2+uql+15S+qpd/2lljb7m+/mxl+1if6h3qqaOzrUIoREo/dc2LajlOJxAQxM4710ISVnD6pu933TJ7drDYVh35UlFF2RjzMyebrLr/QsKFKtVxEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AQN+sSyq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA2B5C2BCAF
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:34:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771536845;
+	bh=uMHaZcAOYrpN7P5ZdCKx9I0gRTqmqJT4tE+lEzFJ/ps=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=AQN+sSyqjzkBSpuIlV9eMaIP7cmoj6UGNl5f7Ypx1uGsYhgchrp2i7dn4q9Ga9ASE
+	 fK1LAEW9B0hdDi1bdmZfawnKAJmVTnzeOqUUdVkxVIQdN+ny90ZbHmuTcm23WRKyHD
+	 27+HGJSt5zlIA47gp1J3HXMRQKZg2SUEeiqNg9ntRx3sSfs2K3mExyGaydyj3K2+cr
+	 xkZt+EGVWLIQrPdi6Fq8JqIs3JC2eDBwsjrOXGu42YS4Kt0/IPnBST/H/rY8lZj9XB
+	 zmWOrhLq8uRbzv8W84f3v6KG8EcJ2ZSwaX7J9QzAQ1VKR7g/cP8EGjcXgZPCSTxgiV
+	 m7QgOC84UVQSQ==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b8876d1a39bso192358066b.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:34:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUzU3A+N6ToxpxYrr6vA0WX0LBYWDv6lqdSr+pziK5v4IJeI5+7BTS7RVl7MPI/DzmHs86AhU70KQam@vger.kernel.org
+X-Gm-Message-State: AOJu0YyY4u9noWuYdXKZyF0fcV/csg60IfNT6cCMsdzZa+1yjGITT5VP
+	9U7ZwpJUiN5UnTHsXoe//GXOKj+vPLJy7oe/1A9vj7k6yTl9FUbfdEnrvu8uFkDQE6mTSG0G1i7
+	ZnihUYzyzezAJvPGQgeB+wZsY5U3MkQ==
+X-Received: by 2002:a17:907:3e8f:b0:b88:5b21:b16b with SMTP id
+ a640c23a62f3a-b8fc3b59ed1mr1249300266b.25.1771536844305; Thu, 19 Feb 2026
+ 13:34:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 05/18] clk: mediatek: Add MT8189 vlpckgen clock support
-From: David Lechner <dlechner@baylibre.com>
-To: "irving.ch.lin" <irving-ch.lin@mediatek.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Bartosz Golaszewski <brgl@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>,
- Miles Chen <miles.chen@mediatek.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- Qiqi Wang <qiqi.wang@mediatek.com>, sirius.wang@mediatek.com,
- vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-References: <20260202062840.342707-1-irving-ch.lin@mediatek.com>
- <20260202062840.342707-6-irving-ch.lin@mediatek.com>
- <b7fd3dfe-c141-4164-80c2-ddc1f79374f8@lechnology.com>
-Content-Language: en-US
-In-Reply-To: <b7fd3dfe-c141-4164-80c2-ddc1f79374f8@lechnology.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260214213239.2546012-1-james.hilliard1@gmail.com>
+ <CAMRc=MfK8k88PfQPvP=p1r3KQ40dwcZq4Z4f5fnRFakpYcknvA@mail.gmail.com>
+ <CADvTj4r4mR0_HxcOOZFqJTVfoD=YdrGd2AD+hQNw6ciGUC=C1A@mail.gmail.com>
+ <CAMRc=Me6v2E1zKGQzukJmP45cVkRWOGzYoO9=LKh63rPFRqfqA@mail.gmail.com>
+ <CADvTj4ovM1faNGoUa4HoTCN7avAqwkZfY5v9P8okgx87or8gDA@mail.gmail.com>
+ <CAMRc=McR613nBkUehva0bidxrUz2eQ1Ud9g1m4gKdXyGzHo_PA@mail.gmail.com>
+ <CAL_JsqLEKr6G4qZe=vvJzP+KC_WWh0SHOjg14rxQvAvxV7wNUA@mail.gmail.com>
+ <CADvTj4pfuV1s7VzS-cw+66N9HxijZ8x4Gr_jgTqPEqDvpz-hqg@mail.gmail.com>
+ <CAMRc=MfBt3ae2tdRKQT-AvjocN9OmC-jAtw0206rT3qGmSJDig@mail.gmail.com> <CAD++jLk4Z1S-3Pitafv8Ok5HCB+K9o8PG53wsqLL1RNXM7753w@mail.gmail.com>
+In-Reply-To: <CAD++jLk4Z1S-3Pitafv8Ok5HCB+K9o8PG53wsqLL1RNXM7753w@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 19 Feb 2026 15:33:53 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLR0mcGsDcGeFyS_ZK-hMz6LshTvtETyeNhcq_PCC8_WA@mail.gmail.com>
+X-Gm-Features: AaiRm51hHQngkWKqO2Zli8sMCEqc-0XS_FMWPsa2jUBIlM58SNPGUVt-842hqLY
+Message-ID: <CAL_JsqLR0mcGsDcGeFyS_ZK-hMz6LshTvtETyeNhcq_PCC8_WA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] gpiolib: of: add gpio-line node support
+To: Linus Walleij <linusw@kernel.org>
+Cc: Bartosz Golaszewski <brgl@kernel.org>, James Hilliard <james.hilliard1@gmail.com>, 
+	linux-gpio@vger.kernel.org, Saravana Kannan <saravanak@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266731-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[mediatek.com,baylibre.com,kernel.org,gmail.com,collabora.com,chromium.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266732-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20230601.gappssmtp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:mid]
-X-Rspamd-Queue-Id: 56171162CA2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BEC18162D2D
 X-Rspamd-Action: no action
 
-On 2/19/26 2:44 PM, David Lechner wrote:
-> On 2/2/26 12:28 AM, irving.ch.lin wrote:
->> From: Irving-CH Lin <irving-ch.lin@mediatek.com>
->>
->> Add support for the MT8189 vlpckgen clock controller, which provides
->> muxes and dividers for clock selection in vlp domain for other IP blocks.
->>
->> Signed-off-by: Irving-CH Lin <irving-ch.lin@mediatek.com>
->> ---
-> 
-> 
->> +static const char * const vlp_aud_adc_parents[] = {
->> +	"clk26m",
->> +	"vowpll",
->> +	"aud_adc_ext",
-> 
-> I could not find a matching clock name for "aud_adc_ext" in any
-> of the other clock drivers. Which clock is this (i.e. what is the
-> macro name in mediatek,mt8189-clk.h)?
+On Thu, Feb 19, 2026 at 12:23=E2=80=AFPM Linus Walleij <linusw@kernel.org> =
+wrote:
+>
+> On Thu, Feb 19, 2026 at 10:15=E2=80=AFAM Bartosz Golaszewski <brgl@kernel=
+.org> wrote:
+>
+> > The problem here is that the state of a GPIO that's not requested is co=
+nsidered
+> > "undefined" and controlled by the GPIO chip driver. The whole "initial =
+state"
+> > sounds very hacky. You would have a much better case if you instead wor=
+ked on
+> > a "default state". It seems Rob is not entirely against it. Neither am =
+I. It
+> > would make sense to tell the GPIO driver: "if nobody's using it, do thi=
+s".
+>
+> Pin control actually has both initial state and default state...
 
-I was able to solve this one. It is a fixed clock. It seems to be
-missing from the devicetree, so I will comment there instead.
+I'm drawing a blank on how we define initial states.
 
-> 
->> +	"osc_d10"
->> +};
->> +
+>
+> Maybe it's a bit of a game of definitions here.
 
+Default here means when no one is using it. Default for pinctrl is in
+use for normal operation.
+
+But I do wonder how pinctrl and GPIO would interact here as you can't
+set a GPIO state with GPIO alone. First, pinctrl might need to be
+setup to put a pin into GPIO mode. And what about non-GPIOs that also
+need some initial and default state.
+
+Are folks putting pinctrl properties in hog nodes?
+
+> And for Linux: if nobody is using it ... is that after all deferred probe=
+s?
+> Someone can load a module using these lines at any time. Etc.
+>
+> > Please don't use a property called "gpio-line-name" to define a state o=
+f
+> > a GPIO, it makes no sense. The line-name property of a GPIO hog is the
+> > label we assign to the line when requesting it. There's no requesting h=
+ere
+> > so let's just not use any new line names. I'd go with something like:
+> >
+> > gpio@1 {
+> >         compatible =3D "foo,bar";
+> >         reg =3D <0x1>;
+> >         gpio-controller;
+> >         #gpio-cells =3D <2>;
+> >
+> >         gpio-line-names =3D "foo", "bar", "", "xyz";
+> >
+> >         foo-gpio {
+> >                 default-state;
+> >                 gpios =3D <3 GPIO_ACTIVE_LOW>;
+> >                 output-high;
+> >         };
+> > };
+>
+> And that makes the name of line 3 "foo".
+>
+> Fair enough, I didn't think of that. This is a good pattern,
+> whether default-state or initial-state.
+
+That makes the node name important (aka ABI) which we generally try to
+avoid. That also collides with the existing foo-gpio(s) properties.
+
+If you are doing all this in early boot, then we're taking something
+that's just stuff some number of GPIO direction and data registers
+with fixed values to parsing lots of nodes and multiple properties in
+those nodes. And early (even u-boot which isn't early anymore) boot
+code just parses the FDT as-is which isn't very efficient. Size and
+processing time (single core, possibly disabled caches) are important
+for boot code. So again, I'm not interested in any binding that can't
+support that use case.
+
+
+Rob
 
