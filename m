@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266580-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oN72Hoi6lmk1lAIAu9opvQ
-	(envelope-from <devicetree+bounces-266579-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:23:52 +0100
+	id 4MpVLNO8lmkylQIAu9opvQ
+	(envelope-from <devicetree+bounces-266580-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:33:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB9315CA12
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:23:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 279E815CBA0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 56DF43020005
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 07:23:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 57435303CEC5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 07:32:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55F02F9984;
-	Thu, 19 Feb 2026 07:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B41334C25;
+	Thu, 19 Feb 2026 07:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMgMDB4V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a7ZHmPpY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B2224C676;
-	Thu, 19 Feb 2026 07:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4157327BEC;
+	Thu, 19 Feb 2026 07:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771485829; cv=none; b=Zw2BAl27XPveh1I6WtKxaa/d2xqj4IqsxUjuuGh4z2Ecx6RV+14Fh/ibDMi4hxw3FvSr23NdSOR5nLvfi1WebeWR0yrMqPmKq8QrAP5ZBaapxThZn/6zgOQhvJtK72hr1NvpRLv0cwxXBRSuC9/vzCGKh9zv/TvLIeAOhdpdNKE=
+	t=1771486351; cv=none; b=Q3TsLboY21kBrLJPWwbt3Hqyr8ShVK3IOgQn19H/Fblrbb8UVTq/e0D8WGQ4JH71s61S7nGgusx5PCH8+pdGV4uLMbzLlP5VaG0pbL5cUfa235PHMnwA22bfOJ69sfze/WtZgFRHHGttSJVEPxqiupNIYlB5AQy6XyTq6RMYbDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771485829; c=relaxed/simple;
-	bh=/fGw/C1zvESLZWDrAaaRTuCzknTQ6kidgUdQw0MMUZY=;
+	s=arc-20240116; t=1771486351; c=relaxed/simple;
+	bh=QHuicrIuW/GCTffBscyXXztNNcQhJHgarQPZ4uFz4lQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sl3I4oR2g1fv0L2OHW8anYIoeAjn3Jgrg3iPctmeYOe0r9G4vzohVTIVtml+e4rXIqcfdrw4sUiD/E9iYX4Izo53Nmhq+YroVJgZmWg74aBQJUEK2pGWz5DIZrEMcIbc69Ra/nRmTYNcl6pc14OIH24RGThVVTK5ZDjXFTtLs18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMgMDB4V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61689C4CEF7;
-	Thu, 19 Feb 2026 07:23:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=f2sXQGF2xl4zZuKQgf2uQN3wOKoiPY/aU2KHvNrnlbuBZJWu92xZtsYMX+c9hW9FbSQJipDiUEl4ze3tupOwzJ5+q6N1u46C4A2vxsIivGqrDYcZeW3tz7lGrd/rvZEHJmzk9q7F5R1VEaFVn8Db5vBiV9FXLN4QEzVHF9yno2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a7ZHmPpY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2C00C2BC86;
+	Thu, 19 Feb 2026 07:32:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771485829;
-	bh=/fGw/C1zvESLZWDrAaaRTuCzknTQ6kidgUdQw0MMUZY=;
+	s=k20201202; t=1771486350;
+	bh=QHuicrIuW/GCTffBscyXXztNNcQhJHgarQPZ4uFz4lQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tMgMDB4VvvQuSphG/HrmWa6xuG+thCqKIwcS7PMNvGxnPQI0mkyN6ray7drYF6oNB
-	 5vt+07Kj6QQEUdPzfcZlszgPR/IPVmj0R4POWjTRuv7WxWZ0D61zidao23hixpXuGC
-	 7pUCJchz9VeXLt/85405ffpvGXcDnhEtDuc9rY9C9jwR/hju8NcpUAFsujgGhxB0rj
-	 KworZIp0qKIE8AlcSKmmn/5/DOXa10rZX8dpsMqLakWN2zZ2ojf8IK4rzjlO7pRn95
-	 ren9tS1yowMpQbGlofweOmUb1n9BCjJGsP1zo2W9xUlx3TJ8rpRwt/pvF8M3mdRSiI
-	 4tyYrEg9FNk9w==
-Message-ID: <cc02215b-dcfe-47e7-bc16-0f467b6648c0@kernel.org>
-Date: Thu, 19 Feb 2026 08:23:45 +0100
+	b=a7ZHmPpY0avBywa7SVxhFJOXK6WWJEi4L7yqFnFbQdc/MYSbt/DDRZho5Betq+jDP
+	 ObAionamUqtj03n+ItpVQbS1U8cP5GT2EFbo8P5FFAynzXG7KeOdYA4OSMX7GlYTxc
+	 +J1mBSTwCSOtJDakhhPGknIWcmG1SnXxX0tIoTznS6xQiwsgaktlpd9UMyE4SiaHu6
+	 eDS3iCFmz0TrT9vaQ9vnQCQ6JIR7aQdwMdaew+v7TmE3rtINHDzb2DqSJOR218f7Cx
+	 Z98aprsBS7uqfxsXNhcWBYPA1LwBbIcvSZgAcko/aRHfNPAn1cJh8DuUmmUwlcH0We
+	 +uryggRaB9atw==
+Message-ID: <8dde3889-e51d-4e20-926b-7cdbdef3ddf7@kernel.org>
+Date: Thu, 19 Feb 2026 08:32:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,18 +53,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: msm8996: Drop redundant VSYNC pin
- state
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260218-qcom-dts-redundant-pins-v1-0-2799b8a4184e@oss.qualcomm.com>
- <20260218-qcom-dts-redundant-pins-v1-1-2799b8a4184e@oss.qualcomm.com>
- <cq7bdo3l4w7fi2aymo4ovafrj2y52k33dspeii2lvv75viujet@anvldr26j7to>
+Subject: Re: [RFC PATCH 2/8] net: xilinx: tsn: Introduce TSN core driver
+ skeleton
+To: Srinivas Neeli <srinivas.neeli@amd.com>, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, michal.simek@amd.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, git@amd.com
+References: <20260219054911.2017362-1-srinivas.neeli@amd.com>
+ <20260219054911.2017362-3-srinivas.neeli@amd.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,76 +108,319 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <cq7bdo3l4w7fi2aymo4ovafrj2y52k33dspeii2lvv75viujet@anvldr26j7to>
+In-Reply-To: <20260219054911.2017362-3-srinivas.neeli@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266579-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-266580-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[amd.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: CFB9315CA12
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 279E815CBA0
 X-Rspamd-Action: no action
 
-On 19/02/2026 07:49, Dmitry Baryshkov wrote:
-> On Wed, Feb 18, 2026 at 06:24:23PM +0100, Krzysztof Kozlowski wrote:
->> The active and suspend pin state of VSYNC is exactly the same, so just
->> use one node for both states.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi   |  9 +--------
->>  arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi    | 11 ++---------
->>  arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts     |  2 +-
->>  arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dts |  2 +-
->>  4 files changed, 5 insertions(+), 19 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
->> index 63ab564655bc..a4dcc88bb01f 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
->> @@ -745,14 +745,7 @@ mdss_dsi_suspend: mdss-dsi-suspend-state {
->>  		bias-pull-down;
->>  	};
->>  
->> -	mdss_te_active: mdss-te-active-state {
->> -		pins = "gpio10";
->> -		function = "mdp_vsync";
->> -		drive-strength = <2>;
->> -		bias-pull-down;
->> -	};
->> -
->> -	mdss_te_suspend: mdss-te-suspend-state {
->> +	mdss_te: mdss-te-state {
+On 19/02/2026 06:49, Srinivas Neeli wrote:
+> Introduce the initial skeleton for the AMD/Xilinx Time Sensitive
+> Networking (TSN) Ethernet IP driver. Adds the Kconfig entry
+> (CONFIG_XILINX_TSN), updates the Xilinx Ethernet Makefile,
+> and provides the base source file focused on device tree
+> parsing and clock acquisition.
 > 
-> This is not used and probably can be dropped.
+> Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
+> ---
+>  drivers/net/ethernet/xilinx/Kconfig           |   1 +
+>  drivers/net/ethernet/xilinx/Makefile          |   1 +
+>  drivers/net/ethernet/xilinx/tsn/Kconfig       |  14 ++
+>  drivers/net/ethernet/xilinx/tsn/Makefile      |   2 +
+>  drivers/net/ethernet/xilinx/tsn/xilinx_tsn.h  |  60 +++++
+>  .../net/ethernet/xilinx/tsn/xilinx_tsn_main.c | 218 ++++++++++++++++++
+>  6 files changed, 296 insertions(+)
+>  create mode 100644 drivers/net/ethernet/xilinx/tsn/Kconfig
+>  create mode 100644 drivers/net/ethernet/xilinx/tsn/Makefile
+>  create mode 100644 drivers/net/ethernet/xilinx/tsn/xilinx_tsn.h
+>  create mode 100644 drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c
 > 
+> diff --git a/drivers/net/ethernet/xilinx/Kconfig b/drivers/net/ethernet/xilinx/Kconfig
+> index 7502214cc7d5..c6d704c8d3d4 100644
+> --- a/drivers/net/ethernet/xilinx/Kconfig
+> +++ b/drivers/net/ethernet/xilinx/Kconfig
+> @@ -41,4 +41,5 @@ config XILINX_LL_TEMAC
+>  	  This driver supports the Xilinx 10/100/1000 LocalLink TEMAC
+>  	  core used in Xilinx Spartan and Virtex FPGAs
+>  
+> +source "drivers/net/ethernet/xilinx/tsn/Kconfig"
+>  endif # NET_VENDOR_XILINX
+> diff --git a/drivers/net/ethernet/xilinx/Makefile b/drivers/net/ethernet/xilinx/Makefile
+> index 7d7dc1771423..66dab012650b 100644
+> --- a/drivers/net/ethernet/xilinx/Makefile
+> +++ b/drivers/net/ethernet/xilinx/Makefile
+> @@ -8,3 +8,4 @@ obj-$(CONFIG_XILINX_LL_TEMAC) += ll_temac.o
+>  obj-$(CONFIG_XILINX_EMACLITE) += xilinx_emaclite.o
+>  xilinx_emac-objs := xilinx_axienet_main.o xilinx_axienet_mdio.o
+>  obj-$(CONFIG_XILINX_AXI_EMAC) += xilinx_emac.o
+> +obj-$(CONFIG_XILINX_TSN) += tsn/
+> diff --git a/drivers/net/ethernet/xilinx/tsn/Kconfig b/drivers/net/ethernet/xilinx/tsn/Kconfig
+> new file mode 100644
+> index 000000000000..53734842700b
+> --- /dev/null
+> +++ b/drivers/net/ethernet/xilinx/tsn/Kconfig
+> @@ -0,0 +1,14 @@
+> +config XILINX_TSN
+> +	tristate "Xilinx TSN Ethernet driver"
+> +	depends on OF && HAS_IOMEM
 
-But I think it should be used - it's just incomplete. There DSI is
-enabled so there should be a panel using the TE/VSYNC. This looks like
-being added for future, just like many other pincfg states.
+No ARCH_XILINX?
+
+> +	select PHYLIB
+> +	select NET_DEVLINK
+> +	select NET_DEV_STATS
+> +	help
+> +	  This driver supports the Xilinx Time-Sensitive Networking (TSN)
+> +	  Ethernet IP, which includes multiple Ethernet MACs, a TSN switch,
+> +	  and an endpoint block. It provides support for scheduling,
+> +	  traffic shaping, and time synchronization to meet real-time
+> +	  requirements of industrial Ethernet applications.
+> +
+
+
+...
+
+
+> +
+> +/*
+> + * Helper to parse TX queue config subnode referenced by
+> + * xlnx,tsn-tx-config. This version enumerates child nodes in order and
+> + * assigns DMA channels sequentially (queue0 == first child, etc.)
+> + */
+> +static int tsn_parse_tx_queue_config(struct device *dev, struct tsn_priv *common,
+> +				     struct device_node *txcfg_np)
+> +{
+> +	struct device_node *qnode;
+> +	unsigned int queue = 0;
+> +	int ret = 0;
+> +
+> +	for_each_available_child_of_node(txcfg_np, qnode) {
+> +		u32 chan;
+> +
+> +		if (queue >= common->num_tx_queues) {
+> +			dev_err(dev, "tx-config: extra child nodes beyond %u ignored\n",
+> +				common->num_tx_queues);
+> +			of_node_put(qnode);
+
+Use scoped loop.
+
+> +			return -EINVAL;
+> +		}
+> +
+> +		ret = of_property_read_u32(qnode, "xlnx,dma-channel-num", &chan);
+> +		if (ret) {
+> +			dev_err(dev, "tx-config: Q%u missing xlnx,dma-channel-num\n", queue);
+> +			of_node_put(qnode);
+> +			return ret;
+> +		}
+> +
+> +		if (chan > TSN_DMA_MAX_TX_CH) {
+> +			dev_err(dev, "tx-config: Q%u channel %u exceeds max %lu\n",
+> +				queue, chan, TSN_DMA_MAX_TX_CH);
+> +			of_node_put(qnode);
+> +			return -EINVAL;
+> +		}
+> +		common->tx_dma_chan_map[queue++] = chan;
+> +	}
+> +
+> +	if (queue != common->num_tx_queues) {
+> +		dev_err(dev, "tx-config: described %u queues but expected %u\n",
+> +			queue, common->num_tx_queues);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * tsn_parse_device_tree - Parse device tree configuration for TSN device
+> + * @pdev: Platform device pointer
+> + *
+> + * Return: 0 on success, negative error code on failure
+> + */
+> +static int tsn_parse_device_tree(struct platform_device *pdev)
+> +{
+> +	struct tsn_priv *common = platform_get_drvdata(pdev);
+> +	struct device_node *txcfg_np = NULL;
+> +	struct device *dev = &pdev->dev;
+> +	int i, ret;
+> +
+> +	/* Read number of priorities */
+> +	ret = of_property_read_u32(dev->of_node, "xlnx,num-priorities", &common->num_priorities);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get xlnx,num-priorities\n");
+> +
+> +	if (common->num_priorities < TSN_MIN_PRIORITIES ||
+> +	    common->num_priorities > TSN_MAX_PRIORITIES)
+> +		return dev_err_probe(dev, -EINVAL, "Invalid xlnx,num-priorities (%u)\n",
+> +				     common->num_priorities);
+> +
+> +	/* Count TX and RX queues from dma-names property */
+> +	ret = of_property_count_strings(dev->of_node, "dma-names");
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to get dma-names\n");
+> +
+> +	common->num_tx_queues = 0;
+> +	common->num_rx_queues = 0;
+> +
+> +	for (i = 0; i < ret; i++) {
+> +		const char *dma_name;
+> +
+> +		if (of_property_read_string_index(dev->of_node, "dma-names", i, &dma_name))
+> +			continue;
+> +
+> +		if (strncmp(dma_name, "tx_chan", 7) == 0)
+> +			common->num_tx_queues++;
+> +		else if (strncmp(dma_name, "rx_chan", 7) == 0)
+> +			common->num_rx_queues++;
+> +	}
+> +
+> +	if (!common->num_tx_queues || common->num_tx_queues > TSN_MAX_TX_QUEUE)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Invalid TX queue count (%u, max %u)\n",
+> +				     common->num_tx_queues, TSN_MAX_TX_QUEUE);
+> +
+> +	if (!common->num_rx_queues)
+> +		return dev_err_probe(dev, -EINVAL, "No RX DMA channels found\n");
+> +
+> +	/* Setup clock IDs */
+> +	for (i = 0; i < TSN_NUM_CLOCKS; i++)
+> +		common->clks[i].id = tsn_clk_names[i];
+> +
+> +	/* Get all clocks */
+> +	ret = devm_clk_bulk_get(dev, TSN_NUM_CLOCKS, common->clks);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get clocks\n");
+> +
+> +	/* Enable clocks */
+> +	ret = clk_bulk_prepare_enable(TSN_NUM_CLOCKS, common->clks);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable clocks\n");
+> +
+> +	for (i = 0; i < TSN_MAX_TX_QUEUE; i++)
+> +		common->tx_dma_chan_map[i] = TSN_DMA_CH_INVALID;
+> +
+> +	txcfg_np = of_parse_phandle(dev->of_node, "xlnx,tsn-tx-config", 0);
+> +	if (txcfg_np) {
+> +		ret = tsn_parse_tx_queue_config(dev, common, txcfg_np);
+> +		of_node_put(txcfg_np);
+> +		if (ret)
+> +			goto err_disable_clks;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_disable_clks:
+> +	clk_bulk_disable_unprepare(TSN_NUM_CLOCKS, common->clks);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * tsn_ip_probe - Probe TSN IP core device
+
+Nooo...
+
+
+> + * @pdev: Platform device pointer
+> + *
+> + * Return: 0 on success, negative error code on failure
+> + */
+> +static int tsn_ip_probe(struct platform_device *pdev)
+> +{
+> +	struct tsn_priv *common;
+> +	int ret;
+> +
+> +	common = devm_kzalloc(&pdev->dev, sizeof(*common), GFP_KERNEL);
+> +	if (!common)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, common);
+> +	common->pdev = pdev;
+> +	common->dev = &pdev->dev;
+> +
+> +	/* Initialize synchronization primitives */
+> +	spin_lock_init(&common->tx_lock);
+> +	spin_lock_init(&common->rx_lock);
+> +	mutex_init(&common->mdio_lock);
+> +
+> +	common->res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (!common->res)
+> +		return -ENODEV;
+> +	common->regs_start = common->res->start;
+> +	common->regs = devm_ioremap_resource(&pdev->dev, common->res);
+> +	if (IS_ERR(common->regs))
+> +		return PTR_ERR(common->regs);
+> +
+> +	ret = tsn_parse_device_tree(pdev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * tsn_ip_remove - Remove TSN IP core device
+> + * @pdev: Platform device pointer
+
+Pointless comment. Can it be anything else than what you wrote? Why are
+you adding comments to standard boilerplate calls?
+
+> + */
+> +static void tsn_ip_remove(struct platform_device *pdev)
+> +{
+> +	struct tsn_priv *common = platform_get_drvdata(pdev);
+> +
+> +	clk_bulk_disable_unprepare(TSN_NUM_CLOCKS, common->clks);
+> +}
+> +
+> +static const struct of_device_id tsn_of_match[] = {
+> +	{ .compatible = "xlnx,tsn-endpoint-ethernet-mac-3.0", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, tsn_of_match);
+> +
+> +static struct platform_driver tsn_driver = {
+> +	.probe = tsn_ip_probe,
+> +	.remove = tsn_ip_remove,
+> +	.driver = {
+> +		.name = "xilinx-tsn",
+> +		.of_match_table = tsn_of_match,
+> +	},
+> +};
+> +module_platform_driver(tsn_driver);
+> +
+> +MODULE_AUTHOR("Neeli Srinivas <srinivas.neeli@amd.com>");
+> +MODULE_DESCRIPTION("Time Sensitive Networking (TSN) Ethernet MAC driver");
+> +MODULE_LICENSE("GPL");
 
 
 Best regards,
