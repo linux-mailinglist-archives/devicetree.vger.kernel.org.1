@@ -1,181 +1,158 @@
-Return-Path: <devicetree+bounces-266769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266766-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8GkHIWeVl2nO1QIAu9opvQ
-	(envelope-from <devicetree+bounces-266769-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:57:43 +0100
+	id EIrSOBaVl2nO1QIAu9opvQ
+	(envelope-from <devicetree+bounces-266766-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:56:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2469E1636C7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:57:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6144B16368B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:56:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EACC8303CC17
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:55:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4DD7F3033FA1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:55:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 310C132E698;
-	Thu, 19 Feb 2026 22:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7AD32E13A;
+	Thu, 19 Feb 2026 22:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uBDhLhDx"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="UJ8Qx9VO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3492132E143
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 22:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2F532E136;
+	Thu, 19 Feb 2026 22:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771541759; cv=none; b=t3+5++NeAjfpjy38DK9yjFJbONgYmMu2H1CZna5aOv4pyFcWFU9VBap8gO4U3A7KUKYQPHhTZAG2Z+CJWi38bvVshkBW1ewIbdn+9f8fxBQRFf3ACTzRkFHK0T38lJAHmFlSLo/E6y5/4anZeCUSX6Ntn9A6jnG9rTtv4BDrdTM=
+	t=1771541747; cv=none; b=IL4EluxjwxnzJNlZMdlhycYAwd0QExX1xKa/RYHSeuMnmDRaHCpff+IJixzH/6YRSkFC6CmOTQz6afntgRuSg6mEuvvBfSc1BlidtcHLWkjrJNBZg4egb6kP0d6CGafyBbQdxSmyxPp9Hr01qvgCPzeewdZ1h/JDDqONgYYC2DY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771541759; c=relaxed/simple;
-	bh=q5ubFzH4qgc7OuFNqgcrKZJjea7RWBN3Hi9vN43DLO4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Q0K1ESqoyNjCg7BVbqDtuoq7PFYlOepcUmzdTZ0ytHM/AzMBFmsHgxlNG6EiKBHimoQH+YObJBjcsCfNb6YGfy1d7z2ZUXVF5KiIpPWxIhiTzQBkItSyZXdlQF3QSE86auExRTVGKrsCzZ9sMqFEaneCoMdWONiCXHXPzocSy20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uBDhLhDx; arc=none smtp.client-ip=209.85.210.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7d4bc6a8021so1153577a34.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 14:55:57 -0800 (PST)
+	s=arc-20240116; t=1771541747; c=relaxed/simple;
+	bh=rVNcyJpCzCVD+GmW960YfrXt1CCQlTJw9LL2VRAeLEA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Kvf1163D9sgPUkWuXQ3qMgM7W1CYo5m36ikPefHZk3OyiAYPIhIaSeWtl86etwinunMskHtxfcnr8WbUmEPKPoi2et29Ni2FbyUgms6PbzwC4FJPcjxiOw75QtKDtuAurLrF689LIxZpddfQm59mP7mDDYkvFwJcXfIHitTzt2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=UJ8Qx9VO; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771541756; x=1772146556; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jKYUgE4Lj5YWYTlIcNqqLcI1EoAo5/fpI79A2agQr2o=;
-        b=uBDhLhDxzHA41XwHzyQxqmZIuGZsqC7lbZf7JnXjvA85oscr3FL8VErfkwIc3J+U0n
-         0aiYXSsxWppeTaprtYKQ2Dswdj/MsO9OT805U1Kp0HDDhzalzNDUZN69wnPGTKyBqzgx
-         U0oFht0WpRMP2hebfsMYj5prOPws1HBPpFUnnryh6Trd5vRX+O4EgKYN2bnGM96N8Q81
-         VDj+i7DypjMpwaN2ERHTITTHMrkCLTWpnZUBgj1pyqnNWQz6hgmc7qxLK9X8V0ilLOI/
-         1yFGcgSME50uhdgOT40929BcHrKMblvrp7wgFcIa7m2iv0lqPrsvkLBDC/aNaaH4fW35
-         KdPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771541756; x=1772146556;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=jKYUgE4Lj5YWYTlIcNqqLcI1EoAo5/fpI79A2agQr2o=;
-        b=gcRTnxtP0AJEQfYQ2rdFH0Y4NBUaLwmGor2QXN2EBQlUjynYJDJi2MjLhAUnTVxlYK
-         g5eH/SSxeX+jZzC4LILmjwS3yoNuJJ0Uk/tg83LabUOMGdIn9E5xVBTLSSB42/f/eEYa
-         2qYeRRSS1rdgKGFQByRj6bAz5w5t02MUx8WMI3EJdOe/7XEAes7J1lJKIquyQy4nwDKn
-         flWZP0aOFZ2iWfHT2P7KzVrq3DApf0WZEyCn/XsGODp8adhFGKF4D7hc4rlPUVc48XX7
-         cs+npDYZMkUyr6mYIPJMeT6h7nWDzbQVjBKb0GKNtVwZjEXNLznag1ffHXfHuWVov2II
-         H1CQ==
-X-Gm-Message-State: AOJu0YzJbCgl7XjXbTgixMmr3peqSvrwL6Kt4rIYy8fkHClOkJluOvzV
-	0GqGJECLZuYNXvwFebNU5kgE2E1Bhc+cLui16pGWT6ePD89rN7o2FNs50JxUBC2vDOo//1mzoMD
-	WdSsK
-X-Gm-Gg: AZuq6aIYBm9Xg9GigE6opDRi7BYxM1m0UZ7lWJQe/s60dgell2pWf4N9Yqyea8+7RpP
-	41+G5POU+CCWGB03aZVBMM7hfeAlOi+4KRXlQD1SP/aY6iBS1Tv8VUSd4xyLYfHXHXEGzBUzri1
-	FKhtsg1lLF+tuFT4v0mUeYcPpV1YnBJnMlwqj2VLv8kE0+xr2/Sq1qMcSzjXOWS0mVRVdwY/dKX
-	62SCppy7YFK721xKik6Ni+mPycuQTWqzMe0tACs7k5/BAuin+CBgEy+SAhWOUQZUpCFs1KNOBqs
-	/cYdBQRceQ0GAie5uEXdCM8V287oN1IdhzawRIOtXA63LNpNKvBrri9N4oRe3T8S1T7UI4NE2K2
-	Sv5O7Z24igWL2mcfRNlyQaALuQsdXI4iS/DO3yUdCuT77lPBrtbDXDRjYaLmQweuE4B2Svk2ALi
-	7Z9DU2Jx7EDRvghNCbBSSqbLqzKQ==
-X-Received: by 2002:a05:6830:2b23:b0:7c9:5bef:e9b with SMTP id 46e09a7af769-7d4d0a9a731mr11337634a34.3.1771541756215;
-        Thu, 19 Feb 2026 14:55:56 -0800 (PST)
-Received: from [127.0.1.1] ([2600:8803:e7e4:500:d4c1:bce:26a1:c903])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d4a7720a95sm20565585a34.29.2026.02.19.14.55.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 14:55:55 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-Date: Thu, 19 Feb 2026 16:55:30 -0600
-Subject: [PATCH 2/2] dt-bindings: regulator: mt6359: make regulator names
- unique
+	d=codeconstruct.com.au; s=2022a; t=1771541742;
+	bh=SsuYpqBzhHCrA5NOoErB6qWr93G3ME/F8oMqLaTn5dw=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=UJ8Qx9VOxZXNGx2/KPPqarJ91onDtc/c91tR9XStg93O0F1PqgJ+gMaRUYKw8KAG+
+	 JdhtuaUIov9nn66tpAvtBOIVvSjTaj+LKGdUseStOl1nbaRROrZt+7HtHWzMmhwA2A
+	 XNGS4Ynv4pnpbB03RKhnj3n4C0U1FVQ68TvFvkgKyYlDSn+eKuufiN9va4TuahBbUm
+	 cC4wg9fuXIARy+r/3i0NWLUeLEBgqmWx20em5jd2a3xnIP4GJsh973uEurQUmSUEfp
+	 v/N05EpZ+l4VNk/PtqsKQGzOhhAe11vAFRUAk/Id4QHlykWQyZ+vlGIAGC1Q1/VwmF
+	 qHIPlrhpXS5eQ==
+Received: from [192.168.68.114] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 08C16600E1;
+	Fri, 20 Feb 2026 06:55:41 +0800 (AWST)
+Message-ID: <7fb15c01c586fb7d4a3ee506b17d87151d50bfe6.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2] ARM: dts: aspeed: anacapa: Add retimer EEPROMs
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: "Chen, Dirk" <Dirk.Chen@amd.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+ "linux-arm-kernel@lists.infradead.org"
+	 <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	 <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	 <linux-kernel@vger.kernel.org>
+Date: Fri, 20 Feb 2026 09:25:41 +1030
+In-Reply-To: <MN2PR12MB403103EC90C803E3FA6CE6B9E76BA@MN2PR12MB4031.namprd12.prod.outlook.com>
+References: <20260209-b4-anacapa-dts-fix-v2-1-fe446a7038bf@amd.com>
+	 <6192440acc150d216de5e074299e579e891fc845.camel@codeconstruct.com.au>
+	 <MN2PR12MB403103EC90C803E3FA6CE6B9E76BA@MN2PR12MB4031.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260219-mtk-mt6359-fix-regulator-names-v1-2-ee0fcebfe1d9@baylibre.com>
-References: <20260219-mtk-mt6359-fix-regulator-names-v1-0-ee0fcebfe1d9@baylibre.com>
-In-Reply-To: <20260219-mtk-mt6359-fix-regulator-names-v1-0-ee0fcebfe1d9@baylibre.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1337; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=q5ubFzH4qgc7OuFNqgcrKZJjea7RWBN3Hi9vN43DLO4=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpl5TzMYDxF2HX4rTA3UnTgVFDxUpAyCkM1Kg6Q
- /Pk2GoyLeWJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaZeU8wAKCRDCzCAB/wGP
- wBX4B/494HnG2O3/PxDWMUTl5U+mRUHVBFcrRCjPMQGllZGxZhl0cAExWCe/Riqh1c8ca7b6ksR
- O13CBTRTitM2swXkuwkkECCdVDc/WK2FwJMX9HYlAXourphfs+DFDrQAPcAa2EippXn/tQRsnhI
- MrL41gtfiROq8S5cQYJP5wu5ansEBfY5z/1iabqbsDaDNHfn3jOyUqunbQ0HXY6xxdTPzYCKRDx
- O3Ovcp4iVhPbzgPCtidoQ6joIT2IRTIs3A5GCtnG5j6s6Ul2zCJBGvTEFBVyV59LJWoJq2rk74y
- MGyj5pAs73pMtMSh+HHVuMJoVlPv22ngO/F3KJU6T3Te7LZO
-X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
- fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266769-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266766-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:mid,baylibre.com:email]
-X-Rspamd-Queue-Id: 2469E1636C7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.70:email,0.0.0.50:email,codeconstruct.com.au:mid,codeconstruct.com.au:dkim]
+X-Rspamd-Queue-Id: 6144B16368B
 X-Rspamd-Action: no action
 
-Update the example devicetree with unique regulator names for all
-regulators. This reflects the same change made to the actual .dtsi file.
+Hi Dirk,
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Thu, 2026-02-19 at 15:54 +0000, Chen, Dirk wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 
-diff --git a/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
-index d6b3b5a5c0b3..fe4ac9350ba0 100644
---- a/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml
-@@ -287,7 +287,7 @@ examples:
-           regulator-max-microvolt = <1700000>;
-         };
-         mt6359_vrfck_1_ldo_reg: ldo_vrfck_1 {
--          regulator-name = "vrfck";
-+          regulator-name = "vrfck_1";
-           regulator-min-microvolt = <1240000>;
-           regulator-max-microvolt = <1600000>;
-         };
-@@ -309,7 +309,7 @@ examples:
-           regulator-max-microvolt = <3300000>;
-         };
-         mt6359_vemc_1_ldo_reg: ldo_vemc_1 {
--          regulator-name = "vemc";
-+          regulator-name = "vemc_1";
-           regulator-min-microvolt = <2500000>;
-           regulator-max-microvolt = <3300000>;
-         };
+Please have a read through [1], in particular:
 
--- 
-2.43.0
+[1]: https://subspace.kernel.org/etiquette.html
 
+   Do not include =E2=80=9Cconfidentiality disclaimers=E2=80=9D
+
+   When posting to public mailing lists the boilerplate confidentiality
+   disclaimers are not only meaningless, they are absolutely wrong for
+   obvious reasons.
+  =20
+   If that disclaimer is automatically inserted by your corporate e-mail
+   infrastructure, talk to your manager, IT department or consider using a
+   different e-mail address which is not affected by this policy. Many IT
+   companies have dedicated e-mail infrastructure for kernel developers to
+   specifically avoid this situation.
+
+>=20
+> Hi Andrew,
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 eeprom@50 {
+> > Please order these nodes by ascending address. The node currently above=
+ this one is i2c-mux@70 - eeprom@50 should go before it.
+> > https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order=
+-of-nodes
+>=20
+> Thanks for the reminder.
+> I've reordered the nodes by ascending address in v3.
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 compatible =3D "atmel,24c2048";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 reg =3D <0x50>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 pagesize =3D <128>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > =C2=A0};
+> > +=C2=A0=C2=A0=C2=A0=C2=A0 eeprom@50 {
+> > Same for this one.
+>=20
+> Fixed in v3 as well.
+>=20
+
+Thanks,
+
+Andrew
 
