@@ -1,216 +1,170 @@
-Return-Path: <devicetree+bounces-266558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266559-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEPyIYF9lmkggQIAu9opvQ
-	(envelope-from <devicetree+bounces-266558-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 04:03:29 +0100
+	id f2ZjMbqRlmmDhgIAu9opvQ
+	(envelope-from <devicetree+bounces-266559-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 05:29:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAFAB15BCEF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 04:03:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10AAF15C048
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 05:29:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E62AB300441A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 03:03:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 85212301843C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 04:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A2A4283C89;
-	Thu, 19 Feb 2026 03:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906C9285C8B;
+	Thu, 19 Feb 2026 04:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qi+sveep"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Bwojwkgh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED17F27510E
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 03:03:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD4227603F;
+	Thu, 19 Feb 2026 04:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771470199; cv=none; b=YOkc95WMHZLn8M1zLDRSP2Y2YkvlBH01PVhD8460f/6C/6FgRGhpRjtNBcwmgi+3y1NLiba+2G5xN/bnWgmBB2BvLb/2jZrcQpij3rIH0PwKb8e8RA2nzTPiaKqp4iIYbSAZfS9qFGROh/ryEuvQh6pwUPV/v/7yZffDGzLoLE8=
+	t=1771475383; cv=none; b=q0SGkLSJS/Bn1VUDAfNnTVXPJBW9QPXObU/GX1mSSHevISfzsEPzne54tdtJCD6CvQo0pnSKv5+1ELbS1YiHYd+ExhIw9fJuXjQz1xr9xyZJAUR0lqKAF87wbEG9zIloj1CBzXyje/EZVsE4kFbv7l1BzG3aZDrBKpru2ja8kqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771470199; c=relaxed/simple;
-	bh=OWJ5x14wajrz8wzvjKNrubyOIzm5J7IxGIyncWhDv2c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CY3cV0MrGPyCmV5rTciVTcmgVe45QnqfmzvtUNdpqZpplpEZkwFcgnVsFuG9d4bo3cC+zL9qlktNT8JkhdbDLKfOz5+kOwpezfsjBx9dTcrcWkCIZ/SzfzoQaxCsh1kB8r0nfzm0l2zF4YCrKa/q1FymxHKQUGWC88hI125IpDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qi+sveep; arc=none smtp.client-ip=209.85.219.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-897002b7576so5813926d6.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Feb 2026 19:03:17 -0800 (PST)
+	s=arc-20240116; t=1771475383; c=relaxed/simple;
+	bh=IW9SER9RIitJsBDF56Xv2ooeDZNlYWYueCy861NkBAI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ESIUNnc0+34mxiTCroocUO1vn0iWuuJkjrHn66kkHvrSGPB/B7prXLzl6KNjFS4HQgqpxcnmAFpMsF1ACylgWQQqNsUdUb/6JmUzhZg59V24a6ZCpM216PZgk/A4E2sbmNEltYFFolvTvi2HEYb7oxEQSa04diIHpftiewN4b1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Bwojwkgh; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771470197; x=1772074997; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T8GnrEGX/i/JHBNftmmrvaGUEdnFlOXVQpYFwKQKQzw=;
-        b=Qi+sveep95ePjUG8+zh2HBn8IXV/4PoLDdTmu+dwdhDGa3IXBdCEjPpC7nLoWnEv3e
-         TmVlxhDAa3CC4yQV/dmwx7zrTAzoPx+4sBMB79eMoaLV/GIdp4LAyf4Ay6Ox30iQ9gjQ
-         mZUXk943wbhfZL9x3Rqc8ymAXChJtDXGfD0ZGOCV92OKBIRlqnGUCGSaaFQp1vDFztPe
-         YjgB0QWV32FvpzzGzD4fLozUz0075/JLm1F3rsLVNtdiqNLwcHTgyO1bCKstxE8dPPSn
-         qir8FffQunX1p1NPgMSn1RmZ9lMRJaVC+YJSg0bvwdGzI5GK96cwlyicrpdD2R4gRHb9
-         j3Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771470197; x=1772074997;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=T8GnrEGX/i/JHBNftmmrvaGUEdnFlOXVQpYFwKQKQzw=;
-        b=u7pDvhYtR+/ZYuRveBTnDHANwlqWMStXjk+3tutkuv0moO8bGzCwz7zzHUl65DpLLj
-         uhjs50wks7WTaPWaSbYnwi3PlK1mI3A5IMRJbwzbt7KbT4Mll+68oH/HLm27lmwb71AA
-         pOPWLU1Dewv3cYC2hHzZNedYHqfS3QYobOcgVgiKnImEwCA4kANrr1FUHJ+lZ0C+A3mB
-         M9sZKW64Tc0F4d+eOnIWUx3Gt9G2cb6tM+cBIL2QAdrF+kgZnRv1tDE/ce+xsJu0UjWs
-         BiUzUU2ufu7cin78ZuIMobykk8VD9CQkzuZHjV3whQbV3qSWSgkO6dJbHcx7h1gGHFQc
-         oY+g==
-X-Forwarded-Encrypted: i=1; AJvYcCVCEX+QLOgDNAmj8ekG1MF5srLFcB37WfpgEU6u0IRV5AHAW4fjyHR8bQcQbFFZitcinsnw6cUpf3k5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfX/in0LvoVtJl3T1Ir5d+nx6+ZoyiET0n6GuwPHxH0/KZM/DD
-	bOp+clyxQd70sAX02/wUehLjX/EkXeK4pQclhu3LaKWwxtTqY7GmBa3b
-X-Gm-Gg: AZuq6aLxjDCQ0vVduf3y+1dJBKD2Xv+p3eOUSXtH/cb6vqDxKqoZCGj//WVyVWOlFc8
-	2OGpYShw7wp2PVUzhI+21DVkfLYzb83uKRIES+LP/0h1W/W2aOp82Z5u8PJwG03e0uJWewKqKRs
-	1mCR5698RCRoeN42XPrcpoVBKxQ+2L6D/Z48sL5fRvKqN15d0WIWR0rXXkBtnIVBOJbl9WwHoT9
-	YhkaxL0QDXdaXfsuDZ+QMXCySjbQes4RzvMkBLmANZzKpAhKMWcJIy6m2oP9AcZpJNBpkQrnqU7
-	H5V9ua1lzrzVTrH4DrgDSkxqJn7MghBsoQIvBT/tfB0FaJGdvNxOaG00nfSYh9v2EBrAFpQuE7I
-	Osl+iN/Zkn2uqFi4RMgS4On9y526D6o+ELsWnDvB+xGMRZOze9+NnOsWPIRUAVLbVlJxuAMs2ib
-	+P0gON3J10wlhQFNXBlA9SvEd/nP4=
-X-Received: by 2002:a05:6214:212e:b0:895:4d85:5edc with SMTP id 6a1803df08f44-8995812859cmr56144026d6.70.1771470196866;
-        Wed, 18 Feb 2026 19:03:16 -0800 (PST)
-Received: from [172.17.0.2] ([134.128.219.200])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cddc526sm205359896d6.53.2026.02.18.19.03.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Feb 2026 19:03:16 -0800 (PST)
-From: Yuanshen Cao <alex.caoys@gmail.com>
-Date: Thu, 19 Feb 2026 03:02:52 +0000
-Subject: [PATCH v2 2/2] usb: typec: tcpm: Add vid and chip info for Etek
- ET7304
+	d=codeconstruct.com.au; s=2022a; t=1771474857;
+	bh=hXrvUZQrcqQlGaHQ11Cid7iVmcJJZTJxmPs9kL1e/rs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=Bwojwkghc4xDICaeOQpHCSeB8PghyUnrrJCRmCC47tvOKYdQauZ9ySpiEMgRFHQje
+	 W7XQ9bOGmCwzJzAxSgb2kQWMHDnx/ck8uhmj78B3mgYQd5yosqtJWjc/aDRaobYMyG
+	 1ievMsTD9NDe9y/4hZJpDuMYcEeSZ3CCfADJ8yASmQo+o5gwgvR8A12pyU8vI6HtjI
+	 0IkXNFnda2+4MMi1XQliOtPXfvhNz1fd72yaFBtJxUdN58Lcmj0y9qqNtfYGLK2fin
+	 ml2MnBIN3YNT9i2P2sMskWwrRTHdNUV04FscunCJESHRjbT4iScD7f1Zj110Q19EG7
+	 2ajMkwQcxDSQw==
+Received: from [192.168.68.114] (unknown [180.150.112.60])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1839760033;
+	Thu, 19 Feb 2026 12:20:55 +0800 (AWST)
+Message-ID: <6192440acc150d216de5e074299e579e891fc845.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2] ARM: dts: aspeed: anacapa: Add retimer EEPROMs
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: dirkchen@amd.com, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Thu, 19 Feb 2026 14:50:54 +1030
+In-Reply-To: <20260209-b4-anacapa-dts-fix-v2-1-fe446a7038bf@amd.com>
+References: <20260209-b4-anacapa-dts-fix-v2-1-fe446a7038bf@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260219-et7304-v2-2-b2e268494ae8@gmail.com>
-References: <20260219-et7304-v2-0-b2e268494ae8@gmail.com>
-In-Reply-To: <20260219-et7304-v2-0-b2e268494ae8@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Yuanshen Cao <alex.caoys@gmail.com>
-X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_FROM(0.00)[bounces-266558-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266559-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexcaoys@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com]
-X-Rspamd-Queue-Id: DAFAB15BCEF
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.50:email,codeconstruct.com.au:mid,codeconstruct.com.au:dkim,0.0.0.3:email,0.0.0.70:email]
+X-Rspamd-Queue-Id: 10AAF15C048
 X-Rspamd-Action: no action
 
-Move the VID to chip info to accommodate different VIDs
-Add chip info for Etek ET7304. ET7304 is functionally identical to
-the Richtek RT1715, with the only difference being the VID.
+Hi Dirk,
 
-Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
----
- drivers/usb/typec/tcpm/tcpci_rt1711h.c | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+On Mon, 2026-02-09 at 15:58 +0800, Dirk Chen via B4 Relay wrote:
+> From: Dirk Chen <dirkchen@amd.com>
+>=20
+> The Anacapa board features Atmel 24C2048 EEPROMs on i2c0 and i2c1, which
+> are used to store retimer configurations. Add the corresponding device
+> tree nodes to support these components.
+>=20
+> Signed-off-by: Dirk Chen <dirkchen@amd.com>
+> ---
+> Changes in v2:
+> - Improved commit description to clarify that the change reflects
+> =C2=A0 actual hardware as requested by the reviewer.
+> - Removed mentions of other platforms to avoid confusion.
+> - Link to v1: https://lore.kernel.org/r/20260202-b4-anacapa-dts-fix-v1-1-=
+20d4b0114854@amd.com
+> ---
+> =C2=A0arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts | 12 +++++=
++++++++
+> =C2=A01 file changed, 12 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/a=
+rch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+> index 221af858cb6b..b8d248d99d7c 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+> @@ -328,6 +328,12 @@ i2c0mux0ch3: i2c@3 {
+> =C2=A0			#size-cells =3D <0>;
+> =C2=A0		};
+> =C2=A0	};
+> +
+> +	eeprom@50 {
 
-diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-index 88c50b984e8a..4848748a10dd 100644
---- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-+++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-@@ -19,9 +19,11 @@
- #include <linux/regulator/consumer.h>
- 
- #define RT1711H_VID		0x29CF
-+#define ET7304_VID		0x6DCF
- #define RT1711H_PID		0x1711
- #define RT1711H_DID		0x2171
- #define RT1715_DID		0x2173
-+#define ET7304_DID		0x2173
- 
- #define RT1711H_PHYCTRL1	0x80
- #define RT1711H_PHYCTRL2	0x81
-@@ -55,6 +57,7 @@
- 
- struct rt1711h_chip_info {
- 	u32 rxdz_sel;
-+	u16 vid;
- 	u16 did;
- 	bool enable_pd30_extended_message;
- };
-@@ -308,7 +311,7 @@ static int rt1711h_check_revision(struct i2c_client *i2c, struct rt1711h_chip *c
- 	ret = i2c_smbus_read_word_data(i2c, TCPC_VENDOR_ID);
- 	if (ret < 0)
- 		return ret;
--	if (ret != RT1711H_VID) {
-+	if (ret != chip->info->vid) {
- 		dev_err(&i2c->dev, "vid is not correct, 0x%04x\n", ret);
- 		return -ENODEV;
- 	}
-@@ -406,18 +409,28 @@ static void rt1711h_remove(struct i2c_client *client)
- }
- 
- static const struct rt1711h_chip_info rt1711h = {
-+	.vid = RT1711H_VID,
- 	.did = RT1711H_DID,
- };
- 
- static const struct rt1711h_chip_info rt1715 = {
- 	.rxdz_sel = RT1711H_BMCIO_RXDZSEL,
-+	.vid = RT1711H_VID,
- 	.did = RT1715_DID,
- 	.enable_pd30_extended_message = true,
- };
- 
-+static const struct rt1711h_chip_info et7304 = {
-+	.rxdz_sel = RT1711H_BMCIO_RXDZSEL,
-+	.vid = ET7304_VID,
-+	.did = ET7304_DID,
-+	.enable_pd30_extended_message = true,
-+};
-+
- static const struct i2c_device_id rt1711h_id[] = {
- 	{ "rt1711h", (kernel_ulong_t)&rt1711h },
- 	{ "rt1715", (kernel_ulong_t)&rt1715 },
-+	{ "et7304", (kernel_ulong_t)&et7304 },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, rt1711h_id);
-@@ -425,6 +438,7 @@ MODULE_DEVICE_TABLE(i2c, rt1711h_id);
- static const struct of_device_id rt1711h_of_match[] = {
- 	{ .compatible = "richtek,rt1711h", .data = &rt1711h },
- 	{ .compatible = "richtek,rt1715", .data = &rt1715 },
-+	{ .compatible = "etek,et7304", .data = &et7304 },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, rt1711h_of_match);
+Please order these nodes by ascending address. The node currently above
+this one is i2c-mux@70 - eeprom@50 should go before it.
 
--- 
-2.53.0
+https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-=
+nodes
 
+> +		compatible =3D "atmel,24c2048";
+> +		reg =3D <0x50>;
+> +		pagesize =3D <128>;
+> +	};
+> =C2=A0};
+> =C2=A0
+> =C2=A0// R Bridge Board
+> @@ -362,6 +368,12 @@ i2c1mux0ch3: i2c@3 {
+> =C2=A0			#size-cells =3D <0>;
+> =C2=A0		};
+> =C2=A0	};
+> +
+> +	eeprom@50 {
+
+Same for this one.
+
+> +		compatible =3D "atmel,24c2048";
+> +		reg =3D <0x50>;
+> +		pagesize =3D <128>;
+> +	};
+> =C2=A0};
+> =C2=A0
+> =C2=A0// MB - E1.S
+>=20
+> ---
+> base-commit: 4c87cdd0328495759f6e9f9f4e1e53ef8032a76f
+> change-id: 20260202-b4-anacapa-dts-fix-207ffe9a3b0c
+>=20
+> Best regards,
 
