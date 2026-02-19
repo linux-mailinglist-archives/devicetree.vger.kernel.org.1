@@ -1,95 +1,95 @@
-Return-Path: <devicetree+bounces-266734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266735-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iDJdAUSHl2kgzwIAu9opvQ
-	(envelope-from <devicetree+bounces-266734-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:57:24 +0100
+	id eHUfOXeHl2kgzwIAu9opvQ
+	(envelope-from <devicetree+bounces-266735-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:58:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A9B162FCD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:57:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 891AF162FF9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:58:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 10D12300B8D2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:57:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92FE8304B4C3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB83432AACB;
-	Thu, 19 Feb 2026 21:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707A632AADA;
+	Thu, 19 Feb 2026 21:57:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Ny947fNA"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="SyjGnMec"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f226.google.com (mail-yw1-f226.google.com [209.85.128.226])
+Received: from mail-pl1-f227.google.com (mail-pl1-f227.google.com [209.85.214.227])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAC5032ABCD
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AD5E32AAB7
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.227
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771538238; cv=none; b=LLseY6GkUBuiAXcLMrbCrrkcwG4o2bs1HDhCgJ2+IPRO7PiXeuPvzGSjrWxKBg/lJyJ8/LVYwCQBWMfzDzyjIUlX94RiidMPTeiqtI3jso2Q8Sj6MN9FYEQLj0Fgq7NKMMAKkdSmlll0kmDf9rHwpNtW64GTin1897dlAkNJ8CY=
+	t=1771538240; cv=none; b=PtYpIbnNGucRuH83B1bG39lf7CAPOJouaopQJsEGlh8j/jkyDXmW9bisToGqcN9Zw/7C9Q+oUqZqAqXlWMTKlIpSAcr2o89IRbV7RQn+uO8aut6+0AGGoCYMoiCspMEqaUGPzJbf4PPZlehzwSOKD56kPskDV9WQeijLbOTx2dE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771538238; c=relaxed/simple;
-	bh=ZwaEEQqBBpQ9VvCQhaci+MXdObqlEzR3y2j2LYPFfB0=;
+	s=arc-20240116; t=1771538240; c=relaxed/simple;
+	bh=jD5yGVia+PZnL8Wq60+PPU60FeQK0qWyKw0Q5LrmgWY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=QHaWqlyucv2otB047m58kFSEvFFwPPIpRmscyOjiX4UxLAMQADrtasDpcViJmeCkmPoq/adRwg2ciP85CBWh0eJwE4838I6PRvY6PSr6oGYTIskuBwbH6nNeMJuzKq3pmEykWRr22B5r+m1y6OToHK+NUVopZmP6UV6APXVbxAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Ny947fNA; arc=none smtp.client-ip=209.85.128.226
+	 MIME-Version; b=lVkLkXlGZetzBixNAWif/RD4xPHzjULaxTNiEfwqmAZHyMmmtLXTFu9SavitywAc9cdUBrp7Y4P3fffZVgtgxAxL5ZjsapqE1/+cWK1zr97par9WdhtiGtmL1Zj/dVh2Zuw7Xv5EQdrnkEHi/E8iTY/GmK2jtB0rjHVSm9TcH98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=SyjGnMec; arc=none smtp.client-ip=209.85.214.227
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-yw1-f226.google.com with SMTP id 00721157ae682-797d509a2f5so16881637b3.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:57:15 -0800 (PST)
+Received: by mail-pl1-f227.google.com with SMTP id d9443c01a7336-2a962230847so12137745ad.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:57:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771538235; x=1772143035;
+        d=1e100.net; s=20230601; t=1771538238; x=1772143038;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BQ1MmI1k/9HenpReSZ3vHACiJQQcYWd1RGFuc30M+ps=;
-        b=v+KCdd4l5H+zObtYZR6fy+saZTVkFe9xtDi+XBO2kFtk6HIHYMm7jigTZp4tUoBCgL
-         rSqqys9vq+kuMKjxuG9mUkEr0wWxJrMDOW3fHOuuWMiI7B+HNLgygwHSG83sGwllpJlM
-         /g5A/WoBFoB7CuQ+cNmKp1Z/k0XSolwiKBH6y8uXjL8UssFHw+RbtMsn5fUYV5zbJ4B8
-         OytrJJ51d3ObAcnxR6hJXvICqkmE2Qt0HuuSsO0FM2SCI0efW2O8DALsXuGd7uN1QFMH
-         Bmnkt7BMrvY/U+FvaCVWZCG1smLpQxsQUcMTz3i6O1Lrhrw9CPXRZBqIAq6NgfR5MAdb
-         QPkA==
-X-Forwarded-Encrypted: i=1; AJvYcCW6lzI4r0zIhUiscvtxVn4S2X1vH7JNs6vqHOILEoEBzeKSzNZ0hKN26F8gm+YHrJILZHbO41W0vYQa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybdgmq8kUDn6BHMQS60hgxc9Z4owQPbhMA5dGTkMKdkyaOOgyz
-	tGoQQz0ILpxGoAnMdPcmykme/R2yWDmMVWAggA15INvNLVoeQfzQTVDji12NcTw+PIe7HDl8skc
-	TnOkryAtRMcEivdOZ/SBtOLbyk6JA+kmngbXRre1vy6WOpjV+pGQqZEyxrbyLD+HO6HlaqN35D8
-	TWJY8ykXNGTzJRpP22sGElst9cw6U0qjyGvz/jwJZhFeFk6cM7Di8XTwFyx/6kkj0Uxnl+W3lTR
-	FAC77NQXntqGA==
-X-Gm-Gg: AZuq6aJd9F6M9hNF679lfT2E+cNH/buvTblBwJOy+RBBBNAzgnEhzDmW+3AOQOhpmWS
-	jDFxsko/si5jhRsJnx1xI7OHMFylDCdaYLnb9BAxb+COZAy694Vb6Xz+htrG4mAJw0bRbXAXFiD
-	afU3y9E8YsCce2KP2FuyjLuhaFOSvVUa6L1l3KJcvMDz6Um8kuNbO73iG7NwtbRryqLeKNmPKbu
-	yVWlF+BSot5wwDyxiwMlJ28NSflCWjGK+DuqRFIBFmFHN+soYAEkgfQA0x62HM7jQwhxppKRf4u
-	7Ar/3k+VsngVQ4pSoF2Egkpttv59/3wjmB5BYN0noh9L2wapFNF+V1nRJOl2FuN0z+shiQmvYRJ
-	41xfON5D6/cvi5uiq9gho0GyaHCIqclHXRa7mQToAmfJOztRf9FJpd1pqR9J9AunXCism82fTRy
-	U/8khQYHDTMA5tqZ/BEffakglHC10gEXqOLLpClsai/i54VH7jdtsyXXj4
-X-Received: by 2002:a05:690c:b06:b0:795:fb7:6f1b with SMTP id 00721157ae682-797f717b101mr59406957b3.12.1771538234548;
-        Thu, 19 Feb 2026 13:57:14 -0800 (PST)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-103.dlp.protect.broadcom.com. [144.49.247.103])
-        by smtp-relay.gmail.com with ESMTPS id 00721157ae682-7966c25f565sm23427287b3.28.2026.02.19.13.57.14
+        bh=hQ4iRn4Yr0HtvQBIFvgGnqHMHINRSvRxdUg7UzIwt38=;
+        b=EqfqomtR9eEPNLCZ+0UbqhgaFFiI1aF0dueHMtVnet3euBMjgxQ9yiu3D/VBNYrRv6
+         b2FQOhtOcSnOUnj4t5x6LcFPDjYZa298nl1ACAcxaL4vfbsX0ilXkPQHs4cGDuVzTeA2
+         siRiIjRCd5nYudnvA386Aj0l1XK8V8iefWmEF9HAQJoj88MKJQSMmNsaxQfXsMGNa/Qj
+         A1f51b75UETSjfQ86kEuqY3ydhERD6AStvNHnwDlRYOMGyiWpDbXoKogOXNfXtD2Ia+T
+         7yunhqxUFS/NiMpRZ2ZQDfPCxiVclDNjZGtwFjaJzIgaYt0kyeZMtC5cPhLPJmE4ybRT
+         WuCA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6yYKX3QKSab3dXmnoueP+VvR9RhnVhrbH8mx4zgatfpsr3Ryls5WTexsbPmLEHN8TF7zCtJ0UsFil@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4+o5aWnqJQbiv9Xn4Sph8v80eYTEnf3pmGKDkzDnQg17m4OtJ
+	AAl16XTeyATiV2rt/mrX+OAnej2Y/r6nXHxAOnZpkkzysAvSmiYplnWZPJ+yJ0zwihDFugjzNWn
+	brBfc2aCTvZP6ArLcWfUYdzWqhSjEwlW2LxMCbfKxsKQNfXqBP3Sejh7X5X019ah+kY1rC1jWFN
+	3YGFbp9pbc9OZ1dLfM8mwaJ4A69ctmjEpwPJbsXygXg1rBdCtAVgt2jtwUZd2LHVMVINklxru/a
+	wAuI0nMy8tqsA==
+X-Gm-Gg: AZuq6aIwjZXICZN6qjih2kggwooVIHLhkhBRXNEz96DFtNZ+h0+OLUNQAdPMQd0MXz9
+	KqLKb3LjC8PX0u8RtlxMtwHeY9pgHFPZhZfAhg52y8o4jUcfGW0KxotuOxGztftcEg6HJXRX1LR
+	E9A4X1y0hBtntIW7F2EnQ7B/oOlMoVed7LFdqL3efocXEn81X4af17KFovkLg/39JT0BJ8IePRO
+	d/VFrLy9WU3n0pM1fandmfqTEgs6lc8270ePIoCd6NeXU73R3kkXfSgh2njc+GlAjQ9YMdKJAln
+	jx+UOzeisVp6Zbgu5j9vxMxomSOn5k2ekPqAD54j2fZLbjVoirML09mE/rcy4jImAySAbMtX1Pw
+	6P2QJb7asP1saFOZMRMdSgciFjmLuWONhOf2j3YCeGbB2WNWn4v5LfAmpYabixcxyGcxnk7CVcf
+	1vljCeRjHj76bL1vWPbABd64C2EbByEJ2mVNSlstQ0Z/s+IX2jchk=
+X-Received: by 2002:a17:902:dac7:b0:2a9:5b87:5bd4 with SMTP id d9443c01a7336-2ad50e58478mr62474115ad.1.1771538238401;
+        Thu, 19 Feb 2026 13:57:18 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-2.dlp.protect.broadcom.com. [144.49.247.2])
+        by smtp-relay.gmail.com with ESMTPS id d9443c01a7336-2ad1a7a77besm22315985ad.41.2026.02.19.13.57.18
         for <devicetree@vger.kernel.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 19 Feb 2026 13:57:14 -0800 (PST)
+        Thu, 19 Feb 2026 13:57:18 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 X-CFilter-Loop: Reflected
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2aad5fec175so56248745ad.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:57:14 -0800 (PST)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a944e6336eso82431865ad.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:57:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1771538233; x=1772143033; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1771538236; x=1772143036; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BQ1MmI1k/9HenpReSZ3vHACiJQQcYWd1RGFuc30M+ps=;
-        b=Ny947fNAq4qo87kcSSV1zkkeUsZ2fC7JnQFdYxRo9RiSiscqZDB3OusGPp93FSd0kI
-         s6djnRpwKHVYqwZ57m/yuSjwaE5l/bzykKKcJbiPveKn4hyS7l9F1+AKIlVuvax16vNb
-         3P3d8Oe3Rsb9IXV/SzIqEn2xwbGukr3oSqHV4=
-X-Forwarded-Encrypted: i=1; AJvYcCXtlUwZMYktxdE9L8erol1En7AzAAsAzVB6XsshRwgEjdWIvPsi4QjO7yNO+ZMw8Z27AJuPTnpLG6YJ@vger.kernel.org
-X-Received: by 2002:a17:903:b4e:b0:2aa:e285:f231 with SMTP id d9443c01a7336-2ad50ff2374mr61212785ad.60.1771538233296;
-        Thu, 19 Feb 2026 13:57:13 -0800 (PST)
-X-Received: by 2002:a17:903:b4e:b0:2aa:e285:f231 with SMTP id d9443c01a7336-2ad50ff2374mr61212615ad.60.1771538232851;
-        Thu, 19 Feb 2026 13:57:12 -0800 (PST)
+        bh=hQ4iRn4Yr0HtvQBIFvgGnqHMHINRSvRxdUg7UzIwt38=;
+        b=SyjGnMecLBLAXhQOIR8XjvsTosk3VoglaRM+cSvOY3BdscNGasNSfUnVqOu8B/DF0u
+         JTMZO36PuapnGZccjYYT76Sa5RFjHGG1fcdSbq7ud6GbBIHwEt0mhCsxh7vVXlTpJGd+
+         xU6c/ZCWyAWF5G/muvGX9U2/H5QhaV6d47IBs=
+X-Forwarded-Encrypted: i=1; AJvYcCUOL7lh5IUtc5tQl00RzmtPZpD0qmlvqMs/jjG/y0XW1iviSMRs0QZwMBlPJYv9Ski9cGJkVVeknlb9@vger.kernel.org
+X-Received: by 2002:a17:902:dac7:b0:2a9:5b87:5bd4 with SMTP id d9443c01a7336-2ad50e58478mr62473605ad.1.1771538236576;
+        Thu, 19 Feb 2026 13:57:16 -0800 (PST)
+X-Received: by 2002:a17:902:dac7:b0:2a9:5b87:5bd4 with SMTP id d9443c01a7336-2ad50e58478mr62473445ad.1.1771538236118;
+        Thu, 19 Feb 2026 13:57:16 -0800 (PST)
 Received: from mail.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aae9d73sm156416065ad.77.2026.02.19.13.57.11
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aae9d73sm156416065ad.77.2026.02.19.13.57.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 13:57:12 -0800 (PST)
+        Thu, 19 Feb 2026 13:57:15 -0800 (PST)
 From: Kamal Dasu <kamal.dasu@broadcom.com>
 To: andersson@kernel.org,
 	robh@kernel.org,
@@ -103,9 +103,9 @@ Cc: baolin.wang@linux.alibaba.com,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Kamal Dasu <kamal.dasu@broadcom.com>
-Subject: [PATCH v4 1/3] dt-bindings: hwlock: Adding brcmstb-hwspinlock support
-Date: Thu, 19 Feb 2026 16:57:00 -0500
-Message-Id: <20260219215702.63321-2-kamal.dasu@broadcom.com>
+Subject: [PATCH v4 2/3] hwspinlock: brcmstb hardware semaphore support
+Date: Thu, 19 Feb 2026 16:57:01 -0500
+Message-Id: <20260219215702.63321-3-kamal.dasu@broadcom.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260219215702.63321-1-kamal.dasu@broadcom.com>
 References: <20260219215702.63321-1-kamal.dasu@broadcom.com>
@@ -124,7 +124,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[broadcom.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -133,90 +133,186 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266734-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266735-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[broadcom.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[kamal.dasu@broadcom.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,broadcom.com:mid,broadcom.com:dkim,broadcom.com:email,0.128.60.70:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[broadcom.com:mid,broadcom.com:dkim,broadcom.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 30A9B162FCD
+X-Rspamd-Queue-Id: 891AF162FF9
 X-Rspamd-Action: no action
 
-The Broadcom settop SoCs have hardware semaphores as part of the
-"sundry" IP block which has other controls that do not belong anywhere
-else e.g. pin/mux controls, SoC identification, drive strength, reset
-controls, and other misc bits are part of this block.
+Broadcom settop SoCs have common 16 hardware semaphore registers that
+can be used as part of the kernel hardware spinlock framework. The
+hardware semaphores are part of the 'sundry' ip block that also has
+controls like pin/mux controls, SoC identification, drive strength,
+reset controls, and other misc bits.
 
-Adding brcmstb hwspinlock bindings which allows hwlock driver
-to iomap 16 hardware semaphore registers that are part of all
-settop SoCs. The bindings use the common
-"brcm,brcmstb-sun-top-ctrl-semaphore" compatible string reflecting the
-actual hardware register block name.
+Adding support for brcmstb_hwspinlock that only maps sundry block
+registers SUN_TOP_CTRL_SEMAPHORE_[0:15] to implement the hardware
+spinlock operations. Change allows other Broadcom settop drivers to
+call hwspin_trylock() and hwspin_unlock() interfaces to make use of
+hwspinlock framework. Other driver dt nodes just need to provide a
+reference to the &hwspinlock and lock id to make use of a particular
+hardware lock.
+e.g. hwlocks = <&hwspinlock0 0>;
 
 Signed-off-by: Kamal Dasu <kamal.dasu@broadcom.com>
 ---
- .../hwlock/brcm,brcmstb-hwspinlock.yaml       | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
+ drivers/hwspinlock/Kconfig              | 11 ++-
+ drivers/hwspinlock/Makefile             |  1 +
+ drivers/hwspinlock/brcmstb_hwspinlock.c | 96 +++++++++++++++++++++++++
+ 3 files changed, 107 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/hwspinlock/brcmstb_hwspinlock.c
 
-diff --git a/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
+diff --git a/drivers/hwspinlock/Kconfig b/drivers/hwspinlock/Kconfig
+index 3874d15b0e9b..9b7f7bcce14b 100644
+--- a/drivers/hwspinlock/Kconfig
++++ b/drivers/hwspinlock/Kconfig
+@@ -8,6 +8,16 @@ menuconfig HWSPINLOCK
+ 
+ if HWSPINLOCK
+ 
++config HWSPINLOCK_BRCMSTB
++	tristate "Broadcom Settop Hardware Semaphore functionality"
++	depends on ARCH_BRCMSTB || COMPILE_TEST
++	help
++	  Broadcom settop hwspinlock driver.
++	  Say y here to support the Broadcom Hardware Semaphore functionality, which
++	  provides a synchronisation mechanism on the SoC.
++
++	  If unsure, say N.
++
+ config HWSPINLOCK_OMAP
+ 	tristate "OMAP Hardware Spinlock device"
+ 	depends on ARCH_OMAP4 || SOC_OMAP5 || SOC_DRA7XX || SOC_AM33XX || SOC_AM43XX || ARCH_K3 || COMPILE_TEST
+@@ -62,5 +72,4 @@ config HSEM_U8500
+ 	  SoC.
+ 
+ 	  If unsure, say N.
+-
+ endif # HWSPINLOCK
+diff --git a/drivers/hwspinlock/Makefile b/drivers/hwspinlock/Makefile
+index a0f16c9aaa82..35f2d94d8ba2 100644
+--- a/drivers/hwspinlock/Makefile
++++ b/drivers/hwspinlock/Makefile
+@@ -4,6 +4,7 @@
+ #
+ 
+ obj-$(CONFIG_HWSPINLOCK)		+= hwspinlock_core.o
++obj-$(CONFIG_HWSPINLOCK_BRCMSTB)	+= brcmstb_hwspinlock.o
+ obj-$(CONFIG_HWSPINLOCK_OMAP)		+= omap_hwspinlock.o
+ obj-$(CONFIG_HWSPINLOCK_QCOM)		+= qcom_hwspinlock.o
+ obj-$(CONFIG_HWSPINLOCK_SPRD)		+= sprd_hwspinlock.o
+diff --git a/drivers/hwspinlock/brcmstb_hwspinlock.c b/drivers/hwspinlock/brcmstb_hwspinlock.c
 new file mode 100644
-index 000000000000..0a9a1bf19fe2
+index 000000000000..4488032a3f7f
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwlock/brcm,brcmstb-hwspinlock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/hwspinlock/brcmstb_hwspinlock.c
+@@ -0,0 +1,96 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * brcmstb HWSEM driver
++ *
++ * Copyright (C) 2025 Broadcom
++ *
++ */
 +
-+title: Broadcom Settop Sundry Block Hardware Semaphore
++#include <linux/delay.h>
++#include <linux/hwspinlock.h>
++#include <linux/io.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/slab.h>
++#include <linux/spinlock.h>
++#include "hwspinlock_internal.h"
 +
-+description:
-+  Broadcom settop SoCs contain 16 hardware semaphore registers
-+  (SEMAPHORE_0 through SEMAPHORE_15) that provide hardware-arbitrated
-+  mutual exclusion between drivers running on the SoC.
++#define BRCMSTB_NUM_SEMAPHORES		16
++#define RESET_SEMAPHORE			0
 +
-+  The semaphore registers belong to the sundry hardware block. The
-+  node describes the semaphore register range carved out of the larger
-+  sundry block address space.
++#define HWSPINLOCK_VAL			'L'
 +
-+maintainers:
-+  - Kamal Dasu <kamal.dasu@broadcom.com>
++static int brcmstb_hwspinlock_trylock(struct hwspinlock *lock)
++{
++	void __iomem *lock_addr = (void __iomem *)lock->priv;
 +
-+properties:
-+  compatible:
-+    const: brcm,brcmstb-sun-top-ctrl-semaphore
++	writel(HWSPINLOCK_VAL, lock_addr);
 +
-+  "#hwlock-cells":
-+    const: 1
++	return (readl(lock_addr) == HWSPINLOCK_VAL);
++}
 +
-+  reg:
-+    maxItems: 1
++static void brcmstb_hwspinlock_unlock(struct hwspinlock *lock)
++{
++	void __iomem *lock_addr = (void __iomem *)lock->priv;
 +
-+required:
-+  - compatible
-+  - reg
-+  - "#hwlock-cells"
++	/* release the lock by writing 0 to it */
++	writel(RESET_SEMAPHORE, lock_addr);
++}
 +
-+additionalProperties: false
++static void brcmstb_hwspinlock_relax(struct hwspinlock *lock)
++{
++	ndelay(50);
++}
 +
-+examples:
-+  - |
-+    hwlock@8404038 {
-+        compatible = "brcm,brcmstb-sun-top-ctrl-semaphore";
-+        reg = <0x8404038 0x40>;
-+        #hwlock-cells = <1>;
-+    };
++static const struct hwspinlock_ops brcmstb_hwspinlock_ops = {
++	.trylock	= brcmstb_hwspinlock_trylock,
++	.unlock		= brcmstb_hwspinlock_unlock,
++	.relax		= brcmstb_hwspinlock_relax,
++};
 +
++static int brcmstb_hwspinlock_probe(struct platform_device *pdev)
++{
++	struct hwspinlock_device *bank;
++	struct hwspinlock *hwlock;
++	void __iomem *io_base;
++	int i, num_locks = BRCMSTB_NUM_SEMAPHORES;
++
++	io_base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(io_base)) {
++		dev_err(&pdev->dev, "semaphore iobase mapping error\n");
++		return PTR_ERR(io_base);
++	}
++
++	bank = devm_kzalloc(&pdev->dev, struct_size(bank, lock, num_locks),
++			    GFP_KERNEL);
++	if (!bank)
++		return -ENOMEM;
++
++	for (i = 0, hwlock = &bank->lock[0]; i < num_locks; i++, hwlock++)
++		hwlock->priv = (void __iomem *)(io_base + sizeof(u32) * i);
++
++	return devm_hwspin_lock_register(&pdev->dev, bank,
++					 &brcmstb_hwspinlock_ops,
++					 0, num_locks);
++}
++
++static const struct of_device_id brcmstb_hwspinlock_ids[] = {
++	{ .compatible = "brcm,brcmstb-sun-top-ctrl-semaphore", },
++	{ /* end */ },
++};
++MODULE_DEVICE_TABLE(of, brcmstb_hwspinlock_ids);
++
++static struct platform_driver brcmstb_hwspinlock_driver = {
++	.probe		= brcmstb_hwspinlock_probe,
++	.driver		= {
++		.name	= "brcmstb_hwspinlock",
++		.of_match_table = brcmstb_hwspinlock_ids,
++	},
++};
++
++module_platform_driver(brcmstb_hwspinlock_driver);
++
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("Hardware Spinlock driver for brcmstb");
++MODULE_AUTHOR("Kamal Dasu <kamal.dasu@broadcom.com>");
 -- 
 2.34.1
 
