@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266579-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IAP8Iam5lmmVkwIAu9opvQ
-	(envelope-from <devicetree+bounces-266578-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:20:09 +0100
+	id oN72Hoi6lmk1lAIAu9opvQ
+	(envelope-from <devicetree+bounces-266579-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:23:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B6F15C9D5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:20:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFB9315CA12
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:23:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 704EB301FA57
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 07:20:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 56DF43020005
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 07:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E937F2F5A05;
-	Thu, 19 Feb 2026 07:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55F02F9984;
+	Thu, 19 Feb 2026 07:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ituMjsOP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMgMDB4V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C54DB24C676;
-	Thu, 19 Feb 2026 07:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B2224C676;
+	Thu, 19 Feb 2026 07:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771485606; cv=none; b=lCPT1D2ZTPnP3wPbQMBs2YBw7gx1Imn752CiEAO0ewn1IeWI1xi+zTS8b7CLkd4Z9OI31x7Zp84lRFW3ste5wsMF2p4QZ0MC6Xg2UK7FFJmiA9uwiD1DxNrQerToxlxx3Dt5ENYRkdLjEAyufOLVKh9F2euq38wBbLl5THH2Tmg=
+	t=1771485829; cv=none; b=Zw2BAl27XPveh1I6WtKxaa/d2xqj4IqsxUjuuGh4z2Ecx6RV+14Fh/ibDMi4hxw3FvSr23NdSOR5nLvfi1WebeWR0yrMqPmKq8QrAP5ZBaapxThZn/6zgOQhvJtK72hr1NvpRLv0cwxXBRSuC9/vzCGKh9zv/TvLIeAOhdpdNKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771485606; c=relaxed/simple;
-	bh=A9mVt+QDYbNp0tSU8cUK/xsJwnit0wauu/WQUkHQgGU=;
+	s=arc-20240116; t=1771485829; c=relaxed/simple;
+	bh=/fGw/C1zvESLZWDrAaaRTuCzknTQ6kidgUdQw0MMUZY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ut/4CVbvRX/VFw+z+ca+Mz9ZX8KTR5KxCvwvRnVj/qeW7FCgq5G4ZZqg3FRLchgQ4rds3YL21jHV7kTam9oRZDuPnJmHtkKoPhEm59Sv22sOY/vchx1h8Ywd281mwmm1tyWwg+cK0+u4etB28j2jpP4hzwxgjh2MsdI6/oMZO+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ituMjsOP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F5C8C4CEF7;
-	Thu, 19 Feb 2026 07:20:03 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sl3I4oR2g1fv0L2OHW8anYIoeAjn3Jgrg3iPctmeYOe0r9G4vzohVTIVtml+e4rXIqcfdrw4sUiD/E9iYX4Izo53Nmhq+YroVJgZmWg74aBQJUEK2pGWz5DIZrEMcIbc69Ra/nRmTYNcl6pc14OIH24RGThVVTK5ZDjXFTtLs18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMgMDB4V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61689C4CEF7;
+	Thu, 19 Feb 2026 07:23:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771485606;
-	bh=A9mVt+QDYbNp0tSU8cUK/xsJwnit0wauu/WQUkHQgGU=;
+	s=k20201202; t=1771485829;
+	bh=/fGw/C1zvESLZWDrAaaRTuCzknTQ6kidgUdQw0MMUZY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ituMjsOP7wnD4urv/pYM4SxN2zfas0cQuVsPLFTJTYy+ToXqc1RVYHEZqOWQeRyO7
-	 URa0tNS6DwUbnhDgVwwchaPbsmB+I2qSOu6UwezNy1AjKRVbj99ItExN60YtuyxHln
-	 OZZKFQh0En+gb6uMyE09wFCQQb7djkCh/WTl3I60OPmokC6GfLi9SAAVJ07Yq+KoTH
-	 DBz4bdLYgPhnYX5WsTjI3ORiNeCoT4QKxFRHanKAXZWTvOLgJJXP2IVfsObpoIAtO0
-	 piBXUCT5av+z+c2ECyc8Uj1SZ7H1h6r/qEKs1w1UFQoqTglzDt7TWywaJ04kKXCeOX
-	 VYGqFTGpNH/qg==
-Message-ID: <51d75568-5110-4993-b262-71af0a0d4600@kernel.org>
-Date: Thu, 19 Feb 2026 08:20:02 +0100
+	b=tMgMDB4VvvQuSphG/HrmWa6xuG+thCqKIwcS7PMNvGxnPQI0mkyN6ray7drYF6oNB
+	 5vt+07Kj6QQEUdPzfcZlszgPR/IPVmj0R4POWjTRuv7WxWZ0D61zidao23hixpXuGC
+	 7pUCJchz9VeXLt/85405ffpvGXcDnhEtDuc9rY9C9jwR/hju8NcpUAFsujgGhxB0rj
+	 KworZIp0qKIE8AlcSKmmn/5/DOXa10rZX8dpsMqLakWN2zZ2ojf8IK4rzjlO7pRn95
+	 ren9tS1yowMpQbGlofweOmUb1n9BCjJGsP1zo2W9xUlx3TJ8rpRwt/pvF8M3mdRSiI
+	 4tyYrEg9FNk9w==
+Message-ID: <cc02215b-dcfe-47e7-bc16-0f467b6648c0@kernel.org>
+Date: Thu, 19 Feb 2026 08:23:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +53,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
-To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-References: <20260217052526.2335759-1-neeraj.soni@oss.qualcomm.com>
- <20260217052526.2335759-2-neeraj.soni@oss.qualcomm.com>
- <20260217-berserk-puma-of-focus-bcbe82@quoll>
- <e3ac0681-605d-c1df-e4f0-78a2c142fa66@oss.qualcomm.com>
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: msm8996: Drop redundant VSYNC pin
+ state
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260218-qcom-dts-redundant-pins-v1-0-2799b8a4184e@oss.qualcomm.com>
+ <20260218-qcom-dts-redundant-pins-v1-1-2799b8a4184e@oss.qualcomm.com>
+ <cq7bdo3l4w7fi2aymo4ovafrj2y52k33dspeii2lvv75viujet@anvldr26j7to>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,62 +110,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e3ac0681-605d-c1df-e4f0-78a2c142fa66@oss.qualcomm.com>
+In-Reply-To: <cq7bdo3l4w7fi2aymo4ovafrj2y52k33dspeii2lvv75viujet@anvldr26j7to>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266579-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266578-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E0B6F15C9D5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: CFB9315CA12
 X-Rspamd-Action: no action
 
-On 19/02/2026 06:38, Neeraj Soni wrote:
->>> +  qcom,ice:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description:
->>> +      phandle to the Inline Crypto Engine (ICE) hardware block for this controller.
+On 19/02/2026 07:49, Dmitry Baryshkov wrote:
+> On Wed, Feb 18, 2026 at 06:24:23PM +0100, Krzysztof Kozlowski wrote:
+>> The active and suspend pin state of VSYNC is exactly the same, so just
+>> use one node for both states.
 >>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi   |  9 +--------
+>>  arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi    | 11 ++---------
+>>  arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts     |  2 +-
+>>  arch/arm64/boot/dts/qcom/msm8996pro-xiaomi-natrium.dts |  2 +-
+>>  4 files changed, 5 insertions(+), 19 deletions(-)
 >>
->> Srsly, I asked once and not much improved. What is explicitly written in
->> coding style which I asked you twice to read?
->>
-> I have attempted to modifiy it as per the comment you gave in v3 here:
-> https://lore.kernel.org/all/b6e510da-b369-4c43-b9a1-455478af4948@kernel.org/
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
+>> index 63ab564655bc..a4dcc88bb01f 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
+>> @@ -745,14 +745,7 @@ mdss_dsi_suspend: mdss-dsi-suspend-state {
+>>  		bias-pull-down;
+>>  	};
+>>  
+>> -	mdss_te_active: mdss-te-active-state {
+>> -		pins = "gpio10";
+>> -		function = "mdp_vsync";
+>> -		drive-strength = <2>;
+>> -		bias-pull-down;
+>> -	};
+>> -
+>> -	mdss_te_suspend: mdss-te-suspend-state {
+>> +	mdss_te: mdss-te-state {
 > 
-> I will rephrase it to explain the usage better in next patch.
+> This is not used and probably can be dropped.
 > 
->> And how long is this line? Why such trivialities cannot be fixed and I
->> need to remind this every time?
->>
-> It is 83 character long but i understand now you expect it to be wrapped 
-> at 75 as per kernel coding style. I missed it and stuck to the limit
 
-75?
-
+But I think it should be used - it's just incomplete. There DSI is
+enabled so there should be a panel using the TE/VSYNC. This looks like
+being added for future, just like many other pincfg states.
 
 
 Best regards,
