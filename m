@@ -1,152 +1,177 @@
-Return-Path: <devicetree+bounces-266773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266774-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qI11Dv6Yl2mt2AIAu9opvQ
-	(envelope-from <devicetree+bounces-266773-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:13:02 +0100
+	id SP1pN4ufl2nc3AIAu9opvQ
+	(envelope-from <devicetree+bounces-266774-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:40:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B021216379B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:13:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38858163923
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:40:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6CEBA3023DBA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:13:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 55087303FAFA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86BD232F762;
-	Thu, 19 Feb 2026 23:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47DC3168EE;
+	Thu, 19 Feb 2026 23:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H08y+koZ"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="YMe9I95F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 630AC30C37E
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 23:12:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309193033C5
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 23:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771542776; cv=none; b=Y4bDTVQUcr++6zL6+UN+Iqgc7Jnc6XpyIJZq5EXDfGxl5NZolq8v47MPVzE9Ay8Viy0Xk3jpn25OtzrQ4IabEipo5sE0+Bjg1IDVZcbMNHPKO1w9oG7VBVclYw40wBEuQoRiFp+wUERwzrSDFvz6Kg+18zoe2EbCK7NPwnXRAD8=
+	t=1771544431; cv=none; b=JdhtbTysa58zG+cz00Ol34Ygdq798z2MLHEBoKxh3sHzLpgCFX+p8cq+k4gPNcCKsYyIdiEm18dSObrmEujpFm5aErCT7zNs69nXbrm3lUQVtZoqWMlpX5mb8e3fBHTW4bMk5xdNVX6DBKo/mqoIXYmLjy+7I8HlLJ0uFQea8hI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771542776; c=relaxed/simple;
-	bh=kiyOKsBdhHxvNscPoSY8T/cgZkx29rLsRcdXI0MH4xw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZZ8A3T1cPBkaphO4DDA70cjC7i0aEqVwOkZpALcTnokOtufbygqyccPGpx5KKCF5+C/2EH24Ju1X3d1hqWBrwxUIEIXGWY5wdHBzGIrwyYGow2AZ5hV9TXTpLHXs0F9iEzixV1/zW+QXQoqtYULPLrB0Wyi3qShSmDFjtb2+P4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H08y+koZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1832EC4CEF7
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 23:12:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771542776;
-	bh=kiyOKsBdhHxvNscPoSY8T/cgZkx29rLsRcdXI0MH4xw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=H08y+koZqPE/oWRqldF3U+hMSVc+9/5d5FzSNpWG6e4dkQeEAZrfGUaZppUhwUXtc
-	 OgGY5pufDQ5WEvqb7tmEPJoVjIuDGv6J1YjIqw7BRkE0zUX4gNkkjGrz5FAvC98e5I
-	 FRuJHviLWqjXq3fW7MjzbMutJUsJgP6R2X61NdHsBObRCPXqnYrrw7cPmV51Ifr0km
-	 UMTJZJOgBRBQ5lXwiJtLAVGF5nbPSYCzj2iLKwzIic4+27xDuNGvRoncM7BffqLGKj
-	 7XejOJXs7Xd06dWZmPor7mo3afhbOiYHnk/ZY14aY2BQ8IZaSRjpcrMDiOVRjluz/k
-	 chI5/w2mFYU8Q==
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b8876d1a39bso202321766b.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 15:12:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVnmdhcTl+c7/JqN9yXTRkDv7DObTx1z11MVLt6eaBCr0TyqZ2/Hkadm5BSO+5gtyH70fLKNHGq9g0E@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywj40sTKSlD6AaEUqjvVCpjjU/8+BhNWcbQ3B+/H7ziAKDk7dge
-	OWWa6rkWWa0fniUriQEkXqg1tpF7uMr3as5qeuN9dfPSRFMmDl9Ks3Uqc/nD7dnubre+yrEQrpx
-	XeYJntVVXUrHrfb74wfCkDj1Fb0Pqig==
-X-Received: by 2002:a17:906:6a22:b0:b8f:9237:4933 with SMTP id
- a640c23a62f3a-b8fc3d3f906mr1050119966b.64.1771542774595; Thu, 19 Feb 2026
- 15:12:54 -0800 (PST)
+	s=arc-20240116; t=1771544431; c=relaxed/simple;
+	bh=TRKFG9iyCZiU02kKGUXfEvPejwPiF+gGa7xpETSJMmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X3cMpdqFD4q70ps2dcYw8kMW+lKeMnK/4N0SPU4doXuVEe4BBu2nz0OgMy7LU7OWIxOOD9Cx+WfU9tfrZkV7l0PkJj/foFRMb/S7a8nDP6J3DZxhZ3N7KoYYYYdAEeXjIEE0UF33pQGsqIE0Iog+owpdFqYKexasYBA6aDYL2U4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=YMe9I95F; arc=none smtp.client-ip=91.218.175.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Thu, 19 Feb 2026 16:40:11 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1771544417;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IMYV8TJCxWvdL8j08krLV9Nx1g5eh+8pe7mOLnvSJDM=;
+	b=YMe9I95FhYdbw5SzD0KPqIHn7JjFNWnaG7ReGJVQVUNvguA/iqmCYsvmtn2q3i4r0OnGFA
+	/fxh6ass/0dI++GgE1A+3+Zw4nY0t0PSyTQbpiVOvPbkzyAXvaCa68zrejr5CAByqMXZX9
+	OIBkDkZ6MvZbFvDo3+NqeWTN+o/I1Mc=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Russ Weight <russ.weight@linux.dev>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+	Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
+	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] firmware_loader: expand firmware error codes with
+ up-to-date error
+Message-ID: <s24u6ojnflb4nvpssgshjmgir77wpoos6qinypqac564fzcjyy@yilnrsy266er>
+References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
+ <20260111-v6-10-topic-touchscreen-axiom-v5-1-f94e0ae266cb@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
- <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org> <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
- <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
- <30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org> <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
- <20260212195423.GA787785-robh@kernel.org> <CADvTj4rPq8D5piqEijCdAjkWmZtq3Bi_Kxv-4F0aU4xi_O5WKg@mail.gmail.com>
- <CAMuHMdXmMVgPJv=HhkfttiRnSwFC6c2PnFjYwmL2hu3ikv+t3g@mail.gmail.com>
- <CADvTj4r95E2rLA0ZhOYPeFYpFbj0EXfb=omCN2Mab-Dj4T-cYA@mail.gmail.com>
- <CAMuHMdXTg8w3R1BVq3JO2z=gvTdB=qXY=aXvC7Lb8FtkEqz9ow@mail.gmail.com>
- <CAD++jLmp+47f-Ah4YdFJ+9dU0OFrnQdOcVyrQ61p0-_P61eBrA@mail.gmail.com>
- <CAL_JsqJK7PwyB=NoM+uXOgQk-RT49h4emogvYAfUAbZUpnd6Vg@mail.gmail.com>
- <CAD++jLkJE0ruzPeRMuVKJbJTjHoa-fTKn8djN+0es+hpqhELFw@mail.gmail.com> <CADvTj4rd3jS5VAPK1wyC8wKqohZ4kAX4tAJ9CfnBk64+cqrMUw@mail.gmail.com>
-In-Reply-To: <CADvTj4rd3jS5VAPK1wyC8wKqohZ4kAX4tAJ9CfnBk64+cqrMUw@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 19 Feb 2026 17:12:43 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLyF71Jq2QuY9SL2RZ4OS5GAeZhVRbRfXngMjjHGob36Q@mail.gmail.com>
-X-Gm-Features: AaiRm504_5I4UEQmqol5McuJrmASfEnl7ATfFfsWZ4cdgY921TZAhPh2W_LJIxc
-Message-ID: <CAL_JsqLyF71Jq2QuY9SL2RZ4OS5GAeZhVRbRfXngMjjHGob36Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: Linus Walleij <linusw@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260111-v6-10-topic-touchscreen-axiom-v5-1-f94e0ae266cb@pengutronix.de>
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266773-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266774-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[russ.weight@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B021216379B
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 38858163923
 X-Rspamd-Action: no action
 
-On Thu, Feb 19, 2026 at 4:29=E2=80=AFPM James Hilliard
-<james.hilliard1@gmail.com> wrote:
->
-> On Thu, Feb 19, 2026 at 3:14=E2=80=AFPM Linus Walleij <linusw@kernel.org>=
- wrote:
-> >
-> > On Thu, Feb 19, 2026 at 7:29=E2=80=AFPM Rob Herring <robh@kernel.org> w=
-rote:
-> > > On Thu, Feb 19, 2026 at 12:00=E2=80=AFPM Linus Walleij <linusw@kernel=
-.org> wrote:
-> >
-> > > > And as such it would be pretty half-baked wouldn't it...
-> > > >
-> > > > Probably Geert's suggestion to use the aggregator is a better
-> > > > idea.
-> > >
-> > > I don't know what that is to comment. (Please don't reply with "you
-> > > reviewed it" unless it was more recent than last week. :) )
-> >
-> > I only think it's half-baked if IRQs don't work and you say they
-> > do with the right interrupt-map so that's all fine.
-> >
-> > I'd say James have a go at gpio-map + interrupt-map for external
-> > connectors and see how that works.
->
-> From my testing, gpio-map does not allow renaming lines.
+On Sun, Jan 11, 2026 at 04:05:44PM +0100, Marco Felsch wrote:
+> Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
+> framework that the update is not required. This can be the case if the
+> user provided firmware matches the current running firmware.
+> 
+> Sync lib/test_firmware.c accordingly.
+> 
+> Reviewed-by: Russ Weight <russ.weight@linux.dev>
+> Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  drivers/base/firmware_loader/sysfs_upload.c | 1 +
+>  include/linux/firmware.h                    | 2 ++
+>  lib/test_firmware.c                         | 1 +
+>  3 files changed, 4 insertions(+)
+> 
+> diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
+> index c3797b93c5f5a2ecf2ae34707893c89eb7773154..9e93070b2c24179986b868a24b09cf051776c644 100644
+> --- a/drivers/base/firmware_loader/sysfs_upload.c
+> +++ b/drivers/base/firmware_loader/sysfs_upload.c
+> @@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
+>  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
+>  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
+>  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
+> +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
+>  };
 
-I'm pretty sure I said that already. There's no reason we can't
-support gpio-line-names alongside a gpio-map property. Whether the
-kernel supports that or not is not my problem (as DT maintainer).
+Hi Marco,
 
-Rob
+There is a corresponding change that should be made to
+lib/test_firmware.c. You can look at the recent change for
+FW_UPLOAD_ERR_FW_INVALID as an example.
+
+- Russ
+
+>  
+>  static const char *fw_upload_progress(struct device *dev,
+> diff --git a/include/linux/firmware.h b/include/linux/firmware.h
+> index aae1b85ffc10e20e9c3c9b6009d26b83efd8cb24..fe7797be4c08cd62cdad9617b8f70095d5e0af2f 100644
+> --- a/include/linux/firmware.h
+> +++ b/include/linux/firmware.h
+> @@ -29,6 +29,7 @@ struct firmware {
+>   * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
+>   * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
+>   * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
+> + * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
+>   * @FW_UPLOAD_ERR_MAX: Maximum error code marker
+>   */
+>  enum fw_upload_err {
+> @@ -41,6 +42,7 @@ enum fw_upload_err {
+>  	FW_UPLOAD_ERR_RW_ERROR,
+>  	FW_UPLOAD_ERR_WEAROUT,
+>  	FW_UPLOAD_ERR_FW_INVALID,
+> +	FW_UPLOAD_ERR_DUPLICATE,
+>  	FW_UPLOAD_ERR_MAX
+>  };
+>  
+> diff --git a/lib/test_firmware.c b/lib/test_firmware.c
+> index be4f93124901e5faac41f48a66dabe6da56be0ca..952ec1cb03102911dbea9abd648ab9d9e0112a46 100644
+> --- a/lib/test_firmware.c
+> +++ b/lib/test_firmware.c
+> @@ -1134,6 +1134,7 @@ static const char * const fw_upload_err_str[] = {
+>  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
+>  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
+>  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
+> +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
+>  };
+>  
+>  static void upload_err_inject_error(struct test_firmware_upload *tst,
+> 
+> -- 
+> 2.47.3
+> 
 
