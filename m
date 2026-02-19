@@ -1,178 +1,210 @@
-Return-Path: <devicetree+bounces-266684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266685-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFS/JSwxl2kcvgIAu9opvQ
-	(envelope-from <devicetree+bounces-266684-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 16:50:04 +0100
+	id iNi+CN8xl2nBvgIAu9opvQ
+	(envelope-from <devicetree+bounces-266685-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 16:53:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C541605DD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 16:50:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4158160686
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 16:53:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4D1E3015714
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 15:45:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F2E21302F685
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 15:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AB9A3491C7;
-	Thu, 19 Feb 2026 15:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06D734A3C9;
+	Thu, 19 Feb 2026 15:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cXebsbrT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yV9ak2c9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163811DE3B7;
-	Thu, 19 Feb 2026 15:45:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D79D34A784
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 15:52:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771515904; cv=none; b=UFWPktRNzKGOEIgE3xpMblrleq/yyBYlIKpk3XvwBqf09PUnsfdWPHLPz77rXWjxhlPycDrILDxr+HfWb+Wkl6qH5Mref2G5jx2ReVgEysWl7I2p07ji30s1Ri5wz4p2/hu4pQLjPhim4UeBr9Oi4mTkv6MwxHMZTZDk8K9tjEk=
+	t=1771516349; cv=none; b=Qv2x2Vh2QgAHXJTWtZs80EuZdpu4zm9hUqCdYpRayP0gKGM4r3et3ONEWgwaXuwYB6Oe5ixWirHvaTx8p2FuVFuLxfvy0twAhpEQ37nRnwEPDGIqQqTt8k3zx/wZiq7jYzXtLjPUwPZ16pSbagrVFG+RpGZ/Bek92KajBMIaJ00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771515904; c=relaxed/simple;
-	bh=MEZIWk5e9iRnjMniEvcze5MIU7mUhoymJgLFKvBIwxQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=b1fdQtMUQlwv87Mz8VFc2xFbKStxGUAQynHOV+5tobM0oN2mYw+gyAi2J26V8k/LzRmpyxMF2h52O6jCmXOCEpJgP/7DxznRoDvBVc5OhEkkns/YtqSUCgoV16AfXbpxcp5akuAEK+ngsUefu7KsTs65LBsq5dzM+t5Pr3pNpRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cXebsbrT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CF78CC4CEF7;
-	Thu, 19 Feb 2026 15:45:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771515903;
-	bh=MEZIWk5e9iRnjMniEvcze5MIU7mUhoymJgLFKvBIwxQ=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=cXebsbrTQgF5mniykYiyeGQVEbO8JzzkkCbu1/vbhC8UUO29DXHEehHJiNU/ZbJbn
-	 s84RQKoi34A/mhaxJADHAKA3tX3mZEOQxg27ZLkhazft25zKZyGWTPBPZ+18+4bQFr
-	 nLDnA4BS79JeAc3s2ziLgUZ6KXZoqdYWhk/nsL4LiVyyCzXq7/Fv6P6w0j20po/S9A
-	 A1+9yNB9zn0DxysDgEZFfSioJ11IQ4Vh7uLgRSLleilxlqFs0xA7HmIUePzDkjdaeH
-	 0RNxZyNnCuKNDHWw9rmxlpNj658vpdlqfNvgIbR6OOnmzzbxU/SRGQ35pqDWcoKF4y
-	 tSKnk2BjIeO1A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BEBFBE9A03B;
-	Thu, 19 Feb 2026 15:45:03 +0000 (UTC)
-From: Dirk Chen via B4 Relay <devnull+dirkchen.amd.com@kernel.org>
-Date: Thu, 19 Feb 2026 23:44:47 +0800
-Subject: [PATCH v3] ARM: dts: aspeed: anacapa: Add retimer EEPROMs
+	s=arc-20240116; t=1771516349; c=relaxed/simple;
+	bh=hUVMfsGdV0aDbsIFOhfMsdPp5kAixuq61G/flR5Alxg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=j+Gt46gm+8H+t+C9ecVuhfgIufExotJFpSdwXzCXUBeTg3RtkloPPmGy7WxoYJMclq43TgdZ65i9ayrXDTEOIQqY1NR47N7jJTAA9HkPASEm7cMMENtEqlyUSFolehWJ6GUKpuqDZq0wyd9aNF4iHm1fVmWjYaUhLSCHgdU3t2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yV9ak2c9; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-43621bf67ceso779374f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 07:52:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1771516346; x=1772121146; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ausNYp9VNOhe1fBHOC525G26Oe60ih9EhrjdJ5sgpHg=;
+        b=yV9ak2c9B8AV5lOFP2+ASu81htz4cub/EZEvHYTW6zwjxUR0sbJ3wNLOLEVTKUmniP
+         Qg8C9YIASU2HiwGMvPlurEY5c/W3ET39r5gHOJ7kUZ+EdIEmraU0C24ueJM7mACg4PmJ
+         ZfaKOqaNq0ptYYVRRMX/2DHWJTvP5sWZtMhaFvPE44b9l5mW1CNB56MV1wLIGMvN3ZCF
+         SFryge4s8mXDYNGrOiOCuw+MdBh1Y8yKQFnXe/eIgdyxSV7zBpnVZgUyCFBwgsdcqv/m
+         m6kcXoAB49/10DVAJsXRUI1I8nt1XhrdEw8XOexD0Wc8vDpyODntZbRxMsk8939vdZAE
+         JvOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771516346; x=1772121146;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ausNYp9VNOhe1fBHOC525G26Oe60ih9EhrjdJ5sgpHg=;
+        b=AHmFR2hnPqcHMnMWwHjmZ/jnT9CqyczHTVIcvYvtwq7nqh+KCu1ULR96UMyrzouw4Q
+         AxsntKBIETsDhpYtoB2apFF+SPePMG/05oIzbesqB2L1+aFKzpg8cWi/dEcxd8h9KuJD
+         4JiQ5U52wbSM3fbPDlKtCmQ+Mi4da6r6yjBBt0ajrgk4wALE3yfLLKNyiUX2+6XkacwS
+         qk/aPlrlY1AbTtBUcFsw+HSM9SUQvJPdny74dBL3Z19P0Eo94s6pNPNY8+vbceMDCl/V
+         0cA+HMYavLR2Y14ruDXnDdkXWg7R2TqgXwSLXZx3CJZvX/O6bjeyf17X6HyAt4ADs3bM
+         V0SA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfq0ugLBYk9QudWKQJuKejADi4g1f6Vx8Q0Lkn4467CnNwUBYNeqN0QEKQpbop0IOGuPRUMMJxgdhm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTTNkzLuk+CSg0rl/Uu+TAvubSXC3h58FrJ8XzpojQUBwAepXU
+	ZPYNcdwpJFz/kHv3jAPpA6/2f9gfKuG8tLBQKbj5YdR7PX4bkKa2Dw+kXlOwoT4hJXI=
+X-Gm-Gg: AZuq6aJlqiW7SVBntDa4S8ArckjIM+IU74zKbOdtcDoFxxYmxUw1GyEuZ0z3TwnsWwc
+	OKz6VeI1uWzhseUh71DyfFpn7cBqqq3KraZakunnM1vc6ZoujIaHdt7+3FL3ML4XQLYT8C+z+UI
+	gLWv+vixdBmVUja8nkDZQV8fE7gskc/LuZAEaackkyosG41AchM5ZWd+5Gw5qjvLCZOkGeSWiyY
+	JMlDh8Sp3TRQem0BUdqZZSQDrr4BW0D4TWRu5mcOcXmzuNn4DQFtGqbMismd4FKighndSlgh6ah
+	SlcsDnMM63aNg1ZOWVT/KYohXTa8e9Py7EKaaQV+9xwKYU1HXV2tkWwzek6lVQDWadtiSU9o9Wa
+	zavMz26jpASIpBrk5GJv4o1o/0t+EwKS9oXj5PoBhVCSKqC1ocXu3XYNRDicdNaL8/RUAeDU2wJ
+	vJraANmbLlWmnaC714P9HUTLJNBfy0bw==
+X-Received: by 2002:a05:6000:2001:b0:436:3475:4737 with SMTP id ffacd0b85a97d-4379db8cfddmr32328493f8f.30.1771516346564;
+        Thu, 19 Feb 2026 07:52:26 -0800 (PST)
+Received: from draszik.lan ([212.129.80.248])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796a5ac7csm47748995f8f.7.2026.02.19.07.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Feb 2026 07:52:26 -0800 (PST)
+Message-ID: <f46fa180198ec103aeb1e1c06286c6a2a0fb8b7f.camel@linaro.org>
+Subject: Re: [PATCH v7 5/6] power: supply: max77759: add charger driver
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman	
+ <gregkh@linuxfoundation.org>, Badhri Jagan Sridharan <badhri@google.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus	 <tudor.ambarus@linaro.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Mark Brown	 <broonie@kernel.org>, Matti
+ Vaittinen <mazziesaccount@gmail.com>, Andrew Morton	
+ <akpm@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, RD
+ Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Date: Thu, 19 Feb 2026 15:52:55 +0000
+In-Reply-To: <20260218-max77759-charger-v7-5-e8d907ce69c5@google.com>
+References: <20260218-max77759-charger-v7-0-e8d907ce69c5@google.com>
+	 <20260218-max77759-charger-v7-5-e8d907ce69c5@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260219-b4-anacapa-dts-fix-v3-1-4f70fd2d1070@amd.com>
-X-B4-Tracking: v=1; b=H4sIAO4vl2kC/33NOQ7CMBAF0KtEU2NkOyZbxT0QxXgjLrLIjixQl
- LszSQMFohnpf+m/WSG5GFyCrlghuhxSmEYK5akA0+P4cCxYyiC5rDgdphXDEQ3OyOySmA9PJnn
- tvWux1NwADefoqD7Q251yH9IyxdfxI4u9/ctlwQSZVmkuhGou6oqDPZtpgB3L8htofwKSAO+Uq
- rDmZaP9B9i27Q2awI6R8wAAAA==
-X-Change-ID: 20260202-b4-anacapa-dts-fix-207ffe9a3b0c
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Dirk Chen <dirkchen@amd.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771515902; l=1779;
- i=dirkchen@amd.com; s=20260202; h=from:subject:message-id;
- bh=e6uon8fDwRBTubN8ywUAkYjtYXx6mIWRj19Qi3Y6T6g=;
- b=yPhRCyA6wRLeJlcr0K5q0+OqpgObOJe/AzDQSJiYDKvOW5cRhT9MUc8VQfNRlWLPZMUt0q/EO
- hdK+ttB1juxBEjXrPe59DC/BQLuAYSuWc+elt78/2d3j+BRmO5H9K/+
-X-Developer-Key: i=dirkchen@amd.com; a=ed25519;
- pk=NBIyLsVg/YYtGLruq9XLdLWx2PP/1MH4jDDQ1V+7wes=
-X-Endpoint-Received: by B4 Relay for dirkchen@amd.com/20260202 with
- auth_id=622
-X-Original-From: Dirk Chen <dirkchen@amd.com>
-Reply-To: dirkchen@amd.com
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266684-lists,devicetree=lfdr.de,dirkchen.amd.com];
+	TAGGED_FROM(0.00)[bounces-266685-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[google.com,kernel.org,linuxfoundation.org,linux.intel.com,linaro.org,samsung.com,gmail.com,linux-foundation.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[dirkchen@amd.com];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.3:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amd.com:mid,amd.com:email,amd.com:replyto,0.0.0.70:email,0.0.0.50:email]
-X-Rspamd-Queue-Id: D0C541605DD
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:mid,linaro.org:dkim]
+X-Rspamd-Queue-Id: B4158160686
 X-Rspamd-Action: no action
 
-From: Dirk Chen <dirkchen@amd.com>
+Hi Amit,
 
-The Anacapa board features Atmel 24C2048 EEPROMs on i2c0 and i2c1, which
-are used to store retimer configurations. Add the corresponding device
-tree nodes to support these components.
+I was trying out your series and noticed a few things that I didn't before:
 
-Signed-off-by: Dirk Chen <dirkchen@amd.com>
----
-Changes in v3:
-- Reorder I2C device nodes by ascending address (place eeprom@50
-  before i2c-mux@70)
-- Link to v2: https://lore.kernel.org/r/20260209-b4-anacapa-dts-fix-v2-1-fe446a7038bf@amd.com
+On Wed, 2026-02-18 at 21:59 +0000, Amit Sunil Dhamne via B4 Relay wrote:
 
-Changes in v2:
-- Improved commit description to clarify that the change reflects
-  actual hardware as requested by the reviewer.
-- Removed mentions of other platforms to avoid confusion.
-- Link to v1: https://lore.kernel.org/r/20260202-b4-anacapa-dts-fix-v1-1-20d4b0114854@amd.com
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+[...]
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-index 221af858cb6b..1502773d9c30 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-@@ -300,6 +300,12 @@ &gpio1 {
- &i2c0 {
- 	status = "okay";
- 
-+	eeprom@50 {
-+		compatible = "atmel,24c2048";
-+		reg = <0x50>;
-+		pagesize = <128>;
-+	};
-+
- 	i2c-mux@70 {
- 		compatible = "nxp,pca9546";
- 		reg = <0x70>;
-@@ -334,6 +340,12 @@ i2c0mux0ch3: i2c@3 {
- &i2c1 {
- 	status = "okay";
- 
-+	eeprom@50 {
-+		compatible = "atmel,24c2048";
-+		reg = <0x50>;
-+		pagesize = <128>;
-+	};
-+
- 	i2c-mux@70 {
- 		compatible = "nxp,pca9546";
- 		reg = <0x70>;
+>=20
+> diff --git a/drivers/power/supply/max77759_charger.c b/drivers/power/supp=
+ly/max77759_charger.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..035f16822d85de94c7707ce11=
+c49345c714cd559
+> --- /dev/null
+> +++ b/drivers/power/supply/max77759_charger.c
 
----
-base-commit: 4c87cdd0328495759f6e9f9f4e1e53ef8032a76f
-change-id: 20260202-b4-anacapa-dts-fix-207ffe9a3b0c
+[...]
 
-Best regards,
--- 
-Dirk Chen <dirkchen@amd.com>
+> +		dev_err(chg->dev, "Invalid mode transition from %d to %d",
+> +			chg->mode, mode);
+
+All your format strings are missing the final \n throughout this patch.
+
+[...]
+
+> +static int max77759_charger_probe(struct platform_device *pdev)
+> +{
+> +	struct regulator_config chgin_otg_reg_cfg;
+> +	struct power_supply_config psy_cfg;
+> +	struct device *dev =3D &pdev->dev;
+> +	struct max77759_charger *chg;
+> +	int ret;
+> +
+> +	device_set_of_node_from_dev(dev, dev->parent);
+> +	chg =3D devm_kzalloc(dev, sizeof(*chg), GFP_KERNEL);
+> +	if (!chg)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, chg);
+> +	chg->dev =3D dev;
+> +	chg->regmap =3D dev_get_regmap(dev->parent, "charger");
+> +	if (!chg->regmap)
+> +		return dev_err_probe(dev, -ENODEV, "Missing regmap");
+> +
+> +	ret =3D devm_mutex_init(dev, &chg->lock);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to initialize lock");
+> +
+> +	ret =3D devm_mutex_init(dev, &chg->retry_lock);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to initialize retry_lock");
+> +
+> +	psy_cfg.fwnode =3D dev_fwnode(dev);
+> +	psy_cfg.drv_data =3D chg;
+> +	chg->psy =3D devm_power_supply_register(dev, &max77759_charger_desc,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &psy_cfg);
+> +	if (IS_ERR(chg->psy))
+> +		return dev_err_probe(dev, -EPROBE_DEFER,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to register psy, ret=3D%ld",
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 PTR_ERR(chg->psy));
+
+Why are you returning -EPROBE_DEFER here instead of the original error? Thi=
+s
+is quite unusual.
 
 
+Cheers,
+Andre'
 
