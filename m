@@ -1,182 +1,141 @@
-Return-Path: <devicetree+bounces-266736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266737-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uGqTEkuHl2kgzwIAu9opvQ
-	(envelope-from <devicetree+bounces-266736-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:57:31 +0100
+	id cOePE5yLl2n/0AIAu9opvQ
+	(envelope-from <devicetree+bounces-266737-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:15:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43027162FDC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:57:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A66CC163150
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:15:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D4C6F30106BA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 21:57:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A15CF304BCCB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 22:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748A432ABFE;
-	Thu, 19 Feb 2026 21:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C76332ABFE;
+	Thu, 19 Feb 2026 22:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Y5vyQeEb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DTWvn2SQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f226.google.com (mail-vk1-f226.google.com [209.85.221.226])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2AB32ABEC
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:57:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39210328B4E
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 22:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771538243; cv=none; b=N5FNxRe7E5xmbuKtH8JkwDd1qIWX1vECPoWE1htU57mUa5ll4oAaqZc9y7GbLK5GDeLxXjyntP4ohBw++VRJL5gfMrkK+wOnVDyUK10BvfQsBo7v/e/E7ed3lwuUkdGbiEyIqBRFKK2XldKbEr3qpw+/ER74iFeZ8rM0iChfPkQ=
+	t=1771539274; cv=none; b=G84AQKMHdz6+lVkkmOd6NoQU6ZnLcwUEWbtlObhM8WtMOlhsxvimAMP7SgYmuwWQXOFjydAGNmy2J7hdb51oUu9zywAN+C+6MwPLE2HFNBDDxH+iEPuj8L74PfkOgaO/Ec9FGGp23q4Y+FN//UwC0gZMAr5utfOtMi3qHI06kHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771538243; c=relaxed/simple;
-	bh=ymgJ32QMNYCUin60FKOe1Z68d7hZB5lDstBRZvKPO2s=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KtdXkumBI9U4OxPztDsjmcN4s2gODGUzCqSPAs9MIzp0sy45bqgjQxiZGVDsOXqhdbWsEshy17oinUY+jplwk5YeJKRQF6o38i58kzpJj+6Vq23B+vZ1Cj84uPvV1CmsP8jyfNt2k8aRPvKQGdE8sAQZ4Vvr48yaIdKBI6rMjQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Y5vyQeEb; arc=none smtp.client-ip=209.85.221.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-vk1-f226.google.com with SMTP id 71dfb90a1353d-5663601fe8bso1354300e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:57:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771538241; x=1772143041;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yEEHWNvLAhr/ZF6L79UPjbW5kaI9Zew8uBravIkb5jI=;
-        b=MoIKWbI6Sx0mJoF8rrvOC8EfoGcjbL7zBymSnCiARr2LXo1SG4LS2xNjgH/Xye25Lc
-         Ip6g/06IdEmKbM33Gz7yfGKC01fgjB0xc+mqn5KD523fDVLtle0J2XgxbNbtAh9naX8y
-         DjAhibyg7NkmpuRIa8CtavhmLHTQCnmjYVjn1Z6n2edrYaeR50OlTPAEKQgDm+rllrc5
-         Jxefoq3gTei5zr80D6W9g5PYTXQ7xb7GsE4UUTKbYWthdlmN7v5ISTFwEr5QQrSSQV2O
-         vLVXt1Gn/ETh1I3S44GarOjc49LFr/86Nxanign7AK0mGlUx3m/0tUBsnIYyVyFpofif
-         6vYA==
-X-Forwarded-Encrypted: i=1; AJvYcCWD87DbFuV1HBPdCsydhT6CG7JVIChF5nROPF5ynbIeSBX3BRzFliGuXmr2LbPFY5mGgZnqE49zB87B@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4e0NTyRHgXKYxjYDcGD1S6X8mcY5il6e1jjufpIkeqllRO3xM
-	0DBz346K29PXAJoU/YFYJVqMPoFAy5gYTLEMWsAde8+b2UIb/D1dbAsBdsaSZIbumahwyhKMDnm
-	lt04QDoGKq49fegKaqPTfpOopcHm2mvs0xvw3kDMV1eeU6eQooRHcBuKJE1gzM0pWOL2Gdc5dvo
-	QKCwxLwUOclmJ3TuBENlw93zvYJikoPvX/0QSIWe25QrS2JzpfJEfs+O4ANgX6aPQb8Ew1ti5Iz
-	MLFmuVkdZh4TQ==
-X-Gm-Gg: AZuq6aL8XLfLEek9lMtRghUjh0mcs56a4WVSzHQczs7F3/rVUy9Bjl3hcb2M+lqnz89
-	eV358dsJL18hke5zxBvAEYa8POGK+eBGB2DRohQvk2UJyNNY1YY+g462c/obcjyH9kfpwvC4TKS
-	zXqebdcYn66W9zD4erbscVQuajQ0Mo84JTnnukjEVz02Vme0Q3Wz7rSKF0dF+TTJHaUExS9euWQ
-	T8cQlH5W/VIKdyO00Ew9y54cV6IadsjHJzjPr0LrcrCnKXOuXFtHLtv64VReDCS/VmCTcIjol0o
-	MY5S4QZWnMhDSN8EtllST7XZz8QDPBecjwIu9CVhus+c+dV54GCgLPk6cQA8OfJKVAo8xoIYZGK
-	Th+MflTM+GppFVpbvxS92wk2TCsC1nyiOM2JIDZ32ErzAp5AwXol9kWHVSZBkkEoYL+NNsRs6XX
-	qovGgXh+PmN87XN0SaJqcaHvuMwbDwqLKj74mhyQXMzzTDcrPglhFKMy9/
-X-Received: by 2002:a05:6122:8b09:b0:567:4c2b:832 with SMTP id 71dfb90a1353d-5676a90b660mr8715034e0c.7.1771538240937;
-        Thu, 19 Feb 2026 13:57:20 -0800 (PST)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-103.dlp.protect.broadcom.com. [144.49.247.103])
-        by smtp-relay.gmail.com with ESMTPS id 71dfb90a1353d-5674c175a93sm3506954e0c.4.2026.02.19.13.57.20
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 19 Feb 2026 13:57:20 -0800 (PST)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a8f8c81d02so15583165ad.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 13:57:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1771538240; x=1772143040; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yEEHWNvLAhr/ZF6L79UPjbW5kaI9Zew8uBravIkb5jI=;
-        b=Y5vyQeEbgUbKoSxDVGD9R82bFX1d/sxTIHHqK54/gBd3SMEU3ZOLLrWGXYySuUK22A
-         Z1cWI+E8l/Qy6TVCpTcPb0MYrDSGZRZboi5Yh4otHfLLGAZLCIaBAr/MK8BEacQ02AdF
-         FGmhIh2Z56rpYaCdjwfEIprSzO5VHiVfpgX+8=
-X-Forwarded-Encrypted: i=1; AJvYcCXjC6lb8rA7sm/+ixNXfY14e0d9M4FK/glMIfdwbQ6ipbu2tty2GZ763cc3qilKxxh5JYj/59V+eL++@vger.kernel.org
-X-Received: by 2002:a17:903:1b0c:b0:2aa:f9d7:68aa with SMTP id d9443c01a7336-2ab505628afmr204534285ad.21.1771538239706;
-        Thu, 19 Feb 2026 13:57:19 -0800 (PST)
-X-Received: by 2002:a17:903:1b0c:b0:2aa:f9d7:68aa with SMTP id d9443c01a7336-2ab505628afmr204534065ad.21.1771538239253;
-        Thu, 19 Feb 2026 13:57:19 -0800 (PST)
-Received: from mail.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aae9d73sm156416065ad.77.2026.02.19.13.57.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 13:57:19 -0800 (PST)
-From: Kamal Dasu <kamal.dasu@broadcom.com>
-To: andersson@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: baolin.wang@linux.alibaba.com,
-	florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Kamal Dasu <kamal.dasu@broadcom.com>
-Subject: [PATCH v4 3/3] MAINTAINERS: adding entry for BRCMSTB HWSPINLOCK driver
-Date: Thu, 19 Feb 2026 16:57:02 -0500
-Message-Id: <20260219215702.63321-4-kamal.dasu@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260219215702.63321-1-kamal.dasu@broadcom.com>
-References: <20260219215702.63321-1-kamal.dasu@broadcom.com>
+	s=arc-20240116; t=1771539274; c=relaxed/simple;
+	bh=pZQ583VWIpCm+1qSwcPK9PrgCD/82vpkrV358KAInOQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uu08QkOyPhdIGGWx+5uLe3rZK4TEPuaxR5MVkMXKVVPQej6ygv+5nGlqDU08XtIJyQ7GxboHwOJb9Fx4/vmJ+XUrDhTkqZEWxg4wXORgR6ujo8E2KD0Hm/N2/bW4xtnWvU5G2iz9rTFgS4hTI5a1efX7hlhj2XCpGIBA6hEpI/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DTWvn2SQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E1CAC2BCB3
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 22:14:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771539274;
+	bh=pZQ583VWIpCm+1qSwcPK9PrgCD/82vpkrV358KAInOQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=DTWvn2SQbvKHCLzfXXJEzwgYKffzHcU73OB7Y6/ajN9mxRm5ILfbfybXfmoVU+1w4
+	 R4w8og80/3CceuDrc7N2bUkbmYSc+YbzcwnqiWYF8fVv7xZrK+7cvU/amfQ/1NEpPQ
+	 py4ZXHyRHgFqtlQx0qvcoR5MdcaHGKEitLMVYcpZVR6nuESUoM+UBKLUoXjCSd0zPR
+	 uqts5v/LDOCikvEOSqm0EBYxUSdVrA0nVKG32eUH+izEpkQ3TpobLcxS4pLNPU9gZ0
+	 UGiT1N4Hymu/tonSOarj4yS8sPLZEgiP9a4CNrQBI0oXS/9VFSg8z9q3nwJERK7ocR
+	 sV1fxOwEtmhtw==
+Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-64ad9fabd08so1403473d50.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 14:14:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVUSlJ7NhXuDCQKq0D471Q+ACkSUeeI27Tg8ap8xWbfaHihyzbU3BfEkXLlzJnjvFZQPcH1gb3k1r91@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxut3RFmvh2u/Q2wTsopqiNtMzJYE445OE+/04a9zqLAOsmMsMy
+	a/jnsTlmkJJlZooApkQ7H/dTVONH5ZmcS56pv0ZukNtkMXFyamRPWTbS3qFeBEBoa4qkprLMWBj
+	n9UUTOSXwH31E0r5n7d1I0qPy2sfUiPM=
+X-Received: by 2002:a53:e7c7:0:b0:64a:deb5:8807 with SMTP id
+ 956f58d0204a3-64c14d3ae3amr14639088d50.48.1771539273269; Thu, 19 Feb 2026
+ 14:14:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+ <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org> <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
+ <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
+ <30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org> <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
+ <20260212195423.GA787785-robh@kernel.org> <CADvTj4rPq8D5piqEijCdAjkWmZtq3Bi_Kxv-4F0aU4xi_O5WKg@mail.gmail.com>
+ <CAMuHMdXmMVgPJv=HhkfttiRnSwFC6c2PnFjYwmL2hu3ikv+t3g@mail.gmail.com>
+ <CADvTj4r95E2rLA0ZhOYPeFYpFbj0EXfb=omCN2Mab-Dj4T-cYA@mail.gmail.com>
+ <CAMuHMdXTg8w3R1BVq3JO2z=gvTdB=qXY=aXvC7Lb8FtkEqz9ow@mail.gmail.com>
+ <CAD++jLmp+47f-Ah4YdFJ+9dU0OFrnQdOcVyrQ61p0-_P61eBrA@mail.gmail.com> <CAL_JsqJK7PwyB=NoM+uXOgQk-RT49h4emogvYAfUAbZUpnd6Vg@mail.gmail.com>
+In-Reply-To: <CAL_JsqJK7PwyB=NoM+uXOgQk-RT49h4emogvYAfUAbZUpnd6Vg@mail.gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 19 Feb 2026 23:14:21 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkJE0ruzPeRMuVKJbJTjHoa-fTKn8djN+0es+hpqhELFw@mail.gmail.com>
+X-Gm-Features: AaiRm53FOc7ZhYYLZZe0NrqTkngiK-NiwwndU7yzK2q4iqB5Sit87XeqJrtxCYI
+Message-ID: <CAD++jLkJE0ruzPeRMuVKJbJTjHoa-fTKn8djN+0es+hpqhELFw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
+To: Rob Herring <robh@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, James Hilliard <james.hilliard1@gmail.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org, 
+	Bartosz Golaszewski <brgl@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[broadcom.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[broadcom.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266737-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[linux-m68k.org,gmail.com,kernel.org,vger.kernel.org,ew.tq-group.com,bootlin.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266736-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[broadcom.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kamal.dasu@broadcom.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,broadcom.com:mid,broadcom.com:dkim,broadcom.com:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 43027162FDC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: A66CC163150
 X-Rspamd-Action: no action
 
-Adding myself to the maintainers list for the hwspinlock
-driver on broadcom settop platforms.
+On Thu, Feb 19, 2026 at 7:29=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Thu, Feb 19, 2026 at 12:00=E2=80=AFPM Linus Walleij <linusw@kernel.org=
+> wrote:
 
-Signed-off-by: Kamal Dasu <kamal.dasu@broadcom.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> > And as such it would be pretty half-baked wouldn't it...
+> >
+> > Probably Geert's suggestion to use the aggregator is a better
+> > idea.
+>
+> I don't know what that is to comment. (Please don't reply with "you
+> reviewed it" unless it was more recent than last week. :) )
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b8d8a5c41597..c5971cbcf087 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5249,6 +5249,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/gpio/brcm,brcmstb-gpio.yaml
- F:	drivers/gpio/gpio-brcmstb.c
- 
-+BROADCOM BRCMSTB HWSPINLOCK DRIVER
-+M:	Kamal Dasu <kamal.dasu@broadcom.com>
-+R:	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-+L:	linux-remoteproc@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
-+F:	drivers/hwspinlock/brcmstb_hwspinlock.c
-+
- BROADCOM BRCMSTB I2C DRIVER
- M:	Kamal Dasu <kamal.dasu@broadcom.com>
- R:	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
--- 
-2.34.1
+I only think it's half-baked if IRQs don't work and you say they
+do with the right interrupt-map so that's all fine.
 
+I'd say James have a go at gpio-map + interrupt-map for external
+connectors and see how that works.
+
+It will certainly be more lightweight.
+
+Yours,
+Linus Walleij
 
