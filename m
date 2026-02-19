@@ -1,513 +1,291 @@
-Return-Path: <devicetree+bounces-266696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266697-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YCDxFSlDl2nzwAIAu9opvQ
-	(envelope-from <devicetree+bounces-266696-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 18:06:49 +0100
+	id EHPVCyNLl2m2wQIAu9opvQ
+	(envelope-from <devicetree+bounces-266697-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 18:40:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D58160F12
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 18:06:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D2EF161532
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 18:40:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BCB46302D593
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 17:06:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F40753040454
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 17:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F1234DB4B;
-	Thu, 19 Feb 2026 17:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B40A934FF78;
+	Thu, 19 Feb 2026 17:38:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nrw92TFt"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VC34XzBZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010066.outbound.protection.outlook.com [52.101.69.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6CB30E0F1
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 17:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771520797; cv=none; b=P3s4neeUHHOyifebhOeQQMlJZwkpzkigO6HzXVbnSHEBTJOS7nyqg3V1xM/OITI3kWlnPNGP0dTLxZI1Ask1hZxhQz+6WFE9sTEH8oDaa1VeiixBncWSe1pKy5e7WDC2VC1AgkFYLYdOrXtxwLFKvj3WONrEjxF5WPLQP6jtBYI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771520797; c=relaxed/simple;
-	bh=UeQyfBVnOjo6PM5pXAben29smqszODqM5VqXQ9oksvQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OcZ6nk/Hqv5M2JbbJsfC9NrFs9RAj2UkAdC1tW9ZW5/1AVUYmMDHVH6gjp6Za0/BHR3TTXQEwNAsAYcFgOhyNaPMVrdFNW6xttEzPITtQxBoFDx9Fob3t+Z09U9aJ2Q8MNxlp69+e0Vp9X5rWCzJ3GosQ3WWuUfsdtm+gkJFivg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nrw92TFt; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-435f177a8f7so1144334f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 09:06:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771520794; x=1772125594; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fA3pKx5AN5x/APCEfqAvfW0pxwW9zZ1rtfJ16/Xi50A=;
-        b=Nrw92TFtG3nRexzyUvFTCM/s/wZdh4/0iAX7nT6I8P5Zw3oTe8HtQXy4VkupMpyyba
-         kc4Kx5YxaCwhMifi5wGIpovUWg5vrEKZhfQgvobdrSNDDNF1kYe1avtfLaRfduVkfMOR
-         rGfD352GWi1p9o62yVO8ONG/TPkmIekorAMI9Pb2S0ZIL8eEeMM6M6S389O6BwKquyL6
-         dQKuaqf/tuXLpJ5KpP0ZgCo+9b1qQ4KvrkzAf+rpeB5IYvpV6+na0FEqh17MUdJNgyjg
-         yTQ03+9ImhXK+fWfhdYLkHLDtfnxaci8IUqQisLAGNTIgX6WYcTdqWrqDCi9q3jAcd7t
-         ZN8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771520794; x=1772125594;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fA3pKx5AN5x/APCEfqAvfW0pxwW9zZ1rtfJ16/Xi50A=;
-        b=h650e2JuWwzQR6Z4bfrZUsEFXPUDF0hiOu/eQJH9EW+yJrgttDjtJ55UuunOuWl7RE
-         VC0vFDIjroSS2VU3cQhAMxs4H/y1Im/up+j5sp3AaH0gt/PZkGeB7d2lsZtXXdEIGZrZ
-         flqkyzsi2CYM87SgFp8a6M6qDMrpel7l+wXcT54e0QYFOWGhWtIUOpl2Vs8GIz+p1jtS
-         hYH/Yzr+FXjpG1HkUd6uw5OMhl2odDkUWqIGcLI+quu4DkliwTJojn7iVYssVShYOKVb
-         D6sA7Ww4zHhUtDEudOsicmS1ylComKTOVdAm5wsVvV+j3yvIZsRB+fJ4HZbM/99YO4aG
-         pBeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWK6bI7Kng2BJw53fWLTcJcJPUJrV4FXAjF63AN3c2XBX4w1SnI26YMaUaiSQzn1cMh2RTnx3HsBkL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIvb+PdKJQ19/WpVIYfDqY2/QWZhNL3vOvr+q5PvUGTXKZMiDz
-	FHZBEQGZwcI5LorQDcO5dtnXL1VWg76dKqSFUFxdbGMyGBVDgoR4p61c
-X-Gm-Gg: AZuq6aJd3rHoksNe83Pc/IC3bMWgRo/QLrYmaA/Wrx9YPQgKi966CUS3VRk6czX074T
-	L+0fIHAEvpxtnTttlfYr4D+kwAW/VDVQfWNjN1oBF0JK6038KZv/vJjlids1WotmAyNmnS8Od6W
-	LPkei+S9z3o/k5icytSAxOOJgnoQlfwMaOUK+UmTB7TCP+naBxpzrgfV/h9hgWAhMLVFMylmV5P
-	2Odt0SMROp4nORIB+j5xblO3LxMynqZ674lI6S4zphISwHD5Saj/gRonqzTKf9wp8NBXsp+2Mxw
-	4pfT0XSUSbqfEuVyTgTG5fHNQ2AzjV+JNrt+D3abfzwNtQPNKIfn+szwNi3kQ7XcxBR4FpnU+cC
-	V+qGaLzCiQJ+N1x7RY0MszwEtCQfYucB05zkE3QJZzu4LNXnGflXWGPCKEzDaOdTt46iOAT/Hxa
-	UBBd4euvUUcILSsFDGsGQRVEDmdojYG7ZUtKHv4y/+mrpOLAsA/CY2+CjuPpYGH/tT8dSegVS4R
-	DQcUnM=
-X-Received: by 2002:a05:6000:615:b0:435:e440:f518 with SMTP id ffacd0b85a97d-4379dbad3d7mr36702033f8f.54.1771520793387;
-        Thu, 19 Feb 2026 09:06:33 -0800 (PST)
-Received: from toolbox (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796abd793sm49031868f8f.25.2026.02.19.09.06.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 09:06:33 -0800 (PST)
-Date: Thu, 19 Feb 2026 18:06:31 +0100
-From: Max Krummenacher <max.oss.09@gmail.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Max Krummenacher <max.krummenacher@toradex.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03AE834F481;
+	Thu, 19 Feb 2026 17:38:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771522706; cv=fail; b=PnNWvBI6EtefuFQnTgnejwKin4Zl+fcAoENX5pAq+o82QxvAzn5/CFNg/S86rCkNRPiLK4hNlLbM88Xev447BiRYaAb0y+CxhZc1ip3X7lrZf628RE1xi818htGyjMCV2dh7B2IdROWRV+pzn3BqkHXaZBp2uk+BK4i6jchP4k0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771522706; c=relaxed/simple;
+	bh=JEcJpFZ2ZiW5OBhPcfTlEt30bqI+69JwBb7HKYQ9R8c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=tj1+OVTzhEnK9mJyQcZnbfhOtQ7WHlKZytzQ/0fnaRH4jwPpX7wu/3qd8RXMBPAYZdsKRIKme0RNOR/FMJ7a0OJ+kVYJ+W6Ik+eFzQYhbvyajR8zxDZpRg7bpTE74WHZn5n3CJMnzUlpKOWBKMUlFaqX4dPiPF7XYyZAohMWuIM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VC34XzBZ; arc=fail smtp.client-ip=52.101.69.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=D2IJUc29drJ/ZGrmdc+ercbrgJtGtXQVeFqvRL1U/lUCg9pYb+aZFDAXyRSyYZ6Km24pCYmqv/yxiMjtnWmnLnoZO2VLwfIU9o2CV4WKx5RYpS0XQdWExyqfsHo5a6/S+YGxYEqWX2fzi9ChGZzR8gO82VDQvccJzQSe0o1iIXMnFmTY0zbkU0VKE4aLiQd09vQJSzIxRZs3Rx88qjcha0QRxVBkr09wS7+oJI03JFXEmnxwHzsKN5bdzFtEX2HStqhcHg7G+UINmvhYTg/ce1F1Z74qgKd57weJw+FFF9/XQ6ob+2nVUm2OIpRKmyiNbFJp28i7hIJ6E41VQCOj4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LfOIxBEmwuv0+5LzsDKWd5qKfwoB6bub0YQ2CCHAPjE=;
+ b=up2LtFkwthSKjYSffRynq+F7sX/Tx9h+f0/YaRkgZ/QZZVFo9wP1tlt5cXzRISn0V3s0acSyQNA6ulh5XU1cQqxJ2+7aCq/s2uMFKTREbGoybdHMIyJNKNr4I259v7BKyWG2+xHO9ajM2VLftzpT7ueyvEjAXfXkKOkr+jz2lBcT4GAL1n4wgGThWQI7i7LB8bKhzzp6xrUClkQalxmZ3mpZFz7JT73nn0IGaV6Flg5iUdUjYXUea8zOUuu/Tx9hWYgejNpei05PTazT81yjfSM9YCYkLaMMgxulrV44Vsst6HsLw7vdGBWoCqG9LvTxiTieKMjAXm2A5bOMTRJd6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LfOIxBEmwuv0+5LzsDKWd5qKfwoB6bub0YQ2CCHAPjE=;
+ b=VC34XzBZ4/b7U0aK+dHUz61chWLHimsPefljLvpfbH1yBtGxXRg9vSS2AiKT7woP2B+qXkBZwKk6WuDGLqIVf5N8BLaO5TVhL6FhiwXfngF7W+0e56WY5VZtnYdKaN+XM1jrDkr0QliWksDq93wSqbt7oVk8A30Fjax0UGdERfziW+vcB3cJlf8L6lWkP45oz2LTz9TI1cxiN5gJ3juK+gLIe0fRnR2WlkdKDU7mAUupszpPIuJjOTg8zjRagj9Ol8/FXM5KLrxwAkekCypdGXDqegSQF8IeyyguXLg/sV8hrPWmglLey3uCxJLuWPiM9bQGNdRg9LgmDqAi6L03FA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DBBPR04MB7898.eurprd04.prod.outlook.com (2603:10a6:10:1ed::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Thu, 19 Feb
+ 2026 17:38:20 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9632.010; Thu, 19 Feb 2026
+ 17:38:20 +0000
+Date: Thu, 19 Feb 2026 12:38:12 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Frieder Schrempf <frieder@fris.de>, Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "ARM: dts: imx: move nand related property under
- nand@0"
-Message-ID: <aZdDF6BObEu_C4KJ@toolbox>
-References: <20260219151157.2549198-1-max.oss.09@gmail.com>
- <aZcz1vRg4KtAKUd_@lizhi-Precision-Tower-5810>
+	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH 2/4] arm64: dts: imx8mp-kontron: Fix SD card supply on
+ SMARC eval carrier
+Message-ID: <aZdKhAa2u14LD-cW@lizhi-Precision-Tower-5810>
+References: <20260218132519.74570-1-frieder@fris.de>
+ <20260218132519.74570-3-frieder@fris.de>
+ <aZXv6QSq-ydOX5Wt@lizhi-Precision-Tower-5810>
+ <1c86a997-4781-4816-9e90-35b15e2b0146@kontron.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1c86a997-4781-4816-9e90-35b15e2b0146@kontron.de>
+X-ClientProxiedBy: BYAPR03CA0001.namprd03.prod.outlook.com
+ (2603:10b6:a02:a8::14) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aZcz1vRg4KtAKUd_@lizhi-Precision-Tower-5810>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DBBPR04MB7898:EE_
+X-MS-Office365-Filtering-Correlation-Id: 494f7839-adf8-4d33-cc5c-08de6fddac58
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|19092799006|7053199007|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?cuXP0gHnN/f7xYpEyreWKXymTwXiC20+5aq0vcAuK50wgmo1BgirteMDKo9d?=
+ =?us-ascii?Q?UCUcwZsI36D/nnzwsTUvpcEeOt6V7vew+PmsMc8yY9EOXwZ3jar2mMgA5KWc?=
+ =?us-ascii?Q?3OFtcywORKKgciGnrLnZb8xr809YxlkgeJobVMDlRyo7s944XpwAZVU9ocp0?=
+ =?us-ascii?Q?meXU3Bh8JVT0ogL0T1m1uMktXd+10oWQjxE7F7w2b/wbUk2KzFKrH6zdrsoC?=
+ =?us-ascii?Q?vTO3qRmQHgQIL4iVRpx7jDHr0DMS+9E21J+aLDLLZwSPJxRKNeDp1CTlDTt8?=
+ =?us-ascii?Q?N8zOotrTKVe5jCwBiqbO1T/YcV0Hhz+1sEYWDJF6OICytQqO1cWq6NaQAlhP?=
+ =?us-ascii?Q?ehWnKQ8auATrkWdx4nwcTgAEFLbSksYW5PeFED8GjxvGSI2hZndZwr3rUbda?=
+ =?us-ascii?Q?ueoQ7rghXmyM2ClTBD4bPp86IyahLHKYCVeR8ei3LuqmaWyvYZz9RE8v5BED?=
+ =?us-ascii?Q?76NnLDDJ6Lob4l/hfycBv4LCaJSvSILx6cmDajG88UhHJbiNOGHjhleOhwaE?=
+ =?us-ascii?Q?6J4m5rmSC2apNqT06a7rwAagcSf5+fSty98C6L/LQyM/yvVyoU49DfEpAtCO?=
+ =?us-ascii?Q?DtWgL5VVA1XU5bkxRi8nDbVhDRGr5bUedhxiedbfjBg5sMii82GTqsql5IJe?=
+ =?us-ascii?Q?/5suWQYREi/i2dJRCvFpXokZmPxLqg/Zr9/bMFTVQHyV6rB8Hy/t9RlcjjAv?=
+ =?us-ascii?Q?M2HhL64k7+cEvJZc0vgfRrdD8u423OCT92pE60PfYrAYTfJppRkCRmyKvxWU?=
+ =?us-ascii?Q?0mqbouMUIOM47SNIXW0RG7xTcT3fHroGE03eftidEsuDQkcdJ8/Sx4gZ4j7w?=
+ =?us-ascii?Q?FW2x0ofP/sZY+4oYKJkaO3GMsvctU22y2UpJfIwBgT54ITvwwvdRExvein+A?=
+ =?us-ascii?Q?w5a9RUksFCkZeFdahk8QyTHjuTB0RM5LAteX2/ouL39zSLk0q/a/bicgtOwU?=
+ =?us-ascii?Q?6QUdy7BcNErCm1ERdrr+eKm9fRD5XBqsB2+AKXYYLbqSAy0ufj2/ML/GVW6N?=
+ =?us-ascii?Q?de5HpmhSBB8YR6yakBT2Zro6ie9WE+zuQQEzV0KFHE7gA7rYnOTqiJYPTJ5F?=
+ =?us-ascii?Q?J5s1CDCtanyIfExcVGQvVntR2rwWY9QIHxoRZURO6EGZbpkSREHeT/EOjNPU?=
+ =?us-ascii?Q?Onf9nnTk7dq77L2c6B9Dup0220GsURFEmLFyhsx9weo1bkH73+HF5179qEnB?=
+ =?us-ascii?Q?dUflcIGhqMlBqr2InEwdCNTc4vcE4dqpeiHJAwoPMWdaG10FscFWmIDD3Y1V?=
+ =?us-ascii?Q?rktl+tRUJRxcc5z4JvBQbf9deUclKY4n17YrxIhfkBz1x4TmkZNCsvRRcXr8?=
+ =?us-ascii?Q?kICyvsxGO5ovInsuAqBJBkDxCj/kbmFC07gAbnl3cNA+NXbUQDiqCT1o17WJ?=
+ =?us-ascii?Q?AJxYvyDT4QOKuLic5MavJ6Qe5/NIWvNp9wU9vrnr0P9da+A8Q5KBC7mTjM7Y?=
+ =?us-ascii?Q?mg38ObAE+i7d/cs3KU0GymH7DjD5CIhjyOMnz8wPQkTCWXhbuZSc/91XTnMQ?=
+ =?us-ascii?Q?+C6UtQy0k1wIuZ9/3PS0mOvQN7NtwQxe4J2fTYfxaO7RGdaFMs7PHyuP63Gb?=
+ =?us-ascii?Q?pIRjz1BFBj6qkh0ruKvfPrApErugB/YXS9igD5VsXEbQI4iFgOu6HzsP6Rs0?=
+ =?us-ascii?Q?ehMtx6h7Ea6jHeUHUtF2430=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(19092799006)(7053199007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?83/6bktq75rummzVvEQCZrK+GpyGQcQTDva9oZxnvp+qQUfdUqxJsj3nl3he?=
+ =?us-ascii?Q?OThcQY3npCPiOlIcA0iiS1+zb8CJQ/mmGa1WyDwflujwozcEW1td7S/Srmjj?=
+ =?us-ascii?Q?C77uz2mil5nSwriqtbASRv7ulPvD472tRotBJ9ES5UyzaOO4OiMfdDQs+ylh?=
+ =?us-ascii?Q?7Xmebe4rU0nlYXOrjydT1iyfr3gs/3PbPo8ESulzM0nSuPkMBvG4wm27o03z?=
+ =?us-ascii?Q?w6d4wI7jYbq33afvVbS902C52BqSM4Ywd2YvyyaClGIgzWsMDpG3glyv83LO?=
+ =?us-ascii?Q?lP98EkrVf3qv6HS2wIDJu7h4tbaUsJHW9b+SN2cbH74QaRSHKFHubXwNxKx4?=
+ =?us-ascii?Q?HfFe2ztlvCZEqWKaCK1BEi3BvQnBHtLfy60KHX+d6bYumvrKsrJmj7gkMtId?=
+ =?us-ascii?Q?AE5iwx9+ndwE2oiZ1cnalg4wR6Ij0nejiighEAjl6ZZVFkwA96DS3deRFytl?=
+ =?us-ascii?Q?Fi7cZ5exWRUoymI4R5rgx35K+9BuODDDL1QSv1ZPPY7a1ZYPZb5A9ImeSM01?=
+ =?us-ascii?Q?Ejo5GjSpeOa/grDkyeirb+Tu0FmVJby+GShUZ71GB7gaQb+upq7/2/f0637a?=
+ =?us-ascii?Q?xJPeWn6pfNhsuSGm71iv2H9arD67fhjUE91gA+OW76yeiltqm0O97dAiAdmB?=
+ =?us-ascii?Q?DK79TZvdVDjBD96xvj73eoYQ8Vsg3W3UwFzRG8yhhZrmKgRCH3PX05Yqgz/d?=
+ =?us-ascii?Q?0jKwsiq6q2IHVP6JBvdrDpgUO5lq8qMFIOlJGP+AB1XH+T8uzQiR52eWtu3e?=
+ =?us-ascii?Q?XpancjnRVPNIlE13KW8+cQvJMrQja5rRgVs6t7lRwu5dNfTgSO/oaiZRkQ54?=
+ =?us-ascii?Q?epV3mIGHnJCCCl/DmNW3dR/3AV0OBhlOHkwv4dQeOOkeILJItx0NMelUg5en?=
+ =?us-ascii?Q?FDOD9hyIjvv0rWbhYBmje6SFlhCeoJ9QRKsOnqKpmrucv5jcrmSNFmjW71CT?=
+ =?us-ascii?Q?s5MjpKunzOMiP7VgAM2tXKoIC1wcjt0RgwjKBBOcgMPErUZfuer+kcb+aLZ2?=
+ =?us-ascii?Q?HiTEvMQBjbXYuxQ1ijqHt96G+FyNvT4MyPeh8Sm/ao0VJgCGhHhoqhvwMOy5?=
+ =?us-ascii?Q?SFyPBvzhWcnrsysPSuLP+oO8JzdBTBGMlg+6MYZwgQY3zhbvJlok8OcgGaEb?=
+ =?us-ascii?Q?lmwoxh0Ix1+z7HaDItiS3OIJ+IXpt2XjkUA9Z09p1MZ3n87TTRflC83WKWvn?=
+ =?us-ascii?Q?Tk0D1nihklCL2Wyk4phSD3DfjBx0n0hJS481A9e3c7asBktHSZ3mfdMqz9sg?=
+ =?us-ascii?Q?xhCXgYgT/62WZegDUqZkZcf8YQwtL7fJAa6xBKHHwLqLU6pw/zbXRHOMCWq6?=
+ =?us-ascii?Q?jWd6TCMP63i+eow7V/xE2VDqtWO/a67UiOuU/dKJl86oH1F252lUtsyjqhpr?=
+ =?us-ascii?Q?UerK4S9L3GHKgtz/uBZ/a5Iq6bDYufCgRvELL/de1eWfoXDLVn+HNvd0W07O?=
+ =?us-ascii?Q?KgXQc4Q5kC+LKmEJUcVEgTKBcuVa6A0MqopCmmdrwdwaE0wSk4PcbJvcI0VK?=
+ =?us-ascii?Q?2zOegM3BZdv3dPa3DiBqce55Jh8J5LuK5SUaSbGOJrDiBO7Pr33ZeZDooAbz?=
+ =?us-ascii?Q?0b7VQ2p9a4hLRybrA77VsI1B1RJaXgvhTHOuXWjEAflqO5gqgbuOvPCLK7ay?=
+ =?us-ascii?Q?DRQjfykLIW3BVY3ilftGW9hd1BF8Z4Cl7yHKm2ldahh//O5JnczasVjgwLgl?=
+ =?us-ascii?Q?jTbpltFycEZrRGnPeG+FfM5FnlBXg7K4L2qF3CIlUvYparOG?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 494f7839-adf8-4d33-cc5c-08de6fddac58
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2026 17:38:20.4817
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VJpw7iHryxYvvNH+U1OFR9lL40p3p5HIgTJTzWetczHzyI7qyh7Iq+ktgkD2bIpdO0AxLbcWaCDtyImZZr0w4A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7898
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-266696-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-266697-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[toradex.com,kernel.org,gmail.com,nxp.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[fris.de,kernel.org,vger.kernel.org,lists.linux.dev,lists.infradead.org,pengutronix.de,gmail.com];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	DBL_PROHIBIT(0.00)[0.0.0.3:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxoss09@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,toradex.com:email,0.0.0.1:email]
-X-Rspamd-Queue-Id: B9D58160F12
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,kontron.de:email,nxp.com:dkim]
+X-Rspamd-Queue-Id: 9D2EF161532
 X-Rspamd-Action: no action
 
-Hi Frank
+On Thu, Feb 19, 2026 at 08:51:32AM +0100, Frieder Schrempf wrote:
+> Hi Frank,
+>
+> On 18.02.26 17:59, Frank Li wrote:
+> > On Wed, Feb 18, 2026 at 02:25:06PM +0100, Frieder Schrempf wrote:
+> >> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> >>
+> >> The SMARC eval carrier has a power switch for the SD card compliant
+> >> to the OSM standard definition. To use this as already specified in
+> >> the OSM base devicetree, stop overriding it in the board tree.
+> >>
+> >> This fixes the power-supply for the SC card.
+> >
+> > Is below commit better?
+>
+> Do you mean "commit message"?
+>
+> Did you run my message through a LLM to enhance it and now feed it back
+> to me?
+>
+> If yes, it is a very strange way to waste GPU cycles and developer time.
 
-On Thu, Feb 19, 2026 at 11:01:26AM -0500, Frank Li wrote:
-> On Thu, Feb 19, 2026 at 04:11:49PM +0100, max.oss.09@gmail.com wrote:
-> > From: Max Krummenacher <max.krummenacher@toradex.com>
-> >
-> > This reverts commit 8124b4a4a96b57d6cc3705a9df9623c52baa047b.
-> >
-> > The change introduced a regression: at least Colibri iMX6ULL and
-> > Colibri iMX7 no longer boot with that commit applied, while they boot
-> > again after reverting it.
-> >
-> > Although this has only been verified on these two modules, the issue
-> > is expected to affect all device trees using the gpmi-nand driver.
-> >
-> > [    0.876938] Creating 5 MTD partitions on "gpmi-nand":
-> > [    0.876974] 0x000000000000-0x000000080000 : "mx7-bcb"
-> > [    0.879860] 0x000000080000-0x000000200000 : "u-boot1"
-> > [    0.884761] 0x000000200000-0x000000380000 : "u-boot2"
-> > [    0.886993] 0x000000380000-0x000000400000 : "u-boot-env"
-> > [    0.894686] 0x000000400000-0x000020000000 : "ubi"
-> > [    0.899054] gpmi-nand 33002000.nand-controller: driver registered.
-> > ...
-> > [    0.960443] ubi0: default fastmap pool size: 200
-> > [    0.960476] ubi0: default fastmap WL pool size: 100
-> > [    0.960500] ubi0: attaching mtd4
-> > [    1.636355] ubi0 error: scan_peb: bad image sequence number 1588722158 in PEB 4060, expected 1574791632
-> > ...
-> > [    1.649889] ubi0 error: ubi_attach_mtd_dev: failed to attach mtd4, error -22
-> > [    1.650029] UBI error: cannot attach mtd4
-> > ...
-> > [    1.670262] Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,253)
-> 
-> Can you help found the real reason why not boot?
-> nand@0 is preferred format for MTD raw nand.
-> 
-> Frank
+I used LLM for some unsatisfied commit message with LLM. I need make sure
+other reviewers can understand the commit message easily and commit message
+align submit-patch requirement before I can pick up it.
 
-I guess the root cause is that the driver for gpmi-nand predates the
-update of the binding rules which want the nand device described in
-a child node 'nand@0' also for nand controllers which only can
-control one nand chip.
+It is not waste GPU, which already found many problem although there are
+some false alarm.
 
-While it is possible to update the driver in the same patch set as
-changing the device tree to understand the new dtb rules, maybe even
-falling back to the old definitions this likely breaks other users,
-most notable U-Boot.
+>
+> >
+> > ARM: dts: imx8mp-sm2s-imx8mp: Drop SD power-supply override
+>
+> The subject line is completely wrong.
 
+sorry for typo 'power-supply', it should be 'mmc-supply'
 
-So I don't see a quick fix other than reverting and living with the
-dtb_check warning.
+subject should be "do (what) to"
 
-Regards,
-Max
+drop vmmc-supply to fix ... or
+drop vmmc-supply because it is already in base devicetree
 
+>
 > >
-> > Fixes: 8124b4a4a96b ("ARM: dts: imx: move nand related property under nand@0")
-> > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> > The SMARC evaluation carrier provides an SD card power switch that complies
+> > with the OSM standard definition. The OSM base device tree already
+> > describes this correctly.
 > >
-> > ---
+> > Stop overriding the SD power-supply in the board device tree and rely on
+> > the definition from the OSM base DTS instead to fix the power-supply
+> > configuration for the SD card.
+>
+> Ok, maybe this rephrasing is slightly better to read, but again: is this
+> really worth the efforts? And it doesn't even correct my mistake of
+> using either 'vmmc-supply' to refer to the property or "power supply"
+> without a dash.
+
+Sorry for typo,
+
+Frank
+>
+> Thanks
+> Frieder
+>
 > >
-> >  arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi      |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi         |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi |  6 +-----
-> >  .../boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi      |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi           |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts            |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi          |  6 +-----
-> >  .../boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi  |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi          |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi       | 12 ++++--------
-> >  .../boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi   | 12 ++++--------
-> >  arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts     |  6 +-----
-> >  arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi          |  8 ++------
-> >  15 files changed, 22 insertions(+), 82 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi
-> > index f452764fae00..547fb141ec0c 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi
-> > @@ -36,12 +36,8 @@ &clks {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c3 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi
-> > index 58ecdb87c6d4..9975b6ee433d 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi
-> > @@ -172,12 +172,8 @@ eth_phy: ethernet-phy@0 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c1 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi
-> > index 6f3becd33a5b..aa9a442852f4 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi
-> > @@ -102,12 +102,8 @@ ethphy: ethernet-phy@0 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c1 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
-> > index f2140dd8525f..85e278eb2016 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
-> > @@ -73,12 +73,8 @@ ethphy: ethernet-phy@3 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "disabled";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c3 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi
-> > index 131a3428ddb8..c93dbc595ef6 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi
-> > @@ -260,14 +260,10 @@ fixed-link {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	#address-cells = <1>;
-> >  	#size-cells = <0>;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c3 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
-> > index d29adfef5fdb..57297d6521cf 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
-> > @@ -252,13 +252,9 @@ etnphy: ethernet-phy@0 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	fsl,no-blockmark-swap;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c1 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts
-> > index 40d530c1dc29..2a6bb5ff808a 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts
-> > @@ -133,12 +133,8 @@ ethphy1: ethernet-phy@1 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c1 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
-> > index 776f6f78ee46..e34c8cbe36ae 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
-> > @@ -101,12 +101,8 @@ ethphy0: ethernet-phy@0 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "disabled";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c1 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi
-> > index 27e4d2aec137..a3ea1b208462 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi
-> > @@ -63,12 +63,8 @@ ethphy1: ethernet-phy@1 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "disabled";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c1 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
-> > index dc53f9286ffe..1992dfb53b45 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
-> > @@ -296,13 +296,9 @@ &fec2 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	fsl,no-blockmark-swap;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &i2c2 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
-> > index eaed2cbf0c82..ec3c1e7301f4 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
-> > @@ -160,15 +160,11 @@ &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> >  	fsl,use-minimum-ecc;
-> > +	nand-on-flash-bbt;
-> > +	nand-ecc-mode = "hw";
-> > +	nand-ecc-strength = <8>;
-> > +	nand-ecc-step-size = <512>;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -		nand-ecc-mode = "hw";
-> > -		nand-ecc-strength = <8>;
-> > -		nand-ecc-step-size = <512>;
-> > -	};
-> >  };
-> >
-> >  /* I2C3_SDA/SCL on SODIMM 194/196 (e.g. RTC on carrier board) */
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
-> > index 3dfd43b32055..43518bf07602 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
-> > @@ -43,15 +43,11 @@ ethphy0: ethernet-phy@0 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-ecc-mode = "hw";
-> > +	nand-ecc-strength = <0>;
-> > +	nand-ecc-step-size = <0>;
-> > +	nand-on-flash-bbt;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-ecc-mode = "hw";
-> > -		nand-ecc-strength = <0>;
-> > -		nand-ecc-step-size = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &iomuxc {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi
-> > index fc298f57bfff..83b9de17cee2 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi
-> > @@ -60,12 +60,8 @@ ethphy0: ethernet-phy@0 {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "disabled";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &uart1 {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts b/arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts
-> > index 8ec18eae98a4..2d9f495660c9 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts
-> > @@ -25,12 +25,8 @@ usdhc2_pwrseq: usdhc2-pwrseq {
-> >  &gpmi {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > +	nand-on-flash-bbt;
-> >  	status = "okay";
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  &snvs_poweroff {
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi b/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
-> > index a41dc4edfc0d..8666dcd7fe97 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
-> > @@ -375,14 +375,10 @@ &gpio7 {
-> >  /* NAND on such SKUs */
-> >  &gpmi {
-> >  	fsl,use-minimum-ecc;
-> > +	nand-ecc-mode = "hw";
-> > +	nand-on-flash-bbt;
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> > -
-> > -	nand@0 {
-> > -		reg = <0>;
-> > -		nand-ecc-mode = "hw";
-> > -		nand-on-flash-bbt;
-> > -	};
-> >  };
-> >
-> >  /* On-module Power I2C */
-> > --
-> > 2.42.0
-> >
+> >>
+> >> Fixes: 6fe1ced5ccab7 ("arm64: dts: Add support for Kontron i.MX8MP SMARC module and eval carrier")
+> >> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> >> ---
+> >>  .../boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts     | 1 -
+> >>  1 file changed, 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts b/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
+> >> index 2173a36ff6917..74d620dd06b7b 100644
+> >> --- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
+> >> +++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
+> >> @@ -249,6 +249,5 @@ &usb3_phy1 {
+> >>  };
+> >>
+> >>  &usdhc2 {
+> >> -	vmmc-supply = <&reg_vdd_3v3>;
+> >>  	status = "okay";
+> >>  };
+> >> --
+> >> 2.52.0
+> >>
+>
 
