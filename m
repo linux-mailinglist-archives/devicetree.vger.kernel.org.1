@@ -1,221 +1,222 @@
-Return-Path: <devicetree+bounces-266596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266597-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YFgkBW3JlmminQIAu9opvQ
-	(envelope-from <devicetree+bounces-266596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 09:27:25 +0100
+	id 0NA6EMPJlmminQIAu9opvQ
+	(envelope-from <devicetree+bounces-266597-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 09:28:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30CE915D0DC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 09:27:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0E315D0F8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 09:28:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AE73D3002D05
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:27:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 436B93007518
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 08:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B157335564;
-	Thu, 19 Feb 2026 08:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F57336EE5;
+	Thu, 19 Feb 2026 08:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bguq/hn3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y03mdI9t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFAD1E8342;
-	Thu, 19 Feb 2026 08:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07DEF23DEB6
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 08:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771489639; cv=none; b=ibAHTHAeS47RPgUqKfT5Q/Wzti9bEKh2jLE0GUjXa1vzeyuFaX8QClGxwNroosyjUG+HhyGk2PAHNHLTH+/rYLsa9HrRZOsKMpplVNU8yLAHk+mYgFCLq/oU0df9pu+MxbhBQ11ByxQvS2FLubqmpzjxRrglEQSiRSW+lvVWslo=
+	t=1771489727; cv=none; b=fTOU+KXm6IeaqTZ8uIjX2VmELuXxKMKxr6F38qPcMQenr2PNtU1SNw+z82paalh0Vy2k5l9umAl3bGaBeaWad4UIZjlNe63RlTH67txUrjYA8VVpMSp5iSG0Wn99Iv6+REJJr4SSAqnnH1C+/mVf6yu2FAOX1+0cpJnpRv73Hf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771489639; c=relaxed/simple;
-	bh=Y5n2vf0KF3JTxIpPOMa3hJNUJxaR9JRHGsLr1tXqdJc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UmsxxhrbyLFgESHmfar/CDmkFxDAP5mbkbbR6GfKawZNh1ys35LARQFrkvfoUOakFXUrsD4NtBDAhONsfbpKMwl4LT1N1k9OP7Rah4ItW7A+wNgqjsK9S43GBCLoMW6db4jjUGTWrHfYUKxWMteNLgqGaJ77jDVHodH5K2xXpCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bguq/hn3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07068C4CEF7;
-	Thu, 19 Feb 2026 08:27:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771489638;
-	bh=Y5n2vf0KF3JTxIpPOMa3hJNUJxaR9JRHGsLr1tXqdJc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Bguq/hn3A6435NAXM/fkTO+Ads2AWQhVr5OoeXFnKLWC0EsEqN3EIdrBoICrZ8R1f
-	 KYLt/xwc4MUbQNYXVu3fKwsA+0opaBa9ZvUoO20dHR//ZojxRDKSiKppJzksWS9TdH
-	 j+yfHUAYRK0oj2q4biWiVSz2IXVGSAoZlvCqXsIavv/YQ4eDO7nmoZDry59U7npuQI
-	 PP0iTJv8dq4BnKSFbaol/0/hwrHbnI7rLLHJRvGPzQxGmIzhyYAmFAM3JwG6S2ixzo
-	 CQmCQMPuggH3DV2rKL8KYD5hdzyA3Nu2nSOIPBm2KTz58x+C3Z6gB7/6627jtV4b1E
-	 rzUuPll1Qm9mw==
-Message-ID: <21a87714-cd11-4217-a2aa-82fddc3a8530@kernel.org>
-Date: Thu, 19 Feb 2026 09:27:14 +0100
+	s=arc-20240116; t=1771489727; c=relaxed/simple;
+	bh=CZdvF0NSmvpT3FQaL3yhFOnbzjIg5pEomEvylH7mBNs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Jz8ji2NxOS3zL0m8PmeIbywIYhrI8m5i6tTIcEPzqe8h2v1hqPHJ1NMjiX/iD9rigR6iM9K2TQubk04vCWPMcXjZNCbosJJJ7DiVvqu1posoRLjWzzH7J8l4q1p9qQv2FdtuqWGnc7vJ7i8+A/xp7mxRtATdguNv8Eg6Pja9aLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y03mdI9t; arc=none smtp.client-ip=209.85.221.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-43770c94dfaso686864f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 00:28:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1771489723; x=1772094523; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LlA0MoNwLthJ3WbFXT1GsIbvdxg0vIHk87hmvUw3AEo=;
+        b=Y03mdI9tvY00dYQhfNv5kT2SYD0ADW0aJpU0ED70lX79qO6fKJxENWQ3Gi6cHxd2SN
+         WgmmNsIsXrPNDwqTQ1e+00MSBVQe+aet/J0J4ecOXqpjovd+VAR6SaFVmyETM1fNtU5E
+         m98kh4fhisGlK/IKd9WMX9jVlPbnoGCv/JdLu6tA1QfmmDICyW/v2CG4q9i9d0nhefE+
+         4z31/rgtR5cRLtiv158IBwbRYBM3UxjuUUraJ0eryKu4Dw2921NaLjquNDa+umbXStBl
+         QuKSdT78t3nk6bk77J6pqseJdxFAoERgt2mivot2s2/F1DAreEaPA7qqKU5pceQhVMwY
+         55Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771489723; x=1772094523;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LlA0MoNwLthJ3WbFXT1GsIbvdxg0vIHk87hmvUw3AEo=;
+        b=LEVof6km2O4JUkLCi4TxbCT4HRWAGEwfw8A5FF6dICMgScKUIpn8fOaCHUrOnjYqiw
+         43s3EHQFlPAPyqgI/k2D7beOapiBBZAIohSHrRsebnnityYY3LzLofMbKPHo9bJ8htdM
+         zlbOZin9s1u9uSHbNMc0pwLgFDnFyxPXy/qVgeywFs1hkMVgLzD6EfbS+JDsgEmC2TLA
+         HgnAGDkYEZYVEhIu0nXjKjjHJhZkhF/gFgDrL5shjy9fII7RpdSKyZVf+RwA3oy8FpHA
+         w7Bjpfn2VfiVwlH79TJXtH19YKkC36t7gMj1rwhJkyHPyigL6M4fDtRXWD7X+j/oROHq
+         M9AA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCIjUaBqsPrAo2ck2DbxYFlrrLJYV4z/Zug4aCoGZMVmi1xpiMLST6JUxo6+RobQzhLdvQrsRzG5nc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgNWqjoOZ9ADJRcOkkEIYwpdL5cWk4QLh/H5a1TvZoBdwGOO16
+	kmhmvvWaeUpo1Tyv/abdtcFbS9180S7Br6wqfxgWrD9C5V85JdYCvDD80jH+3MwzsII=
+X-Gm-Gg: AZuq6aKTfyVWxjWA9m77fASCa/ZaQ4EGGK8t1UWKWbXSiPeVTouof8dPp0ngttGel+d
+	vEtJZwUM1hkpF8tn2Yuu5w6VxmFTNArcXpNkO2nRdRv/YYf2P1+86Pw3X5AxUj81rc2FbjfQG92
+	azMRTfwew8/jfvJM1BKl3/Jc9BW1gbUBrxB1lWscRYbL9c9ISqY0sVKPPni4xNHpJow1gl0hGtO
+	0rZCjyqyqxOSKMUViwMv9TqlCh6WJBAWBwAuWUiWdVS2eMGrqIq8aXC+L3a2YreVF3QfEjA5Fym
+	7vFxEU684pVJOIZ1gOVncqtnY5g4M3QyYRyixgv5VjxHsjbTjx+dmLL+3bKCW4LFxbYznezJi8F
+	xD6/bwhdsuZQKDHnbgRsHf+JtUkuN9dvCEC/saIob/YPvOAd3tn9+/6q5xjnOiycZiGf9So3v4Z
+	E03kEE/NxiM6almAReJdBKzNDqASVX
+X-Received: by 2002:a05:6000:402b:b0:437:678b:83c2 with SMTP id ffacd0b85a97d-43958e5794dmr8711741f8f.54.1771489723133;
+        Thu, 19 Feb 2026 00:28:43 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796a5ac7csm44982348f8f.7.2026.02.19.00.28.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Feb 2026 00:28:42 -0800 (PST)
+Date: Thu, 19 Feb 2026 11:28:39 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Akhil R <akhilrajeev@nvidia.com>,
+	dmaengine@vger.kernel.org, linux-tegra@vger.kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	vkoul@kernel.org, Frank.Li@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
+	jonathanh@nvidia.com, p.zabel@pengutronix.de,
+	Akhil R <akhilrajeev@nvidia.com>
+Subject: Re: [PATCH 6/8] dmaengine: tegra: Use iommu-map for stream ID
+Message-ID: <202602181757.Amx49qCP-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
-To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-References: <20260217052526.2335759-1-neeraj.soni@oss.qualcomm.com>
- <20260217052526.2335759-2-neeraj.soni@oss.qualcomm.com>
- <20260217-berserk-puma-of-focus-bcbe82@quoll>
- <e3ac0681-605d-c1df-e4f0-78a2c142fa66@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e3ac0681-605d-c1df-e4f0-78a2c142fa66@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260217173457.18628-7-akhilrajeev@nvidia.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266597-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266596-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[intel.com,lists.linux.dev,vger.kernel.org,kernel.org,gmail.com,nvidia.com,pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 30CE915D0DC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,01.org:url,intel.com:mid,intel.com:email,git-scm.com:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DE0E315D0F8
 X-Rspamd-Action: no action
 
-On 19/02/2026 06:38, Neeraj Soni wrote:
->>>  
->>> +  - if:
->>> +      required:
->>> +        - qcom,ice
->>> +    then:
->>> +      properties:
->>> +        reg-names:
->>> +          not:
->>> +            contains:
->>> +              const: ice
->>
->> And reg is still 4? This is not correct syntax. You need to define
->> proper and final constraints per each device. I would write example, but
->> why... more things you could just ignore.
->>
-> I had included changes for reg in v3:
-> https://lore.kernel.org/all/20260206112053.3287756-2-neeraj.soni@oss.qualcomm.com/
-> 
-> but those were not reviewed so i assume them to be incorrect and dropped it.
-> Will fix this in next patch and post.
-> 
-Patch v3 was also not correct, because SDHCI v5 devices should have 1 or
-2 entries, not 1-3 as previous patch said.
+Hi Akhil,
 
-You need to embed the ifs:
+kernel test robot noticed the following build warnings:
 
-189   - if:
-190       properties:
-191         compatible:
-192           contains:
-193             enum:
-194               - qcom,sdhci-msm-v4
-195     then:
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-here you add one more if:
+url:    https://github.com/intel-lab-lkp/linux/commits/Akhil-R/dt-bindings-dma-nvidia-tegra186-gpc-dma-Add-iommu-map-property/20260218-014114
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/20260217173457.18628-7-akhilrajeev%40nvidia.com
+patch subject: [PATCH 6/8] dmaengine: tegra: Use iommu-map for stream ID
+config: sparc64-randconfig-r072-20260218 (https://download.01.org/0day-ci/archive/20260218/202602181757.Amx49qCP-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 10.5.0
+smatch version: v0.5.0-8994-gd50c5a4c
 
-196       properties:
-197         reg:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202602181757.Amx49qCP-lkp@intel.com/
 
+smatch warnings:
+drivers/dma/tegra186-gpc-dma.c:1543 tegra_dma_probe() warn: missing error code 'ret'
 
-198           minItems: 2
-199           items:
-200             - description: Host controller register map
-201             - description: SD Core register map
-202             - description: CQE register map
-203             - description: Inline Crypto Engine register map
-204         reg-names:
-205           minItems: 2
-206           items:
-207             - const: hc
-208             - const: core
-209             - const: cqhci
-210             - const: ice
-211     else:
+vim +/ret +1543 drivers/dma/tegra186-gpc-dma.c
 
-and here as well.
+ee17028009d49f Akhil R         2022-02-25  1514  	tdma->dma_dev.residue_granularity = DMA_RESIDUE_GRANULARITY_BURST;
+ee17028009d49f Akhil R         2022-02-25  1515  
+ee17028009d49f Akhil R         2022-02-25  1516  	ret = dma_async_device_register(&tdma->dma_dev);
+ee17028009d49f Akhil R         2022-02-25  1517  	if (ret < 0) {
+ee17028009d49f Akhil R         2022-02-25  1518  		dev_err_probe(&pdev->dev, ret,
+ee17028009d49f Akhil R         2022-02-25  1519  			      "GPC DMA driver registration failed\n");
+ee17028009d49f Akhil R         2022-02-25  1520  		return ret;
+ee17028009d49f Akhil R         2022-02-25  1521  	}
+ee17028009d49f Akhil R         2022-02-25  1522  
+43f59d3fa0deca Akhil R         2026-02-17  1523  	list_for_each_entry(chan, &tdma->dma_dev.channels, device_node) {
+43f59d3fa0deca Akhil R         2026-02-17  1524  		struct device *chdev = &chan->dev->device;
+43f59d3fa0deca Akhil R         2026-02-17  1525  
+43f59d3fa0deca Akhil R         2026-02-17  1526  		tdc = to_tegra_dma_chan(chan);
+43f59d3fa0deca Akhil R         2026-02-17  1527  		if (use_iommu_map) {
+43f59d3fa0deca Akhil R         2026-02-17  1528  			chdev->coherent_dma_mask = pdev->dev.coherent_dma_mask;
+43f59d3fa0deca Akhil R         2026-02-17  1529  			chdev->dma_mask = &chdev->coherent_dma_mask;
+43f59d3fa0deca Akhil R         2026-02-17  1530  			chdev->bus = pdev->dev.bus;
+43f59d3fa0deca Akhil R         2026-02-17  1531  
+43f59d3fa0deca Akhil R         2026-02-17  1532  			ret = of_dma_configure_id(chdev, pdev->dev.of_node,
+43f59d3fa0deca Akhil R         2026-02-17  1533  						  true, &tdc->id);
+43f59d3fa0deca Akhil R         2026-02-17  1534  			if (ret) {
+43f59d3fa0deca Akhil R         2026-02-17  1535  				dev_err(chdev, "Failed to configure IOMMU for channel %d: %d\n",
+43f59d3fa0deca Akhil R         2026-02-17  1536  					tdc->id, ret);
+43f59d3fa0deca Akhil R         2026-02-17  1537  				goto err_unregister;
+43f59d3fa0deca Akhil R         2026-02-17  1538  			}
+43f59d3fa0deca Akhil R         2026-02-17  1539  
+43f59d3fa0deca Akhil R         2026-02-17  1540  			if (!tegra_dev_iommu_get_stream_id(chdev, &stream_id)) {
+43f59d3fa0deca Akhil R         2026-02-17  1541  				dev_err(chdev, "Failed to get stream ID for channel %d\n",
+43f59d3fa0deca Akhil R         2026-02-17  1542  					tdc->id);
+43f59d3fa0deca Akhil R         2026-02-17 @1543  				goto err_unregister;
 
-212       properties:
-213         reg:
-214           minItems: 1
-215           items:
-216             - description: Host controller register map
-217             - description: CQE register map
-218             - description: Inline Crypto Engine register map
-219         reg-names:
-220           minItems: 1
-221           items:
-222             - const: hc
-223             - const: cqhci
-224             - const: ice
+ret = -EINVAL;
 
-At least that's the simplest solution I see now.
+43f59d3fa0deca Akhil R         2026-02-17  1544  			}
+43f59d3fa0deca Akhil R         2026-02-17  1545  
+43f59d3fa0deca Akhil R         2026-02-17  1546  			chan->dev->chan_dma_dev = true;
+43f59d3fa0deca Akhil R         2026-02-17  1547  		}
+43f59d3fa0deca Akhil R         2026-02-17  1548  
+43f59d3fa0deca Akhil R         2026-02-17  1549  		/* program stream-id for this channel */
+43f59d3fa0deca Akhil R         2026-02-17  1550  		tegra_dma_program_sid(tdc, stream_id);
+43f59d3fa0deca Akhil R         2026-02-17  1551  		tdc->stream_id = stream_id;
+43f59d3fa0deca Akhil R         2026-02-17  1552  	}
+43f59d3fa0deca Akhil R         2026-02-17  1553  
+ee17028009d49f Akhil R         2022-02-25  1554  	ret = of_dma_controller_register(pdev->dev.of_node,
+ee17028009d49f Akhil R         2022-02-25  1555  					 tegra_dma_of_xlate, tdma);
+ee17028009d49f Akhil R         2022-02-25  1556  	if (ret < 0) {
+ee17028009d49f Akhil R         2022-02-25  1557  		dev_err_probe(&pdev->dev, ret,
+ee17028009d49f Akhil R         2022-02-25  1558  			      "GPC DMA OF registration failed\n");
+43f59d3fa0deca Akhil R         2026-02-17  1559  		goto err_unregister;
+ee17028009d49f Akhil R         2022-02-25  1560  	}
+ee17028009d49f Akhil R         2022-02-25  1561  
+43f59d3fa0deca Akhil R         2026-02-17  1562  	dev_info(&pdev->dev, "GPC DMA driver registered %lu channels\n",
+3a0c95b61385f5 Akhil R         2022-11-10  1563  		 hweight_long(tdma->chan_mask));
+ee17028009d49f Akhil R         2022-02-25  1564  
+ee17028009d49f Akhil R         2022-02-25  1565  	return 0;
+43f59d3fa0deca Akhil R         2026-02-17  1566  
+43f59d3fa0deca Akhil R         2026-02-17  1567  err_unregister:
+43f59d3fa0deca Akhil R         2026-02-17  1568  	dma_async_device_unregister(&tdma->dma_dev);
+43f59d3fa0deca Akhil R         2026-02-17  1569  	return ret;
+ee17028009d49f Akhil R         2022-02-25  1570  }
 
-Best regards,
-Krzysztof
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
