@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-266693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266694-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKZ/MKM9l2k/wAIAu9opvQ
-	(envelope-from <devicetree+bounces-266693-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 17:43:15 +0100
+	id IGujJjNAl2lXwAIAu9opvQ
+	(envelope-from <devicetree+bounces-266694-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 17:54:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1581D160C45
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 17:43:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 283BF160D3A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 17:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D895A300EFBF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 16:43:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 265C43010607
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 16:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED4D34BA59;
-	Thu, 19 Feb 2026 16:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916F034D902;
+	Thu, 19 Feb 2026 16:54:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="HeL4Yi7u"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="aUUac6CL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EE314A4F9;
-	Thu, 19 Feb 2026 16:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 181F134CFCB;
+	Thu, 19 Feb 2026 16:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771519387; cv=none; b=SWxiFRIfMn9gHtt+LJDXD2eRy3bbI0QG+lK2hC+blLUjLUYW6DzpnLZz3JchX8Py664jqdcH5fI5Pv3ZJT13ihinbEo/dJWelWg3ufjTPvBYBmGPPvScBonJp6DtCB8duZB3X345KGoNVXTGAxWpRtvmZbDsNAGWnErBkpE3THY=
+	t=1771520040; cv=none; b=u1EcwDv4fSuc5Qk3q1APS7C9v6uNtb9Z+kC5PIFk8AtwEptHg+QXn1hqAkvtbMtcWLqP+AHOtgeAp5bPSzbyoXcRTVK7uU2tIUTvnG7jXU5D+GWnbeHJdVb+sLj4LWWsUmH4ZZXoQGkQsaI5F4BNoFrzCa26KCxuzY5qlf9GMe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771519387; c=relaxed/simple;
-	bh=bSi5J9+jf2DD76VDJVqu13bTxLkx5aIkRAc9MceVNFA=;
+	s=arc-20240116; t=1771520040; c=relaxed/simple;
+	bh=p+tUXB3Qji9LNhxxmlLdCEuFkWLVEAKpcxmSjcIqAUc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=afSiZRCW21ll21KqwnD6CIbAC64bgFC5j1RX6VrK7MwH5NQNZe71Msj//ppeUXlPrtOyunnklamw8eVSdXIfq/pjqFDPZlnqk0H87epAL8snprk07fVKPEwvmOrZDZy0KP2pu4Or/3VVHh/uX12V5YJ8vMMHnQCcwK40AvtXRFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=HeL4Yi7u; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZgNr7nYavKzPonfwFSk6QZkoJIykiyEOT7tcYZla+UhRCCXd+u62X61BhflLhAYuucUewyw0vEGGNJBVJVTsFwCx2yhX3o4gFd265uxh9BYMPfoaNISwugJv9zb+pRkqAPvAtmeFD3ujQMW3imPSbhshecczr1ffVEBhbqswc5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=aUUac6CL; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -39,13 +39,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=+Rpi5B9mieofuRvn4aUQgU1WELLotMUCncPEC7vcJmQ=; b=HeL4Yi7uHthOqg7HIMXDPjEeSs
-	T8KR2XIToBHFMuoU1k9u7uWKxwLThW5JgSs+1gH7h/vtYsGVC1yFdTxesf6qZovamS4vb4qhhKmqV
-	pA2fGflVHNoBhm2+7xHWfEg2N9rXdEb7BthfX8ZVQT6JfzDelsenC6++UWU43B7JfDaY=;
+	bh=NqNSewweIKFfCmLrQgWQ7akHkJKLSCW09XG4EmRHUr0=; b=aUUac6CLUXaq7d2aPoJC01PxD+
+	YVDK70ivOhzz2+bcc2WE720b7dBz5Dsn1eOubCpXqN8MKeW9BpQBSwr1upT5ce+YMCSX03wJF/XKo
+	J7mKaZglQ+JQ+XhgLMllxR2fv7lqzcQf8nNSIBxk+siRabMz/VKpVFq8l7cByG8DMHL4=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1vt77A-007wRj-FZ; Thu, 19 Feb 2026 17:42:56 +0100
-Date: Thu, 19 Feb 2026 17:42:56 +0100
+	id 1vt7Hi-007wWF-9A; Thu, 19 Feb 2026 17:53:50 +0100
+Date: Thu, 19 Feb 2026 17:53:50 +0100
 From: Andrew Lunn <andrew@lunn.ch>
 To: Srinivas Neeli <srinivas.neeli@amd.com>
 Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
@@ -54,10 +54,11 @@ Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
 	richardcochran@gmail.com, netdev@vger.kernel.org,
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, git@amd.com
-Subject: Re: [RFC PATCH 0/8] xilinx: tsn: Add TSN Endpoint Ethernet MAC
- driver support
-Message-ID: <5f884e29-151a-4ee7-9e1a-d7e1f84d9f6c@lunn.ch>
+Subject: Re: [RFC PATCH 1/8] dt-bindings: net: Add TSN Endpoint Ethernet MAC
+ support
+Message-ID: <76c811a7-d081-4238-bf6a-0226e867560a@lunn.ch>
 References: <20260219054911.2017362-1-srinivas.neeli@amd.com>
+ <20260219054911.2017362-2-srinivas.neeli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,135 +67,147 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260219054911.2017362-1-srinivas.neeli@amd.com>
+In-Reply-To: <20260219054911.2017362-2-srinivas.neeli@amd.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-266694-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266693-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,amd.com,gmail.com,vger.kernel.org,lists.infradead.org];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email,0.0.148.112:email,0.0.62.128:email,0.0.78.32:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
-X-Rspamd-Queue-Id: 1581D160C45
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,4.197.80.64:email,0.0.0.0:email]
+X-Rspamd-Queue-Id: 283BF160D3A
 X-Rspamd-Action: no action
 
-On Thu, Feb 19, 2026 at 11:19:03AM +0530, Srinivas Neeli wrote:
-> Introduce a new network driver for the AMD LogiCORE 100M/1G TSN
-> Subsystem IP, also known as the TSN Endpoint Ethernet MAC, which
-> implements IEEE 802.1 Time-Sensitive Networking (TSN) features for
-> deterministic and low-latency Ethernet communication in real-time and
-> industrial automation use cases.
-> 
-> IP Core Overview:
-> The AMD LogiCORE 100M/1G TSN Subsystem IP solution (named as TSN Endpoint
-> Ethernet MAC IP in the IP catalog) implements IEEE 802.1 Time Sensitive
-> Networking (TSN) Standards and provides a low latency Bridged Endpoint or
-> Endpoint only solutions.
+> +examples:
+> +  - |
+> +    tsn_ip: tsn@80040000 {
+> +        compatible = "xlnx,tsn-endpoint-ethernet-mac-3.0";
+> +        reg = <0x80040000 0x40000>;
+> +        clocks = <&misc_clk_2>, <&misc_clk_2>, <&misc_clk_1>, <&misc_clk_1>, <&misc_clk_3>, <&misc_clk_0>;
+> +        clock-names = "gtx", "gtx90", "host_rxfifo", "host_txfifo", "ref", "s_axi";
+> +        dmas = <&axi_mcdma_0 0>, <&axi_mcdma_0 1>, <&axi_mcdma_0 2>, <&axi_mcdma_0 3>,
+> +               <&axi_mcdma_0 4>, <&axi_mcdma_0 5>, <&axi_mcdma_0 6>, <&axi_mcdma_0 7>,
+> +               <&axi_mcdma_0 16>, <&axi_mcdma_0 17>, <&axi_mcdma_0 18>, <&axi_mcdma_0 19>,
+> +               <&axi_mcdma_0 20>, <&axi_mcdma_0 21>, <&axi_mcdma_0 22>, <&axi_mcdma_0 23>;
+> +        dma-names = "tx_chan0","tx_chan1","tx_chan2","tx_chan3","tx_chan4","tx_chan5","tx_chan6",
+> +                    "tx_chan7","rx_chan0","rx_chan1","rx_chan2","rx_chan3","rx_chan4","rx_chan5",
+> +                    "rx_chan6","rx_chan7";
+> +        xlnx,num-priorities = <8>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0x0 0x80040000 0x40000>;
+> +        xlnx,tsn-tx-config = <&tsn_tx_config>;
+> +        tsn_tx_config: tx-queues-config {
+> +            queue0 {
+> +                xlnx,dma-channel-num = <0x5>;
+> +            };
+> +            queue1 {
+> +                 xlnx,dma-channel-num = <0x4>;
+> +            };
+> +            queue2 {
+> +                 xlnx,dma-channel-num = <0x3>;
+> +            };
+> +            queue3 {
+> +                 xlnx,dma-channel-num = <0x2>;
+> +            };
+> +            queue4 {
+> +                 xlnx,dma-channel-num = <0x1>;
+> +            };
+> +            queue5 {
+> +                 xlnx,dma-channel-num = <0x0>;
+> +            };
+> +        };
+> +        // MAC 1 Node
+> +        mac1: ethernet-mac@0 {
+> +            reg = <0x0 0x14000>;
+> +            phy-mode = "rgmii-id";
+> +            phy-handle = <&phy0>;
+> +            mdio {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            phy0: ethernet-phy@0 {
+> +                device_type = "ethernet-phy";
+> +                reg = <0>;
+> +            };
+> +            };
 
-So an Endpoint only solution is not connected to the switch? It
-outputs RGMII, can have a PHY connected to it, and so is a single
-netdev interface? You would typically use this in a client?
+Two } at the same level means your indentation is broken.
 
-But you can also instantiate the same MAC multiple times, connected to
-an Ethernet switch? That would be the bridged endpoint?
+So each MAC has an MDIO node?
 
-> The bridged endpoint solution consists of a 3-port
-> switch that connects to an endpoint including Linux software drivers. For
-> Bridged Endpoint (Switch Endpoint), two ports connects to the network and
-> one port connects to an internal Endpoint.
+> +        };
+> +
+> +        // MAC 2 Node
+> +        mac2: ethernet-mac@20000 {
+> +            reg = <0x20000 0x14000>;
+> +            phy-mode = "rgmii-id";
+> +            phy-handle = <&phy1>;
+> +            mdio {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            phy1: ethernet-phy@1 {
+> +                device_type = "ethernet-phy";
+> +                reg = <1>;
+> +            };
+> +            };
+> +        };
+> +
+> +        // Endpoint Node
+> +        ep_mac: ep-mac@16000 {
+> +            reg = <0x16000 0xa000>;
+> +        };
 
-To the host, does the internal endpoint just look like a standard
-netdev?
+Except the Endpoint MAC does not have MDIO?  Or does it have an MDIO
+bus, and you have simply not listed it?
 
-What i'm trying to do is get an answer to: Is this a DSA switch, or a
-pure switchdev switch. If the host sees a netdev which is connected to
-a port of the switch, it is probably a DSA switch. If the host only
-sees the user ports, it is probably a pure switchdev switch.
+> +
+> +        // Switch Node
+> +        tsn_switch: switch@38000 {
+> +            reg = <0x38000 0x8000>;
+> +
+> +            ethernet-ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +                    ethernet = <&ep_mac>;
+> +                };
 
-> It supports the use of
-> GMII/RGMII interfaces connecting to a physical-side interface (PHY) chip
-> with full duplex 100 Mb/s and 1 Gb/s operations.
+So this looks like a DSA switch.
 
-No 10Mbps support?
+> +
+> +                port@1 {
+> +                    reg = <1>;
+> +                    ethernet = <&mac1>;
 
-> - Provides feature rich Ethernet Switch that caters to various network
->   needs
-> 	* 3-port Switch (2-external, 1-internal)
-> 	* Programmable cut-through and store-forward operations
-> 	* 4-port Switch (2-external, 2-internal) extension through
->           'Endpoint Extension' and 'Endpoint Packet Switching' features
-
-Why not N-ports? Is it really set to 3 or 4? It cannot be synthesised
-for 5, 8?
-
-> Sample hardware architecture diagram for Bidge End Point like below:
-> 
->              +------------------+
->              |      MCDMA       |
->              +---------+--------+
->                     Q0---Q7
->                        |
->           +------------------------------------------------------------ +
->           |            |	 TSN sub system(Bridge End Point)	|
->           |            |                                                |
->           |     +------+----+  Port 0   +-----------------------+       |
->           |     |  EndPoint |<--------->|       TSN Switch      |       |
->           |     |    (EP)   |           +----+-------------+----+       |
->           |     +-----------+                |             |            |
->           |                                  |             |            |
->           |                              Port 1         Port 2          |
->           |                                  |             |            |
->           |                            +-----------+  +-----------+     |
->           |                            |  MAC-1    |  |  MAC-2    |     |
->           |                            |  (ETH1)   |  |  (ETH2)   |     |
->           |                            +-----+-----+  +-----+-----+     |
-> 	  |			             |		    |           |
->           |				     |              |           |
->           +-------------------------------------------------------------+
->                                              |              |           
->                                           RGMII           RGMII
->                                              |              |
->                                       +-----------+  +-----------+
->                                       |  PHY1     |  |  PHY2     |
->                                       | (Port 0)  |  | (Port 2)  |
->                                       +-----------+  +-----------+
-> 									  
-
-So how does the host send a frame out Port 2? Is there an extra header
-on the frame sent by EndPoint, which the switch interprets?
-
-FYI: Seems like PHY1 (port 0) is a typO.
-
-> - During driver initialization, all switch ports (Endpoint, MAC1, MAC2)
->   are configured into the Forwarding state to enable data flow across the
->   fabric.
-
-Which is wrong. The Linux model is that switch ports are just
-netdevs. You configure them just like every other netdev in the
-system. Newly created netdevs are standalone. They only allow frames
-to pass between the wire and the host. If you want them to L2 forwards
-frames between ports you need to add them to a bridge.
+If you look at Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+you see this node is derives from ethernet-switch-port.yaml, and that
+derives from ethernet-controller.yaml. All the MAC properties you have
+above actually belong here.
 
 	Andrew
 
