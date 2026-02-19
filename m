@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-266627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266629-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kChGOAPtlmmxrAIAu9opvQ
-	(envelope-from <devicetree+bounces-266627-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 11:59:15 +0100
+	id wGIvOsXtlmngrAIAu9opvQ
+	(envelope-from <devicetree+bounces-266629-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 12:02:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8410615E079
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 11:59:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B15815E1F4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 12:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 77767301C154
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 10:58:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B07F63058B99
+	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 11:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB191324700;
-	Thu, 19 Feb 2026 10:58:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5618033D6D8;
+	Thu, 19 Feb 2026 11:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DiLWifq3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nOzzsSIq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD362FE563
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 10:58:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF9633D503
+	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 11:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771498735; cv=none; b=rHz035zS4KbMZ6EgE4VpLVsTcGjXkUtIiazaWNGD+Yau5avWtFm/G+N60j+FldLgl/SYIUCicTV3jzNDCfeJd2lw5yrPdiqA7hQpOKh77XG+N3E1HnvQfJvGvMHcTiPjcd+QOsHV119nklStHNEv26IVkDlysXcnMEnivus0gj0=
+	t=1771498884; cv=none; b=J50txbV2o7dT6fAP2EZV8XWv4Q7VL3HWvC4YvEptCtILM/4vvFdcwNBMc0u3oQrN3X+Vizn7CIQPCEWj2KdveNLHjFz4CBRv+51tVcCahkS6i1c/+sdk84fEPJcCXuiczYrt+5kJmqOZkELTcvr0OV4JEicLdoEbdOePQGnLEOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771498735; c=relaxed/simple;
-	bh=v7Ln36tAHP7qBrXwMfNCRfR+1MwugDj8qIFgVwam+O8=;
+	s=arc-20240116; t=1771498884; c=relaxed/simple;
+	bh=skgvFjJHMlRkWo3prizBsBkUFGQTiIkbcAlgk0nIVlo=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UOGVb/Ku9jaBywkGkUP8f1btr08ofkF4bxBdrqHa/BiynYT/d4J3X9X36QM64dT6cLAEcwhY/eX/0IdG6vWJXBf+4C6LKEn+nQMVdQKwyJ1o75VbpxgWdtKqgOv/djZFEOxqfM0ALN0TR7hoSnAzvNtckOO0n+B3Dx8rWa9X8cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DiLWifq3; arc=none smtp.client-ip=209.85.214.175
+	 MIME-Version; b=Esmn/Kj/y5zncZjPb79RzVyoPAwF3TgYsMJitkz4jTdSsOSeJqgtVV7hIcsLhF5xQbjVAJ32/M9aJrz/ULiV4beIj5sT7Z0+la9yVRZ5hCL8Akpz9QazjDj4cGyGEars2GJuOXdlFbR1tQMubNsfzx8m+wIl3sgVkokAP/R/L4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nOzzsSIq; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a7bced39cfso8324055ad.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 02:58:54 -0800 (PST)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2a929245b6aso7623735ad.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 03:01:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771498734; x=1772103534; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771498881; x=1772103681; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HnTETGcGMywOispd3Uniut5lXDOEv1AIFJuxKzNySRM=;
-        b=DiLWifq3T0RKNm3nMaBTyHgCS1C6rbAwFXWUgbb4sTxA+Z8LkRFy19lqFD4s7UxRS9
-         LW8AndaxLdcWeRoXwxX6mWBzKFtExRqfrL2t8pxg3yaS2mQtwDGt9fQ+YQWn6yC1FJyB
-         Qs3MBH/biHyJXNybYT8F5dKIRE8fFuUFQ0tsjAlb0aDC789OmEkoPqIsMG8Ox+s8sAxB
-         JdYSpfdcYZ2K4Ty9wx/wb/C/RyJcoIaBxLTKFjmEO6RENwHfC912Wc0nfvTS/mOP70cH
-         x0601iuGWyNZWgNZWnm55KuY20YN2VTgc2K7Txi+2B5TjloAOTB46uiD1JFC6fTz3Jt1
-         r+PQ==
+        bh=pAX16mjprYtf6YC1ox8d1Sd0Pel8V9yDH1WEINK3oK0=;
+        b=nOzzsSIq2L+qBIVEd4rRQK/9diQrdaKDcqNymbTc+fLrvEH5xu4IrTKkihhsLsQFVp
+         QiZ1YPqzZCyrJSSYXuLuvibqwFZG0QvdrM78GqF7ZAShc7sre/QZY2uYRwpZAeM0yHSD
+         1zyOOUhPHoXRJiFjGhQxsYvhy9oOUboAqzRkIIijIfKtnGgmLTdJwG9zOP5BHN7VQR4k
+         1R1tizSBMcGJq8k4us5J/r9hHHMxDP1oq8S3eWgiZyIe9d4pDyWXqwYVrt/L1l6kvsaS
+         aQuFMNLqO14DinIL0BAoif7J6VvBC8HkmeZV/HnAbZRGuSwU6tdntpsH8vlY6O4czi4B
+         N/Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771498734; x=1772103534;
+        d=1e100.net; s=20230601; t=1771498881; x=1772103681;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=HnTETGcGMywOispd3Uniut5lXDOEv1AIFJuxKzNySRM=;
-        b=RyR3yJKz03jMGEOcQ+FBhglJBf+DnAg3TwkimVHjiuUJpswKlYcE64io5XTRH7hAJ9
-         pH99QsNi0d6ADJ46XnPYJUs2AtDuf9C+TCWL678h0PbX93mN0m6P5ecltPtbxRcbtPhX
-         PSFjbrdl+6sai30IJ0QUPf/J1svK4TJmQDZ4EJI26gZVXbaQC66Vu3+9HyHiamoa0260
-         nBs5m7jgcGCFPi695hEStdNXWJ74Kb3EIS0BIhLSoTTIWtV3LeI/8V1ASurmqjG6KzXs
-         s/TUQjAgESRbyZL+pthpcsPGM5vqXghKdem3w/jECpTLVki0I87l/TjcaMqWl7ZG+kSi
-         k0fQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW+erl41LoOxs3ADVJflgBfsgRjzDWDXkIFC0D4hTw+SYgJCfQa7cNFUai38nrpNDYdWTJ76QjSEyuE@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrBisnBv1+uK8WOS0a8x3smvucRo6vW2fpvNi0cAHr20njvaiK
-	olcA82JcZwuQYqgkNk/51t5VD30Xk+J0Pq55kG1MJLh4bgFnr5cQbKVB
-X-Gm-Gg: AZuq6aJPX9NhFP3tMLAoYJB8fmkiHT7pjs3+tslIUUUXE3/c3Q1UV5BFJCTsC89lXsd
-	8bY4ycAlYvAzPa9P/vB5Kolz6GME+BQFZmkkbQvMgtWbPdCotELiSNZVBsy7wa864lt8BRSgkTY
-	ORldu51SYmR8++nmXNH20FrsgP1hqoj1V6x2RsI+XVMaz9ixS9Fzmml5P6zIM7ftcVNCytJsCGr
-	unLp8f7UdSkWdEcH5wkzIwwfWVDUnY/ZQOKz74ihrq3HIsBoij+iP+u2BxOzBqBNsoLwhDDaNfw
-	iw6W/qmz8udKBzuSAzZKVHZzmieqyPCvijxdVYvv02YQws71RbCdGXBTDaLy5x7Ug0vW9ln4ast
-	/q2mou+iPIZhJJesYt0UIBZ+HAX4x0nLRnXFxCSc3ium9U88v0PQMkF04bzmFKKZXMzjmZniudo
-	hg1tyULjgDcxptFJC9UNtCr63KZ0yT3Kx/d4kMbXIJxKpd5A==
-X-Received: by 2002:a17:903:238b:b0:2a0:c1ed:d0d9 with SMTP id d9443c01a7336-2ad50f6df20mr42474765ad.46.1771498733914;
-        Thu, 19 Feb 2026 02:58:53 -0800 (PST)
+        bh=pAX16mjprYtf6YC1ox8d1Sd0Pel8V9yDH1WEINK3oK0=;
+        b=hG73yQ1ymVP/Uk9uSaULKUgY8qXgY8d2/wja5wIgsYc+fl/y3iM2EWTB3eGuRleN6e
+         jJ3swKjCCDuTbMu/3Y2sWBQW95zS2xnZdIjO2y06160Hp8oioBY39TQOqgcce9kZCcGa
+         b6pwkWvuSj47haFeaZFEShmHtypuggCdcXzq1ZDdmQ4SkGGSY8hNSEsYiHA2qes8yTCI
+         1IFjlhvzkct7rqLjf558h+Qzzxj0bpdxd0F3z3KQDSK8tAKWrOHDqlcpftOXYxcV0ISJ
+         Ig2cdH4pWnWh9mtTx4weAQ6M9krv0RDGZ5crbbmqGIVkL9inL58TUKQAX1PPdvnwcL6g
+         GpJg==
+X-Forwarded-Encrypted: i=1; AJvYcCUcw8pRSsdpqYRTTuilRGBZBCc3+K7lh7K2CkrVSFhlHt9UbnOIwkmaNTB10A9nsng+2ZDMlHLSGThc@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqSmPvNaHWNC/l0l+445hCVOvVQPSVat4qptpZ3uu2NWaBSDg+
+	Nr4tsXLEZemds0B0Fk0Ju0BU/7n3fJ3bixBDsa+38aQiRlQ6WB7rv16e
+X-Gm-Gg: AZuq6aKSJwloeu6r08A+ZmUNjwIuyCNlB6EvBiMaOLydPqVXt3m7wR2AV4oqO/CM85p
+	dqerNXWS/NDcpO4YcWjk2sNDVDhbJ/w0PkAaf7iHVPakdeZUonsuULzXgzA+cxAC5lAwY8lwe2N
+	cJXmrgS9JgpEMte0pUKxlcGyo8VeTRUjyZ4OFxpRXT9lHHdqVixqH6/aesGXcOYwkX33pXrCtr+
+	sxKiyd103n2V/7dnYl7cI1iRLU0wSYxifHiR7f6kP6Vd1hG3NWPBXbLb6iutKQ+NvlGmI+DSyK7
+	QBNd0lLsP5kKGYHl6sESD5v6F/wDOHw/GbpI3CWcfNrLLlvBmaVC+sMn7KA8V1WrKDh3Xfa52EL
+	/S+hr8j4XYn5DiJth/p3xG6SjMrdqlP7riqdy+Hm2R0/VnKiaKlF78PV4QvEYm+sbDeHNwa3Iwv
+	K0S7lJ2+Iae/cfMfrBeVp4BDnSFRgu35l90iqk02SFAa73SR61/D8qUuP6
+X-Received: by 2002:a17:903:8cc:b0:2a2:ecb6:55ac with SMTP id d9443c01a7336-2ad17433389mr185284915ad.7.1771498881116;
+        Thu, 19 Feb 2026 03:01:21 -0800 (PST)
 Received: from localhost.localdomain ([2401:4900:939b:3231:1953:3f2f:aba4:9c8a])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aadd9e8sm164339745ad.74.2026.02.19.02.58.50
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1aadd9e8sm164339745ad.74.2026.02.19.03.01.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 02:58:53 -0800 (PST)
+        Thu, 19 Feb 2026 03:01:20 -0800 (PST)
 From: ASHISH YADAV <ashishyadav78@gmail.com>
 X-Google-Original-From: ASHISH YADAV <Ashish.Yadav@infineon.com>
 To: Guenter Roeck <linux@roeck-us.net>,
@@ -86,9 +86,9 @@ Cc: linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Ashish Yadav <ashish.yadav@infineon.com>
-Subject: =?y?q?=5BPATCH=20v2=202/3=5D=20hwmon=3A=20=28pmbus/core=29=20Add=20support=20for=C2=A0NVIDIA=C2=A0nvidia195mv=20mode?=
-Date: Thu, 19 Feb 2026 16:26:29 +0530
-Message-Id: <20260219105630.11929-3-Ashish.Yadav@infineon.com>
+Subject: [PATCH v2 3/3] hwmon:(pmbus/xdpe1a2g7b) Add support for xdpe1a2g5b/7b controllers
+Date: Thu, 19 Feb 2026 16:26:30 +0530
+Message-Id: <20260219105630.11929-4-Ashish.Yadav@infineon.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20260219105630.11929-1-Ashish.Yadav@infineon.com>
 References: <20260219105630.11929-1-Ashish.Yadav@infineon.com>
@@ -98,80 +98,217 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=y
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266627-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-266629-lists,devicetree=lfdr.de];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infineon.com:mid,infineon.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8410615E079
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4B15815E1F4
 X-Rspamd-Action: no action
 
 From: Ashish Yadav <ashish.yadav@infineon.com>
 
-Extend the PMBus core vrm_version handling to support NVIDIA nvidia195mv
-VID mode. This adds a new VRM/VID encoding type and the corresponding 
-voltage conversion logic so devices reporting nvidia195mv can have their
-VOUT/VID values interpreted correctly by the hwmon PMBus core.
+Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
+XDPE1A2G7B controllers.
 
 Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
 ---
- drivers/hwmon/pmbus/pmbus.h      | 2 +-
- drivers/hwmon/pmbus/pmbus_core.c | 4 ++++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+XDPE1A2G5B and XDPE1A2G7B support both Linear and NVIDIA PWM VID Data
+formats for VOUT_MODE.
+The configuring both loops/pages of the device independently is not
+supported for VOUT_MODE.
+In case of vid mode, NVIDIA PWM VID vrm_version is supported:
+Vout = 5mV * (VID-1) + 195mV
+---
+ drivers/hwmon/pmbus/Kconfig      |   9 +++
+ drivers/hwmon/pmbus/Makefile     |   1 +
+ drivers/hwmon/pmbus/xdpe1a2g7b.c | 120 +++++++++++++++++++++++++++++++
+ 3 files changed, 130 insertions(+)
+ create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
 
-diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
-index d2e9bfb5320f..3ddcb742d289 100644
---- a/drivers/hwmon/pmbus/pmbus.h
-+++ b/drivers/hwmon/pmbus/pmbus.h
-@@ -416,7 +416,7 @@ enum pmbus_sensor_classes {
- #define PMBUS_PAGE_VIRTUAL	BIT(31)	/* Page is virtual */
+diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+index fc1273abe357..a4513fc6bc26 100644
+--- a/drivers/hwmon/pmbus/Kconfig
++++ b/drivers/hwmon/pmbus/Kconfig
+@@ -711,6 +711,15 @@ config SENSORS_XDPE152
+ 	  This driver can also be built as a module. If so, the module will
+ 	  be called xdpe152c4.
  
- enum pmbus_data_format { linear = 0, ieee754, direct, vid };
--enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv };
-+enum vrm_version { vr11 = 0, vr12, vr13, imvp9, amd625mv, nvidia195mv };
- 
- /* PMBus revision identifiers */
- #define PMBUS_REV_10 0x00	/* PMBus revision 1.0 */
-diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
-index be6d05def115..4d7634ee6148 100644
---- a/drivers/hwmon/pmbus/pmbus_core.c
-+++ b/drivers/hwmon/pmbus/pmbus_core.c
-@@ -885,6 +885,10 @@ static s64 pmbus_reg2data_vid(struct pmbus_data *data,
- 		if (val >= 0x0 && val <= 0xd8)
- 			rv = DIV_ROUND_CLOSEST(155000 - val * 625, 100);
- 		break;
-+	case nvidia195mv:
-+		if (val >= 0x01)
-+			rv = 195 + (val - 1) * 5;  /* VID step is 5mv */
-+		break;
- 	}
- 	return rv;
- }
++config SENSORS_XDPE1A2G7B
++	tristate "Infineon XDPE1A2G7B"
++	help
++	  If you say yes here you get hardware monitoring support for Infineon
++	  XDPE1A2G5B and XDPE1A2G7B.
++
++	  This driver can also be built as a module. If so, the module will
++	  be called xdpe1a2g7b.
++
+ config SENSORS_XDPE122
+ 	tristate "Infineon XDPE122 family"
+ 	help
+diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+index d6c86924f887..d592d8c77bec 100644
+--- a/drivers/hwmon/pmbus/Makefile
++++ b/drivers/hwmon/pmbus/Makefile
+@@ -70,6 +70,7 @@ obj-$(CONFIG_SENSORS_UCD9200)	+= ucd9200.o
+ obj-$(CONFIG_SENSORS_XDP710)	+= xdp710.o
+ obj-$(CONFIG_SENSORS_XDPE122)	+= xdpe12284.o
+ obj-$(CONFIG_SENSORS_XDPE152)	+= xdpe152c4.o
++obj-$(CONFIG_SENSORS_XDPE1A2G7B)	+= xdpe1a2g7b.o
+ obj-$(CONFIG_SENSORS_ZL6100)	+= zl6100.o
+ obj-$(CONFIG_SENSORS_PIM4328)	+= pim4328.o
+ obj-$(CONFIG_SENSORS_CRPS)	+= crps.o
+diff --git a/drivers/hwmon/pmbus/xdpe1a2g7b.c b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+new file mode 100644
+index 000000000000..e10bafeb0984
+--- /dev/null
++++ b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+@@ -0,0 +1,120 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Hardware monitoring driver for Infineon Multi-phase Digital XDPE1A2G5B
++ * and XDPE1A2G7B Controllers
++ *
++ * Copyright (c) 2026 Infineon Technologies. All rights reserved.
++ */
++
++#include <linux/err.h>
++#include <linux/i2c.h>
++#include <linux/init.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include "pmbus.h"
++
++#define XDPE1A2G7B_PAGE_NUM 2
++#define XDPE1A2G7B_NVIDIA_195MV 0x1E /* NVIDIA mode 1.95mV, VID step is 5mV */
++
++static int xdpe1a2g7b_identify(struct i2c_client *client,
++			       struct pmbus_driver_info *info)
++{
++	u8 vout_params;
++	int vout_mode;
++
++	/*
++	 * XDPE1A2G5B and XDPE1A2G7B support both Linear and NVIDIA PWM VID data
++	 * formats via VOUT_MODE. Note that the device pages/loops are not fully
++	 * independent: configuration is shared, so programming each page/loop
++	 * separately is not supported for VOUT_MODE.
++	 */
++	vout_mode = pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE);
++	if (vout_mode >= 0 && vout_mode != 0xff) {
++		switch (vout_mode >> 5) {
++		case 0:
++			info->format[PSC_VOLTAGE_OUT] = linear;
++			return 0;
++		case 1:
++			info->format[PSC_VOLTAGE_OUT] = vid;
++			vout_params = vout_mode & GENMASK(4, 0);
++			/* Check for VID Code Type */
++			switch (vout_params) {
++			case XDPE1A2G7B_NVIDIA_195MV:
++				/* VID vrm_version for PAGE0 and PAGE1 */
++				info->vrm_version[0] = nvidia195mv;
++				info->vrm_version[1] = nvidia195mv;
++				break;
++			default:
++				return -EINVAL;
++			}
++			break;
++		default:
++			return -ENODEV;
++		}
++	} else {
++		return vout_mode < 0 ? vout_mode : -ENODEV;
++	}
++
++	return 0;
++}
++
++static struct pmbus_driver_info xdpe1a2g7b_info = {
++	.pages = XDPE1A2G7B_PAGE_NUM,
++	.identify = xdpe1a2g7b_identify,
++	.format[PSC_VOLTAGE_IN] = linear,
++	.format[PSC_TEMPERATURE] = linear,
++	.format[PSC_CURRENT_IN] = linear,
++	.format[PSC_CURRENT_OUT] = linear,
++	.format[PSC_POWER] = linear,
++	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
++		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
++		   PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_STATUS_TEMP |
++		   PMBUS_HAVE_POUT | PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT,
++	.func[1] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
++		   PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
++		   PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | PMBUS_HAVE_STATUS_INPUT,
++};
++
++static int xdpe1a2g7b_probe(struct i2c_client *client)
++{
++	struct pmbus_driver_info *info;
++
++	info = devm_kmemdup(&client->dev, &xdpe1a2g7b_info, sizeof(*info),
++			    GFP_KERNEL);
++	if (!info)
++		return -ENOMEM;
++
++	return pmbus_do_probe(client, info);
++}
++
++static const struct i2c_device_id xdpe1a2g7b_id[] = {
++	{ "xdpe1a2g5b" },
++	{ "xdpe1a2g7b" },
++	{}
++};
++
++MODULE_DEVICE_TABLE(i2c, xdpe1a2g7b_id);
++
++static const struct of_device_id __maybe_unused xdpe1a2g7b_of_match[] = {
++	{ .compatible = "infineon,xdpe1a2g5b" },
++	{ .compatible = "infineon,xdpe1a2g7b" },
++	{}
++};
++
++MODULE_DEVICE_TABLE(of, xdpe1a2g7b_of_match);
++
++static struct i2c_driver xdpe1a2g7b_driver = {
++	.driver = {
++		.name = "xdpe1a2g7b",
++		.of_match_table = of_match_ptr(xdpe1a2g7b_of_match),
++	},
++	.probe = xdpe1a2g7b_probe,
++	.id_table = xdpe1a2g7b_id,
++};
++
++module_i2c_driver(xdpe1a2g7b_driver);
++
++MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
++MODULE_DESCRIPTION("PMBus driver for Infineon XDPE1A2G5B/7B");
++MODULE_LICENSE("GPL");
++MODULE_IMPORT_NS("PMBUS");
 -- 
 2.39.5
 
