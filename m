@@ -1,554 +1,225 @@
-Return-Path: <devicetree+bounces-266803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266805-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +EC6ERr0l2l0+gIAu9opvQ
-	(envelope-from <devicetree+bounces-266803-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:41:46 +0100
+	id Db0kOxr3l2ks+wIAu9opvQ
+	(envelope-from <devicetree+bounces-266805-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:54:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8B3164CD0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:41:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36D59164D2E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:54:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 65ADA304F493
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 05:40:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6732F300F5C6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 05:54:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2CA32B99E;
-	Fri, 20 Feb 2026 05:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6ABC2E6CCB;
+	Fri, 20 Feb 2026 05:54:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="j5t5oIe7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kUkYIZju";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="L1hYm2yU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012069.outbound.protection.outlook.com [40.107.209.69])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D88B232D7C7;
-	Fri, 20 Feb 2026 05:40:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771566028; cv=fail; b=eqQR8Smj2wJ8Sap0iOAdbC2WT89a++9p0S8TdpSxmJAg8r94nD7Iov7QPbKk9YKKWlSzNqqOjMdb7xKwDWqWIcJyuiLHWF4riq7yrUo0HnF/qNnKLtdsJi2iL1peojrWpwDBrMQ0hKbwiKinPQaKBs5qpabXdt+AFxSbB/05BAw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771566028; c=relaxed/simple;
-	bh=cABC2NvSKeq4F9yJzwA7pAwQG6iL4uSOIMinii8PGzI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J4KaiO0umR0F2xut6EeTh3pp5J6zcDUepmextGQvLd6C+5LzeRnQTuG5+WzGlPL0gVbYsq9RmzAsJTjY2vvrOECGn7p0xq5G5r7Hkd7R38VR30KCbdXFlXRX1s6Xo1zJBYI5O/LRc2Msy3vUvFokPFG2rIQ5ygUTkUCPIuqEKng=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=j5t5oIe7; arc=fail smtp.client-ip=40.107.209.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Df/B6BCclTKyQjLqiHeKXpTlbEe615Eq9BqhI/TMEb/KXVeb5M31RO1E8vyNV9Dz4ttpY4dth+UkuiHWZuYHj5BRHd3CiUsgyVGbMCkWQmo73W5M2BXRW0LKYPEufUe0/3+JBjffoUQCJjP5gWiHcyF0IeNuPP6edC7L0nGoKJ2I1CQSBA4jrqPM60Rg6qFWjwAeI2T6P8nIVUZrppR4g+uzgatmrNWrAH9ef/lpP5xT02PpCq5/DWaockTgtqWNkvJFV2+E4Yi5j9jaqhh8+dv3ZccBBJ3sBTrRskm0freMjO7JgsTLDGQEx4i9ki/4/DONcWYWc48DMkAYtWqqFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p0s3noTtF6Hni4LX6d32K+0ujpVrmcbtXakJxKqrlIo=;
- b=OCVlYKI1kqa+xYAlApd52s2otgCD9OEsRMnK0cl7YABN4a/QJj/LYZuRs/RYjTyLWEQMVzpTRRP9ZljQKtW87bzNloJVLDuEqghsx4jazMiKKdiS5/Ihr3x+pn9q9LLur/c6H4unUw4dqXHvwNrI9mG0wWcwnmHPM1d7BHH577NCa8dooL3qLCOwMb7LUpI6UDkv9YjNAlQL/8W+mnfvzF8u8oxWXtN/InOnGFsTtlQgvUOfH/rsxElDFzCW/Zd/PRwt1qPWv2uFeJ3pxjPtUJVliGQXCItbk/9eChCiGHu9CBk4/fsGAlSFOvrUNsulgW331h//GsK3prDjwB5L+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p0s3noTtF6Hni4LX6d32K+0ujpVrmcbtXakJxKqrlIo=;
- b=j5t5oIe7LDJucOSF4qC9l1hCiPTmfyXRJpo/FKuIAkvd6MrHuPrlTIYYJVlcsi76ei7XPVdtgmwYsR9Hcfa2NB0Z7yIBLoki9qf6vicADCepd/t205h1k+BIsEbH6P+6OXFZA4tRDTtOszg7UbYv4rbbcRJ1pdzRzrB6dK0bgZA=
-Received: from BYAPR05CA0044.namprd05.prod.outlook.com (2603:10b6:a03:74::21)
- by DS0PR12MB7779.namprd12.prod.outlook.com (2603:10b6:8:150::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.15; Fri, 20 Feb
- 2026 05:40:21 +0000
-Received: from SJ1PEPF000023D4.namprd21.prod.outlook.com
- (2603:10b6:a03:74:cafe::cb) by BYAPR05CA0044.outlook.office365.com
- (2603:10b6:a03:74::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.15 via Frontend Transport; Fri,
- 20 Feb 2026 05:40:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF000023D4.mail.protection.outlook.com (10.167.244.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.0 via Frontend Transport; Fri, 20 Feb 2026 05:40:21 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 19 Feb
- 2026 23:40:19 -0600
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 19 Feb
- 2026 23:40:18 -0600
-Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Thu, 19 Feb 2026 23:40:15 -0600
-From: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-To: Jonathan Cameron <jic23@kernel.org>, David Lechner
-	<dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>, Andy Shevchenko
-	<andy@kernel.org>, Michal Simek <michal.simek@amd.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<saikrishna12468@gmail.com>, <git@amd.com>, Sai Krishna Potthuri
-	<sai.krishna.potthuri@amd.com>
-Subject: [PATCH 5/5] dt-bindings: iio: adc: xilinx-xadc: convert to YAML format
-Date: Fri, 20 Feb 2026 11:09:41 +0530
-Message-ID: <20260220053941.611415-6-sai.krishna.potthuri@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
-References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D8B1B4138
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 05:54:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771566871; cv=none; b=HhZpboy4gQIoCyvStOHyBdbxeGMZ6tjX/zlaSufasazOiclZ4nm4SJ9Kbzk1Y0ZUPV6MSJZZAARPqxOXPREOgAdj5u+LendGb1uiwcpPwmHdToE61ArMtQjw/ROkbN4Br/2n0GZKPevm31A1qK1WbY7FPNK5qeuSb7+kOsswvPY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771566871; c=relaxed/simple;
+	bh=fV5WWPdwufBIXt9mpDliWUdFwg3X3zqkLcIQSSqZUBM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Xg6jk6mR4OVY3SMP4a0gD6izc/YGg05j2WNis9X7j1o1dC+T8UXdvTcq26Jo4LsuW73pYKLXNPgxSfusKEw+HjXPmPpriICZWY1zsWzm0adVA0AG9+6c3AxAot1BrAciOrak3V38iIT4hSR9bF3zN8SlsTYyluSuV2LHhha4DoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kUkYIZju; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=L1hYm2yU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61K5S9kF3337705
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 05:54:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=3dHqnbi3dJpAvR79pUJ1zF
+	Mqox5b0Yk4I1PRd7BpHz8=; b=kUkYIZjuTS7euGicBSTSOaVr1eNUpomhxyKmKX
+	cM9BisEdp87fIir8VVe2TSCZeur+pIbf7wJaelyyjfjI9PLZlp0oypYaMImy5FdY
+	cNCPEfEU2mLqFOKNVQKZaMRqG7nEhyqRwx2uH7YyO1Kw1WA0vmj0F0JNxO1Rice7
+	aYjSx9WUbkzrNebEWCEPbBmlnhai40+kPG4nhXjxLhM6q54rdELbzXcN5muDC2LB
+	KQEkCn+05UUV+vyvhv2zvoIefO1t1mcc1GGbufWBQvbSKBMtu9mqtUs77XTG6yYz
+	w1l9TQEyFB1FQ4WHx5JYjy7pVBs88fy9VtbwsA+po/Nc3toA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cedp6gmk5-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 05:54:29 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a76f2d7744so18792205ad.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:54:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771566869; x=1772171669; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3dHqnbi3dJpAvR79pUJ1zFMqox5b0Yk4I1PRd7BpHz8=;
+        b=L1hYm2yU6PTIYFzLYaFkFnkZdWddCVwxs5/i2oDuLtlfVot1fGNoti0ExhgDgn/Er9
+         4TobzdDjw4QJyThCpccN08+0hU6e6vBuCz6DDZCBsl1zd2sE2x9wlh4aX547dXMpSLh7
+         B4W2sh6+7R2UUvW1PUE4XTtGpd9KOdUw1ICRr0m8TIasZkxd1w+KOehPscOIHmu+gO+n
+         aotf8UOcP6/2eF4UfiW8gbHIkCUuAxuQl9AWGoFQU2gNFCWZSuy4U4zj70oqjpIazDd9
+         KcO4EcC4WGmRFeBCCjixWoMOeDA/JxRbOXthxuMSyJ7J67p9m849jmXHb8IWFa1q4uc0
+         zTZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771566869; x=1772171669;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3dHqnbi3dJpAvR79pUJ1zFMqox5b0Yk4I1PRd7BpHz8=;
+        b=QxrLXuV05323lk9FbdPl640SSCBjkafDR3PKwp79ns/NsL2ZASLs1K+bwiV8fL4jX+
+         8niNteGdb+O/VNPnO5Xvd3iX8m4HEBAcg4OS6crCH+R94mVlAcEXYjI2zdCn9ML0Dk3n
+         wBkLRlGul61zGnGq2Apr7OCLtBYMfWhvfb4JFyLSqxA7MaQOj9Gid8JspP2QTwvRepUT
+         f860H6jO00AfuxdFlM4zeW9tU1gm8S/FR3DWypvsx4QRYG/gLs/McW+0Bj+k9pW+cXSm
+         UPsnRxF9KXpYDR4sxWtnqnwBiaIpzEVethhVl4IwXkPdyD3QxIE8uVKZSUt3aw+FKOfi
+         ZBSw==
+X-Forwarded-Encrypted: i=1; AJvYcCVzrcX53cwLw/oEZERU9JawjYql9syKSR+xeCOmPF9tbMoaAEWrYEgY30XKoReRPVQWs7FigH7GIWwf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9nnu55zZdfEmL67SUGZx0gohwJEJAqmNIGDNBsZ5lIsRE8ejF
+	FGN8CK+q6lK6+FAJ84VjLk8KuDMGiB75b92NWJMd6EkV1DK98oxvWoXSCbU+loIuTzCTOELnVEL
+	D8nZXLgexeCiB05kHG7vyNxOFZmVi1gT6DEr8Z8IweewnXFJfOwwFrMNYEU0I1j27
+X-Gm-Gg: AZuq6aLgpdEql/Gp5CG67/87NhwNVvGJ1RaSXSYYcXvxDWTmmFyafF7VXN24mDf2EVx
+	I1Fi4N2mdmv276d89UKOULYrnhyNk3J9Rq2HIbo4CZtxCayIvN+mUDzC4YC7DvipWII6b9+hKdA
+	TrGOO/+2FM/iUmDAWBOgGObYCRtsv35x4+Ukw2GtcJN4HGpnzwcEYrZRZ8jNqAV67Ab0lurC8s1
+	X7oEWfzbHthxy2iKadUV5TfOJdOIJkDwBj/PZlOmZE+AJDuvwg7s0qEcIRTN+5sdnpIMl3fO/IC
+	gUVh1qEsdA1+6tRxrrNlYntX7k5iaZPquTUhg6WBO9sy3BZAKz1IRhiaXDFwwKk51kqwUZpZxa9
+	Oifncj5Q0idWix0dUUqJWu8Wt6gPnWiOvoJrifXKQr3ImIw==
+X-Received: by 2002:a17:902:e74f:b0:29e:9387:f2b9 with SMTP id d9443c01a7336-2ad50ed0db0mr69116075ad.24.1771566869173;
+        Thu, 19 Feb 2026 21:54:29 -0800 (PST)
+X-Received: by 2002:a17:902:e74f:b0:29e:9387:f2b9 with SMTP id d9443c01a7336-2ad50ed0db0mr69115855ad.24.1771566868553;
+        Thu, 19 Feb 2026 21:54:28 -0800 (PST)
+Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad1a6fa326sm197949665ad.1.2026.02.19.21.54.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Feb 2026 21:54:28 -0800 (PST)
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+Subject: [PATCH v3 0/3] Add support for GPUCC and GXCLK for SM8750
+Date: Fri, 20 Feb 2026 11:24:19 +0530
+Message-Id: <20260220-gpucc_sm8750_v2-v3-0-6c5408564c3c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D4:EE_|DS0PR12MB7779:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd98b2f5-0e70-4142-ff0a-08de7042898b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|7416014|376014|1800799024|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?sxLyfxJNzBiI+sM8Rbw4atm0aJgowUZFE+qHsSeEao4mYJ39uaVNkZArM8Rd?=
- =?us-ascii?Q?m0M0gTF/ggrI7+La0vpHDZIcnl/xXdaxET0MYSmjlQItLpzIGq4h2nQ8cV8s?=
- =?us-ascii?Q?Rl2cFKtp3Wcoj3mab+CdY7ptfWyI80LMBmVmGDHPPOcUOn+Pr4Z4+rfdGx7N?=
- =?us-ascii?Q?kbZ8RofydqMqfLd7e6H4OcG4vYcUMT34dGB/e37OsJ/qvTLUQNz0TXhyDodK?=
- =?us-ascii?Q?Sq6iDC4kD1yv4auiPMKGyIqnGarZz2Jz3RVhDSGr5r3U47Y8YD/gz1zSWR/j?=
- =?us-ascii?Q?zFAAJble5zszN1VIsSCX7mtadue7RS+ihTn+7KgGT7LZbiNy8OGNabIhogQw?=
- =?us-ascii?Q?sOFXNrTAroZINZmDga1vCCoW7m/z39USmvqG681UvBlcak/+RUOPf8/z9jTf?=
- =?us-ascii?Q?nKHJEJFNH5L5t+g/0hZlJazCfeuAeRb2od/XHdH3yJvDX/JK5Uwr2D9oXU0C?=
- =?us-ascii?Q?+AqL0AdoyV3aEqgw7mSwzjjQaPH+AyF94GO/7D7CNfKZFwLRqnP3r6S+BZb0?=
- =?us-ascii?Q?K2d69XpNUfPWWXZ4YZwB4VZJqd03vfSP09+Z+ThTQZPMZaGuaNnzH/a2ns+O?=
- =?us-ascii?Q?benHWzhr3Hlu/Xt7Htf5uw+O4Yv0Q7drUErWBkCkZcsZOf3qaB3OAylxl8zY?=
- =?us-ascii?Q?clRdzpCoZFc+4u8RyY/MDXYhzY6EMtisVm9zVr8sgZXV+grbg6XuKhpwdLTS?=
- =?us-ascii?Q?/cHMzIhRl0bmfCRnLt6EGtSKMkLQwCaf8eub3vWSaLiBiTqUjW6hrAHW53OT?=
- =?us-ascii?Q?VQXB4Y1dPTCjsg2G4LN+4xdlgu7upJxC4O9P/cVgB7YRvP9Ie3oel9Q9EkgC?=
- =?us-ascii?Q?H7PI8fI1zdF5150ZIv8ZikYK0pxgRrD9JYja7m/fmYmt2QQrSLRqEP1zb2Ai?=
- =?us-ascii?Q?pB/n4jA4R1rFAd/aAyLcu1hWRhs/mIbBFeR3qUGM/EzQ0nYME6hRodzkpifd?=
- =?us-ascii?Q?LYMpnyVhkOYZVcXLNaj4hZcjXvUTMnbYsJCV+sM6cXoNkFA2KvhzNOjUInG0?=
- =?us-ascii?Q?UnMpIq+BNnvAtG/ffYI8ex+Odqq3ClbdvUZ02kklxmcQr4gKpewsJZTSOpmZ?=
- =?us-ascii?Q?Jy8qq3l66oWKXbYwpjvgDjRGDEyJHVv285FbDoAdn4nUOgj4mBwEnvoCK6Ih?=
- =?us-ascii?Q?ISXR7jp7T7+Y2tWl7WoLU+YuV4AFhmIDz5Cl8nyf/Q/w53/j2mhTYqGo57+q?=
- =?us-ascii?Q?xaB4/3eSoqna4QWObPuxsYZGsfuDw/84c52DvI8iLUNRhgKLmbC7cDe8b0k6?=
- =?us-ascii?Q?pLVuBlL5a8eB5wOENymPTwpuVZsS+nFIudsRJm0SpQABzcFr5g08kpADkbfr?=
- =?us-ascii?Q?enKHiN63skbgh/VliS+ifMnGs421g9D6alaSULB0PGsy6DZok0BOkoVhK4zy?=
- =?us-ascii?Q?l29CG7+Vd6vdXt5V+3wvStuVm6DW8VEafokN0L0OxYTTOcwNKgfZdDEe3NDm?=
- =?us-ascii?Q?zqYs/cJOUINpseylbThcUMDL3SoS81GyWRP5GOIKuIB///B3CKzSN4iYNE2S?=
- =?us-ascii?Q?8CVXnpiJH8aVqpjvMTs74cXzMusnzZZaCL6zy5Fvt+nj1lnLY5FkUOho+uux?=
- =?us-ascii?Q?5F1iqe5+gsSU9iNXMjHyPuiDET5uIiWQ86RNtv7ECO3f3IZ0HX7YUuxK8rlB?=
- =?us-ascii?Q?IAMTItkl+4tvwJX6yWIL1Pk4U4LZviWB+nTHAKRdtAKGmZQEuniKl/LdFYPC?=
- =?us-ascii?Q?tjuYZw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(7416014)(376014)(1800799024)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	APj8okI4ah1y0rJwCzJL4wIz/7ySX9mY9ctgPEuRCQ7iGt1jghfOQzQhnjK3XU01D92pBNSwn1FdlO2nb6i34mfG9Ap5nKjmt5+FjCuIGkZladzr0ZKUCfJbRuhv+TCOhwcX6pd/mfA8V//BqKggKgIyKBlZ62lH1HrMeJ5ZTxFajR3mwyiXFH7LondiVFbQedyU49N4VBmBnwOe6SC7Y6IarDcGondxBuTvEqIJUzSnFCyyyzrUqjT1h7/wkRDImHMmweoGkqfpnFnr9Wm3WPFNfv3ApufJCsK/mdPa3PkbxRhq6bP7mkQh6jD5/5wbBmcd5/1Bjey4GlEGIoK70e8bfk1tKZ0ImvX0WH0NcqrZlu7J6zlgPYv6AHZRhCxrOqJ0TfEmDwnp6bph8LDbDQcYuFpEO8VaAdfB0WDXmLWtTzhyzSAmcnJ31xXA9Hq6
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 05:40:21.0189
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd98b2f5-0e70-4142-ff0a-08de7042898b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF000023D4.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7779
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAv3l2kC/x3MQQqAIBBA0avIrBPMcIyuEiFhU80iE6UIwrsnL
+ d/i/xcyJaYMg3gh0c2Zz1DRNQL8PoeNJC/VoJVGpVsrt3h57/LRW6PcrWWPaCyiNeusoFYx0cr
+ PfxynUj5DNvRUYQAAAA==
+X-Change-ID: 20260217-gpucc_sm8750_v2-866576675fa0
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIwMDA0OCBTYWx0ZWRfX/2oCuKsnSbNN
+ 7B7M0WNS1qDweREU/crFJokUIriJzfWFcn1ukcuqQBvKzEEU6nuO13+Vzxn1I9hCHUUyVWTaKLK
+ DNn0Dx70OzCS6E8KOd3jndE/4nU9rG+Uh82BOi6dGSK+5jcOugOcoQ/O6d5Mj+IqusIuDUcEont
+ jTE1Hv8ZvZVlLnrEnaAZXjuNfGgovHMHHpuItPDQiJ6+Q9m2iJkKOdnencIjYjbc1MPqdNUmigz
+ kHqPFAAyQwC00LIKIUeWuf9DRkWT9Ztx2AVJu3UXYAnhY3wFeF+CFEmtzahTpjH6kR+EkTNkjqa
+ v53jPiT91K18CurkA+Lue0SGxag+0jiPy6XoQVzHJOlhglsmcmn6Tw/QjuH5PFQNgFtdjuDahnS
+ DfvNcHaQhvUDQYv2YYFrNgjpt6EydINNWCQT0AgIYmiEnPVZGDB5LgEPwgpZKfNWIA95Yo9Sx7j
+ yuXtQp07eVeG28fAA1w==
+X-Proofpoint-ORIG-GUID: 1ofQkUBk7DabEAV392MmcGn29MRl9jnI
+X-Authority-Analysis: v=2.4 cv=Vuouwu2n c=1 sm=1 tr=0 ts=6997f715 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=8BAK5ul3PV33nhPFZ3EA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: 1ofQkUBk7DabEAV392MmcGn29MRl9jnI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-19_06,2026-02-20_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 adultscore=0 bulkscore=0 impostorscore=0
+ suspectscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602200048
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,amd.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-266803-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-266805-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sai.krishna.potthuri@amd.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: AA8B3164CD0
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 36D59164D2E
 X-Rspamd-Action: no action
 
-Convert the xilinx-xadc.txt Devicetree binding to a YAML schema format
-and remove the old text binding.
+Support the graphics clock controller for SM8750 for Graphics SW
+driver to use the clocks. GXCLKCTL (Graphics GX Clock Controller) is a
+block dedicated to managing clocks for the GPU subsystem on GX power
+domain. The GX clock controller driver manages only the GX GDSC and the
+rest of the resources of the controller are managed by the firmware.
 
-Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+The Graphics GX clock controller is a reuse of the Kaanapali SW driver.
+
+Changes in v3:
+- SM8750 GX controller is reuse of Kaanapali SW driver, update the
+  bindings.
+- Remove 'qcom,sm8750-gxcc.yaml' as it reuses the driver.
+- Cleanup the 'gpucc-sm8750.c' to remove the GX clock controller
+  reference.
+- Add the corresponding changes in Makefile for gxclkctl-kaanapali.o
+- Update the device node for GX clock controller.
+- Link to v2: https://lore.kernel.org/all/20250723-topic-8750_gpucc-v2-0-56c93b84c390@oss.qualcomm.com/
+
+Changes in v2:
+- gxcc bindings: remove double colon & list the names for power-domains
+- Link to v1: https://lore.kernel.org/r/20250708-topic-8750_gpucc-v1-0-86c86a504d47@oss.qualcomm.com
+
+Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 ---
- .../bindings/iio/adc/xilinx-xadc.txt          | 141 -------------
- .../bindings/iio/adc/xilinx-xadc.yaml         | 194 ++++++++++++++++++
- 2 files changed, 194 insertions(+), 141 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
- create mode 100644 Documentation/devicetree/bindings/iio/adc/xilinx-xadc.yaml
+Konrad Dybcio (3):
+      dt-bindings: clock: qcom: Add SM8750 GPU clocks
+      clk: qcom: Add a driver for SM8750 GPU clocks
+      arm64: dts: qcom: sm8750: Add GPU clock & IOMMU nodes
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
-deleted file mode 100644
-index f42e18078376..000000000000
---- a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
-+++ /dev/null
-@@ -1,141 +0,0 @@
--Xilinx XADC device driver
--
--This binding document describes the bindings for the Xilinx 7 Series XADC as well
--as the UltraScale/UltraScale+ System Monitor.
--
--The Xilinx XADC is an ADC that can be found in the Series 7 FPGAs from Xilinx.
--The XADC has a DRP interface for communication. Currently two different
--frontends for the DRP interface exist. One that is only available on the ZYNQ
--family as a hardmacro in the SoC portion of the ZYNQ. The other one is available
--on all series 7 platforms and is a softmacro with a AXI interface. This binding
--document describes the bindings for both of them since the bindings are very
--similar.
--
--The Xilinx System Monitor is an ADC that is found in the UltraScale and
--UltraScale+ FPGAs from Xilinx. The System Monitor provides a DRP interface for
--communication. Xilinx provides a standard IP core that can be used to access the
--System Monitor through an AXI interface in the FPGA fabric. This IP core is
--called the Xilinx System Management Wizard. This document describes the bindings
--for this IP.
--
--Required properties:
--	- compatible: Should be one of
--		* "xlnx,zynq-xadc-1.00.a": When using the ZYNQ device
--		  configuration interface to interface to the XADC hardmacro.
--		* "xlnx,axi-xadc-1.00.a": When using the axi-xadc pcore to
--		  interface to the XADC hardmacro.
--		* "xlnx,system-management-wiz-1.3": When using the
--		  Xilinx System Management Wizard fabric IP core to access the
--		  UltraScale and UltraScale+ System Monitor.
--	- reg: Address and length of the register set for the device
--	- interrupts: Interrupt for the XADC control interface.
--	- clocks: When using the ZYNQ this must be the ZYNQ PCAP clock,
--	  when using the axi-xadc or the axi-system-management-wizard this must be
--	  the clock that provides the clock to the AXI bus interface of the core.
--
--Optional properties:
--	- xlnx,external-mux:
--		* "none": No external multiplexer is used, this is the default
--		  if the property is omitted.
--		* "single": External multiplexer mode is used with one
--		   multiplexer.
--		* "dual": External multiplexer mode is used with two
--		  multiplexers for simultaneous sampling.
--	- xlnx,external-mux-channel: Configures which pair of pins is used to
--	  sample data in external mux mode.
--	  Valid values for single external multiplexer mode are:
--		0: VP/VN
--		1: VAUXP[0]/VAUXN[0]
--		2: VAUXP[1]/VAUXN[1]
--		...
--		16: VAUXP[15]/VAUXN[15]
--	  Valid values for dual external multiplexer mode are:
--		1: VAUXP[0]/VAUXN[0] - VAUXP[8]/VAUXN[8]
--		2: VAUXP[1]/VAUXN[1] - VAUXP[9]/VAUXN[9]
--		...
--		8: VAUXP[7]/VAUXN[7] - VAUXP[15]/VAUXN[15]
--
--	  This property needs to be present if the device is configured for
--	  external multiplexer mode (either single or dual). If the device is
--	  not using external multiplexer mode the property is ignored.
--	- xnlx,channels: List of external channels that are connected to the ADC
--	  Required properties:
--		* #address-cells: Should be 1.
--		* #size-cells: Should be 0.
--
--	  The child nodes of this node represent the external channels which are
--	  connected to the ADC. If the property is no present no external
--	  channels will be assumed to be connected.
--
--	  Each child node represents one channel and has the following
--	  properties:
--		Required properties:
--			* reg: Pair of pins the channel is connected to.
--				0: VP/VN
--				1: VAUXP[0]/VAUXN[0]
--				2: VAUXP[1]/VAUXN[1]
--				...
--				16: VAUXP[15]/VAUXN[15]
--			  Note each channel number should only be used at most
--			  once.
--		Optional properties:
--			* xlnx,bipolar: If set the channel is used in bipolar
--			  mode.
--
--
--Examples:
--	xadc@f8007100 {
--		compatible = "xlnx,zynq-xadc-1.00.a";
--		reg = <0xf8007100 0x20>;
--		interrupts = <0 7 4>;
--		interrupt-parent = <&gic>;
--		clocks = <&pcap_clk>;
--
--		xlnx,channels {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			channel@0 {
--				reg = <0>;
--			};
--			channel@1 {
--				reg = <1>;
--			};
--			channel@8 {
--				reg = <8>;
--			};
--		};
--	};
--
--	xadc@43200000 {
--		compatible = "xlnx,axi-xadc-1.00.a";
--		reg = <0x43200000 0x1000>;
--		interrupts = <0 53 4>;
--		interrupt-parent = <&gic>;
--		clocks = <&fpga1_clk>;
--
--		xlnx,channels {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			channel@0 {
--				reg = <0>;
--				xlnx,bipolar;
--			};
--		};
--	};
--
--	adc@80000000 {
--		compatible = "xlnx,system-management-wiz-1.3";
--		reg = <0x80000000 0x1000>;
--		interrupts = <0 81 4>;
--		interrupt-parent = <&gic>;
--		clocks = <&fpga1_clk>;
--
--		xlnx,channels {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			channel@0 {
--				reg = <0>;
--				xlnx,bipolar;
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.yaml b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.yaml
-new file mode 100644
-index 000000000000..17508fef1f43
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.yaml
-@@ -0,0 +1,194 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/xilinx-xadc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx XADC and System Monitor ADC
-+
-+description:
-+  The Xilinx XADC is an ADC that can be found in the Series 7 FPGAs from Xilinx.
-+  The XADC has a DRP interface for communication. Currently two different
-+  frontends for the DRP interface exist. One that is only available on the ZYNQ
-+  family as a hardmacro in the SoC portion of the ZYNQ. The other one is available
-+  on all series 7 platforms and is a softmacro with an AXI interface.
-+
-+  The Xilinx System Monitor is an ADC that is found in the UltraScale and
-+  UltraScale+ FPGAs from Xilinx. The System Monitor provides a DRP interface for
-+  communication. Xilinx provides a standard IP core that can be used to access the
-+  System Monitor through an AXI interface in the FPGA fabric. This IP core is
-+  called the Xilinx System Management Wizard.
-+
-+  The System Management Wizard can also be accessed via I2C interface for remote
-+  monitoring scenarios where the system Management Wizard is located on a different chip.
-+
-+maintainers:
-+  - Lars-Peter Clausen <lars@metafoo.de>
-+  - Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - xlnx,zynq-xadc-1.00.a
-+      - xlnx,axi-xadc-1.00.a
-+      - xlnx,system-management-wiz-1.3
-+      - xlnx,system-management-wiz-1.3-remote
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+    description:
-+      When using the ZYNQ this must be the ZYNQ PCAP clock,
-+      when using the axi-xadc or the axi-system-management-wizard this must be
-+      the clock that provides the clock to the AXI bus interface of the core.
-+
-+  xlnx,external-mux:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    enum:
-+      - none
-+      - single
-+      - dual
-+    default: none
-+    description: |
-+      External multiplexer configuration:
-+      - "none": No external multiplexer is used (default)
-+      - "single": External multiplexer mode is used with one multiplexer
-+      - "dual": External multiplexer mode is used with two multiplexers
-+        for simultaneous sampling
-+
-+  xlnx,external-mux-channel:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 16
-+    description: |
-+      Configures which pair of pins is used to sample data in external mux mode.
-+      Valid values for single external multiplexer mode are 0-16:
-+      0: VP/VN
-+      1-16: VAUXP[0-15]/VAUXN[0-15]
-+      Valid values for dual external multiplexer mode are 1-8:
-+      1-8: VAUXP[0-7]/VAUXN[0-7] - VAUXP[8-15]/VAUXN[8-15]
-+      This property needs to be present if the device is configured for
-+      external multiplexer mode (either single or dual).
-+
-+  xlnx,channels:
-+    $ref: '#/$defs/channels'
-+
-+allOf:
-+  - if:
-+      required:
-+        - xlnx,external-mux
-+      properties:
-+        xlnx,external-mux:
-+          enum:
-+            - single
-+            - dual
-+    then:
-+      required:
-+        - xlnx,external-mux-channel
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+$defs:
-+  channels:
-+    type: object
-+    description: List of external channels that are connected to the ADC
-+    properties:
-+      '#address-cells':
-+        const: 1
-+      '#size-cells':
-+        const: 0
-+
-+    patternProperties:
-+      "^channel@([0-9]|1[0-6])$":
-+        type: object
-+        properties:
-+          reg:
-+            minimum: 0
-+            maximum: 16
-+            description: |
-+              Pair of pins the channel is connected to:
-+                0: VP/VN
-+                1-16: VAUXP[0-15]/VAUXN[0-15]
-+              Note each channel number should only be used at most once.
-+
-+          xlnx,bipolar:
-+            type: boolean
-+            description: If set, the channel is used in bipolar mode
-+
-+        required:
-+          - reg
-+
-+        unevaluatedProperties: false
-+
-+    required:
-+      - '#address-cells'
-+      - '#size-cells'
-+
-+    unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    xadc@f8007100 {
-+        compatible = "xlnx,zynq-xadc-1.00.a";
-+        reg = <0xf8007100 0x20>;
-+        interrupts = <0 7 4>;
-+        clocks = <&pcap_clk>;
-+
-+        xlnx,channels {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            channel@0 {
-+                reg = <0>;
-+            };
-+            channel@1 {
-+                reg = <1>;
-+            };
-+            channel@8 {
-+                reg = <8>;
-+            };
-+        };
-+    };
-+
-+  - |
-+    xadc@43200000 {
-+        compatible = "xlnx,axi-xadc-1.00.a";
-+        reg = <0x43200000 0x1000>;
-+        interrupts = <0 53 4>;
-+        clocks = <&fpga1_clk>;
-+
-+        xlnx,channels {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            channel@0 {
-+                reg = <0>;
-+                xlnx,bipolar;
-+            };
-+        };
-+    };
-+
-+  - |
-+    adc@80000000 {
-+        compatible = "xlnx,system-management-wiz-1.3";
-+        reg = <0x80000000 0x1000>;
-+        interrupts = <0 81 4>;
-+        clocks = <&fpga1_clk>;
-+
-+        xlnx,channels {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            channel@0 {
-+                reg = <0>;
-+                xlnx,bipolar;
-+            };
-+        };
-+    };
+ .../bindings/clock/qcom,kaanapali-gxclkctl.yaml    |   1 +
+ .../bindings/clock/qcom,sm8450-gpucc.yaml          |   2 +
+ arch/arm64/boot/dts/qcom/sm8750.dtsi               |  64 +++
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/gpucc-sm8750.c                    | 472 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8750-gpucc.h      |  50 +++
+ 7 files changed, 599 insertions(+)
+---
+base-commit: 350adaf7fde9fdbd9aeed6d442a9ae90c6a3ab97
+change-id: 20260217-gpucc_sm8750_v2-866576675fa0
+
+Best regards,
 -- 
-2.25.1
+Taniya Das <taniya.das@oss.qualcomm.com>
 
 
