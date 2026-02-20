@@ -1,166 +1,244 @@
-Return-Path: <devicetree+bounces-266778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266779-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBPFJ6Kvl2nO5QIAu9opvQ
-	(envelope-from <devicetree+bounces-266778-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:49:38 +0100
+	id CMNtA1q1l2kL6wIAu9opvQ
+	(envelope-from <devicetree+bounces-266779-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 02:14:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F6F5164024
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:49:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4778A164192
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 02:14:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E6C09308B777
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:44:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC6063011F02
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:13:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9982192FA;
-	Fri, 20 Feb 2026 00:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447091E1DEC;
+	Fri, 20 Feb 2026 01:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V99lUJsk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aKxlCoqP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1CA8212FAD
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 00:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2BB31A9F8D;
+	Fri, 20 Feb 2026 01:13:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771548245; cv=none; b=KrGiycUOWatsSSbeRjpOXWGZ2N3ozqZUyde4GuZ5eS2SfxSSrszyciU6sbnQiHfETMvcklVVYJJh7s2IXjTd5n6kCPCKqTryVVdGxmGMe1geEeqQIYd/jl6/s9kiTXvvAd8Il71hbAkp1peRxVaAvJFbANaQf/8GzEcZD+wAbls=
+	t=1771550039; cv=none; b=JnYlADoW7oARvdOkjn676ku4Ccgy+nvgZcj46leuRR9BxlRpi2buN83dookCeToPD+j90Qb1mhOSYdA0QH2OwJQuKTzXwjL70QOkpov0NAlTpNCp2SnAWO1YgQXjqUFLgLQRxHqbpZWWCztdDKKZta4QOU4CFdifOn0Ohs7hkmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771548245; c=relaxed/simple;
-	bh=BDTw+eDfdE7M+/+F6uei5ntF2At6yGsAeLZmalhgCMA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rB6dZHYBR7YFcT0EFwcVQ5NHDRE6sWDyGe8RpwtT4FnLAED2XwXkClfRv3w8Loq4AttYGBmMoe2It7HQbGmCBDEOOzbKO2PtP5OBIR9QWsPGQsMrGIe1zrcZ3caQ6y5RG+G01+t+KOArqvsb9F4UKQSYkQ37fSs+h1eoBpLLN7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V99lUJsk; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-82418b0178cso914646b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 16:44:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771548243; x=1772153043; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W8Swd7ImjQhdLe4zf/a8DbqXYw6m4TT3gQEggQly90A=;
-        b=V99lUJskYWRAl+jvMTTTaUdoTiMLfugcMEnmLBT+CuC+aclQi/E1f5zZ2wYP+aqDET
-         SjUHG6vBSEGzC23JB2SgjoWX1LQRSuLOB5jm0QEeI0AIavINU2Nk9ux6S7nYQtlTcEJF
-         1FO9soZhKk+QWCDN4jVJhGqZqVUvJwRwPnaVkBRNGg+j0N2Vce1ypwmrwBY0YKRLdJpU
-         itgcdcOWycN0AlgE8eyIUp/8FDYE/E+9FG5IyrRZXMh0Y46Wi5v+BN69VugLVdZTqnjC
-         OzJod0OwftweCH0SAUeQRdU/FRKAtrGLg5tf6CbJ61Z8CLiciLnJOJLFMkRvUgeijYGg
-         gv/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771548243; x=1772153043;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=W8Swd7ImjQhdLe4zf/a8DbqXYw6m4TT3gQEggQly90A=;
-        b=SYwxU74gPnMTqpIzLJYxPuBih0YyiGIFLtRLqFjIesTgQuOOI198zS7BI5s3z7FEka
-         nJHY+5gs4XRdPT+v19cYK+AbSSAu3czl4tJSVksqsuibBDEGXZfsSGhC25uib7+MX6Bx
-         DA+Z/pYGq1WR+bKkKNQWHhSG99TvBU5K83NZwwfUPVOLXEURG8RVVLfJGOyi9GPDXYsm
-         r0W6TtbUcVK9SvB+use9VglmIToTyd5dpi9wlO/dcnk17DIVKFYc20DBXWfFIOYCs6Vc
-         jzvO+SOdqhB/WqfTVxHsJqSvfiMlq+5VegPjwbLm2mYmQk33oF+ukx2ZPH0CbAaypymK
-         PcSA==
-X-Forwarded-Encrypted: i=1; AJvYcCXaXo3KptcK+B144FVPszSATBEaW2E0XVZ6ZbR2W6iXdFsm1X6uIfyH9Aoz7PhMcrSW1mhn3vIaEkhl@vger.kernel.org
-X-Gm-Message-State: AOJu0YysEPgYN9ZMhRzEEPB/rkkr3jnJvhvfcmMYAMRbj26uF5GA/++m
-	twoXpEv6eKyfKr5SXl0ZCRswRjv4Mr9g2zYutEz8+nXrxlZis1qEY7sOP1Wimw==
-X-Gm-Gg: AZuq6aKA7c/WIEvHgZJnKhZf1VnV4y9PiIuc8BvBwnezl/dCJb5C3L/MxTUVZ0sTSYD
-	biZp3xgBtNg7l3R4egXhrKLw4hy82nQHN1thsysYdknGowmRRIXblhW1iNzfd0V6BMf+NVuQcI/
-	lGlU0YkYXR2XltGYSJBeJrJimQSEeKVOgoCc3eAhkva/zeJJdQC3lQr2EO+tFyVEclEJ52+3m/4
-	2YEvyL0jBRp2F1dlimyFrP/Nt/qmdzagAzuE50B3mtANbBwmD3uDorPMJ2IcqV1MRN7LXswMxQZ
-	qCi2AkFmbkEtmuKJgrVsfrNxqq7BtOfihFoSWHJvoWuAgMXvVf8qWLyrrDApeA1sk2893lDoMAb
-	Fa39OS4lKbEprL/2Hys4Ck4a1zpbm8HfN8jlFc+GugTe6OVfmoRVpWNw+2J/vZ/+11+7mJ2HP+x
-	d3LHrr6QstzIOUKrEvfGC/g4ukdkMG/b2hcz3ZwRYTJbvAHGbi62XR5Jc=
-X-Received: by 2002:a05:6a00:3909:b0:824:9451:c1ea with SMTP id d2e1a72fcca58-82527746e8amr5298075b3a.67.1771548243229;
-        Thu, 19 Feb 2026 16:44:03 -0800 (PST)
-Received: from localhost.localdomain ([14.0.16.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-824c6a3e15bsm21194743b3a.19.2026.02.19.16.44.00
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Thu, 19 Feb 2026 16:44:02 -0800 (PST)
-From: phucduc.bui@gmail.com
-To: geert+renesas@glider.be,
-	magnus.damm@gmail.com
-Cc: phucduc.bui@gmail.com,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: renesas: r8a7740-armadillo800eva: Enable 
-Date: Fri, 20 Feb 2026 07:43:57 +0700
-Message-Id: <20260220004357.1680-1-phucduc.bui@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
-In-Reply-To: <20260212073819.41304-1-phucduc.bui@gmail.com>
-References: <20260212073819.41304-1-phucduc.bui@gmail.com>
+	s=arc-20240116; t=1771550039; c=relaxed/simple;
+	bh=Uq4XQS8dU09FtCJ8bnNQfMf26F15Ik2f8EpY3Wa09Z4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RaVx8OozlTLBZ3qMOBTy1FmVX2Rrh+vmqFVmH7o7ZD3WXcZ7doP8nPQPH88uEWarVew6U0SWvoYka0fJ7D40vpgBPbiGcKNI+/M2k//8d4GoF5N40myG7mjWElWQdyMgX+Ad3h3PRI1JLLou4OeEP5xzCFFhnuDa7UWSUl7o2kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aKxlCoqP; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771550037; x=1803086037;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Uq4XQS8dU09FtCJ8bnNQfMf26F15Ik2f8EpY3Wa09Z4=;
+  b=aKxlCoqPGXf/3phYGN1QPCuPTw6ruL25fb8JK+MAVQxk/FkED4B0ZJrs
+   m5zujorxP4BPTTNdzALj05FwSv/i87c6glQAHpC7D1LmiBvqIOwr3adq2
+   h/CtoHT8LKPoNqpMWyqVdDOoLsneXyKshC4d+K2D4p28Sgm0Nv2JZ/iCa
+   RDYmbMYHbOwdRy9hLC37hDZhTahl/T8/IvrnY0Qj2sEAGATdfXUBEuCJR
+   ocXpjjyvawINBVs2VL5mTZvYgmZOpFVdW9tv8ancLcUQHC47hHGXh6qfC
+   MJMU1NyKJKwG048XbyeApcm5S+7ZWeimmXdBKcvPCFHV5ZNmh0PuA4TVB
+   w==;
+X-CSE-ConnectionGUID: ruhqB8fiTUix7SjLiwD/qw==
+X-CSE-MsgGUID: EubmqbdgS2mJGgauFF8fTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="90232786"
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
+   d="scan'208";a="90232786"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2026 17:13:57 -0800
+X-CSE-ConnectionGUID: Hh94V0sQRrSdFC5OGfN1hA==
+X-CSE-MsgGUID: HZApc8IJQdqIOVtNmEtqsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
+   d="scan'208";a="213939680"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 19 Feb 2026 17:13:54 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vtF5b-000000013gW-1zU3;
+	Fri, 20 Feb 2026 01:13:51 +0000
+Date: Fri, 20 Feb 2026 09:13:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ian Ray <ian.ray@gehealthcare.com>, Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Ian Ray <ian.ray@gehealthcare.com>,
+	Bence =?iso-8859-1?B?Q3Pza+Fz?= <bence98@sch.bme.hu>,
+	=?utf-8?B?VG9tYcW+?= Zaman <tomaz@mono.si>,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 2/3] hwmon: (ina2xx) Make it easier to add more devices
+Message-ID: <202602200951.bP8YVa4Y-lkp@intel.com>
+References: <20260219130127.87901-3-ian.ray@gehealthcare.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260219130127.87901-3-ian.ray@gehealthcare.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	SUBJECT_ENDS_SPACES(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266779-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FREEMAIL_TO(0.00)[glider.be,gmail.com];
-	TAGGED_FROM(0.00)[bounces-266778-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3F6F5164024
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,01.org:url]
+X-Rspamd-Queue-Id: 4778A164192
 X-Rspamd-Action: no action
 
-Sorry for the previous HTML email.
+Hi Ian,
 
-Hi Geert, hi Magnus,
+kernel test robot noticed the following build warnings:
 
-Gentle ping for this patch:
-https://lore.kernel.org/all/20260212073819.41304-1-phucduc.bui@gmail.com/
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on robh/for-next linus/master v6.19 next-20260219]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Additional hardware clarification regarding SDHI1:
+url:    https://github.com/intel-lab-lkp/linux/commits/Ian-Ray/dt-bindings-hwmon-ti-ina2xx-Add-INA234-device/20260219-210940
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20260219130127.87901-3-ian.ray%40gehealthcare.com
+patch subject: [PATCH V2 2/3] hwmon: (ina2xx) Make it easier to add more devices
+config: x86_64-randconfig-014-20260219 (https://download.01.org/0day-ci/archive/20260220/202602200951.bP8YVa4Y-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260220/202602200951.bP8YVa4Y-lkp@intel.com/reproduce)
 
-SDHI1 is routed through a mechanical DIP switch selecting either
-the SD slot (CON8) or the AWL13 SDIO interface (CON14). Only one
-device is electrically connected at a time and no runtime
-reconfiguration is required.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602200951.bP8YVa4Y-lkp@intel.com/
 
-Tested in both configurations:
+All warnings (new ones prefixed by >>):
 
-SD card (CON8):
-  mmc1: new high speed SDHC card
-  mmcblk1: 29.7 GiB
+   drivers/hwmon/ina2xx.c: In function 'ina2xx_is_visible':
+>> drivers/hwmon/ina2xx.c:722:25: warning: unused variable 'chip' [-Wunused-variable]
+     722 |         enum ina2xx_ids chip = data->chip;
+         |                         ^~~~
 
-SDIO (CON14):
-  mmc1: new high speed SDIO card
 
-So the SDHI1 host works correctly in both cases.
+vim +/chip +722 drivers/hwmon/ina2xx.c
 
-Please let me know if any changes are needed.
+5a56a39be7ffb4 Alex Qiu      2020-05-04  714  
+814db9f1b8ec1c Guenter Roeck 2024-07-24  715  static umode_t ina2xx_is_visible(const void *_data, enum hwmon_sensor_types type,
+814db9f1b8ec1c Guenter Roeck 2024-07-24  716  				 u32 attr, int channel)
+814db9f1b8ec1c Guenter Roeck 2024-07-24  717  {
+814db9f1b8ec1c Guenter Roeck 2024-07-24  718  	const struct ina2xx_data *data = _data;
+de0da6ae1908b4 Guenter Roeck 2024-08-27  719  	bool has_alerts = data->config->has_alerts;
+52172ad87a22ed Wenliang Yan  2024-11-06  720  	bool has_power_average = data->config->has_power_average;
+0337abb760db03 Ian Ray       2026-02-19  721  	bool has_update_interval = data->config->has_update_interval;
+814db9f1b8ec1c Guenter Roeck 2024-07-24 @722  	enum ina2xx_ids chip = data->chip;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  723  
+814db9f1b8ec1c Guenter Roeck 2024-07-24  724  	switch (type) {
+814db9f1b8ec1c Guenter Roeck 2024-07-24  725  	case hwmon_in:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  726  		switch (attr) {
+814db9f1b8ec1c Guenter Roeck 2024-07-24  727  		case hwmon_in_input:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  728  			return 0444;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  729  		case hwmon_in_lcrit:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  730  		case hwmon_in_crit:
+de0da6ae1908b4 Guenter Roeck 2024-08-27  731  			if (has_alerts)
+814db9f1b8ec1c Guenter Roeck 2024-07-24  732  				return 0644;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  733  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  734  		case hwmon_in_lcrit_alarm:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  735  		case hwmon_in_crit_alarm:
+de0da6ae1908b4 Guenter Roeck 2024-08-27  736  			if (has_alerts)
+814db9f1b8ec1c Guenter Roeck 2024-07-24  737  				return 0444;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  738  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  739  		default:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  740  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  741  		}
+814db9f1b8ec1c Guenter Roeck 2024-07-24  742  		break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  743  	case hwmon_curr:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  744  		switch (attr) {
+814db9f1b8ec1c Guenter Roeck 2024-07-24  745  		case hwmon_curr_input:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  746  			return 0444;
+4d5c2d986757e4 Guenter Roeck 2024-08-28  747  		case hwmon_curr_lcrit:
+4d5c2d986757e4 Guenter Roeck 2024-08-28  748  		case hwmon_curr_crit:
+de0da6ae1908b4 Guenter Roeck 2024-08-27  749  			if (has_alerts)
+4d5c2d986757e4 Guenter Roeck 2024-08-28  750  				return 0644;
+4d5c2d986757e4 Guenter Roeck 2024-08-28  751  			break;
+4d5c2d986757e4 Guenter Roeck 2024-08-28  752  		case hwmon_curr_lcrit_alarm:
+4d5c2d986757e4 Guenter Roeck 2024-08-28  753  		case hwmon_curr_crit_alarm:
+de0da6ae1908b4 Guenter Roeck 2024-08-27  754  			if (has_alerts)
+4d5c2d986757e4 Guenter Roeck 2024-08-28  755  				return 0444;
+4d5c2d986757e4 Guenter Roeck 2024-08-28  756  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  757  		default:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  758  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  759  		}
+814db9f1b8ec1c Guenter Roeck 2024-07-24  760  		break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  761  	case hwmon_power:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  762  		switch (attr) {
+814db9f1b8ec1c Guenter Roeck 2024-07-24  763  		case hwmon_power_input:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  764  			return 0444;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  765  		case hwmon_power_crit:
+de0da6ae1908b4 Guenter Roeck 2024-08-27  766  			if (has_alerts)
+814db9f1b8ec1c Guenter Roeck 2024-07-24  767  				return 0644;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  768  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  769  		case hwmon_power_crit_alarm:
+de0da6ae1908b4 Guenter Roeck 2024-08-27  770  			if (has_alerts)
+814db9f1b8ec1c Guenter Roeck 2024-07-24  771  				return 0444;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  772  			break;
+52172ad87a22ed Wenliang Yan  2024-11-06  773  		case hwmon_power_average:
+52172ad87a22ed Wenliang Yan  2024-11-06  774  			if (has_power_average)
+52172ad87a22ed Wenliang Yan  2024-11-06  775  				return 0444;
+52172ad87a22ed Wenliang Yan  2024-11-06  776  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  777  		default:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  778  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  779  		}
+814db9f1b8ec1c Guenter Roeck 2024-07-24  780  		break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  781  	case hwmon_chip:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  782  		switch (attr) {
+814db9f1b8ec1c Guenter Roeck 2024-07-24  783  		case hwmon_chip_update_interval:
+0337abb760db03 Ian Ray       2026-02-19  784  			if (has_update_interval)
+814db9f1b8ec1c Guenter Roeck 2024-07-24  785  				return 0644;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  786  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  787  		default:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  788  			break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  789  		}
+814db9f1b8ec1c Guenter Roeck 2024-07-24  790  		break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  791  	default:
+814db9f1b8ec1c Guenter Roeck 2024-07-24  792  		break;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  793  	}
+814db9f1b8ec1c Guenter Roeck 2024-07-24  794  	return 0;
+814db9f1b8ec1c Guenter Roeck 2024-07-24  795  }
+814db9f1b8ec1c Guenter Roeck 2024-07-24  796  
 
-Thanks,
-Bui Duc Phuc
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
