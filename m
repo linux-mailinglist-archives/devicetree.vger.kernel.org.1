@@ -1,370 +1,156 @@
-Return-Path: <devicetree+bounces-266821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266822-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMttLF4NmGlF/gIAu9opvQ
-	(envelope-from <devicetree+bounces-266821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:29:34 +0100
+	id EKASC4INmGlF/gIAu9opvQ
+	(envelope-from <devicetree+bounces-266822-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:30:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B969165465
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:29:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97492165483
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:30:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 29430301E217
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:29:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 279F1301F9AC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75A9331A6A;
-	Fri, 20 Feb 2026 07:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817CF2DF13E;
+	Fri, 20 Feb 2026 07:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WMr6nv7b";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AkNvneXG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HdX0A3DE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35863331A49
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 07:29:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5952629DB86;
+	Fri, 20 Feb 2026 07:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771572553; cv=none; b=Uz7UtlcDwtl2Lh8BO0iheWGVe1EPH7deYTDnIzcOr6wZejPQ8EptAnN7Jf7ou+k1MnwKGq1qyoH5yPECMs7ibxGWG4DoNHWs3lDgxFHngVsnJ3dyPqsN7VkAGFNrmzQ7SiRxTx5mvMDFV2avebQ2cHxPtEYJ+U5u0vKMU00dtow=
+	t=1771572607; cv=none; b=KKTsIxRgL+5awKEli24yDc9lXYd6p41cD04cdCyEr6MaFHtALlBHuHppTOITKC3F6oxEWAnUbcCm1w5e+3ATfukR7lSlyT9QlntT/0tS5nGjFPQnqEHcDgWdHvp11+cpePHIy1B7vWVxn8AyyyXO8Lw6+Hvnjr3XZbLtgLBd5iQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771572553; c=relaxed/simple;
-	bh=pPjKdwM9pmwO4ao95fJig6405dk2rzL3k/DXFhE4Olg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=auA2rktVl58q3nYulPPZdk8Aql6sWddBNHVd0eefSj8dr0ydWPZQcs8tZx0B2BmZPy/QjgmVnU+ajF3CtqhXzEDsTf23SitmRorWcOgr7PfBdsZlO0foCZqo1vsSUxaUwnoaAJqvoBm6e0ArwGKIZXXGuMUQnKsX0Es2sNX9kd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WMr6nv7b; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AkNvneXG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61K5SOF22380894
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 07:29:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	nmdzgEkoO24WLtSkwTLlj9tbQJ0T6NhXURDMGInhV6w=; b=WMr6nv7be7sSjsGo
-	T9gpWrneL0U2f4F8/jIZ2/V3GK4SamK+KYpwciacuBWJ1jDrE9Qdt3a+scb+bQVq
-	3W7hj9xRFDLFlZWu5pMGCEXtq0gszJNXO3w/2VCzxmTaHhdR7/XlL7xOCzkeIvHP
-	r5gmLPqdnDMfr29LlgZsmeDroWHTpCmeo0/vw1anFOf+szsYlsjlDQTYVl6vD/xB
-	LTHkujNDjCxso9DCzl5ftSlKp96OlL2kTJJo4r7gS7x3Ck1MEZc45JjhS/cedR7i
-	Wdq2cfuflccKJgm9T85E+vDVPQMu3+T1h5cAJOCXRE8t9ye6zlVN6XRFbeMk12PY
-	2LKTCg==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cechh8ye8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 07:29:11 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-824a0ea2025so921240b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 23:29:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771572550; x=1772177350; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nmdzgEkoO24WLtSkwTLlj9tbQJ0T6NhXURDMGInhV6w=;
-        b=AkNvneXGbI8HU8/nR47M0qTlZhnwUmh4uZiGSjBsVA5Ug5NX1cBuHpWqOXaP+LLrIj
-         hfSFXpn/OFazFlGQbVmRElryXmnLjUWiZ5nbpTynO0ZVf7bmobM1ILYZMYqdcMLFQTt9
-         PmlF8aYrsqdBMIqm8jvry/Zx6IKaaZepIrT5HPOQEPODRaTuKKPYNSCd9VbvVcPH1eja
-         /9ssNwiJz6jwNQS2VcC/hjUcxnI7W2jpUsmr5sU4JAQG7kYoMAiM8wKxT8W7brBXX8bg
-         ne3kHxwHa64c0Bi2bWm+Bw/V3NTDp5HqjouSl1BJyHuXmzlEXkXyk6TUm9eQnHFwuTYT
-         TWGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771572550; x=1772177350;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nmdzgEkoO24WLtSkwTLlj9tbQJ0T6NhXURDMGInhV6w=;
-        b=SSp8FN25bm1THw7Blu9+5DtXIBLjDCIBUPeDl8unqMfi0nBD2EFdl00AIRnA+kwT0Y
-         Exq65Q1GqQclE1XWd/zN/0TIkdldTwhJWFJM5JzDpcvCODPNAtnq3uH3KaCfbEG2LrO0
-         rp56i+sA9HGrxCDNr0GR1P1ItI48rDx8mgbVVrRXHf8LAXLD5DJLgQiLuXeEgo0Fmsee
-         AWAlAg4DW6+k0JSzMsEyw1aGlJro3EUWWSerVdJvB25KRoiI1Sls7SMFGT4moX57UEWT
-         WJze9e8RJcmEVnCs26H4AMDoQfEAMw2QF2IOEGiiQEuF+PynVW9ez5V6CRSBFLojQtxK
-         JvnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8oGJUsOZiZhNOrd/b0wkXD5y/lFDQKXAUa9H5j1N8jghMgLoVrVcNnsJPOwXTtPdnuSLsUZhyOWa5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNquCz6TteD+/6NkvatKFL1wzTJtQuvFkBZA2ErjdtFooqjzNG
-	SH4RFCPJ/XkB4LcYQhV3OiTyoH7Xfk5EENcs5QlFvxd4tw2lEQrNYd+m5F9ZYR7f3y/VVL8cMFO
-	bawXzgEzLACt0FFX0d35Y1RM3XnNURcq6JYxKu0mN2CZ6F7s4dEn/rD4SCfMul4W2
-X-Gm-Gg: AZuq6aLGy4Nqjao8GoRd1rnDiIHJtZvbnHhRvpROCl4U55xwbTPc7MJgSiIstBSLSwO
-	A9lBbbKMCkn9WO0HLCbCdjDuvQ/pZGaXEl5P7livwU4Q2UjH6Cl6WspVK8D5EEdmJClUD6ty8Om
-	RnesG65j8ooUHLsLLCUruUIAyDGtSYR7TXmsRXLZtuWUJ52ZzyCbcykgcH32+u08u+/mQ0qs9S2
-	I/Bpk2v5746ZlPgIzS8P0GT94/qKWvPHHl5S0hBU17xHLgofod+BBLTyOvIRjiRAJmU8ccvCvfe
-	fZeqrfHAbeBUpjg2jzZYyNLrRQN+8hk/gdbrc6OAEDZHOWVWpM12fAAZNmvk+NK8LZ15eIIU9OI
-	AYgQiHW9oBRQBmARQZ95Kfc6BePRQyBKd8dyqF4HRuNbuAkgjDmw=
-X-Received: by 2002:a05:6a00:3d0c:b0:81c:c98c:aeb7 with SMTP id d2e1a72fcca58-824d94d00abmr19343474b3a.7.1771572549753;
-        Thu, 19 Feb 2026 23:29:09 -0800 (PST)
-X-Received: by 2002:a05:6a00:3d0c:b0:81c:c98c:aeb7 with SMTP id d2e1a72fcca58-824d94d00abmr19343453b3a.7.1771572549211;
-        Thu, 19 Feb 2026 23:29:09 -0800 (PST)
-Received: from [10.218.12.237] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-824c6b69b13sm20291596b3a.30.2026.02.19.23.29.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Feb 2026 23:29:08 -0800 (PST)
-Message-ID: <c6136314-5bdf-466b-b19e-43062fb11150@oss.qualcomm.com>
-Date: Fri, 20 Feb 2026 12:59:02 +0530
+	s=arc-20240116; t=1771572607; c=relaxed/simple;
+	bh=uJQW5gF+fFaKWb6wAwk2P/MP6Gl+g/OYOJPjpiQ1z4E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BnLJu+PwuUtVAQBOx7EiDCMajDnjhTnbAFphHyEHHdAX2HtlDNCnsDn4KFKgL3TYkm95Z2EXQ8S7PNq5dIPMIGGbA9S1KYMrwQciNIEuk/hfIko4d2AfOk2oqvulcgSJeF+JfwUH4ozdi4W8mM7Wud0kIVMwOfvTL6VAt0bklFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HdX0A3DE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95481C116C6;
+	Fri, 20 Feb 2026 07:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771572607;
+	bh=uJQW5gF+fFaKWb6wAwk2P/MP6Gl+g/OYOJPjpiQ1z4E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HdX0A3DEBkR/3rc3bvrv7yAe83c63INWm3ULhlVJ4yZrzDYrBWSHyHsA62kbObtjA
+	 7tNHgMr7Cy8AemCROQjmJGtOjr+cOHOgtBZlmyIJLuS80J+iakM8kLOV22ADi/ANUW
+	 A6VtCNUYimym4VPMSaLyevIltpcINCSE9zswF86kXmJyNzIf7GCJr5P+b1K6Txhr0i
+	 AxsQeUwIodkeWx2aJzcaOp0WojVbgQgrwh65BVS+9goJBPBuMVLIytomi2wCCJUVOi
+	 8EDA8uzGv/gzYb2j0iT30CjzlLlVthO0dhlhbcYphxcv8RWPTY8MUOEh4KEiPUQlUk
+	 AD+JF8w7nxTBg==
+Date: Fri, 20 Feb 2026 08:30:04 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kamal Dasu <kamal.dasu@broadcom.com>
+Cc: andersson@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, baolin.wang@linux.alibaba.com, florian.fainelli@broadcom.com, 
+	bcm-kernel-feedback-list@broadcom.com, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: hwlock: Adding brcmstb-hwspinlock
+ support
+Message-ID: <20260220-agate-okapi-of-recreation-3cb930@quoll>
+References: <20260219215702.63321-1-kamal.dasu@broadcom.com>
+ <20260219215702.63321-2-kamal.dasu@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: thermal: Add qcom,qmi-cooling yaml
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, rui.zhang@intel.com,
-        lukasz.luba@arm.com, konradybcio@kernel.org, mani@kernel.org,
-        casey.connolly@linaro.org, amit.kucheria@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        manaf.pallikunhi@oss.qualcomm.com
-References: <20260127155722.2797783-1-gaurav.kohli@oss.qualcomm.com>
- <20260127155722.2797783-3-gaurav.kohli@oss.qualcomm.com>
- <20260128-whispering-caracal-of-respect-a26638@quoll>
- <36706481-2549-4716-8e6d-0e4db42591a2@oss.qualcomm.com>
- <546faeda-d896-403c-a449-5c9b0cd7159e@kernel.org>
- <17474333-bb82-49d7-bc04-45ab21095c38@oss.qualcomm.com>
- <ae4c1f7e-8f4c-4ce0-a6b8-bab29984e693@kernel.org>
-Content-Language: en-US
-From: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-In-Reply-To: <ae4c1f7e-8f4c-4ce0-a6b8-bab29984e693@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 1KHZHhWvN1EX8ahC3ZwDwRb5PYewSrEO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIwMDA2NCBTYWx0ZWRfXyF9yMeZlYTZE
- eLUEvu3E5ZzsEdaOtL+o861q17SrSXg3mDicA5hbQCAw4Q127pqUy7/74fqcJOPpd6Ldz68lLjH
- qVVkHhUiFc9qklDUJuzzAxRpGdG4tNH+MD4O7/HP+MEpqBnAhAue0GN/9lC/RZPnlo27JGH3RuS
- hg+cjWu35cX8oMFTJPKhLNEyKS7E8LhttHyT+mo9hXNfB/UseA4f0j/+qC/pbFo5RSeOri6NWWS
- 578hsxZeXY8+fj8gSQ1xxqQypNLt3CeztuV12zmgGFgNvEnrzjI0FaXfJC3lJqD6u+GUrKKxdq9
- hqrY/dZp2KLTWDTSn974GMxSa27XEE/9IkiQtKV8ovOZZmOuU9tJYrCcqwwcruiCRx2LA5iyjvV
- eAQxBgw5MEhRddr/0VUnyfcI4G/qQagCsJjkGBENSijfK/k9Y6OWd6Dn04w5EK5AqceCgRGn5+s
- QGvap6RosUC1s9VoQUA==
-X-Proofpoint-ORIG-GUID: 1KHZHhWvN1EX8ahC3ZwDwRb5PYewSrEO
-X-Authority-Analysis: v=2.4 cv=KYzfcAYD c=1 sm=1 tr=0 ts=69980d47 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=Y8yh3MHrz31bv1ga194A:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-19_06,2026-02-20_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602200064
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260219215702.63321-2-kamal.dasu@broadcom.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266821-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,2a300000:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gaurav.kohli@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-266822-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_PROHIBIT(0.00)[1.145.78.96:email];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 0B969165465
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,broadcom.com:email]
+X-Rspamd-Queue-Id: 97492165483
 X-Rspamd-Action: no action
 
-
-
-On 2/11/2026 1:43 PM, Krzysztof Kozlowski wrote:
-> On 11/02/2026 08:37, Gaurav Kohli wrote:
->>
->>
->> On 2/8/2026 3:36 PM, Krzysztof Kozlowski wrote:
->>> On 29/01/2026 13:06, Gaurav Kohli wrote:
->>>>
->>>> On 1/28/2026 4:57 PM, Krzysztof Kozlowski wrote:
->>>>> On Tue, Jan 27, 2026 at 09:27:16PM +0530, Gaurav Kohli wrote:
->>>>>> The cooling subnode of a remoteproc represents a client of the Thermal
->>>>>> Mitigation Device QMI service running on it. Each subnode of the cooling
->>>>>> node represents a single control exposed by the service.
->>>>>>
->>>>>> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->>>>>> ---
->>>>>>     .../bindings/remoteproc/qcom,pas-common.yaml  |  6 ++
->>>>>>     .../bindings/thermal/qcom,qmi-cooling.yaml    | 72 +++++++++++++++++++
->>>>>>     2 files changed, 78 insertions(+)
->>>>>>     create mode 100644 Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>>> index 68c17bf18987..6a736161d5ae 100644
->>>>>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>>> @@ -80,6 +80,12 @@ properties:
->>>>>>           and devices related to the ADSP.
->>>>>>         unevaluatedProperties: false
->>>>>>     
->>>>>> +  cooling:
->>>>>> +    $ref: /schemas/thermal/qcom,qmi-cooling.yaml#
->>>>>> +    description:
->>>>>> +      Cooling subnode which represents the cooling devices exposed by the Modem.
->>>>> I do not see the reason why you need 3 (!!!) children here. Everything
->>>>> should be folded here.
->>>>
->>>>
->>>> Thanks Krzysztof for review.
->>>>
->>>> Each subsystem may support multiple thermal mitigation devices through
->>>> remote TMD service.
->>>>
->>>> Because of this multiplicity, introduced separate binding file.
->>>
->>> This explains nothing. Subsystem does not matter for the binding. My
->>> comment stays.
->>>
->>
->> thanks for this suggestion, we will use qcom,pas-common.yaml to define
->> bindings and avoid creating new file.
+On Thu, Feb 19, 2026 at 04:57:00PM -0500, Kamal Dasu wrote:
+> The Broadcom settop SoCs have hardware semaphores as part of the
+> "sundry" IP block which has other controls that do not belong anywhere
+> else e.g. pin/mux controls, SoC identification, drive strength, reset
+> controls, and other misc bits are part of this block.
 > 
-> I asked not to create any children nodes.
+> Adding brcmstb hwspinlock bindings which allows hwlock driver
+> to iomap 16 hardware semaphore registers that are part of all
+> settop SoCs. The bindings use the common
+> "brcm,brcmstb-sun-top-ctrl-semaphore" compatible string reflecting the
+> actual hardware register block name.
 > 
-
-We have multiple cores within a subsystem(cdsp) and each core has its 
-own independent DCVS. And also we have dedicated TSENS sensor placed on 
-each core within the subsystem.
-As a result, each core requires its own cooling device, which must be 
-linked to its TSENS thermal zone. Because of this, we introduced 
-multiple child nodes—one for each cooling device.
-
-  ------            ----------------------------------------
-|      | -------> |  cdsp                                  |
-|      |          |                                        |
-|      |          | HVX compute(tsens1)    HMX NPU(tsens2) |          |
-|      |           ----------------------------------------
-| SOC  |
-|      |
-|      |
-|      |           -----------------------------------------
-|      | -------> |  Modem                                  |
-|      |          |                                         |
-  ------           |  (modem Lte)    (modem nr)   (modem pa) | 
-  
-
-                    -----------------------------------------
-
-Unfortunately, we don't have target in this series which supports 
-multiple cores within the subsystem, but there are targets which 
-supports multiple cores. We will post patches for those once upstream 
-dependency aligns. If it make sense, we will add superset node examples 
-in dt bindings for future targets also.
-
-We can use another approach, we can take this cooling node out of 
-remoteproc node and use soc node to define child node. This has it's own 
-drawback, here qmi-tmd will probe and wait for remoteproc subsystem to 
-be up. For cases where remoteproc won't be up, qmi-tmd will still do
-probe and sits indefinitely.
-
-So we need your guidance here.
-
->>
->>>>
->>>>>> +    unevaluatedProperties: false
->>>>>> +
->>>>>>     required:
->>>>>>       - clocks
->>>>>>       - clock-names
->>>>>> diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..0dd3bd84c176
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
->>>>>> @@ -0,0 +1,72 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>> +
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/thermal/qcom,qmi-cooling.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: Qualcomm QMI based thermal mitigation (TMD) cooling devices
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
->>>>>> +
->>>>>> +description:
->>>>>> +  Qualcomm QMI-based TMD cooling devices are used to mitigate thermal conditions
->>>>>> +  across multiple remote subsystems. These devices operate based on junction
->>>>>> +  temperature sensors (TSENS) associated with thermal zones for each subsystem.
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    enum:
->>>>>> +      - qcom,qmi-cooling-cdsp
->>>>>> +      - qcom,qmi-cooling-cdsp1
->>>>> What are the differences between them?
->>>>
->>>>
->>>> Some SOcs support multiple CDSP/NSP instances. Each instance requires
->>>> it's own
->>>>
->>>> compatible string to distinguish.
->>>
->>> Why? What are the differences?
->>>
->>> I will not ask third time, but just respond with NAK.
->>>
->>
->> For Leman's, we have multiple NSP subsystem to support compute and each
->> instance has it's own firmware and separate hardware like below for cdsp
->>
->> Below data is from lemans.dtsi for cdsp subsystem:
->> -> remoteproc@26300000 {
->> ->  remoteproc@2a300000 {
->>
->> That's why, we have introduced different compatible to distinguish
->> multiple instance, but we can also solve this with single compatible
+> Signed-off-by: Kamal Dasu <kamal.dasu@broadcom.com>
+> ---
+>  .../hwlock/brcm,brcmstb-hwspinlock.yaml       | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
 > 
-> You did not answer the question what are the differences, so I am not
-> going to ask third time. NAK.
+> diff --git a/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
+> new file mode 100644
+> index 000000000000..0a9a1bf19fe2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
 
-For exact hw diff, we are checking internally and will update for this. 
-Right now we only know that we have two cdsp subsystem in Leman's and 
-each has it's own firmware/cores.
+Incorrect filename. It must match compatible.
 
-  ------            ----------------------------------------
-|      | -------> |  cdsp0                                 |
-|      |          |                                        |
-|      |          | HVX compute(tsens1)    HMX NPU(tsens2) |
-|      |           ----------------------------------------
-| SOC  |
-|      |
-|      |
-|      |           -----------------------------------------
-|      | -------> |  cdsp1                                  |
-|      |          |                                         |
-  ------           |  tsesn3               tsens4            | 
-  
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwlock/brcm,brcmstb-hwspinlock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom Settop Sundry Block Hardware Semaphore
+> +
+> +description:
+> +  Broadcom settop SoCs contain 16 hardware semaphore registers
+> +  (SEMAPHORE_0 through SEMAPHORE_15) that provide hardware-arbitrated
+> +  mutual exclusion between drivers running on the SoC.
+> +
+> +  The semaphore registers belong to the sundry hardware block. The
+> +  node describes the semaphore register range carved out of the larger
+> +  sundry block address space.
+> +
+> +maintainers:
+> +  - Kamal Dasu <kamal.dasu@broadcom.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,brcmstb-sun-top-ctrl-semaphore
 
-                    -----------------------------------------
+That's still not SoC specific.
 
-> 
->> with new dt property for each subsystem instance id. Please let us know
-> 
-> Instance IDs are not allowed, either. Please read writing bindings doc
-> or slides from talks.
-> 
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
 
 
