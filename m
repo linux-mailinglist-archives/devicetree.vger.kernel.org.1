@@ -1,457 +1,225 @@
-Return-Path: <devicetree+bounces-266798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266799-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mXszH8/vl2mA+QIAu9opvQ
-	(envelope-from <devicetree+bounces-266798-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:23:27 +0100
+	id +A5KLL7zl2l0+gIAu9opvQ
+	(envelope-from <devicetree+bounces-266799-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:40:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7388164C0E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:23:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2047164C66
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:40:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C08033013EE6
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 05:23:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9679930060BA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 05:40:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45B129D29D;
-	Fri, 20 Feb 2026 05:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9383D299A94;
+	Fri, 20 Feb 2026 05:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ea4sOkFt";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GEYh1IVE"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Tg477hBM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010026.outbound.protection.outlook.com [52.101.201.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795A8261B80
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 05:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771565003; cv=none; b=m+2Fs1GY3DtVE7Xe30H6/UpoW+1QR5UGpg2t13/nbgWGnieTCk6QE6FM3r43xgzAIRtuMdoYH8FeZ1qykHtJSd8/a1ZLIjDZbosPBVZWK/hLqgTS04T/NzX8N1cLzRQEOYXQahmpkamy4iOV045BCPcW/zwAWFJyXDtT1cd3xwc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771565003; c=relaxed/simple;
-	bh=btlmM1i703Qb+9ci86UF1U05cSSsh30mwRlzXNKGjKo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eSfbSLSv5oYVue7Lxr7shVNaFxnShp+F1a/ZpL4zhUkK87euMwCDYtYSyXn1v7IkQY3JS45r5xi6nM5Sr0R6QjQ57N+c0W4ZNwP3u7yttt2JcEmx2FFQXKKvGDMCi4//HtGpVkeDAyzf1hc0C7Sq7hCc4FQXKk/vGmgjd3rz2Oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ea4sOkFt; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GEYh1IVE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61K1r8RK2588739
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 05:23:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZG7xQJa5yk328pgJFK7vJDo1fz0mK+T6pF/CMJ5or6k=; b=Ea4sOkFtfiS82gRQ
-	yx8lQl5r7+LJ86+XqyHlPtQyV5v/vq0TSEv9v9RXGQiLelmpGTziV0eC6tNDpZXW
-	fOWnfwzIT0l2MWnBbuZpLjICfeAWFucpuSo5LzJh2gJOHkovTeLaCnTAM7CElQSM
-	Nrqd4ZERnjKQGEf3iI/1bNVgmEXFGeGpTi2LvsEvpjSjWIEP00hM+5AOeQu0ORp9
-	dumgZZjECnfEbHhub3aDv0o/FwTM5n6YoiPN07ecSb7r9Z889xjHbdPx7h8XgjXr
-	qxoRKCCz1U4wQ62TWmMIWUxIRn34cfTMP4HSGXFna21nt1wPZSoowupMCGgOBqwA
-	wLS2gg==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ce6k01tkq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 05:23:20 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2ad147cdf07so17459345ad.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 21:23:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771565000; x=1772169800; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZG7xQJa5yk328pgJFK7vJDo1fz0mK+T6pF/CMJ5or6k=;
-        b=GEYh1IVERd2djgEd3rbDffaGivN2ke3aFcSkR5OXbExdOZCO7agmF4ATQqBK7xCsOe
-         EYg2W3p5zPVOiGQy5UnLPqXo1pcKHLOn85Zq/euB/BWnLLe90Hq4U2SZIMHDwhJQt9iz
-         9Z4M2mfHtELzITPHGNWR238J6yzeBto6/pNa97r1JquhdrL8kKYI0V6QtkQivrFElz94
-         HmvHsbVxE80+Nbq9lUykahdA19xsmK1xaw5W+uYTTesdB9VjfVSrEsKMjkM1NoBfEc6b
-         HWuVtwHgfgnlXuUf9G7bV5Q7elsGDOzcBrvLk4oBmg3NHa8X6L1tIgtv2eltHkRhsZA/
-         GhPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771565000; x=1772169800;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZG7xQJa5yk328pgJFK7vJDo1fz0mK+T6pF/CMJ5or6k=;
-        b=V0QECVCDLC1yciz+esflXrua9BAfueI55Ep+5wz7OCkLgtvYhldVMBVrP0RUaAIjga
-         F5FNbAhBrSMZ+Xs9bYp4ZHkVJN4h9sOBkuYBrgtBR/quxAbmssmOww2LSLt64gw4GjNW
-         AqMJvPpaObYQtQawOHMq9zVYJMtQh25GPZICU1krxRsn7O2PGyT0P8NxVDeUea/r/nTW
-         r4/qhjXOelr7cHHu6LXyZhxelkyRzfaElNZT8ZPhCqPZHIZLxrdz9h8fm/ucNKwBuvnK
-         OAWRUJnZdYXm03SAZISuEJBhTqSSLcdFitCzH4Xdn3qDu51DvG0O6JS2xauw39hZVA5G
-         JNYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWiU7/ZBR2VlutHVDDO34ODUbMvhxICk98KYbnO90ndn+IADWO5YA3E/NB/Hscm3VR7DuJ5OLFQg4Bi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRU5pYPDCt6AjWv+enqj3MGTEU28/mbQrFjxJLdWTvO3McyMyX
-	pCcqJ31UW5ZigCuc2m/n1jU5U1qjZAdrRcDBEH9fO/oUKck4/56ZqTKEKUqVwENaAfz5LQlz8Ox
-	2G8q8uviiDj2wH+aEzyibi1gmptYbmfW+4UcBN3V9jD+Qt5XqOF0B932YJGVcumrr
-X-Gm-Gg: AZuq6aKV3GEZMPIDrlojI1ze1gYMwnXKeqPFmurABWdMuPBNZVwLe/vmBRghpB0i0TA
-	3qEVvJGeZNQ9pChl5+A9gqKIRpI5cOOzqtpSISVuuWK7Rl42Gt2Nq+L7RI0fw/Sza3u6RrTuYlA
-	uMibilt1G4mTkP5ph6CmaZ5tD8iRt4qBZD6pbglvcbzyGlxUTwHBMMceYA9VFixoR0vlMTcKjJ1
-	Io5IzUQqvqgtK/clkwi/biw115dobQiRkkhlqrEcU68m+uJzRDxOaGSCUj+ZhmR9lVv1NJPO5fd
-	qYsDqHlQKDTL5jW4WPOeF5Z7BTZZUsUF79TZDl0A/TJx20GvB8Bc05LLbNSEY4vPcMmsvgcWZLT
-	gscF0vDNfM8Ydm10/OQjoe7wKLTGELfQdggZXBzk9EffWkZ0dCCEdJw==
-X-Received: by 2002:a17:902:f681:b0:2a9:45ba:529e with SMTP id d9443c01a7336-2ad174800demr177419175ad.24.1771564999875;
-        Thu, 19 Feb 2026 21:23:19 -0800 (PST)
-X-Received: by 2002:a17:902:f681:b0:2a9:45ba:529e with SMTP id d9443c01a7336-2ad174800demr177418945ad.24.1771564999182;
-        Thu, 19 Feb 2026 21:23:19 -0800 (PST)
-Received: from [10.218.32.171] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-358a2a3c04csm530812a91.3.2026.02.19.21.23.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Feb 2026 21:23:18 -0800 (PST)
-Message-ID: <85bb3a9f-d54a-4b4c-8dbb-6d5461ebb037@oss.qualcomm.com>
-Date: Fri, 20 Feb 2026 10:53:11 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9A81946DA;
+	Fri, 20 Feb 2026 05:40:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.26
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771566007; cv=fail; b=B+h8isY41BYLbxI1z3C5+haQC8W7f8yWYvgrzp8tB0XM5P+D3v/kbFoiwE8/hAZ4p4fddfPXe+2JAmAQS/3c2v6toFMPOlFYNUB8FdX6tmkIbgLmsrAloskPXJEPxUqOD71V7lzppxU9boC6RRyjZn8hbRusERcgpyBDW1P5plU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771566007; c=relaxed/simple;
+	bh=7ezWng7VWtzv3Vik5iUsMwcRRlvHP97TTuoYddInb8s=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WPC2JhVWdt/VwQ0o6Hx1TrI89p/U1eu/902E2cA1SLop+K4lAmOSz8i55rw1YojZbTUxmoproMvXJYKMapr15JnT0LI0X07eJ0Aiv07gFZXaFQoTQ5UEWB56O0f3arSbuXoxeAFT/zUT/PDtj4WHpHD7HMOXRXCFoMUn2eLN2tM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Tg477hBM; arc=fail smtp.client-ip=52.101.201.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=d2iYAIajlx0Y8ooxyDQR8sY9dvk0h86auI/2DQA7gDghe0fO4T4eC2zxw3ME5M2jFnqGTqp2Zhav5LncceHC9lw2hx8TD0voBA+O0/07OgMRNof89aUcHUxxkE+DUy5OcWLFlc8c+BaXk1sjd88wfxhtMaxuvHU5FLgMGnX7tLVam6e/3STSN4vS4FSzurGNsjqkzrunXhtGbsNMzCobM40+oPaPtzqyXeUOFKOhuA1IxMDPtqtrDCKIiM6Cq32VF0VDXcSJ0OFaiohErIdqzJeXp2Re0rJsrr2Ry9688+tDaCS5dUjEd4DwnQRisSfLj1vwBttpQdMzyjkmGI0liQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dPA/xD9nwO7BVS4+YWF9Qj37bDqH3Tq3oHtjlY/gmDw=;
+ b=xl99OwJvETxkBTgVI+OmF5aE6wIY4wNKfiiHXG0kGWMAy2fDAD4NdmDUoYkw3TU25QNfwsUNF0OXFoY78A8X7IWZBdCU5Yxo8MMLBKfQUqgjoVLDoW0F8g0e4PSUlz7ODJTxEYpPC0/L4rgXGw+0lbpVZSznGEUewcfbxqN4OttER0I5kOiTQrOppP8VB6JniX/YYXbYs+AbhE6a3HaiccWEoxdXOnM4N9zgoBgRQgZ3ilzKZh9EEiT9AtUcSdUvdWbvtawdo7PlY8lhWlVVruEgXHjUfMts5TUx35+KudPfWvwxEHHALqHww8a7xh4Gds3svkTN9Iac0JC3JwDHfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dPA/xD9nwO7BVS4+YWF9Qj37bDqH3Tq3oHtjlY/gmDw=;
+ b=Tg477hBMwh91rR51xu+gUOdP54MarOad3qrnYNafgDxOuaHfKMUglnfVgRbpg4J9t+q0uwxLpZxLAYrLBDWgMZnpvPbS9WQFNgJIxFxyc7H35lFK0wChMnYkTKyPYbty6JfW/O47ai4mG/BvPBGdKpcFFVNWE1/ORvBYVH9BmNE=
+Received: from PH0P220CA0024.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::29)
+ by MN0PR12MB6001.namprd12.prod.outlook.com (2603:10b6:208:37d::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Fri, 20 Feb
+ 2026 05:40:00 +0000
+Received: from SJ1PEPF000023D8.namprd21.prod.outlook.com
+ (2603:10b6:510:d3:cafe::f9) by PH0P220CA0024.outlook.office365.com
+ (2603:10b6:510:d3::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.16 via Frontend Transport; Fri,
+ 20 Feb 2026 05:40:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF000023D8.mail.protection.outlook.com (10.167.244.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.0 via Frontend Transport; Fri, 20 Feb 2026 05:40:00 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 19 Feb
+ 2026 23:39:59 -0600
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Thu, 19 Feb 2026 23:39:55 -0600
+From: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To: Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>, Andy Shevchenko
+	<andy@kernel.org>, Michal Simek <michal.simek@amd.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<saikrishna12468@gmail.com>, <git@amd.com>, Sai Krishna Potthuri
+	<sai.krishna.potthuri@amd.com>
+Subject: [PATCH 0/5] iio: adc: xilinx-xadc: Add I2C interface support for System Management Wizard
+Date: Fri, 20 Feb 2026 11:09:36 +0530
+Message-ID: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/12] soc: qcom: geni-se: Introduce helper APIs for
- performance control
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bryan.odonoghue@linaro.org,
-        dmitry.baryshkov@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com
-Cc: prasad.sodagudi@oss.qualcomm.com, quic_vtanuku@quicinc.com,
-        aniket.randive@oss.qualcomm.com, chandana.chiluveru@oss.qualcomm.com
-References: <20260112104722.591521-1-praveen.talari@oss.qualcomm.com>
- <20260112104722.591521-7-praveen.talari@oss.qualcomm.com>
- <af0eba46-329f-4979-8b8a-fb5dbe2ad992@oss.qualcomm.com>
- <b918cfa9-1f40-4aee-ad91-d6425798bd07@oss.qualcomm.com>
- <24f967b5-0f15-4aed-a81f-ad54f8e541fa@oss.qualcomm.com>
- <92dc98b7-8047-420b-9743-4bcbc7e30fed@oss.qualcomm.com>
- <ac490ba8-18d0-47fc-a662-5a202c5ba95d@oss.qualcomm.com>
-Content-Language: en-US
-From: Praveen Talari <praveen.talari@oss.qualcomm.com>
-In-Reply-To: <ac490ba8-18d0-47fc-a662-5a202c5ba95d@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIwMDA0NCBTYWx0ZWRfXw0bdem0EtpZF
- xcpsjas2dcqcIUwey6CBKEKmiW88HR8B8wtk03g+KyoOj7OQX4HN6ffYHy0eHppJvIA4skJmFI0
- dFEZYX4BWKTPpSA0ReC8kof+cWmkQRj7e/TScxxwj8BZobcYucqBcC2eyLZp8HeD5KbMopf4p9k
- LKpR/k5qsHFNpnoCUG+oqiXJMlDotQTKpsQuNgLQ9xRu/gWSvbLDHSiJfwFV8wEKKB65A36SNGf
- ITKCqZSdTtzTXwdYt6CREBJalO0VE8pWYv2qP5gsKkwBye7/MaQs6HH9nkFc1yb8Fez+iXbYZEP
- yF0FLZgz3bjdHdV24RuW2APBcCj5kkV/1iDIF4IiPYVkEABq6qe9H62ChY6cjf6UZ8FyzYHtojY
- OAdOaqoX1c4yTXWbBvYDwSM4gbdOIvzi0KO2w/VaoFBDQmFGO+2l88US2Jif0jmlnWfo66u3PlS
- a3xmhRcjxIQn2DMzRGw==
-X-Proofpoint-ORIG-GUID: iZUFnrOD4wzNaCOjDvqHFDvFmuUd1fU3
-X-Authority-Analysis: v=2.4 cv=K6Ev3iWI c=1 sm=1 tr=0 ts=6997efc8 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=YzQrqTNV-x9tSoNouI8A:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-GUID: iZUFnrOD4wzNaCOjDvqHFDvFmuUd1fU3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-19_06,2026-02-19_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0
- suspectscore=0 adultscore=0 spamscore=0 malwarescore=0 clxscore=1015
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2602200044
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D8:EE_|MN0PR12MB6001:EE_
+X-MS-Office365-Filtering-Correlation-Id: d242efc0-0113-4c91-079f-08de70427d50
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?kUu3q/Vwxz2sK/uy/vZqwaZml0G86vlSjrAa4meAXurRmnYsav713SeLQdr4?=
+ =?us-ascii?Q?lsYWkfDeEBmjihDemIrlPw6lSzok3A6Wwka/zxIvhU+ibAB3diY18faev9MQ?=
+ =?us-ascii?Q?1YfobT+ZktvNzpkIUjzKmft0/ZPIKt1P+ZuWdzh3JhzPYrGN/pJuFhLqKvwm?=
+ =?us-ascii?Q?WrxRO4ZU7SGG6te4mdMEXw192j48SelA8Uug5AbFgqbLVZtoWXdaGsa0JYHA?=
+ =?us-ascii?Q?vcki/XgtL21CImvtWpmzQbzNVRzNF46utQtvFrquZhX7FCHxOda8Bt0HW3A7?=
+ =?us-ascii?Q?L0mJFxQCqqE4LLBRTSzc9+vVWVcpR2iLr76sIj0hoP9ezDXwBXxzekJXh4k2?=
+ =?us-ascii?Q?N0lFYgxSab2+/8xfWF/lmw02e/o0zGpM/iSoi2qR9w8Mf7bCTGP0+q5YWmMF?=
+ =?us-ascii?Q?vZC6EZyfcK7NxusTduneSuevKVE4md0ngMqOWlslUbBokN/o5vJn9P6HtQ9o?=
+ =?us-ascii?Q?52WHx84zy9lXHa2dNk+xlAfiQbNR45o43xB0jHIFepBfHeHnDhas5BpO8tEI?=
+ =?us-ascii?Q?2KvqEwSLA5qp63tYZrKTbabQ4bPnnSEnkkhWvUyXVvx2GaxGKY99wwCcSxBA?=
+ =?us-ascii?Q?8uk90/ZEdjpnBZONwMLUAsn9PY4gRInrO8TMDLbSOvpC2Vx4qlrDBzaVABzL?=
+ =?us-ascii?Q?whV3C4/MGCRg67YdqBodJzY9FN7D9Coul+D1pR9G2Ea1+Z1LIfiwsifyXbtQ?=
+ =?us-ascii?Q?VTHrjQ37+efOcLjzO1+8f85HDQ5/JI5fOt/yfCRq9iqdskdi3CsSPZH3heCN?=
+ =?us-ascii?Q?lo6mQL2g4tdQfAcQ5MslK1UpeT+mSWjvUvZmS3cNRJeH8deuoIccwBqViAZq?=
+ =?us-ascii?Q?7GPj/xRuIyAX1+GwY4rkppEg+EyuieVAt77vmtn5KOn9ikPcTHHuxeVJ5mF5?=
+ =?us-ascii?Q?/Bb/EiycEOqymVirCb3zAXlPDvztxo+dh73Mm+h1w8HRjBh12T8/UbXwiGxY?=
+ =?us-ascii?Q?hcTRVmglZrSWNIVqAHVIQ390GMpMYo76bFa1kcJPmqzswot18IkXiormmp5H?=
+ =?us-ascii?Q?f3G3eMmSsNakI7CcnSTEM+hExHo/3UGFvEF/M00QzYV3PQvQUvLOGFZnP2Fy?=
+ =?us-ascii?Q?tiHNnR9WQiS4esW3SSYvz8r2fILJL75nnLwS9q4elTv0L6ubqMCoqZ/1mxTf?=
+ =?us-ascii?Q?DGHc/sU8PPOSQKSzDiqXSxiU78rypgZiT7EgD9Gw7Fv7DbD7MEifA0S6GJUB?=
+ =?us-ascii?Q?woP6CiaLIDxW0WB2s6m3YZARNtUQ15B8J8SOinUUdD3+ybhykt+gLDXm1hZK?=
+ =?us-ascii?Q?n6h0hI4+ubQ/ygIvwN/rKCiF5nwUXmcLaQSBrUXZmHEFNvjFTWMube0LCkSP?=
+ =?us-ascii?Q?sOnkb52KsawCCdom+bnqgKxDTyHlP217tEq/Pf03IFnraqKZLbGR8mw/ScSt?=
+ =?us-ascii?Q?nz4FsJbcXy+eac0ylg9C+qkiK6Zy5lg7grEJBvmIuFYb1UGrL7srCTTLTIPV?=
+ =?us-ascii?Q?k2dX3/Ig4vMXGxAtX68jGXbIvaXt31gD75hR/41rhFREv3AMJeWNixfsDa09?=
+ =?us-ascii?Q?jhTQ2OWjyVlSJ4s6Y/AXqlqMyd9o1e9nmGtXN8V7tcMQi7fGN4fj3qdSYk7w?=
+ =?us-ascii?Q?sY+ToJSp2ZkKvrNOd++pCYUOYcX8i0j4+1cwyOLgJ1I0K08qYQtGU9m/u/EA?=
+ =?us-ascii?Q?HzXejSN5TWIdn4++xrEcuik1rwT763JfNTfVOewMVpE3MaWdsE45iiXhF8DC?=
+ =?us-ascii?Q?mUeN7Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	LpcTK7kFey8uvlyRXVVmERG+jwaHQUBwrn6pGPS5US3RA+7dzrR+b6XmoUwCuPgbFxAXJYCyWGH6Z9Lrix1pRVUNNlnNEAopQF5gGZS07fenrB3RCu2PJL4MIGVMke1IizuA/bxAjCVFC1sNYReWu7yUGPz3Mtp3cg1ggC+kdbRPQ32tfn//1btIvtltSNaj7UJGrRlmaHKzPwmUg3aaDGce7PgyxKJ8KVgaFCAL3t+XBY8UXXslTp1SUlU+Cs+XKMt3+YYM8hHgzZgsYWzBNv8DUoi9tsLwLVHqLxWH1ciSIG93iu2SvHOxYg8bIOpiCFyRQ9c2BRrA5IsN+Hxec5jSxhwH84oM6xoeoVkCOmoNCTCu/U/xBoCf8loc5+Opc672CDsB0h/tMOXzaUiZRMnnytBrZKnkkZajBA2kzUwhZJEl9115ziICI8ctezV+
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 05:40:00.4940
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d242efc0-0113-4c91-079f-08de70427d50
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF000023D8.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6001
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266798-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266799-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,amd.com];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	FROM_NEQ_ENVFROM(0.00)[sai.krishna.potthuri@amd.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: C7388164C0E
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: D2047164C66
 X-Rspamd-Action: no action
 
-Hi Konrad,
+The existing driver only supported AXI memory-mapped access to the System
+Management Wizard IP. This series extends the driver to support I2C-based
+access, which is particularly useful for System Controller usecases.
 
-On 2/17/2026 5:55 PM, Konrad Dybcio wrote:
-> On 2/4/26 6:42 AM, Praveen Talari wrote:
->> Hi Konrad,
->>
->> On 2/3/2026 4:44 PM, Konrad Dybcio wrote:
->>> On 1/30/26 5:54 PM, Praveen Talari wrote:
->>>> Hi Konrad
->>>>
->>>> On 1/30/2026 5:53 PM, Konrad Dybcio wrote:
->>>>> On 1/12/26 11:47 AM, Praveen Talari wrote:
->>>>>> The GENI Serial Engine (SE) drivers (I2C, SPI, and SERIAL) currently
->>>>>> manage performance levels and operating points directly. This resulting
->>>>>> in code duplication across drivers. such as configuring a specific level
->>>>>> or find and apply an OPP based on a clock frequency.
->>>>>>
->>>>>> Introduce two new helper APIs, geni_se_set_perf_level() and
->>>>>> geni_se_set_perf_opp(), addresses this issue by providing a streamlined
->>>>>> method for the GENI Serial Engine (SE) drivers to find and set the OPP
->>>>>> based on the desired performance level, thereby eliminating redundancy.
->>>>>>
->>>>>> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
->>>>>> ---
->>>>>
->>>>> [...]
->>>>>
->>>>>> +/**
->>>>>> + * geni_se_set_perf_level() - Set performance level for GENI SE.
->>>>>> + * @se: Pointer to the struct geni_se instance.
->>>>>> + * @level: The desired performance level.
->>>>>> + *
->>>>>> + * Sets the performance level by directly calling dev_pm_opp_set_level
->>>>>> + * on the performance device associated with the SE.
->>>>>> + *
->>>>>> + * Return: 0 on success, or a negative error code on failure.
->>>>>> + */
->>>>>> +int geni_se_set_perf_level(struct geni_se *se, unsigned long level)
->>>>>> +{
->>>>>> +    return dev_pm_opp_set_level(se->pd_list->pd_devs[DOMAIN_IDX_PERF], level);
->>>>>> +}
->>>>>> +EXPORT_SYMBOL_GPL(geni_se_set_perf_level);
->>>>>
->>>>> This function is never used
->>>>
->>>> it will be used by UART driver, not for I2C/SPI.
->>>
->>> Adding unused exported symbols is "eeeh"..
->>
->> I keep in mind for UART, i have added this API.
->>>
->>>>>
->>>>>> +
->>>>>> +/**
->>>>>> + * geni_se_set_perf_opp() - Set performance OPP for GENI SE by frequency.
->>>>>> + * @se: Pointer to the struct geni_se instance.
->>>>>> + * @clk_freq: The requested clock frequency.
->>>>>> + *
->>>>>> + * Finds the nearest operating performance point (OPP) for the given
->>>>>> + * clock frequency and applies it to the SE's performance device.
->>>>>> + *
->>>>>> + * Return: 0 on success, or a negative error code on failure.
->>>>>> + */
->>>>>> +int geni_se_set_perf_opp(struct geni_se *se, unsigned long clk_freq)
->>>>>
->>>>> I think with the SPI driver in mind (which seems to do a simple rateset
->>>>
->>>> APIs were added as generic interfaces shared across I²C/SPI which is specific to firmware control, not Linux control.
->>>>
->>>>> for both backends) we could do:
->>>>>
->>>>>> +{
->>>>>> +    struct device *perf_dev = se->pd_list->pd_devs[DOMAIN_IDX_PERF];
->>>>>
->>>>> Then, we can do struct device * perf_dev = se->dev;
->>>> I don't think, it is needed since this is specific to firmware control, not Linux control.
->>>
->>> My point is that it doesn't have to be specific to the auto usecase,
->>> further commonizing the code.
->>
->> This API will not useful for non-auto cases as well.
-> 
-> This is only because you make it so, with the above suggestion we could
-> do without the .set_rate abstraction in the SPI driver which only does
-> an opp_set_rate in the generic case
+Key Changes:
+- Extract common probe logic into xadc_device_setup() and
+xadc_device_configure().
+- Add setup_channels function pointer to ops structure to support
+different ways to configure the channels.
+- Replace module_platform_driver() macro with custom init and exit
+functions to support multiple bus interfaces.
+- I2C interface support.
+- Convert binding file to YAML format.
 
-For the generic .set_rate path (which is managed by Linux), we do more 
-than just call dev_pm_opp_set_rate(). The .set_rate callback also 
-performs additional hardware‑specific configuration as part of the rate 
-change.
+Note: We are working on x86 platform support where fixed channel
+configuration is used(no DT support). The setup_channels function
+pointer introduced in patch 2/3 enables different channel configuration
+approaches for various platforms.
 
-SPI enablement on SA8255P follows this generic (non‑SCMI) path:
-https://lore.kernel.org/all/20260112190134.1526646-5-praveen.talari@oss.qualcomm.com/
+Sai Krishna Potthuri (5):
+  iio: adc: xilinx-xadc: Add helper functions for the device setup
+  iio: adc: xilinx-xadc: Add setup_channels function pointer to ops
+    structure
+  iio: adc: xilinx-xadc: Replace module macro with custom init/exit
+    functions
+  iio: adc: xilinx-xadc: Add I2C interface support
+  dt-bindings: iio: adc: xilinx-xadc: convert to YAML format
 
-Below is the reference implementation of .set_rate used for the generic 
-(non‑SCMI) case:
+ .../bindings/iio/adc/xilinx-xadc.txt          | 141 ---------
+ .../bindings/iio/adc/xilinx-xadc.yaml         | 194 ++++++++++++
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/xilinx-xadc-core.c            | 283 ++++++++++++++++--
+ drivers/iio/adc/xilinx-xadc.h                 |   8 +
+ 5 files changed, 475 insertions(+), 162 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/xilinx-xadc.yaml
 
-+static const struct geni_spi_desc geni_spi = {
-+	.resources_init = geni_se_resources_init,
-+	.set_rate = geni_spi_set_clock_and_bw,
-+	.power_on = geni_se_resources_activate,
-+	.power_off = geni_se_resources_deactivate,
-+};
-
-
-static int geni_spi_set_clock_and_bw(struct spi_geni_master *mas,
-					unsigned long clk_hz)
-{
-	u32 clk_sel, m_clk_cfg, idx, div;
-	struct geni_se *se = &mas->se;
-	int ret;
-
-	if (clk_hz == mas->cur_speed_hz)
-		return 0;
-
-	ret = get_spi_clk_cfg(clk_hz, mas, &idx, &div);
-	if (ret) {
-		dev_err(mas->dev, "Err setting clk to %lu: %d\n", clk_hz, ret);
-		return ret;
-	}
-
-	/*
-	 * SPI core clock gets configured with the requested frequency
-	 * or the frequency closer to the requested frequency.
-	 * For that reason requested frequency is stored in the
-	 * cur_speed_hz and referred in the consecutive transfer instead
-	 * of calling clk_get_rate() API.
-	 */
-	mas->cur_speed_hz = clk_hz;
-
-	clk_sel = idx & CLK_SEL_MSK;
-	m_clk_cfg = (div << CLK_DIV_SHFT) | SER_CLK_EN;
-	writel(clk_sel, se->base + SE_GENI_CLK_SEL);
-	writel(m_clk_cfg, se->base + GENI_SER_M_CLK_CFG);
-
-	/* Set BW quota for CPU as driver supports FIFO mode only. */
-	se->icc_paths[CPU_TO_GENI].avg_bw = Bps_to_icc(mas->cur_speed_hz);
-	ret = geni_icc_set_bw(se);
-	if (ret)
-		return ret;
-
-	return 0;
-}
-
-In geni_spi_set_clock_and_bw(), the driver not only programs the SPI 
-clock, but also updates internal state and configures ICC bandwidth.
-
-In particular, dev_pm_opp_set_rate() and dev_pm_opp_set_opp() serve 
-different purposes and are not interchangeable.
-dev_pm_opp_set_rate() selects an OPP based on the requested frequency, 
-performs clock rounding, and programs both clocks and power supplies 
-accordingly.
-
-On the other hand, dev_pm_opp_set_opp() assumes that the target OPP is 
-already known and applies it directly, without any frequency‑based 
-selection or rounding.
-
-Given these differences, replacing dev_pm_opp_set_rate() with 
-geni_se_set_perf_opp() would not be equivalent in the generic .set_rate 
-flow.
-
-
-
-/**
-  * dev_pm_opp_set_rate() - Configure new OPP based on frequency
-  * @dev:	 device for which we do this operation
-  * @target_freq: frequency to achieve
-  *
-  * This configures the power-supplies to the levels specified by the OPP
-  * corresponding to the target_freq, and programs the clock to a value <=
-  * target_freq, as rounded by clk_round_rate(). Device wanting to run 
-at fmax
-  * provided by the opp, should have already rounded to the target OPP's
-  * frequency.
-  */
-int dev_pm_opp_set_rate(struct device *dev, unsigned long target_freq)
-{
-	struct opp_table *opp_table __free(put_opp_table);
-	struct dev_pm_opp *opp __free(put_opp) = NULL;
-	unsigned long freq = 0, temp_freq;
-	bool forced = false;
-
-	opp_table = _find_opp_table(dev);
-	if (IS_ERR(opp_table)) {
-		dev_err(dev, "%s: device's opp table doesn't exist\n", __func__);
-		return PTR_ERR(opp_table);
-	}
-
-	if (target_freq) {
-		/*
-		 * For IO devices which require an OPP on some platforms/SoCs
-		 * while just needing to scale the clock on some others
-		 * we look for empty OPP tables with just a clock handle and
-		 * scale only the clk. This makes dev_pm_opp_set_rate()
-		 * equivalent to a clk_set_rate()
-		 */
-		if (!_get_opp_count(opp_table)) {
-			return opp_table->config_clks(dev, opp_table, NULL,
-						      &target_freq, false);
-		}
-
-		freq = clk_round_rate(opp_table->clk, target_freq);
-		if ((long)freq <= 0)
-			freq = target_freq;
-
-		/*
-		 * The clock driver may support finer resolution of the
-		 * frequencies than the OPP table, don't update the frequency we
-		 * pass to clk_set_rate() here.
-		 */
-		temp_freq = freq;
-		opp = _find_freq_ceil(opp_table, &temp_freq);
-		if (IS_ERR(opp)) {
-			dev_err(dev, "%s: failed to find OPP for freq %lu (%ld)\n",
-				__func__, freq, PTR_ERR(opp));
-			return PTR_ERR(opp);
-		}
-
-		/*
-		 * An OPP entry specifies the highest frequency at which other
-		 * properties of the OPP entry apply. Even if the new OPP is
-		 * same as the old one, we may still reach here for a different
-		 * value of the frequency. In such a case, do not abort but
-		 * configure the hardware to the desired frequency forcefully.
-		 */
-		forced = opp_table->current_rate_single_clk != freq;
-	}
-
-	return _set_opp(dev, opp_table, opp, &freq, forced);
-}
-EXPORT_SYMBOL_GPL(dev_pm_opp_set_rate);
-
-/**
-  * dev_pm_opp_set_opp() - Configure device for OPP
-  * @dev: device for which we do this operation
-  * @opp: OPP to set to
-  *
-  * This configures the device based on the properties of the OPP passed 
-to this
-  * routine.
-  *
-  * Return: 0 on success, a negative error number otherwise.
-  */
-int dev_pm_opp_set_opp(struct device *dev, struct dev_pm_opp *opp)
-{
-	struct opp_table *opp_table __free(put_opp_table);
-
-	opp_table = _find_opp_table(dev);
-	if (IS_ERR(opp_table)) {
-		dev_err(dev, "%s: device opp doesn't exist\n", __func__);
-		return PTR_ERR(opp_table);
-	}
-
-	return _set_opp(dev, opp_table, opp, NULL, false);
-}
-
-Please correct me if my understanding is incorrect.
-
-
-Thanks,
-Praveen Talari
-> 
-> Konrad
+-- 
+2.25.1
 
 
