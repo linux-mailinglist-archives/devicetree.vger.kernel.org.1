@@ -1,246 +1,159 @@
-Return-Path: <devicetree+bounces-266835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4NgRMEgUmGki/wIAu9opvQ
-	(envelope-from <devicetree+bounces-266835-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:59:04 +0100
+	id +OsFIGIUmGki/wIAu9opvQ
+	(envelope-from <devicetree+bounces-266836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:59:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A45E165722
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:59:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2F816573C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:59:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D53230180A1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:59:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ECE9B3022968
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 412B6331A4B;
-	Fri, 20 Feb 2026 07:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256DF3321DC;
+	Fri, 20 Feb 2026 07:59:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kZjjt6sC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T43ialCd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C2B81CAA7D;
-	Fri, 20 Feb 2026 07:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 019A61CAA7D;
+	Fri, 20 Feb 2026 07:59:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771574341; cv=none; b=elgog39IWvY1QjmA/TpLCr0t00iHmVeEzwZv3uX2OeLCUHPCAujZqDHWaFo6Bdz9336P+pDlXFevr29/7Yxb9hnZfxqLBIEufptgLU6lIoOTXFFMkP9C2V73wutSck2SNFlJz7OqFyk94LTrd7JAN3WiLGZAks3Y899Sk22aFtI=
+	t=1771574347; cv=none; b=TtdJ3xXN6ytfwuwBJ3dcgYLj5N3mUBcj2fX609qwfnnlAbkAsgR2ZpUu4sjieF8I+zRPFjFyFtpOxAvLmc/B/ZXjZqM1MhT7BNOaOG2T0lDCxJr+2DIxYq6tlXroTAoLC2IjgRuc3ASTRRiXOtfxsgQSd8psepJnXbJOAwRzoE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771574341; c=relaxed/simple;
-	bh=RHFutnNKCiADzH3IhdRKV+458gfx/OM0sw/5yVDQMMY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JzVFXbpINLZ8oUi5DnZ0e9HEi+kYvNWUjS14bbASBVf3y3uzSdkeJ0lEpkILxZy1puNduLcEodDk6nvRFxnmevEhpEwaFO+Q2ZwrhJ78myPXbR2lEsyObElrpBmYTic+2xvQZxgTeuesdPwTkA/02VHx8v2t7wB/ly3eKz9Znbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kZjjt6sC; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771574340; x=1803110340;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RHFutnNKCiADzH3IhdRKV+458gfx/OM0sw/5yVDQMMY=;
-  b=kZjjt6sCQcyv2Ts295TC/4BUBP76ONexW7f0sAA7380VgJhio16V9qkJ
-   WEJS3un6a4Md2OSwoq5SW3xAlymKiCuwkOPA1J9ksDAIkn+z9VrCqHVq9
-   FLo9N5Zo9htWPizefgU6OpNnIGL6b8fQ9jHDoBVlodjGfTq9nOdomiy9G
-   HfmLOKmwneh/O+4BUi3ic8d+OFw2HQETTFiG9zS2IS3RKxtPKKcee5RWO
-   +ckahTO1TszxOFxNg57efq162wRRZP6IkFYic+MRI6gUAqy6+SrVvHr3W
-   fjkhE2/ji6O4ROzvw3+oEuaTwCWI9kqQCg4n2fTMbTO5Gzc2hYXNm93wv
-   g==;
-X-CSE-ConnectionGUID: jgwcgPe8R8eH1TMdpp7FNg==
-X-CSE-MsgGUID: d6RHXy2yQiihfNWUq3XWlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72368724"
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
-   d="scan'208";a="72368724"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2026 23:58:59 -0800
-X-CSE-ConnectionGUID: GxPklxemTqW/9IdQ9zJRAw==
-X-CSE-MsgGUID: 4ui/8WfSREi1p4r2uWmxpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
-   d="scan'208";a="219794508"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.25])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2026 23:58:55 -0800
-Date: Fri, 20 Feb 2026 09:58:51 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
-	git@amd.com
-Subject: Re: [PATCH 4/5] iio: adc: xilinx-xadc: Add I2C interface support
-Message-ID: <aZgUO-zihSIQ8d8_@smile.fi.intel.com>
-References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
- <20260220053941.611415-5-sai.krishna.potthuri@amd.com>
+	s=arc-20240116; t=1771574347; c=relaxed/simple;
+	bh=lDQ0b+sTAGg3y6l33+zv8ZajpmXBxuTOm2cp0/LRUkg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b3kKd9khZ46OuYzsZt0HjPMJUbD3kVRazLUTItBb703mY4fxN+38wySa/w+Yj1k264gAHKHXwsDj2XKJNGzhpQGdwnO7nHHtIpT5QIVrpmT374Nm76cf4FKyXNdYzZwiR4GcgPB58JF53YAK66VrGh3anmZWpbcISrEllACwoi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T43ialCd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5889CC2BCB1;
+	Fri, 20 Feb 2026 07:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771574346;
+	bh=lDQ0b+sTAGg3y6l33+zv8ZajpmXBxuTOm2cp0/LRUkg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T43ialCd3U7XhTtIhR1yazjBAEjf5VvK0XGC2u7WAqzvDnI74OC0VVDpIzY0YFyTV
+	 c+S7AO0BGL20RacTKwl723nHx6/Ps9cmXFb+OPQeJw1yUJK8pbykuNJskxvzABM5hl
+	 ZoDhO5cWvOJ0lWQrKyFIPPP1Q5158J0qRSWPkKjeNzbcvKuNiFDxb8/VVCv7Rz8JOL
+	 Rcxthowhc72X/gSjXtHWiFMnPy4TyMxgyD1vb7Yb1c3aTu7ZuDablUZkxhGmINjDz3
+	 gdsbJWtQrEr4wlKrB8xUVvzs2mB7kZaC/idc5YvaF53kLuYrGvx5QJHiS6OnGp8XZZ
+	 hdXk5fST/7Lgg==
+Message-ID: <ecb5dc62-bea3-478b-82cb-f74a6eb6f330@kernel.org>
+Date: Fri, 20 Feb 2026 08:59:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260220053941.611415-5-sai.krishna.potthuri@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] MAINTAINERS: Update Axiado reviewer
+To: Karthikeyan Mitran <kmitran@axiado.com>, arnd@arndb.de
+Cc: soc@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, pbolisetty@axiado.com, twei@axiado.com,
+ Harshit Shah <hshah@axiado.com>
+References: <20260206-axiado-ax3000-soc-maintainers-change-v1-1-a39ad47eb185@axiado.com>
+ <20260220044550.4152148-1-kmitran@axiado.com>
+ <20260220044550.4152148-3-kmitran@axiado.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260220044550.4152148-3-kmitran@axiado.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,vger.kernel.org,lists.infradead.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-266835-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266836-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1A45E165722
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,axiado.com:email]
+X-Rspamd-Queue-Id: ED2F816573C
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 11:09:40AM +0530, Sai Krishna Potthuri wrote:
-> Add I2C interface support for Xilinx System Management Wizard IP along
-> with the existing AXI memory-mapped interface. This support enables
-> monitoring the voltage and temperature on UltraScale+ devices where the
-> System Management Wizard is connected via I2C.
+On 20/02/2026 05:45, Karthikeyan Mitran wrote:
+> From: Prasad Bolisetty <pbolisetty@axiado.com>
 > 
-> Key changes:
-> - Implement 32-bit DRP(Dynamic Reconfiguration Port) packet format as per
->   Xilinx PG185 specification.
-> - Add separate I2C probe with xadc_i2c_of_match_table to handle same
->   compatible string("xlnx,system-management-wiz-1.3") on I2C bus.
-> - Implement delayed version of hardware initialization for I2C interface
->   to handle the case where System Management Wizard IP is not ready during
->   the I2C probe.
-> - Add xadc_i2c_transaction() function to handle I2C read/write operations
-> - Add XADC_TYPE_US_I2C type to distinguish I2C interface from AXI.
+> I am working for the Axiado SoC platform drivers. Adding myself
+> and adding email alias for reviewer
 
-...
+1. Much more is happening in this patch.
 
->  #include <linux/device.h>
->  #include <linux/err.h>
-> +#include <linux/i2c.h>
+2. First you send patches for review to the mailing lists. Only then,
+AFTER THE REVIEW, you send them to soc@ list.
 
-No, split driver to a few files:
-_core.c
-_platform.c
-_i2c.c
+Please read maintainer soc profile.
 
-The last two will be just a glue code.
-
-...
-
-> +#ifdef CONFIG_XILINX_XADC_I2C
-
-No way for ugly ifdeffery!
-
-...
-
-> +static int xadc_i2c_transaction(struct xadc *xadc, unsigned int reg, uint16_t write_data,
-> +				bool is_write, uint16_t *read_data)
-
-Should be simply u16.
-
-...
-
-> +	char write_buffer[XADC_I2C_WRITE_DATA_SIZE] = { 0 };
-
-No '0' is needed.
-
-...
-
-> +	if (is_write) {
-
-Bad design. Instead make two functions, one for read, one for write and drop
-the boolean parameter.
-
-> +	} else {
-> +	}
-
-> +	/* Read response for read operations */
-> +	if (!is_write) {
-
-> +	}
-
-...
-
-> +static int xadc_hardware_init(struct xadc *xadc)
-> +{
-> +	int ret, i;
-
-Use unsigned iterator inside the loop.
-
-> +	for (i = 0; i < 16; i++) {
-
-Magic 16.
-
-> +		ret = xadc_i2c_transaction(xadc, XADC_REG_THRESHOLD(i), 0, false,
-> +					   &xadc->threshold[i]);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = xadc_i2c_transaction(xadc, XADC_REG_CONF0, xadc->conf0, true, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = xadc_i2c_transaction(xadc, XADC_REG_INPUT_MODE(0), xadc->bipolar_mask, true, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = xadc_i2c_transaction(xadc, XADC_REG_INPUT_MODE(1), xadc->bipolar_mask >> 16, true,
-> +				   NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	xadc->hw_initialized = true;
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static const struct of_device_id xadc_i2c_of_match_table[] = {
-> +	{
-> +		.compatible = "xlnx,system-management-wiz-1.3",
-> +		.data = &xadc_system_mgmt_wiz_i2c_ops
-
-Leave trailing comma as it's not a sentinel.
-
-> +	},
-> +	{ },
-
-The opposite. IIO has established way besides the fact that sentinel by
-definition must be the last, trailing comma is confusing for a bare minimum.
-
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
