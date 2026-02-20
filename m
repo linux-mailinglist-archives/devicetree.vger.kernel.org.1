@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-266817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266818-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ePO3MVEKmGkK/gIAu9opvQ
-	(envelope-from <devicetree+bounces-266817-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:16:33 +0100
+	id WLRwMocKmGkK/gIAu9opvQ
+	(envelope-from <devicetree+bounces-266818-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:17:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24ED316536F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:16:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47407165385
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:17:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F0F5301D6A4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:16:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D63BA300DA40
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDE61D516C;
-	Fri, 20 Feb 2026 07:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA0929A9E9;
+	Fri, 20 Feb 2026 07:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MaFZ3eQI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cfenUBEy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BCD4C97;
-	Fri, 20 Feb 2026 07:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF9928DC4;
+	Fri, 20 Feb 2026 07:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771571790; cv=none; b=CqQY+eZYUBvn+kw2rp2VLX+hsnYmZ5iloyBxnMd110YB8khibt5Sk8wGrsSfZzAZuo2vS7e2ckA6zGY8m/xdYOZGM3jmd/5AptloPFoc0QNiShEXL6+0laYbLMIampqXRBI19sXDyIKx3yklHhhlkb90K/EVGBdseezqBBCjJAk=
+	t=1771571843; cv=none; b=TLIpmVbZALZHujM8RUtynL9oPjRmelnjP+UdW4gkmF4mO2n+aSKd1RdxGEp2tmE/ttfxOpzPUqd3J3Mluh1XRNpCCqz03ZDjfYj6pqqt8NJ4Osm5hV+pfId7K5rcduvlM6KYIp6z/7O4mUy5Efcte74gEE1KupxKL9YaZ/yOxyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771571790; c=relaxed/simple;
-	bh=fCsDOu9MBaZOA4u5mcVYU6mFowaT4kgxrvj/7c6MZAU=;
+	s=arc-20240116; t=1771571843; c=relaxed/simple;
+	bh=4Y+EWYWf5ARtAsHVBUfDK/3s7+OD7RyqhRRZYQk8yrE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eL/fltptkTWcsQz1WISwM3O7SbYAy+GKUtLNOYYlbcvzFrjqhOMj46RxV9L7rLsYJDuMbxcaNZe6Yr0laJWGMZgL+3Do9hd53cqBV9nKHR5OylZfSQu7fguy4Dww+AIBz0jXPsO1vi+iNC7BJ0YuKIfaSObJjTW4N14+AgiopY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MaFZ3eQI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0120FC116C6;
-	Fri, 20 Feb 2026 07:16:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=F8Ih9CFEIHDh2cHBywrm/11vEP8oFjr+WHZQ8W0wtJF3CFDg4uTOatqshOsi7EqunmBSL2bV0Wuy/iVpRV2cqSJMA4M1xi+62MkPgsZXSYgSCocJf5AZm5CzwlHXzL/0CqMoHanfhhrF/9csXtN6HTVjExptqS7QsFfDSHir19g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cfenUBEy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD076C116C6;
+	Fri, 20 Feb 2026 07:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771571790;
-	bh=fCsDOu9MBaZOA4u5mcVYU6mFowaT4kgxrvj/7c6MZAU=;
+	s=k20201202; t=1771571842;
+	bh=4Y+EWYWf5ARtAsHVBUfDK/3s7+OD7RyqhRRZYQk8yrE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MaFZ3eQIjClKqZreu5gxQH7DsM50VL/v2fvhzHw+eBJQs516MG9nmJP0qrCkIDI+O
-	 pRc5cjIWPMQ4u4RKIq6aoZRnBV7mRHF26/lnTbJOV2FlB2rBGqGvBp7C27LTY7eN3+
-	 0Hro9KMDdgq4WBaGvh3zNzJ+do5GDhTwtwgXx9U084jsj6wUSz4zC3vE/nHHzlpYfa
-	 KFWDZ6FqRLE+/sJKOXNV7YPZyga90yCeR2RHWr9UPLz690FDYpsHJ9Wx+YEebbaYCu
-	 p5mR5ZiHb2CAZccHdYd5Yzjf2s1UMbxamjq3cVRFaPTFdPjx5RehUqEGF/GietmO7G
-	 Hd12gH4UxSG8w==
-Message-ID: <ca2fcbfa-80a0-4685-8544-06c98a6973d2@kernel.org>
-Date: Fri, 20 Feb 2026 08:16:26 +0100
+	b=cfenUBEyb4asJCsD+ZFNK2uLLe4i+QHaVdO2aU9tnTZ0dOAzSSa8KToR9/CrmhVkV
+	 gl7FP/r6v8U6AstU/7864dPhDFLN2C8wDVDJInMWH4uhli/9CdvJrK1fqjki8VAvzX
+	 Na0+2hV96D7Y1AFmoK/U5dLl25PUb1Tsd7bSoRg6ER/MS/MKh7lFMEDlbVoJGu4JwZ
+	 rtRw/2YMbvjFUV4GYvgybphiuM50KxozhMbveO5CSbatUA9ibV6ASdKb+iZOn5yjkR
+	 Xl+Lml9uLfKcFJLv0yN1Z8kztmaA8PFvAFZ95W8oSDpRztXaufI6ouLDb4z+HrnlbD
+	 Ge0zeJQMWxlWg==
+Message-ID: <1728c810-f544-4a9d-9e86-e3f24429dac9@kernel.org>
+Date: Fri, 20 Feb 2026 08:17:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,16 +53,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Enable lvds panel-DV215FHM-R01 for
- monaco-evk Mezzanine
-To: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, venkata.valluru@oss.qualcomm.com,
- jessica.zhang@oss.qualcomm.com
-References: <20260220-enable_rb4_lvds-v1-1-c6296ef9ccdb@oss.qualcomm.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: document the Etek ET7304 USB
+ Type-C Port Controller
+To: Yuanshen Cao <alex.caoys@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260220-et7304-v3-0-ede2d9634957@gmail.com>
+ <20260220-et7304-v3-1-ede2d9634957@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,57 +109,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260220-enable_rb4_lvds-v1-1-c6296ef9ccdb@oss.qualcomm.com>
+In-Reply-To: <20260220-et7304-v3-1-ede2d9634957@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266817-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266818-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,linuxfoundation.org,kernel.org,linux.intel.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,quicinc.com:email]
-X-Rspamd-Queue-Id: 24ED316536F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 47407165385
 X-Rspamd-Action: no action
 
-On 20/02/2026 07:35, Gopi Botlagunta wrote:
+On 20/02/2026 07:22, Yuanshen Cao wrote:
+> Document the ETEK Micro ET7304 USB Type-C Port Controller with USB-PD.
 > 
+> Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
 > ---
-> base-commit: 1a0829927afbfe654c632eb2e779fa32df825b06
-> change-id: 20260219-enable_rb4_lvds-d7cf92b30b5a
-> prerequisite-message-id: 20260210103821.4169-2-umang.chheda@oss.qualcomm.com
-> prerequisite-patch-id: c38266562544ebe10eb4e6d771665c66fd319cab
-> prerequisite-message-id: 20260217090955.2446470-1-quic_amakhija@quicinc.com
-> prerequisite-patch-id: a50422285e837760143af6bdfcc6f64d38525752
-> prerequisite-patch-id: 7bd948199c6ff8d6feec941e2dd4f4266e5ab39b
+>  Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml | 3 ++-
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml     | 2 ++
+>  2 files changed, 4 insertions(+), 1 deletion(-)
+> 
 
-And this is odd.
-
-We also asked about this.
-
-Anyway, you keep ignoring our responses and sending either the same or
-actually worse code without any explanations. Please read carefully
-internal guideline which explains you all the steps you must do.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
