@@ -1,177 +1,172 @@
-Return-Path: <devicetree+bounces-267036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267037-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mP61DUSSmGkfJwMAu9opvQ
-	(envelope-from <devicetree+bounces-267036-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 17:56:36 +0100
+	id +Oo+GnGSmGkfJwMAu9opvQ
+	(envelope-from <devicetree+bounces-267037-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 17:57:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAAF5169831
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 17:56:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02972169860
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 17:57:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7AC65302E419
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 16:56:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 45A843022608
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 16:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5698B2FD1C2;
-	Fri, 20 Feb 2026 16:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1AE02F60B2;
+	Fri, 20 Feb 2026 16:57:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="Wl8EkULE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HuERNVJ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A572EDD52
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 16:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC6E2F49F0;
+	Fri, 20 Feb 2026 16:56:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771606587; cv=none; b=I199F8ceik1kKwkAkOe7QgBHJlFQMGBVgcF0ChTWP9ZplT33UzSeCUzOn3YIvwn127iJwghIFh+xNqDlhuZhA/0978+GeGd+5cWg8pK34UMJ2O6Rw15I0fskxxTZx991TYToqFATAYUAFgridvTxGk4Uuc7SQ8U26OTiwvNhL5g=
+	t=1771606621; cv=none; b=BIPGmXc7ouQVdR1tL3yrNTrP+P8y2JfJHdI0te23p+P7utMokmPJZz8dP8Q7yeCZyQkZK5jFqOn974mtcS2KSiqVUmWND+j65wc8qYck/rmTtrcglo3LSLXV428x0huTvs3g63xesBEDbcQ/RFVkJ8g33mcyytyb8UJ3Bt9Hrnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771606587; c=relaxed/simple;
-	bh=8D9Y1XXC2qdEK5lv2ngWbb8ZY8WcwD0gpYfssancm0A=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=WfyP1V3Q6q7vXfDoR4to/tNSB6PS7YdQxxDNFLgNAuMmivNWF0YudmAbXeJIhy/DIPCs3B+CTkZ23t83ejHS/CYj/7Dq0VkEN949jIkkT3/+El/d0z/p1hbmd5+YZGp0bC8N8ZqWtK6iMxyI1Ts5zgBHPmt2WLGNvLAQNH/4w5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=Wl8EkULE; arc=none smtp.client-ip=84.16.241.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
-Received: from [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8] (2a02-1812-162c-8f00-1e2d-b404-3319-eba8.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id 5DA0B6E86D9;
-	Fri, 20 Feb 2026 17:56:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1771606584;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=J0lld6vPE30NQltxwTbPT1iVmbe7L/OOthusNPaOsLo=;
-	b=Wl8EkULECxUNWFwP0xk/j1XeHstIdG7Zvpg4HpIoQyf8y/2LFS6WWIY0KlWnGY3YXlPUAP
-	ESbwKUfHUVIJRKVBlqZYUrIpDnnMnSvhnKZS1KMV5imA7mmM9Jat9yGzRXNhEjU212VEEc
-	1CPlZ19uDBa8naXSKQ/AATLbodr8NKksYlWPEHEa0DNdbUcWIu8lBJlsrF7GvhbCtpo5Dc
-	5pbNtFyrGpWnja5OmpOUDh1dEDrqHX9O8kmjIudTc88NB7118VifEtgp1mH+LuqTZIgjHK
-	gYe2a0ru+srsKHnx287wEHeiGi+C1LRxCsBQJVyCY4+K9QsnXd/EkWZOACJdmw==
-Message-ID: <4cf24e281fac45637fedf40944d8b5230c0e22d9.camel@svanheule.net>
-Subject: Re: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
-From: Sander Vanheule <sander@svanheule.net>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,  =?ISO-8859-1?Q?Andr=E9?=
- Draszik	 <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>, Pavel
- Machek	 <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- MyungJoo Ham	 <myungjoo.ham@samsung.com>, Chanwoo Choi
- <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>, Alexandre Belloni	
- <alexandre.belloni@bootlin.com>, Jonathan Corbet <corbet@lwn.net>, Shuah
- Khan	 <skhan@linuxfoundation.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Date: Fri, 20 Feb 2026 17:56:22 +0100
-In-Reply-To: <DG74Y3QSCLIO.32Q8ZKCTISXXB@disroot.org>
-References: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
-	 <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
-	 <69e2c1b1a2f3d2ed5e5da995cc5ee49bb3627597.camel@linaro.org>
-	 <DG74Y3QSCLIO.32Q8ZKCTISXXB@disroot.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	s=arc-20240116; t=1771606621; c=relaxed/simple;
+	bh=h0roktZ6hh9v4RmiXDWicExfqn4gtwVXGM/LZlgJDEc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hYKPaSbaS5zMCEzVoefbvZQ9YCuSGGcol/P5RIdpnXQW4fYDr3IO3twKE8LUTBpTWdn17xk/D0o+lML48Pb48g7/6wO9Xl8oFs6+7Tf7Tp+82v/XeezADkgeJ/jcVxiyc49Y72OSb+3HMRpXLeDVygkTk97A+Pd0TlRg33ztIyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HuERNVJ/; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771606620; x=1803142620;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=h0roktZ6hh9v4RmiXDWicExfqn4gtwVXGM/LZlgJDEc=;
+  b=HuERNVJ/l5zzD35pwiVzPmqH36ARBmwlr5yWUIIe9/NzHjjURTFZ2iZo
+   RlT5twqBTw5IqQqYxmq26Q0j/912m5nPQetO3o5FbY800N/lDNdZQEtjq
+   gScMx1TlpazlU8Ezqjg2QhNvwa8sGT/H2Gq5Lz2la+lVPLv6wO3GebNse
+   7Ld9WX1paZX1k3sHcXX/CFnnTudw4WCJufmS3GQp6o77UUlempwlIRXAS
+   jBSZfQVOChZ+meTVuKo6+/4yA0CdCqm30ZhKEGCbP66+uxzZ6DtREiSOh
+   s6jv8xurLyEjlflSBqBinK752Bh6gPXA3CU2VpYzIaOzToyG62qnjT7X5
+   Q==;
+X-CSE-ConnectionGUID: qM7P8bjRT3CGmho2IQiikg==
+X-CSE-MsgGUID: +r7sWX5uS06dx0nJoOsviQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="83416513"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
+   d="scan'208";a="83416513"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 08:56:59 -0800
+X-CSE-ConnectionGUID: vv4hx5r+SU2MoIFwH3PBCQ==
+X-CSE-MsgGUID: mHJv1OxTRfao46F0857R6Q==
+X-ExtLoop1: 1
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.25])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 08:56:56 -0800
+Date: Fri, 20 Feb 2026 18:56:53 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 2/3] iio: dac: ad5706r: Add support for AD5706R DAC
+Message-ID: <aZiSVSvCOS4MvcGt@smile.fi.intel.com>
+References: <20260220-dev_ad5706r-v1-0-7253bbd74889@analog.com>
+ <20260220-dev_ad5706r-v1-2-7253bbd74889@analog.com>
+ <4fd329ed6416fd2f8e2a72adfa5a77f73107948b.camel@gmail.com>
+ <aZg-vtenBU2rKKX_@smile.fi.intel.com>
+ <a6a2fc3ebb45fa4d7b379d552196d56eb13fa8d3.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a6a2fc3ebb45fa4d7b379d552196d56eb13fa8d3.camel@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[svanheule.net,none];
-	R_DKIM_ALLOW(-0.20)[svanheule.net:s=mail1707];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267037-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267036-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sander@svanheule.net,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[svanheule.net:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CAAF5169831
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
+X-Rspamd-Queue-Id: 02972169860
 X-Rspamd-Action: no action
 
-Hi,
+On Fri, Feb 20, 2026 at 03:02:37PM +0000, Nuno Sá wrote:
+> On Fri, 2026-02-20 at 13:00 +0200, Andy Shevchenko wrote:
+> > On Fri, Feb 20, 2026 at 10:48:59AM +0000, Nuno Sá wrote:
+> > > On Fri, 2026-02-20 at 16:02 +0800, Alexis Czezar Torreno wrote:
 
-On Thu, 2026-02-05 at 21:02 +0530, Kaustabh Chakraborty wrote:
-> On 2026-02-04 15:23 +00:00, Andr=C3=A9 Draszik wrote:
-> > On Mon, 2026-01-26 at 00:37 +0530, Kaustabh Chakraborty wrote:
-> > > +static const struct regmap_config s2mu005_regmap_config =3D {
-> > > +	.reg_bits =3D 8,
-> > > +	.val_bits =3D 8,
-> > > +};
-> >=20
-> > No cache? And what is the .max_register value?
-> >=20
->=20
-> This was in the previous revision, but I ended up removing it because
-> (at least I thought at that time) interfered with interrupts firing in
-> some way. The actual issue was unrelated, so I will add it back.
->=20
-> However, there is also another thing I see in logs:
->=20
-> sec-pmic-i2c 2-003d: using zero-initialized flat cache, this may cause
-> unexpected behavior
->=20
-> This is due to REGCACHE_FLAT, I am not sure if I should just ignore
-> this.
+...
 
-Sorry to be late to the party, but I'm somewhat responsible for that warnin=
-g, so
-allow me to chime in :-)
+> > > > +static void ad5706r_debugs_init(struct iio_dev *indio_dev)
+> > > > +{
+> > > > +	struct dentry *d = iio_get_debugfs_dentry(indio_dev);
+> > > 
+> > > It should have:
+> > > 
+> > > if (!IS_ENABLED(CONFIG_DEBUGFS))
+> > > 	return
+> > 
+> > But why? The debugfs is a stub when disabled, nobody should do that
+> > in the cases when the main purpose is not the debugfs code.
+> 
+> Because the compiler can then optimize away all of the above code...
 
-What you are might have been seeing is REGCACHE_FLAT giving you "cached" va=
-lues
-of 0x0, while the hardware actually has something else. This can cause omit=
-ted
-writes, existing (bootloader) config to overwritten, etc.
+How is it different to the code elimination part that is inside in each of
+the below calls?
 
-As Andr=C3=A9 suggested, using .num_reg_defaults_raw is a possibility, but =
-then you
-have to remember that the register defaults are taken to be what the hardwa=
-re
-state is at that moment, including pre-probe changes. These defaults are us=
-ed to
-seed the cache (so far, so good), but this may break the contract of
-regmap_sync() if you ever want to use that after actually resetting the PMI=
-C.
+> > > > +	debugfs_create_file_unsafe("streaming_addr", 0600, d,
+> > > > +				   indio_dev, &ad5706r_streaming_addr_fops);
+> > > > +	debugfs_create_file_unsafe("streaming_len", 0600, d,
+> > > > +				   indio_dev, &ad5706r_streaming_len_fops);
+> > > > +	debugfs_create_file_unsafe("streaming_data", 0600, d,
+> > > > +				   indio_dev, &ad5706r_streaming_data_fops);
+> > > > +	debugfs_create_file_unsafe("streaming_reg_access", 0600, d,
+> > > > +				   indio_dev, &ad5706r_streaming_reg_access_fops);
+> > > > +	debugfs_create_file_unsafe("spi_speed_hz_write", 0600, d,
+> > > > +				   indio_dev, &ad5706r_spi_speed_write_fops);
+> > > > +	debugfs_create_file_unsafe("spi_speed_hz_read", 0600, d,
+> > > > +				   indio_dev, &ad5706r_spi_speed_read_fops);
+> > > > +}
 
-If you want to use the flat cache, I would suggest you use REGCACHE_FLAT_S,
-which will track what has already been read from/written to hardware. You w=
-ill
-also need to specifiy .max_register.
-
-I see the other regmap_config-s in this driver also use REGCACHE_FLAT, so y=
-ou
-may want to consider switching those over as well if these are also showing=
- the
-new warning.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Best,
-Sander
 
