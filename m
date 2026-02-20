@@ -1,175 +1,180 @@
-Return-Path: <devicetree+bounces-266891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266892-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aNfkA880mGn/CgMAu9opvQ
-	(envelope-from <devicetree+bounces-266891-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:17:51 +0100
+	id yDgKEwY1mGn/CgMAu9opvQ
+	(envelope-from <devicetree+bounces-266892-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:18:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C41166C04
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:17:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93C74166C46
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:18:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B5E3E3031ADC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 10:17:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0276F300AD68
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 10:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D6E33C1AD;
-	Fri, 20 Feb 2026 10:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A00032B982;
+	Fri, 20 Feb 2026 10:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iuHW5xgN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BI8ck/Nc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFF870808
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 10:17:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 355FC1DA60D;
+	Fri, 20 Feb 2026 10:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771582667; cv=none; b=EysvfuBXilqoNKGrpDwBAkfDntitmsInw13nAiTwL/bXoEcjUkUmLZ1yc8qKhac+nLpkBAYi4HuD4h0RNwQU6CFz8DTmY//Tcg0t7ixN8pspSpHXFzz5M1660gOpiSitMGj2Ultrgpi4u3FWKxFIEp41lZDvnufWKr3YFOUJvN4=
+	t=1771582721; cv=none; b=TQhxyvbvqb5x+8LM29vzrS1HVFFykccypK/M/HsqZVCcfhqNZ8ieWgnm+iB1b5gJ7Bp1s9XyW+59HPYwBTYznES/Zd0XF3kh4uOkzFoLpmHCWgMIaRigCbE4dPnAepNfzkJDeK/qhn2mBm+CRDTh5IDThbOrH5zdQD3B6qmfe9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771582667; c=relaxed/simple;
-	bh=8JPAPEZguacmifSWCnnDXUVYRogc7fx9Jf3HfyYCE3Y=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XLfGltrU25IwUSTDg6toxqa2QSXkRXld4sqRBebkk/KWnBSAmk3R/m6fX2Z297ZfO2+Y/HoCqBPrdNwLgNFWchrKgARo3/elCyKwErGd9v3IdHdFub8kcukdDNZFBD7Bz60tpB+thmNJ6BnvPPz3doJhmYn1665PBOZVtwWXa5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iuHW5xgN; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-43622089851so1869215f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 02:17:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771582664; x=1772187464; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=foa7kGkA11ij00nt3xJx3lBVlw2GastjEXv+CSxW2yk=;
-        b=iuHW5xgNXlMkYa5na6xVFsFvMgX/y+z0qv99LuwzI8lHpFPtsx5OcI9a87+oqUuNwj
-         Mk+SGUZGdTiCrs2xadCfd1d6xPxMu7AOhyF6n6WqZvo47+3T/VfTx5ZY54d+kwT88m0M
-         hfRd5J4dEYL6EILboAPm5wPpLo7c80Q5sU/hVoZdGcQMVHTkNpg9MvqHZby8X3Dn7xyN
-         UESxVZ8Aue+81XHBsJYdA7aqR0/4Zg1wIQuCKXVqQdcJEenBnGv7ClPxWAgXiiNPaMhf
-         l3zb9byU00RccX1i3rPoM/Anlce6rTCNnJr9Ss8qk7WItarMWm8vTOhT6XLmLKOhRDLy
-         G9yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771582664; x=1772187464;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=foa7kGkA11ij00nt3xJx3lBVlw2GastjEXv+CSxW2yk=;
-        b=haws+AFQgBTEGcEYevX7iqMpvAcFhpvIs5mENUgkYDnWvhtsD/NjII2UiguG6tO+T/
-         2Ma7iOuQsQWeP46yVfjXv0zMv7aBUFRn8wd5JF5CswO8ZOneuntoTDO/ZqEL/zIk4JsN
-         8W3zhgZonF4u1ahrp3td/dEtcg7r3zA8XkYlfBh5pxM0qszRuSI47Dn72V2VIX4FJ5GG
-         oSdIlzzsGfrim/rysIIUuWpCW0cunOofAHoLWrg2tFwL1YFC9g0wKs0r1b4pywQouoKb
-         1ukRGO/NFEIZqx9NkgQh70CtQLvSrfEX9HzCrcxFInkqYZnHaJvf8ihdxA01MTKpyytU
-         j+xA==
-X-Forwarded-Encrypted: i=1; AJvYcCVYGaE2JhzeJJLVud9idIH6wwWhcLFQ4s9E2sWolLWLIRxFC9nJolxJrfZfVMpocc8Jyy3fmkrwtHG/@vger.kernel.org
-X-Gm-Message-State: AOJu0YynQgBnZIrzGvB5dCsgSfNI2khj/0ChaXV4AErwMivaX7mgXeke
-	ps5Uclt9Uscp8Wdezv/UWvzZf6sO5gfJIhXHBIjg4fbqP8ztpQhQzSWZ
-X-Gm-Gg: AZuq6aKQw/Ft0U6FaglXyPHG4XmdV7QoiKFETtydrC/hyuy0NZmTmz+J7CGIVLoNys3
-	LO1sbblt+U9N3Kp1kUAGRt/lwwyiEMp5mOnSfMfM2qiAbbwO14VV4UwPNmaiG9WfMqz6ByBrYeF
-	kHCvbxOaoIyuLuF6Jo/g10bC909GcBhIPQWMd2t7JxV/rUgbKjghQYrXINVSjg4zVxpm8VXs9eB
-	GBJKbdyOklpYqmNxa9xl3DIrM6peIry0QTQxvqF+1M8tNPNyVShAryyTktqD7lNFtXvGRvtTYKP
-	q+GEPy/ufC/gN13mP4nl0TBmVYRk12lNQUAWB+Bu1qQ/spmVtLRHZt2/el/dh7Tb1y2iu+hNmz8
-	deUKmuWEI6ppWiEpaMcZvWK8NSwZo3MAhqv2grnHtgWRaKLUs6QJ+i+TcAYVdy9jlbPobtwQ+D1
-	Ta7iQBoOonDPblmeKJVamFMINuaqgFsjk=
-X-Received: by 2002:a05:6000:2911:b0:437:71b2:6f34 with SMTP id ffacd0b85a97d-43958df112cmr13666718f8f.1.1771582663829;
-        Fri, 20 Feb 2026 02:17:43 -0800 (PST)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796abe3b3sm62452448f8f.18.2026.02.20.02.17.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Feb 2026 02:17:43 -0800 (PST)
-Message-ID: <9951c2fc9bbca27e0a5e7d953a31a0f802bac38f.camel@gmail.com>
-Subject: Re: [PATCH 3/3] MAINTAINERS: Add entry for AD5706R DAC driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Jonathan Cameron	 <jic23@kernel.org>, David
- Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <ukleinek@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Date: Fri, 20 Feb 2026 10:18:26 +0000
-In-Reply-To: <20260220-dev_ad5706r-v1-3-7253bbd74889@analog.com>
-References: <20260220-dev_ad5706r-v1-0-7253bbd74889@analog.com>
-	 <20260220-dev_ad5706r-v1-3-7253bbd74889@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	s=arc-20240116; t=1771582721; c=relaxed/simple;
+	bh=SiYOkd9Fdv3qiGtvX4sk+tU1WzcPDYY5T7RrkmzlBhU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XrqtaE87sP2JHekX8FH7O3OfAFMd000TWcAo24kLRkm5EXhw8P2tRYPYRfQZyG/Fmb7LHTcZkjAo2aAJHIUtU7Dm4LUQgxfvCclOOvdPyuQNC0H7EUi8jQCGCtWrLVN1vfVvGOTHAmIuFB5uYTthhlQh3CuF6DLAU2a0+Xlyly8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BI8ck/Nc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4CAC116C6;
+	Fri, 20 Feb 2026 10:18:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771582721;
+	bh=SiYOkd9Fdv3qiGtvX4sk+tU1WzcPDYY5T7RrkmzlBhU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BI8ck/NcdJKkCYx8J35dNnZdu1P3WcD2Rz8VxkA7KzVagSqtnFXpih7wZcJutMp8T
+	 3escshFqHSeE9m6TCr2LgLt+eKs55eSWPTs/7n9WZ39FBom8lV9KyE19P4/30A+/Iw
+	 DMHRYJL/gqmlOu2/vnCIpvON+IRtDs5Mj4sADdmG32pFUruQN6XyMV6atz1CZrXuqq
+	 MtN5aU6rVHbegW12w7Inwx9MGIpvu02CQaLwnO5rjjq+TJtlRvCV1chuEWBvqqQfgH
+	 3D3FZR2oa3QEYP35ls8djF6/C2wKONVoYei88KL/+Q765+kP85MzgoaSq4q3NOUypC
+	 mgOI/nt+t0oZA==
+Message-ID: <9949202e-7eaf-4072-a24c-6119e0eed493@kernel.org>
+Date: Fri, 20 Feb 2026 11:18:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 01/10] dt-bindings: mfd: add support for the NXP SIUL2
+ module
+To: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>, Lee Jones <lee@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>,
+ Jacky Bai <ping.bai@nxp.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Alberto Ruiz <aruizrui@redhat.com>, Christophe Lizzi <clizzi@redhat.com>,
+ devicetree@vger.kernel.org, Enric Balletbo <eballetb@redhat.com>,
+ Eric Chanudet <echanude@redhat.com>, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ "Vincent Guittot devicetree @ vger . kernel . org"
+ <vincent.guittot@linaro.org>
+References: <20260120115923.3463866-1-khristineandreea.barbulescu@oss.nxp.com>
+ <20260120115923.3463866-2-khristineandreea.barbulescu@oss.nxp.com>
+ <20260121021913.GA1704619-robh@kernel.org>
+ <e956750b-0333-4465-b37e-5f460b5e092f@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <e956750b-0333-4465-b37e-5f460b5e092f@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266891-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266892-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,bgdev.pl,kernel.org,gmail.com,suse.com,nxp.com,pengutronix.de,linuxfoundation.org,redhat.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C1C41166C04
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: 93C74166C46
 X-Rspamd-Action: no action
 
-On Fri, 2026-02-20 at 16:02 +0800, Alexis Czezar Torreno wrote:
-> Add maintainer entry for the Analog Devices AD5706R DAC driver
-> and device tree binding.
->=20
-> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-> ---
+On 19/02/2026 12:36, Khristine Andreea Barbulescu wrote:
+> Hello Rob,
+> 
+> On 1/21/2026 4:19 AM, Rob Herring wrote:
+>> On Tue, Jan 20, 2026 at 01:59:13PM +0200, Khristine Andreea Barbulescu wrote:
+>>> From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+>>>
 
-Hi Alexis,
 
-Fairly sure checkpatch will complain in other patches as files are being ad=
-ded. Need to
-speak with Jorge as I just saw this was not triggered in internal CI.
+BTW, one more thing, replying one month after the review, which was
+given to you within one day, means entire context is gone, so actually
+we assume that you will agree with the review, not discuss it.
 
-- Nuno S=C3=A1
+Otherwise, please wait one more month for our response to your response,
+before you post next version. :/
 
-> =C2=A0MAINTAINERS | 8 ++++++++
-> =C2=A01 file changed, 8 insertions(+)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 1251965d70bdfa990c66966cd77f7ab52ae3385f..3d7bd98b4d1b55836e40687a9=
-a3ac9f4935a8acb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1496,6 +1496,14 @@ W:	https://ez.analog.com/linux-software-drivers
-> =C2=A0F:	Documentation/devicetree/bindings/iio/adc/adi,ad4851.yaml
-> =C2=A0F:	drivers/iio/adc/ad4851.c
-> =C2=A0
-> +ANALOG DEVICES INC AD5706R DRIVER
-> +M:	Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Supported
-> +W:	https://ez.analog.com/linux-software-drivers
-> +F:	Documentation/devicetree/bindings/iio/dac/adi,ad5706r.yaml
-> +F:	drivers/iio/dac/ad5706r.c
-> +
-> =C2=A0ANALOG DEVICES INC AD7091R DRIVER
-> =C2=A0M:	Marcelo Schmitt <marcelo.schmitt@analog.com>
-> =C2=A0L:	linux-iio@vger.kernel.org
+Best regards,
+Krzysztof
 
