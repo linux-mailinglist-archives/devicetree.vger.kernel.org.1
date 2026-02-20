@@ -1,242 +1,253 @@
-Return-Path: <devicetree+bounces-266920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266926-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIwKLXJDmGm0EgMAu9opvQ
-	(envelope-from <devicetree+bounces-266920-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:20:18 +0100
+	id QHvFKQBFmGm0EgMAu9opvQ
+	(envelope-from <devicetree+bounces-266926-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:26:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5572716737B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:20:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EFB7167478
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:26:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5F7B53004F2E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:20:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ABB37300D1ED
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902FD32ED20;
-	Fri, 20 Feb 2026 11:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA95033066A;
+	Fri, 20 Feb 2026 11:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="IUz3RbBZ"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="WlDvS1KO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011013.outbound.protection.outlook.com [40.107.130.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266F232ED32;
-	Fri, 20 Feb 2026 11:20:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771586415; cv=fail; b=EM6xtu9U5m5O9NPe5kap7qxSZu2gcGRCg1SpndC4+Kil57rAwfwuB29LZ/SlLuufOFThVkmLLU51x3U99+u4m0U20/oqTpLYQiYrcbYesl+K9ZQjfSoCEEI4XiVsohMSjttmCIYQZOYYVVMyC82sklUDy9kTJWiOISK9sOW1JLE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771586415; c=relaxed/simple;
-	bh=ZqgnzWIe86Q3Yl+ap8Jjgdf2++KDZgf1+K3pg/LOMas=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=JojuFZ31ovbacMn/KH26A5+Zq8tOjmT7sG6SGjParzB4KDXIYl4i+AD+yQ2jQbHYsK0fq/0LeLmj3IurzPmcnhkX01PcUDlasbBEsll6D5xx1ZHGePeb1P7QbQCyhP7LK4z209MQu1U5u7vj/kuXEC2WHoP+iRIptyuXzTEfvdE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=IUz3RbBZ; arc=fail smtp.client-ip=40.107.130.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MHdbkMsWhLcDy4hbCj9pEWXR5Mou/RgCH54Mo0H4UYrwhC1Mc4mAhm0+5HSXuSDNTUiKcY4oCKEH5sUTD5xYmPHA3x2ldpdpUssXHd+JztvHdr9e7H/fnbuyR82AwsRy4nGFYpQxibWx6Se0f0ghLxuSzo+La3inR24E8bHVO1S/fHADpvuniTqAIiK8DqatxiUbjN2rZpCXA7r7KsQu4coWfqPU1VzqgyZEBQqpC+bLRLC/uodzSbXhd8/pGaWU/Kz62h+QMtgJMAIYScU0kqJBBXzSbETrVSkw2Lom7Yq3kVERZCW0lMUpccmLleY1w175KsK+HJF1jB52Mkk3KQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZqgnzWIe86Q3Yl+ap8Jjgdf2++KDZgf1+K3pg/LOMas=;
- b=LyFaAb5rDcADKLhMeneTEn4MdT+ns1uhFAnaRk/UXfjtuY6t7MFfxFVXJ1V+XP9pI2XrJ140Ixovoy6Fao6zaIh+n3oiQFeqWwuqUnL9W/3xpBgmfwPvmg5tZew2k5kcFr4l1fC58pLY0MC5Lwa++tzu90DljSt7DbAmFKLksiz9SHfOpMCUkxCKmVEU15JRKXys0maiZdhMbZ2uQTk9ydXKrh+9h71WzrS44x3UQslEDhtNGlV7Rcm1bVwl7jNVfFxROMtC3oM3tAJvXAkneosLbzqtJTfoS54UAaDY8Zcrwri3QIeLKYw+wLnrmZa/+dn0eqXdtc6fBe9XcBJcQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZqgnzWIe86Q3Yl+ap8Jjgdf2++KDZgf1+K3pg/LOMas=;
- b=IUz3RbBZfZFp3tIZzK6+i1oTO6yz+gfOqo2L2khs4TSstJNHhhlWFLM09EGAQDtKvqXEDb9Z9sRCO3M+YfSZdwyLLkOGJB/6E0Uk3DcK/pWOMEPE4xgZ37kMxvUzt2yFQI5C2y0NqcTxbm7Hg1LNPpPB4Ba8MtUfeYZdUUhRpDq4JKBdleXjgSqjaja0FO6g7Finl3eY9RYNQc0KkeljyaUekOsVeddPJ5xk8zoeOxI1OkH/pYPmjoHZbNq1kC9YR8cRN/G6KXt5vJ/y2M7RdMgTVeDv90+6fitVc32WC4lC5EWmYgdagd7Zq+v9unQY0QtAelx0knRa6xaBx6Ysog==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com (2603:10a6:20b:3f2::13)
- by AM0PR04MB7105.eurprd04.prod.outlook.com (2603:10a6:208:19b::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Fri, 20 Feb
- 2026 11:20:07 +0000
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::e99:f504:ce75:9bed]) by AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::e99:f504:ce75:9bed%3]) with mapi id 15.20.9632.015; Fri, 20 Feb 2026
- 11:20:07 +0000
-Message-ID: <b1ac1eb1-41c6-4267-8ab2-cb5a72cc625f@oss.nxp.com>
-Date: Fri, 20 Feb 2026 13:23:04 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: imx8mp-kontron: Use GPIO/IRQ defines
- in DL devicetree
-To: Frieder Schrempf <frieder@fris.de>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
- imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
- Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20260220103636.9697-1-frieder@fris.de>
- <20260220103636.9697-5-frieder@fris.de>
-Content-Language: en-US
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-In-Reply-To: <20260220103636.9697-5-frieder@fris.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P190CA0009.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:5de::16) To AS8PR04MB8247.eurprd04.prod.outlook.com
- (2603:10a6:20b:3f2::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4760932FA1B
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 11:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771586813; cv=none; b=cO6GdCsFo2gxmRbNjEEbiaDEhfkoBVAWOUbkh7eNExUW6JHxVlMCiFebMIoMAuER7+4UGfwonc1XoS6pR4HJXHv+tbh6PaaM4MKj/UrQ9DR4/siwRfR3u1Xv/J8GNSPZ/teSE+dwGKxplZJJ9t+PjPWKjulpbMTo0Dkspj1COwU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771586813; c=relaxed/simple;
+	bh=m91/Pj6i562vC9RgSAKF0lAmXFt7YMj8wOrD5dUjLts=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=l/C4v34vmRr8eOIlU91ffdPCWYjLPyapAvuc6nRYr8qvHV3Hi9X/kGnKYaTC+0O5QBY4l7Ikw/fjMQi/Mdf85icpDm/oJVChpYu4Tz7zH0OLDWcIZ0Shp4N3LjFbvRx2vLicjUXzygGind5qkXkPWjCSYKNBMkfIO+GXVVS2dLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=WlDvS1KO; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-65c01595276so2866188a12.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 03:26:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1771586809; x=1772191609; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=83zz9Fx5gsW9BIv6c8ksqWZjM7IcWR5idqwhbUOB91Y=;
+        b=WlDvS1KOyibyFVCCqJYzkavPTQYwMCrJrR1gCfkhpkNF23AFSKSY+Up0Iv6MUlmgxE
+         PXDuz1A/97WtcAr0YtYUGl7rJ68Bh/eE6CONVuBcbcodcwMl5QgtPKDX6VNHyDzCpc8u
+         H0dkeiQYKV24KqYmXnT/GjGoGJKHYR/a+a6k9xkGUjFaZq+sB99hUzVrr5ot7LbV/s1L
+         vVXJF3vftRivB5EREc9uShQmwh35W8/9GtfzeRuISyBK/3U3D/wZpWRDstRzvYY2PVxs
+         hKVSH4Q5Tz605zqKfqa5PSxa4Oi/KgW4IFVmuEPejgHiNP1bbBvnI4Ozo7FsnIsjpQZq
+         fO/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771586809; x=1772191609;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=83zz9Fx5gsW9BIv6c8ksqWZjM7IcWR5idqwhbUOB91Y=;
+        b=Frfj4gsMV2/XyLsE8rWyXlWO9S7WyBHJuIjHClmby5IonQ+y3Gw47sSUDVrMozQpES
+         p61bXqp3RvKdvB2O9C035KUPeVlRddmYnAU1hFrntvPFhCyd4EzhCYiiWu62EZ4OZ1WM
+         0QsI+MbJedYIoevfq1pB983VpUMNYpDg3CqPHvw/IH1Tr2U3kb7arm1Gv+dpD2WX2wow
+         l+EdoHtn8o6HQU+BJ1nSOT7tbBr7x0JlFzfW3RSbzN8Q1x+gQAR/oanDevND5BlPbGon
+         k/+YoXXRvKGIVa4p/JgPf6z8p5XfISUIu3S8Gtj01WEBD03X2rEER1k981Xbt+N68mEK
+         iaog==
+X-Forwarded-Encrypted: i=1; AJvYcCXZ+xU8v4X4NKbLv9k6zFzu0isaS+fpHX7IhwlJMoDAEFEGvMosamTleGl1BvADExoLdO5VKnPRiCkQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoVhZgDBISYr7yJUFf/wfkaATUxUubb4FTlzZmz7X+97J8EvFS
+	YFtapF4lHDECQHW9ecrLxSMxrKvD2JYDQo4sTwfrK/xU3vsbOpgMQer9GZoRPzXr8mQ=
+X-Gm-Gg: AZuq6aIrsdSiD5uMjOueJZE3WvzrxVP23HW4tuJVQy4OX0dzF5CCFTUtLUnTKqWADKQ
+	N1lAM/hMUFlRbh2ZjayWB3UI+ghKHDReyNN8C1+tDR8f06DQ13J4ni7oQm449iJoD1iZp8Vydla
+	FW8ktgQRX/VFkOX4TTkHjytuPsIcnaAby1icS5qAJ1JSBSLIzR7VG9ETskvsBTdsEWF6iPmx0mW
+	6g/xApePCNvDVOq0IPeqnyxD4sdE9JHd3dPOz0HH4Qt6mjD07HU/T1dKZLWGBE5Fg48wXyKwshC
+	9Gk6TbvY53XdOAmISTRrj78g3jx09NTDeAPpZ3YQQJGP2710x+XiYZDMNJeS3DU9aw9tJbxOEp3
+	N/7lv3VmoxHXYajqr40eTE0+pKVeEiC4sRm8NEV155yJ3+aGMfHGcnpF1pwOuCDA/XRIUL5FaJt
+	SmFk6OTnt/vhqQJubgvQz1um4CJjk3QnqF6WGZIy2yeProTuxC3E48SqqSnRrUF1Ur3G8avwuLZ
+	U9c9KU=
+X-Received: by 2002:a05:6402:5186:b0:659:454b:7167 with SMTP id 4fb4d7f45d1cf-65bc7a751a0mr10415695a12.23.1771586809215;
+        Fri, 20 Feb 2026 03:26:49 -0800 (PST)
+Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65bad29d295sm4987701a12.8.2026.02.20.03.26.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Feb 2026 03:26:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8247:EE_|AM0PR04MB7105:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20b3e181-1655-41e4-6da7-08de7072007e
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|7416014|19092799006|1800799024|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MUVyc0dBNVRncGU4cjhNOS9YY01pNmlDK2gyTEtjRjF3N0phaFI4UnJIelNT?=
- =?utf-8?B?TFJGTkxKZTNDalMrSmtJWko3enBwUXBGemJVK1BhS3VsMmxHZ01XaUJ3NTBN?=
- =?utf-8?B?Wm1pOTM1R3BYKzkwVDdrM1RqYUZodTdkNXVZTWRrTGw1dnJ5TUFnWFNVK3Ev?=
- =?utf-8?B?VDJNMmgzckswRVVaaE9LNms1WG4vNVFtay95ZUZhSTRHaTJmSG9kMWhkZGpy?=
- =?utf-8?B?R1crMjBTYzk1STRDdHBGbHVrQ2JBOG5wbWhnSzBmL0RNd1hwMzkzcnM1RnN5?=
- =?utf-8?B?RHl5ajAxZTREZll6Z21QSGZDSHl5VEZtejVMQisvTGpBandtOS9hMkkyMHI4?=
- =?utf-8?B?T0YwRFlYTG94ZXRjaVF2aG9ldHRPdU1GbG1uWEN5M1JlN0hUUUdsZTRMOXAv?=
- =?utf-8?B?YnVxWGNuL0tvREM2bzhIeStvY1JvQk01dzIrYzdjVWlJK2ZMRDFUOGtVUjhz?=
- =?utf-8?B?STRsMFQzUnRobmora3Era2s1ZVkyS2ZENEVVM0dzR0k1U0NoV2o1NTZwak94?=
- =?utf-8?B?cVpBblU5dzBvYWxPSEdvdE4xVUx2TjFZeTFPYmVZd2lpQll0UTRnaWZNVXhX?=
- =?utf-8?B?OXEvdlFlL2xHeUxDRXc5Q2IxR21jeHZuS0xBb2lVaEdDMFBWVVpyR1BuRytL?=
- =?utf-8?B?a3l2cDMvUi9ZRVV3ZzJYc3loZkZvVHp2cnRZOU5BN2hWWDZXS1JiTW1VNjJU?=
- =?utf-8?B?V1g4c2NqQ1NQQXlodU5KNjFhUDU3b2Nkbms0RDlGRTk1Z25uNk9vbmY5Q3d6?=
- =?utf-8?B?LzcvZ3lvQXRtak9ZY2N2Y3BuOUE0MFZVMTh3ck4rdUhXYUt4Umd2SldZNHN0?=
- =?utf-8?B?eVYyQXhuMnRMUHYxRVRiZVltQTIrUjc0YnN4dWlCdWY3T1dDcmJyWjl2RGpZ?=
- =?utf-8?B?Mko5QVNGTVVpUHY5Y05MeVB2a29yRlhuRHpQMUlIY0N4Zks0b0hKbWJZSzI5?=
- =?utf-8?B?dVBSQlhMWE5VOE5raUZ5T2lHK1ZTYnJGd0dMdTkrc01la3pQWEU3SVNLQk9O?=
- =?utf-8?B?Uzl3Z21RN0ttR1pzUEZ0ZldiYTdyc25tejhxaHVFSWFKTkhpc0R4dXFwdm9W?=
- =?utf-8?B?OS81UFRoTWZJM0tXRURMZzZJQ2NHR2hBK0U5d2tBUHBCTG5jS3NJVk5yK0hN?=
- =?utf-8?B?QSs2Zkt3VW9xdW54cjRoTlR5Qk1LVmFxenJmcitJbkFtckV0ZnpEYkxxTWlw?=
- =?utf-8?B?cGhIRGtaVzhmSkV0M0U0aitDK080L2llN3NKUTVENDJSZURaV0dEc1VmOGdl?=
- =?utf-8?B?Z2s0akcySHJOb1VieFd2bW9CUlVrUlpZdU9ocHJpT0h1UDRpRjJZbHBoNUZX?=
- =?utf-8?B?UHlpQnYvMVpWbjd1RHRsVUt6ZUxJQVNOSVdJZFNZNE00YTlFTVQ1Lzg0bTNC?=
- =?utf-8?B?b1FtRGVqcWh3a3lwYVEvMzFNQUh3WmVTY3VHajNxSzNDL0FpdnpTZzhqOWlo?=
- =?utf-8?B?MzFkbDA2VFdlTEVLdmpFMkZoVEFiYXZQZGcyb3VOdFRIVEo2V0xNSlRGRUQ2?=
- =?utf-8?B?aitKUFV4SkVDTm1UVkRCbUpmeUpDck9lV1NFNFdEc3JmRXRtN2dtZnBnUDVC?=
- =?utf-8?B?bkUvRFplaDByb0NQZWx5VVV6VmlwRHA3SVdOYjM4ekRleGtSU2dGVGo5Zm5n?=
- =?utf-8?B?cU0xOWtRV0lSSnhsWmsxNzhTWTZSNFg3ZXU5bTNsZko5Z0JCTFYzaU1FMXht?=
- =?utf-8?B?MWlscmJod0xFVWFvSmkzMFJGWHN5LzJpQkNUWWtvSjFmZ0ltTkNNUUxJU3lH?=
- =?utf-8?B?Yy80Y1Zmcnh6bnZyVmd3VHRPLzVieXB0WXVkd2Z0a1V3eGtrV3ZsdStTdUkv?=
- =?utf-8?B?RUJUdGZlZC92TU1zZ01CZEpiVS9YUkwrRzRPMnJqa1UzTXU4cDBINVNYM2d0?=
- =?utf-8?B?Y05GaXBxY3VheFVVVlZmVmpGbHNaemF5QmZ4Mmw0cUprZStoZ2pSc21VKzlB?=
- =?utf-8?B?RU5ESTRMMGhoMmQxeXN3NW12dzNoSFJiWG5scFA1SjNDQkl6Zm5nQk80d2pM?=
- =?utf-8?B?VjNrandMaWdERUVzQjNjdHJibk44Z2lEazErUU05bkkxSW5tNmRrNUMvbDU3?=
- =?utf-8?B?ZUx4RTI2UnBDVWRJZW5MN0V3Wk85SG9ZcFhzd2xJaDAvU2dnV2hqQXV4WTcz?=
- =?utf-8?B?enI0TmJCejIyMHptTWdGVmFYNHc4ZE5WTmlOV0RFWENEdFMyWTF3U0pyTFdP?=
- =?utf-8?B?RGc9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8247.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(19092799006)(1800799024)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?K0M2UVZtMmZzeWQ5N3FDdzVwaUZXQ0t3WTdydDlwaHRSTUpiRWtaZkdqM1dx?=
- =?utf-8?B?aVdsVTduZDVsRXpRNjNJdmZ6M0MxY0IxS0t3amJUeG91a3o3aHhGc1RxOVpX?=
- =?utf-8?B?SG5jZTl1cFAveHBMVnJYU2J1QjUzSnJNcW9HL0NRNTI4ZjdwY2ZpeGJRZ0Na?=
- =?utf-8?B?ZUtoVjcreHRTRmlGeHR4R2YwQm5MTmlLOU5MaUM4QkNqUHpVeTNyb2pTWXl5?=
- =?utf-8?B?WGVyQVV6UWJxNGI5QjhtSThyUDBzeDZVQkZrZXVvU1ZsRU9jb1VuS1BmS1o5?=
- =?utf-8?B?V3J1d2Z4S0Z5VXlEVGpvSFFwSkwwbVZneHNFMDc3ZXo0RlVSNEVmdHpUeWF3?=
- =?utf-8?B?OTRndkJXZTNodnppS1cycGlxNXBhQTlLNjY1c2pKTURkNlA0SVdOYmZVeXZ5?=
- =?utf-8?B?NnBtbEh1NkkrQUhpZUd6RURIRzRQR0Jyc2tnR05CdTd6QTl2d0k3NXRFMEJw?=
- =?utf-8?B?RWRZUXk2NHMycFMrWmpsUHpBS0FQQmZlTkJmZFZIU0MrZHhXckcxZm1TaGZs?=
- =?utf-8?B?bEw3RHo1bG5mdEZxeFNsSkdhZk1Pa2FNOUtjVkoxK3VZb1o3RU1JUEpTd3VC?=
- =?utf-8?B?YkhSWGNaZ1FRUjh4RVNZMSs2QWd4eS9GYjEzY1F3OENzUEgrZ3pVK0s0ZUp1?=
- =?utf-8?B?bEM2RkNhaE1lQi95K08xbDVZQlhSQ3pVZEhjcFdlcURVK1lTRXJ3ZEQ2eDNz?=
- =?utf-8?B?bjc1VDcxdFhjdzViRGcvWXBXNEtQMHlDdG92dFhPSTFKaFVja0dyeXZaWUtl?=
- =?utf-8?B?UEdYWEhKM2drc3AvU2NyRGh2WmJyM2NYTVVHdmp4RkNiZGxDa29HSXBRcFZl?=
- =?utf-8?B?THFuUFRQR1l2THN3QmI2cEdROFgxdENOWFN2RklnOFJvMEVqMVFwVUNwZUVs?=
- =?utf-8?B?M1hZc0hwSWw5elUzQ29rYWxhMXJHY1ZSYWtPRWM2Q0NjWGtPVjFjTzRtYU5H?=
- =?utf-8?B?SGYyMHdiQ1pkOVRVTmdPcmp1cGhpL3hLaE5xVFdHV1BEamhBSDVFNEQwRjRo?=
- =?utf-8?B?UU5zVnY5bWpQUDhCR00zc0V4RnZnMVF1dXBteTA0cW13WTRscTduMnd2NHRx?=
- =?utf-8?B?aWV0cjl6cVBmVW8xdFA1Rm12TXRFTDQwRGlFcFVseHBCZXlsTnozUVIranZt?=
- =?utf-8?B?SEs0djhad3NLb3pZbDk2dXBGOGRtSEFnOHJ1ejhyb2NncEFjRU40RFRPRXpp?=
- =?utf-8?B?RkdJQm1MbUp2aS9USkc1b1BkdlNsbE1yb2ovaldUNWsvY3BWNVUrb0ZmVVlM?=
- =?utf-8?B?dzZicUl6VTRrVFhJbkZYNm1lajcwU3BYRE9OSm9QZHZUL3c0N3Fmc29TVzd3?=
- =?utf-8?B?alh5MlQxUUhNZDByWi9kL2h0bGY1dXArV1YrSnF4TnUvQWhUTDk2dmJKNXRy?=
- =?utf-8?B?N3FBUnlDQWxTbDlJMnhoempUS2hjM01pRHB2MjhmSW5NNTRrRzZYRUpNY1JD?=
- =?utf-8?B?TGNra3lIL2FpZDNNMWs2RWVuRXFtNE4veDVXNDVHR1I5Q29qS2JiQXduMTNt?=
- =?utf-8?B?SmR3OWVCUHpmN2c2VGZFNGVveGNubjFaWTdBWVJIcHg3Z0RjMDkxbWxRMUN3?=
- =?utf-8?B?WklZb2FYQ0FWNlYxd2hrU2VLMTNHaDlTeUNNL3AxdnZPMW5jS2ltMVhwN1lM?=
- =?utf-8?B?c0R4UVVXaUVXeTNWV3U4L2UvTHBQRm4reG5oK252U0dTTFdqQ3FtQXpqU0h2?=
- =?utf-8?B?U21ldktsNFlNQnp0ZUZDUVJ0b2JCSE1BcythUEJZdVE3aEVFREhydk11Y2xX?=
- =?utf-8?B?UmpkSEZWUDBKeVhTUEl2WGl0dmhMWHdPMmJMVUdpRzRsdmQ4L0wrd3pjR2JC?=
- =?utf-8?B?SHZ4aCtpNmJyRTBrK2FOdGRpa1piRmJGRVJqUy9TYnRiWFp5cUxMeENWYlZC?=
- =?utf-8?B?bFRJeFlDRTVRbVNMV0pvTTd1Qnc1S2F1K1p2TURrbWRUdFRZVUNsakNsTWRj?=
- =?utf-8?B?dkkxbmFOK1NuU2pWeE4xb0hJSk0xQUh2YUErZnRNZ0REZG12RW15RFNZUnVi?=
- =?utf-8?B?em1nRXVBRU9ZQXdDL0FMOTBvNk04UHRUQmtzc2E4d29HSGJqbmszRWpOY3Jx?=
- =?utf-8?B?UEJCRFdhRnlmdHdlZ2FaL0x1UnBHYlR5dkFJVEhHNVZKQVJqQWlETW9xa3lH?=
- =?utf-8?B?MmtwenNQaDVpQ3JlckdiT2pXTWZVRnl3VElHMHRxd2VBLzVKMUpDMzY4a1Rz?=
- =?utf-8?B?UHl6dy9jb1NINGR5dXJFM3VudUV5T1QwQ0YwRk1YcTkvbnZhV3BWZFc4QUwy?=
- =?utf-8?B?dm15cXlQMHVrRTNRUENpb2QrSEdVVnZpMlhXSVBBVlZOWXNhVGxGdWpJSTFS?=
- =?utf-8?B?Tm9TSjAvK2FxVjhuRDNPYVlyL1MzcnlUZHZ5SFd4M2tzTUtFWnYxdz09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20b3e181-1655-41e4-6da7-08de7072007e
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8247.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 11:20:07.2235
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MVpteax3RtV3pRqB+AYuXQiRWpFaX4KCgLrPEPwHP1DkK/iut1PuOeLLMDRqbgT4MJFhnLyP39/CeyHZvjPNlQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7105
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 20 Feb 2026 12:26:48 +0100
+Message-Id: <DGJR40B5R6MB.1V4ZK5SW1PXAV@fairphone.com>
+Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sm7225-fairphone-fp4: Add
+ battery temperature node
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Luca Weiss"
+ <luca.weiss@fairphone.com>, "Jonathan Cameron" <jic23@kernel.org>, "David
+ Lechner" <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, "Andy Shevchenko" <andy@kernel.org>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+ "Zhang Rui" <rui.zhang@intel.com>, "Lukasz Luba" <lukasz.luba@arm.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Laxman
+ Dewangan" <ldewangan@nvidia.com>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, "Hans de Goede"
+ <hansg@kernel.org>, "Jens Reidel" <adrian@mainlining.org>, "Casey Connolly"
+ <casey.connolly@linaro.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260220-bat-temp-adc-v2-0-fe34ed4ea851@fairphone.com>
+ <20260220-bat-temp-adc-v2-5-fe34ed4ea851@fairphone.com>
+ <85ce1f2c-f5cf-4e97-9611-4aed03f69cd7@oss.qualcomm.com>
+ <DGJQ4WLIML3H.GAO7T4L3MCJM@fairphone.com>
+ <a422e087-a91c-4bb2-9d95-e1cefc9a91bf@oss.qualcomm.com>
+In-Reply-To: <a422e087-a91c-4bb2-9d95-e1cefc9a91bf@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.94 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266920-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266926-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[kontron.de,gmail.com,pengutronix.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[fairphone.com:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.baluta@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,oss.nxp.com:mid,NXP1.onmicrosoft.com:dkim]
-X-Rspamd-Queue-Id: 5572716737B
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4EFB7167478
 X-Rspamd-Action: no action
 
-On 2/20/26 12:36, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On Fri Feb 20, 2026 at 11:51 AM CET, Konrad Dybcio wrote:
+> On 2/20/26 11:40 AM, Luca Weiss wrote:
+>> On Fri Feb 20, 2026 at 11:00 AM CET, Konrad Dybcio wrote:
+>>> On 2/20/26 10:19 AM, Luca Weiss wrote:
+>>>> Add a generic-adc-thermal node to convert the voltage read by the
+>>>> battery temperature ADC into degree Celsius using the provided lookup
+>>>> table.
+>>>>
+>>>> This will later be used as input for the fuel gauge node (QGauge on th=
+e
+>>>> PM7250B).
+>>>>
+>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 83 ++++++++++++++=
++++++++++
+>>>>  1 file changed, 83 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/=
+arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+>>>> index b697051a0aaa..7857003099a6 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+>>>> @@ -108,6 +108,89 @@ rear_cam_sensor: thermal-sensor-rear-cam {
+>>>>  		io-channel-names =3D "sensor-channel";
+>>>>  	};
+>>>> =20
+>>>> +	bat_therm_sensor: thermal-sensor-bat-therm {
+>>>
+>>> nit: this should be a little higher
+>>=20
+>> meh, it's surprisingly easy to miss this sorting stuff. Will fix in v3.
+>>=20
+>>>
+>>>> +		compatible =3D "generic-adc-thermal";
+>>>> +		#thermal-sensor-cells =3D <0>;
+>>>> +		#io-channel-cells =3D <0>;
+>>>> +		io-channels =3D <&pm7250b_adc ADC5_BAT_THERM_30K_PU>;
+>>>> +		io-channel-names =3D "sensor-channel";
+>>>> +		/*
+>>>> +		 * Voltage to temperature table for 10k=CE=A9 (B=3D3435K) NTC with =
+a
+>>>> +		 * 1.875V reference and 30k=CE=A9 pull-up.
+>>>> +		 */
+>>>
+>>> I think this looks good. Is this data going to be correct for all/most
+>>> devices (i.e. is there a single battery sku)?
+>>=20
+>> Yes, from my info there's just a single battery SKU, so that makes it
+>> easy here.
+>>=20
+>> For Fairphone 3 there's two battery SKUs:
+>>=20
+>> * (Fuji) F3AC with NTC 100kOhm B=3D4100, ID resistor 10kOhm
+>> * (Kayo) F3AC1 with NTC 100kOhm B=3D4050, ID resistor 49.9kOhm
+>>=20
+>> In reality, one can probably ignore the difference between the LUT for
+>> either B value since it only differs by a marginal amount, but
+>> conceptually I'm not sure how this should really be resolved.
+>>=20
+>> We could have both battery definitions in the dtb, and then the charging
+>> driver could determine the battery that's actually present in the
+>> system (based on the BATT_ID measurement), but given the design here
+>> now, I'm not sure how this temperature lookup table would be propagated
+>> to the rest of the system...
 >
-> To make the code more readable, use the macros for the GPIO and IRQ
-> settings.
+> The path of least resistance (pun intended) would probably be to make
+> generic-adc-thermal consume an ID channel and accept a number of LUTs..
+
+Not the worst idea ;)
+
 >
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> That sounds sensible since most battery ID mechanisms are probably also
+> ADC-based and one would hope (tm) that the values output by these ADC cha=
+nnels
+> would then be distinct enough for the driver to have an easy time confide=
+ntly
+> selecting one of the options (or a fallback)
 
+Charger / fuel guage and everything else battery-related would also need
+to get the correct battery properties for the actual one present, not
+just this generic-adc-thermal driver.
 
-Typically your Signed-off-by tag should come last so you need to swap S-o-b with R-b tags
+But I feel like soon DT maintainers will say that Linux shouldn't
+dynamically detect hardware that's present and the DT should be the
+absolute source of truth. That works fine in simple cases, but in case
+of interchangeable batteries, display panels, camera sensors, this won't
+work. *Something* needs to determine what's actually there.
 
-in the commit message above.
+And for most of the ways to detect which of those are present in the
+device that is booting, you need half a kernel to power up the various
+hardware and do some basic communication to figure out what's there. Of
+course you could say that's U-Boot's job for example but not sure you
+want to add a CCI (I2C), ADC driver and much more...
 
-With that you can add my:
+Regards
+Luca
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> That said, this is just my guesstimates and perhaps the IIO folks could c=
+omment
+> on that
+>
+> Konrad
 
 
