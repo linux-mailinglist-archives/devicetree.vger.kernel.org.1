@@ -1,244 +1,151 @@
-Return-Path: <devicetree+bounces-266780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266781-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ELJhJw2/l2mm7wIAu9opvQ
-	(envelope-from <devicetree+bounces-266780-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 02:55:25 +0100
+	id hBogD3rDl2m58AIAu9opvQ
+	(envelope-from <devicetree+bounces-266781-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 03:14:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C8F316429D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 02:55:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BCCA16433F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 03:14:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8ED783015881
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:54:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EA2DB301D6B9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 02:14:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A870222B5AC;
-	Fri, 20 Feb 2026 01:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA37D273D77;
+	Fri, 20 Feb 2026 02:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Hc8KHx1O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="axdAaPgl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6807723AB8D;
-	Fri, 20 Feb 2026 01:54:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82382727FD
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 02:14:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771552493; cv=none; b=kuZTiWHWyLvb9czkvnMFvhHC4bjqlJXrWS3ubjBGjRbcMcikCosemsPT0tSMQVK5RfAQCzKKL/7eLltLarapONxIOg1j4uROQx6AJek7NpfiWzSVVY2as6MksxxeWNze8FLfHT6XJgmTsWde+yNOzMy/+Nr8SamhFfg9NfnbwgA=
+	t=1771553653; cv=none; b=HThwHfBOOFDKo2l3qo2Y/rS51gcI3yiU/jT5EHmd5S2tpUCFiCaK+ltTQFwU21L0M50qcLxO5UIFrMd597eHlxCCZQfaQMDtdgG8KhzONgQuexvApkklXzZagbvPlWqD8ioho/hyyq4cSR1h+kaeeyfyl+l1whWfUBKIzeWz+4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771552493; c=relaxed/simple;
-	bh=amj2/r37tEQ+KwUHgqjeGVevgv1Vv4eiGifbH6nzByA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bJGoY4k1/W232FsHigT7focKZ0qMLUQ5qW7OBtscyvdAODPT2h4MghXl1ikKI5es0aMqy+ofUyngRV1ssPX89pENRDjEqMsOuH8hruEebqxTge/tg5qIcJjYaEZ1QNtCYUT6O6b4UWwVoL9G+gQtVXIg2vbHMBAE3CHKFhgjNlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Hc8KHx1O; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771552490; x=1803088490;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=amj2/r37tEQ+KwUHgqjeGVevgv1Vv4eiGifbH6nzByA=;
-  b=Hc8KHx1O1ylYpvwGaO3ZfOt/UE9Hiapi+7YYHoGTHsAxtySyXGWjOwhu
-   zr1eASdwvbObXsjAPJSqnic41OJxImACuw0fqsO5yI4yXl2xZpgIhE5NE
-   1K+W1Uw4un+ilO2690sPMugktNMzBkGjN12xMm0ASJcV9t8cRqePhNrLN
-   N+nAgwZuJZ8qxK2ETRdWHGiji6SU0Q5U/IaRZxN7Lb0g2I/QBRoz2hfMJ
-   n1HGjnip/7Y5U1Ty6XzIRv/JHvjQ84Q/fNfZfIbh2fh+sxofrAAy12kYy
-   iu1ae2oDVmm1WNNEztKi5cJeQuw7+NakPAilQnVotzmsn1YS2fUQlxUUD
-   w==;
-X-CSE-ConnectionGUID: lli2rmFcSHCDHUOr5YdYiA==
-X-CSE-MsgGUID: C5UhKLkqTR2ybGbJ9PGyCQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72826484"
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
-   d="scan'208";a="72826484"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2026 17:54:49 -0800
-X-CSE-ConnectionGUID: IlQDyiYzS32viGzyeTeczg==
-X-CSE-MsgGUID: n7RmtbGaQ4+m1lzx+4SGhQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
-   d="scan'208";a="214733473"
-Received: from igk-lkp-server01.igk.intel.com (HELO e5404a91d123) ([10.211.93.152])
-  by orviesa008.jf.intel.com with ESMTP; 19 Feb 2026 17:54:47 -0800
-Received: from kbuild by e5404a91d123 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vtFj9-0000000046z-2yB1;
-	Fri, 20 Feb 2026 01:54:43 +0000
-Date: Fri, 20 Feb 2026 02:54:42 +0100
-From: kernel test robot <lkp@intel.com>
-To: Ian Ray <ian.ray@gehealthcare.com>, Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
+	s=arc-20240116; t=1771553653; c=relaxed/simple;
+	bh=AlsdlHEWg1GT2mcNC5VULG7jZD0syOSdProtK8PnkGo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WwvOFdmhXnLQuYqBQMdZxElf2kOf5+Lyy/rGFzPxU5JMcrDaEfjM3aWcQNzLNz0OsJWEW4e9jkZNAZ9yFmGOvztJ/7Ljfi8qupmVU9Qu+khFyLqwg7TOKzdNrWM/fsKA/8X9MRlE9UAdPswSlmp5R8EUupcbm5CeO1bawofnPR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=axdAaPgl; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-8217f2ad01eso1662244b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 18:14:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771553652; x=1772158452; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=t3es94jlcNTS37tfcja1nmQeDCIBs8JooU5l0G5BheY=;
+        b=axdAaPglYb8UKogN3DzTIO8R8x94VCC9sYNLoAVoBgrBl1PZ7m6udSd/GQNN2ZEgEv
+         Pkypldpi/2HRS68zCf8817X1zjJDEkB1dB+wmjA+8T+DfiU+NOZ8bh+QjAqjtOfygn6j
+         wvX0vdFH7Gqlq0Skvfu0klZeQPRRG+uUy7SvBW9aN1+YLGbtAkyNxHzQusN4i/3RiSaM
+         ESO4sfnzrw5mKdbrDRX01svrwY0gA818gPF04cR0Hap3OlvyYsVCSA5VoLGnEVJ5IJau
+         iObfTAJGnkUND284oU0yq6l2ZDb0/UnHP0HCaXWNTN+b+zB4/2EkZyYaA08i/3duWtPT
+         GZLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771553652; x=1772158452;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t3es94jlcNTS37tfcja1nmQeDCIBs8JooU5l0G5BheY=;
+        b=D/lrUj07g0/YKHjYCI+heMvLe7UMUTMOb5Hjhljlpd8COqoq/CuVcLkdJhiUgMjVlO
+         mJNTqjroLguRob78hjzGXkzBMbinbOEs/hvSCCBouA1vYQC6TYHivysO3OQMnhx+VLD6
+         +bbdN0upvZO/Ot7Tb//ESkqQIubCE+gKFFmIbp+zT+Mh1zVhEgaPD37GGvu3DbKDcOxT
+         cEItDSxO6t80e/KNUQFzNG7k3UcTJXl/L2d4drpJtBG8DcjboHZmF3aH89v2eT05u/Rm
+         zM0r7x41PLVJ9qBMiSOpIarpTnAaDOw+LeqbI0SphRhLTf3Z14IRASxIMYv7+jcj/XxZ
+         l3zQ==
+X-Gm-Message-State: AOJu0Yzz4f/biIIgYMm4CTee1dO8Z0nGckFIsefAY2Mv2a4C7mLWvvgz
+	x6Nj2kbgO6ROMEO+dFZRQ3Ii4nwqPdlKpaykxq3yfNJqweqcFsQyj7d0/++w35WT8GY=
+X-Gm-Gg: AZuq6aLlqsHRbbLr2kO7SS+6LUd0E3erbbY0coj7C6YAG/1voGfpavSm6Rd4ODrAWKK
+	JQxguFEvzVsKnb1nl/F6qg5Isf7VRg1GBNRZ71ggnVEN+SVOTFE0ujINqTdyLnAJzTpNAjUFgqM
+	sbn9EJjPNS2J0/Kgs9zhfQ/AJQvb0kWgtFf4Y2gjKc/3lPOqMvMMQVMeD46bUX2VVDZsftJRTD9
+	g/Y6rS3l6bM9YlNpOjxDa8ag5lTy2YkNoudh3TeQImu7KhQmDjJyj6xiNYgP0UOK3HEDl9Zv0Pa
+	fbS2ihOQGhoFSZc80mUdQaJsurpWRtKnTogVjrN27ilSr2bVf28EWnaqgHOx4bAXRFIavKhLjE7
+	Qy1MvMXo/C1EcLfmLQBuSLIrUjxG3wl1z5YnJpDK7jnkFEZI8iM7eLlga4LxMnT/gvbPl
+X-Received: by 2002:a05:6a00:1d88:b0:824:d179:2105 with SMTP id d2e1a72fcca58-826d0973035mr98269b3a.56.1771553651799;
+        Thu, 19 Feb 2026 18:14:11 -0800 (PST)
+Received: from ryzen ([2601:644:8000:56f5::8bd])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-824c6b69b13sm19607225b3a.30.2026.02.19.18.14.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Feb 2026 18:14:11 -0800 (PST)
+From: Rosen Penev <rosenp@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, Ian Ray <ian.ray@gehealthcare.com>,
-	Bence =?iso-8859-1?B?Q3Pza+Fz?= <bence98@sch.bme.hu>,
-	=?utf-8?B?VG9tYcW+?= Zaman <tomaz@mono.si>,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 2/3] hwmon: (ina2xx) Make it easier to add more devices
-Message-ID: <202602200201.hafkm9wo-lkp@intel.com>
-References: <20260219130127.87901-3-ian.ray@gehealthcare.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM5301X ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 0/5] ARM: dts: bcm470x: set MACs where missing
+Date: Thu, 19 Feb 2026 18:13:48 -0800
+Message-ID: <20260220021353.40554-1-rosenp@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260219130127.87901-3-ian.ray@gehealthcare.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266780-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[broadcom.com,hauke-m.de,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-266781-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 3C8F316429D
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8BCCA16433F
 X-Rspamd-Action: no action
 
-Hi Ian,
+I believe these predate the bcm,nvram driver, which makes this
+possible. Downstream OpenWrt currently assigns these in userspace.
 
-kernel test robot noticed the following build warnings:
+Rosen Penev (5):
+  ARM: dts: bcm4709-linksys-ea9200: set WAN MAC
+  ARM: dts: bcm47094-linksys-panamera: set WAN MAC
+  ARM: dts: bcm4709-asus-rt-ac87u: specify switch
+  ARM: dts: bcm4708-linksys-ea6300-v1: specify switch
+  ARM: dts: bcm47094-phicomm-k3: specify switch
 
-[auto build test WARNING on groeck-staging/hwmon-next]
-[also build test WARNING on robh/for-next linus/master v6.19 next-20260219]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+ .../broadcom/bcm4708-linksys-ea6300-v1.dts    | 45 +++++++++++++++++++
+ .../dts/broadcom/bcm4709-asus-rt-ac87u.dts    | 37 +++++++++++++++
+ .../dts/broadcom/bcm4709-linksys-ea9200.dts   |  7 +++
+ .../broadcom/bcm47094-linksys-panamera.dts    |  7 +++
+ .../boot/dts/broadcom/bcm47094-phicomm-k3.dts | 43 ++++++++++++++++++
+ 5 files changed, 139 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ian-Ray/dt-bindings-hwmon-ti-ina2xx-Add-INA234-device/20260219-210940
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20260219130127.87901-3-ian.ray%40gehealthcare.com
-patch subject: [PATCH V2 2/3] hwmon: (ina2xx) Make it easier to add more devices
-config: x86_64-rhel-9.4 (https://download.01.org/0day-ci/archive/20260220/202602200201.hafkm9wo-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260220/202602200201.hafkm9wo-lkp@intel.com/reproduce)
+--
+2.53.0
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602200201.hafkm9wo-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/hwmon/ina2xx.c: In function 'ina2xx_is_visible':
->> drivers/hwmon/ina2xx.c:722:25: warning: unused variable 'chip' [-Wunused-variable]
-     722 |         enum ina2xx_ids chip = data->chip;
-         |                         ^~~~
-
-
-vim +/chip +722 drivers/hwmon/ina2xx.c
-
-5a56a39be7ffb4 Alex Qiu      2020-05-04  714  
-814db9f1b8ec1c Guenter Roeck 2024-07-24  715  static umode_t ina2xx_is_visible(const void *_data, enum hwmon_sensor_types type,
-814db9f1b8ec1c Guenter Roeck 2024-07-24  716  				 u32 attr, int channel)
-814db9f1b8ec1c Guenter Roeck 2024-07-24  717  {
-814db9f1b8ec1c Guenter Roeck 2024-07-24  718  	const struct ina2xx_data *data = _data;
-de0da6ae1908b4 Guenter Roeck 2024-08-27  719  	bool has_alerts = data->config->has_alerts;
-52172ad87a22ed Wenliang Yan  2024-11-06  720  	bool has_power_average = data->config->has_power_average;
-0337abb760db03 Ian Ray       2026-02-19  721  	bool has_update_interval = data->config->has_update_interval;
-814db9f1b8ec1c Guenter Roeck 2024-07-24 @722  	enum ina2xx_ids chip = data->chip;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  723  
-814db9f1b8ec1c Guenter Roeck 2024-07-24  724  	switch (type) {
-814db9f1b8ec1c Guenter Roeck 2024-07-24  725  	case hwmon_in:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  726  		switch (attr) {
-814db9f1b8ec1c Guenter Roeck 2024-07-24  727  		case hwmon_in_input:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  728  			return 0444;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  729  		case hwmon_in_lcrit:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  730  		case hwmon_in_crit:
-de0da6ae1908b4 Guenter Roeck 2024-08-27  731  			if (has_alerts)
-814db9f1b8ec1c Guenter Roeck 2024-07-24  732  				return 0644;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  733  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  734  		case hwmon_in_lcrit_alarm:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  735  		case hwmon_in_crit_alarm:
-de0da6ae1908b4 Guenter Roeck 2024-08-27  736  			if (has_alerts)
-814db9f1b8ec1c Guenter Roeck 2024-07-24  737  				return 0444;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  738  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  739  		default:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  740  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  741  		}
-814db9f1b8ec1c Guenter Roeck 2024-07-24  742  		break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  743  	case hwmon_curr:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  744  		switch (attr) {
-814db9f1b8ec1c Guenter Roeck 2024-07-24  745  		case hwmon_curr_input:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  746  			return 0444;
-4d5c2d986757e4 Guenter Roeck 2024-08-28  747  		case hwmon_curr_lcrit:
-4d5c2d986757e4 Guenter Roeck 2024-08-28  748  		case hwmon_curr_crit:
-de0da6ae1908b4 Guenter Roeck 2024-08-27  749  			if (has_alerts)
-4d5c2d986757e4 Guenter Roeck 2024-08-28  750  				return 0644;
-4d5c2d986757e4 Guenter Roeck 2024-08-28  751  			break;
-4d5c2d986757e4 Guenter Roeck 2024-08-28  752  		case hwmon_curr_lcrit_alarm:
-4d5c2d986757e4 Guenter Roeck 2024-08-28  753  		case hwmon_curr_crit_alarm:
-de0da6ae1908b4 Guenter Roeck 2024-08-27  754  			if (has_alerts)
-4d5c2d986757e4 Guenter Roeck 2024-08-28  755  				return 0444;
-4d5c2d986757e4 Guenter Roeck 2024-08-28  756  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  757  		default:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  758  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  759  		}
-814db9f1b8ec1c Guenter Roeck 2024-07-24  760  		break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  761  	case hwmon_power:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  762  		switch (attr) {
-814db9f1b8ec1c Guenter Roeck 2024-07-24  763  		case hwmon_power_input:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  764  			return 0444;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  765  		case hwmon_power_crit:
-de0da6ae1908b4 Guenter Roeck 2024-08-27  766  			if (has_alerts)
-814db9f1b8ec1c Guenter Roeck 2024-07-24  767  				return 0644;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  768  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  769  		case hwmon_power_crit_alarm:
-de0da6ae1908b4 Guenter Roeck 2024-08-27  770  			if (has_alerts)
-814db9f1b8ec1c Guenter Roeck 2024-07-24  771  				return 0444;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  772  			break;
-52172ad87a22ed Wenliang Yan  2024-11-06  773  		case hwmon_power_average:
-52172ad87a22ed Wenliang Yan  2024-11-06  774  			if (has_power_average)
-52172ad87a22ed Wenliang Yan  2024-11-06  775  				return 0444;
-52172ad87a22ed Wenliang Yan  2024-11-06  776  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  777  		default:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  778  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  779  		}
-814db9f1b8ec1c Guenter Roeck 2024-07-24  780  		break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  781  	case hwmon_chip:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  782  		switch (attr) {
-814db9f1b8ec1c Guenter Roeck 2024-07-24  783  		case hwmon_chip_update_interval:
-0337abb760db03 Ian Ray       2026-02-19  784  			if (has_update_interval)
-814db9f1b8ec1c Guenter Roeck 2024-07-24  785  				return 0644;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  786  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  787  		default:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  788  			break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  789  		}
-814db9f1b8ec1c Guenter Roeck 2024-07-24  790  		break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  791  	default:
-814db9f1b8ec1c Guenter Roeck 2024-07-24  792  		break;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  793  	}
-814db9f1b8ec1c Guenter Roeck 2024-07-24  794  	return 0;
-814db9f1b8ec1c Guenter Roeck 2024-07-24  795  }
-814db9f1b8ec1c Guenter Roeck 2024-07-24  796  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
