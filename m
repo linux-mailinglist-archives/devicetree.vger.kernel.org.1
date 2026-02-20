@@ -1,164 +1,177 @@
-Return-Path: <devicetree+bounces-267035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267036-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kGODBieQmGn9JgMAu9opvQ
-	(envelope-from <devicetree+bounces-267035-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 17:47:35 +0100
+	id mP61DUSSmGkfJwMAu9opvQ
+	(envelope-from <devicetree+bounces-267036-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 17:56:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6051696C4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 17:47:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAAF5169831
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 17:56:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0F5FF300B8DC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 16:47:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7AC65302E419
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 16:56:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D573E306B37;
-	Fri, 20 Feb 2026 16:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5698B2FD1C2;
+	Fri, 20 Feb 2026 16:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aIpbCNtI"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="Wl8EkULE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6539B2FFDCB;
-	Fri, 20 Feb 2026 16:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A572EDD52
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 16:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771605988; cv=none; b=ex2KXCNq3MzYr55R5EAW1eXT1xddtqDc1lDYgEzRoqxM1vLKUuSs4BlLdNGc8VzSoYTfsHPGzDVr0fuKAmyCPnE2+qYbM1lt3LCkahNbQmQSdZ1MXIdtCdjEUy60G18aSnE5L0Y37pZjIBTfALe4p8uEle31nDk9pUFmACmbe2I=
+	t=1771606587; cv=none; b=I199F8ceik1kKwkAkOe7QgBHJlFQMGBVgcF0ChTWP9ZplT33UzSeCUzOn3YIvwn127iJwghIFh+xNqDlhuZhA/0978+GeGd+5cWg8pK34UMJ2O6Rw15I0fskxxTZx991TYToqFATAYUAFgridvTxGk4Uuc7SQ8U26OTiwvNhL5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771605988; c=relaxed/simple;
-	bh=9+odTQuGjwuDd7d4LuL+kXPrT4LFEcQA9hbZMWMqEQs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NSXDTVtrQLG9Aq7xoY8kJKY/+ErORkxgmbbj0S60dU+QwS7BUAtdcB20zzvnBNmV5jyZy2uikP+bZzujXi6Lo6tNiqf7BkoeCoS7DkRq2hSnhOete1Gg5s60Fx2NdvVjIxYAYNPOzz5FSslvtqzR4JWg31URJhonq1KRQKyjcV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aIpbCNtI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 35EBBC19424;
-	Fri, 20 Feb 2026 16:46:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771605988;
-	bh=9+odTQuGjwuDd7d4LuL+kXPrT4LFEcQA9hbZMWMqEQs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=aIpbCNtIR+mBNkxAjJXarKV3uR7DxGYLtw8RrrZxU9rWL6NjywSVRhiL5qflx1g/U
-	 jJrVbx/eQ19XSUebR66V/lrYXpMcv72nS7f4s4e1WRxZa7JGf3UmLCLVTHL9/sLJUG
-	 Tw3rOBzqlXpsfhgzEJHsk0MSZ25aDLec8MBCX1ez1Qts3gbD1vHgtTGcRhizyZ8B/2
-	 c0NuFUsYvkHo6pj93ij/KtcokGE9R5y8sTGw/dTKVBs2snLzuDUwbwjKwu5tXXhq6S
-	 Eh7uTY7HlcxppfJfRo+g3taRqFzWAGgXvgV2hWCt7kOU5NNjZukIFsCKROQqB/LlFG
-	 OLTMMxjRfiHsw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E288C5AD44;
-	Fri, 20 Feb 2026 16:46:28 +0000 (UTC)
-From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Fri, 20 Feb 2026 16:46:12 +0000
-Subject: [PATCH RFC 8/8] iio: frequency: ad9910: add channel labels
+	s=arc-20240116; t=1771606587; c=relaxed/simple;
+	bh=8D9Y1XXC2qdEK5lv2ngWbb8ZY8WcwD0gpYfssancm0A=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WfyP1V3Q6q7vXfDoR4to/tNSB6PS7YdQxxDNFLgNAuMmivNWF0YudmAbXeJIhy/DIPCs3B+CTkZ23t83ejHS/CYj/7Dq0VkEN949jIkkT3/+El/d0z/p1hbmd5+YZGp0bC8N8ZqWtK6iMxyI1Ts5zgBHPmt2WLGNvLAQNH/4w5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=Wl8EkULE; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8] (2a02-1812-162c-8f00-1e2d-b404-3319-eba8.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id 5DA0B6E86D9;
+	Fri, 20 Feb 2026 17:56:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1771606584;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=J0lld6vPE30NQltxwTbPT1iVmbe7L/OOthusNPaOsLo=;
+	b=Wl8EkULECxUNWFwP0xk/j1XeHstIdG7Zvpg4HpIoQyf8y/2LFS6WWIY0KlWnGY3YXlPUAP
+	ESbwKUfHUVIJRKVBlqZYUrIpDnnMnSvhnKZS1KMV5imA7mmM9Jat9yGzRXNhEjU212VEEc
+	1CPlZ19uDBa8naXSKQ/AATLbodr8NKksYlWPEHEa0DNdbUcWIu8lBJlsrF7GvhbCtpo5Dc
+	5pbNtFyrGpWnja5OmpOUDh1dEDrqHX9O8kmjIudTc88NB7118VifEtgp1mH+LuqTZIgjHK
+	gYe2a0ru+srsKHnx287wEHeiGi+C1LRxCsBQJVyCY4+K9QsnXd/EkWZOACJdmw==
+Message-ID: <4cf24e281fac45637fedf40944d8b5230c0e22d9.camel@svanheule.net>
+Subject: Re: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
+From: Sander Vanheule <sander@svanheule.net>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>,  =?ISO-8859-1?Q?Andr=E9?=
+ Draszik	 <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>, Pavel
+ Machek	 <pavel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ MyungJoo Ham	 <myungjoo.ham@samsung.com>, Chanwoo Choi
+ <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>, Krzysztof
+ Kozlowski <krzk@kernel.org>, Alexandre Belloni	
+ <alexandre.belloni@bootlin.com>, Jonathan Corbet <corbet@lwn.net>, Shuah
+ Khan	 <skhan@linuxfoundation.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Date: Fri, 20 Feb 2026 17:56:22 +0100
+In-Reply-To: <DG74Y3QSCLIO.32Q8ZKCTISXXB@disroot.org>
+References: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
+	 <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
+	 <69e2c1b1a2f3d2ed5e5da995cc5ee49bb3627597.camel@linaro.org>
+	 <DG74Y3QSCLIO.32Q8ZKCTISXXB@disroot.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260220-ad9910-iio-driver-v1-8-3b264aa48a10@analog.com>
-References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
-In-Reply-To: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
-To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Rodrigo Alencar <rodrigo.alencar@analog.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771605986; l=1464;
- i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=XVRMytzjE0Xjg264u9puMX+fiQxZ2hkudN/VqdIWRLk=;
- b=5SaIsbhoNyh6zvARQPcFhGGl1gTCcLezdZHcHhu0tnqnvxY6Rl6ozdCQ2urKHFjRFx6uWdemu
- mCfxMLVBs8tAgqn63Km3Kna/REqHbpQRL+6EuIKW9WGWJAg+1J8Irlq
-X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
- pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
-X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
- with auth_id=561
-X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-Reply-To: rodrigo.alencar@analog.com
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[svanheule.net,none];
+	R_DKIM_ALLOW(-0.20)[svanheule.net:s=mail1707];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267035-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-267036-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:mid,analog.com:email,analog.com:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3E6051696C4
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sander@svanheule.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[svanheule.net:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CAAF5169831
 X-Rspamd-Action: no action
 
-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Hi,
 
-Add human-readable labels for all AD9910 IIO channels via the read_label
-callback: single_tone, parallel_port, digital_ramp_generator, ram_control,
-and output_shift_keying.
+On Thu, 2026-02-05 at 21:02 +0530, Kaustabh Chakraborty wrote:
+> On 2026-02-04 15:23 +00:00, Andr=C3=A9 Draszik wrote:
+> > On Mon, 2026-01-26 at 00:37 +0530, Kaustabh Chakraborty wrote:
+> > > +static const struct regmap_config s2mu005_regmap_config =3D {
+> > > +	.reg_bits =3D 8,
+> > > +	.val_bits =3D 8,
+> > > +};
+> >=20
+> > No cache? And what is the .max_register value?
+> >=20
+>=20
+> This was in the previous revision, but I ended up removing it because
+> (at least I thought at that time) interfered with interrupts firing in
+> some way. The actual issue was unrelated, so I will add it back.
+>=20
+> However, there is also another thing I see in logs:
+>=20
+> sec-pmic-i2c 2-003d: using zero-initialized flat cache, this may cause
+> unexpected behavior
+>=20
+> This is due to REGCACHE_FLAT, I am not sure if I should just ignore
+> this.
 
-Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
----
- drivers/iio/frequency/ad9910.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Sorry to be late to the party, but I'm somewhat responsible for that warnin=
+g, so
+allow me to chime in :-)
 
-diff --git a/drivers/iio/frequency/ad9910.c b/drivers/iio/frequency/ad9910.c
-index b1540b157a0e..e983614805b4 100644
---- a/drivers/iio/frequency/ad9910.c
-+++ b/drivers/iio/frequency/ad9910.c
-@@ -1814,10 +1814,26 @@ static const struct attribute_group ad9910_attrs_group = {
- 	.bin_attrs = ad9910_bin_attrs,
- };
- 
-+static const char * const ad9910_channel_str[] = {
-+	[AD9910_CHANNEL_SINGLE_TONE] = "single_tone",
-+	[AD9910_CHANNEL_PARALLEL_PORT] = "parallel_port",
-+	[AD9910_CHANNEL_DRG] = "digital_ramp_generator",
-+	[AD9910_CHANNEL_RAM] = "ram_control",
-+	[AD9910_CHANNEL_OSK] = "output_shift_keying",
-+};
-+
-+static int ad9910_read_label(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     char *label)
-+{
-+	return sprintf(label, "%s\n", ad9910_channel_str[chan->channel]);
-+}
-+
- static const struct iio_info ad9910_info = {
- 	.read_raw = ad9910_read_raw,
- 	.write_raw = ad9910_write_raw,
- 	.write_raw_get_fmt = ad9910_write_raw_get_fmt,
-+	.read_label = ad9910_read_label,
- 	.attrs = &ad9910_attrs_group,
- 	.debugfs_reg_access = &ad9910_reg_access,
- };
+What you are might have been seeing is REGCACHE_FLAT giving you "cached" va=
+lues
+of 0x0, while the hardware actually has something else. This can cause omit=
+ted
+writes, existing (bootloader) config to overwritten, etc.
 
--- 
-2.43.0
+As Andr=C3=A9 suggested, using .num_reg_defaults_raw is a possibility, but =
+then you
+have to remember that the register defaults are taken to be what the hardwa=
+re
+state is at that moment, including pre-probe changes. These defaults are us=
+ed to
+seed the cache (so far, so good), but this may break the contract of
+regmap_sync() if you ever want to use that after actually resetting the PMI=
+C.
+
+If you want to use the flat cache, I would suggest you use REGCACHE_FLAT_S,
+which will track what has already been read from/written to hardware. You w=
+ill
+also need to specifiy .max_register.
+
+I see the other regmap_config-s in this driver also use REGCACHE_FLAT, so y=
+ou
+may want to consider switching those over as well if these are also showing=
+ the
+new warning.
 
 
+Best,
+Sander
 
