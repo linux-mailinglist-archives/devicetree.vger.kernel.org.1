@@ -1,160 +1,190 @@
-Return-Path: <devicetree+bounces-266842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266843-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOmpNsgWmGki/wIAu9opvQ
-	(envelope-from <devicetree+bounces-266842-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 09:09:44 +0100
+	id mGTzAIoZmGki/wIAu9opvQ
+	(envelope-from <devicetree+bounces-266843-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 09:21:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F82316587D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 09:09:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F8A7165997
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 09:21:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 108BB3011A44
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:09:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F1ADD301904C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF4B335549;
-	Fri, 20 Feb 2026 08:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113A632BF55;
+	Fri, 20 Feb 2026 08:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K7MisqLF"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bcwF+fJx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930F433507D;
-	Fri, 20 Feb 2026 08:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B05632;
+	Fri, 20 Feb 2026 08:17:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771574981; cv=none; b=sOjIW0ZDM1E87LNiAjelPJQA6BoSH3yWPT9dv80uUMe8Vfxczdecf9l1T6X3WtAS60aoIvpGmG63V9npNhzXVYLCwkWvWoQooao2OrMRmLd1WtmOSjDP0auXwmvc2hfKbV5Pzl8rnY/+gez+OUvA4WTHupS+Q3uX6xXPPu0s26g=
+	t=1771575458; cv=none; b=LF2dwIejfejYyKD7PWtMr2dj8hTmhnrKNSa1HaYc+ffaVb4K3YGiRPz0gFlnT5AJ7+tdABzN5CZpcBpqzm/c8dwucBkTW0dTMy3ITrUrB7YRqpxA+AYdG1BtkSynBEEHnS6kcYpNFp4D8XN2nV+kGjZ/Kv+2e7AQCNHHWFnd0Yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771574981; c=relaxed/simple;
-	bh=k+Nn6h3w6tcNXtGfFrHNQpODw0l7JijVpV0PqpUPkDI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kqb43xUHsODzk2xF0lzwBsxU0B42tvAmvTauzjA8AoV/rUo7iCmaZp3XCUlsHutuQiDnuI4JndMDOAHTsUeUBV3sOo5pgG4TdU3MxbgaFTMV7uqKQRy/oNm/fc2u/BWV5l5ti6jjf87bGXPjwtFrnBu3TU5dtXXW/L3g0+XaTyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K7MisqLF; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771574981; x=1803110981;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k+Nn6h3w6tcNXtGfFrHNQpODw0l7JijVpV0PqpUPkDI=;
-  b=K7MisqLFYgb7RwGZq+SUn0UyyBx3ssdHx7c99JljyeUMUAnwhSrirT8v
-   UJVzgkKfnH64M7j4/8meqiREqpVwXJA8qXt9DusH+fPY5k1nqZlac0cRy
-   zeqlm/WMsjZRT0hFs/x5evijOQ5tO0UXpF+tagTyv1IwuEBhrPEyYz9ry
-   /rfDVkKKT4sdLXS38Xiuguap6FkCHYvggRaEAdn+KtvgwS2uKbR+Mh95j
-   f47WucJBInhYo3qUKo5hHkZo5J5S2sQUsU5NuXarOtKr6Ko27qNp7nzBi
-   mJnviVqUv5AyDjCiwup3JaLwdBAEoDhEd735OdgMMOEjiA4Pdr6oRf+CY
-   w==;
-X-CSE-ConnectionGUID: maRGwUfqRUG6GQ8i9voJXA==
-X-CSE-MsgGUID: Dr6kLfPkRbGFBD1uXTPDEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72370100"
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
-   d="scan'208";a="72370100"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 00:09:41 -0800
-X-CSE-ConnectionGUID: Bu6Ho8eLSmaxjN84JdfduA==
-X-CSE-MsgGUID: oDSMhlRYTg+Px/GACX7hTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
-   d="scan'208";a="219796663"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.25])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 00:09:37 -0800
-Date: Fri, 20 Feb 2026 10:09:34 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Michal Simek <michal.simek@amd.com>
-Cc: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
-	git@amd.com
-Subject: Re: [PATCH 3/5] iio: adc: xilinx-xadc: Replace module macro with
- custom init/exit functions
-Message-ID: <aZgWvjWBusT_JQgE@smile.fi.intel.com>
-References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
- <20260220053941.611415-4-sai.krishna.potthuri@amd.com>
- <aZgS2c45nGTozHkv@smile.fi.intel.com>
- <fab2599c-e749-4aa1-8157-c7ac358c6f36@amd.com>
+	s=arc-20240116; t=1771575458; c=relaxed/simple;
+	bh=BW900tmKdv9sOY9YIGabfV0NCjXLf0sLsssHMH+GApE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ev14PqPFHsUo9oezWCXcTGtlCpT3XGOnHPfYb7pvj+U83TBmTFuhHEYlVDb18Ivr3d500o+qH1wQzjvIizLms3teLPeA1zl0SNPWx1qGGdUQc2d2zaXbOJff9UvdJfMGxSTL8qb/4ji5BZvhd05AV8/U9sqn5AncxwQFsiwEBfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bcwF+fJx; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 7D2921A09D6;
+	Fri, 20 Feb 2026 08:17:33 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 45DDB5FA8F;
+	Fri, 20 Feb 2026 08:17:33 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 29C5A10368B60;
+	Fri, 20 Feb 2026 09:17:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1771575452; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=VzvvW9lCbmbpLDeCUrBpDx40xl/soxiJcKA0/aCMgVw=;
+	b=bcwF+fJxhbx1qFPpYbglmo7D3U3Y4uBaX5rNYiOVFKJYHA2i786uoQ17NTOygkOC0QjcSc
+	PLYaR0kQwDGBRWcLBzWkBhwxtXJKGmgdd2qBmbAVUND3FYNGG6leMRXowmxo/i9BqEtcCU
+	mNSELuWkbJD5b3S0iJfDjP2RnsbbdJtP2oI/CREnHVH5kKJoXyMj+izZUruxVvq9VReryb
+	6IMOOnoJBjYtH7pGoj6BJD+DtfoJN7R36l408LEko835NNlPIMNFUeorDtaIcJdo1zT2RK
+	Ir2blFSMDogrLB2B92rocUdoakFw1UWyNSNfGFcbOCxVsKhq04ksc/SGJFfmWw==
+Date: Fri, 20 Feb 2026 09:17:27 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, James Hilliard
+ <james.hilliard1@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ linux-gpio@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Bartosz Golaszewski <brgl@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alexander Stein
+ <linux@ew.tq-group.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
+Message-ID: <20260220091727.5330accd@bootlin.com>
+In-Reply-To: <CAD++jLn9KJ2sfMtAxVGbcmWQW=1vxdiMNCDLNg-XV3hJDz=O9w@mail.gmail.com>
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+	<338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org>
+	<92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
+	<CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
+	<30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org>
+	<CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
+	<20260212195423.GA787785-robh@kernel.org>
+	<CADvTj4rPq8D5piqEijCdAjkWmZtq3Bi_Kxv-4F0aU4xi_O5WKg@mail.gmail.com>
+	<CAL_Jsq+Fb0vOggHWkNGusCBcwTQubD1Lc+0=U4+MpZacXqc_ag@mail.gmail.com>
+	<CAD++jLn9KJ2sfMtAxVGbcmWQW=1vxdiMNCDLNg-XV3hJDz=O9w@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fab2599c-e749-4aa1-8157-c7ac358c6f36@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amd.com,kernel.org,baylibre.com,analog.com,vger.kernel.org,lists.infradead.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-266842-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,glider.be,ew.tq-group.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266843-lists,devicetree=lfdr.de];
 	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 4F82316587D
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim]
+X-Rspamd-Queue-Id: 4F8A7165997
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 08:54:26AM +0100, Michal Simek wrote:
-> On 2/20/26 08:52, Andy Shevchenko wrote:
-> > On Fri, Feb 20, 2026 at 11:09:39AM +0530, Sai Krishna Potthuri wrote:
-> > > Replace module_platform_driver() macro with custom init and exit functions
-> > > to prepare for supporting multiple bus interfaces (platform + I2C).
-> > 
-> > No, this is not how it should be done.
+Hi Linus,
+
+On Thu, 19 Feb 2026 18:57:48 +0100
+Linus Walleij <linusw@kernel.org> wrote:
+
+> On Fri, Feb 13, 2026 at 3:34 PM Rob Herring <robh@kernel.org> wrote:
 > 
-> And how should it be done? separate file?
+> > > > Humm, peripheral boards! So there's a connector. You need a connector
+> > > > binding. And the one solved binding for such a thing is GPIO! The
+> > > > gpio-map property lets you remap GPIOs from one provider (the connector)
+> > > > to a parent provider (soc_gpio). It would look something like this:  
+> > >
+> > > Well...some GPIOs are wired to peripheral board connectors...but
+> > > some are wired to things like built in LEDs and a few different
+> > > on-controller components as well which vary by controller hardware
+> > > revisions.
+> > >
+> > > This gpio-map feature doesn't exist in the mainline kernel does it?  
+> >
+> > For at least the last 5 years. It's even defined in the DT spec
+> > (generically as "nexus").  
+> 
+> I actually tested this. It works.
+> 
+> It's however a bit annoying that we do not have a single upstream
+> DTS file using it, so there are no examples to look at other than
+> in the documentation.
+> 
+> I suppose there would also be greater buy-in to the concept if
+> we had managed to push the same for at least I2C and SPI,
+> but it's easy to ask other people to work, I know that.
 
-I answered somewhere else, but I can elaborate here as well.
+Nexus for I2C or SPI will not work.
+In fact, busses cannot work with nexus node concept.
 
-The idea, yes, to have the driver in the parts:
- _core.c
- _platform.c
- _i2c.c
+A nexus node translate a phandle.
 
-To achieve that, it needs first to split the driver followed by likely
-conversion to regmap. With that done it may be used in i2c with a little
-code added into _i2c.c.
+prop = <&nexus X> is, in the end, translated to <&controller Y>.
 
-We have examples in kernel for that.
+For busses, you describe devices connected to the bus as sub-nodes of the
+bus controller node.
 
-0daede80f870 ("i2c: designware: Convert driver to using regmap API")
-fcb82a939df8 ("i2c: designware: Add Baikal-T1 System I2C support")
+&spi0 {
+	my_device@0 {
+		reg = 0;
+                ...
+       };
+};
 
+No phandle involved but labels.
 
+With nexus, you cannot translate &spi0.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Also nexus works well when an index is involved. In other word, it works
+well with phandle with args.
 
+i2c-bus = <&i2c0>;
 
+In this kind of of definition, no index are present. With nexus node, this
+looks like
+
+i2c-bus = <&nexus>;
+
+How to handle multiple i2c busses with nexus node?
+
+Some ways other than nexus have to explored to handle busses.
+
+Best regards,
+Hervé
 
