@@ -1,111 +1,111 @@
-Return-Path: <devicetree+bounces-267078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aAbUIiDSmGlrNAMAu9opvQ
-	(envelope-from <devicetree+bounces-267078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 22:29:04 +0100
+	id yKNBNJ7SmGlrNAMAu9opvQ
+	(envelope-from <devicetree+bounces-267079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 22:31:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA03516AFE4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 22:29:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A76116B00B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 22:31:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4A27D3016D31
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 21:29:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 793083002D3E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 21:31:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20F8930EF92;
-	Fri, 20 Feb 2026 21:29:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81224309F19;
+	Fri, 20 Feb 2026 21:31:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JojnwS6+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AIMj9L0Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BB7925FA30
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 21:28:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192E72E8E09
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 21:31:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.43
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771622940; cv=pass; b=IvYPww+ns3g11ayrhb3xyKc93Ozj8Fz05iiC+OyV1lRBLLobas6NQKNZnIOWZBDWqYJquEBGJSejChX/QEwXXTDMLE3PcoFkB6mOKP+AKY971vTwEhR4RH9CSa/jcMwmDam3sEP9/LO2NKjWx0x68GDuwPe5H40vP6fNjCpPOSI=
+	t=1771623066; cv=pass; b=HQYKZB02MfSxIfUdJOemwmu1+vrEtb40lIeNwGRXfnF/urNhdpyRDp6N1Lw4UciifRbhN0yvDkWfsCxq0zCRwz824G3WqjJYcKKgxhrqhj1SUiHVTX9RzscS9n2m2MqhrTU6JPEUf6QVjQ4u2PZpKi+uaSqIGwYFtw7W2wTADbo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771622940; c=relaxed/simple;
-	bh=cCauMR496lFcg+GwWLLg188VsfVYRKDTsZf2Y/Xc0nE=;
+	s=arc-20240116; t=1771623066; c=relaxed/simple;
+	bh=j2YnY99ilY51T44Hk6pBP8c5WmyCaOVYtJKwr53Ct4M=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HNET3INyZ7/jY0BGNZLAjwLIdZzY0DPI8tegw/f2Ew20QrnicMMXpDpp/1gGJRv/58TcxRq68mX0/G7NfO87hPG9CEf6eAAdw8OYADb3V0NAv5GmmRuucW26pnbBA0DUGHbNk/Mnpf2bZie970Nq7kck7GyZ6KczkplUIr9k8bI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JojnwS6+; arc=pass smtp.client-ip=209.85.167.42
+	 To:Cc:Content-Type; b=TbOt1UZdXHLLI0Nkuh/O9U4GTBgpehTY9T6qcq4uBFmHGEG8ITvNfQ8zUJB1/NUQET47zpz/wmvVo65wtYiN4w8ns02SzSWf7o6ekmU4i7zq2I2mhh1nDXE07z+BdbPog6PWZBHoJu5429xvqmYexjewg0gyIVFV8s7sc4zSLbc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AIMj9L0Y; arc=pass smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-59e5ea93a1aso2046592e87.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 13:28:58 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771622937; cv=none;
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-59e60925251so2560911e87.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 13:31:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771623063; cv=none;
         d=google.com; s=arc-20240605;
-        b=C4Hm/VQil88Nnkljmqph1694ytqFE7uY0cZvI0GFHwoacn08xz840EZ2LuUQBV809U
-         e205ZGHeo8YK6TNe6TG20D8kyoyDQgK5/EOJt0MpKNDHuOT4tZThE3tHNSNgrUVVzCPy
-         JmYWDav3Vo+7E5+ndmpzrn7zmllCoPd4p66wN5ke/85p9jFRy4tM+T4CZdFmFTsOsK3r
-         z1jRtLtRFBv9T6b24vvX40nwu5TyPsEfD53kYKT7d2BO+2gmrlvxaz0nWKAyGvIioHb9
-         0Q9inoARIhZdorShN0k6ZVsQBRkPxV0ZMgCnqmxOq7hDMLzQfkMr0GonkQWlwFjbIklT
-         9pdw==
+        b=TDsqdZxBzAfX9fTO54xnhz4LE2S8O3a+DIbS9hdJJk7QfpNyP5YHQiewbDbzlh11aj
+         jgU/M5LSNXMyhwVvApracguEdVmHSKK14tOQC9Rb0o9XIy+GEZaO/26yt3WZdrgfykiq
+         UWlQWjvtonohNmojgRKNGPxLzfcVC2fLW7yq20t/bFzmKV+bNtyzoocuVyFcvxtYw24k
+         M9OJxuOlo5JPQyKbqykfJuBISiYMucYGKH6faNCsCfglow+PyFPTsCdXGloGreKYJv1V
+         qyMc2lI1Cml/jWds/SXqA02Kue/yU6QI1Dasu5V70caG6AkOC2wB0rEVKCBTgd1EysQJ
+         +NxQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=cCauMR496lFcg+GwWLLg188VsfVYRKDTsZf2Y/Xc0nE=;
+        bh=j2YnY99ilY51T44Hk6pBP8c5WmyCaOVYtJKwr53Ct4M=;
         fh=NXWGJwO/OfMojoRFD3ZvIXKYQ4amQtIJ+joo9p3/m5s=;
-        b=dgTyhJqQLvyaEF7qgxZV9bHPsSCs+li6ovTDeWC0J2uQkfDhreGRxPCZmRlw4sgOyi
-         X5mMbeSasaNz7HH2Jw/mYibcuWJhAgDp+QFtSYExAPbdiTeMAt3gt00YBGwumRabcffT
-         NUuCoA4OTLwyNimFDVzqKa1UU7nX0xb8LaxcgMm9pfcL09SbZWiNslUwqrjrKdOJ5h1R
-         xIQGyTdsj1HyQW11vY9iPwOAAp150AG9CIYUoDNd+mzq7+0BM9o+XU3GPsRslr/FHn/C
-         CDsSfBz6JADi/5kO5vb+BBfv/wA2AZu8IYnAzZl632AGs1dof+qshSGi+w2IB9L6LtD1
-         c8Yg==;
+        b=NNfzlTY284JbyamN77/LF3UXVgi1nH2HuxcZVtj/pyZDgAWz3tT+LfTMKqPNz0NqCw
+         +Xu/rwXSeqgY4DXQ4KDI3nALlhZocIaBi/JVJr1MT9quUeDZMvpu6Ok/xCuWs0K5aOvm
+         Nr1X60l/Ad15KQ0m9EuNANHkFq5frMsOep3Ld43dLrKN/vNPQZUye7Jgnod2pAqTGS2h
+         Ud0k+MQBHPdGmT8MYnCysgHryiIXWQ+BntBRpYX5bKvXkgwSvPDkxsGYBlo4M2ImenIs
+         fd2yYuQ2F8hXb0dQzj1hoH0kgwYLQfMi6B/d2u+HjsruRBiAonNC6gloghYvpIr2bBeP
+         BepQ==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771622937; x=1772227737; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771623063; x=1772227863; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cCauMR496lFcg+GwWLLg188VsfVYRKDTsZf2Y/Xc0nE=;
-        b=JojnwS6+xmHNlk/zql50W6j2v2bQWpUVV3GQ8b2BgUlgr8CfiABc1CcVwUYPl4yEoJ
-         qbTutXraa9bB85XDjDVoT5fLJ1J7c1PFHdy84AwccRC8w6X4kihkdBL7tOE8AOhwJi5Z
-         toAI9DbrirD0m326tB7lYYLZnn7nwOpZqoNUytWiSAs5gB92OhK7nZxeGvOEDzSfvQC5
-         c9pZcZYfGY7ozQcMk1dpfFhLJfuSlMALTTmcVriDB01+IH5SrYmftUXAdzkZWWJsl+kd
-         hTh5pBsueHg2MjkvKtOg/VkBruAoFpnBbJzdqtBM+/MxW8W0RLubw+bQMhXzKDC8qPJq
-         aROw==
+        bh=j2YnY99ilY51T44Hk6pBP8c5WmyCaOVYtJKwr53Ct4M=;
+        b=AIMj9L0Y0Ti0kCPTUtu8vL4n3ymVhCYGxyZalAoPHxZaz6uKOMGXpCYGl/kUAjMLlz
+         55OlJW0Sh6Q6c6YaoRWNyMr0wfGraZLybp0973R7htWXJogU39p87vJJKMiahah+2TJS
+         gGItDF1FHP7U35OAwgsfLDKJqijpk7sxnFnHcPA/pBHGKDN3X0qm7OkhxOiZSatqRVkR
+         cl9jpmfzU2GQ0cUv/W23oBNV/Z1MtT4A9Oonr/49GTPMZYDVkskQEUyaRCb+O+29XXTU
+         lXBoCeq5FoaUjC+1UjlKHYIZa7zE6VqQwssto3BuWFR+MQVIH37dpayCvAug3DofqCm7
+         6zsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771622937; x=1772227737;
+        d=1e100.net; s=20230601; t=1771623063; x=1772227863;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=cCauMR496lFcg+GwWLLg188VsfVYRKDTsZf2Y/Xc0nE=;
-        b=p4VS7WJALCHwMqlagk5XYmU0hmmoX5V5/MnzJ6qmkM5npiH2qV6pZWtb2+71qPg5Pq
-         FapHXgNNAxfTJcThyRqhtF8GtfbHnX/0cHhSkmR+k4g/gfOuiej6IWkowSSpy5RvPw2z
-         +Zn/+nb5RG0FSrc8QNKMHares6UbqLnc4kaUqq1q3VR275USu/9E7x1TFYu9s3Mt7dPQ
-         vjUSd1ARq/MVp58fMeKk79hl8uQ4nhfAegXjkUT3xBBXZWcLLoaP2saBwD3X+S+DJRwS
-         K1PkEGKnNzYRQZ1xu1dP5fzjCEj4AQWAKhXNHIQjzKgpY+DcLiOQ5sq9j47FuxDhvXS0
-         +EfA==
-X-Gm-Message-State: AOJu0Yw36wygeo4NBCUr6BcUuVtx9yiAQXSQJSiAqc2+vi3c+rNCbZfY
-	9oUDZ8JOCXz/n+4UnhbEOTst/SDXJF/OUap+um4r4+e+A5qJGag7pQiomG3ydtkAoKG+2pl5J5C
-	Wjhy6eeoPzSzEujKWJRq5hFgGWagj54dk3A==
-X-Gm-Gg: AZuq6aLlfKLFFmbeeJRn9t7OHSxqplTW/kqwG3O7M00FxuXLbGw7WwBLduBR8zH8jkx
-	P0XA/vQgTGsi9FRkA5WiTtmWD2PJQ10Biu8wNl+IbrNWWK3JOu+XFhPSGeUXFf1Rv1K8mWqYmZj
-	BKoS1sjyl2AWt0cPGGAV4+eDrh81PCZV2aSPt6sfasZSyyWC2WThpBe+nQHfGTyKU4XiIFd8qrs
-	l0piSBcUa/zsvvDP0qILdV/lokDbLo7jgcj/8RnW7avdOOYx3FPxYzIvZtIT3plfz/0Hs828xbk
-	5aucZaFJCPXTBBoKNcBUfJxQGCmlXwk6XtssnQ==
-X-Received: by 2002:a05:6512:2316:b0:59e:37fc:fb56 with SMTP id
- 2adb3069b0e04-5a0ed8a4cfbmr206199e87.25.1771622936453; Fri, 20 Feb 2026
- 13:28:56 -0800 (PST)
+        bh=j2YnY99ilY51T44Hk6pBP8c5WmyCaOVYtJKwr53Ct4M=;
+        b=TBiey3/dzB9CreADXZbjGS5PFcm4QAEbEVMHXSpC5F3LDTXX9ZBhk1yAg/LSnreQY1
+         aM/mKxwdGdz37N/648x+bpkJ/PtktveE9luI0HC5UwiWbufy1lqjSMaI85tGzHq5clc1
+         ySanAE7gcvg1SwQxNHmtuyBg8flHMy6B2KVU7iYcQ3PocPpgoG1LR9Pk0hCMENt42uy3
+         PhmZEeZLyjiBsw4PP+3/vv7U9K2oXbTMCary/FthS3turqb3jrMpxXAnhuc9V7G4op0F
+         FqobMaiTxK8koswMIro5VloV1+a01X6RYYGAl0yByH/oBjVssXB0jbbhmcuQ75v+a/xO
+         eXQA==
+X-Gm-Message-State: AOJu0Ywk5OFBK7Et2kNd5Lv4w6t9Bd6dnH+SbNBa3EUiSfhhDDV76qT2
+	fbEGlbEIJRM22gk1qpwFEfESVhZ56ix3UXRdMy2/5dk8dFlpuU/IB/0VYLcy1IJjTHGdLh1+gMM
+	aujR5LQYBfPTGUee4JiAnChJPvHhmKzo=
+X-Gm-Gg: AZuq6aIzXUqkG3yXFveZ9RabtpGgiQVuXmxOPFWWwDct1N3W/zy4uKqQJ0E3CF+F7tY
+	nPGWT2xsCtPY/mu6vpwpRcgV7yRbtWB3SQ8LjHR3sHDStSyQIW/ZHqXbYmfoETxZ63VFbFzqNp/
+	/olZK9OrfzuW+g8oEnaeSWb3nfF/gAVuZWp/dyyvGe00sQt7p5J8bHJkdTqSe7gqc+GrPcbi8lM
+	vTEcx6EjocMlcWZY293iADm6Z5VnDjjvji/CNZ3bAm4De94zAC8pe8o1owsECqnoAsbCKr2ClmL
+	AKKuxJ2aDQDw7AeXo8JxAZtUWss/9d4A/AzB7Q==
+X-Received: by 2002:a05:6512:2c99:b0:59e:34c6:88 with SMTP id
+ 2adb3069b0e04-5a0ed9a3697mr245998e87.39.1771623062940; Fri, 20 Feb 2026
+ 13:31:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260220021353.40554-1-rosenp@gmail.com> <20260220021353.40554-4-rosenp@gmail.com>
- <CACna6ry+K6q_JY84j7OjRWALsUDU87mpAiikF7cpUGDUUYhZJQ@mail.gmail.com> <CAKxU2N_V=VWXtpj3qYcPQ-SOYDyA+wrg9Mb4AZvWMQUDnARVFA@mail.gmail.com>
-In-Reply-To: <CAKxU2N_V=VWXtpj3qYcPQ-SOYDyA+wrg9Mb4AZvWMQUDnARVFA@mail.gmail.com>
+References: <20260220021353.40554-1-rosenp@gmail.com> <CACna6ryBW-6b0UYaMq12Xf6bdgQV9AxYajb9use7g4o=VK59+A@mail.gmail.com>
+ <CAKxU2N-UYZyUdc70H-=Em7ydBve5HP35agu7=pqozFTQo0A_Tw@mail.gmail.com>
+In-Reply-To: <CAKxU2N-UYZyUdc70H-=Em7ydBve5HP35agu7=pqozFTQo0A_Tw@mail.gmail.com>
 From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Date: Fri, 20 Feb 2026 22:28:44 +0100
-X-Gm-Features: AaiRm52CH-GIQpgAj_Fm01cIzdj6T-W5-pmlyWK26JbIMJLyYzNUxSuOqjs_IWs
-Message-ID: <CACna6rxOYo3-G9msjXVyoc0jyJRMjUjMeOac6+-bZvD2MdH4tg@mail.gmail.com>
-Subject: Re: [PATCH 3/5] ARM: dts: bcm4709-asus-rt-ac87u: specify switch
+Date: Fri, 20 Feb 2026 22:30:51 +0100
+X-Gm-Features: AaiRm52wkUXfPJNVFsXIiL0xPK_eCy3tss8OlPr83It1CXt3msr27JwAkcDh-GM
+Message-ID: <CACna6rxvsPAt7PSy3y=+HiFo47d=tc2p1E4xjuc7LixHUU+G=g@mail.gmail.com>
+Subject: Re: [PATCH 0/5] ARM: dts: bcm470x: set MACs where missing
 To: Rosen Penev <rosenp@gmail.com>
 Cc: devicetree@vger.kernel.org, 
 	Florian Fainelli <florian.fainelli@broadcom.com>, Hauke Mehrtens <hauke@hauke-m.de>, 
@@ -116,18 +116,18 @@ Cc: devicetree@vger.kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.01 / 15.00];
+X-Spamd-Result: default: False [0.05 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_MIXED_CHARSET(0.67)[subject];
+	R_MIXED_CHARSET(0.71)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267078-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267079-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -144,35 +144,37 @@ X-Spamd-Result: default: False [0.01 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EA03516AFE4
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0A76116B00B
 X-Rspamd-Action: no action
 
-pt., 20 lut 2026 o 22:18 Rosen Penev <rosenp@gmail.com> napisa=C5=82(a):
-> On Fri, Feb 20, 2026 at 3:18=E2=80=AFAM Rafa=C5=82 Mi=C5=82ecki <zajec5@g=
+pt., 20 lut 2026 o 22:20 Rosen Penev <rosenp@gmail.com> napisa=C5=82(a):
+> On Fri, Feb 20, 2026 at 3:21=E2=80=AFAM Rafa=C5=82 Mi=C5=82ecki <zajec5@g=
 mail.com> wrote:
+> >
 > > pt., 20 lut 2026 o 03:14 Rosen Penev <rosenp@gmail.com> napisa=C5=82(a)=
 :
-> > > bcm-ns.dtsi specifies a default layout that is not correct for the
-> > > RT-AC87U. Also allows setting the WAN MAC address properly.
+> > > I believe these predate the bcm,nvram driver, which makes this
+> > > possible. Downstream OpenWrt currently assigns these in userspace.
 > >
-> > How the basic ports info from bcm-ns.dtsi is not correct for RT-AC87U?
-> > I don't see you doing any overwriting or /delete-node/. It seems like
-> > a standard NS device with BCM53011 and 8 ports (0, 1, 2, 3, 4, 5, 7,
-> > 8), three of them connected to no-SoC Ethernet interfaces.
-> This comes from a local OpenWrt patch. I just added the nvmem
-> definition for WAN.
+> > Changes look good, I just posted one comment about commit description.
+> > Thanks for submitting this!
+> >
+> > If you check
+> > git log --oneline arch/arm/boot/dts/broadcom/bcm470*dts
+> > git log --oneline -- arch/arm/boot/dts/bcm470*dts
+> > the prefix always used for NS patches was:
+> > "ARM: dts: BCM5301X: "
+> >
+> > I guess it may be preferred / required to follow that.
+> I didn't want to make the subject line huge.
 >
-> There's also the addition of labels.
+> Actually in such a case, would it make sense to fold into one commit?
 
-Then I guess someone else didn't try hard enough for proper
-description. It happens with downstream code. Sometimes it suffers
-from lower quality & hacks.
+I'll leave it to Florian to comment on. He's more in place to decide than m=
+e.
 
-When submitting for upstream you can improve it though :-) You can
-(and rather should) reword commit description so it's accurate.
-
---=20
+--
 Rafa=C5=82
 
