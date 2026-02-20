@@ -1,364 +1,141 @@
-Return-Path: <devicetree+bounces-266948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266947-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UBmGH21jmGmJHgMAu9opvQ
-	(envelope-from <devicetree+bounces-266948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:36:45 +0100
+	id mOkJC1ljmGmJHgMAu9opvQ
+	(envelope-from <devicetree+bounces-266947-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:36:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F254167DCE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:36:45 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0CF167DB7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:36:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C57C5308637F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 13:36:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AF98B3011686
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 13:36:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17A8347BB9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373043451DA;
 	Fri, 20 Feb 2026 13:36:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XkwBQQF+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="27qFReLU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FF1343D91;
-	Fri, 20 Feb 2026 13:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1115313281;
+	Fri, 20 Feb 2026 13:36:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771594580; cv=none; b=ktqwlY+KISQiwpFTex1cFxC+omx9CyBLFg1v0JT9IxfKdj9+Bq8eJ80JEHWlPJmPbXvqEYdsG2PjqiH+7SRHKkpnePEF4B8hRLU//90wwa5ChSHVVV/j8YLbZe1zjUR5uBWEwVH/QBOM9ulLuCcLjpeU3u7IArp9VAzfQMNNJh0=
+	t=1771594580; cv=none; b=TadRiC+jNSNlbpq41BnlgJyRxewt7ERLdrhE1/ApLdfKVnRW7YWkLDA6+T+6kx3GkUMtVMCsOtsrIG4dL3lrkcbmHnI9TerPvQhpY2V7rBgZl/sxpoEiMA5T4t2cmSwOntgLINz1EkiFA8YF1HCE3B/YUX89pDlsuUDJqK3mTmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1771594580; c=relaxed/simple;
-	bh=mdmgfTaAzOAg1qHQ2chCWDOSiu05V3ropYOq8/9q9tA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ua/J+a4xDtodl4Vn/isNzTc08LIuQmSsR7yB/SNm9bFfSYuQRnotD2LIDjD6egbW9cccD3o/UPwxua9sDXt8aJImpwB7pmg/duihWh3h8uTRSlZGqQdx2P/+D+kXtcOQWN4avJFw2/SLlXeNJp11erRrDDhN4tD1IK1K2jz8/XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XkwBQQF+; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771594579; x=1803130579;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=mdmgfTaAzOAg1qHQ2chCWDOSiu05V3ropYOq8/9q9tA=;
-  b=XkwBQQF+iYwR8ahskVEdMj9TS3ZsOaTAowtm1flumB8KAdVu3GzbEVUe
-   Qus4CPT6DeNtQq4WuGOpt31+yxb737olhaTMFxzm3lXHw63G+oY+ydi0m
-   wTM064+1O2rdfJa3FRWK8iXn8YDwdD5jGaSlHN/Ku+7z/lWZyycwq3L6r
-   4YU0v6Hm07RhO7zH7qqjc2vmhPjtFhf54740hkqk2hENqGJAAKfkeTMYW
-   SerQkgm62lvYbqu5oWOGawhZWh16sWkiWil0FzG7DW5DPWYY7vwl6pJ2h
-   rej7RDYKLSCHhbX9VFjRuaPcukftRv/7wDnJikglNlRq+YnftArCIrtEZ
-   w==;
-X-CSE-ConnectionGUID: NW7Vn9//T5WGIlCJj9wpBw==
-X-CSE-MsgGUID: tdj2PSQKSD2A578GhTgnyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="72387601"
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
-   d="scan'208";a="72387601"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 05:36:19 -0800
-X-CSE-ConnectionGUID: qdnhmFbJRS+3ycLu6wy4JQ==
-X-CSE-MsgGUID: OPf/udNsT6y3qvzBlzrd+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
-   d="scan'208";a="219352862"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by orviesa004.jf.intel.com with ESMTP; 20 Feb 2026 05:36:16 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1003)
-	id 1792695; Fri, 20 Feb 2026 14:36:15 +0100 (CET)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Niklas Cassel <cassel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v2 1/1] ata: ahci-dwc: Remove not-going-to-be-supported code for Baikal SoC
-Date: Fri, 20 Feb 2026 14:35:46 +0100
-Message-ID: <20260220133613.2392906-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.50.1
+	bh=UZqugDl9YAuEn3qPaV7KYY7wKE1Ep4P6qhkliHaP7Oo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oZ4K5T02LznLy1xqNw2e6uQpirNs/AtYCniZSzcwkLl3Ny2RPZn5D+iozYq5YsOLlyCW0X5rEfIbpXv+Aazb5AOWtSg+PTmT1HSZwrFx71LWnvoJ89nqNZbHAfN9iPp32GeRZqFYKRtu9HzmsSlCk8adKbcqeTjX8yduAhp+CsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=27qFReLU; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=xqKLoTg7Ju7x5pvSrVHpqnVQjdZWB/YWkrxf0VRywQE=; b=27qFReLU4ywzybhAqrHkRUEWtG
+	zRKYmiqL6KlaPTvAe/qOAxxPUFOIClouJS5DHoZ5X2Poc/DH9+ClxYhIyXHux/Z8344fKkGvks9G7
+	jtyiYLCPz1zWnCGQUAgrShqkwIWhWuvMDWpghD1VGwXli/ztD5KcJoU0NKSWp7g9PxWs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vtQfx-0084ZL-7o; Fri, 20 Feb 2026 14:36:09 +0100
+Date: Fri, 20 Feb 2026 14:36:09 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Neeli, Srinivas" <srinivas.neeli@amd.com>
+Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"Simek, Michal" <michal.simek@amd.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"richardcochran@gmail.com" <richardcochran@gmail.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [RFC PATCH 0/8] xilinx: tsn: Add TSN Endpoint Ethernet MAC
+ driver support
+Message-ID: <28b232f1-5814-4b3a-af28-1eab023743c0@lunn.ch>
+References: <20260219054911.2017362-1-srinivas.neeli@amd.com>
+ <5f884e29-151a-4ee7-9e1a-d7e1f84d9f6c@lunn.ch>
+ <SN7PR12MB81478FB396CDD9929618C2D69368A@SN7PR12MB8147.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN7PR12MB81478FB396CDD9929618C2D69368A@SN7PR12MB8147.namprd12.prod.outlook.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266948-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266947-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,amd.com,gmail.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	NEURAL_HAM(-0.00)[-0.999];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[1f050000:email,linux.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,intel.com:email,intel.com:dkim,0.0.0.0:email]
-X-Rspamd-Queue-Id: 1F254167DCE
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
+X-Rspamd-Queue-Id: 3D0CF167DB7
 X-Rspamd-Action: no action
 
-As noticed in the discussion [1] the Baikal SoC and platforms
-are not going to be finalized, hence remove stale code.
+On Fri, Feb 20, 2026 at 12:59:16PM +0000, Neeli, Srinivas wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
 
-Link: https://lore.kernel.org/lkml/22b92ddf-6321-41b5-8073-f9c7064d3432@infradead.org/ [1]
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
+Sorry, i'm not part of AMD...
 
-v2: dropped YAML and regmap.h (Niklas)
+> > So how does the host send a frame out Port 2? Is there an extra header
+> > on the frame sent by EndPoint, which the switch interprets?
+> >
+> 
 
- .../bindings/ata/baikal,bt1-ahci.yaml         | 115 ------------------
- drivers/ata/Kconfig                           |   1 -
- drivers/ata/ahci_dwc.c                        |  55 ---------
- 3 files changed, 171 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
+> In this RFC, I configured all switch ports in forward mode. As a
+> result, when a frame is sent from the internal endpoint, it is
+> flooded to both external ports.  To forward packets to a specific
+> port instead of flooding, either static switch CAM entries need to
+> be configured or address learning should be enabled so the switch
+> can learn CAM entries dynamically.
 
-diff --git a/Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml b/Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
-deleted file mode 100644
-index 9b7ca4759bd7..000000000000
---- a/Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
-+++ /dev/null
-@@ -1,115 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/ata/baikal,bt1-ahci.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Baikal-T1 SoC AHCI SATA controller
--
--maintainers:
--  - Serge Semin <fancer.lancer@gmail.com>
--
--description:
--  AHCI SATA controller embedded into the Baikal-T1 SoC is based on the
--  DWC AHCI SATA v4.10a IP-core.
--
--allOf:
--  - $ref: snps,dwc-ahci-common.yaml#
--
--properties:
--  compatible:
--    const: baikal,bt1-ahci
--
--  clocks:
--    items:
--      - description: Peripheral APB bus clock
--      - description: Application AXI BIU clock
--      - description: SATA Ports reference clock
--
--  clock-names:
--    items:
--      - const: pclk
--      - const: aclk
--      - const: ref
--
--  resets:
--    items:
--      - description: Application AXI BIU domain reset
--      - description: SATA Ports clock domain reset
--
--  reset-names:
--    items:
--      - const: arst
--      - const: ref
--
--  ports-implemented:
--    maximum: 0x3
--
--patternProperties:
--  "^sata-port@[0-1]$":
--    $ref: /schemas/ata/snps,dwc-ahci-common.yaml#/$defs/dwc-ahci-port
--
--    properties:
--      reg:
--        minimum: 0
--        maximum: 1
--
--      snps,tx-ts-max:
--        $ref: /schemas/types.yaml#/definitions/uint32
--        description:
--          Due to having AXI3 bus interface utilized the maximum Tx DMA
--          transaction size can't exceed 16 beats (AxLEN[3:0]).
--        enum: [ 1, 2, 4, 8, 16 ]
--
--      snps,rx-ts-max:
--        $ref: /schemas/types.yaml#/definitions/uint32
--        description:
--          Due to having AXI3 bus interface utilized the maximum Rx DMA
--          transaction size can't exceed 16 beats (AxLEN[3:0]).
--        enum: [ 1, 2, 4, 8, 16 ]
--
--    unevaluatedProperties: false
--
--required:
--  - compatible
--  - reg
--  - interrupts
--  - clocks
--  - clock-names
--  - resets
--
--unevaluatedProperties: false
--
--examples:
--  - |
--    sata@1f050000 {
--      compatible = "baikal,bt1-ahci";
--      reg = <0x1f050000 0x2000>;
--      #address-cells = <1>;
--      #size-cells = <0>;
--
--      interrupts = <0 64 4>;
--
--      clocks = <&ccu_sys 1>, <&ccu_axi 2>, <&sata_ref_clk>;
--      clock-names = "pclk", "aclk", "ref";
--
--      resets = <&ccu_axi 2>, <&ccu_sys 0>;
--      reset-names = "arst", "ref";
--
--      ports-implemented = <0x3>;
--
--      sata-port@0 {
--        reg = <0>;
--
--        snps,tx-ts-max = <4>;
--        snps,rx-ts-max = <4>;
--      };
--
--      sata-port@1 {
--        reg = <1>;
--
--        snps,tx-ts-max = <4>;
--        snps,rx-ts-max = <4>;
--      };
--    };
--...
-diff --git a/drivers/ata/Kconfig b/drivers/ata/Kconfig
-index 2349bca136e0..fff305ec1e78 100644
---- a/drivers/ata/Kconfig
-+++ b/drivers/ata/Kconfig
-@@ -194,7 +194,6 @@ config AHCI_DM816
- config AHCI_DWC
- 	tristate "Synopsys DWC AHCI SATA support"
- 	select SATA_HOST
--	select MFD_SYSCON if (MIPS_BAIKAL_T1 || COMPILE_TEST)
- 	help
- 	  This option enables support for the Synopsys DWC AHCI SATA
- 	  controller implementation.
-diff --git a/drivers/ata/ahci_dwc.c b/drivers/ata/ahci_dwc.c
-index 64abf865bb67..feb8a8539b8e 100644
---- a/drivers/ata/ahci_dwc.c
-+++ b/drivers/ata/ahci_dwc.c
-@@ -13,12 +13,10 @@
- #include <linux/kernel.h>
- #include <linux/libata.h>
- #include <linux/log2.h>
--#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/pm.h>
--#include <linux/regmap.h>
- 
- #include "ahci.h"
- 
-@@ -92,20 +90,6 @@
- #define AHCI_DWC_PORT_PHYCR		0x74
- #define AHCI_DWC_PORT_PHYSR		0x78
- 
--/* Baikal-T1 AHCI SATA specific registers */
--#define AHCI_BT1_HOST_PHYCR		AHCI_DWC_HOST_GPCR
--#define AHCI_BT1_HOST_MPLM_MASK		GENMASK(29, 23)
--#define AHCI_BT1_HOST_LOSDT_MASK	GENMASK(22, 20)
--#define AHCI_BT1_HOST_CRR		BIT(19)
--#define AHCI_BT1_HOST_CRW		BIT(18)
--#define AHCI_BT1_HOST_CRCD		BIT(17)
--#define AHCI_BT1_HOST_CRCA		BIT(16)
--#define AHCI_BT1_HOST_CRDI_MASK		GENMASK(15, 0)
--
--#define AHCI_BT1_HOST_PHYSR		AHCI_DWC_HOST_GPSR
--#define AHCI_BT1_HOST_CRA		BIT(16)
--#define AHCI_BT1_HOST_CRDO_MASK		GENMASK(15, 0)
--
- struct ahci_dwc_plat_data {
- 	unsigned int pflags;
- 	unsigned int hflags;
-@@ -122,39 +106,6 @@ struct ahci_dwc_host_priv {
- 	u32 dmacr[AHCI_MAX_PORTS];
- };
- 
--static int ahci_bt1_init(struct ahci_host_priv *hpriv)
--{
--	struct ahci_dwc_host_priv *dpriv = hpriv->plat_data;
--	int ret;
--
--	/* APB, application and reference clocks are required */
--	if (!ahci_platform_find_clk(hpriv, "pclk") ||
--	    !ahci_platform_find_clk(hpriv, "aclk") ||
--	    !ahci_platform_find_clk(hpriv, "ref")) {
--		dev_err(&dpriv->pdev->dev, "No system clocks specified\n");
--		return -EINVAL;
--	}
--
--	/*
--	 * Fully reset the SATA AXI and ref clocks domain to ensure the state
--	 * machine is working from scratch especially if the reference clocks
--	 * source has been changed.
--	 */
--	ret = ahci_platform_assert_rsts(hpriv);
--	if (ret) {
--		dev_err(&dpriv->pdev->dev, "Couldn't assert the resets\n");
--		return ret;
--	}
--
--	ret = ahci_platform_deassert_rsts(hpriv);
--	if (ret) {
--		dev_err(&dpriv->pdev->dev, "Couldn't de-assert the resets\n");
--		return ret;
--	}
--
--	return 0;
--}
--
- static struct ahci_host_priv *ahci_dwc_get_resources(struct platform_device *pdev)
- {
- 	struct ahci_dwc_host_priv *dpriv;
-@@ -457,15 +408,9 @@ static struct ahci_dwc_plat_data ahci_dwc_plat = {
- 	.pflags = AHCI_PLATFORM_GET_RESETS,
- };
- 
--static struct ahci_dwc_plat_data ahci_bt1_plat = {
--	.pflags = AHCI_PLATFORM_GET_RESETS | AHCI_PLATFORM_RST_TRIGGER,
--	.init = ahci_bt1_init,
--};
--
- static const struct of_device_id ahci_dwc_of_match[] = {
- 	{ .compatible = "snps,dwc-ahci", &ahci_dwc_plat },
- 	{ .compatible = "snps,spear-ahci", &ahci_dwc_plat },
--	{ .compatible = "baikal,bt1-ahci", &ahci_bt1_plat },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, ahci_dwc_of_match);
--- 
-2.50.1
+Despite not being part of AMD, this part is important.
 
+I don't care about how the RFC works, i want to know how the hardware
+works, to ensure you have the correct choice of DSA vs pure switchdev.
+
+Take the example of running Spanning Tree Protocol. The bridge needs
+to send the BPDU out a specific port. What mechanism is used to do
+that? It also needs to know which port a BPDU ingressed.
+
+	Andrew
 
