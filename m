@@ -1,171 +1,162 @@
-Return-Path: <devicetree+bounces-266959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WDumG4tlmGmJHgMAu9opvQ
-	(envelope-from <devicetree+bounces-266959-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:45:47 +0100
+	id qBN3GLVlmGmJHgMAu9opvQ
+	(envelope-from <devicetree+bounces-266963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:46:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06747167FEC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:45:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE37168013
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:46:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B2ABC30BEBC3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 13:43:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D84CE3002F44
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 13:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21F234844C;
-	Fri, 20 Feb 2026 13:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3389034887B;
+	Fri, 20 Feb 2026 13:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K8mwEc1C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mUp07UiY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD7C347BB9;
-	Fri, 20 Feb 2026 13:43:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771594991; cv=none; b=Pfb5CNnRsxptLqiMzjiOSN5PBie61bhJHMdAY1Gk+C3A7KbAHF5zPREW/N1pHLl9Z4P665zcPkAje8FVAPPL1hPfuIIVULJv5p+etyftJFa1gQfZ6KsqKXRXS4cEi9qOxL0NR+p1LMxSiO5L7M0vP+rL1CVHwnl+Y7CvUeX8Zag=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771594991; c=relaxed/simple;
-	bh=J/CnWjz0/XEWMkvW599pnkojtxcOQdayQ/SGTMGqFmE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nbFnaQ4++9VRgSuQ0TQERFwBi3TrNZbB+sfHyXZg8+msV+I6wJVSratJODj6Ml8zsDSx1nnA4aNJynrT5oRQ2k4tQuP2MAHhi+3qXR0dWvIquA36KbVjZaR1KYZSv456cLq/BykNMrGYS+IzNAw8/OC/XJAqux1O5E9W6AtWuRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K8mwEc1C; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771594990; x=1803130990;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=J/CnWjz0/XEWMkvW599pnkojtxcOQdayQ/SGTMGqFmE=;
-  b=K8mwEc1CepglGtnHdqd3tYQnouZra5ZClO+dtXm+6yuJ0AhWV1ycX5KB
-   /S/7yr/wBC0wMvUTHspgU3D1urnOgKY/aYJ3OROId54gORsOW1tXHb0IW
-   bApHk33SP/ZJL6EGRXcvJ0vAg3OXY0wG4BfUnCkt+eKhjj96sMx7WJ6YY
-   5yv/RdQ47gEsf90aLHm/RE1mAhDBm/K1eXLbj0rJWaZSzKryGJztDNlNQ
-   +90NBpypac9Ac+4UOV1eFK7bjEGitDcpyMxxexlaTdcX0MGCvb4rq/dvZ
-   wLiDZT7hWzz0ZzFh2F5EeqvFYGOpQVhiHlzy+bhb350vkDKVAgqCaKbpA
-   g==;
-X-CSE-ConnectionGUID: mGDzl+8iQQCUUX38jdFOeQ==
-X-CSE-MsgGUID: Rv+nk2dMQYa2DcsXCf5U1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="95306368"
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
-   d="scan'208";a="95306368"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 05:43:09 -0800
-X-CSE-ConnectionGUID: 01Gs0n/1RLC3lsYNqVo0lQ==
-X-CSE-MsgGUID: PCNeRVOUQ3e/9I+1NA/6FQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
-   d="scan'208";a="219855760"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.25])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 05:43:04 -0800
-Date: Fri, 20 Feb 2026 15:43:01 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Hans de Goede <hansg@kernel.org>,
-	Jens Reidel <adrian@mainlining.org>,
-	Casey Connolly <casey.connolly@linaro.org>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] thermal/drivers/generic-adc: Allow probe without
- TZ registration
-Message-ID: <aZhk5Qn0vJmtxbtG@smile.fi.intel.com>
-References: <20260220-bat-temp-adc-v2-0-fe34ed4ea851@fairphone.com>
- <20260220-bat-temp-adc-v2-3-fe34ed4ea851@fairphone.com>
- <aZg8ZqckhGbvkdel@smile.fi.intel.com>
- <DGJR7OIPI2ZS.ZTJ1IJWB3Z61@fairphone.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD1E320A23
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 13:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771595184; cv=pass; b=jOcU79dNzfpFzsUtoEXcRG3riKOKFVLBFaCJlcZMfybWOOi7fiyIkigJMrzgygSWo2je2pxGCMbatFwTX1uaDW4XDan7vAv6W5RWEfgboe7T6kaJVU+9omCEhjfUqu+RfPUipu0pvxzh+qzsJA4ZYYhLqxF2WitLJtveBbUCyaU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771595184; c=relaxed/simple;
+	bh=XOrJsV7xngK5oabafDdTfaQdbOak3Z+Z+nL4+6By2TE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XO4NQfOFGEFggSb6A/Y5SMGbPty4YR1zmqBjty//N/vZ9S14kFG5DESj+8SB5/jR0vgY64vIq1nmZ66pkozuTU2o9SLc/t3IVc4YssEj0ZS1fksxmj2z43TQV48DAid2+5kertOsS2feUYU/T4Dqtw8hoUZtKZyH4ko1Zu07HAw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mUp07UiY; arc=pass smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-59e60b3ccdfso3038622e87.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 05:46:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771595181; cv=none;
+        d=google.com; s=arc-20240605;
+        b=jzJbaMRZ1Ep/WgichTtJvk1UrZLK3QY/4sJXdcpz17/Q61Q5+JkCy3l2eIYMKODOzJ
+         Lke36/zorEEEYrUCOyqxLtsNjxLLDT9zQK1MDEqST/A0FmBs8UOSCUKNvY/6Kh0C/ZrE
+         nFzQtQBiFr6F89L8NSRFxZwiDdblE1tHGBLgwSioqIoX8xLBYhYlS2hYWBAZMxq2M1V8
+         zGf6QDhLwMC39qVR3BSGVXPhwiTYrxcHoApXzkJa9/3KPRmTdD0Pl/o3K7Nk+pePdm/I
+         Ugu7Nad6yMYkhGAfWjEa3aJ2GSVJWL37PAQ88io1Bp0DVS9pbkcsWFIM7NMElOAoqc8Y
+         vbQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=XOrJsV7xngK5oabafDdTfaQdbOak3Z+Z+nL4+6By2TE=;
+        fh=5/96KtAlauUL1kghcbWbERMdxnBImDJ/W3ZpZvIwVnE=;
+        b=H1dI7StK9wRww/IHGYmVgL+NsTiazw8qJ7mRIB4Jqv2c0iSBEurJjmFfdtD9MRtPE5
+         ZDo3369Y9EWjQzvISMhiMwlfF7R9qrC4VUafjTHkT5YH3nMk7P5r2faKqU1/TxzMsC6u
+         F3Uh42NHchbWrq6x0SUnCK5TZaDyWXm5jPFb2WaFXeLtmxBdtm0DyZ07d+AUn2lgm0tB
+         pS4uYz2tHx4W+7ZeoGAz4/U1UuJ1VVK2S4VxpNPDNAn3e6POssPtlDErCz3O30EFNj8T
+         RsrLLKJC+jh4YUoqKTUVity6FoVq4agDVbR1OrGUTb8L7MHQWLQiF0fmgUoHLp39672O
+         sA1Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771595181; x=1772199981; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XOrJsV7xngK5oabafDdTfaQdbOak3Z+Z+nL4+6By2TE=;
+        b=mUp07UiYb81+syGmorIce+hGL6+Qb8/YlhtbOLdC8+Q3cNoBEX8IH7Jwh4qFbg3uJj
+         2PtbTW4haR1AlToNWjoBsM+bUnGaqDOyUK0hgk/nspCjqzE9aEXkJxSUIexXCF1G4JLs
+         qMAuZwuPcOaDkj661zfhuwMDHps7EF/VWZN7St6qd/B1yX+4zqkCLc0Q+axi5InwiO7R
+         +JL87qWntoAxtxPBU7wXbqNqzqrbeQypLn+m0Urn9khwS4T9+HnDCZJ7+U0RKzan6q8h
+         +98iBc0YxYTCfuQ1yq/ndXPgF3yId+xMyFiQGqAqw61GDGVpmGfJUwtoNvc9aqvjkqds
+         Cw1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771595181; x=1772199981;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=XOrJsV7xngK5oabafDdTfaQdbOak3Z+Z+nL4+6By2TE=;
+        b=FB1Jm5h3Qk2csp4k7xqGIxQnWchgnWyDevBeqFM60HZjH/xfEO/IZcTCNiotxaNcaP
+         SQB/XnbyaYOQy6NRDxbxrh3oPAJ4XZT9IVfQ88wl57Ol6qDJTJ0MRUdS08Sx4OgdPSpO
+         XNdJeFokwGopAL6neCFqK3tBv9bEvptwXsF0gL76i6gWRFGOgqYm527C/rcgXNTxbuSq
+         AL7w3yP8+NZgX3Uvj23VolRnNOgsN+LFfY31QrdN6J4hKU2s1aX5jXNrbZKQQzcXhHRy
+         F57BS31w1j2j07Jgf1zI4JCJnzVfrkpIhrhTOxn+kHiwwo0llbA7N6Z5vG/7iYtd/vRL
+         +viw==
+X-Forwarded-Encrypted: i=1; AJvYcCUUjzW2Yv21DiyINqXmIEJEJR/RoD7Z5sV/6/+BnZuVnXik37wVILL2FFe6O+8ueHOtjEht0mGk6MoR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRprlA//3vmg1PWB35RvmM0FFypNAN5nYhlPtvbSIMHvbVRVjU
+	TWM3N1ddr4uKNSBUfk5c3Ud2w3DezrYOgLbIxcWOtmQLwMIVP9YymhEOWuKWhCvd/UXgOKkmNM2
+	wxQBFb2cbaJZle+Qhp0h+Px2esqqdMh0=
+X-Gm-Gg: AZuq6aJz/fLymkSkoH5CiVOfWS+KGyZ7QJFzN04VE6MXLMGRCnlr4U6awTvOeJE9PF7
+	Wwj3FtZxAz+kA7swtSAi4TqLfKQHaKMZOXO9rnRNDzAugPaqoRiOF33zV2RhpBCuxi07LAAtzJF
+	wHqGwAdpBEEgj47vcueRWE5JVuJ0HcvXDBW/qC1+2bqc1N//xBJKXHgYrQ+Nwk5gISxM6AtYVJz
+	/BB1opZoEuPJjHmyWEcP8NcZCJEgSHAr3WCpfdEr7ulguhX36FXapc02up1fD2M8LLAkwPkE6fe
+	j+Ps97PXP2LIFb5+klx/pXml8rbSFczTsxHJjv6GyaQB5YHsifOGUAHjm13XbNleU4imISs=
+X-Received: by 2002:a05:6512:15a3:b0:5a0:4345:3b83 with SMTP id
+ 2adb3069b0e04-5a043453cd8mr632693e87.47.1771595180578; Fri, 20 Feb 2026
+ 05:46:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DGJR7OIPI2ZS.ZTJ1IJWB3Z61@fairphone.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260218132339.32157-1-Max.Merchel@ew.tq-group.com>
+ <20260218132339.32157-2-Max.Merchel@ew.tq-group.com> <CAOMZO5B5k_i_q4cd7SMNAkicF4WfEYNVUSrg8AamQHNpGys5mA@mail.gmail.com>
+ <be39b302-a29b-4dcd-a3f1-1f3781476951@ew.tq-group.com> <d1a87e01-f887-44ad-9b95-08c0e29be6ee@ew.tq-group.com>
+In-Reply-To: <d1a87e01-f887-44ad-9b95-08c0e29be6ee@ew.tq-group.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 20 Feb 2026 10:46:08 -0300
+X-Gm-Features: AaiRm51_GsoZDQD00zZcBnGdIZ49TtjBpvahUOln8EYXFWstEClOh9muiMle6fA
+Message-ID: <CAOMZO5A1+kynXqCDXA=aFw1y9UxnS4SQN2hbQXEmdXVgA8PjUA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] ARM: dts: imx6ul/imx6ull: add boot phase properties
+To: Max Merchel <max.merchel@ew.tq-group.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, linux@ew.tq-group.com, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266959-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[25];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266963-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,smile.fi.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 06747167FEC
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 4BE37168013
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 12:31:36PM +0100, Luca Weiss wrote:
-> On Fri Feb 20, 2026 at 11:50 AM CET, Andy Shevchenko wrote:
-> > On Fri, Feb 20, 2026 at 10:19:07AM +0100, Luca Weiss wrote:
+On Fri, Feb 20, 2026 at 10:14=E2=80=AFAM Max Merchel
+<max.merchel@ew.tq-group.com> wrote:
+>
+> Hi Frank,
+>
+> I forgot the boot property for the spba-bus in imx6ul.dtsi.
+>
+> If Fabio gives me feedback on my suggestion to improved the comment
+> messages, I will send a V2 at the beginning of next week.
 
-...
-
-> >> Since the driver is now also registering as an IIO device[0], allow the
-> >> probe to continue without the thermal zone.
-> >
-> > Isn't it dangerous?
-
-> Why?
-
-Just asking to see if haven't missed anything potentially dangerous for HW
-at run-time.
-
-> The idea is that generic-adc-thermal is the middleman to convert
-> from one IIO input to one IIO output, and is purely informational, so
-> that user space can get some temperature value to display somewhere.
-> 
-> How thermal management will be hooked up in the future to charger
-> drivers is a bit out of scope here I'd say. There's not even any cooling
-> support in the power supply core anymore, that was ripped out a while
-> ago if I'm not mistaken.
-
-Okay, so there is no possibility to get some thermal issues on running
-legacy HW (that relies on thermal to be present). If it's the case, no
-worries then.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Yes, it looks good to me.
 
