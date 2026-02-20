@@ -1,221 +1,145 @@
-Return-Path: <devicetree+bounces-266994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEcyN2pzmGkoIgMAu9opvQ
-	(envelope-from <devicetree+bounces-266994-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:44:58 +0100
+	id CE0hDKB0mGnhIwMAu9opvQ
+	(envelope-from <devicetree+bounces-266995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:50:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3642B1687FC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:44:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2AD16886D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:50:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2F1EC30465DF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:44:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4073303FDE8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6365B29993A;
-	Fri, 20 Feb 2026 14:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F7634B190;
+	Fri, 20 Feb 2026 14:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C12rBUTn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h/4XgAPr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB2E41754;
-	Fri, 20 Feb 2026 14:44:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4EBE342C8B
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 14:49:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771598694; cv=none; b=IKrWafwXNfrtS6Ltq90VnIZDJyUko0H69QS8fW7tZ0dGZVEUrDTmzweCSdOMlhrTedNDc9YA9G2QNi0fiRSr0t7tQZwOkLxu74aB5gAoOHWB7FinhDGfow+0N/QZ5qiMK1BNVt1eYN/uNrr8SrE/U1K/JOSR+aEk9Lw+O5l70I0=
+	t=1771598985; cv=none; b=V8q+BzfucnmQA47m0Y6+6uSeZkoGFhF8zB0/VgRX5k8ERQEVFhL1lPUxdZKJ6JkJPYefpPYG1ZSm+lBoRCYtTXBJGsmx1X83sud94yHbQdcik3hEPZx8eFidjrDuCw9AGNW6TrjTaYgGItlPwbi6oZsLCv5MtW7czCCCXGe/N5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771598694; c=relaxed/simple;
-	bh=RG2Hbf0o3KuqHZA5+48UswLVGJeXGifkvsztTu4/mN4=;
+	s=arc-20240116; t=1771598985; c=relaxed/simple;
+	bh=jj6uJqAcAXdCpmcxOJYN0K8NpKv/inusoEu4giTBmDY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l+rHcgC284T6Zum4BFon8Si14T6EP6uN3zA0omH6GNXmDc+J0yEE4RQKEU7xik0rFszvO+tN0cVIFgsRx0QX7XHqO8lklVWqMcOc2UjBrDFjtGzNFmfFTPLs8twTx/DPQPVAUjSdMGdLvMTB5WJbzwaNNyFulfAM86SyWaeyCjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C12rBUTn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCB7EC116C6;
-	Fri, 20 Feb 2026 14:44:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771598694;
-	bh=RG2Hbf0o3KuqHZA5+48UswLVGJeXGifkvsztTu4/mN4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C12rBUTnA1iJHVlm9ABE6opSgoFtD/ToalKiOumJIOKBNooJtp5TVG/aJmvhSYzoN
-	 JdxJ7uk4iCij2Aui1zxPm8KDGulo+EhprMBZduPecMxE0eTB+C/K2rVrG6MjNvVBwA
-	 V0tAmRNwiC3Son3ZQwnVkKQgTtax/HAdgY9zjkbrgyU1c0zY1FMYUqv36qm+mLv+5w
-	 HIj9eCxwC2UJ46qn+BMXGx8FTh9f7R/YHTrpBiyacN6nH/CCzjA0TA6eRsJ76X/0Wv
-	 Lo24d5B3SiovMtgewWVYU2pfVG8IjcwsMGCjEopMcAqm6LJ/WpZUEGvEutRLP4bLW3
-	 16gH6/69vLArw==
-Date: Fri, 20 Feb 2026 20:14:44 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Harshal Dev <harshal.dev@oss.qualcomm.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
-	"David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Abel Vesa <abel.vesa@oss.qualcomm.com>, cros-qcom-dts-watchers@chromium.org, 
-	Brian Masney <bmasney@redhat.com>, Neeraj Soni <neeraj.soni@oss.qualcomm.com>, 
-	Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/11] soc: qcom: ice: Add explicit power-domain and
- clock voting calls for ICE
-Message-ID: <vimd3tbnu4mr2uqporj7d4fv23aq2cb6e5een43yz5spe4u2xx@ufyzb2lzlc6j>
-References: <20260123-qcom_ice_power_and_clk_vote-v1-0-e9059776f85c@qti.qualcomm.com>
- <20260123-qcom_ice_power_and_clk_vote-v1-11-e9059776f85c@qti.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YDXdsrHEF4ly6nZLsFaxDSCZ35p+GbK5e9fo7yozERshYk2CwZxyNIKFB5OM9Ga/wtLGKwfI/+f0whY6YK4fWAP6H4LGsfqtc8BW6u/mDYYOYA5N9NV1Q2cUMUKMfeM6rNGwXaIbVzil8P5oXCGEAFZqTzs8GTBW3jZyOuSon3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h/4XgAPr; arc=none smtp.client-ip=74.125.82.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-1233bc1117fso1698953c88.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 06:49:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771598984; x=1772203784; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RkGJI3clYxjZSfmR9ZzEQDqXGVlybnHQnZkENd5c2QY=;
+        b=h/4XgAPruawUoEZxjmbKIoBZrkdwOcG0v95oM4M3stYUm8C/xYdQChi52tdDH28yQQ
+         Ck7f02Rf0hYhet7Yk9jUynnSFTzF0J92Zpln9UmzhtZxP3BUqE99mnwJkAndIhac6J59
+         2OCQjSZfn0wvGzv1hNby/UpDEyKPYlaO4nH4yKuRW2AYFw93HiL4tTKxTaJQAo97nrq1
+         Smaz5QZQNVaF0mL45CZPMJtT8SQxr3MzT/BqU0R8IyGWkVgEXci0Rzo3FHuxxPrszziE
+         uDBDtmb72q08hFcdQTq+GFE57SmWi98sdYMCjSsV1IndL+a8tTG6F//SvulBmTIMvW6O
+         r/JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771598984; x=1772203784;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=RkGJI3clYxjZSfmR9ZzEQDqXGVlybnHQnZkENd5c2QY=;
+        b=HvRNaab6rJeUug9mNTnyJR/OrXeEZW8qvqBMPHj4EH0vu+elnnasIECQuSnDlc18en
+         N8nLgVnNg/Js6vFXWWHvzoHJuh2h1ybp8DvEDygXvsCvm1FmHxwlf/YX2Wn4/XJwxZTo
+         jglDgZ9ZDaABvv99siuFIWeBD3eKMbiDVLYWvBmfSXZ9KN0xHxcep12BeUEpnX8Kb314
+         SLgyqnqholFYI+THEbX3xMbBVFBVEiPXkH2Vd5SL9jgKgV2qbzQ1OrZNJgXv+hxdioG0
+         k1mjL3pH2lkXyy27h1fHyFvmjX3uMjdvYRAI+IT0a7JfcdhN4qbnkqwo3DJ9YnojL40C
+         qBYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVB9GPxzKpOTk3OLYoga7PXp7/xjWoupN5nF0HGbWq8+KjwT0zmPaq3PqNn7Qf++4UEvQDkQT6QEW+I@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw54RhRBepZuc5pLhPk5hKPTVUB9xEOgsd/8b62T6F1OaoXQhrD
+	3qGM1O/mMm6iBSc6Gx6NQeI7CRLf1d84dygm9Qn0RVKyGCSMcKDX1lkJ
+X-Gm-Gg: AZuq6aIK0BnHiwIRLcXYOMANGw35TnIvyZEC5Jiy4Z2eLP3F15IFhkStHREup47UqRc
+	h0d2UkdCz6vOGU6xnqI+Yg5DqQcPNf3oVghF8Tde7gAzaG9wQaiH7nvJkUIwBHpCnTLnN7ApNQT
+	Pf1S4xqdSDRc+7iM+uOg0yfKahplA+NHFihq7bPftuyukq9GpAQvQX3Mx4m17qZWLOPqXbqrvCQ
+	7gWYPBcchk/Zsl6fHEQ9fdHhUU/OJKqrE/mCAsNTtyU12O0GV5uWprboE9LCuegULQ+1k81YSmu
+	Gv1Jqy1yz4iE8ixG1/haF6/A+7V/igxfHTDgJcfWPfgE1Fmg7rdEUzeEjLDX4uyPf8BCFpsejFf
+	fawsbs/wEcm87yDURTnu5TdO9+sL/lFYlxeftNkAN3j1CTGRgHGav6i19IlaqWB+KI/4Zh4ZFyc
+	IqNWTl71Ab7Md0VzLSL2NkdhQoyiZWnegQpGJ6
+X-Received: by 2002:a05:7300:dc04:b0:2b7:bc31:11ff with SMTP id 5a478bee46e88-2bd72e43e13mr744294eec.8.1771598983758;
+        Fri, 20 Feb 2026 06:49:43 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2bacb66bb08sm23507287eec.26.2026.02.20.06.49.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Feb 2026 06:49:43 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Fri, 20 Feb 2026 06:49:41 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v1 1/1] hwmon (bt1-pvt) Remove not-going-to-be-supported
+ code for Baikal SoC
+Message-ID: <33af2428-38de-4589-8f62-0ab05b0522d3@roeck-us.net>
+References: <20260220143500.2401057-1-andriy.shevchenko@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260123-qcom_ice_power_and_clk_vote-v1-11-e9059776f85c@qti.qualcomm.com>
+In-Reply-To: <20260220143500.2401057-1-andriy.shevchenko@linux.intel.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266994-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266995-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3642B1687FC
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,roeck-us.net:mid]
+X-Rspamd-Queue-Id: 9F2AD16886D
 X-Rspamd-Action: no action
 
-On Fri, Jan 23, 2026 at 12:41:35PM +0530, Harshal Dev wrote:
-> Since Qualcomm inline-crypto engine (ICE) is now a dedicated driver
-> de-coupled from the QCOM UFS driver, it should explicitly vote for it's
-> needed resources during probe, specifically the UFS_PHY_GDSC power-domain
-> and the 'core' and 'iface' clocks.
-
-You don't need to vote for a single power domain since genpd will do that for
-you before the driver probes.
-
-> Also updated the suspend and resume callbacks to handle votes on these
-> resources.
+On Fri, Feb 20, 2026 at 03:35:00PM +0100, Andy Shevchenko wrote:
+> As noticed in the discussion [1] the Baikal SoC and platforms
+> are not going to be finalized, hence remove stale code.
 > 
-> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+> Link: https://lore.kernel.org/lkml/22b92ddf-6321-41b5-8073-f9c7064d3432@infradead.org/ [1]
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Where is the Fixes tag?
+Applied.
 
-> ---
->  drivers/soc/qcom/ice.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/drivers/soc/qcom/ice.c b/drivers/soc/qcom/ice.c
-> index b203bc685cad..4b50d05ca02a 100644
-> --- a/drivers/soc/qcom/ice.c
-> +++ b/drivers/soc/qcom/ice.c
-> @@ -16,6 +16,8 @@
->  #include <linux/of.h>
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm.h>
-> +#include <linux/pm_runtime.h>
->  
->  #include <linux/firmware/qcom/qcom_scm.h>
->  
-> @@ -108,6 +110,7 @@ struct qcom_ice {
->  	void __iomem *base;
->  
->  	struct clk *core_clk;
-> +	struct clk *iface_clk;
->  	bool use_hwkm;
->  	bool hwkm_init_complete;
->  	u8 hwkm_version;
-> @@ -310,12 +313,20 @@ int qcom_ice_resume(struct qcom_ice *ice)
->  	struct device *dev = ice->dev;
->  	int err;
->  
-> +	pm_runtime_get_sync(dev);
-
-This is not needed as the power domain would be enabled at this point.
-
->  	err = clk_prepare_enable(ice->core_clk);
->  	if (err) {
->  		dev_err(dev, "failed to enable core clock (%d)\n",
->  			err);
->  		return err;
->  	}
-> +
-> +	err = clk_prepare_enable(ice->iface_clk);
-> +	if (err) {
-> +		dev_err(dev, "failed to enable iface clock (%d)\n",
-> +			err);
-> +		return err;
-> +	}
-
-Use clk_bulk API to enable all clocks in one go.
-
->  	qcom_ice_hwkm_init(ice);
->  	return qcom_ice_wait_bist_status(ice);
->  }
-> @@ -323,7 +334,9 @@ EXPORT_SYMBOL_GPL(qcom_ice_resume);
->  
->  int qcom_ice_suspend(struct qcom_ice *ice)
->  {
-> +	clk_disable_unprepare(ice->iface_clk);
-
-Same here.
-
->  	clk_disable_unprepare(ice->core_clk);
-> +	pm_runtime_put_sync(ice->dev);
-
-Not needed.
-
->  	ice->hwkm_init_complete = false;
->  
->  	return 0;
-> @@ -584,6 +597,10 @@ static struct qcom_ice *qcom_ice_create(struct device *dev,
->  	if (IS_ERR(engine->core_clk))
->  		return ERR_CAST(engine->core_clk);
->  
-> +	engine->iface_clk = devm_clk_get_enabled(dev, "iface_clk");
-> +	if (IS_ERR(engine->iface_clk))
-> +		return ERR_CAST(engine->iface_clk);
-> +
-
-Same here. Use devm_clk_bulk_get_all_enabled().
-
->  	if (!qcom_ice_check_supported(engine))
->  		return ERR_PTR(-EOPNOTSUPP);
->  
-> @@ -725,6 +742,9 @@ static int qcom_ice_probe(struct platform_device *pdev)
->  		return PTR_ERR(base);
->  	}
->  
-> +	devm_pm_runtime_enable(&pdev->dev);
-> +	pm_runtime_get_sync(&pdev->dev);
-
-If you want to mark & enable the runtime PM status, you should just do:
-
-	devm_pm_runtime_set_active_enabled();	
-
-But this is not really needed in this patch. You can add it in a separate patch
-for the sake of correctness.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Guenter
 
