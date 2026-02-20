@@ -1,164 +1,219 @@
-Return-Path: <devicetree+bounces-266919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266921-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wvHBMQVDmGm0EgMAu9opvQ
-	(envelope-from <devicetree+bounces-266919-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:18:29 +0100
+	id qBe4FKJDmGnxEgMAu9opvQ
+	(envelope-from <devicetree+bounces-266921-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:21:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 362B6167356
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:18:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0F0F1673B7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:21:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DE2073012CB1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:18:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2EACB303788B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C0A2D8375;
-	Fri, 20 Feb 2026 11:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D7B32ED4E;
+	Fri, 20 Feb 2026 11:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CxrBwIJ8"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="eXESOUx+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010038.outbound.protection.outlook.com [52.101.56.38])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE25332ED5C
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 11:18:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249F932D435;
+	Fri, 20 Feb 2026 11:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.38
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771586305; cv=pass; b=NqbQrJrUfVVxnrxXgAD4bA4phMZur++9y9vWMc1/TZ+1tVQSQ5m1wSszv7zrnGJ+wLqg5cW72lgCQ/WaF0QBafv7mZ7YDWJi+NUNkdZTmnbjo9NlguC+3Pm0Ae+OrKmwWnRcsNlQGR2lVhKi54Qcg7+y8xZjjJto590POkBJZlY=
+	t=1771586434; cv=fail; b=D/sm+BnDJ89naw+fb9YmdPAQdd3fsmB8JBVkD4ZJpaWT6ExdoU06N4cj0nqtYaekJ5iTEBzDOEQjYfLpplZ+HafOsiMzhdCOTF35MyhF4k09KeHy9hBHwtoDvge7ptSaHMWRU1vjfBVdy2NkND10K6j9c8Xijy+SzJOPXE4az9g=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771586305; c=relaxed/simple;
-	bh=4ZYsIbWRd3672L7CH/XwqnwaaGplIX+GYHJVYMKyVj4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AJFQwWDeMfPTBt0dlvXOwm0Vtvzw4ZLAAHoCJLUsuCwOpBuy6oI1HS838M1gFbS2/3lxa5p9/nJU6BoE3HRpePiGa95kLUWFbM/nps3JrTW5hhekuEec3FWzMMfPJDh1TbAGRY0D8vuHfUnYoSMHthqdeDq6MRrPrIiR3u1e1Q4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CxrBwIJ8; arc=pass smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-59e5bfa4f33so1790591e87.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 03:18:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771586302; cv=none;
-        d=google.com; s=arc-20240605;
-        b=llx6PlVXDj8igIdTAlU3kspuxUj2GQaIYzhkV9SYqVIHtGFPu22LGubrCtQmvC9gfh
-         /aDp1uIBdQHAsU2KyZka7/V+6zNBjiNE3nqkDfEp7cCeYmLM95XEEDr7HZvFFr84C5Dn
-         OooN1QCyWM5xKwOwM2+lvzlEHJZ3yQj8x63SEOzU9W67ReOhbuWjhmpHbrbe0zRq3vyD
-         7NBhrkSWJLmtgnJvkEE7/Vu7hXc3bY+BJA5eqJM1wyNRxejnpRwDKNQb6l/vQdvyV1im
-         EnQF5Ihwt5fT/0AdKAN5rzq3sWnVc/q9mS4LVOb2ArCZb7fAFP0XP38zdWmz5aH3EyMr
-         4R/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=4ZYsIbWRd3672L7CH/XwqnwaaGplIX+GYHJVYMKyVj4=;
-        fh=NXWGJwO/OfMojoRFD3ZvIXKYQ4amQtIJ+joo9p3/m5s=;
-        b=WpW5VKt8ROS820dMarW5dIahuuYUibVW4BXPmpJ1r7isqicWL/gYy/72j72wN6f9ay
-         OGAVflgOZVGPi6OIjEjoq743XmrYVgiErsl6tdknmTQ797kroORukxGz7vDroJtIlmf4
-         LlSzHt3PF3WFXmvZ+0vkOwJzxG+nmY0PJ0sbXtWsunud1AL5lTnts7dys+mWz87qCwV1
-         h/xbPelUbbr6RnWiIqYiq2rneOqOU8wDz1vCS7grsywkDq+ONQWBpSK3OUmU5QVD00Iv
-         FUVJEHa2s8+1xQF7LYLH5RboZqJaCNTsYrSMrOSOEBZv3YN3XFBriDGPw93rRAFXqAof
-         0NCg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771586302; x=1772191102; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4ZYsIbWRd3672L7CH/XwqnwaaGplIX+GYHJVYMKyVj4=;
-        b=CxrBwIJ8UvwqJO52ABJpKr+FlBJxZQ8ggDlxOEhH3dV59yFUZkm9PPywzFZMyWsqYU
-         8AUjJEOba1bq8WdCMSKT8OCnW1QXMD8JVVek7fHpU1wXYuNAyoGUbnA0Zi/p2+jDmu4f
-         PrGXJV2cno0MSUw88eGEZ9d8+2cDyG8dOvPgP2P9zWY8Z2FVDvr1okb6WsG6NOOgBgE9
-         YzGiWEGCiWsr2na1OGyNCQofC93QOa+qlBbyjDefKoBN4YtR7cKjvA1YpAE1JgKKcrpu
-         KLLz6Agu5p7OVjY+tIRsIVK07C3Iyl8DZFw3amE4vN9veXskHCWpHGTWoZ7netTcftVh
-         V3Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771586302; x=1772191102;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=4ZYsIbWRd3672L7CH/XwqnwaaGplIX+GYHJVYMKyVj4=;
-        b=ix8lrtsPfbiBbyn0kDVVJHfsVbIlFkq0gUTZ8Dsjt7ce6GF2Sz6bQ8+aZ3J0Ukca80
-         jlHvpUXRdifMzkSB7QsOiiivuAvqGasWVHD3uI8Ichq4ZfAR1N6Yu08WVxRHmNCrU5Gf
-         /XhetGOZmrVjh1fJgKUAiMNjY0WuvFGqUUAwNqRcRMW0gmNL6O1du2JKct9ln113DFt7
-         VoXgRM/KpL7a2y4FlcawMK0D6ib/alE8cqsAfnsq1S2OzY14Ovy88NVdjnU3mx/sFeLd
-         IFCOyWXLFC8fKWrxE+YFBP+v6COWoi4a1tIkc/rcjiJdz2yCklTlt34RTnYbv9soSg6m
-         EI7g==
-X-Gm-Message-State: AOJu0Yz0CRmerd6gVylmf41v8S/6ZJlYaQBD65tvW4bUyPxoZ+oi3v6w
-	tTkuyMLrT0LAM0J+doYJxG7rAbI/Kg2/zCHxQFPb2Z4lSg6gx54KeaJ1FQtZ6UeRFEpgvhJrslt
-	vxxDaBPvf2TSoNr8HdD3iu2/iHswMLd0=
-X-Gm-Gg: AZuq6aKgJbyeeU3XcQV9cQZtT3LJp+O5wUzYXsWCk2StEuLTAFlAvQSSbJSKhDRLCGL
-	9li0fCDe+4kKt4zg8ufM6vkiv6SP3AIXHHM8Qjgs6A3USKTe4WI5YTK25BpMmqVRweTmZ6R8QnT
-	/3lR2W3OFRrcvXFZRTqTnHdf1LFcRRE4e0HtBE0QBN9ni/HUihRYI+K6Rt2ZxlnjhtLrGcN717U
-	kOVJ+Gve+6DrLILkZdg2LT1/m/ye/WtJI4onVkhlMmnoQenI7zXcFBC7PsMEoIFyVdLAMPJdqGn
-	kVS79HQ2myQ9wWPDZxPfklWaEoInzXCcPHNYww==
-X-Received: by 2002:a05:6512:1595:b0:59e:3041:8a2b with SMTP id
- 2adb3069b0e04-59f6d3856e7mr6396638e87.46.1771586301677; Fri, 20 Feb 2026
- 03:18:21 -0800 (PST)
+	s=arc-20240116; t=1771586434; c=relaxed/simple;
+	bh=0v0RIhS9/4pTnM2DC3KheQpW/CMy2qN3TciD9S5kWVI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PQUQFRbqk5bqilPZmzxbxNMzTNTnMThswfP+Ia8Vpb0qs4t2EV/+oSiMeNSFcV5wSoD+dbkRsJzZOxRcyB+4zlyt1GfX/pDHHsabaZ+qNMupxMProNEO3Rxtbc5LlDP27cOGbBMuy2RyxZGGMPqJb41R7YHfgLXEz8vvd8pD68E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=eXESOUx+; arc=fail smtp.client-ip=52.101.56.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k7oSPQfkwJezCOK+ZFevx9sf5AZwwSd0TiiW5lDKceL2EpD+dCJe/XrI8lsUzTptO+oRxYpqWpxun5nmWjWJ7KBzC7frSzOlBr5PI08lYPYYAzDkMIvmhb1HkEYJvfYHpsRT/RXdT+4fc33yQNVS2aOET1+VAZ5d41zAFTEsdrNLVn/8aM1qPCqBCvaDuvWn0RVEeoN7/jBESpGzLRJ6s4Ns04/3Y4qGvCzxZWhEiuaCSnUTcvULS753i9pfzU0rTOm/8VHaQNfgChHVz2d/mKHiUjg6cwD01ZneCs6Vt6VvSuPPozbsvRHs7tb0HFVnfOJYd8c2RkxtGeAiVLL4tw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=x2HnPQ8zWkmcfhwsrjEuzFYYHQqQukTbUV9G/F4R/gA=;
+ b=vkuqDoF4jgXJRFPsAQqHHqBKc8D3lC/8SzYZH2DM0AWaUsqtDh851Tx6aOKYLzAnScMzRovaViSbwfhW0vsVu6TpmgBkDon+P9z6Ebo2Mhxb6X9qCY3ofPwOxz7+wQKCoZ/p/mmE5hWufRZrWpAe6nW7Y7hV59vQgx8wAzREt9aD4BF/EfhwFSXZQsdwV6NqDUOF4mP46H1O4zbB2eZLyxlyh0ozCf3F9wVYMR/yF7sUq7Vk4bCwaGM1vdbrQD/p0KypZ7zG8P8L1fpcLiE4zF/lBzWN58DkkrNVdVJGAk77OvdKvVmi7D8ag1egp7GPiyrtoJs9yYqVUICxtaOTTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 165.85.157.49) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=gehealthcare.com; dmarc=fail (p=quarantine sp=quarantine
+ pct=100) action=quarantine header.from=gehealthcare.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gehealthcare.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x2HnPQ8zWkmcfhwsrjEuzFYYHQqQukTbUV9G/F4R/gA=;
+ b=eXESOUx+7njUNj/dhYlHvY+1eUXTOhj2s/5nrWBsM7QA8F04lTfb7XefKTYiJJUHjOlTw1kiD16XPiRRdyl1dQGme6Pj9sa45MembcylfDgzwUnX4MZv8BsctGWbhx0uzWScycQxqpkE+H+ogbax7Q8zTeiCJ9/egwth//rVxHT0E1Xsfo49EVC/MDkOVu/a3ho+HV6cdsUUjUE4uRjF6lqR7XlnpJ0MbB2GYROXEE40g2j/X9ujSfzdvau12XftLE0o3DKxHAs+fWOzeULhsApHMiL/r6RETi4p2jj7NXGXosu10ZpsS6dVUOOtpwyRu+dsRTTX3avQVEjStZyiAQ==
+Received: from MN2PR05CA0032.namprd05.prod.outlook.com (2603:10b6:208:c0::45)
+ by CYYPR22MB4201.namprd22.prod.outlook.com (2603:10b6:930:c1::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Fri, 20 Feb
+ 2026 11:20:29 +0000
+Received: from BN2PEPF00004FBF.namprd04.prod.outlook.com
+ (2603:10b6:208:c0:cafe::a4) by MN2PR05CA0032.outlook.office365.com
+ (2603:10b6:208:c0::45) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.17 via Frontend Transport; Fri,
+ 20 Feb 2026 11:20:26 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 165.85.157.49)
+ smtp.mailfrom=gehealthcare.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=gehealthcare.com;
+Received-SPF: Fail (protection.outlook.com: domain of gehealthcare.com does
+ not designate 165.85.157.49 as permitted sender)
+ receiver=protection.outlook.com; client-ip=165.85.157.49;
+ helo=atlrelay1.compute.ge-healthcare.net;
+Received: from atlrelay1.compute.ge-healthcare.net (165.85.157.49) by
+ BN2PEPF00004FBF.mail.protection.outlook.com (10.167.243.185) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Fri, 20 Feb 2026 11:20:29 +0000
+Received: from zeus.fihel.lab.ge-healthcare.net (zoo13.fihel.lab.ge-healthcare.net [10.168.174.111])
+	by builder1.fihel.lab.ge-healthcare.net (Postfix) with ESMTP id 68D521A2CC;
+	Fri, 20 Feb 2026 13:20:26 +0200 (EET)
+From: Ian Ray <ian.ray@gehealthcare.com>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Ian Ray <ian.ray@gehealthcare.com>,
+	=?UTF-8?q?Bence=20Cs=C3=B3k=C3=A1s?= <bence98@sch.bme.hu>,
+	=?UTF-8?q?Toma=C5=BE=20Zaman?= <tomaz@mono.si>,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH V3 0/3] hwmon: INA234
+Date: Fri, 20 Feb 2026 13:20:19 +0200
+Message-ID: <20260220112024.97446-1-ian.ray@gehealthcare.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260220021353.40554-1-rosenp@gmail.com> <20260220021353.40554-4-rosenp@gmail.com>
-In-Reply-To: <20260220021353.40554-4-rosenp@gmail.com>
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Date: Fri, 20 Feb 2026 12:18:10 +0100
-X-Gm-Features: AaiRm53BY2p_oyPXpQmuTbk1xnduoYmd-HBAIjHbep9Ukyhp1dBwRalmjaOrg9Q
-Message-ID: <CACna6ry+K6q_JY84j7OjRWALsUDU87mpAiikF7cpUGDUUYhZJQ@mail.gmail.com>
-Subject: Re: [PATCH 3/5] ARM: dts: bcm4709-asus-rt-ac87u: specify switch
-To: Rosen Penev <rosenp@gmail.com>
-Cc: devicetree@vger.kernel.org, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Hauke Mehrtens <hauke@hauke-m.de>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"moderated list:BROADCOM BCM5301X ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBF:EE_|CYYPR22MB4201:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12aa8f23-ce2d-49d3-fd1c-08de70720e08
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Rjd1OEQ4dVA3elBMbTI1NE5JOXYrNnVXZDlub1MwYTF2L0NsQ1E3aFhmMnhF?=
+ =?utf-8?B?NlIrTVVMNUhCSWNweUtzdCtMTlJSV1h1U2dNcmtoZDQ0K3ppU2Exb2lMQU9y?=
+ =?utf-8?B?dVd4T05aWDk3WSszTTlXQWdVWmZNT1NjdjdXYnNqUmhmcDVpbmVCcEJtWjJY?=
+ =?utf-8?B?Mmt2Z2dmUEEzcEdrUXF3dW9PQU0wWUswRXpHLytJRWRqL0FhWFpib1F3YWFO?=
+ =?utf-8?B?Zm5FV29lZUNKVkxtYUhUcGdEVzY5WGdGS1hVckM0SGp1eGd5TWZudUJPajdz?=
+ =?utf-8?B?YmpTamhhTUFWL2hUOVJKdlU2SlpOWmtFK21uUnVBemlPVHFWMjB5dVBNVDdi?=
+ =?utf-8?B?MFJwQytTaytVdk1yUUN6S1k2T2ZQYzUzWVJyU000SnNTeVJUdWdPWktoaFFu?=
+ =?utf-8?B?T1ZoOHg0UmhtLzRSYXlXQ29lK0hqWFVlM09zSkNmSER3TVA4K0V0Zks0VEh6?=
+ =?utf-8?B?WnVTdlhxNXRBU084aEZub0dXd21wOUR2ZWFyM3d3L25ZY0N2a094TjVOVnB3?=
+ =?utf-8?B?WVBzdmNtNHoyTDA3NXFISEZXYS9wTWM5NjBVV1pVaThmcFRac2lPbk05UXFB?=
+ =?utf-8?B?dUF4R2lDbWoyS2VrbWp6QldwY29rY0FoME1lUzNDanhSMVVaeGVXN3orZXRZ?=
+ =?utf-8?B?RkhHRTlhK2VxRDZwOXVqSmZoeElOV1BYMDMzdmhscmFaMElLR1VwS2tsK0ND?=
+ =?utf-8?B?TFAzVmhpQ3dzYmp4WHh2L1ZmbUxnVEdaUFJRQkVuL0VTVFQxNkhHMThxN25F?=
+ =?utf-8?B?T3QzY0R0VjR6V0wwbjlLY2FBL1RQRE9yaDBKQnlJR1FYRTdEZ2s1aytPMzBr?=
+ =?utf-8?B?NmI2MDE2eFBFVnBaVHhMeVVyMUZXSjZhZ2hpanZsV2lYcVAzZE1VVVY0ZjV0?=
+ =?utf-8?B?MllCbU9BQ3RQcUVSbC8xSDVkeEdjY09lMG5ybTlxVG4yZnB6N216V25CT285?=
+ =?utf-8?B?V0sraDZxS2RiNm1WOW95d0J1ZUtHV1hoTWtwNUdSZkp1enhxUk1kNlM2d3hB?=
+ =?utf-8?B?NGR6QWlXa0VzQm9FcitITytNUjhKQzZ6ODNvek9Fc0k2WXZVQmlGcUFDWlJ2?=
+ =?utf-8?B?OGU1TnluSzRqbElWZUdKcy9oVlB0eFdsWjVkeG11b2hxS0pSdDJselZHM1Y3?=
+ =?utf-8?B?MnNZclVlY0Y2ektqYVJDVU1iUFBzV2xjRCt3VkRJdGxyb0NBSEM3VzI0bmc0?=
+ =?utf-8?B?TmdXVjFJL2tNY05FUnlreDQ1djZrZlg4UzJCZzJWSXlBRFlyOUptUTQ5ODNM?=
+ =?utf-8?B?QllvRTUrSEZCbkxFVjZ4SjlqS3d1bmd2ZHJkMFFaYXZvMVRKNDdZQzRUZktK?=
+ =?utf-8?B?anFFNlZEZU5FaFMwUXJvVDFwbTZ5RmYrbXd1d1BUS3JmaThVN3lsdkdXd3ow?=
+ =?utf-8?B?V0QrbTFkakd4K20rLzdnUnJ4ZU1DMnZrTllCMHJqNGdTRmZXQmRsMmpLdnJ2?=
+ =?utf-8?B?NndwOVd4Y0pZVndhVDJveUl4ZUptMlI1bnZzak9hUXZlQmNRT2xUT3FHRXkz?=
+ =?utf-8?B?VmF6cnB0UFVpM2Q3MlcvZFZ0bW9lbEVMVHFJak02aXZ4OXFwcVBvdndOWmFo?=
+ =?utf-8?B?SkM3M1lzcjRTbjNkTWlSVzNXMzVpSldrWENoSzNXQ2NlRkU3cmwrb0swcmZI?=
+ =?utf-8?B?VHNNK2RIMGI0S0kwZEVzRkJsaVZVcWZyMHZYNHJZY1Z0OE9FVEsveWJDL1NN?=
+ =?utf-8?B?K0hwTDhGNW12emFzTUVBaXhUNUNiNm9QNVFlWnBPWGJmbTBYazZSYkRWVnQ3?=
+ =?utf-8?B?SytxVkNqVVJ1VXhGYjQxVlNLMFA1WHVsT2Z3VzNzSUpHY0ZVcU9FTXFzeEdY?=
+ =?utf-8?B?YlgvRlpldWRTWXZHRXo0MlNiWTdPOGxxTU1kSzA0WTdRZEdkZ1duZ003dTUy?=
+ =?utf-8?B?dGFvU09VdzdYR1RPdUxicHNoeFR4b2IyM3FLY3NqSnE1eFh5WnNsVnZYcjhM?=
+ =?utf-8?B?SURDV0M1a2w5T0FTazRUUGRpTGNna3BMVTFvbmVZYVprSjNJWGZHUXlVSkNV?=
+ =?utf-8?B?cEVnOFdXNmVtKzFiZVhFRHQ3NXI1ZnNrMVRLNm0rSlRBVlVLNXd4UDkzMmVo?=
+ =?utf-8?B?VTQvN0txOURFNm90QlF5Y1BTeDFZSFd4Y2hLRXdQRmYvNFkwME8yOFNoRnNi?=
+ =?utf-8?B?V3JGMWtaNjhvWHpJbVFaWVZ3N3pLNXAyK09CVVE1ODFtVXBtQ0tSR29HWGE3?=
+ =?utf-8?B?RjIvQ3pqVldvMWdNMHdYdyt6UmRNbW04bVlTVzNFd3Y2SS8xcDl2RXo3bnNG?=
+ =?utf-8?B?Y3BzK3FzYXN1eTB6OTRtbUdUYWZ3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:165.85.157.49;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:atlrelay1.compute.ge-healthcare.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	vjMBwuqmN8RKw16Z4AZdUdzEQuF1VxYUHsgnUq/VjXo6LDR9xI4XPt9p99+0Skj2ofDiUEqYzsthyDx/DBVYs1nLkHzukGy5aqBdokLMi4hMGmU0ZcQlASC1RYfU2GgdF2GCt9/JHa+W8AnH/RQBjOVQtl1Rkb7+YExajBtw5AikJrUHGqwmWYSVuAnq0nt0gCIBpr0nl3vV+0tEWG/NvWCL8M9GTNeU2GYLSB7mLee/ozdsQRdVJjxge2bYwAFDrW62BHA/v7KtYCNRMU64b4SwbwYpErJ9NkNRMN6rTENVHWBY73ZbDpsuZLjb59u456bt7gZBbMd+/SVw2Hf1Uqy4gfXKWC4odDqGlArgZBO/Kc0yBD3oVfwJyNnSib2/K04oNUCuN6yzXC7NwLyW7uG+wgNKS7tow2Vl2/ISXYsDdH2pZpOXaEUpx9KK0oxz
+X-OriginatorOrg: gehealthcare.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 11:20:29.4053
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12aa8f23-ce2d-49d3-fd1c-08de70720e08
+X-MS-Exchange-CrossTenant-Id: 9a309606-d6ec-4188-a28a-298812b4bbbf
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=9a309606-d6ec-4188-a28a-298812b4bbbf;Ip=[165.85.157.49];Helo=[atlrelay1.compute.ge-healthcare.net]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-BN2PEPF00004FBF.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR22MB4201
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.01 / 15.00];
+X-Spamd-Result: default: False [2.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_MIXED_CHARSET(0.67)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gehealthcare.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gehealthcare.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266919-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-266921-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gehealthcare.com:mid,gehealthcare.com:dkim,gehealthcare.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	DKIM_TRACE(0.00)[gehealthcare.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[ian.ray@gehealthcare.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zajec5@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 362B6167356
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: E0F0F1673B7
 X-Rspamd-Action: no action
 
-pt., 20 lut 2026 o 03:14 Rosen Penev <rosenp@gmail.com> napisa=C5=82(a):
-> bcm-ns.dtsi specifies a default layout that is not correct for the
-> RT-AC87U. Also allows setting the WAN MAC address properly.
+Add support for INA234.
 
-How the basic ports info from bcm-ns.dtsi is not correct for RT-AC87U?
-I don't see you doing any overwriting or /delete-node/. It seems like
-a standard NS device with BCM53011 and 8 ports (0, 1, 2, 3, 4, 5, 7,
-8), three of them connected to no-SoC Ethernet interfaces.
+Changes since v2:
+ - Patch 1/3: No changes, kept Reviewed-by from v1
+ - Patch 2/3: Drop hunk agreed in review, kept Reviewed-by from v2
+ - Patch 3/3: No changes, kept Reviewed-by from v2
 
-Except for this unclear commit description, your changes look good, thanks!
+Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
+---
+Ian Ray (3):
+  dt-bindings: hwmon: ti,ina2xx: Add INA234 device
+  hwmon: (ina2xx) Make it easier to add more devices
+  hwmon: (ina2xx) Add support for INA234
 
---=20
-Rafa=C5=82
+ .../devicetree/bindings/hwmon/ti,ina2xx.yaml  |  3 ++
+ Documentation/hwmon/ina2xx.rst                | 25 +++++++++++--
+ drivers/hwmon/Kconfig                         |  2 +-
+ drivers/hwmon/ina2xx.c                        | 36 ++++++++++++++++---
+ 4 files changed, 58 insertions(+), 8 deletions(-)
+
+-- 
+2.49.0
+
 
