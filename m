@@ -1,83 +1,85 @@
-Return-Path: <devicetree+bounces-266809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266810-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KImDEeD9l2lN/AIAu9opvQ
-	(envelope-from <devicetree+bounces-266809-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:23:28 +0100
+	id 4Px2M+z9l2lN/AIAu9opvQ
+	(envelope-from <devicetree+bounces-266810-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:23:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FDEE164EF7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:23:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C604164F0F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:23:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 335C2302A6F7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:23:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2CCE3303605A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 06:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B8F32FA30;
-	Fri, 20 Feb 2026 06:23:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09687330334;
+	Fri, 20 Feb 2026 06:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i5TbpPQ4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QaTAP/CV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+Received: from mail-qv1-f65.google.com (mail-qv1-f65.google.com [209.85.219.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 823C42F8BEE
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 06:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B923A30BB8A
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 06:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771568591; cv=none; b=t81GZtyXufDhTLq/P9drdY66gM9u0GajNEGpyZW4KiM2WtKTANIcTq7phiwmm3FXUSfWICxK5c0yc6QhBXVHcQikCKDmChj5XlJ/dOpzhv4Lo91ku7ug45LHySUw1Y6ZnEzKdIcYY2owRfqqsRbyKFRM8T6rpJpVxDMwQUcwC8Q=
+	t=1771568591; cv=none; b=lBChruIit61By3tXwlsy/AcoLmqjrmt5AF0vCkD00b7J4ny1N9HkIWzdqK+gJgSEOe2rddDG6JeDdxSDxa25ekf5GwggFtCY8u3OOXtuFu7BGYICXyW8gEsuM5zbqUqP38YHbcY2SOYGnt3yxABuNePctEb981NuNclsdk/1+Cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1771568591; c=relaxed/simple;
-	bh=jGxXk46pFgaVzkygsdpMgVwvNmqmhVGMHUcNacup3+I=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DnuwHaRCG0K0YvpZknuRdbxwO/5AHv4GYaC2eFWwtMRkd+vRI4KxiKvzr6pso82EhzBQ3rnj42U/LcN9o1mEoFlP3es/R4rIEX76TOJXSFdhEEv5MMExblroqUNfVjFIyCIdID3FLh8MZhe73mmY+CuGYDdRw5b+VZ7eLqua4Gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i5TbpPQ4; arc=none smtp.client-ip=209.85.222.175
+	bh=mUB+oWFMPId9h1Gwcmlg2XD1GQALPtczn82jDplWb+w=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=T6J4rfeGWg05nZ7TR5QItw/39LoohDl8+Cir8UCmsje17OmCxD6vuLUd0Wr5db/cF7BVr4yh4sBKY+4DQkKdA9e/IBtAxDGYz/rbBt58mGHqThQ31VhpPVShmUUi+6S+TeCTxpBmfTIHE5JdtbwPAW2bwgDOAdS6iDgl3bae8nY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QaTAP/CV; arc=none smtp.client-ip=209.85.219.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-8cb5138df1aso177249785a.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 22:23:09 -0800 (PST)
+Received: by mail-qv1-f65.google.com with SMTP id 6a1803df08f44-89545bd3324so20848806d6.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 22:23:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771568588; x=1772173388; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CKdWjeKFseRtZP/qjhvaNFaOrIyblPhEnu6V6lWcBIU=;
-        b=i5TbpPQ4vG8WnlN3EDnOM/H8pTbYl/5OgT1M/wc5Tvd3ltixJFuKX0uw3BNSJoFOL0
-         P9hv0hhs7LG3rb+eHBDFq+Uqf23LsjAW70Zrx0mcJH1AtswN3gzf+fmlvvhb/bqdMZJu
-         VD67mRbId4+aN8CPt2v6cHLA0XZouFn95UL5IrPZEMZ6s4/9WujaISXWbq/zv/uo5/u2
-         A+zst7VhZmfIApRCi9VkB3aGeQzx3iJ/d+3YZzPNTzmjOJm084nNiV2CP/Mba4KiPmVL
-         7FVLAqQoQagfzFqcPGALVHmUl2S7qC8aRDuN6UXo8l/H1Q63zvC5ZOpeOmpkUuTbM/Ab
-         XDWA==
+        d=gmail.com; s=20230601; t=1771568589; x=1772173389; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LCKrSxgbtkE6sBorbcneokbI0mX+kuYA9Blctjh+gpw=;
+        b=QaTAP/CVhdNPsKziDVSvEKQk/XeiNHOrtZ/LrvaGUSWVHt/lXHA0gICCxUGtYvAAAh
+         277gep20Ewkc3x2bfEDfxAAiXlwfz07EGKPcqVdcwZy1SJ1MXV7/I68OMOFLOUlCgXSC
+         wAzTKEoT5teIMioshAWW2wzr5lEsPjUkworNV/kpPuB9NV3HDUKmNeucwXATwLXdJlTt
+         wISetCdwKLX92peo+d6qyZYLoB3VTu8+3g8dtlpSVdILMzUy08P+VDI8h3I5GK+5nsiN
+         9iqTWTSrg1G7/2wnlB9K6MDj6dS/ZWGn0ci2ac7PhbEYiCgTNzeZ0oD9o9cmhxUTTjV0
+         J4lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771568588; x=1772173388;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CKdWjeKFseRtZP/qjhvaNFaOrIyblPhEnu6V6lWcBIU=;
-        b=Pc7OlFGb1gbq621CXvz1KBWm7yaw6ILxb7HMXmrqJ6hIY1xr6encYnQpjN8DEDQEtG
-         nhCNezmCys2ddtxM3bD6HjpQfxuXQDhWkKIrhJLZyX2vTnRY0zH0FkQHzbTYLu+6nr8x
-         205V5HZmAz7UUbgpifGqbkNZnKXMU+aIoXr3CC2mrQn4hgYNs8ByF0Hvtk7YQGr1xP+V
-         YufPWqj2Ynv/W4dAO2Rz7UegEk4hDwr3tbcaWnbX7VWHhRPk9Tn+k4KjqJtlRyiEY3zU
-         rxRmxA7PBxNhQlI820UaPMQ6HmgBEVWR24aOLDkN/PGzwo0d94/8bmhQjme/76fxA2BU
-         mtKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFfw+qEOfuC7hnSJNqVuAGNtXP+3+5AO0vj3M4EXojl2FTvQJj9jwIgUUxUv6ez7vxOUzxUtYymoGe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6KWJPHg+d4Ot91RXjPqE96Qvu498OnA/DaU/qBMpcOtphNN53
-	FaKPyyq/7OsA+Hze5wcwL5Z/i/5wSUrPMw7oO6mIxMbm67UVOu12NWVi
-X-Gm-Gg: AZuq6aIxHofAvmJfDu8QtAxm+H3tffn3kOQUQOXKviw22jNKEPo0ZA/Az8LRgbK02DE
-	KpodxCVczRHwPOpFJLwLCvLgj5Fg90Zp0ew8KRJjLk/fWwxXeIcc+IJctxVp71YPbAmLqFkklYs
-	qG2ZgqX2YteVOir1P595XKCv/h0BRIjNl9O5bHnCpdJCK7MXaVLp6cT+EkAEAl7Ls4TPgtgxd14
-	bNm9f7/R7pJKcQiXdnf4OJjuDNNMylouicP3cw73k7ltyLUoV3MwWRIyobADr+eMoIgJ8Yr84QI
-	SyIx2rI4ZGEk+uObbjS+2I5Ph6JljXOeoxLNvJnAo7NXX0Dozjw+JnSWMAMhGZDDbT+eqEcdFn0
-	5f8YBGek3/v74Qs302ooKnJz97ePR9v1pCFj9EBm17REOUge11ZnrsnjtnhBFo1aCWPNt79xuAQ
-	zIVdFbB7ZYtu/MMcwZkkNQocqrfwY=
-X-Received: by 2002:a05:622a:255:b0:4ff:270f:9a48 with SMTP id d75a77b69052e-506b3f7dc66mr290587891cf.4.1771568588191;
-        Thu, 19 Feb 2026 22:23:08 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771568589; x=1772173389;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LCKrSxgbtkE6sBorbcneokbI0mX+kuYA9Blctjh+gpw=;
+        b=L6pZ0YP8Tq/M9a1F2/vejPNbJeIJjCRyQOYkXTh5nw/YENOlU8NnPQxrP8Qglc2E4F
+         HzyvShdiK4sf1uWn2Dr2lQhLHFMqzGdH/BgyQWycJ9jQ9T29M6WIY/lplMPTt6neWYHb
+         55RG0pPP7PnMBC02QLyi2KHqgC7hkOt9U06zRCZ/6TVZNtpCL0RrbNc1UEFpCUyl33U8
+         t/r++pauBjW7gXTiRID0b9R3601AM/BeyNV1XoQjyIgaZ02LxHl9NViQGY6zX/8N6dMB
+         dH6SMrorUHuPq3+6qXBPD9xxnbh+0LTocai7Pu9EOkB1JAKhcl5NmTFVPGS1o6yNFL4m
+         rPOA==
+X-Forwarded-Encrypted: i=1; AJvYcCX6shw2nUoG3w09WYssCG0C4TQNn4jJoz5Bjhy03dt6OUaiMMuqR/rHs/1mEiGsvmZJ5mZvPB4BULf+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhcqWF7xGNQnxiZanHBSgEsEDWCvGmLkmgHqFDBQ1qTSZjT+5g
+	4fHQZTIVT2B96EGJ7/5iQfboSHTqve/o9+OoTmCnqfDAhKhvVxZ1yY+Z
+X-Gm-Gg: AZuq6aLJswFFZtX7u4IFpHFr65+WAfrOjrKJRF/uowmONzk3yarQsic7X/sLKGq0WOW
+	hXv8oGsmhILEqSiYB/rsK/lsoYFdKjBbibqgQSLAUhmBDt39ZXvAFxzG5u1aTrESjvSpO6wRd3p
+	6iU3BHUgWX4LWQWSt4nuzloYs/+csp/IHOaaK3PIhraP6TJQrxWPL76NNkihUhuhcEhz2s2cbor
+	9/ip2z26dRHWwtvrSpgtcwKBoMmuySjn8z5y/AaRfAYZ8uWFlSmYHX8lVjgvZlD0lcAtuXtvmJb
+	Hq5tynyNaPCkNjUndxEVBFp5ssL8fZufiKLG/Gdo+WPj8//K+1zH9uS1TDTekQYfzZzwnvgnxgk
+	Kv0zSr8znUfI4Nl6GyWPlqbCiP/NZ8s4X4Awi/Z/2wDzWDi6wCfCHfznzxqOO9oCcWb/2zRP4m0
+	U5+rNGee4oTrdGXoiouNZgZVuJTvE=
+X-Received: by 2002:a05:6214:2301:b0:896:f767:966d with SMTP id 6a1803df08f44-89961fc1196mr69841406d6.11.1771568589064;
+        Thu, 19 Feb 2026 22:23:09 -0800 (PST)
 Received: from [172.17.0.2] ([134.128.219.200])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cd8a5ccsm234206306d6.25.2026.02.19.22.23.07
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8971cd8a5ccsm234206306d6.25.2026.02.19.22.23.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 22:23:07 -0800 (PST)
+        Thu, 19 Feb 2026 22:23:08 -0800 (PST)
 From: Yuanshen Cao <alex.caoys@gmail.com>
-Subject: [PATCH v3 0/2] Add support for Etek ET7304 Controller
-Date: Fri, 20 Feb 2026 06:22:39 +0000
-Message-Id: <20260220-et7304-v3-0-ede2d9634957@gmail.com>
+Date: Fri, 20 Feb 2026 06:22:40 +0000
+Subject: [PATCH v3 1/2] dt-bindings: usb: document the Etek ET7304 USB
+ Type-C Port Controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,10 +88,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAK/9l2kC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
- vPSU3UzU4B8JSMDIzMDIyMD3dQSc2MDE90UA/NUE4u0VCMjS1MloOKCotS0zAqwQdGxtbUAGmr
- Sr1gAAAA=
-X-Change-ID: 20260220-et7304-d07e48fe2295
+Message-Id: <20260220-et7304-v3-1-ede2d9634957@gmail.com>
+References: <20260220-et7304-v3-0-ede2d9634957@gmail.com>
+In-Reply-To: <20260220-et7304-v3-0-ede2d9634957@gmail.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -107,69 +108,69 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266809-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266810-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[alexcaoys@gmail.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	HAS_WP_URI(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8FDEE164EF7
+X-Rspamd-Queue-Id: 6C604164F0F
 X-Rspamd-Action: no action
 
-The Etek Micro ET7304 is a USB Type-C Port Controller with USB-PD used on
-the Radxa Cubie A7Z.
-According to the ET7304 datasheet [1] and the vendor BSP source code
-provided by Radxa [2], this controller is functionally identical as
-Richtek RT1715, with the only difference being the VID.
-
-Add support for the ET7304 by registering its chip info in the driver.
-Tested on Radxa Cubie A7Z.
-
-[1] https://www.etekmicro.com/wp-content/uploads/datasheets/ET7304_datasheet.pdf
-[2] https://github.com/radxa/allwinner-bsp/commit/156b6578cc173855b41ea311a229403ccbadb17c
+Document the ETEK Micro ET7304 USB Type-C Port Controller with USB-PD.
 
 Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
 ---
-Changes in v3:
-- Reorder the table alphabetically
-- Use etekmicro as the vender prefix
-- Link to v2: https://lore.kernel.org/r/20260219-et7304-v2-0-b2e268494ae8@gmail.com/
+ Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml | 3 ++-
+ Documentation/devicetree/bindings/vendor-prefixes.yaml     | 2 ++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-Changes in v2:
-- Put dt-bindings Documentation changes in a separate patch
-- Add Etek to the vendor prefixes
-- Link to v1: https://lore.kernel.org/r/20260217190010.67-1-alex.caoys@gmail.com/
+diff --git a/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml b/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
+index ae611f7e57ca..1eb611f35998 100644
+--- a/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
++++ b/Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
+@@ -19,10 +19,11 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - etekmicro,et7304
+       - richtek,rt1711h
+       - richtek,rt1715
+     description:
+-      RT1711H support PD20, RT1715 support PD30 except Fast Role Swap.
++      RT1711H support PD20, ET7304 and RT1715 support PD30 except Fast Role Swap.
+ 
+   reg:
+     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index ee7fd3cfe203..5e504cebbcda 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -541,6 +541,8 @@ patternProperties:
+     description: ESTeem Wireless Modems
+   "^eswin,.*":
+     description: Beijing ESWIN Technology Group Co. Ltd.
++  "^etekmicro,.*":
++    description: Wuxi ETEK Micro-Electronics Co.,Ltd.
+   "^ettus,.*":
+     description: NI Ettus Research
+   "^eukrea,.*":
 
----
-Yuanshen Cao (2):
-      dt-bindings: usb: document the Etek ET7304 USB Type-C Port Controller
-      usb: typec: tcpm: Add vid and chip info for Etek ET7304
-
- .../devicetree/bindings/usb/richtek,rt1711h.yaml         |  3 ++-
- Documentation/devicetree/bindings/vendor-prefixes.yaml   |  2 ++
- drivers/usb/typec/tcpm/tcpci_rt1711h.c                   | 16 +++++++++++++++-
- 3 files changed, 19 insertions(+), 2 deletions(-)
----
-base-commit: 8bf22c33e7a172fbc72464f4cc484d23a6b412ba
-change-id: 20260220-et7304-d07e48fe2295
-
-Best regards,
 -- 
-Yuanshen Cao <alex.caoys@gmail.com>
+2.53.0
 
 
