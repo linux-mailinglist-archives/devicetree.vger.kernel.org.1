@@ -1,143 +1,206 @@
-Return-Path: <devicetree+bounces-266828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266830-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDbtAO0RmGmL/gIAu9opvQ
-	(envelope-from <devicetree+bounces-266828-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:49:01 +0100
+	id CBXiHksSmGmL/gIAu9opvQ
+	(envelope-from <devicetree+bounces-266830-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:50:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E5FE16561C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:49:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D464F165663
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:50:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3111C300DA52
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:48:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C35B302D083
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 691C730B51D;
-	Fri, 20 Feb 2026 07:48:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E7430AD05;
+	Fri, 20 Feb 2026 07:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F/fdBHpr"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dD5HWLmZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439AD30AD05;
-	Fri, 20 Feb 2026 07:48:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE381D555;
+	Fri, 20 Feb 2026 07:50:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771573738; cv=none; b=q9W8rvtIH5A2dPs3BBpH9RyAKty+moIl4BOtwdWxs4h1BXZPQ71sDuPNmsP+2i/LjAZURJP5K6SqlMcLALYLL9QYGXfKHBiyPtVRPD4+i0dvqAhEG6V0Lm6FL7EIJdfevzxTP2Pd707Hb5tehhZmpDuaGW3UQl/2FxcndPl/Ug8=
+	t=1771573808; cv=none; b=BcOSxajB+k2OJ4I9Ak5uvYBRo+rhskkP6n9yT6jLZbygIrlVErwckkDNImvfou/5s323pmlgLNQ59VBt41PAvSf1BLAinlpck7VoIayqE5MPrjeQYWej6UUjE2SVDPHXRtXw3SvS1fB1Y3liZ5IqgbIKiNSl656ufowL07a9hqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771573738; c=relaxed/simple;
-	bh=DdUlZ8vqgYkP6ATI/j0iVvdjFFAf9k/hYpx2LX1ha4c=;
+	s=arc-20240116; t=1771573808; c=relaxed/simple;
+	bh=3+AoRFtzUL4Di9TqIr6oRG/bKUTY7As8hvY/CM5Ll5Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nl83/O1eswWY1kKkdzS2xPwyRTtH1mhujPk4EvtIEk0NFWe4ONVJng3AY9OYU2PvkKPBiVrgt+/lHiWn9Mh++QJOUKLAbbdP0sYahfqg2hSZ6/NmPF+Bs3rqA4dti+SKxdZUs8wzh5mSRhg19rUvmahBHinsXHSLHN84HtxFVC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F/fdBHpr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9332DC116C6;
-	Fri, 20 Feb 2026 07:48:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771573738;
-	bh=DdUlZ8vqgYkP6ATI/j0iVvdjFFAf9k/hYpx2LX1ha4c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F/fdBHpr5Exf5MER8zdck37ew20cDKsM5BvVRtTWURYtSemTei41gbH+/bXTdtdpW
-	 HiVbT2YJhBZrM1ZtLDrb3SFOugsWSrIbb9BnN+kLDXL56pbU0wxBV+rkhzj5A8q5xu
-	 C10hVgHEtzPlMTL/zFBlnQo0Q9HMUIFhPp+fJOHPFBFnXH44DmpaOKzvGintaJtWPS
-	 YglWaT4JiKM2XDf88en6tcKvwj2ZLqK+/c5jV1JwUdlV7613oGEeqSZAGf1VLv86OX
-	 JspHxgwp0/BLkE1d69VwC7pozT62GykCwvjjaw7DZSowR/T//goLmaVWKptRAcxTM4
-	 XbqI+VaqW64qQ==
-Date: Fri, 20 Feb 2026 08:48:55 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Piyush Patle <piyushpatle228@gmail.com>
-Cc: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: rtc: isl12026: convert to YAML schema
-Message-ID: <20260220-vigorous-holistic-platypus-6ebebd@quoll>
-References: <20260219055115.195302-1-piyushpatle228@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Omc9/CLKlrdwIXl1KVgXRGHAXPv0tcJfxk9dr1AF1b/xKUb06qKuoLgUtcaU8FYZnBMnnuHEB3+8u/xONffAWyCRQZC40ipR8hnK9B0vKqyavhGFeFNzrP0e/5UuJaDwSXaljv3U08Z7aIqBv4P0u02aOS0x09LMfTje7mKYMpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dD5HWLmZ; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771573807; x=1803109807;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3+AoRFtzUL4Di9TqIr6oRG/bKUTY7As8hvY/CM5Ll5Q=;
+  b=dD5HWLmZjX0PgccL2V19A2REjvxYwQNeFR4v7OlNUB4NNDDLjubZ+uGJ
+   SJJxoHqMcIyAaEazVtNY1S82v1c1+z5VNvQzUerO2iEbOq6cnEdIjed/o
+   gmkv9e4OL6y2giHp+4ewM8EHwZcA6tp8/wodZqgahDHqvbLgDCwjxx0bf
+   Z3jYJK/Zs4bkSu3t/jINX5Lk4R/CfzuJVzcVV7mVQvk0HcdOV2Crag9Oy
+   aDPTNaRkaqO8mGQ2yE+BjVPHucR97uYrFWPYdztbhoZMfBFWzSHsI0U1t
+   L121oVoXE4rekm9cAp1J8hge1VP3gl1dkUfy+9P5fbJQ0fI6N9YTrmhho
+   g==;
+X-CSE-ConnectionGUID: tmKjsNGiScKVqpWO/mSGiA==
+X-CSE-MsgGUID: C3WpdcKDQkiMkWr3TQMU4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72368104"
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
+   d="scan'208";a="72368104"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2026 23:50:06 -0800
+X-CSE-ConnectionGUID: dVA7vvsSTwy3CnrSSKBAjw==
+X-CSE-MsgGUID: FbwUmViSRP6JIypUstUI5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
+   d="scan'208";a="218920013"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.25])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2026 23:50:02 -0800
+Date: Fri, 20 Feb 2026 09:50:00 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
+	git@amd.com
+Subject: Re: [PATCH 1/5] iio: adc: xilinx-xadc: Add helper functions for the
+ device setup
+Message-ID: <aZgSKB300JRB4yvl@smile.fi.intel.com>
+References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
+ <20260220053941.611415-2-sai.krishna.potthuri@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260219055115.195302-1-piyushpatle228@gmail.com>
+In-Reply-To: <20260220053941.611415-2-sai.krishna.potthuri@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266828-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-266830-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 6E5FE16561C
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,smile.fi.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D464F165663
 X-Rspamd-Action: no action
 
-On Thu, Feb 19, 2026 at 11:21:15AM +0530, Piyush Patle wrote:
-> diff --git a/Documentation/devicetree/bindings/rtc/isil,isl12026.yaml b/Documentation/devicetree/bindings/rtc/isil,isl12026.yaml
-> new file mode 100644
-> index 000000000000..a6822605fd72
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/isil,isl12026.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/isil,isl12026.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Fri, Feb 20, 2026 at 11:09:37AM +0530, Sai Krishna Potthuri wrote:
+> Refactor the platform driver probe function by extracting device
+> setup and configuration logic into reusable helper functions:
+> xadc_device_setup(): handles IIO device allocation and basic setup
+> xadc_device_configure(): handles device tree parsing and bipolar mask
+> configuration
+
+Reformat text like:
+
+- xadc_device_setup():
+  handles IIO device allocation and basic setup
+
+- xadc_device_configure():
+  handles device tree parsing and bipolar mask configuration
+
+> This refactoring reduces code duplication and prepares for sharing the
+> common setup logic between platform and I2C drivers.
+
+TBH without seeing the rest, this patch looks like an unneeded churn.
+
+...
+
+> +static struct iio_dev *xadc_device_setup(struct device *dev, int size,
+> +					 const struct xadc_ops **ops)
+> +{
+> +	struct iio_dev *indio_dev;
 > +
-> +title: Intersil ISL12026 I2C RTC/EEPROM
+> +	*ops = device_get_match_data(dev);
+
+> +	if (!*ops)
+> +		return ERR_PTR(-ENODEV);
+
+This is a dead code as it seems that ops is mandatory. So in case if it's
+missed it will mean that the contribution was never ever being tested.
+If it's tested, the check above is a dead code and hence no need to put
+it here.
+
+> +	indio_dev = devm_iio_device_alloc(dev, size);
+> +	if (!indio_dev)
+> +		return ERR_PTR(-ENOMEM);
 > +
-> +maintainers:
-> +  - Piyush Patle <piyushpatle228@gmail.com>
+> +	indio_dev->name = xadc_type_names[(*ops)->type];
+> +	indio_dev->info = &xadc_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
 > +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  The ISL12026 is a combination RTC and EEPROM device connected via I2C.
-> +  The RTC and control registers respond at address 0x6f, while the EEPROM
-> +  array responds at address 0x57. The "reg" property refers to the RTC
-> +  portion of the device.
+> +	return indio_dev;
+> +}
 > +
-> +select:
-> +  properties:
-> +    compatible:
-> +      const: isil,isl12026
-> +  required:
-> +    - compatible
+> +static int xadc_device_configure(struct device *dev, struct iio_dev *indio_dev,
+> +				 int irq, unsigned int *conf0, unsigned int *bipolar_mask)
+> +{
+> +	int ret, i;
 
-Why do you have this select? Look at existing bindings - NONE have that.
-
-Just in case if that was not obvious: don't send us AI microslop.
+Why is 'i' signed? Also see below.
 
 > +
-> +allOf:
-> +  - $ref: rtc.yaml#
+> +	ret = xadc_parse_dt(indio_dev, conf0, irq);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*bipolar_mask = 0;
+> +	for (i = 0; i < indio_dev->num_channels; i++) {
 
-Best regards,
-Krzysztof
+The iterator is not used outside the loop, hence
+
+	for (unsigned int i = 0; i < indio_dev->num_channels; i++) {
+
+will be good choice.
+
+> +		if (indio_dev->channels[i].scan_type.sign == 's')
+> +			*bipolar_mask |= BIT(indio_dev->channels[i].scan_index);
+> +	}
+> +
+> +	return 0;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
