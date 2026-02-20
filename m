@@ -1,135 +1,221 @@
-Return-Path: <devicetree+bounces-266993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266994-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LhFH/xymGkoIgMAu9opvQ
-	(envelope-from <devicetree+bounces-266993-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:43:08 +0100
+	id kEcyN2pzmGkoIgMAu9opvQ
+	(envelope-from <devicetree+bounces-266994-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:44:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAFF61687CC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:43:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3642B1687FC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:44:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C23CB302FEA0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:43:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F1EC30465DF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6321B288C20;
-	Fri, 20 Feb 2026 14:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6365B29993A;
+	Fri, 20 Feb 2026 14:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Cme9t0PH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C12rBUTn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4DD41754;
-	Fri, 20 Feb 2026 14:43:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB2E41754;
+	Fri, 20 Feb 2026 14:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771598583; cv=none; b=BVbvr4oDB5SmSuggfrfTdl6L3B5BvyxlV/sQpjTdA52mpoqxoB48hWaCCXpUrVmD5GBB6OwRCaR8AuOwLMTbTFfoNq3h6PFV4LtpryLtlobcAmwo9Gw0mlq7wSq7UNpjqUBxlNJfTLcD9Fd2YngDXZsFJjrikzmEVf7+izW3wdA=
+	t=1771598694; cv=none; b=IKrWafwXNfrtS6Ltq90VnIZDJyUko0H69QS8fW7tZ0dGZVEUrDTmzweCSdOMlhrTedNDc9YA9G2QNi0fiRSr0t7tQZwOkLxu74aB5gAoOHWB7FinhDGfow+0N/QZ5qiMK1BNVt1eYN/uNrr8SrE/U1K/JOSR+aEk9Lw+O5l70I0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771598583; c=relaxed/simple;
-	bh=0IvU0+vL+S0ObfnRnzzuEwfOTQwE5YBDNEIOzu5Ldow=;
+	s=arc-20240116; t=1771598694; c=relaxed/simple;
+	bh=RG2Hbf0o3KuqHZA5+48UswLVGJeXGifkvsztTu4/mN4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e07kt5BdmymerEC3jw2k0B9J/RDsW8FiBtOUdfb634HMI/iBfu96QYhfZ5XhXgqyE2nCN5swg77LnK4JozTCoQEsc9fskezzCXqAjscuSq6XLvDgZe2kiPHxgnCe2QKyoi0gRTJOpO4dBh6MGMUswV2fbbjmLlW4df7ynNvKZoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Cme9t0PH; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771598583; x=1803134583;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0IvU0+vL+S0ObfnRnzzuEwfOTQwE5YBDNEIOzu5Ldow=;
-  b=Cme9t0PHWfZvwBZRbFI7wW9DG8rm/IYXZ62Pxv0QH8ZY+F5Mqu70CrnL
-   hhPpnbLbiYlLfwzs9UoI30Uq2hXBA37ZgeQS8QV3Cy/9+9vDKwphRy4+x
-   mAMqARdg6WkyAQ9oM+h0V8tlZtJ3WBAUvp+UTKNLZ23pc2WD8BveW69zS
-   Zm+2MQmTz/ETnlvbBCOZ3yVEnP5J+YC06wXjJzxxD5ntYGWEY/yoAxWUP
-   sAgmFcwnj8dM/n+VZZSUTfDUfBVLzKwQk4uJWZ4ZTa6zPkY6LT06lrj8m
-   ZAmW5qfObhfXp1x11kDmbRtT6YfNykjJdsrNgmJctfKQmbMEXshSvpHow
-   A==;
-X-CSE-ConnectionGUID: qL5xlh4DSniap2WdrtSQ6A==
-X-CSE-MsgGUID: tSzhXlafQTaHjiaUMX3u5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="72868093"
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
-   d="scan'208";a="72868093"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 06:43:01 -0800
-X-CSE-ConnectionGUID: HsgUCRDKTi6avQlF2oAluw==
-X-CSE-MsgGUID: n4KTY0IaRtu2t7TIKj10Dg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
-   d="scan'208";a="214984483"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.25])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 06:42:59 -0800
-Date: Fri, 20 Feb 2026 16:42:56 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v1 1/1] hwmon (bt1-pvt) Remove not-going-to-be-supported
- code for Baikal SoC
-Message-ID: <aZhy8L5oDLbU91ny@smile.fi.intel.com>
-References: <20260220143611.2401353-1-andriy.shevchenko@linux.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l+rHcgC284T6Zum4BFon8Si14T6EP6uN3zA0omH6GNXmDc+J0yEE4RQKEU7xik0rFszvO+tN0cVIFgsRx0QX7XHqO8lklVWqMcOc2UjBrDFjtGzNFmfFTPLs8twTx/DPQPVAUjSdMGdLvMTB5WJbzwaNNyFulfAM86SyWaeyCjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C12rBUTn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCB7EC116C6;
+	Fri, 20 Feb 2026 14:44:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771598694;
+	bh=RG2Hbf0o3KuqHZA5+48UswLVGJeXGifkvsztTu4/mN4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C12rBUTnA1iJHVlm9ABE6opSgoFtD/ToalKiOumJIOKBNooJtp5TVG/aJmvhSYzoN
+	 JdxJ7uk4iCij2Aui1zxPm8KDGulo+EhprMBZduPecMxE0eTB+C/K2rVrG6MjNvVBwA
+	 V0tAmRNwiC3Son3ZQwnVkKQgTtax/HAdgY9zjkbrgyU1c0zY1FMYUqv36qm+mLv+5w
+	 HIj9eCxwC2UJ46qn+BMXGx8FTh9f7R/YHTrpBiyacN6nH/CCzjA0TA6eRsJ76X/0Wv
+	 Lo24d5B3SiovMtgewWVYU2pfVG8IjcwsMGCjEopMcAqm6LJ/WpZUEGvEutRLP4bLW3
+	 16gH6/69vLArw==
+Date: Fri, 20 Feb 2026 20:14:44 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Harshal Dev <harshal.dev@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Abel Vesa <abel.vesa@oss.qualcomm.com>, cros-qcom-dts-watchers@chromium.org, 
+	Brian Masney <bmasney@redhat.com>, Neeraj Soni <neeraj.soni@oss.qualcomm.com>, 
+	Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 11/11] soc: qcom: ice: Add explicit power-domain and
+ clock voting calls for ICE
+Message-ID: <vimd3tbnu4mr2uqporj7d4fv23aq2cb6e5een43yz5spe4u2xx@ufyzb2lzlc6j>
+References: <20260123-qcom_ice_power_and_clk_vote-v1-0-e9059776f85c@qti.qualcomm.com>
+ <20260123-qcom_ice_power_and_clk_vote-v1-11-e9059776f85c@qti.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260220143611.2401353-1-andriy.shevchenko@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260123-qcom_ice_power_and_clk_vote-v1-11-e9059776f85c@qti.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266993-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266994-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: DAFF61687CC
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3642B1687FC
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 03:36:11PM +0100, Andy Shevchenko wrote:
-> As noticed in the discussion [1] the Baikal SoC and platforms
-> are not going to be finalized, hence remove stale code.
+On Fri, Jan 23, 2026 at 12:41:35PM +0530, Harshal Dev wrote:
+> Since Qualcomm inline-crypto engine (ICE) is now a dedicated driver
+> de-coupled from the QCOM UFS driver, it should explicitly vote for it's
+> needed resources during probe, specifically the UFS_PHY_GDSC power-domain
+> and the 'core' and 'iface' clocks.
 
-It seems the same message was sent twice. There are no differences at all
-between them.
+You don't need to vote for a single power domain since genpd will do that for
+you before the driver probes.
 
-Please, use the first one
-https://lore.kernel.org/r/20260220143500.2401057-1-andriy.shevchenko@linux.intel.com
+> Also updated the suspend and resume callbacks to handle votes on these
+> resources.
+> 
+> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+
+Where is the Fixes tag?
+
+> ---
+>  drivers/soc/qcom/ice.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/drivers/soc/qcom/ice.c b/drivers/soc/qcom/ice.c
+> index b203bc685cad..4b50d05ca02a 100644
+> --- a/drivers/soc/qcom/ice.c
+> +++ b/drivers/soc/qcom/ice.c
+> @@ -16,6 +16,8 @@
+>  #include <linux/of.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm.h>
+> +#include <linux/pm_runtime.h>
+>  
+>  #include <linux/firmware/qcom/qcom_scm.h>
+>  
+> @@ -108,6 +110,7 @@ struct qcom_ice {
+>  	void __iomem *base;
+>  
+>  	struct clk *core_clk;
+> +	struct clk *iface_clk;
+>  	bool use_hwkm;
+>  	bool hwkm_init_complete;
+>  	u8 hwkm_version;
+> @@ -310,12 +313,20 @@ int qcom_ice_resume(struct qcom_ice *ice)
+>  	struct device *dev = ice->dev;
+>  	int err;
+>  
+> +	pm_runtime_get_sync(dev);
+
+This is not needed as the power domain would be enabled at this point.
+
+>  	err = clk_prepare_enable(ice->core_clk);
+>  	if (err) {
+>  		dev_err(dev, "failed to enable core clock (%d)\n",
+>  			err);
+>  		return err;
+>  	}
+> +
+> +	err = clk_prepare_enable(ice->iface_clk);
+> +	if (err) {
+> +		dev_err(dev, "failed to enable iface clock (%d)\n",
+> +			err);
+> +		return err;
+> +	}
+
+Use clk_bulk API to enable all clocks in one go.
+
+>  	qcom_ice_hwkm_init(ice);
+>  	return qcom_ice_wait_bist_status(ice);
+>  }
+> @@ -323,7 +334,9 @@ EXPORT_SYMBOL_GPL(qcom_ice_resume);
+>  
+>  int qcom_ice_suspend(struct qcom_ice *ice)
+>  {
+> +	clk_disable_unprepare(ice->iface_clk);
+
+Same here.
+
+>  	clk_disable_unprepare(ice->core_clk);
+> +	pm_runtime_put_sync(ice->dev);
+
+Not needed.
+
+>  	ice->hwkm_init_complete = false;
+>  
+>  	return 0;
+> @@ -584,6 +597,10 @@ static struct qcom_ice *qcom_ice_create(struct device *dev,
+>  	if (IS_ERR(engine->core_clk))
+>  		return ERR_CAST(engine->core_clk);
+>  
+> +	engine->iface_clk = devm_clk_get_enabled(dev, "iface_clk");
+> +	if (IS_ERR(engine->iface_clk))
+> +		return ERR_CAST(engine->iface_clk);
+> +
+
+Same here. Use devm_clk_bulk_get_all_enabled().
+
+>  	if (!qcom_ice_check_supported(engine))
+>  		return ERR_PTR(-EOPNOTSUPP);
+>  
+> @@ -725,6 +742,9 @@ static int qcom_ice_probe(struct platform_device *pdev)
+>  		return PTR_ERR(base);
+>  	}
+>  
+> +	devm_pm_runtime_enable(&pdev->dev);
+> +	pm_runtime_get_sync(&pdev->dev);
+
+If you want to mark & enable the runtime PM status, you should just do:
+
+	devm_pm_runtime_set_active_enabled();	
+
+But this is not really needed in this patch. You can add it in a separate patch
+for the sake of correctness.
+
+- Mani
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+மணிவண்ணன் சதாசிவம்
 
