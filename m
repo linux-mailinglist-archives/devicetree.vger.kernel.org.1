@@ -1,121 +1,146 @@
-Return-Path: <devicetree+bounces-266831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266832-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OCrNOYwSmGmL/gIAu9opvQ
-	(envelope-from <devicetree+bounces-266831-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:51:40 +0100
+	id eIMjMfYSmGkA/wIAu9opvQ
+	(envelope-from <devicetree+bounces-266832-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:53:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484A7165679
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:51:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2285B1656DA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E49C63016CB8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:51:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E4BC30398AF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 07:52:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5589430AAB3;
-	Fri, 20 Feb 2026 07:51:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4867F30C354;
+	Fri, 20 Feb 2026 07:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iVA3/mir"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HddmBwse"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 334061D555;
-	Fri, 20 Feb 2026 07:51:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB6C18BBAE;
+	Fri, 20 Feb 2026 07:52:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771573896; cv=none; b=Kfns3EAI8H5XyIpUqjAMhGLUN6dVwCu40KaR0LmMl10kKvm1zpZdbYSd7w+XsuNpGwDU6ikb4GFSG2RpKPn1QqZ0/dTcY4k4rmgDkDq45Z30SCxR5MOZd2zF8md1sXGql/5cYI3jAC+7VoSEWi6lSyBxM+6MgSvfrjz5HvZy5nc=
+	t=1771573945; cv=none; b=XY/5FPUkAicIVvmSZySFuBAydwxlHKUa0FcsVoDT6sLw15DG3w+Z6cGp32JCvdf68/kgaHvAEr9bGccBv7167alxJSuwsqUtSyulNMtPA77AnMj4a1+UpIyGcKScONVxfoPDoiJGPB6lKENcnjs2/kBxWNAebGdK0qzZ8FBN6j0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771573896; c=relaxed/simple;
-	bh=8BzeL6OtW1xxqVp2So7EwtUL67QY4V4CLXtCVdlFdxc=;
+	s=arc-20240116; t=1771573945; c=relaxed/simple;
+	bh=CTACKERyrLFo7FWUXuOxaDSKmh3CY0L4vT8iY/OmwbI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lub9PJB76PCOAWhxpDacKrKM9DAldK+tpTdTp1UWPynAJoPZdyglhHj8ayEyv4C4RiHbEFTtTm5xzOR2Flm+2/RMxVuDkc2XLJLalVMrJu5JzaQ1n/L7zO7qDAWlwZjcZ8cpr1GIsvgEakYehiz34PEmdhewOfQIHcXXtuVFgFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iVA3/mir; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72DCDC116C6;
-	Fri, 20 Feb 2026 07:51:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771573896;
-	bh=8BzeL6OtW1xxqVp2So7EwtUL67QY4V4CLXtCVdlFdxc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iVA3/mirqgpBxJmHFHRCJfTR3WchRt6JDx56pu/c0fhaRRaQHhLv1cs91yoCh7SLT
-	 iQxgk+fihDthjWCJVWHPZcfXMBFdZk1SYRLxG3JgbonusxmJttgelxUbJvnqbrC3o7
-	 fTNarmpKj6OfBwst6A4NcbFmoqDtz5jf7ZIj7Va4cGJrTzLKZLur5qtBMGGymEljxw
-	 Jt4q3IuYFT8sCNgw2p+TGrjNoy3KCrkuNTyqTlRaAR5zJQJLXn1sAd31ScHU8Is8K+
-	 qvRY9cc2Tb8iNCgmhi7XW7gnnEfrcM+ea4oCx8hnE/L/Ip96ICEQ0aBB5ovq1k/fZu
-	 m8yah7z2u4khQ==
-Date: Fri, 20 Feb 2026 08:51:33 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: regulator: mt6359: make regulator names
- unique
-Message-ID: <20260220-bizarre-tricky-stingray-94db2b@quoll>
-References: <20260219-mtk-mt6359-fix-regulator-names-v1-0-ee0fcebfe1d9@baylibre.com>
- <20260219-mtk-mt6359-fix-regulator-names-v1-2-ee0fcebfe1d9@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSSmz1WoHvzjAuOorScQvKvNXhElmo4dm5rkNqfOUqvtN8kwNQc4QyM2ERYHzuQQDH3mGdXUh7cVTiUzYHsWUw1yDy8F2a0bF4Vafa0Oxzrx1IbdWMgHuKgaadBfgvpfmebEVe06/brOWjYLFvplkA86rSXL9XJkABnK7Iwd1jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HddmBwse; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771573944; x=1803109944;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CTACKERyrLFo7FWUXuOxaDSKmh3CY0L4vT8iY/OmwbI=;
+  b=HddmBwsewr5Y12XX/TfaVae+pcF9rbI1FUBRy7/Wg8PuGUxpYoagcL2O
+   zdghp+bdjwNQdMJfQ2NJ8HGaUnEzVimJ4Lypy40Lx54HN3XgKoM80RKGr
+   3Yu3WLHDFUFuyyg1bBdqldiU/lVHAytiu/T4TP6oSZYHZzOlFTHuMG/vC
+   Qzx+wxPea6Zy7/dGghdlQ3sC3ynFHruaODU8OQh+Tn/aVwl2yveDrC5wH
+   knipPqjZ5uJqZ+nE8+it/Nmq24rsyOqkAr9RH2tNduoOyAByI4yhF0KxM
+   AT3/zA3SBeE7Wp+ef5TiGlv1zV0eR/UQI5gx23kc2oJUli+7/+6FvY3VD
+   A==;
+X-CSE-ConnectionGUID: EvWt24xtTvKZGhLh1LFMgg==
+X-CSE-MsgGUID: 0nPFGhDlTN6BNWOTVWPJ6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="76504182"
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
+   d="scan'208";a="76504182"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2026 23:52:24 -0800
+X-CSE-ConnectionGUID: EbRr2662QLGVe9sRhX654g==
+X-CSE-MsgGUID: CGTUPyrOR9SIfNit8Y6E6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
+   d="scan'208";a="212930068"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.25])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Feb 2026 23:52:20 -0800
+Date: Fri, 20 Feb 2026 09:52:17 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
+	git@amd.com
+Subject: Re: [PATCH 2/5] iio: adc: xilinx-xadc: Add setup_channels function
+ pointer to ops structure
+Message-ID: <aZgSseBpdOgoWgsG@smile.fi.intel.com>
+References: <20260220053941.611415-1-sai.krishna.potthuri@amd.com>
+ <20260220053941.611415-3-sai.krishna.potthuri@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260219-mtk-mt6359-fix-regulator-names-v1-2-ee0fcebfe1d9@baylibre.com>
+In-Reply-To: <20260220053941.611415-3-sai.krishna.potthuri@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266831-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-266832-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 484A7165679
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,smile.fi.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2285B1656DA
 X-Rspamd-Action: no action
 
-On Thu, Feb 19, 2026 at 04:55:30PM -0600, David Lechner wrote:
-> Update the example devicetree with unique regulator names for all
-> regulators. This reflects the same change made to the actual .dtsi file.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
+On Fri, Feb 20, 2026 at 11:09:38AM +0530, Sai Krishna Potthuri wrote:
+> Add setup_channels function pointer to xadc_ops structure to enable
 
-Subject: regulator
+Add .setup_channels()...
 
->  Documentation/devicetree/bindings/regulator/mt6359-regulator.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+...to struct xadc_ops to enable...
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> different interfaces to have custom channel setup logic.
 
-Best regards,
-Krzysztof
+...
+
+> +static int xadc_parse_dt(struct iio_dev *indio_dev, unsigned int *conf, int irq);
+
+This is a red flag. Why do we need a forward declaration? Bad architecture /
+design of the function calls?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
