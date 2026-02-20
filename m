@@ -1,150 +1,141 @@
-Return-Path: <devicetree+bounces-267072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uFEoKFDKmGl7MQMAu9opvQ
-	(envelope-from <devicetree+bounces-267072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 21:55:44 +0100
+	id uMjWID/LmGltMgMAu9opvQ
+	(envelope-from <devicetree+bounces-267073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 21:59:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CCE16ACFE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 21:55:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F36F16AD2E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 21:59:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A208630065C0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 20:55:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3ACB33035D5A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 20:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B39030BB94;
-	Fri, 20 Feb 2026 20:55:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBBB314A78;
+	Fri, 20 Feb 2026 20:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="HMdWe2u5"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yw1sgS3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F08DA2D7DEF;
-	Fri, 20 Feb 2026 20:55:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9C52F6193;
+	Fri, 20 Feb 2026 20:59:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771620942; cv=none; b=HY9SLnn9xYRbWAtrYOiwqjgZEkye9GrW5kgNjHXXoN/0ACvc3LCe0LlkAuxtofNS4M/EAWnOqwPEO9V6WvcRqlBvA08ziVbD2+RqfKMpDenxBbKQK/jsLmruvVqFZLAtNGVwJbn3mS9g4xExMinNxXuJa3RhwPSeyME5TYrxbcc=
+	t=1771621175; cv=none; b=S/dkJjVOyMKSZ+eDg+wF+aND1qXqUDfFKHa78K9Px1LU1ICiEIhjA/Rg11uSRjUlX3D9xlOOPFbLGD/kDSFMkLKchxlWzAd56yEinXmAkhGFjpnwfwXzW6rOtLGYqHUS3L77Z1iR8aZwVbI2vGigoy+Rz0NEg3F4+NjfZftKhDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771620942; c=relaxed/simple;
-	bh=rUju9g9rOqA57K/Fvn2HUkcrXR3jIxCXDnsAM0lx0XQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Rtb6PmgyMLVmH7QL1hkI/xZXIGY0OlCvuNKWKL+XTfKkviqHWXze+b99HspvKA1w2aexatc9hfJcZJr+qcea5cD8QAlwZX7e+37P9bvzT5Iwxq9s2C83UKRmDYZRgXh7olIQ8AWnpLQ55Y0DI84eXnWkP92x0OEyrAf+J2UxwWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=HMdWe2u5; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=9rpUoCqo3mEA9xoFIi0ocMFimUkqOuNPRk/YvetvC/g=; b=HMdWe2u5gGLO79qb2FWIH+mvkk
-	p4kWfQS/znZvlXUuXPG9iF/CIRgfk8R4oaOKnBn8GtFS65Kk1sSQvQvVIhuPMutQVb1S+/1vfr+cS
-	J1eXKt4k2S/jHBgfYZYkGKsFd57Jqz/OAI+ehm8Th0ESEu072x6sSdYLdgjj6ohC6xHOrNQDuWstr
-	8pwEoKnzFUwH4g0cSC0ZQf4ab36A3OyRyw9KhzLdMZittNqmFXKaO0SCzo24nCdchXMJ1Z5XhQUnT
-	9oN4o03CsqB9NBWweCS16XmxSYj0nYE1ZItFDuqzvV8XjlHxTP9RoRGBoFgi6Dk4POQCmPYV0VmH+
-	mIGZFvhw==;
-Date: Fri, 20 Feb 2026 21:55:13 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Mithil Bavishi <bavishimithil@gmail.com>
-Cc: aaro.koskinen@iki.fi, airlied@gmail.com, conor+dt@kernel.org,
- jernej.skrabec@gmail.com, jonas@kwiboo.se, khilman@baylibre.com,
- krzk+dt@kernel.org, laurent.pinchart@ideasonboard.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- jesszhan0024@gmail.com, rfoss@kernel.org, robh@kernel.org,
- rogerq@kernel.org, simona@ffwll.ch, thierry.reding@gmail.com,
- tony@atomide.com, tzimmermann@suse.de, andrzej.hajda@intel.com,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH v6 5/8] ARM: dts: ti: omap: espresso-common: Add common
- device tree for Samsung Galaxy Tab 2 series
-Message-ID: <20260220215513.7b85056f@kemnade.info>
-In-Reply-To: <20260219210408.5451-6-bavishimithil@gmail.com>
-References: <20260219210408.5451-1-bavishimithil@gmail.com>
-	<20260219210408.5451-6-bavishimithil@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1771621175; c=relaxed/simple;
+	bh=NF3RD8w2e+i2HbNI61LUPbQNGkgQShmXAQXzQTmBY9c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R15QRxG4Rw3+zhyjaAIe4dmoMLxLNY5kujf8c7vMNsSLWCa+UFwaXf1TidnHE2e+XEdzECDNjcm4SLkt/yLj0lyd2aXtbaZturTgeKnwP6tS2/O6ZZli5ka1nRRE0SBDKW4HrCgrGF6NergpebgWYN0hCEwIT3Hk2siyH+KQ+PY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yw1sgS3y; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=Ln2swUO6OKNe/xut5byeHoDeC3Te1ToIYkmL42YPz7c=; b=yw
+	1sgS3y4FpeML578FE1nCmSlnikdcoAbwFPYalB1jrF17Y7jJD93y5nR2aImCat/3ern4PvADYVjVS
+	j75hj/aAhyLTimzqEn+OHf5hQU3+Pp+M+2BUXwjHKPFP8UnNv0+R0rRxp707T4mz6m+QjtGntYlzA
+	+zn8kl1dxcfslLY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vtXao-0086v1-Iw; Fri, 20 Feb 2026 21:59:18 +0100
+Date: Fri, 20 Feb 2026 21:59:18 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Frank Li <frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	dl-linux-imx <linux-imx@nxp.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+Message-ID: <72cc9040-f6a8-4b10-89d2-21b386d5553e@lunn.ch>
+References: <20260212213656.662437-1-shenwei.wang@nxp.com>
+ <20260212213656.662437-4-shenwei.wang@nxp.com>
+ <aae7c851-a93b-4d57-a118-43c6e68c4790@foss.st.com>
+ <13f9d767-61d6-4e29-b36e-6dcc860ccb11@lunn.ch>
+ <fd257c80-d97f-45b0-a12f-3a1888ba81db@foss.st.com>
+ <396819f2-dd00-4c09-8bc7-c035a5282a56@lunn.ch>
+ <PAXPR04MB9185A908F5090F0CA4FF05F78968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <b21b9ee5-d84e-47f8-86b5-c111ecc3d43d@lunn.ch>
+ <PAXPR04MB918576D67A268E59242964A08968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PAXPR04MB918576D67A268E59242964A08968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kemnade.info,none];
-	R_DKIM_ALLOW(-0.20)[kemnade.info:s=20220719];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267073-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267072-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[foss.st.com,kernel.org,lwn.net,linaro.org,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kemnade.info:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andreas@kemnade.info,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[iki.fi,gmail.com,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com,vger.kernel.org,lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kemnade.info:mid,kemnade.info:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ti.com:url]
-X-Rspamd-Queue-Id: 48CCE16ACFE
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7F36F16AD2E
 X-Rspamd-Action: no action
 
-On Thu, 19 Feb 2026 16:04:04 -0500
-Mithil Bavishi <bavishimithil@gmail.com> wrote:
+> To clarify: is Linux moving toward supporting only fully open hardware platforms? I’m 
+> not aware of any rule that prevents a company from upstreaming a driver that implements 
+> support for an existing hardware/firmware interface.
 
-> Create common device tree for Samsung Espresso series devices
-> 
-> Let's create a common tree for all the variants first, later we can
-> device specific trees based on their screen sizes
-> 
-Imperative mood.
+You are not the first to be requested to implement a clean generic
+interface which is vendor neutral for these sorts of peripherals, with
+firmware on the other side. Look back in the archives, there was a USB
+attached microcontroller offering GPIO, I2C, SPI, etc. In the end the
+vendor decided to keep with there out of tree driver. But if it had
+progressed, it might of been possible for you to implement that same
+protocol over rpmsg, rather than USB. They are similar. And there is
+also greybus, which is also a solution in this problem space.
 
-> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-> ---
-[...]
-
-> +&omap4_pmx_wkup {
-> +	gpio_keys: gpio-keys-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x046, WAKEUP_EN | PIN_INPUT | MUX_MODE3)
-> +			/* sim_cd.gpio_wk3 - EXT_WAKEUP */
-> +			OMAP4_IOPAD(0x056, WAKEUP_EN | PIN_INPUT | MUX_MODE3)
-> +			/* fref_clk3_req.gpio_wk30 - VOL_UP */
-> +			OMAP4_IOPAD(0x05C, WAKEUP_EN | PIN_INPUT | MUX_MODE3)
-> +			/* fref_clk4_out.gpio_wk8 - VOL_DN */
-> +		>;
-> +	};
-> +
-> +	prox_irq: prox-irq-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x042, WAKEUP_EN | PIN_INPUT_PULLUP | MUX_MODE3)
-> +			/* sim_clk.gpio_wk1 - PS_VOUT */
-> +		>;
-> +	};
-
-According to 
-
-https://www.ti.com/lit/ug/swpu231ap/swpu231ap.pdf
-Table 3-327
-
-the gpio1 cntroller is always active. So here the WAKEUP_EN is not
-needed at all (so also no additional irq required).
-
-Regards,
-Andreas
+	 Andrew
 
