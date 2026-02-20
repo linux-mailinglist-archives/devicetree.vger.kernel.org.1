@@ -1,221 +1,162 @@
-Return-Path: <devicetree+bounces-266927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266928-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wF8nMSdGmGngEwMAu9opvQ
-	(envelope-from <devicetree+bounces-266927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:31:51 +0100
+	id ADi0GIRGmGngEwMAu9opvQ
+	(envelope-from <devicetree+bounces-266928-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:33:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E851674B9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:31:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7761674DF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:33:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3F65F3033D10
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:31:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ADDA53029251
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258D1330B3A;
-	Fri, 20 Feb 2026 11:31:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03FE8331202;
+	Fri, 20 Feb 2026 11:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="4NHgTx+s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDZkhtWH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35D833123F
-	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 11:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CC7330B28
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 11:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771587101; cv=none; b=ikG24iM0Nr4JEUpj5rrSvMu31VEcXygRPIWQnidJvz+D1vQClCaaJBY55omzBtmOQNVgPa87lQs6KpJwdCgho8zOSHNKI4ap5YtG63dMbRAPnmmKh1Tir9YMeQ0fXrbw/U4P2BbJtiB51A+PDCmqioGCHaaAeBBiPwOD90hup0g=
+	t=1771587198; cv=none; b=svCQHCtcpFIzbiZs8oMkGtiHqTig5i7tmHlqqIrrRJ2dHizDXMMABOZmqYMHh8E7LxJ1eKV2s+1UpYHpaoq3RdoG/y9t1ntYa7wN9hwfWoA8Ehrx98yDwWc1yxjuIXA+I7nHeLsQb4DZ48M7T9itGjIDCrtePUfNsYGYU4pr/94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771587101; c=relaxed/simple;
-	bh=dL95nES1PvUKDwOE/SzRBysmIFe+L8zYNyzvl+l8sDc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=iqYEHwGcm+eDpt5ZrLqPQfGb5tVWgMEkoazzTppaQcfG5UzvjZjyYJgEbXjQuAQU3Au1G9o5iDTZMOBzWt/2ogQtE1EJLQd0ngkWBhpivvVVJ4LZNOnpxnaazuuUoHKVzfSdptqzz3wr0Ac+tvuy4A6c5XPB2V1Kq6XEv8y5i1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=4NHgTx+s; arc=none smtp.client-ip=209.85.208.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-65a3fdeb7d9so2653731a12.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 03:31:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1771587097; x=1772191897; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EGfuKGhv7t9katQ89dFkhDx2tsJCNlvP9HCnVuHq6Y8=;
-        b=4NHgTx+s20DfwneSZjvrzDD9fpZEe4W9UVaWa3uDZd2yk7x5f4ZTJ2hrX1qyF0rwc3
-         mE2i9g1k4aAN62huoSVqZQQ0r+G0luFFPtWcpI3zpUy3sCk0XoB9SbVEEucFQx1a3eRc
-         Dz6UavddF+3GheXjgWPgfRWV2pfEF15PH6fVPFZMIJD8GSdjbbe0T0QISnMvY2UcFX9H
-         8wwW35tTTD4Lla+gGXF8YhCQikEEAYZBtyHNLPko8J1VOThanka0vu46lcMm9DLdrou3
-         YThe8BJzfkBGvXdHdirakJDZ+hY3fmjrKml4+DGyFks7S5wc1vZyjSbr6c5Pz0jZAUil
-         qQlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771587097; x=1772191897;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EGfuKGhv7t9katQ89dFkhDx2tsJCNlvP9HCnVuHq6Y8=;
-        b=cqwRQoS1Mf6goiVSf4AF6jzIFwZI5k3CN4wUnjtjRt90tlilI+taDGBmCLfFR3a4Up
-         I9xRlo+Pm0OikIZomFYZhwBUtzzJ6dYNkZqOj3cWFjlgRZMpq7kessM1ZiEevpf4o4MD
-         yGJnFe8nIVwh5OKFr7Yx9JE4pPTADoTOj9q2uFPxa1A/bN4eLEvwTukMXjfss9bHXkHC
-         3xfmH6hhK+J0CAIDhVxNQp4Rbbn9Pr+zC170mapbzRjiFfcRd0OkEMMfl6PB0FO8MNxE
-         EzkfvKOiStVp5SUQLj+wwRFyOsMJP43LSCJWiQZq3cj4cO6IzzfPMtSXRBn12tBToB8u
-         E6qw==
-X-Forwarded-Encrypted: i=1; AJvYcCUaB+RYl1oGAnrEMs73x/mDPAYiFicaWCv0AWB6fm2LiIUjLZJdVw6uDCvIssVAuoNogU3Y2KhAOfFx@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuEXfYfv3fFtgDtBTAY4jQfIdKYd7ucwk99+qIea40WGcfqr4Z
-	7Fw7Ru3RrgagDnUb5Y1PsrykUHsDH7Q9OgFgZqur2r2+g9jlsW2UV8nwBx1FBmjUBBY=
-X-Gm-Gg: AZuq6aLhwen5DLtICZTGc/w0gHbqOpzz0JV41qCVZTt8tnOfI085IhacInjZx74N/Lf
-	bLuRvDukXtaQ8OGTmZQe7vdt2FPZqnkHGdZHdMNykDPrhWND+Weh78pcuGr2QTHCsN4vgKG9gKU
-	l2yMEIgS65uHPf/xvadtyqDVQ6f3jipn8lRDsAIEFizP6McoM2Kvm3Vz7HPadX3alG356mRkJIn
-	W4euOirtZCEBp40KK8kJ/HKqgZI9Gx451fzr9O1mKhOOgxUPpBduAPFE30i1XwnH5Is4ugq4djT
-	Vq8fAygli3k0sJEtQacMIqPWoSTqSkejJ1BOfRMYTNuhdjQTpo8KwHI78p4346W9riVJ/+EsiQM
-	lR3+ugej4An4QkkPHm5SvawQG7o/LZn+4fvagxe7d4CUoqgG0OwHu63X3RWyDsKBN3TvrQTToDr
-	NgOmSjNVBvE4OsKPR/iKNIKEJo4m6OgMphBho2Fg/ZjsQZ+qEMA1Zam2FvQKfrjtTqOiQu
-X-Received: by 2002:a17:907:728c:b0:b8e:8874:8384 with SMTP id a640c23a62f3a-b9072e1eb1cmr91962966b.4.1771587096917;
-        Fri, 20 Feb 2026 03:31:36 -0800 (PST)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8fc766531asm666569166b.50.2026.02.20.03.31.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Feb 2026 03:31:36 -0800 (PST)
+	s=arc-20240116; t=1771587198; c=relaxed/simple;
+	bh=RMvAITejFrQByNG8OGkLYpPhIAJHs3b3Y0GVPaAKYeU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SWprIanb7cLxWZX96/3YC61JyKUJGX4ym60XQ+lMt3HshlDzGgMWGXjWwf37qt6PRAvjHBP/PpoIoLSOkMlyroaggWSCwgNjvYEgEYm3Dbk3E4kRJcdhQzNLxhCDOkrivybdNVStA3V06DlmMkSx5Riw1YvQbsM41ZHPGRoyA68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDZkhtWH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89D53C19425
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 11:33:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771587198;
+	bh=RMvAITejFrQByNG8OGkLYpPhIAJHs3b3Y0GVPaAKYeU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=WDZkhtWHTM3X2I5sjLziZALaSxVvdAubUUDiGye0qRHu9xhKMVKAhflfTg0nSf8Wg
+	 bbb68SnClTD96fioPez5BAuDGRYOK+BceRJ6MfxrcFfnapd1nWxK8oht94DRFR26ni
+	 PbDKNnNjWw5s/qUsKVLbUkZApqt1tNrc+TMaS6ufMV6VzBqUpTy5Gfems/6PtiJ4hL
+	 Zj0kEw42+7Uo8BLfxnSt+tzJjb2WodcZN52XN6YlkSi6bYEdi7arM/dL5cfsf7gQIn
+	 M66CrGVMvAF1voVDaz1Z9iUBqbMq8nkIeGjbSAPvfulxvkEegXCohzOUNL6vvUY9kL
+	 3a/8g9Y0o0KOg==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3870dec27f4so23507311fa.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 03:33:18 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWDhyLw8Cyz8ereU5V52xEMdJAJWp+zTTWFFFPirwCrwBPgY++jv5ZanYYIgzLMU8/zPKDy8hxZ843E@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDApjZpOgk9eRrQ3b+NBwvqqx6tQLNbjnsXI0TK3BJYFUiPLjY
+	t1WxWZWra0laZu9ehpDKuX+u1a5T+yWNiSob8pmFK1FSsjkwN/35vmRUI6KBhawfofwAzC1FXdN
+	TP8oP6dtH1+0OiA1O0KZu8a18RTfKEQvpCqGuDhPCWw==
+X-Received: by 2002:a05:651c:1991:b0:388:23e4:4705 with SMTP id
+ 38308e7fff4ca-388c8821fe9mr5998621fa.14.1771587197057; Fri, 20 Feb 2026
+ 03:33:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
+ <338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org> <92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
+ <CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
+ <30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org> <CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
+ <20260212195423.GA787785-robh@kernel.org> <CADvTj4rPq8D5piqEijCdAjkWmZtq3Bi_Kxv-4F0aU4xi_O5WKg@mail.gmail.com>
+ <CAMuHMdXmMVgPJv=HhkfttiRnSwFC6c2PnFjYwmL2hu3ikv+t3g@mail.gmail.com>
+ <CADvTj4r95E2rLA0ZhOYPeFYpFbj0EXfb=omCN2Mab-Dj4T-cYA@mail.gmail.com>
+ <CAMuHMdXTg8w3R1BVq3JO2z=gvTdB=qXY=aXvC7Lb8FtkEqz9ow@mail.gmail.com>
+ <CAD++jLmp+47f-Ah4YdFJ+9dU0OFrnQdOcVyrQ61p0-_P61eBrA@mail.gmail.com>
+ <CAL_JsqJK7PwyB=NoM+uXOgQk-RT49h4emogvYAfUAbZUpnd6Vg@mail.gmail.com>
+ <CAD++jLkJE0ruzPeRMuVKJbJTjHoa-fTKn8djN+0es+hpqhELFw@mail.gmail.com>
+ <CADvTj4rd3jS5VAPK1wyC8wKqohZ4kAX4tAJ9CfnBk64+cqrMUw@mail.gmail.com>
+ <CAL_JsqLyF71Jq2QuY9SL2RZ4OS5GAeZhVRbRfXngMjjHGob36Q@mail.gmail.com>
+ <CADvTj4qt6ubU+9f-b8ZP5+=RPfTD9wZqOui-c08via6mHPy5yw@mail.gmail.com> <CAD++jL=b3RwgB9taGe1+o-u6kM3QMzmtcx8oenxDpfPmkbC3+w@mail.gmail.com>
+In-Reply-To: <CAD++jL=b3RwgB9taGe1+o-u6kM3QMzmtcx8oenxDpfPmkbC3+w@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Fri, 20 Feb 2026 12:33:04 +0100
+X-Gmail-Original-Message-ID: <CAMRc=MerdgjNjdVVDrbqug-3124zLUJEUi=baw-zA0HNb5mjdQ@mail.gmail.com>
+X-Gm-Features: AaiRm50g0b04gVKPG5INa-NH4ssDGCOBiTJNzH6Hh_YijSAC-Wz2MSVqYvCmcik
+Message-ID: <CAMRc=MerdgjNjdVVDrbqug-3124zLUJEUi=baw-zA0HNb5mjdQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
+To: Linus Walleij <linusw@kernel.org>
+Cc: James Hilliard <james.hilliard1@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Stein <linux@ew.tq-group.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 20 Feb 2026 12:31:36 +0100
-Message-Id: <DGJR7OIPI2ZS.ZTJ1IJWB3Z61@fairphone.com>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>, "Luca Weiss"
- <luca.weiss@fairphone.com>
-Cc: "Jonathan Cameron" <jic23@kernel.org>, "David Lechner"
- <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- "Andy Shevchenko" <andy@kernel.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Zhang
- Rui" <rui.zhang@intel.com>, "Lukasz Luba" <lukasz.luba@arm.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Laxman Dewangan"
- <ldewangan@nvidia.com>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
- Dybcio" <konradybcio@kernel.org>, "Hans de Goede" <hansg@kernel.org>, "Jens
- Reidel" <adrian@mainlining.org>, "Casey Connolly"
- <casey.connolly@linaro.org>, <~postmarketos/upstreaming@lists.sr.ht>,
- <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] thermal/drivers/generic-adc: Allow probe without
- TZ registration
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260220-bat-temp-adc-v2-0-fe34ed4ea851@fairphone.com>
- <20260220-bat-temp-adc-v2-3-fe34ed4ea851@fairphone.com>
- <aZg8ZqckhGbvkdel@smile.fi.intel.com>
-In-Reply-To: <aZg8ZqckhGbvkdel@smile.fi.intel.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266927-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[fairphone.com:+];
+	TAGGED_FROM(0.00)[bounces-266928-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linux-m68k.org,vger.kernel.org,ew.tq-group.com,bootlin.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 21E851674B9
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7C7761674DF
 X-Rspamd-Action: no action
 
-On Fri Feb 20, 2026 at 11:50 AM CET, Andy Shevchenko wrote:
-> On Fri, Feb 20, 2026 at 10:19:07AM +0100, Luca Weiss wrote:
->> If the devicetree node is not referenced in a zone under /thermal-zones,
->> devm_thermal_of_zone_register will fail with -ENODEV.
+On Fri, Feb 20, 2026 at 9:24=E2=80=AFAM Linus Walleij <linusw@kernel.org> w=
+rote:
 >
-> devm_thermal_of_zone_register()
+> On Fri, Feb 20, 2026 at 5:57=E2=80=AFAM James Hilliard
+> <james.hilliard1@gmail.com> wrote:
+>
+> > Yeah, I did investigate adding gpio-line-names support to gpio-map,
+> > but there was no clear way that I saw to actually implement it in the
+> > kernel. Maybe there's some way I missed however.
+>
+> Check commit bd6f2fd5a1d52198468c5cdc3c2472362dff5aaa
+> "of: Support parsing phandle argument lists through a nexus node"
+>
+> of_parse_phandle_with_args_map() in drivers/of/base.c is where
+> the magic happens.
+>
+> This is called from drivers/gpio/gpiolib-of.c, in of_get_named_gpiod_flag=
+s(),
+> so as you see mapping doesn't really happen until you use it.
+> There is no way we can assign the line name on the mapping
+> path itself.
+>
+> What we would have to do is to add code to gpiolib-of.c to scan the
+> whole device tree whenever a new gpiochip from a gpio-controller
+> node is added and look for any "gpio-map" with phandles to the provider,
+> and if that exist, index and parse gpio-line-names from the nexus
+> node to override the default (if any) that is set for the gpio controller=
+.
+>
+> Not impossible just a bit quirky.
+>
 
-Ack
+Due to the fact that we are not allowed to investigate fw_devlinks
+from driver code (as confirmed by Greg KH to me) I implemented this
+kind of device-tree scanning in gpiolib-shared. It too checks phandles
+in order to detect shared pins. Maybe it makes sense to factor it out
+into a piece of common code and cover both use-cases.
 
->
->> Since the driver is now also registering as an IIO device[0], allow the
->> probe to continue without the thermal zone.
->
-> Isn't it dangerous?
-
-Why? The idea is that generic-adc-thermal is the middleman to convert
-from one IIO input to one IIO output, and is purely informational, so
-that user space can get some temperature value to display somewhere.
-
-How thermal management will be hooked up in the future to charger
-drivers is a bit out of scope here I'd say. There's not even any cooling
-support in the power supply core anymore, that was ripped out a while
-ago if I'm not mistaken.
-
->
->> We also can't use gadc_thermal_get_temp anymore because we haven't
->
-> gadc_thermal_get_temp()
-
-Ack
-
->
->> necessarily initialized tz_dev.
->
->> [0] commit 3762f5851ac5 ("thermal/drivers/thermal-generic-adc: Add tempe=
-rature sensor channel")
->
-> You can make it a Link tag:
->
-> Link: https://git.kernel.org/torvalds/c/3762f5851ac5 [0]
-
-Ack
-
->
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->
-> ...
->
->>  	if (IS_ERR(gti->tz_dev)) {
->>  		ret =3D PTR_ERR(gti->tz_dev);
->> -		if (ret !=3D -EPROBE_DEFER)
->> -			dev_err(dev,
->> -				"Thermal zone sensor register failed: %d\n",
->> -				ret);
->> -		return ret;
->> -	}
->> +		if (ret =3D=3D -EPROBE_DEFER)
->> +			return ret;
->
-> I believe it's better to return all possible errors. If you see the
-> similarities with regulator APIs, then use an explicit check for -ENODEV.
-
-Sure, will update this.
-
-Regards
-Luca
-
->
->> -	devm_thermal_add_hwmon_sysfs(dev, gti->tz_dev);
->> +		dev_info(dev, "Thermal zone sensor register failed: %d\n",
->> +			 ret);
->> +	} else {
->> +		devm_thermal_add_hwmon_sysfs(dev, gti->tz_dev);
->> +	}
-
+Bart
 
