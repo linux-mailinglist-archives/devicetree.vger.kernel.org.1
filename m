@@ -1,177 +1,184 @@
-Return-Path: <devicetree+bounces-266774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266775-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SP1pN4ufl2nc3AIAu9opvQ
-	(envelope-from <devicetree+bounces-266774-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:40:59 +0100
+	id oFkXCEWml2l34QIAu9opvQ
+	(envelope-from <devicetree+bounces-266775-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:09:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38858163923
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:40:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 736BF163CA6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:09:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 55087303FAFA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Feb 2026 23:40:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92754302D52C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47DC3168EE;
-	Thu, 19 Feb 2026 23:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542AC2AD25;
+	Fri, 20 Feb 2026 00:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="YMe9I95F"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="231dObeF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309193033C5
-	for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 23:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B191A294
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 00:09:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771544431; cv=none; b=JdhtbTysa58zG+cz00Ol34Ygdq798z2MLHEBoKxh3sHzLpgCFX+p8cq+k4gPNcCKsYyIdiEm18dSObrmEujpFm5aErCT7zNs69nXbrm3lUQVtZoqWMlpX5mb8e3fBHTW4bMk5xdNVX6DBKo/mqoIXYmLjy+7I8HlLJ0uFQea8hI=
+	t=1771546160; cv=none; b=LRAj2cg5EcJk2IMlJppsy/8IqBeaw5fPa98qBeJcjEWK1tFnLPja+Wq8omjMKbbquCtThUzTT4zK4tQZR8SONJgM9tvY5O1QC5RzPmCvkvCh4Vdnelp7lA1eUXKpDyHZI3+Khe9+bY9PKHxrc/J4Mewd/iIUAHUQynM2bHFuN10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771544431; c=relaxed/simple;
-	bh=TRKFG9iyCZiU02kKGUXfEvPejwPiF+gGa7xpETSJMmg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X3cMpdqFD4q70ps2dcYw8kMW+lKeMnK/4N0SPU4doXuVEe4BBu2nz0OgMy7LU7OWIxOOD9Cx+WfU9tfrZkV7l0PkJj/foFRMb/S7a8nDP6J3DZxhZ3N7KoYYYYdAEeXjIEE0UF33pQGsqIE0Iog+owpdFqYKexasYBA6aDYL2U4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=YMe9I95F; arc=none smtp.client-ip=91.218.175.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Thu, 19 Feb 2026 16:40:11 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1771544417;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IMYV8TJCxWvdL8j08krLV9Nx1g5eh+8pe7mOLnvSJDM=;
-	b=YMe9I95FhYdbw5SzD0KPqIHn7JjFNWnaG7ReGJVQVUNvguA/iqmCYsvmtn2q3i4r0OnGFA
-	/fxh6ass/0dI++GgE1A+3+Zw4nY0t0PSyTQbpiVOvPbkzyAXvaCa68zrejr5CAByqMXZX9
-	OIBkDkZ6MvZbFvDo3+NqeWTN+o/I1Mc=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Russ Weight <russ.weight@linux.dev>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kamel Bouhara <kamel.bouhara@bootlin.com>, 
-	Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
-	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] firmware_loader: expand firmware error codes with
- up-to-date error
-Message-ID: <s24u6ojnflb4nvpssgshjmgir77wpoos6qinypqac564fzcjyy@yilnrsy266er>
-References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
- <20260111-v6-10-topic-touchscreen-axiom-v5-1-f94e0ae266cb@pengutronix.de>
+	s=arc-20240116; t=1771546160; c=relaxed/simple;
+	bh=muqBDDQTZm8WW7TEPJ3B4WrvP0tqyQqdJwOdcR66Lgw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kWKILfbVmI9UFfjarciwq8lEZu2stKznv7Bg9y5jAwuoFgdsyb6aVptRQoUkYjjXaizhjShBtRYtBL670lX4OF+a0WK0LRs0P3LS2EcMcKVseoY7iUpk/qN5qakxaxEYQnfWTullbmAFcnCDjfwySqFn6S9bA1bdmLlSwxTTrUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=231dObeF; arc=none smtp.client-ip=209.85.160.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-40970f97638so980734fac.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 16:09:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771546156; x=1772150956; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/4mPm+ZoP8DxO5yOKQMVe/JsfKSmfmW2/A8ErJD8Mio=;
+        b=231dObeFA30pDlly4NfK8dSnOKkZbSHUzm5rLuhoSXuCK+Z/aataC7+lQC4AP1gEj7
+         0rtRqzar5JYhCciPcb93QMJpCSZvyfSf9ecvVLu+9U+9iLHeFykB2IaPQ1q4jHERhuSP
+         O5HXEPsKuq8gVr7txMJOMaKMJde9/6fhZV0cnAQ6LCleHzeiygNGzu3GEwzmngTnCaTv
+         aOe6yjm3L3WXnUSOvXy5yyc3MfTRVhDcl2HnKk7mZryEZKRZVJFVOFoGrgpvuyzshNEd
+         VJPo2dmKP+7nOIoL8EboeZWAG4TiloweDJL1wblQgySvhO0GjTrF/liXaMz68II2LgLi
+         hPfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771546156; x=1772150956;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/4mPm+ZoP8DxO5yOKQMVe/JsfKSmfmW2/A8ErJD8Mio=;
+        b=MFPQ32mRgutt0JEw7X/NJ5adfiB5lX2RV5fiZHpBoTxR6NzKgtJE4k2W1bFlOYWnGN
+         vC3dVx4WzsLOWS3uC2A1iaWI9N669oW7hZUhAwYlJIXnMEBW5ro292LcY5116aGQgvL+
+         E7sYxcR0GDsyNUEdw1dhKrwSdSrELIijh4ZhhmC+ja1B4vTxsEJBBFULAZEWBzL5Btk6
+         2JtEyY40oBvAghx22Nj5xSghT+9hNBcoUvBlK82kaPZBt1De4kbZ0DZcyfae3Oa103CJ
+         b1CDSYg2aDWz08iwYm5ged/hXgqIj32E0c5/zO/Uxq3FTsSOAgcjDkkAAbg4K7TqG2M2
+         hmeA==
+X-Forwarded-Encrypted: i=1; AJvYcCVjPirHlqDqtQubx2kJQ3NTPtt8HH9n/nIGRi7/4+z1yYg/M0ByDB7mcQAqJKa18oMsbq5CxIH5VIks@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeN9k+NWxAn77R6biHqt8BcjAwklbIY7tF4FIfs9oQsJ8eZAEr
+	AUf3jM2waJ2z29tiAiZ3Wvvzicf6OMG48R+IO3/WEbQRhZSlVU6uL+JNOi+6BFGqzWY=
+X-Gm-Gg: AZuq6aJGsJqHQF6s8URGY4wapCRiWEj8oylpM8Gzdr9f7Vpv4TwZ8G9D2HIcHJ2WNgR
+	vQbGpxUCCvmlKJy562dU55v7Sqo+SKt3mB7u5bM/OzzqhCYktUU7o3TBDqi+4SYs4LT9VhI0nW7
+	rJALbtt7+dPWnIyvJwm2b0BsVddhyUGpWo+ZxSHOSuW5SBFSaUbVhZe2EG5Iu+H+BDjbSy15hfA
+	PiDAEzBWDasOHX0SXj5iZSCp0KM2T9KVf/CgDTXGj+2JaRR3kb1FwZ3zFprpvCIg6PXYl6dGW8C
+	r4KdYpHb+noq8ljIbkegeLRi31yi5A1+tTD5Tr18i225SOBNFs7J0qH7KHJyhk+dHnrhH/861b2
+	C2/+C9/gjE3DfzwbGbD3+6340RyvuouQ7RglwryZ4Al1+bIi8M+ZAeZSl3rMPmMh7cydgPL94kw
+	7OusnYtC1ofzWs093epQbFhA+Eq0uRVG5DkYYX7wlUURxkSrVsRUxunhFNcoXlo7PtxNs/pgyrN
+	cmHPC58
+X-Received: by 2002:a05:6871:eb01:b0:409:7c0b:6aff with SMTP id 586e51a60fabf-4152917bfc6mr3628005fac.43.1771546156112;
+        Thu, 19 Feb 2026 16:09:16 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:d4c1:bce:26a1:c903? ([2600:8803:e7e4:500:d4c1:bce:26a1:c903])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-40eaeeab492sm25902271fac.5.2026.02.19.16.09.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Feb 2026 16:09:15 -0800 (PST)
+Message-ID: <23778b52-9aa2-49fc-946b-e858b99fc3c9@baylibre.com>
+Date: Thu, 19 Feb 2026 18:09:14 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260111-v6-10-topic-touchscreen-axiom-v5-1-f94e0ae266cb@pengutronix.de>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: mediatek: add device-tree for Genio
+ 720-EVK board
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sean Wang <sean.wang@mediatek.com>
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20251203-add-mediatek-genio-520-720-evk-v1-0-df794b2a30ae@collabora.com>
+ <20251203-add-mediatek-genio-520-720-evk-v1-3-df794b2a30ae@collabora.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20251203-add-mediatek-genio-520-720-evk-v1-3-df794b2a30ae@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266774-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266775-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,linuxfoundation.org,kernel.org,gmail.com,mediatek.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[russ.weight@linux.dev,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 38858163923
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 736BF163CA6
 X-Rspamd-Action: no action
 
-On Sun, Jan 11, 2026 at 04:05:44PM +0100, Marco Felsch wrote:
-> Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
-> framework that the update is not required. This can be the case if the
-> user provided firmware matches the current running firmware.
+On 12/3/25 7:59 AM, Louis-Alexis Eyraud wrote:
+> Add support for MediaTek MT8189 SoC and its variants, and a device-tree
+> for the basic hardware enablement of the Genio 720-EVK board, based on
+> MT8391 SoC.
 > 
-> Sync lib/test_firmware.c accordingly.
+> MT8391 SoC is a variant of MT8189 SoC with a difference for the Arm
+> Cortex-A78 CPU core maximum frequency (2.6 Ghz for MT8391, 3 Ghz for
+> MT8189). MT8391 hardware register maps are identical to MT8189.
 > 
-> Reviewed-by: Russ Weight <russ.weight@linux.dev>
-> Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  drivers/base/firmware_loader/sysfs_upload.c | 1 +
->  include/linux/firmware.h                    | 2 ++
->  lib/test_firmware.c                         | 1 +
->  3 files changed, 4 insertions(+)
-> 
-> diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
-> index c3797b93c5f5a2ecf2ae34707893c89eb7773154..9e93070b2c24179986b868a24b09cf051776c644 100644
-> --- a/drivers/base/firmware_loader/sysfs_upload.c
-> +++ b/drivers/base/firmware_loader/sysfs_upload.c
-> @@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
->  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
->  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
->  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-> +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
->  };
+> The Genio 720-EVK board has following features:
+>   - MT8391 SoC
+>   - MT6365 PMIC
 
-Hi Marco,
+Is MT6365 PMIC ...
 
-There is a corresponding change that should be made to
-lib/test_firmware.c. You can look at the recent change for
-FW_UPLOAD_ERR_FW_INVALID as an example.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..744641916952111a4b389cf6adbd27c429b6eff2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8391-genio-common.dtsi
+> @@ -0,0 +1,555 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (c) 2025 Collabora Ltd.
+> + * Author: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> + */
+> +
+> +#include "mt6359.dtsi"
 
-- Russ
+... really 100% identical to MT6359 PMIC?
 
->  
->  static const char *fw_upload_progress(struct device *dev,
-> diff --git a/include/linux/firmware.h b/include/linux/firmware.h
-> index aae1b85ffc10e20e9c3c9b6009d26b83efd8cb24..fe7797be4c08cd62cdad9617b8f70095d5e0af2f 100644
-> --- a/include/linux/firmware.h
-> +++ b/include/linux/firmware.h
-> @@ -29,6 +29,7 @@ struct firmware {
->   * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
->   * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
->   * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
-> + * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
->   * @FW_UPLOAD_ERR_MAX: Maximum error code marker
->   */
->  enum fw_upload_err {
-> @@ -41,6 +42,7 @@ enum fw_upload_err {
->  	FW_UPLOAD_ERR_RW_ERROR,
->  	FW_UPLOAD_ERR_WEAROUT,
->  	FW_UPLOAD_ERR_FW_INVALID,
-> +	FW_UPLOAD_ERR_DUPLICATE,
->  	FW_UPLOAD_ERR_MAX
->  };
->  
-> diff --git a/lib/test_firmware.c b/lib/test_firmware.c
-> index be4f93124901e5faac41f48a66dabe6da56be0ca..952ec1cb03102911dbea9abd648ab9d9e0112a46 100644
-> --- a/lib/test_firmware.c
-> +++ b/lib/test_firmware.c
-> @@ -1134,6 +1134,7 @@ static const char * const fw_upload_err_str[] = {
->  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
->  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
->  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-> +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
->  };
->  
->  static void upload_err_inject_error(struct test_firmware_upload *tst,
-> 
-> -- 
-> 2.47.3
-> 
+Asking because I'm working on this in U-Boot and would be helpful
+to know that this is correct. Would probably be a good idea to mention
+it in the commit message too to show this is intentional.
+
+
+And I wonder if it would be a good idea to add a compatible with fallback
+just to be sure.
+
+&pmic {
+	compatible = "mediatek,mt6365", "mediatek,mt6359";
+};
+
 
