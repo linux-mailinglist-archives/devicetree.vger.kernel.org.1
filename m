@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-266902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266899-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIzJObU5mGmFDQMAu9opvQ
-	(envelope-from <devicetree+bounces-266902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:38:45 +0100
+	id eHsNJ6A7mGkQDgMAu9opvQ
+	(envelope-from <devicetree+bounces-266899-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:46:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71362166E45
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:38:45 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5372166FCC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 02D933091C9E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 10:36:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E86F53002923
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 10:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1DC33F8B4;
-	Fri, 20 Feb 2026 10:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2560333E36A;
+	Fri, 20 Feb 2026 10:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="0PGmqiJH"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="SKA3P/Ur"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail2.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47FFC33DEEB;
-	Fri, 20 Feb 2026 10:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A6B7322B8A;
+	Fri, 20 Feb 2026 10:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771583814; cv=none; b=Cf8DMRNu9Nre4CskY5O7A5SkdQBOii4QP0LYOFI8yQF7YV+bbDOV+6D4GeY2R2SYx2mvxJq12XRcMKtDdWcGJaARKD12IhbSmTNrU8MeKxCdR6CifVNDu4XyPfW6+kPMMUi1rUD9zFzOJ1J2eMec6ZF6i4yBsaPteAUsKzbfg+E=
+	t=1771583812; cv=none; b=FJ3jcNHkvGv88dt7Qz6K1lCI5njyCUU4JtIx8K3/RkfQNNKkJ4ls+MfeeTC09MlQ4Tk7OQ5cKzFfug4pIRjsg9i1cCA8DAI37R+Oyn7OHaCQNvtYI7mCjGzB9isJUPryj+c64Hoa18tgmbKwx8yL3GpyuIZb+LO1hos4+4omphY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771583814; c=relaxed/simple;
-	bh=KYZ8W+OseSCq20we598SP8S/rg3A5OHZtPnSr+hfXmk=;
+	s=arc-20240116; t=1771583812; c=relaxed/simple;
+	bh=cuQvL8BI8iOkp/0NVSsyyYOrJzK1E4le2JhX4MjuvdA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QX27IoE3RWNzawAmPcbyoBs3WRchMsXoLZPf9lXdb1chbgHKKMcVmazYkUjLeHJv4uRYkl3GBzF/d+QSvjVou/LR7m/Qa8qnqI1/YgPoDb4gKGLz9t4l5Lal661DEBVqtsIy0glBxXMx+41XS5ouGJw8Z01Fi6cQyPhkRMg0YiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=0PGmqiJH; arc=none smtp.client-ip=116.203.77.234
+	 MIME-Version; b=rBIus+jtrvTWJGPP7LKG8VL60gQsuuSOd3+3k0r10RiQBzi5p7L64wxJBO3UECCPtkRzejr4YOtabegs8sFlRGlamtZdQzc5cBm1OoiwOrY7O+13ODPI9QQ+3299ng6AvQLg9jZ2tOin1bmF3O/cq+NVPIixEa6KdI92IaZJkYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=SKA3P/Ur; arc=none smtp.client-ip=116.203.77.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
 From: Frieder Schrempf <frieder@fris.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=mail;
-	t=1771583806;
+	t=1771583808;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ncaVl8FmjKo1MU54nAIJ5qmIEEBB3+ip6lPVKRFzkRI=;
-	b=0PGmqiJHpNVwmVI44CQvWvovGJZ+7qLLsqK8dGW50OqtjYILi5uhxHVIXe1PTtikO0ddRT
-	zCb7uxXqYLv+DHmP1HCzr4i2GImt/p8nkKsmsP1CV0mYOqpg5g2z1kgo4a7vX8EXvLdjQj
-	DkYbFeLKf8i7lR/n+S/xWJK+e3Fng8NWA9DWWmfT+3Nb1IkJ9gHDvAEfY+IPyr+KD2GMlO
-	pCLKlZq98gZTO25TqAN40rzhNd47AbZlNmP5jzq3fp1ugcG12qnHLQAzVppb28NMn39THK
-	HxYsSroQo80OyxNmoKNhXfKiO6YwQYncs5pJKkG7UXsw8NHiAROYLqiC84FeUg==
+	bh=WOmq4oIh50CVOlYgICncz5bv3GLxzZaAhwh07HpubHg=;
+	b=SKA3P/Ur0pz9ThsYK6y9UIZI8d+qxCeqKJWmzeR1K0WecCE2PbpaX0Mehf3s1SlAd8+k4f
+	b3x2IMQ+e3BRRi1HUaOACw3+sfmoSwZkUXKAlWHe3SHKhauD/7kLf+ZlEDtqVcTu+LqnvS
+	3f5Y+jcTxJ2nUPMIR6+d6eFYV+tLq1TJ9qvAjR0qxJBP2aLSFRV2Ru2X8U5HE8oaDa4Jpq
+	MlKPqTwMza3J0jj/NG2f14boQsXTcNy0fRLbw3jvUQ55Mbl6t7HbQyru2hxK4/6NQphqbT
+	c7Imtq4cCBUKjcArvXn2Kf/jVgCqaCKtGV3Z76eoImpGfjQ4maQE9HlKF3U2Iw==
 To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	Frank Li <Frank.Li@nxp.com>,
@@ -58,11 +58,12 @@ To: Conor Dooley <conor+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Shawn Guo <shawnguo@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>,
+Cc: Annette Kobou <annette.kobou@kontron.de>,
+	Fabio Estevam <festevam@gmail.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v2 2/4] arm64: dts: imx8mp-kontron: Drop vmmc-supply to fix SD card on SMARC eval carrier
-Date: Fri, 20 Feb 2026 11:36:17 +0100
-Message-ID: <20260220103636.9697-3-frieder@fris.de>
+Subject: [PATCH v2 3/4] arm64: dts: imx8mp-kontron: Fix boot order for PMIC and RTC
+Date: Fri, 20 Feb 2026 11:36:18 +0100
+Message-ID: <20260220103636.9697-4-frieder@fris.de>
 In-Reply-To: <20260220103636.9697-1-frieder@fris.de>
 References: <20260220103636.9697-1-frieder@fris.de>
 Precedence: bulk
@@ -73,65 +74,79 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [5.84 / 15.00];
+	SPAM_FLAG(5.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[fris.de:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,pengutronix.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-266902-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266899-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	GREYLIST(0.00)[pass,body];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	URIBL_MULTI_FAIL(0.00)[sin.lore.kernel.org:server fail,kontron.de:server fail,fris.de:server fail,0.0.0.52:server fail];
+	FROM_NEQ_ENVFROM(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.958];
+	FREEMAIL_CC(0.00)[kontron.de,gmail.com,pengutronix.de];
+	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[fris.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[fris.de:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kontron.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fris.de:mid,fris.de:dkim]
-X-Rspamd-Queue-Id: 71362166E45
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.52:email,fris.de:mid,fris.de:dkim,kontron.de:email]
+X-Rspamd-Queue-Id: B5372166FCC
 X-Rspamd-Action: no action
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+From: Annette Kobou <annette.kobou@kontron.de>
 
-The SMARC evaluation carrier provides an SD card power switch that
-complies with the OSM standard definition. The OSM base devicetree
-already describes this correctly.
+The PMIC provides a level-shifter for the I2C lines to the RTC.
+As the level shifter needs to be enabled before the RTC can be
+accessed, we need to make sure that the PMIC driver is probed
+first.
 
-Stop overriding the vmmc-supply in the board devicetree and rely on
-the definition from the OSM base DTS instead to fix the power supply
-configuration for the SD card.
+As the PMIC also provides the supply voltage for the RTC through
+the 3.3V regulator, we can simply express this in the DT to
+create the required dependency.
 
-Fixes: 6fe1ced5ccab7 ("arm64: dts: Add support for Kontron i.MX8MP SMARC module and eval carrier")
+This fixes sporadic boot hangs that occurred when the RTC was
+accessed before the level-shifter was enabled.
+
+Fixes: 946ab10e3f40f ("arm64: dts: Add support for Kontron OSM-S i.MX8MP SoM and BL carrier board")
+Signed-off-by: Annette Kobou <annette.kobou@kontron.de>
 Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- .../boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts     | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts b/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
-index 2173a36ff6917..74d620dd06b7b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
-@@ -249,6 +249,5 @@ &usb3_phy1 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
+index b97bfeb1c30f8..bc1a261bb000e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
+@@ -330,6 +330,12 @@ rv3028: rtc@52 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_rtc>;
+ 		interrupts-extended = <&gpio3 24 IRQ_TYPE_LEVEL_LOW>;
++		/*
++		 * While specifying the vdd-supply is normally not strictly necessary,
++		 * here it also makes sure that the PMIC driver enables the level-
++		 * shifter for the RTC before the RTC is probed.
++		 */
++		vdd-supply = <&reg_vdd_3v3>;
+ 	};
  };
  
- &usdhc2 {
--	vmmc-supply = <&reg_vdd_3v3>;
- 	status = "okay";
- };
 -- 
 2.52.0
 
