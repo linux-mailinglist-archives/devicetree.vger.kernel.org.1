@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-266947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266949-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mOkJC1ljmGmJHgMAu9opvQ
-	(envelope-from <devicetree+bounces-266947-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:36:25 +0100
+	id 0CJWJRlkmGmJHgMAu9opvQ
+	(envelope-from <devicetree+bounces-266949-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:39:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0CF167DB7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:36:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F0F167E57
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:39:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AF98B3011686
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 13:36:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 51C563002D2A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 13:39:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373043451DA;
-	Fri, 20 Feb 2026 13:36:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD993469E0;
+	Fri, 20 Feb 2026 13:39:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="27qFReLU"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="iRtZhjJo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1115313281;
-	Fri, 20 Feb 2026 13:36:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B37F834106A;
+	Fri, 20 Feb 2026 13:39:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771594580; cv=none; b=TadRiC+jNSNlbpq41BnlgJyRxewt7ERLdrhE1/ApLdfKVnRW7YWkLDA6+T+6kx3GkUMtVMCsOtsrIG4dL3lrkcbmHnI9TerPvQhpY2V7rBgZl/sxpoEiMA5T4t2cmSwOntgLINz1EkiFA8YF1HCE3B/YUX89pDlsuUDJqK3mTmY=
+	t=1771594771; cv=none; b=BL7Og5X7Dw1fzN8g1QMzinJEz8dexm4L3oQcIL+w4iu4A4o5WnXGfHNYLX/y0ZrUTIcifQGqari05ZPOm2gHdlceHS6/ow6SBbypxk5CAoFKYnLI5L83GbNBvhLN7Oabw7iSDr2IvHRlQg9erPfIZpbGjC3+xZrmiIOvj1PYJGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771594580; c=relaxed/simple;
-	bh=UZqugDl9YAuEn3qPaV7KYY7wKE1Ep4P6qhkliHaP7Oo=;
+	s=arc-20240116; t=1771594771; c=relaxed/simple;
+	bh=Hb99LbuCtvboHljxjmx4TrTSxvQBnzgYOLiNoYjfCZs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oZ4K5T02LznLy1xqNw2e6uQpirNs/AtYCniZSzcwkLl3Ny2RPZn5D+iozYq5YsOLlyCW0X5rEfIbpXv+Aazb5AOWtSg+PTmT1HSZwrFx71LWnvoJ89nqNZbHAfN9iPp32GeRZqFYKRtu9HzmsSlCk8adKbcqeTjX8yduAhp+CsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=27qFReLU; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=KzTNpJzD8NPQPQjhRHH+PS9PC9lVeOJQAtJ6fZijRRVOdvBq0MotfbruXxAFmrDieXc899czfM0/fqZEsSUqC4TVhg9IZOcCKgRFtDoGnJlIwRLMonYtgb1OJkp65MzXzlTL1EgjC0IdkFopi/MT5xfQrDuBh4K68s1he4E12tY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=iRtZhjJo; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -39,13 +39,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=xqKLoTg7Ju7x5pvSrVHpqnVQjdZWB/YWkrxf0VRywQE=; b=27qFReLU4ywzybhAqrHkRUEWtG
-	zRKYmiqL6KlaPTvAe/qOAxxPUFOIClouJS5DHoZ5X2Poc/DH9+ClxYhIyXHux/Z8344fKkGvks9G7
-	jtyiYLCPz1zWnCGQUAgrShqkwIWhWuvMDWpghD1VGwXli/ztD5KcJoU0NKSWp7g9PxWs=;
+	bh=uYS8MGw1rvpKx7e8kOPpBhMRoCVxRnVWUywb9QjDvXc=; b=iRtZhjJokINZqNDYn8LXLx0JxX
+	GruzK4SQj0kVJix3KOMS8iCLen32wd6uS5etM2V5Sx5ZjSQzrO6Pfpc3H8AQh/ryThQjFsPCW8OL9
+	Q8UckK50QD7n+VomIKSFZMiMG/1Qy/ONzYRIZAVhLhD8TDv3/+y4DSilk6EU7BiOOCZo=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1vtQfx-0084ZL-7o; Fri, 20 Feb 2026 14:36:09 +0100
-Date: Fri, 20 Feb 2026 14:36:09 +0100
+	id 1vtQj4-0084bV-O7; Fri, 20 Feb 2026 14:39:22 +0100
+Date: Fri, 20 Feb 2026 14:39:22 +0100
 From: Andrew Lunn <andrew@lunn.ch>
 To: "Neeli, Srinivas" <srinivas.neeli@amd.com>
 Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
@@ -63,12 +63,13 @@ Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
 	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
 	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
 	"git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [RFC PATCH 0/8] xilinx: tsn: Add TSN Endpoint Ethernet MAC
- driver support
-Message-ID: <28b232f1-5814-4b3a-af28-1eab023743c0@lunn.ch>
+Subject: Re: [RFC PATCH 1/8] dt-bindings: net: Add TSN Endpoint Ethernet MAC
+ support
+Message-ID: <36492eda-a332-4dc8-abd2-99be88f7d06e@lunn.ch>
 References: <20260219054911.2017362-1-srinivas.neeli@amd.com>
- <5f884e29-151a-4ee7-9e1a-d7e1f84d9f6c@lunn.ch>
- <SN7PR12MB81478FB396CDD9929618C2D69368A@SN7PR12MB8147.namprd12.prod.outlook.com>
+ <20260219054911.2017362-2-srinivas.neeli@amd.com>
+ <76c811a7-d081-4238-bf6a-0226e867560a@lunn.ch>
+ <SN7PR12MB814702B7C9A28577A94FE79C9368A@SN7PR12MB8147.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <SN7PR12MB81478FB396CDD9929618C2D69368A@SN7PR12MB8147.namprd12.prod.outlook.com>
+In-Reply-To: <SN7PR12MB814702B7C9A28577A94FE79C9368A@SN7PR12MB8147.namprd12.prod.outlook.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -88,7 +89,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266947-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-266949-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_EQ_ADDR_SOME(0.00)[];
@@ -107,35 +108,25 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:dkim]
-X-Rspamd-Queue-Id: 3D0CF167DB7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,0.0.62.128:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B8F0F167E57
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 12:59:16PM +0000, Neeli, Srinivas wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
-
-Sorry, i'm not part of AMD...
-
-> > So how does the host send a frame out Port 2? Is there an extra header
-> > on the frame sent by EndPoint, which the switch interprets?
+> > > +        // Endpoint Node
+> > > +        ep_mac: ep-mac@16000 {
+> > > +            reg = <0x16000 0xa000>;
+> > > +        };
 > >
-> 
+> > Except the Endpoint MAC does not have MDIO?  Or does it have an MDIO bus,
+> > and you have simply not listed it?
+> The endpoint MAC does not connect to an external PHY and therefore does not expose an MDIO bus.
+> It is an internal endpoint, so no MDIO node is required.
 
-> In this RFC, I configured all switch ports in forward mode. As a
-> result, when a frame is sent from the internal endpoint, it is
-> flooded to both external ports.  To forward packets to a specific
-> port instead of flooding, either static switch CAM entries need to
-> be configured or address learning should be enabled so the switch
-> can learn CAM entries dynamically.
+It does not really matter if it is required. Does it physically exist?
+Can MDC and MDIO be routed to pins? Could i hang an external switch
+off it?
 
-Despite not being part of AMD, this part is important.
-
-I don't care about how the RFC works, i want to know how the hardware
-works, to ensure you have the correct choice of DSA vs pure switchdev.
-
-Take the example of running Spanning Tree Protocol. The bridge needs
-to send the BPDU out a specific port. What mechanism is used to do
-that? It also needs to know which port a BPDU ingressed.
+DT describes hardware. If the hardware exists, describe it.
 
 	Andrew
 
