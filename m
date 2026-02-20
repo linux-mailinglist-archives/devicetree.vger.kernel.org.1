@@ -1,263 +1,166 @@
-Return-Path: <devicetree+bounces-266777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EI/4NRKvl2nO5QIAu9opvQ
-	(envelope-from <devicetree+bounces-266777-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:47:14 +0100
+	id eBPFJ6Kvl2nO5QIAu9opvQ
+	(envelope-from <devicetree+bounces-266778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:49:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50777163FC9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:47:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F6F5164024
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 01:49:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 114F73057EA8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:43:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6C09308B777
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 00:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DEC9244186;
-	Fri, 20 Feb 2026 00:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9982192FA;
+	Fri, 20 Feb 2026 00:44:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SELyhEID"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V99lUJsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012017.outbound.protection.outlook.com [40.93.195.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5F7223328;
-	Fri, 20 Feb 2026 00:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771548164; cv=fail; b=f1jlPKrCdG1lM5LN8dSOzmIz8grHWSbhEVPzS9F3NRQ1S2y98NmYIET/pOQ8ltgYM8pKuein7/rEXIyB6SQWzV2hRDpMYpuoBVKppT2iBhVvQ7bZi8CtHxjN6qbrn+R0ZDV3c26rYDkm/FbJVr/I4TmB89AWYK5W0gnSHyO9bI4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771548164; c=relaxed/simple;
-	bh=Xg5Mff7/fMony5m5F0M9LSMFIEesh152umw2SEKiO/I=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=SlFj/pFMlw44SHhx+M2VVG0AR7lKXia/0y4JTqjLzwUylT6yrkczqkVRzrk0rUDanyd1vlt87Wqie8Px6oOrBl3xk1zcrkriyhDT1ujT4yWkV2L4D3NS/VevAnbQPqlnPPxYlOaUwQGS8lY8+1Qve7zR0RXeKKguQ7dQAZRX12Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SELyhEID; arc=fail smtp.client-ip=40.93.195.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=isvQlzq5mqtqD5HxCGe2/IUJa747sUC2FGbORAGopw3+XFCS6mSpkd70iCWRH0JmyE3wCZeDsShZs7Rn5qfxIG2D39pMkrfSlPGa8inAh4OaTwtWg4+A1DkLYyRZX/SLI0tfG1A82NZxZQUg7MyKRq12EjwP4SGvhjWkZIGJ28bHC3knOKVeeOsozGBRLAbmzbDzNT/sE9lBlldiwGaDGQUp+IkUWXuEBUcQxUY5a6N5T+l0BU2dHPf6QceAi4R5A13wdNQaAs85Q57W12ZMBQn6RByMDXPrkocaNLYGpiDVlhwZGkK0nU5qD3Sts/sM4UEp1vSsYCuZYtjy7BISeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d6bg0rpR753Rq38WNEga+kGEU5lWqLs6wq3nmC5S8ek=;
- b=hmzcc5FX3rgjqi/B4aEHRAyp3K/YsPjwUaS5dGicQUYNZf04xyoth0LzrFuaK4SsrTXP5kx5IGtYeHcRDDje3tW22Cp/piU7efYunR+ZVWuaZy9mTBMdCC5ojZywsTX0FSEIeK/TlHJZJQGWVkDpBrHzkyjMLXUq3ORm1KzQ2/MCmgDbrspZ3QgEplCyFxkcCSyAvxFnRIwTYeq6eI+wYKgSmRODoc3M4vdBgVU3IZC4Q2ZSOYEdlqJVRjxumKGbUEZVIANAFxlNWqH/uAcjxa4GMXXD4VvVCo852vrYMhQDZCt4IyRCgXjSC1ctYPEOPkW+WBKJLV+D83H9yoqQ7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d6bg0rpR753Rq38WNEga+kGEU5lWqLs6wq3nmC5S8ek=;
- b=SELyhEIDgpO7P51Y2COqrIOhGhes1JjUUHWG77+0RuVm/k0axjxKnOUzCQ+2DB+JIa+Ns+JMO1rqOXYTozUhzukk6NOMGZKaYcR/6FGEKzdz3SOfpPBCwNxaX8JMO6TtVnRXVdxRTdqZvGP1IZzH9YKK3GdjdCAIIx/UIzYeSZQ=
-Received: from BYAPR05CA0097.namprd05.prod.outlook.com (2603:10b6:a03:e0::38)
- by SA1PR10MB997739.namprd10.prod.outlook.com (2603:10b6:806:4bd::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Fri, 20 Feb
- 2026 00:42:39 +0000
-Received: from SJ1PEPF000023CC.namprd02.prod.outlook.com
- (2603:10b6:a03:e0:cafe::85) by BYAPR05CA0097.outlook.office365.com
- (2603:10b6:a03:e0::38) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.15 via Frontend Transport; Fri,
- 20 Feb 2026 00:42:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- SJ1PEPF000023CC.mail.protection.outlook.com (10.167.244.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Fri, 20 Feb 2026 00:42:38 +0000
-Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 19 Feb
- 2026 18:42:38 -0600
-Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 19 Feb
- 2026 18:42:37 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 19 Feb 2026 18:42:37 -0600
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61K0gbe73456406;
-	Thu, 19 Feb 2026 18:42:37 -0600
-Message-ID: <b22958ce-fb67-44d3-841a-d02a185942e5@ti.com>
-Date: Thu, 19 Feb 2026 18:42:37 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1CA8212FAD
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 00:44:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771548245; cv=none; b=KrGiycUOWatsSSbeRjpOXWGZ2N3ozqZUyde4GuZ5eS2SfxSSrszyciU6sbnQiHfETMvcklVVYJJh7s2IXjTd5n6kCPCKqTryVVdGxmGMe1geEeqQIYd/jl6/s9kiTXvvAd8Il71hbAkp1peRxVaAvJFbANaQf/8GzEcZD+wAbls=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771548245; c=relaxed/simple;
+	bh=BDTw+eDfdE7M+/+F6uei5ntF2At6yGsAeLZmalhgCMA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=rB6dZHYBR7YFcT0EFwcVQ5NHDRE6sWDyGe8RpwtT4FnLAED2XwXkClfRv3w8Loq4AttYGBmMoe2It7HQbGmCBDEOOzbKO2PtP5OBIR9QWsPGQsMrGIe1zrcZ3caQ6y5RG+G01+t+KOArqvsb9F4UKQSYkQ37fSs+h1eoBpLLN7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V99lUJsk; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-82418b0178cso914646b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Feb 2026 16:44:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771548243; x=1772153043; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W8Swd7ImjQhdLe4zf/a8DbqXYw6m4TT3gQEggQly90A=;
+        b=V99lUJskYWRAl+jvMTTTaUdoTiMLfugcMEnmLBT+CuC+aclQi/E1f5zZ2wYP+aqDET
+         SjUHG6vBSEGzC23JB2SgjoWX1LQRSuLOB5jm0QEeI0AIavINU2Nk9ux6S7nYQtlTcEJF
+         1FO9soZhKk+QWCDN4jVJhGqZqVUvJwRwPnaVkBRNGg+j0N2Vce1ypwmrwBY0YKRLdJpU
+         itgcdcOWycN0AlgE8eyIUp/8FDYE/E+9FG5IyrRZXMh0Y46Wi5v+BN69VugLVdZTqnjC
+         OzJod0OwftweCH0SAUeQRdU/FRKAtrGLg5tf6CbJ61Z8CLiciLnJOJLFMkRvUgeijYGg
+         gv/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771548243; x=1772153043;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=W8Swd7ImjQhdLe4zf/a8DbqXYw6m4TT3gQEggQly90A=;
+        b=SYwxU74gPnMTqpIzLJYxPuBih0YyiGIFLtRLqFjIesTgQuOOI198zS7BI5s3z7FEka
+         nJHY+5gs4XRdPT+v19cYK+AbSSAu3czl4tJSVksqsuibBDEGXZfsSGhC25uib7+MX6Bx
+         DA+Z/pYGq1WR+bKkKNQWHhSG99TvBU5K83NZwwfUPVOLXEURG8RVVLfJGOyi9GPDXYsm
+         r0W6TtbUcVK9SvB+use9VglmIToTyd5dpi9wlO/dcnk17DIVKFYc20DBXWfFIOYCs6Vc
+         jzvO+SOdqhB/WqfTVxHsJqSvfiMlq+5VegPjwbLm2mYmQk33oF+ukx2ZPH0CbAaypymK
+         PcSA==
+X-Forwarded-Encrypted: i=1; AJvYcCXaXo3KptcK+B144FVPszSATBEaW2E0XVZ6ZbR2W6iXdFsm1X6uIfyH9Aoz7PhMcrSW1mhn3vIaEkhl@vger.kernel.org
+X-Gm-Message-State: AOJu0YysEPgYN9ZMhRzEEPB/rkkr3jnJvhvfcmMYAMRbj26uF5GA/++m
+	twoXpEv6eKyfKr5SXl0ZCRswRjv4Mr9g2zYutEz8+nXrxlZis1qEY7sOP1Wimw==
+X-Gm-Gg: AZuq6aKA7c/WIEvHgZJnKhZf1VnV4y9PiIuc8BvBwnezl/dCJb5C3L/MxTUVZ0sTSYD
+	biZp3xgBtNg7l3R4egXhrKLw4hy82nQHN1thsysYdknGowmRRIXblhW1iNzfd0V6BMf+NVuQcI/
+	lGlU0YkYXR2XltGYSJBeJrJimQSEeKVOgoCc3eAhkva/zeJJdQC3lQr2EO+tFyVEclEJ52+3m/4
+	2YEvyL0jBRp2F1dlimyFrP/Nt/qmdzagAzuE50B3mtANbBwmD3uDorPMJ2IcqV1MRN7LXswMxQZ
+	qCi2AkFmbkEtmuKJgrVsfrNxqq7BtOfihFoSWHJvoWuAgMXvVf8qWLyrrDApeA1sk2893lDoMAb
+	Fa39OS4lKbEprL/2Hys4Ck4a1zpbm8HfN8jlFc+GugTe6OVfmoRVpWNw+2J/vZ/+11+7mJ2HP+x
+	d3LHrr6QstzIOUKrEvfGC/g4ukdkMG/b2hcz3ZwRYTJbvAHGbi62XR5Jc=
+X-Received: by 2002:a05:6a00:3909:b0:824:9451:c1ea with SMTP id d2e1a72fcca58-82527746e8amr5298075b3a.67.1771548243229;
+        Thu, 19 Feb 2026 16:44:03 -0800 (PST)
+Received: from localhost.localdomain ([14.0.16.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-824c6a3e15bsm21194743b3a.19.2026.02.19.16.44.00
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Thu, 19 Feb 2026 16:44:02 -0800 (PST)
+From: phucduc.bui@gmail.com
+To: geert+renesas@glider.be,
+	magnus.damm@gmail.com
+Cc: phucduc.bui@gmail.com,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: renesas: r8a7740-armadillo800eva: Enable 
+Date: Fri, 20 Feb 2026 07:43:57 +0700
+Message-Id: <20260220004357.1680-1-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20260212073819.41304-1-phucduc.bui@gmail.com>
+References: <20260212073819.41304-1-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Disable mmc Schmitt Trigger
-From: Judith Mendez <jm@ti.com>
-To: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>, "msp@baylibre.com"
-	<msp@baylibre.com>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-References: <20260106-topic-am62a-mmc-pinctrl-v6-19-next-v1-1-1190ac29aadb@baylibre.com>
- <c47697b4-6ebb-4af9-be96-c964d990835d@ti.com>
- <DFO764ES0FNP.1SUQK9R0EUUDQ@baylibre.com>
- <1a91fd40-e814-4b4c-8914-d8f0c4768e07@ti.com>
- <DG59D7WGM35A.1WNIIMNCQ8U3C@baylibre.com>
- <7ae7f6a1-0ee1-4d56-b1d0-f038a7d22b4c@ti.com>
- <b649669afe4e2c829389a6bedabe47446d2f3d2b.camel@siemens.com>
- <615c56c4564b38fe82585e9873949b538f24ae7b.camel@siemens.com>
- <7ad9d8bf-a962-40f0-bc8a-92228aeb0b4e@ti.com>
-Content-Language: en-US
-In-Reply-To: <7ad9d8bf-a962-40f0-bc8a-92228aeb0b4e@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023CC:EE_|SA1PR10MB997739:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3ff57cb-5270-4cac-0f86-08de7018f2c7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?MVdhUjloVTdTazZUR1NLQ3luLzZDbWlLaUpVYVVaTHFaRFVYYnl1TmxFdzk0?=
- =?utf-8?B?U09WOCt3OUZZODg0ak9NcHdXajhVTStrUnIzRnN2OFUybTd2VzRIWlZDbC9T?=
- =?utf-8?B?S1puR2F6ZldIUlAwY1JVYzRvM3RQZENyQWRnaHVvbVkyWjZvNkxnelhRTHBj?=
- =?utf-8?B?eEUvVXhwMXdTbmxVWmFDYkxhOFBEUUUyTmJxT1RzZnJta1VWQ1piM1JqOWRH?=
- =?utf-8?B?a2c0VHlQUXoreHdyVEFwUVpMUkxXTGFMbE54Q0dsZFNUQ3I2ZDVObE1vNHo5?=
- =?utf-8?B?djE2QlhrSTI1blowRkxQdndsUjZMWmJWWjJTR2JsSnczYnZDWlZlMnlycXFC?=
- =?utf-8?B?UkNJSjRtZlJNU25yNzl5TStZZEwzVWZzSTR1NER6ZVFwdGlsVUE1VVhFV3Qw?=
- =?utf-8?B?VzVSRUhydXhkUTI2UWx3SVd2VWRPeXhCTStnWGFEU1NBdmt4VVA1d2VpOFhs?=
- =?utf-8?B?VXQ2SUtqTWc4YTRuakRSaVBjeUJjOUF5Z2xOVjlKcUQ5UmdJdzdPeTY5VGMr?=
- =?utf-8?B?YjVJVzJ3VmNvNlNtZTRGWExZb1Y5WjBZcThqNG9XcVFWTmxJVmVHamIrSHEv?=
- =?utf-8?B?QVZrV09sVDFPVHRNOXBuMGl6MGdqbW82aUN4R1dZVkFmYnNZNlRVdjRNTnRY?=
- =?utf-8?B?d005Q1JqKy91MXh4eGk5dEhMWEpQb3E2clRaK1JNcytoT1A5eDU0cksyREZ1?=
- =?utf-8?B?RzBneEVqQUNqeG9vRnV4T0JlMVlYZmdPVlFNbmJGbVljY04ySkxyZlQzU2gz?=
- =?utf-8?B?SUw2bEd3YzFidmZnYW9YdFFXdHM2SExIYk1oNjV1Q3kxcmh2VzRvZUdZUk43?=
- =?utf-8?B?TDVFelk2UUNuaDVqRi9ITndsUWJLUWhTVUl1ZHZ6SlBmdENia1F2cm44c3d1?=
- =?utf-8?B?N1A4RTAzRUhueXNCTVF1NE1UcjF0MTMvWURLS2g4cTZqalQwblI1TTJJOHVT?=
- =?utf-8?B?NUZhT3B6Q055N1ljeWVyeUJsaTJTS1F0Ri96Mjk1U3JRSEtYNTlSYy9zb005?=
- =?utf-8?B?NUNCTDJrc2NiV0FMSXV5K3RuL1lhTEhMYmt5dzJUYTMwcXZNNDc0MFdJazBw?=
- =?utf-8?B?dVlyQmlUNjI2ZklCT056NmIrWU42SGM1ems3RldqRWtuRjNVRjhMQTVCb2FB?=
- =?utf-8?B?ZkxFcjAxUS9jckhkUmg0N1cvQjlLbkIwTC91UVQyQk8vcVFab0lXUml3TTY0?=
- =?utf-8?B?anN6VjFlWG11U051OFZxSU1EeVZiOWxlUlN4M1cyMXRKajdTVWErczJSVUJI?=
- =?utf-8?B?YTRXa2VTVnE0b0JZaWlveS85czhKQ3UyS0s0cmZLbXRhMmJNS2JJcThQNGUx?=
- =?utf-8?B?T3F4Q1hZV2FvVHVVYzB0Zi9PTE5teFhKb1hIOFhpT3NoMjVGZ2pZTTdhWTA0?=
- =?utf-8?B?TnpQcmtPaUwvWXNUU09TNTdvTllWNDhIWGxZZENuMnlGQWdTS1NaR3p6NW9H?=
- =?utf-8?B?T0Yvcjg3R0RPTVBWUVVhaDBvYk5yeUoyYVNMbkJMTEVjTnBGajRnRVE0MGVE?=
- =?utf-8?B?QU5veGlVT043eFE3TlhDRmVReWR3a1ZqS2hCWmlLMzI5RWcvay9COTY0Vmt4?=
- =?utf-8?B?NGhTSy9Jb254NVJkTzNVMEZiQ0FkT1NLS29rZGdWOXBpRUpGOWZNd1JkamQz?=
- =?utf-8?B?TmtDYVQwUU1HYTM5aEFCUEdFbk1uaEhVUWV1eGhJZnpiZ2dlQ3hpUjVGMFMz?=
- =?utf-8?B?TTJraStDUkF5d0ZFRzdVQ1d4ajg2T3F6ZDFEdGtib01rbjdkdEt6dzZUaGN3?=
- =?utf-8?B?cUR6Z3JoV2xjRERNSUN5dndnRU1aVjNqVGo0Z0JLUEZjLzlXRDl1cVl5Y1hO?=
- =?utf-8?B?dDdFV3RSb1FEWlY4Qk5mTGg3RDJZVFBDVUZwUnZiODNXZzluaEI0V0pEOWt5?=
- =?utf-8?B?MFI5ZkF6VUpYRUlQUDRDQnJaTXpOcGZ4aXJoWW1LaTVhQUpueUxsNk1oQStl?=
- =?utf-8?B?OTZFRklRY0V5Ky9VSms0UjJFNGRMRjNVeVh5dWYrdE5GblAraUNtYWlGcHBW?=
- =?utf-8?B?c1VJMm5KRWlHVmRIb2c1SWZWNkNWQzlDd0NNVzhhSXRtL3ZrdWlHOVdWY0Z2?=
- =?utf-8?B?NFhHUHgwdXgyWHhhbUNjLzJaWC9OOTJkRE9PU2hVRlFhS1VvOVd4bmYvdEhZ?=
- =?utf-8?B?WVhkTm5pU3g1WnhnQmpSR2w5U0ZnSmVPTk1iM1FWK3dzUkxJMTNGNXlBbjBl?=
- =?utf-8?Q?78mT3q7o/H2+nLHozP4umZQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	V1sFYXSioYgYBcRJhhHwiRlpBdLXFsPssa1E761PaJCYyFs4SvK7a569Pj1IuOzaweR+qGdSsFrGbTQjBFMfyajVRlaFQBXSqKOzRJ3SEyY+S4zlB29v0adJgqgoJUnFZpf026S/WPYCg7suE8uxWej1jIEEGQLMAnUc2og7xtsKlFyd5W3Nwt03VFPUGqc/1b6+5iogRCZdidb0JaH2Ke82P6XvGONFe7PCMloIjM9mS6Rj5NkCrbd34kuk35ccM+5butRc71DqxhxsyvvqE3D0+R2wmhFTmWvwQRulm/h8NMzY8v8jygJjdI3+buwcWjwNHBeJSWeLSuWChahQjh3+ujBEO9S+OJr4EIrGayCBhy1vkj9PpHwPIT1uRGoJm6v0G9iZUj0mB0WI0TgKFcTh+jwoXGnKEPBhs8jDZYVgoSkHkGtFqyo+p23ptUit
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 00:42:38.6586
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3ff57cb-5270-4cac-0f86-08de7018f2c7
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF000023CC.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR10MB997739
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	SUBJECT_ENDS_SPACES(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266777-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:mid,ti.com:dkim];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com];
+	TAGGED_FROM(0.00)[bounces-266778-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 50777163FC9
+	TO_DN_NONE(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3F6F5164024
 X-Rspamd-Action: no action
 
-On 2/19/26 6:10 PM, Judith Mendez wrote:
-> Hi Alexander,
-> 
-> On 2/17/26 7:23 AM, Sverdlin, Alexander wrote:
->> On Tue, 2026-02-17 at 13:57 +0100, Alexander Sverdlin wrote:
->>>>>>>> Can you please run a quick tap sweep on MMC1 and MMC0 interfaces 
->>>>>>>> like
->>>>>>>> so? https://gist.github.com/jmenti/f4a73a8323e44bf717c6d2c528c499ca
->>>>>>>>
->>>>>>>> This will give me an idea if whether we should be talking about
->>>>>>>> revisiting characterization with ST_ENA=1.
->>>
->>> I wanted to apply your patch and test on our HW, but I have some 
->>> doubts, if
->>> the patch maybe missing something:
->>>
->>> - am654_sdhci_write_otapdly() turns out to be unused in any upstream 
->>> U-Boot version
->>> - new "omap" variable in am654_sdhci_execute_tuning() is in fact 
->>> unused as well
->>
->> and
->>
->> | /home/sverdlin/u-boot/drivers/mmc/am654_sdhci.c: In function 
->> 'j721e_4bit_sdhci_set_ios_post':
->> | /home/sverdlin/u-boot/drivers/mmc/am654_sdhci.c:598:9: error: 
->> 'itap_del_sel' is used uninitialized [-Werror=uninitialized]
->> |   598 |         printf("j721e_4bit_sdhci_set_ios_post, mode=%d, 
->> otap=%d, itap=%d\n", mode, otap_del_sel, itap_del_sel);
->> |       |         
->> ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> | /home/sverdlin/u-boot/drivers/mmc/am654_sdhci.c:594:13: note: 
->> 'itap_del_sel' was declared here
->> |   594 |         u32 itap_del_sel;
->> |       |             ^~~~~~~~~~~~
->>
->>
->> so I'm not sure regarding the previous test results at all any longer..
-> 
-> Sorry for the late reply, somehow I missed this email.
-> 
-> Oh my, I am not sure what happend but seems like I did not copy the
-> whole patch correctly. Were you able to bypass or do you need me
-> to rebase the patch and copy correctly?
-> 
+Sorry for the previous HTML email.
 
-Your response actually explains why Marcus's log did not make
-sense at all, thanks. Here is the updated patch in case you need
-it: https://gist.github.com/f4a73a8323e44bf717c6d2c528c499ca.git
+Hi Geert, hi Magnus,
 
-Markus, can you try with this patch instead?
+Gentle ping for this patch:
+https://lore.kernel.org/all/20260212073819.41304-1-phucduc.bui@gmail.com/
 
-~ Judith
+Additional hardware clarification regarding SDHI1:
+
+SDHI1 is routed through a mechanical DIP switch selecting either
+the SD slot (CON8) or the AWL13 SDIO interface (CON14). Only one
+device is electrically connected at a time and no runtime
+reconfiguration is required.
+
+Tested in both configurations:
+
+SD card (CON8):
+  mmc1: new high speed SDHC card
+  mmcblk1: 29.7 GiB
+
+SDIO (CON14):
+  mmc1: new high speed SDIO card
+
+So the SDHI1 host works correctly in both cases.
+
+Please let me know if any changes are needed.
+
+Thanks,
+Bui Duc Phuc
 
