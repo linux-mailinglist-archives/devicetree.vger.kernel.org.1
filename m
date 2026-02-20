@@ -1,296 +1,175 @@
-Return-Path: <devicetree+bounces-266887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266891-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +J3MAaY0mGn/CgMAu9opvQ
-	(envelope-from <devicetree+bounces-266887-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:17:10 +0100
+	id aNfkA880mGn/CgMAu9opvQ
+	(envelope-from <devicetree+bounces-266891-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:17:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E12B166BC8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:17:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1C41166C04
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:17:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DE051300789E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 10:17:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B5E3E3031ADC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 10:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071BC33C1BE;
-	Fri, 20 Feb 2026 10:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D6E33C1AD;
+	Fri, 20 Feb 2026 10:17:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uqJwOIzW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iuHW5xgN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D571233C1B6;
-	Fri, 20 Feb 2026 10:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFF870808
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 10:17:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771582626; cv=none; b=U+u8dPTRlm9DUAHmAykzq5LffYGGvr2dXUBgI11AjeSbwvYJxNUd8eTXUl+hfQDHu3yOUE3n76AWaBvmPG1X0YMhOddc3E4Mf3qR1n9nmLGMhBUfpODqGMai+6vaskDf6MtcHVfZ2zKQT708VBFH9b+CqjUgzxuUprRPyZRSJxc=
+	t=1771582667; cv=none; b=EysvfuBXilqoNKGrpDwBAkfDntitmsInw13nAiTwL/bXoEcjUkUmLZ1yc8qKhac+nLpkBAYi4HuD4h0RNwQU6CFz8DTmY//Tcg0t7ixN8pspSpHXFzz5M1660gOpiSitMGj2Ultrgpi4u3FWKxFIEp41lZDvnufWKr3YFOUJvN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771582626; c=relaxed/simple;
-	bh=DwJRqwTIxPH4O6waaaWkmQc1GediIB0SchBhEhcUMf0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DMcMpy4b+DAmOemEGEGbJT64NHcErw0iZB5Ue5Vi+A3arnvtIxHMftKdwaKDV3xyDSiYNykHAeYsRsNel/Bwz6zPzP6IVhcFBC7MUAwT7CSp/Vdf7Ri2tCxnIevnZT2IpG9i/PY1hYudeSse8KUQcL3sAsYt9QyL3B8VhhH2ams=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uqJwOIzW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67917C116D0;
-	Fri, 20 Feb 2026 10:17:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771582626;
-	bh=DwJRqwTIxPH4O6waaaWkmQc1GediIB0SchBhEhcUMf0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uqJwOIzWN+T6wPgd8AKTu2b9HuLG1WazY+eZbbLoQF4YGr9jtksWgUNv84WxT8uws
-	 2aL2TV6mrWsFt5LUdwnxL19wEz5mltZHnYAGgIVPP0GuorDih2fY1z2EzW2LCVPLhc
-	 Ntvs7TCFBE+VPdGvxq1GsRGNP13X+BP2IzT21I2+UbHzgfMoSHyp1hTOnH4xTjb4mL
-	 Qhw1hge6i0CxrqkQzqDfesNW6evho36iLwI8x7OoLPymOPdY3m1CSS/VwYqs5+uVs9
-	 /oPlMJLScpPxxjddiAq0XHhQlXW+HAscwFm+QzABg2SCnTu5K41aZIv7Npzhm9jYdJ
-	 GQXSsD/uWNnow==
-Message-ID: <edc3a63a-8117-476f-9582-97ae31fefa96@kernel.org>
-Date: Fri, 20 Feb 2026 11:16:58 +0100
+	s=arc-20240116; t=1771582667; c=relaxed/simple;
+	bh=8JPAPEZguacmifSWCnnDXUVYRogc7fx9Jf3HfyYCE3Y=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XLfGltrU25IwUSTDg6toxqa2QSXkRXld4sqRBebkk/KWnBSAmk3R/m6fX2Z297ZfO2+Y/HoCqBPrdNwLgNFWchrKgARo3/elCyKwErGd9v3IdHdFub8kcukdDNZFBD7Bz60tpB+thmNJ6BnvPPz3doJhmYn1665PBOZVtwWXa5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iuHW5xgN; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-43622089851so1869215f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 02:17:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771582664; x=1772187464; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=foa7kGkA11ij00nt3xJx3lBVlw2GastjEXv+CSxW2yk=;
+        b=iuHW5xgNXlMkYa5na6xVFsFvMgX/y+z0qv99LuwzI8lHpFPtsx5OcI9a87+oqUuNwj
+         Mk+SGUZGdTiCrs2xadCfd1d6xPxMu7AOhyF6n6WqZvo47+3T/VfTx5ZY54d+kwT88m0M
+         hfRd5J4dEYL6EILboAPm5wPpLo7c80Q5sU/hVoZdGcQMVHTkNpg9MvqHZby8X3Dn7xyN
+         UESxVZ8Aue+81XHBsJYdA7aqR0/4Zg1wIQuCKXVqQdcJEenBnGv7ClPxWAgXiiNPaMhf
+         l3zb9byU00RccX1i3rPoM/Anlce6rTCNnJr9Ss8qk7WItarMWm8vTOhT6XLmLKOhRDLy
+         G9yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771582664; x=1772187464;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=foa7kGkA11ij00nt3xJx3lBVlw2GastjEXv+CSxW2yk=;
+        b=haws+AFQgBTEGcEYevX7iqMpvAcFhpvIs5mENUgkYDnWvhtsD/NjII2UiguG6tO+T/
+         2Ma7iOuQsQWeP46yVfjXv0zMv7aBUFRn8wd5JF5CswO8ZOneuntoTDO/ZqEL/zIk4JsN
+         8W3zhgZonF4u1ahrp3td/dEtcg7r3zA8XkYlfBh5pxM0qszRuSI47Dn72V2VIX4FJ5GG
+         oSdIlzzsGfrim/rysIIUuWpCW0cunOofAHoLWrg2tFwL1YFC9g0wKs0r1b4pywQouoKb
+         1ukRGO/NFEIZqx9NkgQh70CtQLvSrfEX9HzCrcxFInkqYZnHaJvf8ihdxA01MTKpyytU
+         j+xA==
+X-Forwarded-Encrypted: i=1; AJvYcCVYGaE2JhzeJJLVud9idIH6wwWhcLFQ4s9E2sWolLWLIRxFC9nJolxJrfZfVMpocc8Jyy3fmkrwtHG/@vger.kernel.org
+X-Gm-Message-State: AOJu0YynQgBnZIrzGvB5dCsgSfNI2khj/0ChaXV4AErwMivaX7mgXeke
+	ps5Uclt9Uscp8Wdezv/UWvzZf6sO5gfJIhXHBIjg4fbqP8ztpQhQzSWZ
+X-Gm-Gg: AZuq6aKQw/Ft0U6FaglXyPHG4XmdV7QoiKFETtydrC/hyuy0NZmTmz+J7CGIVLoNys3
+	LO1sbblt+U9N3Kp1kUAGRt/lwwyiEMp5mOnSfMfM2qiAbbwO14VV4UwPNmaiG9WfMqz6ByBrYeF
+	kHCvbxOaoIyuLuF6Jo/g10bC909GcBhIPQWMd2t7JxV/rUgbKjghQYrXINVSjg4zVxpm8VXs9eB
+	GBJKbdyOklpYqmNxa9xl3DIrM6peIry0QTQxvqF+1M8tNPNyVShAryyTktqD7lNFtXvGRvtTYKP
+	q+GEPy/ufC/gN13mP4nl0TBmVYRk12lNQUAWB+Bu1qQ/spmVtLRHZt2/el/dh7Tb1y2iu+hNmz8
+	deUKmuWEI6ppWiEpaMcZvWK8NSwZo3MAhqv2grnHtgWRaKLUs6QJ+i+TcAYVdy9jlbPobtwQ+D1
+	Ta7iQBoOonDPblmeKJVamFMINuaqgFsjk=
+X-Received: by 2002:a05:6000:2911:b0:437:71b2:6f34 with SMTP id ffacd0b85a97d-43958df112cmr13666718f8f.1.1771582663829;
+        Fri, 20 Feb 2026 02:17:43 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796abe3b3sm62452448f8f.18.2026.02.20.02.17.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Feb 2026 02:17:43 -0800 (PST)
+Message-ID: <9951c2fc9bbca27e0a5e7d953a31a0f802bac38f.camel@gmail.com>
+Subject: Re: [PATCH 3/3] MAINTAINERS: Add entry for AD5706R DAC driver
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Jonathan Cameron	 <jic23@kernel.org>, David
+ Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
+ <ukleinek@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Date: Fri, 20 Feb 2026 10:18:26 +0000
+In-Reply-To: <20260220-dev_ad5706r-v1-3-7253bbd74889@analog.com>
+References: <20260220-dev_ad5706r-v1-0-7253bbd74889@analog.com>
+	 <20260220-dev_ad5706r-v1-3-7253bbd74889@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 01/10] dt-bindings: mfd: add support for the NXP SIUL2
- module
-To: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>,
- Rob Herring <robh@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
- Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
- Larisa Grigore <larisa.grigore@nxp.com>, Lee Jones <lee@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Dong Aisheng <aisheng.dong@nxp.com>,
- Jacky Bai <ping.bai@nxp.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Alberto Ruiz <aruizrui@redhat.com>, Christophe Lizzi <clizzi@redhat.com>,
- devicetree@vger.kernel.org, Enric Balletbo <eballetb@redhat.com>,
- Eric Chanudet <echanude@redhat.com>, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- "Vincent Guittot devicetree @ vger . kernel . org"
- <vincent.guittot@linaro.org>
-References: <20260120115923.3463866-1-khristineandreea.barbulescu@oss.nxp.com>
- <20260120115923.3463866-2-khristineandreea.barbulescu@oss.nxp.com>
- <20260121021913.GA1704619-robh@kernel.org>
- <e956750b-0333-4465-b37e-5f460b5e092f@oss.nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <e956750b-0333-4465-b37e-5f460b5e092f@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266887-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,bgdev.pl,kernel.org,gmail.com,suse.com,nxp.com,pengutronix.de,linuxfoundation.org,redhat.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-266891-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[2.159.138.16:email];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: 8E12B166BC8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C1C41166C04
 X-Rspamd-Action: no action
 
-On 19/02/2026 12:36, Khristine Andreea Barbulescu wrote:
->>
->>> +      reg:
->>> +        maxItems: 1
->>
->> You have 'reg' so the node name should have unit-address.
->>
->> However, there's not any real DT resources in this child node, so you 
->> should just drop it.
->>
-> 
-> For context, SIUL2 exposes a set of platform‑capability and SoC identification registers that are split across the two discontiguous ranges: SIUL2-0 and SIUL2-1. These registers are the source of SoC information (e.g. identification and capability flags) that other subsystems are expected to consume (e.g. PCI Express). Because those fields are physically divided between the two SIUL2 ranges, consumers need reliable access to both ranges to correctly discover and configure the platform.
-> 
-> Hence, my proposal is to keep the two 'syscon' child nodes.
+On Fri, 2026-02-20 at 16:02 +0800, Alexis Czezar Torreno wrote:
+> Add maintainer entry for the Analog Devices AD5706R DAC driver
+> and device tree binding.
+>=20
+> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+> ---
 
-Please wrap your replies correctly, so this will be easily parseable.
+Hi Alexis,
 
-I do not understand the reasoning. If you have two register ranges, you
-have two <reg> entries and having a child node has nothing to do with it.
+Fairly sure checkpatch will complain in other patches as files are being ad=
+ded. Need to
+speak with Jorge as I just saw this was not triggered in internal CI.
 
-> 
->>> +    required:
->>> +      - compatible
->>> +      - reg
->>> +
->>> +  "-hog(-[0-9]+)?$":
->>> +    required:
->>> +      - gpio-hog
->>> +
->>> +  "-pins$":
->>> +    type: object
->>> +    additionalProperties: false
->>> +
->>> +    patternProperties:
->>> +      "-grp[0-9]$":
->>> +        type: object
->>> +        allOf:
->>> +          - $ref: /schemas/pinctrl/pinmux-node.yaml#
->>> +          - $ref: /schemas/pinctrl/pincfg-node.yaml#
->>> +        description:
->>> +          Pinctrl node's client devices specify pin muxes using subnodes,
->>> +          which in turn use the standard properties below.
->>> +
->>> +        properties:
->>> +          pinmux:
->>> +            description: |
->>> +              An integer array for representing pinmux configurations of
->>> +              a device. Each integer consists of a PIN_ID and a 4-bit
->>> +              selected signal source(SSS) as IOMUX setting, which is
->>> +              calculated as: pinmux = (PIN_ID << 4 | SSS)
->>> +
->>> +          slew-rate:
->>> +            description: Supported slew rate based on Fmax values (MHz)
->>> +            enum: [83, 133, 150, 166, 208]
->>> +        required:
->>> +          - pinmux
->>> +
->>> +        unevaluatedProperties: false
->>> +
->>> +required:
->>> +  - compatible
->>> +  - gpio-controller
->>> +  - "#gpio-cells"
->>> +  - gpio-ranges
->>> +  - interrupts
->>> +  - interrupt-controller
->>> +  - "#interrupt-cells"
->>> +  - "#address-cells"
->>> +  - "#size-cells"
->>> +  - ranges
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +    pinctrl@4009c000 {
->>> +      compatible = "nxp,s32g2-siul2";
->>> +      gpio-controller;
->>> +      #gpio-cells = <2>;
->>> +      gpio-ranges = <&siul2 0 0 102>, <&siul2 112 112 79>;
->>> +      interrupt-controller;
->>> +      #interrupt-cells = <2>;
->>> +      interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>;
->>> +      #address-cells = <1>;
->>> +      #size-cells = <1>;
->>> +      ranges;
->>> +
->>> +      siul2_0: siul2_0@4009c000 {
->>> +        compatible = "syscon";
->>> +        reg = <0x0 0x4009c000 0x0 0x179c>;
->>> +      };
->>> +
->>> +      siul2_1: siul2_1@44010000 {
->>> +        compatible = "syscon";
->>> +        reg = <0x0 0x44010000 0x0 0x17b0>;
->>> +      };
->>> +
->>> +      jtag-pins {
->>> +        jtag-grp0 {
->>> +          pinmux = <0x0>;
->>> +          input-enable;
->>> +          bias-pull-up;
->>> +          slew-rate = <166>;
->>> +        };
->>> +      };
->>> +    };
->>> +...
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
->>> index a24286e4def6..332397a21394 100644
->>> --- a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
->>> +++ b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
->>> @@ -11,6 +11,8 @@ maintainers:
->>>    - Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>
->>>    - Chester Lin <chester62515@gmail.com>
->>>  
->>> +deprecated: true
->>> +
->>
->> I don't really see why you can't just extend this binding with GPIO and 
->> interrupt provider properties.
-> 
-> The existing SIUL2 pinctrl binding only describes the MSCR/IMCR registers and treats SIUL2 as a standalone pinctrl block. This is incomplete and does not correctly represent the SIUL2 hardware, which also provides GPIO control, interrupt configuration, and MIDR identification registers across two register windows. Extending the old binding would require incompatible ABI changes and would result in carved-out subregions, which is discouraged.
+- Nuno S=C3=A1
 
-Can you just add missing register ranges to existing device? I really do
-not see how this is incompatible ABI or how does it result in carved-out
-regions.
-
-
-Best regards,
-Krzysztof
+> =C2=A0MAINTAINERS | 8 ++++++++
+> =C2=A01 file changed, 8 insertions(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1251965d70bdfa990c66966cd77f7ab52ae3385f..3d7bd98b4d1b55836e40687a9=
+a3ac9f4935a8acb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1496,6 +1496,14 @@ W:	https://ez.analog.com/linux-software-drivers
+> =C2=A0F:	Documentation/devicetree/bindings/iio/adc/adi,ad4851.yaml
+> =C2=A0F:	drivers/iio/adc/ad4851.c
+> =C2=A0
+> +ANALOG DEVICES INC AD5706R DRIVER
+> +M:	Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/devicetree/bindings/iio/dac/adi,ad5706r.yaml
+> +F:	drivers/iio/dac/ad5706r.c
+> +
+> =C2=A0ANALOG DEVICES INC AD7091R DRIVER
+> =C2=A0M:	Marcelo Schmitt <marcelo.schmitt@analog.com>
+> =C2=A0L:	linux-iio@vger.kernel.org
 
