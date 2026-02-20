@@ -1,190 +1,163 @@
-Return-Path: <devicetree+bounces-266843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266844-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mGTzAIoZmGki/wIAu9opvQ
-	(envelope-from <devicetree+bounces-266843-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 09:21:30 +0100
+	id UAE3GJkZmGki/wIAu9opvQ
+	(envelope-from <devicetree+bounces-266844-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 09:21:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F8A7165997
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 09:21:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01EF91659A5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 09:21:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F1ADD301904C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:17:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2CF3830098A4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 08:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113A632BF55;
-	Fri, 20 Feb 2026 08:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE27231327A;
+	Fri, 20 Feb 2026 08:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bcwF+fJx"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BUAwBgK3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B05632;
-	Fri, 20 Feb 2026 08:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C654309EE9;
+	Fri, 20 Feb 2026 08:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771575458; cv=none; b=LF2dwIejfejYyKD7PWtMr2dj8hTmhnrKNSa1HaYc+ffaVb4K3YGiRPz0gFlnT5AJ7+tdABzN5CZpcBpqzm/c8dwucBkTW0dTMy3ITrUrB7YRqpxA+AYdG1BtkSynBEEHnS6kcYpNFp4D8XN2nV+kGjZ/Kv+2e7AQCNHHWFnd0Yk=
+	t=1771575702; cv=none; b=XbN2MYGpHUO9pyn5gT00aa6YfQ0whxVweNDGe3eYivFDX9WBpJ95QrB0QZeTqQ3f2XguINfDcXe2RDro/64xW8GZ99LIcwsPCXu61vfHwK3IVl8kMxDnP22mseD1+ejawWz92AL896hpZMqb8jNP0BK42DVDLi8XfZuytMvJSPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771575458; c=relaxed/simple;
-	bh=BW900tmKdv9sOY9YIGabfV0NCjXLf0sLsssHMH+GApE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ev14PqPFHsUo9oezWCXcTGtlCpT3XGOnHPfYb7pvj+U83TBmTFuhHEYlVDb18Ivr3d500o+qH1wQzjvIizLms3teLPeA1zl0SNPWx1qGGdUQc2d2zaXbOJff9UvdJfMGxSTL8qb/4ji5BZvhd05AV8/U9sqn5AncxwQFsiwEBfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bcwF+fJx; arc=none smtp.client-ip=185.246.84.56
+	s=arc-20240116; t=1771575702; c=relaxed/simple;
+	bh=m3LCq1v4f6VsgqqRgj0dFsfM15EC0OKWM7IoAXqpJBQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Ug89N8Jfn9VNwagyAC47KYoVMTA+/czKdfv+gzqrHReqX3fXGDAfmgQFrlcVCuErsZDV/tdwAKT0nVnJNHLZM8vqNSWTEUHgDMoqNhJZB6A8TxmtsEd+4F0bYcQbPgc99fgpBVSpMfieVQ1aiys4HpBBQLPfgRc72nGwOkq5ZIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BUAwBgK3; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 7D2921A09D6;
-	Fri, 20 Feb 2026 08:17:33 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 754811A09D6;
+	Fri, 20 Feb 2026 08:21:39 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 45DDB5FA8F;
-	Fri, 20 Feb 2026 08:17:33 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 29C5A10368B60;
-	Fri, 20 Feb 2026 09:17:29 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 41DB65FA8F;
+	Fri, 20 Feb 2026 08:21:39 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5D0F6103687A2;
+	Fri, 20 Feb 2026 09:21:33 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1771575452; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1771575698; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=VzvvW9lCbmbpLDeCUrBpDx40xl/soxiJcKA0/aCMgVw=;
-	b=bcwF+fJxhbx1qFPpYbglmo7D3U3Y4uBaX5rNYiOVFKJYHA2i786uoQ17NTOygkOC0QjcSc
-	PLYaR0kQwDGBRWcLBzWkBhwxtXJKGmgdd2qBmbAVUND3FYNGG6leMRXowmxo/i9BqEtcCU
-	mNSELuWkbJD5b3S0iJfDjP2RnsbbdJtP2oI/CREnHVH5kKJoXyMj+izZUruxVvq9VReryb
-	6IMOOnoJBjYtH7pGoj6BJD+DtfoJN7R36l408LEko835NNlPIMNFUeorDtaIcJdo1zT2RK
-	Ir2blFSMDogrLB2B92rocUdoakFw1UWyNSNfGFcbOCxVsKhq04ksc/SGJFfmWw==
-Date: Fri, 20 Feb 2026 09:17:27 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, James Hilliard
- <james.hilliard1@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- linux-gpio@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>,
- Bartosz Golaszewski <brgl@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alexander Stein
- <linux@ew.tq-group.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add gpio-aggregator binding
-Message-ID: <20260220091727.5330accd@bootlin.com>
-In-Reply-To: <CAD++jLn9KJ2sfMtAxVGbcmWQW=1vxdiMNCDLNg-XV3hJDz=O9w@mail.gmail.com>
-References: <20260211081355.3028947-1-james.hilliard1@gmail.com>
-	<338e6575-ec44-4179-94af-9086a7ca79ac@kernel.org>
-	<92359c6d-06ac-4f8d-baa5-6fa45a536455@kernel.org>
-	<CADvTj4q74H__JZftOiXkdsY3+E_Xmcx6Y6i70RQDJ0K09=XOHQ@mail.gmail.com>
-	<30026ed7-cd19-4be2-adbb-e8bb155a75b8@kernel.org>
-	<CADvTj4oBtO0Yhib1rE8QQwgtJvy-x_hK46C63mjVAydtxHOV8g@mail.gmail.com>
-	<20260212195423.GA787785-robh@kernel.org>
-	<CADvTj4rPq8D5piqEijCdAjkWmZtq3Bi_Kxv-4F0aU4xi_O5WKg@mail.gmail.com>
-	<CAL_Jsq+Fb0vOggHWkNGusCBcwTQubD1Lc+0=U4+MpZacXqc_ag@mail.gmail.com>
-	<CAD++jLn9KJ2sfMtAxVGbcmWQW=1vxdiMNCDLNg-XV3hJDz=O9w@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	bh=m3LCq1v4f6VsgqqRgj0dFsfM15EC0OKWM7IoAXqpJBQ=;
+	b=BUAwBgK3bv1Kex5xQIYvTcHZ0JROJdSfxpcSeQc2mpdC7AzY14UP8Chix3zR3TOYFVVGnf
+	xD+CfdmqHMBWBS3QBePkagWqbav4HvBhvC8XSXLMXk3ufL8D8N2vc1mUTOkDm3rdctnyNP
+	+dXImFv1vyZ/XjAxgOkGhGusWk8fXUFpVwdggMpXusWNwcu6V9C1PTVIS5AD5nwZdAIzL2
+	F7LAkZMAWi+Eop4zlBeDvHWKAgv1vkCDCWZEqyTkg0KklzaYQjX/3a67vP9iZcvHEmB3Sg
+	ZTjyoKdDutu7r9hJfxLqkp1L04mGrDclX2s/112lgT/akg24z0NT29GQdmHcow==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: "Michael Walle" <mwalle@kernel.org>
+Cc: "Santhosh Kumar K" <s-k6@ti.com>,  <broonie@kernel.org>,
+  <robh@kernel.org>,  <krzk+dt@kernel.org>,  <conor+dt@kernel.org>,
+  <richard@nod.at>,  <vigneshr@ti.com>,  <tudor.ambarus@linaro.org>,
+  <pratyush@kernel.org>,  <linux-spi@vger.kernel.org>,
+  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
+  <linux-mtd@lists.infradead.org>,  <praneeth@ti.com>,  <u-kumar1@ti.com>,
+  <p-mantena@ti.com>,  <a-dutta@ti.com>
+Subject: Re: [RFC PATCH v2 08/12] spi: cadence-quadspi: read 'has-dqs' DT
+ property
+In-Reply-To: <DGIXI3RVPSJW.3J77RFU4JK6O2@kernel.org> (Michael Walle's message
+	of "Thu, 19 Feb 2026 13:14:39 +0100")
+References: <20260113141617.1905039-1-s-k6@ti.com>
+	<20260113141617.1905039-9-s-k6@ti.com> <87h5rvgkjs.fsf@bootlin.com>
+	<DGIXI3RVPSJW.3J77RFU4JK6O2@kernel.org>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Fri, 20 Feb 2026 09:21:32 +0100
+Message-ID: <87h5rbsu43.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,glider.be,ew.tq-group.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-266843-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-266844-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim]
-X-Rspamd-Queue-Id: 4F8A7165997
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim]
+X-Rspamd-Queue-Id: 01EF91659A5
 X-Rspamd-Action: no action
 
-Hi Linus,
+On 19/02/2026 at 13:14:39 +01, "Michael Walle" <mwalle@kernel.org> wrote:
 
-On Thu, 19 Feb 2026 18:57:48 +0100
-Linus Walleij <linusw@kernel.org> wrote:
+> On Thu Feb 5, 2026 at 6:35 PM CET, Miquel Raynal wrote:
+>> On 13/01/2026 at 19:46:13 +0530, Santhosh Kumar K <s-k6@ti.com> wrote:
+>>
+>>> Add a boolean field to struct cqspi_flash_pdata to store whether the
+>>> attached flash device supports DQS (Data Strobe) mode. Read this from
+>>> the 'spi-has-dqs' device tree property during flash node parsing.
+>>>
+>>> This is preparatory infrastructure for PHY tuning support. The field
+>>> will be used by subsequent patches to configure read data capture timing
+>>> with DQS enabled for improved margins in high-speed operations.
+>>>
+>>> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
+>>
+>> As mentioned in my answer to the cover letter, I am not too much in
+>> favour of this property because this is something that is somewhat
+>> related to the chip ID, thus discoverable. I drafted something to get
+>> rid of this property already, I will share it for opening the
+>> discussion.
+>>
+>> However, for now I am closing my eyes on the fact that the DQS pin might
+>> not be wired to the controller. In this case we will need some kind of
+>> "dqs-not-wired" DT property, that's true, but also easily manageable at
+>> the core level later, when/if the need arises.
+>
+> Usually, a DQS pin is optional. AFAIK, there is no requirement for
+> it. I.e. it will probably work fine with slower frequencies and
+> using an internal loopback. So if you run your flash with slower
+> frequency you can probably save one pin and use it for something
+> different.
+>
+> What I wanted to say is, that not having a DQS pin wired is not
+> really a mistake. But "dqs-not-wired" sounds exactly like it.
+> So IMHO it should be the other way around and the device tree should
+> tell you that *is* wired, if we cannot find detect it otherwise,
+> like looking at pinmuxing for example (not sure that is feasible
+> though).
 
-> On Fri, Feb 13, 2026 at 3:34 PM Rob Herring <robh@kernel.org> wrote:
-> 
-> > > > Humm, peripheral boards! So there's a connector. You need a connector
-> > > > binding. And the one solved binding for such a thing is GPIO! The
-> > > > gpio-map property lets you remap GPIOs from one provider (the connector)
-> > > > to a parent provider (soc_gpio). It would look something like this:  
-> > >
-> > > Well...some GPIOs are wired to peripheral board connectors...but
-> > > some are wired to things like built in LEDs and a few different
-> > > on-controller components as well which vary by controller hardware
-> > > revisions.
-> > >
-> > > This gpio-map feature doesn't exist in the mainline kernel does it?  
-> >
-> > For at least the last 5 years. It's even defined in the DT spec
-> > (generically as "nexus").  
-> 
-> I actually tested this. It works.
-> 
-> It's however a bit annoying that we do not have a single upstream
-> DTS file using it, so there are no examples to look at other than
-> in the documentation.
-> 
-> I suppose there would also be greater buy-in to the concept if
-> we had managed to push the same for at least I2C and SPI,
-> but it's easy to ask other people to work, I know that.
+I was in favour of the opt-out property because I feel like it doesn't
+make sense to fill in the high speed spi property which involves tuning,
+without wiring the DQS pin. It is possible, but if you're looking for
+speed, it doesn't make much sense IMO. Hence I was seeing this as a
+specific case which legitimately needs a property. But I don't want to
+bikeshed on that for too long, I'm fine with the opposite approach,
+let's make it a "dqs-is-wired" (or something alike) property.
 
-Nexus for I2C or SPI will not work.
-In fact, busses cannot work with nexus node concept.
-
-A nexus node translate a phandle.
-
-prop = <&nexus X> is, in the end, translated to <&controller Y>.
-
-For busses, you describe devices connected to the bus as sub-nodes of the
-bus controller node.
-
-&spi0 {
-	my_device@0 {
-		reg = 0;
-                ...
-       };
-};
-
-No phandle involved but labels.
-
-With nexus, you cannot translate &spi0.
-
-Also nexus works well when an index is involved. In other word, it works
-well with phandle with args.
-
-i2c-bus = <&i2c0>;
-
-In this kind of of definition, no index are present. With nexus node, this
-looks like
-
-i2c-bus = <&nexus>;
-
-How to handle multiple i2c busses with nexus node?
-
-Some ways other than nexus have to explored to handle busses.
-
-Best regards,
-Hervé
+Thanks,
+Miqu=C3=A8l
 
