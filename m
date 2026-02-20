@@ -1,84 +1,82 @@
-Return-Path: <devicetree+bounces-266987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266988-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gKTWGPtxmGkoIgMAu9opvQ
-	(envelope-from <devicetree+bounces-266987-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:38:51 +0100
+	id 0MiCIFJymGkoIgMAu9opvQ
+	(envelope-from <devicetree+bounces-266988-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:40:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 520021686CA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:38:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 905DF168717
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 15:40:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD2283082651
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:34:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A9FD43085C0A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017C026F289;
-	Fri, 20 Feb 2026 14:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E38274FD3;
+	Fri, 20 Feb 2026 14:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RtG7JiQd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Azl6wzJt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5913C267714;
-	Fri, 20 Feb 2026 14:34:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FA8A26F2AF;
+	Fri, 20 Feb 2026 14:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771598088; cv=none; b=cvU9DABeUHZ9t5SVBUihLO6s5fUtf6VnWE8CGar1vVaY0sglRKqcIq73Eenvboh5W9KukmzsoRixwT6vZzM4vPRu35LXquviz64jwM+UD+LQfNQsLveRq2VQwZxDEpvVswWDt7NAt7KYrg2qIczMdtDJQGhQjKlcANzjlraJRs8=
+	t=1771598174; cv=none; b=Y0EixotdX9cyLtAa41Gn9w+Mv9hSbZEkBuBLs45xlUsnDEJp3sZDpX2YPICGbx/rR75e/3BzjTlSWcrRhFlNLJZZbNGMSYucn74fO6CR+Vx2l6uw0NvyDax/ayOs/q+KgUi/azZfLP11vWwXtnZEVlsr9M0pL5b6B6Wwg4oyqTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771598088; c=relaxed/simple;
-	bh=WVD6XuxlRBcYmGfkC/oBsNTtD5jpXEmdkb8E+pQ+/Y4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C7ef0nnVuOM9BpzlyFpvE4r0+l/ESuOwHNy/G133YMqTWyR6GBN7b44ys6yg0ASBbfF3Q+fKrtVbBirAOUKc7prMQA/nHoPCgd9GSVM+ldOF5e1N2S8GoDkON+oNehpFh1G2qNcB5eVpwrz/H+b9GcOP89VYRd35KBRqhadQ844=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RtG7JiQd; arc=none smtp.client-ip=198.175.65.17
+	s=arc-20240116; t=1771598174; c=relaxed/simple;
+	bh=BL4fRfhgkXMe4a0VKEytXY02bGtBXKjE7seiCyIdgVI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tZsTbYFCIg/v4dE5w1D/qgpCarParC9Qka9toHXuwzFyAk/Q+HPaT6x2g7s3A7ef6Nt95Pkq8wbOrKPCMmfNHs03FeQAvF+TROyhL6mIrSihlGXmf3q3Eaz7KIOeBXJtd7+xP4wOD1cXNcyUJFNwPHpgSzQ9UzbZTAILQTbebtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Azl6wzJt; arc=none smtp.client-ip=198.175.65.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771598085; x=1803134085;
+  t=1771598171; x=1803134171;
   h=from:to:cc:subject:date:message-id:mime-version:
    content-transfer-encoding;
-  bh=WVD6XuxlRBcYmGfkC/oBsNTtD5jpXEmdkb8E+pQ+/Y4=;
-  b=RtG7JiQdAltacxXadvTfIX1p9v7Fn0Q+5hfPdAa2UO4nldr41zpVrZiW
-   Zim9ecCZaADQuoRovR9ycX3kR3EbitvnoaQg4XUbpn2yS6mvsi/qP1515
-   bBxl7jnLMKGF7EM9ZyRNc1EF6DLOJkuLD8BJ9qetgxHO/NTk/stSewaM7
-   YrcIymJ44PhH2yir8oUnWV67tdnFxncqKhIq5nqdNv2rhprRaZiZD1itS
-   41Acy/xX6u2/Gv0SBJcQXgDYD114yzfFi5ZMw6XvhSaq6ILqHC3Vvw5a6
-   +6ZPejOGNld7lqzZXecXoqRYFMyMW2Oel2kX7tROJpQFXlnZ/7bKv4Nzx
-   g==;
-X-CSE-ConnectionGUID: C8TcPt3lQBy/13JL2odFKg==
-X-CSE-MsgGUID: NgdsA6drRtKX0cll/jbHAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="72674741"
+  bh=BL4fRfhgkXMe4a0VKEytXY02bGtBXKjE7seiCyIdgVI=;
+  b=Azl6wzJtHnne1urA3y8PKOQfm2uFJYsZnGark2AUs+yYJ0055lEXGXyg
+   /3HRDTwxRMx4ch9OKJrVZ1znAVpthHf3gvqAeGDGouGUQfCCbB8VRzNQb
+   JTYccShNuLeUfYASmhKpdxQtAEJsvh3OwR1d4zCiOfh2tJGwNl85fpBGu
+   PKcbHyhthNQ+iqYHqmn41XHKJNr0hw8rbHRAm/jUYngn6LNacqjLGEdYp
+   BJoItBK6MFcPwx2Zxn/hSvB2rOyChMwS1Td4Opw5vMY/sWu/K+DLk8XXe
+   PRRlB5URxzyjwhLwfPN+iN6nlpkE06ipj377KgEZUCCkKHvcsufEG2CU4
+   A==;
+X-CSE-ConnectionGUID: vkAsyKL9S16epY5ukqiE5g==
+X-CSE-MsgGUID: 5lrEWjNcTSWNiJb28KPt2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="76303954"
 X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
-   d="scan'208";a="72674741"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 06:34:44 -0800
-X-CSE-ConnectionGUID: Ybjz/CkDRRa7VHPpEpfYRw==
-X-CSE-MsgGUID: Cka1tWjnTY+gnEQPdhEcpw==
+   d="scan'208";a="76303954"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 06:36:11 -0800
+X-CSE-ConnectionGUID: dBlVrLfCS0y+gUC8JPzVog==
+X-CSE-MsgGUID: f+opLNHGRC+h6Sm5IfyX7A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; 
-   d="scan'208";a="218574191"
+   d="scan'208";a="213972699"
 Received: from black.igk.intel.com ([10.91.253.5])
-  by fmviesa004.fm.intel.com with ESMTP; 20 Feb 2026 06:34:40 -0800
+  by orviesa006.jf.intel.com with ESMTP; 20 Feb 2026 06:36:07 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
-	id 6D35695; Fri, 20 Feb 2026 15:34:38 +0100 (CET)
+	id 3D5E295; Fri, 20 Feb 2026 15:36:06 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: linux-clk@vger.kernel.org,
+To: linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	linux-doc@vger.kernel.org
+Cc: Guenter Roeck <linux@roeck-us.net>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Brian Masney <bmasney@redhat.com>
-Subject: [PATCH v3 1/1] clk: baikal-t1: Remove not-going-to-be-supported code for Baikal SoC
-Date: Fri, 20 Feb 2026 15:33:55 +0100
-Message-ID: <20260220143436.2400888-1-andriy.shevchenko@linux.intel.com>
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 1/1] hwmon (bt1-pvt) Remove not-going-to-be-supported code for Baikal SoC
+Date: Fri, 20 Feb 2026 15:35:00 +0100
+Message-ID: <20260220143500.2401057-1-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -90,3095 +88,1778 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,pengutronix.de,linux.intel.com,redhat.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-266987-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-266988-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 520021686CA
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baikalelectronics.ru:email,linux.intel.com:mid,devicetree.org:url,1f200000:email]
+X-Rspamd-Queue-Id: 905DF168717
 X-Rspamd-Action: no action
 
 As noticed in the discussion [1] the Baikal SoC and platforms
 are not going to be finalized, hence remove stale code.
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
 Link: https://lore.kernel.org/lkml/22b92ddf-6321-41b5-8073-f9c7064d3432@infradead.org/ [1]
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
-v3: removed bindings header as well (now should all be gone)
-v2: added tag (Brian), removed YAML files
+ .../bindings/hwmon/baikal,bt1-pvt.yaml        |  105 --
+ Documentation/hwmon/bt1-pvt.rst               |  117 --
+ Documentation/hwmon/index.rst                 |    1 -
+ drivers/hwmon/Kconfig                         |   26 -
+ drivers/hwmon/Makefile                        |    1 -
+ drivers/hwmon/bt1-pvt.c                       | 1171 -----------------
+ drivers/hwmon/bt1-pvt.h                       |  247 ----
+ 7 files changed, 1668 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/baikal,bt1-pvt.yaml
+ delete mode 100644 Documentation/hwmon/bt1-pvt.rst
+ delete mode 100644 drivers/hwmon/bt1-pvt.c
+ delete mode 100644 drivers/hwmon/bt1-pvt.h
 
- .../bindings/clock/baikal,bt1-ccu-div.yaml    | 196 ------
- .../bindings/clock/baikal,bt1-ccu-pll.yaml    | 131 ----
- drivers/clk/Kconfig                           |   1 -
- drivers/clk/Makefile                          |   1 -
- drivers/clk/baikal-t1/Kconfig                 |  52 --
- drivers/clk/baikal-t1/Makefile                |   4 -
- drivers/clk/baikal-t1/ccu-div.c               | 653 ------------------
- drivers/clk/baikal-t1/ccu-div.h               | 121 ----
- drivers/clk/baikal-t1/ccu-pll.c               | 560 ---------------
- drivers/clk/baikal-t1/ccu-pll.h               |  72 --
- drivers/clk/baikal-t1/ccu-rst.c               | 217 ------
- drivers/clk/baikal-t1/ccu-rst.h               |  67 --
- drivers/clk/baikal-t1/clk-ccu-div.c           | 520 --------------
- drivers/clk/baikal-t1/clk-ccu-pll.c           | 277 --------
- include/dt-bindings/clock/bt1-ccu.h           |  48 --
- 15 files changed, 2920 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml
- delete mode 100644 drivers/clk/baikal-t1/Kconfig
- delete mode 100644 drivers/clk/baikal-t1/Makefile
- delete mode 100644 drivers/clk/baikal-t1/ccu-div.c
- delete mode 100644 drivers/clk/baikal-t1/ccu-div.h
- delete mode 100644 drivers/clk/baikal-t1/ccu-pll.c
- delete mode 100644 drivers/clk/baikal-t1/ccu-pll.h
- delete mode 100644 drivers/clk/baikal-t1/ccu-rst.c
- delete mode 100644 drivers/clk/baikal-t1/ccu-rst.h
- delete mode 100644 drivers/clk/baikal-t1/clk-ccu-div.c
- delete mode 100644 drivers/clk/baikal-t1/clk-ccu-pll.c
- delete mode 100644 include/dt-bindings/clock/bt1-ccu.h
-
-diff --git a/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml b/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml
+diff --git a/Documentation/devicetree/bindings/hwmon/baikal,bt1-pvt.yaml b/Documentation/devicetree/bindings/hwmon/baikal,bt1-pvt.yaml
 deleted file mode 100644
-index 30252c95700c..000000000000
---- a/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml
+index 5d3ce641fcde..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/baikal,bt1-pvt.yaml
 +++ /dev/null
-@@ -1,196 +0,0 @@
+@@ -1,105 +0,0 @@
 -# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 -# Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
 -%YAML 1.2
 ----
--$id: http://devicetree.org/schemas/clock/baikal,bt1-ccu-div.yaml#
+-$id: http://devicetree.org/schemas/hwmon/baikal,bt1-pvt.yaml#
 -$schema: http://devicetree.org/meta-schemas/core.yaml#
 -
--title: Baikal-T1 Clock Control Unit Dividers
+-title: Baikal-T1 PVT Sensor
 -
 -maintainers:
 -  - Serge Semin <fancer.lancer@gmail.com>
 -
 -description: |
--  Clocks Control Unit is the core of Baikal-T1 SoC System Controller
--  responsible for the chip subsystems clocking and resetting. The CCU is
--  connected with an external fixed rate oscillator, which signal is transformed
--  into clocks of various frequencies and then propagated to either individual
--  IP-blocks or to groups of blocks (clock domains). The transformation is done
--  by means of an embedded into CCU PLLs and gateable/non-gateable dividers. The
--  later ones are described in this binding. Each clock domain can be also
--  individually reset by using the domain clocks divider configuration
--  registers. Baikal-T1 CCU is logically divided into the next components:
--  1) External oscillator (normally XTAL's 25 MHz crystal oscillator, but
--     in general can provide any frequency supported by the CCU PLLs).
--  2) PLLs clocks generators (PLLs).
--  3) AXI-bus clock dividers (AXI) - described in this binding file.
--  4) System devices reference clock dividers (SYS) - described in this binding
--     file.
--  which are connected with each other as shown on the next figure:
--
--          +---------------+
--          | Baikal-T1 CCU |
--          |   +----+------|- MIPS P5600 cores
--          | +-|PLLs|------|- DDR controller
--          | | +----+      |
--  +----+  | |  |  |       |
--  |XTAL|--|-+  |  | +---+-|
--  +----+  | |  |  +-|AXI|-|- AXI-bus
--          | |  |    +---+-|
--          | |  |          |
--          | |  +----+---+-|- APB-bus
--          | +-------|SYS|-|- Low-speed Devices
--          |         +---+-|- High-speed Devices
--          +---------------+
--
--  Each sub-block is represented as a separate DT node and has an individual
--  driver to be bound with.
--
--  In order to create signals of wide range frequencies the external oscillator
--  output is primarily connected to a set of CCU PLLs. Some of PLLs CLKOUT are
--  then passed over CCU dividers to create signals required for the target clock
--  domain (like AXI-bus or System Device consumers). The dividers have the
--  following structure:
--
--          +--------------+
--  CLKIN --|->+----+ 1|\  |
--  SETCLK--|--|/DIV|->| | |
--  CLKDIV--|--|    |  | |-|->CLKLOUT
--  LOCK----|--+----+  | | |
--          |          |/  |
--          |           |  |
--  EN------|-----------+  |
--  RST-----|--------------|->RSTOUT
--          +--------------+
--
--  where CLKIN is the reference clock coming either from CCU PLLs or from an
--  external clock oscillator, SETCLK - a command to update the output clock in
--  accordance with a set divider, CLKDIV - clocks divider, LOCK - a signal of
--  the output clock stabilization, EN - enable/disable the divider block,
--  RST/RSTOUT - reset clocks domain signal. Depending on the consumer IP-core
--  peculiarities the dividers may lack of some functionality depicted on the
--  figure above (like EN, CLKDIV/LOCK/SETCLK). In this case the corresponding
--  clock provider just doesn't expose either switching functions, or the rate
--  configuration, or both of them.
--
--  The clock dividers, which output clock is then consumed by the SoC individual
--  devices, are united into a single clocks provider called System Devices CCU.
--  Similarly the dividers with output clocks utilized as AXI-bus reference clocks
--  are called AXI-bus CCU. Both of them use the common clock bindings with no
--  custom properties. The list of exported clocks and reset signals can be found
--  in the files: 'include/dt-bindings/clock/bt1-ccu.h' and
--  'include/dt-bindings/reset/bt1-ccu.h'. Since System Devices and AXI-bus CCU
--  are a part of the Baikal-T1 SoC System Controller their DT nodes are supposed
--  to be a children of later one.
--
--if:
--  properties:
--    compatible:
--      contains:
--        const: baikal,bt1-ccu-axi
--
--then:
--  properties:
--    clocks:
--      items:
--        - description: CCU SATA PLL output clock
--        - description: CCU PCIe PLL output clock
--        - description: CCU Ethernet PLL output clock
--
--    clock-names:
--      items:
--        - const: sata_clk
--        - const: pcie_clk
--        - const: eth_clk
--
--else:
--  properties:
--    clocks:
--      items:
--        - description: External reference clock
--        - description: CCU SATA PLL output clock
--        - description: CCU PCIe PLL output clock
--        - description: CCU Ethernet PLL output clock
--
--    clock-names:
--      items:
--        - const: ref_clk
--        - const: sata_clk
--        - const: pcie_clk
--        - const: eth_clk
--
--properties:
--  compatible:
--    enum:
--      - baikal,bt1-ccu-axi
--      - baikal,bt1-ccu-sys
--
--  reg:
--    maxItems: 1
--
--  "#clock-cells":
--    const: 1
--
--  "#reset-cells":
--    const: 1
--
--  clocks:
--    minItems: 3
--    maxItems: 4
--
--  clock-names:
--    minItems: 3
--    maxItems: 4
--
--additionalProperties: false
--
--required:
--  - compatible
--  - "#clock-cells"
--  - clocks
--  - clock-names
--
--examples:
--  # AXI-bus Clock Control Unit node:
--  - |
--    #include <dt-bindings/clock/bt1-ccu.h>
--
--    clock-controller@1f04d030 {
--      compatible = "baikal,bt1-ccu-axi";
--      reg = <0x1f04d030 0x030>;
--      #clock-cells = <1>;
--      #reset-cells = <1>;
--
--      clocks = <&ccu_pll CCU_SATA_PLL>,
--               <&ccu_pll CCU_PCIE_PLL>,
--               <&ccu_pll CCU_ETH_PLL>;
--      clock-names = "sata_clk", "pcie_clk", "eth_clk";
--    };
--  # System Devices Clock Control Unit node:
--  - |
--    #include <dt-bindings/clock/bt1-ccu.h>
--
--    clock-controller@1f04d060 {
--      compatible = "baikal,bt1-ccu-sys";
--      reg = <0x1f04d060 0x0a0>;
--      #clock-cells = <1>;
--      #reset-cells = <1>;
--
--      clocks = <&clk25m>,
--               <&ccu_pll CCU_SATA_PLL>,
--               <&ccu_pll CCU_PCIE_PLL>,
--               <&ccu_pll CCU_ETH_PLL>;
--      clock-names = "ref_clk", "sata_clk", "pcie_clk",
--                    "eth_clk";
--    };
--  # Required Clock Control Unit PLL node:
--  - |
--    ccu_pll: clock-controller@1f04d000 {
--      compatible = "baikal,bt1-ccu-pll";
--      reg = <0x1f04d000 0x028>;
--      #clock-cells = <1>;
--
--      clocks = <&clk25m>;
--      clock-names = "ref_clk";
--    };
--...
-diff --git a/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml b/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml
-deleted file mode 100644
-index 7f8d98226437..000000000000
---- a/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml
-+++ /dev/null
-@@ -1,131 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--# Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/clock/baikal,bt1-ccu-pll.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Baikal-T1 Clock Control Unit PLL
--
--maintainers:
--  - Serge Semin <fancer.lancer@gmail.com>
--
--description: |
--  Clocks Control Unit is the core of Baikal-T1 SoC System Controller
--  responsible for the chip subsystems clocking and resetting. The CCU is
--  connected with an external fixed rate oscillator, which signal is transformed
--  into clocks of various frequencies and then propagated to either individual
--  IP-blocks or to groups of blocks (clock domains). The transformation is done
--  by means of PLLs and gateable/non-gateable dividers embedded into the CCU.
--  It's logically divided into the next components:
--  1) External oscillator (normally XTAL's 25 MHz crystal oscillator, but
--     in general can provide any frequency supported by the CCU PLLs).
--  2) PLLs clocks generators (PLLs) - described in this binding file.
--  3) AXI-bus clock dividers (AXI).
--  4) System devices reference clock dividers (SYS).
--  which are connected with each other as shown on the next figure:
--
--          +---------------+
--          | Baikal-T1 CCU |
--          |   +----+------|- MIPS P5600 cores
--          | +-|PLLs|------|- DDR controller
--          | | +----+      |
--  +----+  | |  |  |       |
--  |XTAL|--|-+  |  | +---+-|
--  +----+  | |  |  +-|AXI|-|- AXI-bus
--          | |  |    +---+-|
--          | |  |          |
--          | |  +----+---+-|- APB-bus
--          | +-------|SYS|-|- Low-speed Devices
--          |         +---+-|- High-speed Devices
--          +---------------+
--
--  Each CCU sub-block is represented as a separate dts-node and has an
--  individual driver to be bound with.
--
--  In order to create signals of wide range frequencies the external oscillator
--  output is primarily connected to a set of CCU PLLs. There are five PLLs
--  to create a clock for the MIPS P5600 cores, the embedded DDR controller,
--  SATA, Ethernet and PCIe domains. The last three domains though named by the
--  biggest system interfaces in fact include nearly all of the rest SoC
--  peripherals. Each of the PLLs is based on True Circuits TSMC CLN28HPM core
--  with an interface wrapper (so called safe PLL' clocks switcher) to simplify
--  the PLL configuration procedure. The PLLs work as depicted on the next
+-  Baikal-T1 SoC provides an embedded process, voltage and temperature
+-  sensor to monitor an internal SoC environment (chip temperature, supply
+-  voltage and process monitor) and on time detect critical situations,
+-  which may cause the system instability and even damages. The IP-block
+-  is based on the Analog Bits PVT sensor, but is equipped with a dedicated
+-  control wrapper, which provides a MMIO registers-based access to the
+-  sensor core functionality (APB3-bus based) and exposes an additional
+-  functions like thresholds/data ready interrupts, its status and masks,
+-  measurements timeout. Its internal structure is depicted on the next
 -  diagram:
 -
--      +--------------------------+
--      |                          |
--      +-->+---+    +---+   +---+ |  +---+   0|\
--  CLKF--->|/NF|--->|PFD|...|VCO|-+->|/OD|--->| |
--          +---+ +->+---+   +---+ /->+---+    | |--->CLKOUT
--  CLKOD---------C----------------+          1| |
--       +--------C--------------------------->|/
--       |        |                             ^
--  Rclk-+->+---+ |                             |
--  CLKR--->|/NR|-+                             |
--          +---+                               |
--  BYPASS--------------------------------------+
--  BWADJ--->
+-     Analog Bits core                     Bakal-T1 PVT control block
+-  +--------------------+                  +------------------------+
+-  | Temperature sensor |-+         +------| Sensors control        |
+-  |--------------------| |<---En---|      |------------------------|
+-  | Voltage sensor     |-|<--Mode--| +--->| Sampled data           |
+-  |--------------------| |<--Trim--+ |    |------------------------|
+-  | Low-Vt sensor      |-|           | +--| Thresholds comparator  |
+-  |--------------------| |---Data----| |  |------------------------|
+-  | High-Vt sensor     |-|           | +->| Interrupts status      |
+-  |--------------------| |--Valid--+-+ |  |------------------------|
+-  | Standard-Vt sensor |-+         +---+--| Interrupts mask        |
+-  +--------------------+                  |------------------------|
+-           ^                              | Interrupts timeout     |
+-           |                              +------------------------+
+-           |                                        ^  ^
+-  Rclk-----+----------------------------------------+  |
+-  APB3-------------------------------------------------+
 -
--  where Rclk is the reference clock coming  from XTAL, NR - reference clock
--  divider, NF - PLL clock multiplier, OD - VCO output clock divider, CLKOUT -
--  output clock, BWADJ is the PLL bandwidth adjustment parameter. At this moment
--  the binding supports the PLL dividers configuration in accordance with a
--  requested rate, while bypassing and bandwidth adjustment settings can be
--  added in future if it gets to be necessary.
--
--  The PLLs CLKOUT is then either directly connected with the corresponding
--  clocks consumer (like P5600 cores or DDR controller) or passed over a CCU
--  divider to create a signal required for the clock domain.
--
--  The CCU PLL dts-node uses the common clock bindings with no custom
--  parameters. The list of exported clocks can be found in
--  'include/dt-bindings/clock/bt1-ccu.h'. Since CCU PLL is a part of the
--  Baikal-T1 SoC System Controller its DT node is supposed to be a child of
--  later one.
+-  This bindings describes the external Baikal-T1 PVT control interfaces
+-  like MMIO registers space, interrupt request number and clocks source.
+-  These are then used by the corresponding hwmon device driver to
+-  implement the sysfs files-based access to the sensors functionality.
 -
 -properties:
 -  compatible:
--    const: baikal,bt1-ccu-pll
+-    const: baikal,bt1-pvt
 -
 -  reg:
 -    maxItems: 1
 -
--  "#clock-cells":
--    const: 1
--
--  clocks:
--    description: External reference clock
+-  interrupts:
 -    maxItems: 1
 -
+-  clocks:
+-    items:
+-      - description: PVT reference clock
+-      - description: APB3 interface clock
+-
 -  clock-names:
--    const: ref_clk
+-    items:
+-      - const: ref
+-      - const: pclk
+-
+-  "#thermal-sensor-cells":
+-    description: Baikal-T1 can be referenced as the CPU thermal-sensor
+-    const: 0
+-
+-  baikal,pvt-temp-offset-millicelsius:
+-    description: |
+-      Temperature sensor trimming factor. It can be used to manually adjust the
+-      temperature measurements within 7.130 degrees Celsius.
+-    default: 0
+-    minimum: 0
+-    maximum: 7130
 -
 -additionalProperties: false
 -
 -required:
 -  - compatible
--  - "#clock-cells"
+-  - reg
+-  - interrupts
 -  - clocks
 -  - clock-names
 -
 -examples:
--  # Clock Control Unit PLL node:
 -  - |
--    clock-controller@1f04d000 {
--      compatible = "baikal,bt1-ccu-pll";
--      reg = <0x1f04d000 0x028>;
--      #clock-cells = <1>;
+-    #include <dt-bindings/interrupt-controller/mips-gic.h>
 -
--      clocks = <&clk25m>;
--      clock-names = "ref_clk";
--    };
--  # Required external oscillator:
--  - |
--    clk25m: clock-oscillator-25m {
--      compatible = "fixed-clock";
--      #clock-cells = <0>;
--      clock-frequency = <25000000>;
--      clock-output-names = "clk25m";
+-    pvt@1f200000 {
+-      compatible = "baikal,bt1-pvt";
+-      reg = <0x1f200000 0x1000>;
+-      #thermal-sensor-cells = <0>;
+-
+-      interrupts = <GIC_SHARED 31 IRQ_TYPE_LEVEL_HIGH>;
+-
+-      baikal,pvt-temp-offset-millicelsius = <1000>;
+-
+-      clocks = <&ccu_sys>, <&ccu_sys>;
+-      clock-names = "ref", "pclk";
 -    };
 -...
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 3d803b4cf5c1..ca5b2fd5bff1 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -502,7 +502,6 @@ config COMMON_CLK_RPMI
- source "drivers/clk/actions/Kconfig"
- source "drivers/clk/analogbits/Kconfig"
- source "drivers/clk/aspeed/Kconfig"
--source "drivers/clk/baikal-t1/Kconfig"
- source "drivers/clk/bcm/Kconfig"
- source "drivers/clk/hisilicon/Kconfig"
- source "drivers/clk/imgtec/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 7d56b4ef1395..d8f61a3e64b4 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -116,7 +116,6 @@ obj-y					+= aspeed/
- obj-$(CONFIG_COMMON_CLK_AT91)		+= at91/
- obj-$(CONFIG_ARCH_ARTPEC)		+= axis/
- obj-$(CONFIG_ARC_PLAT_AXS10X)		+= axs10x/
--obj-$(CONFIG_CLK_BAIKAL_T1)		+= baikal-t1/
- obj-y					+= bcm/
- obj-$(CONFIG_ARCH_BERLIN)		+= berlin/
- obj-$(CONFIG_ARCH_DAVINCI)		+= davinci/
-diff --git a/drivers/clk/baikal-t1/Kconfig b/drivers/clk/baikal-t1/Kconfig
+diff --git a/Documentation/hwmon/bt1-pvt.rst b/Documentation/hwmon/bt1-pvt.rst
 deleted file mode 100644
-index f0b186830324..000000000000
---- a/drivers/clk/baikal-t1/Kconfig
+index cbb0c0613132..000000000000
+--- a/Documentation/hwmon/bt1-pvt.rst
 +++ /dev/null
-@@ -1,52 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only
--config CLK_BAIKAL_T1
--	bool "Baikal-T1 Clocks Control Unit interface"
--	depends on (MIPS_BAIKAL_T1 && OF) || COMPILE_TEST
--	default MIPS_BAIKAL_T1
+@@ -1,117 +0,0 @@
+-.. SPDX-License-Identifier: GPL-2.0-only
+-
+-Kernel driver bt1-pvt
+-=====================
+-
+-Supported chips:
+-
+-  * Baikal-T1 PVT sensor (in SoC)
+-
+-    Prefix: 'bt1-pvt'
+-
+-    Addresses scanned: -
+-
+-    Datasheet: Provided by BAIKAL ELECTRONICS upon request and under NDA
+-
+-Authors:
+-    Maxim Kaurkin <maxim.kaurkin@baikalelectronics.ru>
+-    Serge Semin <Sergey.Semin@baikalelectronics.ru>
+-
+-Description
+------------
+-
+-This driver implements support for the hardware monitoring capabilities of the
+-embedded into Baikal-T1 process, voltage and temperature sensors. PVT IP-core
+-consists of one temperature and four voltage sensors, which can be used to
+-monitor the chip internal environment like heating, supply voltage and
+-transistors performance. The driver can optionally provide the hwmon alarms
+-for each sensor the PVT controller supports. The alarms functionality is made
+-compile-time configurable due to the hardware interface implementation
+-peculiarity, which is connected with an ability to convert data from only one
+-sensor at a time. Additional limitation is that the controller performs the
+-thresholds checking synchronously with the data conversion procedure. Due to
+-these in order to have the hwmon alarms automatically detected the driver code
+-must switch from one sensor to another, read converted data and manually check
+-the threshold status bits. Depending on the measurements timeout settings
+-(update_interval sysfs node value) this design may cause additional burden on
+-the system performance. So in case if alarms are unnecessary in your system
+-design it's recommended to have them disabled to prevent the PVT IRQs being
+-periodically raised to get the data cache/alarms status up to date. By default
+-in alarm-less configuration the data conversion is performed by the driver
+-on demand when read operation is requested via corresponding _input-file.
+-
+-Temperature Monitoring
+-----------------------
+-
+-Temperature is measured with 10-bit resolution and reported in millidegree
+-Celsius. The driver performs all the scaling by itself therefore reports true
+-temperatures that don't need any user-space adjustments. While the data
+-translation formulae isn't linear, which gives us non-linear discreteness,
+-it's close to one, but giving a bit better accuracy for higher temperatures.
+-The temperature input is mapped as follows (the last column indicates the input
+-ranges)::
+-
+-	temp1: CPU embedded diode	-48.38C - +147.438C
+-
+-In case if the alarms kernel config is enabled in the driver the temperature input
+-has associated min and max limits which trigger an alarm when crossed.
+-
+-Voltage Monitoring
+-------------------
+-
+-The voltage inputs are also sampled with 10-bit resolution and reported in
+-millivolts. But in this case the data translation formulae is linear, which
+-provides a constant measurements discreteness. The data scaling is also
+-performed by the driver, so returning true millivolts. The voltage inputs are
+-mapped as follows (the last column indicates the input ranges)::
+-
+-	in0: VDD		(processor core)		0.62V - 1.168V
+-	in1: Low-Vt		(low voltage threshold)		0.62V - 1.168V
+-	in2: High-Vt		(high voltage threshold)	0.62V - 1.168V
+-	in3: Standard-Vt	(standard voltage threshold)	0.62V - 1.168V
+-
+-In case if the alarms config is enabled in the driver the voltage inputs
+-have associated min and max limits which trigger an alarm when crossed.
+-
+-Sysfs Attributes
+-----------------
+-
+-Following is a list of all sysfs attributes that the driver provides, their
+-permissions and a short description:
+-
+-=============================== ======= =======================================
+-Name				Perm	Description
+-=============================== ======= =======================================
+-update_interval			RW	Measurements update interval per
+-					sensor.
+-temp1_type			RO	Sensor type (always 1 as CPU embedded
+-					diode).
+-temp1_label			RO	CPU Core Temperature sensor.
+-temp1_input			RO	Measured temperature in millidegree
+-					Celsius.
+-temp1_min			RW	Low limit for temp input.
+-temp1_max			RW	High limit for temp input.
+-temp1_min_alarm			RO	Temperature input alarm. Returns 1 if
+-					temperature input went below min limit,
+-					0 otherwise.
+-temp1_max_alarm			RO	Temperature input alarm. Returns 1 if
+-					temperature input went above max limit,
+-					0 otherwise.
+-temp1_offset			RW	Temperature offset in millidegree
+-					Celsius which is added to the
+-					temperature reading by the chip. It can
+-					be used to manually adjust the
+-					temperature measurements within 7.130
+-					degrees Celsius.
+-in[0-3]_label			RO	CPU Voltage sensor (either core or
+-					low/high/standard thresholds).
+-in[0-3]_input			RO	Measured voltage in millivolts.
+-in[0-3]_min			RW	Low limit for voltage input.
+-in[0-3]_max			RW	High limit for voltage input.
+-in[0-3]_min_alarm		RO	Voltage input alarm. Returns 1 if
+-					voltage input went below min limit,
+-					0 otherwise.
+-in[0-3]_max_alarm		RO	Voltage input alarm. Returns 1 if
+-					voltage input went above max limit,
+-					0 otherwise.
+-=============================== ======= =======================================
+diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+index d91dbb20c7dc..d860de4a0b75 100644
+--- a/Documentation/hwmon/index.rst
++++ b/Documentation/hwmon/index.rst
+@@ -52,7 +52,6 @@ Hardware Monitoring Kernel Drivers
+    bcm54140
+    bel-pfe
+    bpa-rs600
+-   bt1-pvt
+    cgbc-hwmon
+    chipcap2
+    coretemp
+diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+index 41c381764c2b..03d393ff5955 100644
+--- a/drivers/hwmon/Kconfig
++++ b/drivers/hwmon/Kconfig
+@@ -457,32 +457,6 @@ config SENSORS_ATXP1
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called atxp1.
+ 
+-config SENSORS_BT1_PVT
+-	tristate "Baikal-T1 Process, Voltage, Temperature sensor driver"
+-	depends on MIPS_BAIKAL_T1 || COMPILE_TEST
+-	select POLYNOMIAL
 -	help
--	  Clocks Control Unit is the core of Baikal-T1 SoC System Controller
--	  responsible for the chip subsystems clocking and resetting. It
--	  consists of multiple global clock domains, which can be reset by
--	  means of the CCU control registers. These domains and devices placed
--	  in them are fed with clocks generated by a hierarchy of PLLs,
--	  configurable and fixed clock dividers. Enable this option to be able
--	  to select Baikal-T1 CCU PLLs and Dividers drivers.
+-	  If you say yes here you get support for Baikal-T1 PVT sensor
+-	  embedded into the SoC.
 -
--if CLK_BAIKAL_T1
+-	  This driver can also be built as a module. If so, the module will be
+-	  called bt1-pvt.
 -
--config CLK_BT1_CCU_PLL
--	bool "Baikal-T1 CCU PLLs support"
--	select MFD_SYSCON
--	default MIPS_BAIKAL_T1
+-config SENSORS_BT1_PVT_ALARMS
+-	bool "Enable Baikal-T1 PVT sensor alarms"
+-	depends on SENSORS_BT1_PVT
 -	help
--	  Enable this to support the PLLs embedded into the Baikal-T1 SoC
--	  System Controller. These are five PLLs placed at the root of the
--	  clocks hierarchy, right after an external reference oscillator
--	  (normally of 25MHz). They are used to generate high frequency
--	  signals, which are either directly wired to the consumers (like
--	  CPUs, DDR, etc.) or passed over the clock dividers to be only
--	  then used as an individual reference clock of a target device.
+-	  Baikal-T1 PVT IP-block provides threshold registers for each
+-	  supported sensor. But the corresponding interrupts might be
+-	  generated by the thresholds comparator only in synchronization with
+-	  a data conversion. Additionally there is only one sensor data can
+-	  be converted at a time. All of these makes the interface impossible
+-	  to be used for the hwmon alarms implementation without periodic
+-	  switch between the PVT sensors. By default the data conversion is
+-	  performed on demand from the user-space. If this config is enabled
+-	  the data conversion will be periodically performed and the data will be
+-	  saved in the internal driver cache.
 -
--config CLK_BT1_CCU_DIV
--	bool "Baikal-T1 CCU Dividers support"
--	select MFD_SYSCON
--	default MIPS_BAIKAL_T1
--	help
--	  Enable this to support the CCU dividers used to distribute clocks
--	  between AXI-bus and system devices coming from CCU PLLs of Baikal-T1
--	  SoC. CCU dividers can be either configurable or with fixed divider,
--	  either gateable or ungateable. Some of the CCU dividers can be as well
--	  used to reset the domains they're supplying clock to.
--
--config CLK_BT1_CCU_RST
--	bool "Baikal-T1 CCU Resets support"
--	select RESET_CONTROLLER
--	select MFD_SYSCON
--	default MIPS_BAIKAL_T1
--	help
--	  Enable this to support the CCU reset blocks responsible for the
--	  AXI-bus and some subsystems reset. These are mainly the
--	  self-deasserted reset controls but there are several lines which
--	  can be directly asserted/de-asserted (PCIe and DDR sub-domains).
--
--endif
-diff --git a/drivers/clk/baikal-t1/Makefile b/drivers/clk/baikal-t1/Makefile
+ config SENSORS_CGBC
+ 	tristate "Congatec Board Controller Sensors"
+ 	depends on MFD_CGBC
+diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+index eade8e3b1bde..9d3659123ad5 100644
+--- a/drivers/hwmon/Makefile
++++ b/drivers/hwmon/Makefile
+@@ -58,7 +58,6 @@ obj-$(CONFIG_SENSORS_ASPEED_G6) += aspeed-g6-pwm-tach.o
+ obj-$(CONFIG_SENSORS_ASUS_ROG_RYUJIN)	+= asus_rog_ryujin.o
+ obj-$(CONFIG_SENSORS_ATXP1)	+= atxp1.o
+ obj-$(CONFIG_SENSORS_AXI_FAN_CONTROL) += axi-fan-control.o
+-obj-$(CONFIG_SENSORS_BT1_PVT)	+= bt1-pvt.o
+ obj-$(CONFIG_SENSORS_CGBC)	+= cgbc-hwmon.o
+ obj-$(CONFIG_SENSORS_CHIPCAP2) += chipcap2.o
+ obj-$(CONFIG_SENSORS_CORETEMP)	+= coretemp.o
+diff --git a/drivers/hwmon/bt1-pvt.c b/drivers/hwmon/bt1-pvt.c
 deleted file mode 100644
-index 9c3637de9407..000000000000
---- a/drivers/clk/baikal-t1/Makefile
+index b77ebac2e0ce..000000000000
+--- a/drivers/hwmon/bt1-pvt.c
 +++ /dev/null
-@@ -1,4 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only
--obj-$(CONFIG_CLK_BT1_CCU_PLL) += ccu-pll.o clk-ccu-pll.o
--obj-$(CONFIG_CLK_BT1_CCU_DIV) += ccu-div.o clk-ccu-div.o
--obj-$(CONFIG_CLK_BT1_CCU_RST) += ccu-rst.o
-diff --git a/drivers/clk/baikal-t1/ccu-div.c b/drivers/clk/baikal-t1/ccu-div.c
-deleted file mode 100644
-index 849d1f55765f..000000000000
---- a/drivers/clk/baikal-t1/ccu-div.c
-+++ /dev/null
-@@ -1,653 +0,0 @@
+@@ -1,1171 +0,0 @@
 -// SPDX-License-Identifier: GPL-2.0-only
 -/*
 - * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
 - *
 - * Authors:
+- *   Maxim Kaurkin <maxim.kaurkin@baikalelectronics.ru>
 - *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *   Dmitry Dunaev <dmitry.dunaev@baikalelectronics.ru>
 - *
-- * Baikal-T1 CCU Dividers interface driver
+- * Baikal-T1 Process, Voltage, Temperature sensor driver
 - */
 -
--#define pr_fmt(fmt) "bt1-ccu-div: " fmt
--
--#include <linux/kernel.h>
--#include <linux/printk.h>
--#include <linux/bits.h>
 -#include <linux/bitfield.h>
--#include <linux/slab.h>
--#include <linux/clk-provider.h>
--#include <linux/of.h>
--#include <linux/spinlock.h>
--#include <linux/regmap.h>
+-#include <linux/bitops.h>
+-#include <linux/clk.h>
+-#include <linux/completion.h>
 -#include <linux/delay.h>
--#include <linux/time64.h>
--#include <linux/debugfs.h>
--
--#include "ccu-div.h"
--
--#define CCU_DIV_CTL			0x00
--#define CCU_DIV_CTL_EN			BIT(0)
--#define CCU_DIV_CTL_RST			BIT(1)
--#define CCU_DIV_CTL_SET_CLKDIV		BIT(2)
--#define CCU_DIV_CTL_CLKDIV_FLD		4
--#define CCU_DIV_CTL_CLKDIV_MASK(_width) \
--	GENMASK((_width) + CCU_DIV_CTL_CLKDIV_FLD - 1, CCU_DIV_CTL_CLKDIV_FLD)
--#define CCU_DIV_CTL_LOCK_SHIFTED	BIT(27)
--#define CCU_DIV_CTL_GATE_REF_BUF	BIT(28)
--#define CCU_DIV_CTL_LOCK_NORMAL		BIT(31)
--
--#define CCU_DIV_LOCK_CHECK_RETRIES	50
--
--#define CCU_DIV_CLKDIV_MIN		0
--#define CCU_DIV_CLKDIV_MAX(_mask) \
--	((_mask) >> CCU_DIV_CTL_CLKDIV_FLD)
--
--/*
-- * Use the next two methods until there are generic field setter and
-- * getter available with non-constant mask support.
-- */
--static inline u32 ccu_div_get(u32 mask, u32 val)
--{
--	return (val & mask) >> CCU_DIV_CTL_CLKDIV_FLD;
--}
--
--static inline u32 ccu_div_prep(u32 mask, u32 val)
--{
--	return (val << CCU_DIV_CTL_CLKDIV_FLD) & mask;
--}
--
--static inline unsigned long ccu_div_lock_delay_ns(unsigned long ref_clk,
--						  unsigned long div)
--{
--	u64 ns = 4ULL * (div ?: 1) * NSEC_PER_SEC;
--
--	do_div(ns, ref_clk);
--
--	return ns;
--}
--
--static inline unsigned long ccu_div_calc_freq(unsigned long ref_clk,
--					      unsigned long div)
--{
--	return ref_clk / (div ?: 1);
--}
--
--static int ccu_div_var_update_clkdiv(struct ccu_div *div,
--				     unsigned long parent_rate,
--				     unsigned long divider)
--{
--	unsigned long nd;
--	u32 val = 0;
--	u32 lock;
--	int count;
--
--	nd = ccu_div_lock_delay_ns(parent_rate, divider);
--
--	if (div->features & CCU_DIV_LOCK_SHIFTED)
--		lock = CCU_DIV_CTL_LOCK_SHIFTED;
--	else
--		lock = CCU_DIV_CTL_LOCK_NORMAL;
--
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   CCU_DIV_CTL_SET_CLKDIV, CCU_DIV_CTL_SET_CLKDIV);
--
--	/*
--	 * Until there is nsec-version of readl_poll_timeout() is available
--	 * we have to implement the next polling loop.
--	 */
--	count = CCU_DIV_LOCK_CHECK_RETRIES;
--	do {
--		ndelay(nd);
--		regmap_read(div->sys_regs, div->reg_ctl, &val);
--		if (val & lock)
--			return 0;
--	} while (--count);
--
--	return -ETIMEDOUT;
--}
--
--static int ccu_div_var_enable(struct clk_hw *hw)
--{
--	struct clk_hw *parent_hw = clk_hw_get_parent(hw);
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--	u32 val = 0;
--	int ret;
--
--	if (!parent_hw) {
--		pr_err("Can't enable '%s' with no parent", clk_hw_get_name(hw));
--		return -EINVAL;
--	}
--
--	regmap_read(div->sys_regs, div->reg_ctl, &val);
--	if (val & CCU_DIV_CTL_EN)
--		return 0;
--
--	spin_lock_irqsave(&div->lock, flags);
--	ret = ccu_div_var_update_clkdiv(div, clk_hw_get_rate(parent_hw),
--					ccu_div_get(div->mask, val));
--	if (!ret)
--		regmap_update_bits(div->sys_regs, div->reg_ctl,
--				   CCU_DIV_CTL_EN, CCU_DIV_CTL_EN);
--	spin_unlock_irqrestore(&div->lock, flags);
--	if (ret)
--		pr_err("Divider '%s' lock timed out\n", clk_hw_get_name(hw));
--
--	return ret;
--}
--
--static int ccu_div_gate_enable(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   CCU_DIV_CTL_EN, CCU_DIV_CTL_EN);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--static void ccu_div_gate_disable(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl, CCU_DIV_CTL_EN, 0);
--	spin_unlock_irqrestore(&div->lock, flags);
--}
--
--static int ccu_div_gate_is_enabled(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	u32 val = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &val);
--
--	return !!(val & CCU_DIV_CTL_EN);
--}
--
--static int ccu_div_buf_enable(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   CCU_DIV_CTL_GATE_REF_BUF, 0);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--static void ccu_div_buf_disable(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   CCU_DIV_CTL_GATE_REF_BUF, CCU_DIV_CTL_GATE_REF_BUF);
--	spin_unlock_irqrestore(&div->lock, flags);
--}
--
--static int ccu_div_buf_is_enabled(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	u32 val = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &val);
--
--	return !(val & CCU_DIV_CTL_GATE_REF_BUF);
--}
--
--static unsigned long ccu_div_var_recalc_rate(struct clk_hw *hw,
--					     unsigned long parent_rate)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long divider;
--	u32 val = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &val);
--	divider = ccu_div_get(div->mask, val);
--
--	return ccu_div_calc_freq(parent_rate, divider);
--}
--
--static inline unsigned long ccu_div_var_calc_divider(unsigned long rate,
--						     unsigned long parent_rate,
--						     unsigned int mask)
--{
--	unsigned long divider;
--
--	divider = parent_rate / rate;
--	return clamp_t(unsigned long, divider, CCU_DIV_CLKDIV_MIN,
--		       CCU_DIV_CLKDIV_MAX(mask));
--}
--
--static int ccu_div_var_determine_rate(struct clk_hw *hw,
--				      struct clk_rate_request *req)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long divider;
--
--	divider = ccu_div_var_calc_divider(req->rate, req->best_parent_rate,
--					   div->mask);
--
--	req->rate = ccu_div_calc_freq(req->best_parent_rate, divider);
--
--	return 0;
--}
--
--/*
-- * This method is used for the clock divider blocks, which support the
-- * on-the-fly rate change. So due to lacking the EN bit functionality
-- * they can't be gated before the rate adjustment.
-- */
--static int ccu_div_var_set_rate_slow(struct clk_hw *hw, unsigned long rate,
--				     unsigned long parent_rate)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags, divider;
--	u32 val;
--	int ret;
--
--	divider = ccu_div_var_calc_divider(rate, parent_rate, div->mask);
--	if (divider == 1 && div->features & CCU_DIV_SKIP_ONE) {
--		divider = 0;
--	} else if (div->features & CCU_DIV_SKIP_ONE_TO_THREE) {
--		if (divider == 1 || divider == 2)
--			divider = 0;
--		else if (divider == 3)
--			divider = 4;
--	}
--
--	val = ccu_div_prep(div->mask, divider);
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl, div->mask, val);
--	ret = ccu_div_var_update_clkdiv(div, parent_rate, divider);
--	spin_unlock_irqrestore(&div->lock, flags);
--	if (ret)
--		pr_err("Divider '%s' lock timed out\n", clk_hw_get_name(hw));
--
--	return ret;
--}
--
--/*
-- * This method is used for the clock divider blocks, which don't support
-- * the on-the-fly rate change.
-- */
--static int ccu_div_var_set_rate_fast(struct clk_hw *hw, unsigned long rate,
--				     unsigned long parent_rate)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags, divider;
--	u32 val;
--
--	divider = ccu_div_var_calc_divider(rate, parent_rate, div->mask);
--	val = ccu_div_prep(div->mask, divider);
--
--	/*
--	 * Also disable the clock divider block if it was enabled by default
--	 * or by the bootloader.
--	 */
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   div->mask | CCU_DIV_CTL_EN, val);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--static unsigned long ccu_div_fixed_recalc_rate(struct clk_hw *hw,
--					       unsigned long parent_rate)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--
--	return ccu_div_calc_freq(parent_rate, div->divider);
--}
--
--static int ccu_div_fixed_determine_rate(struct clk_hw *hw,
--					struct clk_rate_request *req)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--
--	req->rate = ccu_div_calc_freq(req->best_parent_rate, div->divider);
--
--	return 0;
--}
--
--static int ccu_div_fixed_set_rate(struct clk_hw *hw, unsigned long rate,
--				  unsigned long parent_rate)
--{
--	return 0;
--}
--
--#ifdef CONFIG_DEBUG_FS
--
--struct ccu_div_dbgfs_bit {
--	struct ccu_div *div;
--	const char *name;
--	u32 mask;
--};
--
--#define CCU_DIV_DBGFS_BIT_ATTR(_name, _mask) {	\
--		.name = _name,			\
--		.mask = _mask			\
--	}
--
--static const struct ccu_div_dbgfs_bit ccu_div_bits[] = {
--	CCU_DIV_DBGFS_BIT_ATTR("div_en", CCU_DIV_CTL_EN),
--	CCU_DIV_DBGFS_BIT_ATTR("div_rst", CCU_DIV_CTL_RST),
--	CCU_DIV_DBGFS_BIT_ATTR("div_bypass", CCU_DIV_CTL_SET_CLKDIV),
--	CCU_DIV_DBGFS_BIT_ATTR("div_buf", CCU_DIV_CTL_GATE_REF_BUF),
--	CCU_DIV_DBGFS_BIT_ATTR("div_lock", CCU_DIV_CTL_LOCK_NORMAL)
--};
--
--#define CCU_DIV_DBGFS_BIT_NUM	ARRAY_SIZE(ccu_div_bits)
--
--/*
-- * It can be dangerous to change the Divider settings behind clock framework
-- * back, therefore we don't provide any kernel config based compile time option
-- * for this feature to enable.
-- */
--#undef CCU_DIV_ALLOW_WRITE_DEBUGFS
--#ifdef CCU_DIV_ALLOW_WRITE_DEBUGFS
--
--static int ccu_div_dbgfs_bit_set(void *priv, u64 val)
--{
--	const struct ccu_div_dbgfs_bit *bit = priv;
--	struct ccu_div *div = bit->div;
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   bit->mask, val ? bit->mask : 0);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--static int ccu_div_dbgfs_var_clkdiv_set(void *priv, u64 val)
--{
--	struct ccu_div *div = priv;
--	unsigned long flags;
--	u32 data;
--
--	val = clamp_t(u64, val, CCU_DIV_CLKDIV_MIN,
--		      CCU_DIV_CLKDIV_MAX(div->mask));
--	data = ccu_div_prep(div->mask, val);
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl, div->mask, data);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--#define ccu_div_dbgfs_mode		0644
--
--#else /* !CCU_DIV_ALLOW_WRITE_DEBUGFS */
--
--#define ccu_div_dbgfs_bit_set		NULL
--#define ccu_div_dbgfs_var_clkdiv_set	NULL
--#define ccu_div_dbgfs_mode		0444
--
--#endif /* !CCU_DIV_ALLOW_WRITE_DEBUGFS */
--
--static int ccu_div_dbgfs_bit_get(void *priv, u64 *val)
--{
--	const struct ccu_div_dbgfs_bit *bit = priv;
--	struct ccu_div *div = bit->div;
--	u32 data = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &data);
--	*val = !!(data & bit->mask);
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_div_dbgfs_bit_fops,
--	ccu_div_dbgfs_bit_get, ccu_div_dbgfs_bit_set, "%llu\n");
--
--static int ccu_div_dbgfs_var_clkdiv_get(void *priv, u64 *val)
--{
--	struct ccu_div *div = priv;
--	u32 data = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &data);
--	*val = ccu_div_get(div->mask, data);
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_div_dbgfs_var_clkdiv_fops,
--	ccu_div_dbgfs_var_clkdiv_get, ccu_div_dbgfs_var_clkdiv_set, "%llu\n");
--
--static int ccu_div_dbgfs_fixed_clkdiv_get(void *priv, u64 *val)
--{
--	struct ccu_div *div = priv;
--
--	*val = div->divider;
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_div_dbgfs_fixed_clkdiv_fops,
--	ccu_div_dbgfs_fixed_clkdiv_get, NULL, "%llu\n");
--
--static void ccu_div_var_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	struct ccu_div_dbgfs_bit *bits;
--	int didx, bidx, num = 2;
--	const char *name;
--
--	num += !!(div->flags & CLK_SET_RATE_GATE) +
--		!!(div->features & CCU_DIV_RESET_DOMAIN);
--
--	bits = kcalloc(num, sizeof(*bits), GFP_KERNEL);
--	if (!bits)
--		return;
--
--	for (didx = 0, bidx = 0; bidx < CCU_DIV_DBGFS_BIT_NUM; ++bidx) {
--		name = ccu_div_bits[bidx].name;
--		if (!(div->flags & CLK_SET_RATE_GATE) &&
--		    !strcmp("div_en", name)) {
--			continue;
--		}
--
--		if (!(div->features & CCU_DIV_RESET_DOMAIN) &&
--		    !strcmp("div_rst", name)) {
--			continue;
--		}
--
--		if (!strcmp("div_buf", name))
--			continue;
--
--		bits[didx] = ccu_div_bits[bidx];
--		bits[didx].div = div;
--
--		if (div->features & CCU_DIV_LOCK_SHIFTED &&
--		    !strcmp("div_lock", name)) {
--			bits[didx].mask = CCU_DIV_CTL_LOCK_SHIFTED;
--		}
--
--		debugfs_create_file_unsafe(bits[didx].name, ccu_div_dbgfs_mode,
--					   dentry, &bits[didx],
--					   &ccu_div_dbgfs_bit_fops);
--		++didx;
--	}
--
--	debugfs_create_file_unsafe("div_clkdiv", ccu_div_dbgfs_mode, dentry,
--				   div, &ccu_div_dbgfs_var_clkdiv_fops);
--}
--
--static void ccu_div_gate_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	struct ccu_div_dbgfs_bit *bit;
--
--	bit = kmalloc(sizeof(*bit), GFP_KERNEL);
--	if (!bit)
--		return;
--
--	*bit = ccu_div_bits[0];
--	bit->div = div;
--	debugfs_create_file_unsafe(bit->name, ccu_div_dbgfs_mode, dentry, bit,
--				   &ccu_div_dbgfs_bit_fops);
--
--	debugfs_create_file_unsafe("div_clkdiv", 0400, dentry, div,
--				   &ccu_div_dbgfs_fixed_clkdiv_fops);
--}
--
--static void ccu_div_buf_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	struct ccu_div_dbgfs_bit *bit;
--
--	bit = kmalloc(sizeof(*bit), GFP_KERNEL);
--	if (!bit)
--		return;
--
--	*bit = ccu_div_bits[3];
--	bit->div = div;
--	debugfs_create_file_unsafe(bit->name, ccu_div_dbgfs_mode, dentry, bit,
--				   &ccu_div_dbgfs_bit_fops);
--}
--
--static void ccu_div_fixed_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--
--	debugfs_create_file_unsafe("div_clkdiv", 0400, dentry, div,
--				   &ccu_div_dbgfs_fixed_clkdiv_fops);
--}
--
--#else /* !CONFIG_DEBUG_FS */
--
--#define ccu_div_var_debug_init NULL
--#define ccu_div_gate_debug_init NULL
--#define ccu_div_buf_debug_init NULL
--#define ccu_div_fixed_debug_init NULL
--
--#endif /* !CONFIG_DEBUG_FS */
--
--static const struct clk_ops ccu_div_var_gate_to_set_ops = {
--	.enable = ccu_div_var_enable,
--	.disable = ccu_div_gate_disable,
--	.is_enabled = ccu_div_gate_is_enabled,
--	.recalc_rate = ccu_div_var_recalc_rate,
--	.determine_rate = ccu_div_var_determine_rate,
--	.set_rate = ccu_div_var_set_rate_fast,
--	.debug_init = ccu_div_var_debug_init
--};
--
--static const struct clk_ops ccu_div_var_nogate_ops = {
--	.recalc_rate = ccu_div_var_recalc_rate,
--	.determine_rate = ccu_div_var_determine_rate,
--	.set_rate = ccu_div_var_set_rate_slow,
--	.debug_init = ccu_div_var_debug_init
--};
--
--static const struct clk_ops ccu_div_gate_ops = {
--	.enable = ccu_div_gate_enable,
--	.disable = ccu_div_gate_disable,
--	.is_enabled = ccu_div_gate_is_enabled,
--	.recalc_rate = ccu_div_fixed_recalc_rate,
--	.determine_rate = ccu_div_fixed_determine_rate,
--	.set_rate = ccu_div_fixed_set_rate,
--	.debug_init = ccu_div_gate_debug_init
--};
--
--static const struct clk_ops ccu_div_buf_ops = {
--	.enable = ccu_div_buf_enable,
--	.disable = ccu_div_buf_disable,
--	.is_enabled = ccu_div_buf_is_enabled,
--	.debug_init = ccu_div_buf_debug_init
--};
--
--static const struct clk_ops ccu_div_fixed_ops = {
--	.recalc_rate = ccu_div_fixed_recalc_rate,
--	.determine_rate = ccu_div_fixed_determine_rate,
--	.set_rate = ccu_div_fixed_set_rate,
--	.debug_init = ccu_div_fixed_debug_init
--};
--
--struct ccu_div *ccu_div_hw_register(const struct ccu_div_init_data *div_init)
--{
--	struct clk_parent_data parent_data = { };
--	struct clk_init_data hw_init = { };
--	struct ccu_div *div;
--	int ret;
--
--	if (!div_init)
--		return ERR_PTR(-EINVAL);
--
--	div = kzalloc(sizeof(*div), GFP_KERNEL);
--	if (!div)
--		return ERR_PTR(-ENOMEM);
--
--	/*
--	 * Note since Baikal-T1 System Controller registers are MMIO-backed
--	 * we won't check the regmap IO operations return status, because it
--	 * must be zero anyway.
--	 */
--	div->hw.init = &hw_init;
--	div->id = div_init->id;
--	div->reg_ctl = div_init->base + CCU_DIV_CTL;
--	div->sys_regs = div_init->sys_regs;
--	div->flags = div_init->flags;
--	div->features = div_init->features;
--	spin_lock_init(&div->lock);
--
--	hw_init.name = div_init->name;
--	hw_init.flags = div_init->flags;
--
--	if (div_init->type == CCU_DIV_VAR) {
--		if (hw_init.flags & CLK_SET_RATE_GATE)
--			hw_init.ops = &ccu_div_var_gate_to_set_ops;
--		else
--			hw_init.ops = &ccu_div_var_nogate_ops;
--		div->mask = CCU_DIV_CTL_CLKDIV_MASK(div_init->width);
--	} else if (div_init->type == CCU_DIV_GATE) {
--		hw_init.ops = &ccu_div_gate_ops;
--		div->divider = div_init->divider;
--	} else if (div_init->type == CCU_DIV_BUF) {
--		hw_init.ops = &ccu_div_buf_ops;
--	} else if (div_init->type == CCU_DIV_FIXED) {
--		hw_init.ops = &ccu_div_fixed_ops;
--		div->divider = div_init->divider;
--	} else {
--		ret = -EINVAL;
--		goto err_free_div;
--	}
--
--	if (!div_init->parent_name) {
--		ret = -EINVAL;
--		goto err_free_div;
--	}
--	parent_data.fw_name = div_init->parent_name;
--	parent_data.name = div_init->parent_name;
--	hw_init.parent_data = &parent_data;
--	hw_init.num_parents = 1;
--
--	ret = of_clk_hw_register(div_init->np, &div->hw);
--	if (ret)
--		goto err_free_div;
--
--	return div;
--
--err_free_div:
--	kfree(div);
--
--	return ERR_PTR(ret);
--}
--
--void ccu_div_hw_unregister(struct ccu_div *div)
--{
--	clk_hw_unregister(&div->hw);
--
--	kfree(div);
--}
-diff --git a/drivers/clk/baikal-t1/ccu-div.h b/drivers/clk/baikal-t1/ccu-div.h
-deleted file mode 100644
-index 76d8ee44d415..000000000000
---- a/drivers/clk/baikal-t1/ccu-div.h
-+++ /dev/null
-@@ -1,121 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Baikal-T1 CCU Dividers interface driver
-- */
--#ifndef __CLK_BT1_CCU_DIV_H__
--#define __CLK_BT1_CCU_DIV_H__
--
--#include <linux/clk-provider.h>
--#include <linux/spinlock.h>
--#include <linux/regmap.h>
--#include <linux/bits.h>
--#include <linux/of.h>
--
--/*
-- * CCU Divider private clock IDs
-- * @CCU_SYS_SATA_CLK: CCU SATA internal clock
-- * @CCU_SYS_XGMAC_CLK: CCU XGMAC internal clock
-- */
--#define CCU_SYS_SATA_CLK		-1
--#define CCU_SYS_XGMAC_CLK		-2
--
--/*
-- * CCU Divider private flags
-- * @CCU_DIV_BASIC: Basic divider clock required by the kernel as early as
-- *		   possible.
-- * @CCU_DIV_SKIP_ONE: Due to some reason divider can't be set to 1.
-- *		      It can be 0 though, which is functionally the same.
-- * @CCU_DIV_SKIP_ONE_TO_THREE: For some reason divider can't be within [1,3].
-- *			       It can be either 0 or greater than 3.
-- * @CCU_DIV_LOCK_SHIFTED: Find lock-bit at non-standard position.
-- * @CCU_DIV_RESET_DOMAIN: There is a clock domain reset handle.
-- */
--#define CCU_DIV_BASIC			BIT(0)
--#define CCU_DIV_SKIP_ONE		BIT(1)
--#define CCU_DIV_SKIP_ONE_TO_THREE	BIT(2)
--#define CCU_DIV_LOCK_SHIFTED		BIT(3)
--#define CCU_DIV_RESET_DOMAIN		BIT(4)
--
--/*
-- * enum ccu_div_type - CCU Divider types
-- * @CCU_DIV_VAR: Clocks gate with variable divider.
-- * @CCU_DIV_GATE: Clocks gate with fixed divider.
-- * @CCU_DIV_BUF: Clock gate with no divider.
-- * @CCU_DIV_FIXED: Ungateable clock with fixed divider.
-- */
--enum ccu_div_type {
--	CCU_DIV_VAR,
--	CCU_DIV_GATE,
--	CCU_DIV_BUF,
--	CCU_DIV_FIXED
--};
--
--/*
-- * struct ccu_div_init_data - CCU Divider initialization data
-- * @id: Clocks private identifier.
-- * @name: Clocks name.
-- * @parent_name: Parent clocks name in a fw node.
-- * @base: Divider register base address with respect to the sys_regs base.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @np: Pointer to the node describing the CCU Dividers.
-- * @type: CCU divider type (variable, fixed with and without gate).
-- * @width: Divider width if it's variable.
-- * @divider: Divider fixed value.
-- * @flags: CCU Divider clock flags.
-- * @features: CCU Divider private features.
-- */
--struct ccu_div_init_data {
--	unsigned int id;
--	const char *name;
--	const char *parent_name;
--	unsigned int base;
--	struct regmap *sys_regs;
--	struct device_node *np;
--	enum ccu_div_type type;
--	union {
--		unsigned int width;
--		unsigned int divider;
--	};
--	unsigned long flags;
--	unsigned long features;
--};
--
--/*
-- * struct ccu_div - CCU Divider descriptor
-- * @hw: clk_hw of the divider.
-- * @id: Clock private identifier.
-- * @reg_ctl: Divider control register base address.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @lock: Divider state change spin-lock.
-- * @mask: Divider field mask.
-- * @divider: Divider fixed value.
-- * @flags: Divider clock flags.
-- * @features: CCU Divider private features.
-- */
--struct ccu_div {
--	struct clk_hw hw;
--	unsigned int id;
--	unsigned int reg_ctl;
--	struct regmap *sys_regs;
--	spinlock_t lock;
--	union {
--		u32 mask;
--		unsigned int divider;
--	};
--	unsigned long flags;
--	unsigned long features;
--};
--#define to_ccu_div(_hw) container_of(_hw, struct ccu_div, hw)
--
--static inline struct clk_hw *ccu_div_get_clk_hw(struct ccu_div *div)
--{
--	return div ? &div->hw : NULL;
--}
--
--struct ccu_div *ccu_div_hw_register(const struct ccu_div_init_data *init);
--
--void ccu_div_hw_unregister(struct ccu_div *div);
--
--#endif /* __CLK_BT1_CCU_DIV_H__ */
-diff --git a/drivers/clk/baikal-t1/ccu-pll.c b/drivers/clk/baikal-t1/ccu-pll.c
-deleted file mode 100644
-index 357269f41cdc..000000000000
---- a/drivers/clk/baikal-t1/ccu-pll.c
-+++ /dev/null
-@@ -1,560 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *   Dmitry Dunaev <dmitry.dunaev@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU PLL interface driver
-- */
--
--#define pr_fmt(fmt) "bt1-ccu-pll: " fmt
--
+-#include <linux/device.h>
+-#include <linux/hwmon-sysfs.h>
+-#include <linux/hwmon.h>
+-#include <linux/interrupt.h>
+-#include <linux/io.h>
 -#include <linux/kernel.h>
--#include <linux/printk.h>
+-#include <linux/ktime.h>
 -#include <linux/limits.h>
--#include <linux/bits.h>
--#include <linux/bitfield.h>
--#include <linux/slab.h>
--#include <linux/clk-provider.h>
+-#include <linux/module.h>
+-#include <linux/mutex.h>
 -#include <linux/of.h>
--#include <linux/spinlock.h>
--#include <linux/regmap.h>
--#include <linux/iopoll.h>
--#include <linux/time64.h>
--#include <linux/rational.h>
--#include <linux/debugfs.h>
+-#include <linux/platform_device.h>
+-#include <linux/polynomial.h>
+-#include <linux/seqlock.h>
+-#include <linux/sysfs.h>
+-#include <linux/types.h>
 -
--#include "ccu-pll.h"
+-#include "bt1-pvt.h"
 -
--#define CCU_PLL_CTL			0x000
--#define CCU_PLL_CTL_EN			BIT(0)
--#define CCU_PLL_CTL_RST			BIT(1)
--#define CCU_PLL_CTL_CLKR_FLD		2
--#define CCU_PLL_CTL_CLKR_MASK		GENMASK(7, CCU_PLL_CTL_CLKR_FLD)
--#define CCU_PLL_CTL_CLKF_FLD		8
--#define CCU_PLL_CTL_CLKF_MASK		GENMASK(20, CCU_PLL_CTL_CLKF_FLD)
--#define CCU_PLL_CTL_CLKOD_FLD		21
--#define CCU_PLL_CTL_CLKOD_MASK		GENMASK(24, CCU_PLL_CTL_CLKOD_FLD)
--#define CCU_PLL_CTL_BYPASS		BIT(30)
--#define CCU_PLL_CTL_LOCK		BIT(31)
--#define CCU_PLL_CTL1			0x004
--#define CCU_PLL_CTL1_BWADJ_FLD		3
--#define CCU_PLL_CTL1_BWADJ_MASK		GENMASK(14, CCU_PLL_CTL1_BWADJ_FLD)
+-/*
+- * For the sake of the code simplification we created the sensors info table
+- * with the sensor names, activation modes, threshold registers base address
+- * and the thresholds bit fields.
+- */
+-static const struct pvt_sensor_info pvt_info[] = {
+-	PVT_SENSOR_INFO(0, "CPU Core Temperature", hwmon_temp, TEMP, TTHRES),
+-	PVT_SENSOR_INFO(0, "CPU Core Voltage", hwmon_in, VOLT, VTHRES),
+-	PVT_SENSOR_INFO(1, "CPU Core Low-Vt", hwmon_in, LVT, LTHRES),
+-	PVT_SENSOR_INFO(2, "CPU Core High-Vt", hwmon_in, HVT, HTHRES),
+-	PVT_SENSOR_INFO(3, "CPU Core Standard-Vt", hwmon_in, SVT, STHRES),
+-};
 -
--#define CCU_PLL_LOCK_CHECK_RETRIES	50
--
--#define CCU_PLL_NR_MAX \
--	((CCU_PLL_CTL_CLKR_MASK >> CCU_PLL_CTL_CLKR_FLD) + 1)
--#define CCU_PLL_NF_MAX \
--	((CCU_PLL_CTL_CLKF_MASK >> (CCU_PLL_CTL_CLKF_FLD + 1)) + 1)
--#define CCU_PLL_OD_MAX \
--	((CCU_PLL_CTL_CLKOD_MASK >> CCU_PLL_CTL_CLKOD_FLD) + 1)
--#define CCU_PLL_NB_MAX \
--	((CCU_PLL_CTL1_BWADJ_MASK >> CCU_PLL_CTL1_BWADJ_FLD) + 1)
--#define CCU_PLL_FDIV_MIN		427000UL
--#define CCU_PLL_FDIV_MAX		3500000000UL
--#define CCU_PLL_FOUT_MIN		200000000UL
--#define CCU_PLL_FOUT_MAX		2500000000UL
--#define CCU_PLL_FVCO_MIN		700000000UL
--#define CCU_PLL_FVCO_MAX		3500000000UL
--#define CCU_PLL_CLKOD_FACTOR		2
--
--static inline unsigned long ccu_pll_lock_delay_us(unsigned long ref_clk,
--						  unsigned long nr)
--{
--	u64 us = 500ULL * nr * USEC_PER_SEC;
--
--	do_div(us, ref_clk);
--
--	return us;
--}
--
--static inline unsigned long ccu_pll_calc_freq(unsigned long ref_clk,
--					      unsigned long nr,
--					      unsigned long nf,
--					      unsigned long od)
--{
--	u64 tmp = ref_clk;
--
--	do_div(tmp, nr);
--	tmp *= nf;
--	do_div(tmp, od);
--
--	return tmp;
--}
--
--static int ccu_pll_reset(struct ccu_pll *pll, unsigned long ref_clk,
--			 unsigned long nr)
--{
--	unsigned long ud, ut;
--	u32 val;
--
--	ud = ccu_pll_lock_delay_us(ref_clk, nr);
--	ut = ud * CCU_PLL_LOCK_CHECK_RETRIES;
--
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl,
--			   CCU_PLL_CTL_RST, CCU_PLL_CTL_RST);
--
--	return regmap_read_poll_timeout_atomic(pll->sys_regs, pll->reg_ctl, val,
--					       val & CCU_PLL_CTL_LOCK, ud, ut);
--}
--
--static int ccu_pll_enable(struct clk_hw *hw)
--{
--	struct clk_hw *parent_hw = clk_hw_get_parent(hw);
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long flags;
--	u32 val = 0;
--	int ret;
--
--	if (!parent_hw) {
--		pr_err("Can't enable '%s' with no parent", clk_hw_get_name(hw));
--		return -EINVAL;
+-/*
+- * The original translation formulae of the temperature (in degrees of Celsius)
+- * to PVT data and vice-versa are following:
+- * N = 1.8322e-8*(T^4) + 2.343e-5*(T^3) + 8.7018e-3*(T^2) + 3.9269*(T^1) +
+- *     1.7204e2,
+- * T = -1.6743e-11*(N^4) + 8.1542e-8*(N^3) + -1.8201e-4*(N^2) +
+- *     3.1020e-1*(N^1) - 4.838e1,
+- * where T = [-48.380, 147.438]C and N = [0, 1023].
+- * They must be accordingly altered to be suitable for the integer arithmetics.
+- * The technique is called 'factor redistribution', which just makes sure the
+- * multiplications and divisions are made so to have a result of the operations
+- * within the integer numbers limit. In addition we need to translate the
+- * formulae to accept millidegrees of Celsius. Here what they look like after
+- * the alterations:
+- * N = (18322e-20*(T^4) + 2343e-13*(T^3) + 87018e-9*(T^2) + 39269e-3*T +
+- *     17204e2) / 1e4,
+- * T = -16743e-12*(D^4) + 81542e-9*(D^3) - 182010e-6*(D^2) + 310200e-3*D -
+- *     48380,
+- * where T = [-48380, 147438] mC and N = [0, 1023].
+- */
+-static const struct polynomial __maybe_unused poly_temp_to_N = {
+-	.total_divider = 10000,
+-	.terms = {
+-		{4, 18322, 10000, 10000},
+-		{3, 2343, 10000, 10},
+-		{2, 87018, 10000, 10},
+-		{1, 39269, 1000, 1},
+-		{0, 1720400, 1, 1}
 -	}
+-};
 -
--	regmap_read(pll->sys_regs, pll->reg_ctl, &val);
--	if (val & CCU_PLL_CTL_EN)
--		return 0;
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_write(pll->sys_regs, pll->reg_ctl, val | CCU_PLL_CTL_EN);
--	ret = ccu_pll_reset(pll, clk_hw_get_rate(parent_hw),
--			    FIELD_GET(CCU_PLL_CTL_CLKR_MASK, val) + 1);
--	spin_unlock_irqrestore(&pll->lock, flags);
--	if (ret)
--		pr_err("PLL '%s' reset timed out\n", clk_hw_get_name(hw));
--
--	return ret;
--}
--
--static void ccu_pll_disable(struct clk_hw *hw)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl, CCU_PLL_CTL_EN, 0);
--	spin_unlock_irqrestore(&pll->lock, flags);
--}
--
--static int ccu_pll_is_enabled(struct clk_hw *hw)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	u32 val = 0;
--
--	regmap_read(pll->sys_regs, pll->reg_ctl, &val);
--
--	return !!(val & CCU_PLL_CTL_EN);
--}
--
--static unsigned long ccu_pll_recalc_rate(struct clk_hw *hw,
--					 unsigned long parent_rate)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long nr, nf, od;
--	u32 val = 0;
--
--	regmap_read(pll->sys_regs, pll->reg_ctl, &val);
--	nr = FIELD_GET(CCU_PLL_CTL_CLKR_MASK, val) + 1;
--	nf = FIELD_GET(CCU_PLL_CTL_CLKF_MASK, val) + 1;
--	od = FIELD_GET(CCU_PLL_CTL_CLKOD_MASK, val) + 1;
--
--	return ccu_pll_calc_freq(parent_rate, nr, nf, od);
--}
--
--static void ccu_pll_calc_factors(unsigned long rate, unsigned long parent_rate,
--				 unsigned long *nr, unsigned long *nf,
--				 unsigned long *od)
--{
--	unsigned long err, freq, min_err = ULONG_MAX;
--	unsigned long num, denom, n1, d1, nri;
--	unsigned long nr_max, nf_max, od_max;
--
--	/*
--	 * Make sure PLL is working with valid input signal (Fdiv). If
--	 * you want to speed the function up just reduce CCU_PLL_NR_MAX.
--	 * This will cause a worse approximation though.
--	 */
--	nri = (parent_rate / CCU_PLL_FDIV_MAX) + 1;
--	nr_max = min(parent_rate / CCU_PLL_FDIV_MIN, CCU_PLL_NR_MAX);
--
--	/*
--	 * Find a closest [nr;nf;od] vector taking into account the
--	 * limitations like: 1) 700MHz <= Fvco <= 3.5GHz, 2) PLL Od is
--	 * either 1 or even number within the acceptable range (alas 1s
--	 * is also excluded by the next loop).
--	 */
--	for (; nri <= nr_max; ++nri) {
--		/* Use Od factor to fulfill the limitation 2). */
--		num = CCU_PLL_CLKOD_FACTOR * rate;
--		denom = parent_rate / nri;
--
--		/*
--		 * Make sure Fvco is within the acceptable range to fulfill
--		 * the condition 1). Note due to the CCU_PLL_CLKOD_FACTOR value
--		 * the actual upper limit is also divided by that factor.
--		 * It's not big problem for us since practically there is no
--		 * need in clocks with that high frequency.
--		 */
--		nf_max = min(CCU_PLL_FVCO_MAX / denom, CCU_PLL_NF_MAX);
--		od_max = CCU_PLL_OD_MAX / CCU_PLL_CLKOD_FACTOR;
--
--		/*
--		 * Bypass the out-of-bound values, which can't be properly
--		 * handled by the rational fraction approximation algorithm.
--		 */
--		if (num / denom >= nf_max) {
--			n1 = nf_max;
--			d1 = 1;
--		} else if (denom / num >= od_max) {
--			n1 = 1;
--			d1 = od_max;
--		} else {
--			rational_best_approximation(num, denom, nf_max, od_max,
--						    &n1, &d1);
--		}
--
--		/* Select the best approximation of the target rate. */
--		freq = ccu_pll_calc_freq(parent_rate, nri, n1, d1);
--		err = abs((int64_t)freq - num);
--		if (err < min_err) {
--			min_err = err;
--			*nr = nri;
--			*nf = n1;
--			*od = CCU_PLL_CLKOD_FACTOR * d1;
--		}
+-static const struct polynomial poly_N_to_temp = {
+-	.total_divider = 1,
+-	.terms = {
+-		{4, -16743, 1000, 1},
+-		{3, 81542, 1000, 1},
+-		{2, -182010, 1000, 1},
+-		{1, 310200, 1000, 1},
+-		{0, -48380, 1, 1}
 -	}
--}
+-};
 -
--static int ccu_pll_determine_rate(struct clk_hw *hw,
--				  struct clk_rate_request *req)
+-/*
+- * Similar alterations are performed for the voltage conversion equations.
+- * The original formulae are:
+- * N = 1.8658e3*V - 1.1572e3,
+- * V = (N + 1.1572e3) / 1.8658e3,
+- * where V = [0.620, 1.168] V and N = [0, 1023].
+- * After the optimization they looks as follows:
+- * N = (18658e-3*V - 11572) / 10,
+- * V = N * 10^5 / 18658 + 11572 * 10^4 / 18658.
+- */
+-static const struct polynomial __maybe_unused poly_volt_to_N = {
+-	.total_divider = 10,
+-	.terms = {
+-		{1, 18658, 1000, 1},
+-		{0, -11572, 1, 1}
+-	}
+-};
+-
+-static const struct polynomial poly_N_to_volt = {
+-	.total_divider = 10,
+-	.terms = {
+-		{1, 100000, 18658, 1},
+-		{0, 115720000, 1, 18658}
+-	}
+-};
+-
+-static inline u32 pvt_update(void __iomem *reg, u32 mask, u32 data)
 -{
--	unsigned long nr = 1, nf = 1, od = 1;
+-	u32 old;
 -
--	ccu_pll_calc_factors(req->rate, req->best_parent_rate, &nr, &nf, &od);
+-	old = readl_relaxed(reg);
+-	writel((old & ~mask) | (data & mask), reg);
 -
--	req->rate = ccu_pll_calc_freq(req->best_parent_rate, nr, nf, od);
--
--	return 0;
+-	return old & mask;
 -}
 -
 -/*
-- * This method is used for PLLs, which support the on-the-fly dividers
-- * adjustment. So there is no need in gating such clocks.
+- * Baikal-T1 PVT mode can be updated only when the controller is disabled.
+- * So first we disable it, then set the new mode together with the controller
+- * getting back enabled. The same concerns the temperature trim and
+- * measurements timeout. If it is necessary the interface mutex is supposed
+- * to be locked at the time the operations are performed.
 - */
--static int ccu_pll_set_rate_reset(struct clk_hw *hw, unsigned long rate,
--				  unsigned long parent_rate)
+-static inline void pvt_set_mode(struct pvt_hwmon *pvt, u32 mode)
 -{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long nr, nf, od;
--	unsigned long flags;
--	u32 mask, val;
--	int ret;
+-	u32 old;
 -
--	ccu_pll_calc_factors(rate, parent_rate, &nr, &nf, &od);
+-	mode = FIELD_PREP(PVT_CTRL_MODE_MASK, mode);
 -
--	mask = CCU_PLL_CTL_CLKR_MASK | CCU_PLL_CTL_CLKF_MASK |
--	       CCU_PLL_CTL_CLKOD_MASK;
--	val = FIELD_PREP(CCU_PLL_CTL_CLKR_MASK, nr - 1) |
--	      FIELD_PREP(CCU_PLL_CTL_CLKF_MASK, nf - 1) |
--	      FIELD_PREP(CCU_PLL_CTL_CLKOD_MASK, od - 1);
+-	old = pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, 0);
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_MODE_MASK | PVT_CTRL_EN,
+-		   mode | old);
+-}
 -
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl, mask, val);
--	ret = ccu_pll_reset(pll, parent_rate, nr);
--	spin_unlock_irqrestore(&pll->lock, flags);
--	if (ret)
--		pr_err("PLL '%s' reset timed out\n", clk_hw_get_name(hw));
+-static inline u32 pvt_calc_trim(long temp)
+-{
+-	temp = clamp_val(temp, 0, PVT_TRIM_TEMP);
 -
--	return ret;
+-	return DIV_ROUND_UP(temp, PVT_TRIM_STEP);
+-}
+-
+-static inline void pvt_set_trim(struct pvt_hwmon *pvt, u32 trim)
+-{
+-	u32 old;
+-
+-	trim = FIELD_PREP(PVT_CTRL_TRIM_MASK, trim);
+-
+-	old = pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, 0);
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_TRIM_MASK | PVT_CTRL_EN,
+-		   trim | old);
+-}
+-
+-static inline void pvt_set_tout(struct pvt_hwmon *pvt, u32 tout)
+-{
+-	u32 old;
+-
+-	old = pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, 0);
+-	writel(tout, pvt->regs + PVT_TTIMEOUT);
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, old);
 -}
 -
 -/*
-- * This method is used for PLLs, which don't support the on-the-fly dividers
-- * adjustment. So the corresponding clocks are supposed to be gated first.
+- * This driver can optionally provide the hwmon alarms for each sensor the PVT
+- * controller supports. The alarms functionality is made compile-time
+- * configurable due to the hardware interface implementation peculiarity
+- * described further in this comment. So in case if alarms are unnecessary in
+- * your system design it's recommended to have them disabled to prevent the PVT
+- * IRQs being periodically raised to get the data cache/alarms status up to
+- * date.
+- *
+- * Baikal-T1 PVT embedded controller is based on the Analog Bits PVT sensor,
+- * but is equipped with a dedicated control wrapper. It exposes the PVT
+- * sub-block registers space via the APB3 bus. In addition the wrapper provides
+- * a common interrupt vector of the sensors conversion completion events and
+- * threshold value alarms. Alas the wrapper interface hasn't been fully thought
+- * through. There is only one sensor can be activated at a time, for which the
+- * thresholds comparator is enabled right after the data conversion is
+- * completed. Due to this if alarms need to be implemented for all available
+- * sensors we can't just set the thresholds and enable the interrupts. We need
+- * to enable the sensors one after another and let the controller to detect
+- * the alarms by itself at each conversion. This also makes pointless to handle
+- * the alarms interrupts, since in occasion they happen synchronously with
+- * data conversion completion. The best driver design would be to have the
+- * completion interrupts enabled only and keep the converted value in the
+- * driver data cache. This solution is implemented if hwmon alarms are enabled
+- * in this driver. In case if the alarms are disabled, the conversion is
+- * performed on demand at the time a sensors input file is read.
 - */
--static int ccu_pll_set_rate_norst(struct clk_hw *hw, unsigned long rate,
--				  unsigned long parent_rate)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long nr, nf, od;
--	unsigned long flags;
--	u32 mask, val;
 -
--	ccu_pll_calc_factors(rate, parent_rate, &nr, &nf, &od);
+-#if defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-
+-#define pvt_hard_isr NULL
+-
+-static irqreturn_t pvt_soft_isr(int irq, void *data)
+-{
+-	const struct pvt_sensor_info *info;
+-	struct pvt_hwmon *pvt = data;
+-	struct pvt_cache *cache;
+-	u32 val, thres_sts, old;
 -
 -	/*
--	 * Disable PLL if it was enabled by default or left enabled by the
--	 * system bootloader.
+-	 * DVALID bit will be cleared by reading the data. We need to save the
+-	 * status before the next conversion happens. Threshold events will be
+-	 * handled a bit later.
 -	 */
--	mask = CCU_PLL_CTL_CLKR_MASK | CCU_PLL_CTL_CLKF_MASK |
--	       CCU_PLL_CTL_CLKOD_MASK | CCU_PLL_CTL_EN;
--	val = FIELD_PREP(CCU_PLL_CTL_CLKR_MASK, nr - 1) |
--	      FIELD_PREP(CCU_PLL_CTL_CLKF_MASK, nf - 1) |
--	      FIELD_PREP(CCU_PLL_CTL_CLKOD_MASK, od - 1);
+-	thres_sts = readl(pvt->regs + PVT_RAW_INTR_STAT);
 -
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl, mask, val);
--	spin_unlock_irqrestore(&pll->lock, flags);
+-	/*
+-	 * Then lets recharge the PVT interface with the next sampling mode.
+-	 * Lock the interface mutex to serialize trim, timeouts and alarm
+-	 * thresholds settings.
+-	 */
+-	cache = &pvt->cache[pvt->sensor];
+-	info = &pvt_info[pvt->sensor];
+-	pvt->sensor = (pvt->sensor == PVT_SENSOR_LAST) ?
+-		      PVT_SENSOR_FIRST : (pvt->sensor + 1);
 -
--	return 0;
--}
+-	/*
+-	 * For some reason we have to mask the interrupt before changing the
+-	 * mode, otherwise sometimes the temperature mode doesn't get
+-	 * activated even though the actual mode in the ctrl register
+-	 * corresponds to one. Then we read the data. By doing so we also
+-	 * recharge the data conversion. After this the mode corresponding
+-	 * to the next sensor in the row is set. Finally we enable the
+-	 * interrupts back.
+-	 */
+-	mutex_lock(&pvt->iface_mtx);
 -
--#ifdef CONFIG_DEBUG_FS
+-	old = pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_DVALID,
+-			 PVT_INTR_DVALID);
 -
--struct ccu_pll_dbgfs_bit {
--	struct ccu_pll *pll;
--	const char *name;
--	unsigned int reg;
--	u32 mask;
--};
+-	val = readl(pvt->regs + PVT_DATA);
 -
--struct ccu_pll_dbgfs_fld {
--	struct ccu_pll *pll;
--	const char *name;
--	unsigned int reg;
--	unsigned int lsb;
--	u32 mask;
--	u32 min;
--	u32 max;
--};
+-	pvt_set_mode(pvt, pvt_info[pvt->sensor].mode);
 -
--#define CCU_PLL_DBGFS_BIT_ATTR(_name, _reg, _mask)	\
--	{						\
--		.name = _name,				\
--		.reg = _reg,				\
--		.mask = _mask				\
+-	pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_DVALID, old);
+-
+-	mutex_unlock(&pvt->iface_mtx);
+-
+-	/*
+-	 * We can now update the data cache with data just retrieved from the
+-	 * sensor. Lock write-seqlock to make sure the reader has a coherent
+-	 * data.
+-	 */
+-	write_seqlock(&cache->data_seqlock);
+-
+-	cache->data = FIELD_GET(PVT_DATA_DATA_MASK, val);
+-
+-	write_sequnlock(&cache->data_seqlock);
+-
+-	/*
+-	 * While PVT core is doing the next mode data conversion, we'll check
+-	 * whether the alarms were triggered for the current sensor. Note that
+-	 * according to the documentation only one threshold IRQ status can be
+-	 * set at a time, that's why if-else statement is utilized.
+-	 */
+-	if ((thres_sts & info->thres_sts_lo) ^ cache->thres_sts_lo) {
+-		WRITE_ONCE(cache->thres_sts_lo, thres_sts & info->thres_sts_lo);
+-		hwmon_notify_event(pvt->hwmon, info->type, info->attr_min_alarm,
+-				   info->channel);
+-	} else if ((thres_sts & info->thres_sts_hi) ^ cache->thres_sts_hi) {
+-		WRITE_ONCE(cache->thres_sts_hi, thres_sts & info->thres_sts_hi);
+-		hwmon_notify_event(pvt->hwmon, info->type, info->attr_max_alarm,
+-				   info->channel);
 -	}
 -
--#define CCU_PLL_DBGFS_FLD_ATTR(_name, _reg, _lsb, _mask, _min, _max)	\
--	{								\
--		.name = _name,						\
--		.reg = _reg,						\
--		.lsb = _lsb,						\
--		.mask = _mask,						\
--		.min = _min,						\
--		.max = _max						\
--	}
--
--static const struct ccu_pll_dbgfs_bit ccu_pll_bits[] = {
--	CCU_PLL_DBGFS_BIT_ATTR("pll_en", CCU_PLL_CTL, CCU_PLL_CTL_EN),
--	CCU_PLL_DBGFS_BIT_ATTR("pll_rst", CCU_PLL_CTL, CCU_PLL_CTL_RST),
--	CCU_PLL_DBGFS_BIT_ATTR("pll_bypass", CCU_PLL_CTL, CCU_PLL_CTL_BYPASS),
--	CCU_PLL_DBGFS_BIT_ATTR("pll_lock", CCU_PLL_CTL, CCU_PLL_CTL_LOCK)
--};
--
--#define CCU_PLL_DBGFS_BIT_NUM	ARRAY_SIZE(ccu_pll_bits)
--
--static const struct ccu_pll_dbgfs_fld ccu_pll_flds[] = {
--	CCU_PLL_DBGFS_FLD_ATTR("pll_nr", CCU_PLL_CTL, CCU_PLL_CTL_CLKR_FLD,
--				CCU_PLL_CTL_CLKR_MASK, 1, CCU_PLL_NR_MAX),
--	CCU_PLL_DBGFS_FLD_ATTR("pll_nf", CCU_PLL_CTL, CCU_PLL_CTL_CLKF_FLD,
--				CCU_PLL_CTL_CLKF_MASK, 1, CCU_PLL_NF_MAX),
--	CCU_PLL_DBGFS_FLD_ATTR("pll_od", CCU_PLL_CTL, CCU_PLL_CTL_CLKOD_FLD,
--				CCU_PLL_CTL_CLKOD_MASK, 1, CCU_PLL_OD_MAX),
--	CCU_PLL_DBGFS_FLD_ATTR("pll_nb", CCU_PLL_CTL1, CCU_PLL_CTL1_BWADJ_FLD,
--				CCU_PLL_CTL1_BWADJ_MASK, 1, CCU_PLL_NB_MAX)
--};
--
--#define CCU_PLL_DBGFS_FLD_NUM	ARRAY_SIZE(ccu_pll_flds)
--
--/*
-- * It can be dangerous to change the PLL settings behind clock framework back,
-- * therefore we don't provide any kernel config based compile time option for
-- * this feature to enable.
-- */
--#undef CCU_PLL_ALLOW_WRITE_DEBUGFS
--#ifdef CCU_PLL_ALLOW_WRITE_DEBUGFS
--
--static int ccu_pll_dbgfs_bit_set(void *priv, u64 val)
--{
--	const struct ccu_pll_dbgfs_bit *bit = priv;
--	struct ccu_pll *pll = bit->pll;
--	unsigned long flags;
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl + bit->reg,
--			   bit->mask, val ? bit->mask : 0);
--	spin_unlock_irqrestore(&pll->lock, flags);
--
--	return 0;
+-	return IRQ_HANDLED;
 -}
 -
--static int ccu_pll_dbgfs_fld_set(void *priv, u64 val)
+-static inline umode_t pvt_limit_is_visible(enum pvt_sensor_type type)
 -{
--	struct ccu_pll_dbgfs_fld *fld = priv;
--	struct ccu_pll *pll = fld->pll;
--	unsigned long flags;
+-	return 0644;
+-}
+-
+-static inline umode_t pvt_alarm_is_visible(enum pvt_sensor_type type)
+-{
+-	return 0444;
+-}
+-
+-static int pvt_read_data(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+-			 long *val)
+-{
+-	struct pvt_cache *cache = &pvt->cache[type];
+-	unsigned int seq;
 -	u32 data;
 -
--	val = clamp_t(u64, val, fld->min, fld->max);
--	data = ((val - 1) << fld->lsb) & fld->mask;
+-	do {
+-		seq = read_seqbegin(&cache->data_seqlock);
+-		data = cache->data;
+-	} while (read_seqretry(&cache->data_seqlock, seq));
 -
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl + fld->reg, fld->mask,
--			   data);
--	spin_unlock_irqrestore(&pll->lock, flags);
--
--	return 0;
--}
--
--#define ccu_pll_dbgfs_mode	0644
--
--#else /* !CCU_PLL_ALLOW_WRITE_DEBUGFS */
--
--#define ccu_pll_dbgfs_bit_set	NULL
--#define ccu_pll_dbgfs_fld_set	NULL
--#define ccu_pll_dbgfs_mode	0444
--
--#endif /* !CCU_PLL_ALLOW_WRITE_DEBUGFS */
--
--static int ccu_pll_dbgfs_bit_get(void *priv, u64 *val)
--{
--	struct ccu_pll_dbgfs_bit *bit = priv;
--	struct ccu_pll *pll = bit->pll;
--	u32 data = 0;
--
--	regmap_read(pll->sys_regs, pll->reg_ctl + bit->reg, &data);
--	*val = !!(data & bit->mask);
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_pll_dbgfs_bit_fops,
--	ccu_pll_dbgfs_bit_get, ccu_pll_dbgfs_bit_set, "%llu\n");
--
--static int ccu_pll_dbgfs_fld_get(void *priv, u64 *val)
--{
--	struct ccu_pll_dbgfs_fld *fld = priv;
--	struct ccu_pll *pll = fld->pll;
--	u32 data = 0;
--
--	regmap_read(pll->sys_regs, pll->reg_ctl + fld->reg, &data);
--	*val = ((data & fld->mask) >> fld->lsb) + 1;
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_pll_dbgfs_fld_fops,
--	ccu_pll_dbgfs_fld_get, ccu_pll_dbgfs_fld_set, "%llu\n");
--
--static void ccu_pll_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	struct ccu_pll_dbgfs_bit *bits;
--	struct ccu_pll_dbgfs_fld *flds;
--	int idx;
--
--	bits = kcalloc(CCU_PLL_DBGFS_BIT_NUM, sizeof(*bits), GFP_KERNEL);
--	if (!bits)
--		return;
--
--	for (idx = 0; idx < CCU_PLL_DBGFS_BIT_NUM; ++idx) {
--		bits[idx] = ccu_pll_bits[idx];
--		bits[idx].pll = pll;
--
--		debugfs_create_file_unsafe(bits[idx].name, ccu_pll_dbgfs_mode,
--					   dentry, &bits[idx],
--					   &ccu_pll_dbgfs_bit_fops);
--	}
--
--	flds = kcalloc(CCU_PLL_DBGFS_FLD_NUM, sizeof(*flds), GFP_KERNEL);
--	if (!flds)
--		return;
--
--	for (idx = 0; idx < CCU_PLL_DBGFS_FLD_NUM; ++idx) {
--		flds[idx] = ccu_pll_flds[idx];
--		flds[idx].pll = pll;
--
--		debugfs_create_file_unsafe(flds[idx].name, ccu_pll_dbgfs_mode,
--					   dentry, &flds[idx],
--					   &ccu_pll_dbgfs_fld_fops);
--	}
--}
--
--#else /* !CONFIG_DEBUG_FS */
--
--#define ccu_pll_debug_init NULL
--
--#endif /* !CONFIG_DEBUG_FS */
--
--static const struct clk_ops ccu_pll_gate_to_set_ops = {
--	.enable = ccu_pll_enable,
--	.disable = ccu_pll_disable,
--	.is_enabled = ccu_pll_is_enabled,
--	.recalc_rate = ccu_pll_recalc_rate,
--	.determine_rate = ccu_pll_determine_rate,
--	.set_rate = ccu_pll_set_rate_norst,
--	.debug_init = ccu_pll_debug_init
--};
--
--static const struct clk_ops ccu_pll_straight_set_ops = {
--	.enable = ccu_pll_enable,
--	.disable = ccu_pll_disable,
--	.is_enabled = ccu_pll_is_enabled,
--	.recalc_rate = ccu_pll_recalc_rate,
--	.determine_rate = ccu_pll_determine_rate,
--	.set_rate = ccu_pll_set_rate_reset,
--	.debug_init = ccu_pll_debug_init
--};
--
--struct ccu_pll *ccu_pll_hw_register(const struct ccu_pll_init_data *pll_init)
--{
--	struct clk_parent_data parent_data = { };
--	struct clk_init_data hw_init = { };
--	struct ccu_pll *pll;
--	int ret;
--
--	if (!pll_init)
--		return ERR_PTR(-EINVAL);
--
--	pll = kzalloc(sizeof(*pll), GFP_KERNEL);
--	if (!pll)
--		return ERR_PTR(-ENOMEM);
--
--	/*
--	 * Note since Baikal-T1 System Controller registers are MMIO-backed
--	 * we won't check the regmap IO operations return status, because it
--	 * must be zero anyway.
--	 */
--	pll->hw.init = &hw_init;
--	pll->reg_ctl = pll_init->base + CCU_PLL_CTL;
--	pll->reg_ctl1 = pll_init->base + CCU_PLL_CTL1;
--	pll->sys_regs = pll_init->sys_regs;
--	pll->id = pll_init->id;
--	spin_lock_init(&pll->lock);
--
--	hw_init.name = pll_init->name;
--	hw_init.flags = pll_init->flags;
--
--	if (hw_init.flags & CLK_SET_RATE_GATE)
--		hw_init.ops = &ccu_pll_gate_to_set_ops;
+-	if (type == PVT_TEMP)
+-		*val = polynomial_calc(&poly_N_to_temp, data);
 -	else
--		hw_init.ops = &ccu_pll_straight_set_ops;
--
--	if (!pll_init->parent_name) {
--		ret = -EINVAL;
--		goto err_free_pll;
--	}
--	parent_data.fw_name = pll_init->parent_name;
--	hw_init.parent_data = &parent_data;
--	hw_init.num_parents = 1;
--
--	ret = of_clk_hw_register(pll_init->np, &pll->hw);
--	if (ret)
--		goto err_free_pll;
--
--	return pll;
--
--err_free_pll:
--	kfree(pll);
--
--	return ERR_PTR(ret);
--}
--
--void ccu_pll_hw_unregister(struct ccu_pll *pll)
--{
--	clk_hw_unregister(&pll->hw);
--
--	kfree(pll);
--}
-diff --git a/drivers/clk/baikal-t1/ccu-pll.h b/drivers/clk/baikal-t1/ccu-pll.h
-deleted file mode 100644
-index a71bfd7b90ec..000000000000
---- a/drivers/clk/baikal-t1/ccu-pll.h
-+++ /dev/null
-@@ -1,72 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Baikal-T1 CCU PLL interface driver
-- */
--#ifndef __CLK_BT1_CCU_PLL_H__
--#define __CLK_BT1_CCU_PLL_H__
--
--#include <linux/clk-provider.h>
--#include <linux/spinlock.h>
--#include <linux/regmap.h>
--#include <linux/bits.h>
--#include <linux/of.h>
--
--/*
-- * CCU PLL private flags
-- * @CCU_PLL_BASIC: Basic PLL required by the kernel as early as possible.
-- */
--#define CCU_PLL_BASIC		BIT(0)
--
--/*
-- * struct ccu_pll_init_data - CCU PLL initialization data
-- * @id: Clock private identifier.
-- * @name: Clocks name.
-- * @parent_name: Clocks parent name in a fw node.
-- * @base: PLL registers base address with respect to the sys_regs base.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @np: Pointer to the node describing the CCU PLLs.
-- * @flags: PLL clock flags.
-- * @features: PLL private features.
-- */
--struct ccu_pll_init_data {
--	unsigned int id;
--	const char *name;
--	const char *parent_name;
--	unsigned int base;
--	struct regmap *sys_regs;
--	struct device_node *np;
--	unsigned long flags;
--	unsigned long features;
--};
--
--/*
-- * struct ccu_pll - CCU PLL descriptor
-- * @hw: clk_hw of the PLL.
-- * @id: Clock private identifier.
-- * @reg_ctl: PLL control register base.
-- * @reg_ctl1: PLL control1 register base.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @lock: PLL state change spin-lock.
-- */
--struct ccu_pll {
--	struct clk_hw hw;
--	unsigned int id;
--	unsigned int reg_ctl;
--	unsigned int reg_ctl1;
--	struct regmap *sys_regs;
--	spinlock_t lock;
--};
--#define to_ccu_pll(_hw) container_of(_hw, struct ccu_pll, hw)
--
--static inline struct clk_hw *ccu_pll_get_clk_hw(struct ccu_pll *pll)
--{
--	return pll ? &pll->hw : NULL;
--}
--
--struct ccu_pll *ccu_pll_hw_register(const struct ccu_pll_init_data *init);
--
--void ccu_pll_hw_unregister(struct ccu_pll *pll);
--
--#endif /* __CLK_BT1_CCU_PLL_H__ */
-diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
-deleted file mode 100644
-index 40023ea67463..000000000000
---- a/drivers/clk/baikal-t1/ccu-rst.c
-+++ /dev/null
-@@ -1,217 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2021 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU Resets interface driver
-- */
--
--#define pr_fmt(fmt) "bt1-ccu-rst: " fmt
--
--#include <linux/bits.h>
--#include <linux/delay.h>
--#include <linux/kernel.h>
--#include <linux/of.h>
--#include <linux/printk.h>
--#include <linux/regmap.h>
--#include <linux/reset-controller.h>
--#include <linux/slab.h>
--
--#include <dt-bindings/reset/bt1-ccu.h>
--
--#include "ccu-rst.h"
--
--#define CCU_AXI_MAIN_BASE		0x030
--#define CCU_AXI_DDR_BASE		0x034
--#define CCU_AXI_SATA_BASE		0x038
--#define CCU_AXI_GMAC0_BASE		0x03C
--#define CCU_AXI_GMAC1_BASE		0x040
--#define CCU_AXI_XGMAC_BASE		0x044
--#define CCU_AXI_PCIE_M_BASE		0x048
--#define CCU_AXI_PCIE_S_BASE		0x04C
--#define CCU_AXI_USB_BASE		0x050
--#define CCU_AXI_HWA_BASE		0x054
--#define CCU_AXI_SRAM_BASE		0x058
--
--#define CCU_SYS_DDR_BASE		0x02c
--#define CCU_SYS_SATA_REF_BASE		0x060
--#define CCU_SYS_APB_BASE		0x064
--#define CCU_SYS_PCIE_BASE		0x144
--
--#define CCU_RST_DELAY_US		1
--
--#define CCU_RST_TRIG(_base, _ofs)		\
--	{					\
--		.type = CCU_RST_TRIG,		\
--		.base = _base,			\
--		.mask = BIT(_ofs),		\
--	}
--
--#define CCU_RST_DIR(_base, _ofs)		\
--	{					\
--		.type = CCU_RST_DIR,		\
--		.base = _base,			\
--		.mask = BIT(_ofs),		\
--	}
--
--struct ccu_rst_info {
--	enum ccu_rst_type type;
--	unsigned int base;
--	unsigned int mask;
--};
--
--/*
-- * Each AXI-bus clock divider is equipped with the corresponding clock-consumer
-- * domain reset (it's self-deasserted reset control).
-- */
--static const struct ccu_rst_info axi_rst_info[] = {
--	[CCU_AXI_MAIN_RST] = CCU_RST_TRIG(CCU_AXI_MAIN_BASE, 1),
--	[CCU_AXI_DDR_RST] = CCU_RST_TRIG(CCU_AXI_DDR_BASE, 1),
--	[CCU_AXI_SATA_RST] = CCU_RST_TRIG(CCU_AXI_SATA_BASE, 1),
--	[CCU_AXI_GMAC0_RST] = CCU_RST_TRIG(CCU_AXI_GMAC0_BASE, 1),
--	[CCU_AXI_GMAC1_RST] = CCU_RST_TRIG(CCU_AXI_GMAC1_BASE, 1),
--	[CCU_AXI_XGMAC_RST] = CCU_RST_TRIG(CCU_AXI_XGMAC_BASE, 1),
--	[CCU_AXI_PCIE_M_RST] = CCU_RST_TRIG(CCU_AXI_PCIE_M_BASE, 1),
--	[CCU_AXI_PCIE_S_RST] = CCU_RST_TRIG(CCU_AXI_PCIE_S_BASE, 1),
--	[CCU_AXI_USB_RST] = CCU_RST_TRIG(CCU_AXI_USB_BASE, 1),
--	[CCU_AXI_HWA_RST] = CCU_RST_TRIG(CCU_AXI_HWA_BASE, 1),
--	[CCU_AXI_SRAM_RST] = CCU_RST_TRIG(CCU_AXI_SRAM_BASE, 1),
--};
--
--/*
-- * SATA reference clock domain and APB-bus domain are connected with the
-- * sefl-deasserted reset control, which can be activated via the corresponding
-- * clock divider register. DDR and PCIe sub-domains can be reset with directly
-- * controlled reset signals. Resetting the DDR controller though won't end up
-- * well while the Linux kernel is working.
-- */
--static const struct ccu_rst_info sys_rst_info[] = {
--	[CCU_SYS_SATA_REF_RST] = CCU_RST_TRIG(CCU_SYS_SATA_REF_BASE, 1),
--	[CCU_SYS_APB_RST] = CCU_RST_TRIG(CCU_SYS_APB_BASE, 1),
--	[CCU_SYS_DDR_FULL_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 1),
--	[CCU_SYS_DDR_INIT_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 2),
--	[CCU_SYS_PCIE_PCS_PHY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 0),
--	[CCU_SYS_PCIE_PIPE0_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 4),
--	[CCU_SYS_PCIE_CORE_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 8),
--	[CCU_SYS_PCIE_PWR_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 9),
--	[CCU_SYS_PCIE_STICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 10),
--	[CCU_SYS_PCIE_NSTICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 11),
--	[CCU_SYS_PCIE_HOT_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 12),
--};
--
--static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
--{
--	struct ccu_rst *rst = to_ccu_rst(rcdev);
--	const struct ccu_rst_info *info = &rst->rsts_info[idx];
--
--	if (info->type != CCU_RST_TRIG)
--		return -EOPNOTSUPP;
--
--	regmap_update_bits(rst->sys_regs, info->base, info->mask, info->mask);
--
--	/* The next delay must be enough to cover all the resets. */
--	udelay(CCU_RST_DELAY_US);
+-		*val = polynomial_calc(&poly_N_to_volt, data);
 -
 -	return 0;
 -}
 -
--static int ccu_rst_set(struct reset_controller_dev *rcdev,
--		       unsigned long idx, bool high)
+-static int pvt_read_limit(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+-			  bool is_low, long *val)
 -{
--	struct ccu_rst *rst = to_ccu_rst(rcdev);
--	const struct ccu_rst_info *info = &rst->rsts_info[idx];
+-	u32 data;
 -
--	if (info->type != CCU_RST_DIR)
--		return high ? -EOPNOTSUPP : 0;
+-	/* No need in serialization, since it is just read from MMIO. */
+-	data = readl(pvt->regs + pvt_info[type].thres_base);
 -
--	return regmap_update_bits(rst->sys_regs, info->base,
--				  info->mask, high ? info->mask : 0);
--}
--
--static int ccu_rst_assert(struct reset_controller_dev *rcdev,
--			  unsigned long idx)
--{
--	return ccu_rst_set(rcdev, idx, true);
--}
--
--static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
--			    unsigned long idx)
--{
--	return ccu_rst_set(rcdev, idx, false);
--}
--
--static int ccu_rst_status(struct reset_controller_dev *rcdev,
--			  unsigned long idx)
--{
--	struct ccu_rst *rst = to_ccu_rst(rcdev);
--	const struct ccu_rst_info *info = &rst->rsts_info[idx];
--	u32 val;
--
--	if (info->type != CCU_RST_DIR)
--		return -EOPNOTSUPP;
--
--	regmap_read(rst->sys_regs, info->base, &val);
--
--	return !!(val & info->mask);
--}
--
--static const struct reset_control_ops ccu_rst_ops = {
--	.reset = ccu_rst_reset,
--	.assert = ccu_rst_assert,
--	.deassert = ccu_rst_deassert,
--	.status = ccu_rst_status,
--};
--
--struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *rst_init)
--{
--	struct ccu_rst *rst;
--	int ret;
--
--	if (!rst_init)
--		return ERR_PTR(-EINVAL);
--
--	rst = kzalloc(sizeof(*rst), GFP_KERNEL);
--	if (!rst)
--		return ERR_PTR(-ENOMEM);
--
--	rst->sys_regs = rst_init->sys_regs;
--	if (of_device_is_compatible(rst_init->np, "baikal,bt1-ccu-axi")) {
--		rst->rcdev.nr_resets = ARRAY_SIZE(axi_rst_info);
--		rst->rsts_info = axi_rst_info;
--	} else if (of_device_is_compatible(rst_init->np, "baikal,bt1-ccu-sys")) {
--		rst->rcdev.nr_resets = ARRAY_SIZE(sys_rst_info);
--		rst->rsts_info = sys_rst_info;
--	} else {
--		pr_err("Incompatible DT node '%s' specified\n",
--		       of_node_full_name(rst_init->np));
--		ret = -EINVAL;
--		goto err_kfree_rst;
--	}
--
--	rst->rcdev.owner = THIS_MODULE;
--	rst->rcdev.ops = &ccu_rst_ops;
--	rst->rcdev.of_node = rst_init->np;
--
--	ret = reset_controller_register(&rst->rcdev);
--	if (ret) {
--		pr_err("Couldn't register '%s' reset controller\n",
--		       of_node_full_name(rst_init->np));
--		goto err_kfree_rst;
--	}
--
--	return rst;
--
--err_kfree_rst:
--	kfree(rst);
--
--	return ERR_PTR(ret);
--}
--
--void ccu_rst_hw_unregister(struct ccu_rst *rst)
--{
--	reset_controller_unregister(&rst->rcdev);
--
--	kfree(rst);
--}
-diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
-deleted file mode 100644
-index d6e8b2f671f4..000000000000
---- a/drivers/clk/baikal-t1/ccu-rst.h
-+++ /dev/null
-@@ -1,67 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) 2021 BAIKAL ELECTRONICS, JSC
-- *
-- * Baikal-T1 CCU Resets interface driver
-- */
--#ifndef __CLK_BT1_CCU_RST_H__
--#define __CLK_BT1_CCU_RST_H__
--
--#include <linux/of.h>
--#include <linux/regmap.h>
--#include <linux/reset-controller.h>
--
--struct ccu_rst_info;
--
--/*
-- * enum ccu_rst_type - CCU Reset types
-- * @CCU_RST_TRIG: Self-deasserted reset signal.
-- * @CCU_RST_DIR: Directly controlled reset signal.
-- */
--enum ccu_rst_type {
--	CCU_RST_TRIG,
--	CCU_RST_DIR,
--};
--
--/*
-- * struct ccu_rst_init_data - CCU Resets initialization data
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @np: Pointer to the node with the System CCU block.
-- */
--struct ccu_rst_init_data {
--	struct regmap *sys_regs;
--	struct device_node *np;
--};
--
--/*
-- * struct ccu_rst - CCU Reset descriptor
-- * @rcdev: Reset controller descriptor.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @rsts_info: Reset flag info (base address and mask).
-- */
--struct ccu_rst {
--	struct reset_controller_dev rcdev;
--	struct regmap *sys_regs;
--	const struct ccu_rst_info *rsts_info;
--};
--#define to_ccu_rst(_rcdev) container_of(_rcdev, struct ccu_rst, rcdev)
--
--#ifdef CONFIG_CLK_BT1_CCU_RST
--
--struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *init);
--
--void ccu_rst_hw_unregister(struct ccu_rst *rst);
--
--#else
--
--static inline
--struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *init)
--{
--	return NULL;
--}
--
--static inline void ccu_rst_hw_unregister(struct ccu_rst *rst) {}
--
--#endif
--
--#endif /* __CLK_BT1_CCU_RST_H__ */
-diff --git a/drivers/clk/baikal-t1/clk-ccu-div.c b/drivers/clk/baikal-t1/clk-ccu-div.c
-deleted file mode 100644
-index 17d75e8e2e8f..000000000000
---- a/drivers/clk/baikal-t1/clk-ccu-div.c
-+++ /dev/null
-@@ -1,520 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *   Dmitry Dunaev <dmitry.dunaev@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU Dividers clock driver
-- */
--
--#define pr_fmt(fmt) "bt1-ccu-div: " fmt
--
--#include <linux/kernel.h>
--#include <linux/platform_device.h>
--#include <linux/printk.h>
--#include <linux/slab.h>
--#include <linux/clk-provider.h>
--#include <linux/reset-controller.h>
--#include <linux/mfd/syscon.h>
--#include <linux/of.h>
--#include <linux/of_address.h>
--#include <linux/ioport.h>
--#include <linux/regmap.h>
--
--#include <dt-bindings/clock/bt1-ccu.h>
--
--#include "ccu-div.h"
--#include "ccu-rst.h"
--
--#define CCU_AXI_MAIN_BASE		0x030
--#define CCU_AXI_DDR_BASE		0x034
--#define CCU_AXI_SATA_BASE		0x038
--#define CCU_AXI_GMAC0_BASE		0x03C
--#define CCU_AXI_GMAC1_BASE		0x040
--#define CCU_AXI_XGMAC_BASE		0x044
--#define CCU_AXI_PCIE_M_BASE		0x048
--#define CCU_AXI_PCIE_S_BASE		0x04C
--#define CCU_AXI_USB_BASE		0x050
--#define CCU_AXI_HWA_BASE		0x054
--#define CCU_AXI_SRAM_BASE		0x058
--
--#define CCU_SYS_SATA_REF_BASE		0x060
--#define CCU_SYS_APB_BASE		0x064
--#define CCU_SYS_GMAC0_BASE		0x068
--#define CCU_SYS_GMAC1_BASE		0x06C
--#define CCU_SYS_XGMAC_BASE		0x070
--#define CCU_SYS_USB_BASE		0x074
--#define CCU_SYS_PVT_BASE		0x078
--#define CCU_SYS_HWA_BASE		0x07C
--#define CCU_SYS_UART_BASE		0x084
--#define CCU_SYS_TIMER0_BASE		0x088
--#define CCU_SYS_TIMER1_BASE		0x08C
--#define CCU_SYS_TIMER2_BASE		0x090
--#define CCU_SYS_WDT_BASE		0x150
--
--#define CCU_DIV_VAR_INFO(_id, _name, _pname, _base, _width, _flags, _features) \
--	{								\
--		.id = _id,						\
--		.name = _name,						\
--		.parent_name = _pname,					\
--		.base = _base,						\
--		.type = CCU_DIV_VAR,					\
--		.width = _width,					\
--		.flags = _flags,					\
--		.features = _features					\
--	}
--
--#define CCU_DIV_GATE_INFO(_id, _name, _pname, _base, _divider)	\
--	{							\
--		.id = _id,					\
--		.name = _name,					\
--		.parent_name = _pname,				\
--		.base = _base,					\
--		.type = CCU_DIV_GATE,				\
--		.divider = _divider				\
--	}
--
--#define CCU_DIV_BUF_INFO(_id, _name, _pname, _base, _flags)	\
--	{							\
--		.id = _id,					\
--		.name = _name,					\
--		.parent_name = _pname,				\
--		.base = _base,					\
--		.type = CCU_DIV_BUF,				\
--		.flags = _flags					\
--	}
--
--#define CCU_DIV_FIXED_INFO(_id, _name, _pname, _divider)	\
--	{							\
--		.id = _id,					\
--		.name = _name,					\
--		.parent_name = _pname,				\
--		.type = CCU_DIV_FIXED,				\
--		.divider = _divider				\
--	}
--
--struct ccu_div_info {
--	unsigned int id;
--	const char *name;
--	const char *parent_name;
--	unsigned int base;
--	enum ccu_div_type type;
--	union {
--		unsigned int width;
--		unsigned int divider;
--	};
--	unsigned long flags;
--	unsigned long features;
--};
--
--struct ccu_div_data {
--	struct device_node *np;
--	struct regmap *sys_regs;
--
--	unsigned int divs_num;
--	const struct ccu_div_info *divs_info;
--	struct ccu_div **divs;
--
--	struct ccu_rst *rsts;
--};
--
--/*
-- * AXI Main Interconnect (axi_main_clk) and DDR AXI-bus (axi_ddr_clk) clocks
-- * must be left enabled in any case, since former one is responsible for
-- * clocking a bus between CPU cores and the rest of the SoC components, while
-- * the later is clocking the AXI-bus between DDR controller and the Main
-- * Interconnect. So should any of these clocks get to be disabled, the system
-- * will literally stop working. That's why we marked them as critical.
-- */
--static const struct ccu_div_info axi_info[] = {
--	CCU_DIV_VAR_INFO(CCU_AXI_MAIN_CLK, "axi_main_clk", "pcie_clk",
--			 CCU_AXI_MAIN_BASE, 4,
--			 CLK_IS_CRITICAL, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_DDR_CLK, "axi_ddr_clk", "sata_clk",
--			 CCU_AXI_DDR_BASE, 4,
--			 CLK_IS_CRITICAL | CLK_SET_RATE_GATE,
--			 CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_SATA_CLK, "axi_sata_clk", "sata_clk",
--			 CCU_AXI_SATA_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_GMAC0_CLK, "axi_gmac0_clk", "eth_clk",
--			 CCU_AXI_GMAC0_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_GMAC1_CLK, "axi_gmac1_clk", "eth_clk",
--			 CCU_AXI_GMAC1_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_XGMAC_CLK, "axi_xgmac_clk", "eth_clk",
--			 CCU_AXI_XGMAC_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_PCIE_M_CLK, "axi_pcie_m_clk", "pcie_clk",
--			 CCU_AXI_PCIE_M_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_PCIE_S_CLK, "axi_pcie_s_clk", "pcie_clk",
--			 CCU_AXI_PCIE_S_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_USB_CLK, "axi_usb_clk", "sata_clk",
--			 CCU_AXI_USB_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_HWA_CLK, "axi_hwa_clk", "sata_clk",
--			 CCU_AXI_HWA_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_SRAM_CLK, "axi_sram_clk", "eth_clk",
--			 CCU_AXI_SRAM_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN)
--};
--
--/*
-- * APB-bus clock is marked as critical since it's a main communication bus
-- * for the SoC devices registers IO-operations.
-- */
--static const struct ccu_div_info sys_info[] = {
--	CCU_DIV_VAR_INFO(CCU_SYS_SATA_CLK, "sys_sata_clk",
--			 "sata_clk", CCU_SYS_SATA_REF_BASE, 4,
--			 CLK_SET_RATE_GATE,
--			 CCU_DIV_SKIP_ONE | CCU_DIV_LOCK_SHIFTED |
--			 CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_BUF_INFO(CCU_SYS_SATA_REF_CLK, "sys_sata_ref_clk",
--			 "sys_sata_clk", CCU_SYS_SATA_REF_BASE,
--			 CLK_SET_RATE_PARENT),
--	CCU_DIV_VAR_INFO(CCU_SYS_APB_CLK, "sys_apb_clk",
--			 "pcie_clk", CCU_SYS_APB_BASE, 5,
--			 CLK_IS_CRITICAL, CCU_DIV_BASIC | CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_GATE_INFO(CCU_SYS_GMAC0_TX_CLK, "sys_gmac0_tx_clk",
--			  "eth_clk", CCU_SYS_GMAC0_BASE, 5),
--	CCU_DIV_FIXED_INFO(CCU_SYS_GMAC0_PTP_CLK, "sys_gmac0_ptp_clk",
--			   "eth_clk", 10),
--	CCU_DIV_GATE_INFO(CCU_SYS_GMAC1_TX_CLK, "sys_gmac1_tx_clk",
--			  "eth_clk", CCU_SYS_GMAC1_BASE, 5),
--	CCU_DIV_FIXED_INFO(CCU_SYS_GMAC1_PTP_CLK, "sys_gmac1_ptp_clk",
--			   "eth_clk", 10),
--	CCU_DIV_GATE_INFO(CCU_SYS_XGMAC_CLK, "sys_xgmac_clk",
--			  "eth_clk", CCU_SYS_XGMAC_BASE, 1),
--	CCU_DIV_FIXED_INFO(CCU_SYS_XGMAC_REF_CLK, "sys_xgmac_ref_clk",
--			   "sys_xgmac_clk", 8),
--	CCU_DIV_FIXED_INFO(CCU_SYS_XGMAC_PTP_CLK, "sys_xgmac_ptp_clk",
--			   "sys_xgmac_clk", 8),
--	CCU_DIV_GATE_INFO(CCU_SYS_USB_CLK, "sys_usb_clk",
--			  "eth_clk", CCU_SYS_USB_BASE, 10),
--	CCU_DIV_VAR_INFO(CCU_SYS_PVT_CLK, "sys_pvt_clk",
--			 "ref_clk", CCU_SYS_PVT_BASE, 5,
--			 CLK_SET_RATE_GATE, 0),
--	CCU_DIV_VAR_INFO(CCU_SYS_HWA_CLK, "sys_hwa_clk",
--			 "sata_clk", CCU_SYS_HWA_BASE, 4,
--			 CLK_SET_RATE_GATE, 0),
--	CCU_DIV_VAR_INFO(CCU_SYS_UART_CLK, "sys_uart_clk",
--			 "eth_clk", CCU_SYS_UART_BASE, 17,
--			 CLK_SET_RATE_GATE, 0),
--	CCU_DIV_FIXED_INFO(CCU_SYS_I2C1_CLK, "sys_i2c1_clk",
--			   "eth_clk", 10),
--	CCU_DIV_FIXED_INFO(CCU_SYS_I2C2_CLK, "sys_i2c2_clk",
--			   "eth_clk", 10),
--	CCU_DIV_FIXED_INFO(CCU_SYS_GPIO_CLK, "sys_gpio_clk",
--			   "ref_clk", 25),
--	CCU_DIV_VAR_INFO(CCU_SYS_TIMER0_CLK, "sys_timer0_clk",
--			 "ref_clk", CCU_SYS_TIMER0_BASE, 17,
--			 CLK_SET_RATE_GATE, CCU_DIV_BASIC),
--	CCU_DIV_VAR_INFO(CCU_SYS_TIMER1_CLK, "sys_timer1_clk",
--			 "ref_clk", CCU_SYS_TIMER1_BASE, 17,
--			 CLK_SET_RATE_GATE, CCU_DIV_BASIC),
--	CCU_DIV_VAR_INFO(CCU_SYS_TIMER2_CLK, "sys_timer2_clk",
--			 "ref_clk", CCU_SYS_TIMER2_BASE, 17,
--			 CLK_SET_RATE_GATE, CCU_DIV_BASIC),
--	CCU_DIV_VAR_INFO(CCU_SYS_WDT_CLK, "sys_wdt_clk",
--			 "eth_clk", CCU_SYS_WDT_BASE, 17,
--			 CLK_SET_RATE_GATE, CCU_DIV_SKIP_ONE_TO_THREE)
--};
--
--static struct ccu_div_data *axi_data;
--static struct ccu_div_data *sys_data;
--
--static void ccu_div_set_data(struct ccu_div_data *data)
--{
--	struct device_node *np = data->np;
--
--	if (of_device_is_compatible(np, "baikal,bt1-ccu-axi"))
--		axi_data = data;
--	else if (of_device_is_compatible(np, "baikal,bt1-ccu-sys"))
--		sys_data = data;
+-	if (is_low)
+-		data = FIELD_GET(PVT_THRES_LO_MASK, data);
 -	else
--		pr_err("Invalid DT node '%s' specified\n", of_node_full_name(np));
+-		data = FIELD_GET(PVT_THRES_HI_MASK, data);
+-
+-	if (type == PVT_TEMP)
+-		*val = polynomial_calc(&poly_N_to_temp, data);
+-	else
+-		*val = polynomial_calc(&poly_N_to_volt, data);
+-
+-	return 0;
 -}
 -
--static struct ccu_div_data *ccu_div_get_data(struct device_node *np)
+-static int pvt_write_limit(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+-			   bool is_low, long val)
 -{
--	if (of_device_is_compatible(np, "baikal,bt1-ccu-axi"))
--		return axi_data;
--	else if (of_device_is_compatible(np, "baikal,bt1-ccu-sys"))
--		return sys_data;
--
--	pr_err("Invalid DT node '%s' specified\n", of_node_full_name(np));
--
--	return NULL;
--}
--
--static struct ccu_div *ccu_div_find_desc(struct ccu_div_data *data,
--					 unsigned int clk_id)
--{
--	int idx;
--
--	for (idx = 0; idx < data->divs_num; ++idx) {
--		if (data->divs_info[idx].id == clk_id)
--			return data->divs[idx];
--	}
--
--	return ERR_PTR(-EINVAL);
--}
--
--static struct ccu_div_data *ccu_div_create_data(struct device_node *np)
--{
--	struct ccu_div_data *data;
+-	u32 data, limit, mask;
 -	int ret;
 -
--	data = kzalloc(sizeof(*data), GFP_KERNEL);
--	if (!data)
--		return ERR_PTR(-ENOMEM);
--
--	data->np = np;
--	if (of_device_is_compatible(np, "baikal,bt1-ccu-axi")) {
--		data->divs_num = ARRAY_SIZE(axi_info);
--		data->divs_info = axi_info;
--	} else if (of_device_is_compatible(np, "baikal,bt1-ccu-sys")) {
--		data->divs_num = ARRAY_SIZE(sys_info);
--		data->divs_info = sys_info;
+-	if (type == PVT_TEMP) {
+-		val = clamp(val, PVT_TEMP_MIN, PVT_TEMP_MAX);
+-		data = polynomial_calc(&poly_temp_to_N, val);
 -	} else {
--		pr_err("Incompatible DT node '%s' specified\n",
--			of_node_full_name(np));
--		ret = -EINVAL;
--		goto err_kfree_data;
+-		val = clamp(val, PVT_VOLT_MIN, PVT_VOLT_MAX);
+-		data = polynomial_calc(&poly_volt_to_N, val);
 -	}
 -
--	data->divs = kcalloc(data->divs_num, sizeof(*data->divs), GFP_KERNEL);
--	if (!data->divs) {
--		ret = -ENOMEM;
--		goto err_kfree_data;
--	}
--
--	return data;
--
--err_kfree_data:
--	kfree(data);
--
--	return ERR_PTR(ret);
--}
--
--static void ccu_div_free_data(struct ccu_div_data *data)
--{
--	kfree(data->divs);
--
--	kfree(data);
--}
--
--static int ccu_div_find_sys_regs(struct ccu_div_data *data)
--{
--	data->sys_regs = syscon_node_to_regmap(data->np->parent);
--	if (IS_ERR(data->sys_regs)) {
--		pr_err("Failed to find syscon regs for '%s'\n",
--			of_node_full_name(data->np));
--		return PTR_ERR(data->sys_regs);
--	}
--
--	return 0;
--}
--
--static struct clk_hw *ccu_div_of_clk_hw_get(struct of_phandle_args *clkspec,
--					    void *priv)
--{
--	struct ccu_div_data *data = priv;
--	struct ccu_div *div;
--	unsigned int clk_id;
--
--	clk_id = clkspec->args[0];
--	div = ccu_div_find_desc(data, clk_id);
--	if (IS_ERR(div)) {
--		if (div != ERR_PTR(-EPROBE_DEFER))
--			pr_info("Invalid clock ID %d specified\n", clk_id);
--
--		return ERR_CAST(div);
--	}
--
--	return ccu_div_get_clk_hw(div);
--}
--
--static int ccu_div_clk_register(struct ccu_div_data *data, bool defer)
--{
--	int idx, ret;
--
--	for (idx = 0; idx < data->divs_num; ++idx) {
--		const struct ccu_div_info *info = &data->divs_info[idx];
--		struct ccu_div_init_data init = {0};
--
--		if (!!(info->features & CCU_DIV_BASIC) ^ defer) {
--			if (!data->divs[idx])
--				data->divs[idx] = ERR_PTR(-EPROBE_DEFER);
--
--			continue;
--		}
--
--		init.id = info->id;
--		init.name = info->name;
--		init.parent_name = info->parent_name;
--		init.np = data->np;
--		init.type = info->type;
--		init.flags = info->flags;
--		init.features = info->features;
--
--		if (init.type == CCU_DIV_VAR) {
--			init.base = info->base;
--			init.sys_regs = data->sys_regs;
--			init.width = info->width;
--		} else if (init.type == CCU_DIV_GATE) {
--			init.base = info->base;
--			init.sys_regs = data->sys_regs;
--			init.divider = info->divider;
--		} else if (init.type == CCU_DIV_BUF) {
--			init.base = info->base;
--			init.sys_regs = data->sys_regs;
--		} else {
--			init.divider = info->divider;
--		}
--
--		data->divs[idx] = ccu_div_hw_register(&init);
--		if (IS_ERR(data->divs[idx])) {
--			ret = PTR_ERR(data->divs[idx]);
--			pr_err("Couldn't register divider '%s' hw\n",
--				init.name);
--			goto err_hw_unregister;
--		}
--	}
--
--	return 0;
--
--err_hw_unregister:
--	for (--idx; idx >= 0; --idx) {
--		if (!!(data->divs_info[idx].features & CCU_DIV_BASIC) ^ defer)
--			continue;
--
--		ccu_div_hw_unregister(data->divs[idx]);
--	}
--
--	return ret;
--}
--
--static void ccu_div_clk_unregister(struct ccu_div_data *data, bool defer)
--{
--	int idx;
--
--	/* Uninstall only the clocks registered on the specified stage */
--	for (idx = 0; idx < data->divs_num; ++idx) {
--		if (!!(data->divs_info[idx].features & CCU_DIV_BASIC) ^ defer)
--			continue;
--
--		ccu_div_hw_unregister(data->divs[idx]);
--	}
--}
--
--static int ccu_div_of_register(struct ccu_div_data *data)
--{
--	int ret;
--
--	ret = of_clk_add_hw_provider(data->np, ccu_div_of_clk_hw_get, data);
--	if (ret) {
--		pr_err("Couldn't register dividers '%s' clock provider\n",
--		       of_node_full_name(data->np));
--	}
--
--	return ret;
--}
--
--static int ccu_div_rst_register(struct ccu_div_data *data)
--{
--	struct ccu_rst_init_data init = {0};
--
--	init.sys_regs = data->sys_regs;
--	init.np = data->np;
--
--	data->rsts = ccu_rst_hw_register(&init);
--	if (IS_ERR(data->rsts)) {
--		pr_err("Couldn't register divider '%s' reset controller\n",
--			of_node_full_name(data->np));
--		return PTR_ERR(data->rsts);
--	}
--
--	return 0;
--}
--
--static int ccu_div_probe(struct platform_device *pdev)
--{
--	struct ccu_div_data *data;
--	int ret;
--
--	data = ccu_div_get_data(dev_of_node(&pdev->dev));
--	if (!data)
--		return -EINVAL;
--
--	ret = ccu_div_clk_register(data, false);
+-	/* Serialize limit update, since a part of the register is changed. */
+-	ret = mutex_lock_interruptible(&pvt->iface_mtx);
 -	if (ret)
 -		return ret;
 -
--	ret = ccu_div_rst_register(data);
--	if (ret)
--		goto err_clk_unregister;
+-	/* Make sure the upper and lower ranges don't intersect. */
+-	limit = readl(pvt->regs + pvt_info[type].thres_base);
+-	if (is_low) {
+-		limit = FIELD_GET(PVT_THRES_HI_MASK, limit);
+-		data = clamp_val(data, PVT_DATA_MIN, limit);
+-		data = FIELD_PREP(PVT_THRES_LO_MASK, data);
+-		mask = PVT_THRES_LO_MASK;
+-	} else {
+-		limit = FIELD_GET(PVT_THRES_LO_MASK, limit);
+-		data = clamp_val(data, limit, PVT_DATA_MAX);
+-		data = FIELD_PREP(PVT_THRES_HI_MASK, data);
+-		mask = PVT_THRES_HI_MASK;
+-	}
+-
+-	pvt_update(pvt->regs + pvt_info[type].thres_base, mask, data);
+-
+-	mutex_unlock(&pvt->iface_mtx);
 -
 -	return 0;
--
--err_clk_unregister:
--	ccu_div_clk_unregister(data, false);
--
--	return ret;
 -}
 -
--static const struct of_device_id ccu_div_of_match[] = {
--	{ .compatible = "baikal,bt1-ccu-axi" },
--	{ .compatible = "baikal,bt1-ccu-sys" },
--	{ }
--};
--
--static struct platform_driver ccu_div_driver = {
--	.probe  = ccu_div_probe,
--	.driver = {
--		.name = "clk-ccu-div",
--		.of_match_table = ccu_div_of_match,
--		.suppress_bind_attrs = true,
--	},
--};
--builtin_platform_driver(ccu_div_driver);
--
--static __init void ccu_div_init(struct device_node *np)
+-static int pvt_read_alarm(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+-			  bool is_low, long *val)
 -{
--	struct ccu_div_data *data;
+-	if (is_low)
+-		*val = !!READ_ONCE(pvt->cache[type].thres_sts_lo);
+-	else
+-		*val = !!READ_ONCE(pvt->cache[type].thres_sts_hi);
+-
+-	return 0;
+-}
+-
+-static const struct hwmon_channel_info * const pvt_channel_info[] = {
+-	HWMON_CHANNEL_INFO(chip,
+-			   HWMON_C_REGISTER_TZ | HWMON_C_UPDATE_INTERVAL),
+-	HWMON_CHANNEL_INFO(temp,
+-			   HWMON_T_INPUT | HWMON_T_TYPE | HWMON_T_LABEL |
+-			   HWMON_T_MIN | HWMON_T_MIN_ALARM |
+-			   HWMON_T_MAX | HWMON_T_MAX_ALARM |
+-			   HWMON_T_OFFSET),
+-	HWMON_CHANNEL_INFO(in,
+-			   HWMON_I_INPUT | HWMON_I_LABEL |
+-			   HWMON_I_MIN | HWMON_I_MIN_ALARM |
+-			   HWMON_I_MAX | HWMON_I_MAX_ALARM,
+-			   HWMON_I_INPUT | HWMON_I_LABEL |
+-			   HWMON_I_MIN | HWMON_I_MIN_ALARM |
+-			   HWMON_I_MAX | HWMON_I_MAX_ALARM,
+-			   HWMON_I_INPUT | HWMON_I_LABEL |
+-			   HWMON_I_MIN | HWMON_I_MIN_ALARM |
+-			   HWMON_I_MAX | HWMON_I_MAX_ALARM,
+-			   HWMON_I_INPUT | HWMON_I_LABEL |
+-			   HWMON_I_MIN | HWMON_I_MIN_ALARM |
+-			   HWMON_I_MAX | HWMON_I_MAX_ALARM),
+-	NULL
+-};
+-
+-#else /* !CONFIG_SENSORS_BT1_PVT_ALARMS */
+-
+-static irqreturn_t pvt_hard_isr(int irq, void *data)
+-{
+-	struct pvt_hwmon *pvt = data;
+-	struct pvt_cache *cache;
+-	u32 val;
+-
+-	/*
+-	 * Mask the DVALID interrupt so after exiting from the handler a
+-	 * repeated conversion wouldn't happen.
+-	 */
+-	pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_DVALID,
+-		   PVT_INTR_DVALID);
+-
+-	/*
+-	 * Nothing special for alarm-less driver. Just read the data, update
+-	 * the cache and notify a waiter of this event.
+-	 */
+-	val = readl(pvt->regs + PVT_DATA);
+-	if (!(val & PVT_DATA_VALID)) {
+-		dev_err(pvt->dev, "Got IRQ when data isn't valid\n");
+-		return IRQ_HANDLED;
+-	}
+-
+-	cache = &pvt->cache[pvt->sensor];
+-
+-	WRITE_ONCE(cache->data, FIELD_GET(PVT_DATA_DATA_MASK, val));
+-
+-	complete(&cache->conversion);
+-
+-	return IRQ_HANDLED;
+-}
+-
+-#define pvt_soft_isr NULL
+-
+-static inline umode_t pvt_limit_is_visible(enum pvt_sensor_type type)
+-{
+-	return 0;
+-}
+-
+-static inline umode_t pvt_alarm_is_visible(enum pvt_sensor_type type)
+-{
+-	return 0;
+-}
+-
+-static int pvt_read_data(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+-			 long *val)
+-{
+-	struct pvt_cache *cache = &pvt->cache[type];
+-	unsigned long timeout;
+-	u32 data;
 -	int ret;
 -
--	data = ccu_div_create_data(np);
--	if (IS_ERR(data))
--		return;
--
--	ret = ccu_div_find_sys_regs(data);
+-	/*
+-	 * Lock PVT conversion interface until data cache is updated. The
+-	 * data read procedure is following: set the requested PVT sensor
+-	 * mode, enable IRQ and conversion, wait until conversion is finished,
+-	 * then disable conversion and IRQ, and read the cached data.
+-	 */
+-	ret = mutex_lock_interruptible(&pvt->iface_mtx);
 -	if (ret)
--		goto err_free_data;
+-		return ret;
 -
--	ret = ccu_div_clk_register(data, true);
--	if (ret)
--		goto err_free_data;
+-	pvt->sensor = type;
+-	pvt_set_mode(pvt, pvt_info[type].mode);
 -
--	ret = ccu_div_of_register(data);
--	if (ret)
--		goto err_clk_unregister;
+-	/*
+-	 * Unmask the DVALID interrupt and enable the sensors conversions.
+-	 * Do the reverse procedure when conversion is done.
+-	 */
+-	pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_DVALID, 0);
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, PVT_CTRL_EN);
 -
--	ccu_div_set_data(data);
+-	/*
+-	 * Wait with timeout since in case if the sensor is suddenly powered
+-	 * down the request won't be completed and the caller will hang up on
+-	 * this procedure until the power is back up again. Multiply the
+-	 * timeout by the factor of two to prevent a false timeout.
+-	 */
+-	timeout = 2 * usecs_to_jiffies(ktime_to_us(pvt->timeout));
+-	ret = wait_for_completion_timeout(&cache->conversion, timeout);
 -
--	return;
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, 0);
+-	pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_DVALID,
+-		   PVT_INTR_DVALID);
 -
--err_clk_unregister:
--	ccu_div_clk_unregister(data, true);
+-	data = READ_ONCE(cache->data);
 -
--err_free_data:
--	ccu_div_free_data(data);
+-	mutex_unlock(&pvt->iface_mtx);
+-
+-	if (!ret)
+-		return -ETIMEDOUT;
+-
+-	if (type == PVT_TEMP)
+-		*val = polynomial_calc(&poly_N_to_temp, data);
+-	else
+-		*val = polynomial_calc(&poly_N_to_volt, data);
+-
+-	return 0;
 -}
--CLK_OF_DECLARE_DRIVER(ccu_axi, "baikal,bt1-ccu-axi", ccu_div_init);
--CLK_OF_DECLARE_DRIVER(ccu_sys, "baikal,bt1-ccu-sys", ccu_div_init);
-diff --git a/drivers/clk/baikal-t1/clk-ccu-pll.c b/drivers/clk/baikal-t1/clk-ccu-pll.c
-deleted file mode 100644
-index 921b87024feb..000000000000
---- a/drivers/clk/baikal-t1/clk-ccu-pll.c
-+++ /dev/null
-@@ -1,277 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *   Dmitry Dunaev <dmitry.dunaev@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU PLL clocks driver
-- */
 -
--#define pr_fmt(fmt) "bt1-ccu-pll: " fmt
+-static int pvt_read_limit(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+-			  bool is_low, long *val)
+-{
+-	return -EOPNOTSUPP;
+-}
 -
--#include <linux/kernel.h>
--#include <linux/platform_device.h>
--#include <linux/printk.h>
--#include <linux/slab.h>
--#include <linux/clk-provider.h>
--#include <linux/mfd/syscon.h>
--#include <linux/of.h>
--#include <linux/of_address.h>
--#include <linux/ioport.h>
--#include <linux/regmap.h>
+-static int pvt_write_limit(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+-			   bool is_low, long val)
+-{
+-	return -EOPNOTSUPP;
+-}
 -
--#include <dt-bindings/clock/bt1-ccu.h>
+-static int pvt_read_alarm(struct pvt_hwmon *pvt, enum pvt_sensor_type type,
+-			  bool is_low, long *val)
+-{
+-	return -EOPNOTSUPP;
+-}
 -
--#include "ccu-pll.h"
+-static const struct hwmon_channel_info * const pvt_channel_info[] = {
+-	HWMON_CHANNEL_INFO(chip,
+-			   HWMON_C_REGISTER_TZ | HWMON_C_UPDATE_INTERVAL),
+-	HWMON_CHANNEL_INFO(temp,
+-			   HWMON_T_INPUT | HWMON_T_TYPE | HWMON_T_LABEL |
+-			   HWMON_T_OFFSET),
+-	HWMON_CHANNEL_INFO(in,
+-			   HWMON_I_INPUT | HWMON_I_LABEL,
+-			   HWMON_I_INPUT | HWMON_I_LABEL,
+-			   HWMON_I_INPUT | HWMON_I_LABEL,
+-			   HWMON_I_INPUT | HWMON_I_LABEL),
+-	NULL
+-};
 -
--#define CCU_CPU_PLL_BASE		0x000
--#define CCU_SATA_PLL_BASE		0x008
--#define CCU_DDR_PLL_BASE		0x010
--#define CCU_PCIE_PLL_BASE		0x018
--#define CCU_ETH_PLL_BASE		0x020
+-#endif /* !CONFIG_SENSORS_BT1_PVT_ALARMS */
 -
--#define CCU_PLL_INFO(_id, _name, _pname, _base, _flags, _features)	\
--	{								\
--		.id = _id,						\
--		.name = _name,						\
--		.parent_name = _pname,					\
--		.base = _base,						\
--		.flags = _flags,					\
--		.features = _features,					\
+-static inline bool pvt_hwmon_channel_is_valid(enum hwmon_sensor_types type,
+-					      int ch)
+-{
+-	switch (type) {
+-	case hwmon_temp:
+-		if (ch < 0 || ch >= PVT_TEMP_CHS)
+-			return false;
+-		break;
+-	case hwmon_in:
+-		if (ch < 0 || ch >= PVT_VOLT_CHS)
+-			return false;
+-		break;
+-	default:
+-		break;
 -	}
 -
--#define CCU_PLL_NUM			ARRAY_SIZE(pll_info)
--
--struct ccu_pll_info {
--	unsigned int id;
--	const char *name;
--	const char *parent_name;
--	unsigned int base;
--	unsigned long flags;
--	unsigned long features;
--};
--
--/*
-- * Alas we have to mark all PLLs as critical. CPU and DDR PLLs are sources of
-- * CPU cores and DDR controller reference clocks, due to which they obviously
-- * shouldn't be ever gated. SATA and PCIe PLLs are the parents of APB-bus and
-- * DDR controller AXI-bus clocks. If they are gated the system will be
-- * unusable. Moreover disabling SATA and Ethernet PLLs causes automatic reset
-- * of the corresponding subsystems. So until we aren't ready to re-initialize
-- * all the devices consuming those PLLs, they will be marked as critical too.
-- */
--static const struct ccu_pll_info pll_info[] = {
--	CCU_PLL_INFO(CCU_CPU_PLL, "cpu_pll", "ref_clk", CCU_CPU_PLL_BASE,
--		     CLK_IS_CRITICAL, CCU_PLL_BASIC),
--	CCU_PLL_INFO(CCU_SATA_PLL, "sata_pll", "ref_clk", CCU_SATA_PLL_BASE,
--		     CLK_IS_CRITICAL | CLK_SET_RATE_GATE, 0),
--	CCU_PLL_INFO(CCU_DDR_PLL, "ddr_pll", "ref_clk", CCU_DDR_PLL_BASE,
--		     CLK_IS_CRITICAL | CLK_SET_RATE_GATE, 0),
--	CCU_PLL_INFO(CCU_PCIE_PLL, "pcie_pll", "ref_clk", CCU_PCIE_PLL_BASE,
--		     CLK_IS_CRITICAL, CCU_PLL_BASIC),
--	CCU_PLL_INFO(CCU_ETH_PLL, "eth_pll", "ref_clk", CCU_ETH_PLL_BASE,
--		     CLK_IS_CRITICAL | CLK_SET_RATE_GATE, 0)
--};
--
--struct ccu_pll_data {
--	struct device_node *np;
--	struct regmap *sys_regs;
--	struct ccu_pll *plls[CCU_PLL_NUM];
--};
--
--static struct ccu_pll_data *pll_data;
--
--static struct ccu_pll *ccu_pll_find_desc(struct ccu_pll_data *data,
--					 unsigned int clk_id)
--{
--	int idx;
--
--	for (idx = 0; idx < CCU_PLL_NUM; ++idx) {
--		if (pll_info[idx].id == clk_id)
--			return data->plls[idx];
--	}
--
--	return ERR_PTR(-EINVAL);
+-	/* The rest of the types are independent from the channel number. */
+-	return true;
 -}
 -
--static struct ccu_pll_data *ccu_pll_create_data(struct device_node *np)
+-static umode_t pvt_hwmon_is_visible(const void *data,
+-				    enum hwmon_sensor_types type,
+-				    u32 attr, int ch)
 -{
--	struct ccu_pll_data *data;
+-	if (!pvt_hwmon_channel_is_valid(type, ch))
+-		return 0;
 -
--	data = kzalloc(sizeof(*data), GFP_KERNEL);
--	if (!data)
--		return ERR_PTR(-ENOMEM);
--
--	data->np = np;
--
--	return data;
--}
--
--static void ccu_pll_free_data(struct ccu_pll_data *data)
--{
--	kfree(data);
--}
--
--static int ccu_pll_find_sys_regs(struct ccu_pll_data *data)
--{
--	data->sys_regs = syscon_node_to_regmap(data->np->parent);
--	if (IS_ERR(data->sys_regs)) {
--		pr_err("Failed to find syscon regs for '%s'\n",
--			of_node_full_name(data->np));
--		return PTR_ERR(data->sys_regs);
+-	switch (type) {
+-	case hwmon_chip:
+-		switch (attr) {
+-		case hwmon_chip_update_interval:
+-			return 0644;
+-		}
+-		break;
+-	case hwmon_temp:
+-		switch (attr) {
+-		case hwmon_temp_input:
+-		case hwmon_temp_type:
+-		case hwmon_temp_label:
+-			return 0444;
+-		case hwmon_temp_min:
+-		case hwmon_temp_max:
+-			return pvt_limit_is_visible(ch);
+-		case hwmon_temp_min_alarm:
+-		case hwmon_temp_max_alarm:
+-			return pvt_alarm_is_visible(ch);
+-		case hwmon_temp_offset:
+-			return 0644;
+-		}
+-		break;
+-	case hwmon_in:
+-		switch (attr) {
+-		case hwmon_in_input:
+-		case hwmon_in_label:
+-			return 0444;
+-		case hwmon_in_min:
+-		case hwmon_in_max:
+-			return pvt_limit_is_visible(PVT_VOLT + ch);
+-		case hwmon_in_min_alarm:
+-		case hwmon_in_max_alarm:
+-			return pvt_alarm_is_visible(PVT_VOLT + ch);
+-		}
+-		break;
+-	default:
+-		break;
 -	}
 -
 -	return 0;
 -}
 -
--static struct clk_hw *ccu_pll_of_clk_hw_get(struct of_phandle_args *clkspec,
--					    void *priv)
+-static int pvt_read_trim(struct pvt_hwmon *pvt, long *val)
 -{
--	struct ccu_pll_data *data = priv;
--	struct ccu_pll *pll;
--	unsigned int clk_id;
+-	u32 data;
 -
--	clk_id = clkspec->args[0];
--	pll = ccu_pll_find_desc(data, clk_id);
--	if (IS_ERR(pll)) {
--		if (pll != ERR_PTR(-EPROBE_DEFER))
--			pr_info("Invalid PLL clock ID %d specified\n", clk_id);
--
--		return ERR_CAST(pll);
--	}
--
--	return ccu_pll_get_clk_hw(pll);
--}
--
--static int ccu_pll_clk_register(struct ccu_pll_data *data, bool defer)
--{
--	int idx, ret;
--
--	for (idx = 0; idx < CCU_PLL_NUM; ++idx) {
--		const struct ccu_pll_info *info = &pll_info[idx];
--		struct ccu_pll_init_data init = {0};
--
--		/* Defer non-basic PLLs allocation for the probe stage */
--		if (!!(info->features & CCU_PLL_BASIC) ^ defer) {
--			if (!data->plls[idx])
--				data->plls[idx] = ERR_PTR(-EPROBE_DEFER);
--
--			continue;
--		}
--
--		init.id = info->id;
--		init.name = info->name;
--		init.parent_name = info->parent_name;
--		init.base = info->base;
--		init.sys_regs = data->sys_regs;
--		init.np = data->np;
--		init.flags = info->flags;
--		init.features = info->features;
--
--		data->plls[idx] = ccu_pll_hw_register(&init);
--		if (IS_ERR(data->plls[idx])) {
--			ret = PTR_ERR(data->plls[idx]);
--			pr_err("Couldn't register PLL hw '%s'\n",
--				init.name);
--			goto err_hw_unregister;
--		}
--	}
+-	data = readl(pvt->regs + PVT_CTRL);
+-	*val = FIELD_GET(PVT_CTRL_TRIM_MASK, data) * PVT_TRIM_STEP;
 -
 -	return 0;
--
--err_hw_unregister:
--	for (--idx; idx >= 0; --idx) {
--		if (!!(pll_info[idx].features & CCU_PLL_BASIC) ^ defer)
--			continue;
--
--		ccu_pll_hw_unregister(data->plls[idx]);
--	}
--
--	return ret;
 -}
 -
--static void ccu_pll_clk_unregister(struct ccu_pll_data *data, bool defer)
+-static int pvt_write_trim(struct pvt_hwmon *pvt, long val)
 -{
--	int idx;
+-	u32 trim;
+-	int ret;
 -
--	/* Uninstall only the clocks registered on the specified stage */
--	for (idx = 0; idx < CCU_PLL_NUM; ++idx) {
--		if (!!(pll_info[idx].features & CCU_PLL_BASIC) ^ defer)
--			continue;
+-	/*
+-	 * Serialize trim update, since a part of the register is changed and
+-	 * the controller is supposed to be disabled during this operation.
+-	 */
+-	ret = mutex_lock_interruptible(&pvt->iface_mtx);
+-	if (ret)
+-		return ret;
 -
--		ccu_pll_hw_unregister(data->plls[idx]);
--	}
+-	trim = pvt_calc_trim(val);
+-	pvt_set_trim(pvt, trim);
+-
+-	mutex_unlock(&pvt->iface_mtx);
+-
+-	return 0;
 -}
 -
--static int ccu_pll_of_register(struct ccu_pll_data *data)
+-static int pvt_read_timeout(struct pvt_hwmon *pvt, long *val)
 -{
 -	int ret;
 -
--	ret = of_clk_add_hw_provider(data->np, ccu_pll_of_clk_hw_get, data);
--	if (ret) {
--		pr_err("Couldn't register PLL provider of '%s'\n",
--			of_node_full_name(data->np));
--	}
+-	ret = mutex_lock_interruptible(&pvt->iface_mtx);
+-	if (ret)
+-		return ret;
 -
--	return ret;
+-	/* Return the result in msec as hwmon sysfs interface requires. */
+-	*val = ktime_to_ms(pvt->timeout);
+-
+-	mutex_unlock(&pvt->iface_mtx);
+-
+-	return 0;
 -}
 -
--static int ccu_pll_probe(struct platform_device *pdev)
+-static int pvt_write_timeout(struct pvt_hwmon *pvt, long val)
 -{
--	struct ccu_pll_data *data = pll_data;
+-	unsigned long rate;
+-	ktime_t kt, cache;
+-	u32 data;
+-	int ret;
 -
--	if (!data)
+-	rate = clk_get_rate(pvt->clks[PVT_CLOCK_REF].clk);
+-	if (!rate)
+-		return -ENODEV;
+-
+-	/*
+-	 * If alarms are enabled, the requested timeout must be divided
+-	 * between all available sensors to have the requested delay
+-	 * applicable to each individual sensor.
+-	 */
+-	cache = kt = ms_to_ktime(val);
+-#if defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-	kt = ktime_divns(kt, PVT_SENSORS_NUM);
+-#endif
+-
+-	/*
+-	 * Subtract a constant lag, which always persists due to the limited
+-	 * PVT sampling rate. Make sure the timeout is not negative.
+-	 */
+-	kt = ktime_sub_ns(kt, PVT_TOUT_MIN);
+-	if (ktime_to_ns(kt) < 0)
+-		kt = ktime_set(0, 0);
+-
+-	/*
+-	 * Finally recalculate the timeout in terms of the reference clock
+-	 * period.
+-	 */
+-	data = ktime_divns(kt * rate, NSEC_PER_SEC);
+-
+-	/*
+-	 * Update the measurements delay, but lock the interface first, since
+-	 * we have to disable PVT in order to have the new delay actually
+-	 * updated.
+-	 */
+-	ret = mutex_lock_interruptible(&pvt->iface_mtx);
+-	if (ret)
+-		return ret;
+-
+-	pvt_set_tout(pvt, data);
+-	pvt->timeout = cache;
+-
+-	mutex_unlock(&pvt->iface_mtx);
+-
+-	return 0;
+-}
+-
+-static int pvt_hwmon_read(struct device *dev, enum hwmon_sensor_types type,
+-			  u32 attr, int ch, long *val)
+-{
+-	struct pvt_hwmon *pvt = dev_get_drvdata(dev);
+-
+-	if (!pvt_hwmon_channel_is_valid(type, ch))
 -		return -EINVAL;
 -
--	return ccu_pll_clk_register(data, false);
+-	switch (type) {
+-	case hwmon_chip:
+-		switch (attr) {
+-		case hwmon_chip_update_interval:
+-			return pvt_read_timeout(pvt, val);
+-		}
+-		break;
+-	case hwmon_temp:
+-		switch (attr) {
+-		case hwmon_temp_input:
+-			return pvt_read_data(pvt, ch, val);
+-		case hwmon_temp_type:
+-			*val = 1;
+-			return 0;
+-		case hwmon_temp_min:
+-			return pvt_read_limit(pvt, ch, true, val);
+-		case hwmon_temp_max:
+-			return pvt_read_limit(pvt, ch, false, val);
+-		case hwmon_temp_min_alarm:
+-			return pvt_read_alarm(pvt, ch, true, val);
+-		case hwmon_temp_max_alarm:
+-			return pvt_read_alarm(pvt, ch, false, val);
+-		case hwmon_temp_offset:
+-			return pvt_read_trim(pvt, val);
+-		}
+-		break;
+-	case hwmon_in:
+-		switch (attr) {
+-		case hwmon_in_input:
+-			return pvt_read_data(pvt, PVT_VOLT + ch, val);
+-		case hwmon_in_min:
+-			return pvt_read_limit(pvt, PVT_VOLT + ch, true, val);
+-		case hwmon_in_max:
+-			return pvt_read_limit(pvt, PVT_VOLT + ch, false, val);
+-		case hwmon_in_min_alarm:
+-			return pvt_read_alarm(pvt, PVT_VOLT + ch, true, val);
+-		case hwmon_in_max_alarm:
+-			return pvt_read_alarm(pvt, PVT_VOLT + ch, false, val);
+-		}
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return -EOPNOTSUPP;
 -}
 -
--static const struct of_device_id ccu_pll_of_match[] = {
--	{ .compatible = "baikal,bt1-ccu-pll" },
--	{ }
--};
--
--static struct platform_driver ccu_pll_driver = {
--	.probe  = ccu_pll_probe,
--	.driver = {
--		.name = "clk-ccu-pll",
--		.of_match_table = ccu_pll_of_match,
--		.suppress_bind_attrs = true,
--	},
--};
--builtin_platform_driver(ccu_pll_driver);
--
--static __init void ccu_pll_init(struct device_node *np)
+-static int pvt_hwmon_read_string(struct device *dev,
+-				 enum hwmon_sensor_types type,
+-				 u32 attr, int ch, const char **str)
 -{
--	struct ccu_pll_data *data;
+-	if (!pvt_hwmon_channel_is_valid(type, ch))
+-		return -EINVAL;
+-
+-	switch (type) {
+-	case hwmon_temp:
+-		switch (attr) {
+-		case hwmon_temp_label:
+-			*str = pvt_info[ch].label;
+-			return 0;
+-		}
+-		break;
+-	case hwmon_in:
+-		switch (attr) {
+-		case hwmon_in_label:
+-			*str = pvt_info[PVT_VOLT + ch].label;
+-			return 0;
+-		}
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return -EOPNOTSUPP;
+-}
+-
+-static int pvt_hwmon_write(struct device *dev, enum hwmon_sensor_types type,
+-			   u32 attr, int ch, long val)
+-{
+-	struct pvt_hwmon *pvt = dev_get_drvdata(dev);
+-
+-	if (!pvt_hwmon_channel_is_valid(type, ch))
+-		return -EINVAL;
+-
+-	switch (type) {
+-	case hwmon_chip:
+-		switch (attr) {
+-		case hwmon_chip_update_interval:
+-			return pvt_write_timeout(pvt, val);
+-		}
+-		break;
+-	case hwmon_temp:
+-		switch (attr) {
+-		case hwmon_temp_min:
+-			return pvt_write_limit(pvt, ch, true, val);
+-		case hwmon_temp_max:
+-			return pvt_write_limit(pvt, ch, false, val);
+-		case hwmon_temp_offset:
+-			return pvt_write_trim(pvt, val);
+-		}
+-		break;
+-	case hwmon_in:
+-		switch (attr) {
+-		case hwmon_in_min:
+-			return pvt_write_limit(pvt, PVT_VOLT + ch, true, val);
+-		case hwmon_in_max:
+-			return pvt_write_limit(pvt, PVT_VOLT + ch, false, val);
+-		}
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return -EOPNOTSUPP;
+-}
+-
+-static const struct hwmon_ops pvt_hwmon_ops = {
+-	.is_visible = pvt_hwmon_is_visible,
+-	.read = pvt_hwmon_read,
+-	.read_string = pvt_hwmon_read_string,
+-	.write = pvt_hwmon_write
+-};
+-
+-static const struct hwmon_chip_info pvt_hwmon_info = {
+-	.ops = &pvt_hwmon_ops,
+-	.info = pvt_channel_info
+-};
+-
+-static void pvt_clear_data(void *data)
+-{
+-	struct pvt_hwmon *pvt = data;
+-#if !defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-	int idx;
+-
+-	for (idx = 0; idx < PVT_SENSORS_NUM; ++idx)
+-		complete_all(&pvt->cache[idx].conversion);
+-#endif
+-
+-	mutex_destroy(&pvt->iface_mtx);
+-}
+-
+-static struct pvt_hwmon *pvt_create_data(struct platform_device *pdev)
+-{
+-	struct device *dev = &pdev->dev;
+-	struct pvt_hwmon *pvt;
+-	int ret, idx;
+-
+-	pvt = devm_kzalloc(dev, sizeof(*pvt), GFP_KERNEL);
+-	if (!pvt)
+-		return ERR_PTR(-ENOMEM);
+-
+-	ret = devm_add_action(dev, pvt_clear_data, pvt);
+-	if (ret) {
+-		dev_err(dev, "Can't add PVT data clear action\n");
+-		return ERR_PTR(ret);
+-	}
+-
+-	pvt->dev = dev;
+-	pvt->sensor = PVT_SENSOR_FIRST;
+-	mutex_init(&pvt->iface_mtx);
+-
+-#if defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-	for (idx = 0; idx < PVT_SENSORS_NUM; ++idx)
+-		seqlock_init(&pvt->cache[idx].data_seqlock);
+-#else
+-	for (idx = 0; idx < PVT_SENSORS_NUM; ++idx)
+-		init_completion(&pvt->cache[idx].conversion);
+-#endif
+-
+-	return pvt;
+-}
+-
+-static int pvt_request_regs(struct pvt_hwmon *pvt)
+-{
+-	struct platform_device *pdev = to_platform_device(pvt->dev);
+-
+-	pvt->regs = devm_platform_ioremap_resource(pdev, 0);
+-	if (IS_ERR(pvt->regs))
+-		return PTR_ERR(pvt->regs);
+-
+-	return 0;
+-}
+-
+-static void pvt_disable_clks(void *data)
+-{
+-	struct pvt_hwmon *pvt = data;
+-
+-	clk_bulk_disable_unprepare(PVT_CLOCK_NUM, pvt->clks);
+-}
+-
+-static int pvt_request_clks(struct pvt_hwmon *pvt)
+-{
 -	int ret;
 -
--	data = ccu_pll_create_data(np);
--	if (IS_ERR(data))
--		return;
+-	pvt->clks[PVT_CLOCK_APB].id = "pclk";
+-	pvt->clks[PVT_CLOCK_REF].id = "ref";
 -
--	ret = ccu_pll_find_sys_regs(data);
--	if (ret)
--		goto err_free_data;
+-	ret = devm_clk_bulk_get(pvt->dev, PVT_CLOCK_NUM, pvt->clks);
+-	if (ret) {
+-		dev_err(pvt->dev, "Couldn't get PVT clocks descriptors\n");
+-		return ret;
+-	}
 -
--	ret = ccu_pll_clk_register(data, true);
--	if (ret)
--		goto err_free_data;
+-	ret = clk_bulk_prepare_enable(PVT_CLOCK_NUM, pvt->clks);
+-	if (ret) {
+-		dev_err(pvt->dev, "Couldn't enable the PVT clocks\n");
+-		return ret;
+-	}
 -
--	ret = ccu_pll_of_register(data);
--	if (ret)
--		goto err_clk_unregister;
+-	ret = devm_add_action_or_reset(pvt->dev, pvt_disable_clks, pvt);
+-	if (ret) {
+-		dev_err(pvt->dev, "Can't add PVT clocks disable action\n");
+-		return ret;
+-	}
 -
--	pll_data = data;
--
--	return;
--
--err_clk_unregister:
--	ccu_pll_clk_unregister(data, true);
--
--err_free_data:
--	ccu_pll_free_data(data);
+-	return 0;
 -}
--CLK_OF_DECLARE_DRIVER(ccu_pll, "baikal,bt1-ccu-pll", ccu_pll_init);
-diff --git a/include/dt-bindings/clock/bt1-ccu.h b/include/dt-bindings/clock/bt1-ccu.h
+-
+-static int pvt_check_pwr(struct pvt_hwmon *pvt)
+-{
+-	unsigned long tout;
+-	int ret = 0;
+-	u32 data;
+-
+-	/*
+-	 * Test out the sensor conversion functionality. If it is not done on
+-	 * time then the domain must have been unpowered and we won't be able
+-	 * to use the device later in this driver.
+-	 * Note If the power source is lost during the normal driver work the
+-	 * data read procedure will either return -ETIMEDOUT (for the
+-	 * alarm-less driver configuration) or just stop the repeated
+-	 * conversion. In the later case alas we won't be able to detect the
+-	 * problem.
+-	 */
+-	pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_ALL, PVT_INTR_ALL);
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, PVT_CTRL_EN);
+-	pvt_set_tout(pvt, 0);
+-	readl(pvt->regs + PVT_DATA);
+-
+-	tout = PVT_TOUT_MIN / NSEC_PER_USEC;
+-	usleep_range(tout, 2 * tout);
+-
+-	data = readl(pvt->regs + PVT_DATA);
+-	if (!(data & PVT_DATA_VALID)) {
+-		ret = -ENODEV;
+-		dev_err(pvt->dev, "Sensor is powered down\n");
+-	}
+-
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, 0);
+-
+-	return ret;
+-}
+-
+-static int pvt_init_iface(struct pvt_hwmon *pvt)
+-{
+-	unsigned long rate;
+-	u32 trim, temp;
+-
+-	rate = clk_get_rate(pvt->clks[PVT_CLOCK_REF].clk);
+-	if (!rate) {
+-		dev_err(pvt->dev, "Invalid reference clock rate\n");
+-		return -ENODEV;
+-	}
+-
+-	/*
+-	 * Make sure all interrupts and controller are disabled so not to
+-	 * accidentally have ISR executed before the driver data is fully
+-	 * initialized. Clear the IRQ status as well.
+-	 */
+-	pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_ALL, PVT_INTR_ALL);
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, 0);
+-	readl(pvt->regs + PVT_CLR_INTR);
+-	readl(pvt->regs + PVT_DATA);
+-
+-	/* Setup default sensor mode, timeout and temperature trim. */
+-	pvt_set_mode(pvt, pvt_info[pvt->sensor].mode);
+-	pvt_set_tout(pvt, PVT_TOUT_DEF);
+-
+-	/*
+-	 * Preserve the current ref-clock based delay (Ttotal) between the
+-	 * sensors data samples in the driver data so not to recalculate it
+-	 * each time on the data requests and timeout reads. It consists of the
+-	 * delay introduced by the internal ref-clock timer (N / Fclk) and the
+-	 * constant timeout caused by each conversion latency (Tmin):
+-	 *   Ttotal = N / Fclk + Tmin
+-	 * If alarms are enabled the sensors are polled one after another and
+-	 * in order to get the next measurement of a particular sensor the
+-	 * caller will have to wait for at most until all the others are
+-	 * polled. In that case the formulae will look a bit different:
+-	 *   Ttotal = 5 * (N / Fclk + Tmin)
+-	 */
+-#if defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-	pvt->timeout = ktime_set(PVT_SENSORS_NUM * PVT_TOUT_DEF, 0);
+-	pvt->timeout = ktime_divns(pvt->timeout, rate);
+-	pvt->timeout = ktime_add_ns(pvt->timeout, PVT_SENSORS_NUM * PVT_TOUT_MIN);
+-#else
+-	pvt->timeout = ktime_set(PVT_TOUT_DEF, 0);
+-	pvt->timeout = ktime_divns(pvt->timeout, rate);
+-	pvt->timeout = ktime_add_ns(pvt->timeout, PVT_TOUT_MIN);
+-#endif
+-
+-	trim = PVT_TRIM_DEF;
+-	if (!of_property_read_u32(pvt->dev->of_node,
+-	     "baikal,pvt-temp-offset-millicelsius", &temp))
+-		trim = pvt_calc_trim(temp);
+-
+-	pvt_set_trim(pvt, trim);
+-
+-	return 0;
+-}
+-
+-static int pvt_request_irq(struct pvt_hwmon *pvt)
+-{
+-	struct platform_device *pdev = to_platform_device(pvt->dev);
+-	int ret;
+-
+-	pvt->irq = platform_get_irq(pdev, 0);
+-	if (pvt->irq < 0)
+-		return pvt->irq;
+-
+-	ret = devm_request_threaded_irq(pvt->dev, pvt->irq,
+-					pvt_hard_isr, pvt_soft_isr,
+-#if defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-					IRQF_SHARED | IRQF_TRIGGER_HIGH |
+-					IRQF_ONESHOT,
+-#else
+-					IRQF_SHARED | IRQF_TRIGGER_HIGH,
+-#endif
+-					"pvt", pvt);
+-	if (ret) {
+-		dev_err(pvt->dev, "Couldn't request PVT IRQ\n");
+-		return ret;
+-	}
+-
+-	return 0;
+-}
+-
+-static int pvt_create_hwmon(struct pvt_hwmon *pvt)
+-{
+-	pvt->hwmon = devm_hwmon_device_register_with_info(pvt->dev, "pvt", pvt,
+-		&pvt_hwmon_info, NULL);
+-	if (IS_ERR(pvt->hwmon)) {
+-		dev_err(pvt->dev, "Couldn't create hwmon device\n");
+-		return PTR_ERR(pvt->hwmon);
+-	}
+-
+-	return 0;
+-}
+-
+-#if defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-
+-static void pvt_disable_iface(void *data)
+-{
+-	struct pvt_hwmon *pvt = data;
+-
+-	mutex_lock(&pvt->iface_mtx);
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, 0);
+-	pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_DVALID,
+-		   PVT_INTR_DVALID);
+-	mutex_unlock(&pvt->iface_mtx);
+-}
+-
+-static int pvt_enable_iface(struct pvt_hwmon *pvt)
+-{
+-	int ret;
+-
+-	ret = devm_add_action(pvt->dev, pvt_disable_iface, pvt);
+-	if (ret) {
+-		dev_err(pvt->dev, "Can't add PVT disable interface action\n");
+-		return ret;
+-	}
+-
+-	/*
+-	 * Enable sensors data conversion and IRQ. We need to lock the
+-	 * interface mutex since hwmon has just been created and the
+-	 * corresponding sysfs files are accessible from user-space,
+-	 * which theoretically may cause races.
+-	 */
+-	mutex_lock(&pvt->iface_mtx);
+-	pvt_update(pvt->regs + PVT_INTR_MASK, PVT_INTR_DVALID, 0);
+-	pvt_update(pvt->regs + PVT_CTRL, PVT_CTRL_EN, PVT_CTRL_EN);
+-	mutex_unlock(&pvt->iface_mtx);
+-
+-	return 0;
+-}
+-
+-#else /* !CONFIG_SENSORS_BT1_PVT_ALARMS */
+-
+-static int pvt_enable_iface(struct pvt_hwmon *pvt)
+-{
+-	return 0;
+-}
+-
+-#endif /* !CONFIG_SENSORS_BT1_PVT_ALARMS */
+-
+-static int pvt_probe(struct platform_device *pdev)
+-{
+-	struct pvt_hwmon *pvt;
+-	int ret;
+-
+-	pvt = pvt_create_data(pdev);
+-	if (IS_ERR(pvt))
+-		return PTR_ERR(pvt);
+-
+-	ret = pvt_request_regs(pvt);
+-	if (ret)
+-		return ret;
+-
+-	ret = pvt_request_clks(pvt);
+-	if (ret)
+-		return ret;
+-
+-	ret = pvt_check_pwr(pvt);
+-	if (ret)
+-		return ret;
+-
+-	ret = pvt_init_iface(pvt);
+-	if (ret)
+-		return ret;
+-
+-	ret = pvt_request_irq(pvt);
+-	if (ret)
+-		return ret;
+-
+-	ret = pvt_create_hwmon(pvt);
+-	if (ret)
+-		return ret;
+-
+-	ret = pvt_enable_iface(pvt);
+-	if (ret)
+-		return ret;
+-
+-	return 0;
+-}
+-
+-static const struct of_device_id pvt_of_match[] = {
+-	{ .compatible = "baikal,bt1-pvt" },
+-	{ }
+-};
+-MODULE_DEVICE_TABLE(of, pvt_of_match);
+-
+-static struct platform_driver pvt_driver = {
+-	.probe = pvt_probe,
+-	.driver = {
+-		.name = "bt1-pvt",
+-		.of_match_table = pvt_of_match
+-	}
+-};
+-module_platform_driver(pvt_driver);
+-
+-MODULE_AUTHOR("Maxim Kaurkin <maxim.kaurkin@baikalelectronics.ru>");
+-MODULE_DESCRIPTION("Baikal-T1 PVT driver");
+-MODULE_LICENSE("GPL v2");
+diff --git a/drivers/hwmon/bt1-pvt.h b/drivers/hwmon/bt1-pvt.h
 deleted file mode 100644
-index 5f166d27a00a..000000000000
---- a/include/dt-bindings/clock/bt1-ccu.h
+index 93b8dd5e7c94..000000000000
+--- a/drivers/hwmon/bt1-pvt.h
 +++ /dev/null
-@@ -1,48 +0,0 @@
+@@ -1,247 +0,0 @@
 -/* SPDX-License-Identifier: GPL-2.0-only */
 -/*
 - * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
 - *
-- * Baikal-T1 CCU clock indices
+- * Baikal-T1 Process, Voltage, Temperature sensor driver
 - */
--#ifndef __DT_BINDINGS_CLOCK_BT1_CCU_H
--#define __DT_BINDINGS_CLOCK_BT1_CCU_H
+-#ifndef __HWMON_BT1_PVT_H__
+-#define __HWMON_BT1_PVT_H__
 -
--#define CCU_CPU_PLL			0
--#define CCU_SATA_PLL			1
--#define CCU_DDR_PLL			2
--#define CCU_PCIE_PLL			3
--#define CCU_ETH_PLL			4
+-#include <linux/completion.h>
+-#include <linux/hwmon.h>
+-#include <linux/kernel.h>
+-#include <linux/ktime.h>
+-#include <linux/mutex.h>
+-#include <linux/seqlock.h>
 -
--#define CCU_AXI_MAIN_CLK		0
--#define CCU_AXI_DDR_CLK			1
--#define CCU_AXI_SATA_CLK		2
--#define CCU_AXI_GMAC0_CLK		3
--#define CCU_AXI_GMAC1_CLK		4
--#define CCU_AXI_XGMAC_CLK		5
--#define CCU_AXI_PCIE_M_CLK		6
--#define CCU_AXI_PCIE_S_CLK		7
--#define CCU_AXI_USB_CLK			8
--#define CCU_AXI_HWA_CLK			9
--#define CCU_AXI_SRAM_CLK		10
+-/* Baikal-T1 PVT registers and their bitfields */
+-#define PVT_CTRL			0x00
+-#define PVT_CTRL_EN			BIT(0)
+-#define PVT_CTRL_MODE_FLD		1
+-#define PVT_CTRL_MODE_MASK		GENMASK(3, PVT_CTRL_MODE_FLD)
+-#define PVT_CTRL_MODE_TEMP		0x0
+-#define PVT_CTRL_MODE_VOLT		0x1
+-#define PVT_CTRL_MODE_LVT		0x2
+-#define PVT_CTRL_MODE_HVT		0x4
+-#define PVT_CTRL_MODE_SVT		0x6
+-#define PVT_CTRL_TRIM_FLD		4
+-#define PVT_CTRL_TRIM_MASK		GENMASK(8, PVT_CTRL_TRIM_FLD)
+-#define PVT_DATA			0x04
+-#define PVT_DATA_VALID			BIT(10)
+-#define PVT_DATA_DATA_FLD		0
+-#define PVT_DATA_DATA_MASK		GENMASK(9, PVT_DATA_DATA_FLD)
+-#define PVT_TTHRES			0x08
+-#define PVT_VTHRES			0x0C
+-#define PVT_LTHRES			0x10
+-#define PVT_HTHRES			0x14
+-#define PVT_STHRES			0x18
+-#define PVT_THRES_LO_FLD		0
+-#define PVT_THRES_LO_MASK		GENMASK(9, PVT_THRES_LO_FLD)
+-#define PVT_THRES_HI_FLD		10
+-#define PVT_THRES_HI_MASK		GENMASK(19, PVT_THRES_HI_FLD)
+-#define PVT_TTIMEOUT			0x1C
+-#define PVT_INTR_STAT			0x20
+-#define PVT_INTR_MASK			0x24
+-#define PVT_RAW_INTR_STAT		0x28
+-#define PVT_INTR_DVALID			BIT(0)
+-#define PVT_INTR_TTHRES_LO		BIT(1)
+-#define PVT_INTR_TTHRES_HI		BIT(2)
+-#define PVT_INTR_VTHRES_LO		BIT(3)
+-#define PVT_INTR_VTHRES_HI		BIT(4)
+-#define PVT_INTR_LTHRES_LO		BIT(5)
+-#define PVT_INTR_LTHRES_HI		BIT(6)
+-#define PVT_INTR_HTHRES_LO		BIT(7)
+-#define PVT_INTR_HTHRES_HI		BIT(8)
+-#define PVT_INTR_STHRES_LO		BIT(9)
+-#define PVT_INTR_STHRES_HI		BIT(10)
+-#define PVT_INTR_ALL			GENMASK(10, 0)
+-#define PVT_CLR_INTR			0x2C
 -
--#define CCU_SYS_SATA_REF_CLK		0
--#define CCU_SYS_APB_CLK			1
--#define CCU_SYS_GMAC0_TX_CLK		2
--#define CCU_SYS_GMAC0_PTP_CLK		3
--#define CCU_SYS_GMAC1_TX_CLK		4
--#define CCU_SYS_GMAC1_PTP_CLK		5
--#define CCU_SYS_XGMAC_REF_CLK		6
--#define CCU_SYS_XGMAC_PTP_CLK		7
--#define CCU_SYS_USB_CLK			8
--#define CCU_SYS_PVT_CLK			9
--#define CCU_SYS_HWA_CLK			10
--#define CCU_SYS_UART_CLK		11
--#define CCU_SYS_I2C1_CLK		12
--#define CCU_SYS_I2C2_CLK		13
--#define CCU_SYS_GPIO_CLK		14
--#define CCU_SYS_TIMER0_CLK		15
--#define CCU_SYS_TIMER1_CLK		16
--#define CCU_SYS_TIMER2_CLK		17
--#define CCU_SYS_WDT_CLK			18
+-/*
+- * PVT sensors-related limits and default values
+- * @PVT_TEMP_MIN: Minimal temperature in millidegrees of Celsius.
+- * @PVT_TEMP_MAX: Maximal temperature in millidegrees of Celsius.
+- * @PVT_TEMP_CHS: Number of temperature hwmon channels.
+- * @PVT_VOLT_MIN: Minimal voltage in mV.
+- * @PVT_VOLT_MAX: Maximal voltage in mV.
+- * @PVT_VOLT_CHS: Number of voltage hwmon channels.
+- * @PVT_DATA_MIN: Minimal PVT raw data value.
+- * @PVT_DATA_MAX: Maximal PVT raw data value.
+- * @PVT_TRIM_MIN: Minimal temperature sensor trim value.
+- * @PVT_TRIM_MAX: Maximal temperature sensor trim value.
+- * @PVT_TRIM_DEF: Default temperature sensor trim value (set a proper value
+- *		  when one is determined for Baikal-T1 SoC).
+- * @PVT_TRIM_TEMP: Maximum temperature encoded by the trim factor.
+- * @PVT_TRIM_STEP: Temperature stride corresponding to the trim value.
+- * @PVT_TOUT_MIN: Minimal timeout between samples in nanoseconds.
+- * @PVT_TOUT_DEF: Default data measurements timeout. In case if alarms are
+- *		  activated the PVT IRQ is enabled to be raised after each
+- *		  conversion in order to have the thresholds checked and the
+- *		  converted value cached. Too frequent conversions may cause
+- *		  the system CPU overload. Lets set the 50ms delay between
+- *		  them by default to prevent this.
+- */
+-#define PVT_TEMP_MIN		-48380L
+-#define PVT_TEMP_MAX		147438L
+-#define PVT_TEMP_CHS		1
+-#define PVT_VOLT_MIN		620L
+-#define PVT_VOLT_MAX		1168L
+-#define PVT_VOLT_CHS		4
+-#define PVT_DATA_MIN		0
+-#define PVT_DATA_MAX		(PVT_DATA_DATA_MASK >> PVT_DATA_DATA_FLD)
+-#define PVT_TRIM_MIN		0
+-#define PVT_TRIM_MAX		(PVT_CTRL_TRIM_MASK >> PVT_CTRL_TRIM_FLD)
+-#define PVT_TRIM_TEMP		7130
+-#define PVT_TRIM_STEP		(PVT_TRIM_TEMP / PVT_TRIM_MAX)
+-#define PVT_TRIM_DEF		0
+-#define PVT_TOUT_MIN		(NSEC_PER_SEC / 3000)
+-#if defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-# define PVT_TOUT_DEF		60000
+-#else
+-# define PVT_TOUT_DEF		0
+-#endif
 -
--#endif /* __DT_BINDINGS_CLOCK_BT1_CCU_H */
+-/*
+- * enum pvt_sensor_type - Baikal-T1 PVT sensor types (correspond to each PVT
+- *			  sampling mode)
+- * @PVT_SENSOR*: helpers to traverse the sensors in loops.
+- * @PVT_TEMP: PVT Temperature sensor.
+- * @PVT_VOLT: PVT Voltage sensor.
+- * @PVT_LVT: PVT Low-Voltage threshold sensor.
+- * @PVT_HVT: PVT High-Voltage threshold sensor.
+- * @PVT_SVT: PVT Standard-Voltage threshold sensor.
+- */
+-enum pvt_sensor_type {
+-	PVT_SENSOR_FIRST,
+-	PVT_TEMP = PVT_SENSOR_FIRST,
+-	PVT_VOLT,
+-	PVT_LVT,
+-	PVT_HVT,
+-	PVT_SVT,
+-	PVT_SENSOR_LAST = PVT_SVT,
+-	PVT_SENSORS_NUM
+-};
+-
+-/*
+- * enum pvt_clock_type - Baikal-T1 PVT clocks.
+- * @PVT_CLOCK_APB: APB clock.
+- * @PVT_CLOCK_REF: PVT reference clock.
+- */
+-enum pvt_clock_type {
+-	PVT_CLOCK_APB,
+-	PVT_CLOCK_REF,
+-	PVT_CLOCK_NUM
+-};
+-
+-/*
+- * struct pvt_sensor_info - Baikal-T1 PVT sensor informational structure
+- * @channel: Sensor channel ID.
+- * @label: hwmon sensor label.
+- * @mode: PVT mode corresponding to the channel.
+- * @thres_base: upper and lower threshold values of the sensor.
+- * @thres_sts_lo: low threshold status bitfield.
+- * @thres_sts_hi: high threshold status bitfield.
+- * @type: Sensor type.
+- * @attr_min_alarm: Min alarm attribute ID.
+- * @attr_min_alarm: Max alarm attribute ID.
+- */
+-struct pvt_sensor_info {
+-	int channel;
+-	const char *label;
+-	u32 mode;
+-	unsigned long thres_base;
+-	u32 thres_sts_lo;
+-	u32 thres_sts_hi;
+-	enum hwmon_sensor_types type;
+-	u32 attr_min_alarm;
+-	u32 attr_max_alarm;
+-};
+-
+-#define PVT_SENSOR_INFO(_ch, _label, _type, _mode, _thres)	\
+-	{							\
+-		.channel = _ch,					\
+-		.label = _label,				\
+-		.mode = PVT_CTRL_MODE_ ##_mode,			\
+-		.thres_base = PVT_ ##_thres,			\
+-		.thres_sts_lo = PVT_INTR_ ##_thres## _LO,	\
+-		.thres_sts_hi = PVT_INTR_ ##_thres## _HI,	\
+-		.type = _type,					\
+-		.attr_min_alarm = _type## _min,			\
+-		.attr_max_alarm = _type## _max,			\
+-	}
+-
+-/*
+- * struct pvt_cache - PVT sensors data cache
+- * @data: data cache in raw format.
+- * @thres_sts_lo: low threshold status saved on the previous data conversion.
+- * @thres_sts_hi: high threshold status saved on the previous data conversion.
+- * @data_seqlock: cached data seq-lock.
+- * @conversion: data conversion completion.
+- */
+-struct pvt_cache {
+-	u32 data;
+-#if defined(CONFIG_SENSORS_BT1_PVT_ALARMS)
+-	seqlock_t data_seqlock;
+-	u32 thres_sts_lo;
+-	u32 thres_sts_hi;
+-#else
+-	struct completion conversion;
+-#endif
+-};
+-
+-/*
+- * struct pvt_hwmon - Baikal-T1 PVT private data
+- * @dev: device structure of the PVT platform device.
+- * @hwmon: hwmon device structure.
+- * @regs: pointer to the Baikal-T1 PVT registers region.
+- * @irq: PVT events IRQ number.
+- * @clks: Array of the PVT clocks descriptor (APB/ref clocks).
+- * @ref_clk: Pointer to the reference clocks descriptor.
+- * @iface_mtx: Generic interface mutex (used to lock the alarm registers
+- *	       when the alarms enabled, or the data conversion interface
+- *	       if alarms are disabled).
+- * @sensor: current PVT sensor the data conversion is being performed for.
+- * @cache: data cache descriptor.
+- * @timeout: conversion timeout cache.
+- */
+-struct pvt_hwmon {
+-	struct device *dev;
+-	struct device *hwmon;
+-
+-	void __iomem *regs;
+-	int irq;
+-
+-	struct clk_bulk_data clks[PVT_CLOCK_NUM];
+-
+-	struct mutex iface_mtx;
+-	enum pvt_sensor_type sensor;
+-	struct pvt_cache cache[PVT_SENSORS_NUM];
+-	ktime_t timeout;
+-};
+-
+-/*
+- * struct pvt_poly_term - a term descriptor of the PVT data translation
+- *			  polynomial
+- * @deg: degree of the term.
+- * @coef: multiplication factor of the term.
+- * @divider: distributed divider per each degree.
+- * @divider_leftover: divider leftover, which couldn't be redistributed.
+- */
+-struct pvt_poly_term {
+-	unsigned int deg;
+-	long coef;
+-	long divider;
+-	long divider_leftover;
+-};
+-
+-/*
+- * struct pvt_poly - PVT data translation polynomial descriptor
+- * @total_divider: total data divider.
+- * @terms: polynomial terms up to a free one.
+- */
+-struct pvt_poly {
+-	long total_divider;
+-	struct pvt_poly_term terms[];
+-};
+-
+-#endif /* __HWMON_BT1_PVT_H__ */
 -- 
 2.50.1
 
