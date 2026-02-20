@@ -1,132 +1,160 @@
-Return-Path: <devicetree+bounces-266949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266950-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0CJWJRlkmGmJHgMAu9opvQ
-	(envelope-from <devicetree+bounces-266949-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:39:37 +0100
+	id kKtAJFFlmGmJHgMAu9opvQ
+	(envelope-from <devicetree+bounces-266950-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:44:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8F0F167E57
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:39:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB866167F40
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 14:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 51C563002D2A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 13:39:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 709A830A0F10
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 13:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD993469E0;
-	Fri, 20 Feb 2026 13:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="iRtZhjJo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C6D344020;
+	Fri, 20 Feb 2026 13:42:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B37F834106A;
-	Fri, 20 Feb 2026 13:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01683346E43;
+	Fri, 20 Feb 2026 13:42:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771594771; cv=none; b=BL7Og5X7Dw1fzN8g1QMzinJEz8dexm4L3oQcIL+w4iu4A4o5WnXGfHNYLX/y0ZrUTIcifQGqari05ZPOm2gHdlceHS6/ow6SBbypxk5CAoFKYnLI5L83GbNBvhLN7Oabw7iSDr2IvHRlQg9erPfIZpbGjC3+xZrmiIOvj1PYJGI=
+	t=1771594975; cv=none; b=s3dBzCpBzZSi9E8CLLYINoaG/ZD5eDsPYJifOqjikdCYRI9OjETl03Sr8vZwW3QvJcC+OFUHcNZsztro18MNaOQsu1b3V9HTyr2JxvtKDzJF3c2bjteubUeXGM3AcU81B6FJZR9kLcPcJxWF9jPxmaoxbfTCW+KHplqoNsoKgKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771594771; c=relaxed/simple;
-	bh=Hb99LbuCtvboHljxjmx4TrTSxvQBnzgYOLiNoYjfCZs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KzTNpJzD8NPQPQjhRHH+PS9PC9lVeOJQAtJ6fZijRRVOdvBq0MotfbruXxAFmrDieXc899czfM0/fqZEsSUqC4TVhg9IZOcCKgRFtDoGnJlIwRLMonYtgb1OJkp65MzXzlTL1EgjC0IdkFopi/MT5xfQrDuBh4K68s1he4E12tY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=iRtZhjJo; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=uYS8MGw1rvpKx7e8kOPpBhMRoCVxRnVWUywb9QjDvXc=; b=iRtZhjJokINZqNDYn8LXLx0JxX
-	GruzK4SQj0kVJix3KOMS8iCLen32wd6uS5etM2V5Sx5ZjSQzrO6Pfpc3H8AQh/ryThQjFsPCW8OL9
-	Q8UckK50QD7n+VomIKSFZMiMG/1Qy/ONzYRIZAVhLhD8TDv3/+y4DSilk6EU7BiOOCZo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vtQj4-0084bV-O7; Fri, 20 Feb 2026 14:39:22 +0100
-Date: Fri, 20 Feb 2026 14:39:22 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Neeli, Srinivas" <srinivas.neeli@amd.com>
-Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"richardcochran@gmail.com" <richardcochran@gmail.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [RFC PATCH 1/8] dt-bindings: net: Add TSN Endpoint Ethernet MAC
- support
-Message-ID: <36492eda-a332-4dc8-abd2-99be88f7d06e@lunn.ch>
-References: <20260219054911.2017362-1-srinivas.neeli@amd.com>
- <20260219054911.2017362-2-srinivas.neeli@amd.com>
- <76c811a7-d081-4238-bf6a-0226e867560a@lunn.ch>
- <SN7PR12MB814702B7C9A28577A94FE79C9368A@SN7PR12MB8147.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1771594975; c=relaxed/simple;
+	bh=982hEo3jsh9UnLCSzsX35G+l2P3VUEY+ReOy8VBkpNY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=B0pLDshMK83QyplTmKu0cKZkm8qitxCvSTKBnKdI20uDtDMZzIh4OHKxa0P5+EV9fa4JqC+dT2lS3vMmE/pkiEha7Eb7LKAj3mEyhCTIW1PnpVOsDIVPJwgiHzBGHpjLZDrVYAWQufEN4c9RzCca0WwJJR4clba8+hRD1My8xfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A0B01339;
+	Fri, 20 Feb 2026 05:42:45 -0800 (PST)
+Received: from e134710.arm.com (e134710.arm.com [10.33.10.82])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 35F8A3F7D8;
+	Fri, 20 Feb 2026 05:42:50 -0800 (PST)
+From: Ahmed Tiba <ahmed.tiba@arm.com>
+Subject: [PATCH v2 00/11] ACPI: APEI: share GHES CPER helpers and add DT
+ FFH provider
+Date: Fri, 20 Feb 2026 13:42:18 +0000
+Message-Id: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN7PR12MB814702B7C9A28577A94FE79C9368A@SN7PR12MB8147.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALpkmGkC/x3NSw6DIBSF4a0YxsVwiVbbUffRGII8yk0qGCC2j
+ XHvBYf/GZxvJ8lENIncm51Es2HC4EvwS0OUk/5lKOrShDN+ZZwzmsOKKlHplowzAxplEtY6IeM
+ i0GcTvXyL+mQ+dLZaq8GqQcmZlMc1GovfU3tOpR2mHOLvxDeoa3V64DAA8LHrWxihA7hRqKDRb
+ THlo1CtCguZjuP4A6lGMrbBAAAA
+To: devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Cc: Ahmed Tiba <ahmed.tiba@arm.com>, Dmitry.Lamerov@arm.com, 
+ catalin.marinas@arm.com, bp@alien8.de, robh@kernel.org, rafael@kernel.org, 
+ will@kernel.org, conor@kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-doc@vger.kernel.org, krzk+dt@kernel.org, Michael.Zhao2@arm.com, 
+ tony.luck@intel.com
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771594970; l=2888;
+ i=ahmed.tiba@arm.com; s=20260219; h=from:subject:message-id;
+ bh=982hEo3jsh9UnLCSzsX35G+l2P3VUEY+ReOy8VBkpNY=;
+ b=cLJYGPUzLiW1gXsUelnqwCZMg4kD59OC630t667vlkxrKGG4uv/t6ou1g1meUp+dyy9N4go6C
+ ZKzNSrjg4ZNB2Ox3i8urPqYhkfTwgB0fltGYDiGtN7TSDXwFzgWmNhl
+X-Developer-Key: i=ahmed.tiba@arm.com; a=ed25519;
+ pk=xVOtd+Qklh/4tuM3tB+BEZD4jj5a6W59C3KCNX6v7OE=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266949-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,amd.com,gmail.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-266950-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ahmed.tiba@arm.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,0.0.62.128:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B8F0F167E57
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.969];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:mid,arm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EB866167F40
 X-Rspamd-Action: no action
 
-> > > +        // Endpoint Node
-> > > +        ep_mac: ep-mac@16000 {
-> > > +            reg = <0x16000 0xa000>;
-> > > +        };
-> >
-> > Except the Endpoint MAC does not have MDIO?  Or does it have an MDIO bus,
-> > and you have simply not listed it?
-> The endpoint MAC does not connect to an external PHY and therefore does not expose an MDIO bus.
-> It is an internal endpoint, so no MDIO node is required.
+This is v2 of the GHES refactor series. The goal is to reuse existing
+GHES CPER handling for non-ACPI platforms without changing the GHES
+flow or naming, and add a DT firmware-first CPER provider, while
+keeping the changes mechanical and reviewable.
 
-It does not really matter if it is required. Does it physically exist?
-Can MDC and MDIO be routed to pins? Could i hang an external switch
-off it?
+Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
+---
+Changes in v2:
+- Dropped the proposed "estatus core" and kept GHES naming/flow intact
+  (per Borislav Petkov).
+- Re-sliced the series into smaller mechanical steps (per Mauro Carvalho Chehab).
+- Minor DT binding fixes based on Krzysztof Kozlowski's feedback.
+- Removed fixmap slot usage from the DT FFH driver (per Will Deacon).
 
-DT describes hardware. If the hardware exists, describe it.
+Series structure:
+- Patches 1-8 are mechanical moves only and do not change behavior.
+- Patch 9 wires the shared helpers back into GHES.
+- The DT firmware-first CPER buffer provider is added in the final patches.
+- "ACPI: APEI: introduce GHES helper" is internal build glue only
+  and does not introduce a new user-visible configuration option.
 
-	Andrew
+- Link to v1: https://lore.kernel.org/r/20251217112845.1814119-1-ahmed.tiba@arm.com
+
+---
+Ahmed Tiba (11):
+      ACPI: APEI: GHES: share macros via a private header
+      ACPI: APEI: GHES: add ghes_cper.o stub
+      ACPI: APEI: GHES: move CPER read helpers
+      ACPI: APEI: GHES: move GHESv2 ack and alloc helpers
+      ACPI: APEI: GHES: move estatus cache helpers
+      ACPI: APEI: GHES: move vendor record helpers
+      ACPI: APEI: GHES: move CXL CPER helpers
+      ACPI: APEI: introduce GHES helper
+      ACPI: APEI: share GHES CPER helpers
+      dt-bindings: firmware: add arm,ras-ffh
+      RAS: add DeviceTree firmware-first CPER provider
+
+ Documentation/admin-guide/RAS/main.rst             |   18 +
+ .../devicetree/bindings/firmware/arm,ras-ffh.yaml  |   71 ++
+ MAINTAINERS                                        |    6 +
+ drivers/Makefile                                   |    1 +
+ drivers/acpi/Kconfig                               |    4 +
+ drivers/acpi/apei/Kconfig                          |    1 +
+ drivers/acpi/apei/apei-internal.h                  |   10 +-
+ drivers/acpi/apei/ghes.c                           | 1024 +------------------
+ drivers/acpi/apei/ghes_cper.c                      | 1026 ++++++++++++++++++++
+ drivers/ras/Kconfig                                |   12 +
+ drivers/ras/Makefile                               |    1 +
+ drivers/ras/esource-dt.c                           |  264 +++++
+ include/acpi/ghes.h                                |   10 +-
+ include/acpi/ghes_cper.h                           |  143 +++
+ include/cxl/event.h                                |    2 +-
+ 15 files changed, 1558 insertions(+), 1035 deletions(-)
+---
+base-commit: 8bf22c33e7a172fbc72464f4cc484d23a6b412ba
+change-id: 20260220-topics-ahmtib01-ras_ffh_arm_internal_review-bfddc7fc7cab
+
+Best regards,
+-- 
+Ahmed Tiba <ahmed.tiba@arm.com>
+
 
