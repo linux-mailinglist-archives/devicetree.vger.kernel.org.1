@@ -1,168 +1,242 @@
-Return-Path: <devicetree+bounces-267049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267050-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMW3C0mqmGn5KgMAu9opvQ
-	(envelope-from <devicetree+bounces-267049-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 19:39:05 +0100
+	id kBHLHzmrmGn5KgMAu9opvQ
+	(envelope-from <devicetree+bounces-267050-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 19:43:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78AEC16A203
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 19:39:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA43A16A289
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 19:43:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 07CF33032CEB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 18:39:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AAE7E305CABC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 18:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC5232AAD1;
-	Fri, 20 Feb 2026 18:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F32C366817;
+	Fri, 20 Feb 2026 18:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b="DAnaaMy6"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="J0/AXPPs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C9C3D76;
-	Fri, 20 Feb 2026 18:38:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.208.4.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771612741; cv=none; b=ZzKI2STjqOt2rU/DdKZAy6Thkp+HKfZ6u9QZ6OuRz/zDn556rYNCw3+qESM2UqoobD3G5VJWiXbfycC4U+sQ+UNLYN57HVysc0fAI2bFRmufv3dnQmKvbyNySDcyJoAOR2nPETfJmMxhivUPDk1wtZ/B/ZB2tMJKpjxMZzaLpJU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771612741; c=relaxed/simple;
-	bh=44XHMM4HiGXVuuiMEAL+Zgb1brCATCabA15+Bi10vBM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HqjPvCoT2lbvveuNuMqriBRzMqgSdcZIS3r4c5Bu0tGgV6b/sftm54iaG6BVSfRMN2WUPyBOVrOKKkfx6ffIPd82RDVlhipOU3BSJUt3kvEhK0Sry/FTmnpllsj8+edDXeS70B0tBYc0w3qSXVp/EHiTxVtt7T2kD8sSlO3RX9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ziswiler.com; spf=pass smtp.mailfrom=ziswiler.com; dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b=DAnaaMy6; arc=none smtp.client-ip=74.208.4.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ziswiler.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziswiler.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziswiler.com;
-	s=s1-ionos; t=1771612693; x=1772217493; i=marcel@ziswiler.com;
-	bh=44XHMM4HiGXVuuiMEAL+Zgb1brCATCabA15+Bi10vBM=;
-	h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
-	 References:Content-Type:Content-Transfer-Encoding:MIME-Version:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=DAnaaMy6FMfhZ2PwdSqRhG6MDuqyQSedE3vAoFZG2GKJyuf7AQZdNa+TVtKceOxx
-	 GLmKB7Tv5VuGCHD28ItratLbK71EFbbQm+dmXH9N620NvrwUDe5RAjTEtLUUiCXwz
-	 O7dIHZi+slXQOabDs5OuDN3gYk0al+6SEf5PnAqBnU6oa9NcHfjk/TI/TNS9K0uiH
-	 M6ACFR42VCrBf8H33PT/Fer/XdQIuBWF639rVTsW3LVEzzMhfowmPvK9byB+AQQdu
-	 I+8q0G2BRF/oHFxumh/eJvAPAN+HrO0qHE9bxJS+2uaDeEG7mTqVpWHZwYPyHe8RV
-	 Dq4iINyHX16t7NT5hg==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [10.118.255.253] ([213.55.199.191]) by mrelay.perfora.net
- (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0Lz5KI-1vgDll0QdM-00szjr;
- Fri, 20 Feb 2026 19:38:13 +0100
-Message-ID: <5f99968ec561631852bfa72aea95a100dcad5324.camel@ziswiler.com>
-Subject: Re: [PATCH v2 0/2] net: stmmac: eic7700: fix EIC7700 eth1 RX
- sampling timing
-From: Marcel Ziswiler <marcel@ziswiler.com>
-To: lizhi2@eswincomputing.com, devicetree@vger.kernel.org, 
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, 	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, 	rmk+kernel@armlinux.org.uk,
- linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
-	pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com, 
-	dongxuyang@eswincomputing.com
-Date: Fri, 20 Feb 2026 19:37:57 +0100
-In-Reply-To: <20260209094628.886-1-lizhi2@eswincomputing.com>
-References: <20260209094628.886-1-lizhi2@eswincomputing.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (by Flathub.org) 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F46366815
+	for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 18:42:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771612935; cv=pass; b=YuFRAieePjvBgV1XHLMZkgV5qwdB4y6pJU931W/Ux9UnQYaDC8q4Qi1IeP2V69ZCPD/JKzbeKY6PBzpwVyWXpAOKksjFGtm1DPhny2/0SwC0csPlYyFvxGCdFc/azETMlz72KxH7eSkBv7vz0By1p0Mh9fCyhvVlW9aQoGeTXI8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771612935; c=relaxed/simple;
+	bh=MEbnmaRSVOaD3qvUhFZbrCco3pz6n4O0mEK+V2687z4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=anxd9QnSAJd2rUtM9HDZZR9C7tGY6ZNPR2CxNHPII2pbF4arXZy3maljth3v5Ruurk51xNIqSKdgZVdkhZO2hoGWbGSdvLccSCI1JQykHFDnujNAJq6kt99a2rF2DQXF2yuhiEAK+lk87cAN5XJZjXlk8rA4DgjGoZEl41PUaa8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=J0/AXPPs; arc=pass smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b8f9568e074so448652466b.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Feb 2026 10:42:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771612933; cv=none;
+        d=google.com; s=arc-20240605;
+        b=AyRo/WVHicJLEDfURg2LECyB+d7rZ94zrXvG9tJ15sg39FLcN3pj55KtUEULhpdXIV
+         HIQZTV/Zen3f7jnNQ4XgK5/Db6kFQ1b61pSjKYsrCyQonRmDD9z+t9wLuYRvgsstI/fJ
+         LdNTAN484+uYWs7xiDfAhdjwTP3/JDgSdg/Pw9TNfo6KmI+aveKA7F7kHY47OQCVepgj
+         rjxdGko46qerkGg6/mamBDebHnmRtxneYGRPfPGZuNx9trYhvOKo71jGoAFYN+Vl0TX6
+         45hcC//S1MLeswhAL1T54Y8yYczpkhFoZzWf1TfhoFSJguiHwWQofNLy/nxQHoWkb1IV
+         0CYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=p11SnN2G51FYoourvAP9oOti3rvVoOX0gxT1KHWDCOM=;
+        fh=7HuVdlIQRpQ731r1DGKiy34S8pzNc4Jaf6e4Ciegjd4=;
+        b=bszZsfgA6t8QHmZgdVmKghzpljq/njRREVD39+2ob+jEo6/T8L1meSqh8PO+yUA4i5
+         Z4Q0slJq1iwhx7b+hUjH10jbRdH3yHj+kNhLLGYhussACS3EICbG7dNCSN6pwTAY5gXn
+         RFOu+n4P2LmIBDdV4IJnIozmQakt7vldyahAQYUzLbYnFGjtmDAlW1JJz0z2ThZE6gIu
+         ol4zg7o//vgEBXxxSVQEYo8jJJqLuMwbv5ha0duVd18DYLpZ0yWiOQHAFwDlYy5vJ6jk
+         igM2BtONQO1uXM4PAJpI7pyUcb/6k0Nw3o+t6aqLiu6PajYEHuVJFGUrwWt56djX+0uI
+         pDtA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1771612933; x=1772217733; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p11SnN2G51FYoourvAP9oOti3rvVoOX0gxT1KHWDCOM=;
+        b=J0/AXPPsDMt0+BYRAxbHaUFZSFi/I7N7w9Soi52mD+M+BfIXiLcnKk4+TmL1Wg8x8H
+         YacNL9+3PikPbi7vkl8VbeJ6C4cSas2yFrcFiOZvwe3YvvLfEiLhUDDb+mtmcpCCxPua
+         ruXBXJy/0ua+U4Ffu9gsdg+Pga931eJEUGe6PO4uch0QPyKrjDaAsbjkd9XYqVq1jxBR
+         dDTJ0ehRE6TgpLtLokJXJ/36kROm4WDD52INEsf//KmaE+4RhrfYvg49DfJx4Ayz4E8D
+         YeJ7Z8AWRGsxaMSwS2ifFlIjmpg0NqNzccrN1JqafVFPEV3uc54rCkgeOVu3BopizXPj
+         3hMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771612933; x=1772217733;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=p11SnN2G51FYoourvAP9oOti3rvVoOX0gxT1KHWDCOM=;
+        b=DQQPXqYds+9cj08G/DV7AkFaxbAnbjCwGRtGqdXyBUME5WqQhDT2gp9lM36gNecmuG
+         gBM7n0/x1wBEg1d2kyKogpx2z+anKzjKIywMT8u0EMOzA0DEvXL26EM+eVtcqlZqIu8j
+         092wgMs1unUa/HmfzyRMEX5V3S348TjQkEcHFTShmlZ8FuDoEcmCa+LGJQ6lRrkg93c1
+         QQdMv0P3snQvjF1lXzTvr0ZnwyF1tacc016nxZtx5xhsISv3FHKE85uCyKkIo+UwWtRr
+         b3v+qCWJMIN1rZ8yoiPEpQA7fKfGVONSVCB8wCVG4r0FVeFUwG8YAxoBPnAmEZvXu/O3
+         COMA==
+X-Forwarded-Encrypted: i=1; AJvYcCX6OvSitbv8JrOEpfmGELW80XOX4p1byJsEfeh5Gteu5hDpch3uHASGvmiR71ywgMXRfzDpnfcDUiVS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2jMcP3ROw4mKaLSg0LG62b6TKuIuxrb7QRWWm/ViPVFXOMcO8
+	ZlV7MeTKmKGO/R3rMNL9KC+S+Fe/66dJkYqF/2AlthAz7KAmIRE71IUbHjDaLu0vLJ3C3qEywth
+	Qw6xMbUX8KFcjNllNO9nR2YSrvVy+tB6NPM7MxCg4Dg==
+X-Gm-Gg: AZuq6aKjeyHSS0ZRgRNjejv8a8eB69TZesQUKRo7WqR226jKv4l2+bbDzt1H9zOYpnK
+	ypcd5ekYyeoE8xOqCv87G+POpWUxQDgYOUF//7bOO1t19sM+UUvZ8MhN9052LugFvW02i58yym4
+	5///aArtKuTe0TOonBC1j+JCNmlPOYwYRjUluMbBXhOteZBz+Vf/GIxi6+RwQCZxQNHbRvvQPPC
+	xuT/EOAjX7XTMsN/eNmIstoYL2W1hrJcEO5HUA4rBYU2qYq+CL2zELcgZg2i9Cz6xCOGKRYHxp4
+	VsUbxFJ2pg==
+X-Received: by 2002:a17:906:f590:b0:b8f:c4be:f1f3 with SMTP id
+ a640c23a62f3a-b9081c1021amr28639066b.59.1771612932640; Fri, 20 Feb 2026
+ 10:42:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:u/DHXNq2KmbH+PEHVvmwb1sDGASiAHHbzFo0qypFQSmu/f9iPyH
- wIM60ITAsgVE8zKq8x4W1mwI7OIQOsFfVkvxZRDQ/IfplOt1qrRxMT6waj53uIDR6B0mFaH
- Z4w1OMjNf7s8ziypBjWDeR6Yd9ZHavHCf74toT1z82gG9kf+RbwYNYWNhEkfY8pDrtHDG2H
- m4hi7rLnCghPmV2u0uXDA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:N6VQHXQ2V8M=;i1WrHzikZoZ7F0hufQ6NBs+Gb5n
- oH6rserJeM//8krLCVRcJ/pddwD2cVa9puBHNwbNwuk4xlNPEHditbXxpT5GM0acxINOndcsR
- Rf+3DD8vdBcbn9DKYRYHzC06qZz+Wjwd30xVa2pn/yiBDNguVvhc5BJsURC4Vv/JRiZ0d+dt6
- wca8DNjfhUVWJf5/NbgsV115cWGBw4BmtLLvnzUXRXPz7ie2FDOHlfoh0yl3NPRGlNF7TzW9L
- ijaNRUkrSyAfIWFJxnCSYZ1BR6/iYnnSruZ0qG5BK/tSji6vL5RRQaXsNnkt3KWK84hjINfSX
- lCrTQr/ozD82tIXG1zYO4/zmF6AeMn2YP+2Mg6WlLemR57XQrTUVrO9Xtg+gyG0V0XhKH6TqW
- 1rJuye+jU5eT8DIxCBiTircrRrk3csG6f74zK+ZOBLxHqYcS2+lMncGgfnRtHPN5TVp+1keV6
- HzFiNxvUHpQfDCZRgm3T2bo8UxctBeDFFA6+ZIempWQMBaejqqfYaUYNa3P5KjtOhDwQdCzRa
- 9migtwklYqWSxK859ArT8bW/RtRTU0m0ZV7GJznJlNxg/WQGr33O9mvoIJiMVRhtatocGzQc9
- yEVkV+1P+8IVSAhH4PMdGAAr371DT3jXAljNPvhl2wf4/VNFqPAg4BLyr3oEI242e5jM8rHCh
- 0KupWh5l8/npu8bMRqdhe/vnaIB54/JQwvnwPF8BLUcZxu+90AZSGFSrMHlkntMfc+voFDDZY
- c0RubH/Fk9RlxiV1wwlLmZxz58H4Q1+YjvMSNlRQ/aMcHBUOIRzB3i3kxps+zd+hS8zbQPeex
- 1XfXfjwuP4aaP6RCPgc0dAdAjfsLDF5X54IPWF70HP+vCv3bMjoRvddeiIG5EGLTa7OcSUU/I
- SND3jUpSUL/qRCNJkL2Qnnx9KEln4eSNtFAYg03UsNL7pmY8vN0RRfSja2U2IZCE3MZc+Fgop
- tAhUHhrquw6UyognU34C2bh0nfBCL9K9lFWpML0qZOAcsJzLIqeElM90W5y/uZaWkzfc1hRK+
- A8J/5zRkSwgErPv1zsvVyQst119Jyrh1UYfdmiVqXFn3CPbonQGd8wfyUVN8qqYJ1o4OCShq9
- MRvHzk0e2e5cldL2F+gjdqJzQ8DCaP68Y6sAiCdPmEu6xMXlC9CSeylpEUgw2MqKRBFuzWtp6
- HAFDgZhQnRbCB6PJaV0GIQZbxDR2kgVQETIBQPqiah77F/ZeSvzMWRDMbxPJ1CT4sJBc4ONff
- OL2vcgxS+Uq13qZNfBWu4fIQOx8XwhlOEsaLWMcSc4Snhzl3LvA7Xs47hyeCbUg9KIBWB7kvq
- 3KGl12WYWhtjeLlotTFhxdhydAQfnqha7FayK+F4OG8CvpLm0CLwnrtafdtS/2OxNUeKEcTNw
- REvgRxdSNiFS2Vyzf/uz/18a0ovUr5eTEzgJ3pzy9PB8ignGLzbTDrzqHPGUhp8F81mDOtAfk
- I7DcUOxhuvKwC0hKn1XkY1Howm0Jd8KvNkaO08A6wpvLU0cHPBvHxWq1LdZLudKUo63B5SMDy
- WEDsyQf7ic6/Vg4OjRPYBN6TmqlQ5eOuSW5p8KHwyQQe8JUGMTY6iTRzMSn47IQ4HA8Nxo/zr
- eUGSrww3xksxxB7QJJphJiw6xyIG72llXqAvBTpYSbcyE9CrRRfTkKfH3l2mAh0dRzU5UD98p
- Ddde3hkuSAOajGNH3CwM4Rt9C5JglSNQrbO3j+8lqbLFaHVY7GL2nIV5gCDqPIeZNNOFw8iL5
- scHG/VjxQrgDlK+cDfyUWij3BzqEah5g6UCgjhg0RWWN5LZ2cCVgtlHRodSc1QEUuohAtwE9v
- Q+mH
+References: <20260220-fu740-v1-0-c8af54130c58@sifive.com> <20260220-fu740-v1-1-c8af54130c58@sifive.com>
+ <20260220-repeal-glitter-acb73cc75564@spud>
+In-Reply-To: <20260220-repeal-glitter-acb73cc75564@spud>
+From: Max Hsu <max.hsu@sifive.com>
+Date: Sat, 21 Feb 2026 02:42:01 +0800
+X-Gm-Features: AaiRm53jWwDc1WCYeQ_HcYo-kwfyEnIvzDX6KWSIO2LiUkTSOMUZyC3C08_aX24
+Message-ID: <CAHibDyyV4Ss_2HCqWxHo4hcW4x2_VJGnFsP02gkWVyjo=XNf=A@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: net: macb: Add SiFive FU740-C000 support
+To: Conor Dooley <conor@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <pjw@kernel.org>, Samuel Holland <samuel.holland@sifive.com>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Thomas Gleixner <tglx@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Paul Walmsley <paul.walmsley@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ziswiler.com,none];
-	R_DKIM_ALLOW(-0.20)[ziswiler.com:s=s1-ionos];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
+	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267049-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[eswincomputing.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,st-md-mailman.stormreply.com,lists.infradead.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267050-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ziswiler.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[22];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marcel@ziswiler.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 78AEC16A203
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[max.hsu@sifive.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sifive.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sifive.com:email,sifive.com:dkim,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: DA43A16A289
 X-Rspamd-Action: no action
 
-Hi Zhi Li
+On Fri, Feb 20, 2026 at 09:29:28 +0000, Conor Dooley wrote:
+> I don't think this is right, since it is identical to the one on the
+> fu540 (as evidenced by how it has worked until now and the contents of
+> your driver change). I think you should add the fu740 with a fallback to
+> the fu540, like the devices from Microchip that fall back to the
+> microchip,sama7g5-gem. The rest of the changes to the driver and binding
+> can then be dropped as they'll be redundant.
 
-Sorry, to steal this thread, but I do have a quick question concerning Ethe=
-rnet on the EIC7700. Every time I
-enable gmac0 in the device tree my EBC7700 stops booting (e.g. SD card is n=
-o longer detected) while Ethernet
-does seem to at least get detected. This has been seen using next-20260219,=
- stable v6.19.2 [1] as well as
-6.18.0-rc6 [2]. Any idea what could be going wrong?
+Thanks for the feedback, Conor!
+I'm taking your suggestions. and will prepare v2.
 
-I admit so far I only do have one single EBC7700 at hand while waiting for =
-further hardware to arrive.
+Thanks,
+Max
 
-Thanks!
-
-[1] https://github.com/riscv/meta-riscv/pull/601
-[2] https://github.com/eswincomputing/linux-next/tree/dev/test-upstream-v6.=
-18-rc6
-
-Cheers
-
-Marcel
-
-[snip]
+On Fri, Feb 20, 2026 at 5:29=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Fri, Feb 20, 2026 at 04:27:05PM +0800, Max Hsu wrote:
+> > Add the SiFive FU740-C000 ethernet controller compatible string to the
+> > Cadence MACB binding documentation.
+> >
+> > The FU740 ethernet controller uses the same GEMGXL management block as
+> > the FU540, which is tightly coupled with the Cadence MACB IP. This
+> > follows the SiFive IP versioning scheme which requires SoC-specific
+> > compatible strings for proper hardware identification.
+>
+> Your rationale for this change is misguided, as this is not a SiFive IP,
+> so that document does not apply. On the other hand, the general rules
+> for devicetrees require this so this just means a change in the
+> rationale provided.
+>
+> >
+> > Signed-off-by: Max Hsu <max.hsu@sifive.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/cdns,macb.yaml | 7 +++++--
+> >  1 file changed, 5 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Doc=
+umentation/devicetree/bindings/net/cdns,macb.yaml
+> > index cb14c35ba996..b46dde1da170 100644
+> > --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> > +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> > @@ -63,6 +63,7 @@ properties:
+> >            - mobileye,eyeq5-gem        # Mobileye EyeQ5 SoCs
+> >            - raspberrypi,rp1-gem       # Raspberry Pi RP1 gigabit ether=
+net interface
+> >            - sifive,fu540-c000-gem     # SiFive FU540-C000 SoC
+> > +          - sifive,fu740-c000-gem     # SiFive FU740-C000 SoC
+>
+> I don't think this is right, since it is identical to the one on the
+> fu540 (as evidenced by how it has worked until now and the contents of
+> your driver change). I think you should add the fu740 with a fallback to
+> the fu540, like the devices from Microchip that fall back to the
+> microchip,sama7g5-gem. The rest of the changes to the driver and binding
+> can then be dropped as they'll be redundant.
+>
+> Thanks,
+> Conor.
+>
+> pw-bot: changes-requested
+>
+> >
+> >        - items:
+> >            - enum:
+> > @@ -74,7 +75,7 @@ properties:
+> >      minItems: 1
+> >      items:
+> >        - description: Basic register set
+> > -      - description: GEMGXL Management block registers on SiFive FU540=
+-C000 SoC
+> > +      - description: GEMGXL Management block registers on SiFive FU540=
+/FU740 SoCs
+> >
+> >    interrupts:
+> >      minItems: 1
+> > @@ -181,7 +182,9 @@ allOf:
+> >          properties:
+> >            compatible:
+> >              contains:
+> > -              const: sifive,fu540-c000-gem
+> > +              enum:
+> > +                - sifive,fu540-c000-gem
+> > +                - sifive,fu740-c000-gem
+> >      then:
+> >        properties:
+> >          reg:
+> >
+> > --
+> > 2.43.0
+> >
 
