@@ -1,264 +1,161 @@
-Return-Path: <devicetree+bounces-266913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-266914-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gA8tIM4+mGneDwMAu9opvQ
-	(envelope-from <devicetree+bounces-266913-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:00:30 +0100
+	id WJzBOpRAmGneDwMAu9opvQ
+	(envelope-from <devicetree+bounces-266914-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:08:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34561671F1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:00:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D2A16726E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 12:08:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EB1BE3019145
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:00:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CEB593003998
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 11:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE2D340D90;
-	Fri, 20 Feb 2026 11:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D088034106D;
+	Fri, 20 Feb 2026 11:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aCjiRx0O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hnU80xkw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60DBD2F3C26;
-	Fri, 20 Feb 2026 11:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA16341041;
+	Fri, 20 Feb 2026 11:08:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771585226; cv=none; b=fqk2ZS35c1Gi0EeFgA5LSv4kzKM7vGV+mRFeQBCLHBKhwjJvR3h06jG0oUK1W/LUNoXcpTfYzghK+F/1qo/W3+H03T3dKjodgyn2T6BLDU2R234rNc5MCJ5LmWWzVxwcNPTUQtXv/rMk4loOx4QAhPyqgE2SJPX2GZU1tV0mzFQ=
+	t=1771585681; cv=none; b=dY0L80aiv2pnjKw6SCPItUc7LlXIhMligv2mmakMyVgAZHuhqwtVgj4KhcdXY/FZeX9VlO5+6PQg2gAuClD6yRkVYcgS+6AfE/I4nlVLFP1Gs06i2p6M+515pNSEpsz7fsWMLBSPt6sexxxPUAFNz8qFr6Lq9tVDIJJZtkJ17cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771585226; c=relaxed/simple;
-	bh=iNcKUhcDBC7DS7fLtdCAgJUwplE3Xzy+e6JHVWqEix0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fnjHWqXveYpryRoQd/mm3Q8n3oTP/4dTTrLGNQnbHFQ5ziCvKdAMKqu4P1v9EHQ3p9cL4cqIybNbqBIMlu3uuI27ULMnpvWFzfJrjxk7d0ZbhV4520MfyC6jTKJBoTlaFiC0lg4ZKF4W4VvAoIvaRj3vb4nNK4Flu546P0d+iI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aCjiRx0O; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771585224; x=1803121224;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=iNcKUhcDBC7DS7fLtdCAgJUwplE3Xzy+e6JHVWqEix0=;
-  b=aCjiRx0Oc7kmWU5E0W3vzxGxOkNDxeRLJ/BymmKhmM3HZ8sM5MwV/bIJ
-   joDlXs/s28V38l8fXl6phqIpJBx3TH+gJ2F66Kdl8F+UNvr25cYoSbSJL
-   Ot6hbDfiTNZRzIipt1QwGUTvueQDZaTHc/BxckSCw3eGLeF99iPhIpmrg
-   V9EJdUOOsgWRpW6WSpqsqzhUrzGQkQKnKxBl+nsyxZV7u6GjIdNhJOvlK
-   9eq20sOAuHXbKfRUJEq5I28bkQfDkPRgDg3Y4DNMXlQ2vWmLnhsNy8rcp
-   F050JLIm/l8E6Wh3kyuJk6UtI03qbUb2L+R59NfIgn+/94ylLRGyk6hTg
-   A==;
-X-CSE-ConnectionGUID: 7p5DaA+0SD+nuYT56020ng==
-X-CSE-MsgGUID: mf+CM1ZWSJ6tgErxpBvYjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72582542"
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
-   d="scan'208";a="72582542"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 03:00:24 -0800
-X-CSE-ConnectionGUID: l+ZxE1JySnKLY4z/9cj1GA==
-X-CSE-MsgGUID: yGRs53IUSDWisLQCTbALXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; 
-   d="scan'208";a="218955283"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.25])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2026 03:00:16 -0800
-Date: Fri, 20 Feb 2026 13:00:14 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: dac: ad5706r: Add support for AD5706R DAC
-Message-ID: <aZg-vtenBU2rKKX_@smile.fi.intel.com>
-References: <20260220-dev_ad5706r-v1-0-7253bbd74889@analog.com>
- <20260220-dev_ad5706r-v1-2-7253bbd74889@analog.com>
- <4fd329ed6416fd2f8e2a72adfa5a77f73107948b.camel@gmail.com>
+	s=arc-20240116; t=1771585681; c=relaxed/simple;
+	bh=jMVKrMEASFNM9UOfBBIbHlKlQ8chDmq+R65ozwvKOJE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gf4tt3/0rMHKBDcQ9ZuKwf6YAxoh2MYgcXqM6LQb+XtwZFPs0WhhOXcWOj2+W4aMD9LDaLoKaYWjUoCgClM9kdJfWBJz/8q1HT6DmUU2tX/33HVIbgkHHVGRz5c2w20b9GXlmOmt2sp6D19O9ar1/P4JugwkmxjcgXSloYZ9pEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hnU80xkw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD271C116C6;
+	Fri, 20 Feb 2026 11:07:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771585681;
+	bh=jMVKrMEASFNM9UOfBBIbHlKlQ8chDmq+R65ozwvKOJE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hnU80xkwVfzu8Aoq9fSHKxw1j9/jUd4L/oIpEbnFz/ymj8ZvqM0sWbSSBcTkDd5Ky
+	 Ox0jV3ls6mS6THpLQaXSY65DGggyNVuGSdN+ejpG+2IPsgZbSg7X6gsSuoPATW/xVu
+	 2wl+ZV/I1Jw4fQVFsFOHpkN7Q7h7QbN8krMz/2KWXgv0feIlUm6QLQLfEIjKMLLIam
+	 R5Gtz07W7cYRiD9ZFTGGyQce/mELA8sJqhv4IjA4Me4pRh4jyTkEugYY8TM8Dh03i5
+	 RvJ88HIxrTR0QwEbhWYT1ppaZOqc85lW3d2zrSk2TxuJKQRwP08e1dB5KhBybTpsVy
+	 6umlp87bO5prA==
+Message-ID: <db6b5e85-bf19-45dc-b536-75512096a5f9@kernel.org>
+Date: Fri, 20 Feb 2026 12:07:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4fd329ed6416fd2f8e2a72adfa5a77f73107948b.camel@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: defconfig: Enable Glymur clock controllers
+To: Taniya Das <taniya.das@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+ Imran Shaik <imran.shaik@oss.qualcomm.com>,
+ Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260220-glymur_mmcc_dt_config-v1-0-e0e2f43a32af@oss.qualcomm.com>
+ <20260220-glymur_mmcc_dt_config-v1-2-e0e2f43a32af@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260220-glymur_mmcc_dt_config-v1-2-e0e2f43a32af@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-266913-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-266914-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smile.fi.intel.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: F34561671F1
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 95D2A16726E
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 10:48:59AM +0000, Nuno Sá wrote:
-> On Fri, 2026-02-20 at 16:02 +0800, Alexis Czezar Torreno wrote:
+On 20/02/2026 11:16, Taniya Das wrote:
+> Enable the Glymur video and gpu clock controller for their respective
 
-...
+Qualcomm Glymur SoC
 
-> > +static void ad5706r_debugs_init(struct iio_dev *indio_dev)
-> > +{
-> > +	struct dentry *d = iio_get_debugfs_dentry(indio_dev);
-> 
-> It should have:
-> 
-> if (!IS_ENABLED(CONFIG_DEBUGFS))
-> 	return
+> functionalities on the Qualcomm Glymur CRD boards.
 
-But why? The debugfs is a stub when disabled, nobody should do that
-in the cases when the main purpose is not the debugfs code.
+Subject: Qualcomm
 
-> > +	debugfs_create_file_unsafe("streaming_addr", 0600, d,
-> > +				   indio_dev, &ad5706r_streaming_addr_fops);
-> > +	debugfs_create_file_unsafe("streaming_len", 0600, d,
-> > +				   indio_dev, &ad5706r_streaming_len_fops);
-> > +	debugfs_create_file_unsafe("streaming_data", 0600, d,
-> > +				   indio_dev, &ad5706r_streaming_data_fops);
-> > +	debugfs_create_file_unsafe("streaming_reg_access", 0600, d,
-> > +				   indio_dev, &ad5706r_streaming_reg_access_fops);
-> > +	debugfs_create_file_unsafe("spi_speed_hz_write", 0600, d,
-> > +				   indio_dev, &ad5706r_spi_speed_write_fops);
-> > +	debugfs_create_file_unsafe("spi_speed_hz_read", 0600, d,
-> > +				   indio_dev, &ad5706r_spi_speed_read_fops);
-> > +}
-
-...
-
-> > +	/* Find which index has this register value */
-> > +	for (i = 0; i < ARRAY_SIZE(mux_out_sel_reg_values); i++) {
-
-	for (size_t i...)
-
-> > +		if (mux_out_sel_reg_values[i] == reg_byte) {
-> > +			st->mux_out_sel = i;
-> > +			return i;  /* Return index, not register value */
-> > +		}
-> > +	}
-
-...
-
-> > +	return ret ? ret : len;
-
-Use Elvis operator
-
-	return ret ?: len;
-
-...
+Again, you are adding commit to generic kernel to generic defconfig. How
+anyone can figure out what is Glymur when going via shortlog?
 
 
-> > +	{},
-
-IIO has a style for terminator entry, along with confusing trailing comma.
-If it's a sentinel, it must be one even at a compile time.
-
-> > +};
-
-...
-
-> > +	st->debug_spi_speed_hz_write = 10000000;
-> > +	st->debug_spi_speed_hz_read = 10000000;
-
-units.h and other headers for your help
-
-10 * HZ_PER_MHZ
-
-...
-
-> > +	st->sampling_frequency = 1000000;
-
-In the similar way.
-
-...
-
-> > +	st->reference_volts = 2500;
-
-2.5kV?! I think you mistakenly put volts where should be _mV
-
-...
-
-> > +	for (i = 0; i < 4; i++) {
-
-Magic 4.
-
-> > +		st->hw_active_edge[i] = HW_ACTIVE_EDGE_RISING_EDGE;
-> > +		st->range_sel[i] = RANGE_SEL_50;
-> > +		st->output_state[i] = OUTPUT_STATE_NORMAL_SW;
-> > +		st->ldac_trigger_chn[i] = LDAC_TRIGGER_CHN_HW_TRIGGER;
-> > +		st->toggle_trigger_chn[i] = TOGGLE_TRIGGER_CHN_HW_TRIGGER;
-> > +		st->dither_trigger_chn[i] = DITHER_TRIGGER_CHN_HW_TRIGGER;
-> > +		st->multi_dac_sel_ch[i] = MULTI_DAC_SEL_CH_EXCLUDE;
-
-Hmm... Perhaps memsetXX()? But original loop with the defined iterator will be
-okay:
-
-	for (unsigned int i = 0; i < $MAGIC_CONST; i++) {
-
-> > +	}
-
-...
-
-> > +	st->resetb_gpio = devm_gpiod_get_optional(dev, "dac-resetb", GPIOD_OUT_LOW);
-> > +	if (IS_ERR(st->resetb_gpio)) {
-> > +		return dev_err_probe(dev, PTR_ERR(st->resetb_gpio),
-> > +				     "Failed to get RESET_B GPIO\n");
-> > +	}
-
-> > +	st->shdn_gpio = devm_gpiod_get_optional(dev, "dac-shdn", GPIOD_OUT_HIGH);
-> > +	if (IS_ERR(st->shdn_gpio)) {
-> > +		return dev_err_probe(dev, PTR_ERR(st->shdn_gpio),
-> > +				     "Failed to get SHDN GPIO\n");
-> > +	}
-
-The {} are not needed when the body is a single call.
-
-...
-
-> > +static const struct of_device_id ad5706r_of_match[] = {
-> > +	{ .compatible = "adi,ad5706r" },
-> > +	{ },
-
-See above about terminator entry style.
-
-> > +};
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Krzysztof
 
