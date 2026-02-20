@@ -1,70 +1,75 @@
-Return-Path: <devicetree+bounces-267084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267085-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WIyzIRThmGmHNwMAu9opvQ
-	(envelope-from <devicetree+bounces-267084-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 23:32:52 +0100
+	id AOAmK5HhmGmHNwMAu9opvQ
+	(envelope-from <devicetree+bounces-267085-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 23:34:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E8616B3EE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 23:32:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B81916B418
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 23:34:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD6963038AF8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 22:29:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0EBC13037E6A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Feb 2026 22:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14DAC310763;
-	Fri, 20 Feb 2026 22:29:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDCA310777;
+	Fri, 20 Feb 2026 22:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3h/4uFO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNXx+2cP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B9F30F539;
-	Fri, 20 Feb 2026 22:29:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0749F30DEDC;
+	Fri, 20 Feb 2026 22:33:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771626541; cv=none; b=q7Yql+//4GKn6bqEINTn9FmWkNotMHg5DBwmcymH013UNzki5OoxL9brxDpbigI0uYou7tvYHmbAdMS+ikRCCIH3pSG6PM8mDdlqGcrKyS7+QtMrEWTOvzxEa1Jr6Vn/HSN2GSEm1aLui6y4SVASaPLXSxv1XookNYcJm7JyEVE=
+	t=1771626811; cv=none; b=eG9FqyA5vwgi2+ffPJsN8taVj3OsZDZcvVpgoIdBWHxr+/pWtDcajN7NIdVH7aaAvDEA27ic1/BbZjQm8Fo2mxxmgnmSU+f987y/AtaUTYFDO/gbhEiKcIIUpS57iAdxnDhZQiTFFgBTBA5TCvNnV3zW6L7TlWdjjq/sNo2nt9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771626541; c=relaxed/simple;
-	bh=11otB+0C7jYVhaDxWBeram0e1X5fMU/f0Ln1ESpvEjs=;
+	s=arc-20240116; t=1771626811; c=relaxed/simple;
+	bh=G9PuysDIOK/utZRbimCSxhU/vbP4rAjGxg+IEV+ae54=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RePgH/I9j/eEsF9LpBCC1QViFK+Pd2gR0engCuERLokaNXYfvk6wPXLrOysUqjuhqYQaovualUOOKyFBuBM31ynUCb4i8SSIzSCFMKHd87Mm/sUsgDNia173BIk+asTJCoZSvWTtuI1JgTAY/Kb3+OFafC5SuYjUmmIM4SluLyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3h/4uFO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 341BBC116C6;
-	Fri, 20 Feb 2026 22:28:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cJiikRKCs21wmC2tx4J+V3S9hhKxLujz13GCa+K6K08FaDW+GKeICW6YFZmdJNvHq/Zn/k82WfpZloH5a1TTUK2sCcBRNcDTIEKpUvlU3EqYuT1Nedub3MVfEMpcc87wIjzokZ+IL65cRF+cSXgSZowDZfHjneZgwNuvyofo8Pc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNXx+2cP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A792BC116C6;
+	Fri, 20 Feb 2026 22:33:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771626540;
-	bh=11otB+0C7jYVhaDxWBeram0e1X5fMU/f0Ln1ESpvEjs=;
+	s=k20201202; t=1771626810;
+	bh=G9PuysDIOK/utZRbimCSxhU/vbP4rAjGxg+IEV+ae54=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z3h/4uFOa/J5BG0X4/6yM6a07SKXwLgiBv+QCvuuyf2FmME4xpAKnWETPBeSX/xed
-	 UrSmCDomq8BlunEIKGC+u3se+LW/r9nxhn9ivo4onmKVsa5D9rO3QgBa0ixs0+7qdJ
-	 XKwz382H/4jfyu3ojeABxVz6NKAQ+wXWUfdixU99s64YWJVn4YPqUp3sJ8pWjOQStI
-	 n+9gmFJLQE070EdcdUR7Cvdwpl0kLgZ1kUAIwRFUnA2pwjwxXCspPWiXYP8KynT5SG
-	 hwOxgyRsL5+MWR4N8IsD/t8R+d+R/LijnQDWuKKQ6hzivoKgxBiAlRKuuSdQxA9KYr
-	 xHojA/+IIQ1HA==
-Date: Fri, 20 Feb 2026 22:28:54 +0000
+	b=SNXx+2cPe2NT7jVmcXy7HE3rBU8gwmDxq6hL5mJOFf02N4LMXhG1I18E9a/bDBo95
+	 bAJraTFMNy6JFmPIPfqhegVu1VGFhNE2uSGy55whYy+FUwAoN5DewVQyGoDpuOhobf
+	 NFa2rAV4bDOUAvjlRUTrjN7Nku+/Y60InifvB2G4kLa15yfaqv1cbAowVl0KDPzxpd
+	 1S2NqywtjlmmBwP3q6HCNJzF0BXLIX9WBZdS+5o0c/yOsaIWeMgCWdEy61WpIHoUG5
+	 Z86BcMyrkXz1EE9ram94kvly2XqDkzL6Ry0uy8W/82ZixMUrF8iNARRjT6ndArXMDH
+	 pDvQDdqyzrLIA==
+Date: Fri, 20 Feb 2026 22:33:24 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Max Hsu <max.hsu@sifive.com>
-Cc: Paul Walmsley <pjw@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Green Wan <green.wan@sifive.com>, Rob Herring <robh@kernel.org>,
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Debbelt <palmer@sifive.com>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Thomas Gleixner <tglx@kernel.org>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
 	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-riscv@lists.infradead.org, dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: dma: sifive,fu540-c000-pdma: add fu740
- support
-Message-ID: <20260220-gonad-plutonium-60e1baddecec@spud>
-References: <20260221-pdma-v1-0-838d929c2326@sifive.com>
- <20260221-pdma-v1-4-838d929c2326@sifive.com>
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>
+Subject: Re: [PATCH 2/5] dt-bindings: interrupt-controller: Add SiFive
+ FU740-C000 PLIC
+Message-ID: <20260220-outdoors-shortwave-1d96b888d6c2@spud>
+References: <20260220-fu740-v1-0-c8af54130c58@sifive.com>
+ <20260220-fu740-v1-2-c8af54130c58@sifive.com>
+ <20260220-contest-ambiguity-1a4099520bdf@spud>
+ <CAHibDyy1mA2s9_UjKGPemRaKNSvyq07Ok5+4yruQ1uXX+R-Pkg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,9 +77,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4diucl4xuCXo0x14"
+	protocol="application/pgp-signature"; boundary="1+7JBjJXa3ddPAxb"
 Content-Disposition: inline
-In-Reply-To: <20260221-pdma-v1-4-838d929c2326@sifive.com>
+In-Reply-To: <CAHibDyy1mA2s9_UjKGPemRaKNSvyq07Ok5+4yruQ1uXX+R-Pkg@mail.gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -88,78 +93,58 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267084-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267085-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sifive.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F3E8616B3EE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 5B81916B418
 X-Rspamd-Action: no action
 
 
---4diucl4xuCXo0x14
+--1+7JBjJXa3ddPAxb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Feb 21, 2026 at 03:43:56AM +0800, Max Hsu wrote:
-> Add "sifive,fu740-c000-pdma" compatible string.
+On Sat, Feb 21, 2026 at 02:49:19AM +0800, Max Hsu wrote:
+> On Fri, Feb 20, 2026 at 09:23:18 +0000, Conor Dooley wrote:
+> > So do the general rules for devicetree bindings, that's not something
+> > SiFive specific FWIW.
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
 >=20
-> Signed-off-by: Max Hsu <max.hsu@sifive.com>
-> ---
->  Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Thanks for the review and the ack, Conor.
 >=20
-> diff --git a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma=
-=2Eyaml b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-> index 609e38901434..b6c49060bc6f 100644
-> --- a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-> @@ -36,6 +36,7 @@ properties:
->            - enum:
->                - microchip,mpfs-pdma
->                - sifive,fu540-c000-pdma
-> +              - sifive,fu740-c000-pdma
+> I'll update the commit message in v2 to reference the general device
+> tree conventions.
 
-Based on the driver change and related discussion, I'm not sure that
-this is the correct change to make.
-This shouldn't be applied til the discussion on the driver is figured
-out.
+It's fine as-is, was just pointing out that this is a general guideline.
+The SiFive document is mostly about the naming of the fallback
+compatibles etc that represent the IP core, rather than the soc-specific
+part.
 
-Cheers,
-Conor.
-pw-bot: not-applicable
-
->            - const: sifive,pdma0
->      description:
->        Should be "sifive,<chip>-pdma" and "sifive,pdma<version>".
->=20
-> --=20
-> 2.43.0
->=20
-
---4diucl4xuCXo0x14
+--1+7JBjJXa3ddPAxb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaZjgJgAKCRB4tDGHoIJi
-0sF9AP46m1QKgFzFZtWRE8BffzPh9vx1iQM4ymKZBIOR3oErdQD/QJsiq/QotQMJ
-wEpnHgIGg5SaNrX+xWsBYxthqnvQ9gE=
-=Ni+J
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaZjhNAAKCRB4tDGHoIJi
+0iSNAP9hJhb7PGWy2jnnfpHwcJa19CkzkGwxwor9OoYtlCtP7AEAwzDYTk1Mm1E8
+1RRVikALQOU4P5c2hFz7flV/0fZGfws=
+=WXTM
 -----END PGP SIGNATURE-----
 
---4diucl4xuCXo0x14--
+--1+7JBjJXa3ddPAxb--
 
