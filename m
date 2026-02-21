@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-267103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267104-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CP8bD/yemWmtVgMAu9opvQ
-	(envelope-from <devicetree+bounces-267103-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 13:03:08 +0100
+	id YJX5BvqemWmtVgMAu9opvQ
+	(envelope-from <devicetree+bounces-267104-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 13:03:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5209416CCDB
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 13:03:07 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0505116CCD2
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 13:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C92C33002F7D
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 12:03:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 363E13001FE5
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 12:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA1835028B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643DB350297;
 	Sat, 21 Feb 2026 12:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=puri.sm header.i=@puri.sm header.b="a5KiYJRz"
+	dkim=pass (2048-bit key) header.d=puri.sm header.i=@puri.sm header.b="eWHiGQtt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from ms.puri.sm (ms.puri.sm [135.181.196.210])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F232DC323;
-	Sat, 21 Feb 2026 12:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E5CE30DD03;
+	Sat, 21 Feb 2026 12:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=135.181.196.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771675380; cv=none; b=aJnh1SXlauIVEJhPBdD5JDokD6ZETMGSAKHncQYe8/FImHvfPZYV48InkirJHHCyTSMMcV7bllTTtwHyR4doD2uEVhjxgjPRxIRPO34y+IFqgF7+JRSIrWLsxW0wNc/87XCuZyFJmv23WBe5R/aAIBRv1fMnZYsrn4UrhCOgIMw=
+	t=1771675380; cv=none; b=CV4F7YORqe574gnSNj6QAT5fnDqpkzRuWbfBT56x5tg9K99QMVz/K1C+wgwUJdd69zQihEyLjhObT4Nh5cbvcPGR3EE5Iw4OOnJJ2HmaLymC+SkPvoWIlcNxOsf7IzT+y9hDBsPcXRY098wkFp90FocgKIsc3cZTgg6cy0nRG20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1771675380; c=relaxed/simple;
-	bh=9SbPaetK5d72539TKn7IKw4NUnBLPltxlU7lgz7MMeU=;
+	bh=+P2UmjjMj8fB1fckTddWUiRUs1ZIOtQl89FyWQY/oVY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ENFOCOpsLlgEZWMSRqpSBDJIBausMWp1Z5GOcTQmrmNZaNUNm12srx3vhGai+R1g/NUUhsAAhvgrwj+oQqgL6F8cYnBsb3Ndtbe25k/vc5WBmNdsYprMc+3oQYoEa+b8liPj1egcOAIEOfQt6po2Tnt17BLl+qkVriKPRQ0pgbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=puri.sm; spf=pass smtp.mailfrom=puri.sm; dkim=pass (2048-bit key) header.d=puri.sm header.i=@puri.sm header.b=a5KiYJRz; arc=none smtp.client-ip=135.181.196.210
+	 In-Reply-To:To:Cc; b=AUshEdrZ+ad42+Hdg75QOTKTMIK4nCYzTLp7XZlQKXbWgAgr7TTBG4NlTMiRnWJpJqXir4kT1bMoJqOwvjAvldUNLfnRMd8scUAi9wNlr9SNsaZ21r7JY4yC9HIQEUs840U5Ezv8RbBRW4J5BQJpgqqhIUZ4FM4iuMsRORUtKzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=puri.sm; spf=pass smtp.mailfrom=puri.sm; dkim=pass (2048-bit key) header.d=puri.sm header.i=@puri.sm header.b=eWHiGQtt; arc=none smtp.client-ip=135.181.196.210
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=puri.sm
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=puri.sm
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=smtp2;
-	t=1771675370; bh=9SbPaetK5d72539TKn7IKw4NUnBLPltxlU7lgz7MMeU=;
+	t=1771675371; bh=+P2UmjjMj8fB1fckTddWUiRUs1ZIOtQl89FyWQY/oVY=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=a5KiYJRzdXj3LULGd4zZt7F61KF3lFuTAjq8KSuUiG7OGxqSpoWXlATPDQC5G7APz
-	 VmdLbsEEOOdll9rHyytrQZF2exQZs2RzOu3hi4UYel2mMwPXIVzfIhu/bHL13YMw2y
-	 4aj5tXBvWUhpKxOcT35cUZzIWbzTIf0D+Fg3Upy8EGBKUxem8DkDK3UU9to13B1mjN
-	 nEotdXYUTZFxMztuIxSTt5ZCiJRPRkyftl74X0IIBdd7qVplDY6Iy1tv5qWYht5Y7v
-	 +DV+TdKos/9UErshAJDXHD85lWqwx2/aHwFY/ZvxOG1VK+ZGsQyhS1/qg0SUtrKDuR
-	 86gQpwYGauU1A==
+	b=eWHiGQttCqab0qbtNV3yYZ1r1hoiCRUjfyPQO8phOKwMB7IV/jc+EDV8LvQT2XUB3
+	 nlIXcVEZO6Up1q3hCweUTcfewqPSWR9ZG/kL8f3H1SGJ7VxGHlgihmpI5rrWniZMr3
+	 PcULoXr8Ulz+vrjyPHvsLPePAnR6Biaz0OeNn23aZwCNxZTTQsYR7/emxtsnpmoZ/T
+	 Sr27UrsQGucxgt1t9aF2sIlkRol33ykTwTgtjEJOoMJYIux7egD8rKCKTzxdQ4eyq7
+	 DEd0Wd6yLe9ERObuGEWvw5p01NINxhcUu3saXyjrN1MwebaJU3WT8Jd4qDIm+84stW
+	 Dp2YdKSVqoRAA==
 Received: from pliszka.localdomain (79.184.40.11.ipv4.supernova.orange.pl [79.184.40.11])
-	by ms.puri.sm (Postfix) with ESMTPSA id F34981F6B7;
-	Sat, 21 Feb 2026 04:02:49 -0800 (PST)
+	by ms.puri.sm (Postfix) with ESMTPSA id BECED1F6B9;
+	Sat, 21 Feb 2026 04:02:50 -0800 (PST)
 From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Date: Sat, 21 Feb 2026 13:02:10 +0100
-Subject: [PATCH 1/2] Revert "arm64: dts: imx8mq-librem5: Set the DVS
- voltages lower"
+Date: Sat, 21 Feb 2026 13:02:11 +0100
+Subject: [PATCH 2/2] arm64: dts: imx8mq-librem5: Bump BUCK1 suspend voltage
+ up to 0.85V
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260221-l5-voltages-v1-1-daa8aeedc86c@puri.sm>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260221-l5-voltages-v1-2-daa8aeedc86c@puri.sm>
 References: <20260221-l5-voltages-v1-0-daa8aeedc86c@puri.sm>
 In-Reply-To: <20260221-l5-voltages-v1-0-daa8aeedc86c@puri.sm>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -70,21 +70,21 @@ Cc: kernel@puri.sm, devicetree@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2661;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1129;
  i=sebastian.krzyszkowiak@puri.sm; h=from:subject:message-id;
- bh=9SbPaetK5d72539TKn7IKw4NUnBLPltxlU7lgz7MMeU=;
- b=owEBbQKS/ZANAwAKAejyNc8728P/AcsmYgBpmZ7nqezd4u9Rpz3KUnua9Sbyn21RCE8R6QZu2
- g3DUohOP9CJAjMEAAEKAB0WIQQi3Z+uAGoRQ1g2YXzo8jXPO9vD/wUCaZme5wAKCRDo8jXPO9vD
- /7nvD/9Cw/2BKcSrlkdhbkMK3ZszKTTTh3oBAHyrVfTc+82chIDSLO1Yi925A439Jg74l3jthTe
- Y9KJDTRXZwT2gRitSfNSqEG8wam9aqaopk8aoIveENJCVGtQstlHxZMZi92LHIcnL/hukmvAEqC
- mOXtTJO9hfgf3l16eX4faZmVX+FRFMFqdn4DP+C/Fm4AFKWaIbjggORZUSDzdmip9BjKQdWqVFT
- 0kO2jl+ENbouSVwrl95Sw2PqutXtRlgzCpmQaYNjl4uhAo3NhaXtE6Ln9VFYHoA1jLWTNSN4dwQ
- pc9oADEW5Hkk3Cq8p4/aRPhhwc3L+9YcvJOfll51SIsopTsd31tABKfJK2ohuw0IM4skzPmWvNl
- 6Zc69/wiTGsKq3Pa4GF0hsVkkutL7oSu//HNxt/ziNH+Y960qm6caVK3P8GLLNikQncpf306q5A
- nCQKVkGAOw0hQ/kReMCwcvXlpd0E2rwVtUVJmzF2HMtuXDzsxUytCGbfQlobYIVjZRgEGbiqQkU
- oV5lMP5W9WI3aMFAlcz88Ba8M3JWq9FOMkexdhgvtYFthXxsy3RIF2dTBer99MPpDZSdKwgwi03
- Hkg3NN4BNNcS0n3ejOCrw7wtqPW28rX0QxfnBMH+MEv/Wd7ATOWXU8/m6VAYpAu5RBmO1RWtarl
- 0q+FqCsL/SXgH7w==
+ bh=+P2UmjjMj8fB1fckTddWUiRUs1ZIOtQl89FyWQY/oVY=;
+ b=owEBbQKS/ZANAwAKAejyNc8728P/AcsmYgBpmZ7ocu5Hw1ObhHncLNhbzM94h2d1o9vFmz51o
+ jRa7deANWqJAjMEAAEKAB0WIQQi3Z+uAGoRQ1g2YXzo8jXPO9vD/wUCaZme6AAKCRDo8jXPO9vD
+ /yxdEACIASgj/eqaCUoHUUJzgkjBpEivCs37Kdd01+sc29Bl+YonBOPk6H4EbPdGU4BV4EQ6Enl
+ GWpdyORS+rq0II85RUlrSmWIFe1Gur3wYUJ5Xe0Lrh/o8EQN5j+LcmGXTmn1zdq2gSCnUAsTob9
+ ABXMB/QmwIAtCU0J41vTUwPEOD6eSa7X/exEnppChB7o4i8mF/s3QgeRnkliCBmfjpvY6HjnU8t
+ kZDGO/VqlBMVpGCrOY6ibPjKtJb0hEjTwv+/6aBXGIdSVuDz2/uHrQQ64/iMMZqzzedz0L/Fo8g
+ dSe7w6wy9/xZeHUnqdxIGD7RicQII/SY6cPxIOc9wNW7fcrPxU2XQiRT/TY6n7H0BFG+5myMZi/
+ nGZl9VoX7Z22MTF9hr+mBM0ffV1CBkCtpPwnaZUvPep/aY6HnkFzDK+WMnzi/whoIXaeHQfY1wS
+ RoypWrai/39O5MI2ReOi79roXVCLLwNd+voju6RYtDuvwLcqU6LJw9MeuQMszFApD0UsqeXXzW4
+ QXcZZKin7KfFP/q1WeJbcWrGG9QKFWGenJyqLwaB5/e5cdVEHUqOHWu/AOybT2WnXr/40zfVpXS
+ vqtthF/nEI6cf0omWhs3Pe+4R6e5UbRsl2MzWJEzBrYqyw4iOCLth2OhBj+4Wbe/tUhKokEpI34
+ JbaFM0Jw+nxV+KA==
 X-Developer-Key: i=sebastian.krzyszkowiak@puri.sm; a=openpgp;
  fpr=22DD9FAE006A11435836617CE8F235CF3BDBC3FF
 X-Rspamd-Server: lfdr
@@ -93,12 +93,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[puri.sm,reject];
 	R_DKIM_ALLOW(-0.20)[puri.sm:s=smtp2];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267103-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267104-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -114,94 +114,37 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[puri.sm:mid,puri.sm:dkim,puri.sm:email]
-X-Rspamd-Queue-Id: 5209416CCDB
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[puri.sm:mid,puri.sm:dkim,puri.sm:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0505116CCD2
 X-Rspamd-Action: no action
 
-This reverts commit c24a9b698fb02cd0723fa8375abab07f94b97b10.
+The minimal voltage of VDD_SOC sourced from BUCK1 is 0.81V, which
+is the currently set value. However, BD71837 only guarantees accuracy
+of ±0.01V, and this still doesn't factor other reasons for actual
+voltage to slightly drop in, resulting in the possibility of running
+out of the operational range.
 
-It's been found that there's a significant per-unit variance in accepted
-supply voltages and the current set still makes some units unstable.
-
-Revert back to nominal values.
+Bump the voltage up to 0.85V, which should give enough headroom.
 
 Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
 ---
- .../arm64/boot/dts/freescale/imx8mq-librem5-r3.dts |  2 +-
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi  | 22 ++++++----------------
- 2 files changed, 7 insertions(+), 17 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts
-index 077c5cd2586f..4533a84fb0b9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts
-@@ -7,7 +7,7 @@
- 
- &a53_opp_table {
- 	opp-1000000000 {
--		opp-microvolt = <950000>;
-+		opp-microvolt = <1000000>;
- 	};
- };
- 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index eee390c27210..7818d84f25a7 100644
+index 7818d84f25a7..f5d529c5baf3 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -880,8 +880,8 @@ buck1_reg: BUCK1 {
- 				regulator-max-microvolt = <1300000>;
- 				regulator-boot-on;
+@@ -882,7 +882,7 @@ buck1_reg: BUCK1 {
  				regulator-ramp-delay = <1250>;
--				rohm,dvs-run-voltage = <880000>;
--				rohm,dvs-idle-voltage = <820000>;
-+				rohm,dvs-run-voltage = <900000>;
-+				rohm,dvs-idle-voltage = <850000>;
- 				rohm,dvs-suspend-voltage = <810000>;
- 				regulator-always-on;
- 			};
-@@ -892,8 +892,8 @@ buck2_reg: BUCK2 {
- 				regulator-max-microvolt = <1300000>;
- 				regulator-boot-on;
- 				regulator-ramp-delay = <1250>;
--				rohm,dvs-run-voltage = <950000>;
--				rohm,dvs-idle-voltage = <850000>;
-+				rohm,dvs-run-voltage = <1000000>;
-+				rohm,dvs-idle-voltage = <900000>;
+ 				rohm,dvs-run-voltage = <900000>;
+ 				rohm,dvs-idle-voltage = <850000>;
+-				rohm,dvs-suspend-voltage = <810000>;
++				rohm,dvs-suspend-voltage = <850000>;
  				regulator-always-on;
  			};
  
-@@ -902,14 +902,14 @@ buck3_reg: BUCK3 {
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1300000>;
- 				regulator-boot-on;
--				rohm,dvs-run-voltage = <850000>;
-+				rohm,dvs-run-voltage = <900000>;
- 			};
- 
- 			buck4_reg: BUCK4 {
- 				regulator-name = "buck4";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1300000>;
--				rohm,dvs-run-voltage = <930000>;
-+				rohm,dvs-run-voltage = <1000000>;
- 			};
- 
- 			buck5_reg: BUCK5 {
-@@ -1448,13 +1448,3 @@ &wdog1 {
- 	fsl,ext-reset-output;
- 	status = "okay";
- };
--
--&a53_opp_table {
--	opp-1000000000 {
--		opp-microvolt = <850000>;
--	};
--
--	opp-1500000000 {
--		opp-microvolt = <950000>;
--	};
--};
 
 -- 
 2.53.0
