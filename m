@@ -1,151 +1,305 @@
-Return-Path: <devicetree+bounces-267141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267142-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JIhLQE6mmmTZwMAu9opvQ
-	(envelope-from <devicetree+bounces-267141-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 00:04:33 +0100
+	id eH0rGx4+mmkmaAMAu9opvQ
+	(envelope-from <devicetree+bounces-267142-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 00:22:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1073A16E331
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 00:04:32 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A03A16E35C
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 00:22:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 619A3301EA05
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 23:04:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 099953007217
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 23:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1264433120C;
-	Sat, 21 Feb 2026 23:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDB4D5478D;
+	Sat, 21 Feb 2026 23:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UTrBQoXj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OXKPdFBv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
+Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com [74.125.82.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6BEC274FEB
-	for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 23:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A09273594F
+	for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 23:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771715067; cv=none; b=N3GRgTUSNeImKBINUjeMMuPsjG4ygc5d2FCacpUQx28q6HEThIgEmFMfJBn3cCwOIqaZhXMkAlxqC1k4vNwaA3/X0m493rq6dEgFvnt5hvgsUKhUHwySDhrsvTLWSPd9nqHToG8tVFmT+qnaZtj0q7pLomkzLKt/AsyGcbXxyWo=
+	t=1771716121; cv=none; b=BgkolIV2IPxaY0Tly8CQHi0GbDo2b+aZsFenXJ+qhRxOhEX4MyOjZ9QYAQtCTytp3hptNarbvFMUd5lQ+/Y+noLEexioCKZX1tPfULUNRjx6gRwK79SuKRmsU7o7e30ZJUXoAXQ6YOBKxvH5ElbMZQwbTIXqSM7PHGWr4Caxk8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771715067; c=relaxed/simple;
-	bh=F4CLIfytilJvnTwA02TvCs0S+RiRZBok6Am728cvIBo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nWtGFKDCiLRwZhq1IrH5DcT7Pg23fsSTnPj2LiMfLglzy06EmHIJXRROoX3xmWCmILJ4POcN699CRBslg6WsBSJEyNiogm69YWL116oC2Ldik7virpjneVOpBU+bkaq25wW+ocd6/Bk/VFFnfpOeyJeedvYhI5g5NdmLhxYfM2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UTrBQoXj; arc=none smtp.client-ip=74.125.82.171
+	s=arc-20240116; t=1771716121; c=relaxed/simple;
+	bh=da8+ePI9reeeEA8P8Ivqvk3tnjWawvxrnS2I15pzKKY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i2r70sXvrKSQ7fAqYrVu+nEr9p89UJYrHk7LIz7WIV0GGP6zuZ5KLFceoYFajk3WXWOVBlecK1d9diR7fM4cvj6DNSpJ5FLzNNwucbBbcMlR+/RwtYqUoRuexLGni0snUPtpusAmFzEEwPFJQuW/3O2WSyML6mIbBavWoew3Rwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OXKPdFBv; arc=none smtp.client-ip=74.125.82.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-2baab3137bcso2700146eec.0
-        for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 15:04:25 -0800 (PST)
+Received: by mail-dy1-f180.google.com with SMTP id 5a478bee46e88-2bab70f8c8aso3016543eec.1
+        for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 15:22:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771715065; x=1772319865; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AgyBxQobX6hLEZu+PS4ltH40DvIKcprpQ8pSAJQ08kQ=;
-        b=UTrBQoXj5bZlw7ltscyHYy9b4PsZ9yAy6H9R35Ufl4jyD0q3OBHP3Sbd0GX4bAdHke
-         7UW6lWtz5n51bZoZ25ajpnDsCRlktmul8y/MacL/e6bRQ47N+OzKDLS55tMBCU464y+w
-         O2s3MZpsJsjxbMxycIYAz3azwfscV42CeTAVS4KlR1xYAWtGDv6zl6FdtwYkNd9YUARz
-         9W3J+KvImqY0T9bbBnoNTqseQjY2Aqdd/dCwBlUD1jfYyoDpwAfCXv8E6KdUmNWGiSJh
-         AjwB9ty6y7x1ol3iKMks9lRQ3qM9OXxQvh2/Dv8N7uDSijvbw3LuaDwp21XqxRhrBj2L
-         GK+A==
+        d=gmail.com; s=20230601; t=1771716120; x=1772320920; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=728HmIyiDZ+NFIESodn8VZNyEpposKqcEdKd0Nh49bg=;
+        b=OXKPdFBv5SuWo+HirrEl8c5+bWK5sgCm3AuNe0nQONKkfX+cnwTt737gwpQGUphMWl
+         Yn9ew2xFcI9U68zdLwsHEFDlojuwJybJQ13Eggg7fB51PxUhUHdL+1fiJFk9SsF18XLp
+         u8BbKF9LvKs1Z5jmDfjXO2SLLWWxbmy6NXpm+ZkaO9zgHKI+5Gn15SYUC+bcH3Bkgrvi
+         ImlwGbjXzurTwLopasf0iJJZmZZpGVMPy4TVQCoSjfkjTTnHL7l8Ys3+DkTbQ7NztgR6
+         Ow6myrcc6b6Vux7MIyWAU4xaJ9JTsPNJ5EXgP1c0fFL+bxrhzx9TUsjPl7cPeE5zUlHi
+         jPAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771715065; x=1772319865;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AgyBxQobX6hLEZu+PS4ltH40DvIKcprpQ8pSAJQ08kQ=;
-        b=eHw8tseIBaG48AjbAGiuEclxIaJeK7qZh4Dk/mJXzMQIV4BZCNRCV2BeXXuzq36HS9
-         s8Epmm2ta3M2VZNiJaUGblzxBDfJ77Xh3xnxSy7VHugXB3PsxRO77E6Gbbjzouk/E2Y/
-         jJ0lPhoftmciwEytyJPXFs82B7bPvllnnB6nshJfFhKEQYOARRWG/0qtB5hQ2l1z6y4/
-         z23ObsMMUKTAcO5ORYRRlKtmHQZJKtM/ZuuwnO+F7X2zkX275SXaRz9DTyAjDxdXkkZ1
-         nnqWItJUK9bNGJdl+boKkB1K6R/1j1CygctGDdmvn9x4IkSDlS/+Ecp/Gn9YeLj5zIYH
-         waKg==
-X-Forwarded-Encrypted: i=1; AJvYcCVC4n+TKsuHB65T3k/xFlMDkLIT/xNHaKtd3jCZoKF7Ln65OYMzcFUjOeSYxXt2FYMtkWvKGU3YJQFq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuStKFodX0OOsDmcdL6ENmcs/UhqAGEpK1JSOMINyxVRB7v0Gx
-	RNMyo/O9I1+0gHngYyoSlhhS8nuQ31o+NAgq/dHa9rvZF+TsjYJGDbBj
-X-Gm-Gg: AZuq6aJRt/BoH7DFj55Jr8+4opIP2n80KsUcpr193o1VSRgu6KOvVga9zc1oHZwc8DT
-	UUFJHgSVyjGCZNa4V+5TmYHjdzeNyVDEDwJHxlx25x3j4qv2iHMetaJT+XCESu4DjJaeVu7gf9x
-	+L7X+eFdR/z/ML5Y8DBsxfhxmfOVtJ7XSDPlCTOlBYeI+zCEm81L/y5q3jMS9XdQl7z6EIx4LXB
-	4S8zWkCkXunhDm1rf3BpVOmlsPMifY0Ei2vvuZ2DoGH+vPTWCqylUBMNayWa6Qu22fteIzyUFX0
-	mP9XxN00+hSXlZ6JYGWVTgOGbFK1yExcmzJwtf6JfaUPjdB/2hZHC9xN6OX352MUnjSIiBInoxk
-	1hQXioIBZKilB7YFRUAlCk3q8btL5czAPgmOICn9YichS57ZqQd6/bD2TvGdrByKTDT0FJ2BMcm
-	KNrhjS8zEm+OvOdHKoeCP1BbldxmOTqJn+ytiV
-X-Received: by 2002:a05:7301:615:b0:2b7:8b4a:15b7 with SMTP id 5a478bee46e88-2bd7bb38617mr1921205eec.16.1771715064847;
-        Sat, 21 Feb 2026 15:04:24 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2bd7dbe82desm2224270eec.20.2026.02.21.15.04.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Feb 2026 15:04:24 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771716120; x=1772320920;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=728HmIyiDZ+NFIESodn8VZNyEpposKqcEdKd0Nh49bg=;
+        b=UmL0Ocb6hF9jaZ/8giZ6g0qGhjQc/3l07nVAjqDDrLbvvFX/B1oaqpgUkOZoNn86n6
+         IDtE9iZtrnq1X6+42pnIc5vVnYv1iZWo0/X8coRkHK+u/eb+dRetEIgIZcbIj20cYQ/1
+         QgIL+acpHTVp6/3lq0lAb6DfQKkTQPU0GcCX3Px97CTu1V+mzEjBAIcsMxWH3IQpC3eR
+         bbj5yFQqyTtKbgwFqO+pVdI++UJU1AORhN+g88i7dehPSQaQ7DAunc0hfFwSBW8lFx3G
+         f09tRsm4eDd5yeF6kSqVwJitfwiWw5V/Xi+QIqjMi1NvtXiAZiULWOeGhFKldRv/nq/Y
+         Joog==
+X-Forwarded-Encrypted: i=1; AJvYcCXUPP49DlA2oc/wOhFqOFjaxoMmaj/9hY8/g/jPMi7LZerWEdfKrhiCMk7yKzSNFTEHb8r1XF6ccKdu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqfIQyOiIdUSggYjGxkh3kfD24bCr2ubQb869oWBofAzVUkRhq
+	7tEYnBNGfvMXXqD6JOZ8b40+WvKMCZXpeQlI5gQQYBmBGAGoKbKW6EdE
+X-Gm-Gg: AZuq6aJQ6mFYFH+xHzrIwWV3yW/jS+5wQW+RdBeVrrrUETzRrgQgYsxAeH1O+/ygbY3
+	rEMzGNI3RsQlCauPyi26SvWDDfbo50YvrHh+fCpeFCfYPOvs9eCGhNU67xbs7LDFDvOgGbmm2up
+	Qt4mtuXSK6wTobqijq1cC0okEmkYCxAtLMc8MncpQ8vR38dGsVhz7LhPjT97CNOqIeFpiUnnwve
+	4xsZseV5iYlVAFjCx1ZNRqxzTs/9p9IDRBq/4+k5RXr3m/Lf4j5ck6U1Vf5sTtukV0ZNYZ+Ii38
+	+ctFCPWcMlQgYxGh18+w+8kz+uUoQ9QubEUl/Ip/dRo17nfLhzq2GW3KZzxHcouJZeAlDiefnkj
+	hcnXbNgcfdxeysU6Dv5yqc2zT05qyEeAcKzvWCYkbxS4ebpP/SPCYEN0vVWvNNAVR6HcUrvFUT9
+	pG1rlxJ/pMAqTlYV6M5BH3juoW0NBcoVjHDQcJWdNen/599BNE11P5EkiBeeY+PZh1dTephXeG
+X-Received: by 2002:a05:7301:1001:b0:2b0:56fd:4b67 with SMTP id 5a478bee46e88-2bd7b9e70admr1774475eec.12.1771716119581;
+        Sat, 21 Feb 2026 15:21:59 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2bd7dc37895sm2115619eec.33.2026.02.21.15.21.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 Feb 2026 15:21:59 -0800 (PST)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sat, 21 Feb 2026 15:04:23 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Ian Ray <ian.ray@gehealthcare.com>
-Cc: Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bence =?iso-8859-1?B?Q3Pza+Fz?= <bence98@sch.bme.hu>,
-	=?utf-8?B?VG9tYcW+?= Zaman <tomaz@mono.si>,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH V3 3/3] hwmon: (ina2xx) Add support for INA234
-Message-ID: <aebd0678-bbcb-41d4-99cb-6116125d72a3@roeck-us.net>
-References: <20260220112024.97446-1-ian.ray@gehealthcare.com>
- <20260220112024.97446-4-ian.ray@gehealthcare.com>
+Message-ID: <ac930a67-01ee-4c68-a9ed-bf1c321e78f8@roeck-us.net>
+Date: Sat, 21 Feb 2026 15:21:58 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260220112024.97446-4-ian.ray@gehealthcare.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] hwmon:(pmbus/xdpe1a2g7b) Add support for
+ xdpe1a2g5b/7b controllers
+To: ASHISH YADAV <ashishyadav78@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Ashish Yadav <ashish.yadav@infineon.com>
+References: <20260219105630.11929-1-Ashish.Yadav@infineon.com>
+ <20260219105630.11929-4-Ashish.Yadav@infineon.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260219105630.11929-4-Ashish.Yadav@infineon.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267141-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267142-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,bme.hu:email,gehealthcare.com:email]
-X-Rspamd-Queue-Id: 1073A16E331
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,infineon.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9A03A16E35C
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 01:20:22PM +0200, Ian Ray wrote:
-> INA234 is register compatible to INA226 (excepting manufacturer and die
-> or device id registers) but has different scaling.
+On 2/19/26 02:56, ASHISH YADAV wrote:
+> From: Ashish Yadav <ashish.yadav@infineon.com>
 > 
-> Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
-> Reviewed-by: Bence Csókás <bence98@sch.bme.hu> # v2
+> Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
+> XDPE1A2G7B controllers.
+> 
+> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
+> ---
+> XDPE1A2G5B and XDPE1A2G7B support both Linear and NVIDIA PWM VID Data
+> formats for VOUT_MODE.
+> The configuring both loops/pages of the device independently is not
+> supported for VOUT_MODE.
+> In case of vid mode, NVIDIA PWM VID vrm_version is supported:
+> Vout = 5mV * (VID-1) + 195mV
+> ---
+>   drivers/hwmon/pmbus/Kconfig      |   9 +++
+>   drivers/hwmon/pmbus/Makefile     |   1 +
+>   drivers/hwmon/pmbus/xdpe1a2g7b.c | 120 +++++++++++++++++++++++++++++++
+>   3 files changed, 130 insertions(+)
+>   create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
+> 
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index fc1273abe357..a4513fc6bc26 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -711,6 +711,15 @@ config SENSORS_XDPE152
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called xdpe152c4.
+>   
+> +config SENSORS_XDPE1A2G7B
+> +	tristate "Infineon XDPE1A2G7B"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for Infineon
+> +	  XDPE1A2G5B and XDPE1A2G7B.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called xdpe1a2g7b.
+> +
+>   config SENSORS_XDPE122
+>   	tristate "Infineon XDPE122 family"
+>   	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index d6c86924f887..d592d8c77bec 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -70,6 +70,7 @@ obj-$(CONFIG_SENSORS_UCD9200)	+= ucd9200.o
+>   obj-$(CONFIG_SENSORS_XDP710)	+= xdp710.o
+>   obj-$(CONFIG_SENSORS_XDPE122)	+= xdpe12284.o
+>   obj-$(CONFIG_SENSORS_XDPE152)	+= xdpe152c4.o
+> +obj-$(CONFIG_SENSORS_XDPE1A2G7B)	+= xdpe1a2g7b.o
+>   obj-$(CONFIG_SENSORS_ZL6100)	+= zl6100.o
+>   obj-$(CONFIG_SENSORS_PIM4328)	+= pim4328.o
+>   obj-$(CONFIG_SENSORS_CRPS)	+= crps.o
+> diff --git a/drivers/hwmon/pmbus/xdpe1a2g7b.c b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+> new file mode 100644
+> index 000000000000..e10bafeb0984
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/xdpe1a2g7b.c
+> @@ -0,0 +1,120 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Hardware monitoring driver for Infineon Multi-phase Digital XDPE1A2G5B
+> + * and XDPE1A2G7B Controllers
+> + *
+> + * Copyright (c) 2026 Infineon Technologies. All rights reserved.
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include "pmbus.h"
+> +
+> +#define XDPE1A2G7B_PAGE_NUM 2
+> +#define XDPE1A2G7B_NVIDIA_195MV 0x1E /* NVIDIA mode 1.95mV, VID step is 5mV */
+> +
+> +static int xdpe1a2g7b_identify(struct i2c_client *client,
+> +			       struct pmbus_driver_info *info)
+> +{
+> +	u8 vout_params;
+> +	int vout_mode;
+> +
+> +	/*
+> +	 * XDPE1A2G5B and XDPE1A2G7B support both Linear and NVIDIA PWM VID data
+> +	 * formats via VOUT_MODE. Note that the device pages/loops are not fully
+> +	 * independent: configuration is shared, so programming each page/loop
+> +	 * separately is not supported for VOUT_MODE.
+> +	 */
+> +	vout_mode = pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE);
+> +	if (vout_mode >= 0 && vout_mode != 0xff) {
 
-Applied.
+"vout_mode != 0xff only makes sense in generic code, where it is possible
+that the command is not properly implemented. It does not make sense
+in a device specific driver: Either the command is implemented and returns
+a useful value, or it is not implemented. So this code should simply be
+
+	if (vout_mode < 0)
+		return vout_mode;
+
+	switch (vout_mode >> 5) {
+	...
+
+If the controller is really so unstable that it returns 0xff once
+in a while, a respective comment would be needed in the code. However,
+even then, I would suggest something like
+
+	if (vout_mode < 0)
+		return vout_mode;
+
+	/* Explain instability */
+	if (vout_mode == 0xff)
+		return -ENODEV;
+
+	switch (vout_mode >> 5) {
+	...
+
+i.e., error handling first.
+
+If the concern is that this isn't really one of the chips supported by the driver,
+I would suggest to implement chip detection code either in the identify
+function or better in the probe function. If that is the case, the return value
+from PMBUS_VOUT_MODE isn't useful anyway.
 
 Thanks,
 Guenter
+
 
