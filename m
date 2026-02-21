@@ -1,147 +1,153 @@
-Return-Path: <devicetree+bounces-267138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267139-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2A/sNQc1mmmgZgMAu9opvQ
-	(envelope-from <devicetree+bounces-267138-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 23:43:19 +0100
+	id FO5lHb45mmmtZwMAu9opvQ
+	(envelope-from <devicetree+bounces-267139-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 00:03:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 354D916E271
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 23:43:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A632916E2DF
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 00:03:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9064030252B7
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 22:43:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2E27B3018409
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 23:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C07230F938;
-	Sat, 21 Feb 2026 22:43:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2611329C57;
+	Sat, 21 Feb 2026 23:03:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fa3bBdp7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JJ5fwAJe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E87286881;
-	Sat, 21 Feb 2026 22:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF292571B0
+	for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 23:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771713796; cv=none; b=ttN/qEYaGAj8lVkgJTJordlbVBBLo5va4Zd+6VB1dWS1NqQExCE2MO6lwnG4mwx6x1NWUuKpOp2zPuW5cX24bONx7tviNy80sasUgNg0sCHlVYQIVBWDWCc58hrZf7i/OYLS5PxzT0hto/KhAk/ywPYh4rVL+rp0o4GU3dXpEKY=
+	t=1771715002; cv=none; b=bxeADsnE0NwPUkI9mzBPEtUp5Okxl+iCV/BGholtLHMmHDjmuy1RC4n2+0GYwZue1yld84TP+xmtiFqUJo7JyDbA20Him/OOKUakVSxFlShQxtDeR1V/vs+MDw4TvsdYgLr+/AuJ7Ukwa2+RA4bETDsnhwef/Sif8FzvNN/xyRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771713796; c=relaxed/simple;
-	bh=l1mLttXcMUKU0fqnl6vPAmjLOeTpuvTMHgBKn7H5Qa0=;
+	s=arc-20240116; t=1771715002; c=relaxed/simple;
+	bh=WF6K8NVh78uZPufRZQJLFh1huKuqJ4ocCD0xUfY4M3c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fRaemHoJagjwpmSA3NIJfknDYEjCZhENwKyOS0FLP5C7W4X0VtxpNUhcr5OeO1fNbhW20FghH5AUVIZd02mSu+DCSeITMLtn7xZ+++RcKMfoz01NUUw15uROx7R9WiSWaTjbO1nR9ndZDbKsdU94XlP6eNy3QMSGembWpwlBQ4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fa3bBdp7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C69C4CEF7;
-	Sat, 21 Feb 2026 22:43:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771713796;
-	bh=l1mLttXcMUKU0fqnl6vPAmjLOeTpuvTMHgBKn7H5Qa0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fa3bBdp7wK/NbCA2tMCiIWYD1D6FSWGoCXK+gXnCSds1q5aiy6e8GAA+ktxPhGu2+
-	 oEFIPezMf+XB0z9hCbuX15I1721tL5DjgtRFwcUUJhR/3RbiXiY/ku7ihZEiGMFdLM
-	 K+DUcrVgLyKq0DUoCGLUlcq4QyCHfaDK1Ye8uM6JCcViE7KPQ9X2++aDbJIQyzj280
-	 ShmF+1uMQkLIjACjg73Vp44sAlDoG3Y270xuZCcUElv5yGCQ8KbPCoHTmeG98wjQbM
-	 yrsaEcxBIm/JU2pj9m2a6Np5J4QxtQsbmv5K9W52eL5iieOSHD/3dmXiVsVQPoTEBt
-	 NcedIOUHZ6VQA==
-Date: Sat, 21 Feb 2026 22:43:11 +0000
-From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HsllAvm4b7Ip82U2FDER3XnXobBpKXTkVHQbPNLCNSePxO4+JfCNMKh3ZwPZhlLkMLhgUfwGJithA69YnNKZ8PKq+XDvifWreB0UOWykGMSe9r8NsIc6/e3nozlztcoqPGEj86qHUbI3hkk8vrfp+1akbff0KpZpT9yWt/jhPz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JJ5fwAJe; arc=none smtp.client-ip=74.125.82.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-1271257ae53so2994174c88.1
+        for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 15:03:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771715001; x=1772319801; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1OlC2BNJohPSmbVkhvbzP8ZA/FR5DuvPVsmBlsvqYtc=;
+        b=JJ5fwAJeXGGv4ZQBgRM+xw7LJWLoHuRWkzmQ1Y5F4SJvzdo8oGv1D12XzTuR0nhK+J
+         V6+duLXFS6d8Wyyg6k4se/9zkgpNOSHm3zqX/PP7MU7Oli1uk9BPKZx2cyXofqJR3e0o
+         MTXhK8FUZn1YclSkI/4LE5W/IIdc49qHVp8dadIeu6K0v8rV0oogMFjpf8WCe7GFMgLf
+         KLEs+qjTV8jyavJwwX5qu0GFAn8y7v+zUnoaMu46KcRRNOWepP+Q+eyZHCidjjzTI0p2
+         x5A7Ohe9JDimkSNJSrrYQZd9u9DaxJdcShas0fx6tZsAbn5di+Jum7zc12IJffxUsvqO
+         WXAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771715001; x=1772319801;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1OlC2BNJohPSmbVkhvbzP8ZA/FR5DuvPVsmBlsvqYtc=;
+        b=W4m5ps8PmC1lFHG/Fr9hS3EQXF40vTUCJAI5/gSEvCWvkRswXixZFmyoYUZs1GfRkl
+         6KW55IoSQcxe5mW2MzXN0qB0QHA+zGtMSdwQLro2MYtLu8A1otJMzxO0bt2oty0wUNSP
+         2Q9WBQ+7pCpVCJBy2PgS6MQ2eFH40df6ct1QiXDKrhti27w+ucwaTXhA23NM3ct6hzsZ
+         BsN4ZNJzkJgrBjxib9V//jKl5785rHWIR97IMPP45RIC5+nfRshtpCI76rOC8Wxw68Ku
+         8sOcxjwl1NOI3mmo9tU2U1vuqUfhLhluyRyUx/2oZDjLZ6I3xj2iLwhDylINmpJkXKNq
+         IdTw==
+X-Forwarded-Encrypted: i=1; AJvYcCWx0H73CwO3naKc0KorNwSiN4gPP5Zjv497MVQeV5EXIhplg9fBMTHopECjnYNxmO1ByRD038Loz0qJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywyai1h5ZIKCSLoWHT0GtDJ2NJ93CAK1IIve/Pt/Z2gHGZu2dDy
+	BX2mu6SxNLkWTY8Cg6Sm/4LMgIouKjCL3iCz6YAKPzDv5EdEHh+RGFiEgnxbshnM
+X-Gm-Gg: AZuq6aKYLiAbEF3knXPGpUVb4wCv+ArqmVEZOhx5DXHK9TOBphQcpUm57jclgY8BfPn
+	I2hzw1uiMuXPeSE4vKd0WK8FoNtVuLzDsPYuFVUaC+LI/yiWQ/hW7cb5qOPorKOwTqeaQgXo/Nz
+	H/ONROqXAgNA+PLfQOnwLH+8zVxMPJAbTgce8mzTkfyM9Pv+Bs4MCRvgFBZ+A+bvoyfRZ31d1dj
+	xYKhoPh5CXOpcH8l1cqSgEoF07h3ygNWvdOgnVuEmXaO6W8DAMIB1OwqDpZ2x78q4sFASZNtAm4
+	LNN0L0i95lUvzN7DCzK8IbYke2w8soD5V4jkeJ96ASVcmj69El08NzbXX2KhNwNFZ9y5iRSnJFI
+	PasbfhdnBUcvuFn6w+24pqi7VoYr+/qdvnAxvY0TqYd5K3N2KXA1Aam1wqJRfZP2sjIthS4JS32
+	O52PzLBvicZj8oNQfWOBauFH3OWQymVTs1pmsC
+X-Received: by 2002:a05:7022:f82:b0:11a:23fb:16e2 with SMTP id a92af1059eb24-1276acb2209mr2076796c88.9.1771715000593;
+        Sat, 21 Feb 2026 15:03:20 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1276af9f74bsm3039607c88.15.2026.02.21.15.03.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Feb 2026 15:03:19 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sat, 21 Feb 2026 15:03:18 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Ian Ray <ian.ray@gehealthcare.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH RFC 1/8] dt-bindings: iio: frequency: add ad9910
-Message-ID: <20260221-batting-amiable-fc01ae386789@spud>
-References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
- <20260220-ad9910-iio-driver-v1-1-3b264aa48a10@analog.com>
- <41190a42-70ab-45b9-922f-317e792b25a0@baylibre.com>
+	Bence =?iso-8859-1?B?Q3Pza+Fz?= <bence98@sch.bme.hu>,
+	=?utf-8?B?VG9tYcW+?= Zaman <tomaz@mono.si>,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH V3 1/3] dt-bindings: hwmon: ti,ina2xx: Add INA234 device
+Message-ID: <6d170935-7c89-4162-95bb-5c7b160f443a@roeck-us.net>
+References: <20260220112024.97446-1-ian.ray@gehealthcare.com>
+ <20260220112024.97446-2-ian.ray@gehealthcare.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FdGph1zvow74waEI"
-Content-Disposition: inline
-In-Reply-To: <41190a42-70ab-45b9-922f-317e792b25a0@baylibre.com>
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267138-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 354D916E271
-X-Rspamd-Action: no action
-
-
---FdGph1zvow74waEI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260220112024.97446-2-ian.ray@gehealthcare.com>
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267139-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: A632916E2DF
+X-Rspamd-Action: no action
 
-On Sat, Feb 21, 2026 at 02:43:02PM -0600, David Lechner wrote:
-> On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote:
+On Fri, Feb 20, 2026 at 01:20:20PM +0200, Ian Ray wrote:
+> Add a compatible string for the INA234 device, which is like INA226 but
+> has different scaling.
+> 
+> Note that the device tree compatible must be different since the driver
+> uses the compatible to configure the scaling.
+> 
+> Signed-off-by: Ian Ray <ian.ray@gehealthcare.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com> # v1
 
-> > +dependentSchemas:
-> > +  resets:
-> > +    properties:
-> > +      reset-gpios: false
-> > +  reset-gpios:
-> > +    properties:
-> > +      resets: false
->=20
-> This seems too strict. Couldn't we have some resets from a reset
-> controller and others from gpios?
->=20
-> Or maybe the reset bindings are enough and we don't need the gpio
-> bindings for the same pin?
+Applied.
 
-Actually, I'd be interested in seeing evidence for the resets property
-ever being used with this device. I think every single reset-controller
-that's currently documented is an on-chip device for resetting
-peripherals.
-
---FdGph1zvow74waEI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaZo0/gAKCRB4tDGHoIJi
-0l26AQDR3ZVj0FXwPKdQMJzQ5DAH9j6w3UqQs2++/xuFnGbjHgEAh9aLwGPduncW
-ITaX2/mpnyBdPmyszgUdZfQM1oS5Kwc=
-=mGrX
------END PGP SIGNATURE-----
-
---FdGph1zvow74waEI--
+Thanks,
+Guenter
 
