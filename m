@@ -1,174 +1,162 @@
-Return-Path: <devicetree+bounces-267099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267098-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJWkBLKOmWkwVAMAu9opvQ
-	(envelope-from <devicetree+bounces-267099-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 11:53:38 +0100
+	id 0JDGMpGOmWkwVAMAu9opvQ
+	(envelope-from <devicetree+bounces-267098-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 11:53:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFEF16CB95
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 11:53:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E737016CB7D
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 11:53:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6FE263002921
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 10:53:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2A3203003822
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 10:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F11344DA1;
-	Sat, 21 Feb 2026 10:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2632A3446C7;
+	Sat, 21 Feb 2026 10:52:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=quora.org header.i=@quora.org header.b="Zs1PZR7S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a+052Lja"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EFBC34676D
-	for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 10:53:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF5E344D91;
+	Sat, 21 Feb 2026 10:52:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771671209; cv=none; b=UYSUkjjfK3spnjuDHwtvfQfd/j3s99sE6v77PZoQxT4ki4z8m0yMM1X/hr7e2FKTLMXQe6+ZL/feqF10cvmRc5Uef3HxXvP4qqjZjJdzfFcrJIZTekDRoevbSvGZCiVQL5p7E3iY7cOYHgs1KJWh9/7YgHCv4Hp+1mCntzckRyE=
+	t=1771671178; cv=none; b=D2YuGhseRpoMmKnSmlglQbLHyKALUTxiuym5wCOQaCYAgN3lZGYYTIOBhPCRPnf2uKggApvGt3dMjPduorbeV5AsO+2nLnX1M14lxcbaxfNjJaILCbZg3P3GhRrkX89C1jX9tmSpecmKRPEL/fc8aIOLfhKQyGguPaAz0EmWTy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771671209; c=relaxed/simple;
-	bh=vd8xj7CMO3Dv+YwIu1Os2yHeUy24iPxFLciO/k2/hiY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LdeTTEOY6tI30CDdPwbxOa4+paSw+WSfFSiyuTgPEod/JnmhhCOHbrCgSmwVASujpJGEkxGD606KohPvR2HbKGFIVYpqFcUC4mtIfrbkZo0J9eLNcbRn8ffImzCRxryQSQqmuiIpmJKaoUuAQVH4iCazVYxvwrbaDFaRL7F/7jQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quora.org; spf=pass smtp.mailfrom=quora.org; dkim=pass (1024-bit key) header.d=quora.org header.i=@quora.org header.b=Zs1PZR7S; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quora.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quora.org
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-35621aa8c7fso1572786a91.2
-        for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 02:53:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quora.org; s=google; t=1771671203; x=1772276003; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=u2FH+ENmL44rmliSw5sDxFHS0xH8PJs3ALHZb419LAQ=;
-        b=Zs1PZR7Sn0sMeJMovEUorOtSteJk/PG+1R7mWZOzggp1JlnGWazGwcSnucXg6ms1RY
-         W1tRXIRWI1ycTSJDgngVusp5i5oSmCq2iSwxvdSyU3GOASVMNQ8CO44/CrKXFwYTj+IF
-         JlZUyDi/bqK0yenbZCrgzHPONB3Yg9KhWMEbQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771671203; x=1772276003;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u2FH+ENmL44rmliSw5sDxFHS0xH8PJs3ALHZb419LAQ=;
-        b=R7iUiLqSYWey2NVpXlecQKrFncMS6l3FV1p2lHquMD2nc1NSwyysxt/qQkCLgRHpda
-         NeMfPrMRwDvNCfceofEkfP16aUL1Ds06usZ19P/iirHbqn9ma68InRkjASU6gYEbt7VD
-         x/G5swdKhVzKVeEEjbvUXhprYBuhVKo1IJpT96Ot7shGfDwVCJ3udJqdZgSrMNU9FTKq
-         h2Ob7aY9KpiB9mZGPjOVVchhaNBDJFb7I+hHcZh4pwF23NL+18578+yms+zHePOIvJb2
-         oNkYLlYvwWb0w1b1qMwZL/4uzFH/NEcP3mP2MfFzSEAkzmcH30LnabM6D/xmehvV040g
-         raYg==
-X-Forwarded-Encrypted: i=1; AJvYcCU+WGQBF8eu8WegKg8eDxlVRzXlzezzvaQl5HHjA2H7l/ABIhw/nVWGjSrjteQouVxvHw0rP14vpqgd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yznw6Xs4Z24Z1QFwvjqarhLCQlGqtm2g08lpLcs3/fGL15K68Jt
-	jbv0Wlb/s8CzpRjeU+tWeaNBfEWRR5MlyERMe5A1o7N55ZhoACXapLxfJI1Kj1V57vI=
-X-Gm-Gg: AZuq6aIveaCv4fPW0CdeKbRHE6mOvrWPKqAWV5uiOio009/ADyf1j5rYcpp1Kmwyxsv
-	067fhg2+clEhBwywSK3rXufhbZ5nANzy6C2zbC5d0wAPQmU4QOLov8a0puQgAvtgSUthnrRmWCa
-	FY4Fk3fw/gt6diZIUq8EKQeUGiPilWKWbqltzid3S2n71HZH81BgdzrSDNEUdh8nygQytv2GWoi
-	1IWZhXwntGqh0a+udGhucpvgvZ+MJAyEfa91BKjeaFhLA41F+mdReFjdWzdGGR/b4bmy+BhlQIL
-	BO9RCpDpFRB1lmHMwmHI8Eae+nsj5v/24UXuqPW1ljFpdDhlfK2L3fLjMKt5Yf8or6uQA18mxjA
-	SRljMiPErcmeH1VucIlYQGVPSFCxG05LgcEjUsaL+jMugPUBosKCt0Pt2QDhaWSEYbah7DEY9dE
-	FABBIdqYTQJ6YsdotefCPa0OWlKJ5zElzjyLRYYyBsv/iEznYZvSmDD1aFkkhsCjx56n2sSP6SS
-	7+yqfuOy06+uLKEh0InurgQwUbtGKww07uRSCTAUCotQg8Q9Ja7pNYQACLCzLVCcHEKTibwKU7U
-	zEVyJHQb8LPReTP1c4w20ob6YNs1JNFP6FAuaTTs3Zb/Y6LDLscWqBbN4BHZcyu7Rtpi
-X-Received: by 2002:a17:90a:da90:b0:353:49f2:1e7a with SMTP id 98e67ed59e1d1-358ae8b3b46mr2945299a91.17.1771671203594;
-        Sat, 21 Feb 2026 02:53:23 -0800 (PST)
-Received: from aegis ([138.84.66.135])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c70b72603dfsm1924094a12.28.2026.02.21.02.53.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Feb 2026 02:53:23 -0800 (PST)
-From: Daniel J Blueman <daniel@quora.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Maulik Shah <maulik.shah@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	stable@kernel.org,
-	Daniel J Blueman <daniel@quora.org>
-Subject: [PATCH] arm64: dts: qcom: hamoa/x1: Fix TODO in system power domain node
-Date: Sat, 21 Feb 2026 18:51:56 +0800
-Message-ID: <20260221105245.19328-1-daniel@quora.org>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1771671178; c=relaxed/simple;
+	bh=M+HEpjSX2dsvk6hUwkqaIv+J50RywBTiPjl/uMLKInU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WOoShuFa7DvOskp/WzzqC8PBqQyKuXJlwM1Fj4p1jkCAsrwJnZC+UitVTFzdzJnEpAoOaksSaBRqwQH664h+YLXbrlUaNHqsgwpnPZMq+ZxLPoCi8xUtsuExtMr+A1oJkm/tjFNHI9K4rLzUwk+wzp8KQI5s+OawT+thmzK0dsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a+052Lja; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91010C4CEF7;
+	Sat, 21 Feb 2026 10:52:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771671178;
+	bh=M+HEpjSX2dsvk6hUwkqaIv+J50RywBTiPjl/uMLKInU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a+052Ljai5vPVaDIgQkBwNq/pQsMcobNmLgwwBphMbcJfrli2GdBWO5xS+i5zKf+N
+	 dzdljOhREYghb4ioGgjwQg8COJD0A5lt8A7TM10uCd7Svd2rvS8QC8CU40UHhhfTrY
+	 4G7Dy0k5NDFRRj3yv4C1FMAAuLVMYSIESj5vL8ZJRvuaxnz7yUp9yTvY5HJJIOez9x
+	 UjTYbHC1ym6fbH9f/pH+6F0gpRvkzZVPXKj0YDzzwIIvAzzQvftQzFMDztKO/XLFgo
+	 BV3QYkW60r2mfsyw8Ja7dyuZ7abjsLO/YGxvoZ9aCRJjpay9zN3aSCi/mMBpP3Yr98
+	 KzcJh7OMLg1Lg==
+Date: Sat, 21 Feb 2026 11:52:55 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Otto =?utf-8?Q?Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: regulator: Document Unisoc SC2730 PMIC
+ bindings
+Message-ID: <20260221-crimson-beaver-of-discourse-7ef24d@quoll>
+References: <20260220-sc2730-regulators-v1-0-3f2bbc9ecf14@abscue.de>
+ <20260220-sc2730-regulators-v1-1-3f2bbc9ecf14@abscue.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260220-sc2730-regulators-v1-1-3f2bbc9ecf14@abscue.de>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[quora.org:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267098-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267099-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DMARC_NA(0.00)[quora.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[daniel@quora.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linux.alibaba.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.999];
-	DKIM_TRACE(0.00)[quora.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3AFEF16CB95
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,abscue.de:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: E737016CB7D
 X-Rspamd-Action: no action
 
-At present, designs based on the Qualcomm X1 Hamoa reference platform have an always-on system power domain since the OF node values aren't implement.
+On Fri, Feb 20, 2026 at 06:01:49PM +0100, Otto Pfl=C3=BCger wrote:
+> Add bindings for the regulators found in the Spreadtrum/Unisoc SC2730
+> PMIC, used e.g. with the UMS512 and UMS9230 SoCs.
+>=20
+> Signed-off-by: Otto Pfl=C3=BCger <otto.pflueger@abscue.de>
+> ---
+>  .../bindings/regulator/sprd,sc2730-regulator.yaml  | 51 ++++++++++++++++=
+++++++
+>  1 file changed, 51 insertions(+)
 
-Fix this by using the CPU C4, cluster CL5 and system DRIPS parameters from the ACPI DSDT Windows uses, together with the Low Power Idle _LPI minimum residency of 9000us and wake latency of 5000us as exit latency. Finally, assume the entry latency is the difference of these two values.
+So your second patch depends on it, but nothing in cover letter or this
+patch changelog explain that making it extra difficult for maintainers.
+You want them to guess the dependencies?
 
-Tested on a Lenovo Yoga Slim 7x with Qualcomm X1E-80-100.
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/=
+bindings/submitting-patches.rst#L18
 
-Fixes: f33767e3cfa5 ("arm64: dts: qcom: x1e80100: Add missing system-wide PSCI power domain")
-Signed-off-by: Daniel J Blueman <daniel@quora.org>
----
- arch/arm64/boot/dts/qcom/hamoa.dtsi | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+It is just "ADD"
 
-diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-index a17900eacb20..64338769bc85 100644
---- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-+++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-@@ -290,6 +290,14 @@ cluster_cl5: cluster-sleep-1 {
- 				exit-latency-us = <4000>;
- 				min-residency-us = <7000>;
- 			};
-+
-+			domain_ss3: domain-sleep-0 {
-+				compatible = "domain-idle-state";
-+				arm,psci-suspend-param = <0x0200c354>;
-+				entry-latency-us = <4000>;
-+				exit-latency-us = <5000>;
-+				min-residency-us = <9000>;
-+			};
- 		};
- 	};
- 
-@@ -448,7 +456,7 @@ cluster_pd2: power-domain-cpu-cluster2 {
- 
- 		system_pd: power-domain-system {
- 			#power-domain-cells = <0>;
--			/* TODO: system-wide idle states */
-+			domain-idle-states = <&domain_ss3>;
- 		};
- 	};
- 
--- 
-2.51.0
+>=20
+> diff --git a/Documentation/devicetree/bindings/regulator/sprd,sc2730-regu=
+lator.yaml b/Documentation/devicetree/bindings/regulator/sprd,sc2730-regula=
+tor.yaml
+> new file mode 100644
+> index 000000000000..36f5f4d338bb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/sprd,sc2730-regulator.y=
+aml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/sprd,sc2730-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Unisoc SC2730 Power Management IC regulators
+> +
+> +maintainers:
+> +  - Otto Pfl=C3=BCger <otto.pflueger@abscue.de>
+> +
+> +properties:
+> +  compatible:
+> +    const: sprd,sc2730-regulator
+
+Let's drop the compatible (which changes my comment on other patch as
+you can put only $ref in oneOf).
+
+> +
+> +patternProperties:
+> +  "^DCDC_(CORE|CPU|GEN[0-1]|GPU|MEM|MEMQ|MODEM|SRAM)$":
+
+All names are lowercase without underscores. See DTS coding style.
+
+Best regards,
+Krzysztof
 
 
