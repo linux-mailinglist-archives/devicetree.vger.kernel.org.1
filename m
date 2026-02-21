@@ -1,244 +1,304 @@
-Return-Path: <devicetree+bounces-267122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267123-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id PCvfJMT3mWmSXgMAu9opvQ
-	(envelope-from <devicetree+bounces-267122-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 19:21:56 +0100
+	id IPGMNAT4mWmSXgMAu9opvQ
+	(envelope-from <devicetree+bounces-267123-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 19:23:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E03A716D7C1
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 19:21:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id F35C816D7D8
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 19:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 219FC3040468
-	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 18:21:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5AD5930462DA
+	for <lists+devicetree@lfdr.de>; Sat, 21 Feb 2026 18:22:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1462DCC04;
-	Sat, 21 Feb 2026 18:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 714EB30ACE8;
+	Sat, 21 Feb 2026 18:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iHRPjXls"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OhAnhOdt";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WL2g0Ao8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117691CF7D5
-	for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 18:21:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F0812F60B2
+	for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 18:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771698113; cv=none; b=KrwYmsHB2/BXJ6xwfjmj5Fst5HChQRNchfodEeIO9H0hNN2lMIkzTYIosXdEFvFFayJc1YyV/YfV+K/++lVmdhLPE2KmAVnkkKplntUoA8p/8FRSkjRMc1BY80TgTFLzk5OurnXtoNx2iQpaBxwPci6et1NF9met6KbqerymAqI=
+	t=1771698176; cv=none; b=kv6nAprl7EjhyAfKqko5fj3rycS5AXZNtEshRbQkNwYpwR3IIw4pYR2wDe+rEoiW84BzMEukTVPkFNl333EzEYE4vK5bLp8AhBZTdFY6HmUZpjK8YGFfbWCgdCBFzHpBhNnZBaiEKUFGIcpKCEB5i13FTqSbHKpweJgLbVbOq7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771698113; c=relaxed/simple;
-	bh=nRZQBWcjkvjCGEu90e7FQl6OWRx3sEh8rBl+DhVVEQQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=A5POxfx62IM+pG0BPFjEsFF19spRFv+pSaHm5NBeZidHdcOVeAUIbm9h4UEaiXcq6kQcJO1wQQ1It4mUDaArngIq5sjmntCRf7fNBSxYAia+HJuJFpxWKoVIR3RtHZW7YBXWNZaUHetEpyFDHieNTKl/WMyxJmWUcHJMqYYlXc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iHRPjXls; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-483abed83b6so3077295e9.0
-        for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 10:21:51 -0800 (PST)
+	s=arc-20240116; t=1771698176; c=relaxed/simple;
+	bh=j8YzehGleE4Bcxai9TU+Rb7l+5Rkd2EJJJhmu0Oe5hM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VVVZHfgXO783ki3gKWFoMaE6ADDJcWE6+OVmqYTq/j2O4qPyf6BERsTP9FPRpwG1JkDIeXIu8CSrrU0gNpsPMuG1ohv8FaFu2UCpe1LFAiHGJrcyO0J0vSvPIydP0PUqcVp5EH9ZnPkH21/ASbn9szUuueZ3QCHHVuSWArG2IZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OhAnhOdt; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WL2g0Ao8; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61L5CmPB1560164
+	for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 18:22:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RBC96Crr9eVFMb2/ro/RokIXk1UZeAJM2LYx/7JosQ4=; b=OhAnhOdtcg9OVMuN
+	10Z6cQnhJohMbDoeia2T/TtOZDQhLsJDCs1zILzZ1EOnfPTQtisE72uF/DpXcqB6
+	CUmR0qn/JATZUu44oDvGtGM1n864CF7yx+uvCG9apaMAVQu68ExQDh3p0BjociKO
+	kTpTjfLyEth9nFqzvO07a97+m7xTcVVp9fEbzkHUUxAmRZkkgtZMoQSb64nqmfjO
+	GyCPWRUF+h/7rn73+i+GmBrbqVm/sKcZ5mJVTeiALbi3EmF26aMTEAF5+WTR5g2X
+	+6EjdG1AuyXMQiYYQbmwv7TsHst3fdfJwsMNWPxadjYDiNhPp7f41WnydTPJs2yw
+	jNNiMw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf5v3s4p3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 18:22:48 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a9638b0422so17633025ad.3
+        for <devicetree@vger.kernel.org>; Sat, 21 Feb 2026 10:22:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771698110; x=1772302910; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VYyZyvSI/uogoO1M5S4jWlG83eCRLvK0XsODRTpSy/A=;
-        b=iHRPjXlsxq/bs9x35hbVaV8YwwagjxwpNVItpJYRYGsFXcH57kB2JbLkRA+ssL4SYn
-         9Vff26yMbyOBmT68tLz3i1C3Vew8Kz1y6o6yo4f1JLQ0Q2Ybk0863q89HltNgqzhEY0X
-         fHR6ucZ7rXiW6d/fqqJ055aJ3u573AEcukKmuA/7Huriv2gqJ9EyKPDdOUe3H7YkLomP
-         302DSwZZ+voXIWFeVd3oLrlL6mM/f1rdHv9JKqn6GliCrzmuGX2C4QcROSpKlu63vkx9
-         W8aEHpX8AhPZ5ZLemV9bdhxa66tO77+Gb8HGc+1KGXf0AkvyEk9hI8MZyd16yEulKgY/
-         YOFg==
+        d=oss.qualcomm.com; s=google; t=1771698167; x=1772302967; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RBC96Crr9eVFMb2/ro/RokIXk1UZeAJM2LYx/7JosQ4=;
+        b=WL2g0Ao8bPp7OA/KhjJ6EjahujaCk+jQkWTzSe4hWPUUGXJFOWf0yCqhlC7v1JqVnt
+         ZyHA7+21BEWPZbHqFUT7tbhVkPNgdDr13mYbU4iUVGSdN7HCsIMKppJDDZzdhQkqPu2g
+         HujEgSfMaTyd5LnFBtG1wm7xuRDdbW2h4JSaiad/KZZjnXZWR7Srl5lRzDYW9+My7cDh
+         pGX8dT1hMQZAgfBZXjaaGXIDnqLBz0pFt/lzV8H5ybK2lsmEEh1Y0oVbvw3kxdR8ybfA
+         Wshht5V0ly9DUKQetIgNBaRqZinaDT7t+5O6qYES98Z7wADTdaAvyZJDRgiyj7GSnfr5
+         aEqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771698110; x=1772302910;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VYyZyvSI/uogoO1M5S4jWlG83eCRLvK0XsODRTpSy/A=;
-        b=Vre83HdyvuzEb8BWWCAuMF4Kx8UIax+BTDjgA3cNvKlPV9vovVe8bVD7fegIWaJR2C
-         cv5ay5LqUOTvNgLo7paJkNdWtj3veK70/iIkcCwkfo5dS+R/yjcLBPMegt/XIRQuNiyk
-         dJFAzItOPG4b/1JtpCphc4dzvSx/62tY33ZihvoCGViUx7s8+Pn+ujvZrSO1RwOH64HI
-         AYtPAAGgQJ/BQU7w9esA/1R4okgQp2RModbWbeutroNkKTCFq15JBLDJgSnRQZ7pX4tS
-         GjHRKaASTGANfuULDk5rnxcLhoc58vMgz8cvbh9+cK3NMfKSKOqx8LipwDp8BwAUZLJu
-         IpxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUBxfMhFhe/X6Lf3IQgRXyYj02cdQ8f/mvJkWMtPEiAy3eq0anDZ5Ejd35YEro5g2I/QgbnvKY8X2Us@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCCH+owMesI76sj9K6iH0/3o5uLSLy9+jwS1Ue2Jth13Ae3psy
-	IkbUCRkaeWAU+RvYWYoQB2xCp2Mfh0QJI9VzaQtoC3ZkGrb/Bz2lI+FNHVLFlQ==
-X-Gm-Gg: AZuq6aIDvzScxpYIjMVMDGj1pPEqO6qRZi4iEMB+VUaPh0JJXN+F1P0M53f74nQWbPm
-	WqzZFyeqBlOGA7G7zP7F5bwW9w0xM16CXHi8WLTrdHqSj4mgKXRGPofPdO3UuLBC1/pYsbCfIjz
-	W7kBHpR8oM0qI+jytRpz1VEFHHAEY5fYtlggJ5NdnYoWniBEl3qpfkBbK5QRwtFR73ls41MyKtz
-	i511ICjcHtSdvPvK6HjRHyUEW0P08v+KWeXg3dd9GviDGpqOXrauQIbMu/ByYaB88yRjYEYshQP
-	OY30rIbXXJa6mfnkZkT3qd5xKnR1b4Z8zklJgADjEOJZ1A0VATaRmCLpiJJ/SOcJjZcMJIX11AO
-	EfLz2T7IABUC+GICtz6ejbADLrEYa57dl/WmSi2BXZfGwBKjgd9Tf62N+YeZU8x4f4WFGN//1fX
-	UZSvak6iq+ia1XRfKzb+6LgWPDMjRLCrKsVqjMZrlY33SSfb+Ur200Qw==
-X-Received: by 2002:a05:600c:8a16:10b0:47e:e4ff:e2ac with SMTP id 5b1f17b1804b1-483a9603c2dmr38955185e9.33.1771698110350;
-        Sat, 21 Feb 2026 10:21:50 -0800 (PST)
-Received: from [192.168.20.124] (5D59A51C.catv.pool.telekom.hu. [93.89.165.28])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-483a9b75e51sm71300135e9.5.2026.02.21.10.21.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Feb 2026 10:21:49 -0800 (PST)
-From: Gabor Juhos <j4g8y7@gmail.com>
-Date: Sat, 21 Feb 2026 19:21:34 +0100
-Subject: [PATCH] dt-bindings: firmware: cznic,turris-mox-rwtm: convert to
- DT schema
+        d=1e100.net; s=20230601; t=1771698167; x=1772302967;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RBC96Crr9eVFMb2/ro/RokIXk1UZeAJM2LYx/7JosQ4=;
+        b=aAloEBj0aFYBrxnsPrYksb2ZUYTL5VzfO3Gaf5T/uk/dn7LIp+e+mvXCFDbPIINdPg
+         BenCF4Q/uYSnDZoF4mQrdbTkNh8c5uTPBT9/Ddp2qDCEnyFSGr6hyZhT5Gs4PPOFGPtm
+         5+/hvvzGrgkOhfL52Zl6GUPTAt/gSfK/vFB7wFdDNdiZlusWBVjcdMQ7VPq+tnzcV6rM
+         opPOvXzp79oUt1uNMRmJdgz3+U8vm6vlQnFn8tJnp0BS3dcUQXhHYEridkkAiiciXK7c
+         H8hIHkaN0lS/IGsDyIawhGodppnrmnU+MWZQa7icF1SqxHTGi3HRvcaCbHo2UVlMLuBO
+         hN7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUYRmsuyChfAhIwc9RDTL1aTZsWaxvqF7kK20cBDyd8Wee9ayAsExj6pG5QRLeOjx8Rz9HCd9aUWmd9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPx11JZflON0wHokYqPFa7Z0HTnPp76YuD/ZvqXyAjeC6tZGQo
+	SbpViM7N4STwQFdP2G4tIUEYS2GL7gm6p6JC6iSRbXNl90scWMbz4hACGiD2ddmWXDK7D6LaNPu
+	D05/aexH3MJuFx7S5MtLJcYCSeDxDZPBDE8JG803XMedU6rCZCvOll8av2Y1iAvO/
+X-Gm-Gg: AZuq6aLaNNOq2Ip19dWFiq6iTooZaQ1NXS6gfntpC28tcb0SrX7QXe9XnCZWelzg5za
+	6x1ndBz1bcKegRTgrtnFyeZHu76e0MPQLPWixWmpQShJ3ieLPu//BqLDVNA2Lk4AEYMFcGn928D
+	3YApwkOR4A/gEUP2yiG2eK8bIfzyt1uobmVuyrNe/NY2SlkKVqud7WGDRbc8ZktHWAxf9ihEDt3
+	oV4tgKJ1rZB5mRnEoQfJjI9DnlFAyXnY/MhmCBs6CoYNJlr32RCVH21qFzXw2zd70VNOJROMO22
+	lGu6O88fpKS+cdklzYkzTfwcaeirI3cyV+jJUuB0jKI93WkzxowIw5aN73ymd2sUNQhwj0IsAvY
+	d/iaXVSVzsGBk7rdjxq6A7k+7OFSAr7eUxAAd2jgr+qJsVzc=
+X-Received: by 2002:a17:902:e542:b0:2aa:ecec:a43d with SMTP id d9443c01a7336-2ad744a0062mr42498715ad.21.1771698167454;
+        Sat, 21 Feb 2026 10:22:47 -0800 (PST)
+X-Received: by 2002:a17:902:e542:b0:2aa:ecec:a43d with SMTP id d9443c01a7336-2ad744a0062mr42498465ad.21.1771698166964;
+        Sat, 21 Feb 2026 10:22:46 -0800 (PST)
+Received: from [192.168.1.11] ([106.222.231.179])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad7504379csm25510135ad.83.2026.02.21.10.22.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 Feb 2026 10:22:46 -0800 (PST)
+Message-ID: <7dbc0e99-cffb-403a-be7a-27d1b47712fd@oss.qualcomm.com>
+Date: Sat, 21 Feb 2026 23:52:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260221-mox-rwtm-yaml-v1-1-25dec4a0228b@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAK33mWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDIyND3dz8Ct2i8pJc3crE3Bzd5OSUNJNUs1QLM0NLJaCegqLUtMwKsHn
- RsbW1AHsm55ZfAAAA
-X-Change-ID: 20260221-mox-rwtm-yaml-ccdf4e6e8619
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, 
- Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sm8750: Add GPU clock & IOMMU
+ nodes
+To: Taniya Das <taniya.das@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+References: <20260220-gpucc_sm8750_v2-v3-0-6c5408564c3c@oss.qualcomm.com>
+ <20260220-gpucc_sm8750_v2-v3-3-6c5408564c3c@oss.qualcomm.com>
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <20260220-gpucc_sm8750_v2-v3-3-6c5408564c3c@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=YL6SCBGx c=1 sm=1 tr=0 ts=6999f7f8 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nGub0OD3bIp9TpioTFTxbA==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=_nDl3K6yXJEX041QHmYA:9 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: aBzpRzVd-G81gagqtynkq2ZqRfLFAVhE
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIxMDE3NSBTYWx0ZWRfX9oAaFK3/t8J5
+ dkOstzXoeHsYXq4GD/X1bjc1msnHUqSsaKLQLWuxt53tccBogh2USyjzjmanp/606xfIMRhumCN
+ P97skIpqr48LIVTh+zHaZ2RqTQresywedaNumB5VpSc5maKMPUboho6ahl3wi4ghbZqLCos6P++
+ WScCVIjRoP4HI2biCF5nXj4jdBVycLWT4RxajM+YCTbt1WnBYkCmpiGUWpsmNO17MiIceMJ8E+o
+ AK1nnhsc00cQzcLKuusHf5P4CRLsxicI+Yi4xhAIiW0IaZH9XP9o63rByFQeiIA6A0hY04CEppt
+ cHrUnzczxAj0NSHokhcT1VrukGa2lBptsJUiX+5ehQFkabac95FKZ6nl/ly3+Nukid5TaWfI8wW
+ yshiBr74L/UgRjtiR6/LKTHELXUFOvS642lRsC1fA8tsvlT3dqtJSK32TLP0FPmw9Y0hn82Q649
+ 66CII7UCjwQslyP3hCQ==
+X-Proofpoint-GUID: aBzpRzVd-G81gagqtynkq2ZqRfLFAVhE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-21_05,2026-02-20_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0 phishscore=0
+ impostorscore=0 suspectscore=0 clxscore=1015 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602210175
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lunn.ch,bootlin.com,gmail.com,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-267123-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[3d90000:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,3d64000:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267122-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[j4g8y7@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilpo@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_PROHIBIT(0.00)[0.228.225.192:email];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E03A716D7C1
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: F35C816D7D8
 X-Rspamd-Action: no action
 
-Convert the Turris Mox rWTM firmware binding to YAML format. Both the
-compatibles and the examples were adjusted to match with the ones used
-by the existing device trees to avoid new dtb check warnings.
+On 2/20/2026 11:24 AM, Taniya Das wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Add the GPU_CC and GX_CC (brand new! as far as we're concerned, this
+> is simply a separate block housing the GX GDSC) nodes, required to
+> power up the graphics-related hardware.
+> 
+> Make use of it by enabling the associated IOMMU as well. The GPU itself
+> needs some more work and will be enabled later.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 64 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> index f56b1f889b857a28859910f5c4465c8ce3473b00..0cc931d0bc96e9563ce4e7989ecd4ba50bd424f8 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> @@ -4,7 +4,9 @@
+>   */
+>  
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+> +#include <dt-bindings/clock/qcom,kaanapali-gxclkctl.h>
+>  #include <dt-bindings/clock/qcom,sm8750-gcc.h>
+> +#include <dt-bindings/clock/qcom,sm8750-gpucc.h>
+>  #include <dt-bindings/clock/qcom,sm8750-tcsr.h>
+>  #include <dt-bindings/clock/qcom,sm8750-videocc.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+> @@ -3001,6 +3003,30 @@ videocc: clock-controller@aaf0000 {
+>  			#power-domain-cells = <1>;
+>  		};
+>  
+> +		gxclkctl: clock-controller@3d64000 {
+> +			compatible = "qcom,sm8750-gxclkctl";
+> +			reg = <0x0 0x03d64000 0x0 0x6000>;
+> +
+> +			power-domains = <&rpmhpd RPMHPD_GFX>,
+> +					<&rpmhpd RPMHPD_GMXC>,
+> +					<&gpucc GPU_CC_CX_GDSC>;
+> +
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+> +		gpucc: clock-controller@3d90000 {
+> +			compatible = "qcom,sm8750-gpucc";
+> +			reg = <0x0 0x03d90000 0x0 0x9800>;
+> +
+> +			clocks = <&bi_tcxo_div2>,
+> +				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
+> +				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
+> +
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
 
-Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
----
- .../bindings/firmware/cznic,turris-mox-rwtm.txt    | 19 ----------
- .../bindings/firmware/cznic,turris-mox-rwtm.yaml   | 44 ++++++++++++++++++++++
- MAINTAINERS                                        |  2 +-
- 3 files changed, 45 insertions(+), 20 deletions(-)
+On Pakala and newer GPUs, we need to scale GMU (which is connected to
+the CX GDSC) freq. Is this DT description sufficient to allow scaling of
+GMU OPP?
 
-diff --git a/Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt b/Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt
-deleted file mode 100644
-index 338169dea7bbb69cf005d964d20d69fdb9b3c7a8..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Turris Mox rWTM firmware driver
--
--Required properties:
-- - compatible		: Should be "cznic,turris-mox-rwtm"
-- - mboxes		: Must contain a reference to associated mailbox
--
--This device tree node should be used on Turris Mox, or potentially another A3700
--compatible device running the Mox's rWTM firmware in the secure processor (for
--example it is possible to flash this firmware into EspressoBin).
--
--Example:
--
--	firmware {
--		turris-mox-rwtm {
--			compatible = "cznic,turris-mox-rwtm";
--			mboxes = <&rwtm 0>;
--			status = "okay";
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.yaml b/Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..2feb11103653f841b2456286b666bf523bd02e1e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/firmware/cznic,turris-mox-rwtm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Turris Mox rWTM firmware interface
-+
-+maintainers:
-+  - Marek Behún <kabel@kernel.org>
-+
-+description: |
-+  This device tree node should be used on Turris Mox, or potentially
-+  another A3700 compatible device running the Mox's rWTM firmware in
-+  the secure processor (for example it is possible to flash this
-+  firmware into EspressoBin).
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: marvell,armada-3700-rwtm-firmware
-+
-+      - items:
-+        - const: marvell,armada-3700-rwtm-firmware
-+        - const: cznic,turris-mox-rwtm
-+
-+  mboxes:
-+    description: Reference to the associated mailbox.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - mboxes
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    armada-3700-rwtm {
-+        compatible = "marvell,armada-3700-rwtm-firmware";
-+        mboxes = <&rwtm 0>;
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e087673237636268346979ddc270f8cf0905c722..43ec3489898e3bd5c79924670081d4eb397e2729 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2713,7 +2713,7 @@ F:	Documentation/ABI/testing/sysfs-bus-i2c-devices-turris-omnia-mcu
- F:	Documentation/ABI/testing/sysfs-bus-moxtet-devices
- F:	Documentation/ABI/testing/sysfs-firmware-turris-mox-rwtm
- F:	Documentation/devicetree/bindings/bus/cznic,moxtet.yaml
--F:	Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt
-+F:	Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.yaml
- F:	Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
- F:	Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+-Akhil.
 
----
-base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
-change-id: 20260221-mox-rwtm-yaml-ccdf4e6e8619
-
-Best regards,
--- 
-Gabor Juhos <j4g8y7@gmail.com>
+> +		};
+> +
+>  		pdc: interrupt-controller@b220000 {
+>  			compatible = "qcom,sm8750-pdc", "qcom,pdc";
+>  			reg = <0x0 0x0b220000 0x0 0x10000>, <0x0 0x164400f0 0x0 0x64>;
+> @@ -4515,6 +4541,44 @@ tpdm_swao_out: endpoint {
+>  			};
+>  		};
+>  
+> +		adreno_smmu: iommu@3da0000 {
+> +			compatible = "qcom,sm8750-smmu-500", "qcom,adreno-smmu",
+> +				     "qcom,smmu-500", "arm,mmu-500";
+> +			reg = <0x0 0x03da0000 0x0 0x40000>;
+> +			#iommu-cells = <2>;
+> +			#global-interrupts = <1>;
+> +			interrupts = <GIC_SPI 674 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 688 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 476 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 574 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 575 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 576 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 577 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 660 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 662 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 665 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 666 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 667 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 669 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 670 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 700 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
+> +			clock-names = "hlos";
+> +			power-domains = <&gpucc GPU_CC_CX_GDSC>;
+> +			dma-coherent;
+> +		};
+> +
+>  		apps_smmu: iommu@15000000 {
+>  			compatible = "qcom,sm8750-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+>  			reg = <0x0 0x15000000 0x0 0x100000>;
+> 
 
 
