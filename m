@@ -1,51 +1,85 @@
-Return-Path: <devicetree+bounces-267176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267177-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8AHQM9Ekm2notgMAu9opvQ
-	(envelope-from <devicetree+bounces-267176-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 16:46:25 +0100
+	id uAmnAPEkm2notgMAu9opvQ
+	(envelope-from <devicetree+bounces-267177-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 16:46:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D38F16F8E3
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 16:46:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9522B16F908
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 16:46:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5565A300CE5C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 15:46:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7AB7E3005D13
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 15:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A34155757;
-	Sun, 22 Feb 2026 15:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A8E261B96;
+	Sun, 22 Feb 2026 15:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U60SBA08"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="caA7I6GU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709F01096F;
-	Sun, 22 Feb 2026 15:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863271448E0
+	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 15:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771775182; cv=none; b=D/RqVZylYXFSm0iq/uh4oPlIOzB7XCdnMsePxCRVyTrDOw7XbSKBPyT7VwTMburIfLr9ZFCPIL/7eV2JlDOt0n2Pe8R51p8nKcHmYhzAQKGYq4oNRMqUl5yJZYeCHhG3urd9F909eT83kkj9zjMfCxO+MwqVudHszJ55sB2MjPo=
+	t=1771775190; cv=none; b=bNf1ES/kEjUDbNzDbRGzLqoE+y67u4WjP+C6RkHnOrK/rbKQT/SIg8tsQ2u5eLh48fO2wEBrZJQ5xLswsina+AhRDZPCfqoqDMlO/wFiHiyMt2p9wXKBcKHguXhOwAJ+Sk2dI/FBcbn2vkk7tyBoh+CyWutzr11PQE+tCNzxgGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771775182; c=relaxed/simple;
-	bh=vIUFdUFbzD8Je8hr3VYwtDKXRcdTcGR572L6CSWMyHI=;
+	s=arc-20240116; t=1771775190; c=relaxed/simple;
+	bh=S9Gp+ua6oQHSyVSA38TUi6p87mciQfyR2SinVvwnW2I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IHGSXYuR895gCpzMBLCxAvj5LuJBBDidZ3u+5An91ncBsV6BQDUOB/jE2f0XML5dqfb9wSyOxy3+CHaUOGeD7/qn0TJaVepFfJiSo69VMVtQ0s1KfyjeMW4xr9iOj3xwA/lMpKq+Zca56aGCpgZszBVVMcUEG/o57rajy96Ek6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U60SBA08; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CE52C116D0;
-	Sun, 22 Feb 2026 15:46:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771775182;
-	bh=vIUFdUFbzD8Je8hr3VYwtDKXRcdTcGR572L6CSWMyHI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U60SBA08ppCaVJvw/WA7/KemsXtBbDLDcfGvLI3z9mHJV0X+8Yoafaa4hp/zmmzpc
-	 /lRp8htkM0iZ4EaBdBsttXe+CS4h5Gh1gIYOX+ivaslidPtVETjI8gNt61c163Ha6E
-	 9NmSHJhAv+62dSnh3/4IlzyhE0fG4YOr202HoxC6p5R3qeo5ZFNounQmnXUoB8e99U
-	 KYnngpSLbyXynnPLUbJXRKyIQPuiGjA7MXbHtlXrbPVqDY9IJJqjhI6QRlPFZNmX1v
-	 o6LRfe+LJz/fb+COlOKfedKusjQQvl9d8l5ggsfE3501vk3lve5JOz6uPdZH2oikNe
-	 EmRX68rrLxQrA==
-Message-ID: <e1517670-92f9-405d-934e-b9341bea27ac@kernel.org>
-Date: Sun, 22 Feb 2026 16:46:18 +0100
+	 In-Reply-To:Content-Type; b=OP4Mhd0GzTCV2Q7h3hyqs0F2hJzm/+3UIAI8nev6aLUAOiO9yfU92KFIzlbPBGIvy8MAQUhyWBtKNaOHH3zCneQUInS+hddNvShnos3v5FNyfbOnjKuDnXBvOgFSEfzJqvRxSC26aVrwEY29yeQy4l/FxHx3B6zTXyd2nfV5xrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=caA7I6GU; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-c6e2355739dso1206731a12.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 07:46:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771775189; x=1772379989; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=v8O0eJWbs4dETPQNI2FxYNYIJCXejPFz6DhCeZCThTM=;
+        b=caA7I6GUwA+rnM2a86pEB9TxPJCH67T0b4w5rY/bjWo/yKj/d13S8PSUsycgxQ9kfb
+         iWiW5yejyOFFWqw2kaHkmuxpaATaDK19IvfQbAEuglaLAJTlRmNYqTPq3r+tcCdQdXfi
+         3oJEI/+PYz9bPFA6kwGtOd8sr79TnJ78H1ylfGVCdBDIy3y9nNdqDtEELBDrWjigcjmp
+         0M5Pn1q8YNY+aYjumJqqA4pKOtvRm+zSvbfwGa8XyGmU9/J79nVH3N8UEIgSVEc/GykN
+         JYitWAyx2a4JZ1wSuhXrrKCFDcYELYDCL0jaTEGadRQyQOVEg1j8wAcUAo0PSJCiF0O8
+         JoXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771775189; x=1772379989;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=v8O0eJWbs4dETPQNI2FxYNYIJCXejPFz6DhCeZCThTM=;
+        b=cDJFok4NoTC/GbcMcLP5elxpimX7ihmejNtjLIFzM+4/W81c6xPGt3mUPol693wUnV
+         tmw0WJpg0Xby1QQuRK0fUZPySbRGFCKuVCVgjEgzZ/I5j4/r/VOP2gorf/vrAR/qkeUF
+         N8/yGnxbnnfewIo5l93rBzUEL6IQ1k4YIxQ1RRGU8tjjFQOE6khYN9WUnlEQ+uoGpT6r
+         kgyBZ/nsTtAlIyR3S+wEyGGTNSfRxmpSVGk0UCUPsY789JJBxcFOlRy7VMrVJNSRm1b8
+         iB4TG7CxMF55HC0UmQfcjpETK3J17zBU5c6jpvJcJiDNGywNViCqVNj/t1QLr6Q3c1Tm
+         q/2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU5BmpkwkcWEn9yS4ZBPg/SfJjzv7zidvkPhjQHPVMjHndAKXR79TIgMXGZvM4FnDLZbrD9PCSdcWUB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDrQCjvNq3d/TvuQlzLb41ssbYYr+78Tm8p0JNOKm/gS2ug/sI
+	tgIWC2LMIzB2j+COtVfZDKJfMQ4wRAZT9WvjqA/Q3M7DjfB6kFmwGlKV
+X-Gm-Gg: AZuq6aI00vfsQOmtU1kNSRje09I7BgobgUIhcxQDC12Tl1kLsDCVntocOSzq53ldaUr
+	tk2QuQN4sM0791jS4NZPQu2ivJyEOrCGjYtZDgmfcC6Im6TgWSUxyXlnqTU3U+flyLYetdLGCFG
+	prBKYss0m9OkMNaUypNHefHvXczSG+WGhRPHBR67kAFhU4jXnfMFEpIB17nktIeT2Xwx+OONQB9
+	5o6FNEnI54g27f3XYkPqgOdq+QDGvU+6FdAw6CsMJ6zVV9/5xbbN2LXwWEthbB4YyiNKysGXFx+
+	swN7D4gsHfw/VAlXsYb9QTMTa94FLz80YVkk9U0En3nL6Swb6JcffNT8nqh6EhUVXMLY/N+POdG
+	gZ5Z3XO0YHbk70+BNFttHCe6f1VjOJP+vm9SvrvCvxBU+ajUas9TxOzNrfzOVLk5RAlcvQw29i9
+	5+urcrLKr+Kc2YXWXbAMuPT6oPVkPfij0jsm3B397ppmZosxxQd9BuuBoCqO3Bs0TK/ufy+gaA
+X-Received: by 2002:a17:903:b88:b0:2aa:d29f:1444 with SMTP id d9443c01a7336-2ad743ffd28mr52582705ad.10.1771775188758;
+        Sun, 22 Feb 2026 07:46:28 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad75027b0asm51145265ad.67.2026.02.22.07.46.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Feb 2026 07:46:28 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <ed657bd5-eb96-45e0-beda-7b459e7891ee@roeck-us.net>
+Date: Sun, 22 Feb 2026 07:46:27 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,176 +87,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 12/16] can: grcan: Refactor GRCAN DMA buffer to use
- structured memory layout
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-can@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mkl@pengutronix.de
-References: <20260216135344.23246-1-arun.muthusamy@gaisler.com>
- <20260216135344.23246-13-arun.muthusamy@gaisler.com>
+Subject: Re: [PATCH 2/2] hwmon: (aht10) Fix initialization commands and add DT
+ support
+To: Hao Yu <haoyufine@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: jcdra1@gmail.com, akhilesh@ee.iitb.ac.in, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260222105831.7360-1-haoyufine@gmail.com>
+ <20260222105831.7360-3-haoyufine@gmail.com>
 Content-Language: en-US
-From: Vincent Mailhol <mailhol@kernel.org>
-Autocrypt: addr=mailhol@kernel.org; keydata=
- xjMEZluomRYJKwYBBAHaRw8BAQdAf+/PnQvy9LCWNSJLbhc+AOUsR2cNVonvxhDk/KcW7FvN
- JFZpbmNlbnQgTWFpbGhvbCA8bWFpbGhvbEBrZXJuZWwub3JnPsKZBBMWCgBBFiEE7Y9wBXTm
- fyDldOjiq1/riG27mcIFAmdfB/kCGwMFCQp/CJcFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcC
- F4AACgkQq1/riG27mcKBHgEAygbvORJOfMHGlq5lQhZkDnaUXbpZhxirxkAHwTypHr4A/joI
- 2wLjgTCm5I2Z3zB8hqJu+OeFPXZFWGTuk0e2wT4JzjgEZx4y8xIKKwYBBAGXVQEFAQEHQJrb
- YZzu0JG5w8gxE6EtQe6LmxKMqP6EyR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDl
- dOjiq1/riG27mcIFAmceMvMCGwwFCQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8V
- zsZwr/S44HCzcz5+jkxnVVQ5LZ4BANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
-In-Reply-To: <20260216135344.23246-13-arun.muthusamy@gaisler.com>
-Content-Type: text/plain; charset=UTF-8
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260222105831.7360-3-haoyufine@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ee.iitb.ac.in,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267177-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[roeck-us.net];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267176-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mailhol@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gaisler.com:email]
-X-Rspamd-Queue-Id: 2D38F16F8E3
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9522B16F908
 X-Rspamd-Action: no action
 
-On 16/02/2026 at 14:53, Arun Muthusamy wrote:
->  Introduce a structured layout that accurately represents the hardware memory by using struct grcan_msg_slot.
->  This structure encapsulates the message parameters, including id, dlc, and data.
+On 2/22/26 02:58, Hao Yu wrote:
+> Correct AHT20 initialization command sequence and
+> change DHT20 command format to 0bxxxxx notation.
 > 
-> Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
+> Tested on rk3566_lckfb board with aht20 sensor connected at i2c-2 port.
+> 
+> Signed-off-by: Hao Yu <haoyufine@gmail.com>
 > ---
->  drivers/net/can/grcan.c | 25 ++++++++++++++++++++-----
->  1 file changed, 20 insertions(+), 5 deletions(-)
+>   drivers/hwmon/aht10.c | 16 ++++++++++++++--
+>   1 file changed, 14 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
-> index 3104946071dd..28fa219e1c3b 100644
-> --- a/drivers/net/can/grcan.c
-> +++ b/drivers/net/can/grcan.c
-> @@ -174,6 +174,7 @@ struct grcan_registers {
->  #define GRCAN_IRQ_DEFAULT (GRCAN_IRQ_RX | GRCAN_IRQ_TX | GRCAN_IRQ_ERRORS)
->  
->  #define GRCAN_MSG_SIZE		16
-> +#define GRCAN_CLASSIC_DATA_SIZE 8
->  
->  #define GRCAN_MSG_IDE		0x80000000
->  #define GRCAN_MSG_RTR		0x40000000
-> @@ -239,9 +240,23 @@ struct grcan_hwcap {
->  	bool fd;
->  };
->  
-> +union grcan_msg_slot {
-> +	/*  First slot: header + 8 bytes payload */
-> +	struct {
-> +		u32 id;
-> +		u32 ctrl;
-> +		u8  data[GRCAN_CLASSIC_DATA_SIZE];
-                         ^^^^^^^^^^^^^^^^^^^^^^^
-
-Remove this GRCAN_CLASSIC_DATA_SIZE macro and instead use CAN_MAX_DLEN.
-
-> +	} __packed header;
+> diff --git a/drivers/hwmon/aht10.c b/drivers/hwmon/aht10.c
+> index 007befdba977..c18332cc48ba 100644
+> --- a/drivers/hwmon/aht10.c
+> +++ b/drivers/hwmon/aht10.c
+> @@ -37,7 +37,9 @@
+>   #define AHT10_CMD_MEAS	0b10101100
+>   #define AHT10_CMD_RST	0b10111010
+>   
+> -#define DHT20_CMD_INIT	0x71
+> +#define AHT20_CMD_INIT 0b10111110
 > +
-> +	/* Continuation slot: payload only */
-> +	struct {
-> +		u8 data[GRCAN_MSG_SIZE];
-> +	} __packed frags;
-> +} __packed;
+> +#define DHT20_CMD_INIT	0b01110001
+>   
+>   /*
+>    * Flags in the answer byte/command
+> @@ -60,6 +62,15 @@ static const struct i2c_device_id aht10_id[] = {
+>   };
+>   MODULE_DEVICE_TABLE(i2c, aht10_id);
+>   
+> +static const struct of_device_id aht10_of_match[] = {
+> +	{ .compatible = "aosong,aht10", .data = (void *)aht10 },
+> +	{ .compatible = "aosong,aht20", .data = (void *)aht20 },
+> +	{ .compatible = "aosong,dht20", .data = (void *)dht20 },
+> +	{}
+> +};
+
+Also, adding DT support needs a separate patch. One is a bug fix which needs
+to be marked as such for stable backport. Adding DT support is new code.
+
+Thanks,
+Guenter
+
 > +
->  struct grcan_dma_buffer {
->  	size_t size;
-> -	void *buf;
-> +	union grcan_msg_slot *msg_slot;
->  	dma_addr_t handle;
->  };
+> +MODULE_DEVICE_TABLE(of, aht10_of_match);
+> +
+>   /**
+>    *   struct aht10_data - All the data required to operate an AHT10/AHT20 chip
+>    *   @client: the i2c client associated with the AHT10/AHT20
+> @@ -341,7 +352,7 @@ static int aht10_probe(struct i2c_client *client)
+>   		data->meas_size = AHT20_MEAS_SIZE;
+>   		data->crc8 = true;
+>   		crc8_populate_msb(crc8_table, AHT20_CRC8_POLY);
+> -		data->init_cmd = AHT10_CMD_INIT;
+> +		data->init_cmd = AHT20_CMD_INIT;
+>   		break;
+>   	case dht20:
+>   		data->meas_size = AHT20_MEAS_SIZE;
+> @@ -375,6 +386,7 @@ static int aht10_probe(struct i2c_client *client)
+>   static struct i2c_driver aht10_driver = {
+>   	.driver = {
+>   		.name = "aht10",
+> +		.of_match_table = aht10_of_match,
+>   	},
+>   	.probe      = aht10_probe,
+>   	.id_table   = aht10_id,
 
-Nitpick: you can use an anonymous union:
-
-	/*  First slot: header + 8 bytes payload */
-	struct grcan_msg_header {
-		u32 id;
-		u32 ctrl;
-		u8  data[CAN_MAX_DLEN];
-	} __packed;
-
-	/* Continuation slot: payload only */
-	struct grcan_msg_fragment {
-		u8 data[GRCAN_MSG_SIZE];
-	} __packed;
-	
-	struct grcan_dma_buffer {
-		size_t size;
-		void *buf;
-		union {
-			struct grcan_msg_header *header;
-			struct grcan_msg_fragment *frag;
-		};
-		dma_addr_t handle;
-	};
-
-With this, you can do:
-
-	dma->rx->header
-	dma->rx->frag
-
-instead of:
-
-	dma->rx.msg_slot->header
-	dma->rx.msg_slot->frag
-
-> @@ -1019,8 +1034,8 @@ static int grcan_allocate_dma_buffers(struct net_device *dev,
->  	small->handle = large->handle + lsize;
->  	shift = large->handle - dma->base_handle;
->  
-> -	large->buf = dma->base_buf + shift;
-> -	small->buf = large->buf + lsize;
-> +	large->msg_slot = (union grcan_msg_slot *)((u8 *)dma->base_buf + shift);
-> +	small->msg_slot = (union grcan_msg_slot *)((u8 *)large->msg_slot + lsize);
->  
->  	return 0;
->  }
-> @@ -1237,7 +1252,7 @@ static int grcan_receive(struct net_device *dev, int budget)
->  			continue;
->  		}
->  
-> -		slot = dma->rx.buf + rd;
-> +		slot = (u32 *)((u8 *)dma->rx.msg_slot + rd);
->  		eff = slot[0] & GRCAN_MSG_IDE;
->  		rtr = slot[0] & GRCAN_MSG_RTR;
->  		if (eff) {
-> @@ -1418,7 +1433,7 @@ static netdev_tx_t grcan_start_xmit(struct sk_buff *skb,
->  	space = grcan_txspace(dma->tx.size, txwr, priv->eskbp);
->  
->  	slotindex = txwr / GRCAN_MSG_SIZE;
-> -	slot = dma->tx.buf + txwr;
-> +	slot = (u32 *)((u8 *)dma->tx.msg_slot + txwr);
-
-As told in my previous message, refactor the code in this commit.
-
->  	if (unlikely(space == 1))
->  		netif_stop_queue(dev);
-
-
-Yours sincerely,
-Vincent Mailhol
 
