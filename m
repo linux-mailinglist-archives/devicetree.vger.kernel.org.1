@@ -1,225 +1,289 @@
-Return-Path: <devicetree+bounces-267191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267192-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +kTyBP1mm2nEzAMAu9opvQ
-	(envelope-from <devicetree+bounces-267191-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 21:28:45 +0100
+	id sG8QG7Fnm2nszAMAu9opvQ
+	(envelope-from <devicetree+bounces-267192-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 21:31:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C6F11704C6
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 21:28:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 939D61704FB
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 21:31:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B90DB3009E15
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 20:28:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2A7223009E3B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 20:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CAAD3563E0;
-	Sun, 22 Feb 2026 20:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD061DF26E;
+	Sun, 22 Feb 2026 20:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ut66ecMT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bQndXCUb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E88C350299
-	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 20:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2784C1FB1;
+	Sun, 22 Feb 2026 20:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771792118; cv=none; b=nfsFo1HVn1pNezmYqqpEEeiCT2MOE7sqQk0a59NjjAgxchiuXqdY23TZxq4A25oMYJazHRYQT5I2LVEFE1nczTjlmWqGPIJlRG+e/iB3tFNtBcrIK8Si4uyGiT5R4oV/f+sufFCDHp8COk7VWrwV90CHgPkTIwzFc0+Vu+biCpo=
+	t=1771792299; cv=none; b=OKo0X0IrNnAPVPFDWEsjtzqFBV9W5Lh4ro6k9JqzlFJh6U0rWx+zZB0otIjwpcQ5GborLFAbreHC+dKU+72UdKSnQj4Y2v7UItOb4KadsUrFCc2k0dO2GhXsKN9wLQ/1hn8S19D5UTZaOcEdM03F/2A4ehM1TTWcdzL9Nnq3rNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771792118; c=relaxed/simple;
-	bh=tZLhzoSHsqs8xJFs2cspdn+a2qH/X6DJfEZuxlO+wZs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BJxGXB4ntHPAzrjMQ0IVln6MXjk72ee2sVrCuIkHOwPmQA+DOKSquAFldXUAyS8kc/MtC6lPPnNMchnhyK4+igobryC/cAIgynQ20Wels5TPldV82NkX8VJ1eFGn3hj9kzydL4Bz860l7IWR2aAGY1KVlmCLgHbVohCijccpHgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ut66ecMT; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-408778a8ec4so3231330fac.0
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 12:28:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771792115; x=1772396915; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C6rzqH4sIpBgnv6sfYLRrzmdlVb7TXc+VnCcqC4LM0s=;
-        b=Ut66ecMTOHygv/dPnqMYIXOWW2fJI1iFgY2zQpa5/BeKYwVtgKR2qm9DIpstaK+uqL
-         Qdfdz8dUaHlLowzMq/kyP3b1nyZFSDV2FGkzmh/NYhXRfR8fHemZHvjn1JQJyw++SE4G
-         XPeD81811S8ytK3q/omU8Fp8GI91SdMTlrflkqeZklK6txxSgfmqgPrkUZguN+Bx6wz1
-         DsKt1vhbJ43BpdQjSPPNJpU66RffkOIHsbdC4Epi+gxBzez8VUCBhNE0FIWyBJGNcS3Z
-         a/7ZEZPxQkUuvCKI9KF/vECSSf6unwZlo9Rr9WTxPgN68mZvoP4/Qux4fnNywZyKdu2m
-         fywg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771792115; x=1772396915;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C6rzqH4sIpBgnv6sfYLRrzmdlVb7TXc+VnCcqC4LM0s=;
-        b=ReeLHKyaImYovcGnvWd1ywSi5kGJPIpgAPD1wbV4tesLGKS/4aZH+TUh6ioWmHV2CU
-         Sl6Wa7z8VZrNSaVrD9LzfR/Yd9zSddzZ7e+RzidnAoXeCOrnMECvCi6wKKbKQsQH7ECl
-         +5N4IZ+7U0aYWRK/+KmJixOkEeoqfZGgL9CvJSWVzn+VGklUXzcfeVdj3+0KU9stnint
-         B1EVzT54jyns0Nfgv+jbOhXjwSjaFwJcLryxXetQk6Fowqgs2OXNQgntHSvL2FQcTya1
-         x9Izj3zO3J6rTPa8DgHDVwRMmMc+koN+vMz4GVXZhu6TnKfNmQGXv0YQye70cPq/vI0H
-         IG5w==
-X-Forwarded-Encrypted: i=1; AJvYcCU1CUFWy1/tIjJPcTxZFYsS0urNM8K+wq17KBJuaZADTY11idCuY840oKAaUCeYxnyGzNOdhFPMD0Eh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIbPxLvlJ+yJiapH2MilmWCLmQGSN8MoAhElnrxsTYkJSoONgr
-	jxi/M0vOBcDf8Fsq3tKUuspGTir4dv8RXW9LKi2GKrYdkS3+In3xrUzcy4ean5lF/Qo=
-X-Gm-Gg: AZuq6aLxjvwLFhlIe9xEsBWMV4LPSoLf6IJRv4fSX3vLSLaero1OipjhPKfBObwlqCL
-	NIV7pGVVu98FAmXq4dTSPr0lEltkLjP5zOQGzjkZCd71w1D3R4co/6CyDrZXTZs9uupN0r+rQSV
-	jT0QxCrPywjalbdkaDWeqkIyjWgw3i1nClMZhrNTD6pvlBvzOlkT4JQmY7fKdZTRgh7XwtLTmMA
-	jTMBRMWpWpGU2t5hkfw25Ez7mxrw2Tcju3f3I4evg2s+KcY9RYGJczDYQaKnX3XM952gwYTr7qW
-	4V/n1ZJG8iycfwkqKhuq4GPhuu1xC5NAdHLuaaGR1++wpAI96l8GPazI+bU7wXnmDCkiyE688uF
-	VNKwBzIfg0EM0Iu1s898rMyAJPQGaFRMnicCrWZBc4sh3tUpWHEwlZyYwMDVF9Sx0UXBLKs/uZa
-	u0w328axUSHlGk6caGcVtrs1lM21qi5X/c3rzyAvWO9oQpby8vjHdlKc0EaNOeBX8UZWO1L1uEf
-	A==
-X-Received: by 2002:a05:6871:c8e8:b0:40e:f9c9:ad40 with SMTP id 586e51a60fabf-4157ac1f5fcmr4322073fac.10.1771792115205;
-        Sun, 22 Feb 2026 12:28:35 -0800 (PST)
-Received: from ?IPV6:2600:8803:e7e4:500:810f:2680:3e30:5a87? ([2600:8803:e7e4:500:810f:2680:3e30:5a87])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4157d3a9121sm5652627fac.19.2026.02.22.12.28.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Feb 2026 12:28:33 -0800 (PST)
-Message-ID: <381ec0e0-491b-40e0-92b7-b6c249ba2ea9@baylibre.com>
-Date: Sun, 22 Feb 2026 14:28:31 -0600
+	s=arc-20240116; t=1771792299; c=relaxed/simple;
+	bh=QDzA1BJmOlER6MfdknxfJWRYhncHtlKGoUaInW+Autk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=snzFAa8wKIpQr0rbYzWZR5APgDhmOrEjhXCQ3x+azU1HREXbbhVnIZqDP+ydl3eri+ttyS3EM3QJy5lZfSxPCCD5N7GBgASmhMXIrSGSbQkbTZOxvmBK5HYj0g4Ad96SOSqFd+LFJ2QTvirw+AgQO6MN1RhYebAIF/oCZ6Rq1c0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bQndXCUb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11593C116D0;
+	Sun, 22 Feb 2026 20:31:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771792298;
+	bh=QDzA1BJmOlER6MfdknxfJWRYhncHtlKGoUaInW+Autk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bQndXCUbRqG5LVj6e4/FrLm/OBzANnSATqVpGOa+DyCsLySEWRDJfPZe69FnYr9OG
+	 EVnqFi3CzXTFxSwJStaA0wLJKw4MTeGEX2ajvRMLzcWCdPI1cYQgBo964cCM2OaFeH
+	 BSbS8QH0l3bE3meecxjCQGtdMDA6969P7vYbeEEXZFGewKrd1OtET35qFhwMywDdLD
+	 yvJU4YkUh2bVGCUHRh4k/F+BkZ8OQsP+K61g/Fp84rFmmF2Ap2OhcOelvLQdJdG1Q7
+	 Kqb7CShwygW0gAMcgdCnsxUQgvL5l9YL/KuB1eL4LdDzsUroXYkPj1KsvVElFqeoIW
+	 YDNo1Dddfu70A==
+Date: Sun, 22 Feb 2026 20:31:33 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, rodrigo.alencar@analog.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH RFC 1/8] dt-bindings: iio: frequency: add ad9910
+Message-ID: <20260222-waking-crumpled-99560bc96985@spud>
+References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
+ <20260220-ad9910-iio-driver-v1-1-3b264aa48a10@analog.com>
+ <41190a42-70ab-45b9-922f-317e792b25a0@baylibre.com>
+ <n5oxnxatgdqpomuijz6avvautkndg7r52kmobakemcgggdkjh2@q7m6h2ndjx7w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/8] dt-bindings: iio: frequency: add ad9910
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
- rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
- <20260220-ad9910-iio-driver-v1-1-3b264aa48a10@analog.com>
- <41190a42-70ab-45b9-922f-317e792b25a0@baylibre.com>
- <n5oxnxatgdqpomuijz6avvautkndg7r52kmobakemcgggdkjh2@q7m6h2ndjx7w>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="XOOlD0HUpO/PpCZo"
+Content-Disposition: inline
 In-Reply-To: <n5oxnxatgdqpomuijz6avvautkndg7r52kmobakemcgggdkjh2@q7m6h2ndjx7w>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267191-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267192-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,analog.com,vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,baylibre.com:mid,analog.com:email,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 2C6F11704C6
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,analog.com:email]
+X-Rspamd-Queue-Id: 939D61704FB
 X-Rspamd-Action: no action
 
-On 2/22/26 4:47 AM, Rodrigo Alencar wrote:
+
+--XOOlD0HUpO/PpCZo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Feb 22, 2026 at 10:47:41AM +0000, Rodrigo Alencar wrote:
 > On 26/02/21 02:43PM, David Lechner wrote:
->> On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote:
->>> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> 
+> > On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote:
+> > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-...
-
->>> +
->>> +  reset-gpios:
->>> +    maxItems: 2
->>> +    description:
->>> +      GPIOs controlling the device reset and the I/O_RESET pins. This is only
->>> +      used if resets property is not defined.
->>> +
->>> +  powerdown-gpios:
->>> +    maxItems: 1
->>> +    description:
->>> +      GPIO controlling the EXT_PWR_DWN pin.
->>> +
->>> +  update-gpios:
->>> +    maxItems: 1
->>> +    description:
->>> +      GPIO controlling the I/O_UPDATE pin.
->>> +
->>> +  profile-gpios:
->>> +    minItems: 3
->>> +    maxItems: 3
->>> +    description:
->>> +      GPIOs controlling the PROFILE[2:0] pins for profile selection.
->>> +
->>
->> Looks like possibly some interrupts as well: RAM_SWP_OVR and SYNC_SMP_ERR
-> 
-> Interrupts are not handled by the driver at this point, so they were not added
-> here. The device is meant to have some features exposed through SPI, but to
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 2
+> > > +    description:
+> > > +      GPIOs controlling the device reset and the I/O_RESET pins. Thi=
+s is only
+> > > +      used if resets property is not defined.
+> > > +
+> > > +  powerdown-gpios:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      GPIO controlling the EXT_PWR_DWN pin.
+> > > +
+> > > +  update-gpios:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      GPIO controlling the I/O_UPDATE pin.
+> > > +
+> > > +  profile-gpios:
+> > > +    minItems: 3
+> > > +    maxItems: 3
+> > > +    description:
+> > > +      GPIOs controlling the PROFILE[2:0] pins for profile selection.
+> > > +
+> >=20
+> > Looks like possibly some interrupts as well: RAM_SWP_OVR and SYNC_SMP_E=
+RR
+>=20
+> Interrupts are not handled by the driver at this point, so they were not =
+added
+> here. The device is meant to have some features exposed through SPI, but =
+to
 > extract the most of it needs to interface with an FPGA. For that, an IIO
 > backend is in the works.
 
+The binding should be complete, if there are interrupts then document
+them even if the driver doesn't use them. If this is where you say you
+mentioned the io-backends, that's not what I meant - you need to do it
+in the patch itself to explain why you have the odd setup with resets
+and reset-gpios.
+That said, if you don't know what the io-backends stuff is going to look
+like for this device, you should probably exclude those resets until the
+design for the io-backend IP is complete. reset-gpios are usually
+optional anyway (since they are often just wired high/low), so there
+shouldn't be any downside there.
 
-DT bindings should aim to be complete. It doesn't matter what the driver
-implements or not.
+> > > +  adi,pll-multiplier:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    minimum: 12
+> > > +    maximum: 127
+> > > +    description:
+> > > +      PLL feedback divider value (N). The system clock frequency is
+> > > +      REFCLK * N. When not specified, the PLL is bypassed.
+> >=20
+> > What determines the value that should be selected here? This doesn't se=
+em like
+> > something we would normally put in the devicetree. (Smells like configu=
+ration
+> > rather than describing what is wired up.)
+>=20
+> The sysclk frequency is something we want fixed because it derives the sy=
+nc_clk
+> and pd_clk which can be constraints for FPGA desing or when interfacing w=
+ith
 
-We make exceptions for things that haven't been seen before where the
-bindings might not be obvious, but output pins like this (at least the
-error one) are pretty much always connected to interrupts.
+btw, the datasheet for this device (rev e) says:
+| SYNC_CLK is a rising edge active signal. It is derived from the
+| system clock and a divide-by-4 frequency divider. SYNC_CLK,
+| which is externally provided, can be used to synchronize external
+| hardware to the AD9910 internal clocks.
 
-Also, the interrupt properties should not be required. So if the output
-line is connected to an io-backend instead of an interrupt, that is fine.
-The bindings should cover all ways this could possibly be wired up.
+It's not externally provided, so the third sentence here is confusing.
 
+> the parallel port (high-speed up to 250 MHz). Also, when using the PLL pa=
+th to
+> derive the sysclk, the external loop filter will pretty much define the v=
+alues
+> to be used here, as it would be optimized for a certain frequency range.
+>=20
+> > > +
+> > > +  adi,pll-vco-select:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    minimum: 0
+> > > +    maximum: 5
+> > > +    description: |
+> > > +      VCO frequency range selection (0-5). When not specified and th=
+e PLL
+> > > +      is enabled, the VCO range is automatically selected based on t=
+he
+> > > +      computed system clock frequency. Typical VCO frequency ranges =
+are:
+> > > +      - Range 0: 370 MHz to 510 MHz (Auto-selected when <=3D 465 MHz)
+> > > +      - Range 1: 420 MHz to 590 MHz (Auto-selected when > 465 MHz an=
+d <=3D 545 MHz)
+> > > +      - Range 2: 500 MHz to 700 MHz (Auto-selected when > 545 MHz an=
+d <=3D 650 MHz)
+> > > +      - Range 3: 600 MHz to 880 MHz (Auto-selected when > 650 MHz an=
+d <=3D 790 MHz)
+> > > +      - Range 4: 700 MHz to 950 MHz (Auto-selected when > 790 MHz an=
+d <=3D 885 MHz)
+> > > +      - Range 5: 820 MHz to 1050 MHz (Auto-selected when > 885 MHz)
+> > > +
+> >=20
+> > Same here. How does this depend on how the chip is wired up?
+>=20
+> That applies to when the PLL path is used. FPGA interface and loop filter=
+ design.
+> I can write those details as part of the description.
 
+This property definitely needs justification given that it looks like
+the device will just do the right thing without the property.
 
->>> +
->>> +  adi,sync-clk-disable:
->>> +    type: boolean
->>> +    description:
->>> +      Disable the SYNC_CLK output pin. SYNC_CLK runs at one quarter
->>> +      of the system clock frequency.
->>
->> Clock outputs should be described as clock-controller and #clock-cells.
->> The actual enabling/disabling can be done at runtime.
-> 
+> > > +
+> > > +  adi,sync-clk-disable:
+> > > +    type: boolean
+> > > +    description:
+> > > +      Disable the SYNC_CLK output pin. SYNC_CLK runs at one quarter
+> > > +      of the system clock frequency.
+> >=20
+> > Clock outputs should be described as clock-controller and #clock-cells.
+> > The actual enabling/disabling can be done at runtime.
+>=20
 > I thought of that, but when interfacing with an FPGA, the clock consumer
 > will be the IIO backend itself, which this device driver would depend on.
 > It would create a cyclic dependency during the probe of the drivers:
 > - This device being a clock provider and an IIO backend consumer
 > - The FPGA IP being a IIO backend provider and a clock consumer.
-
-As above, the binding should not depend on what the driver does. There is
-a standard binding for this, so we should use it. I'm sure we could find
-a way to make it work in the driver even if it is just manually parsing the
-properties instead of going through the clock framework. I.e. if the
-clock-controller property is present, turn on the clock output, otherwise
-turn off the clock output.
-
-> 
+>=20
 > This would be just save some power when not interfacing with an FPGA,
 > there would not be a clock consumer to get the clock disabled.
 > Normally, clock consumers would want to have clock enabled, which is
 > already the case by default.
-> 
+>=20
 > I would add the FPGA/IIO backend support in a separate patch series,
 > as it would bring more stuff here.
-> 
+
+Honestly, this binding design seems so tightly integrated with the
+io-backend that you're shooting yourself in the foot, and making it hard
+for us to review, by not including it. I think this really should be a
+clock provider and the io-backend a clock consumer, even if it causes a
+cyclical dependency. One of the two can probably be a post-init-provider
+to the other, probably something like sync_clk doesn't need to be set at
+probe, and setting the rate can be delayed until we start needing data
+=66rom the device? Since both sync_clk and pdclk are provided by the
+ad9910 to the io-backend, your driver will have control over what the
+rates of these clocks are and you shouldn't need to hard code the
+multipliers etc. You just need to know if the parallel bus is in use or
+not. I'm not sure if that's a given if there's an io-backend and you're
+not on a serial bus or if would need a property to identify.
+
+Most of the clocking related properties here seem like they go away if
+you make the device a clock-controller, for example the driver should be
+able to decide if the needs to enable reference-div2 to achieve the
+internal frequencies that it needs. sync-clk-disable would be done
+automatically if there's no consumer of sync_clk etc.
+
+
+--XOOlD0HUpO/PpCZo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaZtnpQAKCRB4tDGHoIJi
+0v6IAP4lYL2iFc/OVIXYybAQI/OC1Iddg0mDTcakuSAGjr6Q+wD9GWFOc4Zed0/K
+lFchSkB31AlXEMAQaLvD79Y58YnpIgY=
+=gLI0
+-----END PGP SIGNATURE-----
+
+--XOOlD0HUpO/PpCZo--
 
