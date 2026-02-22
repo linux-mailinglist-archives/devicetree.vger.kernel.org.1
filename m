@@ -1,284 +1,342 @@
-Return-Path: <devicetree+bounces-267147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267148-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CG2HCAHNmmkjjgMAu9opvQ
-	(envelope-from <devicetree+bounces-267147-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 10:31:45 +0100
+	id xZ5HCvDTmmnOkQMAu9opvQ
+	(envelope-from <devicetree+bounces-267148-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 11:01:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB24816EC69
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 10:31:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B256916ECF8
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 11:01:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 545E43013267
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 09:31:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 092FC300C0CA
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 10:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4312192FA;
-	Sun, 22 Feb 2026 09:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07E11F151C;
+	Sun, 22 Feb 2026 10:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Dj7qDZOd";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ghlA6yVV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PTuWuP+B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A2E481B1
-	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 09:31:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277D46A001
+	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 10:01:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771752702; cv=none; b=Bmfxs2LeKyPUbV8y8+7wKmS4Ma7h4EJZNxkz3y2VA98rDr54KR3A9JE89z24yzRPaULMeD4mGGwuSnu6rT60BYOZ+WdjmX4nVLpg9SlJfnqLaXjB0PGNJ4rPWgYFekn7gMHCxziu6fdsoWXjajT9Vb7ZRg941z5z0fPHNbCiiOk=
+	t=1771754476; cv=none; b=tT4O5VOzmJsKIVlzcG3nqz1bWRLvvP2uOAFuxBdfe6XMNTlpPgDuddo4A5Slw1ya58Og6l8P5XuiRDAylVlzaXPTDQ7YHuTuQRB2p/Ly6QErUEdoj9gKKlEh8B09GRZm1lipuvv8f4AVwGCBF+ztMNGquhvMa0jBeprVCbA2fa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771752702; c=relaxed/simple;
-	bh=jVtRcetnItzqIICrqf4fSDzw7z8wCKY5rKNLHeR1a1w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m3gxVG/5Zb/vkqDQUQo6WaMRbm/GC763E5FPm3SxRqFse4A6tX8TucxY1sbH55sfxxQgAwgG86EHftR4GHFKVE4LlU3gS5flYoQ+6gQ/Kuj+CmyMGd00DuFaS+aXXbx5rnXQ3TvFFMijFgAO88Meca1yu2ngVORTEYVsF55wSqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Dj7qDZOd; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ghlA6yVV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61M5biQ6248562
-	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 09:31:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ACu3btGVkmCJZDXJw7qMC+4nsRBcyE8bkGP0SJhvN0k=; b=Dj7qDZOde61qUHSj
-	tr/M8jQGhw02DHqT0Ssk9u6W2uEC++Th34gt2Gv4QpGrgVla+y3ufnLMTKuVMXBB
-	AlcFYmc7fjttLYT1qHwWB16V9fK4XfE265aWyU2gjQ9jNfquTznNtAgdFh7ThFPA
-	vr8zL8IwS0pyAZ0ojlqn2jroqFS5oEyGcRnfheIiQDJxD8gSdiC9mlUF0rHWNwtr
-	+e5NIuKtUZtp8zS6BFs9K1lylafjMD7pZyoxHfeoqnv5EL2vl0fotiizX2+IxnRo
-	hod624XcRYlDCb98r5BodP7EY5mzTjyrBXe5RoD4x5sh6fvN8r+ut0ncwH2yZoyX
-	E29IIg==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf5v3t0ch-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 09:31:39 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8cb4b8e9112so313566485a.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 01:31:39 -0800 (PST)
+	s=arc-20240116; t=1771754476; c=relaxed/simple;
+	bh=UJ58ZtPtWKCa+LTOvGOjw26gzTFytJa7PejQgGVSY1A=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A3V1n1i29yFasYuxizy5tOi1hFpa9zh8xABFE47MTMXsskPEi+bu1I0PwW8cmDaq92xDDj0doVcRQJ221iTbO7x5KgJ1qUtetq18CGqjovWwGKjNF7nIrpksuQAdM1E/V7A58XaQFdd2pZnCkayi+n5AsobbHdbgvUBa3/JHaQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PTuWuP+B; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-43770c94dfaso3423688f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 02:01:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771752699; x=1772357499; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ACu3btGVkmCJZDXJw7qMC+4nsRBcyE8bkGP0SJhvN0k=;
-        b=ghlA6yVVMT/LQRyZ/BcF27sDG6JmkPtFvTehJJq96jXKPMXUO00xWJNlbkJqwyHKlc
-         Rjs9jajbNXu6VI0vJ+g+yH2l0eaXrvYTCwB004mG4WxMtZZRraC1BdBcjHnye5giRB04
-         E1rvgvrpF+/Cfzg/sagheiXYYow/75XHLkqf+FZwyq9EN9ycyueVs1gM+QkuqCiMJdMo
-         ghRuaziA5Td9sbGz17l0eEM7ABqUPkk8rlDsnskKW9scPO/pK8+RsgroCoUpWlL1olCI
-         zKsACinisiCgXaNwBLKRttok6RrCTCF4c+SyrBgHx719XpO1q/YwU56GpHabe59w9fF6
-         2iyw==
+        d=gmail.com; s=20230601; t=1771754473; x=1772359273; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=P4BA9m7stgw+QUUpwZn/xgPy8Z/NcUc9HLfI6tL9Gcc=;
+        b=PTuWuP+B29OjZ1jzV9DRI60iwq+HDw0rdYyXhsNZX9Nqz1qfx9WbbDHK7adgdRgSp/
+         ZIIAPQCawvqlPGtPQR/OmyEkEe2vNa+b3kQ8/4o86ncuwLVMOdJhdQOf8qXS4RMKSwas
+         6JAFAcahyIGQO/4dTVsyF6hm2PvAId1Iva6nDTAxzXs1RnJUntkGmhNSme8KRHA136Nw
+         C5fbi1XDo1C/e7IbFQxYpz09SAGx0+3CZJSQqrxAS2jWtHlUYK8SPAZiICNCZ6hp3rKz
+         Qx2xdz3chqF7910sBwJlu2x5HJdB30mHblnNBEv5Dpewohpqa9titi/E3SEuPc/G0uca
+         q6Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771752699; x=1772357499;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ACu3btGVkmCJZDXJw7qMC+4nsRBcyE8bkGP0SJhvN0k=;
-        b=laxXoL7NTKCdPepwm1Cv7rLcwb1misj0ggQx2923Bn51JlLrOyom1w1wEmlMwrWJja
-         7nluqDKc0/OiiWlAmA4o4uMrzSzNQ00twcb6cUZ8lFerp7nZR3W/JqEcur41AHO6eRII
-         VK4p0c3f7059A+pzjPOzWJBLZy1Q4+sOPcmImIXq9utHCmn1gukdpAHiL1qP2S7yn1gl
-         vqHhwEZ8mj6TSHW8LLRpw48apMxOJOCvXvz96g3kWVMeoNIEjJR9TpUY1/Y15Aa0aLvD
-         g2tjypM+Oz193uWmIca45fvTT2Av7oDeZf7UUmnYpeanuPJPYCogxgJIts+q7JtIoD/J
-         mvgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUe3RRDgn5IDTh2jzxM8Zb3g2FqQ1zD/fMlNHbgEUPMmJxqO3IOro+2XWa0uCAkkqgUkKfLaCF5kZGp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2suRH2Qhkeo+0qtlxzV1BEDhGMNcIysLzfRFBzsv3HlyNuHVe
-	f4sosjmHldBo/loA/24Hgc92l+yYV8rhW1UjyNaKtPeku1b1i90olkGJGNBSgPuUbzucXhoNWb6
-	O/kV2mGORBSi8gbyz5gFNMObBW2sEkUEv6XdhZ8pRQG298cYoTByZUxsrGz+xi2L8
-X-Gm-Gg: AZuq6aKziZY+d1/ckt4fLGd3loLQ0zACYOcZD3BvfTUjy7zrTej32ti1aqR57/u+Xw8
-	/NqaWjtBykyT+IvAM/dNLZm/wJPJNwLMu+Px2DWCeX8wUoD+LG5JS4dQZAdGmVIVJIKqZTT+8R7
-	QL8tRYRZFDvvCztW51DU9eI9YrIxNeFb0b5e9Qf8VuoW8JMto1SZnzyZNQCenrYrh1Z34/lmv3W
-	NzcHnrBg2sO9In32Rs21XGH34oJHJmlGE8FsysMNra5yC363ps4Y/bM8oC+I6QYFjK/ofDQtWSR
-	pDrgGF/MBzyiI+ckehuW6XslOgqywHCwKC1meys7EmUKHrnHFmXWjKwj+aTCQa/USwosAZ5DKe+
-	IygTKD5AmGawLoPYau6c4Bqjg5WaV71v14inpzgldIHOb4sv2
-X-Received: by 2002:a05:620a:25ca:b0:8c6:d309:f9c0 with SMTP id af79cd13be357-8cb8c9d036amr541424985a.8.1771752698908;
-        Sun, 22 Feb 2026 01:31:38 -0800 (PST)
-X-Received: by 2002:a05:620a:25ca:b0:8c6:d309:f9c0 with SMTP id af79cd13be357-8cb8c9d036amr541423985a.8.1771752698475;
-        Sun, 22 Feb 2026 01:31:38 -0800 (PST)
-Received: from [192.168.68.114] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-43970d4c60bsm10446166f8f.27.2026.02.22.01.31.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Feb 2026 01:31:37 -0800 (PST)
-Message-ID: <fec74478-9692-4fd6-a102-dcdf814701fe@oss.qualcomm.com>
-Date: Sun, 22 Feb 2026 09:31:37 +0000
+        d=1e100.net; s=20230601; t=1771754473; x=1772359273;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P4BA9m7stgw+QUUpwZn/xgPy8Z/NcUc9HLfI6tL9Gcc=;
+        b=fG1EGCsfanJFmFV5plmpCewXUrEH0I6r8bNSXcQo3dFdtcQVjMLiPe7A0Us6BWLRfW
+         i8YuVfIecDBQOh4k5EcIm1dlkQSDbOW9c7kpOLupQBvW2wI64KqoEzWo2XmWr2tJ36GS
+         6mD2ZxrV9YjJXVO46OGCYiW2654MGcnZpMHXGdSoF/DGqWRbttEJ7VjfWv5uo3ApZGEb
+         XpWFpcLVBEjI658Cz3dWdzoenISXEytb+yzPrCfWQxIgp+mQV7vXqZJ7hFHyLWHwIkNy
+         CDPAWqWHRjjCqTn8p2WE68chfkRAvGjoWgAV9Tb4XG9C2eyptqmHkPA/DPNUVpAvQfmo
+         gPDw==
+X-Forwarded-Encrypted: i=1; AJvYcCX4yz/wqJSOYHa9ELCl5aJFLc4wmAvrhadzdrspe7nVF5NyPceN1z+v1TzfYNdU6ZB4wmJMA5cnEScP@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywfz4p9jfkN1RRoOUBakel35Sl6ktTt8xzTCcEjOXonHfCvq/tD
+	IT6rpeVvGD1u/coMHmFow4v1r9QtMvz0I0CVdPTHc4Uq9ID4yiov1aMm
+X-Gm-Gg: AZuq6aIBYc9ge4GUd7nPtPJOxuZYzWSStfdQGjVpw4HBC2wNkW3gLnhJQZz3C0hGe7I
+	aMaMLtGYzN3+/fAqLGAgEuvovnfInRQHy1x/MdMCyFx1w50RQUBbmoXQ+hQTMx9eSXYbDh/9HcW
+	5zFHFrkvdBnQhXs7vFtXfND8V4+kwTgsKL55xydRYrOjhLHazGVcsMBTPZEWex9Smxkha3fyDJz
+	R/6dY7Q1p+OVkK8QvKgdAvV6XRVhOsoBfVuNPA+uS3lXHA3OgH3t6Vdc+V/6zLHpExeLm9fdjT5
+	R57L5bhUxw7vPtixuvL6HS9bsVaeZNtzryo9Tin87X2Xq2zKI2e0mX+09Nr5BcrVWhk9641/s+i
+	F4BCvfQb/QPZYtMNK7IN0lj3YyD9As+G3niM1hUUr7nzDN5krfxX95Cy0OfMczxDUqld71+Iy0P
+	hEhKwCxEna91C7WAq07TXCVM/R48IycaxMzTVk+ylcNEy/Gm3dSttVRUUZQV0BicF53LQfaCgrU
+	Pblkgsc9XWDaHOXgB47YlUJxfQsD9l6TxRbka3JJVoQdVfnqVg=
+X-Received: by 2002:a05:6000:2283:b0:437:81b0:6650 with SMTP id ffacd0b85a97d-4396f189ffbmr10513863f8f.56.1771754473210;
+        Sun, 22 Feb 2026 02:01:13 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970c00768sm11530327f8f.10.2026.02.22.02.01.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Feb 2026 02:01:12 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Sun, 22 Feb 2026 10:01:06 +0000
+To: David Lechner <dlechner@baylibre.com>, rodrigo.alencar@analog.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH RFC 0/8] AD9910 Direct Digital Synthesizer
+Message-ID: <2k4ouimpaxjuhnk67qmrues2375zj43ehru7h5as6w6kf7yak3@2ndr72co5trh>
+References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
+ <a72b2d62-3b91-4789-a1b1-ff1429e80ed5@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: arduino-imola: add support for sound
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, lee@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org, sboyd@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alexey.klimov@linaro.org,
-        r.mereu@arduino.cc
-References: <20260209142428.214428-1-srinivas.kandagatla@oss.qualcomm.com>
- <20260209142428.214428-4-srinivas.kandagatla@oss.qualcomm.com>
- <230d5d49-b86e-4696-937a-a6faaa9e45e0@oss.qualcomm.com>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <230d5d49-b86e-4696-937a-a6faaa9e45e0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=YL6SCBGx c=1 sm=1 tr=0 ts=699accfb cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=Ar_5JxPjAAAA:8 a=yUvOtWU7moQbhUsRCvEA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-ORIG-GUID: 0NXHRiOx9J_07r7KC7pOyHanTkoYp6Fj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIyMDA5MCBTYWx0ZWRfX1IwxoKuKsBpr
- 8aypQrZBjLEG3lO3cm5jE4+i+obk+x/8oyrhlc31D1CqS1r4Av/vQF6ZSTkiNsMUGMlG1LXkL8h
- RyXQOgd+aw/Vlt5cJM6JfADSlj36jbL82ONsZaxQEGFrY0RYLPhfunqKfW0dbDC2KLpFW4lhfKR
- kbyWAPgbogSeR6FiPzMaFgbVLiS1Mrb87CjYKSOvILMJrtuO1rlh7/KveIha86/wQ/8VCTzfBWJ
- PnQs37FXJ/dswCmE4aiDaNoeSp4uPhxrpKpWOPAM6svxpdRjC3qY7OLtoxtumOVrKIXns3yunWR
- hLNL9M+BpFBSr0L0jv6tijpMFFtrFpRF+QOVORDSiXHBverS6qtDa+oPbkjv0wiPIj4N3GRKYDn
- gQOdUFgWIHTPdg2duLbjOZQMrcObYQgBgUzENmeImo07g6+4uDiDmcX+b9+yWE5B1llLQhb4SGU
- TSCCqcVvmtwGP2oRTyg==
-X-Proofpoint-GUID: 0NXHRiOx9J_07r7KC7pOyHanTkoYp6Fj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-22_01,2026-02-20_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0 phishscore=0
- impostorscore=0 suspectscore=0 clxscore=1015 spamscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602220090
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a72b2d62-3b91-4789-a1b1-ff1429e80ed5@baylibre.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267147-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,f000:email,arduino.cc:url,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267148-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: BB24816EC69
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B256916ECF8
 X-Rspamd-Action: no action
 
-On 2/10/26 10:07 AM, Konrad Dybcio wrote:
-> On 2/9/26 3:24 PM, Srinivas Kandagatla wrote:
->> Add support for sound on Arduino UNO Q board, which includes
->> - Headset playback and record.
->> - Lineout
+On 26/02/21 02:16PM, David Lechner wrote:
+> On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote:
+> > This patch series adds support for the Analog Devices AD9910 DDS.
+> > This is an RFC so that we can agree/discuss on the design that follows:
+> > 
+> > The AD9910 DDS core can be driven through several independent mechanisms:
+> > single tone profiles, a digital ramp generator, an internal RAM playback
+> > engine, a parallel data port, and output shift keying. Each of these
 > 
-> Looking at the images, I can't see a speaker there..
-> 
-> And looking at https://docs.arduino.cc/resources/pinouts/ABX00162-full-pinout.pdf
-> I *thiiink* there's no I2S out (which is a little surprising)
+> This makes is sound more like a DAC than a frequency generator. altvoltage
+> specifically means an AC voltage (sine wave), so these arbitrary outputs
+> don't fit that.
 
-there isn't, there is only Ear, LIne, HP and MIc.
-> 
-> [...]
-> 
->> +		hph-playback-dai-link {
->> +			link-name = "HPH Playback";
->> +			cpu {
->> +				sound-dai = <&q6afedai RX_CODEC_DMA_RX_0>;
->> +			};
->> +
->> +			platform {
->> +				sound-dai = <&q6routing>;
->> +			};
->> +
->> +			codec {
->> +				sound-dai = <&pmic4125_codec 0>, <&swr1 0>, <&rxmacro 0>;
->> +			};
->> +		};
->> +
->> +		lo-playback-dai-link {
->> +			link-name = "LO Playback";
-> 
-> "Line Out", "Headphones", etc.? I know if it's user-visible..
-It will be via UCM.
+Most applications for this part are in fact for frequency generation, like:
+- Agile local oscillator (LO) frequency synthesis
+- Programmable clock generators
+- FM chirp source for radar and scanning systems
+- Fast frequency hopping
 
+The device has been made to be too flexible, so that its operation modes
+have sub-operation modes that allows to handle frequency, scale and phase.
+But at a specific timestamp, the output signal will always be a CW, i.e.
+a sine or cosine wave.
+ 
+> > represents a distinct signal path into the DDS accumulator, so the driver
+> > models them as separate IIO output channels (all IIO_ALTVOLTAGE type).
 > 
->> +			cpu {
->> +				sound-dai = <&q6afedai RX_CODEC_DMA_RX_0>;
->> +			};
->> +
->> +			platform {
->> +				sound-dai = <&q6routing>;
->> +			};
->> +
->> +			codec {
->> +				sound-dai = <&pmic4125_codec 0>, <&swr1 0>, <&rxmacro 0>;
->> +			};
->> +		};
->> +
->> +		ear-playback-dai-link {
->> +			link-name = "Ear Playback";
->> +			cpu {
-> 
-> Let's uniformly keep a newline between the last property and the following
-> subnodes, and let's sort all these nodes alphabetically (i.e. both under
-> /sound and codec/cpu/platform within them)
-sure.
+> Generally IIO channels represent the physical input/output, not the
+> internal channels.
 
-> 
-> [...]
-> 
->> +&spmi_bus {
->> +	pmic@0 {
->> +		pmic4125_codec: audio-codec@f000{
-> 
-> This definition should definitely live in pm4125.dtsi!
+That is part of the reason for this RFC. Dividing those top-level modes
+into channels allows for better organization, as they can operate together,
+i.e., phase or scale can be provided by single-tone profile, while
+frequency is controlled by the digital ramp generator (see Mode Priority
+section in the datasheet). Also, it allows to explore the most of standard
+ABIs like, scale, frequency, phase, sampling_frequency and enable.
+Putting everything into a single channel would make things a lot messy
+to interface with.
 
-agreed.
+> Ideally we would just have the one channel here with a mode selection
+> attribute. Documentation can tell us which modes use which attributes.
+> 
+> > This per-channel separation allows userspace to configure each mode
+> > independently through its own set of sysfs attributes, and to
+> > enable/disable modes individually via IIO_CHAN_INFO_ENABLE, relying on
+> > the hardware's own mode selection architecture.
+> > 
+> > The AD9910 register map is not suited for the regmap framework: register
+> > widths vary across the map (16, 32, and 64 bits). The driver instead
+> 
+> Does it break things if you read/write 64 bits from/to non-64-bit registers?
 
-> 
-> missing space before '{'
-> 
->> +			compatible = "qcom,pm4125-codec";
->> +			reg =<0xf000>;
-> 
-> missing space after '='
-> 
->> +			vdd-io-supply = <&pm4125_l15>;
->> +			vdd-cp-supply = <&pm4125_s4>;
->> +			vdd-pa-vpos-supply = <&pm4125_s4>;
->> +
->> +			vdd-mic-bias-supply = <&pm4125_l22>;
->> +			qcom,micbias1-microvolt = <1800000>;
->> +			qcom,micbias2-microvolt = <1800000>;
->> +			qcom,micbias3-microvolt = <1800000>;
->> +
->> +			qcom,rx-device = <&pm4125_rx>;
->> +			qcom,tx-device = <&pm4125_tx>;
->> +			#sound-dai-cells = <1>;
->> +		};
->> +	};
->> +};
->> +
->> +&swr0 {
->> +	pinctrl-0 = <&lpass_tx_swr_active>;
->> +	pinctrl-names = "default";
->> +	status = "okay";
-> 
-> Please add a \n before status
-> 
-> otherwise this looks ok
-> 
-> Konrad
+Yes, the exact amount of bytes needs to be sent when writing specific registers.
 
+> In other drivers for chips like this, we've just created 2 regmaps, i.e.
+> one for 16-bit regs and one for 32-bit regs. Seems better than
+> re-implementing a reg cache.
+
+I would have to have 3 configs, one of them for a single 16-bit register.
+Also, regmap_spi does not seem to support 64-bit registers (maybe I am wrong).
+Additionally, single tone modes and RAM control modes are profile based and
+they share the same registers, so I suppose that having to control the
+register cache manually would be beneficial to switch RAM mode ON/OFF.
+I understand that the digital design of the chip is not one of the best,
+and a lot of unneeded complications are pushed to be handled in software.
+
+> > implements direct SPI access helpers with a software register cache, using
+> > type-specific read/write/update functions (ad9910_reg{16,32,64}_{read,
+> > write,update}) that handle endianness conversion and cache coherency.
+> > 
+> > Registers are cached for several reasons. The control/function registers
+> > (CFR1, CFR2) are frequently queried to determine the current operating
+> > mode (e.g., checking RAM_ENABLE before every profile register access),
+> > and caching avoids repeated SPI read transactions for what are
+> > essentially state checks. The cache also enables efficient
+> > read-modify-write updates on multi-byte registers: the update functions
+> > merge new field values with the cached register content without issuing
+> > a SPI read, and skip the write entirely when the value is unchanged.
+> > Finally, the profile registers serve dual purposes depending on whether
+> > RAM mode is active -- they hold single tone parameters (FTW, POW, ASF)
+> > in normal operation but are repurposed for RAM playback configuration
+> > (start/end address, step rate, operating mode) when RAM is enabled. A
+> > shadow register array (reg_profile[]) preserves the inactive mode's
+> > settings across transitions, so no state is lost when switching between
+> > single tone and RAM operation.
+> > 
+> > RAM data is loaded through a write-only binary sysfs attribute
+> > (ram_data). Userspace writes the waveform data as a raw binary buffer
+> > (up to 4096 bytes for the full 1024x32-bit RAM), and the driver
+> > transfers it to the device in a single SPI transaction. Per-profile
+> > start/end addresses and playback parameters (operating mode, step rate,
+> > no-dwell control) are configured through the RAM channel's ext_info
+> > attributes.
+> > 
+> > Streaming data to the DDS core through the parallel data port at the
+> > PD_CLK rate is not covered by this series. That functionality would
+> > be added in a separate patch series, building on top of the IIO backend
+> > infrastructure to provide a proper buffered data path.
+> > 
+> > As I am pushing implementation, as lot has been done already without much
+> > supervision or agreement, still I would be interested on hearing about
+> > the design choices discussed above. Here is the output for the iio_info
+> > at this point:
+> > 
+> > 5 channels found:
+> >     altvoltage1:  (output)
+> >     9 channel-specific attributes found:
+> >         attr  0: en value: 0
+> >         attr  1: frequency_offset value: 0.000000
+> >         attr  2: frequency_scale value: 1
+> >         attr  3: label value: parallel_port
+> >         attr  4: phase_offset value: 0.000000
+> >         attr  7: sampling_frequency value: 100000000.000000
+> >         attr  8: scale_offset value: 0.000000
+> >     altvoltage3:  (output)
+> >     13 channel-specific attributes found:
+> >         attr  0: address_end value: 1023
+> >         attr  1: address_start value: 0
+> >         attr  2: destination value: frequency
+> >         attr  3: destination_available value:
+> >           frequency phase amplitude polar
+> >         attr  4: en value: 0
+> >         attr  5: frequency value: 0.000000
+> >         attr  6: label value: ram_control
+> >         attr  7: operating_mode value: direct_switch
+> >         attr  8: operating_mode_available value:
+> >           direct_switch ramp_up bidirectional
+> >           bidirectional_continuous ramp_up_continuous
+> >           sequenced sequenced_continuous
+> >         attr  9: phase value: 0.000000
+> >         attr 12: sampling_frequency value: 100000000.000000
+> >     altvoltage2:  (output)
+> >     27 channel-specific attributes found:
+> >         attr  3: decrement_sampling_frequency value: 100000000.000000
+> >         attr  4: destination value: frequency
+> >         attr  5: destination_available value: frequency phase amplitude
+> >         attr  6: en value: 0
+> >         attr  7: frequency_decrement value: 0.000000
+> >         attr  8: frequency_increment value: 0.000000
+> >         attr  9: frequency_max value: 0.000000
+> >         attr 10: frequency_min value: 0.000000
+> >         attr 11: increment_sampling_frequency value: 100000000.000000
+> >         attr 12: label value: digital_ramp_generator
+> >         attr 13: operating_mode value: bidirectional_continuous
+> >         attr 14: operating_mode_available value:
+> > 		  bidirectional ramp_down ramp_up bidirectional_continuous
+> >         attr 15: phase_decrement value: 0.000000000
+> >         attr 16: phase_increment value: 0.000000000
+> >         attr 17: phase_max value: 0.000000000
+> >         attr 18: phase_min value: 0.000000000
+> >         attr 22: scale_decrement value: 0.000000000
+> >         attr 23: scale_increment value: 0.000000000
+> >         attr 24: scale_max value: 0.000000000
+> >         attr 25: scale_min value: 0.000000000
+> >     altvoltage0:  (output)
+> >     6 channel-specific attributes found:
+> >         attr  0: frequency value: 0.000000
+> >         attr  1: label value: single_tone
+> >         attr  2: phase value: 0.000000
+> >         attr  5: scale value: 0.000000
+> >     altvoltage4:  (output)
+> >     8 channel-specific attributes found:
+> >         attr  0: en value: 0
+> >         attr  1: label value: output_shift_keying
+> >         attr  2: pinctrl_en value: 0
+> >         attr  5: sampling_frequency value: 100000000.000000
+> >         attr  6: scale value: 0.000000
+> >         attr  7: scale_increment value: 0.000000
+> > 3 device-specific attributes found:
+> >         attr  0: ram_data ERROR: Permission denied (13)
+> >         attr  1: sysclk_frequency value: 400000000
+> > 1 debug attributes found:
+> >         debug attr  0: direct_reg_access value: 0x2
+> 
+> 
+> This is a lot of custom attributes!
+
+yes, specially for the digital ramp generator, where we have range
+sets of increment, decrement, min and max for each DDS parameter:
+scale, phase, frequency.
+
+> It looks like a lot of these are just exposing registers directly, which
+> usually isn't the best if we want something that can be reused. However,
+> this looks pretty complex so coming up with something generic is probably
+> not worth the effort. 
+
+Not directly, there is often a conversion whenever we are dealing
+with scale, phase, frequency or sampling frequency.
+
+> Instead, I would suggest to create a firmware file format that
+> describes how the chip should be programmed. And in the driver call
+> firmware_upload_register() to create a sysfs interface where the
+> firmware can be loaded/replaced at runtime. This way, there is just
+> one attribute write needed to set all of the parameters at once.
+> 
+> This could probably be as simple as something that just contains
+> the value of each register to be programmed and the driver can
+> write all of the registers just before enabling the output.
+
+Not sure, if that makes things simpler, specially for the application
+the would interface with this. I think having the attributes as is
+would be the whole point of using the IIO subsystem.
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
