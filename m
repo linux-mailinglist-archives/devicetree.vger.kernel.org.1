@@ -1,178 +1,223 @@
-Return-Path: <devicetree+bounces-267157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267158-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cBzENm3+mmlKpQMAu9opvQ
-	(envelope-from <devicetree+bounces-267157-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 14:02:37 +0100
+	id jQBUIooAm2lbpgMAu9opvQ
+	(envelope-from <devicetree+bounces-267158-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 14:11:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6169816F1AB
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 14:02:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D582116F207
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 14:11:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3BB783017539
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 13:02:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF0E3300F9E4
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 13:11:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E76C264614;
-	Sun, 22 Feb 2026 13:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2320C1EB5F8;
+	Sun, 22 Feb 2026 13:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="li173GMg"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Znax5x+Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A7DD261B98;
-	Sun, 22 Feb 2026 13:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8617227BB5
+	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 13:11:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771765330; cv=none; b=MBq4lS8VnRwvvmu6dxM3T/91zjiCyZM3q9aHoWyCEnK5zcYZGhqwjKd0DxcS6DXE5cj6Mtorm62VdeEG64R10+wdI0hljrRJnnX44sI45n7oiABSvefoM3IafQ2BsLkeanxsiXhR1uypBbP/m0MQc6bOPbkz09b9POgz3A3TZvI=
+	t=1771765895; cv=none; b=s+AsVWztmoO00cjlDpXBO4yKvUfbE2a9rpiUV4kRttQiYm18I+TYSiBIiuosl0awekbw2NTThgVByz7/bTbbB2FCyBWq2X2BO0qT7jgIvT48X3pnAcha6jcE+QP7TJ2b3xOlDMDR9ELTJgyWi1Tde7P194Ol9/8pdEtPWrTwTFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771765330; c=relaxed/simple;
-	bh=4BQrp84Wg0bvJnpacRYsrgjFC1+YwUZbsSz4WB1KmsA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=g/UNI4Wh5VuuD+fqH5U6MHbfID8evnV9l7zGAu2T2KATO9ywNuP0ucxO31ahtrLcYTHNqcJ5GUim6RcaaBJvBtX0NUeViyzB64JNmJ12M6+BPsLUUghB0EBKJe8x2LZtHUFTvVoEB23el5Mw+rearP6R79mXoF8y5/DSuTb8YuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=li173GMg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53E5BC116D0;
-	Sun, 22 Feb 2026 13:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771765329;
-	bh=4BQrp84Wg0bvJnpacRYsrgjFC1+YwUZbsSz4WB1KmsA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=li173GMgpYhuY1FGnTVowEKr73b3Lf2p+sR+TNhRaf/UXYaF0+lBWa0fc1ywZlgy6
-	 q5RhprqbpXTAEBC0Qxj5W5j0lbLvL87OaHkE0asVHbRignG8gtngHXG/Ch+SenHvOK
-	 acSsfuIwPR14m16CAVhFRzEqp7i64IAMDVoB6xcib88J8jybqSuep6ZPr+gDgmlfZy
-	 h/xDvbP7u6qDI3zQmn2uGg/LuDXacDP8Un6iQfXBbYWYczcacXYGmKf52VyMwKrGJh
-	 YGGW4aGeyFBhTRBpriU3Bb+NqO1ibVFexrwakFRdbixfgLV8k5tADDJg7edSxr/grJ
-	 5Ra0o9WSbu0aw==
-Date: Sun, 22 Feb 2026 13:01:44 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <michael.hennerich@analog.com>, <nuno.sa@analog.com>,
- <eblanc@baylibre.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>, David Lechner
- <dlechner@baylible.com>
-Subject: Re: [PATCH v9 8/8] iio: adc: ad4030: Support common-mode channels
- with SPI offloading
-Message-ID: <20260222130144.012d7918@jic23-huawei>
-In-Reply-To: <e6599ac890ed7447a4378f129d0101e7a20eb38b.1771253601.git.marcelo.schmitt@analog.com>
-References: <cover.1771253601.git.marcelo.schmitt@analog.com>
-	<e6599ac890ed7447a4378f129d0101e7a20eb38b.1771253601.git.marcelo.schmitt@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1771765895; c=relaxed/simple;
+	bh=Eqt7mgY/hiZNrY/rhkrEYfaDyRFUEYoLhP6UxzfgrJw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mubnqEtFFQMna94gKraLI8EpqzNiB80y1IIdF+lWu4BXtvuwZomOXNa26B1u4BLmkVGII24yAMeo54yGLLMlPBN5eaVCO1r9qltH4U4/F5U84T2yNIypSnQLttovp/CT34/uSzXE2Blaq6pBK1snXbZkPhkxvILf8mEP5VyzjN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Znax5x+Y; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=JVQ1HvYuj4l7iwcq8/NX4tU7HmBNPxeJhIc4SDEkhro=; b=Znax5x+YKVoO0sIMBG6dytXhS3
+	QgHMOC+Olb6d0WkCcaJJzuK58fnB1nKgSM7YXlXgx1qiTKRBPQLNUWDoyovSBCF4kaw1gtHNgllOA
+	vLwmirLnhaZ9sPE4CtQQq5DmZfsct3E3ZB3+IQjwABr5caXLXFar9fKANSRWM4vfc1u6mFHbQ73Jf
+	m2u6wAk7/EXZcY10LZmoW3TWTzEWdogTl3KJXE5WMQf91F9iALMA444y0wDdwYPl/3oEjbgx79Ny1
+	MqOfhmuvOyUNhTaZiWv1pIJlPwOs+9ByMomBRwMpY4+5OuLyLwG3qMKSKlxZirNuA/3Rk6knXk7wV
+	nALUasvw==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org, Shawn Lin <shawn.lin@rock-chips.com>
+Cc: shawn.lin@rock-chips.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject:
+ Re: [PATCH 2/2] arm64: dts: rockchip: Add domain-supply for pd_rkvdec0/1 and
+ pd_venc0/1
+Date: Sun, 22 Feb 2026 14:11:26 +0100
+Message-ID: <1849787.VLH7GnMWUR@phil>
+In-Reply-To: <ea9df274-278d-f344-f66d-8821388e6690@rock-chips.com>
+References:
+ <1770950113-19802-1-git-send-email-shawn.lin@rock-chips.com>
+ <1770950113-19802-2-git-send-email-shawn.lin@rock-chips.com>
+ <ea9df274-278d-f344-f66d-8821388e6690@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267157-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-267158-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,analog.com,baylibre.com,kernel.org,lwn.net,gmail.com,baylible.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylible.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: 6169816F1AB
+	RCPT_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sntech.de:dkim]
+X-Rspamd-Queue-Id: D582116F207
 X-Rspamd-Action: no action
 
-On Mon, 16 Feb 2026 12:01:27 -0300
-Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+Hi Shawn,
 
-> AD4030 and similar devices can read common-mode voltage together with
-> ADC sample data. When enabled, common-mode voltage data is provided in a
-> separate IIO channel since it measures something other than the primary
-> ADC input signal and requires separate scaling to convert to voltage
-> units. The initial SPI offload support patch for AD4030 only provided
-> differential channels. Now, extend the AD4030 driver to also provide
-> common-mode IIO channels when setup with SPI offloading capability.
-> 
-> Reviewed-by: David Lechner <dlechner@baylible.com>
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Am Freitag, 13. Februar 2026, 03:42:07 Mitteleurop=C3=A4ische Normalzeit sc=
+hrieb Shawn Lin:
+> =E5=9C=A8 2026/02/13 =E6=98=9F=E6=9C=9F=E4=BA=94 10:35, Shawn Lin =E5=86=
+=99=E9=81=93:
+> > The power domains pd_rkvdec0/1 and pd_venc0/1 depend on two voltage sup=
+plies,
+> > vdd_vdenc_s0 and vdd_vdenc_mem_s0. These supplies might be missing or c=
+ause probe
+> > deferral. Since the Rockchip power domain management code currently sup=
+ports managing
+> > only one power supply, and both supplies belong to the same PMIC (makin=
+g it highly
+> > unlikely for one to be available while the other is not), a practical s=
+olution is
+> > implemented.
+> >=20
+> > Both supplies are configured with the boot-on and always-on properties.=
+ Only one
+> > of them is assigned as the domain-supply for pd_rkvdec0/1 and pd_venc0/=
+1. This allows
+> > the power domain code to perform a nominal enable operation on this sin=
+gle supply,
+> > thereby successfully acquiring a reference to both supplies (as they ar=
+e from the same
+> > PMIC). The system then relies on their boot-on and always-on flags to m=
+aintain the
+> > correct state.
+> >=20
+> > Crucially, this approach handles cases like probe deferral correctly:
+> > if the PMIC is not yet ready, enabling the power domain will be deferre=
+d until the
+> > necessary supplies become available.
+
+just as a question, does the board have problems without these supplies?
+Aka, is this a fix for a problem, or "just" future proofing the board?
+
+Thanks
+Heiko
 
 
->  static int ad4030_regulators_get(struct ad4030_state *st)
-> @@ -1409,43 +1422,19 @@ static int ad4030_spi_offload_setup(struct iio_dev *indio_dev,
->  static int ad4030_setup_pga(struct device *dev, struct iio_dev *indio_dev,
->  			    struct ad4030_state *st)
->  {
-> -	unsigned int i;
-> -	int pga_gain_dB;
-> -	int ret;
-> +	/* Setup GPIOs for PGA control */
-> +	st->pga_gpios = devm_gpiod_get_array(dev, "pga", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->pga_gpios))
-> +		return dev_err_probe(dev, PTR_ERR(st->pga_gpios),
-> +				     "Failed to get PGA gpios.\n");
->  
-> -	ret = device_property_read_u32(dev, "adi,pga-gain-db", &pga_gain_dB);
-This had me confused, but I guess is patch break up stuff you mention in reply
-to Andy in patch 7.  So I'll wait for v10 before taking another look.
+> > Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> > ---
+> >=20
+> >   arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts  | 16 ++++++++++++++=
+++
+> >   arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts | 17 ++++++++++++++=
++++
+> >   2 files changed, 33 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/ar=
+m64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> > index c9d284c..09bc7b6 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> > @@ -568,6 +568,22 @@
+> >   	domain-supply =3D <&vdd_gpu_s0>;
+> >   };
+> >  =20
+> > +&pd_rkvdec0 {
+> > +	domain-supply =3D <&vdd_vdenc_s0>;
+> > +};
+> > +
+> > +&pd_rkvdec1 {
+> > +	domain-supply =3D <&vdd_vdenc_s0>;
+> > +};
+> > +
+> > +&pd_venc0 {
+> > +	domain-supply =3D <&vdd_vdenc_s0>;
+> > +};
+> > +
+> > +&pd_venc1 {
+> > +	domain-supply =3D <&vdd_vdenc_s0>;
+> > +};
+> > +
+> >   &pinctrl {
+> >   	audio {
+> >   		hp_detect: headphone-detect {
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts b/arch/a=
+rm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+> > index f820505..25d80b6 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+> > @@ -381,6 +381,22 @@
+> >   	domain-supply =3D <&vdd_gpu_s0>;
+> >   };
+> >  =20
+> > +&pd_rkvdec0 {
+> > +	domain-supply =3D <&vdd_vdenc_s0>;
+> > +};
+> > +
+> > +&pd_rkvdec1 {
+> > +	domain-supply =3D <&vdd_vdenc_s0>;
+> > +};
+> > +
+> > +&pd_venc0 {
+> > +	domain-supply =3D <&vdd_vdenc_s0>;
+> > +};
+> > +
+> > +&pd_venc1 {
+> > +	domain-supply =3D <&vdd_vdenc_s0>;
+> > +};
+> > +
+> >   &pinctrl {
+> >   	audio {
+> >   		hp_detect: headphone-detect {
+> > @@ -580,6 +596,7 @@
+> >   			vdd_gpu_mem_s0: dcdc-reg5 {
+> >   				regulator-name =3D "vdd_gpu_mem_s0";
+> >   				regulator-boot-on;
+> > +				regulator-always-on;
+>=20
+> Oops, I sent the wrong version. Should remove the this line change.
+> Will fix it if v2 needed.
+>=20
+> >   				regulator-min-microvolt =3D <675000>;
+> >   				regulator-max-microvolt =3D <950000>;
+> >   				regulator-ramp-delay =3D <12500>;
+> >=20
+>=20
 
-> -	if (ret == -EINVAL) {
-> -		/* Setup GPIOs for PGA control */
-> -		st->pga_gpios = devm_gpiod_get_array(dev, "pga", GPIOD_OUT_LOW);
-> -		if (IS_ERR(st->pga_gpios))
-> -			return dev_err_probe(dev, PTR_ERR(st->pga_gpios),
-> -					     "Failed to get PGA gpios.\n");
-> +	if (st->pga_gpios->ndescs != ADAQ4616_PGA_PINS)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "Expected %d GPIOs for PGA control.\n",
-> +				     ADAQ4616_PGA_PINS);
->  
-> -		if (st->pga_gpios->ndescs != ADAQ4616_PGA_PINS)
-> -			return dev_err_probe(dev, -EINVAL,
-> -					     "Expected 2 GPIOs for PGA control.\n");
-> -
-> -		st->scale_avail_size = ARRAY_SIZE(adaq4216_hw_gains_db);
-> -		st->pga_index = 0;
-> -		return 0;
-> -	} else if (ret) {
-> -		return dev_err_probe(dev, ret, "Failed to get PGA value.\n");
-> -	}
-> -
-> -	/* Set ADC driver to handle pin-strapped PGA pins setup */
-> -	for (i = 0; i < ARRAY_SIZE(adaq4216_hw_gains_db); i++) {
-> -		if (pga_gain_dB != adaq4216_hw_gains_db[i])
-> -			continue;
-> -
-> -		st->pga_index = i;
-> -		break;
-> -	}
-> -	if (i == ARRAY_SIZE(adaq4216_hw_gains_db))
-> -		return dev_err_probe(dev, -EINVAL, "Invalid PGA gain: %d.\n",
-> -				     pga_gain_dB);
-> -
-> -	st->scale_avail_size = 1;
-> -	st->pga_gpios = NULL;
-> +	st->scale_avail_size = ARRAY_SIZE(adaq4216_hw_gains_vpv);
-> +	st->pga_index = 0;
->  
->  	return 0;
->  }
+
+
+
 
