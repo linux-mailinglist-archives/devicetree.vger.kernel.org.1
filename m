@@ -1,113 +1,94 @@
-Return-Path: <devicetree+bounces-267187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267188-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SMiUGaxKm2nxxgMAu9opvQ
-	(envelope-from <devicetree+bounces-267187-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 19:27:56 +0100
+	id +C0OCAJMm2k5xwMAu9opvQ
+	(envelope-from <devicetree+bounces-267188-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 19:33:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8197C1700FA
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 19:27:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7B917012B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 19:33:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F86130086E7
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 18:27:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BBF193007512
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 18:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036A2350D7F;
-	Sun, 22 Feb 2026 18:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DA6353EE0;
+	Sun, 22 Feb 2026 18:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LB1R9IIp";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IH4/4sSb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HQF1VZ5S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8500814EC73
-	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 18:27:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDB0C13957E
+	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 18:33:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771784871; cv=none; b=NqJJXFXGyTDXNVasEQc8ZcTtqo/zTIA4ktG27/vRQXKjn2S8alPFkr3PpPz/aHqafBMlgEHym1T7UGwrd0iw6dYvk77h6u5RsBI+c5/9U35qKv3TmwpayRA3/gVx3bJvzGswMkkrziApthIojaGJp7Tzapg7UDfhZrZoFi1vZOQ=
+	t=1771785213; cv=none; b=TjQ/PZ+8kMlZR3KnvyPtA/u7SGD5IscS4o9LYGL5RoU5csza5y1rLXom83TXJC7HpMfZa7XH8CFCIb95Als1VT4cDV0TkAg9AS9I+TpBLQNPhdAeH/x3PIWK7q2/4+2UTO8/+nVCTYPIjrs5sNd+gt9BefcATZQWWBpdHh7UD64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771784871; c=relaxed/simple;
-	bh=NNftpgPzP2E091ERRnqtZVn2vkVT8VI+2oF4t5ZwIzg=;
+	s=arc-20240116; t=1771785213; c=relaxed/simple;
+	bh=Gxa5A+tvgIFzLTNVZwkWDhuRkbCoNzau+xJzqZTG0Q4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uYHoKT9rOb+Nwu/L8pyE1pX3rWFKAuXawNOCwYQTPVTYTvICuHEgn2OsKLsCFBpPvbamaZco8kjhxDD+IYgVKdEeA0FKIq9QlQHAxHnUkFEw6Rbm/ERw2C58v50kWiszr0Yn0WIcJWCxaxOIUwrez8pIT/TDylUtK3WYWpdwsds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LB1R9IIp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IH4/4sSb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61MBeCsv623298
-	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 18:27:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Jb3hjyUD3tMoU+zITBgMwrrD
-	pLFVqnNuzDJ2O+O/fa8=; b=LB1R9IIp85OmlCVZVMGJvWixz3Xank5EHKADgZ5L
-	Ds5h+4Dng75mVAolfGuSTgYnWmQPGsR+1nCRFEvI+PPA6ztCNGfzJsmzjAmF7hzU
-	/z8NZZwBsrrBVAnEsyr97RF49NChphEYUru+1pFOlgoyhqQa1I6lS6GMvHN09o44
-	ElFHAm3NRrHN+nEokhWknzpZ8+4rcJAl0N3M8tHq0kZRmQ7+osxrf2sRSDUjLlUZ
-	6Oy6ETzaCGT5BEL1o7C/ZeeRGoNhClk7VwCQIK+rNm+7qJgPQ38hOeDGlggZYISW
-	wzMmoIirv5Mk5bEdcKDb8SVA38YoLp8JrVawQ71v7zt+6g==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf5wbajy9-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 18:27:44 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c70ab7f67fso1616554185a.3
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 10:27:44 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ny9vdCZqXo9MPixKx0h7FyrYu6YdhH9ON9NLePFnbhJ/kXpwWIWyZoAGTxloYo+daUT6o4ErbppSU9+M/88ucU5hxbcVqdyzl2QRPf4qOYhzBNXqLOFMD3edL/cAfUK6lIl2KlWBwBDb+i0XMB6yftoKPTGXlA5e4do/sDT+yp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HQF1VZ5S; arc=none smtp.client-ip=74.125.82.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-1275750cf9cso2946357c88.0
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 10:33:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771784863; x=1772389663; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771785212; x=1772390012; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jb3hjyUD3tMoU+zITBgMwrrDpLFVqnNuzDJ2O+O/fa8=;
-        b=IH4/4sSbyG53DIzryr0Jorm5ror05fE+kEokyBjfjfccrLN11+5Vyxpl6VEruMpx29
-         1ch2NXJiPDLE0GrgZ275su9UYFXcDdAiypqnUWrF5NmZ/nWyc1mlmX8iRwRGpd96tCJR
-         ipIFKyzJIKB/X5L7Q9Pwc/1IhtvQJlS2zBCssY2jCmsicBnHqhsfBLSpOY8Xv7FtarDv
-         pJ50FgEsGpNE3gVJDzBde6LqZOwooGK0C1QPnWyfinp9y1DMsifLE58h+mTMyweXs2ey
-         rMsr5yCG/IZnmRuShPvU2C+0kiiRciH3ES1L1RDEwnrmBFibNiBzzr4k0tXf66sbbo4O
-         hQ+w==
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1GthVDsIOd+2sKUfi8Uh06K9+Ix22GSuy7Q9hscrocw=;
+        b=HQF1VZ5SRDaaA2ftTv2oj1xY2pxGhqL+ZkbaxG8Cgr3cuihCvQdraxkNMRB9q0U9sJ
+         h7lASR2c5P+HQhy7dlQHga0us3DpAJqjTfj12Fnd3RMZEu+S96k4B6o1sAyV8Qizmim0
+         7+dwvQQPfLnqWZD9EzvdUzoux9Yzvt5Y90eIaYatia74eKIXESQjiNqOnFlx9pNAAER9
+         I2L56tFde6u5CceL8ShKVUaV5nAaDJbVX6vt4G7JgNbywegF1MlKe79E+/GI9U2rTGzG
+         Mbx4zI6dqrfzlDAdmanStTU6zjLv5uscEfS/l1DZdwUkZM1FX46CtJ5aSSGqHUiD8jEV
+         IHTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771784863; x=1772389663;
+        d=1e100.net; s=20230601; t=1771785212; x=1772390012;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Jb3hjyUD3tMoU+zITBgMwrrDpLFVqnNuzDJ2O+O/fa8=;
-        b=KhjiX3bOu8c3QVEjIkGVfEJa1rxBXVX9UBXFrgSA5jz7L1rQOiUoHeoqF5ZzIz+LWS
-         6P1b8OtolCJnTVqyEmZz87sS4Qh6YWZkQ/9yRsOSemPUYbpfk8/k678BXK9OXITZ1Nvo
-         Iss1X4tHXcDE3jLLe3DQ4ZerjuhL/jlSRWFz6Av1IPVVj2OrFM/DPzGkAqew/gHPmxTo
-         nLfn2PCc3iSe6VEhAgPuWWk9jCuxCxW2XkChxdlHhI964+hyMjxrIGE7Ztc9mqCQpCTf
-         wRK7brOLX9T+SfEle9akgaKl7goD56FVyMhElendYpt2VsA4zT8FQixlXkgic8+hHa7o
-         1Euw==
-X-Forwarded-Encrypted: i=1; AJvYcCXQ7/e9vAWcXJIqquA9CS9SygayR8klvk5KvC90DJcYd9r97bQ6DrM/rdjPSVg5N0AbXSRtL/R6TIf5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzV6+c2YTOvCNgl7Z4qv8LLEy/Gqujecq/6xowRmu/fCE938A8e
-	A27RdYaQE9xk3a/C6r+TIT+mb9MxALqdFM0WsTEKNkaTg4r6GBtfNfiLmIUasZSVNHtL/fVDgVn
-	1SzySOLQO6PkNKKv3n1QQVtTYh5SKhBmMCyWQWANpnT9/5ukhkg0w4WpD55M0ziDI
-X-Gm-Gg: AZuq6aLPRDg8qiO7/2nZlYXlrgEMGYIdKeqb3In5FlXNS2Z24Nx/eoG3/E/LwVL1GDJ
-	7hgH+t4+ht/3YCFBa2akc79siLiVe7ov6TI0hxilVlrqXwIlFlPyRMTgThY9MXTRoUdsj49MBe9
-	Vu16yTC4J2gtnyI74f67iTksiZSCj7sopZa1TxlO4skKvnhFg5oUWjm7BPHFvoCjg3Te2PvpxPg
-	b7/9jauP37s7aSwn9954VCL6XLtWd9POrxHl4hSAj3ZLYjLgAD+DarVxo49/Lat9rWueXZZR5sT
-	PsjqKgoza6/JZ6joEeb5PrPggnRls6ws4M7E+q7aZTz34Q/mcFtOYquSIaVnIPBlD6wxZMPMtcn
-	NYRVUgcP8bGcxbSYPVDYMraGfGRLvuPpZD4jArhqhcsFbW/ptm3lQSwCFkT8wXq48NhVk0WUhgN
-	3jHfM2lURzHDcMKcbwvSjD4tjWz8shiqEORj4=
-X-Received: by 2002:a05:620a:199d:b0:8cb:4cb0:8d4e with SMTP id af79cd13be357-8cb8ca9dd5emr740400185a.77.1771784863480;
-        Sun, 22 Feb 2026 10:27:43 -0800 (PST)
-X-Received: by 2002:a05:620a:199d:b0:8cb:4cb0:8d4e with SMTP id af79cd13be357-8cb8ca9dd5emr740395985a.77.1771784862856;
-        Sun, 22 Feb 2026 10:27:42 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a0eeb4760csm1103670e87.77.2026.02.22.10.27.39
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1GthVDsIOd+2sKUfi8Uh06K9+Ix22GSuy7Q9hscrocw=;
+        b=luPKkuXl6fvQVPGz1Wb0YMMSIhWzaDCUguUGPi988bvX94wC3GMfGWwPahRZdg3pg5
+         bv0l4es+0JkaRdLwNdIyRepIyadEtqEwskNmxLPhQ7WkU1RGrPXsgR8wPs17Tdwn5i6b
+         azQxnOO/GptT3aSEc7ZBGKHU0FHtCk/0r1rJ3hgrM3ULrMwT9zEeH7aIcqQQ7siybVuY
+         p9RyRX3/1wKa+a633bUtgavW14rVQwwUjezYC2lSOJUNEnVvVqO2HLlx3ahk4/YflNVr
+         evtG03eJ6Lvs2FZnPOruIcBGjHs2zfQ3rtbyraVKinO1dSy8yQqq1ow6b46drLdAePdk
+         4xew==
+X-Forwarded-Encrypted: i=1; AJvYcCXLXMSsawrkFi1pxjmT+wme3DClFH/WqzzpFGdGg0L/qbgCfLiDc7ViZTZlN93Yyr6uCdqpwAYUlQ44@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZVkdOu4UCU08kcNkeARrPBJbyVup34kB5V/Yr3kBxoBdBuEUM
+	XVXobBqJ+o7EHJGWpkBQ+PTKhf1JHrzJEBzrGJxjqkQ+y+TEOwbMdM2F
+X-Gm-Gg: AZuq6aL3Thfjmev0fuC0AqL4LGwIeHIgVweMjibMJkCyqyzJOUH0fgdXa6eXlGci1rm
+	amEppaCYIHj7ih5tA2PeYgEcJh+CFk/MbAr2br44n59+0HilzNp8hcb5Iuo6uykdXs/uQuKKwd6
+	5Hu+2pm6pK3Gdsjsmg1ifvG1PcrnD62Et9hAewGsmJGEK9sOVJMWP8J9q3lX1g3KE0iGeyyTQX3
+	ogAcLpfUAT+xQ6RGnOPND7vk9TWBzcIOQwkc9twCVbRQm9NLKnDscn+3edOqVSSsoyH57MPEgaB
+	3suOQqixwOdKEEXs63wN8bd5LLTcAufNqemhKlLmY/sPlwEJw12A/Sw83Pj3DwTmV9dp+WjgssV
+	4ZFqC+t5H518K3kSpIf+bvMFVsIAg8yeBNg8BhHhta4jAprKi9aAUqvPdY1da0lecgJ7t1/x6+L
+	6p2Jm5BuUwcOfk9vUe1GJ1mmY/L8g5hd2kOYTe
+X-Received: by 2002:a05:7022:4387:b0:121:9f05:c4c2 with SMTP id a92af1059eb24-1276ad18ec5mr1966020c88.23.1771785211890;
+        Sun, 22 Feb 2026 10:33:31 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1276af9f74bsm5158185c88.15.2026.02.22.10.33.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Feb 2026 10:27:40 -0800 (PST)
-Date: Sun, 22 Feb 2026 20:27:37 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Umang Chheda <umang.chheda@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com,
-        krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: monaco-evk: Add Interface Plus
- Mezzanine
-Message-ID: <at7j3kbdixd7aveiol37pwgudl2hcogtdrvdgcvgbbm3t5irfc@4nvv5ptoezyk>
-References: <20260222173545.3627478-1-umang.chheda@oss.qualcomm.com>
- <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
+        Sun, 22 Feb 2026 10:33:31 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sun, 22 Feb 2026 10:33:29 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Hao Yu <haoyufine@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jcdra1@gmail.com, akhilesh@ee.iitb.ac.in,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] hwmon: (aht10) Fix initialization commands for
+ AHT20
+Message-ID: <dab83860-0dd5-4c88-bcb1-99226cf4fce7@roeck-us.net>
+References: <20260222170332.1616-1-haoyufine@gmail.com>
+ <20260222170332.1616-3-haoyufine@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -116,320 +97,81 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: GYb-sFiBV-q59K8BsC9Lbc0rOCoxa-eI
-X-Authority-Analysis: v=2.4 cv=UZlciaSN c=1 sm=1 tr=0 ts=699b4aa0 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8
- a=DUeAZ88jvR8M5Yoo4rEA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: GYb-sFiBV-q59K8BsC9Lbc0rOCoxa-eI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIyMDE3OCBTYWx0ZWRfXya6A7cy5a+f5
- AGGxMpTPMGVuG8mmj/ir0dTmqkMojw16VuA1U8EZMax9JAKodPxNo95gF45SV4+zkDIoDp2HczN
- rSbESpP1N6drhjz+q6KegCWFSf/mHOtKmXtG8X1MWDiBeV1CmX2+DdpbPxL/pUcbI4Ag53e023g
- lWgm/ZNeBKJSusQk/fFjas79jIMoxphdtrYJvNLQFopd67Mh8ZrOmil1EtFFan6H5S7A79wvlfg
- W6mecAzct+1lexh0llqdpeeCVC4gPFZ83dQsPKDrdH+I0kGS0QClGqze252tb8maZEAHbSTAwEv
- EmxpXnsFogbRO0Fub8k7NJbSOOgA7L3IjPpNWJ/DmNYD8GKe6X7O+2U+AU/ycHG3xR5P3Irdunz
- 9gos+bM6HmiOM/A98MzjTSJ0VNpM/qo/NIP/1N2wFJonOPtGR/WnmZjRTzlU8HewZ9L/EUNU2r+
- banNTg0wEx7VF6j5g5A==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-22_04,2026-02-20_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0 malwarescore=0
- bulkscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602220178
+In-Reply-To: <20260222170332.1616-3-haoyufine@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267187-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,0.0.0.1:email,0.0.0.2:email,0.0.0.3:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,ee.iitb.ac.in,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267188-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 8197C1700FA
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AE7B917012B
 X-Rspamd-Action: no action
 
-On Sun, Feb 22, 2026 at 11:05:45PM +0530, Umang Chheda wrote:
-> The Interface Plus [IFP] Mezzanine is an hardware expansion add-on
-> board designed to be stacked on top of Monaco EVK.
+On Mon, Feb 23, 2026 at 01:03:31AM +0800, Hao Yu wrote:
+> According to the AHT20 datasheet (updated to V1.0 after the 2023.09
+> version), the initialization command for AHT20 is 0b10111110 (0xBE).
+> The previous sequence (0xE1) used in earlier versions is no longer
+> compatible with newer AHT20 sensors. Update the initialization
+> command to ensure the sensor is properly initialized.
 > 
-> It has following peripherals :
-> 
-> - 4x Type A USB ports in host mode.
-> - TC9563 PCIe switch, which has following three downstream ports (DSP) :
->    - 1st DSP connects M.2 E-key connector for connecting WLAN endpoints.
+> Fixes: d2abcb5cc885 ("hwmon: (aht10) Add support for compatible aht20")
+> Signed-off-by: Hao Yu <haoyufine@gmail.com>
 
-Nit: routed to? Is that M.2 only suitable for WLANs? What is "WLAN
-endpoints"?
+Applied, since htis is a fix which doewsn't depend on the devicetree patches.
 
->    - 2nd DSP connects M.2 B-key connector for connecting cellular
->      modems.
->    - 3rd DSP with support for Dual Ethernet ports.
-> - EEPROM.
-> - LVDS Display.
-> - 2*mini DP.
-> 
-> Add support for following peripherals :
-> - TC9563 PCIe Switch.
-> - EEPROM.
+Thanks,
+Guenter
 
-If there is an onboard USB hub, please describe it here. Also, what is
-the story of mini DP ports? If they are to be enabled later, please
-mention, why.
-
-> 
-> Written with inputs from :
->     Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com> - PCIe
->     Monish Chunara <monish.chunara@oss.qualcomm.com> - EEPROM.
-> 
-> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile             |   4 +
->  .../dts/qcom/monaco-evk-ifp-mezzanine.dtso    | 184 ++++++++++++++++++
->  2 files changed, 188 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
+>  drivers/hwmon/aht10.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index f80b5d9cf1e8..9d298e7e8a90 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -45,6 +45,10 @@ lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
->  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
+> diff --git a/drivers/hwmon/aht10.c b/drivers/hwmon/aht10.c
+> index 007befdba977..4ce019d2cc80 100644
+> --- a/drivers/hwmon/aht10.c
+> +++ b/drivers/hwmon/aht10.c
+> @@ -37,7 +37,9 @@
+>  #define AHT10_CMD_MEAS	0b10101100
+>  #define AHT10_CMD_RST	0b10111010
+>  
+> -#define DHT20_CMD_INIT	0x71
+> +#define AHT20_CMD_INIT	0b10111110
 > +
-> +monaco-evk-ifp-mezzanine-dtbs	:= monaco-evk.dtb monaco-evk-ifp-mezzanine.dtbo
-> +
-> +dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk-ifp-mezzanine.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso b/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
-> new file mode 100644
-> index 000000000000..f0572647200c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
-> @@ -0,0 +1,184 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +&{/} {
-> +	model = "Qualcomm Technologies, Inc. Monaco-EVK IFP Mezzanine";
-> +
-> +	vreg_0p9: regulator-vreg-0p9 {
-
-Are all these regulators a part of the mezzanine?
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VREG_0P9";
-> +
-> +		regulator-min-microvolt = <900000>;
-> +		regulator-max-microvolt = <900000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		vin-supply = <&vreg_3p3>;
-> +	};
-> +
-> +	vreg_1p8: regulator-vreg-1p8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VREG_1P8";
-> +
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		vin-supply = <&vreg_4p2>;
-> +	};
-> +
-> +	vreg_3p3: regulator-vreg-3p3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VREG_3P3";
-> +
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		vin-supply = <&vreg_4p2>;
-> +	};
-> +
-> +	vreg_4p2: regulator-vreg-4p2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VREG_4P2";
-> +
-> +		regulator-min-microvolt = <4200000>;
-> +		regulator-max-microvolt = <4200000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		vin-supply = <&vreg_sys_pwr>;
-> +	};
-> +
-> +	vreg_sys_pwr: regulator-vreg-sys-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VREG_SYS_PWR";
-> +
-> +		regulator-min-microvolt = <24000000>;
-> +		regulator-max-microvolt = <24000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-
-... supplied from what?
-
-> +	};
-> +};
-> +
-> +&i2c15 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	eeprom1: eeprom@52 {
-> +		compatible = "giantec,gt24c256c", "atmel,24c256";
-> +		reg = <0x52>;
-> +		pagesize = <64>;
-> +
-> +		nvmem-layout {
-> +			compatible = "fixed-layout";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +		};
-> +	};
-> +};
-> +
-> +&pcie0 {
-> +	iommu-map = <0x0   &pcie_smmu 0x0 0x1>,
-> +		    <0x100 &pcie_smmu 0x1 0x1>,
-> +		    <0x208 &pcie_smmu 0x2 0x1>,
-> +		    <0x210 &pcie_smmu 0x3 0x1>,
-> +		    <0x218 &pcie_smmu 0x4 0x1>,
-> +		    <0x300 &pcie_smmu 0x5 0x1>,
-> +		    <0x400 &pcie_smmu 0x6 0x1>,
-> +		    <0x500 &pcie_smmu 0x7 0x1>,
-> +		    <0x501 &pcie_smmu 0x8 0x1>;
-> +};
-> +
-> +&pcieport0 {
-> +	#address-cells = <3>;
-> +	#size-cells = <2>;
-> +
-> +	pcie@0,0 {
-> +		compatible = "pci1179,0623";
-> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-> +
-> +		device_type = "pci";
-> +		ranges;
-> +		bus-range = <0x2 0xff>;
-> +
-> +		vddc-supply = <&vreg_0p9>;
-> +		vdd18-supply = <&vreg_1p8>;
-> +		vdd09-supply = <&vreg_0p9>;
-> +		vddio1-supply = <&vreg_1p8>;
-> +		vddio2-supply = <&vreg_1p8>;
-> +		vddio18-supply = <&vreg_1p8>;
-> +
-> +		i2c-parent = <&i2c15 0x77>;
-> +
-> +		resx-gpios = <&tlmm 124 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-0 = <&tc9563_resx_n>;
-> +		pinctrl-names = "default";
-> +
-> +		pcie@1,0 {
-> +			reg = <0x20800 0x0 0x0 0x0 0x0>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +
-> +			device_type = "pci";
-> +			ranges;
-> +			bus-range = <0x3 0xff>;
-> +		};
-> +
-> +		pcie@2,0 {
-> +			reg = <0x21000 0x0 0x0 0x0 0x0>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +
-> +			device_type = "pci";
-> +			ranges;
-> +			bus-range = <0x4 0xff>;
-> +		};
-> +
-> +		pcie@3,0 {
-> +			reg = <0x21800 0x0 0x0 0x0 0x0>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			device_type = "pci";
-> +			ranges;
-> +			bus-range = <0x5 0xff>;
-> +
-> +			pci@0,0 {
-> +				reg = <0x50000 0x0 0x0 0x0 0x0>;
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				device_type = "pci";
-> +				ranges;
-> +			};
-> +
-> +			pci@0,1 {
-> +				reg = <0x50100 0x0 0x0 0x0 0x0>;
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				device_type = "pci";
-> +				ranges;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&tlmm {
-> +	tc9563_resx_n: tc9563-resx-state {
-> +		pins = "gpio124";
-> +		function = "gpio";
-> +		bias-disable;
-> +		output-high;
-> +	};
-> +};
-> --
-> 2.34.1
-> 
-
--- 
-With best wishes
-Dmitry
+> +#define DHT20_CMD_INIT	0b01110001
+>  
+>  /*
+>   * Flags in the answer byte/command
+> @@ -341,7 +343,7 @@ static int aht10_probe(struct i2c_client *client)
+>  		data->meas_size = AHT20_MEAS_SIZE;
+>  		data->crc8 = true;
+>  		crc8_populate_msb(crc8_table, AHT20_CRC8_POLY);
+> -		data->init_cmd = AHT10_CMD_INIT;
+> +		data->init_cmd = AHT20_CMD_INIT;
+>  		break;
+>  	case dht20:
+>  		data->meas_size = AHT20_MEAS_SIZE;
 
