@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-267178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267179-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uOczIu82m2mVvwMAu9opvQ
-	(envelope-from <devicetree+bounces-267178-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 18:03:43 +0100
+	id oPixHg43m2mVvwMAu9opvQ
+	(envelope-from <devicetree+bounces-267179-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 18:04:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B9716FCFF
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 18:03:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26B0316FD2A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 18:04:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 498CF30071E9
-	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 17:03:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 63E54302A697
+	for <lists+devicetree@lfdr.de>; Sun, 22 Feb 2026 17:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B18012192FA;
-	Sun, 22 Feb 2026 17:03:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AD13590C3;
+	Sun, 22 Feb 2026 17:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ChXdbWVM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iy44WVq+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com [209.85.215.196])
+Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D401A267
-	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 17:03:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD18335B138
+	for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 17:03:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771779820; cv=none; b=XLq/PEdGiUzTUCJ/Iavdsxg5QQ4iFmp3euMRUt17SNneL6Q+PivZYTDQDdXIsCYSWXlJCiurA2FAbc9x0Fs9BN3RVxgMDJD5JtmEC24FKWXMVK7dMJfdKQpRFORVy64lLNskcGYz7lpYGOhwGcSFzwgz5+2uTUlSOl8liriVBiE=
+	t=1771779823; cv=none; b=oue/raiYDZM1ydgU9ll5UV69U+zL5Beo7gcr+LHthHUKgRLCty9XAT3SQFKvw8cMUiPYkaYRl0mdIbglTworPFBu0Wsii2kAOnfQeIE4g9HFlujZN7OcXlaDGa/ibd8cSoeuqvVjdA51KCUF0uh1fXDfHZkTAFuWmZybLVjtobA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771779820; c=relaxed/simple;
-	bh=qyBT8n5O6+MKl7BzylObPbKmEBgQ7XYFBPyc3ux7mtU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OirwNJwoZa1uVxWcx5Sv2RnJ6wCewVu3HZs7ClN4gmqSaWQJo7VK78m14ZF2+qE+EuLsvfjR6a6/KrzqXTLl0YdOX/x2vZnAQ0D/qVM+3yA6K2Kt3aPggIA179qOFYEl3KZFEO6vD9fXNp4elal1fwjtLIIyW7mAN4dAR4vaEuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ChXdbWVM; arc=none smtp.client-ip=209.85.215.196
+	s=arc-20240116; t=1771779823; c=relaxed/simple;
+	bh=QNQ96HGA1Jlb2HSFik7zjV20cCZdyppLBAw2ZG+2yoM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=SWmRy/z+feO2W2frVX3Tga5f5vjN09vGEh0EcoyNjTyVfTmIy7OVEqOz7hz4cdXVywcPmpBFcJ4Vgok3rHtZzeGkFT+Vj0nfLBOJrArBm+LLXLnCFig7Fcu4JYFD7YeFN3Ji2cjCmKfOTZUNxbE+rmML+7eDjs7PH36S6wfg2+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iy44WVq+; arc=none smtp.client-ip=209.85.215.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f196.google.com with SMTP id 41be03b00d2f7-c6e23cb81f4so1346929a12.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 09:03:39 -0800 (PST)
+Received: by mail-pg1-f194.google.com with SMTP id 41be03b00d2f7-c6dd5b01e14so1196896a12.0
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 09:03:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771779819; x=1772384619; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SL6Z6ZLekQLW+WR7jvePWE8kJEkT+rRvrksfgSGlNBw=;
-        b=ChXdbWVMYq871fiDQmsVUh5J6zNHe88JbyBdRjtUW0V/5W9puFPf2yi8qL+QZKzmXV
-         oAe3lzmnrug+Q0SorOphfxWrDvbwa+R5jDXM3TGEOMmbUgayhWOn8GpOHgJ6P8snVsRa
-         iK80sh8GbeuRjwZmDGKXVh2toAQNSZdyBOEUZOjZfOfOsWRsncoxjYi+J6iUK+yW4+A3
-         qkZvJwvwUNO+2pBBqGqsUA3Toj1A5zZjijTaRd2A47p/KZFOrK7zvbnxDTK4ZR7j0/na
-         EiKeKcPVItkBGbdBocopAokALvykk7PYTLmY7+UoEMrWPrkLe5sAJbVMc/LZVRpiRd2Z
-         iyeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771779819; x=1772384619;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1771779822; x=1772384622; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SL6Z6ZLekQLW+WR7jvePWE8kJEkT+rRvrksfgSGlNBw=;
-        b=lDhDDtcj8eupw5W8DIU2YAiohcPKVBhWCx194r1Z1zRXl4ioYsBuPxfe1AgImk3cNb
-         4WI7ztHMH2VUJfL9FEgp6asb9Ew/2dRLDwF2/XeA/EvHDDqZAhBqMhKX0rTvk4my8M2k
-         QcwTAip/uJavtRpQ6RLhFlGH36ejXUOR4qiQ8gwGQbwCZ4QdD69puS6UJNDX1T2EonoS
-         9cCufVwG/3Ge9vYdOeXGkiKx8DFqO4Kec3CKYBnq2r3Ms4EQNSyk3sHQUEfQk82PsDer
-         sZSv6oLSYzHP4VuB76Boh+p2wvZrWTXkdH5EXyfkGzUqcYWICKebc4VURizG7Aav+FeN
-         Gtww==
-X-Forwarded-Encrypted: i=1; AJvYcCX68mobPYDdENh6UI1LGrVPUCtCrl5765VxiZIwLeStM6ro7ehhDzsAUXHKrWcOT5m8yP+iuKuJdgY+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMFBLzaZ/E+/X5/DpCvp5XvRGh57DIU/RDlef7kYmtxAfrmXVk
-	OrSFgKHC25JX8qbF1XNw86O3oALP9096DHw3QW4eaqQdOJtrIwgGdpjH
-X-Gm-Gg: AZuq6aLBBr4oyNv51olygDZON+5MpJZwiotdhCr5513zWn5ZosppkO3X+XK6zjiV6ez
-	rfIrHJ957MA8GTqQ+NJT5aJKqkmnIamwlyl4YYVYkZHEkQO0FpkFRcpXqMC65S5aGescdxWCjX0
-	2Ud3cyNlrUSTOiE2ETDffZbRGvIs38ekS/RuSeKmQqIvYjTXBVTG3Cu7deuY+K1MjSeElNDFX0k
-	mrRblfQqPHUyXIuEcE69a5NcHParHqCSXCJozJm5GlIhgTto1tZdJxbl+Mm6hf5Zh83PaK2suW1
-	LZflyv7F45UCHZXoEOBC7UeH1uGSF/kbAz4ydc4PCe+gYdJbDdOhhQZip8I1sM4u97q27I1Ff8n
-	oeboVsRCJ+KiLu8ZOx3rxyrlsw1Fl8NCplXoBkxYTJfHaqzLgsyl3NQjNNmmsgokv0Y/cvAVm5e
-	eTnw4Nb5g4OjHA/Zr4
-X-Received: by 2002:a17:903:2445:b0:2aa:dad4:d34f with SMTP id d9443c01a7336-2ad74515d10mr47068725ad.27.1771779818908;
-        Sun, 22 Feb 2026 09:03:38 -0800 (PST)
+        bh=38KBnvM7PCRrBqcA9t57q6k9J3NtXhDDyDB2bhfoX+4=;
+        b=iy44WVq+Nw5YGxDZqLLIKzvyGEVCufNHuffrNVxW0pL1N8L6y8BcxwsLR8qd24i29J
+         ApYeOJzEjwiMUStRd3vgw+amwwA4Qnz3pVU0ok3XaGJo8XeGZWVeGiQkCFiEpgPKmsfQ
+         ibivqSEW75rWLiVfigCvdq99hIn0m+1sTVpZPvy/J3ywDfXJ66EnvlQ3WRKyQ5JnaJtK
+         SjBE1FO2b7vf6w6wwsbi0O+6dP8F1YhZVWhjZSWxosXMrYYSwTTUN3YTyu3jZx/LZyKZ
+         lGesRxW2tD/TQ//LGzpJuSk4bej4Ds19RrC6objR0Hm/Krwp56R8SNDrdKRHa5OcfcEn
+         Kx4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771779822; x=1772384622;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=38KBnvM7PCRrBqcA9t57q6k9J3NtXhDDyDB2bhfoX+4=;
+        b=u85BxbpoCTJgMjWPPb7jQY3Mo7xnJnTOkT7XdsyPkefW1AAQiLMV80PZqoGEnD/Lv+
+         ry4Ne63KMRekNcCgCFX6OOw0qdRlTgo09QT99leQfAtJQ3KC1ooxNGePnxoCvlPSRgYb
+         MXumu3+RMMkfABRMGxkydU/9BpW941ylKdodA/6LStF4fSX14xrJUbVkEEANG/sKmBef
+         ePszL9lQ2INqjjDtu7vk1w8wIYXdWHprMHzelth4vlnQ0eXJFWRVZK66kzrJsM4xk27o
+         SBxmu1n8xn1vheKLnnuCj09Ybn3ycHpnFMEtDMZ1X2l0/tpM36ytkSehERt2UJWZtonO
+         6zGA==
+X-Forwarded-Encrypted: i=1; AJvYcCU8fYLxjIW6iV8YK/KGON4aHgEZGu0eVx/h0TQ5aWgIKh3Hl+o+Haik6xFv779k+9AKyE4lLg4zpC69@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfYS8ax7I2/QJRPJHTqpxx2CwZzPKp202Gtl5p8TZnwDPDbAPg
+	HGMgvbMrQLFy/zTw/iWMYtGWVBX5K0pLmQLkg5kuR1NFS2rolKoIS6zJ
+X-Gm-Gg: AZuq6aLSPmcNn1RI+Uu9TBQmwntUtNkYblcdbE9Sam6PpxChiyqzwhICuo5BRSodlSg
+	B8pt73Dz47+lz9XOxWR1vddDRpu2sbGe8ejTIU1iw5pR2z68chh/2O97xMn1UIyDxMzSPj/W0Cd
+	yjjc1kVgkipvbLtPn5pLJbSFTB56PYHWzzkj90ZPwc4mqhdMPadnQLKt1u22u0oDjdtFTKaysmU
+	Zcp0LG8ryfhfK8aEfW40BDw0ST3gu2c0lgBD6/8vts1iUuDjFLorPbdCaxCs9Uw81DRIW27m4e7
+	gUlQ9PJgtJWc0r95XY0leshpU4jZkAMK7cKCCaD0/gl8BwEfTVK512P1+1CiPR2au+JTKB4HJNO
+	OK3ZrcLvLx/tIDXYTRI9pF4Kko9i5W0YYbeoHp5fPIkj1P8dtv+cHmj1ikSeq6e7cd2HZ/PuhuX
+	8u8zGvMcppF68dzSuU
+X-Received: by 2002:a17:90b:39cf:b0:341:2150:4856 with SMTP id 98e67ed59e1d1-358ae8a42d3mr6286329a91.17.1771779821916;
+        Sun, 22 Feb 2026 09:03:41 -0800 (PST)
 Received: from yu.. ([120.242.225.43])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-358bf39ba25sm1555688a91.2.2026.02.22.09.03.35
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-358bf39ba25sm1555688a91.2.2026.02.22.09.03.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Feb 2026 09:03:38 -0800 (PST)
+        Sun, 22 Feb 2026 09:03:41 -0800 (PST)
 From: Hao Yu <haoyufine@gmail.com>
 To: linux@roeck-us.net,
 	robh@kernel.org,
@@ -85,10 +87,12 @@ Cc: jcdra1@gmail.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Hao Yu <haoyufine@gmail.com>
-Subject: [PATCH v2 0/3] Add AHT20 sensor bindings and fix driver initialization
-Date: Mon, 23 Feb 2026 01:03:29 +0800
-Message-Id: <20260222170332.1616-1-haoyufine@gmail.com>
+Subject: [PATCH v2 1/3] dt-bindings: hwmon: add aosong,aht10 family
+Date: Mon, 23 Feb 2026 01:03:30 +0800
+Message-Id: <20260222170332.1616-2-haoyufine@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260222170332.1616-1-haoyufine@gmail.com>
+References: <20260222170332.1616-1-haoyufine@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,63 +103,93 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,ee.iitb.ac.in,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267178-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[haoyufine@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ee.iitb.ac.in,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-267179-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[haoyufine@gmail.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.38:email];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D7B9716FCFF
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 26B0316FD2A
 X-Rspamd-Action: no action
 
-This patch series adds device tree binding documentation for Aosong
-AHT10/AHT20 series sensors, fixes the initialization command sequence
-for AHT20, and adds Device Tree support to the driver.
+Add device tree bindings for Aosong AHT10, AHT20 and DHT20 sensors.
 
-The AHT20 sensor was tested on a rk3566_lckfb board with the I2C-2 port.
-Temperature and humidity readings are now accurate after fixing the
-initialization command.
-
-Changes in v2:
-- Split the driver patch into two separate commits:
-  - Patch 2/3: A fix for the initialization bug (includes Fixes tag).
-  - Patch 3/3: A feature patch for adding Device Tree support.
-- Improved the commit message for the initialization fix with a detailed
-  explanation as requested by Guenter Roeck.
-- Fixed indentation in aht10.c (ensured tab usage after macro definition).
-
-Hao Yu (3):
-  dt-bindings: hwmon: add aosong,aht10 family
-  hwmon: (aht10) Fix initialization commands for AHT20
-  hwmon: (aht10) Add Device Tree support
-
+Signed-off-by: Hao Yu <haoyufine@gmail.com>
+---
  .../bindings/hwmon/aosong,aht10.yaml          | 41 +++++++++++++++++++
- drivers/hwmon/aht10.c                         | 16 +++++++-
- 2 files changed, 55 insertions(+), 2 deletions(-)
+ 1 file changed, 41 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/hwmon/aosong,aht10.yaml
 
+diff --git a/Documentation/devicetree/bindings/hwmon/aosong,aht10.yaml b/Documentation/devicetree/bindings/hwmon/aosong,aht10.yaml
+new file mode 100644
+index 000000000000..6eb3944ae3da
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/aosong,aht10.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/aosong,aht10.yaml#
++$schema: http://devicetree.org/meta-schema.yaml#
++
++title: Aosong AHT10/AHT20/DHT20 Temperature and Humidity Sensor
++
++maintainers:
++  - Hao Yu <haoyufine@gmail.com>
++
++description: |
++  The Aosong AHT10, AHT20, and DHT20 are I2C humidity and temperature sensors.
++
++properties:
++  compatible:
++    enum:
++      - aosong,aht10
++      - aosong,aht20
++      - aosong,dht20
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        sensor@38 {
++            compatible = "aosong,aht20";
++            reg = <0x38>;
++        };
++    };
 -- 
 2.34.1
 
