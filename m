@@ -1,169 +1,205 @@
-Return-Path: <devicetree+bounces-267231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267235-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KMpFHe/rm2km9gMAu9opvQ
-	(envelope-from <devicetree+bounces-267231-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:55:59 +0100
+	id KGzRK8vxm2kI+AMAu9opvQ
+	(envelope-from <devicetree+bounces-267235-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:20:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A3B171FCD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:55:58 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50BF5172108
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:20:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C65213023E03
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:52:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 17E873027077
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:19:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD633451D9;
-	Mon, 23 Feb 2026 05:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DDCA3469FC;
+	Mon, 23 Feb 2026 06:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="hwWpglky"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RWjIybV2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DEB32405E1
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:52:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C5A345734
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 06:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771825930; cv=none; b=CHhM7M88LhtmjwcZyK7MK7ekwy2Wmh64Ce/NT0qzmPSDzEfda0u+YHFWp4KjwzVhuiPcf/XqEnPdOD07YiRrY+BNPxoNtLgalxaIb3EmmznM9v/7KpJ2EEQkbCc3CHUd6+KiuHUfkn+BbcQ/yETT/RqaVqJqp7uMKff9RH042tU=
+	t=1771827581; cv=none; b=icACxn84lZYNi3d9quu6p8ZRL8CofL+rN9nL3HSuUkgl4vhSSijna/tmy1gPhkzp8WAXCbtsKVg2LR5w6oweR6f5z2GuuQDx05E4JSaY5xzITq7GoCZMCKDq+6FTtSe5fhjdBh4g+GMcHimb2OvsoeFUMtx93sykGx+5i31z9+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771825930; c=relaxed/simple;
-	bh=tsZGinYTxVCG2zJ3moSLeuEmyjM7gf3z0x3YYcIfbrA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=XOC0rvkeCxs28l6fYE/W0V0jjAOEjPHxa4p4kj92favllKJgNW9yl6Y5DCAzAMI+m1mlKoSv1tK+CtHo4bs5b7CU/r7coQBNLKyWdRqoBnIG5UB+z2AMIqF3yMODGHCS9ozzqDuuy6kvpaoHD2x3hp8791hpZ3TJK5kClWH33Ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=hwWpglky; arc=none smtp.client-ip=95.215.58.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Message-ID: <0397c453-e1ec-44a2-bf8f-a64347882226@packett.cool>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1771825916;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+etr68lQ0tf0G/csmk5P+HHB4sPoSNbI0nyD3l2haC4=;
-	b=hwWpglkygVTXhSltG6Fky+5cXje7fl/xTQU4EPRyZFaKwZ+gfHQ7CJ7XdnaY3IFu+iteyO
-	PEnQbOX2wZ916Q5zlC6WAl7m/rW4Qp7OeD160O2BMbxreAzAKhXkadMuA5GGMPXdpIr1b2
-	2CfpLyS74zbxGiub6PKDrTu2P0VuyAvX7W5/5mFH5KlaKW0l80dHk1dwXQ+Tn/FDCDdAeJ
-	B+SqeaQ6imww07TqAN3xnYZ/8Azk67Pndln5Ycfs9doJeHo3HSWhSiSo/0vCNoFvg0QI75
-	IXNwE6xupJxpebJaZT2ZnWsRRJ0DddNbEGYmnRxQWj8xQ7Z8FVVWqcUzoJsYUQ==
-Date: Mon, 23 Feb 2026 02:51:44 -0300
+	s=arc-20240116; t=1771827581; c=relaxed/simple;
+	bh=jjRh3yXZpGz8SjMVYKgRmafAfSReX4s1S+W76Y2xJzA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kCJqLoLSFswPDnNiMYn2xdCcOFU9hNxr03IhNVNtcqtQqD5TCJsC36xWRoZTHvzAE9v5CYbioHnDyUrIWlO1IDLQ91O/ny4fzCyiOgvu9ZAaf39UCqiPFi0+lYTg/mymCEOstlSC8PZuOb5lvXg4viREy9L+Mi4mG/Sqzkn4CkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RWjIybV2; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-354c6619a07so1523643a91.3
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 22:19:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771827579; x=1772432379; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tUDuyjYYyo0et9UR9kj7eT6N1xShJC+WOFmEXeoTNp4=;
+        b=RWjIybV2XvfDiBwBhqhPlXx/fjzlf78waBNyytgl2W0wZqS/Aw9gOb53YGQhj6ivzK
+         LFxl9du0Yi2GOxxoy/44mqsgq332iFvScQuvhuI9fo3rtwH7zrBKHi3bubqXkfZ5AXOq
+         x1toA2SMlqCKw6hAXMQSxg99I5N9rE4RHrecFWjrZBKV4M47/ENBZ27w8bV8R5Cm2FJU
+         UjgRKTQFFVQPdsSDxylqEWoDrGr3gVIbhnfGDXLJQnXLi6A4gFXyfGij679DdulTj1nl
+         DLBuTfSqWwOb7pQpY7Y+Y1jUHpN+asvHH1HjMwzUH4TAWjqpDnMFDgqGfFEkyrc5rSrn
+         YKYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771827579; x=1772432379;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tUDuyjYYyo0et9UR9kj7eT6N1xShJC+WOFmEXeoTNp4=;
+        b=BSZ1znRdHAPzTbRtF4Db+T7FPyzBSqPjtENBU70oGLkm9oAv1izYpFvfVHHP57gxkB
+         ycNIN3QtM+D5ZCxjCv9wmY+rFYQx8GXeLwL2VxV3yOMjYRqyh3DlF5HwtMkhiCoS5bqT
+         TciHrQj9yen65ly7an7uYGp/dVa6VoWTipNuvwOA/mka3jKuJFpj4EPkexKOT/xdnp3/
+         nzHRy2L/74aZ94gEQTbsfacTNmdi1PBGY/hFaI+HxfNmuYP+L0ndWN7KEwJLiS+SUHi8
+         eOzKEXarPHIR8g8a98AKQfEV6VgdgHE8Y87yry+JI8TTDjP1rOYlYm2zm7YC9YI9YKng
+         pxvw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhtdegvCqrymHORuXO4qLs+pC+uf6CiAcrQhCtfK47M1/3/92mfq4PUTen7IsQgE9SzvXmeIv7tlmQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5O8+yd6zY7lcdyfyS6NoT4TcnECZl+5ydcCiizX1p5kgYPu+Q
+	mz9tJ42y0Mzi9+8gEPt2f0ovuo4t/w/ypqLmmcTACxMhd0GpmOsdV81R
+X-Gm-Gg: ATEYQzwHNyzmLV4EUvJare+wE6NJq3ULzG0Vrjcyk8UVr6NJzPJkHLWnRLFmVFtB1CF
+	MfGYtmgjfRp2CHJR4W3NBPMhrxBxnkyJmUXSmOr/hS9IIZdFSDm4xdik3cLNTtLGx1C0ezh/qaz
+	Ry/BV0MioC1eTces6fEBRohEOtt2i4KU+2x/WbKy/8bf1E5eLhH6smh7tQBOpfDV0dRd6Y6aizj
+	uE80jtwwLciDa9PDodVwFLINn0fxpDxjtMfOLByRvz3jCzWK6AovHOUcKC+Ej9p5GlQ69kBIwJo
+	6+9oz+KoLeVeVSiehb5SYaWisYKzeoo9XpcehuGh97dmdKRHZv8ShsPgZKWd1J0qsDOBte04VsR
+	rKst2agkuIeDjJoiz8xJhIc3t81t8Adyax/VA+DZW5dSDP6MXhiGZAWw6L8sCJKMogI5hsGnqM4
+	lmlgzV+kRp2q/d+BJ4sGCFP19pGrYgtevrmqqt3xZbG+nECA==
+X-Received: by 2002:a17:90b:37ce:b0:34a:47d0:9a82 with SMTP id 98e67ed59e1d1-358ae8c12b7mr6448583a91.23.1771827579357;
+        Sun, 22 Feb 2026 22:19:39 -0800 (PST)
+Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-358a2af412bsm5694769a91.6.2026.02.22.22.19.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Feb 2026 22:19:38 -0800 (PST)
+Received: from hqs-appsw-a2o.mp600.macronix.com (unknown [172.17.236.67])
+	by twhmp6px (Postfix) with ESMTPS id C0F0F4136071;
+	Mon, 23 Feb 2026 14:19:36 +0800 (CST)
+From: Cheng Ming Lin <linchengming884@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
+	Pablo Martin-Gomez <pmartin-gomez@freebox.fr>,
+	Tianling Shen <cnsztl@gmail.com>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alvinzhou@mxic.com.tw,
+	Cheng Ming Lin <chengminglin@mxic.com.tw>
+Subject: [PATCH v6 0/3] mtd: spi-nand: Add support for randomizer feature
+Date: Mon, 23 Feb 2026 14:17:03 +0800
+Message-Id: <20260223061706.1027986-1-linchengming884@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-Subject: Re: [PATCH] arm64: dts: qcom: hamoa/x1: Fix TODO in system power
- domain node
-To: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>,
- Daniel J Blueman <daniel@quora.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, stable@kernel.org
-References: <20260221105245.19328-1-daniel@quora.org>
- <9defac59-ae8a-4658-ab38-dcb0559d9708@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <9defac59-ae8a-4658-ab38-dcb0559d9708@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267231-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[packett.cool:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linaro.org,iopsys.eu,freebox.fr,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org,mxic.com.tw];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-267235-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,packett.cool:mid,packett.cool:dkim]
-X-Rspamd-Queue-Id: E2A3B171FCD
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mxic.com.tw:email]
+X-Rspamd-Queue-Id: 50BF5172108
 X-Rspamd-Action: no action
 
+From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 
-On 2/23/26 1:11 AM, Maulik Shah (mkshah) wrote:
-> On 2/21/2026 4:21 PM, Daniel J Blueman wrote:
-[..]
->> Fix this by using the CPU C4, cluster CL5 and system DRIPS parameters from the ACPI DSDT Windows uses, together with the Low Power Idle _LPI minimum residency of 9000us and wake latency of 5000us as exit latency. Finally, assume the entry latency is the difference of these two values.
-[..]
->> Fixes: f33767e3cfa5 ("arm64: dts: qcom: x1e80100: Add missing system-wide PSCI power domain")
-> Using this fixes tag, can make the change back ported to stable kernels without dependencies and may break the GPIO IRQs.
->
-> Background:
->
-> PDC monitors the wakeup capable IRQs during system wide low power state, hitting the system low power mode can break to wake via GPIO IRQs.
-> The system-wide idle state was not added since the wakeup capable GPIO IRQs were not configured at PDC with 602cb14e310a
-> ("pinctrl: qcom: x1e80100: Bypass PDC wakeup parent for now").
->
-> So IMO this fixes tag should be used instead of above with the changes to configure PDC to monitor GPIO wake ups.
-> I have these changes to configure GPIO IRQs at PDC and enable back domain_ss3 idle state in my local tree, which i plan to
-> post this week or next.
+This patch series introduces randomizer support for SPI NAND devices.
 
-On a previous episode of L-K-M-L… :)
+- Patch 1: add the nand-randomizer-enable and nand-randomizer-disable
+           boolean properties to the generic nand-chip.yaml bindings.
+- Patch 2: add the initialization logic and the set_randomizer callback
+           to the core framework. The core will now parse the device tree
+           properties and enable or disable the randomizer accordingly
+           during spinand_init.
+- Patch 3: implement the set_randomizer callback specifically for Macronix
+           chips (MX35LF/UF series) to handle the vendor-specific register
+           operations.
 
-https://lore.kernel.org/all/0c8735f9-eac0-449c-aa95-b82cec0e6cb2@oss.qualcomm.com/
+v6:
+* Added mutual-exclusive constraints using not with required for
+  nand-randomizer-enable and nand-randomizer-disable properties based
+  on Krzysztof's feedback.
+* Simplified the return path in macronix_set_randomizer() to directly
+  return ret; and dropped unrelated formatting changes.
 
-FWIW I have just tested Konrad's patch from there that adds all three 
-states (0x02000154, 0x02000254, and 0x0200c354):
+v5:
+* Promoted the randomizer configuration to use generic NAND properties
+  (nand-randomizer-enable and nand-randomizer-disable) instead of
+  vendor-specific bindings.
+* Refactored the initialization architecture in core.c. The core framework
+  is now responsible for parsing the device tree properties and deciding
+  whether to enable or disable the randomizer.
 
-❯ doas cat /sys/kernel/debug/pm_genpd/power-domain-system/idle_states
-State  Time(ms)       Usage      Rejected   Above      Below S2idle
-S0     367            330        9          315        9 0
-S1     2719           2057       553        2520       71  0
-S2     0              0          1          1          0 0
+v4:
+* Fix a build error in spinand_randomizer_init() where a value was
+  returned from a void function. (Reported by kernel test robot)
+* Update the return type to int.
 
-As of right now I don't see any improvement in idle power consumption 
-from just this S1 thing, compared to not adding anything and having the 
-implicitly-added-by-code S0 state only.
+v3:
+* Revert the device tree property to the vendor-specific
+  "mxic,randomizer-enable" to strictly follow vendor-specific bindings.
 
-It still only goes as low as 2.5W in screen-off idle, and that's with 
-runtime PM enabled for 3 USB controllers out of 4 (enabling it on all 4 
-makes the system shut down), without doing that it's more like 2.75W.
+* Update the 'set_randomizer' callback signature to accept a boolean
+  'enable' argument, allowing the feature to be explicitly enabled or
+  disabled.
 
----
+* Switch the implementation to use the standard SET_FEATURE command
+  to modify the Configuration Register (0x10), replacing the previous
+  special program command method.
 
-Maulik, since you seem to be the oss.qualcomm person familiar with power 
-management — could you please shine some light onto the mystery of how 
-Windows achieves ~0.5W battery consumption in screen-off idle (and only 
-slightly higher in screen-on idle) i.e. what exactly could be wasting 
-those extra 2W under Linux? Ever since people started daily driving X 
-series based laptops this has been an eternal topic/question in 
-aarch64-laptops…
+v2:
+* Create a global NAND DT property
 
-Is it just Windows doing something "extraordinary" like opportunistic 
-full-system sleep (as deep as CX collapse), even with display on and in PSR?
+Cheng Ming Lin (3):
+  dt-bindings: mtd: spinand: Add randomizer enable/disable properties
+  mtd: spi-nand: Add support for randomizer
+  mtd: spi-nand: macronix: Enable randomizer support
 
-Or are we still missing something big in Linux?
+ .../devicetree/bindings/mtd/nand-chip.yaml    | 18 ++++++++
+ drivers/mtd/nand/spi/core.c                   | 27 ++++++++++++
+ drivers/mtd/nand/spi/macronix.c               | 42 ++++++++++++++-----
+ include/linux/mtd/spinand.h                   |  9 ++++
+ 4 files changed, 86 insertions(+), 10 deletions(-)
 
-That issue with runtime-suspending all four USB controllers shutting the 
-system down, does that mean there's some rail where USB ends up being 
-the last load-bearing thing holding it up and we'd like to let it go 
-down properly?
-
-
-Thanks
-~val
+-- 
+2.25.1
 
 
