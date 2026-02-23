@@ -1,174 +1,185 @@
-Return-Path: <devicetree+bounces-267545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267547-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aFSWJVmKnGlWJQQAu9opvQ
-	(envelope-from <devicetree+bounces-267545-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:11:53 +0100
+	id 4M3bIO+JnGlWJQQAu9opvQ
+	(envelope-from <devicetree+bounces-267547-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:10:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E37E417A73E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:11:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBBF717A65C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:10:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 32E40300A62A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:07:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 13A72301B166
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF8D328B53;
-	Mon, 23 Feb 2026 17:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 706B8314A82;
+	Mon, 23 Feb 2026 17:09:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NkX5yRnH"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="aBGsyHFQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C1C32ABF1;
-	Mon, 23 Feb 2026 17:07:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 034E432939F;
+	Mon, 23 Feb 2026 17:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771866474; cv=none; b=P8JkUbD6h+sLnsTvpnNEzIiiMBmT/oXIeZ2RoPONvKwneydT1M5k8PBqRzJEoiII7bRdCbfXWBePuEwIQaSiIGEuX8Tttf3KPgXfMwQunOBJW7AMBrQwbMNP2lC6PaDUjASQmHS8ZtpgJ92Qf7DqNkl+Pc7/JVwhWvcvsoegowo=
+	t=1771866570; cv=none; b=VD0prWCquaCBDoAL+1bpJPSHl541BlH+VQiZdw8L7ZdjhmGaceIKmdQLeN+5gX2yUYx3Hcdzh0XZaHKxqlX2j+1KRdaGWnYFj8ujWTLjNfST61fhi5EvkCjjs39utTSaCUzr3tVo6nNgBM+2t9LMBvybMiQwlCur0Jh/FaBPxe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771866474; c=relaxed/simple;
-	bh=A6xnEFdr8reueLge6TPzjj/7mjnCn9LUEyXj3tdfcH0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TmQYXKopSEeHm/o97x3Lr0NopaReda3OiBQZIbDfNj6Vh2Z45fBD+00znlKrsMxbXVH9n1N5pHTePdb6GlXC3GSDTLhTlaoQ0QbO59jQw88iL1DQJtRyPEV6JQUEMxsrI2LQjfsRHbUXxOqmASPopSx+BJVNpl59GoZsS80tfJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NkX5yRnH; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771866464;
-	bh=A6xnEFdr8reueLge6TPzjj/7mjnCn9LUEyXj3tdfcH0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NkX5yRnHWIe56qhSahvA9hfs/eeL3XAMkDAfj4yH5+V7lbpmnmRT9NZ37rmY82jbT
-	 ED2gAQarwg+/A2mUr8/r5O/To64gctxlKFh+mNju9sDpTEyJb8EJTV78djOydRtR+y
-	 52Uww8ZVbsfh3oy3qhU3Fgmk2cM4Qnrhnh8InPaAKVzCoC7+tDcydj9a4SeN16mwSu
-	 snLRBYrBWBkY9L5c2wVmbFcscpNkjvcx/LPbx3JP5ibB2UHTwkV+vAtih3NVpfanrz
-	 8B6FKcVrlCXaXDpHuQi5aAmspjX/bq7NuczZeMsaVdifaUfwUewyPGS1jsJ35O0Gxd
-	 hAn7rgm5USCWQ==
-Received: from [192.168.1.90] (unknown [86.123.23.225])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B9D6017E06CA;
-	Mon, 23 Feb 2026 18:07:43 +0100 (CET)
-Message-ID: <b4eb3031-69e8-4a73-b4f1-91dd4192bb21@collabora.com>
-Date: Mon, 23 Feb 2026 19:07:42 +0200
+	s=arc-20240116; t=1771866570; c=relaxed/simple;
+	bh=45LEM47uhhpwNJ8pBj8luNIcApHIa68GG2HYJFgMJsc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pn1pHi3XaCQKphfa7XZC9XGHfEMhQHgXxP3WxCxerIP2K/l50zlZ7rK32euR7bPdQamLdU7525fLs//UmYMfEPm/RMvuSbb9NkCsiu5XxpX+Pw3ZjQs9PoqBMx/ZDywcBuwdFzEWlzhyjoeg/yajaTJal4+rrghJqdxuPfLsJEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=aBGsyHFQ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61NDe9AP1742941;
+	Mon, 23 Feb 2026 12:09:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=BSJ4KY6w529CCltmJzuSwV8FGW0
+	/H8fOc7EhU9qXYMo=; b=aBGsyHFQ9H2bunFDZyAl3wRh0vP8xRIGWnuH/cdVZ4e
+	y5SKlY2xzIFXOr1r+DNot7l8t6ZlP6xK/VI+hQKYIvk/yErVNMaRwmIsemT+58a6
+	Ofmnsz+U8QQK+mMacNciMACRzJgkxC8LZGItFTsxcQnNuCCKDPy7VslH1pS6ps1K
+	yerF+X4fiA3/gvCvz2XA1Pyq8RsxlUpUjEmCz27elCiZdoxwudgF3dIQdWTVhx1M
+	baijPugNXQO611islPKdtnCzqp+bbyEF4uBZUe4OK5QciaBIvERy0d+MvzDx8zaP
+	YKQ1mJMmoaxA6J1KJBObcTowkhxFj4t9YVqaoQbkaLQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cg7p4kux9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Feb 2026 12:09:11 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 61NH9A3r036341
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 23 Feb 2026 12:09:10 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Mon, 23 Feb
+ 2026 12:09:10 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Mon, 23 Feb 2026 12:09:10 -0500
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 61NH8sE8017789;
+	Mon, 23 Feb 2026 12:08:57 -0500
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <jic23@kernel.org>, <michael.hennerich@analog.com>, <nuno.sa@analog.com>,
+        <eblanc@baylibre.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v10 0/6] Add SPI offload support to AD4030
+Date: Mon, 23 Feb 2026 14:08:50 -0300
+Message-ID: <cover.1771865684.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix vdec register blocks order on
- RK3576
-To: Diederik de Haas <diederik@cknow-tech.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260223-vdec-reg-order-rk3576-v1-1-560976566bd3@collabora.com>
- <aZxkDGzEQCCLKR-M@venus> <DGMF3IX3J3BP.1XT41P0G8P5OD@cknow-tech.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <DGMF3IX3J3BP.1XT41P0G8P5OD@cknow-tech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDE0NiBTYWx0ZWRfX9BrZqDlLrWo8
+ veEPRL6xMstM/AXJ1/lowYRHk967CzeLLUkFompKBcdMVkI2QhexUgkBIFGcih+SXtqdbvVMwuj
+ XM6eLv64IFMQGOV5t6KT3ohKhvt74TeoWtsqyoQaDc9kYTrkBLT+WSKkFacGYolWutJKMxHxHj1
+ 9+iF9XXtVuLC1yGg1t7tPYPG7KTq/fu2K0I6X0qv6kqC6Eacr0FROVCJrDFGuRN5cw5YmN53MCN
+ h+XVprnaGugBIq4TLROb+ZIbJnnx8wua3YxVft3Pz0ZR991WA+zL4H0Ue23ME5Uo3wySAlg6fTS
+ yrQIdxJ3dzcQX9NbDLFgmqhKqNT8qF2fur09FC+dKYbNIuD1/4xcOqOGcQICEWGFPtbjo/XEOGV
+ U1t9Dst3SpsTgn020Y7gDwF9G5JOalm/VzWdmIqZJpO6kcFrhbBROvSGbei9heQHG5lu/H3fXLT
+ znml3Oha3fIDs5oLKeg==
+X-Proofpoint-ORIG-GUID: NnCBX_SR8AVEQyM6Uah17uuE_D9V1rII
+X-Authority-Analysis: v=2.4 cv=LfgxKzfi c=1 sm=1 tr=0 ts=699c89b7 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=OmVn7CZJonkx5R5zMQLL:22 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8
+ a=DtX16q9jjA3GmR8T9d8A:9
+X-Proofpoint-GUID: NnCBX_SR8AVEQyM6Uah17uuE_D9V1rII
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-23_04,2026-02-23_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 spamscore=0 phishscore=0 clxscore=1015
+ adultscore=0 bulkscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602230146
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267545-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-267547-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,lwn.net,gmail.com];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,analog.com:mid,analog.com:dkim];
+	DKIM_TRACE(0.00)[analog.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email,27b00000:email]
-X-Rspamd-Queue-Id: E37E417A73E
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: EBBF717A65C
 X-Rspamd-Action: no action
 
-On 2/23/26 4:39 PM, Diederik de Haas wrote:
-> On Mon Feb 23, 2026 at 3:31 PM CET, Sebastian Reichel wrote:
->> On Mon, Feb 23, 2026 at 02:25:05PM +0200, Cristian Ciocaltea wrote:
->>> When building device trees for the RK3576 based boards, DTC shows the
->>> following complaint:
->>>
->>>   rk3576.dtsi:1282.30-1304.5: Warning (simple_bus_reg): /soc/video-codec@27b00000: simple-bus unit address format error, expected "27b00100"
->>>
->>> Provide the register blocks in the expected address-based order.
->>>
->>> Fixes: da0de806d8b4 ("arm64: dts: rockchip: Add the vdpu383 Video Decoder on rk3576")
->>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>> ---
->>
->> This fixes this warning, but instead creates a new one, because the
->> reg-names order is fixed in the DT binding:
->>
->>    reg:
->>      minItems: 1
->>      items:
->>        - description: The function configuration registers base
->>        - description: The link table configuration registers base
->>        - description: The cache configuration registers base
->>   
->>    reg-names:
->>      items:
->>        - const: function
->>        - const: link
->>        - const: cache
+Hello,
 
-Oh, right, missed to check the binding.. :-(
+This is v10 of high speed data capture support for AD4030/AD4630 and similar ADCs.
+It also adds support for ADAQ4216 and ADAQ4224.
 
-> 
-> See also the prior discussion wrt this:
-> https://lore.kernel.org/linux-rockchip/edabca63-594e-44ae-8a3d-0f60987a8664@collabora.com/
+Rebased on top of IIO testing.
 
-That's interesting, I'm also not able to trigger the warning on RK3588.
+Looks like a devm_pwm_get_disabled() interface might not get accepted so I
+didn't change the handling of PWM initialization on v10.
 
-Regardless, the binding can be easily adjusted with the patch below.  Hence I'm
-going to handle this in v2, unless there's a reason against moving further.
+Change log v9 -> v10
+[DT]
+- No changes.
+[IIO]
+- Explained the need of PWM in commint message.
+- Fixed off-by-one bug.
+- Use in-loop counter declaration.
+- Correctly prepared patches, dropping unsupported bindings for input gain control.
+- Skipped the patches applied from previous version.
+- Initialize iio_scan_type struct fields on same order they are on structure definition.
+
+Link to v9: https://lore.kernel.org/linux-iio/cover.1771253601.git.marcelo.schmitt@analog.com/
 
 Thanks,
-Cristian
+Marcelo
+
+Marcelo Schmitt (6):
+  Docs: iio: ad4030: Add double PWM SPI offload doc
+  dt-bindings: iio: adc: adi,ad4030: Add PWM
+  iio: adc: ad4030: Add SPI offload support
+  dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216 and ADAQ4224
+  iio: adc: ad4030: Add support for ADAQ4216 and ADAQ4224
+  iio: adc: ad4030: Support common-mode channels with SPI offloading
+
+ .../bindings/iio/adc/adi,ad4030.yaml          |  62 ++
+ Documentation/iio/ad4030.rst                  |  39 ++
+ drivers/iio/adc/Kconfig                       |   5 +
+ drivers/iio/adc/ad4030.c                      | 641 +++++++++++++++++-
+ 4 files changed, 726 insertions(+), 21 deletions(-)
 
 
---- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-+++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-@@ -34,10 +34,12 @@ properties:
-       - description: The cache configuration registers base
-
-   reg-names:
--    items:
-+    oneOf:
-       - const: function
--      - const: link
--      - const: cache
-+      - items:
-+          - const: link
-+          - const: function
-+          - const: cache
-
-   interrupts:
-     maxItems: 1
+base-commit: 0be8a2716187607daaa8ba80687a926438d88432
+-- 
+2.39.2
 
 
