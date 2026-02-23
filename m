@@ -1,181 +1,198 @@
-Return-Path: <devicetree+bounces-267369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267370-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qFipLZ43nGlCBgQAu9opvQ
-	(envelope-from <devicetree+bounces-267369-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:18:54 +0100
+	id oGATBec4nGnhBgQAu9opvQ
+	(envelope-from <devicetree+bounces-267370-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:24:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24486175610
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:18:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99B2417575A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:24:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 02549302C178
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:18:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CD27B304B5EC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7E935B65F;
-	Mon, 23 Feb 2026 11:18:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67353361660;
+	Mon, 23 Feb 2026 11:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BdyIyVaV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pl7ySDXA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE583612E4
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 11:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424733612E8;
+	Mon, 23 Feb 2026 11:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771845488; cv=none; b=Ew3rRSGoWo3KxgZKxwMA5wxJM/Y72BfM6YIeoxYW+MfrbsBsSqo7F4yrazWTQYlrgl4SQ8x9QXaAyuazDdd2mESpAvUmZAZG1AkSpsaUTzyTcu18VRlr+rrMPA8zUFdJI4UDlTLGMRxLwFH1BPielvLSyEEHTL64D8/orAYIukI=
+	t=1771845790; cv=none; b=K5OalMRNjgELsB4n4epeDIeIK6lDOMNwh3HQKdOaVLp1QYtyX2xkwefFCPyNgSAg71AjRkgJJSrqCanYnttCS1NBL73hxjuK0NFfoWYtXMX9NGCcjBinsZb8gvpWUtEDR9AIZogd5zjQJkZNEJtxPdFKssBguU08/ZdEBvXuziA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771845488; c=relaxed/simple;
-	bh=P2i4RUSnuTwM4qMzIUSQxtFSgvom7jEQkHy1XI4WFDM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bPSicqlpESz5tTe2ft3+FvPXCXttk/Z3iT9PMj+Yi2iA//zXVk2nAIn1NNYmM2pTswO72i/5DpqcQnaPyamP+S1/D79sXcV+NUVQx8edUpUL7PMg2v77xnMBKrjhwBxQ33bcxjZ0mPCS2DHouFYOhNkycfyJT3kXAfzjgiEEi+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BdyIyVaV; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-c70378ddaafso2532243a12.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 03:18:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771845483; x=1772450283; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dsiXdpbaxodmPACgXw5goRGzebyloA1ZJqj/0ZU8ngs=;
-        b=BdyIyVaVP5tQYaE9Jis3g+Wgs/uMSFJsAWQXEXrhrjynGEX0y2+iNtJreKkSVmT/Nx
-         lP1tSjhUd6ZdOSp0toIlaSKQ/s4S8ILpNJWb105pM13tIQqfjYFIliwObH5Fdqnfx6M6
-         UGXuZAa7WrdAnwOrD28qTttvdR+MSRr4gQesXpMsBxbG2tol84h1YsiEjXNGSkao7wb4
-         7sgkQhjnlwjE0XOzgYCb0WjihiBk7SqDLhmgP6W+/MTo3Xs5C0uctN1kWuN6n6PMffnS
-         /P94QYGsGfsqdJ42agbGxkCMwSMqq6IxI/I6Ei2A8+M/z2gt80H3JgEdC1aM3lF67s4s
-         kSRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771845483; x=1772450283;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=dsiXdpbaxodmPACgXw5goRGzebyloA1ZJqj/0ZU8ngs=;
-        b=Gs+OMAraF58TQEutf0Qf4M+3GzHxlusotMtUxSQbZ6KlNPnRbwzAXAQyl6ZI/ImzDl
-         GlRiGibsxC0iHEkf/segsxQPQzexSxJm/zsVWHbDvrQw4Gpifu/Ka5IA074vuFue9oBH
-         frYZKbrrLyIrLVqsCLFVWGWpw58yYl1x/REz3IfAwTXzUebrSdc6pp89i6wM+/c1OAnv
-         G+qC2NciZCbQdRjBsx7rA6YNPm1taBAAbTQvwnNWc6WDgjkBrgZ+qH0zgYPx1noLSQ8D
-         EzmRa6THl6myyvAYEBhArrDmorch6nA7tjyJ1/PBuwJvjvBO4WZ8p12qPkQFbNka1nhR
-         5dCA==
-X-Gm-Message-State: AOJu0YzbUmSv1KT1xZWrbKXhQoCpg7c1teziAwt3GGdCMa0dfhIfyPNG
-	GFgZ9FtET9b2CG/F9gzYkqFnc2ZWjI0wNubTx7FT561knyzFiuiq+sX1
-X-Gm-Gg: ATEYQzz9KyGmO9MeRIDk1QSg7dv6O2gp1Zv0g6ed4cYXmzSSM0HM1QmMaMl5kiK7N/r
-	kF2UkKqFvy04Aqd+TwYwXMOrXhIprbQlCRHvbZ9tj6wmbK83u7FO8G4DlEGAVYS9nAm1oG3jU6h
-	VMCuL2aa0XIyL/lYyKhrlV2G1Cqqp8wf/UERLH43SmACpMLWUUrUjA6ToxvVxtP/sJspHVq9whz
-	nLit5py+SoxgrsCrb0T5Mc8KeM20qe78VwjD0/PGLfwEKGrIoZlt1alwagXe+xG+FN0EaK5KlMO
-	7dza4pHsjcRtob3OvA1Bc4WCfhYGceX1QrYZPsy2xFbmuOkYiUdeicRqiIOhoyu70Muvh7zLdjY
-	9oqZpkAS9TKVHsHUlOPLGfOS/Bs3xGrgbzIYAX87weIhrVrZPiUOP3FJw2OVoYw58NJq2Hoe6hQ
-	7KtCqcs8k2GDdsVK7K45BzozEAKnyZTIWQv6FcsC/TdR79n5q9mcmfJpeA5Xm9g+7MQlBJ2dg9y
-	3SUI7Mpy3VupXPdKgUW4lQkU8LwAXI1qgnCaBrrZ1L8F2uQznE4/ePK75HdqVlt2YGsSy9khczO
-	R9rHH1tX1ehLX23712R5
-X-Received: by 2002:a17:902:e787:b0:2a9:3396:738 with SMTP id d9443c01a7336-2ad74547d8dmr68921545ad.44.1771845483320;
-        Mon, 23 Feb 2026 03:18:03 -0800 (PST)
-Received: from 2001-b400-e3a6-b683-040b-c296-04cb-fbc3.emome-ip6.hinet.net (2001-b400-e3a6-b683-040b-c296-04cb-fbc3.emome-ip6.hinet.net. [2001:b400:e3a6:b683:40b:c296:4cb:fbc3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad74d36911sm71799335ad.0.2026.02.23.03.18.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 03:18:03 -0800 (PST)
-From: Kevin Tung <kevin.tung.openbmc@gmail.com>
-Date: Mon, 23 Feb 2026 19:17:40 +0800
-Subject: [PATCH v5 8/8] ARM: dts: aspeed: yosemite5: Fix host0-ready and
- add POST end GPIO
+	s=arc-20240116; t=1771845790; c=relaxed/simple;
+	bh=6xnCWigIQzu5vJRf6CSz1vmaj17UI0XXZhoGjHSoQOY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hGExJNFkbkJZABSLuNzCIRLxrAmy65SGjolrN9WkuoNZQxNz5z8l773Ai4LytqLkZX0CoYsEl+G2Kd7NGTQYpAblkkk29mbR3ybe8fuUbrYdnKQBtzfoslDjnBKlIp+lhF8bYSt0G7QLAurr3vgTqZ9JU3RWA4lEcUlwbg3okW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pl7ySDXA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82A64C19424;
+	Mon, 23 Feb 2026 11:23:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771845789;
+	bh=6xnCWigIQzu5vJRf6CSz1vmaj17UI0XXZhoGjHSoQOY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pl7ySDXAp4rtwA/P9m8i2BPL5dAuhtzjvXJIryzAhuLlDvH1M2mFoq8hF/5uZVTht
+	 EU2nMSki0WllpjRe5hgIZ3/QZ2VLuDY2gMc69NgK2Tdrmuv3yTeNLrecUv3is/N1bD
+	 T6z8i9iyXL7wYDEic1liEmVD1js8+Y5+trM4I/Me+pjaHMHaSM+XQ8dPqUkqD5Efj4
+	 XRM4KSTL9FsTigjl7sr+DxOAt8H8pyCNoOPmPGK3sL3VdU9jj+W1bT2Szay4YITiFB
+	 1+BAyf4j+5aELKvOl5ocOrYlL+uSjVU2c23FZFsytgiQhwdkF864DksSoVCGiOXWTJ
+	 odJP400MYPxcg==
+Message-ID: <17f4acc7-28ff-4325-b628-cf8d9307754e@kernel.org>
+Date: Mon, 23 Feb 2026 12:23:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260223-yv5_revise_dts-v5-8-fc913e902488@gmail.com>
-References: <20260223-yv5_revise_dts-v5-0-fc913e902488@gmail.com>
-In-Reply-To: <20260223-yv5_revise_dts-v5-0-fc913e902488@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Amithash Prasasd <amithash@meta.com>, Kevin Tung <Kevin.Tung@quantatw.com>, 
- Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>, 
- Jackson Liu <Jackson.Liu@quantatw.com>, 
- Daniel Hsu <Daniel-Hsu@quantatw.com>, 
- Kevin Tung <kevin.tung.openbmc@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771845456; l=1455;
- i=kevin.tung.openbmc@gmail.com; s=20250924; h=from:subject:message-id;
- bh=P2i4RUSnuTwM4qMzIUSQxtFSgvom7jEQkHy1XI4WFDM=;
- b=xv1Y03YbiEGXzcYHlj+4WLx07xcTFFPqHjWjBt42NZFVYg2dQGoaEw8BUJyJHNk2KzYXQtGWo
- e9qYUFJnNgUAxrU41c+DOpPaQt8tuH+8pHoEkA/x1JumLrfVuYun4Yt
-X-Developer-Key: i=kevin.tung.openbmc@gmail.com; a=ed25519;
- pk=PjAss0agA0hiuLfIBlA9j/qBmJaPCDP+jmQIUB6SE7g=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/2] dt-bindings: hwmon: add support for MCP998X
+To: Victor.Duicu@microchip.com
+Cc: corbet@lwn.net, linux@roeck-us.net, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, linux-kernel@vger.kernel.org,
+ krzk+dt@kernel.org, linux-doc@vger.kernel.org, conor+dt@kernel.org,
+ Marius.Cristea@microchip.com
+References: <20260217-add-mcp9982-hwmon-v10-0-5e0aaae6f289@microchip.com>
+ <20260217-add-mcp9982-hwmon-v10-1-5e0aaae6f289@microchip.com>
+ <20260217-sincere-spotted-lionfish-d7abca@quoll>
+ <9a39d9f1d97eea245dd194a2db481297b92c6fbf.camel@microchip.com>
+ <4a84d57c-ede6-4038-9883-42aeafce2687@kernel.org>
+ <e32684ab5fd4e86ad61d2ca0e4f219fa29bd26fc.camel@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e32684ab5fd4e86ad61d2ca0e4f219fa29bd26fc.camel@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267369-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.ozlabs.org,meta.com,quantatw.com,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-267370-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kevintungopenbmc@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 24486175610
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 99B2417575A
 X-Rspamd-Action: no action
 
-Rename the unused PWRGD_CPU_PWROK_2 line to host0-ready and move the
-previous host0-ready GPIO to FM_BIOS_POST_CMPLT_N.
+On 23/02/2026 12:09, Victor.Duicu@microchip.com wrote:
+> 
+>>>
+> ...
+> 
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - microchip,mcp9933
+>>>>> +      - microchip,mcp9933d
+>>>>> +      - microchip,mcp9982
+>>>>> +      - microchip,mcp9982d
+>>>>> +      - microchip,mcp9983
+>>>>> +      - microchip,mcp9983d
+>>>>> +      - microchip,mcp9984
+>>>>> +      - microchip,mcp9984d
+>>>>> +      - microchip,mcp9985
+>>>>> +      - microchip,mcp9985d
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  interrupts:
+>>>>
+>>>> Your interrupt-names say 1 item is correct, so these are de-
+>>>> synced.
+>>>> They
+>>>> should be always constrained the same way.
+>>>>
+>>>
+>>> We want to allow the user to use none, one or both interrupts.
+>>
+>> Who is the "user" here? IOW, can the *hardware* work correctly
+>> without
+>> the interrupt line connected anywhere?
+>>
+> 
+> Yes, the hardware can work while the interrupt lines are not connected.
 
-The "host0-ready" line name is used by OpenBMC phosphor-state-manager
-to determine whether the host firmware is running. The previous DTS
-incorrectly mapped host0-ready to the POST end signal, causing
-incorrect host firmware detection.
+Almost there...
 
-Map host0-ready to the correct power-good signal and use
-FM_BIOS_POST_CMPLT_N as the POST end indicator.
+> At the moment the driver does not support interrupts.
 
-Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
-index f590ec6e00c48afe4ade1fb98011780ac0570e7c..beb971eadbe53b5d9fa49252a41bf7484a8e32da 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
-@@ -929,8 +929,8 @@ &sgpiom0 {
- 	/*bit0-bit7*/
- 	"PWRGD_CPU_PWROK","SGPIO_RSTBTN_OUT",
- 	"PWRGD_CPU_PWROK_1","SGPIO_BMC_READY",
--	"PWRGD_CPU_PWROK_2","IBB_BMC_SRST",
--	"host0-ready","FM_I3C_SPD_AH_SEL_R",
-+	"host0-ready","IBB_BMC_SRST",
-+	"FM_BIOS_POST_CMPLT_N","FM_I3C_SPD_AH_SEL_R",
- 	"PCIe_HP_BOOT","FM_I3C_SPD_IP_SEL_R",
- 	"PCIe_HP_DATA","FM_JTAG_BMC_MUX_S0_R",
- 	"PCIe_HP_NIC","FM_JTAG_BMC_MUX_S1_R",
+...and ruined it. This does not matter and using it as argument means I
+do not believe you actually checked if hardware can work without
+interrupt lines connected. You only checked the driver. Please read your
+datasheet carefully.
 
--- 
-2.53.0
-
+Best regards,
+Krzysztof
 
