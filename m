@@ -1,198 +1,149 @@
-Return-Path: <devicetree+bounces-267633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267636-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gGPNA8WznGnsJwQAu9opvQ
-	(envelope-from <devicetree+bounces-267633-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:08:37 +0100
+	id 0OslMtuznGnsJwQAu9opvQ
+	(envelope-from <devicetree+bounces-267636-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:08:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A31B317CBD8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:08:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FCF817CBE0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:08:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C11B318082A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:03:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3F69D302F9AD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD97836B064;
-	Mon, 23 Feb 2026 20:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34BD3376497;
+	Mon, 23 Feb 2026 20:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3AIdiY1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N2zh6D03"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B887825FA10;
-	Mon, 23 Feb 2026 20:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109D936D4F2;
+	Mon, 23 Feb 2026 20:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771877028; cv=none; b=ef+002tjFoJHlEHHD2tsJbvoWGZ51MyAEQhiM+mpsD/GiU4gb/G/WssKqP5l9wZkzZsvrOXDLjob84jwp3WtwfY1Oy0BD//FeDkmdYypsiziYrhXwqw7SKvk+I9U/o3S1LH2EcdGFaO9A6HaWqh80abw8+6vg5UaBRUCYC+jWYk=
+	t=1771877138; cv=none; b=koOkN6RxuiqAWip8o8bNJdPmcntsO4WEtNyJVgGvWPFiVlos60OwosBACvLuySpQJraWK9z3HzNUynac1waXEBkLPlDq6sMikKBpvqnrK1V0oHK85dx2jbIAX24TrFfqxAx0RlyyF2bcs1kSYmu8d7vMVdiJHIc+GPRIKFxVRBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771877028; c=relaxed/simple;
-	bh=aTh23EkOJI0kjUod1Hs09WDlySin3Rd8su95Qd1Sxbk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rp4piEZlHtkfCdm9gzUAsidI+hRnq2ovSgoXRp7NHz8nxM+0t6nLjIYiyWce+Dk0FpRkGkgG1oNGeFuoHRxyfhSFgRpgYb1kJN1YibMiw++jGhvK4/MfTx5VObBCaGKeIq5H9hEgd9SkYFrpzN/yOrte6d5vrGgwtp40GrGfZLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3AIdiY1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA3ABC116C6;
-	Mon, 23 Feb 2026 20:03:46 +0000 (UTC)
+	s=arc-20240116; t=1771877138; c=relaxed/simple;
+	bh=vGQeQO1YlbRwkKZNHV41+XdKwbW3ff4YznTfIuBhUik=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QuBw7ddQV6SdY/JPTaxzPPsGoz80mqT8it+YRQrLzo2yCvyWTaBzIbohsQoH7fB9gaDkQSy0nmXU+krDz6ZdFtC4qkeR0a5PHhj2q8mxf6uIY8W+NoFrpRG4mFRC4HFWnnPA1ONw782SkiHAYFlUO/tRfpzPyDepXd+o65WTNYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N2zh6D03; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AD960C116C6;
+	Mon, 23 Feb 2026 20:05:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771877028;
-	bh=aTh23EkOJI0kjUod1Hs09WDlySin3Rd8su95Qd1Sxbk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V3AIdiY1aWDJa++pm5SdWAXF58jKQG7vxcOkk/g3sD4FIY71PPIutHXG6R44JPj79
-	 1SggovlSNnN0ReSuS9yc4TYmeZIVcF7N68XB5VMuj15EXMdt/4fkxisauTZR/nl3Jv
-	 UAkoocK2iAN0T7e2B1EDU2tswqxU9T9SBSu2u2tHomXLxW0G8GJc0x58BPwcRKiMv0
-	 gYi88QIURdsrshq+uual9Mb/FWpKEbOkL4A2r6NYF0Q4h1CguOEo5H+XeD9oyS8l0r
-	 e0Ylem0e2Wt3Hrv3JiNViBAz/ZuQWyUkSi3IOmpozH+eRSjh5gJo0hpK2sIkjpzScS
-	 pbT8ZzJ9FHBBQ==
-Date: Mon, 23 Feb 2026 14:03:44 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Val Packett <val@packett.cool>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
-	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
-	Matti =?utf-8?Q?Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>, Luca Weiss <luca@lucaweiss.eu>, 
-	Vladimir Lypak <vladimir.lypak@gmail.com>, 
-	=?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org, 
-	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org, llvm@lists.linux.dev
-Subject: Re: [PATCH v2] remoteproc: qcom_wcnss: Fix handling the lack of PD
- regulators in v3
-Message-ID: <jup7hphwpa754gyhtcahz25glecp6ctpuxcwzvco6wrbokvnip@quw7hrauahsa>
-References: <20260201210230.911220-1-val@packett.cool>
+	s=k20201202; t=1771877137;
+	bh=vGQeQO1YlbRwkKZNHV41+XdKwbW3ff4YznTfIuBhUik=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=N2zh6D038A77sf8dN/CkvyNvqyaYZ8hnx7OV9KAG8ZNV32J7CzG//BqUHN8lywjL9
+	 FvrDxHkQYS9P09YQA8HIdEy6oW8PTQReYg08OeaxQ3P9uoTd+PYY4MzfELW2/+sd5t
+	 uFqcojFkCkBfcHOckAduFFYGcFY2gv2P1Bp4xnGEWFvOrCC4Hp/593h8XeQeYExu63
+	 c/xG36nhG6bxv4NBKgtNOgXwWhrHhhZ4yj1kKuTVKcSLF5lZYBifkntN/mgKvmsWp2
+	 pQDohZjmZOJS8xQUiCYH0UGlwbjVYxhEpUwalGl8iBLH1oPbnJH46oA3WzYE9cueJ9
+	 BJTKEshCv2t7w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A467AEC112C;
+	Mon, 23 Feb 2026 20:05:37 +0000 (UTC)
+From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
+Subject: [PATCH v2 0/2] Introduce Sink Cap Extended AMS
+Date: Mon, 23 Feb 2026 20:05:36 +0000
+Message-Id: <20260223-skedb-v2-0-60675765bc7e@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260201210230.911220-1-val@packett.cool>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABCznGkC/zXMQQrDIBCF4auEWdeixgjtqvcoWUSdmKFtDFqkJ
+ Xj3mNAu/8fjWyFhJExwbVaImClRmGvIUwN2GmaPjFxtkFxqLgVn6YHOsG5AYy5K2bYboX6XiCN
+ 9Dufe154ovUP8HmwW+/oXxE/IgnGmhW4VV1JbZ28+BP/Esw0v6EspG1Nk2v2bAAAA
+X-Change-ID: 20260210-skedb-5aebb944c35f
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Badhri Jagan Sridharan <badhri@google.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, Kyle Tso <kyletso@google.com>, 
+ RD Babiera <rdbabiera@google.com>, Amit Sunil Dhamne <amitsd@google.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771877137; l=1270;
+ i=amitsd@google.com; s=20241031; h=from:subject:message-id;
+ bh=vGQeQO1YlbRwkKZNHV41+XdKwbW3ff4YznTfIuBhUik=;
+ b=1C1YC5X/kdyac3vFIj+CpmhCvqTVNRN1152BDMfpHEuAlsUgPiGcj0ZN0S01BC4wXS0Zw3QX0
+ jwY9y97k/gNA+TVdIHe+QlT68vRzDpjjBVhevRPfq1FIgRHs8pzhemf
+X-Developer-Key: i=amitsd@google.com; a=ed25519;
+ pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
+X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
+ auth_id=262
+X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
+Reply-To: amitsd@google.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267633-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267636-lists,devicetree=lfdr.de,amitsd.google.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,google.com,lucaweiss.eu,mainlining.org,oss.qualcomm.com,lists.sr.ht,vger.kernel.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[amitsd@google.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,lkml];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A31B317CBD8
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4FCF817CBE0
 X-Rspamd-Action: no action
 
-On Sun, Feb 01, 2026 at 05:55:03PM -0300, Val Packett wrote:
-> The changes introduced to handle single power domain platforms have
-> swapped the info pointer increment from num_pd_vregs to num_pds, which
-> would shift the info pointer past the end of the array for pronto-v3,
-> which does not list power domain regulators in vregs.
-> 
-> This showed up as a difference between GCC- and LLVM-compiled kernels
-> on SDM632 devices, where only with LLVM one would get the
-> "regulator request with no identifier" error, because the out-of-bounds
-> memory ended up being zeroed. Fix by skipping the increment when there
-> are more power domains than regulators.
-> 
+This patchset adds support for Sink Cap Extended AMS. This is a
+"required" AMS for PD 3.1 compliance for Sink or DRP ports and a
+pre-requisite for Battery Caps and Battery Status AMSes.
 
-Is the error only an error print, or did the thing stop working as well?
+Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+---
+Changes in v2:
+- Fixed comment for `struct sink_caps_ext_msg`, `struct pd_identifier` and
+  `struct sink_caps_ext_data`. (Linux Test Robot)
+- Added Reviewed-by tag for DT binding patch. (Rob Herring)
+- Link to v1: https://lore.kernel.org/r/20260211-skedb-v1-0-616340426cdc@google.com
 
-Should we no longer carry
-Fixes: 65991ea8a6d1 ("remoteproc: qcom_wcnss: Handle platforms with only single power domain")
+---
+Amit Sunil Dhamne (2):
+      dt-bindings: connector: Add sink properties to comply with PD 3.1 spec
+      usb: typec: tcpm: add support for Sink Cap Extended msg response
 
-Regards,
-Bjorn
+ .../bindings/connector/usb-connector.yaml          |  34 +++
+ .../devicetree/bindings/usb/maxim,max33359.yaml    |   4 +
+ drivers/usb/typec/tcpm/tcpm.c                      | 253 ++++++++++++++++++++-
+ include/dt-bindings/usb/pd.h                       |  18 ++
+ include/linux/usb/pd.h                             |  82 ++++++-
+ 5 files changed, 388 insertions(+), 3 deletions(-)
+---
+base-commit: 8bf22c33e7a172fbc72464f4cc484d23a6b412ba
+change-id: 20260210-skedb-5aebb944c35f
 
-> Signed-off-by: Val Packett <val@packett.cool>
-> ---
-> v2: changed to detect the >= condition suggested by Konrad
-> v1: https://lore.kernel.org/all/20260126235018.969140-1-val@packett.cool/
-> 
-> "possible_pds" is the best name I could come up with (as "num" is already
-> taken by the number of *successfully attached* PDs and "max" is the constant
-> for the array length) for the count we're checking against. Maybe the "num"
-> could be changed to "attached" but that feels like too much diff.
-> 
-> ~val
-> ---
-> 
->  drivers/remoteproc/qcom_wcnss.c | 23 ++++++++++++++---------
->  1 file changed, 14 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/qcom_wcnss.c b/drivers/remoteproc/qcom_wcnss.c
-> index ee18bf2e8054..60f629b5bbed 100644
-> --- a/drivers/remoteproc/qcom_wcnss.c
-> +++ b/drivers/remoteproc/qcom_wcnss.c
-> @@ -441,25 +441,31 @@ static void wcnss_release_pds(struct qcom_wcnss *wcnss)
->  }
->  
->  static int wcnss_init_regulators(struct qcom_wcnss *wcnss,
-> -				 const struct wcnss_vreg_info *info,
-> -				 int num_vregs, int num_pd_vregs)
-> +				 const struct wcnss_data *data)
->  {
-> +	const struct wcnss_vreg_info *info = data->vregs;
->  	struct regulator_bulk_data *bulk;
-> +	size_t i, possible_pds = 0, num_vregs = data->num_vregs;
->  	int ret;
-> -	int i;
-> +
-> +	for (i = 0; i < WCNSS_MAX_PDS; i++)
-> +		if (data->pd_names[i])
-> +			possible_pds++;
->  
->  	/*
->  	 * If attaching the power domains suceeded we can skip requesting
->  	 * the regulators for the power domains. For old device trees we need to
->  	 * reserve extra space to manage them through the regulator interface.
->  	 */
-> -	if (wcnss->num_pds) {
-> +	if (possible_pds >= num_vregs) {
-> +		/* Do nothing if vregs do not include PD regulators (pronto-v3) */
-> +	} else if (wcnss->num_pds) {
->  		info += wcnss->num_pds;
->  		/* Handle single power domain case */
-> -		if (wcnss->num_pds < num_pd_vregs)
-> -			num_vregs += num_pd_vregs - wcnss->num_pds;
-> +		if (wcnss->num_pds < data->num_pd_vregs)
-> +			num_vregs += data->num_pd_vregs - wcnss->num_pds;
->  	} else {
-> -		num_vregs += num_pd_vregs;
-> +		num_vregs += data->num_pd_vregs;
->  	}
->  
->  	bulk = devm_kcalloc(wcnss->dev,
-> @@ -607,8 +613,7 @@ static int wcnss_probe(struct platform_device *pdev)
->  	if (ret && (ret != -ENODATA || !data->num_pd_vregs))
->  		return ret;
->  
-> -	ret = wcnss_init_regulators(wcnss, data->vregs, data->num_vregs,
-> -				    data->num_pd_vregs);
-> +	ret = wcnss_init_regulators(wcnss, data);
->  	if (ret)
->  		goto detach_pds;
->  
-> -- 
-> 2.52.0
-> 
+Best regards,
+-- 
+Amit Sunil Dhamne <amitsd@google.com>
+
+
 
