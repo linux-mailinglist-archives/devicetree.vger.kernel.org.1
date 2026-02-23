@@ -1,171 +1,177 @@
-Return-Path: <devicetree+bounces-267478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267479-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aHXuCzdnnGmsFwQAu9opvQ
-	(envelope-from <devicetree+bounces-267478-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:41:59 +0100
+	id oBHEAmtnnGmsFwQAu9opvQ
+	(envelope-from <devicetree+bounces-267479-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:42:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C61651782B6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:41:58 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A2D21782E9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:42:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 35FBF3027E23
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:41:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D4DD4302E769
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1EF9346AF0;
-	Mon, 23 Feb 2026 14:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F3CF34D4FA;
+	Mon, 23 Feb 2026 14:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eoXcfo8L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SN52Eh6I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD87628642B;
-	Mon, 23 Feb 2026 14:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A76527E049;
+	Mon, 23 Feb 2026 14:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771857714; cv=none; b=uFd7V8/K94w3ukz39oW1U1thDoIgJUjpHEEjy5tYRFCVBMDZ/eXNTivAtI5i5+AhXwVAbsho5E64qSeU/i4gFG5KntZ+dWzLdFu1W5ntKT25F2303ATdUYJr2lXJgqU3OdEXu1PYplWDzvorkxu28CwEqHtePzkANtkpko9w5X4=
+	t=1771857768; cv=none; b=oWK0Fjb69x/TFSf8dk+JYns3pxxcIj7jYgarQLZPGWdrotbP01l0iDZVhQ3id4gPHnHokCpfLJNO5ugXuWwZkvdEtAg7ECPJ+LLx+VdcMohG4Fl0ELlaB9xVg1aZEZ9cREbsXSEGnTfY664uG9d6H5G0chhw2Gd2uvqF8ietEoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771857714; c=relaxed/simple;
-	bh=tB5fLaMNGk+B7s8TjAvxK3mbbSydcIFwfMK/gc6tsts=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=shTnvTYO73lsWR0eeyYb25Gbn8aVlsty9ZQvckHMlOo72ylAGuWGeLgkgy+fyoxlLWPLd/xa/PdihECu5uvWeeIBaVtXLwEJhVLZyx85zEh4HtmZ0cb7uxutxcIouUcczu/9wdjXqs/tECS6hpcKOtv6qzuRZ9udEJxCU2cnjoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eoXcfo8L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ED95C116C6;
-	Mon, 23 Feb 2026 14:41:51 +0000 (UTC)
+	s=arc-20240116; t=1771857768; c=relaxed/simple;
+	bh=+cWvpV653gRQnu0cW4AkcHRnKnqyVn6i1wzLUAvgpoA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PxIXfE2EoqMaoRRKyhCMTcCG9yedRjiqmTMz5Cf+SESofurlLf1rljvN9osbUH+u0pxoTKcoscaHP8c3O0CKDvjz2wFg65hsmtlaU4vWht1q1H68sVbTFpFZJvP1fJLWeylyhXYCu21Sm0qIvDA5NhdpEYMV6d6S0S2vBgBd89g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SN52Eh6I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2C39C116D0;
+	Mon, 23 Feb 2026 14:42:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771857714;
-	bh=tB5fLaMNGk+B7s8TjAvxK3mbbSydcIFwfMK/gc6tsts=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=eoXcfo8Lmk5BSxJay2LStZNfbJe/9Qk0P3dwKflPjud5RIA+j9GGAEsE0qKF2TrcE
-	 N/VWew03g/9xsCyqCajyqoWzQlIH/oyUsRwWiSyOWg618PYq/nEmRWrQrkPvah6j3c
-	 txVPEMUeVsO3ffpio15dljrYcKr6JWOThqg0S2L0Bf5/eLILY/C3X2TpCujk53W1P5
-	 zJC2tIL01/T+wQe8la0e3PLHRqt4l+zAXDGCjwMqSupvVplHkKENYjYDALMTlOlpqe
-	 F7bGJ9TBiQ4lwP4KAVniW9l9X88nJpJpKGBURj9d2ENWttKTPikegR0ls10/xti59C
-	 YERPgLfiUE/TQ==
-Message-ID: <57424679-5ed3-457a-b336-d468983c144e@kernel.org>
-Date: Mon, 23 Feb 2026 15:41:49 +0100
+	s=k20201202; t=1771857767;
+	bh=+cWvpV653gRQnu0cW4AkcHRnKnqyVn6i1wzLUAvgpoA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SN52Eh6IPc+fMk02ASHGoqIk/WWHlmCze5iqsWGilw5FjPFcEpklbiwgngthxUjKn
+	 RvUOedFR9DoWuDgmn2MuNhqjmhFg/eQPHOMi6tlCRztm1bBMNJCza3xPKzBz1u034n
+	 eVs4KS/hO3cYK1T5psrqopoItFerpSO5h9aw87pUE0OPFPX3IkxBOWGAXQ2Z9IZpLw
+	 X7SCZUpHCsuUKMcIU6ERuZZHmCb2FA6wCIKI2xfVhBD5Z/NjsR4HwR8WWEGrRskA3d
+	 H/6JeuXNV1UH+1uH9dqPYQ82jvUH14TQxht/v9QrVNsrLXBb8gWQBgOOdwU1Urad3O
+	 uc1qMxDY0I6qQ==
+Date: Mon, 23 Feb 2026 08:42:43 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Cc: Linus Walleij <linusw@kernel.org>, Shenwei Wang <shenwei.wang@nxp.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Frank Li <frank.li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+Message-ID: <nbzdtngifwrx2kyu4tsiwwua5v4i5cjtaotemq5hubaets3bcn@fk25twf5rv6x>
+References: <20260212213656.662437-4-shenwei.wang@nxp.com>
+ <aae7c851-a93b-4d57-a118-43c6e68c4790@foss.st.com>
+ <13f9d767-61d6-4e29-b36e-6dcc860ccb11@lunn.ch>
+ <fd257c80-d97f-45b0-a12f-3a1888ba81db@foss.st.com>
+ <396819f2-dd00-4c09-8bc7-c035a5282a56@lunn.ch>
+ <PAXPR04MB9185A908F5090F0CA4FF05F78968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <b21b9ee5-d84e-47f8-86b5-c111ecc3d43d@lunn.ch>
+ <PAXPR04MB918576D67A268E59242964A08968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CAD++jLkUVFckLTq=SoivNFoFymhJo4KM=qGmajFcv9T9+7tPmg@mail.gmail.com>
+ <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: lemans-evk: Add Mezzanine
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Umang Chheda <umang.chheda@oss.qualcomm.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, richardcochran@gmail.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com,
- krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
-References: <20260203193848.123307-1-umang.chheda@oss.qualcomm.com>
- <20260203193848.123307-2-umang.chheda@oss.qualcomm.com>
- <628df86f-e866-4986-a1a6-8c1b38f3c85f@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <628df86f-e866-4986-a1a6-8c1b38f3c85f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267478-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-267479-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,lunn.ch,lwn.net,linaro.org,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C61651782B6
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9A2D21782E9
 X-Rspamd-Action: no action
 
-On 23/02/2026 14:13, Krzysztof Kozlowski wrote:
->> +
->> +	vreg_4p2: regulator-vreg-4p2 {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "VREG_4P2";
->> +
->> +		regulator-min-microvolt = <4200000>;
->> +		regulator-max-microvolt = <4200000>;
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +
->> +		vin-supply = <&vreg_sys_pwr>;
->> +	};
->> +
->> +	vreg_sys_pwr: regulator-vreg-sys-pwr {
+On Mon, Feb 23, 2026 at 03:24:43PM +0100, Arnaud POULIQUEN wrote:
+> On 2/22/26 15:48, Linus Walleij wrote:
+> > On Fri, Feb 20, 2026 at 7:57 PM Shenwei Wang <shenwei.wang@nxp.com> wrote:
+[..]
+> > 
+> > Is it generic? If it is not, let's call it "NXP rpmsg GPIO driver" and rename
+> > files etc accordingly. Maybe it can share code with the actual generic
+> > RPMSG driver once that arrives, that is more of a library question.
 > 
-> And here the same pattern as in Monaco EVK. This is pointless, you just
-> inflate the kernel and DTS with dummies.
+> I would like to (re)express my concerns regarding the creation of an
+> NXP-specific driver. To clarify my concerns, ST, like probably some other
+> SoC vendors, has rpmsg-gpio and rpmsg-i2c drivers in downstream with plans
+> to upstream them.
 > 
->
+> If we proceed in this direction:
+> 
+> -Any vendor wishing to upstream an rpmsg-gpio driver might submit their own
+> platform-specific version.
+> 
+> - If NXP upstreams other rpmsg drivers, these will likely remain NXP-centric
+> to maintain compatibility with their legacy firmware and the nxp-rpmsg-gpio
+> driver, leading to platform-specific versions in several frameworks.
+> 
+> - The implementation will impact not only the Linux side but also the remote
+> side. Indeed, some operating systems like Zephyr or NuttX implement the
+> rpmsg device side (Zephyr already implements the rpmsg-tty)
+> 
+> Maintaining a generic approach for RPMsg, similar to what is done for
+> Virtio, seems to me a more reliable solution, even though it may induce some
+> downstream costs (ST would also need to break compatibility with legacy ST
+> remote proc firmware).
+> 
 
-I found more of such patterns in the code... folks, this is non-sense.
+Could the virtio-based mechanism be used directly (without rpmsg)?
 
-Best regards,
-Krzysztof
 
+If not, it would be good to derive a generic rpmsg-gpio protocol from
+the virtio protocol, and land implementations of this in e.g. Linux and
+Zephyr to establish that option.
+
+Regards,
+Bjorn
+
+> 
+> In the end, I am just trying to influence the direction for RPMsg, but based
+> on the discussions in this thread, it seems others share similar
+> expectations, which should probably be taken into account as well.
+> 
+> Thanks and Regards,
+> Arnaud
+> 
+> 
+> I just want to
+> 
+> > 
+> > Yours,
+> > Linus Walleij
+> 
 
