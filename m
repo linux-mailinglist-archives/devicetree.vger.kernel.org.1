@@ -1,148 +1,213 @@
-Return-Path: <devicetree+bounces-267318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267319-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJ6aAP0jnGkOAAQAu9opvQ
-	(envelope-from <devicetree+bounces-267318-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:55:09 +0100
+	id wO/sIUklnGkeAAQAu9opvQ
+	(envelope-from <devicetree+bounces-267319-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:00:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A17174561
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:55:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D656F1746BF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:00:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5224F3041BD6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 09:54:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 03157302BB90
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 09:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87AB356A24;
-	Mon, 23 Feb 2026 09:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 494533542F4;
+	Mon, 23 Feb 2026 09:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U714091e"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FNe+ABrl";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aL+1KVUB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52383563F3;
-	Mon, 23 Feb 2026 09:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3659E34A785
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771840463; cv=none; b=GilBj/FISM3ENbjA5RzMejucU5X69UvkE/yN0pYkuWb3RpEG0iTvw+/uZKHmyoxt3rmb+Qh8IUjceo1PlUvW21XxjVDIyZInVvDOgEfgoNyXne9vM0mcN66YOLuLDRan2PyZxLS7m0bowZUiknu1Hcj8vrm3ciFMCBASR6ANLYE=
+	t=1771840779; cv=none; b=Kk4R7j5Nf2ckuYOwgzdNwPW2AqwSvcF8DzaqTOhkC0Mpsspt1H2bZJCkQJaZnvBWex4rRLYGDtzswhgJt12vI3KVNeQRTMWrSZgCdgJRVjcm/sb49wv6h3V/TyIQ9p5N4DoQRdbeTs4GnSDGRlVrQoxlFQ9taKMulWAQ9JSScRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771840463; c=relaxed/simple;
-	bh=JWfMwhsykouUvZpccY1Dd6wRJOOSr3zLEkZxB9e9+/U=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ttkoLKCIhimjSsAU/qPiKS6S6g0Tu2HzlJQsTnYgRs2kDU+md/NfUoRxo8Z0EaPFp142crxn9cStGaDv6KytmSk2Q+C0V6gppkfe7Ytqs1FNCV4q6EOI/FLWc8P+vTGQIBDbTTPZzSokYH4FRu2nUD36eo3mkGtQJzI/azrBGXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U714091e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7654FC116C6;
-	Mon, 23 Feb 2026 09:54:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771840463;
-	bh=JWfMwhsykouUvZpccY1Dd6wRJOOSr3zLEkZxB9e9+/U=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=U714091ebCpuO30iX6C3R0ih0NzaIWP9jugCwtPLB+2cdgrXM/fia/RCUnBoD1qUf
-	 wrpzYxKM32DHGrdEmkuI0LXxFz+f+hu1RowEo4pCAhppnQrVFTFGfMYxwLBDbL6E7d
-	 TJYrohM/7jo0ukkHWx22wi43r4OeVxdZ59sVo5xQ+EkcsM/ssixfXJ7VwAtG6TYBaP
-	 H4WtJLLNMRvxt4mjroj2ql3obkIOOE7YLpxRUJTt4ogeh1JUxgKkfqcxFfCt6IV/Sb
-	 7+0OHnyT4ikC9Wyp8vido21C6Zx0avodDJDQYtQxUGdXKffoUtLJRiaFilao3x3cSe
-	 ZvT5cgQ4MZuTA==
-Date: Mon, 23 Feb 2026 03:54:22 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1771840779; c=relaxed/simple;
+	bh=j3G8PmWwRYOCpxIyqY4qiNHjjjigY6BKB98FdS4me24=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lBPh5u3BWWRrbchYjlCGCWtNkWpX/O3uBIkdI6eyzy5MwN/lO5QuLpsvTon3CS+EaKtd9+hXQ2Wp2QNMS0ZPTbqDLplhIXThFzqUhceOMNja+gF//cPMpIDedum1cT3kdJEXRcSs7zIYGVr6u/uJOjO1apmP/cLzZDAtmnG2akQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FNe+ABrl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aL+1KVUB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61N9bnab1824711
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:59:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0q/hXh703nO28vGXhzncKmTVhDNb1C4vYJlCrVydYrI=; b=FNe+ABrlUxXFYYaO
+	sH35XW7mab48GYYHwyClbEvY+yN7ADZt0ego3DmMcXyXT9mgK8IJnd8bEI2dxyBR
+	ogu4Q29GJRFzIlpkZOEFGgF8/hS/85cDpZJ0RCVT3xCvKlysKhMBCd3TiwQSCKHa
+	TV6cXKnoFwpkJ4I5OwD2WZblBmMGNDFWs9Yd/zdVpAzKfMcJyj2ZY14BKYuywhWL
+	1E+/L3SLIOtJrJWIbMy569dkpIQnqOkb9pqpo5BZ4v3bBA8ryeG6vMuOVQjkHril
+	DVtvAAr9S/6iRZpswG1eu4OebIHjCTxVw2Mkg8doRyiNo1r7h7mdR/obAILQYv37
+	8Tqi4A==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf5wbc96s-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:59:37 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c70cb31bcdso512720885a.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 01:59:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771840777; x=1772445577; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0q/hXh703nO28vGXhzncKmTVhDNb1C4vYJlCrVydYrI=;
+        b=aL+1KVUB1EXUAJDKrDAB0szmS+ONz+wvS5pXIjs3qlDFrVYUZjEaSR2g6LPRXBJKjq
+         7wYGWRWGMuK630DcU/XXr5YV+4dQhTXbaqSaMfXYII9UOb01V98aBsV3NWCGBiWQaca0
+         hjFVWUswlw60l+Sfo5c6lXiTowpHRtnlKjTTXrR/8wfa9GcMArs9n/DJgMk43kkLTsJh
+         zUnAoRHOs3XJWyJ1ceYaTeVGM3Y5jF8aIqHGal/mmoKWj9Q0d1Rz0vwsH44RlYTya9vI
+         1DFYxx5cL8lidsS9W4alObcQYA1XSAm86ZlWgAhS8Dj/Hr+kxyKSVmiatTPMPajSddzO
+         hoAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771840777; x=1772445577;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0q/hXh703nO28vGXhzncKmTVhDNb1C4vYJlCrVydYrI=;
+        b=Dh9D7aAlFC0y3bzk7RriF7s4mM6DB7BYxty7ib091x78QwY8cG8Lfu17dYjOJE+Npj
+         k5ouaRBkp1qks+P3578C4gYZhuuvUQNQ9ol7mA1oa0wOBbdeIQFwqRzMQQZ4aD5KxgIB
+         sNIxBHjTUAhLWrMplNPsBPjo4lVELwZ/ppkfs1ct3NWDiw6k+Rem1IHLEJuHZ8SxwPCA
+         IraopbYQaZK67lna3qNLkmDYxNMZd1znI6CGDUVAajj8XjBqQt6Rf/AUYuY/OlqY1LO3
+         WRWzh3EUr/ec+IQOAoJkg8KNdE6SlWBpo4NRpt58d+hv3DRY1/bPsMzVCVbCfEd18ERY
+         +eGg==
+X-Forwarded-Encrypted: i=1; AJvYcCXWNwzRvvJayqH0fB/rYSnRW+qB8rZ/J/6oLJZ8UTRyw+CY+VOI5cek5siz27UGfnvOrFc1Va5u3zLk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHt3yPC1g2S+srC5OnAEGFEQhS+M0lZWY/8Ha98ITpGd1AtW/k
+	HdIMVQ/K9hbunSlpcGMblnLokeok96MhuImCqpML58sBVX9/Hp03FlPJ07ithmn8Oop9k2DjocB
+	d3nXyI+Lgmkfnh4wMWb9hac6xSH0L4uDwVCaETv43chQkmKDVUH22JeKxeCZE6yTA
+X-Gm-Gg: AZuq6aL1SVQDh/CxNx00vntgyqOdaLRutja+DAIqQBTdwv1MJd3lmVqR2L2JbXBJIEF
+	9p20vL9r8sCmm7HAuOH4Db97Ps6zwPmhAt3PjX/PYqn16rYVqn0Eo5w0Vnppf102Bl5Ek44M7xn
+	+pxf27O8v6JAi23tTvL3FM1oVF+cM2Zuzd/BnPNvuOIFY+A5AsoUjD9sBVPsFoNyI2hty5xOgKf
+	YMlCSG70BQM/ax9GMVPMmrcLrdbxun7aoAuAyEPd3RePCPC8+vmgk9Vc6uoH8CtvYGMWl7WWa3k
+	pfZwLIb83uSe0/nr3cV5DHc8+bJjh/lDTiDzxm0PCIBQEwVDbUBqz0MWrBqVmv7q1fDfFwDDmbB
+	P5avpVhZmIfGRD9HOfv+Zup3lM4+r3mJOvEHHhDtCH7A3mSi8oMgIzFsyaoZM8j0KttTfhoRezg
+	b2u5I=
+X-Received: by 2002:a05:620a:1a08:b0:8cb:4059:a90c with SMTP id af79cd13be357-8cb8cacdea5mr695839885a.8.1771840776609;
+        Mon, 23 Feb 2026 01:59:36 -0800 (PST)
+X-Received: by 2002:a05:620a:1a08:b0:8cb:4059:a90c with SMTP id af79cd13be357-8cb8cacdea5mr695838785a.8.1771840776124;
+        Mon, 23 Feb 2026 01:59:36 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9084e4ba0csm309640566b.38.2026.02.23.01.59.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Feb 2026 01:59:35 -0800 (PST)
+Message-ID: <01593963-2bff-4a8c-a6f9-c62bcf21ccaf@oss.qualcomm.com>
+Date: Mon, 23 Feb 2026 10:59:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Tony Lindgren <tony@atomide.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>, 
- Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Mark Brown <broonie@kernel.org>, linux-leds@vger.kernel.org, 
- Liam Girdwood <lgirdwood@gmail.com>, Lee Jones <lee@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-input@vger.kernel.org
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-In-Reply-To: <20260223063858.12208-6-clamor95@gmail.com>
-References: <20260223063858.12208-1-clamor95@gmail.com>
- <20260223063858.12208-6-clamor95@gmail.com>
-Message-Id: <177184046063.2675311.12742690593841960784.robh@kernel.org>
-Subject: Re: [PATCH v3 5/9] dt-bindings: input: cpcap-pwrbutton: convert to
- DT schema
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: monaco-evk: Add Interface Plus
+ Mezzanine
+To: Umang Chheda <umang.chheda@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com,
+        krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
+References: <20260222173545.3627478-1-umang.chheda@oss.qualcomm.com>
+ <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
+ <at7j3kbdixd7aveiol37pwgudl2hcogtdrvdgcvgbbm3t5irfc@4nvv5ptoezyk>
+ <4ae0dd46-5f5f-403b-bbc6-1094159be302@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <4ae0dd46-5f5f-403b-bbc6-1094159be302@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: mB8fzJ3QQzX-pXMnU6hrPbVJhEZY39LQ
+X-Authority-Analysis: v=2.4 cv=UZlciaSN c=1 sm=1 tr=0 ts=699c2509 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=HODDCX8Zblber2y-KYIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: mB8fzJ3QQzX-pXMnU6hrPbVJhEZY39LQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDA4NiBTYWx0ZWRfX6KpSq2ngNKPy
+ LVGwJhlfE5qMO7W8boplYz4gIA7tonFRf0rqntH9UoPpNKTuTqE2vVHWjs8yKJBq5ekldQ7vqhc
+ TJutZrb50iA6tPVDjmp99GBAy1aQiLrgrGe82PIB3PnjmT9P0XPirLxg0ud79x+TxK7e6xMAQFD
+ U8PbYDAZYstvgDhDEMq5oDrzQtvg9loqaSixHQzdqcKKJNvI4uos8TN707TACYUmMFgWWBvI3Vc
+ 8jLXZINrWofLL8M5FsXt2G8eymeDvm0K/Ev6rC795NHks0YszNUrgb2A0Qby+rwt2YWGmuoJwy2
+ nUhXInbWIKvaiKuBZ2Nj0QJhBPwJK4amPLYvZvwtQAGKvMdFf8MEAlwyFCm7RbjKOzs/k3beUle
+ GYOcC52loxtbyhJMzLq6erbNdfX7+rCLWORdVBBSQ+U2tdEFkfYueDZzoIWjERHUl5uOjzL93Ih
+ pt8ErOkV5EQBvK83+FQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-23_02,2026-02-20_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0 malwarescore=0
+ bulkscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602230086
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267318-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-267319-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[atomide.com,gmail.com,vger.kernel.org,baylibre.com,kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 95A17174561
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D656F1746BF
 X-Rspamd-Action: no action
 
-
-On Mon, 23 Feb 2026 08:38:54 +0200, Svyatoslav Ryhel wrote:
-> Convert power button devicetree bindings for the Motorola CPCAP MFD from
-> TXT to YAML format. This patch does not change any functionality; the
-> bindings remain the same.
+On 2/23/26 10:47 AM, Umang Chheda wrote:
+> Hello Dmitry,
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../bindings/input/cpcap-pwrbutton.txt        | 20 ------------
->  .../input/motorola,cpcap-pwrbutton.yaml       | 32 +++++++++++++++++++
->  2 files changed, 32 insertions(+), 20 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/cpcap-pwrbutton.txt
->  create mode 100644 Documentation/devicetree/bindings/input/motorola,cpcap-pwrbutton.yaml
+> On 2/22/2026 11:57 PM, Dmitry Baryshkov wrote:
+>> On Sun, Feb 22, 2026 at 11:05:45PM +0530, Umang Chheda wrote:
+>>> The Interface Plus [IFP] Mezzanine is an hardware expansion add-on
+>>> board designed to be stacked on top of Monaco EVK.
+>>>
+>>> It has following peripherals :
+>>>
+>>> - 4x Type A USB ports in host mode.
+>>> - TC9563 PCIe switch, which has following three downstream ports (DSP) :
+>>>    - 1st DSP connects M.2 E-key connector for connecting WLAN endpoints.
+>> Nit: routed to? Is that M.2 only suitable for WLANs? What is "WLAN
+>> endpoints"?
 > 
+>> routed to?
+> If I understand correctly - you mean change string "connects M.2 E-Key connector" to 
+> "routed to M.2 E-Key connector" ?
+>  
+> 
+>> Is that M.2 only suitable for WLANs?
+> Yes, this is suitable only for the WLAN module.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+If I remove that WLAN module and insert an SSD through an adapter, will
+the board spontaneously explode?
 
-yamllint warnings/errors:
+"intended for" is less ominous..
 
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/input/motorola,cpcap-pwrbutton.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-Warning: Documentation/devicetree/bindings/mfd/motorola-cpcap.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/cpcap-pwrbutton.txt
-Documentation/devicetree/bindings/input/motorola,cpcap-pwrbutton.yaml: Documentation/devicetree/bindings/mfd/motorola,cpcap.yaml
-Documentation/devicetree/bindings/mfd/motorola-cpcap.txt: Documentation/devicetree/bindings/input/cpcap-pwrbutton.txt
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260223063858.12208-6-clamor95@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Konrad
 
