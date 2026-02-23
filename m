@@ -1,280 +1,259 @@
-Return-Path: <devicetree+bounces-267292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267293-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yC2QOOMGnGmO/AMAu9opvQ
-	(envelope-from <devicetree+bounces-267292-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 08:50:59 +0100
+	id sIX/OKwNnGly/QMAu9opvQ
+	(envelope-from <devicetree+bounces-267293-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 09:19:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51755172D1C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 08:50:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B33172FB1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 09:19:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3AFC13009CF5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:50:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CD3A73008A5A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 08:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 316A034C121;
-	Mon, 23 Feb 2026 07:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD7B346FC4;
+	Mon, 23 Feb 2026 08:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Vfj1Mg1J"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="huykVop/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iJ4E55Zb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6F734A76B
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 07:50:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3EDB17DE36
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 08:19:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771833055; cv=none; b=rm6Fxaig+JHHzbBgiwq69xxhLl6ZtT0Ihu73J/KZsGpjZWygbSHP9Eyfew0/6wNnZXNq+U3VAgKxroa2vvqydtcNar/6Oi/wGqKJPrY5lJ8FeVAl0cnyMWDfIhUT/qMR+pM8XNN2K66nAmVv9mPjTLdlJCyB0eXtSUN/20+NAQ8=
+	t=1771834793; cv=none; b=lPbYQr47z/X4EKU/p4fEkRQIQrT1erVcF/AeUwYCph9c3SDEZzmnzhcEeWZnfFBM5WQ6n23+dqFd8WFuCtWf0DR+8ogwMR1x0Czv67DiVe37h8YoUregwV+cBqosy7irZYlvOl51cQXwucYSEz3gHE4EHl51ZQk16WAzaH5aVSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771833055; c=relaxed/simple;
-	bh=myrYEPr/R1pVr+HcXiT9MOTW/An54yWrX6KWA186BlE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=SfyhUsl537WdZNrN+4PDjfnrUZ4I+3idR6u7QK0WrMmHcTSEXhtmNg76x6d2s1XQn/d/2PL0M5q3IPrV7ILrblnYnI9r9o8wZ9vFKNPJyjjMIU02afwt6ArG6OFsAi4ZjTti4DUmPfCSF08lfkza4400EMuy5aCkNNCtMxOdJbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Vfj1Mg1J; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b884a84e622so603047766b.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 23:50:53 -0800 (PST)
+	s=arc-20240116; t=1771834793; c=relaxed/simple;
+	bh=bpbyhfL60EpXD48p9ObjY1m5pfPG/9+CDUIPknFM4DA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=CFlANoiDxK/GjlIur4KnQdsFKVpcIch0Q1KvRINvCU5lTOn8vVQDZZRxbxzAJBHPxvPZtpDYELQ8JogU6VrLFTz/yAAQiM949Zx4HCHcx46UVMBflr3PeC8PZC6RIAdg9EyxTKKXu1PtCj982MIxJy+bnEXsNiH3gE6wSm6EJEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=huykVop/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iJ4E55Zb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61MFe9HV1425174
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 08:19:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=yKpp9TizSKefpW0LuzTBIy
+	Zh8T6KHVbQcnalx4nANJU=; b=huykVop/s+9hqRzkHh71CZhQZZWYP9scLqJ/Va
+	4HNv0XuDTlFdUyuclH0yB+l9jf+u+mSZ1pEjUVG0M+9UH5ZRRWIH07WiKqJ0v4PE
+	3JMmKEdcmtrgzWkY0W52xXXx20J9hLZi8xqQ7oI4ek/vGeRJsomfoWzuMZFU2B8I
+	zqhSt05h4+0+7L/oTCoxTXkAaMMXpfGAsB1amTvZ5PLkhHjfqyjnT9EcPXx66gtV
+	c1xmnzHr0mnIF5XsZOopBxNhi1VplUlQfvccFXQpQCd/5s+eno9YnPugoe9Qb0Yp
+	uCAkvNHsUL/6BxSrjtnBy0hZcgPHQhuPElgTYBBiCmzUw+ew==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf5v3uvs0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 08:19:50 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8cb3fae6f60so5325501785a.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 00:19:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1771833052; x=1772437852; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ERYQol69KzvMZw4jEOTjkJFG/z3wRah/VmniZQD/41w=;
-        b=Vfj1Mg1Jtj3zNWPsyWcoDtm2oFvl+48/lxpC6XCUaeYoAjjLFjglwV1CPlX00jL+is
-         mFquk3O73OI9NlWw+W/CJ6zEQzJdDF5UNdrzdWYrwnW7fuQDLVVGB9Mylg6FpeGJqbMa
-         3OWyVeEfJtysaGOQw9ntC8EbUfOG3IjMe4apFhDi2YGDzzVs4yj0KVIpqzoxnA93OLu0
-         lSqnCwHaP+weWaEfwXd4e6MiNGK4Y1ol0bwZXgJu81QfA55aIBC9zUD2yw2V1n83v1Id
-         Q/OSayAy7fj3isTKCXbikkwT0y1s81U2QT5ObyWyk2QXg4UcHxVlZbamdRUI3aSER76x
-         E1sA==
+        d=oss.qualcomm.com; s=google; t=1771834790; x=1772439590; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yKpp9TizSKefpW0LuzTBIyZh8T6KHVbQcnalx4nANJU=;
+        b=iJ4E55ZbonGMMAzscwwwAJX2Q5Govxh8s4QnKK4doV5HaVmzEPrZyYDJ83ZSVf+a7Y
+         +IQiO/3N4TszYaWeGCfRbVDJgWuU7YHYQ1YhLh/rs4ZnmHiJn0Vvep4wehcSFAqbNjul
+         D2WnDNgeuBsRiHQDpI7pcH4K0LxuWHBq6YhZ3T6e0nJ9d72+dDRPt2b574blbXwTdP6r
+         JaOxmYM96q+1WUIxWlwNS0gQEhTmV6IBYkE590zTmB2TcpeJJ7lsJO5vAoQJOv5DM8Ue
+         jD5Vfo98umgm/tNrQ5nQ5mXMS55ey5eTgk0uTk2pkrDxmFfJaoTdES2XtKKfKQARux5P
+         OSbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771833052; x=1772437852;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ERYQol69KzvMZw4jEOTjkJFG/z3wRah/VmniZQD/41w=;
-        b=rDyQiEKmejEUE9maf46nlK4V/n+weEUwWSQIwYErha91parE+tBAoXEZRNeBySYeba
-         +D9A3lC6aONPFlNOhWKSxRuyVF2GkDGV0Rqv3vNZhG8iN9XHgVavGBvGUhxstE01LZTj
-         ybaW6nqU7dj0A5pU2X6VMQUCktgsDaSy2OIQfeLM0jhvJIY67Bv5i9jh4V6TvNJHcPH5
-         rkW838HVaKZ1P3VSjpDMMD96gR5urzrroq3bIP9a6y0h1Gg/0EA35tetjv/xo/bUnUxP
-         NP+qYFd8oTS7L/6pP0MfPK/gevvuumnTz7DYhtXjgvs+eg3Y7qpAuFUeR9V2vG7EdbDs
-         zFCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXyDTT+evioAHnBPMeOTtbr0JtgTG28iba7Ijs7PkkeD+GnS+oHj1WkoYdoMFZJ57Q8N9sm3emRTc0E@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+lFToq4NvQ/zRDRadUWykDVuf5TrAcyn2myYsgXdNeva/Jy3B
-	uXAunUR08uuOwHfQPnU6EGXJYwTl8k3Lqfw4hZY/lvI2GKgf1YECp/DlPlFvOzIsAzo=
-X-Gm-Gg: AZuq6aLBTkW2siDpvIi+NMxqgh01HRmPFz48+i5Ul/vucxb7GWogqzh0eFxDMAnvxdD
-	nnSq7j82p3BjvvsfyPnL9MFDqkusQX70baCHERtTIEf8l+VSTXaaHXej5HkH6Y1swM91iBLdiTW
-	hniCLxiE9ffyx8WQgufJdqKq9nM5fsI5hgQ4ajq2E5+9B89iO3bWrrrnsnQy8lKhbX0UQ1TMitg
-	FN8hc8/ke12Yk3x4WS+y6vdoglscUBBrcajd8jxuDTYPlmUsF0erFscErDpnPVpfNXJbp+gdDjx
-	kzJUhFffELAfierlP++JFzIFM8oJpXGZmoMs31VCGTXMdrOHeFYyyeJ7Xw1ehtWJ10mf1thWdG6
-	hgZ/2MaO33rFg5GvlF/VhQRJIhkX9HFLW8lOphU8AOm/Nd2nD7t6orptzoL7xQBQnPzNy1DcfhZ
-	aAZt9lmLiH8+R9Y2cdAJpilv1P4yEQkgEOOJbkVFO4g7QenE4CBKkcRULiT2y6rwzkYnDZ8t5vT
-	gu0hzk=
-X-Received: by 2002:a17:906:9fd2:b0:b90:3436:9f71 with SMTP id a640c23a62f3a-b9081bbf557mr536112366b.47.1771833051868;
-        Sun, 22 Feb 2026 23:50:51 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9084e8d0d9sm297348066b.50.2026.02.22.23.50.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Feb 2026 23:50:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771834790; x=1772439590;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yKpp9TizSKefpW0LuzTBIyZh8T6KHVbQcnalx4nANJU=;
+        b=tzsEukJPEar7/455NcRRhaEgzUswLU8YkiOoVtOfQT7QK3W7f9EyxNkKrcpHVFUR07
+         KUTQfaog9hNdXmzPAsxUcKGD8W9Tl2mbzo3G+q3WrvnC1UqHgY6jZbhfJ22j9iowYv4F
+         6Xjfzju7Zuzqm7SSpM93lzYAN+ULnSTXaz/DYpdlZE7T/OzJZ5OcvSTWFs6unIhEekgD
+         PyhEkPgneLHaWnqUGMrSFvQfi5NMelnTM1oGOKRCoIHcyobeBg7RPwUaEc0WlYu0bfTt
+         p+orAIW5U6ffU7Ex0hZqyN6sECddfNWCNUKmdUTJ2yCWopG+DdNZK2TJ5tTy/653awOT
+         Q0Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCXlAC9203bB7Bt/SLh7MLWr9te2qNyYW70LKcDdUGTZnSioARk5nUE7cvooNMyB1dpgWU48PUx+WsL9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4M6KxCHFqXvuVL1X9fQCnPDoc0W6l8MZFxEcm5O+TCfLzkLrF
+	/2WvLYl8WpdKCFsFwbKPK2r1odoEgWUNxfKWSvmgicNzbKf8TvSWn+vamjt0gT9ywpEIWnGaqif
+	zCPCfzJjoKCH4kh4pHccoTeZPa3fCNdQNkLon4qYzG2CwTPwjtCuI7mdeAXQ5MhZAxci44NkF
+X-Gm-Gg: AZuq6aJsH+181xMJ72gVX4QTokrMYf6st5VpgL6JBf6r/49V9Z4epUVTmdcUEmKUr9W
+	wLpiFOSbv5tSlff44BPc+3q20sfPe/4f/En/MN4/+1LDYBRFptd4qRR3fA/4Lbdmhijy90xJAt7
+	R14YiOUZjMSe0iWmZUauWDn4zx7pMieuIYC+rzJGkATI7PPr6Fh+SBpxxgRotgLHntYZis7Y/u4
+	XYVy/ec0bD24nIJsqO7KpIZRu1fIxUxZpD0qgT64P5Dcclznfs6XFqBqAKzxv/iJcsGpi9VOTgi
+	W0N/ziWhG/Du68T6qXuMURuGfwh9eeBNAgE44ght1Vys062zt9Hb/xrcBQKSrcQ2zztKkSRPhOR
+	ZRYVsVQkjiuHhVbPnSzqo0/7zkwaPYw==
+X-Received: by 2002:ae9:ea0a:0:b0:8cb:83d8:31bd with SMTP id af79cd13be357-8cb83d836c2mr958588885a.40.1771834789916;
+        Mon, 23 Feb 2026 00:19:49 -0800 (PST)
+X-Received: by 2002:ae9:ea0a:0:b0:8cb:83d8:31bd with SMTP id af79cd13be357-8cb83d836c2mr958587485a.40.1771834789407;
+        Mon, 23 Feb 2026 00:19:49 -0800 (PST)
+Received: from hackbox.lan ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483a430927dsm104292105e9.31.2026.02.23.00.19.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Feb 2026 00:19:48 -0800 (PST)
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Date: Mon, 23 Feb 2026 10:19:38 +0200
+Subject: [PATCH v3] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy: document
+ the Eliza QMP UFS PHY
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 23 Feb 2026 08:50:50 +0100
-Message-Id: <DGM6EAN8EJU0.2JLEY3CA0R5G9@fairphone.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Luca Weiss"
- <luca.weiss@fairphone.com>
-Cc: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Jonathan Cameron"
- <jic23@kernel.org>, "David Lechner" <dlechner@baylibre.com>,
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
- <andy@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, "Daniel
- Lezcano" <daniel.lezcano@linaro.org>, "Zhang Rui" <rui.zhang@intel.com>,
- "Lukasz Luba" <lukasz.luba@arm.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Laxman Dewangan" <ldewangan@nvidia.com>, "Bjorn
- Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>, "Hans de Goede" <hansg@kernel.org>, "Jens Reidel"
- <adrian@mainlining.org>, "Casey Connolly" <casey.connolly@linaro.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-iio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sm7225-fairphone-fp4: Add
- battery temperature node
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260220-bat-temp-adc-v2-0-fe34ed4ea851@fairphone.com>
- <20260220-bat-temp-adc-v2-5-fe34ed4ea851@fairphone.com>
- <85ce1f2c-f5cf-4e97-9611-4aed03f69cd7@oss.qualcomm.com>
- <DGJQ4WLIML3H.GAO7T4L3MCJM@fairphone.com>
- <a422e087-a91c-4bb2-9d95-e1cefc9a91bf@oss.qualcomm.com>
- <DGJR40B5R6MB.1V4ZK5SW1PXAV@fairphone.com>
- <yikwygc5gasmr3cdyv5emfr2flaoraxcz7ap3j55wn4ib6wfqx@4yxoly5zrucx>
-In-Reply-To: <yikwygc5gasmr3cdyv5emfr2flaoraxcz7ap3j55wn4ib6wfqx@4yxoly5zrucx>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260223-eliza-bindings-phy-ufs-v3-1-2b0c0f00bcb6@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAJkNnGkC/4WNSw6CQBBEr2Jm7ZD5MCKuvIdxMZ9W2iggDUQk3
+ N0BNy40ppNOKql6b2QEDQKx3WpkDfRIWJUx6PWK+cKWZ+AYYmZKqI1QMudwxaflDsuA5Zl4XQy
+ 8OxHXITde6Syz4Fgc1w2c8LGAD8d3ps5dwLczbW4USG3VDIu5l3Pvr6SXPN5GG8ic0SLN9xVRc
+ u/s1Ve3WxIfm129+qAp8ZOmIi3NpXDBe7M19gttmqYX2lUceCMBAAA=
+X-Change-ID: 20260219-eliza-bindings-phy-ufs-3d95c2377aeb
+To: Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Nitin Rawat <nitin.rawat@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2401;
+ i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
+ bh=bpbyhfL60EpXD48p9ObjY1m5pfPG/9+CDUIPknFM4DA=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpnA2e/+oMNLUBUdmkG/VcH0rfTLyAF/IjFnhcP
+ BXkm+ucfkWJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaZwNngAKCRAbX0TJAJUV
+ VpO+EAC9Qdm4YCGW1t/jLFr6oiuU4gQsv5NtZll7LdDtK/2C0IK6fwVTJC1HWNS+L2cPRhZpI7g
+ pyrlOIrzXgkQ3F86H5IZjj549V/5t6xUrOtqaTVRWhCkTRwjEe5KK17DTu4mTRs3bUKQUVU7HQV
+ r5IF1wka/whiCItCpGYkb16Rx6xQUhp83A2FenUzXB7qrmGF2Vf+DG0AjyrlMGzsaGwU3U4lnA0
+ N0WlqSMxcl1j2BRskZbhCOYw5OwkMbyIatRQTGKwa4fzy8Z/LyfGrR5Xyxf1ZRZ//t84dg2miKs
+ 122qH2/zZj6yoP7zgl9NibwTUpnFl+5WD2cRdUwBhKN5kwxDDxwobtSshR+m9wMiGO99HtUWlt3
+ RtTvsVdL5myubrUxbUR5rTxuF3ednkrpkjGvcCzyogl3pS0xxIYiK+IvM/c8agLLciKwWud/Bm4
+ gUxXVQHW2uqn9ewquDbZCVOpC3XfegvQqYM2BzTs0mitcnrdXekhnRHavQ3yqSovp0ONgncdDbm
+ AskeW2XstbCdjPdZal1K9K14YQKRFjtSbwW1PpAN1rN6b9RKpmNAJDu2xMl9TqAJShExPryUokr
+ t5IaU8so5PACJZsUOufF1WjhbQVTqxo7rSnb3NpOxUNR8y7P2+4pMlYW2yPvg57mj/GtAPNWuu/
+ F+3qA2gWO5HAyrw==
+X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-Authority-Analysis: v=2.4 cv=YL6SCBGx c=1 sm=1 tr=0 ts=699c0da6 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=Sq0TCQXOQfRWv73L7AsA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-ORIG-GUID: d2tqFbBiahbmA6Y3RuNjkZUlmBs0uTiR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDA3MyBTYWx0ZWRfX1HjDi+EWZ/oE
+ ANX64PC048u7gH08/d/XuahwAo3vf4OVe260dO9GDz/LF0taY2JgZRuwJFH+71p2s6e6Gc6wd9q
+ r+awTUM4LomSN0mbcvMS5AApUIo2SXq4KcskNRM76uaB/qg+GFSp0orNQwLYGPczdde9+Uzfv5N
+ OtMEcCHak+fm4zJo1ViR5TRUd+Sh8DYE93o4vG1YPwse+MLq9WyR6GXxP/GXTM6+StjR45/gZBE
+ LZ8UO7OzfRElvJ2yUpx6C41rnyR4iDW9WJXKMOr7TftFuqnvzPIh8apKWIu6qeJw9ZfH3UWoV8l
+ djy7J7oZ2S8dpbCfM2YQ0l3aIfbs4rNDeKGXdRI6feRjIpbjVR4GdOF3xfWHr8268HeMgJZU/gN
+ Q8liXtIab0gmjw71xBPsoJWCWwudY0oXBYR1vzJIlay4K0djSjEkrqUOTTXQvTIGfe1Vo3u+C0m
+ kgg0z3rPmehNiZbsfwA==
+X-Proofpoint-GUID: d2tqFbBiahbmA6Y3RuNjkZUlmBs0uTiR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-23_01,2026-02-20_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0 phishscore=0
+ impostorscore=0 suspectscore=0 clxscore=1015 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602230073
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267292-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[fairphone.com:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267293-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,msgid.link:url];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 51755172D1C
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 47B33172FB1
 X-Rspamd-Action: no action
 
-On Sat Feb 21, 2026 at 3:49 AM CET, Dmitry Baryshkov wrote:
-> On Fri, Feb 20, 2026 at 12:26:48PM +0100, Luca Weiss wrote:
->> On Fri Feb 20, 2026 at 11:51 AM CET, Konrad Dybcio wrote:
->> > On 2/20/26 11:40 AM, Luca Weiss wrote:
->> >> On Fri Feb 20, 2026 at 11:00 AM CET, Konrad Dybcio wrote:
->> >>> On 2/20/26 10:19 AM, Luca Weiss wrote:
->> >>>> Add a generic-adc-thermal node to convert the voltage read by the
->> >>>> battery temperature ADC into degree Celsius using the provided look=
-up
->> >>>> table.
->> >>>>
->> >>>> This will later be used as input for the fuel gauge node (QGauge on=
- the
->> >>>> PM7250B).
->> >>>>
->> >>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> >>>> ---
->> >>>>  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 83 +++++++++++=
-++++++++++++
->> >>>>  1 file changed, 83 insertions(+)
->> >>>>
->> >>>> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/ar=
-ch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
->> >>>> index b697051a0aaa..7857003099a6 100644
->> >>>> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
->> >>>> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
->> >>>> @@ -108,6 +108,89 @@ rear_cam_sensor: thermal-sensor-rear-cam {
->> >>>>  		io-channel-names =3D "sensor-channel";
->> >>>>  	};
->> >>>> =20
->> >>>> +	bat_therm_sensor: thermal-sensor-bat-therm {
->> >>>
->> >>> nit: this should be a little higher
->> >>=20
->> >> meh, it's surprisingly easy to miss this sorting stuff. Will fix in v=
-3.
->> >>=20
->> >>>
->> >>>> +		compatible =3D "generic-adc-thermal";
->> >>>> +		#thermal-sensor-cells =3D <0>;
->> >>>> +		#io-channel-cells =3D <0>;
->> >>>> +		io-channels =3D <&pm7250b_adc ADC5_BAT_THERM_30K_PU>;
->> >>>> +		io-channel-names =3D "sensor-channel";
->> >>>> +		/*
->> >>>> +		 * Voltage to temperature table for 10k=CE=A9 (B=3D3435K) NTC wi=
-th a
->> >>>> +		 * 1.875V reference and 30k=CE=A9 pull-up.
->> >>>> +		 */
->> >>>
->> >>> I think this looks good. Is this data going to be correct for all/mo=
-st
->> >>> devices (i.e. is there a single battery sku)?
->> >>=20
->> >> Yes, from my info there's just a single battery SKU, so that makes it
->> >> easy here.
->> >>=20
->> >> For Fairphone 3 there's two battery SKUs:
->> >>=20
->> >> * (Fuji) F3AC with NTC 100kOhm B=3D4100, ID resistor 10kOhm
->> >> * (Kayo) F3AC1 with NTC 100kOhm B=3D4050, ID resistor 49.9kOhm
->> >>=20
->> >> In reality, one can probably ignore the difference between the LUT fo=
-r
->> >> either B value since it only differs by a marginal amount, but
->> >> conceptually I'm not sure how this should really be resolved.
->> >>=20
->> >> We could have both battery definitions in the dtb, and then the charg=
-ing
->> >> driver could determine the battery that's actually present in the
->> >> system (based on the BATT_ID measurement), but given the design here
->> >> now, I'm not sure how this temperature lookup table would be propagat=
-ed
->> >> to the rest of the system...
->> >
->> > The path of least resistance (pun intended) would probably be to make
->> > generic-adc-thermal consume an ID channel and accept a number of LUTs.=
-.
->>=20
->> Not the worst idea ;)
->>=20
->> >
->> > That sounds sensible since most battery ID mechanisms are probably als=
-o
->> > ADC-based and one would hope (tm) that the values output by these ADC =
-channels
->> > would then be distinct enough for the driver to have an easy time conf=
-idently
->> > selecting one of the options (or a fallback)
->>=20
->> Charger / fuel guage and everything else battery-related would also need
->> to get the correct battery properties for the actual one present, not
->> just this generic-adc-thermal driver.
->>=20
->> But I feel like soon DT maintainers will say that Linux shouldn't
->> dynamically detect hardware that's present and the DT should be the
->> absolute source of truth. That works fine in simple cases, but in case
->> of interchangeable batteries, display panels, camera sensors, this won't
->> work. *Something* needs to determine what's actually there.
->
-> How is it handled for the Android boots? I assume there are (at least)
-> two DTBOs and the correct one is being selected somehow (via the msm-id
-> / board-id?). Or does ABL pass some kind of battery identifier to the
-> kernel?
+Document the QMP UFS PHY compatible for the Eliza Platform. It is fully
+compatible with the PHY implemented in SM8650, so use the SM8650
+compatible as fallback.
 
-On downstream the Linux driver will do the selection, there you have two
-batterydata nodes in the dtb with each their qcom,batt-id-kohm property
-and the driver will choose the correct one at runtime.
+While at it, move the QCS8300 one so that it is sorted correctly by
+fallback compatible.
 
-Similar with multiple display panels, but I think there usually the
-'detection' happens via what's passed on cmdline from the bootloader.
-But not with two dtbs, the driver is selecting the correct panel from
-one dtb.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+---
+Changes in v3:
+- Fix commit message by dropping extra "the" word from last sentence.
+- Picked up Krzysztof's R-b tag.
+- Link to v2: https://patch.msgid.link/20260220-eliza-bindings-phy-ufs-v2-1-4910bdcc585a@oss.qualcomm.com
 
-For cameras, the camera stack is 95% in user space, so it's not quite
-comparable but also there usually I think there it's trying probe camera
-#1, if it fails try probing camera #2.
+Changes in v2:
+- Fixed the order by moving it below X1E80100 so that the fallback
+  compatibles would be sorted, like Krzysztof suggested.
+- While at it, moved the QCS8300 in first, so the sorting of all fallback
+  compatibles will be complete all the way.
+- Picked up Konrad's R-b tag.
+- Link to v1: https://patch.msgid.link/20260219-eliza-bindings-phy-ufs-v1-1-1635e7b53049@oss.qualcomm.com
+---
+ .../devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml        | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-Regards
-Luca
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+index a1731b08c9d1..9616c736b6d4 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+@@ -16,6 +16,10 @@ description:
+ properties:
+   compatible:
+     oneOf:
++      - items:
++          - enum:
++              - qcom,qcs8300-qmp-ufs-phy
++          - const: qcom,sa8775p-qmp-ufs-phy
+       - items:
+           - enum:
+               - qcom,qcs615-qmp-ufs-phy
+@@ -26,8 +30,8 @@ properties:
+           - const: qcom,sm8550-qmp-ufs-phy
+       - items:
+           - enum:
+-              - qcom,qcs8300-qmp-ufs-phy
+-          - const: qcom,sa8775p-qmp-ufs-phy
++              - qcom,eliza-qmp-ufs-phy
++          - const: qcom,sm8650-qmp-ufs-phy
+       - items:
+           - enum:
+               - qcom,kaanapali-qmp-ufs-phy
 
->
->>=20
->> And for most of the ways to detect which of those are present in the
->> device that is booting, you need half a kernel to power up the various
->> hardware and do some basic communication to figure out what's there. Of
->> course you could say that's U-Boot's job for example but not sure you
->> want to add a CCI (I2C), ADC driver and much more...
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260219-eliza-bindings-phy-ufs-3d95c2377aeb
+
+Best regards,
+--  
+Abel Vesa <abel.vesa@oss.qualcomm.com>
 
 
