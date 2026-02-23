@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-267648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMkWMV+6nGlHKAQAu9opvQ
-	(envelope-from <devicetree+bounces-267648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:36:47 +0100
+	id 0IlaHkq7nGlSKAQAu9opvQ
+	(envelope-from <devicetree+bounces-267649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:40:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D32F17CFD6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:36:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D009A17D060
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:40:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 17C5530680AE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:34:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 58D7A312C082
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01D0372B41;
-	Mon, 23 Feb 2026 20:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EAAB3783D8;
+	Mon, 23 Feb 2026 20:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDmF2Zv/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gczZox2B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A62D1BC46;
-	Mon, 23 Feb 2026 20:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3CB3783D4;
+	Mon, 23 Feb 2026 20:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771878877; cv=none; b=EsYXKJ6AqtaoepG4RFQcLOZEj1CS7+Eaq3g7WDZKF2kjin9QZZQk1BYV53Lyz8VeBO9sRhs8FI0nxf9YQ/21ymlKkRf3JXPwYGIE2d9AE+2lAs9heWNKN4SzwIsYNSCEWSHgnz/QQkdH8jhcwkd/sC4gHWLbzX1sdzrfI3kRyd4=
+	t=1771879079; cv=none; b=UF1JTy3aTEF0ua8d15tlC8dpkzsNK/zyATTR3+0tkyOEl5+mjpFELg1YDear7scTrchwfu+tBaqWGtz/Zl3IkLmZitSWvOzsLxGnQwZ/c+20rtU4xkl440lqMOfX6MoUPNXUjanJUcRc0QkIDL3lCFfuShQIu0L2SunmUH+cYx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771878877; c=relaxed/simple;
-	bh=agwFHK677eRcmoaMBCgPnV8LmYwoYhIaK5ArgeRinfU=;
+	s=arc-20240116; t=1771879079; c=relaxed/simple;
+	bh=kVj3cRJntBNBLWGA67YC2O0Cr55GUAz8iXFyruza7eE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sL2cyllg35cOkjJHlMQk+7AGoU+ek1LPWETbOWu5SAZ0LWVZDG2N8/oq90zwlooF69Rp9pTBE8qUHhoyjLIRMft2nveC79CSHbPY/W5Xp+We+e4BkW5TdPIV6GogzoDPowMNV/+N2zK3HOUmwbC6QWoPlUvej+jnbnFz+XfzXdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDmF2Zv/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23881C116C6;
-	Mon, 23 Feb 2026 20:34:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MpktitS6Gw9GKuR/ip3ewWVSK6tkkI/B1KfAXujWmXwAZu0udR9/hlW4F5elysqebPG2aMtIR9uxSg7jQAp3fRVd3re6Wo5brcifh+ma+DpSwasJellpWUory4PYbynVOjwBFdwwi7nZY1TGwhZxN2XmbkzpMMVFZPtVex9TlRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gczZox2B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B880FC116C6;
+	Mon, 23 Feb 2026 20:37:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771878877;
-	bh=agwFHK677eRcmoaMBCgPnV8LmYwoYhIaK5ArgeRinfU=;
+	s=k20201202; t=1771879078;
+	bh=kVj3cRJntBNBLWGA67YC2O0Cr55GUAz8iXFyruza7eE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WDmF2Zv/GO1dsSpisw+y5UoS08rTUwIxbVUVBkoG/G5mJ1I2l8plwQmw2DZZUUw2q
-	 v8yJ1M5VNlT+NpO5BNWVk+SCNbatrd6U3vqVpRCzCazQLb0XOzwJ061qf0dBPq7t4S
-	 jliigBsuEQ0LvM0IM72hq4KkiHmWtusLah3u+hlm0HCoHBYrHHl4qlA4m0lfsaYZKl
-	 qoH0ohA+p8vdl0bsKXQabEq+htXhAKBfBNFn2rScCodn2GTpjBy0ompzpyYy+w9X6z
-	 vNkz/0DmteXgV6rRETvU2KtCwnF1qXAIN1S0q+7X7jiMs9KpiLCc5X375ZTAUF5mSA
-	 5oAcDEpGhc98A==
-Message-ID: <9009be77-8708-4403-b254-ebbd5aec103a@kernel.org>
-Date: Mon, 23 Feb 2026 21:34:31 +0100
+	b=gczZox2B2UQlhl9Z903SXDMUu5NWa2nbWTtdMLdCbGmMqgEKI+1rDIjyeD2ybnbeA
+	 TYB/yLLw9kpEmQ7AysBGQQL+JGVE4Wtrh4riS27cg+2YCTLzs6DkYFl2BrA0sKtRxS
+	 O76tbO8BfEMGqdZf9s/h9eqd7x/FIuSyweMlzCTl/JY3UKgLDQYza4SKi32K6c2tV6
+	 NBXq5vG/ACkD4IkK3ctqExSjDe8ER+iS/RnLNGm2w65tx/GrkivXE0+JO1Y/S1WDTA
+	 CAp5LnMK+CRg1KRYsS8cVLrtqfzMGHOiDTzKxRhAjLKZNphE/0+MJd4dnkqSOIHsz7
+	 F/uUtLK5IwJ0w==
+Message-ID: <a3b01ad0-faf3-480e-9320-db7b7c426a3b@kernel.org>
+Date: Mon, 23 Feb 2026 21:37:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,27 +53,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v3 0/4] arm64: dts: qcom: Introduce Glymur SoC
- dtsi and Glymur CRD dts
-To: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, rajendra.nayak@oss.qualcomm.com,
- sibi.sankar@oss.qualcomm.com,
- Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
- Maulik Shah <maulik.shah@oss.qualcomm.com>,
- Taniya Das <taniya.das@oss.qualcomm.com>,
- Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
- Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>,
- Qiang Yu <qiang.yu@oss.qualcomm.com>,
- Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
- Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
- Abel Vesa <abelvesa@kernel.org>
-References: <20251219-upstream_v3_glymur_introduction-v3-0-32271f1f685d@oss.qualcomm.com>
- <177187657304.166046.16689907944315673624.b4-ty@kernel.org>
- <eijiiyxjtj6cw25gb3xaaeqitemtmrxeemcb52csoy34vw2wme@y22ajzhyfikm>
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: monaco-evk: Add Interface Plus
+ Mezzanine
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Umang Chheda <umang.chheda@oss.qualcomm.com>, konradybcio@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mohd.anwar@oss.qualcomm.com, krishna.chundru@oss.qualcomm.com,
+ monish.chunara@oss.qualcomm.com
+References: <20260222173545.3627478-1-umang.chheda@oss.qualcomm.com>
+ <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
+ <a7777e5d-f9be-43c5-9f3f-4d84e16f6e89@kernel.org>
+ <jncbztn4xohzns734i4o2hsherdshjgxqtiglh7zf2oz7nkujs@an24wf3txymy>
+ <87e3de23-cee9-4789-87ca-e85826af7760@kernel.org>
+ <sf4jvwou4wtlxamwgkwb5c7adujz6dwoqwws2aq4z7jjvblbvm@fb5kqkt23ktm>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -119,7 +114,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <eijiiyxjtj6cw25gb3xaaeqitemtmrxeemcb52csoy34vw2wme@y22ajzhyfikm>
+In-Reply-To: <sf4jvwou4wtlxamwgkwb5c7adujz6dwoqwws2aq4z7jjvblbvm@fb5kqkt23ktm>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -132,53 +127,53 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267648-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267649-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,gmail.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:url]
-X-Rspamd-Queue-Id: 2D32F17CFD6
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D009A17D060
 X-Rspamd-Action: no action
 
-On 23/02/2026 21:31, Bjorn Andersson wrote:
-> On Mon, Feb 23, 2026 at 01:56:10PM -0600, Bjorn Andersson wrote:
->>
->> On Fri, 19 Dec 2025 20:16:53 +0530, Pankaj Patil wrote:
->>> Introduce dt-bindings and initial device tree support for Glymur,
->>> Qualcomm's next-generation compute SoC and it's associated
->>> Compute Reference Device (CRD) platform.
+On 23/02/2026 20:02, Dmitry Baryshkov wrote:
 >>>
->>> https://www.qualcomm.com/products/mobile/snapdragon/laptops-and-tablets/snapdragon-x2-elite
->>> https://www.qualcomm.com/news/releases/2025/09/new-snapdragon-x2-elite-extreme-and-snapdragon-x2-elite-are-the-
->>>
->>> [...]
+>>> So I presume what you're saying is that we should at most declare one
+>>> level of non-controlled fixed regulators?
 >>
->> Applied, thanks!
+>> In general, non-controller fixed regulators should not be there at all,
+>> except when they serve certain purpose, like fulfill the binding
+>> requirement. It's their only point.
 >>
->> [1/4] dt-bindings: arm: qcom: Document Glymur SoC and board
->>       commit: 4ed5f35359db5fac587d4fb9f7f61c1c6f0729d7
->> [3/4] arm64: dts: qcom: Introduce Glymur base dtsi
->>       commit: 41b6e8db400ccba9fc373ac3f0c9ebfd3a22c810
->> [4/4] arm64: dts: qcom: glymur: Enable Glymur CRD board support
->>       commit: 9314c6ecace1a49aa40f75f72278e14d2feb2cd2
+>> And a chain of:
 >>
+>> A -> B -> C -> device
+>>
+>> is completely redundant if all A+B+C are non-controlled.
 > 
-> I don't know why b4 generated a ty message for this version, v8 has been
-> merged.
+> I think that came from me. I don't consider that to be completely
+> redundant. It helps in reviews and in some understanding of the board
+> logic. I'm not asking to implement all the intermediate regulators, but
+> to implement the meaningful relationship between end-user regulators.
 
-I objected to the DTS patch.
+These are not end-user regulators. These are fixed things which no one
+touches and no one needs. There is no single purpose for user-space to
+see them.
+
+Why do you not insist on defining all of such external oscilators, rest
+of regulators, all possible little ICs?
 
 Best regards,
 Krzysztof
