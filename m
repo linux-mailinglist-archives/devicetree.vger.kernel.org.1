@@ -1,220 +1,272 @@
-Return-Path: <devicetree+bounces-267355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJomKrsxnGkKAgQAu9opvQ
-	(envelope-from <devicetree+bounces-267355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:53:47 +0100
+	id KDNVIvoynGkKAgQAu9opvQ
+	(envelope-from <devicetree+bounces-267356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:59:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4A31752AC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:53:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D53BA1753AB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:59:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C4EFF300293D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:53:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4DCA73068F04
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:57:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D42835C1AE;
-	Mon, 23 Feb 2026 10:53:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5713360751;
+	Mon, 23 Feb 2026 10:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SZwIqDe/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ka3LGrkG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012048.outbound.protection.outlook.com [52.101.43.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE17C3502A9;
-	Mon, 23 Feb 2026 10:53:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771844023; cv=fail; b=b31B2BDycgL2+Er1Oo63D7J0xLUMW0YXrrXGoKPyPLe9lO5Bp4PW7nG2wMdWdc8k0xT5DT+IGXaBn+5Dwhqw1VLazR3gQ9HCO1d4pZfH+8VbkY/6jWENLpBG/0MgWZbY1sjista2X//EUJFpfjcQ8HqeWUbOR/GjK8dqx6/eDHw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771844023; c=relaxed/simple;
-	bh=aVH/dje883Hu4WVzBrDFzu4lvx9bqIp/CGwhVzFMX5k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WTPM7kE1ZyW7m89fRXVpy+HD7PKwnwxqS8bRSXEDI7ClOCGVITVSnfjZmzf0Jup1x945AZ3PHUYgqcQcWmCQ7YIKwkYsuaj9SNrxePiDD+vqt4kKgO6RQX6LWd2OceIMpMBTc+Y35hOZNtxcHbHyVUmXzdWtvEKUZaCcHijnMOE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SZwIqDe/; arc=fail smtp.client-ip=52.101.43.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hdavnv8CIbYeIl5SGAYy/Pafn0AOgASkYU2tAJFHSBR+YCqeZaCM++Qp60X4YuUMH/kL8xbHn78yvnnKhgMpikNd3taaUfSO9OkrFEF5oseVrjl20gLOW4DLJ1ojx02KAZvX13tWiTipuJtDSsxdPSfksG1Yf5INEJ72cPdpsVDd8qtyPpaBzojwNxqkJPYMHZ9jSJ47Sh80QayKlw4rqR6pbpS2vrhpKpTL8dkVJLFv9kXo6V0ifK6A/nLeQY01jictKeIkNHLFXO705EjLMMPrKvAElfeFhvC5w3S/P8umQUMZTrtaRAy4itzVhgRiIZr8ZZhJdKY76MN8Q3igLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g/Z6EtIQgGduFrnsZd2N+txdqB0KU0kavY6DqTS9h8A=;
- b=ZJUgervyvXCc9X8o3jAc8oA3uoWcR3DgdZ2ONUKHu4/zNkyrZhI6ym7BSvGcVHdmTuqTbcedGh6cCwLcb2SY2zyN89F+TCRSwFo4/CF4wfixNmVxEstvgZFYDnElxXmYPonWqjkWI984bZKsiaEzTmy2x7Kn2YC9vhfUjwiWsYXiVM6q81/1uLEoF7kf9E8ZCtX9U7B5iv/yL/mGP3saK63tucQg5hSYIDJRBfYJf9t8P2o6T82wxN2BEicmVH4x/cNWHXIGLN7oCSz9Rv8ss0pALLrnc8gA5ukY5nuWP7VRFMC0TD84o0XkCjGsqd5PLO6k/U4Dt9I9uqcLcKDOxQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g/Z6EtIQgGduFrnsZd2N+txdqB0KU0kavY6DqTS9h8A=;
- b=SZwIqDe/vNZxHxOYiaOtcka0uZAjBDZNSUjL+/YbkTMphyDYIXY+FcLjPZNBCKmYXr2ng0OGc2jbDfvEwj8om/sWpsKuYz2Q78Tr2R9QwlTTuv3tpipkXDMlkMGf2nsTcvTYm+veNEj8uNJ0ZrBxeCyb0RHLuM2gIbV+UZX9dTs=
-Received: from BY5PR04CA0030.namprd04.prod.outlook.com (2603:10b6:a03:1d0::40)
- by BL3PR10MB6116.namprd10.prod.outlook.com (2603:10b6:208:3bb::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Mon, 23 Feb
- 2026 10:53:39 +0000
-Received: from CO1PEPF00012E61.namprd05.prod.outlook.com
- (2603:10b6:a03:1d0:cafe::ee) by BY5PR04CA0030.outlook.office365.com
- (2603:10b6:a03:1d0::40) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.21 via Frontend Transport; Mon,
- 23 Feb 2026 10:53:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- CO1PEPF00012E61.mail.protection.outlook.com (10.167.249.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Mon, 23 Feb 2026 10:53:36 +0000
-Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
- 2026 04:53:36 -0600
-Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
- 2026 04:53:35 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 23 Feb 2026 04:53:35 -0600
-Received: from toolbox.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.73.74])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61NArIFH179443;
-	Mon, 23 Feb 2026 04:53:32 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH 4/4] arm64: dts: ti: k3-j721e-common-proc-board: add ti,min-output-impedance
-Date: Mon, 23 Feb 2026 16:24:15 +0530
-Message-ID: <20260223105448.1110428-5-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20260223105448.1110428-1-s-vadapalli@ti.com>
-References: <20260223105448.1110428-1-s-vadapalli@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2169A35CBDD
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 10:57:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771844244; cv=none; b=bi9cIjcy9p+aXZfV3ZCLh03CAqmJBl+fjW9Os6f+hiOeNEDGWa7bBAMCQjYqbMXW++IKcOM2tRrRFJX/vxErN/8uZte1QofK+jVZTKYo2HxwLD8atvHsGyYPXq3Ql2e8FjjASvwmPqEyLyGyKL/Dn/gWI0vb9IL2tbDraiTmvBY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771844244; c=relaxed/simple;
+	bh=xy346hVamCRC/UcZKSgqxNYyzjui+idtbvM8nTV/AfQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=oITYSPP4FOkrDd80L3c7ARINxIu3mzZQr2alVWnKyyR60Wb2me/pVptEcL3V1D0/57atq75FFzSCFa55pUYm9pNDwCU4Ayy05oBmwBD5OQ/nlvw0UV4W+SZAMMa2TEfOtaG29Sjlq8ZLDVJTB6okzvTC3sJnuCnhZGu2Y0RQU3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ka3LGrkG; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-480706554beso50872465e9.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 02:57:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771844241; x=1772449041; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=A9juCIWO3/qNsUDquSKfNxba1OKTRHA92+YWH/XuFNg=;
+        b=ka3LGrkGA/BLd9StmBpUu91OKM0Jns21oVQBhjaP8aGMTm2LpYpmUtxNhge6AzdAGr
+         96YHEUsKlUG6f1AcN8goeKPO+V75/ygSG9WE1r8q5vBzGkIdyvNush/Okeyc2DT66NK4
+         ESzfGgaGu0aOZtQg92+jIwz20MsUIom5QnWcDVTSStv/ZKI3Fx1mbEXjwDqu6RFX38Ru
+         sOI2rpuiXwJXIbNhfUdlo5I2CmU+/FvY4vbgbh7uH6Acaya9Dvj/gUN3HT/oOQoP4XD4
+         UW/mEbzS3Tfl8CrApGpp3Gw83401Q02LHqBk15Cs2j67+mu2Zk44SMLp+GOd2rAnLgGN
+         07gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771844241; x=1772449041;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A9juCIWO3/qNsUDquSKfNxba1OKTRHA92+YWH/XuFNg=;
+        b=lT7dwTgnU0aVTKjYYERnC2jF6COUtz2ikgM4K+67ljE/6iL6Myb49MH4w9LEf+EDfR
+         ngYfq89olzaXnIhxdM4gowQ1Of5H+0zbNOZWyf0QPwXGRABkod4fn2Oti0SY6SpPz7/5
+         pvXcbrfkrwHhh7wShKO8cGvMMgC3x4bvrBCqjZC+TjQuUbZydaL+pzdmsWkYrr92RKRh
+         mD7TE19pZHFgykgspi/W9NBpE6QpnY1Cy6ZlxI3EbeB36QFA0YYlLfC6e0ZA9PR7UPoJ
+         ZjyLjAJGlZyb2WWLkRbBg/JSXOkW8nYVvIuBNgmEk3en6Y2/2aDUtujJFUftQdQOyXbC
+         gAAw==
+X-Forwarded-Encrypted: i=1; AJvYcCVpt+KyT0SyyfjGDcDZH+pwN89iU1mY1ZZSvhC2lXzvwiEDoCYWRsJsjLWVXO8Yz4mg9ZEqoUhLVcI7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsLLIjgGdt+30/zcim1uT7uZ4LaS6oGX1UsgwZGan0AbPMpYGq
+	B1P9RDKesUBYKEtTAAM4YTa0GHLgFEyyB146OGJ5y5LAbaXRNwV6Cxhs
+X-Gm-Gg: AZuq6aJdGODK0KNUv+cHyvbUJeQCDHI6ej6nJ3dWyV0Apcquol+GrX4RD2pEpQzhmZd
+	vZmaXaIpuqTQJ9QVDIEjrUkTCD1oHKcBKxKNz34w1YmWe9/JkfCNeJcrc+KmWQY7PcwxuVIbbYD
+	LxXQ7d5Vci5Ka9W3PB7AV179YOnL1KenwlWRhSY+Sv3qwc9D85d5n9nm5VSYLuguY6LzYgJ9HOS
+	E0tq37hjrxw50YC4V48WzWygTgHA4/JzpMzgWILG0ER06ryM8oWeTJ+qumYajtPhg6U24kFallj
+	6yaokCGhHhi8f4DuqorHbNBbnflMKkje/eo4GoPNwZH0KUtLcxGENJ9WQ5lYNcv/M4nLVTiGvdN
+	3HzvQ5Euthr8gD47lHnX5Z2hwvjCM+miQR2rH8vtSlz4UNC+Apnc/l8U0/Ya4kXJdbaXbHI06Jd
+	tqmaX+NBCs/vG+ne0pkMSLbcAyn1FavU0YyLlQ9fcHTCcjGnSrTgws6LehgQH42+U=
+X-Received: by 2002:a05:600c:8183:b0:47d:3ffa:5f03 with SMTP id 5b1f17b1804b1-483a962e09fmr116392445e9.21.1771844241031;
+        Mon, 23 Feb 2026 02:57:21 -0800 (PST)
+Received: from [192.168.20.170] (5D59A51C.catv.pool.telekom.hu. [93.89.165.28])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483a3dd3391sm166294125e9.1.2026.02.23.02.57.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Feb 2026 02:57:20 -0800 (PST)
+Message-ID: <10f15883-d8db-4872-8af2-7a8cf293780d@gmail.com>
+Date: Mon, 23 Feb 2026 11:57:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Gabor Juhos <j4g8y7@gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: cznic,turris-mox-rwtm: convert to
+ DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260221-mox-rwtm-yaml-v1-1-25dec4a0228b@gmail.com>
+ <77c45be6-a0c1-4799-9491-f7e492d60aab@kernel.org>
+Content-Language: hu
+In-Reply-To: <77c45be6-a0c1-4799-9491-f7e492d60aab@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF00012E61:EE_|BL3PR10MB6116:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c98247c-1c59-4f3e-e251-08de72c9cc09
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4LRvIOs4RBxswyAnm7ELb4ugZYkIuRNXLhdxRVly77iDmUtF3wn/uYfOuKsz?=
- =?us-ascii?Q?WuRV22bb6GxGEzxoVXEU1WNskJRUAtJzTdpDnkfU5GfhKI+qAKRaN5mIefln?=
- =?us-ascii?Q?mwex3TThaqpBqO6iIGKU443dGQHQE9/aoMypzsgyaVh4jbeedVgukx1v/sBA?=
- =?us-ascii?Q?HuAS6yXve8JSiJmGErGpepcSAMpqWKEOcSkwKj5PnSlPAOWGUR9Ooc+7R7OR?=
- =?us-ascii?Q?oxoSxL7DIvoeMxhsL8oEU/2psE6Mwpijbz3mqebSkvoHzBazuR0jqnoH9FGE?=
- =?us-ascii?Q?l8qn5toPWrsUTWhCoVkNeCwQHCHPTyEIlP9Mwe/ZgzWLJNFRG9coPl5rrUyt?=
- =?us-ascii?Q?XR3ftUXFed55p/OxjUImJwN/uyC1tMO1Il9BP+aUBydkG4rL0FFdgGIL8HJ3?=
- =?us-ascii?Q?8EFsGcji/p5oM0/O1aCh0DKsr4sLFOx1ZEfXnWNAYe/P/bWjpVl44FyYV2AG?=
- =?us-ascii?Q?5CCsl4U28/ul3Lz5UsHacNXTwL2e3V5JeAqtQxSAwmTS3mvcwHX5Z8kszK7D?=
- =?us-ascii?Q?yWg+9cvKXwsHp2lfUP9v64wW0DXWnxdV2KspSRPbN1IxzmI725pXX4ZgFInd?=
- =?us-ascii?Q?cDQhacna8fR03RU4wSwOOLH32TyE0f68rgQM6CIy6X3jX7yrL70ebMA5Djvv?=
- =?us-ascii?Q?9Y4UOu7H/UcKnqYmaCwgaF4VTSRSd8ghJzUTNjEF0VfXlu/z8YK9yHvIccsI?=
- =?us-ascii?Q?QDITynl+g3f5Pr+Un8ZI6Bp4bpIq33EYYwzpJidZKCnzx36ElRzFEo0MHOov?=
- =?us-ascii?Q?LXnXhz/r2eomwuUTKXUPIqyfaLbCLvWej1pfEfoQ+5md6o+pnyeyGVU40Gfy?=
- =?us-ascii?Q?0R1HdPW824KfWfUuZGs+UFnHJIqiydilgaeEuvgojqHBu/04T0pzf59tj/3i?=
- =?us-ascii?Q?/cbQyCSsf4R02Wpirk+3/4A1v9zRUP1274vlC33Gy16oe/cICcb+M2Ccg7AA?=
- =?us-ascii?Q?MZcomuVYWt1QaWMaB5N9TkHUdpd+XFBLhOQg1IttY1elYNUsFUMZAruEkui6?=
- =?us-ascii?Q?zZ4iONN9se9cbjU1+u/0sBtTVg3jCx29iAV8LLhfqUGMlRlTQhV6xrjX2I/W?=
- =?us-ascii?Q?2BmWRatOcD2lSPJyXR3XAao0Yy+HJ3+nSKE2k4uTCiy/uTcp0NM8dy/vOpS2?=
- =?us-ascii?Q?4hjUgMcNka6JkPj+uhsEy6rknJjGq5w3m9EHrJus6Bw2IC0Aujrwk1VfPvZH?=
- =?us-ascii?Q?lhFIEHtcmLCDzo3/89zhE3m4Zr3/5nkl2MSS1cWizE+YrugO0t7YHcVwPWvt?=
- =?us-ascii?Q?sgHJU2islNBkVRHVttBZvNecruvUA2N66/PIpd+6b4aFW+IHi6wpRhbTjDSU?=
- =?us-ascii?Q?PSKZ8dGup5qI4GME1RcBlARFXCSfj0nTXEVV2jLjAC5TPFgxE/kERzeCbTKC?=
- =?us-ascii?Q?PXAM/Py2bRFiLJ/Pc08YByZ5QpGSLxYPu1y5durVpigAONiUFs6ruEka/l5n?=
- =?us-ascii?Q?m75DJt9bOe/QLlsrufEwBBiNMfRczPaHlxuqnKQU0zg/ivpAZmOaqN/OBYP4?=
- =?us-ascii?Q?HMb9xn4BMJs5bFWImisxvDimSP6EAn1CHLYkztvEWdCU+EB7Eqf+QCDuiQTc?=
- =?us-ascii?Q?gSNylDTxQAcMfmGgZoyYnawIPeiJ2trSXeGzewh81QWLFfJvVtr4K0LIsMIu?=
- =?us-ascii?Q?/e5q/PkW6x9K2+fxWkjFozde4Og5K49wz7Rsv+433xfLXOwnFtemqR83pIW8?=
- =?us-ascii?Q?5y4hVA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	c7Sa7hN/5AwpAH4GtyoyP8UbzRGLM2M/AbbnQhw5M1T/VoBXGG2IPfBOjDoLMAPfzSxtJoAThNQZG/SS1kPQydgrXgMnxbIQMWyURj6bud1mY47UMHMS3Tl5Ls4pkBygZtn/LijkcwDVx7jB6DAIKEqortlfN2XWl9nzaDIaPkYlPY2pIeF+kauxO9m7WHbAjsTzHYxTXEp2CRROzjrSqhAZHASTk6mEtStlfZJv2wTgGJZOHQu///8gKICQf6S4RqU9l0i4B67BFkJ9O/8MDkLT0ub2vkot94ZLnBNg74yce3CtnCYCFfnqkmeG415tC2tH+2WQGT2J9pnMlBnDHjanKEkS7r0Q7SuOHtNje1VaFuxhbTG4m1DSaSHYc+rMMOPnV5yaR20wu/LbLDT1b7XC5XNE8fR5vQmKqK3JL2UxFnA6J0Im/Fl6aCH8E8LZ
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2026 10:53:36.9114
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c98247c-1c59-4f3e-e251-08de72c9cc09
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF00012E61.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR10MB6116
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[lunn.ch,bootlin.com,gmail.com,vger.kernel.org,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	TAGGED_FROM(0.00)[bounces-267355-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267356-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:mid,ti.com:dkim,ti.com:url,ti.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.0.0.0:email];
-	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[s-vadapalli@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_NONE(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[j4g8y7@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.999];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: CB4A31752AC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D53BA1753AB
 X-Rspamd-Action: no action
 
-The default impedance for the MAC I/O lines from the DP83867 Ethernet PHY
-is 50 Ohm. Based on the board PCB traces, this impedance is relatively
-higher than expected, resulting in CRC errors for packets being transmitted
-and received. Hence, add the "ti,min-output-impedance" device-tree property
-to set the impedance to its lowest possible value of 35 Ohm as described in
-the DP83867 Datasheet [0].
+Hi Krzysztof,
 
-[0]: https://www.ti.com/lit/ds/symlink/dp83867e.pdf
+2026. 02. 21. 19:31 keltezéssel, Krzysztof Kozlowski írta:
+> On 21/02/2026 19:21, Gabor Juhos wrote:
+>> +
+>> +description: |
+>> +  This device tree node should be used on Turris Mox, or potentially
+>> +  another A3700 compatible device running the Mox's rWTM firmware in
+>> +  the secure processor (for example it is possible to flash this
+>> +  firmware into EspressoBin).
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - const: marvell,armada-3700-rwtm-firmware
+>> +
+>> +      - items:
+>> +        - const: marvell,armada-3700-rwtm-firmware
+> 
+> This makes little sense. How this can be alone and followed by fallback?
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 1 +
- 1 file changed, 1 insertion(+)
+I admit that this is quite messy, but let me describe the current situation in
+detail.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 47702fb279a4..53e7fbcef52b 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -777,6 +777,7 @@ phy0: ethernet-phy@0 {
- 		reg = <0>;
- 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
- 	};
- };
- 
--- 
-2.51.1
+Originally both the dt-bindings documentation and the 'turris-mox-rwtm' driver
+have used the 'cznic,turris-mox-rwtm' compatible alone.
+
+In commit 90ae47215de3 ("firmware: turris-mox-rwtm: add
+marvell,armada-3700-rwtm-firmware compatible string") a new compatible string
+'marvell,armada-3700-rwtm-firmware' has been added to the driver.
+
+Additionally, in commit 3a52a48973b3 ("arm64: dts: marvell: armada-37xx: move
+firmware node to generic dtsi file") added a node to the Armada 37xx SoC dtsi
+file which uses only 'marvell,armada-3700-rwtm-firmware' as compatible. In the
+same commit the 'armada-3720-turris-mox.dts' file has been modified to use both
+compatible strings, and the 'cznic,turris-mox-rwtm'  has been chosen to be the
+fallback.
+
+Unfortunately, none of the commits above updated the original dt-binding
+documentation, so it is out of date since more than 4 years.
+
+In short, the driver handles both compatibles equally, none of those are a
+fallback of the other one. And in the existing in-kernel dts files, the
+compatible is specified in the following forms:
+  "marvell,armada-3700-rwtm-firmware", "cznic,turris-mox-rwtm"
+or
+  "marvell,armada-3700-rwtm-firmware" alone
+
+The dt-schema is based on these facts in order to avoid new 'dtbs_check'
+warnings, even if this is not the optimal/best approach.
+
+> Plus adding new compatible has to be explicit in commit msg, including
+> the reason (existing users).
+> 
+>> +        - const: cznic,turris-mox-rwtm
+> 
+> Anyway, not tested. Please test your patches BEFORE you send them. I
+> finished review here because of that.
+
+Sorry about wasting your time. This is my first schema and I have missed the
+'yamllint' warning indicated by Rob's bot in the other mail.
+
+Nevertheless, I have tested the patch before sending, along with several different
+versions besides the current one.
+
+Without the patch 'make dtbs_check' throws the following warnings:
+
+  arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm']
+  arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm']
+  arch/arm64/boot/dts/marvell/armada-3720-db.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+  arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm']
+  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm']
+  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtb: /firmware/armada-3700-rwtm: failed to match any schema with compatible: ['marvell,armada-3700-rwtm-firmware']
+
+Below are the results of testing different compatible rules.
+
+  properties:
+    compatible:
+      const: cznic,turris-mox-rwtm
+
+  arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible:0: 'cznic,turris-mox-rwtm' was expected
+  arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm'] is too long
+  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible:0: 'cznic,turris-mox-rwtm' was expected
+  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm'] is too long
+
+  properties:
+    compatible:
+      const: marvell,armada-3700-rwtm-firmware
+
+  arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm'] is too long
+  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm'] is too long
+
+  properties:
+    compatible:
+      enum:
+        - marvell,armada-3700-rwtm-firmware
+        - cznic,turris-mox-rwtm
+
+  arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm'] is too long
+  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware', 'cznic,turris-mox-rwtm'] is too long
+
+  properties:
+    compatible:
+      items:
+        - const: marvell,armada-3700-rwtm-firmware
+        - const: cznic,turris-mox-rwtm
+
+  arch/arm64/boot/dts/marvell/armada-3720-db.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+  arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+  arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtb: armada-3700-rwtm (marvell,armada-3700-rwtm-firmware): compatible: ['marvell,armada-3700-rwtm-firmware'] is too short
+
+
+I wanted to get rid of all warnings, so I ended up with the current patch.
+
+Do you have any suggestion about what would be the acceptable solution to clean
+up the current mess?
+
+
+Regards,
+Gabor
 
 
