@@ -1,190 +1,222 @@
-Return-Path: <devicetree+bounces-267394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267395-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0B2zJ1ZCnGk7CgQAu9opvQ
-	(envelope-from <devicetree+bounces-267394-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:04:38 +0100
+	id wNNhMjFDnGk7CgQAu9opvQ
+	(envelope-from <devicetree+bounces-267395-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:08:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3043E175D97
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:04:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78972175E51
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:08:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id ACD84304AD1A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:03:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 60D2E301ABBE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F4065361DB1;
-	Mon, 23 Feb 2026 12:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29BE23659EA;
+	Mon, 23 Feb 2026 12:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hwN/UUln"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e7A463ci";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hbgOwtGG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFAE1E8826;
-	Mon, 23 Feb 2026 12:03:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02D1364EB7
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 12:08:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771848211; cv=none; b=Ftqboh9fj3PVXx8f0A4fPj/0GICmw2rwD8eicM8CPBZza9Lw8e4ciB4chdOyQzII5jou0P2dcbLsRGYHFGxQZhVYGxkqxHUaeY1IVYY5GVgrVPEitzzYUe7V5kUKFtpVamTpdHJpKm9+QQ5RLHj5pijLuHUmDcy0ihwovUzdUwE=
+	t=1771848493; cv=none; b=hO/MUmRQohHNZysAJmqt0KTDA/TKOHD7p3Y9Up/P2tGX4eNrLtchfAuPvtdWLfq51E/nwH7/qw4YLEMUK81LkzYvZ5qgh2UMvU+CYNPApGlKi+WdPtPETUylJ3C4CrInNhruMSWry/Tlm3PRKxgcT4fEfhff3VclGDZhHlx0N40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771848211; c=relaxed/simple;
-	bh=IaMmGdspUNNCNtc+Hjx08GJ1ueA6TR73WOYLu1ABTyg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DIP62wdyyaPoxTh2r155fn6H925nW90+UKFUJu5QExlN2dDe6tPSSkrkVazyC0hNLekx5GT5ik/1GfEp3Jp5k8OntUpQVJBs62tomZFblzRqr88oTR5IKwBjbruI7J3f6F5b9H8V4+9OYrMwagbwl25sVkaoJ5m960aKT1Jhc5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hwN/UUln; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2AC4C116C6;
-	Mon, 23 Feb 2026 12:03:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771848211;
-	bh=IaMmGdspUNNCNtc+Hjx08GJ1ueA6TR73WOYLu1ABTyg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hwN/UUlnkDRi04yIKwdb9z9hbavnx61qFbu8FQv+edy8YGv4ztGacwQE/krB2l/fU
-	 dYBlLaHJxRLMBZoM/b0i7oNHF7LFTc1AZcD9N4hftYGFZ/UmDYHMGR3PJaiZaCyMKL
-	 pQSp3ww/K2jwUoQvjBw5WDGMGCDJKnvrRhVrn9xg56D7pZ+dPf5hV3tnlpH+aTjjuj
-	 gpz4/jh3KBHxGKjMrh7GsesmreWCFJEvjFBIrYlfnZIraVeigdZ5rgesPxFu0uuzjR
-	 ehRW+Lf3daELPhBw980jGfWB3bkxW9+/HG6hnE2R2Ivgb7BPE6WD3XfY6LsXX9XLk/
-	 HaWuLF0hA7QKA==
-Message-ID: <a5d4ebf0-9d99-494c-b46b-a6140610c9e2@kernel.org>
-Date: Mon, 23 Feb 2026 13:03:27 +0100
+	s=arc-20240116; t=1771848493; c=relaxed/simple;
+	bh=l1P/X8RaAMg/5pk8zCokOgngfwYIKQ6wvGBAfwDa3YI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GCBZP8rnSSPO59WbMDIrQ8Zc/RvttWlWo0ALRV8YjD2/FjiWKCpwpg9J2SF1GV5xLucKcKEBjkPCT1dNdUNT954e09xDoAo8SPs4IuGfbO1uAHlW5Wh74mRjjZCTrwH2oicOPtlurUaA4c33FHes9xLmnIhsCiB2K+6vAhse7nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e7A463ci; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hbgOwtGG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61NAYSXD3409213
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 12:08:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=nD29bnRta5GqbY29x+LShH
+	634ju7lcefNjKqeboAYaQ=; b=e7A463cianJf0Qg0xYaMLlhZiogSyAAYpNHH31
+	iqeVnE3mg5TaAe7CP+Vsd/olRzsDokV9DZVfxh5RX/t7Y5yb9ul37L7akBUI6dRg
+	p5R7fH6wGjGrvaq7MZhNN8tjVnHP3jn6meZFIrVZZgz5/go513vGq1dU+dJiqjlQ
+	xoR5d7jHGVf7Qh7yEGZncVYxw8joCmdw4GII1xvyW08NNvW+GNXsykWaNyfWI2Q+
+	t56KXlWnid4cgap0Ko7tshPNoXKzlNGxvOLsyvXJEeMIXKWhBqibb4dSDs6zKX39
+	fm1KQrs3BThw8xxtxn9UZs8w4NSDbplO9/gNOGnV9xEZ6qoQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cgn8tr899-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 12:08:11 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cb37db8b79so1577845985a.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 04:08:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771848490; x=1772453290; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nD29bnRta5GqbY29x+LShH634ju7lcefNjKqeboAYaQ=;
+        b=hbgOwtGGUduQXk0/nRSAkr7BG9daQQfbi8MF1IAyJMfloP/JLigm7eiQWCt0oZ7FG4
+         eO1SeDagB37t5mMc0EyCfXsbicIYpJSZ1Es0IqtW0YuGbcyO8uKIyzf/MJfI/IboW4OJ
+         4iemxAAPZNgBnBohhhnQHzoKQm/Zhu9QrHMkWSJnQ2SKMKDUYHI7bPgTZijIQqMugNiH
+         yJR1KOCfH754MMOFiKS0blYRB8edX2d0v6X/7P/1QcI8xin0zgExD8PDTS1p6csLZY5a
+         RiEU+LCLOPSZ8aZnQS7GK5AaSZrUa4lNvswgsZX/VJqBdTLP7sZGVRVkdYH6plXGxKF5
+         Htlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771848490; x=1772453290;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nD29bnRta5GqbY29x+LShH634ju7lcefNjKqeboAYaQ=;
+        b=hk8FoLUgiMDUfMSu4L8CqUqwhIOGLMj5Pu3/ZkoU2FUDSZQTTwXbP178XhAoRKYUqD
+         5y4NPfof4hgbZ3DLxupWyEEBmDWYk8OI+WNtuUuXQGmgIXTg4Kb+xaROzNBdr1aViIqh
+         k3HLmuA65yRMCpZl7Wnlt460QsDGqJvXStS1DhRx6rjddC7H5XqoAiLEBn23shMOFiJl
+         8JXfWBDjEmhyTh2spifTm2D+7m+q8nAbg48me+ZlxYzZw9HSEfmtZT6sAgukifsr4wfG
+         TMba829Qp5Oc37OnBdChYM2HjxuZJOlBrNxmGzOu3cuHpZwKBZgavI9nrizoht9U8CTp
+         EkMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVXn76+gaMMQzYctyUh5iEbvPfO55mL9KTj8ScAzb7wCU6FJ1RSYblh3MTCNRIJiN9Zk06Q6hIxFNQC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYTDmc/Eq05CJwjoxVs2Lt+Foi55R0CXP4DBzWAV1sX5DJdb6E
+	e5o/wFnGn2PuoU0MmEqXdzUNu0gI+4QS6jD2dEV3FRYGCmRxzPQx+tKx9zJsX4qZSLj6cd4FkVg
+	ULx0VEZIwEkmdkrSb/BcG72q3qX1yA/EFN/T1Y4RVTZRX1jIcTPejkx8UQWe1+js6
+X-Gm-Gg: AZuq6aLefaVQqOr9XFQ4mxovTwut2Alrgmm7gtHqyOtxbfOkBcP/Up7MUFHkeHK/vXu
+	OpgO4jVVFiKIxUalDgtZpMOmV/CRJD3b3/8yD3JyySHOxL/B2Ms1+eU4TnXcrs+0z4GK8T2zWeZ
+	Vsv/vCq4wNIwYZq66uCnAP60tbLSxiqWqgLL02bqWpRe/P+vOzWAb0h0OgIrjO1Sye9LcRtYgfq
+	vuvL+tKOaSTbLsOEHan532Vc6K4FoRSkTQ4JtLB4nIuF5D37PzC+8RfDY1VujHR4VGVz5ESIFsN
+	jqxpSyuTlpWiwm63FVKIaA3fMeuF0zHBjNAl95xKQijHq69wwpa+9e2nntGtRhRJAbIquIqjKeV
+	cYYWWFGT8qrr+v5EblZSDhjbgVcGtuA==
+X-Received: by 2002:a05:620a:29d1:b0:8b1:ed55:e4f0 with SMTP id af79cd13be357-8cb8ca6412emr914218585a.39.1771848490112;
+        Mon, 23 Feb 2026 04:08:10 -0800 (PST)
+X-Received: by 2002:a05:620a:29d1:b0:8b1:ed55:e4f0 with SMTP id af79cd13be357-8cb8ca6412emr914214385a.39.1771848489519;
+        Mon, 23 Feb 2026 04:08:09 -0800 (PST)
+Received: from hackbox.lan ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970d3fc12sm16522603f8f.24.2026.02.23.04.08.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Feb 2026 04:08:08 -0800 (PST)
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Subject: [PATCH v2 0/2] pmdomain: qcom: Add support for Eliza SoC
+Date: Mon, 23 Feb 2026 14:07:54 +0200
+Message-Id: <20260223-eliza-pmdomain-v2-0-23fb87eb70ef@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: net: bluetooth: ti: Add property for
- enhanced SCO setup erratum
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-bluetooth@vger.kernel.org
-Cc: pierluigi.p@variscite.com, Stefano Radaelli <stefano.r@variscite.com>,
- Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <david@lechnology.com>
-References: <cover.1771847350.git.stefano.r@variscite.com>
- <db4c7eab9d0c2f71eb61baff240957596f099401.1771847350.git.stefano.r@variscite.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <db4c7eab9d0c2f71eb61baff240957596f099401.1771847350.git.stefano.r@variscite.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABpDnGkC/3WNQQ6CMBBFr0K6tqRtEKMr72FYlM4oYyiFDhCVc
+ HcLrt1M8vL/f7MIxkjI4pItIuJMTKFLYA6ZcI3tHigJEgujTKmMLiW29LGy9xC8pU4CaHXWuoY
+ CC5FGfcQ7vXbhrfoxT/UT3bhZtkZDPIb43j/Oeuv9lc9aKumOOqW2OEEJ18CcD5NtXfA+T0dU6
+ 7p+AcyvYpjFAAAA
+X-Change-ID: 20260216-eliza-pmdomain-dd10911bd4e4
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=openpgp-sha256; l=971;
+ i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
+ bh=l1P/X8RaAMg/5pk8zCokOgngfwYIKQ6wvGBAfwDa3YI=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpnEMibhgyF+jsisUUDVqrKSQMzyOr4d2cQZ/IR
+ r6BwQklZqqJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaZxDIgAKCRAbX0TJAJUV
+ VqQbEADDZS8yACVnC9c+SXfEZ63HCw4YU7pZaLxhJlTcToFAj9sagGdmj4tJzU48DFMo5LlRUoN
+ TRMGf4VQWvJWpQtPZaL04Wr4AauZzBlZSiH8OA3S5mi2YGCrBqCMYlCS8nEbUXOkcKOu1JYN9MG
+ LdnZFcMFilaadzMwfl+gucGLMwE7eHOVElkSB0TpYo8V7WZMRZJ/Fu3cR4ptS5w6xx+Z9EzGhnJ
+ 1Ijb7pGVbmkWHrO+IxbJe7pvBGd+777deyYZmsn5kyBjb+y98oCotMWaUKjIqIu+x55pagqV1Oq
+ z0Mzxcmkf1TbcXhuAJF5ScUcfb/suBwBi47meVdUcOfftfWAS11hBsVQNjx2PIpK/V6pyyss8pN
+ YfzA7Zdk6+cM2Prq8r/GzQniKAEA1TpXMk73pbW+xonpjVogcd4+5EXAzebdgkRtd0H1iTPAGGP
+ psxOzO1Ite0mkB2rbZdVNyssjNq6QFthAkEVq6VNEdQCxL7pzpVoCha7cc/AFSiJbp4cYOSABoR
+ Zv5zAxxVfeNRcj0PA6cC/+NgRzLN1NIEB2qQaXp3uK4XtMGc+g6mVZ+fhp/Cj3ty6YHma9QdY6K
+ i25Msi5ElbTVI7ArjF6LtoFkAhyApobXWswUqWWqxUAocxS1Wt5o6KcXJv+kojFGOma2AvjoPrE
+ yDqXCGiRDXiicCw==
+X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-Authority-Analysis: v=2.4 cv=X7Jf6WTe c=1 sm=1 tr=0 ts=699c432b cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=c55ydOb7OSgMCAo-AKsA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-ORIG-GUID: W39UuQfuy35hXJenGPSvkkONkt-FDd-N
+X-Proofpoint-GUID: W39UuQfuy35hXJenGPSvkkONkt-FDd-N
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDEwMyBTYWx0ZWRfXz+sxao/rz2R4
+ ywE7mhwJvYNZdEpuLDZk42nkZFH0o6+5vFM9HvRitoES/L81wcTLWTYAXOwRIERQvcW3iNYNey+
+ aPgOEljA2RwmCvIXibam2DWoQP2AOEfuq2CRkq9RaqJjeU2hZc8u/LPO+vesU05uXPj9FQAdWr5
+ oxyLXnYjtnKm+eAX/xUmHELluljQ5AEiQI4lrCpJY+lyaXtijk4EPuQwIWGDw3wFf/p5RwgYPtr
+ KYDPulo5Y+25OVl+pwB01Qcsc7DNJrMJDbOrLA+NKQLe1kcnxherQgFaYNOXgPAaJId2VAdesDE
+ QCxcPLnTyRo01K2b/W4kiHmN4RIZEmhpenuYBlYz6Bc8HsMIaXFuidjtjgXwHYutpCeHT6milrt
+ IAGaJ4KAWTJh+4pJgdjwmYvemVGyQXGU8GVLBHFVdWCmCdIQPQ6FyogKKHhVHDaL97NGZNdZ0Q3
+ LDszFKtNjGmcHuHNdDQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-23_02,2026-02-20_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 priorityscore=1501 clxscore=1015 bulkscore=0
+ adultscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602230103
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267394-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[variscite.com,holtmann.org,gmail.com,kernel.org,lechnology.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-267395-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,msgid.link:url];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,variscite.com:email]
-X-Rspamd-Queue-Id: 3043E175D97
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 78972175E51
 X-Rspamd-Action: no action
 
-On 23/02/2026 12:52, Stefano Radaelli wrote:
-> From: Stefano Radaelli <stefano.r@variscite.com>
-> 
-> Some Bluetooth controller/firmware combinations advertise support for the
+Document the SoC specific compatible in the devicetree bindings
+and add the driver support for this SoC.
 
-Which ones?
+Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+---
+Changes in v2:
+- Changed the MMCX and MMCX_AO to the PDs with CX parent.
+- Picked up Krzysztof's R-b tag for the bindings.
+- Picked up Konrad's and Taniya's R-b tags for the driver patch.
+- Link to v1: https://patch.msgid.link/20260216-eliza-pmdomain-v1-0-c51260a47d6d@oss.qualcomm.com
 
-> HCI Enhanced Setup Synchronous Connection command but do not handle it
-> correctly for SCO setup in certain configurations (e.g.
-> BT_VOICE_TRANSPARENT/mSBC). This results in SCO audio not working unless
-> the enhanced setup path is avoided.
-> 
-> Add an optional boolean property, ti,no-enhanced-setup-sync-conn, to
-> describe this controller limitation.
-> 
-> Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
-> ---
->  .../devicetree/bindings/net/bluetooth/ti,bluetooth.yaml    | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/ti,bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/ti,bluetooth.yaml
-> index 290abc22e18a..92ed443cb427 100644
-> --- a/Documentation/devicetree/bindings/net/bluetooth/ti,bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/ti,bluetooth.yaml
-> @@ -71,6 +71,13 @@ properties:
->      items:
->        - const: bd-address
->  
-> +  ti,no-enhanced-setup-sync-conn:
-> +    type: boolean
-> +    description:
-> +      Indicates that the Bluetooth controller/firmware does not correctly
-> +      handle the HCI Enhanced Setup Synchronous Connection command for SCO
-> +      setup, despite advertising support for it.
+---
+Abel Vesa (2):
+      dt-bindings: power: qcom,rpmpd: document the Eliza RPMh Power Domains
+      pmdomain: qcom: rpmhpd: Add Eliza RPMh Power Domains
 
-This looks a lot like controller issue, thus deducible from the
-compatible. And even if particular firmware has problem, how do you see
-changing static DTS on linux-firmware update?
+ .../devicetree/bindings/power/qcom,rpmpd.yaml      |  1 +
+ drivers/pmdomain/qcom/rpmhpd.c                     | 26 ++++++++++++++++++++++
+ 2 files changed, 27 insertions(+)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260216-eliza-pmdomain-dd10911bd4e4
 
 Best regards,
-Krzysztof
+--  
+Abel Vesa <abel.vesa@oss.qualcomm.com>
+
 
