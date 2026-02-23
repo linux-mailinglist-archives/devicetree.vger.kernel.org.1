@@ -1,178 +1,239 @@
-Return-Path: <devicetree+bounces-267601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267602-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDi7J5yenGmyJgQAu9opvQ
-	(envelope-from <devicetree+bounces-267601-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:38:20 +0100
+	id YEuqMbyfnGnsJgQAu9opvQ
+	(envelope-from <devicetree+bounces-267602-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:43:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0790417B9AA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:38:19 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01F2D17BA80
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:43:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 643F3315FD49
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:33:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D3BE530200D4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC50A366DC3;
-	Mon, 23 Feb 2026 18:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0285D36827F;
+	Mon, 23 Feb 2026 18:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqVg9V9B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5T9CLQI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A965E33ADAC;
-	Mon, 23 Feb 2026 18:33:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F53368279;
+	Mon, 23 Feb 2026 18:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771871628; cv=none; b=On1pz3N5uipsqgN/yjxm2Bu4J/VeFsSA2llalEwrtn+CTmP+yryt/42N3CvJA1Dw3RG2ZX7S+qs22xb+p3Jj5o5+r4pMENzMPqNCNiOnNCS8rIshA/nD3vS1E2yU6yOpcTbUM32y88I3NpCKoZjL2N+v+Be3nguRYEkEeFwO4BE=
+	t=1771872173; cv=none; b=thTqU/XsnG8I2nezMqk0bxeLx/Nhaie8MpruGR5tl8ZAPQHUrBaAodOFJKFUeD13+mHom4omuW1B9j9umoMZumyBBStwh70tGpJyxIXylTU+WEX2442lvhr2K5jWD+E1gcNmnjWkb9ixBR1++OwcO1NYMm8LAoAHPw1KfViaF84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771871628; c=relaxed/simple;
-	bh=RhX2UFdyCVFy2VGUE9/HE8xrLzqG6iKIIO/9hX+S7oc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ijm9r8oQtk4GxSCdzVxoEaURA1kfNDhQVUI8EnHlXFKbdk/TXM7rZv7mCrEeY2nULdk/3vhj4Eba9m8XoIBxQ2gUHa5MgYs9fOOymh0Gx4CJI3bdRbsh4r0J+NtGoJuEfFTRhxk8Z3o8czwhnLRVHYeLjilD48WZ4pbpWZk3g1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqVg9V9B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5DEFC116C6;
-	Mon, 23 Feb 2026 18:33:45 +0000 (UTC)
+	s=arc-20240116; t=1771872173; c=relaxed/simple;
+	bh=cT3H/BWva655wpPwCwjSPUa7i99cwIZsZq5v7UNpNiU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ICZ3tLa4uMZ3MJ0iCwiSG37y1RP1DLzWtwYJeSliT8SGACaENNiyJBCJvAet+DMjcpOcPIgo0arD/R852M5/c96cOMEbLSvbCiawprU+4lfBT0sK4IFAZ4gh+cKajZ+pAEgdZkqpuP60yuFkevbgmphAk1vV+wdkaGwp8swf5ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5T9CLQI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99A51C116D0;
+	Mon, 23 Feb 2026 18:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771871627;
-	bh=RhX2UFdyCVFy2VGUE9/HE8xrLzqG6iKIIO/9hX+S7oc=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=YqVg9V9BS4qZnoHA+JEzEc/HkpApWS7qKEeSNksgf+IqqAFIPH1vbiFjz+pZQd1c4
-	 FlZvDz04S1/loQMih3lwkK+vVF6mpbVYjeJOG8Gtg+pMdHARyvRHJIpvq8H+j3nptr
-	 2b1cDr2lnNgRx/d/e/OuB22oM9VY7rmSXXqM3Lt73wyWj7MrfBHgCG7nLtO7qSCmpn
-	 bUy/WhJf0pLGkTNQbnYxgc01zzc+K1EhnEVwiPruB3oNphKToot6yvp5+ewK0J2BG8
-	 0NXTePYMQqIsyA1GBfKr7/CX6704QDCuO6EL8Sygx4QecX5bMikusNlQU43A9Acv/V
-	 tnugzR4HqXaTA==
-Message-ID: <27aec2f7-f4c1-495c-8a7c-5c0a0d09b848@kernel.org>
-Date: Mon, 23 Feb 2026 12:33:43 -0600
+	s=k20201202; t=1771872173;
+	bh=cT3H/BWva655wpPwCwjSPUa7i99cwIZsZq5v7UNpNiU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j5T9CLQIi4r6hjxZV/gWPZoUAq+M2qHc2cQ30X6BEjIQJ32c5mIYOsAY5cuZil7Mo
+	 M7dMeymlrDMI1HefKWJQqkm5rMng83DMY1FxzER0jiUMNsBVc6B5DoDQFDL6YmZIa3
+	 hkdZhvsJ6H9hbFhKvcwFYqHUqPKfONQAxYLmc6Fz8ZMtGd4fpw/lZ1hmWJGZdXyIUW
+	 tWWssGb9LG5WYJOcApICbz5LOP6lSgc1Tm2CrJOOSjl6bZ9kABrpE8cDS+3QsX0SF0
+	 Bv4uBEz0VpF6rDwar1v/Erda7b1Fb3Mv16yc9hbaP48im+EpH3AHMYPvEqdzIuzJ4p
+	 QnOdV5X1bfTNw==
+Date: Mon, 23 Feb 2026 12:42:52 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/5] dt-bindings: pinctrl: Add generic pinctrl for
+ board-level mux chips
+Message-ID: <20260223184252.GA132202-robh@kernel.org>
+References: <20260219-pinctrl-mux-v1-0-678d21637788@nxp.com>
+ <20260219-pinctrl-mux-v1-2-678d21637788@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/2] Add eMMC support for Stratix 10 SoCDK
-To: "Ng, Tze Yee" <tze.yee.ng@altera.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <cover.1769407657.git.tzeyee.ng@altera.com>
- <907db5dd-414d-4333-8667-bfe9e69db576@altera.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <907db5dd-414d-4333-8667-bfe9e69db576@altera.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260219-pinctrl-mux-v1-2-678d21637788@nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[axentia.se,kernel.org,milecki.pl,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-267602-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-267601-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dinguyen@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,altera.com:email]
-X-Rspamd-Queue-Id: 0790417B9AA
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 01F2D17BA80
 X-Rspamd-Action: no action
 
+On Thu, Feb 19, 2026 at 05:23:42PM -0500, Frank Li wrote:
+> Add a generic pinctrl binding for board-level pinmux chips that are
+> controlled through the multiplexer subsystem.
+> 
+> On some boards, especially development boards, external mux chips are used
+> to switch SoC signals between different peripherals (e.g. MMC and UART).
+> The mux select lines are often driven by a GPIO expander over I2C,
+> as illustrated below:
+> 
+> 	┌──────┐      ┌─────┐
+> 	│ SOC  │      │     │    ┌───────┐
+> 	│      │      │     │───►│ MMC   │
+> 	│      │      │ MUX │    └───────┘
+> 	│      ├─────►│     │    ┌───────┐
+> 	│      │      │     │───►│ UART  │
+> 	│      │      └─────┘    └───────┘
+> 	│      │         ▲
+> 	│      │    ┌────┴──────────────┐
+> 	│ I2C  ├───►│ GPIO Expander     │
+> 	└──────┘    └───────────────────┘
+> 
+> Traditionally, gpio-hog is used to configure the onboard mux at boot.
+> However, the GPIO expander may probe later than consumer devices such as
+> MMC. As a result, the MUX might not be configured when the peripheral
+> driver probes, leading to initialization failures or data transfer errors.
+> 
+> Introduce a generic pinctrl binding that models the board-level MUX as a
+> pin control provider and builds proper device links between the MUX, its
+> GPIO controller, and peripheral devices. This ensures correct probe
+> ordering and reliable mux configuration.
+> 
+> The implementation leverages the standard multiplexer subsystem, which
+> provides broad support for onboard mux controllers and avoids the need for
+> per-driver custom MUX handling.
 
+Seems reasonable to me.
 
-On 2/23/26 00:45, Ng, Tze Yee wrote:
-> On 26/1/2026 2:19 pm, Ng, Tze Yee wrote:
->> From: Ng Tze Yee <tzeyee.ng@altera.com>
->>
->> The first patch adds the device tree binding documentation for the new
->> board compatible string. The second patch introduces a new base device
->> tree include file (socfpga_stratix10_socdk.dtsi) containing common board
->> configurations, and the eMMC-specific device tree file
->> (socfpga_stratix10_socdk_emmc.dts) that includes the base dtsi along
->> with eMMC controller configuration.
->>
->> This follows a hierarchical structure:
->> - socfpga_stratix10.dtsi: SoC-level definitions
->> - socfpga_stratix10_socdk.dtsi: Board-level common configurations
->> - socfpga_stratix10_socdk_emmc.dts: eMMC daughter board specifics
->>
->> Changes in v5:
->> - Move Acked-by's above the Signed-off-by: and remove the empty
->> line between them.
->> - No code change
->>
->> Changes in v4:
->> - Included Acked-by from Rob Herring and Krzysztof Kozlowski in the second
->>     patch commit message
->> - No code change
->>
->> Changes in v3:
->> - Refactor socfpga_stratix10_socdk.dts to use the new common dtsi file,
->>     eliminating code duplication
->> - Move gmac2 and i2c2 nodes from socfpga_stratix10_socdk.dtsi to
->>     socfpga_stratix10_socdk_emmc.dts as they are specific to the eMMC
->>     daughter board variant
->> - Fix PHY address in socfpga_stratix10_socdk.dts from @0 to @4
->>
->> Changes in v2:
->> - Introduced socfpga_stratix10_socdk.dtsi for common board settings
->> - Updated socfpga_stratix10_socdk_emmc.dts to include the new dtsi
->> - Added fallback compatible string "altr,socfpga-stratix10-socdk" in
->>     the binding documentation for broader compatibility
->>
->> Ng Tze Yee (2):
->>     dt-bindings: altera: Add fallback compatible for Stratix 10 SoCDK eMMC
->>       variant
->>     arm64: dts: socfpga: stratix10: Add emmc support
->>
->>    .../devicetree/bindings/arm/altera.yaml       |  6 ++
->>    arch/arm64/boot/dts/altera/Makefile           |  1 +
->>    .../dts/altera/socfpga_stratix10_socdk.dts    | 67 +--------------
->>    .../dts/altera/socfpga_stratix10_socdk.dtsi   | 71 ++++++++++++++++
->>    .../altera/socfpga_stratix10_socdk_emmc.dts   | 81 +++++++++++++++++++
->>    5 files changed, 161 insertions(+), 65 deletions(-)
->>    create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi
->>    create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts
->>
 > 
-> Hi maintainers,
+> Allow pinctrl-* pattern as node name because this pinctrl device have not
+> reg property.
 > 
-> I would like to gently ping on this patch series that was submitted. The
-> series has received Acked-by from Rob Herring and Krzysztof Kozlowski
-> for the dt-bindings patch in v4, and all requested changes have been
-> addressed in v5.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../bindings/pinctrl/pinctrl-multiplexer.yaml      | 54 ++++++++++++++++++++++
+>  .../devicetree/bindings/pinctrl/pinctrl.yaml       |  2 +-
+>  2 files changed, 55 insertions(+), 1 deletion(-)
 > 
-> Patch series link:
-> https://lore.kernel.org/all/cover.1769407657.git.tzeyee.ng@altera.com/
-> 
-> Could you please let me know if there are any concerns or additional
-> changes needed for this series to be merged?
-> 
-> Thanks for your time and consideration.
-> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-multiplexer.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-multiplexer.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..31efffb3167cba724b1afe0d403a0dcae65582ee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-multiplexer.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-multiplexer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic Pin Control Driver for Board-Level Mux Chips
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+> +  This binding describes a generic pinctrl driver that controls on-board
 
-This series look good to me, but can you rebase it to v7.0-rc1? I'm 
-getting a conflict.
+Bindings don't describe drivers.
 
-Thanks,
-Dinh
+> +  pinmux chips using the multiplexer subsystem.
+> +
+> +properties:
+> +  compatible:
+> +    const: pinctrl-multiplexer
+> +
+> +patternProperties:
+> +  '-grp$':
+> +    type: object
+
+       additionalProperties: false
+
+The tools should have caught this, I'll have to check why not...
+
+> +    properties:
+> +      mux-states:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - mux-states
+> +
+> +required:
+> +  - compatible
+> +
+> +allOf:
+> +  - $ref: pinctrl.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    pinctrl-mux {
+> +        compatible = "pinctrl-multiplexer";
+> +
+> +        uart-grp {
+> +            mux-states = <&mux 0>;
+> +        };
+> +
+> +        spi-grp {
+> +            mux-states = <&mux 1>;
+> +        };
+> +
+> +        i2c-grp {
+> +            mux-states = <&mux 2>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl.yaml
+> index 290438826c507ec6725f486d18cf686aa7c35e67..20176bf3074757de30f208e69b968a6bd6125273 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl.yaml
+> @@ -27,7 +27,7 @@ description: |
+>  
+>  properties:
+>    $nodename:
+> -    pattern: "^(pinctrl|pinmux)(@[0-9a-f]+)?$"
+> +    pattern: "^(pinctrl|pinmux)(@[0-9a-f]+|-[a-z0-9]+)?$"
+>  
+>    "#pinctrl-cells":
+>      description: >
+> 
+> -- 
+> 2.43.0
+> 
 
