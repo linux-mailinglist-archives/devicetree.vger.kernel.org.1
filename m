@@ -1,252 +1,253 @@
-Return-Path: <devicetree+bounces-267652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267653-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6LJ5Ime8nGlSKAQAu9opvQ
-	(envelope-from <devicetree+bounces-267652-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:45:27 +0100
+	id mJLqHIHOnGllKQQAu9opvQ
+	(envelope-from <devicetree+bounces-267653-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 23:02:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B85BB17D1A9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:45:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D03BB17DEF5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 23:02:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 60F87303F09C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:43:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C7BC83128C0D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE713793B0;
-	Mon, 23 Feb 2026 20:43:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70BC1379974;
+	Mon, 23 Feb 2026 21:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="HanKCE7Z";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="V4tYoExd"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Kqn0zHUZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013010.outbound.protection.outlook.com [52.101.72.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F90E378D84;
-	Mon, 23 Feb 2026 20:43:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.155
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771879391; cv=none; b=pCpcXe4en9RFTUKkdYlJ2nN4IBCPuvOje0WZA+UCqJVu+zjhZlK58Cyk6dZkBMCcSIGCkMsoiNoE3fIzqtXw4tItTVVhoJC7c2O4aA+4OKvqwz7seybcOSn7BWRDzkImPzdZbgydtitxyWKN0FvvxM5UmnrRXx7vUZSdCzu970I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771879391; c=relaxed/simple;
-	bh=aKoo4YBq/Uqj0VSrCmwqEjNlbhSMYNVcm3Wkdx9ZwzM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Z1MkdU+Y5XPx9xzyVqtynx7V4pEVpy03rm5Yu2bgbknp02mtz2uIH2l4frCnRjLy1cX4AEjdbIHRE8aoCgRjqP29fp2S/LqJqkkc9Cyz6ZS6fMP1MX80kc6yRIhNJl/Fk7tmkTN38pNzdDOBA3UF8K9QUOZo38+E8W8Ypuk37Kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=HanKCE7Z; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=V4tYoExd; arc=none smtp.client-ip=202.12.124.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-12.internal (phl-compute-12.internal [10.202.2.52])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id AA5A37A011F;
-	Mon, 23 Feb 2026 15:43:09 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-12.internal (MEProxy); Mon, 23 Feb 2026 15:43:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1771879389;
-	 x=1771965789; bh=K/ry9TdyV+ze9XDoqNcLR1E/YucQKPR47HThywrceSA=; b=
-	HanKCE7ZiuN3LM1gc9gWZECZhnHBFT8iP/z98aRYy/0cscslewa1f09LMHZg+QNT
-	n28LFsTFqDSKXVY9wi8i8Dqnuf6woe8fi8PVD5H5PqcrtAD25XCfUuUmrqjN4jSX
-	ZI42LALffU27k1UZduOpx4V89m34kXKmoYbK08m0g4mrCb3HH0u3o2c8uLCQBfYE
-	gP6F97l6vtDmLqcDw2cjGEIIiSVY316fCJ7GyaizeKlQghVNlERF/MR4kMYFw1Au
-	tT5pK/m67W1LfMhN4j4IoJ0lzISiMxAyxBG6xBjsTe3HqFYz2rXbSEddpC7OrTf/
-	m0FB5VffzhMGTTS1/f5Xaw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1771879389; x=
-	1771965789; bh=K/ry9TdyV+ze9XDoqNcLR1E/YucQKPR47HThywrceSA=; b=V
-	4tYoExdzcDQdJAi5vDsXV+nTqHvK7YMRr+DFHbnyourwG5GahQVUnMWPUANGx+m6
-	hTcmXV32n+0gmaqsvCZNnDycwoNrIV9UDrKwAr+dlNZMb1LfJxKmyYgVFIkVvqWY
-	bAP9v7WX2vfzikud1irP/JC3GZJwmsVPk7Eea2/FkVrTNRP7yqVBtWbXGYVtZb/Y
-	xgqPMC5RNMDjTTP6e87btB04S1kA5eaxb8ucLh9ELUfIZJQHoFo9OHoERo2yU5Z6
-	yZWhjDdCJF2h57iX8bi52Wq9Kuf1kyEIMnMRM4eqArGTV4kvihmuE4ydp0LGrv2W
-	yEruYVb5N6Sie5Sah4BNQ==
-X-ME-Sender: <xms:3bucaRKWNRlJd8u5IszglECon5rlq1U1TsFVHcbsoSm5RuI9m4xmsQ>
-    <xme:3bucaY98bpIIP3v4Zii79GW-lTbayy9dxsrS2uusQrkwbCW7LT_BwMK5KhaoL5KHw
-    vPsyP28Fj66lVk6OWo5kp9kZD7pYXe5KDbjHVFMo4EBnmEvgABCM-A>
-X-ME-Received: <xmr:3bucaVG8GDv9YACVUteJzzUzTSZFoAvFYVnwyXsErA4U_pWPU05TEMzM3Y1vKzOJdEdpBSuHEaF401i0LjVZEaKGGSOTrnr0pYfB4w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvfeekvdefucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeflrghnnhgv
-    ucfirhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepfe
-    ehheeileduffehteeihfdvtdelffdutdeludduiedutedvfeffheekhefgtedtnecuvehl
-    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrg
-    hurdhnvghtpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghp
-    thhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsvhgvnheskhgvrh
-    hnvghlrdhorhhgpdhrtghpthhtohepthhglhigsehkvghrnhgvlhdrohhrghdprhgtphht
-    thhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhgvrghlse
-    hgohhmphgrrdguvghvpdhrtghpthhtoheprghsrghhiheslhhishhtshdrlhhinhhugidr
-    uggvvhdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrih
-    hnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehjsehjrghnnhgruhdrnhgvthdprhgt
-    phhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:3bucab4xE25XzBv6H2ZxSVRt9U5Wm6ZBV7N5Z_dGEIy8wQ-nCVbDlA>
-    <xmx:3bucaWZ4jwJlEm19twN3AH8_9HOuq9RMy1ApqRBImPz2F_2Fk_5W9w>
-    <xmx:3bucaRi5SJq374UZ6BqCdtTr9q7z9cRUPzt_mZkuU5DZAncuW4J7hQ>
-    <xmx:3bucaQdt-0LRYVn7TGWKm1ARXgO098vZTr06WmX-N-EWAd4dFGa8KQ>
-    <xmx:3bucaXV0yc65rTancv7_u86fUmnaqOS5qVuRKyaXQniVlmrkrTi9xjtz>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 23 Feb 2026 15:43:08 -0500 (EST)
-From: Janne Grunau <j@jannau.net>
-Date: Mon, 23 Feb 2026 21:42:47 +0100
-Subject: [PATCH v3 2/2] irqchip/apple-aic: Add support for
- "apple,t8122-aic3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9EF3793B3;
+	Mon, 23 Feb 2026 21:57:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.10
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771883859; cv=fail; b=mGrRNtwe4FLkQt6FWluqCt9Aqk0NxUSgW3wdH0qzL4xFSCjI5ICkmKbnuz4Gkw1EKTzjjOH3pEEDODC7P5rtD4RWTYy9IxCM3vCKibvBb5au5sNHpdEJtuORlcORnIlrnT8Sap7Nt2PsoyL6e20aBPpZprl7BhshyLbmev6IScw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771883859; c=relaxed/simple;
+	bh=6qfJ9WWS6daqiUJ4w6kMAp/WE7immRPNNCaKwV76uVw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=t/YrbKPndU0VeSvjWiMbWGdUCcjXSPvT7gu4xaGKArWorys5yeNNTjaZYnhC9bMff8bkItVhq8l31zWxpKlLAutuv0kEftkJtjIhMSmiYXO0ufigFzv0LL6YGxOhH5HpdJYyKn2bIprA11gFe/Tt0Xp4AD/xZ5N10AmA59V//nY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Kqn0zHUZ; arc=fail smtp.client-ip=52.101.72.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Q0zfx4j7GgVcnOyUvNE+3Qokn3UxJLm2kqPDdcIz9lqFXboA9s7ULre8lAy/47e2LU/JMg/efT2Mnp7LSZ5N+2zviW27anE9vErLtSQR5UwfS4o9yKYowloDttesO2hzNn3YXCVqZcipvphq90wGVSCDM/XESZeoFtT11UQM8BiNl7Eej9WC++58gs3n3L5UWztcBdCY33UROVGa33CfIHNKciSDG/al6AbX7pZZ5fT9BbWOPSbX45Ro83mHs4eBIEzJYxhF9XA5AWl2nd11OWdEoZatzTQ1/9//tbpYPwG1B1DXjb2Dv/IlVnZdfecR+51qkTLE7yGKuqsum5Fw0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=et1CwgC+yfj/pdXr2bjleZfROZTcg9bz3qWYKx06EJk=;
+ b=IMd9nGmVzpUEvkoqAXzhbjy3Da6dI9+d3d6pzOXgkUJmvNQ/efK4mFt69I93xo6Xhf2tmYWsXjsMZc9N2QS1avMqt7nLjF3vtQR+K+fc8JfGAPkqbKMNjb/LAl7Axqm0yYHT2Upsf6acTCKltIGRxXWKfC1Rklb6ETw8Qr6NX3iMw5z9cDVH+hp/vL+QpfrV20lsdrYbuWptyM9Ceo/UMcgLhFwq+0XhEROBEijQxnQxKKYJvKOwWG4XJBxg2+P5z5DlLMjb9hUUrStJepdzsTJ9iwb7J4wZd8f3sDSVVwlTrGtqjc9P805gqBNPOI28yDHcFbQL7vGYJSs6sZbylw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=et1CwgC+yfj/pdXr2bjleZfROZTcg9bz3qWYKx06EJk=;
+ b=Kqn0zHUZvcqWrkg1XxDS+ebVcMed0xiwsuL1TBYgeWWhDCRDBHi6XKqAauuq2lmJ5oMuMo6EoNecJZs3fl82nB5x4IZqfM3EdpB0qmXFM91ojqUFSNOZ5eptA72GQjDGeuxLN/lyyKvNFLGBS1txCX977Tx1dRhdoT2IFK0ZLqX4wVm+aJ4kW6711gfgEcHC2am7rVFX0d8MwHUud+fEvbDDnC6mendwmA5jRXny46K4nV7jluyFG1oDR0phCcO4A5sWaFczqcQZ8XuaCYWdU5tQQ32I4sNlbsHaftBhlH/YDS863ok3Cn3SxJqOil3Pjp4RyGE2CSsvnYbooBK3Aw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by PA1PR04MB10117.eurprd04.prod.outlook.com (2603:10a6:102:454::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Mon, 23 Feb
+ 2026 21:57:35 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9632.017; Mon, 23 Feb 2026
+ 21:57:35 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: linux-kernel@vger.kernel.org,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	linux-amarula@amarulasolutions.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Javier Carrasco <javier.carrasco@wolfvision.net>,
+	Jeff LaBundy <jeff@labundy.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Trimarchi <michael@amarulasolutions.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-input@vger.kernel.org
+Subject: Re: (subset) [PATCH v6 0/6] Input: imx6ul_tsc - set glitch threshold by dts property
+Date: Mon, 23 Feb 2026 16:57:10 -0500
+Message-ID: <177188168376.790326.11895241482537283251.b4-ty@nxp.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250923143746.2857292-1-dario.binacchi@amarulasolutions.com>
+References: <20250923143746.2857292-1-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BY3PR05CA0046.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::21) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260223-irq-apple-aic3-v3-2-2b7328076b8d@jannau.net>
-References: <20260223-irq-apple-aic3-v3-0-2b7328076b8d@jannau.net>
-In-Reply-To: <20260223-irq-apple-aic3-v3-0-2b7328076b8d@jannau.net>
-To: Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Janne Grunau <j@jannau.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3142; i=j@jannau.net;
- s=yk2025; h=from:subject:message-id;
- bh=aKoo4YBq/Uqj0VSrCmwqEjNlbhSMYNVcm3Wkdx9ZwzM=;
- b=owGbwMvMwCW2UNrmdq9+ahrjabUkhsw5u6++u/HcT86ss0Xtt7mB6l6/l/qxTXV8qxilNGckK
- 3W4/nvSUcrCIMbFICumyJKk/bKDYXWNYkztgzCYOaxMIEMYuDgFYCLimgz/89527d7cOOOUXAX3
- 599Lqhs2SX3dZNM1t6CLb6/y7k+FUYwMa75tKih7urXlSvPrjY2sWlMbRDtSC35eP/jd59/vjk8
- RPAA=
-X-Developer-Key: i=j@jannau.net; a=openpgp;
- fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA1PR04MB10117:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3633a080-5fc9-4651-ddf8-08de73268d1f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?WVVCWUZMemhyVGNSVFUxZXFBK29Ga1hLS0J6cE1EaFZlbU5ZN2hVUlQ4eE5z?=
+ =?utf-8?B?aG5LV05IOTlZQTNCTFpCenA4WE8rRGpzcFk5MGhNNC9PZnpTZ2l2RVN6NkY4?=
+ =?utf-8?B?RmVMSmUyQ3pJd0RKQVkzbXZDZEtyQU5hVUdoa1ljTjN4RmVLRWxGdjVJQWEz?=
+ =?utf-8?B?L1lHRlVHcEpBOXFYZ2M5Qm1Sak1kRlZFWVRTUmJsNW1nL0RmVnJma3dOdjh6?=
+ =?utf-8?B?RjlqZ1lHbnNPczErckpiM05DQ3VoMU81WXd2RjBzYmdVcGZaOVM2eHBMVFcw?=
+ =?utf-8?B?Yi9OTTBOSUpUeHNVSDJSRy9CbGZIZTQrRFdzbnNQbHd4WnVVNU5zOEFLbkx6?=
+ =?utf-8?B?ektIUkpHRjUvRDVmYkw5dEcwM2VobjRLSXp6aVEya0N4RWdydUtlemN5dWlm?=
+ =?utf-8?B?NFhwVmpYczFOMDBtWnpXWk5tWHBTOGZXNVJISFhVUDZNTFc5SXhOa0NRcXhn?=
+ =?utf-8?B?aE9ETkV3b091NnZUOCt1N05BRmVxZVBSemc3Vk5vcGZocnRJZE8vT0FQZGIx?=
+ =?utf-8?B?dXFPRXMySEFnS0R0cGExNFRwY2lraWZqdlNZZHFFOEhaTGNWZk5CQTlhNWZV?=
+ =?utf-8?B?NmZFclJLdmlpR3gvYVBud3JZV2swbWlRSzE2VXlSTTRUanBPSWZ4K21sUWV5?=
+ =?utf-8?B?MGVBL012UTZpMy96QmV0bFJDRklnWVRuUU1va092YzlwcGExRGx0OHY0UEhv?=
+ =?utf-8?B?eStFR2xUejBTUEROZEpaQXZZTWNIeGRhbkhZak5jRWx0NjgrOTlDNTc2NjBv?=
+ =?utf-8?B?ZDh4cDNlbHJwaHZ5OGQyVTZ2cEhwaXBTeVpDUUY1SGJOdGZORllPUExla0Vt?=
+ =?utf-8?B?MVhPbUdsV1pXMjc1d0VaQ3FKQzVpOU9Kc0lZSW9qL0dUeHViemdQam82QWdm?=
+ =?utf-8?B?bEE0ZlZaTnYxZzc1OWt5N1lMMWEzWjhPck4yQTVKMGlVdW0yZzA1TTl3aWlq?=
+ =?utf-8?B?MVBIbFdEdDkwM0NhRG5qNTcySXN0ekhOaVRidUZDaXpiYkZ6YWNrOHBvYzhj?=
+ =?utf-8?B?aTE1UTlMcjlnRWR3UGxyTUppWmUvdHBZSlM2UjFmdUFrYkczc3ZjYWI2U25o?=
+ =?utf-8?B?cHFqbmFFMWZJQVdHanNiekIxZ1NBSkRid3VuNHRsOUMyNm9PWG91bng1cC9j?=
+ =?utf-8?B?Wjk4SUNVcm1idWtrcWhjYlVBVkRtSEJnNXdmdFF0OSt6TEdTcXppbVNXUldx?=
+ =?utf-8?B?alE5bUtHaDRPWjhGdmVNNUJ6a25XVkdxaVR0cmZOWEFvaHNyOFdBQjkzeFJk?=
+ =?utf-8?B?b01OOVYxRDliZ1BmR3FKUHNPTXlaVEhabEZhbE05OThqRFBXZzRGN2hkeVpl?=
+ =?utf-8?B?NW5nbzFiRVozekkvclppWjZSU2QyM3dtTVMzTURTWTk1RnN3RCs2dmwyS0Yv?=
+ =?utf-8?B?bEgwUXpEaTJJU0NsTER0RHZvMzhZZlprMFY5ckJiR2J2YVk5a3lSOWtMRzl0?=
+ =?utf-8?B?QzU2ZTE4YWt4ZTZLZmlXNmxiRVNPZkFVQ2lRWWNBUXpKaCtIYlEwYmRqZnR6?=
+ =?utf-8?B?aXVZMzl3eElWSDZFSmVCaHZ1Q1lKdHNaZEpuZkhHalhOaDNFT1JHbFY1RHNE?=
+ =?utf-8?B?MFoxREhoNGlSYkFGMUJpd0Z6NWUvVmY0MHRmeUVGVFNlQU4zOWFlYWk0UEFz?=
+ =?utf-8?B?Q1c3dlBBV3V5LzY4ZkI3dXNOTVdOZ040MFRvWTFnMTRiV3FIcldoNHR5WDlx?=
+ =?utf-8?B?aTBEWTUwL1ozOEpkYTRvWXEzaHVhN3p1ZXowNjBkNTRNb1VEcUNQZlpWdFFI?=
+ =?utf-8?B?cENCMmpGREt6Mk43SDE3Y1FUYnpPaVlPME96cE4vNCtuUld1TmVXbFpEWmdn?=
+ =?utf-8?B?dnFjUVVhZnNPSEx4TUtObXlLVC9XR2lyWFMrcjFIY3lYK3E2TGxFSHoxZVNZ?=
+ =?utf-8?B?UzZsMmk4Q3J3YlAxdjJJYUYvL3pkSkszT2RMZ2V1VzFwU29jQnNDeStKbklX?=
+ =?utf-8?B?RjA3NklQRVdIQ3dmNVhIclEycmkzWFlZRC9mQkZDaDE0V1lLYXY0ZHB0czlZ?=
+ =?utf-8?B?RGYxNHp1ZmlSYjljSThiRHREM2Z5Q2tQQXRQdytlRDErU0ZZWG4weUtjM24y?=
+ =?utf-8?B?dGszQVo0dlN5aTVMNGdXVThyZ24wTnBvTmxzLzdlWGhTZzAybWVERHh1MXhI?=
+ =?utf-8?B?VTFGVitINlBGZ1A1aDRqejNzTDNkQmZMVDkzQjgwTE1uWjFVZ0RBQlZhSldZ?=
+ =?utf-8?Q?u6qPnz4pfWdUrKKpBk1TRJk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?T0I1bXRJWVVodG9VUWY3WXc0ZWNpd2pQa3R5ZTNFNTFMcHBsQ1pCeGQxMUNq?=
+ =?utf-8?B?T1AzaEh2S0RXM3Y4NWRTdlhSSVJURTM2WTh6bmE1ait6djhtakxPZjdUTG9H?=
+ =?utf-8?B?VFdWWWVIY2U1T1Y2MGNUSTJhM0g5NGwyUnVhTlRoZTdBTmxWTW1NWFJsUUJz?=
+ =?utf-8?B?M3NqcURFcU5VZVpCQnY5YXhEbWNQWUNZNStSK2VUM2U0Q3FuWFgwT3VUTTVq?=
+ =?utf-8?B?emFJRTBnUnljNGVRNVVFOFJkMGpESXUveGVMU01CZC9JVFppaTUwWlJld0lL?=
+ =?utf-8?B?dXZwSS9HUFlvOXlRMDR4WldxK1diRUN1aXhveDUvVnFQTjUyQXRwYmpHYitK?=
+ =?utf-8?B?SGdpN2llUXRFajBBZy9WQzhlUzFsWjUreXV1bldPTndZelpBOTcwNWxVL0tT?=
+ =?utf-8?B?VjZYSVFIOFh0dzQ1K3Uvb1NzcS8za2pyam5DYkRMMXcyZTczSVZxKzk5SWtI?=
+ =?utf-8?B?bnJaK2ZwOEZBZmhxbHd3RCtTZWFjVWlMMllMNFJlU3pPZWxDWWRVR1F3MW4x?=
+ =?utf-8?B?REY5NTZ1ZlgxUFdKYlNvK0YxWm9zNXdEeGQvcTZSd0szamNzM2JkRjR5VDIv?=
+ =?utf-8?B?YnVBTkcwSnh3eEZtTTcwVENBKzBMUHJpRVpXSFpoSmcyeFV1M3R5QTVDWk9N?=
+ =?utf-8?B?cFVwb2E5VFRZaTdDUkxjSzVmV1lWQ0FtQzF6NlgweE8rTVIxUk8yVUJpbnE3?=
+ =?utf-8?B?UFFVb2g1UFVrTXlPcnV3ZTM1RW0wb0VFUVVDU3hTRUIxTnY3WC8xUFo4WE10?=
+ =?utf-8?B?c0RoTEs4YVlFbzJ5UGhXcC80TUJHdHdDVytjNk1mTjJhN2JKV3kvR29iUlJ1?=
+ =?utf-8?B?b2dDOEx3VU0wcldjM1dTYVROeDFRZFJJVk56WTZxeHd2bDlMMVFYSTlRSWsy?=
+ =?utf-8?B?MkdDUlZ6THYzWURMOXpYbFo1dUh2Vi9LSzF4eEVjZmluR3ptUHhhVS9XYU53?=
+ =?utf-8?B?Z2dheTAxWUZQdElwY0pBMUJ5YVpPUUNuNlhWbE9HaWNsN0NNR1QvTk5UZWJV?=
+ =?utf-8?B?c28vM0tqTmpIdDA3MnhkbDB2Y3Bsc01od1VWQlJZalNYdHlVSlRmQXM1eFh1?=
+ =?utf-8?B?TkNLWnM0TXg4RWZyQXhvYUdZc1h5MTNZdmNpM2czNTZGN0Nxemx1a1FUNW1u?=
+ =?utf-8?B?dy9zUjc5VWxmeXhjS0dDTjQvUUVvS2ppcmltZjc5Tk10SEV6OXJVeDEzaGZ0?=
+ =?utf-8?B?ZzZhdWhJOVlCb2M4QVA1UlZBL08yWGwvT2xXOGRIelYrMUVMdGlVcExQL2JZ?=
+ =?utf-8?B?bmxZLy9kZ2VhWHcvckFJc1ZHY2d4SHBJNVdRUTdCVFFVcmJLV1kzVUJqUURz?=
+ =?utf-8?B?eTIvVGRhUCszdC9jSmwvQ0VlakFRU1JaZlRWY2lmbkJjV0RrbnE3L1RTeWNB?=
+ =?utf-8?B?Q0d6cVJtUkpYUTViTWFkRnVLaGdqUXlibFp5LzZURnk3YXh0RURrelpFVDdx?=
+ =?utf-8?B?UW1rcFIxOU1XeGlrZmF0YnNIT2lpRTZuMDNtTUc1TS9yS3BiUUV3WG5VY3pN?=
+ =?utf-8?B?NDd4bHVGcDBVUHUyc3N2b2pnY01ubWdObkZHbVJiUmkvQUZjVlcwVUZZbzZM?=
+ =?utf-8?B?VjBJakVFdXdKWGN0aFllSVVhOFZCTHkrTEdKYWNIay9SSXJiMHlTVlBuSjlh?=
+ =?utf-8?B?clQxKzhMNEJsVFZlaDZhZGtMQkh5TjFzb2FrQjdWUk5LNTJTUk5MM2E1T2pJ?=
+ =?utf-8?B?endZVzdHWFM0WjRHcnBTTDVwSkQvbWNybmtTeW0va1NwMGswSW13S2RGYysr?=
+ =?utf-8?B?SkVEelh2VWM5THhFMkI4VXpsOEIxZURXUUdIM0xBTFNVS2lRTG5KQVJuNVZq?=
+ =?utf-8?B?VlVJb2E2R01VVEk3MEdvaW5RcjNhb0MwN0NObW8xRDUveDR1d2FVMnRhbDNO?=
+ =?utf-8?B?VDMvZHkwWjNDdHRMb3Y0KzlZaUdqbHZIQ285TTVFcFIzdzUydml5QWtVNXJy?=
+ =?utf-8?B?enBzRlczM2V3bjJxRlBFZW5CY0Y3Y0Y5WkpNYmhqYVdMYlVEWWRrbTNMVzJo?=
+ =?utf-8?B?VDFhT2dja0tvS0ZkTExRaWZjdms3ZU5XSVZ0Zml3dVQveWFITDNueVdvU2tx?=
+ =?utf-8?B?cmsySkh1bWVZSGxxUjd6ejc4amlkcGVCMkVDL0NTZCtIL2JWZ1JublBVWjcw?=
+ =?utf-8?B?QjVuM2gzL2ZZZFBWUDJlV3RUU29pMEQvdGF3T28vRk9BaktDRDdDUzRHWEQ1?=
+ =?utf-8?B?amF0aUZvb1IyRjNmeW45N00xdGpsYitwTy9GcDFNQm01YklRbW9FSWxlYWc2?=
+ =?utf-8?B?Tmg5RTc0ZmVkUUYxZ0d5SnpYNERkSnVpSUltckVDZC9lTm1xSnlQYlptSlBB?=
+ =?utf-8?Q?oCuQBfJomgdTbDDnFN?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3633a080-5fc9-4651-ddf8-08de73268d1f
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2026 21:57:35.1075
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: B2cgOLp3q3GAJtX00sfQWCB80DwZA3izTsiNBF/N1EPzX+fdL2a3snQUbRK7HkEb4hvnPDRbV9OnuL49adq3rA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10117
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[jannau.net:s=fm2,messagingengine.com:s=fm3];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[jannau.net:+,messagingengine.com:+];
-	TAGGED_FROM(0.00)[bounces-267652-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[jannau.net];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267653-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[nxp.com,amarulasolutions.com,kernel.org,gmail.com,wolfvision.net,labundy.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[j@jannau.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[jannau.net:mid,jannau.net:dkim,jannau.net:email,messagingengine.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B85BB17D1A9
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:dkim,nxp.com:email]
+X-Rspamd-Queue-Id: D03BB17DEF5
 X-Rspamd-Action: no action
 
-Introduce support for the new AICv3 hardware block in t8122 and t603x
-SoCs. AICv3 is similar to AICv2 but has an increased IRQ config offset.
-These MMIO offsets are coded as properties of the "aic,3" node in
-Apple's device tree. The actual offsets are the same for all SoCs
-starting from M3 through at least M5. So do not bother to follow suit
-but use AICv3 specific defines in the driver.
-The compatible string is SoC specific so future SoCs with AICv3 and
-different offsets would just use their own compatible string as base and
-add their new offsets.
 
-Reviewed-by: Sven Peter <sven@kernel.org>
-Signed-off-by: Janne Grunau <j@jannau.net>
----
- drivers/irqchip/irq-apple-aic.c | 24 +++++++++++++++++++++---
- 1 file changed, 21 insertions(+), 3 deletions(-)
+On Tue, 23 Sep 2025 16:37:31 +0200, Dario Binacchi wrote:
+> The series allows setting the glitch threshold for the detected signal
+> from a DTS property instead of a hardcoded value.
+> In addition, I applied a patch that replaces opencoded masking and
+> shifting, with BIT(), GENMASK(), FIELD_GET() and FIELD_PREP() macros.
+> 
+> I didn’t remove patches:
+>  - 2/6 Input: imx6ul_tsc - use BIT, FIELD_{GET,PREP} and GENMASK macros
+>  - 1/6 Input: imx6ul_tsc - fix typo in register name
+> even though they were accepted, to avoid generating conflicts detected
+> by the kernel test robot.
+> 
+> [...]
 
-diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-index 2b24c82bb0df5b8e81be97a97d6c87e220f9fc06..4a3141d9f91416abe90ee37cb3f3d8ecd0c3673e 100644
---- a/drivers/irqchip/irq-apple-aic.c
-+++ b/drivers/irqchip/irq-apple-aic.c
-@@ -134,8 +134,12 @@
- 
- #define AIC2_IRQ_CFG		0x2000
- 
-+/* AIC v3 registers (MMIO) */
-+#define AIC3_IRQ_CFG		0x10000
-+
- /*
-  * AIC2 registers are laid out like this, starting at AIC2_IRQ_CFG:
-+ * AIC3 registers use the same layout but start at AIC3_IRQ_CFG:
-  *
-  * Repeat for each die:
-  *   IRQ_CFG: u32 * MAX_IRQS
-@@ -293,6 +297,15 @@ static const struct aic_info aic2_info __initconst = {
- 	.local_fast_ipi = true,
- };
- 
-+static const struct aic_info aic3_info __initconst = {
-+	.version	= 3,
-+
-+	.irq_cfg	= AIC3_IRQ_CFG,
-+
-+	.fast_ipi	= true,
-+	.local_fast_ipi = true,
-+};
-+
- static const struct of_device_id aic_info_match[] = {
- 	{
- 		.compatible = "apple,t8103-aic",
-@@ -310,6 +323,10 @@ static const struct of_device_id aic_info_match[] = {
- 		.compatible = "apple,aic2",
- 		.data = &aic2_info,
- 	},
-+	{
-+		.compatible = "apple,t8122-aic3",
-+		.data = &aic3_info,
-+	},
- 	{}
- };
- 
-@@ -620,7 +637,7 @@ static int aic_irq_domain_map(struct irq_domain *id, unsigned int irq,
- 	u32 type = FIELD_GET(AIC_EVENT_TYPE, hw);
- 	struct irq_chip *chip = &aic_chip;
- 
--	if (ic->info.version == 2)
-+	if (ic->info.version == 2 || ic->info.version == 3)
- 		chip = &aic2_chip;
- 
- 	if (type == AIC_EVENT_TYPE_IRQ) {
-@@ -991,7 +1008,7 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 
- 		break;
- 	}
--	case 2: {
-+	case 2 ... 3: {
- 		u32 info1, info3;
- 
- 		info1 = aic_ic_read(irqc, AIC2_INFO1);
-@@ -1065,7 +1082,7 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 		off += irqc->info.die_stride;
- 	}
- 
--	if (irqc->info.version == 2) {
-+	if (irqc->info.version == 2 || irqc->info.version == 3) {
- 		u32 config = aic_ic_read(irqc, AIC2_CONFIG);
- 
- 		config |= AIC2_CONFIG_ENABLE;
-@@ -1116,3 +1133,4 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
- 
- IRQCHIP_DECLARE(apple_aic, "apple,aic", aic_of_ic_init);
- IRQCHIP_DECLARE(apple_aic2, "apple,aic2", aic_of_ic_init);
-+IRQCHIP_DECLARE(apple_aic3, "apple,t8122-aic3", aic_of_ic_init);
+Applied, thanks!
 
--- 
-2.53.0
+[5/6] ARM: dts: imx6ull-engicam-microgea-bmm: set touchscreen glitch threshold
+      commit: a96f415ab504484f10673be0d0d9c0e502ca9290
 
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
 
