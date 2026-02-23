@@ -1,133 +1,127 @@
-Return-Path: <devicetree+bounces-267538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267539-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6EWfNxSDnGkKIwQAu9opvQ
-	(envelope-from <devicetree+bounces-267538-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:40:52 +0100
+	id +Kv9MGiDnGlwIwQAu9opvQ
+	(envelope-from <devicetree+bounces-267539-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:42:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B511179FBC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:40:52 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D8C617A02A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:42:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1F6C831A7DD4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:35:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 04D73304027D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D30D4316192;
-	Mon, 23 Feb 2026 16:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6313246ED;
+	Mon, 23 Feb 2026 16:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sZuxW3qu"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aGJOp4cp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 302C0315D28;
-	Mon, 23 Feb 2026 16:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A3F285C88;
+	Mon, 23 Feb 2026 16:39:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771864494; cv=none; b=TqNOjiGi6GTqv82ekl4xDX3GGXM7lw+FEdHEGwf/FJ6L6JNXy4oJCCzmC+Te+xrdFbtrVrxxUJP3pgJiR9sNWFICRCvKbFRsXGc4wthmm7XouehX23r1dE1wYQ95HleHMucGUXctpNaWMrA+3JabfJKjApDMyh8KBslHNbSiPsk=
+	t=1771864794; cv=none; b=TieTUk2JR5m5vOJYKoJGJkgsjTedY6dFW+PgE4hK7VhPLgNvp0hyWy95TUXvay4kR1W3fHR6OI3sSneKqWwDyiWXO3WOkt6vLeWeam8Y3MQEfUvsz84dQ+MM+Tmeo4+sxFXIoK4zcujpBLoJ8VsJeVAhMltpeF6nRmsUoeBjVoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771864494; c=relaxed/simple;
-	bh=suaUWlORKIGwzlRZHSCIjFWvt/bcAEKUefESFgeuJ2k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Znx+yLGDf9fkYtBR9y2VQhMqSnTVSjDlRhLfxGDj05mFiPWSo2neViY6BCm+C7PTHiZVKALWjBLSvYO/uZ21sVFHcay6vA+uSzJTudNn4HxXd7X90efg9h4mSe641g1ZqDIvBs11iEEzrjhyTEauak66rCe0o4ANxhuzf5NT4L4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sZuxW3qu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53C1FC116C6;
-	Mon, 23 Feb 2026 16:34:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771864493;
-	bh=suaUWlORKIGwzlRZHSCIjFWvt/bcAEKUefESFgeuJ2k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sZuxW3quixNrGIEv6em7CTs6+Ip2bXxGaJQHl3z14BaVcTUd28aRwrOC4Gx3CSV+s
-	 HzNuHwRNDXguEeSFY2ZDMgW+mdMy5SDus0lJEAwWOMwPfdekEZIzcjOjFeClVeSDKg
-	 ufU2jdUv6OgFeDIIHIdhadNdBrE66G0uRps828dTnjERt8z206/ns8M5jc9CglNwBw
-	 ZFixc5QqHAUYUjNhsb0rjuOIvGRUo4vWWusrFWuD6NhbnC83BEwTQKN4sIeouZaXfF
-	 UWyect42tRjpBuzSDnOHrR3WPiiVVIeGwUfii3w6OdwqpjgAJ47kZb4+Z/0dbvgAXc
-	 TjKGdDAT5+Cug==
-Date: Mon, 23 Feb 2026 10:34:50 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, sre@kernel.org, heikki.krogerus@linux.intel.com, 
-	gregkh@linuxfoundation.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] power: supply: qcom_battmgr: Add support for
- Glymur and Kaanapali
-Message-ID: <cvmoj4a3rfytyteprzhmszblssnoop2yvs4bpavaukmavxj2vh@znvdkclfjwvd>
-References: <20260209204915.1983997-1-anjelique.melendez@oss.qualcomm.com>
- <20260209204915.1983997-6-anjelique.melendez@oss.qualcomm.com>
+	s=arc-20240116; t=1771864794; c=relaxed/simple;
+	bh=GU3xnXyHmn1mP9zwAI0ndO9wqT8jjc20jlPhIMyYZ3U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xq+Is5NVt4FGhKhExx7LaqEj/Qu10yKDkidNWStc1lfwcSydiTh60ZhHJkGXkdsBzyO+NUeTJ3j9JjYxt5aD1K9vLXsJXE/4UhIxOgbtfo7dRxdmS9XP5xkyOJ97lpe5TQC13A1+/YRriI8frXc//lw47oXlVKWcPsAOuLQ8QVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aGJOp4cp; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771864791;
+	bh=GU3xnXyHmn1mP9zwAI0ndO9wqT8jjc20jlPhIMyYZ3U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aGJOp4cpuNZIhOCgBm2vWH/Q7p9UCp+cYXlFkz/q+2dSREdLxaqWr/vcyPmfQi2Ak
+	 v7pWlRC2cNSmfbgdWzOBQ0wM+YfKBqk1qZUufrVfYyutdcLd1Ary2uiq9SLb5JYzQd
+	 VdWoMC4Yzmse2Hk7YzM34X6GNqo48+l6EZRQSGD3/M09DXhjPvVdKYjFzZxEVTyyme
+	 11Hm1M7B9NHN8qKtWyCN6hbg7PViSR1LExxjoMp4SeENj7PSUm60kOLEGV3bcMVNNF
+	 9uYE+VAXoaeld90Myr836VCVCFNcU7saSylxSvu5eElRSrW1fhST57q8YuKn54ivCx
+	 LuH+Y+9OKKSHA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B212617E069A;
+	Mon, 23 Feb 2026 17:39:50 +0100 (CET)
+Message-ID: <3e0a65f8-3c65-4382-8c39-a6d30db2a52a@collabora.com>
+Date: Mon, 23 Feb 2026 17:39:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260209204915.1983997-6-anjelique.melendez@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] drm/mediatek: dsi: Add compatible for mt8167-dsi
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+ linux-mediatek@lists.infradead.org
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chunfeng Yun
+ <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
+References: <cover.1771863641.git.l.scorcia@gmail.com>
+ <2fbf179c03c61f527e2583f9df4f97f6aaf3297a.1771863641.git.l.scorcia@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <2fbf179c03c61f527e2583f9df4f97f6aaf3297a.1771863641.git.l.scorcia@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267538-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-267539-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,linux.intel.com,suse.de,gmail.com,ffwll.ch,mediatek.com,linaro.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3B511179FBC
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
+X-Rspamd-Queue-Id: 5D8C617A02A
 X-Rspamd-Action: no action
 
-On Mon, Feb 09, 2026 at 12:49:15PM -0800, Anjelique Melendez wrote:
-> Glymur is a compute platform which has the same power supply properties
-> as X1E80100 and Kaanapali is a mobile platform which has the same power
-> supply properties as SM8550. Add support for the Glymur and Kaanapali
-> compatible strings.
+Il 23/02/26 17:22, Luca Leonardo Scorcia ha scritto:
+> The mt8167 DSI controller is fully compatible with the one found in
+> mt2701. Device tree documentation is already present upstream.
 > 
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Regards,
-Bjorn
 
-> Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
-> ---
->  drivers/power/supply/qcom_battmgr.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/qcom_battmgr.c
-> index c8028606bba0..576ff35b4b71 100644
-> --- a/drivers/power/supply/qcom_battmgr.c
-> +++ b/drivers/power/supply/qcom_battmgr.c
-> @@ -1610,6 +1610,8 @@ static void qcom_battmgr_pdr_notify(void *priv, int state)
->  }
->  
->  static const struct of_device_id qcom_battmgr_of_variants[] = {
-> +	{ .compatible = "qcom,glymur-pmic-glink", .data = (void *)QCOM_BATTMGR_X1E80100 },
-> +	{ .compatible = "qcom,kaanapali-pmic-glink", .data = (void *)QCOM_BATTMGR_SM8550 },
->  	{ .compatible = "qcom,sc8180x-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
->  	{ .compatible = "qcom,sc8280xp-pmic-glink", .data = (void *)QCOM_BATTMGR_SC8280XP },
->  	{ .compatible = "qcom,sm8550-pmic-glink", .data = (void *)QCOM_BATTMGR_SM8550 },
-> -- 
-> 2.34.1
-> 
 
