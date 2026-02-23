@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-267222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267232-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id nrZFOdrqm2km9gMAu9opvQ
-	(envelope-from <devicetree+bounces-267222-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:51:22 +0100
+	id IHrrJI7rm2km9gMAu9opvQ
+	(envelope-from <devicetree+bounces-267232-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:54:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 782B2171EC3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:51:22 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87AEB171FB6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:54:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CDB9E300D361
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:51:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7670830185E5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:52:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CDE276049;
-	Mon, 23 Feb 2026 05:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32983451BB;
+	Mon, 23 Feb 2026 05:52:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k6ki1njt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iLpDuXdq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B06BA21
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:51:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A2F6344D91
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:52:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.175
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771825878; cv=pass; b=kbk5UCtYfYi887QfMHFxPqMW6X20IIhOUNkRiEKlUaFHrKvwhFHUNNXo61Z/7EzYAeXzqU9KxlchmTxB3WOCXqCnEs0lS4trmUDSxkHSwzFuAmnUGKCaMv37VO7Vzk2ZZrguHbrwgzw3zCdu2EWcxOQAW+Ir4DgE1JHZb4vRaxk=
+	t=1771825967; cv=pass; b=i+wHcHSYdR3sODJgKajswS0QgXu6d+WiXHW/5YW20aDoBChdKJaIXQbRO0lmoWYQWWnKJgjXtXxEvEsK7g1fnoX8DJ9PvPlDNnsqjaZ6bB0Pmll2veHzWBZREJ+XZdY7nEj1G0SQp0P18qVAxPzqoRwF7oo+bqHS451OrH+nNNs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771825878; c=relaxed/simple;
-	bh=0iSjOKjfnSm9jmrOM8nVftPpGT2fAo8FgGTUjJmNuiY=;
+	s=arc-20240116; t=1771825967; c=relaxed/simple;
+	bh=yTTX1UMdS50NfFHC+ViA0dvfEDtwzhBZJ6/sWVTOiro=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=vCGblnsBioAljQ1vgjoFLlfNHFe9XStu5oL01RaXdeIX/A4BsVpDIsM6tbVqoZG64JJDV33AwbYYEZfPNlp1BGQcfK0GjLly2Jyhpv+DaTHYQNh1RI1YurBdOzccgSzzwtVW7B7QM2TFVNb2wQUem/BFJGxFaXWt/wWPU3NcoLQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k6ki1njt; arc=pass smtp.client-ip=209.85.214.174
+	 To:Cc:Content-Type; b=HeuqBt+5JnF521xXlT2+TnP0NuECiOj8k6HbSuH0QGwRhWYP3PpHDooGtkqFVSmD/odGo0K4M5I0mMBZ762acSpoGFXEN8fOlN4j6QYA/eiumQ4Z8vE/44mlpOORrIX4bzsF82He5K1lQt57gbiILvbneEkRrdnU+mqMgyHFB/E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iLpDuXdq; arc=pass smtp.client-ip=209.85.214.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2a8a7269547so37792865ad.0
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 21:51:17 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771825877; cv=none;
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a95de4b5cbso36590805ad.1
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 21:52:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771825965; cv=none;
         d=google.com; s=arc-20240605;
-        b=QaNkkE6lKqi4p2ZfLx7eJjRkm3p3aL9n36jDYwYe3c2WO+OQC7sAeHylT+uWpGvRLL
-         PzjnGCxHsiaYutCW6FX6UfddYPLZA6dvA0SplWVCzXb8wijdUBXMrfCY8/YTkzhgXBgp
-         rrJu5m2VI89vgftHVdLIzcuGzjEPsAl0Au/5jfpKSZRqiu0tFKchSUpbDxf/de7k0XsV
-         GZxc0cqldwChWBCpP3GMCc3boHeBszRW3u6GDi2tADRTrhrNVZ7dUMap4+FOY554rjpT
-         THa1TbuapTBIOWLCzXdvDrQtYxmOG7Ow08xAaHebKGyy4kKW6/1JrnpyxuIKcW0BJF+K
-         vu3A==
+        b=YgiywZoVcDzfVY6C+5ItHthOSCa9HZJYs9bYss6t8wt8brfPFghOZnaJMn1qis1IeG
+         +goftmDLduBJMD8qupaLL5jqe1O5Zo2DsOUKyB8l+fxSTq3jBdmh6hrqsxDHDOuFZ9TA
+         7KJuO93AY3NgOQ9l82lbVBxjx/QLcWw8dq4foBjuh0Fw4IOAErtb/aIz91+GH8v8Of9J
+         HyIK8G5OcpPcy371021AFch391QUcH6wpUkXvyr8RjB71GCQ/pFO9rnZfQAjQ8iHU3Og
+         VUE+spc45+XOl6lXQwsKZqlOwkKx2RzihYYUYUa4TZnsDbs5VfsUzd7hvNDlea3nMgE+
+         Koqw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=qxPLT6FJUuQxpXNq9IQlk3p36a8mKIJlTKN3Ee1ugFE=;
-        fh=Nh7CkiWK4yNxegSL9ZYa0pgRzcG1Xr2+g0wcvCJ1Rcg=;
-        b=TXoAX03pn3U4N2uc8Xuy5dVGTOtSZPdkn7lzlYA+UovAeAl3hs3nCZmHrSeqY/dTwW
-         Yw3F/ebN9qjZDSpdZv299ybjKf02QSsLP2odTkr4elOw3K6y0VVafQPFyvCzTeNf4u0H
-         EVOSt2IVF9jlAnfQRx62bbTZbOyB9ktSi4LM5eZXD8/mz+9ZkqXzfF4WGYtVom8GflKF
-         VPL8RxshslbD4z7Vom/merCkk2xfySDbRYATr8S6mvxZQPYSEz8E62LYumwd1eWU6lbg
-         /5abZtjgRXNSiZF6BjJ+tI4awvNOejR2fdc3IwnV7hTaB2fjnsCG4lK553gBKpYBvxC3
-         JFgQ==;
+        bh=xSGeqRFklk/MvK7e1hN4iXhpzOGomKRb6H/+7BRNAV0=;
+        fh=kzdqp3I2SgpIPU+JinrWzQwqfBx7XBV8fbjOQf86KjE=;
+        b=X9olMuEaYar98zVG+S5bgY/ovZqYIg/7oY02fhVURqHSekkz6lfFgRyA4qc/80cPLY
+         bMSOmy6d8LBRXZEFEWSXeMthkBSh3BNWN4Mxzst3P6vF8A3G08a3WsdMp9B/6rmgJzaS
+         OpCu2TqYb1S2TxjRSo1uOp2Vb1Wxs/w6JkYKBL7ui9quO7u1tVmT1a36OrS6OtSy9DiW
+         oiu4mesU+8fuhn0qG60zXwsZK5ELhhqxYnIox6NU+jGU1/O9AXMUMjeGugAsm2ZLIFr4
+         RlA3s+4UVJ3P2dbCaKQt0Mxn7fiB38ZJYbq0t+1VuWlReYvGsf61cLuA8fi7N1ozXxT3
+         xxEw==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771825876; x=1772430676; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771825965; x=1772430765; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qxPLT6FJUuQxpXNq9IQlk3p36a8mKIJlTKN3Ee1ugFE=;
-        b=k6ki1njtpTzSVVDC4RNM1sKpYvMuEA6GFRw8RuuKljcBmPFS5o89lbVE/LCU/ne5yk
-         3e7YgoYuSyE3jewXC6sIb1rc9AIM5l4qCQMp7SkYgRojW4rwF6gWykn9Hp/6YmH/AxIf
-         d2ArRi0PV7O7EoRybrqTO5gucKV+2OBO6Bya3CQqGgXd6zNcoOEytr+UcCQ6VcpwOgop
-         /XlLf29/cGJR2kJr9KdHXwa2G6lvHL+g7OCMbXWCkMjgbpuLmbXpPaUKnG/1e+ziuDhS
-         gT/pEewkshyZN5X4Rw5UHFDUSgrcsiK5bFFfDFXI2I60HnYkscG/7BFAWokCYIKOuUfk
-         caeA==
+        bh=xSGeqRFklk/MvK7e1hN4iXhpzOGomKRb6H/+7BRNAV0=;
+        b=iLpDuXdqKX0/yoLrrEejtwquy8s+mNnrrdagpyjmzVnzUnoOyB0PDe0Qwh3u2PjZUr
+         QJd8z3rHZIMzp0rTBQTRaKiPzcPeojmBoa/+1HMztdqI9qABLFoeyEygf6vuAvYDIocI
+         gX+KYEgwGKrFNwrmeiCtvjrDHWHpRf/QDVMXpGgl9eLrcolCCi+BQCZG6X6coBvBjcBc
+         Iva2a++Y8WAZHqF/HwAq9qdSD8Ndk9x/a6WKoeDciy52/Z970VEuXVdkQrSHjG1PNIZz
+         Ow/Ffl8t19D/COypfCsibs7ZPCj2XQxbLmejZqpFMNzSnWJcxsgEqXRobErIr6ysBJ59
+         tq4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771825876; x=1772430676;
+        d=1e100.net; s=20230601; t=1771825965; x=1772430765;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=qxPLT6FJUuQxpXNq9IQlk3p36a8mKIJlTKN3Ee1ugFE=;
-        b=LNX9yH/l+zb04V/Q4H0tfoNPbsFGg5kxcf0xRFqlK+aavVJ98X3xIGP7XgM5eKU5QU
-         AGJKuY0nvE19eGCG3JrMarIdhiy7XOcXT5bkT6WQzBXk4Tm3xcvJb/hPCCEC208U1t7n
-         0BoRkL83O874p07GbCGaxzrcHOFFnnZXWB+qKcgT+ahFr4lUqdLOK1fSS1Cg2Yf0Gryc
-         MclqpKVesV31oaSKprrlzp5C5DCMO4pMakEeJdBCgE+8soZs/BLiq1bTFFVLdHYgiYDe
-         J/ymc1aSxKidIFrqXBwSlu3E4Jo0HaHQZKB3nM0lMvQhaIDs5kDFFVWI3DATPbga6YQS
-         a9TA==
-X-Forwarded-Encrypted: i=1; AJvYcCWFIjKmW/rvcM02kty1tYuGsRYkEvhJoEVU0R1q3KEMg6n9vnn8LU9ma8+Ad1Zjucj/C19CRlCHJuKn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+nG0phggHw/k5W6rqiB8ohLE5DdZYihYqdmD4RZHNLgmQobO1
-	Rt3ii47eBEaSd3TqvctZU2h4tDjbz6mnqqPYc2P9jpe3tUacfwqrcVDZG7avvVTgig+bo8jHKhg
-	dH++aUZyc+eApMOanMNq6J/V5dYMFWKM=
-X-Gm-Gg: ATEYQzzvdXA34kWMMD81qnBJ+i6i9c8xyZPprcy6lVBfBswWIowDiczRVONgM51WO9T
-	xHY6OVjPKQ48S2AGhCCmclYGzMsRdAvdp06MUxUhX/nnr1Qr0cXDcx/bnDa+mlfCI9RKdBYZOGW
-	KdGku4rYpAtUDNVObjWutJ2oYXQkxI4m5dLRBwrnzuiPvv3OU9vzbU81bJZTsAwskVuLsJhSWne
-	aiDty2nqHl0MV7nvyMWMH5HWSF29ahzoAQsDN63cpFVEyc9GMk0uqxgAFe2RM+RCZMGL6uLgcoM
-	Tb0rcXg=
-X-Received: by 2002:a17:902:cf4c:b0:2a9:5b48:2b50 with SMTP id
- d9443c01a7336-2ad743e281bmr77336595ad.3.1771825876496; Sun, 22 Feb 2026
- 21:51:16 -0800 (PST)
+        bh=xSGeqRFklk/MvK7e1hN4iXhpzOGomKRb6H/+7BRNAV0=;
+        b=dc1HcrNKrqWwczgoD+WlhVYQxmA5VmX/DI9RQhr015km22JJOQxxvCmojDq9F646DP
+         oPf/fKrQCq/pfce5hApxHCsRSOcPWPvAJb8P3+xIwfI+F2SpbD7BBcL2mDc6/OUQTtSx
+         WxTkQEMx/5I/zS4dSa6yA3ZndMqlXGGODemmqxXYmOZ9eHinPxz4am2mxCBZrlTLLySN
+         HjEo/2VRU59Ra6zMViI0Fc7g87xSzFeDvHPM61/6RbpIfbre+88ncGtxo70FhobpPdfM
+         EPWkOwxuFJAPRFUGnE29uIcuxFtW8/umToXgIuPo6TEhuN0K9l9PGAGTQNdYZlSZcsMP
+         bfzw==
+X-Forwarded-Encrypted: i=1; AJvYcCXulVt/SP9Z5mum2ldwG8LkyGCzWsUdYxcCZ/3wK4SxaFQn1m+891s7p2HjmaKdtOcp1zpGq+DgogQD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5BW969pPeMAGNBsBnt4lt7ty3guNmQsP4pxRpmd+6lFZkt9gs
+	tycEbMwfkFJfxynAGQpeCkx0k5CnGZmJBhU60paBCYhMoh8SzzlJ/rgjilcEbckgvLJo85lyEAh
+	ShHlIjv87JH7HGgTrohqVZWAfx/ro3fo=
+X-Gm-Gg: ATEYQzwYksFQRAJBzZp6tpT7j8eDLw8pcTxOLOwFLx/phHiEeBdCZpBOFg0KmtmauKn
+	hoB9PMaKCuXVf5l14078jox0fBTRWIgXQbya35R9SWe19aR87IR5JIc7nnAQCC2KmveSdlVwArc
+	9xpgLs3/Jtti/+u4sIW1rP0goZLAG4qHo8Hxp5sbNIMGvPloyBSamQIkmA2FWtnWeackdQ1kPok
+	3QoR1tlzPtaW53DCzVlCLbLTE/f4s+cGIJWLqoxBWfkwNwiDxIE267L3nNNov+IMPltwmE2S07+
+	B3P2CnA=
+X-Received: by 2002:a17:903:41cb:b0:2aa:f989:dc7a with SMTP id
+ d9443c01a7336-2ad744e0ad2mr67836265ad.33.1771825965373; Sun, 22 Feb 2026
+ 21:52:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,17 +100,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20260211100553.907585-1-linchengming884@gmail.com>
- <20260211100553.907585-2-linchengming884@gmail.com> <20260212-white-numbat-of-variation-cde4ae@quoll>
-In-Reply-To: <20260212-white-numbat-of-variation-cde4ae@quoll>
+ <20260211100553.907585-4-linchengming884@gmail.com> <87ldgyxmc0.fsf@bootlin.com>
+In-Reply-To: <87ldgyxmc0.fsf@bootlin.com>
 From: Cheng Ming Lin <linchengming884@gmail.com>
-Date: Mon, 23 Feb 2026 13:49:23 +0800
-X-Gm-Features: AaiRm513jeFJBTQ3DT7B0x2d4MCAUMYdvvOiqa_qqFxhHg0EGa152Y0bd04BJsg
-Message-ID: <CAAyq3SZGfm+3e2cXTKqKBrgk0eb+f5ytCw_49-k=0ipZbqKHoQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: mtd: spinand: Add randomizer
- enable/disable properties
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
+Date: Mon, 23 Feb 2026 13:50:52 +0800
+X-Gm-Features: AaiRm50ulwUFVMf2L8O97KHc-TX8lwE2t_SY0KHEc9Bc59iLoXmY9A-s5dhON0U
+Message-ID: <CAAyq3SbpnJZ2LEi4MY=ZOs+aEVBoSCivO3O3yKa9DN=KgqrbwA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] mtd: spi-nand: macronix: Enable randomizer support
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Tudor Ambarus <tudor.ambarus@linaro.org>, 
 	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>, 
@@ -126,70 +124,118 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267222-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[bootlin.com,nod.at,ti.com,kernel.org,linaro.org,iopsys.eu,freebox.fr,gmail.com,lists.infradead.org,vger.kernel.org,mxic.com.tw];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-267232-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,linaro.org,iopsys.eu,freebox.fr,gmail.com,lists.infradead.org,vger.kernel.org,mxic.com.tw];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 782B2171EC3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:email]
+X-Rspamd-Queue-Id: 87AEB171FB6
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+Hi Miquel,
 
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2026=E5=B9=B42=E6=9C=8812=
-=E6=97=A5=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=883:33=E5=AF=AB=E9=81=93=EF=BC=
-=9A
+Miquel Raynal <miquel.raynal@bootlin.com> =E6=96=BC 2026=E5=B9=B42=E6=9C=88=
+12=E6=97=A5=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=886:55=E5=AF=AB=E9=81=93=EF=
+=BC=9A
 >
-> On Wed, Feb 11, 2026 at 06:05:51PM +0800, Cheng Ming Lin wrote:
-> > diff --git a/Documentation/devicetree/bindings/mtd/nand-chip.yaml b/Doc=
-umentation/devicetree/bindings/mtd/nand-chip.yaml
-> > index 609d4a4ddd80..2fcbc4b73e95 100644
-> > --- a/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-> > @@ -67,6 +67,14 @@ properties:
-> >        the secure regions present.
-> >      $ref: /schemas/types.yaml#/definitions/uint64-matrix
+> On 11/02/2026 at 18:05:53 +08, Cheng Ming Lin <linchengming884@gmail.com>=
+ wrote:
+>
+> > From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 > >
-> > +  nand-randomizer-enable:
-> > +    description: Enable the randomizer feature.
-> > +    type: boolean
+> > Implement the 'set_randomizer' callback for Macronix SPI NAND chips.
+> > The randomizer is enabled by setting bit 1 of the Configuration Registe=
+r
+> > (address 0x10).
+> >
+> > This patch adds support for the following chips:
+> >   - MX35LFxG24AD series
+> >   - MX35UFxG24AD series
+> >
+> > When the randomizer is enabled, data is scrambled internally during
+> > program operations and automatically descrambled during read operations=
+.
+> > This helps reduce bit errors caused by program disturbance.
+> >
+> > Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
+> > ---
+> >  drivers/mtd/nand/spi/macronix.c | 46 +++++++++++++++++++++++++--------
+> >  1 file changed, 35 insertions(+), 11 deletions(-)
+> >
+> > diff --git a/drivers/mtd/nand/spi/macronix.c b/drivers/mtd/nand/spi/mac=
+ronix.c
+> > index edf63b9996cf..3a9ab146426b 100644
+> > --- a/drivers/mtd/nand/spi/macronix.c
+> > +++ b/drivers/mtd/nand/spi/macronix.c
+> > @@ -14,6 +14,8 @@
+> >  #define MACRONIX_ECCSR_BF_LAST_PAGE(eccsr) FIELD_GET(GENMASK(3, 0), ec=
+csr)
+> >  #define MACRONIX_ECCSR_BF_ACCUMULATED_PAGES(eccsr) FIELD_GET(GENMASK(7=
+, 4), eccsr)
+> >  #define MACRONIX_CFG_CONT_READ         BIT(2)
+> > +#define MACRONIX_CFG_RANDOMIZER_EN     BIT(1)
+> > +#define MACRONIX_FEATURE_ADDR_RANDOMIZER 0x10
+> >  #define MACRONIX_FEATURE_ADDR_READ_RETRY 0x70
+> >  #define MACRONIX_NUM_READ_RETRY_MODES 5
+> >
+> > @@ -146,7 +148,7 @@ static int macronix_set_cont_read(struct spinand_de=
+vice *spinand, bool enable)
+> >   * Return: 0 on success, a negative error code otherwise.
+> >   */
+> >  static int macronix_set_read_retry(struct spinand_device *spinand,
+> > -                                          unsigned int retry_mode)
+> > +                                unsigned int retry_mode)
+>
+> This is unrelated, it should be in an other commit.
+>
+> >  {
+> >       struct spi_mem_op op =3D SPINAND_SET_FEATURE_1S_1S_1S_OP(MACRONIX=
+_FEATURE_ADDR_READ_RETRY,
+> >                                                              spinand->s=
+cratchbuf);
+> > @@ -155,6 +157,18 @@ static int macronix_set_read_retry(struct spinand_=
+device *spinand,
+> >       return spi_mem_exec_op(spinand->spimem, &op);
+> >  }
+> >
+> > +static int macronix_set_randomizer(struct spinand_device *spinand, boo=
+l enable)
+> > +{
+> > +     int ret;
 > > +
-> > +  nand-randomizer-disable:
-> > +    description: Disable the randomizer feature.
-> > +    type: boolean
+> > +     ret =3D spinand_write_reg_op(spinand, MACRONIX_FEATURE_ADDR_RANDO=
+MIZER,
+> > +                                enable ? MACRONIX_CFG_RANDOMIZER_EN :
+> > 0);
 >
-> Read again feedback from Miquel - two EXCLUSIVE properties. You miss
-> "not" with "required":
-> https://lore.kernel.org/all/20230118163208.GA117919-robh@kernel.org/
+> You can directly return. Same in the core BTW.
 
-Thank you for the review and the reference link.
-
-I understand now. I will add the "not" with "required" constraints to
-properly enforce the mutual exclusivity for these two properties.
-This will be updated in the upcoming v6.
+Sure, I will fix it and send v6.
 
 >
-> Best regards,
-> Krzysztof
+> Otherwise with this and the binding document fixed, looks ok.
 >
+> Thanks,
+> Miqu=C3=A8l
 
 Thanks,
 Cheng Ming Lin
