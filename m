@@ -1,62 +1,65 @@
-Return-Path: <devicetree+bounces-267608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267609-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8NTnEVyjnGnqJgQAu9opvQ
-	(envelope-from <devicetree+bounces-267608-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:58:36 +0100
+	id WIjNAXKjnGnqJgQAu9opvQ
+	(envelope-from <devicetree+bounces-267609-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:58:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6389317BED7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:58:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6212A17BEE6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:58:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 45CF830299D3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:57:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0CBA93061ACD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89056366DC3;
-	Mon, 23 Feb 2026 18:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E05A369986;
+	Mon, 23 Feb 2026 18:58:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IVPmBsTJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hIclU7g3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C98757EA;
-	Mon, 23 Feb 2026 18:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C4D1EBA14;
+	Mon, 23 Feb 2026 18:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771873075; cv=none; b=Lrmedgya6AQS3YA76I0U6HBrvwf+XpTWG0JTdUmzswCG8dKTMBzAI7rBw1hFgWZ3G4LWk6WM6FrceaWL/I837Xlnri3lFkNxEQV1l0k0PsRWGh5cErSpD5k7RSMLKxWj9+TssQksNsj5F0mqNVgZbYMIX/wUVS5A2eQBEw3fdRU=
+	t=1771873106; cv=none; b=WnW+QdH9FhDobC6n2gwzj15Qhp/UETDQli4jNQsKdqRXkWP/VdeP/ev7pz6EC093rSrMJVrTDTZcE3kz2+l4vO3rLDPI+fn8F5xXECf53CvGM9uDzOKYbLDViq4NSdF15AOGBBUvXyB0Jb3a+sfhvr/6a4ZFUfBC3T2Y9brlTLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771873075; c=relaxed/simple;
-	bh=g0Q5/vi/n3KDDToxDqxi4w/+3/UlTQzYM7y6tF/hpy4=;
+	s=arc-20240116; t=1771873106; c=relaxed/simple;
+	bh=RlFm2DX5UJyHTxSeOJs+DVk8ybc74g+uGIUo3UtIR78=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IYTtlD5e1FipST+bcDE/MF738bDrmhQ9i6i9F66B/aKJSqjZIbNRcq5luxJ7969bqZe4CtAy7Rn5PMWMF4HVxwfNXyQBe4/LO7RPl5ZMolsj+uCAaSbojssbYEkSxs42iLuWra3GwZsKootQkeRn859Kk8l/gBLXr7+i33nJFeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IVPmBsTJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03235C116C6;
-	Mon, 23 Feb 2026 18:57:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=J2/g4wzdwsmreLFc3qKPDj05lUBhXfNWVM+xD9OXzfgDIsUTN7j3sHzmVfg9glWSMsRpH9oKWD4UowcjmzTpQsDMoY7yj0wd0YRNlydo95e9OT7hfvIKQwikPmj8w32ZMxbAdk7oG0hFRn5ahTcnCog1eF3tVHmbgPrVCAhu72Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hIclU7g3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DA6CC116C6;
+	Mon, 23 Feb 2026 18:58:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771873075;
-	bh=g0Q5/vi/n3KDDToxDqxi4w/+3/UlTQzYM7y6tF/hpy4=;
+	s=k20201202; t=1771873105;
+	bh=RlFm2DX5UJyHTxSeOJs+DVk8ybc74g+uGIUo3UtIR78=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IVPmBsTJ8uwxz7KHVVW21ID6c6VB1woZbQgsHrNqXqPVhMDLYhSgzYEYSEpnK3Q5z
-	 9vphCNwdgOfshR8NmWIA7qYzZw5jaUYtGBXullGweI/FD2/KfdnazzFZErckVSaJv3
-	 AVni2W7kU7g+ZoKs7xhKTPE0PFOMQKeKwL2Wb6tT6ccJbnVEgJ30DqWejEMqGN8Xk3
-	 n4FJzHJ6UFFkMjNm/HaPkWn74YqmxKjnsRQrZK5yNYsRYxTyrJElW7QNJuTWRvptlL
-	 eBG42dZ5fswoR9XeK+QHIZa1DAcf1eiz9yAiqbHh9ZLkQ1nO/m5wyc3l8zOcdGyK36
-	 I0GFDXDRpEajg==
-Date: Mon, 23 Feb 2026 12:57:54 -0600
-From: Rob Herring <robh@kernel.org>
+	b=hIclU7g3GUTmBcdrYQSax95mczGgQ4/tUmIPR1U0TAgpMscTXrJ1xh2VNeqGQQ5Jb
+	 dG4ni+rQ0qfJxOO3VOYE8yXGrVFNGRSAGW2C+MeTzErxnHku5bSQtyHxxhPrJ3cE1v
+	 Cc9701P9zPoTDPHm6V/DUTEIoAlwQ6leGsj5aXLzQkniTLgPYWnscG5mTQYvP5veP2
+	 gaugfnYNPk4uFgeZy5UPnB1oTB4h1gUZxtO/9I7afwSxa1MZqhxZYaO449ScjqLo9i
+	 9hxBkhHVDAtcZwM2FCZwrXYrUP+6RZA9EvtSJPXduJsyqfxWwF82T95BKR6ypbxdpA
+	 1zwsas28KbhQw==
+Date: Mon, 23 Feb 2026 12:58:24 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Damien Le Moal <dlemoal@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Niklas Cassel <cassel@kernel.org>,
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 1/1] ata: ahci-dwc: Remove not-going-to-be-supported
- code for Baikal SoC
-Message-ID: <20260223185754.GA151596-robh@kernel.org>
-References: <20260220133613.2392906-1-andriy.shevchenko@linux.intel.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH v2 1/1] PCI: dwc: Remove not-going-to-be-supported code
+ for Baikal SoC
+Message-ID: <177187310274.163191.14167430732235845058.robh@kernel.org>
+References: <20260220142600.2397070-1-andriy.shevchenko@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260220133613.2392906-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20260220142600.2397070-1-andriy.shevchenko@linux.intel.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -73,11 +76,11 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267608-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267609-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
@@ -90,15 +93,16 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6389317BED7
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: 6212A17BEE6
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 02:35:46PM +0100, Andy Shevchenko wrote:
+
+On Fri, 20 Feb 2026 15:21:12 +0100, Andy Shevchenko wrote:
 > As noticed in the discussion [1] the Baikal SoC and platforms
 > are not going to be finalized, hence remove stale code.
 > 
@@ -106,23 +110,17 @@ On Fri, Feb 20, 2026 at 02:35:46PM +0100, Andy Shevchenko wrote:
 > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > ---
 > 
-> v2: dropped YAML and regmap.h (Niklas)
+> v2: removed YAML file
 > 
->  .../bindings/ata/baikal,bt1-ahci.yaml         | 115 ------------------
-
-Bindings are separate patches though anything only deleting lines is 
-automatic ack. ;)
+>  .../bindings/pci/baikal,bt1-pcie.yaml         | 168 -----
+>  drivers/pci/controller/dwc/Kconfig            |   9 -
+>  drivers/pci/controller/dwc/Makefile           |   1 -
+>  drivers/pci/controller/dwc/pcie-bt1.c         | 645 ------------------
+>  4 files changed, 823 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+>  delete mode 100644 drivers/pci/controller/dwc/pcie-bt1.c
+> 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
-Looks like you missed a few more cases:
-
-Documentation/devicetree/bindings/bus/baikal,bt1-apb.yaml
-Documentation/devicetree/bindings/bus/baikal,bt1-axi.yaml
-Documentation/devicetree/bindings/cache/baikal,bt1-l2-ctl.yaml
-Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-
-Rob
 
 
