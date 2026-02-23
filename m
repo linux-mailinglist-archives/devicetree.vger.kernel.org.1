@@ -1,205 +1,269 @@
-Return-Path: <devicetree+bounces-267410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267411-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sKFtGLFSnGktDwQAu9opvQ
-	(envelope-from <devicetree+bounces-267410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:14:25 +0100
+	id aF0KCG5SnGktDwQAu9opvQ
+	(envelope-from <devicetree+bounces-267411-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:13:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA9417697C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:14:24 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9318D176965
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:13:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8315830910A2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:12:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5B316302444B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4067F36680A;
-	Mon, 23 Feb 2026 13:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E963365A11;
+	Mon, 23 Feb 2026 13:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KiUbJoDg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="axa38Lpm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B98365A11
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 13:12:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1E4364EB1;
+	Mon, 23 Feb 2026 13:13:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771852348; cv=none; b=tYsQ+WXKWnI0fSSQ9IO4CLzMnk+E83gtXSxFezMQPLCF5JqR+LflDPbuKtnQmQAOznzGlKsxCkDxSfYcCJ2Nd2HJU99lbfWhraUhhBPcHN1vVNiRl1tHZLQuv+kcKtY/0VcJLSWyb0UyDVzjgXAOh/bCe/8x2qe+XDtWLcBXktE=
+	t=1771852395; cv=none; b=m+SvKeG2ZKlV+OVLOo0vTz+X1FD8ELfoazkIGdv5QvTVluPHWZBNAs10p4zmHYV9iKHFT2Ne0VQmXyB6M6gM2ceLtc2VCem+exMKzoy7BNlJkR595ndsYpvhdCeTglluNkmZEG2ZqkvomfylR6gZeU6MdPtToNsQ8tzJrWfOUgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771852348; c=relaxed/simple;
-	bh=UelqCIooRDzXzu6GGwJNPnHTqntDSLz5KWUuE06LKeg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PPQHfxAIqEkI9fDwC6wpY2vSp9OujpRF7UzwHKA1FBzoCeu0bHZJhpSy0JREP3vIJszCkbq698hwmzA9AgBBnr6Obvq8rz8JT6myFuOkHSRezD3eZ3towcaO8kcpz2q/S+HEdDglQewS4eSccAnzN10zgN8ZY0+DAqIHUyT7mNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KiUbJoDg; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4806b88d8c9so5814745e9.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:12:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771852345; x=1772457145; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zTyRvgzsFp6gxgHmcwTyuSKYelY9uTSe0Y6njaYUk74=;
-        b=KiUbJoDgAy5LHc/Z2unOl01huhD5gypy7MemonxqkLwMvl5jhri2dAM2kzsUScb6SO
-         IKJVD6jHk9CtP6lQ+2JZTULcLpZKpnQQrQIATfWmVsEiTIOqs3jnbt3fGn7KMTIJ7bTQ
-         5+aajvXt7Gtj6g4ma1DpaJ7XJYrXY+NUJ6CAmQ2SM9I82zn+TQVbKjjOJ0vwARM/EiD7
-         0zlzLr1fkNQNbGNTaP/3kJbje1Ei1nNFEthcixKlKiR6ia+kk5xsStM2NuB33L2vjEps
-         tB6EyBDJEdpTGs0MUxQ/sMBwShV6HGmwxVMxqtxR5bYJ9cJK8DDEJbDnM1ufpG41NXyh
-         MPZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771852345; x=1772457145;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zTyRvgzsFp6gxgHmcwTyuSKYelY9uTSe0Y6njaYUk74=;
-        b=fMHkfztlpOtUX1sIUBDRw7pGPGrhdV9t7pKnetLf25ePpGpXQWuMLljp7oEC+u5Cff
-         E5gYT2DuHPgOfauZp+tRmH9x8yWrtxMcx1Zi7SYbti9Nd5MRApjVog4981jvMeAe3GHF
-         PSn2HRqzBMTVpOm7SPwVLJlTKNtQlkMufHkJ63pUwlNOlqNKo3Ixu0ts+ssXX3aq1uwd
-         BM+SibzYP5S10k57DxoyBY9rA4n9W6i0X+eJt4cHrmWYlSqbm6q1xEd/sIfwhgn0CA39
-         D2RnyApFO9un4IJj0MYCG4ZOJhVyK0zgXGgt98X3GfpCe4ei+vYD8Y6tpYjhYN400pJc
-         1IzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW6SeGYsgclkGJ0DtjLOO6awa5m7KjUdE8mBg5Z92vUPCKaJsdRqg4mG3YS5Fm0It/yq72ghxnsTc1r@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTlNx+BzvMlCIPzK7OftBxuo+gXVDcAX+HADiUvF9Ly8kPTzpq
-	2raqD+ISPSOxtpexwSrCQ7AM1lEMSc8flegL9XrSF7Cy/C01vdl/CPj8
-X-Gm-Gg: AZuq6aI8vDb70FqhYopxZyg50klOG7f2Z4L/7epqpPMdJHSczvkIs0nRcwyDTQQUvig
-	XWZJqiJtdUfbsXSW2X3Y6l0c83LxV/AzJYInvtXNklYQgA4J//tZ2uOLO1y3yDitFVS3TQnqoRn
-	seAM643tG6NbdQ083H+axeCUThZmP0pDK/oN1NRpnYVEXzmecJEuCcdTn2xTCYbiDMTNV4mWsAx
-	Y+c28/TE0urRxL+7ZuqgjfQTRP0Fka1PRJTo/6z/eLp3OyVRVJXoTuC6zaibslGE67ZestqYkMJ
-	bgbX+xbUgTtfcDtSQVJQuMF+l9Z1FNo7PpeIDLiSB/TCj033qUKze38CKzSBuiCF5uZG/C7+yBF
-	68PJ3oTNrwTUTgd4tTuGoAgUSBor3Sc5XXZzXTB+A0l3OeiEuPe1vxGyIgUaZTUFWIzMT6Ym3kC
-	3yfNBbkAIPcwDjbzQ=
-X-Received: by 2002:a05:600c:1d04:b0:47d:6f12:de57 with SMTP id 5b1f17b1804b1-483a95e2493mr74965915e9.4.1771852344731;
-        Mon, 23 Feb 2026 05:12:24 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d809:4b00:a289:4e95:a726:c01d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483a9b75e51sm195718605e9.5.2026.02.23.05.12.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 05:12:23 -0800 (PST)
-Date: Mon, 23 Feb 2026 15:12:20 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Andreas Kemnade <andreas@kemnade.info>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	Janusz Krzysztofik <jmkrzyszt@gmail.com>,
-	Vignesh R <vigneshr@ti.com>, Andi Shyti <andi.shyti@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	Jon Nettleton <jon@solid-run.com>,
-	Mikhail Anikin <mikhail.anikin@solid-run.com>,
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v9 1/7] phy: can-transceiver: rename temporary helper
- function to avoid conflict
-Message-ID: <20260223131220.evt33bzga5lafwzw@skbuf>
-References: <20260208-rz-sdio-mux-v9-0-9a3be13c1280@solid-run.com>
- <20260208-rz-sdio-mux-v9-1-9a3be13c1280@solid-run.com>
- <20260212164823.mbeycqwzsy2dfq6e@skbuf>
- <CAMuHMdVOqovkugmCnR4FOfk8VkQyN_dmyKFzbsOSN0mPKQedeQ@mail.gmail.com>
- <f9ede0d3-6a37-449c-b62b-a5c761ece097@solid-run.com>
- <20260216092914.kmvl7aep7dantcsd@skbuf>
- <20260216162406.0121dd91@kemnade.info>
- <203a36fb-6ac9-41f6-80ce-b137b9db4ad1@solid-run.com>
+	s=arc-20240116; t=1771852395; c=relaxed/simple;
+	bh=PGx5m7LGTIbwi3eyqU63kJxfwvIULqIepFQQ5bn0Hr8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RTqFfY4xM0Yx+4oHl22QriXMIgaWQZM3Yb1KnOjbN8hzjzj3AgvT3Q7ASdrSpwc9ghwEZ+WEznpntYj0Pzous4/LCVy9xwrsz7hHcPUgA4+lhhjojFv5qdpsNskqfvwdupevEyBgQK/eSJJHm7TP9noyZLzBmpG5DavSvUCC+rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=axa38Lpm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F54CC116C6;
+	Mon, 23 Feb 2026 13:13:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771852395;
+	bh=PGx5m7LGTIbwi3eyqU63kJxfwvIULqIepFQQ5bn0Hr8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=axa38Lpmp0N271LOvYZiPQHwKOl0ubgEzuS6Spx7c0wJ+rKbDkIxQBRBrAVVI3aTu
+	 wO6kOtdTn9QqHUWXaVr1hfQ9pvOb1vek3DxjnPkeWTIx7fWqw0gwLOCS9oYCk2wliV
+	 ZRgPzV9bj949V+n2vQMMBBpD5X0Xj7ly9Uy+Aw12zlB2M1rEjUhkpoGSXff0ZbFxZp
+	 lNRaxyj5tY/ck/lolMVaGGiWC7o58CP5Rb1XjbGaHDUfrYhViTPwy7n4PdkL0g9+4Y
+	 b12e3HSkq2ZAmgwZNTXFCmsm/ba4g8NU0JKjVpDMLQK+4cnHGO/eEiseDQTBpIPpHs
+	 PqDQmLpqsLuPw==
+Message-ID: <628df86f-e866-4986-a1a6-8c1b38f3c85f@kernel.org>
+Date: Mon, 23 Feb 2026 14:13:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <203a36fb-6ac9-41f6-80ce-b137b9db4ad1@solid-run.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: lemans-evk: Add Mezzanine
+To: Umang Chheda <umang.chheda@oss.qualcomm.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, richardcochran@gmail.com
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com,
+ krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
+References: <20260203193848.123307-1-umang.chheda@oss.qualcomm.com>
+ <20260203193848.123307-2-umang.chheda@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260203193848.123307-2-umang.chheda@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267410-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[33];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kemnade.info,linux-m68k.org,pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,solid-run.com,vger.kernel.org,lists.infradead.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267411-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BCA9417697C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9318D176965
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 12:43:48PM +0000, Josua Mayer wrote:
-> It would help immensely if there was a way to get the patches renaming
-> driver-local conflicting helper-functions very early, before anything else.
+On 03/02/2026 20:38, Umang Chheda wrote:
+> The Mezzanine is an hardware expansion add-on board designed
+> to be stacked on top of Lemans EVK.
 > 
-> Would this sort of patch be acceptable in linux-next now, so it can make
-> it into v7.0-rc1?
+> It has following peripherals :
 > 
-> If not then that mini-patchset would be the first one I shall submit after
-> v7.0-rc1 is released.
-
-v7.0-rc1 was already tagged as commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f.
-
-Additionally, patches are not accepted directly *in* linux-next. They
-are accepted in subsystem trees (linux-phy, mmc, etc) which are then
-integrated all together in linux-next.
-
+> - 4x Type A USB ports in host mode.
+> - TC9563 PCIe switch, which has following three downstream ports (DSP) :
+>    - 1st DSP connects M.2 E-key connector for connecting WLAN endpoints.
+>    - 2nd DSP connects M.2 B-key connector for connecting cellular modems.
+>    - 3rd DSP with support for Dual Ethernet ports.
+> - eMMC.
+> - Additional 2.5GbE Ethernet PHY connected to native EMAC with support for
+>   MAC Address configuration via NVMEM.
+> - EEPROM.
+> - LVDS Display.
+> - 2*mini DP.
 > 
-> Then I can treat the actual implementation of the devm_mux_* helpers
-> as a second standalone patch-set.
+> Add support for following peripherals :
+> - TC9563 PCIe Switch.
+> - Additional 2.5GbE Ethernet Port.
+> - EEPROM.
 > 
-> And finally patching all drivers with local helpers to use the new global ones
-> can be patch-set number 3.
+> Written with inputs from :
+>     Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com> - Ethernet.
+>     Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com> - PCIe
+>     Monish Chunara <monish.chunara@oss.qualcomm.com> - EEPROM.
 > 
-> Any opinions on this?
+> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   4 +
+>  .../boot/dts/qcom/lemans-evk-mezzanine.dtso   | 301 ++++++++++++++++++
+>  2 files changed, 305 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index f80b5d9cf1e8..79449004adfd 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -43,6 +43,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera.dtb
+>  lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
+> 
+>  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
+> +
+> +lemans-evk-mezzanine-dtbs	:= lemans-evk.dtb lemans-evk-mezzanine.dtbo
+> +
+> +dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-mezzanine.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso b/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
+> new file mode 100644
+> index 000000000000..4fab96ba873c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/lemans-evk-mezzanine.dtso
+> @@ -0,0 +1,301 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +&{/} {
+> +	model = "Qualcomm Technologies, Inc. Lemans-evk Mezzanine";
+> +
+> +	vreg_0p9: regulator-vreg-0p9 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VREG_0P9";
+> +
+> +		regulator-min-microvolt = <900000>;
+> +		regulator-max-microvolt = <900000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +
+> +		vin-supply = <&vreg_3p3>;
+> +	};
+> +
+> +	vreg_1p8: regulator-vreg-1p8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VREG_1P8";
+> +
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +
+> +		vin-supply = <&vreg_4p2>;
+> +	};
+> +
+> +	vreg_3p3: regulator-vreg-3p3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VREG_3P3";
+> +
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +
+> +		vin-supply = <&vreg_4p2>;
+> +	};
+> +
+> +	vreg_4p2: regulator-vreg-4p2 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VREG_4P2";
+> +
+> +		regulator-min-microvolt = <4200000>;
+> +		regulator-max-microvolt = <4200000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +
+> +		vin-supply = <&vreg_sys_pwr>;
+> +	};
+> +
+> +	vreg_sys_pwr: regulator-vreg-sys-pwr {
 
-From linux-phy perspective, I think in this particular case the following
-would help:
-- submit the patches at the beginning of the development cycle (i.e.
-  now) while the subsystem trees didn't diverge too much
-- submit the patch series *in full* (to get build testing of the later
-  devm_mux_state_get_optional() introduction too, even if that is not
-  for linux-phy)
-- keep all patches pertaining to linux-phy (the mini-patchset) together
-  and close to the beginning of the series, so they can be picked
-  without other dependencies
-- be clear in the cover letter if you require a stable tag for the
-  linux-phy patches to be picked in other trees. You seem to be in the
-  best position to be aware of all dependencies.
+And here the same pattern as in Monaco EVK. This is pointless, you just
+inflate the kernel and DTS with dummies.
 
-I don't know what is the exact status with the MULTIPLEXER SUBSYSTEM
-which is marked as Odd Fixes and doesn't have appear to have a subsystem
-tree. I have no recommendation there.
+
+Best regards,
+Krzysztof
 
