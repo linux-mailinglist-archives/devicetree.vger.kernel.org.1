@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-267384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267385-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yNerE4NAnGmxCQQAu9opvQ
-	(envelope-from <devicetree+bounces-267384-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:56:51 +0100
+	id 8JCCAYxAnGmxCQQAu9opvQ
+	(envelope-from <devicetree+bounces-267385-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:57:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13D1175C50
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:56:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7D4175C5F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:56:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4206303CC3C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:54:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 44441303CE18
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3883659E7;
-	Mon, 23 Feb 2026 11:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31BC43659EE;
+	Mon, 23 Feb 2026 11:54:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KxM/iGMz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQS+3k8X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE77364E88
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 11:54:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF4D364E9E
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 11:54:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771847673; cv=none; b=N4IkoEC/YUC+VsK08jUgDqvbZ0BQa1Y4g5uhE400pVVU5c6F6HejWMugJiLV5c/bcXoGiNaJgTnGxc81CEhmuIMkOLyq+CIb9iDFoNBmeip+CiKfPCrBZtjAYI96X/aLuWb0f0Q8d16l80Cocy7Z6W9fHwmTTkzeAPF9IzSeXYA=
+	t=1771847674; cv=none; b=R4S/Y/kI+wPNzuUQJH3nwfXXlM22RBjcbjbCF+Ez5zpPzDFEUr+DCtAlsEQF/vrnu+hShPk7d5E9J/jBnTIHVyTeesVPuBWyxBCPCX8ulrTWs4TKIQRlFxu3lsJ4nFjuxc2KGId6tHqQpmGuqk7Ebebr/cadHOmBGmuJeSwoZj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771847673; c=relaxed/simple;
-	bh=uxs/O1t4MJgE83VLwLmZ5lLCdtI8c+c02jiKLX03oek=;
+	s=arc-20240116; t=1771847674; c=relaxed/simple;
+	bh=3ADRWXv/1WnNGruw8DIjoU0m1gFOqtMRdvhW58J0+fU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Hee3pZIWahdDEcfvcKKJPgSCBTtFt6ezpSm+AcesgLjhcWGKKB9Wjy6oMUCbepu095oGg5j70Ii0fM2o+G1+01j3oxygH3QxO6HZLh52ijNwLkvOemNqJiQgygRL5tVzaAgkvFZn47sCdhX3BAuBljF4DsJfgoifo7LR/z9Q07c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KxM/iGMz; arc=none smtp.client-ip=209.85.221.54
+	 MIME-Version; b=OTHHL6euwaY3ZNker+86611K72FsTQEMW3y6xS1gJyM4tfBs5HghXalQsCiID1kOgjS1MHDm9QaaMtII2NjSLj12Kmq6o/AN9jgyy6eAQIven+xW/ArGrr1fuRpsubq51mPpH7whn9TthjrMPKerucOexLPO34DBvf/5o/E/De4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JQS+3k8X; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-4359a316d89so3880979f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 03:54:31 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-437711e9195so2730055f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 03:54:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771847670; x=1772452470; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771847671; x=1772452471; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ruQhGiuF9FhysktRv+P3PWPBS4mTnGG0CPJP27Fqqnc=;
-        b=KxM/iGMzgwXL8s/ade6h8ZkXQehyLDIrxRSAJC8mXMnbQEHY8jRQoOBEFtSmvwxszZ
-         /6jFqZjre5NvhPW58nl3GmNP+LDqEGQ+4C8TC7jpZ4GGO4yuMUAxdNCVYED5Yquh4w2H
-         o92PNyIpXycPgWXQyjcd0/DmXn09HsribWm+avamosx5ovlbkHcVo8hCbHa+z+BJRBfA
-         fV23F5lK3+7Hw+xHeDLMx37RsOVDN9F4QhHIpK3O3OoLtEbL8g48m2a+ywFezHtjS5Gm
-         t0fChT4LO6XlkOPgLB+WZqDXgCiGGCqYZi3cEKLgOgUOJ71vw+vu8XbGOwvclsJ+MvTH
-         5kqw==
+        bh=2y4/fXSvTacfxYjUuGuM/I9b80VjM1rPJJklCOVNYSg=;
+        b=JQS+3k8XBhw541HzFta7b/XMeWbqa53Dj/VykX0uIRO/hQObILETDqUz1DmsbpYB8D
+         RqLqY5sGRnotCBKoGn8va5YBGUDREkPRVLKXzPhiSMaBo7Ji/dx7Lkz5WSGJAhfB2JSV
+         F4FRAYKj1soclPLbsTEauLda62dKuVcOtaSAiPswnYUmAuYcbdPKkTxl//VTBogZLmJd
+         wlrIsz/rx9yGc+yuSIVs2hUOvXdfy6xM+eHMGJd1HcYVZMjmFO/AHiK9bh1spunC1eCu
+         Hpl+tVJManDkhbgIQ8AsstBIh8RAek/K4WtKtoCbps2IgizGxIID3V1g1+2zi7+8cw9p
+         pvTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771847670; x=1772452470;
+        d=1e100.net; s=20230601; t=1771847671; x=1772452471;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=ruQhGiuF9FhysktRv+P3PWPBS4mTnGG0CPJP27Fqqnc=;
-        b=l/Jkgk7cGxpFzK9Kom4HMqPJmuqLSd7cEUsDauAHtskoYxiw18ntLfAgKilnGsQR1d
-         WpjEXqt/4ERJGNdD2g5So+06w/S9+xIIe0DYfM8zPWjpm7tCrqBkzTHMK6A9H/5gxDbg
-         Btj9SbMBr5MB3+rY73489ch6lJ+mwDj1zFYZtiXhW46fvyAqC/OwU+hosSJT0IzxgAhV
-         /h5U4+p+UHGrDZxryc1gK00kWMFlP9KXeA+ww8dY5wz0FHL3m5lYUe8l2+xpaWDj7F9z
-         yEpPBb63peG57ybTJBI9nUtV3zwAbUX379ZI9P5dCLdMsstfQ4WaBcUVA4tBT+P30kL4
-         FmXw==
-X-Forwarded-Encrypted: i=1; AJvYcCW2egPt4PsldWytJeXfBxifrd6od8lN7mMyxGWQH8qnowuK2BsooQFjHf4w5A4TexHYNSupKVKuJHVc@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVQPG318wHXESYGT2kQWBsd8zDHGtwdXM15FlFWkRgiIDjHCLK
-	DItHPfYA70mIbsb8JYCXnI5ZW7DWrLnV4q6aRxYzf3P9VhX7CK7yvVHM
-X-Gm-Gg: ATEYQzxFUoHuaEb/RYPIq6GN2rPPJjEY+RQHYp44el52+lqG+Qy6TwtGpygE6jMKOvC
-	BLJkQzGZf2DMzLXt1b+YYdNrhjzL8EN/XGSVnJ58HaGmMvvUQ/nGYF16gdJ81QKoeJKp1jQ0rao
-	YOapjesRM5OExVjUOLwfjtc8qnBvji9czZqqc6n1/L41MZf71qPCaHdf0z8tpHlvtcs2JRTmy8x
-	koz5kjxfanZN3i8CsXZdoSIZRWPBuqpzJdAHOw0ZQBoMkdR9HtRQLm3X7q9ILLnkDOEL6ios9er
-	L5lTJz/SjAcu92F1L6//DYVvklPoyAh024+k73pYegcN5DqwYSjMHvsM+N4MUoYx+xpV4q2I42w
-	Gv9HQM/WOJXww059AzfsthdnkidqC1Cj/n9d63vLMeKoT3j5TjM6BLbWiM0j3K9mwYy9A/597hx
-	ihBNjwtJTH8rxPzzGxfZZ5U1mWxUNaykyspxy9I8lMM9Ry9IQFexbnRaqVax6r/kZbzd7jQTAcF
-	JF4wUkQZASgiaWxCzUn3nYnSOEQKUntjv3VDM+c
-X-Received: by 2002:a05:6000:4381:b0:435:96b7:e0db with SMTP id ffacd0b85a97d-4396f153a34mr13314214f8f.17.1771847670129;
-        Mon, 23 Feb 2026 03:54:30 -0800 (PST)
+        bh=2y4/fXSvTacfxYjUuGuM/I9b80VjM1rPJJklCOVNYSg=;
+        b=sOo/8oPFSX86rRlxKj5WihB4KzkrlmFlWsUkF9sz4tSSRBLw/+snAdGITUiqqskJe7
+         dv73Rnrz/5/TGpQAhAuW7KfjYG8xOclqo73qne3Q7gVkYppsv9rCrjxIc7R8kmyrBQIb
+         Kl84qu9xnpMqP3hPU4T+ZIpKg0/IvlXFUWHMbrpSgzkM2Cc+UC21SKXEuj9zRQfzznts
+         BrYJz846jp8KZyLfHsaNZiO3C2gPQFp0PxDHqHoew8d13SbgLXskIkpwMqDlH85wSrdi
+         8X4NzcNs4JeB42pDhVDkFVl9SoKPFSArbSL11fdlnP2KSd1L6Kdpva39HdAxSKo7h4Ya
+         kxOg==
+X-Forwarded-Encrypted: i=1; AJvYcCXv/feY6dUONVUNN7YmdPtJrWGiKGtZ2jSdCJxdviA4zKqafIVZ2L8e/AY96ruRUsBYXMplaV1dVSE1@vger.kernel.org
+X-Gm-Message-State: AOJu0YykEqHookFX60ILpcDmnsqTKXWC1688u12OpgtLF70A+IN6zSPz
+	/M+hvLJWIDEcVlc07+QaimgVJ74czH1ywQQNHlhDKF7di99NurS/8YLc
+X-Gm-Gg: ATEYQzzvPJ0sCNb/yQxYUnAKhT145iKRHGcZwMeeU7raHmdZcj9+jaNWlidIJ6dXdAU
+	ngEj2WMkEZvMCWMBWlvnAeIPDLemOz+HgvkM+TBNM+SmI2LLF3Xv/cSjiOAeb57leoMnvuKB0nc
+	xgx958lJ5LxbbCl8gVSZWV4w8ymoVrB9KR2eFr+hDzgnqiUkTgt6xHC4WEOa1im2cJUZdcJyuoH
+	bZamp04xEnjQJ65X8xSjs47MCIjHZc5diSulbkeE/QEvn/rbxCdoDJg4GeurrjwiF4MKHwffiaT
+	9WegN6n61oJC6qAgAZGIJcuESOCtB8pJHaDcHUV3R9P1U8ivuognAb0lBeZnCygq51PX3MKa6Iq
+	CQW2Rs5PxU4peyjWgNB5SLWxQ6hm9rji+Zq2DiGuyufRus1y54JM6eADuopkKriCtz7e2jgnHkq
+	ODe56sPeqKJSEYvWCNtiGGBIScAoI3kpqEVM7OHcEU+UERWQ0Yzi7zNgDbeHzaOy7g9pVTabD6C
+	hVuvHODtkvoDjethWGGNU65ADaagWl9QYkwt9fL
+X-Received: by 2002:a05:6000:420c:b0:435:9d70:f299 with SMTP id ffacd0b85a97d-4396f174178mr13783963f8f.22.1771847671002;
+        Mon, 23 Feb 2026 03:54:31 -0800 (PST)
 Received: from Lord-Beerus.station (net-188-152-100-94.cust.vodafonedsl.it. [188.152.100.94])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970c00e8bsm15675668f8f.15.2026.02.23.03.54.29
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970c00e8bsm15675668f8f.15.2026.02.23.03.54.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 03:54:29 -0800 (PST)
+        Mon, 23 Feb 2026 03:54:30 -0800 (PST)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -90,9 +90,9 @@ Cc: pierluigi.p@variscite.com,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	David Lechner <david@lechnology.com>
-Subject: [PATCH v1 1/2] dt-bindings: net: bluetooth: ti: Add property for enhanced SCO setup erratum
-Date: Mon, 23 Feb 2026 12:52:55 +0100
-Message-ID: <db4c7eab9d0c2f71eb61baff240957596f099401.1771847350.git.stefano.r@variscite.com>
+Subject: [PATCH v1 2/2] Bluetooth: hci_ll: Add DT property to disable enhanced SCO setup
+Date: Mon, 23 Feb 2026 12:52:56 +0100
+Message-ID: <998db3667bb97a6908be01912e165d79ba849925.1771847350.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1771847350.git.stefano.r@variscite.com>
 References: <cover.1771847350.git.stefano.r@variscite.com>
@@ -110,13 +110,13 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267384-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267385-lists,devicetree=lfdr.de];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -131,45 +131,65 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:mid,variscite.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E13D1175C50
+X-Rspamd-Queue-Id: 5C7D4175C5F
 X-Rspamd-Action: no action
 
-From: Stefano Radaelli <stefano.r@variscite.com>
+The HCI_QUIRK_BROKEN_ENHANCED_SETUP_SYNC_CONN quirk was introduced by
+commit 05abad857277 ("Bluetooth: HCI: Add
+HCI_QUIRK_BROKEN_ENHANCED_SETUP_SYNC_CONN quirk") to handle controllers
+that advertise support for the HCI Enhanced Setup Synchronous Connection
+command but fail to use it properly with some SCO configurations (e.g.
+BT_VOICE_TRANSPARENT/mSBC).
 
-Some Bluetooth controller/firmware combinations advertise support for the
-HCI Enhanced Setup Synchronous Connection command but do not handle it
-correctly for SCO setup in certain configurations (e.g.
-BT_VOICE_TRANSPARENT/mSBC). This results in SCO audio not working unless
-the enhanced setup path is avoided.
+This behavior has been observed on TI controllers used with the
+hci_ll driver, where SCO setup can fail unless the enhanced setup path
+is avoided.
 
-Add an optional boolean property, ti,no-enhanced-setup-sync-conn, to
-describe this controller limitation.
+Add support for the optional DT property "ti,no-enhanced-setup-sync-conn"
+and, when present, set HCI_QUIRK_BROKEN_ENHANCED_SETUP_SYNC_CONN during
+controller setup, as intended by the quirk documentation.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
- .../devicetree/bindings/net/bluetooth/ti,bluetooth.yaml    | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/bluetooth/hci_ll.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/bluetooth/ti,bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/ti,bluetooth.yaml
-index 290abc22e18a..92ed443cb427 100644
---- a/Documentation/devicetree/bindings/net/bluetooth/ti,bluetooth.yaml
-+++ b/Documentation/devicetree/bindings/net/bluetooth/ti,bluetooth.yaml
-@@ -71,6 +71,13 @@ properties:
-     items:
-       - const: bd-address
+diff --git a/drivers/bluetooth/hci_ll.c b/drivers/bluetooth/hci_ll.c
+index 91acf24f1ef5..5f69f0654c19 100644
+--- a/drivers/bluetooth/hci_ll.c
++++ b/drivers/bluetooth/hci_ll.c
+@@ -68,6 +68,7 @@ struct ll_device {
+ 	struct gpio_desc *enable_gpio;
+ 	struct clk *ext_clk;
+ 	bdaddr_t bdaddr;
++	bool broken_enhanced_setup;
+ };
  
-+  ti,no-enhanced-setup-sync-conn:
-+    type: boolean
-+    description:
-+      Indicates that the Bluetooth controller/firmware does not correctly
-+      handle the HCI Enhanced Setup Synchronous Connection command for SCO
-+      setup, despite advertising support for it.
+ struct ll_struct {
+@@ -656,6 +657,10 @@ static int ll_setup(struct hci_uart *hu)
+ 			hci_set_quirk(hu->hdev, HCI_QUIRK_INVALID_BDADDR);
+ 	}
+ 
++	if (lldev->broken_enhanced_setup)
++		hci_set_quirk(hu->hdev,
++			      HCI_QUIRK_BROKEN_ENHANCED_SETUP_SYNC_CONN);
 +
- required:
-   - compatible
+ 	/* Operational speed if any */
+ 	if (hu->oper_speed)
+ 		speed = hu->oper_speed;
+@@ -710,6 +715,10 @@ static int hci_ti_probe(struct serdev_device *serdev)
+ 	of_property_read_u32(serdev->dev.of_node, "max-speed", &max_speed);
+ 	hci_uart_set_speeds(hu, 115200, max_speed);
  
++	lldev->broken_enhanced_setup =
++	       of_property_read_bool(serdev->dev.of_node,
++				     "ti,no-enhanced-setup-sync-conn");
++
+ 	/* optional BD address from nvram */
+ 	bdaddr_cell = nvmem_cell_get(&serdev->dev, "bd-address");
+ 	if (IS_ERR(bdaddr_cell)) {
 -- 
 2.47.3
 
