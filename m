@@ -1,327 +1,173 @@
-Return-Path: <devicetree+bounces-267553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APbEF5qLnGl8JQQAu9opvQ
-	(envelope-from <devicetree+bounces-267553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:17:14 +0100
+	id 8F6JHU2MnGmdJQQAu9opvQ
+	(envelope-from <devicetree+bounces-267554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:20:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B680017A90C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:17:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C94D17AA65
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:20:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4CFD83038A7A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:11:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E9EEA309DC52
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133DA329E56;
-	Mon, 23 Feb 2026 17:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125C33195F0;
+	Mon, 23 Feb 2026 17:11:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="htE/esls"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/mIOFe0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D32F329C56;
-	Mon, 23 Feb 2026 17:11:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955B132939C;
+	Mon, 23 Feb 2026 17:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771866666; cv=none; b=DzwLzGllBr1CfbTJR1Z9LhyzvL121qwciPw0rJPjPZ3mSsmym4MB70Kqm2B++Ok5jrAhb2JNip/dXthJL1Zh1sOE0CatnO+EvlVuJ4il6YhdChf/IYXjxGtEuG5SC5RnTGyfBfPCJc3jRXbPlCLo8lRMHsWFmXA4FfTtONpUClA=
+	t=1771866701; cv=none; b=ErRcKk8MniN4Tv7N3KhGvXlgmE11h5EjH2VGUghIGGVLf4Br2HYckJ4ZT0N+xBkzWJ9oMYwbLF/MdmfnbOVHgx1fTWu92YCLsi2C/hOO4JL5JDbKzfnnINDojzNNoLOzEWVO83loyIaMqP11iErwQMSG6NmZBicceZ//B1ql7IE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771866666; c=relaxed/simple;
-	bh=WAvrRHooFSLuY3TO15yL6bmDKWsdM083rhULXZa3Fk8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J5LUTv1SfO4CuSEa4eU0b0YaPDOVzo3qa0jqEP39gB7Wsb4X9/znphvD8iJyLsdXlpRYWS5q1Wynze0Vl+czJ5FdpNjVJr6z9NlLuJ2OUus9U3WfWd6dauET6bJuoc2g9kc42tQDmTiihkvjQAKigQX0smk3nXlAu59PXJg0aok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=htE/esls; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61NCWnkU818778;
-	Mon, 23 Feb 2026 12:11:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=FP6Hq
-	YdlSC+FXD1qpOpZMNngWpDJ8fdQvzLghAuAalg=; b=htE/eslsZgknqbG2yzR/N
-	jf2WNMwgVSTPQcPZPxFdazo7w+Zwbn8vhVgjgm+U5qH4Lr0o/gHqcXXsY4zBSzUY
-	U3tQbB2gn15fo9R8JtLika/M8yWc/cj5vf7EwpuFyG5ccS3t9MB3BY/MrlWhl3As
-	BJitpMudYzhh+vChENX4zpE8aRjOWQ1lmx+9tidIFtizeX+RQjKkzfNRsxyedRmO
-	+OV/XBxBDAcFwwS5Db1B1j3C0DzDLbNvFcGzS537HE1AzcqnHWC0CUYX2yKdkrbL
-	NUf6eQv7G6+Cg7Iek+IjgNLQ8cEyI2uiPzHFbin7huFashzdG018e+f7pM7cm1sk
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4cg7p03rpa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Feb 2026 12:10:59 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 61NHAwP8036503
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 23 Feb 2026 12:10:58 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 23 Feb 2026 12:10:58 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Mon, 23 Feb 2026 12:10:58 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Mon, 23 Feb 2026 12:10:58 -0500
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 61NHAcVJ017873;
-	Mon, 23 Feb 2026 12:10:41 -0500
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <michael.hennerich@analog.com>, <nuno.sa@analog.com>,
-        <eblanc@baylibre.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>,
-        David Lechner
-	<dlechner@baylible.com>
-Subject: [PATCH v10 6/6] iio: adc: ad4030: Support common-mode channels with SPI offloading
-Date: Mon, 23 Feb 2026 14:10:38 -0300
-Message-ID: <4aeb678a873c9f3936efc0f17cd24a4f014217c2.1771865684.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1771865684.git.marcelo.schmitt@analog.com>
-References: <cover.1771865684.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1771866701; c=relaxed/simple;
+	bh=ZRbVHff9cwhjzd4EHPCkK5bTEZb7Lbk26FN3GsdVZ5U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ToS9eCW0auuZzosNT+4yEd9e8o2KfMit5MJNTaumgdikOhGrlEczh21gNKo3JEgwcrLXAwvpXxkAa5YFBde9lpxHTSBwnE29wQv9qqOQm48kxd69nWaH3ATvCxyeiUCBzPtuILi4+Cp8hhXDHLFSvO95V+h8BPpcR2WChGyif9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/mIOFe0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3282C116C6;
+	Mon, 23 Feb 2026 17:11:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771866701;
+	bh=ZRbVHff9cwhjzd4EHPCkK5bTEZb7Lbk26FN3GsdVZ5U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G/mIOFe0Yjdq0piPLsmh5N4wP7yKaqEdYI0eVSVx4iedMaB4HSdOrCJ8WPMAo7/EE
+	 pKOUjhJCmr4fkBxXcRpNv7DQo328fKY9Yz3hF+cGfFi8tTXc91Tz69FcuIYVrgz+kf
+	 T/gjRBBOORWGsSUYEbiJAJkpbCUuxg9kINGSA2me9lrX0kaXr0SWJ8OxJwwAMo6+v0
+	 O8WajFrALSrC1vLUN5p86f2f4l5fXGrsLqS7/62qTmfxv6B3zLgV8UFhPsgjKjdH8j
+	 gw1XkdbWHYwAGBuiLFFvqGCbL3rAP29GbUx1I/C9MwU8wWnvVzdirVIUigirKxd6lz
+	 58kZoLtsLkr7g==
+Date: Mon, 23 Feb 2026 11:11:40 -0600
+From: Rob Herring <robh@kernel.org>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 00/10] dt-bindings: Various cleanups for Tegra-related
+ bindings
+Message-ID: <20260223171140.GA3992907-robh@kernel.org>
+References: <20260223143305.3771383-1-thierry.reding@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: hq4OM_FMena-WnrxLtwwaRFzFrHeDGQW
-X-Proofpoint-GUID: hq4OM_FMena-WnrxLtwwaRFzFrHeDGQW
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDE0NiBTYWx0ZWRfX7uZT3Hqz/U2U
- p1LJhcQVomk+1MQa5QnbQPBlIvEhOP8j47l6rN0B59Qje9oRRTzS2UANQqE9eUVIPfxG9RxX91y
- v8YonlmP+WHkdn5SUpa9Vn65S5kRZCYFbrXYHkzgDnYOrbo/BMixV5K0WEyMdix0tonryn2YUV1
- qNFSkkTT1cIyaTdAZxuC0/gRaYkXr2I28hNavwG2wRkAVfedLG6mLuA4dZ+sjo7B5AzdbvmoJjz
- vA7qmCcG/EV2bv77KAXIff650JnNfze0RAW5i7JhxlQ1S+f8qVkS90NQj4cEVaBT4fV8MoucYpr
- 57X8XvMuhwRVZMFQR4gvpp5+qMVB8YB3IbM40nLfQFQWzSo5BXHVUZBAMJS7cDHTqPIDouZjfQw
- 4QwSI6T+q2qIw8WquAI3o5K2i5w7FSLpumrmrw+ZVY7/6tNrguwUg6UTESIh6KKsur5r+qq2mTh
- UzAwkP9RrVfuC5iZjiA==
-X-Authority-Analysis: v=2.4 cv=Fq4IPmrq c=1 sm=1 tr=0 ts=699c8a23 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
- a=Z0pTeXoby7EwIRygza74:22 a=rdXqIxahAAAA:8 a=gAnH3GRIAAAA:8
- a=nLo5uX867Eh3Y58ELpAA:9 a=qWU3L9Jmq6PeI4v8DYd9:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-23_04,2026-02-23_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 clxscore=1015 lowpriorityscore=0
- impostorscore=0 phishscore=0 adultscore=0 spamscore=0 malwarescore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2602230146
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260223143305.3771383-1-thierry.reding@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,lwn.net,gmail.com,baylible.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-267553-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267554-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:mid,analog.com:dkim,analog.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylible.com:email];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: B680017A90C
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email]
+X-Rspamd-Queue-Id: 0C94D17AA65
 X-Rspamd-Action: no action
 
-AD4030 and similar devices can read common-mode voltage together with
-ADC sample data. When enabled, common-mode voltage data is provided in a
-separate IIO channel since it measures something other than the primary
-ADC input signal and requires separate scaling to convert to voltage
-units. The initial SPI offload support patch for AD4030 only provided
-differential channels. Now, extend the AD4030 driver to also provide
-common-mode IIO channels when setup with SPI offloading capability.
+On Mon, Feb 23, 2026 at 03:32:55PM +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> This patch set contains a couple of cleanups and conversions for Tegra-
+> related bindings. In total, on top of next-20260220, these patches get
+> the number of DT validation issues down from 184 to just 88.
 
-Reviewed-by: David Lechner <dlechner@baylible.com>
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
-Change log v9 -> v10
-- No changes.
+Great! Really, you were at only 40 unique warnings (I strip the 
+filenames to avoid multiple boards duplicating warnings). You're in 4th 
+(to last) place:
 
- drivers/iio/adc/ad4030.c | 49 ++++++++++++++++++++++++++++++++--------
- 1 file changed, 40 insertions(+), 9 deletions(-)
+arch/arm64/boot/dts/hisilicon:116:74
+arch/arm64/boot/dts/mediatek:197:48
+arch/arm64/boot/dts/qcom:132:45
+arch/arm64/boot/dts/nvidia:184:40
+arch/arm64/boot/dts/rockchip:76:27
+arch/arm64/boot/dts/marvell:182:23
+arch/arm64/boot/dts/renesas:83:13
+arch/arm64/boot/dts/xilinx:16:6
+arch/arm64/boot/dts/microchip:22:6
+arch/arm64/boot/dts/broadcom:32:4
+arch/arm64/boot/dts/nuvoton:3:3
+arch/arm64/boot/dts/sprd:2:2
+arch/arm64/boot/dts/intel:2:2
+arch/arm64/boot/dts/apm:3:2
+arch/arm64/boot/dts/realtek:45:1
+arch/arm64/boot/dts/freescale:2:1
+arch/arm64/boot/dts/arm:1:1
 
-diff --git a/drivers/iio/adc/ad4030.c b/drivers/iio/adc/ad4030.c
-index 47f733aceb03..8414ab73345e 100644
---- a/drivers/iio/adc/ad4030.c
-+++ b/drivers/iio/adc/ad4030.c
-@@ -193,7 +193,7 @@ struct ad4030_state {
- 	unsigned int avg_log2;
- 	enum ad4030_out_mode mode;
- 	/* Offload sampling */
--	struct spi_transfer offload_xfer;
-+	struct spi_transfer offload_xfer[2];
- 	struct spi_message offload_msg;
- 	struct spi_offload *offload;
- 	struct spi_offload_trigger *offload_trigger;
-@@ -238,7 +238,7 @@ struct ad4030_state {
-  * - _idx - _ch * 2 + _ch gives the channel number for this specific common-mode
-  *   channel
-  */
--#define AD4030_CHAN_CMO(_idx, _ch)  {					\
-+#define __AD4030_CHAN_CMO(_idx, _ch, _offload)  {			\
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
- 		BIT(IIO_CHAN_INFO_SCALE),				\
- 	.type = IIO_VOLTAGE,						\
-@@ -248,12 +248,18 @@ struct ad4030_state {
- 	.scan_index = (_idx),						\
- 	.scan_type = {							\
- 		.sign = 'u',						\
--		.storagebits = 8,					\
-+		.storagebits = (_offload ? 32 : 8),			\
- 		.realbits = 8,						\
--		.endianness = IIO_BE,					\
-+		.endianness = (_offload ? IIO_CPU : IIO_BE),		\
- 	},								\
- }
- 
-+#define AD4030_CHAN_CMO(_idx, _ch)					\
-+	__AD4030_CHAN_CMO(_idx, _ch, 0)
-+
-+#define AD4030_OFFLOAD_CHAN_CMO(_idx, _ch)				\
-+	__AD4030_CHAN_CMO(_idx, _ch, 1)
-+
- /*
-  * For a chip with 2 hardware channel this will be used to create 2 differential
-  * channels:
-@@ -1187,6 +1193,7 @@ static const struct iio_buffer_setup_ops ad4030_buffer_setup_ops = {
- static void ad4030_prepare_offload_msg(struct iio_dev *indio_dev)
- {
- 	struct ad4030_state *st = iio_priv(indio_dev);
-+	bool common_mode;
- 	u8 offload_bpw;
- 
- 	if (st->mode == AD4030_OUT_DATA_MD_30_AVERAGED_DIFF)
-@@ -1194,10 +1201,22 @@ static void ad4030_prepare_offload_msg(struct iio_dev *indio_dev)
- 	else
- 		offload_bpw = st->chip->precision_bits;
- 
--	st->offload_xfer.bits_per_word = offload_bpw;
--	st->offload_xfer.len = spi_bpw_to_bytes(offload_bpw);
--	st->offload_xfer.offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
--	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
-+	st->offload_xfer[0].bits_per_word = offload_bpw;
-+	st->offload_xfer[0].len = spi_bpw_to_bytes(offload_bpw);
-+	st->offload_xfer[0].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+
-+	common_mode = st->mode == AD4030_OUT_DATA_MD_24_DIFF_8_COM ||
-+		      st->mode == AD4030_OUT_DATA_MD_16_DIFF_8_COM;
-+
-+	if (common_mode) {
-+		offload_bpw = 8;
-+		st->offload_xfer[1].bits_per_word = offload_bpw;
-+		st->offload_xfer[1].len = spi_bpw_to_bytes(offload_bpw);
-+		st->offload_xfer[1].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+	}
-+
-+	spi_message_init_with_transfers(&st->offload_msg, st->offload_xfer,
-+					common_mode ? 2 : 1);
- }
- 
- static int ad4030_offload_buffer_postenable(struct iio_dev *indio_dev)
-@@ -1262,6 +1281,7 @@ static int ad4030_offload_buffer_predisable(struct iio_dev *indio_dev)
- static const struct iio_buffer_setup_ops ad4030_offload_buffer_setup_ops = {
- 	.postenable = &ad4030_offload_buffer_postenable,
- 	.predisable = &ad4030_offload_buffer_predisable,
-+	.validate_scan_mask = ad4030_validate_scan_mask,
- };
- 
- static int ad4030_regulators_get(struct ad4030_state *st)
-@@ -1512,7 +1532,7 @@ static int ad4030_probe(struct spi_device *spi)
- 		 * Offloaded SPI transfers can't support software timestamp so
- 		 * no additional timestamp channel is added.
- 		 */
--		indio_dev->num_channels = st->chip->num_voltage_inputs;
-+		indio_dev->num_channels = 2 * st->chip->num_voltage_inputs;
- 		indio_dev->channels = st->chip->offload_channels;
- 		ret = ad4030_spi_offload_setup(indio_dev, st);
- 		if (ret)
-@@ -1632,6 +1652,7 @@ static const struct ad4030_chip_info ad4030_24_chip_info = {
- 	},
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(1, 0),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4030_24_GRADE,
- 	.precision_bits = 24,
-@@ -1653,6 +1674,8 @@ static const struct ad4030_chip_info ad4630_16_chip_info = {
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
- 		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_16_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(2, 0),
-+		AD4030_OFFLOAD_CHAN_CMO(3, 1),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4630_16_GRADE,
- 	.precision_bits = 16,
-@@ -1674,6 +1697,8 @@ static const struct ad4030_chip_info ad4630_24_chip_info = {
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
- 		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_24_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(2, 0),
-+		AD4030_OFFLOAD_CHAN_CMO(3, 1),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4630_24_GRADE,
- 	.precision_bits = 24,
-@@ -1695,6 +1720,8 @@ static const struct ad4030_chip_info ad4632_16_chip_info = {
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
- 		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_16_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(2, 0),
-+		AD4030_OFFLOAD_CHAN_CMO(3, 1),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4632_16_GRADE,
- 	.precision_bits = 16,
-@@ -1716,6 +1743,8 @@ static const struct ad4030_chip_info ad4632_24_chip_info = {
- 	.offload_channels = {
- 		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
- 		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_24_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(2, 0),
-+		AD4030_OFFLOAD_CHAN_CMO(3, 1),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_AD4632_24_GRADE,
- 	.precision_bits = 24,
-@@ -1734,6 +1763,7 @@ static const struct ad4030_chip_info adaq4216_chip_info = {
- 	},
- 	.offload_channels = {
- 		ADAQ4216_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(1, 0),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_ADAQ4216_GRADE,
- 	.precision_bits = 16,
-@@ -1753,6 +1783,7 @@ static const struct ad4030_chip_info adaq4224_chip_info = {
- 	},
- 	.offload_channels = {
- 		ADAQ4216_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
-+		AD4030_OFFLOAD_CHAN_CMO(1, 0),
- 	},
- 	.grade = AD4030_REG_CHIP_GRADE_ADAQ4224_GRADE,
- 	.precision_bits = 24,
--- 
-2.39.2
+This and logs of all the warnings from next and Linus' trees can be 
+retrieved with scripts here:
 
+https://gitlab.com/robherring/ci-jobs
+
+
+> Note that technically these are at different revisions because they had
+> been sent out separately a while ago, Some of these have already been
+> reviewed, but given that they are fairly old I wanted to send them out
+> in case there are new best practices that these don't include. I've run
+> all of these through dt_binding_check. Also I've verified that these do
+> not produce any new warnings/errors while eliminating old ones.
+> 
+> Krzysztof, Rob, I know that you prefer DT binding changes to go through
+> driver trees, but given that these don't have any driver changes to go
+> with them, should we queue these via the Tegra tree (or devicetree tree)
+> once they've passed review?
+
+I prefer they go via subsystem trees still, but if you don't get a reply 
+in reasonable time just take them. You can take the interrupt-controller 
+one though as DT only changes don't tend to get picked up.
+
+> I plan to pick up the two DTS changes into the Tegra tree since they are
+> fairly trivial and unrelated to the bindings changes. I suppose they
+> could've just been a separate series, but I thought I'd post them along
+> with the other changes since this is all a concerted effort to get the
+> number of issues down.
+> 
+> Thanks,
+> Thierry
+> 
+> Thierry Reding (10):
+>   dt-bindings: phy: tegra-xusb: Document Type C support
+>   dt-bindings: pci: tegra: Convert to json-schema
+>   dt-bindings: clock: tegra124-dfll: Convert to json-schema
+>   dt-bindings: interrupt-controller: tegra: Fix reg entries
+>   dt-bindings: arm: tegra: Add missing compatible strings
+>   dt-bindings: phy: tegra: Document Tegra210 USB PHY
+>   dt-bindings: memory: Add Tegra210 memory controller bindings
+>   dt-bindings: memory: tegra210: Mark EMC as cooling device
+>   arm64: tegra: Fix snps,blen properties
+>   arm64: tegra: Drop redundant clock and reset names for TSEC
+
+arm64: dts: tegra: ...
+
+Rob
 
