@@ -1,213 +1,265 @@
-Return-Path: <devicetree+bounces-267319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267320-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wO/sIUklnGkeAAQAu9opvQ
-	(envelope-from <devicetree+bounces-267319-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:00:41 +0100
+	id E1aLOHklnGlFAAQAu9opvQ
+	(envelope-from <devicetree+bounces-267320-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:01:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D656F1746BF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:00:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A167C1746D5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:01:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 03157302BB90
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 09:59:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 686C9301477F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 494533542F4;
-	Mon, 23 Feb 2026 09:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD4F34D91C;
+	Mon, 23 Feb 2026 10:01:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FNe+ABrl";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aL+1KVUB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eU2mk2Ro"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3659E34A785
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E959E344056
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 10:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771840779; cv=none; b=Kk4R7j5Nf2ckuYOwgzdNwPW2AqwSvcF8DzaqTOhkC0Mpsspt1H2bZJCkQJaZnvBWex4rRLYGDtzswhgJt12vI3KVNeQRTMWrSZgCdgJRVjcm/sb49wv6h3V/TyIQ9p5N4DoQRdbeTs4GnSDGRlVrQoxlFQ9taKMulWAQ9JSScRA=
+	t=1771840882; cv=none; b=LJbCdxOKJ/Kg5aah7ZqqimQWOYEFxx2mUZWUnYoajp/0TrfsxP1HeY6lW55fD53cxcnOZUJ6AEXtwew1NTIJEJJhIl/T63otd0gGRp8BHvlpNlhsB/MyPp4kGCYJn6CGDqiEzk9NxZCIiji0k7DXfT7C++IlIRmzpm9UMsmysNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771840779; c=relaxed/simple;
-	bh=j3G8PmWwRYOCpxIyqY4qiNHjjjigY6BKB98FdS4me24=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lBPh5u3BWWRrbchYjlCGCWtNkWpX/O3uBIkdI6eyzy5MwN/lO5QuLpsvTon3CS+EaKtd9+hXQ2Wp2QNMS0ZPTbqDLplhIXThFzqUhceOMNja+gF//cPMpIDedum1cT3kdJEXRcSs7zIYGVr6u/uJOjO1apmP/cLzZDAtmnG2akQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FNe+ABrl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aL+1KVUB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61N9bnab1824711
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:59:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0q/hXh703nO28vGXhzncKmTVhDNb1C4vYJlCrVydYrI=; b=FNe+ABrlUxXFYYaO
-	sH35XW7mab48GYYHwyClbEvY+yN7ADZt0ego3DmMcXyXT9mgK8IJnd8bEI2dxyBR
-	ogu4Q29GJRFzIlpkZOEFGgF8/hS/85cDpZJ0RCVT3xCvKlysKhMBCd3TiwQSCKHa
-	TV6cXKnoFwpkJ4I5OwD2WZblBmMGNDFWs9Yd/zdVpAzKfMcJyj2ZY14BKYuywhWL
-	1E+/L3SLIOtJrJWIbMy569dkpIQnqOkb9pqpo5BZ4v3bBA8ryeG6vMuOVQjkHril
-	DVtvAAr9S/6iRZpswG1eu4OebIHjCTxVw2Mkg8doRyiNo1r7h7mdR/obAILQYv37
-	8Tqi4A==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf5wbc96s-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:59:37 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c70cb31bcdso512720885a.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 01:59:37 -0800 (PST)
+	s=arc-20240116; t=1771840882; c=relaxed/simple;
+	bh=jOH4HAzztbNJd6N61B5fbyjwf94NZbbCov5AxWZaPqE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=FlC1WJFWG4rR1+HPFZpE+9+mx0QmV5DhrHJeOlA9/1hUQYkBklj/EiJpj6KBMmkf4sRleyoQODC3WNsAsV1Lb1pdJVMVztv9yulEzdEeP7j0qrtTRqXasz0iI5tMPgNeap8OzpMdflLp1zajVGk0Oru1NVYX/7UDftyHzAQe6LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eU2mk2Ro; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-43621bf67ceso2708889f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 02:01:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771840777; x=1772445577; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0q/hXh703nO28vGXhzncKmTVhDNb1C4vYJlCrVydYrI=;
-        b=aL+1KVUB1EXUAJDKrDAB0szmS+ONz+wvS5pXIjs3qlDFrVYUZjEaSR2g6LPRXBJKjq
-         7wYGWRWGMuK630DcU/XXr5YV+4dQhTXbaqSaMfXYII9UOb01V98aBsV3NWCGBiWQaca0
-         hjFVWUswlw60l+Sfo5c6lXiTowpHRtnlKjTTXrR/8wfa9GcMArs9n/DJgMk43kkLTsJh
-         zUnAoRHOs3XJWyJ1ceYaTeVGM3Y5jF8aIqHGal/mmoKWj9Q0d1Rz0vwsH44RlYTya9vI
-         1DFYxx5cL8lidsS9W4alObcQYA1XSAm86ZlWgAhS8Dj/Hr+kxyKSVmiatTPMPajSddzO
-         hoAA==
+        d=gmail.com; s=20230601; t=1771840879; x=1772445679; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=KQ52RF9UrdLJkddCssVt0GgYIwMli1ZJtjVYuLN9frw=;
+        b=eU2mk2Ro/urxOk6w2nwtZ69HxNZjL6nHS8ndFE9zPpRkCSIii1IqqaRCYBkaG2Yd9R
+         +ZWio4os4mz9ITSZl/QPMCLL5sQxBfDHmKj4A/3nyuJc1vhsRvOsJ+icD7OdCN9irHeG
+         urQWEeauDEKpGQ44huplQJQ3Qd4+vxddWUNVq8rNUegTPeOxUu2WhwARPQ7Y/npiE1JC
+         3HJOnsRxniKuqADeziz1z3jGLzz7d53t+3/MP0o0IyvHTMVxMOqATUR6s6LcK3pZehon
+         iFngUEi8VMF7JyOUMuu6P6UxO+V9dwEKAdUNTnUUiCkrBe/Bl/TfypcPtOsuOolQ5rK6
+         ++yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771840777; x=1772445577;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0q/hXh703nO28vGXhzncKmTVhDNb1C4vYJlCrVydYrI=;
-        b=Dh9D7aAlFC0y3bzk7RriF7s4mM6DB7BYxty7ib091x78QwY8cG8Lfu17dYjOJE+Npj
-         k5ouaRBkp1qks+P3578C4gYZhuuvUQNQ9ol7mA1oa0wOBbdeIQFwqRzMQQZ4aD5KxgIB
-         sNIxBHjTUAhLWrMplNPsBPjo4lVELwZ/ppkfs1ct3NWDiw6k+Rem1IHLEJuHZ8SxwPCA
-         IraopbYQaZK67lna3qNLkmDYxNMZd1znI6CGDUVAajj8XjBqQt6Rf/AUYuY/OlqY1LO3
-         WRWzh3EUr/ec+IQOAoJkg8KNdE6SlWBpo4NRpt58d+hv3DRY1/bPsMzVCVbCfEd18ERY
-         +eGg==
-X-Forwarded-Encrypted: i=1; AJvYcCXWNwzRvvJayqH0fB/rYSnRW+qB8rZ/J/6oLJZ8UTRyw+CY+VOI5cek5siz27UGfnvOrFc1Va5u3zLk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHt3yPC1g2S+srC5OnAEGFEQhS+M0lZWY/8Ha98ITpGd1AtW/k
-	HdIMVQ/K9hbunSlpcGMblnLokeok96MhuImCqpML58sBVX9/Hp03FlPJ07ithmn8Oop9k2DjocB
-	d3nXyI+Lgmkfnh4wMWb9hac6xSH0L4uDwVCaETv43chQkmKDVUH22JeKxeCZE6yTA
-X-Gm-Gg: AZuq6aL1SVQDh/CxNx00vntgyqOdaLRutja+DAIqQBTdwv1MJd3lmVqR2L2JbXBJIEF
-	9p20vL9r8sCmm7HAuOH4Db97Ps6zwPmhAt3PjX/PYqn16rYVqn0Eo5w0Vnppf102Bl5Ek44M7xn
-	+pxf27O8v6JAi23tTvL3FM1oVF+cM2Zuzd/BnPNvuOIFY+A5AsoUjD9sBVPsFoNyI2hty5xOgKf
-	YMlCSG70BQM/ax9GMVPMmrcLrdbxun7aoAuAyEPd3RePCPC8+vmgk9Vc6uoH8CtvYGMWl7WWa3k
-	pfZwLIb83uSe0/nr3cV5DHc8+bJjh/lDTiDzxm0PCIBQEwVDbUBqz0MWrBqVmv7q1fDfFwDDmbB
-	P5avpVhZmIfGRD9HOfv+Zup3lM4+r3mJOvEHHhDtCH7A3mSi8oMgIzFsyaoZM8j0KttTfhoRezg
-	b2u5I=
-X-Received: by 2002:a05:620a:1a08:b0:8cb:4059:a90c with SMTP id af79cd13be357-8cb8cacdea5mr695839885a.8.1771840776609;
-        Mon, 23 Feb 2026 01:59:36 -0800 (PST)
-X-Received: by 2002:a05:620a:1a08:b0:8cb:4059:a90c with SMTP id af79cd13be357-8cb8cacdea5mr695838785a.8.1771840776124;
-        Mon, 23 Feb 2026 01:59:36 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9084e4ba0csm309640566b.38.2026.02.23.01.59.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Feb 2026 01:59:35 -0800 (PST)
-Message-ID: <01593963-2bff-4a8c-a6f9-c62bcf21ccaf@oss.qualcomm.com>
-Date: Mon, 23 Feb 2026 10:59:33 +0100
+        d=1e100.net; s=20230601; t=1771840879; x=1772445679;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KQ52RF9UrdLJkddCssVt0GgYIwMli1ZJtjVYuLN9frw=;
+        b=oRY7dFsmlWd8e7rUKwVn0rw8nM78iseo6xyv7/PqQH+tRswUz090ZOymm+47xlomal
+         TEG9gzQ36FczaQi/RWIcXykmuJJd6OWQcV4i+3fIHlBMJKwlOkaxIDOgP5eu325c68Cp
+         etEGXqPraSY3omqpcg7ojH7PahpZgKQI+zAwOdS4K7CGebdnxVvb6wDPie89oD1DEAfG
+         0yMhaqVBE2t9pJ5UXZWeRt0JV6Cyf0rDMV9PKYwvuec3uPbKt+yLahZNd82ZinRbsWc5
+         GK87y2NImZeDWQLYJAb2YJm/ShZL99PyAfGRfvjq8uhfSDWo0QzmhCIzC6nNp0QnfLUJ
+         RjDg==
+X-Forwarded-Encrypted: i=1; AJvYcCVMtyIK12kolIX/IqSvHvdxG7/XP/5gxpN9jxqbGrjdUxlNBg1TEibt1djo0hUhM0BGt7YDOiA7BQxm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxqg47YpQfB/V6YzVi7ibB88LFLV/GWmC1M6rdF1UM+/SV1nFts
+	aYVKKkJHNDf12dpWgGUTeewy5u6boCKXjrAEwr2ygyacWLaD6ETvqGcC
+X-Gm-Gg: ATEYQzyghJv2FQc9yJ288MlSIWB8sg8uFDaTon7l/9+ioZZG8H6V/vXt/QUFfMwgvY7
+	9sWOI5aLNIE5Avtpk2H62RkYpAsiPl42Fq6ktrxkhdVCl9+OhXP+N+x+mQhwfJOEPK1C3fCbwf/
+	/XcXDe4nPfzXMWO6VWNVh/K7UQuqZxtcb4LMndQxLZZnW8XxZsBGS6je1jtgZqXSXtFjeaOATPE
+	X4Q1rdLU/g8m1HQZ1PuEflWwJsxcQbLO5clw347pH1g3tJFMupW/q/mgu4zEBpdV+6YIwtWD9mE
+	PPcimoHHHxAapbzm8eMEDmehXsxV7YU9DQc1OonCqZQstrG7ggQKVIvrWxcbAkh4csqv8oHZ5iv
+	4AswWBMnveRNBqq8E/WbJawG95E2c1jC4SzpDp6FoHq/FfLccgC9eBqRD/IpXEvu7bbRzVYUjlW
+	jCS8G7aQi9XvT20bBpFwA9f0aTTkjOKfI=
+X-Received: by 2002:a5d:588b:0:b0:435:6c8d:d017 with SMTP id ffacd0b85a97d-4396f17b315mr14662055f8f.32.1771840878920;
+        Mon, 23 Feb 2026 02:01:18 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970d4c60bsm17820046f8f.27.2026.02.23.02.01.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Feb 2026 02:01:18 -0800 (PST)
+Message-ID: <9392fea00a9c3b23d1bc9468faa1b3cc20904398.camel@gmail.com>
+Subject: Re: [PATCH RFC 0/8] AD9910 Direct Digital Synthesizer
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Rodrigo Alencar
+	 <455.rodrigo.alencar@gmail.com>, rodrigo.alencar@analog.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich	
+ <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Date: Mon, 23 Feb 2026 10:02:00 +0000
+In-Reply-To: <bdc973e5-df74-48f2-8884-439b03565940@baylibre.com>
+References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
+	 <a72b2d62-3b91-4789-a1b1-ff1429e80ed5@baylibre.com>
+	 <2k4ouimpaxjuhnk67qmrues2375zj43ehru7h5as6w6kf7yak3@2ndr72co5trh>
+	 <bdc973e5-df74-48f2-8884-439b03565940@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: monaco-evk: Add Interface Plus
- Mezzanine
-To: Umang Chheda <umang.chheda@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com,
-        krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
-References: <20260222173545.3627478-1-umang.chheda@oss.qualcomm.com>
- <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
- <at7j3kbdixd7aveiol37pwgudl2hcogtdrvdgcvgbbm3t5irfc@4nvv5ptoezyk>
- <4ae0dd46-5f5f-403b-bbc6-1094159be302@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <4ae0dd46-5f5f-403b-bbc6-1094159be302@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: mB8fzJ3QQzX-pXMnU6hrPbVJhEZY39LQ
-X-Authority-Analysis: v=2.4 cv=UZlciaSN c=1 sm=1 tr=0 ts=699c2509 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=HODDCX8Zblber2y-KYIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: mB8fzJ3QQzX-pXMnU6hrPbVJhEZY39LQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDA4NiBTYWx0ZWRfX6KpSq2ngNKPy
- LVGwJhlfE5qMO7W8boplYz4gIA7tonFRf0rqntH9UoPpNKTuTqE2vVHWjs8yKJBq5ekldQ7vqhc
- TJutZrb50iA6tPVDjmp99GBAy1aQiLrgrGe82PIB3PnjmT9P0XPirLxg0ud79x+TxK7e6xMAQFD
- U8PbYDAZYstvgDhDEMq5oDrzQtvg9loqaSixHQzdqcKKJNvI4uos8TN707TACYUmMFgWWBvI3Vc
- 8jLXZINrWofLL8M5FsXt2G8eymeDvm0K/Ev6rC795NHks0YszNUrgb2A0Qby+rwt2YWGmuoJwy2
- nUhXInbWIKvaiKuBZ2Nj0QJhBPwJK4amPLYvZvwtQAGKvMdFf8MEAlwyFCm7RbjKOzs/k3beUle
- GYOcC52loxtbyhJMzLq6erbNdfX7+rCLWORdVBBSQ+U2tdEFkfYueDZzoIWjERHUl5uOjzL93Ih
- pt8ErOkV5EQBvK83+FQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-23_02,2026-02-20_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0 malwarescore=0
- bulkscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602230086
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-267319-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267320-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[baylibre.com,gmail.com,analog.com,vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: D656F1746BF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: A167C1746D5
 X-Rspamd-Action: no action
 
-On 2/23/26 10:47 AM, Umang Chheda wrote:
-> Hello Dmitry,
-> 
-> On 2/22/2026 11:57 PM, Dmitry Baryshkov wrote:
->> On Sun, Feb 22, 2026 at 11:05:45PM +0530, Umang Chheda wrote:
->>> The Interface Plus [IFP] Mezzanine is an hardware expansion add-on
->>> board designed to be stacked on top of Monaco EVK.
->>>
->>> It has following peripherals :
->>>
->>> - 4x Type A USB ports in host mode.
->>> - TC9563 PCIe switch, which has following three downstream ports (DSP) :
->>>    - 1st DSP connects M.2 E-key connector for connecting WLAN endpoints.
->> Nit: routed to? Is that M.2 only suitable for WLANs? What is "WLAN
->> endpoints"?
-> 
->> routed to?
-> If I understand correctly - you mean change string "connects M.2 E-Key connector" to 
-> "routed to M.2 E-Key connector" ?
->  
-> 
->> Is that M.2 only suitable for WLANs?
-> Yes, this is suitable only for the WLAN module.
+On Sun, 2026-02-22 at 14:32 -0600, David Lechner wrote:
+> On 2/22/26 4:01 AM, Rodrigo Alencar wrote:
+> > On 26/02/21 02:16PM, David Lechner wrote:
+> > > On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote:
+> > > > This patch series adds support for the Analog Devices AD9910 DDS.
+> > > > This is an RFC so that we can agree/discuss on the design that foll=
+ows:
+> > > >=20
+>=20
+> ...
+>=20
+> > > > represents a distinct signal path into the DDS accumulator, so the =
+driver
+> > > > models them as separate IIO output channels (all IIO_ALTVOLTAGE typ=
+e).
+> > >=20
+> > > Generally IIO channels represent the physical input/output, not the
+> > > internal channels.
+> >=20
+> > That is part of the reason for this RFC. Dividing those top-level modes
+> > into channels allows for better organization, as they can operate toget=
+her,
+> > i.e., phase or scale can be provided by single-tone profile, while
+> > frequency is controlled by the digital ramp generator (see Mode Priorit=
+y
+> > section in the datasheet). Also, it allows to explore the most of stand=
+ard
+> > ABIs like, scale, frequency, phase, sampling_frequency and enable.
+> > Putting everything into a single channel would make things a lot messy
+> > to interface with.
+> >=20
+> > > Ideally we would just have the one channel here with a mode selection
+> > > attribute. Documentation can tell us which modes use which attributes=
+.
+> > >=20
+> > > > This per-channel separation allows userspace to configure each mode
+> > > > independently through its own set of sysfs attributes, and to
+> > > > enable/disable modes individually via IIO_CHAN_INFO_ENABLE, relying=
+ on
+> > > > the hardware's own mode selection architecture.
+> > > >=20
+>=20
+> Looking at Table 5 in the datasheet really helped me understand this bett=
+er.
+> I think this series could benefit from a documentation patch that explain=
+s
+> more about how the driver works with some diagrams.
+>=20
+> So really what we have here are a bunch of digital data generators rather
+> than a bunch of altvotlage output channels. And the same data channels ca=
+n be
+> mixed and match as the source for up to 3 different components of the out=
+put
+> (frequency, phase, amplitude) depending on the priority rules defined in
+> Table 5.
 
-If I remove that WLAN module and insert an SSD through an adapter, will
-the board spontaneously explode?
+More bellow... But note that all of the (or most of it) generators are goin=
+g to
+be feed into a DAC. Your output is altvoltage but maybe we can treat the
+internals as voltage. Not sure.
+=20
+>=20
+> Digital data sources are really more like a buffer in IIO terms than a
+> channel. And before we added the IIO backend stuff, there wasn't really
+> any other digital data source/sink that I am aware of other than buffers
+> (but there are certainly a lot of odd corners of IIO that I haven't explo=
+red
+> yet, so maybe I missed some).
+>=20
+> In a recent discussion, the idea of possibly needing a way to provide
+> some userspace interface to be able to tweak knobs of an IIO backend
+> was also brought up.
+>=20
+> Putting those ideas together, I'm wondering if we need some new channel
+> type or even a whole new interface (e.g. a new sysfs directory like buffe=
+rs
+> and events) for managing these digital data sources/sinks that are not an
+> IIO buffer.
+>=20
 
-"intended for" is less ominous..
+But what would be that channel? In the end of the day, we typically have vo=
+ltage or
+current DACs and a DDS primary function is indeed to generate alternating w=
+aveforms
+that you then typically feed into a DAC (and in some cases from the DAC int=
+o a
+power amplifier). So the DDS is just part of the data/signal path. Anyways,=
+ not sure
+on the new type and I think we already have the "blocks" in IIO for dealing=
+ with this:
 
-Konrad
+. frequency
+. phase
+. amplitude (raw + scale + offset)
+
+But you're right that maybe it's time to think in a better way to fit them =
+together.=C2=A0
+Maybe a new type (as buffers or events) can make sense where the above are =
+treated as, example, scan
+elements. Maybe it's overcomplicating, not sure. It surely needs  discussio=
+n and thinking :).
+
+And spoiler alert, as you might have guessed already, the parallel port stu=
+ff is to be
+used with DMA buffers (and IIO backends). At least, that was the plan IIRC.=
+ But Rodrigo
+can confirm it.
+
+> I think we've seen enough of these already to know that things like a
+> "tone generator" and a "ramp generator" are going to be common and could
+> share some standard attributes.=20
+>=20
+
+I tend to agree. For example, there already some DACs (with dithering) that=
+ make use of a similar
+interface (but with a custom prefix). Though the end goal is different, the=
+ interface is not that
+far off:
+
+
+https://elixir.bootlin.com/linux/v6.19.3/source/Documentation/ABI/testing/s=
+ysfs-bus-iio-dac-ltc2688
+
+Anyways, I knew this one would be an interesting one for upstream :)
+
+- Nuno S=C3=A1
 
