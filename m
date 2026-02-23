@@ -1,185 +1,150 @@
-Return-Path: <devicetree+bounces-267503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267505-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wE0CDjJ1nGmyHwQAu9opvQ
-	(envelope-from <devicetree+bounces-267503-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:41:38 +0100
+	id QECpF7J1nGmwHwQAu9opvQ
+	(envelope-from <devicetree+bounces-267505-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:43:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD80E178E68
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:41:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC8A5178F2B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:43:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9B618308A416
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:38:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 07951310611F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:40:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11762EDD40;
-	Mon, 23 Feb 2026 15:38:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c5YdjTLc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06EDD2F1FEF;
+	Mon, 23 Feb 2026 15:40:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDA09285C88;
-	Mon, 23 Feb 2026 15:38:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731922ECEB9;
+	Mon, 23 Feb 2026 15:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771861119; cv=none; b=uSMSB87Zk17UMJ0qFRKR7Tdmhu6ORxTRG4plcRD1eM1G61Kwn/nJRNZPMdsTxFQQytNKAVmcLZtvupl5NGYIsWOb+2SQ6wiY488Uzr2RC/ghywyQn2/XpPlpx2Cx2afME02oXw+iwP5D5c+bQZU79Vc3Z5eDirS6smqaaCbhNXg=
+	t=1771861248; cv=none; b=P3oSEOAYBPDbscbAy2YI0WsPtSegDuwuI7BAhlpLbpB3RsZj3JcSCz5rBJXQCuQwiun4b1fUN/u4vE4BMDCzp7fnM4Ylkfoh6fmHszEWVXIkoQmAEZYRGqYsX3m5e7jC80KJaEPUKee1a/0JPRkB1Idt6CK2pPFpt7eaatjYL9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771861119; c=relaxed/simple;
-	bh=SR5N+s5trZNvGm9faWX/wk0yJdYXSU3FOeiGfQGRrxw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C8/yWQvHY0g88fC3j2x50hPmnd8MianAZk38kELI9qCJti7Tlx3UrHuAeed9xPPg8hy9kN5t1/Jr/uypYaH+0X5cqh5uelc9UM+woe8KXvnHa9fCCO//zCJzv7g8ae4M9ErRefja8lPGAAU/bUVfQk7kp/vxiFciVoocRXmEuHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c5YdjTLc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E685C116C6;
-	Mon, 23 Feb 2026 15:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771861119;
-	bh=SR5N+s5trZNvGm9faWX/wk0yJdYXSU3FOeiGfQGRrxw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c5YdjTLcgT0m66EkJdWp7rZfvS5BmL4+6K2i8etW+yf1fq9VKgoq7erR35AgfL8v9
-	 r/DEDADDho4HIwYv0QUqirOI9kpNEr8v1ZNsce4lst/jsenHARHpu+I4NxSSN9+AV0
-	 cEFu/i3ZtitZIyIcxkvV3e6HmO7lv78/z6FuvGHT5ZM3QwRgr2Ma2pJ0472w2UMH0e
-	 rXlABK07Ill9VW0rYg8D/h4QyNU+VuoTnNgcPidMf1JanfBq4f1qLnnXuYWZq6GHcI
-	 RAX0OHNRP2O8WLsxqqCrdI72WnRHyYvm1Xnl5nf8TI5xAUesjCo1+NUcxNxegRlH+l
-	 LF9w5/Ji0xvGg==
-Date: Mon, 23 Feb 2026 09:38:36 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>
-Cc: Daniel J Blueman <daniel@quora.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	stable@kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: hamoa/x1: Fix TODO in system power
- domain node
-Message-ID: <emh66tl7id5psuqkriswjizsz3gee54qj2id6dymildncrx66s@qzelmfgog35v>
-References: <20260221105245.19328-1-daniel@quora.org>
- <9defac59-ae8a-4658-ab38-dcb0559d9708@oss.qualcomm.com>
+	s=arc-20240116; t=1771861248; c=relaxed/simple;
+	bh=J7TrUkJ10ZPlFSfZ/EvR7bLJaQkkANP/Pmv4iXB8JrI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jPv/kErhg/tCma36GNCq2bOjXV4UJP8K6GHsS7fUgwztkofPSHpVI3lJP47Q6lEMbW6ApV57oKPK4BT5snAzsA9orh10kf1qdLRWYfSYi3BgrnMnyXYPgn2wiDZe64S8f6IRYpxaLb8/e1l/ItmjykhvR3lEnRum9xbfCwjtDSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4fKQ6Y1d0Zz9tQk;
+	Mon, 23 Feb 2026 16:40:37 +0100 (CET)
+From: Lukas Timmermann <linux@timmermann.space>
+Subject: [PATCH RESEND v4 0/3] Add support for exynos5250-manta (Google
+ Nexus 10)
+Date: Mon, 23 Feb 2026 16:40:25 +0100
+Message-Id: <20260223-lat3st-staging-v4-0-219638defb01@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9defac59-ae8a-4658-ab38-dcb0559d9708@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, Lukas Timmermann <linux@timmermann.space>, 
+ Alexandre Marquet <tb@a-marquet.fr>, Henrik Grimler <henrik@grimler.se>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267503-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-267505-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DMARC_NA(0.00)[timmermann.space];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@timmermann.space,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.956];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: CD80E178E68
+X-Rspamd-Queue-Id: BC8A5178F2B
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 09:41:04AM +0530, Maulik Shah (mkshah) wrote:
-> 
-> On 2/21/2026 4:21 PM, Daniel J Blueman wrote:
-> > At present, designs based on the Qualcomm X1 Hamoa reference platform have an always-on system power domain since the OF node values aren't implement.
-> 
-> Implemented.
-> 
-> > 
-> > Fix this by using the CPU C4, cluster CL5 and system DRIPS parameters from the ACPI DSDT Windows uses, together with the Low Power Idle _LPI minimum residency of 9000us and wake latency of 5000us as exit latency. Finally, assume the entry latency is the difference of these two values.
-> 
-> ACPI used 5000usec as total exit latency, with this change total exit latency will be 9000usec (sum of entry + exit).
-> 
-> > 
-> > Tested on a Lenovo Yoga Slim 7x with Qualcomm X1E-80-100.
-> > 
-> > Fixes: f33767e3cfa5 ("arm64: dts: qcom: x1e80100: Add missing system-wide PSCI power domain")
-> 
-> Using this fixes tag, can make the change back ported to stable kernels without dependencies and may break the GPIO IRQs.
-> 
-> Background:
-> 
-> PDC monitors the wakeup capable IRQs during system wide low power state, hitting the system low power mode can break to wake via GPIO IRQs. 
-> The system-wide idle state was not added since the wakeup capable GPIO IRQs were not configured at PDC with 602cb14e310a
-> ("pinctrl: qcom: x1e80100: Bypass PDC wakeup parent for now").
-> 
-> So IMO this fixes tag should be used instead of above with the changes to configure PDC to monitor GPIO wake ups.
-> I have these changes to configure GPIO IRQs at PDC and enable back domain_ss3 idle state in my local tree, which i plan to
-> post this week or next.
-> 
+This patch series adds initial support for the google-manta board, known
+as Google Nexus 10 to users. The device is powered by
+the Exynos 5250 SoC. The bindings for the notification led are already
+in the linux-next tree and can be found here:
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/leds/ams,as3668.yaml
 
-No, this patch does not fix 602cb14e310a ("pinctrl: qcom: x1e80100:
-Bypass PDC wakeup parent for now"), please see
-Documentation/process/stable-kernel-rules.rst on how to document
-dependencies for fixes.
+The first two patches add the necessary device tree files and
+bindings, while the last patch makes a small modification to
+allow CPU1 to boot, as it requires a call to it's underlying firmware.
 
-It could however be argued that this doesn't fix a bug with f33767e3cfa5
-("arm64: dts: qcom: x1e80100: Add missing system-wide PSCI power
-domain"), but instead just implements the missing domain-idle-state
-(i.e. drop the Fixes).
+This first iteration only provides basic support to get the board
+up and running and usable via UART and with WiFi support. We will upstream additional
+features in future patches. All patches have been tested on real hardware.
 
+Changes in v4:
+- Changed copyright years to 2026
+- Rearranged includes
+- Added comments to bmp180 voltage sources
+- Refactored serial2 output
+- Rearranged multiple properties of nodes. (@krzk)
+- Rearranged nodes and subnodes. (@krzk) (@david)
+- Fixed mismatch with firmware address.
+- Fixed dtb check errors
+- Added cpu1 power supply node.
+- Renamed multiple subnodes.
+- Removed i2c_0 for now as it isn't used.
+- Fixed wifi interrupt.
+- Added empty lines where applicable. (@krzk) (@david)
+- Deactivated serial_1 for now.
+- Link to v3: https://lore.kernel.org/r/20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space
+Changes in v3:
+ - Added a better patch description for firmware patch. (@krzk)
+ - Reorganized nodes in DT. (@krzk)
+ - Fixed memory node to use separate entries. (@krzk)
+ - Renamed pwrseq node. (@krzk)
+ - Fixed firmware checking for old dt compatible string. (@pavel)
+ - Link to v2: https://lore.kernel.org/all/20251125-google-manta-v2-0-0f097cfff39c@timmermann.space/
+Changes in v2:
+ - Renamed to google-manta (@krzk)
+ - Link to v1: https://lore.kernel.org/all/20251120144018.961604-2-linux@timmermann.space/
 
-PS. What I do expect is that 602cb14e310a ("pinctrl: qcom: x1e80100:
-Bypass PDC wakeup parent for now") should have been reverted once the
-PDC driver gained the necessary workarounds!
+Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+---
+Alexandre Marquet (3):
+      dt-bindings: ARM: samsung: Add Google Manta (Nexus 10)
+      ARM: dts: exynos: Add Google Manta (Nexus 10)
+      ARM: samsung: exynos5250: Allow CPU1 to boot
 
-Regards,
-Bjorn
+ .../bindings/arm/samsung/samsung-boards.yaml       |   1 +
+ arch/arm/boot/dts/samsung/Makefile                 |   1 +
+ arch/arm/boot/dts/samsung/exynos5250-manta.dts     | 564 +++++++++++++++++++++
+ arch/arm/mach-exynos/firmware.c                    |   4 +-
+ 4 files changed, 568 insertions(+), 2 deletions(-)
+---
+base-commit: d5f0e9098499869354aacb5b080f602f0399d396
+change-id: 20251215-lat3st-staging-d9c926d8a75f
 
-> Thanks,
-> Maulik
-> 
-> > Signed-off-by: Daniel J Blueman <daniel@quora.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/hamoa.dtsi | 10 +++++++++-
-> >  1 file changed, 9 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> > index a17900eacb20..64338769bc85 100644
-> > --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
-> > @@ -290,6 +290,14 @@ cluster_cl5: cluster-sleep-1 {
-> >  				exit-latency-us = <4000>;
-> >  				min-residency-us = <7000>;
-> >  			};
-> > +
-> > +			domain_ss3: domain-sleep-0 {
-> > +				compatible = "domain-idle-state";
-> > +				arm,psci-suspend-param = <0x0200c354>;
-> > +				entry-latency-us = <4000>;
-> > +				exit-latency-us = <5000>;
-> > +				min-residency-us = <9000>;
-> > +			};
-> >  		};
-> >  	};
-> >  
-> > @@ -448,7 +456,7 @@ cluster_pd2: power-domain-cpu-cluster2 {
-> >  
-> >  		system_pd: power-domain-system {
-> >  			#power-domain-cells = <0>;
-> > -			/* TODO: system-wide idle states */
-> > +			domain-idle-states = <&domain_ss3>;
-> >  		};
-> >  	};
-> >  
-> 
+Best regards,
+-- 
+Lukas Timmermann <linux@timmermann.space>
+
 
