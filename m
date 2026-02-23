@@ -1,100 +1,59 @@
-Return-Path: <devicetree+bounces-267576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267577-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GLc2GDqVnGlOJgQAu9opvQ
-	(envelope-from <devicetree+bounces-267576-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:58:18 +0100
+	id uLmxMWuVnGlOJgQAu9opvQ
+	(envelope-from <devicetree+bounces-267577-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:59:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 000B317B2FF
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:58:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1C5D17B324
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:59:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86E97312E0C2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:55:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A849F3023526
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C988933A032;
-	Mon, 23 Feb 2026 17:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14C9E33A6E1;
+	Mon, 23 Feb 2026 17:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dH3ig7Dc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DzPWFZOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EEEE339B2D
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 17:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7AE83385B1;
+	Mon, 23 Feb 2026 17:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771869314; cv=none; b=c9mF//AbRvPOJBXnvCZ0CBuR5mni/MRMfITb6HrLcqXJ8tXlZ4blazrBbh1kbs71D+a2151LJNpD+jg6P8AZYmL2/6ctwhCYxFnMUhHeigS0hpE1q8aQ5fHlojWd8HVUQKKPjCUuzqFfmWPYRQ22rSG1QZnnTobv3NSXhmUFjN8=
+	t=1771869427; cv=none; b=qOLhEyndaMZlHFNIDL8MMwPafO/34amKccpp05M3lhOvZlWV7AeMB+Xee/jNYF0PoNcjar6fviWJO8O4WCYBN/lw7X7S62yxe3OBH4QLF0CxMQC+QQtiXnZOEbyE3Gq9z388DbU38XXPHCY/5q9My32Ir/CKyUid8NE92el+ueY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771869314; c=relaxed/simple;
-	bh=JF1KZ8us1B4UC6UAm56h5UA3Lh/N4+4s3jylcnX4xUQ=;
+	s=arc-20240116; t=1771869427; c=relaxed/simple;
+	bh=+R/gbJyXgtSztRTnBWeP96Fbtuk1N3v+xu5HT/+Iap4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D5W0jdwyfFXRhSJByinwNXvh7KpnAk4q19b37MTQCCGB0QG1G0i6ATrJnH/UX1iOjP8k5lBDRDb3g0pwH5xlAa5D/DP2iierz1Je4Y18RGcAq8GXSZY7/BJHnX6LgGcfB4KsYZ6MtwrwJf+LF33XeBFHkc2lLZARC2+RMgFGtgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dH3ig7Dc; arc=none smtp.client-ip=74.125.82.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f50.google.com with SMTP id a92af1059eb24-1271195d2a7so105396c88.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:55:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771869312; x=1772474112; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8S3D2amG83bMjq3rYrixdtz5QNwrXVFuIOF99KB48r8=;
-        b=dH3ig7DcgoD2/IW68Ckw0bdharNJTHMFc8etCmoR7iPRba+y5eJ54Y/r9E7U/Iuhod
-         Ldi7g3QsXsNHLG/DmGqqjxwdZ9JL40yDti4z6Nc2tM7xmz8HnDo6RWArOd3yX0fz5Hsd
-         xjDXOs8dtiFrX/7NHm3illACfYNA9365Qet69FJ5E8x8HVGAevDgBcbxjwiG6JJX4GQG
-         4q9ElXskCyiGdnCjF7jYImsZyd3+vA8sSie3IHYr6H/nv5Y76UwBX0a3MPhNq+4AHVa9
-         UutxyWd5vr9DxURjxnQDQsygsoC8EgZzOM1gJb5Q6yFuWuPmSh0yJT4oiF2hOGJkAQDZ
-         X9kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771869312; x=1772474112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8S3D2amG83bMjq3rYrixdtz5QNwrXVFuIOF99KB48r8=;
-        b=knM604CKja+cgMtTjYfaodMd8EAIPOyiu982bs/lBslqAKWu9x8bQIpsnFw5wkxI7V
-         40OMqlWWGOaCVzWibEAvVwJQXSIKCZruHf+dsMSvjX05lZcgIxMYqJ3prQ4QjIaHlrZJ
-         mlZNLLKk3TJL+kCz8ITfBFGPZSysh8Hz7T2z8A0rMGu2M6BXLZH67rUNyM1Tc3v1iJep
-         ZfjdVYE5vunK8tqq/0IqJRVYNifqmn8AAk1Jh8iUrP3RlAnz8VB1eYu4zaL6g5i6FdcU
-         HRMWqS3whUD1N85UsoFORoePTuOPUdCA6BUmVUbjE1pDRl7Sq2dsY6Tnk3cP0mZtFvNQ
-         rU3w==
-X-Forwarded-Encrypted: i=1; AJvYcCWOnCz9V2yD6ueCFFwlVwf4zLk4nKX2xJMoAPQdxLkp+eU2/28YGcOKkEYYkwQB20TY418fyw//FUnv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxkm46+iqqE9fH3z8mTw3/w/JPvsZyf9cz03m9N4rMbaYxv3twl
-	f8VAKi975WeG6uyvR2mdEzQtDKbJXnL+4dKrG6eP9/f8QTZS3Bg+5tiz
-X-Gm-Gg: AZuq6aL7uZvv6At2pLmojjqidG2quR+3smH0mjc56H6NLFQX5kZPhjDHZPLtB2zbtbw
-	o/P/5uqXWUqipxf75Zz9aQ6dJSSTwKK7v1jQ1emNzbTwxT6I2d9eWT7VOH6JElTPfmFCljl3Zgl
-	7F1m4ZUFxN27A5VzR0uDrE67P1pwEMB0/iFPlsEtaYONeKXx9bEbmvEIAtgFdhXu6+C3aWHt5sO
-	iD5ojR0U8GM98I3cye4i40hT6JXsMSebkQLQow29AU9fmiIiXouuKbtFz0RI5CHVZtqr3p320Va
-	Bu7YcLjULl6SfSbCKEj9ZTtKIDRITfBCSjt/aczHitpc3k8NScuZ+fKGj+nW1SLMKCxNiLAXruE
-	f8ygoHGh2kypFgUoK7SQm7Q16Jfog+vmV1IXh66iZMfIy2QBxH3gJN+YjO7bSifv+BRe5VuqJJK
-	ADYMs42LuCIJQKHPJv5PRT0PQrlyD3BLWWIqZmpJRYNpoY+1uzz9kT3BdDy5Ggei3X5rHFvpBO5
-	xQ=
-X-Received: by 2002:a05:7022:2214:b0:11b:9386:a3bf with SMTP id a92af1059eb24-1276ad61a70mr4534016c88.42.1771869312175;
-        Mon, 23 Feb 2026 09:55:12 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:1b48:5d6e:ab6e:5287])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1276af7ad65sm7334624c88.11.2026.02.23.09.55.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 09:55:11 -0800 (PST)
-Date: Mon, 23 Feb 2026 09:55:08 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Cc: linux-mediatek@lists.infradead.org, Val Packett <val@packett.cool>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>, 
-	Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
-	Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Eddie Huang <eddie.huang@mediatek.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Gary Bisson <bisson.gary@gmail.com>, 
-	Julien Massot <julien.massot@collabora.com>, Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
-	Fabien Parent <parent.f@gmail.com>, Chen Zhong <chen.zhong@mediatek.com>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 7/9] input: keyboard: mtk-pmic-keys: add MT6392 support
-Message-ID: <aZyUXip4zgeDUdVQ@google.com>
-References: <cover.1771865014.git.l.scorcia@gmail.com>
- <2c96591313084d240ac94b9d42d91d984fa9bce7.1771865015.git.l.scorcia@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GRl4VenY5EEuEghHPS9d8J2Q2Uk6ukTzntj0k4L6PRNquwg5OoAeRAIyQuRIE3seUnDdW6BcGTPtX3AsX2qI393NbqOjbVrCskqz9LBg/uj4Oti7dGBYpNFKzObSrTFQEI1ZpMOKoSt+nfYea8Wk9UpebyWLToHVi9GVFvxTN20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DzPWFZOb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7924BC116C6;
+	Mon, 23 Feb 2026 17:57:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771869427;
+	bh=+R/gbJyXgtSztRTnBWeP96Fbtuk1N3v+xu5HT/+Iap4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DzPWFZObuuqMb8GufRKvOokRq/Umw/TlX4sFPOs4kGXE4ntWMezIAVT2FGRvP8JsC
+	 NjpxOMAtzBXsUhqHzvY1jMwWEdrlX6IeJOaeTnIYm20JbT6Em0ROLTLByLBXeYvG0g
+	 gKPZTk0S8KMoDRMC35Z/BGPeNGJvD4VqGJiRFmg+8hp0eEU5daXf7r0S6DUY8+kBO4
+	 xNf6NkmmFd1U1uyv2H6AgQBZQWsijfV11exWp97i2kaBU9aNWuFcRg96zbJXsu0gsi
+	 7m6obYaTFJ44uCWUO5fvYyXp8M9lONPUwamR/cm+wOL4994gH/6CpodPA1VbuNDmrb
+	 B/t/FkpwcwhIA==
+Date: Mon, 23 Feb 2026 11:57:06 -0600
+From: Rob Herring <robh@kernel.org>
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: hvilleneuve@dimonoff.com, dmitry.torokhov@gmail.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: add GPIO charlieplex keypad
+Message-ID: <20260223175706.GA4168417-robh@kernel.org>
+References: <20260213171431.2228814-1-hugo@hugovil.com>
+ <20260213171431.2228814-2-hugo@hugovil.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,55 +62,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2c96591313084d240ac94b9d42d91d984fa9bce7.1771865015.git.l.scorcia@gmail.com>
+In-Reply-To: <20260213171431.2228814-2-hugo@hugovil.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267576-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[lists.infradead.org,packett.cool,kernel.org,mediatek.com,gmail.com,collabora.com,bootlin.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[dimonoff.com,gmail.com,kernel.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-267577-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 000B317B2FF
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D1C5D17B324
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 05:12:46PM +0000, Luca Leonardo Scorcia wrote:
-> From: Val Packett <val@packett.cool>
+On Fri, Feb 13, 2026 at 12:14:25PM -0500, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Add support for the MT6392 PMIC to the keys driver.
+> Add DT bindings for GPIO charlieplex keypad.
 > 
-> Signed-off-by: Val Packett <val@packett.cool>
-> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> ---
+>  .../input/gpio-charlieplex-keypad.yaml        | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> new file mode 100644
+> index 0000000000000..1672491a75a85
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO charlieplex keypad
+> +
+> +maintainers:
+> +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> +
+> +description:
+> +  The charlieplex keypad supports N^2)-N different key combinations (where N is
+> +  the number of lines). Key presses and releases are detected by configuring
+> +  only one line as output at a time, and reading other line states. This process
+> +  is repeated for each line.
+> +  This mechanism doesn't allow to detect simultaneous key presses.
+> +
+> +allOf:
+> +  - $ref: input.yaml#
+> +  - $ref: /schemas/input/matrix-keymap.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: gpio-charlieplex-keypad
+> +
+> +  autorepeat: true
+> +
+> +  line-scan-delay-us:
+> +    description:
+> +      Delay, measured in microseconds, that is needed
+> +      before we can scan keypad after activating one line.
+> +    default: 0
 
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Isn't this the same as "col-scan-delay-us" in gpio-matrix-keypad.yaml? 
+If so, move it to matrix-keymap.yaml to re-use it here.
 
-Please feel free to merge with the rest of the series.
+If not, there's a bunch of other scan delay properties just from 
+grepping "delay" in the input bindings. Surely we can define something 
+common.
 
-Thanks.
-
--- 
-Dmitry
+Rob
 
