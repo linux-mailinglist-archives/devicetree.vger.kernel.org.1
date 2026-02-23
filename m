@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-267568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267572-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJ8cJjaSnGnRJQQAu9opvQ
-	(envelope-from <devicetree+bounces-267568-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:45:26 +0100
+	id EBAcN9WSnGnRJQQAu9opvQ
+	(envelope-from <devicetree+bounces-267572-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:48:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF35017B052
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:45:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B4ED17B0AE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3F0163009B29
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:40:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9BFAE303EAB7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8984F333729;
-	Mon, 23 Feb 2026 17:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA63F33509E;
+	Mon, 23 Feb 2026 17:44:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ARdLszs8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MHAbLf9d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6616B2BE03B;
-	Mon, 23 Feb 2026 17:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6355331A53;
+	Mon, 23 Feb 2026 17:44:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771868450; cv=none; b=XhIIY8pCDP3OO8X/wxTqbMUyhUd3U1EgnL4fxwb8HWcbwiv2iBcshibdd2cp/Qxlvi7Og4cWN4mwpf6WqYmppf0VghQ/lqoGcMwhAnUxA0psfatm3iUnmhDCnBnnG1Pk612K6o3fTI/G3pPl0eP9l3tjvilrH6sD7VzX+Pu4AYs=
+	t=1771868644; cv=none; b=kjrfGjLPyj7MWipbnQRjbgwU6oaDi8ScjMNj3Upp0BHMbRDC5UTmSlqmtYFPk97+D6ag0HztcnIz6+jMhkTiq4un0msByEmbIDpzdc7784qUMwgVIbJpYTWr3LWPX+txqPX+Pzy0o9m+9Qbq+IjrXupwphlIeWjorImekfEVX9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771868450; c=relaxed/simple;
-	bh=Or4h+xHQ5FS/HiNmiFjEj7nHN/WXQsovDaKSA44TqMA=;
+	s=arc-20240116; t=1771868644; c=relaxed/simple;
+	bh=melVn+G0oHm9QWUFDpJV5XUQypF5aPsyygFT1uqDsJY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pPO7+N9wkTEIts6jG7h1ls/GAZfQV3UzrGZFJ8BrI4VfqIuZ8TVsGxEttscTw2K6YUfQDxfKaTekrTeeEWM+EqpQWwWP/TZJvufHqeqhuD50jB46Yy8WSg1PND2Wvw30x81MIGnDzPRPo6ctSBfiFOz1D4LRnRTmwq1VcaiiZY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ARdLszs8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC94C116C6;
-	Mon, 23 Feb 2026 17:40:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YF2IcNBCRxNGu9d6SkorPiRjBqwcBIimLhIyJXHAgTN5/XWcHHumuwwD8/aUwjQdTAggCDt9GhHg7baG9JAC7rdenqlgXcGWZwsDK6VBBxP/uUJlb+bo2MBi3B4a/sJbejJU1AwbeLG6Xdtj4r2xsDrRfnaaaKWWj2iLuJAv21E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MHAbLf9d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65C51C116C6;
+	Mon, 23 Feb 2026 17:44:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771868449;
-	bh=Or4h+xHQ5FS/HiNmiFjEj7nHN/WXQsovDaKSA44TqMA=;
+	s=k20201202; t=1771868644;
+	bh=melVn+G0oHm9QWUFDpJV5XUQypF5aPsyygFT1uqDsJY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ARdLszs83gSNML82XVROwKgGssmLGH3Zynb+n4i3A37u+11VB3Ra0MmFkeLVwsqcp
-	 2pD1eIIeioFfNydazYpvFaV36XoVfvkj9psjyzwQtTWewlXaicI6COHdVstGUDP4Kn
-	 9zjHnNcggwzTsFr3DuCJU8aSLmW/ypq5NyiT74Jij7z1SZW0wSPqVTi7VvDWsIolJZ
-	 grOXYA81PBrDevgU86FNOggHRpha2Us9Qeea3Q9Qgifv1MY7etncSJIwnBieaQO/CR
-	 tuGinhvisN83D+eFMvHhWp6mT6a14ZTT9fybrVLQzPaHarcdWi0V5Cdh2t9laiNcaO
-	 x6m5epfwZR8DA==
-Date: Mon, 23 Feb 2026 11:40:49 -0600
+	b=MHAbLf9d/ozrIBQ4m1EZANbAGUTKUH3NsJarEku7/xtsig/LyCZWToRBhBlWFiTEx
+	 mWBAx4q6lYdh2DnU4c9pxJFmULbvVZLhMorwlMfDBRFesQ5TGoyaTjDfxdB0Db9BCG
+	 +JTLkNxXRPvGc7r6K7B49YtTcy/D0SuxLrykEv2Pli/phr+9TEvsGcf/gd9ypTSykq
+	 eDgC1owhFycdUoa5Ll0zwEdQF8jV0J8+I6swYtAISahqjIjf9x/kLvwCcEO18zU1n0
+	 OxLkmZMfX4e1Rapzjn+uY5u395oNv23Xp+U7FMZGrgh7tbDhlthUizqayDGIxOz8aG
+	 VhzdUkIzBM4yQ==
+Date: Mon, 23 Feb 2026 11:44:03 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	Sascha Hauer <s.hauer@pengutronix.de>,
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: Badhri Jagan Sridharan <badhri@google.com>,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	RD Babiera <rdbabiera@google.com>,
+	Conor Dooley <conor+dt@kernel.org>, Kyle Tso <kyletso@google.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: fsl: add compatible string
- fsl,imx25-aips
-Message-ID: <177186844812.4160031.3323512453919011209.robh@kernel.org>
-References: <20260211221529.3745404-1-Frank.Li@nxp.com>
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: connector: Add sink properties to
+ comply with PD 3.1 spec
+Message-ID: <177186864300.4163723.6004584061652135231.robh@kernel.org>
+References: <20260211-skedb-v1-0-616340426cdc@google.com>
+ <20260211-skedb-v1-1-616340426cdc@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,51 +68,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260211221529.3745404-1-Frank.Li@nxp.com>
+In-Reply-To: <20260211-skedb-v1-1-616340426cdc@google.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,pengutronix.de,lists.linux.dev,kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-267568-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267572-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EF35017B052
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4B4ED17B0AE
 X-Rspamd-Action: no action
 
 
-On Wed, 11 Feb 2026 17:15:25 -0500, Frank Li wrote:
-> Add compatible string fsl,imx25-aips to fix below CHECK_DTBS warnings:
-> arch/arm/boot/dts/nxp/imx/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dtb: /soc/bus@43f00000/bridge@43f00000: failed to match any schema with compatible: ['fsl,imx25-aips']
+On Wed, 11 Feb 2026 23:25:35 +0000, Amit Sunil Dhamne wrote:
+> Add additional properties for ports supporting sink mode. The properties
+> define certain hardware and electrical properties such as sink load
+> step, sink load characteristics, sink compliance and charging adapter
+> Power Delivery Profile (PDP) for the connector. These properties need to
+> be defined for a Type-C port in compliance with the PD 3.1 spec.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
 > ---
->  .../devicetree/bindings/arm/freescale/fsl,imx51-m4if.yaml        | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/connector/usb-connector.yaml          | 34 ++++++++++++++++++++++
+>  .../devicetree/bindings/usb/maxim,max33359.yaml    |  4 +++
+>  include/dt-bindings/usb/pd.h                       | 18 ++++++++++++
+>  3 files changed, 56 insertions(+)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
