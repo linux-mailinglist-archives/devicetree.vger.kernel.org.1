@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-267228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHkFJgTrm2km9gMAu9opvQ
-	(envelope-from <devicetree+bounces-267228-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:52:04 +0100
+	id 0L7vHBLrm2km9gMAu9opvQ
+	(envelope-from <devicetree+bounces-267229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:52:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECBE171F37
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:52:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF47171F5B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:52:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2A2493020232
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:51:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 785643023D4C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB104346FAB;
-	Mon, 23 Feb 2026 05:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D119349B11;
+	Mon, 23 Feb 2026 05:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KQqUxBX4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qyq7uKzD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EABE2405E1
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D982405E1
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771825892; cv=none; b=PjvXhSDDY7wz/d2ltNVbogLf9CEoU/qeVrShfIGH77+yoSgy1XiHP7PGkfZoZC9iiPIUa6Bkvg1mZg/ufNrHbZKQwRf2I9fzLYlJI7+UiYfOEYFI5nFLQovoS5s5zdUEyrDHScz0xDk+5723c9nOgeadNYOlm6xb6/Q16uYhA7c=
+	t=1771825894; cv=none; b=qs8yGp60HQugvtRHCuu0sXZQkDF5G9vm25NBB9J9i1FsCXkI8R2nD+Fxypvri1pTqnJ99YbyODS6edvpYmc/av8aOmplQ60rHLD/26tq79wNADAREnGKAW9AI0zfMz4JKPXtjoEra2p8vvVKfWRJDoqpDcu35vRBxAraSVYYJ78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771825892; c=relaxed/simple;
-	bh=trpX+5UlMTYq/zyHhxfWvjqST/R/uh9a912a+PSUHVc=;
+	s=arc-20240116; t=1771825894; c=relaxed/simple;
+	bh=S2kYng34pyN/wX/EOplOpxbzEXHZ5N9BsJv+d0hNUBU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UrOU6II+OCz5aI3UoFNZ7IwPohCrCoesDs96KLOJr7TkY45HQDaQoAWUsWwiKcWsaMro2u8PtyNd+KinzFOy9OVEJ5yKQFk9RSXmmTV9bMCrtVpuUy/Qxr5HoEEZIltZvmOHT9hJAT+kNqfdpzctIXYXK8mEuT2VnERrF3Uwlv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KQqUxBX4; arc=none smtp.client-ip=209.85.160.172
+	 MIME-Version; b=u+xWkV6cJeEjUaoOiIEaVZN0bvJgvA5RiSFNWb4uk+xWQ9BIQ+2QZdUP32SHBRZGLZwDY/+LLhRp9pIBq0R2DXYSD+GDMIe7D0oOjAXskMFwjC/mqjRM+hMTfeEqB7X5xaWx4r8DUqEmYfkHL7MIcrT20XWcagHlqOY1lyAeyWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qyq7uKzD; arc=none smtp.client-ip=209.85.160.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-5069b3e0c66so65412951cf.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 21:51:31 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-506251815a3so38032861cf.0
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 21:51:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771825890; x=1772430690; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771825892; x=1772430692; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oNC2r/k4VYyNvAPrupzATpkdJnOwaq0ecIMgKhToJ2I=;
-        b=KQqUxBX4bHx3/Et1DCLo2Qv53nafyzb7gYtm0Hwk9MFMz+jetpVEiQn/ylVBTX3cZm
-         ugNahshd66tj12fOTjrIBhLeZ49FRIf1oTseShT+T1xd4XqiPNcwlKY99WYWf6/B0ywp
-         a4DYi7HXCOjR/9i4U8JhmVKk2PzUD85yx5PA83xywLuqzTZX/vpcH//sFSPXRRcVfFw+
-         JXL+pixSY4JONb9pqL5+S60qiDHZ3ORPWimAzn9nB2qFXAolRcx++SDV07jynohq4OoW
-         uU4EnxfLhJaYp97RXVYFd5Ltx6y+s7vnUzgb+ZeSYocivke9aB7SuB1ZrVG+1V0HVlGH
-         bZAA==
+        bh=dfxr03p7S9Rer87uRm31FU2g8xU+t3fSe3azXAHj5IA=;
+        b=Qyq7uKzDI+eKsKln6hCk7WBU9/8WENvl7bq6SC6KrwE9xP4rFnMQixDvOOp+se9jMU
+         8HDVeA0eTdOFsAL2EDSfB8bBjsgNI/FlogeArC9EmGXx1UwamLnazaJw9s16PkvhsfCB
+         wcof0/dJdXmZ2CdbG2xmfrUW6+2ODdgMwvY57z1rEamqdOSuQdAL5pIbHCgBzLDWbeBW
+         6oZdMegZ6/BqGL7nCSbf5sC1Too6Ji83aH9QNwoUt18lIl+dAwYrQJ/b1Lx8OizkOeVl
+         9w2qKCsAO8SiOp2NwP7txeZU2vz9Q2yAalTWS703SxNqRPsQGQN21D7d6tcCE527XbHT
+         jsrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771825890; x=1772430690;
+        d=1e100.net; s=20230601; t=1771825892; x=1772430692;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=oNC2r/k4VYyNvAPrupzATpkdJnOwaq0ecIMgKhToJ2I=;
-        b=Whyve5Qpqnj7TcC1Vmn9r1Y/xPUG/wAVmNnxvdWzM5GLc3NPmftn4vAzCtU+4Dt6ep
-         1qWOOI6p3/jf71czk8fwqiU25kswm7s7Fpru+PDLkH9/TKUsSezDNMMR1sOdGW/TlBLs
-         Fs0IGsWcAu9wFWzqurKSdyMhOrBcA7l28+lnjzA3U10f9yTIUS56yg1kGS9FbC4/VOqi
-         y2r+WRRGPmMecZaSCdMlCNBxmep5mC/UBiF51vBxjKwLwHppfUh2GYlVYvclZuz4Edvn
-         6zYjRYKunAivCbRpUMxzwQOoWn61/LgDbdgB0kMoM9WI3f9hOgCgJQf/OeQmQ6V+AA/3
-         Pb/w==
-X-Gm-Message-State: AOJu0YwTcraeuHm2YpKBYqI/+u27ft+BavvBbXU0k0pRKozE7ayIYOXg
-	HtKvD0EO1eBtm7XCe7F11Rqb9YEsAu3zF5k1T+S4Y/tvedrbjlcFkdqk
-X-Gm-Gg: AZuq6aKQ1II3TD1ebFBpTQQ5GzIzaovKN2DAsH05WpJTkukG2HU/rHk5nukP6VNccD4
-	u/MssiPd0aVrRrBZWohviRhd9lO5Z/TCrRIkQyKGQ+LKoqDi+KKP8SWenu+D6RGKxzlB0oCSRTN
-	BMWAFHkj8q6DoT3bW8zhoTwVH6w5lZcg4Ybg+xuqOkh0+t69kZ3bmOqDd+TMXC6JflUzNncL017
-	W888L3kh9NVj+Vqqov6JPcuUlJ0vDv9Vl2PD5nMc2iFya6ZDJC6UhKs5yCYsVzZm2oeqycuRWce
-	ZiZgR0BII94d45DMLqC/Z1E/h2bFXEurEKfzl4MKyQ1OKww1AoZQALYBS2Z/YP1X8hp0cI9DKr8
-	4wOhcfunImPsQ+Wn5DLnHWQ2F32NDHPtKT8msy1AC7iu6Zvx2JbEqXQw7SOSBC3Y7pLj35yQ4mE
-	XAtHLooaxesdwxLNb+ggsEb1Cgkot+dUH3bn6S2pLgPJcwjeCeidYaPfUgoAU8BTi+LlWTytRgr
-	w6GYTgz3TQ=
-X-Received: by 2002:a05:622a:120d:b0:502:ec9e:ded6 with SMTP id d75a77b69052e-506f317f931mr169944791cf.38.1771825890175;
-        Sun, 22 Feb 2026 21:51:30 -0800 (PST)
+        bh=dfxr03p7S9Rer87uRm31FU2g8xU+t3fSe3azXAHj5IA=;
+        b=kvDvE1s12W3N0H4VRzuSFpHU0GvibbEyuJ4Lc5BzrcrckoBtHpBKQQUfvC5focdXen
+         cSXA8BbCsO7ityh/yqM6BW4LgeaOeRdewgwI4eHg6YJEVia7QtJe+G3LgfMEZwlKf6Hc
+         5QqcR4PrNpqll3N/F679U4OiCpOI10GKlWeIP3aHG6YLe56jeirCErvqyP2huKTRT473
+         JKyJnnxFluTXsIIkFX1kPFA7iK71sCPF7rRVKvj1H3sDlOWZ0au03IwYQ15iCV7SLEyH
+         dvmtumERqs3tje6LWCo+6uH6lOo6/STwfS5GdhH8W2iCYn2U13j41tCz/wAt6g77ZZT3
+         05Xw==
+X-Gm-Message-State: AOJu0Ywf4RZDlHBe42s1ZG4pIQQCGKZ6zXduYsGC/w0alV/XVktaLi+k
+	G7WEhGaxJed/QdtfGgEazv8tZ4qEEGBONYDQ+W6EisgQqaIBu9MpsUHX
+X-Gm-Gg: AZuq6aKK0XidYlc0UAUpLbXWnD75TilVrpEjb7SARVXwiLM7aqELLZj8T9QN1gCU+jU
+	e/RBj1s87aBW7L3ztmVBwVlsJsgok7/pbP+3jiVSmQXtP9RiRy17MfR7tuJjurG9ZL4OfCUMUUU
+	u5+9iNqvEZQpH0sH27c/jZ+PBSF1RqwEp/ImYSjwojIwdh4yiDUE0Jr7rvYQSuCF3y+amcOu7wG
+	4OXAs1wj9TudTPyiLQDoj6ZzNFjo/wpzfXpytnkuJ9a5Y3TQDLlmVf0jo3mbbfvriLCzvC/Y1Df
+	6xEXzxUUKCu4i/R4hsdhG8LNQodgPAFkMdHW/TkAn3Fg5iJlM/TJ9GulmnuTKRUiMeGkNFrqYKe
+	JgHiT2TF9aP8cyfLdhwN7vFaVeDZcSa4eHuymC/F5spacwnUZbleWZuRLNl8axUqMNF5w9Wvpc6
+	EnpJIXp5eXDro6yR57W+wu7RY17V53W2pgncQUQwcbX8Py/f7yWqkXDSxGQ+W833A0Y4mFry2S4
+	P1PJIVI72s=
+X-Received: by 2002:a05:622a:181b:b0:501:4534:8c8a with SMTP id d75a77b69052e-5070bbcd811mr98992181cf.17.1771825891958;
+        Sun, 22 Feb 2026 21:51:31 -0800 (PST)
 Received: from mighty.stonybrook.edu (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8997e62f453sm59459096d6.36.2026.02.22.21.51.28
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8997e62f453sm59459096d6.36.2026.02.22.21.51.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Feb 2026 21:51:29 -0800 (PST)
+        Sun, 22 Feb 2026 21:51:31 -0800 (PST)
 From: Mithil Bavishi <bavishimithil@gmail.com>
 To: aaro.koskinen@iki.fi,
 	airlied@gmail.com,
@@ -103,11 +103,10 @@ To: aaro.koskinen@iki.fi,
 Cc: devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v7 6/8] dt-bindings: omap: Add Samsung Galaxy Tab 2 7.0 and 10.1
-Date: Mon, 23 Feb 2026 00:51:11 -0500
-Message-ID: <20260223055113.1288-7-bavishimithil@gmail.com>
+	linux-omap@vger.kernel.org
+Subject: [PATCH v7 7/8] ARM: dts: ti: omap: samsung-espresso7: Add initial support for Galaxy Tab 2 7.0
+Date: Mon, 23 Feb 2026 00:51:12 -0500
+Message-ID: <20260223055113.1288-8-bavishimithil@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260223055113.1288-1-bavishimithil@gmail.com>
 References: <20260223055113.1288-1-bavishimithil@gmail.com>
@@ -121,58 +120,134 @@ Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267228-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267229-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[bavishimithil@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 5ECBE171F37
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.48:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1FF47171F5B
 X-Rspamd-Action: no action
 
-Add samsung-espresso7 codename for the 7 inch variant
-Add samsung-espresso10 codename for the 10 inch variant
+Create a device tree for the 7 inch variants (P3100, P3110, P3113)
 
 Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/arm/ti/omap.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/ti/omap/Makefile            |  1 +
+ .../dts/ti/omap/omap4-samsung-espresso7.dts   | 70 +++++++++++++++++++
+ 2 files changed, 71 insertions(+)
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/ti/omap.yaml b/Documentation/devicetree/bindings/arm/ti/omap.yaml
-index 14f1b9d8f..f694dcbf2 100644
---- a/Documentation/devicetree/bindings/arm/ti/omap.yaml
-+++ b/Documentation/devicetree/bindings/arm/ti/omap.yaml
-@@ -144,6 +144,8 @@ properties:
-               - motorola,droid-bionic   # Motorola Droid Bionic XT875
-               - motorola,xyboard-mz609
-               - motorola,xyboard-mz617
-+              - samsung,espresso7
-+              - samsung,espresso10
-               - ti,omap4-panda
-               - ti,omap4-sdp
-           - const: ti,omap4430
+diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
+index 14e500846..d24f13efd 100644
+--- a/arch/arm/boot/dts/ti/omap/Makefile
++++ b/arch/arm/boot/dts/ti/omap/Makefile
+@@ -80,6 +80,7 @@ dtb-$(CONFIG_ARCH_OMAP4) += \
+ 	omap4-sdp-es23plus.dtb \
+ 	omap4-var-dvk-om44.dtb \
+ 	omap4-var-stk-om44.dtb \
++	omap4-samsung-espresso7.dtb \
+ 	omap4-xyboard-mz609.dtb \
+ 	omap4-xyboard-mz617.dtb
+ dtb-$(CONFIG_SOC_AM33XX) += \
+diff --git a/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dts b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dts
+new file mode 100644
+index 000000000..cae37ff06
+--- /dev/null
++++ b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dts
+@@ -0,0 +1,70 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/dts-v1/;
++
++#include "omap4-samsung-espresso-common.dtsi"
++
++/ {
++	model = "Samsung Galaxy Tab 2 (7 inch)";
++	compatible = "samsung,espresso7", "ti,omap4430", "ti,omap4";
++
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		pinctrl-names = "default";
++		pinctrl-0 = <&backlight_pins>;
++		pwms = <&pwm10 0 1200 0>;
++		power-supply = <&reg_lcd>;
++		enable-gpios = <&gpio3 31 GPIO_ACTIVE_HIGH>;
++		brightness-levels = <0 4 8 16 32 64 128 255>;
++		default-brightness-level = <2>;
++	};
++
++	panel {
++		compatible = "samsung,ltn070nl01", "panel-lvds";
++		power-supply = <&reg_lcd>;
++		width-mm = <154>;
++		height-mm = <90>;
++		data-mapping = "vesa-24";
++		backlight = <&backlight>;
++
++		panel-timing {
++			clock-frequency = <47255554>;
++
++			hback-porch = <210>;
++			hactive = <1024>;
++			hfront-porch = <186>;
++			hsync-len = <50>;
++
++			vback-porch = <11>;
++			vactive = <600>;
++			vfront-porch = <24>;
++			vsync-len = <10>;
++
++			hsync-active = <0>;
++			vsync-active = <0>;
++			de-active = <1>;
++			pixelclk-active = <1>;
++			syncclk-active = <0>;
++		};
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&bridge_out>;
++			};
++		};
++	};
++};
++
++&i2c3 {
++	touchscreen@48 {
++		compatible = "melfas,mms136";
++		reg = <0x48>;
++		interrupt-parent = <&gpio2>;
++		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
++		touchscreen-size-x = <1024>;
++		touchscreen-size-y = <600>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&touch_pins>;
++		avdd-supply = <&reg_touch_ldo_en>;
++		vdd-supply = <&ldo6>;
++	};
++};
 -- 
 2.43.0
 
