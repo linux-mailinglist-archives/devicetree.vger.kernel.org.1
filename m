@@ -1,158 +1,128 @@
-Return-Path: <devicetree+bounces-267566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267567-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eKjwNF2MnGl8JQQAu9opvQ
-	(envelope-from <devicetree+bounces-267566-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:20:29 +0100
+	id 8B6TK7WOnGmdJQQAu9opvQ
+	(envelope-from <devicetree+bounces-267567-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:30:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AB0017AA8B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:20:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E8417AD74
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D2D88302446A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:19:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 785BD3004D1F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9B4B330652;
-	Mon, 23 Feb 2026 17:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807ED33122A;
+	Mon, 23 Feb 2026 17:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BsXDftef"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sSn0GqUR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8C9319870;
-	Mon, 23 Feb 2026 17:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6CB2BE7DD;
+	Mon, 23 Feb 2026 17:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771867181; cv=none; b=Y6QEmpwioy+3ELz8RVIWvBbFXY13cp9sEvRpXJvlcfVr0C0UyadvHjjUt187+LmerJRLWu+D898aneSXUBNhk1RuPSQQXTnmREIWgeXxFX1zu6ZC7EA/F+xWYZqrg1t2utyYCPtDjT02Utld5mwVV1JWRKX0kLDX8onmJg93o8o=
+	t=1771867826; cv=none; b=bWPEm2K2EO3DtjV1I1BqdQkrLYgwcxO9X+xZqhUsvwBEV4Jj5DpPVsHGXaaXJ1+quSwkw3jjbQ3dHPSt3Gt1ZuXZZUZUyVi8JIqtzCgi0SC2lz5BAnrfBNufy04YQAwILP864FteB2yUnNdVcJ+bsQLLlQoqve/Wora4z5chq/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771867181; c=relaxed/simple;
-	bh=K21kjy9qzrF9ypXG7rQNvPH2O306QauFy/abdov4/ag=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qmhq9/ArKVFDrMStDtxDxMb7j0XKileweOJjFlBIQHf2MaVuxZkraLb2D+tP8pL8w11ipYVtVmJ4y3eRwE/I1i2bwibzgkAPu8wiObJLB5igvBJDM2vPz4Lco0917BX2IWeDG/iEvwu0yivXMyKBQOvJlTZN2OdBYfuudGNDuJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BsXDftef; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771867178;
-	bh=K21kjy9qzrF9ypXG7rQNvPH2O306QauFy/abdov4/ag=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BsXDftefiIPUo9wBEuCnGW+eH0sGWoHtFskViUB2WUIk7UeGUDEwdN37H2Dx8hAqw
-	 VSt5oHBb94OLuZb7p+Kp30EalU9tKFKhrdxna+uT0/w7jhLR1j6ZJD6SPXB9JyT8b1
-	 Lzdzp9m7Z1wbQrZ4P7PnCvsWLNI7U1njaKVNARQtslKNW5Z8JvhHnsdJMA5bMjkDu4
-	 B3SSFhrUvj/UIFMdzhuwXHg0hXhgmQfJ6vMvhRXrOyaTSsNZEJoz00cNYHTLY270dL
-	 iB48v4ED6+xIJElC1oS1M2km1gQaGOMGUdhMDLHdtyhAwBCe0O8qaXmeyoi6WB2wqN
-	 wayFEyy6Uo1Lg==
-Received: from [192.168.1.90] (unknown [86.123.23.225])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 66D6B17E041C;
-	Mon, 23 Feb 2026 18:19:38 +0100 (CET)
-Message-ID: <39f493a6-fd98-4cf6-9991-334ab4ddbbf8@collabora.com>
-Date: Mon, 23 Feb 2026 19:19:37 +0200
+	s=arc-20240116; t=1771867826; c=relaxed/simple;
+	bh=ZIp+kH88X+B0codjMbbTpuBKbLjpavW3xKLfbpEfNXc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AuMt0giO/iAffMFPmN63TUgmN6ssWQZ/nV3xAhf6uDOPPQBLxnDZoXRxRF5Y7/EpMu5FiOrU6v2RH8VZjI9yJJIHfSImh9PmrnwEOt79zxmOqlMeqkKIVUK6bIEYuF+PMNlgkdNpViT3/52csWYnRzKbf6V4A9Fd9R9YC5V9VLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sSn0GqUR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B3DAC116C6;
+	Mon, 23 Feb 2026 17:30:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771867825;
+	bh=ZIp+kH88X+B0codjMbbTpuBKbLjpavW3xKLfbpEfNXc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sSn0GqUR7vhTU5DIVNM7kuo2FSwuPUWI3LczA7UndLmCS+Aqc7cnuOaSyYYwA31rP
+	 jJanQofNa540NlippSBZehdVE+iNA51eYptB0TlNcwGtWS4oj7w1CQGV1h7e+tfw9X
+	 RuABMKZ6KEfIs4coZx53S4769hgox53TC5fDVjdc4ZE1ONYvzKlxSpznW0qIKLNN3b
+	 bzqbb5angnT+xmBP80pH6nb106cXoSdSQ4k34NpM520/3j60RCQW1yFQQd7p5/Y7aD
+	 7B8OP38qt/dglCLbKYObYgXOufBKAPbUzev04g3uYVoTDz/jO08mFs5AxrgWr8sSj/
+	 ZXjO8gxOObCgg==
+Date: Mon, 23 Feb 2026 11:30:24 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: linux-kernel@vger.kernel.org,
+	Michael Turquette <mturquette@baylibre.com>, linux@ew.tq-group.com,
+	Pawel Laszczak <pawell@cadence.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	linux-usb@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Roger Quadros <rogerq@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+	Peter Chen <peter.chen@kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/5] dt-bindings: usb: cdns,usb3: support USB devices
+ in DT
+Message-ID: <177186782426.4146809.2746797277313553789.robh@kernel.org>
+References: <20260211123436.1077513-1-alexander.stein@ew.tq-group.com>
+ <20260211123436.1077513-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix vdec register blocks order on
- RK3576
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260223-vdec-reg-order-rk3576-v1-1-560976566bd3@collabora.com>
- <edbf38b34e98ee039f45faab5aa5b00a585799ce.camel@collabora.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <edbf38b34e98ee039f45faab5aa5b00a585799ce.camel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260211123436.1077513-2-alexander.stein@ew.tq-group.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	TAGGED_FROM(0.00)[bounces-267566-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,baylibre.com,ew.tq-group.com,cadence.com,pengutronix.de,kernel.org,gmail.com,lists.infradead.org,linuxfoundation.org,glider.be,denx.de,lists.linux.dev];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267567-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[1.168.49.192:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,collabora.com:email,27b00000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4AB0017AA8B
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 47E8417AD74
 X-Rspamd-Action: no action
 
-Hi Nicolas,
 
-On 2/23/26 4:51 PM, Nicolas Dufresne wrote:
-> Hi Cristian,
+On Wed, 11 Feb 2026 13:34:28 +0100, Alexander Stein wrote:
+> Reference usb-hxci.yaml in host mode in order to support on-board USB
+> hubs.
 > 
-> Le lundi 23 février 2026 à 14:25 +0200, Cristian Ciocaltea a écrit :
->> When building device trees for the RK3576 based boards, DTC shows the
->> following complaint:
->>
->>   rk3576.dtsi:1282.30-1304.5: Warning (simple_bus_reg):
->> /soc/video-codec@27b00000: simple-bus unit address format error, expected
->> "27b00100"
->>
->> Provide the register blocks in the expected address-based order.
->>
->> Fixes: da0de806d8b4 ("arm64: dts: rockchip: Add the vdpu383 Video Decoder on
->> rk3576")
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> index 49ccdf12ef7e..45eb0d053a6f 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> @@ -1281,10 +1281,10 @@ gpu: gpu@27800000 {
->>  
->>  		vdec: video-codec@27b00000 {
->>  			compatible = "rockchip,rk3576-vdec";
->> -			reg = <0x0 0x27b00100 0x0 0x500>,
->> -			      <0x0 0x27b00000 0x0 0x100>,
->> +			reg = <0x0 0x27b00000 0x0 0x100>,
->> +			      <0x0 0x27b00100 0x0 0x500>,
->>  			      <0x0 0x27b00600 0x0 0x100>;
->> -			reg-names = "function", "link", "cache";
->> +			reg-names = "link", "function", "cache";
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Changes in v2:
+> * reference usb-xhci.yaml# directly (suggested by Rob)
 > 
-> I have a vague memory it was done on purpose, due to the "items" in the bindings
-> requiring to follow the same order. I was not enable to run the DT checks today
-> (some pythonic version miss-match issue), but wanted to raise the flag.
+>  Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-As I mentioned in my previous reply, I think we should change the binding to
-allow using the correct order.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Thanks,
-cristian
 
