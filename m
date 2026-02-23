@@ -1,242 +1,238 @@
-Return-Path: <devicetree+bounces-267232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267291-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IHrrJI7rm2km9gMAu9opvQ
-	(envelope-from <devicetree+bounces-267232-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:54:22 +0100
+	id WBHMAd8FnGlk/AMAu9opvQ
+	(envelope-from <devicetree+bounces-267291-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 08:46:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87AEB171FB6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:54:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79CAA172D02
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 08:46:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7670830185E5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:52:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 71B81301025E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32983451BB;
-	Mon, 23 Feb 2026 05:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FFC34C121;
+	Mon, 23 Feb 2026 07:46:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iLpDuXdq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TdP+ss1j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A2F6344D91
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:52:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.175
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771825967; cv=pass; b=i+wHcHSYdR3sODJgKajswS0QgXu6d+WiXHW/5YW20aDoBChdKJaIXQbRO0lmoWYQWWnKJgjXtXxEvEsK7g1fnoX8DJ9PvPlDNnsqjaZ6bB0Pmll2veHzWBZREJ+XZdY7nEj1G0SQp0P18qVAxPzqoRwF7oo+bqHS451OrH+nNNs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771825967; c=relaxed/simple;
-	bh=yTTX1UMdS50NfFHC+ViA0dvfEDtwzhBZJ6/sWVTOiro=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HeuqBt+5JnF521xXlT2+TnP0NuECiOj8k6HbSuH0QGwRhWYP3PpHDooGtkqFVSmD/odGo0K4M5I0mMBZ762acSpoGFXEN8fOlN4j6QYA/eiumQ4Z8vE/44mlpOORrIX4bzsF82He5K1lQt57gbiILvbneEkRrdnU+mqMgyHFB/E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iLpDuXdq; arc=pass smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56091D61BC
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 07:46:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771832796; cv=none; b=h8eNHN26YJhRfVkY7UdVmeeyJuH73a+DOFTYcXC5qv0OCOJwa9sbOm/wnoMUw1yMnxHqrPb/YACW2wCNjOxIjytIP0gUgX1EP6od1UP1CSSOUVZkli691nM6hQUZzIHmuCubJ1uO2AVtAi6bx9eg7+Ks2uytD/UOJ11NPkitjFs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771832796; c=relaxed/simple;
+	bh=Ba9zxackObDbMCZ2mlH57/NOBt3YGhnL48fUr0tnyrY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gS395BujwUhvC5EC5aiWJ1yM57mfbz7+fbHcn+eF4OLVQLrTzlvGie60c02EDOPrMW1NwR7uRxACkM/WODGTy5ohO1lx2CAoGYgqZfMCh0GvHUpynB2SXeCTtugtFrIbhGWHVtOP2lUr7/7Z6PwdC+qM/svOQYiku/lbR256Jnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TdP+ss1j; arc=none smtp.client-ip=209.85.160.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a95de4b5cbso36590805ad.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 21:52:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771825965; cv=none;
-        d=google.com; s=arc-20240605;
-        b=YgiywZoVcDzfVY6C+5ItHthOSCa9HZJYs9bYss6t8wt8brfPFghOZnaJMn1qis1IeG
-         +goftmDLduBJMD8qupaLL5jqe1O5Zo2DsOUKyB8l+fxSTq3jBdmh6hrqsxDHDOuFZ9TA
-         7KJuO93AY3NgOQ9l82lbVBxjx/QLcWw8dq4foBjuh0Fw4IOAErtb/aIz91+GH8v8Of9J
-         HyIK8G5OcpPcy371021AFch391QUcH6wpUkXvyr8RjB71GCQ/pFO9rnZfQAjQ8iHU3Og
-         VUE+spc45+XOl6lXQwsKZqlOwkKx2RzihYYUYUa4TZnsDbs5VfsUzd7hvNDlea3nMgE+
-         Koqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=xSGeqRFklk/MvK7e1hN4iXhpzOGomKRb6H/+7BRNAV0=;
-        fh=kzdqp3I2SgpIPU+JinrWzQwqfBx7XBV8fbjOQf86KjE=;
-        b=X9olMuEaYar98zVG+S5bgY/ovZqYIg/7oY02fhVURqHSekkz6lfFgRyA4qc/80cPLY
-         bMSOmy6d8LBRXZEFEWSXeMthkBSh3BNWN4Mxzst3P6vF8A3G08a3WsdMp9B/6rmgJzaS
-         OpCu2TqYb1S2TxjRSo1uOp2Vb1Wxs/w6JkYKBL7ui9quO7u1tVmT1a36OrS6OtSy9DiW
-         oiu4mesU+8fuhn0qG60zXwsZK5ELhhqxYnIox6NU+jGU1/O9AXMUMjeGugAsm2ZLIFr4
-         RlA3s+4UVJ3P2dbCaKQt0Mxn7fiB38ZJYbq0t+1VuWlReYvGsf61cLuA8fi7N1ozXxT3
-         xxEw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-40427db1300so2355126fac.0
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 23:46:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771825965; x=1772430765; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xSGeqRFklk/MvK7e1hN4iXhpzOGomKRb6H/+7BRNAV0=;
-        b=iLpDuXdqKX0/yoLrrEejtwquy8s+mNnrrdagpyjmzVnzUnoOyB0PDe0Qwh3u2PjZUr
-         QJd8z3rHZIMzp0rTBQTRaKiPzcPeojmBoa/+1HMztdqI9qABLFoeyEygf6vuAvYDIocI
-         gX+KYEgwGKrFNwrmeiCtvjrDHWHpRf/QDVMXpGgl9eLrcolCCi+BQCZG6X6coBvBjcBc
-         Iva2a++Y8WAZHqF/HwAq9qdSD8Ndk9x/a6WKoeDciy52/Z970VEuXVdkQrSHjG1PNIZz
-         Ow/Ffl8t19D/COypfCsibs7ZPCj2XQxbLmejZqpFMNzSnWJcxsgEqXRobErIr6ysBJ59
-         tq4w==
+        d=gmail.com; s=20230601; t=1771832795; x=1772437595; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZJJXdok9+FUakR4+4YGKa7V5rpMzXNyNvVO7Mm3dh3s=;
+        b=TdP+ss1jYlkcPtiyF0O1IBEyT9407H32iwypMpGm9M4aY3W0ZreEg1xSoIbD0ZuBKn
+         rHI+bX0J6hC8ik9zPNPwAibvgiozNjKZtQIYrSAJyJ91VCiSUPCWJqL8voYLVCFboNP7
+         ZbssCZ1UCAxKoZ8OdNkL5JUl4Eiiyg42luIPhFEi09H56HRJypE/9+5N81E9Cehsgq3M
+         7fT7D64mnbF/neC9C7SlA5oG/ZJc5jbpbe8uMM8qiwozlqp8hMWg0mITLq/MPRlqwHHP
+         uZqPHmxQ76WQSKEf9whp6x2ZUYvtnz7i5LNPFZE9yh+rsaGfeg2jvXvM7pCuIEGi7/nA
+         zDWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771825965; x=1772430765;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=xSGeqRFklk/MvK7e1hN4iXhpzOGomKRb6H/+7BRNAV0=;
-        b=dc1HcrNKrqWwczgoD+WlhVYQxmA5VmX/DI9RQhr015km22JJOQxxvCmojDq9F646DP
-         oPf/fKrQCq/pfce5hApxHCsRSOcPWPvAJb8P3+xIwfI+F2SpbD7BBcL2mDc6/OUQTtSx
-         WxTkQEMx/5I/zS4dSa6yA3ZndMqlXGGODemmqxXYmOZ9eHinPxz4am2mxCBZrlTLLySN
-         HjEo/2VRU59Ra6zMViI0Fc7g87xSzFeDvHPM61/6RbpIfbre+88ncGtxo70FhobpPdfM
-         EPWkOwxuFJAPRFUGnE29uIcuxFtW8/umToXgIuPo6TEhuN0K9l9PGAGTQNdYZlSZcsMP
-         bfzw==
-X-Forwarded-Encrypted: i=1; AJvYcCXulVt/SP9Z5mum2ldwG8LkyGCzWsUdYxcCZ/3wK4SxaFQn1m+891s7p2HjmaKdtOcp1zpGq+DgogQD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5BW969pPeMAGNBsBnt4lt7ty3guNmQsP4pxRpmd+6lFZkt9gs
-	tycEbMwfkFJfxynAGQpeCkx0k5CnGZmJBhU60paBCYhMoh8SzzlJ/rgjilcEbckgvLJo85lyEAh
-	ShHlIjv87JH7HGgTrohqVZWAfx/ro3fo=
-X-Gm-Gg: ATEYQzwYksFQRAJBzZp6tpT7j8eDLw8pcTxOLOwFLx/phHiEeBdCZpBOFg0KmtmauKn
-	hoB9PMaKCuXVf5l14078jox0fBTRWIgXQbya35R9SWe19aR87IR5JIc7nnAQCC2KmveSdlVwArc
-	9xpgLs3/Jtti/+u4sIW1rP0goZLAG4qHo8Hxp5sbNIMGvPloyBSamQIkmA2FWtnWeackdQ1kPok
-	3QoR1tlzPtaW53DCzVlCLbLTE/f4s+cGIJWLqoxBWfkwNwiDxIE267L3nNNov+IMPltwmE2S07+
-	B3P2CnA=
-X-Received: by 2002:a17:903:41cb:b0:2aa:f989:dc7a with SMTP id
- d9443c01a7336-2ad744e0ad2mr67836265ad.33.1771825965373; Sun, 22 Feb 2026
- 21:52:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771832795; x=1772437595;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZJJXdok9+FUakR4+4YGKa7V5rpMzXNyNvVO7Mm3dh3s=;
+        b=IgyN8o28IKU5WVtPA5fEw14Y/ypCBcbYtFAah9ND7TWl0AaJ3uLv1+fUFnqsEmzeig
+         HIWp3nPjnw5KCc6LQ3DT5g52WNQESWNIspkIRZgxzHIM7Y3ezkdx0um/bXY0BIxpNFJb
+         05fpMiPjBKpF1FVXRCUjqPHgEpW+aIBzgIvwLMmCEjnryi+7bH7xSdoc2z8A6G6PB4Vi
+         0gCZim3VUa9PsamGV9CMCOaK7mOedmpZjPPf87WGuoseaMX9FpdWC7irYJmnMWiRNDRI
+         pS5MIMZkqjaIUCIIyXP4Jn3y+sHkBnNvlG3X0AB927sBFzca+t22TiqBhL7LfCeXpwuC
+         NSxw==
+X-Gm-Message-State: AOJu0YyDGJ/v8mn8ftpMBQoLyzHn9COz35VPbP2whNpnjAviAqK4jsqR
+	YBmkhnjl04CbuOGcVju81zzZYqUY4g2JqNPtgVUTRTFslmLGHn0T1WTf
+X-Gm-Gg: AZuq6aJnMiVRc15M0h5mL2Zt6P6gbtzUCzOsoPuOLTwHIAYbIZdcDFs666F7ZgfLJ13
+	Rb2ul8KxbX1Rvnm3cTEx2BfCDB6+ESqa7p1brv6m2xwII7for0j4D2lbS4jCbCglZFPQHiw0n6B
+	clG4EaZGpGFbiy8StaQaQ0WaMvnP1INkR8xu+vpTPjztoMbEm4PiAQkPHw2Ntc5F8bu/djRx/EP
+	7QtcoaKiBdyIoxkRgSGx3FlnMJOSbVOtUYvHAQo01gFhZkSoihyMItFMHNBrWiDyVupHfSfJNFx
+	S3gzG2maBn+QFtbqafbn6wZdwEQDpDrgnRPIQGuMf89fFiQ/UUyCxNKTyCi8zTHOXiQ2NoMq/od
+	PudleQ75SMhAR7sjT66uK8XeMr/T7YHkNcHUqI7UG5BtRbteOTNC6q+ack0tV/edpoa9zi1JJxC
+	UiwCdiFz6Ch/IbL8wgIR+/FzlwARzet/Yy1IitZNEDh3vj3AZuSJ3AO/RSba9EVWaRgMEpHohEG
+	Rw7b4xZAm81zE0EjtwKWQ==
+X-Received: by 2002:a05:6214:400c:b0:882:4be6:9ab9 with SMTP id 6a1803df08f44-89979f3491amr98922476d6.54.1771825877439;
+        Sun, 22 Feb 2026 21:51:17 -0800 (PST)
+Received: from mighty.stonybrook.edu (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8997e62f453sm59459096d6.36.2026.02.22.21.51.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Feb 2026 21:51:17 -0800 (PST)
+From: Mithil Bavishi <bavishimithil@gmail.com>
+To: aaro.koskinen@iki.fi,
+	airlied@gmail.com,
+	andreas@kemnade.info,
+	conor+dt@kernel.org,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	khilman@baylibre.com,
+	krzk+dt@kernel.org,
+	laurent.pinchart@ideasonboard.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	neil.armstrong@linaro.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	jesszhan0024@gmail.com,
+	rfoss@kernel.org,
+	robh@kernel.org,
+	rogerq@kernel.org,
+	simona@ffwll.ch,
+	thierry.reding@gmail.com,
+	tony@atomide.com,
+	tzimmermann@suse.de,
+	andrzej.hajda@intel.com,
+	bavishimithil@gmail.com
+Cc: devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Subject: [PATCH v7 0/8] Initial support for Samsung Galaxy Tab 2 series
+Date: Mon, 23 Feb 2026 00:51:05 -0500
+Message-ID: <20260223055113.1288-1-bavishimithil@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260211100553.907585-1-linchengming884@gmail.com>
- <20260211100553.907585-4-linchengming884@gmail.com> <87ldgyxmc0.fsf@bootlin.com>
-In-Reply-To: <87ldgyxmc0.fsf@bootlin.com>
-From: Cheng Ming Lin <linchengming884@gmail.com>
-Date: Mon, 23 Feb 2026 13:50:52 +0800
-X-Gm-Features: AaiRm50ulwUFVMf2L8O97KHc-TX8lwE2t_SY0KHEc9Bc59iLoXmY9A-s5dhON0U
-Message-ID: <CAAyq3SbpnJZ2LEi4MY=ZOs+aEVBoSCivO3O3yKa9DN=KgqrbwA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] mtd: spi-nand: macronix: Enable randomizer support
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>, 
-	Pablo Martin-Gomez <pmartin-gomez@freebox.fr>, Tianling Shen <cnsztl@gmail.com>, 
-	Pratyush Yadav <pratyush@kernel.org>, linux-mtd@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	alvinzhou@mxic.com.tw, Cheng Ming Lin <chengminglin@mxic.com.tw>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267232-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,linaro.org,iopsys.eu,freebox.fr,gmail.com,lists.infradead.org,vger.kernel.org,mxic.com.tw];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267291-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bavishimithil@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: 87AEB171FB6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 79CAA172D02
 X-Rspamd-Action: no action
 
-Hi Miquel,
+This series adds initial support for the Samsung Galaxy Tab 2
+(samsung-espresso7/10) series of devices. It adds support for 6 variants
+(P3100, P3110, P3113, P5100, P5110, P5113). Downstream categorised them
+based on 3G and WiFi, but since they use different panel, touch
+controllers, batteries, I decided to categorise them based on screen
+size as espresso7 and espresso10.
 
-Miquel Raynal <miquel.raynal@bootlin.com> =E6=96=BC 2026=E5=B9=B42=E6=9C=88=
-12=E6=97=A5=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=886:55=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> On 11/02/2026 at 18:05:53 +08, Cheng Ming Lin <linchengming884@gmail.com>=
- wrote:
->
-> > From: Cheng Ming Lin <chengminglin@mxic.com.tw>
-> >
-> > Implement the 'set_randomizer' callback for Macronix SPI NAND chips.
-> > The randomizer is enabled by setting bit 1 of the Configuration Registe=
-r
-> > (address 0x10).
-> >
-> > This patch adds support for the following chips:
-> >   - MX35LFxG24AD series
-> >   - MX35UFxG24AD series
-> >
-> > When the randomizer is enabled, data is scrambled internally during
-> > program operations and automatically descrambled during read operations=
-.
-> > This helps reduce bit errors caused by program disturbance.
-> >
-> > Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
-> > ---
-> >  drivers/mtd/nand/spi/macronix.c | 46 +++++++++++++++++++++++++--------
-> >  1 file changed, 35 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/mtd/nand/spi/macronix.c b/drivers/mtd/nand/spi/mac=
-ronix.c
-> > index edf63b9996cf..3a9ab146426b 100644
-> > --- a/drivers/mtd/nand/spi/macronix.c
-> > +++ b/drivers/mtd/nand/spi/macronix.c
-> > @@ -14,6 +14,8 @@
-> >  #define MACRONIX_ECCSR_BF_LAST_PAGE(eccsr) FIELD_GET(GENMASK(3, 0), ec=
-csr)
-> >  #define MACRONIX_ECCSR_BF_ACCUMULATED_PAGES(eccsr) FIELD_GET(GENMASK(7=
-, 4), eccsr)
-> >  #define MACRONIX_CFG_CONT_READ         BIT(2)
-> > +#define MACRONIX_CFG_RANDOMIZER_EN     BIT(1)
-> > +#define MACRONIX_FEATURE_ADDR_RANDOMIZER 0x10
-> >  #define MACRONIX_FEATURE_ADDR_READ_RETRY 0x70
-> >  #define MACRONIX_NUM_READ_RETRY_MODES 5
-> >
-> > @@ -146,7 +148,7 @@ static int macronix_set_cont_read(struct spinand_de=
-vice *spinand, bool enable)
-> >   * Return: 0 on success, a negative error code otherwise.
-> >   */
-> >  static int macronix_set_read_retry(struct spinand_device *spinand,
-> > -                                          unsigned int retry_mode)
-> > +                                unsigned int retry_mode)
->
-> This is unrelated, it should be in an other commit.
->
-> >  {
-> >       struct spi_mem_op op =3D SPINAND_SET_FEATURE_1S_1S_1S_OP(MACRONIX=
-_FEATURE_ADDR_READ_RETRY,
-> >                                                              spinand->s=
-cratchbuf);
-> > @@ -155,6 +157,18 @@ static int macronix_set_read_retry(struct spinand_=
-device *spinand,
-> >       return spi_mem_exec_op(spinand->spimem, &op);
-> >  }
-> >
-> > +static int macronix_set_randomizer(struct spinand_device *spinand, boo=
-l enable)
-> > +{
-> > +     int ret;
-> > +
-> > +     ret =3D spinand_write_reg_op(spinand, MACRONIX_FEATURE_ADDR_RANDO=
-MIZER,
-> > +                                enable ? MACRONIX_CFG_RANDOMIZER_EN :
-> > 0);
->
-> You can directly return. Same in the core BTW.
+It adds basic functionality for both the models including panel, drm,
+sdcard, touchscreen, mmc, wifi, bluetooth, keys, battery, fuel gauge,
+pmic, sensors.
 
-Sure, I will fix it and send v6.
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+---
+Changes in v7
+- Removed prox_irq
+- Changed commit message
+- Link to v6: https://lore.kernel.org/linux-omap/20260219210408.5451-1-bavishimithil@gmail.com/
+Changes in v6
+- Remove references to WAKEUP_EN (drivers dont support interrupts-extended)
+- Remove gp2a_irq, it was for bh1721fvc not gp2a
+- Remove mount-matrix
+- Link to v5: https://lore.kernel.org/linux-omap/20260129054709.3878-1-bavishimithil@gmail.com/
+Changes in v5
+- Commit message length < 75
+- Squash commits
+- Link to v4: https://lore.kernel.org/linux-omap/20260119033035.57538-1-bavishimithil@gmail.com/
+Changes in v4
+- Fixed syntax in doestek vendor
+- Changed - to _ in node names
+- Removed address/size-cells in chosen
+- Added pinmux for i2c-gpio5,6,7, irled
+- Allow sdcard to poweroff (reg_espresso_external)
+- Changed power to key-power
+- Order alphabetically in omap4_pmx_wkup and omap4_pmx_core
+- Use generic node names
+- Added TODO for future nodes
+- Fix touchscreen values in espresso7 and espresso10
+- Add dts to Makefile
+- Commit message length under 75
+- Link to v3: https://lore.kernel.org/linux-omap/20241108200440.7562-1-bavishimithil@gmail.com/
+Changes in v3
+- Use device tree from the correct branch
+- Fix commit subjects to matching the subsystem
+- Add Doestek vendor
+- Add compatible for LVDS encoder
+- Add compatibles for 7 and 10 inch panels
+- Clean up device tree using "make CHECK_DTBS=y"
+- Link to v2: https://lore.kernel.org/all/20241030211215.347710-1-bavishimithil@gmail.com/
+Changes in v2
+- Fix node names in common dtsi to have - instead of _
+- Removed import for twl6030.dtsi
+- Edited dts to completely use twl6032 nodes
+- Fixed typo ldosb -> ldousb
+- Link to v1: https://lore.kernel.org/all/20241030194136.297648-1-bavishimithil@gmail.com/
+--
 
->
-> Otherwise with this and the binding document fixed, looks ok.
->
-> Thanks,
-> Miqu=C3=A8l
+Mithil Bavishi (8):
+  ARM: dts: twl6032: Add DTS file for TWL6032 PMIC
+  dt-bindings: vendor-prefixes: Add Doestek
+  dt-bindings: display: bridge: lvds-codec: add doestek,dtc34lm85am
+  dt-bindings: display: panel-lvds: Add compatibles for Samsung
+    LTN070NL01 and LTN101AL03 panels
+  ARM: dts: ti: omap: espresso-common: Add common device tree for
+    Samsung Galaxy Tab 2 series
+  dt-bindings: omap: Add Samsung Galaxy Tab 2 7.0 and 10.1
+  ARM: dts: ti: omap: samsung-espresso7: Add initial support for Galaxy
+    Tab 2 7.0
+  ARM: dts: ti: omap: samsung-espresso10: Add initial support for Galaxy
+    Tab 2 10.1
 
-Thanks,
-Cheng Ming Lin
+ .../devicetree/bindings/arm/ti/omap.yaml      |   2 +
+ .../bindings/display/bridge/lvds-codec.yaml   |   1 +
+ .../bindings/display/panel/panel-lvds.yaml    |   4 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/ti/omap/Makefile            |   2 +
+ .../omap/omap4-samsung-espresso-common.dtsi   | 744 ++++++++++++++++++
+ .../dts/ti/omap/omap4-samsung-espresso10.dts  | 104 +++
+ .../dts/ti/omap/omap4-samsung-espresso7.dts   |  70 ++
+ arch/arm/boot/dts/ti/omap/twl6032.dtsi        |  77 ++
+ 9 files changed, 1006 insertions(+)
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso-common.dtsi
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dts
+ create mode 100644 arch/arm/boot/dts/ti/omap/twl6032.dtsi
+
+-- 
+2.43.0
+
 
