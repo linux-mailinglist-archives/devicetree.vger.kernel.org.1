@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-267572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267573-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBAcN9WSnGnRJQQAu9opvQ
-	(envelope-from <devicetree+bounces-267572-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:48:05 +0100
+	id 8GuFBfSSnGnRJQQAu9opvQ
+	(envelope-from <devicetree+bounces-267573-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:48:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4ED17B0AE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:48:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B93A17B0D5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:48:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9BFAE303EAB7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:44:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65F62300C039
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA63F33509E;
-	Mon, 23 Feb 2026 17:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E8F3382F2;
+	Mon, 23 Feb 2026 17:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MHAbLf9d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9x7G4jR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6355331A53;
-	Mon, 23 Feb 2026 17:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFBE337BBF;
+	Mon, 23 Feb 2026 17:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771868644; cv=none; b=kjrfGjLPyj7MWipbnQRjbgwU6oaDi8ScjMNj3Upp0BHMbRDC5UTmSlqmtYFPk97+D6ag0HztcnIz6+jMhkTiq4un0msByEmbIDpzdc7784qUMwgVIbJpYTWr3LWPX+txqPX+Pzy0o9m+9Qbq+IjrXupwphlIeWjorImekfEVX9E=
+	t=1771868753; cv=none; b=DnbDwHBnUxnrd3/1F6MY6sqU3koneTnFGzQpeCKxSUpwqbMOdAwSpnbSKrMDzB4gS9tJoMbFsRsYbUZ3VARGbFdDYz6KwnD4kbchXTZfBQ5JeunWJTHsAoWW4/Zq/gUir8FCfgXmAcKvn02LHgemiwr/8y+O8I5cz3Zbo1naulA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771868644; c=relaxed/simple;
-	bh=melVn+G0oHm9QWUFDpJV5XUQypF5aPsyygFT1uqDsJY=;
+	s=arc-20240116; t=1771868753; c=relaxed/simple;
+	bh=t1u9ZUKsO/VeLrH9SoqNc6k8gKeSI/ecTL9SL8oMUPs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YF2IcNBCRxNGu9d6SkorPiRjBqwcBIimLhIyJXHAgTN5/XWcHHumuwwD8/aUwjQdTAggCDt9GhHg7baG9JAC7rdenqlgXcGWZwsDK6VBBxP/uUJlb+bo2MBi3B4a/sJbejJU1AwbeLG6Xdtj4r2xsDrRfnaaaKWWj2iLuJAv21E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MHAbLf9d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65C51C116C6;
-	Mon, 23 Feb 2026 17:44:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i6vK6h4ttfAj3zShBzm1HHOEqb0DVewuwEg4304L0HA8uxVcPQep9S3tPbPcaogo3sQ9RdFJhe6nx+YF3Ku2gRF2tqhG0sXmWFJnorCJHuu0uMp96zsEmJxFUXz34p1ke93BDoB6h3mF2VICt5YN5GaMMA4FLXqggkzX4WT3IKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9x7G4jR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19C81C116C6;
+	Mon, 23 Feb 2026 17:45:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771868644;
-	bh=melVn+G0oHm9QWUFDpJV5XUQypF5aPsyygFT1uqDsJY=;
+	s=k20201202; t=1771868753;
+	bh=t1u9ZUKsO/VeLrH9SoqNc6k8gKeSI/ecTL9SL8oMUPs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MHAbLf9d/ozrIBQ4m1EZANbAGUTKUH3NsJarEku7/xtsig/LyCZWToRBhBlWFiTEx
-	 mWBAx4q6lYdh2DnU4c9pxJFmULbvVZLhMorwlMfDBRFesQ5TGoyaTjDfxdB0Db9BCG
-	 +JTLkNxXRPvGc7r6K7B49YtTcy/D0SuxLrykEv2Pli/phr+9TEvsGcf/gd9ypTSykq
-	 eDgC1owhFycdUoa5Ll0zwEdQF8jV0J8+I6swYtAISahqjIjf9x/kLvwCcEO18zU1n0
-	 OxLkmZMfX4e1Rapzjn+uY5u395oNv23Xp+U7FMZGrgh7tbDhlthUizqayDGIxOz8aG
-	 VhzdUkIzBM4yQ==
-Date: Mon, 23 Feb 2026 11:44:03 -0600
+	b=E9x7G4jRuexobYHdSyWkem67PHlAPwBTpSI5UtTM/BZ4fNKdkdEOldTIHECVHqjv9
+	 YXYlwcNcc6ovFi/TzEcTprSls6K4ckP0MVAjtaS7lxc0+Wpcktlx2WV2e/NSWthqzF
+	 3wmOsEPNH0cNp3/Bdrn/tKPtt7PSOd1FCXjIOI45nnZkC/ILoW+hTL6vgeVqy6pgvv
+	 516Hw+wxmxVdK8gRBfN15/tzr5KeUG8BSOaUSCqYJvnNuGvQ1e7TTLgDjADyZTViUV
+	 JGus0M8EDaDQ2f5YEYR2QUE5ALP1dguJfmkHknAe7GgEOH4BLTik+DyEYksD+A7iRT
+	 gV/HiASnKPSOQ==
+Date: Mon, 23 Feb 2026 11:45:52 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Amit Sunil Dhamne <amitsd@google.com>
-Cc: Badhri Jagan Sridharan <badhri@google.com>,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	RD Babiera <rdbabiera@google.com>,
-	Conor Dooley <conor+dt@kernel.org>, Kyle Tso <kyletso@google.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: connector: Add sink properties to
- comply with PD 3.1 spec
-Message-ID: <177186864300.4163723.6004584061652135231.robh@kernel.org>
-References: <20260211-skedb-v1-0-616340426cdc@google.com>
- <20260211-skedb-v1-1-616340426cdc@google.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	Zhang Rui <rui.zhang@intel.com>, linux-kernel@vger.kernel.org,
+	Amit Kucheria <amitk@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: Add Eliza SoC TSENS
+Message-ID: <177186875170.4166014.1658011099228218847.robh@kernel.org>
+References: <20260212161949.120898-2-krzysztof.kozlowski@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +66,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260211-skedb-v1-1-616340426cdc@google.com>
+In-Reply-To: <20260212161949.120898-2-krzysztof.kozlowski@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -76,47 +74,52 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267572-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,intel.com,arm.com,linaro.org];
+	TAGGED_FROM(0.00)[bounces-267573-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4B4ED17B0AE
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 6B93A17B0D5
 X-Rspamd-Action: no action
 
 
-On Wed, 11 Feb 2026 23:25:35 +0000, Amit Sunil Dhamne wrote:
-> Add additional properties for ports supporting sink mode. The properties
-> define certain hardware and electrical properties such as sink load
-> step, sink load characteristics, sink compliance and charging adapter
-> Power Delivery Profile (PDP) for the connector. These properties need to
-> be defined for a Type-C port in compliance with the PD 3.1 spec.
+On Thu, 12 Feb 2026 17:19:50 +0100, Krzysztof Kozlowski wrote:
+> Document the compatible for Qualcomm Eliza SoC TSENS module, fully
+> compatible with TSENS v2 generation (e.g. SM8650).
 > 
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
 > ---
->  .../bindings/connector/usb-connector.yaml          | 34 ++++++++++++++++++++++
->  .../devicetree/bindings/usb/maxim,max33359.yaml    |  4 +++
->  include/dt-bindings/usb/pd.h                       | 18 ++++++++++++
->  3 files changed, 56 insertions(+)
+> 
+> Eliza SoC is being upstreamed and the compatible will be used in DTSI
+> posted later/soon.
+> 
+> Some existing work:
+> https://lore.kernel.org/r/20260119095907.172080-4-krzysztof.kozlowski@oss.qualcomm.com/
+> https://lore.kernel.org/linux-arm-msm/?q=eliza
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
