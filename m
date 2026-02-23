@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-267578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267579-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0O20KD6VnGnRJQQAu9opvQ
-	(envelope-from <devicetree+bounces-267578-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:58:22 +0100
+	id GH2mANaVnGlOJgQAu9opvQ
+	(envelope-from <devicetree+bounces-267579-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:00:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4686117B306
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:58:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 524B617B378
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:00:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BDCD7300612D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:58:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C3677301C17D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FE9733A6E4;
-	Mon, 23 Feb 2026 17:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0623733AD8D;
+	Mon, 23 Feb 2026 18:00:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hGm9nGOB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TNgkQZMT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D96433A03A;
-	Mon, 23 Feb 2026 17:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70402E3AEA;
+	Mon, 23 Feb 2026 18:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771869500; cv=none; b=DMCDDNAAyNI0ZBd/4uueuvP9pDVbr0UCIyJZ+K3soSo2aNRu1BaGOlbjs/Bd8G463BMZSuvRKYfHxJRBGIs12+apOaAvtsPkMqDdohtwCRxCIVoa08s643mOFK04fmX5o7vXiMqESXHdtHiNMQt5TMn8yfOlsYR3xWmXg1XXXXI=
+	t=1771869635; cv=none; b=qTmr42DsJFuhskRhY4T/rqLwujXjNoZbtMg1K/F48a45b+c1KeRWR1PkZFHwEdxE/8ilRi3nqUooQH3QR8Q52YYbF6W+ktpTvUrz47t5CfHBw5xm+R6rrW4yhvGXKvvNDad6+uGX7li0iyPe8RWl+8hdP5Nn1A6xHXqaVHnVZAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771869500; c=relaxed/simple;
-	bh=7+KA4pvA79fRJqA/rpjt6JxxIEIEtgNQYdzdD8iqzPc=;
+	s=arc-20240116; t=1771869635; c=relaxed/simple;
+	bh=MJ69pmRtG+9KKJhOnIGYtKUDC06lDh6YD0E4+8ELgEU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fqu+udon+z4HWG+Ei4wDh3arFRtxsAf9wl9HKHVGNjpHGxQb2uVYj1FDZlL2Yp19r6iUCOiitpSsIucpkVdvQnKuJPB0PYb3gwWNVYbhedkTsDClXSqNNScvsistELGQzBZB09g7C10pZY25loSjvtt12nd0WZ5KUBvSbrDR464=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hGm9nGOB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DB60C116C6;
-	Mon, 23 Feb 2026 17:58:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ewZTabQauujmfxL7YdWU0CF0QGTVMdH9UI1W35r8xD9oAM1kKLlfkjc0v6MKPcvNDrXvvFQ20Df3uNn8Gd1ODF/fF4sA2p4xMVsFDfMKscvdBhsjWs7h1JVqt+AroxSOE1aeh5YuklDUS2c7NVMsSNRvg0vuEycXmY/Wg7/jiBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TNgkQZMT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 961CEC116C6;
+	Mon, 23 Feb 2026 18:00:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771869499;
-	bh=7+KA4pvA79fRJqA/rpjt6JxxIEIEtgNQYdzdD8iqzPc=;
+	s=k20201202; t=1771869635;
+	bh=MJ69pmRtG+9KKJhOnIGYtKUDC06lDh6YD0E4+8ELgEU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hGm9nGOBmsnbdVhFBDVHFi0wXAlFnS4cR7WcPJ+txQTqv40F6q24UZQXCcOgT+0Gn
-	 +UBVd3VwoBaYQfLLhRejRFr+tPhsVr4u/lLUupzcY8XvrngcUQYx6FIGtROl7YCBeY
-	 6080IauCd+l76c5vB2sigIEX0RgE20U/AIoTkEh2baFZtt4DehufFxmwMxQ9XX8chp
-	 iltMXNSlmvPYvxbB0CykUVF+0EJlZ7taPVLC93uJDws9q9l2aAPPsJTXnP3VC178YQ
-	 EroX9ZY9X7XmSphIXZr/rXqGYOdf0CJpms6xGZgHaSWyj1csmEi2I0RXMOa0Cdzm3H
-	 K1mMrz0VshpOg==
-Date: Mon, 23 Feb 2026 11:58:18 -0600
+	b=TNgkQZMTlfBzpmFs9NItNEkPZARD1V38/QKAZDczfkCLSkhvG4Z8CcUJWlhACjJxX
+	 JqnNYH80Dtgs6WE+D7CRbRDnNZKiQ1/2lfEQ/2kK94RRo5HA7gENHQpDRdl4kj8QPp
+	 6SZDlUjM+jPLzJgVuYbFTF/LZ+WC2SiUmeMit2H9lgkFL+scmd8lzShz2TRAc8RqY7
+	 yoQEnrdWD0TX9Kt7j9WlvYb6jrk/LDABG5Mg7Uv07UU6H8qqMS3Foeo4/GLo9RD8UZ
+	 pv0ricwFjLD22GrryVmgiBfjurMivu8Bz4ZH/WbzMlvBp8n8ED7Zgokl9BDngUeBzj
+	 1ZwY3/bMOQnTA==
+Date: Mon, 23 Feb 2026 12:00:34 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Cc: dianders@chromium.org, mani@kernel.org, simona@ffwll.ch,
-	conor+dt@kernel.org, dev@kael-k.io, devicetree@vger.kernel.org,
-	heiko@sntech.de, dri-devel@lists.freedesktop.org,
-	tzimmermann@suse.de, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
-	kever.yang@rock-chips.com, krzk+dt@kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: display: panel: Add compatible for
- TAIGUAN XTI05101-01A
-Message-ID: <177186949783.4183478.6418421929069094848.robh@kernel.org>
-References: <20260214085409.3489057-1-yelangyan@huaqin.corp-partner.google.com>
- <20260214085409.3489057-3-yelangyan@huaqin.corp-partner.google.com>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: avifishman70@gmail.com, tali.perry1@gmail.com, venture@google.com,
+	andrew@codeconstruct.com.au, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org, yuenn@google.com,
+	devicetree@vger.kernel.org, krzk+dt@kernel.org,
+	linux-hwmon@vger.kernel.org, linux@roeck-us.net,
+	benjaminfair@google.com, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v2] dt-bindings: hwmon: convert npcm750-pwm-fan to DT
+ schema
+Message-ID: <177186963391.4186070.17923016714184398720.robh@kernel.org>
+References: <20260215163553.1334475-1-tmaimon77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,50 +65,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260214085409.3489057-3-yelangyan@huaqin.corp-partner.google.com>
+In-Reply-To: <20260215163553.1334475-1-tmaimon77@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267578-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267579-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,google.com,codeconstruct.com.au,kernel.org,vger.kernel.org,roeck-us.net,lists.ozlabs.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4686117B306
+	DBL_BLOCKED_OPENRESOLVER(0.00)[spinics.net:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 524B617B378
 X-Rspamd-Action: no action
 
 
-On Sat, 14 Feb 2026 16:54:08 +0800, Langyan Ye wrote:
-> Add a new compatible for the panel TAIGUAN XTI05101-01A. This panel uses
-> JD9365DA-H3 IC, so add the compatible to the jd9365da-h3 binding files.
+On Sun, 15 Feb 2026 18:35:53 +0200, Tomer Maimon wrote:
+> Convert the Nuvoton HWMON PWM and FAN controllers binding to schema
+> format.
 > 
-> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 > ---
->  .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml    | 1 +
->  1 file changed, 1 insertion(+)
+> Addressed comments from:
+>  - Rob Herring : https://www.spinics.net/lists/kernel/msg6047623.html
+> 
+> Changes since version 1:
+>  - Modify yaml file.
+>  - Remove unnecessary symbols.
+>  - Add items.
+> 
+>  .../bindings/hwmon/npcm750-pwm-fan.txt        |  88 -----------
+>  .../hwmon/nuvoton,npcm750-pwm-fan.yaml        | 139 ++++++++++++++++++
+>  2 files changed, 139 insertions(+), 88 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/npcm750-pwm-fan.txt
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,npcm750-pwm-fan.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
