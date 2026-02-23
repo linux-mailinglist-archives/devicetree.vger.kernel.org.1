@@ -1,180 +1,211 @@
-Return-Path: <devicetree+bounces-267649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267650-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0IlaHkq7nGlSKAQAu9opvQ
-	(envelope-from <devicetree+bounces-267649-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:40:42 +0100
+	id kISEORG8nGlSKAQAu9opvQ
+	(envelope-from <devicetree+bounces-267650-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:44:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D009A17D060
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:40:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1D217D141
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:44:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 58D7A312C082
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:37:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3794F3017A8C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:43:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EAAB3783D8;
-	Mon, 23 Feb 2026 20:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CE26378833;
+	Mon, 23 Feb 2026 20:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gczZox2B"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="AVrkkxXH";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="FIPwPmKl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3CB3783D4;
-	Mon, 23 Feb 2026 20:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342DC37881C;
+	Mon, 23 Feb 2026 20:43:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771879079; cv=none; b=UF1JTy3aTEF0ua8d15tlC8dpkzsNK/zyATTR3+0tkyOEl5+mjpFELg1YDear7scTrchwfu+tBaqWGtz/Zl3IkLmZitSWvOzsLxGnQwZ/c+20rtU4xkl440lqMOfX6MoUPNXUjanJUcRc0QkIDL3lCFfuShQIu0L2SunmUH+cYx0=
+	t=1771879387; cv=none; b=VaiylnRBDW8qtbh5qSucQGovx+l+yH46rdBTXom/cKMz0c0qvrna1KOb7t5YpcmUvKe/F2pLaCVM+JcAV067+8gdbmDDfHKOVhZ9NMoaKMFtxXYLgVbxm23n2vcLei7zaQwjwud+rx6hbZLrLSQ4PKn28lqMskF+dD+NGev2N7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771879079; c=relaxed/simple;
-	bh=kVj3cRJntBNBLWGA67YC2O0Cr55GUAz8iXFyruza7eE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MpktitS6Gw9GKuR/ip3ewWVSK6tkkI/B1KfAXujWmXwAZu0udR9/hlW4F5elysqebPG2aMtIR9uxSg7jQAp3fRVd3re6Wo5brcifh+ma+DpSwasJellpWUory4PYbynVOjwBFdwwi7nZY1TGwhZxN2XmbkzpMMVFZPtVex9TlRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gczZox2B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B880FC116C6;
-	Mon, 23 Feb 2026 20:37:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771879078;
-	bh=kVj3cRJntBNBLWGA67YC2O0Cr55GUAz8iXFyruza7eE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gczZox2B2UQlhl9Z903SXDMUu5NWa2nbWTtdMLdCbGmMqgEKI+1rDIjyeD2ybnbeA
-	 TYB/yLLw9kpEmQ7AysBGQQL+JGVE4Wtrh4riS27cg+2YCTLzs6DkYFl2BrA0sKtRxS
-	 O76tbO8BfEMGqdZf9s/h9eqd7x/FIuSyweMlzCTl/JY3UKgLDQYza4SKi32K6c2tV6
-	 NBXq5vG/ACkD4IkK3ctqExSjDe8ER+iS/RnLNGm2w65tx/GrkivXE0+JO1Y/S1WDTA
-	 CAp5LnMK+CRg1KRYsS8cVLrtqfzMGHOiDTzKxRhAjLKZNphE/0+MJd4dnkqSOIHsz7
-	 F/uUtLK5IwJ0w==
-Message-ID: <a3b01ad0-faf3-480e-9320-db7b7c426a3b@kernel.org>
-Date: Mon, 23 Feb 2026 21:37:53 +0100
+	s=arc-20240116; t=1771879387; c=relaxed/simple;
+	bh=K1H9osKHOHIaNPMYtzrb0CqGgCC4DXD1Xeb2cGWhhGw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e6koDZuj6ePDXIMs+hrzhVKW1CFX9+O6ptck/mMfKXEQn3/rw4jEoq8VpuMhuRqZMY/qeo2qbLtdE7vdtAp9Jb0FvUJXj7IbbPX3wZldNZ9/+5lRI9zw5/9uRYIZi9v/QXUkx9bgzHcT2n0wGU+zKORjwTwGlDyqUrKxqC5yJrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=AVrkkxXH; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=FIPwPmKl; arc=none smtp.client-ip=202.12.124.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 1D81E7A019D;
+	Mon, 23 Feb 2026 15:43:04 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-03.internal (MEProxy); Mon, 23 Feb 2026 15:43:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm2; t=1771879383; x=1771965783; bh=sc
+	wHAtRQd3PclwoYnPSg2AnnEZLGXYap8/BiWfboRfs=; b=AVrkkxXHj4hUpdukC1
+	t1nBp/3hlJo6cLyTWNguEfniKqMg9TqXKhauWhXoZ9kbKIcJFkkhL3sN9RZEy5l6
+	7wUvE39xryIL3/Bt/s1UWZlDna5m9AF6YY/82A1I3Lsbq31IR+3i1TgxhaF4z8VB
+	3pE6tsqLwG3dUftFrvOc4k0MwkV8EW+nxZoMHIjrjVsX9eLxE7Yx78XH0a1TB2bZ
+	7nDm42N7K9V8Kgz3XFOgbYpU5OgKuYCRVWXsSnC81awkl+wWYWMtv0JLjbFxHfNA
+	UeEzI/agFNwKpqcJBJox2/ZB8nruVQs3zIAE5LTz+iEIpE3eelzsbAnSiI+xoipm
+	icyA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1771879383; x=1771965783; bh=scwHAtRQd3PclwoYnPSg2AnnEZLG
+	XYap8/BiWfboRfs=; b=FIPwPmKlZRP6TS87JDLIQz5kfMt/2wotnE5t92tuY//M
+	0RYuPjhQ6uN2SAs6jN2sVE+4nLjk42awIvCgWuZAF40FRa46cWV0FHX9oeP+pCug
+	IJaMeLrHPkJnQxFi4upfujVvG648vwzYecoPeLGJ3FpQUM95O64Sr9zrEd9SOQkc
+	x3lAneeSJAbx1MNtPGw8fHTyAXrUblEf3lSvShB63D+fBiRVtllyL5ofErb1hb9+
+	LtoVZWpDXgmm3tpnwh2Wkn1aqGMM1cKjpv3v5DqPFkNP40XctQbNtiYPAwSMYk+x
+	St4QQId9MhuIdlJ3t8KBHN0m4TTSXJFGVPgSTlKTSw==
+X-ME-Sender: <xms:17ucaT60LoQQkMbcYDkSmALirIxQ3vOGuZ272OuO-vl3eocC7grKTQ>
+    <xme:17ucaUvdK-gEcX9QmvE3h3-0HCFHNrWnBN0xbJ2I0rxEkVr0d0TmtLf2wOjDYF6iG
+    IhvmoQ95UCaXcEH-5OzU__w7IsSjB8CA1CLN2O-vKAo6MG-EioWmi0>
+X-ME-Received: <xmr:17ucaV3U8xYf63k0ZQrN5yyIiLU9ten9t2hs0J-roT5zypp17CIXUG828hr7srCDVFdfYoga4PX0ncDH-N39Z-6QcfYpKnUD0o-6zw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvfeekvdefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephffufffkgggtgffvvefosehtjeertdertdejnecuhfhrohhmpeflrghnnhgvucfi
+    rhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepudffle
+    ejffefieeigeeluddvgeeklefhffeigefhudejieevgffgkeeftdffvedunecuffhomhgr
+    ihhnpeihrghmlhdrrghpphhlvgdpkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurdhnvghtpdhn
+    sggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprhhosg
+    hhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsvhgvnheskhgvrhhnvghlrdhorhhg
+    pdhrtghpthhtohepthhglhigsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnoh
+    hrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepnhgvrghlsehgohhmphgrrdgu
+    vghvpdhrtghpthhtoheprghsrghhiheslhhishhtshdrlhhinhhugidruggvvhdprhgtph
+    htthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggr
+    ugdrohhrghdprhgtphhtthhopehjsehjrghnnhgruhdrnhgvthdprhgtphhtthhopehlih
+    hnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:17ucado2B3UN1q0oBj3SKyVv-ssc3lmEUM5PrQaidwPmF8aK-GQOSg>
+    <xmx:17ucaVLN3DIM1OCsmltCkDlABhRqG0XsGevJcVoT5CkvMfu69ipfww>
+    <xmx:17ucaZTpEZeCu4Dv6XDyE-6nBFuDd8fIgZkY0uYgu4Npv78knkAN6A>
+    <xmx:17ucadN5hOBKISesFuIr7bCY8YsZeqF-A4gCB7W_WgExMjOEzRGZ_w>
+    <xmx:17ucaRH7BtlQFxTbuSB01tXlTmqz-xAzbN2Q8D-appUHzBW6QuPGdMgj>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 23 Feb 2026 15:43:02 -0500 (EST)
+From: Janne Grunau <j@jannau.net>
+Subject: [PATCH v3 0/2] Add Apple interrupt controller 3 support
+Date: Mon, 23 Feb 2026 21:42:45 +0100
+Message-Id: <20260223-irq-apple-aic3-v3-0-2b7328076b8d@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: monaco-evk: Add Interface Plus
- Mezzanine
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Umang Chheda <umang.chheda@oss.qualcomm.com>, konradybcio@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- mohd.anwar@oss.qualcomm.com, krishna.chundru@oss.qualcomm.com,
- monish.chunara@oss.qualcomm.com
-References: <20260222173545.3627478-1-umang.chheda@oss.qualcomm.com>
- <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
- <a7777e5d-f9be-43c5-9f3f-4d84e16f6e89@kernel.org>
- <jncbztn4xohzns734i4o2hsherdshjgxqtiglh7zf2oz7nkujs@an24wf3txymy>
- <87e3de23-cee9-4789-87ca-e85826af7760@kernel.org>
- <sf4jvwou4wtlxamwgkwb5c7adujz6dwoqwws2aq4z7jjvblbvm@fb5kqkt23ktm>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <sf4jvwou4wtlxamwgkwb5c7adujz6dwoqwws2aq4z7jjvblbvm@fb5kqkt23ktm>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMW7nGkC/2XMTQ7CIBCG4as0rMUArVhceQ/jYopTO8ZQhEo0T
+ e8ubVz4k1l9k7zPyCIGwsh2xcgCJorUuzzKVcFsB+6MnE55MyWUFlIaTuHGwfsrciBbclHKqtU
+ AKh/LkQ/Y0mMBD8e8O4pDH56Ln+T8fVNq80slyQXPTItag4bG7C/gHNzXDgc2W0l99vVfr3LfV
+ I2tUWprzParn6bpBdfwAzztAAAA
+X-Change-ID: 20260119-irq-apple-aic3-0314f6aa2a2a
+To: Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Janne Grunau <j@jannau.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2344; i=j@jannau.net;
+ s=yk2025; h=from:subject:message-id;
+ bh=K1H9osKHOHIaNPMYtzrb0CqGgCC4DXD1Xeb2cGWhhGw=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhsw5u69orji+ZHd41N51Khwvvd9eE/ydKXdM9vO7CSHzL
+ rqt3S+9oaOUhUGMi0FWTJElSftlB8PqGsWY2gdhMHNYmUCGMHBxCsBEPucwMjTHfs/8IfHe4My2
+ 6Z4/PulG+T564jVL0Ojdvb/LXeLFRZYxMtxrrdS5IDrN0C+fnTvuhYPRqqorDRfXm4qw3ksI26O
+ 5jRcA
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[jannau.net:s=fm2,messagingengine.com:s=fm3];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267649-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[jannau.net:+,messagingengine.com:+];
+	TAGGED_FROM(0.00)[bounces-267650-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DMARC_NA(0.00)[jannau.net];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D009A17D060
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[j@jannau.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,messagingengine.com:dkim,jannau.net:mid,jannau.net:dkim,jannau.net:email]
+X-Rspamd-Queue-Id: 3C1D217D141
 X-Rspamd-Action: no action
 
-On 23/02/2026 20:02, Dmitry Baryshkov wrote:
->>>
->>> So I presume what you're saying is that we should at most declare one
->>> level of non-controlled fixed regulators?
->>
->> In general, non-controller fixed regulators should not be there at all,
->> except when they serve certain purpose, like fulfill the binding
->> requirement. It's their only point.
->>
->> And a chain of:
->>
->> A -> B -> C -> device
->>
->> is completely redundant if all A+B+C are non-controlled.
-> 
-> I think that came from me. I don't consider that to be completely
-> redundant. It helps in reviews and in some understanding of the board
-> logic. I'm not asking to implement all the intermediate regulators, but
-> to implement the meaningful relationship between end-user regulators.
+Add yet another variant of Apple's interrupt controller. This one might
+to stick for more SoC variants than their predecessors. According to
+Apple's device trees it is used on all SoCs since the M3 (t8122) up to
+M5 (t8142). This information is not 100% reliable since macOS uses
+different kernel builds for each SoC variant.
+As far as the functionality implemented in the Linux driver it is almost
+identical to AICv2. The only noticeable difference is an increased
+IRQ_CFG offset.
+AICv3 uses the same device tree bindings as AICv2 so add its compatible
+to the existing apple,aic2.yaml.
+Apple's device tree added many MMIO offsets as properties for the
+"aic,3" node. The offsets are the same for all released SoCs with AICv3
+so the Linux driver continues to use hard coded offsets.
+Compatible strings for AICv3 will be SoC specific like
+"apple,t8122-aic3" so a potential future SoC with different offsets
+would use a new base compatible string for which the driver uses
+different MMIO offsets.
+While the offsets are the same on M4 and later SoCs access to
+implementation defined system registers will require different
+compatible strings.
 
-These are not end-user regulators. These are fixed things which no one
-touches and no one needs. There is no single purpose for user-space to
-see them.
+Signed-off-by: Janne Grunau <j@jannau.net>
+---
+Changes in v3:
+- sort aic v2 compatible list alphabetically in dt-bindings
+- drop mostly duplicate t8122-aic3 example from dt-bindings
+- rebase onto v7.0-rc1
+- Link to v2: https://lore.kernel.org/r/20260128-irq-apple-aic3-v2-0-b4bc8e16c997@jannau.net
 
-Why do you not insist on defining all of such external oscilators, rest
-of regulators, all possible little ICs?
+Changes in v2:
+- allow single "apple,t8122-aic3" compatible in the bindings
+- drop leftover #include <linux/of.h> as it's not justified by the
+  contents
+- comment and white space style fixes
+- sort cases by version in switch statement
+- Add Sven's Rb:
+- Link to v1: https://lore.kernel.org/r/20260125-irq-apple-aic3-v1-0-a2afe66a6ab9@jannau.net
+
+---
+Janne Grunau (2):
+      dt-bindings: interrupt-controller: apple,aic2: Add AICv3
+      irqchip/apple-aic: Add support for "apple,t8122-aic3"
+
+ .../bindings/interrupt-controller/apple,aic2.yaml  | 30 +++++++++++++++-------
+ drivers/irqchip/irq-apple-aic.c                    | 24 ++++++++++++++---
+ 2 files changed, 42 insertions(+), 12 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260119-irq-apple-aic3-0314f6aa2a2a
 
 Best regards,
-Krzysztof
+-- 
+Janne Grunau <j@jannau.net>
+
 
