@@ -1,228 +1,178 @@
-Return-Path: <devicetree+bounces-267336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267337-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKX3FEgnnGlzAAQAu9opvQ
-	(envelope-from <devicetree+bounces-267336-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:09:12 +0100
+	id qIzjFCEpnGl1AAQAu9opvQ
+	(envelope-from <devicetree+bounces-267337-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:17:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDDFC174983
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:09:11 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72512174B31
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2438E3060CCD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:07:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B9F743032071
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:10:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8200E35B125;
-	Mon, 23 Feb 2026 10:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8479135B12B;
+	Mon, 23 Feb 2026 10:09:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VcCTdIKJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YaZ5atst"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBAAE35D604;
-	Mon, 23 Feb 2026 10:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D77F356A24
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 10:09:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771841195; cv=none; b=ibUTcfI14Hc9a9feacgDOCywHF8U0QFFGLOSzTC036xMXnP2uJHMwfzHRh2hctq1UdoJjzaWfsdRKk028+fm0hlM5FCFlCA9IiViF4HTIlqgCeBXHd1uFtVxJiAEKCrntbLjzFuSwSSckLjiz54PdR1nzcPRYbnx4i0CM5faM+8=
+	t=1771841380; cv=none; b=JntLslIQWyuuPQUB2735I0R8LH7+/JNe/+Y7Jbz6EyardH+v+S7+GW+HkyA3/HWIrCR+UcTgRIdbpyVDkhmpvSxdDbqE2iBEnnULEPmHjJUuOaOAx7ksxs2BHbuWfUxsORKyxezq9JDcbg+m4ju5EX1UvPDva/NmU6iF0gBe2A8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771841195; c=relaxed/simple;
-	bh=46zP8/3uEhKDHAy2w48I/5c52vWncvOYIr9i+27DwMQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SD9wAuw5fiNtRiK8c1+3g7eZSbmfKm7qZe0bgC0fZrjdaujg60GbqPVoDe6mNE/8Y1J2OUpYcslAWd/MV2MtaJAvXtAA+c+RHHj7sZixJ2N5OfFnqGepAz4VXcmfyTYqFc4XCsB9tWYbwwxcVFwjbqnuIkTfjqCY0MRJNX3vA98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VcCTdIKJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61N98Gpl2146284;
-	Mon, 23 Feb 2026 10:06:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HWdwbEI9gST7ypPT44xlET97rSwA/nShW0m0ohLfjP0=; b=VcCTdIKJM3jUvWlW
-	MIHmIEIM6uFJVbqbycvQgyX7hNYFh8HQ1AHp2mxguM8SnaBWYjGhfY/2WzjqU3+U
-	LQ6moX4LfA6ErnHNJnKriJIJse44+CNoqKNKk7VR1UqRFdfZmPmrBroIqU6UxU/Y
-	/Zr93J85WG4IqyaL5ECwy1UUmZQhO/orMgm/2ctZki/jSkxR5X5jLS36YM0FTFX2
-	KTqjHP2a6uGtznLBNJ173DH5VDp5hy98AExB0WMsSEzckdWUd7oVmCrSg5vaMFQN
-	v87sxibVsFZdawK+GKdtE8dHJGU9Amt90SKGYA4PIKSWxdlNLKjkt7XESX3lhAY8
-	E+rDNA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf5wyv9us-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Feb 2026 10:06:31 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 61NA6Uue027248
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Feb 2026 10:06:30 GMT
-Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 23 Feb 2026 02:06:27 -0800
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <quic_mdalam@quicinc.com>
-Subject: [PATCH v5 6/6] arm64: dts: qcom: ipq5332-rdp442: Remove eMMC support
-Date: Mon, 23 Feb 2026 15:35:52 +0530
-Message-ID: <20260223100552.1050303-7-quic_mdalam@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260223100552.1050303-1-quic_mdalam@quicinc.com>
-References: <20260223100552.1050303-1-quic_mdalam@quicinc.com>
+	s=arc-20240116; t=1771841380; c=relaxed/simple;
+	bh=Ky3jcIBbGAp358Kb7hZKDppR/DA4Xry1FogPtt3x2sE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=FMYnk9OESCm1BzmGj9lXjZCueR9z9M74hJ6lPecwS50gfZfUjmyD1fo49RyRNE2+2bTrJARnYWKUQ/kh0hNIYptVFlLAZNj1jlM54k65nqWGWC4BTHshHOH+QYizKk2WTWf3alN+12gqGt9tf9fUxY7a0xoEBEtcVcxJBz/YO00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YaZ5atst; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-480706554beso50224305e9.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 02:09:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771841378; x=1772446178; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Y3U0wiZ1PaLP9HKufniCA3p+26o0xtDqndh6mBEwyx0=;
+        b=YaZ5atstiuyyX/KZ4RGNr8CAywUBCCig5Wo62ckOMjU3Ar02DldYn69p7x3kgXyS0S
+         gWClepkcbbcupsiVSlusldMOEVWNxCTcN6V7W7LvwAmasazxHXvic6YyJJf6ATOSOzur
+         bh0SWGvIh7B+pKF+1P3iKhXN0GiCgsOfbpgkLKWi4C8P1XO1X0G0IXlIB71KZk8RiDq0
+         IhuGbODNEdkycFjdKIHlKTmNnebWIBRc7Syt9Mw2ntlYUmsi3F4Q7a9ODtnf4M2YiULq
+         IHde9fhM018Mc3nNuiz+UgvI7DMmj22TrusJmUPSppNC+uqz62pqIWuW6Gr120WqPufw
+         tLNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771841378; x=1772446178;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y3U0wiZ1PaLP9HKufniCA3p+26o0xtDqndh6mBEwyx0=;
+        b=iL/WZ3D5/ecNPW93vkBX1ZFPR0BpqKMqncG078A27U9CjJgWOFG39IRrD4FlPPCI8U
+         z2TxLWaDCzXoLIuyu7EBFQ8B6yX7nIPfNqwQtGcLHf5jbaq8+Ml21i889TA1Ibdw2QvP
+         HYltEtg1HU4UTFI2c4NvTC20THV2YNJTbDdaaUt5LPsj03n3qc4JIz/3MWvM+oAq0d+0
+         slZtmw+M8X30jMlxiSxiIMFJqKQvU2BdR/4SQ1sVz5t1qHPf44VA1I/3OujKF4EXIJ2f
+         fsZr+LPhE4x5FX2Vu4OmYEtmKr1haV1hO2jY4jIcZx46pupqyU6QXePf19sEPkU9I9oe
+         QKGw==
+X-Forwarded-Encrypted: i=1; AJvYcCWEpL4xYKyhUAGp4oB666Z1CFcaFSjFxfAJFLTLOXlJPxF5ZPcDq47Juj8kIa/Ptce3yk7l02F8iTeh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzgtLLtGmHEWYsHdhZKkXMe4iBEjChn4hbYIN4Eu19XaggwsgY
+	dD1Y/Is63poZsjnjDypEXlgkSfoBIMgSnDnEBdsXS/9KlWCOBsCXiNTj
+X-Gm-Gg: AZuq6aJ2uzXFFGwsUpCeGSyqH5J8Pp9rSEWtys/zzlOklfCZa9zXbPdFsXeSZKFQpTu
+	rFwZoYh8zrmqrr8OknOxWtyCRCX0wpTPn5E1mdd4lTQf980HlfFFQyRqSm7Bsg0SOXTTuzj3bgY
+	+RnSnEPVSM4qm8DkbI3JerrZwGM5RPd4RpYh6CAsfgLUv6/wus+AHcuCnVBDv84qNxPvlBtt1YA
+	mKCLmXJSJv5aNz4kqKsaLIASpuZx5J60LmSCxkxbXNQWb8cTAhnWxBxKULauzltgrrborc4L9Lj
+	iOM5XIWGzOzhHtOVfkKiLaQBlIhUmDh5YDm9JkvmBqL5KjDBsKOROaRwnDFj1zHrqNY8/z+u5Gi
+	9v+BmKmiCaSvsrYc0oKUimiFXcYZe7I/2WT19QYjJLpT64/uR+MEeoWdj4ynUUVvDgfyafOx7KW
+	wtTLHps+7QP5ZrwGyNyggnvSesfLGmK2Pi5+InFfaQlA==
+X-Received: by 2002:a05:600c:34d3:b0:47a:975b:e3e6 with SMTP id 5b1f17b1804b1-483a962e175mr136244295e9.18.1771841377468;
+        Mon, 23 Feb 2026 02:09:37 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483a31bc068sm245815725e9.4.2026.02.23.02.09.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Feb 2026 02:09:37 -0800 (PST)
+Message-ID: <d1a1f8af14fd515409805f1071c051fb51206b1d.camel@gmail.com>
+Subject: Re: [PATCH 2/3] iio: dac: ad5706r: Add support for AD5706R DAC
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Jonathan Cameron	 <jic23@kernel.org>, David
+ Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
+ <ukleinek@kernel.org>, 	linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+Date: Mon, 23 Feb 2026 10:10:20 +0000
+In-Reply-To: <aZiSVSvCOS4MvcGt@smile.fi.intel.com>
+References: <20260220-dev_ad5706r-v1-0-7253bbd74889@analog.com>
+	 <20260220-dev_ad5706r-v1-2-7253bbd74889@analog.com>
+	 <4fd329ed6416fd2f8e2a72adfa5a77f73107948b.camel@gmail.com>
+	 <aZg-vtenBU2rKKX_@smile.fi.intel.com>
+	 <a6a2fc3ebb45fa4d7b379d552196d56eb13fa8d3.camel@gmail.com>
+	 <aZiSVSvCOS4MvcGt@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDA4NiBTYWx0ZWRfX44vbbYaHYIm0
- v36D0eVZOUgpB8PcqGiqsWp+I+pU9oyDrkKvwAg5RZOiJPIezYlbTI4FMG5QW6X+MlAGBNWHcZZ
- /lqKIkOczRvdqJGSJ3YBsxg+63VgfsUxn8Ccj2alRp9kcMM5tWTS33GxkOwQq4HKE1cg51LDM86
- eQJ1RWVkkreVFOczBZrYhnLUDqTd2UVu7dG6M9Knc0yh/TA2q7hk/u0pgS8mRPFAwcwh608CFs5
- CyIvtMPksY5hUeLdBE7dUb/8N/es80RqccrGF8pJ7SBS9nvr1uKrckFWhw/A3J5KfkraBrlQIme
- N/4sEe6cJLPmeJLn5idH7XhgOSF10oFBMBE8MzYVl+r4c2+fCTIt/C3U1ri+0JMjFuR0zMO0o6e
- 3M9oUueZEy8i0WzhPLaMh4deaD1Du44e4IVfojWvq0XCqliwkIJ84WS6LS5YZryQTJGV/tl+H9T
- 0CHenGNBuvR2VOZzbAw==
-X-Authority-Analysis: v=2.4 cv=UO/Q3Sfy c=1 sm=1 tr=0 ts=699c26a7 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=fuWxvNZPvO_ztXA3lyEA:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: mTyMAJDmtS25_IyZsfgM6L2KYUefPUie
-X-Proofpoint-ORIG-GUID: mTyMAJDmtS25_IyZsfgM6L2KYUefPUie
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-23_02,2026-02-20_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0
- malwarescore=0 priorityscore=1501 bulkscore=0 phishscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602230086
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[quicinc.com,none];
-	R_DKIM_ALLOW(-0.20)[quicinc.com:s=qcppdkim1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267336-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[quicinc.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,quicinc.com:mid,quicinc.com:dkim,quicinc.com:email,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[quic_mdalam@quicinc.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267337-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: DDDFC174983
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 72512174B31
 X-Rspamd-Action: no action
 
-Remove eMMC support from the IPQ5332 RDP442 board configuration to
-align with the board's default NOR+NAND boot mode design.
+On Fri, 2026-02-20 at 18:56 +0200, Andy Shevchenko wrote:
+> On Fri, Feb 20, 2026 at 03:02:37PM +0000, Nuno S=C3=A1 wrote:
+> > On Fri, 2026-02-20 at 13:00 +0200, Andy Shevchenko wrote:
+> > > On Fri, Feb 20, 2026 at 10:48:59AM +0000, Nuno S=C3=A1 wrote:
+> > > > On Fri, 2026-02-20 at 16:02 +0800, Alexis Czezar Torreno wrote:
+>=20
+> ...
+>=20
+> > > > > +static void ad5706r_debugs_init(struct iio_dev *indio_dev)
+> > > > > +{
+> > > > > +	struct dentry *d =3D iio_get_debugfs_dentry(indio_dev);
+> > > >=20
+> > > > It should have:
+> > > >=20
+> > > > if (!IS_ENABLED(CONFIG_DEBUGFS))
+> > > > 	return
+> > >=20
+> > > But why? The debugfs is a stub when disabled, nobody should do that
+> > > in the cases when the main purpose is not the debugfs code.
+> >=20
+> > Because the compiler can then optimize away all of the above code...
+>=20
+> How is it different to the code elimination part that is inside in each o=
+f
+> the below calls?
 
-The IPQ5332 RDP442 board is designed with NOR+NAND as the default boot
-mode configuration. The eMMC and SPI NAND interface share
-same GPIO
+Clearly none :). For some reason I thought it would matter. Maybe I was mis=
+taken by
+some old code that had #ifdef guards on the debug code.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
----
+Any ways, I might send some patches cleaning some places where I added the =
+above so
+people do not copy it around.
 
-Change in [v5]
-
-* No change
-
-Change in [v4]
-
-* No change
-
-Change in [v3]
-
-* Added Reviewed-by tag
-
-Change in [v2]
-
-* updated board name commit message header
-
-Change in [v1]
-
-* Removed eMMC node
-
- arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts | 34 ---------------------
- 1 file changed, 34 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-index ed8a54eb95c0..6e2abde9ed89 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-@@ -35,17 +35,6 @@ flash@0 {
- 	};
- };
- 
--&sdhc {
--	bus-width = <4>;
--	max-frequency = <192000000>;
--	mmc-ddr-1_8v;
--	mmc-hs200-1_8v;
--	non-removable;
--	pinctrl-0 = <&sdc_default_state>;
--	pinctrl-names = "default";
--	status = "okay";
--};
--
- &tlmm {
- 	i2c_1_pins: i2c-1-state {
- 		pins = "gpio29", "gpio30";
-@@ -54,29 +43,6 @@ i2c_1_pins: i2c-1-state {
- 		bias-pull-up;
- 	};
- 
--	sdc_default_state: sdc-default-state {
--		clk-pins {
--			pins = "gpio13";
--			function = "sdc_clk";
--			drive-strength = <8>;
--			bias-disable;
--		};
--
--		cmd-pins {
--			pins = "gpio12";
--			function = "sdc_cmd";
--			drive-strength = <8>;
--			bias-pull-up;
--		};
--
--		data-pins {
--			pins = "gpio8", "gpio9", "gpio10", "gpio11";
--			function = "sdc_data";
--			drive-strength = <8>;
--			bias-pull-up;
--		};
--	};
--
- 	spi_0_data_clk_pins: spi-0-data-clk-state {
- 		pins = "gpio14", "gpio15", "gpio16";
- 		function = "blsp0_spi";
--- 
-2.34.1
-
+- Nuno S=C3=A1
+>=20
 
