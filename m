@@ -1,208 +1,233 @@
-Return-Path: <devicetree+bounces-267665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267669-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGmQJJnhnGnCLwQAu9opvQ
-	(envelope-from <devicetree+bounces-267665-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 00:24:09 +0100
+	id QDRfNYPlnGlxMAQAu9opvQ
+	(envelope-from <devicetree+bounces-267669-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 00:40:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2904617F495
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 00:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5731217FBC7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 00:40:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A7DCF3053CFA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 23:23:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BF1EB30D0F91
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 23:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632AF37F74C;
-	Mon, 23 Feb 2026 23:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0269B37FF7D;
+	Mon, 23 Feb 2026 23:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YOqHRbPq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hxWVLhJE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010071.outbound.protection.outlook.com [52.101.85.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8CA36EAB3
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 23:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771889026; cv=none; b=A9eUz6D88ILJ/L+YpUKskuWOf22idSyjaSrNtb5eiwygtDTQybJ9MyjAObSsMNBgadpZj1FMjy5WsCxuQZcnL/ha+v9RnztFT83TW0OVt+v/7Sa8o5MlMVkA4cmw7QdeYijIyoQF32Hr2zxEAw//mjZrrF02EQQZAENAhaQUR0g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771889026; c=relaxed/simple;
-	bh=Mma3k55Qh/hUNkE7ueeRkYpGEpsZ/KsMKu/TgULG2Lw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L+6sVisr0Cfp7t6kqGZzkh6CJsg4m58p5AryC4Z7DZ/fYz9/5Ssd39V6LPjFNZFKhKnoo9uTUjRx86WpZfHGBi04YedPQiOQX/b8rw/jw+Z8A1NvEMI81l2cNfbQ/XKmbAqxfixuv1hz8ZM8XZUn2ikeiz13LCMd8S6ANIimWGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YOqHRbPq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9BD7C2BC87
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 23:23:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771889026;
-	bh=Mma3k55Qh/hUNkE7ueeRkYpGEpsZ/KsMKu/TgULG2Lw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=YOqHRbPqXHTLBor8MxJi6FT3zVdInbCwI2eOMIL8euYHimw/2187ESI4FYFzMIdao
-	 qcma9uy15IZo61hNy6uVYPfntiayQAPS2Mo+UoI0IBOxQ0sBEWDcNqfTLzJCeAJohq
-	 4mQtHfArFQb2eRzVfgwuiGhkAnUNKHTrniXtozHuC4rwo/nkw4ojRg+/+2+7lqZHuS
-	 vMkj+2erWL62zt0UGooaYotN7lPG11jUuIEXLsinCmPI3N4F6NjKLxCGJOaEQ7MIVf
-	 w8vtUPjyP8NxrpfXo407yG4hunVqayFBsm3Y1saWZORxvHS27i0Tiod2tr/dtyOEab
-	 0DpY3cb6uad5g==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b8fb6ad3243so689174066b.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 15:23:45 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU5Mz3ZH/e0zI4dMGez5qwlBTGYg0r22cQXwn8EbForlzv8eQtn4S4l2oEBqm5N6nBfUz5Ks/qiDTsk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzX6XjYx9Ozbjz7j4DOkMr7Z8m0aTXWBhc3ftLmB1e0Enx94/87
-	I39Bql9UX8nZ794+lRx9NkPrTWgtasnkcs9RriGht+Ai8lhUZ6IZQwul/FgEiH7MLzyI60J1wCI
-	NZz3zkOLDCK3toJvCRUO5xQfUtKlskw==
-X-Received: by 2002:a17:907:6d21:b0:b87:2675:9eaa with SMTP id
- a640c23a62f3a-b9081a0144fmr686016766b.15.1771889024517; Mon, 23 Feb 2026
- 15:23:44 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95ED737FF4F;
+	Mon, 23 Feb 2026 23:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771889857; cv=fail; b=ZYcXfElsnrfqv7Y+xrOFyhGXtm8gR0XYzwpEjCUn5sTG0rVTR941LnvPD4IVkqTBrodn1Fu78kFlByrhq1mouP11HYoAD4woI501YjP+w2wFFQcbLqT0VkGc93BkUFd4k4PuhJG7SrmaeBETOrNtDLNTIBCuEy+MTc/XbiXCEsM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771889857; c=relaxed/simple;
+	bh=oCctdYXIaVnG/40d8cGYs+QELTJOC3Vtqsdszrlb7V0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uvTGXggj6cPAT1uPo3a8dHTSJWhSZBG2RX8t2LxMn1QC0KpW00le336OuWBXWMhPDtsUAVI9H0p71YGgnN1MJXovsFw68/TcaTetCJZMUKjwy8HxnxrF6A2aWTfA19wvNXrhHXsezhsl4LG0YgKpeGgwas+xKXrMcBYwTPBM/Xs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hxWVLhJE; arc=fail smtp.client-ip=52.101.85.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IC5YN9Pie/Oz3VbnoU0K2IG0OZAt6U4F2Ttaq3m/khwMFQj8ZtesKwyEY3UyODaBPXi6kVmnQNZ91OT6p0cLnyP5xgxr+F/QZVWwt8SUckRoysDm2CAjErLUCIn1p0onnvn+iiYdud7BCnJIcH0kn1UzzYL0Vjh5oQOUPE/yzxxtpFG61FmtTgfhneMGuIoqMnNoOa7CdrGZLItTTf4/yr60gqmMaeTeiUhA9cbpqjXfSZT3YDv+Zyh8RC3S7Pn1YlQcuqIyQWJFtyzB43MZVKIlosKuraSNjuJL3KKihGxvZGhdDaWcrDE/THtAVgxnIaEC9nPzmi9wq+nbGPNQOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=udW0izpERXy6iP2cCE21asdQ2sfa7StagZZlLVf54z8=;
+ b=Fo3NR2FSTuKA/aEoN2UIwf7dF5hbG4dZtj076xAeux4+7OOqoQoihFyMwrGGNTovBVli/aW1n1a4l3W1iQInzCF4x1Wn0MEl548cJRc51m6mK2R5+xDPuHpqAsyoqmwcVAO2+OlO0tTP6hqb/wYKoJ6CZkGkc9Rr7fhAvtyEpDy8211JzVyYZ9iCCVzMC+uuopRlPeJWpcHE/F/sXUddSTosRefzWe0jsr2dmhgw3WJq3awEcMC5zttJJxvLBQEERaSkXYyCnjv1G/NINbiRbucF4E2ng7lOdrAs0uqlnka98zFrQkQiUkbTHNOhBU7tsdJcRvargdZikN3bsjDIhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=udW0izpERXy6iP2cCE21asdQ2sfa7StagZZlLVf54z8=;
+ b=hxWVLhJERoQimXDSJbi76xw4iOObiAyWxk0DRJk0tl7vd4JjZC5nZd3RHHaV27SNKaNohZSMmUywh1Re+YuwT6n06x09WToDVcaTblOrqATAZH+Qt6N2icSFALPoT2kgQPWC31N9SM9SsMPmgvPh4vBI3DLvJigJVtZmbmo2+ZE=
+Received: from SA0PR11CA0177.namprd11.prod.outlook.com (2603:10b6:806:1bb::32)
+ by DS0PR10MB6848.namprd10.prod.outlook.com (2603:10b6:8:11f::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Mon, 23 Feb
+ 2026 23:37:33 +0000
+Received: from SN1PEPF00036F43.namprd05.prod.outlook.com
+ (2603:10b6:806:1bb:cafe::cc) by SA0PR11CA0177.outlook.office365.com
+ (2603:10b6:806:1bb::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.21 via Frontend Transport; Mon,
+ 23 Feb 2026 23:37:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SN1PEPF00036F43.mail.protection.outlook.com (10.167.248.27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Mon, 23 Feb 2026 23:37:32 +0000
+Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
+ 2026 17:37:31 -0600
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
+ 2026 17:37:31 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 23 Feb 2026 17:37:31 -0600
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61NNbVXr1677488;
+	Mon, 23 Feb 2026 17:37:31 -0600
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Moteen Shah <m-shah@ti.com>, Andrew Davis
+	<afd@ti.com>
+Subject: [PATCH v2 0/3] Fix MMC pin pull configurations
+Date: Mon, 23 Feb 2026 17:37:28 -0600
+Message-ID: <20260223233731.2690472-1-jm@ti.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260213171431.2228814-1-hugo@hugovil.com> <20260213171431.2228814-2-hugo@hugovil.com>
- <20260223175706.GA4168417-robh@kernel.org> <20260223134738.00988a3d87165cb130292c89@hugovil.com>
-In-Reply-To: <20260223134738.00988a3d87165cb130292c89@hugovil.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 23 Feb 2026 17:23:33 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJNASirEqqcT-Sv8h9JC74e+XJSRsAki1ZWeKY8j2zbfw@mail.gmail.com>
-X-Gm-Features: AaiRm53RD-e_ZW_JCPOMCP4IeMAXj58VIz__dBQmWI3a3ed4hzTHVMPF-IKyixc
-Message-ID: <CAL_JsqJNASirEqqcT-Sv8h9JC74e+XJSRsAki1ZWeKY8j2zbfw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: add GPIO charlieplex keypad
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: hvilleneuve@dimonoff.com, dmitry.torokhov@gmail.com, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F43:EE_|DS0PR10MB6848:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9fb3170c-0cc8-4ae2-3e56-08de73348451
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?MkSOPsqak8TzXWjsJ86Yqq4bPyQce8iZ3Q9lt4xQo2RxTyfaBUcNPUcl9lpo?=
+ =?us-ascii?Q?8CsLpR1caHc4lG1YY++a14lTxNtPqOl0nciMMiozdnyWZNzp9BpIBlx7WHka?=
+ =?us-ascii?Q?GMq3+e85C3aCpNu41Wu2489bRh8OO8VFmhIff2WoQYQhJKOWeN9wnky4bBl2?=
+ =?us-ascii?Q?VWw6FreJarr0atsDcBZO9HJye89rilOLgqHtBl9eIN+lFgdopQINkbG6AuDv?=
+ =?us-ascii?Q?XG/8WNSAS6WlHEMZGMWgKpHD98h3wlM2TOGD2uJOdjYFL+MN0PsMtyZf4sgI?=
+ =?us-ascii?Q?Vh96vP04FSK8ycYjnD/RWdN8zvV1BcST4p6c55O0f6Sh8fHbEpYxsgfoPzvX?=
+ =?us-ascii?Q?qBdun/WPn6fBfIjq+kBb0n8gdIbi2SZ/ux5hAKWn6ZQbDZ7JAA1Q5kWz7Giy?=
+ =?us-ascii?Q?d6uM3YhY6Zm5iRH2jG4jozWBqeG3oi+cYQDj7MvxzOnC49Zv+rg255i7K128?=
+ =?us-ascii?Q?OeUb5sfvBLtbJ6YcbwVmEl1iF8islCLAoMfxVOYBMibODF9ipfNudXMNsyBn?=
+ =?us-ascii?Q?nwSAxpQQqZjDXdXpNATEtPQqYVLhIDVRPw39ZBAUD4iwcWuupdP6LvQdcPF8?=
+ =?us-ascii?Q?trIGALYKXhVpVuQ9oKYTTKWPVykPNFSnd+wNBpSifYSdjr23mCR/qLjiV6rH?=
+ =?us-ascii?Q?wsMDg758oebT0upNuA8Xsp8z5ihLDxLfvez68x8FqvZnAiO3YlkgdSHVWPbB?=
+ =?us-ascii?Q?BFEs/ICjFov0pv1ruLkzcXJBfHV1mKmWWddTUf75JRhnzN/PG0soNwZm9MVc?=
+ =?us-ascii?Q?YkIUwDJosvo7KI8KdmF4dpiRxQUGpjneHL/YMalyon3/k9chmgLahqZtqVLS?=
+ =?us-ascii?Q?wJT8JqJNeqSuEYRa9FgyCHANx7XsvZzdscu1bbe3SqRl6rdj8nKveNY+JsUA?=
+ =?us-ascii?Q?Ly8JMYUNuZNZMLQd9BSeUS/kyoWNFaYBWF+x7NkKF8hBnDGO/N969keC9XxE?=
+ =?us-ascii?Q?JE/pfOAweG5Q9hMCjP1Z9PIXSVQ0jSNB6LKVa9yOBGjjF0OfLOOfQDaWXC1Y?=
+ =?us-ascii?Q?0FMR9Hjx2EeTcjoL+rWVAw2SMIPOpNdsyGbRrcE2VCJyP3YoFf5SjXseHKCf?=
+ =?us-ascii?Q?/7Hm7DKtBCOvsHS5KJjCv7rfINYcrCaY1bSSgtzJfRu+27AVpsIwZg3+2fwN?=
+ =?us-ascii?Q?Hg5NpTPnxJDNTouelt+/3X6TwWQlHTftQp52m743245tva5OvmSsqsFzjRp+?=
+ =?us-ascii?Q?H8/Lw0WcJHPAOLrnA4C5IkTSuj5pqbMUenUfZVo2itrlwDZX9agoA9ZqbuGB?=
+ =?us-ascii?Q?DxWq1BKs5uiylGDiNvmruW23rH8d2ag62QaJVP/ZU4LdmmxNUjIJeVbwncR4?=
+ =?us-ascii?Q?bLNChadRwt7WYZz3Fvfq8lWLiw8PMkgIEtnRwTBtwF6z+sVihgy7VBFQi7mm?=
+ =?us-ascii?Q?YESE35zTW0oAA9AaYgeWC8fnXryGofXRsq2vBm8Die3INukcjJF329+qn/ZM?=
+ =?us-ascii?Q?477UPe0CFtd3Ef+cNI4EzJdfGwnVbF7u3UcV4hhdEZFyYafx7xfzqgg0TXXY?=
+ =?us-ascii?Q?YTn4OWk6Qb8JdZv+he6+llqTGKKMj4vLOELKHgTc/xMK3wcylbREIxamkaDQ?=
+ =?us-ascii?Q?6gUyqKU3KA+PpFTc6Md88IvUy3b6njtlnaMrQz/3gU8X+CdfeZE3sznqtWvM?=
+ =?us-ascii?Q?CE+CZg89TEmQl7H4UzCEQDK9bca/CxQd+a8eIc6AgQ0a/NOZEc2KEs+ncEzG?=
+ =?us-ascii?Q?qc7RnA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	QR0aCnt36y7yOVOd1/2rTkLq0uDlMmxq6+rLzRBUKG50vBcf39X8vm9P1NyRKEik2gD7iu+U6mhp8HoZAH0vvS3JU1aHyiEufTHk9ck00QEuArxBX/ybZFTDmTKl4ekHGjicrQdcwmwLbkZqEeo1EVYYaracQzD83QNG87xvu2Ume/KZ4hzoCgVTT6jh3RwQr/rKCSz+sC7d5Nzs0X4EuV7AnzrSwrtsc31BCDW418GswYAIWhFKp1fkL425jjK2ZizL+9jplZan7tGlojOtjS42cA0EyEcQ3OnWtwhgpWzy2OwIT02J0CXKE+hq89+5hNE+GMLr6b+kbd7SK0P6i6SkT+XLQlqtXeFLOZDrMwnhDWfn/Dh+nlEVjhz5eNRxdVAeASgJxSIu8DuHmJxmA3rNIx7T9m2MLgMDyiaC/H+QjQm5X2RER5NakKLaE/fM
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2026 23:37:32.7890
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9fb3170c-0cc8-4ae2-3e56-08de73348451
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF00036F43.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB6848
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[dimonoff.com,gmail.com,kernel.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_FROM(0.00)[bounces-267665-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267669-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:mid,ti.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,hugovil.com:email,dimonoff.com:email]
-X-Rspamd-Queue-Id: 2904617F495
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 5731217FBC7
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 12:47=E2=80=AFPM Hugo Villeneuve <hugo@hugovil.com>=
- wrote:
->
-> Hi Rob,
->
-> On Mon, 23 Feb 2026 11:57:06 -0600
-> Rob Herring <robh@kernel.org> wrote:
->
-> > On Fri, Feb 13, 2026 at 12:14:25PM -0500, Hugo Villeneuve wrote:
-> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > >
-> > > Add DT bindings for GPIO charlieplex keypad.
-> > >
-> > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > ---
-> > >  .../input/gpio-charlieplex-keypad.yaml        | 82 +++++++++++++++++=
-++
-> > >  1 file changed, 82 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/input/gpio-char=
-lieplex-keypad.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/input/gpio-charlieplex=
--keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex-key=
-pad.yaml
-> > > new file mode 100644
-> > > index 0000000000000..1672491a75a85
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad=
-.yaml
-> > > @@ -0,0 +1,82 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +
-> > > +$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yam=
-l#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: GPIO charlieplex keypad
-> > > +
-> > > +maintainers:
-> > > +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > +
-> > > +description:
-> > > +  The charlieplex keypad supports N^2)-N different key combinations =
-(where N is
-> > > +  the number of lines). Key presses and releases are detected by con=
-figuring
-> > > +  only one line as output at a time, and reading other line states. =
-This process
-> > > +  is repeated for each line.
-> > > +  This mechanism doesn't allow to detect simultaneous key presses.
-> > > +
-> > > +allOf:
-> > > +  - $ref: input.yaml#
-> > > +  - $ref: /schemas/input/matrix-keymap.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: gpio-charlieplex-keypad
-> > > +
-> > > +  autorepeat: true
-> > > +
-> > > +  line-scan-delay-us:
-> > > +    description:
-> > > +      Delay, measured in microseconds, that is needed
-> > > +      before we can scan keypad after activating one line.
-> > > +    default: 0
-> >
-> > Isn't this the same as "col-scan-delay-us" in gpio-matrix-keypad.yaml?
-> > If so, move it to matrix-keymap.yaml to re-use it here.
->
-> It is used in a similar fashion, but for charlieplex keyboard, there is
-> no concept of "rows" and "columns". There are only
-> lines, which are all equivalent in functionality.
->
-> > If not, there's a bunch of other scan delay properties just from
-> > grepping "delay" in the input bindings. Surely we can define something
-> > common.
->
-> Most of those delays refer to something quite different than what
-> "col-scan-delay-us" or "line-scan-delay-us" are used for (it is a delay
-> that we wait when activating a GPIO before we can safely/reliably read
-> other GPIOs connected thru its circuitry).
->
-> Maybe "col-scan-delay-us" and "line-scan-delay-us" could be
-> combined into a common "line-scan-delay-us" ("line" is more generic
-> than column), and defined in matrix-keymap.yaml.
+This series corrects MMC pin pull-up/pull-down configurations across
+TI AM62L EVM, AM62P SK, & AM62 LP SK boards to properly match their
+hardware design.
 
-What about "scan-delay-us"? I would assume all the scan delay
-properties are just the delay after changing the outputs to reading
-the inputs.
+Most boards have external pull-ups on MMC pins, but DT configuration
+was also enabling internal pulls. Having both internal and external
+pulls active causes several issues:
+- Unnecessary power consumption due to stronger pull resistance
+- Floating pins violating SPEC recommendations
 
-> Then would it be ok to remove "col-scan-delay-us" from
-> gpio-matrix-keypad.yaml and use "line-scan-delay-us" (ABI change) ?
+All changes are based on the respective board schematics referenced
+in each patch.
 
-No!
+Changes since v1:
+- improved all commit descriptions
+- removed incorrect claim: potential issues for modes with tighter
+  timing requirements due to mismatched pull strengths between D0 and
+  remaining data pins
+- drop patch 2/4. While there is a host side mismatch between D0 and
+  D1-D7 pins, leaving internal pullup on D0 equals a stronger pull,
+  helping with poor board design issues and better matching D0 pullup
+  strength with D1-D7 after taking into account eMMC card pullups on
+  D1-D7 pins
+- rebased against ti-k3-dts-next
 
-Rob
+Link to v1:
+https://lore.kernel.org/all/20260212184246.2316659-1-jm@ti.com/
+
+Judith Mendez (3):
+  arm64: dts: ti: k3-am62p5-sk: Disable MMC1 internal pulls on data pins
+  arm64: dts: ti: k3-am62l-evm: Disable MMC1 internal pulls on data pins
+  arm64: dts: ti: k3-am62-lp-sk: Enable internal pulls for MMC0 data
+    pins
+
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts | 14 +++++++-------
+ arch/arm64/boot/dts/ti/k3-am62l3-evm.dts |  6 +++---
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts  |  6 +++---
+ 3 files changed, 13 insertions(+), 13 deletions(-)
+
+-- 
+2.52.0
+
 
