@@ -1,146 +1,194 @@
-Return-Path: <devicetree+bounces-267603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267604-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLjZEMefnGnPJgQAu9opvQ
-	(envelope-from <devicetree+bounces-267603-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:43:19 +0100
+	id oNOGAFShnGnqJgQAu9opvQ
+	(envelope-from <devicetree+bounces-267604-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:49:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED2B517BA95
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:43:18 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E5817BD30
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:49:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 018DE3016ECA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:43:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0A681301DD0F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32CC8368285;
-	Mon, 23 Feb 2026 18:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 040B8335063;
+	Mon, 23 Feb 2026 18:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DzcT11NJ"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="vEZfEFuU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CC66368276;
-	Mon, 23 Feb 2026 18:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BD5330339;
+	Mon, 23 Feb 2026 18:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771872193; cv=none; b=Kmijc5FKNflv7lMFd7KJJzUyx7tZox8ruJnukZpu88V5ID5wh35CmZY1VrKLD68Xlp8l676CADiuWQFjJA/B1ifxG5XytxKZEiZYmgHOjRO6drkjGcRsGXEj9ILT+IsDhUUKbmsB55Rfn+Lu2WBd23iOXH5DZR+AWH3NRb5ODLM=
+	t=1771872469; cv=none; b=B87G7esNON0AHSj0MtFOtEmDUuURxGAOPvApgAZWgi5t8+pykXcz3S/IIbkRQj+3VZSU2vyD6JPh+5QFVHkBntkJRAtEwNFsARGAFGaC7nAnqvUeLkEhyuXqX8gFsJAMApvhAHmVNe9finqkwlTXuHaPCeeDxyHz5+K1am+4T8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771872193; c=relaxed/simple;
-	bh=vrd7zHbcCuyX9gaUTyYT9blxEyQJTB9kGMP/Ud0pMcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYNpd8YZdfkAe+G6TC6AR+6utIs3mXlgmAiWAoO1D/Av4QuoDkXfxqX1rB7q5cdZ2ZOzdRVbeGhEu7KF1Jbqk9n6lerC+XWXlgPNfZgbaWyjVwf/7VEE/xorBvHnHvPKU0jg8lysVuAyt/FP9NoaSHMNSSOenEB935erKpZXUVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DzcT11NJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 648A0C19421;
-	Mon, 23 Feb 2026 18:43:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771872192;
-	bh=vrd7zHbcCuyX9gaUTyYT9blxEyQJTB9kGMP/Ud0pMcg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DzcT11NJ1/NzhHD22SYOT304H7f7RqGoPDn550YVTQeorlJHPe2FW9lNVHTChNJIo
-	 AkBW58G7a107+3CNzb0IxXxyBUYb3vyERuf3n+WbqplKwEaPHhdQot8YGfAliF1fSj
-	 Tg5D3rXcKFTQZOPfoWC21pvHfx0VK1GmQLy7r3/bg6US18fZgatusl7TtAmoSCikop
-	 bcN3znOKKgX2g2fJTUR52A3rhZnrYn+bv6zMmUsyoT18W4nvhPcc5BvzMkK1TJYwUC
-	 +yQj5uDO3yo47yyLwhJkrx6fJvKdCktyqgl8i/QlL04ZLDSvHVjTSHKQCMUz74JBR4
-	 fWZX2c0Gxpefw==
-Date: Mon, 23 Feb 2026 18:43:06 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Michael Walle <mwalle@kernel.org>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 0/8] Remove the Kontron SMARC-sAM67 board
-Message-ID: <20260223-coroner-perceive-bc5302b228b0@spud>
-References: <20260223100459.844967-1-mwalle@kernel.org>
+	s=arc-20240116; t=1771872469; c=relaxed/simple;
+	bh=S/Fhfeq6c2gSUF6kiD/QQbwOs+8wCBR7LgpY8Ove/ms=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=g7j6X7gqPKnrJvdfPEMOO1mmFfcuStLSV8TWkLLqQA4OIkKICLTZpXHPBeTIy0lvza5+9t96MVC4pe6DyVOWOEePHa/eJn13CEsXbb7XgrGvBZjr4vamIQf15o/C4UoQG71ttZ3J5dKO+oV8uJk1mfMeLcGOemC39maTdkfoALM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=vEZfEFuU; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=Rylvo2MnvMc39pdD64FAsR9cmm3taALDxqNKKcMzTBY=; b=vEZfEFuU3HzBG5a1P4iL5PqYKS
+	yWQ62UVfMBJLM/ueb60VnprCujNpcmRe9qb82FZChwhHw3aqIEraXKYyNHoevcqbwYyLJDvjgpy3v
+	rdwmlXvAtEpNLVMKCmgd+QT5SRBeF4PSlY9bPq3Y964vPh9xscQAlit4OkD3RYOGuGkQ=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:57654 helo=debian-lenovo)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vuay2-00049R-Vh; Mon, 23 Feb 2026 13:47:39 -0500
+Date: Mon, 23 Feb 2026 13:47:38 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Rob Herring <robh@kernel.org>
+Cc: hvilleneuve@dimonoff.com, dmitry.torokhov@gmail.com, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <20260223134738.00988a3d87165cb130292c89@hugovil.com>
+In-Reply-To: <20260223175706.GA4168417-robh@kernel.org>
+References: <20260213171431.2228814-1-hugo@hugovil.com>
+	<20260213171431.2228814-2-hugo@hugovil.com>
+	<20260223175706.GA4168417-robh@kernel.org>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XJhr9EQZubmCTvTK"
-Content-Disposition: inline
-In-Reply-To: <20260223100459.844967-1-mwalle@kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: add GPIO charlieplex keypad
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267604-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267603-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	DMARC_NA(0.00)[hugovil.com];
+	FREEMAIL_CC(0.00)[dimonoff.com,gmail.com,kernel.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[hugovil.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: ED2B517BA95
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,hugovil.com:mid,hugovil.com:dkim,hugovil.com:email,devicetree.org:url,dimonoff.com:email]
+X-Rspamd-Queue-Id: 41E5817BD30
 X-Rspamd-Action: no action
 
+Hi Rob,
 
---XJhr9EQZubmCTvTK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 23 Feb 2026 11:57:06 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-On Mon, Feb 23, 2026 at 11:04:45AM +0100, Michael Walle wrote:
-> I was informed two weeks ago that this product is discontinued
-> (without being ever released to the market). Unfortunately, this
-> collided with the merge window and I had to wait two more weeks.
->=20
-> Pull the plug and let's not waste any more maintainers time.
->=20
-> Please let me know if this can be picked up in one go or if the
-> device tree has to be removed first and then the drivers together
-> with the dt-bindings.
+> On Fri, Feb 13, 2026 at 12:14:25PM -0500, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > Add DT bindings for GPIO charlieplex keypad.
+> > 
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  .../input/gpio-charlieplex-keypad.yaml        | 82 +++++++++++++++++++
+> >  1 file changed, 82 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> > new file mode 100644
+> > index 0000000000000..1672491a75a85
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> > @@ -0,0 +1,82 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +
+> > +$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: GPIO charlieplex keypad
+> > +
+> > +maintainers:
+> > +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > +
+> > +description:
+> > +  The charlieplex keypad supports N^2)-N different key combinations (where N is
+> > +  the number of lines). Key presses and releases are detected by configuring
+> > +  only one line as output at a time, and reading other line states. This process
+> > +  is repeated for each line.
+> > +  This mechanism doesn't allow to detect simultaneous key presses.
+> > +
+> > +allOf:
+> > +  - $ref: input.yaml#
+> > +  - $ref: /schemas/input/matrix-keymap.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: gpio-charlieplex-keypad
+> > +
+> > +  autorepeat: true
+> > +
+> > +  line-scan-delay-us:
+> > +    description:
+> > +      Delay, measured in microseconds, that is needed
+> > +      before we can scan keypad after activating one line.
+> > +    default: 0
+> 
+> Isn't this the same as "col-scan-delay-us" in gpio-matrix-keypad.yaml? 
+> If so, move it to matrix-keymap.yaml to re-use it here.
 
-I dunno, not like the order matters all that much to users. Ripping the
-dts out immediately probably works nicely in terms of avoiding warnings,
-but I think you'd be safe enough sending all but the hwmon stuff via
-soc for -rc2/3. Platform addition often is a mix of
-bindings/dts/defconfig, so I suppose platform removal could be too.
+It is used in a similar fashion, but for charlieplex keyboard, there is
+no concept of "rows" and "columns". There are only
+lines, which are all equivalent in functionality.
 
-For the lot:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> If not, there's a bunch of other scan delay properties just from 
+> grepping "delay" in the input bindings. Surely we can define something 
+> common.
 
---XJhr9EQZubmCTvTK
-Content-Type: application/pgp-signature; name="signature.asc"
+Most of those delays refer to something quite different than what
+"col-scan-delay-us" or "line-scan-delay-us" are used for (it is a delay
+that we wait when activating a GPIO before we can safely/reliably read
+other GPIOs connected thru its circuitry).
 
------BEGIN PGP SIGNATURE-----
+Maybe "col-scan-delay-us" and "line-scan-delay-us" could be
+combined into a common "line-scan-delay-us" ("line" is more generic
+than column), and defined in matrix-keymap.yaml.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaZyfugAKCRB4tDGHoIJi
-0gffAP417TFDzpCWdbpGc6XVZHCsiylXwB5TYuT7AOMGCO5TDwD+JAlyzmYcTFju
-uuWhRfYd0j6rIxl4Rdr7B1MQW2brigM=
-=u9n1
------END PGP SIGNATURE-----
+Then would it be ok to remove "col-scan-delay-us" from
+gpio-matrix-keypad.yaml and use "line-scan-delay-us" (ABI change) ?
 
---XJhr9EQZubmCTvTK--
+Hugo.
+
+-- 
+Hugo Villeneuve <hugo@hugovil.com>
 
