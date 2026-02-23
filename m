@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-267310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267311-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gAU2A7McnGkZ/wMAu9opvQ
-	(envelope-from <devicetree+bounces-267310-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:24:03 +0100
+	id ICkCGbUcnGkZ/wMAu9opvQ
+	(envelope-from <devicetree+bounces-267311-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:24:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D05173D85
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:24:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C86A6173D8C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:24:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 453DC3029795
+	by sea.lore.kernel.org (Postfix) with ESMTP id 83FB93034E24
 	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 09:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB8A34EEEA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7370B34EEF4;
 	Mon, 23 Feb 2026 09:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d45tR7l0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pRVKpH20"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46921EEBA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE76214A8B;
 	Mon, 23 Feb 2026 09:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771838414; cv=none; b=p9gA5vGoQ7efFAEFlwFJwf8sEyrphyO5ZVwGgWCuq/eUCOLbHab5WgeiyVnsoh5WXgqDpeV7J7aCq1/fsk5NlQnBrgM8k2i2VZSFyAB0Q699Yfgqbf+3ZirqpNSRfOZLbM/kdMlLtKa2Ik6AiHUGLyedtPAhSd4z5sA6FcSv2TI=
+	t=1771838414; cv=none; b=HRhYoeeuVclmQIp8Hv7Ut53S+Sbfpghkmjp+bLbaI9Vei2C1mLeerET1y9d41XZdLVPRojq6CE2/pYSiFXXolpycEcZIs8mKSjZJ9NHKftFruVmv6ghDtbBrsNROys2INGjy+smjBxEv98B7quzFp7Tmc2E7RiOOsZkY6+dCXaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1771838414; c=relaxed/simple;
-	bh=ogo7dePnMxqWdg0+TyjVYamVaRxYyAeax6iknxPvnV0=;
+	bh=x5oJC0JF9ahf+RJMA/MKnHMgRb/07hrrsXN30fKx62I=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YkiWD0hQu5JqC6dFS8m0eE69oQCQlsyQxAR73GWgLInfl5ZqSFn5myGF3IEa1rI8YbZDvXXysgwH0ePsS+urqFExE/LR/s828WZH33lhQSjrTi2kLiW4P0vnlCiW2QfuBKaWku2wAUwKmVxME/2jMsiG36LUZlLnoIP2oq/zxaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d45tR7l0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 01F9CC2BC87;
+	 In-Reply-To:To:Cc; b=CucVEw7PF3Vp0wUXiPY6aO5ynN+e+uXjKJxQX8w+H61T91Oe6aEEFaNNJYx46yw6vZYJo8JtPyETnxusG2Ue8AfBOeXUMqUkR+67zmcrOgzo1whGaJdtIAm7HtHCJdKEP4Eu/R7S8SDVONiE/2RdYVCQtTAyNGmHB0JjPQnzQEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pRVKpH20; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 20CDDC2BCB1;
 	Mon, 23 Feb 2026 09:20:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1771838414;
-	bh=ogo7dePnMxqWdg0+TyjVYamVaRxYyAeax6iknxPvnV0=;
+	bh=x5oJC0JF9ahf+RJMA/MKnHMgRb/07hrrsXN30fKx62I=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=d45tR7l0fVm5z61h5HRPwyCXEzqaZHVtjhRXBARPcTzMTQL0mLpMH6RAYASyXmLP3
-	 BtDYGqsdM4901+MT9fVSmmjgA2mFai6F9oI4Ya5/XSThV6vAhYsdydhjy95nKJh0iA
-	 NRvkaXITVfSqkTnB/NNd6d0RNNp4ps08IkENrivS0YDrzRxY9tyXhauW1gd9ffwZkt
-	 axTz0Osm1PetCzb+LRAkmDwmRe/R2A+D9pPtnk8H9E26tVSNBG8d0vbAQRWgKu+KdX
-	 FpCjmmW5k6+gXnPMp+kGSoSF0w3b8RZVj5m5thXiJyCypnDN2UC3ZOh8SAJmHn/+Oz
-	 OEFVO1+QanFWQ==
+	b=pRVKpH20yQ81n5c8XY9LOC/rX3GRqMFQ8EqLBGjVcYmxNF55uHTV9+plB3ce5h8Jc
+	 UKK9UkcuzVwhQjs4FAYbr8DkoGPfDgif5Cc1sd0kSNdKuaEWk7irFXpO7T3F9/xiu8
+	 2TxJnDEEqeL/rPpSruarRXdINCD3PB5TiJfexIi9o+dpqS4+sg0/uumLh0GGMYL4px
+	 7C1ljmKn2gLBLAXhmvPlNvDUKVeKdvu08E7/KzZnr62x6Izg2fLziMfBmEj6dT3uZi
+	 r7aEmnNAwjJBhBai2gfdxUpbE2C9HqU41dx4apL00rQ+5hx8pUVaeQzez4n51T5Jt8
+	 1uOGKB1A4lxeA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED77AE98DFF;
-	Mon, 23 Feb 2026 09:20:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C128E98E0F;
+	Mon, 23 Feb 2026 09:20:14 +0000 (UTC)
 From: Hermes Wu via B4 Relay <devnull+Hermes.wu.ite.com.tw@kernel.org>
-Date: Mon, 23 Feb 2026 17:20:46 +0800
-Subject: [PATCH 2/3] dt-bindings: display: bridge: Add ITE IT6162 MIPI DSI
- to HDMI bridge
+Date: Mon, 23 Feb 2026 17:20:47 +0800
+Subject: [PATCH 3/3] MAINTAINERS: Add entry for ITE IT6162 MIPI DSI to HDMI
+ bridge driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260223-upstream-6162-v1-2-ebcc66ccb1fe@ite.com.tw>
+Message-Id: <20260223-upstream-6162-v1-3-ebcc66ccb1fe@ite.com.tw>
 References: <20260223-upstream-6162-v1-0-ebcc66ccb1fe@ite.com.tw>
 In-Reply-To: <20260223-upstream-6162-v1-0-ebcc66ccb1fe@ite.com.tw>
 To: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -76,11 +76,11 @@ Cc: Pet.Weng@ite.com.tw, Kenneth.Hung@ite.com.tw,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Hermes Wu <Hermes.wu@ite.com.tw>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771838463; l=5183;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771838463; l=984;
  i=Hermes.wu@ite.com.tw; s=20241230; h=from:subject:message-id;
- bh=RPki/TN57hKw8ecs2LV5OUWeAKQeKfXxTdHdAtzApJ4=;
- b=7IXPvkB5T7jqQQCrgwtKpK+vykkelp8Dik/v6Kk+cxfaParm2cgHbaReanvEYtvvuMEfYD+Rt
- UShJGWvi02wB40A0pSuhBjP25c/t/SA7gIel9WXrR33PMBlkI8BixcS
+ bh=FdNsL/OMQyTMBlZBr9eAfG0tA5xv05jqhySorqcp6Xs=;
+ b=0HzTZgSkEC3qmk/LtTETSg9W2/WoK9wKwZ0hreljJRs1MtiuDSESV58tmJ2Bf/GLMYjpgWdup
+ Ex8tPS1RSd5Cs/+4Qpum33A6Me8ieIPAdBXFaDovncdROTYuoWdci9h
 X-Developer-Key: i=Hermes.wu@ite.com.tw; a=ed25519;
  pk=qho5Dawp2WWj9CGyjtJ6/Y10xH8odjRdS6SXDaDAerU=
 X-Endpoint-Received: by B4 Relay for Hermes.wu@ite.com.tw/20241230 with
@@ -93,12 +93,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267310-lists,devicetree=lfdr.de,Hermes.wu.ite.com.tw];
+	TAGGED_FROM(0.00)[bounces-267311-lists,devicetree=lfdr.de,Hermes.wu.ite.com.tw];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de];
@@ -111,194 +111,45 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	HAS_REPLYTO(0.00)[Hermes.wu@ite.com.tw];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.3:email,0.0.0.2:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,ite.com.tw:mid,ite.com.tw:email,ite.com.tw:replyto,60hz:email,0.0.0.58:email]
-X-Rspamd-Queue-Id: 60D05173D85
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ite.com.tw:mid,ite.com.tw:email,ite.com.tw:replyto,lists.freedesktop.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
+X-Rspamd-Queue-Id: C86A6173D8C
 X-Rspamd-Action: no action
 
 From: Hermes Wu <Hermes.wu@ite.com.tw>
 
-Add device tree binding documentation for the ITE IT6162 MIPI DSI to
-HDMI 2.0 bridge chip. The IT6162 is an I2C-controlled bridge that
-supports the following configurations:
-
-  - Single MIPI DSI input: up to 4K @ 30Hz
-  - Dual MIPI DSI input (combined): up to 4K @ 60Hz
-
-The chip also supports up to 8-channel audio output via 4 I2S data
-channels.
+Add a MAINTAINERS entry for the newly introduced ITE IT6162 MIPI DSI
+to HDMI bridge driver, covering the driver source file and the
+device tree binding document.
 
 Signed-off-by: Hermes Wu <Hermes.wu@ite.com.tw>
 ---
- .../bindings/display/bridge/ite,it6162.yaml        | 156 +++++++++++++++++++++
- 1 file changed, 156 insertions(+)
+ MAINTAINERS | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..31f809a83c305447a152e14b20cb39ef1f816911
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml
-@@ -0,0 +1,156 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/ite,it6162.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 6169bd4d7baccc6945363622b42e7286cbec7b88..8a6b5bf3f664247b45c66b37439d3debf6ee18b1 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13485,6 +13485,14 @@ W:	https://linuxtv.org
+ Q:	http://patchwork.linuxtv.org/project/linux-media/list/
+ F:	drivers/media/tuners/it913x*
+ 
++ITE IT6162 MIPI DSI TO HDMI BRIDGE DRIVER
++M:	Hermes Wu <Hermes.wu@ite.com.tw>
++L:	dri-devel@lists.freedesktop.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/display/bridge/ite,it6162.yaml
++F:	drivers/gpu/drm/bridge/ite-it6162.c
 +
-+title: ITE IT6162 MIPI DSI to HDMI2.0 Bridge
 +
-+maintainers:
-+  - Hermes Wu <Hermes.Wu@ite.com.tw>
-+
-+description: |
-+  The ITE IT6162 is a high-performance, low-power HDMI bridge that converts
-+  2 MIPI DSI signal to 1 HDMI2.0. It supports 2 MIPI D-PHY 2.0 up to 10Gbps
-+  each DSI port (20Gbps total), compatible with DSI-2 v2.0.
-+
-+  The HDMI transmitter side supports up to 4Kx2K@60Hz resolutions, and is
-+  compliant with HDMI2.0.
-+
-+  For audio, the IT61620 supports up to 8-channel LPCM via I2S (multi-line or
-+  TDM mode), with optional S/PDIF or DSD (for SACD). It supports audio
-+  sampling rates up to 192kHz.
-+
-+allOf:
-+  - $ref: /schemas/sound/dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: ite,it6162
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  ivdd-supply:
-+    description: core voltage
-+
-+  ovdd-supply:
-+    description: I/O voltage
-+
-+  ovdd1833-supply:
-+    description: flexible I/O voltage
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: Input port for MIPI DSI-0
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+            required:
-+              - data-lanes
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: Input port for MIPI DSI-1
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+            required:
-+              - data-lanes
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Audio input port (I2S)
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Output port for HDMI output
-+
-+    required:
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - ports
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        bridge@58 {
-+            compatible = "ite,it6162";
-+            reg = <0x58>;
-+            #sound-dai-cells = <0>;
-+            interrupt-parent = <&pio>;
-+            interrupts = <128 IRQ_TYPE_LEVEL_LOW>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&it6162_pins>;
-+            reset-gpios = <&pio 127 GPIO_ACTIVE_LOW>;
-+            ivdd-supply = <&pp1000_hdmi_x>;
-+            ovdd-supply = <&pp3300_vio28_x>;
-+            ovdd1833-supply = <&pp1800_vcamio_x>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    it6162_dsi0: endpoint {
-+                        data-lanes = <0 1 2 3>;
-+                        remote-endpoint = <&dsi_0_out>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+                    it6162_dsi1: endpoint {
-+                        data-lanes = <0 1 2 3>;
-+                        remote-endpoint = <&dsi_1_out>;
-+                    };
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+                    it6162_audio_in: endpoint {
-+                        remote-endpoint = <&i2s0_out>;
-+                    };
-+                };
-+
-+                port@3 {
-+                    reg = <3>;
-+                    it6162_hdmi_out: endpoint {
-+                        remote-endpoint = <&hdmi_connector_in>;
-+                    };
-+                };
-+            };
-+        };
-+    };
+ ITE IT6263 LVDS TO HDMI BRIDGE DRIVER
+ M:	Liu Ying <victor.liu@nxp.com>
+ L:	dri-devel@lists.freedesktop.org
 
 -- 
 2.34.1
