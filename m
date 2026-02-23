@@ -1,170 +1,321 @@
-Return-Path: <devicetree+bounces-267495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267497-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KEiQIghwnGmcGAQAu9opvQ
-	(envelope-from <devicetree+bounces-267495-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:19:36 +0100
+	id gAd7L0B0nGmcGAQAu9opvQ
+	(envelope-from <devicetree+bounces-267497-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:37:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED93A178A32
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:19:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41EB0178D3A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:37:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42F3C3128D93
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:15:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73785304A5B3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F555366831;
-	Mon, 23 Feb 2026 15:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E9C2ED84C;
+	Mon, 23 Feb 2026 15:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HKxXpHjP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nKLJgr+p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A70A36681A;
-	Mon, 23 Feb 2026 15:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42D2277029;
+	Mon, 23 Feb 2026 15:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771859708; cv=none; b=AaFHd8wBezpICwiNls8yxIYI+YuQV6pbk3ditug3jfJs5oLZGGQino2l6M4zqHt57sFgj/8GzKCx3l9Brx1sJcwFHNzNbIdvFAUtbg+TqJiqojHoGqApAfjIVQ279sw78Hh2hbdS++Oy0S1GWCuZ5kYoV1K8mvOyrc8+iDUaahA=
+	t=1771861022; cv=none; b=IDku8i2F/9b9H9O+1mAXa8VsjvUs1sw65BsateY04YBFQubpQAVFukpuC8hogbteFlBwN03PhYVmDnep/vYwZpUKRCvXRgomEJjHNU4pu4HWmZTP6cp7m6x4D2R8JVZR4s8wft05Sddk2woHM/VU1UVQlPuH2VMpR7DAgvzK75k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771859708; c=relaxed/simple;
-	bh=BzTuTP90OJmXVCHTiz/s79phpJ7mPbJzIPjAjZ+SIO4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p8JI+fwNtFEJIO7jFxEXmmUGzuormG16Jzdnt+txbSymrSaTmN26AKvV3qjN7IYA0B3rO/L7I0GvbWXXbmjLGsjaDu9cD/UrxqKbcDdyUjixl5haLti+FnukNSjHESrCzJ6v+Q+zJjz2clTP0NYY8SaEjcnidg6SqbPGonZrTaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HKxXpHjP; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771859707; x=1803395707;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BzTuTP90OJmXVCHTiz/s79phpJ7mPbJzIPjAjZ+SIO4=;
-  b=HKxXpHjP4TY4ZaE68V8hj/YthidsdGkaSEV4god2NLUbxALPAS8uTYb2
-   06iSKXEZUHkl5ojScDLpHZq8v01COqN+QJid0eixraIHJBbzIHfvlDU8C
-   NPayaoYn8eJBPY6UDPdfESRyo0U4mwVOAmbKLHl7JqILb+ZiSImRdbL4a
-   1c5dC+TUr7l4ySLUbkURn1cZq6NIl+rk8EC5YYfd5P2RSnSF6E4pOLDVe
-   mVgeWNMuqXgHWeXj+OLQp8PBfQ3Ek2JePdoCLUglHoOcZvwWGOohAPOsi
-   e1gIRZ/pcp7zycuYTnh9jcMn0l8AxiXNyBVBUjPAvPuziwEEPTKUwpLuu
-   w==;
-X-CSE-ConnectionGUID: ayAuz6IzRruef2kE0YYodg==
-X-CSE-MsgGUID: zNCYLQ/4RG6lsj+tuCcUFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="90264347"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; 
-   d="scan'208";a="90264347"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2026 07:15:06 -0800
-X-CSE-ConnectionGUID: Tp3je2PdSMe3FbnYyuXisA==
-X-CSE-MsgGUID: FWDdmDwRRvuxEFm30hmjvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; 
-   d="scan'208";a="253314331"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.222])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2026 07:15:03 -0800
-Date: Mon, 23 Feb 2026 17:15:00 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	michael.hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, Trevor Gamblin <tgamblin@baylibre.com>,
-	Axel Haslam <ahaslam@baylibre.com>
-Subject: Re: [PATCH v9 5/8] iio: adc: ad4030: Add SPI offload support
-Message-ID: <aZxu9CxmTRDqMoOw@smile.fi.intel.com>
-References: <cover.1771253601.git.marcelo.schmitt@analog.com>
- <20f1dc8eb6bb692eb6eb814a49e54309d973a9e4.1771253601.git.marcelo.schmitt@analog.com>
- <20260222125703.00e3152a@jic23-huawei>
- <aZxthMvaSR3zhZD8@debian-BULLSEYE-live-builder-AMD64>
+	s=arc-20240116; t=1771861022; c=relaxed/simple;
+	bh=hQ/tWXLIoqCm4fc+NxbTvtv/C3x5RENTRl/CSjZbZhw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JVaUncEOcewieAoUUbhndLoC7e7muynzPl3F8JZu6BNK3VrSEvw6lr0a60V8VmGTjn4t4uU3YzcoR/kYfiGm2Mcem7lVBKb7tUYaxF4soRCsBIMh8iHHxfS/kHay95sa3YA79rLEIhNPWE2+GMhy9YAk6DVmDnK4nJ02a7N7PjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nKLJgr+p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98992C116D0;
+	Mon, 23 Feb 2026 15:36:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771861021;
+	bh=hQ/tWXLIoqCm4fc+NxbTvtv/C3x5RENTRl/CSjZbZhw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nKLJgr+plbMVllHGKxkdncgg2eQf7VvLFtDUjrwLNRRDUzDDK7Gy6udURC5XeOM3h
+	 9+3MAby9HtF1zm//a3ANUlZcxVwPqw5fQNVy7TxD33sloGzRiGGtYP5T2BoIsdFJOa
+	 RfMxtBV7pDi4deX1a1CC5fjOlc5Ig+LP7EjDQzPOzppuXnbnu1SJK1GBq3695aoBbm
+	 6+Wlg1FoEwebNHd4OH87ewGk3Pi62O4IvoDzMD2aZxwnffcjTZMHlTGUPjRC3KPhbI
+	 nRPIxCHQ7gDyd9Wit3TaPYV4zvyMxzdfs1EnWRKnVsFBCyUV9aWYsR3eo1AP3EAzf1
+	 LWs+gvv2Arptw==
+Message-ID: <87e3de23-cee9-4789-87ca-e85826af7760@kernel.org>
+Date: Mon, 23 Feb 2026 16:36:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aZxthMvaSR3zhZD8@debian-BULLSEYE-live-builder-AMD64>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: monaco-evk: Add Interface Plus
+ Mezzanine
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Umang Chheda <umang.chheda@oss.qualcomm.com>, konradybcio@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mohd.anwar@oss.qualcomm.com, krishna.chundru@oss.qualcomm.com,
+ monish.chunara@oss.qualcomm.com,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20260222173545.3627478-1-umang.chheda@oss.qualcomm.com>
+ <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
+ <a7777e5d-f9be-43c5-9f3f-4d84e16f6e89@kernel.org>
+ <jncbztn4xohzns734i4o2hsherdshjgxqtiglh7zf2oz7nkujs@an24wf3txymy>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <jncbztn4xohzns734i4o2hsherdshjgxqtiglh7zf2oz7nkujs@an24wf3txymy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267495-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267497-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,gmail.com,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid,analog.com:email,intel.com:dkim]
-X-Rspamd-Queue-Id: ED93A178A32
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 41EB0178D3A
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 12:08:52PM -0300, Marcelo Schmitt wrote:
-> On 02/22, Jonathan Cameron wrote:
-> > On Mon, 16 Feb 2026 12:00:39 -0300
-> > Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
-
-...
-
-> > > +	st->cnv_trigger = devm_pwm_get(dev, NULL);
-> > > +	if (IS_ERR(st->cnv_trigger))
-> > > +		return dev_err_probe(dev, PTR_ERR(st->cnv_trigger),
-> > > +				     "Failed to get CNV PWM\n");
-> > > +
-> > > +	/*
-> > > +	 * Preemptively disable the PWM, since we only want to enable it with
-> > > +	 * the buffer.
-> > > +	 */
-> > > +	pwm_disable(st->cnv_trigger);
-> > 
-> > Feels like there should really be a way to get a pwm disabled in one call
-> > so there isn't an edge case of it being on briefly.
-> > I'm a bit surprised it defaults to on.  I guess this is because DT can provide
-> > the parameters?
-
-I believe it defaults to "as is". The immediate case (disregard to IIO) came
-to my mind is PWM-based backlight. In such a case we most likely want to leave
-the state as previous stage (FW, bootloader) left it in.
-
-> Not really. DT doesn't specify any initial state for the PWM. It might, though,
-> be left enabled if another device was using it previously. Not a thing I've
-> ever seen during tests, but it may in theory happen.
+On 23/02/2026 16:12, Bjorn Andersson wrote:
+> On Mon, Feb 23, 2026 at 02:12:05PM +0100, Krzysztof Kozlowski wrote:
+>> On 22/02/2026 18:35, Umang Chheda wrote:
+>>> The Interface Plus [IFP] Mezzanine is an hardware expansion add-on
+>>> board designed to be stacked on top of Monaco EVK.
+>>>
+>>> It has following peripherals :
+>>>
+>>> - 4x Type A USB ports in host mode.
+>>> - TC9563 PCIe switch, which has following three downstream ports (DSP) :
+>>>    - 1st DSP connects M.2 E-key connector for connecting WLAN endpoints.
+>>>    - 2nd DSP connects M.2 B-key connector for connecting cellular
+>>>      modems.
+>>>    - 3rd DSP with support for Dual Ethernet ports.
+>>> - EEPROM.
+>>> - LVDS Display.
+>>> - 2*mini DP.
+>>>
+>>> Add support for following peripherals :
+>>> - TC9563 PCIe Switch.
+>>> - EEPROM.
+>>>
+>>> Written with inputs from :
+>>>     Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com> - PCIe
+>>>     Monish Chunara <monish.chunara@oss.qualcomm.com> - EEPROM.
+>>>
+>>> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/Makefile             |   4 +
+>>>  .../dts/qcom/monaco-evk-ifp-mezzanine.dtso    | 184 ++++++++++++++++++
+>>>  2 files changed, 188 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>> index f80b5d9cf1e8..9d298e7e8a90 100644
+>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>> @@ -45,6 +45,10 @@ lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
+>>> +
+>>> +monaco-evk-ifp-mezzanine-dtbs	:= monaco-evk.dtb monaco-evk-ifp-mezzanine.dtbo
+>>> +
+>>> +dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk-ifp-mezzanine.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
+>>> diff --git a/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso b/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
+>>> new file mode 100644
+>>> index 000000000000..f0572647200c
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
+>>> @@ -0,0 +1,184 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +/plugin/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +
+>>> +&{/} {
+>>> +	model = "Qualcomm Technologies, Inc. Monaco-EVK IFP Mezzanine";
+>>> +
+>>> +	vreg_0p9: regulator-vreg-0p9 {
+>>
+>> Please use name for all fixed regulators which matches current format
+>> recommendation: 'regulator-[0-9]v[0-9]'
+>>
+>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+>>
+>> Duplicating regulator name (regulator-reg(ulator)) is pointless.
+>>
 > 
-> We may have devm_pwm_get_disabled(). In IIO, ad7625 and this ad4030 would be
-> the users of such interface. Would you like me to propose that one?
+> "pointless" is a strong word IMO.
 
-Not sure it will be accepted by PWM maintainers, and personally I would be not
-a fan of such a call. Sounds a bit confusing to me (however, we have IRQ flag
-to not enable IRQs, which makes a lot of sense in comparison to other use
-cases).
+Pointless meaning it has no point, because the "vreg" is just redundant.
+It gives no new information.
 
 
--- 
-With Best Regards,
-Andy Shevchenko
+> 
+> The recommendation that has been communicated is to based label, name
+> and regulator-name of the schematics, but prefix the node name with
+> regulator- to achieve sensible sort order.
+> 
+> 
+> In fact naming these regulator-0v9, regulator-1v8, and regulator-3v3
+> make the name useless. We further have plenty of designs where there are
+> multiple regulator-1v8 and regulator-3v3.
+
+The regulator-name is to match schematics. Node name should follow DT
+spec expectations to show the purpose of the node.
+
+> 
+> I guess the preferred name, per the binding, is to not have multiple
+> 3.3V regulators in your design?
+
+I don't see what you are proving here. The "vreg" middle name addon is
+not differentiating multiple 3.3V regulators. It changes nothing in the
+problem of this duplication.
+
+> 
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "VREG_0P9";
+>>> +
+>>> +		regulator-min-microvolt = <900000>;
+>>> +		regulator-max-microvolt = <900000>;
+>>> +		regulator-always-on;
+>>> +		regulator-boot-on;
+>>> +
+>>> +		vin-supply = <&vreg_3p3>;
+>>> +	};
+>>> +
+>>> +	vreg_1p8: regulator-vreg-1p8 {
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "VREG_1P8";
+>>> +
+>>> +		regulator-min-microvolt = <1800000>;
+>>> +		regulator-max-microvolt = <1800000>;
+>>> +		regulator-always-on;
+>>> +		regulator-boot-on;
+>>> +
+>>> +		vin-supply = <&vreg_4p2>;
+>>> +	};
+>>> +
+>>> +	vreg_3p3: regulator-vreg-3p3 {
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "VREG_3P3";
+>>> +
+>>> +		regulator-min-microvolt = <3300000>;
+>>> +		regulator-max-microvolt = <3300000>;
+>>> +		regulator-always-on;
+>>> +		regulator-boot-on;
+>>> +
+>>> +		vin-supply = <&vreg_4p2>;
+>>> +	};
+>>> +
+>>> +	vreg_4p2: regulator-vreg-4p2 {
+>>
+>> Unused node (other dummies don't really count).
+>>
+> 
+> I'm pretty sure this is a direct result of previous review feedback
+> requiring these to be added. I do agree that they don't add any value
+> in a system were we don't control the entire power grid anyways.
+
+Maybe, I guess, but I am pretty certain none of DT maintainers ever
+asked for such nodes.
+
+> 
+> 
+> So I presume what you're saying is that we should at most declare one
+> level of non-controlled fixed regulators?
+
+In general, non-controller fixed regulators should not be there at all,
+except when they serve certain purpose, like fulfill the binding
+requirement. It's their only point.
+
+And a chain of:
+
+A -> B -> C -> device
+
+is completely redundant if all A+B+C are non-controlled.
 
 
+
+
+Best regards,
+Krzysztof
 
