@@ -1,176 +1,244 @@
-Return-Path: <devicetree+bounces-267438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267496-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WK/IIPlanGmzEgQAu9opvQ
-	(envelope-from <devicetree+bounces-267438-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:49:45 +0100
+	id 4OCyDpBwnGmcGAQAu9opvQ
+	(envelope-from <devicetree+bounces-267496-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:21:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE55E1774A4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:49:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AACFF178A78
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:21:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 98D1F303EA96
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:46:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A3BC4300E5CA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E9B4245008;
-	Mon, 23 Feb 2026 13:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32A6285CAA;
+	Mon, 23 Feb 2026 15:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GEhfoMxg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bret1Pnw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE7224397A
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 13:46:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E3E244692
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 15:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771854372; cv=none; b=M8k/iG/EYuJKZcKkPnLvS7VRvxOTWLZx6X8XcQ8OeFH77x/hz1gCjpiNvV5XOsGnfvX2bVg1ALS9RZHOKQB0IjbjkFHooJZm4j0gHNnF68eaB5aQTHfGDo8m0gksKsGb7et/t4zOL4YFRkgrvCbOmDW+7BHa4+zLdWI0p6FVhm4=
+	t=1771860109; cv=none; b=XsDHQSC4wuIgCKIq8h9H/WoJwWsf0Xo31MmLpT0YmfDhBoJFCXUnWJqoFB+v2IRNq299vzsaMXaIjdfAn+KU0CYvcP4tWDGC58L1bbbKWgRPWU20w6yht48TxkS4n3ehC0orRbcv0HyK6N5ZE/DHfLzFmfEAWDzQZM6yDSM+a88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771854372; c=relaxed/simple;
-	bh=xHD4QsgF9yMDfM9DNpu+nmQETYKEDBFK3tSyRcSPFXU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UjvOtmb0Ea6LmC/K6bnNRFOyXdPza/AVOYBuFzbEDd/vMUqiHfVKhjo/9GqRM4VN0f2Pzcuh2eyR0PTWPGvOjrR9k7zJuMQYjqsr4QjfAyI4yFPyqHH6nsZ6eOx/lB7wJVg6ZenWrXA9xuJaaZ5sJRUZNTyK9t8bkyMn0Uzl4nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GEhfoMxg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAA64C2BCB2
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 13:46:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771854371;
-	bh=xHD4QsgF9yMDfM9DNpu+nmQETYKEDBFK3tSyRcSPFXU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=GEhfoMxgLPcp6nwBkt61gmLigCTkVgwWzwT0WQNgF2v2B5l7cMU1ELQLt3YHmIdBn
-	 5SAQ9FzxXxdkTsua8QRJaj+XmvK4QG19qdTYwSzCjypit9H1KiTPwRh7FtCZ6tkqcX
-	 WXpeV/sajncXIUIIM0tJHwJ+863yKm8QK5ecZ7hYMEBA+EhmHfW947NBkxOv/P6+k/
-	 5GU11vmBKyLibQb0nd9eewN2w9Z4NQ7gR1ADROg8pSR6Ed5Wd9ZTSFn/kjg+XTxOHP
-	 BfaZYFe56E19NFL/uM6za8z+9EKP3PS01Q5PvG/36tELIOBRvrtFao503jbbYj73m9
-	 ywb3HTeKvIDsw==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-59f850cdeafso4634960e87.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:46:11 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX0tr/U5To7ZmP1Q/aVfr27XrqR46M1Pmv1CsAKswxpmVmEn4rcHqyH6ZTr6MA1PGfVuxSc1QwpCFmu@vger.kernel.org
-X-Gm-Message-State: AOJu0YznBDtxkiisYR2BGpgjtWuaqrfljzg9X8eMeM8f4rQ2GZscODRC
-	PQpMJjGcvkCDhOQwntX92RmGkgBkYyBcGoxXyf9DYWZSrrtUscFV/jwgPd9wUBti7cVB7je4CqN
-	3eW6RsGppew2QzlJDcpD8dDiEJAgAo2sQbBADo7MYKQ==
-X-Received: by 2002:a05:6512:1553:20b0:5a0:ef6b:f613 with SMTP id
- 2adb3069b0e04-5a0ef6bf704mr1540983e87.1.1771854370177; Mon, 23 Feb 2026
- 05:46:10 -0800 (PST)
+	s=arc-20240116; t=1771860109; c=relaxed/simple;
+	bh=mQ3MQMilzw20LjUCns41Lku0TPq9ZMFc4qfQF8+Vt2w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UKv2mooBNVmt+NpGOFW9dAYOfh+NALf9ovZRaO9+FtVRHpDY9fg6dHMsAuf1FixWN7XYLxKDLephqW4TF2Krui1i1vcY9MGs+/U6Ed7/q9+99OuL9rS4+0mQYGJbYgzZbnqkr//4DKgpQN42enCvZqjFFQBxEdfzNE5tNuUYpPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bret1Pnw; arc=none smtp.client-ip=209.85.217.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5fe0959ae3dso2438237137.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 07:21:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771860107; x=1772464907; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/aUtuOEkRmi402+kxGGUvbzHIC7w7l1S49zZW1GH148=;
+        b=bret1PnweQizjBlOe2pwUKfFrqPpfHQEj9wX7n7vUQ76BQze3InsTFX88BO+h2aPqV
+         kq6tK72CZYFOkVzB8udkRgTGbMXXCR5WOHIrTzcuhS7jn+wmpl/k9GqngWNUcZHn9bqd
+         2G4x0AuL6zU8CDVm+CRZ8cla5KvqKE/WJeWFtoJCkiL2nB3wXFgnGGWXYF+GaHUNBe7P
+         jRJKQ5kYukw90bDKWYARCwXhpEsYe2L4EGJQ/Ik+FkT83Mqk0mQlBhu4lyV5myDR/WhL
+         v0jphhuT6JDo53tpLev6tk32pg/18XSh/bmd3/I05BadT4i8L4sv3jR9rRiq1B1giaaO
+         RHPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771860107; x=1772464907;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/aUtuOEkRmi402+kxGGUvbzHIC7w7l1S49zZW1GH148=;
+        b=wf/VQ4wniBaYKmGrRCqbE9Yhs08/c1pka9ZYkYCAm4+49lkAWhxV+Ld7Mj2aDeI94b
+         YfTsXvQkIvmUVmFC0pWB53LWczqmir4TAESIol9qsH+RzQdYGandlunz1hJu8BdTZvPz
+         udkLNwhMeVm4qmJ6FnI1YZ9jK1vy2GSpdYxEjIzhzJgX2NldwBFYbIeAB4VX5IKN1xTB
+         SuK3qIfCIH2NV/gAdUyBFlcSn4uyGHTPu2bL98a1yjMGYAZBkIvtA8bItkUHrUflnjFY
+         VAH5OGFBrzeb2f7HGIk5h2pxB+tAQM7NzZRq3j8t5f5zWr6Lk45haU6JWLBfqklUobsG
+         TI4A==
+X-Gm-Message-State: AOJu0YxWnpx7aaG4QaiUDLEQ2XFhwUhNs2pYjYK7GJQSsCzOKN9/J/nU
+	0gtbKnXHK3K/8Pe7OcBvbOLn7lyGkqsi+9kbwR4RzLfeqctX/lakgDfh+AiBC3g5
+X-Gm-Gg: AZuq6aJLSOkJhA2uTRLf7H3tdm6u8snZoNQh9Y887A8lgBMwW3Rt/u+dN2qBjzZDjOM
+	s5LLfuUCZ5q9fw+5RQjLFri0h0AsZi1n3c8pIixb904xuXiFtUSq2sccGE4AuCflhJQ9QTyGpO/
+	sN/qJ/+mcR7NH8Bs7HWdf3/7adBhmU/o1gOm9TBQj1vNbT2No0UJ+0gZ4Ziqp7Kkr1wL0w3CFN0
+	vEK0qSjRGGRiZJnagjXtGwNssD9QtoBCFmyxKxsENRf4A0D4QABEKdFgdOWapsBH5ZUXoGI2nRH
+	a9HOI/iKQjI3jTtnTNjBBuBFv34HhtlTCrzZnbt2JExSSScsfbYAhggk3jszYnqASfts9zfxa60
+	Ucf3CBjEx1ItglCKSvlAob11vcggthxHyFUnEKYwkLgVHFdR85lvw91EHXzZ+ZAdhAaf9WLfVnK
+	bC/Kv58wIxahfnHr2WD+wMgk7cusjQrS6RGeYrq4P3dOPjR6Yr/DnL6s8diDM4/S3KH+T0XOljq
+	YQJub6O8tQ=
+X-Received: by 2002:a05:622a:150:b0:506:a394:ca64 with SMTP id d75a77b69052e-506f30beef1mr188405381cf.16.1771854584689;
+        Mon, 23 Feb 2026 05:49:44 -0800 (PST)
+Received: from mighty.stonybrook.edu (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8997e62f453sm67954716d6.36.2026.02.23.05.49.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Feb 2026 05:49:44 -0800 (PST)
+From: Mithil Bavishi <bavishimithil@gmail.com>
+To: aaro.koskinen@iki.fi,
+	airlied@gmail.com,
+	andreas@kemnade.info,
+	conor+dt@kernel.org,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	khilman@baylibre.com,
+	krzk+dt@kernel.org,
+	laurent.pinchart@ideasonboard.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	neil.armstrong@linaro.org,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	jesszhan0024@gmail.com,
+	rfoss@kernel.org,
+	robh@kernel.org,
+	rogerq@kernel.org,
+	simona@ffwll.ch,
+	thierry.reding@gmail.com,
+	tony@atomide.com,
+	tzimmermann@suse.de,
+	andrzej.hajda@intel.com,
+	bavishimithil@gmail.com
+Cc: devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Subject: 
+Date: Mon, 23 Feb 2026 08:49:32 -0500
+Message-ID: <20260223134941.427-1-bavishimithil@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260119-soc-of-root-v1-0-32a0fa9a78b4@oss.qualcomm.com>
- <20260119-soc-of-root-v1-7-32a0fa9a78b4@oss.qualcomm.com> <CAMuHMdU56p9jH8OZ5bpwKq8Q31C-8X85YAjiXZm8amYdo+Xotw@mail.gmail.com>
-In-Reply-To: <CAMuHMdU56p9jH8OZ5bpwKq8Q31C-8X85YAjiXZm8amYdo+Xotw@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Mon, 23 Feb 2026 14:45:58 +0100
-X-Gmail-Original-Message-ID: <CAMRc=MeC-MTzEOVw0j4Kq9T0bSXk2gKJr=jn2jO8tqfS7BEteQ@mail.gmail.com>
-X-Gm-Features: AaiRm53YdoncmLlrYwWxzOjKhAAi91ZYzJ0VCyHsDsiPleMxR8Z5ZNNGKc2eDc4
-Message-ID: <CAMRc=MeC-MTzEOVw0j4Kq9T0bSXk2gKJr=jn2jO8tqfS7BEteQ@mail.gmail.com>
-Subject: Re: [PATCH 7/8] soc: renesas: don't access of_root directly
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Chen-Yu Tsai <wens@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
-	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	EMPTY_SUBJECT(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267438-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linuxfoundation.org,pengutronix.de,gmail.com,glider.be,sholland.org,vger.kernel.org,lists.ozlabs.org,lists.infradead.org,lists.linux.dev];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	TAGGED_FROM(0.00)[bounces-267496-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
+	FROM_NEQ_ENVFROM(0.00)[bavishimithil@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_NONE(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,mail.gmail.com:mid,linux-m68k.org:email]
-X-Rspamd-Queue-Id: DE55E1774A4
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AACFF178A78
 X-Rspamd-Action: no action
 
-On Mon, Jan 19, 2026 at 8:25=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Bartosz,
->
-> On Mon, 19 Jan 2026 at 11:40, Bartosz Golaszewski
-> <bartosz.golaszewski@oss.qualcomm.com> wrote:
-> > Don't access of_root directly as it reduces the build test coverage for
-> > this driver with COMPILE_TEST=3Dy and OF=3Dn. Use existing helper funct=
-ions
-> > to retrieve the relevant information.
-> >
-> > Suggested-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.co=
-m>
->
-> Thanks for your patch!
->
-> > --- a/drivers/soc/renesas/renesas-soc.c
-> > +++ b/drivers/soc/renesas/renesas-soc.c
-> > @@ -6,6 +6,7 @@
-> >   */
-> >
-> >  #include <linux/bitfield.h>
-> > +#include <linux/cleanup.h>
-> >  #include <linux/io.h>
-> >  #include <linux/of.h>
-> >  #include <linux/of_address.h>
-> > @@ -468,7 +469,11 @@ static int __init renesas_soc_init(void)
-> >         const char *soc_id;
-> >         int ret;
-> >
-> > -       match =3D of_match_node(renesas_socs, of_root);
-> > +       struct device_node *root __free(device_node) =3D of_find_node_b=
-y_path("/");
-> > +       if (!root)
-> > +               return -ENOENT;
-> > +
-> > +       match =3D of_match_node(renesas_socs, root);
->
-> I am not so fond of these of_find_node_by_path("/") + something replaceme=
-nts.
-> What about adding an of_match_root() helper?
->
+Subject: [PATCH v7 0/8] Initial support for Samsung Galaxy Tab 2 series
 
-I removed other instances from this series but not this one. I don't
-want to grow this series with even more new helpers. How about
-addressing this separately?
+This series adds initial support for the Samsung Galaxy Tab 2
+(samsung-espresso7/10) series of devices. It adds support for 6 variants
+(P3100, P3110, P3113, P5100, P5110, P5113). Downstream categorised them
+based on 3G and WiFi, but since they use different panel, touch
+controllers, batteries, I decided to categorise them based on screen
+size as espresso7 and espresso10.
 
-> However, in the previous patch you used a different strategy:
->
-> -       if (!of_match_node(imx8_soc_match, of_root))
-> +       if (!of_machine_device_match(imx8_soc_match))
->
+It adds basic functionality for both the models including panel, drm,
+sdcard, touchscreen, mmc, wifi, bluetooth, keys, battery, fuel gauge,
+pmic, sensors.
 
-Because here, we really need the match structure later into the function.
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+---
+Changes in v8
+- Remove WAKEUP_EN from omap4_pmx_wkup
+- Link to v7: https://lore.kernel.org/linux-omap/20260223055113.1288-1-bavishimithil@gmail.com/ 
+Changes in v7
+- Removed prox_irq
+- Changed commit message
+- Link to v6: https://lore.kernel.org/linux-omap/20260219210408.5451-1-bavishimithil@gmail.com/
+Changes in v6
+- Remove references to WAKEUP_EN (drivers dont support interrupts-extended)
+- Remove gp2a_irq, it was for bh1721fvc not gp2a
+- Remove mount-matrix
+- Link to v5: https://lore.kernel.org/linux-omap/20260129054709.3878-1-bavishimithil@gmail.com/
+Changes in v5
+- Commit message length < 75
+- Squash commits
+- Link to v4: https://lore.kernel.org/linux-omap/20260119033035.57538-1-bavishimithil@gmail.com/
+Changes in v4
+- Fixed syntax in doestek vendor
+- Changed - to _ in node names
+- Removed address/size-cells in chosen
+- Added pinmux for i2c-gpio5,6,7, irled
+- Allow sdcard to poweroff (reg_espresso_external)
+- Changed power to key-power
+- Order alphabetically in omap4_pmx_wkup and omap4_pmx_core
+- Use generic node names
+- Added TODO for future nodes
+- Fix touchscreen values in espresso7 and espresso10
+- Add dts to Makefile
+- Commit message length under 75
+- Link to v3: https://lore.kernel.org/linux-omap/20241108200440.7562-1-bavishimithil@gmail.com/
+Changes in v3
+- Use device tree from the correct branch
+- Fix commit subjects to matching the subsystem
+- Add Doestek vendor
+- Add compatible for LVDS encoder
+- Add compatibles for 7 and 10 inch panels
+- Clean up device tree using "make CHECK_DTBS=y"
+- Link to v2: https://lore.kernel.org/all/20241030211215.347710-1-bavishimithil@gmail.com/
+Changes in v2
+- Fix node names in common dtsi to have - instead of _
+- Removed import for twl6030.dtsi
+- Edited dts to completely use twl6032 nodes
+- Fixed typo ldosb -> ldousb
+- Link to v1: https://lore.kernel.org/all/20241030194136.297648-1-bavishimithil@gmail.com/
+--
 
-Bart
+Mithil Bavishi (8):
+  ARM: dts: twl6032: Add DTS file for TWL6032 PMIC
+  dt-bindings: vendor-prefixes: Add Doestek
+  dt-bindings: display: bridge: lvds-codec: add doestek,dtc34lm85am
+  dt-bindings: display: panel-lvds: Add compatibles for Samsung
+    LTN070NL01 and LTN101AL03 panels
+  ARM: dts: ti: omap: espresso-common: Add common device tree for
+    Samsung Galaxy Tab 2 series
+  dt-bindings: omap: Add Samsung Galaxy Tab 2 7.0 and 10.1
+  ARM: dts: ti: omap: samsung-espresso7: Add initial support for Galaxy
+    Tab 2 7.0
+  ARM: dts: ti: omap: samsung-espresso10: Add initial support for Galaxy
+    Tab 2 10.1
+
+ .../devicetree/bindings/arm/ti/omap.yaml      |   2 +
+ .../bindings/display/bridge/lvds-codec.yaml   |   1 +
+ .../bindings/display/panel/panel-lvds.yaml    |   4 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/ti/omap/Makefile            |   2 +
+ .../omap/omap4-samsung-espresso-common.dtsi   | 744 ++++++++++++++++++
+ .../dts/ti/omap/omap4-samsung-espresso10.dts  | 104 +++
+ .../dts/ti/omap/omap4-samsung-espresso7.dts   |  70 ++
+ arch/arm/boot/dts/ti/omap/twl6032.dtsi        |  77 ++
+ 9 files changed, 1006 insertions(+)
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso-common.dtsi
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
+ create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso7.dts
+ create mode 100644 arch/arm/boot/dts/ti/omap/twl6032.dtsi
+
+-- 
+2.43.0
+
 
