@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-267233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267234-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uFhPCbfym2kI+AMAu9opvQ
-	(envelope-from <devicetree+bounces-267233-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:24:55 +0100
+	id UAJYD7zym2kI+AMAu9opvQ
+	(envelope-from <devicetree+bounces-267234-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:25:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AFE172188
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6DE517218F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3C99A302A7C5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:19:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1CC6E303F57F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05779345CDC;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414F7248F6F;
 	Mon, 23 Feb 2026 06:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XGMsnO3n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k9PNDkEU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D4C345724
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE8263451D9
 	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 06:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771827580; cv=none; b=W+zi0NWlw03CgxdDupIR+ikOtETXkyOammEUrLqvvfWl6qCYQ3Ju/SwZ46TPvO/NVsVaoNLt6G6H51y5cVwjEmy8YCnydE136g/ZSk+QJg3sor4f6LtC9M7SNd8NA2BMoJmi57KRr1KBOULXzw2BA8h9ngrJXkjnNhGKFy6dsvI=
+	t=1771827581; cv=none; b=AT7H+0AmqUoF+JiJ4qyqyiVHuwFy/jlHwXD7aHHrGWB3YczHsG11AEmff5+WS7pAZkp+sdAom1clvOZ5QT9vlnK74fOb2/oTjHfWOheUPKTLXCVgNzG22KAFFeUarid/in2bS1OniiQBgAAoT0GiERau9dErqW4qwH+LVvft+yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771827580; c=relaxed/simple;
-	bh=q5iWDDiVP6ItgngzmXfBwHdc6oyRXu9KbdXi8CD9nEs=;
+	s=arc-20240116; t=1771827581; c=relaxed/simple;
+	bh=A0cKTP/NcPWurRQx3wyGtZw1VFNDkseDTGwzrhDZmHE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=FEN8mEAsS9SgU5fGg2VgMUDKoFsn12ViNrDd/VWnzPhlz3XBeXXzK0hmknwkhI7MGlfr9AqjM4t5P4M40zuI9U14JEdQA2cKKxvlLGamJBLFzZLuEWNbtwA4v4cyaJTGo4+qzYBwendXRznJWass/QuNMP1aTIR9Hv8oJv2anX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XGMsnO3n; arc=none smtp.client-ip=209.85.215.173
+	 MIME-Version; b=KZJ0/ZHZkkEwmGEtL8GT9Y4DVljfpAP0+1FWt5fVr1PNWzREe7nFtD0q9TNUDLFjGa3KqSNDmBEdH1qkLCSHQ7wpE1gW75SsS8lfqqa1zd0+CTynSc+ntnqBfbpz3/kM+xK5dyEc6HKRI2M9swEvnvpai1w5CKpCbAu5pf5UNbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k9PNDkEU; arc=none smtp.client-ip=209.85.216.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-c6c444e89bcso1393486a12.2
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-3562e98d533so2423208a91.0
         for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 22:19:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1771827579; x=1772432379; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=N7WrDyX53tBhhQs9DM7PCsQhtyvoI2GRXLB5HiWYUgc=;
-        b=XGMsnO3nBw6dA55EcxYnazD4/2aJb1zNmoKQ9EDKo+IWvpuo9nhiU3yNJySgAWOFUw
-         1dLYzdNkC96zJtUDdpNdTONNjkcTHgtGxdwC0QJznWiJyuKewWx+B6eXngREC01aZqYx
-         2G5TI+Nk85hyoQ68dvSK7/uNF54vatvxS8kjw9BtoZZRg06iRKyFMt6U3ZqG+tY9gZSe
-         MoTiq18/PJHXK1cTZ+DQ9BZBRIiaqN3mB5+l0avo7moHwHA1xPrO1wasHxK3UkrU3HNQ
-         ZkSwKnSOJjxTs6cCugjZokWPqNpbOKngvqSzv9aaoeyJwooQuVklZYEcAQF1laTzADUX
-         4ScA==
+        bh=nILoW48W9hqLRwmHITphjoIJRhEY+2JRSNwPbSj3wbI=;
+        b=k9PNDkEUTUtrDK0yjQG3hUJSVTVAOZIfKVJPouS45WyPXE9XdlToOFGW5kJncEEXo6
+         s5uRa0yw1PGh+msd4+gIbHjjqsfLQ7cbn5mRnQr3Q44c4eyi3vifig/ytdw5xf8Fmj+E
+         IokAkbuMMsibBpt4eAR28bzxIVhlOO2o8pVqMrsiv36UqELMnPOU6Jjbbg+0jvpk8964
+         CnjEIIa8AXrfO+nNeeFSUApNHr4lipl4mvRXtA8baxWdY6v7U8LIMlhW5i6lgVjlVsFi
+         ESuPj5D8W8mxmh2lH1ouFE6jx35ovC/Z8+uidnUyV4zkZf0Z5uhQTPq2J80rliYiBDIg
+         Qaqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1771827579; x=1772432379;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=N7WrDyX53tBhhQs9DM7PCsQhtyvoI2GRXLB5HiWYUgc=;
-        b=BAI0L4I8NCmBhi7MFSxJ64WOmHg0yRX7FGW9SX+OFstmz8NWszBuS+/Lq4yUVv7O3s
-         mIX5eWin7RQS+oQDNEs1Wni8aLy3EwFZZit+avw8AXp+SnypCToVripl3+t+qiOAJQr0
-         5tj4sebv+scW53riLgMjhXlOVCiTgG0swY4EMZGjAQuZg7Lhhtvrygux8Xxn6ALir60K
-         olxmXg/PTYRAzNN+asoBZz83jOoN/lEWOkibvKYSFUOuBWGGrvzPXkQzyJSi+rpn9Myc
-         Q4GLrmZn/eDp4IlpIL/0PXNqBiqGU330kzA7tFtLyScZ4JIy5l6k9A1kBpnrV01Csirq
-         ccnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAVocawR/JxmDYA30tUOW7lFxRQSQXXzGVi+b4zYxMSVp0CIzYDaxw9+D5voLS1urBIpncjIRGq7uh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNZWwb9HVABRvpx2r10CITc/45XR91LKvlWQBochRWUYHd/KLj
-	4bFHvXNM3m6o16mMj2/H1chwU6DrpW9xrvJn2lREMjVbHGRwor5dMnLk
-X-Gm-Gg: ATEYQzz2MuJj0/QYWuxGMp87aaRDlAyPNyjc1Q2BXHE0bIm0rX0gPmFKF9C+rLKpDg0
-	3uyYltzT9OiWO5jEIZ4qqZXKjj65BIfbfVaZ/W9eZFzW6Zg9MDPTKhKTA/99vo5QNKZg2ZnzGyR
-	sODSBzculII7T4P4ROp762GtCoFKdF34zb+BJeGbwGZ2+ECmrbXGv3+oBAGcLou/tc6Fqv7tV1z
-	flQpcbEHXuWm+uemfiqVsUDyDzz5Ninsv2uAjTA0KSVfpugoCPqFr2qha+k2Ggm0oHkLiAR7WQo
-	Ch1qWyGBq+2Kn/JO72CW+Al13EmUtyZ5hRoaBcB5uP7IhNvIPv6JEWhNNKxAXjYiW5/zXU4rRkj
-	5aLR6a/EH9YngGsRC7kSBS1jCHCE7x0Wy2YhrT1MD3GHJDrCE++THj9XuqRHlljNzSVPocShYCf
-	CGV13p25IHF46Wb7HRsjX1sHbhtXfbJvplNyVjJwHe+yph9w==
-X-Received: by 2002:a17:903:2b06:b0:2a3:ee53:d201 with SMTP id d9443c01a7336-2ad743e3e8emr61818115ad.12.1771827579002;
+        bh=nILoW48W9hqLRwmHITphjoIJRhEY+2JRSNwPbSj3wbI=;
+        b=BvreSBbbkcQN954KgujLwjHpWXyGytoW+0q0ptwD5FflEXwqeEdQZcuCm9nag9s0cE
+         aInrQU1MVTVv+77olSx94GQA7RdoWnWMqYbehHoTK4NxrLmiBXH+FTV+F90CfStCHUWy
+         HscmibxVo8Bri5NCFGFWJkSJWBnMUzufAO9apt5vaV5oWdiTsdssGdxaxCH7df27TAZP
+         5YPqo5UVZT0a8g2DBAhqvPn/o17Wy6tMAZk0f2TCe0oj5oGWZY+TLiQBabWwVI1UuKtg
+         bi+fJFuBczCXE4x8ME4/DT99e8esK01xBzmgxsGYhbAmM392aOkxo681P4WZ3rw9mU/Q
+         Vfig==
+X-Forwarded-Encrypted: i=1; AJvYcCUOEKoDjLD7lLY5lfejVn58PstcHZCsIPQ3SfaHc+XGG6pdy0Uo3r7FYVh1IB9FyY+QKysorHs+BfOl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxOHWWWo/2BeCjwuv5TbKwe0uWePq8oHt2oVpIAQdVwEiz2a/7
+	K+Y/1xsIHiQ/VGKqM2mUGmMcNmVU6Rf6eqm7bznk7CS2e+GBXpCrWj63
+X-Gm-Gg: ATEYQzzmHfobdxDFcjMOo1Mp/39x8RhwgcGOynksPweQMHK9vCV7fhVfw7AvOalv/8x
+	q3H3cO+RWQ42HRPOboDa0clCKnqrvvjz/eeQ7eHqfgDYYOB1K380REM50R1dkMpnRl4jZqaJH/n
+	Td+AasuYf6mLKwvALwtIHl0hw6q41A6hL3vK37V8QvhXjPeVKIzQojCq4V8/RtAJOo8EuDce2ou
+	qLz7E3Uq/s50RcQDnUmsXxxKZ4u8DSJkYe+9244q6IpgvHpmro0ggg+U6blmszQELQ+UTpUhQKJ
+	WtYc3xcWTQldq+ltEjfVfePA9cVCieiZOTMP5YEQV53A69aDQFNg4CXNHWWDQoAxfb8y1pB+MT/
+	1Y9598DwDYuDzEbvUuqyuqL/z6M1+iWyiPCX0QBIJkPLTCKo8FI5x230MxPtLEaaLJmWwGNmYcx
+	EAdqG40RVhrwDywRbHERnwTk4vwvzlxW2OzDXhvwru6LMe+g==
+X-Received: by 2002:a17:90b:498f:b0:354:a76e:7f08 with SMTP id 98e67ed59e1d1-358ae6a4304mr5524288a91.0.1771827579168;
         Sun, 22 Feb 2026 22:19:39 -0800 (PST)
 Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad7503f4a4sm60191805ad.79.2026.02.22.22.19.38
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3589d8e3e73sm9340820a91.15.2026.02.22.22.19.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sun, 22 Feb 2026 22:19:38 -0800 (PST)
 Received: from hqs-appsw-a2o.mp600.macronix.com (unknown [172.17.236.67])
-	by twhmp6px (Postfix) with ESMTPS id D5AF64136074;
+	by twhmp6px (Postfix) with ESMTPS id E38AD4136075;
 	Mon, 23 Feb 2026 14:19:36 +0800 (CST)
 From: Cheng Ming Lin <linchengming884@gmail.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -96,9 +96,9 @@ Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
 	linux-kernel@vger.kernel.org,
 	alvinzhou@mxic.com.tw,
 	Cheng Ming Lin <chengminglin@mxic.com.tw>
-Subject: [PATCH v6 1/3] dt-bindings: mtd: spinand: Add randomizer enable/disable properties
-Date: Mon, 23 Feb 2026 14:17:04 +0800
-Message-Id: <20260223061706.1027986-2-linchengming884@gmail.com>
+Subject: [PATCH v6 2/3] mtd: spi-nand: Add support for randomizer
+Date: Mon, 23 Feb 2026 14:17:05 +0800
+Message-Id: <20260223061706.1027986-3-linchengming884@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260223061706.1027986-1-linchengming884@gmail.com>
 References: <20260223061706.1027986-1-linchengming884@gmail.com>
@@ -127,7 +127,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-267233-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267234-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -139,73 +139,127 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mxic.com.tw:url,mxic.com.tw:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 99AFE172188
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mxic.com.tw:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E6DE517218F
 X-Rspamd-Action: no action
 
 From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 
-Add "nand-randomizer-enable" and "nand-randomizer-disable" boolean
-properties.
+This patch adds support for the randomizer feature.
 
-These properties allow enabling or disabling the randomizer feature
-via the device tree.
+It introduces a 'set_randomizer' callback in 'struct spinand_info' and
+'struct spinand_device'.
 
-According to JEDEC standard JESD22-A117E, no single data pattern
-represents a universal worst-case for all NAND flash failure mechanisms.
-Different patterns, such as fully programmed, checkerboard, or mostly
-erased, can disproportionately stress specific cells (e.g., programmed,
-erased, or those influenced by adjacent states).
-
-Given that no fixed pattern can cover all scenarios, the use of a
-randomized data pattern is a practical and effective mitigation strategy.
-Our hardware implements a randomizer feature that scrambles user data
-before it is written to the flash and restores the original data upon read.
-
-This ensures the data stored on the media is more evenly distributed,
-thus reducing pattern-dependent degradation. This is especially crucial
-for preventing errors caused by unbalanced data (e.g., all zeros or
-all ones) in blocks with high program/erase (P/E) cycle counts.
-Ultimately, the randomizer improves the long-term reliability and
-endurance of the flash device.
-
-Please refer to the following link for randomizer feature:
-Link: https://www.mxic.com.tw/Lists/ApplicationNote/Attachments/2151/AN1051V1-The%20Introduction%20of%20Randomizer%20Feature%20on%20MX30xFxG28AD_MX35xFxG24AD.
+If a driver implements this callback, the core will invoke it during
+device initialization (spinand_init) to enable or disable the randomizer
+feature based on the device tree configuration.
 
 Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
 ---
- .../devicetree/bindings/mtd/nand-chip.yaml     | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ drivers/mtd/nand/spi/core.c | 27 +++++++++++++++++++++++++++
+ include/linux/mtd/spinand.h |  9 +++++++++
+ 2 files changed, 36 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mtd/nand-chip.yaml b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-index 609d4a4ddd80..09ed2f73ab5c 100644
---- a/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-+++ b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-@@ -67,6 +67,24 @@ properties:
-       the secure regions present.
-     $ref: /schemas/types.yaml#/definitions/uint64-matrix
+diff --git a/drivers/mtd/nand/spi/core.c b/drivers/mtd/nand/spi/core.c
+index 8aa3753aaaa1..77a0371010c4 100644
+--- a/drivers/mtd/nand/spi/core.c
++++ b/drivers/mtd/nand/spi/core.c
+@@ -1307,6 +1307,29 @@ static int spinand_create_dirmaps(struct spinand_device *spinand)
+ 	return 0;
+ }
  
-+  nand-randomizer-enable:
-+    description:
-+      Enable the randomizer feature. This property is mutually-exclusive
-+      with nand-randomizer-disable.
-+    type: boolean
++static int spinand_randomizer_init(struct spinand_device *spinand)
++{
++	struct device_node *np = spinand->spimem->spi->dev.of_node;
++	bool enable = false;
++	int ret;
 +
-+  nand-randomizer-disable:
-+    description:
-+      Disable the randomizer feature. This property is mutually-exclusive
-+      with nand-randomizer-enable.
-+    type: boolean
++	if (!spinand->set_randomizer)
++		return 0;
 +
-+dependencies:
-+  nand-randomizer-enable:
-+    not:
-+      required:
-+        - nand-randomizer-disable
++	if (of_property_read_bool(np, "nand-enable-randomizer"))
++		enable = true;
++	else if (of_property_read_bool(np, "nand-disable-randomizer"))
++		enable = false;
++	else
++		return 0;
 +
- required:
-   - reg
++	ret = spinand->set_randomizer(spinand, enable);
++	if (ret)
++		return ret;
++
++	return 0;
++}
++
+ static const struct nand_ops spinand_ops = {
+ 	.erase = spinand_erase,
+ 	.markbad = spinand_markbad,
+@@ -1594,6 +1617,7 @@ int spinand_match_and_init(struct spinand_device *spinand,
+ 		spinand->user_otp = &table[i].user_otp;
+ 		spinand->read_retries = table[i].read_retries;
+ 		spinand->set_read_retry = table[i].set_read_retry;
++		spinand->set_randomizer = table[i].set_randomizer;
  
+ 		/* I/O variants selection with single-spi SDR commands */
+ 
+@@ -1881,6 +1905,9 @@ static int spinand_init(struct spinand_device *spinand)
+ 	 * ECC initialization must have happened previously.
+ 	 */
+ 	spinand_cont_read_init(spinand);
++	ret = spinand_randomizer_init(spinand);
++	if (ret)
++		goto err_cleanup_nanddev;
+ 
+ 	mtd->_read_oob = spinand_mtd_read;
+ 	mtd->_write_oob = spinand_mtd_write;
+diff --git a/include/linux/mtd/spinand.h b/include/linux/mtd/spinand.h
+index 6a024cf1c53a..6a68a6c3866a 100644
+--- a/include/linux/mtd/spinand.h
++++ b/include/linux/mtd/spinand.h
+@@ -584,6 +584,7 @@ enum spinand_bus_interface {
+  * @user_otp: SPI NAND user OTP info.
+  * @read_retries: the number of read retry modes supported
+  * @set_read_retry: enable/disable read retry for data recovery
++ * @set_randomizer: enable/disable randomizer support
+  *
+  * Each SPI NAND manufacturer driver should have a spinand_info table
+  * describing all the chips supported by the driver.
+@@ -612,6 +613,8 @@ struct spinand_info {
+ 	unsigned int read_retries;
+ 	int (*set_read_retry)(struct spinand_device *spinand,
+ 			     unsigned int read_retry);
++	int (*set_randomizer)(struct spinand_device *spinand,
++			      bool enable);
+ };
+ 
+ #define SPINAND_ID(__method, ...)					\
+@@ -668,6 +671,9 @@ struct spinand_info {
+ 	.read_retries = __read_retries,					\
+ 	.set_read_retry = __set_read_retry
+ 
++#define SPINAND_RANDOMIZER(__set_randomizer)				\
++	.set_randomizer = __set_randomizer
++
+ #define SPINAND_INFO(__model, __id, __memorg, __eccreq, __op_variants,	\
+ 		     __flags, ...)					\
+ 	{								\
+@@ -753,6 +759,7 @@ struct spinand_mem_ops {
+  * @user_otp: SPI NAND user OTP info.
+  * @read_retries: the number of read retry modes supported
+  * @set_read_retry: Enable/disable the read retry feature
++ * @set_randomizer: Enable/disable the randomizer feature
+  */
+ struct spinand_device {
+ 	struct nand_device base;
+@@ -786,6 +793,8 @@ struct spinand_device {
+ 	bool cont_read_possible;
+ 	int (*set_cont_read)(struct spinand_device *spinand,
+ 			     bool enable);
++	int (*set_randomizer)(struct spinand_device *spinand,
++			      bool enable);
+ 
+ 	const struct spinand_fact_otp *fact_otp;
+ 	const struct spinand_user_otp *user_otp;
 -- 
 2.25.1
 
