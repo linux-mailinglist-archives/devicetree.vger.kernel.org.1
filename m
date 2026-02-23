@@ -1,178 +1,161 @@
-Return-Path: <devicetree+bounces-267598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267599-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yDWJMuOanGmKJgQAu9opvQ
-	(envelope-from <devicetree+bounces-267598-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:22:27 +0100
+	id +L4VKQSdnGmyJgQAu9opvQ
+	(envelope-from <devicetree+bounces-267599-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:31:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B0B917B72E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:22:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24EAF17B84F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 19:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0DBC83011BD7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:21:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3AC4A3063774
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:29:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4892F33EB07;
-	Mon, 23 Feb 2026 18:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A081C340A46;
+	Mon, 23 Feb 2026 18:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="AG73FSNF"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="D+ZEZns8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1255633D6C9;
-	Mon, 23 Feb 2026 18:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771870898; cv=pass; b=B4X1aY6b6AGPXIsyVGGQxaASZKL1Wyattc2xn9tfxiioMZ+dwN2PMtIWE2fw8O8JmTLj86aTPferszNd5qSFWa8pNSnMGA2OscSszhedpWWzS4kc3vICBAVil+5YJsNSc8WKf1mb/b4OuuyaQHu9y7knXELnReS8d8FPk+BvlZQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771870898; c=relaxed/simple;
-	bh=Ohd4wV3Ud8zgAQqssd5DToPZcCbGzRaVPsQMnxZ1Nco=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XCBrUgobhUGY5xQlK3WlLVCuYQ94QL5SuyQwEXlR7zQ9bExpEWqlKnsVDqC98ymwpmpoGZTY8yhAi4qUZBXe04+m9gr/AJsygs1IAe46rN60MK3xqDOaUeWiyX4bt87rfNyDwfpLVVl8cLmowy6Jh8VETkS+8r2FM7RZ/eArVrI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=AG73FSNF; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E25330D23;
+	Mon, 23 Feb 2026 18:29:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771871367; cv=none; b=Zfmkf6WOdtaXjJ5G0wXQE/670TTqqS2w5MZeY2udFA0AYbGpc/RnGYKIuj40Qa7MvLQPQ6GC7jyiWGQK4h1+ooqidq4WXL1zcoBh2gF5OtMlvF0g6xbpr108Id6KXrkDqZBBg4nA00ASZubksSgGYnblI3948iF2RkozG9AuU2g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771871367; c=relaxed/simple;
+	bh=f8Y9T7jUIRJHt52mwSlo+OZGMV3OmtVt1CFMimMKfhk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uCXNbuNDhjGxVFqbjeyUNtAFL3xJsRssQF+TVFzqFY0WmmRbf6F9MmTThRjXYt8l7BIgPPK9wbqrRmN9w7MZ07A422efH8Uh+kPGhSzgwMYxejpuQGpMixKzLibmS2jIo6jn3c6rAovk/YMAJdFyb0YYMQi4yVPR6goRhNO9iFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=D+ZEZns8; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1771870880; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=LO0OJrIIIXkzCrQQfCcvrpHXM3U/oezz4wUsYvMrIrlH63GDypik3xEP7aAOJ3X2+AGxC2Sq5cjzVvUNtuLh/1IJTxBUmeBBvFfKMA3eIknI6y4/573sCJ0ZLjHXhHwTNe3lAdlJHs1Xzf7Nz0Q/2Eg1yeoXcu/YotcWyQ4YoRE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1771870880; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=3QpMmW40kIat1kKs1ek+xBkNlj1NYSZ0QLAmvTB0cy0=; 
-	b=fSmyZHMSc7NxjKmgF6y9yDv5piUZBSrfxAb6ghCod+pvxlBQJSISZQtbvRCSBDUL9ClSb36bmu+12UhvWxqtPTfjVvHBD1gFzh5yXTwJyI5fKBq40hGhEV2PciG2DQqAweLYEbWPd1SlfR51GDcIICalMyikihujCWznB+iHSVM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771870880;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=3QpMmW40kIat1kKs1ek+xBkNlj1NYSZ0QLAmvTB0cy0=;
-	b=AG73FSNF0slb9gErO5ktr5aF1uRpJS6fYJFYRLDZ/2dXZSU5Cu5Ox60ilETlb9KO
-	wUtThLTEA9P+sxo8w+VCHc2ag+n+3fFBGW4KBUAzgny8ZLvH/3OE/0R38vf3BtXy5D9
-	/Bf9ZvaLp18WAG6UNkcjLp7kFurj7eaYnUVM1T64=
-Received: by mx.zohomail.com with SMTPS id 1771870878966356.47662130272647;
-	Mon, 23 Feb 2026 10:21:18 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 4E4231806CB; Mon, 23 Feb 2026 19:21:14 +0100 (CET)
-Date: Mon, 23 Feb 2026 19:21:14 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Diederik de Haas <diederik@cknow-tech.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Detlev Casanova <detlev.casanova@collabora.com>, kernel@collabora.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix vdec register blocks order on
- RK3576
-Message-ID: <aZyaLG0lYao6_xxb@venus>
-References: <20260223-vdec-reg-order-rk3576-v1-1-560976566bd3@collabora.com>
- <aZxkDGzEQCCLKR-M@venus>
- <DGMF3IX3J3BP.1XT41P0G8P5OD@cknow-tech.com>
- <b4eb3031-69e8-4a73-b4f1-91dd4192bb21@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771871364;
+	bh=f8Y9T7jUIRJHt52mwSlo+OZGMV3OmtVt1CFMimMKfhk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=D+ZEZns8k6dR0nXRDqaipPSO0rIkEfbGuUR4zYwNKoBDA2u71/+fwR0FcCn6cZBR0
+	 G+NiNTIP+KZvtw+frCTb2F4TRxkJ7FYobhJalUWzUPrh/l7x3tlt2ZF9XlHK+glzAN
+	 fsyBke84OLf5/KutIll9hq6Q89kpj/xenVBre5nnYx6QkeKKCTD0myMMP2fAxn11N3
+	 +XhDfmf14+T84ZN2FRn1cB5cVFpygQyGRPKJMxx34y2+BOItmho/C/yzzgJMZ5n82W
+	 7abWKLVv2LHgGKT8VXiD2GpPhWUkDwme217BFdcPd+OT6gVPeGMJLmcsK9TejLOqir
+	 3r8fNnypcMfFw==
+Received: from [192.168.1.90] (unknown [86.123.23.225])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 48DE117E003F;
+	Mon, 23 Feb 2026 19:29:24 +0100 (CET)
+Message-ID: <e0d7da4c-e779-43e9-bf0f-c2a0224114df@collabora.com>
+Date: Mon, 23 Feb 2026 20:29:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="n35exwrn3ee26t2a"
-Content-Disposition: inline
-In-Reply-To: <b4eb3031-69e8-4a73-b4f1-91dd4192bb21@collabora.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.1.1.4.3/271.848.75
-X-ZohoMailClient: External
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267598-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim]
-X-Rspamd-Queue-Id: 2B0B917B72E
-X-Rspamd-Action: no action
-
-
---n35exwrn3ee26t2a
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: rockchip: Fix vdec register blocks order on
  RK3576
-MIME-Version: 1.0
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Diederik de Haas <diederik@cknow-tech.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova <detlev.casanova@collabora.com>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260223-vdec-reg-order-rk3576-v1-1-560976566bd3@collabora.com>
+ <aZxkDGzEQCCLKR-M@venus> <DGMF3IX3J3BP.1XT41P0G8P5OD@cknow-tech.com>
+ <b4eb3031-69e8-4a73-b4f1-91dd4192bb21@collabora.com> <aZyaLG0lYao6_xxb@venus>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <aZyaLG0lYao6_xxb@venus>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267599-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 24EAF17B84F
+X-Rspamd-Action: no action
 
-Hi,
+Hi Sebastian,
 
-On Mon, Feb 23, 2026 at 07:07:42PM +0200, Cristian Ciocaltea wrote:
-> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> @@ -34,10 +34,12 @@ properties:
->        - description: The cache configuration registers base
->=20
->    reg-names:
-> -    items:
-> +    oneOf:
->        - const: function
-> -      - const: link
-> -      - const: cache
-> +      - items:
-> +          - const: link
-> +          - const: function
-> +          - const: cache
->=20
->    interrupts:
->      maxItems: 1
->=20
+On 2/23/26 8:21 PM, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Mon, Feb 23, 2026 at 07:07:42PM +0200, Cristian Ciocaltea wrote:
+>> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+>> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+>> @@ -34,10 +34,12 @@ properties:
+>>        - description: The cache configuration registers base
+>>
+>>    reg-names:
+>> -    items:
+>> +    oneOf:
+>>        - const: function
+>> -      - const: link
+>> -      - const: cache
+>> +      - items:
+>> +          - const: link
+>> +          - const: function
+>> +          - const: cache
+>>
+>>    interrupts:
+>>      maxItems: 1
+>>
+> 
+> With that change the descriptions in the reg section are wrong.
 
-With that change the descriptions in the reg section are wrong.
+Yeah, I assumed it'd be acceptable for the description to document just once all
+possible items, to avoid repeating this for all possible combinations.
 
-Greetings,
+E.g. this is from Documentation/devicetree/bindings/net/snps,dwmac.yaml:
 
--- Sebastian
+  resets:
+    minItems: 1
+    items:
+      - description: GMAC stmmaceth reset
+      - description: AHB reset
 
---n35exwrn3ee26t2a
-Content-Type: application/pgp-signature; name="signature.asc"
+  reset-names:
+    oneOf:
+      - items:
+          - enum: [stmmaceth, ahb]
+      - items:
+          - const: stmmaceth
+          - const: ahb
 
------BEGIN PGP SIGNATURE-----
+Thanks,
+Cristian
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmmcmpIACgkQ2O7X88g7
-+praVQ/9HoWHCL/V04hsruUcyyQNCJwHHNdFoiO6VWn6/wdlfmfFoSWWn2GUQ0L9
-TvizIFInVev87p+PLnXE6qWH5F1i3jmJ1Tj+x4SEHZL3zZ9mCferejCDvmISmAls
-5ab9QudefSeGPKQiJ6yYmmWlILD0/vYCQi2B/0PLNT75XiasWDZGXcL/EGP6qCqQ
-2J8KDJQTsqYvrTcf5fwXP6a5+pVc8V1V+DZgOBBJDcvw2qPEWR1hTPPkUdififEf
-TI3voWFDe7XTBb1R+EGQkjQSA2NzwyHc3kEzoUsf6VtRyEmzsDUUXuCI5dgYLLi3
-s2TBXhOiMneKy5FfGaAdeJolNrstJ72VWFFTHe2OKj3qhHaH/rbOuobF3MLRmT7T
-UUtrXdN/qTSSt3o8GLFaWp3iPAPOPcPCnfaMQ44HAkH/3U1sHzVlWHVEYHfFYwrQ
-4hMHVo2QBd6UQmnU9CXzA/VurS9jwQ9dprhJBD6fsYIDzrPzC+IO35JdCfQ3pyHd
-JGbBSZcXOuoo1sk/liIvZggcMfWYJs1NwZM+gk/3DWhV/MKpEzEBhugciHC5Fh+g
-xuwu0IIIpGkbLRtCfMdulYtR20svlzsrH7VfV0YDnSVKhF8/EXn9lEP5tDlblXBj
-OucwIXC/q9TQZI4phd45tPwfibr3k6qPQxwdba2LAQFHR1Vf63Q=
-=XXNn
------END PGP SIGNATURE-----
-
---n35exwrn3ee26t2a--
 
