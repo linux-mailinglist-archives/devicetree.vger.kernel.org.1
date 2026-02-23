@@ -1,298 +1,204 @@
-Return-Path: <devicetree+bounces-267236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267237-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sPb2Jcrym2kI+AMAu9opvQ
-	(envelope-from <devicetree+bounces-267236-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:25:14 +0100
+	id +K7pFFD0m2nk+AMAu9opvQ
+	(envelope-from <devicetree+bounces-267237-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:31:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57E1917219D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:25:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F0D1721DE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 07:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F031130A35C7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:19:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6EC663013716
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B700D346AC4;
-	Mon, 23 Feb 2026 06:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440F4346FA5;
+	Mon, 23 Feb 2026 06:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hKow2aV7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YcZL5Uf/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41CAA345CAB
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 06:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6E2344DA1
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 06:31:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771827581; cv=none; b=bZjcVoSNA32h4mFMGOCeEh+SgTKQHVBnpmBIP3++G/gaQmnLomuOJXeOpB9PW9GnudQJnkBJiC4JphLIVyc+nPr0WuLA4uQlUKPJ17EwCK6LbsNafUP3AwomcoMypDdu3K/sohCpkDewAmOgY3IAAuimaBYFtt/nXSF+D9giduQ=
+	t=1771828292; cv=none; b=q4A7m4rugFBaB563x0tCUyiluyE4JggGN3h9bcNnYhjCWFcvdZHm497n5ecXykxPpdHc3I1bxMjGnei/dDG6oqdrBb2l6YWJmBY4+V/IO5SoHZ1tkQkTgq9Pe5cdAeGjEZnaR9WBwCHhlGPGBaaF49vc5xc2W1mE26jZLWfzoWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771827581; c=relaxed/simple;
-	bh=zd9sEH7/GbHmbptufpYewUPGoANYwNraqMsqvNgTnNU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DgvsTVYIe7luP2ohcKeB4OgW2CE29OR+lZ0igwvu0HZqAu6rpnUzWWWtz+0OHbSqvNFj1AtHzLf3lLJdqSjrfGg7lBXMQZvn3H8KaexJrJmZ9eO8BkxpJCvtNf6sgJdY80hZiXua4FnfeMJbg4Nf2K2CWeboX6EkX/REUINqCKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hKow2aV7; arc=none smtp.client-ip=209.85.214.180
+	s=arc-20240116; t=1771828292; c=relaxed/simple;
+	bh=3JKhQ9beP6hoqU3EcKP3gop2A/k01QbGeVyTyZU4Hps=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DeMJMB35551GlySwz2f23Eko9qQZOgaVwJUIV4tWa4sQe1a+0ZsFoy+8PpslX7ZyCmj7v4YQeFhZ0bI/2oXMSg9zY+4wzVqAwHnR3mPZU4gQCa14JEaDPA6+Q+N+LlYX8I+yItaNZ+h+3DrmiDuY7ce55XN7zpPQd83P0OR6X2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YcZL5Uf/; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2aaf59c4f7cso17523795ad.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 22:19:40 -0800 (PST)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-59e60925251so4026787e87.3
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 22:31:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771827580; x=1772432380; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WsnjGMHARfSY9wrs6OVMjrIiggJWhVMOYFI5ymUBQZQ=;
-        b=hKow2aV7NNf1DTOsZytXfCl0/9L8QcTqdGjLwiHxMfdZUkOgIOHXrC6uiGrDI5NIHB
-         +zo8HmKYx2ZGbRoy24Z1AMV8kKsEai3i5fwZquXzqOUH25sPa8IMtz6ngisRiyuGQVMb
-         i3IcoCFP+obNHxAaNTAR+wrAefh/a70EgO+YmSxy+74CmZZQdE9N4Mfs+Yy60sk1yK0S
-         qQ6nbl4cq2uKyov5ect73I5fw6T0en5bL28iPh8dMqdtsr1l4rSTCnx7hSvNXFoW8JgL
-         jIKxUAxKew00/MibqS3UZdmV0upzQVh4D9ymCCPBVCiboxSRy6gMW2xqXvqju5tq2gnS
-         6B6A==
+        d=gmail.com; s=20230601; t=1771828288; x=1772433088; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KdetahYQfYhDlhuTa9nYkHK4GpTIEKzr2ZQLLZ1gumA=;
+        b=YcZL5Uf/RdWlESKhvLk8DiVdnvltEvqFRteLZ4HvEHDg+vnYBWeD+JSWAVyGpZzI+B
+         H/DxLD3dVadaL1U/YnyumzrSylXgSe9j531mt5W1sVb/6bSwMcwynXhhIL2qkrFBOHYT
+         vH31kcaO913KcrWDv2VYrFKdvqPV1s6LlrfAA3epfA1a8OWX/L9EELxIp/yd3d4XvYDO
+         NfL50o/4quObmKqYepPIONHlrOlpC1xkmJALUb09+WVvDf+4AgleZ2iroe2S44PD4n7Z
+         2TFeIrLljwOk9zy7C/isxk1Bqieth3doVWEnERvcRxNUQQZz0mlQRMqjwLiex4dLhsX1
+         msWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771827580; x=1772432380;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WsnjGMHARfSY9wrs6OVMjrIiggJWhVMOYFI5ymUBQZQ=;
-        b=tiLblRYPFr/JynoEj19Dzt0QZXUtBQ97hAqnXjEupnZ1OMWtFTuhxxwmwUw1jof2gK
-         nO4ChZ67AE8w0x+NeZHFhffG4LkRtHiYI0mvQTm7en9FpDPONqvFt1VGVWncVLYOQgfI
-         lLEYeNfBy5PAnzzcg5rojawjKGY9Ej4yPsNsm31gGtMMLdK+dVidYTyfmIWmZ85gSN2i
-         FktBI69vwhNo2Ag6x6SY2FVReZqsqhD8/gDYhc2H7HR48uWXk28prgIfP19zLKcDu9LU
-         KJ0Vkvzi/Xbms6Nd6pQV6rH18fLIIMrOIWrmz4OdqOw2DHjZq5m2tSksqUKQXYfTxgKc
-         YH2A==
-X-Forwarded-Encrypted: i=1; AJvYcCUFwYM1S90HH8CI+mAClyx7B3AqVn2Qf5CJ9Pz6M+ClyBrTQ0dPx7wJKu+mspvWoiTqdtPTDuEDZ8o7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz952BCJQ2ZnpB67DOhSGfnkTq3Nw5SNUEAAA/XcLOgaC6QpkdQ
-	mI/UEG+jUAhxBCdY80kZDeQ+AdiDNJ7p8YvjcuHfVpw+yGLlSP8lpDAp
-X-Gm-Gg: ATEYQzxLcuRxsi5UvmAH6RfIF41VCw5j594HvvZmKd2kD8D52Td4gQsDAeS6m3ZtaK1
-	4XoW3V6lZyRYJBiyQrEpCmWba/PknoXQdgdmqw8DRrbe4d1tCNR+kY7S3BDmH5D95mZweerEEAA
-	tLaIOfblkVoT5PdZVrsftZvhYV9kW95EW63kt5WtVD3U6LRiWLh2XjsxFaFrVnVky817VpkzIsM
-	8LzTI+0PQZlnYq6hbHuYalbiSgRnKmVXLJRSqGbYiZwxCmvoBUVSA1mtSVodeuv45KVeA6OJGxf
-	icmK59+n4MVH6+y9WVu/2QBoNE0HLao+kzzQfj+iFDfLNNyMyK6LxjzzAWGpTAhaswIVShtBoHl
-	EEuzApcr/YHSGhra6HUfCgR/trbvaFFNRFo9KDVOPEUbQEhyS8iqAsxyey/vtMjsNWmP8sItJjQ
-	jkOLT8i/Y4gWdBQF1RvDJG+SFX9U+qDdRDLuIZ83EoCwP0lcpkV0sh8j0W
-X-Received: by 2002:a17:903:248:b0:2a0:a33f:3049 with SMTP id d9443c01a7336-2ad743fe006mr63299695ad.4.1771827579539;
-        Sun, 22 Feb 2026 22:19:39 -0800 (PST)
-Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c70b726cbf2sm6473599a12.34.2026.02.22.22.19.38
+        d=1e100.net; s=20230601; t=1771828288; x=1772433088;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KdetahYQfYhDlhuTa9nYkHK4GpTIEKzr2ZQLLZ1gumA=;
+        b=K6VEfRqFisLVsnoim2Bf6qav7dn0d31rNvgeEfXXcQqlTPoX/HTyYK3QnUsHEOpY9J
+         nz2r7awJtSen18V2OmpM87hqsw4sR5kQpkBmoz9XDG7IY6LLLxF184ECWM1kx23Hp+zO
+         OTib6fKc5dko/H7bIYBw2/B/dkgqIhO1M8R/PnBGITtf/U+Y89wasakDpuILIheiz2Vt
+         tfUB0KynuOoKACMe8z9waIdYQ3KletUyyoivscKA8uHhrrdIJDzq2KQHv6x9Rdmt3wmg
+         PAfYscylpSrGsiTvTjnlzn5fI71ABZzK9giqpA6CeRYTjNqOchh9zlWoSf/qo9POyRNd
+         32NA==
+X-Gm-Message-State: AOJu0YzcTt+1Yy6+wJW/pzgMXbg1+17rfTfmsfLaN9XAffevdtl4x8xp
+	GeBOGushCiwP8ll9pU/rRVQDy5uuUl983nelo/HWWd+T1sakupLVORsF
+X-Gm-Gg: AZuq6aLmyVBF/eaQNXQaIg8vh7WLeb4QOK6o87k3n6vSBvrIN/h1DyLYeuMNwooMHpz
+	TtsHGG8M7sj86SSslHhJE+F816uibiXbSE0b6AFUI2KG5orM+qpuIzVnD1wbFXpz77s9upOBd8W
+	P0CAus4SIcDvq7vv6M7qMABicI3mANvbufJfaF9oQ3LlBKfw2GYVH5hI9vAF5JRVSeVH7cuEWlP
+	VuGYt/ObORsYUf7r6OsVZDoTqWrJakSXdIu4MfjGJoAWOqJ+QEmbj4wPQtLAdkPw5XqdXuQP60W
+	tc7WghNmpJImp/GG8YL4jRu0GLmlhIdcOHHiOQ/xCN3gvYHcY6zKf6GR1EDi46+Eb2t9VX7DQNz
+	ZRLi6NWanRLONQ0XEZkzUQ4CU6+55/nzrMfscuIBAoXwtazKLa5elUMhwAKd76XYeYjpxCiXuvB
+	YEUm37k+RZ6kq+
+X-Received: by 2002:a05:6512:33d3:b0:59e:53c0:5413 with SMTP id 2adb3069b0e04-5a0ed87d8admr2321278e87.5.1771828288020;
+        Sun, 22 Feb 2026 22:31:28 -0800 (PST)
+Received: from xeon ([188.163.112.76])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a0eeb14596sm1361320e87.26.2026.02.22.22.31.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Feb 2026 22:19:39 -0800 (PST)
-Received: from hqs-appsw-a2o.mp600.macronix.com (unknown [172.17.236.67])
-	by twhmp6px (Postfix) with ESMTPS id 034BA4136078;
-	Mon, 23 Feb 2026 14:19:36 +0800 (CST)
-From: Cheng Ming Lin <linchengming884@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
+        Sun, 22 Feb 2026 22:31:27 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
-	Pablo Martin-Gomez <pmartin-gomez@freebox.fr>,
-	Tianling Shen <cnsztl@gmail.com>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Ion Agorria <ion@agorria.com>,
+	=?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
+Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	alvinzhou@mxic.com.tw,
-	Cheng Ming Lin <chengminglin@mxic.com.tw>
-Subject: [PATCH v6 3/3] mtd: spi-nand: macronix: Enable randomizer support
-Date: Mon, 23 Feb 2026 14:17:06 +0800
-Message-Id: <20260223061706.1027986-4-linchengming884@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260223061706.1027986-1-linchengming884@gmail.com>
-References: <20260223061706.1027986-1-linchengming884@gmail.com>
+	linux-input@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: [PATCH v4 0/7] mfd: Add support for Asus Transformer embedded controller
+Date: Mon, 23 Feb 2026 08:30:52 +0200
+Message-ID: <20260223063059.11322-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,iopsys.eu,freebox.fr,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org,mxic.com.tw];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-267237-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-267236-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mxic.com.tw:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 57E1917219D
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 09F0D1721DE
 X-Rspamd-Action: no action
 
-From: Cheng Ming Lin <chengminglin@mxic.com.tw>
+Add support for embedded controller used in Asus Transformers for
+managing power and input functions.
 
-Implement the 'set_randomizer' callback for Macronix SPI NAND chips.
-The randomizer is enabled by setting bit 1 of the Configuration Register
-(address 0x10).
-
-This patch adds support for the following chips:
-  - MX35LFxG24AD series
-  - MX35UFxG24AD series
-
-When the randomizer is enabled, data is scrambled internally during
-program operations and automatically descrambled during read operations.
-This helps reduce bit errors caused by program disturbance.
-
-Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
 ---
- drivers/mtd/nand/spi/macronix.c | 42 +++++++++++++++++++++++++--------
- 1 file changed, 32 insertions(+), 10 deletions(-)
+Changes in v2:
+- converted sysfs debug exports into debugfs
+- added kernel-doc comments for exposed functions
+- fixed minor typos and inconsistencies
 
-diff --git a/drivers/mtd/nand/spi/macronix.c b/drivers/mtd/nand/spi/macronix.c
-index 67cafa1bb8ef..e086c46090b0 100644
---- a/drivers/mtd/nand/spi/macronix.c
-+++ b/drivers/mtd/nand/spi/macronix.c
-@@ -14,6 +14,8 @@
- #define MACRONIX_ECCSR_BF_LAST_PAGE(eccsr) FIELD_GET(GENMASK(3, 0), eccsr)
- #define MACRONIX_ECCSR_BF_ACCUMULATED_PAGES(eccsr) FIELD_GET(GENMASK(7, 4), eccsr)
- #define MACRONIX_CFG_CONT_READ         BIT(2)
-+#define MACRONIX_CFG_RANDOMIZER_EN     BIT(1)
-+#define MACRONIX_FEATURE_ADDR_RANDOMIZER 0x10
- #define MACRONIX_FEATURE_ADDR_READ_RETRY 0x70
- #define MACRONIX_NUM_READ_RETRY_MODES 5
- 
-@@ -170,6 +172,16 @@ static int macronix_set_read_retry(struct spinand_device *spinand,
- 	return spi_mem_exec_op(spinand->spimem, &op);
- }
- 
-+static int macronix_set_randomizer(struct spinand_device *spinand, bool enable)
-+{
-+	int ret;
-+
-+	ret = spinand_write_reg_op(spinand, MACRONIX_FEATURE_ADDR_RANDOMIZER,
-+				   enable ? MACRONIX_CFG_RANDOMIZER_EN : 0);
-+
-+	return ret;
-+}
-+
- static const struct spinand_info macronix_spinand_table[] = {
- 	SPINAND_INFO("MX35LF1GE4AB",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x12),
-@@ -231,7 +243,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_QE_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35LF2G24AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x24, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 2048, 40, 2, 1, 1),
-@@ -243,7 +256,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_PROG_PLANE_SELECT_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35LF2G24AD-Z4I8",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x64, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 2048, 40, 1, 1, 1),
-@@ -254,7 +268,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_QE_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35LF4G24AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x35, 0x03),
- 		     NAND_MEMORG(1, 4096, 256, 64, 2048, 40, 2, 1, 1),
-@@ -266,7 +281,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_PROG_PLANE_SELECT_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35LF4G24AD-Z4I8",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x75, 0x03),
- 		     NAND_MEMORG(1, 4096, 256, 64, 2048, 40, 1, 1, 1),
-@@ -277,7 +293,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_QE_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX31LF1GE4BC",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x1e),
- 		     NAND_MEMORG(1, 2048, 64, 64, 1024, 20, 1, 1, 1),
-@@ -327,7 +344,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF4G24AD-Z4I8",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0xf5, 0x03),
- 		     NAND_MEMORG(1, 4096, 256, 64, 2048, 40, 1, 1, 1),
-@@ -340,7 +358,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF4GE4AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0xb7, 0x03),
- 		     NAND_MEMORG(1, 4096, 256, 64, 2048, 40, 1, 1, 1),
-@@ -381,7 +400,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF2G24AD-Z4I8",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0xe4, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 2048, 40, 1, 1, 1),
-@@ -394,7 +414,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF2GE4AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0xa6, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 2048, 40, 1, 1, 1),
-@@ -444,7 +465,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF1GE4AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x96, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 1024, 20, 1, 1, 1),
+Changes in v3:
+- dropped DockRAM commits (both schema and driver)
+- integrated DockRAM functionality directly into the controller driver
+- EC schema moved to embedded controllers folder
+- removed all cell descriptions from the schema
+- removed all compatibles from the cell drivers
+- adjusted naming conventions to better align with the ASUS Transformers
+- defined EC variant sets to provide coverage for all known devices
+
+Changes in v4:
+- grouped known programming models of EC chronologically (both schema
+  and driver)
+- call debugfs init only if CONFIG_DEBUG_FS is enabled
+---
+
+Michał Mirosław (6):
+  mfd: Add driver for ASUS Transformer embedded controller
+  input: serio: Add driver for ASUS Transformer dock keyboard and
+    touchpad
+  input: keyboard: Add driver for ASUS Transformer dock multimedia keys
+  leds: Add driver for ASUS Transformer LEDs
+  power: supply: Add driver for ASUS Transformer battery
+  power: supply: Add charger driver for Asus Transformers
+
+Svyatoslav Ryhel (1):
+  dt-bindings: embedded-controller: document ASUS Transformer EC
+
+ .../asus,tf201-ec-pad.yaml                    | 105 +++
+ drivers/input/keyboard/Kconfig                |  10 +
+ drivers/input/keyboard/Makefile               |   1 +
+ .../input/keyboard/asus-transformer-ec-keys.c | 272 +++++++
+ drivers/input/serio/Kconfig                   |  15 +
+ drivers/input/serio/Makefile                  |   1 +
+ drivers/input/serio/asus-transformer-ec-kbc.c | 147 ++++
+ drivers/leds/Kconfig                          |  11 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-asus-transformer-ec.c       |  79 ++
+ drivers/mfd/Kconfig                           |  14 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/asus-transformer-ec.c             | 762 ++++++++++++++++++
+ drivers/power/supply/Kconfig                  |  22 +
+ drivers/power/supply/Makefile                 |   2 +
+ .../supply/asus-transformer-ec-battery.c      | 272 +++++++
+ .../supply/asus-transformer-ec-charger.c      | 193 +++++
+ include/linux/mfd/asus-transformer-ec.h       | 162 ++++
+ 18 files changed, 2070 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/embedded-controller/asus,tf201-ec-pad.yaml
+ create mode 100644 drivers/input/keyboard/asus-transformer-ec-keys.c
+ create mode 100644 drivers/input/serio/asus-transformer-ec-kbc.c
+ create mode 100644 drivers/leds/leds-asus-transformer-ec.c
+ create mode 100644 drivers/mfd/asus-transformer-ec.c
+ create mode 100644 drivers/power/supply/asus-transformer-ec-battery.c
+ create mode 100644 drivers/power/supply/asus-transformer-ec-charger.c
+ create mode 100644 include/linux/mfd/asus-transformer-ec.h
+
 -- 
-2.25.1
+2.51.0
 
 
