@@ -1,178 +1,122 @@
-Return-Path: <devicetree+bounces-267337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267338-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qIzjFCEpnGl1AAQAu9opvQ
-	(envelope-from <devicetree+bounces-267337-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:17:05 +0100
+	id MEDVGU4pnGl1AAQAu9opvQ
+	(envelope-from <devicetree+bounces-267338-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:17:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72512174B31
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:17:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF960174B55
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B9F743032071
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:10:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 810A630439EC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:13:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8479135B12B;
-	Mon, 23 Feb 2026 10:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E16735B125;
+	Mon, 23 Feb 2026 10:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YaZ5atst"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tVoGP29w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D77F356A24
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 10:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A944356A08
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 10:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771841380; cv=none; b=JntLslIQWyuuPQUB2735I0R8LH7+/JNe/+Y7Jbz6EyardH+v+S7+GW+HkyA3/HWIrCR+UcTgRIdbpyVDkhmpvSxdDbqE2iBEnnULEPmHjJUuOaOAx7ksxs2BHbuWfUxsORKyxezq9JDcbg+m4ju5EX1UvPDva/NmU6iF0gBe2A8=
+	t=1771841617; cv=none; b=M1/jBgKUFWQbGXnjjZ4PQb5ud3b9pv2KQkUUS0DE5LQuEb1NuqA2YuFNfrpcmAtMo3GVvPIfPe2VqF/SmQoHuTuB1nUTl2ar9mHiO+cimhQXjjLjOXSGif3ZOVT8Rac93x02LNi0WcaJ7wJK9QlOpI6ioa5IwsrN9UvUQW/LJYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771841380; c=relaxed/simple;
-	bh=Ky3jcIBbGAp358Kb7hZKDppR/DA4Xry1FogPtt3x2sE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FMYnk9OESCm1BzmGj9lXjZCueR9z9M74hJ6lPecwS50gfZfUjmyD1fo49RyRNE2+2bTrJARnYWKUQ/kh0hNIYptVFlLAZNj1jlM54k65nqWGWC4BTHshHOH+QYizKk2WTWf3alN+12gqGt9tf9fUxY7a0xoEBEtcVcxJBz/YO00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YaZ5atst; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-480706554beso50224305e9.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 02:09:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771841378; x=1772446178; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Y3U0wiZ1PaLP9HKufniCA3p+26o0xtDqndh6mBEwyx0=;
-        b=YaZ5atstiuyyX/KZ4RGNr8CAywUBCCig5Wo62ckOMjU3Ar02DldYn69p7x3kgXyS0S
-         gWClepkcbbcupsiVSlusldMOEVWNxCTcN6V7W7LvwAmasazxHXvic6YyJJf6ATOSOzur
-         bh0SWGvIh7B+pKF+1P3iKhXN0GiCgsOfbpgkLKWi4C8P1XO1X0G0IXlIB71KZk8RiDq0
-         IhuGbODNEdkycFjdKIHlKTmNnebWIBRc7Syt9Mw2ntlYUmsi3F4Q7a9ODtnf4M2YiULq
-         IHde9fhM018Mc3nNuiz+UgvI7DMmj22TrusJmUPSppNC+uqz62pqIWuW6Gr120WqPufw
-         tLNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771841378; x=1772446178;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y3U0wiZ1PaLP9HKufniCA3p+26o0xtDqndh6mBEwyx0=;
-        b=iL/WZ3D5/ecNPW93vkBX1ZFPR0BpqKMqncG078A27U9CjJgWOFG39IRrD4FlPPCI8U
-         z2TxLWaDCzXoLIuyu7EBFQ8B6yX7nIPfNqwQtGcLHf5jbaq8+Ml21i889TA1Ibdw2QvP
-         HYltEtg1HU4UTFI2c4NvTC20THV2YNJTbDdaaUt5LPsj03n3qc4JIz/3MWvM+oAq0d+0
-         slZtmw+M8X30jMlxiSxiIMFJqKQvU2BdR/4SQ1sVz5t1qHPf44VA1I/3OujKF4EXIJ2f
-         fsZr+LPhE4x5FX2Vu4OmYEtmKr1haV1hO2jY4jIcZx46pupqyU6QXePf19sEPkU9I9oe
-         QKGw==
-X-Forwarded-Encrypted: i=1; AJvYcCWEpL4xYKyhUAGp4oB666Z1CFcaFSjFxfAJFLTLOXlJPxF5ZPcDq47Juj8kIa/Ptce3yk7l02F8iTeh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzgtLLtGmHEWYsHdhZKkXMe4iBEjChn4hbYIN4Eu19XaggwsgY
-	dD1Y/Is63poZsjnjDypEXlgkSfoBIMgSnDnEBdsXS/9KlWCOBsCXiNTj
-X-Gm-Gg: AZuq6aJ2uzXFFGwsUpCeGSyqH5J8Pp9rSEWtys/zzlOklfCZa9zXbPdFsXeSZKFQpTu
-	rFwZoYh8zrmqrr8OknOxWtyCRCX0wpTPn5E1mdd4lTQf980HlfFFQyRqSm7Bsg0SOXTTuzj3bgY
-	+RnSnEPVSM4qm8DkbI3JerrZwGM5RPd4RpYh6CAsfgLUv6/wus+AHcuCnVBDv84qNxPvlBtt1YA
-	mKCLmXJSJv5aNz4kqKsaLIASpuZx5J60LmSCxkxbXNQWb8cTAhnWxBxKULauzltgrrborc4L9Lj
-	iOM5XIWGzOzhHtOVfkKiLaQBlIhUmDh5YDm9JkvmBqL5KjDBsKOROaRwnDFj1zHrqNY8/z+u5Gi
-	9v+BmKmiCaSvsrYc0oKUimiFXcYZe7I/2WT19QYjJLpT64/uR+MEeoWdj4ynUUVvDgfyafOx7KW
-	wtTLHps+7QP5ZrwGyNyggnvSesfLGmK2Pi5+InFfaQlA==
-X-Received: by 2002:a05:600c:34d3:b0:47a:975b:e3e6 with SMTP id 5b1f17b1804b1-483a962e175mr136244295e9.18.1771841377468;
-        Mon, 23 Feb 2026 02:09:37 -0800 (PST)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483a31bc068sm245815725e9.4.2026.02.23.02.09.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 02:09:37 -0800 (PST)
-Message-ID: <d1a1f8af14fd515409805f1071c051fb51206b1d.camel@gmail.com>
-Subject: Re: [PATCH 2/3] iio: dac: ad5706r: Add support for AD5706R DAC
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Jonathan Cameron	 <jic23@kernel.org>, David
- Lechner <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <ukleinek@kernel.org>, 	linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org
-Date: Mon, 23 Feb 2026 10:10:20 +0000
-In-Reply-To: <aZiSVSvCOS4MvcGt@smile.fi.intel.com>
-References: <20260220-dev_ad5706r-v1-0-7253bbd74889@analog.com>
-	 <20260220-dev_ad5706r-v1-2-7253bbd74889@analog.com>
-	 <4fd329ed6416fd2f8e2a72adfa5a77f73107948b.camel@gmail.com>
-	 <aZg-vtenBU2rKKX_@smile.fi.intel.com>
-	 <a6a2fc3ebb45fa4d7b379d552196d56eb13fa8d3.camel@gmail.com>
-	 <aZiSVSvCOS4MvcGt@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	s=arc-20240116; t=1771841617; c=relaxed/simple;
+	bh=v29ysssbhKmUZeirXXTcQ20HRknXFoWNBCr+bHWeqP8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p87tsGdab5z2agGtSSiTC24iI++C9WIipVY7T3Yl2VnDCGygQJlLJAMoIA2G6z1i7sd6gNOf+hXeDgWfYGMFWqerEVJArp63aoaZhTEcExO80DM6boAFqSHSMEHNUyHc4drD1910FG6tJaRL9NAAAlOfAMVcm82GXUjVz6dBymY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tVoGP29w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07105C2BCAF
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 10:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771841617;
+	bh=v29ysssbhKmUZeirXXTcQ20HRknXFoWNBCr+bHWeqP8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=tVoGP29wM/rCChhlDMzH993+IS6KJfnc8IvHUlYkHXHCo7omswn7H2irOUYw9Cjji
+	 ntSgY0RvH2YHfdjHQ0l7iMq4vZ6qc5CMEsdeKwHu3hWA/z6fxkdPnXoAzVZ63vVVQy
+	 JQU6knoBSIQzpgPwkRykS7IOa/ird3PVbnddEZlse3TBx4/8kfWD8FCRD6LR1Qzx3/
+	 aXgaZsGl1sI5f281i86dPT/ZRiuY6evEoxGi1Rhqdb40NLb2kIuCuuQjm8mkSitf31
+	 8EiRUNEce5F728tRjmdmohVyGa5faaruc4o4R9aYlAB6Ad4O07fQLEbNkNmFhG1v1L
+	 l07UewvDaSSLA==
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-79495b1aaa7so34325507b3.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 02:13:36 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXY0aSKyyb3Jtbs7NSjokRFyvtMBFzRyNDQ2zx2roGpB4o5jDdjl6giQwwTg6EgYgylRpMc1+y1wI0f@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVzFc1AaaKhYD/9jN6qTe+8lkfgA+YRurf/FcnwoLpHIfDu2ks
+	gJfrte+ZiMV2+0TxFnvHANEOivDLtnvhR2yqoQmgBEWUC9heItxE9kZwp9IZHfnhG+3GS3ZDh1h
+	NEWYhj4kQs82ZkUxUgLip1qGmCW/jPyw=
+X-Received: by 2002:a05:690c:c244:b0:795:123:5a21 with SMTP id
+ 00721157ae682-798291a3bdcmr71291517b3.62.1771841616250; Mon, 23 Feb 2026
+ 02:13:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20260209134529.725573-1-mohammad.rafi.shaik@oss.qualcomm.com>
+In-Reply-To: <20260209134529.725573-1-mohammad.rafi.shaik@oss.qualcomm.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Mon, 23 Feb 2026 11:13:24 +0100
+X-Gmail-Original-Message-ID: <CAD++jLm5K8j5i1L9-TiozmMpSVdO932yRLtKSLGrbTN1y6wBQg@mail.gmail.com>
+X-Gm-Features: AaiRm53zHZfihajbGBV8iyuKSOus2OWjSO0GhGue1KGSnQjIgGWsvxNwaqLINoU
+Message-ID: <CAD++jLm5K8j5i1L9-TiozmMpSVdO932yRLtKSLGrbTN1y6wBQg@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: pinctrl: qcom,sm8450-lpass-lpi-pinctrl:
+ Add SA8775P and QCS8300 pinctrl
+To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Srinivas Kandagatla <srini@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267337-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-267338-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 72512174B31
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DF960174B55
 X-Rspamd-Action: no action
 
-On Fri, 2026-02-20 at 18:56 +0200, Andy Shevchenko wrote:
-> On Fri, Feb 20, 2026 at 03:02:37PM +0000, Nuno S=C3=A1 wrote:
-> > On Fri, 2026-02-20 at 13:00 +0200, Andy Shevchenko wrote:
-> > > On Fri, Feb 20, 2026 at 10:48:59AM +0000, Nuno S=C3=A1 wrote:
-> > > > On Fri, 2026-02-20 at 16:02 +0800, Alexis Czezar Torreno wrote:
->=20
-> ...
->=20
-> > > > > +static void ad5706r_debugs_init(struct iio_dev *indio_dev)
-> > > > > +{
-> > > > > +	struct dentry *d =3D iio_get_debugfs_dentry(indio_dev);
-> > > >=20
-> > > > It should have:
-> > > >=20
-> > > > if (!IS_ENABLED(CONFIG_DEBUGFS))
-> > > > 	return
-> > >=20
-> > > But why? The debugfs is a stub when disabled, nobody should do that
-> > > in the cases when the main purpose is not the debugfs code.
-> >=20
-> > Because the compiler can then optimize away all of the above code...
->=20
-> How is it different to the code elimination part that is inside in each o=
-f
-> the below calls?
+On Mon, Feb 9, 2026 at 2:46=E2=80=AFPM Mohammad Rafi Shaik
+<mohammad.rafi.shaik@oss.qualcomm.com> wrote:
 
-Clearly none :). For some reason I thought it would matter. Maybe I was mis=
-taken by
-some old code that had #ifdef guards on the debug code.
+> Document compatible for Qualcomm SA8775P and QCS8300 SoC LPASS TLMM
+> pin controller, fully compatible with previous SM8450 generation
+> (same amount of pins and functions).
+>
+> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 
-Any ways, I might send some patches cleaning some places where I added the =
-above so
-people do not copy it around.
+Patch applied!
 
-- Nuno S=C3=A1
->=20
+Yours,
+Linus Walleij
 
