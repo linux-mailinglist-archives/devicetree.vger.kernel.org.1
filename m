@@ -1,290 +1,156 @@
-Return-Path: <devicetree+bounces-267444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267445-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDBKF4hbnGmzEgQAu9opvQ
-	(envelope-from <devicetree+bounces-267444-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:52:08 +0100
+	id GHc9JhpcnGmkEwQAu9opvQ
+	(envelope-from <devicetree+bounces-267445-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:54:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C65FC1775C1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:52:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 246CC17773B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:54:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3CD03305F53D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:50:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3470D304876C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B315267B92;
-	Mon, 23 Feb 2026 13:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A502580CF;
+	Mon, 23 Feb 2026 13:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VlnyAXTd"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="m93/wLHB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750E625B1C7
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 13:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD64B67A;
+	Mon, 23 Feb 2026 13:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771854601; cv=none; b=Z9+xGv1AgFaPhCaxr3bjmpf1H+8qJTQFCcLV7dMEfjlHWxAbaysm/t41rjtGubg4U/xFTeieL2rbS9eLqBDhoekgoX+cWdxVIvupkr51icaRPRkAcplC1cvndo1t9Io+L661jtKDItD9FwTON/WeeoAIxNg9ANgIaisaBFli0bw=
+	t=1771854850; cv=none; b=HJIdCIt0aOvql15NYuXEZ6z0q7h6QnB5XRWjZ6/C6pyt3x8OxvLF5Mxhxd0IcA8RLjBvJaXZ2iwXzijASHLSsmFVD4hY/L38Za7myyLNz+RqXR0MWbtqHR/J95/10sFnc8RWUtGLk6XQ4stV/QBlXCBgjgXFWvT3qe8+MyvrCeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771854601; c=relaxed/simple;
-	bh=AUhhKwGaM9grtdftiWmb9K3MniiTndfrY7S51xLJzEI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lJrFHhJa/8nAZ2ITJmJhp5yaS0LxUCk5SxJ3Ejx1tD1O0M3d0qTXtQHTfL4guGs7Rw17O+Mv6CfQojcpUDzN0UFxhCamSouVV1u6QQtd1aM0hzFW/1GZiECxPcwii7eWewW5umrCNktRkMADvl3IuLw5Dk4FiU4S8GzbhTED0J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VlnyAXTd; arc=none smtp.client-ip=209.85.219.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-8954a050c19so53870326d6.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:49:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771854598; x=1772459398; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=meO53koivOwOs9Bd8q7AbA+V+PS952tTGxoKR0dH/Dg=;
-        b=VlnyAXTdmgc6Cvw7p8ppNaeebRPezTDUbWPp9+cyGLRGJOrPHvb8P8heBx72JKP8/w
-         qXw0Ulgbg2hynT81iLEmPnOCXJTDvxqLomTHng2OM1DZijrVxHZHcNFFpSDX4L1N1rIF
-         9D2rcoE1UW1Mj1E5fxw6GZSs52ezDIfiFoC7JhG/JkmnEF+LSzWGCq0YleCBMijXzgHZ
-         eutD2xFLAKZ/iHsNvq+XxLI1Ac+qIH2QarwogJ8DQ9IMsiSvkw2b8uZMMjekh/9L7Hag
-         zpuUQ+MUSlOOEkcTu14XmsakBNZt0/MBtiVKvpBEurEvhZengTUB5M9KnV9p7RX+HzIg
-         0JSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771854598; x=1772459398;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=meO53koivOwOs9Bd8q7AbA+V+PS952tTGxoKR0dH/Dg=;
-        b=iURZpmJso/hIz2HmolkT1IUkU192uAGHc0aPpiz5XezW3IloGdapELIoA99EBK7/u8
-         YeCuxj06eI0k9rP9de+d9HAOiI0obDr2R893EDrfz3MbxWyeXXPM3y5SHHnYlzsKStIN
-         faLFsX5EK6OJKJvxoWwt6dIqQEzXKTZynIPBnkR67YtEluwq47imCsh8Ov4wlsdfVowJ
-         OgFD0sDTKi3CQJ+cJT2seG+IkgnzV3e9TuK2Z7ChZAADL3G/3AcQOEgjAAZzrDukSMZf
-         XC9okWBN9FWgQ5wK3RbdxiynQpC08OIZBrf+oxZZaq3LhhPeYjxsECV28elRWLyy90zf
-         87nA==
-X-Gm-Message-State: AOJu0YxwS1f+y/TGC4yisIwOPCdFV02lr7hrmqolkhgUV88q3iWyrBXn
-	fF9RlH1TMZW5M4zfGxaFgV2gL2hzJ4AuIu3+uskS8KNaCHnb+3bqDsxu
-X-Gm-Gg: ATEYQzwjZMfB6endenBTxAq02NtNb2lJtE428ASUaEYcdqNE9ByqDTeXxehilC0/sBJ
-	7UzpgG4Q4S0BnWARwUCyNSec1vZeisCtqzTmczmLqlVm4kpDaW8ZYcRoi8UKQmj8EWRHlB4onG7
-	kdqKw2nvhPz75QhbKMKY8vfjfyIhNnHGuEPqQTAge15ysgtCqCAs/pJOnUbZxykwzpYiz1U1nxt
-	zpdd5ji1cjhR0RBNnPQ2eOEFLBMZOaWa70GiZGhekZOVbCYb10Mjr264Y+BRCuFFoffJ2CYFjXM
-	97GU0pA8lD8PSVw0eUwuKfBG3pr8oREi87smaaJwxC80Hq6gEMvZcQM/tC6qySoFf9IZyZDPvit
-	nxtA05kPj6zXaB0N7PjHcXdE32MmZBusn0zidX2bwm96t+hdT3DZ9VIVdYyC9Di0hN+P5pbq+d0
-	7oeUvpGSeHX3cPZu81HcwwYeHpt2oG3kGR+EA2PrMchp4qaf44BSshTKzPEwRutD354baGb9YpI
-	y6UkLrCKFw=
-X-Received: by 2002:a05:6214:301b:b0:7e9:2697:dc63 with SMTP id 6a1803df08f44-89979f31ce8mr109290576d6.48.1771854598356;
-        Mon, 23 Feb 2026 05:49:58 -0800 (PST)
-Received: from mighty.stonybrook.edu (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-8997e62f453sm67954716d6.36.2026.02.23.05.49.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 05:49:58 -0800 (PST)
-From: Mithil Bavishi <bavishimithil@gmail.com>
-To: aaro.koskinen@iki.fi,
-	airlied@gmail.com,
-	andreas@kemnade.info,
-	conor+dt@kernel.org,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	khilman@baylibre.com,
-	krzk+dt@kernel.org,
-	laurent.pinchart@ideasonboard.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	jesszhan0024@gmail.com,
-	rfoss@kernel.org,
-	robh@kernel.org,
-	rogerq@kernel.org,
-	simona@ffwll.ch,
-	thierry.reding@gmail.com,
-	tony@atomide.com,
-	tzimmermann@suse.de,
-	andrzej.hajda@intel.com,
-	bavishimithil@gmail.com
-Cc: devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: [PATCH v8 8/8] ARM: dts: ti: omap: samsung-espresso10: Add initial support for Galaxy Tab 2 10.1
-Date: Mon, 23 Feb 2026 08:49:40 -0500
-Message-ID: <20260223134941.427-9-bavishimithil@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260223134941.427-1-bavishimithil@gmail.com>
-References: <20260223134941.427-1-bavishimithil@gmail.com>
+	s=arc-20240116; t=1771854850; c=relaxed/simple;
+	bh=OIrW2x18OBe7MtWg9i3mOOyaUsL/tDgUO70shj0Bbso=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fHhDq4+vyDSOCZ2q+tA4/6vQDkAF2yU7Y5YS/GxoygRpeXOqXIPN67cvOxt4u2WkQb2TZnxFJZafKKNHYkTOeLBGoegdHC3LJ1IMi9B/hZeUFYleqim3bxCdmx8dvjPQZ4mwtvzreF1p2OEB2kteqbCMgvlObdfsA3kro5xu8ZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=m93/wLHB; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771854847;
+	bh=OIrW2x18OBe7MtWg9i3mOOyaUsL/tDgUO70shj0Bbso=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=m93/wLHBj5MojNg8x/3XhD7n67KrTfMf1tReVhaLtzoyPsAfLd3DUg3IFTsTKNLDM
+	 FvvMR4KQM5z3f5HzguS8dhxp6Mp56AQ1GgQYisThGW4yn3jVk0wHSOcuiPGymEOG7r
+	 /o+NnKlgY7xGBlX9dvNqg56q6sDH1Sxv8Tr1HhHO+piyXdYJVRz39Cf9HePb/lTdei
+	 4HSn9lyT4cUBG+YEjGQHSb92jmqAkyc18+SfSuHs585OOv+un1CLjsYMyGphVD1vSn
+	 oiFBhp/mMf/npegCu0Eu9VddNTyh7ekPKcWgq7PE8OxDNCcnqVs9z+2q0zt7BVehdf
+	 S8hI9PPpSwoxA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8C91D17E04D4;
+	Mon, 23 Feb 2026 14:54:06 +0100 (CET)
+Message-ID: <864fe00a-1b4c-4ba0-8f42-c1b04f2999ad@collabora.com>
+Date: Mon, 23 Feb 2026 14:54:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 05/18] clk: mediatek: Add MT8189 vlpckgen clock support
+To: David Lechner <dlechner@baylibre.com>,
+ "irving.ch.lin" <irving-ch.lin@mediatek.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Bartosz Golaszewski <brgl@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>,
+ Miles Chen <miles.chen@mediatek.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ Qiqi Wang <qiqi.wang@mediatek.com>, sirius.wang@mediatek.com,
+ vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
+References: <20260202062840.342707-1-irving-ch.lin@mediatek.com>
+ <20260202062840.342707-6-irving-ch.lin@mediatek.com>
+ <e0b39f90-f4a4-46c5-90ff-54a261c075b4@baylibre.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <e0b39f90-f4a4-46c5-90ff-54a261c075b4@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[27];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[baylibre.com,mediatek.com,kernel.org,gmail.com,chromium.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	URIBL_MULTI_FAIL(0.00)[0.0.0.6:server fail,tor.lore.kernel.org:server fail,0.0.0.1:server fail,0.0.0.20:server fail,0.0.0.11:server fail];
-	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
-	TAGGED_FROM(0.00)[bounces-267444-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[bavishimithil@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267445-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.20:email];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.6:email,0.0.0.1:email,0.0.0.11:email]
-X-Rspamd-Queue-Id: C65FC1775C1
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mediatek.com:email]
+X-Rspamd-Queue-Id: 246CC17773B
 X-Rspamd-Action: no action
 
-Create a device tree for the 10 inch variants (P5100, P5110, P5113)
+Il 19/02/26 22:10, David Lechner ha scritto:
+> On 2/2/26 12:28 AM, irving.ch.lin wrote:
+>> From: Irving-CH Lin <irving-ch.lin@mediatek.com>
+>>
+>> Add support for the MT8189 vlpckgen clock controller, which provides
+>> muxes and dividers for clock selection in vlp domain for other IP blocks.
+>>
+>> Signed-off-by: Irving-CH Lin <irving-ch.lin@mediatek.com>
+>> ---
+> 
+> ...
+> 
+>> +static const struct mtk_gate vlp_ck_clks[] = {
+>> +	GATE_VLP_CK(CLK_VLP_CK_VADSYS_VLP_26M_EN, "vlp_vadsys_vlp_26m", "clk26m", 1),
+> 
+> In mediatek,mt8189-clk.h, we have:
+> 
+> #define CLK_VLP_CK_VADSYS_VLP_26M_EN			24
+> #define CLK_VLP_CK_SEJ_13M_EN				25
+> #define CLK_VLP_CK_SEJ_26M_EN				26
+> #define CLK_VLP_CK_FMIPI_CSI_UP26M_CK_EN		27
+> 
+> Are we missing the middle two clocks here?
+> 
+> Or should the be omitted from the header file?
+> 
 
-Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
----
- arch/arm/boot/dts/ti/omap/Makefile            |   1 +
- .../dts/ti/omap/omap4-samsung-espresso10.dts  | 104 ++++++++++++++++++
- 2 files changed, 105 insertions(+)
- create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
+The arrays must match bindings, and since the two clocks are missing, this means
+that this is completely broken.
 
-diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
-index d24f13efd..140ac39b3 100644
---- a/arch/arm/boot/dts/ti/omap/Makefile
-+++ b/arch/arm/boot/dts/ti/omap/Makefile
-@@ -81,6 +81,7 @@ dtb-$(CONFIG_ARCH_OMAP4) += \
- 	omap4-var-dvk-om44.dtb \
- 	omap4-var-stk-om44.dtb \
- 	omap4-samsung-espresso7.dtb \
-+	omap4-samsung-espresso10.dtb \
- 	omap4-xyboard-mz609.dtb \
- 	omap4-xyboard-mz617.dtb
- dtb-$(CONFIG_SOC_AM33XX) += \
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
-new file mode 100644
-index 000000000..5c00d67ac
---- /dev/null
-+++ b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
-@@ -0,0 +1,104 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/dts-v1/;
-+
-+#include "omap4-samsung-espresso-common.dtsi"
-+#include <dt-bindings/power/summit,smb347-charger.h>
-+/ {
-+	model = "Samsung Galaxy Tab 2 (10 inch)";
-+	compatible = "samsung,espresso10", "ti,omap4430", "ti,omap4";
-+
-+	i2c-gpio5 {
-+		smb347: charger@6 {
-+			compatible = "summit,smb347";
-+			reg = <0x6>; // 0x0C >> 1
-+			interrupt-parent = <&gpio2>;
-+			interrupts = <0 IRQ_TYPE_EDGE_BOTH>;
-+
-+			summit,enable-usb-charging;
-+			summit,enable-charge-control = <SMB3XX_CHG_ENABLE_SW>;
-+			summit,chip-temperature-threshold-celsius = <120>;
-+			summit,usb-current-limit-microamp = <1800000>;
-+		};
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&backlight_pins>;
-+		pwms = <&pwm10 0 1600 0>;
-+		power-supply = <&reg_lcd>;
-+		enable-gpios = <&gpio3 31 GPIO_ACTIVE_HIGH>;
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <7>;
-+	};
-+
-+	panel {
-+		compatible = "samsung,ltn101al03", "panel-lvds";
-+		power-supply = <&reg_lcd>;
-+		width-mm = <223>;
-+		height-mm = <125>;
-+		data-mapping = "vesa-24";
-+		backlight = <&backlight>;
-+
-+		panel-timing {
-+			clock-frequency = <69818000>;
-+
-+			hback-porch = <64>;
-+			hactive = <1280>;
-+			hfront-porch = <16>;
-+			hsync-len = <48>;
-+
-+			vback-porch = <11>;
-+			vactive = <800>;
-+			vfront-porch = <16>;
-+			vsync-len = <3>;
-+
-+			hsync-active = <0>;
-+			vsync-active = <0>;
-+			de-active = <1>;
-+			pixelclk-active = <1>;
-+		};
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&bridge_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	touchscreen@20 {
-+		compatible = "syna,rmi4-i2c";
-+		reg = <0x20>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touch_pins>;
-+
-+		//avdd-supply = <&reg_touch_ldo_en>;
-+		vdd-supply = <&ldo6>;
-+
-+		syna,reset-delay-ms = <200>;
-+		syna,startup-delay-ms = <200>;
-+
-+		touchscreen-size-x = <1280>;
-+		touchscreen-size-y = <800>;
-+
-+		rmi4-f01@1 {
-+			reg = <0x01>;
-+			syna,nosleep-mode = <1>;
-+		};
-+
-+		rmi4-f11@11 {
-+			reg = <0x11>;
-+			touchscreen-size-x = <1280>;
-+			touchscreen-size-y = <800>;
-+			syna,sensor-type = <1>;
-+		};
-+	};
-+};
--- 
-2.43.0
+Regards,
+Angelo
+
+>> +	GATE_VLP_CK_FLAGS(CLK_VLP_CK_FMIPI_CSI_UP26M_CK_EN, "VLP_fmipi_csi_up26m",
+>> +			  "osc_d10", 11, CLK_IS_CRITICAL),
+>> +};
+>> +
 
 
