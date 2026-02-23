@@ -1,125 +1,160 @@
-Return-Path: <devicetree+bounces-267573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267574-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8GuFBfSSnGnRJQQAu9opvQ
-	(envelope-from <devicetree+bounces-267573-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:48:36 +0100
+	id MOVeCYWTnGnRJQQAu9opvQ
+	(envelope-from <devicetree+bounces-267574-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:51:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B93A17B0D5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:48:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F20D17B162
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:51:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 65F62300C039
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:45:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BCFA30A5E98
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E8F3382F2;
-	Mon, 23 Feb 2026 17:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A017A33859B;
+	Mon, 23 Feb 2026 17:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9x7G4jR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f+QACFtI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFBE337BBF;
-	Mon, 23 Feb 2026 17:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BAC93382E4;
+	Mon, 23 Feb 2026 17:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771868753; cv=none; b=DnbDwHBnUxnrd3/1F6MY6sqU3koneTnFGzQpeCKxSUpwqbMOdAwSpnbSKrMDzB4gS9tJoMbFsRsYbUZ3VARGbFdDYz6KwnD4kbchXTZfBQ5JeunWJTHsAoWW4/Zq/gUir8FCfgXmAcKvn02LHgemiwr/8y+O8I5cz3Zbo1naulA=
+	t=1771868817; cv=none; b=f52GtNS6mSqDeTGE0dljoVHInOfp5sWd5ua34wkph7PtTa8BmxzNwVtAtF3aYnqu6WnPtrmSRB4yRA7+G/6LAourR0VN9E4D+pZGw7DadF+pirGnjTmvrgt1m1+BtfQ9BQjzM9e8Xu/x7l1EyKHskeNr4CRRtTXfMDyl86PkB2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771868753; c=relaxed/simple;
-	bh=t1u9ZUKsO/VeLrH9SoqNc6k8gKeSI/ecTL9SL8oMUPs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i6vK6h4ttfAj3zShBzm1HHOEqb0DVewuwEg4304L0HA8uxVcPQep9S3tPbPcaogo3sQ9RdFJhe6nx+YF3Ku2gRF2tqhG0sXmWFJnorCJHuu0uMp96zsEmJxFUXz34p1ke93BDoB6h3mF2VICt5YN5GaMMA4FLXqggkzX4WT3IKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9x7G4jR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19C81C116C6;
-	Mon, 23 Feb 2026 17:45:53 +0000 (UTC)
+	s=arc-20240116; t=1771868817; c=relaxed/simple;
+	bh=g/aaxOcjyVRFIFVQ5lDD6E51a6OF3UQfhs033IrpbEU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IUIFdmdb6qJ9JgtAliveT0swQbVuhDCiP2NNWgy7UhVPOY2HxyqvfeFLtd7zlVKlRQ3VMTMLpStKYxUKePMSXsvK0xxDzV+nLU/+68os7EjyCar4aYlBbVSQkfAviiHoLzRLyqLPUapYB8lZXTY6Ar6eEtlhCXY/c48kXiYOOX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f+QACFtI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7081C116C6;
+	Mon, 23 Feb 2026 17:46:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771868753;
-	bh=t1u9ZUKsO/VeLrH9SoqNc6k8gKeSI/ecTL9SL8oMUPs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E9x7G4jRuexobYHdSyWkem67PHlAPwBTpSI5UtTM/BZ4fNKdkdEOldTIHECVHqjv9
-	 YXYlwcNcc6ovFi/TzEcTprSls6K4ckP0MVAjtaS7lxc0+Wpcktlx2WV2e/NSWthqzF
-	 3wmOsEPNH0cNp3/Bdrn/tKPtt7PSOd1FCXjIOI45nnZkC/ILoW+hTL6vgeVqy6pgvv
-	 516Hw+wxmxVdK8gRBfN15/tzr5KeUG8BSOaUSCqYJvnNuGvQ1e7TTLgDjADyZTViUV
-	 JGus0M8EDaDQ2f5YEYR2QUE5ALP1dguJfmkHknAe7GgEOH4BLTik+DyEYksD+A7iRT
-	 gV/HiASnKPSOQ==
-Date: Mon, 23 Feb 2026 11:45:52 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	Zhang Rui <rui.zhang@intel.com>, linux-kernel@vger.kernel.org,
-	Amit Kucheria <amitk@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: Add Eliza SoC TSENS
-Message-ID: <177186875170.4166014.1658011099228218847.robh@kernel.org>
-References: <20260212161949.120898-2-krzysztof.kozlowski@oss.qualcomm.com>
+	s=k20201202; t=1771868817;
+	bh=g/aaxOcjyVRFIFVQ5lDD6E51a6OF3UQfhs033IrpbEU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=f+QACFtIqO6ZPR5kL7D/teTJlplZOCLt5XDN/dObSZSv7HMLF9VQ3IL1GbJvseGRN
+	 Rayw8Ju5aCg+oWVWd9IciGGIHEgr2HLySEI4Oo3an49YLeQ46sDOoPsE6jwZwUivgE
+	 XV2PTruCNXA8LJGygKyRtHwMjKC18CWMSLCYNexg3cD6ff3X6FAKXk5yw+j/xyiE/r
+	 TPA9fE4is5/1DrIqgOsu5VAh29MLr9E8znbb8NIGqmAm8f6nRxadSWvv7+6ZwK/6c1
+	 Z+6zhgwgep7Rwejw88fjcV0o+3o0VMiDDMAYrhYCBNxn97BKJQWES/xbFEL1VJlhJa
+	 dry9I2W1LfLyw==
+Message-ID: <2c99e704-e4ef-484a-85c7-d9698931956d@kernel.org>
+Date: Mon, 23 Feb 2026 18:46:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260212161949.120898-2-krzysztof.kozlowski@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: add Aosong AHT10/AHT20/DHT20
+ to trivial devices
+To: Hao Yu <haoyufine@gmail.com>
+Cc: akhilesh@ee.iitb.ac.in, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ jcdra1@gmail.com, krzk+dt@kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux@roeck-us.net, robh@kernel.org
+References: <20260222105831.7360-1-haoyufine@gmail.com>
+ <20260223173853.30617-2-haoyufine@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260223173853.30617-2-haoyufine@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,intel.com,arm.com,linaro.org];
-	TAGGED_FROM(0.00)[bounces-267573-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267574-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[ee.iitb.ac.in,kernel.org,vger.kernel.org,gmail.com,roeck-us.net];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 6B93A17B0D5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7F20D17B162
 X-Rspamd-Action: no action
 
-
-On Thu, 12 Feb 2026 17:19:50 +0100, Krzysztof Kozlowski wrote:
-> Document the compatible for Qualcomm Eliza SoC TSENS module, fully
-> compatible with TSENS v2 generation (e.g. SM8650).
+On 23/02/2026 18:38, Hao Yu wrote:
+> Add Aosong AHT10, AHT20 and DHT20 temperature and humidity sensors
+> to the trivial-devices documentation. These sensors use a standard
+> I2C interface and do not require complex binding definitions.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
+> Signed-off-by: Hao Yu <haoyufine@gmail.com>
 > ---
-> 
-> Eliza SoC is being upstreamed and the compatible will be used in DTSI
-> posted later/soon.
-> 
-> Some existing work:
-> https://lore.kernel.org/r/20260119095907.172080-4-krzysztof.kozlowski@oss.qualcomm.com/
-> https://lore.kernel.org/linux-arm-msm/?q=eliza
-> ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
+Best regards,
+Krzysztof
 
