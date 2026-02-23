@@ -1,213 +1,178 @@
-Return-Path: <devicetree+bounces-267216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267217-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QARCFVjem2mK8gMAu9opvQ
-	(envelope-from <devicetree+bounces-267216-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:58:00 +0100
+	id mBjWANPgm2kp8wMAu9opvQ
+	(envelope-from <devicetree+bounces-267217-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:08:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4DB7171D33
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:57:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DAB0171DCE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:08:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4A41930221D4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 04:57:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A07E301CCEC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689A6344056;
-	Mon, 23 Feb 2026 04:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB41D3446D3;
+	Mon, 23 Feb 2026 05:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SKCKqHKN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bWcpIYdX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E2C21ABC9
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 04:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90176344031
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771822677; cv=none; b=bd+WxJNpGUDl+E1yqJkV+0XVvjFEyPqhki2/TyMxt4CeC/Upj850aaQttTxryxz3tPKnkd1RZWDlJm0k19qHpP4CosCysATVVBXxsfN15cKtf+s0DaxvY8cdyzxQsiEIwMIDZtExjTl8pzb9sOJZM1r1yOpRZjkPjMSBCnYXkZI=
+	t=1771823307; cv=none; b=fdq6B4xCUjY2gBcMoxAga+yJaSRCRtxFrpDKsBBn4hYeM3FmE7i6xOIVpG54QDIn9u+B+59RpPqVJJleO6z6uWJm2KLL5XNHGZC56UCAbhJyqhco1Hdmt9eHlANqrIMszjICbhRGnaY3VF4Tu9ir6hVPNC9Pqkjx9XYp0FRC7Cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771822677; c=relaxed/simple;
-	bh=1+fj/osOFOTUhi6//cNsWxgUvEAAcYmf9baAm1ts5cY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g+bimBoSU4rsZgNdN9YhriFkK47ST+1RjHbHacixNHcBqZkfuROyJTnZgm1OSjA8wHodaUBqpPEOPnBF/H5+1Uz30OMdIBBBos8nNlERgfBP8CqooJnMLCkwvne1rblQzC2CtEo+GJiuX/61pkLK4hCB9DBLyo8ln+BkksTC7TM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SKCKqHKN; arc=none smtp.client-ip=74.125.82.41
+	s=arc-20240116; t=1771823307; c=relaxed/simple;
+	bh=gK5UcnP7+ryexzD62DSrxNF+8euRw6xkI4U8en+SiXo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=jUhNaWEp+FOp8SaZ23G3RlKfgMs0XyhYUga/nFQj+hmOG8taItguPbI46gYjR0qNnyMND217SVF8qrie901MUfFbiwT8O8vvOjF5A+OVzBAfHGkbRq/R7IfT9NjruthRTXHq0SAZJtJwgQ33cZfCHy4ZC92+EiDQ5E2dfLTIgPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bWcpIYdX; arc=none smtp.client-ip=209.85.210.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-12713e56abdso2583534c88.1
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 20:57:55 -0800 (PST)
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-8220bd582ddso1665296b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 21:08:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771822675; x=1772427475; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZoD6tE+yirYO2wDnJyh3VhePC5QLfqyFQbq0eMsMM6o=;
-        b=SKCKqHKNcvrisaNOx+xrUeJZW3r4vvf+FJEl/sWKdeIWhyGxvzHy8BJW8UL1qeeF0P
-         XrQK2POy3PeNqnEXJTCBduCWG8nKuSauqBu4uCKFUVjvn3zOhwkLCiG4EnNpmGH6EhE9
-         5fOh8uGhU/iGiedONOPvgEN3pmgX5mLRP2WXe22W2Qjot65JGLRGWshf6okRQhyPFsCo
-         TLrDTloQXH3Pk7wWEJs/4IhDy9+4iyv0JrONaTwMgxguIL6JgbQGJO4tnam4B90qbCns
-         deoC5Zud2h4Z/MhIIjkDKdEoz0Djbda36SOcNbPCJi6W/N7qQ7sTds3tdkq0FvcdikrL
-         rZmg==
+        d=gmail.com; s=20230601; t=1771823306; x=1772428106; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2tSn1M4K/T38mI3fXvMLaaAuFU4OXK5FwHXc/BnLf4A=;
+        b=bWcpIYdXEftWXOvOFRucv5SbdJgrkb4YLNrnQVzYud+Al3jaB6qUX+QRCUKXjqsWRP
+         ylq2c3F8CCWoH54TwaKisZJopUUd+W9E2EhSHb8G8ye/jQcJJEoPodfuZNIno0EIFTqv
+         vuXnqGJD5nEh3oTFAGTKUHMUVceEW/DfcXB9WHKkphnsAK8Y5udBDBsZv2E3ggxryZYk
+         TsI+SYBzmruG0nSWBfrbfn6SMCBoeYLJc9Fk6lZSfGbXcn2e8r7ftVlOusfat4C73pVy
+         Hfv7gEItzye1iikRG3UlFjpUt2ifwQHdU6/DIy3EZ/hWPM+rln1+VsLFM2B287g1+44z
+         Oycw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771822675; x=1772427475;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZoD6tE+yirYO2wDnJyh3VhePC5QLfqyFQbq0eMsMM6o=;
-        b=voRhttQNcED+mVrFySloG3VpXeQSnNkqSIXUDmCaiZvKC1EqkJr/L9sE7jBFRdLYe6
-         9bSNgwhIyq2O7VsNmGOUWjoOIO1b7TWm1fBSqymnWZkej9terKpnHFOlFSlVNz/q4s9a
-         MV4J4x/Py1pJkS9cd6NziKAYcdSY7ebtIZjxfIS2Tpxeh86UV3mZw7acDEkPx5L9VLmV
-         TmPtJN4+TpK1OtyDC7shPoi0/+4zT/FeY5pcBQtY9EOk4oZBjml1JNuey6Xlb2vUbXOE
-         CUtTahaESsK9n1B+++kQMO80naxL6FRgCi7pFqI6xufI5adsikh+g+BXnw/qi2bmePB/
-         TSGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUMHTo/fjdM+WUZC24vtqXb4T59i00XyuQOaTVFCB5rCTYryBdKdo3aWZttj/15mb2Dd6qZoN/ZrtM7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFOtnBSn2Ad+l2KkujcNTzLaXAnm22I2w9KTehA4OH8aws3nLy
-	3AG4Zd9jIHS1297q2htqB2qB08FYB2ViUeetitfs4PUaYyl7f46SyflQ
-X-Gm-Gg: AZuq6aKJ2LGV4QS7pl6OQFHZB8VG268XWCmxvQm+qO5W7Qi5GuTSpreyyoS2hqDGsbT
-	KOKnyvhohBjNVkYA/+gQMEoskQp8cJIjTlh5LDZWiToMyVl0NHUw8E9SemadzdP7o4a+eYHl32U
-	Ku+lBLos7f8tq4GDLgoToAc4sUFLO7Ho17P7A+yVolMg8x9bScbrr5qQIKSmLYt1eiFtZR1o0J8
-	Ze6vSVHeE8IkCLOL6jNoEOq3UFKTaRp4jSwONp0Oqyyc3RcTH3sTjE9/fVl8jG+n4+uAcXoJiNR
-	SjNxCSa8Fw7l24Cm3EQ+3MgB/e8GRrEWFBkIPikTFLMusl7k1KvgKXLrfN3bSU+VQyh+Ok0N+kP
-	aa29QUtN8/J+ywx3oORRlwr9y4Dcm6lAbahBlWPfbDJBHVIW0VdkQIikwnvE6nG9k11voIcq8UY
-	QsmSizYO1Z04Bnr1r7pQJmzPjSbo00jtUel/SjpKIgugD+miyf+32QQfTHZdD1VKg=
-X-Received: by 2002:a05:7022:48c:b0:11b:f271:835a with SMTP id a92af1059eb24-1275fa41703mr6770004c88.3.1771822675098;
-        Sun, 22 Feb 2026 20:57:55 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:c6c:6cca:170e:c77b])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1276af2ea06sm8045507c88.7.2026.02.22.20.57.53
+        d=1e100.net; s=20230601; t=1771823306; x=1772428106;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2tSn1M4K/T38mI3fXvMLaaAuFU4OXK5FwHXc/BnLf4A=;
+        b=L1QWhol/bt1VsQE6YQwmVq02SreAMzJGFLQ5Wfo9xKADBWa4ZfUHj7pTNuUjYNldxm
+         tMuue4HVmvVYHAgepumvCDh4xmCt2x5FRxxSu1VIcGEnBU3gfpyTh72I58ROfuf21weW
+         iUhYl3dSq/phZAehynqP8X2qziwiCFLbFIaPfU6vTIfmrn8qWDujyaxWcvORD+V8eqGi
+         Oqk2llTH3kZVMwiGFkD3J9bYUPL5KfpAkimqckUqu7rkXpD8wtVzFZKjOY0KooV9qHrm
+         nXi3XUCgTywHAa8ewg4Wi1rIbjkzLdM1qRtLLAefjpgtIPI95lqN3xouJSY7SbTPXpQx
+         n36g==
+X-Forwarded-Encrypted: i=1; AJvYcCVzr5tmeIlzPeqhBUFWkE5xmUNK4VS3bk+jD09W5N04AZoBH/1eIkgsRlU4jmUPlVfl267f5vVGqnue@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbHJaJc9iIA0Hcg+wUHY6Jv6zA8svp3eDuwhwjlsHPFWcmzAMz
+	wBPqB4pmob0ObGBB3cFmvU/oMs5DTCc2y79kzVeVrwrDsmRpFC7ML+AP
+X-Gm-Gg: AZuq6aJt94xO0b6I761vheRpMKWJbOKAxeqZqyIXZ33V3/BErY2udALM5uthxAiBOG2
+	NEavtuTrLqgBmkHcXo3tq2z1R9/BsvpN0YzI5S2OuBis4DCf83CGSp1svLa1cyqJk+7r7fdK7j0
+	+3GRJ6NwDEw247uLaE3w4b3+mGgnHlDtxEK6tQ3lyl6wt4+Hm1CKAuDX6nl9yRFJl6omq21mKlz
+	UBUpCbX1MPnCzP41tIIXN6/+GrNRSNpgBRWxqDQx0RNU/eIRQd/oJ29V1PJ3LNTm/zLcvwsgyqH
+	EEfUbxdc9gTY+ZzUT7Z9MgYqzj1FLTApIbAmDDB/LKOcTCVcfIM3tAmMGYZHzc82yM2ApPcwSVd
+	ExdU64IOvvSR3iwjlbhvIW7MO37lwH3iiLxrLQeSGQLMJG3bt7KhbKJE7EEZdj+vP5+510pTCdg
+	TS6DP71JjloGkB9cRnuLt2tiL5WEaDv2Shfk9wg+6gy655ywzDoZSgEk8U
+X-Received: by 2002:a05:6a00:4188:b0:781:2291:1045 with SMTP id d2e1a72fcca58-826da8c0d56mr6066727b3a.8.1771823305779;
+        Sun, 22 Feb 2026 21:08:25 -0800 (PST)
+Received: from localhost.localdomain ([2401:4900:93aa:64a5:666f:7ac0:de3b:1659])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-826dd8bf9besm7502022b3a.55.2026.02.22.21.08.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Feb 2026 20:57:54 -0800 (PST)
-Date: Sun, 22 Feb 2026 20:57:51 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Marc Dietrich <marvin24@gmx.de>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
-	Arnd Bergmann <arnd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: tegra: paz00: configure WiFi rfkill switch through
- device tree
-Message-ID: <aZvdDIYlCjg8sVGT@google.com>
-References: <aY_BpRQmLdqOOW2K@google.com>
- <82f24afb-1fd2-bfc9-2215-4526aff372ba@gmx.de>
- <07c024a6-d2f9-5805-4ae7-cbc89cda53bf@gmx.de>
+        Sun, 22 Feb 2026 21:08:25 -0800 (PST)
+From: ASHISH YADAV <ashishyadav78@gmail.com>
+X-Google-Original-From: ASHISH YADAV <Ashish.Yadav@infineon.com>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ashish Yadav <ashish.yadav@infineon.com>
+Subject: [PATCH v3 0/3] Add support for Infineon Digital Multi-phase Controllers XDPE1A2G5B/7B
+Date: Mon, 23 Feb 2026 10:38:01 +0530
+Message-Id: <20260223050804.4287-1-Ashish.Yadav@infineon.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <07c024a6-d2f9-5805-4ae7-cbc89cda53bf@gmx.de>
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-267216-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmx.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267217-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B4DB7171D33
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infineon.com:mid,infineon.com:email]
+X-Rspamd-Queue-Id: 9DAB0171DCE
 X-Rspamd-Action: no action
 
-Hi Marc,
+From: Ashish Yadav <ashish.yadav@infineon.com>
 
-On Sat, Feb 21, 2026 at 03:24:35PM +0100, Marc Dietrich wrote:
-> Hi Dmitry,
-> 
-> On Sat, 14 Feb 2026, Marc Dietrich wrote:
-> 
-> > Hi Dmitry,
-> > 
-> > On Fri, 13 Feb 2026, Dmitry Torokhov wrote:
-> > 
-> > > As of d64c732dfc9e ("net: rfkill: gpio: add DT support") rfkill-gpio
-> > > device can be instantiated via device tree.
-> > > 
-> > > Add the declaration there and drop board-paz00.c file and relevant
-> > > Makefile fragments.
-> > > 
-> > > Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> > > ---
-> > > 
-> > > This is not tested on real hardware, compile tested only...
-> > > 
-> > > arch/arm/boot/dts/nvidia/tegra20-paz00.dts |  8 ++++
-> > > arch/arm/mach-tegra/Makefile               |  2 -
-> > > arch/arm/mach-tegra/board-paz00.c          | 56 ----------------------
-> > > arch/arm/mach-tegra/board.h                |  2 -
-> > > arch/arm/mach-tegra/tegra.c                |  4 --
-> > > 5 files changed, 8 insertions(+), 64 deletions(-)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
-> > > b/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
-> > > index 1408e1e00759..d1093ad569e6 100644
-> > > --- a/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
-> > > +++ b/arch/arm/boot/dts/nvidia/tegra20-paz00.dts
-> > > @@ -706,6 +706,14 @@ vdd_pnl_reg: regulator-3v0 {
-> > > 		enable-active-high;
-> > > 	};
-> > > 
-> > > +	rfkill {
-> > > +		compatible = "rfkill-gpio";
-> > > +		label = "wifi_rfkill";
-> > > +		radio-type = "wlan";
-> > > +		reset-gpios = <&gpio TEGRA_GPIO(D, 1) GPIO_ACTIVE_HIGH>;
-> > 
-> > I guess this can be removed, as it should trigger the LED, which is
-> > already included elsewhere ....
-> > 
-> > > +		shutdown-gpios = <&gpio TEGRA_GPIO(K, 5) GPIO_ACTIVE_HIGH>;
-> > > +	};
-> > > +
-> > > 	sound {
-> > > 		compatible = "nvidia,tegra-audio-alc5632-paz00",
-> > > 			"nvidia,tegra-audio-alc5632";
-> > 
-> > I'll give it a try and report back.
-> 
-> rfkill (and LED) works as expected. With the reset-gpio line mentioned above
-> removed, you can add my Tested-By.
+Hi ,
 
-Thank you Marc.
+These patches add support for Infineon Digital Multi-phase Controllers 
+XDPE1A2G5B and XDPE1A2G7B.
+Both controller supports Linear and VID Data format for VOUT using 
+VOUT_MODE command.
+The configuring both loops/pages of the device independently is not 
+supported for VOUT_MODE.
 
-I am still a bit confused about the reset gpio. As far as I understand
-looking through old commits reset gpio (PD1) is distinct from the LED
-gpio (PD0) that is currently being controlled by "gpio-leds".
+In case of vid mode, NVIDIA PWM VID vrm_version is supported:
+Vout = 5mV * (VID-1) + 195mV
 
-I guess the rfkill driver needs at least one of "reset" or "shutdown"
-gpios, and that is why it continues to work with only shutdown, but I am
-trying to understand if PD1 was never connected to the WiFi chip reset
-line and instead is used for something else, or if it is indeed a reset
-line...
+With Best Regards
+   Ashish Yadav
+---
+Changes in v3:
+- Link to v2:
+https://lore.kernel.org/all/20260219105630.11929-1-Ashish.Yadav@infineon.com/
+- Address review comment for [PATCH v2 3/3] about return value of
+  VOUT_MODE (vout_mode != 0xff).
 
-Was the patch not working with reset-gpios present? I am trying to
-gather data to craft a proper commit message.
+Changes in v2:
+- Link to v1: 
+   https://lore.kernel.org/all/20260202080355.53061-1-Ashish.Yadav@infineon.com/
+- Address review comments for driver documentation, pages with different
+  VOUT_MODE, Indentation.  
+- Created separate patch for PMBus core changes.
+---
 
-Thanks.
+Ashish Yadav (3):
+  dt-bindings: trivial-devices: Add support for XDPE1A2G5B/7B
+  hwmon: (pmbus/core) Add support for NVIDIA nvidia195mv mode
+  hwmon:(pmbus/xdpe1a2g7b) Add support for xdpe1a2g5b/7b controllers
+
+ .../devicetree/bindings/trivial-devices.yaml  |   3 +
+ drivers/hwmon/pmbus/Kconfig                   |   9 ++
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/pmbus.h                   |   2 +-
+ drivers/hwmon/pmbus/pmbus_core.c              |   4 +
+ drivers/hwmon/pmbus/xdpe1a2g7b.c              | 119 ++++++++++++++++++
+ 6 files changed, 137 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/hwmon/pmbus/xdpe1a2g7b.c
 
 -- 
-Dmitry
+2.39.5
+
 
