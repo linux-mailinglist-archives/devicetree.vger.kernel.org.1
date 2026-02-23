@@ -1,148 +1,183 @@
-Return-Path: <devicetree+bounces-267446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267447-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJuVECBdnGloFAQAu9opvQ
-	(envelope-from <devicetree+bounces-267446-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:58:56 +0100
+	id iNXlDNVcnGmkEwQAu9opvQ
+	(envelope-from <devicetree+bounces-267447-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:57:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E1DC17790A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:58:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA227177870
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:57:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D724F311673D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:54:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 418793033881
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F710260592;
-	Mon, 23 Feb 2026 13:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338F926A0B9;
+	Mon, 23 Feb 2026 13:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AlMRZCcN"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="jrkSoxxO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB11E1C2324;
-	Mon, 23 Feb 2026 13:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81F418CBE1;
+	Mon, 23 Feb 2026 13:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771854874; cv=none; b=UpfeiHiKJqO56EB7q3uMnaVi5vkTJNHNNqfN8amYTb5v0NAW3hktd0V/HJVqRqfHm8+bi8+jd+jnSzfzypjADT0lgKhGZNywyoxw1fMOk0SkTyyAn4vvlSJCO6LE/2pLiXBy0JNUsJh7cP1973YDw6V/+lVcNJBpUqHpHWWSXJQ=
+	t=1771855038; cv=none; b=hXO8bzssOr2Zsh/zuQZupCxOTBw10LqLR8DWiC8HtALJXZo87Pj3bFXpN4cH74jBtBTxiSGL3v4Q552P0VvgigZeMoPjrj34oyIvUNjs4c+BVZBBv8gbojKWoEsJ83wg7zNshklxKPvCQEUIjsK8/uYRhVHfX0qAeCpGeEYRinM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771854874; c=relaxed/simple;
-	bh=wsxrGT9iiPD6ZitFu90+kuRPo6NfbN5RrwpeDZ7GNQY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HMw0QEk23ibXmJtBEmMTmWylm6NqI6Yg4tmBZW2k/Tc0OAIiAHz+9eZwaT7+eTc5xtMP9k69yxFAX2/1yQf5ssIPx67eZPBOSq8UNjun/OU8fWvSzUfS7wBoQw6/5zqC225aUU0VlJynixktbLmTrbbcsZBJsucUNSNnfT9ixPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AlMRZCcN; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771854871;
-	bh=wsxrGT9iiPD6ZitFu90+kuRPo6NfbN5RrwpeDZ7GNQY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AlMRZCcNRh1z6NRy2/I17Dm2/sYYtXapstkwgNAT5JC829doMkVfCZu6bzBply4mX
-	 Z5V6k4Fugil9Pbk1jTOoN/oVEeqCfAKqRT6IFKDIziyaucxhMAd41jYXXqW7jof677
-	 m0mMfBerf0M5K1EAeqrIdfXRJS/x3Bi5RLQslWTpMP/myCyMmu2Sx78PopsHOkRg5o
-	 H/O52ahKyojFXDNplvjDFYJUmk8ft5TTBoJujoIoALlB0oZxnqE3hsUdIzuhOftNBq
-	 DfnF/yKg27joBLxmlkAJl7pPQ1DW9pvBgJOzHRgZOaVPAldn1YCSM7vOX8Bt/2/G1z
-	 L2GiCzzldb9Dw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 559BF17E043F;
-	Mon, 23 Feb 2026 14:54:30 +0100 (CET)
-Message-ID: <8030ee40-5972-499b-b693-b26fb7ffe7e2@collabora.com>
-Date: Mon, 23 Feb 2026 14:54:29 +0100
+	s=arc-20240116; t=1771855038; c=relaxed/simple;
+	bh=jimk4cgA6P8145WtS7AypZKTzXi7xwx6dJcxj5oDHJY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=flwX8tugJZOx7xSqPu0CutCC/fPCD4FZ+kzc8geM8szI5DQ5GMxbZ/dsGzzyVSkDOPwyyyuN042Ag4S9Do+JcN5VkSh4H+oBrBGSZsWuJnS+qyZZL4N7ULQFuyrw0qZOso7k+D98tB9mAX8KccdPqFmxTGdXPKVAOwvW2ss374Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=jrkSoxxO; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id A9C0B27E35;
+	Mon, 23 Feb 2026 14:57:07 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id tac2RrMprsBW; Mon, 23 Feb 2026 14:57:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1771855027; bh=jimk4cgA6P8145WtS7AypZKTzXi7xwx6dJcxj5oDHJY=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To;
+	b=jrkSoxxOqv98EFGeGJpGTfbWycO470StieDpHkpvwSVYOdO+ixUJHSH0/2Txy8R4/
+	 bCEG7Sh9Ln/4+uBuszgWxdqJp0az+MJT2XJ2HTdPUFqkGvbXlKF2zGG0nrE/bbBkpc
+	 06Ps65NKVetf/+bipRD8EqrhjOi2Km7fG1yvBDhUUN7p7SJOleCLskPp7UyvMqRj8U
+	 yxrZARhKFgIx+l3MGQOLUht/nEYFJc875duDxCvM9BEAs0iGuIueRmgF67tCP9T3Ff
+	 HzjS4vtY86VAjSKqWBLiHJUFhdMfiuM0G6doeDKLSyUx73VJAvVZi7xajZdGJmdyAV
+	 V9p7G+qb5lXLw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 05/18] clk: mediatek: Add MT8189 vlpckgen clock support
-To: David Lechner <dlechner@baylibre.com>,
- "irving.ch.lin" <irving-ch.lin@mediatek.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Bartosz Golaszewski <brgl@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>,
- Miles Chen <miles.chen@mediatek.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- Qiqi Wang <qiqi.wang@mediatek.com>, sirius.wang@mediatek.com,
- vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-References: <20260202062840.342707-1-irving-ch.lin@mediatek.com>
- <20260202062840.342707-6-irving-ch.lin@mediatek.com>
- <4b22e998-b38e-4452-82ce-1389d7086a04@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <4b22e998-b38e-4452-82ce-1389d7086a04@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 23 Feb 2026 19:26:52 +0530
+Message-Id: <DGME6JKOXQN9.3GQ7SEI0D8A5U@disroot.org>
+Cc: <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <linux-samsung-soc@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
+From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
+To: "Sander Vanheule" <sander@svanheule.net>, "Kaustabh Chakraborty"
+ <kauschluss@disroot.org>, =?utf-8?q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, "Lee Jones" <lee@kernel.org>, "Pavel Machek"
+ <pavel@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "MyungJoo Ham"
+ <myungjoo.ham@samsung.com>, "Chanwoo Choi" <cw00.choi@samsung.com>,
+ "Sebastian Reichel" <sre@kernel.org>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>, "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ "Jonathan Corbet" <corbet@lwn.net>, "Shuah Khan"
+ <skhan@linuxfoundation.org>
+References: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
+ <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
+ <69e2c1b1a2f3d2ed5e5da995cc5ee49bb3627597.camel@linaro.org>
+ <DG74Y3QSCLIO.32Q8ZKCTISXXB@disroot.org>
+ <4cf24e281fac45637fedf40944d8b5230c0e22d9.camel@svanheule.net>
+In-Reply-To: <4cf24e281fac45637fedf40944d8b5230c0e22d9.camel@svanheule.net>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267447-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[baylibre.com,mediatek.com,kernel.org,gmail.com,chromium.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267446-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,mediatek.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9E1DC17790A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,disroot.org:mid,disroot.org:dkim]
+X-Rspamd-Queue-Id: CA227177870
 X-Rspamd-Action: no action
 
-Il 19/02/26 21:49, David Lechner ha scritto:
-> On 2/2/26 12:28 AM, irving.ch.lin wrote:
->> From: Irving-CH Lin <irving-ch.lin@mediatek.com>
->>
->> Add support for the MT8189 vlpckgen clock controller, which provides
->> muxes and dividers for clock selection in vlp domain for other IP blocks.
->>
->> Signed-off-by: Irving-CH Lin <irving-ch.lin@mediatek.com>
->> ---
-> 
-> ...
-> 
->> +static const struct mtk_gate vlp_ck_clks[] = {
->> +	GATE_VLP_CK(CLK_VLP_CK_VADSYS_VLP_26M_EN, "vlp_vadsys_vlp_26m", "clk26m", 1),
->> +	GATE_VLP_CK_FLAGS(CLK_VLP_CK_FMIPI_CSI_UP26M_CK_EN, "VLP_fmipi_csi_up26m",
-> 
-> Should "VLP_fmipi_csi_up26m" be all lower-case to match the style of all of
-> the other clock names? i.e. "vlp_fmipi_csi_up26m"
-> 
+On 2026-02-20 17:56 +01:00, Sander Vanheule wrote:
+> Hi,
+>
+> On Thu, 2026-02-05 at 21:02 +0530, Kaustabh Chakraborty wrote:
+>> On 2026-02-04 15:23 +00:00, Andr=C3=A9 Draszik wrote:
+>> > On Mon, 2026-01-26 at 00:37 +0530, Kaustabh Chakraborty wrote:
+>> > > +static const struct regmap_config s2mu005_regmap_config =3D {
+>> > > +	.reg_bits =3D 8,
+>> > > +	.val_bits =3D 8,
+>> > > +};
+>> >=20
+>> > No cache? And what is the .max_register value?
+>> >=20
+>>=20
+>> This was in the previous revision, but I ended up removing it because
+>> (at least I thought at that time) interfered with interrupts firing in
+>> some way. The actual issue was unrelated, so I will add it back.
+>>=20
+>> However, there is also another thing I see in logs:
+>>=20
+>> sec-pmic-i2c 2-003d: using zero-initialized flat cache, this may cause
+>> unexpected behavior
+>>=20
+>> This is due to REGCACHE_FLAT, I am not sure if I should just ignore
+>> this.
+>
+> Sorry to be late to the party, but I'm somewhat responsible for that warn=
+ing, so
+> allow me to chime in :-)
+>
+> What you are might have been seeing is REGCACHE_FLAT giving you "cached" =
+values
+> of 0x0, while the hardware actually has something else. This can cause om=
+itted
+> writes, existing (bootloader) config to overwritten, etc.
+>
+> As Andr=C3=A9 suggested, using .num_reg_defaults_raw is a possibility, bu=
+t then you
+> have to remember that the register defaults are taken to be what the hard=
+ware
+> state is at that moment, including pre-probe changes. These defaults are =
+used to
+> seed the cache (so far, so good), but this may break the contract of
+> regmap_sync() if you ever want to use that after actually resetting the P=
+MIC.
+>
+> If you want to use the flat cache, I would suggest you use REGCACHE_FLAT_=
+S,
+> which will track what has already been read from/written to hardware. You=
+ will
+> also need to specifiy .max_register.
 
-It *must*. Yes.
+I had figured that out by going through the logs, thanks. :)
 
-Regards,
-Angelo
-
->> +			  "osc_d10", 11, CLK_IS_CRITICAL),
->> +};
->> +
-
+>
+> I see the other regmap_config-s in this driver also use REGCACHE_FLAT, so=
+ you
+> may want to consider switching those over as well if these are also showi=
+ng the
+> new warning.
+>
+>
+> Best,
+> Sander
 
 
