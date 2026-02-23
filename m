@@ -1,209 +1,169 @@
-Return-Path: <devicetree+bounces-267226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267231-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gIrIIjnrm2km9gMAu9opvQ
-	(envelope-from <devicetree+bounces-267226-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:52:57 +0100
+	id KMpFHe/rm2km9gMAu9opvQ
+	(envelope-from <devicetree+bounces-267231-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:55:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A4B171F91
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:52:56 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2A3B171FCD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 06:55:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D246E303A845
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:51:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C65213023E03
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 05:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D6F346FCA;
-	Mon, 23 Feb 2026 05:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DD633451D9;
+	Mon, 23 Feb 2026 05:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZgYinORc";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AHQ39gVc"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="hwWpglky"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E688E346AC4
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:51:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DEB32405E1
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771825891; cv=none; b=QTt4MG/svyLJg4RO+vCN5bikhm/SEljLdcqtX9ZL9DQPWzAHnA7rE7tPH6T/ualEFfq17Cyjj2R9QbDp4y89gOODY1eCPq83pStvzvzoNKoo+SECllCBO4YMcmyba0Ais/eYJiUDiv8S+RxzILDQAZ2Ee8xqHcAWAksF1ZAIqw8=
+	t=1771825930; cv=none; b=CHhM7M88LhtmjwcZyK7MK7ekwy2Wmh64Ce/NT0qzmPSDzEfda0u+YHFWp4KjwzVhuiPcf/XqEnPdOD07YiRrY+BNPxoNtLgalxaIb3EmmznM9v/7KpJ2EEQkbCc3CHUd6+KiuHUfkn+BbcQ/yETT/RqaVqJqp7uMKff9RH042tU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771825891; c=relaxed/simple;
-	bh=5B2uH12fWkNLBwvhB4AC1A5SWMXFlRrD3cTFy4kbAC0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WeHMkrNYNL+/eqFGtGhbTfIea86SH1uRyUkVIVPMIbCIIIXPE6DU9pRSZgivp5yKoh4u14s5SbhqK79quVKQUMgsRNgF2hnIq0wTTWuNtE/pNLbDOwBz2TzhMaA8lwPvcfpnppFCDBPVbeL3ZXupviImQGr7jGUfUV/tom2wQA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZgYinORc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AHQ39gVc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61MDuV6S891811
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:51:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YlXIqsOQwvU5Z8sYlXy96uUv0HGYahf5Uvea7D0cr+U=; b=ZgYinORcXQgSYDSG
-	ezYaEM2QG0zIJB5sy0PpAchI9t6QfeFj5kcidIkM6mJp0RYUxto77ipt3cWDAsyU
-	OVNk+W08QS0ij/wpoeCmSZ3XDkk/xwWgR9e4C4IVopnp5lZTzMZUdYkyxTCXecN9
-	Er0Mv9Lcs688dAbWC/cJnrPNh8iZqrFjMeBaRVCLzDJTjql0smmpuGG8Ek09KRw2
-	8CPJ4AEDQ3tldGn38Fsj/+8gjG/4ZfU32msry48u7bW+3yppDvoNtS4/0ndjn4Ai
-	Boz8k3kp1LrUDFYdEJxgbxbYOTZa2aV7PjrJa3grRtTfcaQg6Ssude3j8HkZGTJQ
-	QwbYsQ==
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com [209.85.167.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf5wbbg3r-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 05:51:28 +0000 (GMT)
-Received: by mail-oi1-f198.google.com with SMTP id 5614622812f47-45efd455a6bso48303620b6e.3
-        for <devicetree@vger.kernel.org>; Sun, 22 Feb 2026 21:51:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771825888; x=1772430688; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YlXIqsOQwvU5Z8sYlXy96uUv0HGYahf5Uvea7D0cr+U=;
-        b=AHQ39gVcznvI3eImFCQpFLNbg6X2yP2Z/ouFFsunvwkzkJOkw91phizivC6zv7+Xvh
-         8bkwTjnDUA8cvYU1NERg0vnom0unOObL8HXhjE/GfxYrwuvOy8oqeUhGxP50qQgqKYxi
-         N4uUfsiuMLo7+03eLrV0iBB9To6iKIUA4BEtsM0BuWq9t+1yVDq2utG5BNqduzDseq5X
-         7d3vn4ORDrIVBWwe0y8xO86KkHd0wA7/r9REr2uAVMXV59sfRTFccSGvV3/sEzzILwD0
-         kSHQg2GddcnVOQct1uEVoKW66kDHrKEnpQV6qQBf99lM/iBRSmv+Y3p4CTs0aodvZ+lT
-         nXTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771825888; x=1772430688;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YlXIqsOQwvU5Z8sYlXy96uUv0HGYahf5Uvea7D0cr+U=;
-        b=fUNv57CIHIJrsrvHXuerX8MO8TaIcaKrcsva5/RwM2sPC/DZVpGSyIWSJf5cLftFr6
-         q+A2IqbDBJ2OKXVA+fs77kmg/t5U0KxY91yej0VRLgNNcYcScGA91xKq42aEa71QjyoV
-         /gU108Q5jzhh5HGFWX1t6HcC+Q7Gp+1ZnpOyf4pDKXVwrfTqmAeeLTXNAxEzy0M8p9UK
-         EZJEquZ4cSio+BbTH5RTjHhNxE42yEV+dleHdkru+5ruPHdbi79WUSqw3q8QzMK5/j4D
-         O/ZR3LKhGymkCh8GwAFB9PEwSTOXN79Ni9s92Ct5FcY8OCR0JYOGZ86dHnd0RzNfa6Sv
-         g9gg==
-X-Forwarded-Encrypted: i=1; AJvYcCWJvqLbQVcPPbeYlXbPi3WZLVsBqrvkSQExaQEqOwsC4X062ohrL+mk7SAxzzCvHe7WpxFZDu7m2Xmb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtgwOQQqvuSjFtpl2GYQGOhztzETsi/ZNptsBAzi51JzFLRF3S
-	EYGGEuncxDh/PNxj0TOkFuDjVANZ0hTtAYNfy28gNP0G8KtAIEe62/sSJlZkshCLRAjGmQSzyEL
-	SJTaZZ2ToKp14J2jlGQKYWA2EGwoBbtd/EG8gRVR8hbIDAYOh2aQ9zVBSvmkOvepZ
-X-Gm-Gg: AZuq6aK4ay5j/75eSP0X4RmrA6RSXo+Z6Z81SqsrVFdJvjbV43p3CJ3xl96qDMRbkk1
-	x5fmFfCsSBlrXiGxEoAlbjzjAkEQNBHQsrwLBvVaWACTp/E2kq9k88dfTXvnMnJQS/4fYxh77DD
-	OtPbyt8neSkODuRlUqKiJEXqulhaqGjyHJLCgGIuM/hkZfs2VHisXvtG9z9G+g3Qg5X8qlNNgGo
-	/dW1kp8Ti/+Kp82tbhusA14kYSLeU5iapR3PX+hmqMdncLAmTaE5dBAXASDEcYE51Ol3Pk6t0CB
-	YASfeSMjJJJFpLvV+KGUaPftQFR1E8tS5qn7TTTMoTN9LEXSrT5szkwovFZxYIItQi7eZUK4pCC
-	GqImNh8dSeez2jEwJsFW44MieCvk2Yp3Q/tv6hFCfDZTXJP61fLN8RIVXudQQkIo+dI8Bxv2P
-X-Received: by 2002:a05:6808:c281:b0:459:9630:3742 with SMTP id 5614622812f47-464461b5eaamr4040521b6e.22.1771825888223;
-        Sun, 22 Feb 2026 21:51:28 -0800 (PST)
-X-Received: by 2002:a05:6808:c281:b0:459:9630:3742 with SMTP id 5614622812f47-464461b5eaamr4040514b6e.22.1771825887902;
-        Sun, 22 Feb 2026 21:51:27 -0800 (PST)
-Received: from [10.110.58.37] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-46460661eeesm1987552b6e.13.2026.02.22.21.51.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Feb 2026 21:51:27 -0800 (PST)
-Message-ID: <b1fadee7-74b1-4b66-845c-3a525f259a98@oss.qualcomm.com>
-Date: Mon, 23 Feb 2026 13:51:22 +0800
+	s=arc-20240116; t=1771825930; c=relaxed/simple;
+	bh=tsZGinYTxVCG2zJ3moSLeuEmyjM7gf3z0x3YYcIfbrA=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=XOC0rvkeCxs28l6fYE/W0V0jjAOEjPHxa4p4kj92favllKJgNW9yl6Y5DCAzAMI+m1mlKoSv1tK+CtHo4bs5b7CU/r7coQBNLKyWdRqoBnIG5UB+z2AMIqF3yMODGHCS9ozzqDuuy6kvpaoHD2x3hp8791hpZ3TJK5kClWH33Ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=hwWpglky; arc=none smtp.client-ip=95.215.58.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+Message-ID: <0397c453-e1ec-44a2-bf8f-a64347882226@packett.cool>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1771825916;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+etr68lQ0tf0G/csmk5P+HHB4sPoSNbI0nyD3l2haC4=;
+	b=hwWpglkygVTXhSltG6Fky+5cXje7fl/xTQU4EPRyZFaKwZ+gfHQ7CJ7XdnaY3IFu+iteyO
+	PEnQbOX2wZ916Q5zlC6WAl7m/rW4Qp7OeD160O2BMbxreAzAKhXkadMuA5GGMPXdpIr1b2
+	2CfpLyS74zbxGiub6PKDrTu2P0VuyAvX7W5/5mFH5KlaKW0l80dHk1dwXQ+Tn/FDCDdAeJ
+	B+SqeaQ6imww07TqAN3xnYZ/8Azk67Pndln5Ycfs9doJeHo3HSWhSiSo/0vCNoFvg0QI75
+	IXNwE6xupJxpebJaZT2ZnWsRRJ0DddNbEGYmnRxQWj8xQ7Z8FVVWqcUzoJsYUQ==
+Date: Mon, 23 Feb 2026 02:51:44 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9] arm64: dts: qcom: qcs8300-ride: enable WLAN on
- qcs8300-ride
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260122053624.4068718-1-wei.zhang@oss.qualcomm.com>
- <46d0bc58-2c85-4293-a8ee-480282b80161@oss.qualcomm.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+Subject: Re: [PATCH] arm64: dts: qcom: hamoa/x1: Fix TODO in system power
+ domain node
+To: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>,
+ Daniel J Blueman <daniel@quora.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, stable@kernel.org
+References: <20260221105245.19328-1-daniel@quora.org>
+ <9defac59-ae8a-4658-ab38-dcb0559d9708@oss.qualcomm.com>
 Content-Language: en-US
-From: "Wei Zhang (Stone)" <wei.zhang@oss.qualcomm.com>
-In-Reply-To: <46d0bc58-2c85-4293-a8ee-480282b80161@oss.qualcomm.com>
+In-Reply-To: <9defac59-ae8a-4658-ab38-dcb0559d9708@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: UQ7WPNUsVw9B3yCJRDg1YRBQevlqNOd4
-X-Authority-Analysis: v=2.4 cv=UZlciaSN c=1 sm=1 tr=0 ts=699beae1 cx=c_pps
- a=4ztaESFFfuz8Af0l9swBwA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=EUspDBNiAAAA:8 a=JAj8-Fn0YFEjOL2seJ8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TPnrazJqx2CeVZ-ItzZ-:22
-X-Proofpoint-GUID: UQ7WPNUsVw9B3yCJRDg1YRBQevlqNOd4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDA0OSBTYWx0ZWRfX5hfQEezJc93Z
- ZE7Ohvl9S+xVYsJS8T2u6DtaI2BVJpKr53CJciSboU4n6sOZq3vXRMsX2cavAdWrhmGlGucZhkg
- DRI/2mHqfE8LRpZtEDXaIDuuh1sBInINDs4dxtCztKk2PlJYwzaSWHpLDMtpjq+beCnd3MQWEU/
- JwUhbC2RdiZnC9lfQCTW3RChh8Syg4vKcRTm6Uh/BY0w9t6ZZ7VPzDCCviB40HWgP7c1TVdfMQy
- /tFM1P4zaG0aVjOk8qJIIfsh+Uh1pWLVm/tba8fSlsTAS3TifyOtROvDFfoJsXl7SrXFzuQhNFx
- 3k6oHkLpA0O7X1CfvY2oHQDNMAqVFFF/o7VvWxb7EIGm7AEYJ9ceKWoNjbS8VIRM2nXHrvSMtcD
- srLu3wGbp9trsUbCiHbL+MYu1AhIeixMFfe6R0h7TLg6lBWMMRg/yw7QFvDSVG9QfxAH0acquik
- 2ONXuLu02T0RMnQhjfw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-23_01,2026-02-20_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0 malwarescore=0
- bulkscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602230049
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267226-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[wei.zhang@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267231-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[packett.cool:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 06A4B171F91
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,packett.cool:mid,packett.cool:dkim]
+X-Rspamd-Queue-Id: E2A3B171FCD
 X-Rspamd-Action: no action
 
 
-On 2/5/2026 5:28 PM, Konrad Dybcio wrote:
-> On 1/22/26 6:36 AM, Wei Zhang wrote:
->> Enable WLAN on qcs8300-ride by adding a node for the PMU module
->> of the WCN6855 and assigning its LDO power outputs to the existing
->> WiFi module.
->>
->> On the qcs8300-ride platform, the corresponding firmware and BDF
->> are QCA6698AQ instead of WCN6855, which have been added in the
->> 20250211 release.
->>
->> Signed-off-by: Wei Zhang <wei.zhang@oss.qualcomm.com>
->> ---
-> [...]
+On 2/23/26 1:11 AM, Maulik Shah (mkshah) wrote:
+> On 2/21/2026 4:21 PM, Daniel J Blueman wrote:
+[..]
+>> Fix this by using the CPU C4, cluster CL5 and system DRIPS parameters from the ACPI DSDT Windows uses, together with the Low Power Idle _LPI minimum residency of 9000us and wake latency of 5000us as exit latency. Finally, assume the entry latency is the difference of these two values.
+[..]
+>> Fixes: f33767e3cfa5 ("arm64: dts: qcom: x1e80100: Add missing system-wide PSCI power domain")
+> Using this fixes tag, can make the change back ported to stable kernels without dependencies and may break the GPIO IRQs.
 >
->> +	wlan_en_state: wlan-en-state {
->> +		pins = "gpio54";
->> +		function = "gpio";
->> +		bias-pull-up;
->> +	};
-> pull-up sounds odd for an active-high pin
-Good point.
-GPIO54 is the active‑high WLAN_EN for WCN6855. The pull‑up is intentional to
-keep the line stable during early boot and to reduce the risk of a 
-low‑to‑high glitch before the PMU driver takes control.
-WLAN enable/disable is still explicitly handled by the wcn6855‑pmu 
-driver via wlan-enable-gpios.
-I can switch this if a different default is preferred.
+> Background:
 >
-> Konrad
+> PDC monitors the wakeup capable IRQs during system wide low power state, hitting the system low power mode can break to wake via GPIO IRQs.
+> The system-wide idle state was not added since the wakeup capable GPIO IRQs were not configured at PDC with 602cb14e310a
+> ("pinctrl: qcom: x1e80100: Bypass PDC wakeup parent for now").
+>
+> So IMO this fixes tag should be used instead of above with the changes to configure PDC to monitor GPIO wake ups.
+> I have these changes to configure GPIO IRQs at PDC and enable back domain_ss3 idle state in my local tree, which i plan to
+> post this week or next.
+
+On a previous episode of L-K-M-L… :)
+
+https://lore.kernel.org/all/0c8735f9-eac0-449c-aa95-b82cec0e6cb2@oss.qualcomm.com/
+
+FWIW I have just tested Konrad's patch from there that adds all three 
+states (0x02000154, 0x02000254, and 0x0200c354):
+
+❯ doas cat /sys/kernel/debug/pm_genpd/power-domain-system/idle_states
+State  Time(ms)       Usage      Rejected   Above      Below S2idle
+S0     367            330        9          315        9 0
+S1     2719           2057       553        2520       71  0
+S2     0              0          1          1          0 0
+
+As of right now I don't see any improvement in idle power consumption 
+from just this S1 thing, compared to not adding anything and having the 
+implicitly-added-by-code S0 state only.
+
+It still only goes as low as 2.5W in screen-off idle, and that's with 
+runtime PM enabled for 3 USB controllers out of 4 (enabling it on all 4 
+makes the system shut down), without doing that it's more like 2.75W.
+
+---
+
+Maulik, since you seem to be the oss.qualcomm person familiar with power 
+management — could you please shine some light onto the mystery of how 
+Windows achieves ~0.5W battery consumption in screen-off idle (and only 
+slightly higher in screen-on idle) i.e. what exactly could be wasting 
+those extra 2W under Linux? Ever since people started daily driving X 
+series based laptops this has been an eternal topic/question in 
+aarch64-laptops…
+
+Is it just Windows doing something "extraordinary" like opportunistic 
+full-system sleep (as deep as CX collapse), even with display on and in PSR?
+
+Or are we still missing something big in Linux?
+
+That issue with runtime-suspending all four USB controllers shutting the 
+system down, does that mean there's some rail where USB ends up being 
+the last load-bearing thing holding it up and we'd like to let it go 
+down properly?
+
+
+Thanks
+~val
+
 
