@@ -1,165 +1,198 @@
-Return-Path: <devicetree+bounces-267632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267633-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFzTBjmznGmxJwQAu9opvQ
-	(envelope-from <devicetree+bounces-267632-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:06:17 +0100
+	id gGPNA8WznGnsJwQAu9opvQ
+	(envelope-from <devicetree+bounces-267633-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:08:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7214917CB72
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:06:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A31B317CBD8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 21:08:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 653E53006951
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:02:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6C11B318082A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 20:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7085E37474C;
-	Mon, 23 Feb 2026 20:02:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD97836B064;
+	Mon, 23 Feb 2026 20:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="AnbE91aJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3AIdiY1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF622BE048;
-	Mon, 23 Feb 2026 20:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B887825FA10;
+	Mon, 23 Feb 2026 20:03:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771876953; cv=none; b=ADXyTUaKrfO8X4k2lvypG5aCPYhshxaLRKskw4VeEhQmx6+4hcTqnBKnP4oAnQVIDHq9KDADf9hVBtXYW2I2zDRtiE+N2KtL/xmr9I2TbQr4Ngji9dJY7W/gIezNi4aM7reBo5B0MmRrVsNPrXeljNQ38fMW8e8Z80nU4D0hW5M=
+	t=1771877028; cv=none; b=ef+002tjFoJHlEHHD2tsJbvoWGZ51MyAEQhiM+mpsD/GiU4gb/G/WssKqP5l9wZkzZsvrOXDLjob84jwp3WtwfY1Oy0BD//FeDkmdYypsiziYrhXwqw7SKvk+I9U/o3S1LH2EcdGFaO9A6HaWqh80abw8+6vg5UaBRUCYC+jWYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771876953; c=relaxed/simple;
-	bh=g5AaOwZ6430GnKveqeW2Yxjh239E7tqluKKLDlFqEyM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OgLkivy3LR4n3l2rNdcaDsBdJUBr/Y5BxLiZ/iUzQOtBgd++3NL0CYePbE22X2wpvbBMQqKP4uJcBpyqSC9a53tx+An3NXsTO8lPCVZ5PeBt2RvNjkvUKJuj3BXVa/LqcuCOaPuKfLj9CqXKIswhqcY0BqD6EeMQs0WZ9C42QfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=AnbE91aJ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771876950;
-	bh=g5AaOwZ6430GnKveqeW2Yxjh239E7tqluKKLDlFqEyM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=AnbE91aJ/Ot5On9xelhK2wPWwn6D9ZiG8NOs5dToMUwOqtFvNL0clajxOGHvpmvSZ
-	 9ru2YSNil6K3oVuGfaf13MOtXIUPKMEgU3xooTLntyhBgjvCsqVJvAj7b1VcG/q9fm
-	 DyjvbbHG1efuXQz+8Atdjz9ekqj9nt361iM/L52VlFe5o5OIRJPRz+4GfeLk9RBM6L
-	 /0Vd/84QCR7dhhLVK8dyOgkm68t0ZKyD0h3lDu4u7JveFuUhHDgLIwkdBI7LPFpF4/
-	 xdlIj6wHa+P2AlShoZaas/dePcsU4hI1EWkg9vKPMGYe9g2Nyb1IMY+8rFbIVzQbic
-	 +/dkaHFeC4KYQ==
-Received: from [192.168.1.90] (unknown [86.123.23.225])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1CC2A17E05B5;
-	Mon, 23 Feb 2026 21:02:30 +0100 (CET)
-Message-ID: <c6078b0d-cd88-40a8-9cc7-2e7b135be980@collabora.com>
-Date: Mon, 23 Feb 2026 22:02:29 +0200
+	s=arc-20240116; t=1771877028; c=relaxed/simple;
+	bh=aTh23EkOJI0kjUod1Hs09WDlySin3Rd8su95Qd1Sxbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rp4piEZlHtkfCdm9gzUAsidI+hRnq2ovSgoXRp7NHz8nxM+0t6nLjIYiyWce+Dk0FpRkGkgG1oNGeFuoHRxyfhSFgRpgYb1kJN1YibMiw++jGhvK4/MfTx5VObBCaGKeIq5H9hEgd9SkYFrpzN/yOrte6d5vrGgwtp40GrGfZLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3AIdiY1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA3ABC116C6;
+	Mon, 23 Feb 2026 20:03:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771877028;
+	bh=aTh23EkOJI0kjUod1Hs09WDlySin3Rd8su95Qd1Sxbk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V3AIdiY1aWDJa++pm5SdWAXF58jKQG7vxcOkk/g3sD4FIY71PPIutHXG6R44JPj79
+	 1SggovlSNnN0ReSuS9yc4TYmeZIVcF7N68XB5VMuj15EXMdt/4fkxisauTZR/nl3Jv
+	 UAkoocK2iAN0T7e2B1EDU2tswqxU9T9SBSu2u2tHomXLxW0G8GJc0x58BPwcRKiMv0
+	 gYi88QIURdsrshq+uual9Mb/FWpKEbOkL4A2r6NYF0Q4h1CguOEo5H+XeD9oyS8l0r
+	 e0Ylem0e2Wt3Hrv3JiNViBAz/ZuQWyUkSi3IOmpozH+eRSjh5gJo0hpK2sIkjpzScS
+	 pbT8ZzJ9FHBBQ==
+Date: Mon, 23 Feb 2026 14:03:44 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Val Packett <val@packett.cool>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+	Matti =?utf-8?Q?Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>, Luca Weiss <luca@lucaweiss.eu>, 
+	Vladimir Lypak <vladimir.lypak@gmail.com>, 
+	=?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org, llvm@lists.linux.dev
+Subject: Re: [PATCH v2] remoteproc: qcom_wcnss: Fix handling the lack of PD
+ regulators in v3
+Message-ID: <jup7hphwpa754gyhtcahz25glecp6ctpuxcwzvco6wrbokvnip@quw7hrauahsa>
+References: <20260201210230.911220-1-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix vdec register blocks order on
- RK3576
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Diederik de Haas <diederik@cknow-tech.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260223-vdec-reg-order-rk3576-v1-1-560976566bd3@collabora.com>
- <aZxkDGzEQCCLKR-M@venus> <DGMF3IX3J3BP.1XT41P0G8P5OD@cknow-tech.com>
- <b4eb3031-69e8-4a73-b4f1-91dd4192bb21@collabora.com> <aZyaLG0lYao6_xxb@venus>
- <e0d7da4c-e779-43e9-bf0f-c2a0224114df@collabora.com>
-Content-Language: en-US
-In-Reply-To: <e0d7da4c-e779-43e9-bf0f-c2a0224114df@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260201210230.911220-1-val@packett.cool>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267633-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267632-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,google.com,lucaweiss.eu,mainlining.org,oss.qualcomm.com,lists.sr.ht,vger.kernel.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,lkml];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7214917CB72
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A31B317CBD8
 X-Rspamd-Action: no action
 
-On 2/23/26 8:29 PM, Cristian Ciocaltea wrote:
-> Hi Sebastian,
+On Sun, Feb 01, 2026 at 05:55:03PM -0300, Val Packett wrote:
+> The changes introduced to handle single power domain platforms have
+> swapped the info pointer increment from num_pd_vregs to num_pds, which
+> would shift the info pointer past the end of the array for pronto-v3,
+> which does not list power domain regulators in vregs.
 > 
-> On 2/23/26 8:21 PM, Sebastian Reichel wrote:
->> Hi,
->>
->> On Mon, Feb 23, 2026 at 07:07:42PM +0200, Cristian Ciocaltea wrote:
->>> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
->>> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
->>> @@ -34,10 +34,12 @@ properties:
->>>        - description: The cache configuration registers base
->>>
->>>    reg-names:
->>> -    items:
->>> +    oneOf:
->>>        - const: function
->>> -      - const: link
->>> -      - const: cache
->>> +      - items:
->>> +          - const: link
->>> +          - const: function
->>> +          - const: cache
->>>
->>>    interrupts:
->>>      maxItems: 1
->>>
->>
->> With that change the descriptions in the reg section are wrong.
+> This showed up as a difference between GCC- and LLVM-compiled kernels
+> on SDM632 devices, where only with LLVM one would get the
+> "regulator request with no identifier" error, because the out-of-bounds
+> memory ended up being zeroed. Fix by skipping the increment when there
+> are more power domains than regulators.
 > 
-> Yeah, I assumed it'd be acceptable for the description to document just once all
-> possible items, to avoid repeating this for all possible combinations.
-> 
-> E.g. this is from Documentation/devicetree/bindings/net/snps,dwmac.yaml:
-> 
->   resets:
->     minItems: 1
->     items:
->       - description: GMAC stmmaceth reset
->       - description: AHB reset
-> 
->   reset-names:
->     oneOf:
->       - items:
->           - enum: [stmmaceth, ahb]
->       - items:
->           - const: stmmaceth
->           - const: ahb
 
-I dropped the descriptions in v2, as we discussed they don't provide much value
-anyway:
+Is the error only an error print, or did the thing stop working as well?
 
-https://lore.kernel.org/all/20260223-vdec-reg-order-rk3576-v2-0-daf4942dfc02@collabora.com/
+Should we no longer carry
+Fixes: 65991ea8a6d1 ("remoteproc: qcom_wcnss: Handle platforms with only single power domain")
 
+Regards,
+Bjorn
+
+> Signed-off-by: Val Packett <val@packett.cool>
+> ---
+> v2: changed to detect the >= condition suggested by Konrad
+> v1: https://lore.kernel.org/all/20260126235018.969140-1-val@packett.cool/
+> 
+> "possible_pds" is the best name I could come up with (as "num" is already
+> taken by the number of *successfully attached* PDs and "max" is the constant
+> for the array length) for the count we're checking against. Maybe the "num"
+> could be changed to "attached" but that feels like too much diff.
+> 
+> ~val
+> ---
+> 
+>  drivers/remoteproc/qcom_wcnss.c | 23 ++++++++++++++---------
+>  1 file changed, 14 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/qcom_wcnss.c b/drivers/remoteproc/qcom_wcnss.c
+> index ee18bf2e8054..60f629b5bbed 100644
+> --- a/drivers/remoteproc/qcom_wcnss.c
+> +++ b/drivers/remoteproc/qcom_wcnss.c
+> @@ -441,25 +441,31 @@ static void wcnss_release_pds(struct qcom_wcnss *wcnss)
+>  }
+>  
+>  static int wcnss_init_regulators(struct qcom_wcnss *wcnss,
+> -				 const struct wcnss_vreg_info *info,
+> -				 int num_vregs, int num_pd_vregs)
+> +				 const struct wcnss_data *data)
+>  {
+> +	const struct wcnss_vreg_info *info = data->vregs;
+>  	struct regulator_bulk_data *bulk;
+> +	size_t i, possible_pds = 0, num_vregs = data->num_vregs;
+>  	int ret;
+> -	int i;
+> +
+> +	for (i = 0; i < WCNSS_MAX_PDS; i++)
+> +		if (data->pd_names[i])
+> +			possible_pds++;
+>  
+>  	/*
+>  	 * If attaching the power domains suceeded we can skip requesting
+>  	 * the regulators for the power domains. For old device trees we need to
+>  	 * reserve extra space to manage them through the regulator interface.
+>  	 */
+> -	if (wcnss->num_pds) {
+> +	if (possible_pds >= num_vregs) {
+> +		/* Do nothing if vregs do not include PD regulators (pronto-v3) */
+> +	} else if (wcnss->num_pds) {
+>  		info += wcnss->num_pds;
+>  		/* Handle single power domain case */
+> -		if (wcnss->num_pds < num_pd_vregs)
+> -			num_vregs += num_pd_vregs - wcnss->num_pds;
+> +		if (wcnss->num_pds < data->num_pd_vregs)
+> +			num_vregs += data->num_pd_vregs - wcnss->num_pds;
+>  	} else {
+> -		num_vregs += num_pd_vregs;
+> +		num_vregs += data->num_pd_vregs;
+>  	}
+>  
+>  	bulk = devm_kcalloc(wcnss->dev,
+> @@ -607,8 +613,7 @@ static int wcnss_probe(struct platform_device *pdev)
+>  	if (ret && (ret != -ENODATA || !data->num_pd_vregs))
+>  		return ret;
+>  
+> -	ret = wcnss_init_regulators(wcnss, data->vregs, data->num_vregs,
+> -				    data->num_pd_vregs);
+> +	ret = wcnss_init_regulators(wcnss, data);
+>  	if (ret)
+>  		goto detach_pds;
+>  
+> -- 
+> 2.52.0
+> 
 
