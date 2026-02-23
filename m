@@ -1,154 +1,141 @@
-Return-Path: <devicetree+bounces-267518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267519-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qONHNs97nGlfIAQAu9opvQ
-	(envelope-from <devicetree+bounces-267518-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:09:51 +0100
+	id KNqzJrZ7nGlfIAQAu9opvQ
+	(envelope-from <devicetree+bounces-267519-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:09:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52218179683
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:09:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5561E17964F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:09:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AFB9F300538A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:59:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BCEF83060B39
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 16:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A75630CDBC;
-	Mon, 23 Feb 2026 15:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A863F30ACE6;
+	Mon, 23 Feb 2026 16:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NUXNpPay"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KQn5cUD8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C50630C37B;
-	Mon, 23 Feb 2026 15:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842EC303A26;
+	Mon, 23 Feb 2026 16:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771862360; cv=none; b=g6zAZGpKz6W40P+BTGJZxUYndxEc5BhaWjegc8WRfqCqbzvYbZL8FVRv2btpFyu6w7hxTWHHCh3wfVMSJfPvCrOln7SlGiv3ULCHXT1SST6biNIkHm0gOoA7y1r6jNX5oTJOjIVmH8isE2tir+IC3TBrYAJ7HtM9wqaiXtVATEg=
+	t=1771862525; cv=none; b=i6FpqJ9/vEDk1bHAmBZcJBjR9HPv21KTLqGlcGWe6Hit5Xutnq8sZ8tfWdVb8V8le/Eutt2jVPCpRgbBzsuTceZlcT613e1Nq+PmUm7aAhf2kNbSB30PVxe5gnzT5bDDx1ZzKHBKPnON2uoG59BEug+twd110DtmsyHfmRuriCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771862360; c=relaxed/simple;
-	bh=8VgLBNuTxD72+GI4e0fkK8v9sYu+VLaZ56iTicorfVQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fttUEU4kCTAsStj99StLfOQS789kifzFgH+YgZmUo2T54nnIMAsa2aIbJDEgO+z6i8clsjrdJt2YYoMJnZQWB3fmLS2WPsP0yvzTt2phRABuO2ieDbLmVKgj+dZ7PJwj8DbLwY1fwp0P1PkXqIzN/V4bHDkWw4XoR8obm84iz/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NUXNpPay; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 27EE9C116D0;
-	Mon, 23 Feb 2026 15:59:20 +0000 (UTC)
+	s=arc-20240116; t=1771862525; c=relaxed/simple;
+	bh=+Pr0GifpXOYCuWRHnzUO3l8XX5QxVwywd1ltopvWPlQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bXJDUntoEVEeSOKMuHeFfO9B34NM96Q1sGHV4/hVxeCEaGyZaH+Yg6EEeXwCgVVUzdOVS0RQZwCOJ8KU4X7NDj8D9CIhW5dPsQXe/J+r6WW0/QS+fP1MopysTXIr9zufLRJo2+5WrHn1+qJgC2j+RoIk4/g9ue8oqvNfiVJGdm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KQn5cUD8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 318DAC116C6;
+	Mon, 23 Feb 2026 16:02:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771862360;
-	bh=8VgLBNuTxD72+GI4e0fkK8v9sYu+VLaZ56iTicorfVQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=NUXNpPayyGsKW9S8uDu3RI4dyDMmw9yk5MjGvGpU8WVZ+jR+qRN/wmS18qegVP6Um
-	 U0n0Nt4f1xPvKSuGcTMmcz2Xcjgw9NrbTIF/D4zSz19Zhzn0zmjnCPiind2d2aVGyE
-	 7oO1zsUEGWJrje2+ZGsnWnxTmSPApUxGaA/0yaFY+r9/mvl7v+cRKl4SQG4QyculwA
-	 VCgQjBZTpGlE8+QPsdDiUklj2vQnIxb9xCkzKr9ii9qD/HDOu8CSP28B9geUCBw3sR
-	 531w9w3n832apGGrB1OCMGMShZhqUyT/+oP8ot3Y1cupMxpodQht5IzInp3XadJ7kJ
-	 GzOUsFKRgUkGw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 202BDEA4FC7;
-	Mon, 23 Feb 2026 15:59:20 +0000 (UTC)
-From: Abdurrahman Hussain via B4 Relay <devnull+abdurrahman.nexthop.ai@kernel.org>
-Date: Mon, 23 Feb 2026 15:59:22 +0000
-Subject: [PATCH v12 7/7] i2c: xiic: skip input clock setup on non-OF
- systems
+	s=k20201202; t=1771862525;
+	bh=+Pr0GifpXOYCuWRHnzUO3l8XX5QxVwywd1ltopvWPlQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KQn5cUD8HnDOBis6LCd+D9OfOuHR3pO71XU1DfV1IG3UxccfGu8BvEi8vuLlBKUnF
+	 doU9EN3Bumw7R8zCF8yHXw09wSvZNkIhwxj4A9NMu6OBCbJQK7biFw5JV6gkoDTNCa
+	 UiUxmclcvpW45lgvj4fxtAsOx3cgeLKWDX0v9cQUx9ZcEuEWz009B4pFs+GmfQL4mJ
+	 wOwu2mYr+rZ5c2BWdtzHgXXw8NBn4mQF8CP6UtyEIX08YI2XOnTsMppfj/3DoD6TXG
+	 xwltV1eoaIvopi2RYpUYp3AhHQhz1//loT+IW862G90VZd37lVWQLN2ozDG2VAKfok
+	 hmwAu2CDt1lJA==
+Date: Mon, 23 Feb 2026 10:02:02 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Val Packett <val@packett.cool>
+Cc: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>, 
+	Daniel J Blueman <daniel@quora.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, stable@kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: hamoa/x1: Fix TODO in system power
+ domain node
+Message-ID: <xvftv3tcvm5osajvtvwlqqipyap4n2zlupra3xlcfuvjpzgs7b@ugg5sw3bnb2u>
+References: <20260221105245.19328-1-daniel@quora.org>
+ <9defac59-ae8a-4658-ab38-dcb0559d9708@oss.qualcomm.com>
+ <0397c453-e1ec-44a2-bf8f-a64347882226@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260223-i2c-xiic-v12-7-b6c9ce4e4f3c@nexthop.ai>
-References: <20260223-i2c-xiic-v12-0-b6c9ce4e4f3c@nexthop.ai>
-In-Reply-To: <20260223-i2c-xiic-v12-0-b6c9ce4e4f3c@nexthop.ai>
-To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Abdurrahman Hussain <abdurrahman@nexthop.ai>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771862359; l=1194;
- i=abdurrahman@nexthop.ai; s=20260119; h=from:subject:message-id;
- bh=usc1CKg+f05YBR4E4GFMUb7OKXzoYUSPfhhuE4yE/XA=;
- b=+y1k9kEklzjax8kw0/GxG/XFD+YRKhH4DvYmswPoEay7CKIIqzhSrJB5CtDpA1+ol87X1I/6o
- wBmNI3aTuLmDsP7/x9j7bzPOs5MdZ3A0bhlLvxYUcuC5Ia6PtpP5mJV
-X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
- pk=S+ysnf+NwMcBdHBlyKIUEAtaFGSIhQwcJcgcXhq0osg=
-X-Endpoint-Received: by B4 Relay for abdurrahman@nexthop.ai/20260119 with
- auth_id=608
-X-Original-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-Reply-To: abdurrahman@nexthop.ai
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0397c453-e1ec-44a2-bf8f-a64347882226@packett.cool>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267519-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267518-lists,devicetree=lfdr.de,abdurrahman.nexthop.ai];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	TO_DN_SOME(0.00)[];
-	HAS_REPLYTO(0.00)[abdurrahman@nexthop.ai]
-X-Rspamd-Queue-Id: 52218179683
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 5561E17964F
 X-Rspamd-Action: no action
 
-From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
+On Mon, Feb 23, 2026 at 02:51:44AM -0300, Val Packett wrote:
+> On 2/23/26 1:11 AM, Maulik Shah (mkshah) wrote:
+> > On 2/21/2026 4:21 PM, Daniel J Blueman wrote:
+[..]
+> That issue with runtime-suspending all four USB controllers shutting the
+> system down, does that mean there's some rail where USB ends up being the
+> last load-bearing thing holding it up and we'd like to let it go down
+> properly?
+> 
 
-Currently Linux does not implement ACPI ClockInput() resource to describe
-clocks, unlike DT. However the xiic driver is happy if something
-magically enables the clock before the driver probes, and does not
-turn it off again. The clock should always be considered optional for
-ACPI.
+The three USB nodes have power-domains = <&gcc GCC_USB30_*_GDSC> and
+required-opps = <&opp_nom>. &gcc has power-domains = < &rpmhpd CX>.
+This means that as long as the USB controllers are active, CX is kept at
+at least nominal corner.
 
-Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
----
- drivers/i2c/busses/i2c-xiic.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+The reason why the USB node has &opp_nom is because it's required by the
+200MHz MASTER_CLK, which iirc relates to the possibility that you might
+have something SuperSpeed connected. (But as we flatten dwc3, we should
+be able to scale this based on what is actually connected)
 
-diff --git a/drivers/i2c/busses/i2c-xiic.c b/drivers/i2c/busses/i2c-xiic.c
-index 6eb0c6a2618a..3e7735e1dae0 100644
---- a/drivers/i2c/busses/i2c-xiic.c
-+++ b/drivers/i2c/busses/i2c-xiic.c
-@@ -1464,10 +1464,12 @@ static int xiic_i2c_probe(struct platform_device *pdev)
- 
- 	spin_lock_init(&i2c->atomic_lock);
- 
--	i2c->clk = devm_clk_get_enabled(&pdev->dev, NULL);
--	if (IS_ERR(i2c->clk))
--		return dev_err_probe(&pdev->dev, PTR_ERR(i2c->clk),
--				     "failed to enable input clock.\n");
-+	if (is_of_node(fwnode)) {
-+		i2c->clk = devm_clk_get_enabled(dev, NULL);
-+		if (IS_ERR(i2c->clk))
-+			return dev_err_probe(dev, PTR_ERR(i2c->clk),
-+					"failed to enable input clock.\n");
-+	}
- 
- 	i2c->dev = dev;
- 
-
--- 
-2.52.0
+I don't know why there's multiple pm_runtime_forbid() in the USB stack,
+this needs to be revisited.
 
 
+Then to your actual question, yes, if you suspend the USB controllers
+and the result is that the system dies, then we have other resources
+piggybacking on the USB controllers' votes for CX.
+
+I did some experiments on SC8280XP earlier and was able to drop the
+pm_runtime_forbid() - and see CX drop below NOM. Iirc more work was
+needed to get reasonable behavior in terms of plug-detect, so the
+patches got stuck in their topic branch...
+
+Regards,
+Bjorn
+
+> 
+> Thanks
+> ~val
+> 
 
