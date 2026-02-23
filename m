@@ -1,285 +1,179 @@
-Return-Path: <devicetree+bounces-267374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267376-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YJ+ENQk6nGlCBgQAu9opvQ
-	(envelope-from <devicetree+bounces-267374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:29:13 +0100
+	id KOgnNrw6nGlCBgQAu9opvQ
+	(envelope-from <devicetree+bounces-267376-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:32:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81690175856
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 399D61758BC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:32:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 249B530541E0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:27:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D35883064EA6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D033E361640;
-	Mon, 23 Feb 2026 11:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96BC3612FC;
+	Mon, 23 Feb 2026 11:29:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB0A34EF15
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 11:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E10F36165D
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 11:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771846064; cv=none; b=IYqENiaazykcYV4OGLZPc7SjsHv4U3UtCnTuYsGFzDEm6V3jbKjysH3YUonbAj6ePmzMv1sRoIm2vvecu35q7fvZi7GLVOFDXEm2ecWtOTwFj8boNyDg2EtRbYgxgIE7Ifz+QBz9YjcPDwOWy6nv/ltNU8IeAt4KuiYmsHbj2aA=
+	t=1771846151; cv=none; b=B4rBFtq0wHB8nqKenPTJS99U+efdvdW4CjjDfZdHUiGTeoar3F5VwrY1LGwEhA/6Lkj/JgmWWbujmGpHzcnvAVUvTa7kLobmCcN3JDimrqY0XZCpBAavhUuTm91eCKJRmV7RHbJi8tyYu6FRWbPc7h+g4XES+58bG6vlyvuV10o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771846064; c=relaxed/simple;
-	bh=/rPohQ6TXJYWjnUd8ydj76Hnm4lZ3mw82jkARppAjUw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IA0/5yWqo9eT1RV3A7blqQDkA//Nbg6NUkk8GXSFbDRABJiQ69gXXEjClFo2otGUhCE7EO6y4LDqq7oxEDUXWbXZEMUhgwspFVTIVmHWDswSVfX7vGRhrBbPkw3hWh47w8se07gkPXl9khmO+9Xlxx9FQ0hEOeRcAaFKRA7bRJE=
+	s=arc-20240116; t=1771846151; c=relaxed/simple;
+	bh=HBscHmJudXstqHTcCSQOBobWNft6w8CPgOT77IxP0ss=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JdaGW/yXASIeNzsXCNMZ52ZxfgdcuJksedui+De5a6LEd7oKFht/xLgnqqEsQisxqpksGGM/Oj4jupk4yu84wFqwDa4zqj45DL2ZaysU/HlcwyhPg3+Kd4jDgi525sQJwQP0VvJxYNsyM8PO5dMAc1ZUH00Cui+Tcq88hRwPsAE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.felsch@pengutronix.de>)
-	id 1vuU6C-0007VH-Be; Mon, 23 Feb 2026 12:27:36 +0100
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vuU7X-0007vD-TX; Mon, 23 Feb 2026 12:28:59 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vuU7W-002DlE-15;
+	Mon, 23 Feb 2026 12:28:59 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vuU7X-000000017ln-2Qg2;
+	Mon, 23 Feb 2026 12:28:59 +0100
+Date: Mon, 23 Feb 2026 12:28:59 +0100
 From: Marco Felsch <m.felsch@pengutronix.de>
-Date: Mon, 23 Feb 2026 12:27:37 +0100
-Subject: [PATCH v5 4/4] usb: misc: onboard_dev: add hub downstream port
- host vbus-supply handling
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Matthias Kaehlcke <mka@chromium.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v5 3/4] dt-bindings: usb: usb-device: add usb hub port
+ vbus-supply suppport
+Message-ID: <qjabgfbpwuxowtnolahzzioukl26lllyu4b3x6lchnf4jodrrf@q3i3v3fgtxte>
+References: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
+ <20260223-v6-16-topic-usb-onboard-dev-v5-3-28d3018a8026@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260223-v6-16-topic-usb-onboard-dev-v5-4-28d3018a8026@pengutronix.de>
-References: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
-In-Reply-To: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
- Matthias Kaehlcke <mka@chromium.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, kernel@pengutronix.de, 
- Marco Felsch <m.felsch@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
-X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260223-v6-16-topic-usb-onboard-dev-v5-3-28d3018a8026@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[pengutronix.de];
 	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,gmail.com,chromium.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267374-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-267376-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.848];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.945];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 81690175856
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:url,pengutronix.de:email,0.0.0.2:email,0.0.0.1:email]
+X-Rspamd-Queue-Id: 399D61758BC
 X-Rspamd-Action: no action
 
-Some PCB designs don't use the dedicated USB hub port power GPIOs.
-Instead they route the signals to the host. So the host is in charge to
-power the VBUS supplies.
+Hi Rob,
 
-As first step the USB hub OF information is parsed and possible optional
-vbus-supply regulators are added. This is done during the platform
-driver probe() function.
+I didn't add your r-b since I moved the DTS example here.
 
-Afterwards, during the usb driver probe() function and in case this is
-an USB hub, the set/clear features hooks are registered via the new
-usb_hub_register_port_feature_hooks().
+Regards,
+  Marco
 
-After this registration all generic usb hub set/clear features calls are
-passed to the onboard_dev driver too. This allows the driver to
-en-/disable the regulators.
-
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- drivers/usb/misc/onboard_usb_dev.c | 117 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 117 insertions(+)
-
-diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
-index ba37eb99efbaf5237d4998a0fdb1c65b56628f2b..41274e0fdfa3e4da53ebef58e585d0aeb9cbab08 100644
---- a/drivers/usb/misc/onboard_usb_dev.c
-+++ b/drivers/usb/misc/onboard_usb_dev.c
-@@ -54,6 +54,12 @@ struct usbdev_node {
- 	struct list_head list;
- };
- 
-+struct onboard_dev_port_regulator {
-+	struct regulator *vbus_supply;
-+	unsigned int port;
-+	struct list_head list;
-+};
-+
- struct onboard_dev {
- 	struct regulator_bulk_data supplies[MAX_SUPPLIES];
- 	struct device *dev;
-@@ -65,6 +71,7 @@ struct onboard_dev {
- 	struct list_head udev_list;
- 	struct mutex lock;
- 	struct clk *clk;
-+	struct list_head ext_vbus_supplies;
- };
- 
- static int onboard_dev_get_regulators(struct onboard_dev *onboard_dev)
-@@ -226,6 +233,71 @@ static int onboard_dev_add_usbdev(struct onboard_dev *onboard_dev,
- 	return err;
- }
- 
-+static int onboard_dev_port_power(struct onboard_dev *onboard_dev, int port1,
-+				  bool enable)
-+{
-+	struct onboard_dev_port_regulator *regulator;
-+	struct regulator *vbus_supply = NULL;
-+
-+	list_for_each_entry(regulator, &onboard_dev->ext_vbus_supplies, list) {
-+		if (regulator->port == port1) {
-+			vbus_supply = regulator->vbus_supply;
-+			break;
-+		}
-+	}
-+
-+	/* External supplies are optional, return no error */
-+	if (!vbus_supply)
-+		return 0;
-+
-+	if (enable)
-+		return regulator_enable(vbus_supply);
-+
-+	return regulator_disable(vbus_supply);
-+}
-+
-+static int onboard_dev_add_ext_vbus_supplies(struct onboard_dev *onboard_dev)
-+{
-+	struct device *dev = onboard_dev->dev;
-+
-+	if (!onboard_dev->pdata->is_hub)
-+		return 0;
-+
-+	INIT_LIST_HEAD(&onboard_dev->ext_vbus_supplies);
-+
-+	for_each_child_of_node_scoped(dev->of_node, child) {
-+		struct onboard_dev_port_regulator *regulator;
-+		struct regulator *port_supply;
-+		u32 port;
-+
-+		port_supply = devm_of_regulator_get_optional(dev, child, "vbus");
-+		if (IS_ERR(port_supply)) {
-+			if (PTR_ERR(port_supply) == -ENODEV)
-+				continue;
-+			return PTR_ERR(port_supply);
-+		}
-+
-+		/*
-+		 * The VBUS of this downstream port is controlled by a host
-+		 * managed regulator
-+		 */
-+		if (of_property_read_u32(child, "reg", &port)) {
-+			dev_err(dev, "Failed to parse USB device reg property\n");
-+			return -EINVAL;
-+		}
-+
-+		regulator = devm_kzalloc(dev, sizeof(*regulator), GFP_KERNEL);
-+		if (!regulator)
-+			return -ENOMEM;
-+
-+		regulator->vbus_supply = port_supply;
-+		regulator->port = port;
-+		list_add(&regulator->list, &onboard_dev->ext_vbus_supplies);
-+	}
-+
-+	return 0;
-+}
-+
- static void onboard_dev_remove_usbdev(struct onboard_dev *onboard_dev,
- 				      const struct usb_device *udev)
- {
-@@ -460,6 +532,10 @@ static int onboard_dev_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(onboard_dev->reset_gpio),
- 				     "failed to get reset GPIO\n");
- 
-+	err = onboard_dev_add_ext_vbus_supplies(onboard_dev);
-+	if (err)
-+		return dev_err_probe(dev, err, "failed to parse port vbus supplies\n");
-+
- 	mutex_init(&onboard_dev->lock);
- 	INIT_LIST_HEAD(&onboard_dev->udev_list);
- 
-@@ -574,6 +650,44 @@ static struct platform_driver onboard_dev_driver = {
- #define VENDOR_ID_VIA		0x2109
- #define VENDOR_ID_XMOS		0x20B1
- 
-+static int onboard_dev_port_feature(struct usb_device *udev, bool set,
-+				    int feature, int port1)
-+{
-+	struct device *dev = &udev->dev;
-+	struct onboard_dev *onboard_dev = dev_get_drvdata(dev);
-+
-+	/*
-+	 * Check usb_hub_register_port_feature_hooks() if you want to extent
-+	 * the list of handled features. At the moment only power is synced
-+	 * after adding the hook.
-+	 */
-+	switch (feature) {
-+	case USB_PORT_FEAT_POWER:
-+		return onboard_dev_port_power(onboard_dev, port1, set);
-+	default:
-+		return 0;
-+	}
-+}
-+
-+static int
-+onboard_dev_set_port_feature(struct usb_device *udev, int feature, int port1)
-+{
-+	return onboard_dev_port_feature(udev, true, feature, port1);
-+}
-+
-+static int
-+onboard_dev_clear_port_feature(struct usb_device *udev, int feature, int port1)
-+{
-+	return onboard_dev_port_feature(udev, false, feature, port1);
-+}
-+
-+static void
-+onboard_dev_register_hub_hooks(struct usb_device *udev)
-+{
-+	usb_hub_register_port_feature_hooks(udev, onboard_dev_set_port_feature,
-+					    onboard_dev_clear_port_feature);
-+}
-+
- /*
-  * Returns the onboard_dev platform device that is associated with the USB
-  * device passed as parameter.
-@@ -633,6 +747,9 @@ static int onboard_dev_usbdev_probe(struct usb_device *udev)
- 
- 	dev_set_drvdata(dev, onboard_dev);
- 
-+	if (onboard_dev->pdata->is_hub)
-+		onboard_dev_register_hub_hooks(udev);
-+
- 	err = onboard_dev_add_usbdev(onboard_dev, udev);
- 	if (err)
- 		return err;
+On 26-02-23, Marco Felsch wrote:
+> Some PCB designs don't use the dedicated USB hub port power control GPIO
+> to control the port VBUS supply. Instead host managed GPIOs are used to
+> control the VBUS supply.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/usb/usb-device.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> index 09fceb469f10525e9dcdb91435b142b0d21964b8..c9abdbea0e5348dc25f8f9484142089cf60bd514 100644
+> --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
+> +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> @@ -53,6 +53,12 @@ properties:
+>    "#size-cells":
+>      const: 0
+>  
+> +  vbus-supply:
+> +    description: USB hub port VBUS supply.
+> +      The host managed regulator which controls the USB hub port VBUS. This
+> +      regulator is only required if the hub internal control signals aren't
+> +      used to control the VBUS regulators.
+> +
+>  patternProperties:
+>    "^interface@[0-9a-f]{1,2}(,[0-9a-f]{1,2})$":
+>      type: object
+> @@ -85,6 +91,7 @@ additionalProperties: true
+>  
+>  examples:
+>    # hub connected to port 1
+> +  # device connected to hub port 2, vbus controlled by ext. regulator
+>    # device connected to port 2
+>    # device connected to port 3
+>    #    interface 0 of configuration 1
+> @@ -99,6 +106,14 @@ examples:
+>          hub@1 {
+>              compatible = "usb5e3,608";
+>              reg = <1>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            device@2 {
+> +                compatible = "usb123,4321";
+> +                reg = <2>;
+> +                vbus-supply = <&reg_5v0_vbus>;
+> +            };
+>          };
+>  
+>          device@2 {
+> 
+> -- 
+> 2.47.3
+> 
+> 
 
 -- 
-2.47.3
+#gernperDu 
+#CallMeByMyFirstName
 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
