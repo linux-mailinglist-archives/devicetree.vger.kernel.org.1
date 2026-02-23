@@ -1,45 +1,44 @@
-Return-Path: <devicetree+bounces-267375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267372-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sM8fAQ06nGlCBgQAu9opvQ
-	(envelope-from <devicetree+bounces-267375-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:29:17 +0100
+	id 6Jt0ILY5nGlCBgQAu9opvQ
+	(envelope-from <devicetree+bounces-267372-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:27:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF6117585E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:29:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D70701757E1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:27:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86A9530557D7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:27:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D95D330333C1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2AF34DCCC;
-	Mon, 23 Feb 2026 11:27:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3523A3612FB;
+	Mon, 23 Feb 2026 11:27:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754DC3612F7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23B8217704
 	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 11:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771846065; cv=none; b=UcUQDU0own8ZF+5O71gPDtD+se+3dup+L8XnvMVpe9+tQcABzvId1zDFNnzP1w6JSnKuiAao+jrFKjiQdlwXwNPz4qItlsM9SqawS/PfgQKsVPpaEp+0yQqll0Xou2K6VLIK8r5n5gkdBpn/zt+tBT/X8afm9L1h1zalZQk113g=
+	t=1771846064; cv=none; b=VdPZFgFTnRrNkvhEwhaDaBnNRy42Qk8K3NHmvL41AtKdd81eukcFniGV6OVaCdZxKHtAX4tzVrOhGZwpq7SbTf1hK36ZpgFAzZY9eJCPBTtmgPHHKiWsptkI4KSCGVbuqRETDYdlaGNUb7BuF0GUBZKZHGof50/AopsrqJJXx98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771846065; c=relaxed/simple;
-	bh=WLjLX4fFTrjRDe7fmnzKRUWhyDRziRi/Dp4t5UD44DE=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bcJzP3O/6haoTN5R48KVZtVj0pgu8SJ+qiZO2+/ZKIuivGh5Ircn5SHIPYJhFDh6RmWXeRuG3mzkBNZ136k1OcBOgxIt1TJDRmHm5UFAKo9fKyHBM+QDzwLTH5lchqqOUO5TdLQJQBw+hJmNxOEuw1AS77XPnNKyBw4KpA2o6JA=
+	s=arc-20240116; t=1771846064; c=relaxed/simple;
+	bh=lpw5HGx1Ps1o3mWsL+UrALhOcYvde4wFeFOH4IdFpmU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=hsMaYZbi7liAehkIxT8/FLucILvmIBuH37PyFrbdoW4zqgWvX18YwZk3T0fkGehF45mhUwbv7lnB/fhlB4juJ779yI0v0Rrpuq5j9lfwlQH/8zo/esdllrPnkwFymxK/aI0ryJkOk3eCT5atNLSmhyg0/JvfHP9VHYkPwmKsvOk=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <m.felsch@pengutronix.de>)
-	id 1vuU6C-0007VH-4J; Mon, 23 Feb 2026 12:27:36 +0100
+	id 1vuU6C-0007VH-6E; Mon, 23 Feb 2026 12:27:36 +0100
 From: Marco Felsch <m.felsch@pengutronix.de>
-Subject: [PATCH v5 0/4] Add onboard-dev USB hub host managed vbus handling
- support
-Date: Mon, 23 Feb 2026 12:27:33 +0100
-Message-Id: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
+Date: Mon, 23 Feb 2026 12:27:34 +0100
+Subject: [PATCH v5 1/4] usb: port: track the disabled state
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,11 +47,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKU5nGkC/43NsQ6CMBSF4Vchnb2mLVCvTr6HcSjcAl1a0kKDI
- by7hcXBQcf/DN9ZWTTBmshuxcqCSTZa73LUp4K1g3a9AUu5meSy5igFJAVCweRH28IcG/Cu8To
- QkEnQIFUkCDVHxbIwBtPZ5dAfz9yDjZMPr+Mslfv6n5tK4KBINiXqmlDgfTSun6fgnV3OZNiOp
- +oDXsUPsMqg0J1EFLKmS/UFbtv2Bg4lqi4cAQAA
-X-Change-ID: 20250821-v6-16-topic-usb-onboard-dev-b8d4d1d8a086
+Message-Id: <20260223-v6-16-topic-usb-onboard-dev-v5-1-28d3018a8026@pengutronix.de>
+References: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
+In-Reply-To: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
@@ -70,7 +67,7 @@ X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -79,75 +76,80 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,gmail.com,chromium.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267375-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267372-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.908];
+	NEURAL_HAM(-0.00)[-0.875];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5EF6117585E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,pengutronix.de:mid,pengutronix.de:email]
+X-Rspamd-Queue-Id: D70701757E1
 X-Rspamd-Action: no action
 
-Hi,
+The disable state isn't tracked at the moment, instead the state is
+directly passed to the hub driver. Change this behavior to only trigger
+the hub if a state change happened. Exit early in case of no state
+changes but don't return an error.
 
-the whole purpose of this series is to make it possible to control the
-USB VBUS regulators of an USB hub via host managed regulators.
-
-Regards,
-  Marco
-
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 ---
-Changes in v5:
-- Link to v4: https://lore.kernel.org/r/20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de
-- rebase on top of v7.0-rc1
-- dt-bindings: fix typo
-- dt-bindings: move example into usb-device.yaml
+ drivers/usb/core/hub.h  | 2 ++
+ drivers/usb/core/port.c | 6 ++++++
+ 2 files changed, 8 insertions(+)
 
-Changes in v4:
-- dt-bindings: change to vbus-supply and shift doc to usb-device.yaml
-- onboard_dev: make use of new regulator API to parse child device
-               regulators.
-- onboard_dev: drop hard coded downstream port number and make it more
-               dynamic
-- onboard_dev: drop limiting support to SMSC hubs
-- Link to v3: https://lore.kernel.org/r/20250821-v6-16-topic-usb-onboard-dev-v3-0-6d2b38a5d818@pengutronix.de
+diff --git a/drivers/usb/core/hub.h b/drivers/usb/core/hub.h
+index 9ebc5ef54a325d63e01b0deb59a1853d2b13c8d5..297adf2c6078809ca582104f228e5222c464f999 100644
+--- a/drivers/usb/core/hub.h
++++ b/drivers/usb/core/hub.h
+@@ -97,6 +97,7 @@ struct usb_hub {
+  * @usb3_lpm_u2_permit: whether USB3 U2 LPM is permitted.
+  * @early_stop: whether port initialization will be stopped earlier.
+  * @ignore_event: whether events of the port are ignored.
++ * @disabled: whether the port is disabled
+  */
+ struct usb_port {
+ 	struct usb_device *child;
+@@ -118,6 +119,7 @@ struct usb_port {
+ 	unsigned int is_superspeed:1;
+ 	unsigned int usb3_lpm_u1_permit:1;
+ 	unsigned int usb3_lpm_u2_permit:1;
++	unsigned int disabled:1;
+ };
+ 
+ #define to_usb_port(_dev) \
+diff --git a/drivers/usb/core/port.c b/drivers/usb/core/port.c
+index 44e38f922bc553adee64b35c536dfd4154a42d8a..86e9d6d0c0f505782569565fde8e4a46b06b8b4d 100644
+--- a/drivers/usb/core/port.c
++++ b/drivers/usb/core/port.c
+@@ -117,6 +117,10 @@ static ssize_t disable_store(struct device *dev, struct device_attribute *attr,
+ 	if (rc)
+ 		return rc;
+ 
++	/* Early quit if no change was detected */
++	if (port_dev->disabled == disabled)
++		return count;
++
+ 	hub_get(hub);
+ 	rc = usb_autopm_get_interface(intf);
+ 	if (rc < 0)
+@@ -148,6 +152,8 @@ static ssize_t disable_store(struct device *dev, struct device_attribute *attr,
+ 			usb_clear_port_feature(hdev, port1, USB_PORT_FEAT_C_ENABLE);
+ 	}
+ 
++	port_dev->disabled = disabled;
++
+ 	if (!rc)
+ 		rc = count;
+ 
 
-Changes in v3:
-- fix dt-bindings issues
-- Link to v2: https://lore.kernel.org/all/20250327172803.3404615-1-m.felsch@pengutronix.de/
-
-Changes in v2:
-- fix compile time errors in case the module builds
-- Link to v1: https://lore.kernel.org/all/20240807-b4-v6-10-topic-usb-onboard-dev-v1-0-f33ce21353c9@pengutronix.de/
-
----
-Marco Felsch (4):
-      usb: port: track the disabled state
-      usb: hub: add infrastructure to pass onboard_dev port features
-      dt-bindings: usb: usb-device: add usb hub port vbus-supply suppport
-      usb: misc: onboard_dev: add hub downstream port host vbus-supply handling
-
- .../devicetree/bindings/usb/usb-device.yaml        |  15 +++
- drivers/usb/core/hub.c                             |  55 +++++++++-
- drivers/usb/core/hub.h                             |   4 +
- drivers/usb/core/port.c                            |   6 ++
- drivers/usb/misc/onboard_usb_dev.c                 | 117 +++++++++++++++++++++
- include/linux/usb.h                                |   3 +
- 6 files changed, 198 insertions(+), 2 deletions(-)
----
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-change-id: 20250821-v6-16-topic-usb-onboard-dev-b8d4d1d8a086
-
-Best regards,
 -- 
-Marco Felsch <m.felsch@pengutronix.de>
+2.47.3
 
 
