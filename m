@@ -1,173 +1,204 @@
-Return-Path: <devicetree+bounces-267554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267557-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8F6JHU2MnGmdJQQAu9opvQ
-	(envelope-from <devicetree+bounces-267554-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:20:13 +0100
+	id 2DUvDg6MnGmdJQQAu9opvQ
+	(envelope-from <devicetree+bounces-267557-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:19:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C94D17AA65
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:20:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B08217A9B8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:19:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E9EEA309DC52
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:12:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 29B10308AFF5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125C33195F0;
-	Mon, 23 Feb 2026 17:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4F2328B58;
+	Mon, 23 Feb 2026 17:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/mIOFe0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V9IPm/hf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955B132939C;
-	Mon, 23 Feb 2026 17:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E771330664
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 17:17:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771866701; cv=none; b=ErRcKk8MniN4Tv7N3KhGvXlgmE11h5EjH2VGUghIGGVLf4Br2HYckJ4ZT0N+xBkzWJ9oMYwbLF/MdmfnbOVHgx1fTWu92YCLsi2C/hOO4JL5JDbKzfnnINDojzNNoLOzEWVO83loyIaMqP11iErwQMSG6NmZBicceZ//B1ql7IE=
+	t=1771867031; cv=none; b=SOIqrKbmxsIfiqiHWcLJ2jlg7aASdPfPMjwY4NdzVnVYJhy6cteZyDOEpd1yZYMnkgXSqb1MbQa+mzrQOMj5gqymcciVEjpw+LGtIVS82P6znyA5naXcVXkIAxZwtA7BbxBoj0IS/qE7hDokZBZOYiKsTLqMqlxTaaT7iM65Zso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771866701; c=relaxed/simple;
-	bh=ZRbVHff9cwhjzd4EHPCkK5bTEZb7Lbk26FN3GsdVZ5U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ToS9eCW0auuZzosNT+4yEd9e8o2KfMit5MJNTaumgdikOhGrlEczh21gNKo3JEgwcrLXAwvpXxkAa5YFBde9lpxHTSBwnE29wQv9qqOQm48kxd69nWaH3ATvCxyeiUCBzPtuILi4+Cp8hhXDHLFSvO95V+h8BPpcR2WChGyif9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/mIOFe0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3282C116C6;
-	Mon, 23 Feb 2026 17:11:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771866701;
-	bh=ZRbVHff9cwhjzd4EHPCkK5bTEZb7Lbk26FN3GsdVZ5U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G/mIOFe0Yjdq0piPLsmh5N4wP7yKaqEdYI0eVSVx4iedMaB4HSdOrCJ8WPMAo7/EE
-	 pKOUjhJCmr4fkBxXcRpNv7DQo328fKY9Yz3hF+cGfFi8tTXc91Tz69FcuIYVrgz+kf
-	 T/gjRBBOORWGsSUYEbiJAJkpbCUuxg9kINGSA2me9lrX0kaXr0SWJ8OxJwwAMo6+v0
-	 O8WajFrALSrC1vLUN5p86f2f4l5fXGrsLqS7/62qTmfxv6B3zLgV8UFhPsgjKjdH8j
-	 gw1XkdbWHYwAGBuiLFFvqGCbL3rAP29GbUx1I/C9MwU8wWnvVzdirVIUigirKxd6lz
-	 58kZoLtsLkr7g==
-Date: Mon, 23 Feb 2026 11:11:40 -0600
-From: Rob Herring <robh@kernel.org>
-To: Thierry Reding <thierry.reding@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1771867031; c=relaxed/simple;
+	bh=WVs/g4cQmQqVe2J2+nIoMwPE/ef3LT19rVqgZxkT9UE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fkaDYJ8BwYVNLF3e+Q1AluRqobE+O7jWzBC7qcZczVlCR4hZ35UlanKMjRJ4TpQfirb4iHVMOFQUZKeS2n/xq4S251bePXqhls5VpYQ4FyyRhAWkOt35ooXsCEPgI0RKAV5a1y4UdOqN793ccrMR3lHKtDxZLERn9v8TwBuBipc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V9IPm/hf; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-4359a302794so3420660f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:17:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771867029; x=1772471829; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hyGEcrLpV4bwwocVSCsdzUyZjiaZncJT9oIq/dUyqxc=;
+        b=V9IPm/hfjv8OQgb6O/hWFilVSPV6B+cULb9Tcqm7zCE4kaTuD0eH4Rmk/iO6R2Kz43
+         qkS/HitSuu7H09EBA/wA4xYFKAO/kcOapN63tSN6QTGT8kPketMJEGOUOCE8/nd5jfMp
+         gBztAqzIcksfDSpur1ZaaVoWE6p/g5fp7uRK8bVBpAgWAeQhUt+S+QoYi4qf/mW9r+BD
+         MyvRSBZVgxG+I/UvWvg/+Gfh/Ksw8IKbcKiAOCeokmyQessNhLoDISCTIJJLX6Z4OF8u
+         OTdeIpJ6VOvCEGz4O4wNIgOqKFn6KopgDnWtB6M/vv+3XdIV0dHPMhYqmud0rV9U0a70
+         iDmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771867029; x=1772471829;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hyGEcrLpV4bwwocVSCsdzUyZjiaZncJT9oIq/dUyqxc=;
+        b=VC/fHaFD5IbNCKDUnS0hiF0fZ60ylrhSk+Qk5rVfdd1SAoCmBfF+76cStLkeu26P+W
+         M64jCe4jE6t3zS3RBaXgyuE44OKl1/RwFRwwgvZqHqkJFEyQAacl2c3zRDhMlhTGlYbk
+         pgIkbA7Rd/PFbnyiFhIYKCcD+dQ4FpBk/RAmSy0jzGjKrCL2jm5hBDx/EWq1T3Esb+YA
+         4JeKXxSRJcH1t5Y6d+6tyeFISdUneRjKL0eZ0NfSJ+dZNNsegDUWeRqQeW6j2qEZi48x
+         RiNtJDBT/IsiUwwLi5sCARAHX+ODQ7ieTa2mBkOxKO2jSlO3k7lOC3WqwvYIVnQIWbtp
+         Yugg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVixXXAaGmPhnTcyR/F6EBXuHOzM4vKqmmnD4W0vuZRVd0ipZxPFIPznZ8RawgrpOsLHkPwMFNENJY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBZ0B4xbzSk1/1ikU8yjfMeWTrAmlMRyvP4sgw5TJu3zjq6j3m
+	oMRbVp+LSyFwfsLUw8Bd6Xs4qioQ8IlBJ8wAiLJLaYPMkTnuI+Ypoghr
+X-Gm-Gg: ATEYQzyaiYeY0CtVNUlY/9y/r0MxIYpTmJLPNW/05KNwFehTXZX7GwKQ3Hd1YWY7OEH
+	OEOH6Jv/yeDTn05b1Yf1MnjryToSvMmJSCQ1q/rHV1qg9w23+dI6yUlR8nfZUhlyRvPVshpKP7q
+	pZfPFX9tmX7SJmRZBo8p1mfXp+jidF9z1agJR/gBdRR2HgSNbkSxAqB4wvbYCdIYP+TIWdbJuFh
+	1hh1XOmcsoaCqg3NtUKag/SEHC1gOzDvC2UNMhPKvqLtlszBZAcxATOLYt2vlcPqt3E6+tK8bth
+	Ceecz59UENvjnPIfigZ9vYxoxHc0bJh/nIVaypBYBOqawAZzKJkxnsK/WMdYeSmEM75k1w41XtV
+	XBsUpRvl88kGyBP/yJTFVpjPmAnzJ3nLGZ859BT1ituVnzvqiSMZEm1ZZ44z+CxzPqQ0WvBhgnO
+	papxotAS3s0YPKRIi+O48=
+X-Received: by 2002:a05:6000:2910:b0:437:8111:e2d0 with SMTP id ffacd0b85a97d-4396f1562efmr16272260f8f.8.1771867028658;
+        Mon, 23 Feb 2026 09:17:08 -0800 (PST)
+Received: from luca-vm.lan ([154.61.61.58])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970d4c982sm20871454f8f.31.2026.02.23.09.17.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Feb 2026 09:17:08 -0800 (PST)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 00/10] dt-bindings: Various cleanups for Tegra-related
- bindings
-Message-ID: <20260223171140.GA3992907-robh@kernel.org>
-References: <20260223143305.3771383-1-thierry.reding@kernel.org>
+	Sen Chu <sen.chu@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Lee Jones <lee@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Eddie Huang <eddie.huang@mediatek.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Julien Massot <julien.massot@collabora.com>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	Gary Bisson <bisson.gary@gmail.com>,
+	Val Packett <val@packett.cool>,
+	Fabien Parent <parent.f@gmail.com>,
+	Chen Zhong <chen.zhong@mediatek.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rtc@vger.kernel.org
+Subject: [PATCH 0/9] Add support for mt6392 PMIC
+Date: Mon, 23 Feb 2026 17:12:39 +0000
+Message-ID: <cover.1771865014.git.l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260223143305.3771383-1-thierry.reding@kernel.org>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267554-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,mediatek.com,collabora.com,bootlin.com,packett.cool,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267557-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email]
-X-Rspamd-Queue-Id: 0C94D17AA65
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9B08217A9B8
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 03:32:55PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> This patch set contains a couple of cleanups and conversions for Tegra-
-> related bindings. In total, on top of next-20260220, these patches get
-> the number of DT validation issues down from 184 to just 88.
+The MediaTek mt6392 PMIC is usually found on devices powered by
+the mt8516/mt8167 SoC, and is yet another mt6397 variant.
 
-Great! Really, you were at only 40 unique warnings (I strip the 
-filenames to avoid multiple boards duplicating warnings). You're in 4th 
-(to last) place:
+This series is mostly based around patches submitted a couple
+years ago by Fabien Parent and not merged and from Val Packett's
+submission from Jan 2025 that included extra cleanups, fixes, and a
+new dtsi file similar to ones that exist for other PMICs. Some
+comments weren't addressed and the series was ultimately not merged.
 
-arch/arm64/boot/dts/hisilicon:116:74
-arch/arm64/boot/dts/mediatek:197:48
-arch/arm64/boot/dts/qcom:132:45
-arch/arm64/boot/dts/nvidia:184:40
-arch/arm64/boot/dts/rockchip:76:27
-arch/arm64/boot/dts/marvell:182:23
-arch/arm64/boot/dts/renesas:83:13
-arch/arm64/boot/dts/xilinx:16:6
-arch/arm64/boot/dts/microchip:22:6
-arch/arm64/boot/dts/broadcom:32:4
-arch/arm64/boot/dts/nuvoton:3:3
-arch/arm64/boot/dts/sprd:2:2
-arch/arm64/boot/dts/intel:2:2
-arch/arm64/boot/dts/apm:3:2
-arch/arm64/boot/dts/realtek:45:1
-arch/arm64/boot/dts/freescale:2:1
-arch/arm64/boot/dts/arm:1:1
+This series only enables three functions: regulators, keys, and RTC.
 
-This and logs of all the warnings from next and Linus' trees can be 
-retrieved with scripts here:
+I have added a handful of device tree improvements to fix some
+dtbs_check errors and addressed the comments from last year's
+reviews. The series has been tested on Xiaomi Mi Smart Clock x04g.
 
-https://gitlab.com/robherring/ci-jobs
+Fabien Parent (5):
+  dt-bindings: mfd: mt6397: Add bindings for MT6392 PMIC
+  dt-bindings: regulator: add support for MT6392
+  dt-bindings: input: mtk-pmic-keys: add MT6392 binding definition
+  mfd: mt6397: Add support for MT6392 pmic
+  regulator: mt6392: Add support for MT6392 regulator
 
+Val Packett (4):
+  soc: mediatek: mtk-pmic-wrap: add compatible for MT6392 PMIC
+  input: keyboard: mtk-pmic-keys: add MT6392 support
+  rtc: mt6397: add compatible for MT6392 PMIC
+  arm64: dts: mt6392: add mt6392 PMIC dtsi
 
-> Note that technically these are at different revisions because they had
-> been sent out separately a while ago, Some of these have already been
-> reviewed, but given that they are fairly old I wanted to send them out
-> in case there are new best practices that these don't include. I've run
-> all of these through dt_binding_check. Also I've verified that these do
-> not produce any new warnings/errors while eliminating old ones.
-> 
-> Krzysztof, Rob, I know that you prefer DT binding changes to go through
-> driver trees, but given that these don't have any driver changes to go
-> with them, should we queue these via the Tegra tree (or devicetree tree)
-> once they've passed review?
+ .../bindings/input/mediatek,pmic-keys.yaml    |   1 +
+ .../bindings/mfd/mediatek,mt6397.yaml         |   3 +
+ arch/arm64/boot/dts/mediatek/mt6392.dtsi      | 133 +++++
+ drivers/input/keyboard/mtk-pmic-keys.c        |  15 +
+ drivers/mfd/mt6397-core.c                     |  43 ++
+ drivers/mfd/mt6397-irq.c                      |   8 +
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/mt6392-regulator.c          | 491 ++++++++++++++++++
+ drivers/rtc/rtc-mt6397.c                      |   1 +
+ drivers/soc/mediatek/mtk-pmic-wrap.c          |   1 +
+ include/linux/mfd/mt6392/core.h               |  42 ++
+ include/linux/mfd/mt6392/registers.h          | 487 +++++++++++++++++
+ include/linux/mfd/mt6397/core.h               |   1 +
+ include/linux/regulator/mt6392-regulator.h    |  40 ++
+ 15 files changed, 1276 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6392.dtsi
+ create mode 100644 drivers/regulator/mt6392-regulator.c
+ create mode 100644 include/linux/mfd/mt6392/core.h
+ create mode 100644 include/linux/mfd/mt6392/registers.h
+ create mode 100644 include/linux/regulator/mt6392-regulator.h
 
-I prefer they go via subsystem trees still, but if you don't get a reply 
-in reasonable time just take them. You can take the interrupt-controller 
-one though as DT only changes don't tend to get picked up.
+-- 
+2.43.0
 
-> I plan to pick up the two DTS changes into the Tegra tree since they are
-> fairly trivial and unrelated to the bindings changes. I suppose they
-> could've just been a separate series, but I thought I'd post them along
-> with the other changes since this is all a concerted effort to get the
-> number of issues down.
-> 
-> Thanks,
-> Thierry
-> 
-> Thierry Reding (10):
->   dt-bindings: phy: tegra-xusb: Document Type C support
->   dt-bindings: pci: tegra: Convert to json-schema
->   dt-bindings: clock: tegra124-dfll: Convert to json-schema
->   dt-bindings: interrupt-controller: tegra: Fix reg entries
->   dt-bindings: arm: tegra: Add missing compatible strings
->   dt-bindings: phy: tegra: Document Tegra210 USB PHY
->   dt-bindings: memory: Add Tegra210 memory controller bindings
->   dt-bindings: memory: tegra210: Mark EMC as cooling device
->   arm64: tegra: Fix snps,blen properties
->   arm64: tegra: Drop redundant clock and reset names for TSEC
-
-arm64: dts: tegra: ...
-
-Rob
 
