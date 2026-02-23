@@ -1,233 +1,158 @@
-Return-Path: <devicetree+bounces-267463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267464-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MN7LOa9lnGmsFwQAu9opvQ
-	(envelope-from <devicetree+bounces-267463-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:35:27 +0100
+	id mB4mMitlnGmTFwQAu9opvQ
+	(envelope-from <devicetree+bounces-267464-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:33:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D04F1781D2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:35:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9B41780B2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:33:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC23030579F2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:32:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 14E6F304261E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0361D298CBE;
-	Mon, 23 Feb 2026 14:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1DE295DA6;
+	Mon, 23 Feb 2026 14:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="epqD4SEV";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gg/t3ddz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uB6UMtiP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB87D292918
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 14:32:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CEF3283FCE;
+	Mon, 23 Feb 2026 14:33:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771857173; cv=none; b=hO3AnJrV7XAJuhrTK2Rfvae0GaF4ezF/IlryIIYLFR3Rq2ZXbMUl6lLYHUHXQAGXYrddJVSrHkTDNvBWNuhoRqNduimcG1DrEsmk72fsScBJFEU5AaR7piIWC6YR0Nzz1vH8dflrJIpGUAqCEUI9mJdDa+JeUqd0UUzFC+UBxug=
+	t=1771857191; cv=none; b=MrIsLhhPyZq8Kc4i/F1/b940sdaP1epKYlYDsfG/LtiS7XiV/ne3PHMA2oSkF63TEhRxx2Xv4ZS2EpTwr7Wsd4VYv6M+hwQZUv11/QY3GRBYP469HMiKXX6RPpcIpt0Fm41NWVUQVhIf8TnhUq9sJ/rmu4GgUrlxnbvOvjgaxEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771857173; c=relaxed/simple;
-	bh=0xzDlC7N2Li2FtS8eDJ8PuGX0sJY8k9tUPeI83XobVQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=J/zGST4P+dLr41kv1/48kiiLF/ejgKUdZe2JcLHK13GHcRQcAObFXXqlYBMwfibiWksCj2lkyPyyNHkcvWuVE/HOsLKjgsAm7YsH9mLr8ZkhOOdgado3bcJRF4T1+BVmV+uTQ9g5uXp75+oKruEtEIfBgon+khVMgcvJ8t+S40w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=epqD4SEV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gg/t3ddz; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61N9hFDj1195528
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 14:32:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=tmBlSydX8knIZXyl0Pvuba
-	2NBQKTZ/5ssunahHjCvwg=; b=epqD4SEV+phP27q0p5NYRuMIxmEmAasi9l1PEL
-	CwuwSnM75ttuchtcKbEX9bDOYr9atk66lzilgHfya/guQmcChXA/j0JIFO8f+h6B
-	gsLQ1Wl0KgpLd25BUAu8HJorZLnk1CR1zWk3YQsAT6zqUGb7D97usTAMY2AuiC3y
-	qkRDft2Rtbc06QccpnsVK4DwfHtLx9GszaLPLflhdqk4YgO9dcvZN6qoa+ppGPzh
-	OxDGc89432jZ5/a5y7J5QQ0UzzAtX9ciLlbATI/hsak2qaakcT8t/6d7cv6P8VrF
-	ADuXQgXo1GSeY/JmzR7pITbMcGxnrz2YqHRctMK/4B8kFa3w==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cf603n3au-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 14:32:51 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c7166a4643so4647482385a.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 06:32:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771857170; x=1772461970; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tmBlSydX8knIZXyl0Pvuba2NBQKTZ/5ssunahHjCvwg=;
-        b=gg/t3ddz6RQIbAiQ+YPXFbMBpuqbgrlpLsjPaxOMpAvMK9FJQ/IyYZ7Bu1+J7TJBqm
-         GIS5eQBRUV9IxeCX0HG+Alcu11BxM4Rft0lYTlEPNUvhK1rqdOGj9I/0gB/KoP61Bqu6
-         pr3z706iLvVELut0wOh/dYeI7v0XtZZlJ7yCEAXBlltZq/kX0yGsYv+z5t286yLZAHNw
-         kShZkjY29EZp3jZfNBgZeFT7QGyYDQjz94j4WT2598IKD5sM+dr+Ah2dtiRSZG5zGaEp
-         wO+ULCreBuaX2Tww+Yk9TZjgOolwwFYIa17Cc1XbIY42clIj10rUc0ncgX5XQQr3NksV
-         h0Yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771857170; x=1772461970;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tmBlSydX8knIZXyl0Pvuba2NBQKTZ/5ssunahHjCvwg=;
-        b=shg41cnvYofKPCnsG2WQ5MjEQ1PhZs1zAOspVgDKwAhp/kqW30ECM4Kv9I7auJF3SD
-         whd0SmzLuZDeCM+BdyqEdN+CAzW27nR9304PVCBg8dqk1Wc0rXqFhQGXRj9juDd7zv8Q
-         vHWORc5NfWzasBoz+G+7YDslwfEuvcEFAwsiiIfXhHUn47MQGJp01blbonztCnbUE7x9
-         wCMmnSF3keyIFzP7m7bt7TKcZCOHj+OuplM8t7feiDH42En8jNj2osp3R1iMgEjwKonu
-         0PSnRoodqRfc7icqdKuZxwiEDYSU0YmJeLDMgoNdLI4sPic8KNcq9AEniA4saaKFCMrt
-         5nzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXdi1I2+dEmCUQWJDwBTB03HGt/wGU2Ca07s5DmFbo0T3ECFGd7pHz4Q01ZyA3U6Z3Iviv7MA0ir0rA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsKtIBLuLGm4Ir8XTWWGq+kPBuMWdI9eEsBkoBD8i0D70sMCG2
-	rtu25D0KSJgimeBiND9KfC9nazxdsaXI4ll7SPHhUxg6Op8BXuVUXgQ0QA7iTMyIKOI9h+rAZSg
-	m9UqpJBGqlw2Wc+4IsbhDuuPC+PJ/ED76I2vcPFPD261IuYo0jHR7YXoaXBqd9b2/
-X-Gm-Gg: AZuq6aKwl9jo59rVRo3Etvan9QT0AAEz8ChdZWDXu6+C0WhYHU1L+AgbTKE56XLM57h
-	UEB6MaN7zEXKn1PfIZOVqf9rhvJZnpzexxo+0z9lyry3SJFRcyfejGA3UeKk9hUF83CGq+fX7zQ
-	eH5/PS/SlAZHI78DeSbZsSNqHrddNwNGqbZXjC5GM1mMRYg1ZiGgJORDi25CebLSHIFe8iCxM0k
-	KRGYzUvo77qJvlDEx23xpuyEdruEfuHkiuvCN/pPQXc7N2p0Bm38+6eQeRp9ZkpYbhSzIf3QeIv
-	gT7H/Y5zuXL+I9Y9dDY4RioTK6nTM/KFZvuYzXRVJpjwQEbHuh9N7NLJ7UtFLAhMs+VGenJNrK3
-	sy7hrDul+Ne565IgjqiVqREm5zzGCFA==
-X-Received: by 2002:a05:620a:258f:b0:85c:bb2:ad8c with SMTP id af79cd13be357-8cb8caa0bf3mr961160485a.74.1771857170065;
-        Mon, 23 Feb 2026 06:32:50 -0800 (PST)
-X-Received: by 2002:a05:620a:258f:b0:85c:bb2:ad8c with SMTP id af79cd13be357-8cb8caa0bf3mr961147485a.74.1771857168555;
-        Mon, 23 Feb 2026 06:32:48 -0800 (PST)
-Received: from hackbox.lan ([86.121.162.109])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483a9cb3f31sm189638825e9.13.2026.02.23.06.32.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 06:32:47 -0800 (PST)
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Date: Mon, 23 Feb 2026 16:32:35 +0200
-Subject: [PATCH] scsi: ufs: qcom: dt-bindings: Document the Eliza UFS
- controller
+	s=arc-20240116; t=1771857191; c=relaxed/simple;
+	bh=596tS2/+5oswjpeJVX/nHjT+QXzhCWzDzDbLOoXRH6M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UHI7zqLsjYQTdrHukDrvLRZ6az1FQFdWeKWAFxHqgvrCwXsbuSlCexgXURh9Zyqvcb1cvorsD6mgtQfi/xUGpvUu9pitpNHSEtofc5uF2ezKXgQ8jGCYp2FMDFVtdaIRk8BQleZ/wQU9YwZdIc2k1DJJoYkYWtRSGRFR5dxoODE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uB6UMtiP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC090C116C6;
+	Mon, 23 Feb 2026 14:33:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771857191;
+	bh=596tS2/+5oswjpeJVX/nHjT+QXzhCWzDzDbLOoXRH6M=;
+	h=From:To:Cc:Subject:Date:From;
+	b=uB6UMtiPjEjkTp6Fmim8G38cPrmf+5qZMxhF6NWu1Wjs92QgUxtm0UCUMBDZAsoG5
+	 B9zqo5YXRgCM/v2U3rLkE4wAuPFkTsWV6V9FnJZOuy4ODAI2HiwffWvDAU/0bim80u
+	 d5i1BVblB6T7kWPqxBFsGEsTpqvTJ6+8PrmreES1aI3HDdrRjWcz2BPjqhXxldNy3v
+	 6whxBka/9ZNx4kyRw/Lx1WJYkXS4kFXDQMsdjiO3Ng4w6XFZ0SVUrj2+/glGXMUq6u
+	 Bp1LYpy2brYtOucDguRC/0CtFrvUIpWtOxCEtexhj5nazC3hgI6uXQcBZ+MkKIqtv0
+	 l/t4tnHdKFQgw==
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@kernel.org>
+Cc: Jon Hunter <jonathanh@nvidia.com>,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH 00/10] dt-bindings: Various cleanups for Tegra-related bindings
+Date: Mon, 23 Feb 2026 15:32:55 +0100
+Message-ID: <20260223143305.3771383-1-thierry.reding@kernel.org>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260223-eliza-bindings-ufs-v1-1-c4059596337f@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAAJlnGkC/yXMQQ7CIBBA0auQWTsJzKJNvYpxAXTAMQYNI8ZIe
- nepLt/i/w7KVVjhaDpUfonKvQy4g4F48SUzyjoMZGmyRA75Jh+PQcoqJSu2pEje07SkJc6UYIS
- Pyknev+np/Le2cOX43E+wbV+XZUhldgAAAA==
-X-Change-ID: 20260221-eliza-bindings-ufs-2aa269f9c72f
-To: Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Abel Vesa <abel.vesa@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1128;
- i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
- bh=0xzDlC7N2Li2FtS8eDJ8PuGX0sJY8k9tUPeI83XobVQ=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpnGUJfiNLyr/PJJOJOjXGNqF7mzblOUPo3cruU
- /cpCLFHCrCJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaZxlCQAKCRAbX0TJAJUV
- VhhqEADFwmKe9bIw5zQjYcxzlxVrWDmAj2P9R9s3QjAYNMpGJGntvZvBTS98gIJKBEEKiQdnVMo
- /7L4ziTGh3px3sFxEFBI8ByAN3xr2DeZTlxFiUoeNpkPVaN6m+c4kdR6EUltHod5J+7PAAAOGcy
- pEVqayaE9hrK6lrri7OJu2mZ7hspe6yssgM15NX3SWGw97+syBMP0CxvrezFonecPSbciKEXPIM
- eC+++3WpxZ28EJ9MNuriguxjQI/YM1nogVeZnZSZMD0CQ/rDU0dy+HVJAFBizPVYlTXAc72GEwa
- O/jtt0A7+uO/MwgKrQqSqAYpFO60eIxZoAPHyB+iKNNUXqq29BE2abBCZ5NqyxvRhN9XJ2H/o5O
- sj9pDaVQkyRzUHagrOiFjmzYeZj4wcvND71Gs8cT/taVhkpaeKqeEBVQhJytfbvlrOkTWEn2DLg
- TLKar1SzceWuFey7/meXUe6AsD9k3ZjQS4qs54oGLbijjnW8tzS8m6iMD/H/rlH2mm53q1MBlOf
- fQxZQdVJSlYMrgR/aJTpo2xmXphvST63wHmcQWmI0G58uLab9ElijEG29Qjy0NX8FvBGiBkcVuu
- zr8morp2GPmNbHx6jTXqH0nj+yfGR7mVTGQdj96smrrWTKw20vqcGYFzgNZNYz3IxUDY+YuTZAw
- rDUGXcvyhsu7F4g==
-X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
-X-Authority-Analysis: v=2.4 cv=XbWEDY55 c=1 sm=1 tr=0 ts=699c6513 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=EUspDBNiAAAA:8 a=dkR0I6OD3irOzcp_LXMA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjIzMDEyNCBTYWx0ZWRfX1uk7Ia/rSYVX
- 7qGW2fBrBNms5RLv7TytpbZfbjYMWVHKKaulxK9bzXRoxQLaJ1ipvxGYXxK8mUl21IFSjb8VmLG
- 6bs25VpEYWMZc+KAbf84RnnEkRCggBbrtwPn7QowfTurDR54F9YPXGXBTc065CZC/l4Eq4YE9NG
- cYP6nxbYBJIJ6r0Yl8S8hMrjcmVijIXcD/30wkBiR5MyMAdxfycTZAC/19hqJTrWR9996f44b2s
- HZCY7Dsa3aDGemr9zoyJdMsVdngccWAuwk2gjbsj5d8TSuU3c34eSblsLSEV9YgBf6cG6lDCh5K
- SbOpq9dRqTawEfh5JsLbExUeIc8fvF89p3X5SVirZxZsPc8WkRTH4Pl8USoJfkpu7mivwqvQCgR
- qam2XnvNOT7eXjPzp6/NBnwLkcqQVI7r/CikFcDKK/0Gy9dkiHOtmgcub6PRQVIshaGOZleviKk
- 1+unJzoJ57b8ni71TfA==
-X-Proofpoint-ORIG-GUID: i7kNP7Yo7PX8blK4gXRzoko_7RIVhQ-Z
-X-Proofpoint-GUID: i7kNP7Yo7PX8blK4gXRzoko_7RIVhQ-Z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-23_03,2026-02-23_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 impostorscore=0 suspectscore=0
- malwarescore=0 phishscore=0 priorityscore=1501 adultscore=0 spamscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2602230124
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267463-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-267464-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4D04F1781D2
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nvidia.com:email]
+X-Rspamd-Queue-Id: 4D9B41780B2
 X-Rspamd-Action: no action
 
-Document the UFS Controller on the Eliza Platform.
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
----
- Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+This patch set contains a couple of cleanups and conversions for Tegra-
+related bindings. In total, on top of next-20260220, these patches get
+the number of DT validation issues down from 184 to just 88.
 
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
-index cea84ab2204f..80550144f932 100644
---- a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
-+++ b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
-@@ -15,6 +15,7 @@ select:
-     compatible:
-       contains:
-         enum:
-+          - qcom,eliza-ufshc
-           - qcom,kaanapali-ufshc
-           - qcom,sm8650-ufshc
-           - qcom,sm8750-ufshc
-@@ -25,6 +26,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - qcom,eliza-ufshc
-           - qcom,kaanapali-ufshc
-           - qcom,sm8650-ufshc
-           - qcom,sm8750-ufshc
+Note that technically these are at different revisions because they had
+been sent out separately a while ago, Some of these have already been
+reviewed, but given that they are fairly old I wanted to send them out
+in case there are new best practices that these don't include. I've run
+all of these through dt_binding_check. Also I've verified that these do
+not produce any new warnings/errors while eliminating old ones.
 
----
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-change-id: 20260221-eliza-bindings-ufs-2aa269f9c72f
+Krzysztof, Rob, I know that you prefer DT binding changes to go through
+driver trees, but given that these don't have any driver changes to go
+with them, should we queue these via the Tegra tree (or devicetree tree)
+once they've passed review?
 
-Best regards,
---  
-Abel Vesa <abel.vesa@oss.qualcomm.com>
+I plan to pick up the two DTS changes into the Tegra tree since they are
+fairly trivial and unrelated to the bindings changes. I suppose they
+could've just been a separate series, but I thought I'd post them along
+with the other changes since this is all a concerted effort to get the
+number of issues down.
+
+Thanks,
+Thierry
+
+Thierry Reding (10):
+  dt-bindings: phy: tegra-xusb: Document Type C support
+  dt-bindings: pci: tegra: Convert to json-schema
+  dt-bindings: clock: tegra124-dfll: Convert to json-schema
+  dt-bindings: interrupt-controller: tegra: Fix reg entries
+  dt-bindings: arm: tegra: Add missing compatible strings
+  dt-bindings: phy: tegra: Document Tegra210 USB PHY
+  dt-bindings: memory: Add Tegra210 memory controller bindings
+  dt-bindings: memory: tegra210: Mark EMC as cooling device
+  arm64: tegra: Fix snps,blen properties
+  arm64: tegra: Drop redundant clock and reset names for TSEC
+
+ .../devicetree/bindings/arm/tegra.yaml        |  51 +-
+ .../bindings/clock/nvidia,tegra124-dfll.txt   | 155 ----
+ .../bindings/clock/nvidia,tegra124-dfll.yaml  | 290 ++++++
+ .../nvidia,tegra20-ictlr.yaml                 |  23 +-
+ .../nvidia,tegra210-emc.yaml                  |   6 +-
+ .../nvidia,tegra210-mc.yaml                   |  77 ++
+ .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 --------------
+ .../bindings/pci/nvidia,tegra20-pcie.yaml     | 851 ++++++++++++++++++
+ .../phy/nvidia,tegra194-xusb-padctl.yaml      |  39 +-
+ .../bindings/phy/nvidia,tegra20-usb-phy.yaml  |   1 +
+ MAINTAINERS                                   |   2 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi      |   2 -
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |   6 +-
+ 13 files changed, 1335 insertions(+), 838 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.yaml
+
+-- 
+2.52.0
 
 
