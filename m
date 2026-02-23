@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-267379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267380-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IGbACeU6nGlCBgQAu9opvQ
-	(envelope-from <devicetree+bounces-267379-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:32:53 +0100
+	id 2CWPNrY7nGlCBgQAu9opvQ
+	(envelope-from <devicetree+bounces-267380-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:36:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E23E1758E2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:32:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3991F17596D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 12:36:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 28487302F41B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:32:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B10E43007F6A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092F136167D;
-	Mon, 23 Feb 2026 11:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7025C361DCC;
+	Mon, 23 Feb 2026 11:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HrPevAkY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g5smKJMo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD5C353EE3
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 11:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99FC436167F
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 11:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.216.53
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771846367; cv=pass; b=rSwIbMyUkaEQCQAi8ybcPKcSd/qLel3L8h4kAz4QnqnPvIR8/t1xmtd/2bUDGlzRW+RDwbqtEOimrj8vOWBOSTJabZspAQsiFsp+sjgUNIc9gsseM+v1gv9/5cehsBzIJVMFeZGGC23ZYSU9ToOdvcfL3/ir9YwRk4pe4vb0jp8=
+	t=1771846486; cv=pass; b=G6t/TXB9M8r/LVYSbGH4YdKjtCC1I1pSFjwE14p3mYXny4T+Yi8Dz/cKMqDAnw0i5eoCj2xE8OJ0/49tzaW2YT4ugcfIOsewmpb5u9Ixt1AuEb0b9V93RCPIJKpWJQS3wT8/2h4w1JG9/I2XEVg+85yaYpB4GI86YcSPVEMQp5k=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771846367; c=relaxed/simple;
-	bh=C36X3Q1+2BRe1vNeAaVKqKpK0KI3yzvWD8O1nPnZ6xM=;
+	s=arc-20240116; t=1771846486; c=relaxed/simple;
+	bh=1aK3viC71Xk5/KKHdynHCsB/RGMAWlA9jExz1D1JYG8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UMr4ClKfsahd9cL4XnujQWo++ZAwCVhULp80TWgVNJyZihXLciHxBpIcQYTxyRX1YNAZw4h6eyG54OgLdyYCqww+MFABP0rZdR+FB0JkSKJzbqsECnRG3OG9fF16b6gEawa6zG2Dq4XHH4EKpbilAqdj6O2wwGwFbzoLUot7ZZ4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HrPevAkY; arc=pass smtp.client-ip=209.85.215.169
+	 To:Cc:Content-Type; b=SZEB8ymIbH6Bu8dKjU2yZh7sbViqhWIW7aE3SZPsIOKosFRJgnD038NkQzTFOZ0H40vfs142+yrRqqJHzJw3nS402h09Xih15zXI61S9/9Bv2RDMJHIPycykN2X1bj+MSPjb39lEF7GNFgPy+IJCvf44bZYnTEH1GcEuLy5w0UM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g5smKJMo; arc=pass smtp.client-ip=209.85.216.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c6e734ba92bso2048224a12.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 03:32:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771846364; cv=none;
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-3530e7b3dc2so4377383a91.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 03:34:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771846483; cv=none;
         d=google.com; s=arc-20240605;
-        b=a1wYBpRNuCdjY7iK0p7MuVlP/DG6ML4OWJEnzufHmI7mkNy2RKG0bWlga5piygoXvk
-         mrq62p3sLIqbAzASNpVNsPcwlb4mLtpzN9DpB80pzJwHSUP3SNfPGbCxVRfJmV2kIixr
-         9QA+0IMdv1NgVgTNNPxj4WkJFa/RU1kVxB7Rf5/pVPcmiVg7zAL1AwvDOiOTETrtTOta
-         NHTyPlgxpUy4npBYrfe7zIwmLwb5Z6Xhi7lGb2bzGvXOJJQdH4daG+rfyRkmX74erf3A
-         OfZ+9gQvZtB614BEb0sWEOYF8zBjkbWZdlWQsM6gGLlrntbdsgd5XihvX6t51xo0zcjX
-         yFTQ==
+        b=GYlN+ZPlArXjDR2jv9W52eHqHlOOE3He/lDNR/KF9FrnmQa7LG9nSfUNzENVwlvAyP
+         0VroJI39xsh4ua3K+FBG6lKs0dTcvaoYkAazH21alO+/E/o4DnhF2AIJeSZYxVhW+ioo
+         M8XjzKdJQhK6werJpC0l8teLkU1tO3UbHhNkm5QGKEt8mUVygw+L6ZvlphN0ENILKfMj
+         MBkBjMLFanLnb1XEccDFczT26TKoGQn5FBRR1smjmz6ZQ6gi3k2RRrDXioAe5SdoZQGm
+         pdVOMNELFLKW96jXLl40fPlLJil1xEZaphSTIAyBdjID3OerETwZVU79yI6zQIeiUI3t
+         DYZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=UxBnGBmedQ54EWA7A2cjDvEbeSIOXFfB5ArOz48xqN8=;
-        fh=i1zT7sK6peXJTYViHPsSQMWgtOPFhareCzMLuPc+Avs=;
-        b=A5eXkW1h7C6twcl3ZOmk2tbwfBm2IOP2V4L8QAOoW6XZz1Ol3ow4DnklMmZSMPNQEz
-         tTz1vxhfCCB+dFptwmQG8kDhrmg3X6nk7IVWlvfq1W8HF/VnDuizP7FxJrju1m4OEqLj
-         NyNaCvG6QgS+sOLvhh72CpYmCubS9R+MGmM3a1wm7+AeSlAbcRE3VW2A56fKqxjgHind
-         qWIScUq0QTRetM73zpxRPrxTU8SPYQHKlRAeehd8KOSnjXjF8oEk1tXBml6kvivbliXj
-         JQw4KWdKn2ZML/UvvSJ5/AZrljlk4fhgrV7rgoVGQF43Zx2PXFn7uKToDJn/kib+u6ha
-         s7ew==;
+        bh=mGYStsQlHuKPzU2WNtYOMLZuzbUrY0YdQicljirRGq0=;
+        fh=IFtTk96bLGbu+lhWjbNR2esOqXPvkblF7JK3FPf28Do=;
+        b=Vw/epw4n8TERxk8OtO07AHWehRmA5miD68tLjkBW3gCycBUCAVAw8ff5xuOFvpy0zP
+         /0ddD5kWqFFJtcVG1/BwgQ5WXEiO5QBFiwmO/A5Z43fpSqZ8ZzOHVAj0KLX02p4b/DWj
+         nVhQ3cov3te2ECHy+sCHcCmvt5d/6B7wqEx9sEVJUK1TBgfbKF/iFH7M4AFyuomvYpgo
+         FvRMV87YbqJtlXLNzo0v4fSJyBh5XICO13ShkKyk5l0B2mRn8V76PlwXgaF95ZGEpliG
+         VdjQG5xZAZ9Bpegz47gwfHCaqkYr6RtUdXphqbF6JxrsEYaZ5bRHPzOw0PrY+Ao/aNtr
+         dS/Q==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771846364; x=1772451164; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771846483; x=1772451283; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UxBnGBmedQ54EWA7A2cjDvEbeSIOXFfB5ArOz48xqN8=;
-        b=HrPevAkYs4Bg8bX8JWL+3zJJbGiqLL3OjC64OOcggY7/tX6He8In4kqSGVWdjQBswh
-         Qef5lRlfXBfqZQi5uyNowf20ssZdGu4R7LiY1/cJ78Nn+KXKrBQ9FaEIAfux1rDa+De2
-         1wCpIfZpDdNicaXnPnpEZQQwJDPJyb3aNjhYumfNg6NMy7id9SrE2aOizgPk8l5nXowD
-         gVr0bKlzyh63Hk0hb3nxZfl0k4iErqrTGg3ExuZWEJzNTStgYqfTURXDe1TB1XRPDLaQ
-         mXfYgqgH50BlZskhP18RE+5mZik5AAprDh9gFY73W3ebtZRNOS37LQ6Zq0KHTLIrD5Ha
-         hP4g==
+        bh=mGYStsQlHuKPzU2WNtYOMLZuzbUrY0YdQicljirRGq0=;
+        b=g5smKJMogQMXaLsuZNKudG+C1kR6aw2iuMKlZt1yPMbSJLSof1N1YPPN1E8qasBebF
+         GRIaPm+mzU/LQtExI5OiTkOv/8SUDJByu3NdGgwnxqp/dfWPmmKFz+mLGISwGhsq98Fo
+         k6XqX/8ekA0ihLRdo2gESl7CkD4Uaa3MD7bCJXZzF6L+RgUqfVP1Kisl4EpDGRr343Q3
+         BktPTVBb5nvhmKyORtCvD8x7PHTqR4KuYRjnZfKlaUoSRWxL0/cs1DXKd9eOzo7F6AOe
+         853UI7NUaIOMD2QMxpLi6JTeGtwbNyDxYNx251LdnVxawG9JQ65rXd3QuQ+ZwpiqelXJ
+         jptA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771846364; x=1772451164;
+        d=1e100.net; s=20230601; t=1771846483; x=1772451283;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=UxBnGBmedQ54EWA7A2cjDvEbeSIOXFfB5ArOz48xqN8=;
-        b=YPrLOg7Yi1v7XynOwr/ZQzWf+LkEDTnpL990x12DqlPYHWI2LkWrSJ7slCL9I+ONhg
-         o23KwNT4Oe6kC+sW/RDKRiUVvl7WUg7tSyf9z9A6V5bLRJY8pUczU/OobBE5YtCUsExi
-         gy8xaCtfpWjKtnbS+7Jiz6ti2fkLu8uLy2+8ZBi3ngBxROtAA5xbFqRPreCWL36dgEFO
-         V/AwGvipwVBzvb22Rxij9AhCKg1m8a/1Ht8LLU/6C/ed3gpsMwkFaqQQylNIfoYVg1NP
-         iFq0b+93VMz/HOxiLamTIMQmq2brXCt1+he1YvSCQ8pyQiE77uwH1jw9n0AWuKOY4HIQ
-         fXkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWkYAELDv/y79Uc1IXgFQLE0cRtoEQElGUIsJTRSeMIq/hAxnDJwJEj8tl5if18OeVY6VsK2sWmym7u@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0WCYNUAv4fT7cfpi+XMHf/rRZtypRhNncubgjkErRLOW0Iw88
-	dg9KH3fU75ARRC1OHGpqqxA10el8TYWMGOBtVUpH5/jrwvS6DOjkLNxvago9QCCh0lH+bFW+9tX
-	/zbolQBe+i8Bxz86+y3mnFrIFJ47jikU=
-X-Gm-Gg: ATEYQzxy2ob+odWtdJeyoD5E+yLBxS/i+PVqcQcqVKFCvR4rgcq3NcmcfMjC2MIFB4b
-	rNb9H2MRtFGsKuvd4zMaVaBJxU0yPp9CsLLPiE7MOabUOch1UEGuPOAOmRkNbYeGanDJWDD0dfQ
-	UmEnzR3zq0KjwHigHVcPvlyhiWmR34EHHXSd+bbb1IRT3MUjn4E86xiRZbCo7gP75AA6k6y482q
-	wwhMwa/Nblrx6KgJHV3Y9k/aIVdW39YJBuH8a3PIXA8Q3hC9o8FQjGYRa6Q9y0ukrzV/DVSnSr7
-	/mdyu6Ju
-X-Received: by 2002:a17:90b:4a03:b0:354:bfb7:db1a with SMTP id
- 98e67ed59e1d1-358ae8eb3c1mr6483020a91.31.1771846364557; Mon, 23 Feb 2026
- 03:32:44 -0800 (PST)
+        bh=mGYStsQlHuKPzU2WNtYOMLZuzbUrY0YdQicljirRGq0=;
+        b=QJ4LWjx+qR6QiOhyecRNhJ3lQ89SczZrHheLnuCY5dZAgONYuPZosQcjlfONYlxeg3
+         udZqZ+tKZGZSvwqcRriIUsd5eFN7OuYx071iMTrJKsMzm7Gzrw18JNrOjrfrv7Q4cNoZ
+         JQ2iIfKFbMq/5S8qDSPFCg0Z37YNt4bvKfMvuz7L704Sp1W2WbapoP/MkMS9XuBZ57cM
+         WVZFG7pwveDl+OzA3RlCX53UYKnOoyFUbjvHqgVTStLT5tlbKQG5fVlzXor5CpYpWJHY
+         aL0drYlDxjRCvyjrAuU9ZntXcvQ2R92XE8V8Vcq/5Wva+bmeCvLAOen2E/mqHOBqMfcT
+         40tA==
+X-Forwarded-Encrypted: i=1; AJvYcCVyIpM7BNgNwuRrP7i9g4ekmq3C7LHSlKcFyep3l2yjtZLmQ91oEGVyhtyJanA2lFIfrakM5dn7w+um@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmCkVh817Os+J89nOIU21Km+6leID49wzRnH8Kfs3KwNz3yHAg
+	cd4duifb/nGpjLP/Gj7SAPtNoSjlpWf8lYP6z1DKPTyvTvDdb1OKCTDBmWuEJM00if+3jK7tD4+
+	KC00M5RCVfbPZjyy+Y7l33Fk8ckicBPE=
+X-Gm-Gg: ATEYQzxinDR0/i/9hw+jb68jkxDXRozbmJYLb/rgJBH1E6ZSTJ0gaPetRzH+/W7hA5C
+	zyfjgVHIRHsvTV9Ti0YyUE7uVqPVnMyNPVJf+r9vCH+9N8chs3B/CvsJDkxlXSUW47RYfeWDLhq
+	uROG1IjnroQpw9Zd16iaQsL+fI4JI90RWwI1S5WC8d36vc4hZhd+7oslf3MIgeryZQCQjUGfVAq
+	TpNTZNRzK0xl79lNr7od+YDCJDHYgvvbEwaeHxF105+SpzoVYMWssuuM7qpRzKtYaQqxqYZ8qpZ
+	GFSqvnSz
+X-Received: by 2002:a17:90b:1d82:b0:354:c7f8:6d7b with SMTP id
+ 98e67ed59e1d1-358ae8d0700mr7036064a91.27.1771846482857; Mon, 23 Feb 2026
+ 03:34:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,14 +100,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20260130-yv5_revise_dts-v4-0-4d924455f3a7@gmail.com>
- <20260130-yv5_revise_dts-v4-4-4d924455f3a7@gmail.com> <963194a5e7e88ae8ae1fe367d34d2fcdc329d814.camel@codeconstruct.com.au>
-In-Reply-To: <963194a5e7e88ae8ae1fe367d34d2fcdc329d814.camel@codeconstruct.com.au>
+ <20260130-yv5_revise_dts-v4-6-4d924455f3a7@gmail.com> <62b7557d7af89742d142c1c8d317b8fa14f7ba24.camel@codeconstruct.com.au>
+In-Reply-To: <62b7557d7af89742d142c1c8d317b8fa14f7ba24.camel@codeconstruct.com.au>
 From: Kevin Tung <kevin.tung.openbmc@gmail.com>
-Date: Mon, 23 Feb 2026 19:32:32 +0800
-X-Gm-Features: AaiRm53bpJFrm7XPxTVOdQ54aVpHKM6_Ww6c7tzcvFzJ0UfydujR-z_VZkvGO7s
-Message-ID: <CABh9gBep1U6oMLTFG0c=xX_ZceeA9=q=zELJ8CDENLz7a=iM7g@mail.gmail.com>
-Subject: Re: [PATCH v4 4/7] ARM: dts: aspeed: yosemite5: Add ipmb node for OCP
- debug card
+Date: Mon, 23 Feb 2026 19:34:31 +0800
+X-Gm-Features: AaiRm506Z318uNW6kWrp7bDcWB7y0VDBV6c7Bjo1a43ppRROQOdO1rn-vpstytM
+Message-ID: <CABh9gBduHH5qN7Sv_Baoj=khADxEDv2zJFgXWBQi1K7SS6bRGQ@mail.gmail.com>
+Subject: Re: [PATCH v4 6/7] ARM: dts: aspeed: yosemite5: Add PDB IO expander
 To: Andrew Jeffery <andrew@codeconstruct.com.au>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
@@ -123,82 +122,107 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267379-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267380-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.3:email];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[kevintungopenbmc@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.10:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,codeconstruct.com.au:email]
-X-Rspamd-Queue-Id: 5E23E1758E2
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.24:email,0.0.0.40:email,codeconstruct.com.au:email,mail.gmail.com:mid,1d:email]
+X-Rspamd-Queue-Id: 3991F17596D
 X-Rspamd-Action: no action
 
-On Mon, Feb 9, 2026 at 2:25=E2=80=AFPM Andrew Jeffery
+On Mon, Feb 9, 2026 at 2:27=E2=80=AFPM Andrew Jeffery
 <andrew@codeconstruct.com.au> wrote:
 >
 > On Fri, 2026-01-30 at 16:20 +0800, Kevin Tung wrote:
-> > Add the device tree node to enable the IPMB interface used by
+> > The new hardware design adds an IO expander on the PDB
+> >
 >
-> Here in the patch description you use (capitalised) "IPMB" but in the
-> patch subject you've used (uncapitalised) "ipmb". Can you please be
-> consistent and use capitalisation for acronyms.
+> What does "PDB" mean? Can you please expand this in the commit message?
 >
-> I wouldn't normally mind and would just fix it up, but I've other
-> feedback on this series and have fixed the same problem a few patches
-> already today, so it's a growing source of irritation :)
+> >  to support
+> > fan presence detection and HSC
+> >
 >
-> Andrew
+> What does "HSC" mean? Can you please expand this in the commit message?
 >
-
 Hi Andrew,
 
-Got it. Updated them for consistency in v5, thanks.
+Sure, I have expanded both abbreviations in the commit message as requested=
+.
 
 Kevin
 
-> > the OCP debug card.
+> >  fault monitoring. So Add the PDB
+> > IO expander device node to the DTS.
+> >
+> > The IO expander interrupt is connected to SGPIO92, which was
+> > previously named ALERT_PADDLE2_SMB_N and not used by the system.
+> > This pin is now repurposed and renamed to FM_IOE_ALT_N to reflect
+> > its function as the PDB IO expander interrupt.
 > >
 > > Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
 > > ---
-> >  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts | 7 +++++++
-> >  1 file changed, 7 insertions(+)
+> >  .../dts/aspeed/aspeed-bmc-facebook-yosemite5.dts    | 21 +++++++++++++=
++++++++-
+> >  1 file changed, 20 insertions(+), 1 deletion(-)
 > >
 > > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts=
  b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
-> > index 983aebc394d9159c7e3db2e7c39e963f7b64c855..84d3731b17f7c7c87338672=
-bbcc859de2b89b722 100644
+> > index 524597a81365ef10cd03b67d35eeb88a965cbe0a..48f864b52d1a22b12f8a39b=
+a9703a90349ed930d 100644
 > > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
 > > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
-> > @@ -365,7 +365,14 @@ i2c6mux0ch3: i2c@3 {
+> > @@ -389,6 +389,25 @@ adc@1d {
+> >               ti,mode =3D /bits/ 8 <1>;
+> >       };
 > >
-> >  /* SCM CPLD I2C */
-> >  &i2c7 {
-> > +     multi-master;
-> >       status =3D "okay";
-> > +
-> > +     ipmb@10 {
-> > +             compatible =3D "ipmb-dev";
-> > +             reg =3D <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-> > +             i2c-protocol;
+> > +     /* PDB IOEXP */
+> > +     gpio-expander@24 {
+> > +             compatible =3D "nxp,pca9555";
+> > +             reg =3D <0x24>;
+> > +             interrupt-parent =3D <&sgpiom0>;
+> > +             interrupts =3D <92 IRQ_TYPE_LEVEL_LOW>;
+> > +             gpio-controller;
+> > +             #gpio-cells =3D <2>;
+> > +             gpio-line-names =3D
+> > +                     "FM_P52V_AUX_FLT_N", "FM_P12V_AUX_PWRGD",
+> > +                     "FM_SLOTX_HSC_FAULT_N_FF", "",
+> > +                     "","",
+> > +                     "","",
+> > +                     "PRSNT_FAN0","PRSNT_FAN1",
+> > +                     "PRSNT_FAN2","PRSNT_FAN3",
+> > +                     "","",
+> > +                     "","";
 > > +     };
-> >  };
-> >
-> >  &i2c8 {
+> > +
+> >       power-sensor@40 {
+> >               compatible =3D "ti,ina238";
+> >               reg =3D <0x40>;
+> > @@ -937,7 +956,7 @@ &sgpiom0 {
+> >       "ALERT_OC_PADDLE2_N","",
+> >       "ALERT_OC_PWR2_N","",
+> >       "ALERT_OC_PWR11_N","",
+> > -     "ALERT_PADDLE2_SMB_N","",
+> > +     "FM_IOE_ALT_N","",
+> >       "ALERT_PWR14_SB2_LEAK_DETECT_N","",
+> >       /*bit48-bit55*/
+> >       "ALERT_PWR14_SB3_LEAK_DETECT_N","",
 
