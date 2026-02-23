@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-267563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267564-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kMSqI3mNnGmdJQQAu9opvQ
-	(envelope-from <devicetree+bounces-267563-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:25:13 +0100
+	id sImfOvyNnGmdJQQAu9opvQ
+	(envelope-from <devicetree+bounces-267564-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:27:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E984117AC1B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:25:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0A417ACC7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 18:27:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 16D8131BE71B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:18:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0A1A031C2693
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 17:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A825330D26;
-	Mon, 23 Feb 2026 17:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF30331214;
+	Mon, 23 Feb 2026 17:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VvOnwKlP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TErMkM4w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47313328B58
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 17:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4C0330652
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 17:18:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771867103; cv=none; b=RZ2yvnaPcYXIT9A66gU284iq8bgnuQ2JtGFV70Xs4hE0zXDRiwJh5T+0fWvcwsCNnznotQug0ryyvw9Nspp2OtHUGfWXuaK5kbZNu21TG62Zs8Xld0MZE2ah/zddTkhy7oQjePSO40HMKlFiLY42c0RELNmjIGYvLocqanDKBjc=
+	t=1771867113; cv=none; b=n+RSjV2EO5Rs5gx0D7HUeo3H4EucOqVtxG+R7JuURevT+vVuvHg6fkgEoLhw83U4vOWprGRx3uOTY+FOl1MYPMA5Z3aPlArgSX53CidQkeu4RtI5tylclJQa398zmtOnkLbmf3/nFbyXBmPKdTwPbTVWQ9SIgqjOZQRGvEnC034=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771867103; c=relaxed/simple;
-	bh=af/yagtcX4I0+3jtdjbr6gdjXxsaceuEo/D9CvQnsQk=;
+	s=arc-20240116; t=1771867113; c=relaxed/simple;
+	bh=uxYGaJ3P458lu3G0cMf5GUqhaAntuF9M6oJUdaMzBds=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HlVaDQf7sMhYtJdZrtpPIFRNVhFPdU09Z875yMLFNU+lb36J9E19tpCiL4yr8pevSMyN8hQ1LTQULbKgE9weFJP74Ii4nVvni7McJhCZwiQQ2YzM5mnnnVX1PpFqSOnVjqd26PujDK9P+oUftd3BUP3cviUiagrtVRROEhQstMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VvOnwKlP; arc=none smtp.client-ip=209.85.221.46
+	 MIME-Version; b=GZ6SNFWQoiXInJvH/73mpGwUnfoKFW3ktLYWj92wfYSHZCO3eYXFC8vVQO2/TrbENdujyl4smmalZAvIv2RN9Xx0EfDhg8v3qhMjc3rS8W2Oivw8fNjvOgvLgnMGRj/hvvxtz7OUCF8okYbsUWsNORvTRvRhLGV74ipI0Kldx2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TErMkM4w; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-436317c80f7so3762677f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:18:22 -0800 (PST)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-43638a33157so4296597f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 09:18:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771867101; x=1772471901; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771867110; x=1772471910; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ePW5oPXSIMZFrvCYy2NgcvqQ/NoHzPv8EJgBsrDZt6s=;
-        b=VvOnwKlPcTfODKE8OuLwU0SCRgptBaK1x9DFWHdKOxgOM5eohJPF3rxQqAiGMqh4XG
-         ffK0IbGGWexEj2p9+bnW6EMwZeblXZZIx8UZRaVIEs0E9kCw+X0uJYZ7RUn4FPc6UxSo
-         j0kytO7zGvas01hyQV/KHGry6Gk/3nzvYku3l4Cbi2pNylE6igGbooruV8exWgglaAnl
-         uPi4ehAE3pVhrfH5So9vHKWQZaaOjYnFnSrjXJ1rbc7J4y4JbPQFYxqJ4q2FC/xtSbVz
-         kATorzwNqg5VdAqRk2o8tvNorW1iRbyyMW055bI0ewHOKQHqG6ZIa16Mlj/kWTTAwRAu
-         XtOA==
+        bh=4tprEZO19LVPoDO66HWFcNuv9Wp3nvVBibsZ70DTJ4o=;
+        b=TErMkM4wRQpR1nFCnXHkQeJsWXpycU2gjujrVwJPNfyXYxgIHNJgSddm61znd4XdCg
+         lTCJB7RSNvBJS/xR/97fXUT1+yr2jWQwS+1sglHjGCGDrQBYULluoJwyrf3U2X3tDWgU
+         lYtbwAES+138DGCmF7bogZBLrE68B3uNa+IYRn5huREfbauMOATpDmnUrEoQ9+p4+WeD
+         ZwMHlZMLqEN8ffGPeQaGo8OrltUPcbbRmLBcb7CK9LdK73pCgCvLLX8i/j8SlT7UhCjt
+         mtKLp9xxOLyZ50EK8VmeImDuRKNiRhFs3A9Zsj1ol3noKJRCyIbT4c8TlApnH9IpDr70
+         /uZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771867101; x=1772471901;
+        d=1e100.net; s=20230601; t=1771867110; x=1772471910;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=ePW5oPXSIMZFrvCYy2NgcvqQ/NoHzPv8EJgBsrDZt6s=;
-        b=Bn71j+RupmTx59Yz+4j+JaBvp5Q52wGfNR9V0YN4LzPJRDgtTAQYu3YmzyCGYnV0jW
-         13i579rATouHpULz6s2JmNYXw6KZciXlZYFItoXlxSHEOKmgcpHn8ebgR9W1Ik53uKEM
-         Nf303Uc2tTW0TmLStMt+SbJbdlKzurGd0AtvuN+ceAMOQ44ZvErc5nY+NWg6FO3na2se
-         LneENyrJrX21gUDVuyyl6zbT/mjTWxXSA9/aKXrRh5s+F/Vbh2ZuhhNsKwwRnzi+TkZ9
-         yuYzflLDMKegH4xhp3OtS62LDTJ2bBL10ODVAnpv5mdfCmFbAMdhVxEekq0TY/jhDJmf
-         /+iA==
-X-Forwarded-Encrypted: i=1; AJvYcCVr3nEryAAt/Fqqds+M/bdyegnxEPn4S++8prdEo1xeKgw2Gv++jnpt60l357DNUUMxWaV4Dv0FliUL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRFS7UuUaoJB1/IyuVmRQ0nhPTe64NiRQbQc2D9/mjOFdbc4yv
-	6mUYE4stevlqoQGPCxjqdKBPxNczCMbtzdorczr05LTy9VxzJCcCnNnp
-X-Gm-Gg: ATEYQzyg2zCrsEajUX4e83sbzZusPU+AfoavuiC39uVjo+Rz7EMN7QO8f1YkS2rHAbg
-	20++UHr0jRmCftGBr9ifmwj2T1TSqpNV43fJ5s4u0BgB0MvH8T/fqdXm7XAr04jGQ/V/mJ+96uk
-	G6G7AQWxMhXtZpJSde447gp2zFshG3p/vUNkGaYhRI5GZFKpjSFbb1towrz+3faDJUOnuBKTe3U
-	2wHrdm2ylXmliNcfqE/v/Oawi66Mn/BNd/G8iibRzT/yCRm035+fnMUMKkJ0yO0shEuXzBZGOjg
-	qHlTrNXreh57nsUOqSPMJ5iBwj/BPU9YOPM9x7Co2+ysXf1hsw0yQVfK9/Gn3gtoJSSz8u5Hk1s
-	TpIbCrMSNyihawL8NgMjBQhkDqOuwYZhfAf6b7KgCHNm4N/e/9ylmZte0jzkK3/lB+sBCVURAqM
-	sHBRuc9f7vr6eG3qEp08E=
-X-Received: by 2002:a05:6000:22c5:b0:436:549:e15d with SMTP id ffacd0b85a97d-4396ffd6befmr18768227f8f.18.1771867100114;
-        Mon, 23 Feb 2026 09:18:20 -0800 (PST)
+        bh=4tprEZO19LVPoDO66HWFcNuv9Wp3nvVBibsZ70DTJ4o=;
+        b=YiUqf+tBAQ3dfWdf2ak6vn7pmPzjJqdN0Xhc+6ptxuL/Y/oRVNHVRvHCR0sZXpZLXn
+         2rLOgjuvA6C0m8kVE4/ggfRGP4/nxY17JSFHfnta0u+61KEBO0nw7nfyzQTpNbn8QoDV
+         2aKchbks9eiEL0ygF5dU8tebktdEGWxzJHKJYvB3IE0edMuCtzqBYhhmxgScpkND5E5l
+         GRATuikn1kS3NuDbDk2w9rEhDBHUAOL8r/3bjn7/JOO/XxbhEoOrM/HBoUEaUazV6hkf
+         WxLtn3JiQeLOPZ7eS+B8VQ9E96ut1CZBVb1WL1Hk0HdNnDrgmD3zxQV/0CttpBHivV2K
+         3+4A==
+X-Forwarded-Encrypted: i=1; AJvYcCXe5+SVEIErXo1TGAbIB3zNnqNBjNCTrezYbWk1XPZAQ9txfbPY593gW2pAzAUr42CaB4iEHRMIbz2m@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzuj1MDWoe6bixrYAmQJZqyhq5mgYhAGlPA8sjU0m7awTIjaBpu
+	PP4iEuYR0VrXMbbcxByKxa8QqKd/uMzMwdMIkXzY3Sxd5p7LGnL3Aoty
+X-Gm-Gg: ATEYQzyLDmsZS/3hlZGr1Dmm82pord3YTNipEuFB+mouJj2piGh2/Ghy3XlXb2VXjns
+	2Dh1qcR0WEAbKC7MOs7XC4iwuOy6OrNcr0SwO44cr2XlIsApMIxl1dyFk/CoKwTiBgKDJlUxGWD
+	DlTTu2giwxjEZr+hPAx2oavOMCpmq3mXNPtk/CgT9uvJXeTbKNiTYKJI4vJ+FCnTFGkXh/+Ix0S
+	aZklHu2e65rE19gFEoG3eMkRcxl+EIn8BbSiJw0KzUSggGPv9Fe35Lwt8st4hdqHOJYCo89jf6f
+	mfJcJmkjE8HHiXcoLlD64eyAt3ePgYT23F+xRGulQOqXgCVkxLm/BcNL318/WNLJ3X+/7xZmJGl
+	fqmmeMWiKQ8CyW3MelSBCsxHBAzCDAMeKlnSGuXrjW+C0G7UIbnaFz0AFS0lNlEXaIERGpTPIW4
+	ykOCVX1wDQJTXT8RYwLj8=
+X-Received: by 2002:a05:6000:2486:b0:437:81a2:46eb with SMTP id ffacd0b85a97d-4396f17b1b8mr18714978f8f.41.1771867110323;
+        Mon, 23 Feb 2026 09:18:30 -0800 (PST)
 Received: from luca-vm.lan ([154.61.61.58])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970d4c982sm20871454f8f.31.2026.02.23.09.18.19
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970d4c982sm20871454f8f.31.2026.02.23.09.18.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 09:18:19 -0800 (PST)
+        Mon, 23 Feb 2026 09:18:29 -0800 (PST)
 From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 To: linux-mediatek@lists.infradead.org
 Cc: Val Packett <val@packett.cool>,
@@ -94,9 +94,9 @@ Cc: Val Packett <val@packett.cool>,
 	Mark Brown <broonie@kernel.org>,
 	Eddie Huang <eddie.huang@mediatek.com>,
 	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Gary Bisson <bisson.gary@gmail.com>,
-	Julien Massot <julien.massot@collabora.com>,
 	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	Julien Massot <julien.massot@collabora.com>,
+	Gary Bisson <bisson.gary@gmail.com>,
 	Fabien Parent <parent.f@gmail.com>,
 	Chen Zhong <chen.zhong@mediatek.com>,
 	linux-input@vger.kernel.org,
@@ -105,9 +105,9 @@ Cc: Val Packett <val@packett.cool>,
 	linux-pm@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rtc@vger.kernel.org
-Subject: [PATCH 7/9] input: keyboard: mtk-pmic-keys: add MT6392 support
-Date: Mon, 23 Feb 2026 17:12:46 +0000
-Message-ID: <2c96591313084d240ac94b9d42d91d984fa9bce7.1771865015.git.l.scorcia@gmail.com>
+Subject: [PATCH 8/9] rtc: mt6397: add compatible for MT6392 PMIC
+Date: Mon, 23 Feb 2026 17:12:47 +0000
+Message-ID: <1d7d0048eb2d51c7b5551deb765951d33dacfec6.1771865015.git.l.scorcia@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1771865014.git.l.scorcia@gmail.com>
 References: <cover.1771865014.git.l.scorcia@gmail.com>
@@ -124,7 +124,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -134,10 +134,10 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FREEMAIL_CC(0.00)[packett.cool,gmail.com,kernel.org,mediatek.com,collabora.com,bootlin.com,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267563-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267564-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
@@ -149,59 +149,31 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[packett.cool:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E984117AC1B
+X-Rspamd-Queue-Id: 5A0A417ACC7
 X-Rspamd-Action: no action
 
 From: Val Packett <val@packett.cool>
 
-Add support for the MT6392 PMIC to the keys driver.
+Add a compatible, using the same data as the MT6397.
 
 Signed-off-by: Val Packett <val@packett.cool>
 Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 ---
- drivers/input/keyboard/mtk-pmic-keys.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ drivers/rtc/rtc-mt6397.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
-index c78d9f6d97c4..3b9a5b6bc470 100644
---- a/drivers/input/keyboard/mtk-pmic-keys.c
-+++ b/drivers/input/keyboard/mtk-pmic-keys.c
-@@ -13,6 +13,7 @@
- #include <linux/mfd/mt6357/registers.h>
- #include <linux/mfd/mt6358/registers.h>
- #include <linux/mfd/mt6359/registers.h>
-+#include <linux/mfd/mt6392/registers.h>
- #include <linux/mfd/mt6397/core.h>
- #include <linux/mfd/mt6397/registers.h>
- #include <linux/module.h>
-@@ -69,6 +70,17 @@ static const struct mtk_pmic_regs mt6397_regs = {
- 	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
+diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
+index 692c00ff544b..6b67d917f8d5 100644
+--- a/drivers/rtc/rtc-mt6397.c
++++ b/drivers/rtc/rtc-mt6397.c
+@@ -334,6 +334,7 @@ static const struct of_device_id mt6397_rtc_of_match[] = {
+ 	{ .compatible = "mediatek,mt6323-rtc", .data = &mt6397_rtc_data },
+ 	{ .compatible = "mediatek,mt6357-rtc", .data = &mt6358_rtc_data },
+ 	{ .compatible = "mediatek,mt6358-rtc", .data = &mt6358_rtc_data },
++	{ .compatible = "mediatek,mt6392-rtc", .data = &mt6397_rtc_data },
+ 	{ .compatible = "mediatek,mt6397-rtc", .data = &mt6397_rtc_data },
+ 	{ }
  };
- 
-+static const struct mtk_pmic_regs mt6392_regs = {
-+	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
-+		MTK_PMIC_KEYS_REGS(MT6392_CHRSTATUS,
-+		0x2, MT6392_INT_MISC_CON, 0x10, MTK_PMIC_PWRKEY_RST),
-+	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
-+		MTK_PMIC_KEYS_REGS(MT6392_CHRSTATUS,
-+		0x4, MT6392_INT_MISC_CON, 0x8, MTK_PMIC_HOMEKEY_RST),
-+	.pmic_rst_reg = MT6392_TOP_RST_MISC,
-+	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
-+};
-+
- static const struct mtk_pmic_regs mt6323_regs = {
- 	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
- 		MTK_PMIC_KEYS_REGS(MT6323_CHRSTATUS,
-@@ -301,6 +313,9 @@ static const struct of_device_id of_mtk_pmic_keys_match_tbl[] = {
- 	{
- 		.compatible = "mediatek,mt6397-keys",
- 		.data = &mt6397_regs,
-+	}, {
-+		.compatible = "mediatek,mt6392-keys",
-+		.data = &mt6392_regs,
- 	}, {
- 		.compatible = "mediatek,mt6323-keys",
- 		.data = &mt6323_regs,
 -- 
 2.43.0
 
