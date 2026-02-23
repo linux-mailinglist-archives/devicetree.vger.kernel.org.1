@@ -1,101 +1,69 @@
-Return-Path: <devicetree+bounces-267345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267346-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCwIKyQunGkKAgQAu9opvQ
-	(envelope-from <devicetree+bounces-267345-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:38:28 +0100
+	id COTgI28unGkKAgQAu9opvQ
+	(envelope-from <devicetree+bounces-267346-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:39:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A41917501C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CA3175053
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 11:39:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 806A63048B1E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:37:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 27226302EEBB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 10:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6890135C183;
-	Mon, 23 Feb 2026 10:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bcl64j3b"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A20235B64A;
+	Mon, 23 Feb 2026 10:39:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0639E34FF41
-	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 10:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D2BD346797
+	for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 10:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771843067; cv=none; b=tUSl94toDdwYrWnCgIs01+F16z4UUZPwniZ/1+kFuSDEocQSwOzyZw/PTl7Uhh7ZZm/p7qavZoWrI2vtTCM/ijoPCTBeczr6pY+VO63CrJVXJuomclxaFhsQSYZ+PesZNR73DFhnZ2KNfjR0S15eyD8dFNKEMGadmEQFX58Lg4A=
+	t=1771843179; cv=none; b=ssjEIL0IE+L8JGGUJ3xlsgJX1Qu2gz1XhEsw+sD7MfqIogroLYYEivMjChTh+Ak8XIhnCJCdXguqgcsqyL1Jnp8ofCtCc1I2nmOgT9Df4I007fcIkpRVR/AH4DiyMca9ZyRQqWcR+5k2vDO4qVE/xEHBmelMQwjhZWMJT/bf588=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771843067; c=relaxed/simple;
-	bh=zT1ymARhK/pXKsQRMgVO73M73Z/1yu0UpdoXBvjpeyA=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J3GgDxhZECE2sbaLzcMgWRQ0BWN5ixDI7gfT3i0AIsMV/YFHY2PE5MUM3uAm+ewpBwNu/HCdZx+H6rKgheQYY8XWUL4bq13SMnPD/BSfV8B1neCB6hACdiGnx+1NhXBmoFggjv9xXfL/xx9jtwmtjdloOxjdaiPs2ZMEgnW4Aws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bcl64j3b; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-483a2338616so25940495e9.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 02:37:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771843064; x=1772447864; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qSdtkc+pH53KLgyifPEPmqXMhFd02h+G9d/1irb/6Lo=;
-        b=Bcl64j3bWDypWKDIgmmaiEBFOYqwpTTMvBU/4kmVeXcDb/aY1LCSGkGXkHUOHSsrCe
-         6gyo8z57OW0qbT9mPBHEQQrQmvBbNlZdRlYM7VAUtBx2F4fLU364qvCcOwoAkGqC+0hO
-         Wjt1eQDUQ6OPD9KWaZhsvlKEtur776UVbdojffEc38BhjTRHTUSXmOM8fK/3dSjAYUUW
-         S85B3WROJ5Er3W74uTjPx3sEEAgju8+jvhTTjpkK2EqvlPlVqv/C8t/pUAbYd/+D+gXO
-         OdviQl0FsvjpuTskSzJ3p8lpDwbPm0Q4J0A2ijPeRop2piIr7rP5mrRLD8oR5/ovhsKC
-         48vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771843064; x=1772447864;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qSdtkc+pH53KLgyifPEPmqXMhFd02h+G9d/1irb/6Lo=;
-        b=jm/MxuVEbHIAALPpA3lk8jbW+8yQ0Sm3zMaZqKmK5psawaG2i1WI2sgtBFBw/wBuRN
-         edFQ9DGEpgIglKTTtt4KFhPotcBkqRlwhBfzMEmSBzTBYBRIkV85czVWglHWdOjbh5SY
-         am9Kn+hi4utOAQ2RwYEzyBkfhVCyNHfIDhCiRa34RPdW3JvK4tgfzfxlF4bc36lt0kw2
-         8+7VKoyg7+lu5+PSAd50gju2LQoEx/oJR6yhIlE1cHoHLCbk3a49pgSBJqCOM224T3cV
-         6sYQGwEEE/vzBKH7Rvjy7LZgQp7DN+iWRKlmZ9mNmbFEasav+xTo9Jm0HaUgYq84RPDN
-         xxkA==
-X-Forwarded-Encrypted: i=1; AJvYcCXwcxMv8eHDg7/wG96zi/UdwO7mSdK9SXZDu8wM8opck7/f82+Wv0+pGKYMBy4eilBAKKZy4h0kXltR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfEKZagbp3fNbH5sk0fCCw1Zjv/qzFO9zDrQeBFx9sJxzUV6h5
-	5j5Q44rlLGsAR6p3LcYQ1HvBi48keVQ2Vk3KMbgzVlhQEhK26RulkWxX1AmnTg==
-X-Gm-Gg: AZuq6aL9dd/UO5bBU3uMunGcdFgKYKIGWxZckBpOipX3GWzj9R5fFZyese54bEgoGeu
-	BaWzH5fGMo7Yl//GKX3q/gdg8LcyZZD9Q++r7Q7NNnE/eNGjheZsUrec/e7XqN5iP3cgEaEzV6J
-	PKfNxLEajHPO6Nq3JT4+8GJHtRBO06XqYCw0f4uiM8ADa5Ve5PvFMKs8a+uZnTAq2zCWGxf07FX
-	9EfsHBlyYHleKzzCfSXDI9qLzyAF1GD61edhZlGumCr98BOe3Or6yh13l8QgHE8Zwwas5SJwsNP
-	d9KOBMiuvQtocv1WZAcSM7j3Q+6DGH8lKCgSq+hAOX6Me7umkxTp7DWiXADw/UJEYgnSxx97/Rq
-	5naHkaVpkXyuHG/weuoW20K50GJYRxZ9wYHfxtQr6TxrxFtToxt89OpyvltgQHaO6aTjzWnkeG2
-	xpIxeGurV6zvVAuoNCYiycNFxjVaF2rdaUFxEwUsrKLuWIH/QhxRtj5NRMa69BBJDafEDEGc2Rt
-	uc/VOsa3Dm/YtPqlhhhR1LzjfEL66v6Vm2o6H8KIXE08wm6eDkPF30/um9t2w==
-X-Received: by 2002:a05:600c:c4a2:b0:480:20f1:7aa6 with SMTP id 5b1f17b1804b1-483a95e96e4mr123633655e9.21.1771843064096;
-        Mon, 23 Feb 2026 02:37:44 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483a429e49csm132820845e9.4.2026.02.23.02.37.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 02:37:43 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Mon, 23 Feb 2026 10:37:36 +0000
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	Jonathan Cameron <jic23@kernel.org>
-Cc: 
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>, rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Dmitry Antipov <dmantipov@yandex.ru>
-Subject: Re: [PATCH v7 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <zb752y7tnjzsc35na572o4sip6efwv3i4lha4ls6fhdrr52h5v@bfgy65cmae4p>
-References: <20260216-adf41513-iio-driver-v7-0-b0ed387ab559@analog.com>
- <20260216-adf41513-iio-driver-v7-2-b0ed387ab559@analog.com>
- <20260222172912.60a103c0@jic23-huawei>
- <aZwYshRxNgSh3CWk@smile.fi.intel.com>
+	s=arc-20240116; t=1771843179; c=relaxed/simple;
+	bh=r766QhVEUaUrPKJzZmanvHxGLzG89oB2IL3ytx+Rz20=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CJS+NrUscVMel4cGFxF9cRNBNj4tr+DWarbb0DopgHUY0oyHJewXFCs74xZc3Ori/THH9GyrzLiN8G1Bx4//H9rvuy/0KODN6ok9OdoIA4eRrYCOMV2X+MxpSwL9OIyHidwCvjxBcVwCinpNnsyAkmjFBAjieppxv85jPbtfTGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vuTLE-0001Da-7w; Mon, 23 Feb 2026 11:39:04 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vuTLB-002DIW-2E;
+	Mon, 23 Feb 2026 11:39:03 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vuTLC-000000016SO-3sOD;
+	Mon, 23 Feb 2026 11:39:02 +0100
+Date: Mon, 23 Feb 2026 11:39:02 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Russ Weight <russ.weight@linux.dev>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+	Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
+	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] firmware_loader: expand firmware error codes with
+ up-to-date error
+Message-ID: <3ohould4vufzfqau4e7vg2ztks3gflmfosyaizggwzufbwvx2f@yqsgim7ash3x>
+References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
+ <20260111-v6-10-topic-touchscreen-axiom-v5-1-f94e0ae266cb@pengutronix.de>
+ <s24u6ojnflb4nvpssgshjmgir77wpoos6qinypqac564fzcjyy@yilnrsy266er>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,88 +72,135 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aZwYshRxNgSh3CWk@smile.fi.intel.com>
+In-Reply-To: <s24u6ojnflb4nvpssgshjmgir77wpoos6qinypqac564fzcjyy@yilnrsy266er>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267346-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267345-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,yandex.ru];
+	DMARC_NA(0.00)[pengutronix.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: 5A41917501C
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.983];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:url,pengutronix.de:email]
+X-Rspamd-Queue-Id: E6CA3175053
 X-Rspamd-Action: no action
 
-On 26/02/23 11:06AM, Andy Shevchenko wrote:
-> On Sun, Feb 22, 2026 at 05:29:12PM +0000, Jonathan Cameron wrote:
-> > On Mon, 16 Feb 2026 15:02:17 +0000
-> > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+Hi Russ,
+
+On 26-02-19, Russ Weight wrote:
+> On Sun, Jan 11, 2026 at 04:05:44PM +0100, Marco Felsch wrote:
+> > Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
+> > framework that the update is not required. This can be the case if the
+> > user provided firmware matches the current running firmware.
 > > 
-> > > Add iio_str_to_fixpoint64() function that leverages simple_strtoull()
-> > > to parse numbers from a string.
-> > > A helper function __iio_str_to_fixpoint64() replaces
-> > > __iio_str_to_fixpoint() implementation, extending its usage for
-> > > 64-bit fixed-point parsing.
-> > > 
-> > > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > Hi Rodrigo.
+> > Sync lib/test_firmware.c accordingly.
 > > 
-> > This looks fine to me, but given earlier discussions I'd ideally like
-> > to wait for a final review from Andy.
+> > Reviewed-by: Russ Weight <russ.weight@linux.dev>
+> > Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  drivers/base/firmware_loader/sysfs_upload.c | 1 +
+> >  include/linux/firmware.h                    | 2 ++
+> >  lib/test_firmware.c                         | 1 +
+> >  3 files changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
+> > index c3797b93c5f5a2ecf2ae34707893c89eb7773154..9e93070b2c24179986b868a24b09cf051776c644 100644
+> > --- a/drivers/base/firmware_loader/sysfs_upload.c
+> > +++ b/drivers/base/firmware_loader/sysfs_upload.c
+> > @@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
+> >  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
+> >  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
+> >  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
+> > +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
+> >  };
 > 
-> It all depends on the series from Dmitry Antipov.
-> Can somebody help reviewing the patch 1 there?
-> https://lore.kernel.org/linux-hardening/20260212125628.739276-1-dmantipov@yandex.ru/
+> Hi Marco,
+> 
+> There is a corresponding change that should be made to
+> lib/test_firmware.c. You can look at the recent change for
+> FW_UPLOAD_ERR_FW_INVALID as an example.
 
-can we push for the exposure of that function to kernel modules?
-We have discussed that in v6, and I understand that:
+Can you elaborate a bit more please? I've added the
+FW_UPLOAD_ERR_DUPLICATE to lib/test_firmware.c with this patchset and I
+don't know what you want me todo.
 
-EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
-in lib/kstrtox.c;
- 
-#include "../../lib/kstrtox.h"
-in drivers/iio/industrialio-core.c
+Regards,
+  Marco
 
-is not a good call...
- 
-> When it's in, we can continue on this one. TL;DR: for me this is on hold.
-> But if you see the need to have the driver being in IIO, please add a big
-> fat FIXME to make sure we will get this all being sorted out in the
-> (nearest?) future.
 
-I could add the FIXME into iio_safe_strntou64() doc header. It explains
-the context:
-
-> + * The implementation of this function is similar to _parse_integer_limit()
-> + * available in lib/kstrtox.h, but that header/function is not available to be
-> + * used in kernel modules. Hence, this implementation may need to change or
-> + * removed to reuse a new suitable helper that is properly exposed.
+> 
+> - Russ
+> 
+> >  
+> >  static const char *fw_upload_progress(struct device *dev,
+> > diff --git a/include/linux/firmware.h b/include/linux/firmware.h
+> > index aae1b85ffc10e20e9c3c9b6009d26b83efd8cb24..fe7797be4c08cd62cdad9617b8f70095d5e0af2f 100644
+> > --- a/include/linux/firmware.h
+> > +++ b/include/linux/firmware.h
+> > @@ -29,6 +29,7 @@ struct firmware {
+> >   * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
+> >   * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
+> >   * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
+> > + * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
+> >   * @FW_UPLOAD_ERR_MAX: Maximum error code marker
+> >   */
+> >  enum fw_upload_err {
+> > @@ -41,6 +42,7 @@ enum fw_upload_err {
+> >  	FW_UPLOAD_ERR_RW_ERROR,
+> >  	FW_UPLOAD_ERR_WEAROUT,
+> >  	FW_UPLOAD_ERR_FW_INVALID,
+> > +	FW_UPLOAD_ERR_DUPLICATE,
+> >  	FW_UPLOAD_ERR_MAX
+> >  };
+> >  
+> > diff --git a/lib/test_firmware.c b/lib/test_firmware.c
+> > index be4f93124901e5faac41f48a66dabe6da56be0ca..952ec1cb03102911dbea9abd648ab9d9e0112a46 100644
+> > --- a/lib/test_firmware.c
+> > +++ b/lib/test_firmware.c
+> > @@ -1134,6 +1134,7 @@ static const char * const fw_upload_err_str[] = {
+> >  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
+> >  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
+> >  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
+> > +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
+> >  };
+> >  
+> >  static void upload_err_inject_error(struct test_firmware_upload *tst,
+> > 
+> > -- 
+> > 2.47.3
+> > 
+> 
 
 -- 
-Kind regards,
+#gernperDu 
+#CallMeByMyFirstName
 
-Rodrigo Alencar
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
