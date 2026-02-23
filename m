@@ -1,183 +1,211 @@
-Return-Path: <devicetree+bounces-267447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267450-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNXlDNVcnGmkEwQAu9opvQ
-	(envelope-from <devicetree+bounces-267447-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:57:41 +0100
+	id yEGHMjFenGmkEwQAu9opvQ
+	(envelope-from <devicetree+bounces-267450-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:03:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA227177870
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 14:57:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA7B177A84
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 15:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 418793033881
-	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:57:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1585030AD1B4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Feb 2026 13:58:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338F926A0B9;
-	Mon, 23 Feb 2026 13:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 341DA27466A;
+	Mon, 23 Feb 2026 13:58:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="jrkSoxxO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oIuPjcJ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81F418CBE1;
-	Mon, 23 Feb 2026 13:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD8626B755;
+	Mon, 23 Feb 2026 13:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771855038; cv=none; b=hXO8bzssOr2Zsh/zuQZupCxOTBw10LqLR8DWiC8HtALJXZo87Pj3bFXpN4cH74jBtBTxiSGL3v4Q552P0VvgigZeMoPjrj34oyIvUNjs4c+BVZBBv8gbojKWoEsJ83wg7zNshklxKPvCQEUIjsK8/uYRhVHfX0qAeCpGeEYRinM=
+	t=1771855095; cv=none; b=nXMgNb7PoRQBIqT2hcmRZmjATekcgrg7uzlo7T6kFsrGd2gBdQoit/7juP5EyBVVbDKkLrH1ReaBqGfwXiru1glzZU8s7BxJO4PgkPwZXsCT0hTsP0PbtBrnSg9QNDGOLWFFtayw2hmHx7QdOt1TQXp9olNgjAfNY63+/5hfjPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771855038; c=relaxed/simple;
-	bh=jimk4cgA6P8145WtS7AypZKTzXi7xwx6dJcxj5oDHJY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=flwX8tugJZOx7xSqPu0CutCC/fPCD4FZ+kzc8geM8szI5DQ5GMxbZ/dsGzzyVSkDOPwyyyuN042Ag4S9Do+JcN5VkSh4H+oBrBGSZsWuJnS+qyZZL4N7ULQFuyrw0qZOso7k+D98tB9mAX8KccdPqFmxTGdXPKVAOwvW2ss374Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=jrkSoxxO; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id A9C0B27E35;
-	Mon, 23 Feb 2026 14:57:07 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id tac2RrMprsBW; Mon, 23 Feb 2026 14:57:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1771855027; bh=jimk4cgA6P8145WtS7AypZKTzXi7xwx6dJcxj5oDHJY=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To;
-	b=jrkSoxxOqv98EFGeGJpGTfbWycO470StieDpHkpvwSVYOdO+ixUJHSH0/2Txy8R4/
-	 bCEG7Sh9Ln/4+uBuszgWxdqJp0az+MJT2XJ2HTdPUFqkGvbXlKF2zGG0nrE/bbBkpc
-	 06Ps65NKVetf/+bipRD8EqrhjOi2Km7fG1yvBDhUUN7p7SJOleCLskPp7UyvMqRj8U
-	 yxrZARhKFgIx+l3MGQOLUht/nEYFJc875duDxCvM9BEAs0iGuIueRmgF67tCP9T3Ff
-	 HzjS4vtY86VAjSKqWBLiHJUFhdMfiuM0G6doeDKLSyUx73VJAvVZi7xajZdGJmdyAV
-	 V9p7G+qb5lXLw==
+	s=arc-20240116; t=1771855095; c=relaxed/simple;
+	bh=NWu25ePSA9QcgdrFAqYIS8vaWQtv0PHPjTD9T4fKIpQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=S5ySpNpSg5IYarlaA9wOAKemdfdzA4/gLKrl7P3qnTRYX1zCXF2/Omh2APdvM1Zz3H5iGW310kdhcXpIu9RgcrpMFnil6kJETLxZDlCgWcHkM10Gom4YJMvALkf6tm8GvUTC9k0bHqEWUvp1Ij5gWFBjwWbxmZAWv7QZXGXs9eg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oIuPjcJ/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A3C61C116C6;
+	Mon, 23 Feb 2026 13:58:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771855094;
+	bh=NWu25ePSA9QcgdrFAqYIS8vaWQtv0PHPjTD9T4fKIpQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=oIuPjcJ/2aujwT0Bsu10Kn6pU8scyDZ8KkT0BpcoNTR6tDY9TAjVWviG5KbV7MQ+J
+	 9Dr94BbS2/UzAfztB+vIEYXN1kXYPDwkSDv8IOO85xKfsNmjAHdF8Vz8UQZo7EFo6M
+	 RTiNF3yk5NpPHZGgC/4oG8aGbRZyGH0LU+NUKn0/fzRW84XrJbInXa/T9tieYVF79Q
+	 CKO98OvcIQvVIGmHbUADoMvwVoFixqf5TNBtHCKsl5/njAq5SUsUsHm207xgHMKxJu
+	 KtlDBeG+xHEPRnQyQzd++iLcaUUJZxI50vxqFfMHI3ERiNVeqMVfhpsZfKBdTlmhRx
+	 UAA1LoyaaJ1GA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9062EEA4FA7;
+	Mon, 23 Feb 2026 13:58:14 +0000 (UTC)
+From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
+Subject: [PATCH v5 0/4] Support multi-channel IRQs in stmmac platform
+ drivers
+Date: Mon, 23 Feb 2026 14:58:03 +0100
+Message-Id: <20260223-dwmac_multi_irq-v5-0-8fc699a5fac4@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 23 Feb 2026 19:26:52 +0530
-Message-Id: <DGME6JKOXQN9.3GQ7SEI0D8A5U@disroot.org>
-Cc: <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <linux-samsung-soc@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
- <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v2 06/12] mfd: sec: add support for S2MU005 PMIC
-From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-To: "Sander Vanheule" <sander@svanheule.net>, "Kaustabh Chakraborty"
- <kauschluss@disroot.org>, =?utf-8?q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, "Lee Jones" <lee@kernel.org>, "Pavel Machek"
- <pavel@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "MyungJoo Ham"
- <myungjoo.ham@samsung.com>, "Chanwoo Choi" <cw00.choi@samsung.com>,
- "Sebastian Reichel" <sre@kernel.org>, "Krzysztof Kozlowski"
- <krzk@kernel.org>, "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- "Jonathan Corbet" <corbet@lwn.net>, "Shuah Khan"
- <skhan@linuxfoundation.org>
-References: <20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org>
- <20260126-s2mu005-pmic-v2-6-78f1a75f547a@disroot.org>
- <69e2c1b1a2f3d2ed5e5da995cc5ee49bb3627597.camel@linaro.org>
- <DG74Y3QSCLIO.32Q8ZKCTISXXB@disroot.org>
- <4cf24e281fac45637fedf40944d8b5230c0e22d9.camel@svanheule.net>
-In-Reply-To: <4cf24e281fac45637fedf40944d8b5230c0e22d9.camel@svanheule.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOtcnGkC/23N3wrCIBTH8VcZXmfo0Zl21XtEjM1pE9qfdK0i9
+ u65KCjs8vuD8zkPFIx3JqBt9kDeTC64vouRrzKkm7I7Guzq2AgI5BSIwvW1LXXRXk6jK5w/Y1V
+ LKwgXoDVF8WrwxrrbS9wfYjcujL2/vx5MdFnfFuWJNVFMMBO5gLIiRtnNrg9h3d2Gte5btGgTf
+ ARBIpEKsAiVBAWM1GRDU4F9CywVWBS0zpmFykgl/gj8W5CpwKMgwZaMW23Bwq8wz/MTxOL+GXY
+ BAAA=
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
+ NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>
+Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, devicetree@vger.kernel.org, 
+ "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771855093; l=3163;
+ i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
+ bh=NWu25ePSA9QcgdrFAqYIS8vaWQtv0PHPjTD9T4fKIpQ=;
+ b=ggA/D4uhdh2cz3CK46Wsz6e4BGn7m9ixXSJy22LIR6S0OgBpSSlBw/JpcdMu1EjiTHSdIxcr+
+ PwyGrS8RSrPD/AUuZmkQQEQoXHECYjFSWEcDaZICM7TopiRac1bYQCs
+X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
+ pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
+X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
+ auth_id=217
+X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Reply-To: jan.petrous@oss.nxp.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267447-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267450-lists,devicetree=lfdr.de,jan.petrous.oss.nxp.com];
+	URIBL_MULTI_FAIL(0.00)[nxp.com:server fail,sea.lore.kernel.org:server fail,oss.nxp.com:server fail];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[jan.petrous@oss.nxp.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,disroot.org:mid,disroot.org:dkim]
-X-Rspamd-Queue-Id: CA227177870
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.nxp.com:mid,oss.nxp.com:replyto]
+X-Rspamd-Queue-Id: BEA7B177A84
 X-Rspamd-Action: no action
 
-On 2026-02-20 17:56 +01:00, Sander Vanheule wrote:
-> Hi,
->
-> On Thu, 2026-02-05 at 21:02 +0530, Kaustabh Chakraborty wrote:
->> On 2026-02-04 15:23 +00:00, Andr=C3=A9 Draszik wrote:
->> > On Mon, 2026-01-26 at 00:37 +0530, Kaustabh Chakraborty wrote:
->> > > +static const struct regmap_config s2mu005_regmap_config =3D {
->> > > +	.reg_bits =3D 8,
->> > > +	.val_bits =3D 8,
->> > > +};
->> >=20
->> > No cache? And what is the .max_register value?
->> >=20
->>=20
->> This was in the previous revision, but I ended up removing it because
->> (at least I thought at that time) interfered with interrupts firing in
->> some way. The actual issue was unrelated, so I will add it back.
->>=20
->> However, there is also another thing I see in logs:
->>=20
->> sec-pmic-i2c 2-003d: using zero-initialized flat cache, this may cause
->> unexpected behavior
->>=20
->> This is due to REGCACHE_FLAT, I am not sure if I should just ignore
->> this.
->
-> Sorry to be late to the party, but I'm somewhat responsible for that warn=
-ing, so
-> allow me to chime in :-)
->
-> What you are might have been seeing is REGCACHE_FLAT giving you "cached" =
-values
-> of 0x0, while the hardware actually has something else. This can cause om=
-itted
-> writes, existing (bootloader) config to overwritten, etc.
->
-> As Andr=C3=A9 suggested, using .num_reg_defaults_raw is a possibility, bu=
-t then you
-> have to remember that the register defaults are taken to be what the hard=
-ware
-> state is at that moment, including pre-probe changes. These defaults are =
-used to
-> seed the cache (so far, so good), but this may break the contract of
-> regmap_sync() if you ever want to use that after actually resetting the P=
-MIC.
->
-> If you want to use the flat cache, I would suggest you use REGCACHE_FLAT_=
-S,
-> which will track what has already been read from/written to hardware. You=
- will
-> also need to specifiy .max_register.
+The stmmac core supports two interrupt modes, controlled by the
+flag STMMAC_FLAG_MULTI_MSI_EN:
 
-I had figured that out by going through the logs, thanks. :)
+- When the flag is set, the driver uses multi-channel IRQ mode (Multi-IRQ).
+- Otherwise, a single IRQ line is requested (aka MAC-IRQ):
 
->
-> I see the other regmap_config-s in this driver also use REGCACHE_FLAT, so=
- you
-> may want to consider switching those over as well if these are also showi=
-ng the
-> new warning.
->
->
-> Best,
-> Sander
+static int stmmac_request_irq(struct net_device *dev)
+{
+        /* Request the IRQ lines */
+        if (priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN)
+                ret = stmmac_request_irq_multi_msi(dev);
+        else
+                ret = stmmac_request_irq_single(dev);
+}
+
+At present, only PCI drivers (Intel and Loongson) make use of the Multi-IRQ
+mode. This concept can be extended to DT-based embedded glue drivers
+(dwmac-xxx.c).
+
+This series adds support for reading per-channel IRQs from the DT node and
+reuses the existing STMMAC_FLAG_MULTI_MSI_EN flag to enable multi-IRQ
+operation in platform drivers.
+
+The final decision if Multi-IRQ gets enabled remains on glue driver
+to allow implementing any reguirements/limitions the focused platform
+needs.
+
+NXP S32G2/S32G3/S32R SoCs integrate the DWMAC IP with multi-channel
+interrupt support. The dwmac-s32.c driver change is provided as an example of
+enabling multi-IRQ mode for non-PCI drivers.
+
+Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+---
+Changes in v5:
+- fixed typo in "symetrical"
+- cleaned negative return value on platform_get_irq_byname_optional()
+  in stmmac_get_platform_resources()
+- rebased on v7.0-rc1
+- Link to v4: https://lore.kernel.org/r/20260128-dwmac_multi_irq-v4-0-82fa34fcf2f2@oss.nxp.com
+
+Changes in v4:
+- Fixed IRQ reading check
+- Made cleaner the IRQ validity (to get AI reviewer happy)
+- Fixed minItems of interrupts property in yaml
+- Link to v3: https://lore.kernel.org/r/20260123-dwmac_multi_irq-v3-0-cc53f2be8961@oss.nxp.com
+
+Changes in v3:
+- removed RFC prefix
+- rebased on v6.19-rc6
+- fixed forgotten extra line setting to Multi-IRQ unconditionally
+- fixed yaml
+- Link to v2: https://lore.kernel.org/r/20260121-dwmac_multi_irq-v2-0-3b829230d071@oss.nxp.com
+
+Changes in v2:
+- Fixed incorrect buffer len for 'rx-queue-%d' property check
+- Added backward compatibility to not break old settings
+- Fixed DT example in yaml
+- Link to v1: https://lore.kernel.org/r/20251214-dwmac_multi_irq-v1-0-36562ab0e9f7@oss.nxp.com
+
+---
+Jan Petrous (OSS) (4):
+      net: stmmac: platform: read channels irq
+      dt-bindings: net: nxp,s32-dwmac: Declare per-queue interrupts
+      arm64: dts: s32: set Ethernet channel irqs
+      stmmac: s32: enable support for Multi-IRQ mode
+
+ .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 44 +++++++++++++++++++---
+ arch/arm64/boot/dts/freescale/s32g2.dtsi           | 26 +++++++++++--
+ arch/arm64/boot/dts/freescale/s32g3.dtsi           | 26 +++++++++++--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c    | 12 +++++-
+ .../net/ethernet/stmicro/stmmac/stmmac_platform.c  | 40 +++++++++++++++++++-
+ 5 files changed, 135 insertions(+), 13 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20251209-dwmac_multi_irq-9d8f60462cc1
+
+Best regards,
+-- 
+Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+
 
 
