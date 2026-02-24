@@ -1,141 +1,249 @@
-Return-Path: <devicetree+bounces-267913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267914-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YPAKE/SqnWmgQwQAu9opvQ
-	(envelope-from <devicetree+bounces-267913-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:43:16 +0100
+	id WN6sEtupnWmgQwQAu9opvQ
+	(envelope-from <devicetree+bounces-267914-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:38:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E879187E8C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:43:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4864C187D7B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:38:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BCBEF30DDB88
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:31:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DDB53314BB7C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A347139E16A;
-	Tue, 24 Feb 2026 13:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 362B739E178;
+	Tue, 24 Feb 2026 13:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="AwS1Pkiz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qafm+dss";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Xa8UzC5A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D38139E172;
-	Tue, 24 Feb 2026 13:31:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E193A39B4A0
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:31:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771939876; cv=none; b=qzSFlejU9zseXJKElsKpFZRgSt/GVHE7KKqSlwYw5vmDioFYd9eykHzKZOMV0K9c8beci7YiN/bLwJ5m1uDtvomszio5Ez/gRmUkHcqVxwDX4UIsyhG+1XQzT9xHmgEyz4k7RAN6aP24a83LABO5wIE7HbAhhy9v1YIfG1vFaFI=
+	t=1771939912; cv=none; b=OQnXOJqpfBJNez3Kaa4VC6BjRqrTArUtJuWryrPg9kjBlqV/jmPi923tRrOoIU5YDQ5zve5W97G3h+vAFCbPlBvM7Ba6r9+Bv8dUUNnSdSRnun4oZMSFh49B22xoy1DaN7+jDDDjmGfUMBMu94Fcn2e0gwnHy+uuXhL8pOU+jaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771939876; c=relaxed/simple;
-	bh=5ffcBWZeijMOSAWyX5oB7Odgdd8cbendy5ri/h5ShUg=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J0gRZBzQIzHOuYaUZaNrvtyiEUmS1dBgUmcBHV8OamzAT4BJi3BR2ci7hVX+bOu4qetm4Gyeud9rzqowB2XKGISR/cE3D643wko/E/PhLjeU9bFWzNM29fTKPIM2HVpaDgVgQaXIYgu/kBv/ErJN3i9QzpphX51B6oGr8d8d08M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=AwS1Pkiz; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1771939876; x=1803475876;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=5ffcBWZeijMOSAWyX5oB7Odgdd8cbendy5ri/h5ShUg=;
-  b=AwS1PkizotS5zlEL/UYMHgLKU1tyjealqpLch1tyV4J2jyGe7vBXQQDz
-   kBR6zcmW2w9Nx2IAo8RuhN06nM9H7stXOF1yW1pdaupzmF0n/Xf1vxN8E
-   QTN+RS3Wi0ZgRh9QGUOCyecJF/cxKt5nCK2j6ntn7ZxelgWdyiFUlcIii
-   JI2HfQE+IF3sXrHUezS+nVf+xVWZb6AJ2tdO6DswLQIdRdNWZd7v3dICY
-   u+SVhYPMTIwYrxt1tBfi0INjxkZXrXN4HURXqzopafX4la8b1S05qTQ61
-   GTGZ41RBHefcqARPQdGyZDbxNXI+pxQa8IcOpG9gNeeI6AvfG9qT5BVtJ
-   Q==;
-X-CSE-ConnectionGUID: lPvMeBZERyqEuwBJqGyVBA==
-X-CSE-MsgGUID: UtDNTGI2TcyLs2uFkrWP6Q==
-X-IronPort-AV: E=Sophos;i="6.21,308,1763449200"; 
-   d="scan'208";a="285147689"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 06:31:10 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Tue, 24 Feb 2026 06:30:47 -0700
-Received: from wendy.microchip.com (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Tue, 24 Feb 2026 06:30:45 -0700
-From: Conor Dooley <conor.dooley@microchip.com>
-To: <linusw@kernel.org>
-CC: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 0/2] pinctrl property checks
-Date: Tue, 24 Feb 2026 13:30:15 +0000
-Message-ID: <20260224-backspin-ferret-7887166e4aa4@wendy>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1771939912; c=relaxed/simple;
+	bh=CyXybCP2CIrZVrNr/6Av/CKn/Tkw5kvvtvSdn1OVQfQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UAAFRcc8OtsOH30nC19yGNa2GqIs/Fc2s+dOYhBv7CeOx10RGrFHXqvvK8/hel15w5zMVzOnW4+0mZih4lD9bv5xcz7DWbXG6zSvCq60CVpG8+PAz/NHZe8khGJMN5epL5kreLVypy+8nrt1Tjy24FFTerjay46vDtvFVtyuUi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qafm+dss; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Xa8UzC5A; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61OAFVvB2006509
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:31:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gBLQ8De82Wd4XTyosqLd7sRYfu8OUMzWZSMfRzba/Sc=; b=Qafm+dssDOA9e77r
+	RCmSPAPd7B86iAhjvAPwtiXfQqXkUbWo36P+TyOjY1zZmBt7NplA/2a22wv2lftp
+	VB5x9cv4kVYAO2cLvFV0RSAeIUOrhPtHC7G5gTPnsvH5Axfj6pMIcEzJAQnRe+o2
+	ix9+LCzgQOjUr7UZwd+Kbijzr2kwt1ecSidZ7CYzsAvn9Hn6mqVaAj+r/A5VtXG6
+	lh6esIMnmd2HdbUTAxTEEC1ZSlmQplPRmad+NdignJxmK1XBgbJg2zGHTWRmCI+h
+	cBHsMZYEpXPLdLY3ys1WuWTuVYEmR6z5vGAm41hi2E9LcvW0C1TTdnU6yKCjqiuf
+	j1hGSg==
+Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ch4569kyb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:31:49 +0000 (GMT)
+Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-5f54dd17395so972159137.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 05:31:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771939909; x=1772544709; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gBLQ8De82Wd4XTyosqLd7sRYfu8OUMzWZSMfRzba/Sc=;
+        b=Xa8UzC5AU6kNMCbiB5blOeipvCZ83WDftz9/DInzu2R00qeMJf4XFLcI6oRmspV+lF
+         WmIDpr2uilwd9QVgttVF1WgsBJW6OSGhn42VDpRvsC/MhhjDjm5umy3zRD6hL7hOY/W2
+         1FO81mgkMxUzHazcfKO2rT+qPNkaBhWSkoqeSLtQuHtRm6nbNUpv+zAwgjGrMgsWSBda
+         o3muM8fS/22c7AKa9T2/VyTNQuKEcLANKfIyImvtPW46cuTzdcvXd48fjFXRW6Xksutg
+         +S0O4Zk3Vqlw0m2VtWTZx+ywvgv9GuDIvV5fL14mylKfqEFHQd58nyhIgHmXqE2TkfgT
+         xyxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771939909; x=1772544709;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gBLQ8De82Wd4XTyosqLd7sRYfu8OUMzWZSMfRzba/Sc=;
+        b=ROnTpc7qX0Kq2U3yLdg5HgxM32yarJqOw4WKj17gXWW0ioeQOn2jFEKLuhQZi7ObBV
+         4Pt0S0zCa4HKK0P4+qoDFacL/6tCuvA/UuDAq+isk2eLg/tUyk+CEOeZVqw3NMrp4Bnx
+         Fj7uuUxDz57sh1obpefhiKj8BmyIxuswILWlViwh7EXK0B77p9vtK3IwMB/WQEOkX0Wo
+         PxbPUshm73tHp4QIoJLud6zlZoPPo4Rv3KFcMlmE2UPT70jhr3RLAI0L3T222bx3SCiQ
+         Fmjy1VopFLba9ST2BrS6qRvdkttEkC0dL/HoqL0m/vlBWcu3fMERn29WdO8CMgjC+YpT
+         ELPA==
+X-Forwarded-Encrypted: i=1; AJvYcCXw5v9lGT5o6M2IIrhZXjXe1EnFad+p14Q81PV4vKyinCk3fNaSop3y0O3gX93vV49bUpTu0xQDeSXj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwF42QvfASLMjF1W4QOdTPLVjCMiUrpXA7BvLte4eKr9y1iV1xJ
+	P03snjeoKHSbubnquj2kLKlndOe8Ku6ML4iTRkyOGg7Lf8heISPgZXh/0XZie+3w/OJ1UXWyDGI
+	lJFu27p9pgX4tdkwsfSH/NBLXHl5yF08ROFAAJ9Ra/yzTeKQVk8ZpGfWOev2ydFs/
+X-Gm-Gg: ATEYQzy6eBF9hnCI0jSTuAB0Gs2xbzURSCI+Vk/gmmCpyeE489+j4zByXN8Iplg9w7i
+	mB2hQrolAhbodxj33x1kkDTqvXIfyuT/ghIhqMDU62XZBhyknMtnMObqRnGAWs2x+VkWcmu8Hkj
+	3QtI22h+irJUSxSZaOqfH7dl3zVF3IwcA3qje3RQtnF6SxKA7slY0INDfkX5RDm/HfCA1z5Sd1D
+	ahcgWw4DYscQ7xeIPQ/Ybct5JFX32B+x9gKRGjukVmrwiuGslzHxuVJsWZFoJKnWGnnmUf3s9jJ
+	rbV4WHAV5X28G680fKRzpCpH7KB4kl+h/0473pC7N2OkBaYkDCOuQlQleeyaDYB50wSlmLliPdZ
+	wjgjfC/6swFihxtoGKsV7WGx6kZALhtdAnVxoJc/ZOqAWoGhgKwXbZ5rbRWdjbOgyhopXLyNork
+	BdYU4=
+X-Received: by 2002:a05:6102:50a7:b0:5eb:fc32:9361 with SMTP id ada2fe7eead31-5feb2c1c2bamr2329980137.0.1771939909157;
+        Tue, 24 Feb 2026 05:31:49 -0800 (PST)
+X-Received: by 2002:a05:6102:50a7:b0:5eb:fc32:9361 with SMTP id ada2fe7eead31-5feb2c1c2bamr2329968137.0.1771939908693;
+        Tue, 24 Feb 2026 05:31:48 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9084c5dcb2sm424792266b.6.2026.02.24.05.31.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Feb 2026 05:31:47 -0800 (PST)
+Message-ID: <4bcf1512-a567-44a9-8a38-8976f65c00fa@oss.qualcomm.com>
+Date: Tue, 24 Feb 2026 14:31:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=784; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=5ffcBWZeijMOSAWyX5oB7Odgdd8cbendy5ri/h5ShUg=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDJlzl78wdp3EdWdr6lKeqyzasdpTZrDdNllbqeGf3KCfYHHJ PNK/o5SFQYyDQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABPhl2f479WmeeT/Otvs6vD4qprFOp wyO6On7/QM2ebxMqhHiv89UEVsQ2+u4Iar+s/rAs7OTJtm8vkhz02lQpNwoxcC04++cmcAAA==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] soc: qcom: ice: Add OPP-based clock scaling
+ support for ICE
+To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260211-enable-ufs-ice-clock-scaling-v5-0-221c520a1f2e@oss.qualcomm.com>
+ <20260211-enable-ufs-ice-clock-scaling-v5-2-221c520a1f2e@oss.qualcomm.com>
+ <bfbe04db-bf64-418b-a75a-88879bf0bf2d@oss.qualcomm.com>
+ <aY7MidG/Kcrs83O9@hu-arakshit-hyd.qualcomm.com>
+ <3ecb8d08-64cb-4fe1-bebd-1532dc5a86af@oss.qualcomm.com>
+ <aZYMwyEQD9RPQnjs@hu-arakshit-hyd.qualcomm.com>
+ <6d2c99c4-3fe0-4e79-94e8-98b752158bd6@oss.qualcomm.com>
+ <aZgOUv+QweA7vE1W@hu-arakshit-hyd.qualcomm.com>
+ <5bf31bf9-835b-4b87-a4d0-8452d516f13c@oss.qualcomm.com>
+ <aZhCWMTi3seAbXo5@hu-arakshit-hyd.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <aZhCWMTi3seAbXo5@hu-arakshit-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 5f-OLPDmG-E0UMR_9Lxm3YNYiGWPS9nq
+X-Proofpoint-ORIG-GUID: 5f-OLPDmG-E0UMR_9Lxm3YNYiGWPS9nq
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI0MDEwNyBTYWx0ZWRfX9iis26RCMNcP
+ 9fqTOUuEo2dIlYya0/f5PYBGLBdlzkRb6PAa5bv7pXvGnDkC2pnVkA52M0Wn/7vnALn/grOeQ9P
+ 9qHpQJHT/fJ0AJaHfIZiy71b20Fw8wuwq4I6d4kFas6VDoP3Siebi5JiF5gR19HdLaUe4P/3yRI
+ alfQ/pQVCs9XgHpZiJ7puiBBtBn4c84mUr3JtDG8ewbZYB2AopwxaTJNUNVBbL4juGNR8iVxVyW
+ jduycG2YNWJUfofG/x2QpED+jcDVduIh/u2Ykbe7cSne/U3+ILn491iFqPhUKPIqtEFxHCFmJBL
+ cKAJ99t0uSEX6o6dUcZ2dXQfIG8nuRmcva52PfU/mmnMgMaCLvotKXeJtnRx+y2WdNFtXqWqrFI
+ d29Vctr9ufJOGP32BkkHkU/9IyUD67SD1mo/ErdyP4a/Nsg5AX1whRoJpQmWkmIW6tdDHmacM+r
+ z3wvlQrm244Jf77YLvA==
+X-Authority-Analysis: v=2.4 cv=J8enLQnS c=1 sm=1 tr=0 ts=699da845 cx=c_pps
+ a=P2rfLEam3zuxRRdjJWA2cw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=zMuZoWC4Nr6WuNNbOkAA:9 a=QEXdDO2ut3YA:10 a=ODZdjJIeia2B_SHc_B0f:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-24_01,2026-02-23_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0
+ adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602240107
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-267913-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267914-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,microchip.com:dkim]
-X-Rspamd-Queue-Id: 5E879187E8C
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 4864C187D7B
 X-Rspamd-Action: no action
 
-Hey Linus,
+On 2/20/26 12:15 PM, Abhinaba Rakshit wrote:
+> On Fri, Feb 20, 2026 at 10:42:58AM +0100, Konrad Dybcio wrote:
+>> On 2/20/26 8:33 AM, Abhinaba Rakshit wrote:
+>>> On Thu, Feb 19, 2026 at 03:20:31PM +0100, Konrad Dybcio wrote:
+>>>> On 2/18/26 8:02 PM, Abhinaba Rakshit wrote:
+>>>>> On Mon, Feb 16, 2026 at 01:18:57PM +0100, Konrad Dybcio wrote:
+>>>>>> On 2/13/26 8:02 AM, Abhinaba Rakshit wrote:
+>>>>>>> On Thu, Feb 12, 2026 at 12:30:00PM +0100, Konrad Dybcio wrote:
+>>>>>>>> On 2/11/26 10:47 AM, Abhinaba Rakshit wrote:
+>>>>>>>>> Register optional operation-points-v2 table for ICE device
+>>>>>>>>> and aquire its minimum and maximum frequency during ICE
+>>>>>>>>> device probe.
+>>>>
+>>>> [...]
+>>>>
+>>>>>>> However, my main concern was for the corner cases, where:
+>>>>>>> (target_freq > max && ROUND_CEIL)
+>>>>>>> and
+>>>>>>> (target_freq < min && ROUND_FLOOR)
+>>>>>>> In both the cases, the OPP APIs will fail and the clock remains unchanged.
+>>>>>>
+>>>>>> I would argue that's expected behavior, if the requested rate can not
+>>>>>> be achieved, the "set_rate"-like function should fail
+>>>>>>
+>>>>>>> Hence, I added the checks to make the API as generic/robust as possible.
+>>>>>>
+>>>>>> AFAICT we generally set storage_ctrl_rate == ice_clk_rate with some slight
+>>>>>> play, but the latter never goes above the FMAX of the former
+>>>>>>
+>>>>>> For the second case, I'm not sure it's valid. For "find lowest rate" I would
+>>>>>> expect find_freq_*ceil*(rate=0). For other cases of scale-down I would expect
+>>>>>> that we want to keep the clock at >= (or ideally == )storage_ctrl_clk anyway
+>>>>>> so I'm not sure _floor() is useful
+>>>>>
+>>>>> Clear, I guess, the idea is to ensure ice-clk <= storage-clk in case of scale_up
+>>>>> and ice-clk >= storage-clk in case of scale_down.
+>>>>
+>>>> I don't quite understand the first case (ice <= storage for scale_up), could you
+>>>> please elaborate?
+>>>
+>>> Here I basically mean to say is that, as you mentioned "we generally set
+>>> storage_ctrl_rate == ice_clk_rate, but latter never goes above the FMAX of the former".
+>>> I guess, the ideal way to handle this is to ensure using _floor when we want to scale_up.
+>>> This ensures the ice_clk does not vote for more that what storage_ctrl is running on.
+>>
+>> Right, but what I was asking specifically is why we don't want that to happen
+> 
+> I would argue saying that, having ice_clk higher than storage_ctrl_clk does
+> not makes sense, as it will not improve the throughput since the controller
+> clock rate will still be a bottle-neck and it will surely drain more power.
 
-Here's a !rfc version of these property checks. Nothing has changed here
-outside of a rebase on v7.0-rc1.
+Got it
 
-Cheers,
-Conor.
-
-CC: Linus Walleij <linusw@kernel.org>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>
-CC: linux-gpio@vger.kernel.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
-
-Conor Dooley (2):
-  pinctrl: pinconf-generic: perform basic checks on pincfg properties
-  dt-bindings: pinctrl: pincfg-node: add restrictions on conflicting
-    properties
-
- .../bindings/pinctrl/pincfg-node.yaml         | 105 ++++++++++++++++--
- drivers/pinctrl/pinconf-generic.c             |  41 ++++++-
- 2 files changed, 138 insertions(+), 8 deletions(-)
-
--- 
-2.51.0
-
+Konrad
 
