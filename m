@@ -1,161 +1,137 @@
-Return-Path: <devicetree+bounces-267924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KDaBJVasnWmgQwQAu9opvQ
-	(envelope-from <devicetree+bounces-267924-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:49:10 +0100
+	id 6OO2E42snWmgQwQAu9opvQ
+	(envelope-from <devicetree+bounces-267925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:50:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33357187FB2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:49:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6146187FF9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:50:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 87BDF30DB611
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:43:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7F4383190793
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:44:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 676D139E165;
-	Tue, 24 Feb 2026 13:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C163539E18C;
+	Tue, 24 Feb 2026 13:43:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SGsN2szA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Kd8/vhUC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 398DA39E194;
-	Tue, 24 Feb 2026 13:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E90239E165;
+	Tue, 24 Feb 2026 13:43:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771940625; cv=none; b=hvQ0R43ag5X8hlkMjpAQeCgAbzyVTy7LfZ828IwkiO1B7/9rLBbILBjkZtx3jhgVBv4irkdSas1zzP3zVCvCTpbIP4yuJWqgtJ8FVxVC+C4Yx2B/nikLo19h6VzAacXNi8xXgmq7v8aexWJxn3OoWOg1eUoCDkhKJl7bvfpccB8=
+	t=1771940635; cv=none; b=j9M5wsfJRsI2QKPCz/mj+cTDGhBFYIAwyD1her5TOAGpJDwFNIq3dSaCmR7SPpTbS8UW32hrLgKMe4HJT7+krzEz7SuhlcMNkLwVu6HcPC0eYTDIzL4cstLmK5OIaT7fzm4U/6s6GVGqnW0mKsFYUkUwuwg0kB2CW62zYG532QE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771940625; c=relaxed/simple;
-	bh=fUGqg/uj5KbUu2v4B8ETnDzDTrvQUv8R6avVDuDopeU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PMMp2/QyX+/QsWebdvfcQg3heEkE/2MX3bMMUdhXAcTvXnCyCz9G5spKwg96Gaw3kZ27P/kb0gc/hPbJ2hz1AMPajJqTyv6327q65nSojyxCtTzUK0uIgKQO94nDnhlj050QGFG50yasq+gRy+Ud1JAtlloS7aTBx3PzEOQlrEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SGsN2szA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7B9EC116D0;
-	Tue, 24 Feb 2026 13:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771940624;
-	bh=fUGqg/uj5KbUu2v4B8ETnDzDTrvQUv8R6avVDuDopeU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SGsN2szAdy14YB1H5aumcOBZiPwHzTHuKMrOGJmmqze0gFm5LUGoARjP7cdT4bGT+
-	 I9ON2UlmjeKDkGazS7FxEtf3uMwVuxt/vnCCvpI7cSqOLY7biejmSntnRjTRxqlZAh
-	 eyZBpKTMjS1eKwdIca/d4evFd7hFmtUKY7XpFZrRDvz4wYhLrmLjc23LpnwLaj7ygn
-	 tjD8uubX8c2Njq3So+F78O7CpGEy4/G9nbTXYr13LycRSuGKZQdWSXku7aUcYnRkz5
-	 8GJiPl0OxenCNUIE+F/cjI+2OLmz6WglRAUDj1XKop/t1rUrCiOF+bifEjzIqLGYnw
-	 eHS+ASvS69IQA==
-Message-ID: <46d73473-e6de-4601-a2df-85511a594b56@kernel.org>
-Date: Tue, 24 Feb 2026 14:43:41 +0100
+	s=arc-20240116; t=1771940635; c=relaxed/simple;
+	bh=+t5aKoNjIPhOd9K1poo0UKcJ+36BKbW+aSsCCaKoG14=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pg24MDN/q40QBA/4wA/9/OcjgNdnD/kWpApy/Fc/v6S5gMXY6pyxNL8ywR2dlzWVk+twWX1/ljWPaDYzXsXoO8IQkLm0C5+wCDxarR/npMAupr0ymPKDtqz2BGsx9dApebzM22dZqSTaLYs8AGiclq/2sFd3R4QgQDEoXYw4png=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Kd8/vhUC; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771940634; x=1803476634;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+t5aKoNjIPhOd9K1poo0UKcJ+36BKbW+aSsCCaKoG14=;
+  b=Kd8/vhUCvoUnqAzhLZqGDPXVRpYaHj+5X7Xbr03NxOTKZzusttWM1xLp
+   0Pk5WnVCbRok9eLSvaFIvk7FurFyRTlGSsS4diyhrE8ExBtQj7uSr6lPq
+   eAc2rx+3TrMU3MRW6wIB8Jk4zsOa+Ykmu6FlwIP6MGbqU1nM8/VR7RMVF
+   6Nwe2HEnzkD1TKZeUDOHSVkP+aMHvzJuqTTXRH+UCayDUaGFvKZNJXKsg
+   DIvMevOMn8kcJYUmwxmlBxALc3ltTxD8Tb9F7AumXNs/vhlbzHtXIRXwz
+   4Ig62eZMrLf+viB5OtfdYhQLRBglbc3P5YsD2rniRJvih3Qu8wH44Yr47
+   w==;
+X-CSE-ConnectionGUID: EXHHYlmVRWaGcG+1Rarf8g==
+X-CSE-MsgGUID: DeOhQ/H/S/m95FFXryS/2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="71984591"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; 
+   d="scan'208";a="71984591"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 05:43:54 -0800
+X-CSE-ConnectionGUID: VwgeB/n+QMuEGXx1BO9WSQ==
+X-CSE-MsgGUID: OcOvuEvcQlaLOenfkvoRPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; 
+   d="scan'208";a="238892016"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.146])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 05:43:52 -0800
+Date: Tue, 24 Feb 2026 15:43:50 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor@kernel.org>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v1 1/1] memory: bt1-l2-ctl: Remove
+ not-going-to-be-supported code for Baikal SoC
+Message-ID: <aZ2rFkSb-mgFSvfe@smile.fi.intel.com>
+References: <20260224115830.3501050-1-andriy.shevchenko@linux.intel.com>
+ <2bf95220-aaa7-48dc-a3f5-c5fd43c6ae67@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: usb: st,st-ohci-300x: convert to DT
- schema
-To: Charan Pedumuru <charan.pedumuru@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260224-st-usb-v2-1-e8b7cb6524c6@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260224-st-usb-v2-1-e8b7cb6524c6@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2bf95220-aaa7-48dc-a3f5-c5fd43c6ae67@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267924-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267925-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,linuxfoundation.org,kernel.org,linaro.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 33357187FB2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: B6146187FF9
 X-Rspamd-Action: no action
 
-On 24/02/2026 14:32, Charan Pedumuru wrote:
-> Convert STMicroelectronics USB OHCI Controller binding to DT schema.
-> 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
-> Changes in v2:
-> - Add "usb-hcd" as allOf reference.
-> - Remove minItems for the properties "clocks" and "resets".
-> - Link to v1: https://lore.kernel.org/r/20260217-st-usb-v1-1-ba347f30d0e0@gmail.com
-> ---
+On Tue, Feb 24, 2026 at 01:05:24PM +0100, Krzysztof Kozlowski wrote:
+> On 24/02/2026 12:58, Andy Shevchenko wrote:
+> > As noticed in the discussion [1] the Baikal SoC and platforms
+> > are not going to be finalized, hence remove stale code.
 
-Looks good, thanks:
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> You got the feedback from Rob, so please implement it in all new patches
+> PAST that feedback. No need to resend old ones, but if you are making
+> new work - respect that feedback.
 
-Best regards,
-Krzysztof
+I misinterpreted his reply. Will fix this in next version.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
