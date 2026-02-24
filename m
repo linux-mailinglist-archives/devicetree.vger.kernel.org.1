@@ -1,3189 +1,1184 @@
-Return-Path: <devicetree+bounces-267830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267831-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mOvZC1aJnWnBQQQAu9opvQ
-	(envelope-from <devicetree+bounces-267830-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:19:50 +0100
+	id +GmZBG2JnWnBQQQAu9opvQ
+	(envelope-from <devicetree+bounces-267831-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:20:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E30B18610E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:19:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 287FC18613A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:20:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 23940313F524
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:18:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 91E8B3021D37
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C5337BE86;
-	Tue, 24 Feb 2026 11:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36CE37BE88;
+	Tue, 24 Feb 2026 11:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GdRX8rsl"
+	dkim=pass (2048-bit key) header.d=kontron.de header.i=@kontron.de header.b="fETu6fKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11023108.outbound.protection.outlook.com [40.107.159.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A770379974;
-	Tue, 24 Feb 2026 11:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771931917; cv=none; b=cJs1T5Sqs2L9CHq1Dxp3ElXaUEkGRG2Oh78PEiLnhXFtm7Lc6mJPtc8jpHQcxFk3Gk6yxH3DcpWIFrPSeMS3AMeBusyJW6ExmWSqN83O0U6SlDctaRHbv4A2uRfC7+HQso7NpE18X/fd9DM0LYpXHiCXIqOylK/o5UaAd9r5am4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771931917; c=relaxed/simple;
-	bh=/rw5C92DSifd+WibIuq+Y0kAl9iZruE1XSR796mtKVI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FNUnmk0Nq4C/SA/kU+0RjIdI3eUb6NK2oTiKTutnYtYW7bFuSE1lLvsfdbOI6d7wFCVrseZ3gi+mMMlPYfEoSe90JJWxP9sLcv/nYCBABzKpQMw0l2h6cok3x2Rhrrf5jj27Softtb4wpiPWLcppqNi2zLwWd8j0ntdU70GpvkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GdRX8rsl; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771931914; x=1803467914;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=/rw5C92DSifd+WibIuq+Y0kAl9iZruE1XSR796mtKVI=;
-  b=GdRX8rslcuQyO6lA5u9qbnJYV7b7mTL1LrxgSQTG3+dPo7rytv7JUhpQ
-   fbLpgee4jTl4c6NcgG9fz9xC9acz1dT+THQX866v3B/+qKMBA2+DKIc/4
-   ZKzXiooCK8M23gwbfwjxdRF77Bh3YJEc6zCH1sxuUJ9LNx/6wzsISJV4g
-   oLPzz0yuYsgWhWcaA6C6WdqRUG7UFIWJrRfTHuOeJPAXPAI/9QtHli3NU
-   8kjHPbEPIo6MZWDT0ALn7HMPZ4X/JSsBsHC4EIacrgJb+rP9uFg7G587l
-   KioLb2tFzGG0ZemRKdUmgjT9HI1Po16zOaT3O3uxsXzKYnkNqtbVYUIl8
-   Q==;
-X-CSE-ConnectionGUID: oawfVRdEQ8Kzdk90cV9U2w==
-X-CSE-MsgGUID: P/r29Q75TOaSDI9Ni5sU9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="84399942"
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; 
-   d="scan'208";a="84399942"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 03:18:33 -0800
-X-CSE-ConnectionGUID: x5UaVzNkRsm0aQT8Ps8+yA==
-X-CSE-MsgGUID: yxIMADG7TP6ONMD+8RWByg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; 
-   d="scan'208";a="215110899"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by orviesa010.jf.intel.com with ESMTP; 24 Feb 2026 03:18:29 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1003)
-	id 36AD698; Tue, 24 Feb 2026 12:18:27 +0100 (CET)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Brian Masney <bmasney@redhat.com>
-Subject: [PATCH v4 1/1] clk: baikal-t1: Remove not-going-to-be-supported code for Baikal SoC
-Date: Tue, 24 Feb 2026 12:17:18 +0100
-Message-ID: <20260224111821.3491352-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.50.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93BB337C111;
+	Tue, 24 Feb 2026 11:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.108
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771931947; cv=fail; b=kKwJpoN/8sDGpDYjQoJmyrZA5HwH3hjPdCZbWBg6fklrm9M6Ry336asc4intUZDwU7MYGF4u4dUH6eoIZgTf7T0xs4S603GsrEUHzwe7IOsHo7TRnWAEENZdUwE0hIpu73AHvPP/qzSyCo+/As4YjwYO8IPnAwTJqAvozdaJnYc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771931947; c=relaxed/simple;
+	bh=AwHfIfJruXdvhO398h8QTlS+gHr6VWov7LzVREdTffU=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=ZJ99t+kZUgqr1cFXpFfXrO39nRhPIFfsUx+aM2V5ORjYQyOZFxHkqtqX2mbZo8RErc3jWj6aEc8M3hIGzngoh1igjkOhUCDTGLzz3Vh7cZxLsh+uoyEMVEPI1/koM/uRhaun1yilf8p6lc1C8AvVlf2DyYcgjhYzlKJrpOFsw7k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (2048-bit key) header.d=kontron.de header.i=@kontron.de header.b=fETu6fKg; arc=fail smtp.client-ip=40.107.159.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H3iW2q2+FQnOXAoR4tsQyVkV8Unx8GJXmaQFi3lr5YVlaspdJ7GJdg6U0reN0XSDdxAR7k757jwgOowoi/lSAcgxPWD+t9JAVOP/PwSwqGMMwBvq3+NjJQIfYdFsSxZjbL9U+pXGDGeZhJLimpTm+iSEPTJoCiPExnzKf1CfDbXg37lyF4xF7sOms5/bb4ugcEAYBTm8N59nP6KsyzfVSi6h5c4IFPqCO1RVnlVn7qjlKQSgQKxVGDaUt8GgTypkniX5vg6hODjzYpM+l2rIGBNOpnbmEC8sj52Q6lJyEmNE9DId6sVuZexyTiE3yytTE5R/4Y1vSJiNdqWocxbcJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ULE1QASEPikfS551+7s06IDNyMxvzYo65Bww2YiS3Qc=;
+ b=ikF29UCCtHUA+kQGWi/gOcDKqy8Y6geV4bXqNScemQMAgZbFT3dO6xgbxzQP8tFaehxirjKi/BjTjO4O1NdFckPnVXHnV7gTNeR9SZjvygo6QkRhxGB+jgVAZNzszbuO87ZBD5IBJa411G6OUjx5NPLf/6kFDxyPi8RgD4es4WXGCJZ73r854HRQiHcL2ifBSxdylGd3vAIkt1s4JVVsDkznwLX2eGLD2fQk/jywLG+V6HLgdfGCglADhd/Q6ROxC5ge6iD8GaXP+EeMnVKNrp5DC8F9xaXzfPkVCu9SyiXOG/fmUuZj9Es/2t4TyEwxl8h1zfPARjOiyqOez/gKwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kontron.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ULE1QASEPikfS551+7s06IDNyMxvzYo65Bww2YiS3Qc=;
+ b=fETu6fKgK1q7BxvEUhWr7Ply5BLZWNQtEDFGPL7OBHMdu+E3ustYIfbmuaTHeMlueL1zOgYbGCYmVMC+wDElKxrI6mX2JarUBkSKtM2Lbwq6UuRp8xbKoMx5WQmwwFo3m0HBOgLCL/llmUaw22FGUeOw44Lj4dPhlQIv925nWlUBuFMhKnd6YdAsvSDF5RwpK84aha2kvVVx1IvhraAYfBv3SaA3AH5HXX9nuItBla7B5y8qiOM9WsVVb2kwKIcZgSZkS/hc8ZjkBxqVW4cHD3MNJDmumQgUTkxtzqDmL073mMnM1KrI8HdhnP9z3UstftWKmy4RmEhpXTKnCc9q0Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fb::23)
+ by GVXPR10MB8416.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:1e2::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Tue, 24 Feb
+ 2026 11:18:58 +0000
+Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a276:4ad7:962:da22]) by AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a276:4ad7:962:da22%5]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
+ 11:18:58 +0000
+Message-ID: <6543cf20-01e3-4dc2-b4b0-08935527f440@kontron.de>
+Date: Tue, 24 Feb 2026 12:18:54 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v25 0/7] firmware: imx: driver for NXP secure-enclave
+To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Frank Li <frank.li@nxp.com>
+References: <20260122-imx-se-if-v25-0-5c3e3e3b69a8@nxp.com>
+ <AM9PR04MB86047EA92BB21C6D522FC007959EA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+Content-Language: en-US, de-DE
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
+In-Reply-To: <AM9PR04MB86047EA92BB21C6D522FC007959EA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0088.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1e::8) To AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:1fb::23)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR10MB4277:EE_|GVXPR10MB8416:EE_
+X-MS-Office365-Filtering-Correlation-Id: 337191c7-edb2-4120-b47e-08de739680fb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|366016|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RmdzNzVOdHVSVVNVREh0My8xZTJBVm9tUjJGbXRmd1VFcDFzZ3pXNTNNUVd2?=
+ =?utf-8?B?Rm5OSGJ3MmdKMHM0eldKUGF3UHZOSkhRcGxuV1RJbDdzejFSY3prVUNPcFpt?=
+ =?utf-8?B?UzBJM2hSa2RaTXVBWUQraXg4ajVQK01NMENjR2ovbjNmQ1BKZ1A4RlhwQ29Q?=
+ =?utf-8?B?OEt0aVppVHNYNHBzRldkY2pncXBZL0lNVC9mbmdoQmtraEhyUklrYzkxdTdo?=
+ =?utf-8?B?UEI2cEUrcDFTcGZGMnZwWjlQUHVxTmhqR2Y3b3VORVc1K0VpckxGcmNDZmNj?=
+ =?utf-8?B?Tm5qb2JZRWtoK2JtTWcyN0hPNXIxOFRrNUxBL3V1ODgyTmtZRXZpdUdpQlR1?=
+ =?utf-8?B?WU5qN3Rua2RzdlFuenUrZmZPQitkNVZ2UFdPaHhoU0Y1aEI4UHBySmVKcVhh?=
+ =?utf-8?B?YWllc0ZMeDBmMVk5akI1Q1QwQ2ozU1JzOGQ4cTBtNi93TFV3L0s3NjJCYTEy?=
+ =?utf-8?B?TC94YXJBS3ViOE4yNFNwMFdXcktyYm55b3M5Wi8wSXUvZHRJU2xTWlVwZS85?=
+ =?utf-8?B?eGNNUlZ6YUZ4TGZJcTVsRTRoN2NSRGtDblBEMG02N1NTVmxGSk02a1Jvcnd2?=
+ =?utf-8?B?d1ZIa3hMN2tJcFRsZHZURkhOdWV2NmxKM0p0cDVtVU5hZUw2WnRrRkNaMzZl?=
+ =?utf-8?B?c0VTZU41RWt1RE94QnByNWtQajFaVDl5VThBL29DeExMVGtsdkRFNmhWSzR2?=
+ =?utf-8?B?bVo0OWg0SzhQTnl4YnVhTUpZVy84am80anJ4WnEwR2h0RVMrQThVR1JoQnZF?=
+ =?utf-8?B?Rzl5dzBtNTFtdWcyeVhibklBV3l2SzBxSVB3K1lSMG1hdE84a3cwNnJ1aVRv?=
+ =?utf-8?B?cXN6b2FSeW9ubUM3dmtJc1RVSTAxQWc3SGlTbGRDbVdtbzE4TnZnRmlCQlor?=
+ =?utf-8?B?WnpGQkJqTElJd1VPOHlEd1VCTUV1anQvNXhKMnAxd0J2RlN3cmZWYkRmVDJL?=
+ =?utf-8?B?ZWdYLzQ2YVoyU3hQWkJXaVRQSGxRSHlXQmZpRUV3aG9nWXdGTkkySXJCRlJT?=
+ =?utf-8?B?dkxkclJXWU9qNmhtWGIvYXg1T1A1OVMyOUxkRWFrYWN1bE5nVFJYRHBoQkZ1?=
+ =?utf-8?B?LzV6V2ZXYjFQOFppTy96b1czNFlyY0FnL1ladmRXcm82eTRDSktRSlZCOXJr?=
+ =?utf-8?B?V3EwN2kwLzdMTDBsaEFoQk96VkNvbUMyd2V5N0V1Rlowc3hyVTc2TTRSQk9n?=
+ =?utf-8?B?ZDZoZ2ozc08yc3laSUJpV1FBNkp3cHF2ZHlyRXMvV2QyOHJrVHRTOGdlam9G?=
+ =?utf-8?B?THFhaHorSWNPbnNWRHBHc0w2M2xGeEJwRWliMlJadmVDTkJ3WVRKY1MvUGQr?=
+ =?utf-8?B?UDdkR3BWQklrN1ZvVmpTaXpwWGdjWiswVlFJR1hIQkYyL3pOR2g4SnlLaDF6?=
+ =?utf-8?B?NHdkKyswRDFvbTg2cTJmbXl0YllqN3ZMZnc1ZmlVc3crV1pnY1k2eWkvZEhG?=
+ =?utf-8?B?K2pidWZKRExvU1A1YlJuUzgrbE1iR0lNRjB0WFVFV3pKb1lCK0hHZWN2RG4w?=
+ =?utf-8?B?UGNTWUF6elpOcUZYWldGYlFxcTlaWkliNmtrTjlnVm9MUWJJR2ZUMWk1WHZW?=
+ =?utf-8?B?Ky94cXlmNzV0VGtnL1dRcmZJRXVXWWYwM3JSam00b2JpTGpRVkdYbEFyOGVE?=
+ =?utf-8?B?WFZTaFEyRmhRNVB6UXhxNjNTV0pmVndMdkxQMkNvRlNTaWhUM29ZcHJJZTJX?=
+ =?utf-8?B?OUh2TFJrZ0x4cVBnUVJUTk1lOXdOQUJ4d1NpeWVqcUFaRXRUNG5CVEVvTGlj?=
+ =?utf-8?B?SkxLTEZYNlpQdzA0dnJXWHVvQUlRMEQ5bHhtaGM5UTNyTmVUd2RxbjkyNnRp?=
+ =?utf-8?B?Sjk4MFNpcWp5R211SGtlcGxjZEVXY0xJL1pvK21rclowRmRSZEVZK2ZlTURu?=
+ =?utf-8?B?c1h6YnhnS05MWVpnTFp4OUJuQW5ONWFuOG96MWc1MWpLYnNjZEdZOCttRGxu?=
+ =?utf-8?B?eHR3K0pkQzFadWp0alRwU1FEdzhqcVJJYlJOS1dHd3RsdHI0OCtkbW51OWNk?=
+ =?utf-8?B?NW9oVnRuU09XS3lRb210c0ViWXkrME1hWGZmNVMwQUF4UWpnMW15cEJmV21x?=
+ =?utf-8?B?cUFlcHFBMm5NNVUyRnhlNFdPZEdXZk1TWWtOMHE1aXB0STdicGpqaWhHYkYy?=
+ =?utf-8?Q?fiMg=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YTgvRVJzQllKZUllTVFxRjlHaXV4ampDL2U0QXoxMU9zNEF3QmE2aHlYQzhP?=
+ =?utf-8?B?ZTg0Q3M5MnVUOWZKR2szMGdzRkFkbHpiMTYwSFI0cXJtV1VtZzJ6MXBPZkhP?=
+ =?utf-8?B?ZTRkeFl1cW5Beno2U0UzSTZYV1F3bVNIZnVpeVFPd0oyM1RZNzdHZ0FvdUFB?=
+ =?utf-8?B?NXpRTU40T1dqWG9HNG14SmgrTlYzaEVBRDZldkUwTjg1Z1dUazJzeEt4TEYz?=
+ =?utf-8?B?aGluTzhvT2hxb0ZuWktpczJmVm05NW41SFhCdmNneC9TSzlDejBGNWNHeU5U?=
+ =?utf-8?B?MDhBc0VmalhNS3N1Q3Njb3ZNcFNZVXJPRFpWcGsyRkg4czBLMklFKzVGbUZo?=
+ =?utf-8?B?MDZlcVd6U2lkQlFISm9YQUEycFlrL3V3YmIrbXloRitMaGJYM1JHN2ZVLzdv?=
+ =?utf-8?B?ZnBDM3ZtRTdmR3JSbDZFRTBkcWNrWFQvSGNlc0JWb0xWUmVqUkJIMiswNFM0?=
+ =?utf-8?B?YWNMY2hkaDdsdVRIRGQxTGtmVU9ETXZJUzBQbk9OQXMxSWFxYUwxYkJXczZW?=
+ =?utf-8?B?eVBXQ0swOENDK0E5eHRFL2NtNXlVbjN2VXU3ODVQN2IwazlTcXAxZkZnNnFr?=
+ =?utf-8?B?L2dtV1FOMmpLd0lzSUFjbHV4VUlFaS9JYm1jRjR5YWx0UTF3RHc0TnBpbHZT?=
+ =?utf-8?B?aXRIWGdXdHFwL1VNRmx1Rk5zbWNvTVRJOWNrRGpXL1dwZ1ZhVm9GSEMvdThP?=
+ =?utf-8?B?YnRCakl3RUJuK0VHNGdyVWkwUlJxbm0wZlJNN1QydHdDWi9KQzlsNmhNSmRv?=
+ =?utf-8?B?V2lrbDhVc215dFpGMWtVVk10QzJoRFZhcFd3aytoZEVtWHg1UEJDcG9HQ2RQ?=
+ =?utf-8?B?OUI5YjBVSzV1NE9HaWZuazM3NXN2V0RkV1BWWmp3bzkrbG9ROVltVlNITnZy?=
+ =?utf-8?B?NVRnMlRpVVRzZjV1MUx4Ni9XYXFRVTRvMGVFd1RQTnhVR0l5cm5hbTdYbFpS?=
+ =?utf-8?B?VktPRHY3WG05S3h2bjNTUHFBM3ozenJRaHYrTEhqdlYzaWlLU2dBeHBGaFl2?=
+ =?utf-8?B?Q2cwUkxqVmFTMFlPaGJrTktxWk1Yemh3VmM4SlFqZzZzZDVSUngzVzJ0ODZx?=
+ =?utf-8?B?aUVMNDE5a1QwUlRXL3ZCM1cvdTBLVmdkQlpYZ2cvVDBrSzRnTWk4OWVKT2sy?=
+ =?utf-8?B?MWk2TDVMODgzM09aZEEvTHdYZDl6czY2Rlo0QWJxSXNkbkRxSXJJTzN5aUFM?=
+ =?utf-8?B?Q2VxcnVNSjRTbFBSNlVpWFpDV3RyVGFydFN1ZnFZazVDQ0RSN21Id0lNK2Zk?=
+ =?utf-8?B?ZkxySjViQnRpV1dzaWRNOXhET3o4Qi9VN3FPUWJLT0hEVGZwYk9TSXNTNGRk?=
+ =?utf-8?B?Z0Z5TDBpM0dYZ3BIc1VIM2wzQ3paSUlEL2d0MjRvSmpPcDNuVFVDb0g5MmVk?=
+ =?utf-8?B?OTJEc3JJOW9HV1NJSXJoR2lPNDlXcXhnWnN6Z3ZGSG1aSlBTMjlSdnNJc0xT?=
+ =?utf-8?B?WHZPMFlESXRqSDh0dW1nZlBsOENWTGtGdHBXekNRRzA3cHU0eDErZXFOS3BI?=
+ =?utf-8?B?M3dteDFjKzZwSkx4RU8zUUMwTE9BSDRFK3IwZGl1Y0ZGUE9qaFJxVDczdWFJ?=
+ =?utf-8?B?bWZ4SGJUWmVlY0xoUDdtVFhwa0ZZcjByZzd3TjB3bjUwampZSDlxSHpUcU5v?=
+ =?utf-8?B?RktNYVErUklZWjBOK2dmU2dQUnYrblQ5K0tNYWJ3VXdoVzRQbGpRNFpmelNO?=
+ =?utf-8?B?ZW9DRzdLSjB6ZEFTek1kWlVYcFdhbVpEUWZielg5My9HZE9hRzkxNTRwZ3NG?=
+ =?utf-8?B?ZGVRc1J3ZDFsZzFrdnpVaVBvYTQ2OXUrNEtHTmFxU3JuSUc2dEZkR1RnMWVs?=
+ =?utf-8?B?QzFCamJhTVRKc2FHMFA0eWN5TjluTklFdWZweDRmQ3p6YkRBdnYzRDI2Ym5p?=
+ =?utf-8?B?Z2wzdnJySU9UZmJXMzloTUNZbTRBMFJxbUYzeWM0L0JPcFhPZytWN3FHRXUx?=
+ =?utf-8?B?eFRsdG90TFpLd0hJbVgwOU9PdkhCeWlOYWRsYVRSTE45dGhqWmRoaDh2K08v?=
+ =?utf-8?B?b01MeG1pM013M04vLyt1L082MXZaOHFad2Q3VmdmZHdjTUQ3ZDE2dS81bjRr?=
+ =?utf-8?B?ZlZWQlBYUnlra0ZTUTM0WUh5enB5bFQyWWFsU0JLZFE0WDg3MG5lNUg0cnhY?=
+ =?utf-8?B?bytNbnJ4WWQrSWp6eGhXbjJCOU5CcnpQc09BYkxTQ2N4cGNLNWttMDRqWStp?=
+ =?utf-8?B?eGx1aEdjYmRQbUxvYUIvUnkvSEtCbzF3emVsTndzd2NJZ3hPMkNxWkF0V0M1?=
+ =?utf-8?B?TVJYTGxGUXA3K1MrSzNHeTNFQTlibjB6MUc0dFVna3ROU1FZejBGbnJmOGpm?=
+ =?utf-8?B?NWhDL3NOTkhUdWhSaE0zRlIrZnV6U1pVdHBYZ3E0SnVCZEVob0l6RGFGelVt?=
+ =?utf-8?Q?1REMglTgwahQubRM=3D?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 337191c7-edb2-4120-b47e-08de739680fb
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 11:18:58.0442
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xwGj+RiIBJ0gBpMlKH+X5JBfH1KxPX2+RMQuCDQZ8+DSE7nRiX0OGFL72kPrWpFOzhU2bcrqQMfIWnCUiNl1FhC9bBtpd2NPn7a3Yj1tW5g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR10MB8416
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_DKIM_ALLOW(-0.20)[kontron.de:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,pengutronix.de,infradead.org,linux.intel.com,redhat.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-267830-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-267831-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[kontron.de];
+	FREEMAIL_TO(0.00)[nxp.com,lwn.net,kernel.org,pengutronix.de,gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[frieder.schrempf@kontron.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
+	DKIM_TRACE(0.00)[kontron.de:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.984];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4E30B18610E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 287FC18613A
 X-Rspamd-Action: no action
 
-As noticed in the discussion [1] the Baikal SoC and platforms
-are not going to be finalized, hence remove stale code.
+On 29.01.26 17:58, Pankaj Gupta wrote:
+> Hi Shawn,
+> 
+> This is a gentle follow‑up regarding the patch-set.
+> 
+> In v25, I addressed all automated feedback from kernel CI (warning fixes and checkpatch‑strict resolution), with no further changes requested by reviewers.
+> Patch 5/7 has also received a Reviewed-by tag from Frank Li (NXP).
+> 
+> I have not seen additional feedback.
+> I would appreciate any update on the review/merge status, or guidance on further changes needed to move the series forward.
+> 
+> Thanks for your time and continued support.
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
-Link: https://lore.kernel.org/lkml/22b92ddf-6321-41b5-8073-f9c7064d3432@infradead.org/ [1]
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
----
+How close are we to getting this patchset merged? Work on this has been
+ongoing for almost three years now and it would be really helpful to
+have this in the kernel.
 
-v4: added tag (Rob), rebased on top of last changes
-v3: removed bindings header as well (now should all be gone)
-v2: added tag (Brian), removed YAML files
+Thanks!
 
- .../bindings/clock/baikal,bt1-ccu-div.yaml    | 196 ------
- .../bindings/clock/baikal,bt1-ccu-pll.yaml    | 131 ----
- drivers/clk/Kconfig                           |   1 -
- drivers/clk/Makefile                          |   1 -
- drivers/clk/baikal-t1/Kconfig                 |  52 --
- drivers/clk/baikal-t1/Makefile                |   4 -
- drivers/clk/baikal-t1/ccu-div.c               | 653 ------------------
- drivers/clk/baikal-t1/ccu-div.h               | 121 ----
- drivers/clk/baikal-t1/ccu-pll.c               | 560 ---------------
- drivers/clk/baikal-t1/ccu-pll.h               |  72 --
- drivers/clk/baikal-t1/ccu-rst.c               | 217 ------
- drivers/clk/baikal-t1/ccu-rst.h               |  67 --
- drivers/clk/baikal-t1/clk-ccu-div.c           | 520 --------------
- drivers/clk/baikal-t1/clk-ccu-pll.c           | 277 --------
- include/dt-bindings/clock/bt1-ccu.h           |  48 --
- 15 files changed, 2920 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml
- delete mode 100644 drivers/clk/baikal-t1/Kconfig
- delete mode 100644 drivers/clk/baikal-t1/Makefile
- delete mode 100644 drivers/clk/baikal-t1/ccu-div.c
- delete mode 100644 drivers/clk/baikal-t1/ccu-div.h
- delete mode 100644 drivers/clk/baikal-t1/ccu-pll.c
- delete mode 100644 drivers/clk/baikal-t1/ccu-pll.h
- delete mode 100644 drivers/clk/baikal-t1/ccu-rst.c
- delete mode 100644 drivers/clk/baikal-t1/ccu-rst.h
- delete mode 100644 drivers/clk/baikal-t1/clk-ccu-div.c
- delete mode 100644 drivers/clk/baikal-t1/clk-ccu-pll.c
- delete mode 100644 include/dt-bindings/clock/bt1-ccu.h
-
-diff --git a/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml b/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml
-deleted file mode 100644
-index 30252c95700c..000000000000
---- a/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml
-+++ /dev/null
-@@ -1,196 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--# Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/clock/baikal,bt1-ccu-div.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Baikal-T1 Clock Control Unit Dividers
--
--maintainers:
--  - Serge Semin <fancer.lancer@gmail.com>
--
--description: |
--  Clocks Control Unit is the core of Baikal-T1 SoC System Controller
--  responsible for the chip subsystems clocking and resetting. The CCU is
--  connected with an external fixed rate oscillator, which signal is transformed
--  into clocks of various frequencies and then propagated to either individual
--  IP-blocks or to groups of blocks (clock domains). The transformation is done
--  by means of an embedded into CCU PLLs and gateable/non-gateable dividers. The
--  later ones are described in this binding. Each clock domain can be also
--  individually reset by using the domain clocks divider configuration
--  registers. Baikal-T1 CCU is logically divided into the next components:
--  1) External oscillator (normally XTAL's 25 MHz crystal oscillator, but
--     in general can provide any frequency supported by the CCU PLLs).
--  2) PLLs clocks generators (PLLs).
--  3) AXI-bus clock dividers (AXI) - described in this binding file.
--  4) System devices reference clock dividers (SYS) - described in this binding
--     file.
--  which are connected with each other as shown on the next figure:
--
--          +---------------+
--          | Baikal-T1 CCU |
--          |   +----+------|- MIPS P5600 cores
--          | +-|PLLs|------|- DDR controller
--          | | +----+      |
--  +----+  | |  |  |       |
--  |XTAL|--|-+  |  | +---+-|
--  +----+  | |  |  +-|AXI|-|- AXI-bus
--          | |  |    +---+-|
--          | |  |          |
--          | |  +----+---+-|- APB-bus
--          | +-------|SYS|-|- Low-speed Devices
--          |         +---+-|- High-speed Devices
--          +---------------+
--
--  Each sub-block is represented as a separate DT node and has an individual
--  driver to be bound with.
--
--  In order to create signals of wide range frequencies the external oscillator
--  output is primarily connected to a set of CCU PLLs. Some of PLLs CLKOUT are
--  then passed over CCU dividers to create signals required for the target clock
--  domain (like AXI-bus or System Device consumers). The dividers have the
--  following structure:
--
--          +--------------+
--  CLKIN --|->+----+ 1|\  |
--  SETCLK--|--|/DIV|->| | |
--  CLKDIV--|--|    |  | |-|->CLKLOUT
--  LOCK----|--+----+  | | |
--          |          |/  |
--          |           |  |
--  EN------|-----------+  |
--  RST-----|--------------|->RSTOUT
--          +--------------+
--
--  where CLKIN is the reference clock coming either from CCU PLLs or from an
--  external clock oscillator, SETCLK - a command to update the output clock in
--  accordance with a set divider, CLKDIV - clocks divider, LOCK - a signal of
--  the output clock stabilization, EN - enable/disable the divider block,
--  RST/RSTOUT - reset clocks domain signal. Depending on the consumer IP-core
--  peculiarities the dividers may lack of some functionality depicted on the
--  figure above (like EN, CLKDIV/LOCK/SETCLK). In this case the corresponding
--  clock provider just doesn't expose either switching functions, or the rate
--  configuration, or both of them.
--
--  The clock dividers, which output clock is then consumed by the SoC individual
--  devices, are united into a single clocks provider called System Devices CCU.
--  Similarly the dividers with output clocks utilized as AXI-bus reference clocks
--  are called AXI-bus CCU. Both of them use the common clock bindings with no
--  custom properties. The list of exported clocks and reset signals can be found
--  in the files: 'include/dt-bindings/clock/bt1-ccu.h' and
--  'include/dt-bindings/reset/bt1-ccu.h'. Since System Devices and AXI-bus CCU
--  are a part of the Baikal-T1 SoC System Controller their DT nodes are supposed
--  to be a children of later one.
--
--if:
--  properties:
--    compatible:
--      contains:
--        const: baikal,bt1-ccu-axi
--
--then:
--  properties:
--    clocks:
--      items:
--        - description: CCU SATA PLL output clock
--        - description: CCU PCIe PLL output clock
--        - description: CCU Ethernet PLL output clock
--
--    clock-names:
--      items:
--        - const: sata_clk
--        - const: pcie_clk
--        - const: eth_clk
--
--else:
--  properties:
--    clocks:
--      items:
--        - description: External reference clock
--        - description: CCU SATA PLL output clock
--        - description: CCU PCIe PLL output clock
--        - description: CCU Ethernet PLL output clock
--
--    clock-names:
--      items:
--        - const: ref_clk
--        - const: sata_clk
--        - const: pcie_clk
--        - const: eth_clk
--
--properties:
--  compatible:
--    enum:
--      - baikal,bt1-ccu-axi
--      - baikal,bt1-ccu-sys
--
--  reg:
--    maxItems: 1
--
--  "#clock-cells":
--    const: 1
--
--  "#reset-cells":
--    const: 1
--
--  clocks:
--    minItems: 3
--    maxItems: 4
--
--  clock-names:
--    minItems: 3
--    maxItems: 4
--
--additionalProperties: false
--
--required:
--  - compatible
--  - "#clock-cells"
--  - clocks
--  - clock-names
--
--examples:
--  # AXI-bus Clock Control Unit node:
--  - |
--    #include <dt-bindings/clock/bt1-ccu.h>
--
--    clock-controller@1f04d030 {
--      compatible = "baikal,bt1-ccu-axi";
--      reg = <0x1f04d030 0x030>;
--      #clock-cells = <1>;
--      #reset-cells = <1>;
--
--      clocks = <&ccu_pll CCU_SATA_PLL>,
--               <&ccu_pll CCU_PCIE_PLL>,
--               <&ccu_pll CCU_ETH_PLL>;
--      clock-names = "sata_clk", "pcie_clk", "eth_clk";
--    };
--  # System Devices Clock Control Unit node:
--  - |
--    #include <dt-bindings/clock/bt1-ccu.h>
--
--    clock-controller@1f04d060 {
--      compatible = "baikal,bt1-ccu-sys";
--      reg = <0x1f04d060 0x0a0>;
--      #clock-cells = <1>;
--      #reset-cells = <1>;
--
--      clocks = <&clk25m>,
--               <&ccu_pll CCU_SATA_PLL>,
--               <&ccu_pll CCU_PCIE_PLL>,
--               <&ccu_pll CCU_ETH_PLL>;
--      clock-names = "ref_clk", "sata_clk", "pcie_clk",
--                    "eth_clk";
--    };
--  # Required Clock Control Unit PLL node:
--  - |
--    ccu_pll: clock-controller@1f04d000 {
--      compatible = "baikal,bt1-ccu-pll";
--      reg = <0x1f04d000 0x028>;
--      #clock-cells = <1>;
--
--      clocks = <&clk25m>;
--      clock-names = "ref_clk";
--    };
--...
-diff --git a/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml b/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml
-deleted file mode 100644
-index 7f8d98226437..000000000000
---- a/Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml
-+++ /dev/null
-@@ -1,131 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--# Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/clock/baikal,bt1-ccu-pll.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Baikal-T1 Clock Control Unit PLL
--
--maintainers:
--  - Serge Semin <fancer.lancer@gmail.com>
--
--description: |
--  Clocks Control Unit is the core of Baikal-T1 SoC System Controller
--  responsible for the chip subsystems clocking and resetting. The CCU is
--  connected with an external fixed rate oscillator, which signal is transformed
--  into clocks of various frequencies and then propagated to either individual
--  IP-blocks or to groups of blocks (clock domains). The transformation is done
--  by means of PLLs and gateable/non-gateable dividers embedded into the CCU.
--  It's logically divided into the next components:
--  1) External oscillator (normally XTAL's 25 MHz crystal oscillator, but
--     in general can provide any frequency supported by the CCU PLLs).
--  2) PLLs clocks generators (PLLs) - described in this binding file.
--  3) AXI-bus clock dividers (AXI).
--  4) System devices reference clock dividers (SYS).
--  which are connected with each other as shown on the next figure:
--
--          +---------------+
--          | Baikal-T1 CCU |
--          |   +----+------|- MIPS P5600 cores
--          | +-|PLLs|------|- DDR controller
--          | | +----+      |
--  +----+  | |  |  |       |
--  |XTAL|--|-+  |  | +---+-|
--  +----+  | |  |  +-|AXI|-|- AXI-bus
--          | |  |    +---+-|
--          | |  |          |
--          | |  +----+---+-|- APB-bus
--          | +-------|SYS|-|- Low-speed Devices
--          |         +---+-|- High-speed Devices
--          +---------------+
--
--  Each CCU sub-block is represented as a separate dts-node and has an
--  individual driver to be bound with.
--
--  In order to create signals of wide range frequencies the external oscillator
--  output is primarily connected to a set of CCU PLLs. There are five PLLs
--  to create a clock for the MIPS P5600 cores, the embedded DDR controller,
--  SATA, Ethernet and PCIe domains. The last three domains though named by the
--  biggest system interfaces in fact include nearly all of the rest SoC
--  peripherals. Each of the PLLs is based on True Circuits TSMC CLN28HPM core
--  with an interface wrapper (so called safe PLL' clocks switcher) to simplify
--  the PLL configuration procedure. The PLLs work as depicted on the next
--  diagram:
--
--      +--------------------------+
--      |                          |
--      +-->+---+    +---+   +---+ |  +---+   0|\
--  CLKF--->|/NF|--->|PFD|...|VCO|-+->|/OD|--->| |
--          +---+ +->+---+   +---+ /->+---+    | |--->CLKOUT
--  CLKOD---------C----------------+          1| |
--       +--------C--------------------------->|/
--       |        |                             ^
--  Rclk-+->+---+ |                             |
--  CLKR--->|/NR|-+                             |
--          +---+                               |
--  BYPASS--------------------------------------+
--  BWADJ--->
--
--  where Rclk is the reference clock coming  from XTAL, NR - reference clock
--  divider, NF - PLL clock multiplier, OD - VCO output clock divider, CLKOUT -
--  output clock, BWADJ is the PLL bandwidth adjustment parameter. At this moment
--  the binding supports the PLL dividers configuration in accordance with a
--  requested rate, while bypassing and bandwidth adjustment settings can be
--  added in future if it gets to be necessary.
--
--  The PLLs CLKOUT is then either directly connected with the corresponding
--  clocks consumer (like P5600 cores or DDR controller) or passed over a CCU
--  divider to create a signal required for the clock domain.
--
--  The CCU PLL dts-node uses the common clock bindings with no custom
--  parameters. The list of exported clocks can be found in
--  'include/dt-bindings/clock/bt1-ccu.h'. Since CCU PLL is a part of the
--  Baikal-T1 SoC System Controller its DT node is supposed to be a child of
--  later one.
--
--properties:
--  compatible:
--    const: baikal,bt1-ccu-pll
--
--  reg:
--    maxItems: 1
--
--  "#clock-cells":
--    const: 1
--
--  clocks:
--    description: External reference clock
--    maxItems: 1
--
--  clock-names:
--    const: ref_clk
--
--additionalProperties: false
--
--required:
--  - compatible
--  - "#clock-cells"
--  - clocks
--  - clock-names
--
--examples:
--  # Clock Control Unit PLL node:
--  - |
--    clock-controller@1f04d000 {
--      compatible = "baikal,bt1-ccu-pll";
--      reg = <0x1f04d000 0x028>;
--      #clock-cells = <1>;
--
--      clocks = <&clk25m>;
--      clock-names = "ref_clk";
--    };
--  # Required external oscillator:
--  - |
--    clk25m: clock-oscillator-25m {
--      compatible = "fixed-clock";
--      #clock-cells = <0>;
--      clock-frequency = <25000000>;
--      clock-output-names = "clk25m";
--    };
--...
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 3d803b4cf5c1..ca5b2fd5bff1 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -502,7 +502,6 @@ config COMMON_CLK_RPMI
- source "drivers/clk/actions/Kconfig"
- source "drivers/clk/analogbits/Kconfig"
- source "drivers/clk/aspeed/Kconfig"
--source "drivers/clk/baikal-t1/Kconfig"
- source "drivers/clk/bcm/Kconfig"
- source "drivers/clk/hisilicon/Kconfig"
- source "drivers/clk/imgtec/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 7d56b4ef1395..d8f61a3e64b4 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -116,7 +116,6 @@ obj-y					+= aspeed/
- obj-$(CONFIG_COMMON_CLK_AT91)		+= at91/
- obj-$(CONFIG_ARCH_ARTPEC)		+= axis/
- obj-$(CONFIG_ARC_PLAT_AXS10X)		+= axs10x/
--obj-$(CONFIG_CLK_BAIKAL_T1)		+= baikal-t1/
- obj-y					+= bcm/
- obj-$(CONFIG_ARCH_BERLIN)		+= berlin/
- obj-$(CONFIG_ARCH_DAVINCI)		+= davinci/
-diff --git a/drivers/clk/baikal-t1/Kconfig b/drivers/clk/baikal-t1/Kconfig
-deleted file mode 100644
-index f0b186830324..000000000000
---- a/drivers/clk/baikal-t1/Kconfig
-+++ /dev/null
-@@ -1,52 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only
--config CLK_BAIKAL_T1
--	bool "Baikal-T1 Clocks Control Unit interface"
--	depends on (MIPS_BAIKAL_T1 && OF) || COMPILE_TEST
--	default MIPS_BAIKAL_T1
--	help
--	  Clocks Control Unit is the core of Baikal-T1 SoC System Controller
--	  responsible for the chip subsystems clocking and resetting. It
--	  consists of multiple global clock domains, which can be reset by
--	  means of the CCU control registers. These domains and devices placed
--	  in them are fed with clocks generated by a hierarchy of PLLs,
--	  configurable and fixed clock dividers. Enable this option to be able
--	  to select Baikal-T1 CCU PLLs and Dividers drivers.
--
--if CLK_BAIKAL_T1
--
--config CLK_BT1_CCU_PLL
--	bool "Baikal-T1 CCU PLLs support"
--	select MFD_SYSCON
--	default MIPS_BAIKAL_T1
--	help
--	  Enable this to support the PLLs embedded into the Baikal-T1 SoC
--	  System Controller. These are five PLLs placed at the root of the
--	  clocks hierarchy, right after an external reference oscillator
--	  (normally of 25MHz). They are used to generate high frequency
--	  signals, which are either directly wired to the consumers (like
--	  CPUs, DDR, etc.) or passed over the clock dividers to be only
--	  then used as an individual reference clock of a target device.
--
--config CLK_BT1_CCU_DIV
--	bool "Baikal-T1 CCU Dividers support"
--	select MFD_SYSCON
--	default MIPS_BAIKAL_T1
--	help
--	  Enable this to support the CCU dividers used to distribute clocks
--	  between AXI-bus and system devices coming from CCU PLLs of Baikal-T1
--	  SoC. CCU dividers can be either configurable or with fixed divider,
--	  either gateable or ungateable. Some of the CCU dividers can be as well
--	  used to reset the domains they're supplying clock to.
--
--config CLK_BT1_CCU_RST
--	bool "Baikal-T1 CCU Resets support"
--	select RESET_CONTROLLER
--	select MFD_SYSCON
--	default MIPS_BAIKAL_T1
--	help
--	  Enable this to support the CCU reset blocks responsible for the
--	  AXI-bus and some subsystems reset. These are mainly the
--	  self-deasserted reset controls but there are several lines which
--	  can be directly asserted/de-asserted (PCIe and DDR sub-domains).
--
--endif
-diff --git a/drivers/clk/baikal-t1/Makefile b/drivers/clk/baikal-t1/Makefile
-deleted file mode 100644
-index 9c3637de9407..000000000000
---- a/drivers/clk/baikal-t1/Makefile
-+++ /dev/null
-@@ -1,4 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only
--obj-$(CONFIG_CLK_BT1_CCU_PLL) += ccu-pll.o clk-ccu-pll.o
--obj-$(CONFIG_CLK_BT1_CCU_DIV) += ccu-div.o clk-ccu-div.o
--obj-$(CONFIG_CLK_BT1_CCU_RST) += ccu-rst.o
-diff --git a/drivers/clk/baikal-t1/ccu-div.c b/drivers/clk/baikal-t1/ccu-div.c
-deleted file mode 100644
-index cc48e580e159..000000000000
---- a/drivers/clk/baikal-t1/ccu-div.c
-+++ /dev/null
-@@ -1,653 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *   Dmitry Dunaev <dmitry.dunaev@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU Dividers interface driver
-- */
--
--#define pr_fmt(fmt) "bt1-ccu-div: " fmt
--
--#include <linux/kernel.h>
--#include <linux/printk.h>
--#include <linux/bits.h>
--#include <linux/bitfield.h>
--#include <linux/slab.h>
--#include <linux/clk-provider.h>
--#include <linux/of.h>
--#include <linux/spinlock.h>
--#include <linux/regmap.h>
--#include <linux/delay.h>
--#include <linux/time64.h>
--#include <linux/debugfs.h>
--
--#include "ccu-div.h"
--
--#define CCU_DIV_CTL			0x00
--#define CCU_DIV_CTL_EN			BIT(0)
--#define CCU_DIV_CTL_RST			BIT(1)
--#define CCU_DIV_CTL_SET_CLKDIV		BIT(2)
--#define CCU_DIV_CTL_CLKDIV_FLD		4
--#define CCU_DIV_CTL_CLKDIV_MASK(_width) \
--	GENMASK((_width) + CCU_DIV_CTL_CLKDIV_FLD - 1, CCU_DIV_CTL_CLKDIV_FLD)
--#define CCU_DIV_CTL_LOCK_SHIFTED	BIT(27)
--#define CCU_DIV_CTL_GATE_REF_BUF	BIT(28)
--#define CCU_DIV_CTL_LOCK_NORMAL		BIT(31)
--
--#define CCU_DIV_LOCK_CHECK_RETRIES	50
--
--#define CCU_DIV_CLKDIV_MIN		0
--#define CCU_DIV_CLKDIV_MAX(_mask) \
--	((_mask) >> CCU_DIV_CTL_CLKDIV_FLD)
--
--/*
-- * Use the next two methods until there are generic field setter and
-- * getter available with non-constant mask support.
-- */
--static inline u32 ccu_div_get(u32 mask, u32 val)
--{
--	return (val & mask) >> CCU_DIV_CTL_CLKDIV_FLD;
--}
--
--static inline u32 ccu_div_prep(u32 mask, u32 val)
--{
--	return (val << CCU_DIV_CTL_CLKDIV_FLD) & mask;
--}
--
--static inline unsigned long ccu_div_lock_delay_ns(unsigned long ref_clk,
--						  unsigned long div)
--{
--	u64 ns = 4ULL * (div ?: 1) * NSEC_PER_SEC;
--
--	do_div(ns, ref_clk);
--
--	return ns;
--}
--
--static inline unsigned long ccu_div_calc_freq(unsigned long ref_clk,
--					      unsigned long div)
--{
--	return ref_clk / (div ?: 1);
--}
--
--static int ccu_div_var_update_clkdiv(struct ccu_div *div,
--				     unsigned long parent_rate,
--				     unsigned long divider)
--{
--	unsigned long nd;
--	u32 val = 0;
--	u32 lock;
--	int count;
--
--	nd = ccu_div_lock_delay_ns(parent_rate, divider);
--
--	if (div->features & CCU_DIV_LOCK_SHIFTED)
--		lock = CCU_DIV_CTL_LOCK_SHIFTED;
--	else
--		lock = CCU_DIV_CTL_LOCK_NORMAL;
--
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   CCU_DIV_CTL_SET_CLKDIV, CCU_DIV_CTL_SET_CLKDIV);
--
--	/*
--	 * Until there is nsec-version of readl_poll_timeout() is available
--	 * we have to implement the next polling loop.
--	 */
--	count = CCU_DIV_LOCK_CHECK_RETRIES;
--	do {
--		ndelay(nd);
--		regmap_read(div->sys_regs, div->reg_ctl, &val);
--		if (val & lock)
--			return 0;
--	} while (--count);
--
--	return -ETIMEDOUT;
--}
--
--static int ccu_div_var_enable(struct clk_hw *hw)
--{
--	struct clk_hw *parent_hw = clk_hw_get_parent(hw);
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--	u32 val = 0;
--	int ret;
--
--	if (!parent_hw) {
--		pr_err("Can't enable '%s' with no parent", clk_hw_get_name(hw));
--		return -EINVAL;
--	}
--
--	regmap_read(div->sys_regs, div->reg_ctl, &val);
--	if (val & CCU_DIV_CTL_EN)
--		return 0;
--
--	spin_lock_irqsave(&div->lock, flags);
--	ret = ccu_div_var_update_clkdiv(div, clk_hw_get_rate(parent_hw),
--					ccu_div_get(div->mask, val));
--	if (!ret)
--		regmap_update_bits(div->sys_regs, div->reg_ctl,
--				   CCU_DIV_CTL_EN, CCU_DIV_CTL_EN);
--	spin_unlock_irqrestore(&div->lock, flags);
--	if (ret)
--		pr_err("Divider '%s' lock timed out\n", clk_hw_get_name(hw));
--
--	return ret;
--}
--
--static int ccu_div_gate_enable(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   CCU_DIV_CTL_EN, CCU_DIV_CTL_EN);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--static void ccu_div_gate_disable(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl, CCU_DIV_CTL_EN, 0);
--	spin_unlock_irqrestore(&div->lock, flags);
--}
--
--static int ccu_div_gate_is_enabled(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	u32 val = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &val);
--
--	return !!(val & CCU_DIV_CTL_EN);
--}
--
--static int ccu_div_buf_enable(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   CCU_DIV_CTL_GATE_REF_BUF, 0);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--static void ccu_div_buf_disable(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   CCU_DIV_CTL_GATE_REF_BUF, CCU_DIV_CTL_GATE_REF_BUF);
--	spin_unlock_irqrestore(&div->lock, flags);
--}
--
--static int ccu_div_buf_is_enabled(struct clk_hw *hw)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	u32 val = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &val);
--
--	return !(val & CCU_DIV_CTL_GATE_REF_BUF);
--}
--
--static unsigned long ccu_div_var_recalc_rate(struct clk_hw *hw,
--					     unsigned long parent_rate)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long divider;
--	u32 val = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &val);
--	divider = ccu_div_get(div->mask, val);
--
--	return ccu_div_calc_freq(parent_rate, divider);
--}
--
--static inline unsigned long ccu_div_var_calc_divider(unsigned long rate,
--						     unsigned long parent_rate,
--						     unsigned int mask)
--{
--	unsigned long divider;
--
--	divider = parent_rate / rate;
--	return clamp_t(unsigned long, divider, CCU_DIV_CLKDIV_MIN,
--		       CCU_DIV_CLKDIV_MAX(mask));
--}
--
--static int ccu_div_var_determine_rate(struct clk_hw *hw,
--				      struct clk_rate_request *req)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long divider;
--
--	divider = ccu_div_var_calc_divider(req->rate, req->best_parent_rate,
--					   div->mask);
--
--	req->rate = ccu_div_calc_freq(req->best_parent_rate, divider);
--
--	return 0;
--}
--
--/*
-- * This method is used for the clock divider blocks, which support the
-- * on-the-fly rate change. So due to lacking the EN bit functionality
-- * they can't be gated before the rate adjustment.
-- */
--static int ccu_div_var_set_rate_slow(struct clk_hw *hw, unsigned long rate,
--				     unsigned long parent_rate)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags, divider;
--	u32 val;
--	int ret;
--
--	divider = ccu_div_var_calc_divider(rate, parent_rate, div->mask);
--	if (divider == 1 && div->features & CCU_DIV_SKIP_ONE) {
--		divider = 0;
--	} else if (div->features & CCU_DIV_SKIP_ONE_TO_THREE) {
--		if (divider == 1 || divider == 2)
--			divider = 0;
--		else if (divider == 3)
--			divider = 4;
--	}
--
--	val = ccu_div_prep(div->mask, divider);
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl, div->mask, val);
--	ret = ccu_div_var_update_clkdiv(div, parent_rate, divider);
--	spin_unlock_irqrestore(&div->lock, flags);
--	if (ret)
--		pr_err("Divider '%s' lock timed out\n", clk_hw_get_name(hw));
--
--	return ret;
--}
--
--/*
-- * This method is used for the clock divider blocks, which don't support
-- * the on-the-fly rate change.
-- */
--static int ccu_div_var_set_rate_fast(struct clk_hw *hw, unsigned long rate,
--				     unsigned long parent_rate)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	unsigned long flags, divider;
--	u32 val;
--
--	divider = ccu_div_var_calc_divider(rate, parent_rate, div->mask);
--	val = ccu_div_prep(div->mask, divider);
--
--	/*
--	 * Also disable the clock divider block if it was enabled by default
--	 * or by the bootloader.
--	 */
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   div->mask | CCU_DIV_CTL_EN, val);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--static unsigned long ccu_div_fixed_recalc_rate(struct clk_hw *hw,
--					       unsigned long parent_rate)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--
--	return ccu_div_calc_freq(parent_rate, div->divider);
--}
--
--static int ccu_div_fixed_determine_rate(struct clk_hw *hw,
--					struct clk_rate_request *req)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--
--	req->rate = ccu_div_calc_freq(req->best_parent_rate, div->divider);
--
--	return 0;
--}
--
--static int ccu_div_fixed_set_rate(struct clk_hw *hw, unsigned long rate,
--				  unsigned long parent_rate)
--{
--	return 0;
--}
--
--#ifdef CONFIG_DEBUG_FS
--
--struct ccu_div_dbgfs_bit {
--	struct ccu_div *div;
--	const char *name;
--	u32 mask;
--};
--
--#define CCU_DIV_DBGFS_BIT_ATTR(_name, _mask) {	\
--		.name = _name,			\
--		.mask = _mask			\
--	}
--
--static const struct ccu_div_dbgfs_bit ccu_div_bits[] = {
--	CCU_DIV_DBGFS_BIT_ATTR("div_en", CCU_DIV_CTL_EN),
--	CCU_DIV_DBGFS_BIT_ATTR("div_rst", CCU_DIV_CTL_RST),
--	CCU_DIV_DBGFS_BIT_ATTR("div_bypass", CCU_DIV_CTL_SET_CLKDIV),
--	CCU_DIV_DBGFS_BIT_ATTR("div_buf", CCU_DIV_CTL_GATE_REF_BUF),
--	CCU_DIV_DBGFS_BIT_ATTR("div_lock", CCU_DIV_CTL_LOCK_NORMAL)
--};
--
--#define CCU_DIV_DBGFS_BIT_NUM	ARRAY_SIZE(ccu_div_bits)
--
--/*
-- * It can be dangerous to change the Divider settings behind clock framework
-- * back, therefore we don't provide any kernel config based compile time option
-- * for this feature to enable.
-- */
--#undef CCU_DIV_ALLOW_WRITE_DEBUGFS
--#ifdef CCU_DIV_ALLOW_WRITE_DEBUGFS
--
--static int ccu_div_dbgfs_bit_set(void *priv, u64 val)
--{
--	const struct ccu_div_dbgfs_bit *bit = priv;
--	struct ccu_div *div = bit->div;
--	unsigned long flags;
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl,
--			   bit->mask, val ? bit->mask : 0);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--static int ccu_div_dbgfs_var_clkdiv_set(void *priv, u64 val)
--{
--	struct ccu_div *div = priv;
--	unsigned long flags;
--	u32 data;
--
--	val = clamp_t(u64, val, CCU_DIV_CLKDIV_MIN,
--		      CCU_DIV_CLKDIV_MAX(div->mask));
--	data = ccu_div_prep(div->mask, val);
--
--	spin_lock_irqsave(&div->lock, flags);
--	regmap_update_bits(div->sys_regs, div->reg_ctl, div->mask, data);
--	spin_unlock_irqrestore(&div->lock, flags);
--
--	return 0;
--}
--
--#define ccu_div_dbgfs_mode		0644
--
--#else /* !CCU_DIV_ALLOW_WRITE_DEBUGFS */
--
--#define ccu_div_dbgfs_bit_set		NULL
--#define ccu_div_dbgfs_var_clkdiv_set	NULL
--#define ccu_div_dbgfs_mode		0444
--
--#endif /* !CCU_DIV_ALLOW_WRITE_DEBUGFS */
--
--static int ccu_div_dbgfs_bit_get(void *priv, u64 *val)
--{
--	const struct ccu_div_dbgfs_bit *bit = priv;
--	struct ccu_div *div = bit->div;
--	u32 data = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &data);
--	*val = !!(data & bit->mask);
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_div_dbgfs_bit_fops,
--	ccu_div_dbgfs_bit_get, ccu_div_dbgfs_bit_set, "%llu\n");
--
--static int ccu_div_dbgfs_var_clkdiv_get(void *priv, u64 *val)
--{
--	struct ccu_div *div = priv;
--	u32 data = 0;
--
--	regmap_read(div->sys_regs, div->reg_ctl, &data);
--	*val = ccu_div_get(div->mask, data);
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_div_dbgfs_var_clkdiv_fops,
--	ccu_div_dbgfs_var_clkdiv_get, ccu_div_dbgfs_var_clkdiv_set, "%llu\n");
--
--static int ccu_div_dbgfs_fixed_clkdiv_get(void *priv, u64 *val)
--{
--	struct ccu_div *div = priv;
--
--	*val = div->divider;
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_div_dbgfs_fixed_clkdiv_fops,
--	ccu_div_dbgfs_fixed_clkdiv_get, NULL, "%llu\n");
--
--static void ccu_div_var_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	struct ccu_div_dbgfs_bit *bits;
--	int didx, bidx, num = 2;
--	const char *name;
--
--	num += !!(div->flags & CLK_SET_RATE_GATE) +
--		!!(div->features & CCU_DIV_RESET_DOMAIN);
--
--	bits = kzalloc_objs(*bits, num);
--	if (!bits)
--		return;
--
--	for (didx = 0, bidx = 0; bidx < CCU_DIV_DBGFS_BIT_NUM; ++bidx) {
--		name = ccu_div_bits[bidx].name;
--		if (!(div->flags & CLK_SET_RATE_GATE) &&
--		    !strcmp("div_en", name)) {
--			continue;
--		}
--
--		if (!(div->features & CCU_DIV_RESET_DOMAIN) &&
--		    !strcmp("div_rst", name)) {
--			continue;
--		}
--
--		if (!strcmp("div_buf", name))
--			continue;
--
--		bits[didx] = ccu_div_bits[bidx];
--		bits[didx].div = div;
--
--		if (div->features & CCU_DIV_LOCK_SHIFTED &&
--		    !strcmp("div_lock", name)) {
--			bits[didx].mask = CCU_DIV_CTL_LOCK_SHIFTED;
--		}
--
--		debugfs_create_file_unsafe(bits[didx].name, ccu_div_dbgfs_mode,
--					   dentry, &bits[didx],
--					   &ccu_div_dbgfs_bit_fops);
--		++didx;
--	}
--
--	debugfs_create_file_unsafe("div_clkdiv", ccu_div_dbgfs_mode, dentry,
--				   div, &ccu_div_dbgfs_var_clkdiv_fops);
--}
--
--static void ccu_div_gate_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	struct ccu_div_dbgfs_bit *bit;
--
--	bit = kmalloc_obj(*bit);
--	if (!bit)
--		return;
--
--	*bit = ccu_div_bits[0];
--	bit->div = div;
--	debugfs_create_file_unsafe(bit->name, ccu_div_dbgfs_mode, dentry, bit,
--				   &ccu_div_dbgfs_bit_fops);
--
--	debugfs_create_file_unsafe("div_clkdiv", 0400, dentry, div,
--				   &ccu_div_dbgfs_fixed_clkdiv_fops);
--}
--
--static void ccu_div_buf_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--	struct ccu_div_dbgfs_bit *bit;
--
--	bit = kmalloc_obj(*bit);
--	if (!bit)
--		return;
--
--	*bit = ccu_div_bits[3];
--	bit->div = div;
--	debugfs_create_file_unsafe(bit->name, ccu_div_dbgfs_mode, dentry, bit,
--				   &ccu_div_dbgfs_bit_fops);
--}
--
--static void ccu_div_fixed_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_div *div = to_ccu_div(hw);
--
--	debugfs_create_file_unsafe("div_clkdiv", 0400, dentry, div,
--				   &ccu_div_dbgfs_fixed_clkdiv_fops);
--}
--
--#else /* !CONFIG_DEBUG_FS */
--
--#define ccu_div_var_debug_init NULL
--#define ccu_div_gate_debug_init NULL
--#define ccu_div_buf_debug_init NULL
--#define ccu_div_fixed_debug_init NULL
--
--#endif /* !CONFIG_DEBUG_FS */
--
--static const struct clk_ops ccu_div_var_gate_to_set_ops = {
--	.enable = ccu_div_var_enable,
--	.disable = ccu_div_gate_disable,
--	.is_enabled = ccu_div_gate_is_enabled,
--	.recalc_rate = ccu_div_var_recalc_rate,
--	.determine_rate = ccu_div_var_determine_rate,
--	.set_rate = ccu_div_var_set_rate_fast,
--	.debug_init = ccu_div_var_debug_init
--};
--
--static const struct clk_ops ccu_div_var_nogate_ops = {
--	.recalc_rate = ccu_div_var_recalc_rate,
--	.determine_rate = ccu_div_var_determine_rate,
--	.set_rate = ccu_div_var_set_rate_slow,
--	.debug_init = ccu_div_var_debug_init
--};
--
--static const struct clk_ops ccu_div_gate_ops = {
--	.enable = ccu_div_gate_enable,
--	.disable = ccu_div_gate_disable,
--	.is_enabled = ccu_div_gate_is_enabled,
--	.recalc_rate = ccu_div_fixed_recalc_rate,
--	.determine_rate = ccu_div_fixed_determine_rate,
--	.set_rate = ccu_div_fixed_set_rate,
--	.debug_init = ccu_div_gate_debug_init
--};
--
--static const struct clk_ops ccu_div_buf_ops = {
--	.enable = ccu_div_buf_enable,
--	.disable = ccu_div_buf_disable,
--	.is_enabled = ccu_div_buf_is_enabled,
--	.debug_init = ccu_div_buf_debug_init
--};
--
--static const struct clk_ops ccu_div_fixed_ops = {
--	.recalc_rate = ccu_div_fixed_recalc_rate,
--	.determine_rate = ccu_div_fixed_determine_rate,
--	.set_rate = ccu_div_fixed_set_rate,
--	.debug_init = ccu_div_fixed_debug_init
--};
--
--struct ccu_div *ccu_div_hw_register(const struct ccu_div_init_data *div_init)
--{
--	struct clk_parent_data parent_data = { };
--	struct clk_init_data hw_init = { };
--	struct ccu_div *div;
--	int ret;
--
--	if (!div_init)
--		return ERR_PTR(-EINVAL);
--
--	div = kzalloc_obj(*div);
--	if (!div)
--		return ERR_PTR(-ENOMEM);
--
--	/*
--	 * Note since Baikal-T1 System Controller registers are MMIO-backed
--	 * we won't check the regmap IO operations return status, because it
--	 * must be zero anyway.
--	 */
--	div->hw.init = &hw_init;
--	div->id = div_init->id;
--	div->reg_ctl = div_init->base + CCU_DIV_CTL;
--	div->sys_regs = div_init->sys_regs;
--	div->flags = div_init->flags;
--	div->features = div_init->features;
--	spin_lock_init(&div->lock);
--
--	hw_init.name = div_init->name;
--	hw_init.flags = div_init->flags;
--
--	if (div_init->type == CCU_DIV_VAR) {
--		if (hw_init.flags & CLK_SET_RATE_GATE)
--			hw_init.ops = &ccu_div_var_gate_to_set_ops;
--		else
--			hw_init.ops = &ccu_div_var_nogate_ops;
--		div->mask = CCU_DIV_CTL_CLKDIV_MASK(div_init->width);
--	} else if (div_init->type == CCU_DIV_GATE) {
--		hw_init.ops = &ccu_div_gate_ops;
--		div->divider = div_init->divider;
--	} else if (div_init->type == CCU_DIV_BUF) {
--		hw_init.ops = &ccu_div_buf_ops;
--	} else if (div_init->type == CCU_DIV_FIXED) {
--		hw_init.ops = &ccu_div_fixed_ops;
--		div->divider = div_init->divider;
--	} else {
--		ret = -EINVAL;
--		goto err_free_div;
--	}
--
--	if (!div_init->parent_name) {
--		ret = -EINVAL;
--		goto err_free_div;
--	}
--	parent_data.fw_name = div_init->parent_name;
--	parent_data.name = div_init->parent_name;
--	hw_init.parent_data = &parent_data;
--	hw_init.num_parents = 1;
--
--	ret = of_clk_hw_register(div_init->np, &div->hw);
--	if (ret)
--		goto err_free_div;
--
--	return div;
--
--err_free_div:
--	kfree(div);
--
--	return ERR_PTR(ret);
--}
--
--void ccu_div_hw_unregister(struct ccu_div *div)
--{
--	clk_hw_unregister(&div->hw);
--
--	kfree(div);
--}
-diff --git a/drivers/clk/baikal-t1/ccu-div.h b/drivers/clk/baikal-t1/ccu-div.h
-deleted file mode 100644
-index 76d8ee44d415..000000000000
---- a/drivers/clk/baikal-t1/ccu-div.h
-+++ /dev/null
-@@ -1,121 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Baikal-T1 CCU Dividers interface driver
-- */
--#ifndef __CLK_BT1_CCU_DIV_H__
--#define __CLK_BT1_CCU_DIV_H__
--
--#include <linux/clk-provider.h>
--#include <linux/spinlock.h>
--#include <linux/regmap.h>
--#include <linux/bits.h>
--#include <linux/of.h>
--
--/*
-- * CCU Divider private clock IDs
-- * @CCU_SYS_SATA_CLK: CCU SATA internal clock
-- * @CCU_SYS_XGMAC_CLK: CCU XGMAC internal clock
-- */
--#define CCU_SYS_SATA_CLK		-1
--#define CCU_SYS_XGMAC_CLK		-2
--
--/*
-- * CCU Divider private flags
-- * @CCU_DIV_BASIC: Basic divider clock required by the kernel as early as
-- *		   possible.
-- * @CCU_DIV_SKIP_ONE: Due to some reason divider can't be set to 1.
-- *		      It can be 0 though, which is functionally the same.
-- * @CCU_DIV_SKIP_ONE_TO_THREE: For some reason divider can't be within [1,3].
-- *			       It can be either 0 or greater than 3.
-- * @CCU_DIV_LOCK_SHIFTED: Find lock-bit at non-standard position.
-- * @CCU_DIV_RESET_DOMAIN: There is a clock domain reset handle.
-- */
--#define CCU_DIV_BASIC			BIT(0)
--#define CCU_DIV_SKIP_ONE		BIT(1)
--#define CCU_DIV_SKIP_ONE_TO_THREE	BIT(2)
--#define CCU_DIV_LOCK_SHIFTED		BIT(3)
--#define CCU_DIV_RESET_DOMAIN		BIT(4)
--
--/*
-- * enum ccu_div_type - CCU Divider types
-- * @CCU_DIV_VAR: Clocks gate with variable divider.
-- * @CCU_DIV_GATE: Clocks gate with fixed divider.
-- * @CCU_DIV_BUF: Clock gate with no divider.
-- * @CCU_DIV_FIXED: Ungateable clock with fixed divider.
-- */
--enum ccu_div_type {
--	CCU_DIV_VAR,
--	CCU_DIV_GATE,
--	CCU_DIV_BUF,
--	CCU_DIV_FIXED
--};
--
--/*
-- * struct ccu_div_init_data - CCU Divider initialization data
-- * @id: Clocks private identifier.
-- * @name: Clocks name.
-- * @parent_name: Parent clocks name in a fw node.
-- * @base: Divider register base address with respect to the sys_regs base.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @np: Pointer to the node describing the CCU Dividers.
-- * @type: CCU divider type (variable, fixed with and without gate).
-- * @width: Divider width if it's variable.
-- * @divider: Divider fixed value.
-- * @flags: CCU Divider clock flags.
-- * @features: CCU Divider private features.
-- */
--struct ccu_div_init_data {
--	unsigned int id;
--	const char *name;
--	const char *parent_name;
--	unsigned int base;
--	struct regmap *sys_regs;
--	struct device_node *np;
--	enum ccu_div_type type;
--	union {
--		unsigned int width;
--		unsigned int divider;
--	};
--	unsigned long flags;
--	unsigned long features;
--};
--
--/*
-- * struct ccu_div - CCU Divider descriptor
-- * @hw: clk_hw of the divider.
-- * @id: Clock private identifier.
-- * @reg_ctl: Divider control register base address.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @lock: Divider state change spin-lock.
-- * @mask: Divider field mask.
-- * @divider: Divider fixed value.
-- * @flags: Divider clock flags.
-- * @features: CCU Divider private features.
-- */
--struct ccu_div {
--	struct clk_hw hw;
--	unsigned int id;
--	unsigned int reg_ctl;
--	struct regmap *sys_regs;
--	spinlock_t lock;
--	union {
--		u32 mask;
--		unsigned int divider;
--	};
--	unsigned long flags;
--	unsigned long features;
--};
--#define to_ccu_div(_hw) container_of(_hw, struct ccu_div, hw)
--
--static inline struct clk_hw *ccu_div_get_clk_hw(struct ccu_div *div)
--{
--	return div ? &div->hw : NULL;
--}
--
--struct ccu_div *ccu_div_hw_register(const struct ccu_div_init_data *init);
--
--void ccu_div_hw_unregister(struct ccu_div *div);
--
--#endif /* __CLK_BT1_CCU_DIV_H__ */
-diff --git a/drivers/clk/baikal-t1/ccu-pll.c b/drivers/clk/baikal-t1/ccu-pll.c
-deleted file mode 100644
-index da7fbebb39ab..000000000000
---- a/drivers/clk/baikal-t1/ccu-pll.c
-+++ /dev/null
-@@ -1,560 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *   Dmitry Dunaev <dmitry.dunaev@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU PLL interface driver
-- */
--
--#define pr_fmt(fmt) "bt1-ccu-pll: " fmt
--
--#include <linux/kernel.h>
--#include <linux/printk.h>
--#include <linux/limits.h>
--#include <linux/bits.h>
--#include <linux/bitfield.h>
--#include <linux/slab.h>
--#include <linux/clk-provider.h>
--#include <linux/of.h>
--#include <linux/spinlock.h>
--#include <linux/regmap.h>
--#include <linux/iopoll.h>
--#include <linux/time64.h>
--#include <linux/rational.h>
--#include <linux/debugfs.h>
--
--#include "ccu-pll.h"
--
--#define CCU_PLL_CTL			0x000
--#define CCU_PLL_CTL_EN			BIT(0)
--#define CCU_PLL_CTL_RST			BIT(1)
--#define CCU_PLL_CTL_CLKR_FLD		2
--#define CCU_PLL_CTL_CLKR_MASK		GENMASK(7, CCU_PLL_CTL_CLKR_FLD)
--#define CCU_PLL_CTL_CLKF_FLD		8
--#define CCU_PLL_CTL_CLKF_MASK		GENMASK(20, CCU_PLL_CTL_CLKF_FLD)
--#define CCU_PLL_CTL_CLKOD_FLD		21
--#define CCU_PLL_CTL_CLKOD_MASK		GENMASK(24, CCU_PLL_CTL_CLKOD_FLD)
--#define CCU_PLL_CTL_BYPASS		BIT(30)
--#define CCU_PLL_CTL_LOCK		BIT(31)
--#define CCU_PLL_CTL1			0x004
--#define CCU_PLL_CTL1_BWADJ_FLD		3
--#define CCU_PLL_CTL1_BWADJ_MASK		GENMASK(14, CCU_PLL_CTL1_BWADJ_FLD)
--
--#define CCU_PLL_LOCK_CHECK_RETRIES	50
--
--#define CCU_PLL_NR_MAX \
--	((CCU_PLL_CTL_CLKR_MASK >> CCU_PLL_CTL_CLKR_FLD) + 1)
--#define CCU_PLL_NF_MAX \
--	((CCU_PLL_CTL_CLKF_MASK >> (CCU_PLL_CTL_CLKF_FLD + 1)) + 1)
--#define CCU_PLL_OD_MAX \
--	((CCU_PLL_CTL_CLKOD_MASK >> CCU_PLL_CTL_CLKOD_FLD) + 1)
--#define CCU_PLL_NB_MAX \
--	((CCU_PLL_CTL1_BWADJ_MASK >> CCU_PLL_CTL1_BWADJ_FLD) + 1)
--#define CCU_PLL_FDIV_MIN		427000UL
--#define CCU_PLL_FDIV_MAX		3500000000UL
--#define CCU_PLL_FOUT_MIN		200000000UL
--#define CCU_PLL_FOUT_MAX		2500000000UL
--#define CCU_PLL_FVCO_MIN		700000000UL
--#define CCU_PLL_FVCO_MAX		3500000000UL
--#define CCU_PLL_CLKOD_FACTOR		2
--
--static inline unsigned long ccu_pll_lock_delay_us(unsigned long ref_clk,
--						  unsigned long nr)
--{
--	u64 us = 500ULL * nr * USEC_PER_SEC;
--
--	do_div(us, ref_clk);
--
--	return us;
--}
--
--static inline unsigned long ccu_pll_calc_freq(unsigned long ref_clk,
--					      unsigned long nr,
--					      unsigned long nf,
--					      unsigned long od)
--{
--	u64 tmp = ref_clk;
--
--	do_div(tmp, nr);
--	tmp *= nf;
--	do_div(tmp, od);
--
--	return tmp;
--}
--
--static int ccu_pll_reset(struct ccu_pll *pll, unsigned long ref_clk,
--			 unsigned long nr)
--{
--	unsigned long ud, ut;
--	u32 val;
--
--	ud = ccu_pll_lock_delay_us(ref_clk, nr);
--	ut = ud * CCU_PLL_LOCK_CHECK_RETRIES;
--
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl,
--			   CCU_PLL_CTL_RST, CCU_PLL_CTL_RST);
--
--	return regmap_read_poll_timeout_atomic(pll->sys_regs, pll->reg_ctl, val,
--					       val & CCU_PLL_CTL_LOCK, ud, ut);
--}
--
--static int ccu_pll_enable(struct clk_hw *hw)
--{
--	struct clk_hw *parent_hw = clk_hw_get_parent(hw);
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long flags;
--	u32 val = 0;
--	int ret;
--
--	if (!parent_hw) {
--		pr_err("Can't enable '%s' with no parent", clk_hw_get_name(hw));
--		return -EINVAL;
--	}
--
--	regmap_read(pll->sys_regs, pll->reg_ctl, &val);
--	if (val & CCU_PLL_CTL_EN)
--		return 0;
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_write(pll->sys_regs, pll->reg_ctl, val | CCU_PLL_CTL_EN);
--	ret = ccu_pll_reset(pll, clk_hw_get_rate(parent_hw),
--			    FIELD_GET(CCU_PLL_CTL_CLKR_MASK, val) + 1);
--	spin_unlock_irqrestore(&pll->lock, flags);
--	if (ret)
--		pr_err("PLL '%s' reset timed out\n", clk_hw_get_name(hw));
--
--	return ret;
--}
--
--static void ccu_pll_disable(struct clk_hw *hw)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long flags;
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl, CCU_PLL_CTL_EN, 0);
--	spin_unlock_irqrestore(&pll->lock, flags);
--}
--
--static int ccu_pll_is_enabled(struct clk_hw *hw)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	u32 val = 0;
--
--	regmap_read(pll->sys_regs, pll->reg_ctl, &val);
--
--	return !!(val & CCU_PLL_CTL_EN);
--}
--
--static unsigned long ccu_pll_recalc_rate(struct clk_hw *hw,
--					 unsigned long parent_rate)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long nr, nf, od;
--	u32 val = 0;
--
--	regmap_read(pll->sys_regs, pll->reg_ctl, &val);
--	nr = FIELD_GET(CCU_PLL_CTL_CLKR_MASK, val) + 1;
--	nf = FIELD_GET(CCU_PLL_CTL_CLKF_MASK, val) + 1;
--	od = FIELD_GET(CCU_PLL_CTL_CLKOD_MASK, val) + 1;
--
--	return ccu_pll_calc_freq(parent_rate, nr, nf, od);
--}
--
--static void ccu_pll_calc_factors(unsigned long rate, unsigned long parent_rate,
--				 unsigned long *nr, unsigned long *nf,
--				 unsigned long *od)
--{
--	unsigned long err, freq, min_err = ULONG_MAX;
--	unsigned long num, denom, n1, d1, nri;
--	unsigned long nr_max, nf_max, od_max;
--
--	/*
--	 * Make sure PLL is working with valid input signal (Fdiv). If
--	 * you want to speed the function up just reduce CCU_PLL_NR_MAX.
--	 * This will cause a worse approximation though.
--	 */
--	nri = (parent_rate / CCU_PLL_FDIV_MAX) + 1;
--	nr_max = min(parent_rate / CCU_PLL_FDIV_MIN, CCU_PLL_NR_MAX);
--
--	/*
--	 * Find a closest [nr;nf;od] vector taking into account the
--	 * limitations like: 1) 700MHz <= Fvco <= 3.5GHz, 2) PLL Od is
--	 * either 1 or even number within the acceptable range (alas 1s
--	 * is also excluded by the next loop).
--	 */
--	for (; nri <= nr_max; ++nri) {
--		/* Use Od factor to fulfill the limitation 2). */
--		num = CCU_PLL_CLKOD_FACTOR * rate;
--		denom = parent_rate / nri;
--
--		/*
--		 * Make sure Fvco is within the acceptable range to fulfill
--		 * the condition 1). Note due to the CCU_PLL_CLKOD_FACTOR value
--		 * the actual upper limit is also divided by that factor.
--		 * It's not big problem for us since practically there is no
--		 * need in clocks with that high frequency.
--		 */
--		nf_max = min(CCU_PLL_FVCO_MAX / denom, CCU_PLL_NF_MAX);
--		od_max = CCU_PLL_OD_MAX / CCU_PLL_CLKOD_FACTOR;
--
--		/*
--		 * Bypass the out-of-bound values, which can't be properly
--		 * handled by the rational fraction approximation algorithm.
--		 */
--		if (num / denom >= nf_max) {
--			n1 = nf_max;
--			d1 = 1;
--		} else if (denom / num >= od_max) {
--			n1 = 1;
--			d1 = od_max;
--		} else {
--			rational_best_approximation(num, denom, nf_max, od_max,
--						    &n1, &d1);
--		}
--
--		/* Select the best approximation of the target rate. */
--		freq = ccu_pll_calc_freq(parent_rate, nri, n1, d1);
--		err = abs((int64_t)freq - num);
--		if (err < min_err) {
--			min_err = err;
--			*nr = nri;
--			*nf = n1;
--			*od = CCU_PLL_CLKOD_FACTOR * d1;
--		}
--	}
--}
--
--static int ccu_pll_determine_rate(struct clk_hw *hw,
--				  struct clk_rate_request *req)
--{
--	unsigned long nr = 1, nf = 1, od = 1;
--
--	ccu_pll_calc_factors(req->rate, req->best_parent_rate, &nr, &nf, &od);
--
--	req->rate = ccu_pll_calc_freq(req->best_parent_rate, nr, nf, od);
--
--	return 0;
--}
--
--/*
-- * This method is used for PLLs, which support the on-the-fly dividers
-- * adjustment. So there is no need in gating such clocks.
-- */
--static int ccu_pll_set_rate_reset(struct clk_hw *hw, unsigned long rate,
--				  unsigned long parent_rate)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long nr, nf, od;
--	unsigned long flags;
--	u32 mask, val;
--	int ret;
--
--	ccu_pll_calc_factors(rate, parent_rate, &nr, &nf, &od);
--
--	mask = CCU_PLL_CTL_CLKR_MASK | CCU_PLL_CTL_CLKF_MASK |
--	       CCU_PLL_CTL_CLKOD_MASK;
--	val = FIELD_PREP(CCU_PLL_CTL_CLKR_MASK, nr - 1) |
--	      FIELD_PREP(CCU_PLL_CTL_CLKF_MASK, nf - 1) |
--	      FIELD_PREP(CCU_PLL_CTL_CLKOD_MASK, od - 1);
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl, mask, val);
--	ret = ccu_pll_reset(pll, parent_rate, nr);
--	spin_unlock_irqrestore(&pll->lock, flags);
--	if (ret)
--		pr_err("PLL '%s' reset timed out\n", clk_hw_get_name(hw));
--
--	return ret;
--}
--
--/*
-- * This method is used for PLLs, which don't support the on-the-fly dividers
-- * adjustment. So the corresponding clocks are supposed to be gated first.
-- */
--static int ccu_pll_set_rate_norst(struct clk_hw *hw, unsigned long rate,
--				  unsigned long parent_rate)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	unsigned long nr, nf, od;
--	unsigned long flags;
--	u32 mask, val;
--
--	ccu_pll_calc_factors(rate, parent_rate, &nr, &nf, &od);
--
--	/*
--	 * Disable PLL if it was enabled by default or left enabled by the
--	 * system bootloader.
--	 */
--	mask = CCU_PLL_CTL_CLKR_MASK | CCU_PLL_CTL_CLKF_MASK |
--	       CCU_PLL_CTL_CLKOD_MASK | CCU_PLL_CTL_EN;
--	val = FIELD_PREP(CCU_PLL_CTL_CLKR_MASK, nr - 1) |
--	      FIELD_PREP(CCU_PLL_CTL_CLKF_MASK, nf - 1) |
--	      FIELD_PREP(CCU_PLL_CTL_CLKOD_MASK, od - 1);
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl, mask, val);
--	spin_unlock_irqrestore(&pll->lock, flags);
--
--	return 0;
--}
--
--#ifdef CONFIG_DEBUG_FS
--
--struct ccu_pll_dbgfs_bit {
--	struct ccu_pll *pll;
--	const char *name;
--	unsigned int reg;
--	u32 mask;
--};
--
--struct ccu_pll_dbgfs_fld {
--	struct ccu_pll *pll;
--	const char *name;
--	unsigned int reg;
--	unsigned int lsb;
--	u32 mask;
--	u32 min;
--	u32 max;
--};
--
--#define CCU_PLL_DBGFS_BIT_ATTR(_name, _reg, _mask)	\
--	{						\
--		.name = _name,				\
--		.reg = _reg,				\
--		.mask = _mask				\
--	}
--
--#define CCU_PLL_DBGFS_FLD_ATTR(_name, _reg, _lsb, _mask, _min, _max)	\
--	{								\
--		.name = _name,						\
--		.reg = _reg,						\
--		.lsb = _lsb,						\
--		.mask = _mask,						\
--		.min = _min,						\
--		.max = _max						\
--	}
--
--static const struct ccu_pll_dbgfs_bit ccu_pll_bits[] = {
--	CCU_PLL_DBGFS_BIT_ATTR("pll_en", CCU_PLL_CTL, CCU_PLL_CTL_EN),
--	CCU_PLL_DBGFS_BIT_ATTR("pll_rst", CCU_PLL_CTL, CCU_PLL_CTL_RST),
--	CCU_PLL_DBGFS_BIT_ATTR("pll_bypass", CCU_PLL_CTL, CCU_PLL_CTL_BYPASS),
--	CCU_PLL_DBGFS_BIT_ATTR("pll_lock", CCU_PLL_CTL, CCU_PLL_CTL_LOCK)
--};
--
--#define CCU_PLL_DBGFS_BIT_NUM	ARRAY_SIZE(ccu_pll_bits)
--
--static const struct ccu_pll_dbgfs_fld ccu_pll_flds[] = {
--	CCU_PLL_DBGFS_FLD_ATTR("pll_nr", CCU_PLL_CTL, CCU_PLL_CTL_CLKR_FLD,
--				CCU_PLL_CTL_CLKR_MASK, 1, CCU_PLL_NR_MAX),
--	CCU_PLL_DBGFS_FLD_ATTR("pll_nf", CCU_PLL_CTL, CCU_PLL_CTL_CLKF_FLD,
--				CCU_PLL_CTL_CLKF_MASK, 1, CCU_PLL_NF_MAX),
--	CCU_PLL_DBGFS_FLD_ATTR("pll_od", CCU_PLL_CTL, CCU_PLL_CTL_CLKOD_FLD,
--				CCU_PLL_CTL_CLKOD_MASK, 1, CCU_PLL_OD_MAX),
--	CCU_PLL_DBGFS_FLD_ATTR("pll_nb", CCU_PLL_CTL1, CCU_PLL_CTL1_BWADJ_FLD,
--				CCU_PLL_CTL1_BWADJ_MASK, 1, CCU_PLL_NB_MAX)
--};
--
--#define CCU_PLL_DBGFS_FLD_NUM	ARRAY_SIZE(ccu_pll_flds)
--
--/*
-- * It can be dangerous to change the PLL settings behind clock framework back,
-- * therefore we don't provide any kernel config based compile time option for
-- * this feature to enable.
-- */
--#undef CCU_PLL_ALLOW_WRITE_DEBUGFS
--#ifdef CCU_PLL_ALLOW_WRITE_DEBUGFS
--
--static int ccu_pll_dbgfs_bit_set(void *priv, u64 val)
--{
--	const struct ccu_pll_dbgfs_bit *bit = priv;
--	struct ccu_pll *pll = bit->pll;
--	unsigned long flags;
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl + bit->reg,
--			   bit->mask, val ? bit->mask : 0);
--	spin_unlock_irqrestore(&pll->lock, flags);
--
--	return 0;
--}
--
--static int ccu_pll_dbgfs_fld_set(void *priv, u64 val)
--{
--	struct ccu_pll_dbgfs_fld *fld = priv;
--	struct ccu_pll *pll = fld->pll;
--	unsigned long flags;
--	u32 data;
--
--	val = clamp_t(u64, val, fld->min, fld->max);
--	data = ((val - 1) << fld->lsb) & fld->mask;
--
--	spin_lock_irqsave(&pll->lock, flags);
--	regmap_update_bits(pll->sys_regs, pll->reg_ctl + fld->reg, fld->mask,
--			   data);
--	spin_unlock_irqrestore(&pll->lock, flags);
--
--	return 0;
--}
--
--#define ccu_pll_dbgfs_mode	0644
--
--#else /* !CCU_PLL_ALLOW_WRITE_DEBUGFS */
--
--#define ccu_pll_dbgfs_bit_set	NULL
--#define ccu_pll_dbgfs_fld_set	NULL
--#define ccu_pll_dbgfs_mode	0444
--
--#endif /* !CCU_PLL_ALLOW_WRITE_DEBUGFS */
--
--static int ccu_pll_dbgfs_bit_get(void *priv, u64 *val)
--{
--	struct ccu_pll_dbgfs_bit *bit = priv;
--	struct ccu_pll *pll = bit->pll;
--	u32 data = 0;
--
--	regmap_read(pll->sys_regs, pll->reg_ctl + bit->reg, &data);
--	*val = !!(data & bit->mask);
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_pll_dbgfs_bit_fops,
--	ccu_pll_dbgfs_bit_get, ccu_pll_dbgfs_bit_set, "%llu\n");
--
--static int ccu_pll_dbgfs_fld_get(void *priv, u64 *val)
--{
--	struct ccu_pll_dbgfs_fld *fld = priv;
--	struct ccu_pll *pll = fld->pll;
--	u32 data = 0;
--
--	regmap_read(pll->sys_regs, pll->reg_ctl + fld->reg, &data);
--	*val = ((data & fld->mask) >> fld->lsb) + 1;
--
--	return 0;
--}
--DEFINE_DEBUGFS_ATTRIBUTE(ccu_pll_dbgfs_fld_fops,
--	ccu_pll_dbgfs_fld_get, ccu_pll_dbgfs_fld_set, "%llu\n");
--
--static void ccu_pll_debug_init(struct clk_hw *hw, struct dentry *dentry)
--{
--	struct ccu_pll *pll = to_ccu_pll(hw);
--	struct ccu_pll_dbgfs_bit *bits;
--	struct ccu_pll_dbgfs_fld *flds;
--	int idx;
--
--	bits = kzalloc_objs(*bits, CCU_PLL_DBGFS_BIT_NUM);
--	if (!bits)
--		return;
--
--	for (idx = 0; idx < CCU_PLL_DBGFS_BIT_NUM; ++idx) {
--		bits[idx] = ccu_pll_bits[idx];
--		bits[idx].pll = pll;
--
--		debugfs_create_file_unsafe(bits[idx].name, ccu_pll_dbgfs_mode,
--					   dentry, &bits[idx],
--					   &ccu_pll_dbgfs_bit_fops);
--	}
--
--	flds = kzalloc_objs(*flds, CCU_PLL_DBGFS_FLD_NUM);
--	if (!flds)
--		return;
--
--	for (idx = 0; idx < CCU_PLL_DBGFS_FLD_NUM; ++idx) {
--		flds[idx] = ccu_pll_flds[idx];
--		flds[idx].pll = pll;
--
--		debugfs_create_file_unsafe(flds[idx].name, ccu_pll_dbgfs_mode,
--					   dentry, &flds[idx],
--					   &ccu_pll_dbgfs_fld_fops);
--	}
--}
--
--#else /* !CONFIG_DEBUG_FS */
--
--#define ccu_pll_debug_init NULL
--
--#endif /* !CONFIG_DEBUG_FS */
--
--static const struct clk_ops ccu_pll_gate_to_set_ops = {
--	.enable = ccu_pll_enable,
--	.disable = ccu_pll_disable,
--	.is_enabled = ccu_pll_is_enabled,
--	.recalc_rate = ccu_pll_recalc_rate,
--	.determine_rate = ccu_pll_determine_rate,
--	.set_rate = ccu_pll_set_rate_norst,
--	.debug_init = ccu_pll_debug_init
--};
--
--static const struct clk_ops ccu_pll_straight_set_ops = {
--	.enable = ccu_pll_enable,
--	.disable = ccu_pll_disable,
--	.is_enabled = ccu_pll_is_enabled,
--	.recalc_rate = ccu_pll_recalc_rate,
--	.determine_rate = ccu_pll_determine_rate,
--	.set_rate = ccu_pll_set_rate_reset,
--	.debug_init = ccu_pll_debug_init
--};
--
--struct ccu_pll *ccu_pll_hw_register(const struct ccu_pll_init_data *pll_init)
--{
--	struct clk_parent_data parent_data = { };
--	struct clk_init_data hw_init = { };
--	struct ccu_pll *pll;
--	int ret;
--
--	if (!pll_init)
--		return ERR_PTR(-EINVAL);
--
--	pll = kzalloc_obj(*pll);
--	if (!pll)
--		return ERR_PTR(-ENOMEM);
--
--	/*
--	 * Note since Baikal-T1 System Controller registers are MMIO-backed
--	 * we won't check the regmap IO operations return status, because it
--	 * must be zero anyway.
--	 */
--	pll->hw.init = &hw_init;
--	pll->reg_ctl = pll_init->base + CCU_PLL_CTL;
--	pll->reg_ctl1 = pll_init->base + CCU_PLL_CTL1;
--	pll->sys_regs = pll_init->sys_regs;
--	pll->id = pll_init->id;
--	spin_lock_init(&pll->lock);
--
--	hw_init.name = pll_init->name;
--	hw_init.flags = pll_init->flags;
--
--	if (hw_init.flags & CLK_SET_RATE_GATE)
--		hw_init.ops = &ccu_pll_gate_to_set_ops;
--	else
--		hw_init.ops = &ccu_pll_straight_set_ops;
--
--	if (!pll_init->parent_name) {
--		ret = -EINVAL;
--		goto err_free_pll;
--	}
--	parent_data.fw_name = pll_init->parent_name;
--	hw_init.parent_data = &parent_data;
--	hw_init.num_parents = 1;
--
--	ret = of_clk_hw_register(pll_init->np, &pll->hw);
--	if (ret)
--		goto err_free_pll;
--
--	return pll;
--
--err_free_pll:
--	kfree(pll);
--
--	return ERR_PTR(ret);
--}
--
--void ccu_pll_hw_unregister(struct ccu_pll *pll)
--{
--	clk_hw_unregister(&pll->hw);
--
--	kfree(pll);
--}
-diff --git a/drivers/clk/baikal-t1/ccu-pll.h b/drivers/clk/baikal-t1/ccu-pll.h
-deleted file mode 100644
-index a71bfd7b90ec..000000000000
---- a/drivers/clk/baikal-t1/ccu-pll.h
-+++ /dev/null
-@@ -1,72 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Baikal-T1 CCU PLL interface driver
-- */
--#ifndef __CLK_BT1_CCU_PLL_H__
--#define __CLK_BT1_CCU_PLL_H__
--
--#include <linux/clk-provider.h>
--#include <linux/spinlock.h>
--#include <linux/regmap.h>
--#include <linux/bits.h>
--#include <linux/of.h>
--
--/*
-- * CCU PLL private flags
-- * @CCU_PLL_BASIC: Basic PLL required by the kernel as early as possible.
-- */
--#define CCU_PLL_BASIC		BIT(0)
--
--/*
-- * struct ccu_pll_init_data - CCU PLL initialization data
-- * @id: Clock private identifier.
-- * @name: Clocks name.
-- * @parent_name: Clocks parent name in a fw node.
-- * @base: PLL registers base address with respect to the sys_regs base.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @np: Pointer to the node describing the CCU PLLs.
-- * @flags: PLL clock flags.
-- * @features: PLL private features.
-- */
--struct ccu_pll_init_data {
--	unsigned int id;
--	const char *name;
--	const char *parent_name;
--	unsigned int base;
--	struct regmap *sys_regs;
--	struct device_node *np;
--	unsigned long flags;
--	unsigned long features;
--};
--
--/*
-- * struct ccu_pll - CCU PLL descriptor
-- * @hw: clk_hw of the PLL.
-- * @id: Clock private identifier.
-- * @reg_ctl: PLL control register base.
-- * @reg_ctl1: PLL control1 register base.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @lock: PLL state change spin-lock.
-- */
--struct ccu_pll {
--	struct clk_hw hw;
--	unsigned int id;
--	unsigned int reg_ctl;
--	unsigned int reg_ctl1;
--	struct regmap *sys_regs;
--	spinlock_t lock;
--};
--#define to_ccu_pll(_hw) container_of(_hw, struct ccu_pll, hw)
--
--static inline struct clk_hw *ccu_pll_get_clk_hw(struct ccu_pll *pll)
--{
--	return pll ? &pll->hw : NULL;
--}
--
--struct ccu_pll *ccu_pll_hw_register(const struct ccu_pll_init_data *init);
--
--void ccu_pll_hw_unregister(struct ccu_pll *pll);
--
--#endif /* __CLK_BT1_CCU_PLL_H__ */
-diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
-deleted file mode 100644
-index 969e5de381a8..000000000000
---- a/drivers/clk/baikal-t1/ccu-rst.c
-+++ /dev/null
-@@ -1,217 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2021 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU Resets interface driver
-- */
--
--#define pr_fmt(fmt) "bt1-ccu-rst: " fmt
--
--#include <linux/bits.h>
--#include <linux/delay.h>
--#include <linux/kernel.h>
--#include <linux/of.h>
--#include <linux/printk.h>
--#include <linux/regmap.h>
--#include <linux/reset-controller.h>
--#include <linux/slab.h>
--
--#include <dt-bindings/reset/bt1-ccu.h>
--
--#include "ccu-rst.h"
--
--#define CCU_AXI_MAIN_BASE		0x030
--#define CCU_AXI_DDR_BASE		0x034
--#define CCU_AXI_SATA_BASE		0x038
--#define CCU_AXI_GMAC0_BASE		0x03C
--#define CCU_AXI_GMAC1_BASE		0x040
--#define CCU_AXI_XGMAC_BASE		0x044
--#define CCU_AXI_PCIE_M_BASE		0x048
--#define CCU_AXI_PCIE_S_BASE		0x04C
--#define CCU_AXI_USB_BASE		0x050
--#define CCU_AXI_HWA_BASE		0x054
--#define CCU_AXI_SRAM_BASE		0x058
--
--#define CCU_SYS_DDR_BASE		0x02c
--#define CCU_SYS_SATA_REF_BASE		0x060
--#define CCU_SYS_APB_BASE		0x064
--#define CCU_SYS_PCIE_BASE		0x144
--
--#define CCU_RST_DELAY_US		1
--
--#define CCU_RST_TRIG(_base, _ofs)		\
--	{					\
--		.type = CCU_RST_TRIG,		\
--		.base = _base,			\
--		.mask = BIT(_ofs),		\
--	}
--
--#define CCU_RST_DIR(_base, _ofs)		\
--	{					\
--		.type = CCU_RST_DIR,		\
--		.base = _base,			\
--		.mask = BIT(_ofs),		\
--	}
--
--struct ccu_rst_info {
--	enum ccu_rst_type type;
--	unsigned int base;
--	unsigned int mask;
--};
--
--/*
-- * Each AXI-bus clock divider is equipped with the corresponding clock-consumer
-- * domain reset (it's self-deasserted reset control).
-- */
--static const struct ccu_rst_info axi_rst_info[] = {
--	[CCU_AXI_MAIN_RST] = CCU_RST_TRIG(CCU_AXI_MAIN_BASE, 1),
--	[CCU_AXI_DDR_RST] = CCU_RST_TRIG(CCU_AXI_DDR_BASE, 1),
--	[CCU_AXI_SATA_RST] = CCU_RST_TRIG(CCU_AXI_SATA_BASE, 1),
--	[CCU_AXI_GMAC0_RST] = CCU_RST_TRIG(CCU_AXI_GMAC0_BASE, 1),
--	[CCU_AXI_GMAC1_RST] = CCU_RST_TRIG(CCU_AXI_GMAC1_BASE, 1),
--	[CCU_AXI_XGMAC_RST] = CCU_RST_TRIG(CCU_AXI_XGMAC_BASE, 1),
--	[CCU_AXI_PCIE_M_RST] = CCU_RST_TRIG(CCU_AXI_PCIE_M_BASE, 1),
--	[CCU_AXI_PCIE_S_RST] = CCU_RST_TRIG(CCU_AXI_PCIE_S_BASE, 1),
--	[CCU_AXI_USB_RST] = CCU_RST_TRIG(CCU_AXI_USB_BASE, 1),
--	[CCU_AXI_HWA_RST] = CCU_RST_TRIG(CCU_AXI_HWA_BASE, 1),
--	[CCU_AXI_SRAM_RST] = CCU_RST_TRIG(CCU_AXI_SRAM_BASE, 1),
--};
--
--/*
-- * SATA reference clock domain and APB-bus domain are connected with the
-- * sefl-deasserted reset control, which can be activated via the corresponding
-- * clock divider register. DDR and PCIe sub-domains can be reset with directly
-- * controlled reset signals. Resetting the DDR controller though won't end up
-- * well while the Linux kernel is working.
-- */
--static const struct ccu_rst_info sys_rst_info[] = {
--	[CCU_SYS_SATA_REF_RST] = CCU_RST_TRIG(CCU_SYS_SATA_REF_BASE, 1),
--	[CCU_SYS_APB_RST] = CCU_RST_TRIG(CCU_SYS_APB_BASE, 1),
--	[CCU_SYS_DDR_FULL_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 1),
--	[CCU_SYS_DDR_INIT_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 2),
--	[CCU_SYS_PCIE_PCS_PHY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 0),
--	[CCU_SYS_PCIE_PIPE0_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 4),
--	[CCU_SYS_PCIE_CORE_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 8),
--	[CCU_SYS_PCIE_PWR_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 9),
--	[CCU_SYS_PCIE_STICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 10),
--	[CCU_SYS_PCIE_NSTICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 11),
--	[CCU_SYS_PCIE_HOT_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 12),
--};
--
--static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
--{
--	struct ccu_rst *rst = to_ccu_rst(rcdev);
--	const struct ccu_rst_info *info = &rst->rsts_info[idx];
--
--	if (info->type != CCU_RST_TRIG)
--		return -EOPNOTSUPP;
--
--	regmap_update_bits(rst->sys_regs, info->base, info->mask, info->mask);
--
--	/* The next delay must be enough to cover all the resets. */
--	udelay(CCU_RST_DELAY_US);
--
--	return 0;
--}
--
--static int ccu_rst_set(struct reset_controller_dev *rcdev,
--		       unsigned long idx, bool high)
--{
--	struct ccu_rst *rst = to_ccu_rst(rcdev);
--	const struct ccu_rst_info *info = &rst->rsts_info[idx];
--
--	if (info->type != CCU_RST_DIR)
--		return high ? -EOPNOTSUPP : 0;
--
--	return regmap_update_bits(rst->sys_regs, info->base,
--				  info->mask, high ? info->mask : 0);
--}
--
--static int ccu_rst_assert(struct reset_controller_dev *rcdev,
--			  unsigned long idx)
--{
--	return ccu_rst_set(rcdev, idx, true);
--}
--
--static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
--			    unsigned long idx)
--{
--	return ccu_rst_set(rcdev, idx, false);
--}
--
--static int ccu_rst_status(struct reset_controller_dev *rcdev,
--			  unsigned long idx)
--{
--	struct ccu_rst *rst = to_ccu_rst(rcdev);
--	const struct ccu_rst_info *info = &rst->rsts_info[idx];
--	u32 val;
--
--	if (info->type != CCU_RST_DIR)
--		return -EOPNOTSUPP;
--
--	regmap_read(rst->sys_regs, info->base, &val);
--
--	return !!(val & info->mask);
--}
--
--static const struct reset_control_ops ccu_rst_ops = {
--	.reset = ccu_rst_reset,
--	.assert = ccu_rst_assert,
--	.deassert = ccu_rst_deassert,
--	.status = ccu_rst_status,
--};
--
--struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *rst_init)
--{
--	struct ccu_rst *rst;
--	int ret;
--
--	if (!rst_init)
--		return ERR_PTR(-EINVAL);
--
--	rst = kzalloc_obj(*rst);
--	if (!rst)
--		return ERR_PTR(-ENOMEM);
--
--	rst->sys_regs = rst_init->sys_regs;
--	if (of_device_is_compatible(rst_init->np, "baikal,bt1-ccu-axi")) {
--		rst->rcdev.nr_resets = ARRAY_SIZE(axi_rst_info);
--		rst->rsts_info = axi_rst_info;
--	} else if (of_device_is_compatible(rst_init->np, "baikal,bt1-ccu-sys")) {
--		rst->rcdev.nr_resets = ARRAY_SIZE(sys_rst_info);
--		rst->rsts_info = sys_rst_info;
--	} else {
--		pr_err("Incompatible DT node '%s' specified\n",
--		       of_node_full_name(rst_init->np));
--		ret = -EINVAL;
--		goto err_kfree_rst;
--	}
--
--	rst->rcdev.owner = THIS_MODULE;
--	rst->rcdev.ops = &ccu_rst_ops;
--	rst->rcdev.of_node = rst_init->np;
--
--	ret = reset_controller_register(&rst->rcdev);
--	if (ret) {
--		pr_err("Couldn't register '%s' reset controller\n",
--		       of_node_full_name(rst_init->np));
--		goto err_kfree_rst;
--	}
--
--	return rst;
--
--err_kfree_rst:
--	kfree(rst);
--
--	return ERR_PTR(ret);
--}
--
--void ccu_rst_hw_unregister(struct ccu_rst *rst)
--{
--	reset_controller_unregister(&rst->rcdev);
--
--	kfree(rst);
--}
-diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
-deleted file mode 100644
-index d6e8b2f671f4..000000000000
---- a/drivers/clk/baikal-t1/ccu-rst.h
-+++ /dev/null
-@@ -1,67 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) 2021 BAIKAL ELECTRONICS, JSC
-- *
-- * Baikal-T1 CCU Resets interface driver
-- */
--#ifndef __CLK_BT1_CCU_RST_H__
--#define __CLK_BT1_CCU_RST_H__
--
--#include <linux/of.h>
--#include <linux/regmap.h>
--#include <linux/reset-controller.h>
--
--struct ccu_rst_info;
--
--/*
-- * enum ccu_rst_type - CCU Reset types
-- * @CCU_RST_TRIG: Self-deasserted reset signal.
-- * @CCU_RST_DIR: Directly controlled reset signal.
-- */
--enum ccu_rst_type {
--	CCU_RST_TRIG,
--	CCU_RST_DIR,
--};
--
--/*
-- * struct ccu_rst_init_data - CCU Resets initialization data
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @np: Pointer to the node with the System CCU block.
-- */
--struct ccu_rst_init_data {
--	struct regmap *sys_regs;
--	struct device_node *np;
--};
--
--/*
-- * struct ccu_rst - CCU Reset descriptor
-- * @rcdev: Reset controller descriptor.
-- * @sys_regs: Baikal-T1 System Controller registers map.
-- * @rsts_info: Reset flag info (base address and mask).
-- */
--struct ccu_rst {
--	struct reset_controller_dev rcdev;
--	struct regmap *sys_regs;
--	const struct ccu_rst_info *rsts_info;
--};
--#define to_ccu_rst(_rcdev) container_of(_rcdev, struct ccu_rst, rcdev)
--
--#ifdef CONFIG_CLK_BT1_CCU_RST
--
--struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *init);
--
--void ccu_rst_hw_unregister(struct ccu_rst *rst);
--
--#else
--
--static inline
--struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *init)
--{
--	return NULL;
--}
--
--static inline void ccu_rst_hw_unregister(struct ccu_rst *rst) {}
--
--#endif
--
--#endif /* __CLK_BT1_CCU_RST_H__ */
-diff --git a/drivers/clk/baikal-t1/clk-ccu-div.c b/drivers/clk/baikal-t1/clk-ccu-div.c
-deleted file mode 100644
-index d32072e4dd49..000000000000
---- a/drivers/clk/baikal-t1/clk-ccu-div.c
-+++ /dev/null
-@@ -1,520 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *   Dmitry Dunaev <dmitry.dunaev@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU Dividers clock driver
-- */
--
--#define pr_fmt(fmt) "bt1-ccu-div: " fmt
--
--#include <linux/kernel.h>
--#include <linux/platform_device.h>
--#include <linux/printk.h>
--#include <linux/slab.h>
--#include <linux/clk-provider.h>
--#include <linux/reset-controller.h>
--#include <linux/mfd/syscon.h>
--#include <linux/of.h>
--#include <linux/of_address.h>
--#include <linux/ioport.h>
--#include <linux/regmap.h>
--
--#include <dt-bindings/clock/bt1-ccu.h>
--
--#include "ccu-div.h"
--#include "ccu-rst.h"
--
--#define CCU_AXI_MAIN_BASE		0x030
--#define CCU_AXI_DDR_BASE		0x034
--#define CCU_AXI_SATA_BASE		0x038
--#define CCU_AXI_GMAC0_BASE		0x03C
--#define CCU_AXI_GMAC1_BASE		0x040
--#define CCU_AXI_XGMAC_BASE		0x044
--#define CCU_AXI_PCIE_M_BASE		0x048
--#define CCU_AXI_PCIE_S_BASE		0x04C
--#define CCU_AXI_USB_BASE		0x050
--#define CCU_AXI_HWA_BASE		0x054
--#define CCU_AXI_SRAM_BASE		0x058
--
--#define CCU_SYS_SATA_REF_BASE		0x060
--#define CCU_SYS_APB_BASE		0x064
--#define CCU_SYS_GMAC0_BASE		0x068
--#define CCU_SYS_GMAC1_BASE		0x06C
--#define CCU_SYS_XGMAC_BASE		0x070
--#define CCU_SYS_USB_BASE		0x074
--#define CCU_SYS_PVT_BASE		0x078
--#define CCU_SYS_HWA_BASE		0x07C
--#define CCU_SYS_UART_BASE		0x084
--#define CCU_SYS_TIMER0_BASE		0x088
--#define CCU_SYS_TIMER1_BASE		0x08C
--#define CCU_SYS_TIMER2_BASE		0x090
--#define CCU_SYS_WDT_BASE		0x150
--
--#define CCU_DIV_VAR_INFO(_id, _name, _pname, _base, _width, _flags, _features) \
--	{								\
--		.id = _id,						\
--		.name = _name,						\
--		.parent_name = _pname,					\
--		.base = _base,						\
--		.type = CCU_DIV_VAR,					\
--		.width = _width,					\
--		.flags = _flags,					\
--		.features = _features					\
--	}
--
--#define CCU_DIV_GATE_INFO(_id, _name, _pname, _base, _divider)	\
--	{							\
--		.id = _id,					\
--		.name = _name,					\
--		.parent_name = _pname,				\
--		.base = _base,					\
--		.type = CCU_DIV_GATE,				\
--		.divider = _divider				\
--	}
--
--#define CCU_DIV_BUF_INFO(_id, _name, _pname, _base, _flags)	\
--	{							\
--		.id = _id,					\
--		.name = _name,					\
--		.parent_name = _pname,				\
--		.base = _base,					\
--		.type = CCU_DIV_BUF,				\
--		.flags = _flags					\
--	}
--
--#define CCU_DIV_FIXED_INFO(_id, _name, _pname, _divider)	\
--	{							\
--		.id = _id,					\
--		.name = _name,					\
--		.parent_name = _pname,				\
--		.type = CCU_DIV_FIXED,				\
--		.divider = _divider				\
--	}
--
--struct ccu_div_info {
--	unsigned int id;
--	const char *name;
--	const char *parent_name;
--	unsigned int base;
--	enum ccu_div_type type;
--	union {
--		unsigned int width;
--		unsigned int divider;
--	};
--	unsigned long flags;
--	unsigned long features;
--};
--
--struct ccu_div_data {
--	struct device_node *np;
--	struct regmap *sys_regs;
--
--	unsigned int divs_num;
--	const struct ccu_div_info *divs_info;
--	struct ccu_div **divs;
--
--	struct ccu_rst *rsts;
--};
--
--/*
-- * AXI Main Interconnect (axi_main_clk) and DDR AXI-bus (axi_ddr_clk) clocks
-- * must be left enabled in any case, since former one is responsible for
-- * clocking a bus between CPU cores and the rest of the SoC components, while
-- * the later is clocking the AXI-bus between DDR controller and the Main
-- * Interconnect. So should any of these clocks get to be disabled, the system
-- * will literally stop working. That's why we marked them as critical.
-- */
--static const struct ccu_div_info axi_info[] = {
--	CCU_DIV_VAR_INFO(CCU_AXI_MAIN_CLK, "axi_main_clk", "pcie_clk",
--			 CCU_AXI_MAIN_BASE, 4,
--			 CLK_IS_CRITICAL, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_DDR_CLK, "axi_ddr_clk", "sata_clk",
--			 CCU_AXI_DDR_BASE, 4,
--			 CLK_IS_CRITICAL | CLK_SET_RATE_GATE,
--			 CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_SATA_CLK, "axi_sata_clk", "sata_clk",
--			 CCU_AXI_SATA_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_GMAC0_CLK, "axi_gmac0_clk", "eth_clk",
--			 CCU_AXI_GMAC0_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_GMAC1_CLK, "axi_gmac1_clk", "eth_clk",
--			 CCU_AXI_GMAC1_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_XGMAC_CLK, "axi_xgmac_clk", "eth_clk",
--			 CCU_AXI_XGMAC_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_PCIE_M_CLK, "axi_pcie_m_clk", "pcie_clk",
--			 CCU_AXI_PCIE_M_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_PCIE_S_CLK, "axi_pcie_s_clk", "pcie_clk",
--			 CCU_AXI_PCIE_S_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_USB_CLK, "axi_usb_clk", "sata_clk",
--			 CCU_AXI_USB_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_HWA_CLK, "axi_hwa_clk", "sata_clk",
--			 CCU_AXI_HWA_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_VAR_INFO(CCU_AXI_SRAM_CLK, "axi_sram_clk", "eth_clk",
--			 CCU_AXI_SRAM_BASE, 4,
--			 CLK_SET_RATE_GATE, CCU_DIV_RESET_DOMAIN)
--};
--
--/*
-- * APB-bus clock is marked as critical since it's a main communication bus
-- * for the SoC devices registers IO-operations.
-- */
--static const struct ccu_div_info sys_info[] = {
--	CCU_DIV_VAR_INFO(CCU_SYS_SATA_CLK, "sys_sata_clk",
--			 "sata_clk", CCU_SYS_SATA_REF_BASE, 4,
--			 CLK_SET_RATE_GATE,
--			 CCU_DIV_SKIP_ONE | CCU_DIV_LOCK_SHIFTED |
--			 CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_BUF_INFO(CCU_SYS_SATA_REF_CLK, "sys_sata_ref_clk",
--			 "sys_sata_clk", CCU_SYS_SATA_REF_BASE,
--			 CLK_SET_RATE_PARENT),
--	CCU_DIV_VAR_INFO(CCU_SYS_APB_CLK, "sys_apb_clk",
--			 "pcie_clk", CCU_SYS_APB_BASE, 5,
--			 CLK_IS_CRITICAL, CCU_DIV_BASIC | CCU_DIV_RESET_DOMAIN),
--	CCU_DIV_GATE_INFO(CCU_SYS_GMAC0_TX_CLK, "sys_gmac0_tx_clk",
--			  "eth_clk", CCU_SYS_GMAC0_BASE, 5),
--	CCU_DIV_FIXED_INFO(CCU_SYS_GMAC0_PTP_CLK, "sys_gmac0_ptp_clk",
--			   "eth_clk", 10),
--	CCU_DIV_GATE_INFO(CCU_SYS_GMAC1_TX_CLK, "sys_gmac1_tx_clk",
--			  "eth_clk", CCU_SYS_GMAC1_BASE, 5),
--	CCU_DIV_FIXED_INFO(CCU_SYS_GMAC1_PTP_CLK, "sys_gmac1_ptp_clk",
--			   "eth_clk", 10),
--	CCU_DIV_GATE_INFO(CCU_SYS_XGMAC_CLK, "sys_xgmac_clk",
--			  "eth_clk", CCU_SYS_XGMAC_BASE, 1),
--	CCU_DIV_FIXED_INFO(CCU_SYS_XGMAC_REF_CLK, "sys_xgmac_ref_clk",
--			   "sys_xgmac_clk", 8),
--	CCU_DIV_FIXED_INFO(CCU_SYS_XGMAC_PTP_CLK, "sys_xgmac_ptp_clk",
--			   "sys_xgmac_clk", 8),
--	CCU_DIV_GATE_INFO(CCU_SYS_USB_CLK, "sys_usb_clk",
--			  "eth_clk", CCU_SYS_USB_BASE, 10),
--	CCU_DIV_VAR_INFO(CCU_SYS_PVT_CLK, "sys_pvt_clk",
--			 "ref_clk", CCU_SYS_PVT_BASE, 5,
--			 CLK_SET_RATE_GATE, 0),
--	CCU_DIV_VAR_INFO(CCU_SYS_HWA_CLK, "sys_hwa_clk",
--			 "sata_clk", CCU_SYS_HWA_BASE, 4,
--			 CLK_SET_RATE_GATE, 0),
--	CCU_DIV_VAR_INFO(CCU_SYS_UART_CLK, "sys_uart_clk",
--			 "eth_clk", CCU_SYS_UART_BASE, 17,
--			 CLK_SET_RATE_GATE, 0),
--	CCU_DIV_FIXED_INFO(CCU_SYS_I2C1_CLK, "sys_i2c1_clk",
--			   "eth_clk", 10),
--	CCU_DIV_FIXED_INFO(CCU_SYS_I2C2_CLK, "sys_i2c2_clk",
--			   "eth_clk", 10),
--	CCU_DIV_FIXED_INFO(CCU_SYS_GPIO_CLK, "sys_gpio_clk",
--			   "ref_clk", 25),
--	CCU_DIV_VAR_INFO(CCU_SYS_TIMER0_CLK, "sys_timer0_clk",
--			 "ref_clk", CCU_SYS_TIMER0_BASE, 17,
--			 CLK_SET_RATE_GATE, CCU_DIV_BASIC),
--	CCU_DIV_VAR_INFO(CCU_SYS_TIMER1_CLK, "sys_timer1_clk",
--			 "ref_clk", CCU_SYS_TIMER1_BASE, 17,
--			 CLK_SET_RATE_GATE, CCU_DIV_BASIC),
--	CCU_DIV_VAR_INFO(CCU_SYS_TIMER2_CLK, "sys_timer2_clk",
--			 "ref_clk", CCU_SYS_TIMER2_BASE, 17,
--			 CLK_SET_RATE_GATE, CCU_DIV_BASIC),
--	CCU_DIV_VAR_INFO(CCU_SYS_WDT_CLK, "sys_wdt_clk",
--			 "eth_clk", CCU_SYS_WDT_BASE, 17,
--			 CLK_SET_RATE_GATE, CCU_DIV_SKIP_ONE_TO_THREE)
--};
--
--static struct ccu_div_data *axi_data;
--static struct ccu_div_data *sys_data;
--
--static void ccu_div_set_data(struct ccu_div_data *data)
--{
--	struct device_node *np = data->np;
--
--	if (of_device_is_compatible(np, "baikal,bt1-ccu-axi"))
--		axi_data = data;
--	else if (of_device_is_compatible(np, "baikal,bt1-ccu-sys"))
--		sys_data = data;
--	else
--		pr_err("Invalid DT node '%s' specified\n", of_node_full_name(np));
--}
--
--static struct ccu_div_data *ccu_div_get_data(struct device_node *np)
--{
--	if (of_device_is_compatible(np, "baikal,bt1-ccu-axi"))
--		return axi_data;
--	else if (of_device_is_compatible(np, "baikal,bt1-ccu-sys"))
--		return sys_data;
--
--	pr_err("Invalid DT node '%s' specified\n", of_node_full_name(np));
--
--	return NULL;
--}
--
--static struct ccu_div *ccu_div_find_desc(struct ccu_div_data *data,
--					 unsigned int clk_id)
--{
--	int idx;
--
--	for (idx = 0; idx < data->divs_num; ++idx) {
--		if (data->divs_info[idx].id == clk_id)
--			return data->divs[idx];
--	}
--
--	return ERR_PTR(-EINVAL);
--}
--
--static struct ccu_div_data *ccu_div_create_data(struct device_node *np)
--{
--	struct ccu_div_data *data;
--	int ret;
--
--	data = kzalloc_obj(*data);
--	if (!data)
--		return ERR_PTR(-ENOMEM);
--
--	data->np = np;
--	if (of_device_is_compatible(np, "baikal,bt1-ccu-axi")) {
--		data->divs_num = ARRAY_SIZE(axi_info);
--		data->divs_info = axi_info;
--	} else if (of_device_is_compatible(np, "baikal,bt1-ccu-sys")) {
--		data->divs_num = ARRAY_SIZE(sys_info);
--		data->divs_info = sys_info;
--	} else {
--		pr_err("Incompatible DT node '%s' specified\n",
--			of_node_full_name(np));
--		ret = -EINVAL;
--		goto err_kfree_data;
--	}
--
--	data->divs = kzalloc_objs(*data->divs, data->divs_num);
--	if (!data->divs) {
--		ret = -ENOMEM;
--		goto err_kfree_data;
--	}
--
--	return data;
--
--err_kfree_data:
--	kfree(data);
--
--	return ERR_PTR(ret);
--}
--
--static void ccu_div_free_data(struct ccu_div_data *data)
--{
--	kfree(data->divs);
--
--	kfree(data);
--}
--
--static int ccu_div_find_sys_regs(struct ccu_div_data *data)
--{
--	data->sys_regs = syscon_node_to_regmap(data->np->parent);
--	if (IS_ERR(data->sys_regs)) {
--		pr_err("Failed to find syscon regs for '%s'\n",
--			of_node_full_name(data->np));
--		return PTR_ERR(data->sys_regs);
--	}
--
--	return 0;
--}
--
--static struct clk_hw *ccu_div_of_clk_hw_get(struct of_phandle_args *clkspec,
--					    void *priv)
--{
--	struct ccu_div_data *data = priv;
--	struct ccu_div *div;
--	unsigned int clk_id;
--
--	clk_id = clkspec->args[0];
--	div = ccu_div_find_desc(data, clk_id);
--	if (IS_ERR(div)) {
--		if (div != ERR_PTR(-EPROBE_DEFER))
--			pr_info("Invalid clock ID %d specified\n", clk_id);
--
--		return ERR_CAST(div);
--	}
--
--	return ccu_div_get_clk_hw(div);
--}
--
--static int ccu_div_clk_register(struct ccu_div_data *data, bool defer)
--{
--	int idx, ret;
--
--	for (idx = 0; idx < data->divs_num; ++idx) {
--		const struct ccu_div_info *info = &data->divs_info[idx];
--		struct ccu_div_init_data init = {0};
--
--		if (!!(info->features & CCU_DIV_BASIC) ^ defer) {
--			if (!data->divs[idx])
--				data->divs[idx] = ERR_PTR(-EPROBE_DEFER);
--
--			continue;
--		}
--
--		init.id = info->id;
--		init.name = info->name;
--		init.parent_name = info->parent_name;
--		init.np = data->np;
--		init.type = info->type;
--		init.flags = info->flags;
--		init.features = info->features;
--
--		if (init.type == CCU_DIV_VAR) {
--			init.base = info->base;
--			init.sys_regs = data->sys_regs;
--			init.width = info->width;
--		} else if (init.type == CCU_DIV_GATE) {
--			init.base = info->base;
--			init.sys_regs = data->sys_regs;
--			init.divider = info->divider;
--		} else if (init.type == CCU_DIV_BUF) {
--			init.base = info->base;
--			init.sys_regs = data->sys_regs;
--		} else {
--			init.divider = info->divider;
--		}
--
--		data->divs[idx] = ccu_div_hw_register(&init);
--		if (IS_ERR(data->divs[idx])) {
--			ret = PTR_ERR(data->divs[idx]);
--			pr_err("Couldn't register divider '%s' hw\n",
--				init.name);
--			goto err_hw_unregister;
--		}
--	}
--
--	return 0;
--
--err_hw_unregister:
--	for (--idx; idx >= 0; --idx) {
--		if (!!(data->divs_info[idx].features & CCU_DIV_BASIC) ^ defer)
--			continue;
--
--		ccu_div_hw_unregister(data->divs[idx]);
--	}
--
--	return ret;
--}
--
--static void ccu_div_clk_unregister(struct ccu_div_data *data, bool defer)
--{
--	int idx;
--
--	/* Uninstall only the clocks registered on the specified stage */
--	for (idx = 0; idx < data->divs_num; ++idx) {
--		if (!!(data->divs_info[idx].features & CCU_DIV_BASIC) ^ defer)
--			continue;
--
--		ccu_div_hw_unregister(data->divs[idx]);
--	}
--}
--
--static int ccu_div_of_register(struct ccu_div_data *data)
--{
--	int ret;
--
--	ret = of_clk_add_hw_provider(data->np, ccu_div_of_clk_hw_get, data);
--	if (ret) {
--		pr_err("Couldn't register dividers '%s' clock provider\n",
--		       of_node_full_name(data->np));
--	}
--
--	return ret;
--}
--
--static int ccu_div_rst_register(struct ccu_div_data *data)
--{
--	struct ccu_rst_init_data init = {0};
--
--	init.sys_regs = data->sys_regs;
--	init.np = data->np;
--
--	data->rsts = ccu_rst_hw_register(&init);
--	if (IS_ERR(data->rsts)) {
--		pr_err("Couldn't register divider '%s' reset controller\n",
--			of_node_full_name(data->np));
--		return PTR_ERR(data->rsts);
--	}
--
--	return 0;
--}
--
--static int ccu_div_probe(struct platform_device *pdev)
--{
--	struct ccu_div_data *data;
--	int ret;
--
--	data = ccu_div_get_data(dev_of_node(&pdev->dev));
--	if (!data)
--		return -EINVAL;
--
--	ret = ccu_div_clk_register(data, false);
--	if (ret)
--		return ret;
--
--	ret = ccu_div_rst_register(data);
--	if (ret)
--		goto err_clk_unregister;
--
--	return 0;
--
--err_clk_unregister:
--	ccu_div_clk_unregister(data, false);
--
--	return ret;
--}
--
--static const struct of_device_id ccu_div_of_match[] = {
--	{ .compatible = "baikal,bt1-ccu-axi" },
--	{ .compatible = "baikal,bt1-ccu-sys" },
--	{ }
--};
--
--static struct platform_driver ccu_div_driver = {
--	.probe  = ccu_div_probe,
--	.driver = {
--		.name = "clk-ccu-div",
--		.of_match_table = ccu_div_of_match,
--		.suppress_bind_attrs = true,
--	},
--};
--builtin_platform_driver(ccu_div_driver);
--
--static __init void ccu_div_init(struct device_node *np)
--{
--	struct ccu_div_data *data;
--	int ret;
--
--	data = ccu_div_create_data(np);
--	if (IS_ERR(data))
--		return;
--
--	ret = ccu_div_find_sys_regs(data);
--	if (ret)
--		goto err_free_data;
--
--	ret = ccu_div_clk_register(data, true);
--	if (ret)
--		goto err_free_data;
--
--	ret = ccu_div_of_register(data);
--	if (ret)
--		goto err_clk_unregister;
--
--	ccu_div_set_data(data);
--
--	return;
--
--err_clk_unregister:
--	ccu_div_clk_unregister(data, true);
--
--err_free_data:
--	ccu_div_free_data(data);
--}
--CLK_OF_DECLARE_DRIVER(ccu_axi, "baikal,bt1-ccu-axi", ccu_div_init);
--CLK_OF_DECLARE_DRIVER(ccu_sys, "baikal,bt1-ccu-sys", ccu_div_init);
-diff --git a/drivers/clk/baikal-t1/clk-ccu-pll.c b/drivers/clk/baikal-t1/clk-ccu-pll.c
-deleted file mode 100644
-index e5e4a6ea6f78..000000000000
---- a/drivers/clk/baikal-t1/clk-ccu-pll.c
-+++ /dev/null
-@@ -1,277 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Authors:
-- *   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-- *   Dmitry Dunaev <dmitry.dunaev@baikalelectronics.ru>
-- *
-- * Baikal-T1 CCU PLL clocks driver
-- */
--
--#define pr_fmt(fmt) "bt1-ccu-pll: " fmt
--
--#include <linux/kernel.h>
--#include <linux/platform_device.h>
--#include <linux/printk.h>
--#include <linux/slab.h>
--#include <linux/clk-provider.h>
--#include <linux/mfd/syscon.h>
--#include <linux/of.h>
--#include <linux/of_address.h>
--#include <linux/ioport.h>
--#include <linux/regmap.h>
--
--#include <dt-bindings/clock/bt1-ccu.h>
--
--#include "ccu-pll.h"
--
--#define CCU_CPU_PLL_BASE		0x000
--#define CCU_SATA_PLL_BASE		0x008
--#define CCU_DDR_PLL_BASE		0x010
--#define CCU_PCIE_PLL_BASE		0x018
--#define CCU_ETH_PLL_BASE		0x020
--
--#define CCU_PLL_INFO(_id, _name, _pname, _base, _flags, _features)	\
--	{								\
--		.id = _id,						\
--		.name = _name,						\
--		.parent_name = _pname,					\
--		.base = _base,						\
--		.flags = _flags,					\
--		.features = _features,					\
--	}
--
--#define CCU_PLL_NUM			ARRAY_SIZE(pll_info)
--
--struct ccu_pll_info {
--	unsigned int id;
--	const char *name;
--	const char *parent_name;
--	unsigned int base;
--	unsigned long flags;
--	unsigned long features;
--};
--
--/*
-- * Alas we have to mark all PLLs as critical. CPU and DDR PLLs are sources of
-- * CPU cores and DDR controller reference clocks, due to which they obviously
-- * shouldn't be ever gated. SATA and PCIe PLLs are the parents of APB-bus and
-- * DDR controller AXI-bus clocks. If they are gated the system will be
-- * unusable. Moreover disabling SATA and Ethernet PLLs causes automatic reset
-- * of the corresponding subsystems. So until we aren't ready to re-initialize
-- * all the devices consuming those PLLs, they will be marked as critical too.
-- */
--static const struct ccu_pll_info pll_info[] = {
--	CCU_PLL_INFO(CCU_CPU_PLL, "cpu_pll", "ref_clk", CCU_CPU_PLL_BASE,
--		     CLK_IS_CRITICAL, CCU_PLL_BASIC),
--	CCU_PLL_INFO(CCU_SATA_PLL, "sata_pll", "ref_clk", CCU_SATA_PLL_BASE,
--		     CLK_IS_CRITICAL | CLK_SET_RATE_GATE, 0),
--	CCU_PLL_INFO(CCU_DDR_PLL, "ddr_pll", "ref_clk", CCU_DDR_PLL_BASE,
--		     CLK_IS_CRITICAL | CLK_SET_RATE_GATE, 0),
--	CCU_PLL_INFO(CCU_PCIE_PLL, "pcie_pll", "ref_clk", CCU_PCIE_PLL_BASE,
--		     CLK_IS_CRITICAL, CCU_PLL_BASIC),
--	CCU_PLL_INFO(CCU_ETH_PLL, "eth_pll", "ref_clk", CCU_ETH_PLL_BASE,
--		     CLK_IS_CRITICAL | CLK_SET_RATE_GATE, 0)
--};
--
--struct ccu_pll_data {
--	struct device_node *np;
--	struct regmap *sys_regs;
--	struct ccu_pll *plls[CCU_PLL_NUM];
--};
--
--static struct ccu_pll_data *pll_data;
--
--static struct ccu_pll *ccu_pll_find_desc(struct ccu_pll_data *data,
--					 unsigned int clk_id)
--{
--	int idx;
--
--	for (idx = 0; idx < CCU_PLL_NUM; ++idx) {
--		if (pll_info[idx].id == clk_id)
--			return data->plls[idx];
--	}
--
--	return ERR_PTR(-EINVAL);
--}
--
--static struct ccu_pll_data *ccu_pll_create_data(struct device_node *np)
--{
--	struct ccu_pll_data *data;
--
--	data = kzalloc_obj(*data);
--	if (!data)
--		return ERR_PTR(-ENOMEM);
--
--	data->np = np;
--
--	return data;
--}
--
--static void ccu_pll_free_data(struct ccu_pll_data *data)
--{
--	kfree(data);
--}
--
--static int ccu_pll_find_sys_regs(struct ccu_pll_data *data)
--{
--	data->sys_regs = syscon_node_to_regmap(data->np->parent);
--	if (IS_ERR(data->sys_regs)) {
--		pr_err("Failed to find syscon regs for '%s'\n",
--			of_node_full_name(data->np));
--		return PTR_ERR(data->sys_regs);
--	}
--
--	return 0;
--}
--
--static struct clk_hw *ccu_pll_of_clk_hw_get(struct of_phandle_args *clkspec,
--					    void *priv)
--{
--	struct ccu_pll_data *data = priv;
--	struct ccu_pll *pll;
--	unsigned int clk_id;
--
--	clk_id = clkspec->args[0];
--	pll = ccu_pll_find_desc(data, clk_id);
--	if (IS_ERR(pll)) {
--		if (pll != ERR_PTR(-EPROBE_DEFER))
--			pr_info("Invalid PLL clock ID %d specified\n", clk_id);
--
--		return ERR_CAST(pll);
--	}
--
--	return ccu_pll_get_clk_hw(pll);
--}
--
--static int ccu_pll_clk_register(struct ccu_pll_data *data, bool defer)
--{
--	int idx, ret;
--
--	for (idx = 0; idx < CCU_PLL_NUM; ++idx) {
--		const struct ccu_pll_info *info = &pll_info[idx];
--		struct ccu_pll_init_data init = {0};
--
--		/* Defer non-basic PLLs allocation for the probe stage */
--		if (!!(info->features & CCU_PLL_BASIC) ^ defer) {
--			if (!data->plls[idx])
--				data->plls[idx] = ERR_PTR(-EPROBE_DEFER);
--
--			continue;
--		}
--
--		init.id = info->id;
--		init.name = info->name;
--		init.parent_name = info->parent_name;
--		init.base = info->base;
--		init.sys_regs = data->sys_regs;
--		init.np = data->np;
--		init.flags = info->flags;
--		init.features = info->features;
--
--		data->plls[idx] = ccu_pll_hw_register(&init);
--		if (IS_ERR(data->plls[idx])) {
--			ret = PTR_ERR(data->plls[idx]);
--			pr_err("Couldn't register PLL hw '%s'\n",
--				init.name);
--			goto err_hw_unregister;
--		}
--	}
--
--	return 0;
--
--err_hw_unregister:
--	for (--idx; idx >= 0; --idx) {
--		if (!!(pll_info[idx].features & CCU_PLL_BASIC) ^ defer)
--			continue;
--
--		ccu_pll_hw_unregister(data->plls[idx]);
--	}
--
--	return ret;
--}
--
--static void ccu_pll_clk_unregister(struct ccu_pll_data *data, bool defer)
--{
--	int idx;
--
--	/* Uninstall only the clocks registered on the specified stage */
--	for (idx = 0; idx < CCU_PLL_NUM; ++idx) {
--		if (!!(pll_info[idx].features & CCU_PLL_BASIC) ^ defer)
--			continue;
--
--		ccu_pll_hw_unregister(data->plls[idx]);
--	}
--}
--
--static int ccu_pll_of_register(struct ccu_pll_data *data)
--{
--	int ret;
--
--	ret = of_clk_add_hw_provider(data->np, ccu_pll_of_clk_hw_get, data);
--	if (ret) {
--		pr_err("Couldn't register PLL provider of '%s'\n",
--			of_node_full_name(data->np));
--	}
--
--	return ret;
--}
--
--static int ccu_pll_probe(struct platform_device *pdev)
--{
--	struct ccu_pll_data *data = pll_data;
--
--	if (!data)
--		return -EINVAL;
--
--	return ccu_pll_clk_register(data, false);
--}
--
--static const struct of_device_id ccu_pll_of_match[] = {
--	{ .compatible = "baikal,bt1-ccu-pll" },
--	{ }
--};
--
--static struct platform_driver ccu_pll_driver = {
--	.probe  = ccu_pll_probe,
--	.driver = {
--		.name = "clk-ccu-pll",
--		.of_match_table = ccu_pll_of_match,
--		.suppress_bind_attrs = true,
--	},
--};
--builtin_platform_driver(ccu_pll_driver);
--
--static __init void ccu_pll_init(struct device_node *np)
--{
--	struct ccu_pll_data *data;
--	int ret;
--
--	data = ccu_pll_create_data(np);
--	if (IS_ERR(data))
--		return;
--
--	ret = ccu_pll_find_sys_regs(data);
--	if (ret)
--		goto err_free_data;
--
--	ret = ccu_pll_clk_register(data, true);
--	if (ret)
--		goto err_free_data;
--
--	ret = ccu_pll_of_register(data);
--	if (ret)
--		goto err_clk_unregister;
--
--	pll_data = data;
--
--	return;
--
--err_clk_unregister:
--	ccu_pll_clk_unregister(data, true);
--
--err_free_data:
--	ccu_pll_free_data(data);
--}
--CLK_OF_DECLARE_DRIVER(ccu_pll, "baikal,bt1-ccu-pll", ccu_pll_init);
-diff --git a/include/dt-bindings/clock/bt1-ccu.h b/include/dt-bindings/clock/bt1-ccu.h
-deleted file mode 100644
-index 5f166d27a00a..000000000000
---- a/include/dt-bindings/clock/bt1-ccu.h
-+++ /dev/null
-@@ -1,48 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- * Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-- *
-- * Baikal-T1 CCU clock indices
-- */
--#ifndef __DT_BINDINGS_CLOCK_BT1_CCU_H
--#define __DT_BINDINGS_CLOCK_BT1_CCU_H
--
--#define CCU_CPU_PLL			0
--#define CCU_SATA_PLL			1
--#define CCU_DDR_PLL			2
--#define CCU_PCIE_PLL			3
--#define CCU_ETH_PLL			4
--
--#define CCU_AXI_MAIN_CLK		0
--#define CCU_AXI_DDR_CLK			1
--#define CCU_AXI_SATA_CLK		2
--#define CCU_AXI_GMAC0_CLK		3
--#define CCU_AXI_GMAC1_CLK		4
--#define CCU_AXI_XGMAC_CLK		5
--#define CCU_AXI_PCIE_M_CLK		6
--#define CCU_AXI_PCIE_S_CLK		7
--#define CCU_AXI_USB_CLK			8
--#define CCU_AXI_HWA_CLK			9
--#define CCU_AXI_SRAM_CLK		10
--
--#define CCU_SYS_SATA_REF_CLK		0
--#define CCU_SYS_APB_CLK			1
--#define CCU_SYS_GMAC0_TX_CLK		2
--#define CCU_SYS_GMAC0_PTP_CLK		3
--#define CCU_SYS_GMAC1_TX_CLK		4
--#define CCU_SYS_GMAC1_PTP_CLK		5
--#define CCU_SYS_XGMAC_REF_CLK		6
--#define CCU_SYS_XGMAC_PTP_CLK		7
--#define CCU_SYS_USB_CLK			8
--#define CCU_SYS_PVT_CLK			9
--#define CCU_SYS_HWA_CLK			10
--#define CCU_SYS_UART_CLK		11
--#define CCU_SYS_I2C1_CLK		12
--#define CCU_SYS_I2C2_CLK		13
--#define CCU_SYS_GPIO_CLK		14
--#define CCU_SYS_TIMER0_CLK		15
--#define CCU_SYS_TIMER1_CLK		16
--#define CCU_SYS_TIMER2_CLK		17
--#define CCU_SYS_WDT_CLK			18
--
--#endif /* __DT_BINDINGS_CLOCK_BT1_CCU_H */
--- 
-2.50.1
+> 
+> Regards,
+> Pankaj
+>> -----Original Message-----
+>> From: Pankaj Gupta
+>> Sent: 22 January 2026 17:21
+>> To: Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>;
+>> Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+>> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
+>> <s.hauer@pengutronix.de>; Pengutronix Kernel Team
+>> <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Pankaj
+>> Gupta <pankaj.gupta@nxp.com>
+>> Cc: linux-doc@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> devicetree@vger.kernel.org; imx@lists.linux.dev; linux-arm-
+>> kernel@lists.infradead.org; Frank Li <frank.li@nxp.com>
+>> Subject: [PATCH v25 0/7] firmware: imx: driver for NXP secure-enclave
+>>
+>> The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded secure
+>> enclave within the SoC boundary to enable features like
+>> - HSM
+>> - SHE
+>> - V2X
+>>
+>> Communicates via message unit with linux kernel. This driver is enables
+>> communication ensuring well defined message sequence protocol between
+>> Application Core and enclave's firmware.
+>>
+>> Driver configures multiple misc-device on the MU, for multiple user-space
+>> applications can communicate on single MU.
+>>
+>> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+>>
+>> -------
+>> Changes in v25:
+>> 5/7
+>> - removes kernel bot reported warning errors.
+>>
+>> 3/7
+>> - fix checkpatch --strict error.
+>>
+>> 1/2, 2/7, 4/7, 6/7 & 7/7
+>> - No changes
+>>
+>> Reference:
+>> - Link to v24: https://lore.kernel.org/r/20260121-imx-se-if-v24-0-
+>> c5222df51cc2@nxp.com
+>>
+>> Changes in v24:
+>> 5/7 & 3/7
+>> - removes kernel bot reported warning errors.
+>>
+>> 1/2, 2/7, 4/7, 6/7 & 7/7
+>> - No changes
+>>
+>> Reference:
+>> - Link to v23: https://lore.kernel.org/r/20251219-imx-se-if-v23-0-
+>> 5c6773d00318@nxp.com
+>>
+>> Changes in v23:
+>> 5/7
+>> - removed un-neccessary 'kfree' from the func
+>> se_ioctl_cmd_snd_rcv_rsp_handler().
+>>
+>> 1/2, 2/7, 3/7, 4/7, 6/7 & 7/7
+>> - No changes
+>>
+>> Reference:
+>> - Link to v22: https://lore.kernel.org/r/20251218-imx-se-if-v22-0-
+>> 07418c872509@nxp.com
+>>
+>> Changes in v22:
+>> 3/7 & 5/7
+>> - reverted to previous change of using "__free(kfree)", by declare-and-initialize
+>> __free() vars next to their allocations.
+>>
+>> 1/7
+>> - rename the se_fw.c to se_ctrl.c
+>>
+>> 2/7, 4/7, 5/7 & 7/7
+>> - No changes.
+>>
+>> Reference:
+>> - Link to v21: https://lore.kernel.org/r/20251212-imx-se-if-v21-0-
+>> ee7d6052d848@nxp.com
+>>
+>> Changes in v21:
+>> 3/7
+>> - smatch warning fixes.
+>> - Added "COMPILE_TEST" into "depends on IMX_MBOX && ARCH_MXC &&
+>> ARM64"
+>> - removed "__free(kfree)" & added kfree();
+>>
+>> 5/7
+>> - removed "__free(kfree)" & added kfree();
+>>
+>> 1/2, 2/7, 4/7, & 7/7
+>> - No changes
+>>
+>> Reference:
+>> - Link to v20: https://lore.kernel.org/r/20251203-imx-se-if-v20-0-
+>> a04a25c4255f@nxp.com
+>>
+>> Changes in v20:
+>> 5/7:
+>> - adds a func "se_chk_tx_msg_hdr", to check the validity of the in-coming
+>> message from usersapce.
+>>
+>> 1/2, 2/7, 3/7, 4/7, 6/7 & 7/7
+>> - No changes
+>>
+>> Reference:
+>> - Link to v19: https://lore.kernel.org/r/20250927-imx-se-if-v19-0-
+>> d1e7e960c118@nxp.com
+>>
+>> Changes in v19:
+>>
+>> 1/7
+>> - Added 9 lines to the Introduction from line 73-82.
+>>
+>> 3/7
+>> -  Update the commit message for " For i.MX9x SoC(s) there is at least one
+>> dedicated ELE MU(s) for each world - Linux(one or more) and OP-TEE OS (one
+>> or more), that needs to be shared between them.."
+>>
+>> Reference:
+>> - Link to v18: https://lore.kernel.org/r/20250619-imx-se-if-v18-0-
+>> c98391ba446d@nxp.com
+>>
+>> Changes in v18:
+>>
+>> 1/7
+>> - Wrap both diagrams above in literal code block by using double-colon
+>>
+>> 3/7 & 5/7
+>> - Collected Frank's R-b tag.
+>>
+>> 2/7, 4/7, 6/7 & 7/7
+>> - No changes
+>>
+>> Reference:
+>> - Link to v17: https://lore.kernel.org/r/20250426-imx-se-if-v17-0-
+>> 0c85155a50d1@nxp.com
+>>
+>> Changes in v17:
+>> - Changes to 3/7 & 5/7: to wrap code text at 80 character whereever possible.
+>>
+>> Reference:
+>> - Link to v16: https://lore.kernel.org/r/20250409-imx-se-if-v16-0-
+>> 5394e5f3417e@nxp.com
+>>
+>> Changes in v16:
+>> - commit 3/7 and 4/7 are moved to end commits making them as 6/7 and 7/7
+>> respectively.
+>> - No change in 1/7 & 2/7.
+>>
+>> 7/7
+>> - Collected Frank's R-b tag.
+>>
+>> 6/7
+>> - commit message is updated to wrap at 75 characters.
+>>
+>> 5/7
+>> - func add_b_desc_to_pending_list, removed the initialization of b_desc to
+>>   NULL.
+>> - variable timeout in func ele_msg_rcv(), is renamed to timeout_ms.
+>> - struct se_if_priv, member variable se_rcv_msg_timeout, is renamed to
+>>   se_rcv_msg_timeout_ms.
+>> - in func load_firmware, move the label exit after dma_free_coherent.
+>>
+>> 4/7
+>> - commit message is updated to wrap at 75 characters.
+>>
+>> 3/7
+>> - ele_debug_dump, updated the assignment of keep_logging.
+>> - ele_fw_authenticate function definition is updated to take two address
+>>   as arguments.
+>>
+>> Reference:
+>> - Link to v15: https://lore.kernel.org/r/20250407-imx-se-if-v15-0-
+>> e3382cecda01@nxp.com
+>>
+>> Changes in v15:
+>> - Patch 3/6 is split into two:
+>>   - 3/7: arm64: dts: imx8ulp-evk: add reserved memory property
+>>   - 4/7: arm64: dts: imx8ulp: add nxp secure enclave firmware
+>> - No change in 1/7 & 2/7.
+>>
+>> 7/7
+>> - removed the se_intance_id structure member variable.
+>> - replace variable name from wait to timeout.
+>> - used 'goto' to follow the common exit path calling "release_firmware(fw);" in
+>> case of error path.
+>> - removed TBD string.
+>> - Used ARRAY_SIZE(pending_lists).
+>> - moved init_device_context after init_misc_device_context.
+>> - defined err as long to avoid force convert in func
+>> - added se_rcv_msg_timeout to priv, to control probe/suspend/resume per
+>> interface.
+>>
+>> 6/7
+>> - removed the se_intance_id structure member variable.
+>> - Added dev_ctx to the structure se_clbk_handle, too.
+>> - Collected Frank's R-b tag.
+>>
+>> 5/7
+>> - removed the se_intance_id structure member variable.
+>> - since added se_if_probe_cleanup to devm, se_if_remove() is redundant.
+>> hence removed it.
+>> - rename se_add_msg_chksum to se_get_msg_chksum
+>> - added check if msg-size is 4 byte aligned.
+>> - Fixed multiline comments.
+>> - ele_debug_dump api is updated as part of comment disposition like single
+>> setting of flag "keep_logging" & adding if (ret).
+>> - moved dev_err to dev_dbg, for imem save/restore functions.
+>> - moved func get_se_if_name, from 7/7 to here.
+>>
+>> 3/7
+>> - Updated the commit message.
+>> - split the current patch into two:
+>>   -- 3/7 for board dts, and
+>>   -- 4/7 for chip dts
+>>
+>> Reference:
+>> - Link to v14: https://lore.kernel.org/r/20250327-imx-se-if-v14-0-
+>> 2219448932e4@nxp.com
+>>
+>> Changes in v14:
+>>
+>> - Patch 5/5 is split into two:
+>>   - firmware: drivers: imx: adds miscdev
+>>   - Introduce dev-ctx dedicated to private.
+>>     -- Base patch before enabling misc-device context, to have the send-receive
+>> path, based on device context.
+>> - No change in 1/6 & 2/6.
+>> - Copied change logs from individual commits.
+>>
+>> 6/6
+>> - moved definition of func se_load_firmware, from 4/6 patch to this patch.
+>> - split init_device_context to init_misc_device_context.
+>> - Different value of se_rcv_msg_timeout is required to be set. Receiving the
+>> response of 4K RSA operation can to take upto 3 minutes.
+>>   This long value cannot be set during Linux: boot-up and suspend-resume.
+>>   Hence, it will be set to default small-value during Linux: boot-up and suspend-
+>> resume.
+>> - func se_dev_ctx_cpy_out_data(), in either case: do_cpy true or false, the
+>> clean-up needs to be done and it is implemented like wise.
+>>   Once do_cpy is false, no need to continue copy to user buffer. But continue to
+>> do clean-up. hence cannot return.
+>>   And every dev-ctx operation is done after taking the lock. Hence, two
+>> operations with same dev-ctx is not possible in parallel.
+>> - func "init_device_context", for 0th misc dev_ctx, which is created at the time
+>> of probe, the device memory management is required. hence there is a
+>> difference.
+>> - func "init_device_context", dev_er is replaced with return dev_err_probe.
+>> - func "init_device_context", devm_add_action is replaced by
+>> devm_add_action_reset.
+>> - removed type-cast from func se_ioctl_get_se_soc_info_handler().
+>> - used scoped_cond_guard(mutex, _intr, return -EBUSY, &<mutex_lock>)
+>> - combined dev_err & dev_dbg to one dev_err in se_if_fops_read().
+>> - removed the structure member "se_shared_mem_mgmt->secure_mem".
+>>
+>> 4/6
+>> - trimmed the ele_fetch_soc_info.
+>> - removed the function ptr "se_info->se_fetch_soc_info" and replaced with
+>> ele_fetch_soc_info.
+>> - moved definition of func se_load_firmware, to 6/6 patch.
+>> - Different SoC, different ways to fetch soc_info. Generic function declaration
+>> for ele_fetch_soc_info() is needed. Hence wrapping ele_get_info() in it.
+>> - Updated Kconfig help text for assertive tone.
+>> - func ele_debug_dump is updated, to remove constructing the format string.
+>> - removed the macro usage for SOC_ID_MASK.
+>> - used low case hex number.
+>> - Condition will never occur, where msg_len satisfy the following condition
+>> "msg_len % 4 != 0". Err msg is added if it occurs.
+>> - Function description is added to se_add_msg_crc.
+>> - timeout is added to function ele_msg_rcv, in 5/5 patch.
+>> - local variable "header" is initialized with "tx_msg" and replaced "return err"
+>> with "return tx_msg_sz" in func ele_msg_send().
+>> - replace function name from "exception_for_size" to
+>> "check_hdr_exception_for_sz"
+>> - replaced "return ret > 0 ? 0 : -1;" with "return ret > 0 ? 0 : ret;" in func
+>> "se_save_imem_state".
+>> - func "se_restore_imem_state", to return if the condition is false to proceed.
+>> - removed casting by (void *).
+>> - removed devm_kasprintf and done direct allocatiion for attr->soc_id =
+>> "i.MX8ULP" & attr->soc_id = "i.MX8ULP", & attr->family.
+>> - Followed Reverse christmas tree order, whereever missing.
+>> - There is no return if ele_fw_authenticate fails. Execution flow continue
+>> forward and execute the fucn dma_free_coherent().
+>> - The loop is not for retry. The loop is needed to load secondary fw followed by
+>> loading primary fw, first. This is the case when ELE also got reset.
+>> - dev_err_probe is corrected in func "se_if_request_channel".
+>>
+>> 3/6
+>> -
+>>
+>> Reference:
+>> - Link to v13: https://lore.kernel.org/r/20250311-imx-se-if-v13-0-
+>> 9cc6d8fd6d1c@nxp.com
+>>
+>> Changes in v13:
+>>
+>> 5/5
+>> - Updated the commit message for imperative mood.
+>> - Remove the usage of macros- NODE_NAME, GET_ASCII_TO_U8,
+>> GET_IDX_FROM_DEV_NODE_NAME.
+>> - Clean-up the return path by replacing "ret = -<err>; return ret;" with "return -
+>> <err>;"
+>> - Clean-up the return path by replacing "ret = -<err>; goto exit;" with "return -
+>> <err>;"
+>> - Removed goto statements from the entire driver, where there is no common
+>> code at function's exit.
+>> - Fixes the check-patch erros reported with flag "--strict"
+>> - Replaced devm_add_action, with devm_add_action_or_reset
+>> - Removed the un-necesary and obvious code comments.
+>> - Removed dev_probe_err at the exit of function se_if_probe().
+>>
+>> 4/5
+>> - Clean-up the return path by replacing "ret = -<err>; return ret;" with "return -
+>> <err>;"
+>> - Clean-up the return path by replacing "ret = -<err>; goto exit;" with "return -
+>> <err>;"
+>> - Removed goto statements from the entire driver, where there is no common
+>> code at function's exit.
+>> - fixes the check-patch erros reported with flag "--strict"
+>> - removed the un-necesary and obvious code comments.
+>> - variable received msg timeout to be different at boot-up & suspend/resume
+>> and send/recv ioctlis.
+>>
+>> 3/5
+>> - compatible string is modified from "fsl,imx8ulp-se" to "fsl,imx8ulp-se-ele-
+>> hsm".
+>> - updated the alias name.
+>>
+>> 2/5
+>> - compatible string is modified from "fsl,imx8ulp-se" to "fsl,imx8ulp-se-ele-
+>> hsm".
+>> - compatible string is modified from "fsl,imx93-se" to "fsl,imx93-se-ele-hsm".
+>> - compatible string is modified from "fsl,imx95-se" to "fsl,imx95-se-ele-hsm".
+>> - Mis-understood the +1 from Conor. Hence dropped the Reviewed-by tag.
+>> - Collected Rob's R-b tag on v7
+>> (https://lore.kernel.org/all/172589152997.4184616.5889493628960272898.rob
+>> h@kernel.org/)
+>>
+>> 1/5
+>> - No change
+>>
+>> Reference:
+>> - Link to v12: https://lore.kernel.org/r/20250120-imx-se-if-v12-0-
+>> c5ec9754570c@nxp.com
+>>
+>> Changes in v12:
+>>
+>> 5/5
+>> - increased the wait-timeout.
+>>
+>> 4/5
+>> - rename flag "handle_susp_resm" to "imem_mgmt"
+>> - moved the buffer allocation ot load_fw->imem.buf, to se_probe_if.
+>> - setting imem state at initialization.
+>>
+>> 3/5
+>> - No change
+>>
+>> 2/5
+>> - No change
+>>
+>> 1/5
+>> - No change
+>>
+>> Reference:
+>> - Link to v11: https://lore.kernel.org/r/20241220-imx-se-if-v11-0-
+>> 0c7e65d7ae7b@nxp.com
+>>
+>> Changes in v11:
+>>
+>> 5/5
+>> - devname is constructed by concatinating get_se_if_name(se_if_id) &
+>> se_if_instance_id.
+>> - ele_rcv_msg(), is updated to add the wait_interruptible_timeout for the non-
+>> NVM-Daemon message exchanges, such that in case of no response from FW,
+>>   Linux donot hangs.
+>> - added a new helper function get_se_if_name(), to return the secure-enclave
+>> interface owner's name string.
+>> - added a new helper function get_se_soc_id(), to return the secure-enclave's
+>> SoC id.
+>>
+>> 4/5
+>> - moved the se_if_node_info member "soc_register", to the struct
+>> "se_if_node_info_list"; as soc registration done once, not per interface.
+>> - moved the se_if_node_info member "se_fetch_soc_info", to the struct
+>> "se_if_node_info_list"; as soc info fetching is done once, not per interface.
+>> - Added two member variable se_if_id and se_if_instance_id to struct
+>> se_if_defines.
+>> - removed the member "se_name" from struct "se_if_node_info". Rather, it
+>> will constructed by concatinating get_se_if_name(se_if_id) &
+>> se_if_instance_id.
+>> - moved the static global variable "se_version", to the newly created structure
+>> "struct se_var_info".
+>> - moved the member "struct se_fw_load_info load_fw" of
+>> "se_if_node_info_list", to the newly created structure "struct se_var_info".
+>> - Replaced RUNTIME_PM_OPS with SET_SYSTEM_SLEEP_PM_OPS, in power-
+>> managment ops.
+>>
+>> 3/5
+>> - No change
+>>
+>> 2/5
+>> - No change
+>>
+>> 1/5
+>> - No change
+>>
+>> Reference:
+>> - Link to v10: https://lore.kernel.org/r/20241104-imx-se-if-v10-0-
+>> bf06083cc97f@nxp.com
+>>
+>> v10: firmware: imx: driver for NXP secure-enclave
+>>
+>> Changes in v10:
+>> 5/5
+>> - replaced the u8, u16, u32, u64, with __u8, __u16, __u32, __u64 in
+>>   'include/uapi/linux/se_ioctl.h'.
+>>
+>> 4/5
+>> - No change
+>>
+>> 3/5
+>> - No change
+>>
+>> 2/5
+>> - No change
+>>
+>> 1/5
+>> - No change
+>>
+>> Reference:
+>> - Link to v9: https://lore.kernel.org/r/20241016-imx-se-if-v9-0-
+>> fd8fa0c04eab@nxp.com
+>>
+>> Changes in v9:
+>>
+>> 4/5
+>> - change se_if_remove function signature, required after rebase to v6.12-rc1.
+>> - move the info->macros to a structure "struct se_if_defines if_defs".
+>> - Removed "info" from "struct se_if_defines if_defs".
+>> - Moved "mem_pool" from "struct se_if_defines if_defs" to "priv".
+>> - Fetching "info" using container-of.
+>>
+>> 5/5
+>> - Fetching "info" using container-of.
+>> - Fixed issue reported by sparse.
+>>
+>> Reference:
+>> - Link to v8: https://lore.kernel.org/r/20241015-imx-se-if-v8-0-
+>> 915438e267d3@nxp.com
+>>
+>> Changes in v8:
+>>
+>> 5/5
+>> - Remove the check for SE_IF_CTX_OPENED.
+>> - replaced dev_ctx->priv-dev, priv->dev, whereever possible.
+>> - func "if_misc_deregister" moved before func "init_device_context".
+>> - func "init_device_context" before func "se_ioctl_cmd_snd_rcv_rsp_handler".
+>> - func "se_if_fops_write" and "se_if_fops_read", are moved after func
+>> "se_ioctl_get_mu_info".
+>> - non static functions "se_dev_ctx_cpy_out_data,
+>> se_dev_ctx_shared_mem_cleanup & init_device_context" are moved static
+>> and local scope.
+>> - Removed back & forth between the two structs "struct se_if_device_ctx
+>> *dev_ctx" and "struct se_shared_mem_mgmt_info *se_shared_mem_mgmt"
+>> - removed the NULL check for bdesc.
+>> - fops_open, is corrected for acquiring the fops_lock.
+>> - Fops_close, mutex unlock is removed. Infact check for
+>> waiting_rsp_clbk_hdl.dev_ctx, is removed.
+>> - sema_init(&dev_ctx->fops_lock, 1);, replaced with Mutex.
+>> - structure member se_notify, is removed.
+>>
+>> 4/5
+>> - removed initializing err to zero in func ele_fetch_soc_info(),
+>> - replaced 'return 0', with 'goto exit', if the condition (!priv->mem_pool) is true.
+>> - replaced "struct *dev" with "struct se_if_priv *priv", in base_message API(s)
+>> and others.
+>> - Created a separate structure "struct se_if_defines" to maintain interface's
+>> fixed values like cmd_tag, rsp_tag, success_tag etc.
+>> - removed the macros "WORD_SZ", "SOC_VER_MASK",
+>> "DEFAULT_IMX_SOC_VER", "RESERVED_DMA_POOL".
+>> - Added handling for "ctrl+c", by postponing the interrupt, till the response to
+>> the "command in flight" is received.
+>> - Removed the mutext lock "se_if_lock".
+>> - furnction prototype for "se_save_imem_state" and "se_restore_imem_state",
+>> is changed to pass "imem" by reference.
+>> - Added a new structure "struct se_fw_load_info", dedicated to contain FW
+>> loading relevant info. It is a member of struct info_list.
+>> - split "imem_mgmt_file_in_rfs" into two "prim_fw_nm_in_rfs" and
+>> "seco_fw_nm_in_rfs", to be part of "struct se_fw_load_info".
+>> - moved the function "se_load_firmware" prior to func
+>> "if_mbox_free_channel".
+>> - function "se_load_firmware" is updated to use "request_firmware", instead
+>> of "request_firmware_no_wait".
+>> - function "se_load_firmware" is updated to load "primary" fw image, if the
+>> imem_state is not BAD. Then load the "secondary FW" image.
+>> - Added a new mutex_lock in the function "se_load_firmware", for ensuring
+>> FW loading done once, when there are multiple application are in play.
+>> - instead of "wait_queue_head_t wq", used "sruct completion".
+>> - add devm_add_action with action as se_if_probe_cleanup.
+>>
+>> Reference:
+>> - Link to v7: https://lore.kernel.org/r/20240904-imx-se-if-v7-0-
+>> 5afd2ab74264@nxp.com
+>>
+>> Changes in v7:
+>>
+>> 5/5
+>> - struct se_clbk_handle, is added with a member struct se_if_device_ctx
+>> *dev_ctx.
+>> - func call to ele_miscdev_msg_rcv() & ele_miscdev_msg_send(), are removed.
+>> - func se_ioctl_cmd_snd_rcv_rsp_handler(), is modified to remove the func call
+>> to ele_miscdev_msg_rcv() & ele_miscdev_msg_send()
+>> - func se_ioctl_cmd_snd_rcv_rsp_handler is callig func ele_msg_send_rcv(),
+>> instead.
+>> - Mutext "se_cmd_if_lock", handling is removed from this patch.
+>> - func ele_miscdev_msg_send() is replaced with func ele_msg_send(), in
+>> fops_write.
+>> - func ele_miscdev_msg_rcv() is replaced with func ele_msg_rcv(), in fops_read.
+>> - fops_open is modified to create the new dev_ctx instance (using func
+>> init_device_context()), which is not registered as miscdev.
+>> - Only one dev_ctx is registered as miscdev and its reference is stored in the
+>> struct se_if_priv, as priv_dev_ctx.
+>> - Separate func cleanup_se_shared_mem() & func init_se_shared_mem(), for
+>> shared memory handling part of struct dev_ctx.
+>> - Input param for func(s) ele_msg_rcv(), ele_msg_send() & ele_msg_send_rcv(),
+>> is replaced from struct se_if_priv to struct se_if_device_ctx.
+>>
+>> 4/5
+>> - A new structure is defined name struct "se_clbk_handle", to contain members
+>> processed in mailbox call-back function.
+>> - "struct se_if_priv" is modified to contain the two structures of
+>> "se_clbk_handle" - waiting_rsp_clbk_hdl & cmd_receiver_clbk_hdl.
+>> - func ele_msg_rcv() is modified to take a new additional input reference param
+>> "struct se_clbk_handle *se_clbk_hdl".
+>> - func ele_msg_send() is modified to take a new additional input tx_msg_sz.
+>> - func ele_msg_send_rcv(), is modified to take 2 more inputs - tx_msg_sz &
+>> exp_rx_msg_sz.
+>> - func se_val_rsp_hdr_n_status(), is modified to take input of rx_msg buffer,
+>> instead of header value, as input param.
+>> - each caller of the func ele_msg_send_rcv(), is sending these two additional
+>> input params.
+>> - func se_if_callback(), is modified to work on two structures of
+>> "se_clbk_handle" - waiting_rsp_clbk_hdl & cmd_receiver_clbk_hdl.
+>> - Variable "max_dev_ctx", is removed from info & priv struture, as well its
+>> usage.
+>> - New member variable "se_img_file_to_load", is added to structure "priv".
+>> - Other member variables - rx_msg(ptr), rx_msg_sz, completion done & list of
+>> dev_ctxs, is removed from priv struture, along with their usage.
+>> - func se_resume(), updated to wakeup the two "wq", part of "struct
+>> se_clbk_handle": priv->waiting_rsp_clbk_hdl & priv->cmd_receiver_clbk_hdl.
+>>
+>> 3/5
+>> - Node name is changed from senclave-firmware@0 to "secure-enclave"
+>>
+>> 2/5
+>> - Node name is changed to "secure-enclave".
+>>
+>> Reference:
+>> - Link to v6: https://lore.kernel.org/r/20240722-imx-se-if-v6-0-
+>> ee26a87b824a@nxp.com
+>>
+>> Changes in v6:
+>>
+>> 5/5
+>> - replaced scope_gaurd with gaurd.
+>>
+>> 4/5
+>> - replaced scope_gaurd with gaurd.
+>> - remove reading the regs property from dtb.
+>> - Added NULL check for priv data fetched from device, as a sanity check, for
+>> ele_base_msg apis)
+>>
+>> 3/5
+>> - replace firmware with senclave-firmware.
+>>
+>> 2/5
+>> - replace firmware with senclave-firmware.
+>> - drop description for mbox
+>> - Replaced "items:" with maxItems:1 for "memory-region"
+>> - Replaced "items:" with maxItems:1 for "sram"
+>> - remove regs property.
+>> - remove "$nodename"
+>>
+>> Reference:
+>> - Link to v5: https://lore.kernel.org/r/20240712-imx-se-if-v5-0-
+>> 66a79903a872@nxp.com
+>>
+>> Changes in v5:
+>>
+>> 2/5
+>> - updated the description of mboxes
+>> - updated the description & items for mbox-names.
+>> - updated the description of memory-region
+>> - move "additional properties: false" after allOf block.
+>> - removed other example except one.
+>>
+>> 4/5
+>> - Corrected the indentation in Kconfig.
+>> - info members:mbox_tx_name & mbox_rx_name, are replaced with macros.
+>>
+>> 5/5
+>> - Replaced "for  secure enclaves", with "for secure enclaves"
+>> - Replaced "user space" with "userspace".
+>> - End the line "[include]<linux/firmware/imx/ele_mu_ioctl.h>" with a period.
+>>
+>> Reference:
+>> - Link to v4: https://lore.kernel.org/r/20240705-imx-se-if-v4-0-
+>> 52d000e18a1d@nxp.com
+>>
+>> Changes in v4:
+>>
+>> 1/5
+>> a. Removed - from EdgeLock Enclave.
+>>
+>> b. Removed , after "Each of the above feature,"
+>>
+>> c. replace "can exists" with "can exist".
+>>
+>> d.
+>> -messaging units(MU) per SE. Each co-existing 'se' can have one or multiple
+>> exclusive -MU(s), dedicated to itself. None of the MU is shared between two
+>> SEs.
+>> +messaging units(MU) per SE. Each co-existing SE can have one or
+>> +multiple exclusive MUs, dedicated to itself. None of the MU is shared
+>> between two SEs.
+>>  Communication of the MU is realized using the Linux mailbox driver.
+>>
+>> e.
+>> -All those SE interfaces 'se-if' that is/are dedicated to a particular SE, will be -
+>> enumerated and provisioned under the very single 'SE' node.
+>> +Although MU(s) is/are not shared between SE(s). But for SoC like i.MX95
+>> +which has multiple SE(s) like HSM, V2X-HSM, V2X-SHE; all the SE(s) and their
+>> interfaces 'se-if'
+>> +that is/are dedicated to a particular SE will be enumerated and
+>> +provisioned using the single compatible node("fsl,imx95-se").
+>>
+>> f. Removed ",". Replaced for "Each 'se-if'," with "Each se-if'.
+>>
+>> g. removed ","
+>> -  This layer is responsible for ensuring the communication protocol, that is
+>> defined
+>> +  This layer is responsible for ensuring the communication protocol
+>> + that is defined
+>>
+>> h. removed "-"
+>> -  - FW can handle one command-message at a time.
+>> +  - FW can handle one command message at a time.
+>>
+>> i.
+>> -  Using these multiple device contexts, that are getting multiplexed over a
+>> single MU,
+>> -  user-space application(s) can call fops like write/read to send the command-
+>> message,
+>> -  and read back the command-response-message to/from Firmware.
+>> -  fops like read & write uses the above defined service layer API(s) to
+>> communicate with
+>> +  Using these multiple device contexts that are getting multiplexed
+>> + over a single MU,  userspace application(s) can call fops like
+>> + write/read to send the command message,  and read back the command
+>> response message to/from Firmware.
+>> +  fops like read & write use the above defined service layer API(s) to
+>> + communicate with
+>>    Firmware.
+>>
+>> j. Uppercase for word "Linux".
+>>
+>> 2/5
+>> a. Rephrased the description to remove list of phandles.
+>>
+>> b. Moved required before allOf:
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - mboxes
+>> +  - mbox-names
+>> +
+>> +additionalProperties: false
+>> +
+>>  allOf:
+>>
+>> c. replaced not: required: with properties: <property-name>: false.
+>>    # memory-region
+>> -      not:
+>> -        required:
+>> -          - memory-region
+>> +      properties:
+>> +        memory-region: false
+>>
+>>    # sram
+>> -    else:
+>> -      not:
+>> -        required:
+>> -          - sram
+>>
+>> d. Reduced examples. keeping example of i.MX95.
+>> e. node-name is changed to "firmware@<hex>"
+>>
+>> 3/5
+>> - node name changed to "firmware@<hex>".
+>>
+>> 4/5
+>> - used sizeof(*s_info)
+>> - return early, rather than doing goto exit, in ele_get_info().
+>> - Use upper_32_bits() and lower_32_bits()
+>> - use rx_msg here instead of priv->rx_msg
+>> - Moved the status check to validate_rsp_hdr. Rename the function to
+>> "se_val_rsp_hdr_n_status"
+>> - typecasting removed header = (struct se_msg_hdr *) msg;
+>> - Converted the API name with prefix imx_ele_* or imx_se_*, to ele_* and
+>> se_*, respectively.
+>> - Removed the functions definition & declaration for: free_phybuf_mem_pool()
+>> & get_phybuf_mem_pool()
+>> - removed the mbox_free_channel() calls from clean-up.
+>> - Flag "priv->flags" is removed.
+>> - Converted the int se_if_probe_cleanup() to void se_if_probe_cleanup().
+>> - Replaced NULL initialization of structure members: priv->cmd_receiver_dev &
+>> priv->waiting_rsp_dev , with comments.
+>> - Removed the function's declaration get_phy_buf_mem_pool1
+>>
+>> 5/5
+>> Changes to Documentation/ABI/testing/se-cdev.
+>> a. Removed "-" from "secure-enclave" and "file-descriptor".
+>>
+>> b. Removed "-" from "shared-library"
+>>
+>> c. Replaced "get" with "getting".
+>>
+>> d. Added description for the new IOCTL "send command and receive command
+>> response"
+>>
+>> e. Replaced "wakeup_intruptible" with "wait_event_interruptible"
+>>
+>> f. Removed ";"
+>>
+>> g. Removd "," from "mailbox_lock,"
+>>
+>> h. Replaced "free" with "frees"
+>>
+>> i. In mailbox callback function, checking the buffer size before copying.
+>>
+>> Reference:
+>> - Link to v3: https://lore.kernel.org/r/20240617-imx-se-if-v3-0-
+>> a7d28dea5c4a@nxp.com
+>>
+>> Changes in v3:
+>> 5/5:
+>> - Initialize tx_msg with NULL.
+>> - memdup_user() returns an error pointer, not NULL. correct it by adding check
+>> for err_ptr.
+>> - new IOCTL is added to send & recieve the message.
+>> - replaced the while loop till list is empty, with list_for_each_entry.
+>> - replaced __list_del_entry, with list_del.
+>> - Removed the dev_err message from copy to user.
+>> - Removed the casting of void *.
+>> - corrected the typcasting in copy to user.
+>> - removed un-necessary goto statement.
+>> - Removed dead code for clean-up of memory.
+>> - Removed un-mapping of secured memory
+>> - Passing se_if_priv structure to init_device_context.
+>> - Updated the below check to replace io.length with round_up(io.length).
+>> 	if (shared_mem->size < shared_mem->pos|| io.length >=
+>> shared_mem->size - shared_mem->pos)
+>> - Created a function to cleanup the list of shared memory buffers.
+>> - Used list_for_each_entry_safe(). created a separate functions:
+>> se_dev_ctx_cpy_out_data() & se_dev_ctx_shared_mem_cleanup()
+>>
+>> 4/5
+>> - Changed the compatible string to replace "-ele", to "-se".
+>> - Declaration of imx_se_node_info, is done as const in the whole file
+>> - Remove the unused macros from ele_base_msg.h
+>> - Remove the function declaration get_phy_buf_mem_pool1, from the header
+>> file.
+>> - Replace the use of dmam_alloc_coherent to dma_alloc_coherent
+>> - Check for function pointer, before calling the fucntion pointer in
+>> imx_fetch_se_soc_info
+>> - Removed the unused flag for SE_MU_IO_FLAGS_USE_SEC_MEM.
+>> -  Removed the unused macros WORD_SZ
+>> - instead of struct device *dev, struct se_if_priv *priv, is used as argument to
+>> the funtions:se_save_imem_state, se_restore_imem_state,
+>> imx_fetch_se_soc_info
+>> - Removed ret from validate_rsp_hdr.
+>> - changed the prefix of the funtion: plat_add_msg_crc and
+>> plat_fill_cmd_msg_hdr.
+>> - indentation correction for info structures.
+>> - remove the check for priv not null from se_if_probe_cleanup
+>> - Removed the casting of void *.
+>> - se_load_firmware function is corrected for not freeing the buffer when
+>> allocation fails.
+>> - Checking if get_imx_se_node_info() can return NULL, in se_if_probe()
+>> - imem.size has type u32. return value from se_save_imem_state() will be
+>> assigned to imem.size in case of success only.
+>> - removed the flag un-setting in case of failure. priv->flags &=
+>> (~RESERVED_DMA_POOL);
+>> - removed the function call for devm_of_platform_populate(dev);
+>> - Checking for not-NULL,  before calling the funtion pointer se_fetch_soc_info.
+>> - Removed the checking for reserved memory flag, before freeing up the
+>> reserved memory, in se_probe_if_cleanup.
+>>
+>> 3/5
+>> - Changed the compatible string to replace "-ele", to "-se".
+>>
+>> 2/5
+>> - to fix the warning error, replaced the "-ele" & "-v2x" in compatible string, to "-
+>> se".
+>> - Added an example for ele@0 for compatible string "fsl,imx95-se"
+>>
+>> Reference
+>> - Link to v2: https://lore.kernel.org/r/20240523-imx-se-if-v2-0-
+>> 5a6fd189a539@nxp.com
+>>
+>> Changes in v2:
+>>
+>> 4/4
+>> - Split this patch into two: 1. base driver & 2. Miscdev
+>> - Initialize the return variable "err" as 0, before calling 'return err', in the file
+>> ele_common.c
+>> - Fix the usage of un-iniitialized pointer variable, by initializing them with NULL,
+>> in ele_base_msg.c.
+>> - Fix initializing the ret variable, to return the correct error code in case of issue.
+>> - replaced dmam_alloc_coherent with dma_alloc_coherent.
+>> - Replace the use of ELE_GET_INFO_READ_SZ, with sizeof(soc_info).
+>> - Replaced -1 with -EPERM
+>> - Removed the safety check on func-input param, in ele_get_info().
+>> - fix the assigning data[1] with lower 32 address, rather than zero, for
+>> ele_fw_authenticate API.
+>> - Correctly initializing the function's return error code, for file  ele_base_msg.c.
+>> - replaced 'return' with 'goto'.
+>> - Use length in bytes.
+>> - Corrected the structure se_msg_hdr.
+>> - Moved setting of rx_msg  to priv, into the function imx_ele_msg_send_rcv
+>> - Will add lockdep_assert_held, to receive path, in v2.
+>> - corrected the spacing at "ret  = validate_rsp_hdr"
+>> - FIELD_GET() used for RES_STATUS
+>> - Re-write the structure soc_info, matching the information provided in
+>> response to this api.
+>> - The "|" goes to the end of the previous line.
+>> - Moved the locking and unlocking of the command lock to the caller of the
+>> function.
+>> - removed the safety check for device private data.
+>> - Structure memory reference, used to read message header.
+>> - In the interrupt call back function, remove assigning waiting_rsp_dev to NULL,
+>> in case of response message rcv from FW.
+>> - do while removed.
+>> - replaced BIT(1) for RESERVED_DMA_POOL, to BIT(0)
+>> - The backslash is removed while assigning the file name with absolute path to
+>> structure variable.fw_name_in_rfs =.
+>> - Update the 'if' condition by removing "idx < 0".
+>> - mbox_request_channel_byname() uses a "char" for the name not a u8.
+>> Corrected.
+>> - devm managed resources, are not cleaned now, in function
+>> se_probe_if_cleanup
+>> - Used dev_err_probe().
+>> - Used %pe to print error string.
+>> - remove "__maybe_unused" for "struct platform_device *enum_plat_dev
+>> __maybe_unused;"
+>> - used FIELD_GET(), for  RES_STATUS. Removed the use of MSG_TAG,
+>> MSG_COMMAND, MSG_SIZE, MSG_VER.
+>> - Depricated the used of member of struct se_if_priv, bool no_dev_ctx_used;
+>> - Moved the text explaing the synchronization logic via mutexes, from patch
+>> 1/4 to se_ctrl.h.
+>> - removed the type casting of info_list = (struct imx_se_node_info_list *)
+>> device_get_match_data(dev->parent);
+>> - Used static variable priv->soc_rev in the se_ctrl.c, replaced the following
+>> condition: if (info_list->soc_rev) to if (priv->soc_rev) for checking if this flow is
+>> already executed or not.
+>> - imx_fetch_soc_info will return failure if the get_info function fails.
+>> - Removed devm_free from imx_fetch_soc_info too.
+>>
+>> 3/3
+>> - Made changes to move all the properties to parent node, without any child
+>> node.
+>>
+>> 2/4
+>> - Use Hex pattern string.
+>> - Move the properties to parent node, with no child node.
+>> - Add i.MX95-ele to compatible nodes to fix the warning "/example-2/v2x:
+>> failed to match any schema with compatible: ['fsl,imx95-v2x']"
+>>
+>> 1/1
+>> - Corrected the spelling from creats to creates.
+>> - drop the braces around the plural 's' for interfaces
+>> - written se in upper case SE.
+>> - Replace "multiple message(s)" with messages.
+>> - Removed too much details about locks.
+>>
+>> Testing
+>> - make CHECK_DTBS=y freescale/imx8ulp-evk.dtb;
+>> - make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8
+>> dt_binding_check DT_SCHEMA_FILES=fsl,imx-se.yaml
+>> - make C=1 CHECK=scripts/coccicheck drivers/firmware/imx/*.* W=1 > r.txt
+>> - ./scripts/checkpatch.pl --git <>..HEAD
+>> - Tested the Image and .dtb, on the i.MX8ULP.
+>>
+>> Reference
+>> - Link to v1: https://lore.kernel.org/r/20240510-imx-se-if-v1-0-
+>> 27c5a674916d@nxp.com
+>>
+>> ---
+>> Pankaj Gupta (7):
+>>       Documentation/firmware: add imx/se to other_interfaces
+>>       dt-bindings: arm: fsl: add imx-se-fw binding doc
+>>       firmware: imx: add driver for NXP EdgeLock Enclave
+>>       firmware: imx: device context dedicated to priv
+>>       firmware: drivers: imx: adds miscdev
+>>       arm64: dts: imx8ulp: add secure enclave node
+>>       arm64: dts: imx8ulp-evk: add reserved memory property
+>>
+>>  Documentation/ABI/testing/se-cdev                  |   43 +
+>>  .../devicetree/bindings/firmware/fsl,imx-se.yaml   |   91 ++
+>>  .../driver-api/firmware/other_interfaces.rst       |  131 +++
+>>  arch/arm64/boot/dts/freescale/imx8ulp-evk.dts      |   12 +-
+>>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi         |   11 +-
+>>  drivers/firmware/imx/Kconfig                       |   13 +
+>>  drivers/firmware/imx/Makefile                      |    2 +
+>>  drivers/firmware/imx/ele_base_msg.c                |  298 +++++
+>>  drivers/firmware/imx/ele_base_msg.h                |  117 ++
+>>  drivers/firmware/imx/ele_common.c                  |  373 ++++++
+>>  drivers/firmware/imx/ele_common.h                  |   51 +
+>>  drivers/firmware/imx/se_ctrl.c                     | 1185 ++++++++++++++++++++
+>>  drivers/firmware/imx/se_ctrl.h                     |  129 +++
+>>  include/linux/firmware/imx/se_api.h                |   14 +
+>>  include/uapi/linux/se_ioctl.h                      |   97 ++
+>>  15 files changed, 2564 insertions(+), 3 deletions(-)
+>> ---
+>> base-commit: e2119ceed6c9c8f8dd3bc4fb36d36ae94c26ff78
+>> change-id: 20240507-imx-se-if-a40055093dc6
+>>
+>> Best regards,
+>> --
+>> Pankaj Gupta <pankaj.gupta@nxp.com>
+> 
 
 
