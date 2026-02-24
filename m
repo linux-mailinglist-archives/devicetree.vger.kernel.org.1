@@ -1,242 +1,228 @@
-Return-Path: <devicetree+bounces-268069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268070-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFC4Eg8MnmkPTQQAu9opvQ
-	(envelope-from <devicetree+bounces-268069-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:37:35 +0100
+	id cL45H80MnmkfTQQAu9opvQ
+	(envelope-from <devicetree+bounces-268070-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:40:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A921218C702
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:37:34 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0491B18C71B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:40:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E67D30182A2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:37:33 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 29222305C27F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D79E433971F;
-	Tue, 24 Feb 2026 20:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8FA133971F;
+	Tue, 24 Feb 2026 20:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="m6b4vd3T"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="GPRY7U4l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011042.outbound.protection.outlook.com [52.101.65.42])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9224D1EB5E1;
-	Tue, 24 Feb 2026 20:37:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771965452; cv=fail; b=kYCbOPQ9a3ORc5G8xyA7haIsrI2bOLV3Hb7O4Tx5n0bj9HGKesxhR3bUo07imySGKGz236dlJRgfL0OEkYEZIG9Qmtfwl73ie5Fw03/V87eHA5ktlZjTo6R01vUTd+9vbAT51IuRCkxLy2eV8nx1mWKTVjg1GOlUOQTpJe3pNmI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771965452; c=relaxed/simple;
-	bh=8a6bFNUgkRZC74eGrRJf97d5ic/OXdGjpFwQVrbKPIU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=GxeVI9gHS7XpOr0JwWNt9uhUHB9l3OE6e3PYgl7Z4aaAz6NDhIqnVhUBiIVctO5SxWw8sdxUurgCXj9I3FQpcbBEOfFj0I/FofB35Arf0qEGt2cbWjdWztvj5Ao2IHl3SbtizGW7kdsNmJbWT8qt3Hw9SQovTwmC3+3WNA7dvLc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=m6b4vd3T; arc=fail smtp.client-ip=52.101.65.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iRpNATboK3WX7Es1ZtxHBiwG+sls69UrJZiqp283j1J7lBChlNYaL/ffKvm9nrVPG3DisW1mmuj2zpLi1on3i9/PnywsvEfXEDJHRFmA8pAxRAtRCU52ds+ibzhWMZevHGzQPw7m3LJDoQA6ntuYg4NdIvw5O1m0KOZb32TUVX23iWUcHizwCNeE4GAWHiw4nJKV18DO9cf8MeT1N1geA9zt3HevoYjs1TKLfEHaEek+wA8OdVNt3eozztEjz4bahBV45MAVhgshx1I4YLNXNzAiHmCT95LYoRLNhMSc1MlhAQ9LKoOh5KaE4d0ffVZsYYQXl2Qx8BbK650MVCiCQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8BQT9eNnONC328z1rdwJXA0moKrQY1RovGmp0NYq7cM=;
- b=Ju3TVV5BXnZyCp6pI1PGr3EIqpJiRVOglaRVJk8rG+gEFIq9nWNr1OvWZCcAlQ/V8AyRTY0ZFVzsuTAgaACicCAJAbwbZmb+p3sTLYTVLM7LFKjL6/Ik9A3txjSLgghNihyJX6giEwkACjVOat9M9z0riTgxmWNvxTdtUNPoylGB2WAKTVON2cGltZenleGN6Ku8Wf1G8boGiEtxWolDcoQ0V0Fsc42mzp7fG7v/iPPvC5e9KQ3f85voOhBeo9Vkim//0gqGV19AhOOJW7gacm0mYjZXEDYGzSOck8gEfMrgoFj70XuA29C7vJLrbN2BiVWKX0gCuAipNpg2Qa5GZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8BQT9eNnONC328z1rdwJXA0moKrQY1RovGmp0NYq7cM=;
- b=m6b4vd3TMj+0PjSbjbR7ewo3ZACemIVgBcqkus/N7RxpP2xP/wBdvSrPX4O/3w/BcVJoxuE2LMOv4hQODlir+ukOuuXf9TkwpATYJeZhFYoMHfYf3tpKS3CoSKZP3nSqRzvxgXGzP46lve/WyMTUWKRXdCN6XM4/GbcEWLk9ZuDX06nRtwhe6Rl12O/p4C3oiAHiNVz8JtXWotulopqbkeocLZrjIfSECDUCZlCgoZQYOHb447U0Qwm6Ytwt0pVcR1feyq3lxx5kVGVaDz5NTzSDjqvAyvqsayO8UDKmEk2UUWay1BSW8qFPXHqKzKFWNCop05o2fn+vprqdAhKXrA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by GV1PR04MB10379.eurprd04.prod.outlook.com (2603:10a6:150:1d3::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.23; Tue, 24 Feb
- 2026 20:37:28 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
- 20:37:28 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: imx91-tqma9131: improve eMMC pad configuration
-Date: Tue, 24 Feb 2026 15:37:10 -0500
-Message-ID: <177196542653.3315318.7982448705732136046.b4-ty@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260209155015.267008-1-alexander.stein@ew.tq-group.com>
-References: <20260209155015.267008-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PH7P220CA0080.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:32c::23) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4221EB5E1;
+	Tue, 24 Feb 2026 20:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771965640; cv=none; b=E4lVqg5ne6mTzYeyfgFW8UGiOBQ4TIBfe9gwOfmBSWYc546hcJK/9AIbieE3/2FwX8058j2RTlbpvnWmAf0OnWCVpOyFaD1V80QGLU1Hy30pPK3gqBXLGSDDM71YgxsBmFpqjflN0JLi3+R+lZwVugXAW4Hd/+y0YYswxaHKJ/8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771965640; c=relaxed/simple;
+	bh=UtM5aXuxCKYv0uMiLeNJYET/mW1F5hSjMVB4isIXB+s=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=uliUZFoo1/Q4d3OIeynp5qIFL3XrWph78MoiEUCBPcIaXCNDtCHSzrviOqSHGkwTB/OSvSL5DT5p9sCM0RNrazi+uM02MP6ej0h5SCzPqN5hDdZeIxn8r9hx8sm/ut+eujPilAQGvnHI9hEDp1EPR9kxgbVaV7Hf4hCrzujYT08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=GPRY7U4l; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=e8OBRZD45GVZ0p8P79HLXKm5h77uDsbpYKH7TIhd2tg=; b=GPRY7U4lElGEHRpTitwnHX3SYM
+	/1jBkpJlI9POyhE2CgS5FAJXnRKF2fAGsREJ8qsWI6v/FMAdBfPKAbliw0I2iTmpJ2OD6r7t8Zdis
+	RezEDA8899QzNOoc4O1l9yTC07sh4Zjem6FIVDxks97DCLdzv9hQcGVdRSUTMW3LfNVI=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:56866 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vuzCl-000592-SI; Tue, 24 Feb 2026 15:40:29 -0500
+Date: Tue, 24 Feb 2026 15:40:27 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Rob Herring <robh@kernel.org>
+Cc: hvilleneuve@dimonoff.com, dmitry.torokhov@gmail.com, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <20260224154027.0f81b1aa13fe779776e6d58f@hugovil.com>
+In-Reply-To: <CAL_JsqJNASirEqqcT-Sv8h9JC74e+XJSRsAki1ZWeKY8j2zbfw@mail.gmail.com>
+References: <20260213171431.2228814-1-hugo@hugovil.com>
+	<20260213171431.2228814-2-hugo@hugovil.com>
+	<20260223175706.GA4168417-robh@kernel.org>
+	<20260223134738.00988a3d87165cb130292c89@hugovil.com>
+	<CAL_JsqJNASirEqqcT-Sv8h9JC74e+XJSRsAki1ZWeKY8j2zbfw@mail.gmail.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GV1PR04MB10379:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9793344a-9d5c-4432-2acd-08de73e48684
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|19092799006|52116014|7416014|376014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UFRSU2xCMlRVb3J1WVprL0V4d2tXWkszU2N0TnZrL3pZZ0V5V1hwZTJVQndI?=
- =?utf-8?B?RGUwOWIxcVVzQUJEbFFCUmlLOFFvNDV0VzlCUzYwUUVaUWR4bUdqUHlmSlpD?=
- =?utf-8?B?NlZyU1VWTmhLclVhbC9MYUpBVk8zZEJ5ajh5RWdrQjFHNTFxa09nOWxGVkhD?=
- =?utf-8?B?djY1Y1BpZDJ3TVVCVnc1cGZlQ1ptZmZ6aTd0dUZHUjVhNXVVMC91bWJQQjdi?=
- =?utf-8?B?a1d0MW56SE0xekxEa0k2RnNNTFZYN2dockNSNWFmRjJHcEVWWTZWMUtkSnV4?=
- =?utf-8?B?alNJQlFwOUt2RkRZWlo1aWRJWEE1c1dkSGdodHFTRzFQR1B1K0VpbGtqeGVS?=
- =?utf-8?B?WFFwQ0ZGbSswMExoYVFucXBrYUlSOEhENXJLNTNmb2pBby9JeVVjeDYvUS96?=
- =?utf-8?B?djQ3aTI0bW15YTBJRnplc1RTOElKU0hYVHRmS3JENURBZ1EzV284UGVJWVM2?=
- =?utf-8?B?OUE3RnVTOEVWZFIwR1A2bDVLTmdqNWRCZWdiWFExNXgvVUJxWUFmYzBGVXd5?=
- =?utf-8?B?TDBiaytNb2pZZW9BZzVoWGNVenpyVzM1NXJqd2QvcFNDM0V5TUYzajc5YmlY?=
- =?utf-8?B?c2VWK3FJQ3laL0hXWEtFS0M4U1FNZXdORUdwK2hkU2FSZmpZNStYeTRVcE5S?=
- =?utf-8?B?QmhmV1ZHS1dsTUVDVDllVFJyQ0drZ2hrTXMydjZ1SUlCc0F4SVRVbEVBZ0FD?=
- =?utf-8?B?T3dUczM0ZnBxMklJTzFQalpBSlYzMDBBakVTb2tsOE9NcWRPOFFEM2xXWUFJ?=
- =?utf-8?B?NEMzTGVhc3p1V1hvVUJDQ0lLWEpWZUs1a20wOHF4ZlgwV01kZHRHUEQvaVJw?=
- =?utf-8?B?OTVyUk5sODNJRTNaOXl0N1Y1VDlQbmxzSVU3S09vZlJKSmxibkoyRFFHM2F0?=
- =?utf-8?B?aEVxdU50QXdCMkFKai84NTE1d2VNVXEzczlwM0x5aDZoak1wOEVMYWZUT2h5?=
- =?utf-8?B?b0prejFSS3JlLy9CSU8wV0hBdFNtbXREZEowaUovam5DMnc1N2g0MVpHMnlV?=
- =?utf-8?B?eG9ad2RiTDlkVHdpaXZlbWNZdzhQNmhnZTFxM01kYW5pZkpMS2xTMTFSUSsx?=
- =?utf-8?B?Q0NLbHp5Nng0elJPN2JDL1Y5Z3Z4WExIcVowa3BjbGxoWm9xWHVta0VJOVpJ?=
- =?utf-8?B?QUE5cW9kemRRS3ppMWVUZWRQaEZ6Yjd1TG9SSERqcStISXQ5dFNPa2dsaWx5?=
- =?utf-8?B?MTlzZkFWeEgxcDBIOUJqYlBNSkV6Y2M0ODQ4WkFKSVlmQUZuM1VHaGZmajhq?=
- =?utf-8?B?QnFYUUdkWkxoZTduWnU0cllnb0FnSXJ5cEwrVkNzakR0MjBEU040bjlHelR6?=
- =?utf-8?B?UXpJT1FvZEdJU1h3Z1dZbTE1NmprY3NJdk1IbXpXall0R1hqcTBnNlB2NmhM?=
- =?utf-8?B?dUhSNmlqdEFKbjB5dHlLMkhXc0h1SGNqbVZaaUhDTFdsK2VQRVpKUFgyNUJk?=
- =?utf-8?B?SDJnQ3VXZzYwU2FFand3TWJyVzI1TFlxQ2JrSjYwYkEwMktPV25pVnRIeGdG?=
- =?utf-8?B?L0JVRDhVeTRTRGkxMERRQ0FYZXNhQWxYSUw0S2RLZFZraWUxSEpoQ2JEOEZQ?=
- =?utf-8?B?U3QvcjlNM2ZrUTBFbjdxYjV3NlJGMk92MjZyQmx2MUxucy8wdXZkMG5JcXc4?=
- =?utf-8?B?aFk5SG9jWjZZN2d6K0tOdjFqY0JUOTkwaDF3Yjl6ZDVQYmQvR2s5alpGREZx?=
- =?utf-8?B?R2NJcjg4RDlUVHNMaCsxb29MbTRrTWxEbmNPWTNWS2FTdXpyY1lpcXJhMmh2?=
- =?utf-8?B?azN2YXNSWnZ4K0NXNzBEaEttNHdseE9md3gyTWRqZXJjelJxWnNqeDFTNzMz?=
- =?utf-8?B?TFFMUXVRYVFkRDNId2NaNlUyVnJheFFHM1I3dGN1TnNLa2NnOU1OV1owK1li?=
- =?utf-8?B?WGR0ZFh6UmhmZG5TWXpteDVieHo2T25YMzFVZUsybWo5WThudHEreCs1M3VH?=
- =?utf-8?B?dXlYMGZ4WDhGeDJaQVBTYjVmRGRNNWJGczMra0xLc21NcWpHVmdEZy9mVE4r?=
- =?utf-8?B?OEN5UVRFVUZWWmdhbkxzNVBuUXAzWjlmSW41TDN3N0Ntb0UzdUtiRldPZTlB?=
- =?utf-8?B?OGJnc2pmVDB2WjJINEZRUjVFRDY0YmZKQndsVllkMGZhdGFKbUZ5Zm9OdVli?=
- =?utf-8?B?VWNHQzRsMGZzdFpGV1pqZmZjYW1VRXFTMzZNMmo3cVNmWWQ5L2orbWY0cXJV?=
- =?utf-8?Q?YkIX94Onm17A1pVTeuasicI=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(52116014)(7416014)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WEc4cDV4ejdEL0w1QXQyNkhBTURFS2dGSm9DZnRHeE5OZjV5QzdxSVU1NEtz?=
- =?utf-8?B?V05HNkpSVWtvZlR1WnBNNGJKa2NMTmt4ak11K3ltcHJwV0N0bjcxYXhnYTJx?=
- =?utf-8?B?emxlQ3p6MFpQK1NYTGxNTEk1TUd0WVV5eGp6ZlVBa1ZUSmE5djJjbWRFSGY1?=
- =?utf-8?B?aFd0MUpROVp3ZWJ2UHpjRWd0d0JNWTZiUmNnWXVvc0g0WVdoZDYzK01DSnJs?=
- =?utf-8?B?Z1o5QmZodkdJK2tOcXh4dVQvbWJlcVZLYTdHZ0lBYU1VVkdrWTJBWFpkWk1y?=
- =?utf-8?B?Mi9vNXNIUnVFd05ML3ROU3JnM3RMcE1TVTRoSEFaSFZrdGw2OVBhTlUrTFFH?=
- =?utf-8?B?MDhpTFYvVHhlaENHWkZ1UEJLazhRdTZRL0RwbmFLZnIwLzhWRUVIdmpkbnBX?=
- =?utf-8?B?OUFvMWJBaGhwa01RYnp3ck9kVFZucDliWlNGcE5WdjlwcTNES1NtMGh3dXdz?=
- =?utf-8?B?L2xWblhZWVdiVjMrMW1vRW9yNDhYSEtTQUIxa2ZFdjdnTndrYUVDVFBHQ2hF?=
- =?utf-8?B?QUR2czg1L2k1Nkh6Nk1qaU5LdTZwYTNWOXNqeXpBc2VXTVFZaEljKzF5bTM2?=
- =?utf-8?B?NTVQRlIwTXpIVGRTWmtVWFZadmI5VUZRYmc3TFUrSkI3SHQvU1pKanJ6b0NF?=
- =?utf-8?B?YWwxNFAvSHp3R0tnSzM2S2UvdlhadzFoMkxFakpSQ3RFYkVIbDdrVjh0T3JK?=
- =?utf-8?B?aVZmaXM2cmdVUnlHbnlhcDNPc0t2SEVkdFpqOXVOZHlSR21ZeDl1SGpvWmF6?=
- =?utf-8?B?UWJXNy9GclF6L00rQzZ3ejJBanFRWThvZC9jR1g0UEZLd2JHT0c0WDhqbEsw?=
- =?utf-8?B?Tjd4TFpUVnBLLzh4ZWxDV2tReE9GSDJ3Ymh2T3ZRWWZNdEFzMWpVbjk1dUcv?=
- =?utf-8?B?dENNZ0wyaDNudUgzZ0twaXZLZitjMm9EUE9IbjhtTVp3YXRpOEh0dmJ2TjZG?=
- =?utf-8?B?TXQyKzJYYUtiemt5WUEvbjQvUHRENi9ybnZIREFYNE1JNW1uaUxLaHJ2eDEv?=
- =?utf-8?B?a0M4M3lXNDY2ZW4xb0hlbDlTbkxtNnJLY0UrZVBaN1JhS0tSNWtybmRlWUVG?=
- =?utf-8?B?L2Q4a01HQTlFQWFLRExiL1F2eWxTRlZXWi9EcUdSdjlCdUtyR3pYMVNuV3Nx?=
- =?utf-8?B?YlV5dzdUcW4zSWhDVnZ0U3BtYWI0ZnhMc29sWE1jdUxhWmhWWEJuNlJSUXJt?=
- =?utf-8?B?WE5tVGJwQnk0R0o3NklJMTgzQVRyWTY2UjdHcjFJbFkzdXo5cUFpeitKOHpn?=
- =?utf-8?B?eGZhbFI4akNiNXZsUFFWbDJsVFRCTTM0cjYrREtTRnNNK2VRSjlDNThva25H?=
- =?utf-8?B?akJtYXMyMm1lMFR0ZytzeGhEekh4bmQwVGlPVWxJNWxzcWJxOG9nUVE5eHE5?=
- =?utf-8?B?TGtaKzhnejE3VDVpYlpLZ0lVNjV5elZWQmQyZ2VNNXUzVnNjcWdtQlUzbzVH?=
- =?utf-8?B?bS8rVStucXRtUmhGOXVycGdNaFkrbTJUMzE1R0ptQUJaeng2U285TmNPdVJM?=
- =?utf-8?B?c21xOVJycThSQTM4aXA5Wm55cW5NZ3YxQlZmUE5oOGVqcGFGR0tOTkp5eTFy?=
- =?utf-8?B?QnRVTGVQMy8rb1pmeE9ZMFl2S001RFBUKzRtYm1SSHYwRHoyS29ia0d6cVBv?=
- =?utf-8?B?elVQajhxZmk3QVJFSjJXMlNkYVdiV2N1aStESDhEVG8rR1g3RE80ZStwNStJ?=
- =?utf-8?B?aWQrTVI2eW44ejZvYkFiSkRGa1ZMR0JKM2g3SVVMNnJZMDdMSVU1cTlNM2E0?=
- =?utf-8?B?SWZMZzNaT0xkOEJZWSsxb3hHOHhQT3Y2eGhDUXF6SVJnNEVjNVcvZkxuMzMr?=
- =?utf-8?B?Mk5Ndk9IZzBnZjVheUoxQ2gwMkFaQmtEdTZrUzMvNHNCc093MDQzeFg0V1cx?=
- =?utf-8?B?aHRneFJRZUEzc0hHcXRjbURqbzZEMHFkMjRBM3puQ1oxS1AyNXFIUEdmU1Rz?=
- =?utf-8?B?RzZTUXZSTnFHM0ZtbzQzNWRtd29WR2IrdVhKdmNnWmdiOWsvTTBnMkRFZ0Yv?=
- =?utf-8?B?ZCtBV2Jqdi9rZENlWlQ3TXlzcytuQUFseVZKdWNHWWd4SjFyYmFDWGpzcGRE?=
- =?utf-8?B?K1E1UkF0YkNNZEtGU0R4Nis0L0FCYjNoTzdoQkpiVmdQb0tWSDdZcTVuWlZZ?=
- =?utf-8?B?NXpJcklzYm5vdWFCbnJENzVZS1VkM3VmVU9uOXhlYTN2cXNmNjI4T0VtT0ox?=
- =?utf-8?B?WVpuRXVGN0l6bHBjZUdQVEZ1Z21MSklNSm9iYXUwbDdBTXRET09HUjAwZFRw?=
- =?utf-8?B?ekhONklWUkl4RnFBUEZjM2hhT21vdy9XcGkxdkVrZ01GMm41ckkrNGt0Wldz?=
- =?utf-8?B?MGRwdXVoUUlNb3FrQTFvSGpWamRJQmhtK3hGZ2ZTSERabmRZdmNUQT09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9793344a-9d5c-4432-2acd-08de73e48684
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 20:37:28.3672
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /0U0jm/Gsm7SSStGWkHHOU7sKuXIXsPQLuA7ozusfMljQBYbflj3z+EbwtU0W8stI+75C/Mrk/ZdBsRzsF7V4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10379
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -3.0 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: add GPIO charlieplex keypad
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268069-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268070-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,ew.tq-group.com];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[hugovil.com];
+	FREEMAIL_CC(0.00)[dimonoff.com,gmail.com,kernel.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[hugovil.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.995];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:dkim,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A921218C702
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 0491B18C71B
 X-Rspamd-Action: no action
 
+Hi Rob,
 
-On Mon, 09 Feb 2026 16:50:13 +0100, Alexander Stein wrote:
-> Use DSE x4 an PullUp for CMD an DAT, DSE x4 and PullDown for CLK.
-> This improves stability and detection at low temperatures under -25°C.
+On Mon, 23 Feb 2026 17:23:33 -0600
+Rob Herring <robh@kernel.org> wrote:
+
+> On Mon, Feb 23, 2026 at 12:47 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Mon, 23 Feb 2026 11:57:06 -0600
+> > Rob Herring <robh@kernel.org> wrote:
+> >
+> > > On Fri, Feb 13, 2026 at 12:14:25PM -0500, Hugo Villeneuve wrote:
+> > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > >
+> > > > Add DT bindings for GPIO charlieplex keypad.
+> > > >
+> > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > ---
+> > > >  .../input/gpio-charlieplex-keypad.yaml        | 82 +++++++++++++++++++
+> > > >  1 file changed, 82 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> > > > new file mode 100644
+> > > > index 0000000000000..1672491a75a85
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+> > > > @@ -0,0 +1,82 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +
+> > > > +$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: GPIO charlieplex keypad
+> > > > +
+> > > > +maintainers:
+> > > > +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > +
+> > > > +description:
+> > > > +  The charlieplex keypad supports N^2)-N different key combinations (where N is
+> > > > +  the number of lines). Key presses and releases are detected by configuring
+> > > > +  only one line as output at a time, and reading other line states. This process
+> > > > +  is repeated for each line.
+> > > > +  This mechanism doesn't allow to detect simultaneous key presses.
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: input.yaml#
+> > > > +  - $ref: /schemas/input/matrix-keymap.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: gpio-charlieplex-keypad
+> > > > +
+> > > > +  autorepeat: true
+> > > > +
+> > > > +  line-scan-delay-us:
+> > > > +    description:
+> > > > +      Delay, measured in microseconds, that is needed
+> > > > +      before we can scan keypad after activating one line.
+> > > > +    default: 0
+> > >
+> > > Isn't this the same as "col-scan-delay-us" in gpio-matrix-keypad.yaml?
+> > > If so, move it to matrix-keymap.yaml to re-use it here.
+> >
+> > It is used in a similar fashion, but for charlieplex keyboard, there is
+> > no concept of "rows" and "columns". There are only
+> > lines, which are all equivalent in functionality.
+> >
+> > > If not, there's a bunch of other scan delay properties just from
+> > > grepping "delay" in the input bindings. Surely we can define something
+> > > common.
+> >
+> > Most of those delays refer to something quite different than what
+> > "col-scan-delay-us" or "line-scan-delay-us" are used for (it is a delay
+> > that we wait when activating a GPIO before we can safely/reliably read
+> > other GPIOs connected thru its circuitry).
+> >
+> > Maybe "col-scan-delay-us" and "line-scan-delay-us" could be
+> > combined into a common "line-scan-delay-us" ("line" is more generic
+> > than column), and defined in matrix-keymap.yaml.
 > 
+> What about "scan-delay-us"? I would assume all the scan delay
+> properties are just the delay after changing the outputs to reading
+> the inputs.
+
+They are for gpio-matrix-keypad.yaml and this binding, but not for
+others. Most scan delay properties refer to the period or
+interval between successive scans.
+
+So for my binding, "settling-time-us" would be more accurate and a
+better property name (it is also used in adc.yaml).
+
+Looking into a common place to define this new property, I stumbled
+upon gpio-delay.yaml, so maybe I do not need this new property at all
+and simply define a gpio-delay node if needed (and add it to this
+binding example)?
+
+I tested this and it works, although it requires a patch to the
+gpio-aggregator driver, because for now it respect the delay only
+when changing the output value, not when switching between input and
+output like I do in my driver.
+
+With my patch, it works ok.
+
+> > Then would it be ok to remove "col-scan-delay-us" from
+> > gpio-matrix-keypad.yaml and use "line-scan-delay-us" (ABI change) ?
 > 
+> No!
+> 
+> Rob
 
-Applied, thanks!
-
-[1/2] arm64: dts: imx91-tqma9131: improve eMMC pad configuration
-      (no commit info)
-[2/2] arm64: dts: imx93-tqma9352: improve eMMC pad configuration
-      (no commit info)
-
-Best regards,
---
-Frank Li <Frank.Li@nxp.com>
+-- 
+Hugo Villeneuve
 
