@@ -1,131 +1,149 @@
-Return-Path: <devicetree+bounces-267790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267791-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sMVnGIFxnWmAQAQAu9opvQ
-	(envelope-from <devicetree+bounces-267790-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:38:09 +0100
+	id WJtxNqBxnWmAQAQAu9opvQ
+	(envelope-from <devicetree+bounces-267791-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:38:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA694184BAC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:38:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 516C9184BE3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:38:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 12D253087069
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:35:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2D51A30CFDAA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8FA36BCCC;
-	Tue, 24 Feb 2026 09:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0504036CE1D;
+	Tue, 24 Feb 2026 09:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KB51Fyh6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ADBNcvUY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8235F36B07D
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 09:34:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D586636CE04
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 09:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771925698; cv=none; b=MPjWV/PzCKHW4sX5KCLWoTkTFgVjCy1BdQN444mQ+QqWESIZ7CicdGF70iHGBgm9wGCx5EY5dipsqb9Mcn5TzmXMWuoBCaCsfuzxrmL57DxLyv88zY6VJOJjsZfcNEkD7WdFcnrPgo5UAwos4/MAfuvoJzZ4+SSz2VmOjJo5rpM=
+	t=1771925857; cv=none; b=fnLZbgIy/C1J/3Pb/jmr7YFksjz7JIl9UEkOqSGwAUUYs6YcyE/PzmBvcHDBSZauSENiupyL66ly3zZ7eKjX2zVdh/n75VOGn4iuARLN5ZHolrungtoSAEEjTVGuKGFIX3lKw0Kk3XbBMzYYPjZntyEhSKm/29nBaTulBC7BzNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771925698; c=relaxed/simple;
-	bh=s6DByzrLUIdVl8l63+05mVX9KnRO5e6G5hkZDJSrnDk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=t3FYLnuOeynW4nCACZCDWUCGS970+fu7DLfjxELUF+gGgQyNY6GF8iDi33zz7umPXflywVQoBR4GuYJcIzh1ZMoeHMXNkUVVty1WNCbAnC+SIUilcZyIrop88nMmx95Mf6Bgye6GGEczyNMdD/GoiZtaL66Bm4ZslHagSur1gDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KB51Fyh6; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771925695;
-	bh=s6DByzrLUIdVl8l63+05mVX9KnRO5e6G5hkZDJSrnDk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KB51Fyh6baKM+BEpam7jGsEifDVhiEq/7HbfZ3uebVGyGCQwpSrFwuCLyayZYpy6n
-	 rr8IIarsYGp/kgwJSzhxhrhuUQ7LuH5mOhsph9rVIXrEgNsK8QhVXH8Jl9xgvn0aMp
-	 YxKhWk+RdEP8HTwRTlZK5lzih8O21W86La2i1FI3xNK+6e3plZe1GX8qt0BfUiXvEp
-	 sKpcEPKRsLfkWKFG4Sg/kAwaZcO/U9WP6eJ498GmTWzZgnpg91xpd9UXKJYMt3NOJm
-	 wlxwxnqwRH9LpIA6XSSB4EsS45V5hlsoAb23hH41Bpa48z0rlHv6l+9rsDgQMynspr
-	 LT8JXQr52U9vQ==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6A5A417E012E;
-	Tue, 24 Feb 2026 10:34:55 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@mediatek.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-In-Reply-To: <20260224082541.7938-1-zajec5@gmail.com>
-References: <20260224082541.7938-1-zajec5@gmail.com>
-Subject: Re: [PATCH RESEND] ARM: dts: mediatek: mt7623: fix efuse fallback
- compatible
-Message-Id: <177192569539.12050.9762878225171356081.b4-ty@collabora.com>
-Date: Tue, 24 Feb 2026 10:34:55 +0100
+	s=arc-20240116; t=1771925857; c=relaxed/simple;
+	bh=g8edeZSicPJhy++p3maHG8V56bDu+kyumjD/ZT9RxXk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Eu3FO7qW81SymSBf8F1emyVB2olU+j4XLn/yl5DeiYpQ8/HWJmR3oD8eHZASTBUxdEShOgjp8Hwf3LYuNUogh31rgPoqMvZvLc5OrehBu8EhoYUUNZ+LH6QRvdDRzDOTYHzIyjfAxjCyYXZbxDEi0621dMbIQE3IlV/iiY68pkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ADBNcvUY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99042C2BCC7
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 09:37:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771925857;
+	bh=g8edeZSicPJhy++p3maHG8V56bDu+kyumjD/ZT9RxXk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ADBNcvUYlfljcYMUK1YXe6mWXiZyA0e20GKeaTNKWidPih5IS7X18yQ7xBzX4XR2k
+	 YLo4ksg5UcaOfk9K/uUe1ZTeYPDFaVCb/xedtqh3u8m9AgfT4i2VqHgVS49GDCYOBi
+	 7qx2tEPJyLOD/bkLqf+HNccjdkP5s8CmUbM+gsKtSChqWvpMCqYNku8h4pyHPh9329
+	 zZ2jAXRogmpLvmoq48k3qr1njxCfKuTnCeijehPzXPelC2kZ1VeYWz6hTZIKNBnjwY
+	 cNrlsiryUdVASp8/fn8bJ3eomuICcrx52MVBwgu4/dX/skjtXmHOIOcReWOZtYKzFK
+	 hVdaitIlxrdkg==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-79801df3e21so51375417b3.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 01:37:37 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVHIcJs9G4yVDr17ixop1xdnTz9ipDtiPQcgqeFqF+TkvB6ltgfVyfn6KQEkR3PKZYq32CTOK1aRwxg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2lX80AWNLnE62Y14hdm8UHz0dEOUgW6Ym3UthlOKccEYeQtpN
+	hS4ZCyY+4bisrmmI21RfitNz0P+Q9BEz9BJk7bojHFSJC6a3mQ5HJPl2DEa60mNmIZn+PkqJ+yk
+	3b3ZYGLCJ6I8Hb1UVR4bWErfa9PAR8yg=
+X-Received: by 2002:a05:690c:e3e5:b0:798:1b2d:4b6c with SMTP id
+ 00721157ae682-79828cde4bamr107400237b3.11.1771925856834; Tue, 24 Feb 2026
+ 01:37:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.3
+References: <20260212213656.662437-1-shenwei.wang@nxp.com> <20260212213656.662437-4-shenwei.wang@nxp.com>
+ <aae7c851-a93b-4d57-a118-43c6e68c4790@foss.st.com> <13f9d767-61d6-4e29-b36e-6dcc860ccb11@lunn.ch>
+ <fd257c80-d97f-45b0-a12f-3a1888ba81db@foss.st.com> <396819f2-dd00-4c09-8bc7-c035a5282a56@lunn.ch>
+ <PAXPR04MB9185A908F5090F0CA4FF05F78968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <b21b9ee5-d84e-47f8-86b5-c111ecc3d43d@lunn.ch> <PAXPR04MB918576D67A268E59242964A08968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CAD++jLkUVFckLTq=SoivNFoFymhJo4KM=qGmajFcv9T9+7tPmg@mail.gmail.com>
+ <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com> <PAXPR04MB91859B642802813F908B03DA8977A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB91859B642802813F908B03DA8977A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 24 Feb 2026 10:37:25 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkHwKxcDu7oX+_+N00SSfEMrj4CBEKUYZTEmTZv5Gjb2Q@mail.gmail.com>
+X-Gm-Features: AaiRm53tdO9PraGZNM_tmFUQUZSiJUlpqFoMJNSwiXKqWWTvRU2E_PWdBXxyRms
+Message-ID: <CAD++jLkHwKxcDu7oX+_+N00SSfEMrj4CBEKUYZTEmTZv5Gjb2Q@mail.gmail.com>
+Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Frank Li <frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Shuah Khan <skhan@linuxfoundation.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, 
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267790-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[foss.st.com,lunn.ch,kernel.org,lwn.net,linaro.org,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	TAGGED_FROM(0.00)[bounces-267791-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.155.187.48:email];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: AA694184BAC
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 516C9184BE3
 X-Rspamd-Action: no action
 
-On Tue, 24 Feb 2026 09:25:41 +0100, Rafał Miłecki wrote:
-> Fix following validation error:
-> arch/arm/boot/dts/mediatek/mt7623a-rfb-emmc.dtb: efuse@10206000: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['mediatek,mt7623-efuse', 'mediatek,mt8173-efuse'] is too long
->         'mediatek,mt8173-efuse' was expected
->         'mediatek,efuse' was expected
->         from schema $id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
-> arch/arm/boot/dts/mediatek/mt7623a-rfb-emmc.dtb: efuse@10206000: Unevaluated properties are not allowed ('compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
-> 
-> [...]
+On Mon, Feb 23, 2026 at 9:33=E2=80=AFPM Shenwei Wang <shenwei.wang@nxp.com>=
+ wrote:
 
-Applied to v7.0-next/dts32, thanks!
+> Arnaud, if you agree with the points above, my proposal is the following:
+>  - Remove the fields you mentioned in the protocol and update the driver =
+accordingly so
+> that we can establish a true baseline for a generic implementation we all=
+ agree.
+>  - Then prepare a separate patch to add support for existing NXP platform=
+s by introducing
+> the necessary fix=E2=80=91up functions.
+>
+> Please let me know if this approach works for you. My goal is to find a s=
+olution that works for
+> everyone =E2=80=94 even though I know that pleasing everyone is almost im=
+possible.
 
-[1/1] ARM: dts: mediatek: mt7623: fix efuse fallback compatible
-      commit: 5978ff33cc6f0988388a2830dc5cd2ea4e81f36a
+This looks good to me, and Arnaud seems happy too so let's go ahead
+with this.
 
-Cheers,
-Angelo
-
-
+Yours,
+Linus Walleij
 
