@@ -1,270 +1,348 @@
-Return-Path: <devicetree+bounces-267723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267724-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gBztEapCnWkMOAQAu9opvQ
-	(envelope-from <devicetree+bounces-267723-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:18:18 +0100
+	id SO27DoZEnWkMOAQAu9opvQ
+	(envelope-from <devicetree+bounces-267724-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:26:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68DFB1825C2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:18:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA7CF182688
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:26:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E02A1300862F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:18:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 29F4C304CCC2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89DA22D97BB;
-	Tue, 24 Feb 2026 06:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6FC2E9ED6;
+	Tue, 24 Feb 2026 06:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SJM0S5xl";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="jTeGx+1O"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="LrywmLTD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010056.outbound.protection.outlook.com [40.93.198.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1518C2D7D27
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 06:18:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771913891; cv=none; b=DxfXTtFy60/Jdj4uAeduFH2kpseVP+A2Xfyt2g3K5QaepYpv31gY7/SYnlVRn10cHstHdQ05t9ouwAWbDczI9QZhJxTZFMQgci9ozWuuoAik4Dhx4QsKIXGw68NWn84F4Pl/sLFYc4XjSyj++n8ZNMnr5FxPA021AINQgJpG6x8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771913891; c=relaxed/simple;
-	bh=55ftLdvyOLNET2JD8Cx2U7172SmE3PQBBQsKretftwc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ApxZ+fVOaJibZfbgv+QrxPyUdZYkeFPZQFW5koel5hFyDKlD3rR4iwgaFFkTV6dzxdTn6kGLoVM7jW8gI2C7tPKHKbV/hCHFXVUTC4JipYp7ALQneHsJGKeXRVB6Y1tU6k4+y43b7US0nThhP0koJtJsyejYPRCoGktCp8Uk2Og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SJM0S5xl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jTeGx+1O; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61O4LXfX1754259
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 06:18:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JIF3RzhViYYlwxx+OD/unsWmeMnNrO6XtaAytnKLG5w=; b=SJM0S5xliId38m0K
-	yEeHtH36NYE+SuY/Jiivi5rbioKb+jvioZ0KTCFwPBsbt9TixdCi+zbsJiwsQUZT
-	0gh8VH+1WUfX1G8tCK8yzM9LRRkBRXzYAVhncJEw/2wQCsdTcQeSydM/3ZJgT5c9
-	dFZtguSyMcGmuv0OriC68j58AdtPaBW7girwYib3Vdsv8McKNnp3SaNuRjWQDFU+
-	TeGs2DHWyoxECcnALatSSaqQkf8tyzUiFqFOaTt9XCWz9NiyNabV8yjowfjZ+2U0
-	y4WJ+01NZTMcNnFnAT12oWjlGRpca/6rQBoBnLNqv0TmLFTLiyWe8Hf1L9jUHg2B
-	87zx+w==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cgn81b5f5-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 06:18:07 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-354c0234c1fso4786938a91.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 22:18:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771913887; x=1772518687; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JIF3RzhViYYlwxx+OD/unsWmeMnNrO6XtaAytnKLG5w=;
-        b=jTeGx+1OOb9eQnXAWNJAtlrQ6ePfASVtxcTx6IoLsMV8C6SM9NiwHvT11jHOBgzxwe
-         pnn+mlu5C4Co8xTjKvvXYe26/Qjeg2lmY0zZAvfFFBSDJtWPUGHYyr92RqYecGFmD4YB
-         v/ptkmeS9meuTE45Dz8WIOUlf8dFjY78aTrNKASuTxjH8CprmhqRpCYCwHNMXIJA2Yzc
-         rCxEavu7r/iz0YUUYOwzqxiT0VbC3JdcK6FTsLMsV4Ja14//BpGIuQI/swEPfvlw22qO
-         0e7pntsqSXDQscISWd0VE9iwC7lHFTxdc7ZguA5bC9Mo0Mt5+th0w8qCXu/9uh2YUdRG
-         SWPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771913887; x=1772518687;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JIF3RzhViYYlwxx+OD/unsWmeMnNrO6XtaAytnKLG5w=;
-        b=KGPcZcREs/5AOtlrX1lcYGEh3quDFmXFRgkmM1Ra/7RM8MDliKf3+QdguVXMvqR5rF
-         n2dHaGZb4I8ikywLQv8fWlo9GOFyB3ULUyOALW450DHwUPZ7Vyufr6ZhkYdMl96W8i/g
-         wRwZeKnxFsmGFWSmpg82dbl08jP2ZOiU16/U81miBYSiKOUREcCYCNIwQCQHEAuHvClE
-         Gd1zAorg6AXx1yhtm9syE0He78YuP03mnZNuXB4FzlE/7vbBC4b3daPvcCFDTyB6zONN
-         DuH8IiIHCeZzttEL6niev4+xO/dQhxSnobHCXfd/n2e9gdUcxEIOVJLCLWRyU6P5pmF2
-         WDqw==
-X-Forwarded-Encrypted: i=1; AJvYcCWjspniV05VgXvKK9+FrnL8nyr5ypaAqwrWLfEWqkepBKI4B4m/tGYNFR9eB6Qb6Ps5KyIfys26VQBE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxY2nBPQ09uxEd0WII8KXkCJfg55lRsqd7GqODlJcwjHHTT0a7s
-	qfv58hP357br3IiiLYZydlIyVlPfuVNjdVIceFGcrsn0lOmdRGyp+4lhKSXgvNVZU4bVGiPn0MZ
-	fTjPF+CbUCwLREzbqnCGfBhUu2kRGMLOXwQ8oL9Ig/59VFV2Y81ErfqbLvfpGyQxg
-X-Gm-Gg: ATEYQzxBbvx6XV9LtmkyPj84BJEPYJKbsD0IIxknW0MkjFhZz733Z74YjJzAtxZosli
-	dw6iw6XHru7VKqYjgXx7VSGCaOlsZgWz/f1Qt6LZkvl4Fb3PgI7DELzaHa/uC4hAcftTfvyDd7N
-	bC17PN6LJrkB6BWpx0KJlQdtfN3YUcIH+P36mBgxVSB6hzxboBCVrOpVsrvbA3bbVxkkd2OjOqp
-	UANupylb+4cUvC3j+tkxJsRiRnWZBIyOmA2H3ptowpRcLRCVq7ldR/TqxsCT6dErW71sPD9vvKm
-	gUxM7N25EbSJR9dkz45s9YF7B4IBSMHctAPGfUjawDMkdD2WD+0BpFzplGO/GvEypTfTmnlVssV
-	FdC4zuGcXcXxX86xc4H0ms/exTPHh1XxO7/52C7up36R1XOhz/iXAhC3zmUZ1eXTFV4WgyA55WA
-	ExszImWz+6UAsgwVRffIdRjLPgfUPMHHg1EKS15rc=
-X-Received: by 2002:a17:90b:2e0f:b0:356:3ba2:1233 with SMTP id 98e67ed59e1d1-358ae8b3dafmr8115472a91.22.1771913886889;
-        Mon, 23 Feb 2026 22:18:06 -0800 (PST)
-X-Received: by 2002:a17:90b:2e0f:b0:356:3ba2:1233 with SMTP id 98e67ed59e1d1-358ae8b3dafmr8115432a91.22.1771913886336;
-        Mon, 23 Feb 2026 22:18:06 -0800 (PST)
-Received: from [10.190.200.237] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-358af5f8b1bsm8333890a91.0.2026.02.23.22.18.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Feb 2026 22:18:05 -0800 (PST)
-Message-ID: <48778fa8-b485-4c79-be1a-c70836f65f0b@oss.qualcomm.com>
-Date: Tue, 24 Feb 2026 11:48:00 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF731FE47B;
+	Tue, 24 Feb 2026 06:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.198.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771914371; cv=fail; b=LXIxjksF/vcYyql1JSiU7XE9di8ZQdgs/jtlQuz0OtOXq9pprLfJjAvhkFbzS1w1XxsQuViaaAfRrUmAfwZtcn8HamW0KP4MnbHfrkOjUuvJWrb5ON66geindyZqEIKaPMhi9Ik41//dW8v9W6NQyLIdu5kmkv7qQbRJ85Zek8Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771914371; c=relaxed/simple;
+	bh=+gJKye2q8kEAgjZ4DmnRWNbbBuFh71iwFXvUYKd9eZk=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VfC7QHmYAF/QWeQ9VO408lCSglr7Iq2LA9QjNinuknKfjgAsA/Rv3Xw3WOdT24/BXgi3HxsLOPyU7N10XADj1LghKPDXarYcFvXfX6EVIM/ECrZr0XYbXr6EANJ3kD3STZDy6pm7a0H63ODsR79rFhECa5hee6ovP5i+nV+FC2M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=LrywmLTD; arc=fail smtp.client-ip=40.93.198.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lIbhN7g8pYag5Tm8HlePSoQZYmtRsPqLHWUlUiI32CuLfgVCKWrF7XJOvZ31fLn05OXKkUbh3G7311zyIToxZM67Xe8Sn+KRjSuHNcqxxk45RDRm3tqIWQh0NdqO6Elv493eXqvExg90T4t891ZEnV4t+NTXQXii1enn04fDyPTLLO0LWS3WMdG2K1GxmkuN/wcHKySBqaI9Qid4Nu4LCVtbJifWqR8hxnJlgWM4ajbNTXAlo3TBCQHAveyA2/D9Q3f7AXBi7twbU88ZZInDnHEj1uP9J3B3A8OE4kjt7xsJXRMhYCBxy5hrXFvdwoqp3MEUbwrtIu1bBsCQHbXYcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1lxtAqfuTr/27rDxq2nbcVQCkso8Hr4HkOvGiLJCmsU=;
+ b=TNXW4S2lSmmUfuVHI2UEsjN0ZRpgYdnt00douB07jsPXatDAA9NDAqr+HplOox+hbb7Q5HkDglVOK2AB8L3tTHl8iLWcfcMoMcKKM4YzzF7ov4qKIpfhpu0iinJOuwW3IpFAiHpEKM7CYWD1eiz7DALwhokioFjIqiMnCNyCJYliW68ve79k5pDJ2tsPf8ZKqZajHotMmgG1MRMEB2gQS3IGnISRjmcEPKce4kp4OTa6F3H+ckqn4shgMMPYu1aM/aVRne6DTeGdVxaiFTWoZtuVIS+pc9/ts30+6I7NZteKu/qJm3o1dJRJ6eXueCpM5788p4Q0fACQwlEvreyadg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=nxp.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1lxtAqfuTr/27rDxq2nbcVQCkso8Hr4HkOvGiLJCmsU=;
+ b=LrywmLTD/dVuK3iZSS6ne8EsV5TciHm9SIktFgCKOZ02zR2WZjAfTRWhCp9lu/HapRD5P4FRGefJ/7b74K6yNu0ZdRYv5MprC8As74LC/3YMl4/zjKR6xmqOgjf1KM09DOWZuYr9ZkApFKqlUyXDWihljIKc6RyeuL03igCqOI6T2wGH/pN2Ywco1BZlvvDvDwiCPUBIWJPb0Ckcew6iEjf0A4wmO80aigvExqdTz4Uvwm/hC9DbwrF97b4Gai0V2z18fiTFUTKpyZAcdKNcIbEdRFjGrKHUA/fCPYfkeVfGVN7ShlYaL3Rvl4X6rdvFrwhajJt9rP/aVvmBv7Vz7A==
+Received: from SJ0PR13CA0024.namprd13.prod.outlook.com (2603:10b6:a03:2c0::29)
+ by BL4PR12MB9536.namprd12.prod.outlook.com (2603:10b6:208:590::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Tue, 24 Feb
+ 2026 06:26:05 +0000
+Received: from SJ1PEPF000026C3.namprd04.prod.outlook.com
+ (2603:10b6:a03:2c0:cafe::dc) by SJ0PR13CA0024.outlook.office365.com
+ (2603:10b6:a03:2c0::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.21 via Frontend Transport; Tue,
+ 24 Feb 2026 06:25:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ SJ1PEPF000026C3.mail.protection.outlook.com (10.167.244.100) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Tue, 24 Feb 2026 06:26:04 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
+ 2026 22:25:49 -0800
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail202.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
+ 2026 22:25:48 -0800
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Mon, 23 Feb 2026 22:25:44 -0800
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <frank.li@nxp.com>
+CC: <Frank.Li@kernel.org>, <akhilrajeev@nvidia.com>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+	<jonathanh@nvidia.com>, <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <p.zabel@pengutronix.de>, <robh@kernel.org>,
+	<thierry.reding@gmail.com>, <vkoul@kernel.org>
+Subject: Re: [PATCH 6/8] dmaengine: tegra: Use iommu-map for stream ID
+Date: Tue, 24 Feb 2026 11:55:43 +0530
+Message-ID: <20260224062543.47660-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <aZTG8af4O-wosg4N@lizhi-Precision-Tower-5810>
+References: <aZTG8af4O-wosg4N@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 5/5] arm64: dts: qcom: glymur-crd: Enable ADSP and CDSP
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, robh@kernel.org,
-        srini@kernel.org, amahesh@qti.qualcomm.com, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        mathieu.poirier@linaro.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-References: <20260129001358.770053-1-sibi.sankar@oss.qualcomm.com>
- <20260129001358.770053-6-sibi.sankar@oss.qualcomm.com>
- <e658b473-6f05-4f83-a730-e586068d8742@oss.qualcomm.com>
- <sgomjvhwnnbvuskxqfybczvxtwn2lourr5eq4mw4qyxp5s6kzc@ccgx4wn5wqi3>
- <24973bc9-a082-42ec-89f4-12758ddca136@oss.qualcomm.com>
- <yaunylao3nefmhbdovpfoymy63hjfjtvbwm5quqvdyk3enpno6@7rmpnx7esdhs>
- <8d96ebc8-67e2-424d-adbc-0948dd3641a0@oss.qualcomm.com>
- <CAO9ioeUSJQC685K47qMBn51r7APReO9T+h_K3bZ_94Uwn1unBg@mail.gmail.com>
-Content-Language: en-US
-From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-In-Reply-To: <CAO9ioeUSJQC685K47qMBn51r7APReO9T+h_K3bZ_94Uwn1unBg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: oHN-m_5xfd4Mb_O81JGFS-ih468Oayez
-X-Proofpoint-ORIG-GUID: oHN-m_5xfd4Mb_O81JGFS-ih468Oayez
-X-Authority-Analysis: v=2.4 cv=CbsFJbrl c=1 sm=1 tr=0 ts=699d42a0 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=EUspDBNiAAAA:8 a=ePpz_JlwkyPc9ubz9f4A:9 a=QEXdDO2ut3YA:10
- a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI0MDA1MSBTYWx0ZWRfX5ctmB8JYMahJ
- xPpPHKJUkNHqz9OSdInzeXflNGvtp7SyHLbTsEt++oNjNLfebYr+RNrBdJtoqcsQyyoOVgPVMm3
- XqEyjKfFzedkj4zg/7rlLDkjflA4BrkdHFfBEOc8gku/mrcwlOuCTZhg5U/H5SRkJwHBrlNKcnQ
- Qwah3tkQgSB7Kj10Xsso7WfS7+V8upFVkKNjEcxOCx8E6+W/p7StkJ3i3gBgAVCQU5tKWOZLPdo
- lmfGGDoh6NRLkjgVgqlg9K4TkmMjfIktdb6BRKhQzne3VqUCV7ISb0IJeo4KGXlGqutSOUysUh7
- z+d975Acx4XaCWaoq0/wumD64Mpu7aJTxcwBFebKciGgULRs5Q9UTLbaDYOLCnD7nLMQLYoPFmO
- A+e78n/zUtafzDHbYTKAAWZjQUSsdey3uUSv4H6Z0RnOkgiUmkcYs3k5dl/u4Ah37gL+8IqtaJX
- eK0yrx6Zy7FDCduPBVg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-23_06,2026-02-23_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 impostorscore=0 priorityscore=1501
- suspectscore=0 phishscore=0 spamscore=0 malwarescore=0 clxscore=1015
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2602240051
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C3:EE_|BL4PR12MB9536:EE_
+X-MS-Office365-Filtering-Correlation-Id: f27304d6-5271-4a53-f276-08de736d9670
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|7416014|376014|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?dnq03Lem+DYPAiUJnT1dVxAlZn/4gtIgR9efRxgdbpwTDGxRLHlbze5iVpGK?=
+ =?us-ascii?Q?oVqzjbgfcKaJRTBET71bH345tXAML/5OZp4jmqYR6/0Un2uahtllGzXVWVWL?=
+ =?us-ascii?Q?AmazUT2m5B97iQ7o6Zd/fPUKUtfbNmX9H9+BYdWCqk/EmIKWXoGwLpbYaPP/?=
+ =?us-ascii?Q?FJEo+VLLsN1nlN53w4hask+WDN2o8dI9Hq3RpeCD56QBc5cRJIawqPZznCLZ?=
+ =?us-ascii?Q?b0l1Jturrn6rr95ufSpVHkWrt+/Btij2hnmvxDfS95Zww6ncKhZlxyV20ScQ?=
+ =?us-ascii?Q?5SQw1yO5LQl1b9HTwL6oD7qgJCPcukYsE9c1KzaphnLF9x+BKF6z3BHzjXoU?=
+ =?us-ascii?Q?2auhlXuL5UQfSxKTXHQpI00mFKI6X3GyN7UT59dISy1m462k/d1btyePErv0?=
+ =?us-ascii?Q?0Ykxc75nWBg1ShxWNNMZabYwzgRwElLUG1d9oDWt7EeYuv3VPrJ1CLieaTRY?=
+ =?us-ascii?Q?qrGATGUi3CzD4+xM1z2IcR1231aBmcw7quVQpbdUF4JUAPMe1RhVwg/yoTmT?=
+ =?us-ascii?Q?2dyvMS7/gvxWozAk4ow1AnvProOaQNLwgowbMp513auVpkZ7Sp3tRMP/zLpI?=
+ =?us-ascii?Q?tq261dKh7hi50Oz5JnSOSSxwM6h9jP7sKz6IEOgGIE33bIlHoD/GOxAEs5U2?=
+ =?us-ascii?Q?SHrm0Zx76KNNiNKgwTgq9ifIjF4uOjTxMIZBf2+pjCa2fdu5DX0YeioOvhcy?=
+ =?us-ascii?Q?e4nm/04g4pdnJBKTLqWPZBrJLngwYPz/RN7QUWrp5DxRGBRBmmXktvkc8qSE?=
+ =?us-ascii?Q?0tAYJAPXLC+DAFrde74KHPGJwN1TJZfWU9dt5U0F7BSmfB6o3+HoyUDBL1Bj?=
+ =?us-ascii?Q?G9MYyuxI0i92+8Qh3dKgIDlAIxeipEqN2KvUz9YMI/TZiKdwXFhhNabdsgSN?=
+ =?us-ascii?Q?msN7tceAHEVEoWLaTKcU9sW0BFx6k2FplXLanXkq+FtPbCyuRQxNu77Gc0Dz?=
+ =?us-ascii?Q?H5Xg9Cn9PdFtr6D880qif482IN+1i0wfgDUMfTpztlDTWR7UC1tn1+tHDznc?=
+ =?us-ascii?Q?jDM5RTQYRvW/bWSOdwtXgA2VrJ4ZiaoSxDgPgq1dp3bs7xEdHwFoBgSKJklm?=
+ =?us-ascii?Q?ycaVjzGrwTpLdAyiju7p74JS72mtxaHP/UeVyokjHNJsroXlPY0I2Kqkw0km?=
+ =?us-ascii?Q?7DUkssmWWKKqzdWQjpOYmAu2YtWW8OZd6KYGaRo9PrKL2RFkVptgikexF7vw?=
+ =?us-ascii?Q?JEaFJYp01CKKftNoehykUMQqJV3uXCWkRZjjTbiUzc6spcqo8jJCiQVjNMTc?=
+ =?us-ascii?Q?cBKUbSpO9cXAC2czvtW69jM+wiYC4ZX8a1KPog+ssn77lkGkZ9wNPt4tZ6FO?=
+ =?us-ascii?Q?tJQYkWTBEL1XEXjUyFgXwa0RKHC07Wd6Lbw99q6rhnQIiNYN5BS15bJKrB+V?=
+ =?us-ascii?Q?kk8ANdqvV1lhtHH3avGvwBLgvTAFkgtBfSEZJ9IHR2R6kychR63A9vFrcrgv?=
+ =?us-ascii?Q?PiVKFYq/8OTYplBal3v+kYYom5YTaN9p0czXqwxi3hk8vcJmd0PW7oirW379?=
+ =?us-ascii?Q?FIwTLAV/ofnM8JagZd5PuSbKq+tazqF0eJjhEAnGsyyhjhRH1O5ysO1n5Ryt?=
+ =?us-ascii?Q?kMbfdxIihumWke9UKl8fPO0cSvIinrXJaAFKp0Hm3dJ42QBPSHqTOgPy57YH?=
+ =?us-ascii?Q?UTK3O/xMUsETnjQPybd+VpLCMGDw3+qZzpaefYsYabq4LiwEtf1rjrOlKakk?=
+ =?us-ascii?Q?0XmltQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	SiCOb/onR1OcX0nj+OBP9iZbtjVaSwBuEMe/FsGbAJgNVIM+FYrEzvaHA7+wEY4MF8yBshBk49Qmi8vQMZSMj30nzioeDg9z2WEkWJmSi2Q25vk6JeC5S5Umc6ZCM/QSGXbq1APHa6KLL01dx6WS7dTauL6O8QjtLT4njm4zxav7JafN0YV18qjtE1Nbfet5WF2StHB0NsbEKTQZ9ObrYul87eV9neFwSQX5hPVuDgac6OW9SyBwT/wrJhcpFracoY86LLY3o+viZ0OA2rDtXM89IPmIE6xY0GiAxeQF3ZtR7/0beNiuBNzg6e+yk2YWHBTN1IURUOX5BPgZYuJIWZMvTfRhXb03/gZZVJI+RoRi30pvOwx4gVpUaKclAFCvtop6ZoWmBKCETHLyISB42Q/5Pdgen8vZfjlor5QDrHvc8kFlhiPzLJx3qlTSeNAN
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 06:26:04.5401
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f27304d6-5271-4a53-f276-08de736d9670
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF000026C3.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR12MB9536
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267723-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,vger.kernel.org,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-267724-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sibi.sankar@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,Nvidia.com:dkim,nvidia.com:mid,nvidia.com:email];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 68DFB1825C2
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: AA7CF182688
 X-Rspamd-Action: no action
 
-
-On 2/23/2026 10:44 PM, Dmitry Baryshkov wrote:
-> On Mon, 23 Feb 2026 at 11:09, Sibi Sankar <sibi.sankar@oss.qualcomm.com> wrote:
+On Tue, 17 Feb 2026 14:52:17 -0500, Frank Li wrote:
+> On Tue, Feb 17, 2026 at 11:04:55PM +0530, Akhil R wrote:
+>> Use iommu-map, when provided, to get the stream ID to be programmed
+>> for each channel. Register each channel separately for allowing it
+>> to use a separate IOMMU domain for the transfer.
 >>
->> On 2/3/2026 6:09 PM, Dmitry Baryshkov wrote:
->>> On Mon, Feb 02, 2026 at 11:16:19AM +0100, Konrad Dybcio wrote:
->>>> On 1/31/26 8:54 AM, Dmitry Baryshkov wrote:
->>>>> On Fri, Jan 30, 2026 at 10:55:24AM +0100, Konrad Dybcio wrote:
->>>>>> On 1/29/26 1:13 AM, Sibi Sankar wrote:
->>>>>>> Enable ADSP and CDSP on Glymur CRD board.
->>>>>>>
->>>>>>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->>>>>>> ---
->>>>>>>    arch/arm64/boot/dts/qcom/glymur-crd.dts | 14 ++++++++++++++
->>>>>>>    1 file changed, 14 insertions(+)
->>>>>>>
->>>>>>> diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
->>>>>>> index 0899214465ac..0eed4faa8b07 100644
->>>>>>> --- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
->>>>>>> +++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
->>>>>>> @@ -487,6 +487,20 @@ &pon_resin {
->>>>>>>            status = "okay";
->>>>>>>    };
->>>>>>>
->>>>>>> +&remoteproc_adsp {
->>>>>>> + firmware-name = "qcom/glymur/adsp.mbn",
->>>>>>> +                 "qcom/glymur/adsp_dtb.mbn";
->>>>>>> +
->>>>>>> + status = "okay";
->>>>>>> +};
->>>>>>> +
->>>>>>> +&remoteproc_cdsp {
->>>>>>> + firmware-name = "qcom/glymur/cdsp.mbn",
->>>>>>> +                 "qcom/glymur/cdsp_dtb.mbn";
->>>>>>> +
->>>>>>> + status = "okay";
->>>>>>> +};
->>>>>> Please make sure it gets to L-F (only Kaanapali is there right now)
->>>>>>
->>>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>>> Hmm, looking at x1e80100-crd which references qcom/x1e80100/adsp.mbn,
->>>>> but the firmware in linux-firmware is (now) targeting IoT devices,
->>>>> should we use WoA-like names for firmware on Glymur CRD instead
->>>>> (qcadsp-something.mbn). It would match what was done for the SC8280XP
->>>>> CRD.
->>>> I think it's simply time to stop pretending the firmware is generic
->>>> (some fw simply isn't and some fw may come from different/incompatible
->>>> branchpoints) and include a board name in the path
->>> Well... CDSP is usually generic, except for WP vs non-WP.
->> Hey Dmitry/Konrad,
+>> Channels will continue to use the same global stream ID if iommu-map
+>> property is not present in the device tree.
 >>
->> Thanks for taking time to review the series :)
+>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>> ---
+>>  drivers/dma/tegra186-gpc-dma.c | 62 +++++++++++++++++++++++++++-------
+>>  1 file changed, 49 insertions(+), 13 deletions(-)
 >>
->> The ADSP/CDSP firmware that got upstreamed to linux-firmware got their
->> functionality tested on Glymur WP CRD devices.  Given that the firmware
->> has already landed, can I continue to use the same name as the patch and
->> have a different name for other boards if something specific has to be
->> pushed
->> for IOT?
-> Thank you for a prompt reaction, it took just 20 days. During that
-> time we could have fixed WP firmware filenames, but... linux-firmware
+>> diff --git a/drivers/dma/tegra186-gpc-dma.c b/drivers/dma/tegra186-gpc-dma.c
+>> index ce3b1dd52bb3..b8ca269fa3ba 100644
+>> --- a/drivers/dma/tegra186-gpc-dma.c
+>> +++ b/drivers/dma/tegra186-gpc-dma.c
+>> @@ -15,6 +15,7 @@
+>>  #include <linux/module.h>
+>>  #include <linux/of.h>
+>>  #include <linux/of_dma.h>
+>> +#include <linux/of_device.h>
+>>  #include <linux/platform_device.h>
+>>  #include <linux/reset.h>
+>>  #include <linux/slab.h>
+>> @@ -1403,9 +1404,12 @@ static int tegra_dma_program_sid(struct tegra_dma_channel *tdc, int stream_id)
+>>  static int tegra_dma_probe(struct platform_device *pdev)
+>>  {
+>>  	const struct tegra_dma_chip_data *cdata = NULL;
+>> +	struct tegra_dma_channel *tdc;
+>> +	struct tegra_dma *tdma;
+>> +	struct dma_chan *chan;
+>> +	bool use_iommu_map = false;
+>>  	unsigned int i;
+>>  	u32 stream_id;
+>> -	struct tegra_dma *tdma;
+>>  	int ret;
+>>
+>>  	cdata = of_device_get_match_data(&pdev->dev);
+>> @@ -1433,9 +1437,12 @@ static int tegra_dma_probe(struct platform_device *pdev)
+>>
+>>  	tdma->dma_dev.dev = &pdev->dev;
+>>
+>> -	if (!tegra_dev_iommu_get_stream_id(&pdev->dev, &stream_id)) {
+>> -		dev_err(&pdev->dev, "Missing iommu stream-id\n");
+>> -		return -EINVAL;
+>> +	use_iommu_map = of_property_present(pdev->dev.of_node, "iommu-map");
+>> +	if (!use_iommu_map) {
+>> +		if (!tegra_dev_iommu_get_stream_id(&pdev->dev, &stream_id)) {
+>> +			dev_err(&pdev->dev, "Missing iommu stream-id\n");
+>> +			return -EINVAL;
+>> +		}
+>>  	}
+>>
+>>  	ret = device_property_read_u32(&pdev->dev, "dma-channel-mask",
+>> @@ -1449,7 +1456,7 @@ static int tegra_dma_probe(struct platform_device *pdev)
+>>
+>>  	INIT_LIST_HEAD(&tdma->dma_dev.channels);
+>>  	for (i = 0; i < cdata->nr_channels; i++) {
+>> -		struct tegra_dma_channel *tdc = &tdma->channels[i];
+>> +		tdc = &tdma->channels[i];
+>>
+>>  		/* Check for channel mask */
+>>  		if (!(tdma->chan_mask & BIT(i)))
+>> @@ -1469,10 +1476,6 @@ static int tegra_dma_probe(struct platform_device *pdev)
+>>
+>>  		vchan_init(&tdc->vc, &tdma->dma_dev);
+>>  		tdc->vc.desc_free = tegra_dma_desc_free;
+>> -
+>> -		/* program stream-id for this channel */
+>> -		tegra_dma_program_sid(tdc, stream_id);
+>> -		tdc->stream_id = stream_id;
+>>  	}
+>>
+>>  	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(cdata->addr_bits));
+>> @@ -1517,20 +1520,53 @@ static int tegra_dma_probe(struct platform_device *pdev)
+>>  		return ret;
+>>  	}
+>>
+>> +	list_for_each_entry(chan, &tdma->dma_dev.channels, device_node) {
+>> +		struct device *chdev = &chan->dev->device;
+>>
+> why no use
+> 	for (i = 0; i < cdata->nr_channels; i++) {
+> 		struct tegra_dma_channel *tdc = &tdma->channels[i];
 
-Hey Dmitry,
+I thought this would ensure that we try to configure only the channels
+where the chan_dev and vchan are initialized. I understand that it is
+not probable in the current implementation that we will have channels
+which are uninitialized, but I felt this a better approach.
+Do you see any disadvantage in using the channels list?
 
-I'm really sorry that this happened this way :( but I was out
-on vacation the past three weeks getting married. A quick
-review comment on the firmware pull request for naming
-change request would also sufficed in the interim. Also to address
-some of your concerns there aren't any plans to push an iot
-specific ADSP/CDSP firmware for Glymur reference devices.
-Also, this series already warrants a re-post so I can still
-accommodate your naming requests with corresponding
-updates to linux-firmware.
-
--Sibi
-
-> got released just two days ago, so we can't fix that anymore. Now we
-> don't have any other option than to use a non-standard name for IoT
-> firmware when it comes later.
+>> +
+>> +		tdc = to_tegra_dma_chan(chan);
+>> +		if (use_iommu_map) {
+>> +			chdev->coherent_dma_mask = pdev->dev.coherent_dma_mask;
+>> +			chdev->dma_mask = &chdev->coherent_dma_mask;
+>> +			chdev->bus = pdev->dev.bus;
+>> +
+>> +			ret = of_dma_configure_id(chdev, pdev->dev.of_node,
+>> +						  true, &tdc->id);
+>> +			if (ret) {
+>> +				dev_err(chdev, "Failed to configure IOMMU for channel %d: %d\n",
+>> +					tdc->id, ret);
+>> +				goto err_unregister;
+>> +			}
+>> +
+>> +			if (!tegra_dev_iommu_get_stream_id(chdev, &stream_id)) {
+>> +				dev_err(chdev, "Failed to get stream ID for channel %d\n",
+>> +					tdc->id);
+>> +				goto err_unregister;
+>> +			}
+>> +
+>> +			chan->dev->chan_dma_dev = true;
+>> +		}
+>> +
+>> +		/* program stream-id for this channel */
+>> +		tegra_dma_program_sid(tdc, stream_id);
+>> +		tdc->stream_id = stream_id;
+>> +	}
+>> +
+>>  	ret = of_dma_controller_register(pdev->dev.of_node,
+>>  					 tegra_dma_of_xlate, tdma);
+>>  	if (ret < 0) {
+>>  		dev_err_probe(&pdev->dev, ret,
+>>  			      "GPC DMA OF registration failed\n");
+>> -
+>> -		dma_async_device_unregister(&tdma->dma_dev);
+>> -		return ret;
+>> +		goto err_unregister;
+>>  	}
+>>
+>> -	dev_info(&pdev->dev, "GPC DMA driver register %lu channels\n",
+>> +	dev_info(&pdev->dev, "GPC DMA driver registered %lu channels\n",
+>>  		 hweight_long(tdma->chan_mask));
+>>
+>>  	return 0;
+>> +
+>> +err_unregister:
+>> +	dma_async_device_unregister(&tdma->dma_dev);
 >
->> -Sibi
->>
+> Can you use dmaenginem_async_device_register() to simple error path?
 >
+> Frank
+
+Agree. I will update it to use this function instead.
+
+>> +	return ret;
+>>  }
+>>
+>>  static void tegra_dma_remove(struct platform_device *pdev)
+>> --
+
+Regards,
+Akhil
 
