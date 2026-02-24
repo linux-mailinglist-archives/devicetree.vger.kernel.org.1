@@ -1,94 +1,95 @@
-Return-Path: <devicetree+bounces-267962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oPVJJf/FnWkRSAQAu9opvQ
-	(envelope-from <devicetree+bounces-267962-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:38:39 +0100
+	id GN68Cx7GnWkRSAQAu9opvQ
+	(envelope-from <devicetree+bounces-267963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:39:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF3F18927F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:38:38 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C303618929C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:39:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9B85630882FA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:36:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 29AA530427CC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E863289E13;
-	Tue, 24 Feb 2026 15:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A76937AA8A;
+	Tue, 24 Feb 2026 15:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b+fF2w7R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lsovXX8v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
+Received: from mail-dl1-f47.google.com (mail-dl1-f47.google.com [74.125.82.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4244D27E1DC
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:36:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B913A4F39
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771947415; cv=none; b=H8kChBEwKuUEc9cde0lw6mhe3lRZpsll3S8OmKO/7kb6/aeceyoiNOPJEONIa1avl95f1LJqvpJHcUP9W3yt/mssAAM5RF20/h9134HZWqWP1tH9kU+KXR4RtXcX3WjivcAcgUzDK/sOJj3Pn5vLrYRlnjhgl2ceu+Nm73w2rfQ=
+	t=1771947547; cv=none; b=H98wBlxEYGFqgpKj+MYcS6TVk82rUv54G88W7jqbBl+fvVtQFcn2zZCIMkmk0OoR9wrfuT7XbpdEdZraIO00p8emcd2LJwrbxnBwBSJC7QqH6dTutj7MZUKPqf1XlpXVNlz0ZH+Mxzpqge36mVGDsIxcdbbMy06uPTd1X+o9sIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771947415; c=relaxed/simple;
-	bh=rLpX/y2Cl/jQl3ZNkpEcClUh7P3N6PP6tj7DaIZfki0=;
+	s=arc-20240116; t=1771947547; c=relaxed/simple;
+	bh=cZ2dUQDXKPFtDwjbLj7qN4H5mYtnNOEQI6uw/38U1LA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W0NWsUOLwDfkpNKY03JJIxJCdHvh+IXQ/786TzcIDS6kqu/K9O9Ox94So5km+zVlTgCyaNdkXDyTbHA6jh2QuAYGcXGfxb5FB7eg9z6TVU3o5BFhd+JsXau2VbWK2HhF1gMds9kMqQYK/NAni7yL6NghG8DevmWoz3R/GHLSydo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b+fF2w7R; arc=none smtp.client-ip=74.125.82.49
+	 Content-Type:Content-Disposition:In-Reply-To; b=LkbBpJU/YWEMHO8eFNq4rWJEKTELOASCnTGC2vyDKmuPe4q4QGonVoGLZjkFCP9kkapUlB+avfyE/NhlpnQDOPdRkW2IUB32rYbyZ9OKi6L8h7HO/9t30RpapyeWn7OePgvBBGqhKDEx31sz/EUtKhLAePhM3G7wFwzI6mHF/nU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lsovXX8v; arc=none smtp.client-ip=74.125.82.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f49.google.com with SMTP id a92af1059eb24-1274204434bso4332676c88.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 07:36:54 -0800 (PST)
+Received: by mail-dl1-f47.google.com with SMTP id a92af1059eb24-127423bea4bso189530c88.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 07:39:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771947413; x=1772552213; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771947544; x=1772552344; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+oqiWdRSzTyx05kcW6bZuttjxv+FJl1Sh32tunh5LQ0=;
-        b=b+fF2w7RLKLYMakxOETa3NS+Ja/MFAWN4XqHZapcTdypTyBdp8MCvBfpNa5M9tTzCC
-         So9UjflVigJ9BnQ6C35khnMI84JmnnddlWe1duXCaTyS26WGZnDQwsribNRs6Wbyjo1P
-         daXSiLQQhhLl9jmhS3rYC8Ixev+rxJSQprrEtkaJFh6iSEOAyjnfgIaBSwpkHTekVALa
-         a/JUrIDgEddjLXhr5HTBma6Wff1w7CV99jlpXiue+7rjDbDbCGU9aUM1vngnZQ0+CY/q
-         2rFuZBqsitB6FdRryzOa6hthbs2t2Z0xW0i0tvxC2VeKE7tBSXPAl1xYWK5ltbK7vAf/
-         fW8w==
+        bh=Vi7E+fFd25dHhSq0UPIuOVw7/nIwnNwLt9NCUlo2++0=;
+        b=lsovXX8vT1GRQHxQyId4cfqpnY+E+uII6oDqSxz0jdWd2i7rbuN08jmjhvGZj45X1K
+         QZW8jUweuQVnAztFY1sflq/4ePdWYRX3QRnkguaXM7f+jF4KGSXdlb0BkqveOMjCOOFG
+         jxAAYP2bUyMwAqdP9YdiBGZvHiyCKywAJctiDdbJ4mezXRcTPEGBqDGDangz73d9cV6J
+         +XlHpf6hd43FzlMDX8W2Z36LrbipDSXQxOyjyNIofweRXX1rpxnzQNrDHhzcxAXAck75
+         kBPNrFD71rSnUKagKCjGiYOgGS2Bn/RKlY9zyDQ5zPOQBWvtZGFJGAdy9IsMNCv9A/3h
+         vtiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771947413; x=1772552213;
+        d=1e100.net; s=20230601; t=1771947544; x=1772552344;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=+oqiWdRSzTyx05kcW6bZuttjxv+FJl1Sh32tunh5LQ0=;
-        b=Gin2Pvd49tbW8+oZ03X6z2krVyl7af+J74Yc/Q7c1fCf9zz/95nSola66pnBWBe03j
-         jGqlE7xWc2Y1ysoPrC+EFmNA2lYTG7ALfbaIUrbKap8IL61oXFXofz4ZB3sUtbKSEAPr
-         Pp9N4r8XJi+wiM8UkRgl2vH9l7Sq7p8jcnsRmS19Ha4d9OLkqVxVFs+HVitJloFzUf75
-         yavbjQLQ/Kk9Pw0O2IJMxTq4CYfMcKZ+VP9fDf+dgTEPoOpxHWKJule7meVwgRO3GVu+
-         O0OaYQu5Y81snXH77moLJdpAlrgbjJJmSrNq2mDhYQVHd+Qc42ID9+4rzgaSl5F6fziQ
-         /pVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUV7soPsbcuHRdNm06FhzC+rrXhJeJ9tIjTC+xufsKVX7RC/tMd+GpK6Y0vq2FX7mTWpzh9H3KnmUWl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxM3ECLJ02uQdqJnR0j6R6VBo6nJN/z9TyF2E9d/VPN8k7K3P9a
-	wLP3AYS5Llbnk6VW5CuHwrA3rosYsEjtVr7g8vYK4qNvciRrgi4Zr1i2
-X-Gm-Gg: ATEYQzwSYb/lk9hKka0UALvBVwZj+rDEbiXiYq8OhoITnUH9smlu+ts3EwaIpcenO5q
-	LnoMTy7/fVAGz75YOSA6ZVhovUuWOclzAkjgPgV+b/9qDZjmeFLtTkGXbGH6xJ1XgNH6wXjzyrG
-	0AdCLBNibGjrRDJofYwagjGZaCpa36kpc9eBZFLSpIo+/huvEDzwQz+/UIFWFaQB9JpvbgCQneo
-	iMSxyn2qkVWwcfBnw9SQ7ZHXsU3DbOQ7aswpPXctaoRu31zsVFTHl3vuzG/8TtrJ4NCZRrtQUtd
-	UPHjDczQCESCLRaocJlRDWk+x4Le5T7uSEGS2ACBC6+iNm7fARFiH5NwYA/7d60fS19sr17BDCi
-	bOlihZxXrOG0CzVJBOkw5XNruMvOCcX7czq1pPD0u3EUmrpJQuY/3N4jf7YIjrUgYdbxFTgYbYP
-	FPzfJTc6+6Tq4fH3pS0mRBtvCTq7VBmHyrtEuZ
-X-Received: by 2002:a05:693c:6301:b0:2ba:6f16:10cf with SMTP id 5a478bee46e88-2bdbc5239bfmr124449eec.14.1771947413298;
-        Tue, 24 Feb 2026 07:36:53 -0800 (PST)
+        bh=Vi7E+fFd25dHhSq0UPIuOVw7/nIwnNwLt9NCUlo2++0=;
+        b=jvJcEBclE3jTzDYE7Qh9J4G24poqkhzGH6lmTXYLWoLOSKoZz75ICYii87HSuVtEvJ
+         QDuxDCZLh6oqN3oZfpKvPl+1qaRXIMdndm4JUu6bN6M5wMPWrYn6+XOop7mTCpQZj36v
+         t8dF7o7ZIclqRJ4QdCGCGYVsRs86ixQuaBpmeqZfYTFhQXU/lEpX+H1fbnl5lIwa1EMN
+         jMOfQge2p7c4rS6OEzaksDJauODleuCes4lnxZJfaU8LrB1QGDjKatiFArIaFcST6xWb
+         FdArs9Ah2HQiOFVRtag/jwxfEtdeBkmJREyk6W5d/JJ4cbQPOlYfwoNa8TEAiErc7ouo
+         hTfg==
+X-Forwarded-Encrypted: i=1; AJvYcCXV9Jqb8TOvUShNcDCrMZib9Oud2aWNQLyPfLZFTVEoQ6VIopv6EYkqIMgwmFA/YTtnxvuGv/AXUwTt@vger.kernel.org
+X-Gm-Message-State: AOJu0YyExxu5qYESuy3BEzIZf+JdFdGoRnxSczvOu5Amdl5efY3gkZQy
+	b5c024VHh4N3v07EggOWKE0AyVWDhzp/haMJ0uKJ/h5ilGEhVlgzSGtY
+X-Gm-Gg: AZuq6aJGvwVyYwlhOZndNnuXZFnJDk3eEIw8alv4+ea5KpTmGWh9I6AAKEzzpVE02EB
+	AzGdA0YNGMd4vc9Rq972pHqPEASHFjhMsKSJYNgXjqRyehs7Zr9mtRC96SRg0Ef8IJCIofaMgbV
+	Vun7fx/Q+proysLsiWpkki/aeWwfoUqktOsxXmjmsyBuycjxg569mwdJLlyX/8EHEHHcxK9aXiN
+	Om2mvfLMF49Hgx8/zAh8W3MDSHS3NDtrwuj9bzL0+GfCBW1qtbCN12YUoCNNTL3xGQcp8B9Lp/5
+	KvpbQTbOAAcorYx8FYsVfBw/OCKMWu0fDFzor6k0NXrtjUFR3E5EVre8tmdT2FAxfdvgLAwrq/m
+	mh6RMp1DtOJ6pUR5eoh547U7MbXgNQOl0zR/kjPvteHWReHfUivuVPLzz0tMgwGgzCf7SUqzGQ6
+	Xm6tilk3nN1suP0rTzKwhGKaVsQVNTE5Tx1nVE
+X-Received: by 2002:a05:7022:6993:b0:124:9acd:3ef9 with SMTP id a92af1059eb24-1276acb1c97mr5939643c88.8.1771947544202;
+        Tue, 24 Feb 2026 07:39:04 -0800 (PST)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2bd7daa3d77sm6823262eec.13.2026.02.24.07.36.52
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2bd7dbe8304sm6956981eec.17.2026.02.24.07.39.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Feb 2026 07:36:52 -0800 (PST)
+        Tue, 24 Feb 2026 07:39:03 -0800 (PST)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 24 Feb 2026 07:36:52 -0800
+Date: Tue, 24 Feb 2026 07:39:02 -0800
 From: Guenter Roeck <linux@roeck-us.net>
-To: ASHISH YADAV <ashishyadav78@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ashish Yadav <ashish.yadav@infineon.com>
-Subject: Re: [PATCH v3 3/3] hwmon:(pmbus/xdpe1a2g7b) Add support for
- xdpe1a2g5b/7b controllers
-Message-ID: <cc5db8cc-bec1-4244-8d1c-c1fc5a79bc9a@roeck-us.net>
-References: <20260223050804.4287-1-Ashish.Yadav@infineon.com>
- <20260223050804.4287-4-Ashish.Yadav@infineon.com>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: andrew@codeconstruct.com.au, avifishman70@gmail.com,
+	tali.perry1@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, venture@google.com, yuenn@google.com,
+	benjaminfair@google.com, openbmc@lists.ozlabs.org,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: hwmon: convert npcm750-pwm-fan to DT
+ schema
+Message-ID: <09fd1cc4-76ce-4691-bfe5-3167f2940b57@roeck-us.net>
+References: <20260215163553.1334475-1-tmaimon77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,47 +98,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260223050804.4287-4-Ashish.Yadav@infineon.com>
+In-Reply-To: <20260215163553.1334475-1-tmaimon77@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267962-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267963-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	DMARC_NA(0.00)[roeck-us.net];
 	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[codeconstruct.com.au,gmail.com,kernel.org,google.com,lists.ozlabs.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0FF3F18927F
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C303618929C
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 10:38:04AM +0530, ASHISH YADAV wrote:
-> From: Ashish Yadav <ashish.yadav@infineon.com>
+On Sun, Feb 15, 2026 at 06:35:53PM +0200, Tomer Maimon wrote:
+> Convert the Nuvoton HWMON PWM and FAN controllers binding to schema
+> format.
 > 
-> Add the pmbus driver for Infineon Digital Multi-phase XDPE1A2G5B and
-> XDPE1A2G7B controllers.
-> 
-> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
 
 Applied.
 
