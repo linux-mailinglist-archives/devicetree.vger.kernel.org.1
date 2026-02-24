@@ -1,157 +1,147 @@
-Return-Path: <devicetree+bounces-267750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267751-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHuXNQhSnWk2OgQAu9opvQ
-	(envelope-from <devicetree+bounces-267750-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:23:52 +0100
+	id OBxbAFFSnWk2OgQAu9opvQ
+	(envelope-from <devicetree+bounces-267751-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:25:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F07D182FA1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:23:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55358182FED
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:25:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3DB2330A1E11
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:20:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 23F59308F091
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 268F83644C9;
-	Tue, 24 Feb 2026 07:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05CB336404B;
+	Tue, 24 Feb 2026 07:22:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eWFIBFTF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE7930C372;
-	Tue, 24 Feb 2026 07:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5EDA364031;
+	Tue, 24 Feb 2026 07:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771917629; cv=none; b=aR+HcaqbF8AjO/tCHbrcl/61hKFbxSvKNhZdx/LI0VztV+aku+nMDsDJr+JEh5o6RsdNf8HShbRJxqeMKu0zjXeOoILfVM2hWenmP6/70fEFsL5jweaAiJXG9kxuxevD7HuIbPfxVzv7NQz7FgVe6HLtED8wqApZNW5fYQQqrS8=
+	t=1771917743; cv=none; b=b/ZRG8C7G33k79gJiESXobGvI51FfAap6/EMlwGCq/Y7hCMhpyrKYlAqeDOhSepwV7fOW/xg8Aojj+WKEdR+vPZH9bSH1vlobXKeT/rP3W9MmP6mF+iZa7BE3UJvaq4ICgeVMXOcZkG5WOBll2/mXjc+Kp7RNFQxz9mnIiN5RQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771917629; c=relaxed/simple;
-	bh=SotjKpgwct8Ny90oVOHr61GQ+UfABjST3ee7OhSA6Yc=;
+	s=arc-20240116; t=1771917743; c=relaxed/simple;
+	bh=8sYxib13fUYmbRr8GN0ErWAgBVzMRPr1YYVyj9V9drg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kfBKRjjX72mi67K2kHo5MxZzA2JQtRczIGR2v8x4R3o5P7lTe0eL1eY/poG5OnTqR0kNhyPZ90GsLz2288PizHMl+IeMdjLQbp59+FjkMFq3WSmokMewel3fhGK3ApNJvHeh7pbT3AkK4W9ceecN3TQ+8Ejd+m15AGS5rUP8Jxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2EF621A2307;
-	Tue, 24 Feb 2026 08:20:25 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 17C9B1A22FD;
-	Tue, 24 Feb 2026 08:20:25 +0100 (CET)
-Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
-	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 1E51A202A7;
-	Tue, 24 Feb 2026 08:20:24 +0100 (CET)
-Date: Tue, 24 Feb 2026 08:20:25 +0100
-From: Jan Petrous <jan.petrous@oss.nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] dt-bindings: net: nxp,s32-dwmac: Declare
- per-queue interrupts
-Message-ID: <aZ1ROUzQdsuOpGFz@lsv051416.swis.nl-cdc01.nxp.com>
-References: <20260223-dwmac_multi_irq-v5-0-8fc699a5fac4@oss.nxp.com>
- <20260223-dwmac_multi_irq-v5-2-8fc699a5fac4@oss.nxp.com>
- <20260224-diligent-bloodhound-of-hail-3fe982@quoll>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ThjLq7kDDemVsBb675+AGIaFIZXgDUmfS8irpcH4yX6/B6P6vwkMGuAhxghzlSym+8otya2FNoFz7rVd9Cmx30r1BeH5pnupmKT2qnipe+jT29W9fH687l/5oT6FvRQmukhT1HthNSYSP6P5/Z386R+9TKMBRyzJuvuHXSok9rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eWFIBFTF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC75EC116D0;
+	Tue, 24 Feb 2026 07:22:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771917743;
+	bh=8sYxib13fUYmbRr8GN0ErWAgBVzMRPr1YYVyj9V9drg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eWFIBFTFfD96BBFjZyhR8OqD6QzhH3cB5oEsh8Ydkk3OcGGvYH3mF8alU7drTiAjB
+	 xgDVCDtq4TsWk5y1w2IwFngLZzSTL+UWH+P4j3n1wm/2kw6fy9maApDpWFcuhzQnqK
+	 mtFLm0d1vQJGT+GhjbTJ432c6aiQBQq5YY5XGr1K7xt0ZTQ/m6zM9FaLcL+hcoK7Vo
+	 n/rVIzUck7mJAFLj8YmZslzSZsDHBXAQgGwdAPE0it1BJTFL9t3HEgbbDL9BskqhQE
+	 1UJJ6cKy2uqC8Ev/SjRA1yZPwr172Ffv+Fdd998t/UYZqZ19WyBHwHg+7OgDn0cf1C
+	 B0tBsqlycriLg==
+Date: Tue, 24 Feb 2026 08:22:20 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Detlev Casanova <detlev.casanova@collabora.com>, 
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: Fix vdec register blocks
+ order on RK3576
+Message-ID: <20260224-glaring-poetic-goshawk-b44d7b@quoll>
+References: <20260223-vdec-reg-order-rk3576-v2-0-daf4942dfc02@collabora.com>
+ <20260223-vdec-reg-order-rk3576-v2-2-daf4942dfc02@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260224-diligent-bloodhound-of-hail-3fe982@quoll>
-X-Virus-Scanned: ClamAV using ClamSMTP
+In-Reply-To: <20260223-vdec-reg-order-rk3576-v2-2-daf4942dfc02@collabora.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.linux.dev];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-267751-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267750-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[1.168.49.192:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jan.petrous@oss.nxp.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.964];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,lsv051416.swis.nl-cdc01.nxp.com:mid,suse.com:email]
-X-Rspamd-Queue-Id: 5F07D182FA1
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:email,27b00000:email]
+X-Rspamd-Queue-Id: 55358182FED
 X-Rspamd-Action: no action
 
-On Tue, Feb 24, 2026 at 08:06:11AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Feb 23, 2026 at 02:58:05PM +0100, Jan Petrous (OSS) wrote:
-> > The DWMAC IP on NXP S32G/R SoCs has connected queue-based IRQ lines,
-> > set them to allow using Multi-IRQ mode.
-> > 
-> > Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-> > Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> > ---
-> >  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 44 +++++++++++++++++++---
-> >  1 file changed, 39 insertions(+), 5 deletions(-)
-> > 
+On Mon, Feb 23, 2026 at 09:49:50PM +0200, Cristian Ciocaltea wrote:
+> When building device trees for the RK3576 based boards, DTC shows the
+> following complaint:
 > 
-> <form letter>
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions of patchset, under or above your Signed-off-by tag, unless
-> patch changed significantly (e.g. new properties added to the DT
-> bindings). Tag is "received", when provided in a message replied to you
-> on the mailing list. Tools like b4 can help here. However, there's no
-> need to repost patches *only* to add the tags. The upstream maintainer
-> will do that for tags received on the version they apply.
-> 
-> Please read:
-> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
-> 
-> > diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> > index 1b2934f3c87c..3a0e41b63c3d 100644
-> > --- a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-[...]
+>   rk3576.dtsi:1282.30-1304.5: Warning (simple_bus_reg): /soc/video-codec@27b00000: simple-bus unit address format error, expected "27b00100"
 
-Hi Krzysztof,
+So you need to fix the unit address. This is what the warning tells you.
 
-thanks for pointing out the missing Rob's Reviewed-by.
-It was the mistake not by purpose.
-Should I resend v5 series or only this patch 2 or prepare v6?
+> 
+> Provide the register blocks in the expected address-based order.
+> 
+> Fixes: da0de806d8b4 ("arm64: dts: rockchip: Add the vdpu383 Video Decoder on rk3576")
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3576.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> index 49ccdf12ef7e..45eb0d053a6f 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> @@ -1281,10 +1281,10 @@ gpu: gpu@27800000 {
+>  
+>  		vdec: video-codec@27b00000 {
+>  			compatible = "rockchip,rk3576-vdec";
+> -			reg = <0x0 0x27b00100 0x0 0x500>,
+> -			      <0x0 0x27b00000 0x0 0x100>,
+> +			reg = <0x0 0x27b00000 0x0 0x100>,
+> +			      <0x0 0x27b00100 0x0 0x500>,
+>  			      <0x0 0x27b00600 0x0 0x100>;
 
-BR.
-/Jan
+The main block, so probably the lowest address as in unit address,
+should be used, but this ship has sailed. You shipped this DTS, because
+the order of items is FIXED. Your binding change is clearly incorrect
+and ABI break without explanation and without reason, so you cannot use
+such as an argument here.
+
+You cannot change it without impact, so just fix the unit address.
+
+Best regards,
+Krzysztof
+
 
