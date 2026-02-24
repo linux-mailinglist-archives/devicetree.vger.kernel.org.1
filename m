@@ -1,238 +1,168 @@
-Return-Path: <devicetree+bounces-267812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267813-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4FFaMoB8nWmAQAQAu9opvQ
-	(envelope-from <devicetree+bounces-267812-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:25:04 +0100
+	id 8AuJBw59nWk1QQQAu9opvQ
+	(envelope-from <devicetree+bounces-267813-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:27:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75946185491
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:25:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B12D218551B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:27:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 80836304F562
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:25:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DAAB3300B475
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3495A3783DF;
-	Tue, 24 Feb 2026 10:24:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446F63783AB;
+	Tue, 24 Feb 2026 10:27:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XiuIMyb8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EyIpKL4C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4923377556;
-	Tue, 24 Feb 2026 10:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771928698; cv=none; b=SEbJpxHTywS2hhqMYf0NBVfQPfOs4jZyoDX1npIR7SVpSSq5z8XQ5bUXw9cG+Mq4hWsPSs9BzyZ4BEltmrrsyXtdIxzfgs/qU0QmCAMv1qKH602Z2fd5Sg8DHuMCVipUHa7q1Ng1CNWqV9A+cQpt2ZemRayxHbaKG6bUAMCrMrE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771928698; c=relaxed/simple;
-	bh=rN6bOSsyonJiEFKFzW6StaJ9I+cOMBZ+XopFVnwO9Hg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bi14nkNdlNjMd+Hqv6QSaF9q43tcXw1f/FC2o2rkYSfyKfqElec2QX+tRYHjQw/NlhZp8XO5Qy1O5JgbGO6KGNqttFv2pCmXTi/u90WQHQkgaOptIiYw/+CdmQU1LGfdrUOrjrv4NhHG7YBE2fa/CkZyO5D+Ebgi5cHuMYAgd+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XiuIMyb8; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771928697; x=1803464697;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rN6bOSsyonJiEFKFzW6StaJ9I+cOMBZ+XopFVnwO9Hg=;
-  b=XiuIMyb88odydvXw2I8YFdflwnP/6QRJy+pvMYFl9h8v/B+HN4H2zUC6
-   5n7eESVZvv0YAp8gYn2HO5oJ/Nld6YlmcXd31bPwmOYM3WUAS3+Ouc0Qh
-   HKrQ/6+HD+yZpIM9fZ6gCvXoq7PDEus3GIbqpirVeesyJFNnAoIZmDxZv
-   rsdY+2lOYN1iLd+boKVUt/iN8w/EepxY2KREm0rR+8rQqUrUDIQ4SB4GQ
-   h9D5/txMwtJvroACdpQrwT+Xm7y0xVeN+BOL4Yx906cYSa+QhagcANsiY
-   Z4xLrmcCfzVZi5oP+1/bre3ZRqDWDSSViHkq1buiybRSWpNTLDZ3gSIR9
-   Q==;
-X-CSE-ConnectionGUID: BydyrjkQR/qD+tevQpX0JQ==
-X-CSE-MsgGUID: ZZcFd1bGTZysYO/rE5eoUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="95554646"
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; 
-   d="scan'208";a="95554646"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 02:24:57 -0800
-X-CSE-ConnectionGUID: 87JvPVP8Qo2/kbxVj8XchA==
-X-CSE-MsgGUID: cw7/m4ZqRFC3mFKaRvcDpw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; 
-   d="scan'208";a="216025581"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.146])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 02:24:53 -0800
-Date: Tue, 24 Feb 2026 12:24:49 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Mark Brown <broonie@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] iio: adc: ad4080: add support for AD4880
- dual-channel ADC
-Message-ID: <aZ18cWyJ0KtcoU4B@smile.fi.intel.com>
-References: <20260223162110.156746-1-antoniu.miclaus@analog.com>
- <20260223162110.156746-6-antoniu.miclaus@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE2F1372B55
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 10:27:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771928842; cv=pass; b=OXCCmLPUyO8LXxdEGakCHNMtZQfsXB07ItdNY5qrwJlJ3C0TTqfyGXXSAwzDWBnC+Q52ki1Fv2wVk9Kr/U3FXlubL7SbRfKYr6koDNEV/SBaB6UApMVJzVOmymhXZswCOkiSgA/4ii2cb8qfz4rPF1SG0yWt45WQIV7u3pb+iHM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771928842; c=relaxed/simple;
+	bh=jjCLqNjogYinR3bEtF7xiisXRhPEOHqegIpE6AxI+GU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SyL6o7BwhQSCGmpKHOTKzdvkrcyHW2q2MgDW0yW4YkWbptCP0vn6JhDuqfD6ChPaLXs9CgAQHi6q6DQQRqC3UfqOKmnhGb5SiMh8HVcUjgqN2WwSfhKXmY7gIP3mrsrcC8YlA/ZAxg9oMJcnjf11aqNcc5L1Mo1XeS46tQYLPKE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EyIpKL4C; arc=pass smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-59e646a4b9eso5305022e87.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 02:27:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771928839; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SVgUsIpt0HLhyX/5I3oQDompyZtEqoc0qj4V+Q2dkMZBrMmro3InxfEMAFPVDiqxBL
+         bmFPAmN/kv4N3sx2TDgJ9+DPMYZ/XxAxPOCfA3tEIn6yVGnKEuKmV9KxeuyELSv8FqVJ
+         5bHuj5QR/Ttcc1/hweb+4DcQhU8JrhL0rN6+PEcrJhQF2gybvha8uVripCGSZcEAbot4
+         ASlsTDp5qMlnv/eMlgnPnnEBLGWHQbfGGG/gUe9ryBDW7qWRBtPLIEEphM1AlMcswvNP
+         qQhNkF0sPu2ZyKGyIK2sNNIAeFgl/WPo2Sfv331XRsNqdZx1alitMX2ZD6cZvlYKbQLf
+         8z6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=p6zyw58AOxXSub8QGwmMM/bb4H+WWArpgg93Ti+4E3I=;
+        fh=mNx64cW9CjFzBtF5bb06I2CLMzlbVhDQPOHL59iOeag=;
+        b=YPa3gtbE3Zm82yOIVi3o85aUODSkURlCtxUgtuLopwNhysoanpL0T3XrFB5UB1Bfxz
+         ca6U42zwdmAGhSbSP29wfdrjQBntn9Ls+BiRkldBYG/0wLuSVaBvJoa6e1KCRFrAPYx5
+         GkDbFi96IUXfRREo9EEPGuE/Utr01NAOk1m+qcEXhWZSewXG3cXemBwIz4K9f9Itga0A
+         mTjSBzAofm4/5LSkJ/DZP1bJd6YO4F4qd0Jhs3xTreQUkfVBbRB2Z0vfGYCSOnQ/5r1X
+         7D83Du1k6Uyx1NQtsYNn8EfoYVW4M/LPmU8N56T/vDrYP3ygnPse7M6bU3X0dMOz4Qn3
+         TcWg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771928839; x=1772533639; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p6zyw58AOxXSub8QGwmMM/bb4H+WWArpgg93Ti+4E3I=;
+        b=EyIpKL4CZTFk11ROQNIkn+D/BsVb2+pXVyk/1T5MmzLShxaZZhoQSs+peeqjpKlX0E
+         D66zZkWL5eYGYCdHkAtYVA1NcJX+lEDgA1W72/l4id/3TbM4p2X6VXyDKAyzszLz0266
+         WrDwk7ZaI5PR09RwHN0udLoIVF9gt8coUzjBaJrKCQQoRQyjcmuqnCNMo9Dgzbvtj4L0
+         I7ZsK8oEOIke1NrR6hsdFAn3C3MPQQDlbxIv5Uub5v2n5ADzClhH1Uq8DqjBFdBpgjcg
+         vPJD8SFdU+8UsK7A8T3oW5r1ZBBvEAtTWiyFpMCOSvDI3WS5QK/lqiiDw5bDIe+/Ljb3
+         6CiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771928839; x=1772533639;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=p6zyw58AOxXSub8QGwmMM/bb4H+WWArpgg93Ti+4E3I=;
+        b=cnsaQr0sa4birOhRioV50K0ZVjDcMntJ+giY/8DStu3tyzTVrPTFdYlRlcHKPEFhUD
+         GB2IVlUSfoJDK2gU4dbj+xP9/SVoU8J1vkMGZA0jyjQlJZMY1BrMLvyiNz3Yz4c3asLh
+         VqnlMey6k4Jqt7V1Y/R0KdTkHHOtT9u1sHraZY46VK1x5FCiXzuJvMwrYjTfcLjlYL/+
+         2tG07vJKLIbo3eKfob+sSIuplK44MGOag4Coc9HHZMnzHXx5N4Q3F2sOlqxfmqQd4ZUz
+         CZ6JIl2MLUXUxwfCR4M26Bq3MEHDy8WVtVUHMBrcOXnCDLnIbquxpdNGN0IgQ9yAaQ65
+         n3Cg==
+X-Forwarded-Encrypted: i=1; AJvYcCWB2nbFTV60Mu4IdUEDDpHaR0novpUMx49nx6I0cdvzJzxYUHv9sudGOgIruM1xNUSFQ+M5k+oXUHmO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSCTozQH2vn8iHA1MTh6L1sMJAnph0KyOvZyWys8cbnLZpkly8
+	vJAT5e4Q3Yc7CIFV1rgdK7cAutpFR9d2B8cRSVeVIaij5cDsWTZXArKOnjgM5wrBdyQwOQ549mb
+	FiiKp8Wxe+fZd824zPdnu4m2Lx4EB4uo=
+X-Gm-Gg: ATEYQzzQbkQNcp+xmpSg4SCiNJmzFiQmVVQbiLBYqCNz2t5F2YVFR5fUkjAsWUC7XiF
+	pkjdbRJWZr/G+GTH1Qxj+uwOr9Cfr777KWA0J1aRwOj3u61jvelXpSJQGufbasO4MsLQMtm1/oG
+	VGKDKmU2jU+0dynUyTEDVAtbYhDJzMt1l8vpkO2ExSmc2dh7z3WndunMIyUpUTAm4D3ukQ132pI
+	wT0pNrSkXT0gBbcJzFs7+X/m8kHdvFriRpW1JW3VoKJLFQHvdolbtyplkZCBw0mWBa8zWxjNCIM
+	yrqbqsqvqTXvyTEVv9MaAmN+/AVYwZRKm2kEMQ==
+X-Received: by 2002:a05:6512:2244:b0:59f:71c2:6a06 with SMTP id
+ 2adb3069b0e04-5a0ed87a0e3mr3947109e87.1.1771928838810; Tue, 24 Feb 2026
+ 02:27:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260223162110.156746-6-antoniu.miclaus@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260224094527.169215-1-shengjiu.wang@nxp.com> <20260224094527.169215-3-shengjiu.wang@nxp.com>
+In-Reply-To: <20260224094527.169215-3-shengjiu.wang@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 24 Feb 2026 07:27:07 -0300
+X-Gm-Features: AaiRm52LfC9-UsCut8Tth636xjKLVR0axNCtj7qY01_2UMRqth2SAkou2H1hRPo
+Message-ID: <CAOMZO5DW5Yo3A3kPOe+NdQNwTATzzWguCGBDyK2UFjCrHtwFeg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: add support for NXP i.MX8MP audio board
+ (version 2)
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, daniel.baluta@nxp.com, 
+	dario.binacchi@amarulasolutions.com, alexander.stein@ew.tq-group.com, 
+	Markus.Niebel@tq-group.com, matthias.schiffer@tq-group.com, y.moog@phytec.de, 
+	josua@solid-run.com, francesco.dolcini@toradex.com, primoz.fiser@norik.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Frank.Li@nxp.com, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267812-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267813-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 75946185491
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email,0.0.0.0:email]
+X-Rspamd-Queue-Id: B12D218551B
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 06:21:04PM +0200, Antoniu Miclaus wrote:
-> Add support for the AD4880, a dual-channel 20-bit 40MSPS SAR ADC with
-> integrated fully differential amplifiers (FDA).
-> 
-> The AD4880 has two independent ADC channels, each with its own SPI
-> configuration interface. The driver uses spi_new_ancillary_device() to
-> create an additional SPI device for the second channel, allowing both
-> channels to share the same SPI bus with different chip selects.
+On Tue, Feb 24, 2026 at 6:44=E2=80=AFAM Shengjiu Wang <shengjiu.wang@nxp.co=
+m> wrote:
 
-...
-
-> +static int ad4880_update_scan_mode(struct iio_dev *indio_dev,
-> +				   const unsigned long *scan_mask)
-> +{
-> +	struct ad4080_state *st = iio_priv(indio_dev);
-> +	unsigned int ch;
-
-Not used outside of the loop, hence
-
-> +	int ret;
+> +&ecspi2 {
+> +       #address-cells =3D <1>;
+> +       #size-cells =3D <0>;
+> +       cs-gpios =3D <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +       pinctrl-0 =3D <&pinctrl_ecspi2 &pinctrl_ecspi2_cs>;
+> +       pinctrl-names =3D "default";
+> +       status =3D "okay";
 > +
-> +	for (ch = 0; ch < st->info->num_channels; ch++) {
+> +       spidev1: spi@0 {
+> +               compatible =3D "rohm,dh2228fv";
 
-	for (unsigned int ch = 0; ch < st->info->num_channels; ch++) {
-
-should suffice.
-
-> +		/*
-> +		 * Each backend has a single channel (channel 0 from the
-> +		 * backend's perspective), so always use channel index 0.
-> +		 */
-> +		if (test_bit(ch, scan_mask))
-> +			ret = iio_backend_chan_enable(st->back[ch], 0);
-> +		else
-> +			ret = iio_backend_chan_disable(st->back[ch], 0);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int ad4080_setup(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4080_state *st = iio_priv(indio_dev);
-> +	unsigned int ch;
-> +	int ret;
-> +
-> +	for (ch = 0; ch < st->info->num_channels; ch++) {
-
-Same.
-
-> +		ret = ad4080_setup_channel(st, ch);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
->  }
-
-...
-
-> +	/* Setup ancillary SPI devices for additional channels */
-
-> +	if (st->info->num_channels > 1) {
-
-Isn't this an exact check the for-loop performs the first?
-
-> +		for (int i = 1; i < st->info->num_channels; i++) {
-
-Why is 'i' signed? And why not name it 'ch'?
-
-> +			st->spi[i] = devm_spi_new_ancillary_device(spi,
-> +					spi_get_chipselect(spi, i));
-> +			if (IS_ERR(st->spi[i]))
-> +				return dev_err_probe(dev, PTR_ERR(st->spi[i]),
-> +						     "failed to register ancillary device\n");
-> +
-> +			st->regmap[i] = devm_regmap_init_spi(st->spi[i],
-> +							     &ad4080_regmap_config);
-> +			if (IS_ERR(st->regmap[i]))
-> +				return PTR_ERR(st->regmap[i]);
-> +		}
-> +	}
-
-...
-
-> +	/* Get backends for all channels */
-> +	for (ch = 0; ch < st->info->num_channels; ch++) {
-
-	for (unsigned int ch = 0; ch < st->info->num_channels; ch++) {
-
-?
-
-> +		st->back[ch] = devm_iio_backend_get_by_index(dev, ch);
-> +		if (IS_ERR(st->back[ch]))
-> +			return PTR_ERR(st->back[ch]);
->  
-> +		ret = devm_iio_backend_enable(dev, st->back[ch]);
-> +		if (ret)
-> +			return ret;
-> +	}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+I bet you don't have such a device populated on this board.
 
