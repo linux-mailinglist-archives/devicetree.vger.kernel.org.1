@@ -1,164 +1,154 @@
-Return-Path: <devicetree+bounces-267929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267930-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2ACNJpywnWmgQwQAu9opvQ
-	(envelope-from <devicetree+bounces-267929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:07:24 +0100
+	id gHyKCruxnWm5RAQAu9opvQ
+	(envelope-from <devicetree+bounces-267930-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:12:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEEF81882F8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:07:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C2318837C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:12:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4F7873004DA7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:07:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 87FA13019901
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:11:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E6DD39E6C8;
-	Tue, 24 Feb 2026 14:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5617439E6F0;
+	Tue, 24 Feb 2026 14:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="I3hbAez5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="af52YdOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2450D241690;
-	Tue, 24 Feb 2026 14:07:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA50241690
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 14:11:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771942037; cv=none; b=AgJxwkfwogUFM/uygF+qQnnBKKJUiP8nsWPmJg9OTl+nL9NN/sDHdSWZMVz9vEV8BYn1ZB4RIzsQu+jecVC+JlRLA/rL9KFskelhU3Yz/0G2zl9KMM4m2+5IFd1J082HGseQK/6hI1gnsTTZw0J94GL0uOGqsfUZkUZ+vnSTigQ=
+	t=1771942317; cv=none; b=KGWES7ekYH6oTq0w112z0t7TSQGWwFsSq87LTJEY7mToCbsRBxON4o8XApljKdTtrDMlhGGWPGDdPE7TovRk73DODwVciFhCcMPKi2BgNyl+3C8j79V/djsPTcPD1mYREyNlF6H1jeq6lnf3CZpfDEI3uMO21E6ApFr83N6bD1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771942037; c=relaxed/simple;
-	bh=GHqOMsVIhnM/qwB2gCQ7BjybcTTTqIh1JgBMM216iN8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Uw70B2M/QZO00t9SRIOJ+aMlzYnzRkJgNLELiPgMRVGok7SqQL8HhRUYdZRv5gJUuvw3imUDOp0fykDSgAXTrZyM3PgBmfjzgsmUm4cH1wNzvtRa2Fz20isJpmTAKLJ7BC/Q1wCib1Wm3h7TsxoyEyJJNgJFFj81n7uP/juAnFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=I3hbAez5; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1771942034;
-	bh=GHqOMsVIhnM/qwB2gCQ7BjybcTTTqIh1JgBMM216iN8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=I3hbAez5JGJzQLHds0zTJby2v3l21CQAIDqMmf6UFT4QbKY2ap3g0TAqDhIvfNV3m
-	 pNC4dibgW3KNhsy0MBxbK059ec/YZdJ+DkbTuMQ2SBpiS34Lsu/yKB0xEYEV/x8bdA
-	 6zP0a7X+PifMQiZdNzdvgDwpyhMXZkvnCsXGFvSv3iVqlDxparBUYIzDNJGkm6F3KO
-	 CWeA6rTOvRCiHKOzNzWs/zCnBet43s8f2sGGltNIlYkYuKxotkU7CoQVPM5xKrSAI+
-	 m2M8szYFONBEae6oGZ1xH7WWo2trFqVNKDsHRo0bvBOgB3K0GHlXYiz6ItbCZZQhX2
-	 Ouz8qDzYvZB5A==
-Received: from [192.168.1.90] (unknown [86.123.23.225])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7967017E01E7;
-	Tue, 24 Feb 2026 15:07:13 +0100 (CET)
-Message-ID: <0c9a158a-f70e-461c-900b-6f6485064a02@collabora.com>
-Date: Tue, 24 Feb 2026 16:07:12 +0200
+	s=arc-20240116; t=1771942317; c=relaxed/simple;
+	bh=gPeMlKlkLhLPFXTVdb0PzZxfcOOAKUq6PTjWhHjPnPk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=cz8Trlb8+/U9C3x5S0WfOXPV4hntggO33+hEKXm+JNsDrdLA9Cafjc9VQwJp7VjXdVH28OQLy/btNUmTe8fGhYtYr18ycXDV5/EIXtZ6N75UE7HEWxHQe/5EVQnPVINNXxC7gopfHirVVL6qjMcEftQGXNSgxQMWbdZ5EEQpM+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=af52YdOb; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-480706554beso67264005e9.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 06:11:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771942314; x=1772547114; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VfxmIint1teZNykjZC485zz7ZETg4m7E2VcZKNSipf0=;
+        b=af52YdObxAquorgUVHwP7qYoeukxysZr01QgE2LzUS2s3KX23Fvyux4SJzpHq+5tXq
+         ZknqVbAwSbPnCq4yom5rhRFjg+f0BY2yQy25bcZF9R17+0FfrEuMJVxZkUcSaQzxoKLw
+         AAA/t5RnolP/PPzRm0ON1YhBM6SKeuWm4aZHX1ntWtatBGhFgEWir+ak4QbTaqjOCBZk
+         sG2sJFYJflqgeYq9ufgc6tXvyZK8li+xYM6QRWMqtTA97srhSoSd8l9W8Aswzt/guKY3
+         3riDKlWSiH3PbsvDf0qkqrnbE717uZkEecuujbDoA1nmNFjVsNO2S3YH2uLKWv3YKpoq
+         uSiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771942314; x=1772547114;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=VfxmIint1teZNykjZC485zz7ZETg4m7E2VcZKNSipf0=;
+        b=qMwZuENx/RtZNDwu0Bhxy3nQb4BkWnKseER5+H930juA+z/GLBX1NMICpYLQG42fXT
+         BfUpLoZqoJBmlghgUwhHdn5YWIWKuPAW0xivKevmGCWvH24n0I3nHXbM0CFpUt3pNpZB
+         XgfR4Rm6vDRCOALrIbX0rBwFQrK8wwppsku15Gxb39POwGwFIbdq2ePgY8lbQ6bzWSFd
+         wJA7MKPILXVu812Wc5DQCASAqCXO/5fhtMB6XW+YnLCd2xpsAtfQXDY0Ym461q9kNRU7
+         mmZa2zjxx2xxziHYCxKciq+WkUWZV9ZM89SjyqltFoAXrqKtyyPkPDuXnnqB3j9Jkrsp
+         00Yw==
+X-Forwarded-Encrypted: i=1; AJvYcCXbmbKvOA/pYra08KjDx1UDRkLiHMlGAj3iODqpzHXcUTpedCYTBKa10p18FuBZjHP3/twRUem0myTc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPot7RPvn/ko61+QH8jDHv6Z3vfq6eLx2/3zl8VPUlS25Sxks6
+	1cG0KYoAkHN/+488zcIAuBgvyKPjAPGQwwW8jD07LcESRuQVxf8Fx4Nq
+X-Gm-Gg: AZuq6aI8gLnl+tUoe8rUVpzj1K02+Mr01FFU8Go+cmq8YPI3urn3vZFLst/cEgrULDx
+	XW0aTxgw7DgAo6cM7qDebbxPS/8o8na+cbkXN6isVANoJi17zHrRgETLh0Wl4ZlNUvsXB2j+afR
+	CPq+u1audKcdrX4S9bap5wZATQiUUyluN2sq1fnX7j87bS2v68RPyagMKk48TeiOH0nP6BFOKQM
+	trVVObQtlaBZJIj9bMFNTobdBWE+LDo/QHOCeZbqVHH6N+/TmngAEWcH3wWhtLv2jvY08D84QRf
+	L5W82v549HJ16CpusQkR39HZNAIZK8FbfziR/oaKdUibgfJr9Z5eod/J7GhJsgFbxVaKBEz/m3x
+	QNZmq62sJi2gtulrvjS8ZQksrZrpa0U9HimL1kDZOtQUAVLjEDSGRMA8JuGn0o7cDjDqbiUgSLv
+	yYJOKRuvoKZfT9J9n4/oLXqxzEdoLFGCw=
+X-Received: by 2002:a05:600c:1404:b0:483:ad56:8d16 with SMTP id 5b1f17b1804b1-483ad568e4emr116586305e9.6.1771942314223;
+        Tue, 24 Feb 2026 06:11:54 -0800 (PST)
+Received: from arch.localdomain ([2409:8a28:a53:6b71::1004])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43987f3ed03sm5456698f8f.16.2026.02.24.06.11.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Feb 2026 06:11:53 -0800 (PST)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: jic23@kernel.org
+Cc: conor@kernel.org,
+	devicetree@vger.kernel.org,
+	hns@goldelico.com,
+	jerrysteve1101@gmail.com,
+	linusw@kernel.org,
+	linux-iio@vger.kernel.org,
+	stephan@gerhold.net
+Subject: Re: [PATCH v4 0/3]  iio: add support for Bosch BMX055 IMU
+Date: Tue, 24 Feb 2026 22:11:42 +0800
+Message-ID: <20260224141142.225317-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260207151207.0df7493d@jic23-huawei>
+References: <20260207151207.0df7493d@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: rockchip,vdec: Correct
- reg-names order for RK35{76,88}
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
-References: <20260223-vdec-reg-order-rk3576-v2-0-daf4942dfc02@collabora.com>
- <20260223-vdec-reg-order-rk3576-v2-1-daf4942dfc02@collabora.com>
- <20260224-saffron-peccary-from-heaven-2d5e6e@quoll>
- <244b22d3be77047163b4e47c4ed33b5b1befb4b4.camel@collabora.com>
- <0874bb3d-b38d-4ea3-a5b0-2da2484cc3e5@kernel.org>
- <e73da0713587ad5380344afa686a13431d07e232.camel@collabora.com>
- <af6c6561-3d41-4967-a224-cf239335dc5b@kernel.org>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <af6c6561-3d41-4967-a224-cf239335dc5b@kernel.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267929-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-267930-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,goldelico.com,gmail.com,gerhold.net];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BEEF81882F8
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 81C2318837C
 X-Rspamd-Action: no action
 
-On 2/24/26 3:54 PM, Krzysztof Kozlowski wrote:
-> On 24/02/2026 14:48, Nicolas Dufresne wrote:
->> Le mardi 24 février 2026 à 14:18 +0100, Krzysztof Kozlowski a écrit :
->>> On 24/02/2026 14:14, Nicolas Dufresne wrote:
->>>>>>  
->>>>>>    reg-names:
->>>>>> -    items:
->>>>>> +    oneOf:
->>>>>>        - const: function
->>>>>> -      - const: link
->>>>>> -      - const: cache
->>>>>> +      - items:
->>>>>> +          - const: link
->>>>>> +          - const: function
->>>>>> +          - const: cache
->>>>>
->>>>> No, ABI break without point.
->>>>
->>>> Its not released yet, otherwise both order would need to be allowed.
->>>>
->>> Also, not true.
->>>
->>> git describe --contains  c6ffb7e1fb90
->>> v6.17-rc1~90^2~3
->>
->> Ack, I thought this was part of 7.0, it would have been logical to be part of
->> 7.0-rc1 I must say. Whatever happen, backward compat will unfortunatly be
->> needed.
+> On Thu, 5 Feb 2026 18:39:18 +0000
+> Conor Dooley <conor@kernel.org> wrote:
 > 
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > pw-bot: not-applicable
 > 
-> I was here checking the binding, so the ABI. DTS maybe was in v7.0-rc1
-> indeed. Anyway, the commit msg should describe the impact on users of
-> this ABI, at least known users.
+> Applied to the testing branch of iio.git
+> 
+This patch series commit was not found in the testing branch.
 
-My bad, I only checked the DTS changes which landed in v7.0-rc1, and wrongly
-assumed the binding also landed about the same time.  I think it's unlikely
-there are any (external) users of this binding, but obviously we cannot be 100%
-sure.
+could it have been missed?
 
-Would it be acceptable to extend the binding so that it allows both the current
-and the new proposed order to coexist?
+Best regards,
 
-Thanks,
-Cristian
+Jun Yan
+> 
+> Thanks,
+> 
+> Jonathan
 
 
