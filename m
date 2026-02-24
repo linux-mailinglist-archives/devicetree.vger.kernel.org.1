@@ -1,110 +1,278 @@
-Return-Path: <devicetree+bounces-267725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267726-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YMBsBENFnWmoOAQAu9opvQ
-	(envelope-from <devicetree+bounces-267725-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:29:23 +0100
+	id 4JIHA65FnWmoOAQAu9opvQ
+	(envelope-from <devicetree+bounces-267726-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:31:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA161826CE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:29:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 752B41826E6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:31:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 254903063B50
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:28:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 54D3B3027325
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B6012D7D27;
-	Tue, 24 Feb 2026 06:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B734A3019AA;
+	Tue, 24 Feb 2026 06:31:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="AMi18JXH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O7znZ/P0";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fRrDkPl2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-110.freemail.mail.aliyun.com (out30-110.freemail.mail.aliyun.com [115.124.30.110])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD9B1E3DF2;
-	Tue, 24 Feb 2026 06:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E006218E91
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 06:31:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771914535; cv=none; b=hX2v3w195TSpYYyn9eOGzNbk9CkD1HurCVUrvgEGnZd8qSh0J+g/ic7G5DlgpDK+PhgS8otY6pNDwYgTalFF/nB4tSMVnlrEAuNG0ey/OkCWNoBAu/UclU5eLJ9yV3ePE/0eUbI5kL40Y2FUPEN1kzkBd7bKqa0mw4SVy7cXGvo=
+	t=1771914665; cv=none; b=DfmKQMpJ1CLaqn2o4qNlUq4JuAPs+udMrdeZcSoMDBhmh1q0xcJOCKT4kjEqCl5T/r16QUTRnoZMuByMtfJomOSGsP6oem+W9xoH4K6Fam1idFiTe8BrjWUT8r/oOCZPlP4iq1AOkxHfCdABtZtGyJRvjn6FuIr2mSk4xQqZ1TI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771914535; c=relaxed/simple;
-	bh=Yw+hefJL/oLMLKdMvMFtQO743LL8G312hzab9qhvk8o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WDgSJYZcaZOQWXjrmSq7nBFtP1YQf44uUr7cXYFMfGCKzduyYtM71mK23uJaGzj8kC5T2SkLQL+mBixlU7bc5jkBgReaUUIKNFNh0Av8vj+8g3OYvWNCMjhXaCPJEGuK7eq7JtZlLDcPekp0Spdql/65xLLpiMLxAkAYXUQU5mY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=AMi18JXH; arc=none smtp.client-ip=115.124.30.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1771914530; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=5/aYE/eO7Pe/rz6k6J+6I+R2wxGlallxnpO5elKYXlQ=;
-	b=AMi18JXHOTuKit2SqfiyUkX4oVM0xPVt8K0JsjGhBXfIc1bjPannD7p8pBQ6BZy9jaAKq8rQa/dF7pOC4qc3pLN7llbC+NgEn0vGPziqsyKvZ4tQ0XiLGtcCbtiCKAd8uyMlAzOu51bI7yrluns2+Yk+unovcsmsEOyJ4RIviJ4=
-Received: from 30.74.144.111(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WziWARj_1771914529 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Tue, 24 Feb 2026 14:28:50 +0800
-Message-ID: <f48b9c3c-4e72-4169-95e5-989f4e9f0c42@linux.alibaba.com>
-Date: Tue, 24 Feb 2026 14:28:49 +0800
+	s=arc-20240116; t=1771914665; c=relaxed/simple;
+	bh=WlaofgPeYYNCZ/PNpiXCPwGOJQ5+Gn0NjG59UAqJdBU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TQ528RAjmmwd9Mjv3tkLbRqXm45rlFHBomlXHlNY7yxAB/ZwXAXiQm1cdySg1I7GXIbDFRFlFwmeg4E2kc+ws1KqnD+hgnY03Z0BixycChP6X6d50maUMTQP4cHK4NESFXjvhi1NRe4t7E8n/+sWcQdrnfqVgMQSUmuIGS3Gzb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O7znZ/P0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fRrDkPl2; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61O4LPF91459893
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 06:31:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=mrnibdhDFWWXaZ2Mcr559Vtn
+	d7wiGbsUwg3q2/yPUkA=; b=O7znZ/P0TTfUhxS2fNa6ZoVevQGqYLNeTCTGbJ9A
+	KSbf2hef/0etqN6MJHIp5hLrJWxWQv8TezgiglnLCndmjfCeYsbSXKBl+S3iihrL
+	+pUm0pV9r7+ryFw0xcYGOiufCVwxlTdd1pkv+bHWdtdf/7/AU5bDvgaFKj6DFA/E
+	mB6n8aX5WSQJVQIHRK8bzd+R20T+s1XQvllbUX2BZEnywbbWJ7sFd/WfjZfRYZC3
+	+udzw0at6JbdnhwQf4McSm7JkO0M6fgoilH3i6yGzF1RYO49d5GKjiRnA6n9qCaW
+	EQHamhkSz9nAY2xiau/lUPTqrOBWbswCbmDHrt3zoSokuw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ch4e38bvx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 06:31:03 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cb413d0002so5461215185a.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 22:31:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771914662; x=1772519462; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mrnibdhDFWWXaZ2Mcr559Vtnd7wiGbsUwg3q2/yPUkA=;
+        b=fRrDkPl2OMbxrBeao+H2nfwm25Fmv/44oRZ2S3LmJz1Tt4Ct4PVUOl9Jfo4Z4e58W4
+         x0PQqOifRgUyvmfLsONq0LR5dPXYN3I7fFuGPTIptB1dPuYZpeoEV0qbhGx1/LeppCav
+         D7T31M2X1+0HYyciOQk1P0XF3rQt/sdGsSdxTR5uFJawt1Gtnx2YOT0DlVd0Od/vqSbU
+         JiwfezGCHXGKSwTXLFREqIPJxalFVl3HNt0uLg07M9qfuvcDHV5WqqLv2SXWPAmtd9xA
+         OFEEmTMGGcoFlfyPkkNhPhrgzgzIC6Dglz9cDG/8p47zWDHRD3fYXZgPJ6WqEhgBhnDX
+         nC0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771914662; x=1772519462;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mrnibdhDFWWXaZ2Mcr559Vtnd7wiGbsUwg3q2/yPUkA=;
+        b=MaNOPycHAcoifIrmsvB7xai1Ka/PIMIOI5IKNPkXDzvVsc7aStiNKU7H/1E0YAD7aP
+         hCRaL/OQZlCpYWeN0wOWoJIr5MFtk07TMD/J8oY2Jo22NGgZV0nnYXUCQ/Jx7HG2gC01
+         Rxl1o2jjBWSRKfUQJxKZbezomWJ2ItUFceaeq2/hXQbTjWXXbyzxRx333YtY1Ad95BFZ
+         pYqIndhgA1njg3x2tGH497/g1E64uYo1RFmMyZmzPL38bEARPJMwp34KkLUBcivPvlOY
+         Q/+MlR8mF/R2e4tKiehoKikX/ccV8bd5jFkH9P8wmkAN/eZZfLLpTc6LrxBwcnmgdH1V
+         PSNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXUfoBispgsCDwUoyELmYIbBrYqSm/zS1szXtSNA8qXDPRf/9ZX0tETl/kWdrbXDqGIn0JtYxJFZS46@vger.kernel.org
+X-Gm-Message-State: AOJu0YwA/6/pctqTcPm8eFfXn2XSpUkKBT4KElSzPJKVEPbwIyNxkIfG
+	V0pwCvmBOKuXJ9pl6XhWiazgOL3C3UQGLUrCpA/znMnHsN1CLvrKn9NBilwfyUKjIyKl+Yz+6CT
+	bFbq3xhFXFHpg6olc1+JqPZtU11i5TuOq8tKk71fxRsZpJrsO2mFOKHZccsuuBI2n
+X-Gm-Gg: AZuq6aJApFaZIDK6PfoT2G/cZ+49fQ7vt88k0FmnGYL9jInBqqynQyBAzjmTLaUh1cG
+	cNfhAZuE5maa88WdHkpXMZY/liiedhlfgl7d/n/OWPHqIJphadgKGhxoxPBVR6VRAvGDu2bSHol
+	XITNhKwVLXW9BSMSCsJshjZ99IfvBa3/qRKPcL3pkiJQb3VYRoAchINUw3CV/Ks/NhvN0AhljFd
+	dN0sUpXxddUS0wX6LDrdzGeyLHmZuwewSklrh7CSM86jpeoYogsgLQzWMawriNH2rc54R+Uhx5n
+	1gcJOo9IT7QwxcMPOTJGgZBAhFYmZFyMTEYOoJm1oXgwA62GE88961L28cEEUkXDax4PgWQyF7O
+	Z6k2JLubqsU77ssdGtJ0UoQL1qGnYONj9Y2XGXBE2Apt5dSsjMEQ8d2X2U83NldzwNBSJ1cD9L7
+	zg6Yn6uImq4dq53E7tPbU+/GXF5SVbjs3RUeM=
+X-Received: by 2002:a05:620a:1a13:b0:8c6:b05b:1f33 with SMTP id af79cd13be357-8cb7be3b53bmr2085232085a.9.1771914662491;
+        Mon, 23 Feb 2026 22:31:02 -0800 (PST)
+X-Received: by 2002:a05:620a:1a13:b0:8c6:b05b:1f33 with SMTP id af79cd13be357-8cb7be3b53bmr2085229485a.9.1771914661995;
+        Mon, 23 Feb 2026 22:31:01 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a0eeb498cfsm1989020e87.78.2026.02.23.22.30.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Feb 2026 22:30:59 -0800 (PST)
+Date: Tue, 24 Feb 2026 08:30:56 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, robh@kernel.org,
+        srini@kernel.org, amahesh@qti.qualcomm.com, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        mathieu.poirier@linaro.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH V3 5/5] arm64: dts: qcom: glymur-crd: Enable ADSP and CDSP
+Message-ID: <lqt5k6w3peqlgvgeagp2v3yqtvqpaihsbkvu2hwfzel4j2whnh@qafj2mnrt2dq>
+References: <20260129001358.770053-1-sibi.sankar@oss.qualcomm.com>
+ <20260129001358.770053-6-sibi.sankar@oss.qualcomm.com>
+ <e658b473-6f05-4f83-a730-e586068d8742@oss.qualcomm.com>
+ <sgomjvhwnnbvuskxqfybczvxtwn2lourr5eq4mw4qyxp5s6kzc@ccgx4wn5wqi3>
+ <24973bc9-a082-42ec-89f4-12758ddca136@oss.qualcomm.com>
+ <yaunylao3nefmhbdovpfoymy63hjfjtvbwm5quqvdyk3enpno6@7rmpnx7esdhs>
+ <8d96ebc8-67e2-424d-adbc-0948dd3641a0@oss.qualcomm.com>
+ <CAO9ioeUSJQC685K47qMBn51r7APReO9T+h_K3bZ_94Uwn1unBg@mail.gmail.com>
+ <48778fa8-b485-4c79-be1a-c70836f65f0b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] regulator: Add regulator driver for Unisoc SC2730
- PMIC
-To: =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20260220-sc2730-regulators-v1-0-3f2bbc9ecf14@abscue.de>
- <20260220-sc2730-regulators-v1-3-3f2bbc9ecf14@abscue.de>
-From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <20260220-sc2730-regulators-v1-3-3f2bbc9ecf14@abscue.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <48778fa8-b485-4c79-be1a-c70836f65f0b@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=DfIaa/tW c=1 sm=1 tr=0 ts=699d45a7 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8
+ a=60J4MCMU89GRG9oapK0A:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: CvIyoLvC3dC5FivxZ78fPS9hOPpAvV_p
+X-Proofpoint-ORIG-GUID: CvIyoLvC3dC5FivxZ78fPS9hOPpAvV_p
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI0MDA1NCBTYWx0ZWRfXyrPGRtBcx9K9
+ 9K7mD9ZYK6fEdoq0uNj4AZWSBlOLZoaQUg603uQfXmEB2Wa/cDRMg6q1aM5gf1u8Kjr8u3O9sNd
+ I9wYinCpUHgFNWHzTq30vs7JHx2GdluBIq48XdVOWQOKiLnqrODIDuq4Qzl+K/QEMGL2ayo0wvk
+ BUnKoBkXSi6zTBTJVenEdkwmvaHQBTEHHmhaf8omqW5Y6NulWsz1s4ckrY5aI+iXoMXCJtvW90j
+ iwp/ns0X3rbVIdkE5IAgwmhyCdIUTTSYqFfToADGPzdkSUBqBr9K3YePsosaDvCQulPYjDIaHR5
+ +3Xrgk2RqedOzvdBtiYDnc1AF1/5gLuozEyf1/QEpa226krcgiyI1CPN3twIxAT+XA2nlgH0S6n
+ SDq4SR26enbo5FxKz+ARj+ja4w1jByVsqrGRtbpmElZYKWnUeQfmTLPDgEYCM1A/NLUm3Qmmj8P
+ wva1wha/WnVwMmk6NgA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-23_06,2026-02-23_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0
+ adultscore=0 impostorscore=0 bulkscore=0 clxscore=1015 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602240054
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-9.16 / 15.00];
-	WHITELIST_DMARC(-7.00)[alibaba.com:D:+];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linux.alibaba.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linux.alibaba.com:s=default];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267725-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267726-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[abscue.de,gmail.com,kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linux.alibaba.com:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.993];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[baolin.wang@linux.alibaba.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.alibaba.com:mid,linux.alibaba.com:dkim,abscue.de:email]
-X-Rspamd-Queue-Id: 5FA161826CE
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 752B41826E6
 X-Rspamd-Action: no action
 
-
-
-On 2/21/26 1:01 AM, Otto Pflüger wrote:
-> Add a regulator driver for the Spreadtrum/Unisoc SC2730 PMIC, used
-> e.g. with the UMS512 and UMS9230 SoCs. This version of the driver is
-> based on a downstream driver provided by Unisoc [1] and the existing
-> SC2731 driver.
+On Tue, Feb 24, 2026 at 11:48:00AM +0530, Sibi Sankar wrote:
 > 
-> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+> On 2/23/2026 10:44 PM, Dmitry Baryshkov wrote:
+> > On Mon, 23 Feb 2026 at 11:09, Sibi Sankar <sibi.sankar@oss.qualcomm.com> wrote:
+> > > 
+> > > On 2/3/2026 6:09 PM, Dmitry Baryshkov wrote:
+> > > > On Mon, Feb 02, 2026 at 11:16:19AM +0100, Konrad Dybcio wrote:
+> > > > > On 1/31/26 8:54 AM, Dmitry Baryshkov wrote:
+> > > > > > On Fri, Jan 30, 2026 at 10:55:24AM +0100, Konrad Dybcio wrote:
+> > > > > > > On 1/29/26 1:13 AM, Sibi Sankar wrote:
+> > > > > > > > Enable ADSP and CDSP on Glymur CRD board.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> > > > > > > > ---
+> > > > > > > >    arch/arm64/boot/dts/qcom/glymur-crd.dts | 14 ++++++++++++++
+> > > > > > > >    1 file changed, 14 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> > > > > > > > index 0899214465ac..0eed4faa8b07 100644
+> > > > > > > > --- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> > > > > > > > +++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> > > > > > > > @@ -487,6 +487,20 @@ &pon_resin {
+> > > > > > > >            status = "okay";
+> > > > > > > >    };
+> > > > > > > > 
+> > > > > > > > +&remoteproc_adsp {
+> > > > > > > > + firmware-name = "qcom/glymur/adsp.mbn",
+> > > > > > > > +                 "qcom/glymur/adsp_dtb.mbn";
+> > > > > > > > +
+> > > > > > > > + status = "okay";
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +&remoteproc_cdsp {
+> > > > > > > > + firmware-name = "qcom/glymur/cdsp.mbn",
+> > > > > > > > +                 "qcom/glymur/cdsp_dtb.mbn";
+> > > > > > > > +
+> > > > > > > > + status = "okay";
+> > > > > > > > +};
+> > > > > > > Please make sure it gets to L-F (only Kaanapali is there right now)
+> > > > > > > 
+> > > > > > > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > > > > > Hmm, looking at x1e80100-crd which references qcom/x1e80100/adsp.mbn,
+> > > > > > but the firmware in linux-firmware is (now) targeting IoT devices,
+> > > > > > should we use WoA-like names for firmware on Glymur CRD instead
+> > > > > > (qcadsp-something.mbn). It would match what was done for the SC8280XP
+> > > > > > CRD.
+> > > > > I think it's simply time to stop pretending the firmware is generic
+> > > > > (some fw simply isn't and some fw may come from different/incompatible
+> > > > > branchpoints) and include a board name in the path
+> > > > Well... CDSP is usually generic, except for WP vs non-WP.
+> > > Hey Dmitry/Konrad,
+> > > 
+> > > Thanks for taking time to review the series :)
+> > > 
+> > > The ADSP/CDSP firmware that got upstreamed to linux-firmware got their
+> > > functionality tested on Glymur WP CRD devices.  Given that the firmware
+> > > has already landed, can I continue to use the same name as the patch and
+> > > have a different name for other boards if something specific has to be
+> > > pushed
+> > > for IOT?
+> > Thank you for a prompt reaction, it took just 20 days. During that
+> > time we could have fixed WP firmware filenames, but... linux-firmware
+> 
+> Hey Dmitry,
+> 
+> I'm really sorry that this happened this way :( but I was out
+> on vacation the past three weeks getting married. A quick
+> review comment on the firmware pull request for naming
+> change request would also sufficed in the interim. Also to address
+> some of your concerns there aren't any plans to push an iot
+> specific ADSP/CDSP firmware for Glymur reference devices.
 
-Please add the original author’s SoB tag. The code looks good to me. Thanks.
+There are no plans to push or there are no plans to have it?
+
+> Also, this series already warrants a re-post so I can still
+> accommodate your naming requests with corresponding
+> updates to linux-firmware.
+
+Yes, but the linux-firmware has been released with these file names, so
+you can't just change them. You will have to provide
+backwards-compatibility links, which defeats the purpose.
+
+> 
+> -Sibi
+> 
+> > got released just two days ago, so we can't fix that anymore. Now we
+> > don't have any other option than to use a non-standard name for IoT
+> > firmware when it comes later.
+> > 
+> > > -Sibi
+> > > 
+> > 
+
+-- 
+With best wishes
+Dmitry
 
