@@ -1,145 +1,175 @@
-Return-Path: <devicetree+bounces-268002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UFgsDdrinWnpSQQAu9opvQ
-	(envelope-from <devicetree+bounces-268002-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:41:46 +0100
+	id wPwdFjrjnWnpSQQAu9opvQ
+	(envelope-from <devicetree+bounces-268003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:43:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB63418AA72
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:41:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7D918AA9E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:43:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3E8C73006B4B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 17:41:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8252D3067773
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 17:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAEFA3A7F6E;
-	Tue, 24 Feb 2026 17:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D533A9627;
+	Tue, 24 Feb 2026 17:43:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cE7whtBj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JQpBqB5y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949BA3A9627;
-	Tue, 24 Feb 2026 17:41:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26863806A6;
+	Tue, 24 Feb 2026 17:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771954903; cv=none; b=SXAavhWOCPHCiBvZLDvKVF5XRFrtuE2ef+N1Q0DOGFvuJ0BE+v4HzsGBraboPaWO2qhfukVcZLhX77ymc8I8E7G0+skE1Iqv2Z/1kv7LnLDhXMkABlubH6RVIGx03/DF8GxS3709nCwYQ/BK3RQn1pSAF67VcGKBm7D0mqj2+Vg=
+	t=1771954999; cv=none; b=u8RE6fuQm1yqhIXoStrEhnBMxGxkyLR2DhhXmEqx1Y1T4G0ZFeip2DCEtIqo7D9JKGeTvK7QqHoN7qfkTlaFh4Inv2hIXdLeVSfylD5k7aHN0PH0UqLyzztmpJHolk/BlOYGWpjO/YG2BuYfaaELi2HarOL2c4XWIjN6XX70H74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771954903; c=relaxed/simple;
-	bh=36cqExmJ+xVEA46VvhswCFGe7wEAzemfq3PU9IFvDFY=;
+	s=arc-20240116; t=1771954999; c=relaxed/simple;
+	bh=6W0OxqSdiXXEXOTbMnCNWEv8J0q6IEYD250aoiMd52k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fehau5fEUJegIFyzYheFa0aEWD7eMVAROyF9Mcg4ZjvkYQnARcG10h2kFfSJ/+0nECEk2rxO/wZ1HMVC5/z3LLnjGmRCAID2ZXdrdo4qq2JGlojRD63nUauU1INrv2HchQ067+T8aKazRMAjs6fLmWJMkdhFUuN14d56qzDERv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cE7whtBj; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771954903; x=1803490903;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=36cqExmJ+xVEA46VvhswCFGe7wEAzemfq3PU9IFvDFY=;
-  b=cE7whtBj00/qHQKNe+voXe8S+gqkZSDai33JYwdXAOZKp66+f4uEzBQL
-   Zs6+ZSKtaUBsoytudcCjNV7zmV+1UPKdrCu4WVRWyIjvTdx3eNzhWe3xc
-   Ktf/roFvipYirHa1PvZc3TV2jEhPePUuu9y2wMh+QtLLf769Gnt2aK/R/
-   NXcqrZV8au8WigSvTv3p6faLnxLW4UA/8+sZ+Xkut8Z/Y6SfNIBhvMEWa
-   JsKkVWLQ9yzFCZpRngoOxfvHCiZZoA6AXksQqKyQovXam3Td0I4p1vHx9
-   iVvULoNKVHPviHNQfGUSwuHMuvHt4o+HwBDdmAzu6KEBK5i1ww+E+LibF
-   w==;
-X-CSE-ConnectionGUID: BVVCfFUPSKCUvQKNb5AT+A==
-X-CSE-MsgGUID: tQuj+qAsTvuGEDHQPAVWqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73048874"
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
-   d="scan'208";a="73048874"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 09:41:42 -0800
-X-CSE-ConnectionGUID: nkutu3TqRFWpMN82IReoBQ==
-X-CSE-MsgGUID: hmwbiwOxSJOEXuUGE1Hn5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
-   d="scan'208";a="215208062"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.146])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 09:41:39 -0800
-Date: Tue, 24 Feb 2026 19:41:35 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 0/3] Add Invensense ICM42607
-Message-ID: <aZ3iz18O3UEDTDqm@smile.fi.intel.com>
-References: <20260224163109.370930-1-macroalpha82@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LlArLK+8x67LZ9fGS7w1P3E9xmLNAkEdJeMObOSaKu1WG2Lkx3G8h6xKAiWilj3CKUMPtPTMYnQFThxCDFA4RzBO31i8Cu6/DMj2CI/1wkO8oI0lR4gAbDi86f3o0fNisBUU5plbED9VKC5463j5mnthEIxCIW3BjtOJcmrezvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JQpBqB5y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E186C116D0;
+	Tue, 24 Feb 2026 17:43:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771954999;
+	bh=6W0OxqSdiXXEXOTbMnCNWEv8J0q6IEYD250aoiMd52k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JQpBqB5yrBSqnxhrOCutJ6tv/6hR2hQlsDp7EKwCYp2QUy0Ocz8HOX5GqK4jsxevq
+	 1Um2cW0arDx6hAkL6GVOQJewt0dsLsNHIx00odNOHIwnI7hp5tvE3nOepxp2zPK1yF
+	 ljEbkMLVMhCGzi16WcfxZ2jySb0UFXQAgBP45GHWpMT3kLL6uxmnjPwoqrHNTdTrCS
+	 Q3xRTXmT5/4EXRzKmXR30tNbLpYje3yeTkvTCaxFXGENW8GrHEoSrBXdwBMB5TBFS+
+	 xtjJQ1aAidZlfWcVRE1/rrYwnKUB/DrjaN7CFukmQAMa65kczzlCkEvfWVVm+34hd+
+	 PLdBGN7yogrpA==
+Date: Tue, 24 Feb 2026 17:43:15 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Akhila YS <akhilayalmati@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu@tuxon.dev>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/5] dt-bindings: Microchip/Atmel AT91/SAMA system
+ peripherals: convert to YAML
+Message-ID: <20260224-recolor-hatching-e7d1b1894953@spud>
+References: <20260224-arm-microchip-v2-0-8bedacd2cdcb@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="a9Oce0LrKqM5UBEG"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260224163109.370930-1-macroalpha82@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20260224-arm-microchip-v2-0-8bedacd2cdcb@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
-	TAGGED_FROM(0.00)[bounces-268002-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268003-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim]
-X-Rspamd-Queue-Id: CB63418AA72
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CA7D918AA9E
 X-Rspamd-Action: no action
 
-On Tue, Feb 24, 2026 at 10:31:02AM -0600, Chris Morgan wrote:
 
-> Add support for the ICM42607 IMU. This sensor shares the same
-> functionality but a different register layout with the existing
-> ICM42600.
-> 
-> This driver should work with the ICM42607 and ICM42607P over both I2C
-> and SPI, however only the ICM42607P over I2C could be tested.
+--a9Oce0LrKqM5UBEG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for your contribution, but...
+On Tue, Feb 24, 2026 at 02:46:45PM +0000, Akhila YS wrote:
+> Convert various legacy .txt bindings for Microchip (formerly Atmel) AT91/=
+SAMA
+> family system peripherals to proper YAML schemas. This includes:
+>=20
+> - CHIPID (SoC ID register block)
+> - PIT (Period Interval Timer, old style)
+> - PIT64B (64-bit Period Interval Timer, newer parts)
+> - ST (System Timer, including watchdog subnode)
+> - RAMC/SDRAMC/DDRAMC/UDDRC (SDRAM/DDR memory controller
+>=20
+> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+> ---
+> Changes in v2:
+> - Change email for maintainers.
+> - microchip,sam9x60-pit64b: modify compatible and clock-names in properti=
+es. =20
+> - Link to v1: https://lore.kernel.org/r/20260217-arm-microchip-v1-0-ae5d9=
+07e10e3@gmail.com
 
-NAK.
+Please give me a chance to respond to your messages before sending new
+versions. My comment about partial removal of the text file still
+applies. You've got to send another version anyway.
 
-It's unreviewable bulk out of 4kLoC! I even won't bother looking at any other
-messages in this (too mini) series.
+>=20
+> ---
+> Akhila YS (5):
+>       dt-bindings: arm: microchip,sama7g5-chipid : convert to DT schema
+>       dt-bindings: arm: atmel,at91sam9260-pit: convert to DT schema
+>       dt-bindings: arm: microchip,sam9x60-pit64b : convert to DT schema
+>       dt-bindings: arm: atmel,at91rm9200-st: convert to DT schema
+>       dt-bindings: arm: atmel,at91rm9200-sdramc: convert to DT schema
+>=20
+>  .../bindings/arm/atmel,at91rm9200-sdramc.yaml      | 67 ++++++++++++++++=
++++++
+>  .../bindings/arm/atmel,at91rm9200-st.yaml          | 65 ++++++++++++++++=
++++++
+>  .../bindings/arm/atmel,at91sam9260-pit.yaml        | 49 ++++++++++++++++
+>  .../devicetree/bindings/arm/atmel-sysregs.txt      | 48 ---------------
+>  .../bindings/arm/microchip,sam9x60-pit64b.yaml     | 68 ++++++++++++++++=
+++++++
+>  .../bindings/arm/microchip,sama7g5-chipid.yaml     | 41 +++++++++++++
+>  6 files changed, 290 insertions(+), 48 deletions(-)
+> ---
+> base-commit: ca3a02fda4da8e2c1cb6baee5d72352e9e2cfaea
+> change-id: 20260128-arm-microchip-c0c0515024e6
+>=20
+> Best regards,
+> --=20
+> Akhila YS <akhilayalmati@gmail.com>
+>=20
 
-TL;DR: reviewable code is limited at ~750 (or less) ± 150 LoC per patch.
+--a9Oce0LrKqM5UBEG
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-With Best Regards,
-Andy Shevchenko
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaZ3jMwAKCRB4tDGHoIJi
+0qptAPsEZufrKjBwoS35zrrBVn3edjNi+mQl4li5B/R8t4V5kAEAjsa5V4cntrIz
+C8Jh6yTdaEQcfyH12xxHsE3pNqhw4wQ=
+=Z8VM
+-----END PGP SIGNATURE-----
 
+--a9Oce0LrKqM5UBEG--
 
