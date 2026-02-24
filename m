@@ -1,213 +1,169 @@
-Return-Path: <devicetree+bounces-267836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267837-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iO11HquMnWn5QQQAu9opvQ
-	(envelope-from <devicetree+bounces-267836-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:34:03 +0100
+	id UCrIFzONnWkXQgQAu9opvQ
+	(envelope-from <devicetree+bounces-267837-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:36:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B67E186589
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:34:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBCEC186611
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:36:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 769E13004DCC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:34:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9C2F3303CD3A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0CB37E2F0;
-	Tue, 24 Feb 2026 11:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A4C37D114;
+	Tue, 24 Feb 2026 11:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="RcLW7F4A";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="N3+bJuz4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zmwp6GCL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E35537C119
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 11:33:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=170.10.129.124
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771932840; cv=pass; b=C3Gu4cuHCAt1YGEIlRVXX88TNx1art1q+iltGoLwq5I1OhcCN4QivMb4yjBUiUS1SP0pGiVfzUDKkFROtVJGfpnoV8uDUpzCH748NXF8QSXutBkkSB05ZyO8KD5prbpPiZFSVrCoa8/UzPLLDuutWsZL0YIbQAlc4ve8zgGzQ5M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771932840; c=relaxed/simple;
-	bh=e3fFdUkJcs62tdGmt94fUffFddFQh3eOqTXtq9Bfi2I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rAjCtZf/jidJDGfxqCD09qdlgNo3MRQmmg78bqZlNyoDZUbcIi2kD39OQ0xkYCZBA+UNIaPcf1kthYfxuWHs8KBeKTGyVCIkqSOXk6XhJHhIsiKqOE4NoNLKSZkj56BT3UlwUkl29XsIZGKg5/baaF/9fsdmL6x/lvNreO6QZx4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=RcLW7F4A; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=N3+bJuz4; arc=pass smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1771932838;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=H1XbW7/Mchf18o4deZ5UyLtW8vMbGMc1nfkosLZ6hzk=;
-	b=RcLW7F4AlsSJX7tb/qqUyxzEdaRBauweEIsgOPuVE2jnXx5wQSvm7LmdFZowWhJPdEA8Fp
-	n2c7rotPs7RHse/GNng5lXnoRRVo9WqE5CDkgCy/di0PmEiJV87qKzg6UItaYvCwHc3QGj
-	98TFfmBz6SraE5c8cA5rZMTwfV8QZek=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-191-HGZwv0e9NN6Lth2esOO4qg-1; Tue, 24 Feb 2026 06:33:57 -0500
-X-MC-Unique: HGZwv0e9NN6Lth2esOO4qg-1
-X-Mimecast-MFC-AGG-ID: HGZwv0e9NN6Lth2esOO4qg_1771932836
-Received: by mail-ej1-f71.google.com with SMTP id a640c23a62f3a-b88622fbe54so92504766b.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 03:33:56 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771932836; cv=none;
-        d=google.com; s=arc-20240605;
-        b=feT0YCb0HeT8hun1nt5AeUAWmqFOzmMkDAV22jU2dAXYdELjNKyMshrIhSfoFaRwO9
-         Go7RqQqr63j6TSQzat1AFy7WF4I4ZNMyQfk6oqiiQhZSlU7EPS7VKPQfPJIQ82/dk9ct
-         oE8l/T7JC+FrsXMvfHekwn6yYiqiq0aWQi9lfl/QDW5sUWpx/y/ybYVX+OcWK3ucRJ5P
-         ELiBvz+zd84TTeWtfs1tdoA0aRtyDYVbsTKfKkhRa0/cuiXu612jViR1CYidspBLNPRQ
-         LvKRzMnRJbWZP8hDwgNwfcoQwcBEcHNMJKHykAS2y9drKgj1jprcC1sc+o+0R1M0u6m9
-         CdxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=H1XbW7/Mchf18o4deZ5UyLtW8vMbGMc1nfkosLZ6hzk=;
-        fh=WphlA95BVVfsgxAQQGCRHevqSbGK20zaaWy56ZxJspY=;
-        b=gMmbnVaZuoTm92g02y41IZSeBiq+ZHZgdCJjsaUnYykqzX98XW4a5BhVk99NgWiBki
-         DXPx1dzZbGJztwR/32k4A9I4mXfrKvoxItf2FCnR0dbwxUHz2yzB/CxN7Mh8QHVd0tEj
-         DOvG+7xP2MW1Sf8ld0gSxrwNyymrggbuv1Co21B3b0MWLBptsXSdjCkCHQw1LGX33nRk
-         WWZ3Lkeei1Y6VnzZwyq1U3izdpBxlpki4P+QA6GjoOaKQVTwnQWRk5WM/SvnKB3M+lkv
-         4qBcQRgeMIj6MBsMsrMCCoE/T4+82PLhnWPSy/71kYHGJbQCtdikusazSscY3GRgbJwu
-         AuPA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1771932836; x=1772537636; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H1XbW7/Mchf18o4deZ5UyLtW8vMbGMc1nfkosLZ6hzk=;
-        b=N3+bJuz4NqAy0ubeoi/MVLGp87XEG2bPXyA5VIYWXnBQiKFFGiz4bT33IZlnfy5hWg
-         o41Q1EXHSQVoCw21wD/NeYLECECg22jq7rGh+NMUj52iC31tu6UKLHVveiFM3Wx42/5+
-         PioEqGLuLsfwNhWfXWfryq/7y/4HXyKH/6Ugz8zUucio9lXiQ17SddMTpjTf4AEA/Q8M
-         4dOOy7a0SqdPKST9rvdfum6i9rrxThhpdCJ+UjcwQsORzz71+4zrcdlgzcM4Cqy/DXBo
-         Wgrvj+wZ2DEuRa4m3gROrnQ8sTyo9CTDqoKrJDxebkwn0GU8TydCX0VAiH4yX2rRfRaG
-         3/MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771932836; x=1772537636;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=H1XbW7/Mchf18o4deZ5UyLtW8vMbGMc1nfkosLZ6hzk=;
-        b=mc3PmpAzf2+kBvb5/PoSlrfRmYk1ZbwYp+p8drEIX1EuM1BiTC5MrfCbJto1n2BtC0
-         4iy+n+6XpeUMOr6/mh7dLugFxpxJMbzgSQHWdi+Z8lHAXagrlasnRHa38p0V5jV0pRzR
-         6DRb3aga7VWlXrGJflseEazpahBhGLhD/tJNYjVx/ywl9wPkSy8VauBOIwFo7sWbaN7A
-         Coj5KDJ8pOtOoJzkWhZTN/pWPry6+/9ni7mNz24y2r4D0DgvJYnNiuqvtRADqGqMo7BV
-         JYaqqvMCFX1Lf7aiD+Y/7BpKhHM5A7TCu07zFRMS9rzpqVnz8rYyIhfsvJ+L3ILPyYB4
-         50WQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXD9KFN1lnwr5Xai+JpL00aubfHy41sSXim1yhwKNKh7U6iysD3ppN1pENo7hBQZjY2IWadjvLEUYEk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwElC2Fz2uQpSsO//l2gPcN4EqT3PaAkXnMkXaj5Ht5xcT8lflf
-	QTx4Nyh0rHjdAV9Vz1sMTEme17VvAxVliQou0AukAFLSh8JUFzFIkv8q/vE8PPfac3czmZd6pyr
-	4/bCidZKXFQb26DKterSbowsZS3lmAukq7HiBRc4z3hjCvmCScIKYWO4AOXxIqDzZO9+6lDygNt
-	WKjDOZhhL56CPae3WWJQ729LFkYIgkOe495soYOg==
-X-Gm-Gg: ATEYQzyYEy79x4U2edcF9wANrYyIu9jgm+XcOh9GMnuwgSLaS/MMoCPTypMwSFlJYdA
-	7HN5CWjsTlvdRJTm/B3UHiHLy7HRJIUkJhdNyOhoURaLtxBafv8fskXHn+yxiOObxZBoJ1Bo6oj
-	DHnS6u0SMuUcODyNNguxrwV0uvxSpq52eYyYt8N6AEpF9hjbtacbOFrp4slqzXprpAdvQrvcwzG
-	UEUdg==
-X-Received: by 2002:a17:907:789:b0:b90:6a9a:e36 with SMTP id a640c23a62f3a-b9081b4d10dmr738934666b.48.1771932835531;
-        Tue, 24 Feb 2026 03:33:55 -0800 (PST)
-X-Received: by 2002:a17:907:789:b0:b90:6a9a:e36 with SMTP id
- a640c23a62f3a-b9081b4d10dmr738931066b.48.1771932834979; Tue, 24 Feb 2026
- 03:33:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 556F736D51B;
+	Tue, 24 Feb 2026 11:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771932918; cv=none; b=LMSATDJIXH8z7DYZHOWopKtuKmSrP5wcN/4mg3WVvfeTxljDL+mgbX+IXYNpf719CxYcYXRy+8qGDlwZDTpoh8+gzyBxyMDgkfnoagFVsiIRVExxUg6dew+YXuMUgAX/akvJMFpGZ+TLpWnyH/oovfrARcmiggcNecMCo8cZ1D4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771932918; c=relaxed/simple;
+	bh=3gnRD+YMffokRF85VUUxKomjtZQMuEx117IH58zzsDk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UPYEzAQ7fo/ArVRQoxzJlwDVoFKRK4MtlD4sjKe5SzVHzEHUvcEMJ1A2ZIBxk460twmFqNwfRgv9SGn1EysvSYg083W4ugawU0EiIaxAqyknA2/VJiKDG/peBpAivc5eiYTSeNu9Z0cLotR6SrFFQMpXzrfbb0Yktf4nb9MA3B8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zmwp6GCL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A707C116D0;
+	Tue, 24 Feb 2026 11:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771932918;
+	bh=3gnRD+YMffokRF85VUUxKomjtZQMuEx117IH58zzsDk=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Zmwp6GCLddeROusLGLpWhGSP4fUuythHuve767U0EiZ/a/vHNxkRAuDo33kZWj75C
+	 qPCaD7gqZs6GGr0chX+GqxJAr+4aLZQ3ge6S9kGcq3ji3oT4xARrD++btVTOarELA1
+	 ZAU1fUDshNgCQYrurJDqzR2KiCLiOJ3yxX3zKAKVGUiWqcBSCxFwFIrQJbrMeORIcW
+	 dCs/tlC1HgP4OmrwsUxZaO8OHYeuuZCH61cSHrHqUXot76w8KOdIsjDNmICLWaidzZ
+	 jmSI8r3U/ycKV7xrWSa7tPShUo4lY14imCtZMSmaKglFVOXlzBZlSUACw6Ws3/8R1X
+	 M2LhILNQcqhJw==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [net-next PATCH v5 0/3] Grab IPA IMEM slice through DT
+Date: Tue, 24 Feb 2026 12:34:45 +0100
+Message-Id: <20260224-topic-ipa_imem-v5-0-015bf09e123e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260214101421.228-1-dongxuyang@eswincomputing.com>
- <ae2358d7-7e82-49fe-8a03-195487a7b010@gmail.com> <41d3bf12.387f.19c8ee9570e.Coremail.dongxuyang@eswincomputing.com>
-In-Reply-To: <41d3bf12.387f.19c8ee9570e.Coremail.dongxuyang@eswincomputing.com>
-From: Brian Masney <bmasney@redhat.com>
-Date: Tue, 24 Feb 2026 06:33:43 -0500
-X-Gm-Features: AaiRm50KgDObk3pYyYmDTAq10i3GCVF2jr0QwhnBU1r08XDcRGlr4pw_FkRlFAM
-Message-ID: <CABx5tqKDQX+AK0yRUsHc2_dvuegWgWfJ+WCnphZX4NYJyHceww@mail.gmail.com>
-Subject: Re: Re: [PATCH v13 0/3] Add driver support for ESWIN eic700 SoC clock controller
-To: Xuyang Dong <dongxuyang@eswincomputing.com>
-Cc: Bo Gan <ganboing@gmail.com>, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, troy.mitchell@linux.dev, 
-	ningyu@eswincomputing.com, linmin@eswincomputing.com, 
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com, 
-	marcel@ziswiler.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XOwWrDMAyA4VcpPs8lcmLH6anvUcZwLGUVLHUat
+ 2Gj5N2rFgqFLBfBL9CHbirTyJTVbnNTI02cOZ0k7MdGxWM4fZNmlFamMLawptSXNHDUPIQv7qn
+ XSJ1zMQbvySo5Gkbq+PcJHj6lj5wvafx7+hM8tqvUBLrQrUVbOtNArLt9ynl7voafmPp+K0M9x
+ Mm8K/VCMaI4hBCwgdZXsKKUL8UVBpZKKQo69ISAXevqFaV6V5qFUokCvpFPsCXy1T/KPM93l7i
+ Ud4UBAAA=
+X-Change-ID: 20250523-topic-ipa_imem-def66cca88e5
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Alex Elder <elder@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Alex Elder <elder@riscstar.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Simon Horman <horms@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771932912; l=2134;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=3gnRD+YMffokRF85VUUxKomjtZQMuEx117IH58zzsDk=;
+ b=JcBeFRW09GILIBAXiQluD9TA0a1XPsxjYNtRHJ0cavVDjBFeKrSHj20xpYbgAMNGlq8Q0rPny
+ /DErP1P2ZeZAqxSIflthgVLvsBULahbwn8JSkBk0c7we+iSIFXJFUZu
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267836-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267837-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,baylibre.com,kernel.org,vger.kernel.org,linux.dev,eswincomputing.com,einfochips.com,ziswiler.com];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	NEURAL_HAM(-0.00)[-0.986];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 0B67E186589
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konradybcio@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,oss.qualcomm.com:mid]
+X-Rspamd-Queue-Id: BBCEC186611
 X-Rspamd-Action: no action
 
-Hi Xuyang,
+This adds the necessary driver change to migrate over from
+hardcoded-per-IPA-version-but-varying-per-implementation numbers, while
+unfortunately keeping them in there for backwards compatibility.
 
-On Tue, Feb 24, 2026 at 4:09=E2=80=AFAM Xuyang Dong
-<dongxuyang@eswincomputing.com> wrote:
-> > I'm testing your patchset on
-> > https://github.com/ganboing/linux-eic77/tree/eic77-integration-test-clk=
--v13
-> >
-> > It's applied on top of Samuel's PMA v3 patshset, plus device-tree patch=
-es
-> > from your integration test branch. It's pretty similar to what Marcel d=
-id,
-> > but I just want to have a separate verification. What I found is that t=
-he
-> > kernel can successfully boot with clk_ignore_unused (eMMC/eth working),
-> > but hangs without. It stuck at
-> >
-> > [    3.257141] clk: Disabling unused clocks
-> >
-> > I'm pretty sure that some clocks that weren't supposed to get disabled =
-got
-> > turned off. Can you validate if that's a bug in the clock driver, or my
-> > device-tree just didn't link all clocks. One thing I noticed is that th=
-ere
-> > is no CLK_IS_CRITICAL in your code, so it's highly likely that DDR PLL =
-or
-> > others were turned off unintentionally. Not a clock driver expert, but =
-I'd
-> > expect the kernel should work fine without clk_ignore_unused.
-> >
->
-> Hi Bo,
->
-> Thanks for your reply. I also got the same result without clk_ignore_unus=
-ed.
-> This is a bug, and I will address it in v14.
+The DT changes will be submitted in a separate series, this one is OK
+to merge independently.
 
-In Documentation/driver-api/clk.rst, there is a section titled
-"Disabling clock gating of unused clocks", along with trace kernel
-parameters you can add to log which clks are disabled.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Changes in v5:
+- Rebase on next-20260223 (NOP)
+- Resend after the merge window formally closed..
+- Link to v4: https://lore.kernel.org/r/20260219-topic-ipa_imem-v4-0-189d91dbee84@oss.qualcomm.com
 
-Brian
+Changes in v4:
+- Fix a memmap() leak
+- Adjust comment style, take Alex's suggestion about very explicit
+  DEPRECATION notices
+- Pick up tags
+- Link to v3: https://lore.kernel.org/r/20260217-topic-ipa_imem-v3-0-d6d8ed1dfb67@oss.qualcomm.com
+
+Changes in v3:
+- Pick up tags, rebase (effectively a NOP)
+- Add actual binding constraints for modem-tables, drop Alex's r-b
+- Better describe the purpose of this region, as much as I can anyway
+- Link to v2: https://lore.kernel.org/r/20250527-topic-ipa_imem-v2-0-6d1aad91b841@oss.qualcomm.com
+
+Changes in v2:
+- Actually pass the retrieved data to the target function
+- Re-wrap comments to match net/ style
+- Mention next-next in the mail subjects
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20250523-topic-ipa_imem-v1-0-b5d536291c7f@oss.qualcomm.com
+
+---
+Konrad Dybcio (3):
+      dt-bindings: sram: qcom,imem: Allow modem-tables subnode
+      dt-bindings: net: qcom,ipa: Add sram property for describing IMEM slice
+      net: ipa: Grab IMEM slice base/size from DTS
+
+ .../devicetree/bindings/net/qcom,ipa.yaml          |  7 +++++++
+ .../devicetree/bindings/sram/qcom,imem.yaml        | 14 ++++++++++++++
+ drivers/net/ipa/ipa_data.h                         |  9 +++++++--
+ drivers/net/ipa/ipa_mem.c                          | 22 +++++++++++++++++++++-
+ 4 files changed, 49 insertions(+), 3 deletions(-)
+---
+base-commit: 779cae956c8316aebc1946ef86ca001f99658270
+change-id: 20250523-topic-ipa_imem-def66cca88e5
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
