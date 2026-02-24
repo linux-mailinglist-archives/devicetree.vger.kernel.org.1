@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-267877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2HtAJUeYnWnwQgQAu9opvQ
-	(envelope-from <devicetree+bounces-267877-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:23:35 +0100
+	id ELPhI3SYnWnwQgQAu9opvQ
+	(envelope-from <devicetree+bounces-267878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:24:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473A3186E56
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:23:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05625186E8A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:24:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 157BA30FD359
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:20:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 75014306D89D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE164396B67;
-	Tue, 24 Feb 2026 12:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5442396B91;
+	Tue, 24 Feb 2026 12:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LbYgykEp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k1dxB29A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B1A396D14
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 12:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570BB396D04
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 12:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771935650; cv=none; b=fmB4ewDe9ALJFgryN8wjVMqQEvuO/JRq7vb+6vt7cAtiGIzuvzu9eehNb3f+FtG1TM5wEJZMiQVLIwLdv2B64pxhMvPkudykikkn+r3DXPisO2wcbXWBlPpoLOxks04nJdL/Xk9dVXbjLy9lYy58lFEzZqgzUEsOyz+zqrcyo3k=
+	t=1771935662; cv=none; b=i6yfU/3jMmxI0TZ9mw++UfwDqFXfPQ7km2iaE4pOmlGXvDIC1AyYckEQS/75IOr2o5/YKGWL5ob4vyQDqN3QdRWV9hFyC6zdDY8vsr52TLQeZ6OPYZDAfK/a9ErFdMBHMpOd7pDduvzKQdJDci7ZqT4K1InB2oJIj0rwu3Crxmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771935650; c=relaxed/simple;
-	bh=XLbatLTUJXw9A3hBonWnh0l0ZSHoVwD+j7EQZ/FCueU=;
+	s=arc-20240116; t=1771935662; c=relaxed/simple;
+	bh=vdq7Dsr0HTGgGV/rEsq86YAWdmr1EZmBQyEUGPlpEFI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SPA5WzL7pzMmbvGw0ESX/eIm/qHZ7qYfLa0TG0ehC876NZ4F+QB6xdN389YP3XTCIEbSxly6RZuUTxcBKVePpFDfCpostKNbcQSv0y4NvzR5LowjYyXsx4sKIIPsy5K0vMsUTjgPLz/FmrsYca/l3aHQAWoWF+fNC1aEComQJvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LbYgykEp; arc=none smtp.client-ip=209.85.210.171
+	 MIME-Version; b=oEMDgsdpovFWEBUYMX8INJYBOBpbFnVwjuwomkIT2INpauZG5pE21ZHCIwA9Z4VfcF7HPfecsShzwYwjqwvS7lUgMUp+5HOtKBJhP3hqvpuap1NqDH2ue2CFBsfg84TlWKHl1PlaNb4pPQfTMlJganTyz9VcBIdDFo2MIsDfWFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k1dxB29A; arc=none smtp.client-ip=209.85.210.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-823081bb15fso3261420b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 04:20:49 -0800 (PST)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-82311f4070cso3266395b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 04:21:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771935649; x=1772540449; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1771935661; x=1772540461; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QKJ9zh45ZdopaEOQEByGr+CA6Hn9q+QZHG4I18FgvD8=;
-        b=LbYgykEpPFsd+Hn5rQ3PQWzwmKjZzFfEKdVfup3XaJeUQK4/CLnsfRLSYjR6U9Fg9d
-         Jtt84NNJXWzGxK5eymcMonZtRpVPuxTey/Q89YIU70we/nxFV0t1fb9aXMVete0XwnyP
-         xEubDm/68ithFXMF8QHUChZOsOfku18/tWrXraWTZmnxWGrDJPj5IVN0ibGxpQo4M8O3
-         WMJG4e4DmpF4QWym7ihUYztFL8uUPlCz6pxC4X3tAG0wItKuOwFWpkzeH56TeNkffugq
-         3xDsD8V0v4AQHQ28N95Bvovp8Py5c+eZvIsG7sR7DIz5ffUoq3p3l/Oc53tfAuM6Bden
-         lcWQ==
+        bh=ZNUhGN2cviXrsigAKa0wCXrDKZYvpfYbqun2EtH//ys=;
+        b=k1dxB29AvqAqtwaO/pg/OWLc6yjxI3isb8lHTR+YzVrcr7GzNlO8BuQB80MT6MpjK/
+         s+cn21f266cTNaCTgLC2azIofpGMn/h9r0OosVy+aZDwRX0do+ERspR7gFl2B7BNB9uK
+         /bPi4Mzpnxeem4cQneLDmlEKd3HBum3Qk77yoyPJCPJYHN+fLRLeCIIkZoFOFEUL3fmV
+         s96GPD8XEgdexLZBZdh3BX1kn66WpE4gyiyfkDXtz2+9HrnvHrgw6kolRMbluKMhZ0xT
+         Cs2qn+efv+ZPFwp12LArkR4QlGPmZe4P4n1jVNoI7F6xRUfDxIUMqnk/7ZfuogrkEqAt
+         cEVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771935649; x=1772540449;
+        d=1e100.net; s=20230601; t=1771935661; x=1772540461;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=QKJ9zh45ZdopaEOQEByGr+CA6Hn9q+QZHG4I18FgvD8=;
-        b=be1XQE/bJyO8KXF4jFHPlF87nhdhslinrzGvZ1ht8vhdQNhQ0dQYPe311jqj791/Jc
-         HP1805/WynFHo6eaTXOrR908pzxl0tkGdjTvC2zLD52oRMBpw4Skg2OY5pvOD7hk5RF5
-         eDYlzDdVc/eX/mAANtZFOy+xHyu6GrshgnLCVQxLEjwzZl4ayf3e3S64nwgPEicsweME
-         yZd+YeunoCsFwSHZuiCAn9oGUE16KHfztUHTJqs8joBmngFG65bkAdhi4XIwqiv0f3Es
-         4mulHvo2/er2OOLEC2yDRfcipLLeCk/SW4BVncd38cOLI9DRFBYI0itPxN3x4JkGPbCp
-         8mmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXc/tVLG/MJeAm7G2Pa1XsoTy67MqiUAb6KT+8K4fdmFxYL5i4XgpqVYSqFYZ2xMaPD9QtE3e5nTNGb@vger.kernel.org
-X-Gm-Message-State: AOJu0YybjMebhS/BJ+lv0jrEeUM8T7jayeAyOVUhTEdIe5OjauiplBJd
-	kwcc9XamWrpZGGreDL8BbK7+qzFxrEOWEFcTqE0ZhJ0ar+Qll9FvW0d+
-X-Gm-Gg: ATEYQzwKmP4VSujFM5KIlczbX4M/8coBdkCH6guM2fkAi1QutBc+stK9j+A9AkUMKPJ
-	4JKnSh6CmsjG+cv031NwIoFdE653UjTkeMLj3fQNNFSCj356nnz59TUq67Ik4KQZcimuBtnordr
-	E+PL0reywuY3pDJ+L3GJIB4dxD6OcFFNpuk4Y5l3dgVZSzZosmUfNK00zv0T+V1QG7yHAVlAjjf
-	swDTUbjA72uyGh+eRFVn/qs5LDZm96VHkhBGnQY6++Apd0tKh2qSpfvrB8p/V2WdZcFZWBVORxO
-	9F+5cG7PYuno8vZGp9dKBV5PUPWgWxJ9SRF1OABeqdqnHjjNHIa0NZbZ3iWHNzP0pf47nP8DfhX
-	iDnNcZLq1Pp1DLOOyLL7zuoQJeCW0G3X7l3Mm2JPOm/pjcHviC4E0Ke/ZWM45U2UuzVX+gIQvsf
-	yoGVoZYQTHB55dD1TNmWQgsgtLoknQ7A==
-X-Received: by 2002:a05:6a00:1d83:b0:823:3056:c2b9 with SMTP id d2e1a72fcca58-826daaf421amr9257126b3a.65.1771935649115;
-        Tue, 24 Feb 2026 04:20:49 -0800 (PST)
+        bh=ZNUhGN2cviXrsigAKa0wCXrDKZYvpfYbqun2EtH//ys=;
+        b=UrEMDczgRXuc9kA5o6W0DYCqILmoJ8tkst6HEPkbYwoLdlwjPOFEQLQc0PjRzjObhi
+         wJMDvyOlZ8urjSMZw4jk6ZTg9RQ4WhryAETRHUcgAzBajlonXWFd1/+4Ro7QM7E/B2gX
+         aqMF+4le/zmJD4DrtZoMQe10PugiFIviGplD+yr3mSitlNRfg3aRHNd2NCJ17u2P0Lst
+         tQpt087ktHouKxX/dTd5MWGJi8tFbOkcaax/MS1FO2k9H6xESqs0a5HavSMaaOQwj6iv
+         SgmDuOrdmXsnEi4xoSUV/NsHOvwD5FP2hO0zfwnGxm4ocGP5qGfEUeYGV+CicJ1Uj5yQ
+         BIrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1RJIXrbBJU5JRp4/Xjw9ZNqkQekRcaO/gFtg5Nb16mcotGS8QtiG1ytdMCubVe7LVlvNOSlu2ymZp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDhnSAe7Ity70W+ep0eMrR8k4xIBlFhw/COMT9Nya6Ch9GBIOF
+	Rw7IDcZYqokS5jgAVWiZybOaHXUC8d0q+u0e3/b4RjMI8AiIfZttsrBJ
+X-Gm-Gg: ATEYQzx67vU7kAbGqsYxF6B6ul2HTcKdx7qm9Mz8nW238xz/BJ8Qw9kqQDjtOvLaVsY
+	11/uOMCNk3u+sykyiO4ZGy+z3jjr97Z5RZHDDamChGg7bBzNqh0Ddgm1qKBXDkOQ9ZiywbcHQ8Y
+	3GctexqiXOqhK49DIIILTYf0XeDgvPixTdx9AF3hSQ+PwXKA0Lk6nNTSlUJcoi94+wzWkAprCHR
+	3+7p63mNOez0ePSsy42vcKcRDjyRlxFAX5zHDQOv2g3F1KNyI7VrtHuPvKmHrJlaaeq32KhYRIt
+	tT1bjSHbd7pPVirEq1hqDsqoWF+yczbbtbDPv/j19KvqY3i/S/TYThIufTz7rUF0CFIMtZw2r5L
+	/p/Xd5I5n48Yq6PWn+mYM4GB85ZN0U1oo5+Ev/Q2MP5mFDlIiNcLxy6M1qtBhqc7uzOMOcjU4Dm
+	Qa5jtDEIB3E1Gkih3Cf9g=
+X-Received: by 2002:a05:6a00:1150:b0:824:3d5b:3cd3 with SMTP id d2e1a72fcca58-826db59819bmr9505254b3a.0.1771935660653;
+        Tue, 24 Feb 2026 04:21:00 -0800 (PST)
 Received: from rockpi-5b ([45.112.0.78])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-826dd8ba11bsm10613950b3a.50.2026.02.24.04.20.43
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-826dd8ba11bsm10613950b3a.50.2026.02.24.04.20.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Feb 2026 04:20:48 -0800 (PST)
+        Tue, 24 Feb 2026 04:20:59 -0800 (PST)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
 	Bjorn Helgaas <bhelgaas@google.com>,
@@ -92,9 +92,9 @@ To: Thierry Reding <thierry.reding@gmail.com>,
 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
 	linux-kernel@vger.kernel.org (open list)
 Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v3 4/5] PCI: tegra: Use readl_poll_timeout() for link status polling
-Date: Tue, 24 Feb 2026 17:49:00 +0530
-Message-ID: <20260224121948.25218-5-linux.amoon@gmail.com>
+Subject: [PATCH v3 5/5] PCI: tegra: Use BIT() and GENMASK() macros for register definitions
+Date: Tue, 24 Feb 2026 17:49:01 +0530
+Message-ID: <20260224121948.25218-6-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260224121948.25218-1-linux.amoon@gmail.com>
 References: <20260224121948.25218-1-linux.amoon@gmail.com>
@@ -119,7 +119,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-267877-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267878-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
@@ -136,82 +136,254 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 473A3186E56
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,checkpatch.pl:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 05625186E8A
 X-Rspamd-Action: no action
 
-Replace the manual `do-while` polling loops with the readl_poll_timeout()
-helper when checking the link DL_UP and DL_LINK_ACTIVE status bits
-during link bring-up. This simplifies the code by removing the open-coded
-timeout logic in favor of the standard, more robust iopoll framework.
-The change improves readability and reduces code duplication.
+Replace manual bit operations with standard BIT() and GENMASK() macros.
+This eliminates magic numbers, enhances readability, improves
+maintainability, and resolves checkpatch.pl warnings.
 
-Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jon Hunter <jonathanh@nvidia.com>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
 v3: None
-v2: None
-v1: dropped the include  <linux/iopoll.h> header file.
+v2: improve the commit message
+v1: New patch
 ---
- drivers/pci/controller/pci-tegra.c | 37 +++++++++++-------------------
- 1 file changed, 14 insertions(+), 23 deletions(-)
+ drivers/pci/controller/pci-tegra.c | 129 +++++++++++++++--------------
+ 1 file changed, 65 insertions(+), 64 deletions(-)
 
 diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-index 32dc11d95cc9..459a2bb1a065 100644
+index 459a2bb1a065..2c806404f572 100644
 --- a/drivers/pci/controller/pci-tegra.c
 +++ b/drivers/pci/controller/pci-tegra.c
-@@ -2156,37 +2156,28 @@ static bool tegra_pcie_port_check_link(struct tegra_pcie_port *port)
- 	value |= RP_PRIV_MISC_PRSNT_MAP_EP_PRSNT;
- 	writel(value, port->base + RP_PRIV_MISC);
+@@ -13,6 +13,7 @@
+  * Author: Thierry Reding <treding@nvidia.com>
+  */
  
--	do {
--		unsigned int timeout = TEGRA_PCIE_LINKUP_TIMEOUT;
-+	while (retries--) {
-+		int err;
++#include <linux/bitops.h>
+ #include <linux/clk.h>
+ #include <linux/cleanup.h>
+ #include <linux/debugfs.h>
+@@ -85,17 +86,17 @@
+ #define AFI_MSI_EN_VEC(x)	(0x8c + ((x) * 4))
  
--		do {
--			value = readl(port->base + RP_VEND_XP);
--
--			if (value & RP_VEND_XP_DL_UP)
--				break;
--
--			usleep_range(1000, 2000);
--		} while (--timeout);
--
--		if (!timeout) {
-+		err = readl_poll_timeout(port->base + RP_VEND_XP, value,
-+					 value & RP_VEND_XP_DL_UP,
-+					 1000,
-+					 TEGRA_PCIE_LINKUP_TIMEOUT * 1000);
-+		if (err) {
- 			dev_dbg(dev, "link %u down, retrying\n", port->index);
- 			goto retry;
- 		}
+ #define AFI_CONFIGURATION		0xac
+-#define  AFI_CONFIGURATION_EN_FPCI		(1 << 0)
+-#define  AFI_CONFIGURATION_CLKEN_OVERRIDE	(1 << 31)
++#define  AFI_CONFIGURATION_EN_FPCI		BIT(0)
++#define  AFI_CONFIGURATION_CLKEN_OVERRIDE	BIT(31)
  
--		timeout = TEGRA_PCIE_LINKUP_TIMEOUT;
--
--		do {
--			value = readl(port->base + RP_LINK_CONTROL_STATUS);
--
--			if (value & RP_LINK_CONTROL_STATUS_DL_LINK_ACTIVE)
--				return true;
--
--			usleep_range(1000, 2000);
--		} while (--timeout);
-+		err = readl_poll_timeout(port->base + RP_LINK_CONTROL_STATUS,
-+					 value,
-+					 value & RP_LINK_CONTROL_STATUS_DL_LINK_ACTIVE,
-+					 1000, TEGRA_PCIE_LINKUP_TIMEOUT * 1000);
-+		if (!err)
-+			return true;
+ #define AFI_FPCI_ERROR_MASKS	0xb0
  
- retry:
- 		tegra_pcie_port_reset(port);
--	} while (--retries);
-+	}
+ #define AFI_INTR_MASK		0xb4
+-#define  AFI_INTR_MASK_INT_MASK	(1 << 0)
+-#define  AFI_INTR_MASK_MSI_MASK	(1 << 8)
++#define  AFI_INTR_MASK_INT_MASK	BIT(0)
++#define  AFI_INTR_MASK_MSI_MASK	BIT(8)
  
- 	return false;
- }
+ #define AFI_INTR_CODE			0xb8
+-#define  AFI_INTR_CODE_MASK		0xf
++#define  AFI_INTR_CODE_MASK		GENMASK(3, 0)
+ #define  AFI_INTR_INI_SLAVE_ERROR	1
+ #define  AFI_INTR_INI_DECODE_ERROR	2
+ #define  AFI_INTR_TARGET_ABORT		3
+@@ -114,32 +115,32 @@
+ #define AFI_INTR_SIGNATURE	0xbc
+ #define AFI_UPPER_FPCI_ADDRESS	0xc0
+ #define AFI_SM_INTR_ENABLE	0xc4
+-#define  AFI_SM_INTR_INTA_ASSERT	(1 << 0)
+-#define  AFI_SM_INTR_INTB_ASSERT	(1 << 1)
+-#define  AFI_SM_INTR_INTC_ASSERT	(1 << 2)
+-#define  AFI_SM_INTR_INTD_ASSERT	(1 << 3)
+-#define  AFI_SM_INTR_INTA_DEASSERT	(1 << 4)
+-#define  AFI_SM_INTR_INTB_DEASSERT	(1 << 5)
+-#define  AFI_SM_INTR_INTC_DEASSERT	(1 << 6)
+-#define  AFI_SM_INTR_INTD_DEASSERT	(1 << 7)
++#define  AFI_SM_INTR_INTA_ASSERT	BIT(0)
++#define  AFI_SM_INTR_INTB_ASSERT	BIT(1)
++#define  AFI_SM_INTR_INTC_ASSERT	BIT(2)
++#define  AFI_SM_INTR_INTD_ASSERT	BIT(3)
++#define  AFI_SM_INTR_INTA_DEASSERT	BIT(4)
++#define  AFI_SM_INTR_INTB_DEASSERT	BIT(5)
++#define  AFI_SM_INTR_INTC_DEASSERT	BIT(6)
++#define  AFI_SM_INTR_INTD_DEASSERT	BIT(7)
+ 
+ #define AFI_AFI_INTR_ENABLE		0xc8
+-#define  AFI_INTR_EN_INI_SLVERR		(1 << 0)
+-#define  AFI_INTR_EN_INI_DECERR		(1 << 1)
+-#define  AFI_INTR_EN_TGT_SLVERR		(1 << 2)
+-#define  AFI_INTR_EN_TGT_DECERR		(1 << 3)
+-#define  AFI_INTR_EN_TGT_WRERR		(1 << 4)
+-#define  AFI_INTR_EN_DFPCI_DECERR	(1 << 5)
+-#define  AFI_INTR_EN_AXI_DECERR		(1 << 6)
+-#define  AFI_INTR_EN_FPCI_TIMEOUT	(1 << 7)
+-#define  AFI_INTR_EN_PRSNT_SENSE	(1 << 8)
++#define  AFI_INTR_EN_INI_SLVERR		BIT(0)
++#define  AFI_INTR_EN_INI_DECERR		BIT(1)
++#define  AFI_INTR_EN_TGT_SLVERR		BIT(2)
++#define  AFI_INTR_EN_TGT_DECERR		BIT(3)
++#define  AFI_INTR_EN_TGT_WRERR		BIT(4)
++#define  AFI_INTR_EN_DFPCI_DECERR	BIT(5)
++#define  AFI_INTR_EN_AXI_DECERR		BIT(6)
++#define  AFI_INTR_EN_FPCI_TIMEOUT	BIT(7)
++#define  AFI_INTR_EN_PRSNT_SENSE	BIT(8)
+ 
+ #define AFI_PCIE_PME		0xf0
+ 
+ #define AFI_PCIE_CONFIG					0x0f8
+-#define  AFI_PCIE_CONFIG_PCIE_DISABLE(x)		(1 << ((x) + 1))
+-#define  AFI_PCIE_CONFIG_PCIE_DISABLE_ALL		0xe
+-#define  AFI_PCIE_CONFIG_SM2TMS0_XBAR_CONFIG_MASK	(0xf << 20)
++#define  AFI_PCIE_CONFIG_PCIE_DISABLE(x)		BIT((x) + 1)
++#define  AFI_PCIE_CONFIG_PCIE_DISABLE_ALL		GENMASK(3, 1)
++#define  AFI_PCIE_CONFIG_SM2TMS0_XBAR_CONFIG_MASK	GENMASK(23, 20)
+ #define  AFI_PCIE_CONFIG_SM2TMS0_XBAR_CONFIG_SINGLE	(0x0 << 20)
+ #define  AFI_PCIE_CONFIG_SM2TMS0_XBAR_CONFIG_420	(0x0 << 20)
+ #define  AFI_PCIE_CONFIG_SM2TMS0_XBAR_CONFIG_X2_X1	(0x0 << 20)
+@@ -150,79 +151,79 @@
+ #define  AFI_PCIE_CONFIG_SM2TMS0_XBAR_CONFIG_211	(0x1 << 20)
+ #define  AFI_PCIE_CONFIG_SM2TMS0_XBAR_CONFIG_411	(0x2 << 20)
+ #define  AFI_PCIE_CONFIG_SM2TMS0_XBAR_CONFIG_111	(0x2 << 20)
+-#define  AFI_PCIE_CONFIG_PCIE_CLKREQ_GPIO(x)		(1 << ((x) + 29))
+-#define  AFI_PCIE_CONFIG_PCIE_CLKREQ_GPIO_ALL		(0x7 << 29)
++#define  AFI_PCIE_CONFIG_PCIE_CLKREQ_GPIO(x)		BIT((x) + 29)
++#define  AFI_PCIE_CONFIG_PCIE_CLKREQ_GPIO_ALL		GENMASK(31, 29)
+ 
+ #define AFI_FUSE			0x104
+-#define  AFI_FUSE_PCIE_T0_GEN2_DIS	(1 << 2)
++#define  AFI_FUSE_PCIE_T0_GEN2_DIS	BIT(2)
+ 
+ #define AFI_PEX0_CTRL			0x110
+ #define AFI_PEX1_CTRL			0x118
+-#define  AFI_PEX_CTRL_RST		(1 << 0)
+-#define  AFI_PEX_CTRL_CLKREQ_EN		(1 << 1)
+-#define  AFI_PEX_CTRL_REFCLK_EN		(1 << 3)
+-#define  AFI_PEX_CTRL_OVERRIDE_EN	(1 << 4)
++#define  AFI_PEX_CTRL_RST		BIT(0)
++#define  AFI_PEX_CTRL_CLKREQ_EN		BIT(1)
++#define  AFI_PEX_CTRL_REFCLK_EN		BIT(3)
++#define  AFI_PEX_CTRL_OVERRIDE_EN	BIT(4)
+ 
+ #define AFI_PLLE_CONTROL		0x160
+-#define  AFI_PLLE_CONTROL_BYPASS_PADS2PLLE_CONTROL (1 << 9)
+-#define  AFI_PLLE_CONTROL_PADS2PLLE_CONTROL_EN (1 << 1)
++#define  AFI_PLLE_CONTROL_BYPASS_PADS2PLLE_CONTROL BIT(9)
++#define  AFI_PLLE_CONTROL_PADS2PLLE_CONTROL_EN BIT(1)
+ 
+ #define AFI_PEXBIAS_CTRL_0		0x168
+ 
+ #define RP_ECTL_2_R1	0x00000e84
+-#define  RP_ECTL_2_R1_RX_CTLE_1C_MASK		0xffff
++#define  RP_ECTL_2_R1_RX_CTLE_1C_MASK		GENMASK(15, 0)
+ 
+ #define RP_ECTL_4_R1	0x00000e8c
+-#define  RP_ECTL_4_R1_RX_CDR_CTRL_1C_MASK	(0xffff << 16)
++#define  RP_ECTL_4_R1_RX_CDR_CTRL_1C_MASK	GENMASK(31, 16)
+ #define  RP_ECTL_4_R1_RX_CDR_CTRL_1C_SHIFT	16
+ 
+ #define RP_ECTL_5_R1	0x00000e90
+-#define  RP_ECTL_5_R1_RX_EQ_CTRL_L_1C_MASK	0xffffffff
++#define  RP_ECTL_5_R1_RX_EQ_CTRL_L_1C_MASK	GENMASK(31, 0)
+ 
+ #define RP_ECTL_6_R1	0x00000e94
+-#define  RP_ECTL_6_R1_RX_EQ_CTRL_H_1C_MASK	0xffffffff
++#define  RP_ECTL_6_R1_RX_EQ_CTRL_H_1C_MASK	GENMASK(31, 0)
+ 
+ #define RP_ECTL_2_R2	0x00000ea4
+ #define  RP_ECTL_2_R2_RX_CTLE_1C_MASK	0xffff
+ 
+ #define RP_ECTL_4_R2	0x00000eac
+-#define  RP_ECTL_4_R2_RX_CDR_CTRL_1C_MASK	(0xffff << 16)
++#define  RP_ECTL_4_R2_RX_CDR_CTRL_1C_MASK	GENMASK(31, 16)
+ #define  RP_ECTL_4_R2_RX_CDR_CTRL_1C_SHIFT	16
+ 
+ #define RP_ECTL_5_R2	0x00000eb0
+-#define  RP_ECTL_5_R2_RX_EQ_CTRL_L_1C_MASK	0xffffffff
++#define  RP_ECTL_5_R2_RX_EQ_CTRL_L_1C_MASK	GENMASK(31, 0)
+ 
+ #define RP_ECTL_6_R2	0x00000eb4
+-#define  RP_ECTL_6_R2_RX_EQ_CTRL_H_1C_MASK	0xffffffff
++#define  RP_ECTL_6_R2_RX_EQ_CTRL_H_1C_MASK	GENMASK(31, 0)
+ 
+ #define RP_VEND_XP	0x00000f00
+-#define  RP_VEND_XP_DL_UP			(1 << 30)
+-#define  RP_VEND_XP_OPPORTUNISTIC_ACK		(1 << 27)
+-#define  RP_VEND_XP_OPPORTUNISTIC_UPDATEFC	(1 << 28)
+-#define  RP_VEND_XP_UPDATE_FC_THRESHOLD_MASK	(0xff << 18)
++#define  RP_VEND_XP_DL_UP			BIT(30)
++#define  RP_VEND_XP_OPPORTUNISTIC_ACK		BIT(27)
++#define  RP_VEND_XP_OPPORTUNISTIC_UPDATEFC	BIT(28)
++#define  RP_VEND_XP_UPDATE_FC_THRESHOLD_MASK	GENMASK(25, 18)
+ 
+ #define RP_VEND_CTL0	0x00000f44
+-#define  RP_VEND_CTL0_DSK_RST_PULSE_WIDTH_MASK	(0xf << 12)
++#define  RP_VEND_CTL0_DSK_RST_PULSE_WIDTH_MASK	GENMASK(15, 12)
+ #define  RP_VEND_CTL0_DSK_RST_PULSE_WIDTH	(0x9 << 12)
+ 
+ #define RP_VEND_CTL1	0x00000f48
+-#define  RP_VEND_CTL1_ERPT	(1 << 13)
++#define  RP_VEND_CTL1_ERPT	BIT(13)
+ 
+ #define RP_VEND_XP_BIST	0x00000f4c
+-#define  RP_VEND_XP_BIST_GOTO_L1_L2_AFTER_DLLP_DONE	(1 << 28)
++#define  RP_VEND_XP_BIST_GOTO_L1_L2_AFTER_DLLP_DONE	BIT(28)
+ 
+ #define RP_VEND_CTL2 0x00000fa8
+-#define  RP_VEND_CTL2_PCA_ENABLE (1 << 7)
++#define  RP_VEND_CTL2_PCA_ENABLE BIT(7)
+ 
+ #define RP_PRIV_MISC	0x00000fe0
+-#define  RP_PRIV_MISC_PRSNT_MAP_EP_PRSNT		(0xe << 0)
+-#define  RP_PRIV_MISC_PRSNT_MAP_EP_ABSNT		(0xf << 0)
+-#define  RP_PRIV_MISC_CTLR_CLK_CLAMP_THRESHOLD_MASK	(0x7f << 16)
++#define  RP_PRIV_MISC_PRSNT_MAP_EP_PRSNT		GENMASK(3, 1)
++#define  RP_PRIV_MISC_PRSNT_MAP_EP_ABSNT		GENMASK(3, 0)
++#define  RP_PRIV_MISC_CTLR_CLK_CLAMP_THRESHOLD_MASK	GENMASK(22, 16)
+ #define  RP_PRIV_MISC_CTLR_CLK_CLAMP_THRESHOLD		(0xf << 16)
+-#define  RP_PRIV_MISC_CTLR_CLK_CLAMP_ENABLE		(1 << 23)
+-#define  RP_PRIV_MISC_TMS_CLK_CLAMP_THRESHOLD_MASK	(0x7f << 24)
++#define  RP_PRIV_MISC_CTLR_CLK_CLAMP_ENABLE		BIT(23)
++#define  RP_PRIV_MISC_TMS_CLK_CLAMP_THRESHOLD_MASK	GENMASK(30, 24)
+ #define  RP_PRIV_MISC_TMS_CLK_CLAMP_THRESHOLD		(0xf << 24)
+-#define  RP_PRIV_MISC_TMS_CLK_CLAMP_ENABLE		(1 << 31)
++#define  RP_PRIV_MISC_TMS_CLK_CLAMP_ENABLE		BIT(31)
+ 
+ #define RP_LINK_CONTROL_STATUS			0x00000090
+ #define  RP_LINK_CONTROL_STATUS_DL_LINK_ACTIVE	0x20000000
+@@ -233,22 +234,22 @@
+ #define PADS_CTL_SEL		0x0000009c
+ 
+ #define PADS_CTL		0x000000a0
+-#define  PADS_CTL_IDDQ_1L	(1 << 0)
+-#define  PADS_CTL_TX_DATA_EN_1L	(1 << 6)
+-#define  PADS_CTL_RX_DATA_EN_1L	(1 << 10)
++#define  PADS_CTL_IDDQ_1L	BIT(0)
++#define  PADS_CTL_TX_DATA_EN_1L	BIT(6)
++#define  PADS_CTL_RX_DATA_EN_1L	BIT(10)
+ 
+ #define PADS_PLL_CTL_TEGRA20			0x000000b8
+ #define PADS_PLL_CTL_TEGRA30			0x000000b4
+-#define  PADS_PLL_CTL_RST_B4SM			(1 << 1)
+-#define  PADS_PLL_CTL_LOCKDET			(1 << 8)
+-#define  PADS_PLL_CTL_REFCLK_MASK		(0x3 << 16)
++#define  PADS_PLL_CTL_RST_B4SM			BIT(1)
++#define  PADS_PLL_CTL_LOCKDET			BIT(8)
++#define  PADS_PLL_CTL_REFCLK_MASK		GENMASK(17, 16)
+ #define  PADS_PLL_CTL_REFCLK_INTERNAL_CML	(0 << 16)
+-#define  PADS_PLL_CTL_REFCLK_INTERNAL_CMOS	(1 << 16)
++#define  PADS_PLL_CTL_REFCLK_INTERNAL_CMOS	BIT(16)
+ #define  PADS_PLL_CTL_REFCLK_EXTERNAL		(2 << 16)
+ #define  PADS_PLL_CTL_TXCLKREF_MASK		(0x1 << 20)
+ #define  PADS_PLL_CTL_TXCLKREF_DIV10		(0 << 20)
+-#define  PADS_PLL_CTL_TXCLKREF_DIV5		(1 << 20)
+-#define  PADS_PLL_CTL_TXCLKREF_BUF_EN		(1 << 22)
++#define  PADS_PLL_CTL_TXCLKREF_DIV5		BIT(20)
++#define  PADS_PLL_CTL_TXCLKREF_BUF_EN		BIT(22)
+ 
+ #define PADS_REFCLK_CFG0			0x000000c8
+ #define PADS_REFCLK_CFG1			0x000000cc
 -- 
 2.50.1
 
