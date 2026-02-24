@@ -1,53 +1,69 @@
-Return-Path: <devicetree+bounces-267840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267841-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oKjtMuSNnWkXQgQAu9opvQ
-	(envelope-from <devicetree+bounces-267840-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:39:16 +0100
+	id KOVWDymOnWkXQgQAu9opvQ
+	(envelope-from <devicetree+bounces-267841-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:40:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B271866A2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:39:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7228B1866CA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:40:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3783C3170636
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:35:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9591F303A91E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 887CE37E308;
-	Tue, 24 Feb 2026 11:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEE837F724;
+	Tue, 24 Feb 2026 11:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dCYkFjJD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uzzkmfv9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 633F737BE76;
-	Tue, 24 Feb 2026 11:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87D8E37D116;
+	Tue, 24 Feb 2026 11:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771932934; cv=none; b=IHvP2x5kf5ugytAn1ImuOt6iLA6xGgSPH7hGrDIFexWtUGQQvvDrRE4+xEs9D6Sd3L9iOpa5Ca4XGJVgkY2B57Vixd8b5X9ihT2gRawHhcY0cxv6LXAmox/n/KAUPck2AQjmTl2Gnu5eXYKAs3XxaoBrQZGHf0ui/eOviWRyVDs=
+	t=1771933109; cv=none; b=uHa65n6F7BcU/rgflQQtv2vyY3SC3AXJMPLcCHOPVXWtNigjq8GeXq3THAdrLrCL+fiI2RyEzT4SdpzQvowqV8YxxhMdOuFXWLsN26dak2mUysv3UOJvzdbAyltIC5VvawU3zCkyluKayrOI72W+F80dAys4u5mDo60Fwnd9Q/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771932934; c=relaxed/simple;
-	bh=C5oY30UkFQ3O3eG6iTmmPWTIKiizU7kru4zFrzFk5sk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ch8KbTptTksUcv4ZVYImdtow4cRqcZlW1rsC4zAp93095L+/Srjfuc86LnHIJx95FEahyzGWzkAf+Bwqe3ndwzxpq/zaeEILGMSitDJXwWXylprRfJ2LUj/6PTgXV3HSgcPkI2DUFng2Xkx7hJHm3X73KWFkId8Lm5wEf49AXRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dCYkFjJD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D668BC116D0;
-	Tue, 24 Feb 2026 11:35:28 +0000 (UTC)
+	s=arc-20240116; t=1771933109; c=relaxed/simple;
+	bh=QS7CNJiQG7B9ALbJjQUVylSiRh7zGL57LuSxHqmBi4g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=O3iwE05sP0S7Bth7c4PfW7ElP6T+Fgj6m1TDtKrI9z69M+a7oWDBR1hMQfUVvtyOoqSYdXTjjqx/P0Xjg4kDvCP6UAM4y9GGkZTH1HNuIBHyEEP9UxR6Ie9sp+HWVPCmGok4JA2BgAsaNlJWTAjZEEyNTeH7DoUtdkX/phihCKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uzzkmfv9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86878C116D0;
+	Tue, 24 Feb 2026 11:38:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771932934;
-	bh=C5oY30UkFQ3O3eG6iTmmPWTIKiizU7kru4zFrzFk5sk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=dCYkFjJDMW/GqKkuLND7j83AOCr/utn378EviOdnXJXeY5ARxAqgmfrjgY7Djlpko
-	 h7s1oqp+Zl+e9BblEuzzkZ0sUnUM7D6/Js4c8MyITBA95bjJmf2nEAGTkHpdS0sb3D
-	 hXZO6383GtRbZt1DCAEbH1XTX8I2WWXxtQUCx3Y/ICPNiIqQZ+AuB5RO33EWYJc8Vd
-	 8Yo8yNHUgovF+2Yhli6m2jiYgn+fI/7f2i4ghiqR51gGIIBIzOzw8ts8npge7AsyQg
-	 0mFgXVMX8s4wGEy2qXcPfdIKxWq/88A8/MMJtZPI9jMi/3x4kjlr5wqs/UDLnTa285
-	 9l2nGWoyeeLSQ==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Tue, 24 Feb 2026 12:34:48 +0100
-Subject: [PATCH net-next v5 3/3] net: ipa: Grab IMEM slice base/size from
- DTS
+	s=k20201202; t=1771933109;
+	bh=QS7CNJiQG7B9ALbJjQUVylSiRh7zGL57LuSxHqmBi4g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Uzzkmfv9bpJw09ktqybI8ICbNfnuTktHHxwRhi04Y1J6PsGW8WbVaybZVCjX8ew6V
+	 DY4cNvK6ZLnzyFuYtMktlLe+GuDpUgHOqc3M4EFt1ibnbV7CgW2b9p26co/D5ACXJf
+	 xw8TQqmSY0T1n14XTCKiK25sBkG2P2j38JJMX13rUJJrbOoll5GgtH7CToUNQ4/qFj
+	 k/ZF9UggSm2nZjFEtAU6GR3x0yobir3FAJvXwcEyZtD/Gb8KivZHv6b9AWT0gL7FR9
+	 fQ/TBtTXhaUDBtry4Y3U07gDQLxpOaEWdYFPkZJBH726qnOqZ0aDGWhkc/w0gBXWpv
+	 jEr75bdsf+SPg==
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ jesper.nilsson@axis.com, lars.persson@axis.com, mturquette@baylibre.com, 
+ sboyd@kernel.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com, 
+ cw00.choi@samsung.com, Ravi Patel <ravi.patel@samsung.com>
+Cc: ksk4725@coasia.com, smn1196@coasia.com, linux-arm-kernel@axis.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-clk@vger.kernel.org, pjsin865@coasia.com, gwk1013@coasia.com, 
+ bread@coasia.com, jspark@coasia.com, limjh0823@coasia.com, 
+ lightwise@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com, 
+ shradha.t@samsung.com, swathi.ks@samsung.com, kenkim@coasia.com
+In-Reply-To: <20251029130731.51305-2-ravi.patel@samsung.com>
+References: <20251029130731.51305-1-ravi.patel@samsung.com>
+ <CGME20251029130826epcas5p180506ff38fb57ecca0e33b2f5c57ed6c@epcas5p1.samsung.com>
+ <20251029130731.51305-2-ravi.patel@samsung.com>
+Subject: Re: (subset) [PATCH v3 1/4] dt-bindings: clock: Add ARTPEC-9 clock
+ controller
+Message-Id: <177193310325.54679.15908657347853584387.b4-ty@kernel.org>
+Date: Tue, 24 Feb 2026 12:38:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,148 +72,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260224-topic-ipa_imem-v5-3-015bf09e123e@oss.qualcomm.com>
-References: <20260224-topic-ipa_imem-v5-0-015bf09e123e@oss.qualcomm.com>
-In-Reply-To: <20260224-topic-ipa_imem-v5-0-015bf09e123e@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Alex Elder <elder@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Alex Elder <elder@riscstar.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Simon Horman <horms@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771932912; l=2728;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=RQ2LdCvjFfiS0OMnOv+dT6EBkJVtY3P4ubESo3oaBx0=;
- b=Q5VNpDvr1HOrF8O8HRlu8JCeVHUQMtQjbQZI1bWQKg7L+FGqZu+84shEoMKJawgcBrv+pd0ml
- hqBAj3/QTdTAm+WyqqFDUlUf8dfP8Rtw/jUGCVIthijMCn4/KdDeFgw
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267840-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267841-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konradybcio@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,qualcomm.com:email,riscstar.com:email]
-X-Rspamd-Queue-Id: 66B271866A2
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7228B1866CA
 X-Rspamd-Action: no action
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-This is a detail that differ per chip, and not per IPA version (and
-there are cases of the same IPA versions being implemented across very
-very very different SoCs).
+On Wed, 29 Oct 2025 18:37:28 +0530, Ravi Patel wrote:
+> Add dt-schema for Axis ARTPEC-9 SoC clock controller.
+> 
+> The Clock Management Unit (CMU) has a top-level block CMU_CMU
+> which generates clocks for other blocks.
+> 
+> Add device-tree binding definitions for following CMU blocks:
+> - CMU_CMU
+> - CMU_BUS
+> - CMU_CORE
+> - CMU_CPUCL
+> - CMU_FSYS0
+> - CMU_FSYS1
+> - CMU_IMEM
+> - CMU_PERI
+> 
+> [...]
 
-This region isn't actually used by the driver, but we most definitely
-want to iommu-map it, so that IPA can poke at the data within.
+Applied, thanks!
 
-Reviewed-by: Alex Elder <elder@riscstar.com>
-Acked-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Reviewed-by: Simon Horman <horms@kernel.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- drivers/net/ipa/ipa_data.h |  9 +++++++--
- drivers/net/ipa/ipa_mem.c  | 22 +++++++++++++++++++++-
- 2 files changed, 28 insertions(+), 3 deletions(-)
+[1/4] dt-bindings: clock: Add ARTPEC-9 clock controller
+      https://git.kernel.org/krzk/linux/c/6974ae5aa23b7f37182da6b66d7f58313a55a88e
 
-diff --git a/drivers/net/ipa/ipa_data.h b/drivers/net/ipa/ipa_data.h
-index 2fd03f0799b2..f3bdc64cef05 100644
---- a/drivers/net/ipa/ipa_data.h
-+++ b/drivers/net/ipa/ipa_data.h
-@@ -185,8 +185,13 @@ struct ipa_resource_data {
- struct ipa_mem_data {
- 	u32 local_count;
- 	const struct ipa_mem *local;
--	u32 imem_addr;
--	u32 imem_size;
-+
-+	/* These values are now passed via DT, but to support
-+	 * older systems we must allow this to be specified here.
-+	 */
-+	u32 imem_addr; /* DEPRECATED */
-+	u32 imem_size; /* DEPRECATED */
-+
- 	u32 smem_size;
- };
- 
-diff --git a/drivers/net/ipa/ipa_mem.c b/drivers/net/ipa/ipa_mem.c
-index 835a3c9c1fd4..5d3f68bd02d9 100644
---- a/drivers/net/ipa/ipa_mem.c
-+++ b/drivers/net/ipa/ipa_mem.c
-@@ -7,6 +7,7 @@
- #include <linux/dma-mapping.h>
- #include <linux/io.h>
- #include <linux/iommu.h>
-+#include <linux/of_address.h>
- #include <linux/platform_device.h>
- #include <linux/types.h>
- 
-@@ -617,7 +618,9 @@ static void ipa_smem_exit(struct ipa *ipa)
- int ipa_mem_init(struct ipa *ipa, struct platform_device *pdev,
- 		 const struct ipa_mem_data *mem_data)
- {
-+	struct device_node *ipa_slice_np;
- 	struct device *dev = &pdev->dev;
-+	u32 imem_base, imem_size;
- 	struct resource *res;
- 	int ret;
- 
-@@ -656,7 +659,24 @@ int ipa_mem_init(struct ipa *ipa, struct platform_device *pdev,
- 	ipa->mem_addr = res->start;
- 	ipa->mem_size = resource_size(res);
- 
--	ret = ipa_imem_init(ipa, mem_data->imem_addr, mem_data->imem_size);
-+	ipa_slice_np = of_parse_phandle(dev->of_node, "sram", 0);
-+	if (ipa_slice_np) {
-+		ret = of_address_to_resource(ipa_slice_np, 0, res);
-+		of_node_put(ipa_slice_np);
-+		if (ret)
-+			goto err_unmap;
-+
-+		imem_base = res->start;
-+		imem_size = resource_size(res);
-+	} else {
-+		/* Backwards compatibility for DTs lacking
-+		 * an explicit reference
-+		 */
-+		imem_base = mem_data->imem_addr;
-+		imem_size = mem_data->imem_size;
-+	}
-+
-+	ret = ipa_imem_init(ipa, imem_base, imem_size);
- 	if (ret)
- 		goto err_unmap;
- 
-
+Best regards,
 -- 
-2.53.0
+Krzysztof Kozlowski <krzk@kernel.org>
 
 
