@@ -1,61 +1,71 @@
-Return-Path: <devicetree+bounces-267738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267739-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNtdJaVOnWkBOgQAu9opvQ
-	(envelope-from <devicetree+bounces-267738-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:09:25 +0100
+	id gJ4YI8tOnWkROgQAu9opvQ
+	(envelope-from <devicetree+bounces-267739-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:10:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F3F182C05
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:09:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE886182C5D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:10:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C835C302BA48
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:07:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0E9A730624BA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C102D30506A;
-	Tue, 24 Feb 2026 07:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BDFD30BF6B;
+	Tue, 24 Feb 2026 07:08:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l5Gx85a2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eOZlD083"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5AF1494C3;
-	Tue, 24 Feb 2026 07:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D711494C3;
+	Tue, 24 Feb 2026 07:08:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771916873; cv=none; b=BFo9y533KZKvKPndWEbOmt1yVWKY7+7vJS9jrff0VonPZrJvINDkAdyZshJqO/9Hrfz7boiitJAlNKVYUlB1SGDXpjLLfHotA61Uzq9epUTTBql7PwR4IUBj7TlZB7xr+qpn7PAhSIv5S12gyJVdl/g5obI2tvK9SFwDVfGgw6M=
+	t=1771916902; cv=none; b=JyxmjNEpei/49sntIhQhGOFnDm5JkxEwawjgFJmzzJ3U0Bgtt+THWh+XT79DfkLQrQIdiX3vP3tJK/rOQx7M5IGsSycHe9YJxL1aExMxgKoy791ywyu4MFsCM/CEMDnJ21VKjGTO2qRDW360eID/9ppOkvxhkwf2HL3NNfiB67I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771916873; c=relaxed/simple;
-	bh=hHcyq/uvklfIp0Y5DZyNfWw9A4+Llx6RoaYL0waqnm0=;
+	s=arc-20240116; t=1771916902; c=relaxed/simple;
+	bh=siLJw2A0f62cJlgh+YOYFnZcJEatTZTiHAV7JLbKcWo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=stvfh1ZtyUd28uLq8VQocWCT6U6n4705YgPHL6HpfFIAB9LPm/MzYXge1BfKbFtHhPfVF1lj2LQ0uastRDdQLiY2L/8Mfur292KxfCXl9RHkBxFljlR/hceVhcRk8sczJe5dVhwxj3e89UGFp5biZx4NqiupEo1Edtc6DLVnAqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l5Gx85a2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0E5DC116D0;
-	Tue, 24 Feb 2026 07:07:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=caet5Idv9zVC9L2Q58v7VW9rFYCDe2pbf/6Mybq8rFgho2RYoDOKr/chdsLbV0yvWArGK89XkxWoYiF3+oaxpyXlgyTYrI1/eAB5TI8HClEt4SId5jJlxjRKMMwgywiqQA39n7QtA4adNvqb5WmTbBwLCwczlFcG73mnWR2TUgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eOZlD083; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75FF9C116D0;
+	Tue, 24 Feb 2026 07:08:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771916873;
-	bh=hHcyq/uvklfIp0Y5DZyNfWw9A4+Llx6RoaYL0waqnm0=;
+	s=k20201202; t=1771916902;
+	bh=siLJw2A0f62cJlgh+YOYFnZcJEatTZTiHAV7JLbKcWo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l5Gx85a2Dkl1xNL/peu5+mEiIidCDKoxthwZjziZNEW5wXlHK0sFejRSQgI6T+6BR
-	 acAKxbWlo9665jpbZ+f05s/2d0BZnkK9W75jYGH7pOGiMvJwWAGRvxhvgkNyUvneUx
-	 wKOdlyoKtYzAlgIUCIpC/9z8N4gBbIGNZhhrqFC7nZLvJUK7VDERv2FqyrBtIaCapA
-	 0BCSMAcW8RHB+Mj+CqFo6ZFpHIxv12vHHdhXazuVcvvEz2S70p8OA/vL4o9XcJJa15
-	 Fi7VPIsrvSjxA48qoPmOXpX1o3j5a7HsI5vX+KqNx9Zw30I4uw2AznKJ/Mh1HiGVsl
-	 2ZYAgjudV2EMQ==
-Date: Tue, 24 Feb 2026 08:07:50 +0100
+	b=eOZlD083B/DGOpAprjcHeUB65aH90SMO89jFdeFYasoxgqZ4vd42DgnnJccFivv7r
+	 QOQp2JBzvjBjvi3lLzOGgOQwjwsIkVOF2ijRmBhuPyduOIGl/o+gKevb7Jyln96CYD
+	 bZDnRoEYjgHP6/jIxkp0AVc1f4IFOvJ7EY1S4dNOmvWwweyD9P7P5AFE9FpoMttzm7
+	 7XHW6yVEXqYUrGh6dcOQ5EUXpwvFKQbULLmPlUbLixxaZ+0OAQZGUyjixjQdEfOXWI
+	 1OdcBK0aGbEW6a5jdobGaHGvdMIEbyqLvUMCtMEj8ZWsao+AqoVWjjy371bTj8e00Y
+	 e+lNzjZoqCsdA==
+Date: Tue, 24 Feb 2026 08:08:19 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kamal Dasu <kamal.dasu@broadcom.com>
-Cc: andersson@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, baolin.wang@linux.alibaba.com, florian.fainelli@broadcom.com, 
-	bcm-kernel-feedback-list@broadcom.com, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: hwlock: Adding brcmstb-hwspinlock
- support
-Message-ID: <20260224-innocent-fluorescent-caribou-be5bba@quoll>
-References: <20260224014758.2660318-1-kamal.dasu@broadcom.com>
- <20260224014758.2660318-2-kamal.dasu@broadcom.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>, 
+	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	linux-acpi@vger.kernel.org, Hans de Goede <johannes.goede@oss.qualcomm.com>
+Subject: Re: [PATCH v5 6/9] dt-bindings: connector: m2: Add M.2 1620 LGA
+ soldered down connector
+Message-ID: <20260224-bold-dalmatian-of-weather-d86259@quoll>
+References: <20260224-pci-m2-e-v5-0-dd9b9501d33c@oss.qualcomm.com>
+ <20260224-pci-m2-e-v5-6-dd9b9501d33c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,65 +74,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260224014758.2660318-2-kamal.dasu@broadcom.com>
+In-Reply-To: <20260224-pci-m2-e-v5-6-dd9b9501d33c@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267739-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267738-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,linux.dev,linux.intel.com,squebb.ca,gmail.com,holtmann.org,bgdev.pl,vger.kernel.org,linaro.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[broadcom.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E1F3F182C05
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: EE886182C5D
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 08:47:56PM -0500, Kamal Dasu wrote:
-> The Broadcom settop SoCs have hardware semaphores as part of the
-> "sundry" IP block which has other controls that do not belong anywhere
-> else e.g. pin/mux controls, SoC identification, drive strength, reset
-> controls, and other misc bits are part of this block.
+On Tue, Feb 24, 2026 at 11:00:52AM +0530, Manivannan Sadhasivam wrote:
+> Lenovo Thinkpad T14s is found to have a soldered down version of M.2 1620
+> LGA connector. Though, there is no 1620 LGA form factor defined in the M.2
+> spec, it looks very similar to the M.2 Key E connector. So add the
+> "pcie-m2-1620-lga-connector" compatible with "pcie-m2-e-connector" fallback
+> to reuse the Key E binding.
 > 
-> Adding brcmstb-hwspinlock bindings which allows the hwspinlock driver
-> to iomap only the 16 hardware semaphore registers that are part of all
-> settop SoCs. The semaphore registers are based on the BCM7038 SoC
-> where they were first introduced in settop chips.
-> 
-> Signed-off-by: Kamal Dasu <kamal.dasu@broadcom.com>
-> ---
->  .../hwlock/brcm,brcmstb-hwspinlock.yaml       | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
-> new file mode 100644
-> index 000000000000..416d8d2948af
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
+> Tested-by: Hans de Goede <johannes.goede@oss.qualcomm.com> # ThinkPad T14s gen6 (arm64)
 
-Now filename does not match the compatible. You must always CHANGE ALL
-places, compatible, ID and filename. Please read writing-bindings
-document.
+Please drop. You cannot test a binding. It's IMPOSSIBLE.
+
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
