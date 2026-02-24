@@ -1,185 +1,175 @@
-Return-Path: <devicetree+bounces-267953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267951-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yIEfCs3DnWnORwQAu9opvQ
-	(envelope-from <devicetree+bounces-267953-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:29:17 +0100
+	id uKYXJffCnWmsRwQAu9opvQ
+	(envelope-from <devicetree+bounces-267951-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:25:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77EAA189037
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:29:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F3D188F64
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:25:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D18083063D5A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:26:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9CB7D3027E1A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:25:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C353A4F23;
-	Tue, 24 Feb 2026 15:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="bI+ZobXl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E923A1E71;
+	Tue, 24 Feb 2026 15:25:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay49-hz3.antispameurope.com (mx-relay49-hz3.antispameurope.com [94.100.134.238])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C4223A1E96
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:26:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.238
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771946803; cv=pass; b=D47iL3rwqe3hoX8f1aKq3CtjuLeYt8UgAhrX/bcUpm3kWqVliR3DWUARGjVKRwbFYk64r/9OzWYqgBWIJ0v24Hc9r+ozRaPuCBP1mdjpp5T0bif3cfCBvupltJu8S95NmLsQvU277+GCNWrVJpYfbRnbfk+zcQYW5kknd+udAsU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771946803; c=relaxed/simple;
-	bh=k+01+hwB4kXaY+9JVNJXfnhSVvLMNocfGDfK21Z8WAA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KlK0+/6A+3gUKYmapLTaq1gXyz6o/5RQlQ/U6Eb0KAGORztVIwPdjkzd7TtYQEmXyUoM6PrRqu5hX8M05RBJr/D6JuS2McTne32dihhb66KR2iYpRFKRZfAhNtE5meBa7zIdGa0Mx2qwFVIhRmDo+C/jrXroev3TfJMeiypA4UY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=bI+ZobXl; arc=pass smtp.client-ip=94.100.134.238
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate49-hz3.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
- dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=TPwHnjOyDLcddYkDcBVqNyNrgFvDUOQLimt5YHFhyj0=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1771946779;
- b=jFmN5LBJ0FkKTER+1rhxInnU6Jt9KTDhmYyaM0arbHnVk9MxDsgo0nZzT8qUkyaWYW0kcAAc
- i3QU9yYcFcrDDvX+oM/sjU5dqPldlYI/PkpyLjeS7vPb0o4CiVhqGGYkOApwFP6FXphzKLbVl1M
- yGlL9uSi4S2a5TX1eP7M+59lcFA5MHPR/JCKes4aVzdhCXoP+IZ657QxuLUejDPEunqIUWVwQTx
- Ob715jU/1JLn+EkY5Vz7OTQzy0kQB9rwM4Le4EuSHCaor7rn3C05DbCkeRszsS0n5cKMJFKDlEO
- 3kIQduVduVOvIUtHc2iP3nXDea1UpPdBvV7SqtDVIsIuQ==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1771946779;
- b=f1sNM9krLZRs08Pq4bZwXM0VBPqG7rAlxz8QgQEg+5fEUqZK08E5dWhPFXlU6ByjgOX3zUNe
- Pz24gRbwIw0Agrx1ealmW09AmuNYC7Fh7+8mmw2ZSVoTm3KQbH6FwFJMC6mB+67Wc9kDmv1kvpq
- YYQhcLusc1cHyh/HbfElgX421Wa6UzEsYJJvV3HHznKOV98LIZYFlDhgKDxBF+hrzYu1p2XnLUF
- t2ciP+x+ySzRBA5cxzZMCpkK5bublUNc4Fm8qeB8h5O9jRvCArYh5fIu9ER53AjETcA0MAAxgZ6
- +7H2t6P0j6juRPc8qRd0WNj3u5IE8xqgTnFKmQjnxOKMg==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay49-hz3.antispameurope.com;
- Tue, 24 Feb 2026 16:26:19 +0100
-Received: from schifferm-ubuntu.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: nora.schiffer@ew.tq-group.com)
-	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 35EDFA4112B;
-	Tue, 24 Feb 2026 16:26:11 +0100 (CET)
-From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Nora Schiffer <nora.schiffer@ew.tq-group.com>
-Subject: [PATCH v2] arm64: dts: freescale: fsl-ls1028a-tqmls1028a-mbls1028a: switch mmc aliases
-Date: Tue, 24 Feb 2026 16:25:23 +0100
-Message-ID: <20260224152523.570057-1-nora.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.53.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAA236405F;
+	Tue, 24 Feb 2026 15:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771946740; cv=none; b=COxJB89gsIq6+szC+G6CNJXwmPM0aYwsCl08IxIm/giCSa9pY3R4kVvrHLeYucDvD+tlIE+RoDcdtFiKC6byzTDXSchvrYr3c+zLazcReKphggCICFhF1but7VMbXWtHMnyyLkuikouYbih9QR+S57T2fAohrViCiU0ZgGj9HsY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771946740; c=relaxed/simple;
+	bh=6BF5HaruXzs6cSNgyt8FXFsH8ahTogOeLQmutq2pJzk=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KNxpIlU53VtVilstJBOx2+arB79aENW5fc2eE3GtXypYhTe9DAZx4EjgKxiNkY7/Mr17SlF5+ged63cm0dHSSD7wfsAlXnegXmr5xP6AhLq+P2mn/v1JCCq0ScG/CWJ4MpS0hkAVsK2GHCUCsWIv7sd3jkStiOuQGP/NZpor9iE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.107])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4fL1k03LybzHnHWN;
+	Tue, 24 Feb 2026 23:24:56 +0800 (CST)
+Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
+	by mail.maildlp.com (Postfix) with ESMTPS id 9A2B740570;
+	Tue, 24 Feb 2026 23:25:36 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml500005.china.huawei.com
+ (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 24 Feb
+ 2026 15:25:35 +0000
+Date: Tue, 24 Feb 2026 15:25:34 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Ahmed Tiba <ahmed.tiba@arm.com>
+CC: <devicetree@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
+	<Dmitry.Lamerov@arm.com>, <catalin.marinas@arm.com>, <bp@alien8.de>,
+	<robh@kernel.org>, <rafael@kernel.org>, <will@kernel.org>,
+	<conor@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-doc@vger.kernel.org>, <krzk+dt@kernel.org>, <Michael.Zhao2@arm.com>,
+	<tony.luck@intel.com>
+Subject: Re: [PATCH v2 02/11] ACPI: APEI: GHES: add ghes_cper.o stub
+Message-ID: <20260224152534.000040b6@huawei.com>
+In-Reply-To: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-2-347fa2d7351b@arm.com>
+References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
+	<20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-2-347fa2d7351b@arm.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:nora.schiffer@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: nora.schiffer@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay49-hz3.antispameurope.com with 4fL1lR64HJz3yYSv
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:b434f169457cacbf55fdb26bd24b492f
-X-cloud-security:scantime:1.981
-DKIM-Signature: a=rsa-sha256;
- bh=TPwHnjOyDLcddYkDcBVqNyNrgFvDUOQLimt5YHFhyj0=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1771946778; v=1;
- b=bI+ZobXl30ORnQWEmwC7Z8spiayQQp+Ihbzah5qFq/LRrsHKhPOzg18oeeayPjUrj9002iJR
- /ehT5T9ax7f4j6QqgYx/et/eu0a4Iv/pIjLjvqllyUXXPv3UIXganixpy1/iYt1PeLPS6tjU24Q
- wO404T4/VNVKfPIx4PCMQFS0y+RM9CHAqi3ftzwygh5xjoZiz48c1stN4CTtK+anOhSfa4oSlNy
- FDgKksj2G+j7MOJ9GSFdCWjDdjw2I5gZWjdMONaPcG3d5CW1v0Za6drRsI+fwg2zbCaYOQ04o3r
- 0eNMOqmrzyZMGZ9K1zgsylAojPhGlHe8f9Q9/oiHZwjbg==
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
+ dubpeml500005.china.huawei.com (7.214.145.207)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-267951-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	TAGGED_FROM(0.00)[bounces-267953-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.996];
+	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.987];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,ew.tq-group.com:mid,ew.tq-group.com:dkim,tq-group.com:url,tq-group.com:email]
-X-Rspamd-Queue-Id: 77EAA189037
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,arm.com:email,huawei.com:mid]
+X-Rspamd-Queue-Id: 36F3D188F64
 X-Rspamd-Action: no action
 
-All modern TQ-Systems boards follow the convention that mmc0 is the eMMC
-and mmc1 is the SD-card when both interfaces exist, reducing differences
-between boards for both documentation and U-Boot code (which uses the
-same Device Trees). Adjust the recently added MBLS1028A Device Tree
-accordingly.
+On Fri, 20 Feb 2026 13:42:20 +0000
+Ahmed Tiba <ahmed.tiba@arm.com> wrote:
 
-Fixes: 0538ca1f102d ("arm64: dts: ls1028a: Add mbls1028a and mbls1028a-ind devicetrees")
-Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
+> Introduce a dedicated ghes_cper translation unit so that follow-on commits
+> can move helpers out of ghes.c without touching the build logic twice.
+> This keeps the object in the tree while remaining functionally identical.
 
-v2:
-- updated author information after name change
-- collected review tags
+I'd probably do this with the first move patch not as a separate patch.
+That would resolve the question of headers etc below.
 
-As mentioned in the v1 submission, it would be great to get this in
-before v7.0, as the TQMLS1028A/MBLS1028A was just added in the current
-development cycle, and we'd like to avoid changing the aliases after the
-DTS was part of a mainline kernel release.
+> 
+> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
+> ---
+>  drivers/acpi/apei/Makefile    |  2 +-
+>  drivers/acpi/apei/ghes_cper.c | 26 ++++++++++++++++++++++++++
+>  2 files changed, 27 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/acpi/apei/Makefile b/drivers/acpi/apei/Makefile
+> index 1a0b85923cd4..b3774af70883 100644
+> --- a/drivers/acpi/apei/Makefile
+> +++ b/drivers/acpi/apei/Makefile
+> @@ -1,6 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_ACPI_APEI)		+= apei.o
+> -obj-$(CONFIG_ACPI_APEI_GHES)	+= ghes.o
+> +obj-$(CONFIG_ACPI_APEI_GHES)	+= ghes.o ghes_cper.o
+>  # clang versions prior to 18 may blow out the stack with KASAN
+>  ifeq ($(CONFIG_COMPILE_TEST)_$(CONFIG_CC_IS_CLANG)_$(call clang-min-version, 180000),y_y_)
+>  KASAN_SANITIZE_ghes.o := n
+> diff --git a/drivers/acpi/apei/ghes_cper.c b/drivers/acpi/apei/ghes_cper.c
+> new file mode 100644
+> index 000000000000..63047322a3d9
+> --- /dev/null
+> +++ b/drivers/acpi/apei/ghes_cper.c
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + *
 
-Best,
-Nora
+As below.
 
+> + * APEI GHES CPER helper translation unit - staging file for helper moves
+> + *
+> + * Copyright (C) 2026 ARM Ltd.
 
- .../boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi  | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+As before. If there isn't significant new content copyright doesn't make sense yet.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi
-index cf338b2e80064..426a81e1743f1 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi
-@@ -17,8 +17,8 @@ aliases {
- 		gpio0 = &gpio1;
- 		gpio1 = &gpio2;
- 		gpio2 = &gpio3;
--		mmc0 = &esdhc; /* SD-Card */
--		mmc1 = &esdhc1; /* eMMC */
-+		mmc0 = &esdhc1; /* eMMC */
-+		mmc1 = &esdhc; /* SD-Card */
- 		serial0 = &duart0;
- 		serial1 = &duart1;
- 	};
--- 
-TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht München, HRB 105018
-Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-https://www.tq-group.com/
+> + * Author: Ahmed Tiba <ahmed.tiba@arm.com>
+> + * Based on ACPI APEI GHES driver.
+> + *
+
+No obvious benefit in this blank line so I'd drop it.
+
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mm.h>
+> +#include <linux/ratelimit.h>
+> +#include <linux/slab.h>
+Build includes up as they become relevant. That way we can see whether
+they are needed or not.  Right now none of them are..
+
+> +
+> +#include <acpi/apei.h>
+> +
+> +#include <asm/fixmap.h>
+> +#include <asm/tlbflush.h>
+> +
+> +#include "apei-internal.h"
+> +
+> +/* Helper bodies will be moved here in follow-up commits. */
+> 
 
 
