@@ -1,85 +1,56 @@
-Return-Path: <devicetree+bounces-267671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267672-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAq3Lzr4nGlxMQQAu9opvQ
-	(envelope-from <devicetree+bounces-267671-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 02:00:42 +0100
+	id SBqOClQCnWnhMQQAu9opvQ
+	(envelope-from <devicetree+bounces-267672-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 02:43:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC6F518063F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 02:00:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 650AC1809F8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 02:43:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 972363012826
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 01:00:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 50B11303CEE9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 01:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548D4239E6C;
-	Tue, 24 Feb 2026 01:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BFC1234966;
+	Tue, 24 Feb 2026 01:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OYvRJe/o"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="VcOSGa3q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.155.80.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F322356BE
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 01:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5581F92E
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 01:43:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=43.155.80.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771894836; cv=none; b=mm1rgPa3VHdFXfA/k4GkmiwB7CtClHbK+g6BDQsvdxusiBSRKSBscYOqi0u+PRI7kTPPGiSy37133+Mp4KpsAs0s0PNl4X9QqCvKDZJVflVrKQYjo0K5oTbYWngd3LtZ05CNkqKKgskCflREZ3Xc7VNgE04rRfW3yyoclVa/2f0=
+	t=1771897424; cv=none; b=XRo7Hj+PLvA+W/zonegR4l7CYQmC5P4y0L0497RIY7c6lPWUveO9U0ja4IXjN6gMciLBWMMFjODmII0/ESZ9IJxzj3Erd/yKR55PCCJTgK+g6c+jxCK/v1YH2eo81FboOTdfrWtzwkTEj9FoIHkLVX4E80P/BsF4T0Z/Zj2qPho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771894836; c=relaxed/simple;
-	bh=5jN52IdsSbjm829LHP1blJIbKJN09jEu6RV1toJJOcQ=;
+	s=arc-20240116; t=1771897424; c=relaxed/simple;
+	bh=zE6oDgoZ8DzQ325tzSHApdA0VNsV6EWu6tNL1PkA3jc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ptzUV//GYu+CWC3lqK8nKGGKbvx5a47vSJ/oCX7GBbOX8aHYKn3PxKPOsovQC4fdnllgh15A2IX2pX3uWm5os2VwqCwC/fuNbOyBTx3WuUCE/n1OyS11yFS9ykBRH5gVFFE4AkEAEeIgjW9n4z7FKlHYZ/il6knoZf3Lxs1KxtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OYvRJe/o; arc=none smtp.client-ip=74.125.82.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-1271195d2a7so1074624c88.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 17:00:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771894834; x=1772499634; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G2uvQ9O24I15o797RSwZq84+qdPgPwWIChdomW4o10c=;
-        b=OYvRJe/o5qp4VM9VgjdIwytYM+B2K8qN6LQW7+63IMEiPl9qabHHmdh3Er3MlUXVrV
-         /mRbtOeV0twfv6eU3LkFKGpfmUjZCEO06ImY0+csqXkUARrq4H7KvfbgqX7czmY4FDgB
-         yf0Uj5GGvguOlOAOtyBk/YEgt+KFyHgBUEqbm9oN1CqAk+5wYT2hDN+9q3AbhF9+JyQV
-         GVcz+rlmrC5mtxsOv6r+OmbmliE4LcmEffL5k0T726WCJhyaZ9oAmfSeezLviR4qr9dd
-         yzq7i0Mu+t3/b5ULZ2IdVgFFBBzEgOH0eGz+vG74qJNQ8JlHez5KICHPIiUzOZ/VEVKK
-         r9IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771894834; x=1772499634;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G2uvQ9O24I15o797RSwZq84+qdPgPwWIChdomW4o10c=;
-        b=Z5NXpOPlc75amw+3nUB7qQVv2aRepUnFGRc6XSZ7wrC9rjEu35VwHJ2txfaGgYjfMn
-         kKe3aB6pJalW7NDhsWgYh56rD1uOOym678ZwkzkFLpyf6GuN9f/Bw57Mr04tjMCnQ1ay
-         Zl9Xg9YfzRn+uAY4dElBGFSQm/SAElEBE34mtS+YM9Ph2BdlKeNWKzYrcNx7vehiCosA
-         Zs4j1x6hYeUfr0Rwau+qCN3n3cEZHvOtNokWffPMrjzFEO2ojnqKmGi4QT/CnPEBvUQu
-         XZXUA98/9Xk7zes5vl8M5bH0Y/uIvE1qF571I9XiihkNihVqoxfjXGJRYBNJRfmy3Bza
-         IdHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/H9U5uXD7raBVrcGtDQe+xyWMEDAyDOhotmb4Q9etTGJ095TBPzk2uHTaw159RWsKrNdbOIJ3rBTX@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywi5yetWVozRWDivfVcXXLvm5VKn8+M0KYiBnR9v2RyU5efpP2E
-	aJKjjCozNwDBdWEC2bXEFr29qDbRJvsnLjYNexWSbBFb3UAT7njuiAeh
-X-Gm-Gg: AZuq6aLICRofww95iS2T3iLJWI3Y0eCQCHDPxhKdTSRe+Wg6JRV/oFfSQun2M1uUBMN
-	422aWW+yuC/gQDga3G3gmNvyTBVYkbr0gKgEJiF8tqfCYuXw7B5n9P8Iu/HbnZFWYgjVFabun4P
-	giPceb5qFALxIiAoQJLGYb+v3cvklptjNFHnHV+ytPuw3AWUqUDAibatyjq5n8sl3A2p2uCZYa9
-	dhnmXBhmXs1kyMVKoGWyyPTvYBwCMi57CNgDqHKjUbIIi2RVtTxuYUe0efwgMTGMdjjgrNisUDT
-	OgdNHlD2fy7TzJcbG1provaANs5LChGzQ3yASwbKF0J2m/3mb7SehBIJkVecaHpWMK9dqT9wVRE
-	L7UYBHEC9CDZ1uJ/ETC+Cglp+kqZA3GYiUY72fGMzER67hJJWOkQcE7ilgYMWWhGtCzaJQ+PUaB
-	Bo6D1xnwFLmJvU4iR29hSAV/CTAmxzTrN8NRdfee7BFbc6lt0EHrtyWuy0mS/ZsEdYnMWAdQvnh
-	gwsDg==
-X-Received: by 2002:a05:7022:a91:b0:123:3bba:fc4c with SMTP id a92af1059eb24-1276ad50e28mr4383416c88.38.1771894834231;
-        Mon, 23 Feb 2026 17:00:34 -0800 (PST)
-Received: from [192.168.68.65] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1276afa0bedsm9107517c88.16.2026.02.23.17.00.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Feb 2026 17:00:33 -0800 (PST)
-Message-ID: <41b4f4c1-f0c3-4ce7-8267-039bb77ea953@gmail.com>
-Date: Mon, 23 Feb 2026 17:00:32 -0800
+	 In-Reply-To:Content-Type; b=F4z+4t6oBA5qKNe3j415rCPMTSqDOzGnd7ST+OCHkCEhMkLG1ExOPWgnbKmNr3JCRwwNW9ZnNnxavYZeB92Lm0gStJ03xo/FkDkcJFg68RbS0AvmOIQxcxlXZsfWhWT0+hboNWbOXQymNiK+2eLcmQclJCX+yA8xKUprmz570Xs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=VcOSGa3q; arc=none smtp.client-ip=43.155.80.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1771897343;
+	bh=Jcc+Bm636zbBsjTNZ3EK3Eue5zZ9zHiTiOlMdsEG1Jc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=VcOSGa3qsRmuOcmKvj/Dke3MbVeXFPDmIjSGVU/Uh6YJvGQCanaHUr5/1on2LicyJ
+	 xMbVFeZhHSWDm0Y/Kj6L6EHz06BcVGIAd/DAu7Uka80a9GHaeHzPw/GwhIJFGOAz69
+	 hg/Wlslts+7lbalHKhRWitnyNwjWsEgVGicTHcLU=
+X-QQ-mid: zesmtpgz3t1771897338te0671743
+X-QQ-Originating-IP: VxWANHq/kQn9OZsEiJ4CYippYDR23qbKKQHdJan0+js=
+Received: from [127.0.0.1] ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 24 Feb 2026 09:42:17 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 17092131372750963368
+Message-ID: <C28FA037F24F3E74+97535c93-cc16-4bd5-b436-db7cdc0bb580@airkyi.com>
+Date: Tue, 24 Feb 2026 09:42:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,99 +58,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: msm8960: expressatt: Add
- coreriver,tc360-touchkey
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- beomho.seo@samsung.com, jcsing.lee@samsung.com, linux-input@vger.kernel.org,
- nick.reitemeyer@web.de
-References: <20251205-expressatt-touchkey-v1-1-1444b927c9f3@gmail.com>
- <532531d2-8f26-4ffa-9355-7821a4d64200@oss.qualcomm.com>
- <1e74b956-a45a-4d3e-b7fa-e4d5dc0390db@gmail.com>
- <97d9d942-236c-4f8a-902e-0ad2ab684a76@oss.qualcomm.com>
- <1ebc2e1b-f1aa-4559-90a0-feb628d5bfe1@gmail.com>
- <aZvPUn2RxUHDahfO@google.com>
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add node name for
+ RK3588_PD_RKVDEC0/1 and RK3588_PD_VENC0/1
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <1770950113-19802-1-git-send-email-shawn.lin@rock-chips.com>
+ <B5000B8F1001C1D8+040b217f-8ee1-4f96-95ec-e44d140b589d@airkyi.com>
+ <9cc9a3c5-55f0-32f6-f166-acfb3a34f0a3@rock-chips.com>
 Content-Language: en-US
-From: Rudraksha Gupta <guptarud@gmail.com>
-In-Reply-To: <aZvPUn2RxUHDahfO@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Chaoyi Chen <kernel@airkyi.com>
+In-Reply-To: <9cc9a3c5-55f0-32f6-f166-acfb3a34f0a3@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
+X-QQ-XMAILINFO: NVgUsgecbtFOUkTH+U2yxknL5s9pEbBwWrJgzv2os8snM7fa2YfLveCT
+	qqRjDqwe/is7Jxgv4P97rRTMtfDOWPkXee73aeJDIGJiER1q+o0+2W4WTTMEsHnOu3d51IX
+	/KLcVUrruHXWUsdosYtMicdrRv86ztzv9yRGHVYrT5XQO4bCA0bga4yUZyPKMwCk3jny7du
+	sfhO5qtpbqTaem1bPoQ24OFT50Fb8N9xaAN766csZjPwJTMAB0p4ghmaocFkHpOwyAG3Y7J
+	akEyR+t0MZWS6dc5gr8cueCV39RGcVmcXS7BxxsUF0FsZw0CvsQrIqzcDoXMTAdRQqijzHR
+	nhb2elj5XR9h2khReLcqw6HsE67rP7bQVhTRcbb5IibQ8o0bW0FE/SRSoM5LjQcP6cAn9uP
+	T7zs5Q+aV3+23DCfeb0aB1I3/o6I9DvGOvHJxgKgh26vf+3mRr2GFtDolyWDr/u+C/9vh0k
+	ipvovA96nAkPOfN4TN0OrSKgm/D8xqnkx/KEGL+aotkDRRSCc7i7Q23HPTpiGG+rIUvu/nu
+	IzigGEb+B2Lt6c/MdZ2WFjO64W+dYxvGEoiVhQQjq+ab5MaPjSnH0ubJje6RPSlgmdoRj0G
+	klR8Sdn64MEdkEB/1Buaf5Suc/8pw1wqo15z//TMzWvqQBq8lpg7Vpn/AtGCAkaEOcjJad5
+	kf2eSUPG5LgtqKi1qRUw4VxjX5XCab1xEuGnxWoRZVknrVCtHdIu6eVf3xyqppoVLAlMVa2
+	5Rvx4lzkDRI1kzymShHdHi23dHXyhxkHFxrJO7MO7bYaRe490iC4i+Z8Mv5iBrcZq2c4/EY
+	Y3uDnongwLGurOPR+2COojNi+TLBjX9iWS2k61lJaZmzibD10S0/xbAk6k2ScYvPK2pO3Cz
+	zsOcD8qAifg82b9RvFAj6z49kRV75Fnri3dye/GMGOXpoUmAB2ya+TP0d3jqASLKyBzpJU9
+	Xu81tADr/Ls4x6aPia0vNdMIkGhYyeVyV8Bma1PAjsBmmf1IAkvshVHhEaDkVWScZY1Ey8H
+	ZH77PbpbFoOi1EFwYztkyKz/VvXLw=
+X-QQ-XMRINFO: M/715EihBoGS/VAi3I5lh1UT7FCdJekTaA==
+X-QQ-RECHKSPAM: 0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[airkyi.com,none];
+	R_DKIM_ALLOW(-0.20)[airkyi.com:s=altu2504];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267671-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,vger.kernel.org,samsung.com,web.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267672-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_MUA_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[airkyi.com:+];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[guptarud@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[kernel@airkyi.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DC6F518063F
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,rk3588_pd_venc1:email,rk3588_pd_venc0:email,airkyi.com:mid,airkyi.com:dkim]
+X-Rspamd-Queue-Id: 650AC1809F8
 X-Rspamd-Action: no action
 
-
-On 2/22/26 19:54, Dmitry Torokhov wrote:
-> Hi Rudraksha,
->
-> On Thu, Feb 19, 2026 at 08:33:43PM -0800, Rudraksha Gupta wrote:
->> Hello all,
+On 2/13/2026 7:11 PM, Shawn Lin wrote:
+> Hi Chaoyi
+> 
+> 在 2026/02/13 星期五 18:32, Chaoyi Chen 写道:
+>> Hello Shawn,
 >>
+>> On 2/13/2026 10:35 AM, Shawn Lin wrote:
+>>> Thus the board dts files could add property for these nodes.
+>>>
+>>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+>>> ---
+>> You should also add pmdomain driver.
 >>
->> Top posting for once (context below).
+>> I've encountered a similar issue before.
+>> Finley told me to use the new PMIC, and that would solve the problem.
+>> Maybe you're using the same old PMIC as I did :)
 >>
->> Not too sure what the next steps are to get the tm2 touchkey in. Should I
->> resend the patch, contact someone else that can help provide guidance, or
->> something else?
+> 
+> I don't know what does new PMIC mean? New RK806 driver or new RK806
+> hardware?
+
+It is new RK806 hardware. According to Finley, end users are currently using 
+this new type of PMIC.
+
+
+> 
+> The problem is these power domains rely on voltage supply which could
+> be probed late after pmdomain driver, then the system enables the PD and
+> access the IP without PD actually enabled(even w/o voltage supply
+> enabled).
+> 
+
+If I'm not mistaken, the new hardware will automatically powers up the supply
+corresponding to VDEC/VNEC.
+
+
+> 
+> 
 >>
+>>>
+>>>   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 8 ++++----
+>>>   1 file changed, 4 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>> index 7fe9593..4fb8888 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>> @@ -907,7 +907,7 @@
+>>>                   #size-cells = <0>;
+>>>                   #power-domain-cells = <0>;
+>>>   -                power-domain@RK3588_PD_RKVDEC0 {
+>>> +                pd_rkvdec0: power-domain@RK3588_PD_RKVDEC0 {
+>>>                       reg = <RK3588_PD_RKVDEC0>;
+>>>                       clocks = <&cru HCLK_RKVDEC0>,
+>>>                            <&cru HCLK_VDPU_ROOT>,
+>>> @@ -917,7 +917,7 @@
+>>>                       pm_qos = <&qos_rkvdec0>;
+>>>                       #power-domain-cells = <0>;
+>>>                   };
+>>> -                power-domain@RK3588_PD_RKVDEC1 {
+>>> +                pd_rkvdec1: power-domain@RK3588_PD_RKVDEC1 {
+>>>                       reg = <RK3588_PD_RKVDEC1>;
+>>>                       clocks = <&cru HCLK_RKVDEC1>,
+>>>                            <&cru HCLK_VDPU_ROOT>,
+>>> @@ -926,7 +926,7 @@
+>>>                       pm_qos = <&qos_rkvdec1>;
+>>>                       #power-domain-cells = <0>;
+>>>                   };
+>>> -                power-domain@RK3588_PD_VENC0 {
+>>> +                pd_venc0: power-domain@RK3588_PD_VENC0 {
+>>>                       reg = <RK3588_PD_VENC0>;
+>>>                       clocks = <&cru HCLK_RKVENC0>,
+>>>                            <&cru ACLK_RKVENC0>;
+>>> @@ -937,7 +937,7 @@
+>>>                       #size-cells = <0>;
+>>>                       #power-domain-cells = <0>;
+>>>   -                    power-domain@RK3588_PD_VENC1 {
+>>> +                pd_venc1: power-domain@RK3588_PD_VENC1 {
+>>>                           reg = <RK3588_PD_VENC1>;
+>>>                           clocks = <&cru HCLK_RKVENC1>,
+>>>                                <&cru HCLK_RKVENC0>,
 >>
->> Adding Dmitry Torokhov (official maintainer) and Nick Reitemeyer (person who
->> introduced this variant).
-> Sorry, I am not sure what the question is... It seems that you made the
-> driver work without any additional changes?
+> 
+> 
+> 
 
-I believe this patch is blocked on Konrad's comment:
+-- 
+Best, 
+Chaoyi
 
- > This driver mentions a register called CYPRESS_MODULE_VER - maybe
-it could help confirm the model?
-
-
-This was in response to me saying that the "coreriver,tc360-touchkey" 
-tm2 variant works as is on my device, but I can't tell for sure if this 
-is actually the variant that is on my device. There isn't really any 
-documentation for how this peripheral works and I was primarily relying 
-on others in this thread to provide details to confirm that this is the 
-actual variant being used.
-
-If I'm mistaken that this is a blocker, please let me know.
-
-
-Thanks,
-Rudraksha
 
 
