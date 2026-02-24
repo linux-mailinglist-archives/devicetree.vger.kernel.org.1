@@ -1,1058 +1,384 @@
-Return-Path: <devicetree+bounces-267896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267897-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0H4kD9KgnWlrQwQAu9opvQ
-	(envelope-from <devicetree+bounces-267896-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:00:02 +0100
+	id qCoiKXiinWlrQwQAu9opvQ
+	(envelope-from <devicetree+bounces-267897-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:07:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5F3187584
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:00:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A87187625
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:07:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 392203087063
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:59:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A30733015114
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6DD39A813;
-	Tue, 24 Feb 2026 12:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CCE539C621;
+	Tue, 24 Feb 2026 13:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fCMVD3+2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AoZ0Yktn";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZmR1QdUU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B51D39B498
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 12:59:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771937997; cv=pass; b=bweClTkbDd3QKfaOEb/SC+YLRuxQCj9KMrjocPNfYEqCmuGBmw8DbzaZOmiUHolKrJiwvNmvv0lYlqSyjHhHVcDZorKAzlHG1SHrJE0d441UDUX/JvxXP2RcVbO9Moq+nLKKBUGJKD0tR5yoO1xjyO5Ec3CJc5Qe8V3VM5oLq0k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771937997; c=relaxed/simple;
-	bh=p3qDgr2OscXe7mu3kKJNCPd5RoBLoFqV9caAC5ANbj0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Q7bBH+2E86tTE8d68hLHyQIb19PjdymcIezB4jr1gx2TPbgLhPLA+o3zDwI2/1GWHBudQMGwebuFYj5weJ11o+lHxIoVMmv8bVrVkvfbWiLYqCKajAWU4J8MJEdsDtTClhbzbCFJUCs006hvL+s0nHLDcbjNTRu/tv7XLW6Uasc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fCMVD3+2; arc=pass smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-65baa72399fso7293618a12.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 04:59:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771937992; cv=none;
-        d=google.com; s=arc-20240605;
-        b=V/j+G90xt7pEBW3NBQZhbsxYUqAILPihmf0awWOcmDFOZl8xWUI0yJ+4Wsm6KcTkEq
-         C8EehLrtqtSlWQJdYoVyOxnmIgbcQgUB7RXjvJdUS3A+ri9RdmhZS9+yfMGK5k60sjCY
-         5QFN6qhVmuIFWtNPnqJp5gV/sA+cmCvUXjurHwn7993zHWNsopK02+HDAu1ql0jtxzvt
-         Ui8zM7eGf9tuMnsOp+39RJGL72Gyl/hWB/ZzzNmyA5CIwHVGqRaXkJJQw2tIGrL6yeBx
-         cFuapPtOMyW04wRMXe/jovm/Hk38W8yzyD7wwDefzHliJWenZyb0rlbrRjniDLj3d0O9
-         imMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Q7R0WczpvcKeUxWf2NQQ/Mxmqc0lLtvfvQI6kBPMl2Q=;
-        fh=zwqX3xTQOsYXg2B/YTdhcjuoiKDiW6Q6eIMPidtMRws=;
-        b=QpX0UdlPzMzoXzOIYkNio4STUAwcW+iRwLI1Tm1mAT21TYMn0igQdLVYJGb66IlK/C
-         tndX5zEVjtV4kNSw9cmic5Kss2azLT//j1qSXkEpcrcPHRNiUugIuCwFfwEAVoJWUnu5
-         EYHwUm92kiSjU70wmTPFQo5Q6/PT9lomHvGJ/LG5PgVxEd2PNSIxOrYxZoG5Ih09Y5G9
-         SVxRMZjTqfoITSsCMFKw/Vus3pjqlb+MGDp7BvFIi5bnQyjcVn+ELZA3zn+SQ+t7JBJn
-         bfPMPiKC3XrTP0DBGUe/7u6h5C/VKx945FUkKkgWVrzFCUDWLfKiuhQ7DZ54ddCbUVco
-         7yEQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9656339A7F2
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771938422; cv=none; b=S4QfisytpRUbtg3v63KnrW8boH39EOM8EBnTZUcDZpRGSVCeZDeypE7so0i4U4lDxVTypQr+cv8iNiDbih+ULtO/i/7LwX734tp8XHplyuwHcXVmz5DyLwVI8FXdkbZn7PpMGBatvUqHLSUtd+fD58cPfXMn1GQpkbfkswYDQ9s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771938422; c=relaxed/simple;
+	bh=N67c23nboT3hiZe7JPhtP19+yAyWgkt4A8smGz+i1es=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V4Byrj8VxXrMVeDx7zRXrFsF1KEqhjkgFyFwZKhSVTtGKZ8Mk05ToTDLpJLoWq2F4LV6oo+Ix6ohfD2oHK5vk5KB6TFwPJb4RVt13drT7leODL/2PVl8iSVrkJ3Lth5/X+TQnfId8JT0jYtJ0Kk6Poge2K58El/v6JEhUqsBNWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AoZ0Yktn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZmR1QdUU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61OAFM0N2006341
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:06:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	WfG01eFAuSy/SnLukomo4hHe1riuh7TuQZOpyI1E1zQ=; b=AoZ0YktnBsSkE6e2
+	FtCIEBxhgSm40+1t7nkG4n7GPmXS22KnlA6gANMxhgFD0+AV35Z9rtTY/KAz6rab
+	0aW0lBMfuks0L4YudgNZqWXMAzB2uE+/9lVz0Y3+555zcAXfDdmFkA3hkV5+eetr
+	pxMYgwh6sZLwP+c5An55bE0jjIZUave+KUEQfqQHb+mLcULGf1JQHw1W6WlG+g5E
+	Z7B2a6Ln/ABzcsf4jhcy349hxKZRhtnjcUoKoXNkukGe0MG0VdfK3qLvTHSxZyEa
+	KiqJKP5I9iAyFitchWFQpgjFy2crR2BqMF36bFC5H6je7+fyJf30hQhUZopT+4VF
+	+xMjQg==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ch4569j33-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:06:59 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-899ad205819so2274976d6.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 05:06:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771937992; x=1772542792; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q7R0WczpvcKeUxWf2NQQ/Mxmqc0lLtvfvQI6kBPMl2Q=;
-        b=fCMVD3+2o2RduQT9R3YPe0VqjdNdf9gxwrAOpYradyo6uDWmuSlqT+o+vxqlBav3Uv
-         8miGDygr3j5SrtngGvhWYheo5ypJvibxl6yYOuL5TuY+zLGp5nDCQoAXDBGS3yHFD/xl
-         4pqpx7kc6xD2Gi+SVzunc0iWlHHYLD7Hw4pj0otLV0Re69HP9fZzvwJwhqdJwlHbEFLF
-         IL1IqmlSiVbcO/yoa/Ry5cMGG7fE8c9caiS1jFAdP9xAGoIr2r2/+pi5E5v0vZZMq7Lr
-         OKyYSz02MYMTPzQomfE92AUjSnXkxULDe4S6bxCbuSRigU3z/IGx/dlnwUw9M+h9toqV
-         j8Cg==
+        d=oss.qualcomm.com; s=google; t=1771938419; x=1772543219; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WfG01eFAuSy/SnLukomo4hHe1riuh7TuQZOpyI1E1zQ=;
+        b=ZmR1QdUUSG+CvWPc1gDBB9inwLIODx5diHsWJHFeDTM16cA81NyJdrxOFkRAs+fcHE
+         9xiZ6I2R2xQoUpecLQaSDkKj847pRRGEFVRIK2fTEv/+gBNgeaVOef7dvKjyaj+yGc3A
+         ohEUBY9eHxN6vYEz95n7VZcrq1VEgfhPZH3JakmtF39pG5hv18kMUv5ZeXHp5NQsC1Oo
+         dcrV002T1iugn33nGlNGMnaugHSKqxQdchWRMUIXkQlr5uJPrW4S86txu8CC8o7/PYYK
+         aHqCFm4/XOsJYa+1V2Dv8oA/5IuEDialQ/mNo7/H7a0SCWQHQyhZaftKl+u86dyV38gY
+         fiwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771937992; x=1772542792;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Q7R0WczpvcKeUxWf2NQQ/Mxmqc0lLtvfvQI6kBPMl2Q=;
-        b=LbcCrPKY8eIny/CoLCOE7TjYEInvp+rsElE4ZHFRCKyzGPrzFU4KlLtCP9ZCweplMS
-         cnaH3yzpxclhsOZ3lk/ccFlGpjQ6XPtF+iXUUohyLF8uW2U8s4IzPyhofYiT9EjCSlVa
-         UTEzRylgCgz3T/u42BKvULSwXewE48otEBunayB4Q+gVgBWE0s+bHs6FwjDaPyg2HMc9
-         DMeOM1m/Fepc1hI17YCRASn5j6DnbRoSfD1Pp6LMqU2HVfI0VmC2R4Ca+TkOFcLlrpcj
-         j3dth6Gisd6NBOSARTLz2QMDoJN04X2lqzxix6Igu6bwDnjtmAg45g2U4nMfD72K8JOA
-         F+2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWY7iVQYM1XgWDwSTywsTAs9ITzYGerSUn8vK9oRLXHgB+K2DV9OrHBaKJdK2mewbNgTu9nyCk70AMj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJakJ56GNMwN2+SJXgDy995tbTqXfBYOVyoEzy8v2HErepk5js
-	vro3BpR/YKHCyuVITWzgLGWAqqYyl6CIss/b/jMw5EPisf3rkKI+mhgCCkKtzV/En59n99g0T+B
-	lXyPN72Mdn8md9J3GeqnqHAMmowNRRPk=
-X-Gm-Gg: ATEYQzzhPqo2lff0iiflDAaRelLa6+zRkjn3+NQdZuQe4J3YJfDBaVz0LO7URZJCWjU
-	jPwQot1ftLfdYIQ9GgUYDVJMyeIEm3M547sJDuLyO9vpa+3zE/cK+UnFnaAY8T5vUiS0GsP6Clq
-	3m9fy2dlsnbDC43iUBaK9Co3iq8P71shhXRVyk6aKmJ8qJ+AKPdvsXGWjfI540WzotGRSPAYJZN
-	epLXe47BdrB4rYJoFZ6A4qeQOJ9fJvcE5lrjVuWH7jtJ7O2HcGQGk8R83/Q8dMozTwLF9iiAq0l
-	Ph75PBu1Ig==
-X-Received: by 2002:a05:6402:50d2:b0:64b:58c0:a393 with SMTP id
- 4fb4d7f45d1cf-65ea4f07f63mr7802475a12.30.1771937991199; Tue, 24 Feb 2026
- 04:59:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1771938419; x=1772543219;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WfG01eFAuSy/SnLukomo4hHe1riuh7TuQZOpyI1E1zQ=;
+        b=P5Qv2pilQaPrwa3mMex5yCs30EVHgEbDErfIvajN8vhzcVDNiIcu2FiyFObP+yVd3C
+         y09KaViFfg2zh7B5gzo3wH08vjISuWmbPEY3pZ1BAkjbWU5AZZ5M8srUCmqUJl+49LcW
+         1P9/RtSDQKSJCJQV07hqXzWtqoI55EegU/EJh3gm1zF8LeqyxgtiOGbvXuGOqfwrnp9o
+         Tdzv8UU3V4PITyaTIxcwFDDk06naOtUigYIXRbPqQJNww3eUAzjKv7RljQsMjH+x3udb
+         i6NrbyRmOdgJ7i0ETCJS256c2VSwpR45Y6qtopYscfbux7vulqDafzLTZO5XvJ1vP79i
+         O32g==
+X-Forwarded-Encrypted: i=1; AJvYcCUMhf6iCIWPmSX/eGd8gIDPTsJ0qntZtqj7O+b8wCQTz2vRo7EuxtjQ/MNJOWe4xsI0WECEgoSLWpoN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSUEgMgExokD0MHHNqtDhYybR6yUjRHnXddYboyUYJVE4x+C80
+	d5KKMObJ270PSyBoCC/gq0efTT31sNxB5+wHNVURxhuezt+uy2VnRSGNoTXoCaMKG5FtijoMwND
+	0bCYV7oRm2nbav+IUP3tDn1nlNDJzzZwXPIDUkdarXLlq1WfxDyFn3r/G6qmCncmd
+X-Gm-Gg: ATEYQzy8VKBK0oD6XWb21ikkhPC/hX4yVSNAB9rfzIyPXOp24dJGC7cmyg2ozntAK/I
+	rwdvsDupLVgTLZ6wXD3pBiAYgA08RaaUsafIyKdQsZXqqAwCvMpQurNP/lQglWHAue3pkx0l7ox
+	WXFQSu+0wmMuNp3l8lG2+eS2RzP4xpUUth00tXxzD/fR8LRqy8NfdYy1oxubSBYh3FgEhEq+zTi
+	/nGLz5+CPNdtIr3S0rbeCllp0BdQkj9L49aYbje+qtRwyUOb5vOEP0kh0WCwMlOACAbHSQnSeg4
+	vD3ix4ereYp9lcPi4uTm3+CK7EKSMU0wCbVkSSzL0I8gicte7iF7rrXdwBl57uqTytaQS9VvXWo
+	4kF9cAjeXbPOK7YD2u0QOUj3Oifds3GU9hQGtqPsgUwnE46ruX/+vylzcJwE7NuW3QmH9+uju2n
+	Qo6cs=
+X-Received: by 2002:a0c:ef86:0:b0:899:a83f:a8bc with SMTP id 6a1803df08f44-899a83faf34mr10657936d6.5.1771938418674;
+        Tue, 24 Feb 2026 05:06:58 -0800 (PST)
+X-Received: by 2002:a0c:ef86:0:b0:899:a83f:a8bc with SMTP id 6a1803df08f44-899a83faf34mr10657526d6.5.1771938418026;
+        Tue, 24 Feb 2026 05:06:58 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b91dacfcf77sm70612466b.13.2026.02.24.05.06.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Feb 2026 05:06:57 -0800 (PST)
+Message-ID: <521fcb9d-6538-430a-910e-0e4e9df2c693@oss.qualcomm.com>
+Date: Tue, 24 Feb 2026 14:06:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1770605931.git.zhoubinbin@loongson.cn> <a0eac5b7ba0bcced9664ff64349e563da3d031b3.1770605931.git.zhoubinbin@loongson.cn>
- <aYoTtQ01VGXEW2Fu@lizhi-Precision-Tower-5810> <CAMpQs4JwDSWCXYFiPXNf1pKbYqUK+9hLXYsQsG+rQQqi_eZJwQ@mail.gmail.com>
- <CAMpQs4KSyj3HFrY0Qn_ZByekVWu3-re__6TAE=nU+uC_VfKB8w@mail.gmail.com> <aYtOVFsoDg2m6yhi@lizhi-Precision-Tower-5810>
-In-Reply-To: <aYtOVFsoDg2m6yhi@lizhi-Precision-Tower-5810>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Tue, 24 Feb 2026 20:59:38 +0800
-X-Gm-Features: AaiRm51oouIxUHfmuvDSElqY3KeK3njM2hJlpK97fARkHRke_xqjEUejkgh2qQE
-Message-ID: <CAMpQs4+RHEDMs4PhMtRyg16zbggFQZ22rqiJfkH6An7SLyNFEA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] dmaengine: loongson: New driver for the Loongson
- Multi-Channel DMA controller
-To: Frank Li <Frank.li@nxp.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org, 
-	Xiaochuang Mao <maoxiaochuan@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	Keguang Zhang <keguang.zhang@gmail.com>, linux-mips@vger.kernel.org, jeffbai@aosc.io
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: Introduce Eliza Soc base dtsi
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260224-eliza-base-dt-v1-0-54e8e3a5fe43@oss.qualcomm.com>
+ <20260224-eliza-base-dt-v1-2-54e8e3a5fe43@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260224-eliza-base-dt-v1-2-54e8e3a5fe43@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: _tJrcVQolBnSnHhJ8nsK0TPkuqCs2Lif
+X-Proofpoint-ORIG-GUID: _tJrcVQolBnSnHhJ8nsK0TPkuqCs2Lif
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI0MDEwNyBTYWx0ZWRfX57v9Cy1ojRJU
+ fccngFv6LcDJEdw3TUGdiFDYyAlWI6rg06fvsYe4M+fgw6QPqNJ7i2rHkY0ccsRM+s30yseG3QH
+ H8mcQG4wCwGx46dwQVvRH/jfh0T2UprHvV7TA1Et2QATThdkMUlxZHTCFTXurje/gnRWIUxWqto
+ Iff7k+P1+wsD9/pxcLg/z+z/xOlkKlSxR2RIsR7B7vWXTC3oEEQgIPT7CIPAAEcvjPYFfxGObYN
+ rr0+UHOXdjgRED/GjjVShvOC4qtNB0La6tujNoH66aGSZMcNUZF1hPKyuLEfgjXOR3x1Yn9A9Pq
+ tw5N5gHUa1KuH5wUOksD/Rb/WB7RXbAiUJxEwy3hbutj/15agrxlIZtDk710rAhSkcxrTxp/xj7
+ JKVCkNgA1SvV4M3Da97Ce2huYMzIUNTl9109Bm44pbKPaehDS8EGs2zmKZSS/s4AeV+O2BigP3X
+ KaSMqToNpRZtMYAfSEQ==
+X-Authority-Analysis: v=2.4 cv=J8enLQnS c=1 sm=1 tr=0 ts=699da273 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=VwQbUJbxAAAA:8 a=LpQP-O61AAAA:8 a=EUspDBNiAAAA:8 a=UxlHS0PAVOFXE2oJ6SYA:9
+ a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22 a=pioyyrs4ZptJ924tMmac:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-24_01,2026-02-23_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0
+ adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602240107
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267896-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[loongson.cn,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev,gmail.com,aosc.io];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhoubbaaron@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,1.4.236.224:email];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267897-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: CD5F3187584
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 44A87187625
 X-Rspamd-Action: no action
 
-Hi Frank:
+On 2/24/26 1:13 PM, Abel Vesa wrote:
+> Introduce the initial support for the Qualcomm Eliza SoC.
+> It is a high-tier SoC designed for mobile platforms.
+> 
+> The initial submission enables support for:
+> - CPU nodes with cpufreq and cpuidle support
+> - Global Clock Controller (GCC)
+> - Resource State Coordinator (RSC) with clock controller & genpd provider
+> - Interrupt controller
+> - Power Domain Controller (PDC)
+> - Vendor specific SMMU
+> - SPMI bus arbiter
+> - Top Control and Status Register (TCSR)
+> - Top Level Mode Multiplexer (TLMM)
+> - Debug UART
+> - Reserved memory nodes
+> - Interconnect providers
+> - System timer
+> - UFS
+> 
+> Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
 
-Sorry for the late reply.
+[...]
 
-On Tue, Feb 10, 2026 at 11:27=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Tue, Feb 10, 2026 at 08:02:21PM +0800, Binbin Zhou wrote:
-> > Hi Frank:
-> >
-> > On Tue, Feb 10, 2026 at 3:41=E2=80=AFPM Binbin Zhou <zhoubb.aaron@gmail=
-.com> wrote:
-> > >
-> > > Hi Frank:
-> > >
-> > > Thanks for your reply.
-> > >
-> > > On Tue, Feb 10, 2026 at 1:05=E2=80=AFAM Frank Li <Frank.li@nxp.com> w=
-rote:
-> > > >
-> > > > On Mon, Feb 09, 2026 at 11:04:55AM +0800, Binbin Zhou wrote:
-> > > > > This DMA controller appears in Loongson-2K0300 and Loongson-2K300=
-0.
-> > > > >
-> > > > > It is a chain multi-channel controller that enables data transfer=
-s from
-> > > > > memory to memory, device to memory, and memory to device, as well=
- as
-> > > > > channel prioritization configurable through the channel configura=
-tion
-> > > > > registers.
-> > > > >
-> > > > > In addition, there are slight differences between Loongson-2K0300=
- and
-> > > > > Loongson-2K3000, such as channel register offsets and the number =
-of
-> > > > > channels.
-> > > > >
-> > > > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > > > > ---
-> > > > >  MAINTAINERS                                  |   1 +
-> > > > >  drivers/dma/loongson/Kconfig                 |  10 +
-> > > > >  drivers/dma/loongson/Makefile                |   1 +
-> > > > >  drivers/dma/loongson/loongson2-apb-cmc-dma.c | 736 +++++++++++++=
-++++++
-> > > > >  4 files changed, 748 insertions(+)
-> > > > >  create mode 100644 drivers/dma/loongson/loongson2-apb-cmc-dma.c
-> > > > >
-> > > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > > index d3cb541aee2a..61a39070d7a0 100644
-> > > > > --- a/MAINTAINERS
-> > > > > +++ b/MAINTAINERS
-> > > > > @@ -14778,6 +14778,7 @@ L:    dmaengine@vger.kernel.org
-> > > > >  S:   Maintained
-> > > > >  F:   Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma=
-.yaml
-> > > > >  F:   Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.=
-yaml
-> > > > > +F:   drivers/dma/loongson/loongson2-apb-cmc-dma.c
-> > > > >  F:   drivers/dma/loongson/loongson2-apb-dma.c
-> > > > >
-> > > > >  LOONGSON LS2X I2C DRIVER
-> > > > > diff --git a/drivers/dma/loongson/Kconfig b/drivers/dma/loongson/=
-Kconfig
-> > > > > index 9dbdaef5a59f..28b3daeed4e3 100644
-> > > > > --- a/drivers/dma/loongson/Kconfig
-> > > > > +++ b/drivers/dma/loongson/Kconfig
-> > > > > @@ -25,4 +25,14 @@ config LOONGSON2_APB_DMA
-> > > > >         This DMA controller transfers data from memory to periphe=
-ral fifo.
-> > > > >         It does not support memory to memory data transfer.
-> > > > >
-> > > > > +config LOONGSON2_APB_CMC_DMA
-> > > > > +     tristate "Loongson2 Chain Multi-Channel DMA support"
-> > > > > +     select DMA_ENGINE
-> > > > > +     select DMA_VIRTUAL_CHANNELS
-> > > > > +     help
-> > > > > +       Support for the Loongson Chain Multi-Channel DMA controll=
-er driver.
-> > > > > +       It is discovered on the Loongson-2K chip (Loongson-2K0300=
-/Loongson-2K3000),
-> > > > > +       which has 4/8 channels internally, enabling bidirectional=
- data transfer
-> > > > > +       between devices and memory.
-> > > > > +
-> > > > >  endif
-> > > > > diff --git a/drivers/dma/loongson/Makefile b/drivers/dma/loongson=
-/Makefile
-> > > > > index 6cdd08065e92..48c19781e729 100644
-> > > > > --- a/drivers/dma/loongson/Makefile
-> > > > > +++ b/drivers/dma/loongson/Makefile
-> > > > > @@ -1,3 +1,4 @@
-> > > > >  # SPDX-License-Identifier: GPL-2.0-only
-> > > > >  obj-$(CONFIG_LOONGSON1_APB_DMA) +=3D loongson1-apb-dma.o
-> > > > >  obj-$(CONFIG_LOONGSON2_APB_DMA) +=3D loongson2-apb-dma.o
-> > > > > +obj-$(CONFIG_LOONGSON2_APB_CMC_DMA) +=3D loongson2-apb-cmc-dma.o
-> > > > > diff --git a/drivers/dma/loongson/loongson2-apb-cmc-dma.c b/drive=
-rs/dma/loongson/loongson2-apb-cmc-dma.c
-> > > > > new file mode 100644
-> > > > > index 000000000000..f598ad095686
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/dma/loongson/loongson2-apb-cmc-dma.c
-> > > > > @@ -0,0 +1,736 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > > > > +/*
-> > > > > + * Looongson-2 Multi-Channel DMA Controller driver
-> > > > > + *
-> > > > > + * Copyright (C) 2024-2026 Loongson Technology Corporation Limit=
-ed
-> > > > > + */
-> > > > > +
-> > > > > +#include <linux/acpi.h>
-> > > > > +#include <linux/acpi_dma.h>
-> > > > > +#include <linux/bitfield.h>
-> > > > > +#include <linux/clk.h>
-> > > > > +#include <linux/dma-mapping.h>
-> > > > > +#include <linux/dmapool.h>
-> > > > > +#include <linux/interrupt.h>
-> > > > > +#include <linux/io.h>
-> > > > > +#include <linux/module.h>
-> > > > > +#include <linux/of.h>
-> > > > > +#include <linux/of_dma.h>
-> > > > > +#include <linux/platform_device.h>
-> > > > > +#include <linux/slab.h>
-> > > > > +
-> > > > > +#include "../dmaengine.h"
-> > > > > +#include "../virt-dma.h"
-> > > > > +
-> > > > > +#define LOONGSON2_CMCDMA_ISR         0x0     /* DMA Interrupt St=
-atus Register */
-> > > > > +#define LOONGSON2_CMCDMA_IFCR                0x4     /* DMA Inte=
-rrupt Flag Clear Register */
-> > > > > +#define LOONGSON2_CMCDMA_CCR         0x8     /* DMA Channel Conf=
-iguration Register */
-> > > > > +#define LOONGSON2_CMCDMA_CNDTR               0xc     /* DMA Chan=
-nel Transmit Count Register */
-> > > > > +#define LOONGSON2_CMCDMA_CPAR                0x10    /* DMA Chan=
-nel Peripheral Address Register */
-> > > > > +#define LOONGSON2_CMCDMA_CMAR                0x14    /* DMA Chan=
-nel Memory Address Register */
-> > > > > +
-> > > > > +/* Bitfields of DMA interrupt status register */
-> > > > > +#define LOONGSON2_CMCDMA_TCI         BIT(1) /* Transfer Complete=
- Interrupt */
-> > > > > +#define LOONGSON2_CMCDMA_HTI         BIT(2) /* Half Transfer Int=
-errupt */
-> > > > > +#define LOONGSON2_CMCDMA_TEI         BIT(3) /* Transfer Error In=
-terrupt */
-> > > > > +
-> > > > > +#define LOONGSON2_CMCDMA_MASKI               \
-> > > > > +     (LOONGSON2_CMCDMA_TCI | LOONGSON2_CMCDMA_HTI | LOONGSON2_CM=
-CDMA_TEI)
-> > > > > +
-> > > > > +/* Bitfields of DMA channel x Configuration Register */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_EN              BIT(0) /* Stream En=
-able */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_TCIE    BIT(1) /* Transfer Complete=
- Interrupt Enable */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_HTIE    BIT(2) /* Half Transfer Com=
-plete Interrupt Enable */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_TEIE    BIT(3) /* Transfer Error In=
-terrupt Enable */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_DIR     BIT(4) /* Data Transfer Dir=
-ection */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_CIRC    BIT(5) /* Circular mode */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_PINC    BIT(6) /* Peripheral increm=
-ent mode */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_MINC    BIT(7) /* Memory increment =
-mode */
-> > > > > +#define LOONGSON2_CMCDMA_CCR_PSIZE_MASK      GENMASK(9, 8)
-> > > > > +#define LOONGSON2_CMCDMA_CCR_MSIZE_MASK      GENMASK(11, 10)
-> > > > > +#define LOONGSON2_CMCDMA_CCR_PL_MASK GENMASK(13, 12)
-> > > > > +#define LOONGSON2_CMCDMA_CCR_M2M     BIT(14)
-> > > > > +
-> > > > > +#define LOONGSON2_CMCDMA_CCR_CFG_MASK        \
-> > > > > +     (LOONGSON2_CMCDMA_CCR_PINC | LOONGSON2_CMCDMA_CCR_MINC | LO=
-ONGSON2_CMCDMA_CCR_PL_MASK)
-> > > > > +
-> > > > > +#define LOONGSON2_CMCDMA_CCR_IRQ_MASK        \
-> > > > > +     (LOONGSON2_CMCDMA_CCR_TCIE | LOONGSON2_CMCDMA_CCR_HTIE | LO=
-ONGSON2_CMCDMA_CCR_TEIE)
-> > > > > +
-> > > > > +#define LOONGSON2_CMCDMA_STREAM_MASK \
-> > > > > +     (LOONGSON2_CMCDMA_CCR_CFG_MASK | LOONGSON2_CMCDMA_CCR_IRQ_M=
-ASK)
-> > > > > +
-> > > > > +#define LOONGSON2_CMCDMA_BUSWIDTHS   (BIT(DMA_SLAVE_BUSWIDTH_1_B=
-YTE) | \
-> > > > > +                                      BIT(DMA_SLAVE_BUSWIDTH_2_B=
-YTES) | \
-> > > > > +                                      BIT(DMA_SLAVE_BUSWIDTH_4_B=
-YTES))
-> > > > > +
-> > > > > +enum loongson2_cmc_dma_width {
-> > > > > +     LOONGSON2_CMCDMA_BYTE,
-> > > > > +     LOONGSON2_CMCDMA_HALF_WORD,
-> > > > > +     LOONGSON2_CMCDMA_WORD,
-> > > > > +};
-> > > > > +
-> > > > > +struct loongson2_cmc_dma_chan_reg {
-> > > > > +     u32 ccr;
-> > > > > +     u32 cndtr;
-> > > > > +     u32 cpar;
-> > > > > +     u32 cmar;
-> > > > > +};
-> > > > > +
-> > > > > +struct loongson2_cmc_dma_sg_req {
-> > > > > +     u32 len;
-> > > > > +     struct loongson2_cmc_dma_chan_reg chan_reg;
-> > > > > +};
-> > > > > +
-> > > > > +struct loongson2_cmc_dma_desc {
-> > > > > +     struct virt_dma_desc vdesc;
-> > > > > +     bool cyclic;
-> > > > > +     u32 num_sgs;
-> > > > > +     struct loongson2_cmc_dma_sg_req sg_req[] __counted_by(num_s=
-gs);
-> > > > > +};
-> > > > > +
-> > > > > +struct loongson2_cmc_dma_chan {
-> > > > > +     struct virt_dma_chan vchan;
-> > > > > +     struct dma_slave_config dma_sconfig;
-> > > > > +     struct loongson2_cmc_dma_desc *desc;
-> > > > > +     u32 id;
-> > > > > +     u32 irq;
-> > > > > +     u32 next_sg;
-> > > > > +     struct loongson2_cmc_dma_chan_reg chan_reg;
-> > > > > +};
-> > > > > +
-> > > > > +struct loongson2_cmc_dma_config {
-> > > > > +     u32 max_channels;
-> > > > > +     u32 chan_reg_offset;
-> > > > > +};
-> > > > > +
-> > > > > +struct loongson2_cmc_dma_dev {
-> > > > > +     struct dma_device ddev;
-> > > > > +     struct clk *dma_clk;
-> > > > > +     void __iomem *base;
-> > > > > +     u32 nr_channels;
-> > > > > +     u32 chan_reg_offset;
-> > > > > +     struct loongson2_cmc_dma_chan chan[] __counted_by(nr_channe=
-ls);
-> > > > > +};
-> > > > > +
-> > > > > +static const struct loongson2_cmc_dma_config ls2k0300_cmc_dma_co=
-nfig =3D {
-> > > > > +     .max_channels =3D 8,
-> > > > > +     .chan_reg_offset =3D 0x14,
-> > > > > +};
-> > > > > +
-> > > > > +static const struct loongson2_cmc_dma_config ls2k3000_cmc_dma_co=
-nfig =3D {
-> > > > > +     .max_channels =3D 4,
-> > > > > +     .chan_reg_offset =3D 0x18,
-> > > > > +};
-> > > > > +
-> > > > > +static struct loongson2_cmc_dma_dev *lmdma_get_dev(struct loongs=
-on2_cmc_dma_chan *lchan)
-> > > > > +{
-> > > > > +     return container_of(lchan->vchan.chan.device, struct loongs=
-on2_cmc_dma_dev, ddev);
-> > > > > +}
-> > > > > +
-> > > > > +static struct loongson2_cmc_dma_chan *to_lmdma_chan(struct dma_c=
-han *chan)
-> > > > > +{
-> > > > > +     return container_of(chan, struct loongson2_cmc_dma_chan, vc=
-han.chan);
-> > > > > +}
-> > > > > +
-> > > > > +static struct loongson2_cmc_dma_desc *to_lmdma_desc(struct virt_=
-dma_desc *vdesc)
-> > > > > +{
-> > > > > +     return container_of(vdesc, struct loongson2_cmc_dma_desc, v=
-desc);
-> > > > > +}
-> > > > > +
-> > > > > +static struct device *chan2dev(struct loongson2_cmc_dma_chan *lc=
-han)
-> > > > > +{
-> > > > > +     return &lchan->vchan.chan.dev->device;
-> > > > > +}
-> > > > > +
-> > > > > +static u32 loongson2_cmc_dma_read(struct loongson2_cmc_dma_dev *=
-lddev, u32 reg, u32 id)
-> > > > > +{
-> > > > > +     return readl(lddev->base + (reg + lddev->chan_reg_offset * =
-id));
-> > > > > +}
-> > > > > +
-> > > > > +static void loongson2_cmc_dma_write(struct loongson2_cmc_dma_dev=
- *lddev, u32 reg, u32 id, u32 val)
-> > > > > +{
-> > > > > +     writel(val, lddev->base + (reg + lddev->chan_reg_offset * i=
-d));
-> > > > > +}
-> > > > > +
-> > > > > +static int loongson2_cmc_dma_get_width(struct loongson2_cmc_dma_=
-chan *lchan,
-> > > > > +                                    enum dma_slave_buswidth widt=
-h)
-> > > > > +{
-> > > > > +     switch (width) {
-> > > > > +     case DMA_SLAVE_BUSWIDTH_1_BYTE:
-> > > > > +             return LOONGSON2_CMCDMA_BYTE;
-> > > > > +     case DMA_SLAVE_BUSWIDTH_2_BYTES:
-> > > > > +             return LOONGSON2_CMCDMA_HALF_WORD;
-> > > > > +     case DMA_SLAVE_BUSWIDTH_4_BYTES:
-> > > > > +             return LOONGSON2_CMCDMA_WORD;
-> > > >
-> > > > is ffs() helper in case your hardware support more buswidth in futu=
-re?
-> > >
-> > > It seems there's no need for us to do this.
-> > > The data width setting bit in the DMA channel configuration register
-> > > only has two bits (LOONGSON2_CMCDMA_CCR_PSIZE_MASK). The bitmask
-> > > values are: 8-bit/16-bit/32-bit/reserved.
-> >
-> > Sorry, I checked again, the ffs() helper can make the code cleaner:
-> >
-> > static int loongson2_cmc_dma_get_width(enum dma_slave_buswidth width)
-> > {
-> >         switch (width) {
-> >         case DMA_SLAVE_BUSWIDTH_1_BYTE:
-> >         case DMA_SLAVE_BUSWIDTH_2_BYTES:
-> >         case DMA_SLAVE_BUSWIDTH_4_BYTES:
-> >                 return ffs(width) - 1;
-> >         default:
-> >                 return -EINVAL;
-> >         }
-> > }
->
-> if (width >=3D DMA_SLAVE_BUSWIDTH_4_BYTES)
->         return -EINVAL;
->
-> return ffs(width) - 1;
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
 
-Yes, this looks better.
->
-> >
-> > And the enum loongson2_cmc_dma_width{ } can be dropped.
-> >
-> > > >
-> > > > > +     default:
-> > > > > +             dev_err(chan2dev(lchan), "Dma bus width not support=
-ed\n");
-> > > > > +             return -EINVAL;
-> > > > > +     }
-> > > > > +}
-> > > > > +
-> ...
-> > > > > +     if (status & LOONGSON2_CMCDMA_TCI)
-> > > > > +             loongson2_cmc_dma_handle_chan_done(lchan);
-> > > > > +
-> > > > > +     if (status & LOONGSON2_CMCDMA_HTI)
-> > > > > +             loongson2_cmc_dma_irq_clear(lchan, LOONGSON2_CMCDMA=
-_HTI);
-> > > > > +
-> > > > > +     if (status & LOONGSON2_CMCDMA_TEI)
-> > > > > +             dev_err(chan2dev(lchan), "DMA Transform Error\n");
-> > > > > +
-> > > > > +     loongson2_cmc_dma_irq_clear(lchan, status);
-> > > >
-> > > > irq clear should before loongson2_cmc_dma_handle_chan_done() incase=
- you
-> > > > missed irq, if loongson2_cmc_dma_handle_chan_done() trigger new irq=
- before
-> > > > your call irq_cler().
-> >
-> > Yes, this part should be refracted, how about the following code:
-> >
-> >         spin_lock(&lchan->vchan.lock);
-> >
-> >         ccr =3D loongson2_cmc_dma_read(lddev, LOONGSON2_CMCDMA_CCR, lch=
-an->id);
-> >         ists =3D loongson2_cmc_dma_read(lddev, LOONGSON2_CMCDMA_ISR, 0)=
-;
-> >         status =3D (ists >> (4 * lchan->id)) & LOONGSON2_CMCDMA_MASKI;
-> >
-> >         if (status & LOONGSON2_CMCDMA_TCI) {
-> >                 loongson2_cmc_dma_irq_clear(lchan, LOONGSON2_CMCDMA_TCI=
-);
->
-> if status is w1c, you can clean it unconditional.
+The values of the MPIDR register (also present in 'reg' of CPU nodes)
+suggest all these CPUs form a single logical cluster
 
-Emm, it can be moved outside.
->
-> >                 if (ccr & LOONGSON2_CMCDMA_CCR_TCIE)
->
-> Not sure your hardware, generally irq status register will not set if
-> enable bit have not set.
->
-> >                         loongson2_cmc_dma_handle_chan_done(lchan);
-> >                 status &=3D ~LOONGSON2_CMCDMA_TCI;
-> >         }
-> >
-> >         if (status & LOONGSON2_CMCDMA_HTI) {
-> >                 loongson2_cmc_dma_irq_clear(lchan, LOONGSON2_CMCDMA_HTI=
-);
-> >                 status &=3D ~LOONGSON2_CMCDMA_HTI;
-> >         }
-> >
-> >         if (status & LOONGSON2_CMCDMA_TEI) {
-> >                 loongson2_cmc_dma_irq_clear(lchan, LOONGSON2_CMCDMA_HTI=
-);
-> >                 dev_err(chan2dev(lchan), "DMA Transform Error\n");
-> >                 if (!(ccr & LOONGSON2_CMCDMA_CCR_EN))
-> >                         dev_err(chan2dev(lchan), "chan disabled by HW\n=
-");
-> >         }
-> >
-> >         spin_unlock(&lchan->vchan.lock);
-> >
-> > > >
-> > > > > +
-> > > > > +     spin_unlock(&lchan->vchan.lock);
-> > > > > +
-> > > > > +     return IRQ_HANDLED;
-> > > > > +}
-> > > > > +
-> > > > > +static void loongson2_cmc_dma_issue_pending(struct dma_chan *cha=
-n)
-> > > > > +{
-> > > > > +     struct loongson2_cmc_dma_chan *lchan =3D to_lmdma_chan(chan=
-);
-> > > > > +     unsigned long flags;
-> > > > > +
-> > > > > +     spin_lock_irqsave(&lchan->vchan.lock, flags);
-> > > > > +     if (vchan_issue_pending(&lchan->vchan) && !lchan->desc) {
-> > > > > +             dev_dbg(chan2dev(lchan), "vchan %pK: issued\n", &lc=
-han->vchan);
-> > > > > +             loongson2_cmc_dma_start_transfer(lchan);
-> > > > > +     }
-> > > > > +     spin_unlock_irqrestore(&lchan->vchan.lock, flags);
-> > > > > +}
-> > > > > +
-> ...
-> > > > > +static struct dma_async_tx_descriptor *
-> > > > > +loongson2_cmc_dma_prep_slave_sg(struct dma_chan *chan, struct sc=
-atterlist *sgl, u32 sg_len,
-> > > > > +                             enum dma_transfer_direction directi=
-on,
-> > > > > +                             unsigned long flags, void *context)
-> > > > > +{
-> > > > > +     struct loongson2_cmc_dma_chan *lchan =3D to_lmdma_chan(chan=
-);
-> > > > > +     struct loongson2_cmc_dma_desc *desc;
-> > > > > +     enum dma_slave_buswidth buswidth;
-> > > > > +     struct scatterlist *sg;
-> > > > > +     u32 num_items, i;
-> > > > > +     int ret;
-> > > > > +
-> > > > > +     desc =3D kzalloc(struct_size(desc, sg_req, sg_len), GFP_NOW=
-AIT);
-> > > > > +     if (!desc)
-> > > > > +             return NULL;
-> > > > > +
-> > > > > +     for_each_sg(sgl, sg, sg_len, i) {
-> > > > > +             ret =3D loongson2_cmc_dma_set_xfer_param(lchan, dir=
-ection, &buswidth, sg_dma_len(sg));
-> > > > > +             if (ret)
-> > > > > +                     return NULL;
-> > > > > +
-> > > > > +             desc->sg_req[i].len =3D sg_dma_len(sg);
-> > > > > +
-> > > > > +             num_items =3D desc->sg_req[i].len / buswidth;
-> > > > > +             if (num_items >=3D SZ_64K) {
-> > > > > +                     dev_err(chan2dev(lchan), "Number of items n=
-ot supported\n");
-> > > > > +                     kfree(desc);
-> > > > > +                     return NULL;
-> > > >
-> > > > if use sg_nents_for_dma(), you can use multi sg to trasfer more tha=
-n 64K
-> > > > data.
-> > >
-> > > Sorry, are you referring to sg_nents_for_len()?
-> > > 64K is a hardware limitation of the controller, so it seems impossibl=
-e
-> > > to resolve it using that function, right?
->
-> you can use multi sg_req to implement it, which max 64K.
->
->         sg_reqp[i + 0] -> 1st 64k
->         sg_reqp[i + 1] -> 2nd 64k
->         ...
->
-> Only need allocate more at kzalloc with sg_nents_for_len(), in stead of
-> sg_len.
+[...]
 
-I double-checked, and 64K is actually `max_burst`, which represents
-the maximum value for a single transmission. It seems unsuitable for
-this purpose.
-I should set `dma_device->max_burst` to this value and define it as a
-macro: LOONSON2_CMCDMA_MAX_DATA_ITEMS.
+> +		l3: l3-cache {
+> +			compatible = "cache";
+> +			cache-level = <3>;
+> +			cache-unified;
+> +		};
 
->
-> Frank
->
->
-> > >
-> > > >
-> > > > > +             }
-> > > > > +             desc->sg_req[i].chan_reg.ccr =3D lchan->chan_reg.cc=
-r;
-> > > > > +             desc->sg_req[i].chan_reg.cpar =3D lchan->chan_reg.c=
-par;
-> > > > > +             desc->sg_req[i].chan_reg.cmar =3D sg_dma_address(sg=
-);
-> > > > > +             desc->sg_req[i].chan_reg.cndtr =3D num_items;
-> > > > > +     }
-> > > > > +
-> > > > > +     desc->num_sgs =3D sg_len;
-> > > > > +     desc->cyclic =3D false;
-> > > > > +
-> > > > > +     return vchan_tx_prep(&lchan->vchan, &desc->vdesc, flags);
-> > > > > +}
-> > > > > +
-> > > > > +static struct dma_async_tx_descriptor *
-> > > > > +loongson2_cmc_dma_prep_dma_cyclic(struct dma_chan *chan, dma_add=
-r_t buf_addr, size_t buf_len,
-> > > > > +                               size_t period_len, enum dma_trans=
-fer_direction direction,
-> > > > > +                               unsigned long flags)
-> > > > > +{
-> > > > > +     struct loongson2_cmc_dma_chan *lchan =3D to_lmdma_chan(chan=
-);
-> > > > > +     struct loongson2_cmc_dma_desc *desc;
-> > > > > +     enum dma_slave_buswidth buswidth;
-> > > > > +     u32 num_periods, num_items, i;
-> > > > > +     int ret;
-> > > > > +
-> > > > > +     if (unlikely(buf_len % period_len))
-> > > > > +             return NULL;
-> > > > > +
-> > > > > +     ret =3D loongson2_cmc_dma_set_xfer_param(lchan, direction, =
-&buswidth, period_len);
-> > > > > +     if (ret)
-> > > > > +             return NULL;
-> > > > > +
-> > > > > +     num_items =3D period_len / buswidth;
-> > > > > +     if (num_items >=3D SZ_64K) {
-> > > > > +             dev_err(chan2dev(lchan), "Number of items not suppo=
-rted\n");
-> > > > > +             return NULL;
-> > > > > +     }
-> > > > > +
-> > > > > +     /* Enable Circular mode */
-> > > > > +     if (buf_len =3D=3D period_len)
-> > > > > +             lchan->chan_reg.ccr |=3D LOONGSON2_CMCDMA_CCR_CIRC;
-> > > > > +
-> > > > > +     num_periods =3D buf_len / period_len;
-> > > > > +     desc =3D kzalloc(struct_size(desc, sg_req, num_periods), GF=
-P_NOWAIT);
-> > > > > +     if (!desc)
-> > > > > +             return NULL;
-> > > > > +
-> > > > > +     for (i =3D 0; i < num_periods; i++) {
-> > > > > +             desc->sg_req[i].len =3D period_len;
-> > > > > +             desc->sg_req[i].chan_reg.ccr =3D lchan->chan_reg.cc=
-r;
-> > > > > +             desc->sg_req[i].chan_reg.cpar =3D lchan->chan_reg.c=
-par;
-> > > > > +             desc->sg_req[i].chan_reg.cmar =3D buf_addr;
-> > > > > +             desc->sg_req[i].chan_reg.cndtr =3D num_items;
-> > > > > +             buf_addr +=3D period_len;
-> > > > > +     }
-> > > > > +
-> > > > > +     desc->num_sgs =3D num_periods;
-> > > > > +     desc->cyclic =3D true;
-> > > > > +
-> > > > > +     return vchan_tx_prep(&lchan->vchan, &desc->vdesc, flags);
-> > > > > +}
-> > > > > +
-> > > > > +static size_t loongson2_cmc_dma_desc_residue(struct loongson2_cm=
-c_dma_chan *lchan,
-> > > > > +                                          struct loongson2_cmc_d=
-ma_desc *desc, u32 next_sg)
-> > > > > +{
-> > > > > +     struct loongson2_cmc_dma_dev *lddev =3D lmdma_get_dev(lchan=
-);
-> > > > > +     u32 residue, width, ndtr, ccr, i;
-> > > > > +
-> > > > > +     ccr =3D loongson2_cmc_dma_read(lddev, LOONGSON2_CMCDMA_CCR,=
- lchan->id);
-> > > > > +     width =3D FIELD_GET(LOONGSON2_CMCDMA_CCR_PSIZE_MASK, ccr);
-> > > > > +
-> > > > > +     ndtr =3D loongson2_cmc_dma_read(lddev, LOONGSON2_CMCDMA_CND=
-TR, lchan->id);
-> > > > > +     residue =3D ndtr << width;
-> > > > > +
-> > > > > +     if (lchan->desc->cyclic && next_sg =3D=3D 0)
-> > > > > +             return residue;
-> > > > > +
-> > > > > +     for (i =3D next_sg; i < desc->num_sgs; i++)
-> > > > > +             residue +=3D desc->sg_req[i].len;
-> > > > > +
-> > > > > +     return residue;
-> > > > > +}
-> > > > > +
-> > > > > +static enum dma_status loongson2_cmc_dma_tx_status(struct dma_ch=
-an *chan, dma_cookie_t cookie,
-> > > > > +                                                struct dma_tx_st=
-ate *state)
-> > > > > +{
-> > > > > +     struct loongson2_cmc_dma_chan *lchan =3D to_lmdma_chan(chan=
-);
-> > > > > +     struct virt_dma_desc *vdesc;
-> > > > > +     enum dma_status status;
-> > > > > +     unsigned long flags;
-> > > > > +
-> > > > > +     status =3D dma_cookie_status(chan, cookie, state);
-> > > > > +     if (status =3D=3D DMA_COMPLETE || !state)
-> > > > > +             return status;
-> > > > > +
-> > > > > +     spin_lock_irqsave(&lchan->vchan.lock, flags);
-> > > > > +     vdesc =3D vchan_find_desc(&lchan->vchan, cookie);
-> > > > > +     if (lchan->desc && cookie =3D=3D lchan->desc->vdesc.tx.cook=
-ie)
-> > > > > +             state->residue =3D loongson2_cmc_dma_desc_residue(l=
-chan, lchan->desc, lchan->next_sg);
-> > > > > +     else if (vdesc)
-> > > > > +             state->residue =3D loongson2_cmc_dma_desc_residue(l=
-chan, to_lmdma_desc(vdesc), 0);
-> > > > > +
-> > > > > +     spin_unlock_irqrestore(&lchan->vchan.lock, flags);
-> > > > > +
-> > > > > +     return status;
-> > > > > +}
-> > > > > +
-> > > > > +static void loongson2_cmc_dma_free_chan_resources(struct dma_cha=
-n *chan)
-> > > > > +{
-> > > > > +     vchan_free_chan_resources(to_virt_chan(chan));
-> > > > > +}
-> > > > > +
-> > > > > +static void loongson2_cmc_dma_desc_free(struct virt_dma_desc *vd=
-esc)
-> > > > > +{
-> > > > > +     kfree(to_lmdma_desc(vdesc));
-> > > > > +}
-> > > > > +
-> > > > > +static bool loongson2_cmc_dma_acpi_filter(struct dma_chan *chan,=
- void *param)
-> > > > > +{
-> > > > > +     struct loongson2_cmc_dma_chan *lchan =3D to_lmdma_chan(chan=
-);
-> > > > > +     struct acpi_dma_spec *dma_spec =3D param;
-> > > > > +
-> > > > > +     memset(&lchan->chan_reg, 0, sizeof(struct loongson2_cmc_dma=
-_chan_reg));
-> > > > > +     lchan->chan_reg.ccr =3D dma_spec->chan_id & LOONGSON2_CMCDM=
-A_STREAM_MASK;
-> > > > > +
-> > > > > +     return true;
-> > > > > +}
-> > > > > +
-> > > > > +static int loongson2_cmc_dma_acpi_controller_register(struct loo=
-ngson2_cmc_dma_dev *lddev)
-> > > > > +{
-> > > > > +     struct device *dev =3D lddev->ddev.dev;
-> > > > > +     struct acpi_dma_filter_info *info;
-> > > > > +     int ret;
-> > > > > +
-> > > > > +     if (!has_acpi_companion(dev))
-> > > > > +             return 0;
-> > > > > +
-> > > > > +     info =3D devm_kzalloc(dev, sizeof(*info), GFP_KERNEL);
-> > > > > +     if (!info)
-> > > > > +             return -ENOMEM;
-> > > > > +
-> > > > > +     dma_cap_zero(info->dma_cap);
-> > > > > +     info->dma_cap =3D lddev->ddev.cap_mask;
-> > > > > +     info->filter_fn =3D loongson2_cmc_dma_acpi_filter;
-> > > > > +
-> > > > > +     ret =3D devm_acpi_dma_controller_register(dev, acpi_dma_sim=
-ple_xlate, info);
-> > > > > +     if (ret)
-> > > > > +             dev_err(dev, "could not register acpi_dma_controlle=
-r\n");
-> > > > > +
-> > > > > +     return ret;
-> > > > > +}
-> > > > > +
-> > > > > +static struct dma_chan *loongson2_cmc_dma_of_xlate(struct of_pha=
-ndle_args *dma_spec,
-> > > > > +                                                struct of_dma *o=
-fdma)
-> > > > > +{
-> > > > > +     struct loongson2_cmc_dma_dev *lddev =3D ofdma->of_dma_data;
-> > > > > +     struct device *dev =3D lddev->ddev.dev;
-> > > > > +     struct loongson2_cmc_dma_chan *lchan;
-> > > > > +     struct dma_chan *chan;
-> > > > > +
-> > > > > +     if (dma_spec->args_count < 2)
-> > > > > +             return NULL;
-> > > > > +
-> > > > > +     if (dma_spec->args[0] >=3D lddev->nr_channels) {
-> > > > > +             dev_err(dev, "Invalid channel id\n");
-> > > > > +             return NULL;
-> > > > > +     }
-> > > > > +
-> > > > > +     lchan =3D &lddev->chan[dma_spec->args[0]];
-> > > > > +     chan =3D dma_get_slave_channel(&lchan->vchan.chan);
-> > > > > +     if (!chan) {
-> > > > > +             dev_err(dev, "No more channels available\n");
-> > > > > +             return NULL;
-> > > > > +     }
-> > > > > +
-> > > > > +     memset(&lchan->chan_reg, 0, sizeof(struct loongson2_cmc_dma=
-_chan_reg));
-> > > > > +     lchan->chan_reg.ccr =3D dma_spec->args[1] & LOONGSON2_CMCDM=
-A_STREAM_MASK;
-> > > > > +
-> > > > > +     return chan;
-> > > > > +}
-> > > > > +
-> > > > > +static int loongson2_cmc_dma_of_controller_register(struct loong=
-son2_cmc_dma_dev *lddev)
-> > > > > +{
-> > > > > +     struct device *dev =3D lddev->ddev.dev;
-> > > > > +     int ret;
-> > > > > +
-> > > > > +     if (!dev->of_node)
-> > > > > +             return 0;
-> > > > > +
-> > > > > +     ret =3D of_dma_controller_register(dev->of_node, loongson2_=
-cmc_dma_of_xlate, lddev);
-> > > > > +     if (ret)
-> > > > > +             dev_err(dev, "could not register of_dma_controller\=
-n");
-> > > > > +
-> > > > > +     return ret;
-> > > > > +}
-> > > > > +
-> > > > > +static int loongson2_cmc_dma_probe(struct platform_device *pdev)
-> > > > > +{
-> > > > > +     const struct loongson2_cmc_dma_config *config;
-> > > > > +     struct loongson2_cmc_dma_chan *lchan;
-> > > > > +     struct loongson2_cmc_dma_dev *lddev;
-> > > > > +     struct device *dev =3D &pdev->dev;
-> > > > > +     struct dma_device *ddev;
-> > > > > +     u32 nr_chans, i;
-> > > > > +     int ret;
-> > > > > +
-> > > > > +     config =3D (const struct loongson2_cmc_dma_config *)device_=
-get_match_data(dev);
-> > > > > +     if (!config)
-> > > > > +             return -EINVAL;
-> > > > > +
-> > > > > +     ret =3D device_property_read_u32(dev, "dma-channels", &nr_c=
-hans);
-> > > > > +     if (ret || nr_chans > config->max_channels) {
-> > > > > +             dev_err(dev, "missing or invalid dma-channels prope=
-rty\n");
-> > > > > +             nr_chans =3D config->max_channels;
-> > > > > +     }
-> > > > > +
-> > > > > +     lddev =3D devm_kzalloc(dev, struct_size(lddev, chan, nr_cha=
-ns), GFP_KERNEL);
-> > > > > +     if (!lddev)
-> > > > > +             return -ENOMEM;
-> > > > > +
-> > > > > +     lddev->base =3D devm_platform_ioremap_resource(pdev, 0);
-> > > > > +     if (IS_ERR(lddev->base))
-> > > > > +             return PTR_ERR(lddev->base);
-> > > > > +
-> > > > > +     platform_set_drvdata(pdev, lddev);
-> > > > > +     lddev->nr_channels =3D nr_chans;
-> > > > > +     lddev->chan_reg_offset =3D config->chan_reg_offset;
-> > > > > +
-> > > > > +     lddev->dma_clk =3D devm_clk_get_optional_enabled(dev, NULL)=
-;
-> > > > > +     if (IS_ERR(lddev->dma_clk))
-> > > > > +             return dev_err_probe(dev, PTR_ERR(lddev->dma_clk), =
-"Failed to get dma clock\n");
-> > > > > +
-> > > > > +     ddev =3D &lddev->ddev;
-> > > > > +     ddev->dev =3D dev;
-> > > > > +
-> > > > > +     dma_cap_zero(ddev->cap_mask);
-> > > > > +     dma_cap_set(DMA_SLAVE, ddev->cap_mask);
-> > > > > +     dma_cap_set(DMA_PRIVATE, ddev->cap_mask);
-> > > > > +     dma_cap_set(DMA_CYCLIC, ddev->cap_mask);
-> > > > > +
-> > > > > +     ddev->device_free_chan_resources =3D loongson2_cmc_dma_free=
-_chan_resources;
-> > > > > +     ddev->device_config =3D loongson2_cmc_dma_slave_config;
-> > > > > +     ddev->device_prep_slave_sg =3D loongson2_cmc_dma_prep_slave=
-_sg;
-> > > > > +     ddev->device_prep_dma_cyclic =3D loongson2_cmc_dma_prep_dma=
-_cyclic;
-> > > > > +     ddev->device_issue_pending =3D loongson2_cmc_dma_issue_pend=
-ing;
-> > > > > +     ddev->device_synchronize =3D loongson2_cmc_dma_synchronize;
-> > > > > +     ddev->device_tx_status =3D loongson2_cmc_dma_tx_status;
-> > > > > +     ddev->device_terminate_all =3D loongson2_cmc_dma_terminate_=
-all;
-> > > > > +
-> > > > > +     ddev->src_addr_widths =3D LOONGSON2_CMCDMA_BUSWIDTHS;
-> > > > > +     ddev->dst_addr_widths =3D LOONGSON2_CMCDMA_BUSWIDTHS;
-> > > > > +     ddev->directions =3D BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_D=
-EV);
-> > > > > +     INIT_LIST_HEAD(&ddev->channels);
-> > > >
-> > > > where use this 'channels' ?
-> > >
-> > > It will be used by global functions such as `dma_async_device_registe=
-r()`.
->
-> Okay, supposed it sould be done in dma_async_device_register().
->
-> Frank
-> > > >
-> > > > Frank
-> > > > > +
-> > > > > +     for (i =3D 0; i < nr_chans; i++) {
-> > > > > +             lchan =3D &lddev->chan[i];
-> > > > > +
-> > > > > +             lchan->id =3D i;
-> > > > > +             lchan->vchan.desc_free =3D loongson2_cmc_dma_desc_f=
-ree;
-> > > > > +             vchan_init(&lchan->vchan, ddev);
-> > > > > +     }
-> > > > > +
-> > > > > +     ret =3D dmaenginem_async_device_register(ddev);
-> > > > > +     if (ret)
-> > > > > +             return ret;
-> > > > > +
-> > > > > +     for (i =3D 0; i < nr_chans; i++) {
-> > > > > +             lchan =3D &lddev->chan[i];
-> > > > > +
-> > > > > +             lchan->irq =3D platform_get_irq(pdev, i);
-> > > > > +             if (lchan->irq < 0)
-> > > > > +                     return lchan->irq;
-> > > > > +
-> > > > > +             ret =3D devm_request_irq(dev, lchan->irq, loongson2=
-_cmc_dma_chan_irq, IRQF_SHARED,
-> > > > > +                                    dev_name(chan2dev(lchan)), l=
-chan);
-> > > > > +             if (ret)
-> > > > > +                     return ret;
-> > > > > +     }
-> > > > > +
-> > > > > +     ret =3D loongson2_cmc_dma_acpi_controller_register(lddev);
-> > > > > +     if (ret)
-> > > > > +             return ret;
-> > > > > +
-> > > > > +     return loongson2_cmc_dma_of_controller_register(lddev);
-> > > > > +}
-> > > > > +
-> > > > > +static void loongson2_cmc_dma_remove(struct platform_device *pde=
-v)
-> > > > > +{
-> > > > > +     of_dma_controller_free(pdev->dev.of_node);
-> > > > > +}
-> > > > > +
-> > > > > +static const struct of_device_id loongson2_cmc_dma_of_match[] =
-=3D {
-> > > > > +     { .compatible =3D "loongson,ls2k0300-dma", .data =3D &ls2k0=
-300_cmc_dma_config },
-> > > > > +     { .compatible =3D "loongson,ls2k3000-dma", .data =3D &ls2k3=
-000_cmc_dma_config },
-> > > > > +     { /* sentinel */ }
-> > > > > +};
-> > > > > +MODULE_DEVICE_TABLE(of, loongson2_cmc_dma_of_match);
-> > > > > +
-> > > > > +static const struct acpi_device_id loongson2_cmc_dma_acpi_match[=
-] =3D {
-> > > > > +     { "LOON0014", .driver_data =3D (kernel_ulong_t)&ls2k3000_cm=
-c_dma_config },
-> > > > > +     { /* sentinel */ }
-> > > > > +};
-> > > > > +MODULE_DEVICE_TABLE(acpi, loongson2_cmc_dma_acpi_match);
-> > > > > +
-> > > > > +static struct platform_driver loongson2_cmc_dma_driver =3D {
-> > > > > +     .driver =3D {
-> > > > > +             .name =3D "loongson2-apb-cmc-dma",
-> > > > > +             .of_match_table =3D loongson2_cmc_dma_of_match,
-> > > > > +             .acpi_match_table =3D loongson2_cmc_dma_acpi_match,
-> > > > > +     },
-> > > > > +     .probe =3D loongson2_cmc_dma_probe,
-> > > > > +     .remove =3D loongson2_cmc_dma_remove,
-> > > > > +};
-> > > > > +module_platform_driver(loongson2_cmc_dma_driver);
-> > > > > +
-> > > > > +MODULE_DESCRIPTION("Looongson-2 Multi-Channel DMA Controller dri=
-ver");
-> > > > > +MODULE_AUTHOR("Loongson Technology Corporation Limited");
-> > > > > +MODULE_LICENSE("GPL");
-> > > > > --
-> > > > > 2.52.0
-> > > > >
-> > >
-> > > --
-> > > Thanks.
-> > > Binbin
-> >
-> > --
-> > Thanks.
-> > Binbin
+So far this has been defined as a child of one of the L2 caches, any
+reason for a change?
 
---=20
-Thanks.
-Binbin
+[...]
+
+> +	firmware {
+> +		scm: scm {
+> +			compatible = "qcom,scm-eliza", "qcom,scm";
+> +			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> +			qcom,dload-mode = <&tcsr 0x1A000>;
+
+lowercase hex, please 
+
+[...]
+
+> +			ufs_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-75000000 {
+> +					opp-hz = /bits/ 64 <75000000>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <75000000>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>;
+> +					required-opps = <&rpmhpd_opp_low_svs_d1>;
+> +				};
+
+This OPP is not supported
+
+> +
+> +				opp-100000000 {
+> +					opp-hz = /bits/ 64 <100000000>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <100000000>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
+
+There's another one (201.5 MHz) @ SVS
+
+[...]
+
+> +		tcsr: clock-controller@1fbf000 {
+> +			compatible = "qcom,eliza-tcsr", "syscon";
+> +			reg = <0x0 0x01fbf000 0x0 0x21000>;
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> +
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +		};
+
+[...]
+
+> +		pdc: interrupt-controller@b220000 {
+> +			compatible = "qcom,eliza-pdc", "qcom,pdc";
+> +			reg = <0x0 0x0b220000 0x0 0x10000>,
+
+sz=0x40_000
+
+> +			      <0x0 0x174000f0 0x0 0x64>;
+
+I see this region is allowed by bindings, but not consumed by the
+upstream driver
+
+On msm-x.y, this is acessed (optionally via SCM r/w calls) to write
+APSS_SHARED_SPI_CONFIG_n..
+
+Seems like Lina tried to get this upstream at one point, but the
+discussion stalled
+
+https://lore.kernel.org/linux-arm-msm/1568411962-1022-8-git-send-email-ilina@codeaurora.org/
+
+If I'm reading this right, we do indeed want this register write to
+tell the firmware about the actual edge/level trigger that's requested,
+but maybe we should do it via a syscon instead
+
+> +
+> +			qcom,pdc-ranges = <0 480 8>, <8 719 1>, <9 718 1>,
+> +					  <10 230 1>, <11 724 1>, <12 716 1>,
+> +					  <13 727 1>, <14 720 1>, <15 726 1>,
+> +					  <16 721 1>, <17 262 1>, <18 70 1>,
+> +					  <19 723 1>, <20 234 1>, <22 725 1>,
+> +					  <23 231 1>, <24 504 5>, <30 510 8>,
+> +					  <40 520 6>, <51 531 4>, <58 538 2>,
+> +					  <61 541 5>, <66 92 1>, <67 547 13>,
+> +					  <80 240 1>, <81 235 1>, <82 310 2>,
+> +					  <84 248 1>, <85 241 1>, <86 238 2>,
+> +					  <88 254 1>, <89 509 1>, <90 563 1>,
+> +					  <91 259 2>, <93 201 1>, <94 246 1>,
+> +					  <95 93 1>, <96 611 29>, <125 63 1>,
+> +					  <126 366 2>, <128 374 1>, <129 377 1>,
+> +					  <130 428 1>, <131 434 2>, <133 437 1>,
+> +					  <134 452 2>, <136 458 2>, <138 464 11>,
+> +					  <149 671 1>, <150 688 1>, <151 714 2>,
+> +					  <153 722 1>, <154 255 1>, <155 269 2>,
+> +					  <157 276 1>, <158 287 1>, <159 306 4>;
+
+I'm just going to trust you this is correct..
+
+[...]
+
+> +		spmi_bus: spmi@c400000 {
+> +			compatible = "qcom,spmi-pmic-arb";
+> +			reg = <0x0 0x0c400000 0x0 0x3000>,
+> +			      <0x0 0x0c500000 0x0 0x400000>,
+> +			      <0x0 0x0c440000 0x0 0x80000>,
+> +			      <0x0 0x0c4c0000 0x0 0x10000>,
+> +			      <0x0 0x0c42d000 0x0 0x4000>;
+
+The bus is partitioned, just like on Hamoa, please describe the
+secondary one too
+
+[...]
+
+> +		intc: interrupt-controller@17100000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0x0 0x17100000 0x0 0x10000>,
+> +			      <0x0 0x17180000 0x0 0x200000>;
+> +
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +
+> +			#redistributor-regions = <1>;
+> +			redistributor-stride = <0x0 0x40000>;
+> +
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			gic_its: msi-controller@17140000 {
+> +				compatible = "arm,gic-v3-its";
+> +				reg = <0x0 0x17140000 0x0 0x20000>;
+
+This is supposed to be 0x40_000 long, otherwise GITS_SGIR is cut off
+
+I see many DTs have this issue, I'll do a mass fixup
+
+
+> +		nsp_noc: interconnect@320c0000 {
+> +			compatible = "qcom,eliza-nsp-noc";
+> +			reg = <0x0 0x320c0000 0x0 0xe080>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +			#interconnect-cells = <2>;
+> +		};
+> +
+> +	};
+
+stray \n above
+
+Konrad
 
