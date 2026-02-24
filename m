@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-268079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268080-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OhpBdcbnmntTQQAu9opvQ
-	(envelope-from <devicetree+bounces-268079-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:44:55 +0100
+	id iK/qKF8fnml+TgQAu9opvQ
+	(envelope-from <devicetree+bounces-268080-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:59:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0E318CE1B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:44:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD2918CFCD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:59:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 22B6930D570D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:44:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C7F0930038F5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA0A33F360;
-	Tue, 24 Feb 2026 21:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223CB343D80;
+	Tue, 24 Feb 2026 21:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aeN0eSwj"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TuxqIl/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011035.outbound.protection.outlook.com [52.101.70.35])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011025.outbound.protection.outlook.com [40.107.130.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB4333EB02;
-	Tue, 24 Feb 2026 21:44:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.35
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7547A2C11DD;
+	Tue, 24 Feb 2026 21:59:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.25
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771969460; cv=fail; b=P0YN4u3M30qM6Tb+iBJAxLBFfjjhZBVvl5Xq2+hUrSMWAGm7O6Baag28qoA4iIcXsrKFRWOzEX3H32WfLhXW0CNeQXLS/EnHHTj46GONG4+jWk1da8oB9c/Wae5cpR4xdlV0isUKt4J1XlG0NVggI+bY6A8WFhgpmNIoQMJwNF0=
+	t=1771970397; cv=fail; b=r6dNMjf7NesAXfhGVJs8uhA0brzLRK0TdsDzGxYjtA7ce3HUGyFKwfZHNTmPivfJ1HkUZXqJMxxtFBEO10Y+WiX4DZYDEYkpNy4FvgQOqJIe658VJ2LS1Ej6JtumeS9goL89b+f3RQvrESIffY1+azUiNJXMxvAdCYxBquoIjzI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771969460; c=relaxed/simple;
-	bh=BeypzAlOnPOrsOZOGfo6WWpf0Fmc4wxsxzX08X9ON/U=;
+	s=arc-20240116; t=1771970397; c=relaxed/simple;
+	bh=rrwrUkCwSQYyS9IKkPJEr2lkII8kXhPuVfn8+QDJm1M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=BoxRKAx9qNH4OJZWZ3B4apJnv3Ln1/ggpvyUwztQmcp+segYnfSQ1VkEUYI+Xgf1zWDTXuoIqP6Ap1KzFx6eZyWszM0/cVJwkdDflJtnJn2Vy0diCE0lzPN2cUQvf1HRM8KIfmGUlcRD+xlA2MjVltQxkA6gjnbisje7hkSSP30=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aeN0eSwj; arc=fail smtp.client-ip=52.101.70.35
+	 Content-Disposition:In-Reply-To:MIME-Version; b=qjQW7FOPR0jwZLK672duVS4KJgwvQPzQjHSFnQGPz5w+2HmVno13u0b/K+9sq/OOQQsHYiRe2TbLw0k/b9VfhHwIT8fPexBzREMR8i1HWw7pDsOqnE4cB7rSSsF/7xCsNWzDQ/UJdPFzg+ZlLnRFVPbPG/dy8kCN6vKD+G+GUvs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TuxqIl/H; arc=fail smtp.client-ip=40.107.130.25
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ENqvwq8oCIBaA+UK6PrNknu6TluSKws3EOV3w59rhfm4R1mu/dAO16v2ML3rrI6c+jX3qc2BZytKF3HihN+XKcT1AEuDYgXbOK6HSojwA9If+Og1NOSLr6eNhwwqoe+o7/EF5076qgKaOfj69l7GBYx9S/R9sPGaGpTGqugPNYVGy0ZecbU2fAjGSvI7sprP8BHIvJtKU4WzyZ+jaz1Gtu3FLd93oU8sOVn92A8xaquKpJK1OL98Psow+t/3LgCOYp3HXvzL9GjTkArj63o1DSs5zatkCP7v0rTfBydR0t3+fCVSjD/epA5iDyGWBGvMBUUnN8TIeBwRfBVPXN3Jgg==
+ b=EdOmwHzdoiKUy697f7i1vtM2cQQ527UcpoQAaIVGuJyUM7xCKnCKV3Hd8u/QCMEupKyvBj/ZmJzef/UGcYi4JAdpjjIpm3Vz62e3cwQNI7kbJEmL0k8qHu+xWvFxQ7zFDjQJnnZRJQrx5h3BiI2JLrxbmTKozGMMDIvVELCrPfHezi2CTAFJeKj2IIVo4/gyJg3GFsvkse96ZEIxgTaz3ZClCyFHHkh4uYmR5x60Luk7oS+3aJ4mDjoyrxpC7pAO4lAbW745e0NfOqqpOuwLTzcJZIC8QQrkfTPCo0U3wy+NBxFooeo5LQ9jKusGJAX8fLFatZTiicbAeNeQRZdWXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/Cvo15V8HMwlfta1TYeTZawxL3SLT7Ja48t4Yj72SGg=;
- b=YqyKGJfzcuPjXci+OjeaN0afRWR/plYpUhVtd8xpuOYPlBIx5PZpKP0p3VrBlUSsxDUmxawevfQLrGsHgSuUN/2MQg6hFWFVAzD7jn55wX375BYf7ZBqGK+GZI5aJIwkMFnbWrLSb0Unq+0BfHVgvBLiMcPzx8NK4JbhU2CS83cp5hR0aqad+zD1ewB8aCNYBBcBM1PY/hbZ7P1qTXvYgK7LL/WU04fOqn8oBjO0qjKSo9ZxECEWydSMitZgGg/Gfy7ZIRfHhGMgL50wONziSo14qatB/arWwoRWyL1um0gUnzcNiTeuPJnkjbrcNm7gJrj4s3avoJGpac73w3tNgQ==
+ bh=+b9nB745oH7q+7LI9EmJYX3JQlDgr5BLlDHwdv7Uit4=;
+ b=KZX7lvw49+/+ZEvcD4aaKqPN1z9T2UNxnrR8c9JLsddswYlSvflliwd6YBXeMXK1XP530F0B0YUBMEYRTpAOX+mu1ekkOtnMXPyB48dUQmlgw/VZiOG5jOQP048bFFrDEucsACyS7MJTwwCCcQxNLn5IRXI3mwVMuhTFL7ppzqXtA7pqEwWMY66n2Q1D1LmTPifGi4nO/hRNj+pBxHvWscB5ox+awAtwfVV7xDTU4pGj1W2C8tHQHfzm2T61fJny+atPYYg21dRdcLgGKgKe/O7xgQ4XPS46s40Nr/DLaSNrDQwb+HaZ+2rfBTUkETaDz1mmdZa38fSYhqxkLCRfSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/Cvo15V8HMwlfta1TYeTZawxL3SLT7Ja48t4Yj72SGg=;
- b=aeN0eSwjM1Xbx6xr2T5lB84sjz84F8QydMKEQ/KzqzsZKkdPbmFZ/2rWsIR5KJqK4OO3U9GZCGpFuvcETrWvKH8svr9ZJkMlZsDo+knmnglpQM7Y8Di8XSkQ+XJVta0MFFVCbqnOvzlWH540u+o5CjTNeJcP8QxH0YIeCHoS9Knk5/zjkSssxCS4YZ17QeJab2Nuc8TjbiuZfjRfIWqXtAq2IxjSqz+SGOtlbweDmG3W8PPsZ3cacrmxG/jT053mR7KQTEakfg3doY+6UVVxMJWFrM6XRens6Zynr4COITHSejV3AB4FPw580QcVYl7jJxj7oYtNMb016kWUSnb0cg==
+ bh=+b9nB745oH7q+7LI9EmJYX3JQlDgr5BLlDHwdv7Uit4=;
+ b=TuxqIl/HhKyDJCcKdUFJgUVvXlhty1pYS+Fd4alK2d4BQcqE3JKnv3rWz7LtP56UzKx5M4f+DRYrVHo2Thy273NGO/hu+rgQ+9xVKAaFow6yX0YNqzMCRjBD0qDpSZCZNWM+niwOW7lhSG7U2frVHGplNgmAfLZ93kBAfjIyzDCvhkko49zhcq1EbS+55d21LD/n0bfFKo7O4Tc2yFz2kXAgGDvQ+AQbP98/tvDe3YdTx8LwrEVxZOuIMdC7bmO72ml1vvJOfBpZJy6Ttf6pjHxImSS09RE9dvwe3IWL/D728o+kjuF3qa02jauK+dEoMJUjlJrX2t1voPYbLPABWA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AM7PR04MB7062.eurprd04.prod.outlook.com (2603:10a6:20b:122::23) with
+ by DB9PR04MB12398.eurprd04.prod.outlook.com (2603:10a6:10:602::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.23; Tue, 24 Feb
- 2026 21:44:14 +0000
+ 2026 21:59:52 +0000
 Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
  ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
  ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
- 21:44:14 +0000
-Date: Tue, 24 Feb 2026 16:44:06 -0500
+ 21:59:52 +0000
+Date: Tue, 24 Feb 2026 16:59:44 -0500
 From: Frank Li <Frank.li@nxp.com>
-To: Fabian Pfitzner <f.pfitzner@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp-frdm: add more features
-Message-ID: <aZ4bpkUn-oMEFbqg@lizhi-Precision-Tower-5810>
-References: <20260224-fpf-imx8mp-frdm-v1-1-d7f3b57c18e0@pengutronix.de>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: Frank.Li@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, jonathanh@nvidia.com, krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+	p.zabel@pengutronix.de, robh@kernel.org, thierry.reding@gmail.com,
+	vkoul@kernel.org
+Subject: Re: [PATCH 6/8] dmaengine: tegra: Use iommu-map for stream ID
+Message-ID: <aZ4fUGYouVOlYdL7@lizhi-Precision-Tower-5810>
+References: <aZTG8af4O-wosg4N@lizhi-Precision-Tower-5810>
+ <20260224062543.47660-1-akhilrajeev@nvidia.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260224-fpf-imx8mp-frdm-v1-1-d7f3b57c18e0@pengutronix.de>
-X-ClientProxiedBy: PH7PR17CA0061.namprd17.prod.outlook.com
- (2603:10b6:510:325::11) To PA4PR04MB9366.eurprd04.prod.outlook.com
+In-Reply-To: <20260224062543.47660-1-akhilrajeev@nvidia.com>
+X-ClientProxiedBy: PH8P220CA0013.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:345::8) To PA4PR04MB9366.eurprd04.prod.outlook.com
  (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -85,640 +84,279 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM7PR04MB7062:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b2ccf6b-9551-4893-f977-08de73edda1f
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DB9PR04MB12398:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6053be1f-5b1f-4e24-c949-08de73f0095b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|1800799024|52116014|7416014|376014|38350700014|13003099007|7053199007;
+	BCL:0;ARA:13230040|1800799024|19092799006|366016|52116014|376014|7416014|38350700014|7053199007;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?FoAhsf2a1uinCNTVwevaVvRNuLEdhCY3VVID7+qM4ZnBlMDav6boXJmvSzco?=
- =?us-ascii?Q?bEOvy8ztLrM/pLGbCgF59rLi+3epMYGPu3wJlTuHdKA2ysfEJzDexJbvGHy1?=
- =?us-ascii?Q?LcnW/fyb/wAWOuWneJAHh6n1oFsYKt+Cqz2XslfJrSfSjQB8AQlW+gxeIGqK?=
- =?us-ascii?Q?Cw0YeYg9WBCii0lr7w+tsViKpI/75RWiBADKHnBQ7ZtRfZWL7QjkOpQAy0c+?=
- =?us-ascii?Q?wHa5mLLgmm+EZpu9Z3TS7pliVkMekrmPXIWXsK3Uo+W9C1hNACsTjbw2+arr?=
- =?us-ascii?Q?R7mx/RHM0HTB1YTfkVtDCQnYW8w+yx1rFaPi1yGMEFDcA3OnuKhFZ3keAYRD?=
- =?us-ascii?Q?jPNMmZu5lz5ee4B0tSM0wcWqFSwFAcb6+qCl9iKnG45ucu9SqvBFe7um8MRE?=
- =?us-ascii?Q?7S7AUnA1MxqLBl9ylRIDV5K1Oo7E0obnL7coh/bkqxr9lKc9a1AVxZ8GO1Za?=
- =?us-ascii?Q?MIsqbYKOZEye8klSrH+LK6BV6gUeYew8K5lOzjFKO/OziXGh5Bu4fBRfMPCt?=
- =?us-ascii?Q?quZtWmIiqS6EA1nw4NZquxJmSv+u2Q08vmvEPEDkEDIr3G3digShgaYXahdn?=
- =?us-ascii?Q?jcVcDIulYEP3SBSii72Sbw0Iu75x9YR297tBWzsfAsl3JX1bgVwKAr0ogRKi?=
- =?us-ascii?Q?QPElpvNw2ggnqquoNMK7zIM+DZoUU/t7csP0MeeCAmmeao1Qf32Q2VBNi+Fk?=
- =?us-ascii?Q?jnkC+WBIjL7tdQdNLPlm8BGfze6KM3W9heSUFUv6KtU9idYpGtHWwsK3lr+p?=
- =?us-ascii?Q?4/2N9FXxbn2bOnRvMEWvEyYcG9GAQkU8HdCwAPyCTHNC8WxQ5kXAsLxtBRcw?=
- =?us-ascii?Q?xsQD5P/CWuV3J6hMEjSCpaDOwsPg6KyKC7Qte3GHY8hg5/TRw3m3GrqjdIBh?=
- =?us-ascii?Q?YXyWglipzuuON24Psg9Y4gnoCt5nYBS2vqMdjGZDe2JVz74wnDtjR/+VAbGn?=
- =?us-ascii?Q?AMsiBGx2TTrlI9qEaG0o/+SJiALnjAagFfF/Ur1eyEkPpsS0S1eDp03ig33G?=
- =?us-ascii?Q?kAnHWIVrqtpLQnAWggzHb6e//I+wxXMJ9TQt1ozeNHZT6CxZtp3QBnzpo0nJ?=
- =?us-ascii?Q?AnbUbXv4HduItb/F2uKC/kEt8f4B/hnHjLE0aFHivPkkRG7O5ZpoePb98Qn9?=
- =?us-ascii?Q?2smJ/XE4CbASUZg/l8B+gWJfB9RqTyL7Qwu2yzHev6/yYXsS8pQMK6OKlDoc?=
- =?us-ascii?Q?uZ2z0v1D4CoDMluBzEPTSe+K4oCDG6Jn5dJ+gVZ6pYOeDrqhA2QD5MBMUP4o?=
- =?us-ascii?Q?xGEeRhb5tRZ16HwqZntwNW9wbAKhfOxuaptYumQ26TGX5b3Vgv4v4LIDEbsS?=
- =?us-ascii?Q?APHynux7vDaFoBlUPW3NhKznOZaGN5h6rCztntV3fsQTSIsSkgNlnjErMjFK?=
- =?us-ascii?Q?RDcVAL/wrBL3NhCrStDWYt+Vabz+WPaPVUoL0X+gCudfVzDOXUfsWqUr6g4S?=
- =?us-ascii?Q?pknvLc6CJF5PcuHuey/3h+Q3e93f89n66SahzOqteytaKrrd9rGk/6xbfhds?=
- =?us-ascii?Q?HUcw2lx67hqZlE7TB+yoiCHv1eCtcNOiwskR5yYk1VEKE800XBK7rFY+5bme?=
- =?us-ascii?Q?4kNyoMrsroFD7M0wbj5kGNMx7AYyC2bnE4+N/x6A7yyIkXoIiqOT3o6DLhGu?=
- =?us-ascii?Q?PAVQMU0TrO0xrfvLSgdmFvw=3D?=
+	=?us-ascii?Q?xPrV9IYDgNHpmZQJuCEnqlbEAcMsj7IqGkS/MMXPQzqAGeL1XxHYnRpdrf8J?=
+ =?us-ascii?Q?ED4lVIJ59E3gJgGgHpgraUC1Snmq2xpVfCVOhJOXjhtgGmQc6qKppoyrMGfA?=
+ =?us-ascii?Q?QQqYPqWPTefNDSqi0LYoyRuKjHIJrV2wsElSCqHwuGaCHa/NMLOvljFS1Yf8?=
+ =?us-ascii?Q?/vLUPAhhYN2tmV5X40tnXbKVgmlrlA9s48UKJlCab+mOonGKTtG+17cBS0SC?=
+ =?us-ascii?Q?8Lk+f+Olt4eXnl2RH3ranrYIZCr3xQF4jmmJaJOjvx0LKmJEWe/Sk55Tl4bh?=
+ =?us-ascii?Q?CwKbeU54eEoY/qFwhYv8BpJoc/yBseS4gXeINSLwcaLleYMO7WoK9DZC+XOb?=
+ =?us-ascii?Q?CB+rSswDGpToiCO4fFVOsPHUNewJCwuzfpedkUEmBbcwXKNbQtAdAdNsKHKr?=
+ =?us-ascii?Q?5BdVINxZmibNqnU7znDfj7DcT4uu0oAEzB2Zy6NNI/dG4hKM2v+y0c5cYXfn?=
+ =?us-ascii?Q?Dv9GUm9pCrSxYTVz8Hp4e/HePbvEhzeLPm1Ik64uqvtfkEkr5zCQUOJooj2K?=
+ =?us-ascii?Q?eDqaiJvRfQBATMq27p1RvNALxmm83fsNScBqEJkVd40zfdFQU1VA8W8dDJde?=
+ =?us-ascii?Q?3EB3l+MrEGP9gOs6CeoGPmUaPtfUTUNf7iJU3SJwNFjfvIirPfOL2av6so84?=
+ =?us-ascii?Q?PqSuwtLqsI+tAS168ku83yP5mdUOEaiiKf3Hyihq80upxWtq3gThlvUStp86?=
+ =?us-ascii?Q?GnSLP97Mwg74pFXoiXGTLxtyQfwfFruampi9re0PwCObgIB40iUTRjQ5OCBR?=
+ =?us-ascii?Q?muwe3r15S212zf/O+aUceEArPvNa/w3bXW7RbZswTMsMHiZt86yFPxN5neio?=
+ =?us-ascii?Q?AKxLwRJvp6z6laTAlaRSa1DorFKr1iqz4ZNZI5CMeUI4sYuBKl4HDeeqwNew?=
+ =?us-ascii?Q?nnt5USMtcivU+LEyqPbeK1dOaRqVnIYePbTweAEbFU5gh4j939LfVVJOL6vj?=
+ =?us-ascii?Q?bE3tOVQDtFi5ePK1HLOGK4TIbuUv0VT1aLe/DAG2oYMJnSc5f+Z+88cYimmp?=
+ =?us-ascii?Q?+Xcq51RHgPZArU+lON3Sh7haAvUUsf3Amb2AudmEbQx2R3BJ6BQ1IsjEBiV3?=
+ =?us-ascii?Q?btcp5c6SWbCvzOLTmi3Vmilaf/kHMni6LoR6CNxoTHy3unJ1XfXHl6SwXalG?=
+ =?us-ascii?Q?YmEGhoi/TuqN58n9OCIT9DkhcZHJusrDpVlf84CzIR8SOsl69CbShl7P4VQ1?=
+ =?us-ascii?Q?I9iLmRW4CIDQTIqGdxfQbsguSRE/OlnW3+h55jv7ymJrZtSx7jYzlvhLmpSv?=
+ =?us-ascii?Q?lCTzHcw8mW+5IZASpDqShfbwKwjGo6qWlYqYX/rIg3Xfb8ekuz36CUVoj/NE?=
+ =?us-ascii?Q?HBr/GxCN9z5HN1wbLXJ5uz1KMCGYp92gL3sDEdM2wgqRr0rpBMiBUFn1IkK/?=
+ =?us-ascii?Q?+CO+nACFUnUbPpG1bGzFasXV+P6paC7DkdUQu4W1BYQ/PlCpt7ZS7Wyx+Kfi?=
+ =?us-ascii?Q?G0jCcLMdW4sdzufw8slGHpTEpglB2oiRcugoWDcgtpKWQFKy65KRmFhv7H9n?=
+ =?us-ascii?Q?3r4qLSnXslBliep5+wUYrkAoLS4MbIvxp5bY1Kp01+JNwqJyV7gi+o350GDL?=
+ =?us-ascii?Q?wd8RgeArwjuczwEAdNdZH+t2Wct2+ZYYF4ImVQqGY6/sBbaa+GMYyib64bc3?=
+ =?us-ascii?Q?An0pSap4zOkE4oteFvGp8M4=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(1800799024)(52116014)(7416014)(376014)(38350700014)(13003099007)(7053199007);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(52116014)(376014)(7416014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?0Q3UmaLw6NVNnea1zXp80GJnyOV4Z696EGK9QSF6pi1XmoyLiwVZUjszqNBq?=
- =?us-ascii?Q?1g0CAmuHNpEgAEpBbdtT6gOtdlG8UC1BLiYDVmPvRRRpEQyxqHVMUPUbtw3n?=
- =?us-ascii?Q?XbnHWGEhKaWhK5j2dM7TcYfutjD10G6N03e3bpEemjVj+HZ7PicSfBSxLXsy?=
- =?us-ascii?Q?4A06TqU9qCy32uAfJ+m7MB9f1g10+5raGsgZBBQ5UseqIDPE3jbOYODpTYRQ?=
- =?us-ascii?Q?ailUwEcYlqgqA+XZvuy+SSkqanVGNtsuvsGPiI4mNts8Opq14kyRh9nh0dGQ?=
- =?us-ascii?Q?xL/Ra4scxjBKULt8rYjB3t5PGKMVvX2yFFLiKf7aq+VJgzF6rLZkLCy9MfO2?=
- =?us-ascii?Q?lgUbaEmJoEb62H1StIh9fICB3quu+XG9SUoZISq7wL26g1bzAP3Habrr+l9t?=
- =?us-ascii?Q?KVj66psI+rj3zNJ+rxNX3AOldOvqTLUml7FSL5i0YVmB2ebXBE01NapS/69R?=
- =?us-ascii?Q?UzHU0Eeh0wZD+Hrz8Qhw281JPvkrPFti05M+KU0yEbeKN94YCD84puhCoDl9?=
- =?us-ascii?Q?vWVccLsc67M67kTkm7Duq7JZtbzh+cMGaQ0X0x0UJECcj95PzqhN+jjHGCCe?=
- =?us-ascii?Q?/t8ilhNHL5sTnBzQ4PwbiPUKMfgre6e5UaV23EseuJEnDIRmcRMgqHSTB6xk?=
- =?us-ascii?Q?o3a3AtMRF4bEwNnXCqmBftZcff2WkxPHKGGYl02C1IOunE6MyCHSIqyBw91t?=
- =?us-ascii?Q?K8rpNCueDjG2GZxJlIJecR5GC9G+P1Z2cPclVbnbK0Fr+2JxpeJrbVBd5Rx9?=
- =?us-ascii?Q?r4SCtcJg8fvE/6rrOtM3joUMM0Er1ORwJMJVtVjsHh3uLh+Pw115smS6fbzl?=
- =?us-ascii?Q?mFemH86vgDUB8SsaHDTS8Nz8DmnY1mSSx+bBLT6xBBgxF3GHJfKxush6glIu?=
- =?us-ascii?Q?4csGy1er9O+I/4wj6KawamDmxxYNWE91P2wQy19qnR3oAxqDkWCELUI6tD/f?=
- =?us-ascii?Q?+LFW6oT7e1y7L94zZGF94vtNfh7ghPmaSLcXOUWiudIW5j/VMRMCl7UXDiQ1?=
- =?us-ascii?Q?4gfVqekZy20xcOApnk22VXNLfxgSnCPoBJfUE8+Om/ju24hODh/jJM+1oRKf?=
- =?us-ascii?Q?xkoCZY16ujM4rXkUz3x1x8gxCJCVi+Rjdqd4j1tnaDCFTzq04uGUMJZURoMO?=
- =?us-ascii?Q?obhf77kZJdMkKDHjjwnN+SS7ok5+xZjAleLZ2xwomUyZ95YORb7XWxVSol/c?=
- =?us-ascii?Q?a/Ao2HhS/zlj3zwkzOwsr6B9plppjFyYQTjzPTl8YsTUwbQ8Gk+vukylzpKx?=
- =?us-ascii?Q?cwaedqhW3w9QmY3zwNm7HO5qqhYxmKVWhWnVBWectNKCMq7n5adVf3pNW4Kn?=
- =?us-ascii?Q?/omCpZSYnP5f4PnWBgUNS6WdoqvOAlExH1bHc2vjKaSiE69xQchLkc/A2bNt?=
- =?us-ascii?Q?lVREVePzOhUiwRJatmX83smOECIj/R1sSGojHYvIkQb48R05vxGIns7WHCP8?=
- =?us-ascii?Q?OPYj9Sir0dH8X3xRfIsH68xZaazuc7b8XWzP7aXZMe0oy2rNJ1ZVAtrB9Bw3?=
- =?us-ascii?Q?euNwjoBHUS1AEOdht0RDYlzQR0CmJwqaNPl1LtkZD0WNwYrRnybgMEe5V3Qd?=
- =?us-ascii?Q?Y/4iX4YEIeOmOAJsNXLYZqoTgOrAwDEbKyAO5CCfX1VAoOVOj7KpGe3PF7ny?=
- =?us-ascii?Q?BZ57fQ3i6ZKWzC+fHwjtVsf8KUTYDlme2q4TeUUlAWSgNLa4x+txv0di2y0w?=
- =?us-ascii?Q?7pKGk3V8SdwIBUF3DjJujB6bYqEWsXqyly8IySn8HSJV6sQGEZ9vGPF84TO6?=
- =?us-ascii?Q?2M831jjJqw=3D=3D?=
+	=?us-ascii?Q?+mF5n3RQ0yjXU59j9lkdFbWDvLCEN8X2fCDZV33EEYDUuDQ/ui339Zia2GLr?=
+ =?us-ascii?Q?PSOA9IKdR1T1ZSlO3zthrAn4rXN8Qmh9hydHV0UAoeOBjg7zL7dbWlB6A9WE?=
+ =?us-ascii?Q?hpfGjAbdlgXWZ82dZFTU1A7EGQCAacD5Xa3sLQ+C7FGsSEe3PRMxSs633S0p?=
+ =?us-ascii?Q?bY1CL0gNTGXskm9IRYfCmR7RXaTrrn+SQ3sgrpwU2KWv4uWGtOuDRkJ9BPli?=
+ =?us-ascii?Q?b/qekWK2gKX7KY/wx1TCZgUiMcttEQfIv9D+hCFYcJO9myDNDnI3N2E48uPZ?=
+ =?us-ascii?Q?FDY/cX+iGL3gQmF0kn4SUnAA9tmmFrbF2vR38f5Rh0qhIuH6CGHff9maRJsX?=
+ =?us-ascii?Q?RoUTlL2QeFw/mQdYZoo9sRde532He3YNrwHWJ3YJvYbPu6VRzZOQFDJA4DVQ?=
+ =?us-ascii?Q?Nx8nI3gTrJf7XtLnCYegAeNkNkL1ZmPHkfAhYpRSZkAkpb/lcw32sZIu6v1+?=
+ =?us-ascii?Q?PTB6U9HSCOjFm0RZlnes72fP5MxaQfuZZljUTCCQuTz9BK5SR1eondfPD3i4?=
+ =?us-ascii?Q?wuXjUSIzljHYplTYQ1+ETL5zJGGSewr+9UgeQVJ5SJ2DiB9pkch/oYhrhk4O?=
+ =?us-ascii?Q?Y2pERQyPjShRlQzpI/vNIFI5lJ5eioj//YojN9Lp+MtmD3YpF/kLpxNQfIeI?=
+ =?us-ascii?Q?uhm08dpjP5zMVFdNcX7Hn+7SeqTqXX2j5feXM98Bp+OyN21OpiM+QL3+OBKs?=
+ =?us-ascii?Q?3OEDnLsk1FSHm2x40fQPyIM5J+TWZbEnUMU8qgbtvt5TVBUSwSfAmpqQdlrd?=
+ =?us-ascii?Q?5v1m3zPYyhXt36XKkPvUtxSeMRiTuGWR/pOkH6+zDP0F45o2f0XvbgZ2ApW4?=
+ =?us-ascii?Q?duTwRwUMkGSCKi5H8QZ+/XoGiaM530tDHRa7J1GOzUWTLFwbATYNtPUKM8iJ?=
+ =?us-ascii?Q?hFyWr/eg3S04WQJ7WplqP+MOlDNRr62EXRzgpUUC96BLhBcvDJLyL+keoqlY?=
+ =?us-ascii?Q?+ieCs6VDqr/8l/D/8jm5h799PWS9JPnMzcvhWapzls1i8s7JrCa/2mKIL38p?=
+ =?us-ascii?Q?oeb4JVk9Qx31RI7ELARa0ZcYj9WJslpObLEnTJKbJCvaKrr7AvqSVOqqlV3N?=
+ =?us-ascii?Q?0iCljw9mo6EWjwXOOAMyzNHCpA/Pix66ph9UjRy2LV+OM5CrO2Q3vJBB9uV5?=
+ =?us-ascii?Q?SQR8vLk/6iBwu0Q5BJZ40ZlvQxhZp5aHBUR+z5xCSfMqS1sQMKVAYbBwhECv?=
+ =?us-ascii?Q?THr0Nsv0esxcbXIqfGxJ6xt+2zpHZuMPdHbFXakJqQ3RkeN8ghD6J9C/aycE?=
+ =?us-ascii?Q?p8bq1mEh1dwHZaQ/X06zQ8fKXXhf9wH/2w+i9yDlPfPBPbLSjyhDfjaD3Z4e?=
+ =?us-ascii?Q?tDK08oZFKN+lvU3SairYkrreWhg+kToUeyjMW5kaUrw9SfOJ1HLQVT0tSokJ?=
+ =?us-ascii?Q?wych7bruHQ3TpVao7iEfzT6jfOksbZ08u/mFHK4FDr1kDccxYa8J+M9lA5UC?=
+ =?us-ascii?Q?8UoEP6sVfHa4MS5yr2XtzfTY+ZYL89rQ7qt6kKPv2fpa0gYo0a9grhuBK1qZ?=
+ =?us-ascii?Q?oFvH/s1bGMGMF0VHz7esyuI0vnPL+KOH5hVaC39WC74l3VPaj+9UGLjGwpG6?=
+ =?us-ascii?Q?vyCxJGqeZl5ZdgSRdVHAUIOw5C8gY4LSxyVIEtZCjb8b73nFzQ95mW3GIDIH?=
+ =?us-ascii?Q?jdkGCZph6lw4kJfH9AxrBKZqZQMOj1xp3mI4T/iuwmIX3weaWkGmyBEQcM7w?=
+ =?us-ascii?Q?VcFDlpn4z24KEkh3HHIUd0JmMiQxmWN2XXhm9vkVQPyzDUfz?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b2ccf6b-9551-4893-f977-08de73edda1f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6053be1f-5b1f-4e24-c949-08de73f0095b
 X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 21:44:13.9857
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 21:59:52.1684
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kil3F8dzEcLW/6lc+A0/BRogvO475HWRhNxsEy6HPWA4qFmw+1h6OJ/dDl1hKz5MfmN7bcyptqo4He/+6OKfQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7062
+X-MS-Exchange-CrossTenant-UserPrincipalName: qlLEexyj+JWzxdeSN/0Kskl8whNmisGmLcU3XN9Qvhi7kMYeGu39TdOd/OvYG2/WUTzwUUVnSBvw+p+68v3fVw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB12398
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268080-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268079-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,nvidia.com,pengutronix.de,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.993];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:dkim,0.0.0.1:email,2.98.90.0:email]
-X-Rspamd-Queue-Id: 7C0E318CE1B
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:dkim,nvidia.com:email]
+X-Rspamd-Queue-Id: DCD2918CFCD
 X-Rspamd-Action: no action
 
-On Tue, Feb 24, 2026 at 12:46:35PM +0100, Fabian Pfitzner wrote:
-
-Subject need provide detail informaiton
-
-arm64: dts: imx8mp-frdm: add sd, ethernet, wifi, usb and hdmi support
-
-> Add support for the following new features:
+On Tue, Feb 24, 2026 at 11:55:43AM +0530, Akhil R wrote:
+> On Tue, 17 Feb 2026 14:52:17 -0500, Frank Li wrote:
+> > On Tue, Feb 17, 2026 at 11:04:55PM +0530, Akhil R wrote:
+> >> Use iommu-map, when provided, to get the stream ID to be programmed
+> >> for each channel. Register each channel separately for allowing it
+> >> to use a separate IOMMU domain for the transfer.
+> >>
+> >> Channels will continue to use the same global stream ID if iommu-map
+> >> property is not present in the device tree.
+> >>
+> >> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> >> ---
+> >>  drivers/dma/tegra186-gpc-dma.c | 62 +++++++++++++++++++++++++++-------
+> >>  1 file changed, 49 insertions(+), 13 deletions(-)
+> >>
+> >> diff --git a/drivers/dma/tegra186-gpc-dma.c b/drivers/dma/tegra186-gpc-dma.c
+> >> index ce3b1dd52bb3..b8ca269fa3ba 100644
+> >> --- a/drivers/dma/tegra186-gpc-dma.c
+> >> +++ b/drivers/dma/tegra186-gpc-dma.c
+> >> @@ -15,6 +15,7 @@
+> >>  #include <linux/module.h>
+> >>  #include <linux/of.h>
+> >>  #include <linux/of_dma.h>
+> >> +#include <linux/of_device.h>
+> >>  #include <linux/platform_device.h>
+> >>  #include <linux/reset.h>
+> >>  #include <linux/slab.h>
+> >> @@ -1403,9 +1404,12 @@ static int tegra_dma_program_sid(struct tegra_dma_channel *tdc, int stream_id)
+> >>  static int tegra_dma_probe(struct platform_device *pdev)
+> >>  {
+> >>  	const struct tegra_dma_chip_data *cdata = NULL;
+> >> +	struct tegra_dma_channel *tdc;
+> >> +	struct tegra_dma *tdma;
+> >> +	struct dma_chan *chan;
+> >> +	bool use_iommu_map = false;
+> >>  	unsigned int i;
+> >>  	u32 stream_id;
+> >> -	struct tegra_dma *tdma;
+> >>  	int ret;
+> >>
+> >>  	cdata = of_device_get_match_data(&pdev->dev);
+> >> @@ -1433,9 +1437,12 @@ static int tegra_dma_probe(struct platform_device *pdev)
+> >>
+> >>  	tdma->dma_dev.dev = &pdev->dev;
+> >>
+> >> -	if (!tegra_dev_iommu_get_stream_id(&pdev->dev, &stream_id)) {
+> >> -		dev_err(&pdev->dev, "Missing iommu stream-id\n");
+> >> -		return -EINVAL;
+> >> +	use_iommu_map = of_property_present(pdev->dev.of_node, "iommu-map");
+> >> +	if (!use_iommu_map) {
+> >> +		if (!tegra_dev_iommu_get_stream_id(&pdev->dev, &stream_id)) {
+> >> +			dev_err(&pdev->dev, "Missing iommu stream-id\n");
+> >> +			return -EINVAL;
+> >> +		}
+> >>  	}
+> >>
+> >>  	ret = device_property_read_u32(&pdev->dev, "dma-channel-mask",
+> >> @@ -1449,7 +1456,7 @@ static int tegra_dma_probe(struct platform_device *pdev)
+> >>
+> >>  	INIT_LIST_HEAD(&tdma->dma_dev.channels);
+> >>  	for (i = 0; i < cdata->nr_channels; i++) {
+> >> -		struct tegra_dma_channel *tdc = &tdma->channels[i];
+> >> +		tdc = &tdma->channels[i];
+> >>
+> >>  		/* Check for channel mask */
+> >>  		if (!(tdma->chan_mask & BIT(i)))
+> >> @@ -1469,10 +1476,6 @@ static int tegra_dma_probe(struct platform_device *pdev)
+> >>
+> >>  		vchan_init(&tdc->vc, &tdma->dma_dev);
+> >>  		tdc->vc.desc_free = tegra_dma_desc_free;
+> >> -
+> >> -		/* program stream-id for this channel */
+> >> -		tegra_dma_program_sid(tdc, stream_id);
+> >> -		tdc->stream_id = stream_id;
+> >>  	}
+> >>
+> >>  	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(cdata->addr_bits));
+> >> @@ -1517,20 +1520,53 @@ static int tegra_dma_probe(struct platform_device *pdev)
+> >>  		return ret;
+> >>  	}
+> >>
+> >> +	list_for_each_entry(chan, &tdma->dma_dev.channels, device_node) {
+> >> +		struct device *chdev = &chan->dev->device;
+> >>
+> > why no use
+> > 	for (i = 0; i < cdata->nr_channels; i++) {
+> > 		struct tegra_dma_channel *tdc = &tdma->channels[i];
 >
-> - SD Card
-> - Ethernet (FEC + EQOS)
-> - Wifi
-> - USB
-> - HDMI
->
-> The imx8mp-evk dt and the NXP downstream imx8mp-frdm dts were
-> taken as a reference [1].
->
-> [1] https://github.com/nxp-imx/linux-imx
+> I thought this would ensure that we try to configure only the channels
+> where the chan_dev and vchan are initialized. I understand that it is
+> not probable in the current implementation that we will have channels
+> which are uninitialized, but I felt this a better approach.
+> Do you see any disadvantage in using the channels list?
 
-Needn't this at commit message.
+not big issue, just strange, previous code use
+for (i = 0; i < cdata->nr_channels; i++) {
+}
 
->
-> Signed-off-by: Fabian Pfitzner <f.pfitzner@pengutronix.de>
-> ---
-> Add support for the following new features:
->
-> - SD Card
-> - Ethernet (FEC + EQOS)
-> - Wifi
-> - USB
-> - HDMI
->
-> The imx8mp-evk dt and the NXP downstream imx8mp-frdm dts were
-> taken as a reference [1].
->
-> [1] https://github.com/nxp-imx/linux-imx
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-frdm.dts | 409 ++++++++++++++++++++++++++
->  1 file changed, 409 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-> index 55690f5e53d7e1fbf7eae8a1f31eb064465ccb6c..09a44ff8fb6aaf8b083c8af06d9cf1926f5ac197 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-> @@ -42,6 +42,68 @@ memory@40000000 {
->  		reg = <0x0 0x40000000 0 0xc0000000>,
->  		      <0x1 0x00000000 0 0x40000000>;
->  	};
-> +
-> +	native-hdmi-connector {
-> +		compatible = "hdmi-connector";
-> +		label = "HDMI OUT";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_in: endpoint {
-> +				remote-endpoint = <&hdmi_tx_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	sdio_pwrseq: usdhc1-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	reg_usdhc1_vmmc: regulator-wifi-vmmc {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "WLAN_EN";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&pcal6416_1 10 GPIO_ACTIVE_HIGH>;
-> +		/*
-> +		 * IW612 wifi chip needs more delay than other wifi chips to complete
-> +		 * the host interface initialization after power up, otherwise the
-> +		 * internal state of IW612 may be unstable, resulting in the failure of
-> +		 * the SDIO3.0 switch voltage.
-> +		 */
-> +		enable-active-high;
-> +		startup-delay-us = <20000>;
-> +	};
-> +
-> +	reg_usdhc1_vqmmc: regulator-wifi-vqmmc {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "regulator-wifi-vqmmc";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-sd {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-name = "VSD_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_usb_vbus: regulator-vbus {
-
-order nodes according to node name.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "USB_VBUS";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&pcal6416_1 5 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
->  };
->
->  &A53_0 {
-> @@ -60,6 +122,148 @@ &A53_3 {
->  	cpu-supply = <&reg_arm>;
->  };
->
-> +&eqos {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_eqos>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy0>;
-> +	snps,force_thresh_dma_mode;
-> +	snps,mtl-tx-config = <&mtl_tx_setup>;
-> +	snps,mtl-rx-config = <&mtl_rx_setup>;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@2 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <2>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pinctrl_eqos_phy>;
-> +			reset-gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <10000>;
-> +			reset-deassert-us = <80000>;
-> +			realtek,clkout-disable;
-
-I suppose there are CHECK_DTB warning for it.
-
-realtek,clkout-disable, which only for ethernet-phy-id*
-
-> +		};
-> +	};
-> +
-> +	mtl_tx_setup: tx-queues-config {
-> +		snps,tx-queues-to-use = <5>;
-> +
-> +		queue0 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0x1>;
-> +		};
-> +
-> +		queue1 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0x2>;
-> +		};
-> +
-> +		queue2 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0x4>;
-> +		};
-> +
-> +		queue3 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0x8>;
-> +		};
-> +
-> +		queue4 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0xf0>;
-> +		};
-> +	};
-> +
-> +	mtl_rx_setup: rx-queues-config {
-> +		snps,rx-queues-to-use = <5>;
-> +		snps,rx-sched-sp;
-> +
-> +		queue0 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0x1>;
-> +			snps,map-to-dma-channel = <0>;
-> +		};
-> +
-> +		queue1 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0x2>;
-> +			snps,map-to-dma-channel = <1>;
-> +		};
-> +
-> +		queue2 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0x4>;
-> +			snps,map-to-dma-channel = <2>;
-> +		};
-> +
-> +		queue3 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0x8>;
-> +			snps,map-to-dma-channel = <3>;
-> +		};
-> +
-> +		queue4 {
-> +			snps,dcb-algorithm;
-> +			snps,priority = <0xf0>;
-> +			snps,map-to-dma-channel = <4>;
-> +		};
-> +	};
-> +};
-> +
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec>;
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethphy1>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy1: ethernet-phy@1 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <1>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pinctrl_fec_phy>;
-> +			eee-broken-1000t;
-> +			reset-gpios = <&gpio4 2 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us = <10000>;
-> +			reset-deassert-us = <80000>;
-> +			realtek,aldps-enable;
-> +			realtek,clkout-disable;
-> +		};
-> +	};
-> +};
-> +
-> +
-> +&hdmi_pvi {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi_tx {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hdmi>;
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			hdmi_tx_out: endpoint {
-> +				remote-endpoint = <&hdmi_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&hdmi_tx_phy {
-> +	status = "okay";
-> +};
-> +
->  &i2c1 {
->  	clock-frequency = <400000>;
->  	pinctrl-names = "default";
-> @@ -218,6 +422,32 @@ &i2c3 {
->  	status = "okay";
->  };
->
-> +&lcdif3 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb3_phy1 {
-> +	vbus-supply = <&reg_usb_vbus>;
-> +	status = "okay";
-> +};
-> +
-> +&usb3_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3_1 {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-
-order by name
+why need enumerate it again and use difference method.
 
 Frank
-> +
->  &snvs_pwrkey {
->  	status = "okay";
->  };
-> @@ -237,6 +467,36 @@ &uart3 {
->  	status = "okay";
->  };
 >
-> +&usdhc1 {
-> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC1>;
-> +	assigned-clock-rates = <200000000>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-> +	mmc-pwrseq = <&sdio_pwrseq>;
-> +	vmmc-supply = <&reg_usdhc1_vmmc>;
-> +	vqmmc-supply = <&reg_usdhc1_vqmmc>;
-> +	bus-width = <4>;
-> +	non-removable;
-> +	no-sd;
-> +	no-mmc;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
-> +	assigned-clock-rates = <400000000>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
->  &usdhc3 {
->  	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
->  	assigned-clock-rates = <400000000>;
-> @@ -250,6 +510,74 @@ &usdhc3 {
->  };
+> >> +
+> >> +		tdc = to_tegra_dma_chan(chan);
+> >> +		if (use_iommu_map) {
+> >> +			chdev->coherent_dma_mask = pdev->dev.coherent_dma_mask;
+> >> +			chdev->dma_mask = &chdev->coherent_dma_mask;
+> >> +			chdev->bus = pdev->dev.bus;
+> >> +
+> >> +			ret = of_dma_configure_id(chdev, pdev->dev.of_node,
+> >> +						  true, &tdc->id);
+> >> +			if (ret) {
+> >> +				dev_err(chdev, "Failed to configure IOMMU for channel %d: %d\n",
+> >> +					tdc->id, ret);
+> >> +				goto err_unregister;
+> >> +			}
+> >> +
+> >> +			if (!tegra_dev_iommu_get_stream_id(chdev, &stream_id)) {
+> >> +				dev_err(chdev, "Failed to get stream ID for channel %d\n",
+> >> +					tdc->id);
+> >> +				goto err_unregister;
+> >> +			}
+> >> +
+> >> +			chan->dev->chan_dma_dev = true;
+> >> +		}
+> >> +
+> >> +		/* program stream-id for this channel */
+> >> +		tegra_dma_program_sid(tdc, stream_id);
+> >> +		tdc->stream_id = stream_id;
+> >> +	}
+> >> +
+> >>  	ret = of_dma_controller_register(pdev->dev.of_node,
+> >>  					 tegra_dma_of_xlate, tdma);
+> >>  	if (ret < 0) {
+> >>  		dev_err_probe(&pdev->dev, ret,
+> >>  			      "GPC DMA OF registration failed\n");
+> >> -
+> >> -		dma_async_device_unregister(&tdma->dma_dev);
+> >> -		return ret;
+> >> +		goto err_unregister;
+> >>  	}
+> >>
+> >> -	dev_info(&pdev->dev, "GPC DMA driver register %lu channels\n",
+> >> +	dev_info(&pdev->dev, "GPC DMA driver registered %lu channels\n",
+> >>  		 hweight_long(tdma->chan_mask));
+> >>
+> >>  	return 0;
+> >> +
+> >> +err_unregister:
+> >> +	dma_async_device_unregister(&tdma->dma_dev);
+> >
+> > Can you use dmaenginem_async_device_register() to simple error path?
+> >
+> > Frank
 >
->  &iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hog>;
-> +
-> +	pinctrl_eqos: eqosgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x2
-> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x2
-> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x90
-> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x90
-> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x90
-> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x90
-> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
-> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x90
-> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x16
-> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x16
-> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x16
-> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x16
-> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x16
-> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
-> +		>;
-> +	};
-> +
-> +	pinctrl_eqos_phy: eqosphygrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI2_RXC__GPIO4_IO22				0x10
-> +		>;
-> +	};
-> +
-> +	pinctrl_fec: fecgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x2
-> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO		0x2
-> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x90
-> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x90
-> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x90
-> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x90
-> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x90
-> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x90
-> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x16
-> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x16
-> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x16
-> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x16
-> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x16
-> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x16
-> +		>;
-> +	};
-> +
-> +	pinctrl_fec_phy: fecphygrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02		0x10
-> +		>;
-> +	};
-> +
-> +	pinctrl_hdmi: hdmigrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x10
-> +		>;
-> +	};
-> +
-> +	pinctrl_hog: hoggrp {
-> +		fsl,pins = <
-> +			/* Pin might be required by multiple drivers
-> +			 * (e. g. HDMI Audio and HDMI TX)
-> +			 */
-> +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x40000010
-> +		>;
-> +	};
-> +
->  	pinctrl_i2c1: i2c1grp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL	0x400001c2
-> @@ -289,6 +617,12 @@ MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x146
->  		>;
->  	};
+> Agree. I will update it to use this function instead.
 >
-> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
-> +		>;
-> +	};
-> +
->  	pinctrl_uart2: uart2grp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
-> @@ -305,6 +639,81 @@ MX8MP_IOMUXC_ECSPI1_MISO__UART3_DCE_CTS	0x140
->  		>;
->  	};
+> >> +	return ret;
+> >>  }
+> >>
+> >>  static void tegra_dma_remove(struct platform_device *pdev)
+> >> --
 >
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x190
-> +			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d0
-> +			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d0
-> +			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d0
-> +			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d0
-> +			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x194
-> +			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d4
-> +			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d4
-> +			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d4
-> +			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d4
-> +			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x196
-> +			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d6
-> +			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d6
-> +			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d6
-> +			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d6
-> +			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d6
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d0
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x194
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d4
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d4
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT 0xc0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x196
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d6
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d6
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT 0xc0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
-> +		>;
-> +	};
-> +
->  	pinctrl_usdhc3: usdhc3grp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
->
-> ---
-> base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-> change-id: 20260224-fpf-imx8mp-frdm-402c4df06302
->
-> Best regards,
-> --
-> Fabian Pfitzner <f.pfitzner@pengutronix.de>
->
+> Regards,
+> Akhil
 
