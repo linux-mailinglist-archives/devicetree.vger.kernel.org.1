@@ -1,149 +1,264 @@
-Return-Path: <devicetree+bounces-267998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267999-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cO1XMQrdnWmuSQQAu9opvQ
-	(envelope-from <devicetree+bounces-267998-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:16:58 +0100
+	id wFYCLUfenWmuSQQAu9opvQ
+	(envelope-from <devicetree+bounces-267999-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:22:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 119D318A694
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:16:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1F818A7DD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:22:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC6B530A0534
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 17:13:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BF7DF305F337
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 17:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6498A3A9639;
-	Tue, 24 Feb 2026 17:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31433803D1;
+	Tue, 24 Feb 2026 17:20:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aTWq6Tyh"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="izeIcZpv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FCD63A962E;
-	Tue, 24 Feb 2026 17:13:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDEEF27FB37;
+	Tue, 24 Feb 2026 17:20:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771953224; cv=none; b=GfjyVTtDdO8tSH/aXIne0m29VsfRVFh6DGEnQb9r1JwVI+5S+QpWhO9wmKp9lbrEhdg9nK5VMNIEhp0HZzVKSK6t0Gx3yVjzzvt0dUQb8xE2NAo36TkB8G9QFNW2vBp/VlmlT3Y1DoexpbdomhFGChwH7RZYNPlIJd93TBb7KmU=
+	t=1771953632; cv=none; b=JmdbD4F34gDUO2d7C0Zr2NL/FJNQBg+H3P9yZYp9QNrbsFN19L2i0ay3JQXtD09MsujcdaW9eoTpwEFDr/PwuQUcHn9+J21pPfGjW8mUn/l0NXy+0XnSpDK8rWvqAvNItca8cw0d2+PKHZfXViREFeKvc96Zm2EO79sYEPKnCRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771953224; c=relaxed/simple;
-	bh=miD05eK+0103K0nqV0VgvBQv0vF5WAuglrfoXelY66M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k1EuFrTf16gb8S6gDTbtdMozITJmvgOtyZUYu3pu5h9QGiXd/b6PRdG0TiIYMtUHlpnF6YVHDVs5h4hhtnE8ojc+4boLLRVCidGDJ+epnuVRYjFrQS6nnVw7hv/6f9UpQy4Bwj6izIdgVL+TWS+CBSrrw2oMVZd27yxltgeES34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aTWq6Tyh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CE31C116D0;
-	Tue, 24 Feb 2026 17:13:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771953223;
-	bh=miD05eK+0103K0nqV0VgvBQv0vF5WAuglrfoXelY66M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aTWq6TyhfT8xVGZ9JC9piET/yP5vfFHniNb9mu0CM8jwvVmrW+IOK/yHJJU4MYocG
-	 LuKN/56l0sWVn3L3SDAlKQ41JhoJ3P81g4G4FMWPch2FhI/W9EkJts+MSxjln1tPdn
-	 tUHcqdwJrdE61Uaj++we57CDoWXyyiJVyudtn432cMQJA18y0WbmmBMlijq6kHxFR2
-	 b2RpoUlW0G9CP10SZ8Ti6hRjp5Up1nnlOQz8fuXA+NBz/0sdL9bMI+hENaJzD4f1U/
-	 e+3UxUgrX9mbkGtF3kzMWwpoYVNCAys/HSI5rPQVuPZ2IPCvqTCosiOtY6zYoR1RwB
-	 35zDU8obSvw+g==
-Date: Tue, 24 Feb 2026 17:13:36 +0000
-From: Mark Brown <broonie@kernel.org>
-To: amitsd@google.com
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Lee Jones <lee@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Subject: Re: [PATCH v7 4/6] lib/linear_ranges: Add
- linear_range_get_selector_high_array
-Message-ID: <57891cf1-a7e2-42ac-98e4-25fd548ee765@sirena.org.uk>
-References: <20260218-max77759-charger-v7-0-e8d907ce69c5@google.com>
- <20260218-max77759-charger-v7-4-e8d907ce69c5@google.com>
+	s=arc-20240116; t=1771953632; c=relaxed/simple;
+	bh=DUVNcM4ZpiXdZoj7Fqc0w7Z8CDbVSGq7Er36MdyuXgc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=LcQCdgnhcEoU7ZOdIMAfPP9OXZRYZSA9YmwdkwT3ftwsfIj9xoBRH95vGQcF5DLKxQyEQH0CLJbu3kKj+LmByO7QJ530cHLR/JihqVA/74mCOCR8OB1YF6l7VdvTBQecqsOG7IcTeZ+Ev2LS4cacYN9/w9erv65F8JNNlEE9goo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=izeIcZpv; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 83BE7C143E4;
+	Tue, 24 Feb 2026 17:20:42 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id CD97C5FD9D;
+	Tue, 24 Feb 2026 17:20:27 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1B5B6103691E0;
+	Tue, 24 Feb 2026 18:20:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1771953626; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=yExKHNVxFpAWclIgqpsx9aPnPMbndULosVf0raAPb3E=;
+	b=izeIcZpv+zsH5ELNbOIzYlKCtln4IHs8bL9rxTlwSelk/V31o5uggfMUVFBKn/HZkqFQR1
+	B3EjMM2VOo2QAZCf/5hybFnRzacICR/WOCQrqVciux9Lq2xZgTHaatWPJcjfaQNE0sgObT
+	nIsEl/tqis/DAsnbs/ghu2yJMekY4WC3aTFFIXCkF4T+ygxoCDG2Re9mFpwqQjJxU20qbw
+	zuulRut0W17M1O+/7iOa8dWt/Mpc0IZnQfwkZsHLddTE7c5R4h2tdH2iJRlNwMhiF/TCkc
+	l8wXwmQ52SmerOLUpdQELx1AQ/Rac3tknpWBCfrgvCjLbb+O0rJionLKZUXTag==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ajqSXpJyr7gIDnad"
-Content-Disposition: inline
-In-Reply-To: <20260218-max77759-charger-v7-4-e8d907ce69c5@google.com>
-X-Cookie: An apple a day makes 365 apples a year.
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 24 Feb 2026 18:20:21 +0100
+Message-Id: <DGND4VXM9X0N.2CP1VBD8E128M@bootlin.com>
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul" <vkoul@kernel.org>,
+ "Kishon Vijay Abraham I" <kishon@kernel.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Philipp
+ Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
+ <tsbogend@alpha.franken.de>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <linux-clk@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
+ <benoit.monin@bootlin.com>, "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>, "Luca Ceresoli"
+ <luca.ceresoli@bootlin.com>
+To: "Vladimir Oltean" <olteanv@gmail.com>, =?utf-8?q?Th=C3=A9o_Lebrun?=
+ <theo.lebrun@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v6 3/8] phy: Add driver for EyeQ5 Ethernet PHY wrapper
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260127-macb-phy-v6-0-cdd840588188@bootlin.com>
+ <20260127-macb-phy-v6-3-cdd840588188@bootlin.com>
+ <20260210193516.temrg46yozxma7xb@skbuf>
+In-Reply-To: <20260210193516.temrg46yozxma7xb@skbuf>
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267998-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-267999-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,bootlin.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,linuxfoundation.org,google.com,linux.intel.com,samsung.com,gmail.com,linux-foundation.org,vger.kernel.org,lists.infradead.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[theo.lebrun@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 119D318A694
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6D1F818A7DD
 X-Rspamd-Action: no action
 
+Hello Vladimir,
 
---ajqSXpJyr7gIDnad
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue Feb 10, 2026 at 8:35 PM CET, Vladimir Oltean wrote:
+> On Tue, Jan 27, 2026 at 06:09:31PM +0100, Th=C3=A9o Lebrun wrote:
+>> +static int eq5_phy_init(struct phy *phy)
+>> +{
+>> +	struct eq5_phy_inst *inst =3D phy_get_drvdata(phy);
+>> +	struct eq5_phy_private *priv =3D inst->priv;
+>> +	struct device *dev =3D priv->dev;
+>> +	u32 reg;
+>> +
+>> +	dev_dbg(dev, "phy_init(inst=3D%td)\n", inst - priv->phys);
+>
+> Nitpick: can you please remove the debugging prints and maybe add some
+> trace points to the PHY core if you feel strongly about having some
+> introspection?
 
-On Wed, Feb 18, 2026 at 09:59:12PM +0000, Amit Sunil Dhamne via B4 Relay wr=
-ote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
->=20
-> Add a helper function to find the selector for a given value in a linear
-> range array. The selector should be such that the value it represents
-> should be higher or equal to the given value.
+Ack!
 
-Acked-by: Mark Brown <broonie@kernel.org>
+>> +
+>> +	writel(0, inst->gp);
+>> +	writel(0, inst->sgmii);
+>> +
+>> +	udelay(5);
+>
+> Could you please add a macro or comment hinting at the origin of the
+> magic number 5 here? You could also place these 3 lines in a common
+> helper, also called from eq5_phy_exit(), to avoid minor code
+> duplication.
 
---ajqSXpJyr7gIDnad
-Content-Type: application/pgp-signature; name="signature.asc"
+ACK, something named `eq5_phy_reinit()`.
 
------BEGIN PGP SIGNATURE-----
+I don't have precise explanation for the 5=C2=B5s value; I only know it is
+time to let the PHY settle before further register config writes.
+Is this enough?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmd3D8ACgkQJNaLcl1U
-h9BxqQf8DP6wjyYdfOSBrB5Xn9eXDFFW1jGwmmgn7p3tf87vwRhXtNxKhIkQmKV4
-4tQDBl6ZEV8G8obl3pRNVamOHkMoWofw7EG5hpLjz0k/lGLAWvDUg6SeZk6BsUd3
-04xpHoM4SxTGD01C8nt6yEjLplF0OkYS03haPQ6ldgh4hc0fW5/qlaDX8WSvvYzH
-vetuB1RA8iTews7LT8/YhArFzkJqhWyG12rKXgWXnPz2Joz0k2k279nlGs+lRVLV
-g0V5ali3JRtXREfFXSL28UuHCAAmBrYPR4KEF4paAdV7h8Gt3UB9KuU/Gi4HjRkV
-chKB8nn1mKHLgOU/N0yXycpQ/fr25w==
-=blQU
------END PGP SIGNATURE-----
+   udelay(5); /* settling time */
 
---ajqSXpJyr7gIDnad--
+>> +
+>> +	reg =3D readl(inst->gp) | EQ5_GP_TX_SWRST_DIS | EQ5_GP_TX_M_CLKE |
+>
+> When you write 0 to inst->gp and then read it back, do you expect to
+> (a) get back 0 or
+> (b) are some fields non-resetting?
+>
+> I see both as inconsistent, since if (a), you can remove the
+> readl(inst->gp) and expect the same result. And if (b), it also
+> shouldn't matter if you write zeroes a second time, if it was fine the
+> first time?
+>
+> Shortly said, is readl(inst->gp) really needed?
+
+Some fields are non-resetting (BIT 30).
+Will drop. I was trying to play it safe for no good reason.
+
+>
+>> +	      EQ5_GP_SYS_SWRST_DIS | EQ5_GP_SYS_M_CLKE |
+>> +	      FIELD_PREP(EQ5_GP_RGMII_DRV, 0x9);
+>
+> Quick sanity check on your proposal to use #phy-cells =3D <1>. This is no=
+t
+> a request to change anything.
+>
+> What if you need to customize the RGMII drive strength (or some other
+> setting, maybe SGMII polarity if that is available) per lane, for a
+> particular board? How would you do that if each PHY does not have its
+> own OF node?
+
+I have no knowledge of what that 0x9 stands for, I didn't see the point
+exposing it to devicetree. We could plan for the future and add a cell
+or create subnodes, but here I kept it simple stupid. Is it OK?
+
+>> +	writel(reg, inst->gp);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int eq5_phy_exit(struct phy *phy)
+>> +{
+>> +	struct eq5_phy_inst *inst =3D phy_get_drvdata(phy);
+>> +	struct eq5_phy_private *priv =3D inst->priv;
+>> +	struct device *dev =3D priv->dev;
+>> +
+>> +	dev_dbg(dev, "phy_exit(inst=3D%td)\n", inst - priv->phys);
+>> +
+>> +	writel(0, inst->gp);
+>> +	writel(0, inst->sgmii);
+>> +	udelay(5);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int eq5_phy_set_mode(struct phy *phy, enum phy_mode mode, int su=
+bmode)
+>> +{
+>> +	struct eq5_phy_inst *inst =3D phy_get_drvdata(phy);
+>> +	struct eq5_phy_private *priv =3D inst->priv;
+>> +	struct device *dev =3D priv->dev;
+>> +
+>> +	dev_dbg(dev, "phy_set_mode(inst=3D%td, mode=3D%d, submode=3D%d)\n",
+>> +		inst - priv->phys, mode, submode);
+>> +
+>> +	if (mode !=3D PHY_MODE_ETHERNET)
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	if (!phy_interface_mode_is_rgmii(submode) &&
+>> +	    submode !=3D PHY_INTERFACE_MODE_SGMII)
+>> +		return -EOPNOTSUPP;
+>
+> Both PHYs are equal in capabilities, and support both RGMII and SGMII,
+> correct? I see the driver is implemented as if they were, but it doesn't
+> hurt to ask.
+
+Datasheet indicates 0 can do SGMII/RGMII and 1 can do only RGMII.
+Did you imply that the driver code should reject SGMII on PHY 1
+if it ever gets asked for?
+
+>> +
+>> +	inst->phy_interface =3D submode;
+>
+> Short story: don't rely on the phy_set_mode_ext() -> phy_power_on() order=
+.
+> Implement the driver so that it works the other way around too.
+>
+> Long story:
+> https://lore.kernel.org/netdev/aXzFH09AeIRawCwU@shell.armlinux.org.uk/
+
+I wouldn't mind, but what should phy_power_on() do if no submode has
+been provided through phy_set_mode_ext() yet? Guess one? Fail?
+
+Also our PHY will need to be reset to change its mode if we do
+power_on() followed by set_mode(), which in practice is never something
+we want. Maybe there is a flag to indicate that we require a submode to
+power on?
+
+Thanks for the extensive review Vladimir,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
