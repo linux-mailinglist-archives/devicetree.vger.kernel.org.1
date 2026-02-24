@@ -1,175 +1,151 @@
-Return-Path: <devicetree+bounces-267951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267952-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uKYXJffCnWmsRwQAu9opvQ
-	(envelope-from <devicetree+bounces-267951-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:25:43 +0100
+	id 2O4ZEA3DnWmsRwQAu9opvQ
+	(envelope-from <devicetree+bounces-267952-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:26:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F3D188F64
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:25:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3242188F9E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:26:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9CB7D3027E1A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:25:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EA170301F687
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E923A1E71;
-	Tue, 24 Feb 2026 15:25:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD853A1E8B;
+	Tue, 24 Feb 2026 15:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aN/i+j6a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAA236405F;
-	Tue, 24 Feb 2026 15:25:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7481F3A1E71
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:25:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771946740; cv=none; b=COxJB89gsIq6+szC+G6CNJXwmPM0aYwsCl08IxIm/giCSa9pY3R4kVvrHLeYucDvD+tlIE+RoDcdtFiKC6byzTDXSchvrYr3c+zLazcReKphggCICFhF1but7VMbXWtHMnyyLkuikouYbih9QR+S57T2fAohrViCiU0ZgGj9HsY=
+	t=1771946759; cv=none; b=RimmE3l0kojz0pDuOZ3/D3RDQFvaZyfsHOWsEobAltOPKPXNpIIC3sivaCh2K9QzfXG1F+neUlS2qOL7T4NMetv+w/UYK2F2PyKXNgJFjtvXitWsV2pnkIkwt+YFrHmkWuNB1JAC1tj0t0Ac81yIN4bG6PIDZCLgGl2ACzj7yNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771946740; c=relaxed/simple;
-	bh=6BF5HaruXzs6cSNgyt8FXFsH8ahTogOeLQmutq2pJzk=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KNxpIlU53VtVilstJBOx2+arB79aENW5fc2eE3GtXypYhTe9DAZx4EjgKxiNkY7/Mr17SlF5+ged63cm0dHSSD7wfsAlXnegXmr5xP6AhLq+P2mn/v1JCCq0ScG/CWJ4MpS0hkAVsK2GHCUCsWIv7sd3jkStiOuQGP/NZpor9iE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.224.107])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4fL1k03LybzHnHWN;
-	Tue, 24 Feb 2026 23:24:56 +0800 (CST)
-Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
-	by mail.maildlp.com (Postfix) with ESMTPS id 9A2B740570;
-	Tue, 24 Feb 2026 23:25:36 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml500005.china.huawei.com
- (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 24 Feb
- 2026 15:25:35 +0000
-Date: Tue, 24 Feb 2026 15:25:34 +0000
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Ahmed Tiba <ahmed.tiba@arm.com>
-CC: <devicetree@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
-	<Dmitry.Lamerov@arm.com>, <catalin.marinas@arm.com>, <bp@alien8.de>,
-	<robh@kernel.org>, <rafael@kernel.org>, <will@kernel.org>,
-	<conor@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-doc@vger.kernel.org>, <krzk+dt@kernel.org>, <Michael.Zhao2@arm.com>,
-	<tony.luck@intel.com>
-Subject: Re: [PATCH v2 02/11] ACPI: APEI: GHES: add ghes_cper.o stub
-Message-ID: <20260224152534.000040b6@huawei.com>
-In-Reply-To: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-2-347fa2d7351b@arm.com>
-References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
-	<20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-2-347fa2d7351b@arm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1771946759; c=relaxed/simple;
+	bh=QnbAFPGFthzvasBmUjYWWjZFAYjww/ilHVXgXGc5JRM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GRQOTIIZyvlu3s5M64Q/+an9sGEI31S0VAyF03dSeL60v169f5JpHbXAWGmphspFAOqhaNUvRVfWEkdB2gFVKtu57SO6Zpy5XNkj0QeTQ9HwRAedopCRLriHuvwMm1FGscTstDYwUMJhVS3HX7V9qXdJXFsX+qqC2NwCMZZqoFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aN/i+j6a; arc=none smtp.client-ip=74.125.82.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f52.google.com with SMTP id a92af1059eb24-1277e072e2dso150440c88.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 07:25:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771946758; x=1772551558; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vrV9BhMxEEs17TmWJHa8CNzBUwr0TwzU8O3qC1THpDI=;
+        b=aN/i+j6a5JD5cyFWNNDYDTYXIAOZOhLz+ChjE/yEnqjRkzrNuNwkcbUNECkqJBg1pE
+         DFTXvgJkiTnXeZs6X3rsZ9C2BHAbOU567iPIiPwpmFUzp745ZQTOaiq0cSlRYthDDE9c
+         Cxsn8h+8onogw4XCMPNJLQJcCiPLBWbnZVobUlOdIx0gm5xIEJUOlthbEWG1AV1IpQan
+         1xWpF4GOyaC0cJ42rgsNE37sGPd66fqpT+AACgpPEl5yezMuhtV5vxVqV/Zo8088lF9C
+         A0d/3gUDI4jTs8s+q4RwNZTS6FP+rUHkE6Aa44QKSOTGANwBOAH5EgyhFfctmzkHKXKj
+         86ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771946758; x=1772551558;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vrV9BhMxEEs17TmWJHa8CNzBUwr0TwzU8O3qC1THpDI=;
+        b=ew5gzeZdzLHIsv6xV6U5FCvYT9cr4EiPNs/9anqh2JIptFOL+osaItYgmgMOCWQkBe
+         fbynWUiBQEPFrXZ6gjWlz5KVDB/v+zz4iJ2cBo/DMXxpxJg1GFwI6TQGgBVptpDljZ/K
+         Op0LLspaLr9b0FWeaBcqTDsGCPP4nxzSXGr4YSW91t2UG9n7qPt8/meg6a48+dzlbEeb
+         D7nW0CvTwRTfBxBxgiTaoi7Yt374aBLx/TX0y8K6pAM8/rFCaN5TdagKXGX7QkhAxiO/
+         EdNt20YJN7D8/2BN+nM0gGA4aCKt/3TGAgLpC5ukdPYcBNgEYSuTJ3EcV6p4MCJwb2dc
+         ryRw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbfFO0S+AjyB+YotooLetbBThmFCOzZYaIyxpVNMSOU5p6dXhVNuk+hohPaZJSQ7fJqSaWQoOw/aYV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkFG006n2euCXr9IV368973QCrGQb8eyNr5GUIV062iy8dh2/X
+	5uYsyF+Da2mPWuySDGqqobGOlHUh5iMjL9ekmlKlAD7cR6UKXWb7qkbE
+X-Gm-Gg: AZuq6aL4UXvD7x3L/LibsDqbiGskqPZu7UwaQCo8sFw4wXjhBgjOoblksJx7aIQmogn
+	cJtlIqWcrBW5oVR5Tt7JUqKz74Z2hYU6mTPYT1n+EUu5VUp18waN5DECwdJT2JmFLav5zdiU2l1
+	Ul5EXRL6k5rY2BpBMNYbhTySLiB3RFvPIpd+Mx5/nBAEJW31eKToPxvGFZhH/ho5GmUqGUoVjyo
+	TjovLSgwLvfTTA7v2dhsulYNevigQP6VIQANqhek0Fyuvfpwg7LpAZK+i3+f/PjGR8IDPhvX3oK
+	hRCxjMn6OmpbvijpjW02yemr5m04N4qdO7Egk8lxHALkRSQaUl6sJaIo6AixD5a4reLPdjEeE6b
+	I/bynFMxnOkIGkIJYvbcJ+Z2RhCdcGJkf3A0vuwKO5XgBGp6tHKhx8RRO0ZcxQzN9tfvSKVGq6G
+	tYImrGOQBHluKywmuaGtqOMflDsg+g2qSC41De
+X-Received: by 2002:a05:7022:421:b0:11b:ca88:c4f1 with SMTP id a92af1059eb24-1277f5606afmr123769c88.20.1771946757470;
+        Tue, 24 Feb 2026 07:25:57 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1276af7ae99sm10658338c88.10.2026.02.24.07.25.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Feb 2026 07:25:56 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Tue, 24 Feb 2026 07:25:55 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Michael Walle <mwalle@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 3/8] Revert "hwmon: add SMARC-sAM67 support"
+Message-ID: <05db17b0-d9f0-478d-bbe6-1efdd9802abc@roeck-us.net>
+References: <20260223100459.844967-1-mwalle@kernel.org>
+ <20260223100459.844967-4-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
- dubpeml500005.china.huawei.com (7.214.145.207)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260223100459.844967-4-mwalle@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-267951-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267952-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.987];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,arm.com:email,huawei.com:mid]
-X-Rspamd-Queue-Id: 36F3D188F64
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D3242188F9E
 X-Rspamd-Action: no action
 
-On Fri, 20 Feb 2026 13:42:20 +0000
-Ahmed Tiba <ahmed.tiba@arm.com> wrote:
-
-> Introduce a dedicated ghes_cper translation unit so that follow-on commits
-> can move helpers out of ghes.c without touching the build logic twice.
-> This keeps the object in the tree while remaining functionally identical.
-
-I'd probably do this with the first move patch not as a separate patch.
-That would resolve the question of headers etc below.
-
+On Mon, Feb 23, 2026 at 11:04:48AM +0100, Michael Walle wrote:
+> This reverts commit 443b39c82c322c9f3c38bea0389fe927ba00b3b4.
 > 
-> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
-> ---
->  drivers/acpi/apei/Makefile    |  2 +-
->  drivers/acpi/apei/ghes_cper.c | 26 ++++++++++++++++++++++++++
->  2 files changed, 27 insertions(+), 1 deletion(-)
+> I was just informed that this product is discontinued (without being
+> ever released to the market). Pull the plug and let's not waste any more
+> maintainers time.
 > 
-> diff --git a/drivers/acpi/apei/Makefile b/drivers/acpi/apei/Makefile
-> index 1a0b85923cd4..b3774af70883 100644
-> --- a/drivers/acpi/apei/Makefile
-> +++ b/drivers/acpi/apei/Makefile
-> @@ -1,6 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  obj-$(CONFIG_ACPI_APEI)		+= apei.o
-> -obj-$(CONFIG_ACPI_APEI_GHES)	+= ghes.o
-> +obj-$(CONFIG_ACPI_APEI_GHES)	+= ghes.o ghes_cper.o
->  # clang versions prior to 18 may blow out the stack with KASAN
->  ifeq ($(CONFIG_COMPILE_TEST)_$(CONFIG_CC_IS_CLANG)_$(call clang-min-version, 180000),y_y_)
->  KASAN_SANITIZE_ghes.o := n
-> diff --git a/drivers/acpi/apei/ghes_cper.c b/drivers/acpi/apei/ghes_cper.c
-> new file mode 100644
-> index 000000000000..63047322a3d9
-> --- /dev/null
-> +++ b/drivers/acpi/apei/ghes_cper.c
-> @@ -0,0 +1,26 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + *
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
 
-As below.
+Applied. Please let me know if there are any objections.
 
-> + * APEI GHES CPER helper translation unit - staging file for helper moves
-> + *
-> + * Copyright (C) 2026 ARM Ltd.
-
-As before. If there isn't significant new content copyright doesn't make sense yet.
-
-> + * Author: Ahmed Tiba <ahmed.tiba@arm.com>
-> + * Based on ACPI APEI GHES driver.
-> + *
-
-No obvious benefit in this blank line so I'd drop it.
-
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mm.h>
-> +#include <linux/ratelimit.h>
-> +#include <linux/slab.h>
-Build includes up as they become relevant. That way we can see whether
-they are needed or not.  Right now none of them are..
-
-> +
-> +#include <acpi/apei.h>
-> +
-> +#include <asm/fixmap.h>
-> +#include <asm/tlbflush.h>
-> +
-> +#include "apei-internal.h"
-> +
-> +/* Helper bodies will be moved here in follow-up commits. */
-> 
-
+Guenter
 
