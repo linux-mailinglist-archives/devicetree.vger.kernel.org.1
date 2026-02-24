@@ -1,430 +1,206 @@
-Return-Path: <devicetree+bounces-267697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267699-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMEPLHEXnWlTMwQAu9opvQ
-	(envelope-from <devicetree+bounces-267697-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 04:13:53 +0100
+	id EFVbNbgYnWlTMwQAu9opvQ
+	(envelope-from <devicetree+bounces-267699-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 04:19:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B17E18152A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 04:13:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 560201815B9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 04:19:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B330C3027075
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 03:13:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0A6543051843
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 03:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599DB289E13;
-	Tue, 24 Feb 2026 03:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEDA6296BDC;
+	Tue, 24 Feb 2026 03:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nElXYjXK";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fBIoTmCA"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="kOWA5HPK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m49217.qiye.163.com (mail-m49217.qiye.163.com [45.254.49.217])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6C423ABB9
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 03:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BF023815D
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 03:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.217
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771902830; cv=none; b=XgtZToSoxgvr8AOGw3civFpn6N9L2oXZNKFrqwFUJc7cTq7TB6P5Gn3Yh1JGoeQYL7XT41nJk8GFqS9q1c9Ere6hpdvjnojq2ayOSBHt4VcV1ChVlHJj1pVI3kl/skVYkoct3FZ6e0IBAR6dmu24oEAhw41Iu1d78PO4sZn9TLQ=
+	t=1771903156; cv=none; b=gt5OkvDhY65LuehE2ijbvS/+FWcvJRE2qEj5/OYw/HOiyzUa6jK8XU6ApwHTnOBHEVJjrlFDQlYGNTn1VOJQd5W1oPfENCi1lX4ne58uLAy9F1aD3BogYeNFnjKMsMxuktElAJeWUZ3f2Ki6R2pm0OV0p3xSJvTSsO7O4M54EXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771902830; c=relaxed/simple;
-	bh=LcV5Lc4mojMXAZUNqSsUxVXfwsDweWbE3sIONjorS24=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VFggovLhbA/ql0VxfnftowRQY0H4wEX5zsj+PguFiAC0HMgTi44RViJOIkfs2+KEh9K2rWQ58TSfdqVjYKTzuL4914cLAbh+I1zwwOQ4I3eVbP8hQddIDINOu4412Cl3fK4EVz4pUyAFl/T+QZMwYakIktdZGXns2+PFnY0x+tU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nElXYjXK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fBIoTmCA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61O2lnFw2927446
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 03:13:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=oHnHqvAlVSl5cCBuKPP78rBW
-	oru4kbEhnt7agre2pD0=; b=nElXYjXKtdusdRYVb8qq63RSdCRUKbcBS8YYYXIf
-	7ENQ766uGpXtuv6MfXkaNL3niZtoIPPtC6w358jV1q5Du7z6T8X90s6DR3xgYqK6
-	uzuGG2tpWI6efqF0qCqEBX8rxtMGXycD++H8OM36wIWIh+p3YgTGz5Ga4jWbcJTZ
-	ZuDzlPNcN2aV33WVydtxaoIg+K+X1Cp2Ikd/PcIbUaXZxijsJTndKM2EctPqpylS
-	O8Ed9BUAq1wo4d3u3PDk+f/w7gnbJiXHkjPLAxMMY3R+8iG0ybVFYINP3ZbmMUGr
-	jQlnU+pzz//yp978bQ61Pp97Lody0jobYwPzQ7EHt/IcBA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cgte8sm0b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 03:13:47 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c711251ac5so4008468385a.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Feb 2026 19:13:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1771902827; x=1772507627; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oHnHqvAlVSl5cCBuKPP78rBWoru4kbEhnt7agre2pD0=;
-        b=fBIoTmCAD9UjSPVwmzG5SZFmDDDn8IWGoEq8oBbdV+BGCgVssE5In+9Ou3ACpIbFja
-         Ip0a8Fv5/ZW7gs60vwCzzSxaWyLrxKY+NksGO8xtGag23bW7HDMZPXrLQIE6/021wu2V
-         amB7hKvP+vBw+2a9P2LTkqVlFRmrQgt6hC4Eb9C7Ypc+zBJqVcSPoj2F9uNRDgMGccwD
-         rFG8pWVhjVRSt3DNDqrxFU0gYSV4TD8Y/AFCYc4FirB58bBf5bc9BKYakHFbQKnVvAjo
-         63sALjm0N9K7BMmUxFgYK1w5sdMqZEKKrej+bk4uUUu6XGPO2FBBn5125SprGaq1Mrrg
-         4K6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771902827; x=1772507627;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oHnHqvAlVSl5cCBuKPP78rBWoru4kbEhnt7agre2pD0=;
-        b=aUrevXweNO25sUPWlRr1fRyu1t4Ll1ekcXBmjyzxAZuyTue4qno1kwkQow41CF6dkA
-         6wpzN6rYfHWGjLSRMpBNhpUSMlORDF1ncm1ZHsTIdj6FxzB2gjh3T2AVPzW2vBDHjtEt
-         IYokcSNFus3geZsP9LeG7WqpXr64zq0lj4Md0XJXRHICxDgsryXUhnRNxtwV2+KgVGjq
-         nnQ55RjmCv4fvrwWO80VSmg0Ag9ZgQ5oz80oxSTjBfA1mvPXwQaJtC/pUWPR0elnqvtw
-         jv6xD085+6eB1lTkkEyT7tirq3fMz5eK2oI9Pfa6/Ya3cmm8qVErReMDNV+aDiS8LZGg
-         Rb6A==
-X-Forwarded-Encrypted: i=1; AJvYcCVfL/r8auUEUuxEyULXzi0PO9nD5VtkyJP8NxGQRk6VcMdHxR0gwuPjhXL9XVldPpfGlUGQLXi9B6v3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1PRwaHliNK4Bsi1JhTqrQRMhbJbibAvVHI5SG+LHzd+ckWe2P
-	nyAucCA/H6Qs8eNWlEpwMMioY41eEXyPzHvx11qgS4StuX2VpioghgJidnUBDS+N7woz1/Zu3CT
-	7rPHPYw8e05gykbQkOy9fFGbz+e3h8sDuDgpoEpDNFZFdg5mzImKGfWPj2Wi9HjF9
-X-Gm-Gg: AZuq6aKryZMgu97pt89/+bCufj6j58s+EvcbeNcx6pBq4sVhbhnz96cK7HAhdf61Tif
-	jqXOThVJdBTWZBO6m6npMJq5jx2do4Nw5mjicW4vS1uXvvbn6AfGKgcI+reiTP5hesijMC4QTnm
-	pQGmkm+Eso3y0ySeSTQEBR9LaEoXuPvwIADQvydyLIrBvkC8SYaH7qV2uSgNs4ffXgkt6d2k+lC
-	srMWHqxWd/Pd0v6QrG27j+SFbt2zKUq2NcdqPOJjGjNTaXMGZDtY4LaoixBiVb3FjQWzgJq6AwR
-	e6iHxhIBVpmrl3aUHSRx3tPe8qg5xpUUMxAiq+zpZj8bFh371xaxJp9H+/x1goPVgL18ObwNxbj
-	5XgL3kJg9Dvr2wewbW38xAbFOtN3ygcW5oNTdCCPR6MnTo5wLY7fxB6ys5RN9K4l2zrAKaB7cjL
-	RwwMNIplyZoOyuvlXwKqfInEuelHCwUf+5AGQ=
-X-Received: by 2002:a05:620a:199c:b0:8c6:a723:415a with SMTP id af79cd13be357-8cb8c9cdc40mr1386784585a.11.1771902826661;
-        Mon, 23 Feb 2026 19:13:46 -0800 (PST)
-X-Received: by 2002:a05:620a:199c:b0:8c6:a723:415a with SMTP id af79cd13be357-8cb8c9cdc40mr1386782685a.11.1771902826154;
-        Mon, 23 Feb 2026 19:13:46 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a0eeb0b930sm1935855e87.5.2026.02.23.19.13.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Feb 2026 19:13:45 -0800 (PST)
-Date: Tue, 24 Feb 2026 05:13:43 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: adamp@posteo.de
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8916-wiko-chuppito: add
- initial devicetree
-Message-ID: <smephvi2ldk2n22ylbvkfjnkitynv4i36zrn4rhyay6ixeykn6@qp27umfdr4xm>
-References: <20260221-wiko-chuppito-v2-0-6336b1b12389@posteo.de>
- <20260221-wiko-chuppito-v2-3-6336b1b12389@posteo.de>
+	s=arc-20240116; t=1771903156; c=relaxed/simple;
+	bh=FoyLQEkuqQW+ez4uWUvpHX1deK3T4NlzkXPc2oQMKuc=;
+	h=Cc:Subject:To:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=Q++b0GvlBqR64iEJJFYZzPscsdhRWcVkKnxnYjn9IJYjV32+ku2WktTtqNYrMGoAuJVWQeCHNLt4I+9OUxPgF8ZU+/oVFjKPgjCixJIY/JRlrfN3aU2kWh5u/F5lEjpniC0O2YvFq5HE45fJsRwRdBG4oFXBrqMWxP0MsGyRQsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=kOWA5HPK; arc=none smtp.client-ip=45.254.49.217
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 34bf77547;
+	Tue, 24 Feb 2026 11:14:01 +0800 (GMT+08:00)
+Cc: shawn.lin@rock-chips.com, Heiko Stuebner <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ "finley.xiao" <finley.xiao@rock-chips.com>
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add node name for
+ RK3588_PD_RKVDEC0/1 and RK3588_PD_VENC0/1
+To: Chaoyi Chen <kernel@airkyi.com>
+References: <1770950113-19802-1-git-send-email-shawn.lin@rock-chips.com>
+ <B5000B8F1001C1D8+040b217f-8ee1-4f96-95ec-e44d140b589d@airkyi.com>
+ <9cc9a3c5-55f0-32f6-f166-acfb3a34f0a3@rock-chips.com>
+ <C28FA037F24F3E74+97535c93-cc16-4bd5-b436-db7cdc0bb580@airkyi.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+Message-ID: <54ba06df-b9eb-f4de-0254-afc3b8fcb0ab@rock-chips.com>
+Date: Tue, 24 Feb 2026 11:14:01 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260221-wiko-chuppito-v2-3-6336b1b12389@posteo.de>
-X-Proofpoint-ORIG-GUID: vpFPKU_YFPrKEH-3v3r5idKxmRwPRKmV
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI0MDAyNSBTYWx0ZWRfXw8cVfMV72i0x
- 9BjWxWBWlyxf1kATO0Q7887QMXAW2W1PzhVuYFuLVPgEQMZm47a3Sn/GWMle4ayAB9+5uV5dSaZ
- YiR2hUJseDrBI05prv0EKmCROFde5VzWEhim6D/NnpgnLIybcRzg0VJNqAbCYrXMyogb/ayPwGS
- wEhAf1cZCs0kOnswq74XIIBc9CBwcSnvdZsvk36vLF+tzPDKdXREnKrvs4WEYetSo9Jkmt+MtX5
- B+Bp2DExnyDZ05UUiPQE/l7YUPUElrJ5Z9JK0p/YTntduy6GF1Bmd/3EysCXQXzAJHdXpVF69ZY
- wgQPhFuYg9zXi4ZGGVAq4P2Nlc+6A7EvDUjPG5F18NgAltiPPOItes7H6IjMMYBt6ho7I2dbo3v
- 66XvRIipmroEP+lgC2GZoggRDs4h9vGw/uphkSuPVohX1VcEghreWI+VtZv1NGQ6gRq5ItG7Ope
- 4Ynnuxvzo3KZ1huQujQ==
-X-Proofpoint-GUID: vpFPKU_YFPrKEH-3v3r5idKxmRwPRKmV
-X-Authority-Analysis: v=2.4 cv=WqQm8Nfv c=1 sm=1 tr=0 ts=699d176b cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=Dh4An6xqnM-8EQvk768A:9
- a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-23_06,2026-02-23_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0 adultscore=0
- priorityscore=1501 spamscore=0 impostorscore=0 clxscore=1015 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602240025
+In-Reply-To: <C28FA037F24F3E74+97535c93-cc16-4bd5-b436-db7cdc0bb580@airkyi.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9c8da3b33509cckunm4fd9e8659c9d03
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkwaSlYdTkwYQ0JOQxpPTUNWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUJCSU5LVU
+	pLS1VKQktCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=kOWA5HPKq1t2S4LMXPzcHbvRfwGsQn6q4o1yVtjCJa1zZ1coXy1w0YYRyLDQTmW/wNIM2Jia9ETpK+7jIHFJXreFLw2rx9bu4qBKGx9sTwl3Dm4NGTpz1e8IT1vSJJcNX709xjEGiUXyBMkaUEmaGlvjnzEmhT5XZibzT0Qj2VY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=oY/aVs2MBsqFBnrxFsG7MMgaG2m19nI2+4Sd2HfxOD4=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267697-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-267699-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4B17E18152A
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:mid,rock-chips.com:dkim,rock-chips.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rk3588_pd_rkvdec0:email,rk3588_pd_venc0:email]
+X-Rspamd-Queue-Id: 560201815B9
 X-Rspamd-Action: no action
 
-On Sat, Feb 21, 2026 at 09:55:41PM +0100, Paul Adam via B4 Relay wrote:
-> From: Paul Adam <adamp@posteo.de>
+
+
+在 2026/02/24 星期二 9:42, Chaoyi Chen 写道:
+> On 2/13/2026 7:11 PM, Shawn Lin wrote:
+>> Hi Chaoyi
+>>
+>> 在 2026/02/13 星期五 18:32, Chaoyi Chen 写道:
+>>> Hello Shawn,
+>>>
+>>> On 2/13/2026 10:35 AM, Shawn Lin wrote:
+>>>> Thus the board dts files could add property for these nodes.
+>>>>
+>>>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+>>>> ---
+>>> You should also add pmdomain driver.
+>>>
+>>> I've encountered a similar issue before.
+>>> Finley told me to use the new PMIC, and that would solve the problem.
+>>> Maybe you're using the same old PMIC as I did :)
+>>>
+>>
+>> I don't know what does new PMIC mean? New RK806 driver or new RK806
+>> hardware?
 > 
-> Add an initial device tree for Wiko PULP 4G.
-> Includes support for:
-> - UART
-> - USB (no OTG)
-> - Internal storage
-> - MicroSD
-> - Volume keys + Power button
-> - Touchscreen
-> - Backlight
-> - Accelerometer: Invensense MPU6880
-> - Magnetometer: Asahi Kasei AK09911
-> - Hall sensor: Rohm BU52021HFV
-> - Proximity sensor
-> - Vibrator
-> - Earpiece
-> - Microphone 1
-> - Headphones
-> - Wifi
-> - Bluetooth
-> - GPU
-> 
-> Signed-off-by: Paul Adam <adamp@posteo.de>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->  arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts | 361 +++++++++++++++++++++
->  2 files changed, 362 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index f80b5d9cf1e8..5a3a9a823503 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -75,6 +75,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-rossa.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-uf896.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-ufi001c.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wiko-chuppito.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts b/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts
-> new file mode 100644
-> index 000000000000..7f3a48e3bcb9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts
-> @@ -0,0 +1,361 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8916-pm8916.dtsi"
-> +#include "msm8916-modem-qdsp6.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-> +
-> +/ {
-> +	model = "Wiko Pulp 4G";
-> +	compatible = "wiko,chuppito", "qcom,msm8916";
-> +	chassis-type = "handset";
-> +
-> +	aliases {
-> +		mmc0 = &sdhc_1; /* eMMC */
-> +		mmc1 = &sdhc_2; /* SD card */
-> +		serial0 = &blsp_uart2;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0";
-> +	};
-> +
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pm8916_pwm 0 100000>;
-> +		brightness-levels = <0 255>;
-> +		num-interpolated-steps = <255>;
-> +		default-brightness-level = <255>;
-> +		enable-gpios = <&tlmm 119 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-0 = <&button_backlight_default>;
-> +		pinctrl-1 = <&button_backlight_off>;
-> +		pinctrl-names = "default", "off";
-> +	};
-> +
-> +	keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-0 = <&keys_default>;
-> +		pinctrl-names = "default";
-> +		label = "GPIO Buttons";
-> +
-> +		button-volume-up {
-> +			label = "Volume up";
-> +			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +		};
-> +	};
-> +
-> +	hall-sensor {
-
-keys > hall-sensor
-
-> +		compatible = "gpio-keys";
-> +		pinctrl-0 = <&hall_sensor_default>;
-> +		pinctrl-names = "default";
-> +		label = "GPIO Hall Effect Sensor";
-> +
-> +		event-hall-sensor {
-> +			label = "Hall Effect Sensor";
-> +			gpios = <&tlmm 117 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			linux,can-disable;
-> +		};
-> +	};
-> +
-> +	usb_id: usb-id {
-> +		compatible = "linux,extcon-usb-gpio";
-> +		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-0 = <&usb_id_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +};
-> +
-> +&blsp_uart2 {
-> +	status = "okay";
-> +};
-> +
-> +&blsp_i2c2 {
-> +	status = "okay";
-> +
-> +	magnetometer@c {
-> +		compatible = "asahi-kasei,ak09911";
-> +		reg = <0x0c>;
-> +		vdd-supply = <&pm8916_l17>;
-> +		vid-supply = <&pm8916_l6>;
-> +		reset-gpios = <&tlmm 120 GPIO_ACTIVE_LOW>;
-> +		pinctrl-0 = <&mag_reset_default>;
-> +		pinctrl-1 = <&mag_reset_suspend>;
-> +		pinctrl-names = "default", "suspend";
-> +		mount-matrix = "1",  "0", "0",
-> +			       "0", "1", "0",
-> +			       "0",  "0", "1";
-> +	};
-> +
-> +	proximity@48 {
-> +		compatible = "sensortek,stk3310";
-> +		reg = <0x48>;
-> +		interrupts-extended = <&tlmm 113 IRQ_TYPE_EDGE_FALLING>;
-> +		pinctrl-0 = <&proximity_int_default>;
-> +		pinctrl-1 = <&proximity_int_suspend>;
-> +		pinctrl-names = "default", "suspend";
-> +	};
-> +
-> +	imu@68 {
-> +		compatible = "invensense,mpu6880";
-> +		reg = <0x68>;
-> +		interrupts-extended = <&tlmm 115 IRQ_TYPE_EDGE_FALLING>;
-> +		vdd-supply = <&pm8916_l17>;
-> +		vddio-supply = <&pm8916_l6>;
-> +		pinctrl-0 = <&imu_int_default>;
-> +		pinctrl-1 = <&imu_int_suspend>;
-> +		pinctrl-names = "default", "suspend";
-> +		mount-matrix = "0",  "-1", "0",
-> +			       "-1", "0", "0",
-> +			       "0",  "0", "-1";
-> +	};
-> +};
-> +
-> +&blsp_i2c5 {
-> +	status = "okay";
-> +
-> +	rmi4@39 {
-
-touchscreen@39
-
-> +		compatible = "syna,rmi4-i2c";
-> +		reg = <0x39>;
-> +		interrupts-extended = <&tlmm 13 IRQ_TYPE_EDGE_FALLING>;
-> +		vdd-supply = <&pm8916_l17>;
-> +		vio-supply = <&pm8916_l6>;
-> +		pinctrl-0 = <&touchscreen_default>;
-> +		pinctrl-1 = <&touchscreen_suspend>;
-> +		pinctrl-names = "default", "suspend";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		syna,startup-delay-ms = <100>;
-> +		syna,reset-delay-ms = <160>;
-> +
-> +		rmi4-f01@1 {
-> +			reg = <0x1>;
-> +			syna,nosleep-mode = <1>;
-> +		};
-> +
-> +		rmi4-f11@11 {
-> +			reg = <0x11>;
-> +			syna,sensor-type = <1>;
-> +		};
-> +	};
-> +};
-
-[...]
-
-> +
-> +&wcnss {
-> +	status = "okay";
-> +};
-> +
-> +&wcnss_iris {
-> +	compatible = "qcom,wcn3620";
-> +};
-> +
-> +&wcnss_mem {
-> +	status = "okay";
-> +};
-> +
-> +&tlmm {
-
-tlmm < wcnss_mem
-
-> +	button_backlight_default: button-backlight-default-state {
-> +		pins = "gpio119";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +
-> +&pm8916_codec {
-
-These nodes are also out of place.
-
-> +	qcom,hphl-jack-type-normally-open;
-> +};
-> +
-> +&pm8916_mpps {
-> +	pwm_out: mpp4-state {
-> +		pins = "mpp4";
-> +		function = "digital";
-> +		power-source = <PM8916_MPP_VPH>;
-> +		output-low;
-> +		qcom,dtest = <1>;
-> +	};
-> +};
-> 
-> -- 
-> 2.53.0
+> It is new RK806 hardware. According to Finley, end users are currently using
+> this new type of PMIC.
 > 
 > 
+>>
+>> The problem is these power domains rely on voltage supply which could
+>> be probed late after pmdomain driver, then the system enables the PD and
+>> access the IP without PD actually enabled(even w/o voltage supply
+>> enabled).
+>>
+> 
+> If I'm not mistaken, the new hardware will automatically powers up the supply
+> corresponding to VDEC/VNEC.
+> 
 
--- 
-With best wishes
-Dmitry
+Thanks for the clarification on the hardware update.
+
+I'm currently using the EVB board for SoC bring-up and post-silicon
+validation, which I believe carries the old RK806 hardware. It's also
+apparent that many developers (as opposed to end users) are still
+relying on the old hardware in the field.
+
+Generally speaking, upstream code has no way to distinguish between the 
+old and new PMIC variants solely from the DTS, correct? Given this, I
+think we should aim to keep both hardware versions workable in the
+upstream code.
+
+> 
+>>
+>>
+>>>
+>>>>
+>>>>    arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 8 ++++----
+>>>>    1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>>> index 7fe9593..4fb8888 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>>> @@ -907,7 +907,7 @@
+>>>>                    #size-cells = <0>;
+>>>>                    #power-domain-cells = <0>;
+>>>>    -                power-domain@RK3588_PD_RKVDEC0 {
+>>>> +                pd_rkvdec0: power-domain@RK3588_PD_RKVDEC0 {
+>>>>                        reg = <RK3588_PD_RKVDEC0>;
+>>>>                        clocks = <&cru HCLK_RKVDEC0>,
+>>>>                             <&cru HCLK_VDPU_ROOT>,
+>>>> @@ -917,7 +917,7 @@
+>>>>                        pm_qos = <&qos_rkvdec0>;
+>>>>                        #power-domain-cells = <0>;
+>>>>                    };
+>>>> -                power-domain@RK3588_PD_RKVDEC1 {
+>>>> +                pd_rkvdec1: power-domain@RK3588_PD_RKVDEC1 {
+>>>>                        reg = <RK3588_PD_RKVDEC1>;
+>>>>                        clocks = <&cru HCLK_RKVDEC1>,
+>>>>                             <&cru HCLK_VDPU_ROOT>,
+>>>> @@ -926,7 +926,7 @@
+>>>>                        pm_qos = <&qos_rkvdec1>;
+>>>>                        #power-domain-cells = <0>;
+>>>>                    };
+>>>> -                power-domain@RK3588_PD_VENC0 {
+>>>> +                pd_venc0: power-domain@RK3588_PD_VENC0 {
+>>>>                        reg = <RK3588_PD_VENC0>;
+>>>>                        clocks = <&cru HCLK_RKVENC0>,
+>>>>                             <&cru ACLK_RKVENC0>;
+>>>> @@ -937,7 +937,7 @@
+>>>>                        #size-cells = <0>;
+>>>>                        #power-domain-cells = <0>;
+>>>>    -                    power-domain@RK3588_PD_VENC1 {
+>>>> +                pd_venc1: power-domain@RK3588_PD_VENC1 {
+>>>>                            reg = <RK3588_PD_VENC1>;
+>>>>                            clocks = <&cru HCLK_RKVENC1>,
+>>>>                                 <&cru HCLK_RKVENC0>,
+>>>
+>>
+>>
+>>
+> 
 
