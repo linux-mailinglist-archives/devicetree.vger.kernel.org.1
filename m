@@ -1,316 +1,206 @@
-Return-Path: <devicetree+bounces-268076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268077-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBBnDL0VnmmcTQQAu9opvQ
-	(envelope-from <devicetree+bounces-268076-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:18:53 +0100
+	id cNheJhYYnmmcTQQAu9opvQ
+	(envelope-from <devicetree+bounces-268077-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:28:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72DA618CA64
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:18:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1070418CC30
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:28:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B0AB030338A4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:18:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F3194307C41F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4080A33CE86;
-	Tue, 24 Feb 2026 21:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CB433D4F3;
+	Tue, 24 Feb 2026 21:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jUXi+8vt"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="3CBYaaxe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013007.outbound.protection.outlook.com [40.107.159.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f68.google.com (mail-dl1-f68.google.com [74.125.82.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71EC33C199;
-	Tue, 24 Feb 2026 21:18:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771967930; cv=fail; b=E3R6/l9PpVPE0Jb30nBLbkr4i+SclADQ8tZEpTTuO8JLneXI+hAhpel/hLzYnSCyOWQAstucCRCoOPSA+TKhNST5CsAdMykyQ/BAgZF5jkGXbYVcepUkpNaGwaiGNPajloPCrTSuaf8tq8jC9SZwwo3Z6lAgX3yc1e6mzLe5P3s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771967930; c=relaxed/simple;
-	bh=jJSfCuJcFwdGwyLp2tPo2U7s4mIHN7freK8TEM9vTww=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=SJsPawUCvfQOCuauOre8ja/w8uP4O6HM77c+bcrV6O7pK2xw4EpK1jFzszogaNz//I8/w9pHTyrXlAqJ4R2gj7JVme/XZlGVFmzXKfAR63nSzNNc64Ezy1KuMIOI7N4kb+nWUJX5ABG8OSHJkx/n0AAuJ81ALk0PVsiOpJliggA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jUXi+8vt; arc=fail smtp.client-ip=40.107.159.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ISIDUKcMcDpC8IfipRjwORWKZa3ZCu8XAyyLTJ2zdPoCIyQR5yuIby8bzJ8FUDXSBEXV7F88ZhSZCQBa1LClK7cRcImeUuVRrQqpaGbaGxjqcRY2O5HdrM3Ynxhs0DcvlhkUKNdSOaqX1OWjoKiqkX7OkkWS2MraPUYm3McUlNOGfSa7Ed369JkTNsD48OWyEmtiRrG4fZZLpv/vAqpsRpoAP2R7Tztb7Uwk//Il5P9N+AAacvRXermoDnjiKHZxOQl1INwH+8ktZEj9MEvgKDv2bKR9IX3yTVyeSs3T9i2LwK5FBGKRwXzN4ONph/4nqGk0JdhHB5Rx6jMl38xn8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+JRdnnLxbCYX5mKT3xJydokzuJurWE0z2qetdHwGt0Q=;
- b=Yd+sgM7EKDhQwLpC22GdsBkjzGtFXRsBqEi2jeNi6R9frL6uObsrAUykthJMjNEmDonJnDvyQ4tnkrFAQ7M1qwN3J+8XQpeLW12mJpQ+JVmMTugPRUTvdkzzpUh/q/TH//pHmBEdbmnpSb7TA3W+vJ6gPqTVFK9JCMxnbOk2ItdWJD8JE12/ylcTKyOqPIYYVUu0h1U9+/+C6fxD9/aKSdIF90Bf5q+64//E18ee/ASfAOCtB28zpHEfplb0NoLa0UHmy8O66l+k9e4NKYsYdHCCJMF1J1WgNeeik2IIH5WrzlQpDcCI0sq12km+pdUKbF2zsM6H9j8i55Jjdc1Nig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+JRdnnLxbCYX5mKT3xJydokzuJurWE0z2qetdHwGt0Q=;
- b=jUXi+8vtv365GwCnbdJ5g5bXPurpwaRQThq06+PqhJ6mYg+jvk1rNEPw5EXY13E8AqnMJesFVRWFXWf3wwfbDBIRLPnJF2t4BMppDAhqyDJesYzxrqhNGk/Egu1eIasap6/UcrBqgC5D1/KmDJ4hJl5Vnx3dolBVdIATOtD5SyYDrfTrPRzQ/Bj87iFV3AufCBFGexFK+inwGXdx1hlaPRTMvp8Rc+2tfYf/Zj0KW1k360zK4LULI2EzHD6Jq+4etHdEb8RZ8dFVoRRaMJr9L0qQ30DO83Fu3wMS4GzlLgcNULgRXqpoG4kV6/vsznd0yMTmFCWYJWxTK7QLKscf1w==
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by PA4PR04MB9293.eurprd04.prod.outlook.com (2603:10a6:102:2a4::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.23; Tue, 24 Feb
- 2026 21:18:43 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::b4c0:6119:2228:2ceb]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::b4c0:6119:2228:2ceb%4]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
- 21:18:42 +0000
-From: Shenwei Wang <shenwei.wang@nxp.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, Linus Walleij
-	<linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet
-	<corbet@lwn.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson
-	<andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, Frank
- Li <frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan
-	<skhan@linuxfoundation.org>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan
-	<peng.fan@nxp.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-remoteproc@vger.kernel.org"
-	<linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: RE: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO
- driver
-Thread-Topic: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO
- driver
-Thread-Index: AQHcpcbqyuKnLu7nVEOA8R+860c+KrWSVdGAgAAED2A=
-Date: Tue, 24 Feb 2026 21:18:42 +0000
-Message-ID:
- <PAXPR04MB918509F265757E6028B45DDC8974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
-References:
- <PAXPR04MB918576D67A268E59242964A08968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAD++jLkUVFckLTq=SoivNFoFymhJo4KM=qGmajFcv9T9+7tPmg@mail.gmail.com>
- <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com>
- <PAXPR04MB91859B642802813F908B03DA8977A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <64ef5dbf-6264-4758-a5d8-d8c52c359fcc@foss.st.com>
- <PAXPR04MB9185934EB640E8B21905FF878974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <79eb8bb8-83cb-4b24-8e56-42a53c710055@lunn.ch>
- <PAXPR04MB9185F1A67384E4886282227A8974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <91701822-df30-4feb-9e9a-4ee82e2a5d23@lunn.ch>
- <PAXPR04MB9185FD3EEC313CC2408E157F8974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <0b42e303-a2ed-4983-bee5-a4eafd6c7f36@lunn.ch>
-In-Reply-To: <0b42e303-a2ed-4983-bee5-a4eafd6c7f36@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|PA4PR04MB9293:EE_
-x-ms-office365-filtering-correlation-id: 230226b3-52bd-4453-984e-08de73ea49ae
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|19092799006|1800799024|376014|7416014|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?FbhrwYelo/shdDPm2/Rg5GSFveB5QSTZzVFl6/DY+6+37/qBwx6kRgh7t0oU?=
- =?us-ascii?Q?OVaVTXLyG69emiMIGlKjcnBvsHnxn8T6ddTOiGOXxaNLo4q0Eu0ahsCFALPE?=
- =?us-ascii?Q?lTS0etkaemK9QF6a2YZL4ohX6xR0YuModA4+yHJfXhl+tFlYNRShfxyV+JUB?=
- =?us-ascii?Q?TAN7bpjkr7wd+NSMPBYANO5GtONBSLFlWnbWRQl4U2bOYVQCx27RC9Rqwv2K?=
- =?us-ascii?Q?CQ9yxK22PTkR0n80cU4+k6aOByzTUtQXk2j+aR4ZvV5RM59Q4iqkF3ZQmm0q?=
- =?us-ascii?Q?T96RgSRrKMZw4o7gqFXS/rmY5Yqow0SGkMeyzXpMF8Vur+5l7vOa5QJdT0a4?=
- =?us-ascii?Q?R6po8xIjgzXhxVgJYVhE8n58/RFQmK93yfC7aMhjCntjhec5K/AvLQMnrf3A?=
- =?us-ascii?Q?QtowcEsltNuCmwmlACYW2cyZFtT8m7k7ROo8CWDFqsTpImP6KRSYCp+gDaIB?=
- =?us-ascii?Q?8xTg0HAlnd3l7MKWHfb7Um0wujvuBRCqwG5hbwBVJXeCpNneKqde7ATTJ6W4?=
- =?us-ascii?Q?/J56WQSV41GAM2JHjA55FVFrYPNxBy7hXB3hsoDc5eyacHeizVyZJoGuZyaA?=
- =?us-ascii?Q?Z8kcIZbGmAkiA+eh/2vb6w0PaiM9HuqqJOCo0Itn7Q6+A2ugOkW0HCGWk2ge?=
- =?us-ascii?Q?EPeki+6wxyYemcYKFm37iy9yl/D/Y4YtKK2Fi0A+gsi8EfASup3wr++2NFmr?=
- =?us-ascii?Q?YTZkiRwPEGU7NRlD0T+vfT6HWTijDguaJGptX0zJ+kaTi1o4/3V1qGAhECP7?=
- =?us-ascii?Q?g4dymxi/swNnkkrtqaKW1yW6GpyoUgYzmqmbH+MurqDM1qf9rRNEUd5Y87jx?=
- =?us-ascii?Q?lRXgtQOkolQH14J3FH3tZWbXZpM0TCaS6K3FAkotFh6r+MVvONuQHJfCncap?=
- =?us-ascii?Q?sOKUf55e6HVfn9pJGrQkf2kQBstLN90chbLl7zZG50u/nSvaGawn6gyeKli7?=
- =?us-ascii?Q?GoPhQGUzMFamPwM1JgDvEsG7kYK2/Z3ItA9YLtCATQSAbTIsBE4mTnWJbOlS?=
- =?us-ascii?Q?pPpCNP2Rr2rnahOzfczrK9g6oktTA6aWmoiHG2hCn2pAtMQTY+ZpNDph9KtW?=
- =?us-ascii?Q?0cage+j3uE6jHhWbO2f2LuMHQL9QeGCD6JyyfdfKgrgMrCsQ0/swS21ZSTny?=
- =?us-ascii?Q?qGBSOn9Yp73MB7wCvsVmc24EtyVonVc66+nfODiSRXpM0WzarG+sRg4cOtya?=
- =?us-ascii?Q?i1jMeqXmKNzfMeEqNJR0csiXv0aeELVkt0PbY3QM0bjyJhkGismJZklF/hPg?=
- =?us-ascii?Q?o80xmU53GIIj1eP1tEIOaIPYNglP+JLvgHKZZOXWnaHErsT1RsA8gqDg+MK1?=
- =?us-ascii?Q?ZIoeDcFe6ys37YXZJ2FJ3do4MOCbp7Po8VZfXd+voR6U54rXK+UnO0RpFgOl?=
- =?us-ascii?Q?FqUe3lXV0WzMVrKUKIcA+WZx9RfF24pi9ZM3/FzNBbro/KEJ0upRbW3it83R?=
- =?us-ascii?Q?djSaA1FZIt65B+iCANRcd7cg5wEBmCN+xnP9ynuXc8meTgmiV5toZ4czNMps?=
- =?us-ascii?Q?3FPGx5l8Jn32ZlcMRssyuzN7z+5wdPB8S4x6we6KMFmskDNJxUo67WBu97pa?=
- =?us-ascii?Q?jehTriaNiaGVjEYoApNtX1pLgy+3bB6ZUvfTSyL/9yrgvB56+U7hMCpmrkPA?=
- =?us-ascii?Q?HRKoPXXpjYITlEFtj3Rn8MI=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(1800799024)(376014)(7416014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?N5lBfnbgbzwHiTzau59ro7XnROuW9jaHYc8yU1R4XJ1WrOTtmhVtM9khtDPK?=
- =?us-ascii?Q?sDYKsmmybl/s3qQvfKRGIhHTiXtECdQYN9L8gjytTPAuvBQ06m0EYcj6h4jd?=
- =?us-ascii?Q?JRd1DfKU/1lLhL0iwJEigKayruNzBjyzONVTDbU03LieBqcOp3om4oYNrqnP?=
- =?us-ascii?Q?l2yQW0s6pOSihFeLxY0Wj/TTz518vOqy5l62lRJYAkWVl0tc+RXpeg8xHd+3?=
- =?us-ascii?Q?R/yExcqWfbFI5AhIEDPXedoGXvlJFF7/SS0FLduSnBNzaFHjS0NFljVnS5bX?=
- =?us-ascii?Q?tbSqh84koGA/R1iiEn5IKXNbmp7+J/E0kObeozr7h0ps/zgwfKPAOOJolUyu?=
- =?us-ascii?Q?0lsMnNVnN7ocEx4DOivknr5KX9snW0RuMCW+AlxXaKOPmrws056GPHvgmqwP?=
- =?us-ascii?Q?GdrgTcIGpm/+4YI5aI2PstXObywBQ9DDZyg6BaZxmF0co36hEGzLkfVTIqZY?=
- =?us-ascii?Q?2VVNPsamdCaXU51akpg6Jv1U3hWL5tiAzLqZ6f0otwe0KKlrbceMd89GScE3?=
- =?us-ascii?Q?Y88xfFcM5cDUSqU7wpznI6fPsFnxkBfn5dtVldZxCeVo0W7/WdMAwfS+A1fa?=
- =?us-ascii?Q?bP2FGxSUeiOzJYX7E/U/yksCl+PgpnPa/TYDe2Vpco6Bc8AXjQCAIXQ+OMof?=
- =?us-ascii?Q?f6K8OpRFsxJFojKMfnot7kg8b5Z8M96ylcesQpd/38IbUlO2I5zxGExiwwL7?=
- =?us-ascii?Q?9QhFBMIFAVcKJzcUpV0o7MH12uSx67yt8QFOVMLdij+8WSfI3U23Hw5jqR0a?=
- =?us-ascii?Q?uQSyCEI2OOCozw7nj9sk++btNu0KwbHVY+J3Mo9gNXnMxEyDV+5qZTvladjL?=
- =?us-ascii?Q?/fsIpyOZPMnr678WNueVobyiWHt6zb8obr/V5M3AGOfwwS0KMy0RVerE78nS?=
- =?us-ascii?Q?ql8EiIO2lH2jGCAAgICFgXjR94+xdy0lcGJOwji/i/unv6FynwPSvLLN5gYW?=
- =?us-ascii?Q?ZQjpIcP4M/1uYg+IbaRdcocft47jZv+adbO2ZxORyeUmS5kjShUP80OgLu4J?=
- =?us-ascii?Q?j7C6PF0xRjFQlc0gUNgEaccxBmufv8E3RQPhIml91c49aqS/oaQWe+ID8aSi?=
- =?us-ascii?Q?npgGmRm2mC/1RffSKn3pY7yKNDSSqAJYaFUVB5v++p+xzQ8KHGdtRHfKiShr?=
- =?us-ascii?Q?+7VXYqRTYkmvNiGrAuccxT6cRqU2BEXi42yZTbJ7bwDgzBX7OjQBfXEK0Bio?=
- =?us-ascii?Q?AF94oP6FMTi+TNw9JZzmswIEKHrsOY/7dWg3gjGuBoZrpA3tVkgiaWxXCOdP?=
- =?us-ascii?Q?+MhtM6BCM4A9hx+SSzTVlyE6I7dbUHAEbZX47N0+wD7jw22UrPg8dJcWp+Pw?=
- =?us-ascii?Q?BEE8NPaLSC512P8s6yioBJVjlB6ocfAS1EWutH0NSiTl2oPHyEdCvSFdZv0X?=
- =?us-ascii?Q?HOTLna0y0mA65FmhHHO0/RGmrJ+BsywcGYuiePVspuwt7uoLuDx1+WaM8u6q?=
- =?us-ascii?Q?JC5dYNApdh6L68fOUz9yk8QDnR0n6ouJtYFxNr/qKHBLuE+0XqdsjJ+3cgFE?=
- =?us-ascii?Q?zDyRnpx4Ben4kdG+ehPC8LUQN4YrpXTlI7krdP4y7BTW76a/i26oS9Swl3L2?=
- =?us-ascii?Q?nDtVhO+ot6K0E3XaZeKPUied/eH3w87eqbwNoHNumdLyCnGBwlmn0o5ohFfM?=
- =?us-ascii?Q?x47qv5Dnm2cHVIijmhawhTD1Cz3BFPvTunzjW2/RRVvSscIkCAD5yH6L4hXZ?=
- =?us-ascii?Q?ZfqlXMaixEZGJyQzE56TvsMieF6UvjbshAeGY9UYDUfxrVsYdVLkIYQT4pg3?=
- =?us-ascii?Q?VbeDQwsnHQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EA12E2DFB
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 21:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.68
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771968530; cv=none; b=Qk9s7VAeI2TuZ9It9SrdjUFRPf49vyLyFfpoB4xAdc9LbBsKardi6aR5v2xqsQK7H/pVueZn7FQTHUZpYxSERHSFaqmJ3c1v70NsXKLWrUXpJrgZA/9qQCIFnLLu3yroz2JySdc7M7QszlyyjXzs5wBOIvrxwE1+5FBCVn20kcQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771968530; c=relaxed/simple;
+	bh=htTvdtaSYWfRahiauDhevYDzpS+gGQW68oZKpwXdYA8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GxZjS0/DW/8ky9E8gO2sO1QGMv2FTbt9r392HRlkDKTSUvVcw0AZL9rQ43U4hdaQZw9wgUoEym99PsEQA/XRZLq83KrewuDZhoys5Xgt1BJSVhET1zcZeHyF4CoZzqWa7gNWRS652mTuQqUoj9rzx/1f8ZJMa8X2963yqfwSW58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=3CBYaaxe; arc=none smtp.client-ip=74.125.82.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-dl1-f68.google.com with SMTP id a92af1059eb24-1271195d2a7so3508140c88.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:28:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1771968528; x=1772573328; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yDayGCTx715bDzSgsBZo6/sacRFjwz6HQIrmD08ogXA=;
+        b=3CBYaaxerIG9p2ZCYSHXTQ3uqCQLkFJHwuibcdwVooSAEZCOC5+YALSm47xkLnIUd2
+         zHJ8YID7my43p0XoBnOUcHZRXLvdFJk2bva1c0FA+GfFF8DxWzi5yGwuH68libltVMbZ
+         tS3U+OtgoUNSVST3q/q+/HChHN0PPQ0roDsdmPR8DNpsUULm7/U37kb6AeW7AMrz2SPz
+         inrb+O/rrLvZFw3HZbZQsMRc9xWm9PqtePSGr4PutrbW3s07aKmathtHpEBArvneQV5J
+         fKtdI/mP86r+EBL6whcNNVvbs44C3xJscikgQjiKVyH2j8QU9G+ADl4GhK6wGFqy+RQS
+         4l2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771968528; x=1772573328;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yDayGCTx715bDzSgsBZo6/sacRFjwz6HQIrmD08ogXA=;
+        b=TaJmqHDbe+CgPsnYIiRT7aTShYVklntlPnL+qURCYBcqL/HbkaPzBJMHdLv/zK5h1G
+         s5LfbLierXjvdHn3jnU7WYjoVqlES8cUtFxPXKQ7VhR0fcj3ZJMq/9ubUD/1+XtAdLQ+
+         zulw1Zdp2W/YlcPeUWM0pvnCoQ2st3PFmHoSk95VKNyqEqhtO/juVhejHSzz9+D5UOVk
+         O1upBIZAykGSs1sK9h/60b3B9+cMNO1K2im0+WjsmSVLx0XBgyjlu/xgqwi6u+geP7S7
+         5hSymWJxaGhIOTfdIJTi1Jj/L2FZGzYJF4xWMmyjhbv8vKqw1CZwgcglt/RvqgFcdOvU
+         888A==
+X-Forwarded-Encrypted: i=1; AJvYcCXQyCQXLz8sBnKDA/F/1o/XVtqiheLTw7Q8d/JUothsJv4lNgieDlg3z/4qDNcwzyd/NnDR5sozO5Ya@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwKno50HntLI1jh4i7sw65Mx2QRCI0nfyFMoWyoTw/EXTuDEqM
+	zK8efB4F9Pgc2l7E9Z6Md1sh0uLOf9PQXDnzFcfeQB6w6sIgnvW0rdtmeweCVBt6Qg==
+X-Gm-Gg: AZuq6aLZrxXU+rjARsDQbVYkKtlh7Qg5SVy1hz9s9zI8G+7VnZ70VjjJAZcFr2k6hQz
+	L+pr+RSiEjiSXa2JrOsQQxATyGxfO6YU3kcdenFwMCL2xvo6R2MT1HBN43eI/zXTcglKGCkF+jv
+	/Y3mg5BDAg1xlN8PlV6U8rQVOqrgOz7Su1hR9Gtuqz44mcZrSsc0NYuL25cN7/M832lxKkgnxy2
+	aUMw/3JXjdfBeST2JsC/g8nV1b88RyhXrYekjidOCYXcf2L8hzQRI1nItCVRU3cofqrpu1823wY
+	18ZIyNFZrVecg9El1kCvYNYRXE8JGGYAI216yHk6aAXXZ/PfWhY1bN+JSofpGMOCeiWHFnJeC7S
+	49XpY1+QyWt41cympWemDc3qS1vkHGZ/Eto6AiAx/5QUKYb8HuvLxfY45rQpeZDTPP+KmQMGhzu
+	uc1jlAwIBB3+QdY2lmA4afeGS8w9UB/f/KwiEzJzql0mTirtGRu6FNbcDrH2wLp9pt+FK76a5UO
+	+XpkInm/JfcIAsav8hzopaR8w==
+X-Received: by 2002:a05:7022:1285:b0:127:33c5:5390 with SMTP id a92af1059eb24-12781e0aac0mr52023c88.11.1771968527891;
+        Tue, 24 Feb 2026 13:28:47 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e7c:8:665e:550c:2a20:8866? ([2a00:79e0:2e7c:8:665e:550c:2a20:8866])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1276af207d6sm12385902c88.5.2026.02.24.13.28.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Feb 2026 13:28:47 -0800 (PST)
+Message-ID: <fa253e2f-bdb5-4ad0-9308-ba2f9bb97596@google.com>
+Date: Tue, 24 Feb 2026 13:28:39 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 230226b3-52bd-4453-984e-08de73ea49ae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2026 21:18:42.8420
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1dqWLaxYI/zagoDc2AIM5WMmHqgt9wRGdwl8PwonfcT1C9yZqyBfhIkQclXWjZOzd0SzkX7henfkBuPLcF+HSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9293
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: exynos: gs101-pixel-common: add supply and
+ regulator properties
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Badhri Jagan Sridharan <badhri@google.com>
+References: <20260224-max77759-charger-dts-v1-1-b443545c04aa@google.com>
+ <48d5eb8e-834f-4e87-a59c-d05add0dfda7@kernel.org>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <48d5eb8e-834f-4e87-a59c-d05add0dfda7@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268076-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[foss.st.com,kernel.org,lwn.net,linaro.org,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268077-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[google.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shenwei.wang@nxp.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[amitsd@google.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.994];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 72DA618CA64
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.66:email,0.0.0.25:email]
+X-Rspamd-Queue-Id: 1070418CC30
 X-Rspamd-Action: no action
 
 
+On 2/23/26 11:01 PM, Krzysztof Kozlowski wrote:
+> On 24/02/2026 06:03, Amit Sunil Dhamne via B4 Relay wrote:
+>> From: Amit Sunil Dhamne <amitsd@google.com>
+>>
+>> Add power supply and regulator properties to the MAX77759 pmic. The
+>> usb-typec device will reference the regulator provided by the pmic as
+>> it supplies vbus to the typec device when operating in power source mode.
+>>
+>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>> ---
+>> This patch depends on the patchset [1].
+>> [1] https://lore.kernel.org/all/20260224-max77759-charger-v8-0-eb86bd570e9c@google.com/
+>> ---
+>>   arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi | 8 +++++++-
+>>   1 file changed, 7 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
+>> index 93892adaa679..2cc00d34dda8 100644
+>> --- a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
+>> +++ b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
+>> @@ -142,12 +142,13 @@ &hsi2c_12 {
+>>   	status = "okay";
+>>   	/* TODO: add the devices once drivers exist */
+>>   
+>> -	usb-typec@25 {
+>> +	maxtcpci: usb-typec@25 {
+>>   		compatible = "maxim,max77759-tcpci", "maxim,max33359";
+>>   		reg = <0x25>;
+>>   		interrupts-extended = <&gpa8 2 IRQ_TYPE_LEVEL_LOW>;
+>>   		pinctrl-0 = <&typec_int>;
+>>   		pinctrl-names = "default";
+>> +		vbus-supply = <&chgin_otg_reg>;
+>>   
+>>   		connector {
+>>   			compatible = "usb-c-connector";
+>> @@ -236,6 +237,11 @@ pmic@66 {
+>>   		interrupt-controller;
+>>   		#interrupt-cells = <2>;
+>>   
+>> +		power-supplies = <&maxtcpci>;
+> Missing blank line. Please follow DTS coding style.
 
-> -----Original Message-----
-> From: Andrew Lunn <andrew@lunn.ch>
-> Sent: Tuesday, February 24, 2026 3:01 PM
-> To: Shenwei Wang <shenwei.wang@nxp.com>
-> Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>; Linus Walleij
-> <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>; Jonathan Corb=
-et
-> <corbet@lwn.net>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
-> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Bjorn Andersson
-> <andersson@kernel.org>; Mathieu Poirier <mathieu.poirier@linaro.org>; Fra=
-nk Li
-> <frank.li@nxp.com>; Sascha Hauer <s.hauer@pengutronix.de>; Shuah Khan
-> <skhan@linuxfoundation.org>; linux-gpio@vger.kernel.org; linux-
-> doc@vger.kernel.org; linux-kernel@vger.kernel.org; Pengutronix Kernel Tea=
-m
-> <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Peng Fan
-> <peng.fan@nxp.com>; devicetree@vger.kernel.org; linux-
-> remoteproc@vger.kernel.org; imx@lists.linux.dev; linux-arm-
-> kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; Bartosz
-> Golaszewski <brgl@bgdev.pl>
-> Subject: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO dri=
-ver
-> > > How does port_idx fit into this?
-> >
-> > I think you were assuming there is only one remoteproc in the system?
-> > In practice, the setup can look more like this:
-> >
-> > + remote_cm33{
-> > +     rpmsg {
-> > +        rpmsg-io-channel {
-> > +          #address-cells =3D <1>;
-> > +          #size-cells =3D <0>;
-> > +
-> > +          gpio@0 {
-> > +            compatible =3D "rpmsg-gpio";
-> > +            reg =3D <0>;
-> > +            gpio-controller;
-> > +            #gpio-cells =3D <2>;
-> > +            #interrupt-cells =3D <2>;
-> > +            interrupt-controller;
-> > +          };
-> > +          gpio@1 {
-> > +            compatible =3D "rpmsg-gpio";
-> > +            reg =3D <1>;
-> > +            gpio-controller;
-> > +            #gpio-cells =3D <2>;
-> > +            #interrupt-cells =3D <2>;
-> > +            interrupt-controller;
-> > +          };
-> > +  ...
-> > +        };
-> > +      };
-> > +};
-> > +
-> > + remote_dsp {
-> > +     rpmsg {
-> > +        rpmsg-io-channel {
-> > +          #address-cells =3D <1>;
-> > +          #size-cells =3D <0>;
-> > +
-> > +          gpio@0 {
-> > +            compatible =3D "rpmsg-gpio";
-> > +            reg =3D <0>;
-> > +            gpio-controller;
-> > +            #gpio-cells =3D <2>;
-> > +            #interrupt-cells =3D <2>;
-> > +            interrupt-controller;
-> > +          };
-> > +  ...
-> > +        };
-> > +      };
-> > +};
->=20
-> And why would this require a port_idx? If they are different rpmsg instan=
-ces, the
-> channel numbers are in different address spaces.
->=20
+Sorry, will fix.
 
-Then how would you distinguish gpio@0 from gpio@1 on the CM33 RPMSG bus in =
-the example above?
-They are running on the same transport.
 
-Thanks,
-Shenwei
+BR,
 
->         Andrew
+Amit
 
+>
+>> +		chgin_otg_reg: chgin-otg-regulator {
+>> +			regulator-name = "chgin-otg";
+>> +		};
+>> +
+>>   		gpio {
+>>   			compatible = "maxim,max77759-gpio";
+>>   
+>>
+>> ---
+>> base-commit: 8bf22c33e7a172fbc72464f4cc484d23a6b412ba
+>> change-id: 20260224-max77759-charger-dts-23493398e77c
+>>
+>> Best regards,
+>
+> Best regards,
+> Krzysztof
 
