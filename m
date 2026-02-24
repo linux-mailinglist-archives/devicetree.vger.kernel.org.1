@@ -1,228 +1,378 @@
-Return-Path: <devicetree+bounces-268070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268071-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cL45H80MnmkfTQQAu9opvQ
-	(envelope-from <devicetree+bounces-268070-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:40:45 +0100
+	id kMp6Fv0MnmkfTQQAu9opvQ
+	(envelope-from <devicetree+bounces-268071-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:41:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0491B18C71B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:40:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C928518C733
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:41:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 29222305C27F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:40:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8741A3095545
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8FA133971F;
-	Tue, 24 Feb 2026 20:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CB933A9CE;
+	Tue, 24 Feb 2026 20:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="GPRY7U4l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mQ8LvFOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4221EB5E1;
-	Tue, 24 Feb 2026 20:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771965640; cv=none; b=E4lVqg5ne6mTzYeyfgFW8UGiOBQ4TIBfe9gwOfmBSWYc546hcJK/9AIbieE3/2FwX8058j2RTlbpvnWmAf0OnWCVpOyFaD1V80QGLU1Hy30pPK3gqBXLGSDDM71YgxsBmFpqjflN0JLi3+R+lZwVugXAW4Hd/+y0YYswxaHKJ/8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771965640; c=relaxed/simple;
-	bh=UtM5aXuxCKYv0uMiLeNJYET/mW1F5hSjMVB4isIXB+s=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=uliUZFoo1/Q4d3OIeynp5qIFL3XrWph78MoiEUCBPcIaXCNDtCHSzrviOqSHGkwTB/OSvSL5DT5p9sCM0RNrazi+uM02MP6ej0h5SCzPqN5hDdZeIxn8r9hx8sm/ut+eujPilAQGvnHI9hEDp1EPR9kxgbVaV7Hf4hCrzujYT08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=GPRY7U4l; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=e8OBRZD45GVZ0p8P79HLXKm5h77uDsbpYKH7TIhd2tg=; b=GPRY7U4lElGEHRpTitwnHX3SYM
-	/1jBkpJlI9POyhE2CgS5FAJXnRKF2fAGsREJ8qsWI6v/FMAdBfPKAbliw0I2iTmpJ2OD6r7t8Zdis
-	RezEDA8899QzNOoc4O1l9yTC07sh4Zjem6FIVDxks97DCLdzv9hQcGVdRSUTMW3LfNVI=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:56866 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vuzCl-000592-SI; Tue, 24 Feb 2026 15:40:29 -0500
-Date: Tue, 24 Feb 2026 15:40:27 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Rob Herring <robh@kernel.org>
-Cc: hvilleneuve@dimonoff.com, dmitry.torokhov@gmail.com, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <20260224154027.0f81b1aa13fe779776e6d58f@hugovil.com>
-In-Reply-To: <CAL_JsqJNASirEqqcT-Sv8h9JC74e+XJSRsAki1ZWeKY8j2zbfw@mail.gmail.com>
-References: <20260213171431.2228814-1-hugo@hugovil.com>
-	<20260213171431.2228814-2-hugo@hugovil.com>
-	<20260223175706.GA4168417-robh@kernel.org>
-	<20260223134738.00988a3d87165cb130292c89@hugovil.com>
-	<CAL_JsqJNASirEqqcT-Sv8h9JC74e+XJSRsAki1ZWeKY8j2zbfw@mail.gmail.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18F4833A9DB
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 20:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771965688; cv=pass; b=AlBqx5VORVtzsG70hX1oMlb8QYaZhHxnt/3zLLTk0NPEaxQi+EirsJx3bEjj3VL1Ph9InubWb0K6f1gV46RcO8BocQvGrYjpXZz6rRDfQaqUd+hPWbrrXHsPeAWbNkw8/H8ntjgY4khR19IaRWG2ghlifUXLaMAL1dMr4kX3ArQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771965688; c=relaxed/simple;
+	bh=yQX0QV89eK/kIauizaoFSMFTRwwcZcFoSH8ajXCreAc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hW5FsaIN94K+Zqrcyl/Mo9W0kkZnxOxIi5h9jGXN89OeoPCGPxeowHHDhQTW5ROkeE9DbKn8/ZCvRB/cF6S5VF0oAxkFCAa0DuB6pDdTE0a3AiCQTcGyrmtCzdpnXrmIjF7hsGXnfXTEHraLLRqVwasikF9ah3yu92LsEkP+uVY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mQ8LvFOb; arc=pass smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-65f812e0c83so573567a12.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 12:41:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771965685; cv=none;
+        d=google.com; s=arc-20240605;
+        b=lWgUWejLxUU2QSVsgRiw6niQQSNw8pp6kJ1g2nYlauVVkOxwIfL0fja0LXEsjvKwKD
+         qVMqQsEwgjYcnfvyE2Yv6wd9SHjMOWZ+96q66jDzx9YZ1MAodS1Rq0GEmjBdqAujDSP1
+         zzLliewd8HXtwlxQM2RFFiQ2MIqWdFSPwyuhR+BKnp2qfZ3sXDKQunwhfdeiOeexNXno
+         ei9W0Osm2H3qjLYmn25oLhB1V665bhKKW9n++Djr4sXFIbVologeRcKw8EsrJhByHOi/
+         Po84fXeXzNv/2GsUYy6HQYqJTNf1znuYJ1PFvP++Ksdro5hvAAT/xc0x6OLAtXDM/z8X
+         62OQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=jNTWDS7xIFhn1fF1oG2R6ESQZOh+RfZzpB4H54GaJZw=;
+        fh=6JjO2x5XI964uZznT5PHa7mUjG1MvquxaKO4lgbFyqY=;
+        b=kPBaMYQq/CExHbt6DWV6QYgdCHTMTu5TZdbG5tH+Eh+c6uAB9P0yYD+67eG4uLlCV7
+         9xlWjq1RMfw0XfM54Z8LZ4COY3yxIFWjDjH54VIwZUqfAInCkGadu8XzLmIW7DoAN0BN
+         dZWiiNeropP8MPTDrDUWEu4TjkTZwyyDNIh4sPs3VIBIUdHfmGQoNc8SAASSUE7qLh1T
+         uYj4gTceHYHS993bo2lc/p2XVjQe66jsJ9ix4KWcQLRbJPO0NNgDhh+dQtrTnXBB5L5U
+         jGeq563ZMeuPnZZa63TqiDt4F3wONAaKN8AMPpRVCbvo1WOIqyC4vBcA2rst/oLpgtLf
+         B5Pg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1771965685; x=1772570485; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jNTWDS7xIFhn1fF1oG2R6ESQZOh+RfZzpB4H54GaJZw=;
+        b=mQ8LvFObUuow31ueMI8aqGT+RwGqq0zODxHA7oWqksMnmvsIh6UdtVrGYipQ6EV8/I
+         tFMoK+hob+WHT7o8obShVEDumfOCGIZDEkPARNqapQcp6xYFW1H/YIWy54xLqSbUvKAY
+         mZf0aM04kndH84rwOufh3RzcKPGbYKQfKZrYfYBHVGFPWi9NhdBRGjxYfJ3dCcvPFsg1
+         N5Anl6p41FkyI+hbDbItCOwPlgjmWqZ0r6TjKin0N3xEaTDqTuTb2Lv4vz2IZNsNy6nG
+         tTQUC/G92HWSwLAbgHyOVGPoJ9Fq5Z+4V6RKK4fTI4GgYV7n5Q+is0Sq9xSMIKEmS8uk
+         Hr+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771965685; x=1772570485;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=jNTWDS7xIFhn1fF1oG2R6ESQZOh+RfZzpB4H54GaJZw=;
+        b=N3jrS08MR33UQM0fBkaXWAwgBfG5qDvUoOgP6wWnljN42tDHYRPDa82sO2z46hHmtq
+         RcpP/316n+WD9EgVu4BQWX+QhRvIiTvLd+5FW4q5w+r7T1yz/BtTsu+G8vdSSb4N/zhr
+         pw1VFQiwXy+e/aOCusF5beVOv68cZ3DDVHvuA7hv0IBaLFRogFA+sp0Nz51jih9YONpz
+         RuCpKB1kEUuem3bO8gAamXDMkk6ccBpA94kSW06zJmqUkrOxY8ezxAhGuK+ij4xhdjdO
+         VKs6mGopOvbt3KymxvMjjw2wsQMmq84BRUaT9PRpioE4GjpDoQcoTLuoR4p3yxsZ3kBi
+         2CwA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUj7Tx3iu1BQQsXiHfeT+j5k3o3MzwQP2jRisMN6jKdeVvCJLz1QF69n5u/dH3swK5UXeyOkxoBTF7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzYtZxTsKQBtfYHNzcktq6h9dlwE9Eikx98Npea+/u+84LIM/D
+	siGLOHlxokB++2rnCE9aRWCKSjIRspbuMGGWEWGpRlTKk9D9VPIRiXAAk+myZtjvuY/cK0Uot07
+	lFY7s282BBomt5K4QNjaWXkItKYgUM625F0kml7N44Q==
+X-Gm-Gg: ATEYQzyUYSepTbvePghKc/0/hjSDUezjtQuO5oFqnhcRWLybeibFfhkWxCyWK5hAgfK
+	BZiz76UrZ+zKNoHieQeWyDzORSLu6E3OEdbYsHAVs/jotcpq4LBFNsIOqdr06j93ktgecFCoB/i
+	utrMxhTZuCqZ9xU4kTqrr2U13utV5WPRpr1M13HZ+LEIo1BS2R1uRxMnbhdQRFeS7QIypz1mgY/
+	AXKixl2ubW6KhhNM+M1iAnxwKq5FtNLIMKmI5Bt91B3s4p/j92kZXJBv3F5HKnmCbGPbSm6w/aI
+	J69KDcnONiYJBpls2geqruKAWZQyoFNaNkRGGpWlAA==
+X-Received: by 2002:a17:907:9716:b0:b8e:a024:1c81 with SMTP id
+ a640c23a62f3a-b908196fb16mr909923266b.7.1771965685358; Tue, 24 Feb 2026
+ 12:41:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -3.0 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: add GPIO charlieplex keypad
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+References: <20260212213656.662437-4-shenwei.wang@nxp.com> <aae7c851-a93b-4d57-a118-43c6e68c4790@foss.st.com>
+ <13f9d767-61d6-4e29-b36e-6dcc860ccb11@lunn.ch> <fd257c80-d97f-45b0-a12f-3a1888ba81db@foss.st.com>
+ <396819f2-dd00-4c09-8bc7-c035a5282a56@lunn.ch> <PAXPR04MB9185A908F5090F0CA4FF05F78968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <b21b9ee5-d84e-47f8-86b5-c111ecc3d43d@lunn.ch> <PAXPR04MB918576D67A268E59242964A08968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CAD++jLkUVFckLTq=SoivNFoFymhJo4KM=qGmajFcv9T9+7tPmg@mail.gmail.com>
+ <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com> <nbzdtngifwrx2kyu4tsiwwua5v4i5cjtaotemq5hubaets3bcn@fk25twf5rv6x>
+ <PAXPR04MB9185588C1DB71B1FEFA1DEE38974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CANLsYkxAwgG1WkMRr8EJZuSUnN_jKVnsWhWTakVqhvtMBO365A@mail.gmail.com> <PAXPR04MB91851D3DA6A92669CB5926A18974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB91851D3DA6A92669CB5926A18974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+Date: Tue, 24 Feb 2026 13:41:14 -0700
+X-Gm-Features: AaiRm52VdXaBjzzgmhpL1Z-g6JThXBNeXEmeramA_XtCruXiC4qI2WpVWSvfPHI
+Message-ID: <CANLsYkw-8ERXy3v8Sv55Cpq=+41Toez3EjLMbENAkavvr8STeQ@mail.gmail.com>
+Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, 
+	Linus Walleij <linusw@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, 
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268070-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
-	FREEMAIL_CC(0.00)[dimonoff.com,gmail.com,kernel.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-268071-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,foss.st.com,lunn.ch,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.995];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 0491B18C71B
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.995];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C928518C733
 X-Rspamd-Action: no action
 
-Hi Rob,
-
-On Mon, 23 Feb 2026 17:23:33 -0600
-Rob Herring <robh@kernel.org> wrote:
-
-> On Mon, Feb 23, 2026 at 12:47 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Mon, 23 Feb 2026 11:57:06 -0600
-> > Rob Herring <robh@kernel.org> wrote:
-> >
-> > > On Fri, Feb 13, 2026 at 12:14:25PM -0500, Hugo Villeneuve wrote:
-> > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > >
-> > > > Add DT bindings for GPIO charlieplex keypad.
-> > > >
-> > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > ---
-> > > >  .../input/gpio-charlieplex-keypad.yaml        | 82 +++++++++++++++++++
-> > > >  1 file changed, 82 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
-> > > > new file mode 100644
-> > > > index 0000000000000..1672491a75a85
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
-> > > > @@ -0,0 +1,82 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +
-> > > > +$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: GPIO charlieplex keypad
-> > > > +
-> > > > +maintainers:
-> > > > +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > +
-> > > > +description:
-> > > > +  The charlieplex keypad supports N^2)-N different key combinations (where N is
-> > > > +  the number of lines). Key presses and releases are detected by configuring
-> > > > +  only one line as output at a time, and reading other line states. This process
-> > > > +  is repeated for each line.
-> > > > +  This mechanism doesn't allow to detect simultaneous key presses.
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: input.yaml#
-> > > > +  - $ref: /schemas/input/matrix-keymap.yaml#
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: gpio-charlieplex-keypad
-> > > > +
-> > > > +  autorepeat: true
-> > > > +
-> > > > +  line-scan-delay-us:
-> > > > +    description:
-> > > > +      Delay, measured in microseconds, that is needed
-> > > > +      before we can scan keypad after activating one line.
-> > > > +    default: 0
+On Tue, 24 Feb 2026 at 13:17, Shenwei Wang <shenwei.wang@nxp.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > Sent: Tuesday, February 24, 2026 12:10 PM
+> > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > Cc: Bjorn Andersson <andersson@kernel.org>; Arnaud POULIQUEN
+> > <arnaud.pouliquen@foss.st.com>; Linus Walleij <linusw@kernel.org>; Andr=
+ew
+> > Lunn <andrew@lunn.ch>; Bartosz Golaszewski <brgl@kernel.org>; Jonathan
+> > Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>; Krzysztof Kozlo=
+wski
+> > <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Frank Li
+> > <frank.li@nxp.com>; Sascha Hauer <s.hauer@pengutronix.de>; Shuah Khan
+> > <skhan@linuxfoundation.org>; linux-gpio@vger.kernel.org; linux-
+> > doc@vger.kernel.org; linux-kernel@vger.kernel.org; Pengutronix Kernel T=
+eam
+> > <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; Peng Fan
+> > <peng.fan@nxp.com>; devicetree@vger.kernel.org; linux-
+> > remoteproc@vger.kernel.org; imx@lists.linux.dev; linux-arm-
+> > kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; Bartosz
+> > Golaszewski <brgl@bgdev.pl>
+> > Subject: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO d=
+river
+> > On Tue, 24 Feb 2026 at 08:56, Shenwei Wang <shenwei.wang@nxp.com> wrote=
+:
 > > >
-> > > Isn't this the same as "col-scan-delay-us" in gpio-matrix-keypad.yaml?
-> > > If so, move it to matrix-keymap.yaml to re-use it here.
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Bjorn Andersson <andersson@kernel.org>
+> > > > Sent: Monday, February 23, 2026 8:43 AM
+> > > > To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+> > > > Cc: Linus Walleij <linusw@kernel.org>; Shenwei Wang
+> > > > <shenwei.wang@nxp.com>; Andrew Lunn <andrew@lunn.ch>; Bartosz
+> > > > Golaszewski <brgl@kernel.org>; Jonathan Corbet <corbet@lwn.net>; Ro=
+b
+> > > > Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>=
+;
+> > > > Conor Dooley <conor+dt@kernel.org>; Mathieu Poirier
+> > > > <mathieu.poirier@linaro.org>; Frank Li <frank.li@nxp.com>; Sascha
+> > > > Hauer <s.hauer@pengutronix.de>; Shuah Khan
+> > > > <skhan@linuxfoundation.org>; linux-gpio@vger.kernel.org; linux-
+> > > > doc@vger.kernel.org; linux-kernel@vger.kernel.org; Pengutronix
+> > > > Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > > > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>;
+> > > > devicetree@vger.kernel.org; linux- remoteproc@vger.kernel.org;
+> > > > imx@lists.linux.dev; linux-arm- kernel@lists.infradead.org;
+> > > > dl-linux-imx <linux-imx@nxp.com>; Bartosz Golaszewski
+> > > > <brgl@bgdev.pl>
+> > > > Subject: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg
+> > > > GPIO driver On Mon, Feb 23, 2026 at 03:24:43PM +0100, Arnaud POULIQ=
+UEN
+> > wrote:
+> > > > > On 2/22/26 15:48, Linus Walleij wrote:
+> > > > > > On Fri, Feb 20, 2026 at 7:57=E2=80=AFPM Shenwei Wang
+> > > > > > <shenwei.wang@nxp.com>
+> > > > wrote:
+> > > > [..]
+> > > > > >
+> > > > > > Is it generic? If it is not, let's call it "NXP rpmsg GPIO driv=
+er"
+> > > > > > and rename files etc accordingly. Maybe it can share code with
+> > > > > > the actual generic RPMSG driver once that arrives, that is more
+> > > > > > of a library
+> > > > question.
+> > > > >
+> > > > > I would like to (re)express my concerns regarding the creation of
+> > > > > an NXP-specific driver. To clarify my concerns, ST, like probably
+> > > > > some other SoC vendors, has rpmsg-gpio and rpmsg-i2c drivers in
+> > > > > downstream with plans to upstream them.
+> > > > >
+> > > > > If we proceed in this direction:
+> > > > >
+> > > > > -Any vendor wishing to upstream an rpmsg-gpio driver might submit
+> > > > > their own platform-specific version.
+> > > > >
+> > > > > - If NXP upstreams other rpmsg drivers, these will likely remain
+> > > > > NXP-centric to maintain compatibility with their legacy firmware
+> > > > > and the nxp-rpmsg-gpio driver, leading to platform-specific
+> > > > > versions in several
+> > > > frameworks.
+> > > > >
+> > > > > - The implementation will impact not only the Linux side but also
+> > > > > the remote side. Indeed, some operating systems like Zephyr or
+> > > > > NuttX implement the rpmsg device side (Zephyr already implements
+> > > > > the
+> > > > > rpmsg-tty)
+> > > > >
+> > > > > Maintaining a generic approach for RPMsg, similar to what is done
+> > > > > for Virtio, seems to me a more reliable solution, even though it
+> > > > > may induce some downstream costs (ST would also need to break
+> > > > > compatibility with legacy ST remote proc firmware).
+> > > > >
+> > > >
+> > > > Could the virtio-based mechanism be used directly (without rpmsg)?
+> > > >
+> > >
+> > > Technically, yes=E2=80=94it's possible to use the virtio mechanism di=
+rectly without
+> > rpmsg.
+> > > It=E2=80=99s a bit like talking straight to the IP layer without invo=
+lving TCP
+> > > or UDP: doable, but at a lower=E2=80=91level approach.
+> > >
+> > > As for the idea of gpio=E2=80=91virtio, which could be an optional so=
+lution
+> > > that certain customers might prefer. I recall hearing this idea from
+> > > Mathieu originally, though I=E2=80=99m not sure whether he plans to i=
+mplement it.
+> > >
 > >
-> > It is used in a similar fashion, but for charlieplex keyboard, there is
-> > no concept of "rows" and "columns". There are only
-> > lines, which are all equivalent in functionality.
+> > As Daniel pointed out, gpio-virtio is already available and already inc=
+ludes a
+> > protocol that is generic - no need to redefine a new one as this set is=
+ trying to.
 > >
-> > > If not, there's a bunch of other scan delay properties just from
-> > > grepping "delay" in the input bindings. Surely we can define something
-> > > common.
+> > As mentioned in a previous email, I understand some implementations wil=
+l have
+> > restricted memory and need to use RPMSG.  For those cases a generic rpm=
+sg-gpio
+>
+> I think this highlights why some customers prefer RPMSG over using virtio=
+ directly. Limited
+> system resources and development efficiency are the two main reasons that=
+ make RPMSG
+> a better fit for certain environments.
+>
+> > protocol should be derived from gpio-virtio that would only deal with b=
+reaking
+> > down the standard gpio-virtio protocol into something digestible by RPM=
+SG.  That
+> > was Bjorn's point in an earlier message.  This will allow to use the sa=
+me interface
+> > and be flexible in how we want to talk to the transport medium, i.e pur=
+e gpio-
+> > virtio or rpmsg-gpio.
 > >
-> > Most of those delays refer to something quite different than what
-> > "col-scan-delay-us" or "line-scan-delay-us" are used for (it is a delay
-> > that we wait when activating a GPIO before we can safely/reliably read
-> > other GPIOs connected thru its circuitry).
+>
+> Once the remoteproc chooses to expose devices through an RPMSG=E2=80=91ba=
+sed protocol,
+> deriving another driver from gpio=E2=80=91virtio doesn=E2=80=99t really m=
+ake sense. That would essentially
+> mean re=E2=80=91implementing parts of RPMSG yourself instead of using exi=
+sting one.
+>
+
+We clearly do not understand each other.
+
+> > Fortunately RPMSG already uses channels to differentiate between traffi=
+c, no
+> > need to multiplex everything on the same channel.  That too needs to go=
+.
 > >
-> > Maybe "col-scan-delay-us" and "line-scan-delay-us" could be
-> > combined into a common "line-scan-delay-us" ("line" is more generic
-> > than column), and defined in matrix-keymap.yaml.
-> 
-> What about "scan-delay-us"? I would assume all the scan delay
-> properties are just the delay after changing the outputs to reading
-> the inputs.
+> > > As the chip vendor, NXP=E2=80=99s role is to provide all possible opt=
+ions and
+> > > let customers choose the approach that best fits their needs; we don=
+=E2=80=99t make
+> > that decision for them.
+> >
+> > As kernel maintainers, our role is to advise on designs that are generi=
+c, simple,
+> > maintainable and stand the test of time.
+> >
+>
+> These adjectives only make sense within the context of a specific use cas=
+e. Different
+>  systems have different constraints, and people choose a particular solut=
+ion for valid
+> reasons based on their requirements.
+>
 
-They are for gpio-matrix-keypad.yaml and this binding, but not for
-others. Most scan delay properties refer to the period or
-interval between successive scans.
+You can choose whatever solution you want, that is entirely up to you.
+Maintainers can also choose to reject that solution for mainline
+Linux, which is exactly what we are doing.
 
-So for my binding, "settling-time-us" would be more accurate and a
-better property name (it is also used in adc.yaml).
-
-Looking into a common place to define this new property, I stumbled
-upon gpio-delay.yaml, so maybe I do not need this new property at all
-and simply define a gpio-delay node if needed (and add it to this
-binding example)?
-
-I tested this and it works, although it requires a patch to the
-gpio-aggregator driver, because for now it respect the delay only
-when changing the output value, not when switching between input and
-output like I do in my driver.
-
-With my patch, it works ok.
-
-> > Then would it be ok to remove "col-scan-delay-us" from
-> > gpio-matrix-keypad.yaml and use "line-scan-delay-us" (ABI change) ?
-> 
-> No!
-> 
-> Rob
-
--- 
-Hugo Villeneuve
+> Please respect their efforts.
+>
+> Thanks,
+> Shenwei
+>
+> > >
+> > > Thanks,
+> > > Shenwei
+> > >
+> > > >
+> > > > If not, it would be good to derive a generic rpmsg-gpio protocol
+> > > > from the virtio protocol, and land implementations of this in e.g.
+> > > > Linux and Zephyr to establish that option.
+> > > >
+> > > > Regards,
+> > > > Bjorn
+> > > >
+> > > > >
+> > > > > In the end, I am just trying to influence the direction for RPMsg=
+,
+> > > > > but based on the discussions in this thread, it seems others shar=
+e
+> > > > > similar expectations, which should probably be taken into account=
+ as well.
+> > > > >
+> > > > > Thanks and Regards,
+> > > > > Arnaud
+> > > > >
+> > > > >
+> > > > > I just want to
+> > > > >
+> > > > > >
+> > > > > > Yours,
+> > > > > > Linus Walleij
+> > > > >
 
