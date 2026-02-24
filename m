@@ -1,233 +1,208 @@
-Return-Path: <devicetree+bounces-267767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267760-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iB38MJFhnWksPQQAu9opvQ
-	(envelope-from <devicetree+bounces-267767-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:30:09 +0100
+	id qLNuHOhdnWmxOgQAu9opvQ
+	(envelope-from <devicetree+bounces-267760-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:14:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D809F183B0D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:30:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2F86183775
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:14:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C1E513028E87
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:30:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 96ED030C31EB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094E236682C;
-	Tue, 24 Feb 2026 08:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F0936606B;
+	Tue, 24 Feb 2026 08:10:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="qTcBrvGs"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="X0dmDTi/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="e4j7AlC7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D55313543;
-	Tue, 24 Feb 2026 08:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00AD933EB13
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 08:10:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771921806; cv=none; b=TRZqgls2T+Ot9LgkZGsg9cC1UITqVjksn6YCGeHWaI9ofNNTadkXCpzCAtbbbBGkhbbwO/dOtED/WSInkEM9SvisnEFqyt8FzOPVdHb7aRKyuC6uCeXUaeIHkQmgWHZnGO+FSOO1JHHdRcTG7Tk78Pxh5tq175y2xCCwiUgQGp8=
+	t=1771920619; cv=none; b=jqkMdpivSlmxj2ya5BSi9yleNMuA19QLAExE3my9baAW5qYwgNUZtT77qYuzl8uE5hAayqZ/vTvl9+S59fW0J58T1g+9AYYHnTESmapUyaVxPJ+j5SzLDU+N27AHlIllMNm6GexD4y+8JuOho4sBDuJQ52w3EpB/LmTRHoMAgdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771921806; c=relaxed/simple;
-	bh=ewIPAQX6sAszYh2BuSmqO4oiBjg87c9nS2a8K1A9wLs=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=DvG97h6RuSu9VoPCsxq4Ybm6aEEP5yi7JBq+TiZzJSLOpg0z/9QwEa52sA7eK6WPsGUePRcOM9s16S2AKBBXWkwYCbZ/lY2IQhrp1KI0Jcqk8my9hawqWUqUOsubZ2XuAcL31FhjHSQ0glI4W6IBcJ2b2lVDOMh4kOgmF7t124o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=qTcBrvGs; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=ewIPAQX6sAszYh2BuSmqO4oiBjg87c9nS2a8K1A9wLs=; b=qTcBrvGso3jmt65eAy6f6zTn/2
-	senO/mPHbPEgWadhTZQRyHO4zk8sfyAUNZiW7Bf7CkC85eMCnxYDD1J06R4/FsputlZCWGR9QBUCo
-	ia52SuDzs+gccpCbhGjVyEbIsHgPpfMcnKYLOAyhgi8aSObDWL1BxwtYf7fdgH4OtdKhOQzbo9T+E
-	ofdGhNJAi53RcPTUbCQN00gmxiNjswkPGxVqhWMirs0XUdRbiNNStu+dJgQs7sEExhKZBGUvF+1G4
-	k1qkrdsTrcnM4I63G1bSQkEAT7rmb7/OkaM2VW9NnjBac6as4VLdXjh7kAWiriWxzU1GyXNmgYHUb
-	ITJFDrHQ==;
-Received: from [122.175.9.182] (port=60068 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1vunUS-00000007Vdz-2Uxl;
-	Tue, 24 Feb 2026 03:09:56 -0500
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 43A4F1B490F3;
-	Tue, 24 Feb 2026 13:39:49 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
- by localhost (zimbra.couthit.local [127.0.0.1]) (amavis, port 10032)
- with ESMTP id XoGCLww6HRli; Tue, 24 Feb 2026 13:39:45 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id DC5BF1B4909D;
-	Tue, 24 Feb 2026 13:39:45 +0530 (IST)
-X-Virus-Scanned: amavis at couthit.local
-Received: from zimbra.couthit.local ([127.0.0.1])
- by localhost (zimbra.couthit.local [127.0.0.1]) (amavis, port 10026)
- with ESMTP id P2RgEwv89MYe; Tue, 24 Feb 2026 13:39:45 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id B23451B490F3;
-	Tue, 24 Feb 2026 13:39:45 +0530 (IST)
-Date: Tue, 24 Feb 2026 13:39:45 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Andrew Davis <afd@ti.com>, nm <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, rogerq <rogerq@kernel.org>, 
-	tony <tony@atomide.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	aaro koskinen <aaro.koskinen@iki.fi>, andreas <andreas@kemnade.info>, 
-	linux-omap <linux-omap@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	netdev <netdev@vger.kernel.org>, danishanwar <danishanwar@ti.com>, 
-	pratheesh <pratheesh@ti.com>, j-rameshbabu <j-rameshbabu@ti.com>, 
-	praneeth <praneeth@ti.com>, srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, mohan <mohan@couthit.com>, 
-	pmohan <pmohan@couthit.com>, basharath <basharath@couthit.com>, 
-	Murali Karicheri <m-karicheri2@ti.com>, 
-	Parvathi Pudi <parvathi@couthit.com>
-Message-ID: <760333566.501717.1771920585648.JavaMail.zimbra@couthit.local>
-In-Reply-To: <2a977fd4-910a-4838-9ed6-97224d6ab775@lunn.ch>
-References: <20260105162546.1809714-1-parvathi@couthit.com> <20260105162546.1809714-3-parvathi@couthit.com> <84b08398-5622-45c9-a8fa-54639c1cf0b3@ti.com> <2110802326.88645.1767873743162.JavaMail.zimbra@couthit.local> <180076068.145887.1768567659299.JavaMail.zimbra@couthit.local> <2a977fd4-910a-4838-9ed6-97224d6ab775@lunn.ch>
-Subject: Re: [PATCH v4 2/2] arm: dts: ti: Adds support for AM335x and AM437x
+	s=arc-20240116; t=1771920619; c=relaxed/simple;
+	bh=qYVi6UpYDZWUvVX7mise+3Gu9ph4AYcoIwRD+5oqduA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AGXuHTRu3BUOA1aV6Gk+bSmMbuayMNI18iFB7Mdo0yyXaYSI/TNjl8Vc8SckgMpMmJO2v3xkaXrwh/RnLzBMaP4JrGQN0lmjx9h0z79xD6/QrqVlj+JngPpCrBy34f9Z7eF0PrFmkt6dtU6O8sJK19plYM9kC0kDcgWnqd5Oz5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X0dmDTi/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=e4j7AlC7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61O4M2302318808
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 08:10:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=akfh5azzDqif5zPoRlnXnETK
+	o7tY79FJ80obZSfZowQ=; b=X0dmDTi/TNbDzp4nARzZPDAuuCjz8TyVX0z0seLV
+	uhjXfCA5vyRUp2dtvsOOefB3930ilLHDEGeLe1aplBPgjpEybTa05jhuQqxF/s9f
+	7KT86wn/e3l+0uucl90XQQNQd5WmksPlZlJPaxWklnxIm0iE6ymcTEDtmE5OBoqO
+	/IYyz3uTB/SprJjuVb3V+k8atv8WzVBQlifyJ0wNQWA7BFx9MGxwXZlzqUSnI4F0
+	visi726tKWRH8XczoShtcNYIPf0K3SrjvMeatU06yOhGRqaSRqlyBVyGHQ8JMhZ/
+	lmGJUvQ0XXecOy6YtCUguNTd5h5rOpYHGuYrhEmWmJqkPg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cgtyja8fy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 08:10:17 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c70e610242so4840077185a.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 00:10:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771920616; x=1772525416; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=akfh5azzDqif5zPoRlnXnETKo7tY79FJ80obZSfZowQ=;
+        b=e4j7AlC7q8KMEIK44jRQTlNeIxivWlAnZ1mqg9QykNPcBkU3ZG4DTZHxYrC1L5i5e1
+         uDyiA7WURk11c8LpxzEvOxEfG6GNg3LZhGBMeGKj0dcJRtXSMkdMXu5xy8R8c+0/1aws
+         mnM67Xi0o5SWaqSXtiyL8LLdPuKmrZyHiMbQ6VKs3M4qrMV2WvSPUnXBkGqhO4nSkofm
+         OSdFUz7YwfFBxXhpUl0jcyuoIH7Uolqzx0wd9phx4E4h9HNAe9t+d5h7BjFluhPoClnT
+         EeRY1FxQ3nQACsPEtbC/DYkg86VeLqgOHDvbxCSAUvXTgtoWlBEby+4lZNeEZZCLpLCg
+         Z9JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771920616; x=1772525416;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=akfh5azzDqif5zPoRlnXnETKo7tY79FJ80obZSfZowQ=;
+        b=sBPrqTuSkp8AxFDVyjO0Jcox1u2yhvS1O/ekNMXwDuFayJvMzKtByuuZJQh9nMpZ3F
+         lrPHduM9iRm7+RoSpsXlXlJehbIH9CDahHohHWJ7KStU9MdShNg53zpC5AeSNe2A2RZC
+         w+c0dA4kjDzaZl9WrswlVK7KfCKL30mk7ty7Ux97O6eviUa23g1y6sd6hvsQlpeEw8V+
+         gI+07KHLq0aVUOZ/Ta4K8gSsk8AywdDewJul6gMKF2JCxa+cEJ65HNhXjZ2GI0Y/nOuq
+         bL3nvueFdLzzJgpdHFZxJ9e6WrEH9i+bBqBr9cSRcEiWMU5+eiPrfP0zzFBI83OGldEs
+         B+OA==
+X-Forwarded-Encrypted: i=1; AJvYcCUuCwv4WDP9YmGizSO/B7cWpG1M4A6fUSLZy01Xc0I4oa2PZsQcVnaaZTvxwVSzGM00xOw6/OA/hejs@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMPw5oA5k5j6ZRE6jrYTI+3vpGAE/ERvTfLRgUvCuzdDpTxsI4
+	HHres8Jv9vOdsMarthzs+AHfdk0vQXlQCkWVGng3UWZNBOSxa8mOhlHfINTPXbvrxlEq+iYfksI
+	OwGeceeolsKFEHEyTmmhsNSnmxlsIuie6o7iNJzyO8CuKnA9DI7ClWprU74Re83gD
+X-Gm-Gg: AZuq6aKJgsQAvEhHOsHMwMJZ8oqjchy8KC0UVez+3g615pEzMeeG8m27C+u9pv5FqzC
+	lIIhbaucqASqi/5PB9RQK+ke8no1wQ9trSdeZnTHtUc1ZrDs88XTq01Nc+wOwjaykvIMCFhArjv
+	14jB6gz73TeEFeQNtW7CHBQ2NAuuC3+0+sBBxIdB7EkvrfAbiYBbqmkmuiBd/JsttbzW8Jl6l+7
+	WMnXctyRfmMj71Mgl8Nwv1T3FJdkrPCHLkg0iX8wxZlkVDwwkyzGqnZi+T7QAaJbWj3tjiGrs5W
+	QO1FqAhHT5Hqzy6A+4qyv2iz9QWviOCnc6wqcJI9DGvKW0sPkU5Z2o9oM0BqH6iQORQgOYaMggf
+	bYkbhnVb7ZOM5IWedW19EGqmgq+abpPp8EI1E
+X-Received: by 2002:a05:620a:4449:b0:89f:5057:974d with SMTP id af79cd13be357-8cb8c9cc32cmr1357403885a.10.1771920615900;
+        Tue, 24 Feb 2026 00:10:15 -0800 (PST)
+X-Received: by 2002:a05:620a:4449:b0:89f:5057:974d with SMTP id af79cd13be357-8cb8c9cc32cmr1357400085a.10.1771920615132;
+        Tue, 24 Feb 2026 00:10:15 -0800 (PST)
+Received: from oss.qualcomm.com ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483b81f8912sm19461595e9.1.2026.02.24.00.10.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Feb 2026 00:10:14 -0800 (PST)
+Date: Tue, 24 Feb 2026 10:10:12 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interconnect: OSM L3: Add Eliza OSM L3
+ compatible
+Message-ID: <2dnws4hpakt4oxhbfpcnu5ga45mmx4fjxexou2gaueiqaveeyn@itiyzldq5cxr>
+References: <20260223-eliza-bindings-interconnect-epss-l3-v1-1-fa83970d60ae@oss.qualcomm.com>
+ <20260224-hilarious-tasteful-narwhal-c492a5@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 9.0.0_ZEXTRAS_20240927 (ZimbraWebClient - GC138 (Linux)/9.0.0_ZEXTRAS_20240927)
-Thread-Topic: Adds support for AM335x and AM437x
-Thread-Index: ORYIHTaQ3Y3lblXZoUQVThEHXtOteQ==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260224-hilarious-tasteful-narwhal-c492a5@quoll>
+X-Authority-Analysis: v=2.4 cv=Jq/8bc4C c=1 sm=1 tr=0 ts=699d5ce9 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=kj9zAlcOel0A:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=9fn_TuVGXQWuGc_kkjMA:9 a=CjuIK1q_8ugA:10
+ a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-ORIG-GUID: DCRMPqGQVDBCENKQ3_hrV48sxv9wuSXA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI0MDA2OCBTYWx0ZWRfX5adlZrQRQD7i
+ E3ti9xcd98iPM4bCpN1sFcP0gYW6DLDiByZpxLm1PZ8w4UIQnu5uCr73jVELT3KB6ln+PEduDOw
+ pl69JitYVxELGYlrqdYRFZUvs9vyB+nKKopIu+UzTugrIfO4UqQQ5t/vkeipbBD7Hu/tYCWGP0A
+ MB923Y2PnC4cqAa6io50msWruRn3Y5ITmHL2KiFbMTJhMT1+V/fNouBGbcbpw1KIxvVjCcF5/AE
+ MFNv4mnun1BENw3X3HOIGAoxdTCZ5vTdNkowby5IM4URfer0U/OJbNMuo4TbdSGUBvJBBLPFksw
+ CW3dVmTxi4nxkiSkcL1MJzhjFZZfvRijCEPM7fbnTCQT/AO2450XTPg8hxncOl5FupbKTXMi9qT
+ nyXq9Hou2Ku4ckhQnQ1kTbTNfGtnJY8fTBlKCzbjE4emavGkY/x7gPF2R78qKe1KKGep6qhapJz
+ Udho7NtDH0fw36v1D9A==
+X-Proofpoint-GUID: DCRMPqGQVDBCENKQ3_hrV48sxv9wuSXA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-24_01,2026-02-23_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 malwarescore=0 priorityscore=1501
+ spamscore=0 adultscore=0 phishscore=0 suspectscore=0 impostorscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2602240068
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[couthit.com:s=default];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[couthit.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267767-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TO_DN_ALL(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_X_AS(0.00)[smtp@couthit.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_X_GMSV(0.00)[smtp@couthit.com];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ti.com:url,couthit.local:mid];
-	HAS_X_SOURCE(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	TAGGED_FROM(0.00)[bounces-267760-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.986];
-	FROM_NEQ_ENVFROM(0.00)[parvathi@couthit.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[ti.com,baylibre.com,kernel.org,atomide.com,gmail.com,iki.fi,kemnade.info,vger.kernel.org,couthit.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[couthit.com:-];
-	HAS_X_ANTIABUSE(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: D809F183B0D
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: C2F86183775
 X-Rspamd-Action: no action
 
-Hi,
+On 26-02-24 08:29:09, Krzysztof Kozlowski wrote:
+> On Mon, Feb 23, 2026 at 10:49:04AM +0200, Abel Vesa wrote:
+> > Eliza, similarly to SDM845, uses OSM hardware for L3 scaling.
+> > Document it.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> > ---
+> >  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> > index 4b9b98fbe8f2..6182599eb3c1 100644
+> > --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> > +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+> > @@ -28,6 +28,7 @@ properties:
+> >            - const: qcom,osm-l3
+> >        - items:
+> >            - enum:
+> > +              - qcom,eliza-epss-l3
+> 
+> I see EPSS, not OSM here. This is also list without SDM845, so I don't
+> understand explanation in commit msg at all.
 
->> On the AM335x board, the CPSW MDIO and PRUSS MDIO signals are routed to =
-the same
->> physical
->> pins (as shown in the schematic, see page 10 =E2=80=9CMII_MUX=E2=80=9D i=
-n
->> tmdxice3359_sch_3h0013_v2_1a.pdf
->> from https://www.ti.com/lit/zip/TIDR336 ). Because of this shared routin=
-g, the
->> pinmux
->> configuration applied by U-Boot for CPSW MDIO remains active even if the=
- CPSW
->> MDIO node is
->> later disabled in Linux, and Linux does not automatically revert the pin=
-s to
->> their reset state.
->=20
-> It is generally a bad idea to rely on the bootloader. I would make the
-> CPSW MDIO configure the pins how it needs it. The PRUSS MDIO should
-> also configure the pins how it needs them. However, it is not as
-> simple as that...
->=20
+So there are two issues here:
 
-On AM335x, the MDIO interface is selected by a hardware jumper before the
-bootloader runs. The selection is latched in hardware, so only one MDIO
-controller (CPSW or PRUSS) is active at a time.
+1. EPSS bindings are handled by the OSM schema. I believe this is by
+design as they basically do the same thing. Interconnect providers for
+L3 scaling. So the compatible is in the right schema.
 
-Since the hardware choice is fixed prior to Linux boot, we decided to ensur=
-e
-in U-Boot that the pins are configured according to the selected hardware l=
-atch.
-Linux still configures the active MDIO controller as required via its DT an=
-d
-pinctrl settings. The U=E2=80=91Boot change ensures a clean initial state t=
-hat matches
-the hardware latched configuration, and we have this prepared as a patch th=
-at
-will be submitted to mainline U=E2=80=91Boot shortly.
+2. The commit message should've said SM8650 instead. Will fix and
+respin.
 
-> Looking at the schematic, what you have is ugly. You literally wire
-> the outputs together, without a hardware mux. For MDC you assume one
-> is Hi-Z, while the other drives the line. For MDIO it does not matter,
-> both are inputs. so Hi-Z.
->=20
-
-Although the schematic shows the signals tied together without an explicit =
-mux,
-the hardware jumper selects RMII (CPSW) or MII (PRUSS) before boot. Only th=
-e
-selected block is enabled, and the other remains inactive, so the lines are=
- never
-driven concurrently.
-
-> I actually think you might need to represent this in Linux, with
-> something i would call a pinmux-mux. You give it two sets of pinmux
-> configurations. The active device claims the mux and gets it to set
-> the two sets of pinmux as needed. Also, just setting the pinmux to
-> GPIO is not sufficient, you also need to ensure the GPIO is configured
-> for input, so the lines go Hi-Z. Often pinmux and GPIO controllers are
-> interconnected, so the pinmux subsystem might be able to do that for
-> you.
->=20
-> I don't know if a pinmux-mux already exists in Linux. You probably
-> want to ask on the pinmux mailing list, or they might have a different
-> idea how to cleanly do this.
->=20
->=09Andrew
-
-In this case, the selection is static and determined by hardware via a jump=
-er,
-not switchable at runtime. Linux reflects this by choosing the Device Tree
-configuration corresponding to the latched jumper, it enables the selected
-MDIO controller and sets up its pinmux, while the other MDIO controller
-remains disabled.
-
-We will update the patches by removing the CPSW pin reset configuration in
-ICSS context and post the next version shortly.
-
-Thanks and Regards,
-Parvathi
 
