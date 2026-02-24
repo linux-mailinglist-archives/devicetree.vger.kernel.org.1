@@ -1,121 +1,123 @@
-Return-Path: <devicetree+bounces-267776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267777-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uN5DKktqnWnhPwQAu9opvQ
-	(envelope-from <devicetree+bounces-267776-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:07:23 +0100
+	id mIGpD3prnWnhPwQAu9opvQ
+	(envelope-from <devicetree+bounces-267777-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:12:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00B721843EF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:07:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5F8184535
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:12:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 17D6A30607A2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:02:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1377A3005ACD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:10:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C27E369979;
-	Tue, 24 Feb 2026 09:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tHv0N+EL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A32B366834;
+	Tue, 24 Feb 2026 09:10:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7808A2BD11
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 09:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11D016F288;
+	Tue, 24 Feb 2026 09:09:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.182.222
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771923760; cv=none; b=fly5oKZCR+BBaPJ30KL06LoyEd5TvKenkgbNMMQyiWtzLH9O5OETgQGsJaS12ZrgQ4rxRKbkn/QAzWEURcu1LI1PpTW91COef6Bhyof2LFOJ3urcbBiX7a6IhWiF0dqb8KLqBnlGs+eVzDsPj9f40LZmmTyKYBBzo3q0nvDxL0o=
+	t=1771924203; cv=none; b=ep7putv1zRfR0qWDzmMMbsrjk1TpcIRQLoPCuF43pekDeIQOqhslHFBe6N8A2l3hOmuktmMn+nILJ+H1SQlYkZJeZEsrGlEmsLHva5VgfLbvvHLt/1bcvIwoPAPl+9BU2+lvaj/bPPa+sQPKXn7GPEh7skN6/PfGnah2eFejUSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771923760; c=relaxed/simple;
-	bh=dd/gT6QA+Dp8Thp1escmNkBWo8V0/a+d5yMpDmFY/co=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K1AMTgXu8BCbh8vryInvQzQwvJFpMdBCtBfxut5L2jnYny8/H/ICoI80UuX0vE+KCw08r7ro19M7eD8Dii5V2efl0VoaFAkapQKQhOUID/y+du4nfLeBfDrgoSqjklu+7YO9cRxKGpQQc/oWoGDF8omlKSdiS1yCRhW1w/gG0VM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tHv0N+EL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C2E2C2BC9E
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 09:02:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771923760;
-	bh=dd/gT6QA+Dp8Thp1escmNkBWo8V0/a+d5yMpDmFY/co=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tHv0N+ELI40VPhWnDz2DTayTADymk3xbwJk82BEoyiBSs9ka2/Ld6scqeD04wXYMX
-	 PMxSaTUbAO62zO+UdhI85awhDzle9Qjt1CamZtisgsvl31tkIXc/Lj1CelJX+Gm0yu
-	 9XmrmmtWqcOnZQyKuw/You2XfX/PW4XCqpEdK/oCY8g5++VEc3CRLEFWRNhoyL4PoH
-	 czUgpbK1GRC/jazU151rOCPnetFGNbYfL+KAL1rJIe9cn5VOteOw9UzeRH7x+y62Zs
-	 I+Tsp7q3mfVmp0wiq8YWjGtDFQu/zbAGYqXLodx3d/TVcotG6m6ym4PLXdiJy7zskm
-	 zsQmjfXitXQNA==
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-79827d28fc4so27355277b3.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 01:02:40 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXvOa5EOlrq5lLu8waO4a5aYBVrKiQ1SWXm1SXSwtJWCCz35YUu3B+Tr+RgoKQSOk86HiDwWNdmKToB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzrp+/2fqqga1D26OSPR2DsU5Gb94cpSmT/qjVucRD6yrSGZ1jX
-	brhyEbUCCXqtfFWkAUFP14fTfiHRk01OLgiD1KJpG5s0lMzh4xRO/MRyU8FKN0Vpz9SBpEs9Ecl
-	lzm/d6NUybwExFp68W94bfMMB7HGRckg=
-X-Received: by 2002:a05:690c:64ca:b0:794:d639:366 with SMTP id
- 00721157ae682-79828f18d18mr102093417b3.26.1771923759669; Tue, 24 Feb 2026
- 01:02:39 -0800 (PST)
+	s=arc-20240116; t=1771924203; c=relaxed/simple;
+	bh=yAOslJ+pC7VyRRx+a0peLrlTHeTl+nRsCm84jAs6dJY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=qqjJmpwPVkdiFM/RzA97S+MqQsrfKVrUYN4Lv66wTJjngaevsV2uILb1rilBZK4RiNxVYoxIaqoSDL2PW5GyfqQrdsFJRGMVQ6nSQjn9e1x1dBCAtvYuVWxfp98/sn1lDkJBYPJTE4dgErVjwsxWv5qO7FjzGMP91i1RRkLetK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.182.222
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
+ ajax-webmail-app2 (Coremail) ; Tue, 24 Feb 2026 17:09:42 +0800 (GMT+08:00)
+Date: Tue, 24 Feb 2026 17:09:42 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
+To: "Bo Gan" <ganboing@gmail.com>, mturquette@baylibre.com, sboyd@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, troy.mitchell@linux.dev,
+	bmasney@redhat.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	marcel@ziswiler.com
+Subject: Re: Re: [PATCH v13 0/3] Add driver support for ESWIN eic700 SoC
+ clock controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <ae2358d7-7e82-49fe-8a03-195487a7b010@gmail.com>
+References: <20260214101421.228-1-dongxuyang@eswincomputing.com>
+ <ae2358d7-7e82-49fe-8a03-195487a7b010@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260211-imx2_iomux_warning-v1-0-1c5233771b32@nxp.com> <20260211-imx2_iomux_warning-v1-2-1c5233771b32@nxp.com>
-In-Reply-To: <20260211-imx2_iomux_warning-v1-2-1c5233771b32@nxp.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 24 Feb 2026 10:02:28 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmPRLy1iJWRtfpS-7OS2533AY42OU87U6hUT59efz-B8A@mail.gmail.com>
-X-Gm-Features: AaiRm52oa2BbbnnLKw9EN11_kQbctbk-A3FEXDfTH-WIg6jXcZh2TKpyJ74DM6w
-Message-ID: <CAD++jLmPRLy1iJWRtfpS-7OS2533AY42OU87U6hUT59efz-B8A@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: imx35: add compatible string fsl,imx25-iomuxc
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
-	Jacky Bai <ping.bai@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	NXP S32 Linux Team <s32@nxp.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-ID: <41d3bf12.387f.19c8ee9570e.Coremail.dongxuyang@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgAHHaDWap1pHxkDAA--.36W
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAQEIAmmcgREbn
+	gAEsu
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267776-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[nxp.com,gmail.com,pengutronix.de,kernel.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[eswincomputing.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-267777-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_TO(0.00)[gmail.com,baylibre.com,kernel.org,vger.kernel.org,linux.dev,redhat.com];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.408];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	HAS_X_PRIO_THREE(0.00)[3];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: 00B721843EF
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AC5F8184535
 X-Rspamd-Action: no action
 
-On Wed, Feb 11, 2026 at 10:00=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
-
-> Add compatible string fsl,imx25-iomuxc.
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-
-This patch (2/4) applied to the pinctrl tree.
-
-Yours,
-Linus Walleij
+PiBIaSBFU1dJTiBmb2xrcywKPiAKPiBJJ20gdGVzdGluZyB5b3VyIHBhdGNoc2V0IG9uCj4gaHR0
+cHM6Ly9naXRodWIuY29tL2dhbmJvaW5nL2xpbnV4LWVpYzc3L3RyZWUvZWljNzctaW50ZWdyYXRp
+b24tdGVzdC1jbGstdjEzCj4gCj4gSXQncyBhcHBsaWVkIG9uIHRvcCBvZiBTYW11ZWwncyBQTUEg
+djMgcGF0c2hzZXQsIHBsdXMgZGV2aWNlLXRyZWUgcGF0Y2hlcwo+IGZyb20geW91ciBpbnRlZ3Jh
+dGlvbiB0ZXN0IGJyYW5jaC4gSXQncyBwcmV0dHkgc2ltaWxhciB0byB3aGF0IE1hcmNlbCBkaWQs
+Cj4gYnV0IEkganVzdCB3YW50IHRvIGhhdmUgYSBzZXBhcmF0ZSB2ZXJpZmljYXRpb24uIFdoYXQg
+SSBmb3VuZCBpcyB0aGF0IHRoZQo+IGtlcm5lbCBjYW4gc3VjY2Vzc2Z1bGx5IGJvb3Qgd2l0aCBj
+bGtfaWdub3JlX3VudXNlZCAoZU1NQy9ldGggd29ya2luZyksCj4gYnV0IGhhbmdzIHdpdGhvdXQu
+IEl0IHN0dWNrIGF0Cj4gCj4gWyAgICAzLjI1NzE0MV0gY2xrOiBEaXNhYmxpbmcgdW51c2VkIGNs
+b2Nrcwo+IAo+IEknbSBwcmV0dHkgc3VyZSB0aGF0IHNvbWUgY2xvY2tzIHRoYXQgd2VyZW4ndCBz
+dXBwb3NlZCB0byBnZXQgZGlzYWJsZWQgZ290Cj4gdHVybmVkIG9mZi4gQ2FuIHlvdSB2YWxpZGF0
+ZSBpZiB0aGF0J3MgYSBidWcgaW4gdGhlIGNsb2NrIGRyaXZlciwgb3IgbXkKPiBkZXZpY2UtdHJl
+ZSBqdXN0IGRpZG4ndCBsaW5rIGFsbCBjbG9ja3MuIE9uZSB0aGluZyBJIG5vdGljZWQgaXMgdGhh
+dCB0aGVyZQo+IGlzIG5vIENMS19JU19DUklUSUNBTCBpbiB5b3VyIGNvZGUsIHNvIGl0J3MgaGln
+aGx5IGxpa2VseSB0aGF0IEREUiBQTEwgb3IKPiBvdGhlcnMgd2VyZSB0dXJuZWQgb2ZmIHVuaW50
+ZW50aW9uYWxseS4gTm90IGEgY2xvY2sgZHJpdmVyIGV4cGVydCwgYnV0IEknZAo+IGV4cGVjdCB0
+aGUga2VybmVsIHNob3VsZCB3b3JrIGZpbmUgd2l0aG91dCBjbGtfaWdub3JlX3VudXNlZC4KPiAK
+CkhpIEJvLAoKVGhhbmtzIGZvciB5b3VyIHJlcGx5LiBJIGFsc28gZ290IHRoZSBzYW1lIHJlc3Vs
+dCB3aXRob3V0IGNsa19pZ25vcmVfdW51c2VkLsKgClRoaXMgaXMgYSBidWcsIGFuZCBJIHdpbGwg
+YWRkcmVzcyBpdCBpbiB2MTQuCgpSZWdhcmRzLApYdXlhbmcgRG9uZwo=
 
