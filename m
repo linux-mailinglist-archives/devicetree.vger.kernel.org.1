@@ -1,181 +1,242 @@
-Return-Path: <devicetree+bounces-268072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 1zGNB6ERnmlsTQQAu9opvQ
-	(envelope-from <devicetree+bounces-268072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:01:21 +0100
+	id 8FWlIxkTnml+TQQAu9opvQ
+	(envelope-from <devicetree+bounces-268073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:07:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5952818C8FC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:01:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E27FF18C960
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 22:07:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9B3D230479DB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:01:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BA5F3010D82
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93F982F363F;
-	Tue, 24 Feb 2026 21:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AAC233C182;
+	Tue, 24 Feb 2026 21:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LwB7tktH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkD+4w2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB6F81A0BD0;
-	Tue, 24 Feb 2026 21:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A6033BBD0
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 21:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771966877; cv=none; b=TKHco6/8W163XeomFnU0USzRji+u0TkDVVgIj0FB2Cve5KN6gGKcfRs81+CeLRR5gpSxbEhPAw4XH1J1pheNno9f935pjr31Qc705M68f+wrnFrwPmNOjVFM5DtSEI/dZgw7/7NG8MPYIcbb/MF5nm44O0h1mmy+Ldq2L0MkZcQ=
+	t=1771967214; cv=none; b=ZabVCVT+hNyNtGhyAVyVkTMJZYIleCTakJPsvANAI6pblNUPaQ4SeDYmJEnxxVz3r8omV4XPuTRo3pDLaqZtw0ksAfVCX81NfGBaQQCClqX10OsiBjbOPPH0b+S+7IIm/3mEfRiyVmNRibfupRraWCRBKUb0jYSeMvD4qv6dJCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771966877; c=relaxed/simple;
-	bh=T5ECrRU2hnn88r4jWZvJ3KKDKv71stJ7hWxICCN95M0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jxbLXIQ/dpMdeBQn9k0wfnyWscvC7DhoqN3LewM5H8jf3qfQobpyC39KILXbD5UCgzvNb8S3Im6UoGa/xZ1icsK1n52YO9L2D7sbecDw7aRwR3f64MUuW4Pzqu4+DWHlsFF/o7N9EVorCIAntRHvHqQmGyY71P8uAD1OMxNqSdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LwB7tktH; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=07uVd607MifiuSRzoOjjNoPh2Ox16VYF5/OT1HqLnBc=; b=LwB7tktHtq70OQC/BVl9MxJxmT
-	dvbXMnuXnxUZyuhUWA9ltJTE2uDwVXbUUdceubfAiEk1GU3Uw7IXLblWb0j4PABZEDqxkAc3sOmef
-	yLZhiPm442/b9x/LTJz+7WlI7N91R2J1XIMy6IbepjvW4Hut7MsXYAbQO7XlSPP1EsgU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vuzWh-008ejm-N1; Tue, 24 Feb 2026 22:01:03 +0100
-Date: Tue, 24 Feb 2026 22:01:03 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Shenwei Wang <shenwei.wang@nxp.com>
-Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Frank Li <frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	dl-linux-imx <linux-imx@nxp.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
-Message-ID: <0b42e303-a2ed-4983-bee5-a4eafd6c7f36@lunn.ch>
-References: <PAXPR04MB918576D67A268E59242964A08968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAD++jLkUVFckLTq=SoivNFoFymhJo4KM=qGmajFcv9T9+7tPmg@mail.gmail.com>
- <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com>
- <PAXPR04MB91859B642802813F908B03DA8977A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <64ef5dbf-6264-4758-a5d8-d8c52c359fcc@foss.st.com>
- <PAXPR04MB9185934EB640E8B21905FF878974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <79eb8bb8-83cb-4b24-8e56-42a53c710055@lunn.ch>
- <PAXPR04MB9185F1A67384E4886282227A8974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <91701822-df30-4feb-9e9a-4ee82e2a5d23@lunn.ch>
- <PAXPR04MB9185FD3EEC313CC2408E157F8974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1771967214; c=relaxed/simple;
+	bh=5ZxyFX4fJjxsiFTNWut8UPOcbg/MXWt0dmag+uX+KVM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QE39bXAcQ++hawSGSQC+poMGf5Q3BSSgMFJCd/YjvJaap0ioxhr4KIGyR0oBtJyDi2cUZ0XoA5Ul1z3v3mSkRLByT7yweV5HopQCjYVK1BBLQEgJvsLBy9YDGWw9y84bcuargyaKIo8Mae/MTXU/Z1TQfdpSKwrxdrHYDkOl4u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkD+4w2f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1261EC19423
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 21:06:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771967214;
+	bh=5ZxyFX4fJjxsiFTNWut8UPOcbg/MXWt0dmag+uX+KVM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=BkD+4w2fUyFUne3zKmZGKN63GKbWJRhEZjmXAvlshNzoiZNHa96wucgFaaEqs3oQh
+	 RfRoFrtmn76KpEFKRsA0WBAL48JP/DUrxUvLiuM0l6e2bnnJKeHZmv77Dk6RElCLvM
+	 hXLbMZph1CgMYsCDBAnqYZ6gIMLbBOuhnbopc1EXVitnfDMzd2t+5ulNtfbNFHunKW
+	 DcpbkKEaN6X4YnSSnw2wlpYJXcjlc1JC9SXF2cMHp0YR+OL2ZXNQEqYm0cBffstg+z
+	 mlm8ZcqSdf7CdOGvxbIiKsnnVFmBQgOwjRKiv0ACRABICBcvJu0gFq6Iz84vKXzyih
+	 UNx6Lu+SkPVkw==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-65f73225f45so1281815a12.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:06:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWMgykpadixcrHnO/jdNP8BAZMM1Kcyjf8yWHRZJoMGDYvGe946dxYnOmQ5TjMEN4jHF1Lw3KDoE1ER@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCTIfbBbxKuQ3mWavhXoLiM+5YQThSo2U353aj6D41NKBogFnz
+	YX/0aPh50qbYyWUbCt1U/TtUxbODfLIPxXNN4WQaV+n3yXGrDINlSxMlG6d9p3u8+pFnuSm/grg
+	emCZvvCaEWoprTFWpCdmo8fG3XAtnzw==
+X-Received: by 2002:a05:6402:210e:b0:65c:6d0:d9fb with SMTP id
+ 4fb4d7f45d1cf-65ea57cf1d2mr8220326a12.29.1771967212581; Tue, 24 Feb 2026
+ 13:06:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB9185FD3EEC313CC2408E157F8974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20260213171431.2228814-1-hugo@hugovil.com> <20260213171431.2228814-2-hugo@hugovil.com>
+ <20260223175706.GA4168417-robh@kernel.org> <20260223134738.00988a3d87165cb130292c89@hugovil.com>
+ <CAL_JsqJNASirEqqcT-Sv8h9JC74e+XJSRsAki1ZWeKY8j2zbfw@mail.gmail.com> <20260224154027.0f81b1aa13fe779776e6d58f@hugovil.com>
+In-Reply-To: <20260224154027.0f81b1aa13fe779776e6d58f@hugovil.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 24 Feb 2026 15:06:40 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJtwM33G4qdzpnp6nNtc+tNr6VOKvTB8y6Xv04GTKxymA@mail.gmail.com>
+X-Gm-Features: AaiRm52LmPO-MXpNgXdXVgc_DaDgUM46UDbVP5s_hdKHWmV3eddJh2tV_YqD4vs
+Message-ID: <CAL_JsqJtwM33G4qdzpnp6nNtc+tNr6VOKvTB8y6Xv04GTKxymA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: add GPIO charlieplex keypad
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: hvilleneuve@dimonoff.com, dmitry.torokhov@gmail.com, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268072-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[dimonoff.com,gmail.com,kernel.org,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[foss.st.com,kernel.org,lwn.net,linaro.org,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-268073-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	NEURAL_HAM(-0.00)[-0.992];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: 5952818C8FC
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,hugovil.com:email,mail.gmail.com:mid,dimonoff.com:email,devicetree.org:url]
+X-Rspamd-Queue-Id: E27FF18C960
 X-Rspamd-Action: no action
 
-> > How does port_idx fit into this?
-> 
-> I think you were assuming there is only one remoteproc in the system?
-> In practice, the setup can look more like this:
-> 
-> + remote_cm33{
-> +     rpmsg {
-> +        rpmsg-io-channel {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          gpio@0 {
-> +            compatible = "rpmsg-gpio";
-> +            reg = <0>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            #interrupt-cells = <2>;
-> +            interrupt-controller;
-> +          };
-> +          gpio@1 {
-> +            compatible = "rpmsg-gpio";
-> +            reg = <1>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            #interrupt-cells = <2>;
-> +            interrupt-controller;
-> +          };
-> +  ...
-> +        };
-> +      };
-> +};
-> +
-> + remote_dsp {
-> +     rpmsg {
-> +        rpmsg-io-channel {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          gpio@0 {
-> +            compatible = "rpmsg-gpio";
-> +            reg = <0>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            #interrupt-cells = <2>;
-> +            interrupt-controller;
-> +          };
-> +  ...
-> +        };
-> +      };
-> +};
+On Tue, Feb 24, 2026 at 2:40=E2=80=AFPM Hugo Villeneuve <hugo@hugovil.com> =
+wrote:
+>
+> Hi Rob,
+>
+> On Mon, 23 Feb 2026 17:23:33 -0600
+> Rob Herring <robh@kernel.org> wrote:
+>
+> > On Mon, Feb 23, 2026 at 12:47=E2=80=AFPM Hugo Villeneuve <hugo@hugovil.=
+com> wrote:
+> > >
+> > > Hi Rob,
+> > >
+> > > On Mon, 23 Feb 2026 11:57:06 -0600
+> > > Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > > On Fri, Feb 13, 2026 at 12:14:25PM -0500, Hugo Villeneuve wrote:
+> > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > >
+> > > > > Add DT bindings for GPIO charlieplex keypad.
+> > > > >
+> > > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > ---
+> > > > >  .../input/gpio-charlieplex-keypad.yaml        | 82 +++++++++++++=
+++++++
+> > > > >  1 file changed, 82 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/input/gpio-=
+charlieplex-keypad.yaml
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/input/gpio-charlie=
+plex-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex=
+-keypad.yaml
+> > > > > new file mode 100644
+> > > > > index 0000000000000..1672491a75a85
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-ke=
+ypad.yaml
+> > > > > @@ -0,0 +1,82 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +
+> > > > > +$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad=
+.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: GPIO charlieplex keypad
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > +
+> > > > > +description:
+> > > > > +  The charlieplex keypad supports N^2)-N different key combinati=
+ons (where N is
+> > > > > +  the number of lines). Key presses and releases are detected by=
+ configuring
+> > > > > +  only one line as output at a time, and reading other line stat=
+es. This process
+> > > > > +  is repeated for each line.
+> > > > > +  This mechanism doesn't allow to detect simultaneous key presse=
+s.
+> > > > > +
+> > > > > +allOf:
+> > > > > +  - $ref: input.yaml#
+> > > > > +  - $ref: /schemas/input/matrix-keymap.yaml#
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: gpio-charlieplex-keypad
+> > > > > +
+> > > > > +  autorepeat: true
+> > > > > +
+> > > > > +  line-scan-delay-us:
+> > > > > +    description:
+> > > > > +      Delay, measured in microseconds, that is needed
+> > > > > +      before we can scan keypad after activating one line.
+> > > > > +    default: 0
+> > > >
+> > > > Isn't this the same as "col-scan-delay-us" in gpio-matrix-keypad.ya=
+ml?
+> > > > If so, move it to matrix-keymap.yaml to re-use it here.
+> > >
+> > > It is used in a similar fashion, but for charlieplex keyboard, there =
+is
+> > > no concept of "rows" and "columns". There are only
+> > > lines, which are all equivalent in functionality.
+> > >
+> > > > If not, there's a bunch of other scan delay properties just from
+> > > > grepping "delay" in the input bindings. Surely we can define someth=
+ing
+> > > > common.
+> > >
+> > > Most of those delays refer to something quite different than what
+> > > "col-scan-delay-us" or "line-scan-delay-us" are used for (it is a del=
+ay
+> > > that we wait when activating a GPIO before we can safely/reliably rea=
+d
+> > > other GPIOs connected thru its circuitry).
+> > >
+> > > Maybe "col-scan-delay-us" and "line-scan-delay-us" could be
+> > > combined into a common "line-scan-delay-us" ("line" is more generic
+> > > than column), and defined in matrix-keymap.yaml.
+> >
+> > What about "scan-delay-us"? I would assume all the scan delay
+> > properties are just the delay after changing the outputs to reading
+> > the inputs.
+>
+> They are for gpio-matrix-keypad.yaml and this binding, but not for
+> others. Most scan delay properties refer to the period or
+> interval between successive scans.
+>
+> So for my binding, "settling-time-us" would be more accurate and a
+> better property name (it is also used in adc.yaml).
 
-And why would this require a port_idx? If they are different rpmsg
-instances, the channel numbers are in different address spaces.
+Let's go with that.
 
-	Andrew
+>
+> Looking into a common place to define this new property, I stumbled
+> upon gpio-delay.yaml, so maybe I do not need this new property at all
+> and simply define a gpio-delay node if needed (and add it to this
+> binding example)?
+>
+> I tested this and it works, although it requires a patch to the
+> gpio-aggregator driver, because for now it respect the delay only
+> when changing the output value, not when switching between input and
+> output like I do in my driver.
+>
+> With my patch, it works ok.
+
+I would not use gpio-delay here.
+
+Rob
 
