@@ -1,159 +1,216 @@
-Return-Path: <devicetree+bounces-268037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268038-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yLygINT3nWlzSwQAu9opvQ
-	(envelope-from <devicetree+bounces-268037-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:11:16 +0100
+	id gBJTJM34nWlzSwQAu9opvQ
+	(envelope-from <devicetree+bounces-268038-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:15:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC1818BB54
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:11:15 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C2918BC01
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:15:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9430301C155
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 19:08:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ACAAE3039087
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 19:15:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3BD2EDD6B;
-	Tue, 24 Feb 2026 19:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4AC395DBD;
+	Tue, 24 Feb 2026 19:15:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="4g3xkOm7"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="K/7ZhW2G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D5DA2DB791;
-	Tue, 24 Feb 2026 19:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4DB528643A;
+	Tue, 24 Feb 2026 19:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771960091; cv=none; b=o8ZsYD7UdytLqxcSKOE8Co9c+EEH62iUdaDoB/pJFFGOw+lhgvDhAs+F/4URG5besSyWQmkQGj2hS/NbW8tLQ/ejKbDHbhuwcmPdsgLYJPoXEzEHm1/NrdIo1kL/GBqAmDquC8FYZOblse20cQWbQ6yChKlU4sZioy1IrjFv6Pw=
+	t=1771960521; cv=none; b=nc/q2j82mOwBMow2VOK3LOTWoZx79LmN9gTgs/HN/fzRQ+MoOIzwL9yQ5ogwlM8Ai59ecILYD1VieD1JKCWj0FC5hKWD61jfL64bQ/YBRoRb+Ga7KooP1YYwiNpf1Orxtu5lP9UOCCtuS7bctsSgq3rdd7Ohm7GMeokYF0EU+As=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771960091; c=relaxed/simple;
-	bh=Ytxbffr51F0re4bW6nSVt2djpBTroGj9/O4LbmP+m8s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nHZVpfryiEiDBCgtJCdBxpA/U5tc9WdxMGHpLGXa1MoytvF3mB4VYEBPpQfJXJY2vmTBk2p7IcKkwAS6hFFfyTQyZLeWzpjtctGNhMqoj1HJT+am4F2EA1K5UlKQVYxjFYKmnPv9aRBkB4KKLzkvgg98KppIdiKAr2URbm/0Onc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=4g3xkOm7; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=r7Nl4vRIA8zq2/ErXR7S1Ueuua1WfoxbT3suotlryZc=; b=4g3xkOm75N/NMIdeMIw6vzO5oE
-	Xfjs+FulGd3shI5guD2gYXgE8zpO1R7XnS+pwzSGnYyDnVDJOOWkqxEuZG1XCV/4PS/zr7VPOsH6j
-	wAP9OV4A+K+N5y5Q862oMj2z+G02AKXBBC+4bnG8ra5CEMC/YbFnRKg4GW6wa6Gplpn3Xr/0armxL
-	mAw2OX3wIH1/3EvdsobqnZCEpdGPRO4uJ8bVzTUcpc0wFjXwObleKRXCAcPHTetqf5lRCXpKm3ip0
-	bdHMCqBwNOJUYqcEJEouiJUA07gui4fUkZZXfulN0oUV+94ikSJUEn9RfnjWNnDglmGB7siCS1NGc
-	w7JU9ELg==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
-	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vuxlQ-00000002fd2-2XBJ;
-	Tue, 24 Feb 2026 19:08:08 +0000
-Message-ID: <2b9b5702-1b30-415f-b734-8af9d1aef27c@infradead.org>
-Date: Tue, 24 Feb 2026 11:08:07 -0800
+	s=arc-20240116; t=1771960521; c=relaxed/simple;
+	bh=rAGbxnpKFT+1CkfQA0k7D/O3Tzw6DoraRHLRwf05jYk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f4eFRIglZgQLz4tQHM5EvBPKrctSkbSlHdkJKh9fHmQK4JAJZagFXgTplIYWWZQmSBuokaad5BwfzHHkNo90H+0ZyH5AtVazbQ6RV7pKVxe2GQtH6whcnK187HxtbydRCWYaFqo1g7iKoP/O1cuYtYACd1oA9jFawwW+V/506SA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=K/7ZhW2G; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 61EB326F67;
+	Tue, 24 Feb 2026 20:15:16 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Mpe8zN3WOjXT; Tue, 24 Feb 2026 20:15:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1771960515; bh=rAGbxnpKFT+1CkfQA0k7D/O3Tzw6DoraRHLRwf05jYk=;
+	h=From:Subject:Date:To:Cc;
+	b=K/7ZhW2GZ0V1fDSnhAM0XpeNYp744uS2Zvxo2xJCepgEvB02bgYUaH+9ypnBd67v3
+	 R5YTLdTj9pXUUKQduo/mnwmMlW2SRXLBQ1hRy68F6SH1/TQ18u+VFX5j77QVQtfM0j
+	 K2a0t6QAcOiLyUo5XBW/2nyNegpPv4SSNeGy0ZDN3OUdD55jfX09OXyEfs7OM+RdWU
+	 pTxd8/rqketyPIEo5JqleCJC5m6m/Pe6eNPiz2UZdrvzBI7jFHxIFAQUg9EXH0LRk0
+	 AqHbzJsN4kw8IyKgvzp6Kj+5+Mxqn7XgIE34a0enWsY/zhR5WTGkBgCK8cbymVphWG
+	 xrXTMlYvdohaA==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH v3 00/13] Support for Samsung S2MU005 PMIC and its
+ sub-devices
+Date: Wed, 25 Feb 2026 00:45:02 +0530
+Message-Id: <20260225-s2mu005-pmic-v3-0-b4afee947603@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/1] clk: baikal-t1: Remove not-going-to-be-supported
- code for Baikal SoC
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Brian Masney <bmasney@redhat.com>
-References: <20260224111821.3491352-1-andriy.shevchenko@linux.intel.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20260224111821.3491352-1-andriy.shevchenko@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIALn4nWkC/13MsQ6DIBSF4VcxzKXhgqB26ns0HSiC3kExYEkb4
+ 7sXTRzseE7yfwuJNqCN5FYsJNiEEf2Yh7gUxPR67CzFNm/CGZcAwGnkw5sxSacBDWVGVU6rlzb
+ CkJxMwTr87NzjmXePcfbhu+sJtveAyjOUgDLaWAF12QrNTHNvMQbv56sPHdmoxI9cMeDqL+c5r
+ 2oHupJOlpU+5+u6/gAxAY8b6QAAAA==
+X-Change-ID: 20251112-s2mu005-pmic-0c67fa6bac3c
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Sebastian Reichel <sre@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Nam Tran <trannamatk@gmail.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-rtc@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>, 
+ Conor Dooley <conor.dooley@microchip.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[infradead.org,none];
-	R_DKIM_ALLOW(-0.20)[infradead.org:s=bombadil.20210309];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268037-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-268038-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,samsung.com,linaro.org,bootlin.com,lwn.net,linuxfoundation.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,pengutronix.de,redhat.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.984];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[infradead.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[disroot.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:mid,infradead.org:dkim,infradead.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DBC1818BB54
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,disroot.org:mid,disroot.org:dkim,disroot.org:email]
+X-Rspamd-Queue-Id: 44C2918BC01
 X-Rspamd-Action: no action
 
+S2MU005 is an MFD chip manufactured by Samsung Electronics. This is
+found in various devices manufactured by Samsung and others, including
+all Exynos 7870 devices. It is known to have the following features:
 
+1. Two LED channels with adjustable brightness for use as a torch, or a
+   flash strobe.
+2. An RGB LED with 8-bit channels. Usually programmed as a notification
+   indicator.
+3. An MUIC, which works with USB micro-B (and USB-C?). For the micro-B
+   variant though, it measures the ID-GND resistance using an internal
+   ADC.
+4. A charger device, which reports if charger is online, voltage,
+   resistance, etc.
 
-On 2/24/26 3:17 AM, Andy Shevchenko wrote:
-> As noticed in the discussion [1] the Baikal SoC and platforms
-> are not going to be finalized, hence remove stale code.
-> 
-> Reviewed-by: Brian Masney <bmasney@redhat.com>
-> Link: https://lore.kernel.org/lkml/22b92ddf-6321-41b5-8073-f9c7064d3432@infradead.org/ [1]
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> 
-> v4: added tag (Rob), rebased on top of last changes
-> v3: removed bindings header as well (now should all be gone)
-> v2: added tag (Brian), removed YAML files
-> 
->  .../bindings/clock/baikal,bt1-ccu-div.yaml    | 196 ------
->  .../bindings/clock/baikal,bt1-ccu-pll.yaml    | 131 ----
->  drivers/clk/Kconfig                           |   1 -
->  drivers/clk/Makefile                          |   1 -
->  drivers/clk/baikal-t1/Kconfig                 |  52 --
->  drivers/clk/baikal-t1/Makefile                |   4 -
->  drivers/clk/baikal-t1/ccu-div.c               | 653 ------------------
->  drivers/clk/baikal-t1/ccu-div.h               | 121 ----
->  drivers/clk/baikal-t1/ccu-pll.c               | 560 ---------------
->  drivers/clk/baikal-t1/ccu-pll.h               |  72 --
->  drivers/clk/baikal-t1/ccu-rst.c               | 217 ------
->  drivers/clk/baikal-t1/ccu-rst.h               |  67 --
->  drivers/clk/baikal-t1/clk-ccu-div.c           | 520 --------------
->  drivers/clk/baikal-t1/clk-ccu-pll.c           | 277 --------
->  include/dt-bindings/clock/bt1-ccu.h           |  48 --
->  15 files changed, 2920 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/baikal,bt1-ccu-div.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/baikal,bt1-ccu-pll.yaml
->  delete mode 100644 drivers/clk/baikal-t1/Kconfig
->  delete mode 100644 drivers/clk/baikal-t1/Makefile
->  delete mode 100644 drivers/clk/baikal-t1/ccu-div.c
->  delete mode 100644 drivers/clk/baikal-t1/ccu-div.h
->  delete mode 100644 drivers/clk/baikal-t1/ccu-pll.c
->  delete mode 100644 drivers/clk/baikal-t1/ccu-pll.h
->  delete mode 100644 drivers/clk/baikal-t1/ccu-rst.c
->  delete mode 100644 drivers/clk/baikal-t1/ccu-rst.h
->  delete mode 100644 drivers/clk/baikal-t1/clk-ccu-div.c
->  delete mode 100644 drivers/clk/baikal-t1/clk-ccu-pll.c
->  delete mode 100644 include/dt-bindings/clock/bt1-ccu.h
+This patch series implements a lot of these features. Naturally, this
+series touches upon a lot of subsystems. The 'parent' is the MFD driver,
+so the subsystems have some form of dependency to the MFD driver, so
+they are not separable.
 
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+Here are the subsystems corresponding to the patch numbers:
+dt-bindings - 01, 02, 03, 04, 05
+mfd         - 05, 06, 07, 08
+led         - 01, 02, 09, 10, 11
+extcon      - 03, 12
+power       - 04, 13
 
-thanks.
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Changes in v3:
+- Remove "extcon" text from dt-bindings documentation (Rob Herring)
+- Add connector for MUIC node
+- Fix dt binding errors reported by robh's bot
+- Fix kernel test robot const errors 
+- Remove FIELD_PREP() values in register header file (André Draszik)
+- Add max_register, volatile_reg, cache_type (André Draszik)
+- Redo [v2 07/12] to NOT store the PMIC revision (André Draszik)
+- Add a commit to fix DMA coherent mask in I2C PMICs
+- Implement various flow changes in flash LED driver (André Draszik)
+- Use device_for_each_child_node_scoped() (André Draszik)
+- Fix CFI panic in devm_add_action_or_reset()
+- Link to v2: https://lore.kernel.org/r/20260126-s2mu005-pmic-v2-0-78f1a75f547a@disroot.org
+
+Changes in v2:
+- Drop [v1 06/13], instead use regmap_irq_chip::get_irq_regs() 
+- Remove references to driver in devicetree commits (Conor Dooley)
+- Propagate errors of sec_pmic_store_rev() (André Draszik)
+- Fix documentation language errors (Randy Dunlap)
+- Link to v1: https://lore.kernel.org/r/20251114-s2mu005-pmic-v1-0-9e3184d3a0c9@disroot.org
+
+---
+Kaustabh Chakraborty (13):
+      dt-bindings: leds: document Samsung S2M series PMIC flash LED device
+      dt-bindings: leds: document Samsung S2M series PMIC RGB LED device
+      dt-bindings: extcon: document Samsung S2M series PMIC extcon device
+      dt-bindings: power: supply: document Samsung S2M series PMIC charger device
+      dt-bindings: mfd: s2mps11: add documentation for S2MU005 PMIC
+      mfd: sec: add support for S2MU005 PMIC
+      mfd: sec: set DMA coherent mask
+      mfd: sec: resolve PMIC revision in S2MU005
+      leds: flash: add support for Samsung S2M series PMIC flash LED device
+      leds: rgb: add support for Samsung S2M series PMIC RGB LED device
+      Documentation: leds: document pattern behavior of Samsung S2M series PMIC RGB LEDs
+      extcon: add support for Samsung S2M series PMIC extcon devices
+      power: supply: add support for Samsung S2M series PMIC charger device
+
+ .../bindings/extcon/samsung,s2mu005-muic.yaml      |  39 ++
+ .../bindings/leds/samsung,s2mu005-flash.yaml       |  52 +++
+ .../bindings/leds/samsung,s2mu005-rgb.yaml         |  34 ++
+ .../devicetree/bindings/mfd/samsung,s2mps11.yaml   | 109 ++++-
+ .../power/supply/samsung,s2mu005-charger.yaml      |  35 ++
+ Documentation/leds/index.rst                       |   1 +
+ Documentation/leds/leds-s2m-rgb.rst                |  60 +++
+ drivers/extcon/Kconfig                             |  10 +
+ drivers/extcon/Makefile                            |   1 +
+ drivers/extcon/extcon-s2m.c                        | 354 ++++++++++++++++
+ drivers/leds/flash/Kconfig                         |  12 +
+ drivers/leds/flash/Makefile                        |   1 +
+ drivers/leds/flash/leds-s2m-flash.c                | 429 +++++++++++++++++++
+ drivers/leds/rgb/Kconfig                           |  11 +
+ drivers/leds/rgb/Makefile                          |   1 +
+ drivers/leds/rgb/leds-s2m-rgb.c                    | 458 +++++++++++++++++++++
+ drivers/mfd/sec-common.c                           |  34 +-
+ drivers/mfd/sec-i2c.c                              |  32 ++
+ drivers/mfd/sec-irq.c                              |  74 ++++
+ drivers/power/supply/Kconfig                       |  11 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/s2m-charger.c                 | 213 ++++++++++
+ include/linux/mfd/samsung/core.h                   |   1 +
+ include/linux/mfd/samsung/irq.h                    |  66 +++
+ include/linux/mfd/samsung/s2mu005.h                | 327 +++++++++++++++
+ 25 files changed, 2360 insertions(+), 6 deletions(-)
+---
+base-commit: d4906ae14a5f136ceb671bb14cedbf13fa560da6
+change-id: 20251112-s2mu005-pmic-0c67fa6bac3c
+
+Best regards,
 -- 
-~Randy
+Kaustabh Chakraborty <kauschluss@disroot.org>
+
 
