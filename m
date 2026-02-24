@@ -1,137 +1,191 @@
-Return-Path: <devicetree+bounces-267926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267927-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SH6ZNhmsnWmgQwQAu9opvQ
-	(envelope-from <devicetree+bounces-267926-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:48:09 +0100
+	id qLBNLFisnWmgQwQAu9opvQ
+	(envelope-from <devicetree+bounces-267927-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:49:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75834187F8C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:48:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39EA3187FB9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:49:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AF1F130101D6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:48:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BDBF30FAB0C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E98C39E6CA;
-	Tue, 24 Feb 2026 13:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA9A639E6CA;
+	Tue, 24 Feb 2026 13:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="maWJnBIl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jK0AhPrl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC1339C65F
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:48:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729AC39A7F0;
+	Tue, 24 Feb 2026 13:48:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771940887; cv=none; b=HGAze814dqaO+qV5qKbK/LtlumfynF/PbfIXwrsVAKgr9ZCMsff9vdelI7ko7Bl7cWFV7tBB+BVXSaR/BwI2i7zrvdJNC4Ozbx7B+x2OMOFtsfCAUfMCr8GY7iLPN8+CUloIHSb24t/Z7kHD+/+xdtOSJnYIEWaspBUPusN6ioM=
+	t=1771940913; cv=none; b=iuBAamfdXpA3lUNc+pYnmuwxgAB01mpvKKNu3hEJDHNuvxvrHe0/Mx+6MnjKFqc5RxF+osOyby/5fqSJMKRSENOK6JsHbCcCBok3jxCKt3zmJVb+xOAtMHob3ZAs1IDVrBZZ8vRTkv7Z4BVdGIsHyO3nsT9/0qkEbfR6OcCif+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771940887; c=relaxed/simple;
-	bh=CObB27JMxovfM8wyNCjWJgmKAirbBGB/9n12INFjL+M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SnpxNwZeAFV9Vm6UukO42m21k67lvBOGqrimCIcFutI2apHLCZDR0idZC0lyYY2IqlnNNW0233yGNm/TlLqRTE3yuffmeuj6mgVTvHnrEt1rK077Vp1pSf9fCqXGBJxYyNPjQLfbGoc7GuKfpsuc3N74AhO9J4sBREAMrgO/73w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=maWJnBIl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22C68C4AF09
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 13:48:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771940887;
-	bh=CObB27JMxovfM8wyNCjWJgmKAirbBGB/9n12INFjL+M=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=maWJnBIldOGiH8Ni6hMPjlPJUA4qpPHV5Ae/+uAq91UF8Qtqv9iCcZ+1yKSwvilWi
-	 Se6Q9yq2OXiLTksTZ/fvAU2qIWviuqaLguvdMAO74n9+KWvJlWz3WNmyjPXojgy5mk
-	 Cjnb4qr2jcEUBlEkgT4QAoghY5KiBC/K9gCnDW0npmAhIFoSZ2x0bo/M+yQgVk1gR+
-	 Zz0O8zu4OOGlslv37HpNZJMgYif4x7b95N5bXyL0AQ0IiFaHy+tmy3WBrA81KzyC8J
-	 b40CIoFsT7PXLu3GJ5IDfXZ78EBa+i7SBG1Q1NobfuuVX5u304iu9eULVfDFEecSCp
-	 jpIJp3Z0swpaw==
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-79628fb5c05so42339787b3.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 05:48:07 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVw/yY3wut3pRuNiUIY5L39opIwl0iTDR19Dk7rJXbdsgfyAvpSjiTgL9btdWjasb+Eq+tsBoqZsk7w@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9MVmDJny7PC9kfEjeJRH8bRQDFBPclGayIoUX+E7js3UHJ14o
-	d/nggCuhvQ6VhfG8h8//G6mPJT5pNKYZ7BGQ6dxgXCAC9QAw4IWuCOORTO6S6Aw22ApF9d2er3+
-	uR04uwNYqyHpGAIshgNS2h9Id07dKKjQ=
-X-Received: by 2002:a05:690c:f06:b0:797:ffb6:fd6f with SMTP id
- 00721157ae682-79828ff36admr100103757b3.38.1771940886307; Tue, 24 Feb 2026
- 05:48:06 -0800 (PST)
+	s=arc-20240116; t=1771940913; c=relaxed/simple;
+	bh=XK3lnbLHp3F3TbLRCuI+YUBc8vSBWoCNj/X6pk8dVkc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YKRsQ2P33FX31kn0O6cGamdpNkk/1jPl7/Vb2IfGMfVmL+jVPeSQo2bY0VUYNj/mwydyMbDo7w14QvSyLnmHrdsfm7l/8nqrvK5lJyNjEvu380q0Yg4s0d/SZGPmCHeWZuDsZ/Kk2a+YJcjm5ACSvvFRryX7riTMFHkHwUZAhUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jK0AhPrl; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1771940910;
+	bh=XK3lnbLHp3F3TbLRCuI+YUBc8vSBWoCNj/X6pk8dVkc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=jK0AhPrl6tzyPGx/IPxrNIVlT1S8y+7dzRyJQ2Rxjg1y5uylL0ayRaWlW2dFUudW+
+	 K775pjD9Stvb4jDTUT4uZkyf0scm5pUprsFo5tsVoSiGH/1K0WAPKIbXgMUy2LZNqQ
+	 pPUl3aB/Z7YS8p0bEqGfZOWuewJc5wVg4PwJyluCJGvYdR1cibPi2tWuj0zhneG2rm
+	 Ixjk7eKezwxhU6SmYwX5TQvkGX1dq6l972fvKk0+NEonTRSUV0mWcuFgH6/FXl1UAA
+	 kIPT2JFrAQ4auARaW3QGOki7HXfuWJPDSiTtIY5vQzhH657ICu8pmoWSpDGDDoXvr8
+	 UTwZ37MUOMA0Q==
+Received: from [IPv6:2606:6d00:15:210e::5ac] (unknown [IPv6:2606:6d00:15:210e::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C948717E0C21;
+	Tue, 24 Feb 2026 14:48:28 +0100 (CET)
+Message-ID: <e73da0713587ad5380344afa686a13431d07e232.camel@collabora.com>
+Subject: Re: [PATCH v2 1/3] media: dt-bindings: rockchip,vdec: Correct
+ reg-names order for RK35{76,88}
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Cristian Ciocaltea
+	 <cristian.ciocaltea@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova	 <detlev.casanova@collabora.com>, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>,  Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
+ kernel@collabora.com, 	devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Conor Dooley	 <conor.dooley@microchip.com>,
+ linux-media@vger.kernel.org
+Date: Tue, 24 Feb 2026 08:48:26 -0500
+In-Reply-To: <0874bb3d-b38d-4ea3-a5b0-2da2484cc3e5@kernel.org>
+References: <20260223-vdec-reg-order-rk3576-v2-0-daf4942dfc02@collabora.com>
+	 <20260223-vdec-reg-order-rk3576-v2-1-daf4942dfc02@collabora.com>
+	 <20260224-saffron-peccary-from-heaven-2d5e6e@quoll>
+	 <244b22d3be77047163b4e47c4ed33b5b1befb4b4.camel@collabora.com>
+	 <0874bb3d-b38d-4ea3-a5b0-2da2484cc3e5@kernel.org>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-wqbx/pwaKIk3hdLCdlUe"
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251223152457.155392-3-krzysztof.kozlowski@oss.qualcomm.com>
- <20251223152457.155392-4-krzysztof.kozlowski@oss.qualcomm.com>
- <aVarmf5rlHWzNZ0Q@bogus> <739a4379-5be8-453a-8ff0-780aa35c9b71@kernel.org>
-In-Reply-To: <739a4379-5be8-453a-8ff0-780aa35c9b71@kernel.org>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 24 Feb 2026 14:47:55 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmFkS2mxXxj8ds+wYtGyB_9ZuCmu9+wvMeV48Eypn-Mmg@mail.gmail.com>
-X-Gm-Features: AaiRm53UUlEOLWzGiaL2z5SgIqcCNTYT-VjRsxPH8pu0MbKt5Y1jW00kb6mGSX4
-Message-ID: <CAD++jLmFkS2mxXxj8ds+wYtGyB_9ZuCmu9+wvMeV48Eypn-Mmg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: arm: Use lowercase hex
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vincenzo Frascino <vincenzo.frascino@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267926-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267927-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 75834187F8C
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
+X-Rspamd-Queue-Id: 39EA3187FB9
 X-Rspamd-Action: no action
 
-On Tue, Feb 24, 2026 at 12:54=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
-> On 01/01/2026 18:15, Sudeep Holla wrote:
-> > On Tue, Dec 23, 2025 at 04:24:59PM +0100, Krzysztof Kozlowski wrote:
-> >> The DTS code coding style expects lowercase hex for values and unit
-> >> addresses.
-> >>
-> >
-> > s/arm64/ARM in $subject would be ideal.
-> >
-> > Anyways,
-> >
-> > Acked-by: Sudeep Holla <sudeep.holla@arm.com>
-> >
-> > Linus,
-> >
-> > I assume you will send it to arm-soc. Please shout if you want be to ac=
-t
-> > on this.
->
-> I applied it to soc tree with subject fix.
 
-Thanks Krzysztof!
+--=-wqbx/pwaKIk3hdLCdlUe
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Linus
+Le mardi 24 f=C3=A9vrier 2026 =C3=A0 14:18 +0100, Krzysztof Kozlowski a =C3=
+=A9crit=C2=A0:
+> On 24/02/2026 14:14, Nicolas Dufresne wrote:
+> > > > =C2=A0
+> > > > =C2=A0=C2=A0 reg-names:
+> > > > -=C2=A0=C2=A0=C2=A0 items:
+> > > > +=C2=A0=C2=A0=C2=A0 oneOf:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: function
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: link
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: cache
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: li=
+nk
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: fu=
+nction
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: ca=
+che
+> > >=20
+> > > No, ABI break without point.
+> >=20
+> > Its not released yet, otherwise both order would need to be allowed.
+> >=20
+> Also, not true.
+>=20
+> git describe --contains=C2=A0 c6ffb7e1fb90
+> v6.17-rc1~90^2~3
+
+Ack, I thought this was part of 7.0, it would have been logical to be part =
+of
+7.0-rc1 I must say. Whatever happen, backward compat will unfortunatly be
+needed.
+
+Nicolas
+
+>=20
+> So clearly released.
+>=20
+> Best regards,
+> Krzysztof
+
+--=-wqbx/pwaKIk3hdLCdlUe
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaZ2sKgAKCRDZQZRRKWBy
+9DjdAQC7PXhY6Nr/tOZ3xzAPxraz8WRtCF9zWoAIekH6dEkvWQEAsQmcLYG1cCa4
+mITxqDZT+4fNpHh8CzpXP3D67Px23AA=
+=A2Yx
+-----END PGP SIGNATURE-----
+
+--=-wqbx/pwaKIk3hdLCdlUe--
 
