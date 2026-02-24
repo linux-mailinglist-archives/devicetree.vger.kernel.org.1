@@ -1,65 +1,72 @@
-Return-Path: <devicetree+bounces-267748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267749-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBt8HrhRnWkoOgQAu9opvQ
-	(envelope-from <devicetree+bounces-267748-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:22:32 +0100
+	id GNeRAedRnWkoOgQAu9opvQ
+	(envelope-from <devicetree+bounces-267749-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:23:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE2D9182F18
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:22:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58905182F53
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:23:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E854B3036D6A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:18:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF246303EA8C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:20:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E9F36403A;
-	Tue, 24 Feb 2026 07:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 418EB364046;
+	Tue, 24 Feb 2026 07:20:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uPcCf2iL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g76zi9AW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 318C9362130;
-	Tue, 24 Feb 2026 07:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1809124E4A8;
+	Tue, 24 Feb 2026 07:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771917534; cv=none; b=IIEJ5EhtROANYrU0dWbJTPrpSGdI+dnhLYsHcRpxav74j4+6dfymQB78k5pEWBhdTxq8GfY75x19p/Gw9pSBXSdfaSUPbQLjphTy5eUqQARdSiqe5/Fj/FhfPsQxYOLFEmqu0Fv/Ubc70B0aju5/I0ByxTc1tkKgzX0zeZdoqWU=
+	t=1771917628; cv=none; b=MDIXz+BRQJiwo3HozFhmAHq00XWeitH5uXV18+Q7nr8X+njpiO15CTvuFuCzGPLCUpv/MxICKEmu/kXPPE1/LY9NMPwoq8yUEC/mmgE0JS1Jy27HQcqt2G+jBXi3kUKVIWRXEY6YScIpTA7zQUvjSqdYbTTmYzZCeyBwcGy8XGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771917534; c=relaxed/simple;
-	bh=sFluk2eGI1W3PJqITBVgNfyYqxuSd712xdTbU3mm0ao=;
+	s=arc-20240116; t=1771917628; c=relaxed/simple;
+	bh=kBzq8KMP7val1p5xI4CESezdEo4yOCLfz3X2Wfw1N4I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CEGj+IImkf5fg3p93++rsAhP6yA4CEJQ10BU+69jF/5yuaXwt2boWOe5IteuCNGqYS1x2M/KsPAIU6g6C1BFCZrtjWjriYFA4r8VQY8gnK6aTyJlFuctcV0nJnZQ5n3nfwjSQOCIcuVd7iimHBgVNIygFyZudZLNTizOnXzaN8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uPcCf2iL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36135C116D0;
-	Tue, 24 Feb 2026 07:18:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TCz28axzIQaMk22xEgBPAr6SMlZYHfzA8P9RK9DRJLVaT2vjMyvPX5bT2q15IPVoR4RgLn1Tx67Eibu8SLiilvPFXB45+7jfIAFD1Lv4YaquzttATKUv8FhKbivZyp7Y1+P2LAtsntV0qYm8//6/3dNdEPmuh8nRuBK4OJrbADE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g76zi9AW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83940C116D0;
+	Tue, 24 Feb 2026 07:20:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771917533;
-	bh=sFluk2eGI1W3PJqITBVgNfyYqxuSd712xdTbU3mm0ao=;
+	s=k20201202; t=1771917627;
+	bh=kBzq8KMP7val1p5xI4CESezdEo4yOCLfz3X2Wfw1N4I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uPcCf2iLfv2sxBENzOpEkV2r/3y5OqlFS27BZZVNYSsEwu9H6INImRvEfLs6gMfSM
-	 ODp4+SX77RDBGtqUa8uhbEhaxg1Enr0P8rqGgbqdZwI+psYwtOxHzibg34WRKtEH7c
-	 a6ClA/CpMHCUs8C59So3PsEZXBT98nO9VDJuVv50Ihd+RJMAaQFzeFxOysubC5Ut1M
-	 qTwyr68eD5oi052iu54QedFz+j2UResYOobkzMCDL5YihJeNCzk4hiwYPmQkv6OQTm
-	 vBmXjLUKEMO4nclSNvo+Aiir2QOkf0xV7LX/2gnvU0HLnqwUFsO66hjcKXDgs1Q/Be
-	 9sEX5p7ugJGAA==
-Date: Tue, 24 Feb 2026 08:18:51 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Detlev Casanova <detlev.casanova@collabora.com>, 
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Fix vdec register blocks
- order on RK3588
-Message-ID: <20260224-enchanted-scallop-of-art-f442c2@quoll>
-References: <20260223-vdec-reg-order-rk3576-v2-0-daf4942dfc02@collabora.com>
- <20260223-vdec-reg-order-rk3576-v2-3-daf4942dfc02@collabora.com>
+	b=g76zi9AWaRL22GcB1ov0eE6v8L3z27l5KSQVxeYxuwnYTUnNyZV+r8nQ18i5UNkQT
+	 WtzSVuqWUfwQ6Sn9ss27TRukoIpX9ej9mbrynGIO5gZ0IXxlejfFHQHonGz8HmjFan
+	 wXdIAkhfDzAQbjgQdE0Rn6PPfsPn4CCHnnycTLzfenzeO2V/7S76/WxZTppa6FIMra
+	 g8Lx9hcvEnaJtjnw1GCPhMWDs4CmEdci7audwJ/s/d/ckb2jnSWuTR0c6jmF/cwJb+
+	 cmCsSRMlw/Aj1kPVs8RU5HY3IibTQPJVedU5E7yFeNkSQIbaWfOghfZbD8ScVv64Y1
+	 hG5Kvo5fmiQXg==
+Date: Tue, 24 Feb 2026 12:50:12 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Mark Pearson <mpearson-lenovo@squebb.ca>, 
+	"Derek J. Clark" <derekjohn.clark@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, linux-kbuild@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Stephan Gerhold <stephan.gerhold@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	linux-acpi@vger.kernel.org, Hans de Goede <johannes.goede@oss.qualcomm.com>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: Re: [PATCH v5 4/9] dt-bindings: serial: Document the graph port
+Message-ID: <z42xyou35nuyt2f3rxxzzndleir66w3nxeidjmgxg6l4uem6st@fj473jdiau3p>
+References: <20260224-pci-m2-e-v5-0-dd9b9501d33c@oss.qualcomm.com>
+ <20260224-pci-m2-e-v5-4-dd9b9501d33c@oss.qualcomm.com>
+ <20260224-peacock-of-improbable-poetry-b4cfdc@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,73 +75,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260223-vdec-reg-order-rk3576-v2-3-daf4942dfc02@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260224-peacock-of-improbable-poetry-b4cfdc@quoll>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-267749-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267748-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linuxfoundation.org,linux.dev,linux.intel.com,squebb.ca,gmail.com,holtmann.org,bgdev.pl,vger.kernel.org,linaro.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,fdc38000:email,fdbac800:email]
-X-Rspamd-Queue-Id: CE2D9182F18
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 58905182F53
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 09:49:51PM +0200, Cristian Ciocaltea wrote:
-> Provide the register blocks in the expected address-based order for
-
-No, there is NO such convention. Don't make up rules.
-
-> vdec0 & vdec1 nodes.  This aligns with a similar fix for RK3576 where
-> DTC complained about the bus address format.
+On Tue, Feb 24, 2026 at 08:09:17AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Feb 24, 2026 at 11:00:50AM +0530, Manivannan Sadhasivam wrote:
+> > A serial controller could be connected to an external connector like PCIe
+> > M.2 for controlling the serial interface of the card. Hence, document the
+> > OF graph port.
+> > 
+> > Tested-by: Hans de Goede <johannes.goede@oss.qualcomm.com> # ThinkPad T14s gen6 (arm64)
 > 
-> Fixes: f61731bd6062 ("arm64: dts: rockchip: Add the vdpu381 Video Decoders on RK3588")
-
-Not true, otherwise explain user-visible bug.
-
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+> Please drop. The binding is not being sent to the device during testing,
+> thus it is impossible to test it.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> index 7fe9593d8c19..b95129f85aba 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> @@ -1355,10 +1355,10 @@ vepu121_3_mmu: iommu@fdbac800 {
->  
->  	vdec0: video-codec@fdc38000 {
->  		compatible = "rockchip,rk3588-vdec";
-> -		reg = <0x0 0xfdc38100 0x0 0x500>,
-> -		      <0x0 0xfdc38000 0x0 0x100>,
-> +		reg = <0x0 0xfdc38000 0x0 0x100>,
-> +		      <0x0 0xfdc38100 0x0 0x500>,
->  		      <0x0 0xfdc38600 0x0 0x100>;
 
-NAK, impacts DTS users without any reason.
+b4 picked it up since the tag was given in the cover letter and I forgot to
+remove it while sending.
 
-Best regards,
-Krzysztof
+If I happen to send next version, I will drop it from all bindings patches.
 
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
