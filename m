@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-267872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267873-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AM2NCXiXnWnwQgQAu9opvQ
-	(envelope-from <devicetree+bounces-267872-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:20:08 +0100
+	id QNHoBb2XnWnwQgQAu9opvQ
+	(envelope-from <devicetree+bounces-267873-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:21:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D04186D69
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:20:07 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2AF186DB6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 13:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B65D5300A4CE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:20:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D3B35302BB97
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78E5396B78;
-	Tue, 24 Feb 2026 12:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A717395256;
+	Tue, 24 Feb 2026 12:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FNELsXrj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XLvdLeJo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90613815D2
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 12:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D174D396B90
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 12:20:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771935598; cv=none; b=mUW3HpLm4TVWsgfxAC42nNg/xmX4VPJPS7D1EaoUDinONxPuIrK5pxVPtvT6C8CpFmLxFb5t/iXg18v662qu1ASs2RlYIpfkt9cxwkjgiNW5q0bSx1fmJ0vy7ERusxOwdrKhAai9u2c9o4cex82YvVQ0CAjY3Z66el2qBQsDm1U=
+	t=1771935616; cv=none; b=YvMieizJlp5IJKF/C+Rs8JuSIbDlWx9iHFN9LPCmrQiBte33WSVcLF0X+6vSR/5GdCa3ByfaRIgp0DOnUDzvZeuSec0egjMFBnhhwVRnuyR7FexTPEYjX8hIn2z67irLmfCVPArW4CJHzudoyLaLI2XAZapb6gSlYHLfJ9uLtzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771935598; c=relaxed/simple;
-	bh=a15gvvp+Y5fZlu/XEV0GqfIuDaHqBSVDDZ/1cfRlK54=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DgFrgb8ypukl6Akb9gzK6w7UAzOWVC8J8VzTPRnKLRnnUwD7ZdZH6+1i+KFbW8+6mygW3UWHJQT6TP9UQqazClSAiqbUwij/AghfcRFoXU/NPkluPLT7c2ul1K7ORWs43ykeJGf2IQrjJlLRRMiqe4jgnZO5DrYKevnC5BxO2GM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FNELsXrj; arc=none smtp.client-ip=209.85.210.182
+	s=arc-20240116; t=1771935616; c=relaxed/simple;
+	bh=QaNNOaPvOwZt/4ZjkTmZmmwp/cdF2i55gJPCoB3rWWo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ODMJmpznyxFACoKFZabH13F7K7mY/YfKJkJQmMN8cYMku/2ZuyCjP1zeQq9y5dIQRwc39Y165gyn6n4KqX/6FY3QU5D1RunnEbm9PcdOyG34fF3Fq+K5Vr36EsvHFmoZj3rAEff4jhRrW8Ndm9CkFbWqw6sThQiaBmblIG5fDfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XLvdLeJo; arc=none smtp.client-ip=209.85.210.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-824adc96ad2so5461952b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 04:19:57 -0800 (PST)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-823210d1d8eso3029348b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 04:20:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771935597; x=1772540397; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RVGEkSHpVszbSEuz8gxEX8sx0htTMLCK4ylQEIc8lKU=;
-        b=FNELsXrjstFMRvTp8mDk5aEjKSoUczQGjiAwssYlllLRxIroPMDdw706CPQoM3+fRS
-         fy5HS30nE0oxEb9Nbndw36s1EIfc2rpJ8jIuCYZDnUV1xTErcRZEOLGUZds50GmXG2OE
-         JV3e5vRY5tC0mAXNUrkMQjWk8w4R6Qwe1vVpCewFv5Zp2eyaKq6k7DegVbnLGaLuvD9k
-         ts4bYIQHDGpuxpGx/Uwo2Rt2sOezkGG5V8XNnY5RR5WJcQR7UOekNhdbRWA0wXJ/o84o
-         0l0bR/W1VIqwH1wFfPxagyUgz5jUl5UflMW8kS9Uq+53Lb/Ns5s6v54MLfqplVGrJk8a
-         BHjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771935597; x=1772540397;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1771935613; x=1772540413; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RVGEkSHpVszbSEuz8gxEX8sx0htTMLCK4ylQEIc8lKU=;
-        b=TcMFl6wgFMs9MhAjgOCr6i+NW1vrYKfElmVNR0beZeSY1eDM1hclJE/jmyaudU0aLU
-         AhLvK9Vt7vqxAHg+kO+nRui8qvi8y0ElmuUSNCnTs+4at88pMlnLx1re+tvQWhGhK/A7
-         iBoLo0xrtOrtvJTMxvKjJ3d/ot8tZuhIHYlFUIR3ww9L2557FoFQhtva6ivsiWzTsXB1
-         GcySK05fJU2QfOLkduZ019R7oPjw02czxok52TFJMEynVCexQlmhbcoXkdNLCz21x+tY
-         skChaBCIVa0z5nuLu8Eca00HafT78OpBT7u0IcIf6AlUwDMYbdodtbNpAnP9LlS7RrUG
-         6vSg==
-X-Forwarded-Encrypted: i=1; AJvYcCWtMW7uoa5D8uzrnMUKEDHKUfwib+h9YyNFqwbHn6y39YhSR3On9sYzQZuFr8yJbma4iOiyGPR/3xrn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyi33GfbF2hXfSAWlq2WiN8j92yn7awzT5amwCLBDddF6+Gh43y
-	JRUCZZcjI9mTBUwSV7uyKTruGxIIAsdBfy8zG5tMQH/DBnxGO90Lac+o
-X-Gm-Gg: AZuq6aLp5P1gAtJTkeulWHF8ozWTol6/dUrQQc8iunz/qbXMgTu1NIr6JDgZjzBn5/2
-	+V4QrxF+FZQvQyH8zLm2EYDjUkurJ5F5ZpgLoK0Pygu3Ne6570hwf7gZYb3t2wRrDZiRCHn5vDi
-	lG9o9jRr6Jw4WV7aOoglbUyij/s8QCaOKC7TIHc0pJRUDRjcCvOaEsuGeP+7tjlLXPcyelrYeIV
-	CJQ04XF8enjaMEvtIF94P1+nxBjkNcmIucTMgb1yhpCf5FI7i1oV6RE8HQjWqgb5ytCqK6sAY8/
-	Omudi1et+J+xaOF4E+9KhQdYIX4u8BeqQ4x5wT5lQltu7OQUoIKkDQ3eyX+bZQuoh2Iy0o1ZKrO
-	q+LGU2e4Mi83xLpeTwuEebl56F5Gh+V+H2O64e3ZkEkF42ZKsY2UJOlK4vP5lTA0K4YZieDE4Km
-	pGo+nXQ4Oc0FrXReA56Ak=
-X-Received: by 2002:a05:6a00:440f:b0:824:93e4:2ddf with SMTP id d2e1a72fcca58-826da8c0f3emr9998493b3a.13.1771935597103;
-        Tue, 24 Feb 2026 04:19:57 -0800 (PST)
+        bh=0CP5OxruqqO0puoKPcOnExnL6WZ3FoqgbnMXhY33wB8=;
+        b=XLvdLeJoEq2DJx0dPItPStEpKCAaQ92/NCuO6YeQLBxX9tmEqjDWkTJFoYObBwWbZj
+         mc7lKHoCg5StNaksB+hjk11YumpNC2wU308M5ebRqb/9CqGlww5dfD/o5EZKTwFiay9E
+         gqjxA3q8KSubNq02V5oq5b+wCdSDsHJCvaKOG/pbM8MzLn6xOiLvJN1Q4t1SaJ9WTAQj
+         J+lf8dWyTY8maNIy2oGv4mScPua/SP2dIJ9oR/GRSqezaM7oEm+RFxGb7j3EuTN9L6+9
+         avuYOl5cz5gHyaLSJt12+WGGmYKWyr8p4wqo6cjp1zqqV7N4dkel9KHF4XZDBtMdH/Hy
+         aKGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771935613; x=1772540413;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0CP5OxruqqO0puoKPcOnExnL6WZ3FoqgbnMXhY33wB8=;
+        b=AYDgVHeriKv4LIJ6BeXRsbeNciaDjARKE55NYLPiPGrRgUQrGYavuLcQofgT0IyVba
+         5XPiJD7rO/Z4+yJnjfUq1hswEebcXkGBhKU4Pf82RLZ1uYqVRh+YfBOyujGmHIIhXu0E
+         SYIzfzW8yXbs+Fu27oC4bpt47aAJzRHV8ngyZ7F5rLSVtrapvfISJsY+4vmpqQzEMDE6
+         dCP8hkjqfH9zMHj8mqz7CFu+kLHb3vzLt6SuRVDjc6d42/Cv3ONYdKFFHkNrTRs798TY
+         mkaj7l6r8b1q0Ascl6iKR8OF6qX7bDyUWIAW8/MOpIGaicbvVkWn5LXwFa9Izg9++V3B
+         QUYA==
+X-Forwarded-Encrypted: i=1; AJvYcCXO5yD8TYs1h2ETOATZT+5/5Q/7yB1Mdd92blUpWUWb6zYMx/aAzHxe6LOMlISWpdaVGi5+nKb5dw/Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMoesr5OF5gcc19QJy0YUpVT4OoOLkI/LOa9zjx6O3WbQmWBrc
+	kCyN+IGUrJwOx5uc5cG7r37tB/RMDAZ0GmzH1W7Yhkg0it+MrQ6+Y6lp
+X-Gm-Gg: ATEYQzzoOpy3mitkSkRNSo0yU4MsC6Db/2Q6VqqZrSdRQ/1s92PFnA28H8+xID6eT6Q
+	yaiABfysPL5p9Gjhj8pVlrlteG4Lrdz9YEBY3VHj2ogZaa5ytG7wWcU17fTMp4P1/7VG1tATcjK
+	qtku9UJVpT8JNPIqqvJHYjwvbhlbFtimPVy+DBDMwNSfvMVYNn0hRtyGZ3OlBZFIWCn5yl2oD6v
+	60x33XZh9EQ3W2atR14j+pNqAWxKCdfMLDkU+T1AnBQ44U0bJR4rZv7/RWDtp6F8sRZGXHhKTVh
+	GoNVToBtgFe2uDtWIWtedyPm4HESi++joFKFEDmBPvRoKCt4D7fnp49PTYYp74p5YR1A6RiJKIQ
+	H9by/Lxh5eepz6EEr98yIBH8g/36gWxk1CPAMYkdLyQyBupvOwp/X6sOn7vGkBVdg6wRZHY96xy
+	fYjLOSRzGuW5Ds9GN2iM4=
+X-Received: by 2002:a05:6a00:1f04:b0:821:70e7:b10a with SMTP id d2e1a72fcca58-826da8e2c6fmr9454127b3a.8.1771935612996;
+        Tue, 24 Feb 2026 04:20:12 -0800 (PST)
 Received: from rockpi-5b ([45.112.0.78])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-826dd8ba11bsm10613950b3a.50.2026.02.24.04.19.51
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-826dd8ba11bsm10613950b3a.50.2026.02.24.04.20.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Feb 2026 04:19:55 -0800 (PST)
+        Tue, 24 Feb 2026 04:20:12 -0800 (PST)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Thierry Reding <thierry.reding@gmail.com>,
 	Bjorn Helgaas <bhelgaas@google.com>,
@@ -90,10 +92,12 @@ To: Thierry Reding <thierry.reding@gmail.com>,
 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
 	linux-kernel@vger.kernel.org (open list)
 Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v3 0/5] PCI: tegra: A couple of cleanups
-Date: Tue, 24 Feb 2026 17:48:56 +0530
-Message-ID: <20260224121948.25218-1-linux.amoon@gmail.com>
+Subject: [PATCH v3 1/5] dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
+Date: Tue, 24 Feb 2026 17:48:57 +0530
+Message-ID: <20260224121948.25218-2-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20260224121948.25218-1-linux.amoon@gmail.com>
+References: <20260224121948.25218-1-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,7 +111,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -115,12 +119,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-267872-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-267873-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com,google.com,kernel.org,nvidia.com,vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -132,64 +136,1257 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D9D04186D69
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BB2AF186DB6
 X-Rspamd-Action: no action
 
-Hi All,
+Convert the existing text-based DT bindings documentation for the
+NVIDIA Tegra PCIe host controller to a DT schema format.
 
-This small series provides two cleanup patches for the Tegra PCIe driver.
-The overall goal is to replace custom, open-coded logic with standard
-kernel helper functions.
+Also update the MAINTAINERS file to reflect this change.
 
-These changes improve the driver's readability and maintainability by
-everaging modern, well-tested APIs for clock management and register
-polling.
+Cc: Jon Hunter <jonathanh@nvidia.com>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+v3: Tried to address the issues Krzysztof pointed out.
+   Added missing regulator binding as suggeested by Jon.
+v2: Tried to address the isssue Rob pointed
+[1] https://lkml.org/lkml/2025/9/26/704
+improve the $suject and commit message
+drop few examples only nvidia,tegra20-pcie and nvidia,tegra210-pcie
 
-v3: Fix the DT binding for nvidia,tegra-pcie.yaml
-    tried to address issue for Krzysztof and Jon.
-    Added missing regulator and new patch to fix the device tree check.
-    Added missing entry in MAINTAINERS.
-
-v2: Fix the DT binding for nvidia,tegra-pcie.yaml
-    switch back to devm_clk_bulk_get_all to get all the clocks
-    improve the commit message.
-
-v1 Added new devicetree binding nvidia,tegra-pcie.yaml file.
-   Switch from devm_clk_bulk_get_all() -> devm_clk_bulk_get() api.
-   Fixed checkpatch warnings.
-
-Tested on Jetson Nano 4 GB ram.
-
-jetson-nano:~$ lspci -tvv
--[0000:00]-+-01.0-[01]----00.0  Intel Corporation Wireless 8265 / 8275
-           \-02.0-[02]----00.0  Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller
-
-v2:   https://lore.kernel.org/linux-tegra/20251215141603.6749-1-linux.amoon@gmail.com/
-v1:   https://lore.kernel.org/linux-tegra/20250926072905.126737-1-linux.amoon@gmail.com/
-RFC : https://lore.kernel.org/linux-tegra/20250831190055.7952-2-linux.amoon@gmail.com/
-
-Thanks
--Anand
-
-Anand Moon (5):
-  dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
-  arm64: dts: tegra: tegra186-p2771: Fix invalid PCIe nvidia,num-lanes
-  PCI: tegra: Simplify clock handling by using clk_bulk*() functions
-  PCI: tegra: Use readl_poll_timeout() for link status polling
-  PCI: tegra: Use BIT() and GENMASK() macros for register definitions
-
+$ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+---
  .../bindings/pci/nvidia,tegra-pcie.yaml       | 528 ++++++++++++++
  .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 ------------------
  MAINTAINERS                                   |   2 +-
- .../boot/dts/nvidia/tegra186-p2771-0000.dts   |   2 +-
- drivers/pci/controller/pci-tegra.c            | 237 +++----
- 5 files changed, 621 insertions(+), 818 deletions(-)
+ 3 files changed, 529 insertions(+), 671 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
  delete mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
 
-
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+new file mode 100644
+index 000000000000..0675bec205e8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+@@ -0,0 +1,528 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra PCIe Controller
++
++maintainers:
++  - Jon Hunter <jonathanh@nvidia.com>
++  - Thierry Reding <treding@nvidia.com>
++
++description:
++  PCIe controller found on NVIDIA Tegra SoCs which supports multiple
++  root ports and platform-specific clock, reset, and power supply
++  configurations.
++
++properties:
++  compatible:
++    enum:
++      - nvidia,tegra20-pcie
++      - nvidia,tegra30-pcie
++      - nvidia,tegra124-pcie
++      - nvidia,tegra210-pcie
++      - nvidia,tegra186-pcie
++
++  reg:
++    items:
++      - description: PADS registers
++      - description: AFI registers
++      - description: Configuration space region
++
++  reg-names:
++    items:
++      - const: pads
++      - const: afi
++      - const: cs
++
++  interrupts:
++    items:
++      - description: Controller interrupt
++      - description: MSI interrupt
++
++  interrupt-names:
++    items:
++      - const: intr
++      - const: msi
++
++  clocks:
++    minItems: 3
++    items:
++      - description: PCIe clock
++      - description: AFI clock
++      - description: PLL_E clock
++      - description: Optional CML clock
++
++  clock-names:
++    description: Names of clocks used by the PCIe controller
++    minItems: 3
++    items:
++      - const: pex
++      - const: afi
++      - const: pll_e
++      - const: cml
++
++  resets:
++    items:
++      - description: PCIe reset
++      - description: AFI reset
++      - description: PCIe-X reset
++
++  reset-names:
++    items:
++      - const: pex
++      - const: afi
++      - const: pcie_x
++
++  power-domains:
++    maxItems: 1
++
++  interconnects:
++    minItems: 1
++    maxItems: 2
++
++  interconnect-names:
++    items:
++      - const: dma-mem
++      - const: write
++
++  pinctrl-names:
++    items:
++      - const: default
++      - const: idle
++
++  pinctrl-0: true
++  pinctrl-1: true
++
++  operating-points-v2:
++    description:
++      Defines operating points with required frequency and voltage values,
++      and the opp-supported-hw property.
++
++  iommus:
++    maxItems: 1
++
++  avdd-pex-supply:
++    description: Power supply for analog PCIe logic. Must supply 1.05 V.
++
++  vdd-pex-supply:
++    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
++
++  avdd-pex-pll-supply:
++    description: Power supply for dedicated (internal) PCIe PLL. Must supply 1.05 V.
++
++  avdd-plle-supply:
++    description: Power supply for PLLE, which is shared with SATA. Must supply 1.05 V.
++
++  vddio-pex-clk-supply:
++    description: Power supply for PCIe clock. Must supply 3.3 V.
++
++  vddio-pex-ctl-supply:
++    description: Power supply for PCIe control I/O partition. Must supply 1.8 V.
++
++  hvdd-pex-supply:
++    description: High-voltage supply for PCIe I/O and PCIe output clocks. Must supply 3.3 V.
++
++  avdd-pexa-supply:
++    description: Power supply for analog PCIe logic. Must supply 1.05 V.
++
++  vdd-pexa-supply:
++    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
++
++  avdd-pexb-supply:
++    description: Power supply for analog PCIe logic. Must supply 1.05 V.
++
++  vdd-pexb-supply:
++    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
++
++  avddio-pex-supply:
++    description: Power supply for analog PCIe logic. Must supply 1.05 V.
++
++  dvddio-pex-supply:
++    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
++
++  hvddio-pex-supply:
++    description: High-voltage supply for PCIe I/O and PCIe output clocks. Must supply 1.8 V.
++
++  dvdd-pex-supply:
++    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
++
++  hvdd-pex-pll-supply:
++    description: High-voltage supply for PLLE (shared with USB3). Must supply 1.8 V.
++
++  vddio-pexctl-aud-supply:
++    description: Power supply for PCIe side band signals. Must supply 1.8 V.
++
++patternProperties:
++  "^pci@[0-9a-f]+(,[0-9a-f]+)?$":
++    type: object
++    allOf:
++      - $ref: /schemas/pci/pci-pci-bridge.yaml#
++    properties:
++      reg:
++        maxItems: 1
++
++      nvidia,num-lanes:
++        description: Number of lanes used by this PCIe port
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [1, 2, 4]
++
++      phys:
++        description: Phandles to PCIe PHYs
++        items:
++          maxItems: 1
++        minItems: 1
++        maxItems: 4
++
++      phy-names:
++        description: Names of PCIe PHYs
++        items:
++          pattern: "^pcie(-[0-3])?$"
++        minItems: 1
++        maxItems: 4
++
++    required:
++      - nvidia,num-lanes
++
++    unevaluatedProperties: false
++
++allOf:
++  - $ref: /schemas/pci/pci-host-bridge.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra20-pcie
++              - nvidia,tegra186-pcie
++    then:
++      properties:
++        clocks:
++          maxItems: 3
++        clock-names:
++          items:
++            - const: pex
++            - const: afi
++            - const: pll_e
++        resets:
++          maxItems: 3
++        reset-names:
++          items:
++            - const: pex
++            - const: afi
++            - const: pcie_x
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra30-pcie
++              - nvidia,tegra124-pcie
++              - nvidia,tegra210-pcie
++    then:
++      properties:
++        clocks:
++          maxItems: 4
++        clock-names:
++          items:
++            - const: pex
++            - const: afi
++            - const: pll_e
++            - const: cml
++        resets:
++          maxItems: 3
++        reset-names:
++          items:
++            - const: pex
++            - const: afi
++            - const: pcie_x
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra20-pcie
++              - nvidia,tegra30-pcie
++    then:
++      required:
++        - power-domains
++        - operating-points-v2
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra186-pcie
++    then:
++      required:
++        - interconnects
++        - iommus
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra210-pcie
++    then:
++      required:
++        - pinctrl-names
++        - pinctrl-0
++        - pinctrl-1
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra20-pcie
++    then:
++      required:
++        - avdd-pex-supply
++        - vdd-pex-supply
++        - avdd-pex-pll-supply
++        - avdd-plle-supply
++        - vddio-pex-clk-supply
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra30-pcie
++    then:
++      required:
++        - avdd-pex-pll-supply
++        - avdd-plle-supply
++        - vddio-pex-ctl-supply
++        - hvdd-pex-supply
++      anyOf:
++        - required:
++            - avdd-pexa-supply
++            - vdd-pexa-supply
++        - required:
++            - avdd-pexb-supply
++            - vdd-pexb-supply
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra124-pcie
++    then:
++      required:
++        - avddio-pex-supply
++        - dvddio-pex-supply
++        - hvdd-pex-supply
++        - vddio-pex-ctl-supply
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra210-pcie
++    then:
++      required:
++        - hvddio-pex-supply
++        - dvddio-pex-supply
++        - vddio-pex-ctl-supply
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nvidia,tegra186-pcie
++    then:
++      required:
++        - dvdd-pex-supply
++        - hvdd-pex-pll-supply
++        - hvdd-pex-supply
++        - vddio-pexctl-aud-supply
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - interrupts
++  - interrupt-map
++  - interrupt-map-mask
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    bus {
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        pcie@80003000 {
++            compatible = "nvidia,tegra20-pcie";
++            device_type = "pci";
++            reg = <0x80003000 0x00000800>,
++                  <0x80003800 0x00000200>,
++                  <0x90000000 0x10000000>;
++            reg-names = "pads", "afi", "cs";
++            interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "intr", "msi";
++            interrupt-parent = <&intc>;
++
++            #interrupt-cells = <1>;
++            interrupt-map-mask = <0 0 0 0>;
++            interrupt-map = <0 0 0 0 &intc GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++
++            bus-range = <0x00 0xff>;
++            #address-cells = <3>;
++            #size-cells = <2>;
++
++            ranges = <0x02000000 0 0x80000000 0x80000000 0 0x00001000>,
++                     <0x02000000 0 0x80001000 0x80001000 0 0x00001000>,
++                     <0x01000000 0 0          0x82000000 0 0x00010000>,
++                     <0x02000000 0 0xa0000000 0xa0000000 0 0x08000000>,
++                     <0x42000000 0 0xa8000000 0xa8000000 0 0x18000000>;
++
++            clocks = <&tegra_car 70>,
++                     <&tegra_car 72>,
++                     <&tegra_car 118>;
++            clock-names = "pex", "afi", "pll_e";
++            resets = <&tegra_car 70>,
++                     <&tegra_car 72>,
++                     <&tegra_car 74>;
++            reset-names = "pex", "afi", "pcie_x";
++            power-domains = <&pd_core>;
++            operating-points-v2 = <&pcie_dvfs_opp_table>;
++
++            avdd-pex-supply = <&reg_pex_1v05>;
++            vdd-pex-supply = <&reg_pex_1v05>;
++            avdd-pex-pll-supply = <&reg_pexpll_1v05>;
++            avdd-plle-supply = <&reg_plle_1v05>;
++            vddio-pex-clk-supply = <&reg_pexclk_3v3>;
++
++            status = "okay";
++
++            pci@1,0 {
++                device_type = "pci";
++                assigned-addresses = <0x82000800 0 0x80000000 0 0x1000>;
++                reg = <0x000800 0 0 0 0>;
++                bus-range = <0x00 0xff>;
++                status = "okay";
++
++                #address-cells = <3>;
++                #size-cells = <2>;
++                ranges;
++
++                nvidia,num-lanes = <2>;
++            };
++
++            pci@2,0 {
++                device_type = "pci";
++                assigned-addresses = <0x82001000 0 0x80001000 0 0x1000>;
++                reg = <0x001000 0 0 0 0>;
++                bus-range = <0x00 0xff>;
++                status = "okay";
++
++                #address-cells = <3>;
++                #size-cells = <2>;
++                ranges;
++
++                nvidia,num-lanes = <2>;
++            };
++        };
++    };
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    bus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie@1003000 {
++            compatible = "nvidia,tegra210-pcie";
++            device_type = "pci";
++            reg = <0x0 0x01003000 0x0 0x00000800>,
++                  <0x0 0x01003800 0x0 0x00000800>,
++                  <0x0 0x02000000 0x0 0x10000000>;
++            reg-names = "pads", "afi", "cs";
++            interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "intr", "msi";
++            interrupt-parent = <&gic>;
++
++            #interrupt-cells = <1>;
++            interrupt-map-mask = <0 0 0 0>;
++            interrupt-map = <0 0 0 0 &gic GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++
++            bus-range = <0x00 0xff>;
++            #address-cells = <3>;
++            #size-cells = <2>;
++
++            ranges = <0x02000000 0 0x01000000 0x0 0x01000000 0 0x00001000>,
++                     <0x02000000 0 0x01001000 0x0 0x01001000 0 0x00001000>,
++                     <0x01000000 0 0x0        0x0 0x12000000 0 0x00010000>,
++                     <0x02000000 0 0x13000000 0x0 0x13000000 0 0x0d000000>,
++                     <0x42000000 0 0x20000000 0x0 0x20000000 0 0x20000000>;
++
++            clocks = <&tegra_car 70>,
++                     <&tegra_car 72>,
++                     <&tegra_car 263>,
++                     <&tegra_car 300>;
++            clock-names = "pex", "afi", "pll_e", "cml";
++            resets = <&tegra_car 70>,
++                     <&tegra_car 72>,
++                     <&tegra_car 74>;
++            reset-names = "pex", "afi", "pcie_x";
++
++            pinctrl-names = "default", "idle";
++            pinctrl-0 = <&pex_dpd_disable>;
++            pinctrl-1 = <&pex_dpd_enable>;
++
++            hvddio-pex-supply = <&reg_pex_1v8>;
++            dvddio-pex-supply = <&reg_pex_1v05>;
++            vddio-pex-ctl-supply = <&reg_pexctl_1v8>;
++
++            status = "okay";
++
++            pci@1,0 {
++                device_type = "pci";
++                assigned-addresses = <0x82000800 0 0x01000000 0 0x1000>;
++                reg = <0x000800 0 0 0 0>;
++                bus-range = <0x00 0xff>;
++                status = "okay";
++
++                #address-cells = <3>;
++                #size-cells = <2>;
++                ranges;
++
++                nvidia,num-lanes = <4>;
++            };
++
++            pci@2,0 {
++                device_type = "pci";
++                assigned-addresses = <0x82001000 0 0x01001000 0 0x1000>;
++                reg = <0x001000 0 0 0 0>;
++                bus-range = <0x00 0xff>;
++                status = "okay";
++
++                #address-cells = <3>;
++                #size-cells = <2>;
++                ranges;
++
++                nvidia,num-lanes = <1>;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt b/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
+deleted file mode 100644
+index d099f3476ccc..000000000000
+--- a/Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
++++ /dev/null
+@@ -1,670 +0,0 @@
+-NVIDIA Tegra PCIe controller
+-
+-Required properties:
+-- compatible: Must be:
+-  - "nvidia,tegra20-pcie": for Tegra20
+-  - "nvidia,tegra30-pcie": for Tegra30
+-  - "nvidia,tegra124-pcie": for Tegra124 and Tegra132
+-  - "nvidia,tegra210-pcie": for Tegra210
+-  - "nvidia,tegra186-pcie": for Tegra186
+-- power-domains: To ungate power partition by BPMP powergate driver. Must
+-  contain BPMP phandle and PCIe power partition ID. This is required only
+-  for Tegra186.
+-- device_type: Must be "pci"
+-- reg: A list of physical base address and length for each set of controller
+-  registers. Must contain an entry for each entry in the reg-names property.
+-- reg-names: Must include the following entries:
+-  "pads": PADS registers
+-  "afi": AFI registers
+-  "cs": configuration space region
+-- interrupts: A list of interrupt outputs of the controller. Must contain an
+-  entry for each entry in the interrupt-names property.
+-- interrupt-names: Must include the following entries:
+-  "intr": The Tegra interrupt that is asserted for controller interrupts
+-  "msi": The Tegra interrupt that is asserted when an MSI is received
+-- bus-range: Range of bus numbers associated with this controller
+-- #address-cells: Address representation for root ports (must be 3)
+-  - cell 0 specifies the bus and device numbers of the root port:
+-    [23:16]: bus number
+-    [15:11]: device number
+-  - cell 1 denotes the upper 32 address bits and should be 0
+-  - cell 2 contains the lower 32 address bits and is used to translate to the
+-    CPU address space
+-- #size-cells: Size representation for root ports (must be 2)
+-- ranges: Describes the translation of addresses for root ports and standard
+-  PCI regions. The entries must be 6 cells each, where the first three cells
+-  correspond to the address as described for the #address-cells property
+-  above, the fourth cell is the physical CPU address to translate to and the
+-  fifth and six cells are as described for the #size-cells property above.
+-  - The first two entries are expected to translate the addresses for the root
+-    port registers, which are referenced by the assigned-addresses property of
+-    the root port nodes (see below).
+-  - The remaining entries setup the mapping for the standard I/O, memory and
+-    prefetchable PCI regions. The first cell determines the type of region
+-    that is setup:
+-    - 0x81000000: I/O memory region
+-    - 0x82000000: non-prefetchable memory region
+-    - 0xc2000000: prefetchable memory region
+-  Please refer to the standard PCI bus binding document for a more detailed
+-  explanation.
+-- #interrupt-cells: Size representation for interrupts (must be 1)
+-- interrupt-map-mask and interrupt-map: Standard PCI IRQ mapping properties
+-  Please refer to the standard PCI bus binding document for a more detailed
+-  explanation.
+-- clocks: Must contain an entry for each entry in clock-names.
+-  See ../clocks/clock-bindings.txt for details.
+-- clock-names: Must include the following entries:
+-  - pex
+-  - afi
+-  - pll_e
+-  - cml (not required for Tegra20)
+-- resets: Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names: Must include the following entries:
+-  - pex
+-  - afi
+-  - pcie_x
+-
+-Optional properties:
+-- pinctrl-names: A list of pinctrl state names. Must contain the following
+-  entries:
+-  - "default": active state, puts PCIe I/O out of deep power down state
+-  - "idle": puts PCIe I/O into deep power down state
+-- pinctrl-0: phandle for the default/active state of pin configurations.
+-- pinctrl-1: phandle for the idle state of pin configurations.
+-
+-Required properties on Tegra124 and later (deprecated):
+-- phys: Must contain an entry for each entry in phy-names.
+-- phy-names: Must include the following entries:
+-  - pcie
+-
+-These properties are deprecated in favour of per-lane PHYs define in each of
+-the root ports (see below).
+-
+-Power supplies for Tegra20:
+-- avdd-pex-supply: Power supply for analog PCIe logic. Must supply 1.05 V.
+-- vdd-pex-supply: Power supply for digital PCIe I/O. Must supply 1.05 V.
+-- avdd-pex-pll-supply: Power supply for dedicated (internal) PCIe PLL. Must
+-  supply 1.05 V.
+-- avdd-plle-supply: Power supply for PLLE, which is shared with SATA. Must
+-  supply 1.05 V.
+-- vddio-pex-clk-supply: Power supply for PCIe clock. Must supply 3.3 V.
+-
+-Power supplies for Tegra30:
+-- Required:
+-  - avdd-pex-pll-supply: Power supply for dedicated (internal) PCIe PLL. Must
+-    supply 1.05 V.
+-  - avdd-plle-supply: Power supply for PLLE, which is shared with SATA. Must
+-    supply 1.05 V.
+-  - vddio-pex-ctl-supply: Power supply for PCIe control I/O partition. Must
+-    supply 1.8 V.
+-  - hvdd-pex-supply: High-voltage supply for PCIe I/O and PCIe output clocks.
+-    Must supply 3.3 V.
+-- Optional:
+-  - If lanes 0 to 3 are used:
+-    - avdd-pexa-supply: Power supply for analog PCIe logic. Must supply 1.05 V.
+-    - vdd-pexa-supply: Power supply for digital PCIe I/O. Must supply 1.05 V.
+-  - If lanes 4 or 5 are used:
+-    - avdd-pexb-supply: Power supply for analog PCIe logic. Must supply 1.05 V.
+-    - vdd-pexb-supply: Power supply for digital PCIe I/O. Must supply 1.05 V.
+-
+-Power supplies for Tegra124:
+-- Required:
+-  - avddio-pex-supply: Power supply for analog PCIe logic. Must supply 1.05 V.
+-  - dvddio-pex-supply: Power supply for digital PCIe I/O. Must supply 1.05 V.
+-  - hvdd-pex-supply: High-voltage supply for PCIe I/O and PCIe output clocks.
+-    Must supply 3.3 V.
+-  - vddio-pex-ctl-supply: Power supply for PCIe control I/O partition. Must
+-    supply 2.8-3.3 V.
+-
+-Power supplies for Tegra210:
+-- Required:
+-  - hvddio-pex-supply: High-voltage supply for PCIe I/O and PCIe output
+-    clocks. Must supply 1.8 V.
+-  - dvddio-pex-supply: Power supply for digital PCIe I/O. Must supply 1.05 V.
+-  - vddio-pex-ctl-supply: Power supply for PCIe control I/O partition. Must
+-    supply 1.8 V.
+-
+-Power supplies for Tegra186:
+-- Required:
+-  - dvdd-pex-supply: Power supply for digital PCIe I/O. Must supply 1.05 V.
+-  - hvdd-pex-pll-supply: High-voltage supply for PLLE (shared with USB3). Must
+-    supply 1.8 V.
+-  - hvdd-pex-supply: High-voltage supply for PCIe I/O and PCIe output clocks.
+-    Must supply 1.8 V.
+-  - vddio-pexctl-aud-supply: Power supply for PCIe side band signals. Must
+-    supply 1.8 V.
+-
+-Root ports are defined as subnodes of the PCIe controller node.
+-
+-Required properties:
+-- device_type: Must be "pci"
+-- assigned-addresses: Address and size of the port configuration registers
+-- reg: PCI bus address of the root port
+-- #address-cells: Must be 3
+-- #size-cells: Must be 2
+-- ranges: Sub-ranges distributed from the PCIe controller node. An empty
+-  property is sufficient.
+-- nvidia,num-lanes: Number of lanes to use for this port. Valid combinations
+-  are:
+-  - Root port 0 uses 4 lanes, root port 1 is unused.
+-  - Both root ports use 2 lanes.
+-
+-Required properties for Tegra124 and later:
+-- phys: Must contain an phandle to a PHY for each entry in phy-names.
+-- phy-names: Must include an entry for each active lane. Note that the number
+-  of entries does not have to (though usually will) be equal to the specified
+-  number of lanes in the nvidia,num-lanes property. Entries are of the form
+-  "pcie-N": where N ranges from 0 to the value specified in nvidia,num-lanes.
+-
+-Examples:
+-=========
+-
+-Tegra20:
+---------
+-
+-SoC DTSI:
+-
+-	pcie-controller@80003000 {
+-		compatible = "nvidia,tegra20-pcie";
+-		device_type = "pci";
+-		reg = <0x80003000 0x00000800   /* PADS registers */
+-		       0x80003800 0x00000200   /* AFI registers */
+-		       0x90000000 0x10000000>; /* configuration space */
+-		reg-names = "pads", "afi", "cs";
+-		interrupts = <0 98 0x04   /* controller interrupt */
+-		              0 99 0x04>; /* MSI interrupt */
+-		interrupt-names = "intr", "msi";
+-
+-		#interrupt-cells = <1>;
+-		interrupt-map-mask = <0 0 0 0>;
+-		interrupt-map = <0 0 0 0 &intc GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		bus-range = <0x00 0xff>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-
+-		ranges = <0x82000000 0 0x80000000 0x80000000 0 0x00001000   /* port 0 registers */
+-			  0x82000000 0 0x80001000 0x80001000 0 0x00001000   /* port 1 registers */
+-			  0x81000000 0 0          0x82000000 0 0x00010000   /* downstream I/O */
+-			  0x82000000 0 0xa0000000 0xa0000000 0 0x10000000   /* non-prefetchable memory */
+-			  0xc2000000 0 0xb0000000 0xb0000000 0 0x10000000>; /* prefetchable memory */
+-
+-		clocks = <&tegra_car 70>, <&tegra_car 72>, <&tegra_car 118>;
+-		clock-names = "pex", "afi", "pll_e";
+-		resets = <&tegra_car 70>, <&tegra_car 72>, <&tegra_car 74>;
+-		reset-names = "pex", "afi", "pcie_x";
+-		status = "disabled";
+-
+-		pci@1,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82000800 0 0x80000000 0 0x1000>;
+-			reg = <0x000800 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-
+-			ranges;
+-
+-			nvidia,num-lanes = <2>;
+-		};
+-
+-		pci@2,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82001000 0 0x80001000 0 0x1000>;
+-			reg = <0x001000 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-
+-			ranges;
+-
+-			nvidia,num-lanes = <2>;
+-		};
+-	};
+-
+-Board DTS:
+-
+-	pcie-controller@80003000 {
+-		status = "okay";
+-
+-		vdd-supply = <&pci_vdd_reg>;
+-		pex-clk-supply = <&pci_clk_reg>;
+-
+-		/* root port 00:01.0 */
+-		pci@1,0 {
+-			status = "okay";
+-
+-			/* bridge 01:00.0 (optional) */
+-			pci@0,0 {
+-				reg = <0x010000 0 0 0 0>;
+-
+-				#address-cells = <3>;
+-				#size-cells = <2>;
+-
+-				device_type = "pci";
+-
+-				/* endpoint 02:00.0 */
+-				pci@0,0 {
+-					reg = <0x020000 0 0 0 0>;
+-				};
+-			};
+-		};
+-	};
+-
+-Note that devices on the PCI bus are dynamically discovered using PCI's bus
+-enumeration and therefore don't need corresponding device nodes in DT. However
+-if a device on the PCI bus provides a non-probeable bus such as I2C or SPI,
+-device nodes need to be added in order to allow the bus' children to be
+-instantiated at the proper location in the operating system's device tree (as
+-illustrated by the optional nodes in the example above).
+-
+-Tegra30:
+---------
+-
+-SoC DTSI:
+-
+-	pcie-controller@3000 {
+-		compatible = "nvidia,tegra30-pcie";
+-		device_type = "pci";
+-		reg = <0x00003000 0x00000800   /* PADS registers */
+-		       0x00003800 0x00000200   /* AFI registers */
+-		       0x10000000 0x10000000>; /* configuration space */
+-		reg-names = "pads", "afi", "cs";
+-		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH   /* controller interrupt */
+-			      GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>; /* MSI interrupt */
+-		interrupt-names = "intr", "msi";
+-
+-		#interrupt-cells = <1>;
+-		interrupt-map-mask = <0 0 0 0>;
+-		interrupt-map = <0 0 0 0 &intc GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		bus-range = <0x00 0xff>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-
+-		ranges = <0x82000000 0 0x00000000 0x00000000 0 0x00001000   /* port 0 configuration space */
+-			  0x82000000 0 0x00001000 0x00001000 0 0x00001000   /* port 1 configuration space */
+-			  0x82000000 0 0x00004000 0x00004000 0 0x00001000   /* port 2 configuration space */
+-			  0x81000000 0 0          0x02000000 0 0x00010000   /* downstream I/O */
+-			  0x82000000 0 0x20000000 0x20000000 0 0x08000000   /* non-prefetchable memory */
+-			  0xc2000000 0 0x28000000 0x28000000 0 0x18000000>; /* prefetchable memory */
+-
+-		clocks = <&tegra_car TEGRA30_CLK_PCIE>,
+-			 <&tegra_car TEGRA30_CLK_AFI>,
+-			 <&tegra_car TEGRA30_CLK_PLL_E>,
+-			 <&tegra_car TEGRA30_CLK_CML0>;
+-		clock-names = "pex", "afi", "pll_e", "cml";
+-		resets = <&tegra_car 70>,
+-			 <&tegra_car 72>,
+-			 <&tegra_car 74>;
+-		reset-names = "pex", "afi", "pcie_x";
+-		status = "disabled";
+-
+-		pci@1,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82000800 0 0x00000000 0 0x1000>;
+-			reg = <0x000800 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <2>;
+-		};
+-
+-		pci@2,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82001000 0 0x00001000 0 0x1000>;
+-			reg = <0x001000 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <2>;
+-		};
+-
+-		pci@3,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82001800 0 0x00004000 0 0x1000>;
+-			reg = <0x001800 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <2>;
+-		};
+-	};
+-
+-Board DTS:
+-
+-	pcie-controller@3000 {
+-		status = "okay";
+-
+-		avdd-pexa-supply = <&ldo1_reg>;
+-		vdd-pexa-supply = <&ldo1_reg>;
+-		avdd-pexb-supply = <&ldo1_reg>;
+-		vdd-pexb-supply = <&ldo1_reg>;
+-		avdd-pex-pll-supply = <&ldo1_reg>;
+-		avdd-plle-supply = <&ldo1_reg>;
+-		vddio-pex-ctl-supply = <&sys_3v3_reg>;
+-		hvdd-pex-supply = <&sys_3v3_pexs_reg>;
+-
+-		pci@1,0 {
+-			status = "okay";
+-		};
+-
+-		pci@3,0 {
+-			status = "okay";
+-		};
+-	};
+-
+-Tegra124:
+----------
+-
+-SoC DTSI:
+-
+-	pcie-controller@1003000 {
+-		compatible = "nvidia,tegra124-pcie";
+-		device_type = "pci";
+-		reg = <0x0 0x01003000 0x0 0x00000800   /* PADS registers */
+-		       0x0 0x01003800 0x0 0x00000800   /* AFI registers */
+-		       0x0 0x02000000 0x0 0x10000000>; /* configuration space */
+-		reg-names = "pads", "afi", "cs";
+-		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>, /* controller interrupt */
+-			     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>; /* MSI interrupt */
+-		interrupt-names = "intr", "msi";
+-
+-		#interrupt-cells = <1>;
+-		interrupt-map-mask = <0 0 0 0>;
+-		interrupt-map = <0 0 0 0 &gic GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		bus-range = <0x00 0xff>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-
+-		ranges = <0x82000000 0 0x01000000 0x0 0x01000000 0 0x00001000   /* port 0 configuration space */
+-			  0x82000000 0 0x01001000 0x0 0x01001000 0 0x00001000   /* port 1 configuration space */
+-			  0x81000000 0 0x0        0x0 0x12000000 0 0x00010000   /* downstream I/O (64 KiB) */
+-			  0x82000000 0 0x13000000 0x0 0x13000000 0 0x0d000000   /* non-prefetchable memory (208 MiB) */
+-			  0xc2000000 0 0x20000000 0x0 0x20000000 0 0x20000000>; /* prefetchable memory (512 MiB) */
+-
+-		clocks = <&tegra_car TEGRA124_CLK_PCIE>,
+-			 <&tegra_car TEGRA124_CLK_AFI>,
+-			 <&tegra_car TEGRA124_CLK_PLL_E>,
+-			 <&tegra_car TEGRA124_CLK_CML0>;
+-		clock-names = "pex", "afi", "pll_e", "cml";
+-		resets = <&tegra_car 70>,
+-			 <&tegra_car 72>,
+-			 <&tegra_car 74>;
+-		reset-names = "pex", "afi", "pcie_x";
+-		status = "disabled";
+-
+-		pci@1,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82000800 0 0x01000000 0 0x1000>;
+-			reg = <0x000800 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <2>;
+-		};
+-
+-		pci@2,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82001000 0 0x01001000 0 0x1000>;
+-			reg = <0x001000 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <1>;
+-		};
+-	};
+-
+-Board DTS:
+-
+-	pcie-controller@1003000 {
+-		status = "okay";
+-
+-		avddio-pex-supply = <&vdd_1v05_run>;
+-		dvddio-pex-supply = <&vdd_1v05_run>;
+-		avdd-pex-pll-supply = <&vdd_1v05_run>;
+-		hvdd-pex-supply = <&vdd_3v3_lp0>;
+-		hvdd-pex-pll-e-supply = <&vdd_3v3_lp0>;
+-		vddio-pex-ctl-supply = <&vdd_3v3_lp0>;
+-		avdd-pll-erefe-supply = <&avdd_1v05_run>;
+-
+-		/* Mini PCIe */
+-		pci@1,0 {
+-			phys = <&{/padctl@7009f000/pads/pcie/lanes/pcie-4}>;
+-			phy-names = "pcie-0";
+-			status = "okay";
+-		};
+-
+-		/* Gigabit Ethernet */
+-		pci@2,0 {
+-			phys = <&{/padctl@7009f000/pads/pcie/lanes/pcie-2}>;
+-			phy-names = "pcie-0";
+-			status = "okay";
+-		};
+-	};
+-
+-Tegra210:
+----------
+-
+-SoC DTSI:
+-
+-	pcie-controller@1003000 {
+-		compatible = "nvidia,tegra210-pcie";
+-		device_type = "pci";
+-		reg = <0x0 0x01003000 0x0 0x00000800   /* PADS registers */
+-		       0x0 0x01003800 0x0 0x00000800   /* AFI registers */
+-		       0x0 0x02000000 0x0 0x10000000>; /* configuration space */
+-		reg-names = "pads", "afi", "cs";
+-		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>, /* controller interrupt */
+-			     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>; /* MSI interrupt */
+-		interrupt-names = "intr", "msi";
+-
+-		#interrupt-cells = <1>;
+-		interrupt-map-mask = <0 0 0 0>;
+-		interrupt-map = <0 0 0 0 &gic GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		bus-range = <0x00 0xff>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-
+-		ranges = <0x82000000 0 0x01000000 0x0 0x01000000 0 0x00001000   /* port 0 configuration space */
+-			  0x82000000 0 0x01001000 0x0 0x01001000 0 0x00001000   /* port 1 configuration space */
+-			  0x81000000 0 0x0        0x0 0x12000000 0 0x00010000   /* downstream I/O (64 KiB) */
+-			  0x82000000 0 0x13000000 0x0 0x13000000 0 0x0d000000   /* non-prefetchable memory (208 MiB) */
+-			  0xc2000000 0 0x20000000 0x0 0x20000000 0 0x20000000>; /* prefetchable memory (512 MiB) */
+-
+-		clocks = <&tegra_car TEGRA210_CLK_PCIE>,
+-			 <&tegra_car TEGRA210_CLK_AFI>,
+-			 <&tegra_car TEGRA210_CLK_PLL_E>,
+-			 <&tegra_car TEGRA210_CLK_CML0>;
+-		clock-names = "pex", "afi", "pll_e", "cml";
+-		resets = <&tegra_car 70>,
+-			 <&tegra_car 72>,
+-			 <&tegra_car 74>;
+-		reset-names = "pex", "afi", "pcie_x";
+-		status = "disabled";
+-
+-		pci@1,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82000800 0 0x01000000 0 0x1000>;
+-			reg = <0x000800 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <4>;
+-		};
+-
+-		pci@2,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82001000 0 0x01001000 0 0x1000>;
+-			reg = <0x001000 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <1>;
+-		};
+-	};
+-
+-Board DTS:
+-
+-	pcie-controller@1003000 {
+-		status = "okay";
+-
+-		avdd-pll-uerefe-supply = <&avdd_1v05_pll>;
+-		hvddio-pex-supply = <&vdd_1v8>;
+-		dvddio-pex-supply = <&vdd_pex_1v05>;
+-		dvdd-pex-pll-supply = <&vdd_pex_1v05>;
+-		hvdd-pex-pll-e-supply = <&vdd_1v8>;
+-		vddio-pex-ctl-supply = <&vdd_1v8>;
+-
+-		pci@1,0 {
+-			phys = <&{/padctl@7009f000/pads/pcie/lanes/pcie-0}>,
+-			       <&{/padctl@7009f000/pads/pcie/lanes/pcie-1}>,
+-			       <&{/padctl@7009f000/pads/pcie/lanes/pcie-2}>,
+-			       <&{/padctl@7009f000/pads/pcie/lanes/pcie-3}>;
+-			phy-names = "pcie-0", "pcie-1", "pcie-2", "pcie-3";
+-			status = "okay";
+-		};
+-
+-		pci@2,0 {
+-			phys = <&{/padctl@7009f000/pads/pcie/lanes/pcie-4}>;
+-			phy-names = "pcie-0";
+-			status = "okay";
+-		};
+-	};
+-
+-Tegra186:
+----------
+-
+-SoC DTSI:
+-
+-	pcie@10003000 {
+-		compatible = "nvidia,tegra186-pcie";
+-		power-domains = <&bpmp TEGRA186_POWER_DOMAIN_PCX>;
+-		device_type = "pci";
+-		reg = <0x0 0x10003000 0x0 0x00000800   /* PADS registers */
+-		       0x0 0x10003800 0x0 0x00000800   /* AFI registers */
+-		       0x0 0x40000000 0x0 0x10000000>; /* configuration space */
+-		reg-names = "pads", "afi", "cs";
+-
+-		interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>, /* controller interrupt */
+-			     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>; /* MSI interrupt */
+-		interrupt-names = "intr", "msi";
+-
+-		#interrupt-cells = <1>;
+-		interrupt-map-mask = <0 0 0 0>;
+-		interrupt-map = <0 0 0 0 &gic GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+-
+-		bus-range = <0x00 0xff>;
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-
+-		ranges = <0x82000000 0 0x10000000 0x0 0x10000000 0 0x00001000   /* port 0 configuration space */
+-			  0x82000000 0 0x10001000 0x0 0x10001000 0 0x00001000   /* port 1 configuration space */
+-			  0x82000000 0 0x10004000 0x0 0x10004000 0 0x00001000   /* port 2 configuration space */
+-			  0x81000000 0 0x0        0x0 0x50000000 0 0x00010000   /* downstream I/O (64 KiB) */
+-			  0x82000000 0 0x50100000 0x0 0x50100000 0 0x07F00000   /* non-prefetchable memory (127 MiB) */
+-			  0xc2000000 0 0x58000000 0x0 0x58000000 0 0x28000000>; /* prefetchable memory (640 MiB) */
+-
+-		clocks = <&bpmp TEGRA186_CLK_AFI>,
+-			 <&bpmp TEGRA186_CLK_PCIE>,
+-			 <&bpmp TEGRA186_CLK_PLLE>;
+-		clock-names = "afi", "pex", "pll_e";
+-
+-		resets = <&bpmp TEGRA186_RESET_AFI>,
+-			 <&bpmp TEGRA186_RESET_PCIE>,
+-			 <&bpmp TEGRA186_RESET_PCIEXCLK>;
+-		reset-names = "afi", "pex", "pcie_x";
+-
+-		status = "disabled";
+-
+-		pci@1,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82000800 0 0x10000000 0 0x1000>;
+-			reg = <0x000800 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <2>;
+-		};
+-
+-		pci@2,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82001000 0 0x10001000 0 0x1000>;
+-			reg = <0x001000 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <1>;
+-		};
+-
+-		pci@3,0 {
+-			device_type = "pci";
+-			assigned-addresses = <0x82001800 0 0x10004000 0 0x1000>;
+-			reg = <0x001800 0 0 0 0>;
+-			status = "disabled";
+-
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			nvidia,num-lanes = <1>;
+-		};
+-	};
+-
+-Board DTS:
+-
+-	pcie@10003000 {
+-		status = "okay";
+-
+-		dvdd-pex-supply = <&vdd_pex>;
+-		hvdd-pex-pll-supply = <&vdd_1v8>;
+-		hvdd-pex-supply = <&vdd_1v8>;
+-		vddio-pexctl-aud-supply = <&vdd_1v8>;
+-
+-		pci@1,0 {
+-			nvidia,num-lanes = <4>;
+-			status = "okay";
+-		};
+-
+-		pci@2,0 {
+-			nvidia,num-lanes = <0>;
+-			status = "disabled";
+-		};
+-
+-		pci@3,0 {
+-			nvidia,num-lanes = <1>;
+-			status = "disabled";
+-		};
+-	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 55af015174a5..45584cc85401 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20252,7 +20252,7 @@ M:	Thierry Reding <thierry.reding@gmail.com>
+ L:	linux-tegra@vger.kernel.org
+ L:	linux-pci@vger.kernel.org
+ S:	Supported
+-F:	Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
++F:	Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+ F:	drivers/pci/controller/pci-tegra.c
+ 
+ PCI DRIVER FOR NXP LAYERSCAPE GEN4 CONTROLLER
 -- 
 2.50.1
 
