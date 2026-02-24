@@ -1,175 +1,145 @@
-Return-Path: <devicetree+bounces-268001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIiVBoHgnWnpSQQAu9opvQ
-	(envelope-from <devicetree+bounces-268001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:31:45 +0100
+	id UFgsDdrinWnpSQQAu9opvQ
+	(envelope-from <devicetree+bounces-268002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:41:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42F718A8D0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB63418AA72
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:41:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E84CA3008D7E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 17:31:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3E8C73006B4B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 17:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6F53A963D;
-	Tue, 24 Feb 2026 17:31:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAEFA3A7F6E;
+	Tue, 24 Feb 2026 17:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="mJOKozCo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cE7whtBj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF92AE555;
-	Tue, 24 Feb 2026 17:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949BA3A9627;
+	Tue, 24 Feb 2026 17:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771954301; cv=none; b=QVraWpTQXdImyY1JUgfmKUis5O4791v3IgXltKqWJZSPH5br9VXouhwGHcYtZp1zpkOT9bJmeJvjYGx7jr6Ue97/Um488DC6rohG+7gwzdoLNC0BczEbSaSlr4+oRH0VZmXP9fdwaJpUsvupnTkXPVAKPPh8T7lNiEZ1GkTnAMQ=
+	t=1771954903; cv=none; b=SXAavhWOCPHCiBvZLDvKVF5XRFrtuE2ef+N1Q0DOGFvuJ0BE+v4HzsGBraboPaWO2qhfukVcZLhX77ymc8I8E7G0+skE1Iqv2Z/1kv7LnLDhXMkABlubH6RVIGx03/DF8GxS3709nCwYQ/BK3RQn1pSAF67VcGKBm7D0mqj2+Vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771954301; c=relaxed/simple;
-	bh=GpEIF7KYQIRf2iyonqo4UgkLPNTeDqqiI7kXWlHhk8w=;
+	s=arc-20240116; t=1771954903; c=relaxed/simple;
+	bh=36cqExmJ+xVEA46VvhswCFGe7wEAzemfq3PU9IFvDFY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CVv8i+Ce1h13aeiELuF7wycH5z8+++GnO0PSfIYwuJDwuG31Q4IEwDT4wZLXHChULo5sDhV52nAHe/q8obe6nMErQPf1R5CPyCs7srDcq2VGjiOSAvRY5auitx7uhgEE0UYd7gKX53Q5MVvg7yUCeeAP/Bo5RUFwbD874NP9jeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=mJOKozCo; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=0B3jcTNUQM4dYgkUTVaMAfAHtbtRMSVxu9Gvpkl5SlM=; b=mJ
-	OKozCogVPMZiP3rAW+cNmMDp/bx1jxiidjm/0T1emzMGXkyvjcbPuG7xbf1irH4tyZi5C/H1186zj
-	3v3vUGoMw3yAK/uybiMfdAFagVF/FGPYDZBSwntv45jfu+UQoVmWE78v4zcslAvbV2rJjehE1ydmC
-	EMd07yKG45mshgI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vuwFr-008dOV-Dl; Tue, 24 Feb 2026 18:31:27 +0100
-Date: Tue, 24 Feb 2026 18:31:27 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Shenwei Wang <shenwei.wang@nxp.com>
-Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Frank Li <frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	dl-linux-imx <linux-imx@nxp.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
-Message-ID: <79eb8bb8-83cb-4b24-8e56-42a53c710055@lunn.ch>
-References: <fd257c80-d97f-45b0-a12f-3a1888ba81db@foss.st.com>
- <396819f2-dd00-4c09-8bc7-c035a5282a56@lunn.ch>
- <PAXPR04MB9185A908F5090F0CA4FF05F78968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <b21b9ee5-d84e-47f8-86b5-c111ecc3d43d@lunn.ch>
- <PAXPR04MB918576D67A268E59242964A08968A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAD++jLkUVFckLTq=SoivNFoFymhJo4KM=qGmajFcv9T9+7tPmg@mail.gmail.com>
- <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com>
- <PAXPR04MB91859B642802813F908B03DA8977A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <64ef5dbf-6264-4758-a5d8-d8c52c359fcc@foss.st.com>
- <PAXPR04MB9185934EB640E8B21905FF878974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fehau5fEUJegIFyzYheFa0aEWD7eMVAROyF9Mcg4ZjvkYQnARcG10h2kFfSJ/+0nECEk2rxO/wZ1HMVC5/z3LLnjGmRCAID2ZXdrdo4qq2JGlojRD63nUauU1INrv2HchQ067+T8aKazRMAjs6fLmWJMkdhFUuN14d56qzDERv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cE7whtBj; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771954903; x=1803490903;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=36cqExmJ+xVEA46VvhswCFGe7wEAzemfq3PU9IFvDFY=;
+  b=cE7whtBj00/qHQKNe+voXe8S+gqkZSDai33JYwdXAOZKp66+f4uEzBQL
+   Zs6+ZSKtaUBsoytudcCjNV7zmV+1UPKdrCu4WVRWyIjvTdx3eNzhWe3xc
+   Ktf/roFvipYirHa1PvZc3TV2jEhPePUuu9y2wMh+QtLLf769Gnt2aK/R/
+   NXcqrZV8au8WigSvTv3p6faLnxLW4UA/8+sZ+Xkut8Z/Y6SfNIBhvMEWa
+   JsKkVWLQ9yzFCZpRngoOxfvHCiZZoA6AXksQqKyQovXam3Td0I4p1vHx9
+   iVvULoNKVHPviHNQfGUSwuHMuvHt4o+HwBDdmAzu6KEBK5i1ww+E+LibF
+   w==;
+X-CSE-ConnectionGUID: BVVCfFUPSKCUvQKNb5AT+A==
+X-CSE-MsgGUID: tQuj+qAsTvuGEDHQPAVWqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73048874"
+X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
+   d="scan'208";a="73048874"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 09:41:42 -0800
+X-CSE-ConnectionGUID: nkutu3TqRFWpMN82IReoBQ==
+X-CSE-MsgGUID: hmwbiwOxSJOEXuUGE1Hn5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
+   d="scan'208";a="215208062"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.244.146])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 09:41:39 -0800
+Date: Tue, 24 Feb 2026 19:41:35 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 0/3] Add Invensense ICM42607
+Message-ID: <aZ3iz18O3UEDTDqm@smile.fi.intel.com>
+References: <20260224163109.370930-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <PAXPR04MB9185934EB640E8B21905FF878974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <20260224163109.370930-1-macroalpha82@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268001-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[foss.st.com,kernel.org,lwn.net,linaro.org,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
+	TAGGED_FROM(0.00)[bounces-268002-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	NEURAL_HAM(-0.00)[-0.996];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:mid,lunn.ch:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B42F718A8D0
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim]
+X-Rspamd-Queue-Id: CB63418AA72
 X-Rspamd-Action: no action
 
-> Hi Arnaud,
-> Glad to hear you find this approach reasonable.
-> To be more specific, I’m proposing to do the following modifications for the protocol:
+On Tue, Feb 24, 2026 at 10:31:02AM -0600, Chris Morgan wrote:
+
+> Add support for the ICM42607 IMU. This sensor shares the same
+> functionality but a different register layout with the existing
+> ICM42600.
 > 
->   - remove the “id” field (Message ID Code)
->   - remove the “reserved[5]” field
->   - and also reorder the fields so that port_idx appears before pin_idx
-> 
-> If you think additional fields should be removed or adjusted, please let me know.
+> This driver should work with the ICM42607 and ICM42607P over both I2C
+> and SPI, however only the ICM42607P over I2C could be tested.
 
-I would squash head and body into one. Remove vendor and version. Do
-we need both cmd and type? It seems like they can be combined. And is
-port_idx needed? Don't you just instantiate more instances of the
-device, one per port. That is how you would do it with MMIO GPIOs.
+Thanks for your contribution, but...
 
-struct gpio_rpmsg_packet {
-	u8 cmd;
-	u8 pin;
-	union {
-		u8 event;
-		u8 retcode;
-		u8 value;
-	} out;
-	union {
-		u8 wakeup;
-		u8 value;
-	} in;
-}
+NAK.
 
-4 bytes, a nice size.
+It's unreviewable bulk out of 4kLoC! I even won't bother looking at any other
+messages in this (too mini) series.
 
-#define GPIO_RPMSG_CMD_DIR_INPUT 	1
-#define GPIO_RPMSG_CMD_DIR_OUTPUT 	2
-#define GPIO_RPMSG_CMD_GET_DIR		3
-#define GPIO_RPMSG_CMD_GET		4
-#define GPIO_RPMSG_CMD_SET		5
+TL;DR: reviewable code is limited at ~750 (or less) � 150 LoC per patch.
 
-These map onto the gpio_chip ops. And i leave space for the _multiple
-ops if they are needed in the future.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-#define GPIO_PRMSG_CMD_INTR_CONFIG	32
-#define GPIO_PRMSG_CMD_INTR_EVENT	33
 
-And then interrupt handling. These are less obvious, struct irq_chip
-has a lot more ops, so i'm not very confident this is sufficient.
-
-	Andrew
 
