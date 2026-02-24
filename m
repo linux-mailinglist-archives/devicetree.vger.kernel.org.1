@@ -1,512 +1,272 @@
-Return-Path: <devicetree+bounces-267718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267719-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yCAxIvQ+nWlUNwQAu9opvQ
-	(envelope-from <devicetree+bounces-267718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:02:28 +0100
+	id WD4aE2E/nWlUNwQAu9opvQ
+	(envelope-from <devicetree+bounces-267719-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:04:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFD018243C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:02:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FF21182472
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 07:04:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1C8B3308C584
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:02:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1458E303540C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF862D59E8;
-	Tue, 24 Feb 2026 06:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BCA2C21F9;
+	Tue, 24 Feb 2026 06:04:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="RF+xgawB"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="hw+lQ0ai"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010025.outbound.protection.outlook.com [52.101.193.25])
+Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010058.outbound.protection.outlook.com [52.101.85.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 925162D2382;
-	Tue, 24 Feb 2026 06:02:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C59A275B05;
+	Tue, 24 Feb 2026 06:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.58
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771912925; cv=fail; b=o3aL670QqtytwDrraJXzTllEuwfkQUbipvXxuMtCwGdzIpHH/cl++b1TjqpgqddNtEQYPIC4B5t0PzsWKZkf2pOm3KBZBuY7Bv/htRjKXlGQJ7KXeN3rEo88kqbsd/0+Wa7+cT9OMNUWSy8jEQwjBYhIyeY9BwHkhd/bzKxqyv8=
+	t=1771913052; cv=fail; b=GqBhu2cgEyUbP20GqFUJAXljyi7WzlZbXzki3dQtNAkXDgpLeTwGTQQOBHuEp8jNzvH/knsw+4RW7Gn3Hy/1sXGstbnElO4m/6CacZbR5IDJtLt8+EvilQqbt0s3V5P7xkpsEm12OPsckYtUxKbKS+kM85InV3CcPGsN3LLu68k=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771912925; c=relaxed/simple;
-	bh=a7y20gaAXcXscKV3pE4bgzSf/cJE9nyM/Xw060E9li8=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tJTyP7saVOV9v7cO295/omLj/ZgVtrjbtjbg8oaiRaG0il7EO5pjp3Zu3457FaqtK7t2jsfWif9C2Uux8fJdp8sa6ML5wURmEgGK8XwSOlol6fyV6oP0f1CLiU8oiEYXpgPs9HWPOLhPPs1PNtejbAga10N2ga0Cwa1xiKs7i20=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=RF+xgawB; arc=fail smtp.client-ip=52.101.193.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+	s=arc-20240116; t=1771913052; c=relaxed/simple;
+	bh=BHz8rdCvbwQbf1p0oDsPqYOuN5lvw/W3vpSoU09uLtY=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cL5+G2JIaHLQCbTbT2LlcKt8B4tCh+NdzuxfnBsTp/Zkl05ybp4s6Mw+CPqFgaoLo8NjaqvKe2+8hfSOj5z9wO1E6TP1ysSHLJA0jjKH/zL7ArunGxqA0WQv9BjHe5YG+nhZt4MSBYQxj/riQEwCvBOk7FK3pNmqSauXy2uwl0k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=hw+lQ0ai; arc=fail smtp.client-ip=52.101.85.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M0S3EIwGH1WS5AgAKB13/yaRu6x0RV2dL4lz6FbWew8cCBl/CF4gcMit6Vqt+50P0cFZgSgP1BZAV/Z/OJAElIT1oiBjlVfALXq7wIGuZ4zVzslKIXg7d1xhVom6NauWWotrK4HI0fp+7BxxXca4pTFRqPgF5EKvZpoflY2nGiuYAHLGK/CWEoGAQnzspLFYcAnrp8kgc4ik8m27MFxLdIZF5TXTTtm4/G6jDHgibn2bniedJ52CRT+RfL2jrit/9l3pHVleVOR7TEs2BrQhhHqmjWKsLIDvgcnZW3rJx1E3dNhDjkyuf5mOfEexKn/xfzY5mHlusSDxNjJtu3GnYA==
+ b=Rc5hXhBuX0dCM5koSzpjdt8kMaSerPPdJKhELk8+Ry4wfPXbbIsS0fXTeW/S3cx4zUKcSP0Qr9weUcqWQ8pyx5YO1XUZjV3Hh0CFhZeNb0g1F4D5tLdt4FQxkWdr+MrmvPSN6QFIAbMPdWAdgLLOAQOOnKaDZO5y4y6DqbaqRFSBbS9JEvpdyEzFZhjy4AHMl8y29u6J6HV8p7sy+aEh+9IFBcqnmDLmDq+8+PgT7ima6op3U4bif9IwvzZGrTn1FUXGney402VtHnyp/zPWWQDFjC4aSmkOCSoPnMvkHTwYygcKaa5O83T4+ZMQdKsjZVRj5ZMesBD0+/RBQ8Ncgg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yXOHtaA9/qHvaOQfJaa5LY4LIyT7snDehJpCiy1awRw=;
- b=JO+LY56H/OJHezsdc7SJD2rUbE+fTBhYOMag1Icq4Y7Xk827NxDukcPBUXkET522NfeBRnbx3CUWur7ffrxrXAmp/u/6/UXCGEf9xG0JaTpEB0rXqmuJ10pN3CXmc8+guNlbI/4T9qSloPsOIzj0EM7B9p9McyFnEw1pf/0Vbvr4h8kqb5WDJFsJBJPE59cB+mudEHpFWi6Z7p4OcBJ6rQghSKAL7Qztnc4CONmyCeB9NToLaHtbERpPDUdcHxgSJv++CBKvMX/uRw2d8mfjibKWlGI+r3Gpvrwjvp35pNSwAdHZo/U7zCt7wZDI7Do9oeM/ZklmsKcd641BEePASw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ bh=wIjAg2eRlPPZtEDtYTP4CUeRXcZ1S3FeYNj77hT0KjY=;
+ b=wsUzQMX9XsWSfimBCJz2IlwzpWl958WqL3W8f4dCqWqv5oKh4U5Xj4tz0v4EFdGZa8CnsnG156/IgI33KymSFggJxOijJ5GeZQqIrPZLJwH19maLONhMft6ZdWw24hgKBqlYlD7RYTkGKL7xkpnkhkAGtn609x/GL8TN3K4qE+Hr0NPlDNblUFPB2FKCa/ZMTe2yLi6GlwF+h1GjFKm6LiR5lbZ+G04NQpwBrtCs1vpMaMO7JjTVGXOzEPDTJYa7Q2X3yWDNnVcxk0UhHluJ7JcUuyeJTA+UkxGhaZNrMAiEdQ9VmAWk6Ot7UK1RdlNp4OiNAc6/+3AQWNsHwXrxBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=nxp.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yXOHtaA9/qHvaOQfJaa5LY4LIyT7snDehJpCiy1awRw=;
- b=RF+xgawB6mqLTaLc9HobjRuv59/IPTXOx5iJhDhiC1jT0zO2MP/VY/XXsYq5KkX3+88HYtl4No8pjA+HleaCODSLmSphm3rsJUGE0dHmN1vPiinzvNjbPcsd57OYaynU4l6TIt2ro/3VM6yML9CKVPyTXaJraAwWhBugAGWLEt0iD5bq+Z+LuP3ltL2lGe26V4DmCbdSfACR72MCJzSYfAo/irDUc3e6WmNbc1e0smvk+4+h4RtNy72lv2sxPNnQdNTFcNteSaZgHhcVBUTAwS5etZDONsxhKi/12wIkymf3nxQNfOtCyj9niz5b/BlPO0uHSQFKKnCTAT1AlKL2ng==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from SJ0PR03MB5950.namprd03.prod.outlook.com (2603:10b6:a03:2d3::20)
- by DM6PR03MB5113.namprd03.prod.outlook.com (2603:10b6:5:1f0::19) with
+ bh=wIjAg2eRlPPZtEDtYTP4CUeRXcZ1S3FeYNj77hT0KjY=;
+ b=hw+lQ0aimUu7/ymCleRK0O+OZzrn9o4swScU4emduEVMJYgc2EjoELX826Wk9gbKv8MQEjJdgDP5H4DkjUpYrYX5dZ9pek+RNsGXiLxvgrzqSN1WcvMwejcnRvkMmm1Fg8voLXluyQcLcPiQdEaFDWuw45m5gZVQ2ejw37pb4fuMiL4/E6+VzK7dLC4pwzQUt8MfyoOJxnpIMCf0Y/4XzCfp7wk5L2PTInSDRKJ68tH7Y/Z9zfBP/TMu7FhSie3Gn5OivBRy0H2iAl6GOcJXnOVdUxWXttwBH4Cmw5zr+LPGDvnW05aWFCyIzHjULSItUYwlIS2ADK4DAlLkbLFK1Q==
+Received: from MN2PR18CA0019.namprd18.prod.outlook.com (2603:10b6:208:23c::24)
+ by LV8PR12MB9183.namprd12.prod.outlook.com (2603:10b6:408:193::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Tue, 24 Feb
- 2026 06:01:59 +0000
-Received: from SJ0PR03MB5950.namprd03.prod.outlook.com
- ([fe80::53a0:bf93:6b6b:de01]) by SJ0PR03MB5950.namprd03.prod.outlook.com
- ([fe80::53a0:bf93:6b6b:de01%6]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
- 06:01:59 +0000
-From: tzeyee.ng@altera.com
-To: Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 2/2] arm64: dts: socfpga: stratix10: Add emmc support
-Date: Mon, 23 Feb 2026 22:01:55 -0800
-Message-ID: <7928ca3de2cc6757744ded4d40903276b14ec578.1771911773.git.tzeyee.ng@altera.com>
-X-Mailer: git-send-email 2.43.7
-In-Reply-To: <cover.1771911773.git.tzeyee.ng@altera.com>
-References: <cover.1771911773.git.tzeyee.ng@altera.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR05CA0059.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::34) To SJ0PR03MB5950.namprd03.prod.outlook.com
- (2603:10b6:a03:2d3::20)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Tue, 24 Feb
+ 2026 06:04:08 +0000
+Received: from MN1PEPF0000ECD7.namprd02.prod.outlook.com
+ (2603:10b6:208:23c:cafe::6e) by MN2PR18CA0019.outlook.office365.com
+ (2603:10b6:208:23c::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.22 via Frontend Transport; Tue,
+ 24 Feb 2026 06:03:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ MN1PEPF0000ECD7.mail.protection.outlook.com (10.167.242.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Tue, 24 Feb 2026 06:04:08 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
+ 2026 22:03:53 -0800
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
+ 2026 22:03:52 -0800
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Mon, 23 Feb 2026 22:03:48 -0800
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <frank.li@nxp.com>
+CC: <Frank.Li@kernel.org>, <akhilrajeev@nvidia.com>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+	<jonathanh@nvidia.com>, <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <p.zabel@pengutronix.de>, <robh@kernel.org>,
+	<thierry.reding@gmail.com>, <vkoul@kernel.org>
+Subject: Re: [PATCH 5/8] dmaengine: tegra: Support address width > 40 bits
+Date: Tue, 24 Feb 2026 11:33:47 +0530
+Message-ID: <20260224060347.45544-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <aZTFHI8_iL4vCkMF@lizhi-Precision-Tower-5810>
+References: <aZTFHI8_iL4vCkMF@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR03MB5950:EE_|DM6PR03MB5113:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7ae69357-82f8-41f6-760c-08de736a38ca
-X-MS-Exchange-AtpMessageProperties: SA
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD7:EE_|LV8PR12MB9183:EE_
+X-MS-Office365-Filtering-Correlation-Id: daebbc03-2efa-4d3f-7d6a-08de736a85f4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|7416014|376014|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?UY381RVyoAeWoI+BPK+3E1i0T9nnzCiECdvWm2zUH86rlwmICTKr2W8YAY2d?=
- =?us-ascii?Q?b6WOEEkDamCDtYfJsmKEq6naU8sY8+Ae6T/bD4tsdpNvAgbio/L2qxGnaoH7?=
- =?us-ascii?Q?F1FF57zrrnGuPxnnzvCnMFN9d0LoIE6/B2ZwKBdO7OtyyJ58TeoVIE+iTc2b?=
- =?us-ascii?Q?Yw9aqugbUdvIIZm8PO0HczpQ17T8pvm7RPf3Pd4dXDl7F2IGvbOc6pFhDUUU?=
- =?us-ascii?Q?BPm/2aOl+9yxQpVvmeqnYOYfXeQWK4fwK0Nw402sCNJspXMxIbDzlHlIvtP0?=
- =?us-ascii?Q?WArr2YIixuX1pHJHnvzvfUcDSKeoo+gOVkega0uX5WzKiFDPnZ5uuX1suXlZ?=
- =?us-ascii?Q?PWdzDjHmOLQ3lwilXWPyQPN3x5hYfraqS46AWIyomjyrldJxb1MOVPsI5L5l?=
- =?us-ascii?Q?chy3LWFTgoshE0I+1eFAbRFY7bxfSJXGoY5QY5ahh05fNDSivlFMW66CEnkJ?=
- =?us-ascii?Q?R3p8v9jpQ/3je9MY3IuNorC6IQ440cp8M8JfpwGYe68Y6NyHCStL6K01oBcv?=
- =?us-ascii?Q?0e46PCwi/eqsVjRMMOE8C1xKQDew0NBNFurKV9TKgBtkUoDsWWNjFZhd+t7f?=
- =?us-ascii?Q?wzkCc3AXKW8Oe7PHcadeKhGkDJ3oJCbzSFjTQ4xEz6f7EiTqcOQmpI10gDDl?=
- =?us-ascii?Q?YbMti2HBXcj9mX9ktMhZdbwKRjKtUj4qw88/g2/jOwDz+wzJVu07pftbLSQ6?=
- =?us-ascii?Q?74iHqRq+bxWc5aFwbpiRs2DdmMrdj/L9pHl6Ku6XVmAjvCj3AjePWF/gg0Lr?=
- =?us-ascii?Q?PBawEMliIl4m/LKhhfV06U0Q+EwoS+3apTf8RdGUukBgKZZw/k92VHA3qy+R?=
- =?us-ascii?Q?UgPnuCgwyrxPVT3c60m9u6/w7orSq12e9DadFy2E4kahPUAGY8R18zgcvogN?=
- =?us-ascii?Q?I6rK6Cf5HjhApY83XGNVi2yR1xDAA80yCowTe1lq0od8B5jmjaHrYDg+/uzj?=
- =?us-ascii?Q?iSORxc3qzDV368By6MCPLl3eOQkwiTcXpZ+KSq5bOeXgdXNh9Kx/K1bMkm59?=
- =?us-ascii?Q?gV2sufPtv3Ey6LxqqDkAoEEyhADl18MC+mwNheqaEdzX3zlag+pKTx91e20n?=
- =?us-ascii?Q?dzs5XkkTHFnbsPY+4EEWCU3zZq1rxpjFPIcQZuGiajW2yQH2owU9eCnBB6Tc?=
- =?us-ascii?Q?Xoz/+KTi9VDrFOB/csQ/0xQxZjXLUP3mrQne1jWSgBKaMgHnftKoQpu8ZGNW?=
- =?us-ascii?Q?k31w3I0J0DdoD+m2O6pM6WPIj6GfYtTvxZUgTjjRcszI8K4eAKROKpVvFYlv?=
- =?us-ascii?Q?8wAJikQ2L5tFxdFx4NPjdJiVbu0b8iGc1MCnEvDgOFOR0nP5miG14zOp77OI?=
- =?us-ascii?Q?diyMeNwyFAkkV/3GyJ0QorDQzn8S/BbVKicHfSEdz5t+/Kdq0e58/MZsa20t?=
- =?us-ascii?Q?Hny4hcaTJLGbRurdgAlz8AnWJZ/BJfdDOrLxcwUTtEJ9C85SKhiyRvDWJSVk?=
- =?us-ascii?Q?bDpSExSVn9tRneg65+FlU6yhiCMwe55ImnLOXcjPenfvI1QrWKTWVEFrkIEJ?=
- =?us-ascii?Q?ZQkl5NNw1bEkKZGDqHo0/HVhnGkggMyRNL8u0B7I7v9glDfWVSdHRFsaHExv?=
- =?us-ascii?Q?F024SfQUQfhjBhiLnks=3D?=
+	=?us-ascii?Q?ZSEVah6caOntnCkJww9F2P45m+Z1lEZMT5X7hK9LSYnt3dUfhClYwkx39rUn?=
+ =?us-ascii?Q?6HsvuVD5o+ouqtLYUc06itHZKaV9NJvq29EgEqq6GWMWr48gxPyIgflfUh4M?=
+ =?us-ascii?Q?LQ6YE26LxZ6DD8Ob7WjXn3M5GWsSfppIVWn1u09ZZ1qNqhm7M9DPtbZtQCBT?=
+ =?us-ascii?Q?C1UUj9dKs4ruDdDCxGkMZpQaQZV+4OCYmQFd0SezayWpAH3fE66KHEYjvIXI?=
+ =?us-ascii?Q?lILf2UbVI7n2Ap9isxwTIFRh9nGI4JXFM7qsS+qg8rThuKOb1lpYHznj8akp?=
+ =?us-ascii?Q?3HcECFV48h0pVUrDWUeGfWLPCZ1xuTAnoAxpQMw63nA6JrKRQACBkKxqVfpX?=
+ =?us-ascii?Q?xcntCb5KyymQKeE75RIhmJs05AoPw+1qEMIW87uO9WdQZNeXBdOafWLoVFyO?=
+ =?us-ascii?Q?DzuPKPJ3gZqPXc6lf5v6HNb7JsGa2ewuxBA+6+m0W1jELgDKsM6Ga56uxEE+?=
+ =?us-ascii?Q?RhIEVIKXKUo7nbCKUNfTxfqIwBl7AZY/B6d00qi112oLLMT2+jFl8JiP25Dr?=
+ =?us-ascii?Q?OSh0nLPhPOUXFlJ0rRNcN+drRFXh828DHyGefvNipSF5H9gaYGSI8GSTd+xh?=
+ =?us-ascii?Q?WSDLD79f2zq8zJ+kyDeH+3D+JOWfb+jLYKIGb6BVhye/2eT511tAzgo0dyA7?=
+ =?us-ascii?Q?Cu1942bPNthpmB+XUsSKOknlW9EDcYsA99e8AnGXCUv4YLC/59AUGv+AVGHU?=
+ =?us-ascii?Q?CEcsPbvNAJDLjgHITLfs/3v3JIbdMOr6dYWI+FnnVeWcCHyGdURDhk1V67+5?=
+ =?us-ascii?Q?XvosDb5/qAYVxxqXGUaqXrB8rVX7Zf2nxH52EMok6OyfYr+0GlrTP4yabEk1?=
+ =?us-ascii?Q?TiCjgXoUM0WVk5LTImib90BtNUKTUILyF8rmWwc2Gn3vihtLE79kqrzMFMkg?=
+ =?us-ascii?Q?v26iDFjerwKevAO07SVnBuhTh7gzGemwrMI7RlVb9SraeTIOx7PLsTHP0M6H?=
+ =?us-ascii?Q?2kErwObNHKMUTPHN7v4PYFw8Z17bjXImbGd4INgHWTAUjfKNbPkr5l2K9S0a?=
+ =?us-ascii?Q?brTVOahe2wuIhYCZFrX0ONrR/hJ4nl5zjuZXEGP1/xAtlSFGjoPKjBnmB7Qz?=
+ =?us-ascii?Q?9qIWFR3oYSybmpoavvC4vJ/2auEEMiwIWgrlcs26IuN+/stbTOBFbfV7eWeV?=
+ =?us-ascii?Q?hV1JpaqKjBQM2RidCCwPNIo1GgVq7OCMPyW377E3GsPZb0lPbn3kGW4YgN1+?=
+ =?us-ascii?Q?80fGTEs7fdY8v03W/PstBh39kKGZnBfcVZ1YH0/WgXycsVEfT3UOY+jKhMsX?=
+ =?us-ascii?Q?ZVMYmZLBezqytotyu52zmWKE2sO7yOieoxoiVXRmoXpcJKSwJCvrQV+jIKqw?=
+ =?us-ascii?Q?As6OilZ8JiI/wtrWUPmIMU4Z3TIEk4y2rgwIbU6rYyxMjfeLEVAI5NWOiRC5?=
+ =?us-ascii?Q?YKAnrvnWSqX2Z0jVExh+EaftlB8BUys52aFGqYjuaFJAhdpeF66EKiq8yBpC?=
+ =?us-ascii?Q?SAn25VeGaKE76he85k1xAoH8Oa5Cb7gCxVSOjmuR9m1FqB7dm9eEJKBMQfrM?=
+ =?us-ascii?Q?mPXhPlqDFuzA8Igv0t59gG08Gyujw1q03Z81LgB3xDxnkGuq0dWcpP0pX3/6?=
+ =?us-ascii?Q?8lRwVsYWFI2EhtyD/rVDf+R4VtMOYU2K6lvbDxKehzGfPU6n2iGSoSmvyOv2?=
+ =?us-ascii?Q?S90HtuRVf1xYJqDszgtXzaM9cXVx0pvv68o9oUF6NPKsjqc7yYLitY2JIjIs?=
+ =?us-ascii?Q?TUkusw=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR03MB5950.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(7416014)(376014)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?v74FPDZvy/OwilhHOZKi0Q5ZRXGDfvMCqObhmXXso8ovg6bqoFILvTmsgqfO?=
- =?us-ascii?Q?GDnhLGNRBnFpo+2RpJuYgPQbpNIbLRfG9iB8m9RiDeZWDWe+TmXiF/AEZpNX?=
- =?us-ascii?Q?HUMY+8QodseoC79/fhcGzpC5RdUtENth3ajMYq9noENoBe7ocZXYdPGk1Hzn?=
- =?us-ascii?Q?2bdHLpsaSuS8SRYhOf+12xYEWpjh6758w5Ys+6zsFtSCVPBKdS9FQuP/bNje?=
- =?us-ascii?Q?4//E6BcK3rgJaabETYIqYSu0fJuOLxiOi6o1CRQQXBiNNvZillUfbkNJ98w6?=
- =?us-ascii?Q?v7Z9C8neZBNmOu/OVQmAKP0lBQ5TercvL3B73OHPfTlTW3E90pIcizmTILVm?=
- =?us-ascii?Q?YkfQa7kucqRVR9a7UNaFc0WWxWYlz7CfjuGsUZqU4e4UsBF5kkn58Wo1kOUj?=
- =?us-ascii?Q?Vgcj5dl2ZRNEgtgz+yqnjBYWLgFSsBGtODRArPJxHUtNXf3tGxIVPU4CGnRA?=
- =?us-ascii?Q?pHoVqVScFBS2xSY4WI5Lhs24xTY7nhfbAiSYDnz17+lEOIIZN7ZOxwGqXcPC?=
- =?us-ascii?Q?oEdHZPLDIGYJpAx7Vv+KaX9mUCm+0DwcrXaIT8c1QGnTBTgp3fW4QU326rcb?=
- =?us-ascii?Q?5Ey1oyRvm/YyfXu91qVhivWId0Q7xhVHk8kOMFZzr5XfqTihg/yUskDjnp5t?=
- =?us-ascii?Q?v4eUrVHz7jkb4nGOTIWnrFZIgFYF6p2yxGAYbSAUCL0xicSUB0u9dKGwmWyB?=
- =?us-ascii?Q?EuJ5GWuJHi+sh15uN+ED3CQ1rsP0dBIr6dpKQKYZIq3Igsi5GlJp6VXf8aFq?=
- =?us-ascii?Q?mQH6r+OtVs44ltCj7V5chiNfdFm8IT9Jm2qwnybjF4J4E1+IJNYxVchIZoB1?=
- =?us-ascii?Q?80FQoz1ksHz2eR2TXYfz/1RDWzS5hu30+Yc0SCa8LO0lvpX1tFCR6hH5y9Ag?=
- =?us-ascii?Q?5lJzBjDXs8fGQYeNlsyPKguHs40U9j/d+SRUadRFNJqdjAiVco/ksilci0XD?=
- =?us-ascii?Q?GDNScvQRbDVenlxjE8Y9xcbac7FG90X6TGNS/Hw1F2zQAl3K/PkkUyj6xtiK?=
- =?us-ascii?Q?LGTieafgOpdgiOh4HWaI7e1k/EFaxJaegCfH+/AEHPu359d8rrtykjSkG6Gj?=
- =?us-ascii?Q?4VXLsm6Thp1/xODYsD8Q4NSot0Tu5+c3wAwebtDJ2ZMlDHhlJY/PW63aer6n?=
- =?us-ascii?Q?f1dY+y8b1jTIMPdoiaKCekJ8KEzV52cJ4K+0MFUN/HNAPmC2jlDyJjj0JwJT?=
- =?us-ascii?Q?LhFrpvUcfI0nhrOFSimfV+4F/RGByd9F0Okp9Txt34VgST+CLhoFxt5rUK2c?=
- =?us-ascii?Q?RLIycUhz8y8ry9SovP080/0oduRzL+EblGTry7bHBmW8uFlxStEu2tMZEieQ?=
- =?us-ascii?Q?/cmoq/oMM7ZN1XVORkrmRevzi1sruTKWlpqgN8a0Snr6MH9AMgZgZFi0mhxT?=
- =?us-ascii?Q?kSvb0guMqCUCnSJPnrxOPz+Kj8K0t1aI8hKJrx9Aai69nWWbdtafhnplMZVC?=
- =?us-ascii?Q?/ZDhJO4thvSqirNLrHNQI9SrRQMfy+voUBEOOEEGfQa1zx1A8YC6WYn3c20S?=
- =?us-ascii?Q?1qHY8BVZRiCqjCCqoTIycy6Dp+H2Vw0ewBChIyPtuOcxRVVYqV+T1BYpFYRO?=
- =?us-ascii?Q?x3jTWwPsDn7cI+H4L44gfYWvldq5R2S31Tnns5oUMGZIpKJ1x8a5NCvemzS4?=
- =?us-ascii?Q?H2UVr5Fg8Sg9vjFZ8KngLfEFeEnm8VZ6SNFZPadnJJZMk8HZ7vgyzhmJnSgk?=
- =?us-ascii?Q?Ycc4a79GVJJbslN0y71Wg1oei6hPuc+wFL9caCBqApSI610Yz0EEqM8f1cvp?=
- =?us-ascii?Q?CjMSAXtDtA=3D=3D?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ae69357-82f8-41f6-760c-08de736a38ca
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR03MB5950.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 06:01:59.4448
+	2V2I0TPufv0L5zoYgaVaqhdh8v1nA1HqBl3+eVK903BIFhV+ssbTB1Trcy5yF7R/+5RT8OLWq2uK/02U1uJa+RuqeYyNTXQEXaaPFG2yHqsxqr8PRPeGwNG88sZ5dwjonAxK1pV+hAFNs0S3NGq1x2Q742/iwBnWhEuR0fH4Ik+0zyOGxJB7cyk0cmRd1+tm0uMu86LyQUEgVm0qpMPzL9KmrZfe1ySNGnYh5ve2Xo68MYAqNH++qxd9kWrNF6jpaSUm28ijH2/Hq1dTD9GH7BKdtX0N9HExYyKvJyAXCuBSU6OsjRnhCxpEwdIYBRZjXmiI9xCPl8qZsz2k8KCS95KsjA+BfISdaQooTk9+TWHaLcluhJhFmyMyYKZMkdMnoW2AD5G12ar8v2UOzMHVbCTof4BeEaLu8RHrNnEA+0iXDWusXYickDhnBA38p3B9
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 06:04:08.2380
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: F+vsTvugZH813upogxFpDKRrkfzvSIDJEcaeh/FCiKos6TLiJEmOQd/hf6dzdF/qZYLcIrpUdnZrYtkJyjSyug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB5113
+X-MS-Exchange-CrossTenant-Network-Message-Id: daebbc03-2efa-4d3f-7d6a-08de736a85f4
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MN1PEPF0000ECD7.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9183
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267718-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[altera.com:+];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tzeyee.ng@altera.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,vger.kernel.org,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-267719-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[4.196.180.0:email,0.0.0.51:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.4:email,altera.com:mid,altera.com:dkim,altera.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.0:email,0.0.0.68:email,0.0.0.14:email]
-X-Rspamd-Queue-Id: ECFD018243C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,nvidia.com:mid,nvidia.com:email];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 6FF21182472
 X-Rspamd-Action: no action
 
-From: Ng Tze Yee <tzeyee.ng@altera.com>
+On Tue, 17 Feb 2026 14:44:28 -0500 Frank Li wrote:
+> On Tue, Feb 17, 2026 at 11:04:54PM +0530, Akhil R wrote:
+>> Tegra264 supports address width of 41 bits and has a separate register
+>> to accommodate the high address. Add a device data property to specify
+>> the number of address bits supported on a device and use that to
+>> program the required registers.
+>>
+>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>> ---
+>>  drivers/dma/tegra186-gpc-dma.c | 129 +++++++++++++++++++++------------
+>>  1 file changed, 82 insertions(+), 47 deletions(-)
+>>
+>> diff --git a/drivers/dma/tegra186-gpc-dma.c b/drivers/dma/tegra186-gpc-dma.c
+>> index 72701b543ceb..ce3b1dd52bb3 100644
+>> --- a/drivers/dma/tegra186-gpc-dma.c
+>> +++ b/drivers/dma/tegra186-gpc-dma.c
+>> @@ -151,6 +151,7 @@ struct tegra_dma_channel;
+>>   */
+>>  struct tegra_dma_chip_data {
+>>  	bool hw_support_pause;
+>> +	unsigned int addr_bits;
+>>  	unsigned int nr_channels;
+>>  	unsigned int channel_reg_size;
+>>  	unsigned int max_dma_count;
+>> @@ -166,6 +167,8 @@ struct tegra_dma_channel_regs {
+>>  	u32 src;
+>>  	u32 dst;
+>>  	u32 high_addr;
+>> +	u32 src_high;
+>> +	u32 dst_high;
+>>  	u32 mc_seq;
+>>  	u32 mmio_seq;
+>>  	u32 wcount;
+>> @@ -189,7 +192,8 @@ struct tegra_dma_sg_req {
+>>  	u32 csr;
+>>  	u32 src;
+>>  	u32 dst;
+>> -	u32 high_addr;
+>> +	u32 src_high;
+>> +	u32 dst_high;
+>>  	u32 mc_seq;
+>>  	u32 mmio_seq;
+>>  	u32 wcount;
+>> @@ -273,6 +277,41 @@ static inline struct device *tdc2dev(struct tegra_dma_channel *tdc)
+>>  	return tdc->vc.chan.device->dev;
+>>  }
+>>
+>> +static void tegra_dma_program_addr(struct tegra_dma_channel *tdc,
+>> +				   struct tegra_dma_sg_req *sg_req)
+>> +{
+>> +	tdc_write(tdc, tdc->regs->src, sg_req->src);
+>> +	tdc_write(tdc, tdc->regs->dst, sg_req->dst);
+>> +
+>> +	if (tdc->tdma->chip_data->addr_bits > 40) {
+>> +		tdc_write(tdc, tdc->regs->src_high,
+>> +			  sg_req->src_high);
+>> +		tdc_write(tdc, tdc->regs->dst_high,
+>> +			  sg_req->dst_high);
+>> +	} else {
+>> +		tdc_write(tdc, tdc->regs->high_addr,
+>> +			  sg_req->src_high | sg_req->dst_high);
+>> +	}
+>> +}
+>> +
+>> +static void tegra_dma_configure_addr(struct tegra_dma_channel *tdc,
+>> +				     struct tegra_dma_sg_req *sg_req,
+>> +				phys_addr_t src, phys_addr_t dst)
+>> +{
+>> +	sg_req->src = lower_32_bits(src);
+>> +	sg_req->dst = lower_32_bits(dst);
+> 
+> I suggest save 64bit address to sq_req.  In tegra_dma_program_addr() to
+> handle difference between 40bit and 41bit.
+> 
+> So only need handle difference at one place.
 
-The Stratix10 devkit supports a separate eMMC daughter card. The eMMC
-daughter card replaces the SDMMC slot that is on the default daughter card
-and thus requires a separate board dts file.
+Ack. Will update. 
 
-Signed-off-by: Ng Tze Yee <tzeyee.ng@altera.com>
----
-Changes in v6:
-- Rebased to v7.0-rc1
-- No code change
-
-Changes in v3:
-- Refactored socfpga_stratix10_socdk.dts to use socfpga_stratix10_socdk.dtsi
-  for common board configurations, eliminating code duplication
-- Moved gmac2 and i2c2 nodes from socfpga_stratix10_socdk.dtsi back to
-  socfpga_stratix10_socdk_emmc.dts as they are specific to the eMMC
-  daughter board variant and not common to all Stratix 10 SoCDK boards
-- Fixed PHY address in socfpga_stratix10_socdk.dts from @0 to @4
-
-Changes in v2:
-- Introduced socfpga_stratix10_socdk.dtsi for common board settings
-- Updated socfpga_stratix10_socdk_emmc.dts to include the new dtsi
-- Added fallback compatible string "altr,socfpga-stratix10-socdk" in
-  the socfpga_stratix10_socdk_emmc.dts
----
- arch/arm64/boot/dts/altera/Makefile           |  1 +
- .../dts/altera/socfpga_stratix10_socdk.dts    | 67 +--------------
- .../dts/altera/socfpga_stratix10_socdk.dtsi   | 71 ++++++++++++++++
- .../altera/socfpga_stratix10_socdk_emmc.dts   | 81 +++++++++++++++++++
- 4 files changed, 155 insertions(+), 65 deletions(-)
- create mode 100755 arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi
- create mode 100755 arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts
-
-diff --git a/arch/arm64/boot/dts/altera/Makefile b/arch/arm64/boot/dts/altera/Makefile
-index 1bf0c472f6b4..540bb5ae746b 100644
---- a/arch/arm64/boot/dts/altera/Makefile
-+++ b/arch/arm64/boot/dts/altera/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
- dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_stratix10_socdk.dtb \
-+				socfpga_stratix10_socdk_emmc.dtb \
- 				socfpga_stratix10_socdk_nand.dtb \
- 				socfpga_stratix10_swvp.dtb
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-index 4ae18a013bbe..e2a1cea7f3da 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-@@ -3,53 +3,11 @@
-  * Copyright Altera Corporation (C) 2015. All rights reserved.
-  */
- 
--#include "socfpga_stratix10.dtsi"
-+#include "socfpga_stratix10_socdk.dtsi"
- 
- / {
- 	model = "SoCFPGA Stratix 10 SoCDK";
- 	compatible = "altr,socfpga-stratix10-socdk", "altr,socfpga-stratix10";
--
--	aliases {
--		serial0 = &uart0;
--		ethernet0 = &gmac0;
--		ethernet1 = &gmac1;
--		ethernet2 = &gmac2;
--	};
--
--	chosen {
--		stdout-path = "serial0:115200n8";
--	};
--
--	leds {
--		compatible = "gpio-leds";
--		led-hps0 {
--			label = "hps_led0";
--			gpios = <&portb 20 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-hps1 {
--			label = "hps_led1";
--			gpios = <&portb 19 GPIO_ACTIVE_HIGH>;
--		};
--
--		led-hps2 {
--			label = "hps_led2";
--			gpios = <&portb 21 GPIO_ACTIVE_HIGH>;
--		};
--	};
--
--	memory@80000000 {
--		device_type = "memory";
--		/* We expect the bootloader to fill in the reg */
--		reg = <0 0x80000000 0 0>;
--	};
--
--	ref_033v: regulator-v-ref {
--		compatible = "regulator-fixed";
--		regulator-name = "0.33V";
--		regulator-min-microvolt = <330000>;
--		regulator-max-microvolt = <330000>;
--	};
- };
- 
- &pinctrl0 {
-@@ -68,10 +26,6 @@ i2c1_pmx_func_gpio: i2c1-pmx-func-gpio-pins {
- 	};
- };
- 
--&gpio1 {
--	status = "okay";
--};
--
- &gmac0 {
- 	status = "okay";
- 	phy-mode = "rgmii";
-@@ -83,7 +37,7 @@ mdio0 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		compatible = "snps,dwmac-mdio";
--		phy0: ethernet-phy@0 {
-+		phy0: ethernet-phy@4 {
- 			reg = <4>;
- 
- 			txd0-skew-ps = <0>; /* -420ps */
-@@ -111,23 +65,6 @@ &mmc {
- 	clk-phase-sd-hs = <0>, <135>;
- };
- 
--&osc1 {
--	clock-frequency = <25000000>;
--};
--
--&uart0 {
--	status = "okay";
--};
--
--&usb0 {
--	status = "okay";
--	disable-over-current;
--};
--
--&watchdog0 {
--	status = "okay";
--};
--
- &i2c1 {
- 	status = "okay";
- 	clock-frequency = <100000>;
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi
-new file mode 100755
-index 000000000000..1d50f7b21160
---- /dev/null
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtsi
-@@ -0,0 +1,71 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright Altera Corporation (C) 2026. All rights reserved.
-+ */
-+
-+#include "socfpga_stratix10.dtsi"
-+
-+/ {
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
-+		ethernet2 = &gmac2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-hps0 {
-+			label = "hps_led0";
-+			gpios = <&portb 20 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-hps1 {
-+			label = "hps_led1";
-+			gpios = <&portb 19 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-hps2 {
-+			label = "hps_led2";
-+			gpios = <&portb 21 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* We expect the bootloader to fill in the reg */
-+		reg = <0 0x80000000 0 0>;
-+	};
-+
-+	ref_033v: regulator-0v33-ref {
-+		compatible = "regulator-fixed";
-+		regulator-name = "0.33V";
-+		regulator-min-microvolt = <330000>;
-+		regulator-max-microvolt = <330000>;
-+	};
-+};
-+
-+&gpio1 {
-+	status = "okay";
-+};
-+
-+&osc1 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+	disable-over-current;
-+};
-+
-+&watchdog0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts
-new file mode 100755
-index 000000000000..b2a3449638dd
---- /dev/null
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_emmc.dts
-@@ -0,0 +1,81 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright Altera Corporation (C) 2026. All rights reserved.
-+ */
-+
-+#include "socfpga_stratix10_socdk.dtsi"
-+
-+/ {
-+	model = "SoCFPGA Stratix 10 SoCDK eMMC daughter board";
-+	compatible = "altr,socfpga-stratix10-socdk-emmc",
-+			"altr,socfpga-stratix10-socdk",
-+			"altr,socfpga-stratix10";
-+};
-+
-+&gmac2 {
-+	status = "okay";
-+	/* PHY delays is configured via skew properties */
-+	phy-mode = "rgmii";
-+	phy-handle = <&phy0>;
-+
-+	max-frame-size = <9000>;
-+
-+	mdio0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy0: ethernet-phy@4 {
-+			reg = <4>;
-+
-+			txd0-skew-ps = <0>; /* -420ps */
-+			txd1-skew-ps = <0>; /* -420ps */
-+			txd2-skew-ps = <0>; /* -420ps */
-+			txd3-skew-ps = <0>; /* -420ps */
-+			rxd0-skew-ps = <420>; /* 0ps */
-+			rxd1-skew-ps = <420>; /* 0ps */
-+			rxd2-skew-ps = <420>; /* 0ps */
-+			rxd3-skew-ps = <420>; /* 0ps */
-+			txen-skew-ps = <0>; /* -420ps */
-+			txc-skew-ps = <900>; /* 0ps */
-+			rxdv-skew-ps = <420>; /* 0ps */
-+			rxc-skew-ps = <1680>; /* 780ps */
-+		};
-+	};
-+};
-+
-+&mmc {
-+	status = "okay";
-+	cap-mmc-highspeed;
-+	broken-cd;
-+	bus-width = <4>;
-+	clk-phase-sd-hs = <0>, <135>;
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	clock-frequency = <100000>;
-+	i2c-sda-falling-time-ns = <890>;  /* hcnt */
-+	i2c-scl-falling-time-ns = <890>;  /* lcnt */
-+
-+	adc@14 {
-+		compatible = "lltc,ltc2497";
-+		reg = <0x14>;
-+		vref-supply = <&ref_033v>;
-+	};
-+
-+	temp@4c {
-+		compatible = "maxim,max1619";
-+		reg = <0x4c>;
-+	};
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c32";
-+		reg = <0x51>;
-+		pagesize = <32>;
-+	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1339";
-+		reg = <0x68>;
-+	};
-+};
--- 
-2.25.1
-
+Regards,
+Akhil
 
