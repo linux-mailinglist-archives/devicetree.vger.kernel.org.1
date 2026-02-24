@@ -1,244 +1,183 @@
-Return-Path: <devicetree+bounces-268094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268095-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJXXJzQwnmk/UAQAu9opvQ
-	(envelope-from <devicetree+bounces-268094-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 00:11:48 +0100
+	id pSbNL5w0nmmLUAQAu9opvQ
+	(envelope-from <devicetree+bounces-268095-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 00:30:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 129D818E192
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 00:11:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 140DE18E263
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 00:30:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E5B32302D587
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 23:11:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9853B30523E0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 23:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F25A034F48D;
-	Tue, 24 Feb 2026 23:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF45C363C4B;
+	Tue, 24 Feb 2026 23:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="a7zt2RPp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDFfRfnF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE3E034B18F
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 23:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B183624CA;
+	Tue, 24 Feb 2026 23:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771974688; cv=none; b=QjxzQr6nGR4rUkjAV5FL2J5oaqTjwwSPukbKiW/1BvntzmHPeT98TvLxSW2e75sDWypjz2JaMKf+1/wzQBfstwbbI93b+GdeS8tvBtiYb7ccv0jH8iEy+aH66jC+o3jvIOjOLORyCD8a3cJzT8wXHjLdtBRNLyhZf5Hju9Bur7Y=
+	t=1771975833; cv=none; b=cD4JU4kSNz0zrNdySUnyTqHOo4HVMo4DW80swpDlBWh6fsGkoUANRyrVRZB5+oQ1aQK9sCfQWtBdq5qgryn3lmAJXmNhSxgbdghhlZOlt5Xi/1/RpCsl9P2dbOUP9lCpT4gvYzuhDu4NWzit6lY++mvXkuK2ee6yTkg+kgT+xlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771974688; c=relaxed/simple;
-	bh=C6dKs709R8QkP96qnTwbzemrD3f3toqG3vduzVJ7m7w=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=O9J2HHEsBI9lAX6DeDEelaxMzlX0eqb2nIexfCpz/Ec7PDdnLphKqiDcuA+6Cm1gWlAFLjTazSkXMWLABi7PFMWt8GpkswegAhXIoQd4cAHqzg2lo9hCFO605uXI5THe62UPFMTuRTGu5O5dzJq1WR7YBWSZVK++nlnreG88Uv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=a7zt2RPp; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-8230c839409so5030453b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:11:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1771974686; x=1772579486; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aaFTBYE7pFhQ5Wo9wLOr+Dlo/OUF/sPft+MdYSKIvhA=;
-        b=a7zt2RPpITAfVZkvqDHokn1wHTT8CPiw5kOdeYnN5nZn01FPOnSKhNk9mlqRrPoSqD
-         O2H7fXkGSV07sE6nJ9et9bAy8R0Y6lEBvcZgXO3i+a87B2rSKA4E1Xvfzv9ayrnc9LrY
-         w96Y67rEnY/ZviPJPy2Ez7VhsxVRXjM2sxeN85fZqbkiUlnGEDb4/6u0vLZTEqXPwU9/
-         gPJ+x3IxXCdA3WKrtt+TTeUr4hVMr+pTreZ43tcjelplhRzqqdKn9iOaosF0HYP0QsxO
-         WTHmcpkZ4lzFfaM6qd/YM05+geAUfmHxqHKb/zUYUN2o/Jh7A7FSdsgKZayPgUFX83Bu
-         4qRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771974686; x=1772579486;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aaFTBYE7pFhQ5Wo9wLOr+Dlo/OUF/sPft+MdYSKIvhA=;
-        b=vORCpeief7qZ3rELMtimuMoT5n7+Z5+VfMHfCT1EHU85sGM7O37vJmwfZ9W+aRQUxu
-         fUc8FqtQiZRugsepgfUblNrIvx3HVCl4Cx0VC3yn7cOzEar9hQBGvgAJT8o+D7rijFgE
-         QDiqwFGfux0tBZ6NmeOtqN2Ad1/t0fEUaUiz9qNH0PUvW9EBNDD0nLMWuN0u4uQsvbKN
-         l1LUrUOISR/sde9eX20Wqo0WDWOSELkzRYkbiORgopylHtSEJS13TfO0EvrzUKM2UY9L
-         yS4m33905Dt47cfDIJ5LSQ22IsYvD2wOiCj4hgVieSqOZGcN3GTeCTZzVTKuBM4EslVa
-         I+PQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVZm7XPxms2XsrXShE0/BxR0UjqLGuENLoHmcwxvVodibzyRkU6dL17e98XUaWHiyTljC/GOq0h7g/x@vger.kernel.org
-X-Gm-Message-State: AOJu0YySQmVRFZ3B8Rh+kLPFEvdIvjcOI46GG1Gp/zG6LxISaM6KIBod
-	VSy8WHNWp0wIQHRZPH46mFXJVELQY8SF8801CUgTXooQVLBkKxAThdwSY5u38942Apw=
-X-Gm-Gg: ATEYQzx9t4Ly4xXHIy0GJpBnKOR4wV0xmyAAEMSWy6ifunvo9H2VxRdfPpGws9EEHEo
-	UPGFP5GID025XCLeBxV752GHxOiZbjIWC89uyut98CSqziM8uI7gfZlTtKVDB2+kY7XoOx75pS0
-	m1TWQJTS0QV4DXDgb86XAU3wyETtro7AsOC74dxrjtEvNBJ2c/7lfOX583p2DRpg7p0TMNb18Wz
-	N4cWvLb0cOyr+B+yLJ+2UxbqkB78j4UinV8xayceo8VNvvVWVKTF94XqlGL+OCKVZafNLltzOaU
-	K/EwZ0ikgun/eDB7ym84+92w1TbOgkbdaKvITKu5mxcneUnHUqAHz4Rjx6Zr3W9wUnU1mP1AO8m
-	Dd8CTUZWm31Yvmhw8TjY3Z045fQmiS6CQX/oSMxF6ruBJu5/MIj4VPbzAjiP5TbNbxJLv81vMnE
-	W2tJc0l8jYnCJtajuKhvN8
-X-Received: by 2002:a05:6a00:1746:b0:81f:b1d4:b486 with SMTP id d2e1a72fcca58-826da8bf4a2mr12692323b3a.8.1771974686262;
-        Tue, 24 Feb 2026 15:11:26 -0800 (PST)
-Received: from localhost ([71.212.200.220])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-826dd63f1b3sm11486793b3a.3.2026.02.24.15.11.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Feb 2026 15:11:25 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Sudeep Holla
- <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>,
- devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- arm-scmi@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC v5 1/2] pmdomain: core: support domain hierarchy via
- power-domain-map
-In-Reply-To: <CAMuHMdURxN=kBQHJKnsTVEQPeuB41r5kZy4sgFNqg=U2ynuZMw@mail.gmail.com>
-References: <20260122-pmdomain-hierarchy-onecell-v5-0-76855ec856bd@baylibre.com>
- <20260122-pmdomain-hierarchy-onecell-v5-1-76855ec856bd@baylibre.com>
- <20260127151735.GA1699112-robh@kernel.org> <7hjywtzaiy.fsf@baylibre.com>
- <CAMuHMdURxN=kBQHJKnsTVEQPeuB41r5kZy4sgFNqg=U2ynuZMw@mail.gmail.com>
-Date: Tue, 24 Feb 2026 15:11:25 -0800
-Message-ID: <7hv7flrb36.fsf@baylibre.com>
+	s=arc-20240116; t=1771975833; c=relaxed/simple;
+	bh=ADR9CvrvUzc0kTvJQ47ZqNuoTDTeK64MKM9SscoqhvY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oWTaD3o1PjTMw/iSRaC6oN6CZEGtHsUm6yboO3SkpjCje3ySuI6RaORnEvvA4qhc4LFYkKxarj9EojibTbmqjFwv3o3qCRW+SjuYqdR8PYl/LVwWxcGu69TJQTxHXim88GapmBXnz4PyZmwFOaguBZvGo/GmHqH+04J5cihdSAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDFfRfnF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 42786C116D0;
+	Tue, 24 Feb 2026 23:30:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771975833;
+	bh=ADR9CvrvUzc0kTvJQ47ZqNuoTDTeK64MKM9SscoqhvY=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=QDFfRfnFqEQ18E8DB2gcLKi7UVqZJraqiwjo4axwGgTLIerU0ht6DhKZ/B99VTqBk
+	 MiV8xEbyiaLI9R1nX756iZsGKu5ovYqRMJ/FnSu7igmNX0qwySJDGu5HCQs3eMYYJF
+	 EaKk2ccH/hT1oGdXcYgEoPsbO87WHdJrwvvdcSzYG83YxlU+pHfBiV2hscnjARUawJ
+	 YOLnHSFVAWgg7S6X90qU1sC2ZDRvKnERxARbg0P51slifQDVkxsycoAbeAKm2dPBGC
+	 H/LnQXGeiO8XUQMRbuTjmHqHc8Q+xwsMq2syOZ4OxUVtZO03X/F2WjsGeVpt01mJf8
+	 6gITkWyv3tc7w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BE4AF55433;
+	Tue, 24 Feb 2026 23:30:33 +0000 (UTC)
+From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
+Date: Tue, 24 Feb 2026 23:30:09 +0000
+Subject: [PATCH v2] arm64: dts: exynos: gs101-pixel-common: add supply and
+ regulator properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260224-max77759-charger-dts-v2-1-983265ac8e63@google.com>
+X-B4-Tracking: v=1; b=H4sIAIA0nmkC/4WNTQ6CMBSEr0Le2mf6a60r72FY1PIsTYSSlhAM4
+ e5WLuDym8l8s0GhHKnArdkg0xJLTGMFcWrA924MhLGrDIKJCxNC4eBWY4y2WOscKGM3FxRSWSn
+ tlYzxUKdTpldcD+2jrdzHMqf8OV4W/kv/CBeOHJ9KSa20Z8q5e0gpvOns0wDtvu9f3olMZLkAA
+ AA=
+X-Change-ID: 20260224-max77759-charger-dts-23493398e77c
+To: Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Badhri Jagan Sridharan <badhri@google.com>, 
+ Amit Sunil Dhamne <amitsd@google.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771975832; l=2045;
+ i=amitsd@google.com; s=20241031; h=from:subject:message-id;
+ bh=88wsB5MWvHCzIwGqyj8+p1i8avmUTsCvuP3h53Fmyv8=;
+ b=dh7Wzn/BI6+sbCg7HzZuAnFKztyTTZjpc3QWBJVkfFGIWyd3aWswVHKJHeGu12064DZor3HAs
+ Wq9qT3xRmsMCcFk2m99357uGLp58VjOtJ3IF0y9YaqYq9U8GL3xE4W9
+X-Developer-Key: i=amitsd@google.com; a=ed25519;
+ pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
+X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
+ auth_id=262
+X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
+Reply-To: amitsd@google.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	TAGGED_FROM(0.00)[bounces-268094-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268095-lists,devicetree=lfdr.de,amitsd.google.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[khilman@baylibre.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.11:email];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,baylibre.com:mid,baylibre.com:email,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 129D818E192
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	DBL_PROHIBIT(0.00)[0.0.0.25:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	HAS_REPLYTO(0.00)[amitsd@google.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.66:email]
+X-Rspamd-Queue-Id: 140DE18E263
 X-Rspamd-Action: no action
 
-Geert Uytterhoeven <geert@linux-m68k.org> writes:
+From: Amit Sunil Dhamne <amitsd@google.com>
 
-> Hi Kevin,
->
-> Thanks for your series! I became aware of it only recently, and read
-> it and its history with great interest...
->
-> On Wed, 4 Feb 2026 at 00:13, Kevin Hilman <khilman@baylibre.com> wrote:
->> Rob Herring <robh@kernel.org> writes:
->> > On Thu, Jan 22, 2026 at 05:14:00PM -0800, Kevin Hilman (TI) wrote:
->> >> Add of_genpd_[add|remove]_subdomain_map() helper functions to support
->> >> hierarchical PM domains defined by using power-domains-map
->> >
->> > power-domain-map. No 's'.
->> >
->> >> property (c.f. nexus node maps in DT spec, section 2.5.1).
->> >>
->> >> This enables PM domain providers with #power-domain-cells > 0 to
->> >> establish subdomain relationships via the power-domain-map property,
->> >> which was not previously possible.
->> >>
->> >> These new helper functions:
->> >> - uses an OF helper to iterate to over entries in power-domain-map
->> >> - For each mapped entry: extracts child specifier, resolves parent phandle,
->> >>   extracts parent specifier args, and establishes subdomain relationship
->> >> - Calls genpd_[add|remove]_subdomain() with proper gpd_list_lock mutex protection
->> >>
->> >> Example from k3-am62l.dtsi:
->> >>
->> >>   scmi_pds: protocol@11 {
->> >>       #power-domain-cells = <1>;
->> >>       power-domain-map = <15 &MAIN_PD>,  /* TIMER0 */
->> >>                          <19 &WKUP_PD>;  /* WKUP_TIMER0 */
->> >>   };
->> >>
->> >>   MAIN_PD: power-controller-main {
->> >>       #power-domain-cells = <0>;
->> >>   };
->> >>
->> >>   WKUP_PD: power-controller-main {
->> >>       #power-domain-cells = <0>;
->> >>   };
->> >>
->> >> This allows SCMI power domain 15 to become a subdomain of MAIN_PD, and
->> >> domain 19 to become a subdomain of WKUP_PD.
->> >
->> > One concern I have here is generally *-map is transparent meaning when
->> > you lookup <&scmi_pds 15>, &MAIN_PD is returned as the provider. It's
->> > also possible to have a map point to another map until you get to the
->> > final provider. The only way we have to support both behaviors is the
->> > consumer has to specify (i.e. with of_parse_phandle_with_args_map() vs.
->> > of_parse_phandle_with_args()), but the consumer shouldn't really know
->> > this detail.
->
-> This is also the first thing I was worried about, when I noticed you are
-> not doing transparent mapping, but add an explicit hierarchy instead,
-> based on the map.
+Add power supply and regulator properties to the MAX77759 pmic. The
+usb-typec device will reference the regulator provided by the pmic as
+it supplies vbus to the typec device when operating in power source mode.
 
-Yeah, the map wasn't my original idea, and TBH, I had never really even
-heard of nexus node maps before it was suggested by Rob[1] that I could
-use it to describe hierarchy.
+Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+---
+This patch depends on the patchset [1].
+[1] https://lore.kernel.org/all/20260224-max77759-charger-v8-0-eb86bd570e9c@google.com/
+---
+Changes in v2:
+- Added a line between property and child node as per DTS coding std.
+  (Krzysztof Kozlowski)
+- Added the "power-supplies" property immediately after the prev
+  property without leaving a line space.
+- Link to v1: https://lore.kernel.org/r/20260224-max77759-charger-dts-v1-1-b443545c04aa@google.com
+---
+ arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-But... I'm gathering from Rob's and your recent feedback that my current
-approach to using a map is an abuse/misuse of the map because it's just
-being used to describe hierarchy, and because it's not transparent.
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
+index 93892adaa679..14c1518bef81 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
+@@ -142,12 +142,13 @@ &hsi2c_12 {
+ 	status = "okay";
+ 	/* TODO: add the devices once drivers exist */
+ 
+-	usb-typec@25 {
++	maxtcpci: usb-typec@25 {
+ 		compatible = "maxim,max77759-tcpci", "maxim,max33359";
+ 		reg = <0x25>;
+ 		interrupts-extended = <&gpa8 2 IRQ_TYPE_LEVEL_LOW>;
+ 		pinctrl-0 = <&typec_int>;
+ 		pinctrl-names = "default";
++		vbus-supply = <&chgin_otg_reg>;
+ 
+ 		connector {
+ 			compatible = "usb-c-connector";
+@@ -235,6 +236,11 @@ pmic@66 {
+ 
+ 		interrupt-controller;
+ 		#interrupt-cells = <2>;
++		power-supplies = <&maxtcpci>;
++
++		chgin_otg_reg: chgin-otg-regulator {
++			regulator-name = "chgin-otg";
++		};
+ 
+ 		gpio {
+ 			compatible = "maxim,max77759-gpio";
 
-I'm still waiting to hear from Rob to see if I understood that right,
-but your feedback is making me think that's the case.
+---
+base-commit: 8bf22c33e7a172fbc72464f4cc484d23a6b412ba
+change-id: 20260224-max77759-charger-dts-23493398e77c
 
-If so, I'm honestly not sure where to go next.
+Best regards,
+-- 
+Amit Sunil Dhamne <amitsd@google.com>
 
->> > Maybe a transparent map of power-domains would never make sense. IDK. If
->> > so, then there's not really any issue since the pmdomain core handles
->> > everyone the same way.
->
-> AFAIUI, SCMI is not limited to the SoC, but may be used for the whole
-> hardware platform, so it could control power to external devices, too.
-> Once we need to map a power domain through a connector, we need
-> support for transparent mapping through a nexus node.
->
->> I don't really know enough about potential usage of maps to know if
->> there's ever a usecase for transparent maps.  However, the problem I'm
->> trying to solve is less about transparent maps, and more about
->> describing hierarchy in a situation where "leaf" domains of the same
->> type (e.g. SCMI) can have different parent domains.
->
-> Hierarchy is indeed something that cannot be described with the current
-> SCMI power domain management protocol.  This includes external hierarchy
-> (your use case), and internal hierarchy: AFAIK, Linux cannot be made
-> aware of the hierarchical relationship among the different power
-> domains controlled through SCMI either.
 
-Yes, the limitations of SCMI (both the protocol, and the Linux
-implementation) are the root cause here.  In case you didn't see it,
-before I posted the original version of this series, I started a thread
-on the arm-scmi list to discuss implementation options[2]
-
-So since this is primarily and SCMI limitation, maybe I should just go
-back to the original proposal of using power-domains-child-ids[3]?
-
-I'm definitely open to suggestions here as I'm a bit out of my depth
-here.
-
-Kevin
-
-[1] https://lore.kernel.org/r/20250528203532.GA704342-robh@kernel.org
-[2] https://lore.kernel.org/arm-scmi/7hecy3h7ky.fsf@baylibre.com/
-[3] https://lore.kernel.org/all/20250528-pmdomain-hierarchy-onecell-v1-1-851780700c68@baylibre.com/
 
