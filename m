@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-267861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267862-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IIyhGwuSnWlKQgQAu9opvQ
-	(envelope-from <devicetree+bounces-267861-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:56:59 +0100
+	id cJSYOt2RnWlKQgQAu9opvQ
+	(envelope-from <devicetree+bounces-267862-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:56:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3A5F186AA4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:56:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 858FF186A6E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:56:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D40B314B841
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:52:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7643D30A2989
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B4B3803FA;
-	Tue, 24 Feb 2026 11:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307C83803EF;
+	Tue, 24 Feb 2026 11:52:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JK0gONhZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lnK4IxnN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8593B3803EF;
-	Tue, 24 Feb 2026 11:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C383803F7;
+	Tue, 24 Feb 2026 11:52:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771933937; cv=none; b=CVclzNusBc+1R3xFiXEWu9ie0FwwKLcVg2qjFZQXP8Q8EWBq3YNIdw0pbN3oaR0gcZxsYUm3BViuJ5K8sZgS0CaUuSFYWEGF/57dTa4CY3AB0EpEwwlKJ5nc9oori14xPxnq+sV258ZNpHboQKenpWg82mg4liowquB2VQQVAHw=
+	t=1771933944; cv=none; b=dDKwkpFXvCywWE9jzBO+XjnEP3fETNelhWZz0slgdw2xKTtyIoN8LPR2UISkidYv+hx6wFke77rMj6c0v8vd/jaLLr7N4KcrVZ7gwm6iXNG7oJfhIZJQ/Qikvvn6C7GnvnvHGOU+onXsjeWHRTkYSTcIF4gy7T8oRe/NiC6DgDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771933937; c=relaxed/simple;
-	bh=p6HDPApeaMd0r+CB70CBzsUcENbmFRGBccXt9mPpO7s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jWJBHCU3CbwRd2jsPUstIv5DIJsZLST/0+zWngURgRiAibagqz9aaWaQnXmZSI+XWSyO8Mo9jmX7bo1xlGckgSZRjZXg7GdFaQEos0JwyGa95Nt9LQra4U8D37/aUzN7d7WjWFbK/ykfRJO2L0NMX7fTbG6gI/wX6vLvVIvzwrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JK0gONhZ; arc=none smtp.client-ip=198.175.65.12
+	s=arc-20240116; t=1771933944; c=relaxed/simple;
+	bh=TlBht+3quR6+PU5VUY5tVHdyAa1AFWISZUf2mYC9zXE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=U9WY155d24+9U4nSsCRc7MW2SKMLK+/dmA/rQg25w8gn8Ti6KFHNhHUrAQ/5gldqwm+49ZI8J5LJlP7wK/lJofmp2ih90rGKB5BiBj2ADwQMnag1mtzjYPAqH9Kjm6SPJ2wboVpWDdAhk6piKlXb9HFrZ6g1GuGhENEMAsLbDUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lnK4IxnN; arc=none smtp.client-ip=192.198.163.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771933937; x=1803469937;
+  t=1771933943; x=1803469943;
   h=from:to:cc:subject:date:message-id:mime-version:
    content-transfer-encoding;
-  bh=p6HDPApeaMd0r+CB70CBzsUcENbmFRGBccXt9mPpO7s=;
-  b=JK0gONhZ8eYbebbhZQONMwoLVkYVPA0x0/5DPQTdLxoOEpvmZ7okPd0t
-   15J8WPDPsr+oJO7f6CeuPaNtQzAkTDh1msO6MAOkeEboaxLVqNao4u02h
-   1CTu/VPl8qFDYkx+Qf6XLgBnzNjX/NEUP0648Iqu0JBL1Nmxp023uEo9d
-   iEfTgqvIjtDJA6LxZ/03Dog3OkRoRuvttddp/W86BVS2AJiTNOEepdIa+
-   XuubqbS22i91GVgHTmvk0Qv2YhSwULnLMGxQsy4fRFXMqZiaCxOoUmE2+
-   jEglvzO2lbXC4RJcIHMMvHJz4YR6zHu6ctg9HpVq4NVTVIR5ivDTWaIq4
+  bh=TlBht+3quR6+PU5VUY5tVHdyAa1AFWISZUf2mYC9zXE=;
+  b=lnK4IxnNfeY8jN/TjOdAf5aAj1BZhWTM3XC2yR6HsWDp+AkCR0EgCF5h
+   3HbLGctnJY1W1OWS73ZF0faFBgMM3l6/gP3pW9bMAJcFkL28g+p6JNq0c
+   EdgE9g1NGcWRkSCDcR0nkkbm8OSqBb6pN5COBIubaEou8b2BrtwOSrgzm
+   7o2oUAHFXgKkS5icR/gj8uwrNNIUq0aC9R3Wo9HMR7nFzCw/RJAaVjLcd
+   wJQ2hCLl7MI3RpAeeLxDAev0mD/jkb+goVGYM3PbUSYfRm8/7lhD7yaX7
+   hNYWY6V2YCFpXyExe+96XZNbB2fsarINgRjoDvJYiitWoO2FknsUh2Hbk
    A==;
-X-CSE-ConnectionGUID: tsqPfcGiTsugo/fghIqeXw==
-X-CSE-MsgGUID: FLo7netrQlWRDkWapfodZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="84402730"
+X-CSE-ConnectionGUID: Wz7PdDygRkefdhMPKZw2Ig==
+X-CSE-MsgGUID: Ken4qc4sTZ6+nUazXENZiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="73008194"
 X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; 
-   d="scan'208";a="84402730"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 03:52:16 -0800
-X-CSE-ConnectionGUID: 73kTu8cQRyul/NipoBZ1nA==
-X-CSE-MsgGUID: iDGucgcdRu+y4as2gww8/Q==
+   d="scan'208";a="73008194"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 03:52:22 -0800
+X-CSE-ConnectionGUID: T8E1PuRASm2w8CL7fZ6Xeg==
+X-CSE-MsgGUID: gGnxJZUsRSm3840rt+kPdg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; 
-   d="scan'208";a="220398152"
+   d="scan'208";a="238862137"
 Received: from black.igk.intel.com ([10.91.253.5])
-  by orviesa004.jf.intel.com with ESMTP; 24 Feb 2026 03:52:14 -0800
+  by fmviesa002.fm.intel.com with ESMTP; 24 Feb 2026 03:52:20 -0800
 Received: by black.igk.intel.com (Postfix, from userid 1003)
-	id C390198; Tue, 24 Feb 2026 12:52:12 +0100 (CET)
+	id 5C57198; Tue, 24 Feb 2026 12:52:19 +0100 (CET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	linux-i2c@vger.kernel.org,
+To: Mark Brown <broonie@kernel.org>,
+	linux-spi@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Randy Dunlap <rdunlap@infradead.org>,
 	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH v1 1/1] dt-bindings: i2c: dw: Remove unused bindings
-Date: Tue, 24 Feb 2026 12:52:10 +0100
-Message-ID: <20260224115210.3499191-1-andriy.shevchenko@linux.intel.com>
+Subject: [PATCH v1 1/1] spi: dt-bindings: snps,dw-abp-ssi: Remove unused bindings
+Date: Tue, 24 Feb 2026 12:52:18 +0100
+Message-ID: <20260224115218.3499222-1-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -85,58 +84,106 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267861-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267862-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-0.995];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,linux.intel.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E3A5F186AA4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email,intel.com:dkim,linux.intel.com:mid]
+X-Rspamd-Queue-Id: 858FF186A6E
 X-Rspamd-Action: no action
 
-As stated in the d70f60ad964d ("i2c: designware: Remove
-not-going-to-be-supported code for Baikal SoC") the Baikal
-platforms are not supported and the respective driver code
-was removed. Remove the currently unused bindings.
+As stated in the da0a672268b3 ("spi: dw: Remove not-going-to-be-supported
+code for Baikal SoC") the Baikal platforms are not supported and
+the respective driver code was removed. Remove the currently unused bindings.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
- Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 2 --
- 1 file changed, 2 deletions(-)
+ .../bindings/spi/snps,dw-apb-ssi.yaml         | 31 +------------------
+ 1 file changed, 1 insertion(+), 30 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-index 914200188809..41a6cfe8a4ae 100644
---- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-@@ -32,8 +32,6 @@ properties:
-           - const: renesas,r9a06g032-i2c  # RZ/N1D
-           - const: renesas,rzn1-i2c       # RZ/N1
-           - const: snps,designware-i2c
--      - description: Baikal-T1 SoC System I2C controller
--        const: baikal,bt1-sys-i2c
-       - description: Mobileye EyeQ DesignWare I2C controller
-         items:
-           - enum:
+diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+index 81838577cf9c..8ebebcebca16 100644
+--- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
++++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+@@ -22,21 +22,6 @@ allOf:
+       properties:
+         reg:
+           minItems: 2
+-  - if:
+-      properties:
+-        compatible:
+-          contains:
+-            enum:
+-              - baikal,bt1-sys-ssi
+-    then:
+-      properties:
+-        mux-controls:
+-          maxItems: 1
+-      required:
+-        - mux-controls
+-    else:
+-      required:
+-        - interrupts
+   - if:
+       properties:
+         compatible:
+@@ -75,10 +60,6 @@ properties:
+         const: intel,mountevans-imc-ssi
+       - description: AMD Pensando Elba SoC SPI Controller
+         const: amd,pensando-elba-spi
+-      - description: Baikal-T1 SPI Controller
+-        const: baikal,bt1-ssi
+-      - description: Baikal-T1 System Boot SPI Controller
+-        const: baikal,bt1-sys-ssi
+       - description: Canaan Kendryte K210 SoS SPI Controller
+         const: canaan,k210-spi
+       - description: Renesas RZ/N1 SPI Controller
+@@ -170,6 +151,7 @@ required:
+   - "#address-cells"
+   - "#size-cells"
+   - clocks
++  - interrupts
+ 
+ examples:
+   - |
+@@ -190,15 +172,4 @@ examples:
+         rx-sample-delay-ns = <7>;
+       };
+     };
+-  - |
+-    spi@1f040100 {
+-      compatible = "baikal,bt1-sys-ssi";
+-      reg = <0x1f040100 0x900>,
+-            <0x1c000000 0x1000000>;
+-      #address-cells = <1>;
+-      #size-cells = <0>;
+-      mux-controls = <&boot_mux>;
+-      clocks = <&ccu_sys>;
+-      clock-names = "ssi_clk";
+-    };
+ ...
 -- 
 2.50.1
 
