@@ -1,188 +1,240 @@
-Return-Path: <devicetree+bounces-267774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267772-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IJyROXtpnWnYPwQAu9opvQ
-	(envelope-from <devicetree+bounces-267774-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:03:55 +0100
+	id oFzwAwRnnWlgPQQAu9opvQ
+	(envelope-from <devicetree+bounces-267772-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:53:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79DFA184327
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:03:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F34A184069
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:53:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7A75430C9DE4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:00:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 124A9303A890
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6F636922D;
-	Tue, 24 Feb 2026 09:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5B736681D;
+	Tue, 24 Feb 2026 08:52:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="gdrt9Wk8";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="KbuykeOt"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="WshvWi6l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.168])
+Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB5B24C692;
-	Tue, 24 Feb 2026 09:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.168
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771923651; cv=pass; b=aVmpihBIMkaiREnIVa9Wnv6mV9OlSTmsVj2at1uVcN4UvbDd7fYfevZWUGd5HkC3LV1VpZxstSLfgcrRHLrZ4f+uUkRZW4uhPfx4ftVUrXi+YIF0FUqhPREtXctH9iKexBJy0CmI3pO2vULzd3E+lmPJL+7yezWC9TMMiwuo2+g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771923651; c=relaxed/simple;
-	bh=KT066q5xWJRud5NE33MICsEIixK1+hWqdcUsGN8Sm2U=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=ckaf6snhwtJOu//mCTO8HKnNOx+1JPBgpr9vDihBy8Ui60eeoFEM58/shEXn2EKaP7a7H2aXrSr3vZp8nScb9azaBvwZgcu8E8Etq2M1CcUolwwbNPcfFs5/njlCh9o80S4l2yA5LN64p/BAcQdwnwZgVJruHyUhBNXDzI+meT0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=gdrt9Wk8; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=KbuykeOt; arc=pass smtp.client-ip=81.169.146.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1771922921; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=nB4zpHckCKF+jvQUIH2KbU++0kkby2JO+eouCgWYw/Lp6V0WyY04utvaXvw74gNta9
-    RyGbza9+kj8+m9hLU6yuCqG1e6HepWGavWcQTqHERHc8sTP3CBI+PCSVsXIdzufLqw2R
-    Wy0PHwIyiPcV+0mxJUJDaTn8pUFI/gR/mcng6qkWQxGcHmr6ulyfloohugmI7FKoFy5g
-    uRIoif5l9Fj6PmjbZww1qZmN19Wyz71W6dMYgRnZKlbbxWKiIbaUXuhRD7cZRswdz1KL
-    qbhDh76ByI3O4B62osp+Nruhm/4mwRcg1BOZoT3CUDNgQvvwT95DP8REi/Rcpaiw/MCZ
-    2hRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1771922921;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=KT066q5xWJRud5NE33MICsEIixK1+hWqdcUsGN8Sm2U=;
-    b=XQEXUYd6cOSg9volYbkjoRhSArPLQwdO+3u5qRXGXTwABCX/S7MTmkrUgP012fkXrV
-    lVMqYfdoVBdTI9HPADLk2xrSBzD7WUBgwK+YBS+JymBp0aNUh+HPfdFY4Fq1tz2IeqyY
-    wFVfPT7v8QEOUQoykLos8qghxhPUzYYhgVgvgLrz+mfHiOebmWqIyxONTSraaQIfsZbH
-    WyPfl21MQf4BjwuF+q08th9ObNkmodwX5v6QvWoASuqUqYR4nHLSy2bIfzxy+PpY3Rhx
-    XLhfTAXEg8xQ2yIT7xKGZ1kG5QdOa8t++z76hvt5OBSVZrDbBF7tS8OWDk9WVAR3KOSl
-    dX9g==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1771922921;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=KT066q5xWJRud5NE33MICsEIixK1+hWqdcUsGN8Sm2U=;
-    b=gdrt9Wk8i8jy/pHO/nqFVkQ80z57DZzB4fa8eXRMvGm1aJ6Tfv3vfa3QgqmvOI5dkm
-    zEJXby/H2g1Xta+6sy2TrjZj7dxEuWhyAIvLs3WZA1vIPopqyEzt0GmP4geA9WHVNmRt
-    nArwpwTNIKpnzU+9EaBgJog0LGRfkTEMlL6clisGGJMWpDce2od7YIFw6/Y/k7jQlEhF
-    MM2OQQ2HQut0dJOCcuM1NvPjnjpVmCNVY1f6xjxxta+P24BYEvG4cOkxGmEQig64kJl7
-    ySRHOTqFrjw8447MQ+pFLITm18rwMLaPSLuL6vrPv6VMHXmg6XA/9SEiv3E7SQoI9MXn
-    1Qyw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1771922921;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=KT066q5xWJRud5NE33MICsEIixK1+hWqdcUsGN8Sm2U=;
-    b=KbuykeOt2fsEPrtUrX7B2OzjM2SgwS91oCkzZHCFXMk7RApbxm/sMK6U5MZr1qK7Cv
-    1kkPEUZBwG/Gai3sGmAw==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeT0Z"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 55.0.1 DYNA|AUTH)
-    with ESMTPSA id Q3a36b21O8mdY1h
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Tue, 24 Feb 2026 09:48:39 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0146368299
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 08:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771923126; cv=none; b=LDTvYFNMRhPkna70hSej3bJhbgMqxNVup7OYDA5PUvaJKMdKnpv8TF/w27IpN8rXcJZQ6EJ/tkpuRAsHq7xsE4rTvLvBR5YWJiNq/JbWzVQtU1IeCOxpTPF6RvYs9IcQkIAHTZj1i9A/asRskTwBPBAlGpPbVtb1JTjshRn1jLc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771923126; c=relaxed/simple;
+	bh=UBQcmnoMtwo9xPmb4OhiKbRFH5dQC8fVl66tbOzwU7o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pb5n31Z8bVcZpmVsENLUaeaEqWEV+EFSRKkyuc3HIKMy7BoxNHtJdDn1RdNCgnDWi1bJplPW56pSAmVlKz6D98p0yUpo19Fkd+pVO9tmXMzglt4/IR1oEf4NMntFmoj7WaCM4Gh60Vlw0Pw7O7FcW1FH+MReL6d2EENKVk6Iw08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=WshvWi6l; arc=none smtp.client-ip=18.132.163.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1771923082;
+	bh=1Wp2sN5X1+cc6yF7YHXtMGdZZZ1n3UPWfWNRgLMSVCE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=WshvWi6lz5BtC677eJb1Qx6RlkxMxZS85S+13d2jEqbEcRy9T13Jv0XOCbboZ+Jmz
+	 yVfRsi/TPlw/d585XI4kZer/8QiqlJZyIYBfB17WlCYOBLL37rvEd07BRWQVqB3gt0
+	 m2gn6nxavO/dawgQsQ3/jsmzukbxGtgs+3uTGlIw=
+X-QQ-mid: esmtpgz10t1771923077t772720b5
+X-QQ-Originating-IP: 4pzF/Gr5w8u1j2szuEhtODcV6z8qlwdIkHfAzN30BzU=
+Received: from [127.0.0.1] ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 24 Feb 2026 16:51:15 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 6182285522596309104
+Message-ID: <F5A210373581AADF+afcb86f5-1d02-46cb-9bb9-3f5e0e6ace9d@airkyi.com>
+Date: Tue, 24 Feb 2026 16:51:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.4\))
-Subject: Re: [PATCH v4 2/2] arm: dts: ti: Adds support for AM335x and AM437x
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20260105162546.1809714-3-parvathi@couthit.com>
-Date: Tue, 24 Feb 2026 09:48:29 +0100
-Cc: nm@ti.com,
- vigneshr@ti.com,
- afd@ti.com,
- khilman@baylibre.com,
- rogerq@kernel.org,
- tony@atomide.com,
- robh@kernel.org,
- krzk+dt@kernel.org,
- conor+dt@kernel.org,
- richardcochran@gmail.com,
- aaro.koskinen@iki.fi,
- andreas@kemnade.info,
- andrew@lunn.ch,
- linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org,
- danishanwar@ti.com,
- pratheesh@ti.com,
- j-rameshbabu@ti.com,
- praneeth@ti.com,
- srk@ti.com,
- rogerq@ti.com,
- krishna@couthit.com,
- mohan@couthit.com,
- pmohan@couthit.com,
- basharath@couthit.com,
- Murali Karicheri <m-karicheri2@ti.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B3077F98-CC5C-4093-8319-CF45EECEAE4D@goldelico.com>
-References: <20260105162546.1809714-1-parvathi@couthit.com>
- <20260105162546.1809714-3-parvathi@couthit.com>
-To: Parvathi Pudi <parvathi@couthit.com>
-X-Mailer: Apple Mail (2.3826.700.81.1.4)
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add node name for
+ RK3588_PD_RKVDEC0/1 and RK3588_PD_VENC0/1
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ "finley.xiao" <finley.xiao@rock-chips.com>
+References: <1770950113-19802-1-git-send-email-shawn.lin@rock-chips.com>
+ <B5000B8F1001C1D8+040b217f-8ee1-4f96-95ec-e44d140b589d@airkyi.com>
+ <9cc9a3c5-55f0-32f6-f166-acfb3a34f0a3@rock-chips.com>
+ <C28FA037F24F3E74+97535c93-cc16-4bd5-b436-db7cdc0bb580@airkyi.com>
+ <54ba06df-b9eb-f4de-0254-afc3b8fcb0ab@rock-chips.com>
+Content-Language: en-US
+From: Chaoyi Chen <kernel@airkyi.com>
+In-Reply-To: <54ba06df-b9eb-f4de-0254-afc3b8fcb0ab@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
+X-QQ-XMAILINFO: NvxNySBpH0QlOksNl9p6oeC0uvvmwEm553KMkBG3+sJGo0O9cx5+leed
+	mjPQbnMyc09Fg+Q4DfHE7bOGm1CGXt4WO+Dk/ApAQp/rK2+2Gj+SJN9TjDqs55UvV7J932j
+	TYX0XDZWEoZ320/Qm3gcm7fzCogn1LIhyas4kp0YXDaqRusVgdSMsiK8QIgJOvoyVNaVO4K
+	MLULAxJiqkro43su6CN/3aMJ44CuT7+iacBjK+OiBKM7b820nY5SbXsVgGY2wzctwEVh2YJ
+	7jSUouhNqNFGG4yygtooFDnL1IwQ7Ngj/tZUF64bkv6RxhZCfbEBFckbdW+Ic138OhbD5fU
+	8G8bQiwYRw2AlCxTxh47vayZZW6ICvN/FJ94o9TOMZqODpMWatDGa7b34r3S+EJfO5sY7/B
+	h4ulnDDHsKIOfCTIZpCeuoWw4cnBqbkc0gSD+TKicFOm3BX6+dm3Ro9YynzXIP66FSOocoK
+	pX+j5s/R7Kkq7m+VD82XJfjXWP5EzFW73dObIGX4oDjH2QgB8g8CSUbmxCYJC2YQaQTcs6U
+	VvzTFuicnJtBVmbOP1F7e5DpzFNJVc9wYlzWcJOoz+9971dxQ1IgtMhKRvQgqe9iwXDCZly
+	Zw8Q93PTKxnayzKhUJEjHPL7RlFqP0zVxPcgHQ8KoOiJoT5lkPi/nEbr/Y9pNNmP4H11HlM
+	x3F2+3WxfL876nbyvgGVo65kYqiYEWhimZMSQEmlWlVEa9yU0czInfUF5JFSlX2NueLMHta
+	DgT/cu4CpEiRyxGD5CGYfvtjVgLGUcE9nAYdiGY9o2aKeJ0MLzYM21RS6VGJIuadguEgoaV
+	tH52GrGK31k+fKWV5YWm1E3MTLA6EbVOyBLLs4BMdY5evx9A76jMmM23xoJ1zgrt40+W4bB
+	JPU1LYMGscwZdhlcBPkM+cpU15dMA13aGs8cFzCDu4w4IucPpqdNa5WGFArcOBWz0u2FI/p
+	07wuF40h+PdvWuFOIIe5CYj48ZJDrPR/xj7iu0Z45zMGendm5JWnT2mzo1Nu7SkseN5uGor
+	p7OX9ntxiS4iFCj/yko+1+OPTdOU4E1mvgRMd1zKi0tkm/+RPf
+X-QQ-XMRINFO: OWPUhxQsoeAVr0nlVs/uubuJpL/3SLbnIQ==
+X-QQ-RECHKSPAM: 0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[goldelico.com,quarantine];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[goldelico.com:s=strato-dkim-0002,goldelico.com:s=strato-dkim-0003];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[airkyi.com,none];
+	R_DKIM_ALLOW(-0.20)[airkyi.com:s=altu2504];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267774-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[ti.com,baylibre.com,kernel.org,atomide.com,gmail.com,iki.fi,kemnade.info,lunn.ch,vger.kernel.org,couthit.com];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[goldelico.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RSPAMD_EMAILBL_FAIL(0.00)[parvathi.couthit.com:query timed out];
-	MAILSPIKE_FAIL(0.00)[172.105.105.114:query timed out];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hns@goldelico.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267772-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,couthit.com:email,ti.com:email,goldelico.com:mid,goldelico.com:dkim]
-X-Rspamd-Queue-Id: 79DFA184327
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_MUA_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[airkyi.com:+];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kernel@airkyi.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,airkyi.com:mid,airkyi.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,rk3588_pd_venc1:email,rk3588_pd_rkvdec1:email,rk3588_pd_rkvdec0:email]
+X-Rspamd-Queue-Id: 2F34A184069
 X-Rspamd-Action: no action
 
-Hi,
+On 2/24/2026 11:14 AM, Shawn Lin wrote:
+> 
+> 
+> 在 2026/02/24 星期二 9:42, Chaoyi Chen 写道:
+>> On 2/13/2026 7:11 PM, Shawn Lin wrote:
+>>> Hi Chaoyi
+>>>
+>>> 在 2026/02/13 星期五 18:32, Chaoyi Chen 写道:
+>>>> Hello Shawn,
+>>>>
+>>>> On 2/13/2026 10:35 AM, Shawn Lin wrote:
+>>>>> Thus the board dts files could add property for these nodes.
+>>>>>
+>>>>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+>>>>> ---
+>>>> You should also add pmdomain driver.
+>>>>
+>>>> I've encountered a similar issue before.
+>>>> Finley told me to use the new PMIC, and that would solve the problem.
+>>>> Maybe you're using the same old PMIC as I did :)
+>>>>
+>>>
+>>> I don't know what does new PMIC mean? New RK806 driver or new RK806
+>>> hardware?
+>>
+>> It is new RK806 hardware. According to Finley, end users are currently using
+>> this new type of PMIC.
+>>
+>>
+>>>
+>>> The problem is these power domains rely on voltage supply which could
+>>> be probed late after pmdomain driver, then the system enables the PD and
+>>> access the IP without PD actually enabled(even w/o voltage supply
+>>> enabled).
+>>>
+>>
+>> If I'm not mistaken, the new hardware will automatically powers up the supply
+>> corresponding to VDEC/VNEC.
+>>
+> 
+> Thanks for the clarification on the hardware update.
+> 
+> I'm currently using the EVB board for SoC bring-up and post-silicon
+> validation, which I believe carries the old RK806 hardware. It's also
+> apparent that many developers (as opposed to end users) are still
+> relying on the old hardware in the field.
+> 
+> Generally speaking, upstream code has no way to distinguish between the old and new PMIC variants solely from the DTS, correct? Given this, I
+> think we should aim to keep both hardware versions workable in the
+> upstream code.
+>
 
-> Am 05.01.2026 um 17:21 schrieb Parvathi Pudi <parvathi@couthit.com>:
->=20
-> From: Roger Quadros <rogerq@ti.com>
->=20
-> PRU-ICSS instance consists of two PRU cores along with various
-> peripherals such as the Interrupt Controller (PRU_INTC), the =
-Industrial
-> Ethernet Peripheral(IEP), the Real Time Media Independent Interface
-> controller (MII_RT), and the Enhanced Capture (eCAP) event module.
->=20
+As far as I know, only early EVBs internal to Rockchip used them.
+I think your approach also makes sense :)
 
-I am just wondering about the subject of this patch.
+>>
+>>>
+>>>
+>>>>
+>>>>>
+>>>>>    arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 8 ++++----
+>>>>>    1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>>>> index 7fe9593..4fb8888 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+>>>>> @@ -907,7 +907,7 @@
+>>>>>                    #size-cells = <0>;
+>>>>>                    #power-domain-cells = <0>;
+>>>>>    -                power-domain@RK3588_PD_RKVDEC0 {
+>>>>> +                pd_rkvdec0: power-domain@RK3588_PD_RKVDEC0 {
+>>>>>                        reg = <RK3588_PD_RKVDEC0>;
+>>>>>                        clocks = <&cru HCLK_RKVDEC0>,
+>>>>>                             <&cru HCLK_VDPU_ROOT>,
+>>>>> @@ -917,7 +917,7 @@
+>>>>>                        pm_qos = <&qos_rkvdec0>;
+>>>>>                        #power-domain-cells = <0>;
+>>>>>                    };
+>>>>> -                power-domain@RK3588_PD_RKVDEC1 {
+>>>>> +                pd_rkvdec1: power-domain@RK3588_PD_RKVDEC1 {
+>>>>>                        reg = <RK3588_PD_RKVDEC1>;
+>>>>>                        clocks = <&cru HCLK_RKVDEC1>,
+>>>>>                             <&cru HCLK_VDPU_ROOT>,
+>>>>> @@ -926,7 +926,7 @@
+>>>>>                        pm_qos = <&qos_rkvdec1>;
+>>>>>                        #power-domain-cells = <0>;
+>>>>>                    };
+>>>>> -                power-domain@RK3588_PD_VENC0 {
+>>>>> +                pd_venc0: power-domain@RK3588_PD_VENC0 {
+>>>>>                        reg = <RK3588_PD_VENC0>;
+>>>>>                        clocks = <&cru HCLK_RKVENC0>,
+>>>>>                             <&cru ACLK_RKVENC0>;
+>>>>> @@ -937,7 +937,7 @@
+>>>>>                        #size-cells = <0>;
+>>>>>                        #power-domain-cells = <0>;
+>>>>>    -                    power-domain@RK3588_PD_VENC1 {
+>>>>> +                pd_venc1: power-domain@RK3588_PD_VENC1 {
+>>>>>                            reg = <RK3588_PD_VENC1>;
+>>>>>                            clocks = <&cru HCLK_RKVENC1>,
+>>>>>                                 <&cru HCLK_RKVENC0>,
+>>>>
+>>>
+>>>
+>>>
+>>
+> 
 
-It reads as if general AM335x and AM437x support is introduced for the =
-first time.
-IMHO it should tell which subsystem/improvement is added.
+-- 
+Best, 
+Chaoyi
 
-BR and thanks,
-Nikolaus
 
