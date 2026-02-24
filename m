@@ -1,222 +1,241 @@
-Return-Path: <devicetree+bounces-268060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268061-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGm4CeEEnmmhTAQAu9opvQ
-	(envelope-from <devicetree+bounces-268060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:06:57 +0100
+	id 8DGOExgGnmmhTAQAu9opvQ
+	(envelope-from <devicetree+bounces-268061-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:12:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71AF918C45C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:06:56 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E668E18C4F9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 21:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6465304DE91
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:06:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3D91C3043962
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 20:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD3733032B;
-	Tue, 24 Feb 2026 20:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029FF3358D2;
+	Tue, 24 Feb 2026 20:12:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NDXmZm3f"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="BikwRzAD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010069.outbound.protection.outlook.com [52.101.69.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1A7336EDE;
-	Tue, 24 Feb 2026 20:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771963611; cv=none; b=Who11J6sczXjjF3jIExBVvG7GHRVPl7gjRONc6UOlIZvMRsKpJEIFevzNKpk6RYlY4rUrK17IOXEQ4Iru39hvIcsFHpBfMCsiM6xShdAw7hNhRifiI1PrMrTGWY340N0/+fT5DTRJFpvqaV7OsT/0m8rUgVpslzm2qlCn4YGZ3Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771963611; c=relaxed/simple;
-	bh=JnvyvrTWhs4gFCNCDWjVlJ4krK6pLc/diQs0NadNI9s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AOtYW1qLqlPb1GYmp8XBgSEtu19Bb+MOrpgNyAJFxpZKpGRynOFhx7uwwkrmdAShon2R0FLjqhWAjyKOwxemgmp49R1U5UJuL8naS+QIAQKqrvS+/Qojg4/365TvkbKRLIeyenWqGLVit/haacSR4jAzpzkNmtwH37xiSi3dz6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NDXmZm3f; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771963608; x=1803499608;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JnvyvrTWhs4gFCNCDWjVlJ4krK6pLc/diQs0NadNI9s=;
-  b=NDXmZm3fdxKJ1qYWueWhzOWNsiD/wrQvIstDRkGI1Fdm+FpxlKR/K1Ke
-   zrT4glL2JgMaMFT8woucXx5WOu/dJCnRd3s8MqpULLTEP0UZO81CW5FKC
-   ePXD8XRhk0JzvQH5gjvgAObzrt+4z2lD7UA0J+Knl+tfhdYJM0OFFOMgE
-   N0m7NPA/yiOjkAZ8yum/MKBzWRTjRFNOIWZ6ao3jmLENyU3Oafmeqvff+
-   i1b3mR/2wftZ5+GL3VW1ci0Zu0VXeJNQ+rylf5I7xwaJxm1U40gI8iANM
-   VW/7CP4VMvi6FkStMEFwVkLFG10gL8gTu+toF/sykR8jLMaDKc/lKISnM
-   w==;
-X-CSE-ConnectionGUID: 9RdfOZ/ySZKpvn7ZX5q1WA==
-X-CSE-MsgGUID: GXdoFIa4T7GF5F7V/zuIEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="84358370"
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
-   d="scan'208";a="84358370"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 12:06:48 -0800
-X-CSE-ConnectionGUID: bK9mMWaGTraCoEuV+coDig==
-X-CSE-MsgGUID: MZ747D+jSy2qFNh4LBrWrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
-   d="scan'208";a="214347483"
-Received: from lkp-server02.sh.intel.com (HELO a3936d6a266d) ([10.239.97.151])
-  by fmviesa007.fm.intel.com with ESMTP; 24 Feb 2026 12:06:44 -0800
-Received: from kbuild by a3936d6a266d with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vuyfo-000000002P3-1Mez;
-	Tue, 24 Feb 2026 20:06:30 +0000
-Date: Wed, 25 Feb 2026 04:05:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, andy@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
-Message-ID: <202602250331.RTQ00zxY-lkp@intel.com>
-References: <20260224163109.370930-3-macroalpha82@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5AF7335064;
+	Tue, 24 Feb 2026 20:12:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771963925; cv=fail; b=ene3EoA3VCZVM1/oTfGjW3lWY77geXscM5Vc/f0N9kjA3Qb4segRKKlCx2LbPM0Y5vyb1clnTPKfJ1771+DmpAvMR6VsFPlba1fDz5MGh9qIYJQAUyt3pMCa9FtmYvQ6tvMHVKGBVBJA0RmIQJi6fZ7rYNIDLU7PS4WypaUZd1s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771963925; c=relaxed/simple;
+	bh=SG1xDy/salNS38JFEYTRstB2LGXmxT7lf4WJbLbI75U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=b4k6CMJXbvMjU9IRhKAeE0yWPpHgwBrOw9bZDtxARouxt0lDOC9pWht4BT0WWMRy5KVbdHQ2c6NkdLurhkraCeWZ1vb0KsffqFgfnh/v5maFrqmaqkYi6nqpvIaVEWC7Cf2de6QqoOhegcHX1Q8JR/oIA1tAo9HkCloHsn0nRiQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=BikwRzAD; arc=fail smtp.client-ip=52.101.69.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=joMaTFkaLy3mpEuHJOKlL/IcTmLnxZnb+JSMHEaNgL8fYjTCRNA+WTtkcwVbLyBA8in8XryB7Cs6t7206ytYvfjbVsTJqtUg6xVTZOH7Ib9hqrDgWouKrRxv5N63uOwRE/2HIpxggvfG8GwOPcn/s/QaD5URWfJMVqv5jQ2JW3cb344o9jb0IRebEE164FEyNXP7/HCxtae/dulJdb9IzUi0uKQ6JAYaiWYCmanOcZtDklWsLHrD1Wht6bZ53MIz44iTGK8st+sOo3a9CyKw87z932G5zoPbCMXlRKkmUNgqXSt9+ZNmIC3+ewbUBL3u81KBqa1Yz2llaEo0M++/YQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ccos0ZDbUYV0KrJ1/b0MTVaiZY0hFiVRWppwpr1oLTg=;
+ b=UHGpmPGt3/7o2J8ScV2bE61vPXnDRK+niyMzReGm0Jo74EqlH566t1qgHPsyVhNgjDRr5d1gVdXxFVLA4gX6gQvvMFlfgaDaaWLa9uib683P0rIbwCFbWBMFpDt8YIaKPjIihMZw0ez67FnnaQZlMx1C/VE7QlW7c84bgv+FXti7V/C7XGyqSRUZ4jqVwlWeSH7g2Vdmis+C0TaEI+DPtbFG5JH0DI216fq9egL3TbzlX8us2muRNYUsGP5PBiUTvycPN4vNonyVvy5TuryiXZ2xiS55OK7LGm+YermIOrZDcBxB7xfbRuH1yMq9Gwl1hGlKNbwuX3QTdGnQNIPOzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ccos0ZDbUYV0KrJ1/b0MTVaiZY0hFiVRWppwpr1oLTg=;
+ b=BikwRzADKRFMw1eBOKsq6/dfSRr8CGeLps766Gia1YNwm9ijYFoi22uw+4cm0sxKNDNbNmc2fW+eKPfyg44j3H7Ht2LhqPzLlyYtuaGOuBV2T3msxC/uEn0WBLagCubTp8GQgP6WiF0A3jdQMGdu/MpO1A9rcNhSRMOHRxr+8oEaIHPi0iO35xYiQeZWQBVTS8VKKUOdk6EuzXrYBnOzkNjhstxFUTO7wT0L1akvMgb7RgQnRvSyunTF9STeHa6cAMumDTJbocF5Jw7pwROAz2mG6+1QzgFRakYX10MdXw41p7pGU1vROjiU2QS50EOa8hjruJACluosC8UL5uzMng==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DU6PR04MB11159.eurprd04.prod.outlook.com (2603:10a6:10:5c4::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.23; Tue, 24 Feb
+ 2026 20:12:00 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
+ 20:12:00 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Chancel Liu <chancel.liu@nxp.com>,
+	Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v3 0/2] Enable AONMIX MQS for IMX95-15x15-FRDM board
+Date: Tue, 24 Feb 2026 15:11:41 -0500
+Message-ID: <177196389534.3265729.1581691241903955876.b4-ty@nxp.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260203100332.915-1-laurentiumihalcea111@gmail.com>
+References: <20260203100332.915-1-laurentiumihalcea111@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BY3PR05CA0002.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::7) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260224163109.370930-3-macroalpha82@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU6PR04MB11159:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2edf7d3d-81f5-487c-f085-08de73e0f7d1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|376014|366016|19092799006|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?anZVRkxicTUxSUttYmp4cjEya0t1bTA1cVlUeFUwQnhWcGNIbW5laWpSNWg4?=
+ =?utf-8?B?SGJlS1ZDeXZRa3M1VGtERmQ3TU82ZHViTG0vUXQvamVkZEJiV0JlTEovNzNJ?=
+ =?utf-8?B?YkpYdXEzS0RGaEpmeloxT2REQnh1Z2t6UWlyYjRyQTBjdVA1L2wyajloSWhl?=
+ =?utf-8?B?NmJBUEcyT0pXcmhSZWpia2prR0U1c2gwNHFEdFZTNGY2ZnV6TGswbTBsZlBq?=
+ =?utf-8?B?QzdrNE45Kzd6b09XWXZ4WjJwWmRJdU5LSUQwTFRYQzkvOGdxMWZ4K3NyNGRl?=
+ =?utf-8?B?bTc2WmxaYjhvNFdRWFcrbGJxNXJSc2IyNllVWkU3YjdRbjhBYjBZUmthVU0r?=
+ =?utf-8?B?YkYxZTU5UE5MTWErdHIyMWUvNlowcTUrYWtmWWRnVkRVc2FJNksyMUFXVjNO?=
+ =?utf-8?B?SmdZNmNvUXkwZVBteFlIczFRVnhiY1BtOXhTL05MV0FYUHVzWTY3OUxaS2JH?=
+ =?utf-8?B?L1JMYW81Y2VzYkU3Vk9QMGZ0R3RRbEtNSDVhYzJQdUJHL3kxQnhGZTB4Z0ND?=
+ =?utf-8?B?M3FUbk1FbEEwR2Fac1BVSU1vb2FzUWwxbW05YXBML1BCeEdrVklDUkZBWC9y?=
+ =?utf-8?B?TE1nQVNVNjdHM3kyU0pMQWd2NmI0WWZadkJGUkthWnBLRCtEbU80QTIxcUJN?=
+ =?utf-8?B?MjM4L01pV3d6bnJKcmJMTnU1dmpabFVNYjNDdDJOMFVsZWQwekRQV1hldmpS?=
+ =?utf-8?B?Y05qVGd3dmVNVW1QOTFlNEI1eGVpRU9NMEZ2VmFWNlJZUXVrYlhkazZtVFYr?=
+ =?utf-8?B?RjRnSkZHQ1gvWHJqOUVka09sUHdXbGhueXVQSmlnZUVoTWpyUzAwQUp0TEdr?=
+ =?utf-8?B?SWpMRVIvVXJ4VnJNbzFhL1BXY1h3dmk2NjloUmxjVXJ0UnJvN2lmbjQ3a0U1?=
+ =?utf-8?B?d0Z1bE80VHZFcThNRExOa1pJTjVhZ0t2SHBVdnE2ZnQ2OUVzNCswck1kcGZ5?=
+ =?utf-8?B?ZVZMeDRIWktuUkxsVW9rOEk4ZCt3VHhsa3dCVmw4SExtWVREaE1mNDR6eGQ2?=
+ =?utf-8?B?L005K2xmTWpjMFl5TmlOU3Z2cmxsYVh1dGxPMGZpb25WQTFZM3VQUWZoV2Js?=
+ =?utf-8?B?Y2lSSXp5MGg3ZWlhdjBZZHA0d081cWtwOUh6SHBSL2l5NndtOXlYbThjOHZJ?=
+ =?utf-8?B?d2R5cWhmZCt6cUhGSjAwd2RLVHhJckc4SndOdnJObWp1c21RdVdXbjE0ZnV3?=
+ =?utf-8?B?VlJFUkNMQVVZZzRla2w4ak9iYXpUSlBPcndRaWoxWmtOUzNITEZoWm9mUUR3?=
+ =?utf-8?B?V1NKY2FYL1lIR05JQ2J6dDgxRkNiY0NpMmNvd21ySkFIa0ZXTE4zSUJydjY1?=
+ =?utf-8?B?RjBvQjZZbTgwY1NBOWFTMzlPUUg2SlpGLy9vLzZWUElyTit6WmlXM1dOUGxx?=
+ =?utf-8?B?RW5TMmQ3RWNpNkhqUVBXOUUza25jb0xuajRHcmJNNWhJdGloUjJremo4czBJ?=
+ =?utf-8?B?U3ZvcFpxdlcxeFkxVS8zT3d1WU9LSmcxbC93azJFRlN4bWttcUJFaWZVTDRR?=
+ =?utf-8?B?Zk9FNEt4MlhOcVk0V1dBZmh2VDhBcWIvMklRM0ZYTHM2U3pOWFF0ODgvWm5P?=
+ =?utf-8?B?WUFJR0RMZ2lkRUdXbVdDdHhXZVFaeThBYTk1b3VGalNCUzAwa3B0Z1hWMmhC?=
+ =?utf-8?B?VVMvYnBxMElhWjgrMm9iQmw4SkNETEl6OVJGSy90ZUFlejRVWEsyMDRnYlV4?=
+ =?utf-8?B?WGx4azIyU3h2QkR1Nm4wNER6cytYT21zMk91TEh4UHNkRjhsc21nVDBYWXJB?=
+ =?utf-8?B?NlNqV1hTZ1pYSDFNMldqVWtGM1JoQlZWQ2tieCtyUGh3TEd4Njc5b1lCeGF4?=
+ =?utf-8?B?dlRLUFQyMTJtbDhiQm1rM3U3OEt4cTdXckxmZmxJU3hIa2FTRklKYUdTL2Jo?=
+ =?utf-8?B?Q1JsL2ZGSHBtR0NLd2VTcVNieHM2RzNoTXlTQVFsOUZzRXNEQytZMTdsb2FD?=
+ =?utf-8?B?dGZ4cWZjRjVEUVdseUVJMFBXcUlGZXh0YWZOVDlHSTJyWFBTR1p6TFZnUjQr?=
+ =?utf-8?B?VlgzTm5UNVhOc0wvVlJJOHl5UG1DZUZZRk5IbEtjVEdDWjExUGd3ZTdCOHZM?=
+ =?utf-8?B?UlFuOW1yaVc2NkFOZ2dMNXpYYkc3dHRySlhoVndXZFJHcW9OSlVhTGhwZmZz?=
+ =?utf-8?B?MDZCVWtSZmxpVllnY0xqODlaeldqaXBveGdZZjNvVHFNSVN2cHUwS1VsdFV0?=
+ =?utf-8?Q?0g6aSJvPuSjYGy3sHHw9X8k=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(366016)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dnUwejJ4dDdhdks0dzJIK2xTM3Z0WW81L2tqbUVlSE5jOVJxOGpuTVNYajRp?=
+ =?utf-8?B?TmFqRjl3ZjVmdXFIa2tGZnVCZ1QrUDFieVlCLzBnZU5lZm01bVhLcVNKSFo2?=
+ =?utf-8?B?YlpTV3Qra0tVRE9Qa1RCZTJudWpydTFDcS8rVVZ1Q3JZRW1RVkhtYVlYdmRv?=
+ =?utf-8?B?SGU5cGZ2WWVZbjkwdW1PdStMVkxCdlRtMER5RE5aQmZJMSsrY1pJWHJhc0Rj?=
+ =?utf-8?B?dXFKY2ZsSFRMd2xwcVBia1l0b3pVeG1OenRmR09YR21nVklhR0FtVzFlR1pv?=
+ =?utf-8?B?dUQ0ekhITVo1NUNOVTRkVjAxVjE4RmZmV09Yd25uK0RnVEVRNHE3WWsrOGI0?=
+ =?utf-8?B?ZkV4Z2pjVFJQSFpNNWN4NDFTZW8vazBMUEVidTYwVUppN2dqdjZ0MXFIaUpI?=
+ =?utf-8?B?cnZNS21oblFPL0hRYU16dzVoODBBMTBqTldQdEhXbXZXbXppM3hjTHltenBS?=
+ =?utf-8?B?b1pyaktkOGg2b0FmYlZTM0w0VWtHWUlhM0NGc2FaTFdlempUanYvSjhyMDBY?=
+ =?utf-8?B?NkYzbUdhaitZZDhtd3VZTUtuOTNqelZObVpDbkpwOHYzUlRhSnNZSHJGdDA3?=
+ =?utf-8?B?V0dzR0N3b3A5eXlBRmVBVE5xZFI2bzUrKzU5dzFLQ2xoUisrc0ZMYlJncktV?=
+ =?utf-8?B?dkdKdndlMjJoRG9KYnJYbm81SHlrVnhROVVieWl3NmFRd1ZiT2s2Z0doMGt1?=
+ =?utf-8?B?d2RZU05FRWY1VGJzWlN2NFBCSkZWTUdQMS82akNLWmFwendaK0prdGg1d0l3?=
+ =?utf-8?B?ZEk1dktqTmtqZHBibUNyb29VTFBtV0NEMFVzeHlCcGw2UzBJMy9HUzlqNEFs?=
+ =?utf-8?B?MVNqN0NQU04zaGhSZy8zN2VHWmw4c0hRTGhJaWh4QThPK0FnUHNxMUV1bVZL?=
+ =?utf-8?B?T1BGZHlOVERJV0c0S1N2S2JESThjWCtvTFVvdWpCL2o1eEgzZHVtcUU5dkpw?=
+ =?utf-8?B?aSs2amF1UWVWcExubzhYMHBZV1ptbGtGNnhpQ01ZWFRxbTcwVlk2aE82Ky9m?=
+ =?utf-8?B?NlRKb1hzNWVSaTVwSUwvbjYwMzVlbjR0NitoU09maEdiMUlhRi96Y1l0djNL?=
+ =?utf-8?B?L3loVkdqcVNnUTBUYm9CVGRDUzNzMjkzUkJwODZFc2NUMHdrV2F0bHdvWmlj?=
+ =?utf-8?B?dVJaTU1DbmpjQTU2VGxoWlN1UDBkay9rODVPdVh1a0pyUUx0TXd0eGFJVGJW?=
+ =?utf-8?B?ZEo2UEUvTlJmQzlLRW1tMmNMZnVSdGhOZFM1cGx3ek0rL0NDeGxycnE0MHIz?=
+ =?utf-8?B?bGlvSUpKWVNURFhMK3drQXNwMzlQanR6VWsvZjdOQmFOOStZd2ZUQ3FiQjRk?=
+ =?utf-8?B?bE5xVWFSNEJkV281bnVQaElqTTZkQ0VYUFFuRVFSQ3E0U1F1WFIxbEltenda?=
+ =?utf-8?B?dCtpczBENXRXVG1ybnVuSEZ1NXFOUlZ3NFMrOE82OU43RThLRmlLa2h3OS9K?=
+ =?utf-8?B?cnEwbGltVmQ0d0tFRnorVVJySjJKK2pXSjNsQUExZVk5dWZRV0R2K1Y4Qzk3?=
+ =?utf-8?B?MkZITTg3Y2FndnUxMm43b1QxTUttUnU2ZzlwUnhIb2lzOTZoVzI5NUpBTTZM?=
+ =?utf-8?B?UmovYzQ0aERJT1N3b2lqajRsT0hhTEMzZVFDMW53Z0xQQjBielNYd3NpcXNT?=
+ =?utf-8?B?VkN1aThxdlM0QjR3OFZtdlI0cExkdnJqWDVxTGx6Y202MkNjUmxqZEhhMVBB?=
+ =?utf-8?B?ai93WU4wREhQMFF3d1YxaVljU0JQMDJuTE5PNXdvZWwxSDhnbCs4NzlOSWZX?=
+ =?utf-8?B?T1h0RTVYT3RmVXR3bHRXOElmOFd4RTV6WXhmTThHc0VXbGxPVThqd3Q4UVRP?=
+ =?utf-8?B?TVc3NTE5Ynhvc2phV3lxbFpvSGxaT3NIQVN0eURLY0tUQjVwYTlvZXVFcWpo?=
+ =?utf-8?B?RG1OTE85Qk1zQnNobkJ2RTU5bVRDQ0ZtQ3EwS0t5TSt2NmFPRUhZd2R3YThE?=
+ =?utf-8?B?VUw1dFFib1hwMG53WTVqaVVIVkFDbDAzUU9xNHhSTmVYNGhCMDB6YVowckJZ?=
+ =?utf-8?B?WjJ2T2NkbEw0SGhUZE96S3NCaU43L2k2QW5HV0t2RVNoTEJ6UTBPaGFURmQw?=
+ =?utf-8?B?SXRiLzF2cnlUVW85RVNTM1dENHVJNzVrQ2YyZk42Y29XQnR2TzF5dGkwM0lU?=
+ =?utf-8?B?dXAvQTBMVmh2Vm95eWZPdFd3Z3dIQWY1SDF6cCtEMTUvdVJlTFVIdkFpL2I3?=
+ =?utf-8?B?VFdFSENFdyt0bHBMMURITG9YOXVuSTJuN085SCtpZVJ1c0JaT08xZ0VLSGUx?=
+ =?utf-8?B?NHJremFXZy9rdUh6UExlTmdlQzdGSjJEVnp2SmlqQ2pZaUc5b25IQmZHTG52?=
+ =?utf-8?Q?eqUBEon5xJCzcPmZQc?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2edf7d3d-81f5-487c-f085-08de73e0f7d1
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 20:12:00.4630
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CQr8LqnZArHkwh3TiZ5AfX8pIrW0pyh+xAP8DE7Kf6XyobW9NiewKBdDEoVgO+7g5eqcxx5fi36SR4HC5/Nhfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU6PR04MB11159
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,hotmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-268060-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268061-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,01.org:url]
-X-Rspamd-Queue-Id: 71AF918C45C
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:mid,nxp.com:dkim,nxp.com:email]
+X-Rspamd-Queue-Id: E668E18C4F9
 X-Rspamd-Action: no action
 
-Hi Chris,
 
-kernel test robot noticed the following build warnings:
+On Tue, 03 Feb 2026 02:03:30 -0800, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> 
+> This series enables AONMIX MQS (i.e. MQS1) for the IMX95-15x15-FRDM board.
+> 
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on linus/master v7.0-rc1 next-20260224]
-[cannot apply to jic23-iio/togreg]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Applied, thanks!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-iio-imu-icm42607-Add-devicetree-binding/20260225-003610
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20260224163109.370930-3-macroalpha82%40gmail.com
-patch subject: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
-config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20260225/202602250331.RTQ00zxY-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260225/202602250331.RTQ00zxY-lkp@intel.com/reproduce)
+[1/2] arm64: dts: imx95: add AONMIX MQS node
+      (no commit info)
+[2/2] arm64: dts: imx95-15x15-frdm: support AONMIX MQS
+      (no commit info)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602250331.RTQ00zxY-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/iio/imu/inv_icm42607/inv_icm42607_core.c: In function 'inv_icm42607_suspend':
->> drivers/iio/imu/inv_icm42607/inv_icm42607_core.c:670:13: warning: variable 'accel_conf' set but not used [-Wunused-but-set-variable]
-     670 |         int accel_conf;
-         |             ^~~~~~~~~~
+Best regards,
 --
->> drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c:200:36: warning: 'inv_icm42607_motion_events' defined but not used [-Wunused-const-variable=]
-     200 | static const struct iio_event_spec inv_icm42607_motion_events[] = {
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/accel_conf +670 drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
-
-   660	
-   661	/*
-   662	 * Suspend saves sensors state and turns everything off.
-   663	 * Check first if runtime suspend has not already done the job.
-   664	 */
-   665	static int inv_icm42607_suspend(struct device *dev)
-   666	{
-   667		struct inv_icm42607_state *st = dev_get_drvdata(dev);
-   668		struct device *accel_dev;
-   669		bool wakeup;
- > 670		int accel_conf;
-   671		int ret = 0;
-   672	
-   673		guard(mutex)(&st->lock);
-   674	
-   675		st->suspended.gyro = st->conf.gyro.mode;
-   676		st->suspended.accel = st->conf.accel.mode;
-   677		st->suspended.temp = st->conf.temp_en;
-   678		if (pm_runtime_suspended(dev))
-   679			return 0;
-   680	
-   681		if (st->fifo.on) {
-   682			ret = regmap_write(st->map, INV_ICM42607_REG_FIFO_CONFIG1,
-   683					   INV_ICM42607_FIFO_CONFIG1_BYPASS);
-   684			if (ret)
-   685				return ret;
-   686		}
-   687	
-   688		/* keep chip on and wake-up capable if APEX and wakeup on */
-   689		accel_dev = &st->indio_accel->dev;
-   690		wakeup = st->apex.on && device_may_wakeup(accel_dev);
-   691		if (wakeup) {
-   692			/* keep accel on and setup irq for wakeup */
-   693			accel_conf = st->conf.accel.mode;
-   694			enable_irq_wake(st->irq);
-   695			disable_irq(st->irq);
-   696		} else {
-   697			/* disable APEX features and accel if wakeup disabled */
-   698			if (st->apex.wom.enable) {
-   699				ret = inv_icm42607_disable_wom(st);
-   700				if (ret)
-   701					return ret;
-   702			}
-   703			accel_conf = INV_ICM42607_SENSOR_MODE_OFF;
-   704		}
-   705	
-   706		ret = inv_icm42607_set_pwr_mgmt0(st, INV_ICM42607_SENSOR_MODE_OFF,
-   707						 INV_ICM42607_SENSOR_MODE_OFF, false,
-   708						 NULL);
-   709		if (ret)
-   710			return ret;
-   711	
-   712		if (!wakeup)
-   713			regulator_disable(st->vddio_supply);
-   714	
-   715		return 0;
-   716	}
-   717	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Frank Li <Frank.Li@nxp.com>
 
