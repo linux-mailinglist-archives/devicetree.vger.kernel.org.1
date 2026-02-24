@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-267933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267934-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SP3zIPy3nWnERQQAu9opvQ
-	(envelope-from <devicetree+bounces-267933-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:38:52 +0100
+	id KCj7GBS3nWlyRQQAu9opvQ
+	(envelope-from <devicetree+bounces-267934-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:35:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14366188798
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:38:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F21E1886EE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:35:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0FCC5321CC30
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:31:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1E55A3002B08
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 14:34:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394612512C8;
-	Tue, 24 Feb 2026 14:31:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E426539B4AF;
+	Tue, 24 Feb 2026 14:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VBKOb24q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QIay9dhO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1239586337;
-	Tue, 24 Feb 2026 14:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0487246BC5;
+	Tue, 24 Feb 2026 14:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771943463; cv=none; b=i0zyrM/WnI7V6x3xI8gJTIbEKJGRS9+F7LQPJKBsD5xQXq9cDNz2GiUdejofKNTb+tlKuj7R5KR8zUeKLp8JAWDQ1K0PsSZs1dbOFcjM5cIew1P3Mo2jEMCSDh3R0WTMDW3D3nxYrqIXDybtELndLPrzZ69yMAesqxfwQg2+EoE=
+	t=1771943681; cv=none; b=VfblZHRaFuCU8YVcYYWfTkZUbWQ3nrm/oA05dWVGNHadKI9iIwF8ipd2k8yAEUlr9GgxRbcAqyuFfUqKXWxJYpE1qseTy5iRIBum4wQcLZFF1+LPR3RaPHSs9ZMxdKSWH9E3/EZhJjRsiDdJl16+zFtaGTYQ7WSbWCfk7wc+DDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771943463; c=relaxed/simple;
-	bh=s8u6XzlkXQzVyqyVcS4xszJKB+ptJwu47KifAgxDtqY=;
+	s=arc-20240116; t=1771943681; c=relaxed/simple;
+	bh=ONrZv/Iu6JWBztYdh+If2jwoZaKJW0Rj0z5BS5znOgA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fsoCKGihDGnZsz4MNqk2HCQUh33tSTABJ9bMyfgPzp6fhZiv8iJC+gitSuJiv1ySCsbeYOldaONP4sdGWEoYj2zq1Z3Sm3ye0ox45hTcba63kSGEpG0OmISy97/Hj7yBMGSYMvIWTHk9y2Jn4+lmcSFbMNBa+6fr/kxyqaSGQBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VBKOb24q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AB33C116D0;
-	Tue, 24 Feb 2026 14:31:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Wxn3VDezn8ZJkO48kyFfXBniTsW0yVqjvGTkbm5iJP5imCVxzU3WG3Bq69cGl4ehupkwcIU1NHxq0tuprVEjf675O4hTmorQVl6T5m8QbApaQulSdP4rnEVdZEt18Spz67XmbwDqCmrD0JE3jIU9ICsCkMtpKjxNbPRWn5617jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QIay9dhO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE404C116D0;
+	Tue, 24 Feb 2026 14:34:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771943462;
-	bh=s8u6XzlkXQzVyqyVcS4xszJKB+ptJwu47KifAgxDtqY=;
+	s=k20201202; t=1771943681;
+	bh=ONrZv/Iu6JWBztYdh+If2jwoZaKJW0Rj0z5BS5znOgA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VBKOb24qFMbrwXYLg1PyndBrMbPYNKWv0i18NjU0hQ+y96bv5ohHezj4WfMVbqvT1
-	 wM/uP20m6HNgQZsK7gJclsT1DsRowfMilSl/lbXwFFe5HW4IS1zgjR08riTcUeLyg4
-	 uzJ5xKdir6DFxSygGVuqa/aihNcXdpqsp4Ugyl/f7+QhTyw3Kot5TqntTATQJ2u1LD
-	 iwYIzB5i6B9sgQxTT05mkoeG6g1+9AXG0we1Am4nHQQCWFhB8p9XIR1+fFkduTTfZJ
-	 2zGl2KLe8a16eiuHfaFBXDwaPFjZWlWEXZKtn6eBE+HDTsvg4HQ6X8O1yH99xStHAP
-	 nMpR9Zp++UpFQ==
-Message-ID: <acfc7bb8-41a3-42b7-95e7-bd30aa8f7bcd@kernel.org>
-Date: Tue, 24 Feb 2026 15:30:58 +0100
+	b=QIay9dhOkmQuG3tnDjLlIFjJjdqNNX28pHW5hV13zcYYTXRuNob0DmAFubY7ELLwM
+	 JrlocQ3+VZ3H6U0FR+8CKOnu7nxLPILtXgsVZJQ4grj1xqj+MZjtQMLhuIPuA1LRzf
+	 HskFXf5m6YCduHz3G1b+/ahmyp9BQi3eSKNZDsptcgWN1bRQuIrmA1GbnZ7+iD29Hs
+	 n+4PUn8s+WrTDENwUajLTmSZ0z/pAJRWwYwe/b1bkvboFXXKZfqkL+CdPfsyoRqzUf
+	 q+x9v/Xe6B8T5Uw9XMjnw7C95JKHE3mYkOZf7fkUZsCoroZMnxLq6QdzT+1sYPi9Cm
+	 R9xYGX2hx0Z8Q==
+Message-ID: <1cdc36f2-6e51-492a-9063-7d0a784f5118@kernel.org>
+Date: Tue, 24 Feb 2026 15:34:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,16 +53,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add WIKO SAS
-To: adamp@posteo.de, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260221-wiko-chuppito-v2-0-6336b1b12389@posteo.de>
- <20260221-wiko-chuppito-v2-1-6336b1b12389@posteo.de>
+Subject: Re: [PATCH v2 1/3] media: dt-bindings: rockchip,vdec: Correct
+ reg-names order for RK35{76,88}
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
+References: <20260223-vdec-reg-order-rk3576-v2-0-daf4942dfc02@collabora.com>
+ <20260223-vdec-reg-order-rk3576-v2-1-daf4942dfc02@collabora.com>
+ <20260224-saffron-peccary-from-heaven-2d5e6e@quoll>
+ <244b22d3be77047163b4e47c4ed33b5b1befb4b4.camel@collabora.com>
+ <0874bb3d-b38d-4ea3-a5b0-2da2484cc3e5@kernel.org>
+ <e73da0713587ad5380344afa686a13431d07e232.camel@collabora.com>
+ <af6c6561-3d41-4967-a224-cf239335dc5b@kernel.org>
+ <0c9a158a-f70e-461c-900b-6f6485064a02@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,48 +119,92 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260221-wiko-chuppito-v2-1-6336b1b12389@posteo.de>
+In-Reply-To: <0c9a158a-f70e-461c-900b-6f6485064a02@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267934-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267933-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,wiko.com:url,posteo.de:email,qualcomm.com:email]
-X-Rspamd-Queue-Id: 14366188798
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4F21E1886EE
 X-Rspamd-Action: no action
 
-On 21/02/2026 21:55, Paul Adam via B4 Relay wrote:
-> From: Paul Adam <adamp@posteo.de>
+On 24/02/2026 15:07, Cristian Ciocaltea wrote:
+> On 2/24/26 3:54 PM, Krzysztof Kozlowski wrote:
+>> On 24/02/2026 14:48, Nicolas Dufresne wrote:
+>>> Le mardi 24 février 2026 à 14:18 +0100, Krzysztof Kozlowski a écrit :
+>>>> On 24/02/2026 14:14, Nicolas Dufresne wrote:
+>>>>>>>  
+>>>>>>>    reg-names:
+>>>>>>> -    items:
+>>>>>>> +    oneOf:
+>>>>>>>        - const: function
+>>>>>>> -      - const: link
+>>>>>>> -      - const: cache
+>>>>>>> +      - items:
+>>>>>>> +          - const: link
+>>>>>>> +          - const: function
+>>>>>>> +          - const: cache
+>>>>>>
+>>>>>> No, ABI break without point.
+>>>>>
+>>>>> Its not released yet, otherwise both order would need to be allowed.
+>>>>>
+>>>> Also, not true.
+>>>>
+>>>> git describe --contains  c6ffb7e1fb90
+>>>> v6.17-rc1~90^2~3
+>>>
+>>> Ack, I thought this was part of 7.0, it would have been logical to be part of
+>>> 7.0-rc1 I must say. Whatever happen, backward compat will unfortunatly be
+>>> needed.
+>>
+>>
+>> I was here checking the binding, so the ABI. DTS maybe was in v7.0-rc1
+>> indeed. Anyway, the commit msg should describe the impact on users of
+>> this ABI, at least known users.
 > 
-> Wiko is a french smartphone company: https://wiko.com
+> My bad, I only checked the DTS changes which landed in v7.0-rc1, and wrongly
+> assumed the binding also landed about the same time.  I think it's unlikely
+> there are any (external) users of this binding, but obviously we cannot be 100%
+> sure.
 > 
+> Would it be acceptable to extend the binding so that it allows both the current
+> and the new proposed order to coexist?
 
+Depends also on the drivers and that's your "users analysis" should
+cover. If there are no known released users of relatively new ABI, it is
+fine to propose the change with such explanation and reason - poor
+hardware description because convention expects the main device's
+address to be used as first "reg" entry.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+You can have also oneOf with older list "deprecated: true", if want to
+keep any users unaffected.
+
 
 Best regards,
 Krzysztof
