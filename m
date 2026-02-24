@@ -1,121 +1,127 @@
-Return-Path: <devicetree+bounces-267773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267775-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDQ/IJRnnWlgPQQAu9opvQ
-	(envelope-from <devicetree+bounces-267773-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:55:48 +0100
+	id 4EYdOXhpnWnYPwQAu9opvQ
+	(envelope-from <devicetree+bounces-267775-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:03:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0295184136
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D003C184325
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 10:03:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 493033009385
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 08:55:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AE91A3039984
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 09:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 770E136921A;
-	Tue, 24 Feb 2026 08:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0462F36997D;
+	Tue, 24 Feb 2026 09:02:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLvgV3h8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dPyJblg8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54ADF36920D
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 08:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D467B2571B0
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 09:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771923313; cv=none; b=MdkMzSLZ+vduC+el6XtC6p7UGaUVsTANyUWdztNI7y+97UWxxZZhR2RB34aHq/dcCotcggvHC0VxTCZ3FFqZygiFfNnoYo3IPpvtEK9Wg1glUuPRD33DRnzw4aJnCsLFYSYVgFyKfpbvhcesdansJg2DzSHL0Wz0EatiR/Zlhns=
+	t=1771923744; cv=none; b=dtmmG0Dy628cxYCwSIOcXvGP4tWTPNL8b9F1eOYv4tvNDtJA/1VNi8i/8xy8vA0F6aMZOF3wswvJMnlbhKm8nhoUkmmA38NYiElLVhkNTPaM7F+Wy2W5yIJ/P1u3R07a5CyJC8quh/TdIv2D6205ONShCOxgajwxV0XRUfygmNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771923313; c=relaxed/simple;
-	bh=eBGJSU9j2XvRNYPGQ924MHUta0p+ElB874PInZEXerc=;
+	s=arc-20240116; t=1771923744; c=relaxed/simple;
+	bh=cZvD/6XFqfPCPXyr2nRCWetVJUUTym67DrxVL+hwiSY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tjCYsvW9YnxPM8FbtrHSnoB2kPhy/KSQA2kDeaTND65G59nICef7wefL8cIrxXuBUe+a8SVS0ds3G6Pppddx+S8Ofllv2lwrMR0JlRagoUiOlWRGiBwlblOglggsz4M0xtm0a/gWcsySWiG4z23d8IGOu5V/obW14pTLkH/K7Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lLvgV3h8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 378A4C19424
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 08:55:13 +0000 (UTC)
+	 To:Cc:Content-Type; b=VXmfKwf8O3lxToHEBixd51aN25ck7Kugf+1MLR90Ha31ZmPVOr2bQidHoQy60XQATRtSMwVVzi+gbILOxlUuvOdjfPqG/R+6uvqei63PuiYzG2GeJyLSIDGzKNY3tJ3ZaTH2SKpOo/5i5tzv+KxHjsW6x0K/vBp99MfcNlR0RNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dPyJblg8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 998E7C2BCB3
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 09:02:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771923313;
-	bh=eBGJSU9j2XvRNYPGQ924MHUta0p+ElB874PInZEXerc=;
+	s=k20201202; t=1771923744;
+	bh=cZvD/6XFqfPCPXyr2nRCWetVJUUTym67DrxVL+hwiSY=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=lLvgV3h8xq5qg9NSOkvmF7CjP3FUDzajWTR3ZL4qVzb0hUn6Wk0+NU7F424T2W4jn
-	 j5MdGSfqvgf0LT3TwMi35VzR+R8f/+Z+yJy4UdftmtitWglrcd+x+92cIBkGBbSYHv
-	 EubQwcnYYbJyYEAYj7+toLjm1NS1sVmQXQLLLruviAmpsLOzNWLMrYd0TrPAZLDkuk
-	 t+y2oXUPxov0MTBjHsQBuA7MSShduO99Lm7r8MD1hk9k+UZUkvUG0Z6mwI3hwbcHOd
-	 +BWiQXrSv3SRztdzO8Mud9kd8OsdxpAJhug2CAqWWiltc/alfl/X6B4RxlGARZfuIj
-	 RF1bZz8THCBww==
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-794f701a3e6so50231287b3.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 00:55:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXvQkVCtqzUnbbGw4uQET2Rcv4LdfMr7lR10n0z45v9J1kCwfMNJ4k0IwRtW2e3zJJiL2e37JYXJaPZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3vlvgWMvIKz2J9ctu4xTjKvniXmda3TFoc2vcuc3DHMqpWkMf
-	g2g1d7DtoVbcsrnaxY6VoERjiD7dY/2kFdF35YWdf/3N+7PAXevIta6Yb6LWl5aOn/8zdDBTLH8
-	9cEBDMSlHirq9XWhGe8FeV+n67QZmqgM=
-X-Received: by 2002:a05:690c:9d:b0:796:3981:fd6e with SMTP id
- 00721157ae682-79828cd06bbmr109887937b3.10.1771923312312; Tue, 24 Feb 2026
- 00:55:12 -0800 (PST)
+	b=dPyJblg8XNBIFwgJpnAlSHMQbMmtUYguxmNAU/HeFketfG3kwyCTDuG+0UMKDiRpz
+	 aS5EVmby2GzxMFeRj7A6mNbBGj8JL3RySqiJ2Ecq9vnO/N7mrxtDKFvTr6CEmRKlwI
+	 xyPu7vPrYyF+F3jMp2KuTAR7LrgKOakDAChpwXzjIfHqCoYRjPbKlPyAdFlLihkobq
+	 l0/ZIyUqxEX4VAdNRY17pTxAkGiqlnQpM7uq94XKM8Jukn0N6rHINsrCedIzrRz560
+	 bvvnCjUV11WRlyGm/q/GOSIjrgVMToLq0R8gFVAfZnth+kRb0cO6ltXgFGyOwmgHV+
+	 HB+5H+ML5/6ew==
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-794719afcd4so53876797b3.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 01:02:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUc0CzMa56ftp8es5TZ+u0weD30DF1lKv3zLMTXbMe8hF/vjnklkgZVz4N/bXg17lfP7+WKqbd5f8nl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsHTdztAFODUxk7THZ/azRgIcgSMi+8HZLKcUlpyoEKwXzxElF
+	9bDmDd2rBz7B99R4X3gGOfTsX31otL9z2drfoiTWwqnvjXMSzngQsGzHN8ZllQtjwSgPzgCGlZ4
+	Nm4EaZXfFxoN5w1bRjWkdA5t/6SaNA1o=
+X-Received: by 2002:a53:b5cc:0:b0:649:ca5c:59a1 with SMTP id
+ 956f58d0204a3-64c788d108fmr7682076d50.27.1771923743916; Tue, 24 Feb 2026
+ 01:02:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260216-eliza-pinctrl-v3-0-a7b086595651@oss.qualcomm.com>
-In-Reply-To: <20260216-eliza-pinctrl-v3-0-a7b086595651@oss.qualcomm.com>
+References: <20260211-imx2_iomux_warning-v1-0-1c5233771b32@nxp.com> <20260211-imx2_iomux_warning-v1-1-1c5233771b32@nxp.com>
+In-Reply-To: <20260211-imx2_iomux_warning-v1-1-1c5233771b32@nxp.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 24 Feb 2026 09:55:01 +0100
-X-Gmail-Original-Message-ID: <CAD++jLn+SDeQ2tMFGLP_Ycnxe=o1LVwiL17Ke74gQhnMkzcnnQ@mail.gmail.com>
-X-Gm-Features: AaiRm51aLfBZxP6XvJrlAlD60TOOnbxW6lKE4rEhjZm3pzzukzTnwAxQzLo48F4
-Message-ID: <CAD++jLn+SDeQ2tMFGLP_Ycnxe=o1LVwiL17Ke74gQhnMkzcnnQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] pinctrl: qcom: Add support for Qualcomm Eliza SoC
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Date: Tue, 24 Feb 2026 10:02:12 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=6e-gRMMXBUV0OqdDu0BAsiXmch1mROZJ8VxnSCsf2oQ@mail.gmail.com>
+X-Gm-Features: AaiRm510za3zndD0inGMLCEH7QG-m8mCRLz97beAHEtvRk_6T0tZrIsQM9QjFTA
+Message-ID: <CAD++jL=6e-gRMMXBUV0OqdDu0BAsiXmch1mROZJ8VxnSCsf2oQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: convert fsl,imx27-pinctrl.txt
+ to YAML
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
+	Jacky Bai <ping.bai@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	NXP S32 Linux Team <s32@nxp.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-267773-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267775-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[nxp.com,gmail.com,pengutronix.de,kernel.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: B0295184136
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nxp.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D003C184325
 X-Rspamd-Action: no action
 
-On Mon, Feb 16, 2026 at 2:44=E2=80=AFPM Abel Vesa <abel.vesa@oss.qualcomm.c=
-om> wrote:
+On Wed, Feb 11, 2026 at 10:00=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 
-> Add the pinctrl driver, document the bindings and enable the
-> driver in defconfig as built-in.
+> Convert fsl,imx27-pinctrl.txt to YAML format.
 >
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> Additional changes:
+> - Add the compatible string "fsl,imx1-iomuxc".
+> - Add gpio@... child nodes.
+> - Add ranges property.
+> - Remove the redundant intermediate node between pinmux and group nodes.
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Thanks Abel, this v3 version applied for Linux v7.1!
+This patch (1/4) applied to the pinctrl tree.
 
 Yours,
 Linus Walleij
