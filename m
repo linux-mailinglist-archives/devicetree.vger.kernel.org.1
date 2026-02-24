@@ -1,599 +1,212 @@
-Return-Path: <devicetree+bounces-267858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267857-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GDBbIOGQnWlKQgQAu9opvQ
-	(envelope-from <devicetree+bounces-267858-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:52:01 +0100
+	id SLwOBlGQnWlKQgQAu9opvQ
+	(envelope-from <devicetree+bounces-267857-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:49:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523851869C2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:52:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87665186953
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:49:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2FAEA317C368
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:47:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7C0803010BAD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:46:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15AA377551;
-	Tue, 24 Feb 2026 11:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90C43803EF;
+	Tue, 24 Feb 2026 11:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VbHMgZ5l";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="a8EWh4N+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D053803DE
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 11:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A813803E5
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 11:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771933656; cv=none; b=P6cTcMV2t19lK/LfeBm0wuXfLPI8rQRtgBNlPgp10ck2TaFyRkKF/qRncLSwaexJeaujBowDtcvUcKvUSkXn9UdN95hXiourOOMa1+A7bIyxTd2NKCMQC8/Pp7fQayZ9c7S8pYqNRtnyCWy20GPtULvReD4NwS4FSrmwjQTvQ2Q=
+	t=1771933610; cv=none; b=fGYSqIseQdnPAICgSv5k8bj8wDJ92qqY4riDMWRt2fCwsNXFG51eMkkZaWtaH/H6dHGA2lvcRDbTu1mW+V4uSxeKPN+MATLLW3eNF38mDRDyb3ORUrREe2zNBXkd+2Xo58mbYrLVEh/Keo5mZHBkTd1XXmVUKdPXh6WCj3vBFUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771933656; c=relaxed/simple;
-	bh=p8nm0XdI5uzBZcXi1aC1FxXvSnohnEfddPLNJidw3Og=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=VlMMiAiYAr/gFLOwui+oXoUmtZxziakc0nwl+mibdCH1f757y3QVyTNH8PFeY0DhZf4hR5Ao+KkGCXNhA/44Z/rzVtLswAN+EPCLU3V/yNX6TIjdMXk2wR0TjFTBxhpz+CmFji/KwerG/yISQHvqfxQrT11shZlCkHWstujhweQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <f.pfitzner@pengutronix.de>)
-	id 1vuqsu-0002Ch-Hn; Tue, 24 Feb 2026 12:47:24 +0100
-From: Fabian Pfitzner <f.pfitzner@pengutronix.de>
-Date: Tue, 24 Feb 2026 12:46:35 +0100
-Subject: [PATCH] arm64: dts: imx8mp-frdm: add more features
+	s=arc-20240116; t=1771933610; c=relaxed/simple;
+	bh=bhvy8oe9cmU1vca4QHKXTqvHAeM6pxHdfMVdkDWGRtM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cvTQ+CmpD1Uwr2koBTgUJffZz7kcQj5XKU9S57XAE7ZGNK8Tr3TbDxK6uhQATBF6lz2rbl0WvCkG5ySOYx8zKxsvvE6MDwLETVa17vUp1m4DqUoYVOUQWZPdUj2t/tNYpufkwOzmGqbYIzNpJv9UOp3mnmT5K+ftSNsnlsLWhwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VbHMgZ5l; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=a8EWh4N+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61OAFMwD2560032
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 11:46:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tymcocPzSV9cCZXdLKcJBNN35FTMQW/hRXDDLBuZkN4=; b=VbHMgZ5leSwmsptb
+	ext4POx96LsS/q/rbrX6zjNh72QVJPFT2n8TKEMZ0skVFF13Yroo1Rij8U+lX/Dy
+	LVRDJWmGVEaO5yfYx9GbnXjqtbInqXsR2agAofx+a+Ux97343MkSFlfMe70YQIED
+	MFdLKhpHFUGS9N30lfQiGqCnPHrUe97qq6lwDeaeCRip3qmkYYUh+42sSL0rbnlt
+	D2qm79DJycCWOlW0tYejnPEDz6JACma7aSg5Jjxj3QwehtH2BSxUGIek+CYZr0yv
+	GYiCnFNAyl6MQTSI6mNVgzVY4a2zweTsfHTteIsySObwRFEwaELPcpR9l6wRBSYF
+	SXzkRQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ch4e398y1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 11:46:48 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cb399597fbso422818985a.3
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 03:46:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771933607; x=1772538407; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tymcocPzSV9cCZXdLKcJBNN35FTMQW/hRXDDLBuZkN4=;
+        b=a8EWh4N+E3QFufdDQHokd/UQfYqGu2nihPtSf7AsRcu2SWllrp2vu71CllrOHl64xC
+         PmADMayukDFaiOOaOXmhpg7s2JM1qCwL/IMZkb9+FBpA3mOT/JNV5HqDi5+rK2EnNhsw
+         JP0TCdkJztahdNK0G2vCct6cBD2WLyWG4ewrMCkiuzh91pWleI//+hRiMjtJa6nMj5Hf
+         mCgvnvp2jDJXVAQslSCRRU5AV+tzr5969iqazAEvETWO1afO3L7H8LFanmHUIqgAQoL1
+         Lmbxsden7OUX1KY5ksMQN5CxD5zsvOvKVQrq1WIAYoIr/WbsNsSfU1I02byQ3Ks5ynao
+         MW5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771933607; x=1772538407;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tymcocPzSV9cCZXdLKcJBNN35FTMQW/hRXDDLBuZkN4=;
+        b=fYnBP9AWaUTg0LLLJUizkgNfa5wLXPE++Y6Y4rnYlPtekAbHwKVAXgQx6wVEpAVykc
+         1HhcE6EncFx9yb9AVeKA1LsDGJXq4VxiQS2m+4Z/Bfp2zxjswU/lPY6Y2uCuG6ePcrhY
+         VuUmHwoEcWm2ym1RPVJwhivI3Hkk+uO3b/FfKN1s7/130JPmRnTMDNbDQl0TZNB8jaCi
+         TPaBS6uqJIFatp+93OT2Q16fErxECxDJsZsqqXZR2xrpBf4pkXVlvo1ghntZNWxidKy9
+         pQLrmvPetThev32Zz02mphd8g1lIKxgTpDgP2D/h/6JLajT8nfkmDB0T1tHxZoCJ/z+E
+         Z4fw==
+X-Forwarded-Encrypted: i=1; AJvYcCUyji3cBAlhGdljysBqzhQ3KTVLydj7wxY4BBEZy1N88OPT/55qzTEL/QCnTv1FKLtvjjx0vL+76+os@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdzThdTvqreAsRdcDxPYiirbl8OHWmnm+9SevJE5eXwVXlSEq+
+	tsok6qbnGvnmvNQhzFa63KfbE8YjZdmCT1r/sIffLeLRIy5nfOuagxS3iLCfcZTmCRb3wz2bX2B
+	P9SEY2qMKh/94wE1VEB7P0DqZxEo5OFOlQQwlyJYGx3IsM90PNAt8SFfucKDFvNMp
+X-Gm-Gg: AZuq6aI3oWJgDHbhSm2FSWD3BGKhFhOd4eVc1aoFSK5kBBgYjDSW7ueQ5MMn5ZrOGsq
+	zrUVaa2nR3365Qyxeq3a/OoJurbnsIs+5MTRbn7ckJsaR1uVxHCAAvlExoqc+k0GzjCuxNCRtMA
+	R6B4ack0JABovKXswgvnM2NT2W96JQMW5c1RzDQ6AMtIjDgNyhPAGqxavpmsUpxXWBYORxuR6Q5
+	UoYB81Yx+hbqjO8MtmK2sGOFPf6oZUNKLVGMFgXzoeupJ1Bd9QgLTci6advpvcskjmIO7EIVKU3
+	+EBmDohq3tM8cac+DFq611t5FkKRxTy8NMgY9hldNL8sLRuvyRokiK3l6g4vh7HkNPTcSM6rI9L
+	bvB7a1ZIENm/qFC1vzcuw/BugeQrrRgi8AbXb/cqxJemD9uqY4w8uaIF8i3QeVAHszh/GGJBAP8
+	hij6o=
+X-Received: by 2002:a05:620a:6910:b0:8b2:ea2d:a5 with SMTP id af79cd13be357-8cb8cabef31mr1110164585a.7.1771933607497;
+        Tue, 24 Feb 2026 03:46:47 -0800 (PST)
+X-Received: by 2002:a05:620a:6910:b0:8b2:ea2d:a5 with SMTP id af79cd13be357-8cb8cabef31mr1110162485a.7.1771933607079;
+        Tue, 24 Feb 2026 03:46:47 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9084f03911sm411180566b.65.2026.02.24.03.46.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Feb 2026 03:46:46 -0800 (PST)
+Message-ID: <8a2db0f2-c9f5-474f-afcc-53248da19297@oss.qualcomm.com>
+Date: Tue, 24 Feb 2026 12:46:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFT v2 1/3] dt-bindings: usb: qcom,dwc3: Allow high-speed
+ interrupt on Glymur, Hamoa and Milos
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20260223-dts-qcom-glymur-add-usb-support-v2-0-f4e0f38db21d@oss.qualcomm.com>
+ <20260223-dts-qcom-glymur-add-usb-support-v2-1-f4e0f38db21d@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260223-dts-qcom-glymur-add-usb-support-v2-1-f4e0f38db21d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260224-fpf-imx8mp-frdm-v1-1-d7f3b57c18e0@pengutronix.de>
-X-B4-Tracking: v=1; b=H4sIAJqPnWkC/x3MMQqAMAxA0atIZgMxliJeRRzEJpqhWloQQby7x
- fEN/z9QJJsUGJsHslxW7DwquraBdV+OTdBCNTCxJ2aHmhQt3kNMqDlEdMSrC0q+J4ZapSxq93+
- c5vf9AHO2cDZhAAAA
-X-Change-ID: 20260224-fpf-imx8mp-frdm-402c4df06302
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Fabian Pfitzner <f.pfitzner@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
-X-SA-Exim-Mail-From: f.pfitzner@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Authority-Analysis: v=2.4 cv=UtFu9uwB c=1 sm=1 tr=0 ts=699d8fa8 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=iuyhanrI9R5_42HSFcsA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-GUID: 9AOGjPiVg4rMaNNX3U50jCvq1UMxbaqu
+X-Proofpoint-ORIG-GUID: 9AOGjPiVg4rMaNNX3U50jCvq1UMxbaqu
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI0MDA5MyBTYWx0ZWRfX001vRHMhwqfI
+ PtFLtZCwPv6ue50hdaf1AIWMNUwkJ+Vh/GfWygRor83+p4MR5U//jkKWlKibkHpMqAM/oUXVM5f
+ djW4UIQkr4JrJVeODLAHntRVL3J840w+j/4ZkcxmIEt1ZhPdpRD6AuusQNKRJ1tbMQafCKCP5Ov
+ VvXy+NTafWniDNeN9D7IazQhHofwvizBUjvOJvFPRm1bd4OklGRFf96Jq6IjRJoR22vltNIsw79
+ AoSBXBbMcRhqCd7lUF5FcZTsaWakoBug69OiHNFFh7i5mcb3nLb9KG9sRSoRTFihjWMAcZwh7VK
+ YLnCKuNxfmBBbDRvS/xMZCuwEzu7T6G4/gLlBeoKf6Ng4mzymTBHHKI8VTWf+0l4a0UIsrtWfwe
+ qNVGKjkEoP4j3FuwfUxaTtLQk5JMERha6hNc/4BBXThSLYHF9vx01Dfoz8nU9VKg/NhQA70tknE
+ PH2Vq+vPF0s3xVcaJLg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-24_01,2026-02-23_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 spamscore=0 adultscore=0 malwarescore=0
+ suspectscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602240093
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267858-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267857-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[f.pfitzner@pengutronix.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.1:email,pengutronix.de:mid,pengutronix.de:email,0.0.0.2:email,2.98.90.0:email]
-X-Rspamd-Queue-Id: 523851869C2
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 87665186953
 X-Rspamd-Action: no action
 
-Add support for the following new features:
+On 2/23/26 4:37 PM, Abel Vesa wrote:
+> Some of the controllers found of these platforms can be tied up to a
+> single high-speed PHY, basically rendering them as USB 2.0 controllers.
+> So in this case, the interrupt to the Synopsys DesignWare Core is coming
+> from the high-speed PHY, so allow the interrupt to reflect that.
+> 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+> index 7d784a648b7d..f879e2e104c4 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+> @@ -500,7 +500,7 @@ allOf:
+>              - const: pwr_event
+>              - const: dp_hs_phy_irq
+>              - const: dm_hs_phy_irq
+> -            - const: ss_phy_irq
+> +            - enum: [hs_phy_irq, ss_phy_irq]
 
-- SD Card
-- Ethernet (FEC + EQOS)
-- Wifi
-- USB
-- HDMI
+Since you're tracking this change, after it lands, could you please fix up hamoa
+(SPI 243) and milos (AFAICT SPI 349) too?
 
-The imx8mp-evk dt and the NXP downstream imx8mp-frdm dts were
-taken as a reference [1].
-
-[1] https://github.com/nxp-imx/linux-imx
-
-Signed-off-by: Fabian Pfitzner <f.pfitzner@pengutronix.de>
----
-Add support for the following new features:
-
-- SD Card
-- Ethernet (FEC + EQOS)
-- Wifi
-- USB
-- HDMI
-
-The imx8mp-evk dt and the NXP downstream imx8mp-frdm dts were
-taken as a reference [1].
-
-[1] https://github.com/nxp-imx/linux-imx
----
- arch/arm64/boot/dts/freescale/imx8mp-frdm.dts | 409 ++++++++++++++++++++++++++
- 1 file changed, 409 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-index 55690f5e53d7e1fbf7eae8a1f31eb064465ccb6c..09a44ff8fb6aaf8b083c8af06d9cf1926f5ac197 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-@@ -42,6 +42,68 @@ memory@40000000 {
- 		reg = <0x0 0x40000000 0 0xc0000000>,
- 		      <0x1 0x00000000 0 0x40000000>;
- 	};
-+
-+	native-hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "HDMI OUT";
-+		type = "a";
-+
-+		port {
-+			hdmi_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_out>;
-+			};
-+		};
-+	};
-+
-+	sdio_pwrseq: usdhc1-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	reg_usdhc1_vmmc: regulator-wifi-vmmc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "WLAN_EN";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&pcal6416_1 10 GPIO_ACTIVE_HIGH>;
-+		/*
-+		 * IW612 wifi chip needs more delay than other wifi chips to complete
-+		 * the host interface initialization after power up, otherwise the
-+		 * internal state of IW612 may be unstable, resulting in the failure of
-+		 * the SDIO3.0 switch voltage.
-+		 */
-+		enable-active-high;
-+		startup-delay-us = <20000>;
-+	};
-+
-+	reg_usdhc1_vqmmc: regulator-wifi-vqmmc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "regulator-wifi-vqmmc";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		enable-active-high;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-sd {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_usb_vbus: regulator-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_VBUS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&pcal6416_1 5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- };
- 
- &A53_0 {
-@@ -60,6 +122,148 @@ &A53_3 {
- 	cpu-supply = <&reg_arm>;
- };
- 
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy0>;
-+	snps,force_thresh_dma_mode;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@2 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <2>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pinctrl_eqos_phy>;
-+			reset-gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <80000>;
-+			realtek,clkout-disable;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <5>;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+		};
-+
-+		queue2 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x4>;
-+		};
-+
-+		queue3 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x8>;
-+		};
-+
-+		queue4 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0xf0>;
-+		};
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <5>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+			snps,map-to-dma-channel = <0>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+			snps,map-to-dma-channel = <1>;
-+		};
-+
-+		queue2 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x4>;
-+			snps,map-to-dma-channel = <2>;
-+		};
-+
-+		queue3 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x8>;
-+			snps,map-to-dma-channel = <3>;
-+		};
-+
-+		queue4 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0xf0>;
-+			snps,map-to-dma-channel = <4>;
-+		};
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy1>;
-+	fsl,magic-packet;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy1: ethernet-phy@1 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <1>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pinctrl_fec_phy>;
-+			eee-broken-1000t;
-+			reset-gpios = <&gpio4 2 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <80000>;
-+			realtek,aldps-enable;
-+			realtek,clkout-disable;
-+		};
-+	};
-+};
-+
-+
-+&hdmi_pvi {
-+	status = "okay";
-+};
-+
-+&hdmi_tx {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hdmi>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			hdmi_tx_out: endpoint {
-+				remote-endpoint = <&hdmi_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&hdmi_tx_phy {
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-@@ -218,6 +422,32 @@ &i2c3 {
- 	status = "okay";
- };
- 
-+&lcdif3 {
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	status = "okay";
-+};
-+
-+&usb3_0 {
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	vbus-supply = <&reg_usb_vbus>;
-+	status = "okay";
-+};
-+
-+&usb3_1 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -237,6 +467,36 @@ &uart3 {
- 	status = "okay";
- };
- 
-+&usdhc1 {
-+	assigned-clocks = <&clk IMX8MP_CLK_USDHC1>;
-+	assigned-clock-rates = <200000000>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	vmmc-supply = <&reg_usdhc1_vmmc>;
-+	vqmmc-supply = <&reg_usdhc1_vqmmc>;
-+	bus-width = <4>;
-+	non-removable;
-+	no-sd;
-+	no-mmc;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
-+	assigned-clock-rates = <400000000>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
- &usdhc3 {
- 	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
- 	assigned-clock-rates = <400000000>;
-@@ -250,6 +510,74 @@ &usdhc3 {
- };
- 
- &iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x2
-+			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x2
-+			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x90
-+			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x90
-+			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x90
-+			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x90
-+			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
-+			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x90
-+			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x16
-+			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x16
-+			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x16
-+			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x16
-+			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x16
-+			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
-+		>;
-+	};
-+
-+	pinctrl_eqos_phy: eqosphygrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_RXC__GPIO4_IO22				0x10
-+		>;
-+	};
-+
-+	pinctrl_fec: fecgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC		0x2
-+			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO		0x2
-+			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0		0x90
-+			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1		0x90
-+			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2		0x90
-+			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3		0x90
-+			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC		0x90
-+			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL	0x90
-+			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0		0x16
-+			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1		0x16
-+			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2		0x16
-+			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3		0x16
-+			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL	0x16
-+			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC		0x16
-+		>;
-+	};
-+
-+	pinctrl_fec_phy: fecphygrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02		0x10
-+		>;
-+	};
-+
-+	pinctrl_hdmi: hdmigrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x10
-+		>;
-+	};
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			/* Pin might be required by multiple drivers
-+			 * (e. g. HDMI Audio and HDMI TX)
-+			 */
-+			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x40000010
-+		>;
-+	};
-+
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL	0x400001c2
-@@ -289,6 +617,12 @@ MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x146
- 		>;
- 	};
- 
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
-+		>;
-+	};
-+
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
-@@ -305,6 +639,81 @@ MX8MP_IOMUXC_ECSPI1_MISO__UART3_DCE_CTS	0x140
- 		>;
- 	};
- 
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x190
-+			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d0
-+			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d0
-+			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d0
-+			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d0
-+			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x194
-+			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d4
-+			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d4
-+			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d4
-+			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d4
-+			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d4
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x196
-+			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d6
-+			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d6
-+			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d6
-+			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d6
-+			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d6
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d0
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT	0xc0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x194
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d4
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d4
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d4
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d4
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d4
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT 0xc0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x196
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD	0x1d6
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0	0x1d6
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1	0x1d6
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2	0x1d6
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3	0x1d6
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT 0xc0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
-+		>;
-+	};
-+
- 	pinctrl_usdhc3: usdhc3grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
-
----
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-change-id: 20260224-fpf-imx8mp-frdm-402c4df06302
-
-Best regards,
--- 
-Fabian Pfitzner <f.pfitzner@pengutronix.de>
-
+Konrad
 
