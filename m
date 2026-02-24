@@ -1,252 +1,208 @@
-Return-Path: <devicetree+bounces-267949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267950-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kJmELkLCnWnzRgQAu9opvQ
-	(envelope-from <devicetree+bounces-267949-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:22:42 +0100
+	id aOu8F37CnWnzRgQAu9opvQ
+	(envelope-from <devicetree+bounces-267950-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:23:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C720188ED4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:22:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20AE5188F0A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:23:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 815A93038F18
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:22:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8D6F030970D2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0F463A1E7C;
-	Tue, 24 Feb 2026 15:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56FEC3A1E86;
+	Tue, 24 Feb 2026 15:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ksOR/Agx";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Y1sQjNP9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 197014502F;
-	Tue, 24 Feb 2026 15:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9974502F
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:23:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771946559; cv=none; b=ql6+BnDspNxzAeIs8meyAn06vU79aMIswB4SG/eXlExLPRStpJM0OQbGAB4jhtBJZCjUoGGTzNzeV6h+liM8EuxyH1YTdhuBe+BOtAGVhQs3ele2wQAtPBIdAYaPEpfvszSNchPZ8vrrTFpYiSwdkdIu5iEMV6SjFUilKEd9gmk=
+	t=1771946611; cv=none; b=qdjdPjTISjfJ7d3oQoKHtNd4t0uX/nMCKIFN1zM79ZhKu2WhcAbAA9HqJvIfsAbN9Bj11YknlwkwLbAMJN1glnQWALCkZJ1R1sP//jrpxAF4V440LoDiWw2gXmQTLSWPUeoG8WAvYpdD/gNbbyQauXABdwExrlA9HsYKUzRyRJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771946559; c=relaxed/simple;
-	bh=lJJG+rbmg1bthB43+VBSJv90qHClL59YAS6yfJ0ArGw=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hIXIMSA3NIt34kjljMhu0NciZeLr4Q6sQStqUW934Um3yQZ0thYdrhixOfChR5PnoSWWAPp1Ny27BoXYzDkdw80ih8ghoDzFwi8lYCbeJufqg1541vxsQtZsZkAxL6b87u+9m6ciadwpAaEAcAASqqNoPkIu1xPOPKuX1cL1kkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.224.150])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4fL1fp4W6xzJ46g6;
-	Tue, 24 Feb 2026 23:22:10 +0800 (CST)
-Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
-	by mail.maildlp.com (Postfix) with ESMTPS id 612B64056A;
-	Tue, 24 Feb 2026 23:22:32 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml500005.china.huawei.com
- (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 24 Feb
- 2026 15:22:31 +0000
-Date: Tue, 24 Feb 2026 15:22:30 +0000
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Ahmed Tiba <ahmed.tiba@arm.com>
-CC: <devicetree@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
-	<Dmitry.Lamerov@arm.com>, <catalin.marinas@arm.com>, <bp@alien8.de>,
-	<robh@kernel.org>, <rafael@kernel.org>, <will@kernel.org>,
-	<conor@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-doc@vger.kernel.org>, <krzk+dt@kernel.org>, <Michael.Zhao2@arm.com>,
-	<tony.luck@intel.com>, "Mauro Carvalho Chehab" <mchehab+huawei@kernel.org>
-Subject: Re: [PATCH v2 01/11] ACPI: APEI: GHES: share macros via a private
- header
-Message-ID: <20260224152230.00000531@huawei.com>
-In-Reply-To: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-1-347fa2d7351b@arm.com>
-References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
-	<20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-1-347fa2d7351b@arm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1771946611; c=relaxed/simple;
+	bh=/DYZw3AqVi0HQFvijkQ+vQHOy/zex5fgGfkRBnsMJu8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WItQXzimBU8PiFqkVDZsK3KdQBPbz0RehAVF8i1n5lRc99WMNYNkbtTAX4xkohR5vzdQDspp/kFydEEShqZZod9GfKKd16I47XfQOO+A35yy5kmFbHQ+toq1mOyu1kFtT0kFvdQFtFEJv300Gif0jkr6Qk23bQxDZGjxpqILmqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ksOR/Agx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Y1sQjNP9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61OAFRll1774491
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:23:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Q28D0qIiT56rXz2RxXIvxCmq
+	8mmHIJrA+524DFPK59o=; b=ksOR/AgxdUpOfWrPq7kyNAhiQaaURE3j+66rmOgo
+	vwCFX+YqsS578l1jtJQxaAa4jyld0tnLJENRhMY72zbTYlPMYzkxsLO/x6I1kZpV
+	SHsuqV09JEkj2tYCTXRvnaRcKp148uuJKKbe7UV24pngiLyNR+Ht7t5Tx47IGtCC
+	ZPA4Wkh6w0Yp811H+grvVRn37PNeOOmXa7flt2mazNzUbAeJuxQeTAg7pJrvI5DI
+	3Mnb6qlpwi0j1IQl02L3qWN1+UDQSWkOicIC7nqErgkUxXGLCUc79/Diklof8o3l
+	gxrMkBTGTG2+PlXk+Qnq5otQe3mR+QHUANqqcxiLYKyz7Q==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cgpj8cdq2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:23:27 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8cb4e37a796so4031793085a.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 07:23:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1771946607; x=1772551407; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q28D0qIiT56rXz2RxXIvxCmq8mmHIJrA+524DFPK59o=;
+        b=Y1sQjNP9PL8oEFEn78rI16vSAW8MgtbfoIOSHjioWiX+6HobjDtHJxwkUR3xnK0Qjl
+         UrmW0NfBjSLi31pbuw8OVQn1oO0dxzHTRmkA96+wj/EebeVzL6OtVm/BdxhBMnl5r44a
+         2cI6rg3qppDM6J+Zrku7XVJK/mkBvL4Xy7Wt/X1jNCp2UTWIBZU9/vAJXGLtS1j5n9DD
+         WVmvByekBdYeO56t9g61XdyPmLvTUwcyp3qPkezYn3GfD36TbIefSCuMwOaXAMWqXLbZ
+         KZaTs0zA6Ja5y7UcYglcvtuyJKlJutahpIcm940AHZo4o9hYOaao+viOhzNOSReK3hGR
+         swPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771946607; x=1772551407;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Q28D0qIiT56rXz2RxXIvxCmq8mmHIJrA+524DFPK59o=;
+        b=gCQyh9t7Qu+OXxbJD9dD0xRWmxCPaFLCbUnVP/wNx2xhUR6PpFNtGEqH1ioz2dDwoR
+         KWQgSYKtL1firTgfptklulUZH9k/vSryjOEPwQK2UcRpbB2rxQ7RCIPNqW5Eqc0ATeDZ
+         yIwwcGMeYs7RHAzJ5bLRClagyjbPjQexA85UzyNBZ3X9bhWQpadMOXGi0UY3y1TN5Qqj
+         aezKk6ZIlIoh9Li8CidNJSv5MNn5mhAk7a0ATm0m5V03RksoZgbcLnam+IqQJ8s5mxd0
+         V7khC19g3S5ZDsxZ0BpgBPahQ2If8/r1zjojYMp+5r9gYUEIxd0CN8EHZbv8j6axjsz6
+         KUzA==
+X-Forwarded-Encrypted: i=1; AJvYcCUS5fT7AB+OIX71vxwcyhCtQda6fUoenSLjBTHei+ScF/A5Fg4qAUuXQD/LLXdR3pvMISyubhJmXDgm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXLkyesjCmWWhVsCfGJ2Bt8ouKD1yVzOZKfm0mg47KPj75PJsr
+	iykNmnIUupC2AICV8LUWQfa54C627I7NirexwpEW79xZNtXI8gmZszlijzMqZDgrNAS2aD0uuDE
+	uxvm79JjZ3pr9DhUyo3qDGvgezp9SXXQb0nxRHiFcdZvFsAayQaOu2BMrxsk/OaRb
+X-Gm-Gg: AZuq6aI2yp/4xkJNG2M7UmsAIhYfYw1asKERUpKxftwVQF36rchtPZgwlgOh7A8eOaR
+	AJX/G6F6jRINe+P7pQmg1AAGUsrSyN1aUhHMS2NM91n7GRlnUIgHPgchSLmc/o8L4IuxY3BodOP
+	8t5lSlLFLT+bp/VR7g2Gv3AgsFvifZP9WYOOhrdsfV2XHVojgXUpfzpxBsd4d1L74baBL2HilT6
+	YAq8EKwt/XnkqMSPN/ceS4XdJWCjSP57PfwGtbAWg3L+35ml9Ie+rk2sb7S9FTPARuWSN/rc9hK
+	30+7tmMhKs0OPz5xegawHWQ4/4wJMUjG3H4MBt9ByY3qIRdvTV8VdMtgWguPdlt8zcwThu5YCQg
+	Ve2s9sY1+UEi09NgwAqQ/Az/jwXUYtw8LIVj1/QyasGkAyuFfR03KMolbIKaifIbExctkZPEtoh
+	FeiN0t2zhy/bSJBlcDAOrzS06AhRBYpw2g3DI=
+X-Received: by 2002:a05:620a:c44:b0:8b2:989b:efe6 with SMTP id af79cd13be357-8cb8ca0d840mr1594974785a.26.1771946607089;
+        Tue, 24 Feb 2026 07:23:27 -0800 (PST)
+X-Received: by 2002:a05:620a:c44:b0:8b2:989b:efe6 with SMTP id af79cd13be357-8cb8ca0d840mr1594969585a.26.1771946606560;
+        Tue, 24 Feb 2026 07:23:26 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a0eeb4b4afsm2274933e87.79.2026.02.24.07.23.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Feb 2026 07:23:25 -0800 (PST)
+Date: Tue, 24 Feb 2026 17:23:24 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: Introduce Eliza Soc base dtsi
+Message-ID: <msp3bxcyivr6zsmj6fobxbra4mxans5oworqjf4rrrgxv4s24m@6pembdv6w6nc>
+References: <20260224-eliza-base-dt-v1-0-54e8e3a5fe43@oss.qualcomm.com>
+ <20260224-eliza-base-dt-v1-2-54e8e3a5fe43@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
- dubpeml500005.china.huawei.com (7.214.145.207)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260224-eliza-base-dt-v1-2-54e8e3a5fe43@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI0MDEyNiBTYWx0ZWRfX+d4oKQtsGGmw
+ 9P/pV/Ckb4LDq4xRc2bNt9Hiai5GLBFlgQMsHkPTiFEeG0zWYYYW7JJWEnH1/K904CCsRiOltxp
+ c+sd043UWBCMnHv+tETBO9w7ZHne4JT/xQ+GFunlW7fvXhOJa9WLxdUbXjWOv0fWJVagIdaj7bb
+ KJE1hGKPzvDdF0RMHj0g/CZAmumRDdoidAtr8bx3/uMZGoQIJPvurl1L8kLg89nVYo7O6skonZe
+ tUV3VW5I1zezZU2XYTAkVPEpjevumrqzALewS01uIAc4eaQ0mKRlKVdXg+mZzpqdEQxE016bIci
+ PZhfgrxCp/jlCwExpb7RR0NPTHJQK+r6SdXfoprx2T/BEzEoDhyXUhCabzAyWVbEOcRTGIAs9vs
+ tSFL2XtC949tj5Fv70BkkPUGcI0JRQN2P0RjB1MPNsKuSeHlbmwX/gw/j9SXE83UriAWB/2Pw6A
+ hTHP4GcR5h2mQQCVdlg==
+X-Proofpoint-GUID: e6eXFFgePviPvMFoRguit0zX-HLS9WVD
+X-Authority-Analysis: v=2.4 cv=Z5Lh3XRA c=1 sm=1 tr=0 ts=699dc26f cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8
+ a=p1HlqQK6dgA6bnMk3p8A:9 a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-ORIG-GUID: e6eXFFgePviPvMFoRguit0zX-HLS9WVD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-24_02,2026-02-23_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0
+ priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602240126
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-267949-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267950-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.987];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,huawei.com:mid]
-X-Rspamd-Queue-Id: 2C720188ED4
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 20AE5188F0A
 X-Rspamd-Action: no action
 
-On Fri, 20 Feb 2026 13:42:19 +0000
-Ahmed Tiba <ahmed.tiba@arm.com> wrote:
-
-> Carve the CPER helper macros out of ghes.c and place them in a private
-> header so they can be shared with upcoming helper files. This is a
-> mechanical include change with no functional differences.
+On Tue, Feb 24, 2026 at 02:13:26PM +0200, Abel Vesa wrote:
+> Introduce the initial support for the Qualcomm Eliza SoC.
+> It is a high-tier SoC designed for mobile platforms.
 > 
-> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
-+CC Mauro as he's been doing a lot of work on error injection recently so
-can probably review the use of the various structures much more easily
-than I can!
-
-My main comment is on the naming of the new header.
-
-Jonathan
-
-
+> The initial submission enables support for:
+> - CPU nodes with cpufreq and cpuidle support
+> - Global Clock Controller (GCC)
+> - Resource State Coordinator (RSC) with clock controller & genpd provider
+> - Interrupt controller
+> - Power Domain Controller (PDC)
+> - Vendor specific SMMU
+> - SPMI bus arbiter
+> - Top Control and Status Register (TCSR)
+> - Top Level Mode Multiplexer (TLMM)
+> - Debug UART
+> - Reserved memory nodes
+> - Interconnect providers
+> - System timer
+> - UFS
+> 
+> Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 > ---
->  drivers/acpi/apei/ghes.c | 60 +-----------------------------
->  include/acpi/ghes_cper.h | 95 ++++++++++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 96 insertions(+), 59 deletions(-)
-> 
-> diff --git a/drivers/acpi/apei/ghes.c b/drivers/acpi/apei/ghes.c
-> index f96aede5d9a3..07b70bcb8342 100644
-> --- a/drivers/acpi/apei/ghes.c
-> +++ b/drivers/acpi/apei/ghes.c
-
->  
->  static struct ghes_estatus_cache __rcu *ghes_estatus_caches[GHES_ESTATUS_CACHES_SIZE];
-> diff --git a/include/acpi/ghes_cper.h b/include/acpi/ghes_cper.h
-> new file mode 100644
-> index 000000000000..2597fbadc4f3
-> --- /dev/null
-> +++ b/include/acpi/ghes_cper.h
-> @@ -0,0 +1,95 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * APEI Generic Hardware Error Source: CPER Helper
-
-There is other stuff in her usch as the GHES acks etc
-in ghes_clear_estatus(). So I think this intro text
-needs a bit more thought.  The boundary is already rather
-blurred though as for example cper_estatus_len() is only
-tangentially connected to cper.
-
-> + *
-> + * Copyright (C) 2026 ARM Ltd.
-
-Doesn't make sense to ad this copyright in this patch as so far
-it's cut and paste of code from a file that you didn't write (at least
-not in 2026!)
-
-Might make sense after a few patches, in which case add the copyright
-when it does.
-
-> + * Author: Ahmed Tiba <ahmed.tiba@arm.com>
-> + * Based on ACPI APEI GHES driver.
-> + *
-> + */
-> +
-> +#ifndef ACPI_APEI_GHES_CPER_H
-> +#define ACPI_APEI_GHES_CPER_H
-> +
-> +#include <linux/workqueue.h>
-> +
-> +#include <acpi/ghes.h>
-> +
-> +#define GHES_PFX	"GHES: "
-> +
-> +#define GHES_ESTATUS_MAX_SIZE		65536
-> +#define GHES_ESOURCE_PREALLOC_MAX_SIZE	65536
-> +
-> +#define GHES_ESTATUS_POOL_MIN_ALLOC_ORDER 3
-> +
-> +/* This is just an estimation for memory pool allocation */
-> +#define GHES_ESTATUS_CACHE_AVG_SIZE	512
-> +
-> +#define GHES_ESTATUS_CACHES_SIZE	4
-> +
-> +#define GHES_ESTATUS_IN_CACHE_MAX_NSEC	10000000000ULL
-> +/* Prevent too many caches are allocated because of RCU */
-> +#define GHES_ESTATUS_CACHE_ALLOCED_MAX	(GHES_ESTATUS_CACHES_SIZE * 3 / 2)
-> +
-> +#define GHES_ESTATUS_CACHE_LEN(estatus_len)			\
-> +	(sizeof(struct ghes_estatus_cache) + (estatus_len))
-> +#define GHES_ESTATUS_FROM_CACHE(estatus_cache)			\
-> +	((struct acpi_hest_generic_status *)				\
-> +	 ((struct ghes_estatus_cache *)(estatus_cache) + 1))
-> +
-> +#define GHES_ESTATUS_NODE_LEN(estatus_len)			\
-> +	(sizeof(struct ghes_estatus_node) + (estatus_len))
-> +#define GHES_ESTATUS_FROM_NODE(estatus_node)			\
-> +	((struct acpi_hest_generic_status *)				\
-> +	 ((struct ghes_estatus_node *)(estatus_node) + 1))
-> +
-> +#define GHES_VENDOR_ENTRY_LEN(gdata_len)                               \
-> +	(sizeof(struct ghes_vendor_record_entry) + (gdata_len))
-> +#define GHES_GDATA_FROM_VENDOR_ENTRY(vendor_entry)                     \
-> +	((struct acpi_hest_generic_data *)                              \
-> +	((struct ghes_vendor_record_entry *)(vendor_entry) + 1))
-> +
-> +static inline bool is_hest_type_generic_v2(struct ghes *ghes)
-> +{
-> +	return ghes->generic->header.type == ACPI_HEST_TYPE_GENERIC_ERROR_V2;
-> +}
-> +
-> +/*
-> + * A platform may describe one error source for the handling of synchronous
-> + * errors (e.g. MCE or SEA), or for handling asynchronous errors (e.g. SCI
-> + * or External Interrupt). On x86, the HEST notifications are always
-> + * asynchronous, so only SEA on ARM is delivered as a synchronous
-> + * notification.
-> + */
-> +static inline bool is_hest_sync_notify(struct ghes *ghes)
-> +{
-> +	u8 notify_type = ghes->generic->notify.type;
-> +
-> +	return notify_type == ACPI_HEST_NOTIFY_SEA;
-> +}
-> +
-> +struct ghes_vendor_record_entry {
-> +	struct work_struct work;
-> +	int error_severity;
-> +	char vendor_record[];
-> +};
-> +
-> +static struct ghes *ghes_new(struct acpi_hest_generic *generic);
-> +static void ghes_fini(struct ghes *ghes);
-> +
-> +static int ghes_read_estatus(struct ghes *ghes,
-> +		      struct acpi_hest_generic_status *estatus,
-> +		      u64 *buf_paddr, enum fixed_addresses fixmap_idx);
-> +static void ghes_clear_estatus(struct ghes *ghes,
-> +			struct acpi_hest_generic_status *estatus,
-> +			u64 buf_paddr, enum fixed_addresses fixmap_idx);
-
-I'm not sure some of this makes sense in a file named ghes_cper.h
-Maybe we just need a different intro comment though.
-
-> +static int __ghes_peek_estatus(struct ghes *ghes,
-> +			struct acpi_hest_generic_status *estatus,
-> +			u64 *buf_paddr, enum fixed_addresses fixmap_idx);
-> +static int __ghes_check_estatus(struct ghes *ghes,
-> +			 struct acpi_hest_generic_status *estatus);
-> +static int __ghes_read_estatus(struct acpi_hest_generic_status *estatus,
-> +			u64 buf_paddr, enum fixed_addresses fixmap_idx,
-> +			size_t buf_len);
-> +
-> +#endif /* ACPI_APEI_GHES_CPER_H */
+>  arch/arm64/boot/dts/qcom/eliza.dtsi | 1304 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 1304 insertions(+)
 > 
 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
+
+-- 
+With best wishes
+Dmitry
 
