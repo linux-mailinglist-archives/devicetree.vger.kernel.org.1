@@ -1,128 +1,168 @@
-Return-Path: <devicetree+bounces-267853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267854-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oNyZB4aPnWkXQgQAu9opvQ
-	(envelope-from <devicetree+bounces-267853-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:46:14 +0100
+	id gLxsKe+PnWlKQgQAu9opvQ
+	(envelope-from <devicetree+bounces-267854-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:47:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4112F186854
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:46:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31AE11868E1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:47:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1EA67306ED24
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:44:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 74DBC30C16E4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7DB37FF7A;
-	Tue, 24 Feb 2026 11:44:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7393803C0;
+	Tue, 24 Feb 2026 11:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="luKvveXD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZllwS4J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 574C337FF72;
-	Tue, 24 Feb 2026 11:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A9634A795
+	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 11:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771933443; cv=none; b=PuPXERLxNO7aQd4ttCKMw95PkQQnv9C1TjDp37Au5TIuHc6YsOq3amc34vRFrVFIhsGRzmyBq0JszcY/tt6D4NqsZDoJlLUF80ihiF94MtIcfhJLpApRsb9neRvxSJwyOWUpK7KMeBOzRia7jYBmU0t+/htvg0ArRnNMClE6nyQ=
+	t=1771933472; cv=none; b=olC8mRI+grVgooXPozCvKCuprOAJhsNS9zr7z/GTYdHRGEniwvjdWDKDFb1T5Pni17OOzgU217SsxvOyPC1ncooTeSwd6tExpm24RWT3PApXdJF05HMPy9NZaz//mbN7hB9wtf2NhQCNZAx0LoCk2DXR1RNKOf5uOUe69QkecyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771933443; c=relaxed/simple;
-	bh=VWMbw5u8A4droiuhmQwd+aULLH4cHJyizo2SxbHh2R4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=mJ/qE4SHeHsCLnI/t3Bg49Nra0lmJ0LR3UfISUo1Q7cVgRYf6vaAI3z/2ar9Zou9GEQ6+Cydnqf5zQCVxHT4e2/7boo1EOovr9VC7XIY9/+Do2mLxga+jcja2wWJLAFK4axkzGa6HZVvGLk4kGTxCRph/tKRAZUtsDAMEPV7eAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=luKvveXD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A3F0C19424;
-	Tue, 24 Feb 2026 11:43:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771933443;
-	bh=VWMbw5u8A4droiuhmQwd+aULLH4cHJyizo2SxbHh2R4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=luKvveXDX54Jxe+c+E6c9rdADIpUOmKyPtDlnqPh+8EH7sw9zOH1xxU1Q+rxdcgvB
-	 o4Lbp/JZg9Tgb8A1S3E67Lt8D5pGrDyje4k6TC1AvmwDGHtH1GzLY0mUQFCd/PWvJP
-	 wezb3VVbE3OlT1tHBCzKKQ5Ju3f/fy9RBqxE8BmhV1h+XoskuRDdISafIXvNVl2ZOn
-	 ftIU9kRlvXZQUNRW7e9nw6bON5qvYFgwLm2NV1luDyMjCh9UGLrDG0/Xe1wBRNViVH
-	 G3uo+ZKKnXtzLM7sVV/hDcUJZrFMLHEvsVmjnzm1j+iRlRPixuMzVujflTmhh8pEX4
-	 ZvtgWPt0wbbcA==
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- jesper.nilsson@axis.com, lars.persson@axis.com, alim.akhtar@samsung.com, 
- Ravi Patel <ravi.patel@samsung.com>
-Cc: ksk4725@coasia.com, smn1196@coasia.com, linux-arm-kernel@axis.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- pjsin865@coasia.com, gwk1013@coasia.com, bread@coasia.com, 
- jspark@coasia.com, limjh0823@coasia.com, lightwise@coasia.com, 
- hgkim05@coasia.com, mingyoungbo@coasia.com, shradha.t@samsung.com, 
- swathi.ks@samsung.com, kenkim@coasia.com, kitak81.kim@samsung.com
-In-Reply-To: <20251119131302.79088-1-ravi.patel@samsung.com>
-References: <CGME20251119131424epcas5p44eb0d15d8ba28d94152dbbea23e32714@epcas5p4.samsung.com>
- <20251119131302.79088-1-ravi.patel@samsung.com>
-Subject: Re: [PATCH v2 0/3] Add basic device tree support for the Axis
- ARTPEC-9 SoC
-Message-Id: <177193343795.72471.8737899847600826075.b4-ty@kernel.org>
-Date: Tue, 24 Feb 2026 12:43:57 +0100
+	s=arc-20240116; t=1771933472; c=relaxed/simple;
+	bh=7nZwJ5/mDw/Bq5pcI4r+2UnBmcpmvTKVB2VmpZBXyD4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=elawdH5P9V187ZTs7YdiR9+aXk1Th68JlJ+DokCMsI5VuORqdBCwFBx8DIqQMqSwttRo4m9RLQHyJbcsnItt3PaFM4T7ejpgXuyiFy8NzuYpsQNoz12rAi3v8KqkAYt38vWW2HZZbzo0G3z2CE7tXveoihfVDCcV7R24eGiH6SA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZllwS4J; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b79f8f7ea43so879550466b.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 03:44:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771933469; x=1772538269; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OruxWPSlwxwYuuBWb0VVRNqJDSH2i/eUVJAg0MyUvQk=;
+        b=QZllwS4JtJA757F2vuNfLTIxwvO2ySTKv3pWTTS+dIHYH6liI+Re/aXCauBtZt+vB2
+         F7IMEHeu0p/+cp2Gsm5LlcicqoXn3/MJnIL867kHaUFDXVtnRLXj7ixqSnft6keOLJt6
+         r2KGUqzO8WkgGvtHMZWEM8QcGWZDtKUFBYT1kzq+ER9D0q/69oAAlx0ymOWz2NuoAroC
+         ng/OGeBfh5k6VgqcJ4p4Lb/U/sXztAj2xGjlq46VTfK2W2HyOuBewDmLw1Zl4Q3Rh+Hm
+         UTcWCTFy3AFC5g+dpy2aCP6mk8HLDnJyaRGs45Tj52JyTwT6MFu31fJm6FA0PpC7GLNw
+         8p2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771933469; x=1772538269;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OruxWPSlwxwYuuBWb0VVRNqJDSH2i/eUVJAg0MyUvQk=;
+        b=GwKc54XYb8c+aPdPCkIGwl9wFih9ryVK15AyWAIDiz/gLHjieisBv39Fyhi9txqf/7
+         EFwhflFwJ7gV9iJ7s7yT9kcdSiUXHK5Rug0yozdQ5slMpFfuR5Cj6fS+WA/M5wBq69Ut
+         M96YBLJ39tY29dRuXnw49nhH6oLKbwpnZED4/gyxj2nALdrKbkVJNE02z/YJPNI9703f
+         zzQbkoPrG2uw1Grm68V6ML+zm5qbI/Sg7c8WGj4AWqnpAaAYUG8yIyPeU4kVgbiPx4Jc
+         g7jCBvI1ZYPUDsTSSxfvN2Br065duqv+syIb6B+N8qNXKtSj5RQ85hH5wHxKt458233N
+         9SRw==
+X-Gm-Message-State: AOJu0YwJOGVmJPTN6GTx5V6WlpMZ4YfY4chZC31LWwTwrPDsVCnOGxlq
+	YaYjsq7LVQPrFPotmgXx3AuhIhX4sGcyRyysjJdBEf3sVPBp7BCKup90f54Z1w==
+X-Gm-Gg: ATEYQzwO8ll2flV7gl/xBMBlpC9ygEmOGSTxScWhnFKUrkG/z7TPeAMstAEy0/vXV/K
+	lrj+X3H+EIFOelsq/8jW8qUt2UV92fA18TpIPmMDOER453WIGA/nkyuWtNWbXrKibnOStEipRdu
+	87D93yJtI77B/URP7on3tEaNsAd3xSdIOPETuXd2Y/SDVfWJBYmglcWRBIy5dqaTc+WJjl3TAcH
+	ZCEhLn7990dg7fNm81W7tBurCkkk81FGkGYRTc7NJmeYI/GVRYPAx52/e1BKfJfg0yGp/46Dz+E
+	ggkfIQEkYv+xqzs0RCwGsGyiM/zdoanUDFWqbDcHAIAmwhae/mHSAEk6GAq7gIg53coeaLNnyfu
+	I54uBE5kePb6WYhUaHLg5pnanA4uCEheENQQ0r7gY1DNrgmHm/Q64kq0m5bFaauHjloVM3vjon8
+	ayhJ82u7hoWdAIOuM0mQjxkecAPsdl
+X-Received: by 2002:a17:907:ea7:b0:b8e:dc98:ad20 with SMTP id a640c23a62f3a-b9081975165mr804409066b.4.1771933468504;
+        Tue, 24 Feb 2026 03:44:28 -0800 (PST)
+Received: from workstation.home ([178.231.112.156])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9084e8cb3fsm417992566b.48.2026.02.24.03.44.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Feb 2026 03:44:27 -0800 (PST)
+From: Stanislav Zaikin <zstaseg@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+	andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	Stanislav Zaikin <zstaseg@gmail.com>
+Subject: [PATCH v3 0/2] Add Xiaomi 12 Lite 5G (taoyao) device tree
+Date: Tue, 24 Feb 2026 12:44:22 +0100
+Message-ID: <20260224114424.1966947-1-zstaseg@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267853-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-267854-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[zstaseg@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4112F186854
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 31AE11868E1
 X-Rspamd-Action: no action
 
+This series adds device tree support for the Xiaomi 12 Lite 5G (taoyao),
+based on the Qualcomm SM7325 SoC.
 
-On Wed, 19 Nov 2025 18:42:59 +0530, Ravi Patel wrote:
-> Add basic device tree support for the Axis ARTPEC-9 SoC
-> which contains 6-core Cortex-A55 CPU and other several IPs.
-> This SoC is an Axis-designed chipset used in surveillance camera products.
-> 
-> This ARTPEC-9 SoC has a variety of Samsung-specific IP blocks and
-> Axis-specific IP blocks and SoC is manufactured by Samsung Foundry.
-> 
-> [...]
+The display panel model is unknown, so bootloader-initialized
+simple-framebuffer is therefore used to expose the display.
 
-Applied, thanks!
+Changes in v3:
+- Patch no. 1 - no changes
+- Drop unit address for framebuffer node (patch no. 2)
+- Add Konrad's R-b tag (patch no. 2)
+- Link to v2:
+  https://lore.kernel.org/all/20260216120715.3432191-1-zstaseg@gmail.com/
 
-[1/3] dt-bindings: arm: axis: Add ARTPEC-9 alfred board
-      https://git.kernel.org/krzk/linux/c/7b43a16c48fe761480ddb0312e6727d0f5fb0b4a
-[2/3] arm64: dts: exynos: axis: Add initial ARTPEC-9 SoC support
-      https://git.kernel.org/krzk/linux/c/3ae2b7442cb878c8b38fc39855f89e47ba43c405
-[3/3] arm64: dts: axis: Add ARTPEC-9 Alfred board support
-      https://git.kernel.org/krzk/linux/c/b567d42112a2b38c186b37f7ffb2e36fc567e442
+Changes in v2:
+- Add Rob's A-b tag (patch no. 1)
+- Add explicit framebuffer_reserved label (patch no. 2)
+- Use memory-region for simple-framebuffer (patch no. 2)
+- Fix reserved-memory naming: make node names consistent with labels
+  and intended subsystem (CVP/camera/video) (patch no. 2)
+- Convert mem-type value from <0x02> to <2> (patch no. 2)
+- Fix s2b regulator comment style (patch no. 2)
+- Remove unused gpio-reserved-ranges entry (<32 2>) (patch no. 2)
+- Link to v1:
+  https://lore.kernel.org/all/20260204115645.1343750-1-zstaseg@gmail.com/
 
-Best regards,
+Stanislav Zaikin (2):
+  dt-bindings: arm: qcom: Add SM7325 Xiaomi 12 Lite 5G (taoyao)
+  arm64: dts: qcom: Add Xiaomi 12 Lite 5G (taoyao) DTS
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sm7325-xiaomi-taoyao.dts    | 865 ++++++++++++++++++
+ 3 files changed, 867 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7325-xiaomi-taoyao.dts
+
 -- 
-Krzysztof Kozlowski <krzk@kernel.org>
+2.51.0
 
 
