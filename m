@@ -1,144 +1,454 @@
-Return-Path: <devicetree+bounces-267957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267958-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aLuUH1jGnWkRSAQAu9opvQ
-	(envelope-from <devicetree+bounces-267957-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:40:08 +0100
+	id II10H1/GnWkRSAQAu9opvQ
+	(envelope-from <devicetree+bounces-267958-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:40:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F29A1892CA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C4A1892D8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 16:40:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5F86331C9A19
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:33:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 35D3831CFA13
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 15:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AED9274B5C;
-	Tue, 24 Feb 2026 15:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H1xNRv2j"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D9327B353;
+	Tue, 24 Feb 2026 15:34:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com [74.125.82.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8806E27B327
-	for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 15:33:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8FA127380A;
+	Tue, 24 Feb 2026 15:34:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771947237; cv=none; b=JlITX31pPCJgx3mDU4FB97YwjwfLbb36QBMj7oaIwAqprkscMY/qF/YdGbOaJwBxagKyqOfXmkhhmXvm8tgb6O3XoaFTEVFKEtYn1PjXPFdtsEl59qXafPlDvH/ym1bHSBrQdsx5lUFfGN91MTpWNSaAUvGeAksfIxIBYhZmbbo=
+	t=1771947256; cv=none; b=meLGwaG2pG0YW/WBeePK5tAk5v6fkPI20/5w8S0HWj7/LUn+FYe+r0fdlbti5SDiUi+g6xMvtOM0HRDw+evwRI6dzDl5HNlGhDCOjk8qKjhPnzz25qItLfXFGj8hDH9TL1W4xkprHASjcEdh+LZTphmQRIoXkBXGa59BhiEoZ60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771947237; c=relaxed/simple;
-	bh=EK7GSnx+Y44OvfiKWNKnvFI9tbLYMF8GaDuXYpgOOPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uKkwK14KSRi/rfDc+PVvL7423/XWVdRyJQHOc9CCbBlGmkXkpYED7SX10wSvI2HLZ5ueWoyvWd9f55vikeohTJGcSqonHsGSeypIzSK9XewZfpXSQJIngDuUaPzEiXmmgbA7c0MA6cFXmnJ47+vnD9z3ttavNNpHmY8cu7vx7vU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H1xNRv2j; arc=none smtp.client-ip=74.125.82.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-12776bebe9fso341619c88.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 07:33:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771947236; x=1772552036; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tmDK7rEaAZxC7IlQFVBRcPgoULUWQGeNkCCtxmBTCnA=;
-        b=H1xNRv2jFilIVNwtyjqnY3XrxlHqe7Xkglv9BIo0Xceu1tPbI+BinQJxliW+qgio/s
-         eMJmdygRDU/yyyYIchuupXIW5eTw+8y8Tdkepeyw8YgX0yKesKd2ejm7gFU9X5Oit2Z/
-         FRBrsEWzK63HAtASAdS/uZ2MQqR8z+qEBJY0yzyc/gn6gYf+o17CohK/LuJsKOK5e6BL
-         zUkOFqHJV7I9Sbb2ngBG2mMUkYXE5zuEi+OmzN7RbleYOFRzkLU9zuT+oF7g7djTmLDw
-         hGLdcUmQ0nPIv85V6j1m0Ma5sM86LUWbTAGvG+OUMvixbOc+tT9tEEslXt+UFj3wLXwc
-         dAXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771947236; x=1772552036;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tmDK7rEaAZxC7IlQFVBRcPgoULUWQGeNkCCtxmBTCnA=;
-        b=b/N0+nFvom6+f/ilHg92QR2sBC4QiOpuLIBd553XWux4gzuJqZEYOfbNbszfzakAr0
-         8XEIOS3wPtmjZcDpU7kFiujoFKYYKSHkLNUV+ZP9vpfVe1RcFMldEEDAA0YPWwZ9in0y
-         XKwopwQ7UoPkbF6oyiRUWhhl6bAQ+6lPqavLPj+ie408Moq04pzm9kxJFpW6Zt+D1YHH
-         y5gpria34yDvpqP9e5qtxmUN6yu6Qj3BUvP4DyXRNOQQjdU9AhNeFA1Ljq1F/FTn6UeV
-         TBLEJ/kFlL3yvEL70OgtORJZlTkUwXspBFnIBSffj89ykhi4pJAmmmo1o8bp/1Q6LH8P
-         1+zw==
-X-Forwarded-Encrypted: i=1; AJvYcCVFPjAHgpyf73h+vMNmb7mcjg8BboZYL2tJ+3cQqDcaCq2BnpXYMAlZqXWzG0tl4O/MEYU96ZjV6I+m@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEU7ZEio2PKMug7A0sGPSLHrpoF9lyDLGcVvwoAeOayyL5YqPe
-	cgro++pqzrBUpRxcCavchIXPpvYB43u7bR6MoWtJ22dHeitkOoVE/2IG
-X-Gm-Gg: AZuq6aKRSNwHiPn7q9MKFHYeBbqodettRBqN2IGvgqG36GZI28ugEejtjQy1wfcHcWf
-	kGktFEPpaK35yAy19IQdf2o5uGwoAqHbCr7+O+YYPZCE6pn8q4g3s1HEPQXkIO2F5pzXpcu6h1p
-	Ayk9FWdmet5e7UbKu8ijXpTQGaQodhBCs5Qpv4uGmm3KWZbKQZ0CTjNjNm0zumlZnAhSMDga07i
-	zEtEQJpTPI0NTf/RbJGpgt/MNUTXWitoS+0nYJ0w/Fj0Bsb0bY2kiwZ+5mlPslcK+OUimSqRI99
-	XsonwLW+XAYguCg1HpyjA4NpXyeIde+g3hHfbNqTpT189GegUEQIzCEwcU6LgyFHavbjxs5OdBD
-	0Zu18z2t9HOoweTLoVv9nOOczLYSAKtVxeAgwEZKhhIAqW+ZK3FIjHm9Pq9arDusxVra/4g4vIk
-	hbRDPu0EBhjv1aTzk2ioyx1Tg+k1PZgqw6px5w
-X-Received: by 2002:a05:7022:699a:b0:127:5c3d:bdad with SMTP id a92af1059eb24-1276ac5b8cfmr5840633c88.0.1771947235608;
-        Tue, 24 Feb 2026 07:33:55 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2bd7daccc44sm7020833eec.15.2026.02.24.07.33.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Feb 2026 07:33:54 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 24 Feb 2026 07:33:54 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Hao Yu <haoyufine@gmail.com>
-Cc: krzk@kernel.org, akhilesh@ee.iitb.ac.in, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, jcdra1@gmail.com, krzk+dt@kernel.org,
-	linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH v3 2/2] hwmon: (aht10) add device tree ID matching
-Message-ID: <57493e98-72c1-4422-a0bc-2261c1a6daf7@roeck-us.net>
-References: <20260222105831.7360-1-haoyufine@gmail.com>
- <20260223173853.30617-3-haoyufine@gmail.com>
+	s=arc-20240116; t=1771947256; c=relaxed/simple;
+	bh=3UnJNpKBp41060PCCiUKh/z/XCpPqIeEtBlEINpW5VI=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cX0ESuGgM/uDzcoc2wkhVpwGM44wgQZSuC4bVleKl4T8sciky9NkFfcfs1dKR1Pcdeyhdpl3sn/r0Be9aNssTe4qfyNNoNjwTsv+PwXR8t8H1vvny2ghO7FI4KM4W4BVegd8F1DpfKKK6ypf3WpmrZNcRG4IdRlme890AQZqkP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.83])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4fL1wG0MXHzJ4678;
+	Tue, 24 Feb 2026 23:33:50 +0800 (CST)
+Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
+	by mail.maildlp.com (Postfix) with ESMTPS id C841E40573;
+	Tue, 24 Feb 2026 23:34:11 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml500005.china.huawei.com
+ (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 24 Feb
+ 2026 15:34:10 +0000
+Date: Tue, 24 Feb 2026 15:34:09 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Ahmed Tiba <ahmed.tiba@arm.com>
+CC: <devicetree@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
+	<Dmitry.Lamerov@arm.com>, <catalin.marinas@arm.com>, <bp@alien8.de>,
+	<robh@kernel.org>, <rafael@kernel.org>, <will@kernel.org>,
+	<conor@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-doc@vger.kernel.org>, <krzk+dt@kernel.org>, <Michael.Zhao2@arm.com>,
+	<tony.luck@intel.com>, <linux-cxl@vger.kernel.org>
+Subject: Re: [PATCH v2 07/11] ACPI: APEI: GHES: move CXL CPER helpers
+Message-ID: <20260224153409.0000191a@huawei.com>
+In-Reply-To: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-7-347fa2d7351b@arm.com>
+References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
+	<20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-7-347fa2d7351b@arm.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260223173853.30617-3-haoyufine@gmail.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
+ dubpeml500005.china.huawei.com (7.214.145.207)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FREEMAIL_CC(0.00)[kernel.org,ee.iitb.ac.in,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-267957-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-267958-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-0.985];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1F29A1892CA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,huawei.com:mid]
+X-Rspamd-Queue-Id: 10C4A1892D8
 X-Rspamd-Action: no action
 
-On Tue, Feb 24, 2026 at 01:38:53AM +0800, Hao Yu wrote:
-> Add of_device_id table to allow the driver to be matched via
-> Device Tree. This is required for supporting the AHT10/20/DHT20
-> sensors on platforms using DT.
-> 
-> Signed-off-by: Hao Yu <haoyufine@gmail.com>
+On Fri, 20 Feb 2026 13:42:25 +0000
+Ahmed Tiba <ahmed.tiba@arm.com> wrote:
 
-Applied.
+> Move the CXL CPER handling paths out of ghes.c and into ghes_cper.c so the
+> helpers can be reused. The code is moved as-is, with the public
+> prototypes updated so GHES keeps calling into the new translation unit.
+> 
+> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
+
++CC linux-cxl.
+
+I haven't looked closely but suspect the same stuff on code movement and patch
+break up applies here.
 
 Thanks,
-Guenter
+
+Jonathan
+
+> ---
+>  drivers/acpi/apei/ghes.c      | 132 -----------------------------------------
+>  drivers/acpi/apei/ghes_cper.c | 135 ++++++++++++++++++++++++++++++++++++++++++
+>  include/acpi/ghes_cper.h      |  11 ++++
+>  3 files changed, 146 insertions(+), 132 deletions(-)
+> 
+> diff --git a/drivers/acpi/apei/ghes.c b/drivers/acpi/apei/ghes.c
+> index 9703c602a8c2..136993704d52 100644
+> --- a/drivers/acpi/apei/ghes.c
+> +++ b/drivers/acpi/apei/ghes.c
+> @@ -383,138 +383,6 @@ static void ghes_handle_aer(struct acpi_hest_generic_data *gdata)
+>  #endif
+>  }
+>  
+> -/* Room for 8 entries */
+> -#define CXL_CPER_PROT_ERR_FIFO_DEPTH 8
+> -static DEFINE_KFIFO(cxl_cper_prot_err_fifo, struct cxl_cper_prot_err_work_data,
+> -		    CXL_CPER_PROT_ERR_FIFO_DEPTH);
+> -
+> -/* Synchronize schedule_work() with cxl_cper_prot_err_work changes */
+> -static DEFINE_SPINLOCK(cxl_cper_prot_err_work_lock);
+> -struct work_struct *cxl_cper_prot_err_work;
+> -
+> -static void cxl_cper_post_prot_err(struct cxl_cper_sec_prot_err *prot_err,
+> -				   int severity)
+> -{
+> -#ifdef CONFIG_ACPI_APEI_PCIEAER
+> -	struct cxl_cper_prot_err_work_data wd;
+> -
+> -	if (cxl_cper_sec_prot_err_valid(prot_err))
+> -		return;
+> -
+> -	guard(spinlock_irqsave)(&cxl_cper_prot_err_work_lock);
+> -
+> -	if (!cxl_cper_prot_err_work)
+> -		return;
+> -
+> -	if (cxl_cper_setup_prot_err_work_data(&wd, prot_err, severity))
+> -		return;
+> -
+> -	if (!kfifo_put(&cxl_cper_prot_err_fifo, wd)) {
+> -		pr_err_ratelimited("CXL CPER kfifo overflow\n");
+> -		return;
+> -	}
+> -
+> -	schedule_work(cxl_cper_prot_err_work);
+> -#endif
+> -}
+> -
+> -int cxl_cper_register_prot_err_work(struct work_struct *work)
+> -{
+> -	if (cxl_cper_prot_err_work)
+> -		return -EINVAL;
+> -
+> -	guard(spinlock)(&cxl_cper_prot_err_work_lock);
+> -	cxl_cper_prot_err_work = work;
+> -	return 0;
+> -}
+> -EXPORT_SYMBOL_NS_GPL(cxl_cper_register_prot_err_work, "CXL");
+> -
+> -int cxl_cper_unregister_prot_err_work(struct work_struct *work)
+> -{
+> -	if (cxl_cper_prot_err_work != work)
+> -		return -EINVAL;
+> -
+> -	guard(spinlock)(&cxl_cper_prot_err_work_lock);
+> -	cxl_cper_prot_err_work = NULL;
+> -	return 0;
+> -}
+> -EXPORT_SYMBOL_NS_GPL(cxl_cper_unregister_prot_err_work, "CXL");
+> -
+> -int cxl_cper_prot_err_kfifo_get(struct cxl_cper_prot_err_work_data *wd)
+> -{
+> -	return kfifo_get(&cxl_cper_prot_err_fifo, wd);
+> -}
+> -EXPORT_SYMBOL_NS_GPL(cxl_cper_prot_err_kfifo_get, "CXL");
+> -
+> -/* Room for 8 entries for each of the 4 event log queues */
+> -#define CXL_CPER_FIFO_DEPTH 32
+> -DEFINE_KFIFO(cxl_cper_fifo, struct cxl_cper_work_data, CXL_CPER_FIFO_DEPTH);
+> -
+> -/* Synchronize schedule_work() with cxl_cper_work changes */
+> -static DEFINE_SPINLOCK(cxl_cper_work_lock);
+> -struct work_struct *cxl_cper_work;
+> -
+> -static void cxl_cper_post_event(enum cxl_event_type event_type,
+> -				struct cxl_cper_event_rec *rec)
+> -{
+> -	struct cxl_cper_work_data wd;
+> -
+> -	if (rec->hdr.length <= sizeof(rec->hdr) ||
+> -	    rec->hdr.length > sizeof(*rec)) {
+> -		pr_err(FW_WARN "CXL CPER Invalid section length (%u)\n",
+> -		       rec->hdr.length);
+> -		return;
+> -	}
+> -
+> -	if (!(rec->hdr.validation_bits & CPER_CXL_COMP_EVENT_LOG_VALID)) {
+> -		pr_err(FW_WARN "CXL CPER invalid event\n");
+> -		return;
+> -	}
+> -
+> -	guard(spinlock_irqsave)(&cxl_cper_work_lock);
+> -
+> -	if (!cxl_cper_work)
+> -		return;
+> -
+> -	wd.event_type = event_type;
+> -	memcpy(&wd.rec, rec, sizeof(wd.rec));
+> -
+> -	if (!kfifo_put(&cxl_cper_fifo, wd)) {
+> -		pr_err_ratelimited("CXL CPER kfifo overflow\n");
+> -		return;
+> -	}
+> -
+> -	schedule_work(cxl_cper_work);
+> -}
+> -
+> -int cxl_cper_register_work(struct work_struct *work)
+> -{
+> -	if (cxl_cper_work)
+> -		return -EINVAL;
+> -
+> -	guard(spinlock)(&cxl_cper_work_lock);
+> -	cxl_cper_work = work;
+> -	return 0;
+> -}
+> -EXPORT_SYMBOL_NS_GPL(cxl_cper_register_work, "CXL");
+> -
+> -int cxl_cper_unregister_work(struct work_struct *work)
+> -{
+> -	if (cxl_cper_work != work)
+> -		return -EINVAL;
+> -
+> -	guard(spinlock)(&cxl_cper_work_lock);
+> -	cxl_cper_work = NULL;
+> -	return 0;
+> -}
+> -EXPORT_SYMBOL_NS_GPL(cxl_cper_unregister_work, "CXL");
+> -
+> -int cxl_cper_kfifo_get(struct cxl_cper_work_data *wd)
+> -{
+> -	return kfifo_get(&cxl_cper_fifo, wd);
+> -}
+> -EXPORT_SYMBOL_NS_GPL(cxl_cper_kfifo_get, "CXL");
+> -
+>  static void ghes_log_hwerr(int sev, guid_t *sec_type)
+>  {
+>  	if (sev != CPER_SEV_RECOVERABLE)
+> diff --git a/drivers/acpi/apei/ghes_cper.c b/drivers/acpi/apei/ghes_cper.c
+> index 627f6c712261..673dca208935 100644
+> --- a/drivers/acpi/apei/ghes_cper.c
+> +++ b/drivers/acpi/apei/ghes_cper.c
+> @@ -9,10 +9,12 @@
+>   *
+>   */
+>  
+> +#include <linux/aer.h>
+>  #include <linux/err.h>
+>  #include <linux/genalloc.h>
+>  #include <linux/irq_work.h>
+>  #include <linux/io.h>
+> +#include <linux/kfifo.h>
+>  #include <linux/kernel.h>
+>  #include <linux/list.h>
+>  #include <linux/math64.h>
+> @@ -319,6 +321,139 @@ void ghes_defer_non_standard_event(struct acpi_hest_generic_data *gdata,
+>  	schedule_work(&entry->work);
+>  }
+>  
+> +
+> +/* Room for 8 entries */
+> +#define CXL_CPER_PROT_ERR_FIFO_DEPTH 8
+> +static DEFINE_KFIFO(cxl_cper_prot_err_fifo, struct cxl_cper_prot_err_work_data,
+> +		    CXL_CPER_PROT_ERR_FIFO_DEPTH);
+> +
+> +/* Synchronize schedule_work() with cxl_cper_prot_err_work changes */
+> +static DEFINE_SPINLOCK(cxl_cper_prot_err_work_lock);
+> +struct work_struct *cxl_cper_prot_err_work;
+> +
+> +void cxl_cper_post_prot_err(struct cxl_cper_sec_prot_err *prot_err,
+> +				   int severity)
+> +{
+> +#ifdef CONFIG_ACPI_APEI_PCIEAER
+> +	struct cxl_cper_prot_err_work_data wd;
+> +
+> +	if (cxl_cper_sec_prot_err_valid(prot_err))
+> +		return;
+> +
+> +	guard(spinlock_irqsave)(&cxl_cper_prot_err_work_lock);
+> +
+> +	if (!cxl_cper_prot_err_work)
+> +		return;
+> +
+> +	if (cxl_cper_setup_prot_err_work_data(&wd, prot_err, severity))
+> +		return;
+> +
+> +	if (!kfifo_put(&cxl_cper_prot_err_fifo, wd)) {
+> +		pr_err_ratelimited("CXL CPER kfifo overflow\n");
+> +		return;
+> +	}
+> +
+> +	schedule_work(cxl_cper_prot_err_work);
+> +#endif
+> +}
+> +
+> +int cxl_cper_register_prot_err_work(struct work_struct *work)
+> +{
+> +	if (cxl_cper_prot_err_work)
+> +		return -EINVAL;
+> +
+> +	guard(spinlock)(&cxl_cper_prot_err_work_lock);
+> +	cxl_cper_prot_err_work = work;
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(cxl_cper_register_prot_err_work, "CXL");
+> +
+> +int cxl_cper_unregister_prot_err_work(struct work_struct *work)
+> +{
+> +	if (cxl_cper_prot_err_work != work)
+> +		return -EINVAL;
+> +
+> +	guard(spinlock)(&cxl_cper_prot_err_work_lock);
+> +	cxl_cper_prot_err_work = NULL;
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(cxl_cper_unregister_prot_err_work, "CXL");
+> +
+> +int cxl_cper_prot_err_kfifo_get(struct cxl_cper_prot_err_work_data *wd)
+> +{
+> +	return kfifo_get(&cxl_cper_prot_err_fifo, wd);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(cxl_cper_prot_err_kfifo_get, "CXL");
+> +
+> +/* Room for 8 entries for each of the 4 event log queues */
+> +#define CXL_CPER_FIFO_DEPTH 32
+> +DEFINE_KFIFO(cxl_cper_fifo, struct cxl_cper_work_data, CXL_CPER_FIFO_DEPTH);
+> +
+> +/* Synchronize schedule_work() with cxl_cper_work changes */
+> +static DEFINE_SPINLOCK(cxl_cper_work_lock);
+> +struct work_struct *cxl_cper_work;
+> +
+> +void cxl_cper_post_event(enum cxl_event_type event_type,
+> +				struct cxl_cper_event_rec *rec)
+> +{
+> +	struct cxl_cper_work_data wd;
+> +
+> +	if (rec->hdr.length <= sizeof(rec->hdr) ||
+> +	    rec->hdr.length > sizeof(*rec)) {
+> +		pr_err(FW_WARN "CXL CPER Invalid section length (%u)\n",
+> +		       rec->hdr.length);
+> +		return;
+> +	}
+> +
+> +	if (!(rec->hdr.validation_bits & CPER_CXL_COMP_EVENT_LOG_VALID)) {
+> +		pr_err(FW_WARN "CXL CPER invalid event\n");
+> +		return;
+> +	}
+> +
+> +	guard(spinlock_irqsave)(&cxl_cper_work_lock);
+> +
+> +	if (!cxl_cper_work)
+> +		return;
+> +
+> +	wd.event_type = event_type;
+> +	memcpy(&wd.rec, rec, sizeof(wd.rec));
+> +
+> +	if (!kfifo_put(&cxl_cper_fifo, wd)) {
+> +		pr_err_ratelimited("CXL CPER kfifo overflow\n");
+> +		return;
+> +	}
+> +
+> +	schedule_work(cxl_cper_work);
+> +}
+> +
+> +int cxl_cper_register_work(struct work_struct *work)
+> +{
+> +	if (cxl_cper_work)
+> +		return -EINVAL;
+> +
+> +	guard(spinlock)(&cxl_cper_work_lock);
+> +	cxl_cper_work = work;
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(cxl_cper_register_work, "CXL");
+> +
+> +int cxl_cper_unregister_work(struct work_struct *work)
+> +{
+> +	if (cxl_cper_work != work)
+> +		return -EINVAL;
+> +
+> +	guard(spinlock)(&cxl_cper_work_lock);
+> +	cxl_cper_work = NULL;
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(cxl_cper_unregister_work, "CXL");
+> +
+> +int cxl_cper_kfifo_get(struct cxl_cper_work_data *wd)
+> +{
+> +	return kfifo_get(&cxl_cper_fifo, wd);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(cxl_cper_kfifo_get, "CXL");
+> +
+>  /*
+>   * GHES error status reporting throttle, to report more kinds of
+>   * errors, instead of just most frequently occurred errors.
+> diff --git a/include/acpi/ghes_cper.h b/include/acpi/ghes_cper.h
+> index c5ff4c502017..4522e8699ce0 100644
+> --- a/include/acpi/ghes_cper.h
+> +++ b/include/acpi/ghes_cper.h
+> @@ -15,6 +15,7 @@
+>  #include <linux/workqueue.h>
+>  
+>  #include <acpi/ghes.h>
+> +#include <cxl/event.h>
+>  
+>  #define GHES_PFX	"GHES: "
+>  
+> @@ -99,5 +100,15 @@ void ghes_estatus_cache_add(struct acpi_hest_generic *generic,
+>  			    struct acpi_hest_generic_status *estatus);
+>  void ghes_defer_non_standard_event(struct acpi_hest_generic_data *gdata,
+>  				   int sev);
+> +void cxl_cper_post_prot_err(struct cxl_cper_sec_prot_err *prot_err,
+> +			    int severity);
+> +int cxl_cper_register_prot_err_work(struct work_struct *work);
+> +int cxl_cper_unregister_prot_err_work(struct work_struct *work);
+> +int cxl_cper_prot_err_kfifo_get(struct cxl_cper_prot_err_work_data *wd);
+> +void cxl_cper_post_event(enum cxl_event_type event_type,
+> +			 struct cxl_cper_event_rec *rec);
+> +int cxl_cper_register_work(struct work_struct *work);
+> +int cxl_cper_unregister_work(struct work_struct *work);
+> +int cxl_cper_kfifo_get(struct cxl_cper_work_data *wd);
+>  
+>  #endif /* ACPI_APEI_GHES_CPER_H */
+> 
+
 
