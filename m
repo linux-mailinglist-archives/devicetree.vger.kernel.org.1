@@ -1,264 +1,147 @@
-Return-Path: <devicetree+bounces-267999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268000-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wFYCLUfenWmuSQQAu9opvQ
-	(envelope-from <devicetree+bounces-267999-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:22:15 +0100
+	id iI3GKOrfnWnaSQQAu9opvQ
+	(envelope-from <devicetree+bounces-268000-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:29:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D1F818A7DD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:22:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0162B18A880
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 18:29:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BF7DF305F337
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 17:20:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8FA633028EE6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 17:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31433803D1;
-	Tue, 24 Feb 2026 17:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200133A961E;
+	Tue, 24 Feb 2026 17:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="izeIcZpv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jZM9d1J8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDEEF27FB37;
-	Tue, 24 Feb 2026 17:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF51B3A7F74;
+	Tue, 24 Feb 2026 17:29:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771953632; cv=none; b=JmdbD4F34gDUO2d7C0Zr2NL/FJNQBg+H3P9yZYp9QNrbsFN19L2i0ay3JQXtD09MsujcdaW9eoTpwEFDr/PwuQUcHn9+J21pPfGjW8mUn/l0NXy+0XnSpDK8rWvqAvNItca8cw0d2+PKHZfXViREFeKvc96Zm2EO79sYEPKnCRM=
+	t=1771954151; cv=none; b=vEUhdvjjp9sP7Qlss8AGsPeg9tMGRtE6ffi5cNT07PYD9KHUl/Xiy03Wak8Vpn+LzBx0e18TeI3Wlt1+Gd7iLmz2c+ZodEMDw9VhZ6oUDo/Ce7QOf8PgUV1yHYQwI1GaYuy9fLsQjZKMer0GQ8dMM8/OVbMgSeRl45e2XqGrLT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771953632; c=relaxed/simple;
-	bh=DUVNcM4ZpiXdZoj7Fqc0w7Z8CDbVSGq7Er36MdyuXgc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=LcQCdgnhcEoU7ZOdIMAfPP9OXZRYZSA9YmwdkwT3ftwsfIj9xoBRH95vGQcF5DLKxQyEQH0CLJbu3kKj+LmByO7QJ530cHLR/JihqVA/74mCOCR8OB1YF6l7VdvTBQecqsOG7IcTeZ+Ev2LS4cacYN9/w9erv65F8JNNlEE9goo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=izeIcZpv; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 83BE7C143E4;
-	Tue, 24 Feb 2026 17:20:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CD97C5FD9D;
-	Tue, 24 Feb 2026 17:20:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1B5B6103691E0;
-	Tue, 24 Feb 2026 18:20:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1771953626; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=yExKHNVxFpAWclIgqpsx9aPnPMbndULosVf0raAPb3E=;
-	b=izeIcZpv+zsH5ELNbOIzYlKCtln4IHs8bL9rxTlwSelk/V31o5uggfMUVFBKn/HZkqFQR1
-	B3EjMM2VOo2QAZCf/5hybFnRzacICR/WOCQrqVciux9Lq2xZgTHaatWPJcjfaQNE0sgObT
-	nIsEl/tqis/DAsnbs/ghu2yJMekY4WC3aTFFIXCkF4T+ygxoCDG2Re9mFpwqQjJxU20qbw
-	zuulRut0W17M1O+/7iOa8dWt/Mpc0IZnQfwkZsHLddTE7c5R4h2tdH2iJRlNwMhiF/TCkc
-	l8wXwmQ52SmerOLUpdQELx1AQ/Rac3tknpWBCfrgvCjLbb+O0rJionLKZUXTag==
+	s=arc-20240116; t=1771954151; c=relaxed/simple;
+	bh=pSGqZebvO3+aycQMfeI64m0G/5UvaBKl7jRANx8yJ/I=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=AhhCp+1McfXwO4URygUm/c7BgAhJAGPY+NPOZktbe4HWRT9MC/K9OMhVtwtrjYNptrVUo3igHy23reaxY66NB0SObcTPGz4sGVVl3U8XWNQTCY6tylNyVqpl53pzTQOOuMLTXgrDzIhnUXGnyTQEcLtO99EFZ56tqftciabsww8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jZM9d1J8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60BE9C116D0;
+	Tue, 24 Feb 2026 17:29:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771954150;
+	bh=pSGqZebvO3+aycQMfeI64m0G/5UvaBKl7jRANx8yJ/I=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=jZM9d1J8DoyrvyLJ0oc1B+mv3rXFoGSMx0ZL3qxSurA0IMb1iCGNbasMU7Ihcpbf7
+	 Gh0NfjeXVW5Jh0doKiPA2bpKQV3MlKSYZ+Ak3ta/zu7Y79pw/dUzkLSzem6ZLidtB7
+	 yOtCLmuDeMaPv1/ahTuGAyGo/1vM6dOC3Pq2cbDZxqal5eljxbwQ7USfRrA35Geo/t
+	 qql40er/LOfMqZv3KhZa556pFWxmtAW6UxzGfbfeGWcOSQDqs+RAzeCDCea1D4C1IA
+	 gZ2CYXex1uiADBx42P/ZwoIZYNXRdTcMh+6UT9kGQy+RuXDbdqfBGhmAdVUr8Eoj2Z
+	 MMM5rAjOUks8A==
+Date: Tue, 24 Feb 2026 11:29:09 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 24 Feb 2026 18:20:21 +0100
-Message-Id: <DGND4VXM9X0N.2CP1VBD8E128M@bootlin.com>
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul" <vkoul@kernel.org>,
- "Kishon Vijay Abraham I" <kishon@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Philipp
- Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
- <tsbogend@alpha.franken.de>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
- <linux-clk@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
- <benoit.monin@bootlin.com>, "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>, "Luca Ceresoli"
- <luca.ceresoli@bootlin.com>
-To: "Vladimir Oltean" <olteanv@gmail.com>, =?utf-8?q?Th=C3=A9o_Lebrun?=
- <theo.lebrun@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v6 3/8] phy: Add driver for EyeQ5 Ethernet PHY wrapper
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260127-macb-phy-v6-0-cdd840588188@bootlin.com>
- <20260127-macb-phy-v6-3-cdd840588188@bootlin.com>
- <20260210193516.temrg46yozxma7xb@skbuf>
-In-Reply-To: <20260210193516.temrg46yozxma7xb@skbuf>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, krzk+dt@kernel.org, 
+ linux-iio@vger.kernel.org, jic23@kernel.org, 
+ Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org, 
+ dlechner@baylibre.com, conor+dt@kernel.org, nuno.sa@analog.com, 
+ jean-baptiste.maneyrol@tdk.com, heiko@sntech.de, andy@kernel.org
+To: Chris Morgan <macroalpha82@gmail.com>
+In-Reply-To: <20260224163109.370930-2-macroalpha82@gmail.com>
+References: <20260224163109.370930-1-macroalpha82@gmail.com>
+ <20260224163109.370930-2-macroalpha82@gmail.com>
+Message-Id: <177195414948.3145595.4265112692565898282.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: imu: icm42607: Add devicetree
+ binding
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267999-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,bootlin.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268000-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,vger.kernel.org,hotmail.com,baylibre.com,analog.com,tdk.com,sntech.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[theo.lebrun@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.992];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6D1F818A7DD
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0162B18A880
 X-Rspamd-Action: no action
 
-Hello Vladimir,
 
-On Tue Feb 10, 2026 at 8:35 PM CET, Vladimir Oltean wrote:
-> On Tue, Jan 27, 2026 at 06:09:31PM +0100, Th=C3=A9o Lebrun wrote:
->> +static int eq5_phy_init(struct phy *phy)
->> +{
->> +	struct eq5_phy_inst *inst =3D phy_get_drvdata(phy);
->> +	struct eq5_phy_private *priv =3D inst->priv;
->> +	struct device *dev =3D priv->dev;
->> +	u32 reg;
->> +
->> +	dev_dbg(dev, "phy_init(inst=3D%td)\n", inst - priv->phys);
->
-> Nitpick: can you please remove the debugging prints and maybe add some
-> trace points to the PHY core if you feel strongly about having some
-> introspection?
+On Tue, 24 Feb 2026 10:31:03 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add devicetree binding for the Invensense ICM42607 and Invensense
+> ICM42607P inertial measurement unit. This unit is a combined
+> accelerometer, gyroscope, and thermometer available via I2C or SPI.
+> 
+> This device is functionally very similar to the icm42600 series with a
+> very different register layout.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  .../bindings/iio/imu/invensense,icm42607.yaml | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/invensense,icm42607.yaml
+> 
 
-Ack!
+My bot found errors running 'make dt_binding_check' on your patch:
 
->> +
->> +	writel(0, inst->gp);
->> +	writel(0, inst->sgmii);
->> +
->> +	udelay(5);
->
-> Could you please add a macro or comment hinting at the origin of the
-> magic number 5 here? You could also place these 3 lines in a common
-> helper, also called from eq5_phy_exit(), to avoid minor code
-> duplication.
+yamllint warnings/errors:
 
-ACK, something named `eq5_phy_reinit()`.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/imu/invensense,icm42607.yaml: 'maintainers' is a required property
+	hint: Metaschema for devicetree binding documentation
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml
 
-I don't have precise explanation for the 5=C2=B5s value; I only know it is
-time to let the PHY settle before further register config writes.
-Is this enough?
+doc reference errors (make refcheckdocs):
 
-   udelay(5); /* settling time */
+See https://patchwork.kernel.org/project/devicetree/patch/20260224163109.370930-2-macroalpha82@gmail.com
 
->> +
->> +	reg =3D readl(inst->gp) | EQ5_GP_TX_SWRST_DIS | EQ5_GP_TX_M_CLKE |
->
-> When you write 0 to inst->gp and then read it back, do you expect to
-> (a) get back 0 or
-> (b) are some fields non-resetting?
->
-> I see both as inconsistent, since if (a), you can remove the
-> readl(inst->gp) and expect the same result. And if (b), it also
-> shouldn't matter if you write zeroes a second time, if it was fine the
-> first time?
->
-> Shortly said, is readl(inst->gp) really needed?
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Some fields are non-resetting (BIT 30).
-Will drop. I was trying to play it safe for no good reason.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
->
->> +	      EQ5_GP_SYS_SWRST_DIS | EQ5_GP_SYS_M_CLKE |
->> +	      FIELD_PREP(EQ5_GP_RGMII_DRV, 0x9);
->
-> Quick sanity check on your proposal to use #phy-cells =3D <1>. This is no=
-t
-> a request to change anything.
->
-> What if you need to customize the RGMII drive strength (or some other
-> setting, maybe SGMII polarity if that is available) per lane, for a
-> particular board? How would you do that if each PHY does not have its
-> own OF node?
+pip3 install dtschema --upgrade
 
-I have no knowledge of what that 0x9 stands for, I didn't see the point
-exposing it to devicetree. We could plan for the future and add a cell
-or create subnodes, but here I kept it simple stupid. Is it OK?
-
->> +	writel(reg, inst->gp);
->> +
->> +	return 0;
->> +}
->> +
->> +static int eq5_phy_exit(struct phy *phy)
->> +{
->> +	struct eq5_phy_inst *inst =3D phy_get_drvdata(phy);
->> +	struct eq5_phy_private *priv =3D inst->priv;
->> +	struct device *dev =3D priv->dev;
->> +
->> +	dev_dbg(dev, "phy_exit(inst=3D%td)\n", inst - priv->phys);
->> +
->> +	writel(0, inst->gp);
->> +	writel(0, inst->sgmii);
->> +	udelay(5);
->> +
->> +	return 0;
->> +}
->> +
->> +static int eq5_phy_set_mode(struct phy *phy, enum phy_mode mode, int su=
-bmode)
->> +{
->> +	struct eq5_phy_inst *inst =3D phy_get_drvdata(phy);
->> +	struct eq5_phy_private *priv =3D inst->priv;
->> +	struct device *dev =3D priv->dev;
->> +
->> +	dev_dbg(dev, "phy_set_mode(inst=3D%td, mode=3D%d, submode=3D%d)\n",
->> +		inst - priv->phys, mode, submode);
->> +
->> +	if (mode !=3D PHY_MODE_ETHERNET)
->> +		return -EOPNOTSUPP;
->> +
->> +	if (!phy_interface_mode_is_rgmii(submode) &&
->> +	    submode !=3D PHY_INTERFACE_MODE_SGMII)
->> +		return -EOPNOTSUPP;
->
-> Both PHYs are equal in capabilities, and support both RGMII and SGMII,
-> correct? I see the driver is implemented as if they were, but it doesn't
-> hurt to ask.
-
-Datasheet indicates 0 can do SGMII/RGMII and 1 can do only RGMII.
-Did you imply that the driver code should reject SGMII on PHY 1
-if it ever gets asked for?
-
->> +
->> +	inst->phy_interface =3D submode;
->
-> Short story: don't rely on the phy_set_mode_ext() -> phy_power_on() order=
-.
-> Implement the driver so that it works the other way around too.
->
-> Long story:
-> https://lore.kernel.org/netdev/aXzFH09AeIRawCwU@shell.armlinux.org.uk/
-
-I wouldn't mind, but what should phy_power_on() do if no submode has
-been provided through phy_set_mode_ext() yet? Guess one? Fail?
-
-Also our PHY will need to be reset to change its mode if we do
-power_on() followed by set_mode(), which in practice is never something
-we want. Maybe there is a flag to indicate that we require a submode to
-power on?
-
-Thanks for the extensive review Vladimir,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
