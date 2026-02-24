@@ -1,135 +1,221 @@
-Return-Path: <devicetree+bounces-267841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267843-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KOVWDymOnWkXQgQAu9opvQ
-	(envelope-from <devicetree+bounces-267841-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:40:25 +0100
+	id AJQnJhyPnWkXQgQAu9opvQ
+	(envelope-from <devicetree+bounces-267843-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:44:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7228B1866CA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:40:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 069961867C4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 12:44:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9591F303A91E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:38:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C895F31CA34A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 11:39:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEE837F724;
-	Tue, 24 Feb 2026 11:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F050D37D116;
+	Tue, 24 Feb 2026 11:39:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uzzkmfv9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cnH6QJC9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010042.outbound.protection.outlook.com [52.101.85.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87D8E37D116;
-	Tue, 24 Feb 2026 11:38:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771933109; cv=none; b=uHa65n6F7BcU/rgflQQtv2vyY3SC3AXJMPLcCHOPVXWtNigjq8GeXq3THAdrLrCL+fiI2RyEzT4SdpzQvowqV8YxxhMdOuFXWLsN26dak2mUysv3UOJvzdbAyltIC5VvawU3zCkyluKayrOI72W+F80dAys4u5mDo60Fwnd9Q/0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771933109; c=relaxed/simple;
-	bh=QS7CNJiQG7B9ALbJjQUVylSiRh7zGL57LuSxHqmBi4g=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=O3iwE05sP0S7Bth7c4PfW7ElP6T+Fgj6m1TDtKrI9z69M+a7oWDBR1hMQfUVvtyOoqSYdXTjjqx/P0Xjg4kDvCP6UAM4y9GGkZTH1HNuIBHyEEP9UxR6Ie9sp+HWVPCmGok4JA2BgAsaNlJWTAjZEEyNTeH7DoUtdkX/phihCKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uzzkmfv9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86878C116D0;
-	Tue, 24 Feb 2026 11:38:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771933109;
-	bh=QS7CNJiQG7B9ALbJjQUVylSiRh7zGL57LuSxHqmBi4g=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Uzzkmfv9bpJw09ktqybI8ICbNfnuTktHHxwRhi04Y1J6PsGW8WbVaybZVCjX8ew6V
-	 DY4cNvK6ZLnzyFuYtMktlLe+GuDpUgHOqc3M4EFt1ibnbV7CgW2b9p26co/D5ACXJf
-	 xw8TQqmSY0T1n14XTCKiK25sBkG2P2j38JJMX13rUJJrbOoll5GgtH7CToUNQ4/qFj
-	 k/ZF9UggSm2nZjFEtAU6GR3x0yobir3FAJvXwcEyZtD/Gb8KivZHv6b9AWT0gL7FR9
-	 fQ/TBtTXhaUDBtry4Y3U07gDQLxpOaEWdYFPkZJBH726qnOqZ0aDGWhkc/w0gBXWpv
-	 jEr75bdsf+SPg==
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- jesper.nilsson@axis.com, lars.persson@axis.com, mturquette@baylibre.com, 
- sboyd@kernel.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com, 
- cw00.choi@samsung.com, Ravi Patel <ravi.patel@samsung.com>
-Cc: ksk4725@coasia.com, smn1196@coasia.com, linux-arm-kernel@axis.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-clk@vger.kernel.org, pjsin865@coasia.com, gwk1013@coasia.com, 
- bread@coasia.com, jspark@coasia.com, limjh0823@coasia.com, 
- lightwise@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com, 
- shradha.t@samsung.com, swathi.ks@samsung.com, kenkim@coasia.com
-In-Reply-To: <20251029130731.51305-2-ravi.patel@samsung.com>
-References: <20251029130731.51305-1-ravi.patel@samsung.com>
- <CGME20251029130826epcas5p180506ff38fb57ecca0e33b2f5c57ed6c@epcas5p1.samsung.com>
- <20251029130731.51305-2-ravi.patel@samsung.com>
-Subject: Re: (subset) [PATCH v3 1/4] dt-bindings: clock: Add ARTPEC-9 clock
- controller
-Message-Id: <177193310325.54679.15908657347853584387.b4-ty@kernel.org>
-Date: Tue, 24 Feb 2026 12:38:23 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61198226D02;
+	Tue, 24 Feb 2026 11:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771933187; cv=fail; b=STTPXdCuomSf/RVXYu9HQdcG6Lzb9kUJxyjxLH7JUXyGEOVl7i4AZXkrv/14mCqtCLDVzcFzu88/OwoNAq3l8FsxmpetU5ndpdD6OJpv6lIWz/Dyne3SVrTByrV/oKSX+DFuTxcUPme2wnL/XrqZIFm4A6p8EVeQUE6em1HKPyc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771933187; c=relaxed/simple;
+	bh=12OV9qGVNfRrity6P7aIuDA/V0xYvEqUi8c8DqGBJJI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=j2LdZ/rAMJaJc5en3yXuj7T4m1izVKpyRfH2LcrTDXZWo1YxKRaOjVZUga0B6dkHmiuwvCU4wpo+GkM2sGJ5fL3DkjTXzdMn7UhOPQQgmW6cGDsOqncggk7TC7/TkikI+9PmeSGB2FgWzCwxXWH3J4fCD4F2LTf7ZxcrN8qvmm8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cnH6QJC9; arc=fail smtp.client-ip=52.101.85.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JXajPJFQczoN1l+F5cNzE/MAsYD3RpTnbiWIhs6cECdI27rhDQ3WH7TrXjknyPypI71w5ga242W9IaBSOu6AqL92eNIHd5Z+DCtVBjK0puzY+iCk1kjoMsR6F/kACRfC5eJye5CDe8R0IjrNu2U7IKihtdm7eGdasaSy2cQ+EftLro9rtgxeDy1BVidBFxr9yqL5uuFVWSovBXefE8ZxZa7ftIV1zdaRt6y3vPBM2KC/kQij+8bSDOFcLy88w+OcIKx0BtCjGtW3WaizdBUjcSWu8J3M7VRXoLirin/REAmd3IsbqZqcRCj31TSa5+QzEefi2c0K25ueCiBxZEINcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FTSYfdC+XOSHpKm8UI/kWXrYhVvC3K8KUJT/CgVBJso=;
+ b=iL+DjdqO9G8Igs/BhyJeqNg1AOpHpcObSRufUoOPYMQ8ub3d135YYunnHSeP1xCHibC6uoiUFnNOCmrZ9Eue9ToNffne2gPOEVQblsRZ+sSR/VFBsaMF/yjCmsvIVAx/HYfNKUZhKzzayLPvPALhxSg0aj7mDwQ0MO0vkKSDhamwy1EnYi2EumYbUauMfdWA2k6wElBLeYiMHH2kEPZlWTPjOdplKZUCHJwD9cQCyP7OG7+Og3U96+2pgjB97V/2XCZwerOB0apggczuYCwv3gnTOUQp2TRR0XkGyJa+1stsMRJbmYIM2wG4fTPFQvSjhaq5ZzJD86pFIjP1svlKaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FTSYfdC+XOSHpKm8UI/kWXrYhVvC3K8KUJT/CgVBJso=;
+ b=cnH6QJC9G8qyHgp9GYJIqGd/gCt7c8HP755wQP3Gvdd6O5nAa5m4/6alBSOsVRUqHUV4XI2cWUYm+34UseeK0vIEbpl+ym7D9zYqUUKpQrrknG6fdp1ly3HOQ6Rrz8a4qrEBviRtpoQlupWxYn2kc8Ei6Oe2uqZ4xBtTHgFiO6s=
+Received: from BY5PR17CA0019.namprd17.prod.outlook.com (2603:10b6:a03:1b8::32)
+ by DS7PR10MB4832.namprd10.prod.outlook.com (2603:10b6:5:3a6::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Tue, 24 Feb
+ 2026 11:39:44 +0000
+Received: from CO1PEPF000066E7.namprd05.prod.outlook.com
+ (2603:10b6:a03:1b8:cafe::e0) by BY5PR17CA0019.outlook.office365.com
+ (2603:10b6:a03:1b8::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.22 via Frontend Transport; Tue,
+ 24 Feb 2026 11:39:46 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CO1PEPF000066E7.mail.protection.outlook.com (10.167.249.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Tue, 24 Feb 2026 11:39:43 +0000
+Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 24 Feb
+ 2026 05:39:42 -0600
+Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 24 Feb
+ 2026 05:39:42 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 24 Feb 2026 05:39:42 -0600
+Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [10.24.51.219])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61OBdaEx2658018;
+	Tue, 24 Feb 2026 05:39:37 -0600
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+To: <tomi.valkeinen@ideasonboard.com>, <mchehab@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<hverkuil@xs4all.nl>, <sakari.ailus@linux.intel.com>,
+	<laurent.pinchart@ideasonboard.com>
+CC: <johannes.goede@oss.qualcomm.com>, <mehdi.djait@linux.intel.com>,
+	<vladimir.zapolskiy@linaro.org>, <dongcheng.yan@intel.com>,
+	<sylvain.petinot@foss.st.com>, <u-kumar1@ti.com>, <jai.luthra@linux.dev>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <y-abhilashchandra@ti.com>
+Subject: [PATCH V4 0/4] Add support for DS90UB954-Q1
+Date: Tue, 24 Feb 2026 17:09:20 +0530
+Message-ID: <20260224113925.19983-1-y-abhilashchandra@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF000066E7:EE_|DS7PR10MB4832:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41a5b982-77e6-4e8e-b75d-08de73996736
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|7416014|376014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?HecSvGOYEU6kUqM7cuwtZjmn+5qRJtj8ErWwBpuPfk4oCxxRrKrXYVrXJHVh?=
+ =?us-ascii?Q?IQl0mmHUgYtSUwx7hewAn9uyDImxaCtSxod8kT+c/1jlyhyiFGtlfmw3rPmK?=
+ =?us-ascii?Q?4ueKNRbOvzVq6tE/QumAFdP0RC0Rmiutadjlrogio10gh6pLkw9FsRP5ltyt?=
+ =?us-ascii?Q?K57huh7kVKZL4czTonL+j4AE+F1ooTohRLHlYPPdc6fbVSOWR90S2+OIhpTU?=
+ =?us-ascii?Q?YFAAzxggfr+4/lHWBVqA22jpw8Sl2/L1a0t9ZmU0Bh3/bd8z64ta4mF3i+X8?=
+ =?us-ascii?Q?YLNQQ/3Mnu66MT1wdbEKgtXuuVppWtp9EtIf1uVEXP+++umIIJwTuVzRGcOK?=
+ =?us-ascii?Q?zRxUSP+fgUSJU+0VkVC4kClSUPDe/Jlbw2kYs9p1walW9sq3f5eFTSC2YYRH?=
+ =?us-ascii?Q?FgfC/K5dtGWuOdqRokYeYb/r/wQzXJPsPFLeV+bYQWA1JTaxKVjNRCpwEflG?=
+ =?us-ascii?Q?Bke0yZBwyt4VWv5P8ukWvP7Al0zC4mHl7uqF2vEDea9IMHF0yVwg9mZ2528S?=
+ =?us-ascii?Q?7ahTPNMWdfC71i7Qw+G16HJXtdIrJrxDleLXlW/cJOFTT6lVKH/02z6L8jRq?=
+ =?us-ascii?Q?a5RJDyQ7RYA5ZNlVjUGWC2CVDV4V9i+T/b/yzSIxvQP93l/ae1gCN62gG3tT?=
+ =?us-ascii?Q?5ClMdu3z2LSpMHHCAGNbx64M4W6+Vh7I97xGwdtGYLVfSsXUS6lFn5Hx+Dii?=
+ =?us-ascii?Q?LBHsTeGvla7H17eEYwmrG13+rxX3SjV1dTH9jptwbm/sWMHqNHI13AFIRj1Y?=
+ =?us-ascii?Q?P5h/O3fDEACarxzQA2wW28dLhqzQhgxbyNtGutsITyoUSM88aLTXH5KnkdRE?=
+ =?us-ascii?Q?fHAxzHQ6D/vxhl1GP35K1/xaTCA/iXbpMlrJg4I5Vaa/usUnB/MezAvLVnqK?=
+ =?us-ascii?Q?u7FQJKz1ZYqsAoYZUBQHP5wjDDPCFJaDJxsug9L+AhZesEntKDdRplyAcezR?=
+ =?us-ascii?Q?DyyDNzH3C5GxG0hAnxdU+TfS1gq0vG856rLoiOHgNj2P8Tx9ADTcKs2/ch9u?=
+ =?us-ascii?Q?+h/ElQ4H8e0AQoXGVZkYifAdG156pLp6NAP2y+d3PI97Hbw5GCyM7LDSWP/E?=
+ =?us-ascii?Q?qMi7O3aI0pMeUMnFlQkR4QyZTBAfF9FN4s9PsLYkAZ6uenf0UfNYiqO0/PoO?=
+ =?us-ascii?Q?xL6lj77EQpQbgCioTVuMIDXyJ0EY4/qE7+OyrWDMpeqPfJ03Ms2w//D800Ao?=
+ =?us-ascii?Q?CgvJVRm4GctFYyjU9rIfEn++kIwti5qNphDL3fCvb6LYMuloQEMmTm2Elaul?=
+ =?us-ascii?Q?H8jdrw0yEXtvjgDiuIEqteZEvjhUqbnPUCVcGi2P14w/JJbi9QGBrngoFYnq?=
+ =?us-ascii?Q?bmb9e51hfVF0xjftpPnZd6NIQj9N1q5BucIqiFAkiTScdyW4DV3L/FdbnC/w?=
+ =?us-ascii?Q?4Ad64HcvWlnigyLbXdSghirYy8FNDMA7Y9fGzcxjs6goi4S/0reNs72TczCe?=
+ =?us-ascii?Q?zf+6V45Y9eNzXpd7KrbNAfQlq0dXfY5fHVpwFOSbQeyZgTYWt+fkjg7H0qjv?=
+ =?us-ascii?Q?6GrYIKfwh8ulRLSI4wZ9CoeGiOJXgCEwLvcOnNQl1xe2udPdp7KEBXr5qAtK?=
+ =?us-ascii?Q?2LzkO0lj5aIJS9IoLps3xkJCDpibwceZwM+sr7RY6XlAisMRIiIm05f4YkPw?=
+ =?us-ascii?Q?jplc1SSfR8qntu6yRu5l+1R1r36cDeqGO/4PuZzztsf1+rKhDY4ic1lmsAss?=
+ =?us-ascii?Q?K5bydQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(7416014)(376014)(82310400026);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	dgFoLo9iX4y+j6LXczLh0g29mXeMTOcJMkfqCUtYaLEE81hoEPB4nf3dcLV828Fna+joUKsEYdPemt9bYVY7mf/m3hMH+Y/oSUVZHulUALzP2PTm7SH8/yl5qJwaAj/EGId/W8qtnyY9wuGF7FyqsjMuJV99qTGrDF8FY9z06A6+4BR6b6pjGvRXMrhUkIhRh64ocpnCXYSCf7V+p8wO/93zo0x2sEZuLVTQQZ16DUd8Lu+P6bTjKsXbuuh+0FAwIWBW+m7RkX6SVFwVUgxXsieqtp30+Si+FOpIeO9EjkCOGOpJUaH6PUPPKP2SXKy0RJoPzv+aDe9/DiH5C3xoGLZbrG0k9cVgtxrZFGaqZQN9zYolRXGIuUej0UkY4xo5wYyaC5/s7Q8d+lAmB0HsLvonB6U/aLZu54bAziH/m1dejCJmOywt3LgPljiK7XD3
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 11:39:43.0643
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41a5b982-77e6-4e8e-b75d-08de73996736
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000066E7.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB4832
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267841-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_TO(0.00)[ideasonboard.com,kernel.org,xs4all.nl,linux.intel.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-267843-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[y-abhilashchandra@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ti.com:mid,ti.com:dkim];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7228B1866CA
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 069961867C4
 X-Rspamd-Action: no action
 
+DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
+compatible with DS90UB960-Q1. The main difference is that it supports
+half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
+port. Therefore, add support for DS90UB954 within the existing DS90UB960
+bindings and the driver.
 
-On Wed, 29 Oct 2025 18:37:28 +0530, Ravi Patel wrote:
-> Add dt-schema for Axis ARTPEC-9 SoC clock controller.
-> 
-> The Clock Management Unit (CMU) has a top-level block CMU_CMU
-> which generates clocks for other blocks.
-> 
-> Add device-tree binding definitions for following CMU blocks:
-> - CMU_CMU
-> - CMU_BUS
-> - CMU_CORE
-> - CMU_CPUCL
-> - CMU_FSYS0
-> - CMU_FSYS1
-> - CMU_IMEM
-> - CMU_PERI
-> 
-> [...]
+Changelog:
+Changes in v3:
+- Rebase on top of next-20260223
 
-Applied, thanks!
+Link for v3: https://lore.kernel.org/all/20251219122955.2078270-1-y-abhilashchandra@ti.com/
 
-[1/4] dt-bindings: clock: Add ARTPEC-9 clock controller
-      https://git.kernel.org/krzk/linux/c/6974ae5aa23b7f37182da6b66d7f58313a55a88e
+Yemike Abhilash Chandra (4):
+  media: dt-bindings: ti,ds90ub960: Refactor port definitions
+  media: i2c: ds90ub960: Use enums for chip type and chip family
+  media: dt-bindings: ti,ds90ub960: Add support for DS90UB954-Q1
+  media: i2c: ds90ub960: Add support for DS90UB954-Q1
 
-Best regards,
+ .../bindings/media/i2c/ti,ds90ub960.yaml      | 213 ++++++++---------
+ drivers/media/i2c/Kconfig                     |   4 +-
+ drivers/media/i2c/ds90ub960.c                 | 216 ++++++++++++------
+ 3 files changed, 263 insertions(+), 170 deletions(-)
+
 -- 
-Krzysztof Kozlowski <krzk@kernel.org>
+2.34.1
 
 
