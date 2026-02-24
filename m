@@ -1,395 +1,236 @@
-Return-Path: <devicetree+bounces-267710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-267713-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eIR/M2s4nWn3NQQAu9opvQ
-	(envelope-from <devicetree+bounces-267710-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:34:35 +0100
+	id wKSFFaA5nWl1NgQAu9opvQ
+	(envelope-from <devicetree+bounces-267713-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:39:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31015182128
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:34:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9AEF182211
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 06:39:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1361831982DB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 05:31:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B27BE303D65F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 05:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C0422DAFBD;
-	Tue, 24 Feb 2026 05:30:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07F829A9C8;
+	Tue, 24 Feb 2026 05:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HGuC/hn/"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="qoNEMSIW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazon11013006.outbound.protection.outlook.com [40.93.196.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 733652C0F78;
-	Tue, 24 Feb 2026 05:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771911053; cv=none; b=JKUk3SoeSWguXBtzpe9D2ivB6ooiGNHJpQWinqTd4r+cwF9hRzYMEZfyz83ZrTVxkIm+TV1wQwXBPW097UbSM304IWYgnK73aZ0J4SH5assob8j66SDt+nbqh5rV1RJolIs/tetshNiJrx6p83oFA5RzSUruG2o2PMjsDuqlnak=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771911053; c=relaxed/simple;
-	bh=kyfTo/8USTG3OqpqST1Bs5VOfk+TjVTQurHs0EidrHM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dmMjgK+ljlXDCMxpiY2r31aFUX/dJOt//BF+ZfnZiiWk0D4794qLC/Untx+tjhYhyJ9qbz+pLgUU6T88xfbPdhqmLJAQQ1SAfoCtwmnbZ8xzUMu1nI2LZyyh4aCHeMw3KWWBzsHAbWBFFZfjcQrNITGRHD4xUcWkWLCluDo3h18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HGuC/hn/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4C192C19425;
-	Tue, 24 Feb 2026 05:30:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771911053;
-	bh=kyfTo/8USTG3OqpqST1Bs5VOfk+TjVTQurHs0EidrHM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HGuC/hn/JTEBWLoZDOcKMx/JPP3r7RG2HtVzCtecia0kCqqKwZtPpKGeC49UgWL+F
-	 r4tWsXUsi43mob5l0JPc+6sYA5OTrfxY/BpfYVtVFg6TzNKX2txKIu+FIW0NeQQnMI
-	 9EPLn18nFbN0zJfLedixnfdEtI6Ya0tEYYM/qYPwL43gLt7KskEARZ6wM8e6GoIBf8
-	 y6QM96drBhVZl8vUUqkpbTcZlX56rLaqPAr+OPqUANx7IAaDU019jMl+k07wgJ2fHJ
-	 qvwHsDiaorYNvB4i05ky8yKI9sZRBpuGTzRh/oKFXbyLYS3vhs53d9VjrtSfrGBALQ
-	 x0xdNgmvZFufQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 405AAEFB805;
-	Tue, 24 Feb 2026 05:30:53 +0000 (UTC)
-From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>
-Date: Tue, 24 Feb 2026 11:00:55 +0530
-Subject: [PATCH v5 9/9] power: sequencing: pcie-m2: Create serdev device
- for WCN7850 bluetooth
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F43A296BDC;
+	Tue, 24 Feb 2026 05:39:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.196.6
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771911579; cv=fail; b=jq2l5yxbm4iBibwkRZugpUrX3/UxPtAlcTroVuHFdrB8BsW/wnphC+r29AxG3dPveiw/aTlZw/SeIFdWU8X6iGhXL/VwGgk6P1XBBfeGqucAMglOUe/+4N3y7anpQ2eawvo6IXZLijAgMEpNBpjDYyRPvmYR5EvZSzXY6ZYjmkw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771911579; c=relaxed/simple;
+	bh=ZA84+gPXl/CoZ6yzgDgi/kN+n+ydeLTRXHSeRrvurbs=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AJ0TGFUye718UGp1dSAmvWTuYpSRRpVN743/+pMfL3kY6ur6va7rRRr+TknoI+tJgnOiHFEhX5ir5n9ESaKvYOsrWk5Hvlrinkvdow6XJYR2eLphKB4YpaiNhVF69bztu1nleNYvzOfpgIErSF171BGPGUTmHT4WPtGaJZw1Btk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=qoNEMSIW; arc=fail smtp.client-ip=40.93.196.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=azccU0KL9m++SxoCuMhBlu5+76K3kXJ75FvQS89OwN/DY1gFiEx80z8LdtePPv/WELtsVZxCYyY7yVWiY6ASS8UldhpFzF+Capr622EU+hd/ROf4l3zs9Gz87FXAaLXwe/okqn0dQU+z5A/+lPrIdQI1zB2hTuENXysSzNhbFd1P37LWaOtRmw9+TXkPxbmiRaP2140ydnclqf5IiGF5R3W10qN7blafvnJR7AQF66ABXxwHKBuhn6VnSvJRLlHFBHzzrtTMR/T4Nr0zJ0wdgV1l0LRI3u2mc0MF3Bkjf65+UXiMtAmtwW3/ErX9l+fj9eU/0M2t/SfBoBoUWwQLPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1n5TUnAlk987ftT/ySfpyyuFEqCmJx66ACWIrspdAsg=;
+ b=JkvxMb2klQvnaRWe4mPPDKkCH0bLwyq/RXWh1uNE32kNDcaBmraIJm0MXiLw7db7zqE6+oFg1hZJkdo5G8VS1yuQXai0C7Q9qoEuGJRPtBnbCtnOMaawlpns1tUiYBKPNYvfpFddfzmm9/JTAGdEVG/0Pe4tfoyUFhotbEN+GaZabd/MGtOIU8WU78SAXotLt/HSu5oMwexToucmJMm5EO6hQMgCyXYPYYIBlIOuCqKcrT/jMl3l64tN89PwOSogByfM7DNWOpeNgcDqUvkaMcLkT1nbe+L1vYh9QHGO0F+Apf7ce+b2BpWBu0+EjKi0NSzQW/amX9AeU/KSgQSaRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=nxp.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1n5TUnAlk987ftT/ySfpyyuFEqCmJx66ACWIrspdAsg=;
+ b=qoNEMSIWLSQepKRn5MZxyOiMu6IE3p56MN3ZiaG0S4BnSKErg28GnWtP8GXJkxiiNO1GnQfh4dtd0NMvncwqd49A0hWMbHUgYUdEnhJB85DTbSdO7lMDU1wfMOywngwTbUp3Iqx4ZrSfO8E/ACahMCWH/OY5GBpULNjFTF6MybLPj7FmFlZbqDe/mqWroALZ1AWQHK9egTmj+YrR0YuS4Y8dMOkfIr/hwq81r5zB+1OFTJF20kofeIjrrwpy18TLdznPdSlLCugPUzsddKDSAAkZ1Zafu6SQRe8ECAwwASoUrECZmNUWABpS6xCICtqp5huOwPeCnUL0dlIoESEjww==
+Received: from SA0PR11CA0083.namprd11.prod.outlook.com (2603:10b6:806:d2::28)
+ by PH0PR12MB7864.namprd12.prod.outlook.com (2603:10b6:510:26c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Tue, 24 Feb
+ 2026 05:39:33 +0000
+Received: from SN1PEPF000252A0.namprd05.prod.outlook.com
+ (2603:10b6:806:d2:cafe::2a) by SA0PR11CA0083.outlook.office365.com
+ (2603:10b6:806:d2::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.21 via Frontend Transport; Tue,
+ 24 Feb 2026 05:38:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ SN1PEPF000252A0.mail.protection.outlook.com (10.167.242.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Tue, 24 Feb 2026 05:39:33 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 23 Feb
+ 2026 21:39:27 -0800
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.20; Mon, 23 Feb 2026 21:39:27 -0800
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.126.190.182) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
+ Transport; Mon, 23 Feb 2026 21:39:23 -0800
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <frank.li@nxp.com>
+CC: <Frank.Li@kernel.org>, <akhilrajeev@nvidia.com>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+	<jonathanh@nvidia.com>, <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <p.zabel@pengutronix.de>, <robh@kernel.org>,
+	<thierry.reding@gmail.com>, <vkoul@kernel.org>
+Subject: Re: [PATCH 3/8] dmaengine: tegra: Make reset control optional
+Date: Tue, 24 Feb 2026 11:09:22 +0530
+Message-ID: <20260224053922.43058-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <aZStyRaoMYBlNOSY@lizhi-Precision-Tower-5810>
+References: <aZStyRaoMYBlNOSY@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260224-pci-m2-e-v5-9-dd9b9501d33c@oss.qualcomm.com>
-References: <20260224-pci-m2-e-v5-0-dd9b9501d33c@oss.qualcomm.com>
-In-Reply-To: <20260224-pci-m2-e-v5-0-dd9b9501d33c@oss.qualcomm.com>
-To: Rob Herring <robh@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
- Nicolas Schier <nicolas.schier@linux.dev>, Hans de Goede <hansg@kernel.org>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Mark Pearson <mpearson-lenovo@squebb.ca>, 
- "Derek J. Clark" <derekjohn.clark@gmail.com>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Bartosz Golaszewski <brgl@kernel.org>
-Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kbuild@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- linux-pm@vger.kernel.org, Stephan Gerhold <stephan.gerhold@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- linux-acpi@vger.kernel.org, 
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
- Hans de Goede <johannes.goede@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8258;
- i=manivannan.sadhasivam@oss.qualcomm.com; h=from:subject:message-id;
- bh=iMQanxh48zZesV0ri7QIXxOpLmhhR5jmc4pGrWrdKNQ=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBpnTeJgOHTAKrA9ShrAtobh7vVQuIco5Nt9DE6W
- TP3QHBHA1CJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCaZ03iQAKCRBVnxHm/pHO
- 9QQJB/sHCvHF1GkYVzmexefEic1g8TrXjKgolHEmbRf9vgJz+6VvuVoozqhY3b7JVRxPWRPpErv
- wCuhlwPrZHPajZ6oQ+1v1irI0+pdc+3/YN9jjJGgWe8CmTKN0M4Mt5YR4mZZ6J1XZxa8H7Sm/0z
- a4hrsjm8nyAhdQ/ReoGf+3Keqg9vXLAU4qdHoG0X3Sku27BPoEo6Puut7cbJFQXZkulQmaX0DdN
- aUDls5p03OfGIIVRgLdkBevrWPS2XDd3qohe1uP5CWdTY398HsMix30L4BEeXs95pjG5KEvvx/q
- 2F2+rrkxpek7TsNvldiVbMTAx5jwbOB9OSuzyLM6d1dcwTPm
-X-Developer-Key: i=manivannan.sadhasivam@oss.qualcomm.com; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
-X-Endpoint-Received: by B4 Relay for
- manivannan.sadhasivam@oss.qualcomm.com/default with auth_id=461
-X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Reply-To: manivannan.sadhasivam@oss.qualcomm.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A0:EE_|PH0PR12MB7864:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f3d7853-ee0a-4ecb-4ea4-08de736716b4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700013|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?gJ85kFT2Kpnb+lxotX6CVsa0Reh6MbcyZ4s3hmkjBzBNAVqZtsNqT6kF7R+6?=
+ =?us-ascii?Q?r3SQxOaTpynDASRcfZQN2/MQi3aadAtLaQ58u/i6ZE42tUXEGvMWNYHBzWDM?=
+ =?us-ascii?Q?pmeL44MwSt0/pkSQu9teTUqBqULqKyzRnBTKgHq58MqaC3YtFjl9/o3Cslbm?=
+ =?us-ascii?Q?cRPpA0U4usvpsiMdirYoXn/yH3biXT/1V9NCSSxtMbBroQFHcMvz33v5R/v6?=
+ =?us-ascii?Q?82G/YWfp+L+m8czrVLtjY2sFuaBTDPBbG9oKxRIr6XoO/ukOEsMKpp/GOD0g?=
+ =?us-ascii?Q?okB5slXSqBC1RRf4q7/VPfXeGtowaSiUH7bZZBQThiKT2FCHpYZglYZ2yuDT?=
+ =?us-ascii?Q?161m8sXmCHz3GCrzea5DisYDQJ55g2VSg4d+zEbBXCF9W9rZpXDsdM9uKgyT?=
+ =?us-ascii?Q?vK2jUAqRO8YmzBXhRxd18sbiRkyjc+yCZ5aaUDxGkfb8YoHkmRMTdw2/moqO?=
+ =?us-ascii?Q?7UpG3TpDRsYmTlrV6XXOPvY7xtS2fFZmj+kRC20uE1VQD66zGoIYTBbpnu5e?=
+ =?us-ascii?Q?mDJSEwfj+4frv1KvmtYNOMGe+EVXRG6ByoYbKhO27FoNAwrPoVXGwFPor0d6?=
+ =?us-ascii?Q?WTsxMCx0SH3378xSeqTcaXI+rZU0XWYoG9yJL8sYxqUkkwFppAULEkXfXl7J?=
+ =?us-ascii?Q?3kJ7j9D0+Ci9Dm1CLmFaed9Sd9dFCYd2mxS5RDSNKs80QUYW9TRLuoAYgPwJ?=
+ =?us-ascii?Q?nS1fXJW5Ychokz3LXNmRWjH+dCnH28E0T+FJvzEOCGQgZHELYpyB48CKOvdB?=
+ =?us-ascii?Q?qNYUXYldypnLqMvTVhzKQ7g+EU01T87U+MGtwOQrkBPCQvQX1Lh0o3BPw0B5?=
+ =?us-ascii?Q?oUkFKrcGGI/TkA/hEKA4GM5GYTVJmgJy5GjPg9UlJwBjGVgtFtsCeCuthmqX?=
+ =?us-ascii?Q?O9vkj2CNZekOYbexva6DV4BLnWmLrCYxKCZo5VgxXmI/XxwsiBqLMjo+PDN2?=
+ =?us-ascii?Q?aVaCD/62iTPyra4hDZkc18YeJrJ7qzswRR8h3MbTqN5kMx59+TVGIkayvgTm?=
+ =?us-ascii?Q?tElxkp6KEMDQBncan8kp2V4IrXPYe3MQCI2W/ybBR2fXEDLhaIQFFBt6kCjJ?=
+ =?us-ascii?Q?hT5RbdsswR+hTszFDp2HsmHiD5zCtwx+KPkbmYj3Wm1FjkUzTJd8IrPndYlG?=
+ =?us-ascii?Q?Ax6wNKN+XnZlPEshreBkZ5urIaUBYXkvfUOMR2GMvZO66DbX7LOzt/kYhUOY?=
+ =?us-ascii?Q?gz/lYe9xf4/VDlOu93bpRvtFde8hbTEW3ounqu1ZkQHkHsCEjzb3tRz/1N8Q?=
+ =?us-ascii?Q?T5OmWEz2tDjMxQGfIntRyQGGYdNUDPnMXsMbO35M+CgZMb7HIrfxjxyhm+bN?=
+ =?us-ascii?Q?WwTPksA/aS/0GF0q6ppyM4RAoWgxtNESICNZEl96fjVTRKcty4Xv27FzK5bo?=
+ =?us-ascii?Q?Y4j61fnxZ68Bwuhlr2UAkHtqNLuPTZ3B6ah/1mednyHC5oF0NPaSS6ukphRY?=
+ =?us-ascii?Q?tby40UK4bk3KEZdxTGtSLaZI60nX2AX/tXKpPz5S8I1X8aS/y+Z4PuB9P0OM?=
+ =?us-ascii?Q?A9ZS/jNY1CQf7oRcAIYxBFkpUVORvmIoEmmpXjFADpmFGTXryRkHsTl4cLd5?=
+ =?us-ascii?Q?7RBm4EUwLEvyzEuzteF9d1/E2kTz5peBthhIz7s3EOGaFbgbytuD/FZ97QV2?=
+ =?us-ascii?Q?YnU98lCviCPMAW+8gYyD4UAIu8soIj2p0LGb5txu0eLSAvAf8uJ5oNHGczK0?=
+ =?us-ascii?Q?I6tdMw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700013)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	GjkxHqpKchcTzw/ujew3RrUmuwyl+bkbOCbPRyoNU5QvSHAhrKSl27FKu8lZ5jT2XY0ouk4Z1MQtEu0GIuGKVbfScJiC7Tfx+JE7LjxL+lDMIvSk+cldIuPCCqQwVXcWlLLoVKryr1gmrv/NlkJR3F7ThW1QgzX1kCwMs19lq0Nd7MylN0Ip08agD/XyZADty5nksDfmoUclLxQ3Sizlx49jyY8WFJ4HZkAHum1dEQZFKRl3NdzNS4LY7VBvYxut/2nRc9M2Of0iMq8+MINW3qYr7QMZ8cYYpH4nBDqicumEjofUtZkJ0KQ83d8UClEfPwaRG+s25GA6xmGWQfVdAMYarRSoiIjKRS5Q6C/sHLYldqP5uaI+AlpQ+eqSi59EyjMfEYPBd6SrCUQgAHr0Eg7paQjw/jd754WDyxwfK5M1axbNODaAJvp9GbM39KIM
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 05:39:33.1836
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f3d7853-ee0a-4ecb-4ea4-08de736716b4
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF000252A0.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7864
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-267710-lists,devicetree=lfdr.de,manivannan.sadhasivam.oss.qualcomm.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linuxfoundation.org,linux.dev,linux.intel.com,squebb.ca,gmail.com,holtmann.org,bgdev.pl];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[manivannan.sadhasivam@oss.qualcomm.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,vger.kernel.org,pengutronix.de,gmail.com];
+	TAGGED_FROM(0.00)[bounces-267713-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,oss.qualcomm.com:mid,oss.qualcomm.com:replyto]
-X-Rspamd-Queue-Id: 31015182128
+	RCPT_COUNT_TWELVE(0.00)[14];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nvidia.com:mid,nvidia.com:email,Nvidia.com:dkim];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: C9AEF182211
 X-Rspamd-Action: no action
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Hi Frank,
 
-For supporting bluetooth over the non-discoverable UART interface of
-WCN7850, create the serdev device after enumerating the PCIe interface.
-This is mandatory since the device ID is only known after the PCIe
-enumeration and the ID is used for creating the serdev device.
+On Tue, 17 Feb 2026 13:04:57 -0500, Frank Li wrote:
+> On Tue, Feb 17, 2026 at 11:04:52PM +0530, Akhil R wrote:
+>> Tegra264 BPMP restricts access to GPCDMA reset control and the reset
+> 
+> what's means of BPMP?
 
-Since by default there is no OF or ACPI node for the created serdev,
-create a dynamic OF 'bluetooth' node with the 'compatible' property and
-attach it to the serdev device. This will allow the serdev device to bind
-to the existing bluetooth driver.
+BPMP is Boot and Power Management Processor which is a co-processor
+in Tegra and runs a dedicated firmware. It manages the boot, clock,
+reset etc. I will put the expansion in the commit message in the next
+version. Do you suggest adding more details?
 
-Tested-by: Hans de Goede <johannes.goede@oss.qualcomm.com> # ThinkPad T14s gen6 (arm64)
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
----
- drivers/power/sequencing/Kconfig          |   3 +-
- drivers/power/sequencing/pwrseq-pcie-m2.c | 171 +++++++++++++++++++++++++++++-
- 2 files changed, 170 insertions(+), 4 deletions(-)
+There is a documentation for this in Linux -
+https://www.kernel.org/doc/Documentation/devicetree/bindings/firmware/nvidia%2Ctegra186-bpmp.txt
 
-diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/Kconfig
-index f5fff84566ba..55aeef125e6f 100644
---- a/drivers/power/sequencing/Kconfig
-+++ b/drivers/power/sequencing/Kconfig
-@@ -37,7 +37,8 @@ config POWER_SEQUENCING_TH1520_GPU
- 
- config POWER_SEQUENCING_PCIE_M2
- 	tristate "PCIe M.2 connector power sequencing driver"
--	depends on OF || COMPILE_TEST
-+	depends on (PCI && OF) || COMPILE_TEST
-+	select OF_DYNAMIC
- 	help
- 	  Say Y here to enable the power sequencing driver for PCIe M.2
- 	  connectors. This driver handles the power sequencing for the M.2
-diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/sequencing/pwrseq-pcie-m2.c
-index 3507cdcb1e7b..d398487202b9 100644
---- a/drivers/power/sequencing/pwrseq-pcie-m2.c
-+++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
-@@ -12,9 +12,11 @@
- #include <linux/of.h>
- #include <linux/of_graph.h>
- #include <linux/of_platform.h>
-+#include <linux/pci.h>
- #include <linux/platform_device.h>
- #include <linux/pwrseq/provider.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/serdev.h>
- #include <linux/slab.h>
- 
- struct pwrseq_pcie_m2_pdata {
-@@ -30,6 +32,9 @@ struct pwrseq_pcie_m2_ctx {
- 	struct notifier_block nb;
- 	struct gpio_desc *w_disable1_gpio;
- 	struct gpio_desc *w_disable2_gpio;
-+	struct serdev_device *serdev;
-+	struct of_changeset *ocs;
-+	struct device *dev;
- };
- 
- static int pwrseq_pcie_m2_vregs_enable(struct pwrseq_device *pwrseq)
-@@ -172,13 +177,169 @@ static int pwrseq_pcie_m2_match(struct pwrseq_device *pwrseq,
- 	return PWRSEQ_NO_MATCH;
- }
- 
--static void pwrseq_pcie_m2_free_regulators(void *data)
-+static void pwrseq_pcie_m2_free_resources(void *data)
- {
- 	struct pwrseq_pcie_m2_ctx *ctx = data;
- 
-+	serdev_device_remove(ctx->serdev);
-+	bus_unregister_notifier(&pci_bus_type, &ctx->nb);
-+	of_changeset_revert(ctx->ocs);
-+	of_changeset_destroy(ctx->ocs);
- 	regulator_bulk_free(ctx->num_vregs, ctx->regs);
- }
- 
-+static int pwrseq_m2_pcie_create_bt_node(struct pwrseq_pcie_m2_ctx *ctx,
-+					struct device_node *parent)
-+{
-+	struct device *dev = ctx->dev;
-+	struct device_node *np;
-+	int ret;
-+
-+	ctx->ocs = devm_kzalloc(dev, sizeof(*ctx->ocs), GFP_KERNEL);
-+	if (!ctx->ocs)
-+		return -ENOMEM;
-+
-+	of_changeset_init(ctx->ocs);
-+
-+	np = of_changeset_create_node(ctx->ocs, parent, "bluetooth");
-+	if (!np) {
-+		dev_err(dev, "Failed to create bluetooth node\n");
-+		ret = -ENODEV;
-+		goto err_destroy_changeset;
-+	}
-+
-+	ret = of_changeset_add_prop_string(ctx->ocs, np, "compatible", "qcom,wcn7850-bt");
-+	if (ret) {
-+		dev_err(dev, "Failed to add bluetooth compatible: %d\n", ret);
-+		goto err_destroy_changeset;
-+	}
-+
-+	ret = of_changeset_apply(ctx->ocs);
-+	if (ret) {
-+		dev_err(dev, "Failed to apply changeset: %d\n", ret);
-+		goto err_destroy_changeset;
-+	}
-+
-+	ret = device_add_of_node(&ctx->serdev->dev, np);
-+	if (ret) {
-+		dev_err(dev, "Failed to add OF node: %d\n", ret);
-+		goto err_revert_changeset;
-+	}
-+
-+	return 0;
-+
-+err_revert_changeset:
-+	of_changeset_revert(ctx->ocs);
-+err_destroy_changeset:
-+	of_changeset_destroy(ctx->ocs);
-+
-+	return ret;
-+}
-+
-+static int pwrseq_m2_pcie_notify(struct notifier_block *nb, unsigned long action,
-+			      void *data)
-+{
-+	struct pwrseq_pcie_m2_ctx *ctx = container_of(nb, struct pwrseq_pcie_m2_ctx, nb);
-+	struct pci_dev *pdev = to_pci_dev(data);
-+	struct serdev_controller *serdev_ctrl;
-+	struct device *dev = ctx->dev;
-+	int ret;
-+
-+	/*
-+	 * Check whether the PCI device is associated with this M.2 connector or
-+	 * not, by comparing the OF node of the PCI device parent and the Port 0
-+	 * (PCIe) remote node parent OF node.
-+	 */
-+	struct device_node *pci_parent __free(device_node) =
-+			of_graph_get_remote_node(dev_of_node(ctx->dev), 0, 0);
-+	if (!pci_parent || (pci_parent != pdev->dev.parent->of_node))
-+		return NOTIFY_DONE;
-+
-+	switch (action) {
-+	case BUS_NOTIFY_ADD_DEVICE:
-+		/* Create serdev device for WCN7850 */
-+		if (pdev->vendor == PCI_VENDOR_ID_QCOM && pdev->device == 0x1107) {
-+			struct device_node *serdev_parent __free(device_node) =
-+				of_graph_get_remote_node(dev_of_node(ctx->dev), 1, 1);
-+			if (!serdev_parent)
-+				return NOTIFY_DONE;
-+
-+			serdev_ctrl = of_find_serdev_controller_by_node(serdev_parent);
-+			if (!serdev_ctrl)
-+				return NOTIFY_DONE;
-+
-+			ctx->serdev = serdev_device_alloc(serdev_ctrl);
-+			if (!ctx->serdev)
-+				return NOTIFY_BAD;
-+
-+			ret = pwrseq_m2_pcie_create_bt_node(ctx, serdev_parent);
-+			if (ret) {
-+				serdev_device_put(ctx->serdev);
-+				return notifier_from_errno(ret);
-+			}
-+
-+			ret = serdev_device_add(ctx->serdev);
-+			if (ret) {
-+				dev_err(dev, "Failed to add serdev for WCN7850: %d\n", ret);
-+				of_changeset_revert(ctx->ocs);
-+				of_changeset_destroy(ctx->ocs);
-+				serdev_device_put(ctx->serdev);
-+				return notifier_from_errno(ret);
-+			}
-+		}
-+		break;
-+	case BUS_NOTIFY_REMOVED_DEVICE:
-+		/* Destroy serdev device for WCN7850 */
-+		if (pdev->vendor == PCI_VENDOR_ID_QCOM && pdev->device == 0x1107) {
-+			serdev_device_remove(ctx->serdev);
-+			of_changeset_revert(ctx->ocs);
-+			of_changeset_destroy(ctx->ocs);
-+		}
-+		break;
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+static bool pwrseq_pcie_m2_check_remote_node(struct device *dev, u8 port, u8 endpoint,
-+					     const char *node)
-+{
-+	struct device_node *remote __free(device_node) =
-+			of_graph_get_remote_node(dev_of_node(dev), port, endpoint);
-+
-+	if (remote && of_node_name_eq(remote, node))
-+		return true;
-+
-+	return false;
-+}
-+
-+/*
-+ * If the connector exposes a non-discoverable bus like UART, the respective
-+ * protocol device needs to be created manually with the help of the notifier
-+ * of the discoverable bus like PCIe.
-+ */
-+static int pwrseq_pcie_m2_register_notifier(struct pwrseq_pcie_m2_ctx *ctx, struct device *dev)
-+{
-+	int ret;
-+
-+	/*
-+	 * Register a PCI notifier for Key E connector that has PCIe as Port
-+	 * 0/Endpoint 0 interface and Serial as Port 3/Endpoint 0 interface.
-+	 */
-+	if (pwrseq_pcie_m2_check_remote_node(dev, 3, 0, "serial")) {
-+		if (pwrseq_pcie_m2_check_remote_node(dev, 0, 0, "pcie")) {
-+			ctx->dev = dev;
-+			ctx->nb.notifier_call = pwrseq_m2_pcie_notify;
-+			ret = bus_register_notifier(&pci_bus_type, &ctx->nb);
-+			if (ret)
-+				return dev_err_probe(dev, ret,
-+						     "Failed to register notifier for serdev\n");
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int pwrseq_pcie_m2_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -218,7 +379,7 @@ static int pwrseq_pcie_m2_probe(struct platform_device *pdev)
- 
- 	ctx->num_vregs = ret;
- 
--	ret = devm_add_action_or_reset(dev, pwrseq_pcie_m2_free_regulators, ctx);
-+	ret = devm_add_action_or_reset(dev, pwrseq_pcie_m2_free_resources, ctx);
- 	if (ret)
- 		return ret;
- 
-@@ -233,7 +394,11 @@ static int pwrseq_pcie_m2_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(ctx->pwrseq),
- 				     "Failed to register the power sequencer\n");
- 
--	return 0;
-+	/*
-+	 * Register a notifier for creating protocol devices for
-+	 * non-discoverable busses like UART.
-+	 */
-+	return pwrseq_pcie_m2_register_notifier(ctx, dev);
- }
- 
- static const struct of_device_id pwrseq_pcie_m2_of_match[] = {
+> 
+> Frank
+>> is expected to be deasserted on boot by BPMP. Hence Make the reset
+>> control optional in the driver.
+>>
+>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>> ---
+>>  drivers/dma/tegra186-gpc-dma.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/dma/tegra186-gpc-dma.c b/drivers/dma/tegra186-gpc-dma.c
+>> index 4d6fe0efa76e..236a298c26a1 100644
+>> --- a/drivers/dma/tegra186-gpc-dma.c
+>> +++ b/drivers/dma/tegra186-gpc-dma.c
+>> @@ -1382,7 +1382,7 @@ static int tegra_dma_probe(struct platform_device *pdev)
+>>  	if (IS_ERR(tdma->base_addr))
+>>  		return PTR_ERR(tdma->base_addr);
+>>
+>> -	tdma->rst = devm_reset_control_get_exclusive(&pdev->dev, "gpcdma");
+>> +	tdma->rst = devm_reset_control_get_optional_exclusive(&pdev->dev, "gpcdma");
+>>  	if (IS_ERR(tdma->rst)) {
+>>  		return dev_err_probe(&pdev->dev, PTR_ERR(tdma->rst),
+>>  			      "Missing controller reset\n");
 
--- 
-2.51.0
+Thanks for the review.
 
-
+Regards,
+Akhil
 
