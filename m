@@ -1,63 +1,68 @@
-Return-Path: <devicetree+bounces-268218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268200-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id COaYKFG+nmnYXAQAu9opvQ
-	(envelope-from <devicetree+bounces-268218-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:18:09 +0100
+	id +ECEGnq5nmnwWwQAu9opvQ
+	(envelope-from <devicetree+bounces-268200-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86AA5194C66
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:18:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E641F1947BD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 63D623010614
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:17:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B2F0D3044A76
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14C203876B0;
-	Wed, 25 Feb 2026 09:17:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bMH2MptT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888DE325490;
+	Wed, 25 Feb 2026 08:55:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+Received: from Atcsqr.andestech.com (unknown [60.248.187.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A553876C3;
-	Wed, 25 Feb 2026 09:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB9A2C178D
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.187.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772011022; cv=none; b=h+Ap2DYiVhXoSQ+WKWKv+giHbZSwRuiciIIgmKOBXSsVnO6Pm67rLmM8Y9eWM47HMwUDaWRRufrDlOXW2bYDpLDO9YVPUhI97KfukBBKcYD7rE4AJ1N+rgqM6OkHhnl05rCMPjy7KRlVZARZ8U0V1SumviS+DyEJOorMacTyXvU=
+	t=1772009733; cv=none; b=Hmbt213OyI2kNzicuZ+EbsRBrdF1HZo21wZu0Z1ocSYQUfkbRu6nkfhys//Q1gzGo5+4Er85ZVKfp+M//mc5+881FGwl+hnOpxJKDzbm7Pmq7GKLVqJj28z53gMUihHeuOAQTjooexdqQYDbt3Kog0X1OBLOau8gWC+BnzA54RM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772011022; c=relaxed/simple;
-	bh=sNRZTgcpPZsCz8cbvJZ1jYH553XMDNPh5UO71mwzKGQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Kqoqv3W1nb0t+rBG5FXpk211Ig3XNgx3JvH/NcSd/zPOjcuGKUNXTSfx5HP8PZpw5K8MfcPyoSZ6xGhh+OAGxZZGTLQM4FLcZseE0DWOETsK7llCbu9cftTRSLtJlwdEbO0fgj9aK0h7RVXg1g5p5yzOUWyd98PSsq0BLnfcxQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bMH2MptT; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=n1
-	lgB1V0njyOaXZ1h1qR2iYhAyIhn7WxWnI2uSp8gco=; b=bMH2MptT8hf4knr8gv
-	hDrllPJaILUrE+4MFTGTZ1Spl4MqgNcHGqoeWNGJMIZQiaP7CZp6+6hQM9iMYzrP
-	RPHiMRw6P+xEefS1Tui7GvhB3Ahbl3U1N/4ZeBz94wQrkKs5DIzTn5LPEWGIKW74
-	PLYySTmynFrqPmBatnj0cNxmk=
-Received: from localhost.localdomain (unknown [])
-	by gzsmtp3 (Coremail) with UTF8SMTPA id M88vCgD3z4_vuJ5pMJ2HAQ--.42176S2;
-	Wed, 25 Feb 2026 16:55:12 +0800 (CST)
-From: wenswang@yeah.net
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux@roeck-us.net,
-	corbet@lwn.net,
-	skhan@linuxfoundation.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Wensheng Wang <wenswang@yeah.net>
-Subject: [PATCH 0/2] hwmon: Add support for MPS mp2845 chip
+	s=arc-20240116; t=1772009733; c=relaxed/simple;
+	bh=z8EhQONkGW4jc1SEbEcwLrmbuYQePNKNbvhq/nTWy1s=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=i2L596TvkRS4LfFDeklwIlcL//rWT+49ImIoMpVNaPnZ3jE0s74caZ/wKxkK0fSGIUCUet9yUgvPE8+Si04NkLvHlONpOYIbAqFd8bXt4ssbI5mdwFpXeOyooTI5IBHHDqjP5lTcFIfQ5piBOE9nXyXxHKJraHToM7PQWdlM5oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.187.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTP id 61P8tBd5077809;
+	Wed, 25 Feb 2026 16:55:11 +0800 (+08)
+	(envelope-from randolph@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 25 Feb
+ 2026 16:55:10 +0800
+From: Randolph <randolph@andestech.com>
+To: <linux-kernel@vger.kernel.org>
+CC: <linux-pci@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <jingoohan1@gmail.com>,
+        <mani@kernel.org>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
+        <robh@kernel.org>, <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <alex@ghiti.fr>, <aou@eecs.berkeley.edu>,
+        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
+        <ben717@andestech.com>, <inochiama@gmail.com>,
+        <thippeswamy.havalige@amd.com>, <namcao@linutronix.de>,
+        <shradha.t@samsung.com>, <pjw@kernel.org>,
+        <christian.bruel@foss.st.com>, <Ghennadi.Procopciuc@nxp.com>,
+        <quic_wenbyao@quicinc.com>, <qiang.yu@oss.qualcomm.com>,
+        <vincent.guittot@linaro.org>, <vidyas@nvidia.com>,
+        <elder@riscstar.com>, <s-vadapalli@ti.com>,
+        <ciprianmarian.costea@nxp.com>, <randolph.sklin@gmail.com>,
+        <tim609@andestech.com>, Randolph Lin <randolph@andestech.com>
+Subject: [PATCH v11 1/4] dt-bindings: PCI: Add Andes QiLai PCIe support
 Date: Wed, 25 Feb 2026 16:55:01 +0800
-Message-Id: <20260225085501.164819-1-wenswang@yeah.net>
-X-Mailer: git-send-email 2.25.1
+Message-ID: <20260225085504.3757601-2-randolph@andestech.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260225085504.3757601-1-randolph@andestech.com>
+References: <20260225085504.3757601-1-randolph@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,63 +70,151 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:M88vCgD3z4_vuJ5pMJ2HAQ--.42176S2
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvj4RHrWFUUUUU
-X-CM-SenderInfo: 5zhq24xdqjq5hhdkh0dhw/1tbiNBFsEWmeuPE+7wAA33
+Content-Type: text/plain
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 61P8tBd5077809
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[andestech.com : SPF not aligned (relaxed), No valid DKIM,reject];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[yeah.net,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[yeah.net:s=s110527];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,yeah.net];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-268218-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268200-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[34];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,google.com,ghiti.fr,eecs.berkeley.edu,dabbelt.com,sifive.com,andestech.com,amd.com,linutronix.de,samsung.com,foss.st.com,nxp.com,quicinc.com,oss.qualcomm.com,linaro.org,nvidia.com,riscstar.com,ti.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[yeah.net];
-	NEURAL_HAM(-0.00)[-0.995];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenswang@yeah.net,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[yeah.net:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.838];
+	FROM_NEQ_ENVFROM(0.00)[randolph@andestech.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,yeah.net:mid,yeah.net:dkim,yeah.net:email]
-X-Rspamd-Queue-Id: 86AA5194C66
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5]
+X-Rspamd-Queue-Id: E641F1947BD
 X-Rspamd-Action: no action
 
-From: Wensheng Wang <wenswang@yeah.net>
+From: Randolph Lin <randolph@andestech.com>
 
-Add mp2845 driver in hwmon and add dt-bindings for it.
+Add the Andes QiLai PCIe node, which includes 3 Root Complexes.
+Only one example is required in the DTS bindings YAML file.
 
-Wensheng Wang (2):
-  dt-bindings: hwmon: Add MPS mp2845
-  hwmon: add MP2845 driver
+Signed-off-by: Randolph Lin <randolph@andestech.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/pci/andestech,qilai-pcie.yaml    | 89 +++++++++++++++++++
+ 1 file changed, 89 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
 
- .../devicetree/bindings/trivial-devices.yaml  |   2 +
- Documentation/hwmon/index.rst                 |   1 +
- Documentation/hwmon/mp2845.rst                | 143 +++++
- MAINTAINERS                                   |   7 +
- drivers/hwmon/Kconfig                         |  10 +
- drivers/hwmon/Makefile                        |   1 +
- drivers/hwmon/mp2845.c                        | 493 ++++++++++++++++++
- 7 files changed, 657 insertions(+)
- create mode 100644 Documentation/hwmon/mp2845.rst
- create mode 100644 drivers/hwmon/mp2845.c
-
+diff --git a/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml b/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
+new file mode 100644
+index 000000000000..97ba97fdc5a9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/andestech,qilai-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Andes QiLai PCIe host controller
++
++description:
++  Andes QiLai PCIe host controller is based on the Synopsys DesignWare
++  PCI core.
++
++maintainers:
++  - Randolph Lin <randolph@andestech.com>
++
++allOf:
++  - $ref: /schemas/pci/snps,dw-pcie.yaml#
++
++properties:
++  compatible:
++    const: andestech,qilai-pcie
++
++  reg:
++    items:
++      - description: Data Bus Interface (DBI) registers.
++      - description: APB registers.
++      - description: PCIe configuration space region.
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: apb
++      - const: config
++
++  dma-coherent: true
++
++  ranges:
++    maxItems: 2
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    items:
++      - const: msi
++
++required:
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      pcie@80000000 {
++        compatible = "andestech,qilai-pcie";
++        device_type = "pci";
++        reg = <0x0 0x80000000 0x0 0x20000000>,
++              <0x0 0x04000000 0x0 0x00001000>,
++              <0x0 0x00000000 0x0 0x00010000>;
++        reg-names = "dbi", "apb", "config";
++        dma-coherent;
++
++        linux,pci-domain = <0>;
++        #address-cells = <3>;
++        #size-cells = <2>;
++        ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
++                 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x02 0x00000000>;
++
++        #interrupt-cells = <1>;
++        interrupts = <0xf>;
++        interrupt-names = "msi";
++        interrupt-parent = <&plic0>;
++        interrupt-map-mask = <0 0 0 0>;
++        interrupt-map = <0 0 0 1 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
++                        <0 0 0 2 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
++                        <0 0 0 3 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
++                        <0 0 0 4 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>;
++      };
++    };
++...
 -- 
-2.25.1
+2.34.1
 
 
