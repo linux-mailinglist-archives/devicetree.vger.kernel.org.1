@@ -1,169 +1,235 @@
-Return-Path: <devicetree+bounces-268375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268376-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IA3QLzD5nmm+YAQAu9opvQ
-	(envelope-from <devicetree+bounces-268375-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:29:20 +0100
+	id WLDYBYL5nmm+YAQAu9opvQ
+	(envelope-from <devicetree+bounces-268376-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:30:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31343198145
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:29:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C49198174
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C986030ED0BE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:25:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0EF33028029
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E183B8D48;
-	Wed, 25 Feb 2026 13:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A1B3B8D77;
+	Wed, 25 Feb 2026 13:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="txZoV1Y3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FlNLDDHM";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PAUwjwYP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35F7526F293;
-	Wed, 25 Feb 2026 13:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E9C395DBB
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 13:25:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772025913; cv=none; b=GlW5MeYfSNKdkZN50yLiJXtN9tCpz5CslCoPgOrGfPzrFayPEKQG7+AiMII7Zc4FvmoIc3DaKLStV8xUsVFwxTEUEklkiC/VH3mk1BltOqHnDr5PciGXodsEtPgwCwgYNdMFAlM3wXQ8QV9mHy8LDtk6EM+hELXYZ5HtGkDLcAk=
+	t=1772025950; cv=none; b=JkDwEl9GiSuhGXFZyqbAIlxdr6uGCMBviTGRAnTC9Y/mmOwbB6697NjZHVKw28VlBU5hC+i61G/4u5W/gAeRPH/UlQH9kMR0I7shsKZ13lZ4ReD+FMXlJL0qg9q56X7Ct8XKP3s4Sfdj6hQG1kLNU1bzs4Pyvm2brGiQkkrU07k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772025913; c=relaxed/simple;
-	bh=mAJmjo+WQ/SOXuG5lH3nrurqWJdwbMc7DVrXQkrzHxI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dbbzir+bMfmlr3xudjZVSHsOR/HnsYjJ1yFAcNB3Uwz4MABR2bfH9NTDcetbRVLFZkOpdSEcBQt8uURGPkimjlHZIncw65G+8IuC/f3kwcJxR856/ri6wrCxNT3SwGNZ9MN6VR+dx/epN3JU9a/glJto2Wqg0t43eughXXPH+GY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=txZoV1Y3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DDCCC116D0;
-	Wed, 25 Feb 2026 13:25:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772025912;
-	bh=mAJmjo+WQ/SOXuG5lH3nrurqWJdwbMc7DVrXQkrzHxI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=txZoV1Y3dtStZsn0jFEESEMRE0e9n40zHXs2eDyL+aEe3v0J4kZH5JZY4/BwDZrPt
-	 YCr/U29ofvF2l41r1S3ULn95YgOu/14MdV8VsTNQUn147LOKhKA0H+mGYQETV5du0q
-	 HIQASwuvoTbmSG2xXDie5cNiXSLR4opcEmIBSNwlNpMaYj98DtjbNP1Fyp+pMAcyj9
-	 b9eaoW2RC6rd2LLcfQs5O29mqyqzP+rmCo0eZOjLs9v8D6C7OcLNtpuP9hN7O7Ys6i
-	 FhIRZeQy+BT4M5QLia7tUEsjtqdt+Xbw+Ey13rjfzhpAom5nc8AI4p2JDQQWHRzxKA
-	 AYQZezb5wqRng==
-Date: Wed, 25 Feb 2026 18:55:04 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Ryder Lee <ryder.lee@mediatek.com>, 
-	Jianjun Wang <jianjun.wang@mediatek.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] PCI: mediatek-gen3: add power control support
-Message-ID: <knddbvl6qti4pyaphudrmhbx7jm245tsmpa37snk4frtphcuz2@am6aatvc6hbr>
-References: <20260225072225.3345307-1-wenst@chromium.org>
+	s=arc-20240116; t=1772025950; c=relaxed/simple;
+	bh=QBnGQRhjPCgFqzWG1srroUfv1xQs2zaYDV82nxKh1sI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r3vnsWZoXPvakv4TElA9VTmkNYiRkjcMTOCpNQoSVVmx397MvRIW4RP8u799Bq79OWuo5iFgxZDVUaz0bqmxXTKS+gEypJTsuL4STwAjujAtOmEc14X/+8XdoLJs6W765AS35bmG70Jm5GcLaddhiD/yLibn1AP4e0Ff8ukKAeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FlNLDDHM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PAUwjwYP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61PB33WK788486
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 13:25:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dl070totApNxtzNfs2Ht2ITbl3V+CGxeE7SKwvt2uYU=; b=FlNLDDHMuGJUk4NU
+	cPrhaHevuB3AZSH6Oweq10Ppn/ZaskuaGRetf0Ml0q9GlCgixCNfh/OzXuzJZSKI
+	rOyeFuRozAzmI6ly4cBa6s0tQV3zFd5mqrCBZMl4hGXoomVY38crIlSYniPfFjTj
+	XL4/VZWRqKcNOUne9yBSlBS2A18P+bFODs3/3zn1yqjtvUQ2tv3BZqo3zZPAGJed
+	xjv4dx7ht6ssRxE3KLuwukH6IpULQA7EoACaXDw0EQZ+x6F1QEkr2z6pB+FAbBQw
+	qqJJyI+1nMYVUZOYEMcUgEJpxIXT0pepvwnQoTVSvkkmhtIpNElzGwKN4ZzeATt7
+	D+Bj1w==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4chyv9gb6g-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 13:25:48 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-82442b44d94so2861017b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 05:25:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772025947; x=1772630747; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dl070totApNxtzNfs2Ht2ITbl3V+CGxeE7SKwvt2uYU=;
+        b=PAUwjwYPIrewhgOc9sQJh4nzsJy4g+6T4oY0+QycBnOIXl4qT53xbspdZNlZxLbw3k
+         aSkzWZN6jLnYw+yZc7wdGZBy9ABDj1ETL/tgMQSzCdF/Ds65f2papA0EX2SJwYOloHJJ
+         Bi8rbb2jurgTu9m1B+cG4Hx9LiKDjHUj4lxKVyEnMJQys8Yf3N/LmhRW7EQvJP3BG4Rx
+         G2yGxR6SScXmh/dxexJIkJ9CSz232jcGwHbTqw9yZaF6r5AsasJeSHU9039ZOrLlRurr
+         RrFgIX9X0EmfyHil0BlevC4GS5zdxEROXo88LN+JS+a/Vgda4MsqsHSPkW+Drzbp6SU1
+         QrNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772025947; x=1772630747;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dl070totApNxtzNfs2Ht2ITbl3V+CGxeE7SKwvt2uYU=;
+        b=KydvCckrkpvhMcbOjonDvCE2eZC/eZ5WYVjh9xY0fOOkW/Glkswclnu4Ti9a/8i3gc
+         MOfYR16sdPISKwElVSXsUOXNs1rJF7LyF4cNOatguoJDWlvBKqx9D/jfKZ+0kZ/ndbqR
+         mb9xS1SlLeMg/rgBn8K33bXGKMwmDrjz0tu1yBefRtiP7K14xI1w3hw6P+dB5jOrmn8x
+         ebZOwuP51NCwzdnRPJPI37jzoIjSBDSurVdaomRgGPdbRaYf1P2nEol4+UlAl1p+ATx5
+         z4aL1EKRQzjZ65A9Y+Xkjw5cmissGeLp5/CrR8027Wh3cRy8lb52ES2Zkfkz9xFOHXU+
+         TT9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWpnxygVqyRQtmGUAjD7muM2Q3vj0mOgycxhGwjbAc4PqXcx0b6gFZG1foOWiRi2CxFTkBxF6GHXXl9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/SMYfpj3QTcjrTbJLfGH5Qr7pxydk8HZb/sGRcqH16TIM2xnV
+	NMeSWze+R4it+2As7HwhD/CGwFQAGDjeR6GQolQOHSugurquex1urr8+3NmbJi/wloBBWdRLOsU
+	CN6iauiVFlL+3IFctgwnYuNMlW/zZORPERGn4244bowHZci2gSQsW3z+XGEV7/iKY
+X-Gm-Gg: ATEYQzx40c7gPnfM2648bbVuIAfpla2uElDLJ6+JRBucLeH2IH8zNz7IFzY2G2TrACz
+	+TUMVJj6OaMRVSvC/kRFM/gGTfgVae2MJQTwhM22NOOGb2S7N2DKjhTH3hGp2BMJC84jxaFy7Yu
+	Lpg37cvrXM7BpAUcyZLTT5BRLqisot1awoAmuBm1AAJDIAq2bFxClP28LHCd+PmgVJ5IPh3Tz3d
+	uhSj9cKayCzT1SOOrbKjtZb6oCcIqzBsNHyZOP0/yYRz1uREv0eznw4Fm6qsaJdgV3BxdbgPC5m
+	lSozg7wL7Mr737arzceEokGPO4dIVwUU06s6M+YmJ8u7rbrnhLE8vgBeGcXcfEaCSCISsorFPo1
+	ErWWKjjrgFLSgKIn48oYhTLcWysbkDcIIup18aw2aPFbMQW3Uaqq+NCjx1DCBPg54
+X-Received: by 2002:a05:6a00:885:b0:81f:477d:58db with SMTP id d2e1a72fcca58-826daa0cddfmr16888230b3a.39.1772025947519;
+        Wed, 25 Feb 2026 05:25:47 -0800 (PST)
+X-Received: by 2002:a05:6a00:885:b0:81f:477d:58db with SMTP id d2e1a72fcca58-826daa0cddfmr16888200b3a.39.1772025946950;
+        Wed, 25 Feb 2026 05:25:46 -0800 (PST)
+Received: from [192.168.1.7] ([122.164.81.73])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-826dd8a1145sm13438814b3a.45.2026.02.25.05.25.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Feb 2026 05:25:46 -0800 (PST)
+Message-ID: <b41d4998-5f7d-4d89-af80-a7a2d2a03021@oss.qualcomm.com>
+Date: Wed, 25 Feb 2026 18:55:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260225072225.3345307-1-wenst@chromium.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/5] watchdog: qcom: add support to get the bootstatus
+ from IMEM
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20260225-wdt_reset_reason-v7-0-65d5b7e3e1eb@oss.qualcomm.com>
+ <20260225-wdt_reset_reason-v7-4-65d5b7e3e1eb@oss.qualcomm.com>
+ <1a28d203-e0ee-4c0d-a6ac-7f50ab26bdeb@oss.qualcomm.com>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <1a28d203-e0ee-4c0d-a6ac-7f50ab26bdeb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: WKM2oUzVpZ0aGah1wgq8wN7sQvnF6cVD
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI1MDEyOSBTYWx0ZWRfX1W22XhWNAVIL
+ Xs7+YSPM6H2mAiCiADySTgazq8Wkg2QJ6G1C6xofXJT1GPMW978DwE+9Dgb+exiJUgoIu1yFu8S
+ meSnAtcaML91QYYl1uyQUOH2Ba7wdHiHNofYhjwU0d33h7Jh5ljaeJ1pCK3oZgnvSbgxjpO2wR1
+ XLeSyrsUnmZzNHoUiez6gI5wjozuiMB4XIUogU3cPFs0P2tmUpjyjbnjffvHvdZgr8n7/IXNXwF
+ 9QbvBTxoBvZdPnD9f+cKztnOR1CXx02d0WRat2jeI7srQzd6t48NXYQIB2Q2k6PHzLSghmTO53H
+ ucR/gRzBQ1HwBt5ctwg3x9tB0FBxGch5FKOc3xtpZIP5v+SQ0GO0vf1R2I3hJcCBVYl2s5ymgLk
+ xgIzerfz6X1KJSEpGg7GWzBD5ZaIH3GoUG7P3Xg/JX7BPGR1wmdFizFb6Broq98BUa37szeWVMR
+ k6PFPZX7vhAfVHmg5PA==
+X-Authority-Analysis: v=2.4 cv=GZwaXAXL c=1 sm=1 tr=0 ts=699ef85c cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=mNPf3JdYh40LbGEelsvk6A==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=wjWkyli7g8A6NY-DO1gA:9 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-GUID: WKM2oUzVpZ0aGah1wgq8wN7sQvnF6cVD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-25_01,2026-02-25_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 priorityscore=1501 bulkscore=0 impostorscore=0 lowpriorityscore=0
+ malwarescore=0 phishscore=0 suspectscore=0 adultscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602250129
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268375-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,collabora.com,mediatek.com,kernel.org,google.com,vger.kernel.org,lists.infradead.org,bgdev.pl];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268376-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,0.0.0.0:email];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 31343198145
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 65C49198174
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 03:22:17PM +0800, Chen-Yu Tsai wrote:
-> Hi folks,
-> 
-> This series adds power control support to the MediaTek PCIe gen3
-> controller driver. This allows proper modeling of WiFi and NVMe
-> adapters in the device tree and control over their power supplies.
-> 
-> Patch 1 through 4 are cleanups and minor improvements to the driver.
-> 
-> Patch 5 adds power control support using the new pwrctrl API to the
-> PCIe controller driver.
-> 
-> Patch 6 adds the WiFi and BT power supplies for the MT8195 Cherry design.
-> This is actually a M.2 E-key slot, but support for that is still WIP [1].
-> And even with it merged, support for the USB side still needs to be
-> figured out.
-> 
-> We can either merge this as is for now, and do another conversion later,
-> or just keep this one out. However this is still an improvement over
-> the current device tree, in which the power for the slot is always on
-> using a pinctrl setting.
-> 
-> Patch 7 adds the M.2 M-key NVMe slot found on MT8195 Dojo Chromebooks.
-> This change actually makes use of the M.2 pwrseq driver.
-> 
 
-Thanks a lot for doing this! I'll also try to get the Key E support for v7.1.
+On 2/25/2026 6:11 PM, Konrad Dybcio wrote:
+> On 2/25/26 7:43 AM, Kathiravan Thirumoorthy wrote:
+>> When the system boots up after a watchdog reset, the EXPIRED_STATUS bit
+>> in the WDT_STS register is cleared. To identify if the system was
+>> restarted due to WDT expiry, XBL update the information in the IMEM region.
+>> Update the driver to read the restart reason from IMEM and populate the
+>> bootstatus accordingly.
+>>
+>> With the CONFIG_WATCHDOG_SYSFS enabled, user can extract the information
+>> as below:
+>>
+>> cat /sys/devices/platform/soc@0/f410000.watchdog/watchdog/watchdog0/bootstatus
+>> 32
+>>
+>> For backward compatibility, keep the EXPIRED_STATUS bit check. Add a new
+>> function qcom_wdt_get_bootstatus() to read the restart reason from
+>> IMEM.
+>>
+>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>> ---
+> [...]
+>
+>> +static int qcom_wdt_get_bootstatus(struct device *dev, struct qcom_wdt *wdt,
+>> +				   u32 val)
+>> +{
+>> +	struct device_node *imem;
+>> +	struct resource res;
+>> +	void __iomem *addr;
+>> +	int ret;
+>> +
+>> +	imem = of_parse_phandle(dev->of_node, "sram", 0);
+>> +	if (!imem) {
+>> +
+>> +		/* Fallback to the existing check */
+> Odd \n above
+>
+> 'existing' is imprecise, perhaps something like
+>
+> /* Read the EXPIRED_STATUS bit as a fallback */
 
-For the whole series,
+Thanks, will update the comment as above in next spin.
 
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-
-- Mani
-
-> 
-> Please have a look.
-> 
-> 
-> Thanks
-> ChenYu
-> 
-> [1] https://lore.kernel.org/linux-pci/20260224-pci-m2-e-v5-0-dd9b9501d33c@oss.qualcomm.com/
-> 
-> Chen-Yu Tsai (7):
->   PCI: mediatek-gen3: Clean up mtk_pcie_parse_port() with
->     dev_err_probe()
->   PCI: mediatek-gen3: Add error path for probe and resume driver
->     callbacks
->   PCI: mediatek-gen3: Split out device power helpers
->   PCI: mediatek-gen3: Disable device if further setup fails
->   PCI: mediatek-gen3: Integrate new pwrctrl API
->   arm64: dts: mediatek: mt8195-cherry: add WiFi PCIe and BT USB power
->     supplies
->   arm64: dts: mediatek: mt8195-cherry-dojo: Describe M.2 M-key NVMe slot
-> 
->  .../dts/mediatek/mt8195-cherry-dojo-r1.dts    |  38 ++++
->  .../boot/dts/mediatek/mt8195-cherry.dtsi      |  47 +++--
->  drivers/pci/controller/pcie-mediatek-gen3.c   | 185 +++++++++++-------
->  3 files changed, 183 insertions(+), 87 deletions(-)
-> 
-> -- 
-> 2.53.0.414.gf7e9f6c205-goog
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+>
+> lg otherwise
+>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>
+> Konrad
 
