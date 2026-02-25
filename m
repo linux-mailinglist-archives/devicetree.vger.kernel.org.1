@@ -1,180 +1,251 @@
-Return-Path: <devicetree+bounces-268329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268330-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6EAbINTnnmkCXwQAu9opvQ
-	(envelope-from <devicetree+bounces-268329-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:15:16 +0100
+	id YLNrCBfpnmk/XwQAu9opvQ
+	(envelope-from <devicetree+bounces-268330-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:20:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F101971CE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:15:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7288A197350
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:20:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E0E8A302CEA2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:15:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 218F8301701B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDBCC3ACA49;
-	Wed, 25 Feb 2026 12:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5215B3AE6E1;
+	Wed, 25 Feb 2026 12:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gn5FKNkQ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="V7R1l4S8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32AC61F5842;
-	Wed, 25 Feb 2026 12:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EAD43ACA49
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 12:16:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772021712; cv=none; b=mPZZ/xIon4fYbknx0FMd3Kp5DyrZ+CIXOlwUIQWa0ShRkCKJs0ZxrFZYK86PUyxsRS4pi7Cgn7d4fRpvAQHlt1zEgqXakEKRQSeLyC2VNAUuLKR0Ali0sx4/rbZhAj6w8zgH/AMc7s+x1M3byS4xQKwnnUOUbwzAShLRj5CrD+8=
+	t=1772021790; cv=none; b=CeP+Z1gnLwhq/EMfPGa8aLFR2oSVfiCS+PtIPuAJBt6Mcl4uiGuKNCB8QM1i+ZQnc4TdKdgrzlh4UKhh7iRwuLaZCRGuyeYCmk2sD/HMhtmiFuObdSGeV0KwFNPT+uR5LLnC1FDLl4cCDyJhiPnLcuslY7OXQiNZT8Xx8eUH+Zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772021712; c=relaxed/simple;
-	bh=lfMqTA1aUdeM2rMnaquQA8d58gsfaOzsornyEBzxsbc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RysQ+2yjzT6H5LmFS+ILBUY4izrlm7dt6S2IMGTn8nkFAgjodG7ryQKmHDrUNG81D1esQJjQjVqxJd/SNKvOACF8PHiBXNd5kaH/SLc6fjoVKh4cYZQPoDfgkvIBgkuxUQsRae3xR7RpeJ6ynMfhkgsuEWCqoaZiu2HCLgDpg3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [112.53.146.143])
-	by APP-03 (Coremail) with SMTP id rQCowAAHItm2555pSx1OCQ--.33021S2;
-	Wed, 25 Feb 2026 20:14:48 +0800 (CST)
-Date: Wed, 25 Feb 2026 20:14:46 +0800
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: vkoul@kernel.org, gregkh@linuxfoundation.org, conor@kernel.org
-Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, linux-phy@lists.infradead.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/4] Add USB support for Canaan K230
-Message-ID: <aZ7ntvit57TaPgyw@duge-virtual-machine>
-References: <20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn>
- <aYCLGLvbKZy+WyxI@duge-virtual-machine>
+	s=arc-20240116; t=1772021790; c=relaxed/simple;
+	bh=Py6L3hagYDzz0Ng1G8j7FJcdxCLOYIUmht+ZEoRKZh8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OC5Lr9Xz0MDNWF+cAQDs23VlEyxj56oWJkX3B1BVkRyescdKUqlGIu4K1aoi5O/6yO4cnm4EAFt8mZWb6qQLCdeS4ngYOYMc3YIo1SSvMXTa+r8GjnkUmodzI8awSfxtz9tAtrhVFBJ4PokvBPFtj6IsTqy1heyl++ltrIGCOCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gn5FKNkQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=V7R1l4S8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61P9SpZc229643
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 12:16:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	x4wyuRamqWJKyH9ajGZbfcZ6ZVKLOfxB2WpU2a9Acv4=; b=gn5FKNkQqfMCY9zJ
+	2QFhTBljXxrV7Id8kgPc10kt+EzaJngre6XGuOZj8CRTy0q2odo65OcYsJ3KL0F9
+	Z6NXvdH/TJsCTdBn07f6ZmVM9ZGBEH43A+CJOz0s7DtvETSXSmzexxF/egGYMQm/
+	QogTE+ZRINL2T+5VAJSWUkWhO+mtOayG47z7LLG7nOsZg1Nmy+Q7llydLPM3Ipt3
+	/it1PHDgiVatahtuH/TvX8FbT1FIz4GN78zstImn83eV9Pfn/A4ehZLqqiPigyH1
+	uVQC7NP3KniKPTg41lHponjTLa18ICANUEtyejuiCBWoEFd5jOKk3lxR86rc+g9s
+	wh64WQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4chg37u5vh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 12:16:28 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8cb3978cdb2so539409385a.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 04:16:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772021787; x=1772626587; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x4wyuRamqWJKyH9ajGZbfcZ6ZVKLOfxB2WpU2a9Acv4=;
+        b=V7R1l4S8hifwe7O/kPjyZl4xczS2xqvuPYfrmXEKD+WaH1cCcpBb+LQ5juV5fWMBWH
+         xx4cC3ozFPQ0JR6n9I3+PfIqlZFpNVEIZzL7zyccT9px0JyTdbFD5KoQwOlBZruFOS3i
+         i9W/SAZXMrmqDJohX+/XYQao9Sr2aGnM7y9TeLy44fp+PfyqhBuyCjt2MGnPan3f9yUf
+         nw/srrT9PjJPjC4ycsWuBvUbsHGAj3PqvsSkFF0NBaHFAmTHbgUcXiO2abR4zQm+KD/m
+         L3yx9ZsR0JJzmAJY4mLSeL6QfYT1974sIaj9SP88epXAQOi7M5W2LZIWVFv8wl3sF+yh
+         wehg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772021787; x=1772626587;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x4wyuRamqWJKyH9ajGZbfcZ6ZVKLOfxB2WpU2a9Acv4=;
+        b=hcZioFsaeiApg98PWe0WHJcdlQPift2bXraOov54qy0TpipVqFbbKZjtjiEzecUqG3
+         BMYI26im7FBo2XCyL90MDWObfWMVQ2dsCD8QVQSEmhCvA0CYweKXDvl6DOMUFvgnilcJ
+         XUxXpRjm7aunHTmP2tK+7+tmNsV0jhthGxaOObRc2eGmnHbUFV9xPNDP1xeRLcRLLiCk
+         B4z3XaG85bqU6PjGHE9h2om0YnCRHvWDpg27Y2FGtOCut9X+AQZVlu/d84m3Vb+qPvCv
+         tffiOirp64jSrg5DPmYkA0Gisz3CDC8+xmov5oSBkvSSj0QYRmDVz0Yg16+ci+zMJ4lN
+         YA7g==
+X-Forwarded-Encrypted: i=1; AJvYcCUcy4oe276KFJ0OoHrHMR9BpvHeudGcU4doXRorkbti7+QjNQaHulz3R/7Iih6atn/8mbIfDGxO/g2H@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLf5UPWJg32C/X/C73PGRqBaEdMeolukknDtOxC1YX9xgD+KaX
+	PCoXRurPaRG6GuQ7RFYDZ56A2aNT3m0wNH1OB0qLiptflr/7VXYcXWPPhsu1wEIv678N06P0ArF
+	qE+5jloVDoO6etswvwjR/eKEyMF1wnC9QVFjnF7kIzR9l42CgN/vDhyE/yAkq+SfH
+X-Gm-Gg: ATEYQzylIwmAjoTM1zc1KcmceJGbBNtJ45K/crI9b4sBh41UrLhKv5/wescrWE7dFiP
+	rSKVJr7rBQZPSBd37Q4d+JWc3HEpXFF3KCUDwQoFFo1sp/eELLBzQzVypP1b4mExDrrBovA7CkC
+	T88PnEXRGE7NwVNa0NNrd5Dd8o+EdGo7SxEWsfn9v2CmH76POWRQdUNxFtuPJZNZqi+xmEHECe4
+	9APK14h92f2V52mD4Ii7zpzooEgTf/5p9xAy3G53cfVMw2MtdRtHv2CmpdJPpoksZ0mN/fxy1rL
+	6IquwC6irQqaLOPtyNvl2sq9QVZHvcnsvG28jkPFcg7/mO7OVZjk3on0mVaKtiXmBaM3mjKPs7b
+	AGV1DMBv9MP6pez2S6LrfrLVLNPElWoI+ZmcSDPIA8XwhIhTLSlS/cdeviVct3zqNS6AH3afgIa
+	DV1hs=
+X-Received: by 2002:a05:620a:4011:b0:8ca:4545:aee4 with SMTP id af79cd13be357-8cb8c9f491fmr1445429385a.1.1772021787261;
+        Wed, 25 Feb 2026 04:16:27 -0800 (PST)
+X-Received: by 2002:a05:620a:4011:b0:8ca:4545:aee4 with SMTP id af79cd13be357-8cb8c9f491fmr1445425685a.1.1772021786628;
+        Wed, 25 Feb 2026 04:16:26 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b92f9b0463esm157430366b.2.2026.02.25.04.16.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Feb 2026 04:16:25 -0800 (PST)
+Message-ID: <42716b92-9814-4697-83f8-4983de0ce57e@oss.qualcomm.com>
+Date: Wed, 25 Feb 2026 13:16:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aYCLGLvbKZy+WyxI@duge-virtual-machine>
-X-CM-TRANSID:rQCowAAHItm2555pSx1OCQ--.33021S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxGFyDXrWkCFyxGFWfGF4kZwb_yoW5WFW5pa
-	y2kF43CF4DJFWIqa97tw1rGF98ZFs5Jry5Gryaq3sxXa4UZr1UAwn3G3y5ZFyDJFs5Cryj
-	vF15GFy7GFyUAaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxUqiFxDUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFT v2 3/3] arm64: dts: qcom: glymur-crd: Enable USB
+ support
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+References: <20260223-dts-qcom-glymur-add-usb-support-v2-0-f4e0f38db21d@oss.qualcomm.com>
+ <20260223-dts-qcom-glymur-add-usb-support-v2-3-f4e0f38db21d@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260223-dts-qcom-glymur-add-usb-support-v2-3-f4e0f38db21d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=br1BxUai c=1 sm=1 tr=0 ts=699ee81c cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=LTLfZVuacMrGcq3gHoQA:9 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI1MDEyMCBTYWx0ZWRfXxIwUT9Vq6LQU
+ 6cEwd4BAPNEOXNSy+mUhkFjJBztWob/21kwnNyBYXP7EaruV4823RinV90E2vjYGw6twwcDer2E
+ toTFFfENUmH1v9idqmOtpAtIKRZOkARvY3YfnYhLOKH/wSr2SQckwKel5Bi+rW6K+eIRiiQSRwD
+ hzdomk87/NtPLjzqpzj8eqnspVQWgtxYd6PMlJ+aQwIYSjvUDffho/ovXcO+UK9CTLztRIVzRMN
+ BQ+OTXIkA2SfLRq/jBMHl9hrsqrS+Mrd+xwV+zc3yvb2CyIxSNhNggG74Es6xjPdsDVAmcTiOGY
+ eSw15BFY6wl8+85fNpluLOlv/Rd5kmRVOHceJrqwxwcdVLpt21WjBlIPAwRo6G3QgTKQAd6fYHh
+ WQKGesA7Zp+jGKBiRth3aAPORwgoyIraIhEMzXSD/HqTXFsNAkJq3CwrZDFXkrn66j/Ek7acBSw
+ AEOmCTnTb2rXa4sijBg==
+X-Proofpoint-ORIG-GUID: 7AA4qNgowQAGL6PXhXk38DkET3_pR4YZ
+X-Proofpoint-GUID: 7AA4qNgowQAGL6PXhXk38DkET3_pR4YZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-24_03,2026-02-25_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 clxscore=1015
+ impostorscore=0 adultscore=0 bulkscore=0 phishscore=0 malwarescore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2602250120
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268329-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[iscas.ac.cn];
+	TAGGED_FROM(0.00)[bounces-268330-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.43:email,4f:email];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_NONE(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[15]
-X-Rspamd-Queue-Id: 85F101971CE
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 7288A197350
 X-Rspamd-Action: no action
 
-On Mon, Feb 02, 2026 at 07:31:36PM +0800, Jiayu Du wrote:
-> On Wed, Jan 21, 2026 at 10:55:21PM +0800, Jiayu Du wrote:
-> > Add support for the USB PHY and DWC2 IP which is used by Canaan K230,
-> > and made relevant changes to the DTS.
-> > 
-> > This series is based on the initial 100ask K230 DshanPi series [1] which
-> > is based on the clock and pinctrl series. Check the details in the link.
-> > 
-> > Link: https://lore.kernel.org/all/20260115060801.16819-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
-> > 
-> > Changes in v5:
-> > - Changed the year of Copyright to 2026.
-> > - Add blank line after the declaration of variables
-> > - Fix wrong alignment.
-> > - Link to v4: https://lore.kernel.org/all/20260120143243.71937-1-jiayu.riscv@isrc.iscas.ac.cn/
-> > 
-> > Changes in v4:
-> > - Shrink reg length to match the address/size-cells in k230-usb-phy yaml.
-> > - Move all PHY instance creation and initialization from xlate to probe.
-> > - Modify xlate function to only perform index lookup for PHY instances.
-> > - Define all register base offsets macros at the top of file instead of
-> >   hard-coding magic numbers directly in probe.
-> > - Link to v2: https://lore.kernel.org/all/20260115064223.21926-1-jiayu.riscv@isrc.iscas.ac.cn/
-> > 
-> > Changes in v3:
-> > - Please ignore v3.
-> > 
-> > Changes in v2:
-> > - Fold the child into the parent in dtsi.
-> > - Define one usbphy with phy-cells=1.
-> > - Delete the clock of the usbphy as it is not needed.
-> > - Link to v1: https://lore.kernel.org/all/20251230023725.15966-1-jiayu.riscv@isrc.iscas.ac.cn/
-> > 
-> > Jiayu Du (4):
-> >   dt-bindings: phy: Add Canaan K230 USB PHY
-> >   dt-bindings: usb: dwc2: Add support for Canaan K230 SoC
-> >   phy: usb: Add driver for Canaan K230 USB 2.0 PHY
-> >   riscv: dts: canaan: Add syscon and USB nodes for K230
-> > 
-> >  .../bindings/phy/canaan,k230-usb-phy.yaml     |  35 +++
-> >  .../devicetree/bindings/usb/dwc2.yaml         |   3 +
-> >  .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  17 ++
-> >  arch/riscv/boot/dts/canaan/k230.dtsi          |  35 +++
-> >  drivers/phy/Kconfig                           |   1 +
-> >  drivers/phy/Makefile                          |   1 +
-> >  drivers/phy/canaan/Kconfig                    |  14 +
-> >  drivers/phy/canaan/Makefile                   |   2 +
-> >  drivers/phy/canaan/phy-k230-usb.c             | 284 ++++++++++++++++++
-> >  9 files changed, 392 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/phy/canaan,k230-usb-phy.yaml
-> >  create mode 100644 drivers/phy/canaan/Kconfig
-> >  create mode 100644 drivers/phy/canaan/Makefile
-> >  create mode 100644 drivers/phy/canaan/phy-k230-usb.c
-> > 
-> > -- 
-> > 2.52.0
-> > 
-> Hello Vinod, could you please take a look at this patch? Thank you!
+On 2/23/26 4:37 PM, Abel Vesa wrote:
+> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
 > 
-> Regards,
-> Jiayu Du
-
-Hi Vinod, will you review this patch? Thank you again!
-
-Regards,
-Jiayu Du
-
+> The Qualcomm Glymur Compute Reference Device comes with 3 Type-C ports,
+> one USB Type-A, and a fingerprint reader connected over USB. Each of these
+> 3 Type-C ports are connected to one of the USB combo PHYs and one of the
+> M31 eUSB2 PHYs. The Type-A is connected to the USB Multi-port controller
+> via one of the M31 eUSB2 PHYs and one USB3 UNI PHY. The fingerprint reader
+> is connected to the USB_2 controller. All M31 eUSB2 PHYs have associated
+> eUSB2 to USB 2.0 repeaters, which are either part of SMB2370 PMICs or
+> dedicated NXP PTN3222.
 > 
+> So enable all needed controllers, PHYs and repeaters, while describing
+> their supplies. Also describe the PMIC glink graph for Type-C connectors.
 > 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> Co-developed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
 
+[...]
+
+> +	pmic-glink {
+> +		compatible = "qcom,glymur-pmic-glink";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		connector@0 {
+> +			compatible = "usb-c-connector";
+> +			reg = <0>;
+> +
+> +			power-role = "dual";
+
+there's a newline above here, but not in the corresponding places on
+the nodes of other ports, I think we generally skip the newline here
+
+[...]
+
+> +&i2c5 {
+> +	clock-frequency = <400000>;
+> +
+> +	status = "okay";
+> +
+> +	ptn3222_0: redriver@43 {
+> +		compatible = "nxp,ptn3222";
+> +		reg = <0x43>;
+> +
+> +		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
+> +
+> +		vdd3v3-supply = <&vreg_l8b_e0_1p50>;
+> +		vdd1v8-supply = <&vreg_l15b_e0_1p8>;
+> +
+> +		#phy-cells = <0>;
+> +	};
+> +
+> +	ptn3222_1: redriver@4f {
+
+At least on the schematics I have, this one is not present.. but there
+were a lot of variants early on, could you check whether you can 
+communicate with the chip at this address?
+
+The rest looks OK
+
+Konrad
 
