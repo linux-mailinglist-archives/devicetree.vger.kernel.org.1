@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-268374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268375-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8J3OLxf4nmm+YAQAu9opvQ
-	(envelope-from <devicetree+bounces-268374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:24:39 +0100
+	id IA3QLzD5nmm+YAQAu9opvQ
+	(envelope-from <devicetree+bounces-268375-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:29:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A21198028
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:24:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31343198145
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:29:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E74623151E41
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:20:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C986030ED0BE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E0803AE701;
-	Wed, 25 Feb 2026 13:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E183B8D48;
+	Wed, 25 Feb 2026 13:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCye/Jg9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="txZoV1Y3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2B03624BA;
-	Wed, 25 Feb 2026 13:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35F7526F293;
+	Wed, 25 Feb 2026 13:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772025628; cv=none; b=Wz3Ib+Vk0yvelEa7jDMHuNJGjAMPZ/VvvihvqILCEoClzfXc87hjErEtnPO8OJyNJ20EGdYEM4+Lk6hCx5czCQic/GhVbjJjux9dH6vfvqQp5bnPGswfBXrPywQXKk/LSeEmptqgmpUvY5D+7v1tXL3GHCmLjB2tY4bfacIqYlQ=
+	t=1772025913; cv=none; b=GlW5MeYfSNKdkZN50yLiJXtN9tCpz5CslCoPgOrGfPzrFayPEKQG7+AiMII7Zc4FvmoIc3DaKLStV8xUsVFwxTEUEklkiC/VH3mk1BltOqHnDr5PciGXodsEtPgwCwgYNdMFAlM3wXQ8QV9mHy8LDtk6EM+hELXYZ5HtGkDLcAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772025628; c=relaxed/simple;
-	bh=1mkdM7iU7RQ2uyVLB0bUYW0bVW4UjTSJ7ybMNMDMDHc=;
+	s=arc-20240116; t=1772025913; c=relaxed/simple;
+	bh=mAJmjo+WQ/SOXuG5lH3nrurqWJdwbMc7DVrXQkrzHxI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tJIa/pmLKYmloeWzyURybAj1H4OIFJtbCyApIH3oh1iSiGR8BXmp+iTyQxs4awFdaxvdL3Axwnrplun1ZcWlqnUakXazts+lvzu6YMAG8GjhkeSOs7/jHPoLv5SWxR9ieF33WGiI4CvMdqCYugz5Uoy0CvPoCKuhUgjIWln5AuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SCye/Jg9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E394BC116D0;
-	Wed, 25 Feb 2026 13:20:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dbbzir+bMfmlr3xudjZVSHsOR/HnsYjJ1yFAcNB3Uwz4MABR2bfH9NTDcetbRVLFZkOpdSEcBQt8uURGPkimjlHZIncw65G+8IuC/f3kwcJxR856/ri6wrCxNT3SwGNZ9MN6VR+dx/epN3JU9a/glJto2Wqg0t43eughXXPH+GY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=txZoV1Y3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DDCCC116D0;
+	Wed, 25 Feb 2026 13:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772025628;
-	bh=1mkdM7iU7RQ2uyVLB0bUYW0bVW4UjTSJ7ybMNMDMDHc=;
+	s=k20201202; t=1772025912;
+	bh=mAJmjo+WQ/SOXuG5lH3nrurqWJdwbMc7DVrXQkrzHxI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SCye/Jg9G8o7weeJ8/QtDSJjMsNc23ZG4DFuK5/Koolz0wxkRIE9Il7iB65fM5Ace
-	 MRsCCPr+lCaVzwf/Z+K21TVriuw14vXiGRAGfVaNdXGMvI62UEkH7McEd+c+Drumll
-	 lzUIJcbunvX92OcmOrZ0pkzeoNJhOvrR3j3RrBJtdvzGmtsVZFiERvTk1ICZuM1AJW
-	 yWi8QHzb2hyI6e1zRt+OZU1UXNh9dzeMuTrn/ncSXumXBbso2FmboS1NoysWNSdmin
-	 HH2UI7OFro21bRSQ3ET1HqNDraNjdXMhwLtQ2z2WouvjE4WmndT5ecOiDEJAYQzXT9
-	 W2b1uRfvQfryw==
-Date: Wed, 25 Feb 2026 18:50:19 +0530
+	b=txZoV1Y3dtStZsn0jFEESEMRE0e9n40zHXs2eDyL+aEe3v0J4kZH5JZY4/BwDZrPt
+	 YCr/U29ofvF2l41r1S3ULn95YgOu/14MdV8VsTNQUn147LOKhKA0H+mGYQETV5du0q
+	 HIQASwuvoTbmSG2xXDie5cNiXSLR4opcEmIBSNwlNpMaYj98DtjbNP1Fyp+pMAcyj9
+	 b9eaoW2RC6rd2LLcfQs5O29mqyqzP+rmCo0eZOjLs9v8D6C7OcLNtpuP9hN7O7Ys6i
+	 FhIRZeQy+BT4M5QLia7tUEsjtqdt+Xbw+Ey13rjfzhpAom5nc8AI4p2JDQQWHRzxKA
+	 AYQZezb5wqRng==
+Date: Wed, 25 Feb 2026 18:55:04 +0530
 From: Manivannan Sadhasivam <mani@kernel.org>
 To: Chen-Yu Tsai <wenst@chromium.org>
 Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -54,10 +54,9 @@ Cc: Matthias Brugger <matthias.bgg@gmail.com>,
 	Bjorn Helgaas <bhelgaas@google.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	Bartosz Golaszewski <brgl@bgdev.pl>, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/7] PCI: mediatek-gen3: Integrate new pwrctrl API
-Message-ID: <ymzodxznygg5dwes2lebi35gn763ylo2pyg33tr7sxeazbrzej@wpu6nfeulwiv>
+Subject: Re: [PATCH 0/7] PCI: mediatek-gen3: add power control support
+Message-ID: <knddbvl6qti4pyaphudrmhbx7jm245tsmpa37snk4frtphcuz2@am6aatvc6hbr>
 References: <20260225072225.3345307-1-wenst@chromium.org>
- <20260225072225.3345307-6-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +66,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260225072225.3345307-6-wenst@chromium.org>
+In-Reply-To: <20260225072225.3345307-1-wenst@chromium.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -79,7 +78,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268374-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268375-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -89,7 +88,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FREEMAIL_CC(0.00)[gmail.com,collabora.com,mediatek.com,kernel.org,google.com,vger.kernel.org,lists.infradead.org,bgdev.pl];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.992];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -97,103 +96,73 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,chromium.org:email]
-X-Rspamd-Queue-Id: 20A21198028
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 31343198145
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 03:22:22PM +0800, Chen-Yu Tsai wrote:
-> With the new PCI pwrctrl API and PCI slot binding and power drivers, we
-> now have a way to describe and power up WiFi/BT adapters connected
-> through a PCIe or M.2 slot, or exploded onto the mainboard itself.
+On Wed, Feb 25, 2026 at 03:22:17PM +0800, Chen-Yu Tsai wrote:
+> Hi folks,
 > 
-> Integrate the PCI pwrctrl API into the PCIe driver, so that power is
-> properly enabled before PCIe link training is done, allowing the
-> card to successfully be detected.
+> This series adds power control support to the MediaTek PCIe gen3
+> controller driver. This allows proper modeling of WiFi and NVMe
+> adapters in the device tree and control over their power supplies.
 > 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  drivers/pci/controller/pcie-mediatek-gen3.c | 38 ++++++++++++++++-----
->  1 file changed, 30 insertions(+), 8 deletions(-)
+> Patch 1 through 4 are cleanups and minor improvements to the driver.
 > 
-> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-> index 7459e1c1899d..93e591f788f7 100644
-> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-> @@ -22,6 +22,7 @@
->  #include <linux/of_device.h>
->  #include <linux/of_pci.h>
->  #include <linux/pci.h>
-> +#include <linux/pci-pwrctrl.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_domain.h>
-> @@ -421,15 +422,23 @@ static int mtk_pcie_device_power_up(struct mtk_gen3_pcie *pcie)
->  		val |= PCIE_MAC_RSTB | PCIE_PHY_RSTB | PCIE_BRG_RSTB |
->  		       PCIE_PE_RSTB;
->  		writel_relaxed(val, pcie->base + PCIE_RST_CTRL_REG);
-> +	}
-> +
-> +	err = pci_pwrctrl_power_on_devices(pcie->dev);
-> +	if (err) {
-> +		dev_err(pcie->dev, "Failed to power on devices: %pe\n", ERR_PTR(err));
-> +		return err;
-> +	}
->  
-> -		/*
-> -		 * Described in PCIe CEM specification revision 6.0.
-> -		 *
-> -		 * The deassertion of PERST# should be delayed 100ms (TPVPERL)
-> -		 * for the power and clock to become stable.
-> -		 */
-> -		msleep(PCIE_T_PVPERL_MS);
-> +	/*
-> +	 * Described in PCIe CEM specification revision 6.0.
-> +	 *
-> +	 * The deassertion of PERST# should be delayed 100ms (TPVPERL)
-> +	 * for the power and clock to become stable.
-> +	 */
-> +	msleep(PCIE_T_PVPERL_MS);
->  
-> +	if (!(pcie->soc->flags & SKIP_PCIE_RSTB)) {
->  		/* De-assert reset signals */
->  		val &= ~(PCIE_MAC_RSTB | PCIE_PHY_RSTB | PCIE_BRG_RSTB |
->  			 PCIE_PE_RSTB);
-> @@ -449,6 +458,8 @@ static void mtk_pcie_device_power_down(struct mtk_gen3_pcie *pcie)
->  		val |= PCIE_PE_RSTB;
->  		writel_relaxed(val, pcie->base + PCIE_RST_CTRL_REG);
->  	}
-> +
-> +	pci_pwrctrl_power_off_devices(pcie->dev);
->  }
->  
->  static int mtk_pcie_startup_port(struct mtk_gen3_pcie *pcie)
-> @@ -1211,9 +1222,13 @@ static int mtk_pcie_probe(struct platform_device *pdev)
->  	pcie->soc = device_get_match_data(dev);
->  	platform_set_drvdata(pdev, pcie);
->  
-> +	err = pci_pwrctrl_create_devices(pcie->dev);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "failed to create pwrctrl devices\n");
-> +
->  	err = mtk_pcie_setup(pcie);
->  	if (err)
-> -		return err;
-> +		goto err_destroy_pwrctrl;
->  
->  	host->ops = &mtk_pcie_ops;
->  	host->sysdata = pcie;
-> @@ -1226,7 +1241,12 @@ static int mtk_pcie_probe(struct platform_device *pdev)
->  
->  err_teardown_irq_and_power_down:
->  	mtk_pcie_irq_teardown(pcie);
-> +	mtk_pcie_device_power_down(pcie);
->  	mtk_pcie_power_down(pcie);
-> +err_destroy_pwrctrl:
-> +	if (err != -EPROBE_DEFER)
+> Patch 5 adds power control support using the new pwrctrl API to the
+> PCIe controller driver.
+> 
+> Patch 6 adds the WiFi and BT power supplies for the MT8195 Cherry design.
+> This is actually a M.2 E-key slot, but support for that is still WIP [1].
+> And even with it merged, support for the USB side still needs to be
+> figured out.
+> 
+> We can either merge this as is for now, and do another conversion later,
+> or just keep this one out. However this is still an improvement over
+> the current device tree, in which the power for the slot is always on
+> using a pinctrl setting.
+> 
+> Patch 7 adds the M.2 M-key NVMe slot found on MT8195 Dojo Chromebooks.
+> This change actually makes use of the M.2 pwrseq driver.
+> 
 
-Sorry for this mess. I hope to fix it soon.
+Thanks a lot for doing this! I'll also try to get the Key E support for v7.1.
+
+For the whole series,
+
+Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
 
 - Mani
+
+> 
+> Please have a look.
+> 
+> 
+> Thanks
+> ChenYu
+> 
+> [1] https://lore.kernel.org/linux-pci/20260224-pci-m2-e-v5-0-dd9b9501d33c@oss.qualcomm.com/
+> 
+> Chen-Yu Tsai (7):
+>   PCI: mediatek-gen3: Clean up mtk_pcie_parse_port() with
+>     dev_err_probe()
+>   PCI: mediatek-gen3: Add error path for probe and resume driver
+>     callbacks
+>   PCI: mediatek-gen3: Split out device power helpers
+>   PCI: mediatek-gen3: Disable device if further setup fails
+>   PCI: mediatek-gen3: Integrate new pwrctrl API
+>   arm64: dts: mediatek: mt8195-cherry: add WiFi PCIe and BT USB power
+>     supplies
+>   arm64: dts: mediatek: mt8195-cherry-dojo: Describe M.2 M-key NVMe slot
+> 
+>  .../dts/mediatek/mt8195-cherry-dojo-r1.dts    |  38 ++++
+>  .../boot/dts/mediatek/mt8195-cherry.dtsi      |  47 +++--
+>  drivers/pci/controller/pcie-mediatek-gen3.c   | 185 +++++++++++-------
+>  3 files changed, 183 insertions(+), 87 deletions(-)
+> 
+> -- 
+> 2.53.0.414.gf7e9f6c205-goog
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
