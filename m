@@ -1,164 +1,369 @@
-Return-Path: <devicetree+bounces-268476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268477-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +Dr2HDsqn2kOZQQAu9opvQ
-	(envelope-from <devicetree+bounces-268476-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:58:35 +0100
+	id wDFmDCYqn2kOZQQAu9opvQ
+	(envelope-from <devicetree+bounces-268477-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:58:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED5D19B149
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:58:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 883AB19B134
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:58:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AD95C305FD7F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:56:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AAFCD301D322
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D87B3E9F9D;
-	Wed, 25 Feb 2026 16:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 142EE3D7D83;
+	Wed, 25 Feb 2026 16:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="0cKogkyu"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="nlq+pd4/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4063E9F73;
-	Wed, 25 Feb 2026 16:55:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA35E3D3499;
+	Wed, 25 Feb 2026 16:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772038534; cv=none; b=YDuS3f6HPTy2/PT5X2WY+nlbtuLvb8HjA9kL5vqWjvS0PKClGEWdSnQ8096koeZeG+looHytEweJrzq51wWDLE+qTPTloy3RDYDBI3LlkeDlzpp2TMVd8SKM95Blw9aOL9XBD1zaFcTVRv57QPvweta1F/zo8FOhoctntfsIhVw=
+	t=1772038630; cv=none; b=seIKWL0mGMoAJGEk1JdhNJCO/wovPZD0Cn/r8SlPWPwyVtCNDwqUf4WxQsOLDy52VQyYg9WI89qJluJJ/7dnPAkH7APQW/tlWSuyT2N93GwTULS1/9s0a14e3RR7+Yai0Hjmqe6P9ybkc3/Iayyu3gh0uCTFam4Sa/3zFTykCms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772038534; c=relaxed/simple;
-	bh=lfCmOAYsFOuaFioBHXU/Fxe5X8x0mVX0XYGpyf9HdFM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZlTujyRWnHDeii8NREFR98bI7PdsDNEk9XWnan5fMYl1GeZe+8HJXiD1OI0RIO0Y0iNaQPqMovtG0yHURsz0sXMzoukKHIPmxWSzpo3YfeLjC5FC1g3dVTA7hm7z1UqsViovL9VHHC1yD3m08Sn/b/Xipoyl3L3zwKrsf432pJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=0cKogkyu; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id EDA5D1A1327;
-	Wed, 25 Feb 2026 16:55:31 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C56AF5FDE6;
-	Wed, 25 Feb 2026 16:55:31 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9230A103692F2;
-	Wed, 25 Feb 2026 17:55:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772038530; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=S4PT0EOtNN8V8/JEJcfrAOeeozUfCp8lyxHnrqb8ZSQ=;
-	b=0cKogkyucxou7NZlkekTQ++BWFpRf1Zc097YxG3T+VHrdkPpr90WSwJsG4PHSWFg38I6J+
-	cW62yD8O2JS56bn3C+H5VDZ7PuPh1ee2nv68tVRfYPAOGIvQfeMroluG9KkfTF8zYYacCb
-	kVxW+JPQJQm6UNTNDForUTN0ZqpDwt7x60F4Lm07Mzkbs7TiMNpWg+RIJbFuTZUcHxlvh+
-	ypdbOeQpMIp4cZ+ybDTcazcTku46okfeRUL4pmzDdaf1awt8PqF1yxuHqJFyoUHE9LFjJz
-	3qkrRkpVcOpyrubr1YE182FqfpHqIWMd6rGWT0c2Z9qSX4ZnCDV0i1T+tKfnIw==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Wed, 25 Feb 2026 17:55:24 +0100
-Subject: [PATCH v7 3/3] MIPS: mobileye: eyeq5-epm: add two Cadence GEM
- Ethernet PHYs
+	s=arc-20240116; t=1772038630; c=relaxed/simple;
+	bh=fCVlQLBDh48nKU+yCW6UdkfNeC57rsE0abf3Savzivc=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=RxPLrhjkz6FFeN84oasR2vX8Yi7/hXe7o0bWn5r0YaRoSQz1ZH0FTAliZFHey7BRuRcKQGgoZLmHHX+cX5ihr5ku7Xd6tWq/9R2Y4UrKCvO6+u78+Ip7IZAjVhND3uFv2qsszPi3c+RNdZMrju1f4VXdEhErpmA6VkxDrzgy4pU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=nlq+pd4/; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=6Xsu0Zgs56ZTjjF/y5JOVDhujspJDUCWfcwVY2hiQD8=; b=nlq+pd4/mueP7MR8da4s9fG+Ti
+	MljCQ+I9fT/muEHpM7HjYQ1Rm7WEu9flXyI/luE18WWn7ip6pe9Wlal1ky0J5d6mhymsbNol+LFFO
+	3w7U6zl+tKxiynCVvsATte/zSLDIPdrZcl9hffvDqgh6f1HTrBmLZclre3BdaV3mZz3c=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:39918 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vvIBw-0001Vc-St; Wed, 25 Feb 2026 11:56:54 -0500
+Date: Wed, 25 Feb 2026 11:56:52 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, robin@protonic.nl,
+ andy@kernel.org, geert@linux-m68k.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dmitry.torokhov@gmail.com, hvilleneuve@dimonoff.com,
+ mkorpershoek@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, lee@kernel.org,
+ alexander.sverdlin@gmail.com, marek.vasut@gmail.com, akurz@blala.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Message-Id: <20260225115652.8beb1979df3824f7a95d22bc@hugovil.com>
+In-Reply-To: <20260225114155.3ee2efb002aa0f52a905f535@hugovil.com>
+References: <20260225155409.612478-1-hugo@hugovil.com>
+	<20260225155409.612478-5-hugo@hugovil.com>
+	<aZ8fXXGMx3fk7gKs@smile.fi.intel.com>
+	<20260225114155.3ee2efb002aa0f52a905f535@hugovil.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260225-macb-phy-v7-3-d3c9842ec931@bootlin.com>
-References: <20260225-macb-phy-v7-0-d3c9842ec931@bootlin.com>
-In-Reply-To: <20260225-macb-phy-v7-0-d3c9842ec931@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Andrew Lunn <andrew@lunn.ch>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -1.3 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v3 4/4] Input: charlieplex_keypad: add GPIO charlieplex
+ keypad
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268476-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268477-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[theo.lebrun@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_PROHIBIT(0.00)[0.0.0.48:email];
+	DMARC_NA(0.00)[hugovil.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[intel.com,protonic.nl,kernel.org,linux-m68k.org,gmail.com,dimonoff.com,collabora.com,blala.de,vger.kernel.org,lists.infradead.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[hugovil.com:+];
+	NEURAL_HAM(-0.00)[-0.944];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,bootlin.com:email,lunn.ch:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7ED5D19B149
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,dimonoff.com:email,hugovil.com:mid,hugovil.com:dkim,hugovil.com:email]
+X-Rspamd-Queue-Id: 883AB19B134
 X-Rspamd-Action: no action
 
-The Mobileye EyeQ5 eval board (EPM) embeds two MDIO PHYs.
+On Wed, 25 Feb 2026 11:41:55 -0500
+Hugo Villeneuve <hugo@hugovil.com> wrote:
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Acked-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+> Hi Andy,
+> thank you for the review.
+> 
+> On Wed, 25 Feb 2026 18:12:13 +0200
+> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> 
+> > On Wed, Feb 25, 2026 at 10:54:01AM -0500, Hugo Villeneuve wrote:
+> > 
+> > > Add support for GPIO-based charlieplex keypad, allowing to control
+> > > N^2-N keys using N GPIO lines.
+> > > 
+> > > Reuse matrix keypad keymap to simplify, even if there is no concept
+> > > of rows and columns in this type of keyboard.
+> > 
+> > ...
+> > 
+> > > +/*
+> > > + *  GPIO driven charlieplex keypad driver
+> > > + *
+> > > + *  Copyright (c) 2025 Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > + *
+> > > + *  Based on matrix_keyboard.c
+> > 
+> > A single space after asterisk is enough.
+> 
+> Ok, leftover from copy/paste from matrix_keyboard.c :)
+> 
+> > 
+> > > + */
+> > 
+> > ...
+> > 
+> > + bitops.h
+> > 
+> > > +#include <linux/delay.h>
+> > 
+> > + dev_printk.h
+> > + device/devres.h
+> > + err.h
+> > 
+> > > +#include <linux/gpio/consumer.h>
+> > > +#include <linux/input.h>
+> > > +#include <linux/input/matrix_keypad.h>
+> > 
+> > + math.h
+> 
+> Ok.
+> 
+> 
+> > 
+> > > +#include <linux/module.h>
+> > 
+> > > +#include <linux/of.h>
+> > 
+> > Is this in use? Or you wanted mod_devicetable.h for OF ID table?
+> 
+> I need only OF ID table, so will replace with mod_devicetable.h.
 
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-index 9fc1a1b0a81b..babf52731ea6 100644
---- a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-+++ b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-@@ -29,3 +29,29 @@ temperature-sensor@48 {
- 		label = "U60";
- 	};
- };
-+
-+&macb0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&macb0_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb0_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
-+
-+&macb1 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&macb1_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb1_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
+Hi Andy,
+finally I need <linux/of.h> for of_match_ptr()...
+
+But I will keep <mod_devicetable.h> ...
+
+
+> > 
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/property.h>
+> > > +#include <linux/types.h>
+> > 
+> > ...
+> > 
+> > > +	for (code = 0, oline = 0; oline < keypad->nlines; oline++) {
+> > > +		DECLARE_BITMAP(values, MATRIX_MAX_ROWS);
+> > > +		int iline;
+> > 
+> > > +		int rc;
+> > 
+> > I think Dmitry prefers 'error' name for this kind of variables.
+> 
+> I hate using "error", can be so misleading :)
+> 
+> I would prefer to use "rc" everywhere, but if Dmitry chimes in and
+> specifies "error" or "err", then so it will be.
+> 
+> 
+> > 
+> > > +		/* Activate only one line as output at a time. */
+> > > +		gpiod_direction_output(keypad->line_gpios->desc[oline], 1);
+> > > +
+> > > +		if (keypad->settling_time_us)
+> > > +			fsleep(keypad->settling_time_us);
+> > > +
+> > > +		/* Read input on all other lines. */
+> > > +		rc = gpiod_get_array_value_cansleep(keypad->line_gpios->ndescs,
+> > > +						    keypad->line_gpios->desc,
+> > > +						    keypad->line_gpios->info, values);
+> > > +		if (rc)
+> > > +			return;
+> > > +
+> > > +		for (iline = 0; iline < keypad->nlines; iline++) {
+> > > +			if (iline == oline)
+> > > +				continue; /* Do not read active output line. */
+> > > +
+> > > +			/* Check if GPIO is asserted. */
+> > > +			if (test_bit(iline, values)) {
+> > > +				code = MATRIX_SCAN_CODE(oline, iline,
+> > > +							get_count_order(keypad->nlines));
+> > > +				/*
+> > > +				 * Exit loop immediately since we cannot detect
+> > > +				 * more than one key press at a time.
+> > > +				 */
+> > > +				break;
+> > > +			}
+> > > +		}
+> > > +
+> > > +		gpiod_direction_input(keypad->line_gpios->desc[oline]);
+> > > +
+> > > +		if (code)
+> > > +			break;
+> > > +	}
+> > 
+> > ...
+> > 
+> > > +static int charlieplex_keypad_init_gpio(struct platform_device *pdev,
+> > > +					struct charlieplex_keypad *keypad)
+> > > +{
+> > > +	int i;
+> > 
+> > Why signed? But see below as well.
+> 
+> Will switch to unsigned.
+> 
+> 
+> > 
+> > > +	keypad->line_gpios = devm_gpiod_get_array(&pdev->dev, "line", GPIOD_IN);
+> > > +	if (IS_ERR(keypad->line_gpios))
+> > > +		return PTR_ERR(keypad->line_gpios);
+> > > +
+> > > +	keypad->nlines = keypad->line_gpios->ndescs;
+> > > +
+> > > +	if (keypad->nlines > MATRIX_MAX_ROWS)
+> > > +		return -EINVAL;
+> > 
+> > > +	for (i = 0; i < keypad->nlines; i++)
+> > 
+> > iterator is local to the loop, hence
+> > 
+> > 	for (unsigned int i = 0; i < keypad->nlines; i++)
+> 
+> Ok
+> 
+> 
+> > 
+> > > +		gpiod_set_consumer_name(keypad->line_gpios->desc[i], "charlieplex_kbd_line");
+> > > +
+> > > +	return 0;
+> > > +}
+> > 
+> > ...
+> > 
+> > > +static int charlieplex_keypad_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct charlieplex_keypad *keypad;
+> > > +	unsigned int debounce_interval_ms;
+> > > +	unsigned int poll_interval_ms;
+> > > +	struct input_dev *input_dev;
+> > 
+> > > +	int err;
+> > 
+> > The naming is even inconsistent between the functions...
+> 
+> Agreed, will fix as stated above.
+> 
+> 
+> > 
+> > > +	keypad = devm_kzalloc(&pdev->dev, sizeof(*keypad), GFP_KERNEL);
+> > > +	if (!keypad)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	input_dev = devm_input_allocate_device(&pdev->dev);
+> > > +	if (!input_dev)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	keypad->input_dev = input_dev;
+> > > +
+> > > +	device_property_read_u32(&pdev->dev, "poll-interval", &poll_interval_ms);
+> > > +	device_property_read_u32(&pdev->dev, "debounce-delay-ms", &debounce_interval_ms);
+> > > +	device_property_read_u32(&pdev->dev, "settling-time-us", &keypad->settling_time_us);
+> > > +
+> > > +	keypad->current_code = -1;
+> > > +	keypad->debounce_code = -1;
+> > > +	keypad->debounce_threshold = DIV_ROUND_UP(debounce_interval_ms, poll_interval_ms);
+> > > +
+> > > +	err = charlieplex_keypad_init_gpio(pdev, keypad);
+> > > +	if (err)
+> > > +		return err;
+> > > +
+> > > +	input_dev->name		= pdev->name;
+> > > +	input_dev->id.bustype	= BUS_HOST;
+> > > +
+> > > +	err = matrix_keypad_build_keymap(NULL, NULL, keypad->nlines,
+> > > +					 keypad->nlines, NULL, input_dev);
+> > > +	if (err)
+> > > +		dev_err_probe(&pdev->dev, -ENOMEM, "failed to build keymap\n");
+> > > +
+> > > +	if (device_property_read_bool(&pdev->dev, "autorepeat"))
+> > > +		__set_bit(EV_REP, input_dev->evbit);
+> > > +
+> > > +	input_set_capability(input_dev, EV_MSC, MSC_SCAN);
+> > > +
+> > > +	err = input_setup_polling(input_dev, charlieplex_keypad_poll);
+> > > +	if (err)
+> > > +		dev_err_probe(&pdev->dev, err, "unable to set up polling\n");
+> > > +
+> > > +	input_set_poll_interval(input_dev, poll_interval_ms);
+> > > +
+> > > +	input_set_drvdata(input_dev, keypad);
+> > > +
+> > > +	err = input_register_device(keypad->input_dev);
+> > > +	if (err)
+> > > +		return err;
+> > 
+> > > +	platform_set_drvdata(pdev, keypad);
+> > 
+> > Is this needed?
+> 
+> No, will remove it, and replace last lines with:
+> 
+>    return input_register_device(keypad->input_dev);
+> 
+> 
+> > 
+> > > +	return 0;
+> > > +}
+> > 
+> > -- 
+> > With Best Regards,
+> > Andy Shevchenko
+> > 
+> > 
+> > 
+> 
+> Hugo Villeneuve
+
 
 -- 
-2.53.0
-
+Hugo Villeneuve
 
