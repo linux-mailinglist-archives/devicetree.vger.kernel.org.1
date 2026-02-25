@@ -1,277 +1,207 @@
-Return-Path: <devicetree+bounces-268102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268103-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YFA2HthWnmkKUwQAu9opvQ
-	(envelope-from <devicetree+bounces-268102-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 02:56:40 +0100
+	id +OxDJ51bnmlrUwQAu9opvQ
+	(envelope-from <devicetree+bounces-268103-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 03:17:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B87D1903F2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 02:56:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1947190CA3
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 03:17:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7C1B230B3D23
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:49:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E86F31632CF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF2C81FE45D;
-	Wed, 25 Feb 2026 01:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C9A52652B7;
+	Wed, 25 Feb 2026 01:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="IaGHO2wC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oglb09DA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013034.outbound.protection.outlook.com [52.101.72.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748ED1E2834;
-	Wed, 25 Feb 2026 01:49:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.34
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771984154; cv=fail; b=XeiI3Y4zbxznRAyLlh+oFHQwz3kQ8k89Pxb0na4PaerP2g22HxtdfO8nh/cTIrOOfjEhpkp6MEHKSRNZdpRV3ksrl1hkt15HZx5w/4uG6PTbQWFRs7QDwBPW+DwNfgLaYFAivOvmNvRzgql9n8tFnJqrBSNqa9QIPGTuyYQJWO4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771984154; c=relaxed/simple;
-	bh=PehLEAA34mhY0DXsCkcJjnq1MrL/paroeJCOGH5ZLvQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=njjs9kJjuuBzDz6qX2MNzH9wT8hdIG4lWWdoD2v9cik8BjhT+B1ArRwDXHfkmRt79mI5Jjz40AA4SX8ExgJ1KXIBiYEh3gjClpqWim/5o2GCOzNno7Q2mbVuhStMkWVD6LillZRgkG8dhs7b1QMsxGn2jrUruDSgVN+356YaMD0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=IaGHO2wC; arc=fail smtp.client-ip=52.101.72.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v5+6zvBVWPYsl0Umi8+VWP9XrAebrfyup5iF6emsELaaQeA+mu7fOL+XtQuhV8DMS3Dq3vhuGE8YbypDxsvgbloxcVkS7lDC1CVps0ifb1WXY1qbkBJ4nFt4xpqKaDDPa1syepfcfQnUehi5bkNlUc1dgnqg26ZiAd/Ijn9pSb1ursLZZnO92Sz5/31WNeM4cc3DEaN43dmrj3tc766T1WGXIDE8IAEPlkGRPw6HOltVysHsYjzpxAkqMr1vNLIQw2fsNvE6iBslQaz0RVCAXkK19jJ4gfo+mcFygek2HY7G4Q9zBOrrYcedo1NIzIJlxYpvgwyIGvKpddvWNcY0kw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sHSp9jFTP1n4A2UfFfMAH2YD5VUPToPQ8mRo4UEwy+Q=;
- b=gV4PBDfxE79ST5HGl4Q2Ywt/g4jID3rl5R7mLMxUrMfUWfuggk3mN4JOWhMngN8bmQGU8w3jMxA1FS3eHRcZPpt4odQkZ3anXUHqIDWCW6q0toCTBrNnYgl5PU8PWJ/ea/IVIpZH0jDhck0xcsiCDW3D9azZlf0AicTulT/NkQGI45UNwl7YxykP7livnMQZilsFy1x+Q317///JMXZ1C3eRo/ijQKkHVVmg6eQppOyYRbTwwP0O/Slwjzs3AHHj+8VhXwbX7jixQXYKpM+o1lrSVMY1IeZfYo0JqaG1marY9vP0yUNyf2gqzbd7YCtQRW28mguIJgzmIu/oFgKsxA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sHSp9jFTP1n4A2UfFfMAH2YD5VUPToPQ8mRo4UEwy+Q=;
- b=IaGHO2wCZ0OEaja3RV1uLBRzs0yOacqm33IhivW5Xp6cyQzBoQpw5CfLrQNTGaTKHwaSv3kugaWCOXq2SDm9RAmWDb9SYjFFnrizm/1dgw8UqcidvckwLoOIrmesohxXiF6qMZOnw1O9G64/q2LBxF+SlXb5eiQb9Hg19r7PbNSYwXCv30r/fK6tnza0iwnaW+6b/Py+f5CiGf1Pw4Yn8XZBpDqgCsRuIQCnOXX+F2FhMpbY1Ohkh2qjKgdRRoTe9btu8azYORinyoOA8UxAKXiR5FjymwV3yH14DYmbTwEVBX+J4BLJFWmDxmXPl7aUfKt90f8N2gNhtluV5h4nVQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by GVXPR04MB10876.eurprd04.prod.outlook.com (2603:10a6:150:214::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Wed, 25 Feb
- 2026 01:49:09 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e%7]) with mapi id 15.20.9632.017; Wed, 25 Feb 2026
- 01:49:09 +0000
-Date: Wed, 25 Feb 2026 09:50:58 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Forrest Shi <xuelin.shi@nxp.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: freescale: imx93: Add Ethos-U65 NPU and SRAM
- nodes
-Message-ID: <aZ5VgoDF4QvWaCgE@shlinux89>
-References: <20260219144200.2633404-1-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260219144200.2633404-1-robh@kernel.org>
-X-ClientProxiedBy: MA1PR01CA0179.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:d::22) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3282550D7
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 01:59:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771984746; cv=none; b=O13kmJA0fxweBaSzj/4J4yS52jzE32KhQx9UITEhG4DeXKgAKbl/8+O23xSRFAtqrqvf+ZNwF8iQsdSeMnWrSjwZ6YsFVcTAzqSWM87FslIe6r0IHw7jFrfkCzd1Jwif/iwHjP/+pJUd56exrtUH9ytcac3C3pv+w+bUpEi3h0U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771984746; c=relaxed/simple;
+	bh=W2KKtQ6U1y1uHnGI/uA+jFy7/QOEsOMRiGUqVPJW/vs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rM2fY5zBlG7XVoMOjUo9gfQoHNUPA6sDzQVJcrMwCDp7qhAYu2IrenTlGmj4HGYay5NeAwOH6+CHgP1aqPzlGF4/Sl6P26j07NHJeP9JtMGcFyxWEi99yINCFtA4+JucIkqSxXpxvfXUWR45HaX0mEdQruQagNqs1TqRx+WnaUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oglb09DA; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2ad21f437eeso3156985ad.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 17:59:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771984745; x=1772589545; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sFSQgKMpbT4Jja0uO7WjQXE+RhpLS+aEelpO+yxQLtk=;
+        b=Oglb09DAEuvCJ/2h3W8nq0JVuXbX8nsUipifd9x4a7ZuaKPK42/uadnP3eU2PM240S
+         kPWSRjP9sTzuLIGYgHCJyrLKGr4oQ71B8Di+KporcBm8TTKhDt8axAiuPHbZ+iGi4puX
+         lpPbLYk4Ihl/TwtXaFYeuh2tRQ67DUI4xDFdkhXcxyoUtNsD6yy3BKbxXaX+/oLxbS2l
+         dcEB1dmyJrCgzy8j93YfnN6kXBzdtQ0RMaYUxDiOwbJCVRHEvO6+JCKiAb+5gWSaRnyZ
+         BWedLXDUiR4HdmyMtRh1+xhx7eQ/WZqogBzBKX4CDMlLv4yZCnf4G5NsLP8UTxXG3FVX
+         vUSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771984745; x=1772589545;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sFSQgKMpbT4Jja0uO7WjQXE+RhpLS+aEelpO+yxQLtk=;
+        b=sjsQeNj6FSK8wIX1g5Z0Uem0nMp9vpEX43Rjj+EReeNfWBgSXohy6IomhnfOXtjLQm
+         h1d8Z4dBiZgvt7nkejFJ8kTFXFI3u9y8LcaTbmjQoXPwPYVNjDR3pceEieX8AoQlXvk/
+         ODNF8Q5nyFytLY8WSfN6EJUdnYSiE0FLyX5CagupHtSGCu55nS4nXarKjKLFOiNxY3yC
+         HjCha05+VPoSflbR9D54DSrjsI88R6vw0x0ZTJYysOtJTTFiM3/GDKyR+iO6SIi4VqjI
+         CrKdS7OZ71BSBhehullZKNbfvvunfWEBigl6CLFqY1JOjUG+RUHAqetO7vp2OBIF0Np4
+         qiRA==
+X-Forwarded-Encrypted: i=1; AJvYcCXt3FKMFx4ZIO5Cj4N4FwrdcRi1qZLKqb6LIVZH2jFkv8XTvcuVFaejLZdD1Uu7NORr/5hByaOeb0g6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7ZggOrEdFG8PDCAeYX7ztchbC44MBQwaKr7lmkgsrpS1rwDzi
+	JbwnImVuht/rR2OmtGBtJhrurUE523yIMx93rUgpyF9zRwohLX7ncXNH
+X-Gm-Gg: ATEYQzyT8N1iYOXLuGWvfrNFkmd6vSEGX1TtuCYlrNzWAZizkPXcDWqfifvvh1uGlmv
+	mI4ilazPMHlbapLuhwfMZorE+6EFUy9BhjC+lPc0utt8qeOF3ZIzk8vGOxywqZqEMnmRHl6Sjzp
+	fuUUx6y3G06ufNqPNcnutjBojFrhbtttzsoaxb4MiPxKIaGfxrBPhnnA8YbYwgFI6kZA7maOdvU
+	32n7InqKYAOsQXJhkwcTexq0OeMw/X6NI3CzTQb45COMe36jrmwEAXK1tVkOOB3AVAP/TeMkPTN
+	axqwruV4PiU26Jz5G6fJA4vP6vM/hfrsrN+fh//pVK3bGNW89lZHFPyj3U2swieQtX2yi7GGL8S
+	HMcM2A2iusRkenWci7FySjIySa6Ap4Kxz9pcFbcFJZQtb8WPwFhETQfXDUJQB6qQv0U2AwVcz1O
+	sUVwBQtIZjF3Fz3Z3CpKpOingJNjJtB+H82GX/dBbB1Pg2GA==
+X-Received: by 2002:a17:903:46c6:b0:2aa:e9f0:146c with SMTP id d9443c01a7336-2adbde10d4amr18311745ad.29.1771984744657;
+        Tue, 24 Feb 2026 17:59:04 -0800 (PST)
+Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad75027affsm114744415ad.66.2026.02.24.17.59.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Feb 2026 17:59:04 -0800 (PST)
+Received: from hqs-appsw-a2o.mp600.macronix.com (unknown [172.17.236.67])
+	by twhmp6px (Postfix) with ESMTPS id 7B0A84136071;
+	Wed, 25 Feb 2026 09:59:02 +0800 (CST)
+From: Cheng Ming Lin <linchengming884@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
+	Pablo Martin-Gomez <pmartin-gomez@freebox.fr>,
+	Tianling Shen <cnsztl@gmail.com>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alvinzhou@mxic.com.tw,
+	Cheng Ming Lin <chengminglin@mxic.com.tw>
+Subject: [PATCH v7 0/3] mtd: spi-nand: Add support for randomizer feature
+Date: Wed, 25 Feb 2026 09:57:02 +0800
+Message-Id: <20260225015705.1113199-1-linchengming884@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|GVXPR04MB10876:EE_
-X-MS-Office365-Filtering-Correlation-Id: aebdf2f4-11b6-4655-f18d-08de7410111a
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|376014|52116014|19092799006|1800799024|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?PCtiYi+kJDyooB9BRuMa6XNanY1mTasrPqWQlZflSU5DEP7hdZ7gjTbCIAWD?=
- =?us-ascii?Q?eNS5fFOYvTKFhcfv5K1XhMzSHYRqes3VrE5x/Y/npL1y2/tKp1bG2veF+E9Q?=
- =?us-ascii?Q?XH4N6Yl5QnyTEziG7q1ZcI69nbx8HK0ykbJonHFdH/hz3EyNUma+6QkrkG7U?=
- =?us-ascii?Q?7+lpnr/dFfcQ3e7f5fI9MLYdbhycbnpsvhA+hPJd2NC5eComdhiFDOJNM/pk?=
- =?us-ascii?Q?Yk0YTPuopf/IlMRoz1jMUZmEEfByfMwQZm4C1HcIYfeFG81EayRk+Df6s4gr?=
- =?us-ascii?Q?tJtGGY9+tC51RdIJ1Ii97jjR2zfumOgVzg6ulT8gCwcExD412EYKNhz3XFJb?=
- =?us-ascii?Q?zzGc2Wn03ANHgPb5sAugTHu4cURwr4qfHT5Qkz9t6Rgbk8c4/sYzKkd0fhhY?=
- =?us-ascii?Q?TjFtoMLOK3c46jjasnvWxROerUTIDq1JMvT1+IsZBLpf7auTP1cfUDPxOcuU?=
- =?us-ascii?Q?I9IS55Mn8FOBv/E5WBQGUJcT2A33Gf2LorSt4A3jnwOuLXGpYYqx7cdRv8EW?=
- =?us-ascii?Q?h38RL7Xrd0gQ6M9ryIEqtE6Sp23Q+56kFfkBrGMsdtpNQMA4g1vtpyK2611o?=
- =?us-ascii?Q?Xy+AnZCFLh27LmkOnTUjcZ/FN/EgsztVRjUSblMfl94YPVJ4SDNB89fCWyEG?=
- =?us-ascii?Q?PBSGHVJ5ObPUYrEYDDaS/m0rosACLPXizTZpynQ3EyPwWj2tFwXUq+pMleZP?=
- =?us-ascii?Q?AA8Jhsr+/CpvlkbzNYXUHz9mba19hFyodoffT3WNLIbKNDtvVyFpzRjJ7KQR?=
- =?us-ascii?Q?rRLQOEytz/RMaKJjkiJJqm+1JYr6CQq5CcpgIp+nKuvnPTmmBGTbqMBADG03?=
- =?us-ascii?Q?L9p5+a0zvhCRyVOXFGeVecHA8a0FONNWbrIt9fTADcDRg1IKjDqX4pKd4MDX?=
- =?us-ascii?Q?qg2KQjUUuhtAmy8VOfFMMjy1cIwPIqtvTp5kss+YumLUZ/qCYSi1KwceuDol?=
- =?us-ascii?Q?oJGHZMxr1X95QpV64kmG+iWC9Pm80kG5VEDYdJmC6X6mqDMeZfmMj4cs4nZ5?=
- =?us-ascii?Q?uD+6UPqzHGib7ybXMWy9uSji3a1PtgmHtfBFk0te42aIfXcNPU8eRPxD7i2P?=
- =?us-ascii?Q?KaSxUFzcExDtQLFt+Ytp7G9ibHGvd328JkwsTD4vxKf3ecuEsBXKi5QVu22/?=
- =?us-ascii?Q?F4svT0tjcZNFA+gQwfMbST/91rxLxQN0KTNXmIZEfg4253UAFIPygDwNG8iz?=
- =?us-ascii?Q?qoaFWiPPeYeD/0qJ4xjJo8kkgwmo8exK1Beg4ns0NPrwRtcIAMEnZHawZEFI?=
- =?us-ascii?Q?w6M0L4tKbb2rO+f3V+yuNLenrgAioY4Md42CeOWw3FErRO8D1KS/+aCAkKTu?=
- =?us-ascii?Q?qfwbrwvcaITvXCdLtvZeBFo2kWi8qe5P+/fDdRKYglPWce1d9CSA0QagewxQ?=
- =?us-ascii?Q?JPALtW7O7mxdw//VS/t1QJwZeq/x3ri5IT7S1OxhBZKon32JwzHVGXac6zCB?=
- =?us-ascii?Q?qUkzBD/DDZndfm/lhHq4dyeGn54pR6Vyf82fnOGNuueddsjcWX2+Pm/KAsB4?=
- =?us-ascii?Q?4qPN32lVqPQTdqKgrf0oqoeOl+vJqPV22L5fbIXKSQC8ZHC6FyEpjXlzh5iN?=
- =?us-ascii?Q?9omAcDtW7pTtSA/uypIKsNibiQatSsCcTBfM6uYEeER0eYTo5prCHfMtJVrg?=
- =?us-ascii?Q?foJyFoKXpW3iwdy5wn68zBs=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(52116014)(19092799006)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?8VrbjRXte8hqfk5wfwfFUr3LBjj/Q/xm2mcrvMOnCSQoP9WzIvrdFqJQ8wtm?=
- =?us-ascii?Q?mCYNPOsq8yOYHpU8KqNl1g7X31cgRPAS01cQ9amywRwxaycRnlIaxkIglznf?=
- =?us-ascii?Q?5a1CFTnB3MzcDHQLImd5NImKp8ZGXWwepq2cGHl+/vgzUR6c1IVZ3tIn4YqU?=
- =?us-ascii?Q?OU/UwTFc+j45Q4tA6s+u321YtGrmYSFY1WlDBuMqrhpLyZWMNNEN/7Jl0jjh?=
- =?us-ascii?Q?rcWzowPhg6alCVS6sGmkH2ky+vzaXK+0Y2In4Cd3bXMagWM4ChqFSrkL9p7z?=
- =?us-ascii?Q?1j0YZgcMOWwwu+ca87UhsULz8uQTe3nzQftXJVJaIHQd6vRAaCZgw51Gokcu?=
- =?us-ascii?Q?j2y2JPxVHALmBXIxFvHYwXwxqAUcMJ/54GBfCS9zjIc9wcy79LTRNR9s7dbr?=
- =?us-ascii?Q?R2RldWxxuLOexHN1TV3UwFag38C1osbK1/MXIUXYV1aXyfXMX387GtvFUb63?=
- =?us-ascii?Q?cZ9oGGcqmfhasqegxtXRUTqQsRyIuGrq8NsAKT1FI2Fs1DDX3Eqrqy3U6Czx?=
- =?us-ascii?Q?N8Ch5Tw4kZFEgcNs3++GzloH3IkVIbf9ed2fiJjg0K7VBYzK3hgXMXNT/6zk?=
- =?us-ascii?Q?NugvS9MOvxfQg1AtU9jqin2hdcS05ozLG/Crpi78BQ9udrsI3BpitxRujUFC?=
- =?us-ascii?Q?GJVXadOUkjuM/+vqej/mvceiolBqHTdh+owLHHEp/UGtHdy9ljn8Z9Hbr6PS?=
- =?us-ascii?Q?cY7unrIxqfswctfNd0ItLR7G4EqCcE+WU4dKphanqVMRcey3ZywFU6NuUDm4?=
- =?us-ascii?Q?3Ul+1B/DSfeCR9WwfdLbetTHJIMD3bfSK9/gsn9/ldvrmQ7nsk7LB4mOTyqG?=
- =?us-ascii?Q?EJ+Dk7ShG28HhLZXWk35emVCcln0wvkTBq10Y3EHgp3dkdouq2F6zgz0qKxB?=
- =?us-ascii?Q?usLpTpBllPJWu0jI/XRcIYy4s35HU0Nhejx/jbtZ2jw3th+12TGWzCWCqROD?=
- =?us-ascii?Q?rIAdO/kyri53yAfRlzYwCwYjIBVDCZFtN5KD3oaWjzlsLeI9E8O2Zq6O7zJf?=
- =?us-ascii?Q?0GZfBv/XJSBYvEQ2q12yDy9u2AYs3OnYhufVgdPWakRshZrE4guLsqB3snP+?=
- =?us-ascii?Q?SF4RIu03BUmIxTPJVh7gVoU8etuZC9shNcjo8BOQjUC4POp7rcixdCCyM4Nn?=
- =?us-ascii?Q?AwAYTjk3xwW4k8w9R+MTTPrzEdF4Jz9HwiqXkVKgFcuzv/LCDISusKWuiptG?=
- =?us-ascii?Q?iznLTQxbTanhNBk2PsdWv5PEDFuv9R3NT2CzC+b/qHdQX0E5lfFmZhsh8ciS?=
- =?us-ascii?Q?8MPZ+6Le8UIQTi0kpp/o3D6SCok7jOmrto3aaUMXPw93lJdRZIwFM2BP0vGw?=
- =?us-ascii?Q?V+ICT/v5NFFaqIPR9wE7yFn5N1erYIl0EMpK/kdhWG9Aa/FHzAftqFx+gYo2?=
- =?us-ascii?Q?1PkOOCZq3svFrfnC9AYBkUkohyTyvk+WXbzXEYQVjj2qpV27WGMreNKHXLIP?=
- =?us-ascii?Q?z0fe54DriZ1E6EYA+xsdJRIMRy+2nmx58v1ubExmm1EVkqGrU9JCVxi+5YZx?=
- =?us-ascii?Q?A/8p7KL2KifEIeA21UNg/ptZbD/XNdQsryan50hRlAXaOYxfIkjjprv3YBF0?=
- =?us-ascii?Q?nFGq1mutR+kpIT4s1GwotqPE88R1bwJdoxzx0yOiYiC9dnYjWjMyDojb7OuV?=
- =?us-ascii?Q?GbrdIeT2uSblrmFyeRqef2vcYs3yLVFuiIJ6B9u5uVkeqNMszYTRhEvyDf72?=
- =?us-ascii?Q?xvVIGjD2x4ajOFStfIK2k+YUz35ycOitVIndsRgesZ/WEQp44erAIfYFi28R?=
- =?us-ascii?Q?NjACBLEuJg=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aebdf2f4-11b6-4655-f18d-08de7410111a
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 01:49:09.2266
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KAuFBJEvpHTX+sDZ+0atoy1sA7vp603UInZsUR1St5CNNVkZEajm2Z9LsG77ZrNXD1nvDZxiwjLes1r/FCk7Ag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10876
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268102-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[linaro.org,iopsys.eu,freebox.fr,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org,mxic.com.tw];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-268103-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-0.997];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,4a900000:email,1.56.128.0:email]
-X-Rspamd-Queue-Id: 1B87D1903F2
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: F1947190CA3
 X-Rspamd-Action: no action
 
-Hi Rob,
+From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 
-On Thu, Feb 19, 2026 at 08:41:59AM -0600, Rob Herring (Arm) wrote:
->i.MX93 contains an Arm Ethos-U65 NPU. The NPU uses the internal SRAM for
->temporary buffers. The SRAM is larger than 96KB, but that is all that is
->available to non-secure world.
->
->Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->---
->NXP folks, any comments on NPU freq? IIRC, the clock controller supports
->setting the freq to 1GHz. Is that supported?
+This patch series introduces randomizer support for SPI NAND devices.
 
-NPU supports three freqs:
-500MHz for Low Drive mode
-800MHz for Nominal Drive mode
-1GHz for Over drive mode
+- Patch 1: add the nand-randomizer-enable and nand-randomizer-disable
+           boolean properties to the generic nand-chip.yaml bindings.
+- Patch 2: add the initialization logic and the set_randomizer callback
+           to the core framework. The core will now parse the device tree
+           properties and enable or disable the randomizer accordingly
+           during spinand_init.
+- Patch 3: implement the set_randomizer callback specifically for Macronix
+           chips (MX35LF/UF series) to handle the vendor-specific register
+           operations.
 
-The NXP downstream choose nominal drive mode for peripherals,
-in NXP downstream, there is a driver to do nominal and over drive
-mode switch for the SoC at runtime(through sysfs interface by user), there
-is no dedicated arm core voltage supply, there is only one vdd soc supply.
+v7:
+* Directly return the result in macronix_set_randomizer()
 
-To avoid introduce complexity to various drivers, drivers use nomimal freq,
-so OD->ND switch does not require drivers to update its own clock frequencies.
+v6:
+* Added mutual-exclusive constraints using not with required for
+  nand-randomizer-enable and nand-randomizer-disable properties based
+  on Krzysztof's feedback.
+* Simplified the return path in macronix_set_randomizer() to directly
+  return ret; and dropped unrelated formatting changes.
 
->---
-> arch/arm64/boot/dts/freescale/imx93.dtsi | 23 +++++++++++++++++++++++
-> 1 file changed, 23 insertions(+)
->
->diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
->index 7b27012dfcb5..d826d4b5a06b 100644
->--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
->+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
->@@ -43,6 +43,29 @@ map0 {
-> 			};
-> 		};
-> 	};
->+
->+	sram: sram@20480000 {
->+		compatible = "mmio-sram";
->+		reg = <0x0 0x20480000 0x0 0x18000>;
->+		#address-cells = <1>;
->+		#size-cells = <1>;
->+		ranges = <0x0 0x0 0x20480000 0x18000>;
->+	};
->+
->+	soc@0 {
->+		npu@4a900000 {
->+			compatible = "fsl,imx93-npu", "arm,ethos-u65";
->+			reg = <0x4a900000 0x1000>;
->+			interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
->+			power-domains = <&mlmix>;
->+			clocks = <&clk IMX93_CLK_ML>, <&clk IMX93_CLK_ML_APB>;
->+			clock-names = "core", "apb";
->+			sram = <&sram>;
->+			assigned-clocks = <&clk IMX93_CLK_ML>, <&clk IMX93_CLK_ML_APB>;
->+			assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1>, <&clk IMX93_CLK_24M>;
->+			assigned-clock-rates = <800000000>, <24000000>;
+v5:
+* Promoted the randomizer configuration to use generic NAND properties
+  (nand-randomizer-enable and nand-randomizer-disable) instead of
+  vendor-specific bindings.
+* Refactored the initialization architecture in core.c. The core framework
+  is now responsible for parsing the device tree properties and deciding
+  whether to enable or disable the randomizer.
 
-APB could run at 133.3MHz.
+v4:
+* Fix a build error in spinand_randomizer_init() where a value was
+  returned from a void function. (Reported by kernel test robot)
+* Update the return type to int.
 
-Regards
-Peng
+v3:
+* Revert the device tree property to the vendor-specific
+  "mxic,randomizer-enable" to strictly follow vendor-specific bindings.
 
->+		};
->+	};
-> };
-> 
-> &aips1 {
->-- 
->2.51.0
->
+* Update the 'set_randomizer' callback signature to accept a boolean
+  'enable' argument, allowing the feature to be explicitly enabled or
+  disabled.
+
+* Switch the implementation to use the standard SET_FEATURE command
+  to modify the Configuration Register (0x10), replacing the previous
+  special program command method.
+
+v2:
+* Create a global NAND DT property
+
+Cheng Ming Lin (3):
+  dt-bindings: mtd: spinand: Add randomizer enable/disable properties
+  mtd: spi-nand: Add support for randomizer
+  mtd: spi-nand: macronix: Enable randomizer support
+
+ .../devicetree/bindings/mtd/nand-chip.yaml    | 18 +++++++++
+ drivers/mtd/nand/spi/core.c                   | 27 +++++++++++++
+ drivers/mtd/nand/spi/macronix.c               | 38 ++++++++++++++-----
+ include/linux/mtd/spinand.h                   |  9 +++++
+ 4 files changed, 82 insertions(+), 10 deletions(-)
+
+-- 
+2.25.1
+
 
