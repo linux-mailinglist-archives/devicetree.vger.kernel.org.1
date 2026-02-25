@@ -1,98 +1,95 @@
-Return-Path: <devicetree+bounces-268546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268547-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNUDCCB0n2mgcAQAu9opvQ
-	(envelope-from <devicetree+bounces-268546-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:13:52 +0100
+	id CMycL7h1n2nScAQAu9opvQ
+	(envelope-from <devicetree+bounces-268547-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:20:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D903019E350
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:13:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E869B19E3A8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:20:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 37EA230234ED
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 22:13:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E7B213044677
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 22:20:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BA331A041;
-	Wed, 25 Feb 2026 22:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3900313529;
+	Wed, 25 Feb 2026 22:20:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SJWsU4sq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GAeVcQVj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1BEC311C22
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 22:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A6DB329C6A
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 22:20:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772057629; cv=none; b=TbfOyDunmScljamjICceDrkbYYOfmCv1PKj2gXap1p4IshjppVVUY06/TpamSyE7gZvPKHrFwehjm5OBBVkkPG5LsF+IAGplwI1GcHFG24PKQvXNKA/XZsDEa0rj3kQsAF1NTy3iW38XBUSyi7qmIVqMkfmnaZvvsZVp9gtlLGA=
+	t=1772058030; cv=none; b=S+gefzpXlnqk7LGDGpY46iV+R9OxT/9txonT6wf9N3ddsaoh9J0q89VL/r/HDYldBcYU5DiBTp0niBEjp+I3YiIm1P5hNbCE33Mr3smI3uEAUrqTYzSQ6DZ2Pt17PRj0L7Ge4GiNoisC04ZmKtnfiDV+yzUw9SInQFqeJbDOkXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772057629; c=relaxed/simple;
-	bh=TOgbNBbKU9iPOcuckC2IVjsArS+79bW2WQ2DfWtt9Zs=;
+	s=arc-20240116; t=1772058030; c=relaxed/simple;
+	bh=N2g4ZoqMWVGUlpBgsv7+PSNbpQ7Er9/ae4GSUKSze4Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WVfq9F7n0V82F3STW6XekCCR94W4pvfzmATHtWXbpYXQzQOSqcXaF139KdBWnm6ueuDn1N85HEvswADD04f16aqeN6AyRSNjjZp3B0wxrYDrtpVL66idwtGpgNDre9pIULjXbsC8lYohv1Dz7LhG2MnbIqodLXSTYpW8ffzF48E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SJWsU4sq; arc=none smtp.client-ip=209.85.215.173
+	 Content-Type:Content-Disposition:In-Reply-To; b=C7udFp5cMUgaflHkQdDZeXh/1HrVwlOIVjL2idvqJlBZ2MxXFeZv2qoYy+SRjvDUOTbNHg22GMMCjOCFi2u0CNM+uvQymUEJttq2vioWCi178vvjLomZv5oiJoz0nw1DNo2OKL3+8rZ3yfJFlOq7dGY+/j+NjUZariczzRWSlVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GAeVcQVj; arc=none smtp.client-ip=209.85.210.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-c6e1dc5c5edso60336a12.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 14:13:48 -0800 (PST)
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-82728e5680cso123409b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 14:20:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772057628; x=1772662428; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772058027; x=1772662827; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5aiKwhpHaGzJ3DICfSZzF0PjdBtray3xMHDXBsERpgo=;
-        b=SJWsU4sqxHWs4GZAiT9mNCVOf7tsuhKmxNyn46NGnlceY/2z8TErE4PUDQh8uZjtLv
-         r40fgWVm6/n3SSPGPSrtL3Jmo6to11r25ASS+rQ80W3loeg/bra0T4h6imBqCskWrtLd
-         xyDgR4xJKHZWkTPDciKeTajWmbFJFQexXJLgziwpuhk0vaOC9ng+Do250dWwOCeS6QYt
-         4NRDz7+5ZNr2A0vWFLu+NR5Y9slqEjQEpleqD3yC6i3ll6mzW39Gytin7NyGnFb65q1c
-         08vqbbtyOKwsR6vqeWVa1+mx2KbWMH9Sz4URtox2QuIhMNL2eevhDanm2vAFnXwAaLIQ
-         SSHA==
+        bh=F50crxFeK9XeDJJq/qBM5+VtsXIjYPfgaWG7L+GSg6s=;
+        b=GAeVcQVjGHPdBAD0nWtASc7o5lgVxHwISWsLziyk9hkY2CiELT5lxbvKiPari1pF9b
+         wsevrFTaKim/QI8J6ftsoVju1kWrnaBNZizUcsVT972cwR3nj6TmHWr3KPPN6eNVLT57
+         +DvZJWJ1pu8ZHiqa97qcJu0+irlsLLirvxhUm4hp4R2ls10CShXT3E+MieMm+BYEWOrk
+         8KVxdN9ZuE9jsydaG79DUjo4+8xseE8yao4XQV5HgJZNP0PpbNUew1OY8AX7ldeGnYB/
+         kAWG8SfNEgC3pIzFlw36fMDML57wB8Oih0hFtq/3cHxUTwPmqzXNs0QSdcJr4EjYGC/Q
+         uLJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772057628; x=1772662428;
+        d=1e100.net; s=20230601; t=1772058027; x=1772662827;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5aiKwhpHaGzJ3DICfSZzF0PjdBtray3xMHDXBsERpgo=;
-        b=bDf9supClLy1jFlPnYhIAaEtXZeYxWlpyx99W1pOspsHoU7DAj7oiSJQOYB6eMu9Ib
-         mRInDDMDJ5aetk0unIIwkM6u738htB+6SQtarHn4dXJrwGIpbrbwxW6oo1fvVKdVNl19
-         bdfsXqrQoGsYEsL12PQSHaNtgDp7NG3c43VsoK82kpk1JFx8pDzHazsjNXsknfSXAmix
-         alnUSrDXJPH+oE7bt1OaQN3jeJYyE8CBEVO4Oxgs0EvhlTw16DtudO1N7so5Ho83lbUz
-         oTgLkyn4B+iXCn0Iw/L7gKQg3XhPayFklIaudvp7W0neHWEHTSewfUxtr6AyKsgsfIPD
-         kl5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWPiK4/sq8pC4108pgbW+DJstGgdZJNT6NBm3j7e5f8Y05adkpNFIYz2Nx/bx8On9qhaSPIt88YGQq0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGntPXL/sWDuF5KAp3+EGmRpOjVooAYqL7qR1oCsNGQxWLTDNr
-	m9BHDwV1rQSw0OLyEw1h+w7Tv7oYP8UX8DAovBNcKYmF3B+/JnzFQzuEDkF1dpdw
-X-Gm-Gg: ATEYQzxE4qGG/OwNjeSldH9gGqJd6+OW31cuTIDRLh4kPgMiwvK43oOScM9tdml9/ab
-	VpXJa2QbBuLPxKXa1E2f/5CIq6FdWO6+akvewSiI38/8S8QgndoBiOECy9NfeD7x8AsiA6O5knr
-	AckZd1hrr7Cu4gKuUZZjqGeNoFr2pKi27eR194qqihR5lrxpfS2OfnQPA8TYhL0Jzf7aoum0Saf
-	LiRSyLn/eLrHoVbqb1vNUSh93eoelK8a1fm7eTQ5tBwNGtWtNihbh/mUD1LKr7gKA59hA6kEzWq
-	b7Yc2DwgzXbPeTdqYPYg/oJR3U2OoUk3+AerugnjzkAIv9T26svRWNgr7mYmrMkZhMP1DnBa5CA
-	taqD6bl/Jyc2RG+0yPBFULgV41urDwBbpd+EbwG0emkj4pV999LbaeTGYshGjRdVA0uj5K0dQXY
-	ygLq+1u1VwtU+qr7rXzeue2A==
-X-Received: by 2002:a05:6a21:4910:b0:34d:d030:6739 with SMTP id adf61e73a8af0-395b482d1e6mr88993637.31.1772057627939;
-        Wed, 25 Feb 2026 14:13:47 -0800 (PST)
+        bh=F50crxFeK9XeDJJq/qBM5+VtsXIjYPfgaWG7L+GSg6s=;
+        b=ZjMsKw6QBgzqfs8YvfuOLNOvfap4eAqLneBTz1NC357mbpp3yZPM4N1ixiZzln+Cup
+         o5rudPBr5JXmNwKqBfM+otY/jeIrnEXjXXI5pTc5tu7pVmfpyciRQmBV5egO9Bjn9q89
+         Rsv2E1SaT7RlD2y/R+SavUISw83ji1SH3fJOF7zPd98c2WgAmvBjdd8eA4jQAdA061ph
+         wKnyaYjJBM/LQdTEY/SWezso+VT0WIWqhWF4NXqk1jBp5XrGhFSFasggcTuV9R72c3Ic
+         01FvTawEVq/8r+bsK1Ao7aqf6hTNDOWKIXkKyAMZE185QuLOV7QqWb1Ze8WJ01ZXDhye
+         rG9A==
+X-Forwarded-Encrypted: i=1; AJvYcCW8KrNGDNhpljYAyiBHfN+9kpLUuzKaGami6uQEGrN24adU+Bmne11igLxI+p2itk/JHuVpohpL8+ZB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1EIfHKozr0fuvclzdEdIn32ebkerZtGu/RnJ0FICnlZoBmYpA
+	Nsj52McLBWwp5SI0cfbNJRypdilQfMGcl6f8xfaw3FU83uAvvYeA+wRw
+X-Gm-Gg: ATEYQzzfNoNPcOEcCbdB6rTa8hJF2jb11KBY8Z1Ck2YeWWOhouq1iAjIx/7xWMy+qss
+	jRWEETXAmQUunMRQK2FhqLGlA9vbuZXBqqdsuSpbeYVS3hu31ODCpBoeDSq/c74Coyy9170ofcS
+	8bwXjJ/O49FLHOk3Xb5pIb38e2EFfRtK9MEJSMt/e3DGzkHDjCMWgJ4ZKieFXDYMjsN8mtDtMMv
+	HEcIijS8sLSNIb5FOLSH2zDJUbuC4SCF+X/cApHAPkA2C10W4ZGlIdF4qbFndeKLYKBOr/CEoWq
+	8FSrnDISC3obps1NpF2Korlq9HalzFY3/ua7xvkTaNETIqkgbHC5tJ9Fj7BJ7PW9+nH4kMyUG9y
+	bHgM+EDy7qUzgOAOKG3J082V1UAwWD/BwC2WsMboj7aOJp0jqb9Ho6UKcOETh2l/T28pt6TfIPK
+	0LwMt7RDnQAceCj4rA5VqD0g==
+X-Received: by 2002:a05:6a20:6a05:b0:394:8455:d1aa with SMTP id adf61e73a8af0-39545ed55eamr16074081637.25.1772058026470;
+        Wed, 25 Feb 2026 14:20:26 -0800 (PST)
 Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-359130719a3sm1267511a91.8.2026.02.25.14.13.47
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-359037afe31sm3693376a91.16.2026.02.25.14.20.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Feb 2026 14:13:47 -0800 (PST)
-Date: Thu, 26 Feb 2026 06:13:25 +0800
+        Wed, 25 Feb 2026 14:20:26 -0800 (PST)
+Date: Thu, 26 Feb 2026 06:20:03 +0800
 From: Inochi Amaoto <inochiama@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>, 
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Rob Herring <robh@kernel.org>, 
+To: "Anton D. Stavinskii" <stavinsky@gmail.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen Wang <unicorn_wang@outlook.com>, Paul Walmsley <pjw@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Paul Walmsley <pjw@kernel.org>, 
 	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Longbin Li <looong.bin@gmail.com>, Ze Huang <huangze@whut.edu.cn>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Yixun Lan <dlan@kernel.org>
-Subject: Re: (subset) [PATCH v3 0/3] riscv: sophgo: allow DMA multiplexer set
- channel number for DMA controller
-Message-ID: <aZ9z0gV8ZrfpL2JG@inochi.infowork>
-References: <20260120013706.436742-1-inochiama@gmail.com>
- <177201865381.93331.6104381063514168222.b4-ty@kernel.org>
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 6/6] riscv: dts: sophgo: dts nodes for i2s tdm modules
+Message-ID: <aZ91NjoJLr--BEmZ@inochi.infowork>
+References: <20260120-cv1800b-i2s-driver-v4-0-6ef787dc6426@gmail.com>
+ <20260120-cv1800b-i2s-driver-v4-6-6ef787dc6426@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,25 +98,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <177201865381.93331.6104381063514168222.b4-ty@kernel.org>
+In-Reply-To: <20260120-cv1800b-i2s-driver-v4-6-6ef787dc6426@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268546-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268547-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,synopsys.com,outlook.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,gmail.com,whut.edu.cn];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,outlook.com,perex.cz,suse.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -131,41 +128,170 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[inochi.infowork:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D903019E350
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[inochi.infowork:mid,300a000:email,0.76.172.232:email,0.62.143.160:email,0.63.4.208:email]
+X-Rspamd-Queue-Id: E869B19E3A8
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 04:54:13PM +0530, Vinod Koul wrote:
+On Tue, Jan 20, 2026 at 11:06:08PM +0400, Anton D. Stavinskii wrote:
+> Introduced I2S nodes and internal dac and adc nodes as well
+> The new header file provided in order to make DMA channel names
+> more readable.
 > 
-> On Tue, 20 Jan 2026 09:37:02 +0800, Inochi Amaoto wrote:
-> > As the DMA controller on Sophgo CV1800 series SoC only has 8 channels,
-> > the SoC provides a dma multiplexer to reuse the DMA channel. However,
-> > the dma multiplexer also controlls the DMA interrupt multiplexer, which
-> > means that the dma multiplexer needs to know the channel number.
-> > 
-> > Change the DMA phandle args parsing logic so it can use handshake
-> > number as channel number if necessary.
-> > 
-> > [...]
+> Signed-off-by: Anton D. Stavinskii <stavinsky@gmail.com>
+> ---
+>  arch/riscv/boot/dts/sophgo/cv180x-dmamux.h | 57 ++++++++++++++++++++++++++++++
+>  arch/riscv/boot/dts/sophgo/cv180x.dtsi     | 55 ++++++++++++++++++++++++++++
+>  2 files changed, 112 insertions(+)
 > 
-> Applied, thanks!
-> 
-> [1/3] dt-bindings: dma: snps,dw-axi-dmac: Add CV1800B compatible
->       commit: 5eda5f42d2fee87127b568206a9fcc07a2f6eab6
-> [2/3] dmaengine: dw-axi-dmac: Add support for CV1800B DMA
->       commit: 02a380ea7ed2d737a42693d7957ec8c33a92d9fd
-> 
-> Best regards,
-> -- 
-> ~Vinod
-> 
-> 
+> diff --git a/arch/riscv/boot/dts/sophgo/cv180x-dmamux.h b/arch/riscv/boot/dts/sophgo/cv180x-dmamux.h
+> new file mode 100644
+> index 000000000000..6314bf6e9dc8
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/sophgo/cv180x-dmamux.h
+> @@ -0,0 +1,57 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +/*
+> + * Copyright (C) 2025 Inochi Amaoto <inochiama@gmail.com>
+> + */
+> +
+> +#ifndef _SOPHGO_CV18XX_DMAMUX
+> +#define _SOPHGO_CV18XX_DMAMUX
+> +
+> +#define DMA_I2S0_RX		0
+> +#define DMA_I2S0_TX		1
+> +#define DMA_I2S1_RX		2
+> +#define DMA_I2S1_TX		3
+> +#define DMA_I2S2_RX		4
+> +#define DMA_I2S2_TX		5
+> +#define DMA_I2S3_RX		6
+> +#define DMA_I2S3_TX		7
+> +#define DMA_UART0_RX	8
+> +#define DMA_UART0_TX	9
+> +#define DMA_UART1_RX	10
+> +#define DMA_UART1_TX	11
+> +#define DMA_UART2_RX	12
+> +#define DMA_UART2_TX	13
+> +#define DMA_UART3_RX	14
+> +#define DMA_UART3_TX	15
+> +#define DMA_SPI0_RX		16
+> +#define DMA_SPI0_TX		17
+> +#define DMA_SPI1_RX		18
+> +#define DMA_SPI1_TX		19
+> +#define DMA_SPI2_RX		20
+> +#define DMA_SPI2_TX		21
+> +#define DMA_SPI3_RX		22
+> +#define DMA_SPI3_TX		23
+> +#define DMA_I2C0_RX		24
+> +#define DMA_I2C0_TX		25
+> +#define DMA_I2C1_RX		26
+> +#define DMA_I2C1_TX		27
+> +#define DMA_I2C2_RX		28
+> +#define DMA_I2C2_TX		29
+> +#define DMA_I2C3_RX		30
+> +#define DMA_I2C3_TX		31
+> +#define DMA_I2C4_RX		32
+> +#define DMA_I2C4_TX		33
+> +#define DMA_TDM0_RX		34
+> +#define DMA_TDM0_TX		35
+> +#define DMA_TDM1_RX		36
+> +#define DMA_AUDSRC		37
+> +#define DMA_SPI_NAND	38
+> +#define DMA_SPI_NOR		39
+> +#define DMA_UART4_RX	40
+> +#define DMA_UART4_TX	41
+> +#define DMA_SPI_NOR1	42
+> +
+> +#define DMA_CPU_A53		0
+> +#define DMA_CPU_C906_0	1
+> +#define DMA_CPU_C906_1	2
+> +
+> +#endif // _SOPHGO_CV18XX_DMAMUX
+> diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> index 06b0ce5a2db7..ebe5e8113939 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+> @@ -8,6 +8,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include "cv18xx-reset.h"
+> +#include "cv180x-dmamux.h"
+>  
+>  / {
+>  	#address-cells = <1>;
+> @@ -448,6 +449,60 @@ usb: usb@4340000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		i2s0: i2s@4100000 {
+> +			compatible = "sophgo,cv1800b-i2s";
+> +			reg = <0x04100000 0x1000>;
+> +			clocks = <&clk CLK_APB_I2S0>, <&clk CLK_SDMA_AUD0>;
+> +			clock-names = "i2s", "mclk";
+> +			dmas = <&dmamux DMA_I2S0_RX 1>, <&dmamux DMA_I2S0_TX 1>;
+> +			dma-names = "rx", "tx";
+> +			status = "disabled";
+> +		};
+> +
+> +		i2s1: i2s@4110000 {
+> +			compatible = "sophgo,cv1800b-i2s";
+> +			reg = <0x04110000 0x1000>;
+> +			clocks = <&clk CLK_APB_I2S1>, <&clk CLK_SDMA_AUD1>;
+> +			clock-names = "i2s", "mclk";
+> +			dmas = <&dmamux DMA_I2S1_RX 1>, <&dmamux DMA_I2S1_TX 1>;
+> +			dma-names = "rx", "tx";
+> +			status = "disabled";
+> +		};
+> +
+> +		i2s2: i2s@4120000 {
+> +			compatible = "sophgo,cv1800b-i2s";
+> +			reg = <0x04120000 0x1000>;
+> +			clocks = <&clk CLK_APB_I2S2>, <&clk CLK_SDMA_AUD2>;
+> +			clock-names = "i2s", "mclk";
+> +			dmas = <&dmamux DMA_I2S2_RX 1>, <&dmamux DMA_I2S2_TX 1>;
+> +			dma-names = "rx", "tx";
+> +			status = "disabled";
+> +		};
+> +
+> +		i2s3: i2s@4130000 {
+> +			compatible = "sophgo,cv1800b-i2s";
+> +			reg = <0x04130000 0x1000>;
+> +			clocks = <&clk CLK_APB_I2S3>, <&clk CLK_SDMA_AUD3>;
+> +			clock-names = "i2s", "mclk";
+> +			dmas = <&dmamux DMA_I2S3_RX 1>, <&dmamux DMA_I2S3_TX 1>;
+> +			dma-names = "rx", "tx";
+> +			status = "disabled";
+> +		};
+> +
 
-Hi, Vinod
+> +		int_adc: codec@300a100 {
+> +			compatible = "sophgo,cv1800b-sound-adc";
+> +			#sound-dai-cells = <0>;
+> +			reg = <0x300a100 0x100>;
+> +			status = "disabled";
+> +		};
+> +
+> +		int_dac: codec@300a000 {
+> +			compatible = "sophgo,cv1800b-sound-dac";
+> +			#sound-dai-cells = <0>;
+> +			reg = <0x300a000 0x100>;
+> +			status = "disabled";
+> +		};
+> +
 
-I guess you applied the version 4, but replied to the version 3?
+Hi, Anton,
+
+Can you send a new version with the all device nodes sorted by address?
+So I can take them, Thanks.
 
 Regards,
 Inochi
+
+>  		rtc@5025000 {
+>  			compatible = "sophgo,cv1800b-rtc", "syscon";
+>  			reg = <0x5025000 0x2000>;
+> 
+> -- 
+> 2.43.0
+> 
 
