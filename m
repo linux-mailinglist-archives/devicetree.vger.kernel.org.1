@@ -1,180 +1,213 @@
-Return-Path: <devicetree+bounces-268326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268327-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id Yyx2KPjknmkCXwQAu9opvQ
-	(envelope-from <devicetree+bounces-268326-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:03:04 +0100
+	id uB2pDTDmnmkCXwQAu9opvQ
+	(envelope-from <devicetree+bounces-268327-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:08:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3780B196F2B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E70219704A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:08:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1B9693024289
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:02:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 97233301945E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742B93ACEFE;
-	Wed, 25 Feb 2026 12:02:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="k9FhMGUz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D70B33FE33;
+	Wed, 25 Feb 2026 12:08:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D6C3ACF09;
-	Wed, 25 Feb 2026 12:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772020976; cv=pass; b=Ehd79A5dbX++skq+KdGuIL+dqtQhn7dPaezt1z8pyV2DvTnJKuwvITj5ggH2tguQ4pymAdn6c9J5jnwaBjiu7cA9b7hLeixlPm68+GZFi0ITPO+z8pmzwrw41V3qDhsskR9uOJpq3MAQfAyGAybuYLAv00c2dklRHSbPkQ9d7IA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772020976; c=relaxed/simple;
-	bh=pFySQZzI6I4KvcpNAB0tfMmhto9X1h0vL/C8Z7OeDG8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=dE6tXj+qnH+0Bt5KgIQTFMc1d3VauDYC1x/P6eJPWIIBMYSblabRIfUXmUK2vy97Q5uXMMY/tB3ewyXadVPeuMb/ChbkLsm37mNpUD8zwm8b3f8zsfXFpy4FCLHz6yrCadaowN0rxaOxESE2QSdgc+V+UTldvQyLuwSr/RibwSY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=k9FhMGUz; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1772020938; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=TNJv7kHvKUjGqmcwqmsA3x0Le/gXxWBaVPK9MVwLfT0THMVAbnnQafEgk4xL24tsUzOtwk5HHaO7z/S46vhBpb1zdwWLVPIMrGQpcUeBP29lrbkbUywNE9BJqL5Hd2FNpTvxF0nz23wenBDorGxfuwYEshJOxbVn+mh+ru9ski4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1772020938; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=IizUq26mU0IFus36KtptiQJycd4Ah24lnhNyzSKAepg=; 
-	b=OCSRMenj1mEEe8LNXJ4se7RyUl8bq3NAXYRIYzTPesWb0vXEPNFzJAGKLYUT1NMPmZlLloEjQhlTlP2CjrKMUqI4zblo60nLKvGf5u1Qk6hVU/VpsAWQ6mzhb4g+H2xhGtbRlY2qJULoJMmyZHwx3ZJZEqiPT36/nqnKWaDkCCM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772020938;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
-	bh=IizUq26mU0IFus36KtptiQJycd4Ah24lnhNyzSKAepg=;
-	b=k9FhMGUzjDF6Zv9rpTWG7kHQfLXoH3dpXC1A2r40o3ZV9uctEqbdPyvh4ZjlJm61
-	XiS2C33j+JVBS8KJcrVPa1IAnBN/LojPSdNyOTuPC8LmkUYWJChQmOEdwQ6/YoHc7Ls
-	Ggv2L55nMYeb7L2cx03R245+LsUb0Hx+5OBs7Ux0=
-Received: by mx.zohomail.com with SMTPS id 177202093493336.86441168143767;
-	Wed, 25 Feb 2026 04:02:14 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2B03ACF00
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 12:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772021294; cv=none; b=gy+WH/cAY4MeN0aprY+3CTnZEOvqTqSbNoO3i3dT7fzX0vsKHvInhwOwjWcFTQEolKIUraQbyaj/gDu1qdbXrt/cOXaCpLs0t3tNQA8lEC1konI/8RzKVSGC+YmRKHAgVsAjBf3riOoZIm/swVauSl54L0EqZaTVcmuqJzLaykE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772021294; c=relaxed/simple;
+	bh=b7bATi+E9HIWEWXTAIwNa4451ABKjWAafWaU1v8UUAA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tXrMh7qAfjbH6dzzA4xd8XwMz5m+NRoV/G1YE2RfAzF+S5zC04KMB7nODQvR+fUXjZ75d99uFlZs/IVgYq3NVZmlFyzVaQSJfjqZVQV6puuJewPUx0ZjF6K7EBNv6BBoIT+ndRTLiwjbE5rD2qaMODU1/cLOgKfMRmR46XldogU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-94ac7f22d23so1785736241.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 04:08:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772021291; x=1772626091;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+TQ9plTAtoqFGycuAV6Q4VO2kslCQXeQ3NGwgtKeiuo=;
+        b=uBHzJNvyvk2IZeFnyRlk4n/NWM5fxxD5kAnTNWzI5IaKWLkDPdYCoUECJ9hxEFZPX/
+         GgDdvKKjQ/Sou6pzJ2AcUkt1BhxT9t9fmuHnEiv/n4kRfdI4a+AR0sB6AE+EMW8epyJQ
+         blKy9vMlJ4HP/WVWk9fH8Zjr7rjXPKSuA1F0HQq1gWkRI6MptmrT2t/WID+ppwpx7I4M
+         PHEWjapyBLBbHQ6svc6qW688E5gSONAJHzyG9+gkqhVmnWZZUCkunzcDkdpWA9BNyyJk
+         UxGlOOEnsoukKxJcuVFK7JM1FPiZTQ734lUVmeH02YlanEDm4YUDhnnr2KIPpaXJsaug
+         6OBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWerJjAdeDOh00M2OM/MQJnxi8Cuy5bIgZjTch2bNFrn+PLfRKKEG4mbZaTrFGN+d/IIK9QekujJPTW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSDftBP+Y/7ZUo2SaEbfWenWKYF6G8aVR8e5OQPtVuhtofneVW
+	ZaZPjdRGg0Aew5ZjVZpYW/ifU6g89+Ff1FfRWNEv8lgNKIPUnrDN2aqcE/IBKQ+D
+X-Gm-Gg: ATEYQzwL59IAgxWkjl0r8w+pZWU/LFz9C52ZBOFqVrzpK2T0Xjj8BY91N3/3cEabKIw
+	5B2jM6Ubg2Nq7/2jhpNEp7xcGkdWuLZV0G4DOvb3sdEmf9sFfPhlEZn3OrmSzDCnNi2WXL86T+J
+	D79c4PkjbCCnX2UHVT3JcO9NNaewZqpuN8cGyk34LkK38BI0DHAb9yS2hG2DLI851H7bN31+WVH
+	T9sNAeYeRJrFMQu04PGwE8oEDrtdbsnj2w+PvIz2SRwd1VszDpxGVqIZ1tGuR5E3Ou2/wvD3ufx
+	vca2TpOeQu4Muc6I8w41i3yqukp8wtWyEUXCcf33Lm6NcwRh/uV/UCXMhD+k59A75ouJfrsmOGQ
+	ttG7ZyWdUJX6CQmpy5cMpdOfndUx+jaBl2ySpopQyneYXdhOZeaCWvnzM+JRN1qzR/4ri9CkxgR
+	nUfBmrKCC+sVl4auaf/9sq5lmdEp5fhxUFSaIje57Tytur76a1hS9ieA0K56DM4h0q
+X-Received: by 2002:a05:6102:5124:b0:5f1:5786:219c with SMTP id ada2fe7eead31-5ff141ded84mr74951137.40.1772021291109;
+        Wed, 25 Feb 2026 04:08:11 -0800 (PST)
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com. [209.85.221.174])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-94da89e129esm12365373241.5.2026.02.25.04.08.09
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Feb 2026 04:08:10 -0800 (PST)
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-56a857578a8so140815e0c.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 04:08:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUsv9us7MAwlfVIRXBSUi2hB3kl1U6UYVnNR0ieinKgdnvDfEepadaXOU37tWS2sxb55U2ksbFQTwXI@vger.kernel.org
+X-Received: by 2002:a05:6122:8c27:b0:563:702b:e2a7 with SMTP id
+ 71dfb90a1353d-56a8bcb7a04mr108622e0c.19.1772021289726; Wed, 25 Feb 2026
+ 04:08:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 25 Feb 2026 20:02:03 +0800
-Message-Id: <DGO0ZQ827ZV8.4EO0ONZBR8CL@pigmoral.tech>
-Cc: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 0/7] rtc: sun6i: Add support for Allwinner A733 SoC
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: =?utf-8?q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>, "Michael
- Turquette" <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
- "Chen-Yu Tsai" <wens@kernel.org>, "Samuel Holland" <samuel@sholland.org>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Maxime Ripard" <mripard@kernel.org>,
- "Junhui Liu" <junhui.liu@pigmoral.tech>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech>
- <5061953.GXAFRqVoOG@jernej-laptop>
-In-Reply-To: <5061953.GXAFRqVoOG@jernej-laptop>
-X-ZohoMailClient: External
+MIME-Version: 1.0
+References: <20260225-rz-sdio-mux-v10-0-1ee44f2ea112@solid-run.com> <20260225-rz-sdio-mux-v10-8-1ee44f2ea112@solid-run.com>
+In-Reply-To: <20260225-rz-sdio-mux-v10-8-1ee44f2ea112@solid-run.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 25 Feb 2026 13:07:57 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUSU8Y9gj5qJ7qNE1UVhp7=HTjAxEsL6uZXPXFgwTd+7Q@mail.gmail.com>
+X-Gm-Features: AaiRm538QW2lNPSmHsPdoAK0GxPwumP2I07aJZ0lsRKIlDak2p-vOeVkZ133ww0
+Message-ID: <CAMuHMdUSU8Y9gj5qJ7qNE1UVhp7=HTjAxEsL6uZXPXFgwTd+7Q@mail.gmail.com>
+Subject: Re: [PATCH v10 8/9] mux: add prompt and help text to
+ CONFIG_MULTIPLEXER making it visible
+To: Josua Mayer <josua@solid-run.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Peter Rosin <peda@axentia.se>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
+	Vladimir Oltean <olteanv@gmail.com>, Mikhail Anikin <mikhail.anikin@solid-run.com>, 
+	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,baylibre.com,kernel.org,sholland.org,bootlin.com,pigmoral.tech];
-	TAGGED_FROM(0.00)[bounces-268326-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pigmoral.tech];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,renesas.com,solid-run.com,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_FROM(0.00)[bounces-268327-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[34];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[pigmoral.tech:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.995];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.984];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 3780B196F2B
+X-Rspamd-Queue-Id: 9E70219704A
 X-Rspamd-Action: no action
 
-Hi Jernej,
-Thanks for your review.
+Hi Josua,
 
-On Sun Feb 22, 2026 at 6:41 PM CST, Jernej =C5=A0krabec wrote:
-> Hi!
+On Wed, 25 Feb 2026 at 12:35, Josua Mayer <josua@solid-run.com> wrote:
+> The multiplexer subsystem was initially designed only for use by drivers
+> that require muxes, and did in particular not consider optional muxes or
+> to compile as a module.
 >
-> Dne sreda, 21. januar 2026 ob 11:59:06 Srednjeevropski standardni =C4=8Da=
-s je Junhui Liu napisal(a):
->> Add support for the Allwinner A733 RTC and its internal Clock Control
->> Unit (CCU). Reuse the rtc-sun6i rtc driver while introducing a new
->> SoC-specific RTC CCU driver to handle the hardware's evolved clock
->> structure.
->>=20
->> To facilitate this addition and improve driver modularity, transition
->> the binding between the RTC and its internal CCU from direct
->> cross-subsystem function calls to the auxiliary bus. Also extract shared
->> IOSC and 32kHz clock logic into a standalone ccu_rtc module for reuse
->> across newer SoC generations.
->>=20
->> The A733 implementation supports hardware detection of three external
->> crystal frequencies (19.2MHz, 24MHz and 26MHz), which is represented in
->> the driver via read-only mux operations. Implement logic to derive a
->> normalized 32kHz reference from these DCXO sources using fixed
->> pre-dividers. Additionally, provide several new DCXO gate clocks for
->> peripherals, including SerDes, HDMI, and UFS.
+> Over time several drivers have added a "select MULTIPLEXER" dependency,
+> some of which require a mux and some consider it optional. v7.0-rc1
+> shows 15 such occurrences in Kconfig files, in a variety of subsystems.
 >
-> This work looks nice, but I have some questions/comments:
-> - you're missing RTC SPI clock, which is needed for RTC, at least accordi=
-ng
->   to vendor 5.15 DT. Could it be that this bit set by vendor U-Boot so yo=
-u
->   missed it during testing? Manual says that it's disabled by default.
-
-You're right! I tried disabling the RTC SPI clock in U-Boot and found
-that the output of UART became garbled during booting kernel. I will add
-it in the next version.
-
-> - Vendor DT has strange RTC CCU phandles for UFS and HDMI. In first case
->   uses RTC wakeup and in second DCXO, which doesn't make any sense. Did y=
-ou
->   do any experimentation with these clocks? It wouldn't be the first time
->   that either code or manual contained some kind of error.
-
-Regarding UFS, I am still working on getting UFS functional on the
-mainline kernel. I will investigate the actual relationship between the
-RTC wakeup clock and UFS during this process.
-
-As for HDMI, I believe it actually requires the hosc_hdmi_clk
-(DCXO_HDMI_GATING in the manual) provided by the RTC module.
-
+> Further some drivers such as gpio-mux are useful on their own (e.g.
+> through device-tree idle-state property), but can not currently be
+> selected through menuconfig unless another driver selecting MULTIPLEXER
+> symbol was enabled first.
 >
-> Btw, switch last two patches. With current order during bisection you wou=
-ld
-> get a complaint that A733 RTC CCU driver is not present.
-
-Okay, I will do it.
-
+> The natural step forward to allow enabling mux core and drivers would be
+> adding prompt and help text to the existing symbol.
 >
-> Best regards,
-> Jernej
+> This violates the general kbuild advice to avoid selecting visible
+> symbols.
+>
+> Alternatively addition of a wrapper symbol MUX_CORE was considered,
+> which in turn would "select MULTIPLEXER". This however creates new
+> issues and confusion as MULTIPLEXER and MUX_CORE need to share the same
+> state, i.e. MUX_CORE in menuconfig must not be set to m while
+> MULTIPLEXER was selected builtin. Further confusion occurs with Kconfig
+> "depends on" relationships that could reference either MUX_CORE or
+> MULTIPLEXER.
+>
+> It is common across the tree for subsystem symbols to be both visible
+> and selected, e.g. I2C & SPI. In the same spirit multiplexer needs to
+> ignore this particular kbuild rule.
+>
+> Add prompt and help text to the existing MULTIPLEXER symbol, making it
+> visible in (menu)config without breaking existing "select MULTIPLEXER"
+> occurrences in the tree.
+>
+> Select it by default when COMPILE_TEST is set for better coverage.
+>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
---=20
-Best regards,
-Junhui Liu
+Thanks for your patch!
 
+> --- a/drivers/mux/Kconfig
+> +++ b/drivers/mux/Kconfig
+> @@ -4,7 +4,14 @@
+>  #
+>
+>  config MULTIPLEXER
+> -       tristate
+> +       tristate "Generic Multiplexer Support"
+> +       default m if COMPILE_TEST
+
+Please drop this line.  Merely enabling COMPILE_TEST should not
+enable extra functionality.
+
+> +       help
+> +         This framework is designed to abstract multiplexer handling for
+> +         devices via various GPIO-, MMIO/Regmap or specific multiplexer
+> +         controller chips.
+> +
+> +         If unsure, say no.
+>
+>  menu "Multiplexer drivers"
+>         depends on MULTIPLEXER
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
