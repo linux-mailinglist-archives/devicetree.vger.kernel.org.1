@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-268515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268516-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qA+DJIRIn2kuZwQAu9opvQ
-	(envelope-from <devicetree+bounces-268515-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:07:48 +0100
+	id kA6GNY5In2kuZwQAu9opvQ
+	(envelope-from <devicetree+bounces-268516-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:07:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280D319C8A3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:07:48 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B835119C8AA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:07:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 85E24304590C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 19:07:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 95FBC304AAF7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 19:07:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1142D3D5234;
-	Wed, 25 Feb 2026 19:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9533B3D523D;
+	Wed, 25 Feb 2026 19:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lecPiPqc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eKWhlnlD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F91395DBB;
-	Wed, 25 Feb 2026 19:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714C62ED848;
+	Wed, 25 Feb 2026 19:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772046443; cv=none; b=sLSoQkPsSCmoVqhnxqBw7Hj8IllAj/p90qi3L0Gubm3BNszd4UrM8bwlvgI/yaQOr0DDA58Y4cC0QiGIQXm21YO9JMHzjxIbV7OTimXZB9vZM8O4YVHU1T43Levh4fSIMQa02M0lgqnq/eZHCx8o3ZXHJaPabqAc7kebXM8W5ws=
+	t=1772046454; cv=none; b=TdxoWd+2sDoKB3IqYleBq6em/p80ei7Y1d2ETaTXem2Ukhxo/TglBMvKWUCP77VBsjSiq3JssiQcGdkZUntv9ea0i9ZbpB9uC/bSYplg1U2VzZVB1vuV8Q6scFCCczLOoXV/V/bFIFIjzTX8LD83LycH/R6ZTygHptSO0hMsNSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772046443; c=relaxed/simple;
-	bh=UGnc2yVLBjOJ5bDB3H1khNOj/8vIce5Y8Yoi+iCQMyU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Mg7PTUoHBcqDDbBwNF+s+gph1NrzLPmHH2b3fQFIp1k+SeYPjYZhWGJmXQyiCUh7Z1KuxzBt5GXxzohGf8CCyYWoL7PbsSXf3jnvUcKFfZvEZUrE8Hx9unqzuHWWwrtxHb6WEh54KwLdFgk6Fu58eBr+hIDFdE+7g7PxbG0HtOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lecPiPqc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63176C19421;
-	Wed, 25 Feb 2026 19:07:19 +0000 (UTC)
+	s=arc-20240116; t=1772046454; c=relaxed/simple;
+	bh=n2ThqRKc1AVWhg9cT24RDtRVQbfzmfNVs8WJEir8WL4=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=fr2TBGOm6MT8+6j3nfd7Ea6l8oTfRP0VSZr5P8Tt4mjB9ELqlwGhCWhq5HKH/vc7PliKaIDYDBeO84Bm9q1cMyAR2+UeaiVemjThYxh5vHmHUqh5sOMVS4KmG4plmCfFhBcHZfg06MM88Nn6eSUS1PBdKiyH0PepAxWyYHP2OVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eKWhlnlD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 584F1C116D0;
+	Wed, 25 Feb 2026 19:07:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772046442;
-	bh=UGnc2yVLBjOJ5bDB3H1khNOj/8vIce5Y8Yoi+iCQMyU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=lecPiPqchaN4Uyd5EMQC1EphznXv7RUrLbFWfSCDaTnuy5bNKLVw1euxrNWZo4fo0
-	 pUDN8xo5d2A8fSuTZbtzcMyPFD7T4RWlWof1fKeQ1c7MX6LomD8sC8i+XErZtS0Gzz
-	 1ded8xGVpVNFE2hf8czTOQ7cTGQ4RnWgZzlVwagBJex1vyv8xdYFzTSI28WH3yaJyU
-	 SrpRS+vNekkwchbXAGGZHOelOZp2sqmGV2SwewmJVk9x2HLyWfrsxoOjW8POnpOKXE
-	 4URsYbQYDQaf2roED1HX+Q1VGvSkS6Ek+J0hgsgv3lcu7xX5+1NUoAuMrAGyeO6lOG
-	 7JDifDqd+SMwQ==
+	s=k20201202; t=1772046454;
+	bh=n2ThqRKc1AVWhg9cT24RDtRVQbfzmfNVs8WJEir8WL4=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=eKWhlnlDDPaFKVpRi2Ix1lTUPacf8fV45r8m348II1HYnmB2UxwK+VyqxECLO0Nli
+	 7WmQVpF6T32cplZLTBa9z6flhd35Yiya55DL6pvXRrjk4/HWnjpC5XTq1Ut0wopkg+
+	 ON0OvaA3AFFrS+atnElbcG+VtlFWaHDB6lnbl1vpN6q6wXTSk+seUPr7C9Kai3kcnu
+	 lnEmJgIK3ShSinAZk3c/pNy22BtYS+ssAqz5JmzufFjnF6ntN8z5KFRdHLiIwmcJlC
+	 bhMVkEipvRc+qeM4H1K+H5wLelX3jtF8YUxyLIZ0g3EftEiPEMN3FAfzCFDDvCDYCC
+	 smeoFzQRN8XxA==
 From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Alex Elder <elder@riscstar.com>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
- Yixun Lan <dlan@kernel.org>, Guodong Xu <guodong@riscstar.com>
-Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, devicetree@vger.kernel.org
-In-Reply-To: <20260206-spacemit-p1-v4-0-8f695d93811e@riscstar.com>
-References: <20260206-spacemit-p1-v4-0-8f695d93811e@riscstar.com>
-Subject: Re: (subset) [PATCH v4 0/3] regulator: spacemit-p1: Support board
- power tree via DT properties
-Message-Id: <177204643911.168523.3724548692200647978.b4-ty@kernel.org>
-Date: Wed, 25 Feb 2026 19:07:19 +0000
+ Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-spi@vger.kernel.org, Antoniu Miclaus <antoniu.miclaus@analog.com>
+In-Reply-To: <cover.1770393792.git.antoniu.miclaus@analog.com>
+References: <cover.1770393792.git.antoniu.miclaus@analog.com>
+Subject: Re: (subset) [PATCH v2 0/4] iio: adc: ad4080: add support for
+ AD4880 dual-channel ADC
+Message-Id: <177204645111.169139.7163032381688312306.b4-ty@kernel.org>
+Date: Wed, 25 Feb 2026 19:07:31 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,54 +76,50 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268515-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,riscstar.com,kernel.org,linux.spacemit.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268516-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 280D319C8A3
+X-Rspamd-Queue-Id: B835119C8AA
 X-Rspamd-Action: no action
 
-On Fri, 06 Feb 2026 10:32:01 +0800, Guodong Xu wrote:
-> The patch (Patch 1 in v1 and v2) fixing hardware voltage constraints was
-> applied to regulator.git for-next, so is no longer part of this series.
+On Fri, 06 Feb 2026 18:07:12 +0200, Antoniu Miclaus wrote:
+> Add support for the AD4880, a dual-channel 20-bit 40MSPS SAR ADC from
+> the same family as AD4080.
 > 
-> Patch 1, 2 and 3 (previously 2-4) enable flexible power tree
-> configurations for the SpacemiT P1 PMIC. Hardcoded supply assumptions
-> are replaced with explicit devicetree properties. PMIC supply connections
-> are board-design decisions. Moving this to DT allows supporting varied
-> topologies without driver modifications.
+> The AD4880 has two independent ADC channels, each with its own SPI
+> configuration interface and LVDS data output. The driver uses
+> spi_new_ancillary_device() for the second channel's SPI and requires
+> two io-backend instances for the data interfaces.
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/3] dt-bindings: mfd: spacemit,p1: Add individual regulator supply properties
-      commit: 82ffa9610ba39d3628a9bec968ddc68fe2fe6612
-[2/3] regulator: spacemit-p1: Update supply names
-      commit: fbb4c52ccdcb4a612d2b7f800aa57090eeee16d7
+[1/4] spi: allow ancillary devices to share parent's chip selects
+      commit: ffef4123043c5bb29e61052a41e577ae1ee6837a
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
