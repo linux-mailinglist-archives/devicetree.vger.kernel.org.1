@@ -1,132 +1,186 @@
-Return-Path: <devicetree+bounces-268448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268449-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INhBGx0cn2kzZAQAu9opvQ
-	(envelope-from <devicetree+bounces-268448-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:58:21 +0100
+	id QFZMGB8en2lcZAQAu9opvQ
+	(envelope-from <devicetree+bounces-268449-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:06:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99EE619A1C2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:58:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1612719A3E4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 225303204204
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:50:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 211393112E40
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84EBB3E8C75;
-	Wed, 25 Feb 2026 15:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0BF3D5258;
+	Wed, 25 Feb 2026 15:53:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aceX9Isq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fTmiCBJ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ECB83E8C70;
-	Wed, 25 Feb 2026 15:47:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E7E329C71;
+	Wed, 25 Feb 2026 15:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772034434; cv=none; b=j5vturMozQFdqSJqMfAhpxgap9l5ziaD+hDn85Bxz2UoQptV+O+Bl8ASn+mv+cZLBp+7uuw9nKdBynPcDmm0Qy/Eaw6ua8sRrgpxHOalOIi/bRvX/7GwTvqOPD4ttJYGDLY8e/jZcOiLMnSnO3VwgChfu0hQ7N7HDBNvsojw648=
+	t=1772034783; cv=none; b=Mxg9sSIu5E/za+IHX6eQzj6o3KddsiUyiNqe2+umLTzqgszTdPbrzRUe7sD+0GAoSeuPeEKh4zuZueJ80B1O+WsgyvmY5jyK9pHGHMEl4zawcuZYxTa3MLUFFNasUuzrd5e8Ep4URqZ2jysVZbgfechcUlrLnQJzbRrVs0oj0T8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772034434; c=relaxed/simple;
-	bh=SZTLQMFSTiivBWNaOJNlhgNQ8K0QjS462oJIKLhaTBc=;
+	s=arc-20240116; t=1772034783; c=relaxed/simple;
+	bh=65NJR9v+2VXT8tO+CIhNjHjbKMDdbI3BustHA0JNcQY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QivJOfx8JB2A/L/ZhFxgoA40hSdUuAdqeMNHH/HwzwiP40fryqr9x//WtxTXxDut4axgoYJvTU25FuJg2rR8Xg3pS/kfby58xh0cJnd3IcsEmYvtQcFHkxKNqja02Pw7Y/7aitghK5L9IZe4WRpANGhcmMwPBDDYJC8TX7pYoiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aceX9Isq; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772034432; x=1803570432;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SZTLQMFSTiivBWNaOJNlhgNQ8K0QjS462oJIKLhaTBc=;
-  b=aceX9Isq7C5usWCScNwwJCf6v2aG/Fm5IGtxl5dHNxYi/HxrJ2L2BsFu
-   mIIXxVCqK+U3eFaludqYfC/j7VcRPZuoEJgHH2WknPCjVth+W+i2r1q9a
-   ro57GGsN74GhrpxytilDzRuuVs5WpIoGzlYmZ5d3mz+xGHG75JoblVyrD
-   5GtMVDvibp5aezpWinYMZgSQyeIVIKUIL815uPFje0J8QZQLPvdKq0sTu
-   F0I86JQ4hQRMlZk3GGAQYIAj7G5L62d76nfl1Xg6L7oRITgswnimd6C9n
-   wFsOp8Ilaj1LZFqOPdNvHxNlBm/A5yZ7qzQO8z57e5UENA/QCUjbDJMGm
-   g==;
-X-CSE-ConnectionGUID: 1yeaGbJkR3mkUB5MA001Ug==
-X-CSE-MsgGUID: 43iSUW38RZCY/EhqSNVaJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="75682398"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; 
-   d="scan'208";a="75682398"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2026 07:47:11 -0800
-X-CSE-ConnectionGUID: S5z1zY8jTf2gPEI1isUujQ==
-X-CSE-MsgGUID: vzIFKvNAQFWHf9cB5J/25g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; 
-   d="scan'208";a="216411531"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.71])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2026 07:47:09 -0800
-Date: Wed, 25 Feb 2026 17:47:07 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Mika Westerberg <mika.westerberg@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: dw: Update maintainer
-Message-ID: <aZ8ZezYcq0-6AcK0@smile.fi.intel.com>
-References: <20260225125109.3794977-1-mika.westerberg@linux.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=M0KEDEMnRiahcQK5DuL9ajiutGWtTjIQ8X1vbNMr3cQiC7uyjMUkhyD14goSsBFlzPgQ+WpRYdlSYOy70Qm/OeO9EsUNjEKZzaRRJz5wXgeBpWVLI1XBrt/fOheCYi6LqoVuAkDrGG54oFIBYBb9aI14Fum2qq5nXO6aDqAa2QQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fTmiCBJ5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 409F1C116D0;
+	Wed, 25 Feb 2026 15:53:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772034783;
+	bh=65NJR9v+2VXT8tO+CIhNjHjbKMDdbI3BustHA0JNcQY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fTmiCBJ5x5EEOTV+q3XNkcVoA8aJnoLFpSDedyYeJbIG06p7fsX4ckW/I2QLSIRWc
+	 lBNR0EvSgglKT9eroiWsl+LJIB7XwTPdId31tbUqEIRuhSvelj0OtefP3+cAoRcCH/
+	 1TtQXLLt6D/fTN27xk1qtSJEeihRhbylFsnup2xwf1jgCXFfVJ8cZJm1rM4Af5/Am8
+	 B4maN/n2UPJE7PYgDMq4IfRWRoioWpym9ALaxVFAg0iIjrv1VJivRLBAXNPYCa6T7o
+	 0zNSSBABTPJWbab5InkJZtbouLPrw2LaDn+eYZh+Y1EdWzV7ru01gI3Y+ToHe7oz2o
+	 ILQAdUcCVN2zg==
+Date: Wed, 25 Feb 2026 09:52:59 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, 
+	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+Message-ID: <ndozoc6qdrpv3xuktumsah56im5rbtg6iwerq3xi2xkcuyewpx@szswqvojleg3>
+References: <CAD++jLkUVFckLTq=SoivNFoFymhJo4KM=qGmajFcv9T9+7tPmg@mail.gmail.com>
+ <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com>
+ <nbzdtngifwrx2kyu4tsiwwua5v4i5cjtaotemq5hubaets3bcn@fk25twf5rv6x>
+ <PAXPR04MB9185588C1DB71B1FEFA1DEE38974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CANLsYkxAwgG1WkMRr8EJZuSUnN_jKVnsWhWTakVqhvtMBO365A@mail.gmail.com>
+ <PAXPR04MB91851D3DA6A92669CB5926A18974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CANLsYkw-8ERXy3v8Sv55Cpq=+41Toez3EjLMbENAkavvr8STeQ@mail.gmail.com>
+ <PAXPR04MB9185B68BC640D940534E44098974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <d4c8f7dd-c0a8-4721-9750-47429637d8c1@lunn.ch>
+ <PAXPR04MB9185BB6443B9E1E407F409D68974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260225125109.3794977-1-mika.westerberg@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PAXPR04MB9185BB6443B9E1E407F409D68974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-268448-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268449-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,linaro.org,foss.st.com,kernel.org,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.996];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: 99EE619A1C2
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1612719A3E4
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 01:51:09PM +0100, Mika Westerberg wrote:
-> Jarkko does now work for Intel anymore and since I'm currently
-> maintaining this driver, update my contact information here to make sure
-> patches get Cc'd to me as well.
+On Tue, Feb 24, 2026 at 10:43:06PM +0000, Shenwei Wang wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Andrew Lunn <andrew@lunn.ch>
+> > Sent: Tuesday, February 24, 2026 4:15 PM
+> > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>; Bjorn Andersson
+> > <andersson@kernel.org>; Arnaud POULIQUEN
+> > <arnaud.pouliquen@foss.st.com>; Linus Walleij <linusw@kernel.org>; Bartosz
+> > Golaszewski <brgl@kernel.org>; Jonathan Corbet <corbet@lwn.net>; Rob Herring
+> > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> > <conor+dt@kernel.org>; Frank Li <frank.li@nxp.com>; Sascha Hauer
+> > <s.hauer@pengutronix.de>; Shuah Khan <skhan@linuxfoundation.org>; linux-
+> > gpio@vger.kernel.org; linux-doc@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>;
+> > devicetree@vger.kernel.org; linux-remoteproc@vger.kernel.org;
+> > imx@lists.linux.dev; linux-arm-kernel@lists.infradead.org; dl-linux-imx <linux-
+> > imx@nxp.com>; Bartosz Golaszewski <brgl@bgdev.pl>
+> > Subject: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+> > > Please explain how you would design your generic rpmsg-gpio driver
+> > > which is derived From gpio-virtio?
+> > 
+> > We have already seen the virtio commands are pretty much identical to what i
+> > suggested.
+> > 
+> > You could just replace virtqueue_add_sgs() with rpmsg_sendto() and reimplement
+> > virtio_gpio_request_vq() to be the callback registered with rpmsg_create_ept().
+> > The rest of basic GPIO handling should not need any changes at all.
+> > 
+> 
+> Creating endpoints and calling rpmsg_sendto() is only a small part of the picture. You also 
+> need to manage the service announcement from the remote side and handle asynchronous 
+> notification messages. That entire flow is already implemented in the existing virtio_rpmsg_bus 
+> driver. Re‑implementing those pieces just to mimic gpio‑virtio over RPMSG would essentially 
+> mean reinventing the wheel without any real benefit.
+> 
 
-Reported-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-(reported off the list)
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+I can absolutely see a benefit to this, there are multiple different
+rpmsg backends supported in Linux, so a gpio-rpmsg driver could be used
+by any one of them.
 
-Thanks!
+I don't see this to be a case of "reinventing the wheel". Instead we
+copy what looks to be a very functional wheel and make it fit rpmsg.
+This will result in some "duplication", but rpmsg already provide the
+life cycle management and has a clean send/callback interface, so there
+shouldn't be any inventing...
 
--- 
-With Best Regards,
-Andy Shevchenko
+Similarly, I'm guessing that there's a firmware-side implementation of
+virtio-gpio in Zephyr, it should be straightforward to transplant this
+to the rpmsg interface.
 
+Regards,
+Bjorn
 
+> Thanks,
+> Shenwei
+> 
+> > Interrupt support does however need some changes. The
+> > virtio_gpio_request_vq() replacement would need to see if the received message
+> > indicates an interrupt and call the equivalent of virtio_gpio_event_vq(), since
+> > rpmsg does not have a separate mechanism to deliver interrupts, unlike rpmsg.
+> > 
+> > At a guess, 90% of the code would stay the same?
+> > 
+> >    Andrew
 
