@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-268414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268415-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KACnNW8Sn2nVYwQAu9opvQ
-	(envelope-from <devicetree+bounces-268414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:17:03 +0100
+	id cCsfHfMSn2nWYwQAu9opvQ
+	(envelope-from <devicetree+bounces-268415-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:19:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56701199641
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:17:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE43C199705
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0FB6930A5B3F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:09:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8EB94303C28E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45BE33C196C;
-	Wed, 25 Feb 2026 15:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DEED25A655;
+	Wed, 25 Feb 2026 15:10:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gKss4o40"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gRb8kFwd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E318E3B95EB;
-	Wed, 25 Feb 2026 15:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A17A3D4138
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 15:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772032197; cv=none; b=cVCStiq+smE44apXFgrC74zpHsxa4LhvR1FH4qVIRMy16QC1VRuCa82g6z1Geqk/Ai93YJdxgelGbjIp2KRcWD0BlecslWX8gQzXKVnfXwM9Hg5CWr3mm5oGwm9BuXTsQ0j8BF67WrW/qZI+4/VG8CyGwaGVUB0SS3SpfMPju4c=
+	t=1772032214; cv=none; b=TuWmYdZrUs3CHqoyvEPb0CLNrIhCr4aO2+h2ZfF2dyb2JDf0T0NwAZvgQRsZIK+5vOJ0oMwuxqMS6XpFfRQeydTfMfSda0Y61SlqJBSSbM4aSPZhRG1p/ibJD/EtOtAFjfOvCDEXELTv5F3gQbpqvkoLXOZr9Av9aa/11ZRVYxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772032197; c=relaxed/simple;
-	bh=HgUlI7q2fA9MZdaUIYY0d5mtoXIeH07oXQLHKae4E8E=;
+	s=arc-20240116; t=1772032214; c=relaxed/simple;
+	bh=abfclbdjF5WVXITB+Yrq9jHQN0qzkliulV2pAeXAr7Q=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=TRJjQKT3t3eDXMkku5rcXlvV2TlJyi0NmjUGAHCnri1hpvqgOV18TO74I9AjYs0X5mUMd/l/LyMuNh/FElIUjVljiOPOYFoj1ynuLrYBrRW3mSdEne142TrHQ7wxTRP4uYnhKRf8azZrmKGdwd/DzYYxpEcukr2AQrP8M8DdIBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gKss4o40; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version:Content-Type; b=Gr7Iar8JRvmUqMGq1gYKuR2iNkQb/Jq7MQjS6SWcbn9pzC2MbDKjoTtcwprMBDplp9DyWzeGYO59g82+OMbileJnVCiIIOFeTWD77zyO5EjTlCFlpjq3lGVw3Nmn2zmx8LHLge4LLD2FiSEUSHkC8MdT6PH1CHAg9LoCCT1aMO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gRb8kFwd; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 51DDD4E410F8;
-	Wed, 25 Feb 2026 15:09:53 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 08C061A1327;
+	Wed, 25 Feb 2026 15:10:11 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 1BFEB5FDE6;
-	Wed, 25 Feb 2026 15:09:53 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 334D410369260;
-	Wed, 25 Feb 2026 16:09:46 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D11745FDE6;
+	Wed, 25 Feb 2026 15:10:10 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B10F810369260;
+	Wed, 25 Feb 2026 16:10:08 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772032191; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1772032210; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=HgUlI7q2fA9MZdaUIYY0d5mtoXIeH07oXQLHKae4E8E=;
-	b=gKss4o40gnoZRYfhulIOZSS3nn8HKYV+6mmPlIuaHhJE9kk46pLruEtjnzlFW8jyb2Nz7A
-	bx2nHBEKr5Kyqg7Gra1uTvM7H6LpcP0MJBCLwaKatyM4l5D6mYAOzepRsJ3GDyDm7dcbPR
-	bDuKQuchs4d9PqXCjsN9AtV+OIhtFNxXH8LBkSXqFWDlaLapzamBjDJETt1FYEr+myyMC1
-	ENUKo+b2pKQDFTiLyD+V8J9IvuK0qI6KhSur1m9pdxSMs5jdTD4BbtzssA6SmIGX+0S6wd
-	TjcJWumXbBLQ42yDL1nd8QxDMqpA0C8GJWhGaDuzZtANnhET6hz+5UNtYCJeEw==
+	bh=abfclbdjF5WVXITB+Yrq9jHQN0qzkliulV2pAeXAr7Q=;
+	b=gRb8kFwdoAU8UVR6yl74DQYGjOhzTN6wxRh13sRRXjZJD+plUjOy7OyoFAeul6x0QmK6iU
+	E8k54Bflwx1iw1ofUkh3X3MMxLtGRRLQ/RuduJzjEv0RaaP4PHbr9NKfsrXHCeJvPnRPqD
+	j1XnnZfaRSZ6L5evp9iXTuDV3zVdbYnMUZqg94AnRXzkIICZWC+e6iPgdv+zVSpH8JIGI4
+	/5qByxrWToVdV0jsELz00fvIgIFkpxp4Fo5mmq3XervlHs1f39aGvWrZOQJxnrrIugM0hd
+	Wh+cJncl9zzDdSwa+XNIbyLRukJ8rAc72DdBbzR7cYkvVfS9pOABTqUJTx/U9g==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
 To: Cheng Ming Lin <linchengming884@gmail.com>
 Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
@@ -69,8 +69,8 @@ In-Reply-To: <20260225015705.1113199-2-linchengming884@gmail.com> (Cheng Ming
 References: <20260225015705.1113199-1-linchengming884@gmail.com>
 	<20260225015705.1113199-2-linchengming884@gmail.com>
 User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Wed, 25 Feb 2026 16:09:45 +0100
-Message-ID: <87o6lcq2py.fsf@bootlin.com>
+Date: Wed, 25 Feb 2026 16:10:08 +0100
+Message-ID: <87ldggq2pb.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,12 +85,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268414-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268415-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -105,14 +105,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.992];
+	NEURAL_HAM(-0.00)[-0.993];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim]
-X-Rspamd-Queue-Id: 56701199641
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mxic.com.tw:url,mxic.com.tw:email]
+X-Rspamd-Queue-Id: CE43C199705
 X-Rspamd-Action: no action
+
+Hello Cheng Ming,
 
 On 25/02/2026 at 09:57:03 +08, Cheng Ming Lin <linchengming884@gmail.com> w=
 rote:
@@ -152,7 +154,7 @@ he%20Introduction%20of%20Randomizer%20Feature%20on%20MX30xFxG28AD_MX35xFxG2=
 
 This link brings me to a "We have moved to our new home" page.
 
-Anyhow, this Links does not make much sense in the binding. If this is a
+Anyhow, this Link does not make much sense in the binding. If this is a
 very generic AN, why not, but maybe I'd move it to the SPI NAND patches,
 as the name implies that it is a bit specific to Macronix chips.
 
