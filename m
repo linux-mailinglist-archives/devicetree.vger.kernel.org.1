@@ -1,535 +1,318 @@
-Return-Path: <devicetree+bounces-268527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268528-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WG6OKKxgn2lRagQAu9opvQ
-	(envelope-from <devicetree+bounces-268527-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:50:52 +0100
+	id YHZxIWZkn2lRagQAu9opvQ
+	(envelope-from <devicetree+bounces-268528-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 22:06:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA5F19D713
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:50:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DA319D9AA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 22:06:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B49D0305E830
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:50:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AACEB303525D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8101287507;
-	Wed, 25 Feb 2026 20:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA8530DEB7;
+	Wed, 25 Feb 2026 21:02:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a23zWkRX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29FD2221275
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 20:50:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27AF530B52A;
+	Wed, 25 Feb 2026 21:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772052645; cv=none; b=ozvYqGrt8RL5DiIKG1sxq4tr0V+R3EsKcmBbBZDAHzfPm+f+NQCh+N1QFTSrfg+LDxFNJ67gRoMbusZF7c3krPBOc0sZ0F3M2Zt7sbzJa3CXs92x84rLhC3m+LEMmcFapWhEejGQO44fr+8/Hgg1H9KzR2uuBaoFcDTpdjultsA=
+	t=1772053345; cv=none; b=lE0Jtvg/TEHTNLsh2ucDE7odT43h9S2IsmJxyRLrEusSAsv4FQV3XZy4NT3vs/7RvPD/+TTNB/WiEUe/w+9BeZs1DImHhijwhSoP0SAe2kzYkTNC04pSDg9an6t5e04BRCgLnhUrY6VRntUEiB3TPbmVHghr7DZ0UGIozY1RKvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772052645; c=relaxed/simple;
-	bh=7IYFCCYJsP59Gs4RouG45k1r6Z/NE0xFUWhUyzIqipg=;
+	s=arc-20240116; t=1772053345; c=relaxed/simple;
+	bh=Jy6N4IhDvASBtWTrPNraJpD5E/n58S/X9rF10vWsGxo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gAxHegQLsi9G9OZrBkFG6NiX5jY0TLX/vIzRNLlHAQiVSvreuoav826E93OLAnjCI/EoP//p39Q4gVFxgmRZkYBNDmcehGH+dv6H6l+N91uau/Kw/DFqV4WLwUmBceV9usKeCeMKvu36oq+IAdg2ij9Pw+E7wF53tPPdKpWXv9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vvLpk-0001aX-PK; Wed, 25 Feb 2026 21:50:12 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vvLpi-002cT3-13;
-	Wed, 25 Feb 2026 21:50:11 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vvLpj-000000050YN-2Kay;
-	Wed, 25 Feb 2026 21:50:11 +0100
-Date: Wed, 25 Feb 2026 21:50:11 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Andrew Thomas <andrew.thomas@touchnetix.com>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, 
-	Russ Weight <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Marco Felsch <kernel@pengutronix.de>, 
-	Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 4/4] Input: Add TouchNetix aXiom I2C Touchscreen
- support
-Message-ID: <a7hajq5edw3w2pm5l3ytn65kmudjckvaj5relydayoua5i7oha@wsattyisot4s>
-References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
- <20260111-v6-10-topic-touchscreen-axiom-v5-4-f94e0ae266cb@pengutronix.de>
- <qoelgb5k77a4c4jodn622a6wauotzkeygy5fj54cjjnobb5g6c@ysxkou6nhkop>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KLnqgjL3pEiG8X0TzwXgG8epLV8LrwxZfbpVRa5hMeMHZP9F1WGNaqNu9kkmzk4rX9ANa2dyRLnW+fkie+ThiFgTSw/HmuTIFDLqaeGWz6rPzNtnsCLZUcXNzw+xGT9vysGFfGWKruDxFjAJs0psRmdiPnV7rCAzIN6hGFO5SH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a23zWkRX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12D99C116D0;
+	Wed, 25 Feb 2026 21:02:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772053344;
+	bh=Jy6N4IhDvASBtWTrPNraJpD5E/n58S/X9rF10vWsGxo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a23zWkRXy8vl9KpsWM3WnIQDHv5KYZxIkD9EzaTAuYeMVllHnEtvD7eDFZIOvpovG
+	 NyT3pHLz6vBKDacWjPBF2Y7YLvtK+UpcOHVeAlr6IVFmUMqOKUyLUHoxeLCIefGe/4
+	 KDA1ElBAy3D3WtzRCmMr1IRZmeKwexlOtSozi568vaUtgwtjjov2SRc8vLAmc5upa8
+	 fpy5OHgptojo/HYMS3m2GA6hFJcObfwfN0rCVE7s9b9LwjKgcEot1q8FAEhsyU6svv
+	 huy/XM8X573n77N53VjBQ3iJdQ/gcaCcs++iMY0V9TjMjmLkJ5YpeyAvbI0yX0qepC
+	 WUD4dpEJBnxZw==
+Date: Wed, 25 Feb 2026 15:02:18 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, 
+	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+Message-ID: <l7vmhr5rg444pqp47x2k5ejamjnisx5rqwfmfr6m2tjazxpbm6@wq2vd4hcxco2>
+References: <CANLsYkxAwgG1WkMRr8EJZuSUnN_jKVnsWhWTakVqhvtMBO365A@mail.gmail.com>
+ <PAXPR04MB91851D3DA6A92669CB5926A18974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CANLsYkw-8ERXy3v8Sv55Cpq=+41Toez3EjLMbENAkavvr8STeQ@mail.gmail.com>
+ <PAXPR04MB9185B68BC640D940534E44098974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <d4c8f7dd-c0a8-4721-9750-47429637d8c1@lunn.ch>
+ <PAXPR04MB9185BB6443B9E1E407F409D68974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <ndozoc6qdrpv3xuktumsah56im5rbtg6iwerq3xi2xkcuyewpx@szswqvojleg3>
+ <AS8PR04MB917652D63DB090D22129D3D78975A@AS8PR04MB9176.eurprd04.prod.outlook.com>
+ <2b72kkgwe5hio4uwrxj5oi72llkxhx7egw442fugq6unv7unah@5bfve7k3mvky>
+ <PAXPR04MB918508A39832000D786E8F938975A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <qoelgb5k77a4c4jodn622a6wauotzkeygy5fj54cjjnobb5g6c@ysxkou6nhkop>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PAXPR04MB918508A39832000D786E8F938975A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268527-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268528-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,linaro.org,foss.st.com,kernel.org,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[kernel.org,linux.dev,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.974];
+	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	BLOCKLISTDE_FAIL(0.00)[172.234.253.10:query timed out];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,axcfg.py:url]
-X-Rspamd-Queue-Id: 1BA5F19D713
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 22DA319D9AA
 X-Rspamd-Action: no action
 
-Hi Andrew,
-
-thanks for the your reply, please see below.
-
-On 26-02-25, Andrew Thomas wrote:
-> On Sun, Jan 11, 2026 at 04:05:47PM +0100, Marco Felsch wrote:
-
-...
-
-> > +struct axiom_u33_rev3 {
-> > +	__le32 runtime_crc;
-> > +	__le32 runtime_nvm_crc;
-> > +	__le32 bootloader_crc;
-> > +	__le32 nvltlusageconfig_crc;
-> > +	__le32 vltusageconfig_crc;
-> > +	__le32 u22_sequencedata_crc;
-> > +	__le32 u43_hotspots_crc;
-> > +	__le32 u77_dod_data_crc;
-> > +	__le32 u93_profiles_crc;
-> > +	__le32 u94_deltascalemap_crc;
-> > +	__le32 runtimehash_crc;
-> > +};
-> > +
+On Wed, Feb 25, 2026 at 08:31:33PM +0000, Shenwei Wang wrote:
 > 
-> I think revision handling should be kept in unpacking where possible.
-> Currently there are 10 revisions of u33, so adding support for many
-> revisions and usages would add alot of code.
-
-This isn't very complex nor very large code. Each u33 rev will add
-44-byte of code, so in the end there will be 440-byte. I've also seen
-that some revisions reduce the size because some fields aren't required.
-E.g. u93_crc is at offset-5.
-
-Furthermore describing the complete layout of u33 allows us using it to
-query the u33 in one i2c-bulk-transfer.
-
-> > +#define AXIOM_U34				0x34
-> > +#define   AXIOM_U34_REV1_OVERFLOW_MASK		BIT(7)
-> > +#define   AXIOM_U34_REV1_REPORTLENGTH_MASK	GENMASK(6, 0)
-> > +#define   AXIOM_U34_REV1_PREAMBLE_BYTES		2
-> > +#define   AXIOM_U34_REV1_POSTAMBLE_BYTES	4
-
-...
-
-> > +enum axiom_runmode {
-> > +	AXIOM_DISCOVERY_MODE,
-> > +	AXIOM_TCP_MODE,
-> > +	AXIOM_TCP_CFG_UPDATE_MODE,
-> > +	AXIOM_BLP_PRE_MODE,
-> > +	AXIOM_BLP_MODE,
-> > +};
 > 
-> There are only two actual axiom states, bootloader and runtime (TCP).
-> This is more of a driver state rather than an axiom state.
-> Could you label it as such?
-
-Yes I know and the AXIOM_BLP_PRE_MODE will be dropped with the next
-version, which I'm going to send this week!. Not sure why this would be
-required.
-
-> > +struct axiom_data {
-> > +	struct input_dev *input;
-> > +	struct device *dev;
-> > +
-> > +	struct gpio_desc *reset_gpio;
-> > +	struct regulator_bulk_data supplies[2];
-> > +	unsigned int num_supplies;
-> > +
-> > +	struct regmap *regmap;
-> > +	struct touchscreen_properties prop;
-> > +	bool irq_setup_done;
-> > +	u32 poll_interval;
-> > +
-> > +	struct drm_panel_follower panel_follower;
-> > +	bool is_panel_follower;
-> > +
-> > +	enum axiom_runmode mode;
-> > +	/*
-> > +	 * Two completion types to support firmware updates
-> > +	 * in irq and poll mode.
-> > +	 */
-> > +	struct axiom_completion {
-> > +		struct completion completion;
-> > +		bool poll_done;
-> > +	} nvm_write, boot_complete;
-> > +
-> > +	/* Lock to protect both firmware interfaces */
-> > +	struct mutex fwupdate_lock;
-> > +	struct axiom_firmware {
-> > +		/* Lock to protect cancel */
-> > +		struct mutex lock;
-> > +		bool cancel;
-> > +		struct fw_upload *fwl;
-> > +	} fw[AXIOM_FW_NUM];
-> > +
-> > +	unsigned int fw_major;
-> > +	unsigned int fw_minor;
-> > +	unsigned int fw_rc;
-> > +	unsigned int fw_status;
-> > +	unsigned int fw_variant;
-> > +	u16 device_id;
-> > +	u16 jedec_id;
-> > +	u8 silicon_rev;
-> > +
-> > +	/* CRCs we need to check during a config update */
-> > +	struct axiom_crc {
-> > +		u32 runtime;
-> > +		u32 vltusageconfig;
-> > +		u32 nvltlusageconfig;
-> > +		u32 u22_sequencedata;
-> > +		u32 u43_hotspots;
-> > +		u32 u77_dod_data;
-> > +		u32 u93_profiles;
-> > +		u32 u94_deltascalemap;
-> > +	} crc[AXIOM_CRC_NUM];
+> > -----Original Message-----
+> > From: Bjorn Andersson <andersson@kernel.org>
+> > Sent: Wednesday, February 25, 2026 1:44 PM
+> > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > Cc: Andrew Lunn <andrew@lunn.ch>; Mathieu Poirier
+> > <mathieu.poirier@linaro.org>; Arnaud POULIQUEN
+> > <arnaud.pouliquen@foss.st.com>; Linus Walleij <linusw@kernel.org>; Bartosz
+> > Golaszewski <brgl@kernel.org>; Jonathan Corbet <corbet@lwn.net>; Rob Herring
+> > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> > <conor+dt@kernel.org>; Frank Li <frank.li@nxp.com>; Sascha Hauer
+> > <s.hauer@pengutronix.de>; Shuah Khan <skhan@linuxfoundation.org>; linux-
+> > gpio@vger.kernel.org; linux-doc@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>;
+> > devicetree@vger.kernel.org; linux-remoteproc@vger.kernel.org;
+> > imx@lists.linux.dev; linux-arm-kernel@lists.infradead.org; dl-linux-imx <linux-
+> > imx@nxp.com>; Bartosz Golaszewski <brgl@bgdev.pl>
+> > Subject: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
+> > 
+> > Caution: This is an external email. Please take care when clicking links or opening
+> > attachments. When in doubt, report the message using the 'Report this email'
+> > button
+> > 
+> > 
+> > On Wed, Feb 25, 2026 at 05:54:00PM +0000, Shenwei Wang wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Bjorn Andersson <andersson@kernel.org>
+> > > > Sent: Wednesday, February 25, 2026 9:53 AM
+> > > > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > > > Cc: Andrew Lunn <andrew@lunn.ch>; Mathieu Poirier
+> > > > <mathieu.poirier@linaro.org>; Arnaud POULIQUEN
+> > > > <arnaud.pouliquen@foss.st.com>; Linus Walleij <linusw@kernel.org>;
+> > > > Bartosz Golaszewski <brgl@kernel.org>; Jonathan Corbet
+> > > > <corbet@lwn.net>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> > > > <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Frank Li
+> > > > <frank.li@nxp.com>; Sascha Hauer <s.hauer@pengutronix.de>; Shuah
+> > > > Khan <skhan@linuxfoundation.org>; linux- gpio@vger.kernel.org;
+> > > > linux-doc@vger.kernel.org; linux-kernel@vger.kernel.org; Pengutronix
+> > > > Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > > > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>;
+> > > > devicetree@vger.kernel.org; linux-remoteproc@vger.kernel.org;
+> > > > imx@lists.linux.dev; linux-arm-kernel@lists.infradead.org;
+> > > > dl-linux-imx <linux- imx@nxp.com>; Bartosz Golaszewski
+> > > > <brgl@bgdev.pl>
+> > > > Subject: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg
+> > > > GPIO driver On Tue, Feb 24, 2026 at 10:43:06PM +0000, Shenwei Wang
+> > wrote:
+> > > > >
+> > > > >
+> > > > > > -----Original Message-----
+> > > > > > From: Andrew Lunn <andrew@lunn.ch>
+> > > > > > Sent: Tuesday, February 24, 2026 4:15 PM
+> > > > > > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > > > > > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>; Bjorn
+> > > > > > Andersson <andersson@kernel.org>; Arnaud POULIQUEN
+> > > > > > <arnaud.pouliquen@foss.st.com>; Linus Walleij
+> > > > > > <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>;
+> > > > > > Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh@kernel.org>;
+> > > > > > Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> > > > > > <conor+dt@kernel.org>; Frank Li <frank.li@nxp.com>; Sascha Hauer
+> > > > > > <s.hauer@pengutronix.de>; Shuah Khan
+> > > > > > <skhan@linuxfoundation.org>; linux- gpio@vger.kernel.org;
+> > > > > > linux-doc@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > > > > > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> > > > > > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>;
+> > > > > > devicetree@vger.kernel.org; linux-remoteproc@vger.kernel.org;
+> > > > > > imx@lists.linux.dev; linux-arm-kernel@lists.infradead.org;
+> > > > > > dl-linux-imx <linux- imx@nxp.com>; Bartosz Golaszewski
+> > > > > > <brgl@bgdev.pl>
+> > > > > > Subject: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg
+> > > > > > GPIO driver
+> > > > > > > Please explain how you would design your generic rpmsg-gpio
+> > > > > > > driver which is derived From gpio-virtio?
+> > > > > >
+> > > > > > We have already seen the virtio commands are pretty much
+> > > > > > identical to what i suggested.
+> > > > > >
+> > > > > > You could just replace virtqueue_add_sgs() with rpmsg_sendto()
+> > > > > > and reimplement
+> > > > > > virtio_gpio_request_vq() to be the callback registered with
+> > > > rpmsg_create_ept().
+> > > > > > The rest of basic GPIO handling should not need any changes at all.
+> > > > > >
+> > > > >
+> > > > > Creating endpoints and calling rpmsg_sendto() is only a small part
+> > > > > of the picture. You also need to manage the service announcement
+> > > > > from the remote side and handle asynchronous notification
+> > > > > messages. That entire flow is already implemented in the existing
+> > virtio_rpmsg_bus driver.
+> > > > > Re‑implementing those pieces just to mimic gpio‑virtio over RPMSG
+> > > > > would
+> > > > essentially mean reinventing the wheel without any real benefit.
+> > > > >
+> > > >
+> > > > I can absolutely see a benefit to this, there are multiple different
+> > > > rpmsg backends supported in Linux, so a gpio-rpmsg driver could be used by
+> > any one of them.
+> > > >
+> > > > I don't see this to be a case of "reinventing the wheel". Instead we
+> > > > copy what looks to be a very functional wheel and make it fit rpmsg.
+> > > > This will result in some "duplication", but rpmsg already provide
+> > > > the life cycle management and has a clean send/callback interface,
+> > > > so there shouldn't be any inventing...
+> > > >
+> > >
+> > > Interesting — could you walk me through how you’d structure the driver
+> > > with the new proposal? I’d like to see how you would layer it conceptually.
+> > >
+> > > The current RPMSG solution:
+> > >
+> > >      On Remoteprc                      On Linux
+> > > GPIOs -> RPMSG -> VIRTIO == VIRTIO -> RPMSG -> GPIO-RPMSG drivers
+> > >
+> > > The VIRTIO solution:
+> > >
+> > >      On Remoteprc                     On Linux
+> > >           GPIO -> VIRTIO == VIRTIO -> GPIO-VIRTIO driver
+> > >
+> > > Your proposal:
+> > >
+> > >      On Remoteprc                     On Linux
+> > > GPIOs -> RPMSG -> VIRTIO == VIRTIO -> ???
+> > 
+> > What I'm suggesting is the following:
+> > 
+> > GPIOs -> RPMSG -> VIRTIO == VIRTIO -> RPMSG -> GPIO-RPMSG
+> >        ^                                    ^
+> >        \-----+------------------------------/
+> >              |
+> >              |
+> > With this interface on being directly derived from the existing protocol (and likely
+> > the implementation as well) using gpio-virtio.
+> > 
+> > You can have multiple "GPIOs" (presumably a "bank" each) instances and that
+> > will be reflected in having multiple "GPIO-RPMSG" instances.
+> > 
+> > I haven't made any attempts at implementing this, but it looks very similar to
+> > gpio-virtio in concept and it looks very similar to the exiting RPMSG tty in the
+> > sense of being a generic implementation.
+> > 
+> > To reach something functional on the Linux side it seems to be a matter of taking
+> > the gpio-virtio driver, register a rpmsg_driver instead, change _virtio_gpio_req()
+> > to use rpmsg_send(), and perform the actions of virtio_gpio_event_vq() in the
+> > rpmsg_driver callback function.
+> > 
 > 
-> I think this structure should hold all possible u33 CRCs and then
-> invalid ones can be ignored for the given u33 revision.
-
-Why should be the bootloader CRC interessting? The bootloader can't be
-updated/flashed, at least not according my documentation. Therefore I
-didn't listed the bootloader CRC here.
-
-> > +	bool cds_enabled;
-> > +	unsigned long enabled_slots;
-> > +	unsigned int num_slots;
-> > +
-> > +	unsigned int max_report_byte_len;
-> > +	struct axiom_usage_table_entry {
-> > +		bool populated;
-> > +		unsigned int baseaddr;
-> > +		unsigned int size_bytes;
-> > +		const struct axiom_usage_info *info;
-> > +	} usage_table[AXIOM_MAX_USAGES];
-> > +};
-
-....
-
-> > +static int axiom_u02_swreset(struct axiom_data *ts)
-> > +{
-> > +	struct axiom_u02_rev1_system_manager_msg msg = { };
-> > +	int ret;
-> > +
-> > +	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
-> > +		return -EINVAL;
-> > +
-> > +	msg.command = cpu_to_le16(AXIOM_U02_REV1_CMD_SOFTRESET);
-> > +	ret = axiom_u02_send_msg(ts, &msg, false);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/*
-> > +	 * Downstream http://axcfg.py waits for 1sec without checking U01 hello. Tests
-> > +	 * showed that waiting for the hello message isn't enough therefore we
-> > +	 * need both to make it robuster.
-> > +	 */
-> > +	ret = axiom_wait_for_completion_timeout(ts, &ts->boot_complete,
-> > +					msecs_to_jiffies(1 * MSEC_PER_SEC));
+> Thanks for the explanation. If I’m understanding correctly, what you’re suggesting is 
+> essentially a driver that merges the roles of a virtio_driver and an rpmsg_driver into a 
+> single source file. There may be opportunities for a few function reuse, but overall it 
+> would still result in a fairly distinct codebase.
 > 
-> Boot can take up to 2s with all selftests enabled.
 
-Thanks for this information :) I will add it.
+Most of the non-boilerplate code in gpio-virtio would be impacted by
+differences between rpmsg and virtio. So combining the two
+implementations in a single source file would add complexity to an
+otherwise straightforward driver, only with trivial parts reused.
 
-> > +	if (!ret)
-> > +		dev_err(ts->dev, "Error swreset timedout\n");
-> > +
-> > +	fsleep(USEC_PER_SEC);
-> > +
-> > +	return ret ? 0 : -ETIMEDOUT;
-> > +}
-
-...
-
-> > +static int axiom_u02_enter_bootloader(struct axiom_data *ts)
-> > +{
-> > +	struct axiom_u02_rev1_system_manager_msg msg = { };
-> > +	struct device *dev = ts->dev;
-> > +	unsigned int val;
-> > +	int ret;
-> > +
-> > +	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
-> > +		return -EINVAL;
-> > +
-> > +	/*
-> > +	 * Enter the bootloader mode requires 3 consecutive messages so we can't
-> > +	 * check for the response.
-> > +	 */
-> > +	msg.command = cpu_to_le16(AXIOM_U02_REV1_CMD_ENTERBOOTLOADER);
-> > +	msg.parameters[0] = cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER_KEY1);
-> > +	ret = axiom_u02_send_msg(ts, &msg, false);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to send bootloader-key1: %d\n", ret);
-> > +		return ret;
-> > +	}
-> 
-> A delay is required between commands. 10ms is fine.
-
-Can I make use of the axiom_u02_wait_idle() logic which checks the
-AXIOM_U02_REV1_RESP_SUCCESS? Arbitrary delays are always a source of
-trouble.
-
-> > +	msg.parameters[0] = cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER_KEY2);
-> > +	ret = axiom_u02_send_msg(ts, &msg, false);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to send bootloader-key2: %d\n", ret);
-> > +		return ret;
-> > +	}
-> 
-> And here.
-> 
-> > +
-> > +	msg.parameters[0] = cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER_KEY3);
-> > +	ret = axiom_u02_send_msg(ts, &msg, false);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to send bootloader-key3: %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* Sleep before the first read to give the device time */
-> > +	fsleep(250 * USEC_PER_MSEC);
-> > +
-> > +	/* Wait till the device reports it is in bootloader mode */
-> > +	return regmap_read_poll_timeout(ts->regmap,
-> > +			AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, val,
-> > +			FIELD_GET(AXIOM_U31_REV1_MODE_MASK, val) ==
-> > +			AXIOM_U31_REV1_MODE_BLP, 250 * USEC_PER_MSEC,
-> > +			USEC_PER_SEC);
-> > +}
-> 
-> Just to note if we cannot enter bootloader with u02 due to a corrupted firmware,
-> you can enter bootloader if the nRESET line is toggled 5 times without comms.
-
-This could be added later on by $dev (maybe you :)) since I can't test
-this. Our system has the reset line not connected :/
-
-...
-
-> > +static int axiom_u33_read(struct axiom_data *ts, struct axiom_crc *crc)
-> > +{
-> > +	struct device *dev = ts->dev;
-> > +	unsigned int reg;
-> > +	int ret;
-> > +
-> > +	if (!axiom_driver_supports_usage(ts, AXIOM_U33))
-> > +		return -EINVAL;
-> > +
-> > +	if (axiom_usage_rev(ts, AXIOM_U33) == 2) {
-> > +		struct axiom_u33_rev2 val;
-> > +
-> > +		reg = axiom_usage_baseaddr(ts, AXIOM_U33);
-> > +		ret = regmap_raw_read(ts->regmap, reg, &val, sizeof(val));
-> 
-> Could we read into a raw buffer to save having to define a little endian
-> version of the CRCs?
-
-I don't see the benefit.
-
-...
-
-> > +/* Custom regmap read/write handling is required due to the aXiom protocol */
-> > +static int axiom_regmap_read(void *context, const void *reg_buf, size_t reg_size,
-> > +			     void *val_buf, size_t val_size)
-> > +{
-> > +	struct device *dev = context;
-> > +	struct i2c_client *i2c = to_i2c_client(dev);
-> > +	struct axiom_data *ts = i2c_get_clientdata(i2c);
-> > +	struct axiom_cmd_header hdr;
-> > +	u16 xferlen, addr, baseaddr;
-> > +	struct i2c_msg xfer[2];
-> > +	int ret;
-> > +
-> > +	if (val_size > AXIOM_MAX_XFERLEN) {
-> > +		dev_err(ts->dev, "Exceed max xferlen: %zu > %u\n",
-> > +			val_size, AXIOM_MAX_XFERLEN);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	addr = *((u16 *)reg_buf);
-> > +	hdr.target_address = cpu_to_le16(addr);
-> > +	xferlen = FIELD_PREP(AXIOM_CMD_HDR_DIR_MASK, AXIOM_CMD_HDR_READ) |
-> > +		  FIELD_PREP(AXIOM_CMD_HDR_LEN_MASK, val_size);
-> > +	hdr.xferlen = cpu_to_le16(xferlen);
-> > +
-> > +	/* Verify that usage including the usage rev is supported */
-> > +	baseaddr = addr & AXIOM_USAGE_BASEADDR_MASK;
-> > +	if (!axiom_usage_supported(ts, baseaddr))
-> > +		return -EINVAL;
-> > +
-> > +	xfer[0].addr = i2c->addr;
-> > +	xfer[0].flags = 0;
-> > +	xfer[0].len = sizeof(hdr);
-> > +	xfer[0].buf = (u8 *)&hdr;
-> > +
-> > +	xfer[1].addr = i2c->addr;
-> > +	xfer[1].flags = I2C_M_RD;
-> > +	xfer[1].len = val_size;
-> > +	xfer[1].buf = val_buf;
-> > +
-> > +	ret = i2c_transfer(i2c->adapter, xfer, 2);
-> > +	if (ret == 2)
-> > +		return 0;
-> > +	else if (ret < 0)
-> > +		return ret;
-> > +	else
-> > +		return -EIO;
-> > +}
-> 
-> There needs to be atleast 40us holdoff between axiom bus transfers.
-> I am not sure that has been considered here.
-
-Is this written somewhere within the datasheet/programming-guide?
-
-...
-
-> > +static enum fw_upload_err
-> > +axiom_cfg_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
-> > +{
-
-...
-
-> > +	cur_runtime_crc = ts->crc[AXIOM_CRC_CUR].runtime;
-> > +	fw_runtime_crc = ts->crc[AXIOM_CRC_NEW].runtime;
-> > +	if (cur_runtime_crc != fw_runtime_crc) {
-> > +		dev_err(dev, "TH2CFG and device runtime CRC doesn't match: %#x != %#x\n",
-> > +			fw_runtime_crc, cur_runtime_crc);
-> > +		ret = FW_UPLOAD_ERR_FW_INVALID;
-> > +		goto out;
-> > +	}
-> 
-> The firmware CRCs dont need to match for a config load, only the usage revision/length.
-
-What difference does it make? The firmware CRC implicit includes the
-usage revision and the length (register layout). So we can ensure that
-the configuration was made for the correct register layout without
-checking each register and revision.
-
-...
-
-> > +static enum fw_upload_err
-> > +axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
-> > +		   u32 size, u32 *written)
-> > +{
-
-....
-
-> > +	/* Ensure that the chunks are written correctly */
-> > +	ret = axiom_verify_volatile_mem(ts);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to verify written config, abort\n");
-> > +		goto err_swreset;
-> > +	}
-> > +
-> > +	ret = axiom_u02_save_config(ts);
-> > +	if (ret)
-> > +		goto err_swreset;
-> > +
-> > +	/*
-> > +	 * TODO: Check if u02 start would be sufficient to load the new config
-> > +	 * values
-> > +	 */
-> 
-> It is not necessarily needed.
-
-What do you mean by this? Do we need the axiom_u02_swreset() or can we
-just start the system via u02 (without swreset)?
-
-> 
-> > +	ret = axiom_u02_swreset(ts);
-> > +	if (ret) {
-> > +		dev_err(dev, "Soft reset failed\n");
-> > +		goto err_unlock;
-> > +	}
-
-....
-
-> > +static ssize_t fw_variant_show(struct device *dev,
-> > +			       struct device_attribute *attr, char *buf)
-> > +{
-> > +	struct i2c_client *i2c = to_i2c_client(dev);
-> > +	struct axiom_data *ts = i2c_get_clientdata(i2c);
-> > +	const char *val;
-> > +
-> > +	switch (ts->fw_variant) {
-> > +	case 0:
-> > +		val = "3d";
-> > +		break;
-> > +	case 1:
-> > +		val = "2d";
-> > +		break;
-> > +	case 3:
-> > +		val = "force";
-> > +		break;
-> > +	default:
-> > +		val = "unknown";
-> > +		break;
-> > +	}
-> 
-> The following are all the variants we currently support in order:
-> FW_VARIANTS = ["3D", "2D", "FORCE", "0D", "XL"]
-
-Means:
-
-0 == 3d
-1 == 2d
-3 == force
-4 == 0d
-5 == xl
-
-?
-
-This is also something I can test on my site. Patches are welcome once
-this is mainline of course :)
+My expectation is that it will be better to just have two separate
+drivers - but reuse all the design-work done in the gpio-virtio.
 
 Regards,
-  Marco
+Bjorn
 
--- 
-#gernperDu 
-#CallMeByMyFirstName
-
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+> Thanks,
+> Shenwei
+> 
+> > Regards,
+> > Bjorn
+> > 
+> > >
+> > > Thanks,
+> > > Shenwei
+> > >
+> > > > Similarly, I'm guessing that there's a firmware-side implementation
+> > > > of virtio-gpio in Zephyr, it should be straightforward to transplant this to the
+> > rpmsg interface.
+> > > >
+> > > > Regards,
+> > > > Bjorn
+> > > >
+> > > > > Thanks,
+> > > > > Shenwei
+> > > > >
+> > > > > > Interrupt support does however need some changes. The
+> > > > > > virtio_gpio_request_vq() replacement would need to see if the
+> > > > > > received message indicates an interrupt and call the equivalent
+> > > > > > of virtio_gpio_event_vq(), since rpmsg does not have a separate
+> > > > > > mechanism to
+> > > > deliver interrupts, unlike rpmsg.
+> > > > > >
+> > > > > > At a guess, 90% of the code would stay the same?
+> > > > > >
+> > > > > >    Andrew
 
