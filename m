@@ -1,273 +1,328 @@
-Return-Path: <devicetree+bounces-268284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268285-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aIM+IVPUnmkTXgQAu9opvQ
-	(envelope-from <devicetree+bounces-268284-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:52:03 +0100
+	id SIe6EdbUnmkTXgQAu9opvQ
+	(envelope-from <devicetree+bounces-268285-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:54:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBB96196066
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:52:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D25631960AA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:54:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B95CC30131C0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:49:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DAEF8302AF29
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:54:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C4F392835;
-	Wed, 25 Feb 2026 10:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E34392C54;
+	Wed, 25 Feb 2026 10:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VN6zPI5I";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hL+VwL7C"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kJioHXgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011050.outbound.protection.outlook.com [52.101.65.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F29335028D
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 10:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772016545; cv=none; b=GxNLE3LQSCdh/8h62bgZWD9RCZODjKrvl6q6tpp92v5t5MYQ93UwbYOJd6q2I3ORX3t7nhbXS5WrjwOLnFXhsGOsEbFzXJ6x8r+JYaDbqqZEz23ddNVGXZ/gLN56VXV5zHuWRarOuMYBT7Cti0S0bK6h7rNsxqRDmyt84D5khJE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772016545; c=relaxed/simple;
-	bh=0x4P34qOErC6LXj6XLgUAmcFhZUAMcQzK9an4ghv09k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AgzogawqHLRW7QRGmnbAE2xYbXoOFwIumymH1mU98nU68kg6wGJ83cTedwUyG/mMaaG5v0G1RiL7Vd2NRjPjYnYnTcTHhUd8FnzfbLYB2f7HNAistjRYLkIdz37nykCLOdJgTk9npeerGBE1CQuXUiGCAECN4+Ye2Z+3ZzR/JEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VN6zPI5I; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hL+VwL7C; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61P9Svsr2127926
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 10:49:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qgtx6s3ymH7QT+Ao1dj1AIr5Jv5tj5NW8LrZpgpMdSo=; b=VN6zPI5IiCr+gGGL
-	53BhooNHxkG3qdCFp60f048jASDrYH6JKOc5noRharURaTiFMZgu15lGXHYlPcix
-	0006N4TLPzhix+q97aRgaliH9SsMWBgU2em5V4JQrbEqbJyvyEsowx3KYmOFnMzP
-	uN/7umfbkPHGI79EGLtGDCfRhdk7TPJkWDIfCVktB6WajlnAZjmDNmf14hY2X219
-	XNIPk1W9pUgRM6m5W7tESwYXTUfhqaqHsP0B9IJULt7sYujt57aRK2ATIT07BD0w
-	tQ9BxkE0rIckETouBI/kktzFetAQBPiv2GRaeVJc9q89OiD6KD1wPJUITekaPmdR
-	6Is1AQ==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4chexek77b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 10:49:02 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-895375da74bso59698446d6.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 02:49:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772016541; x=1772621341; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qgtx6s3ymH7QT+Ao1dj1AIr5Jv5tj5NW8LrZpgpMdSo=;
-        b=hL+VwL7COmSEKXDjEhJGKOzCHLUJOXNzIsXznZcAjhRjmfcfpXVgFbRMn5F+DovFOi
-         l4YQHg6fajwokFV4Ds//4DlAT0VurGgr+bo+4l6R0w8+WKs+8hf3faDYwS+PJKoBQmuY
-         wAXtX9oCo/7/qZSbhALJdaHb2HohwGwTbxF6+jDZc+DevmXcUq2rOs+ITJ5lh87L5CF4
-         dyD/OBEjYo3FWFl+7ui+UFvc7dTBE42anOqoTz5fAFueIHotnVLJhi1QLkTJVHioJ71o
-         1NomON/EYdj4je320KHxYCucTjQqYaOLjzIzPW+NVxShyUuNAjYWegEPet17FQLr7b0i
-         BXjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772016541; x=1772621341;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qgtx6s3ymH7QT+Ao1dj1AIr5Jv5tj5NW8LrZpgpMdSo=;
-        b=r9pMVcbmmnFx0+7lt7fzot49kKtJJ0uPVdrBqyGdVd2WutfXXonaNArd5cvb1VUujr
-         DABZavmZSTB3DzRorjbhpW9Vwnik7ErLv9zpCLDTLI4/jKAr5ltlqKq09oKFj0TkNSoV
-         mX1X7BrUOpCtvBx/NPyywQBJkXWkr2RndjvkicTewhGYaPl/ghLBW2YiGi0vTVo89+1o
-         UBhTP2X/MWwVTtq3MQf6hFsrL1KE8Tof7uuGLyXA3Q0ee+79yKddtSHl9TBBlq5tsMSb
-         zBZfEFDhxWEmCvPmuPrpXi2Td6Z6Ae3DPcq/7snw5/l/ARc0yeQacPWp8kyyqKA6Jzc2
-         0k5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVF1Vv41AnSgaR3ho6McvForhgzvxFG5xIFoLqpsUbdMiPBYp+J5qEFpr5p12crt7S4pUrhpYYfbjLD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHdQDZAfYtf0JrEgJlFhCQ0VVpqhS/rgEFBdf0BrwMAXWgapsC
-	dS1HzVEPnPwUNA3i8V+tgebfq9wEsClokKsdTqWoKh28vDTXPUFl2uDTmDoS4Sn3AXKaHRdauXA
-	8h/uoGi1qoQ6f7TbClPtpePhwyHCvlkT1nXYpzG0BOnIF9PPx3FbwdjxN/AifUPq8
-X-Gm-Gg: ATEYQzwD/F6ydH3z/EYz8EXqNXIuipoCY46kgWMEpMmR3TKXgoPz3AXVjMjP23WuNXH
-	P0JoW+yBPrxpElxjroc3Lks5J9eCi/JYAyYC6UKFYn9+CUVoxDpvaZ2UPAM8j/Mpj3SmQhHFGp4
-	cJpCNS6+PiLgXx+r5A6hP0I5dsaw+c40Bp0ktbpKLGQnjIFA3YICrioATZzYnZJxDUqmvva2ln9
-	7UCJ/SRPrU2F60ByYmigbGm7K7YMSznykDT/jbu79pYmdU76GkaLWdH0adojReT7dheCGmOP13Y
-	b6RmQ4kmUXDUz8jhQV2KNx9mngvTeg+hbT57hZ4c58Ys032Dp7I+IarI0FUYH3XmtiAqAvAhMnk
-	31HCsDTXY2r/Q+3NYUdgw+k46ZinbV4nqFXJjTxAoAFCAn+OrDnb4m2npe9SA8Tdyg5oKHvcix9
-	tObo8=
-X-Received: by 2002:a0c:d6d1:0:b0:899:b986:9310 with SMTP id 6a1803df08f44-899b986975fmr10482736d6.5.1772016541619;
-        Wed, 25 Feb 2026 02:49:01 -0800 (PST)
-X-Received: by 2002:a0c:d6d1:0:b0:899:b986:9310 with SMTP id 6a1803df08f44-899b986975fmr10482436d6.5.1772016541153;
-        Wed, 25 Feb 2026 02:49:01 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b90bdf80b04sm186150166b.3.2026.02.25.02.48.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Feb 2026 02:49:00 -0800 (PST)
-Message-ID: <75113126-069b-4aa5-80c2-e9cfab9b032d@oss.qualcomm.com>
-Date: Wed, 25 Feb 2026 11:48:56 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D30B329C49;
+	Wed, 25 Feb 2026 10:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772016850; cv=fail; b=CDQjyq8eC1AeTChW1PX/qoVQaT396iKk0DuJWh6oASTaGWE3EHcViDVdVIOdFzdONrBRVB8c0HVhQfalc9i6ejH2lD4cxWHGn4+hqefcOu0RKhgRVI7892qSK3rNNSycnqfoHvzXQcEn0sNBimGHA77931F6jlDhXzkNS2t9b98=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772016850; c=relaxed/simple;
+	bh=EaSkzScY7IksHgNT1CJwikvewAkvIuJ55ThZBGnkRs4=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=i6SOMAl1DGVx/wmWlmWMP57U8hVac5UZaLMYN4yk/tcl1/QceWZutOIK+hkoU0uwNIjZ8Sjd+fAnQ/57R1wTzP9WqCsraz/YMRT+FOPXTPnriseBXtYdF5Xgu4LhYOI4+vrJQ48ndWs3/rTSyyvK/mkEVRKvWltg5q+AEjzsNQc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kJioHXgC; arc=fail smtp.client-ip=52.101.65.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OmWyLdMzjXLpKrqbr4F4s8vWlzH3qAQB5L/CIeBbgMX1zrv1UtixSlFik+lNWy/QXSeWYr1OYTZRJqqjY76lQeILixGdVfsNG4u7nzXpwmXJ0J8PiFr4gK31MR3buCGyqorIKNCwS8k+eUxNi1TCBJFKzAYpxLIeES//0Tznvgvy/eYDPH4HKO4w5oY4p7ZgOrqeBpQ+TRT4h6eniZpvdBP84BavFKpQSKagUf1o/lcrBi5/SWBxSWY6JTkXoCbN/H9SrxwORaigpT2ygfm2ouDJfCkLMp2TGLhAYMCJBUXX3zqvlR/1gqrosg8e7XLyA4vrr9BbRRfG/ap41MhWBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IpYvFU4T8vSk2jgf8O09qoyRwhDDotcviQPnxTcB1p8=;
+ b=VEO2vLfRtZpDCB8mTi8JCN0xvMiQNdZPywXqYxLLBw5zHJVWRbTzs0Ogl2wKUrZwF3TZrUAJT8UKOmPxoQK2sl60W05xrE1cR2M8mvy5bBH99ZMgMcobhGMwbbJs7bdC6nEIf9aCiWT8EIEnldfJe2x9W2oDLcNJpBPix0Gq22LrMJUIlJ14zRLPGGBXt4EM6/CF2mvquPBjphaLAnZw8ZRyf6Jbmkkl62sDCF8dQNX8j6Xm+GnhBnD0PWE2SVd/4q7FphzL19loO9LbotG9AW1/muASeeoEjBenlAVHiQk09dMjuQcV59FwDilWzdq9o9k3EBnzPg600qxhU485KQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IpYvFU4T8vSk2jgf8O09qoyRwhDDotcviQPnxTcB1p8=;
+ b=kJioHXgCmWMF1/An5NFp+0dv2TnDSOxS6gEbQjQCAKpEa6zYwNWAKMRNjjq8gZ70kpxFy3pOHWRqfn28u4PXUGqgymO1r+n7HblcoQwfuSwpo6I1z4lk4S5n04OUeLlLmAvIZblmXQ6iADHSWO1IRPP2+a2zbKyeOtGDJ9CK1zZfGeI1/p09q/KNOLWRP+0PUL7G3DnEkNcihDXUdnNPD9prXCqVfrx/LKfKYOhl2wpZR53lykv1XjdOzYY7mXSvsnyohYGvfNvdpZYMg2y2XZ+pB5sCoP3s3bUxTb4COBAFNd1lOIqZLfiLi5+qt+e2vVDUqbWbh9LXRxWtAVWQ6g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by PAWPR04MB9837.eurprd04.prod.outlook.com
+ (2603:10a6:102:385::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Wed, 25 Feb
+ 2026 10:54:05 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%5]) with mapi id 15.20.9632.017; Wed, 25 Feb 2026
+ 10:54:05 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: hongxing.zhu@nxp.com,
+	l.stach@pengutronix.de,
+	Frank.Li@nxp.com,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com
+Cc: imx@lists.linux.dev,
+	kernel@pengutronix.de,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH V6 00/12] pci-imx6: Add support for parsing the reset property in new Root Port binding
+Date: Wed, 25 Feb 2026 18:55:11 +0800
+Message-Id: <20260225105523.748775-1-sherry.sun@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0104.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b5::12) To VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Add dsi nodes on SC8280XP
-To: Pengyu Luo <mitltlatltl@gmail.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov
- <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Tianyu Gao <gty0622@gmail.com>,
-        White Lewis <liu224806@gmail.com>
-References: <20260225054525.6803-1-mitltlatltl@gmail.com>
- <20260225054525.6803-6-mitltlatltl@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260225054525.6803-6-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI1MDEwNiBTYWx0ZWRfX40bQUCCh7ATM
- o6ADqtmv6x6OYW7PVZcPBgMmDtwwOYI1OYoNgATIvcVwJ3TfrrUS8Tmwfnb2cjzYhpuZiJ2cJh3
- btexAbFkPXa6WgrycrpwpV+Z5UIkLnlKudpssj/MZt0dWy3mkIEVZ1o3p9ZbJIrlrbSw8PKdr0x
- AjTMvnLZlJzWmYM+WU8rApoVrPcpPAFymgYojM7xOBLKfgI/IWYLaddhY9XNb4m+adF/YLRZeQV
- STpgdJ5M7KBD6rDayeFvZW7+YDnnEOzm1Hv/uPHZyAaKJxH0EWpm/spdfilxPpHoiSMyEesQMjW
- 1bWOYCSlj8/bQjCbPlf0BoUAcv/mkQCtyhJmzjx6ijIcMPKb9pEKUzYlkBFwn9mtN6wBPDgf42V
- /4Fy0vEO8TMtPjr9cey9OlqOnjMG2Y261LrWrkjayoUYvZ/CMcbt5BR6wOnfSWZeqiaCUhToAI6
- MUydMEE8SbU0yA0HsoA==
-X-Authority-Analysis: v=2.4 cv=V85wEOni c=1 sm=1 tr=0 ts=699ed39e cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=pGLkceISAAAA:8 a=mSDy6qZ-4McrUV2NBLIA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-GUID: _bk1_Gpe-FCwEARvklzc-IYplHAkSvYG
-X-Proofpoint-ORIG-GUID: _bk1_Gpe-FCwEARvklzc-IYplHAkSvYG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-24_03,2026-02-23_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 spamscore=0
- suspectscore=0 phishscore=0 adultscore=0 lowpriorityscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602250106
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI0PR04MB12114:EE_|PAWPR04MB9837:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6651f4e4-225c-41b6-5135-08de745c31bf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|52116014|376014|19092799006|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	Q2ZMa3jOUkaR9dvItFHGvDN3qmDvZT/pFlpRVcHgs7fMt5nw5HA+qTIZJPyPk+SfV67q24c5ooDZZxiTj0NsNDRQG1Q1X9yKBmAnaVlSDoBqvy0Ej/1d1mCoEht9C6vlEicBqSfdvOZBDu+nyw0bh3H0Bw0WrkEa5ZpF9YfBMOIiXoZ6ISFT/+ObGqYqrF87ekYW4KYeszGRnHU2YQUleGOClGsKrdQtgb0i5wqvbiMorNpxNPenllOoIS4NEh9vdzZGkxzw/ddinMSQ+/Ivs02B8/AHeK/w4pxQSaVLTBWenFZk/i2LZ8XMkjuPPPGnFddv1iGAMMtsZYZ4A6LZKNQI2Wy/1wbh38MZb3ZbSIwsY6JCBcQBORlied6TGKgU/9QYcLMDUyfkntgMe0cZc14V4/EV8gEXRQtWSu0+BHS1m0rjPJUfg712CYGxTIBu59KwgE8G7kRnXy/72/wDx83Okw8+e5mV9TP6Xg15PN2em+xM+belzlBs5oFmYZlp+5g1gH53J5AfGR27JczgK2HfgXGM2Kt9wuePMcsD2GYeS3pBzAGRY0ceBXMcQqpEdE4CY+T89LiUEUyfocAFS0vZaKpDM0MIdA5sLTPKSBqekIugubgfp3ux22diaJPj3a/r35Z9g6RMsu4s4F2zyz/eTrgUkxzgwdYL9QNFQvlQU6H3K8z4hhL+R9NKNnBguyVwex1BfXGv/baOzCFNAlfxcX6mLzftNl3bBQQf4ygwEkd8CVTLyLeqz0Dl99M3pKw6/VnwEhXpj9fOAWSTK8WamqIzMUPMlzQzSYnTSUcHiOXFp7iMPAGuGl7DooV9
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(52116014)(376014)(19092799006)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dmZoVHRhbjJ3VXlMUldEeFhZOXQwL1JRenBNZVh3cUhNcUhGS2k5Y00xQzRy?=
+ =?utf-8?B?RnJxUjc3M24rN0hrN2llRldDSWpqcGF5TTVUdEdtTEVhcHZkdXNNK3UvTzkw?=
+ =?utf-8?B?ZHpFMzVPdWpNc3VucTBRT3UvSnBSbnZWcHVTSzJIWEgwSzhOSnoxUFFsRURm?=
+ =?utf-8?B?VURXT0FqcXdLVFBlV1NYZTlienRwQWhlcFhRZTlINlkyaVBPS2FzaDVXV2FK?=
+ =?utf-8?B?SGMwU0VjSzlQdFcxV2lyWFNhYjhXQlo1YU1SQnBzWTRaWEhPU1k2VGdDeFF6?=
+ =?utf-8?B?bXB2MGNPMTZYMElyNjNJV0x4eGpwS0J2ZFZxUmIxRVMzL2pZTXJ1R1VCd3ZY?=
+ =?utf-8?B?dGw1WGJXNWk1Q216QXhHc3AwMnFDb2tIaXJhUThKSTMva241NXdhbjROaVpM?=
+ =?utf-8?B?TG1VL24xSjlxN3VwbHVuc1M0c21hakRKZktzVlB0SG1yVEVIdVlrQU93MnVs?=
+ =?utf-8?B?MHh6V0VTNDhETWFBZ1dJbFZyL3RyUHFpWDJ4QUlZZ3ZGQUhhcmdGcldSUEVt?=
+ =?utf-8?B?UHFPNFh6eU14SDU2R0k5MWxkM0NXUWh6aDRBVWQ0WGdvdElHcUk5RkFLczc5?=
+ =?utf-8?B?cGNLeC82N2dMWE9IWXdhUkZCMVdMeUZOWDdrdmVPYitadlBvait4d2hTL3V6?=
+ =?utf-8?B?UWxTMGZoeGVrWm9LNUtBRUJETG02OVFZVjVyT3NTMDFac0hxMC9pNCtBU3Ax?=
+ =?utf-8?B?cVVKTFMwc0ZyQ2YyU0RlSTRURTUxQUhrd2lRcGQ1YzFJVVRDcURTbWlkZncx?=
+ =?utf-8?B?R2hZQ0NOWFRFREhHVy9CVVdrRHZ3ZUdtbDVvRjVGNkJoT3JMbFdraGZJNFM0?=
+ =?utf-8?B?d3RsOUR2RWhVM3d0TUROUWN5QXpDaXhwMWZFNjVpQUUxYnAvVDVDVlBwYkRa?=
+ =?utf-8?B?bndHN045cGZRZkk1M0NTYXY4TDZYNjJ2blQzZU9JVXNBWEdLQlpGNVhNUXFj?=
+ =?utf-8?B?bGE1dWlGTVhTUjlxbzQ5RWs5Mk1mTE5aT1pjR2prRjkzUEg5VWtQbGhDU1Rx?=
+ =?utf-8?B?cW51YktmNysvNW9QSVJISHcrVk9acDU2ekM1bks4RmlqeTUwbW1CbWJFUnJB?=
+ =?utf-8?B?ck1KTmlpbnZnclhGcHRYK3pRaU11aVJwTXZPdHZZOHUxbC9nMytEOE44UkEr?=
+ =?utf-8?B?K0UvdUM2dG10c0JaSk1YNms5MWNLSTFGRS91WXhEaGhJQ25TNEhiVXR6a3Uw?=
+ =?utf-8?B?OVBjQXU4b1FWSDBVTzVGV21wb3lUclVVR1dDTzZJc0tGZEVrSktPUGVTTkN6?=
+ =?utf-8?B?MEJLckozdXVKcHkxdEU1KzBwUWtFMHJxUStrMTFWZW9INlk3ME5Qc1phQmN6?=
+ =?utf-8?B?bG1sc2k3b3c0T0lKMEtzUklOdVlUb0hLeVFtRS9hTjZFd28zdHNDcmlvUFpl?=
+ =?utf-8?B?L0k2TkdiRWFnZ1BIS0FyK0NJZkowcUpPbHFEUXErMU13YVdYdU1oVFI0Z2ti?=
+ =?utf-8?B?RzJKWUhaZVQrNUFnQzhaRDJwdks2WmF3dmpaRDYvSzJ6R0cyTXg2U1hXVTZC?=
+ =?utf-8?B?RGt5VHd4UC9rUTJCdTloZ1NPaFp2Q3E1RGVVdUlRWEVLTXIrZHpQZjlkdENX?=
+ =?utf-8?B?akF4L0VpSnprSkMzV0JhYkN1dktMUk8ydjJRYlRacWRqcGNod3VKQTZWVjJq?=
+ =?utf-8?B?K0Y4b3p0SVVuaUtNdUpDSGVKUVlpbUpxQkp6QUFqQmI1bDhZaFBuRy83SW9k?=
+ =?utf-8?B?dVVlQWpIQzN4TUtPbENzUE8vaUN5eHhYbVBnVmZCd1haSG11OGRnNUQvN0o5?=
+ =?utf-8?B?ZUdLWkpVRWEzOWwrWWtmYXIyODV6OXAwTFBaRlpGQlVSMEJNN29LUitTVVBo?=
+ =?utf-8?B?SzY4LzJUeGhtMlZuK0dQTEpUY3dkMGg4SEtuaXFLUTIvM3NuR29WaURiY3BT?=
+ =?utf-8?B?MlFya3dOSGxlTjJiRWZqczB6c3E3eVJZWnNvYkI0cytBZHYwYTNXbEF2aWxH?=
+ =?utf-8?B?a0dld0MyaWkvb0Zja3R3Q1FnVE50ckllVXpUek9tVTJDNElNY2pRM2drQTFn?=
+ =?utf-8?B?TTNWOCtRUkNERGJCWTlLbGh0Q29tNE1NUGNNODFtTkdiUjUyK2VVRGQvczNF?=
+ =?utf-8?B?NDdnOEx3TFVJb3B5M1R4aktTbXpLNVhQZ1R0eWppNzZXS2w4ZE9oYWFiempi?=
+ =?utf-8?B?eW44TkhKZHZ6SkdSamw0Ui8vWVFxTFROcHRCbDFDRUtaa0k2Ti9HbVhuZkh5?=
+ =?utf-8?B?cE5LT3B6MjRKZDF3RHZ6R2tkK0pjOEd2MDRMSGtCRWxiUDdVWGdqYk9CUEls?=
+ =?utf-8?B?d3VvUzM1aEhFUUZFRzNMeTZPc2NSMGNJYUtIZitJN0FZaURIN0Zqd1FPV2Y3?=
+ =?utf-8?B?Y1R0SjlsaCthYU8yVjdRYWRsYXhOVzJqeEZvb0h0OGY2cWd2NEZkZz09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6651f4e4-225c-41b6-5135-08de745c31bf
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 10:54:05.5550
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3EZqDUae9p5oMBEGMGiqmMTHbscKdG60f86Sch4rtHacSqL+lQ/EDzNJwYjEhtOFtLTP3DzckAu2oOWtLmWkiA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9837
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268284-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com,kernel.org,linux.dev,poorly.run,somainline.org,linux.intel.com,suse.de,ffwll.ch,quicinc.com,marek.ca];
+	TAGGED_FROM(0.00)[bounces-268285-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: DBB96196066
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[18]
+X-Rspamd-Queue-Id: D25631960AA
 X-Rspamd-Action: no action
 
-On 2/25/26 6:45 AM, Pengyu Luo wrote:
-> The DT configuration follows other Samsung 5nm-based Qualcomm SOCs,
-> utilizing the same register layouts and clock structures.
-> 
-> However, DSI won't work properly for now (Partial content wrapped to
-> the left side) until we submit dispcc fixes. And some panels require
-> DPU timing calculation fixes too. (hdisplay / width timing round errors
-> cause the fifo error)
-> 
-> Co-developed-by: Tianyu Gao <gty0622@gmail.com>
-> Signed-off-by: Tianyu Gao <gty0622@gmail.com>
-> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> Tested-by: White Lewis <liu224806@gmail.com> # HUAWEI Gaokun3
-> ---
+This patch set adds support for parsing the reset property in new Root Port
+binding in pci-imx6 driver, similar to the implementation in the qcom pcie
+driver[1].
 
-[...]
+Also introduce generic helper functions to parse Root Port device tree
+nodes and extract common properties like reset GPIOs. This allows multiple
+PCI host controller drivers to share the same parsing logic.
 
-> +					port@1 {
-> +						reg = <1>;
-> +						mdss0_intf1_out: endpoint {
+Define struct pci_host_port to hold common Root Port properties
+(currently only reset GPIO descriptor) and add
+pci_host_common_parse_ports() to parse Root Port nodes from device tree.
+Also add the 'ports' list to struct pci_host_bridge for better maintain
+parsed Root Port information.
 
-style: it's preferable to keep a new line between the last property and the
-following subnode, i.e.:
+The plan is to add the wake-gpio property to the root port in subsequent
+patches. Also, the vpcie-supply property will be moved to the root port
+node later based on the refactoring patch set for the PCI pwrctrl
+framework[2]. 
 
-port@1 {
-	reg = <1>;
+The initial idea is to adopt the Manivannan’s recent PCIe M.2 KeyE
+connector support patch set[3] and PCI power control framework patches[2],
+and extend them to the pcie-imx6 driver. Since the new M.2/pwrctrl model is
+implemented based on Root Ports and requires the pwrctrl driver to bind to
+a Root Port device, we need to introduce a Root Port child node on i.MX
+boards that provide an M.2 connector.
 
-	mdss0_intf1_out: endpoint {
-	...
-}
+To follow a more standardized DT structure, it also makes sense to move
+the reset-gpios and wake-gpios properties into the Root Port node. These
+signals logically belong to the Root Port rather than the host bridge,
+and placing them there aligns with the new M.2/pwrctrl model.
 
-> +							remote-endpoint = <&mdss0_dsi0_in>;
-> +						};
-> +					};
-> +
-> +					port@2 {
-> +						reg = <2>;
-> +						mdss0_intf2_out: endpoint {
-> +							remote-endpoint = <&mdss0_dsi1_in>;
-> +						};
-> +					};
-> +
->  					port@4 {
->  						reg = <4>;
->  						mdss0_intf4_out: endpoint {
-> @@ -4791,6 +4806,195 @@ opp-810000000 {
+Regarding backward compatibility, as Frank suggested, I will not remove
+the old reset-gpio property from existing DTS files to avoid function
+break.
 
-[...]
+For new i.MX platforms — such as the upcoming i.MX952-evk will add
+vpcie-supply, reset-gpios, and wake-gpios directly under the Root Port
+node.
+Therefore, driver updates are needed to support both the legacy
+properties and the new standardized Root Port based layout.
 
-> +				phy-names = "dsi";
-> +
-> +				phys = <&mdss0_dsi0_phy>;
+[1] https://lore.kernel.org/linux-pci/20250702-perst-v5-0-920b3d1f6ee1@qti.qualcomm.com/
+[2] https://lore.kernel.org/linux-pci/20260115-pci-pwrctrl-rework-v5-0-9d26da3ce903@oss.qualcomm.com/
+[3] https://lore.kernel.org/linux-pci/20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com/
 
-property
-property-names
+Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+---
+Changes in V6:
+1. Drop the pre-allocate pci_host_bridge struct changes in dw_pcie_host_init()
+   and imx_pcie_probe().
+2. Parse Root Port nodes in dw_pcie_host_init() as Frank and Mani suggested.
+3. Move the imx_pcie_parse_legacy_binding() from imx_pcie_probe() to
+   imx_pcie_host_init(), so that dw_pcie_host_init() parse Root Port first, if
+   no Root Port nodes were parsed(indicated by empty ports list), then parse
+   legacy binding.
+4. Add device pointer parameter for pci_host_common_parse_ports().
+5. Add NULL pointer check for reset gpio in imx_pcie_parse_legacy_binding().
 
-in this order, please
+Changes in V5:
+1. Add the Root Port list(pci_host_port) to struct pci_host_bridge for better
+   maintain parsed Root Port information.
+2. Delete the pci_host_common_delete_ports() as now the Root Port list in
+   pci_host_bridge can be cleared by pci_release_host_bridge_dev().
+3. Change the common API pci_host_common_parse_ports() pass down struct
+   pci_host_bridge *. 
+4. Modify dw_pcie_host_init() to allow drivers to pre-allocate pci_host_bridge
+   struct when needed.
+5. Allocate bridge early in imx_pcie_probe() to parse Root Ports.
 
-[...]
+Changes in V4:
+1. Add common helpers for parsing Root Port properties in pci-host-common.c in
+   patch#2.
+2. Call common pci_host_common_parse_ports() and pci_host_common_delete_ports()
+   in pci-imx6 driver.
+3. Use PCIE_T_PVPERL_MS and PCIE_RESET_CONFIG_WAIT_MS instead of magic number
+   100 in patch#3 as Manivannan suggested.
+4. Use "PERST#" instead of "PCIe reset" for the reset gpio lable in patch#3.
 
+Changes in V3:
+1. Improve the patch#2 commit message as Frank suggested.
+2. Add Reviewed-by tag for patch#1.
 
-> +			mdss0_dsi0_phy: phy@ae94400 {
-> +				compatible = "qcom,sc8280xp-dsi-phy-5nm";
-> +				reg = <0 0x0ae94400 0 0x200>,
-> +				      <0 0x0ae94600 0 0x280>,
-> +				      <0 0x0ae94900 0 0x27c>;
+Changes in V2:
+1. Improve the patch#1 commit message as Frank suggested.
+2. Also mark the reset-gpio-active-high property as deprecated in
+   imx6q-pcie DT binding as Rob suggested.
+3. The imx_pcie_delete_ports() has been moved up so that the
+   imx_pcie_parse_ports() can call this helper function in error handling.
+4. Keep the old reset-gpio property in the host bridge node for the
+   existing dts files and add comments to avoid confusion.
+---
 
-last entry: size=0x280, all instances, there's actually a register at +0x27c
+Sherry Sun (12):
+  dt-bindings: PCI: fsl,imx6q-pcie: Add reset GPIO in Root Port node
+  PCI: host-generic: Add common helpers for parsing Root Port properties
+  PCI: dwc: Parse Root Port nodes in dw_pcie_host_init()
+  PCI: imx6: Add support for parsing the reset property in new Root Port
+    binding
+  arm: dts: imx6qdl: Add Root Port node and PERST property
+  arm: dts: imx6sx: Add Root Port node and PERST property
+  arm: dts: imx7d: Add Root Port node and PERST property
+  arm64: dts: imx8mm: Add Root Port node and PERST property
+  arm64: dts: imx8mp: Add Root Port node and PERST property
+  arm64: dts: imx8mq: Add Root Port node and PERST property
+  arm64: dts: imx8dxl/qm/qxp: Add Root Port node and PERST property
+  arm64: dts: imx95: Add Root Port node and PERST property
 
-[...]
+ .../bindings/pci/fsl,imx6q-pcie.yaml          | 32 ++++++++
+ .../arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi |  5 ++
+ arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi        | 11 +++
+ .../arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts |  5 ++
+ arch/arm/boot/dts/nxp/imx/imx6sx-sdb.dtsi     |  5 ++
+ arch/arm/boot/dts/nxp/imx/imx6sx.dtsi         | 11 +++
+ arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts       |  5 ++
+ arch/arm/boot/dts/nxp/imx/imx7d.dtsi          | 11 +++
+ .../boot/dts/freescale/imx8-ss-hsio.dtsi      | 11 +++
+ arch/arm64/boot/dts/freescale/imx8dxl-evk.dts |  5 ++
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi |  5 ++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 11 +++
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |  5 ++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 11 +++
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts  | 10 +++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 22 ++++++
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 10 +++
+ .../boot/dts/freescale/imx8qm-ss-hsio.dtsi    | 22 ++++++
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  5 ++
+ .../boot/dts/freescale/imx95-15x15-evk.dts    |  5 ++
+ .../boot/dts/freescale/imx95-19x19-evk.dts    | 10 +++
+ arch/arm64/boot/dts/freescale/imx95.dtsi      | 22 ++++++
+ drivers/pci/controller/dwc/pci-imx6.c         | 76 +++++++++++++++----
+ .../pci/controller/dwc/pcie-designware-host.c |  8 ++
+ drivers/pci/controller/pci-host-common.c      | 58 ++++++++++++++
+ drivers/pci/controller/pci-host-common.h      | 15 ++++
+ drivers/pci/probe.c                           |  2 +
+ include/linux/pci.h                           |  1 +
+ 28 files changed, 384 insertions(+), 15 deletions(-)
 
-> +				mdss0_dsi1_opp_table: opp-table {
+-- 
+2.37.1
 
-You can reference the prior OPP table (and just call it dsi_opp_table)
-since they're identical
-
-Konrad
 
