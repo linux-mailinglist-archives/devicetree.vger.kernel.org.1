@@ -1,70 +1,78 @@
-Return-Path: <devicetree+bounces-268264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268265-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SD4DNbHPnmnwXQQAu9opvQ
-	(envelope-from <devicetree+bounces-268264-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:32:17 +0100
+	id cAFiE/rPnmnwXQQAu9opvQ
+	(envelope-from <devicetree+bounces-268265-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:33:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D0F195C99
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:32:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F002195CC7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:33:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7983B3059823
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:29:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E14DE3079082
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A85A392C28;
-	Wed, 25 Feb 2026 10:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666DE392C28;
+	Wed, 25 Feb 2026 10:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="furmogx/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MAsB6zgE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5A3392C26;
-	Wed, 25 Feb 2026 10:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40EA1392C27;
+	Wed, 25 Feb 2026 10:30:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772015348; cv=none; b=W8xEcBnicPCMgaT44/gtTn5AJLnLJeRIJmAEsDEek2ZPNQiwdaeqp5AI2oBpt0jikZ8GQQiIWP69puyE83MwRCN6C2R57IDPh8pbvY0+qTW6Ksoyitl7CoLDrYG2pgsc1VkT/+R/gqEi6RHoBeQtKa3tcFevs9NZ7TWVt+4UoUc=
+	t=1772015409; cv=none; b=TzTUW2Ga7K0E9+66P/1I6EMEvz18RDvu7AOC4t4koDms/4cAzZft6mgCKa7yA3pH7Uazc1UUIlX+phI53M/TDAgrKvcOV6O2UuxoP71/tO2nlq9q1vgv3t6/Aefjc8EXcVV10brSdPnIX16K5yiajv147Cuw3zbqgDlKCZVkdUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772015348; c=relaxed/simple;
-	bh=zP3eqqtqujdWIQF6IceuD3l5Q6WDeaRV9F9LtPq14CM=;
+	s=arc-20240116; t=1772015409; c=relaxed/simple;
+	bh=yvsBqcgbBxN3PsC9TQJxXhhlhJlGMx/bZ4A6gDi5mYg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IZE7bF3x1a+2ifBMBsICWDauBOFWXkO51hsP2xqg1fDNcsgiyrhFqeFMxYOGmcRjDbfwoy7+n1WhNh320Vi5b7/46zbkAwTyWF77prJ621tg7YQihhpVIlSPVfPfseAOK0kpRJP2Qa/091BsjjBTMAwysaKgM/DCXNCNrQuZqsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=furmogx/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C09AC116D0;
-	Wed, 25 Feb 2026 10:29:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OEJi9gtSHZUC5qg8/Z/ov5ta8H0E2LJrNLjPnm0ilPeztmpppcryVTT5VS6Mqx6cOHy7E6HvgW4SisTwBXK6OMvI2tzkW8Afr+UkhmDiB7i3RHZdHKzXO13hvT3a/yxKiyduwDuiMkA04rnHbRZ70FO0j579EZkC4yxXJLE2oQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MAsB6zgE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 203BAC116D0;
+	Wed, 25 Feb 2026 10:30:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772015347;
-	bh=zP3eqqtqujdWIQF6IceuD3l5Q6WDeaRV9F9LtPq14CM=;
+	s=k20201202; t=1772015408;
+	bh=yvsBqcgbBxN3PsC9TQJxXhhlhJlGMx/bZ4A6gDi5mYg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=furmogx/wRI0s7EQcUD4uc1groAANoK2PzJT0/vtvFuel6kae92du3xIfWIO8FXGL
-	 ty6mbQq9u1R6yhBZU5wPI9itx92J5JdSwUzZtCp71zrhdSS9fXjxl6Damku7AHUUuh
-	 Q54OcXKZtTNx1EL4OCUUL8zN9Hb22JJ7angSQ4kiASECY/tsJkqMbLObK68eK4Vo8N
-	 ZA1IiKIIwDc/8HqdviAa6exIsA3/Cp2ZdZl9McFC8UxGUl4c6MZxIsqMub3JI9qbPO
-	 swjW2E0etPEVILdHRXeb7LFbY7WjBUiO2darVGFdZs+1qf2HPkv+H4nNwbPsxmSygm
-	 yaXOdDCxZBJ4Q==
-Date: Wed, 25 Feb 2026 11:29:05 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, peter.chen@cixtech.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH v9 1/3] dt-bindings: soc: cix: document the syscon on
- Sky1 SoC
-Message-ID: <20260225-subtle-caped-hyrax-dc99c8@quoll>
-References: <20260224092111.2198005-1-gary.yang@cixtech.com>
- <20260224092111.2198005-2-gary.yang@cixtech.com>
+	b=MAsB6zgEa3O9fbPh7dwCcqqTclghdnqipBOuMPspWVWuoNxQDb3//fq8tRK8ArZmq
+	 0CUZxHj4fr33OgI2iG3/4ZHFr+1uh2vNlhTzaHqgmWSmkTD/PT8/Wxvuz+LvVAamH0
+	 xtDUT64UKE2u0xQBZdLJfyD8w8NRDotV8r9xKJYP5r78sa7UB3zDNVI2Pw1/MBOMxg
+	 Pl/tV2Rx/AfRRppX5INg0Vzju3JCCAoMPeoGWCTU1jOWcFGSg+r3kZbdsQg2LULAGA
+	 OlB5Bdf43aCqAOo9uix2itads2FzNKm0dCOAKaLH+wpf3BoxrUMwlZ2Ia7NaiVkhA3
+	 ra/C1ac+C0j2A==
+Date: Wed, 25 Feb 2026 16:00:04 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Longbin Li <looong.bin@gmail.com>, Ze Huang <huangze@whut.edu.cn>,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, sophgo@lists.linux.dev,
+	linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: dma: snps,dw-axi-dmac: Add CV1800B
+ compatible
+Message-ID: <aZ7PLPFVnWjaBDpa@vaman>
+References: <20260120013706.436742-1-inochiama@gmail.com>
+ <20260120013706.436742-2-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260224092111.2198005-2-gary.yang@cixtech.com>
+In-Reply-To: <20260120013706.436742-2-inochiama@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -76,45 +84,57 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268264-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268265-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	DBL_PROHIBIT(0.00)[0.244.36.0:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[synopsys.com,kernel.org,outlook.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,gmail.com,whut.edu.cn,vger.kernel.org,lists.linux.dev,lists.infradead.org,gentoo.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 61D0F195C99
+X-Rspamd-Queue-Id: 9F002195CC7
 X-Rspamd-Action: no action
 
-On Tue, Feb 24, 2026 at 05:21:09PM +0800, Gary Yang wrote:
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscon@16000000 {
-> +      compatible = "cix,sky1-s5-system-control", "syscon";
-> +      reg = <0x16000000 0x1000>;
-> +      #reset-cells = <1>;
-> +    };
-> diff --git a/include/dt-bindings/reset/cix,sky1-rst-fch.h b/include/dt-bindings/reset/cix,sky1-rst-fch.h
+On 20-01-26, 09:37, Inochi Amaoto wrote:
+> The DMA controller on CV1800B needs to use the DMA phandle args
+> as the channel number instead of hardware handshake number, so
+> add a new compatible for the DMA controller on CV1800B.
 
-I am not going to repeat my reviews.
+Applied this manually, please check if that is okay after push
 
-NAK, I mark it as changes requested in Patchwork.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> index a393a33c8908..0b5c8314e25e 100644
+> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> @@ -20,6 +20,7 @@ properties:
+>      enum:
+>        - snps,axi-dma-1.01a
+>        - intel,kmb-axi-dma
+> +      - sophgo,cv1800b-axi-dma
+>        - starfive,jh7110-axi-dma
+>        - starfive,jh8100-axi-dma
+>  
+> -- 
+> 2.52.0
 
-Krzysztof
-
+-- 
+~Vinod
 
