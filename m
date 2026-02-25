@@ -1,86 +1,65 @@
-Return-Path: <devicetree+bounces-268210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268198-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MCXoITW6nmnwWwQAu9opvQ
-	(envelope-from <devicetree+bounces-268210-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:00:37 +0100
+	id QBSfDHa5nmnwWwQAu9opvQ
+	(envelope-from <devicetree+bounces-268198-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB0819489F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:00:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F341947B6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CAE8F31062CA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:58:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E073D3042B43
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E07330B33;
-	Wed, 25 Feb 2026 08:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="jON1/RGG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D8B2DAFCA;
+	Wed, 25 Feb 2026 08:55:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from Atcsqr.andestech.com (exmail.andestech.com [60.248.187.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAEBD329368;
-	Wed, 25 Feb 2026 08:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4294C2FD673
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.187.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772009836; cv=none; b=Q7jwIFWxfTuuyLgUlo62V4o0ARhUz/PbJy8qKmAatFC4Rintq9sqMW0swMcqZKHgczlRSCGIcw6rvHYwWwHcnizoVEJPUlWKD7R/RCPgafXESSLOcaWZTSoD1TNgaeP//pMXtEOYSII5447uhTgvB9/z8ERuVPfU4iCFojZTtd4=
+	t=1772009730; cv=none; b=Ojtp7pW29SvrrX3HcrK7me0aZtA9K9nKGC6KudPBqM/CFmpD9dZVPkxKgIQYGB4Fr8WHkF2OQ2A0/4KXr9m2lvAd1g3R6qSkFgYugMEw+Tkx9sK+yfSkFk5/shLoQUEoDWoVdLsWnI/alHCGfRtjq2ZusVUvXKN3ji0tUvSF5Rg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772009836; c=relaxed/simple;
-	bh=hETeU/hyyDiwOujFRlHAVoyIbo34onNI4Jg8OLACaz8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bUmSlkmD4EYJbW4aLAvZmLvRE+5fBk09798GUHVdZmZPM6IyJDfObOjnv6HaXr+w5gXzU7iOm/Qzkq4bxJSyVxAPEOE7z3ee+hypyWip1uuihsV/BO+2yLrgUqY6+2WNMBonnnMt9wCNEw8YosuxyDM3bIFugJjouupa78Teyf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=jON1/RGG; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772009833; x=1803545833;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=hETeU/hyyDiwOujFRlHAVoyIbo34onNI4Jg8OLACaz8=;
-  b=jON1/RGGbfR80cYx0dM0C3GJMoEAwy5ftsSiRJxcNiRJ/tJZTkQeG9vF
-   /Gia0F2PN6qq1eZAw4F6VyEwckls+HkRbVKYP9wFaqvR6GL11hwl/fWQ0
-   +kL5E8f4PobMgrwBb6aDlDtB5zWktZVlfGbxv+xv2itY/MlToLwh3gSWP
-   Tyd10y93X0TTz036p3VCT+UKMuWBuH734znc8H/yAkeYRnlUCIHPTj6dO
-   2R2ekmxhAgRO4StnEZuVpo0ZP9yCeb/IzsQZMXw/LaScEdx3i/b013IsH
-   4z6gdx//5VkoT47Yxt2BGevfn/2GqLrvQeoDFTjVYDToz57/thyvOyhnG
-   g==;
-X-CSE-ConnectionGUID: pcieN23YRomtc3AdpeaIbA==
-X-CSE-MsgGUID: es+Ij8gcTD+YURvdwCwnPQ==
-X-IronPort-AV: E=Sophos;i="6.21,310,1763449200"; 
-   d="scan'208";a="61258828"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Feb 2026 01:57:12 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Wed, 25 Feb 2026 01:56:42 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Wed, 25 Feb 2026 01:56:31 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-	<rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-	<jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<linux@armlinux.org.uk>, <ebiggers@google.com>, <martin.petersen@oracle.com>,
-	<ardb@kernel.org>, <tytso@mit.edu>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-CC: Aubin Constans <aubin.constans@microchip.com>, Manikandan Muralidharan
-	<manikandan.m@microchip.com>
-Subject: [PATCH 6/6] ARM: configs: at91: sama7: enable LVDS serializer support
-Date: Wed, 25 Feb 2026 14:24:30 +0530
-Message-ID: <20260225085430.480052-7-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260225085430.480052-1-manikandan.m@microchip.com>
-References: <20260225085430.480052-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1772009730; c=relaxed/simple;
+	bh=wlQ5GQhbYOAzh/KowiyGqkjmHLg6XfjR5AQ4NZXO49Q=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dIKgHZ3WAKtHJpTsh7iBTz9D7KdCRsdh0QhwjK9lvw5k+GIW8+48xvIhGIrMfzUG53tt0hYi9z7JqBG+Y93A/Phlr4StAHYLWucFVnig90XjP62i/UEjmQRlRj4rfvYyEfaqgMsKp9kmEFBUOIx35BV3q2wyloUNWqvXa0gqzqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.187.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTP id 61P8tAPa077808;
+	Wed, 25 Feb 2026 16:55:10 +0800 (+08)
+	(envelope-from randolph@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 25 Feb
+ 2026 16:55:10 +0800
+From: Randolph <randolph@andestech.com>
+To: <linux-kernel@vger.kernel.org>
+CC: <linux-pci@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <jingoohan1@gmail.com>,
+        <mani@kernel.org>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
+        <robh@kernel.org>, <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <alex@ghiti.fr>, <aou@eecs.berkeley.edu>,
+        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
+        <ben717@andestech.com>, <inochiama@gmail.com>,
+        <thippeswamy.havalige@amd.com>, <namcao@linutronix.de>,
+        <shradha.t@samsung.com>, <pjw@kernel.org>,
+        <christian.bruel@foss.st.com>, <Ghennadi.Procopciuc@nxp.com>,
+        <quic_wenbyao@quicinc.com>, <qiang.yu@oss.qualcomm.com>,
+        <vincent.guittot@linaro.org>, <vidyas@nvidia.com>,
+        <elder@riscstar.com>, <s-vadapalli@ti.com>,
+        <ciprianmarian.costea@nxp.com>, <randolph.sklin@gmail.com>,
+        <tim609@andestech.com>, Randolph Lin <randolph@andestech.com>
+Subject: [PATCH v11 0/4] Add support for Andes Qilai SoC PCIe controller
+Date: Wed, 25 Feb 2026 16:55:00 +0800
+Message-ID: <20260225085504.3757601-1-randolph@andestech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,61 +68,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 61P8tAPa077808
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[andestech.com : SPF not aligned (relaxed), No valid DKIM,reject];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	TAGGED_FROM(0.00)[bounces-268210-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_FROM(0.00)[bounces-268198-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,microchip.com,bootlin.com,tuxon.dev,armlinux.org.uk,google.com,oracle.com,mit.edu,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[34];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,google.com,ghiti.fr,eecs.berkeley.edu,dabbelt.com,sifive.com,andestech.com,amd.com,linutronix.de,samsung.com,foss.st.com,nxp.com,quicinc.com,oss.qualcomm.com,linaro.org,nvidia.com,riscstar.com,ti.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[manikandan.m@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.884];
+	FROM_NEQ_ENVFROM(0.00)[randolph@andestech.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RSPAMD_EMAILBL_FAIL(0.00)[aubin.constans.microchip.com:query timed out];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 4BB0819489F
+	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 86F341947B6
 X-Rspamd-Action: no action
 
-From: Aubin Constans <aubin.constans@microchip.com>
+From: Randolph Lin <randolph@andestech.com>
 
-Add config support to enable LVDS serializer
+Add support for Andes Qilai SoC PCIe controller
 
-Signed-off-by: Aubin Constans <aubin.constans@microchip.com>
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+These patches introduce driver support for the PCIe controller on the
+Andes Qilai SoC.
+
+Signed-off-by: Randolph Lin <randolph@andestech.com>
 ---
- arch/arm/configs/sama7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v11:
+- Make minor adjustments based on the reviewer's suggestions.
+- Use FIELD_GET() to check the link status.
+- Use dw_pcie_readl_dbi() when reading from the DBI region.
+- Enable runtime PM to participate in the PM hierarchy.
+- Add dma-coherent to the DT bindings and DTS.
+- Fix the interrupt-map-mask value in the DT bindings example.
+- Modify the maximum ranges size to support multiple iATU regions
+  in the DT bindings and DTS.
 
-diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
-index 0f1a3abc4640..e52f671ccec4 100644
---- a/arch/arm/configs/sama7_defconfig
-+++ b/arch/arm/configs/sama7_defconfig
-@@ -152,6 +152,7 @@ CONFIG_VIDEO_IMX274=m
- CONFIG_VIDEO_OV5647=m
- CONFIG_DRM=y
- CONFIG_DRM_ATMEL_HLCDC=y
-+CONFIG_DRM_MICROCHIP_LVDS_SERIALIZER=y
- CONFIG_DRM_PANEL_SIMPLE=y
- CONFIG_BACKLIGHT_CLASS_DEVICE=y
- CONFIG_BACKLIGHT_PWM=y
+Changes in v10:
+- Use "qilai" instead of "andes" as the tag
+
+Changes in v9:
+- Drop the patch that adjusts the number of OB/IB windows.
+- Made minor adjustments based on the reviewer's suggestions.
+
+Changes in v8:
+- Fix the compile error reported by the kernel test robot.
+
+Changes in v7:
+- Remove unnecessary nodes and property in DTS bindings
+
+Changes in v6:
+- Fix typo in the logic for adjusting the number of OB/IB windows
+
+Changes in v5:
+- Add support to adjust the number of OB/IB windows in the glue driver.
+- Fix the number of OB windows in the Qilai PCIe driver.
+- Remove meaningless properties from the device tree.
+- Made minor adjustments based on the reviewer's suggestions.
+
+Changes in v4:
+- Add .post_init callback for enabling IOCP cache.  
+- Sort by vender name in Kconfig 
+- Using PROBE_PREFER_ASYNCHRONOUS as default probe type.
+- Made minor adjustments based on the reviewer's suggestions.
+
+Changes in v3:
+- Remove outbound ATU address range validation callback and logic.
+- Add logic to skip failed outbound iATU configuration and continue.
+- Using PROBE_PREFER_ASYNCHRONOUS as default probe type.
+- Made minor adjustments based on the reviewer's suggestions.
+
+Changes in v2:
+- Remove the patch that adds the dma-ranges property to the SoC node.
+- Add dma-ranges to the PCIe parent node bus node.
+- Refactor and rename outbound ATU address range validation callback and logic.
+- Use parent_bus_offset instead of cpu_addr_fixup().
+- Using PROBE_DEFAULT_STRATEGY as default probe type.
+- Made minor adjustments based on the reviewer's suggestions.
+
+Randolph Lin (4):
+  dt-bindings: PCI: Add Andes QiLai PCIe support
+  riscv: dts: qilai: Add PCIe node into the QiLai SoC
+  PCI: qilai: Add Andes QiLai SoC PCIe host driver support
+  MAINTAINERS: Add maintainers for Andes QiLai PCIe driver
+
+ .../bindings/pci/andestech,qilai-pcie.yaml    |  89 ++++++++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/boot/dts/andes/qilai.dtsi          | 109 ++++++++++
+ drivers/pci/controller/dwc/Kconfig            |  13 ++
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-andes-qilai.c | 199 ++++++++++++++++++
+ 6 files changed, 418 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-andes-qilai.c
+
 -- 
-2.25.1
+2.34.1
 
 
