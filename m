@@ -1,61 +1,67 @@
-Return-Path: <devicetree+bounces-268307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268308-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2FlLMg3cnmkTXgQAu9opvQ
-	(envelope-from <devicetree+bounces-268307-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:25:01 +0100
+	id 0Nx4L9DcnmkTXgQAu9opvQ
+	(envelope-from <devicetree+bounces-268308-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:28:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31ECF1966C0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:25:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C3C0196787
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:28:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 34FD53037F86
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:24:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 71B0330804FB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA76E39447C;
-	Wed, 25 Feb 2026 11:24:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6731B393DF9;
+	Wed, 25 Feb 2026 11:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GuS2kFH+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pkiNzdh4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95FCE39447A;
-	Wed, 25 Feb 2026 11:24:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432E13939CE;
+	Wed, 25 Feb 2026 11:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772018651; cv=none; b=lj/H7BntDKh5GgoYGDRL9wIsVrb8kVWHZSGOLZPFgoFt0uqB4Ku78MJ2Z6S+Oj6Floi9IoFsTWone6oLxIwnwYG50fXNXySvKjJJA6Cq7VSRJT1xc41MqldgvAJOzjZXWoIfhHbl6sFoS0WGbRSKhDegGUSfeJGwEJjCJ8rDVDk=
+	t=1772018659; cv=none; b=RDMPLfd6yHsOR9FzdiX5A4n5dfyB2ifQFFwa6BPMQELP4Mvho8ZRBxmLg5+6QAt5d+FRzzU3696eiG4ltaEC3CVq1KrBdVTpRHc8XL+GIdMrg3M5Nnq/V8iMHpVO0UKOSPtl2LRRJ9/5CDXtFg4IApAJflTZNydA9gv44sOclAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772018651; c=relaxed/simple;
-	bh=w0t3HBg39hkW5eN5XKWeIPxBe+jpBk6uZWfkmh6G+RQ=;
+	s=arc-20240116; t=1772018659; c=relaxed/simple;
+	bh=mWAOa2Ep2Ez6ZEQGoQgZ/mO6Dbm5GWbW6wlc1/rnqYc=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=AYDkB2kkJ+J8lRMuPEAGnFlFWk+iSetifhAd1OLPKAn7gQGp8Cu01dCAM7LhBQi2xfLJzx3XoKztfPTCefLvmizLKZRbS1U6VXWPiXVgw+kfK3eE/4uGcNQF0CVeVRL84BY+59g28HSjSGtEeFwG3uwKLq0E8LJi2FBFgNVbh7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GuS2kFH+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82725C19421;
-	Wed, 25 Feb 2026 11:24:09 +0000 (UTC)
+	 MIME-Version:Content-Type; b=bPD2aA7dGVqHK8xA9hx7Dwb7LyOdp18Xgc5n+5zJucqoDSMuC+Ue0tDbCQV6zsYO2QGNpOmEaDBIB5fH8aA+TLX8cfFcviM4Y3Rf2zV8AeSWUZ1erVr5Qp5eHaSTvePQXcaUifd9w6nlxyHbz1eVV9VtiF8ck+cZ0+3cAKac5vM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pkiNzdh4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E602C19423;
+	Wed, 25 Feb 2026 11:24:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772018651;
-	bh=w0t3HBg39hkW5eN5XKWeIPxBe+jpBk6uZWfkmh6G+RQ=;
+	s=k20201202; t=1772018659;
+	bh=mWAOa2Ep2Ez6ZEQGoQgZ/mO6Dbm5GWbW6wlc1/rnqYc=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=GuS2kFH+vGonAASw5cpR7VH3zLk/OXtq5pfZDHsMXD2uuu/YjsZgXp/+G26J/znQJ
-	 UPYxvVmNzAG8inht9RBWtWsTxiFk2hPbucuzF/Z73oYUbA0kR/9EYEElY/rVDn9bBy
-	 STDqEWsMW38pZT/IjYNBs9gr6FycFcIH6cY+S5ZpkOMxskSXs61T5oEb4LQyOpaysL
-	 44PWRTZxB5bhk9xjBganTt1PRMHzosNFdgGeDTN1VnY6nLpe20vzPXdpUCvK/TJ/3L
-	 YanJ+2eXBkZj+M+tXOy97ImyaJugZuR+IH4HqeRmMtZG0kxip6IRaehFo/Jf6wosmV
-	 49o/8HmCAlg7Q==
+	b=pkiNzdh4i3pYqn3YgxJfAcdpYDiClD2dq1EsaazuRHFNg6Rx1tnWrw+H3mVLpjGyf
+	 YipqqWM0jRWxnqfgRCrgKgp+R3bHzPDJm+F3dVJlolGnyM4ysI9unZ1rmk3fa8CpT/
+	 1BUnhe8XNVmvPBYBUBRYeu0Z0Pyqn46Yj3D7mltxHCUiJfA3DWYmPP6m1ckdicBsSh
+	 cqJAl9H2avs9CgSvfDF9MR4MCHMFWz6guPK0TZK5pnFlTF1chukcF0V5t1wzLypmAm
+	 zX3GjZwpWRrQPQn2Xk56AtOiXeg6c2a6XJ2kOIbRMN4Br7E5d71f3PEHuCLqCE74xz
+	 Y0/5Jkzu0Dqfw==
 From: Vinod Koul <vkoul@kernel.org>
-To: Eugeniy.Paltsev@synopsys.com, Dinh Nguyen <dinguyen@kernel.org>
+To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+ Longbin Li <looong.bin@gmail.com>, Ze Huang <huangze@whut.edu.cn>, 
+ Inochi Amaoto <inochiama@gmail.com>
 Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Khairul Anuar Romli <khairul.anuar.romli@altera.com>, 
- Rob Herring <robh@kernel.org>
-In-Reply-To: <20260131172856.29227-1-dinguyen@kernel.org>
-References: <20260131172856.29227-1-dinguyen@kernel.org>
-Subject: Re: [PATCH] dt-bindings: dma: snps,dw-axi-dmac: add dma-coherent
- property
-Message-Id: <177201864915.93331.2089924813116515907.b4-ty@kernel.org>
-Date: Wed, 25 Feb 2026 16:54:09 +0530
+ linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, 
+ linux-riscv@lists.infradead.org, Yixun Lan <dlan@kernel.org>
+In-Reply-To: <20260120013706.436742-1-inochiama@gmail.com>
+References: <20260120013706.436742-1-inochiama@gmail.com>
+Subject: Re: (subset) [PATCH v3 0/3] riscv: sophgo: allow DMA multiplexer
+ set channel number for DMA controller
+Message-Id: <177201865381.93331.6104381063514168222.b4-ty@kernel.org>
+Date: Wed, 25 Feb 2026 16:54:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,51 +72,55 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268307-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-268308-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[synopsys.com,kernel.org,outlook.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,gmail.com,whut.edu.cn];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 31ECF1966C0
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3C3C0196787
 X-Rspamd-Action: no action
 
 
-On Sat, 31 Jan 2026 11:28:56 -0600, Dinh Nguyen wrote:
-> The Synopsys DesignWare AXI DMA Controller on Agilex5, the controller
-> operates on a cache-coherent AXI interface, where DMA transactions are
-> automatically kept coherent with the CPU caches. In previous generations
-> SoC (Stratix10 and Agilex) the interconnect was non-coherent, hence there
-> is no need for dma-coherent property to be presence. In Agilex 5, the
-> architecture has changed. It  introduced a coherent interconnect that
-> supports cache-coherent DMA.
+On Tue, 20 Jan 2026 09:37:02 +0800, Inochi Amaoto wrote:
+> As the DMA controller on Sophgo CV1800 series SoC only has 8 channels,
+> the SoC provides a dma multiplexer to reuse the DMA channel. However,
+> the dma multiplexer also controlls the DMA interrupt multiplexer, which
+> means that the dma multiplexer needs to know the channel number.
+> 
+> Change the DMA phandle args parsing logic so it can use handshake
+> number as channel number if necessary.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: dma: snps,dw-axi-dmac: add dma-coherent property
-      commit: ff7cbcca2b32c6e079941e577c41c74036861d5a
+[1/3] dt-bindings: dma: snps,dw-axi-dmac: Add CV1800B compatible
+      commit: 5eda5f42d2fee87127b568206a9fcc07a2f6eab6
+[2/3] dmaengine: dw-axi-dmac: Add support for CV1800B DMA
+      commit: 02a380ea7ed2d737a42693d7957ec8c33a92d9fd
 
 Best regards,
 -- 
