@@ -1,81 +1,83 @@
-Return-Path: <devicetree+bounces-268103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268105-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OxDJ51bnmlrUwQAu9opvQ
-	(envelope-from <devicetree+bounces-268103-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 03:17:01 +0100
+	id 4D8nO3BXnmkKUwQAu9opvQ
+	(envelope-from <devicetree+bounces-268105-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 02:59:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1947190CA3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 03:17:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F80190532
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 02:59:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E86F31632CF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:59:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9A85430B99A0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C9A52652B7;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E434726CE1A;
 	Wed, 25 Feb 2026 01:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oglb09DA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nJhIegNO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3282550D7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939C72236F7
 	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 01:59:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771984746; cv=none; b=O13kmJA0fxweBaSzj/4J4yS52jzE32KhQx9UITEhG4DeXKgAKbl/8+O23xSRFAtqrqvf+ZNwF8iQsdSeMnWrSjwZ6YsFVcTAzqSWM87FslIe6r0IHw7jFrfkCzd1Jwif/iwHjP/+pJUd56exrtUH9ytcac3C3pv+w+bUpEi3h0U=
+	t=1771984746; cv=none; b=liH425UDbelp7lJaQUs2smkcUY2931GKzp20jnEkVmXLDYa0LP9alqgICY8+0H+rQrwEr3LZW5mhE+fLYisjR89Oa0CMcglym9GYqxPWwSKwn5pMPzzyReJOu6SSu+8CDbpbYaqq4TUku71lKvyYveg5ZVHabwHxlIwjzHJJw7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1771984746; c=relaxed/simple;
-	bh=W2KKtQ6U1y1uHnGI/uA+jFy7/QOEsOMRiGUqVPJW/vs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rM2fY5zBlG7XVoMOjUo9gfQoHNUPA6sDzQVJcrMwCDp7qhAYu2IrenTlGmj4HGYay5NeAwOH6+CHgP1aqPzlGF4/Sl6P26j07NHJeP9JtMGcFyxWEi99yINCFtA4+JucIkqSxXpxvfXUWR45HaX0mEdQruQagNqs1TqRx+WnaUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oglb09DA; arc=none smtp.client-ip=209.85.214.176
+	bh=+BTlo82bOP/foze/gQeON8U8aTkxMyzFjbZtn96P+d4=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=RB37I7qk/56WKW1haRnRwdJ0JYpx+X99jsgm0nPu0NoGvUyzAA570y1DB1w75mZanKE2V48BW9EVNIe6nmDCL9burXIKLKB+CKt7Fsyt2Eu5Q6vwIlbrdslXi4IX9HT/TScSWxod3iM99YJhtAm242N0haK6CyMFUWJ9sOGFQGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nJhIegNO; arc=none smtp.client-ip=209.85.215.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2ad21f437eeso3156985ad.0
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c06cb8004e8so2592054a12.0
         for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 17:59:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1771984745; x=1772589545; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sFSQgKMpbT4Jja0uO7WjQXE+RhpLS+aEelpO+yxQLtk=;
-        b=Oglb09DAEuvCJ/2h3W8nq0JVuXbX8nsUipifd9x4a7ZuaKPK42/uadnP3eU2PM240S
-         kPWSRjP9sTzuLIGYgHCJyrLKGr4oQ71B8Di+KporcBm8TTKhDt8axAiuPHbZ+iGi4puX
-         lpPbLYk4Ihl/TwtXaFYeuh2tRQ67DUI4xDFdkhXcxyoUtNsD6yy3BKbxXaX+/oLxbS2l
-         dcEB1dmyJrCgzy8j93YfnN6kXBzdtQ0RMaYUxDiOwbJCVRHEvO6+JCKiAb+5gWSaRnyZ
-         BWedLXDUiR4HdmyMtRh1+xhx7eQ/WZqogBzBKX4CDMlLv4yZCnf4G5NsLP8UTxXG3FVX
-         vUSA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3zvwKD7V2YKpGMLkJEO1tU3ZqnJ4SfaB+coADDuVirU=;
+        b=nJhIegNOHpNIjkHyY0JX0Ua07WUUBuqTtv3jxZVVbhT6lH6+hUKr/qc7aDYBhI0AgW
+         baPLhUF7PFsu9dO5bAz+nwHdC+wMjmKerqk3IdaBDM/vTN1Jwrv5DJ6CM6ugNqjA3WYc
+         VUA0mWtwmc3nmSCZ8wzCZJp4gAbjQSYVHtr0HNT/nGPyZ2WuGTZR0f32Zg+Zjq4Lj2BZ
+         8KdKojVnz7uTQ6GEX9qUPXKfBln6BlaWJBfL39E03dvo5EcGsqWigUXrZc++VwPXuKGc
+         naadoQxl3rVuxwaiXv4TuM1+B70mX8g2iXy0j8cPoVvQBq4Fmh3I8ueM4oK+n4SNmSIV
+         woFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1771984745; x=1772589545;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sFSQgKMpbT4Jja0uO7WjQXE+RhpLS+aEelpO+yxQLtk=;
-        b=sjsQeNj6FSK8wIX1g5Z0Uem0nMp9vpEX43Rjj+EReeNfWBgSXohy6IomhnfOXtjLQm
-         h1d8Z4dBiZgvt7nkejFJ8kTFXFI3u9y8LcaTbmjQoXPwPYVNjDR3pceEieX8AoQlXvk/
-         ODNF8Q5nyFytLY8WSfN6EJUdnYSiE0FLyX5CagupHtSGCu55nS4nXarKjKLFOiNxY3yC
-         HjCha05+VPoSflbR9D54DSrjsI88R6vw0x0ZTJYysOtJTTFiM3/GDKyR+iO6SIi4VqjI
-         CrKdS7OZ71BSBhehullZKNbfvvunfWEBigl6CLFqY1JOjUG+RUHAqetO7vp2OBIF0Np4
-         qiRA==
-X-Forwarded-Encrypted: i=1; AJvYcCXt3FKMFx4ZIO5Cj4N4FwrdcRi1qZLKqb6LIVZH2jFkv8XTvcuVFaejLZdD1Uu7NORr/5hByaOeb0g6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7ZggOrEdFG8PDCAeYX7ztchbC44MBQwaKr7lmkgsrpS1rwDzi
-	JbwnImVuht/rR2OmtGBtJhrurUE523yIMx93rUgpyF9zRwohLX7ncXNH
-X-Gm-Gg: ATEYQzyT8N1iYOXLuGWvfrNFkmd6vSEGX1TtuCYlrNzWAZizkPXcDWqfifvvh1uGlmv
-	mI4ilazPMHlbapLuhwfMZorE+6EFUy9BhjC+lPc0utt8qeOF3ZIzk8vGOxywqZqEMnmRHl6Sjzp
-	fuUUx6y3G06ufNqPNcnutjBojFrhbtttzsoaxb4MiPxKIaGfxrBPhnnA8YbYwgFI6kZA7maOdvU
-	32n7InqKYAOsQXJhkwcTexq0OeMw/X6NI3CzTQb45COMe36jrmwEAXK1tVkOOB3AVAP/TeMkPTN
-	axqwruV4PiU26Jz5G6fJA4vP6vM/hfrsrN+fh//pVK3bGNW89lZHFPyj3U2swieQtX2yi7GGL8S
-	HMcM2A2iusRkenWci7FySjIySa6Ap4Kxz9pcFbcFJZQtb8WPwFhETQfXDUJQB6qQv0U2AwVcz1O
-	sUVwBQtIZjF3Fz3Z3CpKpOingJNjJtB+H82GX/dBbB1Pg2GA==
-X-Received: by 2002:a17:903:46c6:b0:2aa:e9f0:146c with SMTP id d9443c01a7336-2adbde10d4amr18311745ad.29.1771984744657;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=3zvwKD7V2YKpGMLkJEO1tU3ZqnJ4SfaB+coADDuVirU=;
+        b=ASMRLzb2zTUjPXorvaTpMzxzGByV3j59kc9dvmYwkHgZKS/FqprIUN0MCab/bVbmZA
+         lntxCD0a79X+ecW18nOxg68PP5q/Kn54uR38jEYZ0TiCX1nbcQA9+B+DejkOwCavfeqG
+         Qt26FprYMw5DipWHemJ32fw5qC1kaWA9mFgOHus0Pi1Mxh7BGDGheyA/s6RVp890NGJe
+         4aiP63pgAlZfDsGooJmDPsk7MiVR8kgzeuMDXaZ6bJYKM4Ov+CvfxQtsZPY0nUZH7W7f
+         rcAnYJsuZrL0he4+QhlxaMXH7K0Du1phiO/Upc9PvmYhFg3TUr3kaT+5Lc+Pw7tM+DDP
+         ZTKg==
+X-Forwarded-Encrypted: i=1; AJvYcCW78j6u7zfo8ZCwtwi51nqfZX9B8C0ZTOsbu9SCcEMNlpEaXg7S9l4MWrUTnEpxlfZ8coGNa1DtE+ty@vger.kernel.org
+X-Gm-Message-State: AOJu0Yynl+9Ngh0n1on/JGSWct3dnEDgzuPp+gmBVMFey7ruhsqf7x5n
+	InUuvy7dTgjV+7iyBMqhLLzFYom/RhqInhaw6GMlNHAU1w/7P//OH+D5
+X-Gm-Gg: ATEYQzy5UuNsDcyZyaglLbBg6Z1DcnnN9fazKonyaXprVsrfHQ1JNCF31AvaaRLpJWw
+	aHdYREbOya5aFsWttqQISq7eWY1paQ9xd64eDObEtalvwSVPgh51XforezuBIp546A2ayqAe0eJ
+	ig/g/PbHLtSxj3e1dqI1XurpjJkpFi3UBh5KJEq6bTDyDvykDueyQOCPxMXfVuxwjH0T2MIK934
+	F1T40D70rI1N198vYLzxOiO0Y69z5wLveochfg2iEydj9IULFyStswC+zT0/wXGMVMsPpjGFqNH
+	9BtueJsvSurj2FswHQ+JNMvReChwYiLqkuI2JU9cG13yzHkNpTlWVmzZ+cUVeCoLtVeOCSAGhC2
+	/qG96Fv92H9TFCgUN1bIOAPhzIg4/xxpnBr2t8d8bKG1ETAdcMAHwPExudfJoeDc3ZBENa7tiiy
+	h5k2pJ6QckzET4pV7bz5q+we4KPrbi88mM7lNg8eUbVrUyCA==
+X-Received: by 2002:a05:6a21:898b:b0:34f:ec81:bc3d with SMTP id adf61e73a8af0-39545f7a3bamr11523634637.44.1771984744888;
         Tue, 24 Feb 2026 17:59:04 -0800 (PST)
 Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad75027affsm114744415ad.66.2026.02.24.17.59.04
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35900700e69sm1002312a91.0.2026.02.24.17.59.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 24 Feb 2026 17:59:04 -0800 (PST)
 Received: from hqs-appsw-a2o.mp600.macronix.com (unknown [172.17.236.67])
-	by twhmp6px (Postfix) with ESMTPS id 7B0A84136071;
+	by twhmp6px (Postfix) with ESMTPS id 8DB204136074;
 	Wed, 25 Feb 2026 09:59:02 +0800 (CST)
 From: Cheng Ming Lin <linchengming884@gmail.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -94,10 +96,12 @@ Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
 	linux-kernel@vger.kernel.org,
 	alvinzhou@mxic.com.tw,
 	Cheng Ming Lin <chengminglin@mxic.com.tw>
-Subject: [PATCH v7 0/3] mtd: spi-nand: Add support for randomizer feature
-Date: Wed, 25 Feb 2026 09:57:02 +0800
-Message-Id: <20260225015705.1113199-1-linchengming884@gmail.com>
+Subject: [PATCH v7 1/3] dt-bindings: mtd: spinand: Add randomizer enable/disable properties
+Date: Wed, 25 Feb 2026 09:57:03 +0800
+Message-Id: <20260225015705.1113199-2-linchengming884@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260225015705.1113199-1-linchengming884@gmail.com>
+References: <20260225015705.1113199-1-linchengming884@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,97 +114,98 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linaro.org,iopsys.eu,freebox.fr,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org,mxic.com.tw];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-268103-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,iopsys.eu,freebox.fr,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org,mxic.com.tw];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-268105-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.997];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: F1947190CA3
+	NEURAL_HAM(-0.00)[-0.992];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 69F80190532
 X-Rspamd-Action: no action
 
 From: Cheng Ming Lin <chengminglin@mxic.com.tw>
 
-This patch series introduces randomizer support for SPI NAND devices.
+Add "nand-randomizer-enable" and "nand-randomizer-disable" boolean
+properties.
 
-- Patch 1: add the nand-randomizer-enable and nand-randomizer-disable
-           boolean properties to the generic nand-chip.yaml bindings.
-- Patch 2: add the initialization logic and the set_randomizer callback
-           to the core framework. The core will now parse the device tree
-           properties and enable or disable the randomizer accordingly
-           during spinand_init.
-- Patch 3: implement the set_randomizer callback specifically for Macronix
-           chips (MX35LF/UF series) to handle the vendor-specific register
-           operations.
+These properties allow enabling or disabling the randomizer feature
+via the device tree.
 
-v7:
-* Directly return the result in macronix_set_randomizer()
+According to JEDEC standard JESD22-A117E, no single data pattern
+represents a universal worst-case for all NAND flash failure mechanisms.
+Different patterns, such as fully programmed, checkerboard, or mostly
+erased, can disproportionately stress specific cells (e.g., programmed,
+erased, or those influenced by adjacent states).
 
-v6:
-* Added mutual-exclusive constraints using not with required for
-  nand-randomizer-enable and nand-randomizer-disable properties based
-  on Krzysztof's feedback.
-* Simplified the return path in macronix_set_randomizer() to directly
-  return ret; and dropped unrelated formatting changes.
+Given that no fixed pattern can cover all scenarios, the use of a
+randomized data pattern is a practical and effective mitigation strategy.
+Our hardware implements a randomizer feature that scrambles user data
+before it is written to the flash and restores the original data upon read.
 
-v5:
-* Promoted the randomizer configuration to use generic NAND properties
-  (nand-randomizer-enable and nand-randomizer-disable) instead of
-  vendor-specific bindings.
-* Refactored the initialization architecture in core.c. The core framework
-  is now responsible for parsing the device tree properties and deciding
-  whether to enable or disable the randomizer.
+This ensures the data stored on the media is more evenly distributed,
+thus reducing pattern-dependent degradation. This is especially crucial
+for preventing errors caused by unbalanced data (e.g., all zeros or
+all ones) in blocks with high program/erase (P/E) cycle counts.
+Ultimately, the randomizer improves the long-term reliability and
+endurance of the flash device.
 
-v4:
-* Fix a build error in spinand_randomizer_init() where a value was
-  returned from a void function. (Reported by kernel test robot)
-* Update the return type to int.
+Please refer to the following link for randomizer feature:
+Link: https://www.mxic.com.tw/Lists/ApplicationNote/Attachments/2151/AN1051V1-The%20Introduction%20of%20Randomizer%20Feature%20on%20MX30xFxG28AD_MX35xFxG24AD.
 
-v3:
-* Revert the device tree property to the vendor-specific
-  "mxic,randomizer-enable" to strictly follow vendor-specific bindings.
+Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
+---
+ .../devicetree/bindings/mtd/nand-chip.yaml     | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-* Update the 'set_randomizer' callback signature to accept a boolean
-  'enable' argument, allowing the feature to be explicitly enabled or
-  disabled.
-
-* Switch the implementation to use the standard SET_FEATURE command
-  to modify the Configuration Register (0x10), replacing the previous
-  special program command method.
-
-v2:
-* Create a global NAND DT property
-
-Cheng Ming Lin (3):
-  dt-bindings: mtd: spinand: Add randomizer enable/disable properties
-  mtd: spi-nand: Add support for randomizer
-  mtd: spi-nand: macronix: Enable randomizer support
-
- .../devicetree/bindings/mtd/nand-chip.yaml    | 18 +++++++++
- drivers/mtd/nand/spi/core.c                   | 27 +++++++++++++
- drivers/mtd/nand/spi/macronix.c               | 38 ++++++++++++++-----
- include/linux/mtd/spinand.h                   |  9 +++++
- 4 files changed, 82 insertions(+), 10 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/mtd/nand-chip.yaml b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
+index 609d4a4ddd80..2559cd97ccc5 100644
+--- a/Documentation/devicetree/bindings/mtd/nand-chip.yaml
++++ b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
+@@ -67,6 +67,24 @@ properties:
+       the secure regions present.
+     $ref: /schemas/types.yaml#/definitions/uint64-matrix
+ 
++  nand-randomizer-enable:
++    description:
++      Enable the randomizer feature. This property is mutually-exclusive
++      with nand-randomizer-disable.
++    type: boolean
++
++  nand-randomizer-disable:
++    description:
++      Disable the randomizer feature. This property is mutually-exclusive
++      with nand-randomizer-enable.
++    type: boolean
++
++dependencies:
++  nand-randomizer-enable:
++    not:
++      required:
++        - nand-randomizer-disable
++
+ required:
+   - reg
+ 
 -- 
 2.25.1
 
