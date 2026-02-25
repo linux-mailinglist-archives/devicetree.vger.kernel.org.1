@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-268206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268204-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EEXXBf65nmnwWwQAu9opvQ
-	(envelope-from <devicetree+bounces-268206-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:59:42 +0100
+	id W0N2JJC5nmmfXAQAu9opvQ
+	(envelope-from <devicetree+bounces-268204-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8968019485B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:59:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31C7A1947D4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F27BC302F73A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:56:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2457330117A5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5877325706;
-	Wed, 25 Feb 2026 08:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2F34327204;
+	Wed, 25 Feb 2026 08:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="hnc6JeqI"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="BkencEe5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845E7302767;
-	Wed, 25 Feb 2026 08:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 386193043CE;
+	Wed, 25 Feb 2026 08:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772009782; cv=none; b=FQtFTv1VUejWC+N5OyC7jrUYY5DS9siW3DIdJfRMJdMMOiXKNiWxSDIWis2Fh4t/TlDW1hyk3ORJUIJ8YYlfOngUKpEAklaZyDe3+r9yTaiDvzY92mcUoRVDD/u9ZFMWtDGZx5h+ZflQuAMnGKCIB+GN0qjCw+v20TWP8s25a0A=
+	t=1772009765; cv=none; b=btAwyoCCtDqoIFuqiI3sIZwDIQPxJicZqrAQKyVeE+kkDKmCfwy60kpDbhrmXW4G31lX1ZPjusnVtPp6DAv5kooQv08y+tiNgyYZE8J0SsLHswKGpcgzr9Ig+h4x4/kt1Y+Vi+SXpw0SEWQ/MUhh4J18jHvfbRFuyeOWtPqQxFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772009782; c=relaxed/simple;
-	bh=VAvPNBcS6K1A7dVEFNuDOkfGtWQ/7kbOPXG77uNI0+g=;
+	s=arc-20240116; t=1772009765; c=relaxed/simple;
+	bh=DjsW4WVQpIf0YjMorUTuW0e2BWorQ3xaVI7oaiRoRXQ=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d52um87NMsysB9IEf4H1Rl+mvIy9vDxgizI8gqs6UZn2K82G0U2DbyiSr9peS+KXy88hdGEzovBQP8OWtP3Y6/2/rAZRdrvbY3hvzN7g6Xs8RUOFOiW+FNmfI675LJF5uqJZA6ULSpMlPCk/F9zb6L679zhK3TB2NHzglkViRfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=hnc6JeqI; arc=none smtp.client-ip=68.232.153.233
+	 MIME-Version:Content-Type; b=dYWvPo8AZEkxawWch2C1OUz7VUQMV2/8zkXdvflIT1n54GEiytM2x7ptiHrdmBshf52DhYeyhcTeIk0PdWRWl36271VWAIc7em6HDnwvfYhRGpLdDACkbqXWJHRWk/kPShd/ao3Huq4kzwIh4Hkz/L2rCtys5lHNreC4UPzhABs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=BkencEe5; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772009781; x=1803545781;
+  t=1772009763; x=1803545763;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=VAvPNBcS6K1A7dVEFNuDOkfGtWQ/7kbOPXG77uNI0+g=;
-  b=hnc6JeqIsZQ3YDtypB/4QmXjghPYvsmc341s0klDTl1J2UHTEd3bVDeA
-   2bHTwZkBjt/B55DWV3OBPYzsS5nv8jWHruUmH8MtD8UbbP/0P9Hmed/BT
-   Ia5Fc68PZvXnZ4rdbV4oNxxJUfKHJblG+I25HbkDJtEf8HUJFHinGX0CR
-   3h4PYxPv2a4dj9x+XQdZkJ1LsUkUorB81O7y1bjqBJ5RbF4pO2vyhM+SR
-   piB+uZ5SXJjGQgfNFjoWSdM2gTIE57dWytEktCt/3EZ4uSFoZHXabMjoB
-   DLuhRSFA+821gqdCKli/26tYwd0JmDPB5v6IukiNRWYJrr5HRzhBjbgxI
-   g==;
-X-CSE-ConnectionGUID: CuTHRctdSuOo+CeX/pVyrg==
-X-CSE-MsgGUID: l01JtG8PRkGjfh2LIX/aCQ==
+  bh=DjsW4WVQpIf0YjMorUTuW0e2BWorQ3xaVI7oaiRoRXQ=;
+  b=BkencEe5F+VN7/gi29CWfutw5pJtEWNkQ68L/W+ONf8PH4VBbNYlQTb0
+   KjMRiK3bf8K89jEcyGIGW4RNo4TxZaiOS5KReBQOxo0lHA2SZY1iONzFE
+   EwQrMqH07Fi3gsJV5+vVOtCu4E5nrE7rddzoARFiw030WOiXi86w0LZKG
+   +1xHyIrLW1CpOjP2MhAA2V9Finbc324rCsr6QD0Cep8cShx3Kt4dU/qjc
+   RRZwqgdyf7FSKf1Ewiz1HuKEhTKma6s/LPuzPMNS5HlBxzJAQ0VH6b3cg
+   qnHAkLjOAEVGPy+lgJykvQfo8QzLGGqo7YxpmULcoV5qvWpiC5pPiZCHU
+   A==;
+X-CSE-ConnectionGUID: mgYlUVw0QgaTuiIytbevoA==
+X-CSE-MsgGUID: Ze8n1SsCTMSiNQM14jDlQA==
 X-IronPort-AV: E=Sophos;i="6.21,310,1763449200"; 
-   d="scan'208";a="61258794"
+   d="scan'208";a="285203687"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2026 01:56:20 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
- chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Feb 2026 01:56:02 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Wed, 25 Feb 2026 01:55:50 -0700
+ 15.1.2507.58; Wed, 25 Feb 2026 01:55:59 -0700
 Received: from che-lt-i67131.microchip.com (10.10.85.11) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Wed, 25 Feb 2026 01:55:40 -0700
+ 15.1.2507.58 via Frontend Transport; Wed, 25 Feb 2026 01:55:50 -0700
 From: Manikandan Muralidharan <manikandan.m@microchip.com>
 To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
 	<rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
@@ -73,11 +73,10 @@ To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
 	<ardb@kernel.org>, <tytso@mit.edu>, <dri-devel@lists.freedesktop.org>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>
-CC: Ryan Wanner <Ryan.Wanner@microchip.com>, Manikandan Muralidharan
-	<manikandan.m@microchip.com>
-Subject: [PATCH 1/6] ARM: dts: microchip: sama7d65: add LCD controller
-Date: Wed, 25 Feb 2026 14:24:25 +0530
-Message-ID: <20260225085430.480052-2-manikandan.m@microchip.com>
+CC: Manikandan Muralidharan <manikandan.m@microchip.com>
+Subject: [PATCH 2/6] dt-bindings: display: bridge: microchip,sam9x75-lvds: document SAMA7D65 binding
+Date: Wed, 25 Feb 2026 14:24:26 +0530
+Message-ID: <20260225085430.480052-3-manikandan.m@microchip.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260225085430.480052-1-manikandan.m@microchip.com>
 References: <20260225085430.480052-1-manikandan.m@microchip.com>
@@ -97,12 +96,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	TAGGED_FROM(0.00)[bounces-268206-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	TAGGED_FROM(0.00)[bounces-268204-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -115,58 +114,36 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 8968019485B
+X-Rspamd-Queue-Id: 31C7A1947D4
 X-Rspamd-Action: no action
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+Update the microchip LVDS bridge device tree bindings to support the
+SAMA7D65 SoC LVDS controller
 
-Add support for LCD controller node
-
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
 ---
- arch/arm/boot/dts/microchip/sama7d65.dtsi | 26 +++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ .../bindings/display/bridge/microchip,sam9x75-lvds.yaml     | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-index e21556f46384..b2fe76115aec 100644
---- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-@@ -278,6 +278,32 @@ sdmmc1: mmc@e1208000 {
- 			status = "disabled";
- 		};
+diff --git a/Documentation/devicetree/bindings/display/bridge/microchip,sam9x75-lvds.yaml b/Documentation/devicetree/bindings/display/bridge/microchip,sam9x75-lvds.yaml
+index 862ef441ac9f..669ef2393659 100644
+--- a/Documentation/devicetree/bindings/display/bridge/microchip,sam9x75-lvds.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/microchip,sam9x75-lvds.yaml
+@@ -17,7 +17,11 @@ description:
  
-+		xlcdc: lcd-controller@e1400000{
-+			compatible = "microchip,sama7d65-xlcdc";
-+			reg = <0xe1400000 0x2000>;
-+			interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&pmc PMC_TYPE_PERIPHERAL 56>, <&pmc PMC_TYPE_GCK 56>, <&clk32k 1>;
-+			clock-names = "periph_clk", "sys_clk", "slow_clk";
-+			status = "disabled";
-+
-+			display-controller {
-+				compatible = "atmel,hlcdc-display-controller";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+			};
-+
-+			pwm {
-+				compatible = "atmel,hlcdc-pwm";
-+				#pwm-cells = <3>;
-+			};
-+		};
-+
- 		aes: crypto@e1600000 {
- 			compatible = "microchip,sama7d65-aes", "atmel,at91sam9g46-aes";
- 			reg = <0xe1600000 0x100>;
+ properties:
+   compatible:
+-    const: microchip,sam9x75-lvds
++    oneOf:
++      - const: microchip,sam9x75-lvds
++      - items:
++          - const: microchip,sama7d65-lvds
++          - const: microchip,sam9x75-lvds
+ 
+   reg:
+     maxItems: 1
 -- 
 2.25.1
 
