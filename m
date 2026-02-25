@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-268552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iGnfEDGBn2lrcgQAu9opvQ
-	(envelope-from <devicetree+bounces-268552-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:09:37 +0100
+	id 0MuuI0uBn2lrcgQAu9opvQ
+	(envelope-from <devicetree+bounces-268553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:10:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A1919E979
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:09:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E860D19E988
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:10:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C821309A119
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:08:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1532330C29ED
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F0C37882B;
-	Wed, 25 Feb 2026 23:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D5F378803;
+	Wed, 25 Feb 2026 23:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZhY0IwGR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DqaBqZCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FD42376BE4
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 23:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 911A2378D8F
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 23:08:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772060931; cv=none; b=gRsO+akJrpV0k6GH/zRJE4xtzGp3lOTjeoE3NnuHkQEnJHnIm8hYOzrhoOnuzpJTqnlcdpCTPP1aVYXYiGo8NloxP0Hj19GOUraS06C5WMLaXD8AQBa06sFhDJKT5Qbjc2Lo95NCEaCVqq4t/ouziLTvoCFLIN4VURIffhDsT7Q=
+	t=1772060932; cv=none; b=BB43z1eFrV7s8AE3phU2rEP+KBzV095/9HqGeCx+eQ8JcZym+3HTWId9j2wQb9OSvnbhb3e/DOcdiHiWVrH23lwPMKQ0NpmxoO5ZTmC8dnKK+A8PI+2fLwck5z1ePdAkGJowj6fa+kDhggPg+EodNYIqMxtBB0iAzTc14QCkk/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772060931; c=relaxed/simple;
-	bh=IxbPcvo19Cu6ni/hd8SMdlPZy2E8r9elnPSsD7FFDXk=;
+	s=arc-20240116; t=1772060932; c=relaxed/simple;
+	bh=dTfUyT6om3uJBZC8r/Aoa4kEFpSzMzFkgJ6sQQSxoIE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tOGqeZioR0UuIW7i452Of3cMSZ+w4CBU62nF9WK+DMOmAfODvttQNaAZUFkOiWq6fTXl5tFHMdZfV5Mv1+kOLfIaFXs95VwNPAXQfVLyZYE8F0KDRyUPIlfAD4eruQbu/sTgYixesDmxCgEoO3UoW058grTypSMY3cMjBXpw+8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZhY0IwGR; arc=none smtp.client-ip=209.85.214.176
+	 MIME-Version; b=PCrCiHUtehGZajj1/rmYqwQlOZESHDa/L0IhBoNyiOudel0SvsaYpWtxx2+SWixeWNZGQHM5Gwo4NpswoX/fTxC3BB1DVehPzObUm0RY4agfeXRxodPRMYmaoLX+r6QVYSoPvIGpclZaKOoz0yzoQfMSIF6ea0Yu/dUIanEp+HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DqaBqZCH; arc=none smtp.client-ip=209.85.215.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2aaf9191da3so1078655ad.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 15:08:50 -0800 (PST)
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-c06cb8004e8so58316a12.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 15:08:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772060929; x=1772665729; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772060930; x=1772665730; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=z9tiRaqzs41Tp2aztKcPkArrBbXFpbWH4r/ca+c356Q=;
-        b=ZhY0IwGRNRvv7Lg2GTlL/3GIusmpwjURQWJVyErTh5+6vUOVALlB2YLsb91mbNFan0
-         5drAvweWyE7jKr7/jpQQsoFGiNEfXpuLH+4grWrlojKT4EeyZODMGiG3d5ahkymFESlU
-         RwZhD03/1CewnV/I3xkSjTfQiIt2DaciuWcWaICuuH6p6x+9u2noyg8Otty5kdTTk1A8
-         UvVuPayg+jDQdnx+uqAryNmjPV5qI9Bzi19G364YYUYy75+R/aW+M0H5hzLkcu+a70Jb
-         pqn9eeebxb2G+kp2nWXgHOfb+g5qtC/2Hw5PfvaKOblG4IFgf7ehvWdn9Kj5sEBWtgWO
-         dPQA==
+        bh=UCIXs1vSaUaDxK9yFo1NvbBeWhizv7ThfTjSuMfqmMw=;
+        b=DqaBqZCHET0x/Epjl/YlmFNxctO9QE2t3gI1SmNP4MFd/wLHhjZX8FSdtokOdaYKr7
+         FLS7X6YHNi8MV1+8XULjh3h7v/DCX/m3PH4eltX6EcHlFA717nTgbQ40izoThvj4cgZe
+         aZ+VrqrjwhnwHskvhJjzMTZbwWKOSIIxeKDUcVBTbj4XafALC6a5gJqRZjLiIxp9TmjV
+         OL4sS0K5ln8X/e2BQbujkESzvUc9hLiznFqNrG3C+5Nks2hEAewTczHbeWeehoMafr1x
+         ax9bEDxbI/kXaccM8nHE2/80u92xywSEAL5G/Wv+GIu++vG3AXe4s8OCOiq+3UK/ffHX
+         l4jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772060929; x=1772665729;
+        d=1e100.net; s=20230601; t=1772060930; x=1772665730;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=z9tiRaqzs41Tp2aztKcPkArrBbXFpbWH4r/ca+c356Q=;
-        b=DaRaoj6zO19QIfCA2eTlEyz2SrZscuQk3App7v/7c54vvicjma3wT9TtDbklEhjs6N
-         oBb0ym2HDnpBj+iCpgwni1/tVBLokhY+cnESnyME7Bs2F01NU/y7e/USZK8o6dyiyXOy
-         GEhTLYxD7LiKu7VgDaP51wo8COvjDjowweddDvF6Enn8S77wlZJqVuKO+b8uJUTKLGWU
-         Ykir8bWWqW8GchIFd1IF5QXtiRUL5BTX0QTB+pSOjp8HmiP5mdezWaI28wnCM/WRCdY1
-         B75ukrIYvK58gKzLxgidHaI4dHMCkFUQbBrs8iZXRvaukLR7PilsfoLOM3wtV9KaABDR
-         gBVA==
-X-Gm-Message-State: AOJu0Yy+FJGIk8AL+K00Ne1R1j+3qSuySViGbyDLrvLXruTs81siBqZJ
-	lu5k4pHcDm9R49Vzcyr42OYSfx+pldwzrcgqj6vAdJOm9zMLoXd6iG5Jd09BYZ0k
-X-Gm-Gg: ATEYQzxyR9EZyXHie+300WobTKGnNx+94jyTTnk0xf8X+OrsX5H+eDYJDJ5SvySlKDS
-	HmkdytcmtMf5aCZ9gYHwJsmql/eDygzjDNaTY+1JOspC5uq2V1zvLAqIEijhIwlHqm8dWAd7vU1
-	3SAE5JW11fzs3RAgi2v1GLyXd1oiWDR5Q+/4DzXvaQ4wFey+j8S0StBGjLq6DTjO1dvIZEx5oc8
-	DuLzK1h/YUFBr47Ej2NpU2/grqPsqDSD05wus0HjpxjTN1DaIe1gm0QUP3v044XO4BNWC3yBp+p
-	wddcQ1nKL4pY84+mrpSZFGo28vISwudc/BdLnfNx/VVXvccNcUWMiBGWg76hUKpoN2FpVy+lLh+
-	0wYA67SbWa2VuOL0bCmDqLsSPROIR/trBFis9loDsYtDMsGPI+baIUqeGAqca6HrnsZiL8RLot6
-	GZohe5AFdLzTmStLTr8ORjgzNzvC5DGginoNkhc6M3Mrf32ITySIAndQ==
-X-Received: by 2002:a17:902:f608:b0:2ab:2633:d986 with SMTP id d9443c01a7336-2ae036ef4ddmr979255ad.49.1772060929153;
-        Wed, 25 Feb 2026 15:08:49 -0800 (PST)
+        bh=UCIXs1vSaUaDxK9yFo1NvbBeWhizv7ThfTjSuMfqmMw=;
+        b=SN1CnvdOibMlnDGqlj4BkZtKKHbF2RsQEVI91mFS1PZPUKl94Di5ukUsLnKEosr/T0
+         D/8IFIPxyin2eT+3R3gDyFFZNYUDlrId8N+W8SxB4/zWu1uyO/JNbSHU1nrtgZCI6Epq
+         kmBMmSnxHAQX3vN0sP5lftF1Yv7EfMkgf+VNht7Vhxy8+pkfSNmeSjAeaFhX0ghqNDGv
+         5yxGkrJzhu10pD0UF2Px7NhOnLh2aWyxpb5qWwvLMj/PDI+5tKBcQoQJLfIJ4hUvFe9b
+         yh1WSArxJdAK39B6hoHlMwBNnLShPdVKEbov7DGYl9x8o4/38YNjOin8JlT3jDr+QqcK
+         4A2w==
+X-Gm-Message-State: AOJu0YwXnmc3l41E8isFnGt6wHCTUbgUu511LqwZxz8JDqpc5hHpxKnC
+	fNqrreoFIoOCQu4tm+8L3T2PrlgsIySyGAK9eW07yqSF+EHRzkTf0Qhb8UE4J8DX
+X-Gm-Gg: ATEYQzy4qvIaBr00dh52LJ+UIUFbxzUjsjbvGSTo0Xiev0Q4/q3ADUm1XcYJ+zZyv/c
+	z5BYj0Q7ZGLOqgipE02jq3rMrlJy0x8kgjz8lCo+pnLa2PKh+rNwdtrvR/0rZSHzP2THL8B5E1b
+	A+D/EW3+1WPWu1Jskximdb6MEF87CM4r2+p4GPPjxocTCO1kI/JxMc34wBR8zS70qWMGgT8Qckf
+	91KcP6BNWNT71+8qI0heCwCSNuXIJMHegGeuuU5paG67MX8Qqa78LvoOFGpI34uGSCC1/u62yY0
+	LVuFWYW9rWOuRliSpLa0tlsm3WMNc8BYsWPUzQWeylcfO72grTc1hDLr7FgmC/0HcLSlIgUDs0z
+	zWUas/avrVNufA95mUtwY+XdAq2FpyagV33GrE6ILdw6y44R+q8LXbIBi2kemwtp9GIIt/3au+j
+	AnhnuoximoEsYgKJUBGPCCj/5MgZR+rEmEuSrCEyN9RgOXCHKbpxHoAg==
+X-Received: by 2002:a17:903:9ce:b0:2aa:e3c2:f920 with SMTP id d9443c01a7336-2ad74516871mr182432005ad.36.1772060930632;
+        Wed, 25 Feb 2026 15:08:50 -0800 (PST)
 Received: from ryzen ([2601:644:8000:56f5::8bd])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5b2309sm3378285ad.19.2026.02.25.15.08.47
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5b2309sm3378285ad.19.2026.02.25.15.08.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Feb 2026 15:08:48 -0800 (PST)
+        Wed, 25 Feb 2026 15:08:50 -0800 (PST)
 From: Rosen Penev <rosenp@gmail.com>
 To: devicetree@vger.kernel.org
 Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
@@ -86,9 +86,9 @@ Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM5301X ARM ARCHITECTURE),
 	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCHv2 2/4] ARM: dts: BCM5301X: panamera: set WAN MAC from nvram
-Date: Wed, 25 Feb 2026 15:08:25 -0800
-Message-ID: <20260225230827.21715-3-rosenp@gmail.com>
+Subject: [PATCHv2 3/4] ARM: dts: BCM5301X: AC3100: set WAN MAC from nvram
+Date: Wed, 25 Feb 2026 15:08:26 -0800
+Message-ID: <20260225230827.21715-4-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260225230827.21715-1-rosenp@gmail.com>
 References: <20260225230827.21715-1-rosenp@gmail.com>
@@ -106,7 +106,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -114,11 +114,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[broadcom.com,hauke-m.de,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268552-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268553-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,devicetree@vger.kernel.org];
@@ -129,39 +129,39 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.4:email,0.0.0.3:email,0.0.0.5:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: 95A1919E979
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.4:email,0.0.0.3:email,0.0.0.5:email,0.0.0.0:email,1c080000:email]
+X-Rspamd-Queue-Id: E860D19E988
 X-Rspamd-Action: no action
 
-The MAC address from the stock firmare is offset by 1. Define it
-properly to avoid having to override it in userspace.
+The WAN MAC is offset by 1. Set it to avoid having to do so in
+userspace.
 
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- arch/arm/boot/dts/broadcom/bcm47094-linksys-panamera.dts | 7 +++++++
+ arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi | 7 +++++++
  1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/broadcom/bcm47094-linksys-panamera.dts
-index 2b5c80d835e9..74161b76008a 100644
---- a/arch/arm/boot/dts/broadcom/bcm47094-linksys-panamera.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-linksys-panamera.dts
-@@ -25,6 +25,10 @@ memory@0 {
+diff --git a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
+index 2cfaaabc7a6a..2d2e7e581291 100644
+--- a/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi
+@@ -18,6 +18,10 @@ memory@0 {
  	nvram@1c080000 {
  		compatible = "brcm,nvram";
- 		reg = <0x1c080000 0x100000>;
+ 		reg = <0x1c080000 0x00180000>;
 +
-+		et2macaddr: et2macaddr {
++		et0macaddr: et0macaddr {
 +			#nvmem-cell-cells = <1>;
 +		};
  	};
  
  	gpio-keys {
-@@ -230,6 +234,9 @@ port@3 {
+@@ -143,6 +147,9 @@ port@3 {
  
  		port@4 {
  			label = "wan";
 +
-+			nvmem-cells = <&et2macaddr 1>;
++			nvmem-cells = <&et0macaddr 1>;
 +			nvmem-cell-names = "mac-address";
  		};
  
