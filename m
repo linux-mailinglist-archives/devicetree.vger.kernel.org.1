@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-268464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268465-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IDmyFwwjn2mPZAQAu9opvQ
-	(envelope-from <devicetree+bounces-268464-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:27:56 +0100
+	id OG88MBkjn2mPZAQAu9opvQ
+	(envelope-from <devicetree+bounces-268465-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:28:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A627819A98E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:27:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D8F819A995
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:28:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D27E306DF31
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:24:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 34720316C64E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:24:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E903D3D12;
-	Wed, 25 Feb 2026 16:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 443C53D4114;
+	Wed, 25 Feb 2026 16:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jaqIBn8n"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="rfv5+dIg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5763BFE37
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 16:24:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020F83D5232
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 16:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772036694; cv=none; b=Ycfx6G4FRvxYxCYaVFBjjwEqF51zFINLNq9J3JKlnh2csuzRwSOFmxRCTI+8PXmXSxUMzcJUDL8Lz5D7IT6O904kgRd4Rs7KrDYs9u096cC9EI+KgyvyWISRuDHHGR4Q8gX6RlF3cRW0QNoshRy1fCYQXWATLjT5vmqFbeZwJAY=
+	t=1772036695; cv=none; b=HAS0mLClefDAkjgWEwNd68NYjF0rTiSJNLTBHsTlTGe1j/zNZI6RPZ27yOuiLIfitMNZqHdeIithajFZyT4KMzz+JNCPcdiTTaWniQSm4jL/ZiU0kIqAGj4DLZaAxl1qJhBDenujojkpZUtsWbFepuYcqVgam2/O+HZk6Sc8Zy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772036694; c=relaxed/simple;
-	bh=qOadDvcg3RU0TL5ZScy+WDGCW+0pudaZH98N4h1r7qc=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BpAXdZNoywkh+W9gjM7JLh2Zi+fL6qSGNGraiaHI74eQFjqd+RwPRLVN+XJuUyk/B+gpGrbtOubPSBeD1x1wFRN8/gPDWWJpkAg/WeEw2QvTUw1zYK8WzPbpznT7NPibOGJzbeUmlcCrKNXOD37C5E4lH8HLHSXTykbGQk5Y+nI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jaqIBn8n; arc=none smtp.client-ip=185.171.202.116
+	s=arc-20240116; t=1772036695; c=relaxed/simple;
+	bh=oaVNbzP95ZGzHEfJqFMlDqGyupDFRg0PwSkWAAszZ8A=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=uysBoL11cH+MJDgf5mbRw/XmF5mv+g8nvdH2mNWk9xPxyWEaespTVgPLeeUX0UiShu8n6mUGzgvaA0h3mqUoLrruolVU+g/S20qe8k/yPn1Zf3U4bNmXe99PuEx9c1g0Zh7uoCelNTy7NxBze3A2Uvoh3UvFj+jP5UVR/d84oEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=rfv5+dIg; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 07F4CC143FD;
-	Wed, 25 Feb 2026 16:25:05 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 9A2721A1342
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 16:24:51 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DF7995FDE6;
-	Wed, 25 Feb 2026 16:24:49 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B3F66103692E7;
-	Wed, 25 Feb 2026 17:24:45 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6F7EB5FDE6;
+	Wed, 25 Feb 2026 16:24:51 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 67E5B10369259;
+	Wed, 25 Feb 2026 17:24:49 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772036689; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=nmi+wI2zS4OBlvKBnKMWQ6PiY7pIPLYZ5c4//l5BMWM=;
-	b=jaqIBn8nFy5Oj0lMBwmAsnfpt+alt2uMFq8FQt6Yg5rjMN/xQORdftyfG44U+deFoEQ4jv
-	5wp3g8Ef1R2GfRRtPLIJCRytchlE3xuJM/PT/eT8ZHCJ1cR1IA92JQwFXPbBj/Uc57BnGR
-	G2AYKnNWciKSdHKDuqdN9zn4cgTawEC5llAVqO2DMFlgX2tns/A2HgNeQW/eKl57pVpi9I
-	KrbJkDUsFwOv3hOgYv7ykJ5p97919Vpk6q4s2pvA00GhZB9QFDT4Aw37Et/j+Y66q7gNIw
-	nqo2mq3b3ZFgc8M6L9LxHaREN/60DXVibV/wjdB/nYsH5lp7G7XB0XRJ9R8BpA==
+	t=1772036690; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=abJKRw/BMMRuxFpyvUhg7fWU4EpemM0LOQXj3saoZxw=;
+	b=rfv5+dIgOWyPultmlDTfUeZXZElPcoRds00yh+oRcxks3bNmGOQsFMtVmw0I1bMi1pP3On
+	5FJCB5baHNxca/V3nIo0EWttv2xjr+XlG6UkwlNu4xZ6SEWuXnNYsnugFzX+5QE/lbtSiq
+	WhDSDXqCS1r46qtdb23ImasuhMgtShC/lnAdidXn4KhcFWeX2ozZq4KIx64FyokAGG+NXJ
+	YJfyrW54+E1NVKA2fnhLo5SnE5uXlQLHz6dS7BXBPwD1gtRvv/EzvqVyMvz3W7bd2SNCCw
+	ZHTvd+ybkWs7lOQJYBMYOQfvNYPsDL6xccdoxoJr8wF288HQ/wA7Hy+FGxdrZA==
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 0/3] Fix spear600-smi YAML conversion
-Date: Wed, 25 Feb 2026 17:24:42 +0100
-Message-Id: <20260225-perso-fix-spear600-smi-yaml-v1-0-8ef3d205ab3a@bootlin.com>
+Date: Wed, 25 Feb 2026 17:24:43 +0100
+Subject: [PATCH 1/3] dt-bindings: mtd: st,spear600-smi: Fix description
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,11 +61,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3M0QqDMAxA0V+RPC+QFlasvzL2UDVuAW1LAkMR/
- 33FxwOXe4KxChsM3QnKPzEpucE9Opi+KX8YZW4GTz6Q90+srFZwkR2tctJAhLYJHmlbsScXXc8
- phjFCO1TlFt731/u6/smgcQ1tAAAA
-X-Change-ID: 20260225-perso-fix-spear600-smi-yaml-801918ea96b9
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260225-perso-fix-spear600-smi-yaml-v1-1-8ef3d205ab3a@bootlin.com>
+References: <20260225-perso-fix-spear600-smi-yaml-v1-0-8ef3d205ab3a@bootlin.com>
+In-Reply-To: <20260225-perso-fix-spear600-smi-yaml-v1-0-8ef3d205ab3a@bootlin.com>
 To: Richard Weinberger <richard@nod.at>, 
  Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -86,7 +86,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268464-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268465-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[nod.at,ti.com,kernel.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -99,37 +99,69 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim,bootlin.com:email]
-X-Rspamd-Queue-Id: A627819A98E
+X-Rspamd-Queue-Id: 2D8F819A995
 X-Rspamd-Action: no action
 
-Recent conversion from txt to yaml of the Spear600 SMI binding by Akhila
-lead to warnings. These are my 2cts in getting the yaml conversion done
-:-)
+The description mixes two nodes. There is the controller, and there is
+the flash. Describe the flash (which itself can be considered an mtd
+device, unlike the top level controller), and move the st,smi-fast-mode
+property inside, as this property is flash specific and should not live
+in the parent controller node.
 
-Cheers,
-Miquèl
-
+Fixes: 68cd8ef48452 ("dt-bindings: mtd: st,spear600-smi: convert to DT schema")
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
-Miquel Raynal (3):
-      dt-bindings: mtd: st,spear600-smi: Fix description
-      dt-bindings: mtd: st,spear600-smi: #address/size-cells is mandatory
-      dt-bindings: mtd: st,spear600-smi: Fix example
+ .../devicetree/bindings/mtd/st,spear600-smi.yaml   | 22 ++++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
 
- .../devicetree/bindings/mtd/st,spear600-smi.yaml   | 26 ++++++++++++++++------
- 1 file changed, 19 insertions(+), 7 deletions(-)
----
-base-commit: 7dff99b354601dd01829e1511711846e04340a69
-change-id: 20260225-perso-fix-spear600-smi-yaml-801918ea96b9
+diff --git a/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml b/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml
+index 8fe27aae7527..d065df269657 100644
+--- a/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml
++++ b/Documentation/devicetree/bindings/mtd/st,spear600-smi.yaml
+@@ -19,9 +19,6 @@ description:
+   Flash sub nodes describe the memory range and optional per-flash
+   properties.
+ 
+-allOf:
+-  - $ref: mtd.yaml#
+-
+ properties:
+   compatible:
+     const: st,spear600-smi
+@@ -42,9 +39,22 @@ properties:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: Functional clock rate of the SMI controller in Hz.
+ 
+-  st,smi-fast-mode:
+-    type: boolean
+-    description: Indicates that the attached flash supports fast read mode.
++patternProperties:
++  "^flash@.*$":
++    $ref: /schemas/mtd/mtd.yaml#
++
++    properties:
++      reg:
++        maxItems: 1
++
++      st,smi-fast-mode:
++        type: boolean
++        description: Indicates that the attached flash supports fast read mode.
++
++    unevaluatedProperties: false
++
++    required:
++      - reg
+ 
+ required:
+   - compatible
 
-Best regards,
 -- 
-Miquel Raynal <miquel.raynal@bootlin.com>
+2.51.1
 
 
