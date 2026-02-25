@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-268452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268454-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFNYI58hn2mPZAQAu9opvQ
-	(envelope-from <devicetree+bounces-268452-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:21:51 +0100
+	id EMk4B9Yhn2mPZAQAu9opvQ
+	(envelope-from <devicetree+bounces-268454-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:22:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A4519A7EE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:21:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39EF419A859
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:22:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C48BC30D0F2C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:54:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 93D4C30138F5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016563D7D6C;
-	Wed, 25 Feb 2026 15:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7A43D903D;
+	Wed, 25 Feb 2026 15:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="rsQqJHwZ"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="cmX8fe2+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD3153D6474;
-	Wed, 25 Feb 2026 15:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB8B3D6698;
+	Wed, 25 Feb 2026 15:54:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772034865; cv=none; b=Y0hrbuCDfMJSRyFP0eyMMEvW8KhOEf9rgzm+hU47kZCdCrmYrZLufPngpAmbYJO66meVQciqrn8i40mkqEo24npkj/aDXHSvBbFjeUWNN94g/I0LPm+DY4mJpfZb7ALPm1Dv+hxNdowSWFh6Rt+OflgXm0U6g+loLVw0J3pqIys=
+	t=1772034867; cv=none; b=O979Tgx2DKuwNxwvufxT3IcUwVAO4jVGr2mdAhVa7AsnMVn+3KWJ0e5NnxkvHPvAZVmP8nGCk5MaP/Q/6/tlzlbjr36Iaf+Rq/0Qd85iJDDSAgH6yQFn8WpCOPyj47gpEddR5NzxHRRvcTlPX542mw0LCnjgN35TowVTQHxknaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772034865; c=relaxed/simple;
-	bh=jyzTkXjHgnTVbLdqDlCMLTuOJpSQ30echftUdHOYWU8=;
+	s=arc-20240116; t=1772034867; c=relaxed/simple;
+	bh=UlxhWottnAskULrwuLN5gikMitjQzAFvK3xbKAutqIw=;
 	h=From:To:Cc:Date:Message-ID:In-Reply-To:References:MIME-Version:
-	 Subject; b=b2wW8X1BkNxJemqkDA2iMOwC92ncBPrkOGdGXuUzo1AxX5a08puy8ganCag1hksP3C/RBDgXN+GOCNjvwKcMQxfSl9wkxQQs3f2i/LtEFiSxsQrrr/VtSgqnWR5WIhJKY4jBaQ1fNDptr4wxiyaqQRGQW7T730mktfUwTuDJVuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=rsQqJHwZ; arc=none smtp.client-ip=162.243.120.170
+	 Subject; b=Xz2SvOnZaVaax9I0+lvE9a34w4wbsEH16Qr3RIesI6+MprwfobntoQOAihT3gBtpk+WDiilFHBGxW6u15tGCO/BAtIREwLrvQd13iBT3dz/GmTOJPf4T6TIYEsMBsQBhWAAa2YBrH2cIfS1Q0QVu/+Oreia2DkeCLzr7mfc3S6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=cmX8fe2+; arc=none smtp.client-ip=162.243.120.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
 	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
 	:From:subject:date:message-id:reply-to;
-	bh=K0P0g16xTJdhYm8l3vI0AbR3OUqzHDBE6PhK3jSMQGU=; b=rsQqJHwZaMP5H5rjbQqDX0aJEH
-	CrKT+SkMKHEXDVfMlwtNuZBDMjp6mtOSI8g0XVYvTH6v+lJPMF83+gyOS/c5T9xVRRZV75I4qPxRs
-	2XsQ1gBJEoQoBHFkhckW7V+W2zp7vbjFN0a3IniMGMdsyiBE6JB/JiIJIfvaWqj5lTvg=;
+	bh=qGaoYtle+bX/4SmeNH8BhwDQZAURuEQKPgOmITzcCQo=; b=cmX8fe2+ZHEqUnIxat86+aAQpH
+	O/hCpSbjj5A2rIg+5Xq2u5VG/aM/cHuS2WQrRewefcsrFq6sUKAOvs40Gi2OqY0TzJUyt6eXwDqCi
+	r+NIg0cjYu5ya00l5u4kg+lOVf7SThfLYQ2u6spo3TOTX1JQJ/1foPAELYyVYnFokDsM=;
 Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:47746 helo=pettiford.lan)
 	by mail.hugovil.com with esmtpa (Exim 4.92)
 	(envelope-from <hugo@hugovil.com>)
-	id 1vvHDM-0005uT-JY; Wed, 25 Feb 2026 10:54:17 -0500
+	id 1vvHDO-0005uT-TS; Wed, 25 Feb 2026 10:54:20 -0500
 From: Hugo Villeneuve <hugo@hugovil.com>
 To: robin@protonic.nl,
 	andy@kernel.org,
@@ -66,8 +66,8 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	hugo@hugovil.com
-Date: Wed, 25 Feb 2026 10:54:00 -0500
-Message-ID: <20260225155409.612478-4-hugo@hugovil.com>
+Date: Wed, 25 Feb 2026 10:54:01 -0500
+Message-ID: <20260225155409.612478-5-hugo@hugovil.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260225155409.612478-1-hugo@hugovil.com>
 References: <20260225155409.612478-1-hugo@hugovil.com>
@@ -82,167 +82,342 @@ X-SA-Exim-Connect-IP: 70.80.174.168
 X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Level: 
 X-Spam-Report: 
+	*  1.7 URIBL_BLACK Contains an URL listed in the URIBL blacklist
+	*      [URIs: perches.com]
 	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Subject: [PATCH v3 3/4] dt-bindings: input: add GPIO charlieplex keypad
+Subject: [PATCH v3 4/4] Input: charlieplex_keypad: add GPIO charlieplex keypad
 X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
 X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [10.34 / 15.00];
+	URIBL_BLACK(7.50)[perches.com:email];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-268452-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268454-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	R_DKIM_ALLOW(0.00)[hugovil.com:s=x];
+	DMARC_NA(0.00)[hugovil.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[protonic.nl,kernel.org,linux-m68k.org,gmail.com,dimonoff.com,collabora.com,blala.de];
-	DMARC_NA(0.00)[hugovil.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	GREYLIST(0.00)[pass,body];
+	DKIM_TRACE(0.00)[hugovil.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.997];
 	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,dimonoff.com:email,hugovil.com:mid,hugovil.com:dkim]
-X-Rspamd-Queue-Id: A2A4519A7EE
-X-Rspamd-Action: no action
+	NEURAL_SPAM(0.00)[0.999];
+	R_SPF_ALLOW(0.00)[+ip4:104.64.211.4:c];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dimonoff.com:email,perches.com:email,hugovil.com:mid,hugovil.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,mosaic-industries.com:url,canonical.com:email]
+X-Rspamd-Queue-Id: 39EF419A859
+X-Rspamd-Action: add header
+X-Spam: Yes
 
 From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Add DT bindings for GPIO charlieplex keypad.
+Add support for GPIO-based charlieplex keypad, allowing to control
+N^2-N keys using N GPIO lines.
+
+Reuse matrix keypad keymap to simplify, even if there is no concept
+of rows and columns in this type of keyboard.
 
 Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 ---
- .../input/gpio-charlieplex-keypad.yaml        | 106 ++++++++++++++++++
- 1 file changed, 106 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+ MAINTAINERS                                 |   7 +
+ drivers/input/keyboard/Kconfig              |  14 ++
+ drivers/input/keyboard/Makefile             |   1 +
+ drivers/input/keyboard/charlieplex_keypad.c | 213 ++++++++++++++++++++
+ 4 files changed, 235 insertions(+)
+ create mode 100644 drivers/input/keyboard/charlieplex_keypad.c
 
-diff --git a/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9ed6d11a7746..0b2d71f32b40 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -5765,6 +5765,13 @@ S:	Maintained
+ F:	Documentation/hwmon/powerz.rst
+ F:	drivers/hwmon/powerz.c
+ 
++CHARLIEPLEX KEYPAD DRIVER
++M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
++S:	Supported
++W:	http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/electronic-circuits/matrix-keypad-scan-decode
++F:	Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
++F:	drivers/input/keyboard/charlieplex_keypad.c
++
+ CHECKPATCH
+ M:	Andy Whitcroft <apw@canonical.com>
+ M:	Joe Perches <joe@perches.com>
+diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
+index 2ff4fef322c2..ae54b4b7e2d8 100644
+--- a/drivers/input/keyboard/Kconfig
++++ b/drivers/input/keyboard/Kconfig
+@@ -289,6 +289,20 @@ config KEYBOARD_MATRIX
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called matrix_keypad.
+ 
++config KEYBOARD_CHARLIEPLEX
++	tristate "GPIO driven chearlieplex keypad support"
++	depends on GPIOLIB || COMPILE_TEST
++	select INPUT_MATRIXKMAP
++	help
++	  Enable support for GPIO driven charlieplex keypad. A charlieplex
++	  keypad allows to use fewer GPIO lines to interface to key switches.
++	  For example, an N lines charlieplex keypad can be used to interface
++	  to N^2-N different key switches. However, this type of keypad
++	  cannot detect more than one key press at a time.
++
++	  To compile this driver as a module, choose M here: the
++	  module will be called charlieplex_keypad.
++
+ config KEYBOARD_HIL_OLD
+ 	tristate "HP HIL keyboard support (simple driver)"
+ 	depends on GSC || HP300
+diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
+index 2d906e14f3e2..40b5cf5d374d 100644
+--- a/drivers/input/keyboard/Makefile
++++ b/drivers/input/keyboard/Makefile
+@@ -40,6 +40,7 @@ obj-$(CONFIG_KEYBOARD_LOCOMO)		+= locomokbd.o
+ obj-$(CONFIG_KEYBOARD_LPC32XX)		+= lpc32xx-keys.o
+ obj-$(CONFIG_KEYBOARD_MAPLE)		+= maple_keyb.o
+ obj-$(CONFIG_KEYBOARD_MATRIX)		+= matrix_keypad.o
++obj-$(CONFIG_KEYBOARD_CHARLIEPLEX)	+= charlieplex_keypad.o
+ obj-$(CONFIG_KEYBOARD_MAX7359)		+= max7359_keypad.o
+ obj-$(CONFIG_KEYBOARD_MAX7360)		+= max7360-keypad.o
+ obj-$(CONFIG_KEYBOARD_MPR121)		+= mpr121_touchkey.o
+diff --git a/drivers/input/keyboard/charlieplex_keypad.c b/drivers/input/keyboard/charlieplex_keypad.c
 new file mode 100644
-index 000000000000..d3eeddc8e533
+index 000000000000..fae0aeb1d167
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
-@@ -0,0 +1,106 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
++++ b/drivers/input/keyboard/charlieplex_keypad.c
+@@ -0,0 +1,213 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ *  GPIO driven charlieplex keypad driver
++ *
++ *  Copyright (c) 2025 Hugo Villeneuve <hvilleneuve@dimonoff.com>
++ *
++ *  Based on matrix_keyboard.c
++ */
 +
-+$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/input.h>
++#include <linux/input/matrix_keypad.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/property.h>
++#include <linux/types.h>
 +
-+title: GPIO charlieplex keypad
++struct charlieplex_keypad {
++	struct input_dev *input_dev;
++	struct gpio_descs *line_gpios;
++	unsigned int nlines;
++	unsigned int settling_time_us;
++	unsigned int debounce_threshold;
++	unsigned int debounce_count;
++	int debounce_code;
++	int current_code;
++};
 +
-+maintainers:
-+  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
++static void charlieplex_keypad_report_key(struct input_dev *input)
++{
++	struct charlieplex_keypad *keypad = input_get_drvdata(input);
++	const unsigned short *keycodes = input->keycode;
 +
-+description: |
-+  The charlieplex keypad supports N^2)-N different key combinations (where N is
-+  the number of lines). Key presses and releases are detected by configuring
-+  only one line as output at a time, and reading other line states. This process
-+  is repeated for each line. Diodes are required to ensure current flows in only
-+  one direction between any pair of pins.
-+  This mechanism doesn't allow to detect simultaneous key presses.
++	if (keypad->current_code > 0) {
++		input_event(input, EV_MSC, MSC_SCAN, keypad->current_code);
++		input_report_key(input, keycodes[keypad->current_code], 0);
++	}
 +
-+  Wiring example for 3 lines keyboard with 6 switches and 3 diodes:
++	if (keypad->debounce_code) {
++		input_event(input, EV_MSC, MSC_SCAN, keypad->debounce_code);
++		input_report_key(input, keycodes[keypad->debounce_code], 1);
++	}
 +
-+  L0  --+---------------------+----------------------+
-+        |                     |                      |
-+  L1  -------+-----------+---------------------+     |
-+        |    |           |    |                |     |
-+  L2  -------------+----------------+-----+    |     |
-+        |    |     |     |    |     |     |    |     |
-+        |    |     |     |    |     |     |    |     |
-+        |  S1 \  S2 \    |  S3 \  S4 \    |  S5 \  S6 \
-+        |    |     |     |    |     |     |    |     |
-+        |    +--+--+     |    +--+--+     |    +--+--+
-+        |       |        |       |        |       |
-+        |    D1 v        |    D2 v        |    D3 v
-+        |       - (k)    |       - (k)    |       - (k)
-+        |       |        |       |        |       |
-+        +-------+        +-------+        +-------+
++	input_sync(input);
++	keypad->current_code = keypad->debounce_code;
++}
 +
-+  L: GPIO line
-+  S: switch
-+  D: diode (k indicates cathode)
++static void charlieplex_keypad_check_switch_change(struct input_dev *input,
++						   int code)
++{
++	struct charlieplex_keypad *keypad = input_get_drvdata(input);
 +
-+allOf:
-+  - $ref: input.yaml#
-+  - $ref: /schemas/input/matrix-keymap.yaml#
++	if (code != keypad->debounce_code) {
++		keypad->debounce_count = 0;
++		keypad->debounce_code = code;
++	} else if (keypad->debounce_count < keypad->debounce_threshold) {
++		keypad->debounce_count++;
 +
-+properties:
-+  compatible:
-+    const: gpio-charlieplex-keypad
++		if (keypad->debounce_count >= keypad->debounce_threshold &&
++		    keypad->debounce_code != keypad->current_code)
++			charlieplex_keypad_report_key(input);
++	}
++}
 +
-+  autorepeat: true
++static void charlieplex_keypad_poll(struct input_dev *input)
++{
++	struct charlieplex_keypad *keypad = input_get_drvdata(input);
++	int oline;
++	int code;
 +
-+  debounce-delay-ms:
-+    default: 5
++	for (code = 0, oline = 0; oline < keypad->nlines; oline++) {
++		DECLARE_BITMAP(values, MATRIX_MAX_ROWS);
++		int iline;
++		int rc;
 +
-+  line-gpios:
-+    description:
-+      List of GPIOs used as lines. The gpio specifier for this property
-+      depends on the gpio controller to which these lines are connected.
++		/* Activate only one line as output at a time. */
++		gpiod_direction_output(keypad->line_gpios->desc[oline], 1);
 +
-+  linux,keymap: true
++		if (keypad->settling_time_us)
++			fsleep(keypad->settling_time_us);
 +
-+  poll-interval: true
++		/* Read input on all other lines. */
++		rc = gpiod_get_array_value_cansleep(keypad->line_gpios->ndescs,
++						    keypad->line_gpios->desc,
++						    keypad->line_gpios->info, values);
++		if (rc)
++			return;
 +
-+  settling-time-us: true
++		for (iline = 0; iline < keypad->nlines; iline++) {
++			if (iline == oline)
++				continue; /* Do not read active output line. */
 +
-+  wakeup-source: true
++			/* Check if GPIO is asserted. */
++			if (test_bit(iline, values)) {
++				code = MATRIX_SCAN_CODE(oline, iline,
++							get_count_order(keypad->nlines));
++				/*
++				 * Exit loop immediately since we cannot detect
++				 * more than one key press at a time.
++				 */
++				break;
++			}
++		}
 +
-+required:
-+  - compatible
-+  - line-gpios
-+  - linux,keymap
-+  - poll-interval
++		gpiod_direction_input(keypad->line_gpios->desc[oline]);
 +
-+additionalProperties: false
++		if (code)
++			break;
++	}
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/input/input.h>
++	charlieplex_keypad_check_switch_change(input, code);
++}
 +
-+    charlieplex-keypad {
-+        compatible = "gpio-charlieplex-keypad";
-+        debounce-delay-ms = <20>;
-+        poll-interval = <5>;
-+        settling-time-us = <2>;
++static int charlieplex_keypad_init_gpio(struct platform_device *pdev,
++					struct charlieplex_keypad *keypad)
++{
++	int i;
 +
-+        line-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH
-+                      &gpio2 26 GPIO_ACTIVE_HIGH
-+                      &gpio2 27 GPIO_ACTIVE_HIGH>;
++	keypad->line_gpios = devm_gpiod_get_array(&pdev->dev, "line", GPIOD_IN);
++	if (IS_ERR(keypad->line_gpios))
++		return PTR_ERR(keypad->line_gpios);
 +
-+        /* MATRIX_KEY(output, input, key-code) */
-+        linux,keymap = <
-+            /*
-+             * According to wiring diagram above, if L1 is configured as
-+             * output and HIGH, and we detect a HIGH level on input L0,
-+             * then it means S1 is pressed: MATRIX_KEY(L1, L0, KEY...)
-+             */
-+            MATRIX_KEY(1, 0, KEY_F1) /* S1 */
-+            MATRIX_KEY(2, 0, KEY_F2) /* S2 */
-+            MATRIX_KEY(0, 1, KEY_F3) /* S3 */
-+            MATRIX_KEY(2, 1, KEY_F4) /* S4 */
-+            MATRIX_KEY(1, 2, KEY_F5) /* S5 */
-+            MATRIX_KEY(0, 2, KEY_F6) /* S6 */
-+        >;
-+    };
++	keypad->nlines = keypad->line_gpios->ndescs;
++
++	if (keypad->nlines > MATRIX_MAX_ROWS)
++		return -EINVAL;
++
++	for (i = 0; i < keypad->nlines; i++)
++		gpiod_set_consumer_name(keypad->line_gpios->desc[i], "charlieplex_kbd_line");
++
++	return 0;
++}
++
++static int charlieplex_keypad_probe(struct platform_device *pdev)
++{
++	struct charlieplex_keypad *keypad;
++	unsigned int debounce_interval_ms;
++	unsigned int poll_interval_ms;
++	struct input_dev *input_dev;
++	int err;
++
++	keypad = devm_kzalloc(&pdev->dev, sizeof(*keypad), GFP_KERNEL);
++	if (!keypad)
++		return -ENOMEM;
++
++	input_dev = devm_input_allocate_device(&pdev->dev);
++	if (!input_dev)
++		return -ENOMEM;
++
++	keypad->input_dev = input_dev;
++
++	device_property_read_u32(&pdev->dev, "poll-interval", &poll_interval_ms);
++	device_property_read_u32(&pdev->dev, "debounce-delay-ms", &debounce_interval_ms);
++	device_property_read_u32(&pdev->dev, "settling-time-us", &keypad->settling_time_us);
++
++	keypad->current_code = -1;
++	keypad->debounce_code = -1;
++	keypad->debounce_threshold = DIV_ROUND_UP(debounce_interval_ms, poll_interval_ms);
++
++	err = charlieplex_keypad_init_gpio(pdev, keypad);
++	if (err)
++		return err;
++
++	input_dev->name		= pdev->name;
++	input_dev->id.bustype	= BUS_HOST;
++
++	err = matrix_keypad_build_keymap(NULL, NULL, keypad->nlines,
++					 keypad->nlines, NULL, input_dev);
++	if (err)
++		dev_err_probe(&pdev->dev, -ENOMEM, "failed to build keymap\n");
++
++	if (device_property_read_bool(&pdev->dev, "autorepeat"))
++		__set_bit(EV_REP, input_dev->evbit);
++
++	input_set_capability(input_dev, EV_MSC, MSC_SCAN);
++
++	err = input_setup_polling(input_dev, charlieplex_keypad_poll);
++	if (err)
++		dev_err_probe(&pdev->dev, err, "unable to set up polling\n");
++
++	input_set_poll_interval(input_dev, poll_interval_ms);
++
++	input_set_drvdata(input_dev, keypad);
++
++	err = input_register_device(keypad->input_dev);
++	if (err)
++		return err;
++
++	platform_set_drvdata(pdev, keypad);
++
++	return 0;
++}
++
++static const struct of_device_id charlieplex_keypad_dt_match[] = {
++	{ .compatible = "gpio-charlieplex-keypad" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, charlieplex_keypad_dt_match);
++
++static struct platform_driver charlieplex_keypad_driver = {
++	.probe		= charlieplex_keypad_probe,
++	.driver		= {
++		.name	= "charlieplex-keypad",
++		.of_match_table = of_match_ptr(charlieplex_keypad_dt_match),
++	},
++};
++module_platform_driver(charlieplex_keypad_driver);
++
++MODULE_AUTHOR("Hugo Villeneuve <hvilleneuve@dimonoff.com>");
++MODULE_DESCRIPTION("GPIO driven charlieplex keypad driver");
++MODULE_LICENSE("GPL");
 -- 
 2.47.3
 
