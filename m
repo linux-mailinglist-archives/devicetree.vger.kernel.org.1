@@ -1,193 +1,253 @@
-Return-Path: <devicetree+bounces-268522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268523-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +CLPOJdVn2mIaQQAu9opvQ
-	(envelope-from <devicetree+bounces-268522-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:03:35 +0100
+	id QJoAB+RVn2mIaQQAu9opvQ
+	(envelope-from <devicetree+bounces-268523-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:04:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 903EB19D03B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:03:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B1419D05C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:04:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E3126300B59D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:03:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 559713010BAF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DD222FFDE3;
-	Wed, 25 Feb 2026 20:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3212E0B5C;
+	Wed, 25 Feb 2026 20:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wxarhj9A"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="AeeZB5hf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com [74.125.82.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 972BB29BD95
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 20:03:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.180
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772049812; cv=pass; b=C7YpYDCmFyjBITtlL9JKpRtVCIavkNIc7VzrGIPLAB7m2lypAMeGPUZfSEa3fIi1PGT1nIXbCFBZG0rR8ST9RnxnoZ52AuzZ9XnDamxYrgA4CiBPiiZv1uKVue1io/SDoB12BF9nthWdxMPSTrR+eMV65lVii2Aw/VcaWKKzo1Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772049812; c=relaxed/simple;
-	bh=YjjeQPKHwsysO3aIz1xIueVPmWB/NR0iZT6palKwRdA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KwOXHoS5IrK3gOaWavuwGoQ+HwM61bFjapEI9XStB6HZ4ltzkmQUBkb7wYIh2fCgu8BEwflMZSGYGLfPpx4XlSkxzGPDcWkpLC5kVVKOUpnpSAFynIhhoKi0YPw2gY5nLNdWE17iE8lQPslk5XLMehEVKOi/Ppd7y2PUzFv3yGI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wxarhj9A; arc=pass smtp.client-ip=74.125.82.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f180.google.com with SMTP id 5a478bee46e88-2bd9a485bd6so48636eec.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 12:03:29 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772049809; cv=none;
-        d=google.com; s=arc-20240605;
-        b=ikO0IbbuM1SExo69RE1/1TbLJoSWuejwaP3TJ9ZipEeQ4WtciRhfqPravJThwQQ+Pt
-         RezAaNPRu0vZHPAAKKBIiLQep6oXsstg7syPpOCnX8bZkXEUuBvxRkECL1Lg3+kCT+mW
-         LeBERTb7NUUbXqQYXhfEQyztIoGr6X6REc2AqH7oSyvaimaEOApTw+2p7xyDx3DeTCas
-         EMe4AXQR+fLli3vykxtxJt2f/97dn28Y8PFo3wXUsTxcRTPrl1cNc6OHnh1Ht+nuBWw9
-         aAdr9w7ybVGYrFtbN4Gumngt2B/0o9jM5mTDRKN28R01Oe/JsAf54fmpwKqTfXRMt8Qe
-         sdjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=4kIyGmBg5HXoWLsRB0pfFO9jGQNi7KILjq28N7CKS3w=;
-        fh=G5nMOKfM6A/PE66r2wc6H4VoWjrmEhCayL7s5FBFo00=;
-        b=N1aXyjMviVIglDYZMyFln0G0gXqgI6BHWphjpdEoXleK8uS31WGJzQlBWvw534w5rj
-         5CcBbgo0gLJ2jHFsIPXke8sqV51BZ0aGCdkyxWDjM5mG2O8Kw315jvoTEmV8S2Ed2D8U
-         9hMDsz8uMum4hlK9h4O0Mb8fzZ6Ndp+H0N9ZH0kL4eKpesKoCMdtBhdfT8qRQ1zAIu6E
-         Msi5Id2ufN43zuyUWQ7NiL4GFTjdgRZN3EIloHg3yncU1js7XtrcAdIFwNSOILHkGAIj
-         FaCzUAaXLRURfcqRjMul+UHcXSHnflxioBBWXfBjvj5dHFL1aXEdUWu931U8v73lTBNA
-         6TdQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772049809; x=1772654609; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4kIyGmBg5HXoWLsRB0pfFO9jGQNi7KILjq28N7CKS3w=;
-        b=Wxarhj9AuiGfLjxdCWtb7DkG+DBoTP306zQBq10XAgCKWNh7IzqKckblYeIDd3brs9
-         /WAR+Dm14wjNp+Yoi9lenXRwq8/JtrAAyeKUEctkQuPu3bR5Gh9y0lJasz9vaNnr8FQI
-         qZJr2Z0u1p0JpzrdNG+t+ulf9yu2ers11thXuWTsHI4wjtHGodgZKJo/YeSTUa2EF69S
-         Xx8xa+aaYftSn2t9xkMiNMi4idAxAkuQ+CDTkqjOi9Ef82HKD0IaJ9WeHLNi34jXG8X7
-         5a4uVIuQgiyQky1CmsCaugbfCiBqGH8CJGnEB2DXEzkMQPbUDSSVUrwdgdbD8W0toKud
-         4j1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772049809; x=1772654609;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4kIyGmBg5HXoWLsRB0pfFO9jGQNi7KILjq28N7CKS3w=;
-        b=jIjqAwnrQVCyaQR+h5zsZ+WeRowL4S5xSKWEul7LgrF2XmSF4eqdY+V7NYSW3/2Iqx
-         i/t3aBbBx7R1r56zlFJRspwK7f6gLTu3ob3hDiF5Du6yI/GVWQpubr3WG7gWrNDe8WBJ
-         7exsmN1kdNRxC5lJuuie07QVMsR5OIlrqLiH0otSMB2WfXQig+itkiOvmap8Tr6mbeVs
-         Wr/hCoQ3ZX28Z2Ek1sZxBL+/QCGfpW6XGMZzRAAJDdO5Hd7DpKxB/IqRWPOzmux592dJ
-         8cm5E4JERe8AQgnEYI69hkYKDYJKHFeAxZWJ/jDPKk1v//Eq3mdv3gjURnnrcpAHtpWr
-         Nm4g==
-X-Forwarded-Encrypted: i=1; AJvYcCUqWrhCY0+8g2mDQsMheEBGPagekIZGlIT/kMmstgoWFF6KCcAdXeFvkKdEfw8zw/63zhOkEY90Msdd@vger.kernel.org
-X-Gm-Message-State: AOJu0YztPjJrSCCFMdR+TGQfgHGpjYe0p0+tmRj1jHYMRUhEtIpZIN81
-	S0WWhX+97NPw3EN9JditRPbsOa9I3+JTGd2bdWOgFgwgtwnUbyj3JQFpNuShWcJpBjzmF43vhzp
-	imt3pK8Va+zJn+3aM0VWpAKsgqmlllJA=
-X-Gm-Gg: ATEYQzxFQHzLWPqBQVxt0GomMF2xeTGKMG0neIKmA90By21iOTIlFfe6nscfthPYxeh
-	Ll4BzIQlt6QEuiJ5FWkRxDDYku4Jy5d5M8eZYZ3C5PAA4uFcknXopbT3u/WxlT23Pi80Kp7/5gN
-	AJ6P84x+qPl4O/tDczZHxrP9TpBTii1xfMBeQRsC7ykVeSdrirsIknB/S+bqWUE2+WDRn21sb4C
-	SfC79wEArrnSkpTiuYOVXaL2Alv5NCGniNV37oCTzfMC/XfwpylwTnxrj+BmYeMPNbO9qrRGfZz
-	Hzk1qa0=
-X-Received: by 2002:a05:7301:1297:b0:2ba:a661:8512 with SMTP id
- 5a478bee46e88-2bd7bb55164mr6154017eec.17.1772049808589; Wed, 25 Feb 2026
- 12:03:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB35C29BD95;
+	Wed, 25 Feb 2026 20:04:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772049887; cv=none; b=i7cKe5Ze+vDxiDTii0pkRAKYFyfhONJIWujee5aChfle1toaeEw+6doYou4AeW9QWj2Z9u1tYJsmC842q6uUKJlgHNjQEpoLgh4bzUFkXi7V1IxIoOA2BFyeJEjL79rku3K5tToFCOv8Qtkl91QORtM2CNLoXBn3UPvWhQq1UO4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772049887; c=relaxed/simple;
+	bh=w967MmLjuX7yysUZx45GQ6WCFfpPW1nzJFvFOPhZT58=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
+	 In-Reply-To:References; b=dlqVMOfHH0OPU3ACHZ2E13oHwaC/waT0lI8sQb2MJO72/BAM8PeGrJaDtCF9bEq+gMa6DKYO52BaphVBu1HTMraqPCdH6uznw+h0qZNw+APAqm2V40M1k8TBc6L5PAW/hoD3bbGAiyAezhgUBLfrnaPe92ylKjxuvyra2crn5YE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=AeeZB5hf; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1772049853; x=1772654653; i=frank-w@public-files.de;
+	bh=gG32QezSPmvNiifOmlk3UNWlKCkfpONTm9OEYsqWNT8=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:Date:In-Reply-To:References:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=AeeZB5hfIlBef29wS0xZ+xYQBwvlJkspdXind8lEvQFZBhCQpMsxNCswTC58YI1b
+	 qhj5GBFYVPptD0RQuUiY0ig2tGCbu9eH82nuTNBMaHbUmZXfZvss/zZ6SVVyz5A2I
+	 cE5vya6poceVh/efQVk6S3WY64pmdVqmlOq8tZkJXROi1oJ2wMeauxSunf8Bnw3RW
+	 bUhDy/GVchGWxYJJ6ZxmkW1wlTp6Nn5fxLEspGH2onYWxSP7T3hNZ2ybpRc+/YqZA
+	 /j0UQRN0gB73cCMqASNyxXGCXfbk4fv36g15ngsMleuOSx+iQ//5BkmC8aSZ/HZTi
+	 YklIWORUA9nrzcx5TA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [80.245.74.92] ([80.245.74.92]) by
+ trinity-msg-rest-gmx-gmx-live-8d9bc96fb-9hfbf (via HTTP); Wed, 25 Feb 2026
+ 20:04:13 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260223-panel-patches-v2-0-1b6ad471d540@gmail.com>
- <20260223-panel-patches-v2-1-1b6ad471d540@gmail.com> <20260224-bulky-rabbit-of-courtesy-83fabc@quoll>
- <CAHuF_Zq=Rpg0HoRJv-BSREEhT8tYH4r+BCbZ7obrG36vSmwMQA@mail.gmail.com> <54abd390-113a-4c99-b024-2029c4d68099@kernel.org>
-In-Reply-To: <54abd390-113a-4c99-b024-2029c4d68099@kernel.org>
-From: Yedaya Katsman <yedaya.ka@gmail.com>
-Date: Wed, 25 Feb 2026 22:03:16 +0200
-X-Gm-Features: AaiRm50pGQkXh7eSkSuu6niLp3TuwxMtUDhrOf8ElhHJQnJMvsWEsPN00BEN06E
-Message-ID: <CAHuF_ZoEAT+91trLabyo8rc8afXW=Wd0Q9yxu_v53nXoRFJMTA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: panel: Add Samsung S6E8FCO
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?S2FtaWwgR2/FgmRh?= <kamil.golda@protonmail.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	~postmarketos/upstreaming@lists.sr.ht, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <trinity-983c3017-9988-4ea9-b704-0dddd89a1e20-1772049853446@trinity-msg-rest-gmx-gmx-live-8d9bc96fb-9hfbf>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: frank-w@public-files.de, linux@fw-web.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Aw: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4pro: fix model
+ string
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 25 Feb 2026 20:04:13 +0000
+In-Reply-To: <1665fa1f-67da-4688-89db-d864b5bb0509@public-files.de>
+References: <20251215074609.4100-1-linux@fw-web.de>
+ <1665fa1f-67da-4688-89db-d864b5bb0509@public-files.de>
+X-UI-CLIENT-META-MAIL-DROP: W10=
+X-Provags-ID: V03:K1:MTa4HafF8wMtqwitPqKwnJiblV59jVORNj6NeHLkfbucTFZAfloke+uyhbk01SYWtm5DE
+ 2vWHliuKBDxPZOE00E9cQ3vgWSx2nQStFkX5OG7UjYcS74aq4Ab8dMo80Ktvn1VQQBFhzDMM38lw
+ y8uM79rKMXlwf0Nzzy3Xw4sLJxGg5IML0m3QgkG9gX0JgitbFBMkdCvcM/vR6PLQ57zzZqQCMNgi
+ sefmb6mwe2pvnVSx3NIMK2yFJo7FNtQrux7WGtSF6SraLyQirav5ZqviHQyW68ZfJEQh6A7is0+H
+ 3KkY8GtqYj3pfRN1GRqVvDibZwdz6vZouWE4w8XpZFGiq9RiJ6F3jdGq2JBDJIN3aw=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:qsc6YkO+Gdg=;WzTLxP4LvGDDcM7IEBb/jL7SGHk
+ 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
+ RQ/qLhA4I7MaQJuhmjttOdw==
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[public-files.de,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[public-files.de:s=s31663417];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268522-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268523-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,protonmail.com,lists.sr.ht,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yedayaka@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_TO(0.00)[public-files.de,fw-web.de,kernel.org,gmail.com,collabora.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 903EB19D03B
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[frank-w@public-files.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[public-files.de:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FREEMAIL_FROM(0.00)[public-files.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,public-files.de:email,public-files.de:dkim,fw-web.de:email]
+X-Rspamd-Queue-Id: 88B1419D05C
 X-Rspamd-Action: no action
 
-On Wed, 25 Feb 2026 at 17:45, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 25/02/2026 16:29, Yedaya Katsman wrote:
-> >>> +  vddio-supply: true
-> >>> +  ldo-supply: true
-> >>
-> >> LDO is the name of the type of regulator. Why is it called as name of
-> >> the supply?
-> > Can you explain more what you mean? Do you mean to change the name of
-> > the property? It seems that all the regulator properties are named
-> > foo-supply.
->
-> I just have doubts that the device has supplied called LDO, considering
-> what LDO means.
-OK. I don't really have a way to verify if it's true, all I have is
-the downstream dts
-which calls it LDO [0]
+Hi Angelo
 
-[0] https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/d3766fc8cda2d96de2850faa9ce58e5a37ea9f9c/arch/arm64/boot/dts/qcom/trinket-sde-display.dtsi#L24-L36
+can you please add this fix?
 
+regards Frank
+
+> Gesendet: Freitag, 16. Januar 2026 um 14:38
+> Von: "Frank Wunderlich" <frank-w@public-files.de>
+> An: "Frank Wunderlich" <linux@fw-web.de>, "Rob Herring" <robh@kernel.org=
+>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@ke=
+rnel.org>, "Matthias Brugger" <matthias.bgg@gmail.com>, "AngeloGioacchino =
+Del Regno" <angelogioacchino.delregno@collabora.com>
+> CC: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-=
+kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+> Betreff: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4pro: fix model =
+string
+>
+> Hi,
+>=20
+> just a gentle ping
+>=20
+> regards Frank
+>=20
+> Am 15.12.25 um 08:46 schrieb Frank Wunderlich:
+> > From: Frank Wunderlich <frank-w@public-files.de>
 > >
-> >> Isn't this binding exactly the same as s6e3ha8, s6e8aa5x01, sofef00 or
-> >> any others?
-> > Yeah they follow the same pattern. Is there something missing in this
-> > one? I will add descriptions to foo-supply properties
->
-> No, was rather thinking that this should be combined into other binding,
-> assuming the actual pins and supplies are the same.
-Got it. I don't see any bindings that have the exact same set of supply
-regulators, at least according to their names.
-I guess I could add the regulators for this one to one of them and make the
-not-common regulators non-required, but I don't know if that's what you had
-in mind.
-> Best regards,
-> Krzysztof
-
-Thanks,
-Yedaya
+> > Fix incorrect model string in Devicetree for BPI-R4-Pro.
+> >
+> > Fixes: f397471a6a8c ("arm64: dts: mediatek: mt7988: Add devicetree for=
+ BananaPi R4 Pro")
+> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts | 2 =
++-
+> >   arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts | 2 =
++-
+> >   2 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-=
+4e.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+> > index c7ea6e88c4f4..621d01e3cd89 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
+> > @@ -9,7 +9,7 @@
+> >   #include "mt7988a-bananapi-bpi-r4-pro.dtsi"
+> >  =20
+> >   / {
+> > -	model =3D "Bananapi BPI-R4";
+> > +	model =3D "Bananapi BPI-R4 Pro 4E";
+> >   	compatible =3D "bananapi,bpi-r4-pro-4e",
+> >   		     "bananapi,bpi-r4-pro",
+> >   		     "mediatek,mt7988a";
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-=
+8x.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+> > index c9a0e69e9dd5..bb15bfa5e6ae 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
+> > @@ -9,7 +9,7 @@
+> >   #include "mt7988a-bananapi-bpi-r4-pro.dtsi"
+> >  =20
+> >   / {
+> > -	model =3D "Bananapi BPI-R4";
+> > +	model =3D "Bananapi BPI-R4 Pro 8X";
+> >   	compatible =3D "bananapi,bpi-r4-pro-8x",
+> >   		     "bananapi,bpi-r4-pro",
+> >   		     "mediatek,mt7988a";</frank-w@public-files.de></frank-w@public=
+-files.de>
 
