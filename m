@@ -1,153 +1,120 @@
-Return-Path: <devicetree+bounces-268111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268112-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kZiHFf9qnmnnVAQAu9opvQ
-	(envelope-from <devicetree+bounces-268111-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 04:22:39 +0100
+	id uCptKIFrnmnnVAQAu9opvQ
+	(envelope-from <devicetree+bounces-268112-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 04:24:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971B51912C5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 04:22:38 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFE0E19130C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 04:24:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 324CA3027307
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 03:22:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9D479300C6C3
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 03:24:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E4228D8DF;
-	Wed, 25 Feb 2026 03:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PwOgPzYH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC66929DB99;
+	Wed, 25 Feb 2026 03:24:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD87B2AE68;
-	Wed, 25 Feb 2026 03:22:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.78.106])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AB32AE68;
+	Wed, 25 Feb 2026 03:24:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.78.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771989754; cv=none; b=toNzHllYf76CiJm97GWM3hqc+09k8kHkIOEvNVIvDLFQWhx6OONqA630iMut04xQQGuWcNj4i3Fxz5gBaGr10UmwXOcWwQcw7wkkIQwsCmVP97FpIiNVEtiOktqSJ+1WkKCAsPpYIOmU+zO27Te4HhF4npc47/2AcIez9aryfwU=
+	t=1771989880; cv=none; b=ldPhKjqw8a1hKUZkUaovf9VV0VdFkVOq0RraR+ILv+Q41LFtlDw3VQPVpW6C0vGLNC5dQeG1wN6Yn+k8YwCHLVT4h/wXlyX+QVXWUdRbyhQ6skIXNxEh3/jYYtVR8A6QVr1wQSGg5xleYzmy0SFlkTFFQwsANm08GybIwQje3aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771989754; c=relaxed/simple;
-	bh=fQ3abqpA4UQHDQ+kifybYdmRSEbqygRuEteuB89GWmM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E0OiqVYRw5TTJ6OO2bxC8qRzQtDu5sBgt18BUbDw+DwlnJou6DVximZozJ7HSuOIBlZHhejoQ5ydMVegjDEmdrcSFJU6o5i0L+pmnXKtTihsdrEmNKKvKsSU3SEBZpRcrx9/hcgQI4yP9f6tTHrY66/UqpoDPmOcDXXMIZKCa2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PwOgPzYH; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771989753; x=1803525753;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fQ3abqpA4UQHDQ+kifybYdmRSEbqygRuEteuB89GWmM=;
-  b=PwOgPzYHtILZcPd6UwzU+kiMWqGiCH8fLX+LWhEXxx+Je6p6zQf4sJj0
-   6kH4VDvmBlOZ8mEzFr+/rzknS9JJm+tEwSD0L40u3EKkl8qnTsw5jCSX1
-   YX4yKVfrlU0+VpI1Uuq+c+O6Mj9JGeprSZmpY0b72fHB5IvqzM7TiDb0C
-   WkjFPOcrKM6I+/zvKfNNJLW0DM6hcW2sDK2z209My24Wo5h4mxsO2IAoP
-   J2L/SideOSvqdFLakaNS6vaKAUat9lndqAn0FbXF9rbev3Ne443f7u7L4
-   yNQqOOLh9Nf3QByyyaB9C1HexzUs3R5bQgF6CF1Od5TKZktmSjYQswW78
-   g==;
-X-CSE-ConnectionGUID: hvgIAahhTx6K0xpDRXc8Qw==
-X-CSE-MsgGUID: hFYWOrLxTHmtpUtlOHHWqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="72721886"
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
-   d="scan'208";a="72721886"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 19:22:32 -0800
-X-CSE-ConnectionGUID: M6CAOsi7Ru6o9asTZTCQaQ==
-X-CSE-MsgGUID: M56VrZNnTFubwVE0KvtjMA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
-   d="scan'208";a="216112635"
-Received: from lkp-server02.sh.intel.com (HELO a3936d6a266d) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 24 Feb 2026 19:22:29 -0800
-Received: from kbuild by a3936d6a266d with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vv5TE-000000003s5-0XDm;
-	Wed, 25 Feb 2026 03:22:05 +0000
-Date: Wed, 25 Feb 2026 11:21:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, andy@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
-Message-ID: <202602251146.f80QkdrL-lkp@intel.com>
-References: <20260224163109.370930-3-macroalpha82@gmail.com>
+	s=arc-20240116; t=1771989880; c=relaxed/simple;
+	bh=a8ePmFCIfGiBFXiz56LIH/8Mo1XONCmvpfMpj7N/fko=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=ZP+QvU1fj4oHg6BNSn3frFaUuwMyPlDZkmUy/th6TZzDTPoY21fiWYNcOuiwtGKAvO03wb5ffd239LdX4nkBJUiDo7lcSc8nqBnH99dNYOrSnU8Ma9NDlwlbDrglA0Iposd8YkP+v5U7zILNweo+7SswYdJ9j3euA+dwN91L6hE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.78.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
+ ajax-webmail-app2 (Coremail) ; Wed, 25 Feb 2026 11:24:29 +0800 (GMT+08:00)
+Date: Wed, 25 Feb 2026 11:24:29 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Huan He" <hehuan1@eswincomputing.com>
+To: "Conor Dooley" <conor@kernel.org>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jszhang@kernel.org, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, xuxiang@eswincomputing.com,
+	"Pritesh Patel" <pritesh.patel@einfochips.com>
+Subject: Re: Re: [PATCH v3] dt-bindings: mmc: dwcmshc-sdhci: Fix resets
+ array validation
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20260224-thud-hydroxide-4c139d351fa6@spud>
+References: <20260224092337.312-1-hehuan1@eswincomputing.com>
+ <20260224-thud-hydroxide-4c139d351fa6@spud>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260224163109.370930-3-macroalpha82@gmail.com>
+Message-ID: <389f2709.38c5.19c92d3a42c.Coremail.hehuan1@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgDH3aBta55piVYDAA--.671W
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAQEJCmmd0pEafgAB
+	sR
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.64 / 15.00];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,hotmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-268111-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	DMARC_NA(0.00)[eswincomputing.com];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268112-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
+	HAS_X_PRIO_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,git-scm.com:url]
-X-Rspamd-Queue-Id: 971B51912C5
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email,einfochips.com:email]
+X-Rspamd-Queue-Id: DFE0E19130C
 X-Rspamd-Action: no action
 
-Hi Chris,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on rockchip/for-next]
-[also build test ERROR on linus/master v7.0-rc1 next-20260224]
-[cannot apply to jic23-iio/togreg]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-iio-imu-icm42607-Add-devicetree-binding/20260225-003610
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20260224163109.370930-3-macroalpha82%40gmail.com
-patch subject: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
-config: parisc-allyesconfig (https://download.01.org/0day-ci/archive/20260225/202602251146.f80QkdrL-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260225/202602251146.f80QkdrL-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602251146.f80QkdrL-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> hppa-linux-ld: drivers/iio/imu/inv_icm42607/inv_icm42607_spi.o:(.data+0x50): undefined reference to `inv_icm42607_pm_ops'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+PiA+IFRoZSBiaW5kaW5nIGRlZmluZXMgdHVwbGUtc3R5bGUgcmVzZXQtbmFtZXMgaXRlbXMgZm9y
+IHNvbWUKPiA+IGNvbXBhdGlibGVzLCB3aGljaCBpbXBsaWNpdGx5IGVuZm9yY2VzIGEgZml4ZWQg
+YXJyYXkgbGVuZ3RoCj4gPiB2aWEgSlNPTiBTY2hlbWEuCj4gPiAKPiA+IERlZmluaW5nIGdsb2Jh
+bCBtYXhJdGVtcyBmb3IgcmVzZXRzIGFuZCByZXNldC1uYW1lcyBjYXVzZXMgdGhlc2UKPiA+IGNv
+bnN0cmFpbnRzIHRvIGJlIGludGVyc2VjdGVkIHZpYSBhbGxPZiwgcmVzdWx0aW5nIGluIGFuIGVm
+ZmVjdGl2ZQo+ID4gbWluSXRlbXMgZXF1YWwgdG8gdGhlIGdsb2JhbCBtYXhJdGVtcy4gVGhpcyBs
+ZWFkcyB0byBkdGJzX2NoZWNrCj4gPiBmYWlsdXJlcyByZXBvcnRpbmcgcmVzZXQgYXJyYXlzIGFz
+IHRvbyBzaG9ydCwgZXZlbiB3aGVuIHRoZSBEVFMKPiA+IHByb3ZpZGVzIHRoZSBjb3JyZWN0IG51
+bWJlciBvZiBlbnRyaWVzLgo+ID4gCj4gPiBGaXhlczogMzAwMDlhMjFmMjU3ICgiZHQtYmluZGlu
+Z3M6IG1tYzogc2RoY2ktb2YtZHdjbXNoYzogQWRkIEVzd2luIEVJQzc3MDAiKQo+ID4gU2lnbmVk
+LW9mZi1ieTogUHJpdGVzaCBQYXRlbCA8cHJpdGVzaC5wYXRlbEBlaW5mb2NoaXBzLmNvbT4KPiA+
+IFNpZ25lZC1vZmYtYnk6IEh1YW4gSGUgPGhlaHVhbjFAZXN3aW5jb21wdXRpbmcuY29tPgo+IAo+
+IFNpZ25vZmYgY2hhaW4gbG9va3Mgd3JvbmcuIFlvdSdyZSBhdXRob3IgYW5kIHN1Ym1pdHRlciwg
+d2hhdCBkaWQKPiBQcml0ZXNoIGRvPwoKVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgdGFraW5nIHRo
+ZSB0aW1lIHRvIHJldmlldyB0aGUgcGF0Y2ggYW5kIGZvciB5b3VyCnZhbHVhYmxlIGZlZWRiYWNr
+LgoKSW50ZXJuYWxseSwgUHJpdGVzaCBwcm92aWRlZCB0aGUgaW5pdGlhbCB2ZXJzaW9uIG9mIHRo
+aXMgZml4LCBhbmQgSSBoYXZlCm1hZGUgc3Vic2VxdWVudCB1cGRhdGVzIGFuZCByZWZpbmVtZW50
+cyBiZWZvcmUgc3VibWl0dGluZyBpdCB0byB0aGUKY29tbXVuaXR5LgoKQmVzdCByZWdhcmRzLApI
+dWFuIEhlCg==
 
