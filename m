@@ -1,78 +1,80 @@
-Return-Path: <devicetree+bounces-268550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268551-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uOdYOgKBn2lrcgQAu9opvQ
-	(envelope-from <devicetree+bounces-268550-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:08:50 +0100
+	id 4JG1KBuBn2lrcgQAu9opvQ
+	(envelope-from <devicetree+bounces-268551-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:09:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7497219E955
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:08:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 031FA19E96A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9AE67301BA85
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:08:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5247730715F6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216B9376465;
-	Wed, 25 Feb 2026 23:08:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACAD3783AB;
+	Wed, 25 Feb 2026 23:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KRL1xdoj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jU8UV7Vk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5CA34AB19
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 23:08:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6783376BE4
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 23:08:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772060928; cv=none; b=kGxw0uzFaP9Vne1M1sKYs/Lsl75J4ch6KDb2H1umHxoywhIDeojV2QbuR2S2XNBgGZ1j/Y2fhn7ik31QRC94PiJBdjOJRZxuw7xMbIRrxeMNbET1HTjVRN1eaRzFi4geYntWIEzukdmhc2Bbd5p6QhxjYW9wAXaZNDP0kYRCgbo=
+	t=1772060929; cv=none; b=PchhdvzMTsYzhO0JiHjn89anztYK6Uax66LkJeQ0CJqdK83F/qFxtJ+ztD8UQHaFqc29t8jiLVw7Y4coqa3RPCx1l/14jK9A/NmBqy9skHpT3gHEafcsufFIurl9kLUmpQbUCzKre79DN3EP77RA/L82opK3vn+s0Jcqle5rRDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772060928; c=relaxed/simple;
-	bh=4GTUBQnqDbRnlT8dxYxCTUMOU/om/qdaMvQ066E9SkA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Jkv5/JEQ9SUz/Zgb/PKCihHL62TXURy4jdAy8sfxNe6F5b5c0YXAJFm4/kiATQQryu1iIrPJUoPndjiJteacFAKB52qmGZSExMeS220IQB1XWJbZCBMj+o4TekpZAuN8+v78bzkgoUSzYwXHU9Cqiu/sPCdkTA0pRDAdiLL1xFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KRL1xdoj; arc=none smtp.client-ip=209.85.214.193
+	s=arc-20240116; t=1772060929; c=relaxed/simple;
+	bh=vG/5YfOCtrSF3OZk1aFYdm9hlDAH+7XgMDKrJ6eYyHM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=GzwruEqfJJh6Tozu6dBb9LsDjj/9RKJMaIri+uAZzLbyE8pJs7GuNqOtO10/w2cX4cH+j3vIysqcZKxuoYjo6yJzjVkYjwLGIGqbPvuZlxKlr4liZvDA+lWFfioaUX4scNJtkY5DJ8o+H6FaHgxMj6/xLFJ0d8TcRCfthpgoeXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jU8UV7Vk; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-2ad617d5b80so1015435ad.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 15:08:46 -0800 (PST)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2ad4d639db3so803365ad.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 15:08:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772060926; x=1772665726; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xhDmJuAoZW5VMSQqsyhD5EcI7PCWrxtCTZMCIgCsggE=;
-        b=KRL1xdoj/AjL8D/+1lxC70usI3w6G1jjia4W7ujGzp0FfumGamck3+e/02j7DTi8fo
-         ADdF6pS1gW0isr1wQ4X49sGD1mDdsOCNN3gLu0sKKb9HTtdCEgDStGW/wA9XrQs+w3Bv
-         2kuvp8pZXRt19oUOQ2EWPkj1UbYluKvD1TqRa30WRLdKB4NN6KM4VR9LLXjrmgHVMwAA
-         275GOah2R4KI210uiCbxU8EILCD+i+ZlzR6/lSY+bcU4D7vUzmX4S5djVCNEC4h+VWl2
-         kfftmy+71slZCYVgIjZjENYVmOH00b0TlkQn6UmeGge9HVbKTiYd/N/n7oXCUvWzsA0j
-         W0XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772060926; x=1772665726;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1772060928; x=1772665728; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xhDmJuAoZW5VMSQqsyhD5EcI7PCWrxtCTZMCIgCsggE=;
-        b=ZnqM4oiIqH1H9TAc1+svEiPWMccV1zbLVQgYwTNY0gCyJccXEloqwaf+B0BHRwjNOE
-         giS5uRjJIhFWMpvadImmqsI8bNX+JliXXE3jUv5WOVrw0tqwKz7yqQih/9I/6spwocp1
-         Y7PLz9dRhjmYBW5L2PsE2yg0lXyJMxmma16HGN8pbn9fQ6vpyhHkYOFLDL9YNxe3BtEy
-         4pT5Pr4YhOFsgkklQlSkAHA61Qk+LJPEdcg8QvAmPiJUxMvGOKukzb1MAf/AGptFSpaG
-         iYKy+4RsBolOniNIdV2D44IUI5LQnl1uyzxdoz08ihNlMNamfzl8bqLttbKaP+QHFmhP
-         raKw==
-X-Gm-Message-State: AOJu0YyQnaeYyG2iXpSd5vvZ2w0JrF+J7M8iHWkMpipbjq5tAxTVSwEq
-	wltpw77i0RgnF0m84eANfab23aAuqMJuxHjcSgVyC+7+5VSB6bY/hIcqBP/rDZsI46o=
-X-Gm-Gg: ATEYQzzYHz9frztFMGZkIK8+43mllZGIVfx0qiF3kRPkTiOlO0fdyDllMnjkHh5B2st
-	wQYwTH3o3yaNb87hroGkuFB4PwVodmapWbMC19S1X9lw+n6XlLlmQuOSyiP32pI2qJMBtcLS9uI
-	pwHN6VZbGlUZUuykWioE4CTFZiMwXnXGSmkBgn4mKB3Egpkp1m/j8IEyBD1c+v+HeWqAg0CMLRN
-	tiiDf09SaVjMJuDjBVGqmEd3gEwhcrunp+Rei6r4BcvU+CX0VMeV9thvK+W0ofoSpDx3rDBLDtR
-	Tl+b+8mO5r+mWg0byV3ucQjzmDCVWe7snFJ3vTlfyLkvfICSJ7D1bxDw8OBgNnryteRbEnL8yYg
-	ffUUMFEMh7rMOU8Kb8GdCsaMMgZUcfd1wMBq1FrTKZy7c/x/Op7hIXoY2OQLvjt+736GUlsbso5
-	Y4aKjIdi1Kzt2na5+JaHsYChx2UL5XDJLuFd2b7HXrBYsWcU28YzUNYHFG7tmtDFc3
-X-Received: by 2002:a17:902:ef45:b0:2a9:62f1:3fbe with SMTP id d9443c01a7336-2ad745136dbmr177955665ad.34.1772060926018;
-        Wed, 25 Feb 2026 15:08:46 -0800 (PST)
+        bh=cVIVsn7FhVGEmmpQd3To+p0nhAO6o8stxUyzkQjrFx0=;
+        b=jU8UV7VkY9o7rc46Sw7J2rZ7/a29eB+x1aAxj3Zefk9WqLQtN4TAiqLJ1uzVjObo+b
+         e/jPlqUYHl6ADWomfNRuEWY3ol4qBbsA0t3yahi6ST6Lb/njocjckuWt18xxlyy6MD2H
+         ZIwyoo726wmpYNLMray46gwmo+p+XPfqzo1Rhe5FUazKbTvLSDXrAnN0EZ67oi9MWYpx
+         ARg3K85n+Uq3UjUVC5ewKR5P52GtD3b4P9P6Pi7E9jDd0uHgQ8YTryx9YAXT/gHkktfe
+         AsGWp5nXlHwd8FvY/mAr15uwgFfjUBgG5ECuSC0aFZUOA2V6qDpnszoF2G8eMk05ALln
+         ftAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772060928; x=1772665728;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=cVIVsn7FhVGEmmpQd3To+p0nhAO6o8stxUyzkQjrFx0=;
+        b=POF3i6PI/f9sBykiqNFPot5L02gieONuuM/d7BgPALqEpOQuLvjZROl01cJmzaQbVu
+         /FwM8SmPtD9jLPXG3iMHOSX+8WTVpu/xuF9Ydf5Pt03PYl8wwM//BNUrGrDkadGuZoqA
+         ejDXe129YXtFQ2ze2XjkrGwwVgSUryR8VbjnoQrDI82yaJjS5slh/aIlaes3u2fmQr+Q
+         eZ77DOzwzBPCdgddYqF6c6O3Zedbzy85YE2+0lIfThZfTvxpnR8ZlOG0DSgtLOW/mSoG
+         3xwYjTenmzjKKn2TgMUv9acnhPmt50gtQUzfzWNoapXZl/l8PYGjnkcgBiYJqjejolsa
+         pbKQ==
+X-Gm-Message-State: AOJu0YxdCzIhAI6+78XcCZ/7eLYdW8TWjs1ZJNnkLmqn4kB5eSnpoHrO
+	mo140RSBahevrb3gtjmppEA3hh8x1qLjgnHhd6Sv5VkmXDveIFQ/k6hxn8WkbfUk
+X-Gm-Gg: ATEYQzye/Ot+EeNUo0l1U68GAeS7KmF2/qWuz4gJqwrwEnP3P5rZS57GDyxqTao5knI
+	NsjDv2waNldU61WGkUG/ObH2HYcopXklFBLr0a9DViiNiryT1O21twiN/A0EWJPG5l4R/tBOxLs
+	+foLJ6U0zIex10TqfARnD0KWLqQYjgQ+P0YZIbpFLostRxj3Tvd6Jk35X0ijBKD8gn/wRfKWaCI
+	J3i6BnatXjR87zOUxTa6+k9bycCx+vHUEFuZ8pDnmdB8Xr1yPUasLX0QajKoN9A9F5AlVt3XEAH
+	0zA5CLBlamtz50oZ0uQ1B5pMFtKo0gAxV2iEmeMwALGf3rQD5UYMNd+1nS9CX9zVWWAHcenFpGJ
+	KxFPnae30zW3dJZfaL9Un44rl6Sm5nlwoGPxRSGaD0d9FsfkgJnrwrkhry3s4j7q5gNFc4W+Vx/
+	w56x73b97Yk/1r/70XMQ5yudplOYkXDBKl4EKSe5/ljTog8FJHNyP4mA==
+X-Received: by 2002:a17:902:d2d2:b0:2a0:c1ca:20f7 with SMTP id d9443c01a7336-2ade99bd62bmr22422605ad.15.1772060927685;
+        Wed, 25 Feb 2026 15:08:47 -0800 (PST)
 Received: from ryzen ([2601:644:8000:56f5::8bd])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5b2309sm3378285ad.19.2026.02.25.15.08.44
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5b2309sm3378285ad.19.2026.02.25.15.08.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Feb 2026 15:08:45 -0800 (PST)
+        Wed, 25 Feb 2026 15:08:47 -0800 (PST)
 From: Rosen Penev <rosenp@gmail.com>
 To: devicetree@vger.kernel.org
 Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
@@ -84,10 +86,12 @@ Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM5301X ARM ARCHITECTURE),
 	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCHv2 0/4] ARM: dts: BCM5301X: add WAN MAC assignments
-Date: Wed, 25 Feb 2026 15:08:23 -0800
-Message-ID: <20260225230827.21715-1-rosenp@gmail.com>
+Subject: [PATCHv2 1/4] ARM: dts: BCM5301X: EA9200: set WAN MAC from nvram
+Date: Wed, 25 Feb 2026 15:08:24 -0800
+Message-ID: <20260225230827.21715-2-rosenp@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260225230827.21715-1-rosenp@gmail.com>
+References: <20260225230827.21715-1-rosenp@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,7 +106,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -110,11 +114,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_CC(0.00)[broadcom.com,hauke-m.de,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268550-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268551-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[rosenp@gmail.com,devicetree@vger.kernel.org];
@@ -125,28 +129,44 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 7497219E955
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.4:email,0.0.0.0:email,0.0.0.5:email,0.0.0.3:email]
+X-Rspamd-Queue-Id: 031FA19E96A
 X-Rspamd-Action: no action
 
-These are used to specify the proper WAN MAC in dts instead of having to
-handle in userspace.
+The MAC address from the stock firmare is offset by 1. Define it
+properly to avoid having to override it in userspace.
 
-v2: remove commits with switch overrides.
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+---
+ arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Rosen Penev (4):
-  ARM: dts: BCM5301X: EA9200: set WAN MAC from nvram
-  ARM: dts: BCM5301X: panamera: set WAN MAC from nvram
-  ARM: dts: BCM5301X: AC3100: set WAN MAC from nvram
-  ARM: dts: BCM5301X: AC5300: set WAN MAC from nvram
-
- arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts    | 7 +++++++
- arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac3100.dtsi  | 7 +++++++
- arch/arm/boot/dts/broadcom/bcm47094-asus-rt-ac5300.dts   | 3 +++
- arch/arm/boot/dts/broadcom/bcm47094-linksys-panamera.dts | 7 +++++++
- 4 files changed, 24 insertions(+)
-
---
+diff --git a/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts b/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
+index 2ba5adf2b7e7..7c6ad7787945 100644
+--- a/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
++++ b/arch/arm/boot/dts/broadcom/bcm4709-linksys-ea9200.dts
+@@ -25,6 +25,10 @@ memory@0 {
+ 	nvram@1c080000 {
+ 		compatible = "brcm,nvram";
+ 		reg = <0x1c080000 0x180000>;
++
++		et2macaddr: et2macaddr {
++			#nvmem-cell-cells = <1>;
++		};
+ 	};
+ 
+ 	gpio-keys {
+@@ -70,6 +74,9 @@ port@3 {
+ 
+ 		port@4 {
+ 			label = "wan";
++
++			nvmem-cells = <&et2macaddr 1>;
++			nvmem-cell-names = "mac-address";
+ 		};
+ 
+ 		port@5 {
+-- 
 2.53.0
 
 
