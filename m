@@ -1,218 +1,261 @@
-Return-Path: <devicetree+bounces-268350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268394-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AG27BCHsnmk/XwQAu9opvQ
-	(envelope-from <devicetree+bounces-268350-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:33:37 +0100
+	id oNjgHvICn2mZYgQAu9opvQ
+	(envelope-from <devicetree+bounces-268394-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:10:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5295B1976A7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:33:36 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20687198869
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:10:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3624E3047430
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:27:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 920C7302BBC9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0A83AE703;
-	Wed, 25 Feb 2026 12:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E093D331B;
+	Wed, 25 Feb 2026 14:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dyiwnpBR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qkv9HF20"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17A5639281B;
-	Wed, 25 Feb 2026 12:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07FB3A1A54
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 14:10:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772022471; cv=none; b=Jhzx+J5pIplqqXX0r6jQoV2vyNq1bCtKakz+FjAQDTd/tkbJ82dVVvq9mQlJMJ1uyHLjS8vTkZRVLI7cSZ3LebptD6U61hi1Ano/EzmdbnaFmt219G7RLHJXPYHHalw39Cu/fKh7vQ4VcEXTRg/ogEcYAO3xdS2gjobzeLgxabs=
+	t=1772028656; cv=none; b=gHuYZ/xibS3vGHUB4SCIcSy2ABo55ksg5XSijn77ywGfTYSCn6AdjJfZg/S5uZmwf7erElvzEHgpMze2UXn0wEYupFVX7ZZHDFda2zJbz3nmjfQCl52vGD+zK18F2UEvXj8Xl1TzqAJyAVbktIcw/G9dTdgSQ29LQ3yjFqcURRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772022471; c=relaxed/simple;
-	bh=gf6i6MUQ7Ft3mdcBnXb0lPEF0Yd88FAI57ADlhufGMo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=hcYqGN/md7KO4jrMf51VbCnCGtTavD5yQt7tKGVVQSG+/GBHoxe9AZFc1+SJoa69Slre1836Q+1Hpw0UlI65D4wI5dLlK7P/WeUqyOKAD2K+4e0g4iBa3fEJfyDuEtpcLgHMW5zF0xCMWR1Sis+nCSahR8H7VwomHw3Ag6g6S7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dyiwnpBR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 721D0C116D0;
-	Wed, 25 Feb 2026 12:27:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772022471;
-	bh=gf6i6MUQ7Ft3mdcBnXb0lPEF0Yd88FAI57ADlhufGMo=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=dyiwnpBRFkzCCiXWC4ciC7Ko1dcOb3w2mBZKGNmNrj8Zmpc4AsV7c+5W084jXS76s
-	 GohdRZr6PzMVLREexhSbE7MXRC3YaMHUmybGup4uOIPK2A0CkH8vkyzZ1Tda6djAmY
-	 gtltNpHQKLg2NErvWNt+fyQc7CWJCLWvtDiX05lB0EfWshtTgFtsjix1KF8AmZaUO2
-	 rG7z6aMI2R4gi6ZHwr10/t4NyzFN40deXdOx2dQ0ahPZD6fGxAq4f7or2wOfNlr8iP
-	 GOzBia9m/LBrhUgBfDpmucM85MWmw4uhbdKgDB97QnRVUeYas774LXlQ64uX6nQZWy
-	 31J+Wi7HN6zTA==
-Message-ID: <e23f62a6-8546-430c-b616-1208e43b0698@kernel.org>
-Date: Wed, 25 Feb 2026 13:27:45 +0100
+	s=arc-20240116; t=1772028656; c=relaxed/simple;
+	bh=Wbxkai96KV++LHuFBYgeBqSwbkDv6oZ7clagX+nNyW0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IRC0WxgYUpUQ3FlOLCnYMv1wbYj06gk/afPpVd36Vsgpudx6Aub1i38pZMZQJwRzBdv6Bhd0pXmWk4d2Qv8m4PHm1v/m9wIi4FZz63qQLRkEee/SMSKx9iluOOv9ln7MnXLWz6qGCwIFrT+5ycSWn5VPI3HbQiSBgawrBuHicqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qkv9HF20; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-65a1eb5dcb7so791532a12.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 06:10:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772028653; x=1772633453; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/X7TGnbDY8JHbzvNZLr4KocFzXXLBLgEWZOADNbBVWE=;
+        b=Qkv9HF20oAfx8V55bwCz3jdibQbonLP/tde5U3IiM6zdQVdGA2dNzREzrRDBMGQc+z
+         JSLsA5FyHP2cYiMtxxSTIEmgZ0necl3lI8x19cADIasOLXP33ut9ZsjptSVwLlvhymGJ
+         9u7Fbset2YC2Z0kxF5MwF+1NUlQbc3Q2RYevpeWO6F2X/I9Fpr3WV5yk/VPytB2M1/71
+         P4rGISLZ4tC628jvVmVNxLCDl47N5Xto/bwoTy7RQMh2GSKoF39XaM3yUH2tfwbVvajg
+         2AqJuKN6JG+6bc2AZtKR5IsdF2PTryiluaKs12H0rk1SBFJVJKmGXcLUk8OUbuSu1owc
+         QRvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772028653; x=1772633453;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/X7TGnbDY8JHbzvNZLr4KocFzXXLBLgEWZOADNbBVWE=;
+        b=HNFWKIRDVplekKiFm3avDncWK7YgreDy7giSJMqs7HH9CEua+VoqOJcx6VEJ7OUjW/
+         WFnf4K9lnMch96CMYn2eq1DUkLNUMUcGdx2K9VBUGvlSJ1MZdEIN/1e3Rg40DBgg13Yf
+         LvT6c40yFvhYEbcgKEgBcM3l//WaWLxxxOVXw/i7aKtM5D610pgUCkhaNHHGMDQfub1y
+         jv9qhPFuRKi1HxhD3urFpyAEOGh6rUzoz+YVTEmFu3u5QEPcVbufIvWmZ6E5Lx5scJK0
+         uivFS4zw4cvCUILaAc7fY1iOfLOVJuOEdm9B7NQpnEFViIkhvcmBwHXq96Q+ySDBQic0
+         yF/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUexL45MgBgMRPVAmru+MWMP9q8DxjAoQCOhbvpzWcPQ8F1QYBvge5oMUBQo21pgp298A6E/Ggq49Hg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFN0pF53GE1ZmRKSK0R6spiAMbkWihe3Zf7zWGkDILBxQZThsy
+	kETHTpvm0aW1gohSySl62HSkzWra1fd1TPOiMYTzq21y3YP13Nbd4AqT
+X-Gm-Gg: ATEYQzw+7Q25xqqiz0dV3IDuAXj52f6nkkAfDr47So37Y+cIjUAS6YO5CVv8Sm3lK5F
+	nXycIW/EKf6hzjxvjRYJFUyZ8BNd/xHBE0CulFQID1nH394B2Apk9olzcwET8Qg3UQtsNM9wNGW
+	Polu4xXfPt4pS3XlyNT0N9S8hy047gWV/7/Rp0/y1g/grp81wTFJ8GLbahtOBlFnGtDS9W8CtEH
+	y9ZVu+C9tSSDKFDnioG8GaaCHmr7Pe3HFXr0HPJBPcaaQouf6kq/lK8tvameBbSLCd/Z3/e4etF
+	1aT5ZM3/1do3lrEa7srf6g3T8V5Im0pVPifPU4xSqEFjk49dR2rDGwAQ35lV/TxH6sa1ipWqqmv
+	XroABo3VD/QUCx/g0XXVeHzzIwkGonDZYRIPfwfXv0X82ogY2/27lPQioeEvnGTLU0IU7KQa/eY
+	+R35L70MK7M7NN7A==
+X-Received: by 2002:a05:600c:6218:b0:483:702f:4639 with SMTP id 5b1f17b1804b1-483a95eabd7mr166023945e9.2.1772022593550;
+        Wed, 25 Feb 2026 04:29:53 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d608:3a00:6e08:ea2c:b2bc:dea])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43970bf9feasm33655969f8f.6.2026.02.25.04.29.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Feb 2026 04:29:52 -0800 (PST)
+Date: Wed, 25 Feb 2026 14:29:49 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	=?utf-8?Q?Beno=C3=AEt?= Monin <benoit.monin@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH v6 3/8] phy: Add driver for EyeQ5 Ethernet PHY wrapper
+Message-ID: <20260225122949.pt55t3eefr5nawmu@skbuf>
+References: <20260127-macb-phy-v6-0-cdd840588188@bootlin.com>
+ <20260127-macb-phy-v6-3-cdd840588188@bootlin.com>
+ <20260210193516.temrg46yozxma7xb@skbuf>
+ <DGND4VXM9X0N.2CP1VBD8E128M@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] media: dt-bindings: rockchip,vdec: Add alternative
- reg-names order for RK35{76,88}
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil@kernel.org>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- linux-media@vger.kernel.org
-References: <20260225-vdec-reg-order-rk3576-v3-0-5a2ebe1b11a8@collabora.com>
- <20260225-vdec-reg-order-rk3576-v3-1-5a2ebe1b11a8@collabora.com>
- <9bb74438-e759-46a7-9fa1-2c6b1fced76b@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <9bb74438-e759-46a7-9fa1-2c6b1fced76b@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DGND4VXM9X0N.2CP1VBD8E128M@bootlin.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-268394-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268350-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5295B1976A7
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 20687198869
 X-Rspamd-Action: no action
 
-On 25/02/2026 13:26, Krzysztof Kozlowski wrote:
-> On 25/02/2026 13:19, Cristian Ciocaltea wrote:
->> With the introduction of the RK3588 SoC, and RK3576 afterwards, the
->> 'link' and 'cache' register blocks have been provided for the video
->> decoder unit in addition to the existing 'function' one, which now shows
->> up in between them (from address-based ordering point of view).
->>
->> However, the binding does not properly describe this hardware layout, as
->> the new blocks are listed after the old one.  Therefore it breaks the
->> convention expecting the unit address to indicate the first register
->> range.
->>
->> Since the binding changes have been already released and a fix would
->> bring up an ABI break, mark the current 'reg-names' listing as
->> deprecated and introduce an alternative 'link,function,cache' one.
->>
->> Additionally, drop the 'reg' description items as the order is not fixed
->> anymore, while the information they offer is not very relevant anyway.
->>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>  .../devicetree/bindings/media/rockchip,vdec.yaml      | 19 ++++++++++++-------
->>  1 file changed, 12 insertions(+), 7 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
->> index 809fda45b3bd..3f6072e8baa5 100644
->> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
->> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
->> @@ -28,16 +28,21 @@ properties:
->>  
->>    reg:
->>      minItems: 1
->> -    items:
->> -      - description: The function configuration registers base
->> -      - description: The link table configuration registers base
->> -      - description: The cache configuration registers base
->> +    maxItems: 3
->>  
->>    reg-names:
->> -    items:
->> +    oneOf:
->>        - const: function
+On Tue, Feb 24, 2026 at 06:20:21PM +0100, Théo Lebrun wrote:
+> > Could you please add a macro or comment hinting at the origin of the
+> > magic number 5 here? You could also place these 3 lines in a common
+> > helper, also called from eq5_phy_exit(), to avoid minor code
+> > duplication.
 > 
-> This is confusing, I think I missed that in previous patch because it
-> did not leave that part or I misread the diff hunk - why do you allow
-> one entry?
+> ACK, something named `eq5_phy_reinit()`.
 > 
-> If the first entry is function, then all others MUST built on top, thus
-> this:
+> I don't have precise explanation for the 5µs value; I only know it is
+> time to let the PHY settle before further register config writes.
+> Is this enough?
 > 
->> +          - const: link
->> +          - const: function
->> +          - const: cache
-> 
-> is not correct.
-> 
-> No, you don't change the orders. So again, if you have such binding,
-> then you just fix the unit address leaving the binding as is.
-> 
+>    udelay(5); /* settling time */
 
-I just now checked v2 - it had this first "function" left, so I missed
-that part. I would give different review at v2, so you would not waste
-time. Apologies for that.
+If there's a single occurrence and there's a comment, it's fine.
 
-Best regards,
-Krzysztof
+> >> +	      EQ5_GP_SYS_SWRST_DIS | EQ5_GP_SYS_M_CLKE |
+> >> +	      FIELD_PREP(EQ5_GP_RGMII_DRV, 0x9);
+> >
+> > Quick sanity check on your proposal to use #phy-cells = <1>. This is not
+> > a request to change anything.
+> >
+> > What if you need to customize the RGMII drive strength (or some other
+> > setting, maybe SGMII polarity if that is available) per lane, for a
+> > particular board? How would you do that if each PHY does not have its
+> > own OF node?
+> 
+> I have no knowledge of what that 0x9 stands for, I didn't see the point
+> exposing it to devicetree. We could plan for the future and add a cell
+> or create subnodes, but here I kept it simple stupid. Is it OK?
+
+If you don't know that you need to customize anything, it's fine the way
+it is.
+
+> >> +	writel(reg, inst->gp);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int eq5_phy_exit(struct phy *phy)
+> >> +{
+> >> +	struct eq5_phy_inst *inst = phy_get_drvdata(phy);
+> >> +	struct eq5_phy_private *priv = inst->priv;
+> >> +	struct device *dev = priv->dev;
+> >> +
+> >> +	dev_dbg(dev, "phy_exit(inst=%td)\n", inst - priv->phys);
+> >> +
+> >> +	writel(0, inst->gp);
+> >> +	writel(0, inst->sgmii);
+> >> +	udelay(5);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int eq5_phy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
+> >> +{
+> >> +	struct eq5_phy_inst *inst = phy_get_drvdata(phy);
+> >> +	struct eq5_phy_private *priv = inst->priv;
+> >> +	struct device *dev = priv->dev;
+> >> +
+> >> +	dev_dbg(dev, "phy_set_mode(inst=%td, mode=%d, submode=%d)\n",
+> >> +		inst - priv->phys, mode, submode);
+> >> +
+> >> +	if (mode != PHY_MODE_ETHERNET)
+> >> +		return -EOPNOTSUPP;
+> >> +
+> >> +	if (!phy_interface_mode_is_rgmii(submode) &&
+> >> +	    submode != PHY_INTERFACE_MODE_SGMII)
+> >> +		return -EOPNOTSUPP;
+> >
+> > Both PHYs are equal in capabilities, and support both RGMII and SGMII,
+> > correct? I see the driver is implemented as if they were, but it doesn't
+> > hurt to ask.
+> 
+> Datasheet indicates 0 can do SGMII/RGMII and 1 can do only RGMII.
+> Did you imply that the driver code should reject SGMII on PHY 1
+> if it ever gets asked for?
+
+I didn't imply anything, as I didn't know the facts. But now that I do,
+yes, I'm explicitly requesting you to reject the submodes that PHY 1
+doesn't support.
+
+I also notice that you haven't implemented support for phy_validate().
+Please do so, even if your PHY consumer does not call it (it should, to
+detect which modes and submodes are supported).
+
+> >> +
+> >> +	inst->phy_interface = submode;
+> >
+> > Short story: don't rely on the phy_set_mode_ext() -> phy_power_on() order.
+> > Implement the driver so that it works the other way around too.
+> >
+> > Long story:
+> > https://lore.kernel.org/netdev/aXzFH09AeIRawCwU@shell.armlinux.org.uk/
+> 
+> I wouldn't mind, but what should phy_power_on() do if no submode has
+> been provided through phy_set_mode_ext() yet? Guess one? Fail?
+
+Assume a default initial submode, and power on using the rules of that
+submode. In your case you don't even have to assume, you can read
+EQ5_GP_SGMII_MODE to figure out what the submode is at probe time.
+
+> Also our PHY will need to be reset to change its mode if we do
+> power_on() followed by set_mode(), which in practice is never something
+> we want. Maybe there is a flag to indicate that we require a submode to
+> power on?
+
+Such flag doesn't exist, nor do I think it is desirable. It would
+unnecessarily complicate consumer drivers, which would have to support
+two code paths if they were to follow the "generic" PHY API model.
+
+Feel free to reset the PHY if requested to change the submode while it
+is powered on. For example, lynx_28g_set_mode() does that.
 
