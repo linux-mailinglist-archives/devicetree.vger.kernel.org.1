@@ -1,183 +1,169 @@
-Return-Path: <devicetree+bounces-268095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268096-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id pSbNL5w0nmmLUAQAu9opvQ
-	(envelope-from <devicetree+bounces-268095-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 00:30:36 +0100
+	id 4HcrHaY8nmkrUQQAu9opvQ
+	(envelope-from <devicetree+bounces-268096-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:04:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 140DE18E263
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 00:30:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B89CA18E44E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:04:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9853B30523E0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Feb 2026 23:30:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AC2CF302B83E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 00:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF45C363C4B;
-	Tue, 24 Feb 2026 23:30:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9114A2744F;
+	Wed, 25 Feb 2026 00:04:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDFfRfnF"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g46n92Sj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B183624CA;
-	Tue, 24 Feb 2026 23:30:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C6D1D6AA;
+	Wed, 25 Feb 2026 00:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771975833; cv=none; b=cD4JU4kSNz0zrNdySUnyTqHOo4HVMo4DW80swpDlBWh6fsGkoUANRyrVRZB5+oQ1aQK9sCfQWtBdq5qgryn3lmAJXmNhSxgbdghhlZOlt5Xi/1/RpCsl9P2dbOUP9lCpT4gvYzuhDu4NWzit6lY++mvXkuK2ee6yTkg+kgT+xlI=
+	t=1771977890; cv=none; b=Pn2pEMnfl8lzDQ/SA1D6XgthdVX9rWOktSdxO4pBMmVSNOJU4wNzs9HtoXdsUk0vPpD4z8r1lobZFdYPk47JEjosyc6M+H+g+delGt2hWrvT2smpYzQLqK2BUmRagFczgsNfKfGuJXIAvdwiYeFmQ/OE+Cw/4wWYtRwdB94jkek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771975833; c=relaxed/simple;
-	bh=ADR9CvrvUzc0kTvJQ47ZqNuoTDTeK64MKM9SscoqhvY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oWTaD3o1PjTMw/iSRaC6oN6CZEGtHsUm6yboO3SkpjCje3ySuI6RaORnEvvA4qhc4LFYkKxarj9EojibTbmqjFwv3o3qCRW+SjuYqdR8PYl/LVwWxcGu69TJQTxHXim88GapmBXnz4PyZmwFOaguBZvGo/GmHqH+04J5cihdSAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDFfRfnF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 42786C116D0;
-	Tue, 24 Feb 2026 23:30:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771975833;
-	bh=ADR9CvrvUzc0kTvJQ47ZqNuoTDTeK64MKM9SscoqhvY=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=QDFfRfnFqEQ18E8DB2gcLKi7UVqZJraqiwjo4axwGgTLIerU0ht6DhKZ/B99VTqBk
-	 MiV8xEbyiaLI9R1nX756iZsGKu5ovYqRMJ/FnSu7igmNX0qwySJDGu5HCQs3eMYYJF
-	 EaKk2ccH/hT1oGdXcYgEoPsbO87WHdJrwvvdcSzYG83YxlU+pHfBiV2hscnjARUawJ
-	 YOLnHSFVAWgg7S6X90qU1sC2ZDRvKnERxARbg0P51slifQDVkxsycoAbeAKm2dPBGC
-	 H/LnQXGeiO8XUQMRbuTjmHqHc8Q+xwsMq2syOZ4OxUVtZO03X/F2WjsGeVpt01mJf8
-	 6gITkWyv3tc7w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BE4AF55433;
-	Tue, 24 Feb 2026 23:30:33 +0000 (UTC)
-From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
-Date: Tue, 24 Feb 2026 23:30:09 +0000
-Subject: [PATCH v2] arm64: dts: exynos: gs101-pixel-common: add supply and
- regulator properties
+	s=arc-20240116; t=1771977890; c=relaxed/simple;
+	bh=Myv8Eg4qd8hYFHZFEYgoZT6YbrxhedjbG6iZlTRMA44=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=umH90zSbWBb/sIDh0TS8q4nCx93ET+Dj5zd/2KeVzhBAJm6al8Q2CogLf5KiiqGVcvxoOKvhDuYc5zYbRs9zqVmK9lkYhsbzLzRyjN2XRR0MZmkGILTF5t77hxNFPCDSZj0EpracpxghMS65aqrweNWN+NvBAwUwO3GdlNjEutI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g46n92Sj; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771977887; x=1803513887;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Myv8Eg4qd8hYFHZFEYgoZT6YbrxhedjbG6iZlTRMA44=;
+  b=g46n92SjoioT7GyEKk1Qq3GjRHb48hdZKgr66xPVslwLNRXV3QbuOPPd
+   /jJGmFXhhehjpwcIrWO5hnARZDz6PhPZ7R+/td3Wkx80lakAnggMpoB8U
+   Os9pClRQuqnOuyjWE+KlNd2Fwp1MCgbSFqOHr1IyYZeVOHmBKZvpFOwwc
+   lWQyajgGzApBH74tEA09tZbgKqJD4a/Mk7omU40I2w7pJGT5C2D7jQI4e
+   /4nmJYf9DvhbQ/69tbtvRU5oi/F35XE5WEht0jvN/bixTrHrSXx63GoCX
+   mQYAzzZtowZ5DsEYGbZWNEPaNNHuGV4QlQHVsTkW7hG7GHt1HQa9lZ89+
+   g==;
+X-CSE-ConnectionGUID: cHg5hp9iR+CCL6Rnufu6Iw==
+X-CSE-MsgGUID: 43JAcmXeRGCQgfo49+VdTA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73186822"
+X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
+   d="scan'208";a="73186822"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 16:04:47 -0800
+X-CSE-ConnectionGUID: eEHTq/9QSeCkUWjyx07BzQ==
+X-CSE-MsgGUID: qVFCXw3SReiVsAGeUBCz+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
+   d="scan'208";a="215946493"
+Received: from lkp-server02.sh.intel.com (HELO a3936d6a266d) ([10.239.97.151])
+  by orviesa009.jf.intel.com with ESMTP; 24 Feb 2026 16:04:45 -0800
+Received: from kbuild by a3936d6a266d with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vv2OQ-000000002bh-1Kzk;
+	Wed, 25 Feb 2026 00:04:42 +0000
+Date: Wed, 25 Feb 2026 08:04:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, andy@kernel.org,
+	nuno.sa@analog.com, dlechner@baylibre.com, jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
+Message-ID: <202602250851.I3vE5ldR-lkp@intel.com>
+References: <20260224163109.370930-3-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260224-max77759-charger-dts-v2-1-983265ac8e63@google.com>
-X-B4-Tracking: v=1; b=H4sIAIA0nmkC/4WNTQ6CMBSEr0Le2mf6a60r72FY1PIsTYSSlhAM4
- e5WLuDym8l8s0GhHKnArdkg0xJLTGMFcWrA924MhLGrDIKJCxNC4eBWY4y2WOscKGM3FxRSWSn
- tlYzxUKdTpldcD+2jrdzHMqf8OV4W/kv/CBeOHJ9KSa20Z8q5e0gpvOns0wDtvu9f3olMZLkAA
- AA=
-X-Change-ID: 20260224-max77759-charger-dts-23493398e77c
-To: Peter Griffin <peter.griffin@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Badhri Jagan Sridharan <badhri@google.com>, 
- Amit Sunil Dhamne <amitsd@google.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1771975832; l=2045;
- i=amitsd@google.com; s=20241031; h=from:subject:message-id;
- bh=88wsB5MWvHCzIwGqyj8+p1i8avmUTsCvuP3h53Fmyv8=;
- b=dh7Wzn/BI6+sbCg7HzZuAnFKztyTTZjpc3QWBJVkfFGIWyd3aWswVHKJHeGu12064DZor3HAs
- Wq9qT3xRmsMCcFk2m99357uGLp58VjOtJ3IF0y9YaqYq9U8GL3xE4W9
-X-Developer-Key: i=amitsd@google.com; a=ed25519;
- pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
-X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
- auth_id=262
-X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
-Reply-To: amitsd@google.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260224163109.370930-3-macroalpha82@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268095-lists,devicetree=lfdr.de,amitsd.google.com];
+	FREEMAIL_CC(0.00)[lists.linux.dev,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,hotmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-268096-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	DBL_PROHIBIT(0.00)[0.0.0.25:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-0.999];
-	HAS_REPLYTO(0.00)[amitsd@google.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.66:email]
-X-Rspamd-Queue-Id: 140DE18E263
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,git-scm.com:url,intel.com:mid,intel.com:dkim,intel.com:email,01.org:url]
+X-Rspamd-Queue-Id: B89CA18E44E
 X-Rspamd-Action: no action
 
-From: Amit Sunil Dhamne <amitsd@google.com>
+Hi Chris,
 
-Add power supply and regulator properties to the MAX77759 pmic. The
-usb-typec device will reference the regulator provided by the pmic as
-it supplies vbus to the typec device when operating in power source mode.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
----
-This patch depends on the patchset [1].
-[1] https://lore.kernel.org/all/20260224-max77759-charger-v8-0-eb86bd570e9c@google.com/
----
-Changes in v2:
-- Added a line between property and child node as per DTS coding std.
-  (Krzysztof Kozlowski)
-- Added the "power-supplies" property immediately after the prev
-  property without leaving a line space.
-- Link to v1: https://lore.kernel.org/r/20260224-max77759-charger-dts-v1-1-b443545c04aa@google.com
----
- arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on linus/master v7.0-rc1 next-20260224]
+[cannot apply to jic23-iio/togreg]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
-index 93892adaa679..14c1518bef81 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
-@@ -142,12 +142,13 @@ &hsi2c_12 {
- 	status = "okay";
- 	/* TODO: add the devices once drivers exist */
- 
--	usb-typec@25 {
-+	maxtcpci: usb-typec@25 {
- 		compatible = "maxim,max77759-tcpci", "maxim,max33359";
- 		reg = <0x25>;
- 		interrupts-extended = <&gpa8 2 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-0 = <&typec_int>;
- 		pinctrl-names = "default";
-+		vbus-supply = <&chgin_otg_reg>;
- 
- 		connector {
- 			compatible = "usb-c-connector";
-@@ -235,6 +236,11 @@ pmic@66 {
- 
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
-+		power-supplies = <&maxtcpci>;
-+
-+		chgin_otg_reg: chgin-otg-regulator {
-+			regulator-name = "chgin-otg";
-+		};
- 
- 		gpio {
- 			compatible = "maxim,max77759-gpio";
+url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-iio-imu-icm42607-Add-devicetree-binding/20260225-003610
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20260224163109.370930-3-macroalpha82%40gmail.com
+patch subject: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20260225/202602250851.I3vE5ldR-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260225/202602250851.I3vE5ldR-lkp@intel.com/reproduce)
 
----
-base-commit: 8bf22c33e7a172fbc72464f4cc484d23a6b412ba
-change-id: 20260224-max77759-charger-dts-23493398e77c
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602250851.I3vE5ldR-lkp@intel.com/
 
-Best regards,
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c:200:36: warning: unused variable 'inv_icm42607_motion_events' [-Wunused-const-variable]
+     200 | static const struct iio_event_spec inv_icm42607_motion_events[] = {
+         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +/inv_icm42607_motion_events +200 drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+
+   199	
+ > 200	static const struct iio_event_spec inv_icm42607_motion_events[] = {
+   201		{
+   202			.type = IIO_EV_TYPE_THRESH,
+   203			.dir = IIO_EV_DIR_EITHER,
+   204			.mask_separate = BIT(IIO_EV_INFO_ENABLE) | BIT(IIO_EV_INFO_VALUE),
+   205		},
+   206	};
+   207	
+
 -- 
-Amit Sunil Dhamne <amitsd@google.com>
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
