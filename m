@@ -1,174 +1,163 @@
-Return-Path: <devicetree+bounces-268214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HCrNf67nmnKXAQAu9opvQ
-	(envelope-from <devicetree+bounces-268214-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:08:14 +0100
+	id cCUhCDm8nmnKXAQAu9opvQ
+	(envelope-from <devicetree+bounces-268215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:09:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F3F194A84
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:08:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DDCF194ADD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:09:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4F10C30E23A8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:00:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AB426303B15D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B048232E758;
-	Wed, 25 Feb 2026 09:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB1A342CB8;
+	Wed, 25 Feb 2026 09:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oviQlUN1"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="KuFkn1YR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8973231ED81;
-	Wed, 25 Feb 2026 09:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D793033A6EC;
+	Wed, 25 Feb 2026 09:04:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772010017; cv=none; b=IuzpM/75OXc0/xjzXoiOnKcjygpzKhXj5l0GeYhNZ9veF7v936360fuAT2LG3I/kzjlwITE+1GGMvnKo0PTdtYuXa9J7PjqNAmGWYxGghd0NiFlyUGR3WhF3ygcnS14A8qNLN8zDvxULFeyoOuCKdQ+SA/hKsidr1Xw1P04DB2c=
+	t=1772010258; cv=none; b=HV4IxxeBJJxKlU4zroJpTm0txE9C50emo0zofPX83tR3RejUcjotqQAyJbUinntBnkjboDZ+lQqKzf5B7fQZBsQo+qhLzvM55bDZbsuFQ2f7EMXyTDaQMztakWdHxVZDd1ki4+y8Oq1tO7qg2lU2EdKYYUpGXfdDveuIemmaF3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772010017; c=relaxed/simple;
-	bh=dVWfSmIUUjCFmllCvxIPPcCyTqDUd3G6LkkkZjx77F8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q0b8R1MORfh8YGa6dPR2wF77i00IH4QfYkKrdxhaIGIj2mMounAip0i/Nje2gwITdzVFCuXuvH/IW41Ffhgz3ITuwdxpr9kCGUYN03grG+yzX5orEcV5Q6dgUA1AWhZ2GscHk81pTbfgeFJl7LIzB20ckFaazPhwDWmeP7QOYPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oviQlUN1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAEFAC19423;
-	Wed, 25 Feb 2026 09:00:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772010017;
-	bh=dVWfSmIUUjCFmllCvxIPPcCyTqDUd3G6LkkkZjx77F8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oviQlUN1s7efrUmOLqLUrhcagT7cAxAM/PGvBBciTItJev3mYYfh9c/LLN+HJEZD0
-	 Nq+zLuA2s/HG7WJUmuRfC+njerBHxNJmsC4AYARCBOgzXa13ufXDX00DtPFrTpZ9YT
-	 RD+XavJsrnyeMiOvgQG+jEHEyOvzA9wRN5FI98BF/iVZ9KpRR0mvKDCi0kqJzeID1v
-	 2fGi7N96NZGY/Lt75bg8f6llKEYjv7p12khjMQh43qaEt4KJ6ZZW5ygIyk8gGJ+5lO
-	 +HmCXbSybJLdLmJ/1SIWv52aRv0arEWDbECCXMVMpwEhB31GcJgoWmhIKgEFoVPVx/
-	 PenaBwRbec4+g==
-Message-ID: <f984c9a0-9ce2-49f9-927b-e69c26f69176@kernel.org>
-Date: Wed, 25 Feb 2026 10:00:12 +0100
+	s=arc-20240116; t=1772010258; c=relaxed/simple;
+	bh=uI3D4tb6LNykmcjcCHPhaYA8M0HhXxi8TxDVwAaMtPE=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=StPLKYPoUu41U549HFjkBqJV/2l0I6jaiYG1WmNEpgtjQV+1XI4NgmKLkXoKp5aV6OrWZWEaSCsW9j05FsIBPPYlfaAyaxt2p/ygBBly/ljz6bBxerVlDCj1NC1Iw8kh8ZpGyVMuEM4fZOaGUfyjjfxKHSKEPN+OjEncuskMCTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=KuFkn1YR; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id; bh=+oUB46+C50gRbbn
+	rkO9tBpvuPfP+IT0Ur06rF5x0cy8=; b=KuFkn1YRGgFeBy8BSntN+/oAZLWAonZ
+	IwLs99GrWoBIp+JFxjmjvCHu1h9E9LYillBvUI4XzmPsNxyZ3MTE976rm//g+BhX
+	bxpLv1qlJHs6/B9moIKe3uQRnorslS5hUB8VOP2KN0zx0ATT8CDJOGlOjLUnodZZ
+	MwtspuFyHAgw=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3N4nlup5pilgzMg--.30498S2;
+	Wed, 25 Feb 2026 17:03:34 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net,
+	Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wenliang Yan <wenliang202407@163.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/8] hwmon: (ina3221) Various improvement and add support for SQ52210
+Date: Wed, 25 Feb 2026 04:03:16 -0500
+Message-Id: <20260225090324.112145-1-wenliang202407@163.com>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID:_____wD3N4nlup5pilgzMg--.30498S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Kw4fXrWDGF4fGF15uF1DGFg_yoW5JFyxp3
+	yv9ry5Gwn8tr1xZ39Ikw4xZFyFg3y7JF43ur97G3y0vF4YvF1FvFWvgF15t3WDtr9rKF10
+	qayIqFnI93ZrArDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JU-4SOUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/xtbC5wfpvWmeuucxCwAA3k
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/4] ufs: host: Add ICE clock scaling during UFS clock
- changes
-To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-scsi@vger.kernel.org
-References: <20260219-enable-ufs-ice-clock-scaling-v6-0-0c5245117d45@oss.qualcomm.com>
- <20260219-enable-ufs-ice-clock-scaling-v6-3-0c5245117d45@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260219-enable-ufs-ice-clock-scaling-v6-3-0c5245117d45@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268214-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[163.com,lwn.net,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-268215-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FREEMAIL_FROM(0.00)[163.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wenliang202407@163.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[163.com:+];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 43F3F194A84
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8DDCF194ADD
 X-Rspamd-Action: no action
 
-On 19/02/2026 10:39, Abhinaba Rakshit wrote:
-> Implement ICE (Inline Crypto Engine) clock scaling in sync with
-> UFS controller clock scaling. This ensures that the ICE operates at
-> an appropriate frequency when the UFS clocks are scaled up or down,
-> improving performance and maintaining stability for crypto operations.
-> 
-> Incase of OPP scaling is not supported by ICE, ensure to not prevent
-> devfreq for UFS, as ICE OPP-table is optional.
-> 
-> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-> ---
->  drivers/ufs/host/ufs-qcom.c | 21 ++++++++++++++++++++-
+Make modifications according to the guidance provided in the reply.
+
+1.Modify the variable naming in ina3221_config to provide clearer
+definitions. has_current_reg and has_power_reg indicate whether
+there are built-in current and power registers. has_alerts_add
+indicates whether there are additional alert settings(PATCH 3,PATCH4).
+
+2.Modify the newly added parameter descriptions in ina3221.rst and
+add the corresponding parameter units(PATCH 5).
+
+3.Adjust the content of PATCH 6, moving the modifications of
+the alert_limit_write function to PATCH 7, and clarify the
+function's purpose.
+
+4.Modify the format conversion of the LIMIT register in the
+read_value function.The read_value function reads the shifted
+actual register value. Since the LIMIT register can store different
+types of values, use comments to explain the difference between
+power values and other values(PATCH 6).
+
+5.Adjust the return value of the power attribute to
+the default 'uW'(PATCH 7).
+
+6.Rewrite the read/write functions for in and curr, correct the
+unit conversion for current and voltage, and modify the conversion
+function for the new alert source (SUL) with current values(PATCH 8).
 
 
-SCSI/UFS is not respecting subsystem boundaries, thus you must not
-combine multiple subsystem when targeting UFS.
 
-Please split your patches.
+---
+v5: https://lore.kernel.org/linux-hwmon/20260119121446.17469-1-wenliang202407@163.com/
+v4: https://lore.kernel.org/linux-hwmon/20260114081741.111340-1-wenliang202407@163.com/
+v3: https://lore.kernel.org/linux-hwmon/20251120081921.39412-1-wenliang202407@163.com/
+v2: https://lore.kernel.org/linux-hwmon/20251118125148.95603-1-wenliang202407@163.com/
+v1: https://lore.kernel.org/linux-hwmon/20251111080546.32421-1-wenliang202407@163.com/
 
-Best regards,
-Krzysztof
+
+*** BLURB HERE ***
+
+Wenliang Yan (8):
+  dt-bindings: hwmon: ti,ina3221: Add SQ52210
+  hwmon: (ina3221) Add support for SQ52210
+  hwmon: (ina3221) Pre-calculate current and power LSB
+  hwmon: (ina3221) Support alert configuration
+  hwmon: (ina3221) Introduce power attribute and alert characteristics
+  hwmon: (ina3221) Modify the 'ina3221_read_value' function
+  hwmon: (ina3221) Support alert_limit_write function and write/read
+    functions for 'power' attribute
+  hwmon: (ina3221) Modify write/read functions for 'in' and 'curr'
+    attribute
+
+ .../devicetree/bindings/hwmon/ti,ina3221.yaml |  15 +-
+ Documentation/hwmon/ina3221.rst               |  24 +
+ drivers/hwmon/ina3221.c                       | 550 +++++++++++++++++-
+ 3 files changed, 573 insertions(+), 16 deletions(-)
+
+-- 
+2.17.1
+
 
