@@ -1,253 +1,178 @@
-Return-Path: <devicetree+bounces-268523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268524-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJoAB+RVn2mIaQQAu9opvQ
-	(envelope-from <devicetree+bounces-268523-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:04:52 +0100
+	id OOrjMINWn2mIaQQAu9opvQ
+	(envelope-from <devicetree+bounces-268524-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:07:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B1419D05C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:04:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6862819D0C8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 21:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 559713010BAF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:04:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 909CA301E5FE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3212E0B5C;
-	Wed, 25 Feb 2026 20:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3003E2F3614;
+	Wed, 25 Feb 2026 20:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="AeeZB5hf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XQ3u6Q0l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB35C29BD95;
-	Wed, 25 Feb 2026 20:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772049887; cv=none; b=i7cKe5Ze+vDxiDTii0pkRAKYFyfhONJIWujee5aChfle1toaeEw+6doYou4AeW9QWj2Z9u1tYJsmC842q6uUKJlgHNjQEpoLgh4bzUFkXi7V1IxIoOA2BFyeJEjL79rku3K5tToFCOv8Qtkl91QORtM2CNLoXBn3UPvWhQq1UO4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772049887; c=relaxed/simple;
-	bh=w967MmLjuX7yysUZx45GQ6WCFfpPW1nzJFvFOPhZT58=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=dlqVMOfHH0OPU3ACHZ2E13oHwaC/waT0lI8sQb2MJO72/BAM8PeGrJaDtCF9bEq+gMa6DKYO52BaphVBu1HTMraqPCdH6uznw+h0qZNw+APAqm2V40M1k8TBc6L5PAW/hoD3bbGAiyAezhgUBLfrnaPe92ylKjxuvyra2crn5YE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=AeeZB5hf; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1772049853; x=1772654653; i=frank-w@public-files.de;
-	bh=gG32QezSPmvNiifOmlk3UNWlKCkfpONTm9OEYsqWNT8=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=AeeZB5hfIlBef29wS0xZ+xYQBwvlJkspdXind8lEvQFZBhCQpMsxNCswTC58YI1b
-	 qhj5GBFYVPptD0RQuUiY0ig2tGCbu9eH82nuTNBMaHbUmZXfZvss/zZ6SVVyz5A2I
-	 cE5vya6poceVh/efQVk6S3WY64pmdVqmlOq8tZkJXROi1oJ2wMeauxSunf8Bnw3RW
-	 bUhDy/GVchGWxYJJ6ZxmkW1wlTp6Nn5fxLEspGH2onYWxSP7T3hNZ2ybpRc+/YqZA
-	 /j0UQRN0gB73cCMqASNyxXGCXfbk4fv36g15ngsMleuOSx+iQ//5BkmC8aSZ/HZTi
-	 YklIWORUA9nrzcx5TA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [80.245.74.92] ([80.245.74.92]) by
- trinity-msg-rest-gmx-gmx-live-8d9bc96fb-9hfbf (via HTTP); Wed, 25 Feb 2026
- 20:04:13 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FE7239099
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 20:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772050047; cv=pass; b=X+9hQhBMeOig8zC2cBH18EfGkSUh02rqxSskY//DI32+W2PeAn4AESXxusrCSDBqKnILg2CSGNdbVXMwb9vo6AQrcC21SDEWQXRycheL3tRhymiJLbDbKGHssn4ywEdZ9ob7e5qkEvDjRwlg+cWTa3eQJVOIKH3AKL3U31P8cBY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772050047; c=relaxed/simple;
+	bh=8b/vlFFpL7CJfKxCH6fo9uCkw3bN2kaYlhwt61QcN80=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ubEQwgA4tzWC9ZaVw/8DMTuDjTiCH+CcxjKWccvwrlkx4CDn/Imw4MbjJnCdVGN94nTtg2SeAnWSkwqC+S/iZvtU0+WstjfE5WfKPkkkf/jhMOw/+kL8emdIiwIYwSludgSjVKVF3VmgGpI1S8TR74D/gx8U8g+94FPM+gcYV7o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XQ3u6Q0l; arc=pass smtp.client-ip=74.125.82.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-124a635476fso79832c88.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 12:07:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772050045; cv=none;
+        d=google.com; s=arc-20240605;
+        b=V4vBNopOG2GfqguCVrGVRjuGatw3IwAc1wCwUkjrOoKqZhlPnJe4lm56c6TNFEIGDK
+         UlE3W+C38arKMQD+zFh4mitLW0QhRWJKYyECKBO9l6KKZakYv3D55RlMnQK/7zaWEfDh
+         OL94d/5UZYLOWsU1XUGArtrm+ciN/bVZ+WSR0NO8caEeDFjGHAjmTmLBXGbCm6P7AOYp
+         gJj0U4A4d1FCJnA9qxVGtBqDf7j5n9i4gCO2MvPF8NqiZrw0uJKUQdqfghov+EjH8WYj
+         xVC3AwhK6p/G/7me80sdbgvsf8f2NDoGvCyH3uBMHxseg5xawMmsyRuflxgPEZPxOgWq
+         SjTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=8b/vlFFpL7CJfKxCH6fo9uCkw3bN2kaYlhwt61QcN80=;
+        fh=XMZv1CvVI0pQ7xc2uqQbE3RtR5LPJiVblPTMcuoV3gY=;
+        b=a04SrRc7ZrnrcxefzGpoG9IvAiucz3prmPTfxu/4ocRjZDN+PKXCaJmAIv7ayLd/9t
+         tbvlyJBA9DnkV/j+Z1NPc+/ptukjVGiKuHaQj1UagJ0WTFo2p9tc8juO4FQr/OMIJcxi
+         d6OqOifeIBeiXehE7oxwHfTOY1ApHBQj1TAhlXOie4eCg2C/jjqWgDYrDw1w35/OZmC6
+         h12QDiEv2o8l9zq74EhzBSUX4ggxDWKJXACHKVSAjYc/iIoIFIO30RKZJrF3QMmkDc2C
+         JsW8ms+pmqbrxL3ndkgkteqjILKSjp2hEjr6JaEExIyvrvmyofmKoFsnC12EXOVFG6Xi
+         F3UA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772050045; x=1772654845; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8b/vlFFpL7CJfKxCH6fo9uCkw3bN2kaYlhwt61QcN80=;
+        b=XQ3u6Q0lQ4L3rHuzOerncBsto547HY4xJ6iyiqvyssaP6lGg8L1/SJu+SKfjPEqgaM
+         78mHFdkx9kGfZ4cGfaZEhqRE/S/Ws9xnR2bdm77ZINh8UlBajYwqIowlyzb2NU6iXxm5
+         ZxucNelikyBhgA+GtF3aU4cyxzaUBhgmYMYH2RntjcU+2RPzhsAoSTzKCBeYcbxLsUrd
+         8854k1OVH7zk7b7Pec1sSl0bueMYFYCrnfXddfRnLt5orq2DoFHc19nw/LKPXLceOgud
+         uZSmPtmGoyaiJ5ShsVPZ5/YnJ5Cj+CHUWnzH1U+0dA6fa+63qxBkitOivmlhDy/D/FeK
+         vBUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772050045; x=1772654845;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8b/vlFFpL7CJfKxCH6fo9uCkw3bN2kaYlhwt61QcN80=;
+        b=E/PlLK2HqJAe/sRF+KdtpeuvDZ8Pj/CVBzCqaOMpMLZFjys7qyaJcj9YoVFJKfr70G
+         eo2KPiHAclPrC4w0uP/qsfwWRpnnTBjEtnvan2BSALlF7veTjP/8mzv8x+gIw6MDusXA
+         wKCAPXMhCLnCeF0CQc6eQclJ+T8yn2hvrSLz3P5msg2ij4gBycp37HQ1q0nreRFt3eaN
+         EOGK70d7cY7ltekyryWL6HBa6QbNuAToUAz/3Y1QpACpaAUAEJhOhTRj22F14xKHAb25
+         B4SLuxVZZCRtzwNh8NL5OChUJJNw2PFB5lgWeiMdXsKJD73KPwr5AhVZZVUYY10y1++1
+         jbDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUsDmqFFKd079TXK6ND9E29V+rAe+TrqTV9J4ui0UzNC1LBC7ueifav+dAnhtQSpZF5XlbS1TUhTyCV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3sBm6g67EVFaGLMZvZZ80xAdzxLJxnfzllR43Ibf3Prad5oYA
+	p7xCjVGvovLVTj6JsDJeVeG1OH7rC0szGhh7TTjW0U1nCI1W7P3dwiyE90ZHpVNVzvryhp59YdZ
+	KhraNJ7LUnE7KHkVyhmwWAYc2daOLuNs=
+X-Gm-Gg: ATEYQzwSKsRNH4+nYB/AP5tRLTrEw8E+qgfveUM6nMxw3WPhZFmB1QHvLzay/J+cdl5
+	N1u7VQGWG5L2z9F6wzNg/23RchfZPQToygL6PMnA6aW1eim4Or8NJXJWXQStHw951plSJRU3I3/
+	birTveGwjpsm9Htgntpgt8S0TKi9A11oUigVYwqU7g3ROGF/JuzPP/qXzhUUj55Oclti5iRbjMP
+	9lL4MYreRXE+sg8zC6wlhuQM0PA2Joe35fValNyjhakp8xcywI7NSpnFGM/m8VV/GEmYmVxYfoE
+	ywcbw6k=
+X-Received: by 2002:a05:7300:134a:b0:2a4:3593:466c with SMTP id
+ 5a478bee46e88-2bd7b9d9839mr7568138eec.8.1772050044982; Wed, 25 Feb 2026
+ 12:07:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-983c3017-9988-4ea9-b704-0dddd89a1e20-1772049853446@trinity-msg-rest-gmx-gmx-live-8d9bc96fb-9hfbf>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: frank-w@public-files.de, linux@fw-web.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Aw: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4pro: fix model
- string
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 25 Feb 2026 20:04:13 +0000
-In-Reply-To: <1665fa1f-67da-4688-89db-d864b5bb0509@public-files.de>
-References: <20251215074609.4100-1-linux@fw-web.de>
- <1665fa1f-67da-4688-89db-d864b5bb0509@public-files.de>
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:MTa4HafF8wMtqwitPqKwnJiblV59jVORNj6NeHLkfbucTFZAfloke+uyhbk01SYWtm5DE
- 2vWHliuKBDxPZOE00E9cQ3vgWSx2nQStFkX5OG7UjYcS74aq4Ab8dMo80Ktvn1VQQBFhzDMM38lw
- y8uM79rKMXlwf0Nzzy3Xw4sLJxGg5IML0m3QgkG9gX0JgitbFBMkdCvcM/vR6PLQ57zzZqQCMNgi
- sefmb6mwe2pvnVSx3NIMK2yFJo7FNtQrux7WGtSF6SraLyQirav5ZqviHQyW68ZfJEQh6A7is0+H
- 3KkY8GtqYj3pfRN1GRqVvDibZwdz6vZouWE4w8XpZFGiq9RiJ6F3jdGq2JBDJIN3aw=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:qsc6YkO+Gdg=;WzTLxP4LvGDDcM7IEBb/jL7SGHk
- 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
- RQ/qLhA4I7MaQJuhmjttOdw==
-Content-Transfer-Encoding: quoted-printable
+References: <20260223-panel-patches-v2-0-1b6ad471d540@gmail.com> <872fddf3-959a-4fd4-8f93-cafdf8414ef7@oss.qualcomm.com>
+In-Reply-To: <872fddf3-959a-4fd4-8f93-cafdf8414ef7@oss.qualcomm.com>
+From: Yedaya Katsman <yedaya.ka@gmail.com>
+Date: Wed, 25 Feb 2026 22:07:13 +0200
+X-Gm-Features: AaiRm50iTeIljUJY3zqhpqdL0DmyOHNEXBH71A5lwURdxPgX0-EwH6M5va7Oca4
+Message-ID: <CAHuF_ZosFSDRk6Spsw1hnFea2+Zx=c0M0STvKTvhFC+85yV7Sg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Add support for the Samsung S6E8FCO display panel
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?B?S2FtaWwgR2/FgmRh?= <kamil.golda@protonmail.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	~postmarketos/upstreaming@lists.sr.ht, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[public-files.de,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[public-files.de:s=s31663417];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268523-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[public-files.de,fw-web.de,kernel.org,gmail.com,collabora.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268524-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,protonmail.com,lists.sr.ht,lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[frank-w@public-files.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[public-files.de:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[yedayaka@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_FROM(0.00)[public-files.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,public-files.de:email,public-files.de:dkim,fw-web.de:email]
-X-Rspamd-Queue-Id: 88B1419D05C
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 6862819D0C8
 X-Rspamd-Action: no action
 
-Hi Angelo
-
-can you please add this fix?
-
-regards Frank
-
-> Gesendet: Freitag, 16. Januar 2026 um 14:38
-> Von: "Frank Wunderlich" <frank-w@public-files.de>
-> An: "Frank Wunderlich" <linux@fw-web.de>, "Rob Herring" <robh@kernel.org=
->, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@ke=
-rnel.org>, "Matthias Brugger" <matthias.bgg@gmail.com>, "AngeloGioacchino =
-Del Regno" <angelogioacchino.delregno@collabora.com>
-> CC: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-=
-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-> Betreff: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4pro: fix model =
-string
+On Wed, 25 Feb 2026 at 13:50, Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
 >
-> Hi,
->=20
-> just a gentle ping
->=20
-> regards Frank
->=20
-> Am 15.12.25 um 08:46 schrieb Frank Wunderlich:
-> > From: Frank Wunderlich <frank-w@public-files.de>
+> On 2/23/26 9:26 PM, Yedaya Katsman wrote:
+> > This adds a driver to support the Samsung S6E8FCO display panel found in Xiaomi
+> > Mi A3 (xiaomi-laurel). The driver is generated using
+> > linux-mdss-dsi-panel-driver-generator[0].
 > >
-> > Fix incorrect model string in Devicetree for BPI-R4-Pro.
+> > The mdss reset dependency makes the screen work more reliably.
 > >
-> > Fixes: f397471a6a8c ("arm64: dts: mediatek: mt7988: Add devicetree for=
- BananaPi R4 Pro")
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > [0]: https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+> > Original tree with patches: https://gitlab.postmarketos.org/SzczurekYT/linux/-/tree/laurel
+> >
+> > Signed-off-by: Yedaya Katsman <yedaya.ka@gmail.com>
 > > ---
-> >   arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts | 2 =
-+-
-> >   arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts | 2 =
-+-
-> >   2 files changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-=
-4e.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
-> > index c7ea6e88c4f4..621d01e3cd89 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-4e.dts
-> > @@ -9,7 +9,7 @@
-> >   #include "mt7988a-bananapi-bpi-r4-pro.dtsi"
-> >  =20
-> >   / {
-> > -	model =3D "Bananapi BPI-R4";
-> > +	model =3D "Bananapi BPI-R4 Pro 4E";
-> >   	compatible =3D "bananapi,bpi-r4-pro-4e",
-> >   		     "bananapi,bpi-r4-pro",
-> >   		     "mediatek,mt7988a";
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-=
-8x.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
-> > index c9a0e69e9dd5..bb15bfa5e6ae 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro-8x.dts
-> > @@ -9,7 +9,7 @@
-> >   #include "mt7988a-bananapi-bpi-r4-pro.dtsi"
-> >  =20
-> >   / {
-> > -	model =3D "Bananapi BPI-R4";
-> > +	model =3D "Bananapi BPI-R4 Pro 8X";
-> >   	compatible =3D "bananapi,bpi-r4-pro-8x",
-> >   		     "bananapi,bpi-r4-pro",
-> >   		     "mediatek,mt7988a";</frank-w@public-files.de></frank-w@public=
--files.de>
+> > Changes in v2:
+> > - Changed commit title like Dmitry asked
+>
+> You got more comments for patch 3 from Dmitry
+>
+> https://lore.kernel.org/linux-arm-msm/dko7l6iage7blup4zbpsm32d2elvxpengqwbzcsv4v4zedjmpb@rsdrb77acgme/
+Thanks for pointing it out, I missed it. Responded to that
+
+> Konrad
 
