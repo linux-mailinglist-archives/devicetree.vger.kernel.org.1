@@ -1,169 +1,246 @@
-Return-Path: <devicetree+bounces-268562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268548-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DGKHWKSn2kicwQAu9opvQ
-	(envelope-from <devicetree+bounces-268562-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 01:22:58 +0100
+	id SLBiIkh3n2nScAQAu9opvQ
+	(envelope-from <devicetree+bounces-268548-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:27:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5D7619F5D1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 01:22:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E334119E433
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 23:27:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 839D730182A8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 00:22:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4A4333003E9F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 22:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F822010EE;
-	Thu, 26 Feb 2026 00:22:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC6B330642;
+	Wed, 25 Feb 2026 22:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GdhwxjmR"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DLPQZ1qK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DAD85B21A
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 00:22:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C9A2C0282;
+	Wed, 25 Feb 2026 22:26:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772065321; cv=none; b=BhsejlY1RBQRPdvVbHgnRY3qsqUhMvnE2Beqxnea3uPyK/4K5jFhimT25to1RHvx8UseI7kJfI2Z48bhX9WFlSmeL5UL16LISl800lG9qWqF7HXgHCnuINTG1eCHmlph/bupXcIB3PM2EAQUZ35pcZ/j3ohDm7UUPOePrzSqJ24=
+	t=1772058401; cv=none; b=b9PFCHvxBaxqviUlcLqip/VRxjLcobvMHnJp57Wi+s9F2u72p2uazJhO0U6XFZqW8TgGV+hTBee8+eHkThOO7y7gV+HfmjdPHc4wm5Nx2zEydP65lCkOEHmC5WFeHpQf7/PsQXB93ILIPgxv2UE3OMlv05KKElHpyxaS3Grbvkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772065321; c=relaxed/simple;
-	bh=bPNWxJ0PsKswuNugUux6ENRUt7NN3n0Zwy2e/5d8BA4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iFq9y5NtdLX0NJE6NzOl59k4MjxWiv7WLBC1dpgMdkjNGYN1ul2IAZAPrqEyV/wlJZLSrn9uagYOf52jHI7+NHyunfDoSH1jAQug/gKaAn2etVMnJehZMzKyPT2wvnG+HbMcWyhYRRQ0ButMtTo4cuYA+lX1TrHfno24+nNtiB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GdhwxjmR; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5688b9e4e80so163855e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 16:22:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772065319; x=1772670119; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+vrInnbX0KCc1ynABnNky7B7FYswXUG4HFiI8RLfvys=;
-        b=GdhwxjmRO6AsytvDKjPOWF1rH9SdAHDNFu4svtUnD2mHs6aRfrJXf2Tia3xA3D8TEn
-         M5QimZQlDdBYtBUmCBj/REY7y3Lse+f4NbA9BdmE9Rof2Ih8jjndw22wR1Yr3UJPnp2v
-         Ql0D1g1U6m/Eu8CJy0T5Dp8XVsbss15LNUV7Ur1fLe1aKm/ucy2gm2T1tPugqFuQu+wx
-         yEt+F18ChfjPhQPWTI3L/9gDsjl9YlHm5KR928ADIfHNu463y5lWofV6swl+MeFST80A
-         jDtFQzyD1TAufTWgCoxAhRRiVBw/irWi2UUn8XPdCTgzaKh7i9esL6RTvHs474WiLdX5
-         jlxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772065319; x=1772670119;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+vrInnbX0KCc1ynABnNky7B7FYswXUG4HFiI8RLfvys=;
-        b=g4+tqRh3OvZp3jwCGGx7UhXTDXUPe07qdI6cXzm3YAvWwfJd6vtaOeo+++g450v0Tt
-         dWrMiO8m667TbclTHqan57EuN4QoO4cSctfChOP3i1g46sOfMerjV2r9unihSyoFSM/Y
-         ieXnyITBnrFC/GMW0exzsRtERCMUYRtTQsi13O9POEGALKrzOwznRKpSYQBt8HkrINcx
-         a328lU7cVqAcGEWKC90PnN3hS0MWezCvMTG5PjeXzac1asTWfHPbCc6YQj5UNjQGoIVq
-         VtcNwB0Z13qIpkiX8X9VayfAW1u9nKX7EWoO1jvoFBW8yTLwZnDZYrNbIeeBW/zZzqIH
-         8yWw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvsYYeKw6llSuLdRDmgc9pwz2WDgVacG3HyEZoXQ/zoHAebTqretVJrO953Pd75p9cFADe3DkgedbL@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywv1+BnftiDGFnIwZmGLMV3ftbb17FOAFVnQyqwlLd3xB4X1hp7
-	zb1re3pdb4xPuPijogWcHMV9/K91Xpkeycoynrs4diisKnrb7sEnUpKI52RNbv3B
-X-Gm-Gg: ATEYQzze0e4o3/sHmSxWQL2IRkS5guEU1RdVzykfIFxZms74jUJXt7AfkHtRamKhFcE
-	04bKRco7tQ7rcR6vQd1IlSJzzqtBTGadwYEM9V4D4/ST+PWjRVKkmmlmfCrEmWBz9WIgHVpHM5B
-	a3cZbsAqBOhhEUNMGx0Pa+shVIc9L3AKH0tFRn07g7QWw1wYgw9k5QXSBoYwCtBn/A5OnZAJ690
-	f/Fk/iS5sLvZz5R/6FsxzGFPdshpxjvhsvmkQUOy++wL2NTI/yamlZEH+3tJX4wV/rjtbiGPOgz
-	S3IC1WcTzhhsma91Ds0BzQ2mNYA8GBzoBW8WNhluTQO68KuLJwRsH1zGL2ClnPBRdAD8f0KcXZR
-	3AMw71ctlDoBbxKqRApoEqkqNrxyGim2ZymrIWmkRkCiPwlCrrzY/QT0FUeKdw+NiHWCCUE55/M
-	0=
-X-Received: by 2002:a05:6a00:2d1d:b0:824:3ef6:a815 with SMTP id d2e1a72fcca58-82739767b3emr516796b3a.8.1772058091345;
-        Wed, 25 Feb 2026 14:21:31 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82739d544ffsm290363b3a.12.2026.02.25.14.21.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Feb 2026 14:21:31 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Frank Li <Frank.Li@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Longbin Li <looong.bin@gmail.com>,
-	Yixun Lan <dlan@kernel.org>,
-	Ze Huang <huangze@whut.edu.cn>,
-	"Anton D. Stavinskii" <stavinsky@gmail.com>,
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org
-Subject: Re: (subset) [PATCH v4 0/3] riscv: sophgo: allow DMA multiplexer set channel number for DMA controller
-Date: Thu, 26 Feb 2026 06:21:07 +0800
-Message-ID: <177205806122.119215.17895713731232514155.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260225104042.1138901-1-inochiama@gmail.com>
-References: <20260225104042.1138901-1-inochiama@gmail.com>
+	s=arc-20240116; t=1772058401; c=relaxed/simple;
+	bh=k0xNHmg+Rg6PlS1Wra/0RI+5j9ZASPAy6uL892tIiMs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qoi5RaOdgCH2Nd62xUqyfLqeaKNia3YHy33brTCFSGxtlwjgN1BVE93frRRzHOryiymY+vp3OUotMvbDzgH7ZavrYEyYOwG6f7QSdp6npnGs54ipc1TtB7UqwAjfa4iGHTPcZolDc0BII9/eEsy5sBLZTsHAoN/fIYznYaqwxeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DLPQZ1qK; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1772058398;
+	bh=k0xNHmg+Rg6PlS1Wra/0RI+5j9ZASPAy6uL892tIiMs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DLPQZ1qKtw0UPrCiH2oVW0xmo2GRHB9P+bSqPaE3iHm8F6eBR7XvhpIfEjh3pBidG
+	 tmE3bOZ8btb+Vq1Z9DzXcObYLgjLIHlA9tCrVsNQhy886X754qzz6KZogPIQyOFufM
+	 fGwKqVnhPWDd7+dt3t3VyHSuXjPXk0G2fyROFV4dgNlNjRmSLxeUReHAOrYF9zWZ0T
+	 DbkDx4mCDmCCXHFaIXiDXOXGVu8yaRgEOOEUT5mW0MDS5hbbhQRA7W1cY8674oR0zl
+	 VTpL/+73warn2Svdh10gyq2gMHAIcGcpi1r0ep8wCRtPOVWcYlcDsJN9aAmkFvZwY8
+	 OSl5n1LiErqKA==
+Received: from [192.168.1.90] (unknown [86.123.23.225])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 959D617E03E5;
+	Wed, 25 Feb 2026 23:26:37 +0100 (CET)
+Message-ID: <72a72c50-4816-47d4-b533-be4b7feee027@collabora.com>
+Date: Thu, 26 Feb 2026 00:26:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] media: dt-bindings: rockchip,vdec: Add alternative
+ reg-names order for RK35{76,88}
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil@kernel.org>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+ linux-media@vger.kernel.org
+References: <20260225-vdec-reg-order-rk3576-v3-0-5a2ebe1b11a8@collabora.com>
+ <20260225-vdec-reg-order-rk3576-v3-1-5a2ebe1b11a8@collabora.com>
+ <9bb74438-e759-46a7-9fa1-2c6b1fced76b@kernel.org>
+ <d5a244f3-5f1b-4bcb-8042-646320a47b6c@collabora.com>
+ <85793250-425d-40da-b382-ada9fc7b50e1@kernel.org>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <85793250-425d-40da-b382-ada9fc7b50e1@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268562-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[synopsys.com,kernel.org,outlook.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,gmail.com,whut.edu.cn];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-268548-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D5D7619F5D1
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
+X-Rspamd-Queue-Id: E334119E433
 X-Rspamd-Action: no action
 
-On Wed, 25 Feb 2026 18:40:38 +0800, Inochi Amaoto wrote:
-> As the DMA controller on Sophgo CV1800 series SoC only has 8 channels,
-> the SoC provides a dma multiplexer to reuse the DMA channel. However,
-> the dma multiplexer also controlls the DMA interrupt multiplexer, which
-> means that the dma multiplexer needs to know the channel number.
+On 2/25/26 4:11 PM, Krzysztof Kozlowski wrote:
+> On 25/02/2026 14:36, Cristian Ciocaltea wrote:
+>> On 2/25/26 2:26 PM, Krzysztof Kozlowski wrote:
+>>> On 25/02/2026 13:19, Cristian Ciocaltea wrote:
+>>>> With the introduction of the RK3588 SoC, and RK3576 afterwards, the
+>>>> 'link' and 'cache' register blocks have been provided for the video
+>>>> decoder unit in addition to the existing 'function' one, which now shows
+>>>> up in between them (from address-based ordering point of view).
+>>>>
+>>>> However, the binding does not properly describe this hardware layout, as
+>>>> the new blocks are listed after the old one.  Therefore it breaks the
+>>>> convention expecting the unit address to indicate the first register
+>>>> range.
+>>>>
+>>>> Since the binding changes have been already released and a fix would
+>>>> bring up an ABI break, mark the current 'reg-names' listing as
+>>>> deprecated and introduce an alternative 'link,function,cache' one.
+>>>>
+>>>> Additionally, drop the 'reg' description items as the order is not fixed
+>>>> anymore, while the information they offer is not very relevant anyway.
+>>>>
+>>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>>> ---
+>>>>  .../devicetree/bindings/media/rockchip,vdec.yaml      | 19 ++++++++++++-------
+>>>>  1 file changed, 12 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+>>>> index 809fda45b3bd..3f6072e8baa5 100644
+>>>> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+>>>> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+>>>> @@ -28,16 +28,21 @@ properties:
+>>>>  
+>>>>    reg:
+>>>>      minItems: 1
+>>>> -    items:
+>>>> -      - description: The function configuration registers base
+>>>> -      - description: The link table configuration registers base
+>>>> -      - description: The cache configuration registers base
+>>>> +    maxItems: 3
+>>>>  
+>>>>    reg-names:
+>>>> -    items:
+>>>> +    oneOf:
+>>>>        - const: function
+>>>
+>>> This is confusing, I think I missed that in previous patch because it
+>>> did not leave that part or I misread the diff hunk - why do you allow
+>>> one entry?
+>>
+>> That's for the older SoCs, e.g. RK3288, RK3399, as the 'link' and 'cache' blocks
+>> are only available for RK3576 & RK3588.
 > 
-> Change the DMA phandle args parsing logic so it can use handshake
-> number as channel number if necessary.
+> Yeah, I see in the bottom of the binding
 > 
-> [...]
+>>
+>>>
+>>> If the first entry is function, then all others MUST built on top, thus
+>>> this:
+>>>
+>>>> +          - const: link
+>>>> +          - const: function
+>>>> +          - const: cache
+>>>
+>>> is not correct.
+>>>
+>>> No, you don't change the orders. So again, if you have such binding,
+>>> then you just fix the unit address leaving the binding as is.
+>>
+>> Changing the unit address would mean it will point inside the register range,
+>> rather than at the beginning of it.
+> 
+> First, not true. If this was one register range, you would have one
+> entry. You cannot split entries. Split entries means you have two
+> SEPARATE register ranges.
+> Second, it does not matter because main rule stays - the unit address
+> describes the main address space. The main address space in other device
+> was called "function", so I assume the main address space is also here
+> the "function". Which makes sense, because link feels secondary to
+> functioning of the device.
+> 
+>>
+>> Sorry, but I don't quite get why would this be a better approach than just
+>> properly list the items according to the HW layout, i.e. following the
+>> address-based ordering?
+> 
+> We always expect the list to grow, to have common set. That's rule given
+> during reviews multiple times. For multiple reasons, also explained
+> (consistency, maintenance and actually proper description of hardware
+> like the main reg address space).
+> 
+> Probably this was also given to that binding during discussions when it
+> was upstream, so your change reverts previous discussion and to that I
+> do not agree.
 
-Applied to dt/riscv, thanks!
+Thank you for detailing this, I get your point now.
 
-[3/3] riscv: dts: sophgo: cv180x: Allow the DMA multiplexer to set channel number for DMA controller
-      https://github.com/sophgo/linux/commit/7b159ed9c81cf7e0d0b75666e6548ceface2e1b5
+After digging a bit further, it looks like the "function" naming has been
+introduced as part of the RK3588 support via commit c6ffb7e1fb90 ("media:
+dt-bindings: rockchip: Document RK3588 Video Decoder bindings").
 
-Thanks,
-Inochi
+Morever, it also sets `reg-names: false` for all the SoCs other than RK3588 -
+sorry for missing this initially.
+
+Hence "function" wasn't used at all in the context of the older SoCs, while on
+RK3588 & RK3576 there is no indication that "function" should be treated as the
+main address space or anything like that.  E.g. RK3588 TRM clearly shows the
+"link" range at the top of the listing, starting at video decoder unit base
+address:
+
+--------------------------------------------------------------------------------
+Config Register                         |   Base addr
+--------------------------------------------------------------------------------
+VDPU381 core0/1 link table config base  |   VDPU381_core0/1_base+0x000
+VDPU381 core0/1 function config base    |   VDPU381_core0/1_base+0x100
+--------------------------------------------------------------------------------
+                                        |   VDPU381_core0/1_base+0x600 for Y channel
+VDPU381 core0/1 cache config base       |   VDPU381_core0/1_base+0x640 for C channel
+                                        |   VDPU381_core0/1_base+0x680 for head channel
+--------------------------------------------------------------------------------
+
+Assuming the reasoning above is now good enough to move further with the
+proposed approach, I can prepare a new revision dropping the unnecessary
+one-entry item from the reg-names, while keeping all the rest in the series as
+is.
+
+Regards,
+Cristian
 
 
