@@ -1,209 +1,251 @@
-Return-Path: <devicetree+bounces-268372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268373-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JX0KaL2nmm+YAQAu9opvQ
-	(envelope-from <devicetree+bounces-268372-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:18:26 +0100
+	id ANPkJF33nmm+YAQAu9opvQ
+	(envelope-from <devicetree+bounces-268373-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:21:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3F6197E51
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:18:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E70EA197FB3
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 14:21:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 278B5302256D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:18:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48B44305BAAF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319AE3ACF0B;
-	Wed, 25 Feb 2026 13:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60E053B5301;
+	Wed, 25 Feb 2026 13:19:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CXnqqRVO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rotTWz+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A143AA1A1;
-	Wed, 25 Feb 2026 13:18:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2883AA1A1;
+	Wed, 25 Feb 2026 13:19:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772025502; cv=none; b=gRHkpdcrnDYcRs/5/7yPqOZVCT71Kymqy8BmlKOXybb/tucmDT3Fb9vmTfnlgKd8IMmNVgiQss1845DAyxgXUgg0OdzfvXANowa9IZKG+IZA5s82EFMO08rZ9jWFwXn+IfVbRgFh3qpz2v4a29n80qgznn68mcSbCQwhKYjEd4M=
+	t=1772025545; cv=none; b=grABulwaiX+75VZnYds3nIi3Qel+Ab1G20VSEohu0Fvqk0V5XenXEWb8ePKqHLZJVvwmfFQBeC7XCSLctA7IJUUYNWXcRuEvZ6N6dy2qHzC5F5Snpp/E2REkV2bQxEI/LDUpAED0M1gc/LLWIVEaxv+MN/6XycwqJ28Zo8DrAYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772025502; c=relaxed/simple;
-	bh=OBPmVel8etDOsFPwy09vRPFiPn+XOTirLp8VxPuWQT8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nnjUS0MWMCFXfYvXctmemm08GrE5jg0M0bgBUlPFPqAxqIDG84kGVbI8cR7xuuWjL0d5W2wum8UvQIKv2ucG6Qh/imNl4hwztd3Yy6SIZ8UawwpjHxiHUZ1CvbKN0vUDmesoJBzl7fpw4dwXNzdSSdIgytT3ne6TpZt4OErE0ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CXnqqRVO; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1772025499;
-	bh=OBPmVel8etDOsFPwy09vRPFiPn+XOTirLp8VxPuWQT8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CXnqqRVOU+5ZupZeqTybWiwyfo1yrPseMhCvtva473bH2wisFSulL2HVy9FKbSS1v
-	 E41wbZNfMQm3KQxssJS21aB8or0/0zUL0Homdt9CXse6Zt/DtfZIv22FaUguvmDB9W
-	 8ZzsrJK3J4R+3l5imK23d90P/YLdNoDxDdUg4nwxLPPOWkZbHqlkP2s3Q7DF4LsY7A
-	 cDeqsAZhpvshMV65GGlgP3g9r5idEW/JfDkWy//f7GsbDfV2+5xWIwTlK8jUSqmnq5
-	 B0R+3IcU5+SJoAIN4NRHXomy28whqZJsv+ehM5MvvHd45PddBXTyW64J4p6W5gIK7N
-	 g8WnRnhJAuDEw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1673117E03E6;
-	Wed, 25 Feb 2026 14:18:18 +0100 (CET)
-Message-ID: <f0e97a38-a11b-4e69-902a-e0ccd0dc4540@collabora.com>
-Date: Wed, 25 Feb 2026 14:18:17 +0100
+	s=arc-20240116; t=1772025545; c=relaxed/simple;
+	bh=5riuDhoRH89LPwoWwriVShczWVODF9iwBss2N5Jcg44=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qNVjXnHbB41M+rOAJBinFTKOb5g1uTPT39fd+sLhEgOmDDjJNUkzHOR8zFUxbDqhWKGA+8Uu2Wle5TrDsjXJAT5XeLUL8Rl2qlKS3LBMxogFAbqBvbtBPFi3ABnHdnatizePBDz3sl/vx6uAHpWZHY+1CV7EhdHlguzwJeOkFD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rotTWz+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0E71C116D0;
+	Wed, 25 Feb 2026 13:18:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772025544;
+	bh=5riuDhoRH89LPwoWwriVShczWVODF9iwBss2N5Jcg44=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rotTWz+eL4ZazqHfyQ1TRb5+ivzSTKrvyxPSUUrUGXHIbAE0TOvU7cT0nrZtY+Bu3
+	 uoCtzh+VAZvKkuRzWvrFHDZcm+tG8SPpAlOyMg6J+n3xGCiXdcsSiCoMEuIy8SIa0P
+	 zE3zBle5o2aOqd3Z214PeDyjfdnB92ALBKktjf0ilvLaOf1vObFdhN8n6vRSyPDo5N
+	 dULX/2tX5bxNL9AHr91IeXBqAx91FlXb5rt/Y/iSuvrNNREJiqdNsew+ozt9gL/Uel
+	 5XdxiRbLSQGZXoOzGi9jtWSWZDWNCZqHhtDtCXtkNL1lKxh5VZOLMpIq3Oi0Kzjmin
+	 MFZbq0EeBdwwg==
+Date: Wed, 25 Feb 2026 18:48:54 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Sherry Sun <sherry.sun@nxp.com>
+Cc: hongxing.zhu@nxp.com, l.stach@pengutronix.de, Frank.Li@nxp.com, 
+	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, 
+	imx@lists.linux.dev, kernel@pengutronix.de, linux-pci@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V6 00/12] pci-imx6: Add support for parsing the reset
+ property in new Root Port binding
+Message-ID: <iswqrdkb6gcoa62wy2hf7zv4pdeafhvcijvvbqhg6lafphrpwc@cpghj7h6zf5s>
+References: <20260225105523.748775-1-sherry.sun@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 16/23] scsi: ufs: mediatek: Clean up logging prints
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>,
- =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
- "kishon@kernel.org" <kishon@kernel.org>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@hansenpartnership.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- =?UTF-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
- <Chaotian.Jing@mediatek.com>, "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>
-Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- "kernel@collabora.com" <kernel@collabora.com>
-References: <20260216-mt8196-ufs-v7-0-b5f2907c6da7@collabora.com>
- <20260216-mt8196-ufs-v7-16-b5f2907c6da7@collabora.com>
- <c333898413d249c017430d4ae98bc7be3bf33a64.camel@mediatek.com>
- <2575185.irdbgypaU6@workhorse>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <2575185.irdbgypaU6@workhorse>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260225105523.748775-1-sherry.sun@nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-268373-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268372-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[collabora.com,gmail.com,kernel.org,mediatek.com,hansenpartnership.com,acm.org,linaro.org,pengutronix.de,samsung.com,wdc.com,oracle.com];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
-X-Rspamd-Queue-Id: 2C3F6197E51
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,i.mx:url]
+X-Rspamd-Queue-Id: E70EA197FB3
 X-Rspamd-Action: no action
 
-Il 25/02/26 14:05, Nicolas Frattaroli ha scritto:
-> On Tuesday, 24 February 2026 13:47:28 Central European Standard Time Peter Wang (王信友) wrote:
->> On Mon, 2026-02-16 at 14:37 +0100, Nicolas Frattaroli wrote:
->>>   drivers/ufs/host/ufs-mediatek.c | 99 ++++++++++++++++++-------------
->>> ----------
->>>   1 file changed, 43 insertions(+), 56 deletions(-)
->>>
->>> diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-
->>> mediatek.c
->>> index ecf16e82a326..2b1f26b55782 100644
->>> --- a/drivers/ufs/host/ufs-mediatek.c
->>> +++ b/drivers/ufs/host/ufs-mediatek.c
->>> [... snip ...]
->>> @@ -810,11 +806,11 @@ static void ufs_mtk_mcq_set_irq_affinity(struct
->>> ufs_hba *hba, unsigned int cpu)
->>>   	_cpu = (cpu == 0) ? 3 : cpu;
->>>   	ret = irq_set_affinity(irq, cpumask_of(_cpu));
->>>   	if (ret) {
->>> -		dev_err(hba->dev, "set irq %d affinity to CPU %d
->>> failed\n",
->>> +		dev_err(hba->dev, "setting irq %d affinity to CPU %d
->>> failed\n",
->>>   			irq, _cpu);
->>>   		return;
->>>   	}
->>> -	dev_info(hba->dev, "set irq %d affinity to CPU: %d\n", irq,
->>> _cpu);
->>> +	dev_dbg(hba->dev, "set irq %d affinity to CPU %d\n", irq,
->>> _cpu);
->>>
->>
->> Is it more appropriate to use dev_info for state changes or for setting
->> changes?
+On Wed, Feb 25, 2026 at 06:55:11PM +0800, Sherry Sun wrote:
+> This patch set adds support for parsing the reset property in new Root Port
+> binding in pci-imx6 driver, similar to the implementation in the qcom pcie
+> driver[1].
 > 
-> Is this information a user would want to see in their bootup log in
-> every case? My understanding right now is no.
+> Also introduce generic helper functions to parse Root Port device tree
+> nodes and extract common properties like reset GPIOs. This allows multiple
+> PCI host controller drivers to share the same parsing logic.
 > 
->>> [... snip ...]
->>> @@ -1571,7 +1559,7 @@ static int ufs_mtk_device_reset(struct ufs_hba
->>> *hba)
->>>   	/* Some devices may need time to respond to rst_n */
->>>   	usleep_range(10000, 15000);
->>>   
->>> -	dev_info(hba->dev, "device reset done\n");
->>> +	dev_dbg(hba->dev, "device reset done\n");
->>>   
->>
->> Is it more appropriate to use dev_info for state changes or for setting
->> changes?
+> Define struct pci_host_port to hold common Root Port properties
+> (currently only reset GPIO descriptor) and add
+> pci_host_common_parse_ports() to parse Root Port nodes from device tree.
+> Also add the 'ports' list to struct pci_host_bridge for better maintain
+> parsed Root Port information.
 > 
-> Depends on your view of what's useful information for the user.
+> The plan is to add the wake-gpio property to the root port in subsequent
+> patches. Also, the vpcie-supply property will be moved to the root port
+> node later based on the refactoring patch set for the PCI pwrctrl
+> framework[2]. 
 > 
-> I can change both of these back to _info if I have to send out a next
-> revision, just to get this through though.
+> The initial idea is to adopt the Manivannan’s recent PCIe M.2 KeyE
+> connector support patch set[3] and PCI power control framework patches[2],
+> and extend them to the pcie-imx6 driver. Since the new M.2/pwrctrl model is
+> implemented based on Root Ports and requires the pwrctrl driver to bind to
+> a Root Port device, we need to introduce a Root Port child node on i.MX
+> boards that provide an M.2 connector.
+> 
+> To follow a more standardized DT structure, it also makes sense to move
+> the reset-gpios and wake-gpios properties into the Root Port node. These
+> signals logically belong to the Root Port rather than the host bridge,
+> and placing them there aligns with the new M.2/pwrctrl model.
+> 
+> Regarding backward compatibility, as Frank suggested, I will not remove
+> the old reset-gpio property from existing DTS files to avoid function
+> break.
+> 
+> For new i.MX platforms — such as the upcoming i.MX952-evk will add
+> vpcie-supply, reset-gpios, and wake-gpios directly under the Root Port
+> node.
+> Therefore, driver updates are needed to support both the legacy
+> properties and the new standardized Root Port based layout.
+> 
+> [1] https://lore.kernel.org/linux-pci/20250702-perst-v5-0-920b3d1f6ee1@qti.qualcomm.com/
+> [2] https://lore.kernel.org/linux-pci/20260115-pci-pwrctrl-rework-v5-0-9d26da3ce903@oss.qualcomm.com/
+> [3] https://lore.kernel.org/linux-pci/20260112-pci-m2-e-v4-0-eff84d2c6d26@oss.qualcomm.com/
+> 
+> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+
+Please do not send next version before closing or even giving a window.
+
+- Mani
+
+> ---
+> Changes in V6:
+> 1. Drop the pre-allocate pci_host_bridge struct changes in dw_pcie_host_init()
+>    and imx_pcie_probe().
+> 2. Parse Root Port nodes in dw_pcie_host_init() as Frank and Mani suggested.
+> 3. Move the imx_pcie_parse_legacy_binding() from imx_pcie_probe() to
+>    imx_pcie_host_init(), so that dw_pcie_host_init() parse Root Port first, if
+>    no Root Port nodes were parsed(indicated by empty ports list), then parse
+>    legacy binding.
+> 4. Add device pointer parameter for pci_host_common_parse_ports().
+> 5. Add NULL pointer check for reset gpio in imx_pcie_parse_legacy_binding().
+> 
+> Changes in V5:
+> 1. Add the Root Port list(pci_host_port) to struct pci_host_bridge for better
+>    maintain parsed Root Port information.
+> 2. Delete the pci_host_common_delete_ports() as now the Root Port list in
+>    pci_host_bridge can be cleared by pci_release_host_bridge_dev().
+> 3. Change the common API pci_host_common_parse_ports() pass down struct
+>    pci_host_bridge *. 
+> 4. Modify dw_pcie_host_init() to allow drivers to pre-allocate pci_host_bridge
+>    struct when needed.
+> 5. Allocate bridge early in imx_pcie_probe() to parse Root Ports.
+> 
+> Changes in V4:
+> 1. Add common helpers for parsing Root Port properties in pci-host-common.c in
+>    patch#2.
+> 2. Call common pci_host_common_parse_ports() and pci_host_common_delete_ports()
+>    in pci-imx6 driver.
+> 3. Use PCIE_T_PVPERL_MS and PCIE_RESET_CONFIG_WAIT_MS instead of magic number
+>    100 in patch#3 as Manivannan suggested.
+> 4. Use "PERST#" instead of "PCIe reset" for the reset gpio lable in patch#3.
+> 
+> Changes in V3:
+> 1. Improve the patch#2 commit message as Frank suggested.
+> 2. Add Reviewed-by tag for patch#1.
+> 
+> Changes in V2:
+> 1. Improve the patch#1 commit message as Frank suggested.
+> 2. Also mark the reset-gpio-active-high property as deprecated in
+>    imx6q-pcie DT binding as Rob suggested.
+> 3. The imx_pcie_delete_ports() has been moved up so that the
+>    imx_pcie_parse_ports() can call this helper function in error handling.
+> 4. Keep the old reset-gpio property in the host bridge node for the
+>    existing dts files and add comments to avoid confusion.
+> ---
+> 
+> Sherry Sun (12):
+>   dt-bindings: PCI: fsl,imx6q-pcie: Add reset GPIO in Root Port node
+>   PCI: host-generic: Add common helpers for parsing Root Port properties
+>   PCI: dwc: Parse Root Port nodes in dw_pcie_host_init()
+>   PCI: imx6: Add support for parsing the reset property in new Root Port
+>     binding
+>   arm: dts: imx6qdl: Add Root Port node and PERST property
+>   arm: dts: imx6sx: Add Root Port node and PERST property
+>   arm: dts: imx7d: Add Root Port node and PERST property
+>   arm64: dts: imx8mm: Add Root Port node and PERST property
+>   arm64: dts: imx8mp: Add Root Port node and PERST property
+>   arm64: dts: imx8mq: Add Root Port node and PERST property
+>   arm64: dts: imx8dxl/qm/qxp: Add Root Port node and PERST property
+>   arm64: dts: imx95: Add Root Port node and PERST property
+> 
+>  .../bindings/pci/fsl,imx6q-pcie.yaml          | 32 ++++++++
+>  .../arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi |  5 ++
+>  arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi        | 11 +++
+>  .../arm/boot/dts/nxp/imx/imx6qp-sabreauto.dts |  5 ++
+>  arch/arm/boot/dts/nxp/imx/imx6sx-sdb.dtsi     |  5 ++
+>  arch/arm/boot/dts/nxp/imx/imx6sx.dtsi         | 11 +++
+>  arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts       |  5 ++
+>  arch/arm/boot/dts/nxp/imx/imx7d.dtsi          | 11 +++
+>  .../boot/dts/freescale/imx8-ss-hsio.dtsi      | 11 +++
+>  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts |  5 ++
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi |  5 ++
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 11 +++
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |  5 ++
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 11 +++
+>  arch/arm64/boot/dts/freescale/imx8mq-evk.dts  | 10 +++
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 22 ++++++
+>  arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 10 +++
+>  .../boot/dts/freescale/imx8qm-ss-hsio.dtsi    | 22 ++++++
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  5 ++
+>  .../boot/dts/freescale/imx95-15x15-evk.dts    |  5 ++
+>  .../boot/dts/freescale/imx95-19x19-evk.dts    | 10 +++
+>  arch/arm64/boot/dts/freescale/imx95.dtsi      | 22 ++++++
+>  drivers/pci/controller/dwc/pci-imx6.c         | 76 +++++++++++++++----
+>  .../pci/controller/dwc/pcie-designware-host.c |  8 ++
+>  drivers/pci/controller/pci-host-common.c      | 58 ++++++++++++++
+>  drivers/pci/controller/pci-host-common.h      | 15 ++++
+>  drivers/pci/probe.c                           |  2 +
+>  include/linux/pci.h                           |  1 +
+>  28 files changed, 384 insertions(+), 15 deletions(-)
+> 
+> -- 
+> 2.37.1
 > 
 
-Definitely don't change that back to dev_info() as this is debugging information
-that spams the kernel log for no reason.
-
-This has to be dev_dbg().
-
-Regards,
-Angelo
-
->>
->> Thanks
->> Peter
->>
-> 
-> 
-> 
-> 
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
