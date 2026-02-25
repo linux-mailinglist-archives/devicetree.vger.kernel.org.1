@@ -1,120 +1,139 @@
-Return-Path: <devicetree+bounces-268112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268113-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uCptKIFrnmnnVAQAu9opvQ
-	(envelope-from <devicetree+bounces-268112-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 04:24:49 +0100
+	id YDZrCORvnmkvVQQAu9opvQ
+	(envelope-from <devicetree+bounces-268113-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 04:43:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFE0E19130C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 04:24:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7981719143B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 04:43:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9D479300C6C3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 03:24:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 79DA630484E2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 03:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC66929DB99;
-	Wed, 25 Feb 2026 03:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B089929BD87;
+	Wed, 25 Feb 2026 03:40:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lch/AR3T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.78.106])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AB32AE68;
-	Wed, 25 Feb 2026 03:24:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.78.106
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C0E817A2EA;
+	Wed, 25 Feb 2026 03:40:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771989880; cv=none; b=ldPhKjqw8a1hKUZkUaovf9VV0VdFkVOq0RraR+ILv+Q41LFtlDw3VQPVpW6C0vGLNC5dQeG1wN6Yn+k8YwCHLVT4h/wXlyX+QVXWUdRbyhQ6skIXNxEh3/jYYtVR8A6QVr1wQSGg5xleYzmy0SFlkTFFQwsANm08GybIwQje3aw=
+	t=1771990843; cv=none; b=Hoaj1y2P3Fw+RihaaeHd+ioxvhaWw29kbuovK0MvzwXU+JhQSIVlHPnDePGyDf2nJpwyqv3nx8InT9RiPAq3D5XEYnVk3AwBr3GFI68cHceFER0s9ROogmoSmK/djkGzWACdYEQVy5lpVjbbOUfUNRcWZVTq0uDKcYz9nN8rQew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771989880; c=relaxed/simple;
-	bh=a8ePmFCIfGiBFXiz56LIH/8Mo1XONCmvpfMpj7N/fko=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=ZP+QvU1fj4oHg6BNSn3frFaUuwMyPlDZkmUy/th6TZzDTPoY21fiWYNcOuiwtGKAvO03wb5ffd239LdX4nkBJUiDo7lcSc8nqBnH99dNYOrSnU8Ma9NDlwlbDrglA0Iposd8YkP+v5U7zILNweo+7SswYdJ9j3euA+dwN91L6hE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.78.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
- ajax-webmail-app2 (Coremail) ; Wed, 25 Feb 2026 11:24:29 +0800 (GMT+08:00)
-Date: Wed, 25 Feb 2026 11:24:29 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Huan He" <hehuan1@eswincomputing.com>
-To: "Conor Dooley" <conor@kernel.org>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jszhang@kernel.org, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, xuxiang@eswincomputing.com,
-	"Pritesh Patel" <pritesh.patel@einfochips.com>
-Subject: Re: Re: [PATCH v3] dt-bindings: mmc: dwcmshc-sdhci: Fix resets
- array validation
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <20260224-thud-hydroxide-4c139d351fa6@spud>
-References: <20260224092337.312-1-hehuan1@eswincomputing.com>
- <20260224-thud-hydroxide-4c139d351fa6@spud>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1771990843; c=relaxed/simple;
+	bh=SH1l2VHXFd2mlhizLCM7eVb2wpOXLRKRe8YOIkeJkv0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dC7YIAkTKF1SkCO9CLyb+AST7CtvP2qRIkBVPFv7Hh423OiZUXiufGXeXz6aw4MbdwRnpqj3bpzvWG/LaXPKjMXyIyg8gQHSLAUyBj6PFIdL4g5Vc2ZLFVIt4RCSLhNzP55Hdo0ypoijWQ+53Av8jTGI+CuLNkOlHMIGh1ctw14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lch/AR3T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 578DBC116D0;
+	Wed, 25 Feb 2026 03:40:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771990843;
+	bh=SH1l2VHXFd2mlhizLCM7eVb2wpOXLRKRe8YOIkeJkv0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lch/AR3TzcXQhwRHw3JK9Thp6XVQwEdVIwXe2N+gXNT5PVSoZJ3EUFNKw69Yi+t6X
+	 CLdhqC0hSjET5kyeYeiSNK1H7PAY5EtFKQhNUR2cimetDL3jDLSEFthVqN5YE7p5XC
+	 VdRXBexpOa2JxttwyzZojCm8b9wN5eIH4h95P1TwGJOsU4O6XMJDJZ1PG/hPA0EyPh
+	 fawG5xT1/TvLVqVRc6fP1ZyBZwO6hyJEwga1EY555ZbATU76r4I3wUOjR9H5jHAPxF
+	 r9fu7aWlWVw0Hz7LFv08uq5pr62y2asjhxc63sc7D6wotRC8Ku9cuwAYFTuPO6FqWB
+	 siO8nsatFCx+w==
+Date: Tue, 24 Feb 2026 21:40:40 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RFC] arm64: dts: qcom: qcs6490-rb3gen2: Enable uPD720201
+ and GL3590
+Message-ID: <5slnnbku4wap4bpyg5iyme3zmzst3frggdukg4elli3e3pmsow@7oueerydfiq2>
+References: <20260212-rb3gen2-upd-gl3590-v1-1-18fb04bb32b0@oss.qualcomm.com>
+ <iy3yypj2gcl6znygsyoxja3lh7irrl25snqnbxfmyhyhqgays2@57lyx33bthh6>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <389f2709.38c5.19c92d3a42c.Coremail.hehuan1@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDH3aBta55piVYDAA--.671W
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAQEJCmmd0pEafgAB
-	sR
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <iy3yypj2gcl6znygsyoxja3lh7irrl25snqnbxfmyhyhqgays2@57lyx33bthh6>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.64 / 15.00];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-268113-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-268112-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email,einfochips.com:email]
-X-Rspamd-Queue-Id: DFE0E19130C
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 7981719143B
 X-Rspamd-Action: no action
 
-PiA+IFRoZSBiaW5kaW5nIGRlZmluZXMgdHVwbGUtc3R5bGUgcmVzZXQtbmFtZXMgaXRlbXMgZm9y
-IHNvbWUKPiA+IGNvbXBhdGlibGVzLCB3aGljaCBpbXBsaWNpdGx5IGVuZm9yY2VzIGEgZml4ZWQg
-YXJyYXkgbGVuZ3RoCj4gPiB2aWEgSlNPTiBTY2hlbWEuCj4gPiAKPiA+IERlZmluaW5nIGdsb2Jh
-bCBtYXhJdGVtcyBmb3IgcmVzZXRzIGFuZCByZXNldC1uYW1lcyBjYXVzZXMgdGhlc2UKPiA+IGNv
-bnN0cmFpbnRzIHRvIGJlIGludGVyc2VjdGVkIHZpYSBhbGxPZiwgcmVzdWx0aW5nIGluIGFuIGVm
-ZmVjdGl2ZQo+ID4gbWluSXRlbXMgZXF1YWwgdG8gdGhlIGdsb2JhbCBtYXhJdGVtcy4gVGhpcyBs
-ZWFkcyB0byBkdGJzX2NoZWNrCj4gPiBmYWlsdXJlcyByZXBvcnRpbmcgcmVzZXQgYXJyYXlzIGFz
-IHRvbyBzaG9ydCwgZXZlbiB3aGVuIHRoZSBEVFMKPiA+IHByb3ZpZGVzIHRoZSBjb3JyZWN0IG51
-bWJlciBvZiBlbnRyaWVzLgo+ID4gCj4gPiBGaXhlczogMzAwMDlhMjFmMjU3ICgiZHQtYmluZGlu
-Z3M6IG1tYzogc2RoY2ktb2YtZHdjbXNoYzogQWRkIEVzd2luIEVJQzc3MDAiKQo+ID4gU2lnbmVk
-LW9mZi1ieTogUHJpdGVzaCBQYXRlbCA8cHJpdGVzaC5wYXRlbEBlaW5mb2NoaXBzLmNvbT4KPiA+
-IFNpZ25lZC1vZmYtYnk6IEh1YW4gSGUgPGhlaHVhbjFAZXN3aW5jb21wdXRpbmcuY29tPgo+IAo+
-IFNpZ25vZmYgY2hhaW4gbG9va3Mgd3JvbmcuIFlvdSdyZSBhdXRob3IgYW5kIHN1Ym1pdHRlciwg
-d2hhdCBkaWQKPiBQcml0ZXNoIGRvPwoKVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgdGFraW5nIHRo
-ZSB0aW1lIHRvIHJldmlldyB0aGUgcGF0Y2ggYW5kIGZvciB5b3VyCnZhbHVhYmxlIGZlZWRiYWNr
-LgoKSW50ZXJuYWxseSwgUHJpdGVzaCBwcm92aWRlZCB0aGUgaW5pdGlhbCB2ZXJzaW9uIG9mIHRo
-aXMgZml4LCBhbmQgSSBoYXZlCm1hZGUgc3Vic2VxdWVudCB1cGRhdGVzIGFuZCByZWZpbmVtZW50
-cyBiZWZvcmUgc3VibWl0dGluZyBpdCB0byB0aGUKY29tbXVuaXR5LgoKQmVzdCByZWdhcmRzLApI
-dWFuIEhlCg==
+On Tue, Feb 24, 2026 at 09:52:45AM +0200, Dmitry Baryshkov wrote:
+> On Thu, Feb 12, 2026 at 02:43:46PM -0600, Bjorn Andersson wrote:
+> > The QCS6490 Rb3Gen2 has a Renesas μPD720201 XHCI controller hanging off
+> > the TC9563 PCIe switch, on this a Genesys Logic GL3590 USB hub provides
+> > two USB Type-A ports and an ASIX AX88179 USB 3.0 Gigabit Ethernet
+> > interface.
+> > 
+> > The Renesas chip is powered by two regulators controlled through PM7250B
+> > GPIOs 1 and 4, and the power/reset pin is pulled down by PM8350C GPIO 4.
+> > The Genesys chip power is always-on, but the reset pin is controlled
+> > through TLMM GPIO 162.
+> > 
+> > Describe the Renesas chip on the PCIe bus, with supplies and reset, to
+> > allow it to be brought out of reset and discovered. Then describe the
+> > two peers of the USB hub, with its reset GPIO, to allow this to be
+> > brought out of reset.
+> > 
+> > The USB Type-A connectors are not described, as they are in no regard
+> > controlled by the operating system.
+> 
+> Nevertheless, their presense in DT controls port's connect_type as can
+> be seen in sysfs.
+> 
+
+Is that information useful enough to be worth describing the connectors
+and wire them up, despite being completely passive?
+
+What consumes connect_type?
+
+Regards,
+Bjorn
+
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+> > ---
+> -- 
+> With best wishes
+> Dmitry
 
