@@ -1,212 +1,127 @@
-Return-Path: <devicetree+bounces-268190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268191-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OCCIKc2vnmmRWwQAu9opvQ
-	(envelope-from <devicetree+bounces-268190-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:16:13 +0100
+	id yASDI62xnmlxWwQAu9opvQ
+	(envelope-from <devicetree+bounces-268191-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:24:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573A6194052
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:16:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8EED194256
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:24:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C069D30168A6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:16:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E8BDE301E223
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:19:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1673112BC;
-	Wed, 25 Feb 2026 08:16:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D66311952;
+	Wed, 25 Feb 2026 08:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iMmjZYsA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m3MnF8kg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A653016E0
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772007371; cv=pass; b=e8r/C9t5EMfTzFwyZHVLhTSBjckr0ZxA3b+khq8voHvpSgx1VTS+8qpPOIo4Z2sP2pA58+LSei3lD/2pb3ESv6BI+YVwS2QXGbBMgB7SYmeFme2wAIz09BVek57z5CTLMqPf6oQEQcRhnah5iEvQgfQcCncgc95s9/MKY8FtR0Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772007371; c=relaxed/simple;
-	bh=DhIj+5DDg+ZTM+y1YS2opkdXpmx8a5SYOBauV9LpEQY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iX9AZVATWyRFISHvZsByDyO+YxeEwL96Xi+drYpgJp28fvL6xgh9+KrP8gArYmy9xih/gBJ5Q3WarUhq/ZEBzx7Fr74x57UiOesGN3QDHLoRFp0Ozya2jj93sGqV7qHHMeLhWZlXvckiBT4Nfk7Kq0WmMjqcNUOzpSpkJ5/xDGc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iMmjZYsA; arc=pass smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-65f92a597a1so334604a12.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 00:16:10 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772007369; cv=none;
-        d=google.com; s=arc-20240605;
-        b=R7xsz/OcEmJqcwpAF5B0TTmjElo22Cazdbcd/6/TCrt9/ARaNm5r64pelzL2DLZPC8
-         Bo+XZmZN1L5d2gnyo3aTAeCO4fnEzaCUjnhm90JDhVfwbXu+jO66uBuSGN7w40YkrwAf
-         OHzGutrhByWS5EKmAxyRfljKRS//2FMUGdKCZPq0YARodpuZfPTQmjQdXo5WDuqELbrG
-         FLzUR9LpZhjkFmIzBZ2TPOXKRLv2NxWsVCXi5jYmLHepuAMg3NJlo0hDTF3LYEB7nVEB
-         DHMkmJl0lHNPe8aRj1ug3BH3BNPdLQ5w07p7K3Txk0jl5Z3BzFXqS7GQmxfBfg0iMo5e
-         +Gmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=x2LJlLYDb1+QOSf2a+RA+BcJzRTj83OmLJeFRnjwCps=;
-        fh=z5tuDyR0eCMs6YMEeNxVXr70mbbuP/mx6M5Wbmr4yN8=;
-        b=PsbOolY69OvPh6QYf82ZvXb13GB0TIs514ZF6gkUGBfyybRRFXejQwfhvyKWHn7wPm
-         oK6upiMVuMn5oEcPSCkU1aQKO8u+1WeX4UQQF048TNkRWq+//nmmjYNpu0OYr5AhH5YL
-         Unpk9US45l+IxDT3+sMIyIZNoRPVjsQ69fEXjnUwPcpvIkZjUnbyuWJSOlJQbrisGNDF
-         Kw9YZ/Acze9s5vm1VqK+JqOY8iB9xUglDxBS7WC/H499DBNQVhsNCdnhyoPULm30bLN5
-         7y02qNmDtJ+TDEp2gSKwG50WSMVW6j1h4ay4ajUbpP8eds6P7Kg/QjjSTjPdGZLZO/1v
-         U5Vw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772007369; x=1772612169; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=x2LJlLYDb1+QOSf2a+RA+BcJzRTj83OmLJeFRnjwCps=;
-        b=iMmjZYsAy6wmF8O5T6b5iZHNqJwR82ShbYQ4TRmBomzV8B8TXtwGdhZwXG11RkeE34
-         LIU4RTSe5tmwQO/l0pI7i1L2uXcUQKfAu3HuDoDIvzlpl8ZyXFJKEWyzfHbLBU69OfCm
-         +FJlAe2l4dlb/Jrjk1PlidVH6os2SGXlLJ2e+PdLsYNpb98u5id+omb0abYVw8QExpsf
-         Lq4ionRJr8Bs2fH+nr2DuH6r2kgafi6yTLN4ck4H6MSH3oV5xHo7izv1fntVQQHZkqmQ
-         zSLghyfh3oXuOjFp59Fr0O4Zg1S3fl9ySiDXyNEG0A5cUViaCrVueLvKqXOVm64QAjc5
-         XpNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772007369; x=1772612169;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x2LJlLYDb1+QOSf2a+RA+BcJzRTj83OmLJeFRnjwCps=;
-        b=FFHgoi2kgdDynlQewthmFyXRwLrLy/VbYFUxij2H7ss0PQzP4VdbvR/xIlIRFZ0ixJ
-         9mm12fXS3rKUMGanHcZM+wxXN2w/jCc150B6oAMDytnelYiu7SVGjVFC3+wMLiOwkuCY
-         Q/dmNdyGBPCigGx32DwMifPhuyLKo8mUAZlQrJ2eaD8sK3Csgc7s+//FD6H9yYAwbwvZ
-         VdRLGdBLEWIErFdtDcaGBOWdIghHzRFhi7FDCTbacx2t2xKu0GjFYI7KjJtr1qkH/w4d
-         xNGan6Jy9rCWYH9acWXAPMi3nOxyKCXVdMXiAVlhJAqg5Wu++FNpuPMnkrFlfK/xk6Ny
-         aGqA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1mlqJifgRa8ZLUI4kxkUET1SDsF6dyZstbzFr+VraCRDwExOx/pFjnYU1N5NfVupbYqXvYYiE6HMN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUqHytj5UelyXs98Z+ptsO0uUyvVeJPZoi6aFEnnuK4si5q9V6
-	VJDG9TpHdPukT7lz9AFUGUbnUugy1OKatN2zrEID6A3WOdrP1St2NDA7ajEDNDfgYdDFN7VPEln
-	lNmczpI2w6/p8b5+Ak0ndE4vkSHZ4FLw=
-X-Gm-Gg: ATEYQzwDdv6s1fvfALXasW9k3Z4WoM030Gak/0++0TQD8X/d8KUjIobfD39ReENKV6I
-	ZbBLfADaAubQFQHuHMo7dBdBnnoF5EhbnQEelekaA1sospsOgYVCDL/htIt1w7bi0tS+xyzcLUa
-	gP040Kt4xkcXsCE7cTETLz19nPucael9rqpFFSXIaJ8Es84If+p6+JlGXepoiDhfKO9hS/M7/mO
-	labHqZrKpdAbaWiPuTkLO/vRjcg2JIh7naoWIEZNaG2mPhk6ctibc78uRfyjx+8c2u9RG4ZVVIq
-	qwe16w==
-X-Received: by 2002:a05:6402:23d0:b0:65f:8b6e:e1e0 with SMTP id
- 4fb4d7f45d1cf-65f8b6ee3eamr689444a12.14.1772007368034; Wed, 25 Feb 2026
- 00:16:08 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31DBB19E97B
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772007554; cv=none; b=oPrY5Vu6yFNvBrQ9R8F5scN5iuiNHrAjwvQTCP5bTHlArTJPcf7ix3nEOupKEOR+W4aGcsICj+UhDjRBI+dgFOET4j7DWwvv6xxs3yiy6C6xr6NBXc92zh9J1Fs4qgXtgzi6sFmbbStKNTuzFy8vTwHgUJhKNqqn9W5gfHBMBYg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772007554; c=relaxed/simple;
+	bh=i767YM81rg16oZZHvqRpOQjd5YhsJg23jCgSi88ETAE=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R5neqAln8t/BbNeTc6CXuT0tAOM2dHRVlhNXG1cszRBWBBdD+I2gSeMDpEygjl79CJF7DNPKuFkJ0g9e1tfP9zYa1uwylqzwzO85tFuNrBTvEffTttByNgIRsS8u3mEsg4xEQo9e++ypxVBsPfWyh7kZWJg0m2KpdGLiD0+VCNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m3MnF8kg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9DB4C116D0
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:19:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772007553;
+	bh=i767YM81rg16oZZHvqRpOQjd5YhsJg23jCgSi88ETAE=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=m3MnF8kg8EdpV9TU8qMVIyRtyy9/e4Sc7qdBSw7Kmbx1O/1IQVhMe62U56el3Q/1k
+	 jAqYvJ5zQWcCSk+wSu5VRgVyrERgCYFo0yLzeFapQxOGWNY5i38UYyNfKPQKIn2MFO
+	 TbcLMBptwcoK3QOFNuZShpI9rnqwr+XKTnBdR8LT+p73sHev4Yna30R8exUDG6Ki0q
+	 UOUjUjheFSk0BXDERTF5jqlIlnsHwIOPgB3vu3e0cn6ofmiMyx86oPNZyFXzQEvexL
+	 yEfI8mKfouLgxGH51mxfnY6ke55/jie2AOXfv21aQCN/djFyBsC8M30M3dwDJexryF
+	 HNda32plqi0Qg==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-59f850cdeafso6602848e87.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 00:19:13 -0800 (PST)
+X-Gm-Message-State: AOJu0YyE5Kmac11U9yRQdzfOGG5S7I6dne20gMhPxtH4BhCDrX+HXUOq
+	jP7LAX5+Y5MAw86sPXEsznxaS/FDj+a4Mj5xnRbmq+liabLQn7bPdYQne0sh3dY/ZFR8pQJEAA4
+	bruSlRFSTkL4jbn71H+nE+GmWKvgdwUljl5xdxZXjmQ==
+X-Received: by 2002:a05:6512:1252:b0:59f:8993:df7d with SMTP id
+ 2adb3069b0e04-5a0ed8a2429mr4956665e87.26.1772007552569; Wed, 25 Feb 2026
+ 00:19:12 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 25 Feb 2026 00:19:10 -0800
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 25 Feb 2026 00:19:10 -0800
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260225072225.3345307-3-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1771863641.git.l.scorcia@gmail.com> <2fbf179c03c61f527e2583f9df4f97f6aaf3297a.1771863641.git.l.scorcia@gmail.com>
- <bc064717108de5ea1a8c98937bb03fd00794682c.camel@mediatek.com>
-In-Reply-To: <bc064717108de5ea1a8c98937bb03fd00794682c.camel@mediatek.com>
-From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Date: Wed, 25 Feb 2026 09:15:54 +0100
-X-Gm-Features: AaiRm52dJLE1LivX43DCdk6HfEogq21vfzP2R-PH1LBTeVTcW8EPNiYL5Cy5zOU
-Message-ID: <CAORyz2Ki5aPNbcY5-_mRwFgwT46VN_pRV2iP7z7x3snzrbKz=g@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] drm/mediatek: dsi: Add compatible for mt8167-dsi
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-Cc: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, "robh@kernel.org" <robh@kernel.org>, 
-	=?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>, 
-	"tzimmermann@suse.de" <tzimmermann@suse.de>, "simona@ffwll.ch" <simona@ffwll.ch>, 
-	"mripard@kernel.org" <mripard@kernel.org>, 
+References: <20260225072225.3345307-1-wenst@chromium.org> <20260225072225.3345307-3-wenst@chromium.org>
+Date: Wed, 25 Feb 2026 00:19:10 -0800
+X-Gmail-Original-Message-ID: <CAMRc=MefvP2bxdGqhw+Sn_MDqVcA2fPefCBygP=ZdFLnkPcHUA@mail.gmail.com>
+X-Gm-Features: AaiRm52W52XmwIgwxtOACerr-UA7gcczLgZWX36auM-UC97DyKrwy0k9pm1Y2nk
+Message-ID: <CAMRc=MefvP2bxdGqhw+Sn_MDqVcA2fPefCBygP=ZdFLnkPcHUA@mail.gmail.com>
+Subject: Re: [PATCH 2/7] PCI: mediatek-gen3: Add error path for probe and
+ resume driver callbacks
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-pci@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "vkoul@kernel.org" <vkoul@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, 
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"airlied@gmail.com" <airlied@gmail.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+	Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang <jianjun.wang@mediatek.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268190-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,mediatek.com,suse.de,ffwll.ch,collabora.com,vger.kernel.org,linux.intel.com,lists.freedesktop.org,pengutronix.de,gmail.com,linaro.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268191-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bgdev.pl,gmail.com,collabora.com,mediatek.com,kernel.org,google.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,qualcomm.com:email,chromium.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 573A6194052
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D8EED194256
 X-Rspamd-Action: no action
 
-> > The mt8167 DSI controller is fully compatible with the one found in
-> > mt2701. Device tree documentation is already present upstream.
+On Wed, 25 Feb 2026 08:22:19 +0100, Chen-Yu Tsai <wenst@chromium.org> said:
+> The probe and resume callbacks currently do teardown in the conditional
+> block directly. This is going to get ugly when the pwrctrl calls are
+> added.
 >
-> If mt8167 DSI is fully compatible with mt2701 DSI, I think the binding document and device tree should be modified.
-> In device tree,
+> Move the teardown to proper error cleanup paths.
 >
->     compatible = "mediatek,mt8167-dsi", "mediatek,mt2701-dsi";
->
-> And this patch is not necessary.
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
 
-Hi, if I understand your review correctly that's what v2 [1] of this
-patch did, but the change was rejected during review.
-
-As far as I can see there is no win-win solution here. This tricky
-situation derives from the fact that in last year's submissions the
-change was only partially merged - the bindings went upstream while
-the driver did not, and now we have to work around this. In v3 I tried
-to address the issue by actually implementing what the binding
-document says.
-I'll be happy to resubmit v4 but I need to know what's the consensus here.
-
-Thanks!
-
-[1] https://patchwork.kernel.org/project/linux-mediatek/patch/ff920a7cc94f2b0c03d4bb55142030fded30d07c.1771258407.git.l.scorcia@gmail.com/
-
-> >
-> > Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_dsi.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > index af4871de9e4c..ad10e86b161d 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > @@ -1301,6 +1301,7 @@ static const struct mtk_dsi_driver_data mt8188_dsi_driver_data = {
-> >
-> >  static const struct of_device_id mtk_dsi_of_match[] = {
-> >         { .compatible = "mediatek,mt2701-dsi", .data = &mt2701_dsi_driver_data },
-> > +       { .compatible = "mediatek,mt8167-dsi", .data = &mt2701_dsi_driver_data },
-> >         { .compatible = "mediatek,mt8173-dsi", .data = &mt8173_dsi_driver_data },
-> >         { .compatible = "mediatek,mt8183-dsi", .data = &mt8183_dsi_driver_data },
-> >         { .compatible = "mediatek,mt8186-dsi", .data = &mt8186_dsi_driver_data },
-> > --
-> > 2.43.0
-> >
-> >
--- 
-Luca Leonardo Scorcia
-l.scorcia@gmail.com
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
