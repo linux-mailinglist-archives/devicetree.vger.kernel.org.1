@@ -1,87 +1,79 @@
-Return-Path: <devicetree+bounces-268233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268234-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6FbnLiXCnmnsXAQAu9opvQ
-	(envelope-from <devicetree+bounces-268233-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:34:29 +0100
+	id OCqCB+rCnmnsXAQAu9opvQ
+	(envelope-from <devicetree+bounces-268234-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:37:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B9B19511A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:34:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160EC1951D6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:37:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6546E3116463
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:26:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3AEA030BD267
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE0B38E5F0;
-	Wed, 25 Feb 2026 09:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B70299950;
+	Wed, 25 Feb 2026 09:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="hlifViC1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KY7tBbWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB7FC38E5DD;
-	Wed, 25 Feb 2026 09:25:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B272DFA4A;
+	Wed, 25 Feb 2026 09:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772011554; cv=none; b=K+gyrAspFof1JcqrATcJTQhHCC5G1Omugq9+IF+irLi9/izROi6f8+WwL8e11CCH9grZtRoILByjtQWd1UYopgLqGeyDFnZ+67CG0S9Qd1CFJpA7siKq93D9TEPz7K6EIW/EgYExP/Xu0GMPq0pc/abCbtm+vl7ALf/t+tX/19I=
+	t=1772011573; cv=none; b=MeWUpLv05KY3bpKloFihpGJrv6f0i9cOHKpLnFeYuz//YQkfIZmYsou9Euony2178wv9bux5wwZdAb+O9MDgqkmSJAcWLlrtQ2s9T+qJzrKcfn8JUMiEIj6oqxaCDWrJiackixewCV5OF7fSZd+dyCXvcZqlcL9kb3PzTKTMnug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772011554; c=relaxed/simple;
-	bh=rgKp5YVqKagpJ90dBd1U0u98y/nDFSmcQ/5cAIgBGO4=;
+	s=arc-20240116; t=1772011573; c=relaxed/simple;
+	bh=mPwI4I+oZQ5ODvyOPP95xP6WQ6WwlfvbRFtPwLS9hsg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QQ3V9mcwwiVipqlQOUezLRS7m7Gh8weKS7b+wm3Opmn+HyE5xloZOqRwi/7zzuDt5y0+AoVNp1sgh4dLwcDN1E6Xo8IBuHspnQN7J1DcWlesVncnwSNubrOiXFWzBjZRqDhfA/WdJOVB8PG5NVz0is26e02CYFJVEppyACVsOyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=hlifViC1; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=id9ft50ikpeYq2+DbJZJyBUEH3jA2m0GVsep0KOPZy4=; b=hlifViC1PGDWeKiILXqnlayMso
-	ML3lAMkdhTOBBO9Q7f/62nWqghLstcjiKEe2DJci0UOgpAUqXOzzx0RPIyepl68I/nr9mEg5/tqr4
-	0ge+0080csH7Cf9webe7Nj7vj+3VM5itj5uwP1rCjk+T1oPTBZFm0w+hqelpvhsAsRt6RUcX1VTmJ
-	L6QIiwR4Rv3WtzI8idcTPYnpENciT49idMr69PlYCwIB5AQmdDticanOvDeqXfx5hCRoIqDXfSKD0
-	MlQJyTX5mezGgVjhCqHVPz9aYRQpTMPyQsJPsqWafrYW6LTySQSiKTchGrefDZSiHEvJqJQiOiVbG
-	gzyvf4NQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46704)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vvB9B-000000006Lo-0h2P;
-	Wed, 25 Feb 2026 09:25:33 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vvB96-000000000pi-2Vrn;
-	Wed, 25 Feb 2026 09:25:28 +0000
-Date: Wed, 25 Feb 2026 09:25:28 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: jan.petrous@oss.nxp.com
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=EYZ9vTjUeAeb+q292oe7Rm4V8pEfECSlrYnzDi3oxwkDheP3/X38CtUbetzZJnS9dXhoBnFiItwJtIvSPYZBMAWXDEdxmhdSX79/YN23MtRFmJPhCPu/JDabs7LkPzxZCef3GUPNeWOUXrcG8ex9Stt6dR0xRQPicHgTrq1mqCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KY7tBbWa; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772011573; x=1803547573;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mPwI4I+oZQ5ODvyOPP95xP6WQ6WwlfvbRFtPwLS9hsg=;
+  b=KY7tBbWa/jeUtbnQ5oymivBTFjQcUjvcEIY4UgnZA8YLFElRBlx17e4X
+   imKwDi7/vtAxX8DkPMh1QENpDzO8g0SXtivyFPMaUtz/kC2rITCspChmN
+   E1Z2ae/vNtnDwPm9DiQC53xv878UXtjTvrq6sJPByWlVe0zh1kW7zZSR+
+   E1reQy155msxRAqZhEvCf/67MjtQN0Es/XKsg5WdAxfIeiSWConzyH/MB
+   FpvBKadTSd6hKq9lQ1FXER+ESk4udckuYQbj2CG6U3iwBuDtZFtWzvsaQ
+   QjwR5PKHj42KAiMFHZF4J5FhnVKYRuio+59k3l7y02mZ53a5OxGllelU1
+   A==;
+X-CSE-ConnectionGUID: WBH4Kau+RHSrjvW0/9G5Vw==
+X-CSE-MsgGUID: 1N/RIEoDTGyft5AugoScRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="72253725"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; 
+   d="scan'208";a="72253725"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2026 01:26:08 -0800
+X-CSE-ConnectionGUID: e1zhuwQ3Qm2Zs7HHwx0LKQ==
+X-CSE-MsgGUID: ox47Z8fCTPSE2AHdXEJ5zQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; 
+   d="scan'208";a="216193210"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.71])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2026 01:26:06 -0800
+Date: Wed, 25 Feb 2026 11:26:03 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 3/5] dt-bindings: net: nxp,s32-dwmac: Declare
- per-queue interrupts
-Message-ID: <aZ7ACLx1yUMWPAsZ@shell.armlinux.org.uk>
-References: <20260225-dwmac_multi_irq-v6-0-245bf1d7110c@oss.nxp.com>
- <20260225-dwmac_multi_irq-v6-3-245bf1d7110c@oss.nxp.com>
+	Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v1 1/1] dt-bindings: cache: bt1-l2-ctl: Remove soon be
+ unused bindings
+Message-ID: <aZ7AK4NRKIztHlnG@smile.fi.intel.com>
+References: <20260224152711.3615622-1-andriy.shevchenko@linux.intel.com>
+ <20260224-unfounded-blizzard-3f3adb0eecc3@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,58 +82,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260225-dwmac_multi_irq-v6-3-245bf1d7110c@oss.nxp.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20260224-unfounded-blizzard-3f3adb0eecc3@spud>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268233-lists,devicetree=lfdr.de];
+	URIBL_MULTI_FAIL(0.00)[microchip.com:server fail,smile.fi.intel.com:server fail,sin.lore.kernel.org:server fail,intel.com:server fail];
+	TAGGED_FROM(0.00)[bounces-268234-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.789];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[shell.armlinux.org.uk:mid,nxp.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,armlinux.org.uk:url,suse.com:email]
-X-Rspamd-Queue-Id: 33B9B19511A
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,smile.fi.intel.com:mid,microchip.com:email]
+X-Rspamd-Queue-Id: 160EC1951D6
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 10:20:35AM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On Tue, Feb 24, 2026 at 04:43:58PM +0000, Conor Dooley wrote:
+> On Tue, Feb 24, 2026 at 04:27:11PM +0100, Andy Shevchenko wrote:
+> > As stated in [1] the Baikal platforms are not supported and
+> > the respective driver code is going to be removed. Remove
+> > soon be unused bindings.
+> > 
+> > Link: https://lore.kernel.org/r/20260224150616.3585591-1-andriy.shevchenko@linux.intel.com [1]
+> > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > 
-> The DWMAC IP on NXP S32G/R SoCs has connected queue-based IRQ lines,
-> set them to allow using Multi-IRQ mode.
-> 
-> Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> ---
->  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 44 +++++++++++++++++++---
+> This feels like it should have been in a series with the driver removal.
 
-As you have added support for these IRQs into the generic code,
-shouldn't the generic dwmac binding doc reflect that this is now
-supported?
+Yeah, he pointed out to the DT submitting patches documentation, so now
+it's clearer.
+
+> If Krzysztof wants to take it with the driver to avoid warnings in his
+> tree:
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks!
+
+> Otherwise I'll revisit this in a day or two and grab it.
+
+It will be a v3 of the combined patches in a series.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+With Best Regards,
+Andy Shevchenko
+
+
 
