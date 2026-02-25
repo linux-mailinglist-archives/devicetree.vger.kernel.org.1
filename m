@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-268200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268199-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +ECEGnq5nmnwWwQAu9opvQ
-	(envelope-from <devicetree+bounces-268200-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:30 +0100
+	id GBv3EQu5nmnwWwQAu9opvQ
+	(envelope-from <devicetree+bounces-268199-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:55:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E641F1947BD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 247C8194754
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:55:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B2F0D3044A76
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:55:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1917C3019FE2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888DE325490;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83970322B7D;
 	Wed, 25 Feb 2026 08:55:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from Atcsqr.andestech.com (unknown [60.248.187.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB9A2C178D
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DAD4213254
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.187.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772009733; cv=none; b=Hmbt213OyI2kNzicuZ+EbsRBrdF1HZo21wZu0Z1ocSYQUfkbRu6nkfhys//Q1gzGo5+4Er85ZVKfp+M//mc5+881FGwl+hnOpxJKDzbm7Pmq7GKLVqJj28z53gMUihHeuOAQTjooexdqQYDbt3Kog0X1OBLOau8gWC+BnzA54RM=
+	t=1772009733; cv=none; b=puoOpeNb9lyqChf8vdxkXRb2BoFI8HSlunwdOGcGf+dsB3sU328ehqrZfFsjjNjYmEtV7tWWp3gDDs3EVpuCHPrbjzvvY9GRKjYHs39Q+0Rn2OyRomPndIUgCij7pSmQLtG+Mpk3q2SXlyFYachIuhg82Mi60ftKEybVfcRSsGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1772009733; c=relaxed/simple;
-	bh=z8EhQONkGW4jc1SEbEcwLrmbuYQePNKNbvhq/nTWy1s=;
+	bh=yhGs3eKg5h2wSBv4DZuGKN4+n0eP4/2qxR0ajVtwHRQ=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i2L596TvkRS4LfFDeklwIlcL//rWT+49ImIoMpVNaPnZ3jE0s74caZ/wKxkK0fSGIUCUet9yUgvPE8+Si04NkLvHlONpOYIbAqFd8bXt4ssbI5mdwFpXeOyooTI5IBHHDqjP5lTcFIfQ5piBOE9nXyXxHKJraHToM7PQWdlM5oc=
+	 MIME-Version:Content-Type; b=uSKhcRaPmtVLkoYVBINcdLZ3WtqmJoZvWGg5nyUcJKEYnZCSdrSq6OlImXQddi4DgBApOGdR1eayJOaIWG5SbUmo7TxSLcWvPjprxWEbNQ/aHvAevrKzbH1YtnEtue34bxY7q+hZxoeLaoeDg3stSMvaIRXZygz9SNDZz3BzkbY=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.187.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
 Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTP id 61P8tBd5077809;
-	Wed, 25 Feb 2026 16:55:11 +0800 (+08)
+	by Atcsqr.andestech.com with ESMTP id 61P8tBd6077809;
+	Wed, 25 Feb 2026 16:55:12 +0800 (+08)
 	(envelope-from randolph@andestech.com)
 Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
  (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 25 Feb
- 2026 16:55:10 +0800
+ 2026 16:55:11 +0800
 From: Randolph <randolph@andestech.com>
 To: <linux-kernel@vger.kernel.org>
 CC: <linux-pci@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
@@ -57,9 +57,9 @@ CC: <linux-pci@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
         <elder@riscstar.com>, <s-vadapalli@ti.com>,
         <ciprianmarian.costea@nxp.com>, <randolph.sklin@gmail.com>,
         <tim609@andestech.com>, Randolph Lin <randolph@andestech.com>
-Subject: [PATCH v11 1/4] dt-bindings: PCI: Add Andes QiLai PCIe support
-Date: Wed, 25 Feb 2026 16:55:01 +0800
-Message-ID: <20260225085504.3757601-2-randolph@andestech.com>
+Subject: [PATCH v11 2/4] riscv: dts: qilai: Add PCIe node into the QiLai SoC
+Date: Wed, 25 Feb 2026 16:55:02 +0800
+Message-ID: <20260225085504.3757601-3-randolph@andestech.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260225085504.3757601-1-randolph@andestech.com>
 References: <20260225085504.3757601-1-randolph@andestech.com>
@@ -76,144 +76,174 @@ X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
 X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
 X-DNSRBL: 
 X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 61P8tBd5077809
+X-MAIL:Atcsqr.andestech.com 61P8tBd6077809
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [3.54 / 15.00];
 	DMARC_POLICY_REJECT(2.00)[andestech.com : SPF not aligned (relaxed), No valid DKIM,reject];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268200-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[34];
+	DBL_PROHIBIT(0.00)[4.196.180.0:email];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,google.com,ghiti.fr,eecs.berkeley.edu,dabbelt.com,sifive.com,andestech.com,amd.com,linutronix.de,samsung.com,foss.st.com,nxp.com,quicinc.com,oss.qualcomm.com,linaro.org,nvidia.com,riscstar.com,ti.com];
+	TAGGED_FROM(0.00)[bounces-268199-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[34];
+	FROM_NEQ_ENVFROM(0.00)[randolph@andestech.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	NEURAL_HAM(-0.00)[-0.961];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.838];
-	FROM_NEQ_ENVFROM(0.00)[randolph@andestech.com,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5]
-X-Rspamd-Queue-Id: E641F1947BD
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,1.206.87.96:email]
+X-Rspamd-Queue-Id: 247C8194754
 X-Rspamd-Action: no action
 
 From: Randolph Lin <randolph@andestech.com>
 
 Add the Andes QiLai PCIe node, which includes 3 Root Complexes.
-Only one example is required in the DTS bindings YAML file.
 
 Signed-off-by: Randolph Lin <randolph@andestech.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/pci/andestech,qilai-pcie.yaml    | 89 +++++++++++++++++++
- 1 file changed, 89 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
+ arch/riscv/boot/dts/andes/qilai.dtsi | 109 +++++++++++++++++++++++++++
+ 1 file changed, 109 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml b/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
-new file mode 100644
-index 000000000000..97ba97fdc5a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/andestech,qilai-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/riscv/boot/dts/andes/qilai.dtsi b/arch/riscv/boot/dts/andes/qilai.dtsi
+index de3de32f8c39..731ba12ccc95 100644
+--- a/arch/riscv/boot/dts/andes/qilai.dtsi
++++ b/arch/riscv/boot/dts/andes/qilai.dtsi
+@@ -123,6 +123,7 @@ cpu3_intc: interrupt-controller {
+ 	soc {
+ 		compatible = "simple-bus";
+ 		ranges;
++		dma-ranges;
+ 		interrupt-parent = <&plic>;
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -182,5 +183,113 @@ uart0: serial@30300000 {
+ 			reg-io-width = <4>;
+ 			no-loopback-test;
+ 		};
 +
-+title: Andes QiLai PCIe host controller
++		bus@80000000 {
++			compatible = "simple-bus";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			dma-ranges = <0x44 0x00000000 0x04 0x00000000 0x04 0x00000000>;
++			ranges = <0x00 0x80000000 0x00 0x80000000 0x00 0x20000000>,
++				 <0x00 0x04000000 0x00 0x04000000 0x00 0x00001000>,
++				 <0x00 0x00000000 0x20 0x00000000 0x20 0x00000000>;
 +
-+description:
-+  Andes QiLai PCIe host controller is based on the Synopsys DesignWare
-+  PCI core.
++			pcie@80000000 {
++				compatible = "andestech,qilai-pcie";
++				device_type = "pci";
++				reg = <0x00 0x80000000 0x00 0x20000000>, /* DBI registers */
++				      <0x00 0x04000000 0x00 0x00001000>, /* APB registers */
++				      <0x00 0x00000000 0x00 0x00010000>; /* Configuration registers */
++				reg-names = "dbi", "apb", "config";
++				dma-coherent;
 +
-+maintainers:
-+  - Randolph Lin <randolph@andestech.com>
++				linux,pci-domain = <0>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
++					 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x02 0x00000000>;
 +
-+allOf:
-+  - $ref: /schemas/pci/snps,dw-pcie.yaml#
++				#interrupt-cells = <1>;
++				interrupts = <0xf 0x4>;
++				interrupt-names = "msi";
++				interrupt-parent = <&plic>;
++				interrupt-map-mask = <0 0 0 0>;
++				interrupt-map = <0 0 0 1 &plic 0xf 0x4>,
++						<0 0 0 2 &plic 0xf 0x4>,
++						<0 0 0 3 &plic 0xf 0x4>,
++						<0 0 0 4 &plic 0xf 0x4>;
++			};
++		};
 +
-+properties:
-+  compatible:
-+    const: andestech,qilai-pcie
++		bus@a0000000 {
++			compatible = "simple-bus";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			dma-ranges = <0x44 0x00000000 0x04 0x00000000 0x04 0x00000000>;
++			ranges = <0x00 0xa0000000 0x00 0xa0000000 0x00 0x20000000>,
++				 <0x00 0x04001000 0x00 0x04001000 0x00 0x00001000>,
++				 <0x00 0x00000000 0x10 0x00000000 0x08 0x00000000>;
 +
-+  reg:
-+    items:
-+      - description: Data Bus Interface (DBI) registers.
-+      - description: APB registers.
-+      - description: PCIe configuration space region.
++			pcie@a0000000 {
++				compatible = "andestech,qilai-pcie";
++				device_type = "pci";
++				reg = <0x00 0xa0000000 0x00 0x20000000>, /* DBI registers */
++				      <0x00 0x04001000 0x00 0x00001000>, /* APB registers */
++				      <0x00 0x00000000 0x00 0x00010000>; /* Configuration registers */
++				reg-names = "dbi", "apb", "config";
++				dma-coherent;
 +
-+  reg-names:
-+    items:
-+      - const: dbi
-+      - const: apb
-+      - const: config
++				linux,pci-domain = <1>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
++					 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x02 0x00000000>;
 +
-+  dma-coherent: true
++				#interrupt-cells = <1>;
++				interrupts = <0xe 0x4>;
++				interrupt-names = "msi";
++				interrupt-parent = <&plic>;
++				interrupt-map-mask = <0 0 0 0>;
++				interrupt-map = <0 0 0 1 &plic 0xe 0x4>,
++						<0 0 0 2 &plic 0xe 0x4>,
++						<0 0 0 3 &plic 0xe 0x4>,
++						<0 0 0 4 &plic 0xe 0x4>;
++			};
++		};
 +
-+  ranges:
-+    maxItems: 2
++		bus@c0000000 {
++			compatible = "simple-bus";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			dma-ranges = <0x44 0x00000000 0x04 0x00000000 0x04 0x00000000>;
++			ranges = <0x00 0xc0000000 0x00 0xc0000000 0x00 0x20000000>,
++				 <0x00 0x04002000 0x00 0x04002000 0x00 0x00001000>,
++				 <0x00 0x00000000 0x18 0x00000000 0x08 0x00000000>;
 +
-+  interrupts:
-+    maxItems: 1
++			pcie@c0000000 {
++				compatible = "andestech,qilai-pcie";
++				device_type = "pci";
++				reg = <0x00 0xc0000000 0x00 0x20000000>, /* DBI registers */
++				      <0x00 0x04002000 0x00 0x00001000>, /* APB registers */
++				      <0x00 0x00000000 0x00 0x00010000>; /* Configuration registers */
++				reg-names = "dbi", "apb", "config";
++				dma-coherent;
 +
-+  interrupt-names:
-+    items:
-+      - const: msi
++				linux,pci-domain = <2>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
++					 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x02 0x00000000>;
 +
-+required:
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      pcie@80000000 {
-+        compatible = "andestech,qilai-pcie";
-+        device_type = "pci";
-+        reg = <0x0 0x80000000 0x0 0x20000000>,
-+              <0x0 0x04000000 0x0 0x00001000>,
-+              <0x0 0x00000000 0x0 0x00010000>;
-+        reg-names = "dbi", "apb", "config";
-+        dma-coherent;
-+
-+        linux,pci-domain = <0>;
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
-+                 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x02 0x00000000>;
-+
-+        #interrupt-cells = <1>;
-+        interrupts = <0xf>;
-+        interrupt-names = "msi";
-+        interrupt-parent = <&plic0>;
-+        interrupt-map-mask = <0 0 0 0>;
-+        interrupt-map = <0 0 0 1 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
-+                        <0 0 0 2 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
-+                        <0 0 0 3 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
-+                        <0 0 0 4 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-+...
++				#interrupt-cells = <1>;
++				interrupts = <0xd 0x4>;
++				interrupt-names = "msi";
++				interrupt-parent = <&plic>;
++				interrupt-map-mask = <0 0 0 0>;
++				interrupt-map = <0 0 0 1 &plic 0xd 0x4>,
++						<0 0 0 2 &plic 0xd 0x4>,
++						<0 0 0 3 &plic 0xd 0x4>,
++						<0 0 0 4 &plic 0xd 0x4>;
++			};
++		};
+ 	};
+ };
 -- 
 2.34.1
 
