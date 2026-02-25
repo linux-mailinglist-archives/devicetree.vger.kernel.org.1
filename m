@@ -1,91 +1,110 @@
-Return-Path: <devicetree+bounces-268117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268118-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJRkGQyFnmmGVwQAu9opvQ
-	(envelope-from <devicetree+bounces-268117-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 06:13:48 +0100
+	id cSPCFpGMnmmPWAQAu9opvQ
+	(envelope-from <devicetree+bounces-268118-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 06:45:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B77BB191D81
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 06:13:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9081921F0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 06:45:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EDFEC30CD929
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 05:11:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6CDA1303CD39
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 05:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E49824503F;
-	Wed, 25 Feb 2026 05:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB5D2C08A8;
+	Wed, 25 Feb 2026 05:45:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="lR2NLFOK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OrnY18UR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012013.outbound.protection.outlook.com [40.107.200.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB8129AB1D;
-	Wed, 25 Feb 2026 05:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771995934; cv=fail; b=i9MygVsshQ47/tU+rOe22ca0RvKMePlt/ntIzVp3H111gWNgbXSBzTkLkqx9IzSjlAmBJgWz0Si9AmwCi5Bbc3Rcrk9K21uy2r88I0APm9uoCN9YZFCpQZDfVXk3u5SX11Ng08NqWO663AKQBgTHoAhgZeE/osBT1khJnGKTdN4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771995934; c=relaxed/simple;
-	bh=thScc6aSCw+JbtM3AM41RsgqJotIlzabsXNv+VVwKVc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hXdKQjK8Bdxc8vFdFRMCk85uKQ35VzqoNKtt3jvi3FW8+92CY3PpnikxxDdxExYqCskCwn57+aLirQ77URlzlL1bb5rxMMUzDue4jPKCIoiMeFx7i4gxJ2LbMgoUaZ3fXdLBTRA77uhpsSSI8kuhlqWPeEQ1ymZ7seXgdJqX/0w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=lR2NLFOK; arc=fail smtp.client-ip=40.107.200.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L/7sa8iFxtu912s7zV9tdzBk8SGxfWUhGfhsNXTuI5XfmHJoMbaRta6fNE4C1O7qZCQ4yhWApDhETaq9uK2uxaco1Ma/NkBxKDEl/6C1jXe+WN8BN0NV74tJ+OKkbQxMEwWWpJ99ccJOWNNxn80NyL3kfmbVOqmXgrOaIdaSIjKZaFAfw0EaZMdcSbABjqmKzL5lxH1B5TwSZ48fPogzcpuTILE6a98bG0F2ZOYhS25TTou1Ss8hHEbPJ+FVY+YnJ8nR8sX47aJWY7gkWbg9vrWZ38T7n8uq2YqOTgK50JSuDmteVouNESDKRiGKmQqDjh4Cu1kYUWENdUEUAZb/AQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fRPdf6yacBKXQ3ofOsOGVctdu1nUNnYRc+KH0UlJE5Y=;
- b=ikkKaX7zftUEWuvtBZNMVh+Jh20JZ5bqbQTGgffdib1pkACOrhWUTgKeuBLj9S6iwfJ4uwRPl5SL3gFthVxiaKD5r9ZyfTRloGNN7pKRtQvE+vlxUkYnnW9wDBC1RwCEe6t+VkrCnDGvQScwKnXhBkRB4mnvcoQLUkwxhqUD9zYKMB/X3greprVKesWeR0pVkJpb8ubI3m9cWxs8gsQhInB5XnMxvdGgcvgMXurIvphLWqAH0/CWWqkhA2Cheks1XMvDQf7KPt5Ubf3Oul8obB7NeQkcUTK/SgdTH0ZPnmvTyKCSIf8HAqTl5TjTdMbQprX4oYf+lwBdPbwBCbBqJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fRPdf6yacBKXQ3ofOsOGVctdu1nUNnYRc+KH0UlJE5Y=;
- b=lR2NLFOKo63tpjwSsmZhqoBZpbLu73p0X40GrgibYZaM0f04baviNcNQOYqd+4e6yJ64Od01K/W5CufmfggG69ghoHAloeWUnvgiBO46x09jJGYO951eL7nvmhyvAV1N/TMbpWq9E0c1kAo8QKLX710gnQwCDdFTqXhed8lDVs0=
-Received: from MN2PR08CA0030.namprd08.prod.outlook.com (2603:10b6:208:239::35)
- by DS0PR12MB999105.namprd12.prod.outlook.com (2603:10b6:8:301::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Wed, 25 Feb
- 2026 05:05:26 +0000
-Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
- (2603:10b6:208:239:cafe::db) by MN2PR08CA0030.outlook.office365.com
- (2603:10b6:208:239::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.23 via Frontend Transport; Wed,
- 25 Feb 2026 05:05:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Wed, 25 Feb 2026 05:05:26 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 24 Feb
- 2026 23:05:25 -0600
-Received: from xhdsuragupt40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 24 Feb 2026 23:05:22 -0600
-From: Abin Joseph <abin.joseph@amd.com>
-To: <vkoul@kernel.org>, <Frank.Li@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <michal.simek@amd.com>,
-	<radhey.shyam.pandey@amd.com>
-CC: <git@amd.com>, <abin.joseph@amd.com>, <dmaengine@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] dt-bindings: dmaengine: xlnx,axi-dma: Convert bindings into yaml
-Date: Wed, 25 Feb 2026 10:35:21 +0530
-Message-ID: <20260225050521.160724-1-abin.joseph@amd.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C48F26463A
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 05:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771998350; cv=none; b=tyaSTCYJntHvX27qCHqctQueGHeVbuZNSUBBGy7+FicTJiRgPsUHqXiwOW28qjdoNk5kelKl+czjWTcUsIiJdrQdRV59/cuED/pcuSu289ypBSSy9rxfMnQM+yJ6W7Pq/bSlcGqd5qU9qE1rnUqGPBvs1Di1D6h860mpW2xUQs4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771998350; c=relaxed/simple;
+	bh=MLDDEcSRlhmHWVYr8YP3sgCaMCSed1eRVctAI00HjBI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RQYOgDgG+ky2eLOBWY2vv/S+wO9q2esVSltdUnPTQOZAATW9kGeQroz7W9CfE38cAzTHC1D/DabIxr+An3FPGtwXcFyaFRwHKpiNauFozLxGa3v66HsAlNefe4G+oKEXQOlSBTw1Id7maYogKJdXHvVe61j9j6diM6uNFn4ca5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OrnY18UR; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2addb31945aso466875ad.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 21:45:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771998349; x=1772603149; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=W28tLa7N7ACX/AmRjBGq6ylf0W1jR0KpZ+vX7BOo/xc=;
+        b=OrnY18URrsnJGdD49nEaUBRI/QVbd4vPhGI2cxrbt5Xf3ASR+8egXiVlZMk1QR9E5E
+         9ksDclXj/4DBdEblNTYhDW59LZ0Q0HZLeIxye7y2GkueaCLP1fY7azdgzjs44S77UeX9
+         SkmyXkahxMXkJLnfIYnho2U6T3EAKj4LUORAfGwI3CyN/02BjKMoj2+vfPa2/tix3KUi
+         0l5XThGNBhkvwdiZHzP8X6EEa/ubWPerJw0UEBDtdcvi+9b7FHN/wkaYkjart8+6MeO8
+         vYPk42tlRNHGIVNDPVms5siWUiof8ZW6nqVIuleJgmkJZOlcAjYVuRe30cG9jXrHYn+W
+         56Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771998349; x=1772603149;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W28tLa7N7ACX/AmRjBGq6ylf0W1jR0KpZ+vX7BOo/xc=;
+        b=B+S/PY/F6/zu0M6RUalf4vdvubPj9hai0bhK/JIQleLLn8urp/lmyAbTU+widqWI50
+         YaCMQLSHPSHnls9NJbIMWXlmNUh+87Nvo+FeuI+ZT9i/0yK1fUzAapCOia3NEwHlnBH9
+         TRg254QrLFWlQX50dKdyeTZZYaY/3nhioKfJ+hnHmR7EzwLye06FQXw4/kCj0oMaUBoi
+         S7tSG+6+ZVZ2TA2NPnUk5AsT+IK4/pp9HyJ2ZVu9CxoQu0ZoWSPuynCHVV4BKrd0Nvqq
+         aNhT4NY04VJVlCyNlR0V5xdcrEPIj5NokZ1SOIOlYzqWxurdH3deo2wZ9f2wen3FURWs
+         de7g==
+X-Forwarded-Encrypted: i=1; AJvYcCXqkP7Rlfz2G7Iyl+BHXBPevKt70DKcJi4TZrniS6YnJb2WDPzY/p7J7EzTmi4XttCnKVq3lpAicpB1@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywu21vEbTbyfnNFzjvviypUS5QRjje9qTaYxKbt/GtKg/0gOxvI
+	HVaK31qimcg4rz1H8DNryBliQbqm/xDnURPFXI7ZDtWV/nLWmI1AWSnS
+X-Gm-Gg: ATEYQzwv+DpXTTgp3jKkr5VR/Vy2pHD8sBjRACfk/WPUTXGwTUKCSMYlBSanXfIXkIu
+	v2yfCJ9lvW1cGT6MbM56O5QBw0XBbp3XLuopaM/LfFKmMRQLLuA6F3ZjwX37emSXsTwGPufU2DT
+	p/Yk+wwavEOGkh5sDjacbwPQ54pcv6eGSLa9Bk+e/cyFLwDkoviqvaRB6UFcgli3p/o45cG1lbi
+	4kItgRaAB3Bsa3F2xQeo8/q3y1lfMbmsGrJjjPRg1khf1aUtCJxzC/HzyzWmlmJO7TWyTxyumpj
+	Wy3H2MNC6XiAYX5/u6E6AIqK8vOD6IpRGa8YYmYCuojqstOaybZOihJIKrNgiacIx9O6Y51RbLu
+	v8lP1M3WU0kHjyuGYUqDVu/0I9r1zXRAVxcRyTaZmSyw2fr4MuP5HTpJdijRhGnkFooiBeOtpMG
+	sxw9+HpWt7JdZsM5x5
+X-Received: by 2002:a17:902:cece:b0:2aa:f0ec:3701 with SMTP id d9443c01a7336-2ad743e22cfmr154733605ad.2.1771998348825;
+        Tue, 24 Feb 2026 21:45:48 -0800 (PST)
+Received: from nuvole.lan ([2408:824c:a17:8230::c83])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad7500e318sm119665295ad.43.2026.02.24.21.45.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Feb 2026 21:45:48 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	Jonathan Marek <jonathan@marek.ca>
+Cc: linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tianyu Gao <gty0622@gmail.com>,
+	White Lewis <liu224806@gmail.com>,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Subject: [PATCH 0/5] Add DSI display support for SC8280XP
+Date: Wed, 25 Feb 2026 13:45:20 +0800
+Message-ID: <20260225054525.6803-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,608 +112,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|DS0PR12MB999105:EE_
-X-MS-Office365-Filtering-Correlation-Id: e745dc9e-6fe2-48ca-83f4-08de742b7d24
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Iehf1UO0H0YnsJ8jWHDTr/+H/oTJNOLF6TTFqCoQgXgqgNeuqMPrzLxkra3j?=
- =?us-ascii?Q?uo151eCco8619KId2UAiHDrUjwVFaZyzPEV/vhBVqxU6F57dIRfx4khyG1f3?=
- =?us-ascii?Q?l3NDRpSOCPEn295yZyIZqvW8JiKalXcZIu6vI3CpXWSrWvrLMmGnpBRWBgjV?=
- =?us-ascii?Q?lNfwLsEaGlhgzDRq3GZHV2XssTpbkofSV3s4ZB1dwI8TcOFpf4mqkQZCNjOk?=
- =?us-ascii?Q?+0zakwKXMcTau69iuX1jyLa0WyRX+1cZJfr2KMdpDVj856CXsaZ9mloeqi35?=
- =?us-ascii?Q?QVfKITvIa4WA84uOoG80Gb99TdGNW1RILPRV0FvXZtth1uRQWwVRmUE74JU5?=
- =?us-ascii?Q?VH70vQdHgwi4qcL/QTGA/bs++Lxc6xFkgvFulE62rC7fBzcfYCd77JJ080Ha?=
- =?us-ascii?Q?R7wtU/zAnWLAR6dM683tiWPlcxeZo2teTLZbYYkCoVO9Kfk6oJ+p/ms04F5F?=
- =?us-ascii?Q?l0qeqxckZAdXgTv4Le5VR6TPAmCldab5jaPApiUhLLzUAI/EvvfpTFhocNFS?=
- =?us-ascii?Q?+qSTltQAplrVz8mhceL0WshuTVN5d0jI8xrNdVZiRo6oIjyAWKX2wVZJUNEl?=
- =?us-ascii?Q?J2EN/PUPfLtTA3kO+ncysAvpYbfLLZQTq/WLVOVU7QedITfoiaWzaUTy6k9+?=
- =?us-ascii?Q?1NeFPgtE2XmMrCQEEN+I1VAsfJa2qMBRLBfdNX+momgOWkVmToM8zvEV+yJP?=
- =?us-ascii?Q?Mq6KsQewfjbFGa+qCVBuTK8UQI6N9cEhsVfZ5fzptAA3/4bgQiUphndN5/IN?=
- =?us-ascii?Q?TKYSwYdF25j0fcGyQ2HZDqYyyjmQ1VWFIpW+EbNR/EZ/vzFBUhL4EMiSq7de?=
- =?us-ascii?Q?eItMsm1k6vZECpkfAmVo+bFwcmHKcO2ilHgE/YMcRC300efQLdOfjGKaKuey?=
- =?us-ascii?Q?tXL+Nt3G0mixnypNmxa7QT5lrIQ56immbYrgryYJPr7NcDd/UgocLeiPuOA2?=
- =?us-ascii?Q?vtVttLTapd2WqDClHd/LXsK7AJaBNwu2AAUM9C7/mHLPSC4HizZ1MWURJjxw?=
- =?us-ascii?Q?y0Mz0uSKGfYtjhqEB43+voXDpSI6gDcFe61NkGo3jJIILjk46KPpS7dDK3IF?=
- =?us-ascii?Q?pRF6DfIBmOjzVkT5MzARsds1gT3rOcuw2uMxFyRIliEp8udNxpkUjCCkD0MB?=
- =?us-ascii?Q?gFmKowWT5xxjj2qCIZPRuw1xbQe+rxPCI2wkZy+kMV+a5SE7JF8jy+Wj0/EF?=
- =?us-ascii?Q?TnvtxmcVGzcdGlTcgcgPgzWAy2kZOjscaUwysxD4MjiHiNxP00ZwMTlSTGSb?=
- =?us-ascii?Q?38BGsXp0PWnUqb57GZrNG9maxEettwF3uEOhhhGHKZIC8h/YtO/L2wYnbxI0?=
- =?us-ascii?Q?qcECvKj20wZOcxjyvZkWRI6wxyOWnmbOrt4e4GfAQ3T5T29QJ/h3Lyy+KKeb?=
- =?us-ascii?Q?/y9u3vbn/X4TT87oWZz9L8RA7ap3SwRm10z2n+xCBUsP3BMp1IBoj8a/PiPl?=
- =?us-ascii?Q?zP4DdQQBaXd/Cjm27a1oLof9eSM2Yq0f89bMhvQu+qcP0e8pRasS3Y+yDnWl?=
- =?us-ascii?Q?s1nJsazLwDJMg9wBx1wwauaj6BA8Tf1GoKXxTpA3/vyw3l+xW/jdNeLceJ7F?=
- =?us-ascii?Q?q0u1kP/qOPppgBcA7u0HKKJm3/EYMBzmQ2DYKhk5/9vFqij3c7JweQ5qQTem?=
- =?us-ascii?Q?TgQN+D3LWkudHd2fVo6bjJ3X5ee5JclM+Jv74F1W7ds1WiLWoUPeJIaYD/UQ?=
- =?us-ascii?Q?rKhp5g=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	nJMYozLQoJ5g8Z3iJ9wPHpJwfZjBPk7ZxeVq9S/NmE+hn+xv3pjrjEi0irF4rHSxz5IF4cnf2c3rAjMd8/aPvjNTaLO3XSC7d7HZag0FgYDUpNWz83h5YS55/L3fXT7rmS99BrPOwA9dWBHDxKjO+yuGlo1YePJ8J/GFZD1z2zWsqskhYs8VbhjxgQcSiUS6lsbY6+s77BMllsPqqyq8lt4B3vxORMa8Ibr5xunLb90++n7VKi1zINVIqkb44PfN7v87lLVP8DBae7RmofpBKq9wNoXebjXatkQ9O0mmutfOhXdawjrOkbeXM25Bo7cG3pDma4X+8922xSC+hvuVyQWKKeLGMx+haQYBRe/0mWvF+0zaSGQqJaLP1ALtuf6NWUARxZYukt/WVgTg5oaSmCeQ59lSTc6RglOzixu6aSlzV2VK/qkpdrqHTikV1CPB
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 05:05:26.4640
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e745dc9e-6fe2-48ca-83f4-08de742b7d24
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000ECD9.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB999105
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268117-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268118-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,linux.intel.com,suse.de,ffwll.ch,quicinc.com,marek.ca];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abin.joseph@amd.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: B77BB191D81
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: AE9081921F0
 X-Rspamd-Action: no action
 
-Convert the bindings document for Xilinx DMA from txt to yaml.
-No changes to existing binding description.
+Add DSI display support for SC8280XP.
 
-Signed-off-by: Abin Joseph <abin.joseph@amd.com>
----
+Pengyu Luo (4):
+  dt-bindings: display: msm-dsi-phy-7nm: Add SC8280XP
+  dt-bindings: display/msm: dsi-controller-main: Add SC8280XP
+  dt-bindings: display: msm: Document DSI controller and DSI PHY on
+    SC8280XP
+  drm/msm/dsi: Add DSI PHY configuration on SC8280XP
+  arm64: dts: qcom: sc8280xp: Add dsi nodes on SC8280XP
 
-v2:
--> Add examples for each compatible
--> Remove the note added
--> Use 'enum' rather than 'anyOf' and 'const'
--> Wrap 80 char per line for descriptions
--> Add dma-controller yaml reference
--> Add -| for paragraph separation
--> Remove labels from the examples
+ .../display/msm/dsi-controller-main.yaml      |   2 +
+ .../bindings/display/msm/dsi-phy-7nm.yaml     |   1 +
+ .../display/msm/qcom,sc8280xp-mdss.yaml       |  30 ++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 425 +++++++++++++++++-
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |   2 +
+ 5 files changed, 452 insertions(+), 8 deletions(-)
 
----
- .../bindings/dma/xilinx/xilinx_dma.txt        | 111 ------
- .../bindings/dma/xilinx/xlnx,axi-dma.yaml     | 371 ++++++++++++++++++
- 2 files changed, 371 insertions(+), 111 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
- create mode 100644 Documentation/devicetree/bindings/dma/xilinx/xlnx,axi-dma.yaml
-
-diff --git a/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt b/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
-deleted file mode 100644
-index b567107270cb..000000000000
---- a/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
-+++ /dev/null
-@@ -1,111 +0,0 @@
--Xilinx AXI VDMA engine, it does transfers between memory and video devices.
--It can be configured to have one channel or two channels. If configured
--as two channels, one is to transmit to the video device and another is
--to receive from the video device.
--
--Xilinx AXI DMA engine, it does transfers between memory and AXI4 stream
--target devices. It can be configured to have one channel or two channels.
--If configured as two channels, one is to transmit to the device and another
--is to receive from the device.
--
--Xilinx AXI CDMA engine, it does transfers between memory-mapped source
--address and a memory-mapped destination address.
--
--Xilinx AXI MCDMA engine, it does transfer between memory and AXI4 stream
--target devices. It can be configured to have up to 16 independent transmit
--and receive channels.
--
--Required properties:
--- compatible: Should be one of-
--		"xlnx,axi-vdma-1.00.a"
--		"xlnx,axi-dma-1.00.a"
--		"xlnx,axi-cdma-1.00.a"
--		"xlnx,axi-mcdma-1.00.a"
--- #dma-cells: Should be <1>, see "dmas" property below
--- reg: Should contain VDMA registers location and length.
--- xlnx,addrwidth: Should be the vdma addressing size in bits(ex: 32 bits).
--- dma-ranges: Should be as the following <dma_addr cpu_addr max_len>.
--- dma-channel child node: Should have at least one channel and can have up to
--	two channels per device. This node specifies the properties of each
--	DMA channel (see child node properties below).
--- clocks: Input clock specifier. Refer to common clock bindings.
--- clock-names: List of input clocks
--	For VDMA:
--	Required elements: "s_axi_lite_aclk"
--	Optional elements: "m_axi_mm2s_aclk" "m_axi_s2mm_aclk",
--			   "m_axis_mm2s_aclk", "s_axis_s2mm_aclk"
--	For CDMA:
--	Required elements: "s_axi_lite_aclk", "m_axi_aclk"
--	For AXIDMA and MCDMA:
--	Required elements: "s_axi_lite_aclk"
--	Optional elements: "m_axi_mm2s_aclk", "m_axi_s2mm_aclk",
--			   "m_axi_sg_aclk"
--
--Required properties for VDMA:
--- xlnx,num-fstores: Should be the number of framebuffers as configured in h/w.
--
--Optional properties for AXI DMA and MCDMA:
--- xlnx,sg-length-width: Should be set to the width in bits of the length
--	register as configured in h/w. Takes values {8...26}. If the property
--	is missing or invalid then the default value 23 is used. This is the
--	maximum value that is supported by all IP versions.
--
--Optional properties for AXI DMA:
--- xlnx,axistream-connected: Tells whether DMA is connected to AXI stream IP.
--- xlnx,irq-delay: Tells the interrupt delay timeout value. Valid range is from
--	0-255. Setting this value to zero disables the delay timer interrupt.
--	1 timeout interval = 125 * clock period of SG clock.
--Optional properties for VDMA:
--- xlnx,flush-fsync: Tells which channel to Flush on Frame sync.
--	It takes following values:
--	{1}, flush both channels
--	{2}, flush mm2s channel
--	{3}, flush s2mm channel
--
--Required child node properties:
--- compatible:
--	For VDMA: It should be either "xlnx,axi-vdma-mm2s-channel" or
--	"xlnx,axi-vdma-s2mm-channel".
--	For CDMA: It should be "xlnx,axi-cdma-channel".
--	For AXIDMA and MCDMA: It should be either "xlnx,axi-dma-mm2s-channel"
--	or "xlnx,axi-dma-s2mm-channel".
--- interrupts: Should contain per channel VDMA interrupts.
--- xlnx,datawidth: Should contain the stream data width, take values
--	{32,64...1024}.
--
--Optional child node properties:
--- xlnx,include-dre: Tells hardware is configured for Data
--	Realignment Engine.
--Optional child node properties for VDMA:
--- xlnx,genlock-mode: Tells Genlock synchronization is
--	enabled/disabled in hardware.
--- xlnx,enable-vert-flip: Tells vertical flip is
--	enabled/disabled in hardware(S2MM path).
--Optional child node properties for MCDMA:
--- dma-channels: Number of dma channels in child node.
--
--Example:
--++++++++
--
--axi_vdma_0: axivdma@40030000 {
--	compatible = "xlnx,axi-vdma-1.00.a";
--	#dma_cells = <1>;
--	reg = < 0x40030000 0x10000 >;
--	dma-ranges = <0x00000000 0x00000000 0x40000000>;
--	xlnx,num-fstores = <0x8>;
--	xlnx,flush-fsync = <0x1>;
--	xlnx,addrwidth = <0x20>;
--	clocks = <&clk 0>, <&clk 1>, <&clk 2>, <&clk 3>, <&clk 4>;
--	clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk", "m_axi_s2mm_aclk",
--		      "m_axis_mm2s_aclk", "s_axis_s2mm_aclk";
--	dma-channel@40030000 {
--		compatible = "xlnx,axi-vdma-mm2s-channel";
--		interrupts = < 0 54 4 >;
--		xlnx,datawidth = <0x40>;
--	} ;
--	dma-channel@40030030 {
--		compatible = "xlnx,axi-vdma-s2mm-channel";
--		interrupts = < 0 53 4 >;
--		xlnx,datawidth = <0x40>;
--	} ;
--} ;
-diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,axi-dma.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,axi-dma.yaml
-new file mode 100644
-index 000000000000..4bdf8a5de251
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,axi-dma.yaml
-@@ -0,0 +1,371 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/xilinx/xlnx,axi-dma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx AXI VDMA, DMA, CDMA and MCDMA IP
-+
-+maintainers:
-+  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-+  - Abin Joseph <abin.joseph@amd.com>
-+
-+description: |
-+  Xilinx AXI VDMA engine, it does transfers between memory and video devices.
-+  It can be configured to have one channel or two channels. If configured
-+  as two channels, one is to transmit to the video device and another is
-+  to receive from the video device.
-+
-+  Xilinx AXI DMA engine, it does transfers between memory and AXI4 stream
-+  target devices. It can be configured to have one channel or two channels.
-+  If configured as two channels, one is to transmit to the device and another
-+  is to receive from the device.
-+
-+  Xilinx AXI CDMA engine, it does transfers between memory-mapped source
-+  address and a memory-mapped destination address.
-+
-+  Xilinx AXI MCDMA engine, it does transfer between memory and AXI4 stream
-+  target devices. It can be configured to have up to 16 independent transmit
-+  and receive channels.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - xlnx,axi-cdma-1.00.a
-+      - xlnx,axi-dma-1.00.a
-+      - xlnx,axi-mcdma-1.00.a
-+      - xlnx,axi-vdma-1.00.a
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#dma-cells":
-+    const: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  interrupts:
-+    items:
-+      - description: Interrupt for single channel (MM2S or S2MM)
-+      - description: Interrupt for dual channel configuration
-+    minItems: 1
-+    description:
-+      Interrupt lines for the DMA controller. Only used when
-+      xlnx,axistream-connected is present (DMA connected to AXI Stream
-+      IP). When child dma-channel nodes are present, interrupts are
-+      specified in the child nodes instead.
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 5
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 5
-+
-+  dma-ranges: true
-+
-+  xlnx,addrwidth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [32, 64]
-+    description: The DMA addressing size in bits.
-+
-+  xlnx,num-fstores:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 32
-+    description: Should be the number of framebuffers as configured in h/w.
-+
-+  xlnx,flush-fsync:
-+    type: boolean
-+    description: Tells which channel to Flush on Frame sync.
-+
-+  xlnx,sg-length-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 8
-+    maximum: 26
-+    default: 23
-+    description:
-+      Width in bits of the length register as configured in hardware.
-+
-+  xlnx,irq-delay:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 255
-+    description:
-+      Tells the interrupt delay timeout value. Valid range is from 0-255.
-+      Setting this value to zero disables the delay timer interrupt.
-+      1 timeout interval = 125 * clock period of SG clock.
-+
-+  xlnx,axistream-connected:
-+    type: boolean
-+    description: Tells whether DMA is connected to AXI stream IP.
-+
-+patternProperties:
-+  "^dma-channel(-mm2s|-s2mm)?$":
-+    type: object
-+    description:
-+      Should have at least one channel and can have up to two channels per
-+      device. This node specifies the properties of each DMA channel.
-+
-+    properties:
-+      compatible:
-+        enum:
-+          - xlnx,axi-vdma-mm2s-channel
-+          - xlnx,axi-vdma-s2mm-channel
-+          - xlnx,axi-cdma-channel
-+          - xlnx,axi-dma-mm2s-channel
-+          - xlnx,axi-dma-s2mm-channel
-+
-+      interrupts:
-+        maxItems: 1
-+
-+      xlnx,datawidth:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [32, 64, 128, 256, 512, 1024]
-+        description: Should contain the stream data width, take values {32,64...1024}.
-+
-+      xlnx,include-dre:
-+        type: boolean
-+        description: Tells hardware is configured for Data Realignment Engine.
-+
-+      xlnx,genlock-mode:
-+        type: boolean
-+        description: Tells Genlock synchronization is enabled/disabled in hardware.
-+
-+      xlnx,enable-vert-flip:
-+        type: boolean
-+        description:
-+          Tells vertical flip is enabled/disabled in hardware(S2MM path).
-+
-+      dma-channels:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: Number of dma channels in child node.
-+
-+    required:
-+      - compatible
-+      - interrupts
-+      - xlnx,datawidth
-+
-+    additionalProperties: false
-+
-+allOf:
-+  - $ref: ../dma-controller.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: xlnx,axi-vdma-1.00.a
-+    then:
-+      properties:
-+        clock-names:
-+          contains:
-+            const: s_axi_lite_aclk
-+          items:
-+            enum:
-+              - s_axi_lite_aclk
-+              - m_axi_mm2s_aclk
-+              - m_axi_s2mm_aclk
-+              - m_axis_mm2s_aclk
-+              - s_axis_s2mm_aclk
-+          minItems: 1
-+          maxItems: 5
-+      patternProperties:
-+        "^dma-channel(-mm2s|-s2mm)?$":
-+          properties:
-+            compatible:
-+              enum:
-+                - xlnx,axi-vdma-mm2s-channel
-+                - xlnx,axi-vdma-s2mm-channel
-+      required:
-+        - xlnx,num-fstores
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: xlnx,axi-cdma-1.00.a
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: s_axi_lite_aclk
-+            - const: m_axi_aclk
-+      patternProperties:
-+        "^dma-channel(-mm2s|-s2mm)?$":
-+          properties:
-+            compatible:
-+              enum:
-+                - xlnx,axi-cdma-channel
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - xlnx,axi-dma-1.00.a
-+              - xlnx,axi-mcdma-1.00.a
-+    then:
-+      properties:
-+        clock-names:
-+          contains:
-+            const: s_axi_lite_aclk
-+          items:
-+            enum:
-+              - s_axi_lite_aclk
-+              - m_axi_mm2s_aclk
-+              - m_axi_s2mm_aclk
-+              - m_axi_sg_aclk
-+          minItems: 1
-+          maxItems: 4
-+      patternProperties:
-+        "^dma-channel(-mm2s|-s2mm)?(@[0-9a-f]+)?$":
-+          properties:
-+            compatible:
-+              enum:
-+                - xlnx,axi-dma-mm2s-channel
-+                - xlnx,axi-dma-s2mm-channel
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - xlnx,axi-cdma-1.00.a
-+              - xlnx,axi-mcdma-1.00.a
-+              - xlnx,axi-dma-1.00.a
-+    then:
-+      properties:
-+        interrupts: false
-+
-+required:
-+  - "#dma-cells"
-+  - reg
-+  - xlnx,addrwidth
-+  - dma-ranges
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    dma-controller@40030000 {
-+        compatible = "xlnx,axi-vdma-1.00.a";
-+        #dma-cells = <1>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        reg = <0x40030000 0x10000>;
-+        dma-ranges = <0x0 0x0 0x40000000>;
-+        xlnx,num-fstores = <8>;
-+        xlnx,flush-fsync;
-+        xlnx,addrwidth = <32>;
-+        clocks = <&clk 0>, <&clk 1>, <&clk 2>, <&clk 3>, <&clk 4>;
-+        clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk",
-+                      "m_axi_s2mm_aclk", "m_axis_mm2s_aclk",
-+                      "s_axis_s2mm_aclk";
-+
-+        dma-channel-mm2s {
-+            compatible = "xlnx,axi-vdma-mm2s-channel";
-+            interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-+            xlnx,datawidth = <64>;
-+        };
-+
-+        dma-channel-s2mm {
-+            compatible = "xlnx,axi-vdma-s2mm-channel";
-+            interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-+            xlnx,datawidth = <64>;
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    dma-controller@a4030000 {
-+        compatible = "xlnx,axi-dma-1.00.a";
-+        #dma-cells = <1>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        reg = <0xa4030000 0x10000>;
-+        dma-ranges = <0x0 0x0 0x40000000>;
-+        xlnx,addrwidth = <32>;
-+        xlnx,sg-length-width = <14>;
-+        clocks = <&clk 0>, <&clk 1>, <&clk 2>, <&clk 3>;
-+        clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk",
-+                      "m_axi_s2mm_aclk", "m_axi_sg_aclk";
-+
-+        dma-channel-mm2s {
-+            compatible = "xlnx,axi-dma-mm2s-channel";
-+            interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+            xlnx,datawidth = <64>;
-+            xlnx,include-dre;
-+        };
-+
-+        dma-channel-s2mm {
-+            compatible = "xlnx,axi-dma-s2mm-channel";
-+            interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+            xlnx,datawidth = <64>;
-+            xlnx,include-dre;
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    dma-controller@a4010000 {
-+        compatible = "xlnx,axi-cdma-1.00.a";
-+        #dma-cells = <1>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        reg = <0xa4010000 0x10000>;
-+        dma-ranges = <0x0 0x0 0x40000000>;
-+        xlnx,addrwidth = <32>;
-+        clocks = <&clk 0>, <&clk 1>;
-+        clock-names = "s_axi_lite_aclk", "m_axi_aclk";
-+
-+        dma-channel {
-+            compatible = "xlnx,axi-cdma-channel";
-+            interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-+            xlnx,datawidth = <32>;
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    dma-controller@a4040000 {
-+        compatible = "xlnx,axi-mcdma-1.00.a";
-+        #dma-cells = <1>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        reg = <0xa4040000 0x10000>;
-+        dma-ranges = <0x0 0x0 0x40000000>;
-+        xlnx,addrwidth = <64>;
-+        xlnx,sg-length-width = <16>;
-+        clocks = <&clk 0>, <&clk 1>, <&clk 2>, <&clk 3>;
-+        clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk",
-+                      "m_axi_s2mm_aclk", "m_axi_sg_aclk";
-+
-+        dma-channel-mm2s {
-+            compatible = "xlnx,axi-dma-mm2s-channel";
-+            interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-+            xlnx,datawidth = <128>;
-+            xlnx,include-dre;
-+            dma-channels = <8>;
-+        };
-+
-+        dma-channel-s2mm {
-+            compatible = "xlnx,axi-dma-s2mm-channel";
-+            interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+            xlnx,datawidth = <128>;
-+            xlnx,include-dre;
-+            dma-channels = <8>;
-+        };
-+    };
 -- 
-2.49.1
+2.53.0
 
 
