@@ -1,168 +1,238 @@
-Return-Path: <devicetree+bounces-268415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268416-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cCsfHfMSn2nWYwQAu9opvQ
-	(envelope-from <devicetree+bounces-268415-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:19:15 +0100
+	id cL4bJB4Tn2nWYwQAu9opvQ
+	(envelope-from <devicetree+bounces-268416-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:19:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE43C199705
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF19B199750
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 16:19:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8EB94303C28E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:10:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 234DF3040A94
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DEED25A655;
-	Wed, 25 Feb 2026 15:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06F827CB02;
+	Wed, 25 Feb 2026 15:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gRb8kFwd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YIqg/yC9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A17A3D4138
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 15:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690B71E3DF2
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 15:11:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772032214; cv=none; b=TuWmYdZrUs3CHqoyvEPb0CLNrIhCr4aO2+h2ZfF2dyb2JDf0T0NwAZvgQRsZIK+5vOJ0oMwuxqMS6XpFfRQeydTfMfSda0Y61SlqJBSSbM4aSPZhRG1p/ibJD/EtOtAFjfOvCDEXELTv5F3gQbpqvkoLXOZr9Av9aa/11ZRVYxE=
+	t=1772032261; cv=none; b=Ylw2rnDumML0ch4u7MWcCAgGnJMmEUeaJLKsazVAz2WtnwbgngDFH+97ysNP1kUF5o/ftqeAnzHKw7gHfOwwtnAoepG0xgywhpHrrPtCMHGG6FCY3NOnvckpftkjFK3w/j/XXPBHYcaImonI/oj6YWfenZ2gIreVBvSFktS6f6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772032214; c=relaxed/simple;
-	bh=abfclbdjF5WVXITB+Yrq9jHQN0qzkliulV2pAeXAr7Q=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Gr7Iar8JRvmUqMGq1gYKuR2iNkQb/Jq7MQjS6SWcbn9pzC2MbDKjoTtcwprMBDplp9DyWzeGYO59g82+OMbileJnVCiIIOFeTWD77zyO5EjTlCFlpjq3lGVw3Nmn2zmx8LHLge4LLD2FiSEUSHkC8MdT6PH1CHAg9LoCCT1aMO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gRb8kFwd; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 08C061A1327;
-	Wed, 25 Feb 2026 15:10:11 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D11745FDE6;
-	Wed, 25 Feb 2026 15:10:10 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B10F810369260;
-	Wed, 25 Feb 2026 16:10:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772032210; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=abfclbdjF5WVXITB+Yrq9jHQN0qzkliulV2pAeXAr7Q=;
-	b=gRb8kFwdoAU8UVR6yl74DQYGjOhzTN6wxRh13sRRXjZJD+plUjOy7OyoFAeul6x0QmK6iU
-	E8k54Bflwx1iw1ofUkh3X3MMxLtGRRLQ/RuduJzjEv0RaaP4PHbr9NKfsrXHCeJvPnRPqD
-	j1XnnZfaRSZ6L5evp9iXTuDV3zVdbYnMUZqg94AnRXzkIICZWC+e6iPgdv+zVSpH8JIGI4
-	/5qByxrWToVdV0jsELz00fvIgIFkpxp4Fo5mmq3XervlHs1f39aGvWrZOQJxnrrIugM0hd
-	Wh+cJncl9zzDdSwa+XNIbyLRukJ8rAc72DdBbzR7cYkvVfS9pOABTqUJTx/U9g==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Cheng Ming Lin <linchengming884@gmail.com>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Tudor Ambarus
- <tudor.ambarus@linaro.org>,  Mikhail Kshevetskiy
- <mikhail.kshevetskiy@iopsys.eu>,  Pablo Martin-Gomez
- <pmartin-gomez@freebox.fr>,  Tianling Shen <cnsztl@gmail.com>,  Pratyush
- Yadav <pratyush@kernel.org>,  linux-mtd@lists.infradead.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  alvinzhou@mxic.com.tw,  Cheng Ming Lin <chengminglin@mxic.com.tw>
-Subject: Re: [PATCH v7 1/3] dt-bindings: mtd: spinand: Add randomizer
- enable/disable properties
-In-Reply-To: <20260225015705.1113199-2-linchengming884@gmail.com> (Cheng Ming
-	Lin's message of "Wed, 25 Feb 2026 09:57:03 +0800")
-References: <20260225015705.1113199-1-linchengming884@gmail.com>
-	<20260225015705.1113199-2-linchengming884@gmail.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Wed, 25 Feb 2026 16:10:08 +0100
-Message-ID: <87ldggq2pb.fsf@bootlin.com>
+	s=arc-20240116; t=1772032261; c=relaxed/simple;
+	bh=5Z5mAAOnpt4iYnyr0QtztpijqqUyLX5cfonfWAXfbEg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iMS2JWSDM6wyKLTbyRWu+kn+yWqzGflSkcwBM7lM7F4Fa2HGlnFPLb2IouEUVbFjlwaxe8/rSh5y+6oGbUlgWFIeVOAk1XjbBHREz7MzNmcHpJDZ4aOkFA8NyF+JfTfWLd7802JThQh2I9UXUvwIaAXjRZrbwkjaFVDDQfNg8fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YIqg/yC9; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2adc1d9ec56so9157105ad.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 07:11:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772032260; x=1772637060; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zSnbwAQr8QFbf0n85PqQBBa2B0AcsRHkkzFtD84/ibw=;
+        b=YIqg/yC9YqpBLjGpgR79ANH51CiVYZpgyB5LiBGIomTgjUl+sIlO5sbzDtlOyLrneQ
+         DyL51MAorApj2qf8WwxF2nJ+TvZ/Btyoxi/g4/6z8QwsbpdeHztaMGzuTKooN/Fx8Fhq
+         LNC1PNIKmrboTTRIbqEVU1vOrT3e2F0YbQ/uRHFTJ8OKEcsh1nfsd4DvwvXVvEqPN4Yr
+         R8MBbPWDv5baw1yPwNCeDslCU818FpNMV4XpNaxcAvK8vG9cC4ZjkqpZoxDElKR1MauE
+         77I/2r/cRJEENaHawXi5CP5h9fxmCb4BeXdkLL0GZv/Pzcmr2dPyvGG9iRUi35fvV2Ze
+         W2AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772032260; x=1772637060;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zSnbwAQr8QFbf0n85PqQBBa2B0AcsRHkkzFtD84/ibw=;
+        b=Y0JmowfElx61r2kTbkX9fuPIfSR3Whj9VmG54DUpCy/v33F+f7QeWM53a/PRXBhRcu
+         u1VWCR/PIUoupCHp2OH844/SxOIuCD8GrNNwpIt1aYHsQHLJxoQLT8cLigZb1Z4rETF0
+         CNHemUitowK6sKpUYthR1pz6liwgaLio5MbniSMcV6N4voEwHoLua1+Ttap4/lq2RG7r
+         xM92OjQS26v2dp+LCPtDB/R4SWiT3mpS9kWqY6zysmwvUSMjxzcCxpYKDZ5t+huL8NPW
+         bsXUFEF2ms/l0IbLO4ANpHxjV5BY7JuFYTr/RfuUvZRp1/j4P97SRZFLozsUniw5oRxe
+         B4wA==
+X-Forwarded-Encrypted: i=1; AJvYcCWY75PcvFco3y0wH1A9C7Y2rixgDXBlvBs13X9+sIsDDAg/x6lHSsvyGAlzFSh0sAaP9Ox4B0Ad1cGr@vger.kernel.org
+X-Gm-Message-State: AOJu0YygBxAt6DPGb6F36T8HcbE/QSI93qrInOPbdLmOpsOxF4d0YAb2
+	xDAaQ59TtdHKPA/ITgqgUxEgzmYbxkyMmiDBbhxSe3lBprbBvwgL7qCT
+X-Gm-Gg: ATEYQzzfuWixKD8qD2K7zrH9v3Miwayq7LUmxM57KhQiwhxKuobqKlwcpMSgQoVzPt9
+	Vs5vlg1nVsXULe5XKPwe9vXr0//l0+wXHW2cZKLiq535YkRcummK+yWBjpMf61eqnEFE2aLr7Mj
+	EuDSAs3krF4y91xYagwJk75Lj51GUXnj3n29zJ1hTIWw0K53RIZQLE/ZQ3uzHxiyVL+F9rY2lVa
+	C3NoUwneWNVgop7YpEqxmJ6JWmdon4XU5U7Mpb49dJjLhSPMq/629MKFOiQsDDqi0Wxlfek77kv
+	U6DLwuL8SrFS0LUUPRroIi6fCtsW7Dc8usnJr0JUd0F3Egfyxz0HTdpcN+MSCNTsPHVOSBexyUY
+	FIa5SLn+FHZDhmuoZtjhG+8H5l+NlN583RiPut2fZSvs0xuifvXC1fkU5CO2pu4wb2Wz7Hfhv2P
+	ac6YBJ5weMxBao0648IyHMGzAOGrG+SCBYmvSvbu1sINaNs0t3aJ7ZeEpP7PwXJE7FnVaYbTNK5
+	lgzsBjOLGgkVDtZBIonKA==
+X-Received: by 2002:a17:902:e94e:b0:2ad:9326:3c3d with SMTP id d9443c01a7336-2ad93263e35mr69945275ad.54.1772032259787;
+        Wed, 25 Feb 2026 07:10:59 -0800 (PST)
+Received: from ?IPV6:2401:4900:892f:f52a:c575:426a:cd40:5f5d? ([2401:4900:892f:f52a:c575:426a:cd40:5f5d])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad75321543sm144713925ad.72.2026.02.25.07.10.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Feb 2026 07:10:59 -0800 (PST)
+Message-ID: <d37d3775-c5e6-44d8-92bc-68f465d7cc97@gmail.com>
+Date: Wed, 25 Feb 2026 20:40:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] dt-bindings: arm: atmel,at91rm9200-st: convert to
+ DT schema
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu@tuxon.dev>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20260224-arm-microchip-v2-0-8bedacd2cdcb@gmail.com>
+ <20260224-arm-microchip-v2-4-8bedacd2cdcb@gmail.com>
+ <20260224-gout-exquisite-1ee0b67c58cd@spud>
+Content-Language: en-US
+From: Akhila YS <akhilayalmati@gmail.com>
+In-Reply-To: <20260224-gout-exquisite-1ee0b67c58cd@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268415-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,linaro.org,iopsys.eu,freebox.fr,gmail.com,lists.infradead.org,vger.kernel.org,mxic.com.tw];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268416-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-0.993];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mxic.com.tw:url,mxic.com.tw:email]
-X-Rspamd-Queue-Id: CE43C199705
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fffffd00:email,microchip.com:email,devicetree.org:url,tuxon.dev:email]
+X-Rspamd-Queue-Id: CF19B199750
 X-Rspamd-Action: no action
 
-Hello Cheng Ming,
 
-On 25/02/2026 at 09:57:03 +08, Cheng Ming Lin <linchengming884@gmail.com> w=
-rote:
-
-> From: Cheng Ming Lin <chengminglin@mxic.com.tw>
+On 24-02-2026 23:18, Conor Dooley wrote:
+> On Tue, Feb 24, 2026 at 02:46:49PM +0000, Akhila YS wrote:
+>> Convert System Timer binding to YAML format.
+>>
+>> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+>> ---
+>>  .../bindings/arm/atmel,at91rm9200-st.yaml          | 65 ++++++++++++++++++++++
+>>  1 file changed, 65 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml
+>> new file mode 100644
+>> index 000000000000..ff485b37cba8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml
+>> @@ -0,0 +1,65 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/atmel,at91rm9200-st.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Atmel System Timer
+>> +
+>> +maintainers:
+>> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+>> +  - Claudiu Beznea <claudiu@tuxon.dev>
+>> +
+>> +description:
+>> +  The System Timer (ST) module in AT91RM9200 provides periodic tick and
+>> +  alarm capabilities. It is exposed as a simple multi-function device
+>> +  (simple-mfd + syscon) because it shares its register space and interrupt
+>> +  with other System Controller blocks.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: atmel,at91rm9200-st
+>> +      - const: syscon
+>> +      - const: simple-mfd
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  watchdog:
+>> +    type: object
+>> +    description: Watchdog timer subnode.
+>> +    properties:
+>> +      compatible:
+>> +        const: atmel,at91rm9200-wdt
+>> +    required:
+>> +      - compatible
+> This should just be a ref to the binding providing the watchdog.
 >
-> Add "nand-randomizer-enable" and "nand-randomizer-disable" boolean
-> properties.
->
-> These properties allow enabling or disabling the randomizer feature
-> via the device tree.
->
-> According to JEDEC standard JESD22-A117E, no single data pattern
-> represents a universal worst-case for all NAND flash failure mechanisms.
-> Different patterns, such as fully programmed, checkerboard, or mostly
-> erased, can disproportionately stress specific cells (e.g., programmed,
-> erased, or those influenced by adjacent states).
->
-> Given that no fixed pattern can cover all scenarios, the use of a
-> randomized data pattern is a practical and effective mitigation strategy.
-> Our hardware implements a randomizer feature that scrambles user data
-> before it is written to the flash and restores the original data upon rea=
-d.
->
-> This ensures the data stored on the media is more evenly distributed,
-> thus reducing pattern-dependent degradation. This is especially crucial
-> for preventing errors caused by unbalanced data (e.g., all zeros or
-> all ones) in blocks with high program/erase (P/E) cycle counts.
-> Ultimately, the randomizer improves the long-term reliability and
-> endurance of the flash device.
->
-> Please refer to the following link for randomizer feature:
-> Link:
-> https://www.mxic.com.tw/Lists/ApplicationNote/Attachments/2151/AN1051V1-T=
-he%20Introduction%20of%20Randomizer%20Feature%20on%20MX30xFxG28AD_MX35xFxG2=
-4AD.
+> I am guessing you didn't test this against all bindings, only against
+> /this/ binding and therefore missed the fact that it doesn't comply with
+> the binding for the watchdog itself.
 
-This link brings me to a "We have moved to our new home" page.
 
-Anyhow, this Link does not make much sense in the binding. If this is a
-very generic AN, why not, but maybe I'd move it to the SPI NAND patches,
-as the name implies that it is a bit specific to Macronix chips.
+Ok, i will take watchdog properties as a ref from different yaml.
 
-> Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +    timer@fffffd00 {
+>> +        compatible = "atmel,at91rm9200-st", "syscon", "simple-mfd";
+>> +        reg = <0xfffffd00 0x100>;
+>> +        interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
+>> +        clocks = <&slow_xtal>;
+>> +
+>> +        watchdog {
+>> +                compatible = "atmel,at91rm9200-wdt";
+>> +        };
+>> +    };
+>> +...
+>>
+>> -- 
+>> 2.43.0
+>>
+-- 
+Best Regards,
+Akhila.
 
-Otherwise both the binding and code look ok from my PoV. So besides the
-Link that must be moved and fixed, I'll wait for binding approval.
-
-Thanks,
-Miqu=C3=A8l
 
