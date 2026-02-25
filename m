@@ -1,149 +1,288 @@
-Return-Path: <devicetree+bounces-268255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268254-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHcxJojLnmm0XQQAu9opvQ
-	(envelope-from <devicetree+bounces-268255-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:14:32 +0100
+	id cMPXCKnKnmm0XQQAu9opvQ
+	(envelope-from <devicetree+bounces-268254-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:10:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34755195986
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:14:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88AA119588A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:10:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7D10430BB75A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:11:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 70504310504B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FBD38E5D5;
-	Wed, 25 Feb 2026 10:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0309F3921DE;
+	Wed, 25 Feb 2026 10:06:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="JSEUhPBV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KFwuW+Tp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32108.qiye.163.com (mail-m32108.qiye.163.com [220.197.32.108])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6556C37D101;
-	Wed, 25 Feb 2026 10:11:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6713921DA;
+	Wed, 25 Feb 2026 10:06:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772014295; cv=none; b=qfu6ltIQbJcqyQJ9Px64v8M7C933M6wuCWDi7DFzYPGCzIpR66CAHgd1uGZXxxlB/qRSCEMi03qe0h/wNk8WcOCQ1UiHqeHjNwqBxezzkd5x1VvpfGhAu63ZOyg2PCYEvHMNPXepOmnBuGcTaHpx7cs8X/hK1yvRKE/VUt0AJf8=
+	t=1772014006; cv=none; b=pS1Rd2HUSCf1h4I4NO72wn97nZgwPg27G8cfq5Lt99lFhaTgdfmZTh1g5CJ8eX3isRnvqqVNBp109f8GPhgGg+quEY+0OAgT+io21ItdEqCAHuBQc/If/DblDzY98q3SzETPZxc9eCrN2SJGpW2xtSXmHVULz2TYdpRmdGO/Y+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772014295; c=relaxed/simple;
-	bh=BVUKL+BN7NEsCLdGXwuB+2FnZi956ubMkNari+yq+9s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BAm8Eqxnip9TTyjoD4ybibQcYnbNcT3ifdq3/K+4ZZ0EB6xzCDYmPaVwrhcbLiYDh2jyXYV3OFbIVKKne7t+u07pItsQduBqa1nudWB2wz5b33bzhvo2QDRZcin1Hy6Yzql09uT8+QjaQNCYynfFllGxHoyZYT9FOsRqWocBI/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=JSEUhPBV; arc=none smtp.client-ip=220.197.32.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from albert-OptiPlex-7080.. (unknown [112.65.126.162])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 34ea9e547;
-	Wed, 25 Feb 2026 18:06:20 +0800 (GMT+08:00)
-From: Albert Yang <yangzh0906@thundersoft.com>
-To: arnd@arndb.de,
-	soc@kernel.org,
-	krzk@kernel.org
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	gordon.ge@bst.ai,
-	bst-upstream@bstai.top,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-mmc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	yangzh0906@thundersoft.com
-Subject: [PATCH v6 2/2] arm64: defconfig: enable BST SDHCI controller
-Date: Wed, 25 Feb 2026 18:06:13 +0800
-Message-ID: <20260225100613.3791261-3-yangzh0906@thundersoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260225100613.3791261-1-yangzh0906@thundersoft.com>
-References: <20260225100613.3791261-1-yangzh0906@thundersoft.com>
+	s=arc-20240116; t=1772014006; c=relaxed/simple;
+	bh=t+gG1MpnxtUkriPFy6ubFIFH+p6QlnNvobrG4pNA9FY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JWJURR0XUJCT97mLfoBCGKOhO2NFoG4WgY3rBKTmXpqnl6E7D7mgw/M70Muk5LA5rHSLLulq9xJ/Im5OkDuLS7Pz5sGnHnOAuRUALNz8MO843G91Pa2amlwTQ8ulZ9laDvGADHIDR7pjC9/epSHsZSYpji5VSuGqGJT3M+nAIAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KFwuW+Tp; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772014005; x=1803550005;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=t+gG1MpnxtUkriPFy6ubFIFH+p6QlnNvobrG4pNA9FY=;
+  b=KFwuW+TpLJUYM+G5TPHeWN2JrZJ9ZQmZgia+8AOUr8rUXuONBv/EZCIK
+   iiO6HdhpDfKHaEF6+Im9D6K+FgKMiijwjUtXld70bsWljUhblNAKB2e1T
+   ncQuwu7X9LfIEr8h7OC6LjQMr1yLihnMSu2NBO02EbNWmi3ULSfRVLqJf
+   OloxKWjp4vHlBFlplvU7g8e3Hnm4GdStvSsrJnxxc2UBba/2CsWMmqFy1
+   szSLTMhHI0/ZfXAd6uK4KIeBIiv9iPPsoOhbKIB9df5phDucMDKeLQAtv
+   5Q1cD+Ehvq2EEZ8d4OKT+Bft1cwJyM80wJxlxkoK/hBtzEpthjTMFCmf0
+   g==;
+X-CSE-ConnectionGUID: WZyOu0jlSoGs7s0f8xt59A==
+X-CSE-MsgGUID: lSfX9PZGTwGW/DxievjpGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="76654271"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; 
+   d="scan'208";a="76654271"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2026 02:06:44 -0800
+X-CSE-ConnectionGUID: c7fTSj09RCO2vb+z1ZtwGw==
+X-CSE-MsgGUID: IH9RcsUCSZe4c5qbjLIfgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; 
+   d="scan'208";a="239194276"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.71])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2026 02:06:41 -0800
+Date: Wed, 25 Feb 2026 12:06:35 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andy Shevchenko <andy@kernel.org>, linux-i2c@vger.kernel.org,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C
+ controller
+Message-ID: <aZ7Jq5GTbROvcrJH@smile.fi.intel.com>
+References: <cover.1772001073.git.zhoubinbin@loongson.cn>
+ <27899156d9218ced7cb0679cad2b2f59f688bd99.1772001073.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9c94438d3e09cckunm3fc0fc0ab1afef
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHU8dVhkZGE4dT0pJT05OS1YVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKSklVTU5VSklNVUpNSVlXWRYaDxIVHRRZQVlPS0hVSktISkxDSlVKS0
-	tVSkJLS1kG
-DKIM-Signature: a=rsa-sha256;
-	b=JSEUhPBVD6hKkRnOG45ELt6vl7vdvQ3THFNVDWlYAwK3wmld7QAWCrGo2AKiHJjYRT2FGDCDDo6EKUi30aow1xtOBfp96UckMsSQSIOoy8y+PqrAf5i3+UWLlLdwQR7AWBxkW9e5pv2brM+HwATxfCbd2rmdid7AdDa2y9U+YH4=; s=default; c=relaxed/relaxed; d=thundersoft.com; v=1;
-	bh=6i6YHWbS70atz74nPkc4FhQ7yekh7SIze6KRm1M4GHc=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <27899156d9218ced7cb0679cad2b2f59f688bd99.1772001073.git.zhoubinbin@loongson.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
-	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,sang-engineering.com,vger.kernel.org,xen0n.name,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-268254-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268255-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yangzh0906@thundersoft.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[thundersoft.com:+];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.997];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[thundersoft.com:mid,thundersoft.com:dkim,thundersoft.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 34755195986
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:dkim,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: 88AA119588A
 X-Rspamd-Action: no action
 
-Enable CONFIG_MMC_SDHCI_BST to support eMMC on Black Sesame
-Technologies C1200 boards.
+On Wed, Feb 25, 2026 at 03:34:44PM +0800, Binbin Zhou wrote:
+> This I2C module is integrated into the Loongson-2K0300 SoCs.
+> 
+> It provides multi-master functionality and controls all I2C bus-specific
+> timing, protocols, arbitration, and timing. It supports both standard
+> and fast modes.
 
-Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
+...
 
----
-Changes for v6:
-- Fix CONFIG_MMC_SDHCI_BST ordering to match Kconfig position
-  (between CONFIG_MMC_SDHCI_TEGRA and CONFIG_MMC_SDHCI_F_SDH30)
-  as pointed out by Krzysztof Kozlowski. Confirmed via savedefconfig.
+> +struct loongson2_i2c_priv {
+> +	struct i2c_adapter		adapter;
+> +	struct completion		complete;
+> +	struct clk			*clk;
+> +	struct regmap			*regmap;
 
-Changes for v5:
-- Split from platform series per Arnd's feedback
+> +	int				speed;
+> +	int				parent_rate;
 
-Changes for v4:
-- Move CONFIG_MMC_SDHCI_BST before CONFIG_MMC_SDHCI_F_SDH30
+May any of these two be negative? The kernel doc says nothing about that.
 
-Changes for v3:
-- Split from arm64: dts patch
+> +	struct loongson2_i2c_msg	msg;
+> +};
 
-Changes for v2:
-- Initial defconfig change included in DTS patch
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+...
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 45288ec9eaf7..7b054da42fa9 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1230,6 +1230,7 @@ CONFIG_MMC_SDHCI_OF_SPARX5=y
- CONFIG_MMC_SDHCI_CADENCE=y
- CONFIG_MMC_SDHCI_ESDHC_IMX=y
- CONFIG_MMC_SDHCI_TEGRA=y
-+CONFIG_MMC_SDHCI_BST=y
- CONFIG_MMC_SDHCI_F_SDH30=y
- CONFIG_MMC_MESON_GX=y
- CONFIG_MMC_SDHCI_MSM=y
+> +static void loongson2_i2c_handle_read(struct loongson2_i2c_priv *priv, int flag)
+> +{
+> +	struct loongson2_i2c_msg *msg = &priv->msg;
+> +	unsigned int i;
+> +	bool changed;
+> +
+> +	switch (msg->count) {
+> +	case 1:
+> +		/* only transmit 1 bytes condition */
+> +		loongson2_i2c_disable_irq(priv);
+> +		loongson2_i2c_read_msg(priv);
+> +		complete(&priv->complete);
+> +		break;
+> +	case 2:
+> +		if (flag != 1) {
+> +			/* ensure only transmit 2 bytes condition */
+> +			regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2,
+> +					   LOONGSON2_I2C_CR2_ITBUFEN, 0);
+> +			break;
+> +		}
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_OP_MASK,
+> +				   msg->stop ? LOONGSON2_I2C_CR1_STOP : LOONGSON2_I2C_CR1_START);
+> +
+> +		loongson2_i2c_disable_irq(priv);
+> +
+> +		for (i = msg->count; i > 0; i--)
+> +			loongson2_i2c_read_msg(priv);
+> +
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_POS, 0);
+> +		complete(&priv->complete);
+> +		break;
+> +	case 3:
+> +		regmap_update_bits_check(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C_CR2_ITBUFEN,
+> +					 0, &changed);
+> +		if (changed)
+> +			break;
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_ACK, 0);
+> +		fallthrough;
+
+Instead better to spell it explicitly:
+
+		loongson2_i2c_read_msg(priv);
+		break;
+
+> +	default:
+> +		loongson2_i2c_read_msg(priv);
+
+Missing break.
+
+> +	}
+> +}
+
+This also make me think for the possible optimisations.
+if regmap_updates_bit() in case 2 can be run after the completion,
+the case 1 with a parameter may be split to a helper.
+
+Also would be nice to have a comment why in case 3 we only read a single
+message.
+
+...
+
+> +static void loongson2_i2c_handle_write(struct loongson2_i2c_priv *priv)
+> +{
+> +	struct loongson2_i2c_msg *msg = &priv->msg;
+> +
+> +	if (msg->count) {
+> +		loongson2_i2c_write_msg(priv, *msg->buf++);
+
+> +		msg->count--;
+> +		if (!msg->count)
+
+Can be
+
+		if (!--msg->count)
+
+but someone may find it difficult to correctly parse.
+
+> +			regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2,
+> +					   LOONGSON2_I2C_CR2_ITBUFEN, 0);
+> +	} else {
+> +		loongson2_i2c_terminate_xfer(priv);
+> +	}
+> +}
+
+...
+
+> +static int loongson2_i2c_adjust_bus_speed(struct loongson2_i2c_priv *priv)
+> +{
+> +	u32 val, freq_mhz, ccr;
+> +
+> +	priv->parent_rate = clk_get_rate(priv->clk);
+
+> +	freq_mhz = DIV_ROUND_UP(priv->parent_rate, HZ_PER_MHZ);
+
+Usually the rule of thumb to put assignments close to its first user...
+
+> +	if (priv->speed == I2C_MAX_STANDARD_MODE_FREQ) {
+> +		 /* Select Standard mode */
+> +		ccr = 0;
+> +		val = DIV_ROUND_UP(priv->parent_rate, I2C_MAX_STANDARD_MODE_FREQ * 2);
+> +	} else {
+> +		/* Select Fast mode */
+> +		ccr = LOONGSON2_I2C_CCR_FS;
+> +		val = DIV_ROUND_UP(priv->parent_rate, I2C_MAX_FAST_MODE_FREQ * 3);
+> +	}
+> +
+> +	FIELD_MODIFY(LOONGSON2_I2C_CCR_CCR, &ccr, val);
+> +	regmap_write(priv->regmap, LOONGSON2_I2C_CCR, ccr);
+
+...somewhere here.
+
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C_CR2_FREQ,
+> +			   FIELD_GET(LOONGSON2_I2C_CR2_FREQ, freq_mhz));
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_TRISE, LOONGSON2_I2C_TRISE_SCL,
+> +			   LOONGSON2_I2C_TRISE_SCL);
+> +
+> +	/* Enable I2C */
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_PE,
+> +			   LOONGSON2_I2C_CR1_PE);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +	priv->speed = I2C_MAX_STANDARD_MODE_FREQ;
+> +	ret = device_property_read_u32(dev, "clock-frequency", &clk_rate);
+> +	if (!ret && clk_rate >= I2C_MAX_FAST_MODE_FREQ)
+> +		priv->speed = I2C_MAX_FAST_MODE_FREQ;
+
+Please, use i2c_parse_fw_timings() instead of custom approach.
+
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
