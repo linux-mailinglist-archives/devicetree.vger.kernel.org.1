@@ -1,101 +1,59 @@
-Return-Path: <devicetree+bounces-268175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268176-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2ErzDFmlnmmrWgQAu9opvQ
-	(envelope-from <devicetree+bounces-268175-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:31:37 +0100
+	id +MAsMy6mnmmrWgQAu9opvQ
+	(envelope-from <devicetree+bounces-268176-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:35:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E2A319378E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:31:36 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47ACE193856
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:35:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 59E94310B6AC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 07:24:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8B355301DB99
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 07:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE646316190;
-	Wed, 25 Feb 2026 07:23:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CAXbGoMs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95682DEA8F;
+	Wed, 25 Feb 2026 07:35:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B519E315D21
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 07:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5884C274B2B;
+	Wed, 25 Feb 2026 07:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772004191; cv=none; b=tvb7qla9krxWsciOehzgJKXGRLbm0BxnAQl7tdN7GG2JG4HP+dXsuy7UJuo3D9pCKEybHGAh//v/CbWVFOFhkuas8/A8nT4q/GQyOmYU2T0eE3SDEl/+gQod+EEznfWMSTy0Pf/Z2F0iNwP0Hvkx9nNbgmBBZngWODzf8oCYPdg=
+	t=1772004906; cv=none; b=g4USiafJH/PA6rprB/DKVJtorZkcYrK9sMes9BWGkSO/To3SyU8T+E27hpcvb1SJOprJtlams2DKYgW6gUJ0fXKLkLblvFyNH/HPH+sZcor69RDrHBj+npBmFs1II4rc7T9FR0JWMTa9qhprosaB0WVmAWjhCeyeQPgwrfpqCGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772004191; c=relaxed/simple;
-	bh=soEZe9eXpi1gpdG2KC7zwnFARDxojsqUJRhYaCtZeXo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uc00qltATRlBtvEIYWM2EnMCJ3QNJpIz1P1/HhUy6uUrec6pHdIMURyvpLA0e1q+8+J6zm6eXbFz9Wzm7aKYyl3KyhbXRqFJoxWaZirAWxDistTj07H8GvsS6fECW4hDLZ69C/E5iq9/g0+D2HxCvWejbZ8Ot1CE9/XOgvltx+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CAXbGoMs; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a7a9b8ed69so56799345ad.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Feb 2026 23:23:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1772004190; x=1772608990; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=296zJScy32zZ99pggZVYgRNpwHzrGar0aPdVMmqKLxo=;
-        b=CAXbGoMs3gHPCg2BmJyoWG5U7kONH7Ci8MTJr3W0bsSbP0gJuN6/0StUhVOj2trMbv
-         Av5IGOoIa8Bx740txGylVMnZp9NuaxE02PlqFE3D2r2VAbjL3YQVvwFyfx1scHmMBkx/
-         57ZXVXg2+vEyWXI4UxA0A/fxefF43zIy7FtJ4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772004190; x=1772608990;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=296zJScy32zZ99pggZVYgRNpwHzrGar0aPdVMmqKLxo=;
-        b=iFoyyA55N2NlDp7vljJAw/+7taiTEh2evNas24oeFYnie2CAqkRmI/eVJhv6JO7IGm
-         kdTR8pGGnDLy6rzkv2pDe90vnO/S8kHv2YC/td35qCSQbFun7UmHg37CPfMAmS7rWTuv
-         J6Fa4iCNCMdt6M6wK/mOA0EXszRgFT0IeXWH2TwLWWT07Tw5rnu5WsDBCsyPG1lQGRr/
-         wfgaYdKfoEPla8Beo3gB9yPBjwL21IVSSa5W6MPlB8Q5RoYwNSgZrl/neNBccpHinxHN
-         MHHVFjzoIGYHS6tdOg77k4EmJr109YIl7Ia8ZlkxOm4vneBmH1pQ/EsAszC7Jhc4zt41
-         XWQg==
-X-Gm-Message-State: AOJu0YxS0MBov/tChLNSutdGXUUHx+5zzvgJpF/U5JdvjKf0IUqtQswz
-	PfXHqiSiqfgJqarF5Zz6DyhnMi5NKyUHPLTVd4g8qY7gUGSjYeISI/Oue6BkuDENkw==
-X-Gm-Gg: ATEYQzyZoSUOzdIzV6H4PzJxDRUB0KktXj5IH0Pks9Ml2mXJZV1r5GKA9bMF+ixs8pL
-	EytA74fpIvcp+ycgFGllRf+zX9ICnJgupDKGOqmv9b5g5suWUXNE8cdurL02PXJG69eGnzTBS+F
-	ze/iFKkSISTRiIz4KPAcvgea9WCD/FNOshSsHzCw2EEQ28CJ/gw4JufNneJR4GfLLqo24v51OaM
-	NT8OX10QVzVshdiVPbid3arvQpezoHL3BBE6uYqLVei/aIgKsKNGH1aOMjm5kJED5WzU7D5ofO3
-	bfhW3ZU9truzWJF4ffrpDN6bLoR7IGQ1CV7tD6+6BSQn5xRfNlYp59ZrOB9cJIVYyz4BH1dFRXb
-	Qb9sMG22Jo58dM0Ly+M3Ti+o+qWC/7u+RrjkDWg9IxlNZzAX0ZDOhsNXhRs4HpILqSkynhIuHxW
-	YpzZPg5++1Y3ko6ksKfI9n9Cmu4/3GbkvXGGSZLT31pZByXWi8l/fnjqg22zb48CbC3AHJdtQLJ
-	ZrpsA==
-X-Received: by 2002:a17:903:37c5:b0:2a7:5751:5b27 with SMTP id d9443c01a7336-2ad7451eaabmr146610585ad.39.1772004190346;
-        Tue, 24 Feb 2026 23:23:10 -0800 (PST)
-Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:9d6:2e6a:941b:690])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ad7503fdc9sm130814435ad.80.2026.02.24.23.23.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Feb 2026 23:23:09 -0800 (PST)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
+	s=arc-20240116; t=1772004906; c=relaxed/simple;
+	bh=+yBWQeNfgbn1YzlZgOOINbQ1VVXe/SU11SE1jUNt9sI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=W4AmOjzmPOyxszvXhIRW0dcYeV8SBiXQsVmkNdhYTtGHRDE+BCll0W9d5wHmkeDZcPJYTJALAnIxyw4Z4LKTqZGMS/OAslwSPJ3t982qQyxs+qcr/ZtC3JoaR/zgn+1IodVUMTTRuXcJAGv8o09czfxz3RfIplAkNxiWgqn0zcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.227])
+	by gateway (Coremail) with SMTP id _____8Dx_8Mlpp5pNP0UAA--.64600S3;
+	Wed, 25 Feb 2026 15:35:01 +0800 (CST)
+Received: from kernelserver (unknown [223.64.68.227])
+	by front1 (Coremail) with SMTP id qMiowJBx78Ifpp5prsNKAA--.10268S2;
+	Wed, 25 Feb 2026 15:34:57 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
 	Rob Herring <robh@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	linux-pci@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 7/7] arm64: dts: mediatek: mt8195-cherry-dojo: Describe M.2 M-key NVMe slot
-Date: Wed, 25 Feb 2026 15:22:24 +0800
-Message-ID: <20260225072225.3345307-8-wenst@chromium.org>
-X-Mailer: git-send-email 2.53.0.414.gf7e9f6c205-goog
-In-Reply-To: <20260225072225.3345307-1-wenst@chromium.org>
-References: <20260225072225.3345307-1-wenst@chromium.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	linux-i2c@vger.kernel.org
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v3 0/2] i2c: Add Loongson-2K0300 I2C controller support
+Date: Wed, 25 Feb 2026 15:34:42 +0800
+Message-ID: <cover.1772001073.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,108 +61,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowJBx78Ifpp5prsNKAA--.10268S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgEJCGmejyEBaAAAsy
+X-Coremail-Antispam: 1Uk129KBj93XoW7ZrWDWFWfCr17uF1DKF17Arc_yoW8WF43pa
+	n8A3sxKF1jgr4I9rs3Jr4xuryYva1xJF43Wr42vw1v9a15A3yDZw4akF1YvFZrCryxZF42
+	qrWDGF1xCa4qvrbCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUv2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+	6r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27w
+	Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE
+	14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7
+	AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02
+	F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GF
+	ylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7Cj
+	xVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r
+	1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8aZ
+	X5UUUUU==
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com,mediatek.com,kernel.org,google.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-268176-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[loongson.cn];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268175-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree];
-	NEURAL_HAM(-0.00)[-0.999];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,loongson.cn,kernel.org,sang-engineering.com,vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,chromium.org:mid,chromium.org:dkim,chromium.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9E2A319378E
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhoubinbin@loongson.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.983];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 47ACE193856
 X-Rspamd-Action: no action
 
-The Dojo device has a M.2 M-key slot for an included NVMe on some
-models.
+Hi all:
 
-Add a proper device tree description based on the new M.2 M-key binding.
-Power for the slot is controlled by the embedded controller. As far as
-the main SoC is concerned, it is always on.
+This patch set describes the I2C controller integrated the
+Loongson-2K0300 chip.
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../dts/mediatek/mt8195-cherry-dojo-r1.dts    | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+It has a significantly different design from the previous I2C
+controller(i2c-ls2x), such as support for master-slave transfer mode,
+and  DMA transfers (implementation in progress), etc. Therefore, we try
+to name it i2c-ls2x-v2.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-dojo-r1.dts b/arch/arm64/boot/dts/mediatek/mt8195-cherry-dojo-r1.dts
-index 49664de99b88..57cc329f49c4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-dojo-r1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-dojo-r1.dts
-@@ -11,6 +11,28 @@ / {
- 	compatible = "google,dojo-sku7", "google,dojo-sku5",
- 		     "google,dojo-sku3", "google,dojo-sku1",
- 		     "google,dojo", "mediatek,mt8195";
-+
-+	nvme-connector {
-+		compatible = "pcie-m2-m-connector";
-+		/* power is controlled by EC */
-+		vpcie3v3-supply = <&pp3300_z2>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				nvme_ep: endpoint@0 {
-+					reg = <0>;
-+					remote-endpoint = <&pcie0_ep>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &audio_codec {
-@@ -72,6 +94,22 @@ &pcie0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie0_pins_default>;
- 	status = "okay";
-+
-+	pcie@0 {
-+		compatible = "pciclass,0604";
-+		reg = <0 0 0 0 0>;
-+		device_type = "pci";
-+		num-lanes = <2>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		port {
-+			pcie0_ep: endpoint {
-+				remote-endpoint = <&nvme_ep>;
-+			};
-+		};
-+	};
- };
- 
- &pciephy {
+Thanks.
+
+======
+V3:
+- Rebase on linux-i2c/i2c-next;
+Patch (2/2):
+ - Reorder header file follow IWYU principle;
+ - Better indentation and coding style;
+ - Use generic macro definitions;
+ - Amend *all* struct data types;
+ - Correct unreasonable variable type definitions;
+ - Refact loongson2_i2c_isr_error();
+ - of_property_read_u32()->device_property_read_u32();
+ - Remove meaningless blank lines and output.
+
+Link to V2:
+https://lore.kernel.org/all/cover.1769476820.git.zhoubinbin@loongson.cn/
+
+V2:
+Patch (1/2):
+ - Add Acked-by tag from Conor, thanks.
+
+Patch (2/2):
+ - Reorder the definitions of read() and write();
+ - Adjust the calculation method for bus speed.
+
+Link to V1:
+https://lore.kernel.org/all/cover.1763018288.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (2):
+  dt-bindings: i2c: loongson,ls2x: Add ls2k0300-i2c compatible
+  i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C controller
+
+ .../bindings/i2c/loongson,ls2x-i2c.yaml       |   4 +
+ MAINTAINERS                                   |   1 +
+ drivers/i2c/busses/Kconfig                    |  10 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-ls2x-v2.c              | 510 ++++++++++++++++++
+ 5 files changed, 526 insertions(+)
+ create mode 100644 drivers/i2c/busses/i2c-ls2x-v2.c
+
+
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
 -- 
-2.53.0.414.gf7e9f6c205-goog
+2.52.0
 
 
