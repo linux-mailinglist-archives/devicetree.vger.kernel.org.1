@@ -1,140 +1,184 @@
-Return-Path: <devicetree+bounces-268359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268360-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0PU3DEXwnmnoXwQAu9opvQ
-	(envelope-from <devicetree+bounces-268359-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:51:17 +0100
+	id gP8GC5fwnmnoXwQAu9opvQ
+	(envelope-from <devicetree+bounces-268360-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:52:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 752381979F0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:51:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7523197A5A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 13:52:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D9A23014103
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:51:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E9D69301C913
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 12:52:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8130E39902C;
-	Wed, 25 Feb 2026 12:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3CB93A1A54;
+	Wed, 25 Feb 2026 12:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O/Ac2Y5/"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Z7mEQDq9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E5C395260;
-	Wed, 25 Feb 2026 12:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772023874; cv=none; b=FBkKGiqxpCTwthZ/EyOKt0hSPtNwKGV+x0RdwTl5pmJxhS6TfZqv/GPFmQF63iteQtd7cSS4ZqQuhdHtWXj1g2AP53syamuZ8GI9ocKXIWZy8fbQIo/GQCDHvLco3EEmCiAZQFx2QShbuHT2Lf6erKIjt5Z1rHp3CJzwUyC0xCc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772023874; c=relaxed/simple;
-	bh=ZXV/yla8bcjxuf0sk96PcDdqZTEVf7gRx6xLOBprjr8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oR1j9tWdYAiD4cq2tAo32Em+38zKE8q6s0/dfaFZg25VqbOk9p2oTUXT6YWdPGJu2EOT5Q+o9A4WLKsOevTGcsc33+2ckwUSAd/3gxMZUNWRs7REg+Yu4SGInzTnzrC5dJjCT3qjXE3EJQNBsilfVJnIaEapscQT4AFDUoEFqTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O/Ac2Y5/; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772023873; x=1803559873;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=ZXV/yla8bcjxuf0sk96PcDdqZTEVf7gRx6xLOBprjr8=;
-  b=O/Ac2Y5/sbcaVw+oDalax5PKj7bTWyoti75PLIZSq032vWGgcKBSkNKr
-   +MjoSqXDnlXvsO5NmOcFOlBEloL0TBqhmfigPohz9IuCxts12f87rLK/l
-   hmzKuFsk8079BCXwV4tHokLjrnoWARoSCJMvE3Vf9eEzh0TIa+9QDRyvK
-   rs9S0cRU+g7rH+cywDTO+1q2vuJ4G7x8IHF/bGQ+qWaiLVH8iOobOsE6o
-   PXIxVO4U0DvYKEj1WmhtpUPVZvuLCHMBr7Je2Ogs8tYWRS3Kwr4LC9fBk
-   05U/asxIBzD8BpZ/giuDRPMqBsyB9Th6RBmxHL13rkj/gbIXcuVDTuk9T
-   Q==;
-X-CSE-ConnectionGUID: AtrNBKCuQ06pgWqumLoYyg==
-X-CSE-MsgGUID: KWiYAK5PSeGqTKkhlmmkeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73032599"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; 
-   d="scan'208";a="73032599"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2026 04:51:12 -0800
-X-CSE-ConnectionGUID: TCpzfEuMSt2IStlu0xftOg==
-X-CSE-MsgGUID: AthuT+v2SBum/MzknFo40w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; 
-   d="scan'208";a="213917309"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by fmviesa006.fm.intel.com with ESMTP; 25 Feb 2026 04:51:10 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1001)
-	id 31A3C98; Wed, 25 Feb 2026 13:51:09 +0100 (CET)
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>
-Subject: [PATCH] dt-bindings: i2c: dw: Update maintainer
-Date: Wed, 25 Feb 2026 13:51:09 +0100
-Message-ID: <20260225125109.3794977-1-mika.westerberg@linux.intel.com>
-X-Mailer: git-send-email 2.50.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B06DB3ACA70;
+	Wed, 25 Feb 2026 12:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772023950; cv=pass; b=NWsiz97BPqgiHxNHcGiKUuTJr7s+s4LJMSVtKiTvAvSdGlzE5PNR3lkFG6vDLnY9gTXmoKG3zm/BY0bultJCkhu22ERJlZGt8iQGj0rnm/6MuOa7rThsQm79bPaSEKk/aI3XDLXaKX0nSOjD1KysNipLgePKZqokIeIgi2LZz80=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772023950; c=relaxed/simple;
+	bh=B2rBAV3x2imjtMXvRpm/a6EYY+5lEBFKR6gItPqv/X0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AM34947SP2h+4aKTt6svETpZd3YnpVbPnGxbSQuJ+L21BDM+1lmKW9dqVPPje2/dPONXEm/h6b6YyX2OVKtl4IRWxqVM8WYdRp1wxVbPc9ffP/mWORmcQ/aNg6Kiusli2DuKgOvcnZGb6MBpauPAiXOFmEe21aVGyZRmCg9Vajs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=Z7mEQDq9; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1772023918; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ICTEfHhyDwLJkhsdDnqW0m6pUOTdJbtZU+i7vtiytvbTDJZv5wHNiLsHIP9QegFSAI1ghfZVLZOplV1gbia6JuQe8RmfFiG69QBoa14HfclhBdamUFMc2BucV25iR8ZRHDMz3mkC+iCPTsXEFmEJjsVMZrkLLok0AZe9Yf0lkLA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1772023918; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=T70ySPmQ1GqRu+gzswXj2+yT3BqSZsUEEsLuHeI35co=; 
+	b=QHK/4er+tLCtdBvg1RAIKIHElknd71Syfrn0VLgKCF4JurPSJa3MK3aNPOkwa+oUNOgfcllqhHG0L889/m0zoxNbJGYht22ffNrLLbEZRRd26KCII8SiZ3DzFdZD9bLcs51Yf/bWtFUWsvuHGKjfnTLq20XJhJkaUPgfWqBxNJw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772023917;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=T70ySPmQ1GqRu+gzswXj2+yT3BqSZsUEEsLuHeI35co=;
+	b=Z7mEQDq9HC4wHL2/KtkISM6JrMa8Ymly1nhRZFgYFA6bLp+TR1/JhcV/4yorEipU
+	9UpkbXY7tYpq0mRVXesynsKp0CU5ycg6NSuRBuJcMgNO106uILhZVZ3Vt/W3SipYe25
+	L0fI3wr0n+YkIDSfSdbwDI154gEHdXaU+MsSWI1I=
+Received: by mx.zohomail.com with SMTPS id 1772023915403681.8519199142135;
+	Wed, 25 Feb 2026 04:51:55 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ Chunfeng Yun =?UTF-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>,
+ "kishon@kernel.org" <kishon@kernel.org>,
+ "James.Bottomley@HansenPartnership.com"
+ <James.Bottomley@hansenpartnership.com>,
+ "bvanassche@acm.org" <bvanassche@acm.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ Chaotian Jing =?UTF-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "avri.altman@wdc.com" <avri.altman@wdc.com>,
+ "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ Peter Wang =?UTF-8?B?KOeOi+S/oeWPiyk=?= <peter.wang@mediatek.com>
+Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ "kernel@collabora.com" <kernel@collabora.com>
+Subject:
+ Re: [PATCH v7 14/23] scsi: ufs: mediatek: Remove mediatek,ufs-broken-rtc
+ property
+Date: Wed, 25 Feb 2026 13:51:47 +0100
+Message-ID: <3140774.mvXUDI8C0e@workhorse>
+In-Reply-To: <ee2e18e1a6177c40c5a4b3ed0ff228b9302429b7.camel@mediatek.com>
+References:
+ <20260216-mt8196-ufs-v7-0-b5f2907c6da7@collabora.com>
+ <20260216-mt8196-ufs-v7-14-b5f2907c6da7@collabora.com>
+ <ee2e18e1a6177c40c5a4b3ed0ff228b9302429b7.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-268360-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268359-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,mediatek.com,hansenpartnership.com,acm.org,collabora.com,linaro.org,pengutronix.de,samsung.com,wdc.com,oracle.com];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mika.westerberg@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	NEURAL_HAM(-0.00)[-0.999];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,intel.com:email,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 752381979F0
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:dkim]
+X-Rspamd-Queue-Id: B7523197A5A
 X-Rspamd-Action: no action
 
-Jarkko does now work for Intel anymore and since I'm currently
-maintaining this driver, update my contact information here to make sure
-patches get Cc'd to me as well.
+On Tuesday, 24 February 2026 13:43:10 Central European Standard Time Peter =
+Wang (=E7=8E=8B=E4=BF=A1=E5=8F=8B) wrote:
+> On Mon, 2026-02-16 at 14:37 +0100, Nicolas Frattaroli wrote:
+> > diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-
+> > mediatek.c
+> > index 230e11533eac..424533538b90 100644
+> > --- a/drivers/ufs/host/ufs-mediatek.c
+> > +++ b/drivers/ufs/host/ufs-mediatek.c
+> > @@ -655,9 +655,6 @@ static void ufs_mtk_init_host_caps(struct ufs_hba
+> > *hba)
+> >  	if (of_property_read_bool(np, "mediatek,ufs-rtff-mtcmos"))
+> >  		host->caps |=3D UFS_MTK_CAP_RTFF_MTCMOS;
+> > =20
+> > -	if (of_property_read_bool(np, "mediatek,ufs-broken-rtc"))
+> > -		host->caps |=3D UFS_MTK_CAP_MCQ_BROKEN_RTC;
+> > -
+> >  	dev_info(hba->dev, "caps: 0x%x", host->caps);
+> >  }
+> > =20
+> > @@ -1185,8 +1182,6 @@ static int ufs_mtk_init(struct ufs_hba *hba)
+> >  	hba->quirks |=3D UFSHCI_QUIRK_SKIP_MANUAL_WB_FLUSH_CTRL;
+> > =20
+> >  	hba->quirks |=3D UFSHCD_QUIRK_MCQ_BROKEN_INTR;
+> > -	if (host->caps & UFS_MTK_CAP_MCQ_BROKEN_RTC)
+> > -		hba->quirks |=3D UFSHCD_QUIRK_MCQ_BROKEN_RTC;
+> > =20
+>=20
+> Maybe check the hardware version (host->ip_ver)=20
+> and set UFSHCD_QUIRK_MCQ_BROKEN_RTC instead of removing it?
 
-Signed-off-by: Mika Westerberg <mika.westerberg@linux.intel.com>
----
- Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I do not have access to a complete list of hardware IP versions
+that need this quirk applied. No upstream DTs seem to use it.
 
-diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-index 914200188809..082fdc2e69ea 100644
---- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Synopsys DesignWare APB I2C Controller
- 
- maintainers:
--  - Jarkko Nikula <jarkko.nikula@linux.intel.com>
-+  - Mika Westerberg <mika.westerberg@linux.intel.com>
- 
- allOf:
-   - $ref: /schemas/i2c/i2c-controller.yaml#
--- 
-2.50.1
+If MediaTek wants the quirk back, you can submit a patch to apply
+it based on the ip_ver once this series has landed, as you have all
+the necessary information.
+
+>=20
+> Thanks
+> Peter
+>=20
+
+
+
 
 
