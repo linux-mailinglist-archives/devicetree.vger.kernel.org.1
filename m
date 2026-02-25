@@ -1,169 +1,254 @@
-Return-Path: <devicetree+bounces-268096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268097-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4HcrHaY8nmkrUQQAu9opvQ
-	(envelope-from <devicetree+bounces-268096-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:04:54 +0100
+	id J8QgGwBLnmkSUgQAu9opvQ
+	(envelope-from <devicetree+bounces-268097-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 02:06:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B89CA18E44E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:04:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E9DA18E84A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 02:06:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AC2CF302B83E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 00:04:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E98FB303CE2D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 01:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9114A2744F;
-	Wed, 25 Feb 2026 00:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A295F245019;
+	Wed, 25 Feb 2026 01:06:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g46n92Sj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oZBBP+kL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazhn15010019.outbound.protection.outlook.com [52.102.139.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C6D1D6AA;
-	Wed, 25 Feb 2026 00:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1771977890; cv=none; b=Pn2pEMnfl8lzDQ/SA1D6XgthdVX9rWOktSdxO4pBMmVSNOJU4wNzs9HtoXdsUk0vPpD4z8r1lobZFdYPk47JEjosyc6M+H+g+delGt2hWrvT2smpYzQLqK2BUmRagFczgsNfKfGuJXIAvdwiYeFmQ/OE+Cw/4wWYtRwdB94jkek=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1771977890; c=relaxed/simple;
-	bh=Myv8Eg4qd8hYFHZFEYgoZT6YbrxhedjbG6iZlTRMA44=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=umH90zSbWBb/sIDh0TS8q4nCx93ET+Dj5zd/2KeVzhBAJm6al8Q2CogLf5KiiqGVcvxoOKvhDuYc5zYbRs9zqVmK9lkYhsbzLzRyjN2XRR0MZmkGILTF5t77hxNFPCDSZj0EpracpxghMS65aqrweNWN+NvBAwUwO3GdlNjEutI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g46n92Sj; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1771977887; x=1803513887;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Myv8Eg4qd8hYFHZFEYgoZT6YbrxhedjbG6iZlTRMA44=;
-  b=g46n92SjoioT7GyEKk1Qq3GjRHb48hdZKgr66xPVslwLNRXV3QbuOPPd
-   /jJGmFXhhehjpwcIrWO5hnARZDz6PhPZ7R+/td3Wkx80lakAnggMpoB8U
-   Os9pClRQuqnOuyjWE+KlNd2Fwp1MCgbSFqOHr1IyYZeVOHmBKZvpFOwwc
-   lWQyajgGzApBH74tEA09tZbgKqJD4a/Mk7omU40I2w7pJGT5C2D7jQI4e
-   /4nmJYf9DvhbQ/69tbtvRU5oi/F35XE5WEht0jvN/bixTrHrSXx63GoCX
-   mQYAzzZtowZ5DsEYGbZWNEPaNNHuGV4QlQHVsTkW7hG7GHt1HQa9lZ89+
-   g==;
-X-CSE-ConnectionGUID: cHg5hp9iR+CCL6Rnufu6Iw==
-X-CSE-MsgGUID: 43JAcmXeRGCQgfo49+VdTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73186822"
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
-   d="scan'208";a="73186822"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2026 16:04:47 -0800
-X-CSE-ConnectionGUID: eEHTq/9QSeCkUWjyx07BzQ==
-X-CSE-MsgGUID: qVFCXw3SReiVsAGeUBCz+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; 
-   d="scan'208";a="215946493"
-Received: from lkp-server02.sh.intel.com (HELO a3936d6a266d) ([10.239.97.151])
-  by orviesa009.jf.intel.com with ESMTP; 24 Feb 2026 16:04:45 -0800
-Received: from kbuild by a3936d6a266d with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vv2OQ-000000002bh-1Kzk;
-	Wed, 25 Feb 2026 00:04:42 +0000
-Date: Wed, 25 Feb 2026 08:04:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, andy@kernel.org,
-	nuno.sa@analog.com, dlechner@baylibre.com, jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
-Message-ID: <202602250851.I3vE5ldR-lkp@intel.com>
-References: <20260224163109.370930-3-macroalpha82@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B712236F2;
+	Wed, 25 Feb 2026 01:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.139.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1771981560; cv=fail; b=KxmcvYsb7JQCx9JtHyaTLpfw8YEv/AHqJplJ0rg2/txawdwMndX66K7a+ppMr4+lnlfhnQEHljJb4x6T3sXmHniEws5yL/1VwcrqEI1qlKyjBd5MAvKswFRpTvSEjI9SswibG1lp6tZKLvO20k0vp+bnErSodlN8yhNBygT/L94=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1771981560; c=relaxed/simple;
+	bh=/nsGM583ltJ/9+LIo5u4OW+2gsxO1h8n4chQxOu+9nc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hl0LvSw0IycbxixPXg5B8JvbfDtmlzbQZFCuG9LMJ5yczm2gwKuIW1YS3dAckavjCSenK+5rZzWf4xy1C5KXD8jOZGzBQ0Xf8C1oIbiGLU8WqODIUSUz67HZQ7IHyPC9B/GfY0kR0N7iIMCf6gXCpWKAimy2HIE9Zqz0vLhDkLU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oZBBP+kL; arc=fail smtp.client-ip=52.102.139.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IxZzcpd13JU5kGPKNh6O4Fp+/184X7LhC0D6Axs6+DHSNc712WkpE01v559JbC2gpnYhlAX/gQB0YXkQiTe4w5izdPYDsE11sbhtX9WhneXJS1yLE3mZcfHZNv1lr6v9Zligf/LztkG+eqvRrz8B0MjCyE4TqZdumgxwyDJUMJY1r24o10jRoUAJOiB0ND07xhSA7Q94Sse5JegbLU+WCtl53jaln+X/Rd1k/5bHuIeHwA79o5h0cclpKviTDq7t3x1l+k0DLgVDbxxap/ctWIsYRUv9fYLbijLiEJ4mZCike27nZEHNOtQy9aeJLIXU9SA4wuMyXCGe19aOi1StFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ASEDpIk9PwestYsXaGClwO0sHBMLU3Jvjl1LBVZf0i4=;
+ b=Lvk2WE069InA2bJh7iopXE3nbmt1U0WgS3k+/koiuMb3G/bK0y+f+Xz3pqYzFgBxYnxANislxO51MO1jyoExHipcE1jHG90UWGkl8u7RdE/qgo2Oy3B2LJWn52EEpu2iPsZFP70v4zN23L42mL7zm8aSYO84lxvjeW2W88Cu55S1ixmDh1MY/A068WUtl3NiORW0QPknDlxzkYsc7RYUy4UHCEP+qoY9thpY548fEHwZQopwst4FO1DHQZ5tgslxpJrFM/RI9S7UpY7et3rCUV1pmarlm37k7RXx5qSj/Bjjq6c5VUS/SVddQO4YzVQAkAl5CIcZVGvA4iGfhxVgsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=baylibre.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ASEDpIk9PwestYsXaGClwO0sHBMLU3Jvjl1LBVZf0i4=;
+ b=oZBBP+kLqfDzOH8dShNV4Z64Y38K8ibftfiw0uJGf2wAJASjdAZqw26zyECZnCsxXrv/X2Ei7Sc5iA1eZwViLN12aRy33aCf6d+OB19T1DR4fsJAYI+uCNQ5izI98CLq4/L6D/aFO+Bctw42dw4jFNPPzkvCu1jE/37UFEPkJ7E=
+Received: from SJ0PR05CA0107.namprd05.prod.outlook.com (2603:10b6:a03:334::22)
+ by BN0PR10MB4887.namprd10.prod.outlook.com (2603:10b6:408:124::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Wed, 25 Feb
+ 2026 01:05:53 +0000
+Received: from SJ1PEPF00002314.namprd03.prod.outlook.com
+ (2603:10b6:a03:334:cafe::4b) by SJ0PR05CA0107.outlook.office365.com
+ (2603:10b6:a03:334::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.21 via Frontend Transport; Wed,
+ 25 Feb 2026 01:05:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SJ1PEPF00002314.mail.protection.outlook.com (10.167.242.168) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Wed, 25 Feb 2026 01:05:52 +0000
+Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 24 Feb
+ 2026 19:05:08 -0600
+Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE215.ent.ti.com
+ (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 24 Feb
+ 2026 19:05:07 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 24 Feb 2026 19:05:07 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61P157Oo3214557;
+	Tue, 24 Feb 2026 19:05:07 -0600
+Date: Tue, 24 Feb 2026 19:05:07 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Antonios Christidis <a-christidis@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, Santosh Shilimkar
+	<ssantosh@kernel.org>, Michael Turquette <mturquette@baylibre.com>, "Stephen
+ Boyd" <sboyd@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linux-clk@vger.kernel.org>, Michael Walle
+	<mwalle@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Randolph Sapp
+	<rs@ti.com>
+Subject: Re: [PATCH 0/5] drm/imagination: add support for
+ j721e,j784s4,j722s,am62p
+Message-ID: <20260225010507.flvt775fs5kfe7ez@unknotted>
+References: <20260224-gpu_dts-v1-0-cc5ddffe140c@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260224163109.370930-3-macroalpha82@gmail.com>
+In-Reply-To: <20260224-gpu_dts-v1-0-cc5ddffe140c@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002314:EE_|BN0PR10MB4887:EE_
+X-MS-Office365-Filtering-Correlation-Id: 73139fb6-8809-48a2-c129-08de740a0596
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|82310400026|376014|34070700014|36860700013|1800799024|12100799066;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?BWXkiyHCYvVVmmGwukheJqXYKmy86z5tXdfPt7owS08xgJ70mA3zldseeRTx?=
+ =?us-ascii?Q?k+1UPXcQs29AZ9M5WwunkeprumlTDNwsN/5DPXBZUG9ftDQN/k/RvWJlWLEz?=
+ =?us-ascii?Q?HTdPeZVtiZXCJwKjOfTUBEeTR+iCzg78NLhRsUNWbrR2FMFEfR3ZouBA7483?=
+ =?us-ascii?Q?TV9DYoPE6UaQ8WvoEaKZIbMz/DO5hCar8q37hRwoX0TgN7sNceFdh9VM6Lrh?=
+ =?us-ascii?Q?FXVsxlPYgqO89ygOyTNvrl5xlkZ2zExQz241r8GrDYvIslR4blLPJshOYOMa?=
+ =?us-ascii?Q?guxaFIIGiIa1HcgYDx7dcRGabfnDwQoj+8GWmXJEwnN1EA8IHSETNEEZ3wWv?=
+ =?us-ascii?Q?7Bnx0q+w5Q80F57nj2GifroF5Ckx57kEvPEk1usWV0dRoU6YXJ5fGupd/7Se?=
+ =?us-ascii?Q?7i7ErYWG7yGeL+pS1KeRtiaa147x3GetXl5V654Fqwvvlcjwy3J7PiZThotV?=
+ =?us-ascii?Q?3sGIt8Y5SyhDqMVqPnTNbnarAp+0veduOxftSDPrHxEOlbGRZNBxYBrziKT+?=
+ =?us-ascii?Q?ugQz68jBI/vKsW26nzSb5pGQGl7W80d9Tz0+PCy41Uw8l+WXeykiVYwiQLfW?=
+ =?us-ascii?Q?uYjw1x7uaJDBAs2ckh6zYFQ5oaz9E3jjPXlbQyAOdAy8eyedE7+Zj+8OW1F/?=
+ =?us-ascii?Q?3WpxjWyhmcLuAa7EIpmiurdd7KPqaxwt3/YibUWqAqtWw7xTQIkoskCdEqlb?=
+ =?us-ascii?Q?PIntd0R11EmGVqd+/UV35bpiISrJK9KweF/aNZq2aAiuv/bBGLF5xUTMHYtb?=
+ =?us-ascii?Q?sCv6Otke1P+Dq7ypZY4x3lxIonK++Qp8IQIRjZa4ZQCu9moV8R7ihXT3kXf8?=
+ =?us-ascii?Q?ARVqrnVzAlbWtX2Eo6Ui4OcghMwWO+Rjm6zq+Oj1TrHyBVM7sHvmE/Wbgt8n?=
+ =?us-ascii?Q?XMHZ7fsx/0up7oeh/6LY0XcpkKgBVtXkOFqqeLPWPdsptv7mjiqhwXgh+Hc3?=
+ =?us-ascii?Q?02wA4OfMAwzWBSW39aLfgfsu11kttTtFJ5zVfU29reh9l6DDWmxirRnbhQM9?=
+ =?us-ascii?Q?GE5fzMupuIPYTxfd7WONLinTflOGXlWNmEKXx5U7z89v/hKU/0lmg7ApP0EB?=
+ =?us-ascii?Q?p8LA33+Pu7E8owiEG9yeadzNxMV01pBLOcv9VYNiOdMk7CVxaLtAJGF2uNvt?=
+ =?us-ascii?Q?xrXHnClO0Rdyr7sFn+cAnwo9eXayOLgDB6he6TNP9OrFgkHIEZs65lJLvqh5?=
+ =?us-ascii?Q?l56sKDeVZ3RYhr/KV+VeAZ/5ZBa8PBwaAMxNNOMhn+0wRQiaNtyU6AdaxSfN?=
+ =?us-ascii?Q?1GFi+11HgGKi0A6d9yZfBnWh1QClTPL99clI107IQ00WsGN33u2tGZ9+KkaA?=
+ =?us-ascii?Q?LrHg8onk+OoI7UjY3YngXwFyc3wajJhRZu4paK28XyYItHKnv8i2VjC7E7eM?=
+ =?us-ascii?Q?gMwqPr8biiyu5CXdZwnDO/cQ6vJCTxFnTasmDnSnFiHqGY3zOk9WgzfOk/9b?=
+ =?us-ascii?Q?PHDtkz/xpdc3ZerCEQWPvjCcfXoa3fymF12jR8o2PQQzFRpdwKEJIDIq3+vw?=
+ =?us-ascii?Q?9lFkyhfNqrocja6bXX7MVtqrzcpvcweLTUGTjB9NSqgZH5cqEYUVRFnp1k/c?=
+ =?us-ascii?Q?2m8vEt4YTBTexH6Dqa0AiKF2Ul8AMBQSPV0uw2r6T1gz35FaRlMNnxpe4B33?=
+ =?us-ascii?Q?/z39Xhpd5nJSgsF7UXS7aulae7IAF+tPFM7jl3rs07qdLeD+ZB471Iu2czYp?=
+ =?us-ascii?Q?EI8grw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(82310400026)(376014)(34070700014)(36860700013)(1800799024)(12100799066);DIR:OUT;SFP:1501;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	AzPl660nNlPL1lnGhD1mHxbXOesa/IL+89ssDisGIFxis05bFKKPncQ5IJm9j2ZtiMZ8gUxMjobh5Zyf68fRlEmZl/5KRwzsAukSNkBQ20Ul6jx6e/asOSKL/TBMvU4SRhtuwTn6fwfMwgvS55R9xocWFB1jqe/+LRM/K+nIx8nlqw/ozEWki+h8u/i474iiRz96MPzvWzpxEY4BI7hBQUMPFARqlS+X0GE8Kzj+0qMYmeFmFMy/8HpuVZMHSVSVmtFetSYeCfERlf1ylNAXrOD+P0JK7oBL5YldHnIYjOqtvbZu5edGi2SAMVvxY9v907GjPg6nMsiRrUUS7KSxJiXVg1mlO8AX5mcRyn2nApfnk9cgf3KY0d94WsEdgx8STgLnjwK6b3AWSxm2wlssp9bkLR2hLqZD7U+8MUh4sdgLyLR6VvJt6FZiNmSWbivH
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 01:05:52.4081
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73139fb6-8809-48a2-c129-08de740a0596
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002314.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB4887
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,hotmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-268096-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268097-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:url,ti.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	DKIM_TRACE(0.00)[ti.com:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[nm@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[ti.com,kernel.org,imgtec.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,baylibre.com,lists.infradead.org,vger.kernel.org,lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.980];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,git-scm.com:url,intel.com:mid,intel.com:dkim,intel.com:email,01.org:url]
-X-Rspamd-Queue-Id: B89CA18E44E
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 9E9DA18E84A
 X-Rspamd-Action: no action
 
-Hi Chris,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on linus/master v7.0-rc1 next-20260224]
-[cannot apply to jic23-iio/togreg]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/dt-bindings-iio-imu-icm42607-Add-devicetree-binding/20260225-003610
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20260224163109.370930-3-macroalpha82%40gmail.com
-patch subject: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20260225/202602250851.I3vE5ldR-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260225/202602250851.I3vE5ldR-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602250851.I3vE5ldR-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c:200:36: warning: unused variable 'inv_icm42607_motion_events' [-Wunused-const-variable]
-     200 | static const struct iio_event_spec inv_icm42607_motion_events[] = {
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning generated.
+On 12:09-20260224, Antonios Christidis wrote:
+> ---
+> Antonios Christidis (3):
+>       arm64: dts: ti: k3-j721e: Add GPU node
+>       dt-bindings: gpu: img: Add J721e SoC specific compatible
+>       arm64: dts: ti: k3-j784s4: Add GPU node
+> 
+> Michael Walle (2):
+>       arm64: dts: ti: add GPU node
+Now that you are picking this up, please Fix the $subject.
+>       clk: keystone: don't cache clock rate
 
 
-vim +/inv_icm42607_motion_events +200 drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+Bunch of interleaved "kind of related" patches in a single series.
+please do not do this.
 
-   199	
- > 200	static const struct iio_event_spec inv_icm42607_motion_events[] = {
-   201		{
-   202			.type = IIO_EV_TYPE_THRESH,
-   203			.dir = IIO_EV_DIR_EITHER,
-   204			.mask_separate = BIT(IIO_EV_INFO_ENABLE) | BIT(IIO_EV_INFO_VALUE),
-   205		},
-   206	};
-   207	
+j784s4 can go in on it's own.
+
+j722s/am62p needs to wait for clk-cache patch to go in, but the
+clk-cache patch probably needs to be submitted individually to linux-clk
+mailing list for Stephen to pick up.
+
+Please provide reference in the patch diffstat as to where the previous
+version of the patch is.
+
+
+Finally: j721e - please get the binding accepted through drm mailing
+list, then we can see about the dts.
+
+> 
+>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml         |  7 ++++++-
+>  arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi     | 11 +++++++++++
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi                  | 14 ++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi                 | 14 ++++++++++++++
+>  drivers/clk/keystone/sci-clk.c                             |  8 ++++++++
+>  5 files changed, 53 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 3ef088b0c5772a6f75634e54aa34f5fc0a2c041c
+> change-id: 20260224-gpu_dts-ab32c568d756
+> 
+> Best regards,
+> -- 
+> Antonios Christidis <a-christidis@ti.com>
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
