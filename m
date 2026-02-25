@@ -1,66 +1,63 @@
-Return-Path: <devicetree+bounces-268516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268517-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kA6GNY5In2kuZwQAu9opvQ
-	(envelope-from <devicetree+bounces-268516-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:07:58 +0100
+	id CD5DJj5Jn2lEZwQAu9opvQ
+	(envelope-from <devicetree+bounces-268517-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:10:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B835119C8AA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:07:58 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C01B19C94D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 20:10:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 95FBC304AAF7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 19:07:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AF821303B7F1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 19:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9533B3D523D;
-	Wed, 25 Feb 2026 19:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 684543EDAD6;
+	Wed, 25 Feb 2026 19:07:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eKWhlnlD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bDa2LDRw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714C62ED848;
-	Wed, 25 Feb 2026 19:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4416A3D6488;
+	Wed, 25 Feb 2026 19:07:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772046454; cv=none; b=TdxoWd+2sDoKB3IqYleBq6em/p80ei7Y1d2ETaTXem2Ukhxo/TglBMvKWUCP77VBsjSiq3JssiQcGdkZUntv9ea0i9ZbpB9uC/bSYplg1U2VzZVB1vuV8Q6scFCCczLOoXV/V/bFIFIjzTX8LD83LycH/R6ZTygHptSO0hMsNSk=
+	t=1772046465; cv=none; b=cvW0Q+UFm/TQ/f+AoS83hV/ddYpARhpaMFTAjm2HDmr6d0L7FwajCMjlEbXs7SqROroPopOigpr6KvWUhDs32NTkgfZ2mUox4zNxEfhFPEPbw5K4v8cygVZHoLRpAsph7Eyb+nw5e//hi+uJjTOwSakvQi9g0cKJzxnq0q/LNIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772046454; c=relaxed/simple;
-	bh=n2ThqRKc1AVWhg9cT24RDtRVQbfzmfNVs8WJEir8WL4=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=fr2TBGOm6MT8+6j3nfd7Ea6l8oTfRP0VSZr5P8Tt4mjB9ELqlwGhCWhq5HKH/vc7PliKaIDYDBeO84Bm9q1cMyAR2+UeaiVemjThYxh5vHmHUqh5sOMVS4KmG4plmCfFhBcHZfg06MM88Nn6eSUS1PBdKiyH0PepAxWyYHP2OVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eKWhlnlD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 584F1C116D0;
-	Wed, 25 Feb 2026 19:07:31 +0000 (UTC)
+	s=arc-20240116; t=1772046465; c=relaxed/simple;
+	bh=PiDW0q+4QNESSXA7sLgepEPjfL/u0WLT2kREDP9X0IY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=TJT/Pdw0BkpR/hkJeUz6LP8GChcmUg4YRNTQN9EiUo4s9j4pEXQun2zAStU8ooK9Ny+Y7aos2evBr56h5j6Yhyxql8nnGvpYTOrs1nF9CbgzevmJ9i4Wpb2eyqvHRQAGzscFQ/Z46PihsXS41wCP2xVDNJEuAYbSeym53Rvc3Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bDa2LDRw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD9F5C19421;
+	Wed, 25 Feb 2026 19:07:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772046454;
-	bh=n2ThqRKc1AVWhg9cT24RDtRVQbfzmfNVs8WJEir8WL4=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=eKWhlnlDDPaFKVpRi2Ix1lTUPacf8fV45r8m348II1HYnmB2UxwK+VyqxECLO0Nli
-	 7WmQVpF6T32cplZLTBa9z6flhd35Yiya55DL6pvXRrjk4/HWnjpC5XTq1Ut0wopkg+
-	 ON0OvaA3AFFrS+atnElbcG+VtlFWaHDB6lnbl1vpN6q6wXTSk+seUPr7C9Kai3kcnu
-	 lnEmJgIK3ShSinAZk3c/pNy22BtYS+ssAqz5JmzufFjnF6ntN8z5KFRdHLiIwmcJlC
-	 bhMVkEipvRc+qeM4H1K+H5wLelX3jtF8YUxyLIZ0g3EftEiPEMN3FAfzCFDDvCDYCC
-	 smeoFzQRN8XxA==
+	s=k20201202; t=1772046465;
+	bh=PiDW0q+4QNESSXA7sLgepEPjfL/u0WLT2kREDP9X0IY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=bDa2LDRw+egmKVhsjwL8cb0y9ICwRAXbvUwotuSrguwNZLgUXTTfQJhYLqbMEA6/9
+	 ikUHrxHv9+wGmU6703KphaUKzO0Mka+eQ/3jZOI0w+bkPI9TKiHhLKD197H2mPXent
+	 h9n5eNwowkbUKkmiASjLHaaJPYFIg0KVnXpyiuF3X/8kFjneqASgXMQx6aON0PbluG
+	 W38ydlckemBH9mQwqENqunCGaHK5BCFzvMZ2bVhyDgLm3mi4Q3kcjyaYZg6YeTKuHw
+	 xdbaHH92MaXcgTNi9CdIuTHb5rEYwwbihoCSPgAKZ74jBfEOrMjJpLNJ7KoYcVi+SK
+	 b5CAerljthhrg==
 From: Mark Brown <broonie@kernel.org>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-spi@vger.kernel.org, Antoniu Miclaus <antoniu.miclaus@analog.com>
-In-Reply-To: <cover.1770393792.git.antoniu.miclaus@analog.com>
-References: <cover.1770393792.git.antoniu.miclaus@analog.com>
-Subject: Re: (subset) [PATCH v2 0/4] iio: adc: ad4080: add support for
- AD4880 dual-channel ADC
-Message-Id: <177204645111.169139.7163032381688312306.b4-ty@kernel.org>
-Date: Wed, 25 Feb 2026 19:07:31 +0000
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, 
+ Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: linux-spi@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20260128215132.1353381-1-cosmin-gabriel.tanislav.xa@renesas.com>
+References: <20260128215132.1353381-1-cosmin-gabriel.tanislav.xa@renesas.com>
+Subject: Re: (subset) [PATCH v3 0/3] Add DMA support for RZ/T2H RSPI
+Message-Id: <177204646186.169139.3925826072902502630.b4-ty@kernel.org>
+Date: Wed, 25 Feb 2026 19:07:41 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,44 +68,44 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-47773
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-268517-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268516-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[renesas.com,kernel.org,glider.be,gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B835119C8AA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9C01B19C94D
 X-Rspamd-Action: no action
 
-On Fri, 06 Feb 2026 18:07:12 +0200, Antoniu Miclaus wrote:
-> Add support for the AD4880, a dual-channel 20-bit 40MSPS SAR ADC from
-> the same family as AD4080.
+On Wed, 28 Jan 2026 23:51:29 +0200, Cosmin Tanislav wrote:
+> The DMA controller can be used to transfer data to and from the SPI
+> controller without involving the CPU for each word of a SPI transfer.
 > 
-> The AD4880 has two independent ADC channels, each with its own SPI
-> configuration interface and LVDS data output. The driver uses
-> spi_new_ancillary_device() for the second channel's SPI and requires
-> two io-backend instances for the data interfaces.
+> Add support for DMA mode, and do some other cleanups while touching the
+> same code.
+> 
+> The dts changes in this series depend on the DMA series [1].
 > 
 > [...]
 
@@ -118,8 +115,8 @@ Applied to
 
 Thanks!
 
-[1/4] spi: allow ancillary devices to share parent's chip selects
-      commit: ffef4123043c5bb29e61052a41e577ae1ee6837a
+[1/3] dt-bindings: spi: renesas,rzv2h-rspi: allow multiple DMAs
+      commit: 4d28f38f64ef69ab27839069ef3346c3c878d137
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
