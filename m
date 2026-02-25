@@ -1,187 +1,172 @@
-Return-Path: <devicetree+bounces-268250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268251-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UB9+NZrInmkuXQQAu9opvQ
-	(envelope-from <devicetree+bounces-268250-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:02:02 +0100
+	id GHTlFdvInmm0XQQAu9opvQ
+	(envelope-from <devicetree+bounces-268251-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:03:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE33F1956D0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:02:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C176819572C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 11:03:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9D23530028F3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:01:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 16EDE301486D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 10:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F209733A9F1;
-	Wed, 25 Feb 2026 10:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="EBlSKKCW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA57B34EF15;
+	Wed, 25 Feb 2026 10:02:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010057.outbound.protection.outlook.com [52.101.193.57])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DDC3242D8;
-	Wed, 25 Feb 2026 10:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772013706; cv=fail; b=lJ55X8h0Xl8hkbyYzmVGdlNGSxcbkTVZwzJwtNKwQ47sP4vfO0aTdGCuJiXlW8cXHNayqkVtONW25NEiGPyvrlw3qx37g/+Tclr9O9RVffH9WdmmSD2yhf13Db6RVJGloerzk1lHii7h6Dt5l/ZS7/FbDA2FuB0Lltc+bJI+qcM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772013706; c=relaxed/simple;
-	bh=4dTEJMpeqyCexGyMyW9Uj1M8i8nxQjZ+tx0sJYh7beA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iN4LK0agOaquZpkvt0jD6OXccVrqORw2PKZgsLP5LA7a4zVcSr1iZPzvTWTubMlBuoh7s4TOkwHsIfrKA0FhZqlmi71Skfd9j7mRmWjr8k0Anx/g7KzSioNPEAumlG1ViLNR3t2o0A3tWnbR9McLT76QqmgMRaJk8pSlym1Q6p0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=EBlSKKCW; arc=fail smtp.client-ip=52.101.193.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JLQN/GFdPm8RXz99kqzUczYaInVIMDdKiL37M+ZKfxpJoxk49yLFY+n54aPpkzavlUHpRWnNeLyyfbHiHsBIT6gHO+erB03HEmw9Shxc+YqHcam2PnqOQ0rsLGLhuFDcdlLbAx7dcKZs/flLzLB55Qrxe5cEOanp4ght5hl7cXjXB8Z5Msc03doh+HImwTFZ3tqvA0HL8/NbAsXfTY3mSriW37mq6UsC1vYb9yM629HCY+QRyiW2qH6IYnjmNQH9YsKDxj0WD2v0WQrjLRlSzaNV8nAwVnjEmE+7z73vdbYkkVzk/IHzk8RBmRrYEgMkpMazs8vdjoo4SuGOfv/Xsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KdjBAVUntiz82CIzcRTb7GjGMlUSXdNa9qlzI7lav3o=;
- b=tk2zGmBwMPlqZnl6Wo5XyoLRODAqohnGezqQWKpr5HY7bftlbbCl7C/lrtLGea+XXJhClR2P31qjoQnoYioPQWXGUP5qTH1A0fwXmvgY8mWg9/YtBsK0EuE5lvkaiqu0pebK2XOBzlNGnrYLfqtz2yGP7mMG5ZOUXJGxFRxc+UYrrI4aCcBnACagZUW/5xF4fqR8tu1svDp9jAjAPVaziQF/UUix6MyP/2NExsdHyeYr9HmIXeCu4UulrE4gZ9QQBBXr6RtzI/3InI9ggCjCxuHwQARVCMRSrrHUGDo3qyiE/f4zoxMQG9PYKF65BAPq6sCtbl03OoWhMQbBjy20AA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KdjBAVUntiz82CIzcRTb7GjGMlUSXdNa9qlzI7lav3o=;
- b=EBlSKKCWUfeFPtQdB4+Amv+cpCiQZBkwyOahEuDp97GXXi0csVP/Y3rIMONNVFq01eDJnbyTFZHa4g8x/qYRk2K5lt8z0GsyXOmT6PVHLLYBnyscBK4zwRYjUZTW82aBwmwLSKeABXjQMtEVSRSx0dzeQyqfp9ytZa4YWfyUOXWoLEjU67a50lfSpMEtpteKwiXO9IRP2EUkr2PC4Rn9kZ3AqhfTuZAW4xoVFFqXWUVU3sppqGtqM1CGbrxrI84OKRaZolhElsl3dYkgi4Qer0DruNKLg1mRD6KTfLpuHfuf6+aeWN/XdKt9T3MfH2fCKCuXDoScF8HutBm074PVUw==
-Received: from SA9PR11CA0019.namprd11.prod.outlook.com (2603:10b6:806:6e::24)
- by PH7PR12MB7235.namprd12.prod.outlook.com (2603:10b6:510:206::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Wed, 25 Feb
- 2026 10:01:41 +0000
-Received: from SN1PEPF000252A3.namprd05.prod.outlook.com
- (2603:10b6:806:6e:cafe::44) by SA9PR11CA0019.outlook.office365.com
- (2603:10b6:806:6e::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.25 via Frontend Transport; Wed,
- 25 Feb 2026 10:01:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- SN1PEPF000252A3.mail.protection.outlook.com (10.167.242.10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Wed, 25 Feb 2026 10:01:41 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 25 Feb
- 2026 02:01:23 -0800
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.20; Wed, 25 Feb 2026 02:01:23 -0800
-Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Wed, 25 Feb 2026 02:01:19 -0800
-From: Akhil R <akhilrajeev@nvidia.com>
-To: <jonathanh@nvidia.com>
-CC: <Frank.Li@kernel.org>, <akhilrajeev@nvidia.com>, <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-	<frank.li@nxp.com>, <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, <p.zabel@pengutronix.de>, <robh@kernel.org>,
-	<thierry.reding@gmail.com>, <vkoul@kernel.org>
-Subject: Re: [PATCH 3/8] dmaengine: tegra: Make reset control optional
-Date: Wed, 25 Feb 2026 15:31:18 +0530
-Message-ID: <20260225100118.45523-1-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <e7944c01-5ede-445e-94df-ce1006414a0d@nvidia.com>
-References: <e7944c01-5ede-445e-94df-ce1006414a0d@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1371919B5B1;
+	Wed, 25 Feb 2026 10:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772013770; cv=none; b=adO934OpumRdITCGXh4RDdkQ2k1RqtXeqtX3JqJFFYIoP90RFxM0g/O9mWV6hz8xmlSwtj+afzTnTe4HkmiAnejgYoKasMEh0GAxbCV6PfoP1OhBv4LFXWCGB6npC2Xtu+Ls5Mui6cTFRgZtQnnR7817UyKMg9raUO0GKtt2I+4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772013770; c=relaxed/simple;
+	bh=5qu0+i5/S8lFVCwnC3vdFY4BnnruuoF7pmrW57g1tqo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pNngFNGjmfiZb0YNI8ch604aah6+m8cBgt8YkAf8FL0L/3PaDNs7zykGqCgeeuxmr3ue2FkWLHWbImg1AcM0KBSGtAIOhkWlLJv6JLvf3+gjJS4ObJpb5IF5t8S/k8VrUBtZPe1gECpGhHUfqxatBas67uxg98Pm7Fz/UetIY/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 2FA77200D05;
+	Wed, 25 Feb 2026 11:02:42 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 13AFE200D16;
+	Wed, 25 Feb 2026 11:02:42 +0100 (CET)
+Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
+	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id CD6852037D;
+	Wed, 25 Feb 2026 11:02:41 +0100 (CET)
+Date: Wed, 25 Feb 2026 11:02:42 +0100
+From: Jan Petrous <jan.petrous@oss.nxp.com>
+To: Simon Horman <horms@kernel.org>
+Cc: alexandre.torgue@foss.st.com, devicetree@vger.kernel.org,
+	festevam@gmail.com, chester62515@gmail.com, s.hauer@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, davem@davemloft.net,
+	mbrugger@suse.com, netdev@vger.kernel.org, andrew+netdev@lunn.ch,
+	s32@nxp.com, pabeni@redhat.com, linux-kernel@vger.kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com,
+	robh@kernel.org, kuba@kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	ghennadi.procopciuc@oss.nxp.com, kernel@pengutronix.de,
+	shawnguo@kernel.org, edumazet@google.com, mcoquelin.stm32@gmail.com,
+	imx@lists.linux.dev
+Subject: Re: [v5,4/4] stmmac: s32: enable support for Multi-IRQ mode
+Message-ID: <aZ7IwgwP5iy2kej8@lsv051416.swis.nl-cdc01.nxp.com>
+References: <20260223-dwmac_multi_irq-v5-4-8fc699a5fac4@oss.nxp.com>
+ <20260225092513.174261-1-horms@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000252A3:EE_|PH7PR12MB7235:EE_
-X-MS-Office365-Filtering-Correlation-Id: f6b10928-a342-4e28-37ee-08de7454dfe1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|7416014|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	woAyBjiu3E/9YOGZUZgpuQBb7ViSSf7LC2FpIk8aG0aH5XhcO6sl8f1BiycdZiTldvyDSYfb+uMBQIRI/5Fe5QFj9Fcj4DA8PU+52B1QrT32+AdexR508yhYqtKrxNI2zqDLbcEHNX5Fe2Pe7cVRN1kxoK7AWY4iFXza9FULr64JwhqW5KJIDXOhncNlnOhpvUHsrd+CvmkrCzQrY5XVQJVUrd/Xj1B7S5BDWEQQ+UYXds3dXcYXigbqe+jXWHY9XAnzxHsxz+GShtLR6VOKNR1ywjPGroPH0qJwbqgJuAwoIWNeh2+GKB9A8CwyDsGTeTK8OslpS9lHGmz3fVqGefSj87+f0EUQ7vgNZeSsnSciQuiOHAXYPo7McHqXxt+6DvT8uWgfZzqoCPQ4v355na2RK52ZnpDGHb7ncF0t79qdeSlTRTGQMnhcVeL1XH9SIcfQRj56TD0KeWCQ1cZ+dw1DvPFH7+Uo/pjp0IYlpbQZY+Z1vcH+oIuDv2e2eZ9E6wiF3WcuMkrHEefsXDblbOC+XJTvdM20dnmmLEswQtzHXiSGdKuAbrZtTpuWJGJl7+VJTuvgV1IAKPnYJCkPnUJntgE9EoG9sXLQGkSbb0XYecCxEXByaaqXvF9LFi0gsntUv3QQ5FIphVTMEnFPL96F+Hqwr/OHm6606SYw0iddnTFcSXaLcSlo/7olEBWlIF3czP6wpUWPa3yzLaSp2B9i3FkbUxEGKrXh5HFnxbyG5L+UnunxCo03xy8x2Wq+Vx52VDSgocI62hb5Nq47ix02bG39P8BCtFCxeQ7cnXtLDJL5KbbrWW+gxt46xO8+KlETt/Ja06U8x8ZquvS/BQ==
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(7416014)(376014)(82310400026);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	rbVigkUwzXt+B0piruR7F3Qetus0Ypb2iUqkz4uNn1ZBvifyAaj/BJVT7l2azJJ1qMup6SR13WEj/t36Y6kgkh3T6zCUBaVyNpu/V+msuR01a2hcoKRjNMPbANuMevc0mjKFfntHM7x6udUzLA788u5MGaqYoTlZCNZW0DarE3z+GFItYmLqrH36MYYWtjyiYKMzvicivhfTgAyjiNwqNp3lkm0LacomuoG0vW6roo1smpq1xHY4we//iomzudf8LnyDjmB797j7IarXIe+n8r6pge0mzhifzaQbbZyyLppjb1kLt0tVE969GUHvnJwjRZGn5EMZvuW/dXqk9Wd5DFatW2qm4QdFkWccyX5fLEvX7W+s5oz2QOco1cjGmogMfiJXtMb3686lED7lMPucQBFy6PDBT3B9649mXB6L7yboLBbNPyYSuQdqEKzwmgKV
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 10:01:41.4260
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f6b10928-a342-4e28-37ee-08de7454dfe1
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF000252A3.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7235
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260225092513.174261-1-horms@kernel.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[foss.st.com,vger.kernel.org,gmail.com,pengutronix.de,lists.infradead.org,davemloft.net,suse.com,lunn.ch,nxp.com,redhat.com,kernel.org,st-md-mailman.stormreply.com,oss.nxp.com,google.com,lists.linux.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,vger.kernel.org,nxp.com,pengutronix.de,gmail.com];
-	TAGGED_FROM(0.00)[bounces-268250-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268251-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akhilrajeev@nvidia.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-0.981];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,nvidia.com:mid];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: AE33F1956D0
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jan.petrous@oss.nxp.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.940];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,lsv051416.swis.nl-cdc01.nxp.com:mid]
+X-Rspamd-Queue-Id: C176819572C
 X-Rspamd-Action: no action
 
-On Tue, 24 Feb 2026 17:02:24 +0000 Jon Hunter wrote:
-> On 24/02/2026 05:39, Akhil R wrote:
->> Hi Frank,
->> 
->> On Tue, 17 Feb 2026 13:04:57 -0500, Frank Li wrote:
->>> On Tue, Feb 17, 2026 at 11:04:52PM +0530, Akhil R wrote:
->>>> Tegra264 BPMP restricts access to GPCDMA reset control and the reset
->>>
->>> what's means of BPMP?
->> 
->> BPMP is Boot and Power Management Processor which is a co-processor
->> in Tegra and runs a dedicated firmware. It manages the boot, clock,
->> reset etc. I will put the expansion in the commit message in the next
->> version. Do you suggest adding more details?
+On Wed, Feb 25, 2026 at 09:25:13AM +0000, Simon Horman wrote:
+> This is an AI-generated review of your patch. The human sending this
+> email has considered the AI review valid, or at least plausible.
 > 
-> Technically you don't even need to mention BPMP here if it confuses 
-> matters. We can just say that for "Tegra264 there is no reset available 
-> for the driver to control and this is handled by boot firmware".
+> For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
+> ---
+> stmmac: s32: enable support for Multi-IRQ mode
+> 
+> This commit enables Multi-IRQ mode for the S32 DWMAC driver, allowing
+> per-queue IRQs for improved performance. The driver checks for multiple
+> queues and per-queue IRQs, enabling multi-IRQ mode when both are present.
+> 
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+> > index af594a096676..4aad7077c9d6 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
+> 
+> [ ... ]
+> 
+> > @@ -165,6 +165,16 @@ static int s32_dwmac_probe(struct platform_device *pdev)
+> >  	plat->core_type = DWMAC_CORE_GMAC4;
+> >  	plat->pmt = 1;
+> >  	plat->flags |= STMMAC_FLAG_SPH_DISABLE;
+> > +
+> > +	/* Check for multi-IRQ config. Assumption: symmetrical rx/tx queues */
+> > +	if (plat->rx_queues_to_use > 1 &&
+> > +	    (res.rx_irq[0] > 0 && res.tx_irq[0] > 0)) {
+> > +		plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
+> > +		dev_info(dev, "Multi-IRQ mode (per queue IRQs) selected\n");
+> > +	} else {
+> > +		dev_info(dev, "MAC IRQ mode selected\n");
+> > +	}
+> 
+> Does this validation check all queues have IRQs? The condition verifies
+> only res.rx_irq[0] and res.tx_irq[0] but doesn't confirm that higher
+> queues have IRQs when rx_queues_to_use > 1.
+> 
+> If a device tree specifies multiple queues but only provides IRQs for
+> queue 0:
+> 
+>     snps,rx-queues-to-use = <2>;
+>     interrupt-names = "macirq", "rx-queue-0", "tx-queue-0";
+>                       /* queue 1 IRQs missing */
+> 
+> The driver would enable STMMAC_FLAG_MULTI_MSI_EN, but later in
+> stmmac_request_irq_multi_msi() (drivers/net/ethernet/stmicro/stmmac/
+> stmmac_main.c), queues with rx_irq[i] == 0 are silently skipped:
+> 
+>     for (i = 0; i < priv->plat->rx_queues_to_use; i++) {
+>         if (priv->rx_irq[i] <= 0)
+>             continue;  /* queue 1+ skipped, no handler registered */
+>         ...
+>     }
+> 
+> This would leave higher-numbered queues with no interrupt handler,
+> causing packet loss when traffic arrives on those queues.
+> 
+> Would it be safer to validate all queue IRQs before enabling multi-IRQ
+> mode, or fall back to MAC IRQ mode if any queue IRQ is missing?
+> 
+> > +
+> >  	plat->rx_fifo_size = 20480;
+> >  	plat->tx_fifo_size = 20480;
 
-Ack. I will update the commit message.
+Hi Simon,
 
-Regards,
-Akhil
+I already addressed this in v6 I sent today.
+
+/Jan
 
