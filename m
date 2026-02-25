@@ -1,186 +1,177 @@
-Return-Path: <devicetree+bounces-268449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268450-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QFZMGB8en2lcZAQAu9opvQ
-	(envelope-from <devicetree+bounces-268449-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:06:55 +0100
+	id qGMiHa4hn2mPZAQAu9opvQ
+	(envelope-from <devicetree+bounces-268450-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:22:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1612719A3E4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:06:54 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7CA719A814
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 17:22:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 211393112E40
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:53:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B05F130275A8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 15:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D0BF3D5258;
-	Wed, 25 Feb 2026 15:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1CA3D6664;
+	Wed, 25 Feb 2026 15:54:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fTmiCBJ5"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="zfjSHjNe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E7E329C71;
-	Wed, 25 Feb 2026 15:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DE83B8BC9;
+	Wed, 25 Feb 2026 15:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772034783; cv=none; b=Mxg9sSIu5E/za+IHX6eQzj6o3KddsiUyiNqe2+umLTzqgszTdPbrzRUe7sD+0GAoSeuPeEKh4zuZueJ80B1O+WsgyvmY5jyK9pHGHMEl4zawcuZYxTa3MLUFFNasUuzrd5e8Ep4URqZ2jysVZbgfechcUlrLnQJzbRrVs0oj0T8=
+	t=1772034865; cv=none; b=juoNbpD1xnJsXjC6uMQZeRcgXcy8HSZvao9IgVWEOqDnC/KSk4oHtk4csXv07CpGTfezSbogY9BDT3XltQW+YAegNL2YlG0hF9umvLd4meQNCK0LS0pg5YuIxg78oNV3h89DdMA8q89Zh6UzBnNthzgDlLHa+fWB0DvsC3mdbtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772034783; c=relaxed/simple;
-	bh=65NJR9v+2VXT8tO+CIhNjHjbKMDdbI3BustHA0JNcQY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M0KEDEMnRiahcQK5DuL9ajiutGWtTjIQ8X1vbNMr3cQiC7uyjMUkhyD14goSsBFlzPgQ+WpRYdlSYOy70Qm/OeO9EsUNjEKZzaRRJz5wXgeBpWVLI1XBrt/fOheCYi6LqoVuAkDrGG54oFIBYBb9aI14Fum2qq5nXO6aDqAa2QQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fTmiCBJ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 409F1C116D0;
-	Wed, 25 Feb 2026 15:53:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772034783;
-	bh=65NJR9v+2VXT8tO+CIhNjHjbKMDdbI3BustHA0JNcQY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fTmiCBJ5x5EEOTV+q3XNkcVoA8aJnoLFpSDedyYeJbIG06p7fsX4ckW/I2QLSIRWc
-	 lBNR0EvSgglKT9eroiWsl+LJIB7XwTPdId31tbUqEIRuhSvelj0OtefP3+cAoRcCH/
-	 1TtQXLLt6D/fTN27xk1qtSJEeihRhbylFsnup2xwf1jgCXFfVJ8cZJm1rM4Af5/Am8
-	 B4maN/n2UPJE7PYgDMq4IfRWRoioWpym9ALaxVFAg0iIjrv1VJivRLBAXNPYCa6T7o
-	 0zNSSBABTPJWbab5InkJZtbouLPrw2LaDn+eYZh+Y1EdWzV7ru01gI3Y+ToHe7oz2o
-	 ILQAdUcCVN2zg==
-Date: Wed, 25 Feb 2026 09:52:59 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Shenwei Wang <shenwei.wang@nxp.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shuah Khan <skhan@linuxfoundation.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, dl-linux-imx <linux-imx@nxp.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
-Message-ID: <ndozoc6qdrpv3xuktumsah56im5rbtg6iwerq3xi2xkcuyewpx@szswqvojleg3>
-References: <CAD++jLkUVFckLTq=SoivNFoFymhJo4KM=qGmajFcv9T9+7tPmg@mail.gmail.com>
- <b4c422ce-3538-40aa-8bfa-b70f02774b5d@foss.st.com>
- <nbzdtngifwrx2kyu4tsiwwua5v4i5cjtaotemq5hubaets3bcn@fk25twf5rv6x>
- <PAXPR04MB9185588C1DB71B1FEFA1DEE38974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CANLsYkxAwgG1WkMRr8EJZuSUnN_jKVnsWhWTakVqhvtMBO365A@mail.gmail.com>
- <PAXPR04MB91851D3DA6A92669CB5926A18974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CANLsYkw-8ERXy3v8Sv55Cpq=+41Toez3EjLMbENAkavvr8STeQ@mail.gmail.com>
- <PAXPR04MB9185B68BC640D940534E44098974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <d4c8f7dd-c0a8-4721-9750-47429637d8c1@lunn.ch>
- <PAXPR04MB9185BB6443B9E1E407F409D68974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1772034865; c=relaxed/simple;
+	bh=gKpVdtB4h+hYpnuulQUb6v1aQk49nel2bRlXlHVQ4UE=;
+	h=From:To:Cc:Date:Message-ID:MIME-Version:Subject; b=CE2qmZgC6o/pdaYTgUprQCYCbUXEKFTyYFb9mflv1knrcpK2+pQoa/bcEBHJM9Gs8K9j53Zrz6RpiSvWRsVZOxeIEquj7A6vPqpKjwJ0ivX/Q/9SKmdg2cmqEZCrqXEQA7n9A/Y23ARWnijAvuv//WFJj6P+7fwp3n0v0P/Egl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=zfjSHjNe; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=wHKdwAMNEz9YwMlr8EqS0oQhOrg5q+vUv7LPu03mT64=; b=zfjSHjNeqN0+aHPGFacwcMU2xT
+	AeynVr6e9UBRY5NiqaFsK9zHOP+4w4YW0+9U1WpDWeMfPeb0El+uNrSxvCgPhc1ZilmgqGZYvWTn+
+	62o10n4C0w7n3ptZocHFu6PH9+QOTsAPuccNX0yAxyEXJTbBU2e2Z6CPf1ZL9SEO1JyY=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:47746 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vvHDH-0005uT-Ix; Wed, 25 Feb 2026 10:54:12 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: robin@protonic.nl,
+	andy@kernel.org,
+	geert@linux-m68k.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dmitry.torokhov@gmail.com,
+	hvilleneuve@dimonoff.com,
+	mkorpershoek@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	lee@kernel.org,
+	alexander.sverdlin@gmail.com,
+	marek.vasut@gmail.com,
+	akurz@blala.de
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	hugo@hugovil.com
+Date: Wed, 25 Feb 2026 10:53:57 -0500
+Message-ID: <20260225155409.612478-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <PAXPR04MB9185BB6443B9E1E407F409D68974A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Subject: [PATCH v3 0/4] input: add GPIO-based charlieplex keypad
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268449-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,linaro.org,foss.st.com,kernel.org,lwn.net,nxp.com,pengutronix.de,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org,bgdev.pl];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-268450-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[protonic.nl,kernel.org,linux-m68k.org,gmail.com,dimonoff.com,collabora.com,blala.de];
+	DMARC_NA(0.00)[hugovil.com];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.996];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[hugovil.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1612719A3E4
+	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,dimonoff.com:email,hugovil.com:mid,hugovil.com:dkim]
+X-Rspamd-Queue-Id: A7CA719A814
 X-Rspamd-Action: no action
 
-On Tue, Feb 24, 2026 at 10:43:06PM +0000, Shenwei Wang wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Andrew Lunn <andrew@lunn.ch>
-> > Sent: Tuesday, February 24, 2026 4:15 PM
-> > To: Shenwei Wang <shenwei.wang@nxp.com>
-> > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>; Bjorn Andersson
-> > <andersson@kernel.org>; Arnaud POULIQUEN
-> > <arnaud.pouliquen@foss.st.com>; Linus Walleij <linusw@kernel.org>; Bartosz
-> > Golaszewski <brgl@kernel.org>; Jonathan Corbet <corbet@lwn.net>; Rob Herring
-> > <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
-> > <conor+dt@kernel.org>; Frank Li <frank.li@nxp.com>; Sascha Hauer
-> > <s.hauer@pengutronix.de>; Shuah Khan <skhan@linuxfoundation.org>; linux-
-> > gpio@vger.kernel.org; linux-doc@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> > <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>;
-> > devicetree@vger.kernel.org; linux-remoteproc@vger.kernel.org;
-> > imx@lists.linux.dev; linux-arm-kernel@lists.infradead.org; dl-linux-imx <linux-
-> > imx@nxp.com>; Bartosz Golaszewski <brgl@bgdev.pl>
-> > Subject: [EXT] Re: [PATCH v8 3/4] gpio: rpmsg: add generic rpmsg GPIO driver
-> > > Please explain how you would design your generic rpmsg-gpio driver
-> > > which is derived From gpio-virtio?
-> > 
-> > We have already seen the virtio commands are pretty much identical to what i
-> > suggested.
-> > 
-> > You could just replace virtqueue_add_sgs() with rpmsg_sendto() and reimplement
-> > virtio_gpio_request_vq() to be the callback registered with rpmsg_create_ept().
-> > The rest of basic GPIO handling should not need any changes at all.
-> > 
-> 
-> Creating endpoints and calling rpmsg_sendto() is only a small part of the picture. You also 
-> need to manage the service announcement from the remote side and handle asynchronous 
-> notification messages. That entire flow is already implemented in the existing virtio_rpmsg_bus 
-> driver. Re‑implementing those pieces just to mimic gpio‑virtio over RPMSG would essentially 
-> mean reinventing the wheel without any real benefit.
-> 
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-I can absolutely see a benefit to this, there are multiple different
-rpmsg backends supported in Linux, so a gpio-rpmsg driver could be used
-by any one of them.
+Hello,
+this patch series add a new GPIO charlieplex keypad driver.
 
-I don't see this to be a case of "reinventing the wheel". Instead we
-copy what looks to be a very functional wheel and make it fit rpmsg.
-This will result in some "duplication", but rpmsg already provide the
-life cycle management and has a clean send/callback interface, so there
-shouldn't be any inventing...
+The first two patches simply commonize two properties that are present in
+a few bindings, so that the actual patches for the charlieplex keypad driver
+can reuse them instead of also redefining them.
 
-Similarly, I'm guessing that there's a firmware-side implementation of
-virtio-gpio in Zephyr, it should be straightforward to transplant this
-to the rpmsg interface.
+I have tested the driver on a custom board with a Solidrun RZ/G2LC SOM
+with three charlieplex keyboards, all connected thru a single PCA9416 I2C GPIO
+expander.
 
-Regards,
-Bjorn
+Link: [v1] https://lore.kernel.org/all/20260203155023.536103-1-hugo@hugovil.com/
+Link: [v2] https://lore.kernel.org/all/20260213171431.2228814-1-hugo@hugovil.com/
 
-> Thanks,
-> Shenwei
-> 
-> > Interrupt support does however need some changes. The
-> > virtio_gpio_request_vq() replacement would need to see if the received message
-> > indicates an interrupt and call the equivalent of virtio_gpio_event_vq(), since
-> > rpmsg does not have a separate mechanism to deliver interrupts, unlike rpmsg.
-> > 
-> > At a guess, 90% of the code would stay the same?
-> > 
-> >    Andrew
+Changes for v3:
+- Add ASCII diagram in bindings, and reference to it in example
+- Reorder properties alphabetically
+- Add patch to define common input settling-time-us property
+- Add patch to define common input debounce-delay-ms property
+
+Changes for v2:
+- Fix yamllint error for example
+- Remove unused debug variable (nkeys)
+- Remove support for custom linux,no-autorepeat DT property
+- Remove support for custom gpio-activelow DT property
+
+Thank you.
+
+Hugo Villeneuve (4):
+  dt-bindings: input: add debounce-delay-ms common property
+  dt-bindings: input: add settling-time-us common property
+  dt-bindings: input: add GPIO charlieplex keypad
+  Input: charlieplex_keypad: add GPIO charlieplex keypad
+
+ .../bindings/auxdisplay/holtek,ht16k33.yaml   |   5 +-
+ .../bindings/input/cirrus,ep9307-keypad.yaml  |   7 +-
+ .../input/gpio-charlieplex-keypad.yaml        | 106 +++++++++
+ .../bindings/input/gpio-matrix-keypad.yaml    |   5 +-
+ .../devicetree/bindings/input/input.yaml      |  16 ++
+ .../input/mediatek,mt6779-keypad.yaml         |   1 +
+ .../devicetree/bindings/mfd/fsl,mc13xxx.yaml  |   2 -
+ MAINTAINERS                                   |   7 +
+ drivers/input/keyboard/Kconfig                |  14 ++
+ drivers/input/keyboard/Makefile               |   1 +
+ drivers/input/keyboard/charlieplex_keypad.c   | 213 ++++++++++++++++++
+ 11 files changed, 365 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
+ create mode 100644 drivers/input/keyboard/charlieplex_keypad.c
+
+
+base-commit: ab2e361ca97a42b7af8be1d273646b30d3b75bf3
+-- 
+2.47.3
+
 
