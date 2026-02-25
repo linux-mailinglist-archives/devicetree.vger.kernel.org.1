@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-268201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268202-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eMggOn+5nmnwWwQAu9opvQ
-	(envelope-from <devicetree+bounces-268201-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:35 +0100
+	id oBAZInK5nmnwWwQAu9opvQ
+	(envelope-from <devicetree+bounces-268202-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812E81947C5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 055051947AF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 09:57:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E22E8300E3B0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:55:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 146C4300A537
+	for <lists+devicetree@lfdr.de>; Wed, 25 Feb 2026 08:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1CD2C178D;
-	Wed, 25 Feb 2026 08:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7553254AE;
+	Wed, 25 Feb 2026 08:55:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from Atcsqr.andestech.com (unknown [60.248.187.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86709304BB4
-	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75D131D390
+	for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 08:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.187.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772009738; cv=none; b=Vw9MH2Jzf62S9LsPWYNHZd5U5R5oSJ2DgLzMej/qxSn8n4OjYgN6QAmkhG9BakwlqITU9VDScjXrRFCx6ygEXjK25Xtank0lJ4kue1BJiVLuiV6YFj16KxE3BW/WlVGx0DPjGsvvSgeXK70rp4R1hLc3bbDUKwePjQiOOrFEH98=
+	t=1772009744; cv=none; b=gnCKTAhyrQclOFn1V+kzVx+RMB1LdbXc+F5B60HndwFMBH5TiLVEWlRgr7agh560fFagWqg8hssTwAOuxGost9D6xL+LDhg+zSqnbhJh/YKbmOxLMAg3pQvflJMC27ypG6JfXpawiScVN8N3kTfAtpUANVF4aFGB6VMYIA2jcuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772009738; c=relaxed/simple;
-	bh=Q2+eln8AOytxLuSyo1ljLJzo0e/fMmCnx58iBBB8z/M=;
+	s=arc-20240116; t=1772009744; c=relaxed/simple;
+	bh=1BnSrFvydFUNEuCzk0fuUYpROalpDTdPuWt6oUAC7uw=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UVvOPrLf08MgLkTPInWxpiFAvLiUsrqRpDysBMR2YLar09MIte6ZXjSxruHY+kB6NjoDAjp5t1Ht9NHXtYeXzVi54mVY5wCsGpliaozhU0OaKsYqv3EMV7XUckm2sKqacatfZ9Nm/fGq4hpBDanIhaYp510KZTHUfpXARvF+ROc=
+	 MIME-Version:Content-Type; b=DTMEemdlh0YkBSmIMGunrXVwR5wMQsHlmdzVRRNb7RanswgeObEk8TMIqCNssQTe9JKUZdCz2gvrGQdfQ+s+/h3yVwvU/jSi8ikwnq6j5XQarzZlxHAIPjOw53q/mDiLFuo7AghPjm9u18MCH7CZ0kDyK7GuT0+lGBqmiURsiVA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.187.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
 Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTP id 61P8tBd7077809;
+	by Atcsqr.andestech.com with ESMTP id 61P8tBd8077809;
 	Wed, 25 Feb 2026 16:55:12 +0800 (+08)
 	(envelope-from randolph@andestech.com)
 Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
@@ -57,9 +57,9 @@ CC: <linux-pci@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
         <elder@riscstar.com>, <s-vadapalli@ti.com>,
         <ciprianmarian.costea@nxp.com>, <randolph.sklin@gmail.com>,
         <tim609@andestech.com>, Randolph Lin <randolph@andestech.com>
-Subject: [PATCH v11 3/4] PCI: qilai: Add Andes QiLai SoC PCIe host driver support
-Date: Wed, 25 Feb 2026 16:55:03 +0800
-Message-ID: <20260225085504.3757601-4-randolph@andestech.com>
+Subject: [PATCH v11 4/4] MAINTAINERS: Add maintainers for Andes QiLai PCIe driver
+Date: Wed, 25 Feb 2026 16:55:04 +0800
+Message-ID: <20260225085504.3757601-5-randolph@andestech.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260225085504.3757601-1-randolph@andestech.com>
 References: <20260225085504.3757601-1-randolph@andestech.com>
@@ -76,289 +76,65 @@ X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
 X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
 X-DNSRBL: 
 X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 61P8tBd7077809
+X-MAIL:Atcsqr.andestech.com 61P8tBd8077809
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [3.54 / 15.00];
 	DMARC_POLICY_REJECT(2.00)[andestech.com : SPF not aligned (relaxed), No valid DKIM,reject];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268201-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_FROM(0.00)[bounces-268202-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[34];
+	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,google.com,ghiti.fr,eecs.berkeley.edu,dabbelt.com,sifive.com,andestech.com,amd.com,linutronix.de,samsung.com,foss.st.com,nxp.com,quicinc.com,oss.qualcomm.com,linaro.org,nvidia.com,riscstar.com,ti.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.912];
+	NEURAL_HAM(-0.00)[-0.940];
 	FROM_NEQ_ENVFROM(0.00)[randolph@andestech.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5]
-X-Rspamd-Queue-Id: 812E81947C5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,amperecomputing.com:email]
+X-Rspamd-Queue-Id: 055051947AF
 X-Rspamd-Action: no action
 
 From: Randolph Lin <randolph@andestech.com>
 
-Add driver support for DesignWare based PCIe controller in Andes
-QiLai SoC. The driver only supports the Root Complex mode.
+Here add maintainer information for Andes QiLai PCIe driver.
 
 Signed-off-by: Randolph Lin <randolph@andestech.com>
 ---
- drivers/pci/controller/dwc/Kconfig            |  13 ++
- drivers/pci/controller/dwc/Makefile           |   1 +
- drivers/pci/controller/dwc/pcie-andes-qilai.c | 197 ++++++++++++++++++
- 3 files changed, 211 insertions(+)
- create mode 100644 drivers/pci/controller/dwc/pcie-andes-qilai.c
+ MAINTAINERS | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index d0aa031397fa..95bfb60d73a4 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -61,6 +61,19 @@ config PCI_MESON
- 	  and therefore the driver re-uses the DesignWare core functions to
- 	  implement the driver.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 55af015174a5..02619b84e6ee 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20128,6 +20128,13 @@ S:	Supported
+ F:	Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+ F:	drivers/pci/controller/pcie-altera.c
  
-+config PCIE_ANDES_QILAI
-+	tristate "Andes QiLai PCIe controller"
-+	depends on ARCH_ANDES || COMPILE_TEST
-+	depends on PCI_MSI
-+	select PCIE_DW_HOST
-+	help
-+	  Say Y here to enable PCIe controller support on Andes QiLai SoCs,
-+	  which operate in Root Complex mode. The Andes QiLai SoC PCIe
-+	  controller is based on DesignWare IP and therefore the driver
-+	  re-uses the DesignWare core functions to implement the driver.
-+	  The Andes QiLai SoC features three Root Complexes, each operating
-+	  on PCIe 4.0.
++PCI DRIVER FOR ANDES QILAI PCIE
++M:	Randolph Lin <randolph@andestech.com>
++L:	linux-pci@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
++F:	drivers/pci/controller/dwc/pcie-andes-qilai.c
 +
- config PCIE_ARTPEC6
- 	bool
- 
-diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-index 67ba59c02038..9e61458dff00 100644
---- a/drivers/pci/controller/dwc/Makefile
-+++ b/drivers/pci/controller/dwc/Makefile
-@@ -5,6 +5,7 @@ obj-$(CONFIG_PCIE_DW_HOST) += pcie-designware-host.o
- obj-$(CONFIG_PCIE_DW_EP) += pcie-designware-ep.o
- obj-$(CONFIG_PCIE_DW_PLAT) += pcie-designware-plat.o
- obj-$(CONFIG_PCIE_AMD_MDB) += pcie-amd-mdb.o
-+obj-$(CONFIG_PCIE_ANDES_QILAI) += pcie-andes-qilai.o
- obj-$(CONFIG_PCIE_BT1) += pcie-bt1.o
- obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
- obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
-diff --git a/drivers/pci/controller/dwc/pcie-andes-qilai.c b/drivers/pci/controller/dwc/pcie-andes-qilai.c
-new file mode 100644
-index 000000000000..bd1588be44e0
---- /dev/null
-+++ b/drivers/pci/controller/dwc/pcie-andes-qilai.c
-@@ -0,0 +1,197 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for the PCIe Controller in QiLai from Andes
-+ *
-+ * Copyright (C) 2026 Andes Technology Corporation
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/pci.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/types.h>
-+
-+#include "pcie-designware.h"
-+
-+#define PCIE_INTR_CONTROL1			0x15c
-+#define PCIE_MSI_CTRL_INT_EN			BIT(28)
-+
-+#define PCIE_LOGIC_COHERENCY_CONTROL3		0x8e8
-+
-+/*
-+ * Refer to Table A4-5 (Memory type encoding) in the
-+ * AMBA AXI and ACE Protocol Specification.
-+ *
-+ * The selected value corresponds to the Memory type field:
-+ * "Write-back, Read and Write-allocate".
-+ *
-+ * The last three rows in the table A4-5 in
-+ * AMBA AXI and ACE Protocol Specification:
-+ * ARCACHE        AWCACHE        Memory type
-+ * ------------------------------------------------------------------
-+ * 1111 (0111)    0111           Write-back Read-allocate
-+ * 1011           1111 (1011)    Write-back Write-allocate
-+ * 1111           1111           Write-back Read and Write-allocate (selected)
-+ */
-+#define IOCP_ARCACHE				0b1111
-+#define IOCP_AWCACHE				0b1111
-+
-+#define PCIE_CFG_MSTR_ARCACHE_MODE		GENMASK(6, 3)
-+#define PCIE_CFG_MSTR_AWCACHE_MODE		GENMASK(14, 11)
-+#define PCIE_CFG_MSTR_ARCACHE_VALUE		GENMASK(22, 19)
-+#define PCIE_CFG_MSTR_AWCACHE_VALUE		GENMASK(30, 27)
-+
-+#define PCIE_GEN_CONTROL2			0x54
-+#define PCIE_CFG_LTSSM_EN			BIT(0)
-+
-+#define PCIE_REGS_PCIE_SII_PM_STATE		0xc0
-+#define SMLH_LINK_UP				BIT(6)
-+#define RDLH_LINK_UP				BIT(7)
-+
-+struct qilai_pcie {
-+	struct dw_pcie pci;
-+	void __iomem *apb_base;
-+};
-+
-+#define to_qilai_pcie(_pci) container_of(_pci, struct qilai_pcie, pci)
-+
-+static bool qilai_pcie_link_up(struct dw_pcie *pci)
-+{
-+	struct qilai_pcie *pcie = to_qilai_pcie(pci);
-+	u32 val;
-+
-+	val = readl(pcie->apb_base + PCIE_REGS_PCIE_SII_PM_STATE);
-+
-+	return FIELD_GET(SMLH_LINK_UP, val) && FIELD_GET(RDLH_LINK_UP, val);
-+}
-+
-+static int qilai_pcie_start_link(struct dw_pcie *pci)
-+{
-+	struct qilai_pcie *pcie = to_qilai_pcie(pci);
-+	u32 val;
-+
-+	val = readl(pcie->apb_base + PCIE_GEN_CONTROL2);
-+	val |= PCIE_CFG_LTSSM_EN;
-+	writel(val, pcie->apb_base + PCIE_GEN_CONTROL2);
-+
-+	return 0;
-+}
-+
-+static const struct dw_pcie_ops qilai_pcie_ops = {
-+	.link_up = qilai_pcie_link_up,
-+	.start_link = qilai_pcie_start_link,
-+};
-+
-+/*
-+ * Set up the QiLai PCIe IOCP (IO Coherence Port) Read/Write Behaviors to the
-+ * Write-Back, Read and Write Allocate mode.
-+ *
-+ * The IOCP HW target is SoC last-level cache (L2 Cache), which serves as the
-+ * system cache. The IOCP HW helps maintain cache monitoring, ensuring that
-+ * the device can snoop data from/to the cache.
-+ */
-+static void qilai_pcie_iocp_cache_setup(struct dw_pcie_rp *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	u32 val;
-+
-+	dw_pcie_dbi_ro_wr_en(pci);
-+
-+	val = dw_pcie_readl_dbi(pci, PCIE_LOGIC_COHERENCY_CONTROL3);
-+	FIELD_MODIFY(PCIE_CFG_MSTR_ARCACHE_MODE, &val, IOCP_ARCACHE);
-+	FIELD_MODIFY(PCIE_CFG_MSTR_AWCACHE_MODE, &val, IOCP_AWCACHE);
-+	FIELD_MODIFY(PCIE_CFG_MSTR_ARCACHE_VALUE, &val, IOCP_ARCACHE);
-+	FIELD_MODIFY(PCIE_CFG_MSTR_AWCACHE_VALUE, &val, IOCP_AWCACHE);
-+	dw_pcie_writel_dbi(pci, PCIE_LOGIC_COHERENCY_CONTROL3, val);
-+
-+	dw_pcie_dbi_ro_wr_dis(pci);
-+}
-+
-+static void qilai_pcie_enable_msi(struct qilai_pcie *pcie)
-+{
-+	u32 val;
-+
-+	val = readl(pcie->apb_base + PCIE_INTR_CONTROL1);
-+	val |= PCIE_MSI_CTRL_INT_EN;
-+	writel(val, pcie->apb_base + PCIE_INTR_CONTROL1);
-+}
-+
-+static int qilai_pcie_host_init(struct dw_pcie_rp *pp)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-+	struct qilai_pcie *pcie = to_qilai_pcie(pci);
-+
-+	qilai_pcie_enable_msi(pcie);
-+
-+	return 0;
-+}
-+
-+static void qilai_pcie_host_post_init(struct dw_pcie_rp *pp)
-+{
-+	qilai_pcie_iocp_cache_setup(pp);
-+}
-+
-+static const struct dw_pcie_host_ops qilai_pcie_host_ops = {
-+	.init = qilai_pcie_host_init,
-+	.post_init = qilai_pcie_host_post_init,
-+};
-+
-+static int qilai_pcie_probe(struct platform_device *pdev)
-+{
-+	struct qilai_pcie *pcie;
-+	struct dw_pcie *pci;
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	pcie = devm_kzalloc(&pdev->dev, sizeof(*pcie), GFP_KERNEL);
-+	if (!pcie)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, pcie);
-+
-+	pci = &pcie->pci;
-+	pcie->pci.dev = dev;
-+	pcie->pci.ops = &qilai_pcie_ops;
-+	pcie->pci.pp.ops = &qilai_pcie_host_ops;
-+	pci->use_parent_dt_ranges = true;
-+
-+	dw_pcie_cap_set(&pcie->pci, REQ_RES);
-+
-+	pcie->apb_base = devm_platform_ioremap_resource_byname(pdev, "apb");
-+	if (IS_ERR(pcie->apb_base))
-+		return PTR_ERR(pcie->apb_base);
-+
-+	pm_runtime_set_active(dev);
-+	pm_runtime_no_callbacks(dev);
-+	devm_pm_runtime_enable(dev);
-+
-+	ret = dw_pcie_host_init(&pcie->pci.pp);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to initialize PCIe host\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id qilai_pcie_of_match[] = {
-+	{ .compatible = "andestech,qilai-pcie" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, qilai_pcie_of_match);
-+
-+static struct platform_driver qilai_pcie_driver = {
-+	.probe = qilai_pcie_probe,
-+	.driver = {
-+		.name	= "qilai-pcie",
-+		.of_match_table = qilai_pcie_of_match,
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+	},
-+};
-+
-+builtin_platform_driver(qilai_pcie_driver);
-+
-+MODULE_AUTHOR("Randolph Lin <randolph@andestech.com>");
-+MODULE_DESCRIPTION("Andes QiLai PCIe driver");
-+MODULE_LICENSE("GPL");
+ PCI DRIVER FOR APPLIEDMICRO XGENE
+ M:	Toan Le <toan@os.amperecomputing.com>
+ L:	linux-pci@vger.kernel.org
 -- 
 2.34.1
 
