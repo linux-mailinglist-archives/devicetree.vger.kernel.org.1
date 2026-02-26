@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-268845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sKq2FtlMoGnvhwQAu9opvQ
-	(envelope-from <devicetree+bounces-268845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:38:33 +0100
+	id GIotOiNMoGnvhwQAu9opvQ
+	(envelope-from <devicetree+bounces-268846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:35:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5EF71A6BAE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:38:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C7431A6A6E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:35:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8D74E310342F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:34:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04818303CC14
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7013D363C50;
-	Thu, 26 Feb 2026 13:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C1336BCC3;
+	Thu, 26 Feb 2026 13:34:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YJhhWNuz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="09xEbVgS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1DF363C56
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3664B36165F;
+	Thu, 26 Feb 2026 13:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772112860; cv=none; b=LCzWq+RQDPFqGaDYWi/hUYMac9/V8STZYYu5xZtDs3KisWgjhkj2Vg4rGVTilwTuxVqH/N4X8GrKZIokFlQ/F6bTrcFhTrXtw4q9fleUn472wEr4FXnDcKDBiLiCsvrwVIL5IsjjlzE6Gf2f3VgeiFBr2dJcoa5054tarLL8y94=
+	t=1772112862; cv=none; b=E6nQ3KXjarUd9+qeAhfBjfaPOAz7uvjeQLRZCG094sGIrwLzh27g/z10UDPj+x3yszoIYZ3vvFpNiwI6Vou1h1jMMgXj05SlOZ8RQ3LN7R8ZzMfy73T7QoFNLmPN3LgFUmxA6YjhKzE2zlqu9CbsIZVK5B8xQygw0g08LkYUfnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772112860; c=relaxed/simple;
-	bh=lxC7MoL5UQaC1HHed2m8XdzgEVxRLG3xEMoXukRUs4o=;
+	s=arc-20240116; t=1772112862; c=relaxed/simple;
+	bh=u+wfGz+ZhlOqDIFcuvwo7e0m/oVXO15SdKlZUWHkZto=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jy96ZE6fg6XntJtsJ9c9k/ksmBGD/r2SRDyPdxB+i9l/Zuapzw7QmGWb8/jNXnaJJRveiPwMmdo7P4462cXJNEwMu/uI18au5GFAsoJF3NbNk96HOxW+xA9SS/qqtL5l6XzIMjwc/t+z3M0qW31n/+Fuz+elBeoErptk2PEndGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YJhhWNuz; arc=none smtp.client-ip=185.246.85.4
+	 In-Reply-To:To:Cc; b=I+df4axX11JW8LvyelKS+60gG/5koUAQTJHviHQEOx+EkxXXBOnD8ZMtYg2m53S1ouXrZsK1sw06mS1N1a0uLKp3e1eaom4uQVOoI1rTgWyF+I6V56uA7zKnae0XrwzMG/tus5AbWMkSUku0DXmq2SgBA07o3cFa5JK+qHiiG58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=09xEbVgS; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id EDCFF4E41230;
-	Thu, 26 Feb 2026 13:34:15 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id A7A4D4E4122A;
+	Thu, 26 Feb 2026 13:34:17 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BEAA05FE46;
-	Thu, 26 Feb 2026 13:34:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7806A103691E1;
-	Thu, 26 Feb 2026 14:34:13 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 79EF85FDEB;
+	Thu, 26 Feb 2026 13:34:17 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F2EA810369380;
+	Thu, 26 Feb 2026 14:34:14 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772112854; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1772112856; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=sZVsM7cOjX5aDJbulYzzyMObqmeiRrsk50vVV83iK4c=;
-	b=YJhhWNuzm9vcBJS1aWuTtqwk9iRnAW/o884/uZbuJsVsBSqiHyexCMo+vQEqKg6Bj8sLQf
-	rOwj04SlNF5gIFBWvUf8ZB6/riF4B/UgWZWbv3XiZHBLdnbdQchtZCAWQrII0X/Ahv69eU
-	2uuJ2YxU5dEyjXsrF/kSBDy7BulgTIcIPuYgW7mJJupH08y/j5JzNIg2zKSdcPo6wDEN1I
-	obOPg7CAnlevVbzB6pcMrtuABT6/ivO9BLT/mpwcH3gTZp/FRwum24+DreQR9WJYiXVjdM
-	1j+mZNblydDw8KgbecmBdv/RISECtLmJg2EFoYPjQmYhsRVMoaorYiN8Qr4/9Q==
+	bh=urT9FxqkbCEkNGeBBD5kw+z5Njj8+58xUWhnzyNUo1M=;
+	b=09xEbVgSo/F8HcG8XXQYkjUYy1ZlKeV0nbvuNUSv7aCSSutjNZdkcbQ91tmamT8wjGRinU
+	6+fHO7sKPbVfgPzfiYiM1WrS/obIRm0RU5BEiFmiyri8iIPddwO7kQgtybgspWySgkiYuh
+	acAd6ISd6eRTHTF013pxzxANwR1upy11ldYrLM1ulpTvwV/XCh0IbNl+hI8gCf1gUf00Kr
+	+Ko+z3jIRXthcCZ6IoO+DyzhUQ5ZsMpu1tv/66I3oVPBrS+PqdB/taGlwzeFuooD9jLmrI
+	Uhmzzx0w0FeSyFnC6cUDk66DQSoJNlLHfYL0MzyEoiyoRalKFhQPUtPkws4gXA==
 From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-Date: Thu, 26 Feb 2026 14:33:47 +0100
-Subject: [PATCH v3 03/13] MIPS: Add Mobileye EyeQ6Lplus support
+Date: Thu, 26 Feb 2026 14:33:48 +0100
+Subject: [PATCH v3 04/13] reset: eyeq: Add Mobileye EyeQ6Lplus OLB
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260226-eyeq6lplus-v3-3-9cbeb59268b0@bootlin.com>
+Message-Id: <20260226-eyeq6lplus-v3-4-9cbeb59268b0@bootlin.com>
 References: <20260226-eyeq6lplus-v3-0-9cbeb59268b0@bootlin.com>
 In-Reply-To: <20260226-eyeq6lplus-v3-0-9cbeb59268b0@bootlin.com>
 To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
@@ -87,11 +87,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268845-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268846-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -99,7 +99,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
@@ -109,45 +109,95 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,bootlin.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C5EF71A6BAE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim,bootlin.com:email,pengutronix.de:email]
+X-Rspamd-Queue-Id: 3C7431A6A6E
 X-Rspamd-Action: no action
 
-Add the EyeQ6Lplus to the group of choices for Mobileye SoC
-and set the kernel load address specific to this SoC.
+Declare the two reset domains found in the EyeQ6Lplus OLB and add
+them to the data matched by 'mobileye,eyeq6lplus-olb' compatible.
 
+Those reset domains are identical to those present in the EyeQ5
+OLB, so no changes are needed to support them.
+
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
 ---
- arch/mips/mobileye/Kconfig  | 3 +++
- arch/mips/mobileye/Platform | 1 +
- 2 files changed, 4 insertions(+)
+ drivers/reset/Kconfig      |  4 ++--
+ drivers/reset/reset-eyeq.c | 31 +++++++++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+), 2 deletions(-)
 
-diff --git a/arch/mips/mobileye/Kconfig b/arch/mips/mobileye/Kconfig
-index f9abb2d6e178..8a4868d2e28f 100644
---- a/arch/mips/mobileye/Kconfig
-+++ b/arch/mips/mobileye/Kconfig
-@@ -12,6 +12,9 @@ choice
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 7ce151f6a7e4..0cf49495d814 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -85,9 +85,9 @@ config RESET_EIC7700
  
- 	config MACH_EYEQ6H
- 		bool "Mobileye EyeQ6H SoC"
+ config RESET_EYEQ
+ 	bool "Mobileye EyeQ reset controller"
+-	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
++	depends on MACH_EYEQ5 || MACH_EYEQ6H || MACH_EYEQ6LPLUS || COMPILE_TEST
+ 	select AUXILIARY_BUS
+-	default MACH_EYEQ5 || MACH_EYEQ6H
++	default MACH_EYEQ5 || MACH_EYEQ6H || MACH_EYEQ6LPLUS
+ 	help
+ 	  This enables the Mobileye EyeQ reset controller, used in EyeQ5, EyeQ6L
+ 	  and EyeQ6H SoCs.
+diff --git a/drivers/reset/reset-eyeq.c b/drivers/reset/reset-eyeq.c
+index 8018fa895427..1a3857983897 100644
+--- a/drivers/reset/reset-eyeq.c
++++ b/drivers/reset/reset-eyeq.c
+@@ -49,6 +49,18 @@
+  *  8. MPC0	 9. MPC1	10. MPC2	11. MPC3
+  * 12. MPC4
+  *
++ * Known resets in EyeQ6Lplus domain 0 (type EQR_EYEQ5_PCIE):
++ *  0. SPI0	 1. SPI1	 2. UART0	 3. I2C0
++ *  4. I2C1	 5. TIMER0	 6. TIMER1	 7. TIMER2
++ *  8. TIMER3	 9. WD0		10. WD1		11. EXT0
++ * 12. EXT1	13. GPIO
++ *
++ * Known resets in EyeQ6Lplus domain 1 (type EQR_EYEQ5_ACRP):
++ *  0. VMP0	 1. VMP1	 2. VMP2	 3. VMP3
++ *  4. PMA0	 5. PMA1	 6. PMAC0	 7. PMAC1
++ *  8. MPC0	 9. MPC1	10. MPC2	11. MPC3
++ * 12. MPC4
++ *
+  * Known resets in EyeQ6H west/east (type EQR_EYEQ6H_SARCR):
+  *  0. CAN	 1. SPI0	 2. SPI1	 3. UART0
+  *  4. UART1	 5. I2C0	 6. I2C1	 7. -hole-
+@@ -501,6 +513,24 @@ static const struct eqr_match_data eqr_eyeq6l_data = {
+ 	.domains	= eqr_eyeq6l_domains,
+ };
+ 
++static const struct eqr_domain_descriptor eqr_eyeq6lplus_domains[] = {
++	{
++		.type = EQR_EYEQ5_PCIE,
++		.valid_mask = 0x3FFF,
++		.offset = 0x004,
++	},
++	{
++		.type = EQR_EYEQ5_ACRP,
++		.valid_mask = 0x00FF,
++		.offset = 0x200,
++	},
++};
 +
-+	config MACH_EYEQ6LPLUS
-+		bool "Mobileye EyeQ6Lplus SoC"
- endchoice
- 
- config FIT_IMAGE_FDT_EPM5
-diff --git a/arch/mips/mobileye/Platform b/arch/mips/mobileye/Platform
-index 69f775bbbb1e..93b533492b58 100644
---- a/arch/mips/mobileye/Platform
-+++ b/arch/mips/mobileye/Platform
-@@ -10,6 +10,7 @@
- 
- load-$(CONFIG_MACH_EYEQ5)	= 0xa800000808000000
- load-$(CONFIG_MACH_EYEQ6H)	= 0xa800000100800000
-+load-$(CONFIG_MACH_EYEQ6LPLUS)	= 0xa800000108800000
- all-$(CONFIG_MACH_EYEQ5)	+= vmlinux.gz.itb
- 
- its-y					:= vmlinux.its.S
++static const struct eqr_match_data eqr_eyeq6lplus_data = {
++	.domain_count	= ARRAY_SIZE(eqr_eyeq6lplus_domains),
++	.domains	= eqr_eyeq6lplus_domains,
++};
++
+ /* West and east OLBs each have an instance. */
+ static const struct eqr_domain_descriptor eqr_eyeq6h_we_domains[] = {
+ 	{
+@@ -535,6 +565,7 @@ static const struct eqr_match_data eqr_eyeq6h_acc_data = {
+ static const struct of_device_id eqr_match_table[] = {
+ 	{ .compatible = "mobileye,eyeq5-olb", .data = &eqr_eyeq5_data },
+ 	{ .compatible = "mobileye,eyeq6l-olb", .data = &eqr_eyeq6l_data },
++	{ .compatible = "mobileye,eyeq6lplus-olb", .data = &eqr_eyeq6lplus_data },
+ 	{ .compatible = "mobileye,eyeq6h-west-olb", .data = &eqr_eyeq6h_we_data },
+ 	{ .compatible = "mobileye,eyeq6h-east-olb", .data = &eqr_eyeq6h_we_data },
+ 	{ .compatible = "mobileye,eyeq6h-acc-olb", .data = &eqr_eyeq6h_acc_data },
 
 -- 
 2.53.0
