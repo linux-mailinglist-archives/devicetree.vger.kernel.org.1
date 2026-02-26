@@ -1,158 +1,197 @@
-Return-Path: <devicetree+bounces-268783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268786-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6DOSEPQqoGlrfwQAu9opvQ
-	(envelope-from <devicetree+bounces-268783-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:13:56 +0100
+	id mKdWABAroGlrfwQAu9opvQ
+	(envelope-from <devicetree+bounces-268786-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:14:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D6A61A4E93
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:13:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35F0B1A4EC6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 984B4300274F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:09:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2F4443001194
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:14:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37ACB3382F3;
-	Thu, 26 Feb 2026 11:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753E233C1A7;
+	Thu, 26 Feb 2026 11:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lMwXjfJR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="A5eA5z28"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1470C336EF7;
-	Thu, 26 Feb 2026 11:09:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E87933A71C;
+	Thu, 26 Feb 2026 11:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772104183; cv=none; b=QkF2MCbZPyoRMnwKTlze1HIS34WAiu93qhIcvjFQAmQOeQ0+BJtIJgcKB4Fjt9OkaZAHfCYZcPXhIcurxR1WdE6YJeKO0hbguWEFjj17VyLN9uuGwaBoUZ0/Z3YrFgkfx1/zHzFHKrXilEn+j6ZrzvX1AN30zOt+UVxT0g8DBu4=
+	t=1772104434; cv=none; b=Hte2rpC2sNonNvM+L5rH4WOAMoM8wXOYywW/Ak6vp02DaBy8ycVH/4+i68Q9IKekfaER8pl6UGD+nV97hYpOQehxcGQenFNF+vmv9VxX5JigVhcHHt1dz0As2ftHJARMLnU7E5YQRNQsgbzRjzot2WZypr675qk+ZA9WfCw8RPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772104183; c=relaxed/simple;
-	bh=Kc3y4vF5C5ht3a1XMvsgWskMHYvLykSYzITc23T1NDk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m3ogPpjlAgkNTrM4SGDdteBmafvXXC4T4DLMUwRRnlXti99S5M7FcDZmGVXx3jJa8Fww6NESlIhEZRQg7PT4prv07HA//p/CkzSUvk/OvU9mJYHlXfrlcfEYrRmfKaKWiRuS4/SoOWJ7ZNFmNt8ipjLpHTMmStuJquhj6ZWRMCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lMwXjfJR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CE57C116C6;
-	Thu, 26 Feb 2026 11:09:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772104182;
-	bh=Kc3y4vF5C5ht3a1XMvsgWskMHYvLykSYzITc23T1NDk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lMwXjfJRiBEVT78l5CXkOIawXNBob9Tdyzc3m9YFg/yr5NW3jo4xUaZtWPHv/0yac
-	 /Hly1F07PxVhWGDQNVpxeu2kGBaCqUkT2niVyH2Y51jDtlazKYy4ZzF0zT64lhSV5o
-	 LqftKpjqtq5SNHLyEZNtnrjab3+k7UHOZzkEAVCuK6S/GvLCFQcQA2x2unfm1lRdd+
-	 3dnowboT25KCF+kAVqUMa4lMBCn4RSwnSPU6Qw/z3VOAKkQZVJulE82qq1AlLjkWcv
-	 UStRFoipY7jmgC/3t5JHneFEUpm8fXDGBS6hTpKTLLiA2ZFH/pDkKky4e68MHVo1Z4
-	 9KfmULnHylmTw==
-Date: Thu, 26 Feb 2026 11:09:35 +0000
-From: Conor Dooley <conor@kernel.org>
-To: netdev@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Valentina.FernandezAlanis@microchip.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
-	Abin Joseph <abin.joseph@amd.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH net-next v2 1/8] riscv: dts: microchip: add tsu clock to
- macb on mpfs
-Message-ID: <20260226-untimely-overcoat-a335a7016adc@spud>
-References: <20260226-snowshoe-amusable-6716d4ddea11@spud>
- <20260226-briskly-severity-69c2988e8dc8@spud>
+	s=arc-20240116; t=1772104434; c=relaxed/simple;
+	bh=TcV75M7San5/fFIL2ZKehzOPCnUk55vHsgagXVTqqKo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pCgy8CevFRj0VkAeS/6CB2ae2L1IHEVVKSjg+1koS4weQYR3ZAPRmL4MVRuEXchAYDYF1VEaYEzivablGW/C6sOscHvz9BkQFfJUEqCVn9R1vGmuAAHLpQ8FfMpnnp5WLh2WFuaGIuyh1nP3SevJxr7Tg6ZL7/vCgI/e7moarWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=A5eA5z28; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61QAL94d3987275;
+	Thu, 26 Feb 2026 11:13:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=vyCjDttZvxTI4S5YWExOUDFcYcJ4KPW/6yB
+	4+jJFAkY=; b=A5eA5z28DK1vQBUZ/ePNn3tzJOADGItJQbLhaomftiSRqv0cddP
+	iXHeQ/9SYs9sYvkHdcq9VH6aHSav4M6VZklwZI4a/REsf5EeDFldyY3rXl1r+zMe
+	ZqL+A9fULS70i7AlFGQTD3fysi1JkAOI/sC6jlShW28S64od7VyyT9m2DEw4VrxE
+	HkiOVWmbur6licwjQH4/fLfxbs7JmxECygHG+43Vdd2qq59noWPgKUXhhLoA+MXY
+	bhmevD+JSWStZ/4uTVdEHhBYtShV2c0W82McclSfF5BBR76gTn3ZIZQjKw4KbVPJ
+	Ba1oKotMjXCPkCa7SOgeGB26ol/RQXdMmCA==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cjdph1egk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Feb 2026 11:13:38 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 61QBDUvL017511;
+	Thu, 26 Feb 2026 11:13:30 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4cf5smjsf5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Feb 2026 11:13:30 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 61QBDTFC017497;
+	Thu, 26 Feb 2026 11:13:29 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-mkuntuma-hyd.qualcomm.com [10.213.97.145])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 61QBDTos017493
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Feb 2026 11:13:29 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4582077)
+	id ADF29465; Thu, 26 Feb 2026 16:43:28 +0530 (+0530)
+From: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>
+To: dmitry.baryshkov@oss.qualcomm.com, marijn.suijten@somainline.org,
+        swboyd@chromium.org, mripard@kernel.org, abel.vesa@linaro.org,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, robin.clark@oss.qualcomm.com,
+        jessica.zhang@oss.qualcomm.com, abhinav.kumar@linux.dev,
+        sean@poorly.run, airlied@gmail.com, simona@ffwll.ch,
+        alex.vinarskis@gmail.com
+Cc: Mani Chandana Ballary Kuntumalla <quic_mkuntuma@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        freedreno@lists.freedesktop.org, quic_rajeevny@quicinc.com,
+        quic_vproddut@quicinc.com, dri-devel@lists.freedesktop.org,
+        quic_riteshk@quicinc.com
+Subject: [PATCH v4 0/2] Enable mdss1 Display Port for Qualcomm lemans-ride platform
+Date: Thu, 26 Feb 2026 16:43:20 +0530
+Message-Id: <20260226111322.250176-1-quic_mkuntuma@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HXcvzNaRR2Bb/QYt"
-Content-Disposition: inline
-In-Reply-To: <20260226-briskly-severity-69c2988e8dc8@spud>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pzIYVdHdXBHsc1s0MPZS3old0-z_DXxe
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI2MDEwMSBTYWx0ZWRfX8nldqkpOnbTr
+ 4EDBSPvyy+Wjk10uG/NBD7Iuuobs54lj/RfnLnaMnf0/0i1q5/UnAmK07xkkHMhKPZaNpvqYQbR
+ kOivVrJ97H8HJ0ihaCKgJjnWwXD+VV1kXu8d2sIBiZSYl3uuTvJcbO5JunJ41LpJoC/UBlpDqvq
+ K09hCXmPAZ2IXx9H3rf1vVE8uRwpJPymbm2KDvJMxFkkABBLw/je6PI5mN8EIx9iGjzlOukmZLv
+ 5/Sk6WVse7QydVMfexCcxD+euYUMW5MfNU0vyUNWd8CGqO+uhpG2y8CVKqIeUnRG68ahN7c4Eih
+ 374PauqvN7fVjC273rp70Kn3SeOW8tXTI5KUTV8ecsu6WSdqP3EOTC9bvUGzhe5I2p0eYuP2J4s
+ Wwds038k7Bw85Fb+8ZFG+fJ6IBkLgXQ1v6YPmZ6/cuRv6nDfYy6moL7xFrT0uuA7YZfmAJDSa3s
+ U3/5zBF1rg9XAI81yJA==
+X-Authority-Analysis: v=2.4 cv=NJLYOk6g c=1 sm=1 tr=0 ts=69a02ae2 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=3WHJM1ZQz_JShphwDgj5:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=e5mUnYsNAAAA:8 a=0IT7fpZdUoEMrN4OoH4A:9 a=TjNXssC_j7lpFel5tvFf:22
+ a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-GUID: pzIYVdHdXBHsc1s0MPZS3old0-z_DXxe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-25_04,2026-02-25_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 suspectscore=0
+ malwarescore=0 clxscore=1011 adultscore=0 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602260101
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[quicinc.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[quicinc.com:s=qcppdkim1];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,somainline.org,chromium.org,kernel.org,linaro.org,linux.dev,poorly.run,gmail.com,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268783-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-268786-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,tuxon.dev,gmail.com,sifive.com,vger.kernel.org,lists.infradead.org,baylibre.com,raspberrypi.com,linux.dev,amd.com,bootlin.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8D6A61A4E93
+	FROM_NEQ_ENVFROM(0.00)[quic_mkuntuma@quicinc.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[quicinc.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 35F0B1A4EC6
 X-Rspamd-Action: no action
 
+This series adds the DPTX0 and DPTX1 nodes, as a part of mdss1
+on Qualcomm lemans SoC. It also enables Display Port on Qualcomm
+lemans-ride platform.
 
---HXcvzNaRR2Bb/QYt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+---
+This series is dependent on below series:
+https://lore.kernel.org/all/20260128114853.2543416-1-quic_riteshk@quicinc.com/
 
-On Thu, Feb 26, 2026 at 11:03:16AM +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> In increment mode, the tsu clock for the macb is provided separately to
-> the pck, usually the same clock as the reference to the rtc provided by
-> an off-chip oscillator. pclk is 150 MHz typically, and the reference is
-> either 100 MHz or 125 MHz, so having the tsu clock is required for
-> correct rate selection.
->=20
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/boot/dts/microchip/Makefile.orig | 26 +++++++++++++++++++++
+Change in v4:
+- Moved the OPP tables for DP and MDP one level up to make them common for both nodes. [Dmitry]
+- Added an explanation for enabling dispcc1 in the commit message. [Dmitry]
+- Removed unnecessary blank lines preceding 'reg'. [Konrad]
+- Link to v3: https://lore.kernel.org/all/20260217071420.2240380-1-mkuntuma@qti.qualcomm.com/
 
-Of course I noticed this only after sending, but this patch isn't for
-net anyway so it's kinda moot and I could fix it myself on application
-or in the likely v3.
+Change in v3:
+- Patchset v2 [1/3] got merged
+  https://gitlab.freedesktop.org/lumag/msm/-/commit/1338e8ae4084
+- Rebased on top of linux-next and picked the latest patch from the dependent series.
+- Removed additional instance of opp table [Dmitry]
+- Link to v2: https://lore.kernel.org/all/20251125105622.1755651-1-quic_mkuntuma@quicinc.com/
 
---HXcvzNaRR2Bb/QYt
-Content-Type: application/pgp-signature; name="signature.asc"
+Change in v2:
+- Added fixes tag for the DP driver patch [Dmitry]
+- Included below patch in this series after addressing comments [Dmitry and Konrad]
+  https://lore.kernel.org/all/20250925-lemans_dual-v1-1-9c371803198d@oss.qualcomm.com/
+	- Removed the misleading comment: "same path used twice" [Konrad]
+	- Removed unused label in 'display-controller' [Dmitry]
+- Removed extra zeroes in dispcc1 node [Konrad]
+- Enbaled dispcc1 by default in main dtsi file [Dmitry]
+- Added EDP ref clock and updated dependency series.
+- Link to v1: https://lore.kernel.org/all/20250926085956.2346179-1-quic_mkuntuma@quicinc.com/
 
------BEGIN PGP SIGNATURE-----
+---
+Mani Chandana Ballary Kuntumalla (2):
+  arm64: dts: qcom: lemans: add mdss1 display device nodes
+  arm64: dts: qcom: lemans-ride: Enable mdss1 display Port
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaAp7wAKCRB4tDGHoIJi
-0uBQAP0Sp42MPDxWXYk+ByvyugQefv2Lt1layvBUVWDkCGvzLwD6A8UBJsHEysQT
-QWWCpEpvz0l96P/zT0bSG3dWzXFJhQI=
-=Mz+3
------END PGP SIGNATURE-----
+ .../boot/dts/qcom/lemans-ride-common.dtsi     |  80 ++++
+ arch/arm64/boot/dts/qcom/lemans.dtsi          | 381 ++++++++++++++----
+ 2 files changed, 385 insertions(+), 76 deletions(-)
 
---HXcvzNaRR2Bb/QYt--
+-- 
+2.34.1
+
 
