@@ -1,218 +1,197 @@
-Return-Path: <devicetree+bounces-268993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268994-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MES8JC6soGlulgQAu9opvQ
-	(envelope-from <devicetree+bounces-268993-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:25:18 +0100
+	id CCERAlasoGlulgQAu9opvQ
+	(envelope-from <devicetree+bounces-268994-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:25:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF31E1AF136
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:25:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4285A1AF156
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:25:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2794B3019BB5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 20:20:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5920830293C1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 20:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C074657C6;
-	Thu, 26 Feb 2026 20:20:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB984657D8;
+	Thu, 26 Feb 2026 20:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KaRvTKgv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kXmgb9Cq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010054.outbound.protection.outlook.com [52.101.69.54])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8AC2428828;
-	Thu, 26 Feb 2026 20:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772137234; cv=fail; b=DyDhEDBwITefuMbfcIcvVcKfyYxp0VMaBImMTJx1zOfC2VczrWCiRlytoeJKn7AFlGDjo+dRpx84Kw3vQ12doHkICBv41G9TQoU5v8EyXnsqEOv3mONWMyROhZHXXnhyZRgaRt1hk1ZSexoSTiag3u+xXWHT98JhVg1VDPUnGiw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772137234; c=relaxed/simple;
-	bh=62oQsAU6aaVmEfnBnEOl7Fdeo77oLTTn/Sf8jK9sgx8=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=bJTlCXh0GHOt3w9Zy3sU9a+u2BysPmeF9/SD0DXJTlyOQLfR1A0KDN4QgD2NluwE4DJs8OpiURlJqRyuJGQucRfv4spbL/zcvkr3NkW1bzEoQvlu4wxX2TvupOzq4g0rVH0kryIDK+OAv9plrnA1jJVr6+y/bA+jSEto6pJDfMs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KaRvTKgv; arc=fail smtp.client-ip=52.101.69.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GqP445Yso+eBLea95WhuH8iEIz9Chwr1kERHmkXBJZHwK7G3x/zWufhCdhHXCiowSsUL/OZKp1OdTbFDmO2DHhz+NuV3WSrEzFOZvDUSqSDmpa7yvl4UjRMuPrAzknIA5QP40W1WmaXK2bJlCV0YyWOJRB3u01yAZEYn/2/TXsOce1c7kGWrfmWK5WBBeeP0YsIJF6TjHHHk+W8mnqkDqizF0g7vd0QGwCIfItsG7i2FRx06L8G00zsDNd10oTZ08lMrZYrk3R/Th4O/UPz0ksRIj6O9yiERd0CFzAZZBCTvmO/WZOkHYO0Lfjp8hcGw/LY8zEtcjAl48OFGnof7iA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=722zAuTdHpu77YXNJKNLQCMhznoHEvehEvu3sMun/io=;
- b=TrROKApotX8Rm0F3+YzQ4iFuycYra/ZVdJdWqtCP4TCDB/DRNfn2Nvx22KWfv/rijIZ7cvIrDG+RzdKNf0+dTmRsorXUcQnbe0pZfdfIKeEUgAl9a0sScOZ3OEGLNWAfzjylC/ev4rA4xHPAWlhfBy61b3o6n9FtPLswPnf9rBTUzQ205Ma8STjl4NZlydXvZOXlWfc1REFOanyqGe3FqanyXykGiWsDlX2+5fvK0x7E5kZIIn4WMxIim6KVqkTTWoRWQCweN+4qiuXUex0GlHuM+6EqJLfV0kAXPYyczsidpzIqwD3faHkzLEIL5kXf6nr7uN9kyxj2xZLrANgmKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=722zAuTdHpu77YXNJKNLQCMhznoHEvehEvu3sMun/io=;
- b=KaRvTKgvgBxllf8OdrX6h33NfTPr7dJWEavMvSYx5ufWXGHIyyRSvBXveOJiHNdd5aO3VuOxMDasU3EyHewSMNyqSfhhCXRRrur17HkbA56KlToSbez9EIAadfIDwxUkgc9xnlRXPNNV2ney6UI0xqKtbM1/d+oK2zB4Orz7z0Uetq7MkA/0UeE6Bc/hMwF/VD3fpmEZ96IiXb28aCYuEZfhZwcIxLv9vZJrADDaaUt3f/IBkeQq19bveqvsdWg/Q95r9gLBWejPt/OdL6VDtJs4Fo2d2tY0o1C0QwBQ1R1lrzeDmtLp7rJCebyW+aJs5fo3GJICGo9U90d5P5a3sg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by PA1PR04MB11383.eurprd04.prod.outlook.com (2603:10a6:102:4f7::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Thu, 26 Feb
- 2026 20:20:30 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9632.017; Thu, 26 Feb 2026
- 20:20:29 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F6545BD7F;
+	Thu, 26 Feb 2026 20:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772137248; cv=none; b=Fbo55PsMETqzEBYhjpgBRkif46t7vj39E0ZPj5iCaUUMB+CfOryfpsCNmhNnJ75yxvFpH3KuKFpOKlPf0CF6Y5yTTvNfIeX8qu5spJ6VaEnL0jiSH5Q82KATRS9PpCFiXVXiDnDwXGW0AeW7vF3RSdfWwraBoWAlDIFW8UQiTWU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772137248; c=relaxed/simple;
+	bh=9tViS64b8gEVVdrMLaLiKuoKotqZvA4sQPDhm5E8C2o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i6EP1Se4KP3CarKjelcdhqJNNb2pr4hcNvuo4k53m1t0bZr0/QaE/T/Dx3ftU2KkULZ6JldoOyXtCjqQT8rS63H0OYOa2e+4EeQH/Ag9+KB0wIy7aRsmWs3ebJTAjOvtvWz7EpnK4u/L9r9MzgPvnF2k0FPhCYahkbxjYKX7JBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kXmgb9Cq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0A7AC116C6;
+	Thu, 26 Feb 2026 20:20:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772137247;
+	bh=9tViS64b8gEVVdrMLaLiKuoKotqZvA4sQPDhm5E8C2o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kXmgb9CqaL84FXbRfzA5ifUPZJBM6XL+uESaLq1y+ae6nSyrsLDdOTDosrEFBgXz1
+	 Cn95f1Tvutj4I8twdJyatGKstpJPGpx0BNEw8dWD0scVrU8IYIOF/rIIZORC9BVj76
+	 gSV32uW8lc4aY4UWOGy5MkiQ6Z0wq64rTBTnfd/q4nBM/1CQkF8ZV+t60PcbO/gOW6
+	 Xgytq/vNbcnQ5osEJnM3gSVg5P2/Jk6KUvA2w6t33dMzk5anUcacsujscqdJ5c0CMg
+	 M5GDlRSlr4Xoc1NiSk2e0FIgBneEodu9DUhkZ15FZxFaEGOB2UbrtOOsvQ58awX86w
+	 6d0lFO+szzzDQ==
+Date: Thu, 26 Feb 2026 20:20:41 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] arm64: dts: imx8mp-beacon: remove fallback ethernet-phy-ieee802.3-c22
-Date: Thu, 26 Feb 2026 15:19:47 -0500
-Message-ID: <20260226201949.690681-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.43.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR05CA0007.namprd05.prod.outlook.com
- (2603:10b6:a03:254::12) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: Re: [PATCH net-next v3 5/5] net: macb: Add "mobileye,eyeq5-gem"
+ compatible
+Message-ID: <20260226-perennial-sanctity-25c6adae5ec0@spud>
+References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
+ <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
+ <20260226-folic-excitable-82eff83a125a@spud>
+ <aaCd_zV5kY-s1RBL@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA1PR04MB11383:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed3a582a-a059-4b08-18b0-08de75747c4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|52116014|376014|7416014|19092799006|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	WkUcaXlc0Bagi8sjrGzqRjKQAggXeuG4EQZWMd3HmNKnx9CpFRg9a6qPqenSkb66Hjin0lrAm8PIqCqmaMBFGEQS/xOrMZ3+nSgGbTCzFKHLqelfYs5jabELAgwN4e7j+KxaN88B5+aPIrK72qRGvXjzRi1KxnMeLMV4meDbj/VAAEfXjcuSQjjrEG4XVDl/aowaO8q6gJd6kFcQ46e++DXzrix2LSZPFvjfzsjjbcS4nuqtkXh5D/NeKAINz4m8FNvmztqocQUIj4PAkQqHlFYGWdR09bl00nylZt9r+Ub1bk2RPhKIbXiBl2tfEEOLroNsOTQfsFlYXxbwNvRSUoyPgPeWbH34Fxv8FSryTAlaEvNx5/WzA394CLqsY9yJshzHhJ3rZymq4ZQ0d6uxGXs/I2SrA2b4IV1Jhc4/3Ki8Msj4kQWC63j0EKyRnQ9FrjPFHHslvh014Tcjz/644bzZ3LWdawQS1vdokBQSa20qgRM0wf/+UaULf6dz4GyW3YW1Sr4MnX7+QeEZU/zHFxC6a6aWSPpbyembz4UtIjZfgV42BVN8Zrzp0V5SLq+Z/5s4MkkGw8BOMw5hJ8wOgvthbwZxIIXDytPMP+pVnOZ9AeVU5MdRUjlx1mWIJBD8uv+PSxjNfk3NUCQ0ud/TKlD5AaLqOUM1GX7oKM/7QWzjixQyErHIGZUfPYTdYoRsQMrMIQVNQ9lKCgFeDxkWbaDjsqekYBbPlBKEWV9bNT3Gug0ba963OBq+ApWTd4Z3
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(7416014)(19092799006)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?8VgqIBJXffGPjJaDkJsEOdpi/e1vz5uiC2iy6LA63sWP7d44zUFrmxMInwYr?=
- =?us-ascii?Q?1IUk3Yuv/qOGcmd71o9b0V/6QOq3FpskP2h2YzBeOqBrF4/oHP07wc4aVnGY?=
- =?us-ascii?Q?548NrB3TvPlKcptEER6+R7CQbjbakgB2Wdw5spfj1LY3f8s6FV/JSc1r8qEV?=
- =?us-ascii?Q?cZu8brUPhFxAEtW28g3sE+9F4155yuU5Ilg6q768n8K7U7wu9a1pRC3oz8s8?=
- =?us-ascii?Q?6v47eWMGdJLZGSx+UiPEPtcglUDjW6ipE/MhctaUdBM2LYaCzThYUOTEg0oB?=
- =?us-ascii?Q?aBxuDiI9TeTbYke6vNZo3m2yjZEVYMe+sL4a6CyK2NCMJiSnTpCcjmPqONlw?=
- =?us-ascii?Q?tvI7EqGGifRx3n0WDee/4Omqlr4Ig1Z9BAD398bzK6JvaSIdhMBI3e5YAzLx?=
- =?us-ascii?Q?WiKy6ignoaBuhCit1ezBfy0D1CiDUg8AUVrA3EpKBzaKOa+Hu3YFAnx23C2o?=
- =?us-ascii?Q?DIsU/gEkv/KZaQlIa/LNB166VtQHwozGXRmX8kRLKRdukuvi0/E54fsmFtSm?=
- =?us-ascii?Q?Kwu8PPsisLryj6HasXizKZHqKuU2/ANnly3yYDAChQneNO/mEiwPMajHR7h9?=
- =?us-ascii?Q?D+2+ozqAnmBtBHj/gKm4TCEPJ5Mv+L/0xYp169XA5lKKHC5QkbE4ScCxwtQa?=
- =?us-ascii?Q?5QZDjDg798QXxrb1yc1QjWceRf9rRuFErCBPSF0Ru5BlalBTscAIOBLNvn88?=
- =?us-ascii?Q?22bn6pFqVjjebrNZVvPacCP3p2BudcTacIjt+wytnJpEnZZYYEs+6icLMqDZ?=
- =?us-ascii?Q?vklQeyn4B4TQ79fQSbUP9Ert+FOExqNXMOR6fssnrsRuk4quKsyepldNpBux?=
- =?us-ascii?Q?BK1/he0kbZhliHiRMqltEbwjzNmeccC9YVRu5r8mrZ2uXJeNZjPMkdPQ3lsf?=
- =?us-ascii?Q?3fUDjmwAzESEeA82lvITYIkOhEGiOnabxQzH7cR+90WZ5xjc115ELuVDfqGK?=
- =?us-ascii?Q?eXZr3YIxTJ/VRXiAikKD9xBSNTj5VvHTxZnCzaSYECAcEhMs7TxxuoSAQELf?=
- =?us-ascii?Q?VAe4VIhUfyXz+wCzW8ENGMuYHhQ9aabWcBbmRpSV9fTONsNUsh7VyPkBZLJR?=
- =?us-ascii?Q?AWk41KKZCkPiwPIr/b/7cYQGH4EVCvtf8jhgOO9HdvD5TtqZQlg69n4ahAKz?=
- =?us-ascii?Q?yhZGSNF9TnYUdowjGmoiFTAfyeL8YQawjpXTFBKdTKipMtcdGIBe44twLF0p?=
- =?us-ascii?Q?r6RnmqXKMniEXfKAsmFwXJS4qfYMS1tw7DUoQrbFaLUUQWE4EGxPDv+4jBsT?=
- =?us-ascii?Q?bBsCLIDRgLmezKmVWw1eL5FdD+dfqldEsrpnZPae4zFbKjAHCPb62pcUmxKr?=
- =?us-ascii?Q?pitPnvzXyhlkmi3mMDAr+SQppldts/e31SQA3hNtGy9Jp4sgSIOWbu1kctUf?=
- =?us-ascii?Q?Te974tk9PvicVhA/lPZp606S4HUM/ZgKG6L0DSCfFMmYcHNBmzi4Tzr6pekD?=
- =?us-ascii?Q?T18aB1iv5SVnYyDx6AMUe7QCS6A8kLzI3/ItaLFuXt7GXMdrcrRxXh9r0SBn?=
- =?us-ascii?Q?huHgdjqtuifgOYO35H6aKWXg4PYotOGVbtJCPgtHOoITodsKTy5UvLmvyoRw?=
- =?us-ascii?Q?twVkfm0TrLmuQKZWnZAta+PKSAgD9deZjueZO7hcdo4plPkz7Qi08R+H+XSj?=
- =?us-ascii?Q?owtu3ssYMKHNHiIil1rM6YArXyqApxiiGutecTLR5v0i/TjoHyzTy8vccDAc?=
- =?us-ascii?Q?OqjS9lkiVUdXqI3VSpR3+Szgp4s2mR52ThQJGZYwQCdunsCcS3wUbt7pLv8c?=
- =?us-ascii?Q?rdCPbtZaKg=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed3a582a-a059-4b08-18b0-08de75747c4f
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 20:20:29.7894
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z9XkarINX7COigllF8xLCw7+aT9agXIPOLPvyFYQGRzXhgJ+6JTYIw6avC//t4ry9bpEJr8bVSvPF0vx2sBOmg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB11383
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1GdmJnZTOEkH8cCG"
+Content-Disposition: inline
+In-Reply-To: <aaCd_zV5kY-s1RBL@shell.armlinux.org.uk>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-268994-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268993-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.8:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.997];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:mid,nxp.com:dkim,nxp.com:email,0.0.0.3:email]
-X-Rspamd-Queue-Id: CF31E1AF136
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.7:email,0.0.0.3:email,0.0.0.0:email]
+X-Rspamd-Queue-Id: 4285A1AF156
 X-Rspamd-Action: no action
 
-Remove the fallback compatible string "ethernet-phy-ieee802.3-c22" from the
-Ethernet PHY node to fix below CHECK_DTB warning:
 
-arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dtb: ethernet-phy@3 (ethernet-phy-id0022.1640): compatible: ['ethernet-phy-id0022.1640', 'ethernet-phy-ieee802.3-c22'] is too long
-        from schema $id: http://devicetree.org/schemas/net/micrel,gigabit.yaml
+--1GdmJnZTOEkH8cCG
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts  | 3 +--
- arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi | 3 +--
- 2 files changed, 2 insertions(+), 4 deletions(-)
+On Thu, Feb 26, 2026 at 07:24:47PM +0000, Russell King (Oracle) wrote:
+> On Thu, Feb 26, 2026 at 10:46:24AM +0000, Conor Dooley wrote:
+> > On Thu, Oct 23, 2025 at 06:22:55PM +0200, Th=E9o Lebrun wrote:
+> > > Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, usi=
+ng
+> > > compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
+> > > that must grab a generic PHY and initialise it.
+> > >=20
+> > > We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding=
+ a
+> > > phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
+> > > the first users of bp->phy that use it in non-SGMII cases.
+> > >=20
+> > > The phy_set_mode_ext() call is made unconditionally. It cannot cause
+> > > issues on platforms where !bp->phy or !bp->phy->ops->set_mode as, in
+> > > those cases, the call is a no-op (returning zero). From reading
+> > > upstream DTS, we can figure out that no platform has a bp->phy and a
+> > > PHY driver that has a .set_mode() implementation:
+> > >  - cdns,zynqmp-gem: no DTS upstream.
+> > >  - microchip,mpfs-macb: microchip/mpfs.dtsi, &mac0..1, no PHY attache=
+d.
+> > >  - xlnx,versal-gem: xilinx/versal-net.dtsi, &gem0..1, no PHY attached.
+> > >  - xlnx,zynqmp-gem: xilinx/zynqmp.dtsi, &gem0..3, PHY attached to
+> > >    drivers/phy/xilinx/phy-zynqmp.c which has no .set_mode().
+> >=20
+> > Ran into this patch while looking at other stuff. Theo could you explain
+> > this analysis to someone not really au fait with phys? Looking at
+> > soc.dtsi files won't show you phys, since that's a board level decision,
+> > but you have found one for the zynqmp-gem so I guess that's just the way
+> > you presented the data?
+> > mpfs definitely has phys attached, so is you not finding one for it but
+> > finding for zynqmp, an indication that you were only looking for rgmii
+> > phys? Also, is the analysis of the connected phy driver accurate for
+> > zynmqmp?
+> > zynqmp-zc1751-xm018-dc4.dts seems to have 4 ethernet phys:
+> > 		ethernet_phy0: ethernet-phy@0 { /* Marvell 88e1512 */
+> > 			reg =3D <0>;
+> > 		};
+> > 		ethernet_phy7: ethernet-phy@7 { /* Vitesse VSC8211 */
+> > 			reg =3D <7>;
+> > 		};
+> > 		ethernet_phy3: ethernet-phy@3 { /* Realtek RTL8211DN */
+> > 			reg =3D <3>;
+> > 		};
+> > 		ethernet_phy8: ethernet-phy@8 { /* Vitesse VSC8211 */
+> > 			reg =3D <8>;
+> > 		};
+>=20
+> Ethernet PHYs (drivers/net/phy/) are different from generic PHYs
+> (drivers/phy/). Ethernet PHYs are completely different beast with a
+> completely separate subsystem, which doesn't have a "set_mode" method.
+>=20
+> Th=E9o is referring to generic PHYs not Ethernet PHYs.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index 31c33acb560c6..385aa6bae5202 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -266,8 +266,7 @@ mdio {
- 		#size-cells = <0>;
- 
- 		ethphy1: ethernet-phy@3 {
--			compatible = "ethernet-phy-id0022.1640",
--				     "ethernet-phy-ieee802.3-c22";
-+			compatible = "ethernet-phy-id0022.1640";
- 			reg = <3>;
- 			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
- 			reset-assert-us = <10000>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
-index 6a62cb32e22ec..1007f7db85e93 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
-@@ -60,8 +60,7 @@ mdio {
- 		#size-cells = <0>;
- 
- 		ethphy0: ethernet-phy@3 {
--			compatible = "ethernet-phy-id0022.1640",
--				     "ethernet-phy-ieee802.3-c22";
-+			compatible = "ethernet-phy-id0022.1640";
- 			reg = <3>;
- 			reset-gpios = <&gpio4 10 GPIO_ACTIVE_LOW>;
- 			interrupt-parent = <&gpio1>;
--- 
-2.43.0
+Right, that's pretty much what I figured and cos of that the patch
+itself seemed like it was fine to me. It is the analysis of users in
+devicetrees that I don't understand - the "no PHY attached" bits
+seemed to me like they should be saying "ethernet-only PHY attached, so
+no .set_mode()". Ultimately, I think it makes no difference to the patch
+itself, I just wanted to understand the commit message.
 
+--1GdmJnZTOEkH8cCG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaCrGQAKCRB4tDGHoIJi
+0nTjAQCH0/tL9+Upo5KDdhvASVVInTsPL0DxGV3pcGQ5JROE2AD+LnW9GGHFwz62
+BtWC5TxLeE4pRDy7lOFTyb0BapCM1AA=
+=MJtW
+-----END PGP SIGNATURE-----
+
+--1GdmJnZTOEkH8cCG--
 
