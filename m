@@ -1,111 +1,112 @@
-Return-Path: <devicetree+bounces-269004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269006-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uELgKS27oGnClwQAu9opvQ
-	(envelope-from <devicetree+bounces-269004-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:29:17 +0100
+	id iG6MNvO7oGnClwQAu9opvQ
+	(envelope-from <devicetree+bounces-269006-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:32:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2B01AFCD7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:29:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE511AFD86
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:32:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1B4D830B2C97
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:26:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B71713008231
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:28:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1A042E006;
-	Thu, 26 Feb 2026 21:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D966426EC1;
+	Thu, 26 Feb 2026 21:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="gAdrP00N"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="KWr1ery7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A4A44D00B
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 21:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6790444B67C
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 21:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.173
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772141210; cv=pass; b=B8wy2AD8R408IAQLqDiBx/31+grn7kxYw/Q5xIO782BGspKUgcbjxVCFZU4PeQIl7GuaFeVzZMdbhJ8u0pHY6YEufU8PGcXL6oz4r02FwXEcO2Q8Uy73iOOtSj7cAtKxWI375ifTfZixAFjtC/cm/fk/iv76k+MLrFOZSBwW490=
+	t=1772141307; cv=pass; b=kR8uKulGrZcRUyiOJj4HtEDbWCwJ6HwX/0W5UIzc08MJzjSPfSjb4HAMDk8l6HZbCriP6R8XxJQEoeKi92Pja9vtwXO0iu5m61Hh8l6QyV/WwqAxRKAYyJ150rJkKKJVHqu0xLdkEKER5eTpmOq6axedXP99WUPSoLPJVnif4WY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772141210; c=relaxed/simple;
-	bh=JxtPAriELNF7I3jQinD0DfyWRL+Y0cdBJhQKDNyPpzA=;
+	s=arc-20240116; t=1772141307; c=relaxed/simple;
+	bh=isFrMkzZQLKE5l+jfwho3bY9wdKvh5U0o6XjpyV+yF8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bLEKi+IItmRsUqUNPrmfFUdbkKSWr4R/71zJBBV5S6tTkO6a5po6z0Hzb3OpzISbKlYzb7Va/h+RC7BU63fF5OFlXxw1ZzI0zIHKqZ1Ztqo2FzbfmPwirOv/DBiTru973Kbk8lm5UcZCTkgHlizTneTQePKQWZsfgFQSM9JOeY8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=gAdrP00N; arc=pass smtp.client-ip=209.85.214.179
+	 To:Cc:Content-Type; b=E6ytAde6bM6QxnQNlIF0rIjciOPzaMq5vjxi44XosYd5EwLRypE+/H8aTOIepWFU1xKFTjf+lCKftEVwL7fjT2N6wTtjvp+UBjypQ+0wX9kYTR2kp6L+Sfg8DnfBk472Qe2ixgXrbLCt6GcmKWTgO95QhdSg4BS2+xCA2vJq0jA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=KWr1ery7; arc=pass smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2ad9f2ee29aso8292785ad.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:26:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772141203; cv=none;
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2ade574f05eso9404145ad.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:28:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772141303; cv=none;
         d=google.com; s=arc-20240605;
-        b=PfH0HKRLfdB4glXexpGkiEo4dH0R2w5xCEQ0i64JWrSUzhj923JK6UN/zMTlonQlgu
-         quP/xWYW24icUlrlb/GW+7hUxmrKRkoIPiJF1YxUKIt+YllM++Vpz5Mt6Re4OYjxUksX
-         YbW8AaBiIZJdZu8QtQrHHQCVrKb4Bd0ENESTTBGDxlENVoAVEqgQQJBeFzPkiAMVn7vU
-         9rhZzACGbJMRoh0OjrtWV7v2zGBGmhv7xwpV0cOPuU9NyakVyo8pMCFwDq/IrW67CMRA
-         P+gzJ5R78ekhRShGRaVRf/sJbnmprSIFs02bEUPYVXWYUFnD7r+cLtiexuimChOPfLr8
-         iAtw==
+        b=Yxem9GLeG9jeNqWkl5N1fs4Wl0J6LzudFWnmh+Rb7FstaC+CMIu5fK1Rg9E04k9vtt
+         +KXbKdd59dFGKICJFLl5Fw/mfFqhcSA68KSMhJR7A5H+mdodVYB/+bWVymln7ZlC/rjL
+         BOqLRL+1eh/Z0GHNTAggCLgiYY6i3tLU2ix+YFJnpgclQHNmwfylPOvv4fVJubyo1kmD
+         /TGqHa/2a9mpiXK7i4dt7qFNedEeS8XRlSkvrEmakTKD3PFlgamdj44bhQhCwmCFidvL
+         ni5cnboTvrC1+KuT2HH3YgzK9N6TJ65ZQgrA/dtfnqw6APQUphdlEeSTUTjFu0mMTpZv
+         MQiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=dAcGgVbCS/bj1DBocFVYHa5Tyjmk+gWFmhBNeyBNcQQ=;
-        fh=pj7M7XCpzPqNg+zA6rrAhMZp54rSgTUSnoAiBzNZ/xw=;
-        b=Drxa5urcqtKhOHfvZOu6jFt0L4DsDrKcpb5VQvhdPeWPR2eYLif3t9jZO00Fe230/L
-         BlCl5bVXgocI7gjloAnu7YCgutppnIJ6NBVSrd65aJEcwhUUWb2QlwhTJP9GtFInoyPV
-         OAsEeKKvsLEewW1+WAGe8Xj7y2c89+VxIwQEqkhBeRPXo26ngGGoZBx00aaBzX1RhZ05
-         JMeKBpZQsQhn4t7AW4vv2ttqW/Arnxjj4Wa+AMUmz5l4jSGNv4gLyCSCX7DFv2+HhDmi
-         /Pq5+xMyH1RfKbOAJiYcBDxtpT2C8LJKnr/tf9i9mNXpkBmWfcVBWiYKxnu+wL8oiTwK
-         0ZKQ==;
+        bh=isFrMkzZQLKE5l+jfwho3bY9wdKvh5U0o6XjpyV+yF8=;
+        fh=UC10mif4Uur9STU8nU/RAOSqyqoHq/3VnQIem3S0TAc=;
+        b=NnQMg3uRWYtLiW47EiIWH+RJw08c0CwKbaaliKQtBBHPyl56ui/+kpqGWl/wpeMX6N
+         OMmqbOkF69JcEllpP8VXa35KMX3rWs7mI+WmrdiCPHXk2vg4+elzbyxucED4az3aasu+
+         JdiJpzkyvT0rrPFkVHg870NnCJOyyl2dIbWGmseMbhl5DPk6D3GV/6t12EPOZZVwtZc4
+         u0DPvcucISJT4AMH73wYrCwmvzAoCVrnAoi16uore4Epo4HDBwPe8M+cZ5tpyrgzPZ6I
+         YUsuv0XQ5Q1Oze8AgHGCz0pc7fKf2w/Fw2ST4Fd6sOO46sWPs+SbDAN2Ud3buIzmXFRV
+         m5lQ==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1772141203; x=1772746003; darn=vger.kernel.org;
+        d=googlemail.com; s=20230601; t=1772141303; x=1772746103; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dAcGgVbCS/bj1DBocFVYHa5Tyjmk+gWFmhBNeyBNcQQ=;
-        b=gAdrP00NeJXofabHtm4cOy5oWx06wDyc8FLwtx+87bYlz8MNp4wZPHK8J8FPIzFozi
-         M92SzutAsr5HAFN4ng8IzSkK1JJ6Y0lEbLUJmAdr1Q7K0IbieyyM9lMrh9jgtlbbFLcV
-         dE2zQlfz914qbhSisbhb1LRc0IgOn8pv1IcVq52FBUKQfUmw5Eg9S8g3KyVQqX5MChkW
-         D1H+y2cDtAK3mLt5m5Otk7uAZB84kr9Vspc6xLbAT4s/LYS2kUW1fuot6ohlAIU0QaW/
-         Zkq7+jrhRLdrHVAcJWW0a51Kwv4QKc6BsjMRpn9K9143dMlsqbR9EiIM4JUgjlGFf8sd
-         qC+A==
+        bh=isFrMkzZQLKE5l+jfwho3bY9wdKvh5U0o6XjpyV+yF8=;
+        b=KWr1ery7jcw/ApvwfHl+EMKVWzi1+XJDYnmcf0xJrVUQLTFVWdx7VzD8tALukS3gaq
+         e+lAPlpeYLzKbH87/BNeNqr69jjTfQWJyvirx8k2oFf82PafStfB5ZRR8itc5ZGTa54k
+         oJaGT8Qn0SP9P5bDRHzE/s1PQirQyL6Zxi2xP02oAUAGBJg1ceqWtL49iatwxwu3H7xl
+         50MFsV/su5B3yTVPMm075j9XkcPd19jaQ5oc8b+kfeQU1MzxnZGpSgkxL0puM53cGcW0
+         HEB7ukHzpQsawvRAvpLs+O5YrOkZO3QA3xAnXp221uPdHU5js9AWZjTQw15YX+2nWFpN
+         h6WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772141203; x=1772746003;
+        d=1e100.net; s=20230601; t=1772141303; x=1772746103;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=dAcGgVbCS/bj1DBocFVYHa5Tyjmk+gWFmhBNeyBNcQQ=;
-        b=Tx1uETC9IWxYGQkwOBsYJj6gmZ1yFo/p/v/nu4cxmHqthYYQNYVhPoTmdSePPemSH4
-         bqtTJcM7zyBXrqkUPaTjyKvCrsbjDwVl8E7TfulLw6co2Xv9sUq6Ce7nRGuoOrHf8w7G
-         rRHsKlv6uST88hykf7O4U/wG2O5x6NBndwloeqgBfHxRlOaeviRByX0dIzCv5UUsiVDF
-         CU8YyBFytsghVCO3vZe0L8liUTw6yIzKLA0rzYZ2Yg9uvb7KEJYI0V73PsPnYxjPvhzQ
-         vCUKyKPTuNPgk0Q/YzQnhFnbBmAB1zcieiZIWyznUfcY3bdyaEXPnajJ311IuZll2OQp
-         PuQw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1ycxnBeSwzRadDAZA0xr/6pBqt7LfdASehgyyQBIAA8bEyCKEUjH03BpC7jb0IST4DkRi16p69AO/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYAkyb7K3r/4GCu5hTXgDifnYYqhjxsUi7DrczrVUEI89pG9ZY
-	sYQClPhHWBe1VjKQgsMQxXXWGaV3VVKCPRDpGZ53eEhjZ4FdPx1kCAIxprd5SvwoKABB5EVDDdO
-	OCIuS0tIN939QmQMJ19jm5E8ojLICsSM=
-X-Gm-Gg: ATEYQzwM2BqT+YVfGCt7c/kZEBMv+3c5QvPgMFOqpu1HCGZgmjMffpT9uvcFoqmoDTz
-	eX74ax5Mo3iPdgOjJ1kuZ/1gSui8DnzBmlcgmBr5NGkihYkSk92CmXLTVElAxWjdBAX4IxUdtox
-	jdTPA7GnKwrG220O26MheH16CK8om0GqQmxaArPNQBIaqy1VQliRrQhtI1e41OfPwHhRDZ+vTit
-	HFCDZCH6m0UC18vsaaT+A9Qc0DwL5QwyewVSOIeQIgIFK42hqCqUnyjQ9Vmk4ZxPNPxXV+C9Bo0
-	Y1MGfBj4l0EX8GBCfoemOn7zd7whubUoX7E+7oWF
-X-Received: by 2002:a17:902:d592:b0:2ab:230d:2d96 with SMTP id
- d9443c01a7336-2ae2e3ce58bmr3604695ad.11.1772141202912; Thu, 26 Feb 2026
- 13:26:42 -0800 (PST)
+        bh=isFrMkzZQLKE5l+jfwho3bY9wdKvh5U0o6XjpyV+yF8=;
+        b=Vak1ujYaAblq6DQcxDMFQ8aSgOz7v9p91FLK0WF4SlIovE1T36QAtgQWc0PBdweO98
+         wedKSO0mZ504SaWJ0mYDRtHZD5S+2Y1VfoNz0LMgzNDKdZswxrODO9ldLJlyCcxLAY+R
+         ZUPpNI1hrwhDUaMxxaUmGAzPMJZHWQ6DKJn5IOKBg0CoVz0KeWBNFqxOYlv91jzQHoBU
+         acLXIqUglty6zhJi94735YBjxTzKRRD2vpHityNtGSamLEl29k41DolONe+NhHPCBxqb
+         vrbabaTTSuVdu0rZpc7d+1H8AFIPPzkYaLOURqCHjF+juuyPZribFsDGC3JE3MYKanAO
+         rGJg==
+X-Forwarded-Encrypted: i=1; AJvYcCU113vrFS2+vkwA+D+7IgcaYETjf4d728QDe8oSVrwlN5LtsSdJI6VO2PgAalm7duJJbRPwPnnjitXv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzJKpuFt8WG9t7qxzpr/2NKEx7eI+wdoNipZJB6HVGNsYA6sks
+	FCWS6azZTKkWod8VJPP2wujADi+flxQPSPjVJ0hzRuol67i1zmXjBVOL4TsO62wO1J61TIDmlxA
+	BfjnIpkGfpJHA/CwsqCXrZPdGzBE1yKc=
+X-Gm-Gg: ATEYQzxn+5A4LqWfzy2e+1WTFUMCuTRgsjjsRXX/Vze/EXFnCc25lq1VIQQL0LfqBFU
+	a6XYMkMduoxXSRestF06IB30ocmHL8KO7Z+HXAbznOq4OL9IkNtt1tf7qhGJaUFcA0FkwNI11Kr
+	FMubuvANxoCSqI/KwQh1ozFkxFPCN0DU3AAN3DSW2lDXmbqdcfnheMlpJatui7gOmhiYf4r3Mkv
+	qPnl7Hfqcql6Td22in3RMTVBFwHNjtnrXIt42tSqQjNrDZIkqxTA+6vnoDz1vdBycKXkoEDU7Rp
+	cRqTuEnhZXPZtEedymbdBmIpJsIFZKDGRio7WK6m
+X-Received: by 2002:a17:902:ea11:b0:295:6d30:e25f with SMTP id
+ d9443c01a7336-2ae2e4da14fmr3619915ad.53.1772141303480; Thu, 26 Feb 2026
+ 13:28:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260123022258.136448-1-nick@khadas.com> <20260123022258.136448-2-nick@khadas.com>
-In-Reply-To: <20260123022258.136448-2-nick@khadas.com>
+References: <20260123022258.136448-1-nick@khadas.com> <20260123022258.136448-3-nick@khadas.com>
+In-Reply-To: <20260123022258.136448-3-nick@khadas.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 26 Feb 2026 22:26:31 +0100
-X-Gm-Features: AaiRm510mQz5OMzE6LAMHDV7opdj7qiogaLj9z0r4G-Q4maIhZU0npcoFSphQrM
-Message-ID: <CAFBinCBvwhvOwMJYuvVyubCi2KSGaRq3+RdX2fcj=7zLhSX+tQ@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: dts: amlogic: meson-s4: add UART_A node
+Date: Thu, 26 Feb 2026 22:28:12 +0100
+X-Gm-Features: AaiRm53fDnetE2FB5uKh_jYrb87ycfZGsGZSe-1f1i-ud__7mbll8f8_BcLdpWg
+Message-ID: <CAFBinCB4R6nui+6uwcQAzPFyqA38rZGEvYwGgPHKbjysQyWLMw@mail.gmail.com>
+Subject: Re: [PATCH 2/6] arm64: dts: amlogic: meson-s4-s905y4-khadas-vim1s:
+ enable bluetooth
 To: Nick Xie <nick@khadas.com>
 Cc: neil.armstrong@linaro.org, khilman@baylibre.com, jbrunet@baylibre.com, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
@@ -118,7 +119,7 @@ X-Spamd-Result: default: False [-0.06 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	R_DKIM_ALLOW(-0.20)[googlemail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
@@ -127,66 +128,36 @@ X-Spamd-Result: default: False [-0.06 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269004-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269006-lists,devicetree=lfdr.de];
 	FREEMAIL_FROM(0.00)[googlemail.com];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[googlemail.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[martinblumenstingl@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[linaro.org,baylibre.com,vger.kernel.org,lists.infradead.org,kernel.org,gmail.com];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,fe078000:email,khadas.com:email]
-X-Rspamd-Queue-Id: 0E2B01AFCD7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,khadas.com:email,mail.gmail.com:mid,googlemail.com:dkim]
+X-Rspamd-Queue-Id: 3EE511AFD86
 X-Rspamd-Action: no action
 
-Hi Nick,
-
 On Fri, Jan 23, 2026 at 3:23=E2=80=AFAM Nick Xie <nick@khadas.com> wrote:
-[...]
-> +                               a_uart_pins: a_uart {
-> +                                       mux {
-> +                                               groups =3D "uart_a_tx",
-> +                                                      "uart_a_rx",
-> +                                                      "uart_a_cts",
-> +                                                      "uart_a_rts";
-> +                                               function =3D "uart_a";
-> +                                       };
-> +                               };
-Can we please keep the split between rx/tx and rts/cts pins (as we
-have it on other SoCs)?
-It is likely that many boards follow the same path as Khadas VIM1S
-(and Amlogic's reference design). For those boards that aren't it
-would be great if they don't have to update meson-s4.dtsi.
-
->                                 i2c0_pins1: i2c0-pins1 {
->                                         mux {
->                                                 groups =3D "i2c0_sda",
-> @@ -814,6 +824,18 @@ mdio0: mdio {
->                         };
->                 };
 >
-> +               uart_a: serial@fe078000 {
-> +                       compatible =3D "amlogic,meson-s4-uart",
-> +                                    "amlogic,meson-ao-uart";
-> +                       reg =3D <0x0 0xfe078000 0x0 0x18>;
-> +                       interrupts =3D <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>=
-;
-> +                       clocks =3D <&xtal>, <&clkc_periphs CLKID_UART_A>,=
- <&xtal>;
-> +                       clock-names =3D "xtal", "pclk", "baud";
-> +                       pinctrl-names =3D "default";
-> +                       pinctrl-0 =3D <&a_uart_pins>;
-For consistency I also prefer if you could move this to
-meson-s4-s905y4-khadas-vim1s.dts (patch 2)
+> The Khadas VIM1S board uses the Ampak AP6256 Wi-Fi/Bluetooth module.
+> The Bluetooth controller is connected via UART_A and requires the
+> external 32k clock (LPO).
+>
+> Enable the UART_A node and add the bluetooth child node to support it.
+>
+> Signed-off-by: Nick Xie <nick@khadas.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-
-Thank you!
-Martin
+You can keep my Reviewed-by when updating this patch to include the
+pinctrl properties.
 
