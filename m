@@ -1,209 +1,131 @@
-Return-Path: <devicetree+bounces-268974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268975-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GKd7BhWXoGkVlAQAu9opvQ
-	(envelope-from <devicetree+bounces-268974-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:55:17 +0100
+	id mFT0IziXoGnhkwQAu9opvQ
+	(envelope-from <devicetree+bounces-268975-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:55:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FAB91AE0E7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:55:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E84D1AE0F8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DBFD23218FA9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:13:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B6253437C2E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D4DD35A398;
-	Thu, 26 Feb 2026 18:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB0E7364957;
+	Thu, 26 Feb 2026 18:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FyIUZ6Ok"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sK2nFo78"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3862A355F27;
-	Thu, 26 Feb 2026 18:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7C3B35A3AD;
+	Thu, 26 Feb 2026 18:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772129603; cv=none; b=liCrp8f9YLYRoGtixkbut+Ui9c6VwJtLRuxZeXq3Ze6EYrYmCdsP8tkgWUwvmnlIgZjVyBct/7oyE9ay/RUmjFIVt7vpfi/uRAZ/AO/noGDGY9AklF1YR5laSy8nEYo7IbSJzXXSfGkgcEbdE24j61jsJtutxudjqYmT+IxbuQE=
+	t=1772129639; cv=none; b=o2wzsTBumE2lyzSp4QRsvgCOoT0P/pW6ayl53aflyAKTMPzzAPpwnw9PGtNsshDlwHa0nByfhEIKi+uOuuWEvpN76AhE8INWmKPOxErxbKFuwuqQzco8ZkqFt/Z/wKsqxkYnlDKMrF/dzrgK8kk0G66oC9hUSjp6orMzJo1upFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772129603; c=relaxed/simple;
-	bh=z7QUpP5BoSrkNlPXr+OPzldtcWq+DmCCG0w7S6dfZyE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KjmYGC9doBQnYRcDIPIaN6M4z0phjB71vrLv5WqijN28lZ2JKZuKTchLwbF6FTvjJ30eLW1qLe7VgtSNwfIwCg1oATr0Cb4AJ+29yLSCRW+xz0hzM6ZTSvk22IGzKWR6nv75p8apcEzbsPH8NRc87jEoowhehotvRrrAMeVjLBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FyIUZ6Ok; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8B62C116C6;
-	Thu, 26 Feb 2026 18:13:20 +0000 (UTC)
+	s=arc-20240116; t=1772129639; c=relaxed/simple;
+	bh=g12q3sd6A4QeeQeyUBj2wH7c5NuAA+j/4pWnqnFsOGA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cUPenukPbW0GtBf0XZ54wCNN2P3Go7qS7jiiWOUdgmYTQGfcggGi8mP22UmE8Abahhv7HWQxKHizl5rE4kiEsxioYFm/2KqXovWluqSiavCKjegpB6wQ9EWNVotF7FsTKjf4utZaAsy/pk4qB6pJnHHRESOh9GuLQsLGk4bCLpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sK2nFo78; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EF2EC116C6;
+	Thu, 26 Feb 2026 18:13:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772129603;
-	bh=z7QUpP5BoSrkNlPXr+OPzldtcWq+DmCCG0w7S6dfZyE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FyIUZ6OkCp9e8qstFoPNzCzaYhptRwB07NsYZ6KjWuCXwZkPGqpY+2mDcqxd9CAg9
-	 YN0DiJ1c4hJPpy1hU2a/YWSynvF79SfcKWaTTcCpWGyl6YZZAH+zZS5FLYwvInQQ1O
-	 aqFLYUf6O1iopuxxz1Ob+IvpnX2kL23I9H/GyZa5T/YKvVZyPULgpLk+8FPy47EpUx
-	 as2n/B8AZ2QHrHtW40CuqryB4b/i0C1xJSQecxmRTv40gPYP14tIpK7Hd3y+P71XtW
-	 6cFNn1znK73lc/6klr67LAf8EIkWQnEv7KZMuLDg/wcVgRRDi9XBMiB3kcQckt+/Kn
-	 09gLJpctjvhJQ==
-Message-ID: <ae9962a4-b611-46e0-b124-5910e8708a20@kernel.org>
-Date: Thu, 26 Feb 2026 19:13:19 +0100
+	s=k20201202; t=1772129639;
+	bh=g12q3sd6A4QeeQeyUBj2wH7c5NuAA+j/4pWnqnFsOGA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sK2nFo78m/JG8s2S2/8K+EwgTnGpk6NppJLMK+ckvH8O2tb4h3whb/tEv+9Vfz3L0
+	 uqW3fzLvCdeToEtLh+Ggv6gbw4eWrVQzLp0DaTO8HCsz2XzBXVq6Y5xim7DaRHJIL0
+	 VA3dicrxLRP3T5iVbvhgIfNg9VpQhPdULxIzYLZg+Blyd+POco5bGErWYeOPzeSuSn
+	 AAoSKXLqNPD8nvPYyy8CnK+K5lY6ipGi5V5IJh3jg5jnYS/l73SFMz4TC5q2WxfGUq
+	 KmZxqoDOWYy8WVRi26nWwfwZTVkvKd+05jp8oSmQpeHSUN+a81zLEqtU3KtQ5FYNgI
+	 TLqJq9fBouTjw==
+Date: Thu, 26 Feb 2026 18:13:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>, linux-pm@vger.kernel.org,
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: nvidia: Document the Tegra238
+ CCPLEX cluster
+Message-ID: <20260226-lung-pandemic-6cf9c79f9226@spud>
+References: <20260226151212.4067944-1-thierry.reding@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
- peripheral
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
- <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
- <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
- <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
- <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
- <66ecf6a5-cc1f-4872-971d-6bc32894dbac@foss.st.com>
- <fd73947a-289a-43f9-9506-573fee935d12@kernel.org>
- <ed0ab69f-7aff-423f-8b93-980e79705b6d@foss.st.com>
- <c588720a-6a7d-4179-afb5-bb7e89e0e7e1@kernel.org>
- <b535dfd6-e4a6-4831-a868-c152574144c8@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <b535dfd6-e4a6-4831-a868-c152574144c8@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eJDs8sWyDUAgWKga"
+Content-Disposition: inline
+In-Reply-To: <20260226151212.4067944-1-thierry.reding@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268974-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[foss.st.com,kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-268975-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,4.196.180.0:email]
-X-Rspamd-Queue-Id: 5FAB91AE0E7
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email]
+X-Rspamd-Queue-Id: 0E84D1AE0F8
 X-Rspamd-Action: no action
 
-On 19/02/2026 15:02, Gatien CHEVALLIER wrote:
-> Just a small reintroduction of the issue:
-> We need to provide three sets of information to the drivers of RISAx:
-> - The registers of the RISAx device, handled through property "reg"
-> - The global range of memory addresses protected by the RISAx devices
-> (currently through the custom property "st,mem-map")
-> - Each individual memory range protected, handled through property
-> "memory-region" that points to children of "/reserved-memory". Memory
-> regions may not cover the whole range covered by the RISAx.
-> 
-> To replace the custom property, I have explored a few ways:
-> 
-> 1) Describe the memory range covered by the memory firewall as a
-> reserved memory: Cannot be done because, for the memory firewall
-> covering the DDR, the reserved memory would overlap with the memory
-> node used to describe the memory available for regular kernel use.
-> The memory node represents part of the DDR in that case.
 
-But isn't this the entire point of RISAB on main system memory? You want
-to mark part of system memory one way or another. And now you say that
-overlapping would be a problem.
+--eJDs8sWyDUAgWKga
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You do understand you do not have to reserve the memory, right? You are
-doing only your specific mapping for that region.
+On Thu, Feb 26, 2026 at 04:12:11PM +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> Tegra238 is derived from Tegra234 and uses a similar CCPLEX cluster,
+> with slight variations but the same programming model. Add a compatible
+> string to specify this particular implementation.
 
-> 
-> 	memory@80000000 {
-> 		device_type = "memory";
-> 		reg = <0x0 0x80000000 0x1 0x0>;
-> 	};
-> 
-> 	reserved-memory {
-> 		#address-cells = <2>;
-> 		#size-cells = <2>;
-> 		ranges;
-> 
-> 		risaf_range: risaf-range@80000000 {
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-There is no compatible here...
+--eJDs8sWyDUAgWKga
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 			reg = <0x0 0x80000000 0x0 0x80000000>;
-> 			no-map;
+-----BEGIN PGP SIGNATURE-----
 
-And why no-mapping? Isn't the point of the block is to have it as main
-system memory?
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaCNYgAKCRB4tDGHoIJi
+0oYSAP928OLXm5h9F5ghdd4jj77nir/nEg5qQHqDKU4JUck0sgD9EmAdYsvh8ik9
++wi6aM3YuURYPzO1WCCdEVErKNTtDwk=
+=Q+hO
+-----END PGP SIGNATURE-----
 
-> 		};
-> 	}
-> 
-
-
-
-Best regards,
-Krzysztof
+--eJDs8sWyDUAgWKga--
 
