@@ -1,274 +1,227 @@
-Return-Path: <devicetree+bounces-268840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268841-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cGaWC0JKoGkuhwQAu9opvQ
-	(envelope-from <devicetree+bounces-268840-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:27:30 +0100
+	id oMulAslKoGnJhwQAu9opvQ
+	(envelope-from <devicetree+bounces-268841-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:29:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 149EF1A6891
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:27:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BCAE1A696E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:29:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C537E30AE694
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:22:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1065930C68F7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1228433A9C2;
-	Thu, 26 Feb 2026 13:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="mWZTbaRN";
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="mWZTbaRN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023223242CA;
+	Thu, 26 Feb 2026 13:22:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023116.outbound.protection.outlook.com [40.107.162.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D3532A3D1;
-	Thu, 26 Feb 2026 13:22:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.116
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772112121; cv=fail; b=KXjVn85vsKSYaKN27UCNg7RC33d76N39aDcP0GV+YB8zcIX8YhKHjDS1FuMizQU7W0QoQpD0kra5uDApXkDGLeVO2/9SVu50sQA0WqvHUtnYMVaTM9RNv+rB9WxEeEe2MUM/ZjBNA14t2UBYZxp4OdhqVlUiFGJKxhstDsuYNaE=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772112121; c=relaxed/simple;
-	bh=lwo2N1VQxHbYFKvBY4PCNgIqvgtASSI8WB/NcznABv0=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=jwfFVUi16/8CGVEcZDl6LSrdZkCtRDLPPu9Hynxm4i74vLL/QBnGuKy2ENzH3Og6gTDQp03b8xrwird8ELRyzmD31wnYRC/U96aMpxxipGpJUriPywzili7XcDMe4Is+6X5JxmzCIhQoIP/9xwxv6XGENxCxqa1j35poSaSxxJ8=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=mWZTbaRN; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=mWZTbaRN; arc=fail smtp.client-ip=40.107.162.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=t8DbK0h9Zp5YXhhTf1OIiqy3qRCCigLoF8gFxrcqIIuhbf9oRtg+J1fOoXZEvO/p5XnII9ylG+QkDUKNrPtjsH8+H3E1RIBclVZTdMwPMOwzCZBtKScaSI7PHB2zJee9ODIyTQJdsBH483X6uTb31QUeyUSOVG+VrDFiyzjFuuKA+ShOGb78iHsRTUoctLzXplp83ZsbhGZ1YNZAsuqAvXcL0MWebYTfS9kHgEwmlIyVOrG//2DSdhkVbG23Gj/TcIcX/IJRnaai5NG/c3JjmcStnbG61cpwuo/6nUrQ2UI/AwhTXqRMENlHdGQp7cYhECDZDDz6P0j7fNW5ATHoKw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jb98mak/6IJKgwYIjXGYzN1dXVw8RJEITJbKeASP2rE=;
- b=Bv8UH+u1sNsbc537BYH2Xqp1e7K1mJv+nLAsA5clQAiPUI8nN8H59G6dRobldtcENNe1TKKb40U7AqIjF1h/fPAzNch4i3ewEF2FQ8KsZ0rgys9STwIMp34WUG9jMJWJ4A6mpKrxpWkHbGly++nYXzYw8HqcPtVUOlB4TUQWEyzUyJr+UBHHg8siYXc3wmNbtcqjgcbG+Sf1YqOs8q+Rj1gHAr+04SPsisZu9Nq0C2mxo9gedxNBdDoaqehYZPbL17MBX6FwtTlpEuy533v5+iorV2BxClz3kJZbQfjZX7vva+9GzjXitcbbK50HBaK8Fy4rySMpIA4gfEQME8JpTA==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=softfail (sender ip
- is 52.17.62.50) smtp.rcpttodomain=atomide.com smtp.mailfrom=solid-run.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=solid-run.com;
- dkim=pass (signature was verified) header.d=solidrn.onmicrosoft.com; arc=pass
- (0 oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=solid-run.com]
- dkim=[1,1,header.d=solid-run.com] dmarc=[1,1,header.from=solid-run.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jb98mak/6IJKgwYIjXGYzN1dXVw8RJEITJbKeASP2rE=;
- b=mWZTbaRNW6WP1cnGl27NW1NIhjd35wMCIeQLrNdiaSVDPbe37LgCRBeZk4ogw5IvjxnO+XfECuz/bu8+pMehyGC6rwo2kbqANQBx96xwqm56t3mRHTDnZXuqG/89GIub0nvUuAnCz2MsPgwSLPbOVl8irsuGUZCHdFLgFstCqh8=
-Received: from DB3PR06CA0035.eurprd06.prod.outlook.com (2603:10a6:8:1::48) by
- VI0PR04MB10952.eurprd04.prod.outlook.com (2603:10a6:800:268::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Thu, 26 Feb
- 2026 13:21:56 +0000
-Received: from DB1PEPF000509F7.eurprd02.prod.outlook.com
- (2603:10a6:8:1:cafe::da) by DB3PR06CA0035.outlook.office365.com
- (2603:10a6:8:1::48) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.25 via Frontend Transport; Thu,
- 26 Feb 2026 13:21:57 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 52.17.62.50)
- smtp.mailfrom=solid-run.com; dkim=pass (signature was verified)
- header.d=solidrn.onmicrosoft.com;dmarc=fail action=none
- header.from=solid-run.com;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- solid-run.com discourages use of 52.17.62.50 as permitted sender)
-Received: from eu-dlp.cloud-sec-av.com (52.17.62.50) by
- DB1PEPF000509F7.mail.protection.outlook.com (10.167.242.153) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.12
- via Frontend Transport; Thu, 26 Feb 2026 13:21:55 +0000
-Received: from emails-5074848-12-mt-prod-cp-eu-2.checkpointcloudsec.com (ip-10-20-6-107.eu-west-1.compute.internal [10.20.6.107])
-	by mta-outgoing-dlp-670-mt-prod-cp-eu-2.checkpointcloudsec.com (Postfix) with ESMTPS id C122880737;
-	Thu, 26 Feb 2026 13:21:55 +0000 (UTC)
-X-Mailbox-Line: From b'josua@solid-run.com' Thu Feb 26 13:21:48 2026
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h+b0XKPj8oJuUgb7eDtCpOsgtO5EazQ1qi5pBnoS8uOsBRJD927kgOqOXYcVJHbhwqMNuR8QejWDg5aRWvTOBM0IonsbMTx+5tx58CmE0agf4CL+9van2T+MIoX4vhrVsHFTKWAxBLJYktsNK2mtUTZGL+n2LVGcdjB5/bAyAY2eiJ1VzZE7zYwixg5mp79zUGiBvbfQ7eQRrod2TreczKGjO++hYMGW0O6qn+zopmJPAVdY7zTMw/cewx0Svw5B3Wh5uKNEtYBCVWCBtDDh6tdJp7DYgLy+XyU2KIt9vatnA7ELxxl/snIYQLAQBbH1gWk9Z/zsqfBYNuPcodeJ1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jb98mak/6IJKgwYIjXGYzN1dXVw8RJEITJbKeASP2rE=;
- b=Uwpk26weYv4CyY6zyqUyeJShXQn/I39ijEKtBBeD1TMNLVCArbSHYuw/dV297yuyUVwiDZJzdzGtyf1GJKKaSelLaVSYSPWx6qH/zdh/0Zj/kOdmGxsdnAHcg9pFQ5xXG2jYj234+gfBpkZStf0hnbam5ccRVz/OxtlxOF71AEKXoKPxG00Ty6WNVKvrXvcewLgv0AEmENcUFKuTNIMDto+1z4mhF8L6jb0u9vETCz3JbeZRWegBcfbWj4HZ6bLGQNYqMT0uDLDxTYVZ8NjNOrrIkMBPVXd8DWziYm7MLSekdz2ttwhB5uA8UXlQUE3wX9WWOrP0hg62htDUrsZq9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jb98mak/6IJKgwYIjXGYzN1dXVw8RJEITJbKeASP2rE=;
- b=mWZTbaRNW6WP1cnGl27NW1NIhjd35wMCIeQLrNdiaSVDPbe37LgCRBeZk4ogw5IvjxnO+XfECuz/bu8+pMehyGC6rwo2kbqANQBx96xwqm56t3mRHTDnZXuqG/89GIub0nvUuAnCz2MsPgwSLPbOVl8irsuGUZCHdFLgFstCqh8=
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from AM9PR04MB8747.eurprd04.prod.outlook.com (2603:10a6:20b:408::11)
- by GVXPR04MB10450.eurprd04.prod.outlook.com (2603:10a6:150:1e6::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Thu, 26 Feb
- 2026 13:21:45 +0000
-Received: from AM9PR04MB8747.eurprd04.prod.outlook.com
- ([fe80::a0c7:9bd0:56e1:576a]) by AM9PR04MB8747.eurprd04.prod.outlook.com
- ([fe80::a0c7:9bd0:56e1:576a%4]) with mapi id 15.20.9654.014; Thu, 26 Feb 2026
- 13:21:45 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Thu, 26 Feb 2026 15:21:17 +0200
-Subject: [PATCH v11 9/9] mmc: host: renesas_sdhi_core: support selecting an
- optional mux
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-rz-sdio-mux-v11-9-c2a350f9bbd3@solid-run.com>
-References: <20260226-rz-sdio-mux-v11-0-c2a350f9bbd3@solid-run.com>
-In-Reply-To: <20260226-rz-sdio-mux-v11-0-c2a350f9bbd3@solid-run.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, 
- Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Peter Rosin <peda@axentia.se>, 
- Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
- Andi Shyti <andi.shyti@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
- Jon Nettleton <jon@solid-run.com>, Vladimir Oltean <olteanv@gmail.com>, 
- Mikhail Anikin <mikhail.anikin@solid-run.com>, linux-can@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org, 
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-renesas-soc@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.14.3
-X-ClientProxiedBy: TL2P290CA0013.ISRP290.PROD.OUTLOOK.COM (2603:1096:950:2::7)
- To AM9PR04MB8747.eurprd04.prod.outlook.com (2603:10a6:20b:408::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33612322B77
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772112163; cv=none; b=kEwTw1HuJjIp6vSn6c/XPb9U52BnlMD39tK/bNTEotHk4RWvLj/kxmpXfAcu3zeUBViNLHsU1kW+z0w+E6zEc2actD91SL/0Sxo5bGtkBbiPT9qbo3ur+O64M6CYhrHKWNzVbvlsuiDthsve1lX37w7flhWdFHbuv8gCxPhMAtU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772112163; c=relaxed/simple;
+	bh=4R7hF+71pg82oS066LoRVZURzYUxKCGCri0Dd7HK3lc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L++zrezzWF7bG8b8jKD4CRUAW9GnnXysfgdtzf+v1wo7882WZaeS1kXTq01VDMYsVPXmeZpVsDECSUKD1x7p2QMbAezBvhUdTq3NkmQuokYZecC9xATw9MCkNnSkO8cfoe0QXbBkVP/PjbRLmID9GZLR7eAZ1AXVcuaEXTRgTSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-56a8dce7235so285811e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 05:22:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772112161; x=1772716961;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=5twdPm6qtk6BxBBh6eqwsmb5sfIcorWjwwVPoxGI8zc=;
+        b=ZiomMbnk2QfzrbA+JkMzOOjyT0QT6nwIZn75jCWDb2QaB/zNPwdLi2y36sgXzIegol
+         5ZZ5DBsjkAu6u3xjiza38RzN86T6BqE+R9O4SPZFjb9RC+pZGtb2X84z5ck3E1sjZK9b
+         OjqoZni3DM4qhX1k4edkK2uuq3Uc/7j1Ok7ipfhoZCfgi3h6LQn0lYm7EHY9AiU41kSq
+         UCVT+eu8InIAdAqaDCWHIU8NLdNjAKtONvWEablgqQ0rjZZOo++/DfeaYda/qwbdThIm
+         etIxlIiU1kB5LpdbLd3I4Z2towavQKcQ3rFFK5DC/agGvP761DItf7IChyAjDxZZm/hH
+         Voqw==
+X-Forwarded-Encrypted: i=1; AJvYcCVFcbjxi1kMFmuJwD588ogyXDA/mIcxVAgzKHQ+tnuFunUndVH7FVkryVz1z/PRebR2ILPqLGEkig9m@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx85/5pVbctw8UP+pXha5iwEOJLNXzCE3/sLpnIAoNyD9TUngko
+	+VI5aHgpuyccFlVhtxtlNc1p2A+99Y3qmcGfuIfd6+1wcH0otHVMBw5P9zlpxP19
+X-Gm-Gg: ATEYQzzSJ6K+8LkC12fI1BfcKjG8SMMISkQBJydlkHnaNfN5uTS9rgmdq87n0jYmOD8
+	fWpKFoqrNGfSTh1ITVF7+PPgOoo+THLWiMVedhPs68/YGIbUQ7TtOxJ/qerltmjglnLlEw524AV
+	QyHECjtHOyPZ/B0OBH84fVkIFLCOEUGQrySSftHUUfJRYCWG6r/syKib5JU+QmSs1ehYoWGUQ3Z
+	D2cp6/LRW2RTO4NsVtzgi+XhfW3StPk/WpYbC5+RwowvIdIt6bKRSALI9BWkmP7FjaiGt810AY3
+	4P4M3oVjwRArKQmHN9ulZewbt2LzFgtBhHnfoV15HeyaXaMCUNENbkrMDHZI4dwmHDefQh30lsH
+	agNwAhDkU7Crzd1OFv3YtixT2lzbE2KThUgEJmbFc768sHjJ6Ex8m+G8gvBnJtD/joFkdpaO7HF
+	y0tsI5EWpsaBf7rAr8s0+gjRNxypa+2Xe3BoCoPP2BK5O25VQ7kps2xy5XraES
+X-Received: by 2002:a05:6122:218e:b0:566:37da:a72a with SMTP id 71dfb90a1353d-56a8bc659d1mr2113648e0c.13.1772112161159;
+        Thu, 26 Feb 2026 05:22:41 -0800 (PST)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56a91bb4fbesm2480593e0c.5.2026.02.26.05.22.40
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Feb 2026 05:22:41 -0800 (PST)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-5fe086fb0bcso171057137.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 05:22:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU/pDmj6ENVghj1E4E1e9j908LAm13Hmu6cQtfT+AV1EFMlxie1SZj6YPkddpxPos8b9D5Th697+Bcr@vger.kernel.org
+X-Received: by 2002:a05:6102:ccf:b0:5fd:ed98:cf0f with SMTP id
+ ada2fe7eead31-5ff14157fafmr2006779137.34.1772112160689; Thu, 26 Feb 2026
+ 05:22:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	AM9PR04MB8747:EE_|GVXPR04MB10450:EE_|DB1PEPF000509F7:EE_|VI0PR04MB10952:EE_
-X-MS-Office365-Filtering-Correlation-Id: f47a6e66-86a7-4a14-9ac4-08de753a0368
-X-CLOUD-SEC-AV-Info: solidrun,office365_emails,sent,inline
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|366016|1800799024|52116014|376014|7416014|921020|38350700014;
-X-Microsoft-Antispam-Message-Info-Original:
- mTyaFzrwJnjoGuZHpOYleOSA4heYdk3WP4nwa1rYd6n750m/HRVoymDPkR/qbnfLy0g5rBuKuUvMGSufDvOljlrmUdeJiac1hcujUbCkcRBuGZOOzVp0VmXgsKIUXYc6EipxNKXvYlElrQYKzIA2YjcJOq+GSEsrU4FZtKAWhDg6Ccx80JB58PEG9dyTN2FcPMpTQKSWtY/KNrAQKVy5QYsTppvgmJ9XBL79ZvM/MmKCV2PZQEDjBNB0Na+O3GVDXrlMoNJu/xFhlae/ddQbBdB8StDbKMyYIRJSEBh0ljyoZnBpqK4MrMFrn/Y6EaJx6pztp6qcBXnwEtxU7yJQz14IsFFwjxkMhHEgBz+UFOseJfcDiie8WZvIW5UdNZxBHAEaAnGqS6UQ7CN+G3WS8Aw2jFWsyVeq0zVV24X7imdxg8h0oqzvO6/OBZlF7KJi18djWbJkqLQ1od/x2SH5CDhqEMd5jXXH5S5SGv/x9TK3NAXrsfripA6Gp/l2hV88Zs6hirQPL/TWD0ZqCgqp+BqW6hCay4TCT646cPRSfQY8dhnXpgApXMKY1wfEDi6hcboRbj2mknwSTT5Dq2LGb5vhgtwrdiCMY/jWd7C1/o/xXLfsHOq4fm3dgzBeDuQU34JFycumxYHbXTrOOWFQAaoBVgMl1s8UQlXmPhtw1XZ0i5OMZhGqAD0VUAblRm50Ut0hEnoVJSWbgZQXFsBGzL/IViDsnnGulxD0Es18lzzXmSS/wRo/6PG5ASahvgFg0qrkh++CjVCGqThVdYaZYIPSkKfdGlYwU+ARQm3UYiBKsXuyaYke2thGOu/Tr0XA
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8747.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(376014)(7416014)(921020)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10450
-X-CLOUD-SEC-AV-INT-Relay: sent<mta-outgoing-dlp-mt-prod-cp-eu-2.checkpointcloudsec.com>
-X-CLOUD-SEC-AV-UUID: 88f8956af3f6465cb19ccd5d7d098d77:solidrun,office365_emails,sent,inline:8cf0ea1661083c475b94cab10e2af9ef
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- DB1PEPF000509F7.eurprd02.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	d78858e8-b759-4ebb-b2f8-08de7539fd09
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|35042699022|376014|7416014|82310400026|14060799003|921020;
-X-Microsoft-Antispam-Message-Info:
-	cxujCebwNZEyKxkgppRiYZk8wnlGYYDOrr2IJMfe8eEitkJCgHhoTVShkaYboXQE/Zyn6A2ZrPkhYFhsQb4usx3HaJ0OI7G7EjaDyOB2S8QUBpINPm5iS3L3Zfh+lVEhxJZW/SA9T7oYWiV+zs/3pXQwgXSC3PPP+fdK3EWEY7u8Vvw67ruFh/APX48kZPMf1fM3g4hu80QptGh7DIsEBTCz1po78GrClz0VdaITOmK9FpkUocou/veGKwQD1uq9kZsrI+gW+FIYsoPL4+bbPjeuSn9Nt337XHFEZrt+4mYpm/vcpD9xvbzvRtXv/rYNncmtWJ5tItdJM1mnJNR5+ds0I55ziu478xjd/yP7wZ/9mvgkDm+w5mlEtkRCb1HYU0I71wSSnkOKNrR956BsyMj+tMu+7wywJ0GUphHZCwEKaHhYBKrsMfyva2kdZ50fPujXarEqF0Cnr0S1BEny/BbymIhxuauwJb+hkMUh1MsWeFh3XKNdBTtywnb0s8V7EVA9rscgZECcE1Mq9Mc08V8ImeOUdk/5YB+bEUjGyxhR/RoRkdjbAzYMqjJOieh91jtQRR7EXv5qr5DbrsdSaa15feXS7221iUCg/b2QarrfSTsocdni1OxIcKAoV7Mxr8qcPaX0hO410R7/ZaP/4ysUtNre/DruVA/Dydw9LBdG9H56xhGKCqN+OnrS5G4N2+VrIC5ISe89YXBSZCcNjk/yHYttLtsZltu8kndy/pAb7rF4lANFhnyxwdCocbCG17k0cUmaY0M1JaWej/yVzQiVzOZCi6wRsMWHMeRVV3gaBbiKCk80okLZpgNa4QDmoR4v2k6VLxB4p+evUsInQfIg3CYlJwAkjVKhozhZtl8=
-X-Forefront-Antispam-Report:
-	CIP:52.17.62.50;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu-dlp.cloud-sec-av.com;PTR:eu-dlp.cloud-sec-av.com;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(35042699022)(376014)(7416014)(82310400026)(14060799003)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	VU5RYOwYEuPDrlo1fGBEIBZSmf7lK2VEsq8/XJJYqqPT6c6Y4ITUbMYuekXYPxoLPIyma+v59URak9yVP36YPeEwBt6+MfLUl5y2GzzAcpoBizdr/+2Unv3lxgmSQUdP0ZXe1AbTBYI7O29g9RrJWczlJZ0chGtrdimflArU5N5OyS0sUGjl7+z35Y+OCBmFp0wG3NRnFzey0ESBhWEeRJLqwLnLDAaI+k0X8YH08F9tb1zPS+Obwj9Xx5sdDYT9xDOHMP6kp9xVW3OSuFT2oElRwM8zmbjzdpk8AL8SPSQSCo/g1G0/3mrgyo3eJKJQ32WBKb9Phc2DLyDBTi0Z+VwHjYGjvuOLR2Vjbn9Vl6x1kDM7kiZLQ3j46uinMHo2yQOLvuqx2H9QulGMlQoiO7RA2Li9glKvgL2iC9614yWEGCcrgIuUfEo5fIANP3nF
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 13:21:55.8511
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f47a6e66-86a7-4a14-9ac4-08de753a0368
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a4a8aaf3-fd27-4e27-add2-604707ce5b82;Ip=[52.17.62.50];Helo=[eu-dlp.cloud-sec-av.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509F7.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10952
+References: <20260111093940.975359-1-vladimir.oltean@nxp.com> <20260111093940.975359-6-vladimir.oltean@nxp.com>
+In-Reply-To: <20260111093940.975359-6-vladimir.oltean@nxp.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 26 Feb 2026 14:22:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUBaoYKNj52gn8DQeZFZ42Cvm6xT6fvo0-_twNv1k3Jhg@mail.gmail.com>
+X-Gm-Features: AaiRm523jRWdOCfOPJhqksDewbEoHD_GTMJ0xjyZsvboq3n-XWtXIhj4iGm1B4M
+Message-ID: <CAMuHMdUBaoYKNj52gn8DQeZFZ42Cvm6xT6fvo0-_twNv1k3Jhg@mail.gmail.com>
+Subject: Re: [PATCH v3 net-next 05/10] phy: add phy_get_rx_polarity() and phy_get_tx_polarity()
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Daniel Golle <daniel@makrotopia.org>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	=?UTF-8?Q?Bj=C3=B8rn_Mork?= <bjorn@mork.no>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Eric Woudstra <ericwouds@gmail.com>, =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>, 
+	Lee Jones <lee@kernel.org>, Patrice Chotard <patrice.chotard@foss.st.com>, 
+	"open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>, 
+	KUnit Development <kunit-dev@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.94 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[solidrn.onmicrosoft.com:s=selector1-solidrn-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[solid-run.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,makrotopia.org,microchip.com,mork.no,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,linaro.org,collabora.com,foss.st.com,googlegroups.com];
+	TAGGED_FROM(0.00)[bounces-268841-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268840-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[pengutronix.de,kernel.org,linaro.org,axentia.se,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,renesas.com];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[34];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[solidrn.onmicrosoft.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,solid-run.com:mid,solid-run.com:email];
-	DKIM_TRACE(0.00)[solidrn.onmicrosoft.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[josua@solid-run.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[solid-run.com,gmail.com,vger.kernel.org,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 149EF1A6891
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.980];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,mork.no:email,mail.gmail.com:mid,linux-m68k.org:email]
+X-Rspamd-Queue-Id: 6BCAE1A696E
 X-Rspamd-Action: no action
 
-Some hardware designs route data or control signals through a mux to
-support multiple devices on a single sdhi controller.
+Hi Vladimir,
 
-In particular SolidRun RZ/G2L/G2LC/V2L System on Module use a mux for
-switching between soldered eMMC and an optional microSD on a carrier
-board, e.g. for development or provisioning.
+CC kunit
 
-SD/SDIO/eMMC are not well suited for runtime switching between different
-cards, however boot-time selection is possible and useful - in
-particular considering dt overlays.
+On Sun, 11 Jan 2026 at 10:44, Vladimir Oltean <vladimir.oltean@nxp.com> wro=
+te:
+> Add helpers in the generic PHY folder which can be used using 'select
+> GENERIC_PHY_COMMON_PROPS' from Kconfig, without otherwise needing to
+> enable GENERIC_PHY.
+>
+> These helpers need to deal with the slight messiness of the fact that
+> the polarity properties are arrays per protocol, and with the fact that
+> there is no default value mandated by the standard properties, all
+> default values depend on driver and protocol (PHY_POL_NORMAL may be a
+> good default for SGMII, whereas PHY_POL_AUTO may be a good default for
+> PCIe).
+>
+> Push the supported mask of polarities to these helpers, to simplify
+> drivers such that they don't need to validate what's in the device tree
+> (or other firmware description).
+>
+> Add a KUnit test suite to make sure that the API produces the expected
+> results. The fact that we use fwnode structures means we can validate
+> with software nodes, and as opposed to the device_property API, we can
+> bypass the need to have a device structure.
+>
+> Co-developed-by: Bj=C3=B8rn Mork <bjorn@mork.no>
+> Signed-off-by: Bj=C3=B8rn Mork <bjorn@mork.no>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Add support for an optional SD/SDIO/eMMC mux defined in dt, and select
-it during probe.
+Thanks for your patch, which is now commit e7556b59ba651796
+("phy: add phy_get_rx_polarity() and phy_get_tx_polarity()") in
+v7.0-rc1.
 
-Similar functionality already exists in other places, e.g. i2c-omap.
+> --- a/drivers/phy/Kconfig
+> +++ b/drivers/phy/Kconfig
+> @@ -5,6 +5,28 @@
+>
+>  menu "PHY Subsystem"
+>
+> +config PHY_COMMON_PROPS
+> +       bool
+> +       help
+> +         This parses properties common between generic PHYs and Ethernet=
+ PHYs.
+> +
+> +         Select this from consumer drivers to gain access to helpers for
+> +         parsing properties from the
+> +         Documentation/devicetree/bindings/phy/phy-common-props.yaml sch=
+ema.
+> +
+> +config PHY_COMMON_PROPS_TEST
+> +       tristate "KUnit tests for PHY common props" if !KUNIT_ALL_TESTS
+> +       select PHY_COMMON_PROPS
 
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- drivers/mmc/host/renesas_sdhi_core.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+This select means that enabling KUNIT_ALL_TESTS also enables extra
+functionality, which may not be desirable in a production system.
+As PHY_COMMON_PROPS is bool, this extra functionality is even part of
+the base kernel if KUNIT_ALL_TESTS=3Dm.  Unfortunately PHY_COMMON_PROPS is
+invisible, so this cannot just be changed from "select" to "depends on".
+But perhaps PHY_COMMON_PROPS can be made visible if KUNIT_ALL_TESTS,
+so the select can be turned into a dependency?
 
-diff --git a/drivers/mmc/host/renesas_sdhi_core.c b/drivers/mmc/host/renesas_sdhi_core.c
-index 2a310a145785..f9ec78d699f4 100644
---- a/drivers/mmc/host/renesas_sdhi_core.c
-+++ b/drivers/mmc/host/renesas_sdhi_core.c
-@@ -26,6 +26,7 @@
- #include <linux/mmc/mmc.h>
- #include <linux/mmc/slot-gpio.h>
- #include <linux/module.h>
-+#include <linux/mux/consumer.h>
- #include <linux/pinctrl/consumer.h>
- #include <linux/pinctrl/pinctrl-state.h>
- #include <linux/platform_data/tmio.h>
-@@ -1062,6 +1063,7 @@ int renesas_sdhi_probe(struct platform_device *pdev,
- 	struct regulator_dev *rdev;
- 	struct renesas_sdhi_dma *dma_priv;
- 	struct device *dev = &pdev->dev;
-+	struct mux_state *mux_state;
- 	struct tmio_mmc_host *host;
- 	struct renesas_sdhi *priv;
- 	int num_irqs, irq, ret, i;
-@@ -1116,6 +1118,10 @@ int renesas_sdhi_probe(struct platform_device *pdev,
- 						"state_uhs");
- 	}
- 
-+	mux_state = devm_mux_state_get_optional_selected(&pdev->dev, NULL);
-+	if (IS_ERR(mux_state))
-+		return PTR_ERR(mux_state);
-+
- 	host = tmio_mmc_host_alloc(pdev, mmc_data);
- 	if (IS_ERR(host))
- 		return PTR_ERR(host);
+> +       depends on KUNIT
+> +       default KUNIT_ALL_TESTS
+> +       help
+> +         This builds KUnit tests for the PHY common property API.
+> +
+> +         For more information on KUnit and unit tests in general,
+> +         please refer to the KUnit documentation in Documentation/dev-to=
+ols/kunit/.
+> +
+> +         When in doubt, say N.
+> +
+>  config GENERIC_PHY
+>         bool "PHY Core"
+>         help
 
--- 
-2.43.0
+Gr{oetje,eeting}s,
 
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
