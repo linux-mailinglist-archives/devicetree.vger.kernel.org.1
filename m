@@ -1,96 +1,67 @@
-Return-Path: <devicetree+bounces-268660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268661-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCO0Hl0EoGl/fQQAu9opvQ
-	(envelope-from <devicetree+bounces-268660-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:29:17 +0100
+	id oCKCEBIHoGl/fQQAu9opvQ
+	(envelope-from <devicetree+bounces-268661-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:40:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAC261A28F6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:29:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A181A2B1B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:40:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EC504301DEEC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:29:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6B53C3011844
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE54394462;
-	Thu, 26 Feb 2026 08:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54BE393DFC;
+	Thu, 26 Feb 2026 08:37:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="kGYDhB86"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UayT8M8b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 214F9393DDE;
-	Thu, 26 Feb 2026 08:29:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE71B393DE9;
+	Thu, 26 Feb 2026 08:37:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772094552; cv=none; b=qNXveyntVbXK96S0Z/INv/XukKYXAC4yTjMVtLviJCOmc5srV6TJEP/JdeckmKuK04riKLVYB2hD1HW9qbqx20t1wGXRD3YAqNdi+h1KiDYp8JtXkWHTZhwVg0zVUu2CjyeAXfK/I205tAuCy8uOWmQ6kqit9doAhJx/zuu5tjM=
+	t=1772095025; cv=none; b=r/FA2rkC3XkcZ+209NdbX3c2B1J6t0ti5CNQ//boj8ANAAOtgu/8VRStwJnlXYL08jpjf2I3SxdO16smTllrOictAhb6hbJCFQjG8A/ulwelFeQFZbOSVfWcxw2VV8iXIsX1aMhMyBtu437cEyTzNKniyPel2eMuv8DXYlzaQSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772094552; c=relaxed/simple;
-	bh=uq0Fvn0gt+zivwrRJU8ydweAWsX+EfqCoqbAPIyBb5Q=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=KwGOs95kf+YCDdCmXTjfJzj6vrq0rz+q6AaNgxnL3JE527RY5G2VqGywVNBb0Gr+1q6QlvjDHHcl+IOlUGj9zWot0OGFYKl2VeeJgY5rCLJpi5DZAyFT9b35TBqa4ZEv61kvbptKDALivvGQT63/mmiFUT+3MI9R6ZZrt4arzi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=kGYDhB86; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=0KxSh7kE1xxfS6NJZSSWiiAxS5+M/OE0yk9rnVdu/qE=; b=kGYDhB86DcXU4gvoVGY3M6ezaA
-	2nQHOBEwvyNErKKCWgCcyvWrVY7rOg9KwibQc8V3Oqynrttm7VZ7VhHG6tboHF6ASM9kZxdr0n20G
-	06duKl1oltlhm93b4HTWaf4u5ce8RDVRBYbyqmyCXcQZqORglVVOFi3H+pi2RBYqXwpiDurd2Df7i
-	WeTRl5lPS4bj+z32py39l4QWyPO798DB2Nty/9yVAmyNHr9eYdExbb3BouJwcvFN7LsyEYq41vASj
-	af0Mru9snnjdT3vBfeDOTWOr2ZiLZ2KGAoNjrMV6YgxYCA9tbQNmIJtCseqrZ6FLf7O5WlL0c45kO
-	QC9iFUzw==;
-Received: from [122.175.9.182] (port=2058 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1vvWjx-00000009GTo-1OXd;
-	Thu, 26 Feb 2026 03:28:57 -0500
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id C2C231B4B20E;
-	Thu, 26 Feb 2026 13:58:50 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
- by localhost (zimbra.couthit.local [127.0.0.1]) (amavis, port 10032)
- with ESMTP id CAXoQSXLACbx; Thu, 26 Feb 2026 13:58:50 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 39DF91B4B201;
-	Thu, 26 Feb 2026 13:58:50 +0530 (IST)
-X-Virus-Scanned: amavis at couthit.local
-Received: from zimbra.couthit.local ([127.0.0.1])
- by localhost (zimbra.couthit.local [127.0.0.1]) (amavis, port 10026)
- with ESMTP id WTMalfr6gkLY; Thu, 26 Feb 2026 13:58:50 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 0F4211B4B20E;
-	Thu, 26 Feb 2026 13:58:50 +0530 (IST)
-Date: Thu, 26 Feb 2026 13:58:49 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: nm <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, afd <afd@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, rogerq <rogerq@kernel.org>, 
-	tony <tony@atomide.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	aaro koskinen <aaro.koskinen@iki.fi>, andreas <andreas@kemnade.info>, 
-	Andrew Lunn <andrew@lunn.ch>, 
-	linux-omap <linux-omap@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	netdev <netdev@vger.kernel.org>, danishanwar <danishanwar@ti.com>, 
-	pratheesh <pratheesh@ti.com>, j-rameshbabu <j-rameshbabu@ti.com>, 
-	praneeth <praneeth@ti.com>, srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, mohan <mohan@couthit.com>, 
-	pmohan <pmohan@couthit.com>, basharath <basharath@couthit.com>, 
-	Murali Karicheri <m-karicheri2@ti.com>
-Message-ID: <1885117045.525472.1772094529965.JavaMail.zimbra@couthit.local>
-In-Reply-To: <B3077F98-CC5C-4093-8319-CF45EECEAE4D@goldelico.com>
-References: <20260105162546.1809714-1-parvathi@couthit.com> <20260105162546.1809714-3-parvathi@couthit.com> <B3077F98-CC5C-4093-8319-CF45EECEAE4D@goldelico.com>
-Subject: Re: [PATCH v4 2/2] arm: dts: ti: Adds support for AM335x and AM437x
+	s=arc-20240116; t=1772095025; c=relaxed/simple;
+	bh=4XfkjpUD1HWkRvY5xSHxtLpEXIsBytkEIyTNzWFgnUg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nghBPgr+Kt3iroY2d5NVs3yFK9Ml/gb8AFZntK8kBrbzme+ijmbGJS/h0SQoR+Jvls1Ailz3FJsx15OmT3rquI/wkDjiOWh6E3G/YmNoh5jJgIWDButiOvugLem+DJox2U2QrleZFH+hWB9UpqBjM8eX0rk6ajqvCe5vrgKASL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UayT8M8b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71808C19422;
+	Thu, 26 Feb 2026 08:36:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772095025;
+	bh=4XfkjpUD1HWkRvY5xSHxtLpEXIsBytkEIyTNzWFgnUg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UayT8M8b7tk5oHubPD0MfhABCADHfcRn6hWNDbac/Zbq3MwLR5Q5WK8DZnI2hl4lK
+	 DuYIFa1JnP6S8bNsXgijNUt1IbvrNIXwnm8TgpC9zkIC8bvnwaUsLirb8CrNIOrTAV
+	 HYMGp10GsAHpo005y0bAYuB4qckOsDNJdIPPyu2VCMSi0YYvIR495YCG2d0xptML7g
+	 HhH188HN3aBIvPu+0FAVMUQa20jhr7HRp6T1z26NBu4SlW9mQ583LyVdxcCkBQmaoE
+	 rkN/81BzeaTnjIM3OnMhUlL4wq2i/dXGSlDJlvzezSh9MNIgA3huzou1Q2SYyxoxzH
+	 hRjogGL7z/+9Q==
+Date: Thu, 26 Feb 2026 14:06:54 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
+	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+Subject: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+Message-ID: <rbmoxlc45bf4ij2o2mf3ofgni6vxqmsp52vdiqtc4wxxufmxkt@w2u5rkpq5mhs>
+References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
+ <20260129092900.1900-1-zhangsenchuan@eswincomputing.com>
+ <a3yu54e6feo5immtdju4fgvne7fh3p4ytlawfdhawmpzvagi64@o7wuhhdiitft>
+ <78296255.3869.19c8eb694d6.Coremail.zhangsenchuan@eswincomputing.com>
+ <cxfbgzwsybfvixu3qqi66fvspmhe5knuevwcj6zwsakkzqwd3z@czmitvgl7nwt>
+ <694aeb1a.398e.19c98ff2727.Coremail.zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,79 +69,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 9.0.0_ZEXTRAS_20240927 (ZimbraWebClient - GC138 (Linux)/9.0.0_ZEXTRAS_20240927)
-Thread-Topic: Adds support for AM335x and AM437x
-Thread-Index: m3OSGARO0zXzTDEelPMcISDqFz/iTQ==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <694aeb1a.398e.19c98ff2727.Coremail.zhangsenchuan@eswincomputing.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[couthit.com:s=default];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[couthit.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268660-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TO_DN_ALL(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268661-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_X_AS(0.00)[smtp@couthit.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_X_GMSV(0.00)[smtp@couthit.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,ti.com:email];
-	HAS_X_SOURCE(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	PRECEDENCE_BULK(0.00)[];
-	NEURAL_HAM(-0.00)[-0.649];
-	FROM_NEQ_ENVFROM(0.00)[parvathi@couthit.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[ti.com,baylibre.com,kernel.org,atomide.com,gmail.com,iki.fi,kemnade.info,lunn.ch,vger.kernel.org,couthit.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[couthit.com:-];
-	HAS_X_ANTIABUSE(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: AAC261A28F6
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A2A181A2B1B
 X-Rspamd-Action: no action
 
-Hi, 
+On Thu, Feb 26, 2026 at 04:09:44PM +0800, zhangsenchuan wrote:
+> 
+> > > > Subject: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host controller driver
+> > > > 
+> > > > On Thu, Jan 29, 2026 at 05:29:00PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> > > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> > > > >
+> > > > > +static int eic7700_pcie_suspend_noirq(struct device *dev)
+> > > > > +{
+> > > > > +	struct eic7700_pcie *pcie = dev_get_drvdata(dev);
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * The ESWIN EIC7700 SoC lacks hardware support for the L2/L3 low-power
+> > > > > +	 * link states. It cannot enter the L2/L3 Ready state through the
+> > > > > +	 * PME_Turn_Off/PME_To_Ack handshake protocol. To avoid this problem,
+> > > > > +	 * the dw_pcie_suspend_noirq API is not used.
+> > > > > +	 */
+> > > > 
+> > > > With 7.0, you can provide a dummy pme_turn_off() API and set
+> > > > 'pci->pp.skip_l23_ready' to reuse the dw_pcie_{suspend/resume}_noirq APIs.
+> > > > 
+> > > 
+> > > Hi Mani,
+> > > 
+> > > Setting pci->pp.skip_l23_ready does indeed allow us to reuse the
+> > > dw_pcie_suspend_noirq function. However, for the dw_pcie_resume_noirq
+> > > function, if the dw_pcie_start_link and dw_pcie_wait_for_link APIs fail to
+> > > execute, the clk/reset resources in the pci->pp.ops->init function cannot
+> > > be released. Perhaps the dw_pcie_resume_noirq function needs to be optimized.
+> > 
+> > Will this help?
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > index 6ae6189e9b8a..38ad79bbeab1 100644
+> > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > @@ -1300,15 +1300,24 @@ int dw_pcie_resume_noirq(struct dw_pcie *pci)
+> >  
+> >         ret = dw_pcie_start_link(pci);
+> >         if (ret)
+> > -               return ret;
+> > +               goto err_deinit;
+> >  
+> >         ret = dw_pcie_wait_for_link(pci);
+> >         if (ret)
+> > -               return ret;
+> > +               goto err_stop_link;
+> >  
+> >         if (pci->pp.ops->post_init)
+> >                 pci->pp.ops->post_init(&pci->pp);
+> >  
+> > +       return 0;
+> > +
+> > +err_stop_link:
+> > +       dw_pcie_stop_link(pci);
+> > +
+> > +err_deinit:
+> > +       if (pci->pp.ops->deinit)
+> > +               pci->pp.ops->deinit(&pci->pp);
+> > +
+> >         return ret;
+> >  }
+> >  EXPORT_SYMBOL_GPL(dw_pcie_resume_noirq);
+> > 
+> 
+> Yes, this can release the resources after init, after optimizing the 
+> resume function, i can reuse the dw_pcie_{suspend/resume}_noirq APIs.
+> 
+> I noticed that the dw_pcie_wait_for_link function has been optimized. Is 
+> it necessary to release the resources only when it return -ETIMEOUT?
+> Perhaps it needs to be slightly improved：
+> 
+>  ret = dw_pcie_wait_for_link(pci);
+>  if (ret == -ETIMEOUT)
+>          goto err_stop_link;
+> 
+> What about your suggestion?
+> 
 
-> Hi,
-> 
->> Am 05.01.2026 um 17:21 schrieb Parvathi Pudi <parvathi@couthit.com>:
->> 
->> From: Roger Quadros <rogerq@ti.com>
->> 
->> PRU-ICSS instance consists of two PRU cores along with various
->> peripherals such as the Interrupt Controller (PRU_INTC), the Industrial
->> Ethernet Peripheral(IEP), the Real Time Media Independent Interface
->> controller (MII_RT), and the Enhanced Capture (eCAP) event module.
->> 
-> 
-> I am just wondering about the subject of this patch.
-> 
-> It reads as if general AM335x and AM437x support is introduced for the first
-> time.
-> IMHO it should tell which subsystem/improvement is added.
-> 
+Absolutely! I forgot my own rework ;) I'll cook a patch for the above. Then if
+you base your controller driver patch on top of it, we can merge both in a
+single tree (if Bjorn agrees).
 
-Sure, we will address this in the next version.
+- Mani
 
-Thanks and Regards,
-Parvathi
+-- 
+மணிவண்ணன் சதாசிவம்
 
