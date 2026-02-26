@@ -1,240 +1,156 @@
-Return-Path: <devicetree+bounces-268666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268667-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CG8DF7MIoGm4fQQAu9opvQ
-	(envelope-from <devicetree+bounces-268666-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:47:47 +0100
+	id qBr8Ez4KoGnefQQAu9opvQ
+	(envelope-from <devicetree+bounces-268667-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:54:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB1B1A2E0B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:47:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A74831A2F3C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:54:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 698A5300E596
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:47:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E50B030AA018
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 781D2396D24;
-	Thu, 26 Feb 2026 08:47:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B3F38B7D5;
+	Thu, 26 Feb 2026 08:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="lRLIa+jY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PQgwxSII"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FCE5396B96
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:47:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28921395DB1
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:48:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772095647; cv=none; b=cz6IVpJESwVDxXLFb8ekHVTJc0dfr6LxVMTHj5JszwxxjhZTjQJ9dYQ3GwpmJ+N+UnYODPbraG5YE5AHay3tGAhydp/D+CFIe8rl9p6Gq+iIX+A5S+YRmWMAOheLuFb3qtWyQHJHqcUL/M5y3K+tGrVPAPwfHjSrIf6PJIX/Tvc=
+	t=1772095741; cv=none; b=m/0UH/PYSWT3fDz5W4SA+LvVM86iGBk0/a8gQehqQuieD2Z3Yp0vi7EPhQFpKrQ/utxS5DtUq+8nJK/7c2vJnCi6Bt8xURwU2tI4rrCTlCKkmwyuL594xkb6SIPEyu19bc7CkTJ6QihWuSpYcUvw/Dz2WKhKsN0s7PJsI/UCl/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772095647; c=relaxed/simple;
-	bh=T0e1oAKgv2NHJmE9n7ueLnjVsCwqiQUlZvPvOI7Fc+Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YlBwoezbL+DtERBgYwsGx40S2icoTLtvengzGU50bKgGekE7PK/i0wF+9/Rzot7D8MWzYcQkQDZQSqhSXE8MHW8wV1Np7o8j+vJkj9mNF/+4owgzf/ty7hKxKAE4n8BXTJlERD+MMATbZW11hsskFhQ9dFFjdpnZNBGvs39DlMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=lRLIa+jY; arc=none smtp.client-ip=209.85.128.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-480706554beso8001865e9.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 00:47:23 -0800 (PST)
+	s=arc-20240116; t=1772095741; c=relaxed/simple;
+	bh=ajmqkuqn821wRP8biL6ZENRUK6iDiFbyJK2m1b+fh4s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TVZZ9w8NgNehNikYTZrK683jdtnshv3gqzQaEKjlzCVSlJPWEykVtEulJlQb0oTdhfvdACSR4vBcrAvS80frIZ5SN86LygJc1kvt1OE8Ptii3QZIB4yVL3hAjSWwX1OjPze3L5LE6FW4J7VXQf9QBkJpTcLBYo9U3pYgO2Hhkws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PQgwxSII; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-824a9348603so241743b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 00:48:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1772095642; x=1772700442; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n/hVz7nlruTnhdI8UkrlZIFLUp/mnqXEgc1farN/t6k=;
-        b=lRLIa+jYYZ+lhFgpsB9XHEh518ud/Ve9KDn16bj1Xfrbvbkp6agfCiCOD/wq7nlXLX
-         dupjMwpPQS3jogd9/naSpWeGmVtqL4bIChFR0FMOgLQpgFFhyIKe5mLhnluRgebjVX+D
-         EbC7EXvdggSsJ66Lbd9E7iJSlvoCku1g/DJD0=
+        d=gmail.com; s=20230601; t=1772095738; x=1772700538; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wTIDqyg2XC0iHi1WCfQ6EE8S6g1mAh63E4xVMCnsuto=;
+        b=PQgwxSII08fL7sEtZ2iz3m6s1ZKpGFj743XU/Ubkvow/KQb90DuqFjLSjfAJhcSLw0
+         cwX7bE6+XfUFB0Ue8Mt2NM79UkbloXXdjF9NQRZ5cyJOS5U3fKN1zEoIOSA5gwHJciJl
+         xHI2lWhWPiQWyyGTWi+YHSGE6OAJ9LEz8YNdRmlltKp3qyyq7M/NwifVKMXeR73W2UdO
+         Vh8vtOTZIs0Q0EkUar/6irG9XgtUMr87xwPvrGh7E48+/9ceQ33gNi27n7AFNvsHFuy0
+         c4gPN/xGvt+8AUXGdHlrTmBv95AmRZhy8RNO+sVhI9hUSVszgeDz4P3IJvyF58UOLjf1
+         4Fnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772095642; x=1772700442;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=n/hVz7nlruTnhdI8UkrlZIFLUp/mnqXEgc1farN/t6k=;
-        b=nHG9rUVb0OJu2OzSz3a508pT/zZ05YpWX5ck6vhXoRWCo+MceGYdXkwg9BxZ4dH12e
-         VFHFgrddUDmyyfJq8SPMNXc4nrb5ujhbfDzYbWAI3njMBtBEFxZQ1+hNmwGbqKidrsj8
-         hcy/0aDVDfL54pGgWAm7OJFoiqdWxDHijqv1LPkFaflFys8SgkUy3oHoke/KKZr2YHQb
-         6JGqBVcgN40MWM7/dP2+fTzbWpoDI+SQ+6muqZR7MsqJ5wEtDwOAJzP0LMmkA2fy0We9
-         xr5yrWpXWxLL9s9ITiuFwKcKI3iJLvIEJSQQ/iKnzlmj5Et20kRaQMtcMaxuD8kPnckL
-         T7Kw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5NouZlINcIYe/MLgxZed2lvVVCpOCzy8XwuTT6Rbe8Qt0399+w6X0+maIoJb9YB68/sbiDRXFB1ix@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCmc5lmVWX4xdR0sowonxOx5K+NdAfiKEqNNMp5xWF2bSU1qA+
-	XYW6ru0/0nRJqzsvEFuwMZlKvZ6fY7EkI7HOreC+R25gWQuD4ZIPSaMCFaD44KDkOXU=
-X-Gm-Gg: ATEYQzzR5deYGKgFeqnGTCvBpPIGPitScAytpyP+nrge2omPiRZFyxWTfby0DLaDDgO
-	Bce+QYZQbQKs6yonueFS71TUdqGIHks4V/e0E5bqXFCplFYt6xKtU5ExgkY14x9cywGz2V7JUBf
-	LVpGK+SvUNh5HFss/LU7Z5U2bubZyRk/rVM0PYpd09TRKKrRPhm5gvUwxMj8BtZurOpEqC+eqZ9
-	ULOgyuFAKvwOrPO1VuQ9QC0OwHrHTYQ220+CMY0OKZ3QG+p6/8CcFUjiXM2XPNKz8QbTrbADTUh
-	02La/ikcnomLY7FsKuC2nDnqUH/0YKI5rv4LrneIOa/UXzLAcboRGNpmJp/LTjGYyKdh9/usWeK
-	jHk2X5hfr/ALeUTczOrTNSGtU8TIfbrzJ7QDFqTBpn6zlJdWaUqENlsra/17HBp14jPG/9rb5kM
-	UcTiHL45/JznQUQF9D+ssVaWsnO6S+a28jgyaFPGgXA1SS1AFjtUTMabwHZBY+yxcOsXdNvfC5D
-	twc8IQ22kwW6vxXJbM0Jk82BBw8irnjQOOy4rlYdvlF+848iIq4pEynwIkDpdpeyEBy77smEvB8
-	az4frnreOZ2FSTq+DmzhZ2n1
-X-Received: by 2002:a05:600c:8b11:b0:483:6d42:25c6 with SMTP id 5b1f17b1804b1-483c21a105fmr60548225e9.23.1772095641758;
-        Thu, 26 Feb 2026 00:47:21 -0800 (PST)
-Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-95-248-31-95.retail.telecomitalia.it. [95.248.31.95])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfb85c58sm31581075e9.9.2026.02.26.00.47.20
+        d=1e100.net; s=20230601; t=1772095738; x=1772700538;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wTIDqyg2XC0iHi1WCfQ6EE8S6g1mAh63E4xVMCnsuto=;
+        b=KC7rDLFCqVpVpqXAWQOUiQMEidXIuoY/V7mETZizLrkXNQ4ASUhlAUExVd2Wsblgcx
+         dvHXmmOHcgwiFsLAf+aQQ/Ym4KRF81B9sueH0WdJre9+o8RD/4z4vSMUDclDJ4WaWNbY
+         mmxW8q+8fXZntyIMBXah1U2GgHlLSZWGiPQ+H8C+BCFU+B5+4Z717we9sAgbnjPrqkAQ
+         bSvkJ0XoWeRpFGibPWiLPgSymQpuh9S3I1dIHpPik+h4bTf8TSJy3Ac7Sq5CQ99cPlP2
+         A91d8NEXxGHWcvdIzhYEV537+iZUWgurwJMnLFIw2yCfc1V8O1b3DJufxaB96GXJ6hO2
+         lXrw==
+X-Gm-Message-State: AOJu0YzP9NZxn0xNroVOS4TZ1vwvUet1h3v92lErQZKGkdVFb3pXy0+d
+	K615CcB6QKeFn4Gkkvs6bz6gErM3ZuF20pMS9VsAxHHUVA4G4pZcYhuGvF8UkU9w6ns=
+X-Gm-Gg: ATEYQzyEATeMP5y7CHJG1j2pYKFiQc/It3FZQAEcWL8zFCLsfngTKBXEhvPGGlBAuBF
+	qd5CjLtvxVli7v1Xdf3Qh6cSwy0w0RALobaCYCcnogEYfgGZEgreEu9SoMMZ64n4o6hL4prAgmO
+	VH1+stJlQw6bVvQIYfTGBXoazdweXCFgPso5QkhKzxB85hBMmz01xdtGWegOK0xnmbloZsCQ0cn
+	03qbLdUCo8KlsJsnBz0sa0Aw2jqir+Kg47TjI7kZzabRwAjXNjcxeyuebjQSXV7mgNzeHCsUTRo
+	7M3hwyW/CSNnFQByxjiUqSrj9TVtWfn6wJIwxiAZLnoLR6ZTvVHHiYmDwHjAWb7FwmtqLYatHjN
+	Ggfh+ekiveLVMgqcH756hfNgvLtQY7uz8S2h7r7j9N8pkONHQO9Fq3FCvwqJn0wNZVvVgpDuOIa
+	l/XOtaAg3kHUr0HcRubD6NqUHUL1LxgFy4nAE8
+X-Received: by 2002:a05:6a20:9e4d:b0:366:581e:19f6 with SMTP id adf61e73a8af0-39545ed4a2amr17383051637.23.1772095737809;
+        Thu, 26 Feb 2026 00:48:57 -0800 (PST)
+Received: from arch.localdomain ([117.147.91.218])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c70fa848471sm1342441a12.30.2026.02.26.00.48.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 00:47:21 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: [RESEND PATCH v4 3/4] dt-bindings: ili9806e: add Rocktech RK050HR345-CT106A display
-Date: Thu, 26 Feb 2026 09:47:02 +0100
-Message-ID: <20260226084713.2566672-4-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260226084713.2566672-1-dario.binacchi@amarulasolutions.com>
-References: <20260226084713.2566672-1-dario.binacchi@amarulasolutions.com>
+        Thu, 26 Feb 2026 00:48:57 -0800 (PST)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	wens@kernel.org,
+	jernej.skrabec@gmail.com,
+	samuel@sholland.org,
+	mripard@kernel.org,
+	Jun Yan <jerrysteve1101@gmail.com>
+Subject: [PATCH 0/3] board: sunxi: Add TaiqiCat A01
+Date: Thu, 26 Feb 2026 16:48:44 +0800
+Message-ID: <20260226084850.417731-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amarulasolutions.com,kernel.org,gmail.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-268666-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dario.binacchi@amarulasolutions.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-268667-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amarulasolutions.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.969];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amarulasolutions.com:mid,amarulasolutions.com:dkim,amarulasolutions.com:email,0.0.0.0:email,devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0AB1B1A2E0B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A74831A2F3C
 X-Rspamd-Action: no action
 
-Document the Rocktech 5" 480x854 panel based on the Ilitek ILI9806E
-controller.
+This series adds support for the TaiqiCat (TQC) A01 — 
+a set-top box based on the Allwinner H6 SoC. 
+Originally released by UQsoft as a blockchain terminal, 
+the device has been discontinued and is no longer officially
+supported.
+  
+  https://web.archive.org/web/20190409213228/https://tq.ultrapower.com.cn/product.html
 
-This panel uses SPI for control and an RGB interface for display
-data, so adjust the binding requirements accordingly.
+Jun Yan (3):
+  dt-bindings: vendor-prefixes: Add Beijing UQ Interactive Co.,Ltd.
+  dt-bindings: arm: sunxi: Add TaiqiCat (TQC) A01
+  arm64: dts: allwinner: h6: Add TaiqiCat (TQC) A01 support
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../dts/allwinner/sun50i-h6-taiqicat-a01.dts  | 361 ++++++++++++++++++
+ 4 files changed, 369 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
 
----
-
-(no changes since v3)
-
-Changes in v3:
-- Add Reviewed-by tag of Rob Herring
-
-Changes in v2:
-- Restore vdd-supply as required for both DSI and SPI types
-- Dop useless settings in case of rocktech,rk050hr345-ct106a
-
- .../display/panel/ilitek,ili9806e.yaml        | 38 ++++++++++++++++++-
- 1 file changed, 36 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-index f80307579485..2080d9e0ffac 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9806e.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/display/panel/ilitek,ili9806e.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Ilitek ILI9806E based MIPI-DSI panels
-+title: Ilitek ILI9806E based panels
- 
- maintainers:
-   - Michael Walle <mwalle@kernel.org>
-@@ -18,6 +18,7 @@ properties:
-       - enum:
-           - densitron,dmt028vghmcmi-1d
-           - ortustech,com35h3p70ulc
-+          - rocktech,rk050hr345-ct106a
-       - const: ilitek,ili9806e
- 
-   reg:
-@@ -30,11 +31,24 @@ required:
-   - compatible
-   - reg
-   - vdd-supply
--  - vccio-supply
-   - reset-gpios
-   - backlight
-   - port
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - rocktech,rk050hr345-ct106a
-+then:
-+  $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  required:
-+    - spi-max-frequency
-+else:
-+  required:
-+    - vccio-supply
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -60,5 +74,25 @@ examples:
-             };
-         };
-     };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
- 
-+        panel@0 {
-+            compatible = "rocktech,rk050hr345-ct106a", "ilitek,ili9806e";
-+            reg = <0>;
-+            vdd-supply = <&reg_vdd_panel>;
-+            spi-max-frequency = <10000000>;
-+            reset-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>;
-+            backlight = <&backlight>;
-+            port {
-+                panel_in_rgb: endpoint {
-+                    remote-endpoint = <&ltdc_out_rgb>;
-+                };
-+            };
-+        };
-+    };
- ...
 -- 
-2.43.0
+2.53.0
 
 
