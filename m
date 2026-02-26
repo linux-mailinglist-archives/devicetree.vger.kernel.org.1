@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-268616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268617-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UOhOLYLtn2nYewQAu9opvQ
-	(envelope-from <devicetree+bounces-268616-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:51:46 +0100
+	id 3cbVClDun2kyfAQAu9opvQ
+	(envelope-from <devicetree+bounces-268617-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:55:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8851A1730
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:51:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A21B1A17A4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:55:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8FEB8302C2AB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 06:51:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 91A0E300C355
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 06:55:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9070338BF67;
-	Thu, 26 Feb 2026 06:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58C138BF79;
+	Thu, 26 Feb 2026 06:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gMO0ncZd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tIr3qCb+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AB0F3876AB;
-	Thu, 26 Feb 2026 06:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E0438BF67;
+	Thu, 26 Feb 2026 06:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772088703; cv=none; b=jopIQmsqYBiyFfXt90AYojAUo1tR1W5uHT4StB3rS2od+VySCv1EBZrRMChyi152KfGmenlABK2VWuTLKTN2YG/40qkq5UG+ArBUJzZ5y+JRz0Jd0DyhHt9oP5V15ydnomwRTr+q+SdoW9VVgQByrsPiZMsYDYLe0QwLsLCff3c=
+	t=1772088906; cv=none; b=neeYhtc8NWQtjy9P6H73+Dz2JU9Jn1zJS9mDhQazyjhrSOYX6rZS1dVQ6+YmqNijpcLerh/FSqJmDcYIfvF0kB2guRTtaM5C1XQ2Vl2akUSR/8DOsLtPiulL7RnexbRtlBEiZyKZ0bXWLwxOb+mAZtJ5DrW5SGlNMrnEqN/2aZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772088703; c=relaxed/simple;
-	bh=EPcis5E6dgO1qz3kh+q3w1MutFbztm2Ji2wUIM2JyrY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VG2d/5IyemGOFHLA9bsC/2BCGL4/VtaQ6ZIcJu2kY9gRq3ySQhM28icq0vgzZhS/B+3KeUWS9ef1wPebBcy9m5cb9jMAB9TsKIvekf0tqYuh1qfrlg3Fx2XyNKDYRlzQdmTLf/XeGktMy3y6sQaRv5YXZCUnBBE0UGdjGcFAdbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gMO0ncZd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BE47C19422;
-	Thu, 26 Feb 2026 06:51:40 +0000 (UTC)
+	s=arc-20240116; t=1772088906; c=relaxed/simple;
+	bh=nhyPYOxnc+K4MZjEn1Uc0O32lfW/iwdSuUyInDI9MhI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fLCNWv7I1xwQIEm+OClF/tSG2JxI0WhuNlW0qVX9MSRdUeFVaxYdKh+1oj+N7Swl7PBz0rj4hODQsOq2u5Qwk16MsWiJKytNGA3+h8dm0yy5LAzTD9dJKbkh0cOpy0oHOwO0IQcEkMDe46xgVZ5PYTumiohtY4k8s2SCa4ZC+rM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tIr3qCb+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C87AC19424;
+	Thu, 26 Feb 2026 06:55:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772088703;
-	bh=EPcis5E6dgO1qz3kh+q3w1MutFbztm2Ji2wUIM2JyrY=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=gMO0ncZdCQmwx+IziHQEbmLEfYXdQPx6lgKgAZcoaUNht8UCQztjAFPvO1CS/19qq
-	 FyBYdl3//fxtgBUomEXCdtcY8FEuo640vrNh26GjerbGverHE7JGYesBLa0QQbFNSb
-	 8lmFNoqY0tUOw+/b/+q1vNBTwvc/pB3BULkTabOY18BQ6UqS1jIpqYxbEt1CcAeQmv
-	 P6o9Y99EFRirSUBST4BqPp9DUQsn7rB8Emd5YT6noRstY+bj1z/T0KE2Ipcfzw3AMW
-	 RoV5bRR/6KIHWKEXdcZI5OgHcSEXEu0VJXsks9g6WsmUJscRG0lPHNwFfH5Ok6ZUM7
-	 4lfx+6GeZZ9ww==
-Message-ID: <0c91fa84-dd0e-45bf-9c08-3b374daed7ba@kernel.org>
-Date: Thu, 26 Feb 2026 07:51:38 +0100
+	s=k20201202; t=1772088906;
+	bh=nhyPYOxnc+K4MZjEn1Uc0O32lfW/iwdSuUyInDI9MhI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tIr3qCb+8XOSJJkNEshoiW+2BMDNwlo2dUYIAiGmq4q1bVS2lepczQo/93LV3JC+6
+	 i+vP+8veGkbEgQRW6CV96IHP5KkxtrxF+DIIXG3pn8u0X1cH7Q2WKtn+i0ght4VATz
+	 ilEL+IjguCO23p9/tRUg7d65MPC3IDvBT7HjACHBn99mwq3FTU6JAmRIpGl04QPnde
+	 t/9v4t0FfLI/xu7DCHJwA7s9LpFnC25YTUGIsavU4mgTExuG1aANye7d1glO5aCdwo
+	 5Pf5PylAp9o7di9aSn6T7vSmDPKuNMNDaAJ9IoH3Yac8ifLYgFh0hlDoO0koRgwF2I
+	 fTZgIAmKnWdcw==
+Message-ID: <26dc41ef-1a98-4a16-a60d-c7654acba758@kernel.org>
+Date: Thu, 26 Feb 2026 07:55:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,19 +53,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: exynos: gs101: Enable AVS APDO
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: panel: Add Samsung S6E8FCO
+To: Yedaya Katsman <yedaya.ka@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Kamil_Go=C5=82da?=
+ <kamil.golda@protonmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ ~postmarketos/upstreaming@lists.sr.ht, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20260223-panel-patches-v2-0-1b6ad471d540@gmail.com>
+ <20260223-panel-patches-v2-1-1b6ad471d540@gmail.com>
+ <20260224-bulky-rabbit-of-courtesy-83fabc@quoll>
+ <CAHuF_Zq=Rpg0HoRJv-BSREEhT8tYH4r+BCbZ7obrG36vSmwMQA@mail.gmail.com>
+ <54abd390-113a-4c99-b024-2029c4d68099@kernel.org>
+ <CAHuF_ZoEAT+91trLabyo8rc8afXW=Wd0Q9yxu_v53nXoRFJMTA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Badhri Jagan Sridharan <badhri@google.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Amit Sunil Dhamne <amitsd@google.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260226061053.2596167-1-badhri@google.com>
- <8eeadb7a-5075-4444-8714-45e589dda47f@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -110,7 +118,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <8eeadb7a-5075-4444-8714-45e589dda47f@kernel.org>
+In-Reply-To: <CAHuF_ZoEAT+91trLabyo8rc8afXW=Wd0Q9yxu_v53nXoRFJMTA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -119,71 +127,59 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268616-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-268617-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,protonmail.com,lists.sr.ht,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5E8851A1730
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4A21B1A17A4
 X-Rspamd-Action: no action
 
-On 26/02/2026 07:51, Krzysztof Kozlowski wrote:
-> On 26/02/2026 07:10, Badhri Jagan Sridharan wrote:
->> Enable USB PD SPR AVS for gs101 by adding SPR AVS APDO to the sink caps
->> pusblished by gs101.
+On 25/02/2026 21:03, Yedaya Katsman wrote:
+> On Wed, 25 Feb 2026 at 17:45, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
->> ---
->> Depends-on:https://lore.kernel.org/lkml/20260226055311.2591357-1-badhri@google.com/
+>> On 25/02/2026 16:29, Yedaya Katsman wrote:
+>>>>> +  vddio-supply: true
+>>>>> +  ldo-supply: true
+>>>>
+>>>> LDO is the name of the type of regulator. Why is it called as name of
+>>>> the supply?
+>>> Can you explain more what you mean? Do you mean to change the name of
+>>> the property? It seems that all the regulator properties are named
+>>> foo-supply.
+>>
+>> I just have doubts that the device has supplied called LDO, considering
+>> what LDO means.
+> OK. I don't really have a way to verify if it's true, all I have is
+> the downstream dts
+> which calls it LDO [0]
 > 
-> Really, how? If it depends on that, it is wrong and cannot be applied.
-> DTS cannot depend on the hardware. NAK.
+> [0] https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/d3766fc8cda2d96de2850faa9ce58e5a37ea9f9c/arch/arm64/boot/dts/qcom/trinket-sde-display.dtsi#L24-L36
 
-s/hardware/drivers/ obviously...
+Obviously the regulator is LDO, so they called it. Most of the
+regulators are LDO, so why VDD IN is not called LDO?
 
-> 
->>
->>  arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
->> index 93892adaa679..5a689be61432 100644
->> --- a/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
->> +++ b/arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi
->> @@ -174,6 +174,7 @@ connector {
->>  						| PDO_FIXED_HIGHER_CAP
->>  						| PDO_FIXED_DUAL_ROLE))
->>  				     PDO_FIXED(9000, 2200, 0)
->> +				     PDO_SPR_AVS_SNK_APDO(3000, 3000)
->>  				     PDO_PPS_APDO(5000, 11000, 3000)>;
->>  			sink-vdos = <VDO_IDH(1, 1, IDH_PTYPE_PERIPH, 0,
->>  					     IDH_PTYPE_DFP_HOST, 2, 0x18d1)
->>
->> base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
->> prerequisite-patch-id: 4dacd8bc550e317d67134d030814765fb9f4c6e1
->> prerequisite-patch-id: e863378fc602b6bee2e9fdd8c568003c00b2a38e
->> prerequisite-patch-id: 202a9e1e9cf27a0b9ff7ebea76eb45cdac2cb581
->> prerequisite-patch-id: f3817c560d0e701d7499fa1fb9ee40d22816c09e
->> prerequisite-patch-id: c071913307a6eaa417d1345485d7a9c165d40834
-> 
-> 5 patches here. This is confusing.
+This is name of the supply in this device.
+
 
 Best regards,
 Krzysztof
