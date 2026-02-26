@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-268668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268669-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KB2ZOoILoGnbfQQAu9opvQ
-	(envelope-from <devicetree+bounces-268668-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:59:46 +0100
+	id IAL/JIALoGnbfQQAu9opvQ
+	(envelope-from <devicetree+bounces-268669-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:59:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A95E1A3083
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:59:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2C3F1A307C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:59:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AC84F300BC7A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:49:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2F3413069C49
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6569395D8A;
-	Thu, 26 Feb 2026 08:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E9836F411;
+	Thu, 26 Feb 2026 08:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KBt2v1xm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G1kEoM65"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC8BE38945E
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FE2395252
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772095746; cv=none; b=R8bpaBvlzS4kEMhBFrT5aEzyQoh5scwdtN7YqMryLzSkbpmDynUGn/S79+ihQkzkAbfnSeFSQ3bsDXTgC9qCGjPvFEXoOjklAB6O/Ug0fCE03Yv3XaUqxLDyTbCCVNyPM3PMfe1GfD557h76wXSNjAxbqdvKfFvYbwrIolOjbNc=
+	t=1772095749; cv=none; b=lAKY6Ll3hewzeMR5ez96K9WswYDYIARXHbzsvRd6HOtp9+N5TDuW7XmPiy7jvhxrt2e7Cb7VtoplOwHz0OYqG897oW1arRmHaZrufiivx4dGiYctl7PwpDo3SYLSQmh1vkS9yCnJPK2ngX9JgWdBzF3KudNDi7Z++QbePV/Fbhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772095746; c=relaxed/simple;
-	bh=SXgeVHiR8fhOHJmmAi0jVLf+hEeuVP7EPmwprBslUp8=;
+	s=arc-20240116; t=1772095749; c=relaxed/simple;
+	bh=J+cfXIcPGCf4iyDA3lyicBLgipFLT90/RT9Ydsh52BQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DaYs2ywLL+ytogd6mAyI9MB3nzBDgbTORv4GvLmamqudhv/JFpoKtVZ0ca6iagOOUtgfA7HClpgNOqaUZUMPfivfxsWzKrNIjcXssUkZEoxhvMWmCkhx9DenmHozinafOF7CPVnrawkvbMoIkCDVWeZC2F3pqLvDjD/x0Q26bZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KBt2v1xm; arc=none smtp.client-ip=209.85.215.171
+	 MIME-Version; b=KzzvNW/blUDxp5sC9GBHJE3v7LMUi7u/FJzdHi9FqqM47h5yCgFK7guO5YtlqyPGIjMaSbIBroPerYPQdtFKnPW6uq5/yZiKAB0qwaWYG17fnlSV5gTaIMtHikK8v8NRZo97Jux9RjX3vzaU071jEOSiXa1acpXokVaqostJMRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G1kEoM65; arc=none smtp.client-ip=209.85.215.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-c7059b9df33so208093a12.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 00:49:02 -0800 (PST)
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-c70e27e2b74so208848a12.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 00:49:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772095741; x=1772700541; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772095745; x=1772700545; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rrsbMfvVp2mlT8uZFPdqeEkocHGWkOVoRTFC4HeZudA=;
-        b=KBt2v1xmI7BZriIQBcNMBaesuGdfRcJTAK+UD4yPrQBgel94p4xzU67OaLswQHq8To
-         3QPQEPIa3I5gg7ejXFAIFxJL9uP404fTo4PoK9ONCBejtdeU0K2hX37vQw0OjjNOVTjp
-         ZQqsxE9kTkqtujlzG3Rdp4H87z3j/+5VHob0kAHea6vNB8Y5gPCIxa7EH4tXij1NQZSG
-         Jn4zl2ALX8BL5njK4tv3qQWWCtlA/1fYARINlfaEEBR18Ma7Ccwn/mqwaFjeGOPugyzk
-         scxtACkgMFass7318vusnu3QvrAOuRJagc3Mc5M0T/KWiDf6ScH/GrUqPEQ+qgqsa/Wc
-         L1iQ==
+        bh=Me6/gMTEz3PAlgU521S5bAkTbmNg6yXoSMbtj++gb3k=;
+        b=G1kEoM656moJrH5d4Ny1jAqVxSprhQ3IhEoSH3cbvfcjMFGeuZ6t0+fcrwuXV83QAZ
+         VAwgSSX0oJdBYukrf6bGaOXf2oCo9oHCWlwFCFGtk3Q/uMfA2hovctXu/3pvx0vsC4nt
+         91PtCjUFbAUGF6Dv9kLFJlntdMU3+xVlWHF4OWd1e/taLGuNlAV+tXqOV3ry98gHuR8D
+         BsRnOesfK27PLxgwMfoUU4pC7Sz+GNhAkO/9V57/GwqzSeTCPVTRTmi7VVGg5RKfM2EQ
+         TpTo1L0wBWQyANxORa7wqelhw+1hSRXjAv+Iw0XESbOx1VtP2PEqRdVFKYdhXPeM8y1W
+         nrGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772095741; x=1772700541;
+        d=1e100.net; s=20230601; t=1772095745; x=1772700545;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=rrsbMfvVp2mlT8uZFPdqeEkocHGWkOVoRTFC4HeZudA=;
-        b=ESyBdf5uwd5vw4JMr5P5vZxN/8e1NKzc7sjyI0oU0rGTPL1/UkTtbG5htHlTiCVZIz
-         OmSY1+ii1hhvRehM0VIVC/nXGI97/NIVIzMta07AHfFw5DXuOvnqYVGnwJBSxVK6jAWK
-         oLEL6RBa+XlL744m6LIeykpCvNFIy03zb60K/ymah/+u6oejQ0QQBeJnhUXZjy1xxiKr
-         s2RnwEcYbfou4lVVjpFyO7w6ynlDibiIPc9R4fE2oav5Nsp+hRKxEavQQW1aZfszBCZb
-         GkUeFlRCXLUW0jIwX9JJ9F3GeR6tDTh9/ZS1Jl4BMbjPWgCPe6T7p9DEEsuSUTAcFH4u
-         vJOA==
-X-Gm-Message-State: AOJu0Yy+XB/waEV03lzx1S+gVDCJYKpYu+b6ByFCWc/1361PdxGWJhWn
-	PByaBwIvhoRkeGnOrkLMNQqOqe7Qm8crm95oV9drIOaa8XDO/6hkcuwEpvAoiyBf/GY=
-X-Gm-Gg: ATEYQzzjsgDGNASKFUFlMN+ULOrPPJ3lN+f3X/VboJ6YvbeYAFvy/9+Aq+RFOX5TnT7
-	Cq0idoaJn2JeOHETyxjzqJTv8y0+Zbz6TiGZsQKecsQ2SI8PxqsPNAtPuU96/ow/VVyd5fCizo6
-	5vOPjIcgP/36kv9KDpFRjXUOfmI+YXmvLYK68KMBW75By9xusWzoGzChX1vO8r9eQITnKOacjH/
-	8MLxzEGVBRWdZcJoOFZ5cRqgRrTi4aIh00Xvjchu+MZjY/ZeZU4jHvXx5111GSK5ph2Vsl+5N8l
-	KIayz0bDKub6hNXSie4s/76nnXm3zN4Ei4sh6wTQuOmgVOJmDluZRRBXp5cyjCgR9bC0Azv1quE
-	yhTQAv9hzwjg4asFqJx3Dw+QqhRU+8TofYwbgf24w1PVycyU5njvNcoe9onUlmIVBIvOCUw1Vnc
-	LifbEa8nxatiYCexW5F3SPq1I4qlwzg8e/Yu5j
-X-Received: by 2002:a17:90b:1e48:b0:34c:2aac:21a7 with SMTP id 98e67ed59e1d1-3593862e00bmr2064283a91.7.1772095741512;
-        Thu, 26 Feb 2026 00:49:01 -0800 (PST)
+        bh=Me6/gMTEz3PAlgU521S5bAkTbmNg6yXoSMbtj++gb3k=;
+        b=avqQxr2Q6bWutXQVro6XZUZBz6v5muqNPW3dPtpCd3zMG+Hx793aEBDTkDyhRiN9md
+         ucTSAkW0BRJJ7+hTOgfFZcYVJmAzv8ebVpVdpwhAiMC/FTH2OE4ywh1bAKto9lU2n/o3
+         fyrHH4/+KFus/V7P8dEl6bbbF4mb3OB3qyXzTV3Si+c7C/3V4lFUVzaHzkUyj5N61qGF
+         b0SNHnqPNyvkNdCFY+nBi+aWhXe/A6qlLRQSC2l3LnR21F+NM8OLsA3r8T0axljlbmxa
+         Y7o92hmpAArdA2ZTegCdc1OiffFgva23IRa6NUt4HcBlMrK8Ao9g+yCHPCAt5IL1fVuk
+         4QWA==
+X-Gm-Message-State: AOJu0YwIMfgoryr58Vqj/KGybDsITWjiYOd+CmM8uOQJCfGadwwsa41C
+	SBlgtswgXDvxP7x+j8w7tmsethcaI74RL86xXWKeJ85cCWiigZhhz/sf4mW78Ql1SpE=
+X-Gm-Gg: ATEYQzzyK2NDlHgviO1VMzUJBP7Xjgz5HZnNqNeTuZjqvoeeFwva63itDRv2zn4Bixw
+	ckMVsVWozSEGzEs3v2KdtVi8ve28U63/EVMffdHeVulLBwP1DOZdKRnWKgzz+jn9GDv/GlaIjF1
+	a53Opmqi1iF4LaN8OoffFwGamtFvjHI7hUtbt7CNv6AiYjRAcUuDbZ3JJHXYb/nxYABa1pPtrK3
+	TSHDxZyc5FOJPFpVpDzxKbdboVt4dAhrvqhxs93rkRTP5dLWUOpPYHIzIRbl6bT6h1GyveXsWJ9
+	t+NfRwdfvROZJkLqObvZddmQD2sT9gvDao3OAvd4tG6h224X2HZzsJ+8Dh5w9JSZg+2LBl3gpOZ
+	WJRCjsdRJeIjP8kDU2mAhbff7E81U6k9rI3G6uQcGv7gCjZS5iILogrYJ+Twwd7i76Io/ENPf9N
+	xZrrImkuYasITpen4wUCBlgz1+G2NYlB8SN7/X
+X-Received: by 2002:a05:6a21:998c:b0:38d:ebdc:3558 with SMTP id adf61e73a8af0-39545e2f265mr18580124637.6.1772095745577;
+        Thu, 26 Feb 2026 00:49:05 -0800 (PST)
 Received: from arch.localdomain ([117.147.91.218])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c70fa848471sm1342441a12.30.2026.02.26.00.48.58
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c70fa848471sm1342441a12.30.2026.02.26.00.49.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 00:49:01 -0800 (PST)
+        Thu, 26 Feb 2026 00:49:05 -0800 (PST)
 From: Jun Yan <jerrysteve1101@gmail.com>
 To: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -87,9 +87,9 @@ Cc: robh@kernel.org,
 	samuel@sholland.org,
 	mripard@kernel.org,
 	Jun Yan <jerrysteve1101@gmail.com>
-Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Beijing UQ Interactive Co.,Ltd.
-Date: Thu, 26 Feb 2026 16:48:45 +0800
-Message-ID: <20260226084850.417731-2-jerrysteve1101@gmail.com>
+Subject: [PATCH 2/3] dt-bindings: arm: sunxi: Add TaiqiCat (TQC) A01
+Date: Thu, 26 Feb 2026 16:48:46 +0800
+Message-ID: <20260226084850.417731-3-jerrysteve1101@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260226084850.417731-1-jerrysteve1101@gmail.com>
 References: <20260226084850.417731-1-jerrysteve1101@gmail.com>
@@ -116,7 +116,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268668-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268669-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -124,36 +124,47 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.993];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 5A95E1A3083
+X-Rspamd-Queue-Id: E2C3F1A307C
 X-Rspamd-Action: no action
 
-Beijing UQ Interactive is a company focused on mobile game development,
-global publishing, and blockchain-based cloud terminal services.
+TaiqiCat (TQC) A01 is a set-top box powered by an Allwinner H6 SoC,
+equipped with an AXP305 PMIC, 1GB LPDDR3 RAM, 8GB eMMC, an AP6212
+WiFi/BT combo module, one 100M Ethernet port, one USB 3.0 Type-A port,
+one USB 2.0 Type-A port, one Micro USB port, HDMI, SPDIF, Micro-SD, and
+infrared input.
+
+It was released by UQsoft as a blockchain-based terminal and is
+now discontinued and no longer supported.
+
+  https://web.archive.org/web/20190409213228/https://tq.ultrapower.com.cn/product.html
 
 Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index ee7fd3cfe203..2bc2ed60613f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1737,6 +1737,8 @@ patternProperties:
-     description: United Western Technologies Corp (UniWest)
-   "^upisemi,.*":
-     description: uPI Semiconductor Corp.
-+  "^uqsoft,.*":
-+    description: Beijing UQ Interactive Co.,Ltd.
-   "^urt,.*":
-     description: United Radiant Technology Corporation
-   "^usi,.*":
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 9e4627f97d7e..8f6f30f683df 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -901,6 +901,11 @@ properties:
+           - const: allwinner,sl631
+           - const: allwinner,sun8i-v3
+ 
++      - description: TaiqiCat A01
++        items:
++          - const: uqsoft,taiqicat-a01
++          - const: allwinner,sun50i-h6
++
+       - description: Tanix TX1
+         items:
+           - const: oranth,tanix-tx1
 -- 
 2.53.0
 
