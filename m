@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-268648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UAA5MHj8n2n3fAQAu9opvQ
-	(envelope-from <devicetree+bounces-268648-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:55:36 +0100
+	id wK7FEYL7n2n3fAQAu9opvQ
+	(envelope-from <devicetree+bounces-268649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:51:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC201A2200
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:55:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C891A2152
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:51:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6596030AC29B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:48:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 431973019BB9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D74593921FF;
-	Thu, 26 Feb 2026 07:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E39433C18A;
+	Thu, 26 Feb 2026 07:51:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jV6+Z+Hc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h96dgHq6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41253115B8;
-	Thu, 26 Feb 2026 07:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1AF2D7386;
+	Thu, 26 Feb 2026 07:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772092100; cv=none; b=tkMyU/0uE+sw8jXe8iDNnQZ3bo0VIausuz6hGkPtun7cCQIxAMOshPCdg3FVHEGZF0knOBRknz03aTrFccCnmYuI8yEpI3HDPoHuiFdg5uCGHHnUdf14TYlrYxVwyCPk2TUw3h2qRxuDckW2xTNgfG/4Tpc/JFerC+hSwwAkXqs=
+	t=1772092287; cv=none; b=j442BRl93/NUOyOaEsSmL8LZO+8lsZ7aBEDgwAWG+lH4GH2pwkGotBq8W+9Or3aJ8mWkTBy6TVIx1xR6Q5hgheYHk0PlhiRbp6a6d123heVep1Yts29XhT92FOHv38CLbdP74YtF4YpHjPR7nwj+efj7eLWZGMZZFRAkbrp5sjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772092100; c=relaxed/simple;
-	bh=ie6eGxPY1q4fI9vb9x4urJnzwZGcBFpN4BvSkTUqc9Y=;
+	s=arc-20240116; t=1772092287; c=relaxed/simple;
+	bh=853EE6JswtL146QPlx0xKJwmaPwSVMEPY+7ZFJPHw8Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZU2//XcKHXWsmQ/rJ8yKyOOaKqfSl8UDWxhnFtR/7fZkO6PR7j0d648RRnoKBj6MPPEPxF9uuGA+6BEdOpup5E+8qRvlpgg+zBtqHDugt2iMOVwSR6FlBnRDbWkgGm82XVw88VGDGF5XbhvGwoVSeItJ56R1NSwgCYizOQOznCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jV6+Z+Hc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDB50C19422;
-	Thu, 26 Feb 2026 07:48:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IPYnpLFm4aHxstff1FdLOmA08U7pP/J/sWEHjHYQESEVS3qdY0Ahhn7EzGgYEnT16rgrpLA1FHiYmckla1LXCUjOV8hMwoMgA8P5zUfsaZihLa/wE704XEoRRdG5IKCRtwnjW1cuLQg59D1fuYE9OaPzvJilWsCqlhi7MrjGsPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h96dgHq6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 492DFC19422;
+	Thu, 26 Feb 2026 07:51:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772092100;
-	bh=ie6eGxPY1q4fI9vb9x4urJnzwZGcBFpN4BvSkTUqc9Y=;
+	s=k20201202; t=1772092286;
+	bh=853EE6JswtL146QPlx0xKJwmaPwSVMEPY+7ZFJPHw8Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jV6+Z+HcS5M29io9elV6nhBHhyKnAgCN2n09T6aNyF1fYfdLNANqNG09Jc6j6+3hD
-	 xH/3I15e2+5+md+5Ld2jzqWyN2nk4qea1IqJpU8HipnfAPppJHgzUaqbbEWZUQ/c0H
-	 o3kzk/jFzGWQIUVUyvEJpXt60LdcyVt/a6DMfcrtpsfunkdlxqKvsPTTpWXDE8ZyCS
-	 3OyUoUEVzFnHG6v3UF6xRwgjxBRDXYWy1S3AVvI3+puS3DhVYf5Fxq7nPwryg3VnR2
-	 MboJsVvsnivJJQ/2KjGw/bPgWeFyxngQkLn/GXt3jxQ3bvhXq4U8FUixv/1KKEzMq+
-	 REZBIXH53sHgg==
-Date: Thu, 26 Feb 2026 08:48:17 +0100
+	b=h96dgHq6uDpjTwC9DhcsgikND4HsHry77CIHiqyyBGvDugPykCFJOgqSg8hYVQ15E
+	 IfODci0b11FRoVgL1ug+B0KbnpZoYSsaYWY4VJeTwXTnUr48pwTROSsETiskG6otXf
+	 XP50fObZBFdwjGCuajvMxGAT4A99JRJbaEFEG6BgA66kkpKczqQo5xl8IPuie20VTO
+	 ajUkQ+HGmFtrduFIlVcrrm+kgkCCOZ2TL0A3scIFlDasyUwcmeeoIJkbFrtqnQStCF
+	 fIqVnF8Rg/S5MQuSEGA4NNcr6KL6dVv/Bg8IyFJJeMe/vDwQmkYxPCZKV5IZwLB40z
+	 m/KsF+NHYe6Aw==
+Date: Thu, 26 Feb 2026 08:51:24 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: wenswang@yeah.net
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux@roeck-us.net, corbet@lwn.net, skhan@linuxfoundation.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: add MP2845 driver
-Message-ID: <20260226-vagabond-opalescent-cockle-3dea1b@quoll>
-References: <20260225085501.164819-1-wenswang@yeah.net>
- <20260225085631.165106-1-wenswang@yeah.net>
- <20260225085631.165106-2-wenswang@yeah.net>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: leds: sun50i-a100: Add compatible for
+ Allwinner A523 SoC
+Message-ID: <20260226-heavenly-silver-nyala-557ede@quoll>
+References: <20260225160828.1687643-1-wens@kernel.org>
+ <20260225160828.1687643-2-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,139 +65,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260225085631.165106-2-wenswang@yeah.net>
+In-Reply-To: <20260225160828.1687643-2-wens@kernel.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268648-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268649-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[yeah.net];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,yeah.net:email]
-X-Rspamd-Queue-Id: 3CC201A2200
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 89C891A2152
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 04:56:31PM +0800, wenswang@yeah.net wrote:
-> +#define MFR_VIN_OV_UV_SET	0x71
-> +#define MFR_OVUV_OCWARN_THRES	0x75
-> +#define MFR_TOTAL_OCP_SET	0x76
-> +#define MFR_PROTECT_STATUS1	0x80
-> +#define MFR_PROTECT_STATUS2 0x81
-> +
-> +#define MP2845_VIN_LIMIT_UINT	125
-> +#define MP2845_READ_VIN_UINT	3125
-> +#define MP2845_READ_VIN_DIV	100
-> +#define MP2845_READ_IOUT_UINT	3125
-> +#define MP2845_READ_IOUT_DIV	100
-> +#define MP2845_READ_VOUT_UINT	5
-> +#define MP2845_TEMP_UINT	1000
-> +
-> +#define MFR_READ_VIN	0xA6
-> +#define MFR_READ_VOUT	0xA7
-> +#define MFR_READ_IOUT	0xA8
-> +#define MFR_READ_TEMP	0xA9
-> +#define MFR_MFG_ID_SCALE_VI1	0x77
-> +#define MFR_MFG_ID_SCALE_VI2	0x78
-> +
-> +struct mp2845_data {
-> +	struct i2c_client *client;
-> +	int iout_gain[4];
-> +	/* lock for preventing concurrency issue */
+On Thu, Feb 26, 2026 at 12:08:24AM +0800, Chen-Yu Tsai wrote:
+> The Allwinner A523 SoC family features an identical LED controller as
+> found on the A100.
+> 
+> Add a SoC-specific compatible for it, with fallback to the A100 one.
+> 
+> Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
+> ---
+>  .../devicetree/bindings/leds/allwinner,sun50i-a100-ledc.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
 
-This is completely useless comment. The definition of lock is to prevent
-concurrency issues. It's like adding a comment to a function: "it is a
-function".
-
-You must here explain which data or code logic is protected by this.
-
-> +	struct mutex lock;
-> +};
-
-...
-
-
-> +
-> +static int mp2845_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct device *hwmon_dev;
-> +	struct mp2845_data *data;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA |
-> +				     I2C_FUNC_SMBUS_WORD_DATA)) {
-> +		dev_err(dev, "check failed, smbus byte and/or word data not supported!\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	data = devm_kzalloc(dev, sizeof(struct mp2845_data), GFP_KERNEL);
-
-sizeof(*)
-
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&data->lock);
-> +	data->client = client;
-> +
-> +	ret = mp2845_identify_iout_scale(data, 0);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to identify rail1 iout scale, errno = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = mp2845_identify_iout_scale(data, 1);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to identify rail2 iout scale, errno = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = mp2845_identify_iout_scale(data, 2);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to identify rail3 iout scale, errno = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = mp2845_identify_iout_scale(data, 3);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to identify rail4 iout scale, errno = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
-> +							 data, &mp2845_chip_info,
-> +							 NULL);
-> +	if (IS_ERR(hwmon_dev)) {
-> +		dev_err(dev, "unable to register mp2845 hwmon device\n");
-> +		return PTR_ERR(hwmon_dev);
-> +	}
-> +
-> +	dev_info(dev, "%s: sensor '%s'\n", dev_name(hwmon_dev), client->name);
-
-Driver should be silent on success probe. See also coding style and
-driver development docs.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
