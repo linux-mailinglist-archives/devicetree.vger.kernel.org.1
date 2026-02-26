@@ -1,70 +1,65 @@
-Return-Path: <devicetree+bounces-268970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268971-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YBaBId6MoGkNkwQAu9opvQ
-	(envelope-from <devicetree+bounces-268970-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:11:42 +0100
+	id EKqAKXWNoGkokwQAu9opvQ
+	(envelope-from <devicetree+bounces-268971-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:14:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CAE51AD55D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:11:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D631AD676
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:14:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D9B99312606E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:59:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 693A1300612E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE3535A3A4;
-	Thu, 26 Feb 2026 17:59:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CC035A39E;
+	Thu, 26 Feb 2026 18:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lBA/plYJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hYXx2d/p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D5035A399;
-	Thu, 26 Feb 2026 17:59:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A61B946C;
+	Thu, 26 Feb 2026 18:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772128781; cv=none; b=h/mOFWGajz4zoL35PDLKAtFSQJt0LxXipZWFIZLlTnoS6wQ9vabNlha8Ex4bj0dFR/jKA+4WltMy05TjWtvZlWGbvQfACF5KirDs2WJRZYfyZ80g5FgXJ4gfOBw2P16gZU/6tn/rL5reyKkEpGEK5rhUrdTHaps0Ww/xb9E8d9s=
+	t=1772129147; cv=none; b=VBlAUj7DHnXFohjORW1W3lYZHFG1nHYSw9O7KXIN3JyaIViLWpibbO4j2z9fHeKZoHtQorgIaBvTbCUUjhXapNVLi7r1+aTPPhH2+lgbLxsfUAF491ItpSdNpyyRSjUOSmoFVpzMRu1dvVpt+h8uF08oRSyg/h9QBP9kkgeJIlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772128781; c=relaxed/simple;
-	bh=MguRNIbhWjylL2SWFqbE8eKjOmldrw1McpuJdNzjLFo=;
+	s=arc-20240116; t=1772129147; c=relaxed/simple;
+	bh=FXHYBbqbyQJvXr779FbE0V42MyWUxyz52aXt9CzkWSE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fRDY6RXBk7UKXeHEwDk6kzWDI5wF7cizs/PgkMtv9yrf0XdCVZz3iBBs2EJWWpGw9cM9yQYwTeBvwubfcmVJstqSyBsBj6b/7Q03bd9Z7vxnALk1BrtiTOqR56gdRV+Tkwo/Nh8t4cysolvZyXRlhPy7bAAwQXUN1MIuD+38fYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lBA/plYJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C25F9C19423;
-	Thu, 26 Feb 2026 17:59:38 +0000 (UTC)
+	 MIME-Version:Content-Type; b=lX5jvss9OSHXyHU7qTjog3H5Xj4S6eCd9ThSRDOk+Yeh6AhOlWpjR4zBrHyBe4rcZPoQLdfNRuzywaH3t5vGwclLWXp9m91142oOjNkrdxFPGxH/52dyjPmcFP7FZO1AABEWqKk/tVKOWyKanTE4xT0eMErRxW1c21PLMfiVpow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYXx2d/p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5CB6C116C6;
+	Thu, 26 Feb 2026 18:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772128781;
-	bh=MguRNIbhWjylL2SWFqbE8eKjOmldrw1McpuJdNzjLFo=;
+	s=k20201202; t=1772129146;
+	bh=FXHYBbqbyQJvXr779FbE0V42MyWUxyz52aXt9CzkWSE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lBA/plYJDAFSdNwwVIXtZswUeU35DMBZZ8TJu/WVjevrHxn23zh2lMnnE1jtAL1Ob
-	 FVffAg8Nw7YGdRMjDSDyJut5OSB6SqFvn2Bne0m8B10y+Wxn/1Msb9f0v1F0rJKQz5
-	 ppUOyIFx01v519AcXGN8hD3pzbC8o7tEyg2LC0Frv9VxKylF5fbMJK1Vwsk2nS4VF1
-	 znbpVxhWeEnpDb78xoYM6foW0tg5UEjLLV2SHD/D4SV7qtRP/pUgqwTEfVwQiZaiJ4
-	 xyN+9huOecMHT11tCa6WgLc8qFRjUFWOikygmiP7cZnSnnF4uv0Zt3JhtNyMLB1GAo
-	 nZu71U+jIQvpQ==
+	b=hYXx2d/po9WcXnY/p0QyTY4LM286jmFyy4wDEIE1edsfNcSQ5KRcG+YNze1noXDW4
+	 zDkpWSCVGmIME7yswd572XI95JX9YYLGYZD/BmXvp98qyfanuFNsu9zXZEi0KOjQhL
+	 8QawFWhhKkfc1xQooYI+4ZXv9lDA8BMUIXov9LZaY7Zn4Y0vbBt+Dk8hoDvlsoyxPk
+	 lJkfs+z+iNcAsUICB0VQxPNfUqvlxi92Tpxw+5afk0X6EvthJ99ifxoD9U1BQFCj7G
+	 zJDVQD23w44SG+/G1+GP7wRX5KL8fnZS2J+Wfjgm94fdxebl5TyA8lj6khazX8X47H
+	 yx2477rWofFFA==
 From: Conor Dooley <conor@kernel.org>
-To: Emil Renner Berthing <kernel@esmil.dk>,
-	Conor Dooley <conor@kernel.org>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+To: linusw@kernel.org,
+	Conor Dooley <conor@kernel.org>
 Cc: Conor Dooley <conor.dooley@microchip.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	E Shattow <e@freeshell.de>,
-	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] riscv: dts: starfive: Milk-V Mars CM Lite broken-cd
-Date: Thu, 26 Feb 2026 17:58:44 +0000
-Message-ID: <20260226-hummus-quarry-41b06f24b38c@spud>
+	Valentina.FernandezAlanis@microchip.com
+Subject: Re: (subset) [PATCH v3 0/6] Microchip mpfs/pic64gx pinctrl part 2
+Date: Thu, 26 Feb 2026 18:05:36 +0000
+Message-ID: <20260226-passover-doubling-4404f4314b70@spud>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
-References: <20260204101602.30184-1-heinrich.schuchardt@canonical.com>
+In-Reply-To: <20260119-rearrange-germproof-3e3096cc0da4@spud>
+References: <20260119-rearrange-germproof-3e3096cc0da4@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,61 +67,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=681; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=Of9jy6dFEc4+vh/AWYv8ShbYQCg6TOxPo2P11DOihTk=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkLOq+k104oWarIernY4XBV5l95sUPvfKqN5OcLXtrqv 79VZKNTRykLgxgXg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACYiMpnhf5r0NeXaK6fn/7/k qLnzpJVQ6dQvgrq/r5V+XfCdSSAnj4fhn/KjFSIhh/9q9i1+usH8lDprY/ZtvXdBjivmtLvZb62 6yQQA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=640; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=1PJXFrKgqDoVzDD7Vldh1cWt61RnAZzMwRyK9t2R/LA=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkLuvPzr5onTkpg1X7TeODNxLoJrBf0y7SrBK+XCWzN4 tif2SDYUcrCIMbFICumyJJ4u69Fav0flx3OPW9h5rAygQxh4OIUgIl0cTIyrCljFH2cPPNdypH3 YRb73upPSRKbcWlpKod1jetj92uPXjP8Uw5Jn3mvPfJc7oHcpoxp19n3bWwJSo7Oer5mM1fStiO fOQE=
 X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268970-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268971-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.996];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 3CAE51AD55D
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 42D631AD676
 X-Rspamd-Action: no action
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-On Wed, 04 Feb 2026 11:16:02 +0100, Heinrich Schuchardt wrote:
-> The card detect GPIO depends on support by the base board.
+On Mon, 19 Jan 2026 11:03:51 +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Detecting an SD-card did not work for me with a Milk-V Mars CM Lite
-> mounted on an Waveshare CM4-IO-BASE-A board.
+> Hey Linus,
 > 
-> According to [1] SD_SDIO0_CD_GPIO41 is connected to pin 76 reserved.
-> The Raspberry Pi Compute Module 4 IO Board documentation marks that pin as
-> reserved. The Raspberry Pi Compute Module 5 IO Board documentation
-> marks the pin as VBAT.
+> v3 here, with the rfc dropped. I've still got the property checking
+> stuff in my todo-list but not tested it sufficiently after the changes
+> to add generic string properties yet.
+> I only moved my drivers into the microchip dir, I'll come along and do a
+> pass on the rest if you're happy with what's here.
 > 
 > [...]
 
-I agree with the stance that the "default value without any overlay
-should be one that allows to use  the SD-card on all IO-boards,
-i.e. 'broken-cd'.", applied to riscv-dt-fixes, thanks!
+Applied to riscv-dt-for-next, thanks!
 
-[1/1] riscv: dts: starfive: Milk-V Mars CM Lite broken-cd
-      https://git.kernel.org/conor/c/4ade402d5d89
+[6/6] riscv: dts: microchip: add pinctrl nodes for mpfs/icicle kit
+      https://git.kernel.org/conor/c/7982b62bedbb
 
 Thanks,
 Conor.
