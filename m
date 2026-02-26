@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-268871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268870-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iIihFhNWoGlLiQQAu9opvQ
-	(envelope-from <devicetree+bounces-268871-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:17:55 +0100
+	id yLW1NR5SoGnriAQAu9opvQ
+	(envelope-from <devicetree+bounces-268870-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:01:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5B01A75C0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:17:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 768DF1A7202
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:00:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7C0BD30B5570
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:52:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E66231AF92B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A73603A1E97;
-	Thu, 26 Feb 2026 13:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F5939E6D4;
+	Thu, 26 Feb 2026 13:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="L/7AIz8r"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1p4S9dpb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09EF63A1A2D;
-	Thu, 26 Feb 2026 13:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5461A3A1CE9
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772113927; cv=none; b=E3pdeRR5+kKK2NapdHhA3+7SSeNKrarraxEWnuU3EEqUpiqySTW2rautZTH824WafWOo2XM0+8QBkFpQgt2Osq4mxmP/czWy650E7JsbA8+vlRpVpkT6uoTAYyqEVXkt74IoHmDUDsIMbyVEfv2Hxm1lxjdIOnfUXujgPxUlBGo=
+	t=1772113925; cv=none; b=Pn255mFMewFOnO7JJi8+HzqsCFH2YUNPIWLgr5OVImBkyz9Be4ocDCYtSQX7+W+7csGA5aaP1lnMPXQpFfL57Iwh79OINTymnBLnwurXw7IAIKN5AXJwl/tHoEN6UH9nJ7mXiBmrBB2x8vMnwJxFTXRgviRMQr4KIsm335bj730=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772113927; c=relaxed/simple;
-	bh=1h1H6e3lBEANZSbDNUw6NzkC2iukXH7P5Q4+TpRsykI=;
+	s=arc-20240116; t=1772113925; c=relaxed/simple;
+	bh=WUdHUn1SxwBg0SRvz7+G4CBOYl0wOL7PytHr4XRhKf4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jZMwdxRvuKGgkQmshWFAkWwbP8SSpfD+hakIVuoJa2Q2ofqrohPTIRQHXUEFCMo42Aih5UpV+Ak/mcRcvfkohUAY7krE1tOVwsjNBmLx67TmLpQIpr9K0Esf+yZWXd7xDI/4qdaF8R7jp7D5lp40vPTD7Em1wEjVGuuyTcyOl+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=L/7AIz8r; arc=none smtp.client-ip=185.171.202.116
+	 In-Reply-To:To:Cc; b=RSGj1PsPCU1LvRcdLf48BdE/MI0XUIcDvCj7NHkJtdyMxe0tS7e6rZdj4Y/VHQkQ24GOy6EWyfcJDp0DfjUkLvAflahzAcIEh0ZBUkNdOb61V/hDYuVre4ctKC48s93OrSVT/pvy4Y4ho+P4jcgnkqs6IqzbrgXTMAtKMkKSFa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1p4S9dpb; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 24776C40696;
-	Thu, 26 Feb 2026 13:52:16 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4915BC40693;
+	Thu, 26 Feb 2026 13:52:17 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A9FFD5FDEB;
-	Thu, 26 Feb 2026 13:52:00 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B10221036939A;
-	Thu, 26 Feb 2026 14:51:58 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id CB4D15FDEB;
+	Thu, 26 Feb 2026 13:52:01 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4EF2C1036939B;
+	Thu, 26 Feb 2026 14:52:00 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772113919; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1772113921; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=oRNHwNkL6/KInlqbqQIYxGEYtoRm7PUWkKEU0wLTows=;
-	b=L/7AIz8rEbczF9i6R6jNQCisL3uZNW82XXYH3Ppj0Ew2V+8G2wfNqzhOagNgnp7Fotnvnb
-	eSSDd78fGtohExB5SpITN6DlzFaL3KYqoSdBNt/vx1PcrxjocNxZMCBE79UU5H9GX+59t0
-	M3DVkafNaEf3vZUkkOExNw46pgZ7Xd4Qij1JVNCb/EvWRsUeykZWI/D6w+1HUlmZ5JTl5V
-	uMcBykO0U+/DPtKg6HuQYjRUxlmnl3XauyEVe8n5+2cjHrTmFVn3nfzv/3siGytWH0EncM
-	zaUi17QIQU99xiEj7TX4wzyBCBKbrUt2vY3DWgpBybjEQnN8GC+uvD49Zk4e4A==
+	bh=0Bb/8taSoKnuCcIZ4A2FMUvLxlBtEAok6nK1mX3wzjY=;
+	b=1p4S9dpbVMxLb/DK/iQuuRaC9KUcri5+9kS5tAd/mhq0cAZX7MHPcdKzUY8pjOCHRaAuuH
+	rzSJuivrzzA6QpOBCFKUwJkMumM5iPK7AcgYdCcX3LVkhIiswUNpGvc/TGloakScwIpobN
+	r4KOoIk1CMp577KocZ13M89/ojfusjWEIjAb995NXRf6wnjA7S65O6CZGVcNeIJQ1ldudQ
+	OABPHy6lG5twL7YFEIVqsPvFGDPKmaOlvI7kaHrwoV4UXo+GwbnsQGm6Zu6ObRIXH9OEYp
+	8Z035x8Y4snKorUwcijM9XFPBranLRV/8p2CMNhW+bXtRGlirdUoSjj0cDqbHA==
 From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Thu, 26 Feb 2026 14:51:52 +0100
-Subject: [PATCH v2 2/3] dt-bindings: misc: Describe FPC202 LED features
+Date: Thu, 26 Feb 2026 14:51:53 +0100
+Subject: [PATCH v2 3/3] misc: ti_fpc202: Support special-purpose GPIO lines
+ with LED features
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-fpc202-leds-v2-2-bc74857869e0@bootlin.com>
+Message-Id: <20260226-fpc202-leds-v2-3-bc74857869e0@bootlin.com>
 References: <20260226-fpc202-leds-v2-0-bc74857869e0@bootlin.com>
 In-Reply-To: <20260226-fpc202-leds-v2-0-bc74857869e0@bootlin.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -71,8 +72,7 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Cc: Felix Gu <ustc.gu@gmail.com>, 
  Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Romain Gantois <romain.gantois@bootlin.com>, 
- Conor Dooley <conor.dooley@microchip.com>
+ Romain Gantois <romain.gantois@bootlin.com>
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
@@ -80,86 +80,557 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,bootlin.com,vger.kernel.org,microchip.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268871-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,bootlin.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-268870-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[bootlin.com:query timed out];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RSPAMD_EMAILBL_FAIL(0.00)[romain.gantois.bootlin.com:query timed out];
 	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.993];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.991];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,bootlin.com:email,0.0.0.20:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,microchip.com:email,0.0.0.2:email]
-X-Rspamd-Queue-Id: 6A5B01A75C0
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim,bootlin.com:email]
+X-Rspamd-Queue-Id: 768DF1A7202
 X-Rspamd-Action: no action
 
 The FPC202 dual port controller has 20 regular GPIO lines and 8 special
 GPIO lines with LED features. Each one of these "LED GPIOs" can output PWM
 and blink signals.
 
-Describe these special-purpose GPIO lines.
+Add support for the eight special-purpose GPIO lines to the existing FPC202
+driver's GPIO support. Add support for registering led-class devices on
+these GPIO lines.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
 ---
- .../devicetree/bindings/misc/ti,fpc202.yaml        | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/misc/Kconfig     |   1 +
+ drivers/misc/ti_fpc202.c | 339 +++++++++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 327 insertions(+), 13 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/misc/ti,fpc202.yaml b/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-index a8cb10f2d0df3..32913966a22a5 100644
---- a/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-+++ b/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-@@ -53,6 +53,23 @@ patternProperties:
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index dcb36e39d7079..00683bf06258f 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -117,6 +117,7 @@ config TI_FPC202
+ 	tristate "TI FPC202 Dual Port Controller"
+ 	depends on I2C
+ 	depends on GPIOLIB
++	depends on LEDS_CLASS
+ 	select I2C_ATR
+ 	help
+ 	  If you say yes here you get support for the Texas Instruments FPC202
+diff --git a/drivers/misc/ti_fpc202.c b/drivers/misc/ti_fpc202.c
+index 79a029d79f7a6..2aac83ec4a395 100644
+--- a/drivers/misc/ti_fpc202.c
++++ b/drivers/misc/ti_fpc202.c
+@@ -7,12 +7,17 @@
+  */
  
-     unevaluatedProperties: false
+ #include <linux/cleanup.h>
++#include <linux/device/devres.h>
+ #include <linux/err.h>
+ #include <linux/i2c.h>
+ #include <linux/i2c-atr.h>
+ #include <linux/gpio/consumer.h>
+ #include <linux/gpio/driver.h>
++#include <linux/gpio/machine.h>
++#include <linux/leds.h>
+ #include <linux/module.h>
++#include <linux/math.h>
++#include <linux/types.h>
  
-+  "^led@2[0-7]$":
-+    $ref: /schemas/leds/common.yaml#
-+    description: Output GPIO line with advanced LED features enabled.
+ #define FPC202_NUM_PORTS 2
+ #define FPC202_ALIASES_PER_PORT 2
+@@ -34,18 +39,55 @@
+  * ...
+  * 19: P1_S1_OUT_B
+  *
++ * Ports with optional LED control:
++ *
++ * 20: P0_S0_OUT_C (P0_S0_LED1)
++ * ...
++ * 23: P1_S1_OUT_C (P1_S1_LED1)
++ * 24: P0_S0_OUT_D (P0_S0_LED2
++ * ...
++ * 27: P1_S1_OUT_D (P1_S1_LED2)
++ *
+  */
+ 
+-#define FPC202_GPIO_COUNT 20
++#define FPC202_GPIO_COUNT 28
+ #define FPC202_GPIO_P0_S0_IN_B  4
+ #define FPC202_GPIO_P0_S0_OUT_A 12
++#define FPC202_GPIO_P0_S0_OUT_C 20
++#define FPC202_GPIO_P0_S0_OUT_D 24
+ 
+ #define FPC202_REG_IN_A_INT    0x6
+ #define FPC202_REG_IN_C_IN_B   0x7
+ #define FPC202_REG_OUT_A_OUT_B 0x8
++#define FPC202_REG_OUT_C_OUT_D 0x9
+ 
+ #define FPC202_REG_OUT_A_OUT_B_VAL 0xa
+ 
++#define FPC202_LED_COUNT 8
 +
-+    properties:
-+      reg:
-+        minimum: 20
-+        maximum: 27
-+        description:
-+          GPIO line ID
++/* There are four LED GPIO mode registers which manage two GPIOs each. */
++#define FPC202_REG_LED_MODE(offset) (0x1a + 0x20 * ((offset) % 4))
 +
-+    required:
-+      - reg
-+      - label
++/* LED1 GPIOs (*_OUT_C) are configured in bits 1:0, LED2 GPIOs (*_OUT_D) in bits 3:2. */
++#define FPC202_LED_MODE_SHIFT(offset) ((offset) < FPC202_GPIO_P0_S0_OUT_D ? 0 : 2)
++#define FPC202_LED_MODE_MASK(offset) (GENMASK(1, 0) << FPC202_LED_MODE_SHIFT(offset))
 +
-+    unevaluatedProperties: false
++/* There is one PWM control register for each GPIO LED */
++#define FPC202_REG_LED_PWM(offset) \
++	(((offset) < FPC202_GPIO_P0_S0_OUT_D ? 0x14 : 0x15) + 0x20 * ((offset) % 4))
 +
- required:
-   - compatible
-   - reg
-@@ -89,6 +106,11 @@ examples:
-                 #size-cells = <0>;
-                 reg = <1>;
-             };
++/* There are two blink delay registers (on/off time) for each GPIO LED */
++#define FPC202_REG_LED_BLINK_ON(offset) \
++	(((offset) < FPC202_GPIO_P0_S0_OUT_D ? 0x16 : 0x18) + 0x20 * ((offset) % 4))
++#define FPC202_REG_LED_BLINK_OFF(offset) (FPC202_REG_LED_BLINK_ON(offset) + 1)
 +
-+            led@20 {
-+                reg = <20>;
-+                label = "phy0:green:indicator";
-+            };
-         };
-     };
- ...
++/* The actual hardware precision is 2.5ms but since the LED API doesn't handle sub-millisecond
++ * timesteps this is rounded up to 5ms
++ */
++#define FPC202_LED_BLINK_PRECISION 5UL
++
++#define FPC202_LED_MAX_BRIGHTNESS 255
++
+ #define FPC202_REG_MOD_DEV(port, dev) (0xb4 + ((port) * 4) + (dev))
+ #define FPC202_REG_AUX_DEV(port, dev) (0xb6 + ((port) * 4) + (dev))
+ 
+@@ -59,15 +101,34 @@
+ /* Even aliases are assigned to device 0 and odd aliases to device 1 */
+ #define fpc202_dev_num_from_alias(alias) ((alias) % 2)
+ 
++enum fpc202_led_mode {
++	FPC202_LED_MODE_OFF = 0,
++	FPC202_LED_MODE_ON = 1,
++	FPC202_LED_MODE_PWM = 2,
++	FPC202_LED_MODE_BLINK = 3,
++};
++
++struct fpc202_led {
++	int offset;
++	struct led_classdev led_cdev;
++	struct fpc202_priv *priv;
++	struct gpio_desc *gpio;
++	enum fpc202_led_mode mode;
++};
++
+ struct fpc202_priv {
+ 	struct i2c_client *client;
+ 	struct i2c_atr *atr;
+ 	struct gpio_desc *en_gpio;
+ 	struct gpio_chip gpio;
++	struct fpc202_led leds[FPC202_LED_COUNT];
+ 
+ 	/* Lock REG_MOD/AUX_DEV and addr_caches during attach/detach */
+ 	struct mutex reg_dev_lock;
+ 
++	/* Lock LED mode select register during accesses */
++	struct mutex led_mode_lock;
++
+ 	/* Cached device addresses for both ports and their devices */
+ 	u8 addr_caches[2][2];
+ 
+@@ -97,6 +158,11 @@ static int fpc202_gpio_get_dir(int offset)
+ 	return offset < FPC202_GPIO_P0_S0_OUT_A ? GPIO_LINE_DIRECTION_IN : GPIO_LINE_DIRECTION_OUT;
+ }
+ 
++static int fpc202_gpio_has_led_caps(int offset)
++{
++	return offset >= FPC202_GPIO_P0_S0_OUT_C;
++}
++
+ static int fpc202_read(struct fpc202_priv *priv, u8 reg)
+ {
+ 	int val;
+@@ -118,6 +184,37 @@ static void fpc202_set_enable(struct fpc202_priv *priv, int enable)
+ 	gpiod_set_value(priv->en_gpio, enable);
+ }
+ 
++static int fpc202_led_mode_write(struct fpc202_priv *priv,
++				 int offset,
++				 enum fpc202_led_mode mode)
++{
++	u8 val, reg = FPC202_REG_LED_MODE(offset);
++	int ret;
++
++	guard(mutex)(&priv->led_mode_lock);
++
++	ret = fpc202_read(priv, reg);
++	if (ret < 0) {
++		dev_err(&priv->client->dev, "failed to read LED mode %d! err %d\n",
++			offset, ret);
++		return ret;
++	}
++
++	val = (u8)ret & ~FPC202_LED_MODE_MASK(offset);
++	val |= mode << FPC202_LED_MODE_SHIFT(offset);
++
++	return fpc202_write(priv, reg, val);
++}
++
++static int fpc202_led_mode_set(struct fpc202_led *led, enum fpc202_led_mode mode)
++{
++	struct fpc202_priv *priv = led->priv;
++
++	led->mode = mode;
++
++	return fpc202_led_mode_write(priv, led->offset, mode);
++}
++
+ static int fpc202_gpio_set(struct gpio_chip *chip, unsigned int offset,
+ 			   int value)
+ {
+@@ -125,6 +222,16 @@ static int fpc202_gpio_set(struct gpio_chip *chip, unsigned int offset,
+ 	int ret;
+ 	u8 val;
+ 
++	if (fpc202_gpio_has_led_caps(offset)) {
++		ret = fpc202_led_mode_write(priv, offset,
++					    value ? FPC202_LED_MODE_ON : FPC202_LED_MODE_OFF);
++		if (ret < 0)
++			dev_err(&priv->client->dev, "Failed to set GPIO %d LED mode! err %d\n",
++				offset, ret);
++
++		return ret;
++	}
++
+ 	ret = fpc202_read(priv, FPC202_REG_OUT_A_OUT_B_VAL);
+ 	if (ret < 0) {
+ 		dev_err(&priv->client->dev, "Failed to set GPIO %d value! err %d\n", offset, ret);
+@@ -153,9 +260,11 @@ static int fpc202_gpio_get(struct gpio_chip *chip, unsigned int offset)
+ 	} else if (offset < FPC202_GPIO_P0_S0_OUT_A) {
+ 		reg = FPC202_REG_IN_C_IN_B;
+ 		bit = BIT(offset - FPC202_GPIO_P0_S0_IN_B);
+-	} else {
++	} else if (!fpc202_gpio_has_led_caps(offset)) {
+ 		reg = FPC202_REG_OUT_A_OUT_B_VAL;
+ 		bit = BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
++	} else {
++		return -EOPNOTSUPP;
+ 	}
+ 
+ 	ret = fpc202_read(priv, reg);
+@@ -177,21 +286,29 @@ static int fpc202_gpio_direction_output(struct gpio_chip *chip, unsigned int off
+ 					int value)
+ {
+ 	struct fpc202_priv *priv = gpiochip_get_data(chip);
++	u8 reg, val, bit;
+ 	int ret;
+-	u8 val;
+ 
+ 	if (fpc202_gpio_get_dir(offset) == GPIO_LINE_DIRECTION_IN)
+ 		return -EINVAL;
+ 
+ 	fpc202_gpio_set(chip, offset, value);
+ 
+-	ret = fpc202_read(priv, FPC202_REG_OUT_A_OUT_B);
++	if (fpc202_gpio_has_led_caps(offset)) {
++		reg = FPC202_REG_OUT_C_OUT_D;
++		bit = BIT(offset - FPC202_GPIO_P0_S0_OUT_C);
++	} else {
++		reg = FPC202_REG_OUT_A_OUT_B;
++		bit = BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
++	}
++
++	ret = fpc202_read(priv, reg);
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	val = (u8)ret | BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
++	val = (u8)ret | bit;
+ 
+-	return fpc202_write(priv, FPC202_REG_OUT_A_OUT_B, val);
++	return fpc202_write(priv, reg, val);
+ }
+ 
+ /*
+@@ -264,6 +381,183 @@ static const struct i2c_atr_ops fpc202_atr_ops = {
+ 	.detach_addr = fpc202_detach_addr,
+ };
+ 
++static struct fpc202_led *fpc202_cdev_to_led(struct led_classdev *cdev)
++{
++	return container_of(cdev, struct fpc202_led, led_cdev);
++}
++
++static struct fpc202_led *fpc202_led_get(struct fpc202_priv *priv, int offset)
++{
++	return &priv->leds[offset - FPC202_GPIO_P0_S0_OUT_C];
++}
++
++static int fpc202_led_blink_set(struct led_classdev *cdev,
++				unsigned long *delay_on,
++				unsigned long *delay_off)
++{
++	struct fpc202_led *led = fpc202_cdev_to_led(cdev);
++	struct fpc202_priv *priv = led->priv;
++	unsigned long val;
++	int ret;
++
++	if (*delay_on == 0 && *delay_off == 0) {
++		*delay_on = 250;
++		*delay_off = 250;
++	} else {
++		if (*delay_on % FPC202_LED_BLINK_PRECISION)
++			*delay_on = roundup(*delay_on, FPC202_LED_BLINK_PRECISION);
++
++		if (*delay_off % FPC202_LED_BLINK_PRECISION)
++			*delay_off = roundup(*delay_off, FPC202_LED_BLINK_PRECISION);
++	}
++
++	/* Multiply the duration by two, since the actual precision is 2.5ms not 5ms*/
++	val = 2 * (*delay_on / FPC202_LED_BLINK_PRECISION);
++	if (val > 255) {
++		val = 255;
++		*delay_on = (val / 2) * FPC202_LED_BLINK_PRECISION;
++	}
++
++	ret = fpc202_write(priv, FPC202_REG_LED_BLINK_ON(led->offset), val);
++	if (ret) {
++		dev_err(&priv->client->dev,
++			"Failed to set blink on duration for LED %d, err %d\n",
++			led->offset, ret);
++		return ret;
++	}
++
++	val = 2 * (*delay_off / FPC202_LED_BLINK_PRECISION);
++	if (val > 255) {
++		val = 255;
++		*delay_off = (val / 2) * FPC202_LED_BLINK_PRECISION;
++	}
++
++	ret = fpc202_write(priv, FPC202_REG_LED_BLINK_OFF(led->offset), val);
++	if (ret) {
++		dev_err(&priv->client->dev,
++			"Failed to set blink off duration for LED %d, err %d\n",
++			led->offset, ret);
++		return ret;
++	}
++
++	return fpc202_led_mode_set(led, FPC202_LED_MODE_BLINK);
++}
++
++static enum led_brightness fpc202_led_brightness_get(struct led_classdev *cdev)
++{
++	struct fpc202_led *led = fpc202_cdev_to_led(cdev);
++
++	if (led->mode == FPC202_LED_MODE_OFF)
++		return LED_OFF;
++
++	return LED_ON;
++}
++
++static int fpc202_led_brightness_set(struct led_classdev *cdev,
++				     enum led_brightness brightness)
++{
++	struct fpc202_led *led = fpc202_cdev_to_led(cdev);
++	struct fpc202_priv *priv = led->priv;
++	int ret;
++
++	if (!brightness)
++		return fpc202_led_mode_set(led, FPC202_LED_MODE_OFF);
++
++	if (led->mode != FPC202_LED_MODE_BLINK) {
++		if (brightness == FPC202_LED_MAX_BRIGHTNESS)
++			return fpc202_led_mode_set(led, FPC202_LED_MODE_ON);
++
++		ret = fpc202_led_mode_set(led, FPC202_LED_MODE_PWM);
++		if (ret) {
++			dev_err(&priv->client->dev, "Failed to set LED %d mode, err %d\n",
++				led->offset, ret);
++			return ret;
++		}
++	}
++
++	return fpc202_write(priv, FPC202_REG_LED_PWM(led->offset), brightness);
++}
++
++static int fpc202_register_led(struct fpc202_priv *priv, int offset,
++			       struct device_node *led_handle)
++{
++	struct fpc202_led *led = fpc202_led_get(priv, offset);
++	struct device *dev = &priv->client->dev;
++	struct led_init_data init_data = { };
++	int ret = 0;
++
++	led->priv = priv;
++	led->offset = offset;
++	led->led_cdev.max_brightness = FPC202_LED_MAX_BRIGHTNESS;
++	led->led_cdev.brightness_set_blocking = fpc202_led_brightness_set;
++	led->led_cdev.brightness_get = fpc202_led_brightness_get;
++	led->led_cdev.blink_set = fpc202_led_blink_set;
++
++	init_data.fwnode = of_fwnode_handle(led_handle);
++	init_data.default_label = NULL;
++	init_data.devicename = NULL;
++	init_data.devname_mandatory = false;
++
++	ret = fpc202_led_mode_set(led, FPC202_LED_MODE_OFF);
++	if (ret) {
++		dev_err(dev, "Failed to set LED %d mode, err %d\n", offset, ret);
++		return ret;
++	}
++
++	ret = devm_led_classdev_register_ext(dev, &led->led_cdev, &init_data);
++	if (ret) {
++		dev_err(dev, "Failed to register LED %d cdev, err %d\n", offset, ret);
++		return ret;
++	}
++
++	/* Claim corresponding GPIO line so that it cannot be interfered with */
++	led->gpio = gpiochip_request_own_desc(&priv->gpio, offset, led->led_cdev.name,
++					      GPIO_ACTIVE_HIGH, GPIOD_ASIS);
++	if (IS_ERR(led->gpio)) {
++		ret = PTR_ERR(led->gpio);
++		dev_err(dev, "Failed to register LED %d cdev, err %d\n", offset, ret);
++	}
++
++	return ret;
++}
++
++static int fpc202_register_leds(struct fpc202_priv *priv)
++{
++	struct device *dev = &priv->client->dev;
++	int offset, ret = 0;
++
++	if (!devres_open_group(dev, fpc202_register_leds, GFP_KERNEL))
++		return -ENOMEM;
++
++	for_each_child_of_node_scoped(dev->of_node, led_handle) {
++		ret = of_property_read_u32(led_handle, "reg", &offset);
++		if (ret) {
++			dev_err(dev, "Failed to read 'reg' property of child node, err %d\n", ret);
++			return ret;
++		}
++
++		if (offset < FPC202_GPIO_P0_S0_OUT_C || offset > FPC202_GPIO_COUNT)
++			continue;
++
++		ret = fpc202_register_led(priv, offset, led_handle);
++		if (ret) {
++			dev_err(dev, "Failed to register LED %d, err %d\n", offset,
++				ret);
++			goto free_own_gpios;
++		}
++	}
++
++	devres_close_group(dev, fpc202_register_leds);
++
++	return 0;
++
++free_own_gpios:
++	for (offset = 0; offset < FPC202_LED_COUNT; offset++)
++		if (priv->leds[offset].gpio)
++			gpiochip_free_own_desc(priv->leds[offset].gpio);
++	return ret;
++}
++
+ static int fpc202_probe_port(struct fpc202_priv *priv, struct device_node *i2c_handle, int port_id)
+ {
+ 	u16 aliases[FPC202_ALIASES_PER_PORT] = { };
+@@ -302,13 +596,14 @@ static int fpc202_probe(struct i2c_client *client)
+ {
+ 	struct device *dev = &client->dev;
+ 	struct fpc202_priv *priv;
+-	int ret, port_id;
++	int ret, port_id, led_id;
+ 
+ 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+ 	if (!priv)
+ 		return -ENOMEM;
+ 
+ 	mutex_init(&priv->reg_dev_lock);
++	mutex_init(&priv->led_mode_lock);
+ 
+ 	priv->client = client;
+ 	i2c_set_clientdata(client, priv);
+@@ -346,6 +641,12 @@ static int fpc202_probe(struct i2c_client *client)
+ 
+ 	i2c_atr_set_driver_data(priv->atr, priv);
+ 
++	ret = fpc202_register_leds(priv);
++	if (ret) {
++		dev_err(dev, "Failed to register LEDs, err %d\n", ret);
++		goto delete_atr;
++	}
++
+ 	bitmap_zero(priv->probed_ports, FPC202_NUM_PORTS);
+ 
+ 	for_each_child_of_node_scoped(dev->of_node, i2c_handle) {
+@@ -358,11 +659,8 @@ static int fpc202_probe(struct i2c_client *client)
+ 			goto unregister_chans;
+ 		}
+ 
+-		if (port_id >= FPC202_NUM_PORTS) {
+-			dev_err(dev, "port ID %d is out of range!\n", port_id);
+-			ret = -EINVAL;
+-			goto unregister_chans;
+-		}
++		if (port_id >= FPC202_NUM_PORTS)
++			continue;
+ 
+ 		ret = fpc202_probe_port(priv, i2c_handle, port_id);
+ 		if (ret) {
+@@ -377,11 +675,18 @@ static int fpc202_probe(struct i2c_client *client)
+ 	for_each_set_bit(port_id, priv->probed_ports, FPC202_NUM_PORTS)
+ 		fpc202_remove_port(priv, port_id);
+ 
++	for (led_id = 0; led_id < FPC202_LED_COUNT; led_id++)
++		if (priv->leds[led_id].gpio)
++			gpiochip_free_own_desc(priv->leds[led_id].gpio);
++
++	devres_release_group(&client->dev, fpc202_register_leds);
++delete_atr:
+ 	i2c_atr_delete(priv->atr);
+ disable_gpio:
+ 	fpc202_set_enable(priv, 0);
+ 	gpiochip_remove(&priv->gpio);
+ destroy_mutex:
++	mutex_destroy(&priv->led_mode_lock);
+ 	mutex_destroy(&priv->reg_dev_lock);
+ out:
+ 	return ret;
+@@ -390,11 +695,19 @@ static int fpc202_probe(struct i2c_client *client)
+ static void fpc202_remove(struct i2c_client *client)
+ {
+ 	struct fpc202_priv *priv = i2c_get_clientdata(client);
+-	int port_id;
++	int port_id, led_id;
+ 
+ 	for_each_set_bit(port_id, priv->probed_ports, FPC202_NUM_PORTS)
+ 		fpc202_remove_port(priv, port_id);
+ 
++	for (led_id = 0; led_id < FPC202_LED_COUNT; led_id++)
++		if (priv->leds[led_id].gpio)
++			gpiochip_free_own_desc(priv->leds[led_id].gpio);
++
++	/* Release led devices early so that blink handlers don't trigger. */
++	devres_release_group(&client->dev, fpc202_register_leds);
++
++	mutex_destroy(&priv->led_mode_lock);
+ 	mutex_destroy(&priv->reg_dev_lock);
+ 
+ 	i2c_atr_delete(priv->atr);
 
 -- 
 2.52.0
