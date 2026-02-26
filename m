@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-268686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268687-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qEAyA8EOoGnbfQQAu9opvQ
-	(envelope-from <devicetree+bounces-268686-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:13:37 +0100
+	id cMTMMOcMoGnbfQQAu9opvQ
+	(envelope-from <devicetree+bounces-268687-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:05:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19ECA1A3354
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:13:35 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 632A91A31A4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:05:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 860803015EDC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:05:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6F17D3020523
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80E1A395279;
-	Thu, 26 Feb 2026 09:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B84739900B;
+	Thu, 26 Feb 2026 09:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ftHDagL2"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Jf3bHv5s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9AE8392809
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:05:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A01E539525A
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772096716; cv=none; b=QfjgLLymqqHAX38RwJ0nuhVYJeUN8JxDuV16rxXzHWIgjlUxKcHQgPdfhCAE6DaqauZbKHJj9ttiGrAN22lEsJ76X4DFsfXgLA3w5NG2RIh8E6VmKAxjzG6vElYcnK+1svLjtI5eOzhyo7pl57mQxNplLLNmhH5KTd1VCfTSKzk=
+	t=1772096740; cv=none; b=F3cOkw/3SFaWzZeu8DxXVsCF6fO7SY8D/bQoorTdibSNFbhTz4S1io131eBdm1Axo0JRhyMhowDl6SiclKi+Zz+JyzK2mqSnu2g1hae09yhqRRRFxKWXFJ01er7nkQzkmxUCDnZ2WK2dQlGc0JrJvORufyUoAnkxFJvl9daxv4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772096716; c=relaxed/simple;
-	bh=Ll1C/k6us6VNV4G+XvSuQrT3k/czbVvKdxB4yjiF6jE=;
+	s=arc-20240116; t=1772096740; c=relaxed/simple;
+	bh=CggM2mHSN1GAi7yfUd4TMGBw6EKyJOevirHZuA3kvaY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=d4j3E8AA66+BV4ZrdELlvIC+S82ue3HdluoMtYURP3lOqvn2/KHs6uwsTJ8cl9INzrDQoFeTvNbDT8h5/xipnDHz3EfHmFta7qPZLcOKeNrB3uWMGvifYBldvKS+r4jOhlKmhDVsYHpZNJ0eG5cVMhecv0WxFBwKXjfSEQxg6LY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ftHDagL2; arc=none smtp.client-ip=203.254.224.34
+	 Content-Type:References; b=mp/PMun2bAOgyCBn3oghqtEkNTmxbn7hzfPWtRA77EC77z73NWCU6BWtf5FJgdZZFWq/WHxF9OFwcfGeU5sTjHKYupueNOb7nvezfECIUYPiWMrwMGaXI0dOfG5khEsvQp35MCZd7A1XTKbnOAHv0DPwwaEMOpyJYAAiqGoEWHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Jf3bHv5s; arc=none smtp.client-ip=203.254.224.25
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
 Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20260226090505epoutp04199d7f6e52d0c060486efbff6e4b5cb4~XwJCcAH4U1147211472epoutp04G
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:05:05 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20260226090505epoutp04199d7f6e52d0c060486efbff6e4b5cb4~XwJCcAH4U1147211472epoutp04G
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260226090535epoutp02c030f97788dd41218a1191b2dafdbe8e~XwJeLcjNb0147201472epoutp02j
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:05:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260226090535epoutp02c030f97788dd41218a1191b2dafdbe8e~XwJeLcjNb0147201472epoutp02j
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1772096705;
-	bh=PZeSZWFesAgEfOfY1Eam39aeSIQJZPf2ZiqvMOXv1vc=;
+	s=mail20170921; t=1772096735;
+	bh=odccMulAmDT3XHgDvrKdd8CLSnGU7dDKkomAg2ZSRLc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ftHDagL2pNZ07RVKrxfZTZoS/4kGwdLYW4PfNKKvzEtsV+X0NRh8kVgGKs7hmteWT
-	 VaDhb5wUQ0s7VyP1QpWL8XNu8PQ3KjnfYUh4SyLx0tE4hyvFYFZB+8yN529xAg0BYV
-	 UWaj4uXmmMA0iLqxJdWZsO4zw2/WoMdL8lEnyuPE=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	b=Jf3bHv5sy8kfxsY6mcgvuy7HpOnAigNpE5Kec5Uz+slSNSEkEBo2JJMU2tgd4tYx5
+	 hh2Vh56vYGp87b3NCqZCxAHTg4dTSyZ2V93cAMkYjTExICld8U50o8SVGHwgyD1ifZ
+	 N16SKGMN02TdDxNXuIFjJ9mrm+fTglIp21LwNYGU=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
 	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20260226090505epcas5p1d8fd7593316a7567deff72615749a3eb~XwJCGLO1C0280902809epcas5p18;
-	Thu, 26 Feb 2026 09:05:05 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4fM5Bn2Hlmz6B9mF; Thu, 26 Feb
-	2026 09:05:05 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20260226090505epcas5p2c4f159fa29187685275dd950dd69f5cd~XwJB71Xtg1465714657epcas5p23;
-	Thu, 26 Feb 2026 09:05:05 +0000 (GMT)
-Received: from hzsscr.. (unknown [109.120.22.104]) by epsmtip1.samsung.com
+	20260226090535epcas5p19cf664bae080cc03d93d4a3b6de54644~XwJdxY_5z1575615756epcas5p13;
+	Thu, 26 Feb 2026 09:05:35 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4fM5CM0GwGz6B9m7; Thu, 26 Feb
+	2026 09:05:35 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260226090534epcas5p1c5c3ac9afda2d0feb99faa312528f7dc~XwJdlLDHH1575615756epcas5p12;
+	Thu, 26 Feb 2026 09:05:34 +0000 (GMT)
+Received: from hzsscr.. (unknown [109.120.22.104]) by epsmtip2.samsung.com
 	(KnoxPortal) with ESMTPA id
-	20260226090504epsmtip15c749afc4ee9ee5c3a5b0c944563d3a8~XwJBPGh3f0295402954epsmtip1B;
-	Thu, 26 Feb 2026 09:05:04 +0000 (GMT)
+	20260226090534epsmtip28b0dbcdb88554aca27ecfe58ae41d11f~XwJc0AvJ41180111801epsmtip2M;
+	Thu, 26 Feb 2026 09:05:33 +0000 (GMT)
 From: "ping.gao" <ping.gao@samsung.com>
 To: shawn.lin@rock-chips.com, ulf.hansson@linaro.org,
 	jh80.chung@samsung.com, krzk+dt@kernel.org, conor+dt@kernel.org,
@@ -67,10 +67,10 @@ To: shawn.lin@rock-chips.com, ulf.hansson@linaro.org,
 Cc: linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, hy50.seo@samsung.com, kwangwon.min@samsung.com,
 	ping.gao@samsung.com
-Subject: [PATCH v3 1/3] mmc: dw_mmc-k3: before set biu_clk rate, check
- biu_clk available or not
-Date: Thu, 26 Feb 2026 17:09:58 +0800
-Message-ID: <20260226090958.300440-1-ping.gao@samsung.com>
+Subject: [PATCH v3 2/3] mmc: dw_mmc: Using devm_clk_get_optional() for
+ biu_clk
+Date: Thu, 26 Feb 2026 17:10:27 +0800
+Message-ID: <20260226091027.300564-1-ping.gao@samsung.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <CGME20260123085150epcas5p42f2cc04843ae7657380b2968261246cb@epcas5p4.samsung.com>
 Precedence: bulk
@@ -80,7 +80,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260226090505epcas5p2c4f159fa29187685275dd950dd69f5cd
+X-CMS-MailID: 20260226090534epcas5p1c5c3ac9afda2d0feb99faa312528f7dc
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
 CMS-TYPE: 105P
@@ -93,7 +93,7 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
 	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -101,46 +101,82 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268686-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268687-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,samsung.com:mid,samsung.com:dkim,samsung.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,samsung.com:mid,samsung.com:dkim,samsung.com:email];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ping.gao@samsung.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 19ECA1A3354
+X-Rspamd-Queue-Id: 632A91A31A4
 X-Rspamd-Action: no action
 
-If biu_clk is not available, no need to try to set and get
-rate of it, just bail out and print a warning
+By using devm_clk_get_optional, if clk is optional for device and not define in dts
+it will return NULL, then clk_prepare_enable/clk_disable_unprepare for biu_clk is safe to
+bail out internally.
+
+before biu_clk in dwmmc driver devm_clk_get fail, but it's ERR_PTR,
+not null,it will panic when call clk_prepare
+log is below:
+[7:   binder:436_2: 4998] Unable to handle kernel paging request at virtual address fffffffffffffffe
+[7:   binder:436_2: 4998] Mem abort info:
+[7:   binder:436_2: 4998]   ESR = 0x0000000096000005
+[7:   binder:436_2: 4998]   EC = 0x25: DABT (current EL), IL = 32 bits
+[7:   binder:436_2: 4998]   SET = 0, FnV = 0
+[7:   binder:436_2: 4998]   EA = 0, S1PTW = 0
+[7:   binder:436_2: 4998]   FSC = 0x05: level 1 translation fault
+...
+[7:   binder:436_2: 4998] Call trace:
+[7:   binder:436_2: 4998]  clk_prepare+0x10/0x24
+[7:   binder:436_2: 4998]  dw_mci_runtime_resume+0x50/0x2d8 [dw_mmc_samsung cd210e210975263404c28fc89778f369f8398f0c]
+[7:   binder:436_2: 4998]  dw_mci_exynos_runtime_resume+0x18/0x58 [dw_mmc_exynos_samsung 2735a594c7c9c9e8c65b0b87523fbf70dcaabfff]
+[7:   binder:436_2: 4998]  pm_generic_runtime_resume+0x40/0x58
+[7:   binder:436_2: 4998]  pm_runtime_force_resume+0x9c/0x134
+[7:   binder:436_2: 4998]  platform_pm_resume+0x40/0x8c
+[7:   binder:436_2: 4998]  dpm_run_callback+0x64/0x230
+[7:   binder:436_2: 4998]  __device_resume+0x1d8/0x394
+[7:   binder:436_2: 4998]  dpm_resume+0x110/0x2b8
+[7:   binder:436_2: 4998]  dpm_resume_end+0x1c/0x38
+[7:   binder:436_2: 4998]  suspend_devices_and_enter+0x828/0xab0
+[7:   binder:436_2: 4998]  pm_suspend+0x334/0x618
+[7:   binder:436_2: 4998]  state_store+0x104/0x144
+[7:   binder:436_2: 4998]  kobj_attr_store+0x30/0x48
+[7:   binder:436_2: 4998]  sysfs_kf_write+0x54/0x6c
+[7:   binder:436_2: 4998]  kernfs_fop_write_iter+0x104/0x1a8
+[7:   binder:436_2: 4998]  vfs_write+0x24c/0x2f4
+[7:   binder:436_2: 4998]  ksys_write+0x78/0xe8
+[7:   binder:436_2: 4998]  __arm64_sys_write+0x1c/0x2c
+[7:   binder:436_2: 4998]  invoke_syscall+0x58/0x114
+[7:   binder:436_2: 4998]  el0_svc_common+0xac/0xe0
+[7:   binder:436_2: 4998]  do_el0_svc+0x1c/0x28
+[7:   binder:436_2: 4998]  el0_svc+0x38/0x68
+[7:   binder:436_2: 4998]  el0t_64_sync_handler+0x68/0xbc
+[7:   binder:436_2: 4998]  el0t_64_sync+0x1a8/0x1ac
 
 Signed-off-by: ping.gao <ping.gao@samsung.com>
 ---
- drivers/mmc/host/dw_mmc-k3.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/mmc/host/dw_mmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/mmc/host/dw_mmc-k3.c b/drivers/mmc/host/dw_mmc-k3.c
-index ad6aa1aea549..ccb6bfe3e0ce 100644
---- a/drivers/mmc/host/dw_mmc-k3.c
-+++ b/drivers/mmc/host/dw_mmc-k3.c
-@@ -190,6 +190,11 @@ static void dw_mci_hi6220_set_ios(struct dw_mci *host, struct mmc_ios *ios)
- 	int ret;
- 	unsigned int clock;
+diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+index c5db92bbb094..6bcc1e7233c0 100644
+--- a/drivers/mmc/host/dw_mmc.c
++++ b/drivers/mmc/host/dw_mmc.c
+@@ -3375,7 +3375,7 @@ int dw_mci_probe(struct dw_mci *host)
+ 					     "platform data not available\n");
+ 	}
  
-+	if (IS_ERR_OR_NULL(host->biu_clk)) {
-+		dev_err(host->dev, "biu_clk not available\n");
-+		return;
-+	}
-+
- 	clock = (ios->clock <= 25000000) ? 25000000 : ios->clock;
- 
- 	ret = clk_set_rate(host->biu_clk, clock);
+-	host->biu_clk = devm_clk_get(host->dev, "biu");
++	host->biu_clk = devm_clk_get_optional(host->dev, "biu");
+ 	if (IS_ERR(host->biu_clk)) {
+ 		dev_dbg(host->dev, "biu clock not available\n");
+ 		ret = PTR_ERR(host->biu_clk);
 -- 
 2.50.1
 
