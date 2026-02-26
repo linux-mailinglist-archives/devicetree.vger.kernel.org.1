@@ -1,129 +1,146 @@
-Return-Path: <devicetree+bounces-268700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268710-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qFwgIRQQoGnbfQQAu9opvQ
-	(envelope-from <devicetree+bounces-268700-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:19:16 +0100
+	id cO6EJncToGlAfgQAu9opvQ
+	(envelope-from <devicetree+bounces-268710-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:33:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ACA01A342C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:19:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1432F1A3727
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:33:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 50803302F171
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:19:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1C78630EBAD1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:26:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B451F3A0B0C;
-	Thu, 26 Feb 2026 09:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 714563A1E9B;
+	Thu, 26 Feb 2026 09:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="daGGBv51"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KqG7Dblz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DE339B498
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DECF3A0B11;
+	Thu, 26 Feb 2026 09:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772097535; cv=none; b=nZtmHnaFYdfilVTUD1mx4kTqFgVDz8ZTIyH8k29EK/McEZAluzf6OnaIBnr9frrhDXrtUOdEX7D0d4JS8UQRw0L3aQIZ986bXnYRymFh+TooRGKZMiFBDyvTP7mlWDSgoz9+9Ra38Vmj3LAnaOId9TNdL88KRnticRmiv2U1ldg=
+	t=1772097882; cv=none; b=kDfUNCgbzUUiPZ5Jgw6lDmux9oyCAh/IC719aM/9k+dQXp7FWoP8fQQdXn3jobMd240ov+XhTfDHH+FtqyxU6G4cBGPTkzBUoDuEbYvWVFicAlJCgC8zEIj4qLXgu9yTnpRwu5KOQQYlsfmA85Gd2GnO8ol6YBUA8oMPUGtXtuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772097535; c=relaxed/simple;
-	bh=Z+rlFlf82tJSA5RGkL3NrpaTjpsrsH5TKbIor2Iko0U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RkLuVdyx0v52hCOj3NyYL4xVigVWGa8JAJX0vq0oY6GkfTOpd4Gsj1Zig3oEap3Xs8zhS9sipypMDI2v5Vfz7OV+qQ/jH3rETzWNSpdXt3zjbbCNlMqMvafNsW1kVJYEQwhTvCTrBIe5lovS0uQjBr5q4aU1H+XukxeuVvLfwCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=daGGBv51; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB3C9C2BC87
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:18:54 +0000 (UTC)
+	s=arc-20240116; t=1772097882; c=relaxed/simple;
+	bh=+HlDIfQTFe7JijL+y8VhEYmtIk+2cPoizKDQH8OiFYE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t7D00xlDWgnfx9jKAAd5KSyUri6y/mK5g1CsrZ8HDEB1N8jH1POdES1bYlVV1AffAtmAkLD3IqWRaFLl7TnA2BxJIxV369q2tc+whaAVuFIc7x7Z0uT0s/niEATCJYKyvi4NqNkIRXZ5VJ1Ht8Q0r004sgsTgT+EqlLLnefE7h0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KqG7Dblz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CCEBC2BC87;
+	Thu, 26 Feb 2026 09:24:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772097534;
-	bh=Z+rlFlf82tJSA5RGkL3NrpaTjpsrsH5TKbIor2Iko0U=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=daGGBv51ajs81ihoMwHF2nl4DCUfFvWVpFDtsJp9zKdgz7btf62kmnJBtFgDv+m2j
-	 KRZsrEXamIiJR6cqYKkUdSpmjQps/aRdXKW0pwzjMSn3gb6N4ndBrYIsF0g/9vqtjh
-	 P0wqgyXm/b/8LM9XrzXG6P7+B31XgqNHMdV6JBDb1sVvpd3Gh+1GuoXvwsE7FtZ118
-	 5ei9GW4vt9/znNlpJhmDbudDNPK5aAOHmxaaupYxOjs6GhKgrTZ5e6y9ubXgMQpCgk
-	 UE6Pv4czH/kDn5ozjH++gM/jS8U82NH4tN7zX4Dhx8BGVmv97aduw6N7knz9a0ZgDR
-	 DLvrNfdn4w/5w==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-389e2950f54so5529881fa.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 01:18:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVBe+z+uUw/DSZC0zCfE5HqVHIk9otIpWfV3hE9KB9KdsnENo0aD/h+pTOq4pJ2m7CtQzahI17dtod7@vger.kernel.org
-X-Gm-Message-State: AOJu0YznyYwGD/OFTY0QniWiMizKu0TKOoLl2A0dHS0U9qA9c+6pf0tJ
-	+sJ2NAd27+P1vcvsQbT81NlTMhKVUkvdxXsFXVTd9iwma7Xb/Ps50o57OCxkzu7UuMIYaklRQVu
-	hIF1O7E+YAi+JmXZfDtpOairczaeAUIg=
-X-Received: by 2002:a05:651c:154e:b0:385:c15f:6bd with SMTP id
- 38308e7fff4ca-389f1db1be7mr6846191fa.10.1772097533253; Thu, 26 Feb 2026
- 01:18:53 -0800 (PST)
+	s=k20201202; t=1772097882;
+	bh=+HlDIfQTFe7JijL+y8VhEYmtIk+2cPoizKDQH8OiFYE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KqG7DblzGOe0N5tVI96EgLFanIh7ZNJk0mtkhSiIRTkfm3Y5JfVXWohQu6yeXs3Yj
+	 qZ7aiH6ABrn1FUIgdyhRgJoOSxkMd5ItVrR1jVotOPjb8n2jdOEaRPazAUQ05aRD9o
+	 ntzVKbZu8TTJYmSiI7Ba/q4dox9pBszZxSVLtAuXo5A1VoDEnCoRNCwTf4Hc+9m1GF
+	 ekOQj3v8pyJ5wY7eSUwuTdh9TJdDLLQRQILZJDiouaUEfMw496BVSMU2/Q6SbHzD2T
+	 vZZ87qIPugS+3XVpC1W1C+2b0pOz7bwpxfmXaSjLoDO+iYIpLJtk3Lq9O9OTNg1ngx
+	 3MAfAjhRW+nvQ==
+Message-ID: <2665866f-e967-40df-a25c-1492cb707291@kernel.org>
+Date: Thu, 26 Feb 2026 09:24:34 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260225170045.1707778-1-wens@kernel.org> <5050123.GXAFRqVoOG@jernej-laptop>
-In-Reply-To: <5050123.GXAFRqVoOG@jernej-laptop>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Thu, 26 Feb 2026 17:18:40 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64ixefsSDR1bJb7uYjPWOz-7yJ=+27apx4kb+aH4ET9rA@mail.gmail.com>
-X-Gm-Features: AaiRm530ZuEda_MZygW0LXGcfkJ34WBOn92bG3Hhz3-OuGkIcoYFg-ebkdtXFC8
-Message-ID: <CAGb2v64ixefsSDR1bJb7uYjPWOz-7yJ=+27apx4kb+aH4ET9rA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: pine-h64: Enable USB 3.0 host
-To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260225-x1e-csi2-phy-v2-0-7756edb67ea9@linaro.org>
+ <20260225-x1e-csi2-phy-v2-1-7756edb67ea9@linaro.org>
+ <COPUC-lLe0iAFFCqJTMGY3idnIh0jPeFqrYbv2L3rajjyS_x6XxJNzmzu3iXcaAGJI0aNgEho1qlYd-PHxU2jw==@protonmail.internalid>
+ <20260226-carmine-cockle-of-prosperity-b6baf2@quoll>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20260226-carmine-cockle-of-prosperity-b6baf2@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268700-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268710-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	HAS_REPLYTO(0.00)[wens@kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3ACA01A342C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1432F1A3727
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 1:09=E2=80=AFAM Jernej =C5=A0krabec <jernej.skrabec=
-@gmail.com> wrote:
->
-> Dne sreda, 25. februar 2026 ob 18:00:44 Srednjeevropski standardni =C4=8D=
-as je Chen-Yu Tsai napisal(a):
-> > On both Pine H64 models, there is one USB 3.0 host port directly
-> > connected to the SoC. The VBUS is shared with the other USB 2.0 ports.
-> > Unfortunately the DWC controller binding does not have a VBUS supply.
->
-> IIRC this is exactly the reason why it was never added. Adding it without
-> vbus property is not a good strategy.
+On 26/02/2026 07:37, Krzysztof Kozlowski wrote:
+> On Wed, Feb 25, 2026 at 02:59:12PM +0000, Bryan O'Donoghue wrote:
+>> Add a base schema initially compatible with x1e80100 to describe MIPI CSI2
+>> PHY devices.
+>>
+>> The hardware can support both C-PHY and D-PHY modes. The CSIPHY devices
+>> have their own pinouts on the SoC as well as their own individual voltage
+>> rails.
+>>
+>> The need to model voltage rails on a per-PHY basis leads us to define
+>> CSIPHY devices as individual nodes.
+>>
+>> Two nice outcomes in terms of schema and DT arise from this change.
+>>
+>> 1. The ability to define on a per-PHY basis voltage rails.
+>> 2. The ability to require those voltage.
+>>
+>> We have had a complete bodge upstream for this where a single set of
+>> voltage rail for all CSIPHYs has been buried inside of CAMSS.
+>>
+>> Much like the I2C bus which is dedicated to Camera sensors - the CCI bus in
+>> CAMSS parlance, the CSIPHY devices should be individually modelled.
+>>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> 
+> The entire point of separate CSI PHY was to change new devices. That's
+> why I was postponing TWO new bindings. There is little point in change
+> existing bindings, it's just a lot of work with little benefit.
 
-Or we could describe a full usb-a-connector with vbus-supply, which still
-doesn't do anything ATM. I plan on working on that in the future.
+Since the x1e dtsi isn't upstream yet though.
 
+> And the beauty is that you did not even had to do the work yourself,
+> because the contributors of new device would need to come with CSI PHY
+> split.
+I mean I'm happy to do that work myself, idle hands make the Devil's work.
 
-ChenYu
+?
+
+---
+bod
 
