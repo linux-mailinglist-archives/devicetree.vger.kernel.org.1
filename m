@@ -1,172 +1,164 @@
-Return-Path: <devicetree+bounces-268935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268936-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +KJQGRBvoGk3jgQAu9opvQ
-	(envelope-from <devicetree+bounces-268935-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:04:32 +0100
+	id OJ72KHJ/oGnWkQQAu9opvQ
+	(envelope-from <devicetree+bounces-268936-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:14:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134F41A9852
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:04:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 501A21ABFF4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:14:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0DFCF306DD41
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:48:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3911932EC561
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3DFE426D09;
-	Thu, 26 Feb 2026 15:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F169542E00B;
+	Thu, 26 Feb 2026 16:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mRdW7TFZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZWLEngQj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
+Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com [74.125.82.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE00425CEB
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 15:47:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F5294C9577
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 16:06:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772120845; cv=none; b=qki6SWYcgFXi54d0HQ2ipF9k09wuLTx4D2T3xddtMSCOKDKAyKY66KrobBtamC3TAt6ty5N61DO/5WqZMJW94mlcjveRHHvGFkZcUXoLqVTy2djKZNgmSsDIh028wn2ftW8BwRACD1jJenrm4VOntlIkcYGHJeHR+ySLhviX0Ck=
+	t=1772121995; cv=none; b=HslYFGtOXdqst+GHCZ3+TYOQ0TQCZ5F38+wNqGlA/0BVYULnNmC2SrdIkdI8baedwv3l9UVgL5IbvraP55cQc7rPd2BuoNNz19dHbHaVHC3ujXUwLxLh/zq0CzlsuaQKyyiwUHuRsYF3wDD1vZhF2cVaQpXFdYh2d5gwTLjUoXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772120845; c=relaxed/simple;
-	bh=kgl4foMndEPG7F6jXhp4j7AMJhwvQjtbJ0xHBrZVLj4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=b6e0yQL2+I0JmoZNm+4LmAReRrzw0z6QC11kCKte+GtwtsLr+jGTDt/wHgBq9pbMlo4mv4YtSoOMH2fqyrc1D42brgxpR8M8EfNVmku0YKQlGLEoUiW8BN+S4QQxtR1lr1Cg5UJiXPDmsrl2ROxltT1ZUhdkNiCufMTgnCVf4Lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mRdW7TFZ; arc=none smtp.client-ip=209.85.128.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f67.google.com with SMTP id 5b1f17b1804b1-4834826e5a0so11352805e9.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:47:20 -0800 (PST)
+	s=arc-20240116; t=1772121995; c=relaxed/simple;
+	bh=LlP3/1O8CB//0s/+CCxqGyTYuWA9OoLCrL9yKkS8zFI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SY3rZ6NMU68pUAHKeLbXJkb4bFtcHY3uSjWO8ODYxMGrFEWY96RPqg7rRT0v1NvjKnSWFqb9MgDLwUDhJksB1m7bDIeWaRIB1o+Z8ayz63At/pEAxecqC38HWJM+FAjOICbQvkZjN/PcZOr/L+wDYXL1S54KYR7vX8tfV96qxpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZWLEngQj; arc=none smtp.client-ip=74.125.82.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f174.google.com with SMTP id 5a478bee46e88-2ba895adfeaso1003402eec.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:06:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772120838; x=1772725638; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k8v9KGUdN9vhC+5Sfj+8HpfyMGxxSUWxCRI9OZUNdGo=;
-        b=mRdW7TFZivwe/aX8EUexWG/CkBSW9dxxuLUod4ojJp9JHW3m3d7JdnVUjcUL6sOj13
-         RQOHgTueFF3Ye7eibTlHE3UyjFDZ+a2ipY2ck3yCI1OrTpUsTjkAnXfuW6s8yPN8l8Vv
-         YJpy+mncTqf9LMkRWqCUlGM7YhuJIjA2pvGiLVFNR0Kh7ArCIfz4Ttt2zvSJ5qh8awlm
-         2Sy9/KcKyeTR3811YqTYcrXNafch7hW4pg/nKXrhBjBTCASqF+seJAef+DQdSo57Z1UB
-         XQ9aWz7a3SUCMeGdN4DIv8RMx/bshtdhD8xdeeRTTqiJUJBhar+qY+ga7EE9svcKmjCG
-         t+0Q==
+        d=gmail.com; s=20230601; t=1772121989; x=1772726789; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2UC1Q8+vyEP17hQt6/3sZmtkvys+UUPMl4+3szj6VoQ=;
+        b=ZWLEngQjy1e6iZRf2/GhQpH2Fx38vTYrFqBsozQKEzDOE99TD8e+9k/khztz2sIiyL
+         pO8pQCliay1zyoD1KEuQlherhNv2LkNnsVDqunR0HEbrHEVwEkZeI7zXqVTqmNOXfAyC
+         9Auyd0l02cc+33LHbPQJN+tQ8lyxMHiPmv/MbDtFC+N7NH73QzQ1y6GrK19Sn7mmev+F
+         CqnAiFoaoXSAmIN+aAQiSFaA9vg1oahZ5uYJddDWgBnt3SF7uYu/2O9aQYkCSkDlIkXc
+         hG4UWoBXzi6FnZ/nj1P4TvhFmNywGLYe8omXckQQtgIQYM1rj1tgLV3lOjNuJ4H3G2ec
+         MJ/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772120838; x=1772725638;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=k8v9KGUdN9vhC+5Sfj+8HpfyMGxxSUWxCRI9OZUNdGo=;
-        b=KdTuuZWh70GiGdEQV+gcWcg5cNU7gUv/36wus+GMApskOKiDI1awoLNbgaRV3OJLmE
-         1HzajIzQRbJ+4X/HrDhrxaMiRT180dSyQC2unhZ84g/xI6Fr0TMJvd7lU57ZxO4YxVpQ
-         Lga4/SMRLpIba93qLVlwj90H0Sn10Ha6JFWibim6VZgD44m5gXCMUtdLImvVuL7M+nB1
-         tU4mK+wbtXPRQbPEOTo37ShivG5QRTHkvFXln0y2Odn4BhEPv9/5lUUjhbbTOzGYKpbs
-         feMoaRkP9cq36f0DMwI5g/5HLUBLmK+m8dF4irQVRPcUmEQdKiQ0bKeYjYecb5ROfOex
-         M7xw==
-X-Forwarded-Encrypted: i=1; AJvYcCVVlHzIAyI/DP5GNkhruxfCwyGT0tz9KS8ODfRim0FDzfNOfs9lSHNYpNVdcgpUvT1sW/Z2wlbI3SNt@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywp46JdoINJhPW7tU9DYW++OVmliS8yfePlkIYx+2D0O35BHrJV
-	Dwnx0nyR4nCvkynJnK/pI14smlMotL6ytPfe5imSId5+mPUs53AiH/LKWs5UdVd85M8=
-X-Gm-Gg: ATEYQzzTJZsgFQbnIyyii1sr1MBuxP8LdzaDX1Q/tN1TN6RPAVQELWddraOClG2ruwC
-	SOtq1uDTVmHIUauPll2Bv84YnGfgr8NT1n4FxW0Wc4J9tEG+Wl+CasfrF+Z3YTavNz0cuhdQZnQ
-	KBemrtQh94J5f1K0LzD5vOGxLyqszZBSceFE9bLzeFlPysRhGSQtUiqd5fnll9TgUltRPE0VHWr
-	iDFUUHrYsQuTl6M9bo5fKtvNO2B/hT09U285aSklaQi86o3zv3kVdEtQXmNmbdkKDTrnmgwOFQz
-	VJUviyzx4x2SmRueIy5rh0S/bofjEtlUT4ldc83YRNUbQapeHZU6znD7pRgcwOOVbHvz0mqX1hk
-	WC00XDEw8+pWZknM1u9LAJSSm5Ie/nFczNvPEL/KHsZob+pjEQNG720oIAhLY630n6sMW4FaSjE
-	bBYMtA0RZyCIcqWWhA0awu86WmtqAXsFiMwB1EF6VJA5L6W6Pr4G0Cm6Q0XPNqVpOhh+N7+zjjg
-	2kk6Y+qL4PijGQ=
-X-Received: by 2002:a05:600c:a009:b0:483:b505:9db4 with SMTP id 5b1f17b1804b1-483c3df45e6mr52290595e9.31.1772120838328;
-        Thu, 26 Feb 2026 07:47:18 -0800 (PST)
-Received: from [127.0.1.1] ([94.4.193.72])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b4410bsm56007365e9.6.2026.02.26.07.47.17
+        d=1e100.net; s=20230601; t=1772121989; x=1772726789;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2UC1Q8+vyEP17hQt6/3sZmtkvys+UUPMl4+3szj6VoQ=;
+        b=qvAtRHJsVvimWsGTXi92AKg8s2YAsMqdwLW2MKcgu4rZwTHOfuiMSivX33AyOyoXQb
+         b9Fpdr0hX6Iar/Z0kYGjR231eRVzp7NNAxUeanBuh+LWZ1DJVB504atI55MEInzqedXR
+         eYpCNKrxnZd4T4b878FXYS/96p2xWLmXRDSiMvPhBqamAWTB3/yi86qAy9AcXiKxuVpc
+         R4p37qO2n4UGI2w2EPpEbIwDhwdtT6PafCdHM+rIqjokQOc7T5mZtGnMCkWDqV/dClnm
+         IQLpAxmdzYt7p4WMvt6F786sE9JsY/M1WB0n1/RwA+wMsvNZrA2VZ2gOK3eS9gC/ujKL
+         Ma4w==
+X-Forwarded-Encrypted: i=1; AJvYcCW3ndPUHnKOdhyYgEixkstEibrQcJI7xhIOGQVMe+h2kyqaHDqKfT3faBjNub1bDJKcv8zbFarYq93v@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAvDUa9BjILujH/WB8uNyldkf/l1lJWPK1VwouGZVATJsXIDvr
+	RroNRmaMCylxpuVO5TZlJ0IsDDh+unuRr3cwKjmMmxPX1cd2jZ7hjmKl
+X-Gm-Gg: ATEYQzypy75IratoHlvlsZ35/yy5702SypL3m/KHxzz9yxHjT0NbZzxwa3/YVFq+Y2t
+	hgOr5tYOb4NZuab9EYdtxyXMmSwP37zv1qOGGu+M3SQq+kcxAKLOoupXOksfH6i6jYmktn4wblt
+	lpHQUDZTZeo5e5ioa0EXRloPNtKpR+59SCK47iSP3iEKTVyCxIh1krg6tauAx3B9lcxFZhxeAyi
+	cxzpAoHQliNCXntLMTXKRZoSDwsKMqVKq+R5smfIf8ZTzTZz3jjDDE4/NAEnL3IyQGoI86h1Asz
+	MD7ljLa1BQrkx9NCFTp60PXpOM5Ep28TTqaWzS6szagz7oKlchXcqAkt/8HflS9NAqM9V/Z2Oh0
+	e8fe6O2pB81OOxfDnrvqe6FRs4jY3FdYCpFqIbIUsMKRU9HSRn/7CUTLBdpwrhMfvDMf2vyhW37
+	YG7wQ5YveXlHu3IRr7+/eex0ht6uj0rKr9OauKqIYEEPXECWKloB7RXS7ILMwgJ6qX
+X-Received: by 2002:a05:7301:1295:b0:2bd:cbc7:16ec with SMTP id 5a478bee46e88-2bdd3017066mr1122632eec.24.1772121988602;
+        Thu, 26 Feb 2026 08:06:28 -0800 (PST)
+Received: from google.com ([2a00:79e0:2ebe:8:a6ca:da9c:9e47:3e6b])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2bdd1f7e955sm2194157eec.32.2026.02.26.08.06.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 07:47:17 -0800 (PST)
-From: Alexey Klimov <alexey.klimov@linaro.org>
-Date: Thu, 26 Feb 2026 15:47:14 +0000
-Subject: [PATCH RFC 8/8] arm64: dts: exynos850: add PMU interrupt
- generation node
+        Thu, 26 Feb 2026 08:06:28 -0800 (PST)
+Date: Thu, 26 Feb 2026 08:06:25 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	jikos@kernel.org, bentiss@kernel.org, dianders@chromium.org, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 RESEND 0/2] Add tc3408 bindings and timing
+Message-ID: <aaBvauUqgMgGYwhA@google.com>
+References: <20260108063524.742464-1-yelangyan@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-exynos850-cpuhotplug-v1-8-71d7c4063382@linaro.org>
-References: <20260226-exynos850-cpuhotplug-v1-0-71d7c4063382@linaro.org>
-In-Reply-To: <20260226-exynos850-cpuhotplug-v1-0-71d7c4063382@linaro.org>
-To: Sam Protsenko <semen.protsenko@linaro.org>, 
- linux-samsung-soc@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Alexey Klimov <alexey.klimov@linaro.org>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260108063524.742464-1-yelangyan@huaqin.corp-partner.google.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268935-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268936-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RSPAMD_URIBL_FAIL(0.00)[12a01000:query timed out,0.180.248.32:query timed out];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,0.181.31.48:email,linaro.org:mid,linaro.org:dkim,linaro.org:email,0.180.248.32:email]
-X-Rspamd-Queue-Id: 134F41A9852
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 501A21ABFF4
 X-Rspamd-Action: no action
 
-Add pmu_intr_gen node for Exynos850. This hw block is required
-for different power management routines like CPU hotplug and
-different sleep and idle states.
-Also reference this node from main PMU node.
+On Thu, Jan 08, 2026 at 02:35:22PM +0800, Langyan Ye wrote:
+> The tc3408 touch screen chip same as Elan eKTH6915 controller
+> has a reset gpio. The difference is that they have different
+> post_power_delay_ms.
+> 
+> According to the Parade TC3408 datasheet, the reset pin requires a
+> pull-down duration longer than 10 ms, therefore post_power_delay_ms
+> is set to 10. In addition, the chipset requires an initialization
+> time greater than 300 ms after reset, so post_gpio_reset_on_delay_ms
+> is configured as 300.
+> 
+> Changes in v3:
+> - PATCH 2/2: Corrected post_gpio_reset_on_delay_ms: 100 -> 300
+> - Link to v2: https://lore.kernel.org/all/20250820122520.3356738-1-yelangyan@huaqin.corp-partner.google.com/
+> 
+> Changes in v2:
+> - PATCH 1/2: Drop redundant "bindings for" from subject
+> - PATCH 1/2: Improve description (describe hardware instead of bindings)
+> - PATCH 1/2: Drop "panel: true" property
+> - PATCH 1/2: Drop redundant description for reset-gpios
+> - PATCH 1/2: Use unevaluatedProperties: false instead of additionalProperties
+> - Link to v1: https://lore.kernel.org/all/20250819034852.1230264-1-yelangyan@huaqin.corp-partner.google.com/
+> 
+> Langyan Ye (2):
+>   dt-bindings: input: Add Parade TC3408 touchscreen controller
+>   HID: i2c-hid: elan: Add parade-tc3408 timing
+> 
+>  .../bindings/input/parade,tc3408.yaml         | 68 +++++++++++++++++++
+>  drivers/hid/i2c-hid/i2c-hid-of-elan.c         |  8 +++
+>  2 files changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/parade,tc3408.yaml
 
-Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
----
- arch/arm64/boot/dts/exynos/exynos850.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-index cb55015c8dce..e3f4fe6ee118 100644
---- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-@@ -211,9 +211,15 @@ gic: interrupt-controller@12a01000 {
- 						 IRQ_TYPE_LEVEL_HIGH)>;
- 		};
- 
-+		pmu_intr_gen: syscon@11870000 {
-+			compatible = "samsung,exynos850-pmu-intr-gen", "syscon";
-+			reg = <0x11870000 0x10000>;
-+		};
-+
- 		pmu_system_controller: system-controller@11860000 {
- 			compatible = "samsung,exynos850-pmu", "syscon";
- 			reg = <0x11860000 0x10000>;
-+			samsung,pmu-intr-gen-syscon = <&pmu_intr_gen>;
- 
- 			reboot: syscon-reboot {
- 				compatible = "syscon-reboot";
+Applied the lot, thank you.
 
 -- 
-2.51.0
-
+Dmitry
 
