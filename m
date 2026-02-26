@@ -1,203 +1,186 @@
-Return-Path: <devicetree+bounces-268757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268758-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cD2mBlYkoGkDfwQAu9opvQ
-	(envelope-from <devicetree+bounces-268757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:45:42 +0100
+	id qBn5F+MkoGkDfwQAu9opvQ
+	(envelope-from <devicetree+bounces-268758-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:48:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762D01A47A7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:45:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC851A484A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:48:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F38FE304ADBF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:45:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D07231006C2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:46:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A49F26561A;
-	Thu, 26 Feb 2026 10:45:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437D6310620;
+	Thu, 26 Feb 2026 10:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aOKhl1gY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dqApQBF+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E28D34CDD;
-	Thu, 26 Feb 2026 10:45:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE6A30FC34;
+	Thu, 26 Feb 2026 10:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772102739; cv=none; b=C931bwqxKLrYgrO1LP92VSQSxtTzvCHXPavpWTSoOfbJw+0Y1dvg8rN0lx5x0a+7f/OC1Q3DB+1S54fHyfOhFrVk1GyvE7Vbn4ZMQM37TowotdlMgIc+dM+Kmn1QB4tGu+SlygJ8GzWhwAOmchbz1lQNZBKJbo2zqRj66hRKimk=
+	t=1772102791; cv=none; b=KZ2dZskIwtYt9hI1337VeNVcl4U8hdzSY3+ID83M7pIFGtajk0LdhrnKWGRn1itRVoGSjwSsjnN2l2sQVFUnfilpYS5qOczSE03qbRfY7R2U/9BEr2ImL4LRkPv2RtV0dmNlyzZTihJjcgEm37h+5mtEcfRmz0kxdw1UV1rYWSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772102739; c=relaxed/simple;
-	bh=6YFT7Dv9/RPthcEUnhhwy5zDoUaHap7U9kpRpUeIPV4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lOTRc2gOfVbwq9bqrcug3DkPE6kdcxnVS1VLXEt5WSjYUGDpzPk5ycYtZYNQcgV9CYVXVnn0Wk6/B2F2pmAJWQti/76kd7mfATYesPIhiMhH00KRs6bGjd/TJd0caaCX5qWfnWnalhL70Ih9XbLGI2TV+fQJ5brcyXRaJncussU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aOKhl1gY; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1772102736;
-	bh=6YFT7Dv9/RPthcEUnhhwy5zDoUaHap7U9kpRpUeIPV4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aOKhl1gYmC58Q5XnPaaVFV4AX+HRZb/FaZT8kvMrbAX4ocU8UvOwkOrmxuMbZExjm
-	 q/5pxtHOPqwZtl4qTw/eJkvwmwu5Yj9BE8qGvk6kr1AVqhRzDERERpxn0XgjJTSvtj
-	 wPWqCgfmYc2RdUxfhGerzWAUOPfTrzvqV1AHbpTXLngoKvpWhap3qPd5vgpOjw+QmD
-	 jnx5GXl85lesOX+SfuCKuFHcINonNKENolDlEjaEzUzEdf6A2Y+z2QRqnjOM6Ck3Ao
-	 xcyP/cF9XTE1tbDfDSOKNbv0yQ8lZjCVnr0uv25vTWPWTLA0Vw3Efc6/I3SM5fQhuC
-	 zmAai5oTQnjcg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6C83017E0029;
-	Thu, 26 Feb 2026 11:45:35 +0100 (CET)
-Message-ID: <84f22f00-e3eb-4ea5-999e-260c81f29338@collabora.com>
-Date: Thu, 26 Feb 2026 11:45:34 +0100
+	s=arc-20240116; t=1772102791; c=relaxed/simple;
+	bh=uDsB0i6QXrY22o/BHBYBi7a/Koo8ot6LI6Ju593/6xY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UBIQBPqCt1IxlVSHltR4g6WGbXmI5V4dRFh55NQkZdj3PE5mAS7pJ/8qYa9mZslURFcm9rfJA7wcTBlXzhaI3kYHz+INUeNEjEnn1AwYZDZpZqIxAkPLr8uUKCZMRXAnPgmJX+6wCgv8pMo4pSjBDdlhsl4A4CqoYgIfyg3YGEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dqApQBF+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07D3DC19422;
+	Thu, 26 Feb 2026 10:46:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772102790;
+	bh=uDsB0i6QXrY22o/BHBYBi7a/Koo8ot6LI6Ju593/6xY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dqApQBF+a2+ASv11fBkuASvxv1L0IH4ibb8JP4ZH741RqaqHOnojnW7ZD73cWyILw
+	 4ccTSta1YxM3CTOtwBKqpP88pwM2bJq5ZDEo2SE8qUZEeEEfIzKGk+r54IcZcq6niu
+	 F/uQAHbMjIIbcvf8RJ3M7/kbtKnMCbRbYlPCsxePO2kcyvP7I5dLUI7XkF5LHfvuEj
+	 zRr4ILjiH+d7im/as1dCHxhKkGqma3V982rxtxvQAxkVGpJHn/heQbzHOb+pwvwq0+
+	 IDeqGkI7Ov0GaGVVO/gjejuSIKGV6K+eL8PX6ok8+G3hOVEUI4YUvXQkyMQ9NUEVsI
+	 s5iCS8uLt3e+g==
+Date: Thu, 26 Feb 2026 10:46:24 +0000
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: Re: [PATCH net-next v3 5/5] net: macb: Add "mobileye,eyeq5-gem"
+ compatible
+Message-ID: <20260226-folic-excitable-82eff83a125a@spud>
+References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
+ <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 16/23] scsi: ufs: mediatek: Clean up logging prints
-To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
- "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>,
- =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
- "kishon@kernel.org" <kishon@kernel.org>,
- "James.Bottomley@hansenpartnership.com"
- <James.Bottomley@hansenpartnership.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- =?UTF-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
- <Chaotian.Jing@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "nicolas.frattaroli@collabora.com" <nicolas.frattaroli@collabora.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>
-Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- "kernel@collabora.com" <kernel@collabora.com>
-References: <20260216-mt8196-ufs-v7-0-b5f2907c6da7@collabora.com>
- <20260216-mt8196-ufs-v7-16-b5f2907c6da7@collabora.com>
- <c333898413d249c017430d4ae98bc7be3bf33a64.camel@mediatek.com>
- <2575185.irdbgypaU6@workhorse>
- <f0e97a38-a11b-4e69-902a-e0ccd0dc4540@collabora.com>
- <259b24885e5e721ae562d27dd761b02e6a68c971.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <259b24885e5e721ae562d27dd761b02e6a68c971.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Im2QyThLb1POUKOO"
+Content-Disposition: inline
+In-Reply-To: <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268757-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[mediatek.com,gmail.com,kernel.org,hansenpartnership.com,acm.org,collabora.com,pengutronix.de,samsung.com,linaro.org,wdc.com,oracle.com];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268758-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
-X-Rspamd-Queue-Id: 762D01A47A7
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.8:email,0.0.0.7:email,0.0.0.3:email]
+X-Rspamd-Queue-Id: ADC851A484A
 X-Rspamd-Action: no action
 
-Il 26/02/26 08:00, Peter Wang (王信友) ha scritto:
-> On Wed, 2026-02-25 at 14:18 +0100, AngeloGioacchino Del Regno wrote:
->>> Depends on your view of what's useful information for the user.
->>>
->>> I can change both of these back to _info if I have to send out a
->>> next
->>> revision, just to get this through though.
->>>
->>
->> Definitely don't change that back to dev_info() as this is debugging
->> information
->> that spams the kernel log for no reason.
->>
->> This has to be dev_dbg().
->>
->> Regards,
->> Angelo
->>
->>>
-> 
-> Hi AngeloGioacchino, Nicolas,
-> 
-> At least, "device reset done" is important information that
-> users would care about, and it should not spam the kernel log.
-> You wouldn't expect device resets to occur repeatedly, would you?
-> 
 
-Sorry Peter, but I'd argue that the users don't care about how much and when
-their UFS device resets. Users just want to use a device, without caring
-about any implementation detail.
-The spirit is: "radio silence as long as everything works good".
+--Im2QyThLb1POUKOO
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Power users might want to check the kernel log in a problematic scenario to
-seek for a message that says that "something went horribly wrong", but other
-than developers, nobody cares about when UFS resets.
+On Thu, Oct 23, 2025 at 06:22:55PM +0200, Th=E9o Lebrun wrote:
+> Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
+> compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
+> that must grab a generic PHY and initialise it.
+>=20
+> We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
+> phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
+> the first users of bp->phy that use it in non-SGMII cases.
+>=20
+> The phy_set_mode_ext() call is made unconditionally. It cannot cause
+> issues on platforms where !bp->phy or !bp->phy->ops->set_mode as, in
+> those cases, the call is a no-op (returning zero). From reading
+> upstream DTS, we can figure out that no platform has a bp->phy and a
+> PHY driver that has a .set_mode() implementation:
+>  - cdns,zynqmp-gem: no DTS upstream.
+>  - microchip,mpfs-macb: microchip/mpfs.dtsi, &mac0..1, no PHY attached.
+>  - xlnx,versal-gem: xilinx/versal-net.dtsi, &gem0..1, no PHY attached.
+>  - xlnx,zynqmp-gem: xilinx/zynqmp.dtsi, &gem0..3, PHY attached to
+>    drivers/phy/xilinx/phy-zynqmp.c which has no .set_mode().
 
- From a developer standpoint, I do agree with you in that we do *not* want to
-see device resets occurring repeatedly, but we're talking about a user here.
+Ran into this patch while looking at other stuff. Theo could you explain
+this analysis to someone not really au fait with phys? Looking at
+soc.dtsi files won't show you phys, since that's a board level decision,
+but you have found one for the zynqmp-gem so I guess that's just the way
+you presented the data?
+mpfs definitely has phys attached, so is you not finding one for it but
+finding for zynqmp, an indication that you were only looking for rgmii
+phys? Also, is the analysis of the connected phy driver accurate for
+zynmqmp?
+zynqmp-zc1751-xm018-dc4.dts seems to have 4 ethernet phys:
+		ethernet_phy0: ethernet-phy@0 { /* Marvell 88e1512 */
+			reg =3D <0>;
+		};
+		ethernet_phy7: ethernet-phy@7 { /* Vitesse VSC8211 */
+			reg =3D <7>;
+		};
+		ethernet_phy3: ethernet-phy@3 { /* Realtek RTL8211DN */
+			reg =3D <3>;
+		};
+		ethernet_phy8: ethernet-phy@8 { /* Vitesse VSC8211 */
+			reg =3D <8>;
+		};
 
-See it like this... imagine if all of the device drivers in the Linux kernel
-would say "device reset done": how many devices are present in one SoC (of
-course, ignoring subdevices on a board)?
+I'm not sure that this matters because they probably don't actually
+implement mode changes as they're dedicated ethernet phys. The zynmp phy
+seems to only be used for !ethernet devices. The phys I'm aware of being
+used with mpfs are all also dedicated ethernet ones. Calling
+phy_set_mode_ext() seems to be to be the right decision, but the rationale
+confused me a little.
 
-Of all those many devices, if all of them would print a message saying that
-their reset is done (and operation is ok), the kernel log would get quite a
-bit clogged, you'd need to have a bigger RAM carveout just for .. well, the
-kernel log itself, and then you'd have to grep the log, hoping to find the
-one single line that helps you finding an issue that you're having.
+Cheers,
+Conor.
 
-This is the reason why keeping any message that is not exactly a *single*
-indication of an error (so, an actual issue) as a dev_dbg() is a sensible
-thing to do (and of course, with dynamic debug in the kernel, you can always
-activate that on-the-fly without recompiling to verify functionality should
-you have any immediate doubt).
+--Im2QyThLb1POUKOO
+Content-Type: application/pgp-signature; name="signature.asc"
 
-So while I agree about your reasons, I very strongly disagree about having
-this message as a dev_info(), nor anything else that is not dev_dbg() really.
+-----BEGIN PGP SIGNATURE-----
 
-Regards,
-Angelo
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaAkgAAKCRB4tDGHoIJi
+0iTVAP9HHR8z82MzQweWvBR0kQrJMikIfQ3m8ksMbGhiqsLiKAD8Cxa8C7Ggx/NI
+dVXtXKShc3DBXOu7l49uCeq8DFBqgQg=
+=x46e
+-----END PGP SIGNATURE-----
 
-> Thanks
-> Peter
-> 
-
+--Im2QyThLb1POUKOO--
 
