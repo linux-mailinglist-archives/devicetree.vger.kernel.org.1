@@ -1,351 +1,735 @@
-Return-Path: <devicetree+bounces-268781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268782-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mHLYEhgpoGlIfwQAu9opvQ
-	(envelope-from <devicetree+bounces-268781-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:06:00 +0100
+	id wHdgErgpoGlIfwQAu9opvQ
+	(envelope-from <devicetree+bounces-268782-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:08:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA2731A4CDE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:05:59 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D0C1A4D7B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:08:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 01E81301F4BC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:05:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D159B300E5BE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:08:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9C33358C7;
-	Thu, 26 Feb 2026 11:05:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="fphy8PUm";
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="fphy8PUm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2583382C1;
+	Thu, 26 Feb 2026 11:08:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012000.outbound.protection.outlook.com [52.101.66.0])
+Received: from eu-smtp-delivery-101.mimecast.com (eu-smtp-delivery-101.mimecast.com [185.58.86.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2221731AAA2;
-	Thu, 26 Feb 2026 11:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.0
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772103949; cv=fail; b=in5TG5KIL0x655NvYiaGwCVmLfNH2gN8/xdZsqBZ6192XXWeGztNOyGyIyGJGY7+KDW4rF+ikdavX8loFJd9LZ9CPQHjAcR0f3tHVRRrdpQO6MwObdTe+XQBxgTu8XwdbLENzvr3NsADJ0OjHCjnH/GtTRjILYRW3TZMXoGYuLs=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772103949; c=relaxed/simple;
-	bh=Z6AMSm521oHBNxpok6cPYTkzTrAMTojeHbgzQ/pAQzQ=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=BX3BM8Sk3gI8bEQe6/h+9+N7o5aN4wxhQ7zReDe3f4X3DPsQTFceNZ+rM8+S0y/Ts/+vOD3uRR+4q1TWiZ88sgujZcKwpaLINKXR7xb8gSKwCdM447IL64P/HaSZiidyJNRPS8tvTp7K0tFZDofgsp+RDYYhKnsJnBrcDcaDv0k=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=fphy8PUm; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=fphy8PUm; arc=fail smtp.client-ip=52.101.66.0
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=O6O3xP6TRi1H47nHVxBGe7qU98ZH85/dR0sBfPQrncRndLaTTgbQnQPNwjE5ZTEO2Qs5+VRynzxQ3+v2RnryE65BaKKEpcOfjfyhl23n4kxlHfYX3iAUz6ACBC5JP//zjsCUPDX+r7y1vSuy0G1YXWUL2FkYzpna7Uc9y/WR4XL/hzd/Cs9dSlsRMiL2VFlkpAnxffOLo+wxbaiim3TS0MI2xODQZATCcT4ePPPozccppFF8n+pWXtbbey6eWB00Jn4UhCaCmd0X+V8JQOx3Z72kePeakGUZTOZ+PBit1n/3/ClH+vCTQ9mswNmLyNiKIuoliGfrUkIHS8dEDiN/aA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RDl1y7nnE062V8Ek+TQdKoIj+6AlItpBqDQ7wZ9xzyE=;
- b=ZLOo3soJCSehE7WzFiL4c8CS1uGhFlwKvFOgyG+7UxiozrzmcsudCEoQAjK5/3hIJo8KP/xV08o0uw6nR0HxqKV4kHlNH2MIGcDya0jzTkrZbEwAYih2SW1xvE3Tw3EcyYk1nJsORkKFVUfTaFZzjA355H8zl1bai+h/EUnEoebKH37j2LxG9YtaPdw6HWRQ/MzT+N6oGtpy28FuIw5q+NX9AC+ZnvYXslAZXF/N0EcCZg0PlGLTy1yZdfOtFda1TtxvazwU6s0Pbppdy25xyo+5CMkYlCXJgsS5ORzcBglcO+PLOkQ68itiWvn+/LynC9dTeApcGum5Qeowy1MBUw==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=foss.st.com smtp.mailfrom=arm.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
- (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RDl1y7nnE062V8Ek+TQdKoIj+6AlItpBqDQ7wZ9xzyE=;
- b=fphy8PUmoOnzcD8PCiY3MZJlmn/4tJZXL9d7mZoQk10IrH2OHNpoql/Ss9ltHoXRtWxQDbGtSt37Aufu3o2fGn8PVFyv4/MaYs9ZLj7e3YBjwHuN+XH+CRyEYaohVurXPzUWNLtVqbPYOq2eR1rtS6bj4xN/hQzu/x4bLdG21Js=
-Received: from DUZPR01CA0179.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b3::10) by DB3PR08MB8940.eurprd08.prod.outlook.com
- (2603:10a6:10:431::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Thu, 26 Feb
- 2026 11:05:43 +0000
-Received: from DB5PEPF00014B9F.eurprd02.prod.outlook.com
- (2603:10a6:10:4b3:cafe::47) by DUZPR01CA0179.outlook.office365.com
- (2603:10a6:10:4b3::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.24 via Frontend Transport; Thu,
- 26 Feb 2026 11:05:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 4.158.2.129)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- DB5PEPF00014B9F.mail.protection.outlook.com (10.167.8.169) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.12
- via Frontend Transport; Thu, 26 Feb 2026 11:05:42 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kG5CzKKg9a5YCzwImXluMIPGQM3yJyubeeSm7u4WL4/MrXe1St0T4jk9SrAuakhl+14gIC46f4h/MCcky9toKxrsJntlFELbNAMbNsLfvCRCMiFn8ZqKBo4J/7S/QwP9SChhszjErnxsNtV01HegD74T8mVzNYM8Q9mle+MQaurF7d01zXJdH5r/DpsKSRjayZH3FKKguz5WvmNm2HDcIBhTVNpApnBFtmwzkHvsKqyNkRcMzFkQ8Ec6Cr/eCdeInZXP++44r0JHeI7WqruQGiV1fvcZVhMnqoiYcOzDBo9/V8xUZ2RZyqp6Aq1nRtVgI6+sBdiX/ZxNq0QkETiuqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RDl1y7nnE062V8Ek+TQdKoIj+6AlItpBqDQ7wZ9xzyE=;
- b=Ju772H8g0I39yTAJTRm/ZtifGkxs5IBYR1eylE9qbubGEpyYZQHazqYru1+gxnZwUbswgelQy7ZRThol8mi51Fj9C4OK8817OenUT9Y8LbIiByzZByWNkXZ2wxkNL1+iST2EG7T9QKNmByg1nMnfMZOA9apddtatC2sXuU+JJ3dFVJQlnhnuVzw2TuySuPgL3iMZkSIc70D51RsGrNvNuNILUPonxtqzSKeZehwuaWsSurAtqaj92vZ3It+BNcQLm2QHSxCok4wYVp0vlg67mmzFqNb0b2fVkV2azvLm2dLJvAgj166rXYer8vry823b3Fkz8K8eXabNfHmqxsdLYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RDl1y7nnE062V8Ek+TQdKoIj+6AlItpBqDQ7wZ9xzyE=;
- b=fphy8PUmoOnzcD8PCiY3MZJlmn/4tJZXL9d7mZoQk10IrH2OHNpoql/Ss9ltHoXRtWxQDbGtSt37Aufu3o2fGn8PVFyv4/MaYs9ZLj7e3YBjwHuN+XH+CRyEYaohVurXPzUWNLtVqbPYOq2eR1rtS6bj4xN/hQzu/x4bLdG21Js=
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-Received: from DU4PR08MB11769.eurprd08.prod.outlook.com (2603:10a6:10:644::21)
- by AS8PR08MB6631.eurprd08.prod.outlook.com (2603:10a6:20b:339::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.23; Thu, 26 Feb
- 2026 11:05:15 +0000
-Received: from DU4PR08MB11769.eurprd08.prod.outlook.com
- ([fe80::d424:cd62:81a8:490f]) by DU4PR08MB11769.eurprd08.prod.outlook.com
- ([fe80::d424:cd62:81a8:490f%6]) with mapi id 15.20.9654.013; Thu, 26 Feb 2026
- 11:05:15 +0000
-Message-ID: <b2e8dbf1-f492-4fab-ac17-8237a759a427@arm.com>
-Date: Thu, 26 Feb 2026 11:05:14 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/12] dt-bindings: document access-controllers
- property for coresight peripherals
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>,
- Linus Walleij <linusw@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, cristian.marussi@arm.com,
- jens.wiklander@linaro.org, etienne.carriere@foss.st.com,
- Sudeep Holla <sudeep.holla@kernel.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
- <20260226-debug_bus-v6-1-5d794697798d@foss.st.com>
- <fb91b392-2a01-4f01-85a2-335bb39ec60e@arm.com>
- <7c60e928-d99d-4341-966a-eed759069f5e@foss.st.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <7c60e928-d99d-4341-966a-eed759069f5e@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: LO4P265CA0137.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:2c4::15) To DU4PR08MB11769.eurprd08.prod.outlook.com
- (2603:10a6:10:644::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D774336EF7
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 11:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.58.86.101
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772104117; cv=none; b=YI0AO/rg5YmBUd0k9/Gcg5njbU8ksvbV5rTBrM0ynaQcg27dbR0olzo9i5lW2gX/zyWKJBf4dhhAiRfsoW9LC0790swl+W+glU8OLRpv0/AV/RiFI1yMPTB8wNE9ixDM8B3G16x2jtUOe+14Y3I+JVfx7wwIdYpPMNDe3MH9JOs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772104117; c=relaxed/simple;
+	bh=URxL+A/4WFZa+RcqwnSKDEAK7bvrvdCk5wqwA3BV3Ac=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:In-Reply-To:
+	 MIME-Version:Content-Type:Content-Disposition; b=Nss0Byb2rB/xpxU/tjG4ky0jLT+skpfeqF44oeibfe1eCeT9vDVQ/B8ALOsbdPbJ2sK5wfLVIhKS3AWziKqsbA19f3HQ/YpdUuBs7jf4vxUkzJE9dMiX85hzyCi122xDpTFX2d58O/K8GweOQMrcR+QmU/pUm9KPkedGCbDqg6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=touchnetix.com; spf=pass smtp.mailfrom=touchnetix.com; arc=none smtp.client-ip=185.58.86.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=touchnetix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=touchnetix.com
+Received: from LO3P265CU004.outbound.protection.outlook.com
+ (mail-uksouthazon11020104.outbound.protection.outlook.com [52.101.196.104])
+ by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id uk-mta-275-2cTxgbLvONq0KxBZ-avrrA-2; Thu,
+ 26 Feb 2026 11:08:32 +0000
+X-MC-Unique: 2cTxgbLvONq0KxBZ-avrrA-2
+X-Mimecast-MFC-AGG-ID: 2cTxgbLvONq0KxBZ-avrrA_1772104111
+Received: from LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:e9::9) by
+ LOZP123MB8515.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:4b4::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.14; Thu, 26 Feb 2026 11:08:30 +0000
+Received: from LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::72a0:d7fe:5595:514b]) by LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::72a0:d7fe:5595:514b%2]) with mapi id 15.20.9654.013; Thu, 26 Feb 2026
+ 11:08:30 +0000
+Date: Thu, 26 Feb 2026 11:08:27 +0000
+From: Andrew Thomas <andrew.thomas@touchnetix.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, 
+	Russ Weight <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Marco Felsch <kernel@pengutronix.de>, 
+	Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] Input: Add TouchNetix aXiom I2C Touchscreen
+ support
+Message-ID: <lgpdkwl7hxz7ok7qtujzdhf3c3iehwvm5d7myxfewr4kgrcq5k@3s4v4sjus7go>
+References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
+ <20260111-v6-10-topic-touchscreen-axiom-v5-4-f94e0ae266cb@pengutronix.de>
+ <qoelgb5k77a4c4jodn622a6wauotzkeygy5fj54cjjnobb5g6c@ysxkou6nhkop>
+ <a7hajq5edw3w2pm5l3ytn65kmudjckvaj5relydayoua5i7oha@wsattyisot4s>
+In-Reply-To: <a7hajq5edw3w2pm5l3ytn65kmudjckvaj5relydayoua5i7oha@wsattyisot4s>
+X-ClientProxiedBy: PR1P264CA0042.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:2cb::7) To LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:e9::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	DU4PR08MB11769:EE_|AS8PR08MB6631:EE_|DB5PEPF00014B9F:EE_|DB3PR08MB8940:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3b682ac3-058b-46ef-0aad-08de7526fbd2
-X-LD-Processed: f34e5979-57d9-4aaa-ad4d-b122a662184d,ExtAddr,ExtAddr
-x-checkrecipientrouted: true
-NoDisclaimer: true
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOYP123MB2701:EE_|LOZP123MB8515:EE_
+X-MS-Office365-Filtering-Correlation-Id: 387f2c69-a573-482d-54c2-08de75275f72
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|366016|7416014|376014|1800799024|921020|7053199007;
-X-Microsoft-Antispam-Message-Info-Original:
- Ck+xwoKXH0aOrC4IC1U5s1rX06ERh7WIeaqI46P+axK8D+JOtYJd1szaXJY6ZNb/oRC7sDkIL6EV5Ki9euvwxMHeBTClBwkV7UoPzYDvReqyT/k1q819fMgK9e3Lm3woMODfu55ISJPIrjj1LZihYbYBpDoy+Ly04xRaEsa6TRGvqnLDFUOPRNQ7dvlc1K5fmdxTh58ESmFRPF7gdttJeHJrSTPKHq70gc3Ivnc8yypgI3LIWWiJ11gGn3+Zm2fCY7WmA2MXwksg2KoLDDZVAGLqK58QYzIuvunDeJFzXeKSACrov63ppjfX4k8TQI7WShbBzpJK0A73bNkAzWdW6tz9DNqFTTekORhOgfsyzV5ZhSJm6azbpSJ/fMcW3/2uvzych0HF3j4dOTdmL3zo2n/kisTKgdFP1tDFfyU8m9j9+VOn+5KZot7BByLLVQqqj1W0pDBjBdpJ8PLmKfkXMZoJAAH969djgQu/qgpU5keoAYpOB4gae5eqcyBgG4VubDmgszUiua/Q3UHc+Fty7VxbLbPyCLSMQONAtz+MabIoblYmUyxP1icXzAo7oRIJTN4oyAtVvzfiW3Wj6a+ts9YuaZblgolHgjozRLK3CFjsg2ABFVR25ZgTL7+6BkPXCWnWZHbzOWVxjlfcaVpdnB/MYTvF0vddJz3xVZWFvDC3QrZrhoGR4LXY+gNdpbK3qiE5fwY2+RCWlBa7GCFU7zNpAAKdLlQPNRzAyVrV8pDfkIUMFGV7VEC4ncOzuEDRuCdLriQIKbHv7/bsm8yP1A==
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU4PR08MB11769.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(921020)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB6631
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- DB5PEPF00014B9F.eurprd02.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	2bc16013-572a-474b-6722-08de7526eb44
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|14060799003|1800799024|35042699022|376014|7416014|82310400026|921020;
-X-Microsoft-Antispam-Message-Info:
-	4qBxew7zSmdeizISpR43bdtwZv2Z4jb59l8YKukF0F7sn3i5Rbn1w+3qaGhh3PlslO+CE8We2xGf3GAt5dczBP76yu0o9rK3tnwQnyVvCMxN3mldir3DTu62pASwm+cYFiUd2+jbTs0R3aWt71L2njQj7AxDqRmcN2aIzRK6c8cGF67/A1E6Xk2RrQg43gcdwEkSN1pbI6+BVzP/ooANj31JGvHXJ81DORXTFacJCGTqM7Kn4Opg/YAfumT6EKYo9bA4KjA0nU+2VU16GOuxLnjNVUgPZ9K157ef7LtAbEV4qYVLRIlRYtiUvp97SoyLwbpwSBksl/I7Ps6iWw3Q0KjHWaEjSiqqwzdgcAljCvPHyAOzNbHJhG1VoeFVUwAUwBXXa7wY474e6DzJF/CXM0t5AMcPueSr5xw+hLjfH7Quypy45lkJ58ODhZcvYfjryk43QvvhsYyYPN/NUg/QxZ1sdYSKMHwESbMfp2PDIyL5rDu5Shrz70CVaeTeZ8IieQZ+aaAf30Bi29ZULcVrxFYZ05lRLwvO50i2oo47CISOsAzfbj31F/KNtEiP9WPE34XcrOaN1hDRW32y+/eNa1O4oY1Yz+aPIs2Hv2zyhyXg9udOGLBUqWdCLUwCtGCgzPKS8xiteEDDU2MY+sKve+3xPCAKXN1bBMWoYzcv+IEQMnTKuA5g/RKQM453ae6By+6fDNrWbnTACm4kZVJ20498YxZYgGmy5y48L0pLlFB9xyehF96w2PpxWc6go6msavrxCwT7zlE4X34XgsGEAg6z6FXpY6IceBa7XsvXWc3rcw9kEA32IGrzBVK9ANp29WsAQKw8GOPLhPpg39VL7Jh0f/cTmoxMmnl0Xf0pnbg=
-X-Forefront-Antispam-Report:
-	CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(14060799003)(1800799024)(35042699022)(376014)(7416014)(82310400026)(921020);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014
+X-Microsoft-Antispam-Message-Info: Qu9I9wrfWI+2gvghLSNH7QLIJPMzSbNp6at57Et+nmCL4JYx3kzJ7hjgq7HW11SVCeyd2Yk/zrUZGpbveYEYBjfyGuVKGChuTbvhuSb1B9HvYdIJwS8kpV8Q8bLZIy50aAGWFZRiQDAz7PHip2b6ay2oIGxZhGqQZ8i5ODlTHpv7fHebTzH3mw8SUsMeJKy03FtxHLUp8tseMtiGfE2eAOZ8sdPfTv0tnB5kown2Do73RJjsZcQ9UgWEdh+EP6maYhD+e3Ygd8poly+SU4Zg0eKIuA6dfCdGo6iGtiFgRyqN4v1HtxloTNJk/HeaSKjenvFBAMEZvIoc7deBKYOLfuqXVP1h74j0MSIa66Ax1IxfbBdFWcbKmqNdTgHAbjmEF6wBQxe9E7FsmVFjtD7l7MMv7Kmv7o4uQc3MOoK52aELRknMSb4jsGmDrnflpd3idzL1BaUrh0ZUOi5n/zLx99wp9SnivOJ1QprmaovbCUf7Kqzw2oLwb4bBJCQUYZisQSoFgDmu7ymHQmfTOSwlcWYGjfHrPHcoZ0ANFG22+cmAcMJGGZ0acUELZFMnifrNz/BawFStGG2lYXPcbjr+QiNpwqv9PpDQbNoSUOSqi97vRZVg8VTNgB5sTjGQP7GZpWtRnsZKghoXXpU3C8mjlp/tZGO/w+k/zDsQSlzevh1mJKy4ls1VmkY59hyPvWHZ
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1102
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	v5RIaY7bw905NERDMCgKD0tlci8vTeJZr+AZvj+UeR6a6QrrGr5PzIQsTMIoetXF2cDirJkOwioIHWmFG8NO8T9Fbeb+t4894BBCfkQJ/pen97QV9uSuL2z4CFoba+aQHQDxX/Gf8BKVmhPl3mAoeI+JH2/Ab4bMfLHwm/K+JiTy2hXdnvNinpzw6GV+5KF4hnf7YyJkhR7C7+LE6o54QfMXyWBWJYl98CkjSRNaCbc3AMP5W5ChE+z5gqEfZRl3L6ZoQktLU5kWLVQy/G+K6WgwaR/oUxHwvB2m1q81BRiPRkP71KDFZnHJEztlW/HN9ZckeqNn5SPMCTxODEVnPPO6NcbXhyhj5ST5vnNL7F6nx4JswJWibFcI+MDCf+F2REOgYlLDqqg1/Xz8a9OmxQd10lTw7qH28TQkwuAGseq1JhDKNPfmRYLrqihyels5
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 11:05:42.5086
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHkraUs1SEFMUUhGbnhQaHN5VCs2Yms1TEtPSjZJSnhBM2h1SE5kUnR4bzBv?=
+ =?utf-8?B?QzNTVVN3YWo0Wlg2dStPQTRoZi8xR0haZ1hQMmsvSGhPSEI0SmxhbkhGZkNY?=
+ =?utf-8?B?MUd4TDNSbnVyL2tmNFA0R1VOMUJ3MlMzb0NIQ1Mwb2hFNlNhUW1hb2VYR3JO?=
+ =?utf-8?B?QVRlNnliMlNBNjJ6anljU01HT21VMmVjSXF4YVI0WEdTcldNTG0rS0RRWmVw?=
+ =?utf-8?B?bzMvTW5PU25naDdsUHE2bzgyOEpjYS92ZFNmOU1HK0dBTVhuMm9NY2tEZUwy?=
+ =?utf-8?B?UlQvSm9LcVRGVThPd0NacXBkclhJUlROZDFBOEJtbWVYTjN0M1BFVXVUM2JC?=
+ =?utf-8?B?bW9WU2pzS0pMQkw0blBVT2hidlhpb21lMGNmSnBjYkRSMzB3TEZ4cTNUdFlC?=
+ =?utf-8?B?c243d0pIczFJNTV1bDJFcWpPc205UTJvVnpxL1ZVNFY5cTVVSTZnQ1BKNFZY?=
+ =?utf-8?B?SXdSQ3g2V045Z3NHcHZCaEM0QkJaaTJlTG5wcnRWVmhZV1RRT3NsbTlPZ2lI?=
+ =?utf-8?B?RlZ3c1FLU2pjek9pS0R5enZjdDF5S25HVitBejJEQnlnV2hjQ0cyVHN1VlRq?=
+ =?utf-8?B?VjFFQkpHdS90NmhTMSt2dFN6MWFqRThKT1ptTTR2T1JvSU1sb2c3dzhjWHF3?=
+ =?utf-8?B?YnRDZUdFTlN4UHhMMUY3Ui9SaEd1Tmh1VlJTZUhuWmxvMkJ6THcyNk5xbU1X?=
+ =?utf-8?B?WnFBZ3VhdmFrTmNzT1BTaUFBSnZlSjNzemcwQ0xzaVBaOGlIL2RlbklpVFNl?=
+ =?utf-8?B?elIxRWpoUFVRZEZiWHUyYXVzVElacWg0RDE2OWJDcXhLQUgxRGZScnNqMlQ2?=
+ =?utf-8?B?TEhpNE9McWpJUWkvUTZPWUl1dkdJTW40cmloQUM0V2xMN0dsWk9UbS9hNTYx?=
+ =?utf-8?B?VEhvOXMxM1V3cXpFOVBhZU50U05zN1hBRmU0QUpqNE1sVUl5eUJVZkdlM2RH?=
+ =?utf-8?B?cVN0d0lmdDBmUUFtbzV6T0JTeUR6Y3FKNDh2YW5MYWYwNHpyakx1UisxN0tL?=
+ =?utf-8?B?bTc5UEtBd2FMVyswQ3RXRUFYa0xZR09NaU1vRUpaeThUQzI0Z0tXcHFEOG11?=
+ =?utf-8?B?ZnVSeUIrRkJjSHY2UmwyVFdBYmcvY1pWbHR6RlFXczhTU3RWYVloV1BRQU1K?=
+ =?utf-8?B?OTJUQVArNGQwUTR4ZjBFcXJGcW5xMnVpUlVNLzRxZjlJVXI4aXVkT2YrR24y?=
+ =?utf-8?B?RnR0ZDBEaHVMbWJzTC85anNOemZMNTk3ajVwUFdxZ2p0Ni9KcjMxZm1wZ0tD?=
+ =?utf-8?B?NWJOSnZkMnloR3poOFpJbzFLYVY2KzFtbVlNS09ZaXNOWkxIN2dPaERkNHNP?=
+ =?utf-8?B?STh4TDZCOHlqWXFjeEJrMFJlMTNPR3dMbHk0d2pHR2lrYlJHbTJPVE9Kbnhn?=
+ =?utf-8?B?VnpxV1ZHMkptNDVNRDB3em42NEVucnoxMzRKa2lKS1U3N25tZjI3Q3hSQko5?=
+ =?utf-8?B?VnlsK2hGZDRxdmRaTUxPN3pMT1RPZVo1VmR0dE1sUlFwRW44WXVnN3YyS1BX?=
+ =?utf-8?B?dlF0aWtJUGNUVFErTFhjNkp3QjZnT20vV0xRSTdWYjhydUlxa0JOa0pFYWoy?=
+ =?utf-8?B?aXRtaU1wY1QvRzk1ZWVWeGFKTzVRUXZuSWtETVN4TDZyblBXbEJNVnYxaG1r?=
+ =?utf-8?B?QzJWNXdhK0NBZStNYnNZbmMrZCtwaVdCck1aSmtnV1daQlNpeWQ2NXRodFN4?=
+ =?utf-8?B?VllzaHl4ek41anczS1ZMc1M4OVB6R3paRFh4VGZWSG5IalJmY0dJMXJuUnp5?=
+ =?utf-8?B?MlJpSjNWekZaK2tkQWM4TkZwbGZVUVJhSnhyTmhQdTRxYW5EZDBaNmwxdWdy?=
+ =?utf-8?B?K0dDSE1Yb21hVEVvMXNheWJCbVJVTjVPa2dhM3FKaUFrVWRneE56NWJqczZY?=
+ =?utf-8?B?QzYrOGx5QS8zTnFNdkQvbXlEY0pYZStqT051ak5nVzJlTHA5MmFqNzJkaGNK?=
+ =?utf-8?B?b2hDWmNxWGlaaGNDSzllUTFSWjFpQmJ5NHFWdkNFbWJFejRXbGZDYVUvRnUx?=
+ =?utf-8?B?ZXd6UTJXOGZkNlZtdFo3alpRWGtsVW0vOFZYc04wM3FrTVBkUkg2aWJqNHpo?=
+ =?utf-8?B?QWQvOTlYK2pWcVFlRDRPVTRjWHhqY3ZOOTZ0bzN3dzlnVEJqYnhpS1lVVVRD?=
+ =?utf-8?B?d2NhTldSWHhxcjlCSllSbnRuWVBvaWY5U0JMdm5BajQyU3E4T0lnb1VZaWwr?=
+ =?utf-8?B?QmFiWG9uWSs1SGpaOUNCZkdTcnluTm9DZ2lLcXREM20yUGZDR1l3NHlwaFdk?=
+ =?utf-8?B?WlNqcktXdCtEdTdOdGdQc1VzUmVmWjhhQmVwR01Ld3dyY3hwQllEL0g5aWNB?=
+ =?utf-8?B?QlBVM3pPWUtTbEpIYUlzOXNKSjNuY283dVFnbW8yYXpqUk9jWElMa1FEK080?=
+ =?utf-8?Q?OAIH2UOnoMJNvBOM=3D?=
+X-OriginatorOrg: touchnetix.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 387f2c69-a573-482d-54c2-08de75275f72
+X-MS-Exchange-CrossTenant-AuthSource: LOYP123MB2701.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 11:08:30.0686
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b682ac3-058b-46ef-0aad-08de7526fbd2
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB5PEPF00014B9F.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR08MB8940
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 120474da-7cc3-44b9-aff9-438a33341070
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: C8U+q89id2bY2rKP2nHk3rSEHtPSzxT5hpX1vgJVZCVvVfxVJckHkL8euM/pO49XpmbwZn+FmIQGahb3UjhQICubbqZqjmgg0uixkkc+ScM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOZP123MB8515
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: OiCH70z8E_LTDnCx3u4CIFXgKy3PqWn-64MFuNgUlgA_1772104111
+X-Mimecast-Originator: touchnetix.com
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=3];
-	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
-	R_DKIM_ALLOW(-0.20)[arm.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268781-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268782-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[foss.st.com,linaro.org,kernel.org,linux.dev,gmail.com,arm.com];
+	DMARC_NA(0.00)[touchnetix.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:mid,arm.com:dkim,arm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[kernel.org,linux.dev,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[suzuki.poulose@arm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[andrew.thomas@touchnetix.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.960];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: BA2731A4CDE
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,axcfg.py:url]
+X-Rspamd-Queue-Id: D8D0C1A4D7B
 X-Rspamd-Action: no action
 
-On 26/02/2026 10:54, Gatien CHEVALLIER wrote:
-> 
-> 
-> On 2/26/26 11:46, Suzuki K Poulose wrote:
->> Hi
+On Wed, Feb 25, 2026 at 09:50:11PM +0100, Marco Felsch wrote:
+>Hi Andrew,
+>
+>thanks for the your reply, please see below.
+>
+>On 26-02-25, Andrew Thomas wrote:
+>> On Sun, Jan 11, 2026 at 04:05:47PM +0100, Marco Felsch wrote:
+>
+>...
+>
+>> > +struct axiom_u33_rev3 {
+>> > +=09__le32 runtime_crc;
+>> > +=09__le32 runtime_nvm_crc;
+>> > +=09__le32 bootloader_crc;
+>> > +=09__le32 nvltlusageconfig_crc;
+>> > +=09__le32 vltusageconfig_crc;
+>> > +=09__le32 u22_sequencedata_crc;
+>> > +=09__le32 u43_hotspots_crc;
+>> > +=09__le32 u77_dod_data_crc;
+>> > +=09__le32 u93_profiles_crc;
+>> > +=09__le32 u94_deltascalemap_crc;
+>> > +=09__le32 runtimehash_crc;
+>> > +};
+>> > +
 >>
->> On 26/02/2026 10:30, Gatien Chevallier wrote:
->>> Document the access-controllers for coresight peripherals in case some
->>> access checks need to be performed to use them.
->>>
->>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->>> ---
->>>   Documentation/devicetree/bindings/arm/arm,coresight- 
->>> cti.yaml           | 3 +++
->>>   .../devicetree/bindings/arm/arm,coresight-dynamic- 
->>> funnel.yaml          | 3 +++
->>>   Documentation/devicetree/bindings/arm/arm,coresight- 
->>> etm.yaml           | 3 +++
->>>   Documentation/devicetree/bindings/arm/arm,coresight- 
->>> stm.yaml           | 3 +++
->>>   Documentation/devicetree/bindings/arm/arm,coresight- 
->>> tmc.yaml           | 3 +++
->>>   Documentation/devicetree/bindings/arm/arm,coresight- 
->>> tpiu.yaml          | 3 +++
->>
->> Are you sure, you are not missing "replicator" in the list ?
->>
->> Otherwise, looks good to me.
->>
->> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->>
-> 
-> The replicator is not present on the Linux side on stm32mp1x platforms
-> (Only present for the Cortex M4 co-processor on stm32mp15x platforms).
-> On stm32mp2x platforms, it will be necessary so it will be added in the
-> related P-R because we'll need the same debug access check mechanism.
+>> I think revision handling should be kept in unpacking where possible.
+>> Currently there are 10 revisions of u33, so adding support for many
+>> revisions and usages would add alot of code.
+>
+>This isn't very complex nor very large code. Each u33 rev will add
+>44-byte of code, so in the end there will be 440-byte. I've also seen
+>that some revisions reduce the size because some fields aren't required.
+>E.g. u93_crc is at offset-5.
+>
+>Furthermore describing the complete layout of u33 allows us using it to
+>query the u33 in one i2c-bulk-transfer.
+>
 
-Fair enough. It looked a bit odd to me with TMC and TPIU both in the
-list without a Replicator.
+Fair enough.
 
-Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> > +#define AXIOM_U34=09=09=09=090x34
+>> > +#define   AXIOM_U34_REV1_OVERFLOW_MASK=09=09BIT(7)
+>> > +#define   AXIOM_U34_REV1_REPORTLENGTH_MASK=09GENMASK(6, 0)
+>> > +#define   AXIOM_U34_REV1_PREAMBLE_BYTES=09=092
+>> > +#define   AXIOM_U34_REV1_POSTAMBLE_BYTES=094
+>
+>...
+>
+>> > +enum axiom_runmode {
+>> > +=09AXIOM_DISCOVERY_MODE,
+>> > +=09AXIOM_TCP_MODE,
+>> > +=09AXIOM_TCP_CFG_UPDATE_MODE,
+>> > +=09AXIOM_BLP_PRE_MODE,
+>> > +=09AXIOM_BLP_MODE,
+>> > +};
+>>
+>> There are only two actual axiom states, bootloader and runtime (TCP).
+>> This is more of a driver state rather than an axiom state.
+>> Could you label it as such?
+>
+>Yes I know and the AXIOM_BLP_PRE_MODE will be dropped with the next
+>version, which I'm going to send this week!. Not sure why this would be
+>required.
+>
+>> > +struct axiom_data {
+>> > +=09struct input_dev *input;
+>> > +=09struct device *dev;
+>> > +
+>> > +=09struct gpio_desc *reset_gpio;
+>> > +=09struct regulator_bulk_data supplies[2];
+>> > +=09unsigned int num_supplies;
+>> > +
+>> > +=09struct regmap *regmap;
+>> > +=09struct touchscreen_properties prop;
+>> > +=09bool irq_setup_done;
+>> > +=09u32 poll_interval;
+>> > +
+>> > +=09struct drm_panel_follower panel_follower;
+>> > +=09bool is_panel_follower;
+>> > +
+>> > +=09enum axiom_runmode mode;
+>> > +=09/*
+>> > +=09 * Two completion types to support firmware updates
+>> > +=09 * in irq and poll mode.
+>> > +=09 */
+>> > +=09struct axiom_completion {
+>> > +=09=09struct completion completion;
+>> > +=09=09bool poll_done;
+>> > +=09} nvm_write, boot_complete;
+>> > +
+>> > +=09/* Lock to protect both firmware interfaces */
+>> > +=09struct mutex fwupdate_lock;
+>> > +=09struct axiom_firmware {
+>> > +=09=09/* Lock to protect cancel */
+>> > +=09=09struct mutex lock;
+>> > +=09=09bool cancel;
+>> > +=09=09struct fw_upload *fwl;
+>> > +=09} fw[AXIOM_FW_NUM];
+>> > +
+>> > +=09unsigned int fw_major;
+>> > +=09unsigned int fw_minor;
+>> > +=09unsigned int fw_rc;
+>> > +=09unsigned int fw_status;
+>> > +=09unsigned int fw_variant;
+>> > +=09u16 device_id;
+>> > +=09u16 jedec_id;
+>> > +=09u8 silicon_rev;
+>> > +
+>> > +=09/* CRCs we need to check during a config update */
+>> > +=09struct axiom_crc {
+>> > +=09=09u32 runtime;
+>> > +=09=09u32 vltusageconfig;
+>> > +=09=09u32 nvltlusageconfig;
+>> > +=09=09u32 u22_sequencedata;
+>> > +=09=09u32 u43_hotspots;
+>> > +=09=09u32 u77_dod_data;
+>> > +=09=09u32 u93_profiles;
+>> > +=09=09u32 u94_deltascalemap;
+>> > +=09} crc[AXIOM_CRC_NUM];
+>>
+>> I think this structure should hold all possible u33 CRCs and then
+>> invalid ones can be ignored for the given u33 revision.
+>
+>Why should be the bootloader CRC interessting? The bootloader can't be
+>updated/flashed, at least not according my documentation. Therefore I
+>didn't listed the bootloader CRC here.
 
+That is true, there are newer CDUs I did not consider are not available.
+I shall hopefully soon update the python so that most usage revisions
+can be seen more easily.
+However this  change could be added later.
 
-> 
+>
+>> > +=09bool cds_enabled;
+>> > +=09unsigned long enabled_slots;
+>> > +=09unsigned int num_slots;
+>> > +
+>> > +=09unsigned int max_report_byte_len;
+>> > +=09struct axiom_usage_table_entry {
+>> > +=09=09bool populated;
+>> > +=09=09unsigned int baseaddr;
+>> > +=09=09unsigned int size_bytes;
+>> > +=09=09const struct axiom_usage_info *info;
+>> > +=09} usage_table[AXIOM_MAX_USAGES];
+>> > +};
+>
+>....
+>
+>> > +static int axiom_u02_swreset(struct axiom_data *ts)
+>> > +{
+>> > +=09struct axiom_u02_rev1_system_manager_msg msg =3D { };
+>> > +=09int ret;
+>> > +
+>> > +=09if (!axiom_driver_supports_usage(ts, AXIOM_U02))
+>> > +=09=09return -EINVAL;
+>> > +
+>> > +=09msg.command =3D cpu_to_le16(AXIOM_U02_REV1_CMD_SOFTRESET);
+>> > +=09ret =3D axiom_u02_send_msg(ts, &msg, false);
+>> > +=09if (ret)
+>> > +=09=09return ret;
+>> > +
+>> > +=09/*
+>> > +=09 * Downstream http://axcfg.py waits for 1sec without checking U01 =
+hello. Tests
+>> > +=09 * showed that waiting for the hello message isn't enough therefor=
+e we
+>> > +=09 * need both to make it robuster.
+>> > +=09 */
+>> > +=09ret =3D axiom_wait_for_completion_timeout(ts, &ts->boot_complete,
+>> > +=09=09=09=09=09msecs_to_jiffies(1 * MSEC_PER_SEC));
 >>
+>> Boot can take up to 2s with all selftests enabled.
+>
+>Thanks for this information :) I will add it.
+>
+>> > +=09if (!ret)
+>> > +=09=09dev_err(ts->dev, "Error swreset timedout\n");
+>> > +
+>> > +=09fsleep(USEC_PER_SEC);
+>> > +
+>> > +=09return ret ? 0 : -ETIMEDOUT;
+>> > +}
+>
+>...
+>
+>> > +static int axiom_u02_enter_bootloader(struct axiom_data *ts)
+>> > +{
+>> > +=09struct axiom_u02_rev1_system_manager_msg msg =3D { };
+>> > +=09struct device *dev =3D ts->dev;
+>> > +=09unsigned int val;
+>> > +=09int ret;
+>> > +
+>> > +=09if (!axiom_driver_supports_usage(ts, AXIOM_U02))
+>> > +=09=09return -EINVAL;
+>> > +
+>> > +=09/*
+>> > +=09 * Enter the bootloader mode requires 3 consecutive messages so we=
+ can't
+>> > +=09 * check for the response.
+>> > +=09 */
+>> > +=09msg.command =3D cpu_to_le16(AXIOM_U02_REV1_CMD_ENTERBOOTLOADER);
+>> > +=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLO=
+ADER_KEY1);
+>> > +=09ret =3D axiom_u02_send_msg(ts, &msg, false);
+>> > +=09if (ret) {
+>> > +=09=09dev_err(dev, "Failed to send bootloader-key1: %d\n", ret);
+>> > +=09=09return ret;
+>> > +=09}
 >>
->>>   6 files changed, 18 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight- 
->>> cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
->>> index 2a91670ccb8c..949444aba1f8 100644
->>> --- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
->>> @@ -128,6 +128,9 @@ properties:
->>>     "#address-cells":
->>>       const: 1
->>> +  access-controllers:
->>> +    maxItems: 1
->>> +
->>>   patternProperties:
->>>     '^trig-conns@([0-9]+)$':
->>>       type: object
->>> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight- 
->>> dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/ 
->>> arm,coresight-dynamic-funnel.yaml
->>> index b74db15e5f8a..b0693cd46d27 100644
->>> --- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic- 
->>> funnel.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic- 
->>> funnel.yaml
->>> @@ -78,6 +78,9 @@ properties:
->>>           description: Output connection to CoreSight Trace bus
->>>           $ref: /schemas/graph.yaml#/properties/port
->>> +  access-controllers:
->>> +    maxItems: 1
->>> +
->>>   required:
->>>     - compatible
->>>     - reg
->>> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight- 
->>> etm.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
->>> index 71f2e1ed27e5..10ebbbeadf93 100644
->>> --- a/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
->>> @@ -118,6 +118,9 @@ properties:
->>>           description: Output connection from the ETM to CoreSight 
->>> Trace bus.
->>>           $ref: /schemas/graph.yaml#/properties/port
->>> +  access-controllers:
->>> +    maxItems: 1
->>> +
->>>   required:
->>>     - compatible
->>>     - clocks
->>> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight- 
->>> stm.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
->>> index 378380c3f5aa..f243e76f597f 100644
->>> --- a/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
->>> @@ -73,6 +73,9 @@ properties:
->>>           description: Output connection to the CoreSight Trace bus.
->>>           $ref: /schemas/graph.yaml#/properties/port
->>> +  access-controllers:
->>> +    maxItems: 1
->>> +
->>>   required:
->>>     - compatible
->>>     - reg
->>> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight- 
->>> tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
->>> index 96dd5b5f771a..9dc096698c65 100644
->>> --- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
->>> @@ -128,6 +128,9 @@ properties:
->>>         - const: tracedata
->>>         - const: metadata
->>> +  access-controllers:
->>> +    maxItems: 1
->>> +
->>>   required:
->>>     - compatible
->>>     - reg
->>> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight- 
->>> tpiu.yaml b/Documentation/devicetree/bindings/arm/arm,coresight- 
->>> tpiu.yaml
->>> index a207f6899e67..29bbc3961fdf 100644
->>> --- a/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
->>> @@ -70,6 +70,9 @@ properties:
->>>           description: Input connection from the CoreSight Trace bus.
->>>           $ref: /schemas/graph.yaml#/properties/port
->>> +  access-controllers:
->>> +    maxItems: 1
->>> +
->>>   required:
->>>     - compatible
->>>     - reg
->>>
+>> A delay is required between commands. 10ms is fine.
+>
+>Can I make use of the axiom_u02_wait_idle() logic which checks the
+>AXIOM_U02_REV1_RESP_SUCCESS? Arbitrary delays are always a source of
+>trouble.
+
+Yes, I tested with axiom_u02_wait_idle() which is OK.
+I am slightly worried about too short a delay to axiom causing instability,
+however this works fine.
+It can unfortunately be an unstable device..
+
+>
+>> > +=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLO=
+ADER_KEY2);
+>> > +=09ret =3D axiom_u02_send_msg(ts, &msg, false);
+>> > +=09if (ret) {
+>> > +=09=09dev_err(dev, "Failed to send bootloader-key2: %d\n", ret);
+>> > +=09=09return ret;
+>> > +=09}
 >>
-> 
+>> And here.
+>>
+>> > +
+>> > +=09msg.parameters[0] =3D cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLO=
+ADER_KEY3);
+>> > +=09ret =3D axiom_u02_send_msg(ts, &msg, false);
+>> > +=09if (ret) {
+>> > +=09=09dev_err(dev, "Failed to send bootloader-key3: %d\n", ret);
+>> > +=09=09return ret;
+>> > +=09}
+>> > +
+>> > +=09/* Sleep before the first read to give the device time */
+>> > +=09fsleep(250 * USEC_PER_MSEC);
+>> > +
+>> > +=09/* Wait till the device reports it is in bootloader mode */
+>> > +=09return regmap_read_poll_timeout(ts->regmap,
+>> > +=09=09=09AXIOM_U31_REV1_DEVICE_ID_HIGH_REG, val,
+>> > +=09=09=09FIELD_GET(AXIOM_U31_REV1_MODE_MASK, val) =3D=3D
+>> > +=09=09=09AXIOM_U31_REV1_MODE_BLP, 250 * USEC_PER_MSEC,
+>> > +=09=09=09USEC_PER_SEC);
+>> > +}
+>>
+>> Just to note if we cannot enter bootloader with u02 due to a corrupted f=
+irmware,
+>> you can enter bootloader if the nRESET line is toggled 5 times without c=
+omms.
+>
+>This could be added later on by $dev (maybe you :)) since I can't test
+>this. Our system has the reset line not connected :/
+
+Sounds good.
+
+>
+>...
+>
+>> > +static int axiom_u33_read(struct axiom_data *ts, struct axiom_crc *cr=
+c)
+>> > +{
+>> > +=09struct device *dev =3D ts->dev;
+>> > +=09unsigned int reg;
+>> > +=09int ret;
+>> > +
+>> > +=09if (!axiom_driver_supports_usage(ts, AXIOM_U33))
+>> > +=09=09return -EINVAL;
+>> > +
+>> > +=09if (axiom_usage_rev(ts, AXIOM_U33) =3D=3D 2) {
+>> > +=09=09struct axiom_u33_rev2 val;
+>> > +
+>> > +=09=09reg =3D axiom_usage_baseaddr(ts, AXIOM_U33);
+>> > +=09=09ret =3D regmap_raw_read(ts->regmap, reg, &val, sizeof(val));
+>>
+>> Could we read into a raw buffer to save having to define a little endian
+>> version of the CRCs?
+>
+>I don't see the benefit.
+
+OK.
+
+>
+>...
+>
+>> > +/* Custom regmap read/write handling is required due to the aXiom pro=
+tocol */
+>> > +static int axiom_regmap_read(void *context, const void *reg_buf, size=
+_t reg_size,
+>> > +=09=09=09     void *val_buf, size_t val_size)
+>> > +{
+>> > +=09struct device *dev =3D context;
+>> > +=09struct i2c_client *i2c =3D to_i2c_client(dev);
+>> > +=09struct axiom_data *ts =3D i2c_get_clientdata(i2c);
+>> > +=09struct axiom_cmd_header hdr;
+>> > +=09u16 xferlen, addr, baseaddr;
+>> > +=09struct i2c_msg xfer[2];
+>> > +=09int ret;
+>> > +
+>> > +=09if (val_size > AXIOM_MAX_XFERLEN) {
+>> > +=09=09dev_err(ts->dev, "Exceed max xferlen: %zu > %u\n",
+>> > +=09=09=09val_size, AXIOM_MAX_XFERLEN);
+>> > +=09=09return -EINVAL;
+>> > +=09}
+>> > +
+>> > +=09addr =3D *((u16 *)reg_buf);
+>> > +=09hdr.target_address =3D cpu_to_le16(addr);
+>> > +=09xferlen =3D FIELD_PREP(AXIOM_CMD_HDR_DIR_MASK, AXIOM_CMD_HDR_READ)=
+ |
+>> > +=09=09  FIELD_PREP(AXIOM_CMD_HDR_LEN_MASK, val_size);
+>> > +=09hdr.xferlen =3D cpu_to_le16(xferlen);
+>> > +
+>> > +=09/* Verify that usage including the usage rev is supported */
+>> > +=09baseaddr =3D addr & AXIOM_USAGE_BASEADDR_MASK;
+>> > +=09if (!axiom_usage_supported(ts, baseaddr))
+>> > +=09=09return -EINVAL;
+>> > +
+>> > +=09xfer[0].addr =3D i2c->addr;
+>> > +=09xfer[0].flags =3D 0;
+>> > +=09xfer[0].len =3D sizeof(hdr);
+>> > +=09xfer[0].buf =3D (u8 *)&hdr;
+>> > +
+>> > +=09xfer[1].addr =3D i2c->addr;
+>> > +=09xfer[1].flags =3D I2C_M_RD;
+>> > +=09xfer[1].len =3D val_size;
+>> > +=09xfer[1].buf =3D val_buf;
+>> > +
+>> > +=09ret =3D i2c_transfer(i2c->adapter, xfer, 2);
+>> > +=09if (ret =3D=3D 2)
+>> > +=09=09return 0;
+>> > +=09else if (ret < 0)
+>> > +=09=09return ret;
+>> > +=09else
+>> > +=09=09return -EIO;
+>> > +}
+>>
+>> There needs to be atleast 40us holdoff between axiom bus transfers.
+>> I am not sure that has been considered here.
+>
+>Is this written somewhere within the datasheet/programming-guide?
+
+In aXiom Comms Protocol in v4.8.9 if you have access to the webportal
+it says to use 40us holdoff for report reading. Although this may apply
+to all transactions.
+Doing comms while axiom is changing the DMA causes issues (NAKs), for the
+driver I posted atleast, the holdoff was required otherwise I would receive
+0-length reports frequently.
+
+It looks to be fine currently, however if there is unstability for users
+we should consider adding this or something similar.
+
+>
+>...
+>
+>> > +static enum fw_upload_err
+>> > +axiom_cfg_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32=
+ size)
+>> > +{
+>
+>...
+>
+>> > +=09cur_runtime_crc =3D ts->crc[AXIOM_CRC_CUR].runtime;
+>> > +=09fw_runtime_crc =3D ts->crc[AXIOM_CRC_NEW].runtime;
+>> > +=09if (cur_runtime_crc !=3D fw_runtime_crc) {
+>> > +=09=09dev_err(dev, "TH2CFG and device runtime CRC doesn't match: %#x =
+!=3D %#x\n",
+>> > +=09=09=09fw_runtime_crc, cur_runtime_crc);
+>> > +=09=09ret =3D FW_UPLOAD_ERR_FW_INVALID;
+>> > +=09=09goto out;
+>> > +=09}
+>>
+>> The firmware CRCs dont need to match for a config load, only the usage r=
+evision/length.
+>
+>What difference does it make? The firmware CRC implicit includes the
+>usage revision and the length (register layout). So we can ensure that
+>the configuration was made for the correct register layout without
+>checking each register and revision.
+
+Different firmware revisions/CRCs can have compatible usages.
+
+Aslong as the usage revisions match to u31 the usages will be compatible.
+
+For us atleast we have different CRCs for small firmware changes, therefore
+if testing such firmware here we would always have to uncomment this sectio=
+n.
+
+In the updated python I changed the check to the following:
+
+     # Compare the firmware runtime CRC from the file with the CRC from the=
+ device.
+     # Only proceed if the CRCs match.
+     if not force:
+         if u33_from_file.fld_runtime_crc !=3D ax.u33.fld_runtime_crc:
+             logging.error("Cannot load config file as it was saved from a =
+different revision of firmware:")
+             logging.error("Firmware info from device      : 0x{0:08X}, {1}=
+".format(ax.u33.fld_runtime_crc, ax.u31.get_device_info_short()))
+             logging.error("Firmware info from config file : 0x{0:08X}, {1}=
+".format(u33_from_file.fld_runtime_crc, u31_from_file.get_device_info_short=
+()))
+             return ERROR_CFG_FILE_NOT_COMPATIBLE
+     else:
+         if u33_from_file.fld_runtime_crc !=3D ax.u33.fld_runtime_crc:
+             logging.warning("The config file was saved from a different re=
+vision of firmware therefore it may not be compatible:")
+             logging.warning("Firmware info from device      : 0x{0:08X}, {=
+1}".format(ax.u33.fld_runtime_crc, ax.u31.get_device_info_short()))
+             logging.warning("Firmware info from config file : 0x{0:08X}, {=
+1}".format(u33_from_file.fld_runtime_crc, u31_from_file.get_device_info_sho=
+rt()))
+
+     # Now ensure the config is compatible with the device
+     valid_cfg =3D False
+     file_usage_table =3D u31_from_file.get_usage_table()
+
+     for usage in usages.keys():
+         if usage not in ax.u31.get_usages():
+             logging.error(f"Usage u{usage:02x} unsupported on this device.=
+")
+             break
+
+         usage_entry =3D ax.u31.get_usage_entry(usage)
+         if usage_entry.start_page !=3D file_usage_table[usage].start_page:
+             logging.error(f"Incompatible config address for u{usage:02x}:"=
+)
+             logging.error(f"  Device: 0x{usage_entry.start_page:02x}00  Fi=
+le: 0x{file_usage_table[usage].start_page:02x}00")
+             break
+
+         if ax.get_usage_length(usage) !=3D len(usages[usage][2]):
+             logging.error(f"Incompatible config length for u{usage:02x}:")
+             logging.error(f"  Device: {ax.get_usage_length(usage)}  File: =
+{len(usages[usage][2])}")
+             break
+     else:
+         valid_cfg =3D True
+
+     if not valid_cfg:
+         logging.error("Cannot load config as the usages are incompatible w=
+ith the device.")
+         return ERROR_CFG_FILE_NOT_COMPATIBLE
+
+Possibly we could add a force parameter to the sysfs like above?
+
+>
+>...
+>
+>> > +static enum fw_upload_err
+>> > +axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 o=
+ffset,
+>> > +=09=09   u32 size, u32 *written)
+>> > +{
+>
+>....
+>
+>> > +=09/* Ensure that the chunks are written correctly */
+>> > +=09ret =3D axiom_verify_volatile_mem(ts);
+>> > +=09if (ret) {
+>> > +=09=09dev_err(dev, "Failed to verify written config, abort\n");
+>> > +=09=09goto err_swreset;
+>> > +=09}
+>> > +
+>> > +=09ret =3D axiom_u02_save_config(ts);
+>> > +=09if (ret)
+>> > +=09=09goto err_swreset;
+>> > +
+>> > +=09/*
+>> > +=09 * TODO: Check if u02 start would be sufficient to load the new co=
+nfig
+>> > +=09 * values
+>> > +=09 */
+>>
+>> It is not necessarily needed.
+>
+>What do you mean by this? Do we need the axiom_u02_swreset() or can we
+>just start the system via u02 (without swreset)?
+
+There is no need to do a reset after a config load you can just start the A=
+E
+with CMD_START, but we can keep it as is since it does the same thing.
+
+>
+>>
+>> > +=09ret =3D axiom_u02_swreset(ts);
+>> > +=09if (ret) {
+>> > +=09=09dev_err(dev, "Soft reset failed\n");
+>> > +=09=09goto err_unlock;
+>> > +=09}
+>
+>....
+>
+>> > +static ssize_t fw_variant_show(struct device *dev,
+>> > +=09=09=09       struct device_attribute *attr, char *buf)
+>> > +{
+>> > +=09struct i2c_client *i2c =3D to_i2c_client(dev);
+>> > +=09struct axiom_data *ts =3D i2c_get_clientdata(i2c);
+>> > +=09const char *val;
+>> > +
+>> > +=09switch (ts->fw_variant) {
+>> > +=09case 0:
+>> > +=09=09val =3D "3d";
+>> > +=09=09break;
+>> > +=09case 1:
+>> > +=09=09val =3D "2d";
+>> > +=09=09break;
+>> > +=09case 3:
+>> > +=09=09val =3D "force";
+>> > +=09=09break;
+>> > +=09default:
+>> > +=09=09val =3D "unknown";
+>> > +=09=09break;
+>> > +=09}
+>>
+>> The following are all the variants we currently support in order:
+>> FW_VARIANTS =3D ["3D", "2D", "FORCE", "0D", "XL"]
+>
+>Means:
+>
+>0 =3D=3D 3d
+>1 =3D=3D 2d
+>3 =3D=3D force
+>4 =3D=3D 0d
+>5 =3D=3D xl
+>
+>?
+>
+>This is also something I can test on my site. Patches are welcome once
+>this is mainline of course :)
+
+It is like so:
+#define DEVICE_BUILD_VARIANT_3D       (0U)
+#define DEVICE_BUILD_VARIANT_2D       (1U)
+#define DEVICE_BUILD_VARIANT_FORCE    (2U)
+#define DEVICE_BUILD_VARIANT_0D       (3U)
+#define DEVICE_BUILD_VARIANT_XL       (4U)
+
+>
+>Regards,
+>  Marco
+>
+>--=20
+>#gernperDu
+>#CallMeByMyFirstName
+>
+>Pengutronix e.K.                           |                             |
+>Steuerwalder Str. 21                       | https://www.pengutronix.de |
+>31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+
+I shall try to give a more prompt review once you have the new version up.
+
+Many Thanks,
+Andrew
 
 
