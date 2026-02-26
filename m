@@ -1,210 +1,152 @@
-Return-Path: <devicetree+bounces-268867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268869-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wO0/MOlQoGnriAQAu9opvQ
-	(envelope-from <devicetree+bounces-268867-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:55:53 +0100
+	id wLlhEHFUoGmPiQQAu9opvQ
+	(envelope-from <devicetree+bounces-268869-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:10:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29BCE1A716E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:55:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DEBA1A7428
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:10:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F0A331387AD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:46:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 221B031AF01D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DDD7399009;
-	Thu, 26 Feb 2026 13:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 210C839C653;
+	Thu, 26 Feb 2026 13:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cNGTGTKp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="boH+0FkY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E512A396B79;
-	Thu, 26 Feb 2026 13:46:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07FB536A025
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:52:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772113585; cv=none; b=C+R3RO71+4h68eN1tnneY1G2xQY0vYYdhqDTLmfAihp/iJTnjNaKHEEWaIs2fhXAaLZ+qWboYPRFOuUOX85TiVZ1NiFDM8Q7X+i622+KJIqiPZg3n1rdhwGZC4ZIhJNQ9o/XtY6KNGBeo2ydkxz0UOmhfxojw+sHqkBH1v5l4cw=
+	t=1772113923; cv=none; b=BDU7+2UF0oGquZMJaj6djek3CNlGfXFKzJqyWRMQTmPODpkuuXSVw9OHgd4sCoBNgt7Fer4cNT7s6zs0pOs7FNY4intL7uyHhxIpAUHiX5in40jnUwcV1kw4+TvJzKTFGnsO8aoIAnV9ZQtB+VZIrVylPJU483yEh/VSBwVDmSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772113585; c=relaxed/simple;
-	bh=LJEd8akXY0AvZBT/adjkcnZC7NY6MjQKMDMipnrccIU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f8kJ4YOiNnE6jDYdZZJ/F5J5tY/F+7PEZePWxyxcJpIyK4+NgEKEpu1BH5mWlYyIFvag8CpHCQf0zLIUbhpnZhiK/otWNa8MvignlPVm1GHRJqJ7qOYj0N2i1a7IfaFnQCZG2ldZfzdSgVYFARLx2DuSbcpg75CQwUK0tjSuRcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cNGTGTKp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59B4DC116C6;
-	Thu, 26 Feb 2026 13:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772113584;
-	bh=LJEd8akXY0AvZBT/adjkcnZC7NY6MjQKMDMipnrccIU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cNGTGTKp7GmCD1YsCDskTB16UDD2sdloGb/ijYqDzP6NsW7ScbQmAYnxgaqtkxyZE
-	 aoT3Z/IXyItuo7rZKa54skUDOtnk2sbkdqcJZY6E0ecc6kYVc9feBxDxv3/x/uKLO+
-	 R9vo+QHR1FI8vXINA2g7a942kZIEdsxw61XhNx2Pka+3qbf5Wc6TtJdy2rHQT3MBAK
-	 2WnM/CDqGSieFGXItWiOeuzeCq8VUTDVMJCdPrjT13FWD/0JhuiHSNChMAg5P09eot
-	 0cqgMNGwfRUmvsL0019nYP4ETzS7nhGwiuswkrKSNlxqccxTWKtmu/imobE3cSYghq
-	 3get+Tqdw5NAg==
-Date: Thu, 26 Feb 2026 19:16:13 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <4lhrl2lqnndbieuctdtdrwdjlvjafw32googpv322kv5xe35ue@gtojpiksle74>
-References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
- <20260129092900.1900-1-zhangsenchuan@eswincomputing.com>
- <a3yu54e6feo5immtdju4fgvne7fh3p4ytlawfdhawmpzvagi64@o7wuhhdiitft>
- <78296255.3869.19c8eb694d6.Coremail.zhangsenchuan@eswincomputing.com>
- <cxfbgzwsybfvixu3qqi66fvspmhe5knuevwcj6zwsakkzqwd3z@czmitvgl7nwt>
- <694aeb1a.398e.19c98ff2727.Coremail.zhangsenchuan@eswincomputing.com>
- <rbmoxlc45bf4ij2o2mf3ofgni6vxqmsp52vdiqtc4wxxufmxkt@w2u5rkpq5mhs>
- <470bb42a.39bb.19c994fc998.Coremail.zhangsenchuan@eswincomputing.com>
+	s=arc-20240116; t=1772113923; c=relaxed/simple;
+	bh=ytngJLLxg84vkD0c23N9PuGvpAftX7ITkcxywtv6FZY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VHZyNZywgd8XssUlmQt/ZqDUOZihDVWXGX8bpF6m47VNlo6Adc0JGxYeDJOJvhlj5C6/4GQDAo1lV5M+25a9DU7uNQYyFCgeEqHFEcSpMy6CIQXE2houNceaLt1Ox+Vaf5WILPY8AJHr/N+7rf/OGqtHBUALks+Mf93O9BD60yY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=boH+0FkY; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 3393D1A13C0;
+	Thu, 26 Feb 2026 13:51:58 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 076015FDEB;
+	Thu, 26 Feb 2026 13:51:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 96F191036937F;
+	Thu, 26 Feb 2026 14:51:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1772113917; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=+H5s+x44ry9i9n0frvxY321pHv3G5vTtrk1Z6KHg5Jw=;
+	b=boH+0FkYs9MTjjHhcB7Gy6MhOuNw86EJfxbYAYa3bOCh3uceFUpJjE0fIeJoXV34nx8usd
+	6je4/cz7ppxZRH3XDydVULwfNteJWhxc5G8UpQmlTMNV07RZr0ty18T2k0NgcUB935W5Qz
+	iJqJhUQqnr8Iz3WTIle8KcGIoVVmMxXT8cNPhhuAppa8NkXHxSXHJw1a7bHJt4F0gcLRla
+	u+PUYq87Tf97iD6MjvRapvYVGgMpa2B2Vt2ulxfFO87ERmRF0O+9PPGOjg5kWTOsLTnucj
+	571jAXlilrj6+Q5UvY6Vn1ZuhMJlzmSX9wL3Anm459ZCVy6gw22PqR9C5D9UGg==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH v2 0/3] misc: ti_fpc202: Add LED support
+Date: Thu, 26 Feb 2026 14:51:50 +0100
+Message-Id: <20260226-fpc202-leds-v2-0-bc74857869e0@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <470bb42a.39bb.19c994fc998.Coremail.zhangsenchuan@eswincomputing.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPZPoGkC/1XMQQrCMBCF4auUWTuSRJpSV95DumiSiR2oTUlKU
+ Erubiy4cDf/wPt2SBSZElybHSJlThyWGurUgJ3G5UHIrjYoobSQSqNfbb1xJpewvTjy2lLXSoK
+ 6WCN5fh3afag9cdpCfB94lt/vz+n+nCxRIBknrDe970d5MyFsMy9nG54wlFI+OpG2DqgAAAA=
+X-Change-ID: 20260126-fpc202-leds-53def6ce751e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Felix Gu <ustc.gu@gmail.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Romain Gantois <romain.gantois@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268867-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,bootlin.com,vger.kernel.org,microchip.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268869-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.989];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 29BCE1A716E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7DEBA1A7428
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 05:37:48PM +0800, zhangsenchuan wrote:
-> > > > > > Subject: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host controller driver
-> > > > > > 
-> > > > > > On Thu, Jan 29, 2026 at 05:29:00PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > > > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > > > > >
-> > > > > > > +static int eic7700_pcie_suspend_noirq(struct device *dev)
-> > > > > > > +{
-> > > > > > > +	struct eic7700_pcie *pcie = dev_get_drvdata(dev);
-> > > > > > > +
-> > > > > > > +	/*
-> > > > > > > +	 * The ESWIN EIC7700 SoC lacks hardware support for the L2/L3 low-power
-> > > > > > > +	 * link states. It cannot enter the L2/L3 Ready state through the
-> > > > > > > +	 * PME_Turn_Off/PME_To_Ack handshake protocol. To avoid this problem,
-> > > > > > > +	 * the dw_pcie_suspend_noirq API is not used.
-> > > > > > > +	 */
-> > > > > > 
-> > > > > > With 7.0, you can provide a dummy pme_turn_off() API and set
-> > > > > > 'pci->pp.skip_l23_ready' to reuse the dw_pcie_{suspend/resume}_noirq APIs.
-> > > > > > 
-> > > > > 
-> > > > > Hi Mani,
-> > > > > 
-> > > > > Setting pci->pp.skip_l23_ready does indeed allow us to reuse the
-> > > > > dw_pcie_suspend_noirq function. However, for the dw_pcie_resume_noirq
-> > > > > function, if the dw_pcie_start_link and dw_pcie_wait_for_link APIs fail to
-> > > > > execute, the clk/reset resources in the pci->pp.ops->init function cannot
-> > > > > be released. Perhaps the dw_pcie_resume_noirq function needs to be optimized.
-> > > > 
-> > > > Will this help?
-> > > > 
-> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > index 6ae6189e9b8a..38ad79bbeab1 100644
-> > > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > @@ -1300,15 +1300,24 @@ int dw_pcie_resume_noirq(struct dw_pcie *pci)
-> > > >  
-> > > >         ret = dw_pcie_start_link(pci);
-> > > >         if (ret)
-> > > > -               return ret;
-> > > > +               goto err_deinit;
-> > > >  
-> > > >         ret = dw_pcie_wait_for_link(pci);
-> > > >         if (ret)
-> > > > -               return ret;
-> > > > +               goto err_stop_link;
-> > > >  
-> > > >         if (pci->pp.ops->post_init)
-> > > >                 pci->pp.ops->post_init(&pci->pp);
-> > > >  
-> > > > +       return 0;
-> > > > +
-> > > > +err_stop_link:
-> > > > +       dw_pcie_stop_link(pci);
-> > > > +
-> > > > +err_deinit:
-> > > > +       if (pci->pp.ops->deinit)
-> > > > +               pci->pp.ops->deinit(&pci->pp);
-> > > > +
-> > > >         return ret;
-> > > >  }
-> > > >  EXPORT_SYMBOL_GPL(dw_pcie_resume_noirq);
-> > > > 
-> > > 
-> > > Yes, this can release the resources after init, after optimizing the 
-> > > resume function, i can reuse the dw_pcie_{suspend/resume}_noirq APIs.
-> > > 
-> > > I noticed that the dw_pcie_wait_for_link function has been optimized. Is 
-> > > it necessary to release the resources only when it return -ETIMEOUT?
-> > > Perhaps it needs to be slightly improved：
-> > > 
-> > >  ret = dw_pcie_wait_for_link(pci);
-> > >  if (ret == -ETIMEOUT)
-> > >          goto err_stop_link;
-> > > 
-> > > What about your suggestion?
-> > > 
-> > 
-> > Absolutely! I forgot my own rework ;) I'll cook a patch for the above. Then if
-> > you base your controller driver patch on top of it, we can merge both in a
-> > single tree (if Bjorn agrees).
-> > 
-> 
-> Okey,thanks!
-> 
-> I'm a little unsure. Do I need to send the v11 patch here first? Or should I wait
-> until you release the new fix patch, and then send the v11 patch?
-> 
+Hi everyone,
 
-I've just sent the fix:
-https://lore.kernel.org/linux-pci/20260226133951.296743-1-mani@kernel.org
+This series depends on "misc: ti_fpc202: two small fixes" by Felix Gu:
 
-You can post your series on top of it. There should be no build dependency, but
-there is a functional dependency. So we may put this patch and your series in a
-single branch.
+https://lore.kernel.org/all/20260221-fp202-v1-0-4d28cb8b28fb@gmail.com/
 
-- Mani
+The FPC202 dual port controller features eight special-purpose ports which
+are meant to drive LEDs. These support PWM and blink offloading.
 
+This is version two of my series which adds support for these
+special-purpose LED ports.
+
+Best Regards,
+
+Romain
+
+Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+---
+Changes in v2:
+- Avoided selecting foreign subsystems in Kconfig
+- Rebased on conflicting bugfix series
+- Link to v1: https://lore.kernel.org/r/20260127-fpc202-leds-v1-0-ebd0cfb9f9a1@bootlin.com
+
+---
+Romain Gantois (3):
+      misc: ti_fpc202: Depend on GPIOLIB instead of selecting it
+      dt-bindings: misc: Describe FPC202 LED features
+      misc: ti_fpc202: Support special-purpose GPIO lines with LED features
+
+ .../devicetree/bindings/misc/ti,fpc202.yaml        |  22 ++
+ drivers/misc/Kconfig                               |   3 +-
+ drivers/misc/ti_fpc202.c                           | 339 ++++++++++++++++++++-
+ 3 files changed, 350 insertions(+), 14 deletions(-)
+---
+base-commit: 486b22d5a7306613f12e308208cd54352099d444
+change-id: 20260126-fpc202-leds-53def6ce751e
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Romain Gantois <romain.gantois@bootlin.com>
+
 
