@@ -1,242 +1,180 @@
-Return-Path: <devicetree+bounces-268984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268985-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SF/SHGuboGlVlAQAu9opvQ
-	(envelope-from <devicetree+bounces-268984-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 20:13:47 +0100
+	id OEbQFQ+foGlVlAQAu9opvQ
+	(envelope-from <devicetree+bounces-268985-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 20:29:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 373F61AE3B8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 20:13:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C179C1AE573
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 20:29:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 358B130328A6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:10:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A8F9F3001C61
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75DC30FC37;
-	Thu, 26 Feb 2026 19:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D47636492B;
+	Thu, 26 Feb 2026 19:25:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="Uuo9qJeA"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="fhOvzYBU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F3230E820;
-	Thu, 26 Feb 2026 19:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B16441045;
+	Thu, 26 Feb 2026 19:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772133048; cv=none; b=NPT3SkIX+BwzW0hgEFtD6yKJSBongtUlikX1CL1HmwebJcnDzckEPFMG7/52naige8C8j7Itk8PtOg8GGnDQQgRRs4fGlmxD1UHkzeXsJalyU5PBPdvDDwWz2vQJ78OGWti77ACaAIxYyv6DB3F/+t8gPijlLRzERUaLLYmV7po=
+	t=1772133901; cv=none; b=EOLhVkDCqzGyWByuBZIstXu0oht+0l7pi+PuoVhZYxD+uHRQYMtIE0PzGhItUfQxTEJtGjdUVAlKBqiXJA4RWvIrx2uWINSEyF9bMUKvTD0XtBBhOj3577QmulVrdBSClUetGGZh3rTQAGMHSoPkAS6LZPEos+XR0t9Ysp6PvCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772133048; c=relaxed/simple;
-	bh=1IzP64jz/SkcJX5dvo8R+ulnS8fQwbekOalpkBEHnII=;
+	s=arc-20240116; t=1772133901; c=relaxed/simple;
+	bh=At6EOPq1k0loTOHnkSiH4ces/B2b8vQCiL2Y+oLau8M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gi9O4ontiPdPbsuNHjeNxnm4agOKEemPOgm955rfcfKG4BGxANlEWavz6qvr95LXA1IdPhSZllUpjysYuXhLeRrLJ/2HAhUik7w5atTLQSC3zaAOyO2Ert5pfR0w146qrl685Emf2heXo+FxA/nExjeDxpNKHHTQeasykqUtqnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=Uuo9qJeA; arc=none smtp.client-ip=78.32.30.218
+	 Content-Type:Content-Disposition:In-Reply-To; b=oiUxRRe0+lfSS+oKbZhSROL6Eqb7bFrnJB4LUZoD/waJsQqC0HEUZG2+TFMhTKwawx7NDSi+EEMxL9JTJwpz9ibNlRoQRVKW1vvNcm04PGAOxMDVq434Cmj79QvQQ1tPAGx9Yp7/aWLrj0NJxHY/ASGpBQ+n6DAaC58vvmBqWbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=fhOvzYBU; arc=none smtp.client-ip=78.32.30.218
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
 	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=HjiR1TwqXK5Qwrd2T9B+rxf4jSStXBuyud6ZyusRPjc=; b=Uuo9qJeAxZxhSDQvCG2THyfgn6
-	goN/SZ5wYmb4g5wzXTMlNaPWkQqKj7uB/6w566SYrPrujxs50sfZYENwPPn3t9yfpjvYbPXUlilqs
-	8efDz3idaa358SjlUOzL6LOYivhtxwyWu6qwu3GnzrfJyZW8mWfOAmfqaObgWxP9unvufSwvsMrOf
-	edMti+IBUeaF7wa0m+Tt/d92YkneueFcO8a80EDhHf73MxhTIn4vGXNBuZxqaS/gxlDyEiqUPTdNd
-	5T+8sKrFrKX+VM2XS0Y+YFMS15vuekaYIfoUBiFJ/j1X7MnCd4/6ap/QOzc5nMk2L1DHkyOZq4WYj
-	fIDgys9g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:50450)
+	bh=RnhAKvHWNvmyO5wpr0bj8ELDG7XVxHtN3iOWEruVtsk=; b=fhOvzYBU6quBigzV3qkmKbRWjI
+	oLkuAz55lA11Xq6nUd8g4l0/HP49Q7ZMfCO8TPqTPmf5URl9Y3ykjhXdcZuIjkp5xEsZB431CJGS1
+	HHbYgRqpB/2omWulmLYy1nkj9On/LQjlU1hqzLBCObIqSY4fFYL/ImVVUoMS/GmVhrzMZoiUidrSZ
+	9hAk1lRUN+PgxGyK4XQdKzkUqhUWusZMw0sbntq9uZR/s1PSMTklC7+ZjzP9sSDP/9kzsFbuEoIqg
+	/HWHTHiyUvp6uYrWxUZqqIyi9OBww3x3fR4YUjMQXfkbSCV47/byivg0IJx/1WMPVOR40fLODqeIb
+	3tsZSDmg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53236)
 	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <linux@armlinux.org.uk>)
-	id 1vvgkl-000000008Lp-1Mml;
-	Thu, 26 Feb 2026 19:10:27 +0000
+	id 1vvgyf-000000008NJ-1x4W;
+	Thu, 26 Feb 2026 19:24:49 +0000
 Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
 	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vvgkg-000000002GM-2Yxa;
-	Thu, 26 Feb 2026 19:10:22 +0000
-Date: Thu, 26 Feb 2026 19:10:22 +0000
+	id 1vvgyd-000000002Gr-3hoY;
+	Thu, 26 Feb 2026 19:24:47 +0000
+Date: Thu, 26 Feb 2026 19:24:47 +0000
 From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: jan.petrous@oss.nxp.com
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+To: Conor Dooley <conor@kernel.org>
+Cc: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	vladimir.oltean@nxp.com, boon.khai.ng@altera.com
-Subject: Re: [PATCH v7 2/5] net: stmmac: platform: read channels irq
-Message-ID: <aaCankErMJZ2XM_s@shell.armlinux.org.uk>
-References: <20260226-dwmac_multi_irq-v7-0-f8fe3b945bb4@oss.nxp.com>
- <20260226-dwmac_multi_irq-v7-2-f8fe3b945bb4@oss.nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: Re: [PATCH net-next v3 5/5] net: macb: Add "mobileye,eyeq5-gem"
+ compatible
+Message-ID: <aaCd_zV5kY-s1RBL@shell.armlinux.org.uk>
+References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
+ <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
+ <20260226-folic-excitable-82eff83a125a@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260226-dwmac_multi_irq-v7-2-f8fe3b945bb4@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260226-folic-excitable-82eff83a125a@spud>
 Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268984-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.linux.dev,altera.com];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268985-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.748];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_PROHIBIT(0.00)[0.0.0.8:email];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.928];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,shell.armlinux.org.uk:mid,suse.com:email,nxp.com:email]
-X-Rspamd-Queue-Id: 373F61AE3B8
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.7:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,armlinux.org.uk:url,0.0.0.3:email,shell.armlinux.org.uk:mid]
+X-Rspamd-Queue-Id: C179C1AE573
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 09:54:07AM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On Thu, Feb 26, 2026 at 10:46:24AM +0000, Conor Dooley wrote:
+> On Thu, Oct 23, 2025 at 06:22:55PM +0200, Théo Lebrun wrote:
+> > Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
+> > compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
+> > that must grab a generic PHY and initialise it.
+> > 
+> > We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
+> > phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
+> > the first users of bp->phy that use it in non-SGMII cases.
+> > 
+> > The phy_set_mode_ext() call is made unconditionally. It cannot cause
+> > issues on platforms where !bp->phy or !bp->phy->ops->set_mode as, in
+> > those cases, the call is a no-op (returning zero). From reading
+> > upstream DTS, we can figure out that no platform has a bp->phy and a
+> > PHY driver that has a .set_mode() implementation:
+> >  - cdns,zynqmp-gem: no DTS upstream.
+> >  - microchip,mpfs-macb: microchip/mpfs.dtsi, &mac0..1, no PHY attached.
+> >  - xlnx,versal-gem: xilinx/versal-net.dtsi, &gem0..1, no PHY attached.
+> >  - xlnx,zynqmp-gem: xilinx/zynqmp.dtsi, &gem0..3, PHY attached to
+> >    drivers/phy/xilinx/phy-zynqmp.c which has no .set_mode().
 > 
-> Read IRQ resources for all rx/tx channels, to allow Multi-IRQ mode
-> for platform glue drivers.
-> 
-> Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> ---
->  .../net/ethernet/stmicro/stmmac/stmmac_platform.c  | 46 +++++++++++++++++++++-
->  1 file changed, 45 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> index 5c9fd91a1db9..93bd915ab6eb 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> @@ -697,9 +697,40 @@ struct clk *stmmac_pltfr_find_clk(struct plat_stmmacenet_data *plat_dat,
->  }
->  EXPORT_SYMBOL_GPL(stmmac_pltfr_find_clk);
->  
-> +static int stmmac_pltfr_get_queue_irqs(struct platform_device *pdev,
-> +				       struct stmmac_resources *stmmac_res,
-> +				       bool tx)
-> +{
-> +	int *irqs = tx ? &stmmac_res->tx_irq[0] : &stmmac_res->rx_irq[0];
-> +	char name[16];
-> +	int i;
-> +
-> +	/* RX channels irq */
-> +	STMMAC_FOREACH_MTL_QUEUE(i, MTL_MAX_RX_QUEUES) {
+> Ran into this patch while looking at other stuff. Theo could you explain
+> this analysis to someone not really au fait with phys? Looking at
+> soc.dtsi files won't show you phys, since that's a board level decision,
+> but you have found one for the zynqmp-gem so I guess that's just the way
+> you presented the data?
+> mpfs definitely has phys attached, so is you not finding one for it but
+> finding for zynqmp, an indication that you were only looking for rgmii
+> phys? Also, is the analysis of the connected phy driver accurate for
+> zynmqmp?
+> zynqmp-zc1751-xm018-dc4.dts seems to have 4 ethernet phys:
+> 		ethernet_phy0: ethernet-phy@0 { /* Marvell 88e1512 */
+> 			reg = <0>;
+> 		};
+> 		ethernet_phy7: ethernet-phy@7 { /* Vitesse VSC8211 */
+> 			reg = <7>;
+> 		};
+> 		ethernet_phy3: ethernet-phy@3 { /* Realtek RTL8211DN */
+> 			reg = <3>;
+> 		};
+> 		ethernet_phy8: ethernet-phy@8 { /* Vitesse VSC8211 */
+> 			reg = <8>;
+> 		};
 
-You've missed that there are two separate definitions for tx and rx
-queues - while they are currently the same number, code shouldn't
-make that assumption.
+Ethernet PHYs (drivers/net/phy/) are different from generic PHYs
+(drivers/phy/). Ethernet PHYs are completely different beast with a
+completely separate subsystem, which doesn't have a "set_mode" method.
 
-> +		scnprintf(name, sizeof(name), "%cx-queue-%d",
-> +			  tx ? 't' : 'r', i);
-
-I'm not happy with this method of combining the two loops.
-
-Maybe instead:
-
-static int stmmac_pltfr_get_irq_array(struct platform_device *pdev,
-				      const char *fmt, int *irqs,
-				      size_t num)
-{
-	char name[16];
-	size_t i;
-
-	for (i = 0; i < num; i++) {
-		if (snprintf(name, sizeof(name), fmt, i) >= sizeof(name))
-			return -EINVAL;
-
-		irqs[i] = platform_get_irq_byname_optional(pdev, name);
-		if (irqs[i] == -EPROBE_DEFER) {
-			return irqs[i];
-		} else if (irqs[i] <= 0) {
-			dev_dbg(&pdev->dev, "IRQ %s not found\n", name);
-
-			irqs[i] = 0;
-			break;
-		}
-	}
-
-	return 0;
-}
-
-which has the advantage that it becomes a generic helper for getting an
-any array of IRQs.
-
->  int stmmac_get_platform_resources(struct platform_device *pdev,
->  				  struct stmmac_resources *stmmac_res)
->  {
-> +	int ret;
-> +
->  	memset(stmmac_res, 0, sizeof(*stmmac_res));
->  
->  	/* Get IRQ information early to have an ability to ask for deferred
-> @@ -735,7 +766,20 @@ int stmmac_get_platform_resources(struct platform_device *pdev,
->  
->  	stmmac_res->addr = devm_platform_ioremap_resource(pdev, 0);
->  
-> -	return PTR_ERR_OR_ZERO(stmmac_res->addr);
-> +	if (IS_ERR(stmmac_res->addr))
-> +		return PTR_ERR(stmmac_res->addr);
-> +
-> +	/* TX channels irq */
-> +	ret = stmmac_pltfr_get_queue_irqs(pdev, stmmac_res, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* RX channels irq */
-> +	ret = stmmac_pltfr_get_queue_irqs(pdev, stmmac_res, false);
-> +	if (ret)
-> +		return ret;
-
-These then become:
-
-	ret = stmmac_pltfr_get_irq_array(pdev, "tx-queue-%d", 
-					 stmmac_res->tx_irq,
-					 MTL_MAX_TX_QUEUES);
-	if (ret)
-		return ret;
-
-	ret = stmmac_pltfr_get_irq_array(pdev, "rx-queue-%d", 
-					 stmmac_res->rx_irq,
-					 MTL_MAX_RX_QUEUES);
-	if (ret)
-		return ret;
-
-This has the advantage that one can grep for rx-queue to find it,
-and we also use the correct limit for each queue type.
+Théo is referring to generic PHYs not Ethernet PHYs.
 
 -- 
 RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
