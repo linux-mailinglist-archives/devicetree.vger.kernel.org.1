@@ -1,972 +1,353 @@
-Return-Path: <devicetree+bounces-268944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wH/gNOaGoGknkgQAu9opvQ
-	(envelope-from <devicetree+bounces-268944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:46:14 +0100
+	id 4DyMC56LoGkCkwQAu9opvQ
+	(envelope-from <devicetree+bounces-268946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:06:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 009AF1ACC98
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:46:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81E601AD3E0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:06:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6E8603082A41
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:51:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48B3A342B534
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C0346AF39;
-	Thu, 26 Feb 2026 16:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD1B43E9E3;
+	Thu, 26 Feb 2026 16:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Imtz/Ra/"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="iYtpCID/";
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="iYtpCID/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020107.outbound.protection.outlook.com [52.101.69.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A96D43E4A0;
-	Thu, 26 Feb 2026 16:31:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772123510; cv=none; b=sUM4Sv2mJCSRB9QWiu/J4HRc6GGz+g4boBBjgREV/+pxIVsOO5+0FGWnGPmSgNW5avm/oVNzQRndiQoG0ldKSwSpKpL+phw9IwyB6qgDsTejF0rfkD9S5BuTIn23K4VJoCk/EiJPoKXobhrunpTZ4DYKQz69+pXj+8bQNvOINP0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772123510; c=relaxed/simple;
-	bh=z/KWzUHMb54VEyUeH2mPdNeQoyUyEwGuGPFoNwxPs/U=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mxwEtJqKhMY9HeQrMkKNENUNNEGb3/qnSgm+P0S9SSmeTGbAuWJ6SFdQHQNO/p3OpVVs6Z1tBz7KWjbQ5I6WdIhOniwWJSPfa97YLcKNWL/2bl4BzWqpJXSVhBaE/tageIRbf/PaABLtfunxyB/nvp3O+WDOfrbwKvbZRKD0x8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Imtz/Ra/; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61QGM4sx3025355;
-	Thu, 26 Feb 2026 11:31:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=FhufH
-	28ky51X5eRSCsSAfZ/g/5BO2JUPKVmZpYaA7+k=; b=Imtz/Ra/ZlYxJ73nz3ink
-	C+0V3ir60iuGPhh8WVHsdzFDl31XcwVZXRKdEcOlrCrwigCSeJZPr9mN3Rccpc3F
-	TzzNZozDKL94yf7aEM31i7irkXFyLapSEdAPiO322ikQsRwRsTRxSVPNeHtwyPMe
-	liwvDCYU7S38jobpzHv7iQo+XQGJ5sL3aHNudxf+33Yjdb9WyXyQk+eTonMFghKF
-	Jxa2tX9lJPhSCu9jk2M2DgZxCVsFrbVz9P1pe+7m/fOdYPEVi3pdaVzukBbaUVpx
-	zX9bEFALWGA/U6FDIoE6KofwEEfTTXLq4HX/yzyZ48lmRFWSWasIirlV2jouokp4
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4cj8tdc0x4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Feb 2026 11:31:37 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 61QGVapg056516
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 26 Feb 2026 11:31:36 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Thu, 26 Feb
- 2026 11:31:35 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Thu, 26 Feb 2026 11:31:35 -0500
-Received: from JGERONI2-L01.ad.analog.com (JGERONI2-L01.ad.analog.com [10.116.32.144])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 61QGUkMp008067;
-	Thu, 26 Feb 2026 11:31:30 -0500
-From: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
-To: <linux-iio@vger.kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jonathan
- Cameron <jic23@kernel.org>,
-        David Lechner <dlechner@baylibre.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Andy Shevchenko
-	<andy@kernel.org>
-Subject: [PATCH 2/2] iio: temperature: add ADI MAX30210 driver
-Date: Fri, 27 Feb 2026 00:30:41 +0800
-Message-ID: <20260226163041.169786-3-johnerasmusmari.geronimo@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260226163041.169786-1-johnerasmusmari.geronimo@analog.com>
-References: <20260226163041.169786-1-johnerasmusmari.geronimo@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEA44266A8;
+	Thu, 26 Feb 2026 16:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.107
+ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772123812; cv=fail; b=mLPa0bxVeQJcuKFS5oxon1GszZ5z8pfnuF6GL/h8cvlSxqsAUpdYXaMyJGewYCWWj0mEUKzhsAc2LQNwF0pni3UHKt4lb/Y8B2d9FB+ChNl6du7SJVZTekkv6nwyqQnzUCGj5+JGG9Pd/Y8H7+Kwt4GGRVq7ju8scLaj8MqLjas=
+ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772123812; c=relaxed/simple;
+	bh=SRmFx0QtLDZuUnAWPGWgLNercF2ivnukuL3p68NHaLQ=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=AfRNlgtjAMV9XgG3AcK4n931dwBaUY0rULZ5d+NGhGa+klvUG28lz4EasbQqHUFpEv54KCr7tDQ0by4MLG9kehOygdC+3mOPeIdxK2fkXiI/no1sn08xm6y7Shm6iv1w7Nz2U6vKQMhNmRNMlrDexaH4nBofyUpE9Rj4snWqht8=
+ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=iYtpCID/; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=iYtpCID/; arc=fail smtp.client-ip=52.101.69.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=DCSMcgZb2PhpdVCgxaVBthtsVgLcy84+etZ5G84x4bdr/1ULGiRHBwboFu2HzoumcY1eQtkk1FClRcUI283UosXfHZbkwF/1lj7llvpIhl3C6WkzSneCfE+Gy6SLetz4RTdcaemVQHJ0X5/pBSKGmXlIa0OsI3v/xQyA9M17ZGKpfx+wPbemLMx/1D2zW+rsvl4W++uShsbaPcNmskIx2QNJsg8uYd8FkekUR5abAEAIMsLq9w40rhNpaf7ljw2GbkfFWIcx0WjMepjSLTYA1xSmB5lTd5cC0R3u/I6KUCt7rA0fc6HTfVw+xp5/kS0EHOV8iiJWQLA6Pc55OCHJTw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qwPS27pltrXxDEZlv9hVtR7ndByENZSXju56C3GiUyA=;
+ b=l6N330ZJtVWFyQibb+zSbjZljenStUfbO3WsyOmjsNm9Oigzukqi4UDCx0Ed6wUonh2Q1OQNf8IwAUjyT50SPhXWbl8FrScJEeIw9OpOCn36lzipOu4IcJ7RAWBAOMcM9eDNoW0ayziI5PybgLxAVOJUtFvCe8mjX6EuANc/ID9ay8ziApDIZsiAwnboVHjgbydrIJniFgflhrp3E94O0/lOCioseE/pvQFzH2lVkq/ZRL2neXy279/WSFRPtJrm9foi+ECAwVE4T3stjrlxjRmK8Snkqk5R45UkKLvVD1TMk/Ns/neOa8lhdNtaNSKYaUGQI3HHEaULpD+vqksY3w==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=softfail (sender ip
+ is 52.17.62.50) smtp.rcpttodomain=gmail.com smtp.mailfrom=solid-run.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=solid-run.com;
+ dkim=pass (signature was verified) header.d=solidrn.onmicrosoft.com; arc=pass
+ (0 oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=solid-run.com]
+ dkim=[1,1,header.d=solid-run.com] dmarc=[1,1,header.from=solid-run.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qwPS27pltrXxDEZlv9hVtR7ndByENZSXju56C3GiUyA=;
+ b=iYtpCID/nXjY56+U1TNE3/hAG26nGwDfMc8URMyCFjDw7+IjbjpZQsvX5ZNtJB4b8aLn5ERrQOM4iWxW/OF1zHiwv04CFN0+FjfSWywDp6E9j7lsIMbR2FA/vVpPxaCa4uH1/Nf0d7Rl35JZTF5zPcatnLE4OU4SXUF5EMPbsfE=
+Received: from DU7PR01CA0041.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:50e::6) by AM0PR04MB6835.eurprd04.prod.outlook.com
+ (2603:10a6:208:180::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Thu, 26 Feb
+ 2026 16:36:47 +0000
+Received: from DU6PEPF0000B61B.eurprd02.prod.outlook.com
+ (2603:10a6:10:50e:cafe::cb) by DU7PR01CA0041.outlook.office365.com
+ (2603:10a6:10:50e::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.26 via Frontend Transport; Thu,
+ 26 Feb 2026 16:36:44 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 52.17.62.50)
+ smtp.mailfrom=solid-run.com; dkim=pass (signature was verified)
+ header.d=solidrn.onmicrosoft.com;dmarc=fail action=none
+ header.from=solid-run.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ solid-run.com discourages use of 52.17.62.50 as permitted sender)
+Received: from eu-dlp.cloud-sec-av.com (52.17.62.50) by
+ DU6PEPF0000B61B.mail.protection.outlook.com (10.167.8.132) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.12
+ via Frontend Transport; Thu, 26 Feb 2026 16:36:47 +0000
+Received: from emails-6509700-12-mt-prod-cp-eu-2.checkpointcloudsec.com (ip-10-20-5-107.eu-west-1.compute.internal [10.20.5.107])
+	by mta-outgoing-dlp-431-mt-prod-cp-eu-2.checkpointcloudsec.com (Postfix) with ESMTPS id 1FCF280794;
+	Thu, 26 Feb 2026 16:36:47 +0000 (UTC)
+X-Mailbox-Line: From b'josua@solid-run.com' Thu Feb 26 16:36:41 2026
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kXa/qpsuSUEVIpPrLgySXlU3OxSwg7udvbWT+t45IqfO7LS0Wg7suD02KJ6m8WkPeugN/n79HyrEnSpFuWQsX7zBB1/HzK1lQO/s8exkuTu/X1sBLD+5HczTVF7r4YuX82QX9dHJKHq0Y6WDYuCJj5zKTPZzguEsKMKTSfsUDjHTWj3xkGn3MhnbaEh0FKeh8MnAltX3PWTr5hsl4UeRdNck7kYZYEqbe9FH5HgH+GSNVawRZ7lxNjSwc+EI8ktI57EHP2VFxIJnol0CEZxXL2pYVwVbeif3vGbUKSTEylznVXJc6ez/46UoSUXsujFmZZ9Sb1o8TDpjCnJmJ2IEdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qwPS27pltrXxDEZlv9hVtR7ndByENZSXju56C3GiUyA=;
+ b=ENopS50/76cnOpZt/7ygJNXEDD5dRXFPfCNHWgb8bARMbmX71Enn0WghcA/2S52NVRxAz1vmrjg7hPHRkbT/xlNBKyMwz3qEhr5yingwDmDKacR89+dPmuXS8f8HAY4i4H4oXhxuUNrybpZMbIct2su8bcbxx84Z6zUUKSQQaoeWHUq+NByRLabGKHifUVgcPVPKoMDTF5tO1B42bKzJMPuUVpRh2G89+GbwJ8BkbFkU/z+5T5mhIDoVdDUI8e5ZAZux/+SUKkQuXbjymJci8evDr7HlE6LWCzK9AHgfZdw963+1HMgQzbnaEWsbgL6Bnzl9WjOgFjWzdXKrsmubaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qwPS27pltrXxDEZlv9hVtR7ndByENZSXju56C3GiUyA=;
+ b=iYtpCID/nXjY56+U1TNE3/hAG26nGwDfMc8URMyCFjDw7+IjbjpZQsvX5ZNtJB4b8aLn5ERrQOM4iWxW/OF1zHiwv04CFN0+FjfSWywDp6E9j7lsIMbR2FA/vVpPxaCa4uH1/Nf0d7Rl35JZTF5zPcatnLE4OU4SXUF5EMPbsfE=
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+Received: from AM9PR04MB8747.eurprd04.prod.outlook.com (2603:10a6:20b:408::11)
+ by AM9PR04MB8081.eurprd04.prod.outlook.com (2603:10a6:20b:3e2::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Thu, 26 Feb
+ 2026 16:36:35 +0000
+Received: from AM9PR04MB8747.eurprd04.prod.outlook.com
+ ([fe80::a0c7:9bd0:56e1:576a]) by AM9PR04MB8747.eurprd04.prod.outlook.com
+ ([fe80::a0c7:9bd0:56e1:576a%4]) with mapi id 15.20.9654.014; Thu, 26 Feb 2026
+ 16:36:35 +0000
+From: Josua Mayer <josua@solid-run.com>
+Subject: [PATCH v9 0/8] arm64: dts: add description for solidrun imx8mp
+ hummingboard-iiot
+Date: Thu, 26 Feb 2026 18:36:29 +0200
+Message-Id: <20260226-imx8mp-hb-iiot-v9-0-4533235eeb34@solid-run.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAI52oGkC/6XQTWrDMBAF4KsErauiGVmylFXvUbqw/mpBbQU7N
+ SnBd+84EGJid9XlG5iPx7uyMQ45jux4uLIhTnnMpadgXw7Mt03/GXkOlBkKVCBQ89xdTHfireM
+ 5lzNXqJyQLsZGI6On0xBTvtzA9w/KbR7PZfi5+RMs1ztVP1MTcMG1kcloqWoD5m0sXznw4bt/9
+ aVjCzfhgwCxJZCIYFDKEIO1Nu4RckXAlpBEuARN5ZNKjdklqgeBAjZERYSSJATtEVzaI9Sd0AJ
+ 2CLW0kNo6jMKLepfQ/yfqFQFmQ9RExEQraQD7xxZmReCWMERYXelG0lo+Vc/EPM+/tOH+/oUCA
+ AA=
+X-Change-ID: 20251026-imx8mp-hb-iiot-525b03beea62
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
+Cc: Mikhail Anikin <mikhail.anikin@solid-run.com>, 
+ Yazan Shhady <yazan.shhady@solid-run.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Josua Mayer <josua@solid-run.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: TLZP290CA0014.ISRP290.PROD.OUTLOOK.COM
+ (2603:1096:950:9::13) To AM9PR04MB8747.eurprd04.prod.outlook.com
+ (2603:10a6:20b:408::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=NubcssdJ c=1 sm=1 tr=0 ts=69a07569 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
- a=0sLvza09kfJOxVLZPwjg:22 a=N--XFCr6TIEc_64PeIT2:22 a=gAnH3GRIAAAA:8
- a=VwQbUJbxAAAA:8 a=UXJdt2enOCQcncN7INsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: w4ZZMj4JDXCuARqXXvWkjibCvBAINRXC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI2MDE0OSBTYWx0ZWRfXzG4rb8MTEfaJ
- 7lXyMfl22wcE8C+iUmZ3PAkmMDA6n7oqkZUIVBk0wbz3hvcbEi3uQ3wQI68y5qguVw/byFkhQCF
- n3qX1F6p8volb4gbCy/QcUdx4vZMVeUi70/YCN5UU/1/E6CRCROCQ5VgCHQ5yNTLCWXB0DzoNJT
- z00VpYi1zCzl+7ohFpryaU9bEoNcJVQLz0v6fbf6mrJ3IBvwb12vyJZPa1H3ACnPT6eAEZ9ufHv
- OCjyniI00eYiRtCs6QoFQ9M//FsrrkpG5rQ/4hT8E3snpXy45U1Cr8l1KGhy3KWgk3go4O3yZpT
- Ze1sW1DKlCIEkO97/rOT2OLr7y85pF5G9SeClsEWgDEayJwzZnk0TPija8HK3n3mswet7cf9Bov
- KVPDrmbrIzVAyc/7dVBo/H8vD0V/773EuIFdVPSArqqeQ57wxss5xH75x+ACDroydmadzbajGNa
- +GnGvB1RcMNlQFsG5Lg==
-X-Proofpoint-ORIG-GUID: w4ZZMj4JDXCuARqXXvWkjibCvBAINRXC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-26_01,2026-02-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0
- suspectscore=0 impostorscore=0 malwarescore=0 clxscore=1011 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602260149
+X-MS-TrafficTypeDiagnostic:
+	AM9PR04MB8747:EE_|AM9PR04MB8081:EE_|DU6PEPF0000B61B:EE_|AM0PR04MB6835:EE_
+X-MS-Office365-Filtering-Correlation-Id: 204c6db8-274c-4911-94ec-08de75553bfe
+X-CLOUD-SEC-AV-Info: solidrun,office365_emails,sent,inline
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info-Original:
+ ZxYjD0CYf57SrJ55asvKzfMK1X0YICBHS3yIY/A5ZQ+Mc2gvQ0nXZJGFxzoUhEUC6vgLoea6HgZ4C9939X3Um3dkJRifkS1rFnARdN9HYBfDkcjJez1Pgw0OKu7zXF9EhaZUtujY4CB4SkPZUW0VI6jvq2gYYdfL42fSBOgj81nqMxksOqBw86enMYv7bZg7aYoCYVXQE/KKWXnoN1fubbfZizgsBJdmGeQBlls/QXK1pEDMK4jNmxXDLMGtvMIB3AZ8VXo935VWqNDUCb7UoOpSyulQ7SCkmLMlnGlIR74tq3QcqMZSiwa3sUdcLyu6jM2G/oTBhO+fo53CZDNJ3Dpw98VshV0L52ynBo7iXgZJv7kC8RpgnstLR/vZXJK+F8C/vPfR+VKWbCHRkMyTx/RZEmAzqniYdSQ2J0pnKbS8ywvQELYA7V+IHOmo88mm5oLXEvFAMS4z3iniVwEuiG4pTblFskbVeWwsWsoN/l2czb/ACtdwWVRkwQJxcZcsePNrsNH3A/n3Xp7Lze+K8XFSnellpRsLapkLmB2zTX09fHaxBUaO8vy2j88zixzp///+qqCsA7zWRt2l2JW4uyveszQED4voV7Yqlmq2KOL9h1bmFxWMiwOR5xk31eND9dF2ClhtTNGrT7485Ot8Ri6i33pRybpe+fRtMIttNryowf4Id8PbeBOPoH/49JY2sWQQZcZBUrH8RLy/poAf2ib1/4PrE2zi9k6hj6Gt19OjT/qm+s7GtoaA5P3xD+bI
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8747.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8081
+X-CLOUD-SEC-AV-INT-Relay: sent<mta-outgoing-dlp-mt-prod-cp-eu-2.checkpointcloudsec.com>
+X-CLOUD-SEC-AV-UUID: d0b09068edf04cba8a65c912051bf7e6:solidrun,office365_emails,sent,inline:10942ff6038381d3ca8c2fa350b4a692
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ DU6PEPF0000B61B.eurprd02.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	adca5c08-7f2c-4a01-2e98-08de755534e2
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|35042699022|36860700013|82310400026|14060799003|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	PT0XZhPPh2MHnoYzNiFW6FYVxELQnhO0HVUBNnRgBIiAhKhmQO1ZXuCqiooPbPZX+3Z/Ux/W06fDTBpAJR6yfQk26Ih04CL9g1fXZbn0fLzlj3mbxYAhAXCaziCk5Hm0tqIBLybxRn5Do46XIUuN/10eTwLC/xKY1OXAi68VCjDMbaycHd2X97mvr3p9DcCBG6VNINmN/YNC4kD8IuZTxteG7T0rf28c0n/cmHYRlqI0UxqI5Gfx8j+Hlp0mhAJ6iZWR/b5GsluXLqf+W2V9rak4e8fBNT6N9bVz1Crod1d5VzP8mhFLCiRTYSHVE2d6331bD+aNLvlz8BrbCWKmqY4H8prNsSY1T8IC5PnAfmZRDIcpJiR0w378vQOqUXsD8nu8HZumc1NrZd6BKcBjTCpx3I8J70WjsTBseyshwr4tN8aeLi7CL5RRMG0PStx4p30xv6zh8zEWGNPx77bxfohgVNOS61zK+x7kd1bSmDosIl3KBlIITIwpOWpym+zwsHjTbr4qqeUvGPObW5LBCRHu5vSupiz75DZZ5dLjMPLBl8aZnyZjhjrUyj2juNA19BOF265PYFXDggABy784w7iJ95S6ntMVNOd/pg/2jUK4DtYvzOO0FoYrBKlzSZsZJlvDOkoXOy8QZlaa9fbPGqO7rBa6tfsNUIsiak4M/57LD152yXVWnpeyIP1/rLbfAIULdFeJuEZ75N5ctMoEOjUqFFtyLqC/7K8CKRYC+GaRcpEqBbGNPbH5xnduyiyX9rDvhGDpH18PFjR965pfaawFzRI/vfpfGvVjOEm0Jfk=
+X-Forefront-Antispam-Report:
+	CIP:52.17.62.50;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu-dlp.cloud-sec-av.com;PTR:eu-dlp.cloud-sec-av.com;CAT:NONE;SFS:(13230040)(376014)(7416014)(35042699022)(36860700013)(82310400026)(14060799003)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	Et9C6NDwk+BM12thsYhxeYRmeOU5HdjDbZrYc7Svjn2MMi3+It6mhbp7agtrKUQAQMXdUSkELj9kRZGpUFJrFd6vS6GdvGBTMlL3qsOk1GZyxUx2XMkcnSsV2p7a05OrC4C9nzSw+dsyUzI8u1hsxhhyzz1O/PhIE33QpjaE1V+J4gHceT34ctp05PEzMt8vKWxsM/ST9KVUcpVqVZypS2nF5nvkrtADLNUyZmMTgTrdE/B0KDwTmCMORMbSjzXQ6ne9j/5AIQvoVxWvR/yHyMGHXmwbKGYVkaoXFn5mDhQ4yobjnHDuUbWHmjPisyC02uzsXdNtXrjK34lEXpmlHu/Mx4erEIODsJE8u6Pg3VHnWvxDPTgO5cTQeqp2uMvZ7iaTvO/QtrvLSSVedp8WXOudEIPk6j5NOjOjlENFMJhv2vzC/JCEKF+0Mgun1tkd
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 16:36:47.1946
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 204c6db8-274c-4911-94ec-08de75553bfe
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a4a8aaf3-fd27-4e27-add2-604707ce5b82;Ip=[52.17.62.50];Helo=[eu-dlp.cloud-sec-av.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF0000B61B.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6835
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+X-Spamd-Result: default: False [1.94 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=3];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[solidrn.onmicrosoft.com:s=selector1-solidrn-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[solid-run.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[analog.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268944-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268946-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[johnerasmusmari.geronimo@analog.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
+	FROM_NEQ_ENVFROM(0.00)[josua@solid-run.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[solidrn.onmicrosoft.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 009AF1ACC98
+X-Rspamd-Queue-Id: 81E601AD3E0
 X-Rspamd-Action: no action
 
-MAX30210 ±0.1°C Accurate Ultra-Small Low-Power Digital Temperature Sensor
+This patchset mainly adds description for 3 SolidRun boards:
+- i.MX8MP Hummingboard IIoT
+- SolidSense N8 Compact
+- i.MX8MM Hummingboard Ripple
 
-Signed-off-by: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
+This includes dt bindings and a range of bug-fixes:
+
+- dt bindings for the boards
+- fix to dsi panel bindings referencing panel-common and adding port
+  property
+- cosmetic fix to some  solidrun imx8mp boards for regulator gpio
+   polarity
+- fix dsi hdmi bridge on hummingboard pulse
+- compile dtbs with symbols to support overlays
+- gpiod_set_value _can_sleep conversion for panel and touchscreen
+   drivers
+
+Open Questions:
+
+- How to describe HX3 USB-2.0/3.0 Hub placed on a USB-2.0-only Bus
+  (affects imx8mm-hummingboard-ripple.dts)
+- Is "description for" implied not only on dt-bindings patches, but also
+  dts? E.g. is this commit subject acceptable?:
+  "arm64: dts: add solidrun solidsense-n8 board"
+
+Signed-off-by: Josua Mayer <josua@solid-run.com>
 ---
- MAINTAINERS                        |   8 +
- drivers/iio/temperature/Kconfig    |  10 +
- drivers/iio/temperature/Makefile   |   1 +
- drivers/iio/temperature/max30210.c | 758 +++++++++++++++++++++++++++++
- 4 files changed, 777 insertions(+)
- create mode 100644 drivers/iio/temperature/max30210.c
+Changes in v9:
+- rephrase mini-hdmi patch commit description.
+  (Reported-by: Frank Li <Frank.li@nxp.com>)
+- combined 2 gpio muxes for can-bus into single mux, as they are on the
+  same electrical path and should be selected together.
+- rebase on v7.0-rc1
+- Link to v8: https://lore.kernel.org/r/20260128-imx8mp-hb-iiot-v8-0-9646a3025cf4@solid-run.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1c75276404df..2abdbcf3a8e5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1638,6 +1638,14 @@ W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
- F:	drivers/iio/dac/max22007.c
- 
-+ANALOG DEVICES INC MAX30210 DRIVER
-+M:	John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/devicetree/bindings/iio/temperature/adi,max30210.yaml
-+F:	drivers/iio/temperature/max30210.c
-+
- ANALOG DEVICES INC ADA4250 DRIVER
- M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
- L:	linux-iio@vger.kernel.org
-diff --git a/drivers/iio/temperature/Kconfig b/drivers/iio/temperature/Kconfig
-index 9328b2250ace..2d7cb50e2538 100644
---- a/drivers/iio/temperature/Kconfig
-+++ b/drivers/iio/temperature/Kconfig
-@@ -184,4 +184,14 @@ config MCP9600
- 	  This driver can also be built as a module. If so, the module
- 	  will be called mcp9600.
- 
-+config MAX30210
-+	tristate "MAX30210 Low-Power I2C Digital Temperature Sensor"
-+	depends on I2C
-+	help
-+	  If you say yes here you get support for MAX30210 low-power digital
-+	  temperature sensor chip connected via I2C.
-+
-+	  This driver can also be build as a module. If so, the module
-+	  will be called max30210.
-+
- endmenu
-diff --git a/drivers/iio/temperature/Makefile b/drivers/iio/temperature/Makefile
-index 07d6e65709f7..e5aad14dc09b 100644
---- a/drivers/iio/temperature/Makefile
-+++ b/drivers/iio/temperature/Makefile
-@@ -8,6 +8,7 @@ obj-$(CONFIG_LTC2983) += ltc2983.o
- obj-$(CONFIG_HID_SENSOR_TEMP) += hid-sensor-temperature.o
- obj-$(CONFIG_MAXIM_THERMOCOUPLE) += maxim_thermocouple.o
- obj-$(CONFIG_MAX30208) += max30208.o
-+obj-$(CONFIG_MAX30210) += max30210.o
- obj-$(CONFIG_MAX31856) += max31856.o
- obj-$(CONFIG_MAX31865) += max31865.o
- obj-$(CONFIG_MCP9600) += mcp9600.o
-diff --git a/drivers/iio/temperature/max30210.c b/drivers/iio/temperature/max30210.c
-new file mode 100644
-index 000000000000..aaa3a26be131
---- /dev/null
-+++ b/drivers/iio/temperature/max30210.c
-@@ -0,0 +1,758 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Analog Devices MAX30210 I2C Temperature Sensor driver
-+ *
-+ * Copyright 2026 Analog Devices Inc.
-+ */
-+
-+#include <asm/div64.h>
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/debugfs.h>
-+#include <linux/delay.h>
-+#include <linux/errno.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/events.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/iio/trigger.h>
-+#include <linux/iio/triggered_buffer.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/log2.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/property.h>
-+#include <linux/pwm.h>
-+#include <linux/regmap.h>
-+#include <linux/stat.h>
-+#include <linux/string.h>
-+#include <linux/unaligned.h>
-+#include <linux/units.h>
-+
-+#define MAX30210_STATUS_REG		0x00
-+#define MAX30210_INT_EN_REG		0x02
-+#define MAX30210_FIFO_DATA_REG		0x08
-+#define MAX30210_FIFO_CONF_1_REG	0x09
-+#define MAX30210_FIFO_CONF_2_REG	0x0A
-+#define MAX30210_SYS_CONF_REG		0x11
-+#define MAX30210_PIN_CONF_REG		0x12
-+#define MAX30210_TEMP_ALM_HI_REG	0x22
-+#define MAX30210_TEMP_ALM_LO_REG	0x24
-+#define MAX30210_TEMP_INC_THRESH_REG	0x26
-+#define MAX30210_TEMP_DEC_THRESH_REG	0x27
-+#define MAX30210_TEMP_CONF_1_REG	0x28
-+#define MAX30210_TEMP_CONF_2_REG	0x29
-+#define MAX30210_TEMP_CONV_REG		0x2A
-+#define MAX30210_TEMP_DATA_REG		0x2B
-+#define MAX30210_TEMP_SLOPE_REG		0x2D
-+#define MAX30210_UNIQUE_ID_REG		0x30
-+#define MAX30210_PART_ID_REG		0xFF
-+
-+#define MAX30210_A_FULL_MASK   BIT(7)
-+#define MAX30210_TEMP_RDY_MASK BIT(6)
-+#define MAX30210_TEMP_DEC_MASK BIT(5)
-+#define MAX30210_TEMP_INC_MASK BIT(4)
-+#define MAX30210_TEMP_LO_MASK  BIT(3)
-+#define MAX30210_TEMP_HI_MASK  BIT(2)
-+#define MAX30210_PWR_RDY_MASK  BIT(0)
-+
-+#define MAX30210_FLUSH_FIFO_MASK BIT(4)
-+
-+#define MAX30210_EXT_CNV_EN_MASK	BIT(7)
-+#define MAX30210_EXT_CVT_ICFG_MASK	BIT(6)
-+#define MAX30210_INT_FCFG_MASK		GENMASK(3, 2)
-+#define MAX30210_INT_OCFG_MASK		GENMASK(1, 0)
-+
-+#define MAX30210_CHG_DET_EN_MASK	BIT(3)
-+#define MAX30210_RATE_CHG_FILTER_MASK	GENMASK(2, 0)
-+
-+#define MAX30210_TEMP_PERIOD_MASK	GENMASK(3, 0)
-+#define MAX30210_ALERT_MODE_MASK	BIT(7)
-+
-+#define MAX30210_AUTO_MASK	BIT(1)
-+#define MAX30210_CONV_T_MASK	BIT(0)
-+
-+#define MAX30210_PART_ID		0x45
-+#define MAX30210_FIFO_SIZE		64
-+#define MAX30210_FIFO_INVAL_DATA	GENMASK(23, 0)
-+#define MAX30210_WATERMARK_DEFAULT	(0x40 - 0x1F)
-+
-+#define MAX30210_INT_EN(state, mask)	((state) ? (mask) : 0x0)
-+
-+#define MAX30210_UNIQUE_ID_LEN		6
-+#define MAX30210_EXT_CVT_FREQ_MIN	1
-+#define MAX30210_EXT_CVT_FREQ_MAX	20
-+
-+struct max30210_state {
-+	/*
-+	 * Prevent simultaneous access to the i2c client.
-+	 */
-+	struct mutex lock;
-+	struct regmap *regmap;
-+	struct iio_trigger *trig;
-+	struct gpio_desc *powerdown_gpio;
-+	u8 watermark;
-+	u8 data[3 * MAX30210_FIFO_SIZE]  __aligned(IIO_DMA_MINALIGN);
-+};
-+
-+static const int samp_freq_avail[] = {
-+	0, 15625,
-+	0, 31250,
-+	0, 62500,
-+	0, 125000,
-+	0, 250000,
-+	0, 500000,
-+	1, 0,
-+	2, 0,
-+	4, 0,
-+	8, 0
-+};
-+
-+static const struct regmap_config max30210_regmap = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = MAX30210_PART_ID_REG,
-+};
-+
-+static int max30210_read_temp(struct regmap *regmap, unsigned int reg,
-+			      int *temp)
-+{
-+	u8 uval[2] __aligned(IIO_DMA_MINALIGN);
-+	int ret;
-+
-+	ret = regmap_bulk_read(regmap, reg, uval, 2);
-+	if (ret)
-+		return ret;
-+
-+	*temp = sign_extend32(get_unaligned_be16(uval), 15);
-+
-+	return IIO_VAL_INT;
-+}
-+
-+static int max30210_write_temp(struct regmap *regmap, unsigned int reg,
-+			       int temp)
-+{
-+	u8 uval[2] __aligned(IIO_DMA_MINALIGN);
-+
-+	put_unaligned_be16(temp, uval);
-+
-+	return regmap_bulk_write(regmap, reg, uval, 2);
-+}
-+
-+static void max30210_fifo_read(struct iio_dev *indio_dev)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	u32 samp;
-+	int ret, i, j;
-+
-+	ret = regmap_bulk_read(st->regmap, MAX30210_FIFO_DATA_REG,
-+			       st->data, 3 * st->watermark);
-+	if (ret < 0)
-+		return dev_err(&indio_dev->dev, "Failed to read from fifo.\n");
-+
-+	for (i = 0; i < st->watermark; i++) {
-+		samp = 0;
-+
-+		for (j = 0; j < 3; j++) {
-+			samp <<= 8;
-+			samp |= st->data[3 * i + j];
-+		}
-+
-+		if (samp == MAX30210_FIFO_INVAL_DATA) {
-+			dev_err(&indio_dev->dev, "Invalid data\n");
-+			continue;
-+		}
-+
-+		iio_push_to_buffers(indio_dev, &samp);
-+	}
-+}
-+
-+static irqreturn_t max30210_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	unsigned int status;
-+	int ret;
-+
-+	guard(mutex)(&st->lock);
-+
-+	ret = regmap_read(st->regmap, MAX30210_STATUS_REG, &status);
-+	if (ret) {
-+		dev_err(&indio_dev->dev, "Status byte read error\n");
-+		goto exit_irq;
-+	}
-+
-+	if (status & MAX30210_PWR_RDY_MASK) {
-+		dev_info(&indio_dev->dev, "power-on\n");
-+		st->watermark = MAX30210_WATERMARK_DEFAULT;
-+	}
-+
-+	if (status & MAX30210_A_FULL_MASK)
-+		max30210_fifo_read(indio_dev);
-+
-+	if (status & MAX30210_TEMP_HI_MASK)
-+		iio_push_event(indio_dev,
-+			       IIO_UNMOD_EVENT_CODE(IIO_TEMP, 0,
-+						    IIO_EV_TYPE_THRESH,
-+						    IIO_EV_DIR_RISING),
-+			       iio_get_time_ns(indio_dev));
-+
-+	if (status & MAX30210_TEMP_LO_MASK)
-+		iio_push_event(indio_dev,
-+			       IIO_UNMOD_EVENT_CODE(IIO_TEMP, 0,
-+						    IIO_EV_TYPE_THRESH,
-+						    IIO_EV_DIR_FALLING),
-+			       iio_get_time_ns(indio_dev));
-+
-+exit_irq:
-+	iio_trigger_notify_done(indio_dev->trig);
-+	return IRQ_HANDLED;
-+}
-+
-+static int max30210_reg_access(struct iio_dev *indio_dev, unsigned int reg,
-+			       unsigned int writeval, unsigned int *readval)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+
-+	if (!readval)
-+		return regmap_write(st->regmap, reg, writeval);
-+
-+	return regmap_read(st->regmap, reg, readval);
-+}
-+
-+static int max30210_validate_trigger(struct iio_dev *indio_dev,
-+				     struct iio_trigger *trig)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+
-+	if (st->trig != trig)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int max30210_read_event(struct iio_dev *indio_dev,
-+			       const struct iio_chan_spec *chan,
-+			       enum iio_event_type type,
-+			       enum iio_event_direction dir,
-+			       enum iio_event_info info, int *val, int *val2)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+
-+	if (info == IIO_EV_INFO_VALUE) {
-+		switch (dir) {
-+		case IIO_EV_DIR_RISING:
-+			switch (type) {
-+			case IIO_EV_TYPE_THRESH:
-+				return max30210_read_temp(st->regmap,
-+							  MAX30210_TEMP_ALM_HI_REG, val);
-+			default:
-+				return -EINVAL;
-+			}
-+			break;
-+		case IIO_EV_DIR_FALLING:
-+			switch (type) {
-+			case IIO_EV_TYPE_THRESH:
-+				return max30210_read_temp(st->regmap,
-+							  MAX30210_TEMP_ALM_LO_REG, val);
-+			default:
-+				return -EINVAL;
-+			}
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int max30210_write_event(struct iio_dev *indio_dev,
-+				const struct iio_chan_spec *chan,
-+				enum iio_event_type type,
-+				enum iio_event_direction dir,
-+				enum iio_event_info info, int val, int val2)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+
-+	if (info == IIO_EV_INFO_VALUE) {
-+		switch (dir) {
-+		case IIO_EV_DIR_RISING:
-+			switch (type) {
-+			case IIO_EV_TYPE_THRESH:
-+				return max30210_write_temp(st->regmap,
-+							   MAX30210_TEMP_ALM_HI_REG, val);
-+			default:
-+				return -EINVAL;
-+			}
-+			break;
-+		case IIO_EV_DIR_FALLING:
-+			switch (type) {
-+			case IIO_EV_TYPE_THRESH:
-+				return max30210_write_temp(st->regmap,
-+							   MAX30210_TEMP_ALM_LO_REG, val);
-+			default:
-+				return -EINVAL;
-+			}
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int max30210_read_event_config(struct iio_dev *indio_dev,
-+				      const struct iio_chan_spec *chan,
-+				      enum iio_event_type type,
-+				      enum iio_event_direction dir)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, MAX30210_INT_EN_REG, &val);
-+	if (ret)
-+		return ret;
-+
-+	switch (dir) {
-+	case IIO_EV_DIR_RISING:
-+		switch (type) {
-+		case IIO_EV_TYPE_THRESH:
-+			return FIELD_GET(MAX30210_TEMP_HI_MASK, val);
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	case IIO_EV_DIR_FALLING:
-+		switch (type) {
-+		case IIO_EV_TYPE_THRESH:
-+			return FIELD_GET(MAX30210_TEMP_LO_MASK, val);
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int max30210_write_event_config(struct iio_dev *indio_dev,
-+				       const struct iio_chan_spec *chan,
-+				       enum iio_event_type type,
-+				       enum iio_event_direction dir, int state)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	unsigned int val;
-+
-+	switch (dir) {
-+	case IIO_EV_DIR_RISING:
-+		switch (type) {
-+		case IIO_EV_TYPE_THRESH:
-+			val = MAX30210_INT_EN(state, MAX30210_TEMP_HI_MASK);
-+
-+			return regmap_update_bits(st->regmap,
-+						  MAX30210_INT_EN_REG,
-+						  MAX30210_TEMP_HI_MASK, val);
-+		default:
-+			return -EINVAL;
-+		}
-+		break;
-+	case IIO_EV_DIR_FALLING:
-+		switch (type) {
-+		case IIO_EV_TYPE_THRESH:
-+			val = MAX30210_INT_EN(state, MAX30210_TEMP_LO_MASK);
-+
-+			return regmap_update_bits(st->regmap,
-+						  MAX30210_INT_EN_REG,
-+						  MAX30210_TEMP_LO_MASK, val);
-+		default:
-+			return -EINVAL;
-+		}
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int max30210_read_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int *val,
-+			     int *val2, long mask)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	unsigned int uval;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = 5;
-+
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		ret = regmap_read(st->regmap, MAX30210_TEMP_CONF_2_REG, &uval);
-+		if (ret)
-+			return ret;
-+
-+		uval = FIELD_GET(MAX30210_TEMP_PERIOD_MASK, uval);
-+
-+		*val = 8;
-+
-+		/**
-+		 * register values 0x9 or above have the same sample
-+		 * rate of 8Hz
-+		 */
-+		*val2 = uval >= 0x9 ? 1 : BIT(0x9 - uval);
-+
-+		return IIO_VAL_FRACTIONAL;
-+	case IIO_CHAN_INFO_RAW:
-+		ret = iio_device_claim_direct_mode(indio_dev);
-+		if (ret)
-+			return ret;
-+
-+		ret = regmap_write(st->regmap, MAX30210_TEMP_CONV_REG,
-+				   MAX30210_CONV_T_MASK);
-+		if (ret)
-+			goto release_dmode;
-+
-+		fsleep(8000);
-+
-+		ret = max30210_read_temp(st->regmap, MAX30210_TEMP_DATA_REG, val);
-+
-+release_dmode:
-+		iio_device_release_direct_mode(indio_dev);
-+		return ret;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int max30210_read_avail(struct iio_dev *indio_dev,
-+			       struct iio_chan_spec const *chan,
-+			       const int **vals, int *type, int *length,
-+			       long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*vals = samp_freq_avail;
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		*length = ARRAY_SIZE(samp_freq_avail);
-+
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int max30210_write_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan, int val,
-+			      int val2, long mask)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	u64 data;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		ret = iio_device_claim_direct_mode(indio_dev);
-+		if (ret)
-+			return ret;
-+
-+		/**
-+		 * micro_value = val * 1000000 + val2
-+		 * reg_value = ((micro_value * 64) / 1000000) - 1
-+		 */
-+		data = (val * MICRO + val2) << 6;
-+		do_div(data, MICRO);
-+
-+		data = fls_long(data - 1);
-+		data = FIELD_PREP(MAX30210_TEMP_PERIOD_MASK, data);
-+
-+		ret = regmap_update_bits(st->regmap, MAX30210_TEMP_CONF_2_REG,
-+					 MAX30210_TEMP_PERIOD_MASK,
-+					 (unsigned int)data);
-+
-+		iio_device_release_direct_mode(indio_dev);
-+		return ret;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int max30210_write_raw_get_fmt(struct iio_dev *indio_dev,
-+				      struct iio_chan_spec const *chan,
-+				      long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_trigger_ops max30210_trigger_ops = {
-+	.validate_device = &iio_trigger_validate_own_device,
-+};
-+
-+static int max30210_set_watermark(struct iio_dev *indio_dev, unsigned int val)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	unsigned int reg;
-+	int ret;
-+
-+	if (val < 1 || val > MAX30210_FIFO_SIZE)
-+		return -EINVAL;
-+
-+	reg = MAX30210_FIFO_SIZE - val;
-+
-+	ret = regmap_write(st->regmap, MAX30210_FIFO_CONF_1_REG, reg);
-+	if (ret)
-+		return ret;
-+
-+	st->watermark = val;
-+
-+	return 0;
-+}
-+
-+static ssize_t hwfifo_watermark_show(struct device *dev,
-+				     struct device_attribute *devattr,
-+				     char *buf)
-+{
-+	struct max30210_state *st = iio_priv(dev_to_iio_dev(dev));
-+
-+	return sysfs_emit(buf, "%d\n", st->watermark);
-+}
-+
-+IIO_STATIC_CONST_DEVICE_ATTR(hwfifo_watermark_min, "1");
-+IIO_STATIC_CONST_DEVICE_ATTR(hwfifo_watermark_max,
-+			     __stringify(MAX30210_FIFO_SIZE));
-+static IIO_DEVICE_ATTR_RO(hwfifo_watermark, 0);
-+
-+static const struct iio_dev_attr *max30210_fifo_attributes[] = {
-+	&iio_dev_attr_hwfifo_watermark_min,
-+	&iio_dev_attr_hwfifo_watermark_max,
-+	&iio_dev_attr_hwfifo_watermark,
-+	NULL,
-+};
-+
-+static int max30210_buffer_preenable(struct iio_dev *indio_dev)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = regmap_update_bits(st->regmap, MAX30210_INT_EN_REG,
-+				 MAX30210_A_FULL_MASK, MAX30210_A_FULL_MASK);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(st->regmap, MAX30210_FIFO_CONF_2_REG,
-+				 MAX30210_FLUSH_FIFO_MASK,
-+				 MAX30210_FLUSH_FIFO_MASK);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(st->regmap, MAX30210_TEMP_CONV_REG,
-+			   MAX30210_AUTO_MASK | MAX30210_CONV_T_MASK);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int max30210_buffer_postdisable(struct iio_dev *indio_dev)
-+{
-+	struct max30210_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = regmap_update_bits(st->regmap, MAX30210_INT_EN_REG,
-+				 MAX30210_A_FULL_MASK, 0x0);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(st->regmap, MAX30210_FIFO_CONF_2_REG,
-+				 MAX30210_FLUSH_FIFO_MASK,
-+				 MAX30210_FLUSH_FIFO_MASK);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(st->regmap, MAX30210_TEMP_CONV_REG, 0x0);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct iio_buffer_setup_ops max30210_buffer_ops = {
-+	.preenable = max30210_buffer_preenable,
-+	.postdisable = max30210_buffer_postdisable,
-+};
-+
-+static const struct iio_info max30210_info = {
-+	.read_raw = max30210_read_raw,
-+	.read_avail = max30210_read_avail,
-+	.write_raw = max30210_write_raw,
-+	.write_raw_get_fmt = max30210_write_raw_get_fmt,
-+	.hwfifo_set_watermark = max30210_set_watermark,
-+	.debugfs_reg_access = &max30210_reg_access,
-+	.validate_trigger = &max30210_validate_trigger,
-+	.read_event_value = max30210_read_event,
-+	.write_event_value = max30210_write_event,
-+	.write_event_config = max30210_write_event_config,
-+	.read_event_config = max30210_read_event_config,
-+};
-+
-+static const struct iio_event_spec max30210_events[] = {
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_RISING,
-+		.mask_separate = BIT(IIO_EV_INFO_VALUE) | BIT(IIO_EV_INFO_ENABLE),
-+	}, {
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_FALLING,
-+		.mask_separate = BIT(IIO_EV_INFO_VALUE) | BIT(IIO_EV_INFO_ENABLE),
-+	},
-+};
-+
-+static const struct iio_chan_spec max30210_channels = {
-+	.type = IIO_TEMP,
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+			      BIT(IIO_CHAN_INFO_SCALE) |
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),
-+	.output = 0,
-+	.scan_index = 0,
-+	.event_spec = max30210_events,
-+	.num_event_specs = ARRAY_SIZE(max30210_events),
-+	.scan_type = {
-+		.sign = 's',
-+		.realbits = 16,
-+		.storagebits = 32,
-+		.shift = 8,
-+		.endianness = IIO_BE,
-+	},
-+};
-+
-+static int max30210_setup(struct max30210_state *st, struct device *dev)
-+{
-+	unsigned int val;
-+
-+	/* Power down to reset device */
-+	st->powerdown_gpio = devm_gpiod_get_optional(dev, "powerdown",
-+						     GPIOD_OUT_HIGH);
-+	if (IS_ERR(st->powerdown_gpio))
-+		return dev_err_probe(dev, PTR_ERR(st->powerdown_gpio),
-+				     "Failed to request powerdown GPIO.\n");
-+
-+	/* Power up device */
-+	gpiod_set_value(st->powerdown_gpio, 0);
-+
-+	fsleep(700);
-+
-+	/* Clear status byte */
-+	return regmap_read(st->regmap, MAX30210_STATUS_REG, &val);
-+}
-+
-+static int max30210_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct iio_dev *indio_dev;
-+	struct max30210_state *st;
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA))
-+		return -EOPNOTSUPP;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+
-+	mutex_init(&st->lock);
-+
-+	ret = devm_regulator_get_enable(dev, "vdd");
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to enable vdd regulator.\n");
-+
-+	st->regmap = devm_regmap_init_i2c(client, &max30210_regmap);
-+	if (IS_ERR(st->regmap))
-+		return dev_err_probe(dev, PTR_ERR(st->regmap),
-+				     "Failed to allocate regmap.\n");
-+
-+	ret = max30210_setup(st, dev);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = &max30210_channels;
-+	indio_dev->num_channels = 1;
-+	indio_dev->name = "max30210";
-+	indio_dev->info = &max30210_info;
-+
-+	ret = devm_iio_triggered_buffer_setup_ext(dev, indio_dev, NULL,
-+						  max30210_trigger_handler,
-+						  IIO_BUFFER_DIRECTION_IN,
-+						  &max30210_buffer_ops,
-+						  max30210_fifo_attributes);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (client->irq) {
-+		st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
-+						  indio_dev->name,
-+						  iio_device_id(indio_dev));
-+		if (!st->trig)
-+			return -ENOMEM;
-+
-+		st->trig->ops = &max30210_trigger_ops;
-+		iio_trigger_set_drvdata(st->trig, indio_dev);
-+		ret = devm_iio_trigger_register(dev, st->trig);
-+		if (ret)
-+			return ret;
-+
-+		indio_dev->trig = st->trig;
-+		ret = devm_request_threaded_irq(dev, client->irq,
-+						iio_trigger_generic_data_rdy_poll,
-+						NULL, IRQF_TRIGGER_FALLING,
-+						indio_dev->name, st->trig);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = devm_iio_device_register(dev, indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id max30210_id[] = {
-+	{ "max30210", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, max30210_id);
-+
-+static const struct of_device_id max30210_of_match[] = {
-+	{ .compatible = "adi,max30210" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, max30210_of_match);
-+
-+static struct i2c_driver max30210_driver = {
-+	.driver = {
-+		.name = "max30210",
-+		.of_match_table = max30210_of_match,
-+	},
-+	.probe = max30210_probe,
-+	.id_table = max30210_id,
-+};
-+module_i2c_driver(max30210_driver);
-+
-+MODULE_AUTHOR("John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com");
-+MODULE_DESCRIPTION("MAX30210 low-power digital temperature sensor");
-+MODULE_LICENSE("GPL");
+Changes in v8:
+- sorted most dt nodes by name.
+  (Reported-by: Frank Li <Frank.li@nxp.com>)
+- reworded hb-iiot commit description.
+  (Reported-by: Frank Li <Frank.li@nxp.com>)
+- reworded commit description changing dtc-flags for imx8mp-sr-som based
+  boards.
+- set DTC_FLAGS before dtb in Makefiles.
+  (Reported-by: Frank Li <Frank.li@nxp.com>)
+- fixed spelling and missing paragraph separation for mini-hdmi patch.
+  (Reported-by: Frank Li <Frank.li@nxp.com>)
+- Link to v7: https://lore.kernel.org/r/20260118-imx8mp-hb-iiot-v7-0-ef1176119a8e@solid-run.com
+
+Changes in v7:
+- updated Makefile to apply each addon to the base dtb, for better
+  coverage at build-time and dtbs_check.
+  Fixes Rob Hering bot warnings.
+- Fixed subject version prefix (v6 was prefixed with v5)
+- Link to v6: https://lore.kernel.org/r/20260101-imx8mp-hb-iiot-v5-0-b369b2e0c07f@solid-run.com
+
+Changes in v6:
+- imx8mm-hb-ripple: sorted i2c devices by address;
+  removed unnecessary newline.
+  (Reported-by: Shawn Guo <shawnguo@kernel.org>)
+- hb-iiot dts: sorted aliases alphabetically;
+  fixed gpio flags for vmmc regulator;
+  specified led@3 reg field in hexadecimal.
+  (Reported-by: Shawn Guo <shawnguo@kernel.org>)
+- Link to v5: https://lore.kernel.org/r/20251221-imx8mp-hb-iiot-v5-0-4a4dad916348@solid-run.com
+
+Changes in v5:
+- rebased on v6.19-rc1
+- dropped ilitek-ts patch already picked into input-next
+- solidsense-n8 / imx8mm-sr-som: drop untested wake-on-lan support
+- hb-iiot: disable software unsupported rtc timer irq
+- hb-iiot: fix wrong pins selected for uart4
+- Link to v4: https://lore.kernel.org/r/20251201-imx8mp-hb-iiot-v4-0-53a4cd6c21bf@solid-run.com
+
+Changes in v4:
+- dropped patches already picked into drm-misc-next
+- ronbo panel: picked up reviewed-by tag
+  (Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>)
+- ilitek-ts: changed mdelay calls on reset path to fsleep
+  (Note Dmitry requested msleep/usleep_range)
+  (Reported-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>)
+- changed hummingboard-iiot tpm irq type to level
+- Link to v3: https://lore.kernel.org/r/20251117-imx8mp-hb-iiot-v3-0-bf1a4cf5fa8e@solid-run.com
+
+Changes in v3:
+- sinmplified language in gpiod_can_sleep patches.
+  (Reported-By: Frank Li <Frank.li@nxp.com>)
+- collected ack on winstar lvds panel binding
+  (Acked-by: Conor Dooley <conor.dooley@microchip.com>)
+- Link to v2: https://lore.kernel.org/r/20251107-imx8mp-hb-iiot-v2-0-d8233ded999e@solid-run.com
+
+Changes in v2:
+- fix spelling mistakes in commit descriptions.
+- remove redundant "binding for" from subject:
+  https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst
+  (Reported-by: Krzysztof Kozlowski <krzk@kernel.org>)
+- remove one useless comment from imx8mm-sr-som.dtsi to fix long line
+  warning.
+- change ronbo panel binding to inherit panel-common and switch
+  additionalProperties to unevaluatedProperties.
+  (Reported-by: Krzysztof Kozlowski <krzk@kernel.org>)
+- add dt binding for winstar lvds panel
+- fix dtbs_check for dsi & lvds panel addons
+- change n8 board dts comment-style in header
+- collected ack on solidrun boards bindings patch (patch 1 in the series)
+  (Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>)
+- added standard led label property to hb-iiot multi-purpose leds
+  ensuring consistent names in case lp5562 driver starts using it.
+- Link to v1: https://lore.kernel.org/r/20251027-imx8mp-hb-iiot-v1-0-683f86357818@solid-run.com
+
+---
+Josua Mayer (8):
+      dt-bindings: arm: fsl: Add various solidrun i.mx8m boards
+      arm64: dts: imx8mp-hummingboard-pulse/cubox-m: fix vmmc gpio polarity
+      arm64: dts: imx8mp-hummingboard-pulse: fix mini-hdmi dsi port reference
+      arm64: dts: imx8mp-sr-som: build dtbs with symbols for overlay support
+      arm64: dts: add description for SolidRun i.MX8MP HummingBoard IIoT
+      arm64: dts: imx8mp-hummingboard-iiot: add dt overlays for muxable ports
+      arm64: dts: add description for solidrun solidsense-n8 board
+      arm64: dts: add description for solidrun i.mx8mm som and evb
+
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   9 +
+ arch/arm64/boot/dts/freescale/Makefile             |  23 +
+ .../dts/freescale/imx8mm-hummingboard-ripple.dts   | 335 ++++++++
+ arch/arm64/boot/dts/freescale/imx8mm-sr-som.dtsi   | 393 ++++++++++
+ .../dts/freescale/imx8mn-solidsense-n8-compact.dts | 851 +++++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp-cubox-m.dts   |   2 +-
+ ...hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso |  69 ++
+ ...ummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso | 105 +++
+ .../imx8mp-hummingboard-iiot-rs485-a.dtso          |  18 +
+ .../imx8mp-hummingboard-iiot-rs485-b.dtso          |  18 +
+ .../dts/freescale/imx8mp-hummingboard-iiot.dts     | 712 +++++++++++++++++
+ .../imx8mp-hummingboard-pulse-common.dtsi          |   2 +-
+ .../imx8mp-hummingboard-pulse-mini-hdmi.dtsi       |  11 +-
+ 13 files changed, 2539 insertions(+), 9 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20251026-imx8mp-hb-iiot-525b03beea62
+
+Best regards,
 -- 
-2.34.1
+Josua Mayer <josua@solid-run.com>
 
 
