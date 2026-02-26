@@ -1,219 +1,190 @@
-Return-Path: <devicetree+bounces-268720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6JxODtMToGlAfgQAu9opvQ
-	(envelope-from <devicetree+bounces-268720-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:35:15 +0100
+	id 2FBFFFgXoGlifgQAu9opvQ
+	(envelope-from <devicetree+bounces-268721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:50:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D038C1A37BE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:35:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD991A3BE7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:50:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 537BA300D1DB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:35:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 53410310BEC3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57610313285;
-	Thu, 26 Feb 2026 09:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89353314A84;
+	Thu, 26 Feb 2026 09:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6y1sbm6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T6LhgF0a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343CC2ECD3A;
-	Thu, 26 Feb 2026 09:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63941313273;
+	Thu, 26 Feb 2026 09:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772098509; cv=none; b=TdhDrA0d9PresCOoTblEtS5xoUhT0W1dveq7pG2sUXX7gPACuXf+yCwVFdNgRE3xXu7+Pypg25ZDy0NYTXVNO6Gxgfainyeta5tJKNX48IBzfYgWmDjTJqINff+g3dT3TvQ7o+bO4sCL1KQmxmb9FsIp3Ck22XBF2N81CqwuPkw=
+	t=1772098524; cv=none; b=cXJSyoZEaYdQAkkE91UZ4p0dD+uuBPyB6OZTd+XaBgaW370sJl9bStjotjBpv8mVAC1kXyRWv6OfSb1kAxxjeYGHEeGcYR6LjRAz4qwFIT7qH/oUWYq5ZovhupkDAnGJD2B8ITGb4cK2hlYYTR/Pz9IAIOmt+MteB0mh6hUEnZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772098509; c=relaxed/simple;
-	bh=nZoAG/AHgrRLPWFPuZBLaGkAy+EvSXlIPWoUqKxQB78=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=b3AofVvNlxOwpuNiZN42QIrlicN6Or4Cf6AftvdtydVE5OnVhsmqLTlkQxakoOKjIGT21fShfXIFGNA0JpmQUrsAauS435UHvdEanRX7377NSYKAm9MJ81bwME30fdCb5qGO8/JY+ijlDnuyBxCMSSWJlS3ka94BgMpPDqv+c6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6y1sbm6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6A88C19423;
-	Thu, 26 Feb 2026 09:35:05 +0000 (UTC)
+	s=arc-20240116; t=1772098524; c=relaxed/simple;
+	bh=BiyJ81SxScU57jELiaqGgJ1rzy+WfmrqSqukjYcWC0k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bvoMNAfiuoAZwMZrkgd82Gyv3E8X3yXTR7lIeRRbS+xonC+719XZ/twU7EfDH6CyeqhpgRLi8q2eG7iXa7odXqlw7GlZl0cFZpEYkTWbkK4ClAN0BognV7em6Gv5jUEK5Zfo4XzsS54gtxo6w3fEneBk3wzBhCV4CvAmOC65ftA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T6LhgF0a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F9CCC19422;
+	Thu, 26 Feb 2026 09:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772098508;
-	bh=nZoAG/AHgrRLPWFPuZBLaGkAy+EvSXlIPWoUqKxQB78=;
-	h=From:Date:Subject:To:Cc:From;
-	b=a6y1sbm68dMHKfvNAtLCUe1t/xibAQ2meXz7xeLsd5rLCegCkXZjY95llTyHf1aR6
-	 PZGbaXKo9ffD0Z53ZA09aJhGMNu1E4bhqiVbct/vXuWA+gIlqutptFD+H0dbBCrKTj
-	 XfeNR35Q5gN65vSNoslmLNFK1ck+BNtkuPw1P8CeAL36o8kNiNK6GYg/6WpzQxzHX6
-	 +7nounLe+k/8gEgsaCt/0vb1yQy6iKUZrJ+5i2YzTqb6lnMSHvWiFhkgibytzdbirq
-	 fviWgGR86sHSJ+SCfE4QOyUvOmPuBj1SbpRHL7ID07oaySXgE71a1OkyB1UwDxg/T1
-	 l8UIiAlhyVDNA==
-From: Yixun Lan <dlan@kernel.org>
-Date: Thu, 26 Feb 2026 09:35:00 +0000
-Subject: [PATCH] riscv: dts: spacemit: adapt regulator node name to
- preferred form
+	s=k20201202; t=1772098524;
+	bh=BiyJ81SxScU57jELiaqGgJ1rzy+WfmrqSqukjYcWC0k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T6LhgF0a317V+Zcc/3uhQ+nwwIiAjavtsnUVVjBJMZy/X8VH0VMZzVD1K+yLfw2f8
+	 vkgxy0dLQxqSVSvP0OuoxvXTqT50BnzK6P1RyyQjFqT9gD1jNELJG60AKAOWqqINNW
+	 RJ7Va6bgX4Kqui9UoKOR30OdixaWMsCJiaJKXran6dMHZzf93wZEPHhSuEWdH2TgCm
+	 x03yUh+TCJV4vXaCptlqxdEyr5twTKR3sCof6Vhty7chRmQBSG9HmvpYcGcprPGWnK
+	 mwUXJdM3UxAeJDFoRbvvy7aZb3DFpgkYgWaFian1XgCc2DVfzzfHNDYKTTpHy8RP3W
+	 nL7DU3SOZBXHQ==
+Message-ID: <13f7c3bb-a45a-4351-9852-ef23471a7a06@kernel.org>
+Date: Thu, 26 Feb 2026 10:35:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 10/18] arm64: dts: qcom: x1e80100: Add MIPI CSI PHY
+ nodes
+To: Bryan O'Donoghue <bod@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-0-95517393bcb2@linaro.org>
+ <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-10-95517393bcb2@linaro.org>
+ <-aFhVZI_TELwIThx5MiGBdSa_SX57jDQwkx5Ok4Y7OFJnrTll6svcluFDaoV5oXCAAHCn70h4xEApf8mkvZzyQ==@protonmail.internalid>
+ <20260226-shaggy-nyala-from-jupiter-7abe18@quoll>
+ <d28d9110-4b51-4732-8cc2-b389ba068e86@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <d28d9110-4b51-4732-8cc2-b389ba068e86@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-02-k1-regulator-names-v1-1-e87695d50159@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAMMToGkC/x3MQQqEMAxA0atI1hNos6joVWQWYUw1qHVIVQTx7
- haXb/H/BVlMJUNbXWByaNY1FfhPBb+R0yCofTGQo+CIAjrCyaPJsM+8rYaJF8kYqOZGoucYCEr
- 7N4l6vt/ue98P8ySJB2cAAAA=
-X-Change-ID: 20260226-02-k1-regulator-names-627a9ef1af62
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3164; i=dlan@kernel.org;
- h=from:subject:message-id; bh=nZoAG/AHgrRLPWFPuZBLaGkAy+EvSXlIPWoUqKxQB78=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpoBPGqE0mQhIlADJrWyaNKcuVJKGRqm+NeQHq9
- 8y46aaHSOiJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaaATxhsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+1YDw//XGZxYpJhOKCIQWfvtntPeLPsGDRX1qoEjpRuTDLAjxh68cw7KLe5b
- 1ynj0jaKEw/l45me9L0iQVI4kWQ/UAxkU1D4ATtcBR1RK8nBkYpNOud6MDd8dmZQz00d6pcPzDn
- EBYrTHaY/QoIAz+urTg8zXRltdMRliytxr0QlOfngsLC2IaK7fxjcvxidshN72cMQ1Ya9g+RvUx
- SOLbDWp3TTBzlSpxs/VGxA8Ryq4sFPSRfHm3V6LiH8laqTnZdhaR4+eVYb+ii1Ncx1Lm/Klu+Me
- q6AHtYGzm00pG2OCDvOVR0F1L9btUhwpGa4xw5RuD5/AffAfePmZQv/H/dMW6m5kftlddzzsYum
- nY8Lihd6M9psEiP5EybihzVBNhqrXpfPWLNwi6QlhMEjCIytCQL7QCQGUzylSN+sU3c2XwkSX2S
- 7wKQrqmlRTM4h6ZzmO4TEttz4OrbVVNQ7NrLZVW8ZUkpOb+pXunqIM5zDSw4cM1o1oFEUzuEw10
- dHugK7rzo+x6W2n7dt2yPZ+DkehdvcHuNmiSWZD23lr//vStetICEtwSqCqfDAKfFOqNkqVqoxs
- qSsQUVJKLdPw1FnJfW7oW0Dt+Hr1W7IUq2ZuPQH10zELZJ4Y+i0KFNzC12sPBMDPDGpvG5uS2Lk
- fiTiUUlEP2W9QpcADlWW9e0KMMf6cU=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268720-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268721-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,gmail.com,linaro.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D038C1A37BE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ace4000:email]
+X-Rspamd-Queue-Id: 3DD991A3BE7
 X-Rspamd-Action: no action
 
-The preferred node name for fixed-regulators has changed to pattern [1]:
- '^regulator(-[0-9]+v[0-9]+|-[0-9a-z-]+)?$'
+On 26/02/2026 10:30, Bryan O'Donoghue wrote:
+> On 26/02/2026 07:11, Krzysztof Kozlowski wrote:
+>> On Wed, Feb 25, 2026 at 03:11:27PM +0000, Bryan O'Donoghue wrote:
+>>> +
+>>>   	qup_opp_table_100mhz: opp-table-qup100mhz {
+>>>   		compatible = "operating-points-v2";
+>>>
+>>> @@ -5543,6 +5562,102 @@ cci1_i2c1: i2c-bus@1 {
+>>>   			};
+>>>   		};
+>>>
+>>> +		csiphy0: csiphy@ace4000 {
+>>> +			compatible = "qcom,x1e80100-csi2-phy";
+>>
+>> There is no such compatible documented in the kernel, nor in this
+>> patchset. Either you combine DTS into driver patchset to solve this, or
+>> don't combine DTS at all. DTS cannot go via driver tree.
+> 
+> "b4 shazam <change-id>" should work since
+> 
+> Depends-on: 
+> https://lore.kernel.org/r/20260225-x1e-csi2-phy-v2-0-7756edb67ea9@linaro.org
+> 
+> appears in the series cover, I don't know of any good way to add that 
+> type of dependency link into a patch.
 
-Adjust all SpacemiT DT regulator node names to fix this.
+Standard way how ask every other person to document it. It's even
+repeated in every Rob's bot answer - you have changelog to provide the
+binding.
 
-Link: https://lore.kernel.org/r/20240426215147.3138211-1-robh@kernel.org [1]
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
-In Review of adding DTS for OrangePi, Chukun mentioned fixed-regulator
-has preferred node names [1], so let's change it now.
-
-This isn't strictly a bug, so I've not added the Fixes tag.
-
-Link: https://lore.kernel.org/r/20260123145015.1926865-1-amadeus@jmu.edu.cn [1]
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts   | 10 +++++-----
- arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts |  4 ++--
- 2 files changed, 7 insertions(+), 7 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 5971605754b3..d55f3e148ed2 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -33,7 +33,7 @@ led1 {
- 		};
- 	};
- 
--	pcie_vcc_3v3: pcie-vcc3v3 {
-+	pcie_vcc_3v3: regulator-pcie-vcc3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "PCIE_VCC3V3";
- 		regulator-min-microvolt = <3300000>;
-@@ -41,7 +41,7 @@ pcie_vcc_3v3: pcie-vcc3v3 {
- 		regulator-always-on;
- 	};
- 
--	reg_dc_in: dc-in-12v {
-+	reg_dc_in: regulator-dc-in-12v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "dc_in_12v";
- 		regulator-min-microvolt = <12000000>;
-@@ -50,7 +50,7 @@ reg_dc_in: dc-in-12v {
- 		regulator-always-on;
- 	};
- 
--	reg_vcc_4v: vcc-4v {
-+	reg_vcc_4v: regulator-vcc-4v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_4v";
- 		regulator-min-microvolt = <4000000>;
-@@ -60,7 +60,7 @@ reg_vcc_4v: vcc-4v {
- 		vin-supply = <&reg_dc_in>;
- 	};
- 
--	usb3-vbus-5v {
-+	regulator-usb3-vbus-5v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "USB30_VBUS";
- 		regulator-min-microvolt = <5000000>;
-@@ -70,7 +70,7 @@ usb3-vbus-5v {
- 		enable-active-high;
- 	};
- 
--	usb3_hub_5v: usb3-hub-5v {
-+	usb3_hub_5v: regulator-usb3-hub-5v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "USB30_HUB";
- 		regulator-min-microvolt = <5000000>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-index 800a112d5d70..931887aee8e0 100644
---- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -21,7 +21,7 @@ chosen {
- 		stdout-path = "serial0";
- 	};
- 
--	reg_dc_in: dc-in-12v {
-+	reg_dc_in: regulator-dc-in-12v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "dc_in_12v";
- 		regulator-min-microvolt = <12000000>;
-@@ -30,7 +30,7 @@ reg_dc_in: dc-in-12v {
- 		regulator-always-on;
- 	};
- 
--	reg_vcc_4v: vcc-4v {
-+	reg_vcc_4v: regulator-vcc-4v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_4v";
- 		regulator-min-microvolt = <4000000>;
-
----
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-change-id: 20260226-02-k1-regulator-names-627a9ef1af62
+But you missed the point - combining here the DTS which still relies on
+something else is not helping.
 
 Best regards,
--- 
-Yixun Lan <dlan@kernel.org>
-
+Krzysztof
 
