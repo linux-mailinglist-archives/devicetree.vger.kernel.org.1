@@ -1,178 +1,178 @@
-Return-Path: <devicetree+bounces-268802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268803-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLTeMlg2oGkqgwQAu9opvQ
-	(envelope-from <devicetree+bounces-268802-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:02:32 +0100
+	id YCnZOHY3oGkqgwQAu9opvQ
+	(envelope-from <devicetree+bounces-268803-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:07:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4280F1A5858
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:02:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61FBE1A5915
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:07:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3400E300789B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:02:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5549A304298F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D2DC37BE76;
-	Thu, 26 Feb 2026 12:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D5E3803DC;
+	Thu, 26 Feb 2026 12:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLfZrHWE"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="OsccBc2s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ixit.cz [185.100.197.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77B3237BE6D;
-	Thu, 26 Feb 2026 12:02:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B550337FF7A;
+	Thu, 26 Feb 2026 12:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772107327; cv=none; b=uS0GaZmG2grq81UkWV7Fs690gtSoy6/lJwlsEYqaPGkweX6+xiubhacySIWCy6VHA2hjcdTD+wCH+a33BWZTG1EGbptwH2F7c8HUaYP1Fr1U78bYhwdPFHXcheQ76SSvD4QpxUMdUS6hs/bCpO/0CdN4rowu1QYpZ38iTmQnY1o=
+	t=1772107483; cv=none; b=VbhNebSwVx9KEhcodu23uilrGGK5yVOlZukdyOYIDcd84V3GIplgeQJQofP1eCShfd9wxgsUzTp7bqkYmeqKorMa6424xCOsX1V6A1bKhrMm1qOzk89FHFvl0CvGgDLZkFWan6kwfB9K2TIq5YXOyuc+U9c2ra81bdkYdlwaQwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772107327; c=relaxed/simple;
-	bh=sGT3zB4PMQOjRhDKzNF3kekJSTQmbRUhYHGyuKAUGNA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PX6CSvQHiKDwMdgsXUqC/0nSL1pdjbJKnRnGiwZBtjFp3rrmtaRKFgYZGeXm5++8L9Zad2Xmdue0UyVwxxEX0iFY19vtBEeBgmRQbJZ3cSdYV1tlhBQE70kUj1lpVT0ta/+fyF3jQJwgfcWmiXkSUI77p9DvLkquXBi8Pcrjv2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLfZrHWE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 683BDC116C6;
-	Thu, 26 Feb 2026 12:02:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772107327;
-	bh=sGT3zB4PMQOjRhDKzNF3kekJSTQmbRUhYHGyuKAUGNA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TLfZrHWENmWZlBh81ogh6V/eGtLXm0ERJty8FFF8pp7dCJw3dmsqN/quGAJLid+l1
-	 MdQb07FXpoVMclP/sCh1opQYGsbNOkjzGHNfFJmF3fMMHoUlmPMKMDhql1WLd92w0S
-	 fqdxDfkyCb6k8QsI+Gti5qGykVvLMCtQA95nGUrVQ5pr+lFYHOW3GQeR/r5ty151re
-	 2NlRX1iv7osBll+mfheLd3oX+Dk1WhbkmMyW4WmYvMjTCTWWUW/2WkpbkAk17lAVut
-	 LtvidLytHdtiwt8Eo/gb0HanXjO3czrTjkAqhDKVmHh8z1lvNSpsJmKZ/Y+RmlqP2t
-	 LbPveDPjVPaAA==
-Date: Thu, 26 Feb 2026 12:02:00 +0000
-From: Simon Horman <horms@kernel.org>
-To: Jan Petrous <jan.petrous@oss.nxp.com>
-Cc: alexandre.torgue@foss.st.com, devicetree@vger.kernel.org,
-	festevam@gmail.com, chester62515@gmail.com, s.hauer@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, davem@davemloft.net,
-	mbrugger@suse.com, netdev@vger.kernel.org, andrew+netdev@lunn.ch,
-	s32@nxp.com, pabeni@redhat.com, linux-kernel@vger.kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com,
-	robh@kernel.org, kuba@kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	ghennadi.procopciuc@oss.nxp.com, kernel@pengutronix.de,
-	shawnguo@kernel.org, edumazet@google.com, mcoquelin.stm32@gmail.com,
-	imx@lists.linux.dev
-Subject: Re: [v5,4/4] stmmac: s32: enable support for Multi-IRQ mode
-Message-ID: <aaA2ODfcRcFDkPPt@horms.kernel.org>
-References: <20260223-dwmac_multi_irq-v5-4-8fc699a5fac4@oss.nxp.com>
- <20260225092513.174261-1-horms@kernel.org>
- <aZ7IwgwP5iy2kej8@lsv051416.swis.nl-cdc01.nxp.com>
+	s=arc-20240116; t=1772107483; c=relaxed/simple;
+	bh=A5C4QbS9CXSRdirz8ZIOyDszclSyO0SOCdGbVgxXhbI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CzdNMlOD4/RHZ+HekofOU4pcTZKP/XZijVDusVWO87yClwxBwFpaIdUcmZNODl35gFRerdDh0KmLqIBoChVmzWL2hUPc8aGlnZjfQAFjvRP9xb72SAMFdvv77Wkd6QniT3CJdPfRtKqrQlXKrNU+NkfeOJLRTtvLaI0wA8b9vmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=OsccBc2s; arc=none smtp.client-ip=185.100.197.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 6D39753417AB;
+	Thu, 26 Feb 2026 13:04:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1772107475;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=A5C4QbS9CXSRdirz8ZIOyDszclSyO0SOCdGbVgxXhbI=;
+	b=OsccBc2sWznJebT4qAhpt3DAgos4AY8fcxNxNGYxf7h8Wqh9INO7VOhfNN2SYzCjAiJcmu
+	6E9cGSPh1pw5Dq47+b8MtgBQ6dHlfpEo/Ov+YhB//QcmyxliOGVRamFCaYIalLVdrWNm3A
+	goZFDZ+Obx5Wn+BU3mPRqm05nlrUG9Y=
+Message-ID: <07a5695c-2042-4962-b318-1345e1eb75dd@ixit.cz>
+Date: Thu, 26 Feb 2026 13:04:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aZ7IwgwP5iy2kej8@lsv051416.swis.nl-cdc01.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 09/11] drm/panel: Add panel driver for Samsung
+ SOUXP00-A DDIC
+To: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+ Martin Botka <martin.botka@somainline.org>,
+ Jami Kettunen <jami.kettunen@somainline.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org,
+ David Airlie <airlied@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Casey Connolly <casey.connolly@linaro.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>
+References: <20251222-drm-panels-sony-v2-0-82a87465d163@somainline.org>
+ <20251222-drm-panels-sony-v2-9-82a87465d163@somainline.org>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20251222-drm-panels-sony-v2-9-82a87465d163@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-268803-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268802-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	ASN_FAIL(0.00)[74.135.232.172.asn.rspamd.com:query timed out];
-	FREEMAIL_CC(0.00)[foss.st.com,vger.kernel.org,gmail.com,pengutronix.de,lists.infradead.org,davemloft.net,suse.com,lunn.ch,nxp.com,redhat.com,kernel.org,st-md-mailman.stormreply.com,oss.nxp.com,google.com,lists.linux.dev];
+	FREEMAIL_CC(0.00)[lists.sr.ht,somainline.org,lists.freedesktop.org,vger.kernel.org,linaro.org,gmail.com,kernel.org,suse.de,quicinc.com,ffwll.ch,collabora.com,oss.qualcomm.com,linux.intel.com,ravnborg.org];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
-	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ixit.cz:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:url,horms.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4280F1A5858
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,60hz:email,ixit.cz:mid,ixit.cz:dkim]
+X-Rspamd-Queue-Id: 61FBE1A5915
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 11:02:42AM +0100, Jan Petrous wrote:
-> On Wed, Feb 25, 2026 at 09:25:13AM +0000, Simon Horman wrote:
-> > This is an AI-generated review of your patch. The human sending this
-> > email has considered the AI review valid, or at least plausible.
-> > 
-> > For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
-> > ---
-> > stmmac: s32: enable support for Multi-IRQ mode
-> > 
-> > This commit enables Multi-IRQ mode for the S32 DWMAC driver, allowing
-> > per-queue IRQs for improved performance. The driver checks for multiple
-> > queues and per-queue IRQs, enabling multi-IRQ mode when both are present.
-> > 
-> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > > index af594a096676..4aad7077c9d6 100644
-> > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-> > 
-> > [ ... ]
-> > 
-> > > @@ -165,6 +165,16 @@ static int s32_dwmac_probe(struct platform_device *pdev)
-> > >  	plat->core_type = DWMAC_CORE_GMAC4;
-> > >  	plat->pmt = 1;
-> > >  	plat->flags |= STMMAC_FLAG_SPH_DISABLE;
-> > > +
-> > > +	/* Check for multi-IRQ config. Assumption: symmetrical rx/tx queues */
-> > > +	if (plat->rx_queues_to_use > 1 &&
-> > > +	    (res.rx_irq[0] > 0 && res.tx_irq[0] > 0)) {
-> > > +		plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
-> > > +		dev_info(dev, "Multi-IRQ mode (per queue IRQs) selected\n");
-> > > +	} else {
-> > > +		dev_info(dev, "MAC IRQ mode selected\n");
-> > > +	}
-> > 
-> > Does this validation check all queues have IRQs? The condition verifies
-> > only res.rx_irq[0] and res.tx_irq[0] but doesn't confirm that higher
-> > queues have IRQs when rx_queues_to_use > 1.
-> > 
-> > If a device tree specifies multiple queues but only provides IRQs for
-> > queue 0:
-> > 
-> >     snps,rx-queues-to-use = <2>;
-> >     interrupt-names = "macirq", "rx-queue-0", "tx-queue-0";
-> >                       /* queue 1 IRQs missing */
-> > 
-> > The driver would enable STMMAC_FLAG_MULTI_MSI_EN, but later in
-> > stmmac_request_irq_multi_msi() (drivers/net/ethernet/stmicro/stmmac/
-> > stmmac_main.c), queues with rx_irq[i] == 0 are silently skipped:
-> > 
-> >     for (i = 0; i < priv->plat->rx_queues_to_use; i++) {
-> >         if (priv->rx_irq[i] <= 0)
-> >             continue;  /* queue 1+ skipped, no handler registered */
-> >         ...
-> >     }
-> > 
-> > This would leave higher-numbered queues with no interrupt handler,
-> > causing packet loss when traffic arrives on those queues.
-> > 
-> > Would it be safer to validate all queue IRQs before enabling multi-IRQ
-> > mode, or fall back to MAC IRQ mode if any queue IRQ is missing?
-> > 
-> > > +
-> > >  	plat->rx_fifo_size = 20480;
-> > >  	plat->tx_fifo_size = 20480;
-> 
-> Hi Simon,
-> 
-> I already addressed this in v6 I sent today.
+On 22/12/2025 00:32, Marijn Suijten wrote:
+> The Samsung SOUXP00-A Display-Driver-IC is used to drive 11644x3840@60Hz
 
-Thanks!
+Nitpick, the resolution is too damn high ;-)
+
+David
+
+[...]
 
