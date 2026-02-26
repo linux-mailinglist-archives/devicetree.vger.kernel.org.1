@@ -1,39 +1,40 @@
-Return-Path: <devicetree+bounces-268798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268801-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ELKYCcA1oGkqgwQAu9opvQ
-	(envelope-from <devicetree+bounces-268798-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:00:00 +0100
+	id yN+wC+g1oGlygwQAu9opvQ
+	(envelope-from <devicetree+bounces-268801-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:00:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CF311A57B4
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B9A31A57F3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:00:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4FA443004D98
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:59:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0EAE130095C4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E33237B40B;
-	Thu, 26 Feb 2026 11:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9563803E7;
+	Thu, 26 Feb 2026 11:59:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9D2374162;
-	Thu, 26 Feb 2026 11:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2BE376BFD;
+	Thu, 26 Feb 2026 11:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772107192; cv=none; b=U2vmN/3NZmnxopYZj20w2dJELT6fUQi7l8xKl2n1lKRG8/HjxOCEPBkQQL89GG/bWRuGmEMTsKIAShKw8lOxFA4oFYwHc3WsNCaDB3ePmZOerHuYOsRJbDCrSivT4YKKepain0rnxNjW9mm3A9R9oBQjQNasC2f99JOBMB828nA=
+	t=1772107194; cv=none; b=qWF9gTRuw6tF5pkxEGTP9shmODGUtVGnDt9UUltpkfZw1xixbLII7cjh1wossbWhMtF8DRb6mWte7IklEyZ512nS6jNPJMO6/hlwAGDdcKblm69EIE4+BxknZrk276cSt3Xn8eaZf67mipJ3R547kchHss72Z0X1pA+Uh1Nir/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772107192; c=relaxed/simple;
-	bh=EaOgTajnwem1NdkuChfRGO0eMlxK4hIO67hpxVcPZBs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a4PZoD7CwHPSDLZ8aPDDvpKPH0hlv5vK86jJir9llgNfCp/xh0UodNlhJ51TN+F8Sd1fwJnV6z4fxf4vXJe//WxN55F1q3n+03LBmgyjmKAjwxqCwFwEn+oIp8zRB459wWzx2UQyvvpOkSXfs4hVE1caFY2JtKInYb7uM/Iq8aA=
+	s=arc-20240116; t=1772107194; c=relaxed/simple;
+	bh=cqK+2tOnBsx+7rtoOE1ywAEmczp2TlbRghHQhDK0I48=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=SCD1S5q6jVA9pXq0DO9OAHmKKOfdQ3mL4SzuWU51CCad2Jcd1k4FtToeoM1gqyKHsAfyn3M2n4m3mJagsTPlhWZ2Q40WN1FCnaWyFCqeBAlwBtCEIifgcJ3GmeOHnK7X5I6AVyG1t0YbMvFfnOZwES3yvP67eL7lbnYaI9ljU18=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
 Received: from duge-virtual-machine (unknown [183.192.221.67])
-	by APP-05 (Coremail) with SMTP id zQCowADXbBCiNaBpASUuCQ--.42115S2;
-	Thu, 26 Feb 2026 19:59:32 +0800 (CST)
+	by APP-05 (Coremail) with SMTP id zQCowADXbBCiNaBpASUuCQ--.42115S3;
+	Thu, 26 Feb 2026 19:59:33 +0800 (CST)
 From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
 To: krzk@kernel.org,
 	ulf.hansson@linaro.org,
@@ -51,10 +52,12 @@ Cc: pjw@kernel.org,
 	gaohan@iscas.ac.cn,
 	me@ziyao.cc,
 	Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-Subject: [PATCH v2 0/3] Add SDHCI support for Canaan K230 SoC
-Date: Thu, 26 Feb 2026 19:59:20 +0800
-Message-ID: <20260226115923.75670-1-jiayu.riscv@isrc.iscas.ac.cn>
+Subject: [PATCH v2 1/3] dt-bindings: mmc: Add sdhci support for Canaan k230
+Date: Thu, 26 Feb 2026 19:59:21 +0800
+Message-ID: <20260226115923.75670-2-jiayu.riscv@isrc.iscas.ac.cn>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260226115923.75670-1-jiayu.riscv@isrc.iscas.ac.cn>
+References: <20260226115923.75670-1-jiayu.riscv@isrc.iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +65,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowADXbBCiNaBpASUuCQ--.42115S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7KF1DKr48uF15uF45WFWruFg_yoW8tryrpF
-	Z8uFZxG34DGF4ftF4Ska1ku3W5Zrs3XrWUGr1ag34DJws5JFWYqr92k3WYqFyDGFZ7C3yj
-	vw15XFyfC398ZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
-	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
-	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
-	67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
-	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
-	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
-	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-TRANSID:zQCowADXbBCiNaBpASUuCQ--.42115S3
+X-Coremail-Antispam: 1UD129KBjvJXoW7tw45Jr1UJw1fCF47ZFy5Arb_yoW8Ww4rpF
+	Z3AFZrGr4rGF13uw1ft3Wku3W3KF1kAr4Utr1aqr1xXFsYq3WUG3y3Kwn8tr1UGF4xXaya
+	9FZrury5G342vr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUmj14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_Jr4l82xGYIkIc2
+	x26xkF7I0E14v26r4j6ryUM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0
+	Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84
+	ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AI
+	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
+	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
+	v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
+	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
+	AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
+	2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcV
+	C2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kfnx
+	nUUI43ZEXa7VUjrHUDUUUUU==
 X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.54 / 15.00];
@@ -86,11 +90,11 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268798-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268801-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[iscas.ac.cn];
@@ -106,56 +110,73 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-0.963];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0CF311A57B4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[isrc.iscas.ac.cn:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4B9A31A57F3
 X-Rspamd-Action: no action
 
-This series is based on the k230 usbphy series[1].
+The Canaan k230 uses the SDHCI from Synopsys. Add compatible strings
+to the k230. The k230 has two controllers. MMC0 supports eMMC, while
+MMC1 supports SDIO.
 
-This patch series adds SDHCI support for the Canaan K230 SoC,
-which uses Synopsys DWCMSHC SDHCI controllers, include MMC0 and MMC1.
-The hardware designs of these two controllers are different.
-The MMC0 supports eMMC, while MMC1 only supports SDIO. Detailed
-information can be found in the vendor's manual[2].
+Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+---
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-From the vendor's K230 manual:
- - MMC0 supports eMMC5.0 and SDIO3.0, usually for eMMC chips.
- - MMC1 only does SDIO3.0 in 4/1-bit mode up to SDR104, and the manual
-   clearly says it can't handle eMMC because of pin count and limits.
-
-Therefore, there are two separate compatibles and the driver treats them
-differently.
-
-Link: https://lore.kernel.org/all/20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
-Link: https://github.com/kendryte/k230_docs/blob/main/en/00_hardware/K230_Hardware_Design_Guide.md#mmc-circuit [2]
-
-Changes in v2:
-- Change the clock minItems to 5.
-- Add comments to explain the reason for setting SDHCI_PROG_CLOCK_MODE.
-- Write the power selection logic in the phy init cleaner.
-- Replace manual delay loop with read_poll_timeout.
-- Drop unnecessarily braces where a single statement will do.
-- Add the match_data pointer to dwcmshc_pltfm_data.
-- Add dwcmshc_k230_match_data struct to separate eMMC/SDIO config data
-- Split K230 into individual emmc/sdio platform data instances instead of
-  sharing one.
-- Remove redundant have_phy member in k230_priv.
-- Replace of_find_compatible_node with of_parse_phandle to get USB PHY
-  from DT phandle.
-- Link to v1: https://lore.kernel.org/all/20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn/
-
-Jiayu Du (3):
-  dt-bindings: mmc: Add sdhci support for Canaan k230
-  mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC controller support
-  riscv: dts: canaan: Add mmc nodes for K230
-
- .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  29 ++
- .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  56 ++++
- .../dts/canaan/k230-canmv-module-dshanpi.dtsi |   7 +
- arch/riscv/boot/dts/canaan/k230.dtsi          |  28 ++
- drivers/mmc/host/sdhci-of-dwcmshc.c           | 288 ++++++++++++++++++
- 5 files changed, 408 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+index 7e7c55dc2440..ae63363c0eae 100644
+--- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+@@ -23,6 +23,8 @@ properties:
+           - const: sophgo,sg2044-dwcmshc
+           - const: sophgo,sg2042-dwcmshc
+       - enum:
++          - canaan,k230-emmc
++          - canaan,k230-sdio
+           - rockchip,rk3568-dwcmshc
+           - rockchip,rk3588-dwcmshc
+           - snps,dwcmshc-sdhci
+@@ -55,6 +57,11 @@ properties:
+   reset-names:
+     maxItems: 5
+ 
++  canaan,usb-phy:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: Phandle to the Canaan K230 USB PHY node required for
++                 k230-emmc/sdio.
++
+   rockchip,txclk-tapnum:
+     description: Specify the number of delay for tx sampling.
+     $ref: /schemas/types.yaml#/definitions/uint8
+@@ -87,6 +94,28 @@ required:
+ allOf:
+   - $ref: mmc-controller.yaml#
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - canaan,k230-emmc
++              - canaan,k230-sdio
++    then:
++      properties:
++        clocks:
++          minItems: 5
++          maxItems: 5
++        clock-names:
++          items:
++            - const: core
++            - const: bus
++            - const: axi
++            - const: block
++            - const: timer
++      required:
++        - canaan,usb-phy
++
+   - if:
+       properties:
+         compatible:
 -- 
 2.53.0
 
