@@ -1,157 +1,129 @@
-Return-Path: <devicetree+bounces-268653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ED/1Fez/n2n3fAQAu9opvQ
-	(envelope-from <devicetree+bounces-268653-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:10:20 +0100
+	id QHFdCgkBoGlrfQQAu9opvQ
+	(envelope-from <devicetree+bounces-268654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:15:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75301A250B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:10:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6651A25F6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:15:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 554B83013463
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:10:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E11F8302AF12
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:14:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E49A38BF9E;
-	Thu, 26 Feb 2026 08:10:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96721393DE2;
+	Thu, 26 Feb 2026 08:14:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sVAZ0PST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B6A23BD05;
-	Thu, 26 Feb 2026 08:10:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AC7393DD0;
+	Thu, 26 Feb 2026 08:14:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772093417; cv=none; b=Kab6O6fPnTCu6MN8pm//gBlb6ZgpvqaPGRMZ0ygceYN/qaYuyEoVcMiorYbT9ZO4+jTLFf5NDCmkG6TerDSbf+gUCD5u85qgy1JpuR7FKbE5FHr6lcBDhClrAVaj6ElFM1CKUa3jTIGLSlulwwdp8o6LoY6J81DILdiZR3wxiK0=
+	t=1772093664; cv=none; b=P7OzBXziatzPdG3qxxzsn7LHSNZwksSRufX/VJiY7tQmq2BcBNPdXg9exRx73fyyfIZe7ZHP96uwwPjw47hY8qV9GIuoyydS31/tmckedGZLcZjzbrhYgUljgFIjDKQHgZFqQX2XJy4NedauA4KDaDuID6EVJTGzwuptzBVIJ5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772093417; c=relaxed/simple;
-	bh=0tbnDj4UNBcIFrI5kbDXah6aZZNKwW3vaIo+z7tG2rw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=pRyACJdVW+xxq1UzmJZMyftMyblc4MYl7F6TexgsH/WO6dXA3LAZW4ZdOT3sjE3Z5w+ZvjNKMgV7DpDF+auIj+pmjxxJDyg42xARTCau4fPHmqspwv50bcDqaUt+3xrln5ZQAautWELrmD7dj1/v58+VV7IREqZNz3cwB2OSuIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
- ajax-webmail-app2 (Coremail) ; Thu, 26 Feb 2026 16:09:44 +0800 (GMT+08:00)
-Date: Thu, 26 Feb 2026 16:09:44 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-To: "Manivannan Sadhasivam" <mani@kernel.org>
-Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
-	p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, shradha.t@samsung.com,
-	krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
-	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	ouyanghui@eswincomputing.com
-Subject: Re: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host
- controller driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <cxfbgzwsybfvixu3qqi66fvspmhe5knuevwcj6zwsakkzqwd3z@czmitvgl7nwt>
-References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
- <20260129092900.1900-1-zhangsenchuan@eswincomputing.com>
- <a3yu54e6feo5immtdju4fgvne7fh3p4ytlawfdhawmpzvagi64@o7wuhhdiitft>
- <78296255.3869.19c8eb694d6.Coremail.zhangsenchuan@eswincomputing.com>
- <cxfbgzwsybfvixu3qqi66fvspmhe5knuevwcj6zwsakkzqwd3z@czmitvgl7nwt>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1772093664; c=relaxed/simple;
+	bh=cBpqaklPgQ6xybJT3rEGKeqVJUEAUPVKjiNELQPOr+M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ufETlpBjdH5IBwT9SSY2HGmzScileH/g2ihkxppsPec2XGE1VRePtnzmTmR0+COWnZGiTypM2xcObUL5jFrbtsJkETCvRr9Mr4x/rji0tsRoyTt0hmtXGit8oIaoT7ydW8a3MwANl5xerKyS0++Ao1KBVL+b2TxPjjFG7/ALJfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sVAZ0PST; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 165C7C19422;
+	Thu, 26 Feb 2026 08:14:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772093663;
+	bh=cBpqaklPgQ6xybJT3rEGKeqVJUEAUPVKjiNELQPOr+M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sVAZ0PST4028/rspSSSNjNZIiiOUJUqm00AokSR28g2JF/46tL3BpzN5y7u8h+hCr
+	 neeiiqeUG93ugaSXW9uyFNGEkm3BJortAgXw0mdX5F3hJYTyuAVKsOhyw+tf+3XsxV
+	 fvWPMKU5cfCslslUBVOnVqIGGOLcTGbK0hTJpHy7evN7MkCw483FQZ1T+T6pZsu/2J
+	 +D0Z8paj/OXFb8ICWMKVLEiCc0KFRNWIgD0hY03HDyBd/BlAYENzQE+r9Nk1fQfgjj
+	 BoBYTaAg5T1EWChnfoGcVwIjyuz4P2PwILlvvg6lezn96Lt3K2az5oztNk4kSa1N+E
+	 1TxaUuS9IjhKw==
+Date: Thu, 26 Feb 2026 09:14:21 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>, kernel@pengutronix.de, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 7/8] dt-bindings: mux: add NXP MC33978/MC34978 AMUX
+Message-ID: <20260226-clever-rustling-dolphin-871aff@quoll>
+References: <20260225171545.1980385-1-o.rempel@pengutronix.de>
+ <20260225171545.1980385-8-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <694aeb1a.398e.19c98ff2727.Coremail.zhangsenchuan@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TQJkCgDH3aDI_59pPrgDAA--.810W
-X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgEKBmmfJ
-	IYfLwAAsr
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260225171545.1980385-8-o.rempel@pengutronix.de>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268653-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-268654-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	HAS_X_PRIO_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.594];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangsenchuan@eswincomputing.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E75301A250B
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8F6651A25F6
 X-Rspamd-Action: no action
 
-Cj4gPiA+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEwIDIvMl0gUENJOiBlaWM3NzAwOiBBZGQgRXN3
-aW4gUENJZSBob3N0IGNvbnRyb2xsZXIgZHJpdmVyCj4gPiA+IAo+ID4gPiBPbiBUaHUsIEphbiAy
-OSwgMjAyNiBhdCAwNToyOTowMFBNICswODAwLCB6aGFuZ3NlbmNodWFuQGVzd2luY29tcHV0aW5n
-LmNvbSB3cm90ZToKPiA+ID4gPiBGcm9tOiBTZW5jaHVhbiBaaGFuZyA8emhhbmdzZW5jaHVhbkBl
-c3dpbmNvbXB1dGluZy5jb20+Cj4gPiA+ID4KPiA+ID4gPiArc3RhdGljIGludCBlaWM3NzAwX3Bj
-aWVfc3VzcGVuZF9ub2lycShzdHJ1Y3QgZGV2aWNlICpkZXYpCj4gPiA+ID4gK3sKPiA+ID4gPiAr
-CXN0cnVjdCBlaWM3NzAwX3BjaWUgKnBjaWUgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsKPiA+ID4g
-PiArCj4gPiA+ID4gKwkvKgo+ID4gPiA+ICsJICogVGhlIEVTV0lOIEVJQzc3MDAgU29DIGxhY2tz
-IGhhcmR3YXJlIHN1cHBvcnQgZm9yIHRoZSBMMi9MMyBsb3ctcG93ZXIKPiA+ID4gPiArCSAqIGxp
-bmsgc3RhdGVzLiBJdCBjYW5ub3QgZW50ZXIgdGhlIEwyL0wzIFJlYWR5IHN0YXRlIHRocm91Z2gg
-dGhlCj4gPiA+ID4gKwkgKiBQTUVfVHVybl9PZmYvUE1FX1RvX0FjayBoYW5kc2hha2UgcHJvdG9j
-b2wuIFRvIGF2b2lkIHRoaXMgcHJvYmxlbSwKPiA+ID4gPiArCSAqIHRoZSBkd19wY2llX3N1c3Bl
-bmRfbm9pcnEgQVBJIGlzIG5vdCB1c2VkLgo+ID4gPiA+ICsJICovCj4gPiA+IAo+ID4gPiBXaXRo
-IDcuMCwgeW91IGNhbiBwcm92aWRlIGEgZHVtbXkgcG1lX3R1cm5fb2ZmKCkgQVBJIGFuZCBzZXQK
-PiA+ID4gJ3BjaS0+cHAuc2tpcF9sMjNfcmVhZHknIHRvIHJldXNlIHRoZSBkd19wY2llX3tzdXNw
-ZW5kL3Jlc3VtZX1fbm9pcnEgQVBJcy4KPiA+ID4gCj4gPiAKPiA+IEhpIE1hbmksCj4gPiAKPiA+
-IFNldHRpbmcgcGNpLT5wcC5za2lwX2wyM19yZWFkeSBkb2VzIGluZGVlZCBhbGxvdyB1cyB0byBy
-ZXVzZSB0aGUKPiA+IGR3X3BjaWVfc3VzcGVuZF9ub2lycSBmdW5jdGlvbi4gSG93ZXZlciwgZm9y
-IHRoZSBkd19wY2llX3Jlc3VtZV9ub2lycQo+ID4gZnVuY3Rpb24sIGlmIHRoZSBkd19wY2llX3N0
-YXJ0X2xpbmsgYW5kIGR3X3BjaWVfd2FpdF9mb3JfbGluayBBUElzIGZhaWwgdG8KPiA+IGV4ZWN1
-dGUsIHRoZSBjbGsvcmVzZXQgcmVzb3VyY2VzIGluIHRoZSBwY2ktPnBwLm9wcy0+aW5pdCBmdW5j
-dGlvbiBjYW5ub3QKPiA+IGJlIHJlbGVhc2VkLiBQZXJoYXBzIHRoZSBkd19wY2llX3Jlc3VtZV9u
-b2lycSBmdW5jdGlvbiBuZWVkcyB0byBiZSBvcHRpbWl6ZWQuCj4gCj4gV2lsbCB0aGlzIGhlbHA/
-Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdu
-d2FyZS1ob3N0LmMgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUt
-aG9zdC5jCj4gaW5kZXggNmFlNjE4OWU5YjhhLi4zOGFkNzliYmVhYjEgMTAwNjQ0Cj4gLS0tIGEv
-ZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLWhvc3QuYwo+ICsrKyBi
-L2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS1ob3N0LmMKPiBAQCAt
-MTMwMCwxNSArMTMwMCwyNCBAQCBpbnQgZHdfcGNpZV9yZXN1bWVfbm9pcnEoc3RydWN0IGR3X3Bj
-aWUgKnBjaSkKPiAgCj4gICAgICAgICByZXQgPSBkd19wY2llX3N0YXJ0X2xpbmsocGNpKTsKPiAg
-ICAgICAgIGlmIChyZXQpCj4gLSAgICAgICAgICAgICAgIHJldHVybiByZXQ7Cj4gKyAgICAgICAg
-ICAgICAgIGdvdG8gZXJyX2RlaW5pdDsKPiAgCj4gICAgICAgICByZXQgPSBkd19wY2llX3dhaXRf
-Zm9yX2xpbmsocGNpKTsKPiAgICAgICAgIGlmIChyZXQpCj4gLSAgICAgICAgICAgICAgIHJldHVy
-biByZXQ7Cj4gKyAgICAgICAgICAgICAgIGdvdG8gZXJyX3N0b3BfbGluazsKPiAgCj4gICAgICAg
-ICBpZiAocGNpLT5wcC5vcHMtPnBvc3RfaW5pdCkKPiAgICAgICAgICAgICAgICAgcGNpLT5wcC5v
-cHMtPnBvc3RfaW5pdCgmcGNpLT5wcCk7Cj4gIAo+ICsgICAgICAgcmV0dXJuIDA7Cj4gKwo+ICtl
-cnJfc3RvcF9saW5rOgo+ICsgICAgICAgZHdfcGNpZV9zdG9wX2xpbmsocGNpKTsKPiArCj4gK2Vy
-cl9kZWluaXQ6Cj4gKyAgICAgICBpZiAocGNpLT5wcC5vcHMtPmRlaW5pdCkKPiArICAgICAgICAg
-ICAgICAgcGNpLT5wcC5vcHMtPmRlaW5pdCgmcGNpLT5wcCk7Cj4gKwo+ICAgICAgICAgcmV0dXJu
-IHJldDsKPiAgfQo+ICBFWFBPUlRfU1lNQk9MX0dQTChkd19wY2llX3Jlc3VtZV9ub2lycSk7Cj4g
-CgpZZXMsIHRoaXMgY2FuIHJlbGVhc2UgdGhlIHJlc291cmNlcyBhZnRlciBpbml0LCBhZnRlciBv
-cHRpbWl6aW5nIHRoZSAKcmVzdW1lIGZ1bmN0aW9uLCBpIGNhbiByZXVzZSB0aGUgZHdfcGNpZV97
-c3VzcGVuZC9yZXN1bWV9X25vaXJxIEFQSXMuCgpJIG5vdGljZWQgdGhhdCB0aGUgZHdfcGNpZV93
-YWl0X2Zvcl9saW5rIGZ1bmN0aW9uIGhhcyBiZWVuIG9wdGltaXplZC4gSXMgCml0IG5lY2Vzc2Fy
-eSB0byByZWxlYXNlIHRoZSByZXNvdXJjZXMgb25seSB3aGVuIGl0IHJldHVybiAtRVRJTUVPVVQ/
-ClBlcmhhcHMgaXQgbmVlZHMgdG8gYmUgc2xpZ2h0bHkgaW1wcm92ZWTvvJoKCiByZXQgPSBkd19w
-Y2llX3dhaXRfZm9yX2xpbmsocGNpKTsKIGlmIChyZXQgPT0gLUVUSU1FT1VUKQogICAgICAgICBn
-b3RvIGVycl9zdG9wX2xpbms7CgpXaGF0IGFib3V0IHlvdXIgc3VnZ2VzdGlvbj8KCktpbmQgcmVn
-YXJkcywKU2VuY2h1YW4=
+On Wed, Feb 25, 2026 at 06:15:40PM +0100, Oleksij Rempel wrote:
+> +description: |
+> +  The MC33978 and MC34978 include a 24-to-1 analog multiplexer (AMUX) that
+> +  routes one of the following signals to an external AMUX pin for measurement
+> +  by an external ADC:
+> +
+> +  - Channels 0-13: SG0-SG13 switch input voltages
+> +  - Channels 14-21: SP0-SP7 switch input voltages
+> +  - Channel 22: Internal temperature diode
+> +  - Channel 23: Battery voltage (VBATP)
+> +
+> +  The AMUX requires a settling time of up to 200 us for full-scale voltage
+> +  steps. Consumers (e.g., io-channel-mux) must configure this delay.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,mc33978-mux
+> +      - nxp,mc34978-mux
+> +
+> +  '#mux-control-cells':
+> +    const: 0
+
+No resources here, so this should not be separate device node but folded
+into the parent.
+
+Best regards,
+Krzysztof
+
 
