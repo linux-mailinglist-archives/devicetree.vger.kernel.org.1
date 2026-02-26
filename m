@@ -1,190 +1,410 @@
-Return-Path: <devicetree+bounces-268964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268965-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OPcrNpOToGllkwQAu9opvQ
-	(envelope-from <devicetree+bounces-268964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:40:19 +0100
+	id EPBwB0yKoGlvkgQAu9opvQ
+	(envelope-from <devicetree+bounces-268965-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:00:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C99B1ADD55
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:40:19 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4EFF1AD2D5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:00:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A4F59339A93D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:45:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F3DF230CF817
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:48:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBA735A38F;
-	Thu, 26 Feb 2026 17:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FCC332637;
+	Thu, 26 Feb 2026 17:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HtMjet7g"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mZrPwC3g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BB5355F51
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 17:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 757123290A4;
+	Thu, 26 Feb 2026 17:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772127905; cv=none; b=nJ5a81LqRQ7PSIRVx+bnphcfuTSyO+PL0R60bn1EPbSGy5iBqZNfLLvmqT5ShunVpHNMLrEbxtiXtTaReHRNICSlTaPd0UFKvuqHMxTY1K+Hb1dkCYxw83kXa150x5cGlqfWzmH9ig3vvevbFhdWQx/bEBKZLuCQMyPH3vGSBYE=
+	t=1772128108; cv=none; b=HGqMMVk8iRngLd3+rhvDsmSMbZb7montoVMF73tbR0FnqBcr1LZleAHSJWHpe44ZbuIoO0BzvVZD0IKUVV0A6jsIX7lLgvMleO52G4ukVz09gD0nA7FTl8FgwfyI2Z0LSbMx3sdwoHREI4lFJw4xG8Q2xnt7kgF6Zm19tHMp0Q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772127905; c=relaxed/simple;
-	bh=kweqCw7nmF7ZNGp7vL1pa93p5Vo7GbVX5Lf9kd9JOhQ=;
+	s=arc-20240116; t=1772128108; c=relaxed/simple;
+	bh=KOFBdxXZLvXZb+MXTChMG7R0PNFjapyhVuj7jVA+RD4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cJkQzCRMzmZKFNZk0q0Nk9lWow1txFuKq/4MxrUKU3dmlJqfMmXqWf+E6Wuy2QTWLQriGoa6fQdX3wyvd+j+iVi7qSBn6V3buUO6KlqJ11hrCpKvIF5zqB9CKFF0QcZnCoEVhXv/jZXhjCZWaMgI02XmuJAxCKm8LyFXB2SFOjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HtMjet7g; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-65b9d8d6b7dso1889991a12.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:45:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772127902; x=1772732702; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lwTJv9LGSAlffYlkadnvjA+g9OCfZ1CRMJttWHSXLMM=;
-        b=HtMjet7go47zsjfGUVmO5SWfA2szX8fmoIwIWng0Qw1RmJyU60r7Zt+z1F2Td6e2Pz
-         Z2UqlTaMDiMkd0t0HuVa/2jOP1q2jwmpbtZ/XieMqGfjk7skhC0dKBsXCIqDH8V7l3PM
-         jEdU8EMelQH8UnWrqCuCbNMGw51tNzurR2IF/3TFdtPi84HBSwCTPdvVI2NLIsJWF2cb
-         hQnzPArpVwmI0SuSCmcOqBJ9vp38CuCJEXYlPi6QQaQzAbDIdI8TpK9n0Ef0z0VVg+Z1
-         yE4vKaZ1j8TKetM6PIojhFkDx5nqiGGMluy0QWTrpTTLltpMUaBlEaWBw4mhL9Ysjl0v
-         TzXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772127902; x=1772732702;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lwTJv9LGSAlffYlkadnvjA+g9OCfZ1CRMJttWHSXLMM=;
-        b=fkO8mEtQ5gumbg2ldpv+XL5xb3IY8y/eoELjVzuj8nKO1jyC60GV9GMFrIKRQVsvkx
-         +btbT1dH61P8mNTYpELyfJnZPdQ3+xIAv0BwTMBRU0WHoG/pZ/xIyDiwbdUh/nFD9xr1
-         NJpxRroUX6pTCpXZMnPhYipHtsUj1EBUQlLYNyPYmj/X5JKjMbluKHcFIy5mWnRe7wO4
-         p5XtfvkG3VUScwZSMY4pibRmZv4jMi3GioL0v+5zwNWkr+2onDTn145PcUSb6winSfBS
-         22Ijl+ttxujpuyC7QbqmgE6+90twBcM5eTOmqjoh4LYUytD5X2Y0a4qMZoKTlGhS7hBC
-         musw==
-X-Forwarded-Encrypted: i=1; AJvYcCX0ofQ7Iui6mvzOFyFmA2NPdXTeuVSZL/PFVm4vFsTC+o00Z2N/A9bTrP5jGRMei7Tbr4NHzkprkmx3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKYvPg4ykDIX/CQuh3uHJeabOzePHAXoxTESHhL9rsJgKLe/L0
-	K4LOsO408sx0JEEOFTl1D17QBUwv8TLwaeASrdWhKysie3T25tNBwXct+akIzw==
-X-Gm-Gg: ATEYQzxeGwltonkclqnElVYIE1vRqEGom5D/7qchgK6aeAwHS3yjRRjaIZyIspSS5tM
-	v0Eajpqsakm7bwPPToGXzb2GKP2Jfw3DqSJKDLFpmqg35+iCbKDOG1JLwUMyGftiIxk/3TbkAhN
-	2aYe8w1olx7+oanQaO3LeWD29Y+kRsdWfBXCvLauxJlRxb0QFjmflL43+D0QLZO5DV7yTBSv6kx
-	2atK30mIsklAdD8IwgQ4BdRqjlJCK/bZrS6p+xvxxB/kQJ17byOjOjZqfjE97CRUEzAxk3Cn9Kh
-	01GG2He2ihSvyYGtA4dnCAACoVOhCpavKn9e1uH2qWyCBIlhzx1yIYVWYgzbMRGrqED3OQau9sT
-	FKnrNdiB9sluvtoyGxc7SEwzcquRZ7GYhPsVrNwXDsnw11jK3jX4k3ReU3Ou+2CtacvzLAJQrrt
-	mKIkA4CWngf97XApJOJ8T2QRaIROoLSAAti0LLTyHo91Iwtc9i8bIlVav404tpBU3UQ/UZQpv9Z
-	VXf8Sa9uwm6YTUviLdABhXXWZBbY1VQONIZYL0bH1DDHJA=
-X-Received: by 2002:a17:907:f497:b0:b83:32b7:21b0 with SMTP id a640c23a62f3a-b935b502ecamr191281066b.17.1772127901905;
-        Thu, 26 Feb 2026 09:45:01 -0800 (PST)
-Received: from Lord-Beerus.station (net-188-152-100-94.cust.vodafonedsl.it. [188.152.100.94])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b935ab13564sm81364866b.9.2026.02.26.09.45.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 09:45:01 -0800 (PST)
-Date: Thu, 26 Feb 2026 18:44:59 +0100
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH v1 06/11] arm64: dts: freescale: imx8mm-var-som: Update
- WiFi/BT configuration
-Message-ID: <aaCGmyqONKj7GoOy@Lord-Beerus.station>
-References: <cover.1771353301.git.stefano.r@variscite.com>
- <3e79c4d806b8b8024b71bc99c36b09a2fbb90a65.1771353301.git.stefano.r@variscite.com>
- <CAOMZO5CAb8738HdH49WcY-JPTzQ90n4Bnmyn96_3jfw47mxOug@mail.gmail.com>
- <aZTEm8nUUVcKZH0v@Lord-Beerus.station>
- <aZXqSz_OsCC64P7i@lizhi-Precision-Tower-5810>
- <aZX0WB_6qPoCYVvC@Lord-Beerus.station>
- <aZ28RtuAWcatyVAf@Lord-Beerus.station>
- <aZ4YdCIG2JIT6BQS@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=i6mtWkFPGS2K08/e6Scwq3ttavALO45ohrxsI7EFHfHjOJlZsibG7mZ1fLryUPTZndI6RgjWxbCkKIKzLa+OdzU8iH9oErLjKLQ1xQLHYjU29zC4S8eZ0Qjwy2eEdd/50gvTmBebi4po0h021IpqPZk7uiVnh7L1PfyFJH8r0Hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mZrPwC3g; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772128105; x=1803664105;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=KOFBdxXZLvXZb+MXTChMG7R0PNFjapyhVuj7jVA+RD4=;
+  b=mZrPwC3gTMF4c1mC2tsayjr81PjqQ+fESUUkejWGk+1REiN/28aQLr5P
+   hWdHFT3CQ8Bwv3gBgWQCQVxVbT6GbaeUDzw4R6/WY24MHUdTVAhNPLmeI
+   GcszstB7nZWLNgn9ZGGM8Q59YA60UQNkw/UNkE0pM8z7OLeI4lYoSfNPt
+   YtaH0DTSuwnBTVYCFNceDCc7CY4ME40qmP0n5BIt6TrVPitQ+vansmCe4
+   XNhZujWQ1p4/aKdPpJcJIrK3hjLbNG2q5QnvaIFYtOhPej+s9BYTDOxAX
+   eRD7tGRDWIIOO/whRQOktexQACiQ7yWL7W8OoiAmZ/abR+gAHyqWJukPP
+   g==;
+X-CSE-ConnectionGUID: QJPMzClqRuSpxmAZKwc9YQ==
+X-CSE-MsgGUID: EsvGfDeBRq+tc1loBTG77w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="72901261"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; 
+   d="scan'208";a="72901261"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2026 09:48:16 -0800
+X-CSE-ConnectionGUID: yTfOAPLTQ1+sgqLqhsyLgQ==
+X-CSE-MsgGUID: aJ6PS6cvR9uqAIvYjILDBg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; 
+   d="scan'208";a="216767409"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.244.167])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2026 09:48:13 -0800
+Date: Thu, 26 Feb 2026 19:48:11 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>
+Subject: Re: [PATCH 2/2] iio: temperature: add ADI MAX30210 driver
+Message-ID: <aaCHW3hYUqHA4pgy@smile.fi.intel.com>
+References: <20260226163041.169786-1-johnerasmusmari.geronimo@analog.com>
+ <20260226163041.169786-3-johnerasmusmari.geronimo@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <aZ4YdCIG2JIT6BQS@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260226163041.169786-3-johnerasmusmari.geronimo@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268964-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,pengutronix.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268965-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,Lord-Beerus.station:mid]
-X-Rspamd-Queue-Id: 3C99B1ADD55
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smile.fi.intel.com:mid]
+X-Rspamd-Queue-Id: B4EFF1AD2D5
 X-Rspamd-Action: no action
 
-Hi Frank,
+On Fri, Feb 27, 2026 at 12:30:41AM +0800, John Erasmus Mari Geronimo wrote:
+> MAX30210 ±0.1°C Accurate Ultra-Small Low-Power Digital Temperature Sensor
 
-On Tue, Feb 24, 2026 at 04:30:28PM -0500, Frank Li wrote:
-> 
-> If can't auto detected, I think keep old dts, use overlay change to new
-> one.
-> 
-> For example, board.dtb
-> 
-> you can rename board.dtb to board-revA.dtb
-> new board.dtb, by apply verb.dtso to board-revA.dtb.  Or you direct use
-> board-revb.dtb.
-> 
-> If change is big, you can create new one.
-> 
-> Frank
+Not enough for the commit message.
 
-Thanks for the clarification, I understand that the preferred approach
-would be to keep the existing Broadcom-based DTS unchanged and add a
-separate description for the IW612-based revision.
+...
 
-My only concern is avoiding confusion in mainline.
+> +#include <asm/div64.h>
 
-The Broadcom-based SOM revision is obsolete and no longer manufactured.
-All currently produced VAR-SOM-MX8MM modules use the IW612 module, and
-this will remain the only production hardware going forward.
+linux/math64.h
 
-I would like to avoid giving the impression that we are actively
-supporting two parallel SOM revisions in mainline, while in reality
-only the IW612-based hardware exists in production.
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
 
-For this reason, would it be acceptable to:
+> +#include <linux/debugfs.h>
 
-  - move the Broadcom-based description into an explicitly legacy
-    revision-specific DTS (kept unchanged for existing users), and
-  - update the main imx8mm-var-som DTS to reflect the current
-    IW612-based hardware?
+Used?
 
-This would preserve compatibility for older boards, but ensure that
-the primary DTS in mainline represents the hardware that is actually
-produced and aligns with the rest of the VAR-SOM family.
+> +#include <linux/delay.h>
 
-Thank you again for your support and your patience!
+> +#include <linux/errno.h>
 
-Best regards,
-Stefano
+You missed err.h
+
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+
+> +#include <linux/iio/buffer.h>
+> +#include <linux/iio/events.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/iio/trigger.h>
+> +#include <linux/iio/triggered_buffer.h>
+> +#include <linux/iio/trigger_consumer.h>
+
+Wow! All of them are in use?
+
+> +#include <linux/interrupt.h>
+> +#include <linux/log2.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/property.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+> +#include <linux/stat.h>
+> +#include <linux/string.h>
+> +#include <linux/unaligned.h>
+> +#include <linux/units.h>
+
+...
+
+> +struct max30210_state {
+> +	/*
+> +	 * Prevent simultaneous access to the i2c client.
+> +	 */
+> +	struct mutex lock;
+
+> +	struct regmap *regmap;
+
+
+And if you swap them, won't the binary size be less?
+
+> +	struct iio_trigger *trig;
+> +	struct gpio_desc *powerdown_gpio;
+> +	u8 watermark;
+> +	u8 data[3 * MAX30210_FIFO_SIZE]  __aligned(IIO_DMA_MINALIGN);
+
+Hmm... Don't we have a macro for this nowadays?
+
+> +};
+
+...
+
+> +static const int samp_freq_avail[] = {
+
+Why not 2D array?
+
+> +	0, 15625,
+> +	0, 31250,
+> +	0, 62500,
+> +	0, 125000,
+> +	0, 250000,
+> +	0, 500000,
+> +	1, 0,
+> +	2, 0,
+> +	4, 0,
+> +	8, 0
+
+Leave trailing comma, it's not a terminator.
+
+> +};
+
+...
+
+> +static int max30210_read_temp(struct regmap *regmap, unsigned int reg,
+> +			      int *temp)
+> +{
+> +	u8 uval[2] __aligned(IIO_DMA_MINALIGN);
+
+No way. This is variable on stack, not all CPUs / architectures allow this.
+And actually why this alignment to begin with? Wouldn't
+
+	__be16 val;
+
+suffice?
+
+> +	int ret;
+> +
+> +	ret = regmap_bulk_read(regmap, reg, uval, 2);
+
+sizeof()
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	*temp = sign_extend32(get_unaligned_be16(uval), 15);
+> +
+> +	return IIO_VAL_INT;
+> +}
+
+...
+
+> +static void max30210_fifo_read(struct iio_dev *indio_dev)
+> +{
+> +	struct max30210_state *st = iio_priv(indio_dev);
+> +	u32 samp;
+> +	int ret, i, j;
+
+Why are 'i' and 'j' signed?
+
+
+> +	ret = regmap_bulk_read(st->regmap, MAX30210_FIFO_DATA_REG,
+> +			       st->data, 3 * st->watermark);
+> +	if (ret < 0)
+> +		return dev_err(&indio_dev->dev, "Failed to read from fifo.\n");
+> +
+> +	for (i = 0; i < st->watermark; i++) {
+
+'i' is not used outside for-loop, hence
+
+	for (unsigned int i = 0; i < st->watermark; i++) {
+
+> +		samp = 0;
+> +		for (j = 0; j < 3; j++) {
+> +			samp <<= 8;
+> +			samp |= st->data[3 * i + j];
+> +		}
+
+Reinventing get_unaligned_be32() if I'm not mistaken.
+
+> +		if (samp == MAX30210_FIFO_INVAL_DATA) {
+> +			dev_err(&indio_dev->dev, "Invalid data\n");
+> +			continue;
+> +		}
+> +
+> +		iio_push_to_buffers(indio_dev, &samp);
+> +	}
+> +}
+
+...
+
+> +static int max30210_setup(struct max30210_state *st, struct device *dev)
+> +{
+> +	unsigned int val;
+> +
+> +	/* Power down to reset device */
+> +	st->powerdown_gpio = devm_gpiod_get_optional(dev, "powerdown",
+> +						     GPIOD_OUT_HIGH);
+> +	if (IS_ERR(st->powerdown_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(st->powerdown_gpio),
+> +				     "Failed to request powerdown GPIO.\n");
+> +
+> +	/* Power up device */
+> +	gpiod_set_value(st->powerdown_gpio, 0);
+
+All delays must be documented. Add a comment with the datasheet reference to
+explain the value and need of the sleep.
+
+> +	fsleep(700);
+
+> +	/* Clear status byte */
+> +	return regmap_read(st->regmap, MAX30210_STATUS_REG, &val);
+> +}
+
+...
+
+> +static int max30210_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct iio_dev *indio_dev;
+> +	struct max30210_state *st;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA))
+> +		return -EOPNOTSUPP;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+
+> +	mutex_init(&st->lock);
+
+	ret = devm_mutex_init(...);
+
+> +	ret = devm_regulator_get_enable(dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to enable vdd regulator.\n");
+> +
+> +	st->regmap = devm_regmap_init_i2c(client, &max30210_regmap);
+> +	if (IS_ERR(st->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
+> +				     "Failed to allocate regmap.\n");
+> +
+> +	ret = max30210_setup(st, dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = &max30210_channels;
+> +	indio_dev->num_channels = 1;
+> +	indio_dev->name = "max30210";
+> +	indio_dev->info = &max30210_info;
+> +
+> +	ret = devm_iio_triggered_buffer_setup_ext(dev, indio_dev, NULL,
+> +						  max30210_trigger_handler,
+> +						  IIO_BUFFER_DIRECTION_IN,
+> +						  &max30210_buffer_ops,
+> +						  max30210_fifo_attributes);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (client->irq) {
+> +		st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
+> +						  indio_dev->name,
+> +						  iio_device_id(indio_dev));
+> +		if (!st->trig)
+> +			return -ENOMEM;
+> +
+> +		st->trig->ops = &max30210_trigger_ops;
+> +		iio_trigger_set_drvdata(st->trig, indio_dev);
+> +		ret = devm_iio_trigger_register(dev, st->trig);
+> +		if (ret)
+> +			return ret;
+> +
+> +		indio_dev->trig = st->trig;
+> +		ret = devm_request_threaded_irq(dev, client->irq,
+> +						iio_trigger_generic_data_rdy_poll,
+> +						NULL, IRQF_TRIGGER_FALLING,
+> +						indio_dev->name, st->trig);
+> +		if (ret)
+> +			return ret;
+> +	}
+
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+Wouldn't
+
+	return devm_iio_device_register(dev, indio_dev);
+
+suffice?
+
+> +}
+
+...
+
+> +static const struct i2c_device_id max30210_id[] = {
+> +	{ "max30210", 0 },
+
+No ', 0' part.
+
+> +	{ }
+> +};
+
+...
+
+Can somebody at Analog start a common internal Wiki or other resources
+and collect there typical requirements for the code in IIO? It will prevent
+reviewers and maintainers from doing the same replies again and again.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
