@@ -1,250 +1,186 @@
-Return-Path: <devicetree+bounces-268810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268812-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YIsLJ8FFoGmrhAQAu9opvQ
-	(envelope-from <devicetree+bounces-268810-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:08:17 +0100
+	id 8I7TOZ5FoGmrhAQAu9opvQ
+	(envelope-from <devicetree+bounces-268812-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:07:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004A91A619C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:08:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E24C1A6178
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:07:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A731D307E5A9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:02:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1B5E030216D7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DEEA3033E3;
-	Thu, 26 Feb 2026 13:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09446309DCF;
+	Thu, 26 Feb 2026 13:05:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="kO2WLvwc"
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="H4QxefMV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay50-hz3.antispameurope.com (mx-relay50-hz3.antispameurope.com [94.100.134.239])
+Received: from canpmsgout07.his.huawei.com (canpmsgout07.his.huawei.com [113.46.200.222])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C96C3019C3
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.239
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772110974; cv=pass; b=lliuR/uimqu30eVn9ST5qU8xrHPf47LcOdkPRWFUQpTplN+gpeoMEEZCSaBeC38vmXhJoi5FJY+jjVn2LbdFhqzLHMJPtgJSfW4XsQoJg2O8Ac5FmZJG45vk6FR7hhQachmMoutmMseis9KSdxTSy6r+leXTnZUECAt1+LTPbuw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772110974; c=relaxed/simple;
-	bh=neGoqTdsxF3OhXcAManDw77ql/4CB9cgSHMgCNf8xyY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WgH+k0HyNGTUz9eWxQycZ9v4HKTyxZPjYrxrxIMK0hZbeusXCVeuJn+woJSN41BgTd+tEB9bUMo1VmZ16lG8F3DUtn9bOKnwtQGVv5SDzbUUgv1xMZbBnijub+F8F53pHnjd2UlPKvMBdMBQhwcXjPV7t2X3GozwDEOwRc8wdtY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=kO2WLvwc; arc=pass smtp.client-ip=94.100.134.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate50-hz3.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
- dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=LUO1CiLCZdzw6+XANnBhTKj15uDGYHmVnxysnV9OeO4=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1772110952;
- b=X9Y4+W4T0WC0BnQWvtaMXFG1aq9oL3ifMuwuM9AEMmGvMKyGB1jlvv08Uli+NAi4o15ZUKqd
- Hd2hYhFE3UQ+lV1xvG/6n3HJy9VSH3i6uF0YUuCi/0fRxpKS3zKVzTLoLxXiU5bZigRT4ccGO0I
- gMNwDv1Z26paEZF3byX7E9z7sLjvgcC4OcT+zoA0eCWyGCpHQc+LqSMTq4o9VFptTVcSDe8F4tV
- 7NFAW+PbuqczJaubJFszT5o5Tmwk3ISFmBYKCffvImUMYAX1AJCTUE8SHnjgcBbvnhiPzOKyaV9
- BkubEvFNoj1qUvs/ayJw6+CAR/fkoHbcCd6pTIIesOqtA==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1772110952;
- b=aqoB7XAK2dvlK6uQ7Uz2yu8V8x47e82sMaYOW41J2a4qaOGIjGcM56iRV3UHBubePBLGfEB0
- ZaDEY6SsR1XHLq45Mul6HIKfF3RBwCVXr6VEVWoutQym4rWmpheU9zj5WDR8IJyKwZ7VwwMJ+6C
- 64Vy+MNPf3KpEoZxenxUwV/gD7M5a3SywWBBPhEYAC1kPyXGyek0s2NT6DwUWF7xvHeKsATvV3v
- XCn0Y8AB/6p/69Hc/UP62CCmjMZlVodeORBPHPK4UL4QovNE+F84khZhmkBHowO7SKukBxic+IJ
- xaFMgNJBxjHw9lbqf+eAUJfrQ6EwCcNp1/Lk1htuANrfg==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay50-hz3.antispameurope.com;
- Thu, 26 Feb 2026 14:02:31 +0100
-Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id EAAA1A41357;
-	Thu, 26 Feb 2026 14:02:25 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] arm64: dts: tqma8mpql-mba8mp-ras314: Configure multiple queues on eqos
-Date: Thu, 26 Feb 2026 14:02:21 +0100
-Message-ID: <20260226130223.613325-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260226130223.613325-1-alexander.stein@ew.tq-group.com>
-References: <20260226130223.613325-1-alexander.stein@ew.tq-group.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 578752FD1CA;
+	Thu, 26 Feb 2026 13:05:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.222
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772111129; cv=none; b=uz20cDzQe7QUwv3Nn2P0iQM/G6JYIWNhRqbtL7ZKtqGNxmPBCYcOtJUPHplHBOhbwtUlrabaEPrGKsMU2CwA0cPVpRqA38fMLl8vtEMI3Up5q5Jlh+UC20Y3n+2ZBuk6VImgaKpjOicf3UwjgwoCm6c8Rls3IwV4yvC/9zHEG+A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772111129; c=relaxed/simple;
+	bh=YJ2vEoKI21Pda9T+D0eLyWpMc1zg7vf8W2SjYumUkgQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AUCYjQWbyn330nGvaLsLxPiw3AUo7h6cKZ/6wETNN7b5OcvKWAvjKcTf6LuAXiiIankNt8feAjItQ1kMobUoyLHx5mjwDfdAQbI1lbgQVuZaMTDPIkW5pZGqnG37YA0yk6FYcTTSNC9PTSBoJT6d+WPQuY7YRdQ03bmkvZhyrME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=H4QxefMV; arc=none smtp.client-ip=113.46.200.222
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=c6xFMKoxg63nYEi1UYNDiwkwCF4sOPCLNDyxwSSgRCU=;
+	b=H4QxefMVwG8veBcdZ9tmP73AdBXRpAshNGNhyQNRY08lhYV0tuwuE+MJrKpCE8jCPEEWPHz5b
+	cBmqyb91JJC0zMqVgdifrNwTDaZKz78VY1R9OrB9PBzfOH1YUUNdJTdYY3glOTCVUq+Z58b5Oda
+	HvRIqziT6VrChMVpF0PmT9I=
+Received: from mail.maildlp.com (unknown [172.19.163.15])
+	by canpmsgout07.his.huawei.com (SkyGuard) with ESMTPS id 4fMBQW07m0zLlZF;
+	Thu, 26 Feb 2026 21:00:35 +0800 (CST)
+Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
+	by mail.maildlp.com (Postfix) with ESMTPS id 6541D40539;
+	Thu, 26 Feb 2026 21:05:22 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by dggpemf500011.china.huawei.com
+ (7.185.36.131) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 26 Feb
+ 2026 21:05:19 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
+	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
+	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
+	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
+	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
+	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
+	<akpm@linux-foundation.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
+	<dyoung@redhat.com>, <pmladek@suse.com>, <rdunlap@infradead.org>,
+	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <paulmck@kernel.org>,
+	<lirongqing@baidu.com>, <arnd@arndb.de>, <rppt@kernel.org>,
+	<ardb@kernel.org>, <leitao@debian.org>, <sourabhjain@linux.ibm.com>,
+	<jbohac@suse.cz>, <cfsworks@gmail.com>, <ryan.roberts@arm.com>,
+	<tangyouling@kylinos.cn>, <ritesh.list@gmail.com>, <hbathini@linux.ibm.com>,
+	<eajames@linux.ibm.com>, <songshuaishuai@tinylab.org>,
+	<samuel.holland@sifive.com>, <kevin.brodsky@arm.com>,
+	<vishal.moola@gmail.com>, <junhui.liu@pigmoral.tech>, <coxu@redhat.com>,
+	<liaoyuanhong@vivo.com>, <brgerst@gmail.com>, <fuqiang.wang@easystack.cn>,
+	<x86@kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
+	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<kexec@lists.infradead.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH v7 0/5] arm64/riscv: Add support for crashkernel CMA reservation
+Date: Thu, 26 Feb 2026 21:04:32 +0800
+Message-ID: <20260226130437.1867658-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay50-hz3.antispameurope.com with 4fMBSf4s71z2nHTC
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:ac72cfc2a7cd79e53cd99911ee7956b3
-X-cloud-security:scantime:1.506
-DKIM-Signature: a=rsa-sha256;
- bh=LUO1CiLCZdzw6+XANnBhTKj15uDGYHmVnxysnV9OeO4=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1772110951; v=1;
- b=kO2WLvwcoFomR1WKaLVONssmmK8snWu+MlvuDmBBdVZjo/ihdUtX9/oZ1ENStK2Q7bNFVRUG
- LTChcuUnGpwn7A7xqjAXaDDqBPX7xCiQTjGsXSVy5v0Lhlpc8frsrfJ8RF2zlykTqquio61ypQz
- 06yf6V2NZMvRoLe/jAAUNZSszXo58tt3u9Pu6jJNH9hM8HOX2adsTDaORqGsOH2gOk9dF0lyxjc
- eDUnkxB7UIKt3SGAa89dUJZEPJkspKvU65C8KL0CU431XDuEmuEtWRkEkiq6eO5UtwGv2ZezynO
- M/XqXt4dpQKPDk0TCGOrg5JhwoQwd3cAj+sFixve2uwjA==
+X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
+ dggpemf500011.china.huawei.com (7.185.36.131)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,suse.com,infradead.org,baidu.com,arndb.de,debian.org,suse.cz,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268810-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DKIM_TRACE(0.00)[huawei.com:+];
+	TAGGED_FROM(0.00)[bounces-268812-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[62];
+	TO_DN_NONE(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,ew.tq-group.com:mid,ew.tq-group.com:dkim,0.0.0.3:email]
-X-Rspamd-Queue-Id: 004A91A619C
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:mid,huawei.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0E24C1A6178
 X-Rspamd-Action: no action
 
-The MBa8MP-RAS314 mainboard has an integrated PHY connected to the EQOS
-ethernet controller which can support up to five queues. Configure
-these queues in the same manor as done on the imx8mp-evk.
+The crash memory allocation, and the exclude of crashk_res, crashk_low_res
+and crashk_cma memory are almost identical across different architectures,
+This patch set handle them in crash core in a general way, which eliminate
+a lot of duplication code.
 
-Setting DMA to threas mode is necessary to prevent FIFO overflows, see
-commit 0bc3e333a0c82 ("arm64: dts: imx8mp-evk: configure multiple queues
-on eqos")
+And add support for crashkernel CMA reservation for arm64 and riscv.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
-Changes in v3:
-* Add empty line between paraphs
-* Collect Frank's R-b
+Rebased on v7.0-rc1.
 
- .../imx8mp-tqma8mpql-mba8mp-ras314.dts        | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
+Basic second kernel boot test were performed on QEMU platforms for x86, ARM64,
+and RISC-V architectures with the following parameters:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts
-index b7f69c92b7748..04f4c2fdf2992 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mp-ras314.dts
-@@ -184,6 +184,9 @@ &eqos {
- 	pinctrl-0 = <&pinctrl_eqos>;
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy3>;
-+	snps,force_thresh_dma_mode;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
- 	status = "okay";
- 
- 	mdio {
-@@ -209,6 +212,70 @@ ethphy3: ethernet-phy@3 {
- 			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
- 		};
- 	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <5>;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+		};
-+
-+		queue2 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x4>;
-+		};
-+
-+		queue3 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x8>;
-+		};
-+
-+		queue4 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0xf0>;
-+		};
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <5>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+			snps,map-to-dma-channel = <0>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+			snps,map-to-dma-channel = <1>;
-+		};
-+
-+		queue2 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x4>;
-+			snps,map-to-dma-channel = <2>;
-+		};
-+
-+		queue3 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x8>;
-+			snps,map-to-dma-channel = <3>;
-+		};
-+
-+		queue4 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0xf0>;
-+			snps,map-to-dma-channel = <4>;
-+		};
-+	};
- };
- 
- &fec {
+	"cma=256M crashkernel=256M crashkernel=64M,cma"
+
+Changes in v7:
+- Correct the inclusion of CMA-reserved ranges for kdump kernel in of/kexec
+  for arm64 and riscv.
+- Add Acked-by.
+
+Changes in v6:
+- Update the crash core exclude code as Mike suggested.
+- Rebased on v7.0-rc1.
+- Add acked-by.
+- Link to v5: https://lore.kernel.org/all/20260212101001.343158-1-ruanjinjie@huawei.com/
+
+Changes in v5:
+- Fix the kernel test robot build warnings.
+- Sort crash memory ranges before preparing elfcorehdr for powerpc
+- Link to v4: https://lore.kernel.org/all/20260209095931.2813152-1-ruanjinjie@huawei.com/
+
+Changes in v4:
+- Move the size calculation (and the realloc if needed) into the
+  generic crash.
+- Link to v3: https://lore.kernel.org/all/20260204093728.1447527-1-ruanjinjie@huawei.com/
+
+Jinjie Ruan (4):
+  crash: Exclude crash kernel memory in crash core
+  crash: Use crash_exclude_core_ranges() on powerpc
+  arm64: kexec: Add support for crashkernel CMA reservation
+  riscv: kexec: Add support for crashkernel CMA reservation
+
+Sourabh Jain (1):
+  powerpc/crash: sort crash memory ranges before preparing elfcorehdr
+
+ .../admin-guide/kernel-parameters.txt         |  16 +--
+ arch/arm64/kernel/machine_kexec_file.c        |  39 +++----
+ arch/arm64/mm/init.c                          |   5 +-
+ arch/loongarch/kernel/machine_kexec_file.c    |  39 +++----
+ arch/powerpc/include/asm/kexec_ranges.h       |   4 +-
+ arch/powerpc/kexec/crash.c                    |   5 +-
+ arch/powerpc/kexec/ranges.c                   | 101 +-----------------
+ arch/riscv/kernel/machine_kexec_file.c        |  38 +++----
+ arch/riscv/mm/init.c                          |   5 +-
+ arch/x86/kernel/crash.c                       |  89 +++------------
+ drivers/of/fdt.c                              |   9 +-
+ drivers/of/kexec.c                            |  13 ++-
+ include/linux/crash_core.h                    |   9 ++
+ kernel/crash_core.c                           |  89 ++++++++++++++-
+ 14 files changed, 183 insertions(+), 278 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
 
