@@ -1,172 +1,425 @@
-Return-Path: <devicetree+bounces-268873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268874-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AM0bHF5XoGkNigQAu9opvQ
-	(envelope-from <devicetree+bounces-268873-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:23:26 +0100
+	id gNNnA11XoGkNigQAu9opvQ
+	(envelope-from <devicetree+bounces-268874-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:23:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F9221A772A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:23:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5BA1A771C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:23:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4012830CE52E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:05:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DBBE53170927
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CA136F422;
-	Thu, 26 Feb 2026 14:05:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A2536B043;
+	Thu, 26 Feb 2026 14:08:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="Hg7vegCj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fVwlm1yQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB06D33A9F7
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 14:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62303612FE
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 14:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772114732; cv=none; b=bHurwoKi5sfTFZqJGDf88oVKjVzwvFZ1RAbb2c4ox9RvKcTC2xi9RKO5jP0aSuNhdfTuOTrXVcBNBSGsGP3hq2ohnzs2Jx/mx+17ajl0aEcsrSR4gne7BKQ2eoJhGGm8RkF4Qh5P2aecQjKE5D/wVZ8dIXzL0kACoxVHZBy+glw=
+	t=1772114927; cv=none; b=On+GAcRUcFjzE3V8yGOutz0MLlZht6m0sWEWlFGGbVYMOvBv8k3HJu0OF5JnTGclG6//zyhUKL4CErbpSkKKB5dkCOGfy+BuS4eHmTwIgGLxUfXRUkVa/zRsnT9a26o6XOf/z8t5McyztfqY8GcH6VESqi+VU8x2HTIS893fxaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772114732; c=relaxed/simple;
-	bh=5PWW2bECJpi+KmGyUtsDq2d8pqqeL5yHRiL7SDHfi/g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=vFArEkSbqN9WsTPwA/Rb98DnsHL/H2n0hPfkZPjNQfUpWdcmaJWMUAEwutDCOTkQwV22C4b4cfhvPtDhaLf1/Jsp9l7c2xxmnheC6GF1RgTXO0zBe6v1l9q+d0vZ+FPHKneWTwoxK7ZuTrld13kg1oHKrMvDdWZzT92GPQlyQKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=Hg7vegCj; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 87D423FCEF
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 14:05:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1772114721;
-	bh=dN9A/8NcdFPO3Zi+AfZ0VKbrL07IdR/gdWg7UnqaXcs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version;
-	b=Hg7vegCj6eAvIB9Pd5QVOdM7jXar3HmFApoxt8STYQHPzlPN38rS5uiqiMU+4XYZ9
-	 HtEEASYrN3QKnsG2WCq17RR4jOwqOJC+/6lk276eqSYpR4QO/Ddbg9DReEaahR6A7E
-	 7Vpi36d5yOiENvkeExpfPEr/NxN+27LM2/BiKIHNYFiApTOM6ROI+1MJU2mXMCYsRR
-	 FIZgH+0zhXe0Z3XQeFMmefVDVd4wmL/tGBnP9YcEbvGPH1bGRDRN+RjvU8nSZeyx4o
-	 zjQet7zK/dEutUSNgLSYLIl+Rz/5EIX9+zALhLKUT/sfuaa6qZxaXdn0ZjQIZgganw
-	 wcNB6k5JfcR09vY/KQpgcCoarVOKdwuzeR7PFCzV0I1yh49yCCJDfHAfOI9QAz0+Mh
-	 gJaTI/mbUjao7CRY+nMPF8ggo6/JXZfqiQg/l/G4yf8egP+dI+fpRURAt9X+zfLK1+
-	 B80Ursw3wzxHjcQ0mFUuOqPXeejOqrx4aVmdYlpBQ/cugVdXR0NdxUlz39bbn6I7bE
-	 FJxl7L1NibUZu6FincSLKDpM4AjOjyFMvbdO7/0uQXEFCHfCMLGHCoLkwaR7DjBtP9
-	 nHTMGVkcO4V6hv0zDOWd9FgYHN/tFOWOlHQGyuPHqPUJvpNJ94AawW3GKsvhdp2+Gy
-	 vF9uHtla20l/6Rbuk3XUpnc4=
-Received: by mail-lf1-f72.google.com with SMTP id 2adb3069b0e04-5a0ff9741fdso513613e87.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 06:05:21 -0800 (PST)
+	s=arc-20240116; t=1772114927; c=relaxed/simple;
+	bh=zOozJ3zv4ZVEOtjpoT9fTG9xriUnw/ZReMGwbHGkXqE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=UOdUquFtgFaqyyeRCEUY15rZPr4La4jlExgxJSxuEYR9ZQO/sLUoMrrCyHVbsjJobBUVRp9RB1oEDClaJPNrwARD7ZRHGuGDTP2QZd1Wd7gIRY7dt62OehdpRspl9VUGB17252ZLCJyv9861hbLZGMq1sso6qsxkiZF4S/MZeeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fVwlm1yQ; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2ad9f316d68so4073445ad.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 06:08:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772114925; x=1772719725; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C5lmdRrYKAkps9LQDtVzFXDdak8+cj9tclXWqs/XbLs=;
+        b=fVwlm1yQijdKi6Dog9KHsZ4KWo1WEes0N/rtxtUQfe00W5S6DU9XwIW3DH8wA2iox4
+         tQH0uITR0cjHGiT18jZCG+T8PptIU3AuRSyV6lNf6uE57E21stY6cSFz2Qo+MpSptP6u
+         tsx+dRivVZPW4WzMkMoJcK75Q4BCyKKzsnGpAdwoxw78W9n6WIJc1t38VOwKt3bIxM0p
+         PmVYybknySLU0x/sf17FUHWaiaQIYSGFdu9weXgA9gtAuZqLjGvOquKDORtuWAlDLh5h
+         qOpiJUCxcJCIEkXSttpC5846ycA0iKrX79+BAWwQXMESWUuCwXeWKkaB7XN97uaZWOea
+         iDbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772114721; x=1772719521;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1772114925; x=1772719725;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dN9A/8NcdFPO3Zi+AfZ0VKbrL07IdR/gdWg7UnqaXcs=;
-        b=cxpKW0VAp8Jedk+2uTdaARP2qp0BEl1X0f2cSeTLD3Wyk4ts59q3hbAxzxEsfXok4S
-         TxHx0YMjhsbSuH2pSSucPezCd5KtVNImK7r+pXrtE4ossBlz+MJosJ2I0E3sh64Q+DFd
-         gvK0fbgfUIiga6pKvPuQFSRo7giulyc1ueSMZkEfucODn5Gx0sNt+AVfDMTv56fR+znn
-         Y10XS4LzU8a7tyOtoUy7htuoGdp/1IuARbXE7CvNyFt+JEvwtQd55Z/jZLqGsYFFZC3e
-         ViqwxqgyHqsslVvuohCwd0nytXJmBg1gz3M653+TX73wBKQ88JU/OX2WiLvpr5zsm5j+
-         6WGA==
-X-Forwarded-Encrypted: i=1; AJvYcCWxFfpN/IokLeglDMX7XVoeywC/8OPVukktLTzyf4eFe3bLNiC67OzMdAhY4x50CQcMhLHkYJTYJ9uZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCLRFIsy3x5M5Fiueaysu3mEOZLL0+CyHV+ah+G20KBPxqtS35
-	w5IdUSzUMntyzO2toZVMxlOxZ8pwPHKTVoxx8ISrSwDirA0mbDCeDF5yCZMZ0MM6OSF/nT+T169
-	Y8vAxpG+Pp+FVRtmMFM6hwhUmfbVk/QhqUrXl3wZ9hCDHODzN5CItiz0pIehRDwgp9tCYjgTWlT
-	MCZpI=
-X-Gm-Gg: ATEYQzzQIlSUTp7VIIOyff91s5E/WMRE3qLiicJUUoq31e0atHifGx9kOzVwY581b98
-	tNRdfqAd5OhHH1NF0b805TtV2vAjlqSJOyi1cfY82VYgXB2+izv+vKWvVC70Bs4XeCl/9jkMFA+
-	tFpuUMypGrIUJJOswLD9eY2so1IHGHiQ0HDMN2lgKjeOw4Ezc++loqDQm4b06xH9qxwcdRyIlLc
-	R8NTPITMgR1lcPzeHkJJdOvPu+Sux5UDbJD7Uui4H6gEhMlMuQqqS+x+rNiadosjs5Kz5lOF2wh
-	iJyGEIN81fPMWOhIvT183ppIjPBqJ5hhJI43JB0Pjux2PJIOivdrhAI0fOFghcf64RHFspgeLIe
-	fe03XhmQJX3u6WEBtsTUz6yN/zPB6rqxVQBGA
-X-Received: by 2002:a05:6512:b02:b0:59f:6db4:cc7d with SMTP id 2adb3069b0e04-5a105d84f29mr1677314e87.2.1772114720714;
-        Thu, 26 Feb 2026 06:05:20 -0800 (PST)
-X-Received: by 2002:a05:6512:b02:b0:59f:6db4:cc7d with SMTP id 2adb3069b0e04-5a105d84f29mr1677296e87.2.1772114720264;
-        Thu, 26 Feb 2026 06:05:20 -0800 (PST)
-Received: from m2.fritz.box ([2001:a61:35c8:6701:3d2c:4b2a:b4d0:81b4])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a109debf8bsm898874e87.74.2026.02.26.06.05.18
+        bh=C5lmdRrYKAkps9LQDtVzFXDdak8+cj9tclXWqs/XbLs=;
+        b=cfT+wNwwaORiTQpxKU0yYI2GtjI407K6rcpLM6jVAHEhdwxIsB+Lmc0CG5gHPTfLoB
+         +sLBy6TjpetnqhvWMsrufKyQG48ghnnnL9h9L4eZdVn8tvvilfoZypl/l73/IBAMI6CA
+         FRGaiBnXCJ2fL8zCQmBrtfSSRaldeVo9Z8Hs6uafnKBVjnWZaJrgQ7DCpGD5hW8uynqo
+         qKA9MEiTNtYBpYXU0RdAPO9EgjytAVMXrGCT16qUyge4hmyck+TFTJPMhciaaArBL7ia
+         KTemoAEPZBaoRCQ1nRU5hTzqvkpxjoa4pj2dCojRFtYpC6yIuchzMg19GGPSCRNnzMtG
+         HDtQ==
+X-Gm-Message-State: AOJu0YyaMIXh+l1l4GIjEhbCvucUl7CylYb5hCzA63f9hIvvCuxYCqXt
+	dRhcLElZmFMrLbi9Nqgj3TUnbk80kRfuIelaUElkzWGsLudQSze2vEIbYMK6RTgA
+X-Gm-Gg: ATEYQzxnKqMhVW2jznXhL+9+qET0bQNbshcN0cjP9dSbgltAr9G5KppIDXV3w7MdWwc
+	AJ6UudPAmBTI1JEm29d8T92Rlh//6VIAtcCDKjmayIHArKGxZP0pKJjJy11qxP37P5/fZWpz6QW
+	NgOC3qz1/OyWGZoTYwLkUtZgpDINdNdwhRIl7BzzB2I2BdzarBpU1BPlrdgDM2edDmgw54euPpf
+	SAl4geTZnzqGWfZWFf2dFpz1heCPkBYTGUFS+DPLuwYgBeo149A/Ug14iQJY4wh4p4ICHqJZ7py
+	8sUYbRt2jqRfM6moWkOGZ8m4DnAbdWDaRRRYP4xmhaAXRErIu//v8vtrWpv4YzVKMgqiN/ODn5t
+	2mCEF87TQpp+yQm2y0Ia11ZPelOXnKrDXc2lvQJLx/Dj9lHAHSySSJ9cdcDxoNFgbUaBR5OZk5P
+	5UULoPKdddQaerGc2TmbcBF0uhPgxGgA==
+X-Received: by 2002:a17:903:3848:b0:2ad:cede:3a1a with SMTP id d9443c01a7336-2ae03495f6fmr26068205ad.39.1772114924973;
+        Thu, 26 Feb 2026 06:08:44 -0800 (PST)
+Received: from [127.0.1.1] ([218.32.81.133])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb6e190fsm28037205ad.82.2026.02.26.06.08.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 06:05:19 -0800 (PST)
-From: Tobias Heider <tobias.heider@canonical.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?q?J=C3=A9r=C3=B4me=20de=20Bretagne?= <jerome.debretagne@gmail.com>,
-	Dale Whinham <daleyo@gmail.com>,
-	Tobias Heider <tobias.heider@canonical.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: add missing denali-oled.dtb to Makefile
-Date: Thu, 26 Feb 2026 15:04:30 +0100
-Message-ID: <20260226140429.232544-3-tobias.heider@canonical.com>
-X-Mailer: git-send-email 2.51.0
+        Thu, 26 Feb 2026 06:08:44 -0800 (PST)
+From: Colin Huang <u8813345@gmail.com>
+Date: Thu, 26 Feb 2026 22:08:16 +0800
+Subject: [PATCH v2] ARM: dts: aspeed: anacapa: update SGPIO and PCA9555
+ settings for DFT
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260226-anacapa-dts-sgpio-v2-1-fd76828616b8@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAM9ToGkC/32NQQqDMBBFryKz7pSY1lq68h7FxSQZ40A1IRFpE
+ e/e1AN08+F9+O9vkDkJZ3hUGyReJUuYC+hTBXak2TOKKwxa6ZsqgTSTpUjolozZRwnIV1aGGqu
+ ta6DsYuJB3ofz2RceJS8hfY6Ltf61/2xrjTXShVqjjLq3g+r8RPI62zBBv+/7F9hMW2SyAAAA
+X-Change-ID: 20260202-anacapa-dts-sgpio-e4e0ba5c2cd5
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Colin.Huang2@amd.com, Carl.Lee@amd.com, Peter.Shen@amd.com, 
+ Colin Huang <u8813345@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772114922; l=8780;
+ i=u8813345@gmail.com; s=20260202; h=from:subject:message-id;
+ bh=zOozJ3zv4ZVEOtjpoT9fTG9xriUnw/ZReMGwbHGkXqE=;
+ b=FPqErmaXHAqA92QS3zYhsA6YIjvUzR/2fJt5KhjFcR9qgDGYtiJvJlo2Zi02Xg35kWutD0MEo
+ cF5byFwicGlD1gJ+XHDQlwjR+iLQFU6GKETWF86db6p6IBdbtgflcHl
+X-Developer-Key: i=u8813345@gmail.com; a=ed25519;
+ pk=Zlg0WqpCw4qbswOqamTBTXIchwR/3SnYZpy7rjaGMdQ=
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[canonical.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[canonical.com:s=20251003];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268873-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,canonical.com,vger.kernel.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.ozlabs.org,amd.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-268874-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[tobias.heider@canonical.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[canonical.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[u8813345@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.24:email];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[canonical.com:mid,canonical.com:dkim,canonical.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4F9221A772A
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4D5BA1A771C
 X-Rspamd-Action: no action
 
-The device tree was originally added in
-0d72ccaa1e840b4c8723a929b2febbedcf5f80cd.
-The original patch on the mailing list also added the new device
-tree to the Makefile but that part seems to have been dropped
-(by accident) when it got merged.
+This update adjusts SGPIO mappings and enables interrupt support for the
+PCA9555 GPIO expanders. These changes are required as part of the DFT
+(Design For Tooling) integration and are aligned with the SGPIO signal
+definitions provided in Helios_SGPIO_BIT_MAP.xlsx (rev: 2026-02-16).
 
-Signed-off-by: Tobias Heider <tobias.heider@canonical.com>
+Updates include:
+- Add interrupt-parent and interrupts properties to PCA9555 nodes to
+  enable proper interrupt handling required by phosphor-gpio-monitor.
+- Correct placement of LEAK_DETECT_RMC_N.
+- Update SGPIO line-name mappings per the latest Helios SGPIO bit map to
+  reflect leakage channels, presence pins, module power-good, and other
+  DFT-related monitoring signals.
+
+Signed-off-by: Colin Huang <u8813345@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/Makefile | 2 ++
- 1 file changed, 2 insertions(+)
+Update SGPIO line names for the Facebook Anacapa platform and enable
+interrupt support for PCA9555 GPIO expanders. These changes are part of
+DFT (Design For Tooling) integration and align the device tree with the
+latest SGPIO bit mapping used during board validation.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f80b5d9cf1e80..b05e8adc02f65 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -374,6 +374,8 @@ x1e80100-lenovo-yoga-slim7x-el2-dtbs	:= x1e80100-lenovo-yoga-slim7x.dtb x1-el2.d
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-lenovo-yoga-slim7x.dtb x1e80100-lenovo-yoga-slim7x-el2.dtb
- x1e80100-medion-sprchrgd-14-s1-el2-dtbs	:= x1e80100-medion-sprchrgd-14-s1.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-medion-sprchrgd-14-s1.dtb x1e80100-medion-sprchrgd-14-s1-el2.dtb
-+x1e80100-microsoft-denali-oled-el2-dtbs	:= x1e80100-microsoft-denali-oled.dtb x1-el2.dtbo
-+dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-microsoft-denali-oled.dtb x1e80100-microsoft-denali-oled-el2.dtb
- x1e80100-microsoft-romulus13-el2-dtbs	:= x1e80100-microsoft-romulus13.dtb x1-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-microsoft-romulus13.dtb x1e80100-microsoft-romulus13-el2.dtb
- x1e80100-microsoft-romulus15-el2-dtbs	:= x1e80100-microsoft-romulus15.dtb x1-el2.dtbo
+The updates are based on: Helios_SGPIO_BIT_MAP.xlsx (rev: 2026-02-16).
+
+The following changes are included:
+- Add BMC_AINIC0_WP_R2_L and BMC_AINIC1_WP_R2_L
+- Correct placement of LEAK_DETECT_RMC_N
+- Add PRSNT_NFC_BOARD_R
+- Add IRQ_NFC_BOARD_R and RSMRST_N
+- Add DC_OFF, EAM_MOD_PWR_GD_TIMEOUT, CPLD_AMC_STBY_PWR_EN
+- Add FM_MAIN_PWREN_RMC_EN_ISO
+---
+Changes in v2:
+- Add interrupt-parent and interrupts properties to PCA9555 nodes to
+  enable proper interrupt handling required by phosphor-gpio-monitor.
+- Clarify DFT motivation in the commit message and mention the source
+  mapping (Helios_SGPIO_BIT_MAP.xlsx rev: 2026-02-16).
+- Minor wording cleanups in the commit message (line names vs. mappings).
+- Rebase onto the latest tree to account for intervening commits.
+- Link to v1: https://lore.kernel.org/r/20260202-anacapa-dts-sgpio-v1-1-a3a7b0b087f0@gmail.com
+---
+ .../dts/aspeed/aspeed-bmc-facebook-anacapa.dts     | 147 ++++++++++++---------
+ 1 file changed, 88 insertions(+), 59 deletions(-)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+index 2cb7bd128d24..aa53ae8eb61f 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+@@ -500,6 +500,9 @@ gpio@24 {
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+ 
++				interrupt-parent = <&sgpiom0>;
++				interrupts = <174 IRQ_TYPE_LEVEL_LOW>;
++
+ 				gpio-line-names =
+ 					"RPDB_EAM2_PRSNT_MOS_N_R", "RPDB_EAM3_PRSNT_MOS_N_R",
+ 					"RPDB_PWRGD_P50V_HSC4_SYS_R",
+@@ -546,6 +549,9 @@ gpio@24 {
+ 				gpio-controller;
+ 				#gpio-cells = <2>;
+ 
++				interrupt-parent = <&sgpiom0>;
++				interrupts = <174 IRQ_TYPE_LEVEL_LOW>;
++
+ 				gpio-line-names =
+ 					"LPDB_P50V_FAN1_R2_PG","LPDB_P50V_FAN2_R2_PG",
+ 					"LPDB_P50V_FAN3_R2_PG","LPDB_P50V_FAN4_R2_PG",
+@@ -864,87 +870,104 @@ &sgpiom0 {
+ 	gpio-line-names =
+ 	/*in - out - in - out */
+ 	/* A0-A7 line 0-15 */
+-	"", "FM_CPU0_SYS_RESET_N", "", "CPU0_KBRST_N",
+-	"", "FM_CPU0_PROCHOT_trigger_N", "", "FM_CLR_CMOS_R_P0",
+-	"", "Force_I3C_SEL", "", "SYSTEM_Force_Run_AC_Cycle",
+-	"", "", "", "",
++	"L_FNIC_FLT", "FM_CPU0_SYS_RESET_N",
++	"L_BNIC0_FLT", "CPU0_KBRST_N",
++	"L_BNIC1_FLT", "FM_CPU0_PROCHOT_trigger_N",
++	"L_BNIC2_FLT", "FM_CLR_CMOS_R_P0",
++	"L_BNIC3_FLT", "Force_I3C_SEL",
++	"L_RTM_SW_FLT", "SYSTEM_Force_Run_AC_Cycle",
++	"", "",
++	"", "",
+ 
+ 	/* B0-B7 line 16-31 */
+ 	"Channel0_leakage_EAM3", "FM_CPU_FPGA_JTAG_MUX_SEL",
+ 	"Channel1_leakage_EAM0", "FM_SCM_JTAG_MUX_SEL",
+ 	"Channel2_leakage_Manifold1", "FM_BRIDGE_JTAG_MUX_SEL",
+ 	"Channel3_leakage", "FM_CPU0_NMI_SYNC_FLOOD_N",
+-	"Channel4_leakage_Manifold2", "",
+-	"Channel5_leakage_EAM1", "",
+-	"Channel6_leakage_CPU_DIMM", "",
+-	"Channel7_leakage_EAM2", "",
++	"Channel4_leakage_Manifold2", "BMC_AINIC0_WP_R2_L",
++	"Channel5_leakage_EAM1", "BMC_AINIC1_WP_R2_L",
++	"Channel6_leakage_CPU_DIMM", "CPLD_BUF_R_AGPIO330",
++	"Channel7_leakage_EAM2", "CPLD_BUF_R_AGPIO331",
+ 
+ 	/* C0-C7 line 32-47 */
+-	"RSVD_RMC_GPIO3", "", "", "",
+-	"", "", "", "",
+-	"LEAK_DETECT_RMC_N", "", "", "",
+-	"", "", "", "",
++	"RSVD_RMC_GPIO3", "RTM_MUX_L",
++	"LEAK_DETECT_RMC_N", "RTM_MUX_R",
++	"HDR_P0_NMI_BTN_BUF_R_N", "",
++	"No_Leak_Sensor_flag", "",
++	"", "",
++	"", "",
++	"", "",
++	"", "",
+ 
+ 	/* D0-D7 line 48-63 */
+-	"PWRGD_PDB_EAMHSC0_CPLD_PG_R", "",
+-	"PWRGD_PDB_EAMHSC1_CPLD_PG_R", "",
+-	"PWRGD_PDB_EAMHSC2_CPLD_PG_R", "",
+-	"PWRGD_PDB_EAMHSC3_CPLD_PG_R", "",
+-	"AMC_BRD_PRSNT_CPLD_L", "", "", "",
+-	"", "", "", "",
++	"PWRGD_CHAD_CPU0_FPGA", "",
++	"PWRGD_CHEH_CPU0_FPGA", "",
++	"PWRGD_CHIL_CPU0_FPGA", "",
++	"PWRGD_CHMP_CPU0_FPGA", "",
++	"AMC_BRD_PRSNT_CPLD_L", "",
++	"", "",
++	"", "",
++	"", "",
+ 
+ 	/* E0-E7 line 64-79 */
+-	"AMC_PDB_EAMHSC0_CPLD_EN_R", "",
+-	"AMC_PDB_EAMHSC1_CPLD_EN_R", "",
+-	"AMC_PDB_EAMHSC2_CPLD_EN_R", "",
+-	"AMC_PDB_EAMHSC3_CPLD_EN_R", "",
+-	"", "", "", "",
+-	"", "", "", "",
++	"L_PRSNT_B_FENIC_R2_N", "",
++	"L_PRSNT_B_BENIC0_R2_N", "",
++	"L_PRSNT_B_BENIC1_R2_N", "",
++	"L_PRSNT_B_BENIC2_R2_N", "",
++	"L_PRSNT_B_BENIC3_R2_N", "",
++	"", "",
++	"", "",
++	"", "",
+ 
+ 	/* F0-F7 line 80-95 */
+-	"PWRGD_PVDDCR_CPU1_P0", "SGPIO_READY",
+-	"PWRGD_PVDDCR_CPU0_P0", "",
+-	"", "", "", "",
+-	"", "", "", "",
++	"R_PRSNT_B_FENIC_R2_N", "SGPIO_READY",
++	"R_PRSNT_B_BENIC0_R2_N", "",
++	"R_PRSNT_B_BENIC1_R2_N", "",
++	"R_PRSNT_B_BENIC2_R2_N", "",
++	"R_PRSNT_B_BENIC3_R2_N", "",
++	"", "",
++	"", "",
++	"", "",
+ 
+ 	/* G0-G7 line 96-111 */
+-	"PWRGD_PVDDCR_SOC_P0", "",
+-	"PWRGD_PVDDIO_P0", "",
+-	"PWRGD_PVDDIO_MEM_S3_P0", "",
+-	"PWRGD_CHMP_CPU0_FPGA", "",
+-	"PWRGD_CHIL_CPU0_FPGA", "",
+-	"PWRGD_CHEH_CPU0_FPGA", "",
+-	"PWRGD_CHAD_CPU0_FPGA", "FM_BMC_READY_PLD",
++	"L_PRSNT_EDSFF2_N", "",
++	"L_PRSNT_EDSFF3_N", "",
++	"R_PRSNT_EDSFF2_N", "",
++	"R_PRSNT_EDSFF3_N", "",
++	"", "",
++	"", "",
+ 	"", "",
++	"PRSNT_NFC_BOARD_R", "",
+ 
+ 	/* H0-H7 line 112-127 */
+-	"PWRGD_P3V3", "",
+-	"P12V_DDR_IP_PWRGD_R", "",
+-	"P12V_DDR_AH_PWRGD_R", "",
+-	"PWRGD_P12V_VRM1_CPLD_PG_R", "",
+-	"PWRGD_P12V_VRM0_CPLD_PG_R", "",
+-	"PWRGD_PDB_HSC4_CPLD_PG_R", "",
+-	"PWRGD_PVDD18_S5_P0_PG", "",
+-	"PWRGD_PVDD33_S5_P0_PG", "",
++	"R_FNIC_FLT", "",
++	"R_BNIC0_FLT", "",
++	"R_BNIC1_FLT", "",
++	"R_BNIC2_FLT", "",
++	"R_BNIC3_FLT", "",
++	"R_RTM_SW_FLT", "",
++	"", "",
++	"", "",
+ 
+ 	/* I0-I7 line 128-143 */
+ 	"EAM0_BRD_PRSNT_R_L", "",
+ 	"EAM1_BRD_PRSNT_R_L", "",
+ 	"EAM2_BRD_PRSNT_R_L", "",
+ 	"EAM3_BRD_PRSNT_R_L", "",
+-	"EAM0_CPU_MOD_PWR_GD_R", "",
+-	"EAM1_CPU_MOD_PWR_GD_R", "",
+-	"EAM2_CPU_MOD_PWR_GD_R", "",
+-	"EAM3_CPU_MOD_PWR_GD_R", "",
++	"FM_TPM_PRSNT_R_N", "",
++	"PDB_PRSNT_R_N", "",
++	"PRSNT_EDSFF0_N", "",
++	"PRSNT_CPU0_N", "",
+ 
+ 	/* J0-J7 line 144-159 */
+-	"PRSNT_L_BIRDGE_R", "",
+-	"PRSNT_R_BIRDGE_R", "",
++	"PRSNT_L_BRIDGE_R", "",
++	"PRSNT_R_BRIDGE_R", "",
+ 	"BRIDGE_L_MAIN_PG_R", "",
+ 	"BRIDGE_R_MAIN_PG_R", "",
+ 	"BRIDGE_L_STBY_PG_R", "",
+ 	"BRIDGE_R_STBY_PG_R", "",
+-	"", "", "", "",
++	"IRQ_NFC_BOARD_R", "",
++	"RSMRST_N", "",
+ 
+ 	/* K0-K7 line 160-175 */
+ 	"ADC_I2C_ALERT_N", "",
+@@ -957,10 +980,14 @@ &sgpiom0 {
+ 	"PDB_ALERT_R_N", "",
+ 
+ 	/* L0-L7 line 176-191 */
+-	"CPU0_SP7R1", "", "CPU0_SP7R2", "",
+-	"CPU0_SP7R3", "", "CPU0_SP7R4", "",
+-	"CPU0_CORETYPE0", "", "CPU0_CORETYPE1", "",
+-	"CPU0_CORETYPE2", "", "FM_BIOS_POST_CMPLT_R_N", "",
++	"CPU0_SP7R1", "",
++	"CPU0_SP7R2", "",
++	"CPU0_SP7R3", "",
++	"CPU0_SP7R4", "",
++	"CPU0_CORETYPE0", "",
++	"CPU0_CORETYPE1", "",
++	"CPU0_CORETYPE2", "",
++	"FM_BIOS_POST_CMPLT_R_N", "",
+ 
+ 	/* M0-M7 line 192-207 */
+ 	"EAM0_SMERR_CPLD_R_L", "",
+@@ -978,17 +1005,19 @@ &sgpiom0 {
+ 	"AMC_STBY_PGOOD_R", "",
+ 	"CPU_AMC_SLP_S5_R_L", "",
+ 	"AMC_CPU_EAMPG_R", "",
+-	"", "", "", "",
++	"DIMM_PMIC_PG_TIMEOUT", "",
++	"EAM_MOD_PWR_GD_TIMEOUT", "",
++	"CPLD_AMC_STBY_PWR_EN", "",
+ 
+ 	/* O0-O7 line 224-239 */
+ 	"HPM_PWR_FAIL", "Port80_b0",
+ 	"FM_DIMM_IP_FAIL", "Port80_b1",
+ 	"FM_DIMM_AH_FAIL", "Port80_b2",
+ 	"HPM_AMC_THERMTRIP_R_L", "Port80_b3",
+-	"FM_CPU0_THERMTRIP_N", "Port80_b4",
++	"cpu_thermtrip_detect", "Port80_b4",
+ 	"PVDDCR_SOC_P0_OCP_L", "Port80_b5",
+ 	"CPLD_SGPIO_RDY", "Port80_b6",
+-	"", "Port80_b7",
++	"FM_MAIN_PWREN_RMC_EN_ISO", "Port80_b7",
+ 
+ 	/* P0-P7 line 240-255 */
+ 	"CPU0_SLP_S5_N_R", "NFC_VEN",
+@@ -997,8 +1026,8 @@ &sgpiom0 {
+ 	"PWRGD_RMC", "",
+ 	"FM_RST_CPU0_RESET_N", "",
+ 	"FM_PWRGD_CPU0_PWROK", "",
+-	"wS5_PWR_Ready", "",
+-	"wS0_ON_N", "PWRGD_P1V0_AUX";
++	"AMC_FAIL", "",
++	"wS0_ON_N", "";
+ 	status = "okay";
+ };
+ 
+
+---
+base-commit: 710dbb13377c80a6e39ef049a517665841e3221e
+change-id: 20260202-anacapa-dts-sgpio-e4e0ba5c2cd5
+
+Best regards,
 -- 
-2.51.0
+Colin Huang <u8813345@gmail.com>
 
 
