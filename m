@@ -1,195 +1,126 @@
-Return-Path: <devicetree+bounces-268661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268662-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCKCEBIHoGl/fQQAu9opvQ
-	(envelope-from <devicetree+bounces-268661-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:40:50 +0100
+	id MDC5LGQHoGl/fQQAu9opvQ
+	(envelope-from <devicetree+bounces-268662-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:42:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2A181A2B1B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:40:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0518F1A2B93
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:42:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6B53C3011844
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:37:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 15385304EF73
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54BE393DFC;
-	Thu, 26 Feb 2026 08:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B0C394481;
+	Thu, 26 Feb 2026 08:40:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UayT8M8b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ThIjjoHx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE71B393DE9;
-	Thu, 26 Feb 2026 08:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61B939448C;
+	Thu, 26 Feb 2026 08:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772095025; cv=none; b=r/FA2rkC3XkcZ+209NdbX3c2B1J6t0ti5CNQ//boj8ANAAOtgu/8VRStwJnlXYL08jpjf2I3SxdO16smTllrOictAhb6hbJCFQjG8A/ulwelFeQFZbOSVfWcxw2VV8iXIsX1aMhMyBtu437cEyTzNKniyPel2eMuv8DXYlzaQSE=
+	t=1772095225; cv=none; b=QkKMvxQ+dTXQn6U1R78kQKtZwVupNzFgYVBLIj15e6Ebl3REb6ySUfCvNs9yEr1WXxDahERXyTMCDXrWB4pdzvA1PKAONKMBY1581c7QtWJhUoK0ojJuuafZXAMdEZc7wssLKLLNZZtHJ4MXyB3UM7T1iBNEvQxL+WPcEwHRlXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772095025; c=relaxed/simple;
-	bh=4XfkjpUD1HWkRvY5xSHxtLpEXIsBytkEIyTNzWFgnUg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nghBPgr+Kt3iroY2d5NVs3yFK9Ml/gb8AFZntK8kBrbzme+ijmbGJS/h0SQoR+Jvls1Ailz3FJsx15OmT3rquI/wkDjiOWh6E3G/YmNoh5jJgIWDButiOvugLem+DJox2U2QrleZFH+hWB9UpqBjM8eX0rk6ajqvCe5vrgKASL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UayT8M8b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71808C19422;
-	Thu, 26 Feb 2026 08:36:58 +0000 (UTC)
+	s=arc-20240116; t=1772095225; c=relaxed/simple;
+	bh=03ww9eTAIOimZhGpfh2LPpkkMRKr/FXHrMGkGgHg/uw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=uhPPHWLzIk44otYB8hSEEuL71QJqjy5wjTAwv9ojgmCRq7FJI+sXsg+Iy6K0fapf8ZFaUagIhC6ldpcaLuxgnRWDbk4mNMfgu5ykAhkeqoHOfKotUSENp8XJF6mWxSxsOY4PD2ivlRdlKw1KQeGAOrkNomaJNDVigkVqPqg4bbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ThIjjoHx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86137C19422;
+	Thu, 26 Feb 2026 08:40:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772095025;
-	bh=4XfkjpUD1HWkRvY5xSHxtLpEXIsBytkEIyTNzWFgnUg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UayT8M8b7tk5oHubPD0MfhABCADHfcRn6hWNDbac/Zbq3MwLR5Q5WK8DZnI2hl4lK
-	 DuYIFa1JnP6S8bNsXgijNUt1IbvrNIXwnm8TgpC9zkIC8bvnwaUsLirb8CrNIOrTAV
-	 HYMGp10GsAHpo005y0bAYuB4qckOsDNJdIPPyu2VCMSi0YYvIR495YCG2d0xptML7g
-	 HhH188HN3aBIvPu+0FAVMUQa20jhr7HRp6T1z26NBu4SlW9mQ583LyVdxcCkBQmaoE
-	 rkN/81BzeaTnjIM3OnMhUlL4wq2i/dXGSlDJlvzezSh9MNIgA3huzou1Q2SYyxoxzH
-	 hRjogGL7z/+9Q==
-Date: Thu, 26 Feb 2026 14:06:54 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <rbmoxlc45bf4ij2o2mf3ofgni6vxqmsp52vdiqtc4wxxufmxkt@w2u5rkpq5mhs>
-References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
- <20260129092900.1900-1-zhangsenchuan@eswincomputing.com>
- <a3yu54e6feo5immtdju4fgvne7fh3p4ytlawfdhawmpzvagi64@o7wuhhdiitft>
- <78296255.3869.19c8eb694d6.Coremail.zhangsenchuan@eswincomputing.com>
- <cxfbgzwsybfvixu3qqi66fvspmhe5knuevwcj6zwsakkzqwd3z@czmitvgl7nwt>
- <694aeb1a.398e.19c98ff2727.Coremail.zhangsenchuan@eswincomputing.com>
+	s=k20201202; t=1772095225;
+	bh=03ww9eTAIOimZhGpfh2LPpkkMRKr/FXHrMGkGgHg/uw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ThIjjoHxqM636G0Cb4gnvicEzqDaWweb11h4BxNO2jwU+10Vl/Wm9iKZjaw+5VWjm
+	 ufG1bjxq4wdlIb2/8c+ESNhu4fquHv61kkdnMXhsscm6nNgZoBSDd/XFlMMIII4bta
+	 VELfeTX6NG22vMvnuPbsOfGMHKYXCUP7nOR02q5dIBc8cDrHMu8Lkq6ibO7Xp+gN6w
+	 jmkhuT6D3/c/X1KILWfAeZ72tsTAcXx9sGyAJYBB+Sm0lYnuO2MNBLkGY1kWSlkjyU
+	 fPY5MQ5RwoiBS3jeqMHMtlbIvvOrJAN5lBLFN5YvDtHrCrlCWPTE6wzCfu5zBJpgDb
+	 SsBLNBXbUPIWg==
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Rayan Marzouk <rayanmarzouk743@gmail.com>, 
+ bluebunny <kalorin.bok084@passinbox.com>
+In-Reply-To: <20260125-exynos7870-j7xelte-v1-0-5cacc3042c42@disroot.org>
+References: <20260125-exynos7870-j7xelte-v1-0-5cacc3042c42@disroot.org>
+Subject: Re: [PATCH 0/2] Add device tree for Samsung Galaxy J7 (2016)
+Message-Id: <177209522223.26390.6219893536178441080.b4-ty@kernel.org>
+Date: Thu, 26 Feb 2026 09:40:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <694aeb1a.398e.19c98ff2727.Coremail.zhangsenchuan@eswincomputing.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268661-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268662-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com,passinbox.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.994];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A2A181A2B1B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0518F1A2B93
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 04:09:44PM +0800, zhangsenchuan wrote:
-> 
-> > > > Subject: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host controller driver
-> > > > 
-> > > > On Thu, Jan 29, 2026 at 05:29:00PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > > >
-> > > > > +static int eic7700_pcie_suspend_noirq(struct device *dev)
-> > > > > +{
-> > > > > +	struct eic7700_pcie *pcie = dev_get_drvdata(dev);
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * The ESWIN EIC7700 SoC lacks hardware support for the L2/L3 low-power
-> > > > > +	 * link states. It cannot enter the L2/L3 Ready state through the
-> > > > > +	 * PME_Turn_Off/PME_To_Ack handshake protocol. To avoid this problem,
-> > > > > +	 * the dw_pcie_suspend_noirq API is not used.
-> > > > > +	 */
-> > > > 
-> > > > With 7.0, you can provide a dummy pme_turn_off() API and set
-> > > > 'pci->pp.skip_l23_ready' to reuse the dw_pcie_{suspend/resume}_noirq APIs.
-> > > > 
-> > > 
-> > > Hi Mani,
-> > > 
-> > > Setting pci->pp.skip_l23_ready does indeed allow us to reuse the
-> > > dw_pcie_suspend_noirq function. However, for the dw_pcie_resume_noirq
-> > > function, if the dw_pcie_start_link and dw_pcie_wait_for_link APIs fail to
-> > > execute, the clk/reset resources in the pci->pp.ops->init function cannot
-> > > be released. Perhaps the dw_pcie_resume_noirq function needs to be optimized.
-> > 
-> > Will this help?
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > index 6ae6189e9b8a..38ad79bbeab1 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > @@ -1300,15 +1300,24 @@ int dw_pcie_resume_noirq(struct dw_pcie *pci)
-> >  
-> >         ret = dw_pcie_start_link(pci);
-> >         if (ret)
-> > -               return ret;
-> > +               goto err_deinit;
-> >  
-> >         ret = dw_pcie_wait_for_link(pci);
-> >         if (ret)
-> > -               return ret;
-> > +               goto err_stop_link;
-> >  
-> >         if (pci->pp.ops->post_init)
-> >                 pci->pp.ops->post_init(&pci->pp);
-> >  
-> > +       return 0;
-> > +
-> > +err_stop_link:
-> > +       dw_pcie_stop_link(pci);
-> > +
-> > +err_deinit:
-> > +       if (pci->pp.ops->deinit)
-> > +               pci->pp.ops->deinit(&pci->pp);
-> > +
-> >         return ret;
-> >  }
-> >  EXPORT_SYMBOL_GPL(dw_pcie_resume_noirq);
-> > 
-> 
-> Yes, this can release the resources after init, after optimizing the 
-> resume function, i can reuse the dw_pcie_{suspend/resume}_noirq APIs.
-> 
-> I noticed that the dw_pcie_wait_for_link function has been optimized. Is 
-> it necessary to release the resources only when it return -ETIMEOUT?
-> Perhaps it needs to be slightly improved：
-> 
->  ret = dw_pcie_wait_for_link(pci);
->  if (ret == -ETIMEOUT)
->          goto err_stop_link;
-> 
-> What about your suggestion?
-> 
 
-Absolutely! I forgot my own rework ;) I'll cook a patch for the above. Then if
-you base your controller driver patch on top of it, we can merge both in a
-single tree (if Bjorn agrees).
+On Sun, 25 Jan 2026 01:35:25 +0530, Kaustabh Chakraborty wrote:
+> This series introduces the device tree for a new Samsung Exynos 7870
+> device – Samsung Galaxy J7 (2016).
+> 
+> I have acquired permission from the authors of this patch to upstream
+> this on their behalf.
+> 
+> 
+> [...]
 
-- Mani
+Applied, thanks!
 
+[1/2] dt-bindings: arm: samsung: add compatible for samsung-j7xelte
+      https://git.kernel.org/krzk/linux/c/be961cdb8ed3befa81dce118a6a41f0138732d10
+[2/2] arm64: dts: exynos: add initial support for Samsung Galaxy J7 (2016)
+      https://git.kernel.org/krzk/linux/c/5d692f20de6311fa507c952adc3487c641edee00
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Krzysztof Kozlowski <krzk@kernel.org>
+
 
