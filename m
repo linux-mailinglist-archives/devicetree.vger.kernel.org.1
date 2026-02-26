@@ -1,291 +1,162 @@
-Return-Path: <devicetree+bounces-268891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268892-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mOBhB39joGnajAQAu9opvQ
-	(envelope-from <devicetree+bounces-268891-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:15:11 +0100
+	id WJNnKlpdoGm3igQAu9opvQ
+	(envelope-from <devicetree+bounces-268892-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:48:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4992B1A862E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:15:10 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C481A7DF8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:48:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 64D14306BEE7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:48:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7C9733040FC9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454EB36CDE7;
-	Thu, 26 Feb 2026 14:48:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578C63A784C;
+	Thu, 26 Feb 2026 14:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="G7U75ipV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UYIYHlgt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D27724E4C3;
-	Thu, 26 Feb 2026 14:48:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5405036E46F
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 14:48:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772117302; cv=none; b=ZrhkRis1Gp2M4So8gBQVo1OMcVT82PBwP/QaZYhR9T2IBCNEwTDuzplAnx4u63XF33Zx8m7+qK4tyK4oPb4TBkY2jrNcpCHu04w3q544eS1iMkvqAQwW4PsMImvX4wnPqZ6KItBVoj/zT1HMDgLkD2TmLcAO8rz83D9EMN1eiZ4=
+	t=1772117316; cv=none; b=SojafQhYAHpgXBe1/YsKxxKvbJLoshcLWTcJTU4DDeRgPj+n8GdLaAPFvUul351/i1Nyu5vpUsFaJWSSj38boKxrCWuaLWquJ3lpkpOtLsAKWJZpC8UnAdd5sgCRStBdR8RURCUPK1uZUzvQjh/rL6+ZJIQGYD4POYX4nRpSsxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772117302; c=relaxed/simple;
-	bh=p1sd2y/gxKTiFVquzMChHA8eoQQkh/5qTOpvKH77ywY=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=Lt97TIigclYfatlGuu8ibD35zhCmojA56g9c3GaufmUNxyO8xuEL8QJFcQ0UDhiveFNOBSHaRY3etpLoJcCqBsm8Vrk6yTHcN/jMAtq6syL7dypBAhrDQ+B1Bazy3wwwhwn4zXrEf7WrAdz2zg1Yyw4s6s6a5gQB308ULoc5NZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=G7U75ipV; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=LF1zAuSNqXIs/9ctoJjEp+VMTDcoeXF/IvZ3mF+jESg=; b=G7U75ipV5fNWP5LU5UL5Flnmb3
-	6zLQjZqQFHHR0I9QbeAm5xdxA0aAYpZwxMWMuWd+lTBYR9zz77wfUTqGUMroszRXqY0rBLM6XFJ6Y
-	Wi8BEr51t14dNJwV7zWaxcCWrWAl0ro7lMrZprtKB84ogNWycVyJTVQBsfLF9NTyTzk8=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:47368 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vvcew-0004LS-Jk; Thu, 26 Feb 2026 09:48:11 -0500
-Date: Thu, 26 Feb 2026 09:48:09 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: robin@protonic.nl, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, dmitry.torokhov@gmail.com, hvilleneuve@dimonoff.com,
- mkorpershoek@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, lee@kernel.org,
- alexander.sverdlin@gmail.com, marek.vasut@gmail.com, akurz@blala.de,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Message-Id: <20260226094809.ce24cde2622c7adb84fb4410@hugovil.com>
-In-Reply-To: <CAMuHMdVdYX9p9DfDoyMv8qEm52kY51QULkEnuxRBH2OyWyYf6g@mail.gmail.com>
-References: <20260225155409.612478-1-hugo@hugovil.com>
-	<20260225155409.612478-4-hugo@hugovil.com>
-	<CAMuHMdVdYX9p9DfDoyMv8qEm52kY51QULkEnuxRBH2OyWyYf6g@mail.gmail.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772117316; c=relaxed/simple;
+	bh=JmzVSEjedO3VO912r+fj5eVKGwTqy6TpqoCOEuoAOxE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HGcNIQzHIGqemJBRg4g7zGc9Rqqcr7su5Jakb8KeDPAXAZkYxa4zuA5ZjGX+zUXa31bnF37b3K2yNIK9O6pJjNVvky3khC7CeTqfJGFZSsp0YBTctlYqJ/4Plm4Or6j+nZxhHmvY9srBmzXox0xttKlAOEYppZIfVfge3LFOEmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UYIYHlgt; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2a962230847so8988445ad.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 06:48:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772117314; x=1772722114; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3gSsgQwZJwP3d9XrK8WyIp3GZ6Hj1uEXl0FYyD3hmvI=;
+        b=UYIYHlgt6TgF30Xy3eiO0iwQYcUGYZJfOx34JU0eS6JP6x7sEzalt6Itjgl+/TPhSa
+         lgqiQK1XOnKQBQERzEnpOhW6tMkSuPzZfsYdg7MgaFvR44cVzpi1kwmCn6HfE5l0jign
+         sOZILHBsLwjiN9aSkaRppAzpopnPxrPEYIhi33i1zB4jAaRI+4n2Y59IhI0QvlftaT3J
+         dxV5/4JL0AMUqP9nNh9JLbd8q2In6bXoP2QULmoxYX21wFTp6yclnnjAId99VksU4Qsn
+         WzknFhjJBKAcvU4ibS0o/jsrR/NjYZhN4PQ+paUSnkz67Zyogr6Xsg/NPmFg+Z7Yxdok
+         yVrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772117314; x=1772722114;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3gSsgQwZJwP3d9XrK8WyIp3GZ6Hj1uEXl0FYyD3hmvI=;
+        b=iqn2xI0qp23M42xU+CofFOcOeYJO/4Qj5Cbrkum38aIX16ig+xHp89N9t6G2JA6POS
+         siTQsAnTM3IKi7PtOsGCPuVxkiuAaxOYs0q06YBZW37rd19YwiAYUBkCyLRycSH5F77A
+         WtBF0Xk6m7zksuq9zbsmEcw0N5LdBHm89ceN08ej/fT5wn4Ph+Ytm9GRL9MlV+otW+xF
+         NFkS+ix50iWJLLdYjZ3CJC6kye09ShSTSCrWXg9POzzlLsQkH7rzv26pZNWaKgaA82wV
+         kRLQFTGqGw27iIaesW+iMRw7gRPtJOqsXnok/t6pc6SKrLl74XUkZpgfL4CDjP/xcSc4
+         D1/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVYY+DCy35HPnOgbgQcCkXPjtFNZLjXTvvtVYm/xgTCuqxpraGB9pYUD5MRSx0USOeV5X7mJXNyBUTc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy51Ta1DkyM2uebqmMVIxbJVpSlaYPl4KIEZeguyxMS5l4JiCpn
+	Msn7r/DEg4CF2ELixnPCtdvYW/CzapaEJzfyLH7KhzBYWL+wbVJwRWlE
+X-Gm-Gg: ATEYQzzKepgQ4MGkFlgXhY9+/G+bxVY4MSbYlcN6ZzyUfb0UK280cE/NnNJtQlD6Vbp
+	HTnH9gJfKukwbAipWv3u5ktCawKM6FZbmbGVCcCxDZ9g10q1+8RdN76AIJfWF0oeezE8fnz+/Yf
+	cN6vvblOpqsrJB04Q9bdKtn2+ugk6ddzLGmnOOrYBFmOQTrGBRz1+uRsDtImL142ht/DyzkrnNW
+	23lQmEZ7+CXB0ePsEwlY7eIkLkjdXuIiP6X71SCV9utN15AsXhn5S7VKq45M2BlENyYTeQKXrUq
+	1zHazwpfAEv/+uqEhPRDYx/sdkaJK+cP42tNBITPPuYQfBFwfZTvVW/GU3eTnmP0uSpZlSeWheJ
+	Q4TedPF7gY/gdpy+FkYUx2IW8Mm8pXjE+z0uMSpdXhGB93yBOSr5a5g538rjcwHgon5Pft8a35l
+	GQBJ1ggd0Nfe6xOX4Zm2qO5GruPBtAXsSH8N01TmuudqT7r88/O19wlJghAimxMtqDtmCBh7yBX
+	ae2Eg==
+X-Received: by 2002:a17:903:1b6d:b0:2aa:d61d:b6b3 with SMTP id d9443c01a7336-2ae0349484cmr25894555ad.41.1772117313599;
+        Thu, 26 Feb 2026 06:48:33 -0800 (PST)
+Received: from wig-Precision-3660.. (125-227-154-99.hinet-ip.hinet.net. [125.227.154.99])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb69fa65sm27871825ad.58.2026.02.26.06.48.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Feb 2026 06:48:33 -0800 (PST)
+From: Wig Cheng <onlywig@gmail.com>
+To: shawnguo@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	zaq14760@gmail.com,
+	Wig Cheng <onlywig@gmail.com>
+Subject: [PATCH v5 0/1] arm64: dts: freescale: add pixpaper display overlay for i.MX93 FRDM
+Date: Thu, 26 Feb 2026 22:48:18 +0800
+Message-ID: <20260226144819.3428730-1-onlywig@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -1.9 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v3 3/4] dt-bindings: input: add GPIO charlieplex keypad
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268891-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[protonic.nl,kernel.org,gmail.com,dimonoff.com,collabora.com,blala.de,vger.kernel.org,lists.infradead.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-268892-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	NEURAL_HAM(-0.00)[-0.891];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,hugovil.com:mid,hugovil.com:dkim,hugovil.com:email,dimonoff.com:email,devicetree.org:url]
-X-Rspamd-Queue-Id: 4992B1A862E
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[onlywig@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.997];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 49C481A7DF8
 X-Rspamd-Action: no action
 
-Hi Geert,
+Changes in v5:
+- Use 1MHz spi-max-frequency to comply with binding schema
 
-On Thu, 26 Feb 2026 10:32:30 +0100
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+Changes in v4:
+- Drop invalid property
 
-> Hi Hugo,
-> 
-> On Wed, 25 Feb 2026 at 16:54, Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >
-> > Add DT bindings for GPIO charlieplex keypad.
-> >
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> 
-> Thanks for your patch!
-> 
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
-> > @@ -0,0 +1,106 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +
-> > +$id: http://devicetree.org/schemas/input/gpio-charlieplex-keypad.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: GPIO charlieplex keypad
-> > +
-> > +maintainers:
-> > +  - Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > +
-> > +description: |
-> > +  The charlieplex keypad supports N^2)-N different key combinations (where N is
-> > +  the number of lines). Key presses and releases are detected by configuring
-> > +  only one line as output at a time, and reading other line states. This process
-> > +  is repeated for each line. Diodes are required to ensure current flows in only
-> > +  one direction between any pair of pins.
-> > +  This mechanism doesn't allow to detect simultaneous key presses.
-> 
-> Indeed, e.g. pressing S1 and S2 simultaneously will show a ghost
-> S5 keypress.
-> 
-> > +
-> > +  Wiring example for 3 lines keyboard with 6 switches and 3 diodes:
-> > +
-> > +  L0  --+---------------------+----------------------+
-> > +        |                     |                      |
-> > +  L1  -------+-----------+---------------------+     |
-> > +        |    |           |    |                |     |
-> > +  L2  -------------+----------------+-----+    |     |
-> > +        |    |     |     |    |     |     |    |     |
-> > +        |    |     |     |    |     |     |    |     |
-> > +        |  S1 \  S2 \    |  S3 \  S4 \    |  S5 \  S6 \
-> > +        |    |     |     |    |     |     |    |     |
-> > +        |    +--+--+     |    +--+--+     |    +--+--+
-> > +        |       |        |       |        |       |
-> > +        |    D1 v        |    D2 v        |    D3 v
-> > +        |       - (k)    |       - (k)    |       - (k)
-> > +        |       |        |       |        |       |
-> > +        +-------+        +-------+        +-------+
-> 
-> Don't you need pull-down resistors on L[0-2], and/or a way to specify
-> in DT to enable internal poll-down on GPIO controllers that support it?
-> Some controllers may support internal pull-up only, but I guess that
-> can be handled using GPIO_ACTIVE_LOW?
+Changes in v3:
+- Misunderstood reviewer's feedback in v1, improved commit message description
 
-Yes, I did not put any resistors in the diagram in order to keep it
-simple and clear.
+Changes in v2:
+- Fix Makefile alphabetical ordering
+- Move vendor property before status in device tree
+- Simplify commit message as suggested by reviewer
 
-You need pull-down resistors either on the board, or specified in the
-DT like we do for our board (we use the PCAL6416 with pull-up/down
-support):
+Wig Cheng (1):
+  arm64: dts: freescale: add pixpaper display overlay for i.MX93 FRDM
 
-  line-gpios = <&gpio20 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)
-                 ...
-
-I will add this to the example, and add a few lines explaining this in
-the description.
-
-
-> > +
-> > +  L: GPIO line
-> > +  S: switch
-> > +  D: diode (k indicates cathode)
-> > +
-> > +allOf:
-> > +  - $ref: input.yaml#
-> > +  - $ref: /schemas/input/matrix-keymap.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: gpio-charlieplex-keypad
-> > +
-> > +  autorepeat: true
-> > +
-> > +  debounce-delay-ms:
-> > +    default: 5
-> > +
-> > +  line-gpios:
-> > +    description:
-> > +      List of GPIOs used as lines. The gpio specifier for this property
-> > +      depends on the gpio controller to which these lines are connected.
-> > +
-> > +  linux,keymap: true
-> > +
-> > +  poll-interval: true
-> > +
-> > +  settling-time-us: true
-> > +
-> > +  wakeup-source: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - line-gpios
-> > +  - linux,keymap
-> > +  - poll-interval
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/input/input.h>
-> > +
-> > +    charlieplex-keypad {
-> 
-> "keyboard", as per Devicetree Specification Generic Names
-> Recommendation.
-
-Ok.
-
-Thank you,
-Hugo.
-
-> 
-> > +        compatible = "gpio-charlieplex-keypad";
-> > +        debounce-delay-ms = <20>;
-> > +        poll-interval = <5>;
-> > +        settling-time-us = <2>;
-> > +
-> > +        line-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH
-> > +                      &gpio2 26 GPIO_ACTIVE_HIGH
-> > +                      &gpio2 27 GPIO_ACTIVE_HIGH>;
-> > +
-> > +        /* MATRIX_KEY(output, input, key-code) */
-> > +        linux,keymap = <
-> > +            /*
-> > +             * According to wiring diagram above, if L1 is configured as
-> > +             * output and HIGH, and we detect a HIGH level on input L0,
-> > +             * then it means S1 is pressed: MATRIX_KEY(L1, L0, KEY...)
-> > +             */
-> > +            MATRIX_KEY(1, 0, KEY_F1) /* S1 */
-> > +            MATRIX_KEY(2, 0, KEY_F2) /* S2 */
-> > +            MATRIX_KEY(0, 1, KEY_F3) /* S3 */
-> > +            MATRIX_KEY(2, 1, KEY_F4) /* S4 */
-> > +            MATRIX_KEY(1, 2, KEY_F5) /* S5 */
-> > +            MATRIX_KEY(0, 2, KEY_F6) /* S6 */
-> > +        >;
-> > +    };
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-> 
-
+ arch/arm64/boot/dts/freescale/Makefile        |  4 ++
+ .../freescale/imx93-11x11-frdm-pixpaper.dtso  | 50 +++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dtso
 
 -- 
-Hugo Villeneuve
+2.43.0
+
 
