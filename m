@@ -1,235 +1,335 @@
-Return-Path: <devicetree+bounces-268651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268652-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UAt9E2L9n2n3fAQAu9opvQ
-	(envelope-from <devicetree+bounces-268651-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:59:30 +0100
+	id uEnFFTIAoGlrfQQAu9opvQ
+	(envelope-from <devicetree+bounces-268652-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:11:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90C81A22B2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:59:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF611A2554
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:11:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F04263047BE6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:58:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 71C983021E5D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61345392809;
-	Thu, 26 Feb 2026 07:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD8E393DC9;
+	Thu, 26 Feb 2026 08:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Kb00A/Xp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="StagU9uF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazhn15010019.outbound.protection.outlook.com [52.102.133.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A203738F22F;
-	Thu, 26 Feb 2026 07:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.133.19
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772092714; cv=fail; b=ABUe9buyIXNWXIh2sb+N9zAvulrEKfujVmktLllnko+kuiryekJHBmwjf/RerEbe29DWsYCyAWDEXg+B2djQ+09iYBcv14HmelcYd5eCJsxWVH9rKF8DGAbC59BsriV5Nbsdig1UPzbZhQBv3Xxv7RcayaDzKn+DXEulKD8imMU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772092714; c=relaxed/simple;
-	bh=vzTIwqt94K0Yid2F1Y0AK+caYiMkX2XgOX48GzLJOas=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S77AYqqpYmxfQaVlXWNzAj727lBA/SQj7GqHGZrRfPRODgCyuR9vjUj9QScTzcs1GAoAHOMhzIeHufeC0pxrQ5rYdWS7MFxCqYVUYNj6yQsMn2MwDa1WrNnS+X5Gs5c12602FyA3sdA+x/DPFh2XWmtrGjwYeLPUD4cABNcppto=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Kb00A/Xp; arc=fail smtp.client-ip=52.102.133.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WGAzYur2BEHE7kyPR8Sh8v0M7z5/b8QXDAT1w3Ljn87o3DE5OA7IUt/RYmS8/YvG5l0v2JVFwkUKB+XNf/Etp5gf5xT4N7u0v25w/Z9IxrVxB0RLlzrcM2nNJ8g97nD2mYSrRr3PKaLLRZRA+6kpi1qNJ2wPlc7t2n9R9HvIYFjoPjjISQlak1kPqq9P/S0FqL/VWTtv/efoc7fhpXyPKG2VJO8l/hZ9CAtLqdsBiLMCa4J33hwDviY0r2ANfvpxkWwxNPMX8mX3tkXWLFVqBjC+eugyNZD1SsvFA9XStvjegOq02GMoU9xeGkivR5E2cKVjRX/NTsXAqevd5zROBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UAHp0dcweFxFAdZWOLX6kBP1uh594Yxg4pw9mR4EXY0=;
- b=Cl+UWwCgGFUAAD4UqqfU5hvKBn1XDRYBeZWkhQPYm0ysl1DFSfK255GeLVjqUIDJOachDJtdEWYMJkGaYyhBWnE/sNoIXx0W0HSfh6Qbw8Mt0nNqRHjNzGCb3KSiDbWR+7ZalQbnUbMhZd4W6rz1JB7mnuVzyb9R9WBAzRIteNzi8IGj5VUddhBhM6HcCJuuhd6itscHF2fW5YWQ3yRrSE0s+Z6WtziySOym+jJffTUBWBsIJfsKZ9aSc3V4c7HNJsZVSainqbOhItdG9gtHv4QvI9DPLV8EQRIrmKQQ/VuMB3YzSc7yw5oUW301yJrOMQwDt98JJeT/8H7sLR1VQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=google.com smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UAHp0dcweFxFAdZWOLX6kBP1uh594Yxg4pw9mR4EXY0=;
- b=Kb00A/XpxdxgL11SNcKLFDttP1c+8xt8wBenPEzsLZoHYddj5BIU+Auco3C0l9kgNGIe6wzcnPYKO0QtgJ6H/uXagpCcj3i4USn5BXL038BYjJ0XHrW/gqS7dw5WgGODz7Wc+vgdwkbTPpJZf+5ocwxAGnTH/H+WgiBmT6yFNZ0=
-Received: from SJ0PR03CA0011.namprd03.prod.outlook.com (2603:10b6:a03:33a::16)
- by IA3PR10MB8683.namprd10.prod.outlook.com (2603:10b6:208:572::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Thu, 26 Feb
- 2026 07:58:30 +0000
-Received: from MWH0EPF000A672F.namprd04.prod.outlook.com
- (2603:10b6:a03:33a:cafe::c4) by SJ0PR03CA0011.outlook.office365.com
- (2603:10b6:a03:33a::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.22 via Frontend Transport; Thu,
- 26 Feb 2026 07:58:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- MWH0EPF000A672F.mail.protection.outlook.com (10.167.249.21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.12 via Frontend Transport; Thu, 26 Feb 2026 07:58:27 +0000
-Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 26 Feb
- 2026 01:58:21 -0600
-Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 26 Feb
- 2026 01:58:21 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 26 Feb 2026 01:58:21 -0600
-Received: from lelvem-mr05.itg.ti.com ([10.250.165.138])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61Q7w5L11501104;
-	Thu, 26 Feb 2026 01:58:14 -0600
-From: Baojun Xu <baojun.xu@ti.com>
-To: <broonie@kernel.org>, <tiwai@suse.de>
-CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
-	<shenghao-ding@ti.com>, <baojun.xu@ti.com>, <linux-sound@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<k-yi@ti.com>, <henry.lo@ti.com>, <robinchen@ti.com>, <will-wang@ti.com>,
-	<jim.shil@goertek.com>, <toastcheng@google.com>, <chinkaiting@google.com>
-Subject: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-Date: Thu, 26 Feb 2026 15:57:37 +0800
-Message-ID: <20260226075737.405-2-baojun.xu@ti.com>
-X-Mailer: git-send-email 2.43.0.windows.1
-In-Reply-To: <20260226075737.405-1-baojun.xu@ti.com>
-References: <20260226075737.405-1-baojun.xu@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249D83939C7
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772093237; cv=none; b=m5A6ZI0q9UXwcQD+HkJ1N4WMXYVgkaiELBpuVTxHX4QqN0bna1MTj7+JHYl2g4lrtGfDITv/3ZaY4RANW9b3RIcPkZLLanRaB97at1KvndqdL/bAzLWqwIBEwInSOmtCIslqbgcyY4/0yzKPVtiq+zX/wk7IF02tCJ1j70Dmb/s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772093237; c=relaxed/simple;
+	bh=K0n8HxF6lOZqrVlB8vEJwgYuzkOQryDbQZJNjlhSba8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=c1kudwbT34Qc4S47z8CX3dYIqJsmOGBu+8ZTutKQTIswaXwRknKXN0iCIadAIkgiFR27ggtHzEvKedB7scE4ozN2SvsC3gz+DYsAOvi68r4mYyy+gHkayTqpYDIMLiW4hgrL0miMlUzzKBUVCS8hm3QAeGD/wUB9qywPu8DUmPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=StagU9uF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D481DC2BCB0
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:07:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772093236;
+	bh=K0n8HxF6lOZqrVlB8vEJwgYuzkOQryDbQZJNjlhSba8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=StagU9uFt5bPoZAOY2hlmDGJqVsdjf1LQSED/+Dih0bYvRA6DReAF7ai7BKAvy25U
+	 1//p+EjDttuvF1KYh0Aq8Wr2DOjaqkjFOJ2njQTTbQy6U5S3/O/yt4yoDSO1cZFGtN
+	 HobCxRFEQJJ+dZewDILJCAv3v2QEL2mpWLQzV3v+5gzWGOfCd/MUSrMqcxwqv7i4ty
+	 q5xj6s5DlQarW6bhA0d8RuDM4/kJy/zzGdn8UWeUM5gOG3ROFUCwD1xRzqcW9eIs9w
+	 ltYmnFHfW56/3+ZQUWJRNmiSMA3GPdguSt/458bHdaTI/AVr6+MyxGLsL8GHHOHanC
+	 yO0BkPZ1a33tw==
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-65f71ed7c6cso1111212a12.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 00:07:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVGhuwTPMeJGP4WeuH0nY7YLbQPeKC3S6D85GuO0YE0I5z3QNAj+qI2eNDDHIgFJNOAbkr/mXLlOTdu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzE+caneWTHzg9yAqcRuqhR4sCFafi00y6WU8YAmZs8SeYwPA8H
+	Ro2qpGbmIpMJBfeLdX7ZNJ9FdZ7Idw0SnHTpboN/IMNiI+nT4eftuTLnYM3n32YKN0t3nix+b3g
+	Wkgxkvj45uaNQzUba7giuNBr1bEjEcms=
+X-Received: by 2002:a05:6402:2692:b0:659:4554:2dbd with SMTP id
+ 4fb4d7f45d1cf-65fa476ebfamr2133550a12.7.1772093235170; Thu, 26 Feb 2026
+ 00:07:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000A672F:EE_|IA3PR10MB8683:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78fc2d7f-74fe-4049-e167-08de750cd316
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|34020700016|36860700013|82310400026|1800799024|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	orUgmHZNjj4tCYXBkP/uC5I775W9HOAH6Eu5kvkNpP1tSdUge6i7aD/A/bA8xnrt1toxSnflSOHY8ZEV5AwiP0ZooPOeyHhswUVfXGYLXq6XflIX2l3FX0kaNt0B5EZdhJZA9pMkm6xd/Ris3yeENETD+hiCxKU0JnYmaPWLdmwA8EkBsnNlleyaJ8x9lwAkBFJIa1MDVByeuVZhnKdtOsYt86Z8d1zphAbtJbAQRsdel3gu5NVnLtm/VZhoNNus11dd1/hx0CTDZGwJ4FzGMwsksCq80ppubbAiuhRkOtBzJbJ77YsOMKgpwY5hRhC3rdVZUqeoKhEXOxn//9i5CHCu+aoqM4ZOwuEw71YA18bNiubWFNzEC1c3f9gbVhIwTywzB7JN0HahZAB5KdXseLgkPkqLNralEJe+sSeOcqUYX2EzhajV58Z0f4RbxCFshR7j4XQx3tKsbLI8lwE6ZMtL/AfTKojcShluvbzgNX1iJeFTO7uaMKt5vCUHVZciHaVbR9AzSXrN+r/fx5tZv3s+TIHAKJUJCoiBC8Ul2un2Kk3RB3dnN7g2aRl5iHzJWOhgfpU42pLOor1Y5EYqU6usuv/oj3cor1U3ObYOdYAi7Uc4xU2K5bvVnjQSuf1zgU0oAcGWT5wGSA4EIRr7Ug1lNz4CTr2VnWlyJ5ibIFMLvMCG+WCrdF8BpXscc9+EqwDzVJpl2Tg+PBPf5m5u+zJjA1yCqkELEiswrsgECkj6mMe1ENxblUkuLBSuoA3TJpeGqE7NlHZ6axFxxcKdH1NI5jId5dIuPwAt3FlXuqLxKMprGGBukU0+YrD+MtnyUg/pLUBk5qJ0G5zCDXxQow==
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(376014)(34020700016)(36860700013)(82310400026)(1800799024)(12100799066);DIR:OUT;SFP:1501;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	OCi2OioHmSjS51UOIJr1w6VxGN1NXg5QJuLapQpet6M6FLkvTzgYLyC2hraTYE8AQpiXpbW0ulaivQKwVvDNbTFW8iFHPSimMOWvSUDwB219OB7iMSA5ubn6H6p4XDMHHhT7kLQyxFR76DcQKj6c4Z5NmPD1YdgZkz7Wo6Jr5YxzsT+b4qgtmfnjUbqziK5V1ipNSzZqvzk7LehbxH/lICxCrkwBhHoCZTHtAaGx4UJ65F4viO3sLz4TYu2pAhj4U5kcgTWM0HXSLUQlRWPiChMOyEc1G2qx9UNLasrOQiu/ysMwAEiVqtQyhQOaylG6dLcaNQwWFevKl/304gNO7Vl65C4ys8MrZd95bwOsnoXFh2EHxmSpZq9AzlK9sa8M5MQ/rbzVzXsxgZZgWahQsy7mEGoT54nfUqmpyW+y01+DCihh5yNPIxRq8EF27hr6
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 07:58:27.3414
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78fc2d7f-74fe-4049-e167-08de750cd316
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MWH0EPF000A672F.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8683
+References: <cover.1770605931.git.zhoubinbin@loongson.cn> <d62faafc653efab602c8d6bfcdcee1cb217171b9.1770605931.git.zhoubinbin@loongson.cn>
+ <aYoPyWS7o27G-AHh@lizhi-Precision-Tower-5810> <CAMpQs4+NHVQTcxdsBYp6H7c4FZpsuTo=QpKKY09sgpppDEiuNA@mail.gmail.com>
+In-Reply-To: <CAMpQs4+NHVQTcxdsBYp6H7c4FZpsuTo=QpKKY09sgpppDEiuNA@mail.gmail.com>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Thu, 26 Feb 2026 16:07:17 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H5ODRYLC=cmhWzkkxAMNJK1SRT9b-L+eQEqzhJKtmENhQ@mail.gmail.com>
+X-Gm-Features: AaiRm53wN3tuv3Fr6JhWHeaXk9ZvsrAGSuLaFtOSYLHZz0Hr2Lq5IiPjFj5GUhA
+Message-ID: <CAAhV-H5ODRYLC=cmhWzkkxAMNJK1SRT9b-L+eQEqzhJKtmENhQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dmaengine: loongson: New directory for Loongson
+ DMA controllers drivers
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Frank Li <Frank.li@nxp.com>, Binbin Zhou <zhoubinbin@loongson.cn>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	dmaengine@vger.kernel.org, Xiaochuang Mao <maoxiaochuan@loongson.cn>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	Keguang Zhang <keguang.zhang@gmail.com>, linux-mips@vger.kernel.org, jeffbai@aosc.io
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268652-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,139.com,ti.com,vger.kernel.org,gmail.com,kernel.org,goertek.com,google.com];
-	TAGGED_FROM(0.00)[bounces-268651-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[baojun.xu@ti.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[nxp.com,loongson.cn,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev,gmail.com,aosc.io];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:mid,ti.com:dkim,ti.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: D90C81A22B2
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,mail.gmail.com:mid,loongson.cn:email]
+X-Rspamd-Queue-Id: 9DF611A2554
 X-Rspamd-Action: no action
 
-TAS5832 is in same family with TAS5827/28/30.
+Hi, Binbin.
 
-Signed-off-by: Baojun Xu <baojun.xu@ti.com>
----
- include/sound/tas2781.h        | 1 +
- sound/soc/codecs/tas2781-i2c.c | 5 +++++
- 2 files changed, 6 insertions(+)
+On Tue, Feb 10, 2026 at 9:27=E2=80=AFAM Binbin Zhou <zhoubb.aaron@gmail.com=
+> wrote:
+>
+> Hi Frank:
+>
+> On Tue, Feb 10, 2026 at 12:48=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrot=
+e:
+> >
+> > On Mon, Feb 09, 2026 at 11:04:18AM +0800, Binbin Zhou wrote:
+> > > Gather the Loongson DMA controllers under drivers/dma/loongson/
+> > >
+> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > > ---
+> > >  MAINTAINERS                                   |  3 +-
+> > >  drivers/dma/Kconfig                           | 25 ++---------------
+> > >  drivers/dma/Makefile                          |  3 +-
+> > >  drivers/dma/loongson/Kconfig                  | 28 +++++++++++++++++=
+++
+> > >  drivers/dma/loongson/Makefile                 |  3 ++
+> > >  .../dma/{ =3D> loongson}/loongson1-apb-dma.c    |  4 +--
+> > >  .../dma/{ =3D> loongson}/loongson2-apb-dma.c    |  4 +--
+> > >  7 files changed, 40 insertions(+), 30 deletions(-)
+> > >  create mode 100644 drivers/dma/loongson/Kconfig
+> > >  create mode 100644 drivers/dma/loongson/Makefile
+> > >  rename drivers/dma/{ =3D> loongson}/loongson1-apb-dma.c (99%)
+> > >  rename drivers/dma/{ =3D> loongson}/loongson2-apb-dma.c (99%)
+> > >
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index f630328ca6ae..27f77b68d596 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -14777,7 +14777,7 @@ M:    Binbin Zhou <zhoubinbin@loongson.cn>
+> > >  L:   dmaengine@vger.kernel.org
+> > >  S:   Maintained
+> > >  F:   Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+> > > -F:   drivers/dma/loongson2-apb-dma.c
+> > > +F:   drivers/dma/loongson/loongson2-apb-dma.c
+> > >
+> > >  LOONGSON LS2X I2C DRIVER
+> > >  M:   Binbin Zhou <zhoubinbin@loongson.cn>
+> > > @@ -17515,6 +17515,7 @@ F:    arch/mips/boot/dts/loongson/loongson1*
+> > >  F:   arch/mips/configs/loongson1_defconfig
+> > >  F:   arch/mips/loongson32/
+> > >  F:   drivers/*/*loongson1*
+> > > +F:   drivers/dma/loongson/loongson1-apb-dma.c
+> > >  F:   drivers/mtd/nand/raw/loongson-nand-controller.c
+> > >  F:   drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+> > >  F:   sound/soc/loongson/loongson1_ac97.c
+> > > diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> > > index 66cda7cc9f7a..1b84c5b11654 100644
+> > > --- a/drivers/dma/Kconfig
+> > > +++ b/drivers/dma/Kconfig
+> > > @@ -376,29 +376,6 @@ config K3_DMA
+> > >         Support the DMA engine for Hisilicon K3 platform
+> > >         devices.
+> > >
+> > > -config LOONGSON1_APB_DMA
+> > > -     tristate "Loongson1 APB DMA support"
+> > > -     depends on MACH_LOONGSON32 || COMPILE_TEST
+> > > -     select DMA_ENGINE
+> > > -     select DMA_VIRTUAL_CHANNELS
+> > > -     help
+> > > -       This selects support for the APB DMA controller in Loongson1 =
+SoCs,
+> > > -       which is required by Loongson1 NAND and audio support.
+> > > -
+> > > -config LOONGSON2_APB_DMA
+> > > -     tristate "Loongson2 APB DMA support"
+> > > -     depends on LOONGARCH || COMPILE_TEST
+> > > -     select DMA_ENGINE
+> > > -     select DMA_VIRTUAL_CHANNELS
+> > > -     help
+> > > -       Support for the Loongson2 APB DMA controller driver. The
+> > > -       DMA controller is having single DMA channel which can be
+> > > -       configured for different peripherals like audio, nand, sdio
+> > > -       etc which is in APB bus.
+> > > -
+> > > -       This DMA controller transfers data from memory to peripheral =
+fifo.
+> > > -       It does not support memory to memory data transfer.
+> > > -
+> > >  config LPC18XX_DMAMUX
+> > >       bool "NXP LPC18xx/43xx DMA MUX for PL080"
+> > >       depends on ARCH_LPC18XX || COMPILE_TEST
+> > > @@ -774,6 +751,8 @@ source "drivers/dma/fsl-dpaa2-qdma/Kconfig"
+> > >
+> > >  source "drivers/dma/lgm/Kconfig"
+> > >
+> > > +source "drivers/dma/loongson/Kconfig"
+> > > +
+> > >  source "drivers/dma/stm32/Kconfig"
+> > >
+> > >  # clients
+> > > diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
+> > > index a54d7688392b..a1c73415b79f 100644
+> > > --- a/drivers/dma/Makefile
+> > > +++ b/drivers/dma/Makefile
+> > > @@ -49,8 +49,6 @@ obj-$(CONFIG_INTEL_IDMA64) +=3D idma64.o
+> > >  obj-$(CONFIG_INTEL_IOATDMA) +=3D ioat/
+> > >  obj-y +=3D idxd/
+> > >  obj-$(CONFIG_K3_DMA) +=3D k3dma.o
+> > > -obj-$(CONFIG_LOONGSON1_APB_DMA) +=3D loongson1-apb-dma.o
+> > > -obj-$(CONFIG_LOONGSON2_APB_DMA) +=3D loongson2-apb-dma.o
+> > >  obj-$(CONFIG_LPC18XX_DMAMUX) +=3D lpc18xx-dmamux.o
+> > >  obj-$(CONFIG_LPC32XX_DMAMUX) +=3D lpc32xx-dmamux.o
+> > >  obj-$(CONFIG_MILBEAUT_HDMAC) +=3D milbeaut-hdmac.o
+> > > @@ -88,6 +86,7 @@ obj-$(CONFIG_INTEL_LDMA) +=3D lgm/
+> > >
+> > >  obj-y +=3D amd/
+> > >  obj-y +=3D mediatek/
+> > > +obj-y +=3D loongson/
+> >
+> > keep alphabet order
+>
+> Sorry, I'll fix it in the next version.
+> >
+> > Frank
+> > >  obj-y +=3D qcom/
+> > >  obj-y +=3D stm32/
+> > >  obj-y +=3D ti/
+> > > diff --git a/drivers/dma/loongson/Kconfig b/drivers/dma/loongson/Kcon=
+fig
+> > > new file mode 100644
+> > > index 000000000000..9dbdaef5a59f
+> > > --- /dev/null
+> > > +++ b/drivers/dma/loongson/Kconfig
+> > > @@ -0,0 +1,28 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only
+> > > +#
+> > > +# Loongson DMA controllers drivers
+> > > +#
+> > > +if MACH_LOONGSON32 || MACH_LOONGSON64 || COMPILE_TEST
+> > > +
+> > > +config LOONGSON1_APB_DMA
+> > > +     tristate "Loongson1 APB DMA support"
+> > > +     select DMA_ENGINE
+> > > +     select DMA_VIRTUAL_CHANNELS
+I think "depends on MACH_LOONGSON32 || COMPILE_TEST" is still needed,
+otherwise it can be compiled for MACH_LOONGSON64.
 
-diff --git a/include/sound/tas2781.h b/include/sound/tas2781.h
-index 7c03bdc951bb..c9152a950483 100644
---- a/include/sound/tas2781.h
-+++ b/include/sound/tas2781.h
-@@ -131,6 +131,7 @@ enum audio_device {
- 	TAS5827,
- 	TAS5828,
- 	TAS5830,
-+	TAS5832,
- 	TAS_OTHERS,
- };
- 
-diff --git a/sound/soc/codecs/tas2781-i2c.c b/sound/soc/codecs/tas2781-i2c.c
-index 41b89fcc69c3..9228b3b6383b 100644
---- a/sound/soc/codecs/tas2781-i2c.c
-+++ b/sound/soc/codecs/tas2781-i2c.c
-@@ -119,6 +119,7 @@ static const struct i2c_device_id tasdevice_id[] = {
- 	{ "tas5827", TAS5827 },
- 	{ "tas5828", TAS5828 },
- 	{ "tas5830", TAS5830 },
-+	{ "tas5832", TAS5832 },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, tasdevice_id);
-@@ -144,6 +145,7 @@ static const struct of_device_id tasdevice_of_match[] = {
- 	{ .compatible = "ti,tas5827" },
- 	{ .compatible = "ti,tas5828" },
- 	{ .compatible = "ti,tas5830" },
-+	{ .compatible = "ti,tas5832" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, tasdevice_of_match);
-@@ -1747,6 +1749,7 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
- 		case TAS5827:
- 		case TAS5828:
- 		case TAS5830:
-+		case TAS5832:
- 			/* If DSP FW fail, DSP kcontrol won't be created. */
- 			tasdevice_dsp_remove(tas_priv);
- 		}
-@@ -1918,6 +1921,7 @@ static int tasdevice_codec_probe(struct snd_soc_component *codec)
- 	case TAS5827:
- 	case TAS5828:
- 	case TAS5830:
-+	case TAS5832:
- 		p = (struct snd_kcontrol_new *)tas5825_snd_controls;
- 		size = ARRAY_SIZE(tas5825_snd_controls);
- 		break;
-@@ -2105,6 +2109,7 @@ static const struct acpi_device_id tasdevice_acpi_match[] = {
- 	{ "TXNW5827", TAS5827 },
- 	{ "TXNW5828", TAS5828 },
- 	{ "TXNW5830", TAS5830 },
-+	{ "TXNW5832", TAS5832 },
- 	{},
- };
- 
--- 
-2.25.1
+> > > +     help
+> > > +       This selects support for the APB DMA controller in Loongson1 =
+SoCs,
+> > > +       which is required by Loongson1 NAND and audio support.
+> > > +
+> > > +config LOONGSON2_APB_DMA
+> > > +     tristate "Loongson2 APB DMA support"
+> > > +     select DMA_ENGINE
+> > > +     select DMA_VIRTUAL_CHANNELS
+The same, "depends on MACH_LOONGSON64 || COMPILE_TEST" is needed.
 
+Huacai
+
+> > > +     help
+> > > +       Support for the Loongson2 APB DMA controller driver. The
+> > > +       DMA controller is having single DMA channel which can be
+> > > +       configured for different peripherals like audio, nand, sdio
+> > > +       etc which is in APB bus.
+> > > +
+> > > +       This DMA controller transfers data from memory to peripheral =
+fifo.
+> > > +       It does not support memory to memory data transfer.
+> > > +
+> > > +endif
+> > > diff --git a/drivers/dma/loongson/Makefile b/drivers/dma/loongson/Mak=
+efile
+> > > new file mode 100644
+> > > index 000000000000..6cdd08065e92
+> > > --- /dev/null
+> > > +++ b/drivers/dma/loongson/Makefile
+> > > @@ -0,0 +1,3 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only
+> > > +obj-$(CONFIG_LOONGSON1_APB_DMA) +=3D loongson1-apb-dma.o
+> > > +obj-$(CONFIG_LOONGSON2_APB_DMA) +=3D loongson2-apb-dma.o
+> > > diff --git a/drivers/dma/loongson1-apb-dma.c b/drivers/dma/loongson/l=
+oongson1-apb-dma.c
+> > > similarity index 99%
+> > > rename from drivers/dma/loongson1-apb-dma.c
+> > > rename to drivers/dma/loongson/loongson1-apb-dma.c
+> > > index 255fe7eca212..e99247cf90c1 100644
+> > > --- a/drivers/dma/loongson1-apb-dma.c
+> > > +++ b/drivers/dma/loongson/loongson1-apb-dma.c
+> > > @@ -16,8 +16,8 @@
+> > >  #include <linux/platform_device.h>
+> > >  #include <linux/slab.h>
+> > >
+> > > -#include "dmaengine.h"
+> > > -#include "virt-dma.h"
+> > > +#include "../dmaengine.h"
+> > > +#include "../virt-dma.h"
+> > >
+> > >  /* Loongson-1 DMA Control Register */
+> > >  #define LS1X_DMA_CTRL                0x0
+> > > diff --git a/drivers/dma/loongson2-apb-dma.c b/drivers/dma/loongson/l=
+oongson2-apb-dma.c
+> > > similarity index 99%
+> > > rename from drivers/dma/loongson2-apb-dma.c
+> > > rename to drivers/dma/loongson/loongson2-apb-dma.c
+> > > index c528f02b9f84..0cb607595d04 100644
+> > > --- a/drivers/dma/loongson2-apb-dma.c
+> > > +++ b/drivers/dma/loongson/loongson2-apb-dma.c
+> > > @@ -17,8 +17,8 @@
+> > >  #include <linux/platform_device.h>
+> > >  #include <linux/slab.h>
+> > >
+> > > -#include "dmaengine.h"
+> > > -#include "virt-dma.h"
+> > > +#include "../dmaengine.h"
+> > > +#include "../virt-dma.h"
+> > >
+> > >  /* Global Configuration Register */
+> > >  #define LDMA_ORDER_ERG               0x0
+> > > --
+> > > 2.52.0
+> > >
+>
+> --
+> Thanks.
+> Binbin
 
