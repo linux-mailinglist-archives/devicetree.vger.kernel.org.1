@@ -1,99 +1,106 @@
-Return-Path: <devicetree+bounces-268917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268918-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NJHLuVnoGkejQQAu9opvQ
-	(envelope-from <devicetree+bounces-268917-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:33:57 +0100
+	id EJvsDXVroGk3jgQAu9opvQ
+	(envelope-from <devicetree+bounces-268918-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:49:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3028D1A8C8A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:33:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABBB1A915B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:49:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6255A32A51CA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:22:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F22C31F406B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4093640758F;
-	Thu, 26 Feb 2026 15:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1CA53ED115;
+	Thu, 26 Feb 2026 15:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="K0AS3sLE"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="h9zmMPOH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011024.outbound.protection.outlook.com [40.107.130.24])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010053.outbound.protection.outlook.com [52.101.69.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB643A0E91;
-	Thu, 26 Feb 2026 15:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6334C3D6470;
+	Thu, 26 Feb 2026 15:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.53
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772119058; cv=fail; b=QAwYuoDGbxySkgErjymgGyp586iWvsh3+Pzun/Nqo5kL/VILGytcEwf4INzn3ebbJfDgIUlmH5rK18VJGOjjG4lnuXT/cPEd+8Lgt5bNUWuUJWdGBSUZyCoHbTPrj1fSkjssbguURsOfueMWZvxA6V2yvoS6xe4xCV9Ad4HksXE=
+	t=1772119284; cv=fail; b=C5UiLyglA04NbUdpGvhlUG7M1nprLEh0m9qVUWBkEgLLmMXRifqzm4lAzOez4soBObGcIvYxjyqCKRUzla0+xs4uhLFLfXudsgDch4ctuaoRdWh5H0Z5hP0N0IX0SUT3NBL+3o7j+ygPGUQcLGpMAlFgFnYesJOaOyjU0X/EHqs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772119058; c=relaxed/simple;
-	bh=TTmG2/T2NhMp6jnaPsINv28nkmaCaLYSmSD66ob8wMA=;
+	s=arc-20240116; t=1772119284; c=relaxed/simple;
+	bh=MD6jkIcz5Osrw+SEoNIZqUv71CRIslDz6T/cXBSV8zo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=g3VspuYpmGTq4uebJ9N30EfeVBt7Sfc9+fyQKe7aRV3n2OyaRYjUnv+EIFZM/gBTMPjR6mP3ORlv54GElPNwJO4QnNOy4IwF2xF0dYYYW7iJVZZOjPk0HV8G5OFD4CUqMk7EA9Tj1gGNHk9YQuwO4fyEmAj8KYfCaai2tIGwxes=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=K0AS3sLE; arc=fail smtp.client-ip=40.107.130.24
+	 Content-Disposition:In-Reply-To:MIME-Version; b=RMZ98n5InhKLhXHr7mbbZwoQtCxIxwVXKPpU+38O9P3uYie0efOw0ZjIBkLfj8WB4c0hXKknSDu+viaPKy/PWXnsEp85FaerLy+TmgZ55bUFhCLbn2DbLUW0ldVZz+102SZac7pmp9O+QMuFQWtHQ+5kZNvF0TZZRrcu5yYzF0Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=h9zmMPOH; arc=fail smtp.client-ip=52.101.69.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=npEgV72UA31Hy3aoZdbfXGu/jhArV/9P6ZRHPExuG1FBmfPV2vaage2AgVEfq3HVobznQOni3zVSxqZh/G96c3ObqQ+JqUhBwi8RmJ2g53v2WjZUlybQpExr8nrq1Xhluer3hnuN/a15ij/9hosOodJ1j4JJpSCvsrMH3KEqeINXu58KH8RF1ICS83zFNt+SIQH2MUPVMKBfFtZUJhAmLesjaDj2bQtXsJw+RcN91vRvvh1gcQv0xNLjvCh9zcULyHWTC5PchcJAS2xjMw0x6tBHKxlzoAceqeACGlygBY+YfCfm5JNRKU6C5/iSVvgskKFuPBNel/ATIhICdaeQ2A==
+ b=rkh2UB5ry4tesRCkvlkZu8gcdWi6lEJ3BgFBYYrjRUuLaVDYEv5EHoetkzD2jFaMBFPHs3CQ72gDL0YNBhi2nIuk95YgNYMJFTYfFWwo9xBEiFz1M3poXl8f0yFxf+Xl6uRA0Gug+p3UpE5BrshxJSdLd1mfz7TPU4dVleBUrBot+iJUB91gFn4F1j1Y9sES9Ok8F8/Ajh6mtQQwvSv46L7phlcMsuHYl9h7nllHbdogcIHQzpwLEQUKmPNZyNW3Ii8WcZHnWIlnYR6IlVdGXIWJ1S0EgvY27HN38Yz29FCG1vEqhaz2bICarVP3+CK2rCIIT6qvBaZrCWpRAT+7+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pdGIkNue3wC7Z2kwRQxQSzltLzNKCvLHh8TlS3QN/Ds=;
- b=lGi9944JRQ/idK/2LXZ+DFL1wwrcEemO4Smu/jPBkMRaUeGQygDH3BM+hAbrpjUMVFb4hlsD4eXlrJExBgDeTAxER+08ZdftFsPJMZJ9bT7RzDv7zWX7L/pMotAllrgHRKmRROIQjTk5HQGWCEiPc/gv2u9fDjbCnoPDHmjVSh/wR0W/W4tucSM/J9CNLdonB/XRj2E0jLKNZG/0mSk0uVS3hUWcez4mRTrwjfEFeynsdQVoebxohca0cZwPFEonZTKz7bT2kDcpxJtf9OZUgt0y9SC+KpTytpGD1KAPyCATLM+Iww/apmztbvRMB4+PyuQ7k5q5OsUhNKg1wTAV1w==
+ bh=v4wCEKw0Nt9I7N3arAqX3iSp8OwAWsyE+JK61yKbXB4=;
+ b=oj3sglAqfi1xps/5TDNujClGRxhsTmznfi17r/zRHlzvVGvB5lKFobg75H07SLK5DemuS9RHfkm1C1BmbyanEJXF9t8PVkhukh6PTkFqaEkvL2HYDwabM/jxsvy2/Ci2OhjKpHB7ZIgNN5ZlXvRoPs5cd3wSg/be8dJkOHW2oRQy0CBFabZP7HPZm9rBCBpxmYCcn5v6kTOTn5iMhmLKiEqma3S2h5euMpcttktz2dDdKsT6+Vu/nhqmVLFk4/zfHdQRN2/5pFLy1gyznkvSaWvgtJf06bJXvDoHvw7fpOJ9jGOxg+DTsg+hinUfkRu5AhFvXqi7jTGGGXJl/LePlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pdGIkNue3wC7Z2kwRQxQSzltLzNKCvLHh8TlS3QN/Ds=;
- b=K0AS3sLEvBb32AjYU9i3UwYfU03bZCUZnNdMAS8aNIskf+xMsBvg7vwTKaCsfNRUwOR8iIXova/TvRSd29msrCJciFhJaDWUP4Y/AbJ3Q4TVoIunG73ZKmkq4TRnVheAVEUUKbi3tyfXPeQNO6c5OVMIJNc9G32ahyeK35BaK0FcXEMz//JxZn+q7OmJ+L9AA4wjS09P4cVBLmwK0YIqbcczeJ8Oj1Tj9uAdNlI7+REr4skFtHmAVpmA1tO5ZONtvc/Xxq/6hzKecVMFLV5yZTxveovQhQLf157Q8Ck6Ehkkd0LCcH4S4nAZdYALBBlX51lrEXKiDtv+d/xi41ynIA==
+ bh=v4wCEKw0Nt9I7N3arAqX3iSp8OwAWsyE+JK61yKbXB4=;
+ b=h9zmMPOH7ro/CT7af2u9Xoay1fcQKmDd3trEPBmnj8y8wHBeVq2iAuqnBJiWR2q8VImnIKiWhMks60WUl3W7O2Ryf37X9TLHCNZ3K2DxPmvmXjbcy8Hx4WafjU7+j9a+gfZQ/ZXbyQcmevdYwkjau1NrGpeHNNock1huxblbyCCH7KyivLnUMKHb/5Wkh9pFwFoDLzbo5hEYW+zTMVx7T4f4DEzgqmA4M7EJ0YRQffIVvXfUxGwArqMea7WXQ9bgehloz1wgLUMyHZA+uB7mkvhsSQRPRKOpr6FN7cEeXTjsbVdNDGnKN7Y9TWg7Q/Nj2WhbuzSQC37CC1aLJzs99A==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by FRZPR04MB12429.eurprd04.prod.outlook.com (2603:10a6:d10:1cb::23) with
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com (2603:10a6:20b:438::13)
+ by AS8PR04MB8834.eurprd04.prod.outlook.com (2603:10a6:20b:42d::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Thu, 26 Feb
- 2026 15:17:34 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9632.017; Thu, 26 Feb 2026
- 15:17:34 +0000
-Date: Thu, 26 Feb 2026 10:17:24 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Thu, 26 Feb
+ 2026 15:21:19 +0000
+Received: from AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::f010:fca8:7ef:62f4]) by AM9PR04MB8585.eurprd04.prod.outlook.com
+ ([fe80::f010:fca8:7ef:62f4%4]) with mapi id 15.20.9632.017; Thu, 26 Feb 2026
+ 15:21:19 +0000
+Date: Thu, 26 Feb 2026 17:21:15 +0200
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Daniel Golle <daniel@makrotopia.org>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	=?utf-8?B?QmrDuHJu?= Mork <bjorn@mork.no>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Haibo Chen <haibo.chen@nxp.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, s32@nxp.com,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Eric Chanudet <echanude@redhat.com>,
-	Larisa Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH v2 3/7] dt-bindings: arm: fsl: Add NXP S32N79 SoC and RDB
- board
-Message-ID: <aaBkBAvW6mvwoLqX@lizhi-Precision-Tower-5810>
-References: <20260225133858.8026-1-ciprianmarian.costea@oss.nxp.com>
- <20260225133858.8026-4-ciprianmarian.costea@oss.nxp.com>
- <20260226-sly-fuzzy-parakeet-ea9fb2@quoll>
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Eric Woudstra <ericwouds@gmail.com>,
+	Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	"open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
+	KUnit Development <kunit-dev@googlegroups.com>
+Subject: Re: [PATCH v3 net-next 05/10] phy: add phy_get_rx_polarity() and
+ phy_get_tx_polarity()
+Message-ID: <20260226152115.pwizozoapudgvmgl@skbuf>
+References: <20260111093940.975359-1-vladimir.oltean@nxp.com>
+ <20260111093940.975359-6-vladimir.oltean@nxp.com>
+ <CAMuHMdUBaoYKNj52gn8DQeZFZ42Cvm6xT6fvo0-_twNv1k3Jhg@mail.gmail.com>
+ <20260226151036.x4z4bdlxwgsqlkhs@skbuf>
+ <CAMuHMdXKbiKUkP=+FDA_-Kd_qx1X6vzSuyPU+Tdd9MgR=Q5WMw@mail.gmail.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260226-sly-fuzzy-parakeet-ea9fb2@quoll>
-X-ClientProxiedBy: PH7P220CA0046.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:32b::10) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+In-Reply-To: <CAMuHMdXKbiKUkP=+FDA_-Kd_qx1X6vzSuyPU+Tdd9MgR=Q5WMw@mail.gmail.com>
+X-ClientProxiedBy: VI1PR0102CA0001.eurprd01.prod.exchangelabs.com
+ (2603:10a6:802::14) To AM9PR04MB8585.eurprd04.prod.outlook.com
+ (2603:10a6:20b:438::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,58 +108,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|FRZPR04MB12429:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e98edf6-a9fe-4121-679b-08de754a2acd
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8585:EE_|AS8PR04MB8834:EE_
+X-MS-Office365-Filtering-Correlation-Id: b055fcec-1338-462f-bb97-08de754ab126
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|52116014|376014|7416014|366016|1800799024|38350700014;
+	BCL:0;ARA:13230040|10070799003|7416014|376014|19092799006|366016|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	T9RkEHqkBP3SWl9HnR44ITqwVwnaPHN0jsz2TswqJVjzBnL9U5/2bF+f/UGyYDu7w3gt6e5OkdgSh3Cjo2Xe59spO0JYE/XegeEPzMx/acyXbSyMV9rmxnVMaSVCaA6I2+uhWLRsRZnmG+Vf6MHTEYKc+kDcO1BECSBGVqckEfw1FxYVUxW2UFUr1AQs6gdY1daEPx4hYxF0jNrROYIkLkH04Lxc04t17s3VoPOcYl/ddm9RuvRcL37kKG/Y0rDvWr87XNsUPJg2omOxyjLlzClP5ts/v3LVBQE85K76y/dwmvxjsDEEqTjq2dzH2PNrHWYgIw4VeoTD3wP0TfvnCRjTqIiim+VORD4cF0efRvqVEKNRSBQqjlnaF+dxUKfn2Vejvve0M3a2M11HPyUsWnAaphzbZbC3GjxL3+Y4KheHuS20F8WcVW98VLwE0XxwfipJrWs3vrac6jLZtV4OWUJjtoiXD4yrm5hV6syflQJtIq/ICOJs+wjlHVTjKf8jhksAzkZTAWW0JGWdSEgLsW5om77qT0Px3FfGxPcZmAiZa4XR7CR+AwE2MQWFqnvqcH52TapkryUiuFQdp2jLfLWyCDPxFo7oKcNFRHRpMqTfkcn1BZJPTaiJe9JfCyusRjBKLS2C/qFogh1BBIkL7mql5+dL9ujMfRyM+4hcUPfovbHWvNkHqvXHiKi6jq4lHUykTv6qQIr9NPBO2qL0X25XeF76QubwE9/X617wSXC15BeHtjrV8enb+AJYVKSzDaqH0306ELZViMg/jLPRtm0LikgrX+7R2+6dxd9FPME=
+	yCTu7NqRjOcSyfuz8akNiR7s9YrEgBQSVhdnlSBxACX2Dv/X+kLsOYkZCf7L1HZsAd+YfFL4r+H5WfXwYjFJPgm1fw3lG9MLU5Ze+fdg5QZ7bEP2HAKAs7cwTFflEyJ/RqcS/hJOiEgvqWZ01z3zLfOeKggQCFgm5iYoRI2fUlNMyN4mPS43Bz3lIwcqGzq86y4mN4R9PlyMsNAHRjzoV6KgwPqWwmSic9PsHGiqH17NTaZsq6QTAZwn6vFJAiQU07cMMfRdkRxOHEBuzYWSsGOUBebL0GTigiLgd2Tj0llHIgrP/YQZiMao0BxtLH2FpUH6MqLZLp3ZhjDyzFFJdovHkb+AlNz6qswOW/TLk6cYcUGjxAFf7E0DOnmvR7URGBg7205lIreFDg+vAZgK+ITlTsdRr0IHg8dSxdGkpwZLiUuKIStnztl0EilTdDHwfEwtF36czBdhVSO35LH9iAIclIb9InQflxYK7T4D+bZZbdohBn5pqj1phZVmE1+kxyooySgwRAY9aGl0MZo8x3seIzH5eInWM3jTBq6dG0eUkTDvtv2gllv2oOpK2wF/gg26vcND/JfRNCp3BzGPuMYRA00ClRLU8iYx4MML0rCeXTjSq0A2ZZJCPGIxThAgIwY+a5j5sRDQc0yStIgt2zGck+X2yN26/8yHGLyCxPflJgnrP4NyfyU2hTKe8kvlkY5YxZrsgqHhf4Pk0LNhVpup6+n7AlEQ3mETt709EF8=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(376014)(7416014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8585.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(7416014)(376014)(19092799006)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Am6STlU7u1f3K9jigHE4yRpa4JZStbMujkf0A34iLhB9YC+BepvDi8DMEnFd?=
- =?us-ascii?Q?xy8qooz4sjHCKfaab3FTyVQ5YZd7q/WW3d55RxtTgfBBAqDBcH5x5S4mUM7x?=
- =?us-ascii?Q?Epy2m1ejBP2JilikKDkjoM4DhkuoAksmjPWzORdZO0ITBCt5bJPMKtTJXb8q?=
- =?us-ascii?Q?81KeVqiOeY/+QMc0nNMYOypoSjnkdgcbk3oxezfdd3FqgjZ9YHnDszuniogG?=
- =?us-ascii?Q?rDvy07mQRxbKaEYsGReQGI3yIpsvtx0ofNVBGMBbje6I/ds3FbNoEcRgBOSD?=
- =?us-ascii?Q?OvQSIMOToT5V8qXNgMsVgUaWek2FnrMnyIUAJmrBfLzfPhUvM9afMVdpjfdg?=
- =?us-ascii?Q?KOvlSwLKOJF76Gjlp074alPwPeXkDnWCZDz1saQc26AWJYOrT3CT44HFfxIb?=
- =?us-ascii?Q?8MRPBj0HZQlHzQsPaAkl5Ojg5qqR893ZxghUjgFqhIbZLkctmaz8/3h8mrhz?=
- =?us-ascii?Q?5O6s4GAWG7hmCeDerg8V97Spjy7LU+NcBkNXr2Kfm5kWMyjTJ0CRXgmLQUvQ?=
- =?us-ascii?Q?JxGQWv9xZAUtJaSJGr7dsoOdLf4Gm8GhwXnkztZMfumJYh4LMdxJMRMArWA/?=
- =?us-ascii?Q?4DofPOcSjcCWGWu9szpD66A+D4iqkdoStyROhP6KF+rPcQbiNyNdPkfXKizG?=
- =?us-ascii?Q?lH1FKVqkWJVFq7W0lUxJGLiooPuftWQpRGnuRMBFg89t3WQsEverlIrf+Fak?=
- =?us-ascii?Q?fbBG3VYVezvRZ0Hf9rQLMh9UTccKcQPwcZasCNCN6CrBWRfJiPgESFE1d5Yg?=
- =?us-ascii?Q?997Il61M+VV5pqbJmF+ZOmy43iZsVqlKda5gtrtqCJ40Cn4bgEE2toCG2FEL?=
- =?us-ascii?Q?tpARvkQRWtGkQZZFVp0w53qVesRwxtdcnomqpIM5vzMqvaiGecIGyHNmVzST?=
- =?us-ascii?Q?7eFahaTBTyi7cKKVVuhKDf1AnteeBEj13lf7j8NUECbRKeDSASSxJqjRsN/X?=
- =?us-ascii?Q?Fw4NrKQUFc5y1luTTYm9O0JekO7KWkKeJ3PHZRNw4L5Ct2bwFptGNdErm9jl?=
- =?us-ascii?Q?1Ez4zwc2Njhr4CaNcjCe/hiNRE43pUIxzkFkuYoz/z7VZPe2oXMGkASTBPtx?=
- =?us-ascii?Q?OZ1XblRmIJek6CRyzBSRrSfvIZML7hkfTO/1CP1Jws/7YHRfJkRfZvvth0yk?=
- =?us-ascii?Q?OXq7Vhlb1YAtlp1GuB4/V/rYFHmN9K/HybcZmTFe96D24IuzZ0LlhYv9KhpO?=
- =?us-ascii?Q?yTB6U0iU62NhTXWG0Y8KPGfser4etx+tTyliDUJbOr4xf/gBy9n0Av/IcOjo?=
- =?us-ascii?Q?D/CzEEAG1awnRR1eHWxYA9/IQJAtrOHFwf/9kZpSyZ0T77HXPBHvX4Bf3Wl1?=
- =?us-ascii?Q?i3dUXTnfw0Kk6Xlczz9cUNf+J4igtUX9/jDBeOZAR3SmCjE4zRD3K4ATupA3?=
- =?us-ascii?Q?nOhPO4H7C0uodvjlVMLIzByc4ETZw5+Dgn92QEEFx50bYnHGbhruYBcic5yr?=
- =?us-ascii?Q?2wdk53hD1hwZT1lT2NHSja2+B4sGAIFtqEVMtgxjhxY+7DS47njaQ8Kpz+Aq?=
- =?us-ascii?Q?KYzXtoRRI8KbXR0F5wFwoCkkSGhJZ2iUUg4VNIY6fNHE/R4oL+paft749eU8?=
- =?us-ascii?Q?/iJTCiz8/lVa3Pal67LZCFXwpmYlOFgXOky8kHLnqp0TbPTDvXKqu5tL9wSb?=
- =?us-ascii?Q?A2jmlMUdT8bVCHFupivAo2w44NLwLWQhqIvX3x/5Sres5Y3kDMv6eh67JvgU?=
- =?us-ascii?Q?onnNe6L/IJPI3H5TREHUp9Nm0VpTccK1kBG4ssn/ZFzbAId0?=
+	=?us-ascii?Q?698eYqcizXUElIsFaOD3UJEhPiwyrjuVQPcIaZtH7v1EIXwgsG5UtweF+xOH?=
+ =?us-ascii?Q?qAmn1b7VBj6FBoJi75woP2kmGNfZ0OJU4SmySTf9MGB/lDlYwP44ROAo1NeL?=
+ =?us-ascii?Q?gWOVeXdYyqt95mXtEAW20bVD/2mzeCWy9FPRdnWJ5HzRh1lNWc9MmWmT6NU5?=
+ =?us-ascii?Q?4uhLtGumsHQtBB7qWw2/j9ZtCCtf54fKglGVLGFtrSjcQtoQSuQ9FJAH2IQj?=
+ =?us-ascii?Q?5azbpAFMP5/Qmo+kpSJZToc/t4qonYZiExmwfXvCqXU1f9BdX0QkU0dkJICG?=
+ =?us-ascii?Q?l9wybXXi+8GgfjPgJ09WvPNkk2e+Krgjo0qtSJpaJV1tUZ8psZ7I7Qb51gh5?=
+ =?us-ascii?Q?6zbHHgJUp0HbjzGrO8Rk2yLjuaRq6yrnqJT9ySRoY1z/YTWw2WjBWByc99rY?=
+ =?us-ascii?Q?EtlbRTGluv6uWKzqQVWsj5dFraeCnQNUINXOSiJ6TpsaUXh25uty7wlncafP?=
+ =?us-ascii?Q?rbcpAt5CpGpsn7fW9SxhH35p8fevlPJhPSEaCvO6h+xHlCEWJHrXWnPJgSnu?=
+ =?us-ascii?Q?UYET5pETZjeFfRqK1uZMCwxlYOKbSzzk1dl3Wvv+tKoQe2zrAvG2cWSqP8kl?=
+ =?us-ascii?Q?1AAkg68DnVA5ILN2ndw16Erjp50z4RbuTVV75Cw5fv+LrawuMXfHBGb/Lg0m?=
+ =?us-ascii?Q?/vxT6cFuSta/xxQ8WrpI6HIsgxjY3dUGrjmngwXyRFCl1xwT45x7sytfhhuA?=
+ =?us-ascii?Q?xMa/Qt3z6X+MYuhItJe64DOLRmmQPxYZMHG0avAQ4OdmIsHeyEO/oJ5duo1T?=
+ =?us-ascii?Q?oseZRLWKVBptwPltHz3i62T3ph3ju8iUAGuSRmROq7VC2vXQj843K5Aafccu?=
+ =?us-ascii?Q?cKzg/Nqlgf++/4s1SyR62WpOtSLqbXnwO2iTpAy1FKPqI4N1Gzrt6df1xwOW?=
+ =?us-ascii?Q?r4JiRfxmE7lp9op0yVxU1fuJMg0AqLiG/wHawe679TGj3TxjYlPjKhmexa3u?=
+ =?us-ascii?Q?k76mOsEcKSviF7eu+xoxYERhAUHP9adndC/5BTFRsmnjX8f2aTO1nvzXHK6A?=
+ =?us-ascii?Q?9AlT05xiok5eZWJqg6leS+7jdmP6f4wj8E7upUxXNJKH2UzATBgTtR9RbR6S?=
+ =?us-ascii?Q?8A1MU+S3992l94HDV5IL+HHOhETbI3cAFyIJq55OHH8a6wKk4+r3EUROcb5a?=
+ =?us-ascii?Q?GHzdE/cSZd1vnjooEUY1+V0GEBINrw4+CFjzaVw2YOehOnm6spWQd7pTK3YB?=
+ =?us-ascii?Q?s5sxKZrN11kC4/bhlRtv/aSrRnwC2wwtCAcf0286P+KnwmQVCY6H500gfs1h?=
+ =?us-ascii?Q?joOqDNeqJn7lgc/IZXeCllQuqmn7HTpmyRJMOo6Sy+0DjeVYXGjLzynZ9wLa?=
+ =?us-ascii?Q?6XAZBmId4egeb8oeoBI35Y2DTQze4YHoNMXcmdu/3Llhgemr0kpQ2bXyL0dt?=
+ =?us-ascii?Q?XbPv/fx+fk7FSM6SN7jRttD7QffvrFfZczUIXuBRmltTXTioRItndClBD/xZ?=
+ =?us-ascii?Q?8eCksSpU3ObV8n5az4oQPryUCArYDbTxl6SP8rUpuS01SYP2rYuD4jeUwQM5?=
+ =?us-ascii?Q?fiKTbH+FLygKjg2tlGnuJUXibfntFwcy8Lvyds6fImn73a/9t4SEUeyKE2yy?=
+ =?us-ascii?Q?6iNP/WKSAGZM+QXvmdIYOdoMa9JtPxF+X4gSmzB9lnnqGKyWNHIe/gEBlPoZ?=
+ =?us-ascii?Q?xA990DtNv1c1cmMeEHjEZK8DOE8l1bGuO0RCz31wNA9pSKt6co6kmzCjQNpD?=
+ =?us-ascii?Q?T4YnsiT0YFpX0vhIKINolbGcF1++BYgDASjFqffFTYPRc10JPFOg12KWGsuq?=
+ =?us-ascii?Q?h5UDR35nHpTs6Es1Rv6PuS0+x7GjwF+ZxHVQkPTLDsKZz5tKscZ+Bk2Z0k1b?=
+X-MS-Exchange-AntiSpam-MessageData-1: jiCcLuiNKnAZkMrKFxoRRzF9Xj0pKy207bQ=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e98edf6-a9fe-4121-679b-08de754a2acd
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b055fcec-1338-462f-bb97-08de754ab126
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8585.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 15:17:34.0936
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 15:21:19.7289
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dH88MwGogFaN65ZD2/NGvrNZmaTe85cQCVgEq5BgwFjDnNQFJ095H3xKvgitEcX0BPH+tq/VEz657jHgD6kpfw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: FRZPR04MB12429
+X-MS-Exchange-CrossTenant-UserPrincipalName: xQ1fSJqX/vs0rJlre7s93hjhSGKe7CefqdZ2ZUYwz67DBPjglzgpB4/ZSLpk250A7bP8qmRpIMmaPoFJUh4Nnw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8834
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -160,76 +169,90 @@ X-Spamd-Result: default: False [1.84 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268917-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268918-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	FREEMAIL_CC(0.00)[oss.nxp.com,kernel.org,linaro.org,pengutronix.de,gmail.com,nxp.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,makrotopia.org,microchip.com,mork.no,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,linaro.org,collabora.com,foss.st.com,googlegroups.com];
 	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.996];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3028D1A8C8A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8ABBB1A915B
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 08:32:16AM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Feb 25, 2026 at 02:38:54PM +0100, Ciprian Costea wrote:
-> > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+On Thu, Feb 26, 2026 at 04:13:59PM +0100, Geert Uytterhoeven wrote:
+> Hi Vladimir,
+> 
+> On Thu, 26 Feb 2026 at 16:10, Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+> > On Thu, Feb 26, 2026 at 02:22:29PM +0100, Geert Uytterhoeven wrote:
+> > > > +config PHY_COMMON_PROPS
+> > > > +       bool
+> > > > +       help
+> > > > +         This parses properties common between generic PHYs and Ethernet PHYs.
+> > > > +
+> > > > +         Select this from consumer drivers to gain access to helpers for
+> > > > +         parsing properties from the
+> > > > +         Documentation/devicetree/bindings/phy/phy-common-props.yaml schema.
+> > > > +
+> > > > +config PHY_COMMON_PROPS_TEST
+> > > > +       tristate "KUnit tests for PHY common props" if !KUNIT_ALL_TESTS
+> > > > +       select PHY_COMMON_PROPS
+> > >
+> > > This select means that enabling KUNIT_ALL_TESTS also enables extra
+> > > functionality, which may not be desirable in a production system.
+> > > As PHY_COMMON_PROPS is bool, this extra functionality is even part of
+> > > the base kernel if KUNIT_ALL_TESTS=m.  Unfortunately PHY_COMMON_PROPS is
+> > > invisible, so this cannot just be changed from "select" to "depends on".
+> > > But perhaps PHY_COMMON_PROPS can be made visible if KUNIT_ALL_TESTS,
+> > > so the select can be turned into a dependency?
 > >
-> > Add device tree binding documentation for the NXP S32N79 automotive SoC
-> > and the S32N79 Reference Design Board (S32N79-RDB).
+> > Is this what you're asking for?
 > >
-> > The S32N79 is an automotive-grade SoC featuring eight ARM Cortex-A78AE
-> > cores organized for high-performance networking and gateway applications
-> > in vehicles.
+> > -- >8 --
+> > diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> > index 02467dfd4fb0..1875d5b784f6 100644
+> > --- a/drivers/phy/Kconfig
+> > +++ b/drivers/phy/Kconfig
+> > @@ -6,7 +6,7 @@
+> >  menu "PHY Subsystem"
 > >
-> > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
+> >  config PHY_COMMON_PROPS
+> > -       bool
+> > +       bool "PHY common properties" if KUNIT_ALL_TESTS
+> >         help
+> >           This parses properties common between generic PHYs and Ethernet PHYs.
 > >
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 5716d701292c..415081423a30 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -1827,6 +1827,12 @@ properties:
-> >                - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
-> >            - const: fsl,s32v234
+> > @@ -16,8 +16,7 @@ config PHY_COMMON_PROPS
 > >
-> > +      - description: S32N79 based Boards
-> > +        items:
-> > +          - enum:
-> > +              - nxp,s32n79-rdb
-> > +          - const: nxp,s32n79
->
-> I believe these are ordered by fallback, so s32v > s32n.
+> >  config PHY_COMMON_PROPS_TEST
+> >         tristate "KUnit tests for PHY common props" if !KUNIT_ALL_TESTS
+> > -       select PHY_COMMON_PROPS
+> > -       depends on KUNIT
+> > +       depends on KUNIT && PHY_COMMON_PROPS
+> >         default KUNIT_ALL_TESTS
+> >         help
+> >           This builds KUnit tests for the PHY common property API.
+> > -- >8 --
+> 
+> Yes, that would work.  Do you think it is acceptable?
+> Thanks!
 
-Previous use fsl,s32v234, now use nxp,s32n79, I suggest keep consistent
-with existing one, use fsl,s32n79
+Yes, I think it's fine. I misinterpreted what kunit_"all"_tests means,
+then read its prompt which says "All KUnit tests with satisfied dependencies".
 
-Frank
-
->
-> > +
-> >        - description: Traverse LS1088A based Boards
-> >          items:
-> >            - enum:
-> > --
-> > 2.43.0
-> >
+I'll send a patch.
 
