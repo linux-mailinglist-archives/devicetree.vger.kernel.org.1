@@ -1,245 +1,160 @@
-Return-Path: <devicetree+bounces-268942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268943-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJikM/mAoGn6kQQAu9opvQ
-	(envelope-from <devicetree+bounces-268942-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:20:57 +0100
+	id EGClFxCDoGkDkgQAu9opvQ
+	(envelope-from <devicetree+bounces-268943-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:29:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C07E1AC392
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:20:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04BA11AC6E1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:29:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C998A35922D3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:44:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0D63D307C328
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8788B44BCB8;
-	Thu, 26 Feb 2026 16:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5550243E4BE;
+	Thu, 26 Feb 2026 16:31:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M1Mj1Yqi"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="xB/XHtCT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD1142DFF2
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 16:14:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1267426D33;
+	Thu, 26 Feb 2026 16:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772122446; cv=none; b=FrFxsfkKiAr5h12V2BM1exlvJIZg3TmebhDM4KwcedPeARATzL0Q4UDOWmHMSU4uN1tL8+2t+Zte8AmMU5RPa0CjCdnvGWia5Hh3fFDDUz2TNz58E7abB67S5HCyzCRMxMm0d40QsQDvOV39d1EqtNG8/fhq3a2e6b7alEC6NvM=
+	t=1772123462; cv=none; b=kACcYZSiGJLtE3Dgb2mgndJIvVJ0KPEUnHxSgKKqTcAqp350GOr2Wbj/tPtgCV5yDck/uiWT4okllwj+oFa4rRx6iQhmvGfG6b9TzGEkvAttVVFbVI7Z0fOHhc0MNwuzoRjhIMt/+JjOOtCt4tlRmlBC1O6WHotXpUs1NslBivk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772122446; c=relaxed/simple;
-	bh=JP7DgXdHQPuBBg2E/ZpDYH96r+p/gjjerNH4x4o+0kk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=q8be7RHEQHF0aJzZd3QG+f4Uf156+Et57+TBEq7tQn/MbGmA6dKtZhNnxj9HnsIV+hQxUpfQcfw9wRmNRLQLKZrcvQ/BSzLtVap92Hm2d1cesAm44Y2OOQB8/2WW6zc4rvZZHXTqczI2NKwJruyP8Mhzmzr1Z9kLjHj1KmL+ulA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M1Mj1Yqi; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2adae92249eso11145855ad.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:14:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772122444; x=1772727244; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EFga16pAfpv0gli5xDLk4KBBaOwrjAv2u5Qo96sb+dM=;
-        b=M1Mj1Yqil2a8ZDyh/Hv33HBpFXxfjPB0TG9ZZVUMtkiyvs+LReLwLZ2RpLVGeb5J/E
-         NbT/2myM9osmAP6pFkBvNJsJe9Zp+p7hhFoiv1S1Ul6ip9Tsag0DWTX3bN6qMNi1hGrY
-         LiUOe6M35mWt3TnlgMAR5KKZ/3zmz/LL3Wav6t6+R0Ut8NAQ4hifarVnCdP5/eHoDY34
-         LFBjlr1PeOan8ROu0JqsK9f+tYPOhWKHAwKQhts6q20RPQqM+vBJfEa+df4vTayLr0FD
-         HPGQVBkqjcVKBHY0KHwRhQRRH7JiqDLjiGLYDKi9WUxaru9Od2y9on9+rckyJ+4sy4ug
-         juSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772122444; x=1772727244;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=EFga16pAfpv0gli5xDLk4KBBaOwrjAv2u5Qo96sb+dM=;
-        b=I6w+PNv5hXUE0FHWJcpQznNLagVw/FncBoOcn/G20H/E4Z87kY0E+ocF4UYknpJHef
-         ODHhWx9gSn+Gm0iiO0ELJYRqD4H6mrVQqx+68555uEx/Nr5AJIeLeI0MIaKMk8oswIlE
-         GrBVX6D9C8zKrq/QUX62HaB6SCYor7Onvr5rrK3920zux9ckZhDsuWa3LnintFJKOFmD
-         BtWqFFrxBAVcEiDDRDTzbnMgI0KfXszi8FGry0c3bch7YGbY7y2mKrse+NW0slTpjjCM
-         tj1lmcUtTXNTbTVUOeZVUWnONdfPxfLNQRxonVbCG62HtJoTIH7ORad9Ywt13Xwt3iNz
-         jyfg==
-X-Gm-Message-State: AOJu0YykCXbiQi160Gn3LYnD9nc0dM8hpgopJtW8ssG7QK/jWc64CAbw
-	FZm29oVFSn6CVCH6zhh+T7H4qxVaqq8fj7SqRWaaNMZt1PDcEKftd7Ft
-X-Gm-Gg: ATEYQzyiAPn57FV2LJ5lk4SHd4umCxqNXOKsYZLcqQ2yUNa1U58do2U8gAfdc7b1ADG
-	XgzTTYAE90NMijo6VSsZjle6hP6o792f96fJx1vV14GQKQkG0zsBUgFMDk4Wa9zRuqqqbRaSCiR
-	FRpG/024gh3FbewWqPWa3wmdqzvRTgGWDDVxiYTTTW50EcpiZLfl2lT72Vz2VXyfa0ziwHrs2QV
-	H42s6m/Z5Cmwo+09CTRNDH4Wc95qev6wOBebcluDHG2n2v3Mpw8jF28UG0kGYGfPEacmp0/PntP
-	Ur/RdGjo2SUqko7NmchoEvjhzwZmTVoKKTtOxC+Ei4BzPGM2povpvfjZH+0sHFEvSja8/NLN7Fp
-	M+g9SFWYGzo7BOWMtxxI7NEOo0wEUwkS4PZWgpd6G8M90ojoLnwmpccWdr3KeoR1DpW10UuTA9N
-	T1SFs3W3amRcIR9D1Jx/fFfBDOBExdio6RXm8Vf00UD6GKQL7qxX6Ke886
-X-Received: by 2002:a17:903:1b4d:b0:29f:2f40:76c4 with SMTP id d9443c01a7336-2ad744e05demr198619235ad.34.1772122444511;
-        Thu, 26 Feb 2026 08:14:04 -0800 (PST)
-Received: from LAPTOP-872M7T80.localdomain ([122.183.54.8])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2adfb6a0432sm44384595ad.52.2026.02.26.08.14.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 08:14:03 -0800 (PST)
-From: Akhila YS <akhilayalmati@gmail.com>
-Date: Thu, 26 Feb 2026 16:13:37 +0000
-Subject: [PATCH v3 5/5] dt-bindings: arm: atmel,at91rm9200-sdramc: convert
- to DT schema
+	s=arc-20240116; t=1772123462; c=relaxed/simple;
+	bh=IP4dG8wVTwCtivGzu6lHhyXLXDb5IFEG6cGh510bEAQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=vEgbTy/fEZhn1zSO/JLRZdrmVRqhTmf366ELwp0+Vw8+zKRKbsl3NBjI7qQxX7t1ppIzBpvfrnpfkeIGr8ZenB7eBVzE3PaU65jBvuoGexWcN9J+JerVYAnZXDIpK1aHmlSA/W7wPtLIgy/Wo7RbLm7mZklAwGy6pLSCGQ6VVwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=xB/XHtCT; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61QG3L9x3025220;
+	Thu, 26 Feb 2026 11:30:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=Nq+og7JEjiVxSMI2oIKATYStpKa
+	XdS0SiQo64AGgiCs=; b=xB/XHtCTqZK/l3WzOnxeS4YaAufSG3Ykgi/hbJAnlE/
+	zv+YHLq8Aooj0LyUkZtx1+PpNkOm39Pxpu/TkLnKvcxe/iugvzK9nw5UN+ixZmDb
+	IBEGlAcengesAgNcLXXiQK4vvSBL3Vn+1gXaUyki5RKEX+r59hNbK3aPtcaB8DSl
+	YXhGkNi6cVumDtBiHatYaN9tZ2G2bJK56Ed0b/TTuS0c4p+uWqEKjUETB42KFvms
+	imeKMzdmFyuIYRdkERMVZIsUAN6Fogv1q1niqV+XC+uP3mMGPRkOBWNYNEDti91z
+	WwV52n6ceLI4HtYrlaQcA8Yj3BrHM483UFZpMTtzWKA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4cj8tdc0sv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Feb 2026 11:30:54 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 61QGUrL2056435
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 26 Feb 2026 11:30:53 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Thu, 26 Feb
+ 2026 11:30:52 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Thu, 26 Feb 2026 11:30:52 -0500
+Received: from JGERONI2-L01.ad.analog.com (JGERONI2-L01.ad.analog.com [10.116.32.144])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 61QGUkMn008067;
+	Thu, 26 Feb 2026 11:30:49 -0500
+From: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
+To: <linux-iio@vger.kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] iio: temperature: add ADI MAX30210 SPI temperature sensor
+Date: Fri, 27 Feb 2026 00:30:39 +0800
+Message-ID: <20260226163041.169786-1-johnerasmusmari.geronimo@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-arm-microchip-v3-5-0bda15abd922@gmail.com>
-References: <20260226-arm-microchip-v3-0-0bda15abd922@gmail.com>
-In-Reply-To: <20260226-arm-microchip-v3-0-0bda15abd922@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Akhila YS <akhilayalmati@gmail.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=NubcssdJ c=1 sm=1 tr=0 ts=69a0753e cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=0sLvza09kfJOxVLZPwjg:22 a=N--XFCr6TIEc_64PeIT2:22 a=0zRNOIqFuNFAU-9kz1AA:9
+ a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: JuGsnmTXvUEofvRjpLN96K4JnafWZQzC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI2MDE0OCBTYWx0ZWRfXxe4QL9uIeEAR
+ /NbNajrXLhnS5T2LYoMrIYNdi/m1IBOjhST/ITtcV9KkLl6qHZm01SDdvnYxwFc4mAh9NVcZKa4
+ lf/dLMJPpsZiyO8zTxUXt19upDhrKnCfRJKyWLXZy0PAPsfB02kIAY+zz7i85Jg742R22fVYYsj
+ FKhhvkouOSwSA8pt5xLI+tw99FgOQPNRY8p1RgPulp56Qk414lhzZ6zDcdclT8GBEYcRLc04OAj
+ pzuIedhzXVVb5HsDjbAmZKv5NnnNNdFzOsoRd58zWXgkTkGE761rZf0Tjbnks/6s1Ug1YZXjvhk
+ rGgeQQNMmCOSS/Wu10IM9oP3VB3//WiczeCflo8uEeMVBfRlr2TYgywxUwvr77uuff557f5JzxO
+ 0QwS5rD6iwkS2d2+U1MAQggMSFxqAt+VjT2yKKy5tQwEtpwpoBx/dKPlRZXtoF0tIjy0blohkr7
+ PfzagrE1AXc+gVTOzTw==
+X-Proofpoint-ORIG-GUID: JuGsnmTXvUEofvRjpLN96K4JnafWZQzC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-26_01,2026-02-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 bulkscore=0 adultscore=0 lowpriorityscore=0
+ suspectscore=0 impostorscore=0 malwarescore=0 clxscore=1011 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602260148
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[analog.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268942-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[bounces-268943-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:mid,analog.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[johnerasmusmari.geronimo@analog.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tuxon.dev:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:email,ffffe800:email,ffffe400:email]
-X-Rspamd-Queue-Id: 3C07E1AC392
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 04BA11AC6E1
 X-Rspamd-Action: no action
 
-Convert RAMC SDRAM/DDR controller binding to YAML format.
+This series adds support for the Analog Devices MAX30210
+SPI temperature sensor to the IIO subsystem.
 
-Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
----
- .../bindings/arm/atmel,at91rm9200-sdramc.yaml      | 67 ++++++++++++++++++++++
- .../devicetree/bindings/arm/atmel-sysregs.txt      | 20 -------
- 2 files changed, 67 insertions(+), 20 deletions(-)
+The MAX30210 is a high-accuracy digital temperature sensor
+with SPI interface intended for medical and wearable
+applications.
 
-diff --git a/Documentation/devicetree/bindings/arm/atmel,at91rm9200-sdramc.yaml b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-sdramc.yaml
-new file mode 100644
-index 000000000000..1516fc8e09e1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-sdramc.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/atmel,at91rm9200-sdramc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip (Atmel) SDRAM / DDR Controller (RAMC / DDRAMC / UDDRC)
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
-+
-+description:
-+  The SDRAM/DDR Controller (often called RAMC or DDRAMC) in various
-+  Atmel/Microchip ARM9 and Cortex-A5/A7 SoCs  manages external
-+  SDRAM / DDR memory. It is typically exposed as a syscon node for
-+  register access from other drivers (e.g. for initialization or mode
-+  configuration). No interrupts or clocks are usually required in the
-+  binding.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: atmel,at91rm9200-sdramc
-+          - const: syscon
-+      - items:
-+          - const: microchip,sama7d65-uddrc
-+          - const: microchip,sama7g5-uddrc
-+      - items:
-+          enum:
-+            - atmel,at91sam9260-sdramc
-+            - atmel,at91sam9g45-ddramc
-+            - atmel,sama5d3-ddramc
-+            - microchip,sam9x60-ddramc
-+            - microchip,sam9x7-ddramc
-+            - microchip,sama7g5-uddrc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: ddrck
-+      - const: mpddr
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/at91.h>
-+    ramc@ffffe400 {
-+        compatible = "atmel,at91sam9g45-ddramc";
-+        reg = <0xffffe400 0x200>;
-+        clocks = <&pmc PMC_TYPE_SYSTEM 2>;
-+        clock-names = "ddrck";
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-deleted file mode 100644
-index 14642384bc87..000000000000
---- a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-+++ /dev/null
-@@ -1,20 +0,0 @@
--Atmel system registers
--
--RAMC SDRAM/DDR Controller required properties:
--- compatible: Should be "atmel,at91rm9200-sdramc", "syscon" or
--			"atmel,at91sam9260-sdramc" or
--			"atmel,at91sam9g45-ddramc" or
--			"atmel,sama5d3-ddramc" or
--			"microchip,sam9x60-ddramc" or
--			"microchip,sama7g5-uddrc" or
--			"microchip,sama7d65-uddrc", "microchip,sama7g5-uddrc" or
--			"microchip,sam9x7-ddramc", "atmel,sama5d3-ddramc".
--- reg: Should contain registers location and length
--
--Examples:
--
--	ramc0: ramc@ffffe800 {
--		compatible = "atmel,at91sam9g45-ddramc";
--		reg = <0xffffe800 0x200>;
--	};
--
+Patch 1 adds the device tree binding documentation.
+Patch 2 adds the SPI driver implementation.
+
+John Erasmus Mari Geronimo (2):
+  dt-bindings: iio: temperature: add ADI MAX30210
+  iio: temperature: add ADI MAX30210 driver
+
+ .../iio/temperature/adi,max30210.yaml         |  71 ++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/temperature/Kconfig               |  10 +
+ drivers/iio/temperature/Makefile              |   1 +
+ drivers/iio/temperature/max30210.c            | 758 ++++++++++++++++++
+ 5 files changed, 848 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/adi,max30210.yaml
+ create mode 100644 drivers/iio/temperature/max30210.c
 
 -- 
-2.43.0
+2.34.1
 
 
