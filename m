@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-268961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268962-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eA82OKeEoGkakgQAu9opvQ
-	(envelope-from <devicetree+bounces-268961-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:36:39 +0100
+	id MHR+LROQoGllkwQAu9opvQ
+	(envelope-from <devicetree+bounces-268962-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:25:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592681AC8F7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 18:36:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 177111AD8F7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:25:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5245C323A67E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:07:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D593320CF8F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:12:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32AEE4266AF;
-	Thu, 26 Feb 2026 17:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA0536896E;
+	Thu, 26 Feb 2026 17:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l7tS8qQ/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XS1VAtgf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D6E6368976;
-	Thu, 26 Feb 2026 17:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47329368966;
+	Thu, 26 Feb 2026 17:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772125226; cv=none; b=U9eGniAz19W7nPHTK2QR2J8mPk02U80Unc4i4JxPAfToLKuZ+sZuKbYtqWndq3+hPsrjZPhPZpnL3u+VL6JkbK/YETMlCrG6xGTMsfMpcGuMUJ4mbriaUJ1PmUuCznyqLwYLXttRaMPcgMrcmWVSpXu2c2qz0yI1kCKdqCJjn3M=
+	t=1772125961; cv=none; b=u/+heTtJwMNo3LMNeMg0OgS65N6VAMdhK9KB/MZsJpM1Xca29TyTwxL/9fbSBgDxH0tKgyr6RqMeoV0Dwjm01ARV2G6a8ZrMXuq4e/7jKE7NcjLYI7P1V44GC2kQic/5wM2sNpdMbxO7g71qjnEnR/LQa2YG8r3Ez+MOubTEeIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772125226; c=relaxed/simple;
-	bh=aPzCGCIQjmTLUrBBCKH0eIvQTeL3nHfo/GISdPh85lE=;
+	s=arc-20240116; t=1772125961; c=relaxed/simple;
+	bh=dRb87yZmhRQEQL5g/xIsWJ19WrAMA1ljnDLUyv+lMhM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AcC7tbtPVBSz/8P4AqeJpC0mWrzZMXn0buLR7wr/eK3wd5Ga5sHtS+yQaTdD7RgVo377FcK91l8D5Nqv//WmKmC5+Ta/MWAgadxu6jiBgsRZa7mCr7yDJx4LwVqFEaGNlV6XFZgS0+ZfXX702MsrxEEZ7DXW3dc9MI5aSD0eyCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l7tS8qQ/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C99CBC19424;
-	Thu, 26 Feb 2026 17:00:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=c28A67nEK8rA022/bm0jrzPVOCPv3z6kxEsfWpunO2flm4GqE1iIjPI2sEo5geygrXEdmqE68iZ207oZOe1UiFg+z7UHvlYvKuMg6DWR33+nYuujVLLmpxnxBf9XYmUOVhCbVvLYQVj+X8XNQH1gZ2M3gTFjgiB3fVUfIanZxrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XS1VAtgf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59DF4C116C6;
+	Thu, 26 Feb 2026 17:12:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772125225;
-	bh=aPzCGCIQjmTLUrBBCKH0eIvQTeL3nHfo/GISdPh85lE=;
+	s=k20201202; t=1772125960;
+	bh=dRb87yZmhRQEQL5g/xIsWJ19WrAMA1ljnDLUyv+lMhM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=l7tS8qQ/oHAsfWpWmljJLdHYN5HrFVUuY3vW64SBVbJhNkwdkr5BYdSE/Oq9NSAxq
-	 6QCOiWWJ+sKf33QkvJuPDDB0Ab9wEsc0EljxGFyNnljfndsJVDUXbDHPSdZfdAtg5N
-	 wpdHKtMQvKuNnsvPk2KGPKg0jr468yjo5Y4Cbifk2cBjlYRcu3xIFfiCvV6TuDKGfo
-	 U+vEfL5V3m94mW2yWSeU2NOjXNXnw0uKFWxKonWXaqZnu5K4oxFCK1F5DqIRmO3dOs
-	 j71TsbWtoIISVzFSKPryTLwwJO96qRxwJewDIIPF3eqek4Rytemhz2ygtCiwlCJhHJ
-	 rJNgyOdINA6jw==
-Message-ID: <ec7a65d6-32e2-4b14-9e48-3cd0920b4f2f@kernel.org>
-Date: Thu, 26 Feb 2026 18:00:18 +0100
+	b=XS1VAtgfKb1Mo1KY6R1GPEdh09ijpu3laVI562wTfk/tlMU3KNmCImO5cIZJk93f6
+	 uTnkdQTtEZYxo2B5daBS+Z083qysZBPDXZwSzs6Jv4wCgJLLNpdktQtvqIXPjiBW+f
+	 JWbPLjtrxslBpgV6j17TsJCHIPLUzBIs43Qr5KdYCgWcsBTL1TX7yFkLczCj+Jcwat
+	 n8XwF0w2FkcyN2W78r//I2LNgQILiBROGIbsYl3x2rIupMc8kgUCQR2enWQkdvzh2H
+	 S+CELzfGThcgtD7cd2Se5W5wdZIjgkt0RtVqfbvOEewTSy+cX4Y7z20ugDDvtN/cVE
+	 vbo6xUiG8159g==
+Message-ID: <e3dcadb3-0239-4a49-a5ee-3c20ff97ea4e@kernel.org>
+Date: Thu, 26 Feb 2026 18:12:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,26 +53,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] dt-bindings: arm: fsl: Add NXP S32N79 SoC and RDB
- board
-To: Frank Li <Frank.li@nxp.com>
-Cc: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Haibo Chen <haibo.chen@nxp.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Shawn Guo <shawnguo@kernel.org>,
- Lucas Stach <l.stach@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, s32@nxp.com,
- Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
- Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>,
- Larisa Grigore <larisa.grigore@nxp.com>
-References: <20260225133858.8026-1-ciprianmarian.costea@oss.nxp.com>
- <20260225133858.8026-4-ciprianmarian.costea@oss.nxp.com>
- <20260226-sly-fuzzy-parakeet-ea9fb2@quoll>
- <aaBkBAvW6mvwoLqX@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH v3 3/5] dt-bindings: remoteproc: qcom,pas: Document pas
+ for SoCCP on Kaanapali and Glymur platforms
+To: Shawn Guo <shengchao.guo@oss.qualcomm.com>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+References: <20251223-knp-remoteproc-v3-0-5b09885c55a5@oss.qualcomm.com>
+ <20251223-knp-remoteproc-v3-3-5b09885c55a5@oss.qualcomm.com>
+ <20251223-furry-mighty-agouti-a222f7@quoll>
+ <ae532ff4-1a96-4dc1-9fa0-81305624c9c9@oss.qualcomm.com>
+ <f4ef4a57-4192-4dbf-939c-46efa13c0391@kernel.org>
+ <aY582M8dgOrKW39w@QCOM-aGQu4IUr3Y>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,82 +117,90 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aaBkBAvW6mvwoLqX@lizhi-Precision-Tower-5810>
+In-Reply-To: <aY582M8dgOrKW39w@QCOM-aGQu4IUr3Y>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268961-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[oss.nxp.com,kernel.org,linaro.org,pengutronix.de,gmail.com,nxp.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268962-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: 592681AC8F7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 177111AD8F7
 X-Rspamd-Action: no action
 
-On 26/02/2026 16:17, Frank Li wrote:
-> On Thu, Feb 26, 2026 at 08:32:16AM +0100, Krzysztof Kozlowski wrote:
->> On Wed, Feb 25, 2026 at 02:38:54PM +0100, Ciprian Costea wrote:
->>> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+On 13/02/2026 02:22, Shawn Guo wrote:
+> On Wed, Dec 24, 2025 at 09:34:30AM +0100, Krzysztof Kozlowski wrote:
+>>> the interrupt for soccp is defined as 
+>>> "wdog","fatal","ready","handover","stop-ack","pong","wake-ack"
+>>> while other pas could be:
+>>> "wdog","fatal","ready","handover","stop-ack","shutdown-ack"
 >>>
->>> Add device tree binding documentation for the NXP S32N79 automotive SoC
->>> and the S32N79 Reference Design Board (S32N79-RDB).
+>>> so grow existing list is not work for this,
 >>>
->>> The S32N79 is an automotive-grade SoC featuring eight ARM Cortex-A78AE
->>> cores organized for high-performance networking and gateway applications
->>> in vehicles.
+>>> In the v1, got your comments to adjust pas-common.yaml for the interrupt:
+>>> https://lore.kernel.org/all/861b6ede-f168-44e6-85bd-10cf04dbcec7@kernel.org/
 >>>
->>> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
->>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
->>> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->>>  1 file changed, 6 insertions(+)
+>>> and in v2, interrupt are moved as part to the "allOf" with if-else and
+>>> also got NAK:
+>>> https://lore.kernel.org/all/20251030-venomous-apricot-falcon-b3fd64@kuoka/
 >>>
->>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> index 5716d701292c..415081423a30 100644
->>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> @@ -1827,6 +1827,12 @@ properties:
->>>                - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
->>>            - const: fsl,s32v234
->>>
->>> +      - description: S32N79 based Boards
->>> +        items:
->>> +          - enum:
->>> +              - nxp,s32n79-rdb
->>> +          - const: nxp,s32n79
->>
->> I believe these are ordered by fallback, so s32v > s32n.
+>>> Could you please share a example for us to understand how to maintain it in
+>>> pas-common.yaml, not define if-else and has strict order at the same time?
+>>> That will be very helpful.
 > 
-> Previous use fsl,s32v234, now use nxp,s32n79, I suggest keep consistent
-> with existing one, use fsl,s32n79
+> I guess something like this would work?
 > 
+>   interrupt-names:
+>     minItems: 5
+>     maxItems: 7
+>     oneOf:
+>       - items:
+>           - const: wdog
+>           - const: fatal
+>           - const: ready
+>           - const: handover
+>           - const: stop-ack
+>           - const: shutdown-ack
+>       - items:
+>           - const: wdog
+>           - const: fatal
+>           - const: ready
+>           - const: handover
+>           - const: stop-ack
+>           - const: pong
+>           - const: wake-ack
 
-Ah, I missed that prefix is different! Well, that I don't mind, it's
-your call which prefix you want.
+This is good for pas-common, but you also need in the same commit update
+all schemas having $ref to pas-common to have explicit list. For example
+milos has six elements and your change would basically allow the sixth
+item to be pong.
+
+Also several files need maxItems for interrupts, since the upper limit
+is now 7.
+
+
 
 Best regards,
 Krzysztof
