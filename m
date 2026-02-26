@@ -1,51 +1,58 @@
-Return-Path: <devicetree+bounces-268765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268766-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCQ1JlQloGkDfwQAu9opvQ
-	(envelope-from <devicetree+bounces-268765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:49:56 +0100
+	id KGTmBQ4moGkDfwQAu9opvQ
+	(envelope-from <devicetree+bounces-268766-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:53:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F5801A48D5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:49:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF341A49C8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:53:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A9313302B18F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:49:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5EF9F30610EA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:52:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429BD3101D8;
-	Thu, 26 Feb 2026 10:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D18E3203A0;
+	Thu, 26 Feb 2026 10:52:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q60t59R2"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WDwZD6Sa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DAE7302750;
-	Thu, 26 Feb 2026 10:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0113242D7;
+	Thu, 26 Feb 2026 10:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772102993; cv=none; b=ba5678nz5krEgizh0mi+On+Dd9PA9jJl7jCxIsiUkYkI24Ww20MQKaZwo4MSzJU6D1ebwh1DrWcFhbmVWGEvz8xqJkNqc6Nbowl/tUrFGpPgDMmslBusBRvHPC7yxrPisxM+QjXRrNAaCEotXG/tq0P9g2V4NYIIc5XnPnwNHoY=
+	t=1772103128; cv=none; b=PECEqi89eQOriESQlQX+XQBW1gOzjDGF5HSdKNW6qqcFXCL9ezd4YtJ3XPtFE8PxqzjUPL6CyHUqWt27gsI8qgCvGx1WyEnSN/xk2b+9SVS1/cgEQ1lGMyUzFosjRlU7PHloct2y1iJ9rN/RG5umDcnE/6hQvGDO2seUCcC3QMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772102993; c=relaxed/simple;
-	bh=awYP+OrP6jTVr0TXLwCj7tRYD6IceTKpq5xLhhhUHKc=;
+	s=arc-20240116; t=1772103128; c=relaxed/simple;
+	bh=XzneIRZzyc+1SaJw/OACAJR1d66oV8Ny3EVQs5tDFCQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QqL5p4OrVK/cMGT/YQx+sEgAlpizSEl8VmF1to57wICkYCxMXOJzPIILDrMwwwlWVTmLT+4o0SCWntEUn5TqswnhqqFOMqGBXVMmF1r6Maps5QwxkluOAUw3JwsYWwDNX9aCgTY1fx8kLzGf0gLfXpvUy3JisdHaKsmmxcxleik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q60t59R2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D885C19422;
-	Thu, 26 Feb 2026 10:49:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772102992;
-	bh=awYP+OrP6jTVr0TXLwCj7tRYD6IceTKpq5xLhhhUHKc=;
+	 In-Reply-To:Content-Type; b=SETenaNiIn2DT8dC2h9kXxewDtUxkYgQ+Ghv7oJy4VBCjRiQvA6LyubCCfVSA5BIJxzoBKSWWseDrP9nQo2YtgyyXoj5AaIDLRu1463j8rOV42weS1vDrxpA/gTavV7c7RZVjlCpnSdQ2vgvZ9LPyiSaGDBLQgV6d5ecXorHylM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WDwZD6Sa; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1772103125;
+	bh=XzneIRZzyc+1SaJw/OACAJR1d66oV8Ny3EVQs5tDFCQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q60t59R2Sj9ULRlYrJ2IIHdnm6lLyMeLPbr3c7Z6+iOb3qbjGc9UKyN/nSUgefBJN
-	 L/nXVQmfzZ98wKBAe05dY59bBAmGJZToVK0Um4Op1EuSKzawvt0TTH/+FvhXCzC05W
-	 SsWoxK98EseWliZMobDup3lDWe7RKDqxsFLHm1BhY9JXuJi6mmvjURBglDTArTvKsd
-	 fyZhw/+0aaH6HPRph/Mqr7g1OIYOGK7MimU2vIZuEwUR3WQxbR+/mltLsCHfxAxqtq
-	 5zstVVOhFRN9tfuvf1QkXdmSTUrKAUYWJ1olUS628nefSAAmEf5tOzoRGEPMMmxpaT
-	 xwzMD3hBIOdwg==
-Message-ID: <f42ab36c-2588-4163-8e0e-2d868ed5db80@kernel.org>
-Date: Thu, 26 Feb 2026 11:49:47 +0100
+	b=WDwZD6SaRD40fYYK7SgVaH//kDPOuKUXdNhL6CeX0W1O8CqQS8++FSoIRJt1KJsrq
+	 3jhwzkmVW5Us7ek5ZlYoexfZrzGZrcAvdrCbAV1Qu9Aeke8q5EdEDrO4wVxB6AwFxP
+	 Z1ALASrmZVO93Jlm5J5k1XhbWG972TU8HRLrZnidgYKkVKOmjOwnThyy3LDtw6QUiV
+	 dtcov3qY9GGwFgqvnLoV+dYfD3va5XTLjMLVcQo0pq6Ta4o2trF1xQkYLVJR6brM9D
+	 s1qDinkKTpprPOgkFvCYhgeotAbhpNGm4jKjJoucg3zoM1Tk7tvoP2nH3K/I6NsYmB
+	 Xxx69l0hzZSfw==
+Received: from [192.168.1.90] (unknown [86.123.23.225])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D82D817E03E5;
+	Thu, 26 Feb 2026 11:52:04 +0100 (CET)
+Message-ID: <1748aeb6-8504-4acb-afd0-ac1d2cb46937@collabora.com>
+Date: Thu, 26 Feb 2026 12:52:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,125 +60,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] Revert "dt-bindings: mfd: sl28cpld: Add sa67mcu
- compatible"
-To: Michael Walle <mwalle@kernel.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
- Srinivas Kandagatla <srini@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20260223100459.844967-1-mwalle@kernel.org>
- <20260223100459.844967-5-mwalle@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 1/3] media: dt-bindings: rockchip,vdec: Add alternative
+ reg-names order for RK35{76,88}
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
+References: <20260225-vdec-reg-order-rk3576-v3-0-5a2ebe1b11a8@collabora.com>
+ <20260225-vdec-reg-order-rk3576-v3-1-5a2ebe1b11a8@collabora.com>
+ <9bb74438-e759-46a7-9fa1-2c6b1fced76b@kernel.org>
+ <d5a244f3-5f1b-4bcb-8042-646320a47b6c@collabora.com>
+ <85793250-425d-40da-b382-ada9fc7b50e1@kernel.org>
+ <72a72c50-4816-47d4-b533-be4b7feee027@collabora.com>
+ <20260226-screeching-manatee-of-amplitude-6dfbf6@quoll>
+ <12b30229-1c55-429d-8a3c-0d831c4d33ab@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260223100459.844967-5-mwalle@kernel.org>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <12b30229-1c55-429d-8a3c-0d831c4d33ab@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268765-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268766-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.995];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url]
-X-Rspamd-Queue-Id: 3F5801A48D5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AEF341A49C8
 X-Rspamd-Action: no action
 
-On 23/02/2026 11:04, Michael Walle wrote:
-> This reverts commit a598ae45f48d7d5a17f8290f2f5bd46046fd0b9b.
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-dt-bindings: mfd: foo-bar: Revert or drop or something, here goes text.
-
-Also:
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-
-And also, please use kernel style commit hashes, see checkpatch and
-submitting patches (12 char + subject).
-
+On 2/26/26 9:26 AM, Krzysztof Kozlowski wrote:
+> On 26/02/2026 08:25, Krzysztof Kozlowski wrote:
+>> On Thu, Feb 26, 2026 at 12:26:37AM +0200, Cristian Ciocaltea wrote:
+>>>>> Sorry, but I don't quite get why would this be a better approach than just
+>>>>> properly list the items according to the HW layout, i.e. following the
+>>>>> address-based ordering?
+>>>>
+>>>> We always expect the list to grow, to have common set. That's rule given
+>>>> during reviews multiple times. For multiple reasons, also explained
+>>>> (consistency, maintenance and actually proper description of hardware
+>>>> like the main reg address space).
+>>>>
+>>>> Probably this was also given to that binding during discussions when it
+>>>> was upstream, so your change reverts previous discussion and to that I
+>>>> do not agree.
+>>>
+>>> Thank you for detailing this, I get your point now.
+>>>
+>>> After digging a bit further, it looks like the "function" naming has been
+>>> introduced as part of the RK3588 support via commit c6ffb7e1fb90 ("media:
+>>> dt-bindings: rockchip: Document RK3588 Video Decoder bindings").
+>>>
+>>> Morever, it also sets `reg-names: false` for all the SoCs other than RK3588 -
+>>> sorry for missing this initially.
+>>>
+>>> Hence "function" wasn't used at all in the context of the older SoCs, while on
+>>> RK3588 & RK3576 there is no indication that "function" should be treated as the
+>>> main address space or anything like that.  E.g. RK3588 TRM clearly shows the
+>>> "link" range at the top of the listing, starting at video decoder unit base
+>>> address:
+>>>
+>>> --------------------------------------------------------------------------------
+>>> Config Register                         |   Base addr
+>>> --------------------------------------------------------------------------------
+>>> VDPU381 core0/1 link table config base  |   VDPU381_core0/1_base+0x000
+>>> VDPU381 core0/1 function config base    |   VDPU381_core0/1_base+0x100
+>>> --------------------------------------------------------------------------------
+>>>                                         |   VDPU381_core0/1_base+0x600 for Y channel
+>>> VDPU381 core0/1 cache config base       |   VDPU381_core0/1_base+0x640 for C channel
+>>>                                         |   VDPU381_core0/1_base+0x680 for head channel
+>>> --------------------------------------------------------------------------------
+>>>
+>>> Assuming the reasoning above is now good enough to move further with the
+>>> proposed approach, I can prepare a new revision dropping the unnecessary
+>>> one-entry item from the reg-names, while keeping all the rest in the series as
+>>> is.
+>>
+>> Yes, with drop of the oneOf this would be fine.
 > 
-> I was just informed that this product is discontinued (without being
-> ever released to the market). Pull the plug and let's not waste any more
-> maintainers time.
-> 
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
-> ---
-Best regards,
-Krzysztof
+> I meant, the "one item option" in oneOf.
+
+Yes, handled in v4:
+
+https://lore.kernel.org/all/20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com/
+
+Thanks,
+Cristian
 
