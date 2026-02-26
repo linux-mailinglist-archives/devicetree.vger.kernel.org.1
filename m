@@ -1,225 +1,121 @@
-Return-Path: <devicetree+bounces-269015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269016-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UEagDyvMoGmlmgQAu9opvQ
-	(envelope-from <devicetree+bounces-269015-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 23:41:47 +0100
+	id GPIvG7DNoGkomwQAu9opvQ
+	(envelope-from <devicetree+bounces-269016-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 23:48:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA5BA1B07BD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 23:41:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C97321B08CC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 23:48:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3A12130269F4
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:41:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A0733009158
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:47:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD21B3B8BBC;
-	Thu, 26 Feb 2026 22:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CBC23ACA73;
+	Thu, 26 Feb 2026 22:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gjbHlz8+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l9jj9L4W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6122E3AE6F4;
-	Thu, 26 Feb 2026 22:41:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE6093A4F26
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 22:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772145687; cv=none; b=Q7MbeUWQF1uh5dy8NYIdeOT1F9LFbz6ReK+pYgzTTgmP3naYvbcKJXOqmNGr+CdCpQcKlDiaYwUZXa3SihrSOy4Kmx7ewzj1PU68lqaRaqbZp60f17tSuyoxZ0qlHum0UyEw779AzX/vki2jop6VNWWib7lC5yZtmYgWcjBkyE4=
+	t=1772146065; cv=none; b=i+TEhG36Gy+uugJRDQ6SNXURAwZLbBwUSikl/TCnUeHJuvwNiu1M8Uyl6OBNa8BriBDjcXn19NeIwqzKpJyGa3mBankvoCK5POOwUY7l3mM72whyN6/X2rq+k2WAGtphrwsblpafc9TD6hkcfmurfzHqG1d285kKDntOEHN4Ec0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772145687; c=relaxed/simple;
-	bh=8qI83zGvdJ8aCzsFj2jHkPE3OSgD7zlBFk/sa+h+2G8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Wywq15338+50urY9KX7p0RNE64OqqJ95lkZfNsa/2awmBfb+XLd8AK7msa1DaV0P2hrLYFcrKVjJ/CE0wi2r31n9qThjt4eyImaA8hUpK2jMPwN6qpogna0poKy52vOn/VkjBJZX1erNfeRoLO0p8tP2LXVGzUF1MQ9QRQmEHQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gjbHlz8+; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1772145684;
-	bh=8qI83zGvdJ8aCzsFj2jHkPE3OSgD7zlBFk/sa+h+2G8=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=gjbHlz8+ivSHsLj9rNGB2zF93SkUpQT2E+OpxeCK+Edh8oYUvOAWmWhH+C3w5pEjq
-	 kMaBqfu5xT9pjh86XKrdzgwFfyfEeRiZ1HzKfHxn0lgJvA8Cvs2YrsU4W+wjpkizj2
-	 L+Ir/66LNl7rA0jcO6UbGMv5/RwCG/6QbnsDm+lKfNnO7QMy1B8HY51PSkLbOwgd12
-	 frNZKl5BhbUU66ViCjgUk6W5gkQ/ZcJM408JUb9fLYMlP+KLaUMb2GECbMDitCgI2l
-	 m2Ped3yrRnckUKFtPgZe/M/8wvFBcJeswPhZ46zKOx2X3yl4uGQihAbVpK/ZgX/ciZ
-	 lmSyO8xwAdXXA==
-Received: from [IPv6:2606:6d00:15:210e::5ac] (unknown [IPv6:2606:6d00:15:210e::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CA5BD17E0029;
-	Thu, 26 Feb 2026 23:41:22 +0100 (CET)
-Message-ID: <328f330b4316f60241eb8a9935a46cc148fb4ae8.camel@collabora.com>
-Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add
- alternative reg-names order for RK35{76,88}
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Detlev Casanova	
- <detlev.casanova@collabora.com>, Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>,  Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- kernel@collabora.com, 	devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley	 <conor.dooley@microchip.com>,
- linux-media@vger.kernel.org
-Date: Thu, 26 Feb 2026 17:41:20 -0500
-In-Reply-To: <20260226-ferocious-saturday-0e1f9bb28ec5@spud>
-References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
-	 <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
-	 <20260226-salute-threaten-a3eabb232396@spud>
-	 <429f3c7aa22eccffedbf8db6aa91bee3dd13814a.camel@collabora.com>
-	 <20260226-snide-foil-a05e1aa156a8@spud>
-	 <3d28c699e47f606bad46bb6447785badace37793.camel@collabora.com>
-	 <20260226-ferocious-saturday-0e1f9bb28ec5@spud>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-4Y4hasR1gEd+E/ddVt4V"
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	s=arc-20240116; t=1772146065; c=relaxed/simple;
+	bh=APviAckhtzsGqbkWRx3zBDJ8cA44GDRByy6wgZmyjLw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OYnLCiEg4no5xiK9hgGXb3nK1gd2ldEtIzL380Q23qNKIu8mSkbnt8VsJF73UqlT+qjN2wWFiDvzTJ2pdUICN7760grCTBfXV262Dj2RkeTED7IHGNY+rBuASt0Geh55nCwrf0ABdV10rBmRH0Z5rD0DOuXNR5Bix++G4aho31k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l9jj9L4W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A846BC2BC87
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 22:47:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772146064;
+	bh=APviAckhtzsGqbkWRx3zBDJ8cA44GDRByy6wgZmyjLw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=l9jj9L4WxRTkuqb1p9CA8axtAWgNH+10W7KZi6fsr0qmiCrqItJesci/oDzMMJDOO
+	 FbGWLfaQHMYXXU1uEuihA1QebIOSqNlAKUooujoMOrSKg1uLTTuEXR9zZsYT1lW5Ti
+	 rtsZ51R/2Xn3/splCeK+tgACllBmMJzPVjgaCVJvxmD+Eztqcc7x2Ml9IKrKaNzwky
+	 f8nmRcFf1apO0xhfILO2aTMsVq0bhZ86c9Z1tujPPsBSiLeyrK1nR0SQniqzoagoKJ
+	 CqbSvDSW3ZCeeQEybb8FRjAve9++0x0m0RZ/s7D+KQImDS1P5cJtP/G40lPb4Xr2LW
+	 lHr2QBk2fplOQ==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-7986e0553b0so13595847b3.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 14:47:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUxlFoAzyq0j44G2fZ4UAh06AZJuwj88Qn11uf57STsv9G+JBElZn/ErDtz+uddh/dIEx4RSS/d5aKV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMowQ10ANC0xC/das2RFJoerB+4Y34y/MAGz5IY6Ou96Cl8vZa
+	5MHnZMApBuBt8+Ven8xhwsaIYmZ7hPEleL9KCHHQLZRgyzwjQflHW+rMpzxDeQsnbqLv3MI+z8L
+	t/cOSLpAMgiVeZsTZD7vHHBHaCbjKz+o=
+X-Received: by 2002:a05:690c:c4ca:b0:798:6d23:17fb with SMTP id
+ 00721157ae682-798856036b5mr9743137b3.63.1772146064031; Thu, 26 Feb 2026
+ 14:47:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269015-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.dufresne@collabora.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
-X-Rspamd-Queue-Id: AA5BA1B07BD
-X-Rspamd-Action: no action
-
-
---=-4Y4hasR1gEd+E/ddVt4V
+References: <20260224-stimulate-fraying-29ac76f6c55e@wendy>
+In-Reply-To: <20260224-stimulate-fraying-29ac76f6c55e@wendy>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 26 Feb 2026 23:47:33 +0100
+X-Gmail-Original-Message-ID: <CAD++jLnNPudpxYd8-rNTAudqX2-apM6uZLyBRYxagwtT+LqeaA@mail.gmail.com>
+X-Gm-Features: AaiRm53hBIqaR9Y0t56WzlpNeyG3WpNnXjDcRAEXl0GxKf3ATmgzHkurDlKjTjw
+Message-ID: <CAD++jLnNPudpxYd8-rNTAudqX2-apM6uZLyBRYxagwtT+LqeaA@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 0/2] pinctrl property checks
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269016-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,microchip.com:email]
+X-Rspamd-Queue-Id: C97321B08CC
+X-Rspamd-Action: no action
 
-Le jeudi 26 f=C3=A9vrier 2026 =C3=A0 22:15 +0000, Conor Dooley a =C3=A9crit=
-=C2=A0:
-> On Thu, Feb 26, 2026 at 04:56:30PM -0500, Nicolas Dufresne wrote:
-> > Le jeudi 26 f=C3=A9vrier 2026 =C3=A0 20:59 +0000, Conor Dooley a =C3=A9=
-crit=C2=A0:
-> > > On Thu, Feb 26, 2026 at 02:45:11PM -0500, Nicolas Dufresne wrote:
-> > > > Le jeudi 26 f=C3=A9vrier 2026 =C3=A0 18:43 +0000, Conor Dooley a =
-=C3=A9crit=C2=A0:
-> > > In this case, the driver is currently buggy, because, as I mentioned,=
- it
-> > > uses reg-names without reg-names being required on the platforms with
-> > > more than 1 reg property. Probably the binding should make reg-names
-> > > mandatory for these platforms even without this patch, but it *has* t=
-o
-> > > IMO for this proposed change to be applicable.
-> >=20
-> > That forced me to check the driver. So for RK33xx and older, there is o=
-nly
-> > one
-> > range, and the driver will just pick the one entry expected:
-> >=20
-> >=20
-> > 	if (rkvdec->variant->has_single_reg_region) {
-> > 		rkvdec->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> > 		if (IS_ERR(rkvdec->regs))
-> > 			return PTR_ERR(rkvdec->regs);
-> > 	} else {
-> > 		rkvdec->regs =3D devm_platform_ioremap_resource_byname(pdev,
-> > "function");
-> > 		if (IS_ERR(rkvdec->regs))
-> > 			return PTR_ERR(rkvdec->regs);
-> >=20
-> > 		rkvdec->link =3D devm_platform_ioremap_resource_byname(pdev,
-> > "link");
-> > 		if (IS_ERR(rkvdec->link))
-> > 			return PTR_ERR(rkvdec->link);
-> > 	}
-> >=20
-> >=20
-> > Where for RK35xx variants, it only pick the resources by name. I don't =
-see
-> > the
-> > bug that you see, but I believe this was just a supposition, that you d=
-idn't
-> > check the code.
->=20
-> Busy reading path of exile patch notes, so sniping this comment only...
->=20
-> This is a bug, not a supposition, and it's that snippet from the
-> driver that prompted my comment.. That code requires that if
-> ->has_single_reg_region is set that the dts provides reg-names, but the
-> binding does not mandate reg-names for rk3576-vdec and rk3588-vdec, so
-> the driver will fail to probe on a dts that the binding says is valid.
+On Tue, Feb 24, 2026 at 2:39=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
 
-Got it, to me nothing in the binding is intentional, just a big lack of
-understanding what the syntax meant. So if we agree to make the binding enf=
-orce
-having names for rk3576-vdec and rk3588-vdec (and keep RK33 and older the s=
-ame),
-It would make me more happy to maintain it.
+> Here's a !rfc version of these property checks. Nothing has changed here
+> outside of a rebase on v7.0-rc1.
+>
+> Resending because I managed to lose the CC list on all but the cover.
 
-It also better highlight why adding a second order simply creates an ambigu=
-ity.
+I applied these for next because why not! People have ample
+time to test them now.
 
-Let me know, if we can go forward with that, I'll help documenting known us=
-ers,
-their introduction into 7.0-rc1 only and why this incident and fix should h=
-ave
-no impact on anyone.
+(Dropped an extraneous newline in the first patch.)
 
-Nicolas
-
---=-4Y4hasR1gEd+E/ddVt4V
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaaDMEAAKCRDZQZRRKWBy
-9NBKAQClyqb+9nOYzRNJx8qMWWPMGjst8feZTaXkF2MxsSbhrAEA/83RqiaTJO9w
-VGV5b7smraEoxWFECJxsBiy9Uek1WgY=
-=Fr9Z
------END PGP SIGNATURE-----
-
---=-4Y4hasR1gEd+E/ddVt4V--
+Yours,
+Linus Walleij
 
