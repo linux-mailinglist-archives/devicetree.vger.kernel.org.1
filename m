@@ -1,335 +1,157 @@
-Return-Path: <devicetree+bounces-268652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268653-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uEnFFTIAoGlrfQQAu9opvQ
-	(envelope-from <devicetree+bounces-268652-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:11:30 +0100
+	id ED/1Fez/n2n3fAQAu9opvQ
+	(envelope-from <devicetree+bounces-268653-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:10:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF611A2554
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:11:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E75301A250B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 71C983021E5D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:07:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 554B83013463
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD8E393DC9;
-	Thu, 26 Feb 2026 08:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="StagU9uF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E49A38BF9E;
+	Thu, 26 Feb 2026 08:10:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249D83939C7
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:07:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B6A23BD05;
+	Thu, 26 Feb 2026 08:10:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772093237; cv=none; b=m5A6ZI0q9UXwcQD+HkJ1N4WMXYVgkaiELBpuVTxHX4QqN0bna1MTj7+JHYl2g4lrtGfDITv/3ZaY4RANW9b3RIcPkZLLanRaB97at1KvndqdL/bAzLWqwIBEwInSOmtCIslqbgcyY4/0yzKPVtiq+zX/wk7IF02tCJ1j70Dmb/s=
+	t=1772093417; cv=none; b=Kab6O6fPnTCu6MN8pm//gBlb6ZgpvqaPGRMZ0ygceYN/qaYuyEoVcMiorYbT9ZO4+jTLFf5NDCmkG6TerDSbf+gUCD5u85qgy1JpuR7FKbE5FHr6lcBDhClrAVaj6ElFM1CKUa3jTIGLSlulwwdp8o6LoY6J81DILdiZR3wxiK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772093237; c=relaxed/simple;
-	bh=K0n8HxF6lOZqrVlB8vEJwgYuzkOQryDbQZJNjlhSba8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c1kudwbT34Qc4S47z8CX3dYIqJsmOGBu+8ZTutKQTIswaXwRknKXN0iCIadAIkgiFR27ggtHzEvKedB7scE4ozN2SvsC3gz+DYsAOvi68r4mYyy+gHkayTqpYDIMLiW4hgrL0miMlUzzKBUVCS8hm3QAeGD/wUB9qywPu8DUmPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=StagU9uF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D481DC2BCB0
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 08:07:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772093236;
-	bh=K0n8HxF6lOZqrVlB8vEJwgYuzkOQryDbQZJNjlhSba8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=StagU9uFt5bPoZAOY2hlmDGJqVsdjf1LQSED/+Dih0bYvRA6DReAF7ai7BKAvy25U
-	 1//p+EjDttuvF1KYh0Aq8Wr2DOjaqkjFOJ2njQTTbQy6U5S3/O/yt4yoDSO1cZFGtN
-	 HobCxRFEQJJ+dZewDILJCAv3v2QEL2mpWLQzV3v+5gzWGOfCd/MUSrMqcxwqv7i4ty
-	 q5xj6s5DlQarW6bhA0d8RuDM4/kJy/zzGdn8UWeUM5gOG3ROFUCwD1xRzqcW9eIs9w
-	 ltYmnFHfW56/3+ZQUWJRNmiSMA3GPdguSt/458bHdaTI/AVr6+MyxGLsL8GHHOHanC
-	 yO0BkPZ1a33tw==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-65f71ed7c6cso1111212a12.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 00:07:16 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVGhuwTPMeJGP4WeuH0nY7YLbQPeKC3S6D85GuO0YE0I5z3QNAj+qI2eNDDHIgFJNOAbkr/mXLlOTdu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzE+caneWTHzg9yAqcRuqhR4sCFafi00y6WU8YAmZs8SeYwPA8H
-	Ro2qpGbmIpMJBfeLdX7ZNJ9FdZ7Idw0SnHTpboN/IMNiI+nT4eftuTLnYM3n32YKN0t3nix+b3g
-	Wkgxkvj45uaNQzUba7giuNBr1bEjEcms=
-X-Received: by 2002:a05:6402:2692:b0:659:4554:2dbd with SMTP id
- 4fb4d7f45d1cf-65fa476ebfamr2133550a12.7.1772093235170; Thu, 26 Feb 2026
- 00:07:15 -0800 (PST)
+	s=arc-20240116; t=1772093417; c=relaxed/simple;
+	bh=0tbnDj4UNBcIFrI5kbDXah6aZZNKwW3vaIo+z7tG2rw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=pRyACJdVW+xxq1UzmJZMyftMyblc4MYl7F6TexgsH/WO6dXA3LAZW4ZdOT3sjE3Z5w+ZvjNKMgV7DpDF+auIj+pmjxxJDyg42xARTCau4fPHmqspwv50bcDqaUt+3xrln5ZQAautWELrmD7dj1/v58+VV7IREqZNz3cwB2OSuIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
+ ajax-webmail-app2 (Coremail) ; Thu, 26 Feb 2026 16:09:44 +0800 (GMT+08:00)
+Date: Thu, 26 Feb 2026 16:09:44 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+To: "Manivannan Sadhasivam" <mani@kernel.org>
+Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
+	p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com, shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
+	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	ouyanghui@eswincomputing.com
+Subject: Re: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host
+ controller driver
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <cxfbgzwsybfvixu3qqi66fvspmhe5knuevwcj6zwsakkzqwd3z@czmitvgl7nwt>
+References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
+ <20260129092900.1900-1-zhangsenchuan@eswincomputing.com>
+ <a3yu54e6feo5immtdju4fgvne7fh3p4ytlawfdhawmpzvagi64@o7wuhhdiitft>
+ <78296255.3869.19c8eb694d6.Coremail.zhangsenchuan@eswincomputing.com>
+ <cxfbgzwsybfvixu3qqi66fvspmhe5knuevwcj6zwsakkzqwd3z@czmitvgl7nwt>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1770605931.git.zhoubinbin@loongson.cn> <d62faafc653efab602c8d6bfcdcee1cb217171b9.1770605931.git.zhoubinbin@loongson.cn>
- <aYoPyWS7o27G-AHh@lizhi-Precision-Tower-5810> <CAMpQs4+NHVQTcxdsBYp6H7c4FZpsuTo=QpKKY09sgpppDEiuNA@mail.gmail.com>
-In-Reply-To: <CAMpQs4+NHVQTcxdsBYp6H7c4FZpsuTo=QpKKY09sgpppDEiuNA@mail.gmail.com>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Thu, 26 Feb 2026 16:07:17 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H5ODRYLC=cmhWzkkxAMNJK1SRT9b-L+eQEqzhJKtmENhQ@mail.gmail.com>
-X-Gm-Features: AaiRm53wN3tuv3Fr6JhWHeaXk9ZvsrAGSuLaFtOSYLHZz0Hr2Lq5IiPjFj5GUhA
-Message-ID: <CAAhV-H5ODRYLC=cmhWzkkxAMNJK1SRT9b-L+eQEqzhJKtmENhQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dmaengine: loongson: New directory for Loongson
- DMA controllers drivers
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Frank Li <Frank.li@nxp.com>, Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	dmaengine@vger.kernel.org, Xiaochuang Mao <maoxiaochuan@loongson.cn>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	Keguang Zhang <keguang.zhang@gmail.com>, linux-mips@vger.kernel.org, jeffbai@aosc.io
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-ID: <694aeb1a.398e.19c98ff2727.Coremail.zhangsenchuan@eswincomputing.com>
+X-Coremail-Locale: en_US
+X-CM-TRANSID:TQJkCgDH3aDI_59pPrgDAA--.810W
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgEKBmmfJ
+	IYfLwAAsr
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268652-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nxp.com,loongson.cn,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev,gmail.com,aosc.io];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268653-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	HAS_X_PRIO_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,mail.gmail.com:mid,loongson.cn:email]
-X-Rspamd-Queue-Id: 9DF611A2554
+	NEURAL_HAM(-0.00)[-0.594];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhangsenchuan@eswincomputing.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E75301A250B
 X-Rspamd-Action: no action
 
-Hi, Binbin.
-
-On Tue, Feb 10, 2026 at 9:27=E2=80=AFAM Binbin Zhou <zhoubb.aaron@gmail.com=
-> wrote:
->
-> Hi Frank:
->
-> On Tue, Feb 10, 2026 at 12:48=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrot=
-e:
-> >
-> > On Mon, Feb 09, 2026 at 11:04:18AM +0800, Binbin Zhou wrote:
-> > > Gather the Loongson DMA controllers under drivers/dma/loongson/
-> > >
-> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > > ---
-> > >  MAINTAINERS                                   |  3 +-
-> > >  drivers/dma/Kconfig                           | 25 ++---------------
-> > >  drivers/dma/Makefile                          |  3 +-
-> > >  drivers/dma/loongson/Kconfig                  | 28 +++++++++++++++++=
-++
-> > >  drivers/dma/loongson/Makefile                 |  3 ++
-> > >  .../dma/{ =3D> loongson}/loongson1-apb-dma.c    |  4 +--
-> > >  .../dma/{ =3D> loongson}/loongson2-apb-dma.c    |  4 +--
-> > >  7 files changed, 40 insertions(+), 30 deletions(-)
-> > >  create mode 100644 drivers/dma/loongson/Kconfig
-> > >  create mode 100644 drivers/dma/loongson/Makefile
-> > >  rename drivers/dma/{ =3D> loongson}/loongson1-apb-dma.c (99%)
-> > >  rename drivers/dma/{ =3D> loongson}/loongson2-apb-dma.c (99%)
-> > >
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index f630328ca6ae..27f77b68d596 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -14777,7 +14777,7 @@ M:    Binbin Zhou <zhoubinbin@loongson.cn>
-> > >  L:   dmaengine@vger.kernel.org
-> > >  S:   Maintained
-> > >  F:   Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
-> > > -F:   drivers/dma/loongson2-apb-dma.c
-> > > +F:   drivers/dma/loongson/loongson2-apb-dma.c
-> > >
-> > >  LOONGSON LS2X I2C DRIVER
-> > >  M:   Binbin Zhou <zhoubinbin@loongson.cn>
-> > > @@ -17515,6 +17515,7 @@ F:    arch/mips/boot/dts/loongson/loongson1*
-> > >  F:   arch/mips/configs/loongson1_defconfig
-> > >  F:   arch/mips/loongson32/
-> > >  F:   drivers/*/*loongson1*
-> > > +F:   drivers/dma/loongson/loongson1-apb-dma.c
-> > >  F:   drivers/mtd/nand/raw/loongson-nand-controller.c
-> > >  F:   drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-> > >  F:   sound/soc/loongson/loongson1_ac97.c
-> > > diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-> > > index 66cda7cc9f7a..1b84c5b11654 100644
-> > > --- a/drivers/dma/Kconfig
-> > > +++ b/drivers/dma/Kconfig
-> > > @@ -376,29 +376,6 @@ config K3_DMA
-> > >         Support the DMA engine for Hisilicon K3 platform
-> > >         devices.
-> > >
-> > > -config LOONGSON1_APB_DMA
-> > > -     tristate "Loongson1 APB DMA support"
-> > > -     depends on MACH_LOONGSON32 || COMPILE_TEST
-> > > -     select DMA_ENGINE
-> > > -     select DMA_VIRTUAL_CHANNELS
-> > > -     help
-> > > -       This selects support for the APB DMA controller in Loongson1 =
-SoCs,
-> > > -       which is required by Loongson1 NAND and audio support.
-> > > -
-> > > -config LOONGSON2_APB_DMA
-> > > -     tristate "Loongson2 APB DMA support"
-> > > -     depends on LOONGARCH || COMPILE_TEST
-> > > -     select DMA_ENGINE
-> > > -     select DMA_VIRTUAL_CHANNELS
-> > > -     help
-> > > -       Support for the Loongson2 APB DMA controller driver. The
-> > > -       DMA controller is having single DMA channel which can be
-> > > -       configured for different peripherals like audio, nand, sdio
-> > > -       etc which is in APB bus.
-> > > -
-> > > -       This DMA controller transfers data from memory to peripheral =
-fifo.
-> > > -       It does not support memory to memory data transfer.
-> > > -
-> > >  config LPC18XX_DMAMUX
-> > >       bool "NXP LPC18xx/43xx DMA MUX for PL080"
-> > >       depends on ARCH_LPC18XX || COMPILE_TEST
-> > > @@ -774,6 +751,8 @@ source "drivers/dma/fsl-dpaa2-qdma/Kconfig"
-> > >
-> > >  source "drivers/dma/lgm/Kconfig"
-> > >
-> > > +source "drivers/dma/loongson/Kconfig"
-> > > +
-> > >  source "drivers/dma/stm32/Kconfig"
-> > >
-> > >  # clients
-> > > diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-> > > index a54d7688392b..a1c73415b79f 100644
-> > > --- a/drivers/dma/Makefile
-> > > +++ b/drivers/dma/Makefile
-> > > @@ -49,8 +49,6 @@ obj-$(CONFIG_INTEL_IDMA64) +=3D idma64.o
-> > >  obj-$(CONFIG_INTEL_IOATDMA) +=3D ioat/
-> > >  obj-y +=3D idxd/
-> > >  obj-$(CONFIG_K3_DMA) +=3D k3dma.o
-> > > -obj-$(CONFIG_LOONGSON1_APB_DMA) +=3D loongson1-apb-dma.o
-> > > -obj-$(CONFIG_LOONGSON2_APB_DMA) +=3D loongson2-apb-dma.o
-> > >  obj-$(CONFIG_LPC18XX_DMAMUX) +=3D lpc18xx-dmamux.o
-> > >  obj-$(CONFIG_LPC32XX_DMAMUX) +=3D lpc32xx-dmamux.o
-> > >  obj-$(CONFIG_MILBEAUT_HDMAC) +=3D milbeaut-hdmac.o
-> > > @@ -88,6 +86,7 @@ obj-$(CONFIG_INTEL_LDMA) +=3D lgm/
-> > >
-> > >  obj-y +=3D amd/
-> > >  obj-y +=3D mediatek/
-> > > +obj-y +=3D loongson/
-> >
-> > keep alphabet order
->
-> Sorry, I'll fix it in the next version.
-> >
-> > Frank
-> > >  obj-y +=3D qcom/
-> > >  obj-y +=3D stm32/
-> > >  obj-y +=3D ti/
-> > > diff --git a/drivers/dma/loongson/Kconfig b/drivers/dma/loongson/Kcon=
-fig
-> > > new file mode 100644
-> > > index 000000000000..9dbdaef5a59f
-> > > --- /dev/null
-> > > +++ b/drivers/dma/loongson/Kconfig
-> > > @@ -0,0 +1,28 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only
-> > > +#
-> > > +# Loongson DMA controllers drivers
-> > > +#
-> > > +if MACH_LOONGSON32 || MACH_LOONGSON64 || COMPILE_TEST
-> > > +
-> > > +config LOONGSON1_APB_DMA
-> > > +     tristate "Loongson1 APB DMA support"
-> > > +     select DMA_ENGINE
-> > > +     select DMA_VIRTUAL_CHANNELS
-I think "depends on MACH_LOONGSON32 || COMPILE_TEST" is still needed,
-otherwise it can be compiled for MACH_LOONGSON64.
-
-> > > +     help
-> > > +       This selects support for the APB DMA controller in Loongson1 =
-SoCs,
-> > > +       which is required by Loongson1 NAND and audio support.
-> > > +
-> > > +config LOONGSON2_APB_DMA
-> > > +     tristate "Loongson2 APB DMA support"
-> > > +     select DMA_ENGINE
-> > > +     select DMA_VIRTUAL_CHANNELS
-The same, "depends on MACH_LOONGSON64 || COMPILE_TEST" is needed.
-
-Huacai
-
-> > > +     help
-> > > +       Support for the Loongson2 APB DMA controller driver. The
-> > > +       DMA controller is having single DMA channel which can be
-> > > +       configured for different peripherals like audio, nand, sdio
-> > > +       etc which is in APB bus.
-> > > +
-> > > +       This DMA controller transfers data from memory to peripheral =
-fifo.
-> > > +       It does not support memory to memory data transfer.
-> > > +
-> > > +endif
-> > > diff --git a/drivers/dma/loongson/Makefile b/drivers/dma/loongson/Mak=
-efile
-> > > new file mode 100644
-> > > index 000000000000..6cdd08065e92
-> > > --- /dev/null
-> > > +++ b/drivers/dma/loongson/Makefile
-> > > @@ -0,0 +1,3 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only
-> > > +obj-$(CONFIG_LOONGSON1_APB_DMA) +=3D loongson1-apb-dma.o
-> > > +obj-$(CONFIG_LOONGSON2_APB_DMA) +=3D loongson2-apb-dma.o
-> > > diff --git a/drivers/dma/loongson1-apb-dma.c b/drivers/dma/loongson/l=
-oongson1-apb-dma.c
-> > > similarity index 99%
-> > > rename from drivers/dma/loongson1-apb-dma.c
-> > > rename to drivers/dma/loongson/loongson1-apb-dma.c
-> > > index 255fe7eca212..e99247cf90c1 100644
-> > > --- a/drivers/dma/loongson1-apb-dma.c
-> > > +++ b/drivers/dma/loongson/loongson1-apb-dma.c
-> > > @@ -16,8 +16,8 @@
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/slab.h>
-> > >
-> > > -#include "dmaengine.h"
-> > > -#include "virt-dma.h"
-> > > +#include "../dmaengine.h"
-> > > +#include "../virt-dma.h"
-> > >
-> > >  /* Loongson-1 DMA Control Register */
-> > >  #define LS1X_DMA_CTRL                0x0
-> > > diff --git a/drivers/dma/loongson2-apb-dma.c b/drivers/dma/loongson/l=
-oongson2-apb-dma.c
-> > > similarity index 99%
-> > > rename from drivers/dma/loongson2-apb-dma.c
-> > > rename to drivers/dma/loongson/loongson2-apb-dma.c
-> > > index c528f02b9f84..0cb607595d04 100644
-> > > --- a/drivers/dma/loongson2-apb-dma.c
-> > > +++ b/drivers/dma/loongson/loongson2-apb-dma.c
-> > > @@ -17,8 +17,8 @@
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/slab.h>
-> > >
-> > > -#include "dmaengine.h"
-> > > -#include "virt-dma.h"
-> > > +#include "../dmaengine.h"
-> > > +#include "../virt-dma.h"
-> > >
-> > >  /* Global Configuration Register */
-> > >  #define LDMA_ORDER_ERG               0x0
-> > > --
-> > > 2.52.0
-> > >
->
-> --
-> Thanks.
-> Binbin
+Cj4gPiA+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEwIDIvMl0gUENJOiBlaWM3NzAwOiBBZGQgRXN3
+aW4gUENJZSBob3N0IGNvbnRyb2xsZXIgZHJpdmVyCj4gPiA+IAo+ID4gPiBPbiBUaHUsIEphbiAy
+OSwgMjAyNiBhdCAwNToyOTowMFBNICswODAwLCB6aGFuZ3NlbmNodWFuQGVzd2luY29tcHV0aW5n
+LmNvbSB3cm90ZToKPiA+ID4gPiBGcm9tOiBTZW5jaHVhbiBaaGFuZyA8emhhbmdzZW5jaHVhbkBl
+c3dpbmNvbXB1dGluZy5jb20+Cj4gPiA+ID4KPiA+ID4gPiArc3RhdGljIGludCBlaWM3NzAwX3Bj
+aWVfc3VzcGVuZF9ub2lycShzdHJ1Y3QgZGV2aWNlICpkZXYpCj4gPiA+ID4gK3sKPiA+ID4gPiAr
+CXN0cnVjdCBlaWM3NzAwX3BjaWUgKnBjaWUgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsKPiA+ID4g
+PiArCj4gPiA+ID4gKwkvKgo+ID4gPiA+ICsJICogVGhlIEVTV0lOIEVJQzc3MDAgU29DIGxhY2tz
+IGhhcmR3YXJlIHN1cHBvcnQgZm9yIHRoZSBMMi9MMyBsb3ctcG93ZXIKPiA+ID4gPiArCSAqIGxp
+bmsgc3RhdGVzLiBJdCBjYW5ub3QgZW50ZXIgdGhlIEwyL0wzIFJlYWR5IHN0YXRlIHRocm91Z2gg
+dGhlCj4gPiA+ID4gKwkgKiBQTUVfVHVybl9PZmYvUE1FX1RvX0FjayBoYW5kc2hha2UgcHJvdG9j
+b2wuIFRvIGF2b2lkIHRoaXMgcHJvYmxlbSwKPiA+ID4gPiArCSAqIHRoZSBkd19wY2llX3N1c3Bl
+bmRfbm9pcnEgQVBJIGlzIG5vdCB1c2VkLgo+ID4gPiA+ICsJICovCj4gPiA+IAo+ID4gPiBXaXRo
+IDcuMCwgeW91IGNhbiBwcm92aWRlIGEgZHVtbXkgcG1lX3R1cm5fb2ZmKCkgQVBJIGFuZCBzZXQK
+PiA+ID4gJ3BjaS0+cHAuc2tpcF9sMjNfcmVhZHknIHRvIHJldXNlIHRoZSBkd19wY2llX3tzdXNw
+ZW5kL3Jlc3VtZX1fbm9pcnEgQVBJcy4KPiA+ID4gCj4gPiAKPiA+IEhpIE1hbmksCj4gPiAKPiA+
+IFNldHRpbmcgcGNpLT5wcC5za2lwX2wyM19yZWFkeSBkb2VzIGluZGVlZCBhbGxvdyB1cyB0byBy
+ZXVzZSB0aGUKPiA+IGR3X3BjaWVfc3VzcGVuZF9ub2lycSBmdW5jdGlvbi4gSG93ZXZlciwgZm9y
+IHRoZSBkd19wY2llX3Jlc3VtZV9ub2lycQo+ID4gZnVuY3Rpb24sIGlmIHRoZSBkd19wY2llX3N0
+YXJ0X2xpbmsgYW5kIGR3X3BjaWVfd2FpdF9mb3JfbGluayBBUElzIGZhaWwgdG8KPiA+IGV4ZWN1
+dGUsIHRoZSBjbGsvcmVzZXQgcmVzb3VyY2VzIGluIHRoZSBwY2ktPnBwLm9wcy0+aW5pdCBmdW5j
+dGlvbiBjYW5ub3QKPiA+IGJlIHJlbGVhc2VkLiBQZXJoYXBzIHRoZSBkd19wY2llX3Jlc3VtZV9u
+b2lycSBmdW5jdGlvbiBuZWVkcyB0byBiZSBvcHRpbWl6ZWQuCj4gCj4gV2lsbCB0aGlzIGhlbHA/
+Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdu
+d2FyZS1ob3N0LmMgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUt
+aG9zdC5jCj4gaW5kZXggNmFlNjE4OWU5YjhhLi4zOGFkNzliYmVhYjEgMTAwNjQ0Cj4gLS0tIGEv
+ZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLWhvc3QuYwo+ICsrKyBi
+L2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS1ob3N0LmMKPiBAQCAt
+MTMwMCwxNSArMTMwMCwyNCBAQCBpbnQgZHdfcGNpZV9yZXN1bWVfbm9pcnEoc3RydWN0IGR3X3Bj
+aWUgKnBjaSkKPiAgCj4gICAgICAgICByZXQgPSBkd19wY2llX3N0YXJ0X2xpbmsocGNpKTsKPiAg
+ICAgICAgIGlmIChyZXQpCj4gLSAgICAgICAgICAgICAgIHJldHVybiByZXQ7Cj4gKyAgICAgICAg
+ICAgICAgIGdvdG8gZXJyX2RlaW5pdDsKPiAgCj4gICAgICAgICByZXQgPSBkd19wY2llX3dhaXRf
+Zm9yX2xpbmsocGNpKTsKPiAgICAgICAgIGlmIChyZXQpCj4gLSAgICAgICAgICAgICAgIHJldHVy
+biByZXQ7Cj4gKyAgICAgICAgICAgICAgIGdvdG8gZXJyX3N0b3BfbGluazsKPiAgCj4gICAgICAg
+ICBpZiAocGNpLT5wcC5vcHMtPnBvc3RfaW5pdCkKPiAgICAgICAgICAgICAgICAgcGNpLT5wcC5v
+cHMtPnBvc3RfaW5pdCgmcGNpLT5wcCk7Cj4gIAo+ICsgICAgICAgcmV0dXJuIDA7Cj4gKwo+ICtl
+cnJfc3RvcF9saW5rOgo+ICsgICAgICAgZHdfcGNpZV9zdG9wX2xpbmsocGNpKTsKPiArCj4gK2Vy
+cl9kZWluaXQ6Cj4gKyAgICAgICBpZiAocGNpLT5wcC5vcHMtPmRlaW5pdCkKPiArICAgICAgICAg
+ICAgICAgcGNpLT5wcC5vcHMtPmRlaW5pdCgmcGNpLT5wcCk7Cj4gKwo+ICAgICAgICAgcmV0dXJu
+IHJldDsKPiAgfQo+ICBFWFBPUlRfU1lNQk9MX0dQTChkd19wY2llX3Jlc3VtZV9ub2lycSk7Cj4g
+CgpZZXMsIHRoaXMgY2FuIHJlbGVhc2UgdGhlIHJlc291cmNlcyBhZnRlciBpbml0LCBhZnRlciBv
+cHRpbWl6aW5nIHRoZSAKcmVzdW1lIGZ1bmN0aW9uLCBpIGNhbiByZXVzZSB0aGUgZHdfcGNpZV97
+c3VzcGVuZC9yZXN1bWV9X25vaXJxIEFQSXMuCgpJIG5vdGljZWQgdGhhdCB0aGUgZHdfcGNpZV93
+YWl0X2Zvcl9saW5rIGZ1bmN0aW9uIGhhcyBiZWVuIG9wdGltaXplZC4gSXMgCml0IG5lY2Vzc2Fy
+eSB0byByZWxlYXNlIHRoZSByZXNvdXJjZXMgb25seSB3aGVuIGl0IHJldHVybiAtRVRJTUVPVVQ/
+ClBlcmhhcHMgaXQgbmVlZHMgdG8gYmUgc2xpZ2h0bHkgaW1wcm92ZWTvvJoKCiByZXQgPSBkd19w
+Y2llX3dhaXRfZm9yX2xpbmsocGNpKTsKIGlmIChyZXQgPT0gLUVUSU1FT1VUKQogICAgICAgICBn
+b3RvIGVycl9zdG9wX2xpbms7CgpXaGF0IGFib3V0IHlvdXIgc3VnZ2VzdGlvbj8KCktpbmQgcmVn
+YXJkcywKU2VuY2h1YW4=
 
