@@ -1,147 +1,126 @@
-Return-Path: <devicetree+bounces-268999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269000-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wPsJCKS1oGnClwQAu9opvQ
-	(envelope-from <devicetree+bounces-268999-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:05:40 +0100
+	id yHI6Ope3oGnClwQAu9opvQ
+	(envelope-from <devicetree+bounces-269000-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:13:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C50E01AF63A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:05:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B671AF8A8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 22:13:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6C99F303C863
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:05:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8A7543061CD9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:13:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A40035A3B6;
-	Thu, 26 Feb 2026 21:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BCAA3939B3;
+	Thu, 26 Feb 2026 21:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SA1lSey7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vGXn5u/J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C43226D00;
-	Thu, 26 Feb 2026 21:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81A946AF25;
+	Thu, 26 Feb 2026 21:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772139935; cv=none; b=BFSxwrakcSDCWQ3cdTWEOLcczP7FbbzHg4/vmrqTTM0fA4cilPP5NdW5XXEh+MPBzUmKkXI8mseyPkas1FUl5htlzak+GFUoGCgiE8iV7nbcy0oX8uU16agIgqioUX1IXG5KsQwveMjvGpdOzcEi4X13AFvkXiBgNbuZXZoXBQM=
+	t=1772140389; cv=none; b=mSfj8tjKe6ZP3OhDc1EZFfUtrhEFOXRbydL0JRqR8zQ5qysTrfmrjlpJyS1B+VHFY0FSncu5YBolRiNqxpnIreL44keyhA6t3qtAgUEehQQ+hyM24bG/xPvqqEaIKZvW7K8zR4BuIL65CHHXA8uPIRQ3x7j+IkIuKijdAl2swmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772139935; c=relaxed/simple;
-	bh=uc2Eq1H6971eNvHKFTRJYOX7q5n+tCYl7A9InNjRaH8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fw6pEv1ThH59eODX56GuxfJ5bMQ/3BXb1uyIKtoqyk3H4PC1lvZ8KJp7OJLxUUND4rjk0XxFiva5JqfNnXjkZjOYNZJk3jnskJxQ9MRsWaCmAQEa5wAY0b90IHGGUSGPr4UGvgelnxAyeMuQQfB/9aDTb9ah04NyfAqohZNePLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SA1lSey7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8E3DC116C6;
-	Thu, 26 Feb 2026 21:05:30 +0000 (UTC)
+	s=arc-20240116; t=1772140389; c=relaxed/simple;
+	bh=/rAVJCFfsQkvrRdgutCJT5HOojDDScsTy8KhEKFIjJ4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=oQ2SZBTrATMVoDCYorjqhlxGdRcXfIobJXEjZRxoT5s41fNlPiQYkLdouAjpaOj4DoZW8nVAVVlK379VsscQDmSyJnCOXpoKKn2dHgHF7NvZxgkd96kqa2OKls9Ql0hhgZyIWvlzd+q17nSnRpDZuUJhU1TTbNHJvHkVP94THFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vGXn5u/J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFD08C19423;
+	Thu, 26 Feb 2026 21:13:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772139934;
-	bh=uc2Eq1H6971eNvHKFTRJYOX7q5n+tCYl7A9InNjRaH8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SA1lSey7XhMAKn/SCMxAPovHfyKkgOinYudsb7u/ytZIPYcSHCzd10SKo2nsoUFtW
-	 Bq+XgqE/POnX0vlY/JUby2FpVZWzBkwMR1v32u514TFk4+QeQBqvmaHJOsQ+s457a3
-	 BJASiId8grbDjYc8RizCmYUFhfranVDAqSQw45Zjrg8pSEYUVXFUq2gCWnvEI8/A+7
-	 F/dg7mlPHiDmPvouR5ezn9CL4IYxyZ+1J75IJ1cGvOPQGLbHrNpJ2cXk+4ZVebzgPR
-	 2ixhclO0NrYwcAJ8lWL+cOwB0aCsg43sQ0ZoJmpZDLFELG/1JH0hxtj9qhfntbjV7H
-	 XnSPcNMvTy1rg==
-Date: Thu, 26 Feb 2026 21:05:28 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: Re: [PATCH net-next v3 5/5] net: macb: Add "mobileye,eyeq5-gem"
- compatible
-Message-ID: <20260226-marry-blend-0a63d3572d76@spud>
-References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
- <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
- <20260226-folic-excitable-82eff83a125a@spud>
- <aaCd_zV5kY-s1RBL@shell.armlinux.org.uk>
- <20260226-perennial-sanctity-25c6adae5ec0@spud>
- <aaCwxeMHMSCHk0nx@shell.armlinux.org.uk>
+	s=k20201202; t=1772140389;
+	bh=/rAVJCFfsQkvrRdgutCJT5HOojDDScsTy8KhEKFIjJ4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=vGXn5u/J304XW4PR0Lx/1Hf7o0M0kmHoP1R6/LShOXfbdH83FaLtbhauldgOIa8hP
+	 hzdfGGLUw3KCXgi++LTqXcioxDKgLIu+vxwggoLItz/slZYUWPUdLjcdfkSiJo54Sa
+	 6Rmgu3RK8OqpB/cm49jxQmUeatTKvm98TKnmGfpgsNNOspwWAWLobwSNFnJT2IjUW1
+	 Tx9tK0s6NQdUCg1MLGvAiDuhzWESVh4VVL/A09NUSKyLFoP1wKlPr2vc34X5p+mebQ
+	 6noDRAtYK3BG0hY+aklFAUGapUt0CHPHBlFg4siet0sXpLUYfpzAYpci+Rk+hTeOt/
+	 4pSlcmsE7lnow==
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Lukas Timmermann <linux@timmermann.space>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, Alexandre Marquet <tb@a-marquet.fr>, 
+ Henrik Grimler <henrik@grimler.se>
+In-Reply-To: <20260127-lat3st-staging-v4-0-797469aaaf9d@timmermann.space>
+References: <20260127-lat3st-staging-v4-0-797469aaaf9d@timmermann.space>
+Subject: Re: (subset) [PATCH v4 0/3] Add support for exynos5250-manta
+ (Google Nexus 10)
+Message-Id: <177214038655.341086.4114348823043257597.b4-ty@kernel.org>
+Date: Thu, 26 Feb 2026 22:13:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KjizatTjNwr03SpN"
-Content-Disposition: inline
-In-Reply-To: <aaCwxeMHMSCHk0nx@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268999-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269000-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C50E01AF63A
+X-Rspamd-Queue-Id: 88B671AF8A8
 X-Rspamd-Action: no action
 
 
---KjizatTjNwr03SpN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 27 Jan 2026 21:40:55 +0100, Lukas Timmermann wrote:
+> This patch series adds initial support for the google-manta board, known
+> as Google Nexus 10 to users. The device is powered by
+> the Exynos 5250 SoC. The bindings for the notification led are already
+> in the linux-next tree and can be found here:
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/leds/ams,as3668.yaml
+> 
+> The first two patches add the necessary device tree files and
+> bindings, while the last patch makes a small modification to
+> allow CPU1 to boot, as it requires a call to it's underlying firmware.
+> 
+> [...]
 
-On Thu, Feb 26, 2026 at 08:44:53PM +0000, Russell King (Oracle) wrote:
+Applied, thanks!
 
-> Ethernet PHYs are described in Ethernet controller DT using the
-> "phy-handle" property (and previously "phy" or "phy-device"
->=20
-> Generic PHYs are described using the "phys" property.
+[1/3] dt-bindings: ARM: samsung: Add Google Manta (Nexus 10)
+      https://git.kernel.org/krzk/linux/c/1e7e6c6301d529fac07554fbdb215c70c8510f7b
+[2/3] ARM: dts: exynos: Add Google Manta (Nexus 10)
+      https://git.kernel.org/krzk/linux/c/16319efc63cb41abd29337dc0dcfbef723ec1dea
 
-Ahh, this was key and I think I understand the analysis now.
-Thanks for explaining Russell.
+Best regards,
+-- 
+Krzysztof Kozlowski <krzk@kernel.org>
 
---KjizatTjNwr03SpN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaC1mAAKCRB4tDGHoIJi
-0rsSAQCic9F4/sDeaWWJyHR/xFKd96b3VtkDllYQPQdMbb+i8wEAtlcgj2zLLZmO
-9dAyRADtpjYNIZiAWFvipaTFX19dBgM=
-=rTs1
------END PGP SIGNATURE-----
-
---KjizatTjNwr03SpN--
 
