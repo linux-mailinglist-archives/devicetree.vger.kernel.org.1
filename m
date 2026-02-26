@@ -1,228 +1,251 @@
-Return-Path: <devicetree+bounces-268817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268818-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOXPFENGoGkuhwQAu9opvQ
-	(envelope-from <devicetree+bounces-268817-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:10:27 +0100
+	id wPeqEPxHoGkuhwQAu9opvQ
+	(envelope-from <devicetree+bounces-268818-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:17:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E211A6232
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:10:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 949C41A63E9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:17:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9A313306CC9E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:06:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E9624317817C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5D4318EDB;
-	Thu, 26 Feb 2026 13:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6251318B8C;
+	Thu, 26 Feb 2026 13:11:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="P/ctHr74"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="trLkHbkZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout07.his.huawei.com (canpmsgout07.his.huawei.com [113.46.200.222])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4D630ACF8;
-	Thu, 26 Feb 2026 13:05:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.222
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC7A318EC2
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:11:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772111142; cv=none; b=HOmbZxn6IXe/6NL9bc+9uJcdraCXFa0j+sDJXcbWAAYr6yWNO8V/GYJrBbBSAc1Hcp6rNNhNsCsdHHzofLqPHEOrK0hxbNtCZcCJ2qL4ynGCFeA5Mwu556m8JkJFjPL+bYq4Np4P+gMtjH0K2dlpkglVsfF0XbGFSvRfC6TS/tY=
+	t=1772111501; cv=none; b=s38yrDkCbCdu6hgCVBSzzW+cPiXB4OiATTE85V6L+D8uVkFjKEavOesqhj0KKCckMi1BIr2HA4jv44Zxw78sUSZe/noJ7LT3hRnVGvo1tdZ5bS9DjjObj08dZosuCSZtzYcWJ1ZrC92O7gWM3DasZL+PyTG94/LBggkSYXmdZGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772111142; c=relaxed/simple;
-	bh=Yy7TYOq9+DLW5lTV5qgrvxr0Wq43dOTY3mD9Ti2H2g8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RBYPN2/nHss0p7r8/vA1M0OA13reUKtzP5ft8S80kGAO8CSHtHC/OyC95+psBlEyJLQ+tPd9cNGBWraoOw2vGdzKUWCgvumM4Bfx+Xs74i3FDAokthrH3KfVXnWdHyETv00OQ/MUULfGkPiSLea81m7aBSwINjNRArfMeFvy6cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=P/ctHr74; arc=none smtp.client-ip=113.46.200.222
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=5KMCn7a2GKKaDXYDNep+ArUoPi23K/kWIYh5pBL8RVE=;
-	b=P/ctHr74UaOq4A6mzMooorWBwvIH3h5TwQ3bYTUJ73OQ+qtkfUMG+xT/SWoMOl18gSo+wfLw8
-	ZQ5Vy7bUgT7ZR6HUShJjraNXtT93za/waZsQN/NSvUikGNxQidB9Ulfr8DutOIDeGB2Onhj8b4u
-	7sFx9+hyKvTa+Iz5UpvTSGM=
-Received: from mail.maildlp.com (unknown [172.19.163.127])
-	by canpmsgout07.his.huawei.com (SkyGuard) with ESMTPS id 4fMBQm6QxGzLlTK;
-	Thu, 26 Feb 2026 21:00:48 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id 4F2AF40363;
-	Thu, 26 Feb 2026 21:05:36 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by dggpemf500011.china.huawei.com
- (7.185.36.131) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 26 Feb
- 2026 21:05:33 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
-	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
-	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
-	<dyoung@redhat.com>, <pmladek@suse.com>, <rdunlap@infradead.org>,
-	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <paulmck@kernel.org>,
-	<lirongqing@baidu.com>, <arnd@arndb.de>, <rppt@kernel.org>,
-	<ardb@kernel.org>, <leitao@debian.org>, <sourabhjain@linux.ibm.com>,
-	<jbohac@suse.cz>, <cfsworks@gmail.com>, <ryan.roberts@arm.com>,
-	<tangyouling@kylinos.cn>, <ritesh.list@gmail.com>, <hbathini@linux.ibm.com>,
-	<eajames@linux.ibm.com>, <songshuaishuai@tinylab.org>,
-	<samuel.holland@sifive.com>, <kevin.brodsky@arm.com>,
-	<vishal.moola@gmail.com>, <junhui.liu@pigmoral.tech>, <coxu@redhat.com>,
-	<liaoyuanhong@vivo.com>, <brgerst@gmail.com>, <fuqiang.wang@easystack.cn>,
-	<x86@kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kexec@lists.infradead.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [PATCH v7 5/5] riscv: kexec: Add support for crashkernel CMA reservation
-Date: Thu, 26 Feb 2026 21:04:37 +0800
-Message-ID: <20260226130437.1867658-6-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260226130437.1867658-1-ruanjinjie@huawei.com>
-References: <20260226130437.1867658-1-ruanjinjie@huawei.com>
+	s=arc-20240116; t=1772111501; c=relaxed/simple;
+	bh=IGHiRaxygQNdddHW6bvT5Rc/bkZhiIQw6q4v2x92FDI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pfgKjMvShPN+hUpJHC8MFlmK6PO1JT/BywKH4oIvUtVCEbYhl9xm63tgoVoBLeTLUTTR3SbvonCdEEPywE9heU18zveUj9zieSFp26HndKsUzOPhV1IeayPpnm9DbvQYxoKrWGGw2pcHWg2waMsMeQxaghQTEYuwcmaWi9SeC5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=trLkHbkZ; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b936b85cc71so7287966b.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 05:11:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772111497; x=1772716297; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h24Zi+vYuRfQ0kzsXRE347W+ILF1Izf+kpCpD6zpU3w=;
+        b=trLkHbkZf/6SGPdjlcqg3if0pBUCKbua0AWi/dO6LV2l/uTljsKcvWY6s6jdKXXiNh
+         W1Km9eof8HuHfG+UouCj9ApMSmt6Zw9t0Hg7FPaxh627J2KYXXbM19Vg5Hbumyb4H5e3
+         H2ropzWbvDeOMUM5FV+jhN6Qh2uD+/N5VjgmqSstrme25q8hpYSWgzMtLUnClv6S6kg8
+         vfEJh9iw6UCzbVTz1PB8Ar+qu3/yq/INqTHuPe+WuB2xKGk4ysDNuTSf+viP9D5ez6lD
+         E5B2bzM5q7wfH+zd3Vuu38oNeWSSPPYC/qh/fJvcYQbd2np3wvrZ8IvmMghKoQUPDdf3
+         ltNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772111497; x=1772716297;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h24Zi+vYuRfQ0kzsXRE347W+ILF1Izf+kpCpD6zpU3w=;
+        b=kYMyLUCUgiTTAmjAifXWPPj41dKtztEgS4/gOptpscvT02dc3DjId0vOScJCIJ6HQ1
+         Z+gi72KlByKA6EPq4MfnCrCisFveqmvyjI3Ryf2xnsvE7AhS2wJaeCNJT6f0V+IUphJK
+         f8Igs52ihL5VQFJ8fwSENadcZVX0+s5igA0sc1zCgnbBtelmf3arqd3j6VYtDOpAfh/Q
+         Zqqeg/PDgbueIICAlPQjkIYYAvQTPelK97G4NcaacTiu3WqM2e9qrr8MLKvW81oR98Ml
+         6LdGO/KNKPpePHE+7hVlfKC+QHUGm9YTLR06I+mWjgyDOWZAEzwvEoysKGlxoDOIhthd
+         kngw==
+X-Forwarded-Encrypted: i=1; AJvYcCXbiMTjk/oEJ7Bc6UKC3ZlHukRpDRnna18NgqY52GGZHokAn1ONEvhKBhcGbiAHuCk11HAkMTf2/AFr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyt+17xXRVxzUP+M5DkBcAQ6QawBqirbC4PLdeTG/KOBJDCwzfL
+	8bCEfCIrvDmAkZUmh0iGc0t0qVDbfQjehe/qv9YyFsujxheM22oNb/soTn4XjIHHzmo=
+X-Gm-Gg: ATEYQzwnc3yxTdVmtDSnd7dJom22oUp+nd4x9fD5cKXJeZdyKal8b8ggcs49/YGI6CN
+	Ku29tRblwK/SDu1gBhJTUtys2pSUqdMEk121N5Zo7MLMwl+ki8CSGX+6FfUIDtsd/3WAXAGE8zW
+	UqQ/nducvkkYAPbQqCWyq9TaDlbzU8x375diclcf/u/jtT7Gaz9zV4zmWZRQrikbhEcnrmun+uD
+	BxPkR+3pib2ujd8dnejrP0vcTRKSVmh11OB+oeYOghWVWkR8Sa8dN3iIgteW43SmHofX1vWH10w
+	Kq0SmFDMlrmUko0R2QF/G/sWB43NEF4BzngajaYXNRZcwJwGfgIt9asPeI/nbydqAgLhs56a96C
+	93w4LvWhG9GYgiXR4flkSHJXuKunQZWGDcVCgKEpZ0Nx7fythM/SFridRKrLOsrdJAbPdEHY5nZ
+	CuRyxyU2fMllyEsg5dmWZFmIEoWVGyv7Len5PTcbXLjWK6i8Jbq+hqC1IiKZDDm1Aay9KTuIR3L
+	eBq9POrNoYZt4PnXA==
+X-Received: by 2002:a17:906:fe46:b0:b93:46a8:3f3d with SMTP id a640c23a62f3a-b9346a8457dmr416375066b.44.1772111497416;
+        Thu, 26 Feb 2026 05:11:37 -0800 (PST)
+Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b935ac73d2asm55125866b.26.2026.02.26.05.11.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Feb 2026 05:11:37 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH 00/11] power: supply: max17042: support Maxim MAX77759 fuel
+ gauge
+Date: Thu, 26 Feb 2026 13:11:34 +0000
+Message-Id: <20260226-max77759-fg-v1-0-ff0a08a70a9f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
- dggpemf500011.china.huawei.com (7.185.36.131)
+X-B4-Tracking: v=1; b=H4sIAIZGoGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDIyMz3dzECnNzc1NL3bR0XYM0k6Q0AwtDs+TUFCWgjoKi1LTMCrBp0bG
+ 1tQBIJpVoXQAAAA==
+X-Change-ID: 20260226-max77759-fg-0f4bf0816ced
+To: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+ Purism Kernel Team <kernel@puri.sm>, Sebastian Reichel <sre@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+ Amit Sunil Dhamne <amitsd@google.com>, kernel-team@android.com, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,suse.com,infradead.org,baidu.com,arndb.de,debian.org,suse.cz,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	TAGGED_FROM(0.00)[bounces-268817-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_GT_50(0.00)[62];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	TO_DN_NONE(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:mid,huawei.com:dkim,huawei.com:email]
-X-Rspamd-Queue-Id: A3E211A6232
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268818-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sysfs.technology:url,linaro.org:mid,linaro.org:dkim,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sysfs.online:url]
+X-Rspamd-Queue-Id: 949C41A63E9
 X-Rspamd-Action: no action
 
-Commit 35c18f2933c5 ("Add a new optional ",cma" suffix to the
-crashkernel= command line option") and commit ab475510e042 ("kdump:
-implement reserve_crashkernel_cma") added CMA support for kdump
-crashkernel reservation. This allows the kernel to dynamically allocate
-contiguous memory for crash dumping when needed, rather than permanently
-reserving a fixed region at boot time.
+Hi,
 
-So extend crashkernel CMA reservation support to riscv. The following
-changes are made to enable CMA reservation:
+This series adds support for the fuel gauge integrated into the Maxim
+MAX77759, which is a companion PMIC intended for use in mobile phones
+and tablets and is used on Google Pixel 6 and 6 Pro (oriole and raven).
 
-- Parse and obtain the CMA reservation size along with other crashkernel
-  parameters.
-- Call reserve_crashkernel_cma() to allocate the CMA region for kdump.
-- Include the CMA-reserved ranges for kdump kernel to use, which was
-  already done in of_kexec_alloc_and_setup_fdt().
-- Exclude the CMA-reserved ranges from the crash kernel memory to
-  prevent them from being exported through /proc/vmcore, which was
-  already done in the crash core.
+Amongst others, the PMIC contains a fuel gauge employing the Maxim
+ModelGauge m5 algorithm, that is similar to the ones supported by the
+max17042 driver and binding.
 
-Update kernel-parameters.txt to document CMA support for crashkernel on
-riscv architecture.
+The Maxim ModelGauge m5 algorithm, as well as previous generations like
+m3 on max17047/max17050, requires the host to save/restore some
+register values across power cycles to maintain full accuracy.
+Extending the driver for such support is out of scope in this initial
+series.
 
-Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Acked-by: Paul Walmsley <pjw@kernel.org> # arch/riscv
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+The series starts with binding updates, followed by driver updates and
+improvements in preparation for finally adding max77759 support.
+
+A DT update for Pixel 6 will be posted separately.
+
+Note: While there was a previous attempt to add support for this fuel
+gauge via a new driver [1], development seems to have come to a halt,
+and extending this driver here seems more appropriate. The patches here
+are unrelated to that other attempt, other than supporting the same
+device.
+
+Test results:
+    $ ./test_power_supply_properties.sh max170xx_battery
+    TAP version 13
+    1..33
+    # Testing device max170xx_battery
+    ok 1 max170xx_battery.exists
+    ok 2 max170xx_battery.uevent.NAME
+    ok 3 max170xx_battery.sysfs.type
+    ok 4 max170xx_battery.uevent.TYPE
+    ok 5 max170xx_battery.sysfs.usb_type # SKIP
+    ok 6 max170xx_battery.sysfs.online # SKIP
+    # Reported: '1' ()
+    ok 7 max170xx_battery.sysfs.present
+    # Reported: 'Unknown'
+    ok 8 max170xx_battery.sysfs.status
+    # Reported: '92' % ()
+    ok 9 max170xx_battery.sysfs.capacity
+    ok 10 max170xx_battery.sysfs.capacity_level # SKIP
+    ok 11 max170xx_battery.sysfs.model_name # SKIP
+    ok 12 max170xx_battery.sysfs.manufacturer # SKIP
+    ok 13 max170xx_battery.sysfs.serial_number # SKIP
+    # Reported: 'Li-ion'
+    ok 14 max170xx_battery.sysfs.technology
+    # Reported: '36032' ()
+    ok 15 max170xx_battery.sysfs.cycle_count
+    # Reported: 'System'
+    ok 16 max170xx_battery.sysfs.scope
+    ok 17 max170xx_battery.sysfs.input_current_limit # SKIP
+    ok 18 max170xx_battery.sysfs.input_voltage_limit # SKIP
+    # Reported: '4323906' uV (4.32391 V)
+    ok 19 max170xx_battery.sysfs.voltage_now
+    # Reported: '3660000' uV (3.66 V)
+    ok 20 max170xx_battery.sysfs.voltage_min
+    # Reported: '4320000' uV (4.32 V)
+    ok 21 max170xx_battery.sysfs.voltage_max
+    # Reported: '3300000' uV (3.3 V)
+    ok 22 max170xx_battery.sysfs.voltage_min_design
+    ok 23 max170xx_battery.sysfs.voltage_max_design # SKIP
+    # Reported: '289687' uA (289.687 mA)
+    ok 24 max170xx_battery.sysfs.current_now
+    ok 25 max170xx_battery.sysfs.current_max # SKIP
+    # Reported: '3942000' uAh (3.942 Ah)
+    ok 26 max170xx_battery.sysfs.charge_now
+    # Reported: '4330000' uAh (4.33 Ah)
+    ok 27 max170xx_battery.sysfs.charge_full
+    # Reported: '4524000' uAh (4.524 Ah)
+    ok 28 max170xx_battery.sysfs.charge_full_design
+    ok 29 max170xx_battery.sysfs.power_now # SKIP
+    ok 30 max170xx_battery.sysfs.energy_now # SKIP
+    ok 31 max170xx_battery.sysfs.energy_full # SKIP
+    ok 32 max170xx_battery.sysfs.energy_full_design # SKIP
+    ok 33 max170xx_battery.sysfs.energy_full_design # SKIP
+    # 15 skipped test(s) detected.  Consider enabling relevant config options to improve coverage.
+    # Totals: pass:18 fail:0 xfail:0 xpass:0 skip:15 error:0
+
+Cheers,
+Andre'
+
+Link: https://lore.kernel.org/all/20250915-b4-gs101_max77759_fg-v6-0-31d08581500f@uclouvain.be/ [1]
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- Documentation/admin-guide/kernel-parameters.txt | 16 ++++++++--------
- arch/riscv/kernel/machine_kexec_file.c          |  2 +-
- arch/riscv/mm/init.c                            |  5 +++--
- 3 files changed, 12 insertions(+), 11 deletions(-)
+André Draszik (11):
+      dt-bindings: power: supply: max17042: add support for max77759
+      dt-bindings: power: supply: max17042: support shunt-resistor-micro-ohms
+      dt-bindings: power: supply: max17042: drop formatting specifier |
+      power: supply: max17042: fix a comment typo (then -> than)
+      power: supply: max17042: use dev_err_probe() where appropriate
+      power: supply: max17042: avoid overflow when determining health
+      power: supply: max17042: time to empty is meaningless when charging
+      power: supply: max17042: support standard shunt-resistor-micro-ohms DT property
+      power: supply: max17042: initial support for Maxim MAX77759
+      power: supply: max17042: max17042: consider task period (max77759)
+      power: supply: max17042: report time to full
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index afb3112510f7..3fe5724d6e39 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -1121,14 +1121,14 @@ Kernel parameters
- 			It will be ignored when crashkernel=X,high is not used
- 			or memory reserved is below 4G.
- 	crashkernel=size[KMG],cma
--			[KNL, X86, ARM64, PPC] Reserve additional crash kernel memory from
--			CMA. This reservation is usable by the first system's
--			userspace memory and kernel movable allocations (memory
--			balloon, zswap). Pages allocated from this memory range
--			will not be included in the vmcore so this should not
--			be used if dumping of userspace memory is intended and
--			it has to be expected that some movable kernel pages
--			may be missing from the dump.
-+			[KNL, X86, ARM64, RISCV, PPC] Reserve additional crash
-+			kernel memory from CMA. This reservation is usable by
-+			the first system's userspace memory and kernel movable
-+			allocations (memory balloon, zswap). Pages allocated
-+			from this memory range will not be included in the vmcore
-+			so this should not be used if dumping of userspace memory
-+			is intended and it has to be expected that some movable
-+			kernel pages may be missing from the dump.
- 
- 			A standard crashkernel reservation, as described above,
- 			is still needed to hold the crash kernel and initrd.
-diff --git a/arch/riscv/kernel/machine_kexec_file.c b/arch/riscv/kernel/machine_kexec_file.c
-index d0e331d87155..297b910e4116 100644
---- a/arch/riscv/kernel/machine_kexec_file.c
-+++ b/arch/riscv/kernel/machine_kexec_file.c
-@@ -46,7 +46,7 @@ static int get_nr_ram_ranges_callback(struct resource *res, void *arg)
- 
- unsigned int arch_get_system_nr_ranges(void)
- {
--	unsigned int nr_ranges = 1; /* For exclusion of crashkernel region */
-+	unsigned int nr_ranges = 1 + crashk_cma_cnt; /* For exclusion of crashkernel region */
- 
- 	walk_system_ram_res(0, -1, &nr_ranges, get_nr_ram_ranges_callback);
- 
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 811e03786c56..4cd49afa9077 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -1398,7 +1398,7 @@ static inline void setup_vm_final(void)
-  */
- static void __init arch_reserve_crashkernel(void)
- {
--	unsigned long long low_size = 0;
-+	unsigned long long low_size = 0, cma_size = 0;
- 	unsigned long long crash_base, crash_size;
- 	bool high = false;
- 	int ret;
-@@ -1408,11 +1408,12 @@ static void __init arch_reserve_crashkernel(void)
- 
- 	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
- 				&crash_size, &crash_base,
--				&low_size, NULL, &high);
-+				&low_size, &cma_size, &high);
- 	if (ret)
- 		return;
- 
- 	reserve_crashkernel_generic(crash_size, crash_base, low_size, high);
-+	reserve_crashkernel_cma(cma_size);
- }
- 
- void __init paging_init(void)
+ .../bindings/power/supply/maxim,max17042.yaml      |  21 ++--
+ drivers/power/supply/max17042_battery.c            | 136 ++++++++++++++++++---
+ include/linux/power/max17042_battery.h             |  25 +++-
+ 3 files changed, 154 insertions(+), 28 deletions(-)
+---
+base-commit: 877552aa875839314afad7154b5a561889e87ea9
+change-id: 20260226-max77759-fg-0f4bf0816ced
+
+Best regards,
 -- 
-2.34.1
+André Draszik <andre.draszik@linaro.org>
 
 
