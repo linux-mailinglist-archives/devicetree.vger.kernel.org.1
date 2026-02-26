@@ -1,124 +1,150 @@
-Return-Path: <devicetree+bounces-268713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kJB4EdcToGlAfgQAu9opvQ
-	(envelope-from <devicetree+bounces-268713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:35:19 +0100
+	id YPs1Dw8VoGlAfgQAu9opvQ
+	(envelope-from <devicetree+bounces-268714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:40:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E59F11A37D4
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:35:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9031F1A39D0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:40:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 88A9A311D33F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:28:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 376B1312221D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 09:29:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAC93A4F22;
-	Thu, 26 Feb 2026 09:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF1843A1CF9;
+	Thu, 26 Feb 2026 09:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MmaGFQe8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pGu5+ci+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2E33A0B35;
-	Thu, 26 Feb 2026 09:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C19D3A1A4D
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:28:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772098049; cv=none; b=vGX/tCyDXs8u8Agq8L5K9ZYEQwkir6x4nLe8p16rWzNiwYICQ9+Iw4cu92Iv74SboCJ35QO7NOA6r655+CDdwNvKH9zkUBXQAaTcj3cS5mSE+mR8rN7iB8cnGoNCy2XaHISP9y5I1WcbSIVCBl0wjgKyrv/nSrr7WKPFKc0/Eeo=
+	t=1772098119; cv=none; b=WN7aL663zX+wXKKKWBQzyz7GSNvqF9JRJDtE/zyEz6/eMHChmDGbCcU+W7MFpqTljFKg7OjK23c0TeUMEbTih1WMKwJ2WiMYQUIBJUFDdvqD00dV7DepDL5Dog1xD/bdrf9tJxL2o0+iV8d6efalpzzOtLh2N8z3cTqvEygR61Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772098049; c=relaxed/simple;
-	bh=7i4N6GwK+gKpINnfz8mGZNz9tpvC6ConNrLB1s63wcI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XVMl68cpagtb6lFJHTEhO8GAbyHMpYJsA5qQ/ibxSrBVYUd1sr2nvBDxSwJ865s4W7wbGm+KxlLdy3Z98CXZFObb1B3tvRg7d5eRlzUsktGDsyCIyGdoyAdi9q4mT8dpxsbz7xNVG5Rj0RG120fLuzqnBfp4PKMKuu6p+4WTJwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MmaGFQe8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A95FCC19422;
-	Thu, 26 Feb 2026 09:27:22 +0000 (UTC)
+	s=arc-20240116; t=1772098119; c=relaxed/simple;
+	bh=Q+JPGjs/pGTsOGNIOl36KuUbk8oNei+wKcehtvsLCRI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KBjSzK5qK9nY2qLaaZA0Mw//4Nu3q013UZ1s/CsKbcaSkA9cDaArHMNdJF1wUZvmt2tlQEwZfwzmhr7UTZwNf+L3x9wEh9E21VKNvWQhtsk5VlDnYdKzCkObJtYOsh8cOz3LKJ08JAi3wZW7lqaGaEzmfk1Hk4E97XJz25i/JZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pGu5+ci+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F49FC2BCF5
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 09:28:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772098046;
-	bh=7i4N6GwK+gKpINnfz8mGZNz9tpvC6ConNrLB1s63wcI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MmaGFQe8vpElv9HoR376BJRpwDcm1LyjX9TSndN7v3RDNrfKfCdGlzCQUFf4IND24
-	 NNvTPFG9INq/eB6Nq+T/ULGFJ30iEqTbZh494atYWwzmlXzlTnJNdQjhv3AydVX45X
-	 RdeJqWPVZ7RrcJ63tSoXIkX1h4t+lDe3xd7RKlImysoxKAB+2QjK0132YuRXqim2XR
-	 SRGTcpwL4GMO6u5sa+JefWALt5gtefHKd78eqoZB2FaUwMBQdFsFCTt+MxswA+gRaW
-	 kvnSRfEw1GRK6Jyv2rY2SM9JOgCliPUP1Scd+H75G1Tq22gc2cv5LCapa7pnuiF3Gr
-	 6GLH70WCAKLRQ==
-Message-ID: <35b1ba2a-e156-4542-b33a-d4e53f6a62cb@kernel.org>
-Date: Thu, 26 Feb 2026 09:27:20 +0000
+	s=k20201202; t=1772098119;
+	bh=Q+JPGjs/pGTsOGNIOl36KuUbk8oNei+wKcehtvsLCRI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=pGu5+ci+Wn2JAlztc6J6f17nc1u7YqME6JKT+8WKxBgc0aHcELhW8ukVtK0us1QEk
+	 vZNR+ptEg/K6oY7fx9VRoFz+7glIPSL8J/f3xTV38nfSLG2Pn+yOHDraiExxbpKF7/
+	 RMy3y7yR6cPFN3QrnZsiNvy5AjcqAc72iEN6B5FcJuEqSOhXp2VLav781RZKXGrhyp
+	 i9Dll60Oag+79Jj6SFxp8iQwslow7Q5Tc5X3tHYLya1ez1aOHjdGBcNxkq/3lzqwPX
+	 wA2XfnV170zB6ymSkxYEUufb58p0kTvV/FvZXmY++w5oMjSHRFhKZm882IOP6064bh
+	 MDBQX4QmjpAWQ==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-59e5bfa4f33so493470e87.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 01:28:39 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVCie6cwccnmmOhXvmHR7zDpOsbXQPRb2PyU325euO5AugBtFzNH0jRHkFMsc7BEkMceHDz/2KJ5gBw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnU/meiBX480ufE7+Kr5Z2h0SWJi+SVwHT3IDDY+s65euMJxme
+	DYDSGaHNk8HBdnEy0QMeTKNIGdE5tHNUeX3+BYQS/TGtUPqT9JfSyJ74sfpTwXp48f+eYmyXhox
+	rVFMYaAvoMhjw8Yl1Az0jfV9khLdGC72+RwrizSr2Gg==
+X-Received: by 2002:ac2:4bc6:0:b0:595:9d6b:1178 with SMTP id
+ 2adb3069b0e04-5a105eb321amr948844e87.40.1772098117903; Thu, 26 Feb 2026
+ 01:28:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 02/18] dt-bindings: media: qcom,x1e80100-camss: Convert
- from inline PHY definitions to PHY handles
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-0-95517393bcb2@linaro.org>
- <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-2-95517393bcb2@linaro.org>
- <CuJMpimPBtwHGAd5-YHUArL6FkU2HQeY4SjbxeMwf0ToQ7LKO3zWSTn86L-HKxC1KfarWc4rRbZqnCMQsv0pcw==@protonmail.internalid>
- <20260226-fluffy-complex-malamute-7ecec6@quoll>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20260226-fluffy-complex-malamute-7ecec6@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20260223-soc-of-root-v2-0-b45da45903c8@oss.qualcomm.com> <20260224183832.GB3239922-robh@kernel.org>
+In-Reply-To: <20260224183832.GB3239922-robh@kernel.org>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Thu, 26 Feb 2026 10:28:26 +0100
+X-Gmail-Original-Message-ID: <CAMRc=Mft5vc-C8miKVdw6C-qRdYsqfgm-UgLZJOctFwagMF0iA@mail.gmail.com>
+X-Gm-Features: AaiRm51IEGv2tkqYAUL_wlvSqsaBCZdXcGaMbPUU4umqiYT87HTd0LJXBirO8Tg
+Message-ID: <CAMRc=Mft5vc-C8miKVdw6C-qRdYsqfgm-UgLZJOctFwagMF0iA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/9] soc: remove direct accesses to of_root from drivers/soc/
+To: Rob Herring <robh@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Saravana Kannan <saravanak@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Frank Li <Frank.Li@nxp.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
+	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, driver-core@lists.linux.dev, 
+	Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268713-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,gmail.com,linaro.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268714-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linuxfoundation.org,pengutronix.de,gmail.com,glider.be,sholland.org,nxp.com,vger.kernel.org,lists.ozlabs.org,lists.infradead.org,lists.linux.dev];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: E59F11A37D4
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 9031F1A39D0
 X-Rspamd-Action: no action
 
-On 26/02/2026 07:07, Krzysztof Kozlowski wrote:
-> No, it does not allow that. You cannto change the ABI.
-> 
-> That's why I reminded multiple times before reviewing new CAMSS bindings
-> for Milos and something more. Because once it gets accepted, you cannot
-> change it anymore without valid reason. And there is no valid reason
-> here provided. I kept these patches in staging/waiting for long
-> enough...
+On Tue, Feb 24, 2026 at 7:38=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Mon, Feb 23, 2026 at 02:37:15PM +0100, Bartosz Golaszewski wrote:
+> > linux/of.h declares a set of variables providing addresses of certain
+> > key OF nodes. The pointers being variables can't profit from stubs
+> > provided for when CONFIG_OF is disabled which means that drivers
+> > accessing these variables can't profit from CONFIG_COMPILE_TEST=3Dy
+> > coverage.
+> >
+> > There are drivers under drivers/soc/ that access the of_root node. This
+> > series introduces new OF helpers for reading the machine compatible and
+> > model strings, exports an existing SoC helper that reads the machine
+> > string from the root node and finally replaces all direct accesses to
+> > of_root with new or already existing helper functions.
+> >
+> > Merging strategy: first two patches should be either acked by Rob or
+> > picked up into an immutable branch based on v7.0-rc1, the rest can go
+> > through the SoC tree.
+>
+> SoC tree is good.
+>
+> For all but patch 8,
+>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>
 
-I thought your policy was - a dtsi had to have it, which we don't yet have.
+FYI Rob also reviewed patch 8 now. Who would pick the patches up? Greg
+KH? There does not seem to be a centralized SoC maintainer in
+MAINTAINERS?
 
----
-bod
+Bart
 
