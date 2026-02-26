@@ -1,206 +1,620 @@
-Return-Path: <devicetree+bounces-268808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268809-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCgiItg+oGmrhAQAu9opvQ
-	(envelope-from <devicetree+bounces-268808-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:38:48 +0100
+	id qL+KF/lAoGmrhAQAu9opvQ
+	(envelope-from <devicetree+bounces-268809-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:47:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B31EC1A5CA3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:38:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF2211A5DF6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:47:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 98229303A5CC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:35:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 72773305EBA5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 206843815D3;
-	Thu, 26 Feb 2026 12:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E0B2D780A;
+	Thu, 26 Feb 2026 12:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T2EdUfJb";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JoSf6Oxx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B8g8kfT6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E0836C5B6
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 12:35:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C752882D6
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 12:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772109359; cv=none; b=J+MfDqNvSdOREtDvRubay5TcJFNvgThLEUxf6LmGKto2TkE85V3p1yLg7zv+sVMTxtbkatQvvfzn9eBgFMIIcSPm5+lwwenLn4mQzcRIi/tsiDJPNj4zvYdL2ztr5tqQ8Hk04FHwUJaPMJo0GVLCgw4I6E0CToSzFHMGab9QEx8=
+	t=1772110066; cv=none; b=NPr3q+kwYRR3XDs4uo3V5ZlGRniJaN0uuQoZqL6zna4nfaEV3L+ey+5ZwuuhHMbaixa1frqW+5Mr3AeS/woBIfWwyqY9TVMNKc7WSvHgnbzbyX7Tk/qSEcFVehNyFUv+PYwehxUIJcIoeB8o3dzegoW92hdYu5UYYxuAvzZK0pQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772109359; c=relaxed/simple;
-	bh=jAZH2PQDlPKAfKQhRMxjnSpoFweNSVxAjXUlujWSv0w=;
+	s=arc-20240116; t=1772110066; c=relaxed/simple;
+	bh=peZ2pKrl3hkeZE13SfxI6khgqMFiERWLMvDZh27wTrs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H/ot04bLsiDcFJ2LAc3EA7ZVv5Rz+HnbmM+VrwxwWOlmhh/A/3dU+wbM/pmf70hFk6CwDzM8W1Hew2EncK+0oTiZtyRMYj0NXWoeUV9VD2Cd1k7AZtI09A4+gnZR5SoM3/564UyOBxEd9IfLrCKaMdN5zZw/118I/DfUOsc/NPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T2EdUfJb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JoSf6Oxx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61QALOov2377646
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 12:35:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=5GMNC82o2PbIp3JNg7h1C+vK
-	9NoeCm9TDJIU/C8NC8I=; b=T2EdUfJbHAVI+0GT7fY3kFu4OBWGb1E4XS9vCwYz
-	6HJ2D2hfvG9j3pbp2sn07vVBw1gHCoSz5d8vKwxFWh9mrQeJjn7rclgCKLhHg5UC
-	xagjwIgPgmWolVBhmpfXuIYaBnZ0BDi6c1KUFHxXwWIZZ3qgEXvTB++XN06xibBh
-	pvDDLriwoEoK4//AlKVOiiTECn0tWJe6St088N4D8GLn1DFLJ7fORdGHaGftvaJY
-	cy6kFNshDi5k2yAOnBKNwtDHulHSD8mgCUhhXpsI3EZ4tskICgHA+YZqt+HEZAFP
-	z5F1xhtDRRmfJ36+de5c4NarHJYwv3/7BaWRnxQBgMT0wA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cjm8d8d2c-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 12:35:57 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8c70ef98116so628152885a.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 04:35:57 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rt0HXCJ4BSlCyEeBXyGlerxq1TUk00qe8/DLYF+NKusL9WATzULJsulx8Dl6tt1L6Qy50jswaXesMvTAYGtkhRBbFUqphNEdse+nwPQan+PntZJNh4rKrDKF7p3d5Q8U5uNniE9VvfWbMMjGGzJkBYiyWu7GPIMVngWgQdVFIAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B8g8kfT6; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-48372efa020so7003425e9.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 04:47:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772109356; x=1772714156; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5GMNC82o2PbIp3JNg7h1C+vK9NoeCm9TDJIU/C8NC8I=;
-        b=JoSf6OxxU46gk5kPgJIsYDWnZ7P/El4ZxgJLsZJ27MLUsBzqLJzE+PpQR718dGmsyD
-         dKj9qW1fOFrepKyF2pdKZlQgMimbaxaLuOvIizMqkXEwmq9TzZvX4gSw1L+A1fhzDEun
-         XukWiJrKxUsJ4+R2idwKDWhw4BABzvYInrxL2UdqYKjzuc6R7EfEjPljOMhKhTleLOhh
-         dF5ZhPc19pSsYgZo3hymV9PnfdnIOD6toUoIfId8hSYIOX9INkkOB4M3wbjM3JNMYsbF
-         rKY6UmDOrUsRKWSGgsHJa2JHNi6r+QYtVfUgeEXTsoKOAf72X0UFWGpb62wfFZ3hOJBd
-         xIAQ==
+        d=gmail.com; s=20230601; t=1772110062; x=1772714862; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=OknpKutS12AqH6XxZDLJBmeeWncyeXK10kkejhYpLR4=;
+        b=B8g8kfT6uKykEkEGawyzKv5yuDi6k//WEl+lpBBQciIabKXnVvf2YvStZJoH3N0zw2
+         Z0rYnfu2tTBEDjB9jDN6OKZyBfxyUdolYE2nXXR9OKPXW6IJ+Da26VLw6O492aPH5fxn
+         VBjUTte6oEhT6yjLN9rXDNljyRWV1h08sI1aB1JNbgKHjV3bO9KKvEKu7brfOfgsBxSn
+         y6wNIOsd9xtIVBKbILkpFLw1hQs7pl+yfymznlCtkwJjDGA81YcnQGzUlOyWgec64Ebq
+         kEWSyx7cg7x1GENHNE740b9mdqvn0hDXJvtZfZr82K06SVBgqwdOtKw65bfzNkvEsrY5
+         tjGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772109356; x=1772714156;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5GMNC82o2PbIp3JNg7h1C+vK9NoeCm9TDJIU/C8NC8I=;
-        b=M0GTsqXFLq2oz9hyIlgWzme1Q8ZllUkMziv2EMWLeVRqJVoBkYUzdthMGjtXQOlzVe
-         mCEHcybtfkagYYC9pL3My0IQ57Ys2NaJGRoXe4Otg9SP9VafEPyZUjNZTphtZ8iC2lYc
-         xQy1CTM73hTXT/ggCPSafITn589OhdlDgx2vRPfFNZH1b9NIkRDWbea14DpAc3DPE00I
-         q/zqD4dL1SHEBYVdiUjxh+FjjSEx2hMIbpltHH4pymD1+LIKAmlL6M9qFKxA2/U/iQyV
-         Y/Gh9g40lU9+Orjvu8+mJ1d1vYlwUexM8vevA5ox8wGRjwzXbqoN1zqssOY6RfVewJnL
-         RIBA==
-X-Forwarded-Encrypted: i=1; AJvYcCXe9yk04e+lyKdxuGxg0EH582GGPMKCRcHgbq8HqhNRqUzzCIG0iM9ixqBeJvdCj14ze7mMjvztDCtm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSW8dqh9oIKUd4gqLr60PbvDH1toYkmBqRLM5GOmC5/VT6VF92
-	ZTpXZIUPvcZYBkwIG9aYsogkLmohbyqGcJGY6C+OTtnzrD/ebMMasBD4GxqkxETJSp8dp0s5D5H
-	WDp8xAAnKJhCHZcLROdoOer3xnCTwVuOKx0a0DNSn+KH6J3MjV4tVmEi6XeDOxJQZ
-X-Gm-Gg: ATEYQzyDca+4vciLLDlEiu14NGbPFtx/X/HAJeT+Nru81OBd7Q0mTVOT/QEins2E6yd
-	SC2/zoeD+upqWdEKn06DvblainfV1Znw2zfNXdActxcgSVdszLAex1Nl2tszM93tXmMfUVlTc0r
-	fP3BH1GKHf6J5NfDoy1B0C/NXQ4S1FyRQlqToVmcNmRzhzRP+l0z97H76sXXaui+XOqR6OHSAvs
-	CnU53LJGnyfImXlvS2XVUIaS7yn0FJUUw/hpbTgWq2zrcXM6fQmnOAoh+INdN6pBf3qxtpGCNoL
-	mvBHsGb+OeYPPRq8sc9nB+LaAgPeGbNj8Aw3iRI3+dsPsiLHqg/ShJFboxB619bBb54zsNSKIzT
-	6lpvIHR9KNnRp++GiM/ieJD/n3BszxTC9TRDtKml+P89e27/cgr4H+NsepoNN8hicHy+BJD3WU5
-	Pmz8EM052zjy2lpNSU0t3NaItrwhSarpvif4w=
-X-Received: by 2002:a05:620a:29ca:b0:8ca:4438:b8ed with SMTP id af79cd13be357-8cb8ca83779mr2673675885a.63.1772109356303;
-        Thu, 26 Feb 2026 04:35:56 -0800 (PST)
-X-Received: by 2002:a05:620a:29ca:b0:8ca:4438:b8ed with SMTP id af79cd13be357-8cb8ca83779mr2673670085a.63.1772109355723;
-        Thu, 26 Feb 2026 04:35:55 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-389f2f4b189sm5886321fa.3.2026.02.26.04.35.54
+        d=1e100.net; s=20230601; t=1772110062; x=1772714862;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OknpKutS12AqH6XxZDLJBmeeWncyeXK10kkejhYpLR4=;
+        b=jRO+LHWwgMUn3Wnd8cMIgvG8897DrlRf3FRGexOl4i/Vt/A5ejGzgOY/jsGvCUkzpV
+         eNaDYRN0/H+4GUTpnf4sk2irmXyA20FFBnZ7WXjGCph/0VjUqthxK1EqYARmsbUcD894
+         xyCAWFsDvEdFVZf7eVnwXNfjPcE5FUtB2/8/olxdfo1KhOu06YXEqU3b2Bi7YYfLKSoN
+         awLF8OmWbA6OSAlPcj9Zv+6R4UGI/Emww3eTUT5O+9tpEA9DPs2XIn/Wiz6dFWbwqAen
+         5qMjiuhPZP3/lbD4PNg4YfS89qiilZLuWEeIIdWrFO6me89pRElQH8BjIY7uXD7bgoj8
+         m7gg==
+X-Forwarded-Encrypted: i=1; AJvYcCWOY/tJ83C+ho5kxqL5Jo+haagDyIVKs3JVEFGF0zwgqCVfcO4hsFe0jzNc7MNXZEXU9E5HvOd0kwhF@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywbu0jXlG2J4CAuylFf3I63PHZsyL2cjMzBzTxSirrB/LLMsF+o
+	0Nhl0/aUOCxVw3SbmGK0iHtgGLcEDx78cg+Cw+bVZy7uQmuLqSl0Kw8j
+X-Gm-Gg: ATEYQzyoXp+j5YPEtlJ9dN0riRUmXPmwk3f5hCUOrsNMKDQrJUW+WZaEtvMDjCP/sNf
+	cDFTrimxFYR6GZcYnqyQz7dUqCTn73Rc2fEcfJgryxVaYenvGh0wkAbJra7Y9xO9/ZwG13vEv/R
+	v1vqfHNjjzzWYQLH7DG2NYnN3syzJozwvnG/AGJomlqBy7u9bhw0NHtGN/L4PTVysdwIa1HTbAR
+	HPq9Mdca/KV9BBKqopK8C94rG4sMAz52qYElKBE/g+susc/AWUel8EKvYPglN9HrxhY61diADCc
+	lQDWib/yFYZhyx6rb+cZLQU8jvhKwE08ldHSw4oP5GiV/tJ+HWNF1b5DvHPSFDuH7cH3dupAnIo
+	RUI49gBIs0c72jMfFIxpKbA4LOOuENZN4yd6DD7xabIa3xUatit5xBNz9RdE4BfrsPh7YvLofrp
+	O9mk4hzpDuBtU9H3yUiokRRYOM7lc9lxRx3fDWUdCAObzV3LReoHUb86kiuv1OTV81fE9Qipldp
+	cR5zgg=
+X-Received: by 2002:a05:600c:5397:b0:483:56c4:73ac with SMTP id 5b1f17b1804b1-483c216bf67mr67189695e9.7.1772110061503;
+        Thu, 26 Feb 2026 04:47:41 -0800 (PST)
+Received: from toolbox (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfba9a5esm85442345e9.4.2026.02.26.04.47.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 04:35:55 -0800 (PST)
-Date: Thu, 26 Feb 2026 14:35:53 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Pengyu Luo <mitltlatltl@gmail.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Tianyu Gao <gty0622@gmail.com>, White Lewis <liu224806@gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Add dsi nodes on SC8280XP
-Message-ID: <dyqv6ds3tdqcdrdl6zexwdn4mhi4g4p77sdymaqan6nmdhqmxc@mzl372c52wi4>
-References: <20260225054525.6803-1-mitltlatltl@gmail.com>
- <20260225054525.6803-6-mitltlatltl@gmail.com>
+        Thu, 26 Feb 2026 04:47:40 -0800 (PST)
+Date: Thu, 26 Feb 2026 13:47:39 +0100
+From: Max Krummenacher <max.oss.09@gmail.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Max Krummenacher <max.krummenacher@toradex.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "ARM: dts: imx: move nand related property under
+ nand@0"
+Message-ID: <aaBA65_zLu8S6WMS@toolbox>
+References: <20260219151157.2549198-1-max.oss.09@gmail.com>
+ <aZcz1vRg4KtAKUd_@lizhi-Precision-Tower-5810>
+ <aZdDF6BObEu_C4KJ@toolbox>
+ <aZdnhv2QC1szMCVl@lizhi-Precision-Tower-5810>
+ <aZ80BWH6DRu8_W_S@toolbox>
+ <aZ82pG3PO1HxD18B@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260225054525.6803-6-mitltlatltl@gmail.com>
-X-Authority-Analysis: v=2.4 cv=QMtlhwLL c=1 sm=1 tr=0 ts=69a03e2d cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=2VfSu496nhalCebPFTMA:9
- a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: UONke_weFwhz-v26V_cWj4vtFAjlwSfy
-X-Proofpoint-ORIG-GUID: UONke_weFwhz-v26V_cWj4vtFAjlwSfy
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI2MDExNCBTYWx0ZWRfX4Zvk9yGVtRGm
- tuKueeZPVt/O+g/QuJjv3+YOL7wYqPiD2Fe7+2R95zfd1jeHjCqaAb39vYr+U/VXX/LP4Z5CJN8
- g+nWyHEfSg2+repOXTR/i6t5PhtCTL3Zd88zMmjpIAg6dKhztwvXDjBJqlGIJYsVb/fq76RMVQ4
- LQMvRlmjAACHWlIcvEmYwgnNvvJ9CPcjyD3lgEYhtco928iyahasijZvC7ttbEUEnAzx8v8xlJg
- yIFxpIS1NZ1h8cEiV+Le5L+oeRmKmmfnl2fXgttZ7lq1738qKDCU/ufEJPjWME+KymMUZxIpFdP
- Xrh745v0kMv75XUwKIWvzjY1OEblyO3eTmUXEUia+nfBgO3HdochcW3NNkswML6OQFvaQy3pevr
- timI8ZEgVh8K8McbKxZlp+M4c4kq68IdYNu86EJmMJZp8HZGDFo3KPa9lNcUDc2VVUnHUzmLZNJ
- cItrNoRcer++KlyrpvQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-25_04,2026-02-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 lowpriorityscore=0 impostorscore=0 phishscore=0
- bulkscore=0 adultscore=0 spamscore=0 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602260114
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aZ82pG3PO1HxD18B@lizhi-Precision-Tower-5810>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-268809-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268808-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,linux.intel.com,suse.de,ffwll.ch,quicinc.com,marek.ca,vger.kernel.org,lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[toradex.com,kernel.org,gmail.com,nxp.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maxoss09@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: B31EC1A5CA3
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.3:email,0.0.0.0:email,toradex.com:email]
+X-Rspamd-Queue-Id: CF2211A5DF6
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 01:45:25PM +0800, Pengyu Luo wrote:
-> The DT configuration follows other Samsung 5nm-based Qualcomm SOCs,
-> utilizing the same register layouts and clock structures.
+On Wed, Feb 25, 2026 at 12:51:32PM -0500, Frank Li wrote:
+> On Wed, Feb 25, 2026 at 06:40:21PM +0100, Max Krummenacher wrote:
+> > On Thu, Feb 19, 2026 at 02:41:58PM -0500, Frank Li wrote:
+> > > On Thu, Feb 19, 2026 at 06:06:31PM +0100, Max Krummenacher wrote:
+> > > > Hi Frank
+> > > >
+> > > > On Thu, Feb 19, 2026 at 11:01:26AM -0500, Frank Li wrote:
+> > > > > On Thu, Feb 19, 2026 at 04:11:49PM +0100, max.oss.09@gmail.com wrote:
+> > > > > > From: Max Krummenacher <max.krummenacher@toradex.com>
+> > > > > >
+> > > > > > This reverts commit 8124b4a4a96b57d6cc3705a9df9623c52baa047b.
+> > > > > >
+> > > > > > The change introduced a regression: at least Colibri iMX6ULL and
+> > > > > > Colibri iMX7 no longer boot with that commit applied, while they boot
+> > > > > > again after reverting it.
+> > > > > >
+> > > > > > Although this has only been verified on these two modules, the issue
+> > > > > > is expected to affect all device trees using the gpmi-nand driver.
+> > > > > >
+> > > > > > [    0.876938] Creating 5 MTD partitions on "gpmi-nand":
+> > > > > > [    0.876974] 0x000000000000-0x000000080000 : "mx7-bcb"
+> > > > > > [    0.879860] 0x000000080000-0x000000200000 : "u-boot1"
+> > > > > > [    0.884761] 0x000000200000-0x000000380000 : "u-boot2"
+> > > > > > [    0.886993] 0x000000380000-0x000000400000 : "u-boot-env"
+> > > > > > [    0.894686] 0x000000400000-0x000020000000 : "ubi"
+> > > > > > [    0.899054] gpmi-nand 33002000.nand-controller: driver registered.
+> > > > > > ...
+> > > > > > [    0.960443] ubi0: default fastmap pool size: 200
+> > > > > > [    0.960476] ubi0: default fastmap WL pool size: 100
+> > > > > > [    0.960500] ubi0: attaching mtd4
+> > > > > > [    1.636355] ubi0 error: scan_peb: bad image sequence number 1588722158 in PEB 4060, expected 1574791632
+> > > > > > ...
+> > > > > > [    1.649889] ubi0 error: ubi_attach_mtd_dev: failed to attach mtd4, error -22
+> > > > > > [    1.650029] UBI error: cannot attach mtd4
+> > > > > > ...
+> > > > > > [    1.670262] Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,253)
+> > > > >
+> > > > > Can you help found the real reason why not boot?
+> > > > > nand@0 is preferred format for MTD raw nand.
+> > > > >
+> > > > > Frank
+> > > >
+> > > > I guess the root cause is that the driver for gpmi-nand predates the
+> > > > update of the binding rules which want the nand device described in
+> > > > a child node 'nand@0' also for nand controllers which only can
+> > > > control one nand chip.
+> > > >
+> > > > While it is possible to update the driver in the same patch set as
+> > > > changing the device tree to understand the new dtb rules, maybe even
+> > > > falling back to the old definitions this likely breaks other users,
+> > > > most notable U-Boot.
+> > >
+> > > GPMI is widely used, include i.MX8 still use GPMI. Does below patch fix
+> > > boot problem?
+> >
+> > My concern is that the new device tree (with the nand@0 subnode) is not
+> > yet understood by other consumers of the DT sources, e.g. U‑Boot, older
+> > Linux kernels (before the driver change), possibly barebox, and any
+> > other consumer that relies on the kernel DT files.
 > 
-> However, DSI won't work properly for now (Partial content wrapped to
-> the left side) until we submit dispcc fixes. And some panels require
-> DPU timing calculation fixes too. (hdisplay / width timing round errors
-> cause the fifo error)
+> I understand, but we need move forward. we can keep both for transition.
+> 
+> >
+> > Updating only the Linux driver to support both the new and old bindings
+> > therefore solves only part of the problem. As long as these other
+> > consumers do not understand both bindings as well, we cannot safely
+> > update the shared DT sources. So I think the commit needs to be reverted.
+> >
+> > In addition, the proposed fix in the driver is likely incomplete:
+> > with the old binding there may be child nodes (i.e for partitions).
+> > 'np = of_get_next_child(this->pdev->dev.of_node, NULL);' does then find
+> > a node whcih is not the node that actually describes the single NAND
+> > chip.
+> 
+> I know it is incomplete, just want to check if it is the reason cause
+> boot failure.
+> 
+> >
+> > An alternative approach could be to update the binding documentation
+> > so that, specifically for the GPMI driver, the older binding is also
+> > considered valid.
+> 
+> Not easy to do that, I try many method to update yaml file. common nand
+> flash detect node node "nand-controller".
+> 
+> > Once the driver supports both the old and the new binding, the old
+> > form could be marked as deprecated, but still allowed for compatibility.
+> > This would avoid breaking existing consumers while giving us a path
+> > to migrate DTs over time.
+> 
+> Needn't revert all, just revert delete part, keep both to help migrate.
+> 
+> anyways, I need know if of_get_next_child(this->pdev->dev.of_node, NULL);
+> fix your problem.
 
-I'm looking forward to reviewing those patches!
+I tested the following on Colibri iMX7.
+
+kernel 7.0-rc1 and DTB are built from an untouched kernel at commit
+7dff99b35460 ("Remove WARN_ALL_UNSEEDED_RANDOM kernel config option").
+
+kernel 7.0-rc1 patched has the sources as above plus the changes you
+propose to the gpmi-nand driver.
+
+DTB-reverted has the sources as above plus commit 8124b4a4a96b ("ARM:
+dts: imx: move nand related property under nand@0") reverted.
+
+                              DTB        DTB-reverted
+
+kernel 7.0-rc1                fail       boots
+
+kernel 7.0-rc1 patched        boots      boots
+
+Regards
+Max
 
 > 
-
--- 
-With best wishes
-Dmitry
+> Frank
+> >
+> > Regards,
+> > Max
+> >
+> > >
+> > > diff --git a/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c b/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c
+> > > index 51f595fbc834e..fb126a7c4a61e 100644
+> > > --- a/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c
+> > > +++ b/drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c
+> > > @@ -2680,6 +2680,7 @@ static int gpmi_nand_init(struct gpmi_nand_data *this)
+> > >  {
+> > >         struct nand_chip *chip = &this->nand;
+> > >         struct mtd_info  *mtd = nand_to_mtd(chip);
+> > > +       struct device_node *np;
+> > >         int ret;
+> > >
+> > >         /* init the MTD data structures */
+> > > @@ -2688,7 +2689,10 @@ static int gpmi_nand_init(struct gpmi_nand_data *this)
+> > >
+> > >         /* init the nand_chip{}, we don't support a 16-bit NAND Flash bus. */
+> > >         nand_set_controller_data(chip, this);
+> > > -       nand_set_flash_node(chip, this->pdev->dev.of_node);
+> > > +       np = of_get_next_child(this->pdev->dev.of_node, NULL);
+> > > +       if (!np)
+> > > +               np = this->pdev->dev.of_node;
+> > > +       nand_set_flash_node(chip, np);
+> > >         chip->legacy.block_markbad = gpmi_block_markbad;
+> > >         chip->badblock_pattern  = &gpmi_bbt_descr;
+> > >         chip->options           |= NAND_NO_SUBPAGE_WRITE;
+> > >
+> > > Frank
+> > > >
+> > > >
+> > > > So I don't see a quick fix other than reverting and living with the
+> > > > dtb_check warning.
+> > > >
+> > > > Regards,
+> > > > Max
+> > > >
+> > > > > >
+> > > > > > Fixes: 8124b4a4a96b ("ARM: dts: imx: move nand related property under nand@0")
+> > > > > > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> > > > > >
+> > > > > > ---
+> > > > > >
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi      |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi         |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi |  6 +-----
+> > > > > >  .../boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi      |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi           |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts            |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi          |  6 +-----
+> > > > > >  .../boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi  |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi          |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi       | 12 ++++--------
+> > > > > >  .../boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi   | 12 ++++--------
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts     |  6 +-----
+> > > > > >  arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi          |  8 ++------
+> > > > > >  15 files changed, 22 insertions(+), 82 deletions(-)
+> > > > > >
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi
+> > > > > > index f452764fae00..547fb141ec0c 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6-logicpd-som.dtsi
+> > > > > > @@ -36,12 +36,8 @@ &clks {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c3 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi
+> > > > > > index 58ecdb87c6d4..9975b6ee433d 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-icore.dtsi
+> > > > > > @@ -172,12 +172,8 @@ eth_phy: ethernet-phy@0 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c1 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi
+> > > > > > index 6f3becd33a5b..aa9a442852f4 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi
+> > > > > > @@ -102,12 +102,8 @@ ethphy: ethernet-phy@0 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c1 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
+> > > > > > index f2140dd8525f..85e278eb2016 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi
+> > > > > > @@ -73,12 +73,8 @@ ethphy: ethernet-phy@3 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "disabled";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c3 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi
+> > > > > > index 131a3428ddb8..c93dbc595ef6 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi
+> > > > > > @@ -260,14 +260,10 @@ fixed-link {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	#address-cells = <1>;
+> > > > > >  	#size-cells = <0>;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c3 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
+> > > > > > index d29adfef5fdb..57297d6521cf 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-tx6.dtsi
+> > > > > > @@ -252,13 +252,9 @@ etnphy: ethernet-phy@0 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	fsl,no-blockmark-swap;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c1 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts
+> > > > > > index 40d530c1dc29..2a6bb5ff808a 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-geam.dts
+> > > > > > @@ -133,12 +133,8 @@ ethphy1: ethernet-phy@1 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c1 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
+> > > > > > index 776f6f78ee46..e34c8cbe36ae 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-isiot.dtsi
+> > > > > > @@ -101,12 +101,8 @@ ethphy0: ethernet-phy@0 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "disabled";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c1 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi
+> > > > > > index 27e4d2aec137..a3ea1b208462 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-phytec-phycore-som.dtsi
+> > > > > > @@ -63,12 +63,8 @@ ethphy1: ethernet-phy@1 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "disabled";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c1 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
+> > > > > > index dc53f9286ffe..1992dfb53b45 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
+> > > > > > @@ -296,13 +296,9 @@ &fec2 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	fsl,no-blockmark-swap;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &i2c2 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
+> > > > > > index eaed2cbf0c82..ec3c1e7301f4 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri.dtsi
+> > > > > > @@ -160,15 +160,11 @@ &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > >  	fsl,use-minimum-ecc;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > > +	nand-ecc-mode = "hw";
+> > > > > > +	nand-ecc-strength = <8>;
+> > > > > > +	nand-ecc-step-size = <512>;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -		nand-ecc-mode = "hw";
+> > > > > > -		nand-ecc-strength = <8>;
+> > > > > > -		nand-ecc-step-size = <512>;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  /* I2C3_SDA/SCL on SODIMM 194/196 (e.g. RTC on carrier board) */
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
+> > > > > > index 3dfd43b32055..43518bf07602 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-engicam-microgea.dtsi
+> > > > > > @@ -43,15 +43,11 @@ ethphy0: ethernet-phy@0 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-ecc-mode = "hw";
+> > > > > > +	nand-ecc-strength = <0>;
+> > > > > > +	nand-ecc-step-size = <0>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-ecc-mode = "hw";
+> > > > > > -		nand-ecc-strength = <0>;
+> > > > > > -		nand-ecc-step-size = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &iomuxc {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi
+> > > > > > index fc298f57bfff..83b9de17cee2 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-myir-mys-6ulx.dtsi
+> > > > > > @@ -60,12 +60,8 @@ ethphy0: ethernet-phy@0 {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "disabled";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &uart1 {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts b/arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts
+> > > > > > index 8ec18eae98a4..2d9f495660c9 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx6ulz-bsh-smm-m2.dts
+> > > > > > @@ -25,12 +25,8 @@ usdhc2_pwrseq: usdhc2-pwrseq {
+> > > > > >  &gpmi {
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	status = "okay";
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  &snvs_poweroff {
+> > > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi b/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
+> > > > > > index a41dc4edfc0d..8666dcd7fe97 100644
+> > > > > > --- a/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/nxp/imx/imx7-colibri.dtsi
+> > > > > > @@ -375,14 +375,10 @@ &gpio7 {
+> > > > > >  /* NAND on such SKUs */
+> > > > > >  &gpmi {
+> > > > > >  	fsl,use-minimum-ecc;
+> > > > > > +	nand-ecc-mode = "hw";
+> > > > > > +	nand-on-flash-bbt;
+> > > > > >  	pinctrl-names = "default";
+> > > > > >  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+> > > > > > -
+> > > > > > -	nand@0 {
+> > > > > > -		reg = <0>;
+> > > > > > -		nand-ecc-mode = "hw";
+> > > > > > -		nand-on-flash-bbt;
+> > > > > > -	};
+> > > > > >  };
+> > > > > >
+> > > > > >  /* On-module Power I2C */
+> > > > > > --
+> > > > > > 2.42.0
+> > > > > >
 
