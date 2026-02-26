@@ -1,299 +1,215 @@
-Return-Path: <devicetree+bounces-268875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268876-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WBQsJglYoGkNigQAu9opvQ
-	(envelope-from <devicetree+bounces-268875-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:26:17 +0100
+	id uIjzFrNYoGlPigQAu9opvQ
+	(envelope-from <devicetree+bounces-268876-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:29:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01E9E1A7806
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:26:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC34E1A78BA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:29:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E096B31CF4B6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:12:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 307D63063AC5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0743A1CE9;
-	Thu, 26 Feb 2026 14:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C70C3B5304;
+	Thu, 26 Feb 2026 14:22:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hLfzHGy3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com [74.125.82.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA93361677
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 14:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772115162; cv=none; b=NqlHpENGWqsd5bPZhlCimA09G7AmnzeiVJ04bPVfpT9xjGkrS/qYQN+3PaI9swtTwnFWR3fPmNIxUh/R5a1y6t4llDa1SbJIR7UFeCN0jwGPXG7D2tQeRhXpNMk2hZrjKffyXIrmco5AklQJ8lmDQx4sVcjBXMNW0LbplV1dnX0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772115162; c=relaxed/simple;
-	bh=cZ7O/thkfVztK2ropSuJ9cYKzGgyBKuwgnMINRdG/2Y=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=aLXCChvlRJrm9UKQbiqq4cLLYRWVXY0ny2uLfSic3Qw5xvaPZKOIwar9TCMZU68TjcRlBqFv7d422A/zL1UT+27E3QL50hSsT4HBNq2OC1ROkjryI88yDNkSWzi1hNua6LzYBOh1yPqiECnUUlRIzfvXIhVffZe5wo3sVM7qmxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vvc6F-00033P-AO; Thu, 26 Feb 2026 15:12:19 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vvc6C-002kDY-1c;
-	Thu, 26 Feb 2026 15:12:17 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vvc6D-00000000DNK-3A7z;
-	Thu, 26 Feb 2026 15:12:17 +0100
-Message-ID: <2938bcbbb46fdec1fd2629e11c28ce9cf09eee27.camel@pengutronix.de>
-Subject: Re: [PATCH v3 2/4] pwm: sun50i: Add H616 PWM support
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Richard Genoud <richard.genoud@bootlin.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?=	 <u.kleine-koenig@baylibre.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,  Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Cc: Paul Kocialkowski <paulk@sys-base.io>, Thomas Petazzoni
-	 <thomas.petazzoni@bootlin.com>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Date: Thu, 26 Feb 2026 15:12:17 +0100
-In-Reply-To: <20260123093322.1327389-3-richard.genoud@bootlin.com>
-References: <20260123093322.1327389-1-richard.genoud@bootlin.com>
-	 <20260123093322.1327389-3-richard.genoud@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EBA03AE71A
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 14:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.169
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772115731; cv=pass; b=EFdX/tWIMkI2LrMg+mN2JLalcJt7kXYtOhd+3+K9LaYk58tdx89XTPhOycBfMRFMAMag0/UiH37NcdyRvDkzXCn4hmfJez0iCvKynl0KCEAvojoSmtSHnXtsvwxjs3v4U/JPak36DsN1tS/5bLJGVCo1C8nqvWgrciqBoQPiw2E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772115731; c=relaxed/simple;
+	bh=I14dkXry/WUF5t4Qh55P8WfyJKkZ75qa+hJAzRq5FZo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k3ofjVufv9OpJqLjhc7DBQN8HNbL3fJNvI/6v+r2osrvn8UmY6JeB2xKpIjLqzfZINWjZBtwMrN/kOW+sA7xwzkgc0bDGGyR8+yTcHL8nLfgz3dGCRPcVzAzTGk+VyfrECm3coW9NVqyCuvRYXsI3EqX6iaj0z7aJY04RpaImuo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hLfzHGy3; arc=pass smtp.client-ip=74.125.82.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-2b6b0500e06so1130845eec.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 06:22:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772115729; cv=none;
+        d=google.com; s=arc-20240605;
+        b=b+TJ92NwLpMjCkZ+c+EYQJFVh2NAi7Wb6nYy/ExYJGRe3WC48uWcS1zd3zF/mWfAl3
+         mt7zn9tK4cZZibxnW3xgENIy45Kawmrr9utcgVJgfmN4Ay/thL7dfBngr/fe4b0biefR
+         oowAvoBj2fIHgoMPaqaeUqAhlwvFSoM0OOdlWDUHMtVpbQIcsFOPkZVqQdUT+Mgz1L4g
+         w/F4cfJ3If6DUHbL9KXVwgK8ueiuVROM9Y+ZZQ46+i90HFaTf7yg82P03O8XYmEwm5x7
+         cjKrgvnGKLhZC5BZ+ia4neASliqe+r21B5prJ6yrvbS7xYTSrnlgr+xKebvn+ZhMBRvq
+         eWNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=2hlesacO2IXzOls7xphFVXkWYV7iYxmey5eNTFKv+p4=;
+        fh=lXBL1jII2qafb9cZ4pzj25vw3P0/ner7mnvDOYr+lko=;
+        b=dNlEiqcirvSJupJ+WkomJYbaSBpMmpPCcYn2cFiw89NiXoqnwQcSVEZWEhgo9vHQaa
+         L0pQI4sy8rYMSgtQ5OXR4+mhQBOf2d51sX6oldVpookZ4HpnLXXuff2FqzMM/VrKd49F
+         HeiG/tSSCHQPJCdsXot49HTXJS3+30neEQ2cq/Ab2XAyXJ2QzG31DecPlnfKw0KxIv8L
+         YEJhFp+d8CSq8PPKJtjb44dpBxlxpQMWcz99dNFo9wg8T1CAtoBeu43WflwNGrwV5YZc
+         QXKAo9z6pBZcJrKgq/RGibOgr3ZpHA5hOLpwX+CvRQ3tC5tpHEnhPqmN01r94XVGjBAx
+         BItw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772115729; x=1772720529; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2hlesacO2IXzOls7xphFVXkWYV7iYxmey5eNTFKv+p4=;
+        b=hLfzHGy3C/O72r5vOpf5r7oF+AFBWaWGCd0C6i5QtRI1fUGgUSBx/TM/YsCWpyZVef
+         uLpQ7ONBAMddAU6/SuCB6SUd0FnUMpyRCnvxpWxUWKC8/rOgAIgYOqllc9+WS+8weXQI
+         yAdw0xGq8hs3T0lEKWwk3QqBxmErE19iK1dbLL8oGVknO92S/zGDqhb3unKiOw2sSFav
+         iMu8hgc24Y4WkWjeX/K30ZZutTcFOyH8bwAkPvih7D3JoiIPA1WIxZ1Ja3DyJEFCb2q+
+         VVDcLCZC0si4OuscGzthtgiAKpOB2T91aFQp2a5bSyoDnL47ZcVrb/0UrhyqKQ0dj3tW
+         P85Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772115729; x=1772720529;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2hlesacO2IXzOls7xphFVXkWYV7iYxmey5eNTFKv+p4=;
+        b=JWbHR1WU14yTXD9cQbPrb2OBEapQcl9bpgNZMb8rM0P36da0Yv4UZ/c/ALfOqkEHpE
+         JUiYbBR4WmFlhpBIeZkzh0x9RpQDKN6yyANaGjSh7XJj/hngANxFRe7gczhAEtebdzIl
+         2130SAcRBqf2oPt0MrZZnumjF2QifuG0a3DGNE7MG0ONDiT2SNKFRHMbpvgH3Mi70gyw
+         Gq6XDUHo583B/c4B74KXxM6lXQGZjVU9IdvWqKCuTv280buMO1wLwqpsuPHy1Mdzjgmk
+         eEMSUdsUO3cW2FVSYTZ81W/9oFMEvaTqxazh02h0wmyULTzxbPEzS5A8Q+Gif8BDRSIW
+         j9xw==
+X-Forwarded-Encrypted: i=1; AJvYcCW+DRoft0Gpe/50xqcGlI/AjHSbsWtoWsrLgbLRH4Rr3jAeFpBy1V4WOVZ2W1b/OBiBRwviJua60ULS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvHj4M+xd/tsoNtOe+NrP0lWnPkanG1H6pB4aoG7Q9TC6X5sD6
+	AV+xapo/GwY0CUesX+haK4NbTAM/1PwKuhqnadcdrBtaZl4YgVKRRUTLD2FtIDi5szh/wA18RcM
+	WzG6q4aQ9LQbLHrXPlJd8CBtkgCvPFr4=
+X-Gm-Gg: ATEYQzz8mhvX/fi7rcIQ/mIWz26SfCSCcClS3K7xTgHAS5RsRH3RyI6aF6O/+gcveUh
+	VL2L1jbMABup0cnknFiufyvpRYON8jnBVRICrKPQpeiXAAf2h4Vyab+kYJEn0oQuBrs5+9FH9/A
+	/n2gyVmnwi8vb14IkmmBi9U0lU0F3IUfZ3M7wdfA4uzAHKYWbpdqTcjlo5C4t1yJAx9jbLKD/pE
+	J3nZVP2W7JmEdKnGgvPwpr2pxmz9YreSqAu7l9EkqiYy1VHHEgwO/1saHoTYQKhyKGDsNOkb96M
+	/ig2Gg8=
+X-Received: by 2002:a05:7300:72cd:b0:2bd:d1e0:edbf with SMTP id
+ 5a478bee46e88-2bdd1e0f061mr1060447eec.15.1772115729246; Thu, 26 Feb 2026
+ 06:22:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20260223-panel-patches-v2-0-1b6ad471d540@gmail.com>
+ <20260223-panel-patches-v2-1-1b6ad471d540@gmail.com> <20260224-bulky-rabbit-of-courtesy-83fabc@quoll>
+ <CAHuF_Zq=Rpg0HoRJv-BSREEhT8tYH4r+BCbZ7obrG36vSmwMQA@mail.gmail.com>
+ <54abd390-113a-4c99-b024-2029c4d68099@kernel.org> <CAHuF_ZoEAT+91trLabyo8rc8afXW=Wd0Q9yxu_v53nXoRFJMTA@mail.gmail.com>
+ <26dc41ef-1a98-4a16-a60d-c7654acba758@kernel.org> <de83847a-67b9-4877-a52a-ee1976d68ced@oss.qualcomm.com>
+In-Reply-To: <de83847a-67b9-4877-a52a-ee1976d68ced@oss.qualcomm.com>
+From: Yedaya Katsman <yedaya.ka@gmail.com>
+Date: Thu, 26 Feb 2026 16:21:58 +0200
+X-Gm-Features: AaiRm53NJdysK5cQihGYwFMsFJSJchpZpGioTorVxUfiq8Iem_ldmJOfMXkJJC8
+Message-ID: <CAHuF_ZqA0cQwbRehBaKxUxfmhtnYTX-xLLMAfEo3E0EN_ABP=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: panel: Add Samsung S6E8FCO
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?B?S2FtaWwgR2/FgmRh?= <kamil.golda@protonmail.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	~postmarketos/upstreaming@lists.sr.ht, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268875-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FREEMAIL_TO(0.00)[bootlin.com,baylibre.com,kernel.org,csie.org,gmail.com,sholland.org];
+	TAGGED_FROM(0.00)[bounces-268876-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gmail.com,ffwll.ch,linux.intel.com,suse.de,protonmail.com,lists.sr.ht,lists.freedesktop.org,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.997];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[yedayaka@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 01E9E1A7806
+	HAS_WP_URI(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[wikipedia.org:url,mail.gmail.com:mid,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,androidfreefile.com:url]
+X-Rspamd-Queue-Id: CC34E1A78BA
 X-Rspamd-Action: no action
 
-On Fr, 2026-01-23 at 10:33 +0100, Richard Genoud wrote:
-> Add driver for Allwinner H616 PWM controller, supporting up to 6
-> channels.
-> Those channels output can be either a PWM signal output or a clock
-> output, thanks to the bypass.
->=20
-> The channels are paired (0/1, 2/3 and 4/5) and each pair has a
-> prescaler/mux/gate.
-> Moreover, each channel has its own prescaler and bypass.
->=20
-> The clock provider part of this driver is needed not only because the
-> H616 PWM controller provides also clocks when bypass is enabled, but
-> really because pwm-clock isn't fit to handle all cases here.
-> pwm-clock would work if the 100MHz clock is requested, but if a lower
-> clock is requested (like 24MHz), it will request a 42ns period to the
-> PWM driver which will happily serve, with the 100MHz clock as input a
-> 25MHz frequency and a duty cycle adjustable in the range [0-4]/4,
-> because that is a sane thing to do for a PWM.
-> The information missing is that a real clock is resquested, not a PWM.
->=20
-> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
-> ---
->  drivers/pwm/Kconfig           |  12 +
->  drivers/pwm/Makefile          |   1 +
->  drivers/pwm/pwm-sun50i-h616.c | 959 ++++++++++++++++++++++++++++++++++
->  3 files changed, 972 insertions(+)
->  create mode 100644 drivers/pwm/pwm-sun50i-h616.c
->=20
-[...]
-> diff --git a/drivers/pwm/pwm-sun50i-h616.c b/drivers/pwm/pwm-sun50i-h616.=
-c
-> new file mode 100644
-> index 000000000000..02a8e2d39f86
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-sun50i-h616.c
-> @@ -0,0 +1,959 @@
-[...]
-> +static int h616_pwm_init_clocks(struct platform_device *pdev,
-> +				struct h616_pwm_chip *h616chip)
-> +{
-> +	struct clk_pwm_pdata *pdata;
-> +	struct device *dev =3D &pdev->dev;
-> +	int num_clocks =3D 0;
-> +	int ret;
-> +
-> +	pdata =3D devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
-> +	if (!pdata)
-> +		return dev_err_probe(dev, -ENOMEM,
-> +				     "Failed to allocate clk_pwm_pdata\n");
-> +
-> +	while (pwmcc_data[num_clocks].name)
-> +		num_clocks++;
-> +
-> +	pdata->hw_data =3D devm_kzalloc(dev, struct_size(pdata->hw_data, hws, n=
-um_clocks),
-> +				      GFP_KERNEL);
-> +	if (!pdata->hw_data)
-> +		return dev_err_probe(dev, -ENOMEM,
-> +				     "Failed to allocate hw clocks\n");
-> +
-> +	pdata->hw_data->num =3D num_clocks;
-> +	pdata->reg =3D h616chip->base;
-> +
-> +	spin_lock_init(&pdata->lock);
-> +
-> +	for (int i =3D 0; i < num_clocks; i++) {
-> +		struct clk_hw **hw =3D &pdata->hw_data->hws[i];
-> +
-> +		ret =3D h616_add_composite_clk(&pwmcc_data[i], pdata->reg,
-> +					     &pdata->lock, dev, hw);
-> +		if (ret) {
-> +			dev_err_probe(dev, ret,
-> +				      "Failed to register hw clock %s\n",
-> +				      pwmcc_data[i].name);
-> +			for (i--; i >=3D 0; i--)
-> +				clk_hw_unregister_composite(pdata->hw_data->hws[i]);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	h616chip->clk_pdata =3D pdata;
-> +
-> +	return 0;
-> +}
-> +
-> +static int h616_pwm_probe(struct platform_device *pdev)
-> +{
-> +	const struct h616_pwm_data *data;
-> +	struct device *dev =3D &pdev->dev;
-> +	struct h616_pwm_chip *h616chip;
-> +	struct pwm_chip *chip;
-> +	int ret;
-> +
-> +	data =3D of_device_get_match_data(dev);
-> +	if (!data)
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "Missing specific data structure\n");
-> +
-> +	chip =3D devm_pwmchip_alloc(dev, data->npwm, sizeof(*h616chip));
-> +	if (IS_ERR(chip))
-> +		return dev_err_probe(dev, PTR_ERR(chip),
-> +				     "Failed to allocate pwmchip\n");
-> +
-> +	h616chip =3D h616_pwm_from_chip(chip);
-> +	h616chip->data =3D data;
-> +	h616chip->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(h616chip->base))
-> +		return dev_err_probe(dev, PTR_ERR(h616chip->base),
-> +				     "Failed to get PWM base address\n");
-> +
-> +	h616chip->bus_clk =3D devm_clk_get_enabled(dev, "bus");
-> +	if (IS_ERR(h616chip->bus_clk))
-> +		return dev_err_probe(dev, PTR_ERR(h616chip->bus_clk),
-> +				     "Failed to get bus clock\n");
-> +
-> +	h616chip->channels =3D devm_kmalloc_array(dev, data->npwm,
-> +						sizeof(*(h616chip->channels)),
-> +						GFP_KERNEL);
-> +	if (!h616chip->channels)
-> +		return dev_err_probe(dev, -ENOMEM,
-> +				     "Failed to allocate %d channels array\n",
-> +				     data->npwm);
-> +
-> +	h616chip->rst =3D devm_reset_control_get_shared(dev, NULL);
-> +	if (IS_ERR(h616chip->rst))
-> +		return dev_err_probe(dev, PTR_ERR(h616chip->rst),
-> +				     "Failed to get reset control\n");
-> +
-> +	chip->ops =3D &h616_pwm_ops;
-> +
-> +	ret =3D h616_pwm_init_clocks(pdev, h616chip);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (unsigned int i =3D 0; i < data->npwm; i++) {
-> +		struct h616_pwm_channel *chan =3D &h616chip->channels[i];
-> +		struct clk_hw **hw =3D &h616chip->clk_pdata->hw_data->hws[i];
-> +
-> +		chan->pwm_clk =3D devm_clk_hw_get_clk(dev, *hw, NULL);
-> +		if (IS_ERR(chan->pwm_clk)) {
-> +			ret =3D dev_err_probe(dev, PTR_ERR(chan->pwm_clk),
-> +					    "Failed to register PWM clock %d\n", i);
-> +			goto err_get_clk;
-> +		}
-> +		chan->mode =3D H616_PWM_MODE_NONE;
-> +	}
-> +
-> +	ret =3D devm_of_clk_add_hw_provider(dev, h616_pwm_of_clk_get, h616chip)=
-;
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Failed to add HW clock provider\n");
-> +		goto err_add_clk_provider;
-> +	}
-> +
-> +	/* Deassert reset */
-> +	ret =3D reset_control_deassert(h616chip->rst);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "Cannot deassert reset control\n");
-> +		goto err_ctrl_deassert;
-> +	}
-> +
-> +	ret =3D pwmchip_add(chip);
-> +	if (ret < 0) {
-> +		dev_err_probe(dev, ret, "Failed to add PWM chip\n");
-> +		goto err_pwm_add;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, chip);
-> +
-> +	return 0;
-> +
-> +err_pwm_add:
-> +	reset_control_assert(h616chip->rst);
-> +
-> +err_ctrl_deassert:
-> +err_add_clk_provider:
-> +err_get_clk:
-> +	for (unsigned int i =3D 0; i < h616chip->clk_pdata->hw_data->num; i++)
-> +		clk_hw_unregister_composite(h616chip->clk_pdata->hw_data->hws[i]);
+On Thu, 26 Feb 2026 at 15:42, Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 2/26/26 7:55 AM, Krzysztof Kozlowski wrote:
+> > On 25/02/2026 21:03, Yedaya Katsman wrote:
+> >> On Wed, 25 Feb 2026 at 17:45, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >>>
+> >>> On 25/02/2026 16:29, Yedaya Katsman wrote:
+> >>>>>> +  vddio-supply: true
+> >>>>>> +  ldo-supply: true
+> >>>>>
+> >>>>> LDO is the name of the type of regulator. Why is it called as name of
+> >>>>> the supply?
+> >>>> Can you explain more what you mean? Do you mean to change the name of
+> >>>> the property? It seems that all the regulator properties are named
+> >>>> foo-supply.
+> >>>
+> >>> I just have doubts that the device has supplied called LDO, considering
+> >>> what LDO means.
+> >> OK. I don't really have a way to verify if it's true, all I have is
+> >> the downstream dts
+> >> which calls it LDO [0]
+> >>
+> >> [0] https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/d3766fc8cda2d96de2850faa9ce58e5a37ea9f9c/arch/arm64/boot/dts/qcom/trinket-sde-display.dtsi#L24-L36
+> >
+> > Obviously the regulator is LDO, so they called it. Most of the
+> > regulators are LDO, so why VDD IN is not called LDO?
+> >
+> > This is name of the supply in this device.
+>
+> Yedaya, in case you didn't catch it, LDO is an acronym:
+>
+> https://en.wikipedia.org/wiki/Low-dropout_regulator
+>
+> The vendor driver probably calls it that, because the input leg of
+> the panel's driver IC just so happens to be connected to a regulator
+> of this kind
+>
+> If we don't know the actual name of that input and have no way to verify
+> it, I think 'power-supply' would be a good generic consensus, it happens
+> to be reasonably common across other bindings
+Thanks for further explaining. I managed to find the schematic (Thanks to
+Kamil finding it first and making me look for it)[0]. It seems that
+this specifically is
+VDDI supply regulator, while the one called iovcc in the dts is
+actually a VCI regulator.
+The vddio-supply is called VREG_L9_LVS and connects to the output of the vddi
+regulator.
 
-Won't this try to unregister the clk_hw before the pwm_clk derived from
-it? You could place this in a devres action to correct the cleanup
-order and get rid of the duplicated cleanup in h616_pwm_remove().
+My current plan is to call them vddi-supply and vci-supply in the
+binding, but I'm not sure
+what to call what's currently vddio-supply.
 
-I think you could even use devm_pwmchip_add() and
-devm_reset_control_get_shared_deasserted() and remove h616_pwm_remove
-entirely.
+[0] https://androidfreefile.com/wp-content/uploads/Xiaomi_Mi_A3_Schematic.pdf
+> Konrad
 
-regards
-Philipp
+Thanks, Yedaya
 
