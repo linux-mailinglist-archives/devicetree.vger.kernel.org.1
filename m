@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-268789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268791-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIQLNJUtoGm+fwQAu9opvQ
-	(envelope-from <devicetree+bounces-268789-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:25:09 +0100
+	id QLM+N88toGm+fwQAu9opvQ
+	(envelope-from <devicetree+bounces-268791-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:26:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 091581A502E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:25:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92C381A5064
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:26:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 67529301D54E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:25:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 68AC83046DB3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39833366DC4;
-	Thu, 26 Feb 2026 11:25:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FB4A369990;
+	Thu, 26 Feb 2026 11:25:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="n/p1+SYd"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="cm2LCEH5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE1443644A0
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 11:25:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04DB366573
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 11:25:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772105104; cv=none; b=XaRxTyuwMk3Z1Fwrsop1Nh4v85ey99nexn3mpo37VKsscdwPDOEhvaY9a1UqfkSJ3RxYE8ZZwlxFbTVNwt/pDRd1xgPrnPz08vBeIOF5NrPL6ZPCUTjd6Nyf2SalRXxl+znG/xOBQGWRA3LasPvQY0Txya2QdasGF5PRN048ibg=
+	t=1772105153; cv=none; b=YY1axoggG/bnvuM1kMq1TWI6+hx0R4AI2q40zXnSxVHVX4mQPnKw8suEuyPU9llCx5i9tCM70bC++U8dS4IL3XFMkNNeQRRl/yJk47VZxqnKs9mcsMk0fexHUgUigsz1ukQbXD+imjeQgYtsxaSyvmz+awHgkzAmjdMX5eHi4Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772105104; c=relaxed/simple;
-	bh=qoAG85cQLkPyPVkb7i8S/gUbpDBrputYuNRJ4SQGpNg=;
+	s=arc-20240116; t=1772105153; c=relaxed/simple;
+	bh=X7aGML1SMAsWeqcVjsSBRTgitUAtQY7ToN2QOukGVTc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CR+SoE6a23jq9vvhPjtYFj7wtE7r9NrqpNPQKe893n7WW3ysjdJjKNpvFBq1iKk8WdNU1eQ6o6jnBhF8bwkhfvETuaeo10Fmol5AtfOkm8Zfwoyj+lo3drN/pB9Cr0Kl1onOIDxY9xonqkn21uCCQ77x0MSN/pNRBgreYe4D3SY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=n/p1+SYd; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:Content-Type; b=qHJAop1Qcfd9hQFtmSZd+tv/9QzR3Ibv4GjDIqSAlSHtOxv5ao0wEHjTVt6uyDMP3cu+q/x8hErGIoyzW2Wlbb2nds2MJWEZHKkJp1pCwKCylri2sJunrZCiazpkVwfWy2UAP0dD+7dziCzwxQTLGxhLwHrjsD3hyV4ysA2gk0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=cm2LCEH5; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-48371bb515eso10084695e9.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 03:25:02 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-483a233819aso7943865e9.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 03:25:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1772105101; x=1772709901; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1772105150; x=1772709950; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qoAG85cQLkPyPVkb7i8S/gUbpDBrputYuNRJ4SQGpNg=;
-        b=n/p1+SYdFrt6YgNGhj3aaQx5Cq3pxOpub5ZM3RDpqsV7UsGO0y1u2UWb+Vv4MK4Rs0
-         q+f1Do0MU0XkZYJWYL5R4b1l3Sw7d2X1yF1Oi8CVjQl0Tvs1jk/kVZ3+TiIUAQgYO429
-         Sadbb+U0Pt40ORsmyJMsVzwH2Vfp++5qrqk7MHSml2TLkw2vLcc6OyBLrFVtlBUKNSc9
-         KpFMqlqcXGNpGDdfAVAPe1lcCn51Rdu4doc6zVFyEIh2Ctbp+hMhUXL+cdDUX1A4PeJr
-         Ye/uMlA3F/P7n1VKXKgbNG3CWfOns1M30BMnmhmYC+MdDkPlRz7PGVLxCs56eT3Naxei
-         ODgw==
+        bh=T/CkoirfCooP2OVGzq7jy6w3vIPwFS3mfXfxd2A0Wk0=;
+        b=cm2LCEH5bDqmlGU1CFDcEAYlfPhu+07QiJwdYpWhaCkEjylib10qs4pthcQnTl5lja
+         btNP9gFWUEHDH3Kqlr/qE/suHXKqs15KvhT0X5hpMsCFhSo3dIzfBk+eekuFuEk7Yhw6
+         iwTq4ZVt0H8nMYS/pzbbdP/aXYkQLAPQa9Xdhu5+z2+1IoboS7miq+2ainNYtCpuxw4P
+         EqPlCsAEl6P5vflaR0gMFIviAmXlGSrK4C7PtW6srUdYI66nHVDdyThZa60LXXUiVXQD
+         aKxd3AI+iZMJ9BIU0wRJWgBoeplr2SN455enou1+4SYdX3yKGqNT0Y3GJw5AIw0oQMSB
+         xH1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772105101; x=1772709901;
+        d=1e100.net; s=20230601; t=1772105150; x=1772709950;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qoAG85cQLkPyPVkb7i8S/gUbpDBrputYuNRJ4SQGpNg=;
-        b=wnrsw64i8vGMj78NWbeqNtg05hKaQycc/p3gcPjTdLoxU9vu3QIcK4gOxGGYEkfTlO
-         Zg3MdHMTBBW87byCSWTJbtpCPXPEY7k5vVKfx65/A4O7U+1MTz/YSUfQSkgF2TIUyabL
-         /giZ3FjFr9ztM0JUIph4coJBwRvkVJb5KrJcrU9zhcm6g7/30ag6zi8YnbysJP1o4M+a
-         dttmiNmfa1IGQMTaM1YEGMt33G0gSQ2HtDqhbA4pOgXHunoN6JZeJRRXAFvChuXr3ga+
-         YUt8h+ICcAHOjdTdy5TYMmKWkolYisyNRd9lJqk6hi/RwUYoNEFNh2T2InWSkMlXIA06
-         em1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUYLTuTrQ7pdQtLH8GOl6v9+krQJfzEmHbRK7DUC/BEwf4dAnpPDlnNq262biAYQ7VKRTEsNINpxTN5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA9gJ16mY5zkevMsKiagILW7sREqoVJ6fqlTRydm89cmFebYCl
-	jwFS7ypbGMxQN3hCzYQPo3hEl8T6GiJX7oUKlRzgazoeN3Azez9eliHsyPf1HyQ7u0E=
-X-Gm-Gg: ATEYQzzcEGd2aNqCjrKGpLXPu8ZpS2aWdQ6Y3HyUJNnIk431SnslHONMHIzIca23tSP
-	IztSFLseRZPtAiEs+SnoUYZtweyFW5etU+op2KP6F1AzUW8gR+BUMIKfwpSdiJMKaLGEVM8+r94
-	jkX26CYfga0ZG5ssuyXlGns7vBWHYsImt/NMgci7m3iwqVi9dAHIekap5htwX8jKvD8Q3mWq+No
-	fa02IA3ksXbE00j9h9YYrPj5FqXbc4xkmYYguF4I9iX3bHW5CNvK55qCa43vhCNZW9Cp+2ZHMgS
-	ATJiivzAOhOHgVnnOpdsZoabdNx1jWhmHBVNJXF/QB96h0CLP7DI3xFIVsOguZkS6Lzn2ePAphe
-	TFypl90VCPMQv3UMQ6ilB3//EzAXMlNmjM7v+eBnnAVqHdnbSuW8txXYQSYiB9DRrLjk7DT8ddU
-	LqiCqnSo82eS7qJTxG3cFqfnxZ7fH4Hg==
-X-Received: by 2002:a05:600c:5020:b0:483:b01c:9508 with SMTP id 5b1f17b1804b1-483c3da0abdmr31292235e9.2.1772105101244;
-        Thu, 26 Feb 2026 03:25:01 -0800 (PST)
+        bh=T/CkoirfCooP2OVGzq7jy6w3vIPwFS3mfXfxd2A0Wk0=;
+        b=fmqiZpJ2IIrdel3P4VpFzaipda+E1I59USWHBmDfbwtfoAjQEr1HU8cDhwQkkCnqDI
+         IQBBh8wh/4wLW1ivf+ptT4QVqmWRKJMGjospbDMwglrR/WKaYX9imEjlGhmVpUxw4loU
+         tnFHLHDRivWc3k/r5cso/PSSeOg8N46KIxF704XcHTHEmVy16Rvl1FTXKUMtm17K6rMI
+         0Ia73X3aCaU6cTEPZ52b2jw1bwJo4mVTyT9AsZbPLp3ARIwgAg/DBXkFwk4Yfhzo+pJo
+         dlvAQvBrfdLFvnqpm07ZW6k9TZiMAqhAJhXACAw6oMCRllvjb0cHof44wrbaqpeMa2Ay
+         ahPw==
+X-Forwarded-Encrypted: i=1; AJvYcCVggfU+4VvUPbveI/jZOJzhxBBI7SRY5FftsEIWtwC+8aI9E0zRxKZK8coSxLtKt4ls9x2V9FCPFwKd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaBBs/a1yKRMls7lxAQ7eNPiALL3LDyzh2vJT+5TYaaxrMm15S
+	mIZwpgehNFdpQynkT4VPZxTp0Mxpg80xscL4TZvEhFpF6LSVfXYF7or5VgDQAuQdS9g=
+X-Gm-Gg: ATEYQzwdSqofvv+HinbyPn90SFxa4MEI2+4+mekxq7WMeW4d2B/rCDWukFQAwDySCDU
+	PC36xuWmf107FEQqFUphVsYJ+4/+9OYAan6jBDI5qnHiOKyqeAXp7JMPkwAfIUVEoPGlSwr4Foy
+	DALXo7raSmmiMIz3WrwN8NfhAvAg07PYzr1f55G7TfOT2n4ZA1wBSlkZ+4jDsqatGdperv1Om8d
+	ZPS9owWI2sslen9LU4eAmBdGgfyFt6SgAPTQGWcPx77OnbuJn4rt9e5ZI/Hz6yRankTHGMwRDp7
+	cA+IJ6p8fTEmCUSNOSMF+FtmBOECthMec4pxG55ql9vt7Fzv6NObYeLvLpN8lKwKdvabFk9CDi5
+	SrVVtbRgsenrljDnNsDGKaOL+VEAh9YcidLELUQZg+8Vy8j3nnjv29fsqFWMyfTLnLyoM3crdIF
+	bp9OfXSqq0kzwSyl4U8oiXYRoCUwwJJA==
+X-Received: by 2002:a05:600c:1d1d:b0:483:498f:7963 with SMTP id 5b1f17b1804b1-483c3deae7cmr28250235e9.26.1772105150104;
+        Thu, 26 Feb 2026 03:25:50 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.73])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfbb465bsm82044185e9.3.2026.02.26.03.24.59
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bd75df9fsm148537245e9.13.2026.02.26.03.25.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Feb 2026 03:25:00 -0800 (PST)
-Message-ID: <a30132d9-6966-4ac2-82af-b1a20a2b1a12@tuxon.dev>
-Date: Thu, 26 Feb 2026 13:24:59 +0200
+        Thu, 26 Feb 2026 03:25:49 -0800 (PST)
+Message-ID: <b8705677-67ee-450f-b0d5-8e79280c854c@tuxon.dev>
+Date: Thu, 26 Feb 2026 13:25:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,8 +86,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 09/16] PCI: rzg3s-host: Make configuration reset lines
- optional
+Subject: Re: [PATCH v6 10/16] PCI: rzg3s-host: Add SoC-specific configuration
+ and initialization callbacks
 To: John Madieu <john.madieu.xa@bp.renesas.com>,
  claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org,
  kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be,
@@ -97,23 +97,23 @@ Cc: robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
  linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
 References: <20260219223542.6364-1-john.madieu.xa@bp.renesas.com>
- <20260219223542.6364-10-john.madieu.xa@bp.renesas.com>
+ <20260219223542.6364-11-john.madieu.xa@bp.renesas.com>
 Content-Language: en-US
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260219223542.6364-10-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260219223542.6364-11-john.madieu.xa@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268789-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268791-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[tuxon.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -121,33 +121,46 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[tuxon.dev:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	NEURAL_HAM(-0.00)[-0.994];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 091581A502E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tuxon.dev:mid,tuxon.dev:dkim]
+X-Rspamd-Queue-Id: 92C381A5064
 X-Rspamd-Action: no action
 
 Hi, John,
 
 On 2/20/26 00:35, John Madieu wrote:
-> Some SoC variants such as RZ/G3E handle configuration reset control
-> through PCIe AXI registers instead of dedicated reset lines. Make cfg_resets
+> Add optional cfg_pre_init, cfg_post_init, and cfg_deinit callbacks
+> to handle SoC-specific configuration methods. While RZ/G3S uses the Linux
+> reset framework with dedicated reset lines, other SoC variants like RZ/G3E
+> control configuration resets through PCIe AXI registers.
+> 
+> As Linux reset bulk API gracefully handles optional NULL reset lines
+> (num_cfg_resets = 0 for RZ/G3E), the driver continues to use the standard
+> reset framework when reset lines are available, while custom callbacks
+> are only invoked when provided.
+> 
+> This provides a balanced pattern where:
+> - RZ/G3S: Uses reset framework only, no callbacks needed
 
-There is checkpatch warning on this line as follows:
+Some callbacks are implemented for RZ/G3S as well but they fall back to the 
+reset framework. Could you please adjust this line?
+
+> - RZ/G3E: Sets num_cfg_resets=0, provides cfg_pre_init/cfg_post_init/cfg_deinit
+
+There is a checkpatch warning on this line as follows:
 
 WARNING: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#7:
-through PCIe AXI registers instead of dedicated reset lines. Make cfg_resets
-
-Could you please check?
+#19:
+- RZ/G3E: Sets num_cfg_resets=0, provides cfg_pre_init/cfg_post_init/cfg_deinit
 
 Thank you,
 Claudiu
