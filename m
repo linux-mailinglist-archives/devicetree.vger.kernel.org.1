@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-268824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268825-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qDPcKRZHoGkuhwQAu9opvQ
-	(envelope-from <devicetree+bounces-268824-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:13:58 +0100
+	id KGy7BTlHoGk9hwQAu9opvQ
+	(envelope-from <devicetree+bounces-268825-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:14:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6801A6306
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:13:58 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01DA51A632E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:14:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5D926300647B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:12:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3387C3051A8C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:12:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CE2932D0E6;
-	Thu, 26 Feb 2026 13:11:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56BFB331A4D;
+	Thu, 26 Feb 2026 13:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QKN/acmA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vaPeWzeu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C1B31B82C
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:11:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D75325700
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 13:11:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772111505; cv=none; b=gzUBupkuBoenvdrCAOuWGExTF2UdUSE/qQg3HM5OKUWoBmDwzZg07dh7tcmaBSUzfCMIDu7P1V/hfQMXjfrSGomgg9sMWjXFrQqfImah4oROebkDgXT8opVIz6bz2w+ZMyS6YvaJaRWAYmw0kvOYuUWni+16y0CviMDpzjCfFfY=
+	t=1772111506; cv=none; b=GMCV8ayzHH/xXwJFAMSQ5YMt2WQ1PbDb9WqUhWcGA1O3ap+jSJqYr1Sv4q+eqAkykNGVIgiaUoL2XeeuIyyBnuraBz9b+By3y9pIVIVozWaH6UXRxb1Ydd96iG0kd1xGaS2i0ocUW6aAqhhq0Y5DhVMWnlZ62IBl6Fi+8fRHpCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772111505; c=relaxed/simple;
-	bh=eh1OY1ieLLdHnT7gZwSOwUnROhsTRrF71czKCjiixts=;
+	s=arc-20240116; t=1772111506; c=relaxed/simple;
+	bh=CTmFEqd4z7gM9BpiQXC8TftzHTevIiLfsiyczPYt5VE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MwLlkWSnO5Bm2tza1JWVp8UPENuSnNmUGyxpp2SCSsduMgUWHKDXwiXgpB/INedOZ1SWcjciQWFk89qzsxRDf5yRnw1i9SWqbCyNFKh2AN31ldWCRJeVTexfnB0VIHRzEpZa4WGFs9v4JblI9y/kwRCqy7WzBfUVvt7IFwn6Wmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QKN/acmA; arc=none smtp.client-ip=209.85.218.54
+	 In-Reply-To:To:Cc; b=R4y4WpmtEvM5jpilHRFULBe/XWY+ijb7KgFz0f35BNSsfApYebRCWOCMjv+ld88Zpk5tEnXgl36pAgpYPGvM4MhZs/5bOBliBtZrUyIrBQnwwnqijbW2lfqO7FFeJSbeTT4pvByRZlnKYp6koC7uDt6t4eCQuXsBgzqBSS1yGDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vaPeWzeu; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b934fdced05so99046666b.3
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 05:11:42 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-65bfc858561so1627468a12.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 05:11:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772111501; x=1772716301; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1772111502; x=1772716302; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=c6Q/YbctU2cng/xKxSbyuYnqAnOaNtvn3Ivyo/NwaTY=;
-        b=QKN/acmARLYDJhLlKJil0cPrQHhlvzBrhslXhmBvlYhJqJAO6Bg4W5/h6fTGF6UOJl
-         4qZaP3vjEvR4adtEMzoBQP9wiIMDEloFcAbgHRSlLIi+f1r9pxX8NAA3lUyqQa4eQewL
-         VE0M6XPB4Nplz54ojR7cAA5cbQim+GL0u9D21F0m3+UyT+sn3MlWT1rC+jSELLpI42B4
-         i1cewpQvjcxqWCCA1r0KfXyWho3ht5dyO7upeZ6dWixSyAaSoAmGG0A17qasYHsSDrx2
-         5xQJ0ggPlrdtQ9cdZwzLaPYiJhMFro6c0EV5WCLNt+dvKGBkUd6YSHuBiHDrWQIE80h1
-         wCrg==
+        bh=doSnaoOeWo4jS3UXOttanh09pOHZ+ZihIcXNRAknjGs=;
+        b=vaPeWzeuDnQKkkgrqhCFab/T2fyx4GQ535y/mawvR9tZ8dG90inrcE8UEr2qlw7TQq
+         Fc3bakWZUwRAJgPu7acLMEnEvUtpChlLMPP09QhMA8kq0EIyRm6BujFyG7RNd/0+GIKl
+         hZLuIVysBS0k/72boDLN7xNDKVtgTOi1cgSyPydhq5YFX52oIcCuipvnwl8kxhZO0xWW
+         RWiiqSEM2rUqeHhWWGrUNQFWMHtYc1UKh0jHC0rvjvW1DxQBWfBizSiE1ckgIO+3VEK3
+         26qCn13QdLnzycxpJalSwc9iXzb8xNgvSSarWDWmJWjZa+64peQmmbl6itALWHAQ08D6
+         wDiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772111501; x=1772716301;
+        d=1e100.net; s=20230601; t=1772111502; x=1772716302;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=c6Q/YbctU2cng/xKxSbyuYnqAnOaNtvn3Ivyo/NwaTY=;
-        b=YE4SbWyvnCwkKvs6qNcQc0F5OBAuf4N+jL1JCt3QXZrphQD5EQbWA3X3Ddi4yzsTbd
-         YAiu8Ewpwtw0M1IfnRsUuOzL1j4/cw5353bniwJAzPL33MHeuLYI4Zr2IZZaQGnCCXND
-         F7RRD+owp20Fmi/1v7QkGbtTcBz6CemA2gjghF2vmborK9KhHJLEkq2LZAQazTiYEWx+
-         v+ey7th8n0XEfFnRFf/gszROaT+491UK5eatvpWBZisMCdVrSWdyKqwtPYttLKBPvsYZ
-         4G50TvMx1rEUaQNcFlXBM93ukphjpRtM+/tPRb5l/BWM8AaHA/AXtR2GOlkJXG/V6fEJ
-         AiJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVaOZlayo9Fnh9dG3zc+3SeAKgV+nTSdU40uyKpgOVfGdETmeI6QaFqCMuLQE6aEiK5mRMgIgHex+wI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYO1nBNk/+O2Bsz53Q69BatsewWCGYbTlZoz7y5L5ZziTYL4hb
-	HVtabe9O5XfTnYbv8qal84aBVF0oxsP3otkFLa3/zsDXHqnsS/WKrhgpCEGL4DTc21k=
-X-Gm-Gg: ATEYQzzRwO4DYfH7+Vn0c1+XUy4MQ1FqEU+aEeTTOsp426cEW7isc5B2X2d+Wi1igYN
-	MvskQd+ON6gI6ifT0JwlIMARgDa3QzkVO2QjRrcsgKN7mawj8trBfrrW7h3/xXppHrQKCVfPifo
-	zIWvXespva0wKg4s39EY+e52QcdmzARv/aUeRBH2GYu5ENURkv8ZjaPxCAu4xsCZUlb6/vEbtn3
-	Bt5aKCtNOVUO7n/t88XbJU+TmwbgGZbjeTXyqAgYMe0YNNFIcahsfTm0jtmz1Exld3Tdl0ZSbFr
-	3TSual2lzcDZadcdnY3RP1A3P+u/3tEuQMXB+O0xR8mvgfczaF/1JU2y3qy5zBl/tJCvUyUX78C
-	PWPrind5ksZRjt3kWc4CMgYcXEMIC151pb+WGgmAd7/hJvsyfG8gnfPY/SnyEWLZyj1YjtB+dr6
-	olcn4chQmRXtpA1ii9hYdxXuwCQc0BZhC+2JZoRMPCISC+0zSUr+ChWzdLvSzgHWt/bjHsZ6hue
-	zwQ2cfusDh4QZCDZD2VYc09ws3B
-X-Received: by 2002:a17:907:78c:b0:b90:ba11:1694 with SMTP id a640c23a62f3a-b935b936384mr131201466b.50.1772111500895;
-        Thu, 26 Feb 2026 05:11:40 -0800 (PST)
+        bh=doSnaoOeWo4jS3UXOttanh09pOHZ+ZihIcXNRAknjGs=;
+        b=Pmg6t+M6STWFGJ43wPCgrWbl0h5NZCB2T1wWxkNtZaknAC3iqXtLRbEk3pB7WEf4Oo
+         cVtzDxCBRaDEEO0faiq6h7hcr35kKIjt2apPLFq5SNQ8WwJRlpeGevGObnz8cO8Ixr7P
+         /pOatVdI/YpBTSPrd3CoWcwnlbBz70i3UbSvOHx/gb1YQBW70xz/fSpUE2nM7BdsVzdk
+         AF3SA/Q+mqefctTgPPtYd+0CkCiZ7WQaudAQgKKNjSsUiPnuzVxuFXbThpSDSva2g+jx
+         UEjvGrAgyi2e9eddwkJz9WAwTF4JSZlReMNquejiQt4yo+TNzc1aQF6Jce4gsL256y7N
+         2sqA==
+X-Forwarded-Encrypted: i=1; AJvYcCXXv5IwsdlpaUKSHqi4NR7qKzU/ngG1H3pBj/riKMhykpDl5QqeChpvPGJg0ETLyO2bvh8oj400dlkZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzp+SABIQfOWuxO91rP4J4H8mZFXIh5IZop7WoM3nGLshh1IsDb
+	pgSptLOFMnOmFJJbQY+07s6uvnoiiSqPwGrMb75NP4WpAObewV7h0lC4yVaDzKmcots=
+X-Gm-Gg: ATEYQzxLDUJN3tGK9XvbuJcNUuzr/8tEBKLJ32tQFkTEqEkgjkXV5jbzYDTd2VlI6wP
+	Hc6Fs4FoGs1zDPc7vEp143aMTChuPFXHvLcIE3qTlkzL2Patq3T47AForwm0OslOP/sYUks9dJt
+	bRN+lw/xKsfZAwH2Et6nYve9hy/iia8FaddrgYVEC/dB8Q0hPcpbTPctd8//u8McnIsG0/16Zzq
+	8nrLKvUsCMGYDQo45isOrWdbtApFs1sOQio+Bk3hTPoynS+dEk+PeAi5ezIiNSb3xepXl7Jmgi0
+	WBJA0ERwBbj5E3lVSgd5O+do0Jc1nrsixXyVNQS7uNFHps2Vl4i6GoP9TmTZYI3lppoO2ZWP6n1
+	PXNTwnB05K3OSLNj3Me2SrCJ5dEM2/II7XmQiIHC0n7fm8J1vGSECpSeNkmZhwdWoPWIyfaHdR5
+	l54LfQa1jQ9iVnT33CmZR/HtPTYXA/ytacNTMaT9sfUfawoUjmYxXOcMQjABq9mr1KDWoMSJk3K
+	xdJ/Mf4pXjDqF6lGA==
+X-Received: by 2002:a17:906:9fc5:b0:b8f:7aa8:d9a4 with SMTP id a640c23a62f3a-b93514dcbe7mr261352866b.20.1772111502212;
+        Thu, 26 Feb 2026 05:11:42 -0800 (PST)
 Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b935ac73d2asm55125866b.26.2026.02.26.05.11.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 05:11:40 -0800 (PST)
+        Thu, 26 Feb 2026 05:11:41 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Thu, 26 Feb 2026 13:11:40 +0000
-Subject: [PATCH 06/11] power: supply: max17042: avoid overflow when
- determining health
+Date: Thu, 26 Feb 2026 13:11:41 +0000
+Subject: [PATCH 07/11] power: supply: max17042: time to empty is
+ meaningless when charging
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260226-max77759-fg-v1-6-ff0a08a70a9f@linaro.org>
+Message-Id: <20260226-max77759-fg-v1-7-ff0a08a70a9f@linaro.org>
 References: <20260226-max77759-fg-v1-0-ff0a08a70a9f@linaro.org>
 In-Reply-To: <20260226-max77759-fg-v1-0-ff0a08a70a9f@linaro.org>
 To: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
@@ -109,7 +109,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -117,7 +117,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268824-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268825-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -126,45 +126,41 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8A6801A6306
+X-Rspamd-Queue-Id: 01DA51A632E
 X-Rspamd-Action: no action
 
-If vmax has the default value of INT_MAX (e.g. because not specified in
-DT), battery health is reported as over-voltage. This is because adding
-any value to vmax (the vmax tolerance in this case) causes it to wrap
-around, making it negative and smaller than the measured battery
-voltage.
+When charging, the fuel gauge reports U16_MAX as time to empty.
+Ignoring this special case (as this driver currently does), causes the
+remaining time to be reported as ~102hours, which is incorrect.
 
-Avoid that by using size_add().
+Update the code to not return anything in this case.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- drivers/power/supply/max17042_battery.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/power/supply/max17042_battery.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
-index b9277f81a25d..8808c0d2ad10 100644
+index 8808c0d2ad10..bae0670e2496 100644
 --- a/drivers/power/supply/max17042_battery.c
 +++ b/drivers/power/supply/max17042_battery.c
-@@ -201,7 +201,11 @@ static int max17042_get_battery_health(struct max17042_chip *chip, int *health)
- 		goto out;
- 	}
+@@ -434,6 +434,10 @@ static int max17042_get_property(struct power_supply *psy,
+ 		if (ret < 0)
+ 			return ret;
  
--	if (vbatt > chip->pdata->vmax + MAX17042_VMAX_TOLERANCE) {
-+	/* avoid
-+	 * /sys/class/power_supply/max170xx_battery/health:Over voltage
-+	 * due to overflow
-+	 */
-+	if (vbatt > size_add(chip->pdata->vmax, MAX17042_VMAX_TOLERANCE)) {
- 		*health = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
- 		goto out;
- 	}
++		/* when charging, the value is not meaningful */
++		if (data == U16_MAX)
++			return -ENODATA;
++
+ 		val->intval = data * 5625 / 1000;
+ 		break;
+ 	default:
 
 -- 
 2.53.0.414.gf7e9f6c205-goog
