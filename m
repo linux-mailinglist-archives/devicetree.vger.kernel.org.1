@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-268932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268933-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MCxCOQVvoGk3jgQAu9opvQ
-	(envelope-from <devicetree+bounces-268932-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:04:21 +0100
+	id QFpdHG9roGk3jgQAu9opvQ
+	(envelope-from <devicetree+bounces-268933-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:49:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C081A9843
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:04:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2271D1A9154
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:49:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8F2BF31CDD70
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:47:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BDF65305CAAB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8874F423A76;
-	Thu, 26 Feb 2026 15:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 854F84266AE;
+	Thu, 26 Feb 2026 15:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zimCZc4S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mOMu0akj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C653D7D8D
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 15:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12ADC425CD1
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 15:47:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772120840; cv=none; b=jAcn/4VNq7hzQ23fOfCjrFAZo79kIc7tRCODXEE6HX7oOJ0DnR3RvAwyHOLuFf0byLsq1dk7wuGmiZANN0+qWeIQQVlV/rxylTqs94iR++IUKyRQpCxOYAEgiEQRwgMFYZ1Cf3Y9x/a3Idfl1j6LWGVOw0OqYV50EtaROjNRy7A=
+	t=1772120843; cv=none; b=Ijp0BlOtxH7oqr2tTRsC+rMZECz/byJGQfBFXf/AGq5E4FbxtRajWLUFhfwq/GRxNa6AVw7oEHBZQ796Mi5tdykncWVq1RzzCrvmvUpAhxIdAYBlk3UcUq5H/I55ChR9vSVSDmq8jTRujSBVjytEERu0OYsoLFiXFOiyfvPlRxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772120840; c=relaxed/simple;
-	bh=dQXpAN5o0ehB/7L1Q7jEKxLStCp6A4gPujkB8f3PCYQ=;
+	s=arc-20240116; t=1772120843; c=relaxed/simple;
+	bh=owcHZmdFB8zEmzqIjY21q/Dw0rwYCUtosZQrUBx8k0M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=itcMjiabL6izmYbU01Xl5cr/EIse3k/uXaFkcz4MV88E3O7n17Yj9ncEQ2X0aNjy/aINTN8xNRFWD9RkUjPeHRLvuT3Yl2AqXJiBEs6uRBoWidMnBt0XX48M8KGJ4V8tQSVyIAYZMb42Y98ziZCXQWHDErhTQ/lcE3QJmYb0rs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zimCZc4S; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:To:Cc; b=iKxzGtsoRSFgObNrX+IUiVt3IJpbNIswurUWw0/EEz/wKtiSZlwsva4NulsFi4ZzSiS90zPTSSSrLnEfshb8hDK70O/KiTZO4i4HFVeDc02nuExOQfqpei13IalUKWCSv7rqaKZ6Swj9OB3+tKgm0Z1ldRRP3Qfljv8LlR9tCHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mOMu0akj; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4838c15e3cbso9320815e9.3
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:47:16 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-48329eb96a7so7829975e9.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:47:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772120835; x=1772725635; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1772120836; x=1772725636; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=w4JELgxsFHw+6nBu+y8vI4aNbSoxJuvNiKsH4U80RpQ=;
-        b=zimCZc4SPC62n/V3U48fdokMPVI8hQTofyrdxERfH85tVEs6b+fvbfeZmiHhyY5tv5
-         Jvo4WH4kL8IQh2z9EXZRG8shAQwXPpgk3mEXI+NtGPkAaipKmkGv3THvPpTH9+dMQU9m
-         J0u9CRrlkPVwXHpz9/Lkg8prU/CKGftMx69KQxgJPgnxK1+jS3BiODnCx66FVDGenTcJ
-         1sJOlopo4StocHER9u0QwuW8foiUF/x33bqKYR5/Hsto6pAbJa8vXxtMreaj/aEtEEZ9
-         EYPodYIzDcB5stb++Kv0evwMS6od7EP92jahO47BBfeDdrcIqIiK+7d8phMrAoc85rfR
-         +cpw==
+        bh=FbzUlYKMaWIfUalQuB+QlRwOyMJx/oa+ZaF52Snu/7g=;
+        b=mOMu0akjTgfjUQYgxoVmzSJxdxtOk4VN7VTZ+e0iJkIsxXnNUcSlcBPmXObkjv5sLO
+         mM3d02cuS//gr5HeFjiju/4CoUvDgoN9IHUyGJaqe/YkT7qQMzgp1bOJiZX5fNmhmd1j
+         7Yk8IyC5x05uGwYgIKnL17UvN2T9OFmcO64RlwehgHE2Bkt6gwHE+uzgIQ4opuc14LtM
+         Xv5ZnUipkdZa278OfYEu4vmnsqsehPe4xXen0dbY8nmENMoOAmlQ2M2IlQGYSByp7l7a
+         MDLI/CsXKyohYLsSNCyO8ZTdZbjexBn/BEW6ndZ7gAp0cUX0IHE7zieXu3irUcCl1UCi
+         ZwIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772120835; x=1772725635;
+        d=1e100.net; s=20230601; t=1772120836; x=1772725636;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=w4JELgxsFHw+6nBu+y8vI4aNbSoxJuvNiKsH4U80RpQ=;
-        b=GmpCxaWB0bvcre9+sdRhvV2OCcO8xFNitX/UtIg/lGU2XcjGbWh4pJX2yVVuA3Ksi7
-         RUgghtelpszJJyZnDEk9Vi8SISxyfHJ2yrLHDPfoDwOwlGnM2iLGBPr8QiZU8YpNsqQ5
-         n/iykA/J1LMeJA+rfW6/v1KUIEwAT4SqQElMtXezK5L1DMLEm3uHOcBYtH15Qhg7uXkp
-         INC9kLXUQgz7qmRRRsueFYdczwNLHMrRewfizXJHonoTsI5G2XD3wUoFOvqutiPDPjjh
-         /J/QsGm3Kl5LxrViSmjHVu0tLOsAWtdhPTudTQcXPFRVGdjYvnWviBVMmjxD6JMjF8u9
-         or/g==
-X-Forwarded-Encrypted: i=1; AJvYcCUiZv+d7qGR2y8gJNFtwtxpwL/b5vRIN6MYNfu8y4iIP8PzqQZ689ohO2InTSN9H/0qTWVOEsieEHjZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwuSSoRAstaBLSJ5upUqxZAgxRuI2fNHPn+8GPzH5wUIAacnue
-	sjFhTVHFWyNsxcAokz77cLF3r6aS+ms+cEU41PenMt1jqIwGiLtdXVm1Ka7pSNDAmVM=
-X-Gm-Gg: ATEYQzwc/+qN+57jtWWRIf5tUbjKvBG4KD/Ujnf+Ui5lPCKFEoE7pRQq/D3CY9HKOHl
-	0vWeLAYF70UE18BXmEqlL80Zt6wwoZIY5n9qEmA+f/raPSTqmq3pW5fACDpZO29X38/mhPPQOZg
-	uC7V/P61fzA8zUrT1+0EGCSJP83U2N5OXzFLqTMtcQ4KE22QLnHj2NDVzUCpOkvlLDlZFgwZtxU
-	f5DREUBXGbhzIqXadkgi0jjgBP06YVYwroRiJ4bh5lDiWdzrPU4Zf8ic5BdvtV4gGqRwj+lLuGA
-	D6tUzp8k14cKDWRquSU2f4pYgyoKwmOFYRjpVMK8MXzlXqEGhUJzZS9/wDdu+gBpd3+jooqe5JQ
-	BfeB+J0+klQfBtAQ4Yn/28IbGvH8wYsmOvbmF78+V0LUF9I1DvnOHG62nzk56wTF5Sgk3wz3/1t
-	Mv+tqm4PC/NTA0JvY8nsrA+RcbCexvGP2e+Hhl0mwT1eUa6IvbprKPS5wjfy4BBgxhIbjTW1Mdd
-	Px5YWSo7QxladT8jKW0U6cpFg==
-X-Received: by 2002:a05:600c:3516:b0:480:2521:4d92 with SMTP id 5b1f17b1804b1-483a96377c9mr346111365e9.24.1772120835139;
-        Thu, 26 Feb 2026 07:47:15 -0800 (PST)
+        bh=FbzUlYKMaWIfUalQuB+QlRwOyMJx/oa+ZaF52Snu/7g=;
+        b=ZiuoHrk49NldMoMICe/4Hv1r4CU2NrF0jtwW6R2SrVxh39EZmM7i4UAss4HO0x0SNL
+         mV31eegA6lW/vyI+cqfXmpKJdzP5fuvdmJzBeyeI6YwHsHJ6UYzn9W8rokwOkwOjD4bL
+         85WGKCuVBNo5fSxwrMueIuiiHNvGleL/DptbiZPAz+NrG08mmjIqXBjZ48KLw8417vfd
+         il2vwHGkrKO7m4hddKVTIeHY58PWJFacGi2y7mZmAsTkhubcYDs4MEWGLUfDoSLOdqsy
+         NdAZIYMl7F6kmmZ/SURdFTbl0waTPWZpLpTFPsX+VqorAk5S2oP65/wkBeHOQe6bquJ6
+         eOCw==
+X-Forwarded-Encrypted: i=1; AJvYcCU9iufHc4g9WKLnBE+6Xq5AEQ8AHNr7HX430fDTNwHCE9kwtiDlCfWHeuw1aeNyWkbx/rewpsCY2kdH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHKrf37LPLnWjGw6DbKO+QMjS6XGkcpZ+1T4iffvEbD5HIRFSa
+	+nzp/XGcT+XCHrO9FOuXkPUFCT5bokpE5N+V6DWh07+Apcyn+6z8KsDdC1kIxIkoS/4=
+X-Gm-Gg: ATEYQzwvJo3+lFtgDFYDSmoybVvXGfH7JXZvNxtFsHOYj/PaXyPrg0duo5BRXT0i4NB
+	g9D/oujB2pXG/ukE+NUrC/oPGcceW4HgGMw4BqI/Ze9+CZX49lNNKVtVoSUtlfT44SRy8aE3PsX
+	Zg8TNVfWo80ok8IiiNE02pSKGYN5xB0GgxBoAI2jfcDZZ569u476tyd3xiHMe3TlPHMZHOhAeyX
+	6uQ9LUn1mCaJHtMYBGYS3RdqNdErrlaBx2b8B6nYIXJhFPIBauvwWoC0HCrjKUgqX+u1K41LcQJ
+	zpvspvNRrCglT3wrqmjgr3LsbWentqmEOMSEJXS43upedTt3QfgkLIt+1tcDHZOT4yhzBjN2cFX
+	+rjKQSPBN7rHncUpRLz4hswSDNnxni8vJbhYJeMXRWkX7S4LvB7LcH7TWUw0HYb5VxwqUSeLr0U
+	3E2Ffc4mUXXeD3iUp15F4peBtdyvee0rb/lPTN0pp1YJNtKXaOMorKTYgs6gJ3a80yV4vPC4Nq0
+	tKZp42qgaRAOXc=
+X-Received: by 2002:a05:600c:3f14:b0:483:703e:4ad5 with SMTP id 5b1f17b1804b1-483a95e2563mr324727115e9.22.1772120836160;
+        Thu, 26 Feb 2026 07:47:16 -0800 (PST)
 Received: from [127.0.1.1] ([94.4.193.72])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b4410bsm56007365e9.6.2026.02.26.07.47.14
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b4410bsm56007365e9.6.2026.02.26.07.47.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 07:47:14 -0800 (PST)
+        Thu, 26 Feb 2026 07:47:15 -0800 (PST)
 From: Alexey Klimov <alexey.klimov@linaro.org>
-Date: Thu, 26 Feb 2026 15:47:11 +0000
-Subject: [PATCH RFC 5/8] soc: samsung: exynos-pmu: rename GS101_INTR_* regs
- to EXYNOS_INTR_*
+Date: Thu, 26 Feb 2026 15:47:12 +0000
+Subject: [PATCH RFC 6/8] soc: samsung: exynos-pmu: generalise GS101 PMU
+ intr gen for Exynos SoCs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-exynos850-cpuhotplug-v1-5-71d7c4063382@linaro.org>
+Message-Id: <20260226-exynos850-cpuhotplug-v1-6-71d7c4063382@linaro.org>
 References: <20260226-exynos850-cpuhotplug-v1-0-71d7c4063382@linaro.org>
 In-Reply-To: <20260226-exynos850-cpuhotplug-v1-0-71d7c4063382@linaro.org>
 To: Sam Protsenko <semen.protsenko@linaro.org>, 
@@ -108,7 +108,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -116,97 +116,180 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268932-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268933-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 39C081A9843
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2271D1A9154
 X-Rspamd-Action: no action
 
-The PMU interrupt generation block is not exclusive to gs101 SoCs and
-is present on few Exynos-based platforms. Rename registers of this
-hardware block prefixed with GS101_INTR to be prefixed with EXYNOS_INTR.
+The GS101 PMU interrupts generation block is not exclusive to Google
+GS101 SoCs and is a standard Exynos IP block found in different older
+SoCs like Exynos850 and others.
+To prepare for the addition of Exynos850 PMU interrupts generation block
+and cpu hotplug support we need to generalise (Exynosize or Exynosify)
+names and calls related to CPU hotplug and CPU idle.
+pmu_context struct has now calls to offline and online procedures which are
+SoC specific (and maybe even firmware-specific for any given board),
+and one of this set of {offline,online} calls becomes GS101-specific.
+This allows adding calls for other boards later.
 
 Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 ---
- drivers/soc/samsung/exynos-pmu.c            | 16 ++++++++--------
- include/linux/soc/samsung/exynos-regs-pmu.h | 10 +++++-----
- 2 files changed, 13 insertions(+), 13 deletions(-)
+ drivers/soc/samsung/exynos-pmu.c | 39 ++++++++++++++++++++++-----------------
+ 1 file changed, 22 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exynos-pmu.c
-index d58376c38179..92870e6ffc1c 100644
+index 92870e6ffc1c..0967fa56708a 100644
 --- a/drivers/soc/samsung/exynos-pmu.c
 +++ b/drivers/soc/samsung/exynos-pmu.c
-@@ -244,12 +244,12 @@ static int __gs101_cpu_pmu_online(unsigned int cpu)
+@@ -36,6 +36,8 @@ struct exynos_pmu_context {
+ 	 */
+ 	raw_spinlock_t cpupm_lock;
+ 	unsigned long *in_cpuhp;
++	int (*cpu_pmu_offline)(unsigned int cpu);
++	int (*cpu_pmu_online)(unsigned int cpu);
+ 	bool sys_insuspend;
+ 	bool sys_inreboot;
+ };
+@@ -256,7 +258,7 @@ static int __gs101_cpu_pmu_online(unsigned int cpu)
+ }
  
- 	mask = BIT(cpu);
+ /* Called from CPU PM notifier (CPUIdle code path) with IRQs disabled */
+-static int gs101_cpu_pmu_online(void)
++static int exynos_cpu_pmu_online(void)
+ {
+ 	int cpu;
  
--	regmap_update_bits(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_ENABLE,
-+	regmap_update_bits(pmu_context->pmuintrgen, EXYNOS_GRP2_INTR_BID_ENABLE,
- 			   mask, (0 << cpu));
+@@ -268,20 +270,20 @@ static int gs101_cpu_pmu_online(void)
+ 	}
  
--	regmap_read(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_UPEND, &reg);
-+	regmap_read(pmu_context->pmuintrgen, EXYNOS_GRP2_INTR_BID_UPEND, &reg);
+ 	cpu = smp_processor_id();
+-	__gs101_cpu_pmu_online(cpu);
++	pmu_context->cpu_pmu_online(cpu);
+ 	raw_spin_unlock(&pmu_context->cpupm_lock);
  
--	regmap_write(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_CLEAR,
-+	regmap_write(pmu_context->pmuintrgen, EXYNOS_GRP2_INTR_BID_CLEAR,
- 		     reg & mask);
+ 	return NOTIFY_OK;
+ }
+ 
+ /* Called from CPU hot plug callback with IRQs enabled */
+-static int gs101_cpuhp_pmu_online(unsigned int cpu)
++static int exynos_cpuhp_pmu_online(unsigned int cpu)
+ {
+ 	unsigned long flags;
+ 
+ 	raw_spin_lock_irqsave(&pmu_context->cpupm_lock, flags);
+ 
+-	__gs101_cpu_pmu_online(cpu);
++	pmu_context->cpu_pmu_online(cpu);
+ 	/*
+ 	 * Mark this CPU as having finished the hotplug.
+ 	 * This means this CPU can now enter C2 idle state.
+@@ -320,7 +322,7 @@ static int __gs101_cpu_pmu_offline(unsigned int cpu)
+ }
+ 
+ /* Called from CPU PM notifier (CPUIdle code path) with IRQs disabled */
+-static int gs101_cpu_pmu_offline(void)
++static int exynos_cpu_pmu_offline(void)
+ {
+ 	int cpu;
+ 
+@@ -338,14 +340,14 @@ static int gs101_cpu_pmu_offline(void)
+ 		return NOTIFY_OK;
+ 	}
+ 
+-	__gs101_cpu_pmu_offline(cpu);
++	pmu_context->cpu_pmu_offline(cpu);
+ 	raw_spin_unlock(&pmu_context->cpupm_lock);
+ 
+ 	return NOTIFY_OK;
+ }
+ 
+ /* Called from CPU hot plug callback with IRQs enabled */
+-static int gs101_cpuhp_pmu_offline(unsigned int cpu)
++static int exynos_cpuhp_pmu_offline(unsigned int cpu)
+ {
+ 	unsigned long flags;
+ 
+@@ -355,29 +357,29 @@ static int gs101_cpuhp_pmu_offline(unsigned int cpu)
+ 	 * ACPM the CPU entering hotplug should not enter C2 idle state.
+ 	 */
+ 	set_bit(cpu, pmu_context->in_cpuhp);
+-	__gs101_cpu_pmu_offline(cpu);
++	pmu_context->cpu_pmu_offline(cpu);
+ 
+ 	raw_spin_unlock_irqrestore(&pmu_context->cpupm_lock, flags);
  
  	return 0;
-@@ -304,16 +304,16 @@ static int __gs101_cpu_pmu_offline(unsigned int cpu)
- 		     CPU_INFORM_C2);
+ }
  
- 	mask = BIT(cpu);
--	regmap_update_bits(pmu_context->pmuintrgen, GS101_GRP2_INTR_BID_ENABLE,
-+	regmap_update_bits(pmu_context->pmuintrgen, EXYNOS_GRP2_INTR_BID_ENABLE,
- 			   mask, BIT(cpu));
+-static int gs101_cpu_pm_notify_callback(struct notifier_block *self,
++static int exynos_cpu_pm_notify_callback(struct notifier_block *self,
+ 					unsigned long action, void *v)
+ {
+ 	switch (action) {
+ 	case CPU_PM_ENTER:
+-		return gs101_cpu_pmu_offline();
++		return exynos_cpu_pmu_offline();
  
--	regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
--	regmap_write(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_CLEAR,
-+	regmap_read(pmu_context->pmuintrgen, EXYNOS_GRP1_INTR_BID_UPEND, &reg);
-+	regmap_write(pmu_context->pmuintrgen, EXYNOS_GRP1_INTR_BID_CLEAR,
- 		     reg & mask);
+ 	case CPU_PM_EXIT:
+-		return gs101_cpu_pmu_online();
++		return exynos_cpu_pmu_online();
+ 	}
  
- 	mask = (BIT(cpu + 8));
--	regmap_read(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_UPEND, &reg);
--	regmap_write(pmu_context->pmuintrgen, GS101_GRP1_INTR_BID_CLEAR,
-+	regmap_read(pmu_context->pmuintrgen, EXYNOS_GRP1_INTR_BID_UPEND, &reg);
-+	regmap_write(pmu_context->pmuintrgen, EXYNOS_GRP1_INTR_BID_CLEAR,
- 		     reg & mask);
+ 	return NOTIFY_OK;
+ }
  
+-static struct notifier_block gs101_cpu_pm_notifier = {
+-	.notifier_call = gs101_cpu_pm_notify_callback,
++static struct notifier_block exynos_cpu_pm_notifier = {
++	.notifier_call = exynos_cpu_pm_notify_callback,
+ 	/*
+ 	 * We want to be called first, as the ACPM hint and handshake is what
+ 	 * puts the CPU into C2.
+@@ -425,6 +427,9 @@ static int setup_cpuhp_and_cpuidle(struct device *dev)
+ 		return 0;
+ 	}
+ 
++	pmu_context->cpu_pmu_online = __gs101_cpu_pmu_online;
++	pmu_context->cpu_pmu_offline = __gs101_cpu_pmu_offline;
++
+ 	/*
+ 	 * To avoid lockdep issues (CPU PM notifiers use raw spinlocks) create
+ 	 * a mmio regmap for pmu-intr-gen that uses raw spinlocks instead of
+@@ -458,17 +463,17 @@ static int setup_cpuhp_and_cpuidle(struct device *dev)
+ 
+ 	/* set PMU to power on */
+ 	for_each_online_cpu(cpu)
+-		gs101_cpuhp_pmu_online(cpu);
++		exynos_cpuhp_pmu_online(cpu);
+ 
+ 	/* register CPU hotplug callbacks */
+ 	cpuhp_setup_state(CPUHP_BP_PREPARE_DYN,	"soc/exynos-pmu:prepare",
+-			  gs101_cpuhp_pmu_online, NULL);
++			  exynos_cpuhp_pmu_online, NULL);
+ 
+ 	cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "soc/exynos-pmu:online",
+-			  NULL, gs101_cpuhp_pmu_offline);
++			  NULL, exynos_cpuhp_pmu_offline);
+ 
+ 	/* register CPU PM notifiers for cpuidle */
+-	cpu_pm_register_notifier(&gs101_cpu_pm_notifier);
++	cpu_pm_register_notifier(&exynos_cpu_pm_notifier);
+ 	register_reboot_notifier(&exynos_cpupm_reboot_nb);
  	return 0;
-diff --git a/include/linux/soc/samsung/exynos-regs-pmu.h b/include/linux/soc/samsung/exynos-regs-pmu.h
-index db8a7ca81080..9c4d3da41dbf 100644
---- a/include/linux/soc/samsung/exynos-regs-pmu.h
-+++ b/include/linux/soc/samsung/exynos-regs-pmu.h
-@@ -1009,11 +1009,11 @@
- #define GS101_PHY_CTRL_UFS                      0x3ec8
- 
- /* PMU INTR GEN */
--#define GS101_GRP1_INTR_BID_UPEND				(0x0108)
--#define GS101_GRP1_INTR_BID_CLEAR				(0x010c)
--#define GS101_GRP2_INTR_BID_ENABLE				(0x0200)
--#define GS101_GRP2_INTR_BID_UPEND				(0x0208)
--#define GS101_GRP2_INTR_BID_CLEAR				(0x020c)
-+#define EXYNOS_GRP1_INTR_BID_UPEND				(0x0108)
-+#define EXYNOS_GRP1_INTR_BID_CLEAR				(0x010c)
-+#define EXYNOS_GRP2_INTR_BID_ENABLE				(0x0200)
-+#define EXYNOS_GRP2_INTR_BID_UPEND				(0x0208)
-+#define EXYNOS_GRP2_INTR_BID_CLEAR				(0x020c)
- 
- /* exynosautov920 */
- #define EXYNOSAUTOV920_PHY_CTRL_USB20				(0x0710)
+ }
 
 -- 
 2.51.0
