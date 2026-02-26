@@ -1,142 +1,154 @@
-Return-Path: <devicetree+bounces-268790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268789-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGaAGK8toGm0fwQAu9opvQ
-	(envelope-from <devicetree+bounces-268790-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:25:35 +0100
+	id UIQLNJUtoGm+fwQAu9opvQ
+	(envelope-from <devicetree+bounces-268789-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:25:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B5371A5046
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:25:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 091581A502E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:25:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E89E3307219A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:25:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 67529301D54E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:25:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7641036656C;
-	Thu, 26 Feb 2026 11:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39833366DC4;
+	Thu, 26 Feb 2026 11:25:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="bvSGtS0A"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="n/p1+SYd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE2C3624C4;
-	Thu, 26 Feb 2026 11:25:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE1443644A0
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 11:25:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772105131; cv=none; b=qBLYG4VnkfI8M9j9ZYu6ydju43E5FlvcdiGG6Cuah+GZ5GgmHbOz+4C8Cr6Hiqi2CcZBkG4vdoidYzE/1idUoJwPEBLPZg28XeFCyzuPgLybYSyxvOt55iqYNgZKr1JtpXiJefLDhNrwe5+DqCtfo6IBBtuRBAMrvKxWCApVZnQ=
+	t=1772105104; cv=none; b=XaRxTyuwMk3Z1Fwrsop1Nh4v85ey99nexn3mpo37VKsscdwPDOEhvaY9a1UqfkSJ3RxYE8ZZwlxFbTVNwt/pDRd1xgPrnPz08vBeIOF5NrPL6ZPCUTjd6Nyf2SalRXxl+znG/xOBQGWRA3LasPvQY0Txya2QdasGF5PRN048ibg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772105131; c=relaxed/simple;
-	bh=BZoG2+nssJfvfR/Kr7cZfRfAHIF/UEVtluNJU+Zz8fg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=tyFbaNJcyuCfvK8xBIDFCOjytEDk0sKFP1qyBixY+34ipyD8JmS7k9qkrABTtSB9kwKE9a3DMd6yDNAekV7NPINVNxAK5/Rrkg4uua1n33YCDyRZiwCxpv/la2XpXNxFsfDtaDKSyRBylrTuqEzT3zhWJ+20LCL+A3C9GXPHDvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=bvSGtS0A; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=BZoG2+nssJfvfR/Kr7cZfRfAHIF/UEVtluNJU+Zz8fg=; b=b
-	vSGtS0ASdA9brQSlySE6g7fNuV3OEfXPIt5YanYIejtVdOLLu4AVTAxok7wEGM89
-	yiVlepkf94c4FcSfz621kJn3eVV6txDFd8aFsSh3+UgPf89GBj2ag8azfyU7FWfV
-	tvP2cxwWyp6Gu78zN8Qnuv+pQU9RXmBFcsqfpfzJv4=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-146 (Coremail) ; Thu, 26 Feb 2026 19:24:48 +0800
- (CST)
-Date: Thu, 26 Feb 2026 19:24:48 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Chaoyi Chen" <kernel@airkyi.com>
-Cc: "Rob Herring" <robh@kernel.org>,
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-	"Conor Dooley" <conor+dt@kernel.org>,
-	"Heiko Stuebner" <heiko@sntech.de>,
-	"Alexey Charkov" <alchark@gmail.com>,
-	"Shawn Lin" <shawn.lin@rock-chips.com>,
-	"Chaoyi Chen" <chaoyi.chen@rock-chips.com>,
-	"Andy Yan" <andy.yan@rock-chips.com>,
-	"Sebastian Reichel" <sebastian.reichel@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re:[PATCH] arm64: dts: rockchip: Fix sdmmc pwren pinctrl for
- rk3576-evb2
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
- 20251222(83accb85) Copyright (c) 2002-2026 www.mailtech.cn 163com
-In-Reply-To: <20260226102052.63-1-kernel@airkyi.com>
-References: <20260226102052.63-1-kernel@airkyi.com>
-X-CM-CTRLMSGS: JZu7TnBsdXM9MTc3MjEwNTA4NzEwN18xNjg5ZmU5ZjAwMDRiZWY5NTU2Y2MyM
- DQ3YmQ2OWE1Yw==
-X-NTES-SC: AL_Qu2cAP2bukgj7iGfZ+kfmUgWjuw/WsG1v/Ul1YBSP556jCzr9zsff3pGG3Dp4sKQJjGPnz6sShppxtxDcKp/T5wNjDi5I4wrNCjoHzy/mNnPfQ==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1772105104; c=relaxed/simple;
+	bh=qoAG85cQLkPyPVkb7i8S/gUbpDBrputYuNRJ4SQGpNg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CR+SoE6a23jq9vvhPjtYFj7wtE7r9NrqpNPQKe893n7WW3ysjdJjKNpvFBq1iKk8WdNU1eQ6o6jnBhF8bwkhfvETuaeo10Fmol5AtfOkm8Zfwoyj+lo3drN/pB9Cr0Kl1onOIDxY9xonqkn21uCCQ77x0MSN/pNRBgreYe4D3SY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=n/p1+SYd; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-48371bb515eso10084695e9.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 03:25:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1772105101; x=1772709901; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qoAG85cQLkPyPVkb7i8S/gUbpDBrputYuNRJ4SQGpNg=;
+        b=n/p1+SYdFrt6YgNGhj3aaQx5Cq3pxOpub5ZM3RDpqsV7UsGO0y1u2UWb+Vv4MK4Rs0
+         q+f1Do0MU0XkZYJWYL5R4b1l3Sw7d2X1yF1Oi8CVjQl0Tvs1jk/kVZ3+TiIUAQgYO429
+         Sadbb+U0Pt40ORsmyJMsVzwH2Vfp++5qrqk7MHSml2TLkw2vLcc6OyBLrFVtlBUKNSc9
+         KpFMqlqcXGNpGDdfAVAPe1lcCn51Rdu4doc6zVFyEIh2Ctbp+hMhUXL+cdDUX1A4PeJr
+         Ye/uMlA3F/P7n1VKXKgbNG3CWfOns1M30BMnmhmYC+MdDkPlRz7PGVLxCs56eT3Naxei
+         ODgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772105101; x=1772709901;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qoAG85cQLkPyPVkb7i8S/gUbpDBrputYuNRJ4SQGpNg=;
+        b=wnrsw64i8vGMj78NWbeqNtg05hKaQycc/p3gcPjTdLoxU9vu3QIcK4gOxGGYEkfTlO
+         Zg3MdHMTBBW87byCSWTJbtpCPXPEY7k5vVKfx65/A4O7U+1MTz/YSUfQSkgF2TIUyabL
+         /giZ3FjFr9ztM0JUIph4coJBwRvkVJb5KrJcrU9zhcm6g7/30ag6zi8YnbysJP1o4M+a
+         dttmiNmfa1IGQMTaM1YEGMt33G0gSQ2HtDqhbA4pOgXHunoN6JZeJRRXAFvChuXr3ga+
+         YUt8h+ICcAHOjdTdy5TYMmKWkolYisyNRd9lJqk6hi/RwUYoNEFNh2T2InWSkMlXIA06
+         em1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUYLTuTrQ7pdQtLH8GOl6v9+krQJfzEmHbRK7DUC/BEwf4dAnpPDlnNq262biAYQ7VKRTEsNINpxTN5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwA9gJ16mY5zkevMsKiagILW7sREqoVJ6fqlTRydm89cmFebYCl
+	jwFS7ypbGMxQN3hCzYQPo3hEl8T6GiJX7oUKlRzgazoeN3Azez9eliHsyPf1HyQ7u0E=
+X-Gm-Gg: ATEYQzzcEGd2aNqCjrKGpLXPu8ZpS2aWdQ6Y3HyUJNnIk431SnslHONMHIzIca23tSP
+	IztSFLseRZPtAiEs+SnoUYZtweyFW5etU+op2KP6F1AzUW8gR+BUMIKfwpSdiJMKaLGEVM8+r94
+	jkX26CYfga0ZG5ssuyXlGns7vBWHYsImt/NMgci7m3iwqVi9dAHIekap5htwX8jKvD8Q3mWq+No
+	fa02IA3ksXbE00j9h9YYrPj5FqXbc4xkmYYguF4I9iX3bHW5CNvK55qCa43vhCNZW9Cp+2ZHMgS
+	ATJiivzAOhOHgVnnOpdsZoabdNx1jWhmHBVNJXF/QB96h0CLP7DI3xFIVsOguZkS6Lzn2ePAphe
+	TFypl90VCPMQv3UMQ6ilB3//EzAXMlNmjM7v+eBnnAVqHdnbSuW8txXYQSYiB9DRrLjk7DT8ddU
+	LqiCqnSo82eS7qJTxG3cFqfnxZ7fH4Hg==
+X-Received: by 2002:a05:600c:5020:b0:483:b01c:9508 with SMTP id 5b1f17b1804b1-483c3da0abdmr31292235e9.2.1772105101244;
+        Thu, 26 Feb 2026 03:25:01 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.73])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfbb465bsm82044185e9.3.2026.02.26.03.24.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Feb 2026 03:25:00 -0800 (PST)
+Message-ID: <a30132d9-6966-4ac2-82af-b1a20a2b1a12@tuxon.dev>
+Date: Thu, 26 Feb 2026 13:24:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <71bf3205.7a33.19c99b1bcb7.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:kigvCgBHn2mALaBp8zFtAA--.12630W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbC7QDtTGmgLYDFEQAA38
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 09/16] PCI: rzg3s-host: Make configuration reset lines
+ optional
+To: John Madieu <john.madieu.xa@bp.renesas.com>,
+ claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org,
+ kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be,
+ krzk+dt@kernel.org
+Cc: robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
+ magnus.damm@gmail.com, biju.das.jz@bp.renesas.com,
+ linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
+References: <20260219223542.6364-1-john.madieu.xa@bp.renesas.com>
+ <20260219223542.6364-10-john.madieu.xa@bp.renesas.com>
+Content-Language: en-US
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20260219223542.6364-10-john.madieu.xa@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.44 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268790-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[163.com];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,gmail.com,rock-chips.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-0.975];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andyshrk@163.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-268789-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[tuxon.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,bp.renesas.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[tuxon.dev:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[163.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,infradead.org:url,infradead.org:email,airkyi.com:email]
-X-Rspamd-Queue-Id: 3B5371A5046
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 091581A502E
 X-Rspamd-Action: no action
 
-CkhlbGxv77yMCgpBdCAyMDI2LTAyLTI2IDE4OjIwOjUyLCAiQ2hhb3lpIENoZW4iIDxrZXJuZWxA
-YWlya3lpLmNvbT4gd3JvdGU6Cj5Gcm9tOiBDaGFveWkgQ2hlbiA8Y2hhb3lpLmNoZW5Acm9jay1j
-aGlwcy5jb20+Cj4KPkluIHJrMzU3Ni5kdHNpLCBzZG1tYzBfcHdyZW4gaXMgY29uZmlndXJlZCBh
-cyBwYXJ0IG9mIHRoZSBzZG1tYyBwaW5jdHJsLgo+SG93ZXZlciwgb24gdGhlIHJrMzU3NiBldmIy
-IGJvYXJkLCBzZG1tYzBfcHdyZW4gaXMgdXNlZCBhcyB0aGUgcmVndWxhdG9yCj5mb3Igdm1tYy1z
-dXBwbHkuIFRoZXJlZm9yZSwgd2UgbmVlZCB0byByZWFzc2lnbiB0aGUgc2RtbWMgcGluY3RybCBh
-bmQKPnJlbW92ZSBzZG1tYzBfcHdyZW4gdG8gYXZvaWQgY29uZmxpY3RzLgo+Cj5DYzogU2hhd24g
-TGluIDxzaGF3bi5saW5Acm9jay1jaGlwcy5jb20+Cj5GaXhlczogODZhODJmN2E3ZWVkICgiYXJt
-NjQ6IGR0czogcm9ja2NoaXA6IEFkZCByazM1NzYgZXZiMiBib2FyZCIpCj5TaWduZWQtb2ZmLWJ5
-OiBDaGFveWkgQ2hlbiA8Y2hhb3lpLmNoZW5Acm9jay1jaGlwcy5jb20+CiAgIFRlc3RlZC1iee+8
-miBBbmR5IFlhbiA8YW5keS55YW5AMTYzLmNvbT4KCgo+LS0tCj4gYXJjaC9hcm02NC9ib290L2R0
-cy9yb2NrY2hpcC9yazM1NzYtZXZiMi12MTAuZHRzIHwgMiArKwo+IDEgZmlsZSBjaGFuZ2VkLCAy
-IGluc2VydGlvbnMoKykKPgo+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcm9ja2No
-aXAvcmszNTc2LWV2YjItdjEwLmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvcm9ja2NoaXAvcmsz
-NTc2LWV2YjItdjEwLmR0cwo+aW5kZXggNmJkYzIzMmFiMjY3Li45OGQ1ZDAwZDYzYjUgMTAwNjQ0
-Cj4tLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3JvY2tjaGlwL3JrMzU3Ni1ldmIyLXYxMC5kdHMK
-PisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvcm9ja2NoaXAvcmszNTc2LWV2YjItdjEwLmR0cwo+
-QEAgLTk1MSw2ICs5NTEsOCBAQCAmc2RtbWMgewo+IAlkaXNhYmxlLXdwOwo+IAluby1zZGlvOwo+
-IAluby1tbWM7Cj4rCXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4rCXBpbmN0cmwtMCA9IDwm
-c2RtbWMwX2NsayAmc2RtbWMwX2NtZCAmc2RtbWMwX2RldCAmc2RtbWMwX2J1czQ+Owo+IAlzZC11
-aHMtc2RyMTA0Owo+IAl2bW1jLXN1cHBseSA9IDwmdmNjM3YzX3NkPjsKPiAJdnFtbWMtc3VwcGx5
-ID0gPCZ2Y2Npb19zZF9zMD47Cj4tLSAKPjIuNTEuMQo+Cj4KPl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj5MaW51eC1yb2NrY2hpcCBtYWlsaW5nIGxpc3QK
-PkxpbnV4LXJvY2tjaGlwQGxpc3RzLmluZnJhZGVhZC5vcmcKPmh0dHA6Ly9saXN0cy5pbmZyYWRl
-YWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtcm9ja2NoaXAK
+Hi, John,
+
+On 2/20/26 00:35, John Madieu wrote:
+> Some SoC variants such as RZ/G3E handle configuration reset control
+> through PCIe AXI registers instead of dedicated reset lines. Make cfg_resets
+
+There is checkpatch warning on this line as follows:
+
+WARNING: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7:
+through PCIe AXI registers instead of dedicated reset lines. Make cfg_resets
+
+Could you please check?
+
+Thank you,
+Claudiu
 
