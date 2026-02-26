@@ -1,410 +1,240 @@
-Return-Path: <devicetree+bounces-268965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268966-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EPBwB0yKoGlvkgQAu9opvQ
-	(envelope-from <devicetree+bounces-268965-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:00:44 +0100
+	id uCyqAmKUoGllkwQAu9opvQ
+	(envelope-from <devicetree+bounces-268966-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:43:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4EFF1AD2D5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:00:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 598161ADE4D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 19:43:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F3DF230CF817
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:48:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C92A330CC183
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 17:48:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FCC332637;
-	Thu, 26 Feb 2026 17:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01AA4332630;
+	Thu, 26 Feb 2026 17:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mZrPwC3g"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UIPHFxNM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010018.outbound.protection.outlook.com [52.101.56.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 757123290A4;
-	Thu, 26 Feb 2026 17:48:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772128108; cv=none; b=HGqMMVk8iRngLd3+rhvDsmSMbZb7montoVMF73tbR0FnqBcr1LZleAHSJWHpe44ZbuIoO0BzvVZD0IKUVV0A6jsIX7lLgvMleO52G4ukVz09gD0nA7FTl8FgwfyI2Z0LSbMx3sdwoHREI4lFJw4xG8Q2xnt7kgF6Zm19tHMp0Q4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772128108; c=relaxed/simple;
-	bh=KOFBdxXZLvXZb+MXTChMG7R0PNFjapyhVuj7jVA+RD4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i6mtWkFPGS2K08/e6Scwq3ttavALO45ohrxsI7EFHfHjOJlZsibG7mZ1fLryUPTZndI6RgjWxbCkKIKzLa+OdzU8iH9oErLjKLQ1xQLHYjU29zC4S8eZ0Qjwy2eEdd/50gvTmBebi4po0h021IpqPZk7uiVnh7L1PfyFJH8r0Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mZrPwC3g; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772128105; x=1803664105;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=KOFBdxXZLvXZb+MXTChMG7R0PNFjapyhVuj7jVA+RD4=;
-  b=mZrPwC3gTMF4c1mC2tsayjr81PjqQ+fESUUkejWGk+1REiN/28aQLr5P
-   hWdHFT3CQ8Bwv3gBgWQCQVxVbT6GbaeUDzw4R6/WY24MHUdTVAhNPLmeI
-   GcszstB7nZWLNgn9ZGGM8Q59YA60UQNkw/UNkE0pM8z7OLeI4lYoSfNPt
-   YtaH0DTSuwnBTVYCFNceDCc7CY4ME40qmP0n5BIt6TrVPitQ+vansmCe4
-   XNhZujWQ1p4/aKdPpJcJIrK3hjLbNG2q5QnvaIFYtOhPej+s9BYTDOxAX
-   eRD7tGRDWIIOO/whRQOktexQACiQ7yWL7W8OoiAmZ/abR+gAHyqWJukPP
-   g==;
-X-CSE-ConnectionGUID: QJPMzClqRuSpxmAZKwc9YQ==
-X-CSE-MsgGUID: EsvGfDeBRq+tc1loBTG77w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="72901261"
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; 
-   d="scan'208";a="72901261"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2026 09:48:16 -0800
-X-CSE-ConnectionGUID: yTfOAPLTQ1+sgqLqhsyLgQ==
-X-CSE-MsgGUID: aJ6PS6cvR9uqAIvYjILDBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; 
-   d="scan'208";a="216767409"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.244.167])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2026 09:48:13 -0800
-Date: Thu, 26 Feb 2026 19:48:11 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>
-Subject: Re: [PATCH 2/2] iio: temperature: add ADI MAX30210 driver
-Message-ID: <aaCHW3hYUqHA4pgy@smile.fi.intel.com>
-References: <20260226163041.169786-1-johnerasmusmari.geronimo@analog.com>
- <20260226163041.169786-3-johnerasmusmari.geronimo@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980243290A4;
+	Thu, 26 Feb 2026 17:48:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.18
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772128131; cv=fail; b=m66ieLDx0uMuogMv1y5aWFux5jDHXPqIgBlFsX8I+pNGOjsK5mVh9bga06rTilAGwbkbqLKht+XM3VKXC20JhKDFn8XnRE+7QFCC7CY0d9zDSYiOQmyuyVzxy6Lu6xfw0d9QRDp1RxR1PwAp03Ovrk55RhOSh6r+isPWAMju+WU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772128131; c=relaxed/simple;
+	bh=LINF5+NbeAiFyyxdc+lLmjWRyA4HzAZKzvUI34ktbBM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=FYlQCmcoin5y+uOqHcl7LgOjgOKaKc2sj1rwZK5VSw7QlQzNOgw9TImIDamyHV0qTCtoRMtRohI6NJGykdbOh+U1GLcAKuYmB5nWNGfscC/7lRE0D4iCWMbn69IoJovKtkkDPvRlvbkGXX5qSf+RIsbzBseG9d9XCy1KY8m8a+w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UIPHFxNM; arc=fail smtp.client-ip=52.101.56.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=t21RgdcEHKCKaRbanMRTlgGLVvLGCAZdc8VV++sMcaDUnKPdjH47mUmf7s9kJVKx0TbbUNxC11sBeU1eymvD1PQaENo0x3nDE3A88KiFehFfKgTrvVSbZxIOWcC43kSk2XOE7KoQT7e4Tb5+h2MWfwn/Z/f2GwAB+V5RlYrJKCEfs/L7coEvhO3rZGsrIM1VHLEsUCSUWMjFmQkDnVZ67UqlEYVrrRxY3PkUbn/x4Pxc4szMOjoKStlePOG8+cYOVsq4L40cX+I4JWqebCPbHQ+k8fGZhOMgxNt10CNZABS5YLfFYEdDuh7ZKR9BUjtp7gPq+TulpWZ6+IBw28KW9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e9TlxE1gH5r3d7X8NijoCBdiHdCbjv9mY0VQW5vrzyU=;
+ b=cPY0VeTJKLWxDP5RdAL4OhWdPm9bcijqdxqaKYmw0I56TWwMmnN/dZo4ocP/dRtCddlfnQoYxNQBNdi/h5wRNgnXKT76lPnM5PfLkoPaD+y1IVqJA9wySqcwwK4Cy3IK1J0N4Cj6b8jM3XzQG0pbeN1hNN9SWOsbd/k09s7339B61kp1DDFDl1oAmLJEcDINGLtqv4WR3rOZWlqWbYmVQ3Pvjto1IUN/YkX7ttMoXIFRm+FaZSIUa8I2bFYFGpcTpEguHNvwY6L/JKP32q3oUZ+j7KkQ9/9V4TXhnObwmGy9qR0N2/FZHb8/fOlzRO6pVL4qNBiMbmH6XNmCiNmseQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e9TlxE1gH5r3d7X8NijoCBdiHdCbjv9mY0VQW5vrzyU=;
+ b=UIPHFxNMHcg3rvr4v505onZ63FXQBPFGH9TlzkJIInBAmK3OLhmzSUoqOSLNF2KAH84FLRAkHeiT7trm5GBzwrMRb/7rtcQpFdpPE/GA76/plBDP3QPxHPxxfRLcDYUc/3VIazGU4sPOLZoRepH9hR3xEuXL8Dm+v+ajT6Hm/Gw=
+Received: from BN9PR03CA0434.namprd03.prod.outlook.com (2603:10b6:408:113::19)
+ by CY5PR10MB6189.namprd10.prod.outlook.com (2603:10b6:930:33::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.11; Thu, 26 Feb
+ 2026 17:48:45 +0000
+Received: from BN1PEPF0000467F.namprd03.prod.outlook.com
+ (2603:10b6:408:113:cafe::23) by BN9PR03CA0434.outlook.office365.com
+ (2603:10b6:408:113::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.26 via Frontend Transport; Thu,
+ 26 Feb 2026 17:48:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BN1PEPF0000467F.mail.protection.outlook.com (10.167.243.84) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.12 via Frontend Transport; Thu, 26 Feb 2026 17:48:44 +0000
+Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 26 Feb
+ 2026 11:48:43 -0600
+Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 26 Feb
+ 2026 11:48:43 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE209.ent.ti.com
+ (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 26 Feb 2026 11:48:43 -0600
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 61QHmdJv2289228;
+	Thu, 26 Feb 2026 11:48:41 -0600
+Message-ID: <46eed0e2-e5cc-4bc9-924a-83646cbd0351@ti.com>
+Date: Thu, 26 Feb 2026 23:18:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260226163041.169786-3-johnerasmusmari.geronimo@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721s2-common-proc-board: Add QSPI
+ flash partition details
+To: Anurag Dutta <a-dutta@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+	<kristo@kernel.org>
+CC: <gehariprasath@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<u-kumar1@ti.com>
+References: <20260226091730.2735587-1-a-dutta@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20260226091730.2735587-1-a-dutta@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000467F:EE_|CY5PR10MB6189:EE_
+X-MS-Office365-Filtering-Correlation-Id: e55b4521-3c9c-46cf-f3f5-08de755f4914
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|36860700013|34020700016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	qtAiSWvZKApS7ZRXzWCX09mabKVyvfwgKv/2FCMRGdmiba6rJGzbWPOMu0Jh+Z7CskKevAAlKJKJQgJ2lYzNish9NuovPOZQhzovwdLxzwXskJJs4PT+XPHE4Be+Mt2VnoZWpVZ7EBNs5nNeY/Qs1BfuWTHhIavZWd098yVAIeN1nm9IeuRksm8fBNarZF8T/7t+XdFtKwOg/HZKEe+jRFPsq0KNHUdEJPmj3VOLQTf3e++fVSFUjNXetkFsbLNTCh4EKvfLmojY7TRRGjeFsjeWCHUuL/Xlu9yPua4f7gpFEc7LtAHHX13h9xujgYHXreVWGFJp9nq330svetgk80TNnhJfLvbRJ2AAGCw2u4kwiPRx3worsQ3Po93knUy3z1Nz0U9/+U2cNAIfRK6QtJ9kDxj6zJihFu2zE2ibJeSPhvgtO9GNwrpKd1PO2T/Y7TVxxjWnjHHVb24GjhJ9ZbWlWe4IWCILAuqd8Y8JuW3wVH/1biX1Xaq4Ioc7BefHvhYs3jbgH0DTino2PPpCyYCEfc1uv2aXRO0cb6JlooMJqQNKeWtlfl1U8pNWKbj1iOQvdGw4rbgDYM1VAqH2tXJyk+kzOsyNXXqQ1dLPFsxyDblYmhtQ9yyjZcHZtxC8EtDX4RM28qWvGBOPxNQ17u7GYdR3GZWth/LSF9d4FG7I8FldvbCgsWK6QjeULeLUD2svx6JTNVwcF0WREPQAqPNM1uzbwRt9hsyrfBXXuwgTEvpqLCUDwj/Te9NvZ1oVtoeN44DWRohjUzmVQfamaCdt6Rc5pNWAli5UpCVGYl0=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(376014)(36860700013)(34020700016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	i8VEo6X3ZtOVgNQ/EHQnp/gnE2MeM6WcXvZCiGwClv1QneeJUGTiNJ7nwh2oynV+gJpxzgJWkRZfTeQfDpdel5oDua/rq9b5n6ouSGvhj4aROdL6nTuqlbGlidkw/ytbo/qBLWGWXYc/jBytOZHOs4OTt0Aud58ey1Mt4d7Nl5BhhcqqlDHXo7rC5VdA3T0Wzk5xiPO7+sIO/xiNru4935xRnKvMktx4UQzrg7kKDISrN9TfsuIpsh3aHyTdXUpSugvWA0zajymY0hnd3OcRMWnBfdMuHNsTL34Gk/yVVJlBusxN2wzsjgfGhB4E4xzG46RC4skj14iVKIBFScvHGmgq5pnlb85kMA3a/ohmEJPcgs0hueRdtHvA4t7f6aruYsOKv2FSM385zgokQOW6H7o1Ur3/x+jcdXBP8cutu93MJ0YJmL/rybWjNiG44yAc
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 17:48:44.0508
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e55b4521-3c9c-46cf-f3f5-08de755f4914
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN1PEPF0000467F.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR10MB6189
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-268965-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268966-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[ti.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[u-kumar1@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smile.fi.intel.com:mid]
-X-Rspamd-Queue-Id: B4EFF1AD2D5
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 598161ADE4D
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 12:30:41AM +0800, John Erasmus Mari Geronimo wrote:
-> MAX30210 ±0.1°C Accurate Ultra-Small Low-Power Digital Temperature Sensor
+Thanks for updating bootph
 
-Not enough for the commit message.
-
-...
-
-> +#include <asm/div64.h>
-
-linux/math64.h
-
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-
-> +#include <linux/debugfs.h>
-
-Used?
-
-> +#include <linux/delay.h>
-
-> +#include <linux/errno.h>
-
-You missed err.h
-
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/events.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/iio/trigger.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +#include <linux/iio/trigger_consumer.h>
-
-Wow! All of them are in use?
-
-> +#include <linux/interrupt.h>
-> +#include <linux/log2.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/property.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +#include <linux/stat.h>
-> +#include <linux/string.h>
-> +#include <linux/unaligned.h>
-> +#include <linux/units.h>
-
-...
-
-> +struct max30210_state {
-> +	/*
-> +	 * Prevent simultaneous access to the i2c client.
-> +	 */
-> +	struct mutex lock;
-
-> +	struct regmap *regmap;
-
-
-And if you swap them, won't the binary size be less?
-
-> +	struct iio_trigger *trig;
-> +	struct gpio_desc *powerdown_gpio;
-> +	u8 watermark;
-> +	u8 data[3 * MAX30210_FIFO_SIZE]  __aligned(IIO_DMA_MINALIGN);
-
-Hmm... Don't we have a macro for this nowadays?
-
-> +};
-
-...
-
-> +static const int samp_freq_avail[] = {
-
-Why not 2D array?
-
-> +	0, 15625,
-> +	0, 31250,
-> +	0, 62500,
-> +	0, 125000,
-> +	0, 250000,
-> +	0, 500000,
-> +	1, 0,
-> +	2, 0,
-> +	4, 0,
-> +	8, 0
-
-Leave trailing comma, it's not a terminator.
-
-> +};
-
-...
-
-> +static int max30210_read_temp(struct regmap *regmap, unsigned int reg,
-> +			      int *temp)
-> +{
-> +	u8 uval[2] __aligned(IIO_DMA_MINALIGN);
-
-No way. This is variable on stack, not all CPUs / architectures allow this.
-And actually why this alignment to begin with? Wouldn't
-
-	__be16 val;
-
-suffice?
-
-> +	int ret;
+On 2/26/2026 2:47 PM, Anurag Dutta wrote:
+> J721S2 EVM has MT25QU512AB 64 MiB Quad SPI NOR flash connected
+> to OSPI1. Add the partition information as per bootloader.
+> 
+> Signed-off-by: Anurag Dutta <a-dutta@ti.com>
+> ---
+> 
+> changelog : v2:
+> 1.  Added bootph-all to qspi.phypattern
+> 
+> Link to v1 : https://lore.kernel.org/all/20260121051855.5890-1-a-dutta@ti.com/
+> 
+>  .../dts/ti/k3-j721s2-common-proc-board.dts    | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> index 4fea99519113..1b48294e47ac 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+> @@ -530,6 +530,48 @@ flash@0 {
+>  		cdns,tchsh-ns = <60>;
+>  		cdns,tslch-ns = <60>;
+>  		cdns,read-delay = <2>;
 > +
-> +	ret = regmap_bulk_read(regmap, reg, uval, 2);
-
-sizeof()
-
-> +	if (ret)
-> +		return ret;
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
 > +
-> +	*temp = sign_extend32(get_unaligned_be16(uval), 15);
+> +			partition@0 {
+> +				label = "qspi.tiboot3";
+> +				reg = <0x0 0x80000>;
+> +			};
 > +
-> +	return IIO_VAL_INT;
-> +}
-
-...
-
-> +static void max30210_fifo_read(struct iio_dev *indio_dev)
-> +{
-> +	struct max30210_state *st = iio_priv(indio_dev);
-> +	u32 samp;
-> +	int ret, i, j;
-
-Why are 'i' and 'j' signed?
-
-
-> +	ret = regmap_bulk_read(st->regmap, MAX30210_FIFO_DATA_REG,
-> +			       st->data, 3 * st->watermark);
-> +	if (ret < 0)
-> +		return dev_err(&indio_dev->dev, "Failed to read from fifo.\n");
+> +			partition@80000 {
+> +				label = "qspi.tispl";
+> +				reg = <0x80000 0x200000>;
+> +			};
 > +
-> +	for (i = 0; i < st->watermark; i++) {
-
-'i' is not used outside for-loop, hence
-
-	for (unsigned int i = 0; i < st->watermark; i++) {
-
-> +		samp = 0;
-> +		for (j = 0; j < 3; j++) {
-> +			samp <<= 8;
-> +			samp |= st->data[3 * i + j];
-> +		}
-
-Reinventing get_unaligned_be32() if I'm not mistaken.
-
-> +		if (samp == MAX30210_FIFO_INVAL_DATA) {
-> +			dev_err(&indio_dev->dev, "Invalid data\n");
-> +			continue;
-> +		}
+> +			partition@280000 {
+> +				label = "qspi.u-boot";
+> +				reg = <0x280000 0x400000>;
+> +			};
 > +
-> +		iio_push_to_buffers(indio_dev, &samp);
-> +	}
-> +}
-
-...
-
-> +static int max30210_setup(struct max30210_state *st, struct device *dev)
-> +{
-> +	unsigned int val;
+> +			partition@680000 {
+> +				label = "qspi.env";
+> +				reg = <0x680000 0x40000>;
+> +			};
 > +
-> +	/* Power down to reset device */
-> +	st->powerdown_gpio = devm_gpiod_get_optional(dev, "powerdown",
-> +						     GPIOD_OUT_HIGH);
-> +	if (IS_ERR(st->powerdown_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->powerdown_gpio),
-> +				     "Failed to request powerdown GPIO.\n");
+> +			partition@6c0000 {
+> +				label = "qspi.env.backup";
+> +				reg = <0x6c0000 0x40000>;
+> +			};
 > +
-> +	/* Power up device */
-> +	gpiod_set_value(st->powerdown_gpio, 0);
-
-All delays must be documented. Add a comment with the datasheet reference to
-explain the value and need of the sleep.
-
-> +	fsleep(700);
-
-> +	/* Clear status byte */
-> +	return regmap_read(st->regmap, MAX30210_STATUS_REG, &val);
-> +}
-
-...
-
-> +static int max30210_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct max30210_state *st;
-> +	int ret;
+> +			partition@800000 {
+> +				label = "qspi.rootfs";
+> +				reg = <0x800000 0x37c0000>;
+> +			};
 > +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA))
-> +		return -EOPNOTSUPP;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
+> +			partition@3fc0000 {
+> +				bootph-all;
+> +				label = "qspi.phypattern";
+> +				reg = <0x3fc0000 0x40000>;
 
-> +	mutex_init(&st->lock);
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-	ret = devm_mutex_init(...);
 
-> +	ret = devm_regulator_get_enable(dev, "vdd");
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to enable vdd regulator.\n");
-> +
-> +	st->regmap = devm_regmap_init_i2c(client, &max30210_regmap);
-> +	if (IS_ERR(st->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
-> +				     "Failed to allocate regmap.\n");
-> +
-> +	ret = max30210_setup(st, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = &max30210_channels;
-> +	indio_dev->num_channels = 1;
-> +	indio_dev->name = "max30210";
-> +	indio_dev->info = &max30210_info;
-> +
-> +	ret = devm_iio_triggered_buffer_setup_ext(dev, indio_dev, NULL,
-> +						  max30210_trigger_handler,
-> +						  IIO_BUFFER_DIRECTION_IN,
-> +						  &max30210_buffer_ops,
-> +						  max30210_fifo_attributes);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (client->irq) {
-> +		st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
-> +						  indio_dev->name,
-> +						  iio_device_id(indio_dev));
-> +		if (!st->trig)
-> +			return -ENOMEM;
-> +
-> +		st->trig->ops = &max30210_trigger_ops;
-> +		iio_trigger_set_drvdata(st->trig, indio_dev);
-> +		ret = devm_iio_trigger_register(dev, st->trig);
-> +		if (ret)
-> +			return ret;
-> +
-> +		indio_dev->trig = st->trig;
-> +		ret = devm_request_threaded_irq(dev, client->irq,
-> +						iio_trigger_generic_data_rdy_poll,
-> +						NULL, IRQF_TRIGGER_FALLING,
-> +						indio_dev->name, st->trig);
-> +		if (ret)
-> +			return ret;
-> +	}
-
-> +	ret = devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-
-Wouldn't
-
-	return devm_iio_device_register(dev, indio_dev);
-
-suffice?
-
-> +}
-
-...
-
-> +static const struct i2c_device_id max30210_id[] = {
-> +	{ "max30210", 0 },
-
-No ', 0' part.
-
-> +	{ }
-> +};
-
-...
-
-Can somebody at Analog start a common internal Wiki or other resources
-and collect there typical requirements for the code in IIO? It will prevent
-reviewers and maintainers from doing the same replies again and again.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> +			};
+> +		};
+>  	};
+>  };
+>  
 
 
