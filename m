@@ -1,117 +1,117 @@
-Return-Path: <devicetree+bounces-268622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268623-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OCpLJW3wn2kyfAQAu9opvQ
-	(envelope-from <devicetree+bounces-268622-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:04:13 +0100
+	id kKYJFZnwn2kyfAQAu9opvQ
+	(envelope-from <devicetree+bounces-268623-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:04:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533841A1939
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:04:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 680EE1A1959
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 08:04:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 450F0307BB50
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:02:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E51223094FAD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 07:03:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35A9E38E100;
-	Thu, 26 Feb 2026 07:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6809538E10E;
+	Thu, 26 Feb 2026 07:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gdta/EM5";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aCDSWfb7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TrZTwkZX";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DNPiDZSA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A7438BF92
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:02:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F57D38E100
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.180.131
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772089323; cv=pass; b=UIdHhivl19aFB8q+UVH2UJiKM5ePHwATTX10FyZ1uQ9ZVSSpcMIrtGFJdT9Nio2sStrrjE5ZITXZKRnqSKuvvGNlRpXIXWlzzIo2iYflACP28yQnFfv1lQAbdkUfn6gahfDwOEwwaXJ5B4psRlE72GgV+Ry3qyFu4zl3dYDKjZ8=
+	t=1772089435; cv=pass; b=ASpdii2tqktSQGq9rDggV8D6tmSYeGzK0m1ufkk1l59VAHhaG1qCgfKLORUwvezKlBMN3i4gknpHqWPVFbVjrsM09ILeyeTLlxOb2hivbPItWPTm/vxzER9zVQuwy1RNB/ELb+DwVHPoVfoKxzmobld1SzklT2jYd51OymJlj6w=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772089323; c=relaxed/simple;
-	bh=kZ4LwUnvC2DyZr1N00c+azhtmALaEsS/mIV7Pkmnonw=;
+	s=arc-20240116; t=1772089435; c=relaxed/simple;
+	bh=cU8kstGq7wsTED11A9VZKDHW5cCpAiPQ9p/QVxV07WU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UkoEPOtLfAph5xD2SwkACDK6L9lwRherNwCuN1subKuF856thzltxZ3edA3U5RrmN3ABi2F7J481CsUcMXOojmY3OKTff+nJBxCX+mjlYjVwish0l3h+zqaDzK6UvkIr3XxzoTI4qf5d+1Ux6yFSWW9ZVFZfbb3kmdxer9fLUMI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gdta/EM5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aCDSWfb7; arc=pass smtp.client-ip=205.220.168.131
+	 To:Cc:Content-Type; b=dQl5rbNJCNxzi6yGPdFyTjvlh3Xn1jvxxKydHTRP73NRczZEnC3ADt359dR8kwGkyJPMpUd2tRZ3EysjlxfjxsiMuixDH/7YEHLnwt3ZRYBFk673expLhiDJYHhwFb9YBHZ7gttxq6TXCZY8rECVMTfl3JRCq9fPIpQBS+2RytU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TrZTwkZX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DNPiDZSA; arc=pass smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61Q4Vk5H1280867
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:02:01 GMT
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61Q4VWBt3721997
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:03:53 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PuwrpYHKTq+yUBpseafFLTw4rFPjcM9QQ+vB3eBHFCU=; b=gdta/EM5CvQGlG0K
-	ut6mwjp8R1yuSSizLf5WFvAjSRpdaMukUrXqxJJes+U/SpXDCAE10KgwTLo+9ZiB
-	NbLHwEMra7xF65M6dLb/5BO7zvqALTGPK2pakphfiLY9NHn5pcr0cP0+dI3DM8o6
-	xACP7BVCih/hWaDHA2Q00eZJT/WzOyYcQ7lEdW4q4WFv42S7lObaOxmSqJP9MMo8
-	tncgQtI7VfJg5pCCXTO37YVSdnHm0XEsCgGRTetRuTg7+0hiJyHteVEecZf1KHNU
-	o82ZwnM7/3DuktbaVBSpo3qn+tdFL1PUTl0TBYmouZsnmZjSL2pSi5Lj1Bbf6FRX
-	28R1ZA==
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com [209.85.161.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4chx39kmbr-1
+	JLrxoSzHXhl2Gv/xx7gH4l/8foTy6gK4EWkBQXv8dA4=; b=TrZTwkZXN766VfzU
+	hYO0BPsx6HaB+y4L7w1N10XXNN5xC8M5OOpnnrqH92Yx/hRuCyH57kfpar8/EEkO
+	cWr5Ykehbq1TWs6G3mRRzo1MWfo4HGZrCJw4TpARl3Kxw/fsN/VaME5USFGpflaJ
+	zjWknEgJlJaukFg4uyard+HSjUusbeR1D/tWyMX0N+gbt3hPyI+AGx8OpC1m9OWM
+	gGrs0vqALkamusCakiWoWBqOufdD5zGmMuKZeXVht+6Ka8Q4BuunojTCIkg+/tEG
+	JuQDNlsiBeBBrbZy6iQ+4Dya6yvi4qebfsnFyvlk0p6oEz9wei3XASTqpRYvMYBe
+	+xp/FA==
+Received: from mail-oo1-f69.google.com (mail-oo1-f69.google.com [209.85.161.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4chyvf391d-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:02:00 +0000 (GMT)
-Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-67999892f00so13658670eaf.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 23:02:00 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772089320; cv=none;
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 07:03:52 +0000 (GMT)
+Received: by mail-oo1-f69.google.com with SMTP id 006d021491bc7-679dcf1f680so15205374eaf.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Feb 2026 23:03:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772089432; cv=none;
         d=google.com; s=arc-20240605;
-        b=MpeFhyqJbwny4XS9DTjat7kTWqKQexRwp+vqkkQdc7dzr7hIHgZvJ0DLnOx+Sh8ep0
-         gN2+NHK1qVEz/Te+AZEJoTcoyhXFy6FISJvgFozfgMCSmyyuc0O4jCmVGpefHrZFAH8r
-         NqiNhjOBnGya0DknnWxrx2B5N64GPZ+DsgorRdqLEVCqC0nz14YhwCFK9A3eUWr0Eu/q
-         0YFwGSYDimlCsDEwuwWKEsg2j373iqdHkv+2Qj+egg+2kdoCMRVRjk4+T8habyXvqGi3
-         Yv92IurVGsKfS2aPYnu2wDRcNE7tw7FOgsuNjMryrVzEtk3pf62E783+S3Fo0zVo8y0A
-         NfNA==
+        b=GkkoqeLDLlaqzou3Mcw0XpXgaljQu6CPhwgY29i53pmO7qKDctefG0/EaqHsWhWer7
+         Pzs++v+ytO4AYePBXMalJlB779GJg7Zr86n77Yb49H7vN7rYUOFOWtAIqgtMJcYxfsqD
+         9tkxQewYFVZe0zF2h9R6waSe+vhLxDIQqSOOttpWIG4LL+Vi/U8xnw48Ibt3U3OKi8DE
+         POvPssCxERBFKHrPRnCb+dkkziBLed0gFYgPq7W9LEEg3kXZHZi2uyRmMKrkqqj02lrs
+         oAGCRKLbXwtIqvCBfzgnMJmgOWcu+RP8tCjUYzVBhBPkm2/56jXhPuN7Hiah57WZyNx2
+         ptfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=PuwrpYHKTq+yUBpseafFLTw4rFPjcM9QQ+vB3eBHFCU=;
+        bh=JLrxoSzHXhl2Gv/xx7gH4l/8foTy6gK4EWkBQXv8dA4=;
         fh=qacZ1i7nWLjVKXc3JzJgzzuWGAiMMVwFGzEAt1Ze8mE=;
-        b=LUjFcY0YKKbTFBqZ9k//1uMf1uky70dOL2cSjrYdCyuYJ5AXq2Ie8+/0mRKAlOdCPE
-         vtW6dNXczUmB6TknuzfPOgiLM2La3GgHSQ/q7n2GUAobyR616m6vH+WAJ4ajJD5TOHqI
-         QyJRVlURycG4AinV8OZ/b9WdYibe8SnAmJDjgq6udlE/r7v5XTm55QSktmtYYnaygWjH
-         vbdJiRTe5Da/oB1y6nEDfOgQtJhJA0LNxg6c0ZQOe4UURUDHUrol2AaIf75FRLABc/Tl
-         tlfHQPZ5o1K65eZnOHHyYhh3DfO39Qq01fM8EvHd1Q6xthdqGkz83UI7QaDA6Hd0jfjm
-         Cgtg==;
+        b=VrA8pdXvoMFOvsThEA0pfZfu44Zo6L+xTTRwxuygSgVeCEDq1QYT80l8b9kXps2PW6
+         kx+gn9iPb9jEHgiyZyVgNA7uuCWomKfYPhHpPqP0HcmrBO2aKF1ShI0icwaC1XEozoOu
+         D8m2GWp584aXC3OX4qqIkgMeAOjIOkMFXFU8m3JYcy/fBnFC3FO4LWp6Yz5ZT2GYznE8
+         dVIiXwK4AbzkB1h2c7qIpNougMu6NgVf2cHwwO0Xa8tjQFppZXnRSJVFRzPHOyXUs81/
+         tMXgfJlybeMGggyWo3iamb2nkmwDF8SJf3PlTkyOf1mLUOFy1TsHxyBVkoM4yctUk6yV
+         WToQ==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772089320; x=1772694120; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1772089432; x=1772694232; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PuwrpYHKTq+yUBpseafFLTw4rFPjcM9QQ+vB3eBHFCU=;
-        b=aCDSWfb7EoCDTbOaQTIj7l6TycP+iIVMk1UmPwcgVzKkVWZZJjjVV0Bj2RIM9v+Kma
-         hY9UtINOX+AAg6tFo/Xf7oRNcBlq2EdmXbfjjBO0Qb8/KntkVgwrl1L0v2u+G6wYwU5G
-         +nW1Q8ybWiV4m+PPZcYPcP4iSXp3bu/RhXEDEFn2SLSwkMWbi+1RYYcJYYTPrmUjmJJG
-         7xBrRAgvDghYp8g7XjLL7znO9qw+DDdbPZ9lESyOA0N5wiQ+rNigcZV/xKbd0Y0dCluJ
-         3obOc7FRrKoKkERHyH+k6gfeo3b2bdOFHrdhjXsRkcsOYU4y7yHiI2y97eEud5BSIB47
-         R9+w==
+        bh=JLrxoSzHXhl2Gv/xx7gH4l/8foTy6gK4EWkBQXv8dA4=;
+        b=DNPiDZSAueMHbQqReqLk2SvfX7gID6B0+/tR8DbE9Ayr66T0KkHl/kVV7/cQzoMY9C
+         FXjHqBC9dqFUlfiVGgGnt/Oy2BsZ+4gMM4HR8sTekHYGk0r81EC3FmnnIGzDmz5bRIth
+         r5UP5yS8yolCy4wQ/w2Uf4RfnT27xZZGyuiCC9dsurAEtyLEQZhRsaA0HTLS3vku8+nd
+         Ssxq3LyHINcOi1OkfmjjTF/stxjKn2nWIt3nOp7uYPoiLsuQdTJVPVWrCqtO7FwqVMiQ
+         r/9qzR7NgIXZAMcapRP1efde/F4HVxGLPk3MCFF8i2LMlYwyRvd0p50KG4L+GeoQRr/t
+         kU8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772089320; x=1772694120;
+        d=1e100.net; s=20230601; t=1772089432; x=1772694232;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=PuwrpYHKTq+yUBpseafFLTw4rFPjcM9QQ+vB3eBHFCU=;
-        b=RX8rQhNt2v7GEudMsCkxFq20/kjdWXXIQKgqg3uiT8+tGtvvvbA7eABPajhort2sDg
-         vGPD/7CxkJLoP4awTIU3kv8/8Y7VjWIo2Iw2lS+EzKuVaBrui3L1FcoYgaKtR2iMBGpo
-         2ORF/iKr/1La+BssAOctm9T4ZMQb4aLw5yHvgsDTsjNDCYPEOo/WYF0JYyAWiMmbv8rr
-         kU+cYyOfoZki/E3Tf7Vp50ZboqJ9dMjgQBmTc/1/b2ciJCZangMxypMdUSS2/PtZhRAg
-         EwwXJhlM3O+GT5NTBOwChp85o0gp49NgqONxkmKaMgKOBWijb9rx4tUY2iiXj5tbM60V
-         auoA==
-X-Gm-Message-State: AOJu0Yxfxk0eiSeJjog91LPnRvMUZ8GBh9vSkws8UQ/c4q04/tMNaI2P
-	DEc8kJ77TEVtrOX3MWVJAIeUDeLXNzZwua/YqksE4bjci+Kbo2xFhUA3cT/G6nBicRLvxP2xHM1
-	7U2EW/CJHxGOiV+/s/U4pe+hps/v4QUbcc0ObPqLSJvVHcW+1kcq+7JVqGCU5Qf1GuWf1y3kep+
-	17SdsS0EXpoTzh6ZnedyIQ0RgQmR/q598LqSh1GpI=
-X-Gm-Gg: ATEYQzweZePY0Qgr7XP9eCKHZ6NnugBv5lBNPxzxj/tCwyRktfGA1lah2WxM9qGtUQE
-	D0cKDBIeb+Pv08WHorzdWz3xDsjEAKiBDmBgFhB4EfTm7WZ6RanxhckZ7suFI0eD0AdCUCL+Em0
-	qjYABJNrx42pHgmcUl1bgzBVpXdsXfgElMr5ea1AygHnMyc5MqcnZAZ6yP+7ta8DOqXPfWjiwyQ
-	rP/kxc=
-X-Received: by 2002:a05:6820:1620:b0:662:ff03:c213 with SMTP id 006d021491bc7-679ef989c63mr1389662eaf.61.1772089319813;
-        Wed, 25 Feb 2026 23:01:59 -0800 (PST)
-X-Received: by 2002:a05:6820:1620:b0:662:ff03:c213 with SMTP id
- 006d021491bc7-679ef989c63mr1389647eaf.61.1772089319185; Wed, 25 Feb 2026
- 23:01:59 -0800 (PST)
+        bh=JLrxoSzHXhl2Gv/xx7gH4l/8foTy6gK4EWkBQXv8dA4=;
+        b=So3VBLIcI6zwfyiV6H9Blc3FBxW+rpG6FGCoeY1jqdyScsB6/Ho+cG895CvlbBEeDo
+         5wofN6Eb7xIQg95/hLKcl/SJvDGPEbb7RbOUK3QsL8IFxVwQg1Ms2Rx8my8NwJzTXq7I
+         BDLiTkPI0JwhrpN6xZiLo6Sb4fgleA/aPYtVkdx0TAW+VeX4XfaWqchnnriWGO7j7f59
+         YfxSoPHjpRuhizf8t9+OuhLtou5uiWUlB2kgmZHrp7j9+V1DeYe8zwfoujQIkxsQZJRM
+         DfkTut7McPQXDzZr22WKkO7Zavpm8YNY2KdgnkGNned1pE+NjvLhe4fnY24q4hIdP6td
+         POiw==
+X-Gm-Message-State: AOJu0YyY+PPpJLWZGi36JiYTjo7BCtieug6SwHBvXLvhCr1CmlgHoloJ
+	NawdYMEUSeBIOWTozzSCbLI7kqaghgrjCh9km6luPehSyVF6dI696ycnlJu6jASAbf8TZOxkk5D
+	bS9bAwHpjXFHoRColkWd49H2hiPkkDdHtzsqO2bUJPUJ3kyKIO71tPzUiV0oZeAM2kPpNNP3h/C
+	boF4q8b6Od1Ovt59FvPKOz4Sa1nbfWMC1Ba9KwCws=
+X-Gm-Gg: ATEYQzzekNcHPHd9Li4j8TEpruwofFNIdWSkG15BOZUaP8nXYcnrwNwORxlfakVR+PL
+	OdBWDRRSh6ruFv7NjA+hu7vX/vUz31AZktXpsYeSFLiwLEPu70xl1ypGrysrY0BYxK2Mb98c598
+	DAEncKgvhtL2xOtinV276uI4VAcZjZzJmaT1crBdS7NfNZUzRfRdk3gt2NcN4JG7BvqZX6Yib63
+	JhvGlc=
+X-Received: by 2002:a05:6820:3092:b0:679:e7b2:9fc7 with SMTP id 006d021491bc7-679e7b2a0cdmr3151073eaf.7.1772089432082;
+        Wed, 25 Feb 2026 23:03:52 -0800 (PST)
+X-Received: by 2002:a05:6820:3092:b0:679:e7b2:9fc7 with SMTP id
+ 006d021491bc7-679e7b2a0cdmr3151054eaf.7.1772089431697; Wed, 25 Feb 2026
+ 23:03:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -119,13 +119,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
- <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-11-347fa2d7351b@arm.com>
-In-Reply-To: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-11-347fa2d7351b@arm.com>
+ <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-10-347fa2d7351b@arm.com>
+In-Reply-To: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-10-347fa2d7351b@arm.com>
 From: Himanshu Chauhan <himanshu.chauhan@oss.qualcomm.com>
-Date: Thu, 26 Feb 2026 12:31:46 +0530
-X-Gm-Features: AaiRm50IC1HsOl6QMRXAOVKf4_ryi0l229YCdeA9iFVtyFNBsgVnkGuVYYlysYg
-Message-ID: <CA+Ht8=bj_5UDYmHrdp5s+1e3amO7ErPm-K28Wog2y3+j4PtjNw@mail.gmail.com>
-Subject: Re: [PATCH v2 11/11] RAS: add DeviceTree firmware-first CPER provider
+Date: Thu, 26 Feb 2026 12:33:40 +0530
+X-Gm-Features: AaiRm51FKm_5e4UXBRvPixo-zTWKoFuxZQdWEORZL7vufbjHjGKj8isrvlHHmUg
+Message-ID: <CA+Ht8=ZSUGF9KQqy=yZ56kEDwsv3TvS6rLcMD85iwDxwOr3rpQ@mail.gmail.com>
+Subject: Re: [PATCH v2 10/11] dt-bindings: firmware: add arm,ras-ffh
 To: Ahmed Tiba <ahmed.tiba@arm.com>
 Cc: devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
         Dmitry.Lamerov@arm.com, catalin.marinas@arm.com, bp@alien8.de,
@@ -134,30 +134,31 @@ Cc: devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
         krzk+dt@kernel.org, Michael.Zhao2@arm.com, tony.luck@intel.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI2MDA2MSBTYWx0ZWRfXzZX93vZpwEix
- rFGfZ3nDFcLNBOiJ/A3+gAdmcnUI6lcP9t4yqZIpINoB5/+S8WLVAMvqINaGPmUxw9Dka2rU/Aq
- rSfPPfWhQGbHKAiW9XMhfvEoDVG9YAXlq1LqHTy1N9mHSMnq5w83d7Gw5CS3/2LJRJNl3jcfjuj
- N99dfkhpnfqr0X2x93Mv3g3A11hqx3mq/V82d+LpbYMDuSjFtgzJlU2RgfDmsm4pgXllm5vYa4u
- gbN1UIW7k9zVWjOveIbr33lWz2zhuaJYkDr/dFJNM+HEcaXSZkhBBD8VIGPC0Z41xi1S+ivjD0Q
- 00RRrTPCnv/MCh0NaaNK8+PrX9483VArslCKzYqescfIemmpU9Ot0QE1oE/4GZU3VQ0zAqBxQ+M
- Q09GwexnJ0PIZ4vgNEEGAjZSkN/9cieOlx7TbSyMqaQrgF75LSPbNj3xAR7O0njfQ2DhnQTT9XS
- Xywo7RvJoiV+PU3JFFA==
-X-Authority-Analysis: v=2.4 cv=FvoIPmrq c=1 sm=1 tr=0 ts=699fefe8 cx=c_pps
- a=lkkFf9KBb43tY3aOjL++dA==:117 a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10
+X-Proofpoint-ORIG-GUID: wPcl5YhFzPo8g5EdKfCUeq-uXA0ip3nM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI2MDA2MSBTYWx0ZWRfX3dxFjoj032e8
+ leHmtbXM4dLiAQ9Xdo9dlr9rpx1AQX32b9o7SOCeAvBhxgoPF1FRJzw9OdL1rIl23Q7h1V6TDEG
+ apiMDT03sX9qSDt9ROr+Ek5euZUHiR7SzaA8TlPzWvW37Z6EIiFFFkPDgRC8vC0Ay6/2Ym+/dXn
+ 1jJ76FQeV1DObH6SQxJoK/HC3Bphf6kwYokVLtPUKwk4cuDNvtvfbFhDBKJ/oRGB8/z30Q/fGSa
+ 2OiO74HsJQsjJi+EBYR3/7oN5zy0r30W+00xondkYnpN2ErsjqbZmXL7knDTFCy2RwvwsMLitHK
+ f09QZTukEMkYD74pBf706m3WxozCwvBJdX4UE5IoAqfGeRzMc/je6/pd0Ry8YFTqprLdSFIX+Hp
+ wAfApAe1ky9qA9sDGfrMn5npoSzlOKUv9hUA7sDjucvib98tU+oZ+0jLJ0VcmI7NuO+HwG0vrSm
+ eWQEDCoEde95xBmnxiA==
+X-Proofpoint-GUID: wPcl5YhFzPo8g5EdKfCUeq-uXA0ip3nM
+X-Authority-Analysis: v=2.4 cv=dZWNHHXe c=1 sm=1 tr=0 ts=699ff058 cx=c_pps
+ a=lVi5GcDxkcJcfCmEjVJoaw==:117 a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10
  a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=_K5XuSEh1TEqbUxoQ0s3:22 a=7CQSdrXTAAAA:8 a=QyXUC8HyAAAA:8
- a=0_E0fn6IqdgZwImqbKcA:9 a=QEXdDO2ut3YA:10 a=k4UEASGLJojhI9HsvVT1:22
- a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-GUID: bUxT2I8lA12R1kx6963kahv4rT8-Sriq
-X-Proofpoint-ORIG-GUID: bUxT2I8lA12R1kx6963kahv4rT8-Sriq
+ a=ZpdpYltYx_vBUK5n70dp:22 a=gEfo2CItAAAA:8 a=7CQSdrXTAAAA:8 a=pGLkceISAAAA:8
+ a=QyXUC8HyAAAA:8 a=is6-GLeS1cJyDfTUaQYA:9 a=QEXdDO2ut3YA:10
+ a=rBiNkAWo9uy_4UTK5NWh:22 a=sptkURWiP4Gy88Gu7hUp:22 a=a-qgeE7W1pNrGK8U0ZQC:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-02-25_04,2026-02-25_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
- impostorscore=0 priorityscore=1501 clxscore=1015 adultscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602260061
+ priorityscore=1501 clxscore=1015 suspectscore=0 lowpriorityscore=0
+ phishscore=0 bulkscore=0 spamscore=0 impostorscore=0 adultscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2602260061
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -168,7 +169,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268622-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-268623-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -184,467 +185,126 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,arm.com:email,qualcomm.com:dkim,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: 533841A1939
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,arm.com:email,fe800000:email,intel.com:email,qualcomm.com:dkim,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,alien8.de:email]
+X-Rspamd-Queue-Id: 680EE1A1959
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 7:13=E2=80=AFPM Ahmed Tiba <ahmed.tiba@arm.com> wro=
+On Fri, Feb 20, 2026 at 7:15=E2=80=AFPM Ahmed Tiba <ahmed.tiba@arm.com> wro=
 te:
 >
-> Add a DeviceTree firmware-first CPER provider that reuses the shared
-> GHES helpers, wire it into the RAS Kconfig/Makefile and document it in
-> the admin guide. Update MAINTAINERS now that the driver exists.
+> Describe the DeviceTree node that exposes the Arm firmware-first handler
+> CPER provider and hook the file into MAINTAINERS so the binding has an
+> owner.
 >
 > Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
 > ---
->  Documentation/admin-guide/RAS/main.rst |  18 +++
->  MAINTAINERS                            |   1 +
->  drivers/acpi/apei/apei-internal.h      |  10 +-
->  drivers/acpi/apei/ghes_cper.c          |   2 +
->  drivers/ras/Kconfig                    |  12 ++
->  drivers/ras/Makefile                   |   1 +
->  drivers/ras/esource-dt.c               | 264 +++++++++++++++++++++++++++=
+>  .../devicetree/bindings/firmware/arm,ras-ffh.yaml  | 71 ++++++++++++++++=
 ++++++
->  include/acpi/ghes_cper.h               |   9 ++
->  8 files changed, 308 insertions(+), 9 deletions(-)
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 76 insertions(+)
 >
-> diff --git a/Documentation/admin-guide/RAS/main.rst b/Documentation/admin=
--guide/RAS/main.rst
-> index 5a45db32c49b..4ffabaaeabb1 100644
-> --- a/Documentation/admin-guide/RAS/main.rst
-> +++ b/Documentation/admin-guide/RAS/main.rst
-> @@ -205,6 +205,24 @@ Architecture (MCA)\ [#f3]_.
->  .. [#f3] For more details about the Machine Check Architecture (MCA),
->    please read Documentation/arch/x86/x86_64/machinecheck.rst at the Kern=
-el tree.
->
-> +Firmware-first CPER via DeviceTree
-> +----------------------------------
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml =
+b/Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml
+> new file mode 100644
+> index 000000000000..eccbaaf45885
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/arm,ras-ffh.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +Some systems expose Common Platform Error Record (CPER) data
-> +via DeviceTree instead of ACPI HEST tables.
-> +Enable ``CONFIG_RAS_ESOURCE_DT`` to build the ``drivers/ras/esource-dt.c=
-``
-> +driver and describe the CPER error source buffer with the
-> +``Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml`` binding.
-> +The driver reuses the GHES CPER helper object in
-> +``drivers/acpi/apei/ghes_cper.c`` so the logging, notifier chains, and
-> +memory failure handling match the ACPI GHES behaviour even when
-> +ACPI is disabled.
+> +title: Arm Firmware-First Handler (FFH) CPER provider
+
+Please don't called it FFH. FFH stands for Fixed Feature Hardware and
+ACPI uses it at multiple places. It is causing confusion.
 > +
-> +Once a platform describes a firmware-first provider, both ACPI GHES and =
-the
-> +DeviceTree driver reuse the same code paths. This keeps the behaviour
-> +consistent regardless of whether the error source is described via ACPI
-> +tables or DeviceTree.
+> +maintainers:
+> +  - Ahmed Tiba <ahmed.tiba@arm.com>
 > +
->  EDAC - Error Detection And Correction
->  *************************************
->
+> +description: |
+> +  Arm Reliability, Availability and Serviceability (RAS) firmware can ex=
+pose
+> +  a firmware-first handler (FFH) that provides UEFI CPER Generic Error S=
+tatus
+> +  blocks directly via DeviceTree. The firmware owns the CPER buffer
+> +  and notifies the OS through an interrupt.
+> +
+> +properties:
+> +  compatible:
+> +    const: arm,ras-ffh
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description:
+> +          CPER Generic Error Status block exposed by firmware
+> +      - description:
+> +          Optional 32- or 64-bit doorbell register used on platforms
+> +          where firmware needs an explicit "ack" handshake before overwr=
+iting
+> +          the CPER buffer. Firmware watches bit 0 and expects the OS to =
+set it
+> +          once the current status block has been consumed.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      Interrupt used to signal that a new status record is ready.
+> +
+> +  memory-region:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Optional phandle to the reserved-memory entry that backs the statu=
+s
+> +      buffer so firmware and the OS use the same carved-out region.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    reserved-memory {
+> +      #address-cells =3D <2>;
+> +      #size-cells =3D <2>;
+> +      ras_cper_buffer: cper@fe800000 {
+> +        reg =3D <0x0 0xfe800000 0x0 0x1000>;
+> +        no-map;
+> +      };
+> +    };
+> +
+> +    error-handler@fe800000 {
+> +      compatible =3D "arm,ras-ffh";
+> +      reg =3D <0xfe800000 0x1000>,
+> +            <0xfe810000 0x4>;
+> +      memory-region =3D <&ras_cper_buffer>;
+> +      interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> +...
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index 47db7877b485..fa6113b482b7 100644
+> index b8d8a5c41597..47db7877b485 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -22031,6 +22031,7 @@ RAS ERROR STATUS
->  M:     Ahmed Tiba <ahmed.tiba@arm.com>
+> @@ -22027,6 +22027,11 @@ M:     Alexandre Bounine <alex.bou9@gmail.com>
 >  S:     Maintained
->  F:     Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml
-> +F:     drivers/ras/esource-dt.c
+>  F:     drivers/rapidio/
 >
+> +RAS ERROR STATUS
+> +M:     Ahmed Tiba <ahmed.tiba@arm.com>
+> +S:     Maintained
+> +F:     Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml
+> +
 >  RAS INFRASTRUCTURE
 >  M:     Tony Luck <tony.luck@intel.com>
-> diff --git a/drivers/acpi/apei/apei-internal.h b/drivers/acpi/apei/apei-i=
-nternal.h
-> index 77c10a7a7a9f..c16ac541f15b 100644
-> --- a/drivers/acpi/apei/apei-internal.h
-> +++ b/drivers/acpi/apei/apei-internal.h
-> @@ -8,6 +8,7 @@
->  #define APEI_INTERNAL_H
->
->  #include <linux/acpi.h>
-> +#include <acpi/ghes_cper.h>
->
->  struct apei_exec_context;
->
-> @@ -120,15 +121,6 @@ int apei_exec_collect_resources(struct apei_exec_con=
-text *ctx,
->  struct dentry;
->  struct dentry *apei_get_debugfs_dir(void);
->
-> -static inline u32 cper_estatus_len(struct acpi_hest_generic_status *esta=
-tus)
-> -{
-> -       if (estatus->raw_data_length)
-> -               return estatus->raw_data_offset + \
-> -                       estatus->raw_data_length;
-> -       else
-> -               return sizeof(*estatus) + estatus->data_length;
-> -}
-> -
->  int apei_osc_setup(void);
->
->  int einj_get_available_error_type(u32 *type, int einj_action);
-> diff --git a/drivers/acpi/apei/ghes_cper.c b/drivers/acpi/apei/ghes_cper.=
-c
-> index 29b790160e91..9b2d1b8cf9f4 100644
-> --- a/drivers/acpi/apei/ghes_cper.c
-> +++ b/drivers/acpi/apei/ghes_cper.c
-> @@ -42,7 +42,9 @@
->  #include <asm/fixmap.h>
->  #include <asm/tlbflush.h>
->
-> +#ifdef CONFIG_ACPI_APEI
->  #include "apei-internal.h"
-> +#endif
->
->  ATOMIC_NOTIFIER_HEAD(ghes_report_chain);
->
-> diff --git a/drivers/ras/Kconfig b/drivers/ras/Kconfig
-> index fc4f4bb94a4c..ea6d96713020 100644
-> --- a/drivers/ras/Kconfig
-> +++ b/drivers/ras/Kconfig
-> @@ -34,6 +34,18 @@ if RAS
->  source "arch/x86/ras/Kconfig"
->  source "drivers/ras/amd/atl/Kconfig"
->
-> +config RAS_ESOURCE_DT
-> +       bool "DeviceTree firmware-first CPER error source block provider"
-> +       depends on OF
-> +       depends on ARM64
-> +       select GHES_CPER_HELPERS
-> +       help
-> +         Enable support for firmware-first Common Platform Error Record =
-(CPER)
-> +         error source block providers that are described via DeviceTree
-> +         instead of ACPI HEST tables. The driver reuses the existing GHE=
-S
-> +         CPER helpers so the error processing matches the ACPI code path=
-s,
-> +         but it can be built even when ACPI is disabled.
-> +
->  config RAS_FMPM
->         tristate "FRU Memory Poison Manager"
->         default m
-> diff --git a/drivers/ras/Makefile b/drivers/ras/Makefile
-> index 11f95d59d397..53558a1707b3 100644
-> --- a/drivers/ras/Makefile
-> +++ b/drivers/ras/Makefile
-> @@ -2,6 +2,7 @@
->  obj-$(CONFIG_RAS)      +=3D ras.o
->  obj-$(CONFIG_DEBUG_FS) +=3D debugfs.o
->  obj-$(CONFIG_RAS_CEC)  +=3D cec.o
-> +obj-$(CONFIG_RAS_ESOURCE_DT)   +=3D esource-dt.o
->
->  obj-$(CONFIG_RAS_FMPM) +=3D amd/fmpm.o
->  obj-y                  +=3D amd/atl/
-> diff --git a/drivers/ras/esource-dt.c b/drivers/ras/esource-dt.c
-> new file mode 100644
-> index 000000000000..b575a2258536
-> --- /dev/null
-> +++ b/drivers/ras/esource-dt.c
-> @@ -0,0 +1,264 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * DeviceTree provider for firmware-first CPER error source block.
-> + *
-> + * This driver shares the GHES CPER helpers so we keep the reporting and
-> + * notifier behaviour identical to ACPI GHES
-> + *
-> + * Copyright (C) 2025 ARM Ltd.
-> + * Author: Ahmed Tiba <ahmed.tiba@arm.com>
-> + */
-> +
-> +#include <linux/atomic.h>
-> +#include <linux/bitops.h>
-> +#include <linux/device.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/io-64-nonatomic-lo-hi.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/panic.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +#include <linux/spinlock.h>
-> +
-> +#include <acpi/ghes.h>
-> +#include <acpi/ghes_cper.h>
-> +
-> +static atomic_t ghes_ffh_source_ids =3D ATOMIC_INIT(0);
-> +
-> +struct ghes_ffh_ack {
-> +       void __iomem *addr;
-> +       u64 preserve;
-> +       u64 set;
-> +       u8 width;
-> +       bool present;
-> +};
-
-Please don't use ffh. FFH stands for Fixed Feature Hardware. This is
-making it confusing. As per ACPI specification, FFH can be used to
-register read/write while handling errors.
-I have started feeling that all this churn should be avoided. All the
-GHES code is also being moved in the name of CPER helpers.
-
-> +
-> +struct ghes_ffh {
-> +       struct device *dev;
-> +       void __iomem *status;
-> +       size_t status_len;
-> +
-> +       struct ghes_ffh_ack ack;
-> +
-> +       struct acpi_hest_generic *generic;
-> +       struct acpi_hest_generic_status *estatus;
-> +
-> +       bool sync;
-> +       int irq;
-> +
-> +       /* Serializes access to the firmware-owned buffer. */
-> +       spinlock_t lock;
-> +};
-> +
-> +static int ghes_ffh_init_pool(void)
-> +{
-> +       if (ghes_estatus_pool)
-> +               return 0;
-> +
-> +       return ghes_estatus_pool_init(1);
-> +}
-> +
-> +static int ghes_ffh_copy_status(struct ghes_ffh *ctx)
-> +{
-> +       memcpy_fromio(ctx->estatus, ctx->status, ctx->status_len);
-> +       return 0;
-> +}
-> +
-> +static void ghes_ffh_ack(struct ghes_ffh *ctx)
-> +{
-> +       u64 val;
-> +
-> +       if (!ctx->ack.present)
-> +               return;
-> +
-> +       if (ctx->ack.width =3D=3D 64) {
-> +               val =3D readq(ctx->ack.addr);
-> +               val &=3D ctx->ack.preserve;
-> +               val |=3D ctx->ack.set;
-> +               writeq(val, ctx->ack.addr);
-> +       } else {
-> +               val =3D readl(ctx->ack.addr);
-> +               val &=3D (u32)ctx->ack.preserve;
-> +               val |=3D (u32)ctx->ack.set;
-> +               writel(val, ctx->ack.addr);
-> +       }
-> +}
-> +
-> +static void ghes_ffh_fatal(struct ghes_ffh *ctx)
-> +{
-> +       __ghes_print_estatus(KERN_EMERG, ctx->generic, ctx->estatus);
-> +       add_taint(TAINT_MACHINE_CHECK, LOCKDEP_STILL_OK);
-> +       panic("GHES: fatal firmware-first CPER record from %s\n",
-> +             dev_name(ctx->dev));
-> +}
-> +
-> +static void ghes_ffh_process(struct ghes_ffh *ctx)
-> +{
-> +       unsigned long flags;
-> +       int sev;
-> +
-> +       spin_lock_irqsave(&ctx->lock, flags);
-> +
-> +       if (ghes_ffh_copy_status(ctx))
-> +               goto out;
-> +
-> +       sev =3D ghes_severity(ctx->estatus->error_severity);
-> +       if (sev >=3D GHES_SEV_PANIC)
-> +               ghes_ffh_fatal(ctx);
-> +
-> +       if (!ghes_estatus_cached(ctx->estatus)) {
-> +               if (ghes_print_estatus(NULL, ctx->generic, ctx->estatus))
-> +                       ghes_estatus_cache_add(ctx->generic, ctx->estatus=
-);
-> +       }
-> +
-> +       ghes_cper_handle_status(ctx->dev, ctx->generic, ctx->estatus, ctx=
-->sync);
-> +
-> +       ghes_ffh_ack(ctx);
-> +
-> +out:
-> +       spin_unlock_irqrestore(&ctx->lock, flags);
-> +}
-> +
-> +static irqreturn_t ghes_ffh_irq(int irq, void *data)
-> +{
-> +       struct ghes_ffh *ctx =3D data;
-> +
-> +       ghes_ffh_process(ctx);
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static int ghes_ffh_init_ack(struct platform_device *pdev,
-> +                            struct ghes_ffh *ctx)
-> +{
-> +       struct resource *res;
-> +       size_t size;
-> +
-> +       res =3D platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +       if (!res)
-> +               return 0;
-> +
-> +       ctx->ack.addr =3D devm_ioremap_resource(&pdev->dev, res);
-> +       if (IS_ERR(ctx->ack.addr))
-> +               return PTR_ERR(ctx->ack.addr);
-> +
-> +       size =3D resource_size(res);
-> +       switch (size) {
-> +       case 4:
-> +               ctx->ack.width =3D 32;
-> +               ctx->ack.preserve =3D ~0U;
-> +               break;
-> +       case 8:
-> +               ctx->ack.width =3D 64;
-> +               ctx->ack.preserve =3D ~0ULL;
-> +               break;
-> +       default:
-> +               dev_err(&pdev->dev, "Unsupported ack resource size %zu\n"=
-, size);
-> +               return -EINVAL;
-> +       }
-> +
-> +       ctx->ack.set =3D BIT_ULL(0);
-> +       ctx->ack.present =3D true;
-> +       return 0;
-> +}
-> +
-> +static int ghes_ffh_probe(struct platform_device *pdev)
-> +{
-> +       struct ghes_ffh *ctx;
-> +       struct resource *res;
-> +       int rc;
-> +
-> +       ctx =3D devm_kzalloc(&pdev->dev, sizeof(*ctx), GFP_KERNEL);
-> +       if (!ctx)
-> +               return -ENOMEM;
-> +
-> +       spin_lock_init(&ctx->lock);
-> +       ctx->dev =3D &pdev->dev;
-> +       ctx->sync =3D of_property_read_bool(pdev->dev.of_node, "arm,sea-n=
-otify");
-> +
-> +       res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       if (!res) {
-> +               dev_err(&pdev->dev, "status region missing\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       ctx->status_len =3D resource_size(res);
-> +       if (!ctx->status_len) {
-> +               dev_err(&pdev->dev, "Status region has zero length\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       ctx->status =3D devm_ioremap_resource(&pdev->dev, res);
-> +       if (IS_ERR(ctx->status))
-> +               return PTR_ERR(ctx->status);
-> +
-> +       rc =3D ghes_ffh_init_ack(pdev, ctx);
-> +       if (rc)
-> +               return rc;
-> +
-> +       rc =3D ghes_ffh_init_pool();
-> +       if (rc)
-> +               return rc;
-> +
-> +       ctx->estatus =3D devm_kzalloc(&pdev->dev, ctx->status_len, GFP_KE=
-RNEL);
-> +       if (!ctx->estatus)
-> +               return -ENOMEM;
-> +
-> +       ctx->generic =3D devm_kzalloc(&pdev->dev, sizeof(*ctx->generic), =
-GFP_KERNEL);
-> +       if (!ctx->generic)
-> +               return -ENOMEM;
-> +
-> +       ctx->generic->header.type =3D ACPI_HEST_TYPE_GENERIC_ERROR;
-> +       ctx->generic->header.source_id =3D
-> +               atomic_inc_return(&ghes_ffh_source_ids);
-> +       ctx->generic->notify.type =3D ctx->sync ?
-> +               ACPI_HEST_NOTIFY_SEA : ACPI_HEST_NOTIFY_EXTERNAL;
-> +       ctx->generic->error_block_length =3D ctx->status_len;
-> +
-> +       ctx->irq =3D platform_get_irq_optional(pdev, 0);
-> +       if (ctx->irq <=3D 0) {
-> +               if (ctx->irq =3D=3D -EPROBE_DEFER)
-> +                       return ctx->irq;
-> +               dev_err(&pdev->dev, "interrupt is required (%d)\n", ctx->=
-irq);
-> +               return -EINVAL;
-> +       }
-> +
-> +       rc =3D devm_request_threaded_irq(&pdev->dev, ctx->irq,
-> +                                      NULL, ghes_ffh_irq,
-> +                                      IRQF_ONESHOT,
-> +                                      dev_name(&pdev->dev), ctx);
-> +       if (rc)
-> +               return rc;
-> +
-> +       platform_set_drvdata(pdev, ctx);
-> +       dev_info(&pdev->dev, "Firmware-first CPER status provider (interr=
-upt)\n");
-> +       return 0;
-> +}
-> +
-> +static void ghes_ffh_remove(struct platform_device *pdev)
-> +{
-> +}
-> +
-> +static const struct of_device_id ghes_ffh_of_match[] =3D {
-> +       { .compatible =3D "arm,ras-ffh" },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ghes_ffh_of_match);
-> +
-> +static struct platform_driver ghes_ffh_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "esource-dt",
-> +               .of_match_table =3D ghes_ffh_of_match,
-> +       },
-> +       .probe =3D ghes_ffh_probe,
-> +       .remove =3D ghes_ffh_remove,
-> +};
-> +
-> +module_platform_driver(ghes_ffh_driver);
-> +
-> +MODULE_AUTHOR("Ahmed Tiba <ahmed.tiba@arm.com>");
-> +MODULE_DESCRIPTION("Firmware-first CPER provider for DeviceTree platform=
-s");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/acpi/ghes_cper.h b/include/acpi/ghes_cper.h
-> index f7c9fba62585..d43185c020ee 100644
-> --- a/include/acpi/ghes_cper.h
-> +++ b/include/acpi/ghes_cper.h
-> @@ -75,6 +75,15 @@ static inline bool is_hest_sync_notify(struct ghes *gh=
-es)
->         return notify_type =3D=3D ACPI_HEST_NOTIFY_SEA;
->  }
->
-> +static inline u32 cper_estatus_len(struct acpi_hest_generic_status *esta=
-tus)
-> +{
-> +       if (estatus->raw_data_length)
-> +               return estatus->raw_data_offset + \
-> +                       estatus->raw_data_length;
-> +       else
-> +               return sizeof(*estatus) + estatus->data_length;
-> +}
-> +
->  struct ghes_vendor_record_entry {
->         struct work_struct work;
->         int error_severity;
+>  M:     Borislav Petkov <bp@alien8.de>
 >
 > --
 > 2.43.0
