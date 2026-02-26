@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-268924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268922-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qLYkCXVpoGm+jQQAu9opvQ
-	(envelope-from <devicetree+bounces-268924-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:40:37 +0100
+	id sJr/LUxpoGm+jQQAu9opvQ
+	(envelope-from <devicetree+bounces-268922-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:39:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DAE01A8EA8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:40:37 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60D101A8E51
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 16:39:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 740953060882
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:40:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AD0D9304FF69
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA04410D02;
-	Thu, 26 Feb 2026 15:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0EE40FD9C;
+	Thu, 26 Feb 2026 15:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="EXdbnCRr"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="M2whJ4LB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay10-hz2.antispameurope.com (mx-relay10-hz2.antispameurope.com [83.246.65.96])
+Received: from mx-relay50-hz3.antispameurope.com (mx-relay50-hz3.antispameurope.com [94.100.134.239])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23D3040FD8F
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 15:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 707E740B6F9
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 15:39:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.239
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772120390; cv=pass; b=MAkvTG2RNdCfX2wyaSa6Q+4bQXOf85uayy5wcus8RmoaV/8WpxnbTTe4jArxkKYVny5z/ELvnkxoAlK1FHlIOHf+opuYEATPCC8103xrP//UyEiIcpX94665jS74sb2gmU9vdwFMUT00JADDYO9tbaYnhUT0YAcI4qKbUU0B+W4=
+	t=1772120379; cv=pass; b=cMwlyRTyW2WsWeuoIAQ0C0xWrxOQTAhSbh5pewlqOePFNHYljSwm4HUEv/udOb2AYbkTumj74XnrWUdmPlupXRBgJw56dWNvZLAh/oKUfrIZgHiZ3SGPRwrh7KkeyPNvyv8T+IjXwrmWCSXAUw3WyAGOyeS0dAe2+NLV64EtgqU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772120390; c=relaxed/simple;
-	bh=7p3KnwhCjiXCAFckjTZO4s4z0gC/fOAvonkWNNLLb1Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=A50rLOoG0BVFVAm2EqiBIHqlOyDPuFwx1+wh/LKfnOcYOlxVk5gu/tjDJKL5fMz7xxXXFpM0HkVtg1vbk4p9lBXj3D6Kp/IntokkufO+rDpE21bFkEltjDBG7JKDI5dDTHCMawVv97tOVhLUSt04QxlevqPjKqBos2QJ9DkYHE4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=EXdbnCRr; arc=pass smtp.client-ip=83.246.65.96
+	s=arc-20240116; t=1772120379; c=relaxed/simple;
+	bh=8xptqJuqr6y/XZ8cnubujeOx86XkzhzmPx/rVf1SSn4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=BlMCLbmIIkWbjkrBoCs8fGzG2HPjLgrWqeUBSxSjUa4E9DfDa2g3zHaJN5hCxLtH/yXoewmPpnFG1qGJI8NeJspuCxbnu/w0w8jA9CaOZgb8baTmZDxn5jAZJePEvyRkiqejRFhVATbjNqrMSM//jAKF+Zsg6qmfq2W/0UJf8xk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=M2whJ4LB; arc=pass smtp.client-ip=94.100.134.239
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate10-hz2.hornetsecurity.com 1; spf=pass
+ARC-Authentication-Results: i=1; mx-gate50-hz3.hornetsecurity.com 1; spf=pass
  reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
  dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=IzqbFvCBgdaUFwS1qXmfy9dqVHi/nCebaI0DN6ZkaEE=; c=relaxed/relaxed;
+ bh=EG/8db4PuO6Ccr1+6/OtMXqyxNl4kd3+f1XyzIZeMRg=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
  t=1772120349;
- b=dwZES8nYD7NK/ZH81Wz8KcRA5U3sIGmKmSrjC+jN/t32akex4urA5ulw78IVq0nOcsCgrMx2
- NymKucIyW/iZ+8PfvuPTQywOMqmaRRV5H2uF6VH4XOm1/leDwUFQm5lHhXq64QfuxkVB8/HuKRo
- tWIls0VP3BY5wjUZ4+URiF2mpqaJbpptaJtMCiALz8ueAb3tl1smHF84o3j+tH5awpcZl/5WWmj
- 273cFaZMShUBQ9eRrFeBK9k6lJkDBzeH9HD5AwOTcOEfF7tfipWSYTDTJstJ01XLqCi9GVlXazJ
- 8e1BIGheIJOAdKApJhWe3YOJS3XBTSFvWLZ8bDtCGqB9A==
+ b=nKKhc+pNvjbJ6BoS9xGDWcmYQdrA8tnHcQ2xl9AljxY4q7w1S7+PKyRTxNgmpw4uIFWiUMRL
+ 5vzd73g4HObJrgavZcaklhdRa1ZSNLNHh3BZxrKJhiC/NxqA2Z56uNiuB88Mn97rtrHzbUmUWLr
+ wa9lsx463RNjzPC/WeR/Q2hGr6u96eRkco8yF6NC/lCXP2DSjApdjWnZpfqSDXrtD2rUwzxV1Yi
+ /EVXt8XVWJdyjCLxPWh2rWA1cPmlaUn8ocJ/RSL0pk7Fd7BJV0BioRnuCfZX91mVvNwOo424MCz
+ Ar+Ntlt1iDVrGxQDkd5dxkJBgM899wifDsGo1QgH6eEWA==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
  t=1772120349;
- b=YDYPmlw7C7tH/H2xaLhZ7O/jEK7TDEMD2Pr2QObVeXHZMQBryiietyIZ510hCdKt+874vvVq
- 8pn7Zb5krtg1Uo+sryJ/Yr1UMIEUIBIrJwM+mMIKOg5qJDQHdUZ5G5ucxRIhjDkGsRlP1/tiQwp
- z+6SF0AUn+9CqNimeJSXi1KVdpCZZmIRFUCQ6DhD9E8vUdFkDVbucseZu7Zk722jhh4VbjIgdSx
- b4JWzF6ipntDMYmDqwijDRVCRKyWtQ1ctWNT19/+a6qMzLIJd18vsbXEQ2EulaULp+qa5+re4M1
- SNNr9fBdym0dfl3tTBr0X09lhr1MhlS2dh3cGlgKhRIjQ==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay10-hz2.antispameurope.com;
+ b=T8RlRBSDkm0KeG7g3r0SCltNLVx6eMPmbz19XGYQ68mefAOIN8aznONu7LoQ6VuXiauvZbNm
+ +Q1Nv15gCSt9W82/59F/quK/eQ0cwQqKJZF/WkoUYF5xJw4+c6ckBRPRqGHn3Ek7EoNyn6+Xc6W
+ BbqVcRxfsxOA1c3KHEehRBqC/AkYxZCGc5JXYiYYEqH+BKvG8hdwJg/gZL2zPEfgaq/IONTn/48
+ uzTzVUh2MDO2LhKtoOfLvb/7fTEwGHrFTVHGk/RDj2iB2ZACcOrccfGInrkgRnmxsiFiDjwwJJK
+ pMjdK/zc4xrO4XURkdTxdVLFYwR0AAosE9DgtWbGmKgcA==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay50-hz3.antispameurope.com;
  Thu, 26 Feb 2026 16:39:09 +0100
 Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id EFE42A407F2;
-	Thu, 26 Feb 2026 16:39:00 +0100 (CET)
+	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id B4D43A40F28;
+	Thu, 26 Feb 2026 16:39:02 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -85,10 +86,12 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux@ew.tq-group.com
-Subject: [PATCH v3 0/5] Support TQMa8QM
-Date: Thu, 26 Feb 2026 16:38:49 +0100
-Message-ID: <20260226153859.665901-1-alexander.stein@ew.tq-group.com>
+Subject: [PATCH v3 1/5] dt-bindings: usb: cdns,usb3: support USB devices in DT
+Date: Thu, 26 Feb 2026 16:38:50 +0100
+Message-ID: <20260226153859.665901-2-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260226153859.665901-1-alexander.stein@ew.tq-group.com>
+References: <20260226153859.665901-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,20 +105,20 @@ X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay10-hz2.antispameurope.com with 4fMFxL2sBsz4F898
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay50-hz3.antispameurope.com with 4fMFxN1L01z2nGBP
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:e6eeaebf4cf021a93157c2a1ac4b54d4
-X-cloud-security:scantime:1.938
+X-cloud-security-Digest:99766f1dadc9c0fd76839a32754897e4
+X-cloud-security:scantime:1.750
 DKIM-Signature: a=rsa-sha256;
- bh=IzqbFvCBgdaUFwS1qXmfy9dqVHi/nCebaI0DN6ZkaEE=; c=relaxed/relaxed;
+ bh=EG/8db4PuO6Ccr1+6/OtMXqyxNl4kd3+f1XyzIZeMRg=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1772120348; v=1;
- b=EXdbnCRrY4fYr16IFKhjINNOGLejkeyN3KMUPXhm+dREqOwPRvxCNYkzYXNCf8djsPMjDwFs
- ySDdXDpGVG0+Nmxr9EI78hZz3m6D9kArl7bTeScOpPDuRJ7IzAl8oOgfYCzVZDW5RQfG5DYpFbr
- 7lgVS3mK1KDd1YuB36dpe13a02qIk/zor27WW6izVcZn+3fs2lBNIvGOThcVAsc5Nmz/j+CwCHW
- pPOk02C8H6o6UVZGpWXBYTg4VDoIDSmDtTTBFOULLbtLD1hXaiW5+ZOBaUKnLj0pQ+z1h5vu6p5
- s0q1IMeLmH6D1yVwX0lt0miXnE+ihcYiNDN6mgFov9aWQ==
+ t=1772120349; v=1;
+ b=M2whJ4LBhffrrL6FnCHvCNulDxM4xAl7SEsQGhgCz9lV35PHgcto5AJOwTPXIoSpIuahPRu1
+ 7lF8UzEwF1sTSv3OufqadAzqL/CKgnrQFRo3nUBRPSRP9ZQ8baQzBo71n2XyVmWLvpC5AJnm8ho
+ dv5XBmeWmvwAt3Mgd0km5AtTWD0sMaxzJ8DOLNFunOapba24atTzvTCUM1aRDnoQ8z7WNXUExpM
+ Mkbouc17h/pccs+AnPGa61dBMtfI/EEJb/eXVC/OtzcSFQZznQY/Q4OR1pnngMHs38GXw6bWjsd
+ dszIbAi3hR+NWKeZf3tcpi+jB9aefKro91gyaJ+d4fErA==
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -123,7 +126,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -133,8 +136,8 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268924-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-268922-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
@@ -142,58 +145,36 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[ew.tq-group.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.999];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ew.tq-group.com:mid,ew.tq-group.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 0DAE01A8EA8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 60D101A8E51
 X-Rspamd-Action: no action
 
-Hi,
+Reference usb-xhci.yaml in host mode in order to support on-board USB
+hubs.
 
-this series adds support for TQ's TQMa8QM. The first 2 patches are prepatory:
-1. Add support for USB devices in cdns USB3 host controller, namely
-onboard-devices as USB hubs. Implemented similarily to snps,dwc3-common.yaml.
-
-2. Add DMA IRQ for PCIe controller. Similar to commit 0b4c46f9ad79c
-("arm64: dts: imx8qm-ss-hsio: Wire up DMA IRQ for PCIe") which was only tested
-on imx8qxp which just has one PCIe controller.
-
-3 & 4. Device bindings and platform DT
-
-5. Workaround for missing "ERR050104: Arm/A53: Cache coherency issue"
-workaround. See [1] for details. Split into separate commit for easy revert
-once an errata workaround has been integrated.
-
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
 Changes in v3:
-* Small cleanups in patch 1 & 4
+* Fix commit message typo
 
-Changes in v2:
-The need for clock-output-names properties for renesas,9fgv0441 has
-been removed by reworkging the PCIe clocking
+ Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Best regards,
-Alexander
-
-[1] https://lore.kernel.org/all/20230420112952.28340-1-iivanov@suse.de/
-
-Alexander Stein (5):
-  dt-bindings: usb: cdns,usb3: support USB devices in DT
-  arm64: dts: imx8qm-ss-hsio: Wire up DMA IRQ for PCIe
-  dt-bindings: arm: fsl: add bindings for TQMa8x
-  arm64: dts: freescale: add initial device tree for TQMa8x
-  arm64: dts: imx8qm-tqma8qm-mba8x: Disable Cortex-A72 cluster
-
- .../devicetree/bindings/arm/fsl.yaml          |  10 +
- .../devicetree/bindings/usb/cdns,usb3.yaml    |   1 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8qm-ss-hsio.dtsi    |   5 +-
- .../dts/freescale/imx8qm-tqma8qm-mba8x.dts    | 867 ++++++++++++++++++
- .../boot/dts/freescale/imx8qm-tqma8qm.dtsi    | 325 +++++++
- 6 files changed, 1207 insertions(+), 2 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-tqma8qm-mba8x.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-tqma8qm.dtsi
-
+diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+index f454ddd9bbaa6..a199e5ba64161 100644
+--- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
++++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+@@ -85,6 +85,7 @@ required:
+ 
+ allOf:
+   - $ref: usb-drd.yaml#
++  - $ref: usb-xhci.yaml#
+ 
+ unevaluatedProperties: false
+ 
 -- 
 2.43.0
 
