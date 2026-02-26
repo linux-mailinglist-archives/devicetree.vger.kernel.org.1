@@ -1,59 +1,49 @@
-Return-Path: <devicetree+bounces-268855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268856-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cL4EE+JMoGnvhwQAu9opvQ
-	(envelope-from <devicetree+bounces-268855-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:38:42 +0100
+	id uMfNJTJPoGmIiAQAu9opvQ
+	(envelope-from <devicetree+bounces-268856-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:48:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A551A6BCF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:38:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28FCB1A6EF1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:48:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 48B9531314D2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:36:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CBC3A31A6E53
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640B23859F1;
-	Thu, 26 Feb 2026 13:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AH1l4KLL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B306A36C597;
+	Thu, 26 Feb 2026 13:41:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B14536EA9B;
-	Thu, 26 Feb 2026 13:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367B836C0BB;
+	Thu, 26 Feb 2026 13:41:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772112880; cv=none; b=eWAVP0aYfs7B+2rYiGGqIXGYjVVtgc1YrXH7jSGU+Pj4C8o0XI/8bE4Pqxl6BVCgLVHAhPld6mX4LU6NA0sEZ/AyweZi1i6zBSACImwAboUQKDJgyBBlbTmyAfRS5gshK2viS7wNjmwP0jo1iYUoo2l/5YJH4/x3gy3Jv7k6OSA=
+	t=1772113266; cv=none; b=OufbdUXEDcmmb4MQy6cJjE0Nc34UIaTdmych26HnvUIlBq7LiflKUYb4f4Z1s1oPGzxMUk+p/O+VA4JyLDg+hHRj00h/hqH+Un2hq8vpQ5lJ1+3fGx2DUs81mOKnD/X9LTCy/PTp3c6SH8sy09DhSrzSHp5q5CuAQAGNhR/n9rU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772112880; c=relaxed/simple;
-	bh=HiF5B4Bc73eHsZAl9unZvix8uUjE2fsep39CeE6Z6ok=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=a9TieInIem+FuGmhBCmJM0lXZl1g3VIrrGOSqKVKdgHS6mNDaUDxIJbMDO4zGF/E/H9YsvuBGepI+s3GI2KkxxgLCNg3t2/Tba3v02Za5TpM2+oJaoOv0senp5uFrKgNzWNNQ8d1a9G0Xs5dRVmYO+6T2QejpnmxsX58suLX5bs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AH1l4KLL; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id C5E754E4122E;
-	Thu, 26 Feb 2026 13:34:32 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 958ED5FDEB;
-	Thu, 26 Feb 2026 13:34:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4FF6410369392;
-	Thu, 26 Feb 2026 14:34:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772112871; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=t13fTL38ybBnjcJkpfx+K3cUGVZwn08bqofOvp3rY/E=;
-	b=AH1l4KLLPMyktOFWZ+2Z6SPEKJBn6p/HlIp7zSpNTfFZn+eh+Pt++DX3IdwN9Wn5EaNnXw
-	4MahGo6lCSqWQ3Zv47u7h5NgFKeStmbKZuZX9ZVJnoC+p/FT5lAwGSncTVq61+zozrGV+U
-	X2llSZdMjYiisEBU4Yy8DitwSbTI7q7UNPrPiRYfFsQqzIK5G3RIjyjgKoeq9sR4Jk9jXb
-	0pIVEZDrHq6pdouRtmGeHK65EW6TYak8UFEQUnWawTXFzn+GP8MolGdfi7yDzkBFPWIoc1
-	XSOysRW7hwJl4cuPYiqjXEDw7RRNROWzH8IxNsvB/iG4pgep2Z+iTws1JkMk6g==
-From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-Date: Thu, 26 Feb 2026 14:33:57 +0100
-Subject: [PATCH v3 13/13] MAINTAINERS: Mobileye: Add EyeQ6Lplus files
+	s=arc-20240116; t=1772113266; c=relaxed/simple;
+	bh=/7MY8hy5jQlEhxj9eGiR1iRl0W6znJ9KfDclM2QxDN8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qXcc3WWmn3s2RGTiSKQg++2EOmyLUrBWlmXnEKfEAU+ZM6x9Z4pMO3tn/rCZV7wzcB6dzi6jKVXvJ6qldNyVpHlr1DSst4akRYZDPb+9Bg2ED0Y7QJun2JjHrIXxL7IUFriKLIZKBhjWKk1BETHF653zu/3oRzXD+vOC+Ww5sUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 05E7A1A14A6;
+	Thu, 26 Feb 2026 14:40:58 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id EBD211A2549;
+	Thu, 26 Feb 2026 14:40:57 +0100 (CET)
+Received: from lsv15149.swis.ro-buh01.nxp.com (lsv15149.swis.ro-buh01.nxp.com [10.162.246.145])
+	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 3F2952035B;
+	Thu, 26 Feb 2026 14:40:56 +0100 (CET)
+From: Ioana Ciocoi-Radulescu <ruxandra.radulescu@nxp.com>
+Subject: [PATCH 0/9] accel: New driver for NXP's Neutron NPU
+Date: Thu, 26 Feb 2026 15:40:39 +0200
+Message-Id: <20260226-neutron-v1-0-46eccb3bb50a@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,98 +51,136 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260226-eyeq6lplus-v3-13-9cbeb59268b0@bootlin.com>
-References: <20260226-eyeq6lplus-v3-0-9cbeb59268b0@bootlin.com>
-In-Reply-To: <20260226-eyeq6lplus-v3-0-9cbeb59268b0@bootlin.com>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Linus Walleij <linusw@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFhNoGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDIyMz3bzU0pKi/DzdZBNj01RjyxRDM/M0JaDqgqLUtMwKsEnRsbW1AOD
+ Yn/tZAAAA
+X-Change-ID: 20260226-neutron-c435e39d167f
+To: Oded Gabbay <ogabbay@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-doc@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+ linaro-mm-sig@lists.linaro.org, Jiwei Fu <jiwei.fu@nxp.com>, 
+ Forrest Shi <xuelin.shi@nxp.com>, Alexandru Taran <alexandru.taran@nxp.com>, 
+ Ioana Ciocoi-Radulescu <ruxandra.radulescu@nxp.com>
 X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772113256; l=3577;
+ i=ruxandra.radulescu@nxp.com; s=20260204; h=from:subject:message-id;
+ bh=/7MY8hy5jQlEhxj9eGiR1iRl0W6znJ9KfDclM2QxDN8=;
+ b=XoBoTREGvNXkcj74Qdwpy1rPE9Srk5uacOSO9MTQQEa59XXxIe2u/tWgmnYx+T7BKj7G+iZtI
+ ZjQy748HLl7D6BMVVeD4pa/vQ8RKwzMN3ApPcTl7A9vLaek1BrNL4df
+X-Developer-Key: i=ruxandra.radulescu@nxp.com; a=ed25519;
+ pk=zoq4b4OYR0c4faAH97xoTxdr6vfR8OvPbS+Cx0XhIBY=
+X-Virus-Scanned: ClamAV using ClamSMTP
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268855-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,linaro.org,nxp.com,amd.com];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268856-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[benoit.monin@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[ruxandra.radulescu@nxp.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.992];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:dkim,bootlin.com:email]
-X-Rspamd-Queue-Id: C5A551A6BCF
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 28FCB1A6EF1
 X-Rspamd-Action: no action
 
-Use wildcard to match all EyeQ defconfigs under arch/mips. This covers
-the newly added defconfig, and the EyeQ5 and EyeQ6H ones. Add an entry
-for the dt-bindings header of the EyeQ6Lplus clocks.
+Introduce a new accel driver for the Neutron Neural Processing Unit
+(NPU), along with associated dt-bindings and DTS node.
 
-While at it, add myself to the maintainers of Mobileye MIPS SoCs.
+The first patch extends the GEM DMA helper APIs to allow bidirectional
+mapping of non-coherent DMA buffers. While not part of the Neutron
+driver, it's a prerequisite allowing us to use the GEM DMA helper.
 
-Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
+Neutron is a Neural Processing Unit from NXP, providing machine
+learning (ML) acceleration for edge AI applications. Neutron is
+integrated on NXP SoCs such as the i.MX95.
+
+The NPU consists of the following:
+- RISC-V core running a proprietary firmware
+- One or more Neutron cores, representing the main computation
+  engine performing ML operations
+- Dedicated fast memory (TCM)
+- DMA engine that handles data transfers between DDR and TCM
+
+The firmware is closed source and distributed as a binary here [1].
+
+The Neutron software stack also contains a userspace library [1] and
+a LiteRT custom delegate [2] that allow integration with standard
+LiteRT tools.
+
+[1] https://github.com/nxp-upstream/neutron/tree/upstream
+[2] https://github.com/nxp-imx/tflite-neutron-delegate
+
+Signed-off-by: Ioana Ciocoi-Radulescu <ruxandra.radulescu@nxp.com>
 ---
- MAINTAINERS | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Ioana Ciocoi-Radulescu (9):
+      drm/gem-dma: Add flag for bidirectional mapping of non-coherent GEM DMA buffers
+      accel/neutron: Add documentation for NXP Neutron accelerator driver
+      dt-bindings: npu: Add bindings for NXP Neutron
+      accel/neutron: Add driver for NXP Neutron NPU
+      accel/neutron: Add GEM buffer object support
+      accel/neutron: Add mailbox support
+      accel/neutron: Add job submission IOCTL
+      accel/neutron: Add logging support
+      arm64: dts: imx95: Add Neutron node
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 55af015174a5..63048d5ede7d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17802,6 +17802,7 @@ F:	drivers/media/dvb-frontends/mn88473*
- 
- MOBILEYE MIPS SOCS
- M:	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-+M:	Benoît Monin <benoit.monin@bootlin.com>
- M:	Gregory CLEMENT <gregory.clement@bootlin.com>
- M:	Théo Lebrun <theo.lebrun@bootlin.com>
- L:	linux-mips@vger.kernel.org
-@@ -17809,12 +17810,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/mips/mobileye.yaml
- F:	Documentation/devicetree/bindings/soc/mobileye/
- F:	arch/mips/boot/dts/mobileye/
--F:	arch/mips/configs/eyeq5_defconfig
-+F:	arch/mips/configs/eyeq*_defconfig
- F:	arch/mips/mobileye/board-epm5.its.S
- F:	drivers/clk/clk-eyeq.c
- F:	drivers/pinctrl/pinctrl-eyeq5.c
- F:	drivers/reset/reset-eyeq.c
- F:	include/dt-bindings/clock/mobileye,eyeq5-clk.h
-+F:	include/dt-bindings/clock/mobileye,eyeq6lplus-clk.h
- 
- MODULE SUPPORT
- M:	Luis Chamberlain <mcgrof@kernel.org>
+ Documentation/accel/index.rst                      |   1 +
+ Documentation/accel/neutron/index.rst              |  12 +
+ Documentation/accel/neutron/neutron.rst            | 131 ++++++++
+ .../devicetree/bindings/npu/nxp,imx95-neutron.yaml |  95 ++++++
+ MAINTAINERS                                        |  10 +
+ arch/arm64/boot/dts/freescale/imx95.dtsi           |  28 ++
+ drivers/accel/Kconfig                              |   1 +
+ drivers/accel/Makefile                             |   3 +-
+ drivers/accel/neutron/Kconfig                      |  16 +
+ drivers/accel/neutron/Makefile                     |  12 +
+ drivers/accel/neutron/neutron_debugfs.c            |  34 ++
+ drivers/accel/neutron/neutron_debugfs.h            |  15 +
+ drivers/accel/neutron/neutron_device.c             | 239 ++++++++++++++
+ drivers/accel/neutron/neutron_device.h             | 158 +++++++++
+ drivers/accel/neutron/neutron_driver.c             | 262 +++++++++++++++
+ drivers/accel/neutron/neutron_driver.h             |  16 +
+ drivers/accel/neutron/neutron_gem.c                | 115 +++++++
+ drivers/accel/neutron/neutron_gem.h                |  14 +
+ drivers/accel/neutron/neutron_job.c                | 367 +++++++++++++++++++++
+ drivers/accel/neutron/neutron_job.h                |  45 +++
+ drivers/accel/neutron/neutron_mailbox.c            |  47 +++
+ drivers/accel/neutron/neutron_mailbox.h            |  42 +++
+ drivers/gpu/drm/drm_gem_dma_helper.c               |   6 +-
+ include/drm/drm_gem_dma_helper.h                   |   3 +
+ include/uapi/drm/neutron_accel.h                   | 130 ++++++++
+ 25 files changed, 1799 insertions(+), 3 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260226-neutron-c435e39d167f
 
+Best regards,
 -- 
-2.53.0
+Ioana Ciocoi-Radulescu <ruxandra.radulescu@nxp.com>
 
 
