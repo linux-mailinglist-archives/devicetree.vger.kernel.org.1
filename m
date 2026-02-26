@@ -1,214 +1,171 @@
-Return-Path: <devicetree+bounces-268760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268762-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOFGO10loGkDfwQAu9opvQ
-	(envelope-from <devicetree+bounces-268760-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:50:05 +0100
+	id 6AytF6UloGkDfwQAu9opvQ
+	(envelope-from <devicetree+bounces-268762-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:51:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B49A1A48EE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:50:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D18DB1A491C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D3CC531377BE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:46:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4C72315704C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:47:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADFA5310620;
-	Thu, 26 Feb 2026 10:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D13031986E;
+	Thu, 26 Feb 2026 10:47:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iqxSzYip"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4261834CDD;
-	Thu, 26 Feb 2026 10:46:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631792F12C1;
+	Thu, 26 Feb 2026 10:47:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772102818; cv=none; b=jd8y2zCx22222NTPjVWJGrLH7DV0HhDaLdlm2Xg0WoW/tiXd52ehSF6eWQWckm/6DMuO5VaGkMfqyBL3nO5eemC1G3LEISiI4yermgDIQnx+8182tviTuph8OGNX10jTrfYf8D1nACc3+55f5clh3dV6i+cDZ34ZML32r0LdsjM=
+	t=1772102824; cv=none; b=BSxDRCDHndUZI4Hv6qm0ra5it/FxKgw9VBg9X8JRSDHpnxhhymclfgYzRmLRiSHza8UwqG+ZjSbvRfby+y7H48qVrN5b11cEHWgnBb3JOczFHMF7jL2PfXVLwZ7bX3caLEz97rzk9P/HN7prt5elJ7xig9w9LR3xGE202qi+Duo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772102818; c=relaxed/simple;
-	bh=wwBEUPka4TbFXZaA7qr4GKxGV4GHyeUeHI1rgIASL+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gf3enMYlr439onrP9sfSZXOaEpmkbQkbt1QJ02sNLWjMJpSlo2VmJ7YxXYp/Y5mLzHX0YmGJZGEMBu/KT7BPTCvAz/0x7NDBmEMoKgA2w2tO6cvtmbsxAHRyiGzHJP1vsiTX2JQ0scPw23uHmXe2O3gu7YTdO/6stN7/+UiV5lI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5B1C01516;
-	Thu, 26 Feb 2026 02:46:50 -0800 (PST)
-Received: from [10.1.36.70] (Suzukis-MBP.cambridge.arm.com [10.1.36.70])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 16F093F73B;
-	Thu, 26 Feb 2026 02:46:53 -0800 (PST)
-Message-ID: <fb91b392-2a01-4f01-85a2-335bb39ec60e@arm.com>
-Date: Thu, 26 Feb 2026 10:46:52 +0000
+	s=arc-20240116; t=1772102824; c=relaxed/simple;
+	bh=bYkpLYhhwj5B4o0/14vepvOL5dD82IQeKBivzobWYYA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=k6y9pnGvKeahRrCCJmKLpOfSdjSSo0x1oPMGyNiBH1adiT9aNVutMQiaXfO9KY/yc2dBaLchSMXdOeC/K9Z12vvdDLN0DU4kgFE/2apq0V+Z9WimOiRFYiZTgKnERyIak0cFmbRaVbdIHW4SUnyZ2EZ/ggFlvJ9r+88YnjZBSus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iqxSzYip; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1772102820;
+	bh=bYkpLYhhwj5B4o0/14vepvOL5dD82IQeKBivzobWYYA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=iqxSzYipJgD9Hk27esWpkrwPH+zXqY0hF2hA5rLyyps9BIH/KzwmGxtBb0VrGQmMg
+	 288eM6vpq5B6RFzUeJ5Zx0kxKdsWq957Rr7Xg68mVQAKtSAgjn8+UKfsV/+E7/5Uwl
+	 BZwcqsjMfnGeVed+FEpxrmKnl3vLIMsA3WztcRI7382FOSHc3HIa4KRoOBdXhtfqS2
+	 K4qFmDM7WpasHe0VO3ffZv94zsA0b7dI59rHZ12iR7H+ekI3S31peFo9l9shv4qBM8
+	 /G11mz+tmyPn5lWkWKI/+Xs/ZfXtAmL3l8dUKoNdpk07dhpNIVyGrDFv5+VOydopbt
+	 Y0//Qd3zDJeIA==
+Received: from localhost (unknown [86.123.23.225])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A65BE17E095E;
+	Thu, 26 Feb 2026 11:47:00 +0100 (CET)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Date: Thu, 26 Feb 2026 12:46:53 +0200
+Subject: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add alternative
+ reg-names order for RK35{76,88}
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/12] dt-bindings: document access-controllers
- property for coresight peripherals
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>,
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>,
- Linus Walleij <linusw@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, cristian.marussi@arm.com,
- jens.wiklander@linaro.org, etienne.carriere@foss.st.com,
- Sudeep Holla <sudeep.holla@kernel.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
- <20260226-debug_bus-v6-1-5d794697798d@foss.st.com>
-Content-Language: en-GB
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20260226-debug_bus-v6-1-5d794697798d@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
+References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
+In-Reply-To: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Detlev Casanova <detlev.casanova@collabora.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Hans Verkuil <hverkuil@kernel.org>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ linux-media@vger.kernel.org
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268760-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[foss.st.com,linaro.org,kernel.org,linux.dev,gmail.com,arm.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268762-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[suzuki.poulose@arm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-0.996];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,st.com:email,arm.com:mid,arm.com:email]
-X-Rspamd-Queue-Id: 5B49A1A48EE
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim,collabora.com:email]
+X-Rspamd-Queue-Id: D18DB1A491C
 X-Rspamd-Action: no action
 
-Hi
+With the introduction of the RK3588 SoC, and RK3576 afterwards, two more
+register blocks have been provided for the video decoder unit.
 
-On 26/02/2026 10:30, Gatien Chevallier wrote:
-> Document the access-controllers for coresight peripherals in case some
-> access checks need to be performed to use them.
-> 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->   Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml           | 3 +++
->   .../devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml          | 3 +++
->   Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml           | 3 +++
->   Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml           | 3 +++
->   Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml           | 3 +++
->   Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml          | 3 +++
+However, the binding does not properly describe the new hardware layout,
+as it breaks the convention expecting the unit address to indicate the
+start of the first register range, i.e. 'function' block is listed
+before 'link' instead of the opposite.
 
-Are you sure, you are not missing "replicator" in the list ?
+Since the binding changes have been already released and a fix would
+bring up an ABI break, mark the current 'reg-names' ordering as
+deprecated and introduce an alternative 'link,function,cache' listing
+which follows the address-based ordering according to the TRM.
 
-Otherwise, looks good to me.
+Additionally, drop the 'reg' description items as the order is not fixed
+anymore, while the information they offer is not very relevant anyway.
 
-Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+ .../devicetree/bindings/media/rockchip,vdec.yaml     | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+index 809fda45b3bd..c513b68d2c72 100644
+--- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
++++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+@@ -28,16 +28,20 @@ properties:
+ 
+   reg:
+     minItems: 1
+-    items:
+-      - description: The function configuration registers base
+-      - description: The link table configuration registers base
+-      - description: The cache configuration registers base
++    maxItems: 3
+ 
+   reg-names:
+-    items:
+-      - const: function
+-      - const: link
+-      - const: cache
++    oneOf:
++      - items:
++          - const: link
++          - const: function
++          - const: cache
++      - items:
++          - const: function
++          - const: link
++          - const: cache
++        deprecated: true
++        description: Use link,function,cache block order instead.
+ 
+   interrupts:
+     maxItems: 1
 
-
->   6 files changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> index 2a91670ccb8c..949444aba1f8 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> @@ -128,6 +128,9 @@ properties:
->     "#address-cells":
->       const: 1
->   
-> +  access-controllers:
-> +    maxItems: 1
-> +
->   patternProperties:
->     '^trig-conns@([0-9]+)$':
->       type: object
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-> index b74db15e5f8a..b0693cd46d27 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-> @@ -78,6 +78,9 @@ properties:
->           description: Output connection to CoreSight Trace bus
->           $ref: /schemas/graph.yaml#/properties/port
->   
-> +  access-controllers:
-> +    maxItems: 1
-> +
->   required:
->     - compatible
->     - reg
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-> index 71f2e1ed27e5..10ebbbeadf93 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-> @@ -118,6 +118,9 @@ properties:
->           description: Output connection from the ETM to CoreSight Trace bus.
->           $ref: /schemas/graph.yaml#/properties/port
->   
-> +  access-controllers:
-> +    maxItems: 1
-> +
->   required:
->     - compatible
->     - clocks
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-> index 378380c3f5aa..f243e76f597f 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-> @@ -73,6 +73,9 @@ properties:
->           description: Output connection to the CoreSight Trace bus.
->           $ref: /schemas/graph.yaml#/properties/port
->   
-> +  access-controllers:
-> +    maxItems: 1
-> +
->   required:
->     - compatible
->     - reg
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> index 96dd5b5f771a..9dc096698c65 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> @@ -128,6 +128,9 @@ properties:
->         - const: tracedata
->         - const: metadata
->   
-> +  access-controllers:
-> +    maxItems: 1
-> +
->   required:
->     - compatible
->     - reg
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-> index a207f6899e67..29bbc3961fdf 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-> @@ -70,6 +70,9 @@ properties:
->           description: Input connection from the CoreSight Trace bus.
->           $ref: /schemas/graph.yaml#/properties/port
->   
-> +  access-controllers:
-> +    maxItems: 1
-> +
->   required:
->     - compatible
->     - reg
-> 
+-- 
+2.52.0
 
 
