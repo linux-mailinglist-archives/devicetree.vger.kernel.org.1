@@ -1,890 +1,166 @@
-Return-Path: <devicetree+bounces-268877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eAPaHQVZoGlPigQAu9opvQ
-	(envelope-from <devicetree+bounces-268877-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:30:29 +0100
+	id ACa4A2FaoGlPigQAu9opvQ
+	(envelope-from <devicetree+bounces-268878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:36:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196B91A78FC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:30:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 626091A7ABC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 15:36:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CD033301251E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:22:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DF9643141B66
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 14:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A139F3C1974;
-	Thu, 26 Feb 2026 14:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 412623B95E5;
+	Thu, 26 Feb 2026 14:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VFYwf7iH"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="ezQqxS/G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32EF36C0B5
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 14:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B7C35B127;
+	Thu, 26 Feb 2026 14:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772115764; cv=none; b=KiBWZ/7SIubu6hmQQySGHEAQP6TXiS4lQuo+ajxHySiDaqzDIuY40SVjWlx/bangTFBZLOIKIWvEMx0z6EICYcl3gPL7QQBMjbRPsbiPJp/84TeEqh0jSONPebb/yDJXlPne3uKXctWBPEHCopLLccMyILFX6GAuXBqkvk95JB8=
+	t=1772116072; cv=none; b=TLavI2RZlN7ci/7n6G3z20J4vHLdJheqPQeQIvA0FI1tnEnHgvvL6OlbgHWUSeyUpaIBh0iEv7kh/3XUXrpg8v3qo/LsPJMnlnZPa31cUGS0Ut589UJJaHfsJSgXzCA9pzG3w9YLGJErOMhdyo3AvBg2uRcL1yLm8F1e4OcC9XA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772115764; c=relaxed/simple;
-	bh=ffHusz9JhJMyrebhxUjHd35IYmFiqaiEVFAl3pqoihs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N+WsvpYlvgEfs4VIiW6Aqg79F1sxfuKB+IPFI6slDTFuRofP0PIH++ZJyEWx7St3G6Xvz0PLYRBSQoyZm484fAdnKQetVVctBtwtz17CMpgPJ5g8BC4TfXTYL3sZp9MaPEdxQ/9hIuNFW+C9EWWwl/up+QlH0ULQfgsLvxqOg7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VFYwf7iH; arc=none smtp.client-ip=74.125.82.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f43.google.com with SMTP id a92af1059eb24-126ea4b77adso1171335c88.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 06:22:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772115762; x=1772720562; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z+FXdaXl6ZAHu3oLkX4ZIoqZAdC0RT1Wg5swBMni7T0=;
-        b=VFYwf7iHhAGiF/4huBHchMQelkeVOHl66teGVPMSxdxPzvIif69CLrxtjr7nkUliEn
-         EV2x0gGJxxTlZcWR2f+6x1xsfLZMQy6dM2I2ZkGY60fsJAKvExwIJJID06lMLxvehUkS
-         yUNojoWxB/YhgPdxSKga4UVnQf+iRfaiM/MAC7I3+qbekwod7wfFpIP2ESaLVO5pXlf9
-         LkrisKWaQUEMpS9s3KFf+rqJ6jIS2qo1ukQ1ZZ6CkAKwdOaEI/35EFN1yxm6zJdx8uEf
-         HYPWDFdX17g6F0luB5PMhUqwRq76VWn2LwtAJmspyK65tdIcUMNvv5wzWTA+1D3Fhg38
-         kFgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772115762; x=1772720562;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=z+FXdaXl6ZAHu3oLkX4ZIoqZAdC0RT1Wg5swBMni7T0=;
-        b=fI01XWH8jSfuj3yoOxG1Um982PxKV2mDGzLQy3fChw0rzQXDfxvBmHPVaYlWsy0BlE
-         25VJCmq/B0vOU8Eklvg8IXgKpYuxeYaFwvhkoI7+/fHwRDW3uxRz2+yXTCC98H30kp09
-         X8vl73xCnxzrRqk/ZfiD3Hha3EDcjLPD8k56MgMmUd8c2SKBQkeSGpwCiPC3iaLokB18
-         RZYnexdr9nmk6L3gu4XVimMsfQm1zsDNalFgxJsiXCBXautdNTF163E/YLx/U9JDEH5a
-         8UuTZ+94tyDNoLBNhfciAY3ZdEwrTpJdpMypU5yAltMVz36OuXW60yepQ6i0cMH0yXXk
-         VUMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUiOciWF6XbrF/cj5QzCchfT4dJR1NCbwZKEfa5PkKgFRNuSUF7Hsccll22T/AA67PunZuXnh2e+5oL@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywtx2Rd1TJ2tV+bPQShOGDn5SolT+iVm77hT2d/e21SHpXaIUyy
-	4cqO0ps+EUW9lIJ/RR0v53yLPmTdJjvsK94A/54lhnA92G5zgT7h9fwwpeqSb8Fv
-X-Gm-Gg: ATEYQzx/w0ME+i2X+D24mwDZiXoX2OYza5EhsSo7f2HPDimfYpqx8eejlUmAIpI8esb
-	yMPQB+E40X/z7engYEDKIpCdi1Palx2XL1z3Lfi68XivR/CGxb/TS3EKWtwLDZOdQ8klUjPlJCc
-	kYpSSrXsVdSQaAq75gbmS5H3NzNz2HOqKt36O5/+zw6Fa3kiLOEEomE3N73OG+PWucP6csFWDld
-	uBhJuOR51FU0c6mrTvdMbk2Ds/bB7ZEFZSn1pggSt7juMyfSQ6hPQxZHHRPOCEeXS1xl5Uki76y
-	xWOmZOzLEi6b2dEL7Cnd89n3+yRVPznm60cnquKi/H/7Pvv9iGjffap3+9NjkmDgeGMQnHdnqZ/
-	vAQ0dna90EPUOqvp7n5FBKm07zPp/edZcTUPN0DueDl0V9kYL5m03SqlvXjvnXMU2oLePPZm3zs
-	lflwfMKB2cAzkTrskBSLeA102XMDW79YQUrqaJ
-X-Received: by 2002:a05:7022:50c:b0:11b:d561:bc10 with SMTP id a92af1059eb24-1276ad5c892mr8571691c88.41.1772115761547;
-        Thu, 26 Feb 2026 06:22:41 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12789a43885sm2764653c88.12.2026.02.26.06.22.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 06:22:40 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 26 Feb 2026 06:22:39 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: wenswang@yeah.net
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, skhan@linuxfoundation.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: add MP2845 driver
-Message-ID: <ef17c90f-a83c-47fa-b233-a98b9e76c5cf@roeck-us.net>
-References: <20260225085501.164819-1-wenswang@yeah.net>
- <20260225085631.165106-1-wenswang@yeah.net>
- <20260225085631.165106-2-wenswang@yeah.net>
+	s=arc-20240116; t=1772116072; c=relaxed/simple;
+	bh=sOso6PLU9y2Yr05jbPsylZojXDE+UMjfWA7ttI4ixgA=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=XKaucXFkCKAmifTj3toxB8RXdWwYo7dBGI5b0Gg5gVosx0WNSNNRL8FbwXDSM5Re3vNdQPRYuBpnaSuau5QOXA6t0W/bwrk6rBYm+P4sx3pEib4dh+Wa64OWkYESt4UdP1GnVrTW4YovTsB92nViK+rcuTkm81/9M5qKMnj9EDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=ezQqxS/G; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=uA5Zk/FAFPoXM9HYbQGs/07GbIQjoWnoGZNlTmfaEUw=; b=ezQqxS/GvAZg6tPm+7TafBbDIA
+	pl4J89bFjjbp5ASbnepvf3lTkfXt8GqigtkK4gKRRizwff3F/bLZbBjwST4xBQHZIau3R0rs2GfaB
+	IKg2vTguXgq668x6g3qQPAg3uGb3Ko7/WP9RJSynJu/dTPSkliFirSoj37TiK9sL6EY0=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:33022 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vvcKx-00089B-NR; Thu, 26 Feb 2026 09:27:32 -0500
+Date: Thu, 26 Feb 2026 09:27:30 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: robin@protonic.nl, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dmitry.torokhov@gmail.com, hvilleneuve@dimonoff.com,
+ mkorpershoek@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, lee@kernel.org,
+ alexander.sverdlin@gmail.com, marek.vasut@gmail.com, akurz@blala.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Message-Id: <20260226092730.3dd39a4e55e8756e2fbbe927@hugovil.com>
+In-Reply-To: <CAMuHMdVd0Ds5vHQa+MG2E+E36qAu5HQE3b+Vzpbv84MM=2DFWw@mail.gmail.com>
+References: <20260225155409.612478-1-hugo@hugovil.com>
+	<CAMuHMdVd0Ds5vHQa+MG2E+E36qAu5HQE3b+Vzpbv84MM=2DFWw@mail.gmail.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260225085631.165106-2-wenswang@yeah.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -1.9 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v3 0/4] input: add GPIO-based charlieplex keypad
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268877-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
+	TAGGED_FROM(0.00)[bounces-268878-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[hugovil.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[yeah.net];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_NONE(0.00)[];
+	FREEMAIL_CC(0.00)[protonic.nl,kernel.org,gmail.com,dimonoff.com,collabora.com,blala.de,vger.kernel.org,lists.infradead.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[hugovil.com:+];
+	NEURAL_HAM(-0.00)[-0.935];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,yeah.net:email,roeck-us.net:mid]
-X-Rspamd-Queue-Id: 196B91A78FC
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,hugovil.com:mid,hugovil.com:dkim,hugovil.com:email,dimonoff.com:email]
+X-Rspamd-Queue-Id: 626091A7ABC
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 04:56:31PM +0800, wenswang@yeah.net wrote:
-> From: Wensheng Wang <wenswang@yeah.net>
+Hi Geert,
+
+On Thu, 26 Feb 2026 10:20:33 +0100
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+
+> Hi Hugo,
 > 
-> Add support for MPS VR controller mp2845. This driver exposes
-> telemetry and limit value readings.
+> Thanks for your series!
 > 
-> Signed-off-by: Wensheng Wang <wenswang@yeah.net>
-> ---
->  Documentation/hwmon/index.rst  |   1 +
->  Documentation/hwmon/mp2845.rst | 143 ++++++++++
->  MAINTAINERS                    |   7 +
->  drivers/hwmon/Kconfig          |  10 +
->  drivers/hwmon/Makefile         |   1 +
->  drivers/hwmon/mp2845.c         | 493 +++++++++++++++++++++++++++++++++
->  6 files changed, 655 insertions(+)
->  create mode 100644 Documentation/hwmon/mp2845.rst
->  create mode 100644 drivers/hwmon/mp2845.c
+> On Wed, 25 Feb 2026 at 16:54, Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> >
+> > Hello,
+> > this patch series add a new GPIO charlieplex keypad driver.
+> >
+> > The first two patches simply commonize two properties that are present in
+> > a few bindings, so that the actual patches for the charlieplex keypad driver
+> > can reuse them instead of also redefining them.
+> >
+> > I have tested the driver on a custom board with a Solidrun RZ/G2LC SOM
+> > with three charlieplex keyboards, all connected thru a single PCA9416 I2C GPIO
 > 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index d91dbb20c7dc..0a2176e5b694 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -176,6 +176,7 @@ Hardware Monitoring Kernel Drivers
->     mcp3021
->     menf21bmc
->     mlxreg-fan
-> +   mp2845
->     mp2856
->     mp2869
->     mp2888
-> diff --git a/Documentation/hwmon/mp2845.rst b/Documentation/hwmon/mp2845.rst
-> new file mode 100644
-> index 000000000000..dc6328855e27
-> --- /dev/null
-> +++ b/Documentation/hwmon/mp2845.rst
-> @@ -0,0 +1,143 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver mp2845
-> +====================
-> +
-> +Supported chips:
-> +
-> +  * MPS mp2845
-> +
-> +    Prefix: 'mp2845'
-> +
-> +  * MPS mp2845
-> +
-> +    Prefix: 'mp2845'
-> +
-> +Author:
-> +
-> +	Wensheng Wang <wenswang@yeah.net>
-> +
-> +Description
-> +-----------
-> +
-> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
-> +MP2845 Dual Loop Digital Multi-phase Controller.
-> +
-> +Device compliant with:
-> +
-> +- Smbus interface.
-> +
-> +The driver exports the following attributes via the 'sysfs' files
-> +for input voltage:
-> +
-> +**in0_input**
-> +
-> +**in0_label**
-> +
-> +**in0_crit**
-> +
-> +**in0_crit_alarm**
-> +
-> +**in0_lcrit_alarm**
-> +
-> +**in0_min**
-> +
-> +The driver provides the following attributes for output voltage:
-> +
-> +**in1_input**
-> +
-> +**in1_label**
-> +
-> +**in1_crit_alarm**
-> +
-> +**in1_lcrit_alarm**
-> +
-> +**in2_input**
-> +
-> +**in2_label**
-> +
-> +**in2_crit_alarm**
-> +
-> +**in2_lcrit_alarm**
-> +
-> +**in3_input**
-> +
-> +**in3_label**
-> +
-> +**in3_crit_alarm**
-> +
-> +**in3_lcrit_alarm**
-> +
-> +**in4_input**
-> +
-> +**in4_label**
-> +
-> +**in4_crit_alarm**
-> +
-> +**in4_lcrit_alarm**
-> +
-> +The driver provides the following attributes for input current:
-> +
-> +**curr1_input**
-> +
-> +**curr1_label**
-> +
-> +The driver provides the following attributes for output current:
-> +
-> +**curr1_input**
-> +
-> +**curr1_label**
-> +
-> +**curr1_crit**
-> +
-> +**curr1_crit_alarm**
-> +
-> +**curr1_max**
-> +
-> +**curr2_input**
-> +
-> +**curr2_label**
-> +
-> +**curr2_crit**
-> +
-> +**curr2_crit_alarm**
-> +
-> +**curr2_max**
-> +
-> +**curr3_input**
-> +
-> +**curr3_label**
-> +
-> +**curr3_crit**
-> +
-> +**curr3_crit_alarm**
-> +
-> +**curr3_max**
-> +
-> +**curr4_input**
-> +
-> +**curr4_label**
-> +
-> +**curr4_crit**
-> +
-> +**curr4_crit_alarm**
-> +
-> +**curr4_max**
-> +
-> +The driver provides the following attributes for temperature:
-> +
-> +**temp1_input**
-> +
-> +**temp1_crit_alarm**
-> +
-> +**temp2_input**
-> +
-> +**temp2_crit_alarm**
-> +
-> +**temp3_input**
-> +
-> +**temp3_crit_alarm**
-> +
-> +**temp4_input**
-> +
-> +**temp4_crit_alarm**
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 55af015174a5..f1539307de5f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17905,6 +17905,13 @@ F:	drivers/resctrl/mpam_*
->  F:	drivers/resctrl/test_mpam_*
->  F:	include/linux/arm_mpam.h
->  
-> +MPS MP2845 DRIVER
-> +M:	Wensheng Wang <wenswang@yeah.net>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/hwmon/mp2845.rst
-> +F:	drivers/hwmon/mp2845.c
-> +
->  MPS MP2869 DRIVER
->  M:	Wensheng Wang <wenswang@yeah.net>
->  L:	linux-hwmon@vger.kernel.org
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 41c381764c2b..3f77982e50ea 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -1432,6 +1432,16 @@ config SENSORS_MENF21BMC_HWMON
->  	  This driver can also be built as a module. If so the module
->  	  will be called menf21bmc_hwmon.
->  
-> +config SENSORS_MP2845
-> +	tristate "MPS MP2845"
-> +	depends on I2C
-> +	help
-> +	  If you say yes here you get hardware monitoring support for
-> +	  MPS MP2845 Dual Loop Digital Multi-Phase Controller.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called mp2845.
-> +
->  config SENSORS_MR75203
->  	tristate "Moortec Semiconductor MR75203 PVT Controller"
->  	select REGMAP_MMIO
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index eade8e3b1bde..4372759f2e60 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -174,6 +174,7 @@ obj-$(CONFIG_SENSORS_TC654)	+= tc654.o
->  obj-$(CONFIG_SENSORS_TPS23861)	+= tps23861.o
->  obj-$(CONFIG_SENSORS_MLXREG_FAN) += mlxreg-fan.o
->  obj-$(CONFIG_SENSORS_MENF21BMC_HWMON) += menf21bmc_hwmon.o
-> +obj-$(CONFIG_SENSORS_MP2845)	+= mp2845.o
->  obj-$(CONFIG_SENSORS_MR75203)	+= mr75203.o
->  obj-$(CONFIG_SENSORS_NCT6683)	+= nct6683.o
->  obj-$(CONFIG_SENSORS_NCT6694)	+= nct6694-hwmon.o
-> diff --git a/drivers/hwmon/mp2845.c b/drivers/hwmon/mp2845.c
-> new file mode 100644
-> index 000000000000..adecde7c9b71
-> --- /dev/null
-> +++ b/drivers/hwmon/mp2845.c
+> PCA9416? The closest I could find is TCA9416, which is something
+> different.
 
-I just realized, while reviewing: This is a PMBus chip. YOu are trying
-to bypass the PMBus core. This is an absolute no-go. Try again, this
-time as PMBus driver.
+Its a typo, it is PCA6416, thanks for catching that!
 
-> @@ -0,0 +1,493 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Hardware monitoring driver for MPS Digital Controller(MP2845)
-> + */
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/hwmon.h>
-> +#include <linux/hwmon-sysfs.h>
+Hugo.
 
-Unnecessary include.
 
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +
-> +#define MP2845_IOUT_SCALE_MASK1	GENMASK(5, 3)
-> +#define MP2845_IOUT_SCALE_MASK2	GENMASK(13, 11)
-> +
-> +#define MFR_VIN_OV_UV_SET	0x71
-> +#define MFR_OVUV_OCWARN_THRES	0x75
-> +#define MFR_TOTAL_OCP_SET	0x76
-> +#define MFR_PROTECT_STATUS1	0x80
-> +#define MFR_PROTECT_STATUS2 0x81
-> +
-> +#define MP2845_VIN_LIMIT_UINT	125
-> +#define MP2845_READ_VIN_UINT	3125
-> +#define MP2845_READ_VIN_DIV	100
-> +#define MP2845_READ_IOUT_UINT	3125
-> +#define MP2845_READ_IOUT_DIV	100
-> +#define MP2845_READ_VOUT_UINT	5
-> +#define MP2845_TEMP_UINT	1000
-> +
-> +#define MFR_READ_VIN	0xA6
-> +#define MFR_READ_VOUT	0xA7
-> +#define MFR_READ_IOUT	0xA8
-> +#define MFR_READ_TEMP	0xA9
-> +#define MFR_MFG_ID_SCALE_VI1	0x77
-> +#define MFR_MFG_ID_SCALE_VI2	0x78
-> +
-> +struct mp2845_data {
-> +	struct i2c_client *client;
-> +	int iout_gain[4];
-> +	/* lock for preventing concurrency issue */
-> +	struct mutex lock;
-> +};
-> +
-> +static umode_t mp2845_is_visible(const void *data, enum hwmon_sensor_types type,
-> +				 u32 attr, int channel)
-> +{
-> +	switch (type) {
-> +	case hwmon_temp:
-> +	case hwmon_in:
-> +	case hwmon_curr:
-> +		return 0444;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int mp2845_read_string(struct device *dev, enum hwmon_sensor_types type,
-> +			      u32 attr, int channel, const char **str)
-> +{
-> +	struct mp2845_data *data;
-> +	int ret = 0;
-> +
-> +	data = dev_get_drvdata(dev);
-> +
-> +	mutex_lock(&data->lock);
-
-What concurrency issue is this supposed to protect against, and why is the
-concurrency protection in the hwmon core insufficient ?
-
-> +
-> +	switch (type) {
-> +	case hwmon_in:
-> +		if (channel == 0)
-> +			*str = "vin";
-> +		else if (channel == 1)
-> +			*str = "vout1";
-> +		else if (channel == 2)
-> +			*str = "vout2";
-> +		else if (channel == 3)
-> +			*str = "vout3";
-> +		else
-> +			*str = "vout4";
-> +		break;
-> +	case hwmon_curr:
-> +		if (channel == 0)
-> +			*str = "iout1";
-> +		else if (channel == 1)
-> +			*str = "iout2";
-> +		else if (channel == 2)
-> +			*str = "iout3";
-> +		else
-> +			*str = "iout4";
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-
-The channel labels are supposed to reflect system values. The above just
-reports PMBus values, and those are already provided by the PMBus core.
-This is pointless code.
-
-> +	mutex_unlock(&data->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mp2845_read(struct device *dev, enum hwmon_sensor_types type,
-> +		       u32 attr, int channel, long *val)
-> +{
-> +	int ret;
-> +	struct mp2845_data *data;
-> +
-> +	data = dev_get_drvdata(dev);
-> +	if (!data)
-> +		return -ENOMEM;
-
-How would this ever happen ?
-
-> +
-> +	mutex_lock(&data->lock);
-
-Why is the lock provided by the hwmon core insufficient ?
-
-> +
-> +	switch (type) {
-> +	case hwmon_in:
-> +		if (channel == 0) {
-> +			if (attr == hwmon_in_input) {
-> +				ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_READ_VIN);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				*val = DIV_ROUND_CLOSEST((ret & GENMASK(9, 0)) *
-> +							 MP2845_READ_VIN_UINT,
-> +							 MP2845_READ_VIN_DIV);
-> +			} else if (attr == hwmon_in_crit) {
-> +				ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_VIN_OV_UV_SET);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				*val = FIELD_GET(GENMASK(15, 8), ret) * MP2845_VIN_LIMIT_UINT;
-> +			} else if (attr == hwmon_in_min) {
-> +				ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_VIN_OV_UV_SET);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				*val = FIELD_GET(GENMASK(7, 0), ret) * MP2845_VIN_LIMIT_UINT;
-> +			} else if (attr == hwmon_in_crit_alarm) {
-> +				ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_PROTECT_STATUS2);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				*val = FIELD_GET(GENMASK(5, 5), ret);
-> +			} else {
-> +				ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_PROTECT_STATUS2);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				*val = FIELD_GET(GENMASK(4, 4), ret);
-> +			}
-> +		} else {
-> +			if (attr == hwmon_in_input) {
-> +				ret = i2c_smbus_write_byte_data(data->client, 0, channel - 1);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_READ_VOUT);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				*val = (ret & GENMASK(9, 0)) * MP2845_READ_VOUT_UINT;
-> +			} else if (attr == hwmon_in_crit_alarm) {
-> +				ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_PROTECT_STATUS1);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				if (channel == 1)
-> +					*val = FIELD_GET(GENMASK(10, 10), ret);
-> +				else if (channel == 2)
-> +					*val = FIELD_GET(GENMASK(7, 7), ret);
-> +				else if (channel == 3)
-> +					*val = FIELD_GET(GENMASK(4, 4), ret);
-> +				else
-> +					*val = FIELD_GET(GENMASK(1, 1), ret);
-> +			} else {
-> +				ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_PROTECT_STATUS1);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				if (channel == 1)
-> +					*val = FIELD_GET(GENMASK(11, 11), ret);
-> +				else if (channel == 2)
-> +					*val = FIELD_GET(GENMASK(8, 8), ret);
-> +				else if (channel == 3)
-> +					*val = FIELD_GET(GENMASK(5, 5), ret);
-> +				else
-> +					*val = FIELD_GET(GENMASK(2, 2), ret);
-> +			}
-> +		}
-> +		break;
-> +	case hwmon_temp:
-> +		if (attr == hwmon_temp_input) {
-> +			ret = i2c_smbus_write_byte_data(data->client, 0, channel);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			ret = i2c_smbus_read_word_data(data->client, MFR_READ_TEMP);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			*val = ((ret & GENMASK(7, 0)) - 40) * MP2845_TEMP_UINT;
-> +		} else {
-> +			ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			ret = i2c_smbus_read_word_data(data->client, MFR_PROTECT_STATUS1);
-> +				if (ret < 0)
-> +					break;
-> +
-> +			if (channel == 0) {
-> +				*val = FIELD_GET(GENMASK(12, 12), ret);
-> +			} else if (channel == 1) {
-> +				*val = FIELD_GET(GENMASK(14, 14), ret);
-> +			} else if (channel == 2) {
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_PROTECT_STATUS2);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				*val = FIELD_GET(GENMASK(0, 0), ret);
-> +			} else {
-> +				ret = i2c_smbus_read_word_data(data->client, MFR_PROTECT_STATUS2);
-> +				if (ret < 0)
-> +					break;
-> +
-> +				*val = FIELD_GET(GENMASK(2, 2), ret);
-> +			}
-> +		}
-> +		break;
-> +	case hwmon_curr:
-> +		if (attr == hwmon_curr_input) {
-> +			ret = i2c_smbus_write_byte_data(data->client, 0, channel);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			ret = i2c_smbus_read_word_data(data->client, MFR_READ_IOUT);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			*val = DIV_ROUND_CLOSEST((ret & GENMASK(9, 0)) * data->iout_gain[channel] *
-> +						 MP2845_READ_IOUT_UINT, MP2845_READ_IOUT_DIV);
-> +		} else if (attr == hwmon_curr_max) {
-> +			ret = i2c_smbus_write_byte_data(data->client, 0, channel);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			ret = i2c_smbus_read_word_data(data->client, MFR_OVUV_OCWARN_THRES);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			*val = DIV_ROUND_CLOSEST(FIELD_GET(GENMASK(15, 8), ret) *
-> +						 data->iout_gain[channel] * MP2845_READ_IOUT_UINT *
-> +						 4 * 2, MP2845_READ_IOUT_DIV);
-> +		} else if (attr == hwmon_curr_crit) {
-> +			ret = i2c_smbus_write_byte_data(data->client, 0, channel);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			ret = i2c_smbus_read_word_data(data->client, MFR_TOTAL_OCP_SET);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			*val = DIV_ROUND_CLOSEST(FIELD_GET(GENMASK(15, 8), ret) *
-> +						 data->iout_gain[channel] * MP2845_READ_IOUT_UINT *
-> +						 4 * 2, MP2845_READ_IOUT_DIV);
-> +		} else {
-> +			ret = i2c_smbus_write_byte_data(data->client, 0, 0);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			ret = i2c_smbus_read_word_data(data->client, MFR_PROTECT_STATUS1);
-> +			if (ret < 0)
-> +				break;
-> +
-> +			if (channel == 0)
-> +				*val = FIELD_GET(GENMASK(9, 9), ret);
-> +			else if (channel == 2)
-> +				*val = FIELD_GET(GENMASK(6, 6), ret);
-> +			else if (channel == 3)
-> +				*val = FIELD_GET(GENMASK(3, 3), ret);
-> +			else
-> +				*val = FIELD_GET(GENMASK(0, 0), ret);
-> +		}
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	mutex_unlock(&data->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int
-> +mp2845_identify_iout_scale(struct mp2845_data *data, int page)
-> +{
-> +	int gain;
-> +	int ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(data->client, 0x00, page);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = i2c_smbus_read_word_data(data->client, page == 0 ? MFR_MFG_ID_SCALE_VI2 :
-> +				       MFR_MFG_ID_SCALE_VI1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	gain = page == 0 ? FIELD_GET(MP2845_IOUT_SCALE_MASK1, ret) :
-> +	       FIELD_GET(MP2845_IOUT_SCALE_MASK2, ret);
-> +	switch (gain) {
-> +	case 1:
-> +		data->iout_gain[page] = 1;
-> +		break;
-> +	case 2:
-> +		data->iout_gain[page] = 2;
-> +		break;
-> +	case 3:
-> +		data->iout_gain[page] = 4;
-> +		break;
-> +	case 4:
-> +		data->iout_gain[page] = 8;
-> +		break;
-> +	case 5:
-> +		data->iout_gain[page] = 16;
-> +		break;
-> +	case 6:
-> +		data->iout_gain[page] = 32;
-> +		break;
-> +	case 7:
-> +		data->iout_gain[page] = 64;
-> +		break;
-> +	default:
-> +		data->iout_gain[page] = 1;
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct hwmon_channel_info *mp2845_info[] = {
-> +	HWMON_CHANNEL_INFO(in,
-> +			   HWMON_I_INPUT | HWMON_I_MIN | HWMON_I_CRIT | HWMON_I_CRIT_ALARM |
-> +			   HWMON_I_LCRIT_ALARM | HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_CRIT_ALARM | HWMON_I_LCRIT_ALARM |
-> +			   HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_CRIT_ALARM | HWMON_I_LCRIT_ALARM |
-> +			   HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_CRIT_ALARM | HWMON_I_LCRIT_ALARM |
-> +			   HWMON_I_LABEL,
-> +			   HWMON_I_INPUT | HWMON_I_CRIT_ALARM | HWMON_I_LCRIT_ALARM |
-> +			   HWMON_I_LABEL),
-> +	HWMON_CHANNEL_INFO(temp,
-> +			   HWMON_T_INPUT | HWMON_T_CRIT_ALARM,
-> +			   HWMON_T_INPUT | HWMON_T_CRIT_ALARM,
-> +			   HWMON_T_INPUT | HWMON_T_CRIT_ALARM,
-> +			   HWMON_T_INPUT | HWMON_T_CRIT_ALARM),
-> +	HWMON_CHANNEL_INFO(curr,
-> +			   HWMON_C_INPUT | HWMON_C_CRIT | HWMON_C_CRIT_ALARM | HWMON_C_MAX |
-> +			   HWMON_C_LABEL,
-> +			   HWMON_C_INPUT | HWMON_C_CRIT | HWMON_C_CRIT_ALARM | HWMON_C_MAX |
-> +			   HWMON_C_LABEL,
-> +			   HWMON_C_INPUT | HWMON_C_CRIT | HWMON_C_CRIT_ALARM | HWMON_C_MAX |
-> +			   HWMON_C_LABEL,
-> +			   HWMON_C_INPUT | HWMON_C_CRIT | HWMON_C_CRIT_ALARM | HWMON_C_MAX |
-> +			   HWMON_C_LABEL),
-> +	NULL
-> +};
-> +
-> +static const struct hwmon_ops mp2845_hwmon_ops = {
-> +	.is_visible = mp2845_is_visible,
-> +	.read = mp2845_read,
-> +	.read_string = mp2845_read_string,
-> +};
-> +
-> +static const struct hwmon_chip_info mp2845_chip_info = {
-> +	.ops = &mp2845_hwmon_ops,
-> +	.info = mp2845_info,
-> +};
-> +
-> +static int mp2845_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct device *hwmon_dev;
-> +	struct mp2845_data *data;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA |
-> +				     I2C_FUNC_SMBUS_WORD_DATA)) {
-> +		dev_err(dev, "check failed, smbus byte and/or word data not supported!\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	data = devm_kzalloc(dev, sizeof(struct mp2845_data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&data->lock);
-> +	data->client = client;
-> +
-> +	ret = mp2845_identify_iout_scale(data, 0);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to identify rail1 iout scale, errno = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = mp2845_identify_iout_scale(data, 1);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to identify rail2 iout scale, errno = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = mp2845_identify_iout_scale(data, 2);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to identify rail3 iout scale, errno = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = mp2845_identify_iout_scale(data, 3);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to identify rail4 iout scale, errno = %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
-> +							 data, &mp2845_chip_info,
-> +							 NULL);
-> +	if (IS_ERR(hwmon_dev)) {
-> +		dev_err(dev, "unable to register mp2845 hwmon device\n");
-> +		return PTR_ERR(hwmon_dev);
-> +	}
-> +
-> +	dev_info(dev, "%s: sensor '%s'\n", dev_name(hwmon_dev), client->name);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct i2c_device_id mp2845_ids[] = {
-> +	{"mp2845", 0},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, mp2845_ids);
-> +
-> +static const struct of_device_id __maybe_unused mp2845_of_match[] = {
-> +	{.compatible = "mps,mp2845"},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mp2845_of_match);
-> +
-> +static struct i2c_driver mp2845_driver = {
-> +	.class		= I2C_CLASS_HWMON,
-> +	.driver = {
-> +		.name	= "mp2845",
-> +		.of_match_table = mp2845_of_match,
-> +	},
-> +	.probe		= mp2845_probe,
-> +	.id_table	= mp2845_ids,
-> +};
-> +module_i2c_driver(mp2845_driver);
-> +
-> +MODULE_AUTHOR("Wensheng Wang <wenswang@yeah.net>");
-> +MODULE_DESCRIPTION("MP2845 driver");
-> +MODULE_LICENSE("GPL");
+> 
+> > expander.
+> >
+> > Link: [v1] https://lore.kernel.org/all/20260203155023.536103-1-hugo@hugovil.com/
+> > Link: [v2] https://lore.kernel.org/all/20260213171431.2228814-1-hugo@hugovil.com/
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 > -- 
-> 2.25.1
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 > 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 > 
+
+
+-- 
+Hugo Villeneuve
 
