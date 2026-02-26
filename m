@@ -1,170 +1,219 @@
-Return-Path: <devicetree+bounces-268734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268735-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YMXFNzIcoGmzfgQAu9opvQ
-	(envelope-from <devicetree+bounces-268734-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:10:58 +0100
+	id OAjhBv4coGmzfgQAu9opvQ
+	(envelope-from <devicetree+bounces-268735-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:14:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 532571A40FB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:10:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9B751A417D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:14:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2FB61308AF4A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:08:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E92E300579C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 10:14:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED7539C623;
-	Thu, 26 Feb 2026 10:08:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cik5D4Bt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C53A122157B;
+	Thu, 26 Feb 2026 10:14:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BDDA3A6407;
-	Thu, 26 Feb 2026 10:08:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0759D315D21
+	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 10:14:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772100520; cv=none; b=Hl6knTRcX9L+J8cJPq/7C0Ui9mo7tOPYPluARU490vGp8mvpzobVVX/YDYKTmngWmF06Givrm7da23d30Kk0SoRiOkgPdzKCsHtUew9pXga4CN+A7bgtAzZ6UyCVNN8jjtibMm58jQ36y4LXWejCveupP6y1rNjCtgfHHV+S8HA=
+	t=1772100855; cv=none; b=JHN7y7CxgwfTbKvPWdwC1yhD4Cfkkxzz0BHFsAfxY4HeD6YkmOzqQEHbRJTtY0wIDKZhjoLpd3peDzLusWEZcFc+NJ6p8+7mkHF+ZhJH8cy5a1Yr2mDl85OIUyo7syL3A1I8o7tmVE6qTmTX+Km61Zu5IWBO2T2qP6mP/EXNudQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772100520; c=relaxed/simple;
-	bh=Yy7VyfcZWv4eqMPZxYpvKoXAOCnFJWkLGVXvxELOIj8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Fm2kAtIoruUujx81DntPoDfuBw2MAS+hrWiQ5duIUPbkZ0xUqsYrX4V77V8K9ZjFhZi5wdg1dzdwmdqJtFvoO4Xjo8skwd6zbbya2PQp+3uPGrjWldtV7V+tG9/kDncDTMTXQxAr0PBU+18a0+rJq6wKeovzKFMP0I2rHB+mVHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cik5D4Bt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A0FCC19422;
-	Thu, 26 Feb 2026 10:08:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772100520;
-	bh=Yy7VyfcZWv4eqMPZxYpvKoXAOCnFJWkLGVXvxELOIj8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Cik5D4Bt4H+ynPYfXIH0cOrssL3wsSrD64JZx1VCkaJkqzJOF+GrfdnS1QfzX0Mod
-	 1Tb79vQbrHxuOngYmaDOo08OO0Z3kiLiRf7srRuYqC13s6HRZcMSvantS5o7iBJiEs
-	 HT2qahF/tCQ5GoGv1cTVJd7ez1APmfivlC5yQ1/tpA7ln2QFi+LlMfq/COZK9qZGky
-	 6XjV4dUuh9hdQNNGHHuwjf/9DaHz24PoIVNMoEVZkvCUB0TlztNHJzQkl32rt0LZTf
-	 Z291ImjT1cUK7fo5hvZHSeShczL311XIFB5YU628q+0VuqKd8YcX0VX1fzoyb0OQ3o
-	 sSOcL98ifsnxA==
-Date: Thu, 26 Feb 2026 10:08:33 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- kernel@pengutronix.de, David Jander <david@protonic.nl>, David Lechner
- <dlechner@baylibre.com>
-Subject: Re: [PATCH v6 00/12] iio: dac: ds4424: add DS4402/DS4404 support
- and scale
-Message-ID: <20260226100833.24fa15b5@jic23-huawei>
-In-Reply-To: <aaAHbOVL-83tgIEc@pengutronix.de>
-References: <20260210135110.2027073-1-o.rempel@pengutronix.de>
-	<aaAHbOVL-83tgIEc@pengutronix.de>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772100855; c=relaxed/simple;
+	bh=dMVtywBrglDkJITDxPNwf74BRVG5Oa8YMkJymoHGNSo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=r8a5UeyJ54LzojwOK9Aps1FOQ4tQMIes8NzxGY+urVGiBLChTttQDhEBQi3B1xvTt2bHGvrdDsH1uv6j+zwYkjvs1oZKdtCg15DGzvqK9rUQWEIhwsfVuQdSYKbtXt4sDS2B137TkNgxXo1RXs3KThPy9wPDcfb0o/X7wTjkkDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vvYND-0000dD-Tv; Thu, 26 Feb 2026 11:13:35 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vvYNA-002iGa-2y;
+	Thu, 26 Feb 2026 11:13:34 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vvYNC-000000006wn-0ldV;
+	Thu, 26 Feb 2026 11:13:34 +0100
+Message-ID: <6a63b27e567d854e8459bc3a31d99e2d01cd1dd6.camel@pengutronix.de>
+Subject: Re: [PATCH 3/8] media: i2c: ov08d10: add support for reset and
+ power management
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Matthias Fend <matthias.fend@emfend.at>, Mauro Carvalho Chehab
+	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jimmy Su
+	 <jimmy.su@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com
+Date: Thu, 26 Feb 2026 11:13:34 +0100
+In-Reply-To: <20260226-ov08d10-v1-3-c3a916368123@emfend.at>
+References: <20260226-ov08d10-v1-0-c3a916368123@emfend.at>
+	 <20260226-ov08d10-v1-3-c3a916368123@emfend.at>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-268734-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.995];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-268735-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 532571A40FB
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.994];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B9B751A417D
 X-Rspamd-Action: no action
 
-On Thu, 26 Feb 2026 09:42:20 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+On Do, 2026-02-26 at 09:56 +0100, Matthias Fend wrote:
+> Add support for the required power supplies as well as the control of an
+> optional sensor reset.
+>=20
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+> ---
+>  drivers/media/i2c/ov08d10.c | 104 ++++++++++++++++++++++++++++++++++++++=
++++---
+>  1 file changed, 97 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/media/i2c/ov08d10.c b/drivers/media/i2c/ov08d10.c
+> index cfe18dcde174ddc1f198cb2aaa6b4a3b34045508..4dba264488b3e1950016deb3f=
+a34732871cc34fc 100644
+> --- a/drivers/media/i2c/ov08d10.c
+> +++ b/drivers/media/i2c/ov08d10.c
+[...]
+> @@ -1379,6 +1442,7 @@ static int ov08d10_probe(struct i2c_client *client)
+>  {
+>  	struct ov08d10 *ov08d10;
+>  	unsigned long freq;
+> +	unsigned int i;
+>  	int ret;
+> =20
+>  	ov08d10 =3D devm_kzalloc(&client->dev, sizeof(*ov08d10), GFP_KERNEL);
+> @@ -1404,12 +1468,32 @@ static int ov08d10_probe(struct i2c_client *clien=
+t)
+>  		return ret;
+>  	}
+> =20
+> +	ov08d10->reset =3D devm_reset_control_get_optional(ov08d10->dev, NULL);
 
-> Hi Jonathan,
-> 
-> Should I resend this patch series?
-No need.   For future reference I use patchwork.kernel.org to track
-status of series.   This one is sat there because I need to do a pull
-request for the precursor fix (which I'll do shortly).  That then needs
-to loop around into a suitable upstream tree before I can pick this
-series up on top of it.
+Please use devm_reset_control_get_optional_exclusive() directly.
 
+> +	if (IS_ERR(ov08d10->reset))
+> +		return dev_err_probe(ov08d10->dev, PTR_ERR(ov08d10->reset),
+> +				     "failed to get reset\n");
+> +	reset_control_assert(ov08d10->reset);
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(ov08d10_supply_names); i++)
+> +		ov08d10->supplies[i].supply =3D ov08d10_supply_names[i];
+> +
+> +	ret =3D devm_regulator_bulk_get(ov08d10->dev,
+> +				      ARRAY_SIZE(ov08d10->supplies),
+> +				      ov08d10->supplies);
+> +	if (ret)
+> +		return dev_err_probe(ov08d10->dev, ret,
+> +				     "failed to get regulators\n");
+> +
+>  	v4l2_i2c_subdev_init(&ov08d10->sd, client, &ov08d10_subdev_ops);
+> =20
+> +	ret =3D ov08d10_power_on(ov08d10->dev);
+> +	if (ret)
+> +		return dev_err_probe(ov08d10->dev, ret, "failed to power on\n");
+> +
+>  	ret =3D ov08d10_identify_module(ov08d10);
+>  	if (ret) {
+>  		dev_err(ov08d10->dev, "failed to find sensor: %d", ret);
+> -		return ret;
+> +		goto probe_error_power_off;
+>  	}
+> =20
+>  	mutex_init(&ov08d10->mutex);
+> @@ -1430,6 +1514,9 @@ static int ov08d10_probe(struct i2c_client *client)
+>  		goto probe_error_v4l2_ctrl_handler_free;
+>  	}
+> =20
+> +	pm_runtime_set_active(ov08d10->dev);
+> +	pm_runtime_enable(ov08d10->dev);
+> +
+>  	ret =3D v4l2_async_register_subdev_sensor(&ov08d10->sd);
+>  	if (ret < 0) {
+>  		dev_err(ov08d10->dev, "failed to register V4L2 subdev: %d",
+> @@ -1437,26 +1524,28 @@ static int ov08d10_probe(struct i2c_client *clien=
+t)
+>  		goto probe_error_media_entity_cleanup;
+>  	}
+> =20
+> -	/*
+> -	 * Device is already turned on by i2c-core with ACPI domain PM.
+> -	 * Enable runtime PM and turn off the device.
+> -	 */
 
-Thanks,
+The commit message does not explain why this comment is dropped.
 
-Jonathan
-> 
-> On Tue, Feb 10, 2026 at 02:50:58PM +0100, Oleksij Rempel wrote:
-> > changes v6:
-> > - rebase on top of iio/fixes-togreg
-> > - drop "iio: dac: ds4424: reject -128 RAW value", already included
-> > 
-> > This series extends the ds4424 IIO DAC driver and its devicetree binding
-> > to support the DS4402 and DS4404 current DAC variants.
-> > 
-> > DS440x devices share the same register map as DS442x but use a different
-> > resolution (5-bit vs 7-bit) and a different full-scale current formula.
-> > The full-scale current depends on external Rfs resistors connected to
-> > the FS pins, so a new optional DT property is added to provide the
-> > per-channel Rfs values and allow the driver to report a correct IIO
-> > SCALE (mA/step).
-> > 
-> > While adding DS440x support, a few related issues were addressed:
-> > - Port to regmap
-> > - Reject -128 in RAW writes on DS442x, which cannot be represented with
-> >   sign-magnitude encoding and could silently program an unintended
-> >   output.
-> > - Preserve preconfigured values on probe.
-> > - Ratelimit read error logging and use device context.
-> > 
-> > David Jander (1):
-> >   iio: dac: ds4424: add DS4402/DS4404 device IDs
-> > 
-> > Oleksij Rempel (11):
-> >   iio: dac: ds4424: refactor raw access to use bitwise operations
-> >   iio: dac: ds4424: ratelimit read errors and use device context
-> >   iio: dac: ds4424: sort headers alphabetically
-> >   iio: dac: ds4424: rename iio_info struct to avoid ambiguity
-> >   iio: dac: ds4424: use device match data for chip info
-> >   iio: dac: ds4424: use fsleep() instead of usleep_range()
-> >   dt-bindings: iio: dac: maxim,ds4424: add ds4402/ds4404
-> >   iio: dac: ds4424: support per-variant output range limits
-> >   iio: dac: ds4424: convert to regmap
-> >   dt-bindings: iio: dac: maxim,ds4424: add maxim,rfs-ohms property
-> >   iio: dac: ds4424: add Rfs-based scale and per-variant limits
-> > 
-> >  .../bindings/iio/dac/maxim,ds4424.yaml        |  42 +-
-> >  drivers/iio/dac/Kconfig                       |   1 +
-> >  drivers/iio/dac/ds4424.c                      | 375 ++++++++++++------
-> >  3 files changed, 287 insertions(+), 131 deletions(-)
-> > 
-> > --
-> > 2.47.3
-> > 
-> > 
-> >   
-> 
+> -	pm_runtime_set_active(ov08d10->dev);
+> -	pm_runtime_enable(ov08d10->dev);
+>  	pm_runtime_idle(ov08d10->dev);
+> =20
+>  	return 0;
+> =20
+>  probe_error_media_entity_cleanup:
+> +	pm_runtime_disable(ov08d10->dev);
+> +	pm_runtime_set_suspended(ov08d10->dev);
 
+Does this do the correct thing if v4l2_async_register_subdev_sensor()
+returns -EPROBE_DEFER (for example via privacy led) and then it probes
+a second time? It looks like the assumption pm_runtime_set_active()
+doesn't hold then.
+
+>  	media_entity_cleanup(&ov08d10->sd.entity);
+> =20
+>  probe_error_v4l2_ctrl_handler_free:
+>  	v4l2_ctrl_handler_free(ov08d10->sd.ctrl_handler);
+>  	mutex_destroy(&ov08d10->mutex);
+> =20
+> +probe_error_power_off:
+> +	ov08d10_power_off(ov08d10->dev);
+> +
+>  	return ret;
+>  }
+
+regards
+Philipp
 
