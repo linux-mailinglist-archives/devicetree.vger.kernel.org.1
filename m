@@ -1,228 +1,292 @@
-Return-Path: <devicetree+bounces-268997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LGEH/qwoGnUlgQAu9opvQ
-	(envelope-from <devicetree+bounces-268997-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:45:46 +0100
+	id QGiVNSa0oGmHlwQAu9opvQ
+	(envelope-from <devicetree+bounces-268998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:59:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E451AF462
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:45:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E51E1AF587
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 21:59:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 575F230BD4CA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 20:45:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9E80F300C302
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 20:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79E03112D2;
-	Thu, 26 Feb 2026 20:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B9A3D9044;
+	Thu, 26 Feb 2026 20:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="y/AxUqks"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WC2QrcXJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB83B30DD25;
-	Thu, 26 Feb 2026 20:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1EF330B2C;
+	Thu, 26 Feb 2026 20:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772138711; cv=none; b=jxIw1VfnDcfCbwMrwrkTDIojEhiuPHsHduqbo5OOwd5By9Drmrxe49nbHPgN+tbT5earnfvh0QSXwqlvg7b8pYPjyxQquzCz0MItXUvJ6iqmT6mzu1JO2anYoL4BxjOGhpHwHYIzoQhm9fuGoQWKYhxldWxzznZC0+Z0CJweqW0=
+	t=1772139554; cv=none; b=gZRAoSI/pG5UxAfIgtHagMog5xH23Cy96KGDIY2vtB9tk9bfZmPXo8LNKHJNk4JQN7PULocvy//Jw5etqRwiBx1PHZgf/+bdwMbC8jdJkmaZOEskZsQXFycOyjh/Hzcr+pdi3Ycg+UU/L/VbYapFGzcv4R7ymUk6SQBI11ey6no=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772138711; c=relaxed/simple;
-	bh=mIqMdrRwANI9MqmAL5m1Ir5mAyYzwv3j8dxD7o48Dtw=;
+	s=arc-20240116; t=1772139554; c=relaxed/simple;
+	bh=cKcN2V29V13koNaaY/Nhem64w71cAay19I8PFL1jhi8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O5uKWtnz8tYVjGfezzrjYPOAZfC7XRlh5qrY0mN2ZHbhAZZ5iDBg5PIXW5fgd23jhiXie2QbJ3sliXnOsxM3nNUV1rvnzqLxpQwlN0baVrmuZ0rszKvaFLQpkqxkQQxm71TuzxueMXGZdQx45b4KJoexOosU4xd21+EdmNLyiaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=y/AxUqks; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ogPD/lXZWLTreSJKiI+SxSAF1QGabbqMCr+KWW3Nhyw=; b=y/AxUqksZk23ZyoQ20SEZ7Sszj
-	bR7P9FfMvHMtPGWOjt2L33faE3nNRhxIAAlZ/oD6Kz/yS5REoXNSZyWiKUr3iJxjeiMgYnuQ/Poyc
-	npBcqj/t37SvY3nHdwIwtO3wiyrBIMClh24wThYj0/SCKqzeKCWVWK1ll4m6dDD+cJfEXaTLW8SI8
-	EwUF0jXHqviiwv8AZy6QHR5Qmnsje/nh9Qhzk0BPtNji+C99vEDYg+xr9TW7YcWb3by/8AfKDgb5u
-	Gch3ri3t+rB2L+yS9kQYrMw3l/7fvfj5aQPRuRdcqY12NvLVBXkbQGkTRcBlkHRrxCiWJimOrKP8D
-	XSMb1ekQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:41126)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vviEC-000000008PR-37sB;
-	Thu, 26 Feb 2026 20:44:56 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vviE9-000000002MW-3D5P;
-	Thu, 26 Feb 2026 20:44:53 +0000
-Date: Thu, 26 Feb 2026 20:44:53 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Conor Dooley <conor@kernel.org>
-Cc: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=WHbUwD3UXcvgO/cpg08iIMxJNDIjqageCdyzEBo971NxqOef8bfaFB4FfMW1tPsniP0/QVZn/uUYzKj5tinJcbN3m8eiFIFrudM7GwxLjyqVpVJZHsV1RVoWDwFlwvLr6p2ERmJtJ0HRY2l2P+rBl89erWdeXFO29ewNI0M+Qrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WC2QrcXJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 287D0C116C6;
+	Thu, 26 Feb 2026 20:59:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772139554;
+	bh=cKcN2V29V13koNaaY/Nhem64w71cAay19I8PFL1jhi8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WC2QrcXJ1AQanIDOsmn+YKZ7wGHFs9oPx6b9VwtF0WgjGtvbgicPwBaatIuAGGPS7
+	 +KqX0TAHuV5Qd9ZdHpmM/ZvbTReoXZqWLmOi/rT5QoSMD7WheVJIZ6JOtUdtkNsWrj
+	 yRifcLVIJDbJ0Gk5/bRyvfXNGM1DLTFC7qzCrAE5NqbjhNQ1aBkwrA/EJnu58b8BAL
+	 EaLA0DaAPhFA8RH3pTyMnVSw+FaZgIIutFVJ0hKeoVgY4cU4rPEIqeUSALZK2h00A/
+	 vZopphsOuJJKk3Y2R5R5OBSYwh2+G8NkoyibQg3JlrSAk/tLkJfQbqdvfCX99fexAa
+	 EYDmeCaCARX4Q==
+Date: Thu, 26 Feb 2026 20:59:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: Re: [PATCH net-next v3 5/5] net: macb: Add "mobileye,eyeq5-gem"
- compatible
-Message-ID: <aaCwxeMHMSCHk0nx@shell.armlinux.org.uk>
-References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
- <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
- <20260226-folic-excitable-82eff83a125a@spud>
- <aaCd_zV5kY-s1RBL@shell.armlinux.org.uk>
- <20260226-perennial-sanctity-25c6adae5ec0@spud>
+	Heiko Stuebner <heiko@sntech.de>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	linux-media@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add
+ alternative reg-names order for RK35{76,88}
+Message-ID: <20260226-snide-foil-a05e1aa156a8@spud>
+References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
+ <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
+ <20260226-salute-threaten-a3eabb232396@spud>
+ <429f3c7aa22eccffedbf8db6aa91bee3dd13814a.camel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="TI6MRG6jfhf7gfkz"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260226-perennial-sanctity-25c6adae5ec0@spud>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <429f3c7aa22eccffedbf8db6aa91bee3dd13814a.camel@collabora.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268997-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-268998-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_PROHIBIT(0.00)[0.0.0.8:email];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.914];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.3:email,0.0.0.7:email,armlinux.org.uk:url]
-X-Rspamd-Queue-Id: B9E451AF462
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,collabora.com:email]
+X-Rspamd-Queue-Id: 6E51E1AF587
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 08:20:41PM +0000, Conor Dooley wrote:
-> On Thu, Feb 26, 2026 at 07:24:47PM +0000, Russell King (Oracle) wrote:
-> > On Thu, Feb 26, 2026 at 10:46:24AM +0000, Conor Dooley wrote:
-> > > On Thu, Oct 23, 2025 at 06:22:55PM +0200, Théo Lebrun wrote:
-> > > > Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
-> > > > compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
-> > > > that must grab a generic PHY and initialise it.
-> > > > 
-> > > > We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
-> > > > phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
-> > > > the first users of bp->phy that use it in non-SGMII cases.
-> > > > 
-> > > > The phy_set_mode_ext() call is made unconditionally. It cannot cause
-> > > > issues on platforms where !bp->phy or !bp->phy->ops->set_mode as, in
-> > > > those cases, the call is a no-op (returning zero). From reading
-> > > > upstream DTS, we can figure out that no platform has a bp->phy and a
-> > > > PHY driver that has a .set_mode() implementation:
-> > > >  - cdns,zynqmp-gem: no DTS upstream.
-> > > >  - microchip,mpfs-macb: microchip/mpfs.dtsi, &mac0..1, no PHY attached.
-> > > >  - xlnx,versal-gem: xilinx/versal-net.dtsi, &gem0..1, no PHY attached.
-> > > >  - xlnx,zynqmp-gem: xilinx/zynqmp.dtsi, &gem0..3, PHY attached to
-> > > >    drivers/phy/xilinx/phy-zynqmp.c which has no .set_mode().
-> > > 
-> > > Ran into this patch while looking at other stuff. Theo could you explain
-> > > this analysis to someone not really au fait with phys? Looking at
-> > > soc.dtsi files won't show you phys, since that's a board level decision,
-> > > but you have found one for the zynqmp-gem so I guess that's just the way
-> > > you presented the data?
-> > > mpfs definitely has phys attached, so is you not finding one for it but
-> > > finding for zynqmp, an indication that you were only looking for rgmii
-> > > phys? Also, is the analysis of the connected phy driver accurate for
-> > > zynmqmp?
-> > > zynqmp-zc1751-xm018-dc4.dts seems to have 4 ethernet phys:
-> > > 		ethernet_phy0: ethernet-phy@0 { /* Marvell 88e1512 */
-> > > 			reg = <0>;
-> > > 		};
-> > > 		ethernet_phy7: ethernet-phy@7 { /* Vitesse VSC8211 */
-> > > 			reg = <7>;
-> > > 		};
-> > > 		ethernet_phy3: ethernet-phy@3 { /* Realtek RTL8211DN */
-> > > 			reg = <3>;
-> > > 		};
-> > > 		ethernet_phy8: ethernet-phy@8 { /* Vitesse VSC8211 */
-> > > 			reg = <8>;
-> > > 		};
-> > 
-> > Ethernet PHYs (drivers/net/phy/) are different from generic PHYs
-> > (drivers/phy/). Ethernet PHYs are completely different beast with a
-> > completely separate subsystem, which doesn't have a "set_mode" method.
-> > 
-> > Théo is referring to generic PHYs not Ethernet PHYs.
-> 
-> Right, that's pretty much what I figured and cos of that the patch
-> itself seemed like it was fine to me. It is the analysis of users in
-> devicetrees that I don't understand - the "no PHY attached" bits
-> seemed to me like they should be saying "ethernet-only PHY attached, so
-> no .set_mode()". Ultimately, I think it makes no difference to the patch
-> itself, I just wanted to understand the commit message.
 
-I think you're still thinking that ethernet PHYs and generic PHYs are
-the same, but only differ in e.g. whether .set_mode() is populated.
-This is completely wrong.
+--TI6MRG6jfhf7gfkz
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Ethernet PHYs are _completely_ separate from Generic PHYs. Forget the
-"PHY" bit, that's totally irrelevant that they happen to be called
-the same. The two classes share _no_ common infrastructure in the
-kernel.
+On Thu, Feb 26, 2026 at 02:45:11PM -0500, Nicolas Dufresne wrote:
+> Le jeudi 26 f=E9vrier 2026 =E0 18:43 +0000, Conor Dooley a =E9crit=A0:
+> > On Thu, Feb 26, 2026 at 12:46:53PM +0200, Cristian Ciocaltea wrote:
+> > > With the introduction of the RK3588 SoC, and RK3576 afterwards, two m=
+ore
+> > > register blocks have been provided for the video decoder unit.
+> > >=20
+> > > However, the binding does not properly describe the new hardware layo=
+ut,
+> > > as it breaks the convention expecting the unit address to indicate the
+> > > start of the first register range, i.e. 'function' block is listed
+> > > before 'link' instead of the opposite.
+> >=20
+> > I don't understand this commit message or rationale for an ABI break.
+> > Changing the unit address seems like a "free" fix to your problem,
+> > especially when reg-names is not a required property that you can rely
+> > on. Actually, there may be a bug in the driver - it expects reg-names
+> > for rk3576-vdec and rk3588-vdec but the binding doesn't mandate their
+> > presence for those devices.
+>=20
+> If the bindings had been held instead of released early, the order would =
+be what
+> is done in this patch for sure, and no one would have complained. These b=
+inding
+> have never been used by anyone so far, and what you are asking is to crea=
+te a
 
-Ethernet PHYs can't have phy_set_mode_ext() called on them, because
-ethernet PHYs have no "struct phy" associated with them. They also
-can't have phy_power_on() either for the same reason, nor any of the
-other generic PHY API calls.
+20:35:32 conor /stuff/linux$ rg "rk3576-vdec"
 
-Ethernet PHYs aren't a sub-class of generic PHYs. As I said,
-Ethernet PHYs and generic PHYs are two entirely separate and different
-subsystems with no commonality.
+arch/arm64/boot/dts/rockchip/rk3576.dtsi
+1283:			compatible =3D "rockchip,rk3576-vdec";
 
-So... the commit message states "generic PHY". It states the generic
-PHY API calls of phy_set_mode_ext() and phy_power_up(). From that we
-deduce that bp->phy is a generic PHY. Thus, the commit message is
-talking about generic PHYs not ethernet PHYs.
+20:35:34 conor /stuff/linux$ rg rk3588-vdec
 
-Ethernet PHYs are described in Ethernet controller DT using the
-"phy-handle" property (and previously "phy" or "phy-device"
+arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+1357:		compatible =3D "rockchip,rk3588-vdec";
+1389:		compatible =3D "rockchip,rk3588-vdec";
 
-Generic PHYs are described using the "phys" property.
+These look like users, at least at first look. Some elaboration on that
+would be good - impact on users definitely should be covered in the
+commit message of an ABI break.
 
-The presence of an ethernet-phy node in DT does not automatically
-associate that device with anything - it has to be referenced by
-a "phy-handle" property to connect it to an Ethernet controller.
+> DTS that deviate from the vendor provided documentation for the IP base a=
+ddress.
+> I know you have all technical fancy reasoning, but I like when things are
+> functional and effective to work with.
 
-However, as I've been trying to point out, as this commit is about
-generic PHYs, Ethernet PHYs are just not relevant to this commit.
+FWIW, I don't think you were trying to be dismissive, just trying to
+make a valid point about usability being important, but providing clear
+justifications for why the order of properties should be changed (or
+other similar ABI breaks) is really important. This is v4, and the
+rationale you've given here about the documentation, which is the actual
+motivation for changing things around, doesn't appear in the commit
+message, even after a back and forth with Krzysztof in an earlier
+version.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> > Deprecating the order also makes little sense to me, given that some of
+> > these devices only have one reg entry, which as far as I can tell from
+> > looking at the driver *is* the "function" region, so it can never be
+> > entirely deprecated.
+>=20
+> What I'd like to see, is a binding expression that behave like a set, not=
+ a
+> list, and leave the ordering open. As people keep repeating, there is not=
+hing in
+> a binding that assist to define the right ordering (its not address or ba=
+se
+> addres aware). That basically means, we can't as reviewer see that orderi=
+ng is
+> going to imposing using a base address in the unit name (which is a conve=
+nience,
+> not a rule I suppose) that differ from the vendor documented base address.
+>=20
+> By explicitly removing the ordering in the binding, we create a strict ru=
+le that
+> driver should retrieve this by name, and never assume the ordering, which=
+ I
+> personally like.
+>=20
+> thoughts ?
+
+Yeah, you can do this, but to avoid potential breaks you have to do it
+=66rom the start, not after the fact. Probably there's bindings that get
+acked every day that do do this. Even the retcon is okay to do when
+reg-names is mandated by the binding and the users use reg-names in my
+opinion.
+
+In this case, the driver is currently buggy, because, as I mentioned, it
+uses reg-names without reg-names being required on the platforms with
+more than 1 reg property. Probably the binding should make reg-names
+mandatory for these platforms even without this patch, but it *has* to
+IMO for this proposed change to be applicable.
+
+But anyway, the takeaway from my original mail should be "Conor is not
+happy with the rationale the commit message provides for this change,
+as it doesn't explain why you want to do it". I necessarily object to
+the change itself.
+
+Conor.
+
+> > > Since the binding changes have been already released and a fix would
+> > > bring up an ABI break, mark the current 'reg-names' ordering as
+> > > deprecated and introduce an alternative 'link,function,cache' listing
+> > > which follows the address-based ordering according to the TRM.
+> > >=20
+> > > Additionally, drop the 'reg' description items as the order is not fi=
+xed
+> > > anymore, while the information they offer is not very relevant anyway.
+> > >=20
+> > > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> > > ---
+> > > =A0.../devicetree/bindings/media/rockchip,vdec.yaml=A0=A0=A0=A0 | 20 =
+++++++++++++-----
+> > > ---
+> > > =A01 file changed, 12 insertions(+), 8 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.ya=
+ml
+> > > b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> > > index 809fda45b3bd..c513b68d2c72 100644
+> > > --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> > > @@ -28,16 +28,20 @@ properties:
+> > > =A0
+> > > =A0=A0 reg:
+> > > =A0=A0=A0=A0 minItems: 1
+> > > -=A0=A0=A0 items:
+> > > -=A0=A0=A0=A0=A0 - description: The function configuration registers =
+base
+> > > -=A0=A0=A0=A0=A0 - description: The link table configuration register=
+s base
+> > > -=A0=A0=A0=A0=A0 - description: The cache configuration registers base
+> > > +=A0=A0=A0 maxItems: 3
+> > > =A0
+> > > =A0=A0 reg-names:
+> > > -=A0=A0=A0 items:
+> > > -=A0=A0=A0=A0=A0 - const: function
+> > > -=A0=A0=A0=A0=A0 - const: link
+> > > -=A0=A0=A0=A0=A0 - const: cache
+> > > +=A0=A0=A0 oneOf:
+> > > +=A0=A0=A0=A0=A0 - items:
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: link
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: function
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: cache
+> > > +=A0=A0=A0=A0=A0 - items:
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: function
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: link
+> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: cache
+> > > +=A0=A0=A0=A0=A0=A0=A0 deprecated: true
+> > > +=A0=A0=A0=A0=A0=A0=A0 description: Use link,function,cache block ord=
+er instead.
+> > > =A0
+> > > =A0=A0 interrupts:
+> > > =A0=A0=A0=A0 maxItems: 1
+> > >=20
+> > > --=20
+> > > 2.52.0
+> > >=20
+
+
+
+--TI6MRG6jfhf7gfkz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaC0HAAKCRB4tDGHoIJi
+0jkhAQCTkpi7tlZesS47tglTMIqrlcicor6nxmHd+4N/0T2JAgEAjirK8v2PqsXy
+RSXj7VKrwxp+VuNFypnzfUONfv11Wgc=
+=jxXf
+-----END PGP SIGNATURE-----
+
+--TI6MRG6jfhf7gfkz--
 
