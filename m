@@ -1,225 +1,162 @@
-Return-Path: <devicetree+bounces-268797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-268798-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mB0qIC81oGkqgwQAu9opvQ
-	(envelope-from <devicetree+bounces-268797-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:57:35 +0100
+	id ELKYCcA1oGkqgwQAu9opvQ
+	(envelope-from <devicetree+bounces-268798-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 13:00:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F16861A56FD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:57:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF311A57B4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 12:59:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E7FF1300E5CB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:57:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4FA443004D98
+	for <lists+devicetree@lfdr.de>; Thu, 26 Feb 2026 11:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6995837B3F3;
-	Thu, 26 Feb 2026 11:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nf2AFPcM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E33237B40B;
+	Thu, 26 Feb 2026 11:59:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B2737BE61
-	for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 11:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.222.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772107051; cv=pass; b=motvLxx23IuoQXm6qVl02ZbXKc6gz2A7jxMBkK86S4G2gg1P9JPg3BBqNojmjOtKqP63GBT38jue5Ynw/kYxpMmn+as2ww8hHTqH2DK618129CtDHq9O1z6i7hkMsvxad/SIRkWrBp9nv8k04wypA0y5ja+MNetfSMsJXiaWaow=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772107051; c=relaxed/simple;
-	bh=6FiGG24w4rWgq/anDPb6u/uv7fyPhukOB6jHky6buQA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sg3ZP4b8Z1sV8T7niCUygCaEdWcMfmlWsz0ScIK6AQCCxash4c8/8fiR8Y56no52q0sQIkrj9enDqCeWpdNf8goJVMHivobv1TMgVJBf3xEH10ig8B/4FsTArcH/upmp9Cq6u/1iorwIvGBLz1HRWhQGyPFOY/LTF9pCbmo6hUo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nf2AFPcM; arc=pass smtp.client-ip=209.85.222.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-94acf3fa688so199312241.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 03:57:29 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772107049; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Biu2zlD7ihUr1C9gGylNndtJpJDaBcn2kQHYn4bYr78lX/IwH6CQ//ntsJW3WQBzQq
-         A89M7V5p5kQ17x4XeX+6bs9xwO4S/yKJCF7tUTNJUGIQjIpMdCHwHQQVppgYEW2w1MvR
-         NLwRvDzOtFgcV3MfPFrmMgn/dX3A6jeh8tYnsWqpP8OsL/pVguldJ/kl/yCGhzdw9GNE
-         +Wi0+itYWtBWjDEXhmJzM3wKxjrJ7PFDUDWkcKeHu/nedCgZi8mg8t9xmvRPmk5uf3pe
-         VxzMC7vOiVngFKKGBXT2ECPUUmzoGq/jNtFwItzik+AuYEZoPNm23GEfdMD6aExFdxFG
-         xWyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=qNtK32BGt9MxWXtwDTu0yUUapwxqATE2188PlWft/QU=;
-        fh=3oz9Vrruuf6G6KqpDxt2mCyZc++/KvNJM636hndSzAk=;
-        b=VcJjcAX0nnkFH43jFhnpiUDasy4X2IYlkLVnxU3LAqzZLiDnQ0vjbb2I0MFcL7tSeO
-         XNacSS45aA1zTkRZlXrZxTWtjyA0Vz7Cc0toQlhjR6Z8jAb5gY1YXTyaEOS3p3fACAka
-         qqmqwK3HagELs8kspgv2VaeC8FbCg913LK6WH24k+VYCqwev/TjLzRtkEqAe0ui+TlRY
-         zZLpuS+LCO34RjkG7qLcUxbY3I6/J/sD5nDsZQgqjjpNeoQUSEJDghbKD/ARV8ycNyTk
-         m0fTCuxTTT7WRsXO5TOeWMPIxPrTkp6/APHoY/Pah0IONjL8YzcEqh9GTqIZESRtodTf
-         TAMg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772107049; x=1772711849; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qNtK32BGt9MxWXtwDTu0yUUapwxqATE2188PlWft/QU=;
-        b=Nf2AFPcMAKf8kPBL4AqoVnwcipoSXaK+B3hiplH0fiY1C04dmLfVYM7xrFy7agh+EH
-         q130aUNbWW8qrJNn//nn6uf7lc+iakq35YpIMkucpPY5eX7oHM4nHRN/U2QMxehgKDbJ
-         M9biFEO9RVrmqDAvHHidw/PrMlI0Do/4CBdx3cnh/JZVHB3ZJCrluobcFKBFvRronMxf
-         SBTY3CWumRkOR22Cfk/UhYGPfs++XoikFCHRwVRj7Go5T7Xok/hVxb7CigyomMz5hOzJ
-         Qg1g7Xl0FSaCAGu9xj5uBPMWeE0wQboY0D6kaJuDKbnGsSft6YhcYtwvnPVcXjOmgQqp
-         Scmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772107049; x=1772711849;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=qNtK32BGt9MxWXtwDTu0yUUapwxqATE2188PlWft/QU=;
-        b=MVCLIb2/jm5zElrhgihmE6QxYA0OmASU6GvqqHlbnmbxNbEsfR09xBRWprqZAfd6Ff
-         boUnFjxMmAbXUT8McRq1jpic0J8eQABSmLC1D421h0WbO6wt+F03YeOPV3sOq9bMx+nQ
-         qQSXPpsPF6UW6qznnKchNX318JGtspvniwozxicztP8QDt3kI4kQlP7r+I+MPacFHHQP
-         EalMWRSofcRJLrUT2iS1KoiUqP7NVMoSqxFtW0ZemiKJSiLdtOD3qMY/5alpf31d7Kna
-         XahUR6KT7Apwr5o5/S8yZtEgO10NISwXB4fScZQfUnlVVJwX40L9P/wAni8Z/p0hBXQF
-         5mcA==
-X-Forwarded-Encrypted: i=1; AJvYcCVtkXRhL1jv4+S6P7RBLa/6jGQr8U5sLaE6cmX2C1LG+Eyx75FV2e6TD4dHBj8q8fJj825TmqWczglm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE7slT1KFRe2e/9NjBLHsMouZenuRz1TNdB1o1dr5abN/nJNBw
-	Ryl6LrnUOoVICcWlFeXjiUZVC5PPCxj5QGbKQk9kCi/1ney/JH4lk8NGBgxvn9TrgZ5/W1ARXcm
-	8/CwS+RyAzzyRvdp5Ueqw+hb/oi+maR8=
-X-Gm-Gg: ATEYQzxBwXjD5QpFTgeT1rMhInowqcmQCkrsxZO0agQ6DVpaHyr4SB0YdbnM/ZI3wad
-	My6wB7WvXc4A4mB+m5vgh/hzH+ETWPdeoIPbMQbE6mIr3hJ/gZC9Ykhp/t1lA2mKc/yJf8FOGHI
-	4oZ/Yczy3vacyBFjap1e9XlCmbSeQhni4xG4DiXmCcWBJj2n+yKvrw3AtkoYv9jnJoOaQu1DSvO
-	yyYVuvx/XoTbatxcU+xXtu5uVo/1MWJxw3XZFtyCzYYrj71xJJ+IlNz3V4Ky7jXOv7yjrm7l4oU
-	2Lak7Y4=
-X-Received: by 2002:a05:6102:c8f:b0:5f5:3c38:c4bc with SMTP id
- ada2fe7eead31-5ff140aac98mr1601764137.23.1772107048800; Thu, 26 Feb 2026
- 03:57:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9D2374162;
+	Thu, 26 Feb 2026 11:59:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772107192; cv=none; b=U2vmN/3NZmnxopYZj20w2dJELT6fUQi7l8xKl2n1lKRG8/HjxOCEPBkQQL89GG/bWRuGmEMTsKIAShKw8lOxFA4oFYwHc3WsNCaDB3ePmZOerHuYOsRJbDCrSivT4YKKepain0rnxNjW9mm3A9R9oBQjQNasC2f99JOBMB828nA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772107192; c=relaxed/simple;
+	bh=EaOgTajnwem1NdkuChfRGO0eMlxK4hIO67hpxVcPZBs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a4PZoD7CwHPSDLZ8aPDDvpKPH0hlv5vK86jJir9llgNfCp/xh0UodNlhJ51TN+F8Sd1fwJnV6z4fxf4vXJe//WxN55F1q3n+03LBmgyjmKAjwxqCwFwEn+oIp8zRB459wWzx2UQyvvpOkSXfs4hVE1caFY2JtKInYb7uM/Iq8aA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
+Received: from duge-virtual-machine (unknown [183.192.221.67])
+	by APP-05 (Coremail) with SMTP id zQCowADXbBCiNaBpASUuCQ--.42115S2;
+	Thu, 26 Feb 2026 19:59:32 +0800 (CST)
+From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+To: krzk@kernel.org,
+	ulf.hansson@linaro.org,
+	adrian.hunter@intel.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	gaohan@iscas.ac.cn,
+	me@ziyao.cc,
+	Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
+Subject: [PATCH v2 0/3] Add SDHCI support for Canaan K230 SoC
+Date: Thu, 26 Feb 2026 19:59:20 +0800
+Message-ID: <20260226115923.75670-1-jiayu.riscv@isrc.iscas.ac.cn>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260225054525.6803-1-mitltlatltl@gmail.com> <20260225054525.6803-2-mitltlatltl@gmail.com>
- <20260225-analytic-economic-parrot-4c3a45@quoll> <5617b6ec-b1f7-4f3d-abda-d7142c323759@oss.qualcomm.com>
- <CAH2e8h7T3Qy1f=-34SK+q=n9TRYOtzyxY8R6yKZJZGr_f+UMZg@mail.gmail.com> <rwsaypiovv3xtw5pfxw5rksmqetv4mogu4yy7yrm7gfknezmuw@bh6v5q2zeuiy>
-In-Reply-To: <rwsaypiovv3xtw5pfxw5rksmqetv4mogu4yy7yrm7gfknezmuw@bh6v5q2zeuiy>
-From: Pengyu Luo <mitltlatltl@gmail.com>
-Date: Thu, 26 Feb 2026 19:57:12 +0800
-X-Gm-Features: AaiRm50VYYJa11U6YREQitoe6H7Afdc4A9v2yu5-PwbhgzvuP2StWI1hICwfKV4
-Message-ID: <CAH2e8h6HCBpMfuzE-e2sOvE0SF9w2bgci68mxENP9J7cExp1yA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: display: msm-dsi-phy-7nm: Add SC8280XP
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, Jonathan Marek <jonathan@marek.ca>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Tianyu Gao <gty0622@gmail.com>, 
-	White Lewis <liu224806@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowADXbBCiNaBpASUuCQ--.42115S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7KF1DKr48uF15uF45WFWruFg_yoW8tryrpF
+	Z8uFZxG34DGF4ftF4Ska1ku3W5Zrs3XrWUGr1ag34DJws5JFWYqr92k3WYqFyDGFZ7C3yj
+	vw15XFyfC398ZFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9014x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r
+	4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
+	kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
+	67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
+	CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
+	MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
+	VFxhVjvjDU0xZFpf9x0JUd-B_UUUUU=
+X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-268798-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-268797-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,linux.intel.com,suse.de,ffwll.ch,quicinc.com,marek.ca,vger.kernel.org,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.963];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: F16861A56FD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0CF311A57B4
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 6:56=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> On Thu, Feb 26, 2026 at 06:44:02PM +0800, Pengyu Luo wrote:
-> > On Wed, Feb 25, 2026 at 7:02=E2=80=AFPM Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> > >
-> > > On 2/25/26 11:24 AM, Krzysztof Kozlowski wrote:
-> > > > On Wed, Feb 25, 2026 at 01:45:21PM +0800, Pengyu Luo wrote:
-> > > >> Document DSI PHY on SC8280XP Platform.
-> > > >>
-> > > >> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> > > >> ---
-> > > >>  Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | =
-1 +
-> > > >>  1 file changed, 1 insertion(+)
-> > > >>
-> > > >> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy=
--7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-> > > >> index 9a9a6c4ab..9223af1f4 100644
-> > > >> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.ya=
-ml
-> > > >> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.ya=
-ml
-> > > >> @@ -23,6 +23,7 @@ properties:
-> > > >>                - qcom,sa8775p-dsi-phy-5nm
-> > > >>                - qcom,sar2130p-dsi-phy-5nm
-> > > >>                - qcom,sc7280-dsi-phy-7nm
-> > > >> +              - qcom,sc8280xp-dsi-phy-5nm
-> > > >
-> > > > Your other commit claims it is compatible with sa8775p, just like s=
-ome
-> > > > other devices here.
-> > >
-> > > If that helps, they do have the same values for the REVISION_ID regis=
-ters
-> > >
-> >
-> > Thanks for confirming this,I will add this to the commit message and
-> > fallback to sa8775 then.
-> >
-> > I am curious, do the PHY QUIRKs in dsi_phy_7nm.c reflect PHY revision?
->
-> Yes
->
-> > I notice
-> >             REG_DSI_7nm_PHY_CMN_REVISION_ID0       QUIRK
-> > SM8250:     0x00000014                               4.1
-> > SM8650:     0x00000025                               5.2
-> > SC8280XP:   0x00000024                               4.2
-> > SM8750:     0x00000027                               7.0(*)
-> >
-> > (*) SM8750 is 7.2 in the downstream.
->
-> Please change SM8750 to 7.2 (and SM8150 to 4.0 FWIW).
->
+This series is based on the k230 usbphy series[1].
 
-ACK.
+This patch series adds SDHCI support for the Canaan K230 SoC,
+which uses Synopsys DWCMSHC SDHCI controllers, include MMC0 and MMC1.
+The hardware designs of these two controllers are different.
+The MMC0 supports eMMC, while MMC1 only supports SDIO. Detailed
+information can be found in the vendor's manual[2].
 
-It is exactly 4.0.
-https://github.com/OnePlusOSS/android_kernel_oneplus_sm8150/blob/oneplus/SM=
-8150_P_9.0/arch/arm64/boot/dts/qcom/sm8150-sde.dtsi#L518
+From the vendor's K230 manual:
+ - MMC0 supports eMMC5.0 and SDIO3.0, usually for eMMC chips.
+ - MMC1 only does SDIO3.0 in 4/1-bit mode up to SDR104, and the manual
+   clearly says it can't handle eMMC because of pin count and limits.
 
-Best wishes,
-Pengyu
+Therefore, there are two separate compatibles and the driver treats them
+differently.
+
+Link: https://lore.kernel.org/all/20260121145526.14672-1-jiayu.riscv@isrc.iscas.ac.cn/ [1]
+Link: https://github.com/kendryte/k230_docs/blob/main/en/00_hardware/K230_Hardware_Design_Guide.md#mmc-circuit [2]
+
+Changes in v2:
+- Change the clock minItems to 5.
+- Add comments to explain the reason for setting SDHCI_PROG_CLOCK_MODE.
+- Write the power selection logic in the phy init cleaner.
+- Replace manual delay loop with read_poll_timeout.
+- Drop unnecessarily braces where a single statement will do.
+- Add the match_data pointer to dwcmshc_pltfm_data.
+- Add dwcmshc_k230_match_data struct to separate eMMC/SDIO config data
+- Split K230 into individual emmc/sdio platform data instances instead of
+  sharing one.
+- Remove redundant have_phy member in k230_priv.
+- Replace of_find_compatible_node with of_parse_phandle to get USB PHY
+  from DT phandle.
+- Link to v1: https://lore.kernel.org/all/20260204082908.27501-1-jiayu.riscv@isrc.iscas.ac.cn/
+
+Jiayu Du (3):
+  dt-bindings: mmc: Add sdhci support for Canaan k230
+  mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC controller support
+  riscv: dts: canaan: Add mmc nodes for K230
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  29 ++
+ .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  56 ++++
+ .../dts/canaan/k230-canmv-module-dshanpi.dtsi |   7 +
+ arch/riscv/boot/dts/canaan/k230.dtsi          |  28 ++
+ drivers/mmc/host/sdhci-of-dwcmshc.c           | 288 ++++++++++++++++++
+ 5 files changed, 408 insertions(+)
+
+-- 
+2.53.0
+
 
