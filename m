@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-269416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269417-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BhiBcT6oWlkyAQAu9opvQ
-	(envelope-from <devicetree+bounces-269416-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 21:12:52 +0100
+	id 2NklGQz7oWl4yAQAu9opvQ
+	(envelope-from <devicetree+bounces-269417-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 21:14:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82BB61BD5B8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 21:12:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D618D1BD63C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 21:14:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 71198319E2EF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 20:09:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8930131B5934
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 20:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A948146AEFE;
-	Fri, 27 Feb 2026 20:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B2D47798C;
+	Fri, 27 Feb 2026 20:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rac4DazO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DMxmykvl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2FB46AF29
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 20:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C956046AEDD
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 20:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772222962; cv=none; b=HZGwxstMzr/auHvulwTt/XYzA0i8vNa+bmnOkg+BMcYxCya+9JHIFHxc/delP5cRNwqcHDQ4XV64NIG3J3sSnIbfqu5b0dn+Td77vzN0bO2WKnYdAZ3GvMOD2EhjYaEbne6hEesRB/g7oPwn6oPWEiEe8AQepjEY0SpSKN3P8Do=
+	t=1772222966; cv=none; b=dAFikHMgdLOibDVWIZ1oFBvtAcnT6sCKTYFva1Vilt+fDJxaTPGxL9t+JBmuKiZcwu36FdCzTcAGLGDAQcPkngV+iFcyxDuC389A9XHFKZsex3hfi8nxJABqSwS4f/0G/sWKkjL/xoBPgiWXvTRMWdHHaYe5mWpCqlc0ekROOSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772222962; c=relaxed/simple;
-	bh=vSZQQRG/U3IqpVWyqxBg5ON/SaXSy+ijC6dy2tk6QNw=;
+	s=arc-20240116; t=1772222966; c=relaxed/simple;
+	bh=9LGQuAqrN49QAmVPvN5/tCzgSfV0JjbPlhmc81CPhYE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JY2M928NJjui4qCzjQFfmWuLq6K6+J+L8GKsrVYvRcI/GoQ/Wh6X2qs8hrAr8gFtwJwyqh6346/GvnKTJVCUp4NS7uCjRs6rihjBgncecPFv/f7mR2kJ6UsOMoxFMd+lsz6C7bkKqqRgTnnb8A2auW+vi9928/Sm0Tthg+FZBXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rac4DazO; arc=none smtp.client-ip=209.85.221.180
+	 MIME-Version; b=m2vrZETOJZS8EuVWyWv45ZK+DlYdIr2kirrDYZqNIKhvoj0qSN1BhNdoaghbfGhP4+oT6IPLaJzUuHNxfEatwKnnyOMxbTCqDDjXk6KJ8gmVFMpvIJzovPC/cd18pX05/t/6HA7zhQkt5iMLlBpqWtqBo07oWGZFhBMW3Yd890w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DMxmykvl; arc=none smtp.client-ip=209.85.221.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-56a8584e3a2so2334261e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 12:09:15 -0800 (PST)
+Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-56a9402b52fso2057577e0c.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 12:09:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772222955; x=1772827755; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772222961; x=1772827761; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=X1dJmF9hqgVYfbfdMZ4xY0oiqyHg2iwadEH7EM4qB1U=;
-        b=Rac4DazOBk3Rqy8TlPYEYQPOb2yARpqL7orvgw+oifa7pLyDX9Br/SXs3mrJZV0teA
-         fRDd536Ci+w4EXdsqeqPWfiIgkW9lOf8gfe/CI2TpxXN7UQOoOrHksMMX6EHRZ3x3Owa
-         GDB3vuDgveSsF3BU528G++BptISjLqhFzPuibAW/OKaN9OxbS2p2C4LhYhpGR8zinxRr
-         kZpemymPzxJrWr4wjzk9fgFay2exbSNG3DkR47v/uSRN72iDIOZRxtr3mXt2m1TEPCE6
-         6z2cz1Fba6NYcg6J0lIQHBrraCmLRCXQ7NADpw05b9sEopVOfG/OLkY6dcnXi1cZXXFA
-         0P6Q==
+        bh=kz5e7QGVCBWSZEXYwi9uQzxLh5tMGX0778EbyzcSRSo=;
+        b=DMxmykvlPHWmCzlJEmw4cyLXBvRLGcWTMuhLN43OT7dTKXlItrgm0KLP9uRiuGRv7a
+         CLWiM0HUMmQy9mwbYPYl+8UzS4L9pK4sfBVxvYT3DzLaKsfEBOn7etLS0KlzGTvhpzTF
+         IyawdFBxKNseR3N3BPYDdH1audlz1IuRhJH0X3aPYxkPbuQlppCq8cPHI/37DHF6121m
+         8JBucCD6oWN6p67UQ1gUuQ7H4rRAf076KuC41qeEF43sRY9CqIvLfTzrHZgjYnRAekim
+         +2ftnKsPnYylZedIurfePiRPiegDC69S7OHV54rf4IaKoU90dYIOgY4RezD96bhsDhw6
+         Robw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772222955; x=1772827755;
+        d=1e100.net; s=20230601; t=1772222961; x=1772827761;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=X1dJmF9hqgVYfbfdMZ4xY0oiqyHg2iwadEH7EM4qB1U=;
-        b=F46Bk0lK+iPYGAzPbzoDZL/7fGPJOYjdplmrDHSf66xBx191M31+UDO+URGOx7RaOw
-         Q6Ui+7soMRAIf3GG2yOYo+e0l/fRepRHoDfxF10jItHf0q1dpjlvDXtMNQIo7nA+0Wzu
-         JU6xyW/bI4Osdofh7z0iaVy6WQO/DNqq7BlKPauD9U2vb9doCV0ybwXOxXldyFOjSib1
-         vOM3qADVMxoyAIUnmmS9hybBJ9kYT4pDHNnQamnmiO3SzKL2V6V53LVJiq4KoMqvRCYh
-         pgb3L5OBrXXMTlTGvxqRBbz6DYnBA6FWFhqO027A/KP1fOkLPZEBq0g+RCNUWMC9oGAI
-         3a2g==
-X-Gm-Message-State: AOJu0Yy80m7kl85T/Qb1pXhRQoT8JqTkoJ7pqCF0/ZUFCDVKkSDl/a2Q
-	4Q7zm3rLBmzGnm7ES72ix7cBt2kvqSPVODGmIooZaXdRXf4QMV0hzyQy
-X-Gm-Gg: ATEYQzwuN7ndNDoDQjB2p+dOBpvd4CkDp+Ig2qSGiS+lu5JpYTUQUd8Dy2SG01CV91n
-	0ZH4LVs+h7dTbm37QiDrj/fNrbDEpbYcO8RGN0wdbq7Tp0cOtRhd8z5N499u3D2jEiIK2He9VZB
-	SueuLEFnplMqrEVZzowpFl4NimwS92ShH/99PB4HcKwNy9GnBX2QPg1IAR8gU9vh9pg2YIOdRUW
-	AfOWnhO9DQH3EUm/pJFaoph066SpxvbuoN0aFzZVcwrBxqKFbsUsYFoB4Y0Tpqgel34qTWM/iZl
-	MZf1PzCM3PdTNyVrr7FUlDFFxAweb8G493Hh3LB63+AdUyDjw8evTskGKMu/+dm5xuNAb33MUGg
-	L5eZ83Cuptx707/QzaySMVeyA5k6HSDLkcl6XrGImg+8QcOPPdGhe5cTHGakcdNkPnjuWkRk5m+
-	hdxVcaCacfyD0CcTC8Ww1686Fd
-X-Received: by 2002:a05:6102:32d1:b0:5f5:3dbd:7007 with SMTP id ada2fe7eead31-5ff3227404cmr2552886137.4.1772222954939;
-        Fri, 27 Feb 2026 12:09:14 -0800 (PST)
+        bh=kz5e7QGVCBWSZEXYwi9uQzxLh5tMGX0778EbyzcSRSo=;
+        b=g8KgdVNBFGOdv0MZCqlDzpz4052GQ6ULe6mApb1MzXALL1HpLwjSkheqG4U/zHH/se
+         WdyuFjCxImnYu+tHgaVAOO3YVHs7Nvhbo3z730KdOMPQA/xMn4779bC5N7I0jymXvRem
+         Mhr+bdRG3wFbcJ8wn0CcaDknyFAn3cl/oM61bMAnYD0tekx5aKj6E2E0ZDIjryc/1KEY
+         xTgT0QbKLirrn/l2rDbnlqWk8teYJLePm9yJ/MpyBV0XodIUEwVJEnzyL5uDdNSm1n4z
+         rnJF6OgOnybNTiSSF7tmffGr/wnzstk8bM/qSmutdCDn/QXvS5tFB11gVWWEHfHm6BN6
+         19pg==
+X-Gm-Message-State: AOJu0Yw9IQ0foe0bOsCoalJSz7/OaNSavLfc1jjziYXZZ+P9+2EQ1GEd
+	jDjBk3yu/pdwTHxRtdh0rwNwsfnY0/1J3Eym2Twq1kYFQylJHXKLCSW1
+X-Gm-Gg: ATEYQzzgw0FB8G/L1QOunGsbV3chozeW61h0kS/VSPIP12lJ2n20BNwMAZn6utcXY8w
+	lAQBS9STlBSgmlDdTl1xuPndkt8IDRg3oBxsKh4W0Z5e9KAJYFL9CJSqsSLjwL6rVWHLnscJee2
+	B2Fa9buMIPNoxzYcZIKb2TD2RQ13jV/7DM2fPIXP2V7wWnQL1lLEwrItmhsybuj3QRumG6IOvJt
+	AHISHNBoY1bEdURuaiL/SBbOldCKrsglS1MVpAPgl1hHe16EkYAVv2skeuGKtTcaw9jbgV8SvFs
+	Al+Wl5DZQd6du5dHopPJrmfh3J/A0EnxlTwd4Y4uYfPkN+bctWht3z1bsXa85MIv5W9nZG3pG7+
+	kfybJ9+j5TcfiWuE3Jdu+HZU78OkMT8p9OlJoORMgqySRATprky46O48bX8F+Zv6m8RbC0YSxfm
+	qwRLfZnRd1EAtwtZjiwMwfcjJ7
+X-Received: by 2002:a05:6102:c86:b0:5ed:d33:a65d with SMTP id ada2fe7eead31-5ff32564152mr2980668137.34.1772222960781;
+        Fri, 27 Feb 2026 12:09:20 -0800 (PST)
 Received: from nixos ([2804:1b1:b880:4e06:554b:5779:2074:421f])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ff1ea6f7fesm6479027137.13.2026.02.27.12.09.11
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ff1ea6f7fesm6479027137.13.2026.02.27.12.09.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Feb 2026 12:09:14 -0800 (PST)
+        Fri, 27 Feb 2026 12:09:20 -0800 (PST)
 From: Lucas Faria Mendes <lucas.fariamo08@gmail.com>
 To: gregkh@linuxfoundation.org,
 	ovidiu.panait.oss@gmail.com,
@@ -84,9 +84,9 @@ To: gregkh@linuxfoundation.org,
 Cc: devicetree@vger.kernel.org,
 	linux-staging@lists.linux.dev,
 	Lucas Faria Mendes <lucas.fariamo08@gmail.com>
-Subject: [PATCH v3 1/2] dt-bindings: misc: xlnx,axi-fifo-mm-s: convert to json-schema
-Date: Fri, 27 Feb 2026 17:08:43 -0300
-Message-ID: <20260227200857.50880-2-lucas.fariamo08@gmail.com>
+Subject: [PATCH v3 2/2] staging: axis-fifo: update driver to handle boolean DT properties
+Date: Fri, 27 Feb 2026 17:08:44 -0300
+Message-ID: <20260227200857.50880-3-lucas.fariamo08@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260227200857.50880-1-lucas.fariamo08@gmail.com>
 References: <20260227200857.50880-1-lucas.fariamo08@gmail.com>
@@ -103,14 +103,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269416-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269417-lists,devicetree=lfdr.de];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FREEMAIL_TO(0.00)[linuxfoundation.org,gmail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -129,231 +129,117 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 82BB61BD5B8
+X-Rspamd-Queue-Id: D618D1BD63C
 X-Rspamd-Action: no action
 
-Convert the Xilinx AXI-Stream FIFO IP core bindings from legacy text
-format to modern YAML json-schema.
+The Device Tree bindings for the AXI-Stream FIFO were converted to
+json-schema, where 'xlnx,use-rx-data' and 'xlnx,use-tx-data' are now
+defined as boolean properties.
 
-While converting, the following changes were made:
-- Updated property types for 'xlnx,use-rx-data' and 'xlnx,use-tx-data'
-  from uint32 to boolean, as they represent hardware features.
-- Removed the rigid 32-bit constraint on data width properties to
-  better reflect hardware capabilities.
-- Renamed the example node to "fifo" to follow generic naming conventions.
-- Removed the legacy text binding file.
+Update the driver to use of_property_read_bool() instead of
+of_property_read_u32() for these flags. Also, removed the fixed
+32-bit data width check during DT parsing, as the driver should not
+enforce hardware constraints that are better handled by the schema
+validation or device initialization.
 
 Signed-off-by: Lucas Faria Mendes <lucas.fariamo08@gmail.com>
 ---
- .../bindings/misc/xlnx,axi-fifo-mm-s.yaml     | 95 ++++++++++++++++++
- drivers/staging/axis-fifo/axis-fifo.txt       | 96 -------------------
- 2 files changed, 95 insertions(+), 96 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
- delete mode 100644 drivers/staging/axis-fifo/axis-fifo.txt
+ drivers/staging/axis-fifo/axis-fifo.c | 56 +++++++--------------------
+ 1 file changed, 14 insertions(+), 42 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
-new file mode 100644
-index 000000000000..b3e6a2189289
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
-@@ -0,0 +1,95 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/misc/xlnx,axi-fifo-mm-s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx AXI-Stream FIFO IP core
-+
-+maintainers:
-+  - Jacob Feder <jacobsfeder@gmail.com>
-+
-+description: |
-+  The Xilinx AXI-Stream FIFO IP core has read and write AXI-Stream FIFOs,
-+  the contents of which can be accessed from the AXI4 memory-mapped interface.
-+  This is useful for transferring data from a processor into the FPGA fabric.
-+
-+  See Xilinx PG080 document for IP details.
-+
-+  Currently supports only store-forward mode with a 32-bit AXI4-Lite
-+  interface.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - xlnx,axi-fifo-mm-s-4.1
-+      - xlnx,axi-fifo-mm-s-4.2
-+      - xlnx,axi-fifo-mm-s-4.3
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    items:
-+      - const: interrupt
-+
-+  xlnx,axi-str-rxd-tdata-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    const: 32
-+    description:
-+      AXI-Stream RX data width in bits. Only 32-bit is supported.
-+
-+  xlnx,axi-str-txd-tdata-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    const: 32
-+    description:
-+      AXI-Stream TX data width in bits. Only 32-bit is supported.
-+
-+  xlnx,rx-fifo-depth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Depth of RX FIFO in words.
-+
-+  xlnx,tx-fifo-depth:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Depth of TX FIFO in words.
-+
-+  xlnx,use-rx-data:
-+    type: boolean
-+    description: RX FIFO is enabled.
-+
-+  xlnx,use-tx-data:
-+    type: boolean
-+    description: TX FIFO is enabled.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - xlnx,axi-str-rxd-tdata-width
-+  - xlnx,axi-str-txd-tdata-width
-+  - xlnx,rx-fifo-depth
-+  - xlnx,tx-fifo-depth
-+  - xlnx,use-tx-data
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    fifo@43c00000 {
-+        compatible = "xlnx,axi-fifo-mm-s-4.1";
-+        reg = <0x43c00000 0x10000>;
-+        interrupt-names = "interrupt";
-+        interrupt-parent = <&intc>;
-+        interrupts = <0 29 4>;
-+        xlnx,axi-str-rxd-tdata-width = <0x20>;
-+        xlnx,axi-str-txd-tdata-width = <0x20>;
-+        xlnx,rx-fifo-depth = <0x200>;
-+        xlnx,tx-fifo-depth = <0x8000>;
-+        xlnx,use-tx-data;
-+    };
-+
-diff --git a/drivers/staging/axis-fifo/axis-fifo.txt b/drivers/staging/axis-fifo/axis-fifo.txt
-deleted file mode 100644
-index 413b81a53202..000000000000
---- a/drivers/staging/axis-fifo/axis-fifo.txt
-+++ /dev/null
-@@ -1,96 +0,0 @@
--Xilinx AXI-Stream FIFO v4.1 IP core
+diff --git a/drivers/staging/axis-fifo/axis-fifo.c b/drivers/staging/axis-fifo/axis-fifo.c
+index aa90b27197cf..cdeb944fd354 100644
+--- a/drivers/staging/axis-fifo/axis-fifo.c
++++ b/drivers/staging/axis-fifo/axis-fifo.c
+@@ -246,7 +246,8 @@ static ssize_t axis_fifo_write(struct file *f, const char __user *buf,
+ 		mutex_lock(&fifo->write_lock);
+ 
+ 		ret = wait_event_interruptible(fifo->write_queue,
+-			ioread32(fifo->base_addr + XLLF_TDFV_OFFSET) >= words_to_write);
++					       ioread32(fifo->base_addr + XLLF_TDFV_OFFSET)
++					       >= words_to_write);
+ 		if (ret)
+ 			goto end_unlock;
+ 	}
+@@ -386,66 +387,37 @@ static void axis_fifo_debugfs_init(struct axis_fifo *fifo)
+ 
+ static int axis_fifo_parse_dt(struct axis_fifo *fifo)
+ {
+-	int ret;
+-	unsigned int value;
+ 	struct device_node *node = fifo->dt_device->of_node;
++	int ret;
+ 
+-	ret = of_property_read_u32(node, "xlnx,axi-str-rxd-tdata-width",
+-				   &value);
++	ret = of_property_read_u32(node, "xlnx,axi-str-rxd-tdata-width", &ret);
+ 	if (ret) {
+ 		dev_err(fifo->dt_device, "missing xlnx,axi-str-rxd-tdata-width property\n");
+-		goto end;
+-	} else if (value != 32) {
+-		dev_err(fifo->dt_device, "xlnx,axi-str-rxd-tdata-width only supports 32 bits\n");
+-		ret = -EIO;
+-		goto end;
++		return -EINVAL;
+ 	}
+ 
+-	ret = of_property_read_u32(node, "xlnx,axi-str-txd-tdata-width",
+-				   &value);
++	ret = of_property_read_u32(node, "xlnx,axi-str-txd-tdata-width", &ret);
+ 	if (ret) {
+ 		dev_err(fifo->dt_device, "missing xlnx,axi-str-txd-tdata-width property\n");
+-		goto end;
+-	} else if (value != 32) {
+-		dev_err(fifo->dt_device, "xlnx,axi-str-txd-tdata-width only supports 32 bits\n");
+-		ret = -EIO;
+-		goto end;
++		return -EINVAL;
+ 	}
+ 
+-	ret = of_property_read_u32(node, "xlnx,rx-fifo-depth",
+-				   &fifo->rx_fifo_depth);
++	ret = of_property_read_u32(node, "xlnx,rx-fifo-depth", &fifo->rx_fifo_depth);
+ 	if (ret) {
+ 		dev_err(fifo->dt_device, "missing xlnx,rx-fifo-depth property\n");
+-		ret = -EIO;
+-		goto end;
++		return -EINVAL;
+ 	}
+ 
+-	ret = of_property_read_u32(node, "xlnx,tx-fifo-depth",
+-				   &fifo->tx_fifo_depth);
++	ret = of_property_read_u32(node, "xlnx,tx-fifo-depth", &fifo->tx_fifo_depth);
+ 	if (ret) {
+ 		dev_err(fifo->dt_device, "missing xlnx,tx-fifo-depth property\n");
+-		ret = -EIO;
+-		goto end;
+-	}
 -
--This IP core has read and write AXI-Stream FIFOs, the contents of which can
--be accessed from the AXI4 memory-mapped interface. This is useful for
--transferring data from a processor into the FPGA fabric. The driver creates
--a character device that can be read/written to with standard
--open/read/write/close.
--
--See Xilinx PG080 document for IP details.
--
--Currently supports only store-forward mode with a 32-bit
--AXI4-Lite interface. DOES NOT support:
--	- cut-through mode
--	- AXI4 (non-lite)
--
--Required properties:
--- compatible: Should be one of:
--    "xlnx,axi-fifo-mm-s-4.1"
--    "xlnx,axi-fifo-mm-s-4.2"
--    "xlnx,axi-fifo-mm-s-4.3"
--- interrupt-names: Should be "interrupt"
--- interrupt-parent: Should be <&intc>
--- interrupts: Should contain interrupts lines.
--- reg: Should contain registers location and length.
--- xlnx,axi-str-rxd-protocol: Should be "XIL_AXI_STREAM_ETH_DATA"
--- xlnx,axi-str-rxd-tdata-width: Should be <0x20>
--- xlnx,axi-str-txc-protocol: Should be "XIL_AXI_STREAM_ETH_CTRL"
--- xlnx,axi-str-txc-tdata-width: Should be <0x20>
--- xlnx,axi-str-txd-protocol: Should be "XIL_AXI_STREAM_ETH_DATA"
--- xlnx,axi-str-txd-tdata-width: Should be <0x20>
--- xlnx,axis-tdest-width: AXI-Stream TDEST width (ignored by the driver)
--- xlnx,axis-tid-width: AXI-Stream TID width (ignored by the driver)
--- xlnx,axis-tuser-width: AXI-Stream TUSER width (ignored by the driver)
--- xlnx,data-interface-type: Should be <0x0> (ignored by the driver)
--- xlnx,has-axis-tdest: Should be <0x0> (this feature isn't supported)
--- xlnx,has-axis-tid: Should be <0x0> (this feature isn't supported)
--- xlnx,has-axis-tkeep: Should be <0x0> (this feature isn't supported)
--- xlnx,has-axis-tstrb: Should be <0x0> (this feature isn't supported)
--- xlnx,has-axis-tuser: Should be <0x0> (this feature isn't supported)
--- xlnx,rx-fifo-depth: Depth of RX FIFO in words
--- xlnx,rx-fifo-pe-threshold: RX programmable empty interrupt threshold
--	(ignored by the driver)
--- xlnx,rx-fifo-pf-threshold: RX programmable full interrupt threshold
--	(ignored by the driver)
--- xlnx,s-axi-id-width: Should be <0x4> (ignored by the driver)
--- xlnx,s-axi4-data-width: Should be <0x20> (ignored by the driver)
--- xlnx,select-xpm: Should be <0x0> (ignored by the driver)
--- xlnx,tx-fifo-depth: Depth of TX FIFO in words
--- xlnx,tx-fifo-pe-threshold: TX programmable empty interrupt threshold
--	(ignored by the driver)
--- xlnx,tx-fifo-pf-threshold: TX programmable full interrupt threshold
--	(ignored by the driver)
--- xlnx,use-rx-cut-through: Should be <0x0> (this feature isn't supported)
--- xlnx,use-rx-data: <0x1> if RX FIFO is enabled, <0x0> otherwise
--- xlnx,use-tx-ctrl: Should be <0x0> (this feature isn't supported)
--- xlnx,use-tx-cut-through: Should be <0x0> (this feature isn't supported)
--- xlnx,use-tx-data: <0x1> if TX FIFO is enabled, <0x0> otherwise
--
--Example:
--
--axi_fifo_mm_s_0: axi_fifo_mm_s@43c00000 {
--	compatible = "xlnx,axi-fifo-mm-s-4.1";
--	interrupt-names = "interrupt";
--	interrupt-parent = <&intc>;
--	interrupts = <0 29 4>;
--	reg = <0x43c00000 0x10000>;
--	xlnx,axi-str-rxd-protocol = "XIL_AXI_STREAM_ETH_DATA";
--	xlnx,axi-str-rxd-tdata-width = <0x20>;
--	xlnx,axi-str-txc-protocol = "XIL_AXI_STREAM_ETH_CTRL";
--	xlnx,axi-str-txc-tdata-width = <0x20>;
--	xlnx,axi-str-txd-protocol = "XIL_AXI_STREAM_ETH_DATA";
--	xlnx,axi-str-txd-tdata-width = <0x20>;
--	xlnx,axis-tdest-width = <0x4>;
--	xlnx,axis-tid-width = <0x4>;
--	xlnx,axis-tuser-width = <0x4>;
--	xlnx,data-interface-type = <0x0>;
--	xlnx,has-axis-tdest = <0x0>;
--	xlnx,has-axis-tid = <0x0>;
--	xlnx,has-axis-tkeep = <0x0>;
--	xlnx,has-axis-tstrb = <0x0>;
--	xlnx,has-axis-tuser = <0x0>;
--	xlnx,rx-fifo-depth = <0x200>;
--	xlnx,rx-fifo-pe-threshold = <0x2>;
--	xlnx,rx-fifo-pf-threshold = <0x1fb>;
--	xlnx,s-axi-id-width = <0x4>;
--	xlnx,s-axi4-data-width = <0x20>;
--	xlnx,select-xpm = <0x0>;
--	xlnx,tx-fifo-depth = <0x8000>;
--	xlnx,tx-fifo-pe-threshold = <0x200>;
--	xlnx,tx-fifo-pf-threshold = <0x7ffb>;
--	xlnx,use-rx-cut-through = <0x0>;
--	xlnx,use-rx-data = <0x0>;
--	xlnx,use-tx-ctrl = <0x0>;
--	xlnx,use-tx-cut-through = <0x0>;
--	xlnx,use-tx-data = <0x1>;
--};
+-	ret = of_property_read_u32(node, "xlnx,use-rx-data",
+-				   &fifo->has_rx_fifo);
+-	if (ret) {
+-		dev_err(fifo->dt_device, "missing xlnx,use-rx-data property\n");
+-		ret = -EIO;
+-		goto end;
++		return -EINVAL;
+ 	}
+ 
+-	ret = of_property_read_u32(node, "xlnx,use-tx-data",
+-				   &fifo->has_tx_fifo);
+-	if (ret) {
+-		dev_err(fifo->dt_device, "missing xlnx,use-tx-data property\n");
+-		ret = -EIO;
+-		goto end;
+-	}
++	fifo->has_rx_fifo = of_property_read_bool(node, "xlnx,use-rx-data");
++	fifo->has_tx_fifo = of_property_read_bool(node, "xlnx,use-tx-data");
+ 
+-end:
+-	return ret;
++	return 0;
+ }
+ 
+ static int axis_fifo_probe(struct platform_device *pdev)
 -- 
 2.53.0
 
