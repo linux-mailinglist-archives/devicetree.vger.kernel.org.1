@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-269303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269304-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sDHxE/62oWm+vwQAu9opvQ
-	(envelope-from <devicetree+bounces-269303-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:23:42 +0100
+	id sMwOOAa3oWm+vwQAu9opvQ
+	(envelope-from <devicetree+bounces-269304-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:23:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4AC91B9B34
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:23:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5591B9B43
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:23:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BB1BE3157B2F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:15:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A29183116449
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:15:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC9D43CEEE;
-	Fri, 27 Feb 2026 15:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92FA43D4F7;
+	Fri, 27 Feb 2026 15:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fl+wSgRl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nPvwnJ/C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF80C43900E
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 15:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88AAB43D4F3
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 15:15:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772205297; cv=none; b=KC7hKSj3Ucrdh1jusPk2S430aErh/RkqJ+9a8+K06ySMP9H2AYYG2vpcFtsL9R5Qk7KPuoI2myjbJK8A51SyHBaD55q5Q3t2qnxbtJyjvY4+I8yzznXxpw7ivqSpzkBDW7oPAuKEfC2oUCce9abCdYQQtD0lu7AN52E/ij218uc=
+	t=1772205302; cv=none; b=qggAQTEseOuXdlbvWeSIP7PqOV45YSurdXjilIIXYQCPOCK2lWL20bus9vqasXliCSoUM0D8TF6DcUJa++klg0kwE4GYGilBQG3pF3ccFIuxNZWDpKaYhATK+7cHLOhdXSSr72KCfAg74Shgpr2Zn7i7p4t870M1V2A0865MyIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772205297; c=relaxed/simple;
-	bh=Tnr5MVM54yT5olpBGIRL9iYHBO46LGWJbdN2YfWRz0g=;
+	s=arc-20240116; t=1772205302; c=relaxed/simple;
+	bh=vm1+o6MK2KY2pTOwBMqE9+jhVE8i9ETufDcKynPk4PM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=G8b1utGnRSANErx8yI/88n47qB06ruCwofJrarnlnsCN8jZJoCqaIMedSDZ+4jhUqke2O9SrKBHf3alwwStBRKvLauTjXR5LFKfS/jC1Cj5a/6iYeQn/eypp57gMsA4IgsDkLmnFOfxRVKCEzoBNcYXnseic07+LbEsZ5w1qUjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fl+wSgRl; arc=none smtp.client-ip=209.85.216.52
+	 In-Reply-To:To:Cc; b=BC9GRIHLeIoZ3CL30uLHihM092CRe5+XUxCQMhiGNPzJ5anQ7nQ0ZOEFO5rD9qM+HuAKpVjWT6O4GZfCrxDgYKkEhoF4eqRYC0TozqfHYU2w70cqURZ4SFLy0F90u0LDw9P7jWye2UQ3CSl/hUIrbKGJHwpSVpiFSW1n+SOBjcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nPvwnJ/C; arc=none smtp.client-ip=209.85.215.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3562212b427so959561a91.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:14:56 -0800 (PST)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-c6dd5b01e14so759634a12.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:15:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772205296; x=1772810096; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772205301; x=1772810101; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=f4E6HXkvhuNIpYntCK6bZF0992wJwuTJEJOmXq3XUUw=;
-        b=fl+wSgRlI0fvKz/CbOFyIR7tcLronpU3C8hiUCvddIpJkTWKqGVw9VOA8WBFMONZyO
-         IqFUWiE3ZWhtsK74WZU2DAwcG2aes93jrMfVZsLvHEt3dg5q6SmOUJLhoLnekECrG1Pn
-         JGjCyRHAJFbXcCMvO9DWi18yUGjDOX/iY+TmN6hrytSN0JVaZuGCsuYACPqItQFe8FVo
-         h03CVUFALpsYS1FuIjBVt/2x6WIDjmKs8oNWtplX2hI66JBTG/IQagbUwbutJoCj+7xT
-         6DKXw5dsp9k3YLcj02YCSrxagHK3upjuIdafARacrw61QXYVjBd5MIla/K5q7Uh7Z2h/
-         XJuA==
+        bh=ePgSZPRRbECh1C3ufz9sKMRvaR3CgzOK7F/YlViJ0LU=;
+        b=nPvwnJ/CPqmqWgtzdhxrC/xte3p6CT6qaoGKmTtB39MM7BfBertrXxloKiUsMgjpU5
+         fm1GdHUWYnY/01AkbUraEiPFxb3BPyupuwsJBRK/K9bMXSQclzVHPH92T8O7z+4E2BDn
+         l40ZyHU+JWeSRbmTWRGuntIBGsTBZBbP2z75jXjkSLuwczuVOqg+M4BhYCpciM62bpE8
+         9Jua/MkfBa+Le9c6ynHy6zYJe8Uh3UJfYa20eoAIW2GjGamtY9VaK2L3Wgn8O8yp69Ff
+         GQwk2FmrvviEwxggEJUe/zNz83Smdw2gsWDnnfrCeI8LGUeefhL0rJWY5Hti8v+szCXH
+         mA0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772205296; x=1772810096;
+        d=1e100.net; s=20230601; t=1772205301; x=1772810101;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=f4E6HXkvhuNIpYntCK6bZF0992wJwuTJEJOmXq3XUUw=;
-        b=ArO62fx8/oLOktJKKTKSVj1JqzNUh6qpt8RU/jJNb90ZZupRTA89SFRLNLr9FaFVKl
-         Vb2i3AYQpYR0nlbupEk8w0jahVoNZoH33WsqLVO1CFVI1LfTM9vyxP4+Aj6Yf+cpFzPS
-         0umVhPbzwGb6JQjIXWO62akkKxFyBc/fI49ehpaIYEh9m8GQJXlqEvh4Zfc8NfJ6L2cU
-         tHCxEOHs52nkG2ZvuUOpbWOhaAPv5GSNf6kIl2fCnok++jsVftCl28TkkAp0TTQ6aGaA
-         no+L+G5ASqF4WUY0McYRTcYJRrszLYi5K9lY4bQKA+ukHyVNs0bsAiV8HABK0Ax9jifj
-         3TeQ==
-X-Gm-Message-State: AOJu0YxdRdhgyDIYJbwGCeDzCuGULUrs9OrcKn3TCqQXR0FYpCpe7ISz
-	2zgsjWVExdtYzEEFM9A12rlwtb7T0jQQZXnGjrSInHW5Nom7P/UkQDYh
-X-Gm-Gg: ATEYQzzTjlXxMggNCDJGIMH+mf0+W19OXVbHQVlKz3WCvaBrOMEpmEfSdofGDcMzTha
-	A5bXVlPwOAFc5I924bwH6HZ9+/SEYnyG/oCrHKtKaTP2caq1Wm1pfEGe2It8v7M5dztC9n6Orz3
-	1AD7y7WS5BcuEvOufkYieHDAT1th8tT/Ze0v1AFOse9D+sTxYMsKEJRJdy8HASJ8U+gMa3YHoX4
-	IR4qUZvp5HDjev5b1XgF6AHw7MWTXcZcpF+ZrquHO4hwflVOVOc5gVL3dUhnMP3PmYPvqhsjbpo
-	JlOwCMwA57bs84waPt7Gw7vTqQIbUGYUJVIduCWhjM72o108HNtYXY3bHmwWSJ+d/d1huPhAxGU
-	+R8gb96Q26t2KZ2lBB688e/KsJ7SewDss4Hpw0J028ccoUnHZgxMQSgOg2vy8HTZstpabsVmuL9
-	7teibTJLC4NLRDRy1C4JzRIBrhE6HhQFBPnMhsQrnh5YAf5Gj5jgwbYnFxqys=
-X-Received: by 2002:a17:90a:da85:b0:32e:3829:a71c with SMTP id 98e67ed59e1d1-35965c93b31mr3629448a91.16.1772205295979;
-        Fri, 27 Feb 2026 07:14:55 -0800 (PST)
+        bh=ePgSZPRRbECh1C3ufz9sKMRvaR3CgzOK7F/YlViJ0LU=;
+        b=ZOCUlOTpN0MMGhK3+vC9aW69iwktbS56yrOp2hUC0Mn2tcuT9swn2jbfcAMbg0i2Zn
+         Pa0t0TiwadRhdceLnZr4FaRRHw1z1oeWum9Vz+zpBdstE7oAmAINUDSjMyS7X19Vy22k
+         NCFbU3VY95njrp3PLLsQLNqIPSkhOoDCf+x3/8yQJ7e7LxEwULFnjt39B55e8gQ7me0l
+         Dp6kfE+AyXt/DCGdJusd34TyRFdutFu8vGXyvrxIv9XioTlTLD8AIEqKD24IlEvfTbmP
+         +jl0xBwCZYgXTPH0qKBpP0KLPUqechvzdW806TDZVG+qpJzRJmXJ4K+CMJTwy2dRlkVq
+         zkzg==
+X-Gm-Message-State: AOJu0YxU/FO5NPVmzmqQHkryrMUMFqWopRnUe5u9QaNrW+h44jEgAm3R
+	qB1X1gpz8HNZ7eNL+DkDPWO/4k3EyLCc2M6vU8Pop98rQqBvee+gq45X
+X-Gm-Gg: ATEYQzzEAPN++d0alaXoSZ0ctPXSNyKsI6PVqHbWrByD7WM800KXM28NIwP7pb1rVxk
+	cRzXYsdvyKoNoGABW6CSZ9/AZFJV/qG15z8hvoK+SHCQUjtkDO5HKtfZFyIDznnTKqmss5r8Glh
+	9JvJqh4lPgqw5NPJHjgIwBfv/D1Ed3X1s0XYG6dxVRHvSPZthtP6STQun7z5aDwz4cP2rD7Vzp3
+	/N4nl274hKQD+x+pngR3ZDZG/+FDEq7vgE5wnpZrp97Mp0yiByWp0uYEaNv5nZtsY4n4ppFEZgH
+	zYZEgdJRFBScOSVBs2conHptKbXXmDhAV8WgAiqa685oeAgRV/jbSDrEM9i70JShtTROqcAixZy
+	wOXWwxn4k84/BWFY19Sg6oHks+fqq2qlPWpHDiRwGAz7Y/sGXA/wiFlkP/zNHocs+uGJaR06kn/
+	zqL8IuUVZoqD/ZY6L/aIK5tp8uGopSz7yOnzknlH6ZT9OtGlge
+X-Received: by 2002:a17:90b:1809:b0:359:2099:da20 with SMTP id 98e67ed59e1d1-35965cd0b4cmr3771969a91.17.1772205300796;
+        Fri, 27 Feb 2026 07:15:00 -0800 (PST)
 Received: from LAPTOP-872M7T80.localdomain ([122.168.69.160])
-        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-3593dcc9c37sm5485848a91.8.2026.02.27.07.14.51
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-3593dcc9c37sm5485848a91.8.2026.02.27.07.14.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Feb 2026 07:14:55 -0800 (PST)
+        Fri, 27 Feb 2026 07:15:00 -0800 (PST)
 From: Akhila YS <akhilayalmati@gmail.com>
-Date: Fri, 27 Feb 2026 15:14:33 +0000
-Subject: [PATCH v4 3/5] dt-bindings: arm: microchip,sam9x60-pit64b :
- convert to DT schema
+Date: Fri, 27 Feb 2026 15:14:34 +0000
+Subject: [PATCH v4 4/5] dt-bindings: arm: atmel,at91rm9200-st: convert to
+ DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +87,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260227-arm-microchip-v4-3-7e2ae1c5b5d6@gmail.com>
+Message-Id: <20260227-arm-microchip-v4-4-7e2ae1c5b5d6@gmail.com>
 References: <20260227-arm-microchip-v4-0-7e2ae1c5b5d6@gmail.com>
 In-Reply-To: <20260227-arm-microchip-v4-0-7e2ae1c5b5d6@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -104,7 +104,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -114,7 +114,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269303-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269304-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -122,82 +122,60 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tuxon.dev:email,devicetree.org:url,microchip.com:email,f0028000:email]
-X-Rspamd-Queue-Id: D4AC91B9B34
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tuxon.dev:email,devicetree.org:url,microchip.com:email,fffffd00:email]
+X-Rspamd-Queue-Id: 5C5591B9B43
 X-Rspamd-Action: no action
 
-Convert Atmel Periodic interval timer of 64bit (PIT64b) binding to YAML
-format.
+Convert System Timer binding to YAML format.
 Changes during conversion:
-- Add missing compatible "microchip,sama7g5-pit64b" along with a fallback
-compatible "microchip,sam9x60-pit64b".
+- Add "#address-cells" and "#size-cells" to the properties and required as
+  watchdog is defined as a child node to the timer parent node.
+- Define watchdog as a pattern property along with unit address in
+  examples.
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 ---
- .../devicetree/bindings/arm/atmel-sysregs.txt      |  8 ---
- .../bindings/arm/microchip,sam9x60-pit64b.yaml     | 68 ++++++++++++++++++++++
- 2 files changed, 68 insertions(+), 8 deletions(-)
+ .../bindings/arm/atmel,at91rm9200-st.yaml          | 69 ++++++++++++++++++++++
+ .../devicetree/bindings/arm/atmel-sysregs.txt      |  9 ---
+ 2 files changed, 69 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-index 70059f66f2b4..d0561f7f465c 100644
---- a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-+++ b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-@@ -1,13 +1,5 @@
- Atmel system registers
- 
--PIT64B Timer required properties:
--- compatible: Should be "microchip,sam9x60-pit64b" or
--			"microchip,sam9x7-pit64b", "microchip,sam9x60-pit64b"
--			"microchip,sama7d65-pit64b", "microchip,sam9x60-pit64b"
--- reg: Should contain registers location and length
--- interrupts: Should contain interrupt for PIT64B timer
--- clocks: Should contain the available clock sources for PIT64B timer.
--
- System Timer (ST) required properties:
- - compatible: Should be "atmel,at91rm9200-st", "syscon", "simple-mfd"
- - reg: Should contain registers location and length
-diff --git a/Documentation/devicetree/bindings/arm/microchip,sam9x60-pit64b.yaml b/Documentation/devicetree/bindings/arm/microchip,sam9x60-pit64b.yaml
+diff --git a/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml
 new file mode 100644
-index 000000000000..f00ac7e858d9
+index 000000000000..3f6a934a2a69
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/microchip,sam9x60-pit64b.yaml
-@@ -0,0 +1,68 @@
++++ b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-st.yaml
+@@ -0,0 +1,69 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/microchip,sam9x60-pit64b.yaml#
++$id: http://devicetree.org/schemas/arm/atmel,at91rm9200-st.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Microchip PIT64B 64-bit Periodic Interval Timer
++title: Atmel System Timer
 +
 +maintainers:
 +  - Nicolas Ferre <nicolas.ferre@microchip.com>
 +  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
 +
 +description:
-+  The Microchip PIT64B is a 64-bit periodic interval timer used in
-+  several modern Microchip ARM SoCs including SAM9X60, SAM9X7 and
-+  SAMA7D65 families. It provides extended timing range, flexible
-+  clock selection and supports both periodic and one-shot interrupt
-+  generation modes.
++  The System Timer (ST) module in AT91RM9200 provides periodic tick and
++  alarm capabilities. It is exposed as a simple multi-function device
++  (simple-mfd + syscon) because it shares its register space and interrupt
++  with other System Controller blocks.
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - const: microchip,sam9x60-pit64b
-+      - items:
-+          - enum:
-+              - microchip,sama7d65-pit64b
-+              - microchip,sama7g5-pit64b
-+              - microchip,sam9x7-pit64b
-+          - const: microchip,sam9x60-pit64b
++    items:
++      - const: atmel,at91rm9200-st
++      - const: syscon
++      - const: simple-mfd
 +
 +  reg:
 +    maxItems: 1
@@ -206,16 +184,17 @@ index 000000000000..f00ac7e858d9
 +    maxItems: 1
 +
 +  clocks:
-+    minItems: 1
-+    maxItems: 2
++    maxItems: 1
 +
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      enum:
-+        - pclk
-+        - gclk
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++patternProperties:
++  "^watchdog@[0-9a-f]+$":
++    $ref: /schemas/watchdog/atmel,at91rm9200-wdt.yaml#
 +
 +required:
 +  - compatible
@@ -228,15 +207,39 @@ index 000000000000..f00ac7e858d9
 +examples:
 +  - |
 +    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    timer@f0028000 {
-+        compatible = "microchip,sama7g5-pit64b", "microchip,sam9x60-pit64b";
-+        reg = <0xf0028000 0x100>;
-+        interrupts = <37 IRQ_TYPE_LEVEL_HIGH 7>;
-+        clocks = <&pmc PMC_TYPE_PERIPHERAL 37>, <&pmc PMC_TYPE_GCK 37>;
-+        clock-names = "pclk", "gclk";
++    timer@fffffd00 {
++        compatible = "atmel,at91rm9200-st", "syscon", "simple-mfd";
++        reg = <0xfffffd00 0x100>;
++        interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
++        clocks = <&slow_xtal>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        watchdog@fffffd40 {
++            compatible = "atmel,at91rm9200-wdt";
++            reg = <0xfffffd40 0x40>;
++        };
 +    };
 +...
+diff --git a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+index d0561f7f465c..14642384bc87 100644
+--- a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
++++ b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
+@@ -1,14 +1,5 @@
+ Atmel system registers
+ 
+-System Timer (ST) required properties:
+-- compatible: Should be "atmel,at91rm9200-st", "syscon", "simple-mfd"
+-- reg: Should contain registers location and length
+-- interrupts: Should contain interrupt for the ST which is the IRQ line
+-  shared across all System Controller members.
+-- clocks: phandle to input clock.
+-Its subnodes can be:
+-- watchdog: compatible should be "atmel,at91rm9200-wdt"
+-
+ RAMC SDRAM/DDR Controller required properties:
+ - compatible: Should be "atmel,at91rm9200-sdramc", "syscon" or
+ 			"atmel,at91sam9260-sdramc" or
 
 -- 
 2.43.0
