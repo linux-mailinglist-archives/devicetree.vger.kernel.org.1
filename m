@@ -1,184 +1,310 @@
-Return-Path: <devicetree+bounces-269200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269201-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QF0lBqR/oWkUtgQAu9opvQ
-	(envelope-from <devicetree+bounces-269200-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:27:32 +0100
+	id qCeLIhGBoWkUtgQAu9opvQ
+	(envelope-from <devicetree+bounces-269201-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:33:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FF221B68BA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE0301B69D3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:33:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5AD6E31026D8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:23:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7F5B43022953
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BB93EDAD0;
-	Fri, 27 Feb 2026 11:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99AE932ED2A;
+	Fri, 27 Feb 2026 11:33:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="EbRd0clv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [4.193.249.245])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC4E3EF0C0;
-	Fri, 27 Feb 2026 11:23:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=4.193.249.245
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772191392; cv=none; b=QMCZ2HYfc/6UThBwZ5hLFuUXmrInnloL9Z1j+xwZXcAGCpBKGvoKl+FQV7boXH2sgU4OJhWiTAZMXanpj0YEDNi3ruPio2N8+GhOGEhOHCXWk0x7Gakx8EZmZjVXLtDwVrRg/r/PYTq0Af+jlwMm3F2pX3+Fo41hE3X7zYzrfWE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772191392; c=relaxed/simple;
-	bh=tAFIuFIKr0q2vXjiGgvB9bJkuyy0Yn91+HO/bU0+DLM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=NRCWEDAQ1KHsn6viXNNHA9dGpLHpEcdf6Cfyn2m1jxVkaAo6i3JA3646oBnF0yj3weL8Vp2dUBC+exY/ncFJCgCIuSdHHxPr7eNP6tfkewGQ0yhaDERBuJyMP2uBZa2wD95Pc1U+vbZb9nVXxwCn+1x7rvYR7mmGS3U6435ywbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=4.193.249.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
- ajax-webmail-app2 (Coremail) ; Fri, 27 Feb 2026 19:22:43 +0800 (GMT+08:00)
-Date: Fri, 27 Feb 2026 19:22:43 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-To: "Manivannan Sadhasivam" <mani@kernel.org>
-Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
-	p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, shradha.t@samsung.com,
-	krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
-	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	ouyanghui@eswincomputing.com
-Subject: Re: Re: [PATCH v10 2/2] PCI: eic7700: Add Eswin PCIe host
- controller driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <4lhrl2lqnndbieuctdtdrwdjlvjafw32googpv322kv5xe35ue@gtojpiksle74>
-References: <20260129092629.1866-1-zhangsenchuan@eswincomputing.com>
- <20260129092900.1900-1-zhangsenchuan@eswincomputing.com>
- <a3yu54e6feo5immtdju4fgvne7fh3p4ytlawfdhawmpzvagi64@o7wuhhdiitft>
- <78296255.3869.19c8eb694d6.Coremail.zhangsenchuan@eswincomputing.com>
- <cxfbgzwsybfvixu3qqi66fvspmhe5knuevwcj6zwsakkzqwd3z@czmitvgl7nwt>
- <694aeb1a.398e.19c98ff2727.Coremail.zhangsenchuan@eswincomputing.com>
- <rbmoxlc45bf4ij2o2mf3ofgni6vxqmsp52vdiqtc4wxxufmxkt@w2u5rkpq5mhs>
- <470bb42a.39bb.19c994fc998.Coremail.zhangsenchuan@eswincomputing.com>
- <4lhrl2lqnndbieuctdtdrwdjlvjafw32googpv322kv5xe35ue@gtojpiksle74>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F8F227BB5
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 11:33:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772192014; cv=pass; b=Q8VihJMuHUOFkPAhxqxKJ2msXOy6DdN3BcSdLV4+KbHntpF6uymTHUA/Oh2q5cvJV0XHmTbiPwo6x/ZgyETLcJizEfdviZsc2l+1Y3N5lo+EYZXd8cMjK298t2rWHCuJcm8czzXafpQ+g0nUeG3/GB8vqdRFsd5CG/Kspu+Ws5o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772192014; c=relaxed/simple;
+	bh=YkKkXGPtWq4Z1GRykpWFBU1hTW3OYyhGbXrHfP9/WiE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DRKpSXb4CTTx0EerBrYDyhhrUbO+B3cYr7eTwwA0/s2ThPDPcizHvQHjOpctH2Ni80NJF6KuE1P6rMjqZvG81Jkz/b82rJ01bozt2mkzHJ4mw6aUA+6SGapm1WE4Sj4OsPRNLrVQbUWilBcCRWek1kkiyLQErpT3DPomaSLXX1Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=EbRd0clv; arc=pass smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b9372552059so168152666b.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 03:33:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772192011; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ar3Sico7az4fwa4gFC455imtk+XZBoAgBxIrTV9x72yrDlRk9BegvxRpK4laHguFzf
+         Ts729ePMmMnMk87nPeqnitwszvBuKcIarcUUBcaygDuUjaMUiohpb4sfuHfsk354RKJw
+         fBxjDxNj3UocqckijMt90yGPUUtXBJlQlF1cGTk+msHfJhHceleomMhKuZpQ7AjEvfDP
+         nc0GPaIA2Y/e7LKxsKsSFOL4l5FVRQ7DT5Awh/PEhLjMtO9G1WjikPI57+QxBUoNhJZK
+         +Dyx0BgHhHELusNuQ1gzF/Aj4kP1Wkr6QQlcadK869vX22SKhFMTwXB9Mx1ioCuOSeos
+         3+dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=EA0zkwSlxFAb7Xpw8/jdlv2hV6yk/85CXHmdOo5DpPw=;
+        fh=vOLRtYn9zOYwYjgdSsO1yziPzjzzCHzACjHn34zLfu0=;
+        b=lAKZC9TFZEyRZdBAMaleRcmhki9PzmERhLVXXfbuxjsIKmyCYPFVeDO4I8Fn6RAn8N
+         Wj2jQIZxD3aTrqSF+dFa3tyZSzSo+oWEC80Zu+MF2ySlLi+q5SC7ijWgT9hsOcG5ywam
+         CfOEkTk8a4lf9OvSrLXcMUI2MX8CFDR9SDz1MCHJjq6NUpoMHzIo3X+mnA9mGTRH47xg
+         Xd80WMP8qlcdlZNSEXvA0Zqyz4w/G1KQxTFd9BDFPFrmg70aVaZJF2aVNAXyAUqGlmmd
+         r3g5egoOzybC6GcMJqRfXPrqZEztv5+EwcE1Zx9NLTsDaEg7emA1B0a0KGoFnUp5POwn
+         J71w==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1772192011; x=1772796811; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EA0zkwSlxFAb7Xpw8/jdlv2hV6yk/85CXHmdOo5DpPw=;
+        b=EbRd0clvRx9qGUQsT5J2lxegONfFLiRIv30vw4PmFMwCAioTYl2+cj2DNROEzEcEbU
+         36Wa1b8Jbm8owDo0igCVBJjIB70bLY1eZc1b5zgb7OgprLog6LjMx1s7v8nf0hGrrJ3C
+         3tGg2RGp8wwF8y2E3hH1yUKSIUOQXzoJd6295lqScnJeLpJ7z0DLfOCGgsV9VUYpH+Gp
+         QmK1AvmXsjEj3H9KNrgiT/2XOCaM5Uz7/BVui39XfhUK9RARu2xEOGP5qH3r/on4KfxZ
+         VzSDfBwpkCuiNhGCvmTLY+gQWLWTbsP/xttrQAAgbl1B/8+iaPUcuhSWHCKp0MFU3tir
+         9S4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772192011; x=1772796811;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=EA0zkwSlxFAb7Xpw8/jdlv2hV6yk/85CXHmdOo5DpPw=;
+        b=as/5h5C69VWdBc7kHaW4uQ4xMlkMP7waC23Bqv5OEJiC/+uMVUwOEUOu3gLUY2MDmg
+         qM497DRU9YnucexLoHb7q0Fb5o2p6W0510kuZZTQYu8nEzfoK4Pt+KOTmOoq41ZR1Ntr
+         BJU0qUEC6OBirPM6B72XMOsFz0mFIgHQc+lu9eK9uOQXKgs9d4LAnGnp1ct9zQuXbbXj
+         uOHhyOd27fO85tIibSLJLr84fM5Y1WRoJJHvIT4T0i/hxhPmjhZqKzQSbjoxaCQCc0ao
+         kMLLZddegpJGyrpZHQuqfKHktWnbOdGGIX0+j9FpioA8x2OYdGzxEOweW3euufO+f/BK
+         nviA==
+X-Forwarded-Encrypted: i=1; AJvYcCX24/AnP+lFMmFjRFWqEpekJUMJz1hOsfsGQnvZHyFKixT9yVSC1L9Nhytffm3xxjj7wOQTasRPdMAk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCjpsdWyhLVPuTwJRLevAHl09ARAUI9hvz91YMig0zYb3/ujRV
+	PjFyN0MJ3LqkoPPmIdGVP8HGnJbiy3MrJ2JGHik2YbK0Sn9RvMixYI773HuaxwYBqwQJ7LjP1L0
+	SHPKUSo8yYh41QJIXOdHalGYDKvpYyJH719LeaK7r2Q==
+X-Gm-Gg: ATEYQzwbYYWkwGoTnv3xSsVXcxlbDRftQeRF28E5ZWJ1p1kEt3rJ0HazkRFD8dtD/Qb
+	31s3B1FOw/txQgAP9xRbDR0rGMkk4UQb4ZIn5Je2T9ccyBDlVYbSzum8SsvskCLTQFCfMK84/e3
+	GKPy0iwgNhVWZSCmphTCIM8zWT+UccaegiWnMP5n6LR+80f2qn1UHzHfgfvgIlJ4VMS6ZKRBuT/
+	4Hyo0Zzwffp3ZHLK6FQgizwLvt5+XdDTlFzZwaTZuhc9d70Z9EPOlcpgtacxti/P2B7/k4sUrHe
+	Q5TOoA==
+X-Received: by 2002:a17:907:9807:b0:b88:6e10:62c8 with SMTP id
+ a640c23a62f3a-b9376366e46mr138172766b.2.1772192011202; Fri, 27 Feb 2026
+ 03:33:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <7dcea145.3a7f.19c9ed63012.Coremail.zhangsenchuan@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TQJkCgAHHaCDfqFpsB0EAA--.396W
-X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAQELBmmgd
-	ZEl5wACsg
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+References: <20260225-ina4230-v1-0-92b1de981d46@flipper.net>
+ <20260225-ina4230-v1-2-92b1de981d46@flipper.net> <20260227-victorious-parakeet-of-control-bef3ea@quoll>
+In-Reply-To: <20260227-victorious-parakeet-of-control-bef3ea@quoll>
+From: Alexey Charkov <alchark@flipper.net>
+Date: Fri, 27 Feb 2026 15:33:18 +0400
+X-Gm-Features: AaiRm52Uhbk0_fR90_NpcwfxQk5HImLHPnkYTEwhZQvIHf5sUKaUrVdD-tZT79s
+Message-ID: <CAKTNdwEUZWLgLtN7w==S69c1rOoRBWYAR3yXpR58uzipV3fx=A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] hwmon: Add support for TI INA4230 power monitor
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-269201-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269200-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	HAS_X_PRIO_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.046];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangsenchuan@eswincomputing.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
-	R_DKIM_NA(0.00)[];
+	DKIM_TRACE(0.00)[flipper.net:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email]
-X-Rspamd-Queue-Id: 3FF221B68BA
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[flipper.net:email,flipper.net:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: EE0301B69D3
 X-Rspamd-Action: no action
 
-PiA+ID4gPiA+ID4gPiBTdWJqZWN0OiBSZTogW1BBVENIIHYxMCAyLzJdIFBDSTogZWljNzcwMDog
-QWRkIEVzd2luIFBDSWUgaG9zdCBjb250cm9sbGVyIGRyaXZlcgo+ID4gPiA+ID4gPiA+IAo+ID4g
-PiA+ID4gPiA+IE9uIFRodSwgSmFuIDI5LCAyMDI2IGF0IDA1OjI5OjAwUE0gKzA4MDAsIHpoYW5n
-c2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tIHdyb3RlOgo+ID4gPiA+ID4gPiA+ID4gRnJvbTog
-U2VuY2h1YW4gWmhhbmcgPHpoYW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gPiA+
-ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+ICtzdGF0aWMgaW50IGVpYzc3MDBfcGNpZV9zdXNwZW5k
-X25vaXJxKHN0cnVjdCBkZXZpY2UgKmRldikKPiA+ID4gPiA+ID4gPiA+ICt7Cj4gPiA+ID4gPiA+
-ID4gPiArCXN0cnVjdCBlaWM3NzAwX3BjaWUgKnBjaWUgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsK
-PiA+ID4gPiA+ID4gPiA+ICsKPiA+ID4gPiA+ID4gPiA+ICsJLyoKPiA+ID4gPiA+ID4gPiA+ICsJ
-ICogVGhlIEVTV0lOIEVJQzc3MDAgU29DIGxhY2tzIGhhcmR3YXJlIHN1cHBvcnQgZm9yIHRoZSBM
-Mi9MMyBsb3ctcG93ZXIKPiA+ID4gPiA+ID4gPiA+ICsJICogbGluayBzdGF0ZXMuIEl0IGNhbm5v
-dCBlbnRlciB0aGUgTDIvTDMgUmVhZHkgc3RhdGUgdGhyb3VnaCB0aGUKPiA+ID4gPiA+ID4gPiA+
-ICsJICogUE1FX1R1cm5fT2ZmL1BNRV9Ub19BY2sgaGFuZHNoYWtlIHByb3RvY29sLiBUbyBhdm9p
-ZCB0aGlzIHByb2JsZW0sCj4gPiA+ID4gPiA+ID4gPiArCSAqIHRoZSBkd19wY2llX3N1c3BlbmRf
-bm9pcnEgQVBJIGlzIG5vdCB1c2VkLgo+ID4gPiA+ID4gPiA+ID4gKwkgKi8KPiA+ID4gPiA+ID4g
-PiAKPiA+ID4gPiA+ID4gPiBXaXRoIDcuMCwgeW91IGNhbiBwcm92aWRlIGEgZHVtbXkgcG1lX3R1
-cm5fb2ZmKCkgQVBJIGFuZCBzZXQKPiA+ID4gPiA+ID4gPiAncGNpLT5wcC5za2lwX2wyM19yZWFk
-eScgdG8gcmV1c2UgdGhlIGR3X3BjaWVfe3N1c3BlbmQvcmVzdW1lfV9ub2lycSBBUElzLgo+ID4g
-PiA+ID4gPiA+IAo+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gSGkgTWFuaSwKPiA+ID4gPiA+ID4g
-Cj4gPiA+ID4gPiA+IFNldHRpbmcgcGNpLT5wcC5za2lwX2wyM19yZWFkeSBkb2VzIGluZGVlZCBh
-bGxvdyB1cyB0byByZXVzZSB0aGUKPiA+ID4gPiA+ID4gZHdfcGNpZV9zdXNwZW5kX25vaXJxIGZ1
-bmN0aW9uLiBIb3dldmVyLCBmb3IgdGhlIGR3X3BjaWVfcmVzdW1lX25vaXJxCj4gPiA+ID4gPiA+
-IGZ1bmN0aW9uLCBpZiB0aGUgZHdfcGNpZV9zdGFydF9saW5rIGFuZCBkd19wY2llX3dhaXRfZm9y
-X2xpbmsgQVBJcyBmYWlsIHRvCj4gPiA+ID4gPiA+IGV4ZWN1dGUsIHRoZSBjbGsvcmVzZXQgcmVz
-b3VyY2VzIGluIHRoZSBwY2ktPnBwLm9wcy0+aW5pdCBmdW5jdGlvbiBjYW5ub3QKPiA+ID4gPiA+
-ID4gYmUgcmVsZWFzZWQuIFBlcmhhcHMgdGhlIGR3X3BjaWVfcmVzdW1lX25vaXJxIGZ1bmN0aW9u
-IG5lZWRzIHRvIGJlIG9wdGltaXplZC4KPiA+ID4gPiA+IAo+ID4gPiA+ID4gV2lsbCB0aGlzIGhl
-bHA/Cj4gPiA+ID4gPiAKPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9s
-bGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9k
-d2MvcGNpZS1kZXNpZ253YXJlLWhvc3QuYwo+ID4gPiA+ID4gaW5kZXggNmFlNjE4OWU5YjhhLi4z
-OGFkNzliYmVhYjEgMTAwNjQ0Cj4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVy
-L2R3Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jCj4gPiA+ID4gPiArKysgYi9kcml2ZXJzL3BjaS9j
-b250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jCj4gPiA+ID4gPiBAQCAtMTMwMCwx
-NSArMTMwMCwyNCBAQCBpbnQgZHdfcGNpZV9yZXN1bWVfbm9pcnEoc3RydWN0IGR3X3BjaWUgKnBj
-aSkKPiA+ID4gPiA+ICAKPiA+ID4gPiA+ICAgICAgICAgcmV0ID0gZHdfcGNpZV9zdGFydF9saW5r
-KHBjaSk7Cj4gPiA+ID4gPiAgICAgICAgIGlmIChyZXQpCj4gPiA+ID4gPiAtICAgICAgICAgICAg
-ICAgcmV0dXJuIHJldDsKPiA+ID4gPiA+ICsgICAgICAgICAgICAgICBnb3RvIGVycl9kZWluaXQ7
-Cj4gPiA+ID4gPiAgCj4gPiA+ID4gPiAgICAgICAgIHJldCA9IGR3X3BjaWVfd2FpdF9mb3JfbGlu
-ayhwY2kpOwo+ID4gPiA+ID4gICAgICAgICBpZiAocmV0KQo+ID4gPiA+ID4gLSAgICAgICAgICAg
-ICAgIHJldHVybiByZXQ7Cj4gPiA+ID4gPiArICAgICAgICAgICAgICAgZ290byBlcnJfc3RvcF9s
-aW5rOwo+ID4gPiA+ID4gIAo+ID4gPiA+ID4gICAgICAgICBpZiAocGNpLT5wcC5vcHMtPnBvc3Rf
-aW5pdCkKPiA+ID4gPiA+ICAgICAgICAgICAgICAgICBwY2ktPnBwLm9wcy0+cG9zdF9pbml0KCZw
-Y2ktPnBwKTsKPiA+ID4gPiA+ICAKPiA+ID4gPiA+ICsgICAgICAgcmV0dXJuIDA7Cj4gPiA+ID4g
-PiArCj4gPiA+ID4gPiArZXJyX3N0b3BfbGluazoKPiA+ID4gPiA+ICsgICAgICAgZHdfcGNpZV9z
-dG9wX2xpbmsocGNpKTsKPiA+ID4gPiA+ICsKPiA+ID4gPiA+ICtlcnJfZGVpbml0Ogo+ID4gPiA+
-ID4gKyAgICAgICBpZiAocGNpLT5wcC5vcHMtPmRlaW5pdCkKPiA+ID4gPiA+ICsgICAgICAgICAg
-ICAgICBwY2ktPnBwLm9wcy0+ZGVpbml0KCZwY2ktPnBwKTsKPiA+ID4gPiA+ICsKPiA+ID4gPiA+
-ICAgICAgICAgcmV0dXJuIHJldDsKPiA+ID4gPiA+ICB9Cj4gPiA+ID4gPiAgRVhQT1JUX1NZTUJP
-TF9HUEwoZHdfcGNpZV9yZXN1bWVfbm9pcnEpOwo+ID4gPiA+ID4gCj4gPiA+ID4gCj4gPiA+ID4g
-WWVzLCB0aGlzIGNhbiByZWxlYXNlIHRoZSByZXNvdXJjZXMgYWZ0ZXIgaW5pdCwgYWZ0ZXIgb3B0
-aW1pemluZyB0aGUgCj4gPiA+ID4gcmVzdW1lIGZ1bmN0aW9uLCBpIGNhbiByZXVzZSB0aGUgZHdf
-cGNpZV97c3VzcGVuZC9yZXN1bWV9X25vaXJxIEFQSXMuCj4gPiA+ID4gCj4gPiA+ID4gSSBub3Rp
-Y2VkIHRoYXQgdGhlIGR3X3BjaWVfd2FpdF9mb3JfbGluayBmdW5jdGlvbiBoYXMgYmVlbiBvcHRp
-bWl6ZWQuIElzIAo+ID4gPiA+IGl0IG5lY2Vzc2FyeSB0byByZWxlYXNlIHRoZSByZXNvdXJjZXMg
-b25seSB3aGVuIGl0IHJldHVybiAtRVRJTUVPVVQ/Cj4gPiA+ID4gUGVyaGFwcyBpdCBuZWVkcyB0
-byBiZSBzbGlnaHRseSBpbXByb3ZlZO+8mgo+ID4gPiA+IAo+ID4gPiA+ICByZXQgPSBkd19wY2ll
-X3dhaXRfZm9yX2xpbmsocGNpKTsKPiA+ID4gPiAgaWYgKHJldCA9PSAtRVRJTUVPVVQpCj4gPiA+
-ID4gICAgICAgICAgZ290byBlcnJfc3RvcF9saW5rOwo+ID4gPiA+IAo+ID4gPiA+IFdoYXQgYWJv
-dXQgeW91ciBzdWdnZXN0aW9uPwo+ID4gPiA+IAo+ID4gPiAKPiA+ID4gQWJzb2x1dGVseSEgSSBm
-b3Jnb3QgbXkgb3duIHJld29yayA7KSBJJ2xsIGNvb2sgYSBwYXRjaCBmb3IgdGhlIGFib3ZlLiBU
-aGVuIGlmCj4gPiA+IHlvdSBiYXNlIHlvdXIgY29udHJvbGxlciBkcml2ZXIgcGF0Y2ggb24gdG9w
-IG9mIGl0LCB3ZSBjYW4gbWVyZ2UgYm90aCBpbiBhCj4gPiA+IHNpbmdsZSB0cmVlIChpZiBCam9y
-biBhZ3JlZXMpLgo+ID4gPiAKPiA+IAo+ID4gT2tleSx0aGFua3MhCj4gPiAKPiA+IEknbSBhIGxp
-dHRsZSB1bnN1cmUuIERvIEkgbmVlZCB0byBzZW5kIHRoZSB2MTEgcGF0Y2ggaGVyZSBmaXJzdD8g
-T3Igc2hvdWxkIEkgd2FpdAo+ID4gdW50aWwgeW91IHJlbGVhc2UgdGhlIG5ldyBmaXggcGF0Y2gs
-IGFuZCB0aGVuIHNlbmQgdGhlIHYxMSBwYXRjaD8KPiA+IAo+IAo+IEkndmUganVzdCBzZW50IHRo
-ZSBmaXg6Cj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtcGNpLzIwMjYwMjI2MTMzOTUx
-LjI5Njc0My0xLW1hbmlAa2VybmVsLm9yZwo+IAo+IFlvdSBjYW4gcG9zdCB5b3VyIHNlcmllcyBv
-biB0b3Agb2YgaXQuIFRoZXJlIHNob3VsZCBiZSBubyBidWlsZCBkZXBlbmRlbmN5LCBidXQKPiB0
-aGVyZSBpcyBhIGZ1bmN0aW9uYWwgZGVwZW5kZW5jeS4gU28gd2UgbWF5IHB1dCB0aGlzIHBhdGNo
-IGFuZCB5b3VyIHNlcmllcyBpbiBhCj4gc2luZ2xlIGJyYW5jaC4KCk9rZXksdGhhbmtzISBJIGhh
-dmUgc2VudCB0aGUgdjExIHBhdGNoLgoKS2luZCByZWdhcmRzLApTZW5jaHVhbgoK
+On Fri, Feb 27, 2026 at 1:49=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Wed, Feb 25, 2026 at 01:29:12PM +0400, Alexey Charkov wrote:
+> > Add a driver for the TI INA4230, a 4-channel power monitor with I2C
+> > interface.
+> >
+> > The driver supports voltage, current, power and energy measurements, bu=
+t
+> > skips the alert functionality in this initial implementation.
+> >
+> > Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> > ---
+> >  MAINTAINERS             |   6 +
+> >  drivers/hwmon/Kconfig   |  11 +
+> >  drivers/hwmon/Makefile  |   1 +
+> >  drivers/hwmon/ina4230.c | 997 ++++++++++++++++++++++++++++++++++++++++=
+++++++++
+> >  4 files changed, 1015 insertions(+)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 4d879f6a7b51..77f7a416e682 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -12511,6 +12511,12 @@ S:   Maintained
+> >  F:   Documentation/hwmon/ina233.rst
+> >  F:   drivers/hwmon/pmbus/ina233.c
+> >
+> > +INA4230 HWMON DRIVER
+> > +M:   Alexey Charkov <alchark@flipper.net>
+> > +L:   linux-hwmon@vger.kernel.org
+> > +S:   Maintained
+> > +F:   drivers/hwmon/ina4230.c
+>
+> List here binding as well, please.
+
+Will do. It does confuse me a bit that we duplicate the maintainers
+info both inside the binding files and in here.
+
+> > +
+> > +static int ina4230_probe_child_from_dt(struct device *dev,
+> > +                                    struct device_node *child,
+> > +                                    struct ina4230_data *ina)
+> > +{
+> > +     struct ina4230_input *input;
+> > +     u32 val;
+> > +     int ret;
+> > +
+> > +     ret =3D of_property_read_u32(child, "reg", &val);
+> > +     if (ret) {
+> > +             dev_err(dev, "missing reg property of %pOFn\n", child);
+> > +             return ret;
+> > +     } else if (val > INA4230_CHANNEL4) {
+> > +             dev_err(dev, "invalid reg %d of %pOFn\n", val, child);
+>
+> All these are probe, so return dev_err_probe
+
+Good point, thanks. Will adjust in v2.
+
+> > +             return -EINVAL;
+> > +     }
+> > +
+>
+> ...
+>
+> > +     ina->regmap =3D devm_regmap_init_i2c(client, &ina4230_regmap_conf=
+ig);
+> > +     if (IS_ERR(ina->regmap)) {
+> > +             dev_err(dev, "Unable to allocate register map\n");
+> > +             return PTR_ERR(ina->regmap);
+> > +     }
+> > +
+> > +     for (i =3D 0; i < F_MAX_FIELDS; i++) {
+> > +             ina->fields[i] =3D devm_regmap_field_alloc(dev,
+> > +                                                      ina->regmap,
+> > +                                                      ina4230_reg_fiel=
+ds[i]);
+> > +             if (IS_ERR(ina->fields[i])) {
+> > +                     dev_err(dev, "Unable to allocate regmap fields\n"=
+);
+> > +                     return PTR_ERR(ina->fields[i]);
+>
+> Syntax is return dev_err_probe, but allocations should not have printks.
+> It is not possible to get there any other error code.
+
+Alright, will drop the error message and return the errno directly,
+thanks. -ENOMEM should be pretty self-explanatory.
+
+It probably also makes sense to replace the open-coded loop with a
+call to devm_regmap_field_bulk_alloc while we're here.
+
+> > +             }
+> > +     }
+> > +
+> > +     for (i =3D 0; i < INA4230_NUM_CHANNELS; i++) {
+> > +             ina->inputs[i].shunt_resistor =3D INA4230_RSHUNT_DEFAULT;
+> > +             /* Default for 1mA LSB current measurements */
+> > +             ina->inputs[i].max_expected_current =3D 32768000;
+> > +     }
+> > +
+> > +     ret =3D ina4230_probe_from_dt(dev, ina);
+> > +     if (ret) {
+> > +             dev_err(dev, "Unable to probe from device tree\n");
+> > +             return ret;
+>
+> return dev_err_probe
+
+Ack
+
+> > +     }
+> > +
+> > +     /* The driver will be reset, so use reset value */
+> > +     ina->reg_config1 =3D INA4230_CONFIG_DEFAULT;
+> > +     ina->reg_config2 =3D 0;
+> > +
+> > +     if (ina->single_shot)
+> > +             FIELD_MODIFY(INA4230_CONFIG1_MODE_MASK, &ina->reg_config1=
+,
+> > +                          INA4230_MODE_BUS_SHUNT_SINGLE);
+> > +
+> > +     /* Disable channels if their inputs are disconnected */
+> > +     for (i =3D 0; i < INA4230_NUM_CHANNELS; i++) {
+> > +             if (ina->inputs[i].disconnected)
+> > +                     ina->reg_config1 &=3D ~INA4230_CONFIG_CHx_EN(i);
+> > +     }
+> > +
+> > +     /* Set calibration values */
+> > +     for (i =3D 0; i < INA4230_NUM_CHANNELS; i++) {
+> > +             if (!ina->inputs[i].disconnected)
+> > +                     ina4230_set_calibration(ina, i);
+> > +     }
+> > +
+> > +     ina->pm_dev =3D dev;
+> > +     dev_set_drvdata(dev, ina);
+> > +
+> > +     /* Enable PM runtime -- status is suspended by default */
+> > +     pm_runtime_enable(ina->pm_dev);
+> > +
+> > +     /* Initialize (resume) the device */
+> > +     for (i =3D 0; i < INA4230_NUM_CHANNELS; i++) {
+> > +             if (ina->inputs[i].disconnected)
+> > +                     continue;
+> > +             /* Match the refcount with number of enabled channels */
+> > +             ret =3D pm_runtime_get_sync(ina->pm_dev);
+> > +             if (ret < 0)
+> > +                     goto fail;
+> > +     }
+> > +
+> > +     hwmon_dev =3D devm_hwmon_device_register_with_info(dev, client->n=
+ame, ina,
+> > +                                                      &ina4230_chip_in=
+fo,
+> > +                                                      ina4230_groups);
+> > +     if (IS_ERR(hwmon_dev)) {
+> > +             dev_err(dev, "Unable to register hwmon device\n");
+> > +             ret =3D PTR_ERR(hwmon_dev);
+>
+> just ret =3D dev_err_probe
+
+Ack
+
+Thanks for your review Krzysztof!
+
+Best regards,
+Alexey
 
