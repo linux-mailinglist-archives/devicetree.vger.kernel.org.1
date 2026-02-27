@@ -1,401 +1,221 @@
-Return-Path: <devicetree+bounces-269220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269226-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KNfEBOCVoWl8ugQAu9opvQ
-	(envelope-from <devicetree+bounces-269220-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:02:24 +0100
+	id KN1oKEmXoWl8ugQAu9opvQ
+	(envelope-from <devicetree+bounces-269226-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:08:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5222B1B76DB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:02:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D27871B77A1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:08:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A99EC3115823
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:00:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 81BEC310D755
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:03:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD8C3F23A2;
-	Fri, 27 Feb 2026 13:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16CA23EFD37;
+	Fri, 27 Feb 2026 13:03:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="D7AyKebe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T7AihO16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013057.outbound.protection.outlook.com [52.101.72.57])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A6233F075D;
-	Fri, 27 Feb 2026 13:00:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772197221; cv=fail; b=ZHkHTvsxBLHViwFVcfjoB7Mr0V8CVD9/ZthnMmIjY6kbvZKw5O5MxhWiptHuXAlwDLy10pDE42Go2fLogm8nCWm3NrgGMy0YLcFGB+EFHdpdVFE0mklmR03gEzGvKUdJ15rLZZ++3zjKTmJ2fD7HEoLepift+rDXOw/rKf4g5gQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772197221; c=relaxed/simple;
-	bh=e6ykjk9mMaJAeTDS9qejdrjVOMhhPKEZxXGRTJRAS2I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=p+U9MErlWFpkXfgGZYqwuBpH3bgrvh5MJl6coehIVNx804xlrnaPqnq8BL0l8+NlQdag4p4IeKleycAsbkVBJ2zns/HPpIVM0QjbKSAfbmNJrmcLsaBaaLrh9BTIkXVo5fXx+R2soFMOCbekJBu49TFF+oL8fC9uEzNbxkZyfFQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=D7AyKebe; arc=fail smtp.client-ip=52.101.72.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OR76JvVoq/OgY4czDRz9g18P9pz7P7j5hIYWZrP+9kCwgwsCgp8ak913RygqzVEGsrymuLTGv9HwcMIljgQz2dhsQttRgLDE/7+NNug52riyLx2Q+xD8wJ5PR0WZfBka+N00Y42e0eCM3bpoObgZGIuuBf7yS+vC42b2yicePp+rz3+er4MkWek+V1mNQT84UGHtGs4w/doCBbKd1HyJCzUhlXsniOFrcCsCF7Of9xi74+wLp+eD0/aqqIqmKFfnbvqubBr1IQr4y7RIje5VjLtLWGfltug+vY94+ahoHpwskhEkkQXbleE/0WSX5Wfs2hsLQXC+N0khVSBI0+3pgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Honw8SrpL9fqcJReYXyddTpUHAJcEt3XfLuiPo0NLis=;
- b=dsDq085/FNu9mtGkCQfoeASVfmdiaJJ/4NplyyfKF8aprtRjShd2He7Cw4QsE7jDgimJHPrQGISyHiKh25VQ5wmF0tz1Cz/0C4oTG1NfSUNTtTL6M2s5FLkool2p8+IxGQPxSML5k46dIBx551m6lHt6gXc5AuXYZ0nGEDPnUP/uXtFI7ezqswFf0d7YX+aaenpiUa4smWmH57jGYaVvpoQw5uMGrtXdZrT1xPyOcqisEQVNigWoe6ds9Khl23uJH7W9bw817qCL3LtjYoTv6Ivg9Pu50Prz+WOny5TIwPes/pxjHM0nzHzaNo0SGNfd1/iPC2+uG/4MKup3VvC3UA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Honw8SrpL9fqcJReYXyddTpUHAJcEt3XfLuiPo0NLis=;
- b=D7AyKebeM1i30K0eBzZGEQ0ZnrvcN/1XiVZeavrsi5obVehg3TqvdlruP/bAn1zCIlt28FV8SMzfJ6dw/pEv0xbu1lB1I+uMhPXbPdxbEEgwBlR3ux/PvIDQqoOPGlcxKrBTDPnASRkfHxiSRdbYIwOggyPowNXWGMBGDicm8HhuB0JNYQ2kEswJo/U2zliuIf5I9RKXD2g1JHF022wqjwdqqojHEmu4s+w2RAw2jYqVgFHfl5g9fiChFjew1qxMp+hsTXM8+KhKAHKPyEGQdXkRgTn0RhyoFo+JPpkONI1thtd7QbzKhEGyLpUxrQc2I6GbZK7O7eQdyF7DfxNipA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com (2603:10a6:20b:3f2::13)
- by PA4PR04MB7904.eurprd04.prod.outlook.com (2603:10a6:102:c3::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.15; Fri, 27 Feb
- 2026 13:00:17 +0000
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::e99:f504:ce75:9bed]) by AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::e99:f504:ce75:9bed%3]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
- 13:00:17 +0000
-From: Daniel Baluta <daniel.baluta@nxp.com>
-To: Frank.Li@nxp.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	maudspierings@gocontroll.com,
-	Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [RFC PATCH 2/2] arm64: dts: imx8mp-frdm: Use symbolic macros for IOMUXC_SW_PAD_CTL_PAD
-Date: Fri, 27 Feb 2026 15:02:42 +0200
-Message-ID: <20260227130242.1702329-3-daniel.baluta@nxp.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260227130242.1702329-1-daniel.baluta@nxp.com>
-References: <20260227130242.1702329-1-daniel.baluta@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AS4P191CA0028.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d9::20) To AS8PR04MB8247.eurprd04.prod.outlook.com
- (2603:10a6:20b:3f2::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6FAE1A3164;
+	Fri, 27 Feb 2026 13:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772197416; cv=none; b=rYjNl+vRQ+xEuOPIJW64swl1IoFzvCcqO1rAv4vmLJMl/1FOye2ZVYWu1E1P2RrhzuL03rmAjJf7yAOQSJBhvBFZXKn1n61DlTH1NUIlCoguHhkOQd9wYt7278QRO/PZoPBeLxqIpaokYjj8PXB2s7B2NFisdTMMJZsTi/MTKIg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772197416; c=relaxed/simple;
+	bh=bERn3UGgISbC0PbmUnSEW/5x9liqJFQrKwBEdBhysS8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NO2P3Ltav5KH0X0ysefcKtAVR6JUMrhmu1Rs62hk0tuG+6e7tEAXi4Qk/pnoabjydPxke1ihmvHd2bIDR8ox73N89NunyPGPtFswb8Cv5xsrBPRZp+YV9MagtqX2OLJcNz5M9R6fA4/mz5hMxOLtg4zxhF8TKSQNHMRlBaOeCg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T7AihO16; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C71C116C6;
+	Fri, 27 Feb 2026 13:03:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772197415;
+	bh=bERn3UGgISbC0PbmUnSEW/5x9liqJFQrKwBEdBhysS8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T7AihO16oQoaRbGruNs+3F1qNdA1xBl134oPZnqO+JybZGbiDiOXqaOrNO6J/nIPs
+	 WwCIiAqY1sOYDs1qeN7jfy82R9I1rU+9V/FmrGDDMVO4HiP2X0M3G5yCP6s/AsHufn
+	 EoYXkND1bCNkl1+wHlvoF0gpMM5BVQIvvc3jB2XrrM7uXH6Ds7Qp5PIJIjnzRF3kZi
+	 qemM2LAB9KVdXMn0AwgyI8gnLbyLB+Fg57oyYs1DBtpF6FRYmOy5c3JYmsCgpUc589
+	 MQVmaaFtT2R25LyecUJ9s0KebZ+ff1WKAJ2vvgWkpcsloBBFtGMeqKloHcmHZnxwd9
+	 uYeI+Enc6HPBQ==
+Message-ID: <dc2e9e13-165f-4ca1-be29-aabdbf133856@kernel.org>
+Date: Fri, 27 Feb 2026 14:03:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8247:EE_|PA4PR04MB7904:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3ae51ed2-4d78-4fc9-08ee-08de7600279b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|19092799006|52116014|376014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	0e4v9LIkB/r/C2ihkZEmfj63mi7Z2+ZZfL7ZbhBQl9dDaa8VYVmbrEMJp7mNmIXmd/XGUg8MyzTKCDnYnrh7qwC6yExzFkhiEjMJ5eRJgEQ9k1f4rsn/C49BLGrng+T/SbEIQD1XRnI6PRtfltLlgOVK1uUhjvUcOGLRUn816AL2jlIqrM3o0HmrbcMu3TER55zQKQSYp1vE26JHMfwnpISRnVjuRp10REg5DKocnTmmyuCQTsz+pE6DOtk9cl1gasWlqf14hngTUf9tvBqZNu7aI/Otq+C21f68uUbT/u0360CiQJuOWRTYTDw04TYw7oqKDdppzAAJWwx1Z5o30i5BrflisC/A5yjoryF/Q3I1EXPU04rVEigUzqzGgynECh9Cdh/nphDCMKLGpND/qUnIE637dbxEPDjDaKk0LdqDhIz+PJzvvkVO5ZAQ7j5j2baddxbF88W6LUtQKOjNoCcyHqyBWGJoiqzjpVZ+efssnQgw5+GpPAQla7w+v+F1bbOtMwE5+7HPxAwFGGzfCWeBZ/M4/2cecWZGj752rhoi0TpHwEV8OypkYFasIx/miO6fT095wmJ+ugN8pdgrKQ8RC89l8BzNcQubDsO0osH7uscBg9wHk+s/wOIs49OEU//O8mZZw1cbgSr2+PT5QHKTX6VbXCQp/U0gd7lezm4GabUCHPcM113xjq36E8CsDLmBCdh4Z0tmXR8B5q0AIcWes8CsNu4zSP2eYRwU49m4uOVcDfcPeInWlH6Autn/SkAKMnH8sQJti0U6NY6PmG7Ub1shpPjbAhwMMeBDEQ8=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8247.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(52116014)(376014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?GVf7GvataaycudG13lYzSvPb4ZlEobcY40+fC4D44JmCXHkfE1IfodxcxuKT?=
- =?us-ascii?Q?bIXEJ2/aSn54Aj9TIf1TZs2NZFuu/p4YuNgkIwr6Ezywdx4/2ZgOe6fO6dV/?=
- =?us-ascii?Q?+ujd4ViM53h08g+Ga7D5lNM3vIaVWfO7cDbU+iXUZLJUdHcsPScf7PIOsbD+?=
- =?us-ascii?Q?TJ3xQeo5u5+GNQzGQOrChh/BJQEowQO0run92oqK3kH7BZCFX3+Zju+2xLH5?=
- =?us-ascii?Q?auA5bqYnd+x3NmJ+mxydwIHinbdPLUKIGQLgTo7ZJ2DayHP7OwNKlJWl1gQB?=
- =?us-ascii?Q?wzCHFQ3dRDfLGu906/rndprLNCsd7TYlNgzNTJRWKglx5B22Tq2+oCmDUrtp?=
- =?us-ascii?Q?LgAklEbtVn5MueauWBtrmE8lAXbO5fuGjIsLkxeLEj4NwRcHz2NidFeW584l?=
- =?us-ascii?Q?YmK8F0/b5FvJdSB6lRO2QrwM4FtTzpqTswLLmzJxnpjg6BP1toHrvWZ9BhuU?=
- =?us-ascii?Q?lWRofcwTLLyiInZ2a9fC6utUoyfwnZMKx/dd5giF2wwa2xOiSS+21VGJGkuT?=
- =?us-ascii?Q?+GERLpFs8+HIniEBszIzqlvXGZedS0P+MybWvb3ltdONCCmHC6Ohy8AhcJuI?=
- =?us-ascii?Q?Wm1KWBW2n8TOESb84LNt3uTM2zzT5CVnIRx8+Y+YznnkQFoJ0HK65OK5Erma?=
- =?us-ascii?Q?Lgr486/qCY3Q2c++b85jGIs4GemRrygzG7TGIx7120hqh8svU+viiEfPudkv?=
- =?us-ascii?Q?WTh3HdqeXhnjA3eDGjrt6zjSQv6DOViibe7LEbk73R5an3hQWUWZbz+O1h/V?=
- =?us-ascii?Q?cjQmep0JTbNwuHkDPFf9r7OivmONIWOF//h7mQDUkB/CylA+DqOHPBtX1tOp?=
- =?us-ascii?Q?ATYz2trmUyKtQGbWSUU4JXQQkqk0zxUUawtXHU/70ficlINdHYb850T6dcAQ?=
- =?us-ascii?Q?Dw1eppOHjuT25USSjGyJJtZGVSaz3cRQTdaooYXCqlAGu1R1/8vSxwd8TrOC?=
- =?us-ascii?Q?9ScYNDRhyIDolW6yaQkBWn5aocQypbBIu5qbEpUzKST1wMI788NX4XHSM4dj?=
- =?us-ascii?Q?uiGtJpZgd8cnHKRDnVE1Ng3bUZiAkd5M34fjZjRa7Gmud7RemoIyXU/Jt/M2?=
- =?us-ascii?Q?cZE787Gvt37R73DQZseo4FYUTEHUnUNYs6deyQidJ5jzj0xhk8dYfFz7R0oz?=
- =?us-ascii?Q?+LRptMaiIFi6futKsFlHTX1iT8gdgaJkdFaBF0NWR3I0O1JnvKqDQjUNp3Fp?=
- =?us-ascii?Q?K2fu4av9vhrVbO7xIK4saF35xla/SWtn4nUzzu9w8OLTfTn2m6fBiKvT9O9m?=
- =?us-ascii?Q?Lrv0i6lXZEOF5XtvXuNb5ZcEYmjMAFbdYef4hJAeHK3mgij18d6uVCl6eDBG?=
- =?us-ascii?Q?SeFRpPSYxxep5t6JCI/pfNAqipeXkEtelQFigOocLtOTxcY4CfKFVV4er4CI?=
- =?us-ascii?Q?DNb1+SB3a/Ekw5ZnEKSPiEptFsrtd4pGEKwDT8cT0wos/cbCltYBinBjB4xH?=
- =?us-ascii?Q?USPR5i3YPHSvhIjJG6B391pn6IcgB9l2ETff9XZscmcP+WrKY5utOAhdZl0q?=
- =?us-ascii?Q?Bojn/qu/0ai1hOXNzRqsMdCj+JervPwOTPKHvGkthWBtPcDt0Oy1e+nayBME?=
- =?us-ascii?Q?wg0WEWdJrzShlWoMMU3fq5Atg4TL7QB0YcRtdxoIODOdlWpIyFUKRICJFtcU?=
- =?us-ascii?Q?+WbPmIa6NDm/DWIUq/iW7qmtS34bQpzJKUYd2b+24utXxS/w5svdwTgqqZHN?=
- =?us-ascii?Q?JGy94cgW7H5AhjWDkB4lx+1lX963wSoBCvSj0Drwy/ZBZwZ67U517UP33nE3?=
- =?us-ascii?Q?haIBkpIx3A=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ae51ed2-4d78-4fc9-08ee-08de7600279b
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8247.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 13:00:17.2010
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GX97hRYhuL2T1wOkAf6Y74UIJPuj8iy2UincS5S3eOw/N+pjkXl8BPJVARsGTgGcxP2Ifw+Zc4ld9CksrPb+vQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7904
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add alternative
+ reg-names order for RK35{76,88}
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
+References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
+ <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
+ <20260227-observant-roaring-ara-ef7eb0@quoll>
+ <adbbdbb1-b126-4807-821c-c9850befd695@collabora.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <adbbdbb1-b126-4807-821c-c9850befd695@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,gocontroll.com,nxp.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269220-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.baluta@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-269226-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.996];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:dkim,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5222B1B76DB
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D27871B77A1
 X-Rspamd-Action: no action
 
-Currently, in order to configure IOMUXC_SW_PAD_CTL_PAD a magic raw value
-is written in this register. This makes code not obvious to read and
-modify.
+On 27/02/2026 12:37, Cristian Ciocaltea wrote:
+> Hi Krzysztof, Conor,
+> 
+> On 2/27/26 9:46 AM, Krzysztof Kozlowski wrote:
+>> On Thu, Feb 26, 2026 at 12:46:53PM +0200, Cristian Ciocaltea wrote:
+>>> With the introduction of the RK3588 SoC, and RK3576 afterwards, two more
+>>> register blocks have been provided for the video decoder unit.
+>>>
+>>> However, the binding does not properly describe the new hardware layout,
+>>
+>> As you shown me last time with excerpt of address spaces from
+>> datasheet/manual, the binding correctly describes the hardware and above
+>> sentence is not true.
+>>
+>>> as it breaks the convention expecting the unit address to indicate the
+>>> start of the first register range, i.e. 'function' block is listed
+>>
+>> Imprecise wording. "start of the main or primary register range"
+>>
+>> (if you have 0x1000 with one reg and 0x20000000 with everything, the
+>> unit address will be 0x20000000).
+>>
+>>> before 'link' instead of the opposite.
+>>>
+>>> Since the binding changes have been already released and a fix would
+>>> bring up an ABI break, mark the current 'reg-names' ordering as
+>>> deprecated and introduce an alternative 'link,function,cache' listing
+>>> which follows the address-based ordering according to the TRM.
+>>>
+>>> Additionally, drop the 'reg' description items as the order is not fixed
+>>> anymore, while the information they offer is not very relevant anyway.
+>>
+>> This is fine for me.
+> 
+> Thanks for the additional feedback!
+> 
+> If I'm not mistaken (please correct me), the only remaining (hard)
+> blocker for the series would be to improve this commit message.
+> 
+> How about the following:
+> 
+>     With the introduction of the RK3588 SoC, and RK3576 afterwards, three
+>     register blocks have been provided for the video decoder unit instead of
+>     just one, which are further referenced in the datasheet by 'link table',
+>     'function' and 'cache'.  The former is present at the top of the
+>     listing, starting at video decoder unit base address.
+> 
+>     However, while documenting RK3588, the binding broke the convention
+>     expecting the unit address to indicate the start of the primary register
+>     range, i.e. the 'function' block got listed before the 'link' one.
+> 
+>     Since the binding changes have been already released and a fix would
+>     bring up an ABI break, mark the current 'reg-names' ordering as
+>     deprecated and introduce an alternative 'link,function,cache' listing
+>     which follows the address-based ordering according to the TRM.
+> 
+>     Additionally, drop the 'reg' description items as the order is not fixed
+>     anymore, while the information they offer is not very relevant anyway.
 
-So, to help with code readability instead of the magic values use
-symbolic macros.
+Yes, it's fine. My comments were actually not blocking, I just wanted to
+wait if discussion with Conor resolves somehow.
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-frdm.dts | 132 +++++++++++-------
- .../arm64/boot/dts/freescale/imx8mp-pinfunc.h |   2 +
- 2 files changed, 86 insertions(+), 48 deletions(-)
+But for me anyway:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-index 55690f5e53d7e..206c8d939796e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-@@ -252,104 +252,140 @@ &usdhc3 {
- &iomuxc {
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL	0x400001c2
--			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA	0x400001c2
-+			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
-+			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
- 		>;
- 	};
- 
- 	pinctrl_i2c2: i2c2grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL	0x400001c2
--			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA	0x400001c2
-+			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
-+			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
- 		>;
- 	};
- 
- 	pinctrl_i2c3: i2c3grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL	0x400001c2
--			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA	0x400001c2
-+			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
-+			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
- 		>;
- 	};
- 
- 	pinctrl_pmic: pmicgrp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03	0x000001c0
-+			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03
-+				(MX8MP_PULL_UP | MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_pcal6416_0_int: pcal6416-0-int-grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x146
-+			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16
-+				(MX8MP_DSE_X6 | MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_pcal6416_1_int: pcal6416-1-int-grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x146
-+			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11
-+				(MX8MP_DSE_X6 | MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+
- 		>;
- 	};
- 
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
--			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x140
-+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+
- 		>;
- 	};
- 
- 	pinctrl_uart3: uart3grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_ECSPI1_SCLK__UART3_DCE_RX	0x140
--			MX8MP_IOMUXC_ECSPI1_MOSI__UART3_DCE_TX	0x140
--			MX8MP_IOMUXC_ECSPI1_SS0__UART3_DCE_RTS	0x140
--			MX8MP_IOMUXC_ECSPI1_MISO__UART3_DCE_CTS	0x140
-+			MX8MP_IOMUXC_ECSPI1_SCLK__UART3_DCE_RX	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_ECSPI1_MOSI__UART3_DCE_TX	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_ECSPI1_SS0__UART3_DCE_RTS	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_ECSPI1_MISO__UART3_DCE_CTS	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_usdhc3: usdhc3grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
--			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
--			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
--			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
--			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
--			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
--			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
--			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
--			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
--			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
--			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK
-+				(MX8MP_FSEL_FAST | MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD
-+				(MX8MP_FSEL_FAST | MX8MP_PULL_UP |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	MX8MP_NAND_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	MX8MP_NAND_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	MX8MP_NAND_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	MX8MP_NAND_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	MX8MP_NAND_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	MX8MP_NAND_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	MX8MP_NAND_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	MX8MP_NAND_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE
-+				(MX8MP_FSEL_FAST | MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
--			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
--			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
--			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
--			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
--			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
--			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
--			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
--			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
--			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
--			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK
-+				(MX8MP_DSE_X2 | MX8MP_FSEL_FAST |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7
-+				(MX8MP_DSE_X2 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE
-+				(MX8MP_DSE_X2 | MX8MP_FSEL_FAST |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
--			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
--			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
--			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
--			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
--			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
--			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
--			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
--			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
--			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
--			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK
-+				(MX8MP_DSE_X6 | MX8MP_FSEL_FAST |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD
-+				(MX8MP_DSE_X6 | MX8MP_FSEL_FAST | MX8MP_PULL_UP |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0
-+				(MX8MP_DSE_X6 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1
-+				(MX8MP_DSE_X6 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2
-+				(MX8MP_DSE_X6 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3
-+				(MX8MP_DSE_X6 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4
-+				(MX8MP_DSE_X6 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5
-+				(MX8MP_DSE_X6 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6
-+				(MX8MP_DSE_X6 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7
-+				(MX8MP_DSE_X6 | MX8MP_NAND_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE
-+				(MX8MP_DSE_X6 | MX8MP_FSEL_FAST |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
-index 26e7a9428c4c7..c963913e3c626 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
-@@ -38,6 +38,8 @@
- 				  MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- #define MX8MP_I2C_DEFAULT (MX8MP_PULL_UP | MX8MP_HYS_SCHMITT | \
- 			   MX8MP_PULL_ENABLE | MX8MP_SION)
-+#define MX8MP_NAND_DATA_DEFAULT (MX8MP_FSEL_FAST | MX8MP_PULL_UP | \
-+				 MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 
- /*
-  * The pin function ID is a tuple of
--- 
-2.45.2
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
+
+Best regards,
+Krzysztof
 
