@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-269313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269314-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kFrZLKq5oWlfwAQAu9opvQ
-	(envelope-from <devicetree+bounces-269313-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:35:06 +0100
+	id MKBrKEC6oWlhwAQAu9opvQ
+	(envelope-from <devicetree+bounces-269314-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:37:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37321B9E59
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:35:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 851451B9EEF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:37:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9ADDE3082A62
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:30:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A819B31ADC46
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0AB243CEF3;
-	Fri, 27 Feb 2026 15:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9730543E4B4;
+	Fri, 27 Feb 2026 15:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bhNwackp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K8z21p6b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E23B43CEE9;
-	Fri, 27 Feb 2026 15:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73AF243D4F4;
+	Fri, 27 Feb 2026 15:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772206174; cv=none; b=kumPNbjcOuYr/aDE+xBAQDZPx6TdN/TSQLz/6TvJ2eOrVmBEJeviG4BUFUyOitXhOpsI4AMTrAQ9fQ5w1LqCrrwQSyc4mFn7z6EnqZ/hIDQxTcfYRXwYrqo5HyaiX02EIzh6P/ZqSWQLlsih6VZPYRJZ/rQ8Ek7hJuwcDEhEnN4=
+	t=1772206181; cv=none; b=bxv1SgyKyK18wfks/D7Xim1qqBWPgh24vm7wxnZUcFXYzZC4FWuIz9s+YsPky6fKwSn0Qb+7pNLzcOxPuvT+jZ0e1Gy1wFFIst/AHVy6LdnuVKXDpzQg8Vsctx2pQmIPWiiBQjhs0pAUKCJxo53Mft6IybmIVAvZ+gfZ73qiQf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772206174; c=relaxed/simple;
-	bh=QqxPEidjtijcKI0x5VDokrr7iw50sdCcnR6RQN9UqMs=;
+	s=arc-20240116; t=1772206181; c=relaxed/simple;
+	bh=tphxylQLpsLQejlI1TA+c65Oj0EMFn8rsKnBDVlgyZM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Y6/q1PUVjob3MIkD645lLjkv1A93MvTJIIq81EeP1GnnnN5FpYkxZB+vWARPTgbXHdnouSxlhKNRu1Q91UxsmUSmusAGHE+d379jyByo0V3rnNR2LzOxOc2g78/IswyWswHR4di3RTDkr5a/VJkkRabqKTxAbp2XepcYXjqt77A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bhNwackp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4D25C2BC86;
-	Fri, 27 Feb 2026 15:29:30 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Yx/7VdvCzELrlGGh7d1UamOPjdurDZ5g9a0lBKT4r3nNuGclzvsKiDupPYmwL+KUcYCrXvA5Z8BaWoZeDxQqYUoo0Tvhm6hAzm2dbh64wr01oq/6YvgTvoU+71eISWlL32pRDoH5nyWs/VuYylzhrQy7YrOX6uS6W6E33OHZys0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K8z21p6b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E132FC19423;
+	Fri, 27 Feb 2026 15:29:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772206174;
-	bh=QqxPEidjtijcKI0x5VDokrr7iw50sdCcnR6RQN9UqMs=;
+	s=k20201202; t=1772206181;
+	bh=tphxylQLpsLQejlI1TA+c65Oj0EMFn8rsKnBDVlgyZM=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=bhNwackp8ttEQdj7NXtXuArb2kHOwIxMDpjs5AR/3NUUmxs0OFOsBnBkFUImxaQmt
-	 cEsQjQR7KX8kz5gLUqPzrfdNiLbBPmZB6YK9OUbIPeBrjUSvwMUPeggvzuAVDIN1IW
-	 6WafSa3M4ArowphLrl513RHxCK7oALXznG6PFAkjeS6MievPvrzCJN27pT3RGEnJkU
-	 XnvrVjB+y+It50KWX/iIdeiGu705pGjlDBxXohxdInRMBQuTkjVCmkeQCMdDKHn8nu
-	 WCQuXssgA+x/pPYvO2D/S35yaMxz4iAO+lveKtuaQy8zolo6trmRSg/wTTwz8AePGN
-	 zhQSWJUuachng==
+	b=K8z21p6bG6mAPr0IfbUHmCRuFYfGZ+ObE9c7v5CAM8pg0UghLWHZoQHmfjCKqyB++
+	 lSmpCyd1JuUM2j5K/R7lY68D7FlswDoBpnDCDn5YJnwb8qNReaE+P4oCv9LNCl76ty
+	 wQKmJaUjeYS4WDSflgeRNVx1Pivdf1YYaln99ELUu/scFKMJdNb1AS9VLEfEClCGot
+	 fO9kQg2e5yvSy4K5BlYF5Do2yo2fiXh27jpSpIkn6I0f3InFHbEBqBy28QDaRKfM8U
+	 0DHnKU3uazwumAXKnxJNiPvS/cGPj8WCi+A4ZNrczZ51gsaSF5DNKLoSgaTd9CbFVr
+	 0gjff2dpRnOQQ==
 From: Vinod Koul <vkoul@kernel.org>
-To: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, p.zabel@pengutronix.de, linux-phy@lists.infradead.org, 
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Nitin Rawat <nitin.rawat@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Yulin Lu <luyulin@eswincomputing.com>
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
- fenglin@eswincomputing.com
-In-Reply-To: <20260205082009.1780-1-luyulin@eswincomputing.com>
-References: <20260205082009.1780-1-luyulin@eswincomputing.com>
-Subject: Re: [PATCH v9 0/2] Add driver support for Eswin EIC7700 SoC SATA
- PHY
-Message-Id: <177220617042.330302.2707782153123727768.b4-ty@kernel.org>
-Date: Fri, 27 Feb 2026 20:59:30 +0530
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+In-Reply-To: <20260223-eliza-bindings-phy-ufs-v3-1-2b0c0f00bcb6@oss.qualcomm.com>
+References: <20260223-eliza-bindings-phy-ufs-v3-1-2b0c0f00bcb6@oss.qualcomm.com>
+Subject: Re: [PATCH v3] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy:
+ document the Eliza QMP UFS PHY
+Message-Id: <177220617754.330302.8800181516621926196.b4-ty@kernel.org>
+Date: Fri, 27 Feb 2026 20:59:37 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,18 +74,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269313-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269314-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
@@ -93,30 +95,25 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C37321B9E59
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 851451B9EEF
 X-Rspamd-Action: no action
 
 
-On Thu, 05 Feb 2026 16:20:09 +0800, Yulin Lu wrote:
-> Updates:
->   v9 -> v8:
->     - eswin,eic7700-sata-phy.yaml
->       - Modify the format of the "default" field in the
->         "eswin,tx-amplitude-tuning" and "eswin,tx-preemph-tuning"
->         properties.
->     - phy-eic7700-sata.c
->       - Correct the incorrectly formatted symbol "-" in the comments.
->     - Link to v8: https://lore.kernel.org/lkml/20260123024823.1612-1-luyulin@eswincomputing.com/
+On Mon, 23 Feb 2026 10:19:38 +0200, Abel Vesa wrote:
+> Document the QMP UFS PHY compatible for the Eliza Platform. It is fully
+> compatible with the PHY implemented in SM8650, so use the SM8650
+> compatible as fallback.
+> 
+> While at it, move the QCS8300 one so that it is sorted correctly by
+> fallback compatible.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: phy: eswin: Document the EIC7700 SoC SATA PHY
-      commit: 820265f7b666d588bcb7df06f3332265c59e8cea
-[2/2] phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
-      commit: 67ee9ccaa34a11c317411bb8e7d305d93d0b4111
+[1/1] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy: document the Eliza QMP UFS PHY
+      commit: caf08514bbee0736c31d8d4f406e3415cdf726bb
 
 Best regards,
 -- 
