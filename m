@@ -1,194 +1,231 @@
-Return-Path: <devicetree+bounces-269207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269208-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id Qtg6Ef2GoWlYuAQAu9opvQ
-	(envelope-from <devicetree+bounces-269207-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:58:53 +0100
+	id wD3JEBeIoWmVuAQAu9opvQ
+	(envelope-from <devicetree+bounces-269208-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:03:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD2B1B6DC1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC3D1B6E73
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:03:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4144D3030EDF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:58:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 70935303B2D2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80ADD3A1E6C;
-	Fri, 27 Feb 2026 11:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9293D3D1D;
+	Fri, 27 Feb 2026 12:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IWlMliEM";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WtXqbUEd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gdzMFMKU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45508329E7D
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 11:58:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE4BC331238;
+	Fri, 27 Feb 2026 12:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772193529; cv=none; b=SeBrRs3Pk4/W94GxJTEi1+qbQRgLPW68KdhxzLD547Wq5FH2jMtwVHu4ACTjnrZy8KcZ8FycB+dhzarBlUpL/XBSUumzjvtl5nxxpmj0RXTwpEndBg8Ia5JaOq2I5hIycUQLxrG8Np/DgJWnPedUO0DdbZ17opTuD3sBe7arJ3Q=
+	t=1772193810; cv=none; b=oVWl/jLT3YsNrrFa+mA2o70I5khR5Nj8b62UYVul49jvxEag88ajjtHgc7iJk4XfKdgSh8DX9gSHojyB6vQEpDoH9B/0AupKvJ1wM8REHezlRjRJzVRqOCHa8Co7EOV8tzYD+fuBnKGa+N0o1d6l17+zVQ96MYfdatNW/ODcVrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772193529; c=relaxed/simple;
-	bh=dv2NqVihq9/4pt17V0L7coUoZhM/pLyc++Jrv5RG44E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YD6eiQYZkECQjuF0v3+t/Q487X2+3ONtpWprA5SL90gh9opbnBw2Ez8mPOqUsLx1X901thYOF3xgYL0mEwico3dcrUoqSeTDqCqCjFg48q7cEh7YU35/QeYFaeK4XUQQUYq8g3++59tVZrvAS7cg0jfKjpEdz17tfmRB8mpbRMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IWlMliEM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WtXqbUEd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61RB5dqN3485986
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 11:58:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dv2NqVihq9/4pt17V0L7coUoZhM/pLyc++Jrv5RG44E=; b=IWlMliEMnR7Gj8tQ
-	uY/cAVH0TsDCUczm2Zyf1APjrwWSJCBSWr0OlNpeL2GbGz06DTDVzQIIa3K/i7g2
-	nlo+Yd2KUUr4f2OJac/Ae34G3FZhyXv6+CBjdjzTmm9FkFXrhmvmdC/YbuHgKAEE
-	WdMEfWVRIvUpFJQIBJWkaX8bU+DLAuqsWcRdV8kfioMyeP6NbowieliD0Rnlf9et
-	pADGmpen20NcPOSQcaeN4PamxQJ7g3TZYxNrGBgI2J+1YiHgLK72ape76Nzf/kgr
-	gxWuX5d4b7C9I9coIkecEujogd8i/lBj00Vu8OFwHGYHZgElzuSn96hUB9dGht+2
-	MManFg==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cka2xg497-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 11:58:47 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-826c67a7aadso876233b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 03:58:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772193526; x=1772798326; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dv2NqVihq9/4pt17V0L7coUoZhM/pLyc++Jrv5RG44E=;
-        b=WtXqbUEdKVB0ZCE+TQZjRD3y7yq5bFr2qypUrFeHh22eQKGQXVEL8PggUOIMl7EGJU
-         uhhBUa0J57hkkUgejlww6VtXZdzVKPIJHu/7vTNGkb3JuYvftGtW+ISZ5+5WwGKuA7SG
-         229tkfugz9bOKZ4wPd/Kx47QmGUQM1EfBmsTy64drMiGpSEyo2iV+0JkwHItrnxi7Ze2
-         eX7vc59m7Y6scq2sjET3GCTyrJXXGkuGcWNmFCGKae+tqpZxb0Fy3ju7JtFJVjiHMt2s
-         H4Sj3mkeIrVRMkboyPF/J+8rtdNe4EFgN3p03Ytxeqtf5Tr1pm3Spxd0x0Csw89Z0+5X
-         Yb8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772193526; x=1772798326;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dv2NqVihq9/4pt17V0L7coUoZhM/pLyc++Jrv5RG44E=;
-        b=IiFKqYbXqzsYxjUGMNCXukEkmQUq2l6fT/NtmDc/HcM64MtIUkzUG+bY/TnZ8UhwXC
-         OT05tX26OAsrJQhLknyjgdzi6du9WNHjkq6vzDdS7IKs0nkUa0hozWRCNkebkDy1GiZX
-         cmJfS73kRjugl4Lm/bB40VBFPt1gQGNZJRXmy+jUXkblNvK81DN90AXiLGTD3TzEKIU6
-         A4YQ9kxWYVslO5dp5jbhg9tHVxJC7HiVnoaGBBMUtJ/m5OibVLDsdgfwEhduCGyAQnm0
-         iC8XD5J5CfcqASbOswUDKx75AG33+ELlmq+SmJzmcBIK57S3yLjeUHej40BjHG2dvFom
-         Y4Og==
-X-Forwarded-Encrypted: i=1; AJvYcCVmewNj7Bpg6C55e05Sb2JwVepu7dN93smLZiEwdYSFtF+WscL9ZHkitkDs8uOJqFsb6udiSc5kG5rU@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywj8RIFooVCwQKsrZKfuQtErVRzstOHUSSZmehMq1493Raou0Gs
-	9ihSZN0ITk+PEY5myH8eOce0Ztcxrm1dJVuCaUPngxlN9wTf9MKg4fi75ASoQ26Few4GUawbpxa
-	FLpMFoHF8+BjPTUl1OixrKig7+G+OMQeKOtRm2DmPNDe4W24pAkwq5wuZeyc2lMbI
-X-Gm-Gg: ATEYQzxILMfFIGscIh+ot+y6NoSrIm/WEc8hLRbLJEA6pQ0n5kLvBBdb+vC0glhiPdN
-	yDRORswjvg0f2HC+G3YwGYKjoNG8/FpzFHXBR6ZolJlZ7dCZKEHqhmihqH/oKzOzLoJ+6+XU6pH
-	HrUMHwcU6R4E7yr91zM1uvyFEZzmfPpX2Pn8VwcREDxm/0bboM+uclS6d9en4c4PydQ/rwT5eOo
-	m551MFjb2Kb2bCvesQ4siBoMc3z9uFzt9aKRs5F0OVStYiCOn2vs7EuwFMLrw8XL3PUlQ1yrYbB
-	nfkuGaECvjzBnOsJIY1S6+ABQ5D1xcxBp7Gl186T9+TSlZhSXceo2rojrJhSsi7IiPijEvHJ6Rj
-	qOC0ojr5ji7vkxEBbgVWUNn3SLJ3S3RxxJOXicJdS1NWr
-X-Received: by 2002:a05:6a00:2d85:b0:81e:baa3:1fd6 with SMTP id d2e1a72fcca58-8274da3a595mr1608545b3a.4.1772193526192;
-        Fri, 27 Feb 2026 03:58:46 -0800 (PST)
-X-Received: by 2002:a05:6a00:2d85:b0:81e:baa3:1fd6 with SMTP id d2e1a72fcca58-8274da3a595mr1608527b3a.4.1772193525720;
-        Fri, 27 Feb 2026 03:58:45 -0800 (PST)
-Received: from [10.231.195.100] ([114.94.8.21])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8273a081a14sm4593796b3a.64.2026.02.27.03.58.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Feb 2026 03:58:45 -0800 (PST)
-Message-ID: <8c18682d-18f4-4fc8-a3bb-5abb6303ff66@oss.qualcomm.com>
-Date: Fri, 27 Feb 2026 19:58:41 +0800
+	s=arc-20240116; t=1772193810; c=relaxed/simple;
+	bh=YpNaloKbr3UUZsErz7VaMba9uf0tXCjATe67jN0sD5E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ctE/j3d7W5ov2TnU8JsMDLWgOVrdRwZVukEjfwWJg8iGFGo0CQ6KC7NNXnaY8JA2G693HgF/h6G9m1+pUM4lK1qez7CnWTfDLz5Nw2rq+Ey2B2UaA1AVR6oPUu06pUVAz25xq3qhBPB9NQsTDLrYbH6cTvSOITKb4daFUHZK0Y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gdzMFMKU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 036DEC116C6;
+	Fri, 27 Feb 2026 12:03:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772193809;
+	bh=YpNaloKbr3UUZsErz7VaMba9uf0tXCjATe67jN0sD5E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gdzMFMKUjV+Lj4sDvaE1Bn89regIDl13j5pf+y9pVog4rQ6l6Keq6wtIoitUefNGf
+	 +STvIo0ipoTMbF8ftT7D0oXoOkcxKHRQFZH42XQnE+6VTcpDpXSQNQkvdfbZ7mqgeB
+	 r/nqHYz3jbfl7PGvSJ8ZJsdOoar5WZEQrbOtWUSDCaF+AdxEnLj/IFP0XnbBjmrD1a
+	 KvW1f19bWCnn8brT+HzbyFpEnd/g356Kq1cYOEBmKtDYm6LRrADvFyfBRlR0Voik4P
+	 dUfrWMwMh+4gJfh3YNg/qddahVIjXX+Ke62R8T25tfzk/M+G/S1taCzwS0IH8cfuBV
+	 prjOX6Au8eLSw==
+Date: Fri, 27 Feb 2026 13:03:26 +0100
+From: Thierry Reding <thierry.reding@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 00/10] dt-bindings: Various cleanups for Tegra-related
+ bindings
+Message-ID: <aaGG3Yama_MjEAVI@orome>
+References: <20260223143305.3771383-1-thierry.reding@kernel.org>
+ <20260223171140.GA3992907-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: glymur-crd: Enable bluetooth
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Zijun Hu <zijun_hu@icloud.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260226-bt_glymur-v1-1-838fcbfaa767@oss.qualcomm.com>
- <65d15750-64f4-4abf-a62c-519510ab3968@kernel.org>
- <a2b64ff0-38d6-4153-899a-b1e5a620eac2@oss.qualcomm.com>
- <a72b1f27-1bea-4930-a8f5-b0ae22675920@kernel.org>
-Content-Language: en-US
-From: Zijun Hu <zijun.hu@oss.qualcomm.com>
-In-Reply-To: <a72b1f27-1bea-4930-a8f5-b0ae22675920@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=BOC+bVQG c=1 sm=1 tr=0 ts=69a186f7 cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=VwQbUJbxAAAA:8 a=yWs33O5C3Npa-eM8Fg4A:9 a=QEXdDO2ut3YA:10
- a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-GUID: KYVFy4p4Borv12v1qLBOx2QyIQI1uRVv
-X-Proofpoint-ORIG-GUID: KYVFy4p4Borv12v1qLBOx2QyIQI1uRVv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI3MDEwNSBTYWx0ZWRfXw4DQ+ceytnOW
- VIcGeNYORJT9cYnpBP878S/cSyxc3L36hepfJjKCo3s9IFN7GOUPi7JVaRxIJKfI7//Des+pKnO
- HzkYEzPKFrOuD/zYj2DikLNShrmSyPo3kmdROR1t6VgtCdVX1HbvgOzH8Q1PkJ/hK8Yq/xnuOit
- qj65vcjnqbq0T88tvRhXLpD2i32UOVF2VOgUhjcYiRQ2omMSVZ9557BJ7n3W9y8tvQ7eCl1OvpV
- /RfGrPSxUX7Xx0v600IK2zaHzMGtpYoqakQPOIm6aBz+pijP8y+NiW9RqqhxXohBZxlmoxFeAYu
- NKkdIzo07gyXZrmKGbG5WqKOtLTpmHKeIZfl9+K1fAIsPE+9eJfcwpUMnYy2Sz6q06QHpcrErhX
- pEuFpz3dTuro0zJJIzYe+gwhETAx6cS1yRO2BGD9Dzdr3qu1OMJ1Yzry7UuRx8brSvrYDGWtWuz
- hQaeMWoqsUM8tzYu9DA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-27_01,2026-02-27_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 impostorscore=0 spamscore=0 suspectscore=0 phishscore=0
- clxscore=1015 priorityscore=1501 lowpriorityscore=0 adultscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602270105
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="54grqkir2kpon4el"
+Content-Disposition: inline
+In-Reply-To: <20260223171140.GA3992907-robh@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:dkim];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FREEMAIL_CC(0.00)[icloud.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269207-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269208-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zijun.hu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: DDD2B1B6DC1
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.com:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nvidia.com:email]
+X-Rspamd-Queue-Id: AEC3D1B6E73
 X-Rspamd-Action: no action
 
-On 2/27/2026 7:43 PM, Krzysztof Kozlowski wrote:
->> yes.
->> the git repo is a private one, so nobody will notice and code review it if this change is not posted to https://lore.kernel.org.
-> No, it is not true. The repo is public.
->
 
-The 'private' i mean is that the repo is not mentioned in kernel tree.
-so it is not known by public.
-> I am asking why are you duplicating the work, why you are asked even to
-> work on something which was already finished/prepared?
+--54grqkir2kpon4el
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 00/10] dt-bindings: Various cleanups for Tegra-related
+ bindings
+MIME-Version: 1.0
 
-actually, both i and many colleagues does not notice the change obviously.
-so cause duplicated effort.
+On Mon, Feb 23, 2026 at 11:11:40AM -0600, Rob Herring wrote:
+> On Mon, Feb 23, 2026 at 03:32:55PM +0100, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > This patch set contains a couple of cleanups and conversions for Tegra-
+> > related bindings. In total, on top of next-20260220, these patches get
+> > the number of DT validation issues down from 184 to just 88.
+
+Hi Rob,
+
+sorry for the late reply. I've recently switched to the kernel.org
+address and for some reason these messages now don't show up in my
+inbox and I only see them on the lore archives.
+
+> Great! Really, you were at only 40 unique warnings (I strip the=20
+> filenames to avoid multiple boards duplicating warnings). You're in 4th=
+=20
+> (to last) place:
+>=20
+> arch/arm64/boot/dts/hisilicon:116:74
+> arch/arm64/boot/dts/mediatek:197:48
+> arch/arm64/boot/dts/qcom:132:45
+> arch/arm64/boot/dts/nvidia:184:40
+> arch/arm64/boot/dts/rockchip:76:27
+> arch/arm64/boot/dts/marvell:182:23
+> arch/arm64/boot/dts/renesas:83:13
+> arch/arm64/boot/dts/xilinx:16:6
+> arch/arm64/boot/dts/microchip:22:6
+> arch/arm64/boot/dts/broadcom:32:4
+> arch/arm64/boot/dts/nuvoton:3:3
+> arch/arm64/boot/dts/sprd:2:2
+> arch/arm64/boot/dts/intel:2:2
+> arch/arm64/boot/dts/apm:3:2
+> arch/arm64/boot/dts/realtek:45:1
+> arch/arm64/boot/dts/freescale:2:1
+> arch/arm64/boot/dts/arm:1:1
+
+\o/ ... I guess...
+
+I've got a bunch more that I plan to flush out. Hopefully I can make a
+bit quicker progress this time around.
+
+> This and logs of all the warnings from next and Linus' trees can be=20
+> retrieved with scripts here:
+>=20
+> https://gitlab.com/robherring/ci-jobs
+>=20
+>=20
+> > Note that technically these are at different revisions because they had
+> > been sent out separately a while ago, Some of these have already been
+> > reviewed, but given that they are fairly old I wanted to send them out
+> > in case there are new best practices that these don't include. I've run
+> > all of these through dt_binding_check. Also I've verified that these do
+> > not produce any new warnings/errors while eliminating old ones.
+> >=20
+> > Krzysztof, Rob, I know that you prefer DT binding changes to go through
+> > driver trees, but given that these don't have any driver changes to go
+> > with them, should we queue these via the Tegra tree (or devicetree tree)
+> > once they've passed review?
+>=20
+> I prefer they go via subsystem trees still, but if you don't get a reply=
+=20
+> in reasonable time just take them. You can take the interrupt-controller=
+=20
+> one though as DT only changes don't tend to get picked up.
+
+Is this an implied "Reviewed-by"? Some of these have been reviewed, but
+some were either not sent out yet, or didn't get any response at the
+time?
+
+> > I plan to pick up the two DTS changes into the Tegra tree since they are
+> > fairly trivial and unrelated to the bindings changes. I suppose they
+> > could've just been a separate series, but I thought I'd post them along
+> > with the other changes since this is all a concerted effort to get the
+> > number of issues down.
+> >=20
+> > Thanks,
+> > Thierry
+> >=20
+> > Thierry Reding (10):
+> >   dt-bindings: phy: tegra-xusb: Document Type C support
+> >   dt-bindings: pci: tegra: Convert to json-schema
+> >   dt-bindings: clock: tegra124-dfll: Convert to json-schema
+> >   dt-bindings: interrupt-controller: tegra: Fix reg entries
+> >   dt-bindings: arm: tegra: Add missing compatible strings
+> >   dt-bindings: phy: tegra: Document Tegra210 USB PHY
+> >   dt-bindings: memory: Add Tegra210 memory controller bindings
+> >   dt-bindings: memory: tegra210: Mark EMC as cooling device
+> >   arm64: tegra: Fix snps,blen properties
+> >   arm64: tegra: Drop redundant clock and reset names for TSEC
+>=20
+> arm64: dts: tegra: ...
+
+How strong is the suggestion? We've used just "arm64: tegra:" since
+basically forever. I can obviously switch at some point, but it'll be a
+break in consistency. Although, looking at the logs for the last few
+years, there have been occasional arm64: dts: tegra prefixes and a
+(very) few outliers with totally butchered prefixes.
+
+Thierry
+
+--54grqkir2kpon4el
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmmhiA4ACgkQ3SOs138+
+s6GG+g/+Onme3khS/9fUgq6VABTI32mJFpi1ubFL0feXCNWOv+gr72I4gl+83PAQ
+tStKlb6bRFJXdTeYY9ZRcl/7mHwm1vpUnKKjYn86BmJpFIC4J3baMZJYpKrWsEu4
+TgsAFdUD84TOr9jecEFjkbcZTeS5JGlYBAZiYL96vr4t7JP90ZRI+lHscNHnnICV
+ISIdXaBIkqHFHOVxWss0TwAwdGrkVp+PVUaHo/silmvHJ/OjWC5xR6fMB0QXPOFJ
+rMwAdYXSKjfi7wU9liGvSRbWWUvnKPHzm25oWhJjOXj+q5W2Et6CLOPcFSl30+L6
+0fPTiCx1OACJK5AjjA0fsDpWNnAYxr6HmsW5j+rWyTAGw6q+9+0HJhR5ZcMfcPrG
+tpgPP/J2O60Pl/hEMr9QkcjfftEB7WS8Mid0vm2yO6hxpfq+8mRuNoM5HIDzVBAu
+qzLinfUJH499gX9cGL3alTA6COYdAwhK+X3cVqv5lGK1d9jzeQ9tBR8N62Ehs33X
+gLsSIuqIWhThUVgU3u7IR3jf+v9u0S8Wv63tQQGdSVogpR75ZlEP8DFOaVLvStGy
+Fr0dZLRaT8DBjiauJwFa33lVzryVF6A5V+6imr3cIjDltRqO4XvtE+Kg0+EAq0FG
+VxqmrVZfdBhjsS82BjylepxlYT34dlLUpKl8uyMs1BZQtSKc6EQ=
+=nyrC
+-----END PGP SIGNATURE-----
+
+--54grqkir2kpon4el--
 
