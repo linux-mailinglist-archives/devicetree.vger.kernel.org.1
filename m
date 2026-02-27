@@ -1,209 +1,264 @@
-Return-Path: <devicetree+bounces-269086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269087-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LN4KF9DoWndrgQAu9opvQ
-	(envelope-from <devicetree+bounces-269086-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:10:23 +0100
+	id oIX4BIREoWkirwQAu9opvQ
+	(envelope-from <devicetree+bounces-269087-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:15:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03B1A1B3A85
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:10:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFFA01B3AEB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:15:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DCEDD3010490
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:10:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 09CF4303D106
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219CF36A009;
-	Fri, 27 Feb 2026 07:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4AA3290C1;
+	Fri, 27 Feb 2026 07:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lOqvjHTI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WVKBcG9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F322227FB1F;
-	Fri, 27 Feb 2026 07:10:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D6E1A23B6
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:15:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772176216; cv=none; b=Mn6hoHjAZ2DTG0hAzNL9p/DlGfK+ZBcpOScmMHwH1SLIoaY48DGa40XRZenZbtgdb4rCjeLFB4o9dfpM6IZq12GqIdaxI9h/lI/kQz0zZpYUipFoLKO7GD6LSPJ2jsqz6CokfYhPdCvR6UGPmP8oiJUw1SsmGslBxqbmSnLfMkc=
+	t=1772176513; cv=none; b=IPlinRYUrlmrpZYW2gTIBnGl5A85feEBWSFaeBek6ViT8hgqgzS/8CIGVd/WqLeDax97UmWXgg9dcNlJuwef3ZB5wDq2pncxoISUNtPBZzZSPeoLkRTNb4JVRGqnbqLmlnvCSa4AmcNPvfLfoVwOEczOFzmqnGeur3Wdj3zbLsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772176216; c=relaxed/simple;
-	bh=93SPmf8E1jF/TUfDZS9PtOn4hN3P8OgjiQA0WaPpkyc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kozGweQGFFekV56vSMuZRROc4WrIrdIomk+Ua6KsrRoVlfJy1HbQTjNJdF+m+PLTmtiwP/TtPyihzw1E79XaSZ/xvedoSSnSfgvwamoe7W6iGyt7U8sSZ6pNi1ydjh0yDPHreYzj7AepeR9QDRch0D0+fX+KKduapPT+ip+jSqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lOqvjHTI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB63C116C6;
-	Fri, 27 Feb 2026 07:10:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772176215;
-	bh=93SPmf8E1jF/TUfDZS9PtOn4hN3P8OgjiQA0WaPpkyc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lOqvjHTIbBmGaLmKo7MKt67M5+Af+GJ86NRwN2OlqEJLzdbtTezhxOjbSjJZP+xAs
-	 SOZErT7krFSIlClMQH0xvETYKDJOpapuDbdCtTZSTSWGC8nt8nqpJNkgapfjQQDACw
-	 d1Lx7lLoAcgJOYBlHEMNH0OU7AKP/WTMdKXZyYZzcx0ytP6la3SlCiXC3fH9WOEbJw
-	 oFi2oLFSaoUuE+grq3S68v8jO7xA6iCmPBD5ny1o2eGrcvZhBJXjb3t3YxumCGQIAg
-	 CTL5f2NtnpBhwgj1RoEpk/UyD1mf0sMQWtZJ6As3q0P8c3K8caAMYahDY0HMawDNcv
-	 EuQGP1TFrpOyw==
-Date: Fri, 27 Feb 2026 08:10:13 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: jk@codeconstruct.com.au, andriy.shevchenko@linux.intel.com, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Rayn Chen <rayn_chen@aspeedtech.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v25 1/4] dt-bindings: i2c: Split AST2600 binding into a
- new YAML
-Message-ID: <20260227-fragrant-industrious-aardwark-bdb63b@quoll>
-References: <20260225-upstream_i2c-v25-0-9f4bdd954f3f@aspeedtech.com>
- <20260225-upstream_i2c-v25-1-9f4bdd954f3f@aspeedtech.com>
+	s=arc-20240116; t=1772176513; c=relaxed/simple;
+	bh=69RiUfVmBpCp5tV21obni29ooBpUyV/rTP26GCTQsoU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eTQyksbAytFMr/tGcnbppkqI82Qi1d1XfmjltZ+gteOEmA+is2Ds3GuL/6/9uLDV81QvbYPXT8UQbSNExQji3/aBwsw1azKgctsRjyeYfn/RluM80xe5xk/CCNPK52bolLI5uNoueZ/XrwzFpzs3bRZPLv0r3qOMoh9qVdqXPNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WVKBcG9E; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b93698bb57aso209176466b.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 23:15:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772176509; x=1772781309; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oHElnmhYtGg+26fmBxabQr+c6QhRzJ5RN9Z3pPQAGwM=;
+        b=WVKBcG9E1XHo/t7hK4I6U0wqsdob2wpR/x6QPyjx7gSarpkRLqGEu1z7kpjmhLzbzK
+         TMek6Yw4MUUzrzIoPrhWHW5/Su8VcbE4YxvLhmilh08piOMhHqf1SYgEdCoptyzr3Hq6
+         +Kh6Qy3DWaN9SSuq/eBqX4S897l9kH7fYwKe+toPkxLBSGKiYQn2/m1WULKqB4F+E2ae
+         z2w4Ta2o8RdkltsSDGt1iCuL+aNz1CyPS6Hkzcq5+7dPjhfELN2Pse/mk7j8rYznSYMx
+         yZXN35md9phE8t+bwYX7Hd/vf46yg12XFbiiUB+rtIc9Me4v65YHMNhYmvWRT46+LD86
+         8fTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772176509; x=1772781309;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oHElnmhYtGg+26fmBxabQr+c6QhRzJ5RN9Z3pPQAGwM=;
+        b=Ol4i5scTffRLfL8ogARqB+DIJqGPp7jPJDopL/K9F3LpLB9ToUgOgO+EYO+/vOW8t+
+         XPBWteRKbYFMmS/FVoQfz8SqrL1+3E/WjEa8b/zGAyo0vbr4iSRU93iJI9sUvokfZW/b
+         vRle6PgeeZLbt8aQ3hR/PATDPsgZOCq/62s6aYj1rXlVUAIRI32aZu9XpTHiuR9mbmz8
+         J3JV/VJj1ktQkyZ4eg7oVPiZEniy9vCxjiC0+OWYRPVcgDvL2g+hYL4BEK8KlUwgii3b
+         MB76ER/d8oZZv+BWN9S+wOQztO79Ra+klIlUxK3cU7mKtSK7lsKjXGrinJsTyccrsbtv
+         Eh3g==
+X-Forwarded-Encrypted: i=1; AJvYcCU8ldDYf/m4BiIEvF5eOEqpZcc6jyrR9ODu9WNTlO/Uoj9wCspX/pq/zf/Q4bW7hIgpajq69SxXewRW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoAg7+YLImh9nfY2G6juttI3mP608QSJklzf+y8748QP17mUfr
+	j6a/jLkuhlD8XpxwI4gsmKMko6y3P/0eqxGcNOtaKFYEam1nGBEbU6m1Fsqrg95DVmI=
+X-Gm-Gg: ATEYQzwduztA5oGOeWsGqXPcRAUa2NxVTf9xoiIZcNYEIdilGrOEq23TvNnsQWAsX+m
+	+olU3XkcHKnJuMgmingFQixWzY9BsCBo0gYy8PWO7ra++5wuoUPRfkgoHrRXdoTJHP54TK9HblT
+	JPlIEd9PtbnDLTTzuF9Rr0ZGRPCW/UrOTqc+6HBvoJw9bE+rfuALnOTUJjD5FUZSQMN7Gv00kzk
+	OPqcX6XqsAC6J19swe4lz81fm/gt6neL5Y7/imXCCzfhtagGJCObPLZNFxk+1c9tcrb1Er8CVpg
+	MYw0zo0d7Xp76fAeVSMcPtiUzvILZw1dz7X2dlbl8WomDWMjwOog6pmSj0GRDJA+XELaVk5Dmxd
+	2c/rDTLo+LVlkp/1d0K27hjWuqY1xGcjj7fE1BLV0Q5QOxJ6RdbYXQSJJPtiYbhhmIaBt4DMDnw
+	Gc+Uzv/eYQJqGhP75iRzwxe3JXtJybXjr4AZFNH1sk5It/JgKoLkVzUOKNrECmSUvH42oeVXApm
+	9KYuEiq5urg1fj7lConGNtiiJ6M
+X-Received: by 2002:a17:907:7b8e:b0:b8f:6f94:a618 with SMTP id a640c23a62f3a-b9375932afdmr117483566b.17.1772176509421;
+        Thu, 26 Feb 2026 23:15:09 -0800 (PST)
+Received: from puffmais2.c.googlers.com (244.175.141.34.bc.googleusercontent.com. [34.141.175.244])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b935aeee867sm124205066b.66.2026.02.26.23.15.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Feb 2026 23:15:09 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v2 00/11] power: supply: max17042: support Maxim MAX77759
+ fuel gauge
+Date: Fri, 27 Feb 2026 07:15:05 +0000
+Message-Id: <20260227-max77759-fg-v2-0-e50be5f191f0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260225-upstream_i2c-v25-1-9f4bdd954f3f@aspeedtech.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHlEoWkC/23MQQ7CIBCF4as0sxYzEIXWlfcwXWDL0EkUDBhS0
+ 3B3sWuX/0vet0F2iV2GS7dBcoUzx9BCHTqYFhu8Ezy3BoVKo1JaPO1qjDkPgrxAOt0Je6knN0N
+ 7vJIjXnftNrZeOL9j+ux4kb/1v1OkQEGEFntr0A50fXCwKR5j8jDWWr/OKfkEpwAAAA==
+X-Change-ID: 20260226-max77759-fg-0f4bf0816ced
+To: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+ Purism Kernel Team <kernel@puri.sm>, Sebastian Reichel <sre@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+ Amit Sunil Dhamne <amitsd@google.com>, kernel-team@android.com, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269086-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269087-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.80:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,aspeedtech.com:email]
-X-Rspamd-Queue-Id: 03B1A1B3A85
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:mid,linaro.org:dkim,linaro.org:email,sysfs.online:url,sysfs.technology:url]
+X-Rspamd-Queue-Id: AFFA01B3AEB
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 05:19:38PM +0800, Ryan Chen wrote:
-> The AST2600 I2C controller introduces a completely new register layout
-> with separate controller and target register blocks, unlike the mixed
-> register layout used by AST2400/AST2500.
-> 
-> To describe this properly, split out the AST2600 I2C binding into its
-> own YAML file. The compatible string remains unchanged.
+Hi,
 
-But you made other changes in the binding. You must list them, because
-otherwise it sounds like you only SPLIT. It's not true. You actually
-changed the binding in at least two places, maybe more.
+This series adds support for the fuel gauge integrated into the Maxim
+MAX77759, which is a companion PMIC intended for use in mobile phones
+and tablets and is used on Google Pixel 6 and 6 Pro (oriole and raven).
 
-> 
-> The example section is updated to reflect the actual AST2600 SoC
-> register layout and interrupt configuration (aspeed-g6.dtsi,
-> lines 885-897):
-> 
-> - I2C bus and buffer register offsets
->   - AST2600 I2C controller register base starts at 0x80, and the
->     buffer region is located at 0xc00, per the AST2600 SoC register map.
-> 
-> - Interrupt configuration
->   - AST2600 I2C controllers are connected to the ARM GIC, not the legacy
->     internal interrupt controller.
+Amongst others, the PMIC contains a fuel gauge employing the Maxim
+ModelGauge m5 algorithm, that is similar to the ones supported by the
+max17042 driver and binding.
 
-Example is irrelevant, don't mention it. We discuss here binding.
+The Maxim ModelGauge m5 algorithm, as well as previous generations like
+m3 on max17047/max17050, requires the host to save/restore some
+register values across power cycles to maintain full accuracy.
+Extending the driver for such support is out of scope in this initial
+series.
 
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->  .../bindings/i2c/aspeed,ast2600-i2c.yaml           | 62 ++++++++++++++++++++++
->  .../devicetree/bindings/i2c/aspeed,i2c.yaml        |  3 +-
->  2 files changed, 63 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
-> new file mode 100644
-> index 000000000000..077be85137c9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/aspeed,ast2600-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED I2C on the AST26XX SoCs
+The series starts with binding updates, followed by driver updates and
+improvements in preparation for finally adding max77759 support.
 
-s/26XX/2600/ probably
+A DT update for Pixel 6 will be posted separately.
 
-> +
-> +maintainers:
-> +  - Ryan Chen <ryan_chen@aspeedtech.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-i2c-bus
-> +
-> +  reg:
-> +    items:
-> +      - description: controller registers
-> +      - description: controller buffer space
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    description: Desired operating frequency of the I2C bus in Hz.
-> +    minimum: 500
-> +    maximum: 4000000
-> +    default: 100000
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - reg
-> +  - compatible
-> +  - clocks
-> +  - resets
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/aspeed-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    i2c@80 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
+Note: While there was a previous attempt to add support for this fuel
+gauge via a new driver [1], development seems to have come to a halt,
+and extending this driver here seems more appropriate. The patches here
+are unrelated to that other attempt, other than supporting the same
+device.
 
-Please follow DTS coding style.
+Test results:
+    $ ./test_power_supply_properties.sh max170xx_battery
+    TAP version 13
+    1..33
+    # Testing device max170xx_battery
+    ok 1 max170xx_battery.exists
+    ok 2 max170xx_battery.uevent.NAME
+    ok 3 max170xx_battery.sysfs.type
+    ok 4 max170xx_battery.uevent.TYPE
+    ok 5 max170xx_battery.sysfs.usb_type # SKIP
+    ok 6 max170xx_battery.sysfs.online # SKIP
+    # Reported: '1' ()
+    ok 7 max170xx_battery.sysfs.present
+    # Reported: 'Unknown'
+    ok 8 max170xx_battery.sysfs.status
+    # Reported: '92' % ()
+    ok 9 max170xx_battery.sysfs.capacity
+    ok 10 max170xx_battery.sysfs.capacity_level # SKIP
+    ok 11 max170xx_battery.sysfs.model_name # SKIP
+    ok 12 max170xx_battery.sysfs.manufacturer # SKIP
+    ok 13 max170xx_battery.sysfs.serial_number # SKIP
+    # Reported: 'Li-ion'
+    ok 14 max170xx_battery.sysfs.technology
+    # Reported: '36032' ()
+    ok 15 max170xx_battery.sysfs.cycle_count
+    # Reported: 'System'
+    ok 16 max170xx_battery.sysfs.scope
+    ok 17 max170xx_battery.sysfs.input_current_limit # SKIP
+    ok 18 max170xx_battery.sysfs.input_voltage_limit # SKIP
+    # Reported: '4323906' uV (4.32391 V)
+    ok 19 max170xx_battery.sysfs.voltage_now
+    # Reported: '3660000' uV (3.66 V)
+    ok 20 max170xx_battery.sysfs.voltage_min
+    # Reported: '4320000' uV (4.32 V)
+    ok 21 max170xx_battery.sysfs.voltage_max
+    # Reported: '3300000' uV (3.3 V)
+    ok 22 max170xx_battery.sysfs.voltage_min_design
+    ok 23 max170xx_battery.sysfs.voltage_max_design # SKIP
+    # Reported: '289687' uA (289.687 mA)
+    ok 24 max170xx_battery.sysfs.current_now
+    ok 25 max170xx_battery.sysfs.current_max # SKIP
+    # Reported: '3942000' uAh (3.942 Ah)
+    ok 26 max170xx_battery.sysfs.charge_now
+    # Reported: '4330000' uAh (4.33 Ah)
+    ok 27 max170xx_battery.sysfs.charge_full
+    # Reported: '4524000' uAh (4.524 Ah)
+    ok 28 max170xx_battery.sysfs.charge_full_design
+    ok 29 max170xx_battery.sysfs.power_now # SKIP
+    ok 30 max170xx_battery.sysfs.energy_now # SKIP
+    ok 31 max170xx_battery.sysfs.energy_full # SKIP
+    ok 32 max170xx_battery.sysfs.energy_full_design # SKIP
+    ok 33 max170xx_battery.sysfs.energy_full_design # SKIP
+    # 15 skipped test(s) detected.  Consider enabling relevant config options to improve coverage.
+    # Totals: pass:18 fail:0 xfail:0 xpass:0 skip:15 error:0
+
+Cheers,
+Andre'
+
+Link: https://lore.kernel.org/all/20250915-b4-gs101_max77759_fg-v6-0-31d08581500f@uclouvain.be/ [1]
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+Changes in v2:
+- collect tags
+- update commit message subject prefix of patch 10 to avoid duplication
+- patch 11 (time to full reporting):
+  - limit to max17055 & max77759, the datasheet for max17047 and
+    max17050 describes the register as 'reserved'. I was mislead by the
+    comment and enum ordering in max17042_battery.h
+  - report as POWER_SUPPLY_PROP_TIME_TO_FULL_NOW (not _AVG). The
+    max17050 datasheet is a bit clearer than the max77759 one on that.
+- Link to v1: https://lore.kernel.org/r/20260226-max77759-fg-v1-0-ff0a08a70a9f@linaro.org
+
+---
+André Draszik (11):
+      dt-bindings: power: supply: max17042: add support for max77759
+      dt-bindings: power: supply: max17042: support shunt-resistor-micro-ohms
+      dt-bindings: power: supply: max17042: drop formatting specifier |
+      power: supply: max17042: fix a comment typo (then -> than)
+      power: supply: max17042: use dev_err_probe() where appropriate
+      power: supply: max17042: avoid overflow when determining health
+      power: supply: max17042: time to empty is meaningless when charging
+      power: supply: max17042: support standard shunt-resistor-micro-ohms DT property
+      power: supply: max17042: initial support for Maxim MAX77759
+      power: supply: max17042: consider task period (max77759)
+      power: supply: max17042: report time to full (max17055 & max77759)
+
+ .../bindings/power/supply/maxim,max17042.yaml      |  21 ++--
+ drivers/power/supply/max17042_battery.c            | 134 ++++++++++++++++++---
+ include/linux/power/max17042_battery.h             |  25 +++-
+ 3 files changed, 152 insertions(+), 28 deletions(-)
+---
+base-commit: 877552aa875839314afad7154b5a561889e87ea9
+change-id: 20260226-max77759-fg-0f4bf0816ced
 
 Best regards,
-Krzysztof
+-- 
+André Draszik <andre.draszik@linaro.org>
 
 
