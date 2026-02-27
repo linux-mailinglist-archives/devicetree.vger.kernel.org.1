@@ -1,74 +1,60 @@
-Return-Path: <devicetree+bounces-269449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269450-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uPhEN0cpomn/0QQAu9opvQ
-	(envelope-from <devicetree+bounces-269449-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 00:31:19 +0100
+	id iEzlNqgtomk/0gQAu9opvQ
+	(envelope-from <devicetree+bounces-269450-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 00:50:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435EE1BF017
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 00:31:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 453FA1BF2A7
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 00:50:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A4E4930DCEA1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:30:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 714143091C90
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614CC36CE01;
-	Fri, 27 Feb 2026 23:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBFED1DE8BE;
+	Fri, 27 Feb 2026 23:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u08WgcF6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RuUxjLXx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B18B1C1F02;
-	Fri, 27 Feb 2026 23:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D6313B5AE
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 23:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772235058; cv=none; b=GxxMpijHGEEJIh136kSMNSfzmjsf6VUiPXv1h3CYUlDKpFHZG/3tMA/ZMR0lx2/Swbwgqvg/TZ9LBGbE5WlkSbKOO/FASv38lF+JHKr8jZxBt09Y+BRYGw+Z3+tEGSuS5TKLTCMzBchATpeOxhsPazFmBuLE5Jgye5KShoUF1cU=
+	t=1772236173; cv=none; b=VzgAZc7W1d0y9JzH1Bdmidl1Iwm3BU+djfaQOVpbCZIrFzrKjr7idelHv7VKb1F/RAqTOMv95PjckIeONz8n08IJ1OdGCwT3u+/CeWqo+ZYjZRDocRTtbAKuQokxGt4tY0RSfHDw9eY7/RQXSL8BylsASm6QsK7GcabNUz27yJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772235058; c=relaxed/simple;
-	bh=Lwcc9URf14dHVzzxPtmFHc76iirTitobfd0XRDxX8Z4=;
+	s=arc-20240116; t=1772236173; c=relaxed/simple;
+	bh=uEaUbECxfbiZcTQUXK4QKs/8bysVPSBV3i3+Tt6ZD7s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VodkDdXpzpTJTgKciad0yDm72kl909sZgMHDDwjDw6WPDc6WDRkI6dZTf76UF1shgWBpe6v/FpBc+U3HDuRvrRj/w4DYaVmA7ZTcqNh3FA5gy/HcxIrKAmraHYN2lX1ZtbxpZAza1/nwb9JsL4U4CZA9unBIrftu0hfwQQ97ln4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u08WgcF6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3586C19422;
-	Fri, 27 Feb 2026 23:30:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nwgZequJqnCGn7FvznYxGWgdx+iGcHc2ZAj8vufcEqLwRymKqlv97l/UqndIZ5c6h53vRzy/XxeT5iSPiHGRDzZdbuvXgF3EjMf9k4+O1SyJdR79Tvt5dywPoF5ViFLNRwJPnxVXufd9c6q32O0btbRjolPhbWDyRfjm33PM04w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RuUxjLXx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2915DC116C6;
+	Fri, 27 Feb 2026 23:49:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772235057;
-	bh=Lwcc9URf14dHVzzxPtmFHc76iirTitobfd0XRDxX8Z4=;
+	s=k20201202; t=1772236173;
+	bh=uEaUbECxfbiZcTQUXK4QKs/8bysVPSBV3i3+Tt6ZD7s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u08WgcF6VOE4UW2WXxINT9tUE+z80VYkHkl8lpYH+0C/t4hBgwoSYmEI7fJktGJtu
-	 acPA19t2lS+7bYJK4cXImNMlkiwR8AU/joUdK1ZoYJW4R/vFn0iSIOQMUrVYdpNaqi
-	 yTS9kOtaaHpAfPTT2Sa7UCPhsDD3FuAdhUtcMN0GFESIC9GC/pCTtsgzgZN3vD8cUv
-	 s3ES7ybw8A0sJDhkdbZWVkMoJIzyIRYnaN0FUqwlxIEyvl8oTDtiaztsoyKQf69Wk6
-	 2nsOQUIqbs+rI+8sj+VN5CTPfiPJ/DBfpp3JmYyfhQwhHMdtEp6AmbMYx2QLqzyKfW
-	 agt0YI3MwLLMw==
-Date: Fri, 27 Feb 2026 17:30:56 -0600
+	b=RuUxjLXxlLuoWvb5n2L7tXr1ilrG23ZYpgLWYYTTQ0bnCbgdd8mkoMcTLI5yprSof
+	 bVGAc8LBEzM+8shftDBqdTFtfZbNXGbSbYviZGtcJoxLWKjR7zGwsV5SfphyYLv56t
+	 eXfhOhfHhfotfJ2dYPlj5Cmy9yAehHGe88n7q0ziYaqhv+5T4eT66zlN3hBYQ0U7nm
+	 r7onxsglwoTef/HpxjI/WQINxpy9aEyPRmxRsq39eDGLbqQVrRvxc/ld2lpOxF0ZA4
+	 BbsgNvfDtJH1VXlDSbrFFIRvim3mfsq51ErZHQHvqDWz/+XDCpprpMHhvQ+6OzwpZh
+	 RpO/62FRfQujA==
+Date: Fri, 27 Feb 2026 17:49:32 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Pawel Laszczak <pawell@cadence.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Peter Chen <peter.chen@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Marek Vasut <marex@denx.de>, imx@lists.linux.dev,
-	Shawn Guo <shawnguo@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-usb@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Roger Quadros <rogerq@kernel.org>, linux@ew.tq-group.com,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v3 1/5] dt-bindings: usb: cdns,usb3: support USB devices
- in DT
-Message-ID: <177223505600.967600.5996144600232538797.robh@kernel.org>
-References: <20260226153859.665901-1-alexander.stein@ew.tq-group.com>
- <20260226153859.665901-2-alexander.stein@ew.tq-group.com>
+To: Kenny Cheng <chao.shun.cheng.tw@gmail.com>
+Cc: c.s.cheng@realtek.com, saravanak@kernel.org, gpiccoli@igalia.com,
+	tony.luck@intel.com, kees@kernel.org, andersson@kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] of: fix incorrect device creation for reserved memory
+ nodes
+Message-ID: <177223617152.995069.3601939776992227921.robh@kernel.org>
+References: <20260222145321.1736481-1-chao.shun.cheng.tw@gmail.com>
+ <20260222234715.1748302-1-chao.shun.cheng.tw@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,54 +63,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260226153859.665901-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20260222234715.1748302-1-chao.shun.cheng.tw@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[cadence.com,linuxfoundation.org,kernel.org,vger.kernel.org,lists.infradead.org,gmail.com,baylibre.com,denx.de,lists.linux.dev,pengutronix.de,ew.tq-group.com,glider.be];
-	TAGGED_FROM(0.00)[bounces-269449-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269450-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 435EE1BF017
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 453FA1BF2A7
 X-Rspamd-Action: no action
 
 
-On Thu, 26 Feb 2026 16:38:50 +0100, Alexander Stein wrote:
-> Reference usb-xhci.yaml in host mode in order to support on-board USB
-> hubs.
+On Mon, 23 Feb 2026 07:47:15 +0800, Kenny Cheng wrote:
+> The current global search for nodes in reserved_mem_matches can find
+> nodes outside "/reserved-memory". These nodes might not have actual
+> memory reserved (via memblock), leading to drivers (e.g., ramoops)
+> accessing unreserved memory and causing memory corruption.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Restrict the scan to the "/reserved-memory" node to ensure created
+> devices are correctly backed by reserved memory. This enforces
+> specification compliance and avoids dangerous probing.
+> 
+> Signed-off-by: Kenny Cheng <chao.shun.cheng.tw@gmail.com>
 > ---
-> Changes in v3:
-> * Fix commit message typo
-> 
->  Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> v3:
+>   - Remove global search fallback to prevent memory corruption.
+>   - Fix logic to only allow nodes within "/reserved-memory".
+> v2:
+>   - Fix missing variable declaration for 'reserved'.
+> ---
+>  drivers/of/platform.c | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
