@@ -1,80 +1,103 @@
-Return-Path: <devicetree+bounces-269272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269273-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LFaJpCpoWm1vQQAu9opvQ
-	(envelope-from <devicetree+bounces-269272-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:26:24 +0100
+	id eKaxB/anoWm1vQQAu9opvQ
+	(envelope-from <devicetree+bounces-269273-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:19:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F3B1B8E2A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:26:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0571B8BA1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:19:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 28E9C312635B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:11:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DE07B30DFD5F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AF7421EE9;
-	Fri, 27 Feb 2026 14:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5AB41323E;
+	Fri, 27 Feb 2026 14:11:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gEld6riC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LjbJPicf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A7D23E334
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEFE641322B
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772201327; cv=none; b=jltsvZc5pMiJF+chub3N5baj9gMmXCLgEI0gNGvBf77xZdFxtl36qo0/CrkXp3aThi+0VNOY3ehT5cwtJBTa1XODhwe+7nqn8cS5L0RzVoak0dEADuEOx02RO5BI8c/g9hXBYQsW1psqPDpIaIOVf689rlj+IAnZv6EMNrGt5dw=
+	t=1772201485; cv=none; b=ddavUmmlhW4VMpx3NPCRqeYBYYaYp8EdUZWVNPr2/MBKioVCNU4+6tJTsD7VHt0VqEgMDANjWz1LoYCqXFBM7h7D297My1KPOJ2Ad0zsmqQC+b7tcNJwfeyZCb2y2DBF9r6wFLp4zXVfXqjRrx8RdJJyDXqfVm1ajqNeBhSs5B0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772201327; c=relaxed/simple;
-	bh=y+3rbUMsFH6STnRgyWIB91wX0pLNRrq2pIp4p+Xt2Gs=;
+	s=arc-20240116; t=1772201485; c=relaxed/simple;
+	bh=ShiqjwbVycNVDc/NOYYT7WllWbuKawKGkYhqIEShcUU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pUdAOqUzH5mWJJhxBKLb4HJPc3Xad91xiwf5VIGZlYpVBkW6JPt13vDI2iMvSy/IcynG6ytkwwZ49Z/a7kDKljPjbwezZxu+3jrDk4Mu553niA1uvp/XbUHSP7OaPN+8F+adFsmlHsC5KdXekcZ0Ul3EPZ1Dkk5xXh+KG5zosJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gEld6riC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D18E0C116C6
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:08:46 +0000 (UTC)
+	 To:Cc:Content-Type; b=rWVz/YDhdJTkpb1VRZD/J7cY/ZJ4ppmpLpF4GvvYVhNDfh0ezcFoaRsXNIaRwCKGP7WqvEX205Jo/tL8xeeIOQIxRcWLoFKa/sBB1qLM76rZEq2hS6A98P97OjpOJI5kWrnt/BH4ddqYtu9Z1X5CfZiFLaDbMNgo/KqEq2vbu20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LjbJPicf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBFD4C116C6
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:11:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772201326;
-	bh=y+3rbUMsFH6STnRgyWIB91wX0pLNRrq2pIp4p+Xt2Gs=;
+	s=k20201202; t=1772201485;
+	bh=ShiqjwbVycNVDc/NOYYT7WllWbuKawKGkYhqIEShcUU=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=gEld6riCZd2kvzj5ofkF6tZ1YSoP9vlkRWI+SgbVLCwvGPEJFvuQtsIyv7lI3DLCf
-	 KOmEk3aXUmU+7JT85z8Xu8//nT4F5xWo2KnnUGgem/stnoe6uYDi7/tTOeRGJRI7b/
-	 P/1sZ0r8P7gVekWaUqhX2QxOmu8pwNCMzw8jnNFoZqGBi4tjj40qdiE5ioEGW4In/K
-	 huaE4jjYAbsYG3/QReyOAj9QtE0YfS1byAoAnRpglmGVKKezt4KoKJcgXvCkAKwFWU
-	 qFSrEJQuTkA50szl/7zTLVuovCNpzOK2cU1L1NfwAyKqxT+83l0Eb3rS9u2aVJGrHD
-	 PZaA9vLKNgI8Q==
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-79800183233so28940657b3.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 06:08:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXNFTgCn71cbhkoa+JQjzibHo+iMv2Lj2oHBaEWFd27cBCoWPpHpndgEDuvqP+i0X4InghT1ARH4Cy9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzs2LGqWKcyBjBeLeWdILQ2OdUqQ1FZqk6xw0qyXtrt6r98opfc
-	y/JEVrvJTtbfW5paA83oRZ3QhIfe+gW0UpWQVytH6AB5E0GTSScmKu1A4nBb+fOME6KPZUoPJ0Q
-	MhkhRtSuImG+4YK1kxFNE8jMinJTTMCo=
-X-Received: by 2002:a05:690c:4802:b0:798:534e:4a0b with SMTP id
- 00721157ae682-79874bf3391mr56667937b3.15.1772201326242; Fri, 27 Feb 2026
- 06:08:46 -0800 (PST)
+	b=LjbJPicfTZrG9zq8p4ZRfbl4/SDr6MDB6YvJK4CvrYw1xUGm6WBB3Nlf+dW6mJ8k6
+	 C/bdfYk7bAk/NlfGd0Dxz+YYbkiP2EYCqqciKRSzEEH4cWEQjiF/U4KxLeuFfhbOpG
+	 pvyzHOhLfFUoR3mw+K2CQ++41PQhfSTcEfBpu8SGJvHDBIr+og5048RDwRgPFYsrDs
+	 AQ9jb8ol1NxeqlFLk0Gf78MhmMITIqOqE6oCCCX9yNgkei8f8wOjbB9D9a/xOMzAzN
+	 Se9NdmBS8ezQmEeeazWkRAdkqNtkpWyWlnuR1eMpHAbKlk84UkbbLQiwmOM5gPWUQF
+	 TLsPeldJWa1Vw==
+Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-64ca9ec3ee7so2077262d50.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 06:11:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU4NvXFxgJ0Arvb9wsPlfsAebqtvrQr5jP/FU17m6ivV90s5Rfv2vomp95dbdpZIDEug9PbHACENbOO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrFqGOxCU2J6hAp3ZD9qvbbfNssL9wSVNj5WhAgG7lGs1+pBWm
+	yo5VwVQYlZikTnnYZ/zQ/+2kGYOHo/nKIU58XNp8VtvIsWLnFjyYRvrhbsQQSxkO+r3riUb5+9p
+	ZIrLePh6rTGF6vwSknHpcDh212qEw0kY=
+X-Received: by 2002:a05:690c:60c4:b0:798:6666:26bd with SMTP id
+ 00721157ae682-7988557f476mr30565677b3.37.1772201484696; Fri, 27 Feb 2026
+ 06:11:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260225171545.1980385-1-o.rempel@pengutronix.de>
- <20260225171545.1980385-5-o.rempel@pengutronix.de> <CAD++jLnrXHi3dEGWDK1ymnKUvbtSr+BjFzxMXzH+gAS8RToj-A@mail.gmail.com>
- <aaF4zKMK1XOT7L40@pengutronix.de>
-In-Reply-To: <aaF4zKMK1XOT7L40@pengutronix.de>
+References: <20260227135428.783983-1-herve.codina@bootlin.com> <20260227135428.783983-10-herve.codina@bootlin.com>
+In-Reply-To: <20260227135428.783983-10-herve.codina@bootlin.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 27 Feb 2026 15:08:35 +0100
-X-Gmail-Original-Message-ID: <CAD++jLnX+vSh8+Sxu4YtwbmCf1a+m8yGT0aB9yNzC=CSx54YPA@mail.gmail.com>
-X-Gm-Features: AaiRm52zSRwDnOFexQxpGMC2RtMNpIQU19Z0k6kTABARIgBcABSrhEmUVLwGRYU
-Message-ID: <CAD++jLnX+vSh8+Sxu4YtwbmCf1a+m8yGT0aB9yNzC=CSx54YPA@mail.gmail.com>
-Subject: Re: [PATCH v1 4/8] pinctrl: add NXP MC33978/MC34978 pinctrl driver
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Bartosz Golaszewski <brgl@kernel.org>, Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Peter Rosin <peda@axentia.se>, David Jander <david@protonic.nl>, kernel@pengutronix.de, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org
+Date: Fri, 27 Feb 2026 15:11:13 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmbg1FVGxv_7Lq4rOEbLAGh72YPTppOBcdpcsdLDo8B_A@mail.gmail.com>
+X-Gm-Features: AaiRm51ZxE6GtTyodhFmvZhWZO__2ijK76G9lNPmnmTqvkqKfSl89e994OIKOE4
+Message-ID: <CAD++jLmbg1FVGxv_7Lq4rOEbLAGh72YPTppOBcdpcsdLDo8B_A@mail.gmail.com>
+Subject: Re: [PATCH v5 09/28] pinctrl: cs42l43: Use fw_devlink_set_device()
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Kalle Niemi <kaleposti@gmail.com>, 
+	Matti Vaittinen <mazziesaccount@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
+	Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Davidlohr Bueso <dave@stgolabs.net>, 
+	Jonathan Cameron <jonathan.cameron@huawei.com>, Dave Jiang <dave.jiang@intel.com>, 
+	Alison Schofield <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, 
+	Ira Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org, 
+	driver-core@lists.linux.dev, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
+	patches@opensource.cirrus.com, linux-gpio@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, 
+	Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
@@ -83,60 +106,48 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269272-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,glider.be,gmail.com,linuxfoundation.org,nxp.com,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,google.com,opensource.cirrus.com,cirrus.com,linaro.org,linux.intel.com,stgolabs.net,huawei.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com,bootlin.com];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-269273-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[62];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 13F3B1B8E2A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,bootlin.com:email,intel.com:email]
+X-Rspamd-Queue-Id: 9D0571B8BA1
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 11:58=E2=80=AFAM Oleksij Rempel <o.rempel@pengutron=
-ix.de> wrote:
+On Fri, Feb 27, 2026 at 2:57=E2=80=AFPM Herve Codina <herve.codina@bootlin.=
+com> wrote:
 
-> > The driver needs to report the *physical* level on the line. Then the
-> > lines need to be flagged with GPIO_ACTIVE_LOW or GPIO_ACTIVE_HIGH
-> > on the consumers in the device tree.
+> The code set directly fwnode->dev field.
 >
-> Returning the physical level is actually exactly what this code is
-> trying to do. I need to rewrite the comment :)
-
-Aha OK I'm not very smart at times...
-
-> The issue is that the MC33978 hardware does not report the physical
-> voltage level on the pin. As per section 9.10.27 (Read switch status) of
-> the datasheet: "A Logic [1] means the switch is closed while a Logic [0]
-> is an open switch."
+> Use the dedicated fw_devlink_set_device() helper to perform this
+> operation.
 >
-> Because it only reports this abstract "contact status", I have to
-> translate it back to the actual physical voltage level (1 =3D High, 0 =3D
-> Low) based on the pin's current configuration:
->
-> In Switch-to-Ground (SG) mode: the status bit stays 0 when the physical
-> voltage on the line is High (open), and reports 1 when the physical
-> voltage is Low (shorted to ground).
-> In Switch-to-Battery (SB) mode: the exact opposite happens.
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Fair enough, as long as we have a (possibly verbose...) explanation
-about what is going on in the binding document I think the
-proper driver behaviour will come out as obvious in the end.
+Acked-by: Linus Walleij <linusw@kernel.org>
+
+Tell me if I should apply this directly to the pinctrl tree, right
+now I'm under the impression that all patches need to go in
+together?
 
 Yours,
 Linus Walleij
