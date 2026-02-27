@@ -1,265 +1,207 @@
-Return-Path: <devicetree+bounces-269268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269265-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKB4KDGooWm1vQQAu9opvQ
-	(envelope-from <devicetree+bounces-269268-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:20:33 +0100
+	id gFJlO+6moWmivQQAu9opvQ
+	(envelope-from <devicetree+bounces-269265-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:15:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B321B8C0E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:20:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F041B8960
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:15:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9E91930FDDCD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:09:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 05C0931AB785
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADAF436361;
-	Fri, 27 Feb 2026 14:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86926421EEC;
+	Fri, 27 Feb 2026 14:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WZacD31R"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Sr7DMt0Q";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="boXpR4hS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B58542EEDA
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:03:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4729C41B35B
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:03:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772201005; cv=none; b=bA1ncLeB4ZAirnRNYyUf+H1gC5g7H4hQl2BvyvOed3NexIDUAS789hvUR4mJePDRRt5LMkRjUh8N17wMCUjT//Pg4BmK4s1cXUHHY4aGCX0G5IhRZHUeJw9noaSov5agF8utXFAYdj6opjo2/rRADTelDV9Y9hXYoNYt0+r1trg=
+	t=1772200996; cv=none; b=NIIWE39Ah4QuramAHWTmbi+zoVqwq0Im3J+X8AnLmV0y0KGEKrdTCNEeoAJAxUWmHtLIn1Zeap+hTYgUveZEwPu5APsAob3vWJyP/q8ot0wAH7vBWAOL8XipE32KQMUIWJ8c/ZUxl5qrF5hwdxQifYxqeKN0hA03L8sxWVV+HXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772201005; c=relaxed/simple;
-	bh=QUqm//47sqzlR1bPqkDSPBBuMfJfXmjgP9rB2/PFcpo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eyzOkK6xizpdt5SjkLPOiACKwlMAs6r9YOnROkDpbgfh+5Mx3hNtsO4IqNRA4CoNYh+JXRS5GsjePQb+ZbSBQGhqQWToqxWH3g513IZEPtM28pLUBxYam2Bc+SBgl7tcqDAyBoKanBol3IE109POMg0PZHP+xCzqkFUf6eh6mr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WZacD31R; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4836d4c26d3so13863675e9.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 06:03:23 -0800 (PST)
+	s=arc-20240116; t=1772200996; c=relaxed/simple;
+	bh=B7fHy1cGZkNQ2wdNUr90lrf+1d59/jJ2MVkVEhWoe5Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xi9OdXNYbIrKpSMiVoSH3zHVg+itRhCmk2BHseVF5FsZ3PH1uw5LFF0+mF9MO/xwogPnh8lcAYxpDW60VZtHTxb+QLOS/SDfPOQzHiFvvPDPmZgYsPp7Mh5tf+kAc/HbHnO6zu80z+DExyM2BcbWnOy59pzQOvfMMEyp9EtTwAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Sr7DMt0Q; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=boXpR4hS; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1772200992;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oV2BIg3dhsX9PonNzGGB5cY2QemaB9h/4eyj8OI7C6o=;
+	b=Sr7DMt0Qf7a4MHqdkKNmmGBCUsZYBIUB7kPwn3EeWNYIb2+TgpcqtCw7uxP8DPKVw/Kmed
+	RlmmTiMbns5BkT29HHV8I8MefoqSzTVIMoxSxDyOtqVHeO/8zzU4/PZLUz9Boimj6g72i6
+	fM/FEr22Hiz8LzoqmynD0YCUea/JRYQ=
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
+ [209.85.216.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-2-3M91gbd6PF6nHp_C8PJ9WA-1; Fri, 27 Feb 2026 09:03:11 -0500
+X-MC-Unique: 3M91gbd6PF6nHp_C8PJ9WA-1
+X-Mimecast-MFC-AGG-ID: 3M91gbd6PF6nHp_C8PJ9WA_1772200990
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-358f8b01604so7287834a91.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 06:03:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772201001; x=1772805801; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wna275egvqFrPSBNsVOGqQcVdyKY1fzBc45RIdU46c8=;
-        b=WZacD31RtvoAB7QRWqXLi/nKfsIRAuNx8UGtksksve+IdfWK9rFUkOtyx+5NRARZJ1
-         NM2AfF2PF7ujpOYj3ygIYcZO7cUvJBue2O5XK1xo//XGENTZErmrcBNJL6UNs82WX4pO
-         cf5UPGQXy+7qHDysqmdeCX5wmZwtUUNZ9anQ//Xd7S07/MNa+7+kTsdnI4VczE7mAeTi
-         c5oYwLhw+iUwZGJ8TgC4WUzFLIIjSjKkD49OhxdKA/ksNC2cjUHb4tue/+xF3dlWcV0t
-         6/Kaw/f2c493eBYRVyqR2p2DSUcvmyRVW5FhcCrn7ksIopM11tvFkCmXACePhUntxaeP
-         IcYA==
+        d=redhat.com; s=google; t=1772200990; x=1772805790; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oV2BIg3dhsX9PonNzGGB5cY2QemaB9h/4eyj8OI7C6o=;
+        b=boXpR4hSfhQlKeGSFZlV+YZuPVp1AqjnLT6UMdf4CNueczybmSHAtwmH6NZSN3O42o
+         D75b21dGmBw17Y/Dl9nkh0KlSH3+/6cGaYWGwdx2RyAUhvxk/kspWkgR0N0qYMBLDcNf
+         /mhwQWBB4EKSdYiAebbvEmNl+fEgK7TEKGbSLZ5eP+pgiuBK1rIT3yPHy5wcSTlWbrLf
+         vr52uasLVVG7RFh+ovMdT4h2sOCywSAKI91vXKA3bTfRdMG8NPUeKJBJKBh7q0yZUNQd
+         zAnLA1XeTpVWguuuahhSXhOfKfrVu7IHVwnTWCzg9wEX7CFlR5YndbeEJUjlgyQN0rok
+         k4xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772201001; x=1772805801;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Wna275egvqFrPSBNsVOGqQcVdyKY1fzBc45RIdU46c8=;
-        b=uLL6FrC6SPeXIL+a04NK8WHArducz+GRCTk/zYPQFprjM+ia9az4ZeLvtaa/adPD1m
-         FjUAZ4SEsHwaHUe1vDDej9XWB14qShmWUUyQZFgMqrANCYNhsf0d/QaQm/0n06QDX45X
-         uemGokk+vSGYr5aHWM13U7wpp5QQwDSm4KA7iAKCFPE5sbM7FArVbzC/wR2yWvzm8PKF
-         tEbtwuz81fnpzT2T2uNGN5GMz+0lP1x0kzwkPuiCXCz1DffisPQ19gsa7QGi4Boh0tAF
-         FwqDXNcoxXfDloS+9f/Sf1B78GK64u0hSxaTdyGeJd1fFMZoGO+7J8Co1kOLF5eARySB
-         wwvA==
-X-Forwarded-Encrypted: i=1; AJvYcCVKLkVPE0ScHUAQn1E60urKBvIzVIX8WJf3eHrvdvYoNiJT0ML0M4UnGBVsvbAZRLlFm6gN1umCS6RG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzb8RlDT9LZ8+zGlhC+lv2iV3FxhJAoaCCo9i4rGh9KqZpTAhCw
-	yK0dTuNAD+kOZw0zMD6Il9OLwJAk6InMS+xGiwsId1f1auoUI/b8qw6q
-X-Gm-Gg: ATEYQzxtiQdFJBxQ3vBAuGjdU326t8BfgiWYstfkl7Urt1HVvWMZbaEwCY7HKqIXKtK
-	hH0m1Ab2F8aOccqyneFTRAMsLttHdyeNT63MsDn6UBrU80KxyzRxG7tSpNU288PBTz+o/MNV+5D
-	YAX3OdX91/CGaHlrO6JQdQNRB/9TQDnPqVbQQ5Yj1i+lJMsqJlT1BekyKRmWuCPV/hFWQnfrWXv
-	SCo55n3ut4zWZ63jt5ISNyXkAIvgkubuH49qvVAYOfnNttd8UtL0ooADiBElpJs0YDXvxIkdkuX
-	ZXOPCMBveGrqogQnviVKIKmwPwky+c+I/IRLJdSWRb+iWUvMREXEieALKVFFkchmFd3Qw3QwMHD
-	MfOfQmahcH5xpbOMv51bbjL79U2PiJZtNBjzJ3MBJfN1WTZ4DMBmoiG4BtpeI7n057RYX1gqS7y
-	FEXZyvngOB0d+x1frPVq6cct3ZcuQVYzQ=
-X-Received: by 2002:a05:600c:3b02:b0:483:6fe1:c057 with SMTP id 5b1f17b1804b1-483c9c02efcmr43428985e9.21.1772201001265;
-        Fri, 27 Feb 2026 06:03:21 -0800 (PST)
-Received: from biju.lan ([2a00:23c4:a758:8a01:4d8b:fefb:26cf:1906])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4399c60feeesm7658811f8f.1.2026.02.27.06.03.19
+        d=1e100.net; s=20230601; t=1772200990; x=1772805790;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oV2BIg3dhsX9PonNzGGB5cY2QemaB9h/4eyj8OI7C6o=;
+        b=VzRtDFTosnW2VUi163DH0fdJR4V9f5muvI2EKk1U2JA/n77GwcRW4+dDJmqec2pQTf
+         PIUVpC+K4f5V7ihrzfFGjd2PW+i2QBhwejNE5qv6S10CCQOH58Gv/nPwN4g1sXW8TPhB
+         7YEP6NqWqIJJB6tV6BNVopD0CjspljbjEmAyAiE3KgbempYt/NpK3sVVFDGbwHMulCYA
+         1GkuOq6dD9a0knfx05BjWPHKslg2YlCOrz4OYvfTo9yTQg/BqpO/fBpy3WbvkYOcdXMh
+         Qg5jLEJktHNr6UDCcCU994cTHAHkdq4zmz1A+pdjrOcTkodNvalEwFV9zN0SjhInpZfJ
+         Hrbg==
+X-Forwarded-Encrypted: i=1; AJvYcCXzSBy08UzI+Kqsftq5ivoynAll+vSqW9WDT6mobaTlpqAyutHUKogWkqJq+5rnRGCIVvER6J/1xDrB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUo//eATAAwvTdk7cl3dhzltLQzwz4R14Ktz/tckdAtqT8snQW
+	tsdFOw9Q/n+Qm/T0Jj8dqN5ESj1BDVO3ZiZWkWNuzrCuKUpkXS60D2q/J5ETTH+4D8LUMYd66v2
+	ITz4w0XBvqvonv31X4Sa0x0t0sU5HeutlREDgspi5VoEBYCJHFcfEwbb1kk/SCKg=
+X-Gm-Gg: ATEYQzzbiFke8M+1BpcOdLp2UuGGbVL0LfENN6CsvRpRmXKv13P/j3GHe8Ut7K9pkta
+	BQ5EonTco5SBlnl6YdTtPHB6KChnXHmT7v4vXawY9korruHhHYxK7LPHa8wh6VBmySaRvGvR7AC
+	Srlb+2VF2coZSL4ASfgj4/1TKZvnIWh0yfahmptkBfF3YlwJrcl2XbTecRZdAAQFyC74wj3YeBI
+	N2cU6YAaPyi7iWO7OTgJQ2Wyc8ou/RfPgWAfgZGXIKVbhTxeGxRyr+T9W2n/HtPlqFJO7Kg9c6P
+	XQL2EWIRCqEsAdmjTpXfQ01Lw1pGFNm8f5hgzjACAMznsV8XAhPNhiPyWo4/FfcXJtV64vOs/MX
+	k4mstiven4wzebN2y2OuaohwXbzgzoEAFRZ+z4TSonf6KC5uEkfo1ng==
+X-Received: by 2002:a17:90b:5710:b0:341:88c9:6eb2 with SMTP id 98e67ed59e1d1-35965c3385fmr2137029a91.1.1772200989865;
+        Fri, 27 Feb 2026 06:03:09 -0800 (PST)
+X-Received: by 2002:a17:90b:5710:b0:341:88c9:6eb2 with SMTP id 98e67ed59e1d1-35965c3385fmr2136984a91.1.1772200989423;
+        Fri, 27 Feb 2026 06:03:09 -0800 (PST)
+Received: from jkangas-thinkpadp1gen3.rmtuswa.csb ([2601:1c2:4400:eb20:99f3:ffd5:11da:6745])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35913269232sm5305497a91.5.2026.02.27.06.03.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Feb 2026 06:03:20 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Thomas Gleixner <tglx@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v4 2/9] dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document RZ/G3L SoC
-Date: Fri, 27 Feb 2026 14:03:02 +0000
-Message-ID: <20260227140316.308106-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260227140316.308106-1-biju.das.jz@bp.renesas.com>
-References: <20260227140316.308106-1-biju.das.jz@bp.renesas.com>
+        Fri, 27 Feb 2026 06:03:09 -0800 (PST)
+Date: Fri, 27 Feb 2026 06:03:07 -0800
+From: Jared Kangas <jkangas@redhat.com>
+To: Larisa Grigore <larisa.grigore@oss.nxp.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, sumit.semwal@linaro.org,
+	christian.koenig@amd.com, chester62515@gmail.com,
+	cosmin.stoica@nxp.com, adrian.nitu@freescale.com,
+	stefan-gabriel.mirea@nxp.com, Mihaela.Martinas@freescale.com,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+	s32@nxp.com, imx@lists.linux.dev, clizzi@redhat.com,
+	aruizrui@redhat.com, eballetb@redhat.com, echanude@redhat.com
+Subject: Re: [PATCH 00/13] Add DMA support for LINFlexD UART driver
+Message-ID: <aaGkGwbk-sh0YJqj@jkangas-thinkpadp1gen3.rmtuswa.csb>
+References: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260216150205.212318-1-larisa.grigore@oss.nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269268-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-269265-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,linaro.org,amd.com,gmail.com,nxp.com,freescale.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org,lists.linux.dev,redhat.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jkangas@redhat.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,bp.renesas.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 56B321B8C0E
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 83F041B8960
 X-Rspamd-Action: no action
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Hi Larisa,
 
-Document RZ/G3L (R9A08G046) IRQC. The IRQC block on the RZ/G3L SoC is
-nearly identical to that found on the RZ/G3S SoC, with the following
-differences: it supports more external interrupts and GPT error
-interrupts, and adds registers for GPT/MTU interrupt selection and shared
-interrupt selection between external interrupt and TINT. A new compatible
-string "renesas,r9a08g046-irqc" is therefore introduced for the RZ/G3L
-SoC.
+On Mon, Feb 16, 2026 at 04:01:52PM +0100, Larisa Grigore wrote:
+> This patchset enhances the LINFlexD UART driver and its device tree bindings to
+> support DMA transfers, configurable clock inputs, dynamic baudrate changes, and
+> termios features. It also includes a series of fixes and improvements to ensure
+> reliable operation across various modes and configurations.
+> 
+> The changes added can be summarized as follows:
+> 1. Fixes with respect to FIFO handling, locking, interrupt related registers and
+> INITM mode transition.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v3->v4:
- * Updated commit description.
-v2->v3: [3]
- * Dropped items and instead used enum for single compatible values
- * Add minItems for interrupts and interrupt-names properties of 
-   the RZ/{G2L,G2UL,Five,V2L} SoCs
- * Replaced maxItems->minItems for interrupts and interrupt-names
-   properties of the RZ/G3L SoC.
-v1->v2: [2]
- * Simplified the binding using pattern
+Tested this series with the default devicetree configuration by booting
+the board to a login prompt about 200 times. Without the series applied,
+I was seeing a bug roughly every 30-50 boots where the kernel would
+would hang in linflex_console_putchar() waiting for DTFTFF. In my tests
+with the series applied, I didn't see any regressions and the bug no
+longer appeared. Thanks for the fix!
 
-[3] https://lore.kernel.org/all/20260204180632.249139-3-biju.das.jz@bp.renesas.com/
-[2] https://lore.kernel.org/all/20260206111658.231934-3-biju.das.jz@bp.renesas.com/
-[1]https://lore.kernel.org/all/20260204142320.103184-2-biju.das.jz@bp.renesas.com/
----
- .../renesas,rzg2l-irqc.yaml                   | 43 ++++++++++++++++---
- 1 file changed, 36 insertions(+), 7 deletions(-)
+Tested-by: Jared Kangas <jkangas@redhat.com> # S32G3, interrupt-driven
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-index a0b57d808639..3a221e1800a0 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-@@ -30,7 +30,9 @@ properties:
-               - renesas,r9a08g045-irqc     # RZ/G3S
-           - const: renesas,rzg2l-irqc
- 
--      - const: renesas,r9a07g043f-irqc     # RZ/Five
-+      - enum:
-+          - renesas,r9a07g043f-irqc    # RZ/Five
-+          - renesas,r9a08g046-irqc     # RZ/G3L
- 
-   '#interrupt-cells':
-     description: The first cell should contain a macro RZG2L_{NMI,IRQX} included in the
-@@ -48,17 +50,17 @@ properties:
- 
-   interrupts:
-     minItems: 45
--    maxItems: 48
-+    maxItems: 61
- 
-   interrupt-names:
-     minItems: 45
--    maxItems: 48
-+    maxItems: 61
-     items:
-       oneOf:
-         - description: NMI interrupt
-           const: nmi
-         - description: External IRQ interrupt
--          pattern: '^irq([0-7])$'
-+          pattern: '^irq([0-9]|1[0-5])$'
-         - description: GPIO interrupt
-           pattern: '^tint([0-9]|1[0-9]|2[0-9]|3[0-1])$'
-         - description: Bus error interrupt
-@@ -75,6 +77,8 @@ properties:
-           const: ec7tie2-1
-         - description: ECCRAM1 error overflow interrupt
-           const: ec7tiovf-1
-+        - description: Integrated GPT Error interrupt
-+          pattern: '^ovfunf([0-7])$'
- 
-   clocks:
-     maxItems: 2
-@@ -106,6 +110,24 @@ required:
- allOf:
-   - $ref: /schemas/interrupt-controller.yaml#
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,r9a07g043f-irqc
-+              - renesas,r9a07g043u-irqc
-+              - renesas,r9a07g044-irqc
-+              - renesas,r9a07g054-irqc
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 48
-+          maxItems: 48
-+        interrupt-names:
-+          minItems: 48
-+          maxItems: 48
-+
-   - if:
-       properties:
-         compatible:
-@@ -118,12 +140,19 @@ allOf:
-           maxItems: 45
-         interrupt-names:
-           maxItems: 45
--    else:
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,r9a08g046-irqc
-+    then:
-       properties:
-         interrupts:
--          minItems: 48
-+          minItems: 61
-         interrupt-names:
--          minItems: 48
-+          minItems: 61
- 
- unevaluatedProperties: false
- 
--- 
-2.43.0
+> 2. Removal of the earlycon workaround, as proper FIFO handling and INITM
+> transitions now ensure stable behavior.
+> 3. Support for configurable stop bits and dynamic baudrate changes based on
+> clock inputs and termios settings.
+> 4. Optional DMA support for RX and TX paths, preventing character loss during
+> high-throughput operations like copy-paste. Cyclic DMA is used for RX to avoid
+> gaps between transactions.
+> 
+> Larisa Grigore (8):
+>   serial: linflexuart: Clean SLEEP bit in LINCR1 after suspend
+>   serial: linflexuart: Check FIFO full before writing
+>   serial: linflexuart: Correctly clear UARTSR in buffer mode
+>   serial: linflexuart: Update RXEN/TXEN outside INITM mode
+>   serial: linflexuart: Ensure FIFO is empty when entering INITM
+>   serial: linflexuart: Revert earlycon workaround
+>   serial: linflexuart: Add support for configurable stop bits
+>   serial: linflexuart: Add DMA support
+> 
+> Radu Pirea (5):
+>   serial: linflexuart: Fix locking in set_termios
+>   dt-bindings: serial: fsl-linflexuart: add clock input properties
+>   dt-bindings: serial: fsl-linflexuart: add dma properties
+>   serial: linflexuart: Add support for changing baudrate
+>   serial: linflexuart: Avoid stopping DMA during receive operations
+> 
+>  .../bindings/serial/fsl,s32-linflexuart.yaml  |  31 +
+>  drivers/tty/serial/fsl_linflexuart.c          | 972 +++++++++++++++---
+>  2 files changed, 846 insertions(+), 157 deletions(-)
+> 
+> -- 
+> 2.47.0
+> 
 
 
