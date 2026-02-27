@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-269174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269175-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iLEmGH52oWmutQQAu9opvQ
-	(envelope-from <devicetree+bounces-269174-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:48:30 +0100
+	id KO8HDvJ2oWmutQQAu9opvQ
+	(envelope-from <devicetree+bounces-269175-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:50:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7E271B62C4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:48:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B77B01B62F8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:50:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 06FB630479C7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:48:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EF8E530439C3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCEB39449C;
-	Fri, 27 Feb 2026 10:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06E73A0B2C;
+	Fri, 27 Feb 2026 10:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MR8gz26M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItjhnZSF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88DFE36EA8C;
-	Fri, 27 Feb 2026 10:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D353246766;
+	Fri, 27 Feb 2026 10:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772189306; cv=none; b=Sv7zlqUeDHU+F5/e658XUsCtVtPBGc2JWWoObaAtelM5cibPXW2lDAbqZiFLxsz8w7Abw6GJ/ous6xMh6HoI7cCkHswijhDV1dtVz8qq26PlPhMpl/yWQFGy3Wpleps4wFoN1WjKWaCXBzpdfPcsqD4TVayIWxXM6fwnd4s5pUo=
+	t=1772189423; cv=none; b=J/5nFt609Blcy8Epr6tGdcc5OT4FiZU8yra6zsiGCOid0MrIlS0RT9TqjRu6fs1+cDbSkeujlNl4Lq9WEt3lX0Z832p0wIcZN/misB4xktKey9nThc3EWx4JQCxTlIpGu1Pv8qpKzW8ThUxMSoKJd5ACfLIM59Yyj5QvtG87xQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772189306; c=relaxed/simple;
-	bh=FToMxHmHFwCggEpSR+c8vfaHDWcvy8bRbfx0FGJfcx0=;
+	s=arc-20240116; t=1772189423; c=relaxed/simple;
+	bh=c4E79BJlcRZAupl74wRO0W5jFtVmmoZS3NiqMDzxH9M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kp2wjf/GVwlKgprezfVSqVVtuLM56fXbaVJ3Yw7qrHWH0PdWOC7VmWvF3AHDrKkC48uwPSaAww6TU9j515gWiSZOeSRWAHDieXzD3Zav4lgxsHhQ81AN5hkKta1yt/nlnlKlluCMG266z8TS+jDWZ+H9OTPK9Fi98YngBAXOnqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MR8gz26M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C643C116C6;
-	Fri, 27 Feb 2026 10:48:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=E/C7cH5bOJyoIxuCpkz/DJY9CQhORmobdu8+6R1Tbynfmtn0eroN9lH5CuTC87RhpiMTJvSL5buV2EspljyqCjHwo2ThePatMVDfw6g5NYVX11yNTAMPYbGbzn5q+ET46kltpBcbUF11zRy/gIfVyqCmZiXybSSzvEbGsPp7UeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItjhnZSF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5F2FC116C6;
+	Fri, 27 Feb 2026 10:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772189306;
-	bh=FToMxHmHFwCggEpSR+c8vfaHDWcvy8bRbfx0FGJfcx0=;
+	s=k20201202; t=1772189423;
+	bh=c4E79BJlcRZAupl74wRO0W5jFtVmmoZS3NiqMDzxH9M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MR8gz26M6OBen79lKso9KNxgSDO2YKY5hLRHmzkHmZZKoLr4+h/zIMmqb47pBcOx9
-	 3icozpfLIVDho2WqDwpGeRhQd2vE+UF4Skg/IY8+NL4yQOrJLZhvNy3R1CojrtfjsX
-	 79OBZj8CnXTTv7wXfXKQ0vFpFghAwlqVIPb6wwCGV8Ig3HyQZm4WEqaJQ0sXC2IigE
-	 HRh3XALbkt6DDnYRMMSV0jTrjU0LiYY6/aPB1qoZLXdeVXFXiQH/Lr5ookUo9kQu/7
-	 mbbTaOMZEA3CmeZ/bLbXetIQoyB8h5zsDaeTwrAf0/TPinPtHLPoIZgajMveia6QtW
-	 FlwZzA5BtT67g==
-Date: Fri, 27 Feb 2026 11:48:23 +0100
+	b=ItjhnZSFszvPsEbQnMvQ/3730Y9lbJjyQ3WfRMC/ZRan38Gq0LIf6jtXs2ILF0w+p
+	 gK5Ni95CAV1NUcRwuAOhdmddovvr2MusgfzA92x3gF1qWYYrBIc9nSiDzBNap3qt3J
+	 rWBLqDhW+62ku6/NJHIC0aLFkMWsR6ksQMcME2oqR4cWLxniUb3YosDmacRpyIgbT4
+	 Fr1RAbVq/8kkTgWR1VQ/i0ZbUpmDgG5buj4gjWebAdBp83Ut1P/CAoHsAhD26YsJh5
+	 cMkfUKYrBhzNQXniWW37CB1SGMTgRAbk5qAl/3cE0qmqYvKZ9oM5JyPQGZE0fjxOvs
+	 G9zEYUT7psWDA==
+Date: Fri, 27 Feb 2026 11:50:20 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: temperature: add ADI MAX30210
-Message-ID: <20260227-sceptical-nondescript-owl-de25a6@quoll>
-References: <20260226163041.169786-1-johnerasmusmari.geronimo@analog.com>
- <20260226163041.169786-2-johnerasmusmari.geronimo@analog.com>
+To: Lachlan Hodges <lachlan.hodges@morsemicro.com>
+Cc: johannes@sipsolutions.net, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, arien.judge@morsemicro.com, 
+	dan.callaghan@morsemicro.com, ayman.grais@morsemicro.com, linux-wireless@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH wireless-next 31/35] dt-bindings: vendor-prefixes: add
+ Morse Micro
+Message-ID: <20260227-laughing-nickel-wildcat-cd7a8b@quoll>
+References: <20260227041108.66508-1-lachlan.hodges@morsemicro.com>
+ <20260227041108.66508-32-lachlan.hodges@morsemicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,130 +64,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260226163041.169786-2-johnerasmusmari.geronimo@analog.com>
+In-Reply-To: <20260227041108.66508-32-lachlan.hodges@morsemicro.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269174-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269175-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:url,analog.com:email,0.0.0.40:email]
-X-Rspamd-Queue-Id: A7E271B62C4
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: B77B01B62F8
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 12:30:40AM +0800, John Erasmus Mari Geronimo wrote:
-> +
-> +maintainers:
-> +  - John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
-> +
-> +description: |
-> +  The MAX30210 operates from 1.7V to 2.0V supply voltage, and is a low-p=
-ower,
-> +  high-accuracy digital temperature sensor with =C2=B10.1=C2=B0C accurac=
-y from +20=C2=B0C to
-> +  +50=C2=B0C and =C2=B10.15=C2=B0C accuracy from -20=C2=B0C to +85=C2=B0=
-C.
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ma=
-x30210.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,max30210
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: |
+On Fri, Feb 27, 2026 at 03:10:41PM +1100, Lachlan Hodges wrote:
+> Add vendor prefix for Morse Micro Pty Ltd
+> 
+> Signed-off-by: Lachlan Hodges <lachlan.hodges@morsemicro.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Do not need '|' unless you need to preserve formatting. Same in other
-places.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-> +      Analog Supply Voltage Input. Must have values in the interval (1.7=
-V; 5.5V)
-> +      in order for the device to function correctly.
-> +
-> +  powerdown-gpios:
-> +    description: |
-> +      GPIO spec for CVT/PDB pin. Should be configured with GPIO_ACTIVE_L=
-OW.
+Best regards,
+Krzysztof
 
-Should be configured depending on wiring, because the flag includes any
-inverters. Just say it is active low,
-
-
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: |
-> +      Connected to INT pin. Should be configured with type IRQ_TYPE_EDGE=
-_BOTH.
-
-No, just say it is interrupt triggered by raising and falling edges.
-
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +  - powerdown-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/pwm/pwm.h>
-
-Where do you use this header?
-
-> +
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +        status =3D "okay";
-
-Drop.
-
-> +
-> +        temperature-sensor@40 {
-> +            compatible =3D "adi,max30210";
-> +            reg =3D <0x40>;
-> +            vdd-supply =3D <&vdd>;
-> +            powerdown-gpios =3D <&gpio 12 GPIO_ACTIVE_LOW>;
-> +
-> +            interrupt-parent =3D <&gpio>;
-> +            interrupts =3D <17 IRQ_TYPE_EDGE_BOTH>;
-> +        };
-> +    };
-> +...
-> --=20
-> 2.34.1
->=20
 
