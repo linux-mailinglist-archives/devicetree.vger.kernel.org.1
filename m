@@ -1,226 +1,254 @@
-Return-Path: <devicetree+bounces-269157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269159-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCaEMLNpoWkUsgQAu9opvQ
-	(envelope-from <devicetree+bounces-269157-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:53:55 +0100
+	id GGHeLwNroWkOswQAu9opvQ
+	(envelope-from <devicetree+bounces-269159-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:59:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E19F1B599D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:53:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC59D1B5ABA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:59:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E622C30E4979
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:50:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C5F503034265
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:59:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E9B35A392;
-	Fri, 27 Feb 2026 09:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB7A395261;
+	Fri, 27 Feb 2026 09:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cV/7bKGs";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HOHqeHPn"
+	dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b="RxE+5H3D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1625630E0D6
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:50:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9754621770A;
+	Fri, 27 Feb 2026 09:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.208.4.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772185850; cv=none; b=mVTh0xTnpdqOXjAPaqw+z9hsahYnAqAl8+hTbtClRoxqBayXIF7LAtUWnCTtW3Z12eQsTUf4oGxo75kbxVfhuFzDEDuroQqax+BiDhjIp9j6Bx/+X46UpphlQyb4Au6TZNlWHU2uP9PyWsQRlpWvsh5DJBL/CppUYxYa8GBiWMs=
+	t=1772186364; cv=none; b=kGT1re4FVTYf4NOUWoG+ivjy+AYMunmsGmuFQlHtFtLamVTRKU/xkx6Tu16M171A0zGQFE4ZE426cfTMfPkbir9BnUm/E+dcRjiK4GDJtJ6IoLXKfBFgm3GlFOigfzYgvHKKSbhrl6Diri7XrKSA8R9maE57Dv87fdPwJrzZfJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772185850; c=relaxed/simple;
-	bh=Dkl45KoqTHeS5zqO1ZGLV1xCurV93dwWOQw1uBuq2HI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qxfLEX+mN6x/Zw6XhlPq0e4XLtVGLDva5iFziYAOYs/RtEKoDIxB9uTG6avGGz0iaik0HF2Q38UsX1wbKQQQhNDzP7EA8GbRkHbJuGlpPMO94h0yNLlg6vz52xtS1LpCD/h1ZLhzLoLGhI7KROMaPu8+HvMvS0rqtR1LOYNr9bE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cV/7bKGs; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HOHqeHPn; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61R4GZrN2663266
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:50:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Dkl45KoqTHeS5zqO1ZGLV1xCurV93dwWOQw1uBuq2HI=; b=cV/7bKGszS5R/9hQ
-	1FK4GnQAuNPgiSsd29RZTg3DMbRoQLj+dyqRSEcFhthLLwdn0rXp1XgzxAyL6KHU
-	BbEV7CE/aZcEmCplIUzIvrqkiwumjJVtg4AV3O2vacoU4xF0lcCKalz549z6ns69
-	WFV20Cy3x2b+POL5vKLKt9yEr2COdkMT4QzYgDqIN9twrAEWKtFxvl0oRIK7tIJZ
-	DTkx74IevLmA4asNMu1SXcoK073gRugvuRlTTMVIv06QNQd0ZxacjiPGyviBenza
-	XC7Xu6lNh1dOvi6XJz/cmKeO5bc/q8qPnUGyS3MFyGAhWtRtD4e5y6kzPTT1NcH1
-	8rujRQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ck43r90j4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:50:48 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-82728e79ff1so844475b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 01:50:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772185848; x=1772790648; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dkl45KoqTHeS5zqO1ZGLV1xCurV93dwWOQw1uBuq2HI=;
-        b=HOHqeHPnxRDRPfCArlqW6lL/VyaIOqH/xkhixB9+IK+n+xkdqLO9KvRnKPxUFnJ+Sq
-         NOsOAHBN233Jhw0su1Vs7FVDgh1qPK+drfUvkcgeCoDmHCYusIhFfTPcZYJHsRvarG7N
-         eF0ZLAPLJHpsoeKe3gI3KJ/apsmBF26qGDb5lYZa71Co3K00u22EwUT5QcicdjwTjWx+
-         ApnlX9JAluuUYA/lSFvUYd6+0STE7t3GEfoyEx6FcIvCg03bpiz8CFckOmHEkb8rFArK
-         wx4gq2+uXJ5QuJcTLrMOKsxycZbkeEswF+pCqaXztqwsBjposHUsoKvaVt4xuFbtAZGe
-         nRlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772185848; x=1772790648;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Dkl45KoqTHeS5zqO1ZGLV1xCurV93dwWOQw1uBuq2HI=;
-        b=LNWKtu7iI0tYgOKqYsMquJBhcWFSTZOD/1sg9wmt5eX+iO9kvm4wsIBiAL6U/M2zbK
-         DtZ2g6YJNBFo4JzoqG6TWOp4fraFUIm/bRn2/kkrtK9HITiVupyOLjVhqIN+UBoCOI2w
-         tDFv67FUXaw0XZH/H6BH2wbPVQQfBtffEPPxpVjRuycShq2xhAJgHK/N6uLGEabSfZ+T
-         w1Cj6vGZYAnIvNkNa/AYIibMZaR2trSXTgXVgOvGgwZEE5khBC6dQ/Sbxllzwcr58MCJ
-         NPclvAFl3QQcuzhiOpHw4Zrv7hINwF7eNt52IXwdADvMTxuNtzC19v+sc7qzUAkVHdfp
-         EUQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV+pyDeqw7eiQ8TXsO3TPpWobfRWN391tCh55Zxfxm5RkbvEAF+D4iwogt5aLEt09sikLuWzoy3qFl6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQRKPJ04xZeOoFhU9zvxeA1CVfUAjalLQt1tAD8YLBM0ctl8tL
-	J4AJhXe5p9flnJpmLuDqVzQzHq2jnEeXkKULkyV0PtIG5hTbkh1dg9k4/dgEl91rkYB5f6/GIC1
-	S5isuhxTQwP7DrS3K+kh9siFMyfuYKQI3UgktYDJxicHOFQN4f9InhO02w34kulwa
-X-Gm-Gg: ATEYQzzX7FRYN2jp471HNWW3G8VHqUaxp9qJ+LPmyrf4rBAmX0um2JqNUywTXsrf8rG
-	J9m7chuLMNkVTglaGlzVk6XnxPt1DMF2qVM+suhz4wfgF1l7xgteoRKdqinAw3RR2PafSP3Lqn5
-	uW9vSL7NCqGdFY6Vt7oQQ711R4mxUMOC55vPTNJSvS/YPAt7TfOGcrdKElJFgOmnxuCfxpUg/CB
-	0zjbfdwrg/0pl4jMUCTb2Sp+PkwD5eTo4ZKgALGcEotB8aaKNEMVX91Tr0iTJcNtFZOoyBuu87N
-	+1t4Njcmc3tilyKQbDUZl/f6VDzQXH2hItjI3Q/3y11yhWSKCRUz9yVEolppcZcD/eXkxwdHwXX
-	O3x4+CpleqXZUIdyI3iB9K1UVQ6agPbezuAl1oj4TCabLGO3mQg==
-X-Received: by 2002:a05:6a00:3d48:b0:821:8145:6948 with SMTP id d2e1a72fcca58-8274da51b38mr1657308b3a.7.1772185847697;
-        Fri, 27 Feb 2026 01:50:47 -0800 (PST)
-X-Received: by 2002:a05:6a00:3d48:b0:821:8145:6948 with SMTP id d2e1a72fcca58-8274da51b38mr1657286b3a.7.1772185847252;
-        Fri, 27 Feb 2026 01:50:47 -0800 (PST)
-Received: from [10.218.41.33] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82739d4dc6dsm4732240b3a.6.2026.02.27.01.50.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Feb 2026 01:50:46 -0800 (PST)
-Message-ID: <1b34bdcf-79fa-45c1-8ca8-8610c15741af@oss.qualcomm.com>
-Date: Fri, 27 Feb 2026 15:20:40 +0530
+	s=arc-20240116; t=1772186364; c=relaxed/simple;
+	bh=osg/KBiSHPE8q8+l4cSGrjz/3ljFNSwcPbponOZHnUQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=B8lThX+eIUtqOcbWKJkwlztAV2bf2uZoUDoBQcNsbg3JtsiqASvrsN11gwoCRkfLIk8ixz3SsboZXFpau7mkT/byVwBHYClxMagCkCRVR0qRYDUsy2edr55IcFm7DKVLfw2JXhZl9p0x4+ebJgQTSnyRh0JNJIlWBE0pw1oTFEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ziswiler.com; spf=pass smtp.mailfrom=ziswiler.com; dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b=RxE+5H3D; arc=none smtp.client-ip=74.208.4.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ziswiler.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziswiler.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziswiler.com;
+	s=s1-ionos; t=1772186361; x=1772791161; i=marcel@ziswiler.com;
+	bh=osg/KBiSHPE8q8+l4cSGrjz/3ljFNSwcPbponOZHnUQ=;
+	h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+	 References:Content-Type:Content-Transfer-Encoding:MIME-Version:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=RxE+5H3D+hjAwJeoIbw4vpt+sxfM/raHIKCHVPEstNVbxwhWS256pgGu0xcP+6LI
+	 F3y+5GSLcSxApT6rMsP8hJVK3NGQcOaBPAha+DJGWU/PPm9QdivaQmmTbM2Gwz3W5
+	 Z8dHwXq2g89Z6lfAjd39LEZ7nq/P8syluHoEPA7Q5wewjFS37q8/P/pw6uAhI02AX
+	 VaBXXzytfeUR+81vfGG+Kl6Kg3oSQVMleCidjPVGmqjlwnPfuFpCnPVGhIIuzFHW7
+	 L3P4Gm15PlAeZZ2c0svaId++Ow5TEe+13yw0O07aAiTiSz/urCXVlUqypAfZ8ce3+
+	 PHeajIuhEiVee0Oobw==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from client.hidden.invalid by mrelay.perfora.net (mreueus004
+ [74.208.5.2]) with ESMTPSA (Nemesis) id 1N4965-1vVGqJ3eDp-00rOlj; Fri, 27 Feb
+ 2026 10:53:07 +0100
+Message-ID: <e2130fa8e18cdffb9be9426a8576e67675e87d55.camel@ziswiler.com>
+Subject: Re: Re: [PATCH v2 0/2] net: stmmac: eic7700: fix EIC7700 eth1 RX
+ sampling timing
+From: Marcel Ziswiler <marcel@ziswiler.com>
+To: =?UTF-8?Q?=E6=9D=8E=E5=BF=97?= <lizhi2@eswincomputing.com>
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com, 
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, 
+	rmk+kernel@armlinux.org.uk, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	ningyu@eswincomputing.com, linmin@eswincomputing.com, 
+	pinkesh.vaghela@einfochips.com, weishangjuan@eswincomputing.com, 
+	dongxuyang@eswincomputing.com, ganboing@gmail.com,
+ pritesh.patel@einfochips.com
+Date: Fri, 27 Feb 2026 10:52:55 +0100
+In-Reply-To: <6137cd6a.4859.19c97f5eb67.Coremail.lizhi2@eswincomputing.com>
+References: <20260209094628.886-1-lizhi2@eswincomputing.com>
+	 <5f99968ec561631852bfa72aea95a100dcad5324.camel@ziswiler.com>
+	 <6137cd6a.4859.19c97f5eb67.Coremail.lizhi2@eswincomputing.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (by Flathub.org) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: monaco-evk: Add Interface Plus
- Mezzanine
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, konradybcio@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        richardcochran@gmail.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mohd.anwar@oss.qualcomm.com, krishna.chundru@oss.qualcomm.com,
-        monish.chunara@oss.qualcomm.com
-References: <20260222173545.3627478-1-umang.chheda@oss.qualcomm.com>
- <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
- <a7777e5d-f9be-43c5-9f3f-4d84e16f6e89@kernel.org>
- <jncbztn4xohzns734i4o2hsherdshjgxqtiglh7zf2oz7nkujs@an24wf3txymy>
- <87e3de23-cee9-4789-87ca-e85826af7760@kernel.org>
- <sf4jvwou4wtlxamwgkwb5c7adujz6dwoqwws2aq4z7jjvblbvm@fb5kqkt23ktm>
- <a3b01ad0-faf3-480e-9320-db7b7c426a3b@kernel.org>
- <2pcw4qrgxu2fwhssyf3plu6h4anwiofvdx3ppnfbngibfm5lxz@7ixcrh5jk4t3>
-Content-Language: en-US
-From: Umang Chheda <umang.chheda@oss.qualcomm.com>
-In-Reply-To: <2pcw4qrgxu2fwhssyf3plu6h4anwiofvdx3ppnfbngibfm5lxz@7ixcrh5jk4t3>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: R3T8ehXvAOfkRmhvt7_UdXuPV-pXTJTf
-X-Proofpoint-GUID: R3T8ehXvAOfkRmhvt7_UdXuPV-pXTJTf
-X-Authority-Analysis: v=2.4 cv=DOqCIiNb c=1 sm=1 tr=0 ts=69a168f8 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=40BG639Icp96ZrZOFxkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI3MDA4NCBTYWx0ZWRfX5Qp+HiS52zhv
- VYkZR3GzVVbg4aEADJ0y33IdYZCA7NEoc+rdudu8g6XM6xYDKxqNmyvMCAYrGbFF6Ih26isHjJs
- q1UrlSPKrxOWgJDVER/xMwOU7OmIv3TKyVR5EJawgqaACYZrjzabtjKcYvaEIs2Zyhucux/d0jV
- +yZmhc9ph4B1tOh/EjR7pG8st9ttfjDkevj0GXg7e13ohigJAqEoKR6BNThmsx5L7jTfE2/g2Sx
- HG8GaInaYEVJ0696rAR1NMzBbQtsybQ4N9auZtg2qIpOE3LjBymlHpTMEHtxjQ4JmNxd+P+fVAP
- Vi7Jhtv8x1hlFVfmYx172TwR6POCZtetK0n4jvsCFTq/uVMkNGR9B1qbcj5aIb/oqCL6Fowg7O3
- vZeOQga9nz81Gk3wXdx+rSOJIn4IoLNEFjeE0dpgtB8VgvC0YnpiBsMBRh9yHTt67wRjpTuTP3L
- goTtPoAONMiuHKF2J6g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-27_01,2026-02-26_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 impostorscore=0 lowpriorityscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602270084
+X-Provags-ID: V03:K1:P7rtaATGEKMWJFkzUg8ddjiTxi9RHPpZ3eAD8g5GykxXsfTcBTX
+ 8RXzCrhmAc5Vm8vo5y1jI0txTBr30Z6MJfl46iwascAdegNwXLF6TXOAfQRWSJB2uYY9XWl
+ dt0tvp3HLYBjkGuG+00bNoMDBoNn6gZOOikO9YDx/ihQDYDOvNeLt1z5PGKPi6KVwwkcFPm
+ LWc7lQqLeeV8Xby4TQxWQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:e+tGgFVXqR4=;P4w55yIVSVGUVy00/3b4FKTCY6Y
+ RTrug6CV9InDrBudF+MCINUZN1RCy6G5EmLGsmDldrYAKMshs11CcEonq2yjcl3mUCINDU66a
+ DZDSMbUNWSM4rnZdpXEciw1JvzkllQyZk9TIixo1flKpyQbdnspyNME0aZsvxH3EiUGDg80S0
+ toy/fVyUTg85AyLmOr1+xg5fIJu1itlg7xDQFxtWJpVoJH9DhW56QQqLE6EUH3jU4H7wAwB5N
+ /6A2NVIA+dYJl8OfOyDWHtPxy2M+9x3uL9M/VUo2s8nZcnsnxiL8Vu5NTl0dqVqeMRiTaWdMp
+ bBJdC6HjhvNh7nBG1jTvAeZiKC1yQKQbicXli9IhAkM3w2OqaKhySd0NvQpuyF3ZvQ3inqvRE
+ GT8KaVHgNq1J+OmyMYufgIh1Rsd+nTaRHWM7Z6b0+aOox1WKm5nzt1DK7Z+NprHbmC0teC3Ug
+ ONt/MlBs4yeUiIuq+Y0w0786/XTHeGQHMG4ivph9yyO9CbxcfLv2z4Ghvw56Z82uJZqnziHKl
+ 6yG8dCccLpIThofmp95Ld4vUjRyEgzTgkDuO4KIZan4CfJi6c+Tud/83bo/VSeBdpz96RGVWP
+ cpukD4+Dj24wK9rKwed/l7tErBKuOwj79ezXd6Zi7NVzoUm5AvVn1dk6Jt7fpr6zCU30zluid
+ UHSNAVtfY4cTbpdDrBWrd3y6Ap2ur6hRwn04a/eshhnM4tEY8ME9Gdoi0me/6j12yjHRw5x0L
+ zIoP1I95u+YDQKoPABj/NPfTu7VM61UjIjyuLbemKbyxpjh5Mnx/VVPpWTL0QQGDvDF+OGf+G
+ yl4scU/QwuwgbkTOx2udHxp87BGbA1AAMXnz5lBvGyW6ZsLkfNJy0/HbeXnDqPKhSpz7G6Sx8
+ dmAoJKwWtdlPpYiHJkI3y96nXuw3fQ9bGqknguLlsscxnbx4kIb9WsMohI/pHzzTMSsY56Mb1
+ ERg48Tiy+aZymu0zcRvV8u+Genx3l3nkzfk6h9EVLxtN3GCEzrwCY4foxVEZysqMGKIvm4Ia1
+ y7Iyb6x4tRoIPjPAoEZkGwXhATXhxV/qlh4ZoElg+tykHWHgR0+Sp8basLK0BK2GmTD6C82Y+
+ ia2+2qyByu+zAxeG2rtz6Q+ve/aFwLx5+iWc8I9RIOrTP94L5xx/2vZUjG4UM72iftA9iXS+R
+ JJEclJZcULzwxTLpf8MgbKWLlQeo9Zvv7py7NzpOHH6Iv7+KqSQtC1uPuidsM5EZ0XFU/08xo
+ iv28i87vGBcDBw3g513Wj0zyDUJE4sYybq5GA8Bbz9lDbVnxEeP5WaHZIcLjE5gPsSIu6zF71
+ z5xIjY6AWXsQNhIZlHcdbbd4H5cDAAauK3U32q5rOuoDirFC5cnAj+TaRWMZf21g0tFocAdM/
+ uSAAK3QKtJMRxfM0pR9FB0Lm8OVl9kdvcMR2VJho37yQNC48nGy8RiHvFpxvVeOK6sCfAV2TK
+ cAmCg3mGTybbG/jERgD4nAI7qilHDixJ4ZrkS61Mf58O8OinX+aT7f40SlqAU6WL/f5CQYtpg
+ rJH4vHfLsDriXTLRt8oS36vtqbPapdFxoFGv8u0fd7OBWpP5wHyCX9RJYAbHJ8pSdemHsTh+O
+ SO+U7JbfRZymX6H0RorL/n43b25aADKx8pwbVIJkICtgi+KlTtIfZnJpe8owteU2pi+hGhRDO
+ u65eULA5zs5NLIrpzV6ssPSMp7S8jEYEVXbMcbfdeKc1rBCwQVT1TTHHlwxZn7jNr1hSDjFsI
+ yDd94N5Pzoed8i8BB3UJ6y+JFF1Lh5BHSFA==
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[ziswiler.com,none];
+	R_DKIM_ALLOW(-0.20)[ziswiler.com:s=s1-ionos];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269157-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269159-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,st-md-mailman.stormreply.com,lists.infradead.org,eswincomputing.com,einfochips.com];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marcel@ziswiler.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ziswiler.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 6E19F1B599D
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AC59D1B5ABA
 X-Rspamd-Action: no action
 
-Hello Krzysztof,
+Hi Zhi Li
 
-On 2/24/2026 3:39 AM, Dmitry Baryshkov wrote:
-> On Mon, Feb 23, 2026 at 09:37:53PM +0100, Krzysztof Kozlowski wrote:
->> On 23/02/2026 20:02, Dmitry Baryshkov wrote:
->>>>> So I presume what you're saying is that we should at most declare one
->>>>> level of non-controlled fixed regulators?
->>>> In general, non-controller fixed regulators should not be there at all,
->>>> except when they serve certain purpose, like fulfill the binding
->>>> requirement. It's their only point.
->>>>
->>>> And a chain of:
->>>>
->>>> A -> B -> C -> device
->>>>
->>>> is completely redundant if all A+B+C are non-controlled.
->>> I think that came from me. I don't consider that to be completely
->>> redundant. It helps in reviews and in some understanding of the board
->>> logic. I'm not asking to implement all the intermediate regulators, but
->>> to implement the meaningful relationship between end-user regulators.
->> These are not end-user regulators. These are fixed things which no one
->> touches and no one needs. There is no single purpose for user-space to
->> see them.
->>
->> Why do you not insist on defining all of such external oscilators, rest
->> of regulators, all possible little ICs?
-> So, where is the boundary from you point of view? Do we define fixed
-> regulators powering DRM bridges / USB hubs and other similar devices?
-> Or do we do it only if the bindings require us to do it?
+On Thu, 2026-02-26 at 11:20 +0800, =E6=9D=8E=E5=BF=97 wrote:
+> Hi Marcel,
+>=20
+> Thanks for sharing the details.
+>=20
+> 1. I checked your log and noticed that the kernel cmdline already include=
+s
+> =C2=A0=C2=A0 "clk_ignore_unused". Therefore, your issue does not appear t=
+o be the
+> =C2=A0=C2=A0 same as the one previously reported by Bo Gan.
 
-Can you help share your point of view on the above query from Dmitry ? In this case to adhere to  bindings requirements
+Yes, that actually came from ESWIN's hifive-premier-p550_defconfig which I =
+disabled now.
 
-Is it okay if we define fixed regulators like A - > B - > device ? Instead of defining all the intermediate regulators.
+> 2. I also verified that v6.19.2 already contains the two eMMC fix patches=
+:
+> =C2=A0=C2=A0 https://lore.kernel.org/all/CAPDyKFqcMyM-=3Dx+2FWNLhHY=3Dgu5=
+ApHNPQhp0xBKDJGr7BhEx4Q@mail.gmail.com/
+> =C2=A0=C2=A0 https://lore.kernel.org/all/CAPDyKFrkEZDuMbGpfxismcx=3DvJkSS=
+K_XbtB762+sUFocupT63w@mail.gmail.com/
 
->
+Yes.
 
-Thanks,
-Umang
+> =C2=A0=C2=A0 A likely cause is that the eMMC DTS node is missing the AXI =
+clock definition.
+> =C2=A0=C2=A0 Please refer to the DTS updates in the following pull reques=
+t for reference:
+> =C2=A0=C2=A0 https://github.com/eswincomputing/linux-next/pull/20
 
+Ah, that one helped (;-p).
+
+BTW: For CPU frequency scaling to actually work one may additionally need C=
+ONFIG_RISCV_SBI_CPUIDLE=3Dy.
+
+> 3. In addition, please check whether CONFIG_GPIO_DWAPB=3Dy is enabled in =
+your
+> =C2=A0=C2=A0 kernel configuration. Since GMAC is built-in by default, it =
+depends on
+> =C2=A0=C2=A0 GPIO being available during early initialization.
+
+Yes, I also changed that from =3Dm to =3Dy (;-p).
+
+> Hope this helps narrow things down. Please let me know what you find.
+
+Yes, it all works now perfectly incl. CPU frequency scaling. See [1].
+
+Next one would be working PCIe and USB. Unfortunately, for PCIe on EBC77 on=
+e would likely need some sort of an
+adapter cable/PCB. Maybe I can solder something together. Let's see...
+
+Thank you very much!
+
+[1] https://github.com/riscv/meta-riscv/pull/602
+
+> Best regards,
+> Zhi Li
+
+Cheers
+
+Marcel
+
+> > -----=E5=8E=9F=E5=A7=8B=E9=82=AE=E4=BB=B6-----
+> > =E5=8F=91=E4=BB=B6=E4=BA=BA: "Marcel Ziswiler" <marcel@ziswiler.com>
+> > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4:2026-02-21 02:37:57 (=E6=98=9F=E6=
+=9C=9F=E5=85=AD)
+> > =E6=94=B6=E4=BB=B6=E4=BA=BA: lizhi2@eswincomputing.com, devicetree@vger=
+.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+> > edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.o=
+rg, conor+dt@kernel.org,
+> > netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com, a=
+lexandre.torgue@foss.st.com,
+> > rmk+kernel@armlinux.org.uk, linux-stm32@st-md-mailman.stormreply.com, l=
+inux-arm-kernel@lists.infradead.org,
+> > linux-kernel@vger.kernel.org
+> > =E6=8A=84=E9=80=81: ningyu@eswincomputing.com, linmin@eswincomputing.co=
+m, pinkesh.vaghela@einfochips.com,
+> > weishangjuan@eswincomputing.com, dongxuyang@eswincomputing.com
+> > =E4=B8=BB=E9=A2=98: Re: [PATCH v2 0/2] net: stmmac: eic7700: fix EIC770=
+0 eth1 RX sampling timing
+> >=20
+> > Hi Zhi Li
+> >=20
+> > Sorry, to steal this thread, but I do have a quick question concerning =
+Ethernet on the EIC7700. Every time
+> > I
+> > enable gmac0 in the device tree my EBC7700 stops booting (e.g. SD card =
+is no longer detected) while
+> > Ethernet
+> > does seem to at least get detected. This has been seen using next-20260=
+219, stable v6.19.2 [1] as well as
+> > 6.18.0-rc6 [2]. Any idea what could be going wrong?
+> >=20
+> > I admit so far I only do have one single EBC7700 at hand while waiting =
+for further hardware to arrive.
+> >=20
+> > Thanks!
+> >=20
+> > [1] https://github.com/riscv/meta-riscv/pull/601
+> > [2] https://github.com/eswincomputing/linux-next/tree/dev/test-upstream=
+-v6.18-rc6
+> >=20
+> > Cheers
+> >=20
+> > Marcel
+> >=20
+> > [snip]
 
