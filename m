@@ -1,184 +1,233 @@
-Return-Path: <devicetree+bounces-269173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269180-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CNi6APl1oWkPtQQAu9opvQ
-	(envelope-from <devicetree+bounces-269173-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:46:17 +0100
+	id wHzwJzp4oWnJtQQAu9opvQ
+	(envelope-from <devicetree+bounces-269180-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:55:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B751B6271
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:46:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B9271B6428
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:55:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E620B300F11C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:46:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D8C99300D176
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7BE36D4EC;
-	Fri, 27 Feb 2026 10:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lSFKb23i"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F202F3806BB;
+	Fri, 27 Feb 2026 10:55:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9631D5CC9;
-	Fri, 27 Feb 2026 10:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55A51F92E
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 10:55:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772189173; cv=none; b=kHPKlSuki/VlDA2+OZSmdMxeavVIXu1hyFGprPelKKAziEs4zysWgqtZ6goq/lBB+onOWc6G9ro/pFtKFf9+batrpRONr0BGzCEOi0j6KjjiJNkoDqu/bEXvVeXJFjkvzFoiTwA2Frd8uunT9oMwHZHIQW+YSYreDlyrkt6xwGs=
+	t=1772189710; cv=none; b=DNA5kdxb9m0+9j1W7i1rWFgRy8zsjyzRx8oz6bc3iDxvYvlKZ5Wg8Xbh13NOtIACNdkxYAyUVkHnk2MB22Gx8Fe/CQvSbeQqUNtV8GGhEJrvsyWqtb7rYz14hAz7l9u+Crt9dVGAKmxy3MQrwmeYA5RQ7TOPYFMl53TcOFAkNik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772189173; c=relaxed/simple;
-	bh=/xsdtitiHE3H5lZq8IRqyr2bEH459f4hsYlXKyl9LrM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sY+p+jwzr+B8jSXnCXUNTdvbkR5YHaYZaUg6KpFLrygr3RWvmq378S7iu504R2XKRweZAq84htodCpS+SJoEM+E0HBswmxrPrSnNoXBNOclyjNeBA33UDAc69HfyGxMyo5JSAObM8ljU42w97im4ImvXv5lLDjzcVVqyNL2mLPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lSFKb23i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9517C116C6;
-	Fri, 27 Feb 2026 10:46:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772189172;
-	bh=/xsdtitiHE3H5lZq8IRqyr2bEH459f4hsYlXKyl9LrM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lSFKb23iMMHxBIk4L8flGbw3P/a2OT+wihztCXUjgCpLHUR9JmXMT7uNp0Y596I5o
-	 gMizNdmsTR4RTqx5mOnpp/igrPzR6OmUkmdds/dn39mqNx4Sk8N5OD7Ep1lqGOyn26
-	 SstlDjQnCVuaFPafCwCpRfoNgs8JdM7/oPDkK+JFkVsICNH5rMhpzLimS7PYcjKKYM
-	 qATuANWga59yIGkB1kqB/POOP7deCTEcZQer86x1taww/NtpMXmSmSu2ltStuyUjQE
-	 D8zoE5OP80mkVbp46ysNMLTr9AjnKRTCxF12y5rCVfuG1Avhbypr5OGQp2HuBq6QFB
-	 s/lWPA08RI6Lg==
-Message-ID: <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
-Date: Fri, 27 Feb 2026 11:46:06 +0100
+	s=arc-20240116; t=1772189710; c=relaxed/simple;
+	bh=2dyKtNyh+VYQgv3RdAGTDcERo7pDX5CfMVIb/NziIdw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VnrxZBmFu8OHiqW89hlPgnKKIloFBmIOcqOIacjxO9IICV8+mvjpi8XUZAypfiPN1aI2Pc64QWG4i5s99+7j8d6GBv+wBwyWUDM/zD7hOEmUA4rNqhQI0DgqEbo23bfohHd7foMtetodlDlnW9A5Cl2eZ74D3+pbvNt2D0pXv1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2adec255754so12756905ad.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 02:55:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772189709; x=1772794509;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3FlwDAQHs4Ab188Hz8URDAmWORYubm2PaVsA0iFMwu0=;
+        b=k67nyonntignkNA6EhHw1Co2/jNxbrNRrdWI91Bwkkuq4AhSGftXQieuiYav8m9XCn
+         ymm8993EsSRWGesC2PWxlIlWUdLUaUS1kDjT2r0IKiXMOC+3h5qEdxu6LH0sEER4JZX0
+         Tmf5QTy5bo4WcxZ89SUb+PM/+/rsqvucGKZAZACVZhikqB+nIFXygZ20BoM+E2seueBU
+         DZSIhfa5+Py//H0ZRQZVl3uh2dIRdJkX9WyaNgKHBVbqfrTggnc/FLgdilny83cfK54x
+         YxZGIiysRs1GDmSmcAVb7smgmV/3dKguYNUvgArLK8K1r+9vc/x3UV44P43HYSK4B8oS
+         PxzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIbFf0Jrf3CF6AQAN5PUZ4ORGOiYWa7bIq6+6VujiMpkgrL0bEjyG6hmAYMWjpBTnibNxeyudFd63X@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlPPR6NiD2unvyJzTCKZ01ucdJ7/nc4aDAakGSbqbGuBNwADMI
+	EtK82Ui0/JKU3y4QDNqUarjkNwXPo9OlSXR4JIXooEFlkHByzRdK1c6MhWeP9kwC8uE=
+X-Gm-Gg: ATEYQzyIfUQOX/mvfR5a90TTbq11Uh1fpxgXpVAS/1EffiX6VFE56WaF8Z+acH0n1zm
+	MIWaHutkprclL2lhK+7rHaLAOldpSzFI8yXYURT2uDZec7H9RDi/POvoKcdD4OVe7DbucmNEpdC
+	/wLqVoTNOy4rcT8VBMWYcUhVJfPt4R2gq8/JzFjOwTRK7IAYYastLmhKRP6HHAG0Ym8ETUmsdbF
+	MjksOQJQduJ00DJJxNh7AoGbfyhuV81ODrmvdTlZslEMiQ1iYR5P0UApaoQGAg73qeKVWLGg7Sd
+	zZ+rmpv21449hzA32v50KEJgX9jdr/PMgLaHkPdhx9rBdPLxoNFCpp+TtMLNrmEYYenCk9XvPjw
+	05AuwDFfVpua3KoH2GKNYTIvLVcqeORJmihPl5vppxrvsH9bBfhUWX6NlV9rPihQ0poN2egFYyW
+	2oTmIhkAElW4tVwSaMRGkmbckMNFxq4i/gPzHka83nXgK98p1ZvirYBRP8Nb0=
+X-Received: by 2002:a17:902:db04:b0:29e:76b8:41e5 with SMTP id d9443c01a7336-2ae2e496c4dmr21795425ad.30.1772189709108;
+        Fri, 27 Feb 2026 02:55:09 -0800 (PST)
+Received: from mail-dl1-f41.google.com (mail-dl1-f41.google.com. [74.125.82.41])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5b1035sm76455105ad.7.2026.02.27.02.55.08
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Feb 2026 02:55:08 -0800 (PST)
+Received: by mail-dl1-f41.google.com with SMTP id a92af1059eb24-12732e6a123so1824022c88.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 02:55:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW4G9WDho5TIaEo0Boz3JH98oCPv7c42lAwrq3Ek3kAYBRrH87Xkrnek8kz0NDaWbNur557dB0ezauD@vger.kernel.org
+X-Received: by 2002:a05:6102:3583:b0:5f9:3a74:e17b with SMTP id
+ ada2fe7eead31-5ff3232afd6mr1008069137.13.1772189289126; Fri, 27 Feb 2026
+ 02:48:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-To: "Xu, Baojun" <baojun.xu@ti.com>
-Cc: "broonie@kernel.org" <broonie@kernel.org>, "tiwai@suse.de"
- <tiwai@suse.de>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "13916275206@139.com" <13916275206@139.com>,
- "Ding, Shenghao" <shenghao-ding@ti.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "Yi, Ken" <k-yi@ti.com>, "Lo, Henry" <henry.lo@ti.com>,
- "Chen, Robin" <robinchen@ti.com>, "Wang, Will" <will-wang@ti.com>,
- "jim.shil@goertek.com" <jim.shil@goertek.com>,
- "toastcheng@google.com" <toastcheng@google.com>,
- "chinkaiting@google.com" <chinkaiting@google.com>
-References: <20260226075737.405-1-baojun.xu@ti.com>
- <20260226075737.405-2-baojun.xu@ti.com>
- <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
- <9f861c7df09c4434a98a203ecff913bc@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <9f861c7df09c4434a98a203ecff913bc@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1770996493.git.tommaso.merciai.xr@bp.renesas.com> <53c8d9e7fde7b176e05503a72af81e74c7a8a1c1.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <53c8d9e7fde7b176e05503a72af81e74c7a8a1c1.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 27 Feb 2026 11:47:58 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVAf=GyDR95BFD0Q3Wbjo5n5vnqSsfue=7fRWxs6=Hdgg@mail.gmail.com>
+X-Gm-Features: AaiRm51h4Q-XTgbNeUvH0Ox5Heqc-6O0OJ_Dv-XNFtKtSDZR5vc0E3M-GeWzDIs
+Message-ID: <CAMuHMdVAf=GyDR95BFD0Q3Wbjo5n5vnqSsfue=7fRWxs6=Hdgg@mail.gmail.com>
+Subject: Re: [PATCH v5 01/20] clk: renesas: rzv2h: Add PLLDSI clk mux support
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, laurent.pinchart@ideasonboard.com, 
+	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269173-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,ideasonboard.com,vger.kernel.org,bp.renesas.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be,baylibre.com,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-269180-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,suse.de,linux.intel.com,139.com,ti.com,vger.kernel.org,gmail.com,goertek.com,google.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.996];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.950];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[goertek.com:email,suse.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: 56B751B6271
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,init.name:url,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 1B9271B6428
 X-Rspamd-Action: no action
 
-On 27/02/2026 11:40, Xu, Baojun wrote:
-> 
-> ________________________________________
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 27 February 2026 18:34
->> To: Xu, Baojun
->> Cc: broonie@kernel.org; tiwai@suse.de; andriy.shevchenko@linux.intel.com; 13916275206@139.com; Ding, Shenghao; linux-sound@vger.kernel.org; linux-kernel@vger.kernel.org; lgirdwood@gmail.com; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; devicetree@vger.kernel.org; Yi, Ken; Lo, Henry; Chen, Robin; Wang, Will; jim.shil@goertek.com; toastcheng@google.com; chinkaiting@google.com
->> Subject: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
->>
->>>  MODULE_DEVICE_TABLE(i2c, tasdevice_id);
->>> @@ -144,6 +145,7 @@ static const struct of_device_id tasdevice_of_match[] = {
->>>       { .compatible = "ti,tas5827" },
->>>       { .compatible = "ti,tas5828" },
->>>       { .compatible = "ti,tas5830" },
->>> +     { .compatible = "ti,tas5832" },
->>
->> So it is fully compatible with tas5830 and most of the changes here are
->> not needed?
-> 
-> Yes, it's fully compatible with tas5827/28/30.
+Hi Tommaso,
 
-Then above hunk and many others are not needed.
+On Fri, 13 Feb 2026 at 17:28, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> Add PLLDSI clk mux support to select PLLDSI clock from different clock
+> sources.
+>
+> Introduce the DEF_PLLDSI_SMUX() macro to define these muxes and register
+> them in the clock driver.
+>
+> Extend the determine_rate callback to calculate and propagate PLL
+> parameters via rzv2h_get_pll_dtable_pars() when LVDS output is selected,
+> using a new helper function rzv2h_cpg_plldsi_smux_lvds_determine_rate().
+>
+> The CLK_SMUX2_DSI{0,1}_CLK clock multiplexers select between two paths
+> with different duty cycles:
+>
+> - CDIV7_DSIx_CLK (LVDS path, parent index 0): asymmetric H/L=4/3 duty (4/7)
+> - CSDIV_DSIx (DSI/RGB path, parent index 1): symmetric 50% duty (1/2)
+>
+> Implement rzv2h_cpg_plldsi_smux_{get,set}_duty_cycle clock operations to
+> allow the DRM driver to query and configure the appropriate clock path
+> based on the required output duty cycle.
+>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-Best regards,
-Krzysztof
+Thanks for your patch!
+
+> --- a/drivers/clk/renesas/rzv2h-cpg.c
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
+
+> +static struct clk * __init
+> +rzv2h_cpg_plldsi_smux_clk_register(const struct cpg_core_clk *core,
+> +                                  struct rzv2h_cpg_priv *priv)
+> +{
+> +       struct rzv2h_plldsi_mux_clk *clk_hw_data;
+> +       struct clk_init_data init;
+> +       struct clk_hw *clk_hw;
+> +       struct smuxed smux;
+> +       u8 width, mask;
+> +       int ret;
+> +
+> +       smux = core->cfg.smux;
+> +       mask = smux.width;
+> +       width = fls(mask) - ffs(mask) + 1;
+> +
+> +       if (width + smux.width > 16) {
+> +               dev_err(priv->dev, "mux value exceeds LOWORD field\n");
+> +               return ERR_PTR(-EINVAL);
+> +       }
+
+I am totally confused by this: smux.width is not a mask, but the size
+of a register bitifield.
+Perhaps:
+
+    if (smux.shift + smux.width > 16) { ... }
+
+?
+
+> +
+> +       clk_hw_data = devm_kzalloc(priv->dev, sizeof(*clk_hw_data), GFP_KERNEL);
+> +       if (!clk_hw_data)
+> +               return ERR_PTR(-ENOMEM);
+> +
+> +       clk_hw_data->priv = priv;
+> +
+> +       init.name = core->name;
+> +       init.ops = &rzv2h_cpg_plldsi_smux_ops;
+> +       init.flags = core->flag;
+> +       init.parent_names = core->parent_names;
+> +       init.num_parents = core->num_parents;
+> +
+> +       clk_hw_data->mux.reg = priv->base + smux.offset;
+> +
+> +       clk_hw_data->mux.shift = smux.shift;
+> +       clk_hw_data->mux.mask = smux.width;
+
+Again, smux.width is not a mask.
+Perhaps GENMASK_U16(smux.shift - 1, 0)?
+
+> +       clk_hw_data->mux.flags = core->mux_flags;
+> +       clk_hw_data->mux.lock = &priv->rmw_lock;
+> +
+> +       clk_hw = &clk_hw_data->mux.hw;
+> +       clk_hw->init = &init;
+> +
+> +       ret = devm_clk_hw_register(priv->dev, clk_hw);
+> +       if (ret)
+> +               return ERR_PTR(ret);
+> +
+> +       return clk_hw->clk;
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
