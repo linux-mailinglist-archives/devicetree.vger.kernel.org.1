@@ -1,228 +1,209 @@
-Return-Path: <devicetree+bounces-269085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269086-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJO2FoNCoWndrgQAu9opvQ
-	(envelope-from <devicetree+bounces-269085-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:06:43 +0100
+	id 2LN4KF9DoWndrgQAu9opvQ
+	(envelope-from <devicetree+bounces-269086-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:10:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9D541B3A31
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:06:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B1A1B3A85
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:10:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D73A7302452F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:06:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DCEDD3010490
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73911361DB0;
-	Fri, 27 Feb 2026 07:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219CF36A009;
+	Fri, 27 Feb 2026 07:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5qRZFOn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lOqvjHTI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEF433262E;
-	Fri, 27 Feb 2026 07:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F322227FB1F;
+	Fri, 27 Feb 2026 07:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772175988; cv=none; b=JA0BLFGelSHF0lutof6Ryb7cTcXY+3AfVdcTVEgPscxTiaXpmvyUw0dGgtQ9itdpsXZUxTtT2Dum5TpPmbrO936fvw0msoMYphaw8vmWI1dp7hbgLYYXOlsldmSNWVNhSQREyVvpp3v6//QZOqFCR0iYBiYiwEKf2ejr5eNABdg=
+	t=1772176216; cv=none; b=Mn6hoHjAZ2DTG0hAzNL9p/DlGfK+ZBcpOScmMHwH1SLIoaY48DGa40XRZenZbtgdb4rCjeLFB4o9dfpM6IZq12GqIdaxI9h/lI/kQz0zZpYUipFoLKO7GD6LSPJ2jsqz6CokfYhPdCvR6UGPmP8oiJUw1SsmGslBxqbmSnLfMkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772175988; c=relaxed/simple;
-	bh=X8vtJkSyc7mKsCpLbrfh/YJAHY+sBdNmmDe83pbDGfk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S/0c/M6rNykvgSjPec5LnuRmt5Omtw9X9rYzd1JqtgeWu8ZQq/isvByJFcDSfouAs1l0HsXENp9A5GsJrq0J0zLScunjoYcCU4QjXb5axgRK9EeeZ142jOrPiQH3cE0W7Vxh4W/zSCvUm6JZLM84bGBnoutQ3u0T4ZSBvjoBnTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V5qRZFOn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85001C116C6;
-	Fri, 27 Feb 2026 07:06:22 +0000 (UTC)
+	s=arc-20240116; t=1772176216; c=relaxed/simple;
+	bh=93SPmf8E1jF/TUfDZS9PtOn4hN3P8OgjiQA0WaPpkyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kozGweQGFFekV56vSMuZRROc4WrIrdIomk+Ua6KsrRoVlfJy1HbQTjNJdF+m+PLTmtiwP/TtPyihzw1E79XaSZ/xvedoSSnSfgvwamoe7W6iGyt7U8sSZ6pNi1ydjh0yDPHreYzj7AepeR9QDRch0D0+fX+KKduapPT+ip+jSqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lOqvjHTI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB63C116C6;
+	Fri, 27 Feb 2026 07:10:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772175987;
-	bh=X8vtJkSyc7mKsCpLbrfh/YJAHY+sBdNmmDe83pbDGfk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V5qRZFOnCBFNgJH2F3MySablqUS0kgHUbs8dfLZO0EVJq+VpFHNezh4h+N0BDtQRJ
-	 oYON+hh8ftyipK1Gu07+US3wr9hUoUCBkXyXQ1Gp0NCcY2iKH9nbFryFFLwRRZApco
-	 p2JSo9FOOVZNz5wJ+2DBBmi+CL5hpBux7jC6vK1uUS+OLvnVoE/e5+9maKJRz9K0/D
-	 fqdP7keTn/B1NlmDR8q8Ot2U68ExvWzF/7ItfvOQ2uR9GOCyEa2QU+FniKIKNUIrAc
-	 0wp0tNkcRkGtDWY0cx4ilcFhEO4m4iceuA5BmanZ643ocNCIdoDVeNdnKyXJJpq6BD
-	 SAZDJWQxBHkSw==
-Message-ID: <9970272b-b406-4a25-a7d9-8197934f8c3a@kernel.org>
-Date: Fri, 27 Feb 2026 08:06:20 +0100
+	s=k20201202; t=1772176215;
+	bh=93SPmf8E1jF/TUfDZS9PtOn4hN3P8OgjiQA0WaPpkyc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lOqvjHTIbBmGaLmKo7MKt67M5+Af+GJ86NRwN2OlqEJLzdbtTezhxOjbSjJZP+xAs
+	 SOZErT7krFSIlClMQH0xvETYKDJOpapuDbdCtTZSTSWGC8nt8nqpJNkgapfjQQDACw
+	 d1Lx7lLoAcgJOYBlHEMNH0OU7AKP/WTMdKXZyYZzcx0ytP6la3SlCiXC3fH9WOEbJw
+	 oFi2oLFSaoUuE+grq3S68v8jO7xA6iCmPBD5ny1o2eGrcvZhBJXjb3t3YxumCGQIAg
+	 CTL5f2NtnpBhwgj1RoEpk/UyD1mf0sMQWtZJ6As3q0P8c3K8caAMYahDY0HMawDNcv
+	 EuQGP1TFrpOyw==
+Date: Fri, 27 Feb 2026 08:10:13 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: jk@codeconstruct.com.au, andriy.shevchenko@linux.intel.com, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Rayn Chen <rayn_chen@aspeedtech.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v25 1/4] dt-bindings: i2c: Split AST2600 binding into a
+ new YAML
+Message-ID: <20260227-fragrant-industrious-aardwark-bdb63b@quoll>
+References: <20260225-upstream_i2c-v25-0-9f4bdd954f3f@aspeedtech.com>
+ <20260225-upstream_i2c-v25-1-9f4bdd954f3f@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] dt-bindings: npu: Add bindings for NXP Neutron
-To: Ioana Ciocoi-Radulescu <ruxandra.radulescu@nxp.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, Jiwei Fu <jiwei.fu@nxp.com>,
- Forrest Shi <xuelin.shi@nxp.com>, Alexandru Taran <alexandru.taran@nxp.com>
-References: <20260226-neutron-v1-0-46eccb3bb50a@nxp.com>
- <20260226-neutron-v1-3-46eccb3bb50a@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260226-neutron-v1-3-46eccb3bb50a@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260225-upstream_i2c-v25-1-9f4bdd954f3f@aspeedtech.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-269086-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269085-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,linaro.org,amd.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[24];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	DBL_PROHIBIT(0.00)[0.0.0.80:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,4ab00000:email]
-X-Rspamd-Queue-Id: C9D541B3A31
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,aspeedtech.com:email]
+X-Rspamd-Queue-Id: 03B1A1B3A85
 X-Rspamd-Action: no action
 
-On 26/02/2026 14:40, Ioana Ciocoi-Radulescu wrote:
+On Wed, Feb 25, 2026 at 05:19:38PM +0800, Ryan Chen wrote:
+> The AST2600 I2C controller introduces a completely new register layout
+> with separate controller and target register blocks, unlike the mixed
+> register layout used by AST2400/AST2500.
+> 
+> To describe this properly, split out the AST2600 I2C binding into its
+> own YAML file. The compatible string remains unchanged.
 
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+But you made other changes in the binding. You must list them, because
+otherwise it sounds like you only SPLIT. It's not true. You actually
+changed the binding in at least two places, maybe more.
+
+> 
+> The example section is updated to reflect the actual AST2600 SoC
+> register layout and interrupt configuration (aspeed-g6.dtsi,
+> lines 885-897):
+> 
+> - I2C bus and buffer register offsets
+>   - AST2600 I2C controller register base starts at 0x80, and the
+>     buffer region is located at 0xc00, per the AST2600 SoC register map.
+> 
+> - Interrupt configuration
+>   - AST2600 I2C controllers are connected to the ARM GIC, not the legacy
+>     internal interrupt controller.
+
+Example is irrelevant, don't mention it. We discuss here binding.
+
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  .../bindings/i2c/aspeed,ast2600-i2c.yaml           | 62 ++++++++++++++++++++++
+>  .../devicetree/bindings/i2c/aspeed,i2c.yaml        |  3 +-
+>  2 files changed, 63 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
+> new file mode 100644
+> index 000000000000..077be85137c9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/aspeed,ast2600-i2c.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/aspeed,ast2600-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ASPEED I2C on the AST26XX SoCs
+
+s/26XX/2600/ probably
 
 > +
-> +  memory-region:
-> +    description:
-> +      Phandle referencing a "shared-dma-pool" to be used for Neutron
-> +      inference buffers, which need to be 1MB aligned.
+> +maintainers:
+> +  - Ryan Chen <ryan_chen@aspeedtech.com>
 > +
-> +      The memory region must be defined with alignment of 1MB and size
-> +      should be large enough to accommodate the targeted ML models. It
-> +      should be marked as reusable.
-> +    maxItems: 1
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-i2c-bus
+> +
+> +  reg:
+> +    items:
+> +      - description: controller registers
+> +      - description: controller buffer space
 > +
 > +  interrupts:
 > +    maxItems: 1
 > +
 > +  clocks:
-> +    minItems: 2
-> +    maxItems: 3
-
-Why is this flexible?
-
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    items:
-> +      - const: npu
-
-Name "npu" is pretty pointless.
-
-> +      - const: npu_apb
-> +      - const: npu_cgc
-
-Drop npu perfix everywhere.
-
-
-> +
-> +  iommus:
 > +    maxItems: 1
 > +
-> +  power-domains:
+> +  clock-frequency:
+> +    description: Desired operating frequency of the I2C bus in Hz.
+> +    minimum: 500
+> +    maximum: 4000000
+> +    default: 100000
+> +
+> +  resets:
 > +    maxItems: 1
 > +
 > +required:
-> +  - compatible
 > +  - reg
-> +  - reg-names
-> +  - memory-region
+> +  - compatible
+> +  - clocks
+> +  - resets
 > +  - interrupts
 > +
-> +additionalProperties: false
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
+> +    #include <dt-bindings/clock/aspeed-clock.h>
 > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    bus {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      neutron@4ab00000 {
-> +              compatible = "nxp,imx95-neutron";
+> +    i2c@80 {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
 
-Messed indentation. Read writing bindings / writing schema.
-
-
+Please follow DTS coding style.
 
 Best regards,
 Krzysztof
+
 
