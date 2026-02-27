@@ -1,253 +1,213 @@
-Return-Path: <devicetree+bounces-269154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269155-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qF+IGm5poWkUsgQAu9opvQ
-	(envelope-from <devicetree+bounces-269154-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:52:46 +0100
+	id UNWvDJdooWkUsgQAu9opvQ
+	(envelope-from <devicetree+bounces-269155-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:49:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE65D1B593F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:52:45 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEDE31B58CC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:49:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 029CA3142FF9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:47:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0D861302ECA9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D3F29D27D;
-	Fri, 27 Feb 2026 09:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0605D30BBB8;
+	Fri, 27 Feb 2026 09:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tawCJQB7"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="wSWzmf0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022129.outbound.protection.outlook.com [52.101.126.129])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B4202D5926
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772185677; cv=none; b=mmFgasVyAnCPbpluygdq5wqp7Xkr2ATU61jQq4SE+5FvX7hqTfvzkpIg0ADZn3JAA70d4Bmbk4HeXcju0AsmZJhVemQyQGA0O9wuKd3FI3imWwnLMvSLuV5SgxYslPhL9jTyGISyCovZDgDl+ge3IOt4DfZP+y6zmhpoqwGZjoA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772185677; c=relaxed/simple;
-	bh=sDqOLIElO9sU72I8htWWTt5yNo0GEDCaewrWX4E83eY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qCfteFAwJc9h2hSxSOijvpySyYZEIGOwDwfeosMzAcyY9LQZm3dQaxR9PLWDIbZKGezogwHy0mEI9KPvWu1mEJdAXGKljD33Ygayq+6fp+WyWRsnlKyad312jGyo3ovAlwJBL0Uti7MNLq/9tp4fMgQtGur4+PmWGqNiX63TGWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tawCJQB7; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-4398dd671daso1980515f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 01:47:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772185674; x=1772790474; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lvnzu0nnoktPCLf+OVvM4xkOpLiznX3KsepjyKiu5SE=;
-        b=tawCJQB7tfggauC1TSg88aUG+pHpHclM53cndGvlsNz4NrQFs+I8UCJ6GdHKqx1RxV
-         1vYSwGL77XHCQ9nvDrjllPg+fZR40XhHT/7xy9C2VX6STF7BGecOD2BFsLTYHISicTp8
-         N5HU1APBIzVCrmscvO2TYfTAoliRtvLbOWqy97VzFUtRJbiU6YaesbL3BevcMGxWCFbj
-         XIYBXRWtbBQW1tin9nNbI5u6CTGmXy4Qwtf7fk1zq6EsI+Cs72AJopDgWKfQuAV2eCq9
-         2E4Qhl1MnJp++sI0MKAiy5xz6oK/cqKdkh10Tc5OUgPMnAmY0pGLg8y7IBA1zEe7BJPX
-         Ercw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772185674; x=1772790474;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lvnzu0nnoktPCLf+OVvM4xkOpLiznX3KsepjyKiu5SE=;
-        b=LRQd8lJaDK28hJHORV94Ga6AFbtJ8KPB74u92D8U26KlBdLR6WqMD5lNmCO/N2jA9H
-         l+/zZQP0nZVvTrXu8hB0nyZFzGUUh48WCJyjuIzDyCpWvTwVye1FZ8d7lSDlK9Yo2mPi
-         50pIRJyZ63ZUCjoZqiZ8jN2mYk0JplrtHNF/O4DQwXUjAl2Xqc/eBYh4OlJCqEyA5gM7
-         20uUAWF9rtV0GVFzI3ds/hNlbHIcoYM13jh+E153RxqvQfgrX1lxhQ0KnjdZSnzmvjmg
-         sjl48vFD9qNzYLGIIOjAL1lPepbWHbp+jAuoNnvZn/le6l+cP/6RpFk1cWd4FBRMC/ty
-         jgvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVvZGIOtl2ZINNDXEHWaOnlr8rZYTJR1HshOX0UUC+KQvzDy4vZ7G2g9ld1GTk6aLp41HVibPfA8zXw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiCc4RwGtVUsocoibiR3YRprxPzelDd0p8JLWNsm3i8/5ObLxp
-	oSEp7Xq+ANjg9bOZbjyA8BnTo3nYz0/rL3n6pEVDRpT/icTGYndDaDr59Cs7co95A6E=
-X-Gm-Gg: ATEYQzx772GD0ToUwENZzqnQyGaOIREm0cFt0etpXPAJEiBDZxwBBYHGj6LimcsNnUK
-	xiyzKUmEFWdw94jimalTbCM0p6/RH1FhZHDu6/k6rUlu6Mv30MYtOiqzOkJzj6s2wsUuipahi6h
-	sOXBst/yTLBKR6/YMGdv3aJ2CdQapv6/jab9cK+Prbd5P4J/PMCxGuGud00xJHf1eTKFnB9NzP6
-	Im5EQKWqiHH02IJd//nIgUOyiHmap9pM2MEM9JY2cNCn7zgPbqJFMr9TCmx2bpzndKXIsLsG9HO
-	BoMNYKl7ciQEN4y12ce90QC/YErWvLgCUJk6s3cR+JlN1Yfe3YN7bEWFZCBnQDyCCYsCcV9bP59
-	vaqKKmSR+1k3+n0P0BCrrBmtZ0U5ULAKf/5eqEPBgmgcdFiC5EU2qIAVdaLqdUIryruBWkYACw7
-	4ORwtThvpthPqaSFsHFnIzANbrD40ITLAJGBphMVTd/1LcSHrlyMIGOi+zMIqO3/jTnyGXkeO/u
-	d4=
-X-Received: by 2002:a05:600c:46c4:b0:483:b505:9db4 with SMTP id 5b1f17b1804b1-483c9c0f1d1mr32779065e9.31.1772185673668;
-        Fri, 27 Feb 2026 01:47:53 -0800 (PST)
-Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b770c2sm92861155e9.10.2026.02.27.01.47.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Feb 2026 01:47:53 -0800 (PST)
-Message-ID: <44b01d94-427c-49d6-bac8-a5d14141b24f@linaro.org>
-Date: Fri, 27 Feb 2026 09:47:51 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7F02D73AD;
+	Fri, 27 Feb 2026 09:49:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772185748; cv=fail; b=adLj/lxOSISg0RN3YKoahK+BP/V8TViYb7HvbS95scz365NCmonol/mpVIlcBqMEy/R21jpPo/E0LXP9cGoWdUG5Yfpu0WMii7oetisW+8ikd0q9J8vhRwMcZnAPk1HpdSw/4IgeRS12ffMe2WHDGDXqUm+dkeBll1pxWw2hkrw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772185748; c=relaxed/simple;
+	bh=Y+pCJYhlk/CRCda6KlARD2wOYQuVkeKfdGvQbIpFZqA=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=DfYrALl8vUxfhSKu+3HHoZYzIMeEOaSUCWO1CQd/N7RHHmWQ7UpFbr3RuMU4vsdvF3pAZCg1Fzx6sh74ViiDkxZ/k4UYZ5D74x3rII1F9TUjdxCr33PuwSEd+6OXaGfg732sEL2dMS2UZOk4vDq3jV4AtpyYntJhFmzAobLzqgY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=wSWzmf0s; arc=fail smtp.client-ip=52.101.126.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OE1u49a+pnedE//E+AbitRLQL0n9sUuxbF2ADXd26JZRgPQ3zbMkC/Hbi2tbdKu78p7r8Qn5vVx1ga8f0EX0ioOrU2nF74AjGbWZX9eij3D4T+NDQlf6OFcHwpyVtN8TDW72VF+XTVgwaE7aEVRwLzLK2r+BUoWAirvVSFhNx1Fxrla61zs4j5QdSNcEQnHtnMTmL/1o8QPSmzHs+W7zacrNuvWs7fgvi1ev+Vl+K+ZVnhn0A4P38uwvTDL0tG1V2KMXnY5ksyQfn8vZx0vF2PcOht2cbHHmDtWgozQBClrI59t+cMceQZ2uuVd9TelfY0YTTKBXdehB51O+9XRGaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=24D92vMmn+hLpGXpbcBoI3ixwLQjFsC9tqRVUAGpXL0=;
+ b=CT3e2MqdJ/EJLsun3JbO6HVo+o3yf3rusAhNV96rZB9V+qcSz2ZIxOnxB0jK4S1Vt5xP7ZxwO19piTEK6xxaqTiUa32Y819OfbaPWKk6+dreG8uhmEvfIcLrfw2pUWf/nwkRS8/gL6igv+qbBvnlC0tyvu++p4pi+Uoy/gr41xwmfpNR9sCap5XdbPrw9lwdA1X+8I1bYUI8D0CbXhf6ilry72v/cDEGMv4/KOmYanEMEg5GrSUeMOKB7+Y5vsUkM9dJp6OUy389CTK223lzzl1MH7G/onXHS0pjLA8bcBB4NWajch4RAAZSBMUhhQdeOLda+alDIWNe705zMwIg0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=24D92vMmn+hLpGXpbcBoI3ixwLQjFsC9tqRVUAGpXL0=;
+ b=wSWzmf0s5dXPI3aNG/j6UY3n6N/YlQpfRrZNjokdu5eX25QMVeQ8wVJckSMOqmA10u7LlrP8/jCJgG4j2Q03Pjq6Zw/2564nMW7erlUgd2fsy+faLRqxTUe7TQpLohitCJttAVxAmbDz6IlXNkZxRdbySqXAMwdckQp/KK5u0ShxtCMi+nSUanSO4fxkYCbCzqXSgZwlqwfuWkCU5BYBUiwImRVldUvYk3bAoZSXH/83OtMJwp7EzmXGMDF170ARnWiWLgUldWUXQBvLszcJ96y5LECMwDvUSJcmUeYKgtod/LIVvteL6hU44WEWvhGkZ8cSbtqNDo4JAjmU/YsBtA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by TYSPR03MB7708.apcprd03.prod.outlook.com (2603:1096:400:432::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Fri, 27 Feb
+ 2026 09:49:04 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::78d4:9dee:2e32:d1e4%6]) with mapi id 15.20.9654.013; Fri, 27 Feb 2026
+ 09:49:04 +0000
+Message-ID: <c47d44f6-3d0d-482e-b45c-7f6e98d9ac4e@amlogic.com>
+Date: Fri, 27 Feb 2026 17:49:00 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com>
+ <20260227-amlogic-dma-v4-1-f25e4614e9b7@amlogic.com>
+ <20260227-crafty-just-cheetah-7ef8a2@quoll>
+ <4fa16352-5f74-473c-a568-406e3ca24395@amlogic.com>
+ <9a5e2241-8343-4854-88c0-56022f8a76da@kernel.org>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <9a5e2241-8343-4854-88c0-56022f8a76da@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR02CA0004.apcprd02.prod.outlook.com
+ (2603:1096:4:194::14) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Bryan O'Donoghue <bod@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260226-x1e-csi2-phy-v3-0-11e608759410@linaro.org>
- <20260226-x1e-csi2-phy-v3-1-11e608759410@linaro.org>
- <20260227-overjoyed-spiritual-saluki-7561c2@quoll>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20260227-overjoyed-spiritual-saluki-7561c2@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|TYSPR03MB7708:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc0ce31f-1b8e-4b50-cc68-08de75e5716b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info:
+	krpfMEtKO3pXhEAoD/rS9BSb8/Vv7fiMlVmIRNu9pJmcKVpqd5ZotAcFfkwMNMVNgFYcIp1xAluigzpTbudLb6YTXzQAg/lVwX0ujOdapC0aoGddlwh4Rhi2Zuvs6c+NiTvdHlx06LEN0D6Cb5JgTPg45EWxnt3trhJ5z4M2akEy2JTPgU5ovV44vJNI+Zn9yML/iZKJXgl/hoX7pEQoDdrClNwT8Q7P/7XKk0USXCkE1IYtT+uLmWGqcyNjiJneYe/vNqJs/zv9jN8lUUKYEUQoQbKU/XJCoKQz9JS/3whpkY9EbL8rnvTQDYgdgZx51kYRvC6dghkTQ5xQpAoqelTx6IY38PogYJxnAHTxIc8ATXKmhjsrXHBrQ+jMhpx1LQ4Mb5IKN4aT0aZfEBaij9mHfHR9KDMnSx/fEh7GtWob5GjVB6AirZH0iS9gyG4sG8dmS5Kp2Y6xUXvjFFxGBqhmR0/GatlOLggmCZIQgF5bX5RzSUTLBjhzw0uxnuIwDAFZV6HON3BuSVeahwgl56zCqSyIin81ePva4Q8A3T5zQ438KouI5lT+UG74w5TPIa6ClVzMlAzNiOOgzg+Zq3SRGvVckj9ZGJtsF7kvX46RNG67/IOjdebrZpJc9ovSvCdqEp/ZEMQx/D/AtaOLYN6Brb7Elvdc9Wf4Brj4BakxRNSyPY6hZCub//aWFDSpipWeuwYZJNh50rOIp+WNQ2N6XlxtCxo9hY2N89Ftajs=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?cGowS05Pam5tUlQ2L2p2UC84b3pMbEJlMHh0ZEhQanUzN0ZkNUZIMSswOE9P?=
+ =?utf-8?B?a0NNT1ZpK21IT3FKcjBpYUVRQUc2N3BLNjVmaG05QnJ0bjR5YnFFRVU4YVNo?=
+ =?utf-8?B?bzlMRU0rVjFuWnJLcGVjeU9VYkdGK093MXlYUGVmYWJvNzh6bytzaTRMM0w2?=
+ =?utf-8?B?K0I1U0h0YytCZWhSWHdvb2x5UWVEd3U3YXlia29yQTFYTU5WalhhY1RQSUdY?=
+ =?utf-8?B?N1UwWFUrTVZwUEYzK1JERnk5dkR3ek5FS21sMmJReFQxbWVFdGQzZENOOGlG?=
+ =?utf-8?B?QXhvZ3VQc0ZBQzBqQk9ERlE2ZWFyNW8wUTFGeDhPd2V6d2x2WVNvVWlOS0l0?=
+ =?utf-8?B?K25aTjduYU1xUC9GY0xZVlZESUhxMW9ZQm9ERVI4YmszYjdNU2hjSnkrZmRo?=
+ =?utf-8?B?NGpHN1o5cElkM3ZjNnJYNkJ4UVBXaG1ITGxtTFdCTko4Z0NJUkJtSVZEdWxH?=
+ =?utf-8?B?YTIvdVRzTEFLVnpPUlhFamJnS0d6Q041Q281ZW8xMU1hZ1hSNVpkK2JPUDJE?=
+ =?utf-8?B?K05JbmExcUlRQ0tReFMvVzRlNVZaTS9mS21TQVpzeFR3c0FCQ1V6NnEzNUNx?=
+ =?utf-8?B?VitLTlFmUEFYblZsRWFaaE55WFk4ZlJZZnVBZUdxYUR2VXgwVEw4WUhybzZ3?=
+ =?utf-8?B?bzdDbXdqbUYvV0lza2lrcFY3WnlZczBiK1Q4U1JZaU5SQ2Jtcmw1N3RKYmJY?=
+ =?utf-8?B?UVE2V09QOEp3c0daTEYvMmU3K01yMjVQN2ZSc1NlbVNnZkZiNHdvUjI1cXY1?=
+ =?utf-8?B?VUxnd3FPUHVWZEwzeGU1cThQWXd3SnJzTjJZVzR0aHY5emxNMWltS2pHa0s0?=
+ =?utf-8?B?dUpTNjE3ZDVDT05ESktyRmthV3A2SmRVU1lTMGpLcUNwTU5sSzVQUXBPRGNX?=
+ =?utf-8?B?RzdibS9teUlqaWtKcWRCclNSSVREbkJHalpwZVhQSVhCOURJUVdUaURxWGE3?=
+ =?utf-8?B?Y3RpL0NvRUpoMk5tb0dLSVZJY1hhMzFoeStsdHdrRWtRMmVXTC9KZWtBUGk1?=
+ =?utf-8?B?NlZPN21qWm1lMEFIU2I2cDBaTitiWXR6SlpTODFVYnhndW5pYUorYjhhUHI5?=
+ =?utf-8?B?V1krNHhkNlpxd2ZqVE9RcjVMT3c2bmQ0NVprVU9GNWp5Q3hkcFV3QUFscjJw?=
+ =?utf-8?B?Y2s3QkxFaUVkMVBxWjlBY0s4c2sxYksreHBwS2FXbkJEcEpWbnMzVE1RNFJr?=
+ =?utf-8?B?SDRMQnFBY0RmUDFFOFpSMFl4R3NPUzZES2EwOVpqR1FqRFRGclBBenBVR1FL?=
+ =?utf-8?B?S1BRVnBKNldVNmZjNUZLdDhtaDlRb2tpSXhlSDRKOWdOYzY1NkVINmVjN0pM?=
+ =?utf-8?B?blZOMUZSSXBHK1dSallCY2xYTG51aWRpeWQ5YktRSERoRHh3ZUppZ0ZFMVJi?=
+ =?utf-8?B?UTN6Qm9EdnZldEMrODV4V1hLRThXMVNWUzJJczQ2SmYrc3BSRUk2a1UwWm80?=
+ =?utf-8?B?eEhqTXJEbS9QSDMyYUFmaERzMk44N0NGRnlwWm1GUm9iSGJDREZsdkdBOTVi?=
+ =?utf-8?B?Q1NjN0ZVQ1Fnd2Q0ejFUYVFFR2V6bExxUlFnK2hFaU1Ta2hxeTJSWU5Bdlhn?=
+ =?utf-8?B?b0FBQ2N1c093S0gzQjJUcVY0a2ptRHFFeFdEb0JkOEpkYmRVOEkxWlU0bllB?=
+ =?utf-8?B?UFBMQTN6RWJWSFN2YXVaYmx2VUVZd0xOUmxjQkNmMlhIZ3MxNVExZ0tONjdv?=
+ =?utf-8?B?MmtNNFYvYjN4c2hibXFrV25UZ2hUVzJHNUkvYWRDeUJjbGgrVzhVckxFSUFU?=
+ =?utf-8?B?TE02eUR3NDV0NjVoU2JnRTh6VVd3ai91RDdQRFZJWkR2ZFl4dDlhejZyemtP?=
+ =?utf-8?B?RnFDOWFKNXN5OEtDNGJDby9KRjJNYmZEVUF4VS84NXk2aC9JN0QzdU0vVEpu?=
+ =?utf-8?B?NGFucHRsNzh6akg3UEdpM1A1R3JwckV2c1JwWnZhd2pON2lpTklRL0hNSVIx?=
+ =?utf-8?B?S2o0a2xDYmtrelZNVmY5L2dSR1BHZU5sTnR6bURqOS81cUtNVUFnenp5Njly?=
+ =?utf-8?B?WTRySGVxRkdYUkQ5cUNwanhGa2dzbFhaWjVsamEvRmhKOTRvSEFQQTJ3Vytk?=
+ =?utf-8?B?ZUVCQkJBRDErVFVEY1NoTit5cUNBdG93VDd4WlRaRE5hK3BoVzl0ektBSFp4?=
+ =?utf-8?B?ZDJGNnBpK0pYN3dyTVJTVGFGTGRDOXpMR1orSUxMYUlyQStXWlpzNDJJZ2Ix?=
+ =?utf-8?B?WGY4NURhcUJPbjA2RHF0NmQrTVVXa1lHWDV1MGhlZmg1d1I2NVpjZ3FwbkJx?=
+ =?utf-8?B?bHdJR2szZlgvVFRZZU5xcnFJNXUwWGhNb2w4MXVQazNmWHJpU055OVhPalpT?=
+ =?utf-8?B?NElaVVJibTRoQ0pxVXFSZCtwQ1NkTW9PV2ZnRy8vU01hOUlXWXdlZz09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc0ce31f-1b8e-4b50-cc68-08de75e5716b
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 09:49:04.5687
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +mlEsYscv/L3z77YudJ403J7YBBzk3dU6ffM6n/6wDBomI+ruelWlQEG0COrSYIbBFfTh4KoG0C4QxWKIZfaD+symUNx83pN1KGDHKGrjQY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7708
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[amlogic.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amlogic.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-269154-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269155-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[amlogic.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[xianwei.zhao@amlogic.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BE65D1B593F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:mid,amlogic.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CEDE31B58CC
 X-Rspamd-Action: no action
 
-On 27/02/2026 09:41, Krzysztof Kozlowski wrote:
-> On Thu, Feb 26, 2026 at 12:34:25PM +0000, Bryan O'Donoghue wrote:
->> Add a base schema initially compatible with x1e80100 to describe MIPI CSI2
->> PHY devices.
->>
->> The hardware can support both C-PHY and D-PHY modes. The CSIPHY devices
->> have their own pinouts on the SoC as well as their own individual voltage
->> rails.
->>
->> The need to model voltage rails on a per-PHY basis leads us to define
->> CSIPHY devices as individual nodes.
->>
->> Two nice outcomes in terms of schema and DT arise from this change.
->>
->> 1. The ability to define on a per-PHY basis voltage rails.
->> 2. The ability to require those voltage.
->>
->> We have had a complete bodge upstream for this where a single set of
->> voltage rail for all CSIPHYs has been buried inside of CAMSS.
->>
->> Much like the I2C bus which is dedicated to Camera sensors - the CCI bus in
->> CAMSS parlance, the CSIPHY devices should be individually modelled.
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>   .../bindings/phy/qcom,x1e80100-csi2-phy.yaml       | 114 +++++++++++++++++++++
->>   1 file changed, 114 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml
->> new file mode 100644
->> index 0000000000000..c937d26ccbda9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml
->> @@ -0,0 +1,114 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/qcom,x1e80100-csi2-phy.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm CSI2 PHY
-> 
-> Qualcomm SoC CSI2 PHY
-> 
-> 
->> +
->> +maintainers:
->> +  - Bryan O'Donoghue <bod@kernel.org>
->> +
->> +description:
->> +  Qualcomm MIPI CSI2 C-PHY/D-PHY combination PHY. Connects MIPI CSI2 sensors
->> +  to Qualcomm's Camera CSI Decoder. The PHY supports both C-PHY and D-PHY
->> +  modes.
-> 
-> So just to be clear: this is not MIPI CSI, but only the CSI PHY? There
-> are no ports here, which seems fine for the phy and will be in the MIPI
-> CSI block?
 
-CAMSS ports map to the CSID - CSI Decoder yes.
 
+On 2026/2/27 17:44, Krzysztof Kozlowski wrote:
+> On 27/02/2026 10:43, Xianwei Zhao wrote:
+>>>> new file mode 100644
+>>>> index 000000000000..025ecc42e395
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/dma/amlogic-dma.h
+>>>> @@ -0,0 +1,8 @@
+>>>> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+>>>> +
+>>>> +#ifndef __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+>>>> +#define __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+>>>> +
+>>>> +#define AML_DMA_TYPE_TX              0
+>>>> +#define AML_DMA_TYPE_RX              1
+>>> You sure you need AML prefix? Your clock constants do not have AML
+>>> prefixes. What other constants do you expect here?
+>>>
+>> I will delete AML prefix in next version.
+> I assume this is an argument to "dma" phandle (cells), so maybe should
+> be "DMA_TX/RX"?
 > 
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,x1e80100-csi2-phy
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#phy-cells":
->> +    const: 1
->> +
->> +  clocks:
->> +    maxItems: 4
->> +
->> +  clock-names:
->> +    items:
->> +      - const: csiphy
-> 
-> probably: core or iface
-> 
->> +      - const: csiphy_timer
-> 
-> timer
-> 
->> +      - const: camnoc_axi
-> 
-> axi or noc
-> 
->> +      - const: cpas_ahb
-> 
-> bus, ahb or cpas, depending whether this is only one ahb or this is bus of
-> some cpas subblock
-> 
-> See also: https://lore.kernel.org/all/20260115-sm6150_evk-v3-2-81526dd15543@oss.qualcomm.com/
-> 
-> 
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  operating-points-v2:
-> 
-> Just true. It is not an array.
 
-LOL I asked a chatbot to review my submission and it told me to change 
-this from true to a list.
+Thank you for your suggestion. I'll use it.
 
-€90 subscription well spent...
-
-Thanks for review.
-
----
-bod
+> Best regards,
+> Krzysztof
 
