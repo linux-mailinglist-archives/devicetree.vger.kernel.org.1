@@ -1,69 +1,63 @@
-Return-Path: <devicetree+bounces-269171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269172-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WHckL0l1oWkPtQQAu9opvQ
-	(envelope-from <devicetree+bounces-269171-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:43:21 +0100
+	id 0BE/Ebl1oWkPtQQAu9opvQ
+	(envelope-from <devicetree+bounces-269172-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:45:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FA21B61F1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:43:21 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 693CF1B6242
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:45:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B8C0F315EEE9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:41:28 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EF7C3304E731
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3AF03A1E6C;
-	Fri, 27 Feb 2026 10:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4520C3DA7E7;
+	Fri, 27 Feb 2026 10:45:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zhw5zAn0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D233A8FF0
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 10:41:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B6D3C198F;
+	Fri, 27 Feb 2026 10:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772188887; cv=none; b=kpp+muz04HGDzmU+d1oaQ4wxHn19ViJsHr9CpearCagdNX0fPCt6pCvLcOqzBqX48PsoHA4bdBZRfVkMkdKn5BA6Aa1pCh9GYeJ71hh/rlbLCg9hp/PUE0QcxgKszc0/F0tMxk40iZTOJbbpqet8ufRyx7clbYRao+C+4V3ays4=
+	t=1772189106; cv=none; b=rbnpZt6xOzYuCVueeS8FDKwEnsQDFIMfyyjoLoWzB6Dc48x8Y6dOgqJpvmpMb92OrR/HzmzV3bekkuSqZY4FE5B6cqR76tasv0SwiWctIDsRKzwj7kGrympV4oDJGqhIhCrEBRCwJyKdY6wFNp+cwSlTtrWFel7h4GvW/6Fwia8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772188887; c=relaxed/simple;
-	bh=+5TjKl8kKwZaifml2Ywv/XFpEld7c02pnD+PheIwsOA=;
+	s=arc-20240116; t=1772189106; c=relaxed/simple;
+	bh=xt6m21T316YRs2MqjpM0+Vlxf7fBnTeYJucPWPyF2y8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nI2zSk2Ma/LWdj51gq/uDVbR6H14hwv/beSJB7nV1aZA/ShEeb1CWbXeCjBn6WZtvugwznaRLMJ2UdfCM0isCN4QU9kuUUXTtVMxsXjL+7XOf7YhifNXUWvm+pd0om7kUNMAXRDzbNbSk5pSxFFsGWIjoC5lQ6QAB0zzybik6pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vvvHQ-0003rU-Lm; Fri, 27 Feb 2026 11:41:08 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vvvHO-002sf0-36;
-	Fri, 27 Feb 2026 11:41:08 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vvvHQ-00000008dD4-0mEk;
-	Fri, 27 Feb 2026 11:41:08 +0100
-Date: Fri, 27 Feb 2026 11:41:08 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Peter Rosin <peda@axentia.se>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
-	David Jander <david@protonic.nl>
-Subject: Re: [PATCH v1 3/8] dt-bindings: pinctrl: add NXP MC33978/MC34978
- pinctrl
-Message-ID: <aaF0xNKzz74h0gBA@pengutronix.de>
-References: <20260225171545.1980385-1-o.rempel@pengutronix.de>
- <20260225171545.1980385-4-o.rempel@pengutronix.de>
- <CAD++jLnkfcgme27DbAUOKn60HJbJuBghetEqpC8dhGnuMPk=Kw@mail.gmail.com>
- <CAD++jL=PKnAa6CrzGOwPoS_kJJjiHEvztgAFdEoYpHDPj6WT9Q@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GekaGl8gKHeartcDh9dbmoE2URXX9qlRUhfew2e1XwRF4ZIpY5N2mocV9EcL/RQ2gLKbfl7isphf2W1tSKAan0Sdm7gPzQm8o4JrvXIQONR1QzvJmUq11g/oAzWpNQ4EcGtG6hZw7yGhSxK5oAtWn8WfIAZ1x5Z8NSS79JXXxcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zhw5zAn0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34864C116C6;
+	Fri, 27 Feb 2026 10:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772189105;
+	bh=xt6m21T316YRs2MqjpM0+Vlxf7fBnTeYJucPWPyF2y8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Zhw5zAn0HKwQEoqL1ZQN3doeLB+2Bp8zaBcnJEmXgL4yZL974df66p+9+Nmn+JMSh
+	 USW2fOjXMg/Xn6AGFLo6bHhsKzGGJ0ItGvWlIopVpCP4bRRo19bhUET9aE56GTc+Oy
+	 ZpkH6SkogdLShZHZCuooSqASIPk6TzrwcHPCYzjaE3ijGVUJSFw2ykL5VoDEzuxG1D
+	 puMnxG/UG2RXWOK4ijkn09BNQBl55jAT8ewNb92p1FBqZStlalJYqW60r7/QWV99e9
+	 rqLKl2zk/gQU7cmMDT/nZVt5wZUwOuNBBiNspGSrrWKH6k3heRDyRnIxBXHBqLZ7Xi
+	 JZavIov09nQQg==
+Date: Fri, 27 Feb 2026 11:45:03 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jimmy Su <jimmy.su@intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH 1/8] dt-bindings: media: i2c: document Omnivision OV08D10
+ CMOS image sensor
+Message-ID: <20260227-imported-benevolent-stingray-e97dfd@quoll>
+References: <20260226-ov08d10-v1-0-c3a916368123@emfend.at>
+ <20260226-ov08d10-v1-1-c3a916368123@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,71 +66,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD++jL=PKnAa6CrzGOwPoS_kJJjiHEvztgAFdEoYpHDPj6WT9Q@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20260226-ov08d10-v1-1-c3a916368123@emfend.at>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-269171-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-269172-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.991];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:url,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 39FA21B61F1
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:email,devicetree.org:url,emfend.at:email]
+X-Rspamd-Queue-Id: 693CF1B6242
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 12:02:53AM +0100, Linus Walleij wrote:
-> On Fri, Feb 27, 2026 at 12:00 AM Linus Walleij <linusw@kernel.org> wrote:
-> > On Wed, Feb 25, 2026 at 6:16 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+On Thu, Feb 26, 2026 at 09:56:01AM +0100, Matthias Fend wrote:
+> Add YAML bindings for the Omnivision OV08D10 CMOS image sensor.
+
+Drop YAML. You add DT bindings, not YAML. No YAML is bound here to
+anything.
+
 > 
-> > > +  - Pins 14-21: SP0-SP7 (Programmable inputs, can be SG or SB)
-> >
-> > What is SB now? Please explain :)
-
-> Oh I see in the driver that this is Switch-to-battery. So document that here
-> in the bindings too.
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+> ---
+>  .../bindings/media/i2c/ovti,ov08d10.yaml           | 101 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 102 insertions(+)
 > 
-> Also it seems that something configured as switch-to-batter must be
-> flagged GPIO_ACTIVE_HIGH.
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov08d10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov08d10.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..96dbf61cf7c188544f4120216ae2b8e0155128b7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov08d10.yaml
+> @@ -0,0 +1,101 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov08d10.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Omnivision OV08D10 1/4-Inch 8MP CMOS color image sensor
+> +
+> +maintainers:
+> +  - Jimmy Su <jimmy.su@intel.com>
+> +
+> +description:
+> +  The Omnivision OV08D10 is a 1/4-Inch 8MP CMOS color image sensor with an
+> +  active array size of 3280 x 2464. It is programmable through I2C
+> +  interface. Image data is transmitted via MIPI CSI-2 using 2 lanes.
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov08d10
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: MCLK input clock (6 - 27 MHz)
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: Active low XSHUTDN pin
 
-Actually, the active polarity depends entirely on the external circuit,
-especially since these pins can also be used as controllable current
-outputs.
+So maybe rather powerdown-gpios, see gpio-consumer-common.yaml?
 
-For example, we attach LEDs directly to the pins. If an LED is
-attached to an SG pin (or an SP pin operating in SG mode), the pin sinks
-current to ground to turn the LED on, making it GPIO_ACTIVE_HIGH from
-the LED consumer's perspective. 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> +    maxItems: 1
+
+Best regards,
+Krzysztof
+
 
