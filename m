@@ -1,146 +1,153 @@
-Return-Path: <devicetree+bounces-269296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269297-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kCZrJIWxoWmMvgQAu9opvQ
-	(envelope-from <devicetree+bounces-269296-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:00:21 +0100
+	id YN/fK0uzoWmMvgQAu9opvQ
+	(envelope-from <devicetree+bounces-269297-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:07:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F0B11B95DD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:00:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A08C1B96F5
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:07:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EBD4B30F025F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:55:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E7AF7309AA7E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893F042B73C;
-	Fri, 27 Feb 2026 14:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257F442B74F;
+	Fri, 27 Feb 2026 14:59:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QL1/ckIe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85EA2429825
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:55:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F048C42B748;
+	Fri, 27 Feb 2026 14:59:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772204155; cv=none; b=gRxkKZpsgG1L7MmbRUSEeYnrvcp4tr/ESB8eJf6/9FJO++PhkygFHVlwW968gwF0FRgzFt4sH6cdASRu3CI8uJbbyeH6RwgKpPgbt1L0VXy0EZgGl3o1l1xJ6emvaa1om9zSX1JUv02GpeO6D6VYDb3mJn5sTJaTgbbwjrKZF3M=
+	t=1772204388; cv=none; b=FLIFd44YbJca8ZmFHITxLWFut+7FvsxRu5lyWt66CKq0G/zmBj/REi7b0iTAyw2qQwBxLjtGr+r5po42kgokDQ1jjxHLrmIJc5D3qPtcejfMnwVF/zh5mGO3WLkdC+jmexDqVlTm8/2O92Irx+SUzrtfWVctIrh96FkXTK6ofiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772204155; c=relaxed/simple;
-	bh=lToFBo+bQaCa9neG/vLe3MHGOkvyleQBs1IqzhcHe1s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zm4/dqUI2kBaeC+cfjxs9a9oGXJoLKKJ+Qa9n+LSgl1g+TRsNs060114+mYrgdisgeO/X2iqc8l8kZNLPYTc8fyj9ci/t5Cy67eMorPccpT3ZQctvjFAnKAtU/yWGkOjotJ7VEooonk+2flBFBl4Sw8qR8m3N31i5zHCmJHptbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-56a88bfd470so1582383e0c.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 06:55:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772204152; x=1772808952;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FUkkEiUGXuiXLmzIVFfuNzK2FaXQ+t2b+WPGwELOFZU=;
-        b=HESDSaGkhDyQl1WvwoGOhxPs6/tpEmowN6NYi1R2vGa8bqeGxZXzZv/OghMAGRGE3T
-         cN02z+fo3+DQCiYVCqtSPJuq3nzOCs+803L8nm5dHOMdk/zbuCdotVE2HPTdf2QTCtLZ
-         p9k3yXD4Mf2I4nUzBI8vRwZSbmZllHNYyZGH9KX/pQ224aRVKVvwhbLEc+OXuHBdbtWJ
-         L2EZ30Zd4pxGULw2xMswZG2oEpCzph//thAE9X3nZoXH4CERDGcnbFxHwIEjkc76Hn1h
-         h+W56mQKtjxh+zsMHh69gv/eYNt0pF3xLICDvLcfZk054VafZ2JzqNPpsj7I5CttDa3j
-         6a4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUp9zPKZc8hlV53kU91437iNCvj8iYuwUH/dtjjrlMVUtCzIwaxPT9H4gVtEIDUoIWtcUvMba8MmLhA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1sBT04CnEOAOznlcCJ6Cs+1s5zJy6/kYGfG4U5AMRbP/dBiJq
-	xLKKGPZj4uPTpO+UF1Y4JpFCXgQCG8AdqY5ImZxkaaucbna+xr4VbCaQlbTvvOgiauk=
-X-Gm-Gg: ATEYQzxjOZpaCYqX1qNWhSbsh/g/1rP+z//SBvqoVZuMnuOepX7O2l4K/q11oH7ABF3
-	Db7PktDRWtmm4DSe4rH+ynRN2T7PbwgidXB4VFIbliSnRbUNLuuw49c+BW9Gy16OqeGIlYGW3mu
-	38wbQFrj5q3YbJI9q5iZYzzlKcElPyYhSODvLGjXeYd466XwgPmGBFINBDi78n7PlnImnQfRrcd
-	k51Dvw6VFBbO36xnVkODrOgNHpI5J0I9B91GuxgcWvVDe41H5uE6NZ9KxQTu8cAq+uYF3+5/ohh
-	BOJPVxEq5/ckm4Lfy6XEpAn+sNAqGxhNq3ZQrkQZO3BcqbHEq1slmBXqoDFcjA4if+kMGadOFfr
-	gbClFRnj/EWUrcXp78EgsVqf8q8Z6P4MLIycGg3d/1WFW9HvTEK07Tffr/fzK+5P11vNIkdJdE2
-	o+Z9F/9qzrH3VELHxY6Ioatre1U9G7VTFRFMCqqId6kiSkhsOglL1AnKG+SKd7
-X-Received: by 2002:a05:6122:6588:b0:56a:9fdc:2139 with SMTP id 71dfb90a1353d-56a9fdc255fmr2036650e0c.1.1772204152546;
-        Fri, 27 Feb 2026 06:55:52 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56a91bcc3eesm6593390e0c.8.2026.02.27.06.55.50
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Feb 2026 06:55:51 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-94ddffda372so2207576241.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 06:55:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU5U3fdLa7VyJPTckVMPyyhZxQ5Oct4Rai/E1wJ2016QSqpdjaIUGxtj0NG5JDdrLk+Z5LHcFCQKfBw@vger.kernel.org
-X-Received: by 2002:a05:6102:f06:b0:5ff:1734:4ae7 with SMTP id
- ada2fe7eead31-5ff1cffe701mr3749937137.20.1772204150707; Fri, 27 Feb 2026
- 06:55:50 -0800 (PST)
+	s=arc-20240116; t=1772204388; c=relaxed/simple;
+	bh=MZa9xWLiumaplzcIo8ZJptqQvtOjLhpO8tJPSbBzWug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RKeTXbngvOr7CaYgfJ4GZapwot1MxfOhuOBJNH873M0exku9dHTkSCYRazHjr+VtxkVeKFxp8l1IuyNUP953P2arqFv7CG/doBdysaxH563mU1NgfIv/Zf6UAWsJbKPH5CGwpc66KnGJdlgzGvdxQub23dWAMaH3rRsDrfVAyBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QL1/ckIe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0AD5C116C6;
+	Fri, 27 Feb 2026 14:59:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772204387;
+	bh=MZa9xWLiumaplzcIo8ZJptqQvtOjLhpO8tJPSbBzWug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QL1/ckIeUXLAKmiHGzBfhKJwkndP36tCWXnb5pplxYMTpN1cZNCETQIVmfto9G2ii
+	 +cRsc+StQjLulD2ifCd+gtZijsMCJOBvKPgZsul21LjvCWu3/Ab79RqLekJ22E65a6
+	 B+hWEV6QhJ21xMZPjK3+MDj0TD/9Iy8sIYIFqsXBE7pZtRftya1ElAJngc4eQnLPuO
+	 9kTl6um+I7uyuaAdYsd94t4Sbic62Uj87k7gl4+reuKTllvOMpLfYcRWL5JvqvDMUQ
+	 XHVxOxA8iD/aoqagR5l8hwsvXiQMoVRcqo2m+kvlOa9A/yu0q+5BgSYLgXi0xB2yf9
+	 ql7iuT4JvW4aw==
+Date: Fri, 27 Feb 2026 20:29:43 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Yixun Lan <dlan@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>,
+	Junzhong Pan <panjunzhong@linux.spacemit.com>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] phy: k1-usb: k3: add USB2 PHY support
+Message-ID: <aaGxX_3FXjM1LT6y@vaman>
+References: <20260214-11-k3-usb2-phy-v2-0-6ed31e031ab4@kernel.org>
+ <20260214-11-k3-usb2-phy-v2-3-6ed31e031ab4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260128215132.1353381-1-cosmin-gabriel.tanislav.xa@renesas.com> <20260128215132.1353381-4-cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20260128215132.1353381-4-cosmin-gabriel.tanislav.xa@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 27 Feb 2026 15:55:39 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWJh8y5zXUMtWcmYaEND=PXZUFa01xCVpKt_0X4BdztcA@mail.gmail.com>
-X-Gm-Features: AaiRm53Ttbxl3AS1ZsDflKNTMNk92JmxxoblMh4cAxRt1__H5obq1pnJAwopKd8
-Message-ID: <CAMuHMdWJh8y5zXUMtWcmYaEND=PXZUFa01xCVpKt_0X4BdztcA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: renesas: r9a09g087: wire up DMA
- support for SPI
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260214-11-k3-usb2-phy-v2-3-6ed31e031ab4@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[renesas.com,kernel.org,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-269296-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269297-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-m68k.org:email,renesas.com:email,glider.be:email]
-X-Rspamd-Queue-Id: 2F0B11B95DD
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1A08C1B96F5
 X-Rspamd-Action: no action
 
-On Wed, 28 Jan 2026 at 22:52, Cosmin Tanislav
-<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> RZ/N2H (R9A09G087) has three DMA controllers that can be used by
-> peripherals like SPI to offload data transfers from the CPU.
->
-> Wire up the DMA channels for the SPI peripherals.
->
-> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 14-02-26, 20:29, Yixun Lan wrote:
+> Add USB2 PHY support for SpacemiT K3 SoC.
+> 
+> Register layout of handling USB disconnect operation has been changed,
+> So introducing a platform data to distinguish the different SoCs.
+> 
+> Signed-off-by: Yixun Lan <dlan@kernel.org>
+> ---
+>  drivers/phy/spacemit/phy-k1-usb2.c | 34 +++++++++++++++++++++++++++++-----
+>  1 file changed, 29 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
+> index 959bf79c7a72..b4ba97481ddd 100644
+> --- a/drivers/phy/spacemit/phy-k1-usb2.c
+> +++ b/drivers/phy/spacemit/phy-k1-usb2.c
+> @@ -51,6 +51,9 @@
+>  #define PHY_K1_HS_HOST_DISC		0x40
+>  #define  PHY_K1_HS_HOST_DISC_CLR		BIT(0)
+>  
+> +#define PHY_K3_HS_HOST_DISC		0x20
+> +#define  PHY_K3_HS_HOST_DISC_CLR		BIT(8)
+> +
+>  #define PHY_PLL_DIV_CFG			0x98
+>  #define  PHY_FDIV_FRACT_8_15		GENMASK(7, 0)
+>  #define  PHY_FDIV_FRACT_16_19		GENMASK(11, 8)
+> @@ -145,7 +148,7 @@ static int spacemit_usb2phy_exit(struct phy *phy)
+>  	return 0;
+>  }
+>  
+> -static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
+> +static int spacemit_k1_usb2phy_disconnect(struct phy *phy, int port)
+>  {
+>  	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
+>  
+> @@ -155,10 +158,27 @@ static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
+>  	return 0;
+>  }
+>  
+> -static const struct phy_ops spacemit_usb2phy_ops = {
+> +static int spacemit_k3_usb2phy_disconnect(struct phy *phy, int port)
+> +{
+> +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
+> +
+> +	regmap_update_bits(sphy->regmap_base, PHY_K3_HS_HOST_DISC,
+> +					   PHY_K3_HS_HOST_DISC_CLR, PHY_K3_HS_HOST_DISC_CLR);
 
-Thanks, will queue in renesas-devel for v7.1.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Please match this with preceding open parenthesis
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+~Vinod
 
