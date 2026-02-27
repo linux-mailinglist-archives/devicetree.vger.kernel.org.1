@@ -1,115 +1,139 @@
-Return-Path: <devicetree+bounces-269039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269040-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oARkAZMToWlwqAQAu9opvQ
-	(envelope-from <devicetree+bounces-269039-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 04:46:27 +0100
+	id 8Ip2GAwVoWnoqAQAu9opvQ
+	(envelope-from <devicetree+bounces-269040-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 04:52:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCE8C1B25F8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 04:46:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7B61B2684
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 04:52:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3477B303CEEE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 03:46:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78E4630D49FD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 03:52:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA953376AC;
-	Fri, 27 Feb 2026 03:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8464233A6F8;
+	Fri, 27 Feb 2026 03:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GFzu/P0O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bl/CaEpa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676DD337681;
-	Fri, 27 Feb 2026 03:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E7C533A01E;
+	Fri, 27 Feb 2026 03:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772163972; cv=none; b=J1t4o8iyCzbSOuWTXxZkuQQjK5B+gv1zxSr/BmtNT6zFbNisf+bF2oSxTNf/ajqA3fZ9K4J5LQULMLG1iPc9YheOUv+22na95t5fGm4mHdu3E3rcemSqiWwa1nChZAmqMtcCeoD5fjbbJ2H1UHdK1N1uDtfpVBfL3+w4PWv0Awo=
+	t=1772164359; cv=none; b=GfDFvancn0WOy36z4rdEFNILx7KNvL4d48p88RTvIJv+LgaoaZX7H+dalS0UqGSIVtZefuV9Nn/1ZnOCS26fk1NDK+uVFIccrg+SUPGgGgIj6wYjC38A4G88ghzP3PgV5dkZU1PNIvpcNblA15mVCmY3nX87uiXm5Vvyn7y9YNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772163972; c=relaxed/simple;
-	bh=Y2CTYnsVA2dtvXsyTrcaUb9F81mB8LAioVnmd264hbs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I7ok8Mz+oAbo+bn3lUsi4CecAD3pRSbDJLPbJv18gblOu6IyPj0s+ev4PQBadrjPy/iE6d7e+6nna9CHcMtPGsjedx6B6qFVw8Yi0N8vvaGYbF1UcWnrY3a8fTAIHXax0BSmrBqgZKgnAZaz7idM2ux/OYj/T7tGkvcBlk3/W0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GFzu/P0O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A56F4C2BCB2;
-	Fri, 27 Feb 2026 03:46:11 +0000 (UTC)
+	s=arc-20240116; t=1772164359; c=relaxed/simple;
+	bh=sGcIi9R+H+rYlejz3LbbzLzmzqTMDT0m2GiS7N0wTHE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FZdqRCp/TnxV3Mji6l5frLAMojLJajnHVP/26CUPsGdzqc0SZD+dkU4/ZR7PP4hHhzVIFMmT7BKW9oa7cclOxQL1kJ8j0E2cFLKW4UBRB2pZazVQhNlSD0lmzrevxwyXBlP6YDjycdCQOSjRdWRiI1obhTgk5k0GFyZ02H/LT/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bl/CaEpa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2B7CC19423;
+	Fri, 27 Feb 2026 03:52:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772163972;
-	bh=Y2CTYnsVA2dtvXsyTrcaUb9F81mB8LAioVnmd264hbs=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GFzu/P0Obzwvt85FTsl3PSM7bikksgCsIDzpxlVylh8yfYpaq1kLPdPW9XBmIHUq5
-	 MDQzBYUcgVllmwaXS6G4ioEOkNWVXr2A7+HJ9ULY/VfQnCpv14CUkviEQL2GlYJXSV
-	 keC3pbFReA2lJjio9dNx6LMvZKaaox3a60Xk8vIbJ7u2e8haB3CD3OEDDge6VAq5mr
-	 7wXNZx5ujSB4gYWi3xh0eu5qXbQMlfFor8rK30nQNeOWwdzjpmukPz1ue1rbBimaui
-	 PdqxuzgefT4TOLya//QFvHf4twFzKzG0FGrlGdZ1XvTtxR1LDRPWCRhbYHADO/8eK4
-	 +izi3RgXJvjQg==
+	s=k20201202; t=1772164359;
+	bh=sGcIi9R+H+rYlejz3LbbzLzmzqTMDT0m2GiS7N0wTHE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Bl/CaEpaUARa6Oyh6+Q0TcqnR8VOvXTMqZYbXr3BBHTjB47Cwk8KEjyGZpObZNz1n
+	 ZxnigLbQI3Gf+rkoz37BGPLbUhC6OFGzUAJWcw/Jo2M+BPLZ2H2Ygkt1IzKdiUbvH+
+	 DhGFXGmlexEEZHtsC8IrME0z6f/dhFFs6rL15r6dh6IolqqtAuvw0c9jhF1VuBWzSk
+	 Onynceq+DDz9aBm7RHMF5epDxAtyqjL3Dkyv0PekcK1rpVLLpvPHR2XRyGyDxwHi1Q
+	 a0S/K8APMxChudUL+KRFVORIwLMxiiVIkGCd55cWW64MQK1HQVS5U3WwNZ8bsLLZGe
+	 O78k5YHQFRB3w==
+Date: Thu, 26 Feb 2026 21:52:35 -0600
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: merge duplicate references to pmc8380_3_gpios
-Date: Thu, 26 Feb 2026 21:46:05 -0600
-Message-ID: <177216396217.866892.7389535217201222524.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260114-hamoa-v1-1-c96ab354924c@oss.qualcomm.com>
-References: <20260114-hamoa-v1-1-c96ab354924c@oss.qualcomm.com>
+To: Val Packett <val@packett.cool>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+	Matti =?utf-8?Q?Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>, Luca Weiss <luca@lucaweiss.eu>, 
+	Vladimir Lypak <vladimir.lypak@gmail.com>, 
+	=?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org, llvm@lists.linux.dev
+Subject: Re: [PATCH v2] remoteproc: qcom_wcnss: Fix handling the lack of PD
+ regulators in v3
+Message-ID: <mteufo3laiiuhcgbihxnossy4xfkxhct57mkav2fr4oxvaldp7@k6p7edkfgjt4>
+References: <20260201210230.911220-1-val@packett.cool>
+ <jup7hphwpa754gyhtcahz25glecp6ctpuxcwzvco6wrbokvnip@quw7hrauahsa>
+ <ddd8b949-3f73-4e3d-90b9-be95e859f3b1@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ddd8b949-3f73-4e3d-90b9-be95e859f3b1@packett.cool>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269039-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269040-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,google.com,lucaweiss.eu,mainlining.org,oss.qualcomm.com,lists.sr.ht,vger.kernel.org,lists.linux.dev];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,lkml];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DCE8C1B25F8
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BD7B61B2684
 X-Rspamd-Action: no action
 
-
-On Wed, 14 Jan 2026 12:30:43 +0800, Yijie Yang wrote:
-> Merge the two identical references to the pmc8380_3_gpios node to improve
-> clarity and remove redundancy.
+On Tue, Feb 24, 2026 at 03:45:05PM -0300, Val Packett wrote:
 > 
+> On 2/23/26 5:03 PM, Bjorn Andersson wrote:
+> > On Sun, Feb 01, 2026 at 05:55:03PM -0300, Val Packett wrote:
+> > > The changes introduced to handle single power domain platforms have
+> > > swapped the info pointer increment from num_pd_vregs to num_pds, which
+> > > would shift the info pointer past the end of the array for pronto-v3,
+> > > which does not list power domain regulators in vregs.
+> > > 
+> > > This showed up as a difference between GCC- and LLVM-compiled kernels
+> > > on SDM632 devices, where only with LLVM one would get the
+> > > "regulator request with no identifier" error, because the out-of-bounds
+> > > memory ended up being zeroed. Fix by skipping the increment when there
+> > > are more power domains than regulators.
+> > > 
+> > Is the error only an error print, or did the thing stop working as well?
+> 
+> It's a real error. Likely no one would've bothered debugging it if it
+> weren't breaking everything :)
+> 
+> It was a blocker for allowing LLVM/clang builds of the msm8953 kernel in
+> postmarketOS, the whole reason to dig into this was "switching to clang
+> breaks the modem, WTF?!"
 > 
 
-Applied, thanks!
+Can you provide me with a Fixes: line please?
 
-[1/1] arm64: dts: qcom: merge duplicate references to pmc8380_3_gpios
-      commit: 5ccfabc0a5ad631312d815b2c46de70ad5e7715a
+Regards,
+Bjorn
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+> ~val
+> 
 
