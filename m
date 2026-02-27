@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-269125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269126-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EIjVAG9NoWkfsAQAu9opvQ
-	(envelope-from <devicetree+bounces-269125-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:53:19 +0100
+	id YFt+KoVNoWkfsAQAu9opvQ
+	(envelope-from <devicetree+bounces-269126-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:53:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F521B4213
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:53:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 565B91B4230
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:53:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C32430416E4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:52:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AC8B430379E5
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46E433AD95;
-	Fri, 27 Feb 2026 07:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67044355F35;
+	Fri, 27 Feb 2026 07:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I3QZv4sk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y8B1qcQZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF80F28314B;
-	Fri, 27 Feb 2026 07:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F2628314B;
+	Fri, 27 Feb 2026 07:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772178767; cv=none; b=kLxHb8xJzBRLHjmiOx7bQZqhcPNRbES+Am2ZftSTfx4AJdnky+FV/Flf1FusQcmLReXYMJXvfL+6C5wcZ8n8kCOrIXkKUUOX2GxxTF0Gs+3QxsTrdOCkrzjtUlWxHLRTtVhHR1d8CaJo2G4+SxoOOrh9ni5wIV5qLSnpHDgjVKU=
+	t=1772178818; cv=none; b=EceiDxIIMUsQjH1X8kyod5BUkbhajeuzR0MV1RIO7fLqX2nncpPmIe/uXLKfFKvN1SHM3JdFJ4mKpPx4QnT00hUHITtZphrWG+yxsWoY+sJW9bQp5GQir0hz9UE7MLqXCN+CezOKJ3jRzGT5ovwE4f8Q9Dwc6iH9od/lK2JX1YM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772178767; c=relaxed/simple;
-	bh=edfm1CQrcip1g4v/yX8jcgmeuNjFOFHtDC/FdDv6ASc=;
+	s=arc-20240116; t=1772178818; c=relaxed/simple;
+	bh=JYsQ6qqPYbwoRqn68kHm9mmq1wjo1KtZECfwupX/hFQ=;
 	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=L0kEudGmAI8IzN5Ckd5pzZyd0D2CxAet5YmuucE9gTNPbbqiW0uFH9XOyCZZykQwX54rHRxyJr3cVqAfDrW7RPw/neXw3boq7iE6wL1KYsXCZSeA0YE8xY/bIxefbBEu9T8JwHGKxu9lkJBpjhc6Oc39IKBdx8TtnfX6VMePHuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I3QZv4sk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0538C116C6;
-	Fri, 27 Feb 2026 07:52:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BG0t9iZqm3zr/TSWdXwZlKCJqM3Z2byI9E6mXPcj1GcjB8rRkhJqIz8PDyRzwqdo/A4lBHSoiMHRXHauFXe6Gc6sVMfjb3jy2MHkpGcUFQINtkMhnhbqrT4ajjEA/NOdcTXppCJcg+o2dLZ6ObOGT8kRrOY5Ob6RAFVxyybDgt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y8B1qcQZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BCC7C19421;
+	Fri, 27 Feb 2026 07:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772178767;
-	bh=edfm1CQrcip1g4v/yX8jcgmeuNjFOFHtDC/FdDv6ASc=;
+	s=k20201202; t=1772178818;
+	bh=JYsQ6qqPYbwoRqn68kHm9mmq1wjo1KtZECfwupX/hFQ=;
 	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=I3QZv4skfGE5wWZzNxOW61KIC8/6KXCYj8a6ZcOh+9QQdPYA7TW9w+tSP2KdaqJqI
-	 YhVMLR6EsPF+asg8+oEd/Mj83/tGO94lPhw8M8qTWE1ZNuZ7UtjVmjV28+AXLQlrW3
-	 7M8s5nAeSnuWhaymHgxEzI/ZuwRa5L7P/1Edd67sMRKO28UdbM7J+s10BARQLmd534
-	 ss9Q8TBqT6WKx37dn91yGxp0m0m4IhExEKNJv1tPDfhNCgcwTOt/Jrwd+Ka2sDqNVY
-	 6Akv3uE9AE9J5X20HY25ve8y3Rjf4ksk7YlykU3vSNS2GuIbsIQURbSWIxW7r5EYE1
-	 QSonUkRj4CRCw==
-Message-ID: <f4f0cfd9-f29f-4064-a03c-44f76e1a747b@kernel.org>
-Date: Fri, 27 Feb 2026 08:52:43 +0100
+	b=Y8B1qcQZgYcLd6hCXRG4PlPgS97BEflLPBak/5eDxVkUXOfuIk1cktMwCSI0Ux6wY
+	 4UqUfhTQOIS4L0A1TP44012LizNdTbKgbG2iUULzQB3OcvyWITDOa/d/VdSOLDT9tA
+	 Km4RFaBBanFG8S+PkDH2VfdrAVhqYpcsL8MoMTbzZ70OBF2eHwU9UxHaQoKp73oKVf
+	 KXVzyC7ATOHQyZy7hOsfFB4dZlBCaXB6HbTVnJVlGgb7wLRrWoynk+sJwod8b41NZk
+	 TnqTnkYtAyAcFJgGl5cIms6L/4lVE3aBMkXr/+Ity3BNF58YfpucF0YrxlZ3TyoMVO
+	 8xtPTBiuqa9GQ==
+Message-ID: <d85a5707-66ea-4053-87cb-9f34b7cbbc6e@kernel.org>
+Date: Fri, 27 Feb 2026 08:53:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ Cc: shawn.lin@rock-chips.com, ulf.hansson@linaro.org, jh80.chung@samsung.com,
  devicetree@vger.kernel.org, hy50.seo@samsung.com, kwangwon.min@samsung.com
 References: <CGME20260123085150epcas5p42f2cc04843ae7657380b2968261246cb@epcas5p4.samsung.com>
  <20260226091051.300579-1-ping.gao@samsung.com>
- <20260227-athletic-marten-of-climate-cff0be@quoll>
+ <20260227-lively-vivid-wren-8e8a4d@quoll>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -108,7 +108,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260227-athletic-marten-of-climate-cff0be@quoll>
+In-Reply-To: <20260227-lively-vivid-wren-8e8a4d@quoll>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -117,20 +117,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269125-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269126-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -138,26 +138,31 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email]
-X-Rspamd-Queue-Id: 76F521B4213
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:url]
+X-Rspamd-Queue-Id: 565B91B4230
 X-Rspamd-Action: no action
 
-On 27/02/2026 08:50, Krzysztof Kozlowski wrote:
+On 27/02/2026 08:51, Krzysztof Kozlowski wrote:
 > On Thu, Feb 26, 2026 at 05:10:51PM +0800, ping.gao wrote:
 >> The driver `dw_mmc.c` now treats the biu clock as optional, so the
 >> binding can be relaxed to allow a single clock.
-> 
-> Not sufficient, bring also arguments in terms of hardware. If the
-> hardware needs biu, then this is wrong.
-> 
-> Missing blank line.
-> 
 >> Signed-off-by: ping.gao <ping.gao@samsung.com>
+>> ---
+>>  Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Are you sure your name includes "." or you just use login as name?
+> What is this mess in threading? I see here bunch of 15 emails all mixed
+> up?
+> 
+> Do not attach (thread) your patchsets to some other threads (unrelated
+> or older versions). This buries them deep in the mailbox and might
+> interfere with applying entire sets. See also:
+> https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
 
+Plus I found now that you ALREADY sent v3, so you made complete mess in
+duplicate and wrongly attached postings.
 
-And I already asked you this, so you completely ignored me!
+Slow down and re-think what are you doing.
 
 Best regards,
 Krzysztof
