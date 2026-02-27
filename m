@@ -1,189 +1,316 @@
-Return-Path: <devicetree+bounces-269373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269375-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCjPMgfUoWlcwgQAu9opvQ
-	(envelope-from <devicetree+bounces-269373-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:27:35 +0100
+	id WP/TFXnUoWlcwgQAu9opvQ
+	(envelope-from <devicetree+bounces-269375-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:29:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39F11BB740
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:27:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AABC81BB76A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:29:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E98F31C6131
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:21:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A7E9B300360C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:24:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0CE44CF3D;
-	Fri, 27 Feb 2026 17:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDDDF356A3E;
+	Fri, 27 Feb 2026 17:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="fYQIOaz0"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="vBACnhPP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010070.outbound.protection.outlook.com [52.101.228.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3131F44B68C
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 17:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772212855; cv=none; b=qpZXG6UyxLcEj29cCyngfA+t5ZXGaQI3lMtnMr3pVCkEA+35OcxxC90cEwP1AZwClo2GHGT32NM/w9PTRnUrfngIVKwiV0zHfR20c4oGYP+/Qb+69xhv18KfEitYpZ+4DwQqhbWL1I4mybtpTu/HUpblosD5Zd1Rp3OKOrKiXCc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772212855; c=relaxed/simple;
-	bh=GcWcCkh/S2QN6rJM8DB8/+xpSep1ONSspIJ5ZvkbTxA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OMLp4syt0Zs/m5BtSN9qi3DMUTMF5b0gKO/LznSNzA8GKSXsv5xyRFg3M6h5NDFFN6KO6HqUlu2vH1JVLQO5ezebKGsypTMBXMsXLMt87Brs8jnPM8AjvvbjCyg8juDOSJzW/2+ACAisXEx0K/q2RvT2+tUZ0csQV2vIE96ojz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=fYQIOaz0; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-48379a42f76so17674855e9.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:20:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1772212849; x=1772817649; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QzYqP/o/j5AHYZ8QSUfI4d0IlFeXxdlgP7OAfF3TxxQ=;
-        b=fYQIOaz0uwEA4TFpIzwcDVEqzW+0swB5X2bYv2FahQBYoCCS7uS0y/i5M4/I8/6f89
-         G4MMgi7k7JB0t9N5OYaP3VRnHUXBMFX5Vpi6miWbYdlQ/CLRmjmmTk1HQqdbHW+cPIKY
-         Cw0xTv+SdtLLQ9drf3L6AXnlQR4X243NpKibpV4DkJ6G9DxL5S89J3ljeTgl4Li1svwS
-         of7zpHdpZNXJlOdTsplnfvK1eOhQ+1bkGC/umorZF658Vrb3fkZa6jd/N6C8BMCZ4mlm
-         Q9r79jcfwezOci2g8U/XmoCaH2F87rqMsFZtAjY6brrAsuY/PdUWLFsTgN9Bh09W5yo9
-         EqYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772212849; x=1772817649;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QzYqP/o/j5AHYZ8QSUfI4d0IlFeXxdlgP7OAfF3TxxQ=;
-        b=nHwggQbY/egq+7EfDpd1Ess6RVJOHiUk14MDWYT07A2c5ZEjOnSswdZxDq3U6mLywb
-         syHIwk7yh61Uhh/Xy3ueTdLup6OeJ7DizG/cB1Y8RnGwAq8+366s6XNWKavv9KKiigIt
-         7UejuCJoAEuy+41fcsL476D5/ogEba2mjj/3xr5VjOorzJdBhKcpvABnVslBjtQ+wGR/
-         /B0gN/l2zU16+3Ib5+6C790/Ks3/L5h0AVu7+pbIaagOusAcpn0TIm8cBeWL4RCoQvkY
-         AWN87gdl8Vjle7zOPXp2FiCNVW7rSD8dFUN4p1uytMF05uSojt6V2C0ZanCow+5/dEW0
-         oOtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUsz+uv17XeKoNyyhXnrsHpbBIOW3QOWgDEVVQFCsu9IEbqrH4mE7uKxDOowldPaRkjueHZsUCeDURy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWrAO+gHg38CO0C5K3/93WV7DrAnrD97uIhqXCwAbsv816oUgP
-	frSsPoGxLwK0J4H484AikfSgOAgKbz28R2Oqrgukm+LAB6rY2FO0C4w5qWYyxsbaRuo=
-X-Gm-Gg: ATEYQzzys3FEAkvbU6+YkOrU68BlBoHX9etQC0vlowxqFvXow+vuy8su0c4E4yhb+kY
-	Ul0s9EPrZOgkZSbVuA9Ho0oThhfwdhPVBUKsY5rEsbORVh2iJfVbJJcevNcxShNU7uBRa9s/Yk5
-	XjDLqsbnUdprMv21VvXjxDEwGnQt0Gj+1WkEkjoyrasR81UzHj+Y7kPpSHJR7EkXP3JV/Mz5Oy6
-	ezocsW5JyfI8ArXAyPc9XO3c6+iMJhR6Bm5aEZfNcVVxqzCHqjjepcIc8KIIyrXUm1mcvRMlACx
-	EuD2oDxV6zEFBC4jw8OYRaiy21dJorQApMScfY7rwheG+P2gBJEGa3SU8g4Ns0hz8abhiR7X4vE
-	Li4qbLoX3Y9RaiLvpgQrgsHCflZN8s5sNAHb8ElNf+x+6LVZJvKhPzkhAecNBg9rQ54gt3C00yg
-	YJjwBXVLKZxX4tPQ==
-X-Received: by 2002:a05:600c:a16:b0:46e:4a13:e6c6 with SMTP id 5b1f17b1804b1-483c9bfb2f2mr54324715e9.19.1772212849364;
-        Fri, 27 Feb 2026 09:20:49 -0800 (PST)
-Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-483bfeb932bsm60828075e9.28.2026.02.27.09.20.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Feb 2026 09:20:48 -0800 (PST)
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Fri, 27 Feb 2026 17:19:11 +0000
-Subject: [PATCH v5 6/6] arm: dts: bcm2711-rpi: Add HEVC decoder node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F8C346A06;
+	Fri, 27 Feb 2026 17:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772213077; cv=fail; b=kDkhLTnWiGSNNa1WFfgEFVAF5gcnQSADYtQvFRlR0DLGswZD3UaSnyF7TG7aQRuyv7CjpgNMX+iqWsV6VzpDyfZ82EhRXFcsBJMezAvKBGhk0tXdamf8deqgzuxhUnN1lu/laHvg0nTBbDK5jGcKXd1sa4ZZVTo5J3LJZOZZ2wI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772213077; c=relaxed/simple;
+	bh=FG0uG8JVTE8+HJlxz3XPDjFyP3syhKQM0h6pK+ViDhs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=e/SmyysUdc77rPSR34pdlyqZw2W2IjngZcA82nl9sWoTC+iqxmWz7/l3aUDWEQUgaRT5KXYuVhU1NYOrquc0Ly09PYitDv/OPX3ap+et0OBqwOq0f5s2xyt2ZZOhunoITW+M5hZoppHq/6hXqeHGZXKZqj/TgiRpJzUxADGmfFc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=vBACnhPP; arc=fail smtp.client-ip=52.101.228.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HIfa7jg1NwC0Mf4GMw0FKAvuapXcNVJ/02gyLhteYNcYt81pyVuR/4LzVvsNR415ehI0LLB1ve8ThGyw/Y1t2ZCdxXjjF1mu/wMdM2aI2a8yxqq6ONMwBjixio0thIohpBU7AKh2HYRprVb4zOtbtxUImc6y16bZE0U+TIBx4Z2X4Gf7Le5If+yPGU1C0t8HX8gjHk/jZWhiF0NzRjzdVG7YwVacAWlz6Oh407WdqrDccDn8EPrzrzgL9OzwdTCcpKm/+yptGU6R50ykQiaOmfDIlyqPDMHH0zo3TzP+e7uvC3rSWyV/keoxQu71I/TAhs/04k4gS2yOLEkqzCMxOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Y1tBfbqy5mJb7OBLVmgX8MSbq+9gtwOsdlnq0+UcoXU=;
+ b=wTmCMrhg4lqr1QfmenDWTRqhKos0AWt3LARJrboyOwscstPDwb34XAIY1VljX9seIrO1Y2KDcWbnARn24p/osscpu5gCYYVOkS3lLN45lpLUjc9xIwLGZxZ1GLEiXhFPtDcHXVWj2kosnMid2ULvXX36fKW6OF8vpInzFA2DwtSOo2WtgUcVN9+M9QcOOdIbbFfmc0Msojr7XU6SP6ktAneb5kPy1wqIuCiNgt4Rp7+/S5Mv4AfPLM+lSEQq7YbyeKxbsBy9+a4uQtaP1CwRHQfTNrGYaLiSOD4hk6ka1uUh3w0NeyKdUqGqU63C4fCo/qzhdKj3qq4qRmVUrolo/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Y1tBfbqy5mJb7OBLVmgX8MSbq+9gtwOsdlnq0+UcoXU=;
+ b=vBACnhPPrJivnJyjvy6h2wjmoGaqH25vcjVph9FnzSmuWDh0+sTYA0c6g8IgGEkbxkN3PLOzgE42a8gP9/NJBgKGWDOgbXLlJIQ9QQIT6LKT2k3l0hgVf6JNOPTGJMtOJzq83uu0YMgEJAV9lNkmZOZxEZTmPoO+T0dWlePRuMw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
+ by TY3PR01MB9777.jpnprd01.prod.outlook.com (2603:1096:400:22e::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Fri, 27 Feb
+ 2026 17:24:27 +0000
+Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
+ ([fe80::33f1:f7cd:46be:e4d8%5]) with mapi id 15.20.9654.015; Fri, 27 Feb 2026
+ 17:24:22 +0000
+Date: Fri, 27 Feb 2026 18:24:00 +0100
+From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: tomm.merciai@gmail.com, laurent.pinchart@ideasonboard.com,
+	linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 01/20] clk: renesas: rzv2h: Add PLLDSI clk mux support
+Message-ID: <aaHTMGQHZwutlBIv@tom-desktop>
+References: <cover.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
+ <53c8d9e7fde7b176e05503a72af81e74c7a8a1c1.1770996493.git.tommaso.merciai.xr@bp.renesas.com>
+ <CAMuHMdVAf=GyDR95BFD0Q3Wbjo5n5vnqSsfue=7fRWxs6=Hdgg@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVAf=GyDR95BFD0Q3Wbjo5n5vnqSsfue=7fRWxs6=Hdgg@mail.gmail.com>
+X-ClientProxiedBy: MR1P264CA0145.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:501:54::10) To TYCPR01MB11947.jpnprd01.prod.outlook.com
+ (2603:1096:400:3e1::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260227-media-rpi-hevc-dec-v5-6-9bb3fc1816de@raspberrypi.com>
-References: <20260227-media-rpi-hevc-dec-v5-0-9bb3fc1816de@raspberrypi.com>
-In-Reply-To: <20260227-media-rpi-hevc-dec-v5-0-9bb3fc1816de@raspberrypi.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- John Cox <john.cox@raspberrypi.com>, Dom Cobley <dom@raspberrypi.com>, 
- review list <kernel-list@raspberrypi.com>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- John Cox <jc@kynesim.co.uk>, Stefan Wahren <wahrenst@gmx.net>, 
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-X-Mailer: b4 0.14.1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TY3PR01MB9777:EE_
+X-MS-Office365-Filtering-Correlation-Id: e8c084b2-68d4-4ea2-8899-08de76250c11
+X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ 0uKuuXEVx5e9M0DoqXYoVMXBABS8eF9HNfXfLp0k2mRgdFjnlh7NNFJJbl2ygZd1WaO5P4qKNHd782B4xYsRQvuc1HkKLoW9siEa8GxRMorhHWIxeE8utUYt2KnCPJYQ+CzDlBbQMtVmi0wf8gEpYtpul+VmkksFRsJn4w+h+lp1IISofW1xAccbPpcp7fEfu/uQCWj+Pi52p76ydwpabEJivlqMkGjvyUuo2eewJWquNzNcyJn4Qp+Zdxn6mI/r1WFmb/hPfyMTzJkrWSBOu++jsOhCt7N9A2KaUMs15pPeXn3P7EEOXpONdJv4FiSxGrQheg16VmvOxNj+UjHD1KmoN7iUxR58zwCaLVsNlk5lARG2lboq/EFCEspsR9VdUQxTj2h1svIdPK2lWmcv6DOePC/aBvzbuTt5gDK5VDadSIl4JhdJjAe74gos8dylOGcTrtocxP2lGo1MCZNh5083WjdzpZF1eNxC7z5oVqi0/6p9JiLxRiCDvrcPIU2HQBTojBK2U1w9qnVfKuGiDBMEbKUBPNhWr73ETzTX0UbcAY75M/1k41H9l2LPuZDGBy2KSHZEFtYVZOPcbfjPi5WrK+M/rG00+74ofjdLo28hQg/H1T/DUCUrsOji/o+EJmguq2CwDEpPvctMnSUtdZuDqZA8r7ja5+/XjYrm5lIdfUo0B691IOb22tyM3P4CZUJHyQJVNc5WAJdKCwwNJhEK6ICdp6y7nMRSVprmHJgl03g+666I9LwF0ZYGwkGGJTVCFxYG6ATO9b3I6bFLVJSYuFryDneZnwfFgAMYD5Q=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?aK7Vz2d/IEzGic+xHuaCqb4a7Vet5Ww+nOf9YMAeVh1JIUxhMh/McyhwG8Y9?=
+ =?us-ascii?Q?TRj1Fd1wDWG8xtn6u5NYVO5bkHt8BFTfqwQe1buSvQSLVjO7bBdLSn4MxuE7?=
+ =?us-ascii?Q?uNzv2aXadbQpFDyNJZJWBRdegZS1zoB3udLC0D2wcfCN9V6SxingILqFjxbW?=
+ =?us-ascii?Q?iL6m0ZBSp0ggcOtxd5J1PIhD9MC9nFU0DuT4D7hEiXvIRXmmLaBXmax78vcA?=
+ =?us-ascii?Q?jBeV7fBreqiSY5cNxLI2WLc+Fjy+1CaffWUbKBBVnpQI20Z46eQ1KKSxFVAZ?=
+ =?us-ascii?Q?3/CUp9KwBRphAP8+Sr7c0ZJTHDT1JYFSjmLAxdl6H7mFG8ylqaNSpPy5DJHO?=
+ =?us-ascii?Q?BWVtNb6j77OfxNS9LFtqzKScC/v30wMHH7ofKHlsCYSYLTC6y21hoosNUofH?=
+ =?us-ascii?Q?U/Q2F4jtlJyXkswNYxZVM42GaCxUDg6ypm+FtFj4sJchjli6zITBWcKDSbJV?=
+ =?us-ascii?Q?9vlqB86ejy+lCyzx76OGDU7Bp9c4WRH9e1VoI/Z3wkbvWDCmU4mxfzX9SEEN?=
+ =?us-ascii?Q?+IBGX21DFUs/+5azxZ7/8H1NWCvG2bc4Apn0fQy9hiLeb27su63WCNScfzFU?=
+ =?us-ascii?Q?+bx6yLKrhGqvzqqqYpnr1jWMV1TmluyWotpAmBaPjseXipvaVl8KpuWl2oi4?=
+ =?us-ascii?Q?keNPo949LiuVhf/QMyjp1xiZh+mZMVH9i7uJqM2j6pwu9jgr1e1Nb0gJaVxV?=
+ =?us-ascii?Q?Pjsm10McMALIvCVodwbTxumuJ2lky2FFrum6XRUiN0p53Oh7LZkhqmwjKtz4?=
+ =?us-ascii?Q?TYKyQteA5itGURb1Lo+KTvnBVX0JY+NajVl/wS8JMQdeSkqkn82hTi1cx9WX?=
+ =?us-ascii?Q?1Kle2fdYXN7brvR9GgHSO57x+s6FT2tSXCXkuoLmTAgHwWXLoNC2YhW8zYnS?=
+ =?us-ascii?Q?t3QLma2l1UsEvgZmqnAVog/5GxDEuhxa8zg0TQPi+yQkJhCdHQa6hu5wrOMV?=
+ =?us-ascii?Q?zMatrJEBSS4j0chSfZR5AGDEJX0jVePgvit2BEI3t6gxT/VCSia0Usv0subv?=
+ =?us-ascii?Q?jR2iJHV7TwLRhgHVZJRbXrcutfJd852ILk93sN4hn6ttDAKKQgUT+VusiT5V?=
+ =?us-ascii?Q?Tplhg7ob6lwTBA53etJEc6hUzKE9VmACGK+gv6oitmApouKfpK+4/EJHdwCT?=
+ =?us-ascii?Q?FsL+VJSIYvOmKp9RG9vItMnoK8NNyS5CLMdBA0ShYi30ogVVmYM2WilpQSZm?=
+ =?us-ascii?Q?xJvS+NBG64X+ygo+RVp2pvv+xnEFVPKYXLfVqiTZ3qRAI4ln1ZjhV+sbcAqd?=
+ =?us-ascii?Q?7l2HyS7uNonP8uG89aD1Y2QCVaTPFTUR89lbzwvRmpLoM+VGctXGaAZNlpWL?=
+ =?us-ascii?Q?9oWeQd/gEnZkuiSCykSSFg+Dg8e+S3PulGGFpKMWEKPHPQwR0i9iPIuyvmqV?=
+ =?us-ascii?Q?wAbEKcQhYyYHs1AibAbclVblU7L8YlC658zmGirpajn5Cpu23LVFEm1jikob?=
+ =?us-ascii?Q?VlW6aNEgv8QTBMkn8lOx+riViKqTcWJgk1/7YNvxx2F6fSY5YG0rCy3f4XoT?=
+ =?us-ascii?Q?LdnuQlgQAZqV6gAB5Y41AK+lbaqI8BCHrs5fgt1W+n3YP5za7e2MM+PJNfEM?=
+ =?us-ascii?Q?X6v3UYTpqm23gXGMJFSa6jW3xb3mTjuGZdqwkgLt1+nIB/f0uhw6GEiMJ8PJ?=
+ =?us-ascii?Q?8JuC+KbzyHKfKjUl4KHGpIwEqeE99Yp/gUROj7WZr3AMvaj+/O02yfLXFsod?=
+ =?us-ascii?Q?dyIAJXmTrKFYgFK9sw627iLERwaUbXt9avPuqiN8SJnJ5ZwGNVhCPUjDe0CY?=
+ =?us-ascii?Q?NaOQm0+BWTQJ4osvHTeaHJSC36PrRZG5FYmQ8TAIoq/jhOr21f6f?=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8c084b2-68d4-4ea2-8899-08de76250c11
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 17:24:22.5360
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rYJdhZYGmLZio7wMRoCPhyzfQ9k8SQnUzwv/cOIVQ9guWKZPP/hml8LO/39YatpIF6VMpJReRQsRRt/kZQM14eTaqAOeVZQ407hmNsD6c8rY4OblkclBZ3EmlRLln34I
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB9777
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[raspberrypi.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[raspberrypi.com:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[collabora.com,kynesim.co.uk,gmx.net,vger.kernel.org,lists.infradead.org,raspberrypi.com];
-	TAGGED_FROM(0.00)[bounces-269373-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269375-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[raspberrypi.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[gmail.com,ideasonboard.com,vger.kernel.org,bp.renesas.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be,baylibre.com,lists.freedesktop.org];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dave.stevenson@raspberrypi.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tommaso.merciai.xr@bp.renesas.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,raspberrypi.com:mid,raspberrypi.com:dkim,raspberrypi.com:email,7eb00000:email,7ec00000:email]
-X-Rspamd-Queue-Id: C39F11BB740
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,init.name:url,bp.renesas.com:dkim,linux-m68k.org:email]
+X-Rspamd-Queue-Id: AABC81BB76A
 X-Rspamd-Action: no action
 
-Add the configuration information for the HEVC decoder.
+Hi Geert,
+Thanks for your review!
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
----
- arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi | 4 ++++
- arch/arm/boot/dts/broadcom/bcm2711.dtsi     | 9 +++++++++
- 2 files changed, 13 insertions(+)
+On Fri, Feb 27, 2026 at 11:47:58AM +0100, Geert Uytterhoeven wrote:
+> Hi Tommaso,
+> 
+> On Fri, 13 Feb 2026 at 17:28, Tommaso Merciai
+> <tommaso.merciai.xr@bp.renesas.com> wrote:
+> > Add PLLDSI clk mux support to select PLLDSI clock from different clock
+> > sources.
+> >
+> > Introduce the DEF_PLLDSI_SMUX() macro to define these muxes and register
+> > them in the clock driver.
+> >
+> > Extend the determine_rate callback to calculate and propagate PLL
+> > parameters via rzv2h_get_pll_dtable_pars() when LVDS output is selected,
+> > using a new helper function rzv2h_cpg_plldsi_smux_lvds_determine_rate().
+> >
+> > The CLK_SMUX2_DSI{0,1}_CLK clock multiplexers select between two paths
+> > with different duty cycles:
+> >
+> > - CDIV7_DSIx_CLK (LVDS path, parent index 0): asymmetric H/L=4/3 duty (4/7)
+> > - CSDIV_DSIx (DSI/RGB path, parent index 1): symmetric 50% duty (1/2)
+> >
+> > Implement rzv2h_cpg_plldsi_smux_{get,set}_duty_cycle clock operations to
+> > allow the DRM driver to query and configure the appropriate clock path
+> > based on the required output duty cycle.
+> >
+> > Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> 
+> Thanks for your patch!
+> 
+> > --- a/drivers/clk/renesas/rzv2h-cpg.c
+> > +++ b/drivers/clk/renesas/rzv2h-cpg.c
+> 
+> > +static struct clk * __init
+> > +rzv2h_cpg_plldsi_smux_clk_register(const struct cpg_core_clk *core,
+> > +                                  struct rzv2h_cpg_priv *priv)
+> > +{
+> > +       struct rzv2h_plldsi_mux_clk *clk_hw_data;
+> > +       struct clk_init_data init;
+> > +       struct clk_hw *clk_hw;
+> > +       struct smuxed smux;
+> > +       u8 width, mask;
+> > +       int ret;
+> > +
+> > +       smux = core->cfg.smux;
+> > +       mask = smux.width;
+> > +       width = fls(mask) - ffs(mask) + 1;
+> > +
+> > +       if (width + smux.width > 16) {
+> > +               dev_err(priv->dev, "mux value exceeds LOWORD field\n");
+> > +               return ERR_PTR(-EINVAL);
+> > +       }
+> 
+> I am totally confused by this: smux.width is not a mask, but the size
+> of a register bitifield.
+> Perhaps:
+> 
+>     if (smux.shift + smux.width > 16) { ... }
+> 
+> ?
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-index 1eb6406449d1..aef5ff7b2a53 100644
---- a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
-@@ -68,6 +68,10 @@ &hdmi1 {
- 	wifi-2.4ghz-coexistence;
- };
- 
-+&hevc_dec {
-+	clocks = <&firmware_clocks 11>;
-+};
-+
- &hvs {
- 	clocks = <&firmware_clocks 4>;
- };
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-index 5e3b4bb39396..7b2081ef0413 100644
---- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-@@ -617,6 +617,15 @@ xhci: usb@7e9c0000 {
- 			status = "disabled";
- 		};
- 
-+		hevc_dec: codec@7eb00000 {
-+			compatible = "brcm,bcm2711-hevc-dec";
-+			reg = <0x0 0x7eb00000  0x10000>,
-+			      <0x0 0x7eb10000  0x1000>;
-+			reg-names = "hevc",
-+				    "intc";
-+			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		v3d: gpu@7ec00000 {
- 			compatible = "brcm,2711-v3d";
- 			reg = <0x0 0x7ec00000 0x4000>,
+Ouch, you are right.
+Should be:
 
--- 
-2.34.1
+	if (smux.shift + smux.width > 16) {
+		dev_err(priv->dev, "mux value exceeds LOWORD field\n");
+		return ERR_PTR(-EINVAL);
+	}
 
+Will fix this in v6.
+
+> 
+> > +
+> > +       clk_hw_data = devm_kzalloc(priv->dev, sizeof(*clk_hw_data), GFP_KERNEL);
+> > +       if (!clk_hw_data)
+> > +               return ERR_PTR(-ENOMEM);
+> > +
+> > +       clk_hw_data->priv = priv;
+> > +
+> > +       init.name = core->name;
+> > +       init.ops = &rzv2h_cpg_plldsi_smux_ops;
+> > +       init.flags = core->flag;
+> > +       init.parent_names = core->parent_names;
+> > +       init.num_parents = core->num_parents;
+> > +
+> > +       clk_hw_data->mux.reg = priv->base + smux.offset;
+> > +
+> > +       clk_hw_data->mux.shift = smux.shift;
+> > +       clk_hw_data->mux.mask = smux.width;
+> 
+> Again, smux.width is not a mask.
+> Perhaps GENMASK_U16(smux.shift - 1, 0)?
+
+Or maybe we can use:
+
+	clk_hw_data->mux.mask = clk_div_mask(smux.width);
+?
+
+I'll fix this in v6.
+Thanks.
+
+Kind Regards,
+Tommaso
+
+> 
+> > +       clk_hw_data->mux.flags = core->mux_flags;
+> > +       clk_hw_data->mux.lock = &priv->rmw_lock;
+> > +
+> > +       clk_hw = &clk_hw_data->mux.hw;
+> > +       clk_hw->init = &init;
+> > +
+> > +       ret = devm_clk_hw_register(priv->dev, clk_hw);
+> > +       if (ret)
+> > +               return ERR_PTR(ret);
+> > +
+> > +       return clk_hw->clk;
+> > +}
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
