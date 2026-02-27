@@ -1,124 +1,331 @@
-Return-Path: <devicetree+bounces-269106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269107-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJeqODZGoWkirwQAu9opvQ
-	(envelope-from <devicetree+bounces-269106-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:22:30 +0100
+	id +FKfFXVGoWkirwQAu9opvQ
+	(envelope-from <devicetree+bounces-269107-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:23:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846561B3C81
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:22:30 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECFDA1B3CCC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2EC3C3049327
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:22:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2C020302E54E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:23:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B2A36921C;
-	Fri, 27 Feb 2026 07:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A92A3358DB;
+	Fri, 27 Feb 2026 07:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bSzmV6Tp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="X/DbZVoP";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DKOdHlvD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5474536495C;
-	Fri, 27 Feb 2026 07:22:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35375334C14
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:23:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772176938; cv=none; b=cihBwZ6tZVD8Bz6e4gCNA83TAoOuAs2ox7BcMN0iid/mWiIRxl406UfQG/1JCHtwaqJJaMllDPJRP8ZolSK1nieZkCTKWvkp4IGTFPPCmlNcV7zsSySzkoVsJfbzuLPhrNqVsASJ8Hm7wjMAQbxxnlG7RHLUNYiNjN4LbIO8NrU=
+	t=1772177009; cv=none; b=j+zJ1BVE4QBzZ8jYgb+5IvZLvegTtNDuSGsbvvSMj42Qba1eiAF2B7TLgpYjp0jxR/1CnbsqV1gnZTiKKx4fCEUl6StMQiKHzJzrzSN4qGrijIY2s5NTsRnDx55G05ySpZuvJet0EJB2X+KjO45DUsEk52HSN0k/Eo4EzWkYgZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772176938; c=relaxed/simple;
-	bh=z+dkaNvhlWyuSR+41jisptO92s8T16Uh6hMmGKmav1s=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N950CfcYat94tx8LTHzqcb0P3C4QJHsusOF2XMne6N6setdP06A7qvI/c/qRzz9dHWLmlPxTGtdxRSfYFR3vAnulTgn/qYfsbgF6MynffJrMgKn/VWVa4zvBpd1RT7I4KFlZRFYh1bXAMXmX+VAE2hF0lVhOewW9cRPZlhw8acs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bSzmV6Tp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85D81C19421;
-	Fri, 27 Feb 2026 07:22:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772176938;
-	bh=z+dkaNvhlWyuSR+41jisptO92s8T16Uh6hMmGKmav1s=;
-	h=From:To:Cc:Subject:Date:From;
-	b=bSzmV6TpnkDmJfT6r9mzcs6qtvqJPsnKKJDn9LxJasfEBXGAys6x3ddF1dWJClGs+
-	 M8T1TtID6NI2glSAzjEgh3kIfXsnE05IUlXy2qevGQ6nvE7Ave9NBIRxPR91vvlWJK
-	 dOZsO5KXwkjQb+QWsKyPIuZQa/wYe88sfAHWqwchEn2MrClmIBbS+MYmU8KNaIOgKQ
-	 uN5kInDTt8FX61J6WN78MjE5/C4gTz8CAe0bAihoYo3wmh06Zec6jRoKvqRJUTADzS
-	 NySHkJpEVsVjmrEAezvdtVgi1QDjHLZZPwijJLRxHEg+YfXNTTWSpjr+RnpMgilv1V
-	 vCCWzP0zSJalg==
-From: Shawn Guo <shawnguo@kernel.org>
-To: Wei Xu <xuwei5@hisilicon.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Shawn Guo <shawnguo@kernel.org>,
-	stable@vger.kernel.org
-Subject: [PATCH] arm64: dts: hisilicon: hi3798cv200: Add missing dma-ranges
-Date: Fri, 27 Feb 2026 15:22:10 +0800
-Message-ID: <20260227072210.1350159-1-shawnguo@kernel.org>
-X-Mailer: git-send-email 2.47.3
+	s=arc-20240116; t=1772177009; c=relaxed/simple;
+	bh=Bx0gEwooeI4LIaJmeX99A21HQ7MvqceqPs2txbeKC2M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GC6KI80BCGDRpnyk8Xh1z6jxsAr3sWItN3o5fqv5XuDRQxNgWvDAqGgzpP0iNp7JGoU37DW+m6Azm7X1XfDGeoo3JdtBlbmyAhjzw4zrv3/vbzWGLfOY45g4ccWaHH2AmT/MtmZgOQna3AbW0k9R8rt+qEnL7tDQo0nIRVuLN3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=X/DbZVoP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DKOdHlvD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61R2JuOM2402979
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:23:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JNdb3tht5lioNt1bh8nt4v5G1+3ZdmznQiRYvtcmHRU=; b=X/DbZVoPSWaFIP3p
+	F9kbB+NYlnD4JgLBwnA3Z41Dy8d7zoKa5sEvrOD+thxvZjpaaEESCpmQeZs94Xnf
+	uJZ4NFbxjgYKH37IW1TUwhTE+sn5Wa4bwWhkuT/22SJJXT+V9k22U/gHvyU4MWVK
+	LX9vhdEQXhIdrBE492PHtq4K+Dqpkb/DOEKx/ceII/TSZrXZBxW8+wgUE7CHdczc
+	4GW8gnmH8cfF+8CqEGQUfmjLYw75i+urh2PisQFR0/pv9x4PCLInwm6I1poeCFg8
+	9oqdJtLw4MgqX0RcZAXVGEdFmQX7zK6LdmBsHZfNg3kPybsCWt4if+vlKRx0MHKe
+	h1iGXA==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cjw239t44-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:23:26 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-354be1b25c3so752483a91.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 23:23:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772177006; x=1772781806; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JNdb3tht5lioNt1bh8nt4v5G1+3ZdmznQiRYvtcmHRU=;
+        b=DKOdHlvD/2yYJt9Q3PspjMHhvXj86saj8R2dQl7LX9+bxkQriLTKrXLNt3VVmeht0T
+         hfuRVjkjlSU2xcECEyWcmLRQVhULNcCUrZkHhyNHDIObPdsyuN42pi7379DcAVeflhvJ
+         p27ge+ymvnYoFERg6geyka7uuHAAI/pDK0VDNOG5baq5ne3y21MgOaWiILL0NOeDq7E2
+         kjTHNb9Af4roecMUL+Uj04BZna8yHTnn0rxajYGZNnjjg9INxYOsNCxJuTZl+vBEthWQ
+         izmZ0DxT9VeapAAJ7bjedL04SRj6mQ/iah2to9NMMaBqnB1HG6ii0pgC/QMRZYR8VfRI
+         8Ilw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772177006; x=1772781806;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JNdb3tht5lioNt1bh8nt4v5G1+3ZdmznQiRYvtcmHRU=;
+        b=uoGb9HYymrpDsuxkARZt3VZw0L4q+ADOkimcjUuvjph1nT0huSEcV1VvAfO0s5Z1dO
+         TCsPCKhHf4lbshAqbtDzC/4Xgq0f+Jmy1wv+/+qrPQcm+gU0qvADnwWgnw7dclxpbvcg
+         O+11I22/1E4hWGlFUQRs22n+DMK6sNNVKm7lfCUJZuGdUynjoXTDTGJ6Ek1le/fSmFaX
+         n8wQTeDjjDHPv0sv0E+c/HNR1AJethFcQ2L9ahXss4I568ta3xR1y2k27pEHejU3WCwh
+         ymfVUQ5dTYGjujl8GFsudYDkPy4JGncligvSe9LHIfTVLtS5Uu5vnHAcGtvWGG/B7Mjb
+         uINA==
+X-Forwarded-Encrypted: i=1; AJvYcCWeDhqnEiroh/ffi9yv1jvpddXIIo86eeebqiHHK2VGRMFbAUPp2VFdlKoYFQn6lbf0DAmKSwCEfjxn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyn0KYg+ZQVL7MPQuNfdqIHLKJP0DRlNW9XAyPsb7DYIpXTFfnZ
+	0tevezxkUjk7bc7GhTPHAC+Z+XqdJ1i4vg/2fSvBUHaNGOp9crM01y4QZorVIA3r4lCSqU5tY14
+	te7OXwPtbKm6cHH8jjHfwMzE7KVFAQcT5ET2b9O6YcL8z5k+mgjyt/0s4uRIZR9HS
+X-Gm-Gg: ATEYQzzYBKtFEtMYNdp31JRfJMJT9ReuXwVWINWWcOhkf/Gb4b2Mf+pV7J4/OQN5tUx
+	WohYP1WMOuEMBr1xfo4wjNIr00NFwipuxRXN8/fqOhftWawLQJCuiWQKeUZuz1bKDhGUkKnEsll
+	oqOaM6+EkLNyI+06BtJGwOV+dtjmNa+Iz7h8XaVmA8/rgihZN++S4LTEoeKOt7GDs/yJLjFlFMm
+	TXIWXYw1HFk1X1IwT8eQGubgC8kH1N/LmoqOyFgMSByO6rmUxU3GvZ7mwkqx9OHY6fZDeBxQP07
+	7Ppyuxh4PqXL+6zP5EBC5xWN90zJ8wHzp25A9Ad/6ObP23jGEiOaX9qifyNXR9x+R1gB/LHMcN4
+	jPdHFeHAEsktoyHpjF1BkHtu1OthLhsKRcMFbn2AJLyi3pakwag==
+X-Received: by 2002:a17:90a:da88:b0:356:46ad:a161 with SMTP id 98e67ed59e1d1-35965ca1bd2mr1306082a91.4.1772177006013;
+        Thu, 26 Feb 2026 23:23:26 -0800 (PST)
+X-Received: by 2002:a17:90a:da88:b0:356:46ad:a161 with SMTP id 98e67ed59e1d1-35965ca1bd2mr1306054a91.4.1772177005508;
+        Thu, 26 Feb 2026 23:23:25 -0800 (PST)
+Received: from [10.218.41.33] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3591345b158sm4061973a91.1.2026.02.26.23.23.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Feb 2026 23:23:25 -0800 (PST)
+Message-ID: <c291118c-7a95-42dd-9242-26bf21cf76f5@oss.qualcomm.com>
+Date: Fri, 27 Feb 2026 12:53:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: monaco-evk: Add Interface Plus
+ Mezzanine
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mohd.anwar@oss.qualcomm.com,
+        krishna.chundru@oss.qualcomm.com, monish.chunara@oss.qualcomm.com
+References: <20260222173545.3627478-1-umang.chheda@oss.qualcomm.com>
+ <20260222173545.3627478-2-umang.chheda@oss.qualcomm.com>
+ <at7j3kbdixd7aveiol37pwgudl2hcogtdrvdgcvgbbm3t5irfc@4nvv5ptoezyk>
+ <4ae0dd46-5f5f-403b-bbc6-1094159be302@oss.qualcomm.com>
+ <ffy7ufbwofipmctotg6l6mrtamakqc6xxrql7wqw3rslhd36uv@payikxla7pzk>
+Content-Language: en-US
+From: Umang Chheda <umang.chheda@oss.qualcomm.com>
+In-Reply-To: <ffy7ufbwofipmctotg6l6mrtamakqc6xxrql7wqw3rslhd36uv@payikxla7pzk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: xcu46vewb6zeJd9rpuIaNLxJAWQtXnCm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI3MDA2MSBTYWx0ZWRfXymHUGeRFUV/j
+ IpqpHQHFemlY2DsTVZxoKLhC6iCRQ2k0jYaqUTEdeQ6os9DhKSb6MOjuuBTVW5j6utR9X1gy0mk
+ ZBo3bdHJ3aRpAhAPkOIR7yb4x3NcR9i2kvNsNdKqCfqchF2Esy2qdgrrd4ofbowuWl1g/b3fg0g
+ a4gbie5pJCuPvI5WP/J5EJAI22x1WbbT8nshBDky6U4SBguqBNx6wWLq4qryYNHmb236tXSrVpa
+ MXOsm25RRQ1w07TJ7qSlxSkvDkXBt2WY/eQcGWkgMvGk5xcDECPdntyUH6O0IpW4EnACHkeMYkZ
+ +KTlu/6E3xtjUx7u7fdyutHhK9wfYnOiBTTfn/BzijifaZXy3VT6sfQQw4zB2NjaGjWopJZGaY+
+ KtFaErF5j7ySP113BrRat7KkQe09OFsZorQT/lV7LfeUiZ31mx+E59SBpM+sAkxn2TZABISGwxY
+ XVCXy+PCdEsl3FaOpBA==
+X-Authority-Analysis: v=2.4 cv=cJHtc1eN c=1 sm=1 tr=0 ts=69a1466f cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=kQJZIT5M89cdE685t2YA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-ORIG-GUID: xcu46vewb6zeJd9rpuIaNLxJAWQtXnCm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-27_01,2026-02-26_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 adultscore=0
+ spamscore=0 clxscore=1015 priorityscore=1501 suspectscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602270061
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269106-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269107-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shawnguo@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,f0000000:email]
-X-Rspamd-Queue-Id: 846561B3C81
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: ECFDA1B3CCC
 X-Rspamd-Action: no action
 
-Reboot starts failing on Poplar since commit 8424ecdde7df ("arm64: mm:
-Set ZONE_DMA size based on devicetree's dma-ranges"), which effectively
-changes zone_dma_bits from 30 to 32 for arm64 platforms that do not
-properly define dma-ranges in device tree.  It's unclear how Poplar reboot
-gets broken by this change exactly, but a dma-ranges limiting zone_dma to
-the first 1 GB fixes the regression.
 
-Fixes: 2f20182ed670 ("arm64: dts: hisilicon: add dts files for hi3798cv200-poplar board")
-Cc: stable@vger.kernel.org
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
----
- arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+On 2/24/2026 12:26 AM, Dmitry Baryshkov wrote:
+> On Mon, Feb 23, 2026 at 03:17:11PM +0530, Umang Chheda wrote:
+>> Hello Dmitry,
+>>
+>> On 2/22/2026 11:57 PM, Dmitry Baryshkov wrote:
+>>> On Sun, Feb 22, 2026 at 11:05:45PM +0530, Umang Chheda wrote:
+>>>> The Interface Plus [IFP] Mezzanine is an hardware expansion add-on
+>>>> board designed to be stacked on top of Monaco EVK.
+>>>>
+>>>> It has following peripherals :
+>>>>
+>>>> - 4x Type A USB ports in host mode.
+>>>> - TC9563 PCIe switch, which has following three downstream ports (DSP) :
+>>>>    - 1st DSP connects M.2 E-key connector for connecting WLAN endpoints.
+>>> Nit: routed to? Is that M.2 only suitable for WLANs? What is "WLAN
+>>> endpoints"?
+>>> routed to?
+>> If I understand correctly - you mean change string "connects M.2 E-Key connector" to 
+>> "routed to M.2 E-Key connector" ?
+>>  
+>>
+>>> Is that M.2 only suitable for WLANs?
+>> Yes, this is suitable only for the WLAN module.
+>>
+>>> What is "WLAN endpoints"?
+>> I Agree this is misleading - will change this to "WLAN module"
+>>
+>>>>    - 2nd DSP connects M.2 B-key connector for connecting cellular
+>>>>      modems.
+>>>>    - 3rd DSP with support for Dual Ethernet ports.
+>>>> - EEPROM.
+>>>> - LVDS Display.
+>>>> - 2*mini DP.
+>>>>
+>>>> Add support for following peripherals :
+>>>> - TC9563 PCIe Switch.
+>>>> - EEPROM.
+>>> If there is an onboard USB hub, please describe it here. Also, what is
+>>> the story of mini DP ports? If they are to be enabled later, please
+>>> mention, why.
+>>>  If there is an onboard USB hub, please describe it here.
+>> Ack, Since there are no DT changes required to enable USB Hub I did not mention.
+>>
+>> will mention it here in the next patch.
+> That's not what I meant. Please describe the USB hub in DT.
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-index f6bc001c3832..2f4ad5da5e33 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-@@ -122,6 +122,7 @@ soc: soc@f0000000 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0xf0000000 0x10000000>;
-+		dma-ranges = <0x0 0x0 0x0 0x40000000>;
- 
- 		crg: clock-reset-controller@8a22000 {
- 			compatible = "hisilicon,hi3798cv200-crg", "syscon", "simple-mfd";
--- 
-2.47.3
+
+The dependent changes for enabling USB hub on monaco-evk are In-progress and not yet upstreamed
+
+will post the patch to enable USB hub for IFP-mezzanine once it is upstreamed for monaco-evk core-kit.
+
+I will update the commit text of this patch to indicate the same.
+
+>
+>>>> +
+>>>> +	vreg_0p9: regulator-vreg-0p9 {
+>>> Are all these regulators a part of the mezzanine?
+>> Yes, all these regulators are part of mezzanine board.
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "VREG_0P9";
+>>>> +
+>>>> +		regulator-min-microvolt = <900000>;
+>>>> +		regulator-max-microvolt = <900000>;
+>>>> +		regulator-always-on;
+>>>> +		regulator-boot-on;
+>>>> +
+>>>> +		vin-supply = <&vreg_3p3>;
+>>>> +	};
+>>>> +
+>>>> +	vreg_1p8: regulator-vreg-1p8 {
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "VREG_1P8";
+>>>> +
+>>>> +		regulator-min-microvolt = <1800000>;
+>>>> +		regulator-max-microvolt = <1800000>;
+>>>> +		regulator-always-on;
+>>>> +		regulator-boot-on;
+>>>> +
+>>>> +		vin-supply = <&vreg_4p2>;
+>>>> +	};
+>>>> +
+>>>> +	vreg_3p3: regulator-vreg-3p3 {
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "VREG_3P3";
+>>>> +
+>>>> +		regulator-min-microvolt = <3300000>;
+>>>> +		regulator-max-microvolt = <3300000>;
+>>>> +		regulator-always-on;
+>>>> +		regulator-boot-on;
+>>>> +
+>>>> +		vin-supply = <&vreg_4p2>;
+>>>> +	};
+>>>> +
+>>>> +	vreg_4p2: regulator-vreg-4p2 {
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "VREG_4P2";
+>>>> +
+>>>> +		regulator-min-microvolt = <4200000>;
+>>>> +		regulator-max-microvolt = <4200000>;
+>>>> +		regulator-always-on;
+>>>> +		regulator-boot-on;
+>>>> +
+>>>> +		vin-supply = <&vreg_sys_pwr>;
+>>>> +	};
+>>>> +
+>>>> +	vreg_sys_pwr: regulator-vreg-sys-pwr {
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "VREG_SYS_PWR";
+>>>> +
+>>>> +		regulator-min-microvolt = <24000000>;
+>>>> +		regulator-max-microvolt = <24000000>;
+>>>> +		regulator-always-on;
+>>>> +		regulator-boot-on;
+>>> ... supplied from what?
+>> This regulator is supplied directly from the DC Power adapter.
+> Is there a physical regulator which outputs to VREG_SYS_PWR? Is it a
+> part of the mezzanine?
+
+
+Basically - we have added  VREG_SYS_PWR to describe the DC power input. This is nothing but
+
+the direct 24V DC Power Input and have added this as parent for "vreg_4p2" power supply.
+
+>
+>>>> +
+>>>> +&tlmm {
+>>>> +	tc9563_resx_n: tc9563-resx-state {
+>>>> +		pins = "gpio124";
+>>>> +		function = "gpio";
+>>>> +		bias-disable;
+>>>> +		output-high;
+> Please add a comment, why is it out high.
+
+
+Ack
+
+>
+>>>> +	};
+>>>> +};
+>>>> --
+>>>> 2.34.1
+>> Thanks,
+>> Umang
+
+
+Thanks,
+Umang
 
 
