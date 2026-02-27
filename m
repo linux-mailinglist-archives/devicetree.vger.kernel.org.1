@@ -1,546 +1,150 @@
-Return-Path: <devicetree+bounces-269160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269161-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IBJzLRxroWkOswQAu9opvQ
-	(envelope-from <devicetree+bounces-269160-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:59:56 +0100
+	id oNJkHp1toWm6swQAu9opvQ
+	(envelope-from <devicetree+bounces-269161-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:10:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD1A41B5AE0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:59:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0979D1B5D83
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:10:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C499C3053FFD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:59:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 652A6319E2DE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C499439A808;
-	Fri, 27 Feb 2026 09:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b="rjib/TU5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC2D3D5249;
+	Fri, 27 Feb 2026 10:05:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5F438759C;
-	Fri, 27 Feb 2026 09:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.208.4.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB34733BBA7
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 10:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772186364; cv=none; b=Od1h2EJHF+6ZzcGrD/E/JfV9yJXW11KgdTUkL5WbkyNFEMolLeeVSlr6Wcvppnojj4NJ7sqMknVLENiwts2yewbuSmDZpBpvo34tvnP5L3Xl/T+TrM5OCrtFYd1Lyl5wEyV2xafgHv18iHiaytKlZo61gh+ZkfLyaNRDSTgen6I=
+	t=1772186725; cv=none; b=ayPgRk5erxY5B9I+tp06m9WUQcA9hW9eB6pmUrxLjDtSGMrzwQGXJZSRlG6sZGdpwoYnJlAsRTmUjwmfuT9d06MO2tpqU8iRBmX0EC108pskVwa1iKLW00jijAVDpNTQcGdULa5ho30rZQOZ4Te4A6aWlCfzyG4DfqQiVCAU6Ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772186364; c=relaxed/simple;
-	bh=C08VD/G1+BOfab62jb6baPW4lV0bNNCBv/1Pwlx552Q=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MdykeIdxRXmpr8s7onuaYOYmgTnp+u2P4sNXe9/LuEGL5tRBWKnLM2xFqq15flMX0dvVNf8//KEmparcNGxIOB/ubUXUWVArgmDP3SRdXdrxu3BKChfsjnzjEmZixscDbUhDqW6lriQWFpp7Dq+zkZDR0wtPXmSy4It+rDOPa6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ziswiler.com; spf=pass smtp.mailfrom=ziswiler.com; dkim=pass (2048-bit key) header.d=ziswiler.com header.i=marcel@ziswiler.com header.b=rjib/TU5; arc=none smtp.client-ip=74.208.4.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ziswiler.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziswiler.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziswiler.com;
-	s=s1-ionos; t=1772186334; x=1772791134; i=marcel@ziswiler.com;
-	bh=C08VD/G1+BOfab62jb6baPW4lV0bNNCBv/1Pwlx552Q=;
-	h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
-	 References:Content-Type:Content-Transfer-Encoding:MIME-Version:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=rjib/TU5BE6GpSPKMgoNL4MOPHm7V0o42Co/DSv7SqWLqyq8NeKtRFNpiUQd1eIt
-	 z89aP3O3ZKJ/9Xf3Zi4/bLQQyYn1WdioHnzaSqtLU19d5EnSYBLd/EXNC8uhPv9W6
-	 nn9I1W1l3vA+ORBufo60jClMWNPAFJOJgXrWK+DdIKtLrSIS8TQFqEjk3ZkecNl7G
-	 xuv1/1l2Zn8FIcmRpFnqNo9y+TL3CRdrUeaSNA/6uO6bHKAfuanJhtQunJm76CHt1
-	 GbcECGUQQKwlWOv1mpVcR685hrgeBzd8nR8UZoFLb7P2EN7TjxmmT6ApKntePOfQj
-	 ivQr3qv8IzfTPn8PhQ==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from client.hidden.invalid by mrelay.perfora.net (mreueus004
- [74.208.5.2]) with ESMTPSA (Nemesis) id 1M2Ohe-1vzku0063y-00Cbyw; Fri, 27 Feb
- 2026 10:58:54 +0100
-Message-ID: <480710d6267ebca0f94ca628d588b910735f43bc.camel@ziswiler.com>
-Subject: Re: [PATCH v14 0/4] Add driver support for ESWIN eic700 SoC clock
- controller
-From: Marcel Ziswiler <marcel@ziswiler.com>
-To: dongxuyang@eswincomputing.com, mturquette@baylibre.com,
- sboyd@kernel.org, 	robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, 	linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- troy.mitchell@linux.dev, bmasney@redhat.com
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com, 
-	ganboing@gmail.com
-Date: Fri, 27 Feb 2026 10:58:47 +0100
-In-Reply-To: <20260226090513.1696-1-dongxuyang@eswincomputing.com>
-References: <20260226090513.1696-1-dongxuyang@eswincomputing.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (by Flathub.org) 
+	s=arc-20240116; t=1772186725; c=relaxed/simple;
+	bh=byKhIKAZjGddb3Nt3Z0anMMrJfpi4EDJyAA3QvmxmWA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PWjS9hujR3a8fKREQgZ2XSQwcwuLIKW4KB/BHVSSOFN+vhMrTDsEIJsVLnEc6qF1EZaR4Q0mkYJ+zET5k+3v9mK43EKUpzOgSrIfUjRUQbCsOMbm9m2aT9bQgugWGhHVOnZ8bY8drjyCYYXIJp5uNti4Kpk+3B4+yja9WIG+DdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vvuiO-0002IP-Il; Fri, 27 Feb 2026 11:04:56 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vvuiM-002sKB-1S;
+	Fri, 27 Feb 2026 11:04:55 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vvuiN-00000008csb-2p2A;
+	Fri, 27 Feb 2026 11:04:55 +0100
+Date: Fri, 27 Feb 2026 11:04:55 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 3/8] dt-bindings: pinctrl: add NXP MC33978/MC34978
+ pinctrl
+Message-ID: <aaFsR67vLeapQZ_U@pengutronix.de>
+References: <20260225171545.1980385-1-o.rempel@pengutronix.de>
+ <20260225171545.1980385-4-o.rempel@pengutronix.de>
+ <CAD++jLnkfcgme27DbAUOKn60HJbJuBghetEqpC8dhGnuMPk=Kw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:gfyavZPowaQjscEB8JL71wgmsNZDB6vDGCYA/kJA4ug89V2/y14
- K2WkqDh8Dd7gPyqoCt9Ik9PBoQyxjbJDomZMsJt+MBKUhWYdz+br65GkbqHxFzjN5itR9lp
- J0ZIxiGj9nDY5FTU48gkfjSsfdLPyA6MuoFmx8vxnGr8GxV7YphHsmus8lYT3ulJESxb38u
- VAYWm82ETPXbOpUjmXNPw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:C7c5xz9oLus=;o6zR6H3rJ6qt/McRiu8XwRpmgwV
- 3SZS/Bhp84bkiRdf3sk5MR9uakT4hOAsns2h3qRnBEYvL2o+uvS2yoPaXIaQLc7bNa4nTZWoy
- zzJGP5n7QX7F8DGsg2EckTJHXIutjevVcxYtOpxUKFFZXbpJVF2gkp4pP5jchEdzS1aWc41mS
- fwcXkfv90plBfyUMq/01/F1McYDIgPogNoelRFDge1w14N73gkPmssDqC85+MGioHrZn7sEX2
- cU610c0UQWbpv9pqut+Vl4plFaY9YouT33tOwZkcwiz6sywat/fa/XDn/Ds59MVj/bAeUBTMG
- UBU/pYGtmwhT/4OrpcwbspZ7JU9PvrQ5EfoauRuTEbSI0JCc0UoQSIYXf7kuY78KjOAPh7ONi
- Iy5ONocDicyLwz+njTr3rDqw8nb4BN/XahvRuwQ73Ked7jaG8qiLhsZLu8vg+lENQ3GwguCOC
- 5+JI0afhJV2BFCgU49xfZOdACE6/+D0Uwe5IK9bIyiSyZ2ZiA7vgHQLy8q+tAbwzQxc1XSLF7
- IvRiFc2MO1DGeqIwlkahVyaHCRP+mQtqiL8B5vFE5j3dy6zdGCBwiDqejvIIRX9DyvhUpbaKx
- pEwje8w523p9J8SkMZGMg8T6DTRYCs73dkdbZ7oDqRp+my+O4Van++MssYdzX2xQWHYbfhXpm
- Z3H7/zxeOlHeOZNcCs6U4C4F/BrdM/5KDWa+FfAOUFvI5xYI7yjBC0tcLNDy93Uob8FD4DAHV
- JpaLXykBJpH5o7GAjAm82M7djOGtQX06nkMp3KVGNRSx41dNss0rXDRIjufqNr9mz+2HyGTel
- AKmVU9o33G11bTbn6mZl1JwLufT31XwukaeMambkIsbuKs9OkeQWb41rYvbji3eyab90Z7xpD
- mm3IxOIY1nS8iH7pHP00ha7oRPuCgzxdvkhbZFDiHj88xESQetS1obZ87dxVT+6PJ2wStKSts
- WfaCTX6HkbaFyHAXkBvlodPEEj6PQhXI1KHVWce/+DP+yP8VtqEHrL0Q7ffOx1bxHb4Wl+NQP
- K9ax7GhI8uTFqVZ01LvHhQ6doKRWHtAv5d+0Wnf9GEuBL2abMC7z2vjN98RNFjJFLGmKLV5ko
- MlE58x5mckT4NyKKLY8M3Vi6dnUe3v7Axd3Lzgi7G6oryMn0vzj9lSUWvCOrD8C5fNlWzEnwd
- /aYPHkjlCJCyl7DUvGirkPHZL8eij+FKhcPTPk72e9X1Ee4ARmsg6j+1WRt6DdZAy4K0AQXXc
- oMpsAoCChdFDg4xfPGCp45dE5q1R6ZE16jkVEmlX2+FISjCtB2+uT7p/4garEA47Zk+C/yDDN
- OJjubvzR6k76fZx9FZlCfU/gJ5A0bs9qbj6NOmNQW7ZDc2YGUe7hIbEPmC4Hs5pxTuPSFjglV
- sQDbAYCtzCKZzPBRH3Fv2QCwyFGikR97kpEE5Go8kuu4OzJbzN1SknNUpDrjgNnZYsBJI85xA
- UYiz38yIK7/k5i7qT1tsvsGm5Ac4B4GVA37Pp+pl+FTz8Bq5UOxvpQstApyPTpU9PMcrbZ2Y5
- 6oX7td0jk//3kBDBPKm06hI101AqkZvXRxbEYv7oR+nj9JonmlHIja1TPthDnVO4hoyD5/aLI
- 3oeq3vNtww9fYC8v3eYHlZiy/TVRf1Mi1VFS/XCBflvqZjtsCoDLdoS+JzNoA6DRTQwqd7tWo
- x3Oo5M0/WxsI9i0E+cg2K4IW1UtOD8jz3EtRwCzR5xe6ZQ+3rVrBY1Wkaex1YazmKPmej5hol
- EUJhjANZu/a5r9xNxEWlx9fm+tF60uOEnAXJM1F2+7xvkb0AoG8dqNOQ=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD++jLnkfcgme27DbAUOKn60HJbJuBghetEqpC8dhGnuMPk=Kw@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ziswiler.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[ziswiler.com:s=s1-ionos];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com];
-	TAGGED_FROM(0.00)[bounces-269160-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-269161-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ziswiler.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marcel@ziswiler.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.989];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: CD1A41B5AE0
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:url,pengutronix.de:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0979D1B5D83
 X-Rspamd-Action: no action
 
-Hi Xuyang Dong
+On Fri, Feb 27, 2026 at 12:00:43AM +0100, Linus Walleij wrote:
+> Hi Oleksij,
+> 
+> thanks for your patch for this very interesting hardware!
+> 
+> On Wed, Feb 25, 2026 at 6:16 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> 
+> > Add device tree binding documentation for the pin control and GPIO block
+> > of the NXP MC33978/MC34978 Multiple Switch Detection Interface (MSDI).
+> >
+> > This block manages 22 switch detection inputs (14 Switch-to-Ground,
+> > 8 Programmable) and acts as a GPIO controller.
+> >
+> > Additionally, it supports pin configuration for hardware-specific features
+> > required for long-term contact maintenance in harsh environments, such as
+> > adjusting the continuous/pulsed wetting current to penetrate oxide layers
+> > on mechanical switches.
+> >
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> 
+> Are the hardware-specific pin configurations for oxide layer
+> penetration (!) and stuff excluded from these bindings? (It looks
+> like.)
 
-On Thu, 2026-02-26 at 17:05 +0800, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
->=20
-> The link [1] provides the official documentation for the EIC7700. Section=
- 3.2
-> covers the clock subsystem.
->=20
-> [1] https://www.sifive.com/document-file/eic7700x-datasheet
+Yes, they are excluded for now. The target board is general-purpose, so
+the attached switches or LEDs will vary. I'd prefer to gather more
+concrete use cases before designing a generic interface for the
+wetting currents.
 
-I can confirm that this works perfectly now even without clk_ignore_unused.=
- See [1], [2].
-
-Thanks!
-
-[1] https://github.com/riscv/meta-riscv/pull/602
-[2] https://lore.kernel.org/all/e2130fa8e18cdffb9be9426a8576e67675e87d55.ca=
-mel@ziswiler.com
-
-Cheers
-
-Marcel
-
-> Updates:
-> =C2=A0 Change in v14:
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Change the error code returned from eswin_clk_init()=
- from -EAGAIN
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 to PTR_ERR(clk_data).
-> =C2=A0=C2=A0=C2=A0 - In eswin_clk_init(), replace NULL returns with appro=
-priate error pointers:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Use ERR_PTR(-ENOMEM) for devm_kzalloc() =
-failure.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Use ERR_PTR(-EINVAL) for devm_platform_i=
-oremap_resource() failure
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 and remove dev_err().
-> =C2=A0=C2=A0=C2=A0 - Add the CLK_IGNORE_UNUSED flag to gate clocks. When =
-clk_ignore_unused
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 is dropped during testing, these clocks sh=
-ould remain enabled.
-> =C2=A0=C2=A0=C2=A0 - Modify the frac calculation formula to:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 frac =3D (rate * 4 % parent_rate * (2^24))=
- / parent_rate
-> =C2=A0=C2=A0=C2=A0 - Add step-by-step calculation descriptions in eswin_c=
-alc_pll.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Remove the tmp1 and temp2 variables, using=
- only
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 'rem =3D do_div(tmp, parent_rate)' to calc=
-ulate frac.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The previous calculation formula was overl=
-y complex.
-> =C2=A0=C2=A0=C2=A0 - Rename offset to reg in clock structures. Also, rena=
-me reg to ctrl_reg
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in the divider clock structure.
-> =C2=A0=C2=A0=C2=A0 - All lines are limited to 80 characters.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 In cases with long function call parameter=
- lists, lines may extend to
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 100 characters to preserve readability.
-> =C2=A0=C2=A0=C2=A0 - Drop linux/delay.h header file.
-> =C2=A0=C2=A0=C2=A0 - Add devm_clk_hw_register_divider_parent_data() to cl=
-k-provider.h (preparatory patch).
-> =C2=A0=C2=A0=C2=A0 - Replace clk_hw_register_divider_parent_data() with
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 devm_clk_hw_register_divider_parent_data.
->=20
-> =C2=A0 - Link to v13: https://lore.kernel.org/all/20260214101421.228-1-do=
-ngxuyang@eswincomputing.com/
->=20
-> =C2=A0 Change in v13:
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Modify commit subject from "clock: eswin: ..." to "c=
-lk: eswin: ...".
-> =C2=A0=C2=A0=C2=A0 - Use parent rate to calculate PLL clock rate.
-> =C2=A0=C2=A0=C2=A0 - Use GENMASK() to define PLL mask macros and use FIEL=
-D_PREP() to simplify
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bitwise operations.
-> =C2=A0=C2=A0=C2=A0 - Remove shift and width references for pll enable, re=
-fdiv, fbdiv, frac and postdiv.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (Use only the PLL macros to match the func=
-tionality)
-> =C2=A0=C2=A0=C2=A0 - Set postdiv1 and postdiv2 in clk_pll_set_rate functi=
-on.
->=20
-> =C2=A0 - Link to v12: https://lore.kernel.org/all/20260213094112.115-1-do=
-ngxuyang@eswincomputing.com/
->=20
-> =C2=A0 Change in v12:
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Add CLK_MUX_ROUND_CLOSEST to the mux clocks since th=
-ey need a more
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 accurate clock frequency.
-> =C2=A0=C2=A0=C2=A0 - Change 'rem' from u64 to u32 for function 'eswin_cal=
-c_pll' and
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 function 'clk_pll_recalc_rate'.
-> =C2=A0=C2=A0=C2=A0 - Change 'rate' from u64 to unsigned long for function=
- 'clk_pll_recalc_rate'.
-> =C2=A0=C2=A0=C2=A0 - Fix build error with u64 divisor for function `clk_p=
-ll_set_rate'.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Reported-by: kernel test robot <lkp@intel.=
-com>
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Closes: https://lore.kernel.org/oe-kbuild-=
-all/202602111424.mhTAakDX-lkp@intel.com/
->=20
-> =C2=A0 - Link to v11: https://lore.kernel.org/all/20260210095008.726-1-do=
-ngxuyang@eswincomputing.com/
->=20
-> =C2=A0 Change in v11:
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Add "Tested-by: Marcel Ziswiler <marcel@ziswiler.com=
-> # ebc77" tag.
-> =C2=A0=C2=A0=C2=A0 - Fix build error in function eswin_clk_register_clks.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Reported-by: kernel test robot <lkp@intel.=
-com>
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Closes: https://lore.kernel.org/oe-kbuild-=
-all/202602060520.p4Hg35Ja-lkp@intel.com/
->=20
-> =C2=A0 - Link to v10: https://lore.kernel.org/all/20260205093322.1030-1-d=
-ongxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v10:
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Add a private clock divider API named 'eswin_registe=
-r_clkdiv' to
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 register divider clocks with private flag.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Define 'ESWIN_PRIV_DIV_MIN_2' private flag=
- for registering the clock
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dividers whose division ratio start from 2=
-.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Implement the private set_rate, recalc_rat=
-e, and determine_rate accordingly.
-> =C2=A0=C2=A0=C2=A0 - Add CLK_DIVIDER_ALLOW_ZERO flag to the clock divider=
-s whose division
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ratio start from 0.
-> =C2=A0=C2=A0=C2=A0 - Replace CONFIG_ARCH_ESWIN with CONFIG_COMMON_CLK_ESW=
-IN in the Makefile.
-> =C2=A0=C2=A0=C2=A0 - Modify the help description of COMMON_CLK_EIC7700.
-> =C2=A0=C2=A0=C2=A0 - Move register offset definitions from 'clk-eic7700.h=
-' to 'clk-eic7700.c' and
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 remove the 'clk-eic7700.h'. Remove '_CTRL'=
- from the offset names.
-> =C2=A0=C2=A0=C2=A0 - Remove all unused headers.
-> =C2=A0=C2=A0=C2=A0 - Use devm_platform_ioremap_resource() instead of devm=
-_of_iomap().
-> =C2=A0=C2=A0=C2=A0 - Export the functions from clk.c as symbols.
-> =C2=A0=C2=A0=C2=A0 - Use readl_poll_timeout().
-> =C2=A0=C2=A0=C2=A0 - Use 'clk_parent_data' and '.hw' instead of string pa=
-rent names.
-> =C2=A0=C2=A0=C2=A0 - Rename the header file from clk.h to common.h.
-> =C2=A0=C2=A0=C2=A0 - Rename macros from EIC7700_* to ESWIN_* in common.h.
-> =C2=A0=C2=A0=C2=A0 - Add a new function, 'eswin_clk_register_clks', which=
- can register
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 divider, mux, gate, and fixed-factor clock=
-s based on their types.
-> =C2=A0=C2=A0=C2=A0 - Add structure 'eswin_clk_info' to manage the clocks =
-that need to be registered
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in a specific order.
-> =C2=A0=C2=A0=C2=A0 - Add macros 'ESWIN_*_TYPE' to define divider, mux, ga=
-te, and fixed-factor clocks
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 with type. Add enum 'eswin_clk_type' for t=
-hese types.
-> =C2=A0=C2=A0=C2=A0 - Remove 'eswin_clk_register_mux_tbl'. Use 'eswin_clk_=
-register_mux' to register
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mux clocks with or without table.
-> =C2=A0=C2=A0=C2=A0 - Add xtal24m as the parent clock of the PLL.
-> =C2=A0=C2=A0=C2=A0 - Change 2025 to 2026 in all files.
->=20
-> =C2=A0 - Link to v9: https://lore.kernel.org/all/20251229105844.1089-1-do=
-ngxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v9:
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Checked return values of eswin_clk_register_*() in t=
-he probe function.
-> =C2=A0=C2=A0=C2=A0 - Removed binding IDs check from pll functions in clk.=
-c, as these functions
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 were exclusively used by pll clocks and di=
-d not require ID validation.
-> =C2=A0=C2=A0=C2=A0 - The PLL structure has been extended with max_rate an=
-d min_rate fields to
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 explicitly define the frequency operating =
-range of the PLL. These limits
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 were now utilized by the clk_pll_determine=
-_rate() function.
-> =C2=A0=C2=A0=C2=A0 - Removed __clk_lookup() in clk_pll_set_rate. Added cl=
-k_notifier support
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in clk-eic7700.c.
-> =C2=A0=C2=A0=C2=A0 - Added five previously missing clocks from [1].
->=20
-> =C2=A0 - Link to v8: https://lore.kernel.org/all/20251113013637.1109-1-do=
-ngxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v8:
-> =C2=A0 - Updated YAML file
-> =C2=A0=C2=A0=C2=A0 - Added "Acked-by: Troy Mitchell <troy.mitchell@linux.=
-dev>"
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Changed Kconfig from bool to tristate.
-> =C2=A0 - Updated MAINTAINERS file
-> =C2=A0=C2=A0=C2=A0 - Added "ESWIN SOC SERIES CLOCK DRIVER"
->=20
-> =C2=A0 - Link to v7: https://lore.kernel.org/all/20251023071658.455-1-don=
-gxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v7:
-> =C2=A0 - Updated YAML file
-> =C2=A0=C2=A0=C2=A0 - Added "Acked-by: Conor Dooley <conor.dooley@microchi=
-p.com>" for bindings.
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Added description for clk of eswin_calc_pll().
-> =C2=A0=C2=A0=C2=A0 - Added macro EIC7700_MUX_TBL to manage mux clock-tree=
-.
-> =C2=A0=C2=A0=C2=A0 - Added eswin_clk_register_mux_tbl() to register mux c=
-locks with
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 discontinuous parent indexes.
->=20
-> =C2=A0 - Link to v6: https://lore.kernel.org/all/20251009092029.140-1-don=
-gxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v6:
-> =C2=A0 - Removed config option patch dependency from cover letter, becaus=
-e the patch
-> =C2=A0=C2=A0=C2=A0 was applied.
-> =C2=A0 - Updated YAML file
-> =C2=A0=C2=A0=C2=A0 - Added an oscillator as the clock input, named xtal24=
-m.
-> =C2=A0=C2=A0=C2=A0 - Added clocks property.
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Replaced fixed_rate_clk_xtal_24m with xtal24m.
-> =C2=A0=C2=A0=C2=A0 - Dropped fixed_rate_clk_xtal_24m from driver. Because=
- clock xtal24m was
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 registered by fixed-clock as oscillator.
->=20
-> =C2=A0 - Link to v5: https://lore.kernel.org/all/20250923084637.1223-1-do=
-ngxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v5:
-> =C2=A0 - Removed vendor prefix patch dependency from cover letter, becaus=
-e the patch
-> =C2=A0=C2=A0=C2=A0 was applied.
-> =C2=A0 - Updated YAML file
-> =C2=A0=C2=A0=C2=A0 - Placed the required after all properties.
-> =C2=A0=C2=A0=C2=A0 - Removed patternProperties. Also removed compatible o=
-f eswin,pll-clock,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 eswin,mux-clock, eswin,divider-clock and e=
-swin,gate-clock as we have moved
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock tree from DTS to Linux driver.
-> =C2=A0=C2=A0=C2=A0 - Removed the clock tree from DTS. Used clock-controll=
-er to manage all
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock. Removed all child nodes in clock-co=
-ntroller.
-> =C2=A0=C2=A0=C2=A0 - Removed '#address-cells' and '#size-cells' propertie=
-s, because the clock
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 controller did not need to define these pr=
-operties.
-> =C2=A0=C2=A0=C2=A0 - Removed eic7700-clocks.dtsi.
-> =C2=A0=C2=A0=C2=A0 - Added dt-bindings header for clock IDs. Because used=
- the IDs to register
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks.
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Modified the commit for clock driver. Dropped indent=
-ation in commit.
-> =C2=A0=C2=A0=C2=A0 - Removed CLK_OF_DECLARE(). Used *clk_hw_register* to =
-register clocks. Used
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 devm_of_clk_add_hw_provider.
-> =C2=A0=C2=A0=C2=A0 - Dropped singletons.
-> =C2=A0=C2=A0=C2=A0 - Checked the value right after obtaining it.
-> =C2=A0=C2=A0=C2=A0 - Removed the definitions of macro frequency in clk.h =
-like CLK_FREQ_24M.
-> =C2=A0=C2=A0=C2=A0 - Modified description of help in Kconfig.
-> =C2=A0=C2=A0=C2=A0 - Added COMPILE_TEST. Added COMMON_CLK_ESWIN for clk.o=
-. And added
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "select COMMON_CLK_ESWIN" for clk-eic7700.=
-c. Without COMMON_CLK_EIC7700,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clk.c could not be compiled.
-> =C2=A0=C2=A0=C2=A0 - Used .determined_rate.
-> =C2=A0=C2=A0=C2=A0 - Added macro definitions of EIC7700_DIV, EIC7700_FIXE=
-D, EIC7700_FACTOR,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 EIC7700_MUX and EIC7700_PLL to manage cloc=
-k tree.
-> =C2=A0=C2=A0=C2=A0 - Added clk-eic7700.h to place eic7700 SoC clock regis=
-ters.
-> =C2=A0=C2=A0=C2=A0 - Removed refdiv_val and postdiv1_val from clk_pll_rec=
-alc_rate(). Because
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 these values were unused.
->=20
-> =C2=A0 - Link to v4: https://lore.kernel.org/all/20250815093539.975-1-don=
-gxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v4:
-> =C2=A0 - Updated YAML file
-> =C2=A0=C2=A0=C2=A0 - Changed name from cpu-default-frequency to cpu-defau=
-lt-freq-hz.
-> =C2=A0=C2=A0=C2=A0 - Dropped $ref of cpu-default-frequency.
-> =C2=A0=C2=A0=C2=A0 - Added cpu-default-frequency for required.
-> =C2=A0=C2=A0=C2=A0 - Removed cpu-default-frequency in updated file, becau=
-se there was no
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 need to add cpu-default-frequency.
-> =C2=A0=C2=A0=C2=A0 - Moved DIVIDER to DIV.
-> =C2=A0=C2=A0=C2=A0 - Arranged the IDs in order.
-> =C2=A0=C2=A0=C2=A0 - Dropped EIC7700_NR_CLKS.
-> =C2=A0=C2=A0=C2=A0 - Removed dt-bindings eswin,eic7700-clock.h. Because I=
-Ds was not used,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 and used clock device nodes.
-> =C2=A0=C2=A0=C2=A0 - According to the updated driver codes, the YAML has =
-been updated.
-> =C2=A0 - Updated driver file
-> =C2=A0=C2=A0=C2=A0 - Remove undocumented parameters "cpu_no_boost_1_6ghz"=
- and
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "cpu-default-frequency".
-> =C2=A0=C2=A0=C2=A0 - Modified the comment and used the correct Linux codi=
-ng style.
-> =C2=A0=C2=A0=C2=A0 - Removed codes of voltage, because it was not the clo=
-ck driver.
-> =C2=A0=C2=A0=C2=A0 - Updated the formula of clock frequency calculation. =
-Removed the logic
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 that only used register selection.
-> =C2=A0=C2=A0=C2=A0 - Used CLK_OF_DECLARE() to register clocks. Registered=
- pll-clock,
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mux-clock, divider-clock, and gate-clock i=
-n clk-eic7700.c.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The specific implementation of clock regis=
-tration was in clk.c.
-> =C2=A0=C2=A0=C2=A0 - Added eic7700-clocks.dtsi.
-> =C2=A0=C2=A0=C2=A0 - Moved device information to DTS. Put all clocks' nod=
-e in the
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 eic7700-clocks.dtsi.
->=20
-> =C2=A0 - Link to v3: https://lore.kernel.org/all/20250624103212.287-1-don=
-gxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v3:
-> =C2=A0 - Update example, drop child node and add '#clock-cells' to the pa=
-rent
-> =C2=A0=C2=A0=C2=A0 node.
-> =C2=A0 - Change parent node from sys-crg to clock-controller for this yam=
-l.
-> =C2=A0 - Drop "syscon", "simple-mfd" to clear warnings/errors by using "m=
-ake
-> =C2=A0=C2=A0=C2=A0 dt_binding_check". And these are not necessary.
-> =C2=A0 - Add "cpu-default-frequency" definition in yaml for "undocumented=
- ABI".
-> =C2=A0 - Drop Reviewed-by, this is misunderstanding. We have not received=
- such
-> =C2=A0=C2=A0=C2=A0 an email.
-> =C2=A0 - Link to v2: https://lore.kernel.org/all/20250523090747.1830-1-do=
-ngxuyang@eswincomputing.com/
->=20
-> =C2=A0 Changes in v2:
-> =C2=A0 - Update example, drop child node.
-> =C2=A0 - Clear warnings/errors for using "make dt_binding_check".
-> =C2=A0 - Change to the correct format.
-> =C2=A0 - Drop some non-stanard code.
-> =C2=A0 - Use dev_err_probe() in probe functions.
-> =C2=A0 - Link to v1: https://lore.kernel.org/all/20250514002233.187-1-don=
-gxuyang@eswincomputing.com/
->=20
-> Xuyang Dong (4):
-> =C2=A0 dt-bindings: clock: eswin: Documentation for eic7700 SoC
-> =C2=A0 clk: divider: Add devm_clk_hw_register_divider_parent_data
-> =C2=A0 clk: eswin: Add eic7700 clock driver
-> =C2=A0 MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
->=20
-> =C2=A0.../bindings/clock/eswin,eic7700-clock.yaml=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 46 +
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0=C2=A0 8 +
-> =C2=A0drivers/clk/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
-> =C2=A0drivers/clk/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
-> =C2=A0drivers/clk/eswin/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 15 +
-> =C2=A0drivers/clk/eswin/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0=C2=A0=C2=A0 8 +
-> =C2=A0drivers/clk/eswin/clk-eic7700.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1376 +++++++++++++++++
-> =C2=A0drivers/clk/eswin/clk.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 588 +++++++
-> =C2=A0drivers/clk/eswin/common.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 340 ++++
-> =C2=A0.../dt-bindings/clock/eswin,eic7700-clock.h=C2=A0=C2=A0 |=C2=A0 285=
- ++++
-> =C2=A0include/linux/clk-provider.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 20 +
-> =C2=A011 files changed, 2688 insertions(+)
-> =C2=A0create mode 100644 Documentation/devicetree/bindings/clock/eswin,ei=
-c7700-clock.yaml
-> =C2=A0create mode 100644 drivers/clk/eswin/Kconfig
-> =C2=A0create mode 100644 drivers/clk/eswin/Makefile
-> =C2=A0create mode 100644 drivers/clk/eswin/clk-eic7700.c
-> =C2=A0create mode 100644 drivers/clk/eswin/clk.c
-> =C2=A0create mode 100644 drivers/clk/eswin/common.h
-> =C2=A0create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
->=20
-> --
-> 2.34.1
+Best Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
