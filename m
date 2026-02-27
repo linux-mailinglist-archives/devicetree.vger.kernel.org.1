@@ -1,168 +1,140 @@
-Return-Path: <devicetree+bounces-269386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269390-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPKMDTTZoWlcwgQAu9opvQ
-	(envelope-from <devicetree+bounces-269386-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:49:40 +0100
+	id oPx1GpzaoWlcwgQAu9opvQ
+	(envelope-from <devicetree+bounces-269390-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:55:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33831BB9F8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:49:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88321BBAD7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:55:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EA4C43025132
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:49:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C1CFB315A6B7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89DF362138;
-	Fri, 27 Feb 2026 17:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55183363C69;
+	Fri, 27 Feb 2026 17:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DVaKcqEr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nHJl3mv2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524BF361DBF;
-	Fri, 27 Feb 2026 17:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E1C3624AB;
+	Fri, 27 Feb 2026 17:52:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772214577; cv=none; b=jF+gyTRoda7iLzDobVTQlxRByc/kGAaTh7WTolm3GoA1+6AkfKTW/q1ChYuXOMIcWqxkNIB+kwCc3KFZWEyG1HB4xFWFjYhqhcR5itl4FeUEBudEvAVCWCZAtGgfDlEDLm5WFDhMoQ0VgaSOyjHqmSVImk0ZbvtlpF2eT9sF+Xs=
+	t=1772214725; cv=none; b=PQdFI+Tr1DZX+WeTFowlDa06GEa7LPUgKjqI11s1ASk/xua5gE82l8ulL0B8Er99Q9S5B26TI8A2jl1LvG0KJG+LwGyXBikBn9UstpmsdT4rbcGqaqVfaUvfaQ7ggggYUYA4Qe1Zfdxb5FPkabDSTBldJpEkQzUcsuMr8BjEaaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772214577; c=relaxed/simple;
-	bh=SpE+cfNaP1TFrPzaUFYC0O9H8FoRYo0yR/OZFLjxALo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rc3Mk/h48myUzG7GW8RrbdGOVoqZvCUi2evegKP8vxkF23KNdsCdAJP2OAE5Zxu3zbrrpryU23yezYhczZsLi0DCN1QEhYgS10EXNIWkMbqN6UkwICtO1onmvjrHkeAJixBoCbarXQdbg4tU+lCMdCHYSeFAURaK8d6swbhz7ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DVaKcqEr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1772214574;
-	bh=SpE+cfNaP1TFrPzaUFYC0O9H8FoRYo0yR/OZFLjxALo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DVaKcqErMmK37/uJXaKthCMiluQqJM7uAJYCmJcrnFscZ4q+4KopoQJ+kelS7x7jw
-	 3YaldOMsay/sDkvHIHQw6Iuqmw9XDH7+TMWuetAm5rW9kgUOntjSJE2nBUc85SDs81
-	 0M88Z1csETPWYBba9DmoDjZReGL9fo7PGZRYiz6dJDQ4byM9jWuMTSyqdg6e/dBMYP
-	 RpbzOwsS3E4AqG9TY+jcdS+m9Ha9taIcgFm8H084/xiGRq7zaKvANQEfCzgOOlvQlS
-	 v62oXqNpUmHncmwHovx9ANNPB7XIxEo4rdRaFNSvqLqX/8KXty5Ccb72vCQAoXoRfb
-	 yOGMqWMxIf7TQ==
-Received: from [192.168.1.90] (unknown [86.123.23.225])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C587C17E03E5;
-	Fri, 27 Feb 2026 18:49:33 +0100 (CET)
-Message-ID: <86f4e4ee-cf49-4ebe-8cc6-0a9763ade36a@collabora.com>
-Date: Fri, 27 Feb 2026 19:49:33 +0200
+	s=arc-20240116; t=1772214725; c=relaxed/simple;
+	bh=7/mNYFgufSdB6BoZBYMJzzr2bJpmHixlEJwwGWkR4yU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m8xyLoDwXVDI0nNLLZUKcsVPxor6wRYMHb1LaGBVJ3cOGZoQnLj/uIQaExEzaUlvbYsFKGL/jTMAcvOa9NDUQep2Tk9nF/yErzFzF1Rg9dPz7zBb9RhP8cMtLClWLC25dLjrBFRiEYNfVl8WlM8Fk/lET1KuWFqFUWtt8G+MbBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nHJl3mv2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90BFFC2BC86;
+	Fri, 27 Feb 2026 17:52:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772214724;
+	bh=7/mNYFgufSdB6BoZBYMJzzr2bJpmHixlEJwwGWkR4yU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=nHJl3mv29lUbaGLD1RfzlNxAcOILEaDl/Vv70oToycDi4XWRLApSVVY4X0bxwio7P
+	 rHJO67CO8ZCYdUEpeMPwmB2R1QKoAehF90iapkiSpnx5YIwH32jScLP9R9LJ0WMQpz
+	 LAfpL+pyIaL3zD2O82cso/eleaRb2FGk/FAvvuCiXslsD8BOQJV13+z/lOhKOa0iWO
+	 TORze1c4hGoZTixoQY0KAJAHDDKi/XnEmmZ1McKbjJ6ChAzZAbTVZ3KOTxXYXY9Ei9
+	 CbGIjUfiIrvh7wv9S2Q/nVxiLf1eAW3GHBNpKK3qY3P0XAKP+C5Dr7rWB0aZFKywu0
+	 8VLCaEqfvQkkA==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 1388E5FDB1; Sat, 28 Feb 2026 01:52:02 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>
+Cc: linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: allwinner: sun55i-t527: avaota-a1: Add SPI NAND
+Date: Sat, 28 Feb 2026 01:51:52 +0800
+Message-ID: <20260227175157.2339758-1-wens@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add alternative
- reg-names order for RK35{76,88}
-To: Conor Dooley <conor@kernel.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
-References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
- <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
- <20260226-salute-threaten-a3eabb232396@spud>
- <429f3c7aa22eccffedbf8db6aa91bee3dd13814a.camel@collabora.com>
- <20260226-snide-foil-a05e1aa156a8@spud>
- <3d28c699e47f606bad46bb6447785badace37793.camel@collabora.com>
- <20260227-atonable-glamorous-920cfd832bc1@spud>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20260227-atonable-glamorous-920cfd832bc1@spud>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269386-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-269390-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C33831BB9F8
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C88321BBAD7
 X-Rspamd-Action: no action
 
-On 2/27/26 7:18 PM, Conor Dooley wrote:
-> On Thu, Feb 26, 2026 at 04:56:30PM -0500, Nicolas Dufresne wrote:
->> Le jeudi 26 février 2026 à 20:59 +0000, Conor Dooley a écrit :
->>> On Thu, Feb 26, 2026 at 02:45:11PM -0500, Nicolas Dufresne wrote:
->>>> Le jeudi 26 février 2026 à 18:43 +0000, Conor Dooley a écrit :
-> 
->>>>> Deprecating the order also makes little sense to me, given that some of
->>>>> these devices only have one reg entry, which as far as I can tell from
->>>>> looking at the driver *is* the "function" region, so it can never be
->>>>> entirely deprecated.
->>>>
->>>> What I'd like to see, is a binding expression that behave like a set, not a
->>>> list, and leave the ordering open. As people keep repeating, there is nothing in
->>>> a binding that assist to define the right ordering (its not address or base
->>>> addres aware). That basically means, we can't as reviewer see that ordering is
->>>> going to imposing using a base address in the unit name (which is a convenience,
->>>> not a rule I suppose) that differ from the vendor documented base address.
->>>>
->>>> By explicitly removing the ordering in the binding, we create a strict rule that
->>>> driver should retrieve this by name, and never assume the ordering, which I
->>>> personally like.
->>>>
->>>> thoughts ?
->>>
->>> Yeah, you can do this, but to avoid potential breaks you have to do it
->>> from the start, not after the fact. Probably there's bindings that get
->>> acked every day that do do this. Even the retcon is okay to do when
->>> reg-names is mandated by the binding and the users use reg-names in my
->>> opinion.
->>
->> I think from the above analyses, since the usage only starts in rc1, we have
->> room for improving it knowing we aren't creating problem for anyone. Note that I
->> have no idea what the syntax is to "do this", and I doubt either Detlev or
->> Cristian have a clue.
-> 
-> I think this is the only bit that really still needs a reply, this can
-> be solved by adding reg-names as "required" to the existing conditional
-> portion of the binding. There's probably hundreds of examples if one
-> does a search for "then:\n.*required:" to use a basis for the change
-> here. Probably should be an independent change, since it is needed even
-> without the re-order given the bug I brought up.
+Hi,
 
-As mentioned in my previous reply, the actual problem is that the binding has
-been already released, and I'm not sure we can change this without breaking the
-ABI.
+This series enables the SPI NAND found on the Avaota A1 in Quad SPI
+mode. The SPI driver already supports Dual SPI and Quad SPI, but the
+bindings need to be updated to allow it.
 
-Regards,
-Cristian
+Patch 1 updates the binding to allow Dual SPI and Quad SPI on the newer
+SoCs. It also allows describing no TX or no RX available.
+
+Patch 2 adds another set of pins for spi0 on the A523 SoC family. This
+set is used for the SPI NAND on the Avaota A1 board.
+
+Patch 3 enables the SPI NAND found on the board. No partition layout
+is provided at the moment.
+
+
+Please have a look.
+
+
+Thanks
+ChenYu
+
+
+Chen-Yu Tsai (3):
+  spi: dt-bindings: sun6i: Allow Dual SPI and Quad SPI for newer SoCs
+  arm64: dts: allwinner: sun55i-a523: Add pinmux for spi0 on PJ pins
+  arm64: dts: allwinner: sun55i-t527: avaota-a1: Add SPI NAND
+
+ .../bindings/spi/allwinner,sun6i-a31-spi.yaml | 31 +++++++++++++---
+ .../arm64/boot/dts/allwinner/sun55i-a523.dtsi | 35 +++++++++++++++++++
+ .../dts/allwinner/sun55i-t527-avaota-a1.dts   | 15 ++++++++
+ 3 files changed, 76 insertions(+), 5 deletions(-)
+
+-- 
+2.47.3
 
 
