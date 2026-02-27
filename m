@@ -1,310 +1,175 @@
-Return-Path: <devicetree+bounces-269201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269202-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCeLIhGBoWkUtgQAu9opvQ
-	(envelope-from <devicetree+bounces-269201-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:33:37 +0100
+	id KMRAHvWBoWkUtgQAu9opvQ
+	(envelope-from <devicetree+bounces-269202-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:37:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE0301B69D3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD6201B6A64
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 12:37:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F5B43022953
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:33:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B197E30338AD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 11:37:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99AE932ED2A;
-	Fri, 27 Feb 2026 11:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E810236E467;
+	Fri, 27 Feb 2026 11:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="EbRd0clv"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JOydFz/J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F8F227BB5
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 11:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772192014; cv=pass; b=Q8VihJMuHUOFkPAhxqxKJ2msXOy6DdN3BcSdLV4+KbHntpF6uymTHUA/Oh2q5cvJV0XHmTbiPwo6x/ZgyETLcJizEfdviZsc2l+1Y3N5lo+EYZXd8cMjK298t2rWHCuJcm8czzXafpQ+g0nUeG3/GB8vqdRFsd5CG/Kspu+Ws5o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772192014; c=relaxed/simple;
-	bh=YkKkXGPtWq4Z1GRykpWFBU1hTW3OYyhGbXrHfP9/WiE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DRKpSXb4CTTx0EerBrYDyhhrUbO+B3cYr7eTwwA0/s2ThPDPcizHvQHjOpctH2Ni80NJF6KuE1P6rMjqZvG81Jkz/b82rJ01bozt2mkzHJ4mw6aUA+6SGapm1WE4Sj4OsPRNLrVQbUWilBcCRWek1kkiyLQErpT3DPomaSLXX1Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=EbRd0clv; arc=pass smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b9372552059so168152666b.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 03:33:32 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772192011; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Ar3Sico7az4fwa4gFC455imtk+XZBoAgBxIrTV9x72yrDlRk9BegvxRpK4laHguFzf
-         Ts729ePMmMnMk87nPeqnitwszvBuKcIarcUUBcaygDuUjaMUiohpb4sfuHfsk354RKJw
-         fBxjDxNj3UocqckijMt90yGPUUtXBJlQlF1cGTk+msHfJhHceleomMhKuZpQ7AjEvfDP
-         nc0GPaIA2Y/e7LKxsKsSFOL4l5FVRQ7DT5Awh/PEhLjMtO9G1WjikPI57+QxBUoNhJZK
-         +Dyx0BgHhHELusNuQ1gzF/Aj4kP1Wkr6QQlcadK869vX22SKhFMTwXB9Mx1ioCuOSeos
-         3+dg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=EA0zkwSlxFAb7Xpw8/jdlv2hV6yk/85CXHmdOo5DpPw=;
-        fh=vOLRtYn9zOYwYjgdSsO1yziPzjzzCHzACjHn34zLfu0=;
-        b=lAKZC9TFZEyRZdBAMaleRcmhki9PzmERhLVXXfbuxjsIKmyCYPFVeDO4I8Fn6RAn8N
-         Wj2jQIZxD3aTrqSF+dFa3tyZSzSo+oWEC80Zu+MF2ySlLi+q5SC7ijWgT9hsOcG5ywam
-         CfOEkTk8a4lf9OvSrLXcMUI2MX8CFDR9SDz1MCHJjq6NUpoMHzIo3X+mnA9mGTRH47xg
-         Xd80WMP8qlcdlZNSEXvA0Zqyz4w/G1KQxTFd9BDFPFrmg70aVaZJF2aVNAXyAUqGlmmd
-         r3g5egoOzybC6GcMJqRfXPrqZEztv5+EwcE1Zx9NLTsDaEg7emA1B0a0KGoFnUp5POwn
-         J71w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1772192011; x=1772796811; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EA0zkwSlxFAb7Xpw8/jdlv2hV6yk/85CXHmdOo5DpPw=;
-        b=EbRd0clvRx9qGUQsT5J2lxegONfFLiRIv30vw4PmFMwCAioTYl2+cj2DNROEzEcEbU
-         36Wa1b8Jbm8owDo0igCVBJjIB70bLY1eZc1b5zgb7OgprLog6LjMx1s7v8nf0hGrrJ3C
-         3tGg2RGp8wwF8y2E3hH1yUKSIUOQXzoJd6295lqScnJeLpJ7z0DLfOCGgsV9VUYpH+Gp
-         QmK1AvmXsjEj3H9KNrgiT/2XOCaM5Uz7/BVui39XfhUK9RARu2xEOGP5qH3r/on4KfxZ
-         VzSDfBwpkCuiNhGCvmTLY+gQWLWTbsP/xttrQAAgbl1B/8+iaPUcuhSWHCKp0MFU3tir
-         9S4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772192011; x=1772796811;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=EA0zkwSlxFAb7Xpw8/jdlv2hV6yk/85CXHmdOo5DpPw=;
-        b=as/5h5C69VWdBc7kHaW4uQ4xMlkMP7waC23Bqv5OEJiC/+uMVUwOEUOu3gLUY2MDmg
-         qM497DRU9YnucexLoHb7q0Fb5o2p6W0510kuZZTQYu8nEzfoK4Pt+KOTmOoq41ZR1Ntr
-         BJU0qUEC6OBirPM6B72XMOsFz0mFIgHQc+lu9eK9uOQXKgs9d4LAnGnp1ct9zQuXbbXj
-         uOHhyOd27fO85tIibSLJLr84fM5Y1WRoJJHvIT4T0i/hxhPmjhZqKzQSbjoxaCQCc0ao
-         kMLLZddegpJGyrpZHQuqfKHktWnbOdGGIX0+j9FpioA8x2OYdGzxEOweW3euufO+f/BK
-         nviA==
-X-Forwarded-Encrypted: i=1; AJvYcCX24/AnP+lFMmFjRFWqEpekJUMJz1hOsfsGQnvZHyFKixT9yVSC1L9Nhytffm3xxjj7wOQTasRPdMAk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCjpsdWyhLVPuTwJRLevAHl09ARAUI9hvz91YMig0zYb3/ujRV
-	PjFyN0MJ3LqkoPPmIdGVP8HGnJbiy3MrJ2JGHik2YbK0Sn9RvMixYI773HuaxwYBqwQJ7LjP1L0
-	SHPKUSo8yYh41QJIXOdHalGYDKvpYyJH719LeaK7r2Q==
-X-Gm-Gg: ATEYQzwbYYWkwGoTnv3xSsVXcxlbDRftQeRF28E5ZWJ1p1kEt3rJ0HazkRFD8dtD/Qb
-	31s3B1FOw/txQgAP9xRbDR0rGMkk4UQb4ZIn5Je2T9ccyBDlVYbSzum8SsvskCLTQFCfMK84/e3
-	GKPy0iwgNhVWZSCmphTCIM8zWT+UccaegiWnMP5n6LR+80f2qn1UHzHfgfvgIlJ4VMS6ZKRBuT/
-	4Hyo0Zzwffp3ZHLK6FQgizwLvt5+XdDTlFzZwaTZuhc9d70Z9EPOlcpgtacxti/P2B7/k4sUrHe
-	Q5TOoA==
-X-Received: by 2002:a17:907:9807:b0:b88:6e10:62c8 with SMTP id
- a640c23a62f3a-b9376366e46mr138172766b.2.1772192011202; Fri, 27 Feb 2026
- 03:33:31 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 851EE1F92E;
+	Fri, 27 Feb 2026 11:37:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772192241; cv=none; b=s2n9TglxElEmfA8DjYy12nNxb35Or+A17kUBQ2JQTlYsM0n0GKBHcqFzPzMPqqrlb0luznUlwGknWR8S035SFUjg2yjf6fFDPqFenV/xQD5Jocy9gySrRiJ0WpsCZjoRQas7z9BIUpxN2lUrJLwBVaROneY5PG+3+lTkS+rQ2AI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772192241; c=relaxed/simple;
+	bh=ENbjWJF9SiuxxSiikXhZ3ftmZA+6ZUt7yDgzAKSZBiY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OUreYeUNKC67s19O1LJiMYbI9gAnzWCnIPDsPY0nHiITob5iF6XTbP5bFEkhP2HGzmDhC4ji8n6fO1GE3Li4wqYHEEpYKe2Ryoy/FNS4RfOuowlKlLvMoelE3q9utwr4i5DKVL9NqsAeQ90JOgv5b0iFj75oDOGvjP/67Gm7MK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JOydFz/J; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1772192238;
+	bh=ENbjWJF9SiuxxSiikXhZ3ftmZA+6ZUt7yDgzAKSZBiY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JOydFz/JmMwj4/f2OOR1ovhDA8+gWpkodHpir9ToEkNlhPTp86LncwbfBwVC1stlk
+	 Jb+xwkuYjMmF58t6jCDclDKCNitTe8VuIUuKb5rIXyH5X1tO9KvjbsiDTkcnYev4Fe
+	 K9pmxHiqhxpF4NGe5dLPyr5Z4rSTwNVvHKZIxbzB98xAaeCFGjxG4D36YUhf6KAVAS
+	 wjIcgJtVJehQ8y+GiN1nkzTn29jQYvTL6t1F5gq42Q8B8FWkfdUwVx9MgKngXpoUDw
+	 AjHMFLHV5EUKeZlAHBufY3LykFOVpH8X4FoO6U/OxEj4aWPk9oN0myPl05TxI7di4L
+	 89FgTQz5xEkow==
+Received: from [192.168.1.90] (unknown [86.123.23.225])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1424017E00A3;
+	Fri, 27 Feb 2026 12:37:18 +0100 (CET)
+Message-ID: <adbbdbb1-b126-4807-821c-c9850befd695@collabora.com>
+Date: Fri, 27 Feb 2026 13:37:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260225-ina4230-v1-0-92b1de981d46@flipper.net>
- <20260225-ina4230-v1-2-92b1de981d46@flipper.net> <20260227-victorious-parakeet-of-control-bef3ea@quoll>
-In-Reply-To: <20260227-victorious-parakeet-of-control-bef3ea@quoll>
-From: Alexey Charkov <alchark@flipper.net>
-Date: Fri, 27 Feb 2026 15:33:18 +0400
-X-Gm-Features: AaiRm52Uhbk0_fR90_NpcwfxQk5HImLHPnkYTEwhZQvIHf5sUKaUrVdD-tZT79s
-Message-ID: <CAKTNdwEUZWLgLtN7w==S69c1rOoRBWYAR3yXpR58uzipV3fx=A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] hwmon: Add support for TI INA4230 power monitor
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add alternative
+ reg-names order for RK35{76,88}
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
+References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
+ <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
+ <20260227-observant-roaring-ara-ef7eb0@quoll>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20260227-observant-roaring-ara-ef7eb0@quoll>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269201-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269202-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[flipper.net:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[flipper.net:email,flipper.net:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: EE0301B69D3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: CD6201B6A64
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 1:49=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Wed, Feb 25, 2026 at 01:29:12PM +0400, Alexey Charkov wrote:
-> > Add a driver for the TI INA4230, a 4-channel power monitor with I2C
-> > interface.
-> >
-> > The driver supports voltage, current, power and energy measurements, bu=
-t
-> > skips the alert functionality in this initial implementation.
-> >
-> > Signed-off-by: Alexey Charkov <alchark@flipper.net>
-> > ---
-> >  MAINTAINERS             |   6 +
-> >  drivers/hwmon/Kconfig   |  11 +
-> >  drivers/hwmon/Makefile  |   1 +
-> >  drivers/hwmon/ina4230.c | 997 ++++++++++++++++++++++++++++++++++++++++=
-++++++++
-> >  4 files changed, 1015 insertions(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 4d879f6a7b51..77f7a416e682 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -12511,6 +12511,12 @@ S:   Maintained
-> >  F:   Documentation/hwmon/ina233.rst
-> >  F:   drivers/hwmon/pmbus/ina233.c
-> >
-> > +INA4230 HWMON DRIVER
-> > +M:   Alexey Charkov <alchark@flipper.net>
-> > +L:   linux-hwmon@vger.kernel.org
-> > +S:   Maintained
-> > +F:   drivers/hwmon/ina4230.c
->
-> List here binding as well, please.
+Hi Krzysztof, Conor,
 
-Will do. It does confuse me a bit that we duplicate the maintainers
-info both inside the binding files and in here.
+On 2/27/26 9:46 AM, Krzysztof Kozlowski wrote:
+> On Thu, Feb 26, 2026 at 12:46:53PM +0200, Cristian Ciocaltea wrote:
+>> With the introduction of the RK3588 SoC, and RK3576 afterwards, two more
+>> register blocks have been provided for the video decoder unit.
+>>
+>> However, the binding does not properly describe the new hardware layout,
+> 
+> As you shown me last time with excerpt of address spaces from
+> datasheet/manual, the binding correctly describes the hardware and above
+> sentence is not true.
+> 
+>> as it breaks the convention expecting the unit address to indicate the
+>> start of the first register range, i.e. 'function' block is listed
+> 
+> Imprecise wording. "start of the main or primary register range"
+> 
+> (if you have 0x1000 with one reg and 0x20000000 with everything, the
+> unit address will be 0x20000000).
+> 
+>> before 'link' instead of the opposite.
+>>
+>> Since the binding changes have been already released and a fix would
+>> bring up an ABI break, mark the current 'reg-names' ordering as
+>> deprecated and introduce an alternative 'link,function,cache' listing
+>> which follows the address-based ordering according to the TRM.
+>>
+>> Additionally, drop the 'reg' description items as the order is not fixed
+>> anymore, while the information they offer is not very relevant anyway.
+> 
+> This is fine for me.
 
-> > +
-> > +static int ina4230_probe_child_from_dt(struct device *dev,
-> > +                                    struct device_node *child,
-> > +                                    struct ina4230_data *ina)
-> > +{
-> > +     struct ina4230_input *input;
-> > +     u32 val;
-> > +     int ret;
-> > +
-> > +     ret =3D of_property_read_u32(child, "reg", &val);
-> > +     if (ret) {
-> > +             dev_err(dev, "missing reg property of %pOFn\n", child);
-> > +             return ret;
-> > +     } else if (val > INA4230_CHANNEL4) {
-> > +             dev_err(dev, "invalid reg %d of %pOFn\n", val, child);
->
-> All these are probe, so return dev_err_probe
+Thanks for the additional feedback!
 
-Good point, thanks. Will adjust in v2.
+If I'm not mistaken (please correct me), the only remaining (hard)
+blocker for the series would be to improve this commit message.
 
-> > +             return -EINVAL;
-> > +     }
-> > +
->
-> ...
->
-> > +     ina->regmap =3D devm_regmap_init_i2c(client, &ina4230_regmap_conf=
-ig);
-> > +     if (IS_ERR(ina->regmap)) {
-> > +             dev_err(dev, "Unable to allocate register map\n");
-> > +             return PTR_ERR(ina->regmap);
-> > +     }
-> > +
-> > +     for (i =3D 0; i < F_MAX_FIELDS; i++) {
-> > +             ina->fields[i] =3D devm_regmap_field_alloc(dev,
-> > +                                                      ina->regmap,
-> > +                                                      ina4230_reg_fiel=
-ds[i]);
-> > +             if (IS_ERR(ina->fields[i])) {
-> > +                     dev_err(dev, "Unable to allocate regmap fields\n"=
-);
-> > +                     return PTR_ERR(ina->fields[i]);
->
-> Syntax is return dev_err_probe, but allocations should not have printks.
-> It is not possible to get there any other error code.
+How about the following:
 
-Alright, will drop the error message and return the errno directly,
-thanks. -ENOMEM should be pretty self-explanatory.
+    With the introduction of the RK3588 SoC, and RK3576 afterwards, three
+    register blocks have been provided for the video decoder unit instead of
+    just one, which are further referenced in the datasheet by 'link table',
+    'function' and 'cache'.  The former is present at the top of the
+    listing, starting at video decoder unit base address.
 
-It probably also makes sense to replace the open-coded loop with a
-call to devm_regmap_field_bulk_alloc while we're here.
+    However, while documenting RK3588, the binding broke the convention
+    expecting the unit address to indicate the start of the primary register
+    range, i.e. the 'function' block got listed before the 'link' one.
 
-> > +             }
-> > +     }
-> > +
-> > +     for (i =3D 0; i < INA4230_NUM_CHANNELS; i++) {
-> > +             ina->inputs[i].shunt_resistor =3D INA4230_RSHUNT_DEFAULT;
-> > +             /* Default for 1mA LSB current measurements */
-> > +             ina->inputs[i].max_expected_current =3D 32768000;
-> > +     }
-> > +
-> > +     ret =3D ina4230_probe_from_dt(dev, ina);
-> > +     if (ret) {
-> > +             dev_err(dev, "Unable to probe from device tree\n");
-> > +             return ret;
->
-> return dev_err_probe
+    Since the binding changes have been already released and a fix would
+    bring up an ABI break, mark the current 'reg-names' ordering as
+    deprecated and introduce an alternative 'link,function,cache' listing
+    which follows the address-based ordering according to the TRM.
 
-Ack
+    Additionally, drop the 'reg' description items as the order is not fixed
+    anymore, while the information they offer is not very relevant anyway.
 
-> > +     }
-> > +
-> > +     /* The driver will be reset, so use reset value */
-> > +     ina->reg_config1 =3D INA4230_CONFIG_DEFAULT;
-> > +     ina->reg_config2 =3D 0;
-> > +
-> > +     if (ina->single_shot)
-> > +             FIELD_MODIFY(INA4230_CONFIG1_MODE_MASK, &ina->reg_config1=
-,
-> > +                          INA4230_MODE_BUS_SHUNT_SINGLE);
-> > +
-> > +     /* Disable channels if their inputs are disconnected */
-> > +     for (i =3D 0; i < INA4230_NUM_CHANNELS; i++) {
-> > +             if (ina->inputs[i].disconnected)
-> > +                     ina->reg_config1 &=3D ~INA4230_CONFIG_CHx_EN(i);
-> > +     }
-> > +
-> > +     /* Set calibration values */
-> > +     for (i =3D 0; i < INA4230_NUM_CHANNELS; i++) {
-> > +             if (!ina->inputs[i].disconnected)
-> > +                     ina4230_set_calibration(ina, i);
-> > +     }
-> > +
-> > +     ina->pm_dev =3D dev;
-> > +     dev_set_drvdata(dev, ina);
-> > +
-> > +     /* Enable PM runtime -- status is suspended by default */
-> > +     pm_runtime_enable(ina->pm_dev);
-> > +
-> > +     /* Initialize (resume) the device */
-> > +     for (i =3D 0; i < INA4230_NUM_CHANNELS; i++) {
-> > +             if (ina->inputs[i].disconnected)
-> > +                     continue;
-> > +             /* Match the refcount with number of enabled channels */
-> > +             ret =3D pm_runtime_get_sync(ina->pm_dev);
-> > +             if (ret < 0)
-> > +                     goto fail;
-> > +     }
-> > +
-> > +     hwmon_dev =3D devm_hwmon_device_register_with_info(dev, client->n=
-ame, ina,
-> > +                                                      &ina4230_chip_in=
-fo,
-> > +                                                      ina4230_groups);
-> > +     if (IS_ERR(hwmon_dev)) {
-> > +             dev_err(dev, "Unable to register hwmon device\n");
-> > +             ret =3D PTR_ERR(hwmon_dev);
->
-> just ret =3D dev_err_probe
-
-Ack
-
-Thanks for your review Krzysztof!
-
-Best regards,
-Alexey
+Regards,
+Cristian
 
