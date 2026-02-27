@@ -1,566 +1,251 @@
-Return-Path: <devicetree+bounces-269351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269352-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGGjJDjCoWkVwQQAu9opvQ
-	(envelope-from <devicetree+bounces-269351-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:11:36 +0100
+	id aD/XOkLCoWkVwQQAu9opvQ
+	(envelope-from <devicetree+bounces-269352-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:11:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9381BA977
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:11:35 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BFAC1BA988
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:11:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 37D6330005A2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:58:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2E77330786E2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0746A2C11DF;
-	Fri, 27 Feb 2026 15:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83AFC44B68D;
+	Fri, 27 Feb 2026 15:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eP9UMpl/"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="TwFJQZiX";
+	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="vxEQek9D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f181.google.com (mail-dy1-f181.google.com [74.125.82.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D3143E9E2
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 15:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772207904; cv=none; b=EwJ2xVG5fee7xF3NqSUiM4luSwsz7Su9NzT8WnSckzHlfVHIzBLEI7UyhIA6MZ2joWfjZtJ6p0My9pBdvGQynvi8OYq1MAoU+FXKCPpUWE3oQdPcyv0iMzDKcGn9KTciachqe+kWwwZDVgPr6BBuWCJigtNUx8PwDpavf3C4LEs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772207904; c=relaxed/simple;
-	bh=HFAxbHEBuj9SA65jXwHxxAHDh/8i5KKWDZ594V8dppo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CqVJDjMen9YJPkMaVft2J91sDyhFJqAsM7vVuROJU2h4W/5f3NrtOCeUR2WyUDJKflxJAk+6v24gQeZ3SfDos587sUxZrazj5iDEgwh7ekn6K7jxWv3xYTlW+dkF/XUliLgQVKzSE3BG/e/sPVRtat4btdbnl3lbh2soOUJ6mIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eP9UMpl/; arc=none smtp.client-ip=74.125.82.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f181.google.com with SMTP id 5a478bee46e88-2bdcd7f0222so3058304eec.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:58:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE3144B66C;
+	Fri, 27 Feb 2026 15:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.149.25
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772207909; cv=fail; b=nLUvRIR6fP7d1o0FBRaffLGB2AGrkYmMahuNmNP8BgReLJl/fGTd990ZIM+ZiYbf4A4W/los8TRZTcAHeBjZUI6hjxRnhGUWrQ868va7ZiwNwGihDcO6HjUprhmTxG1eE1r2YKhhAZSV470lH9FBqLSOQoDu7IEpSb4040qAV/c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772207909; c=relaxed/simple;
+	bh=9zIaW5GrNYt1FwC1JeVTx+E+Uz24gYWP4WaCfjF8L18=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G4YilRMVhg/9A9l0b/pQnpMfa606o3RcDA/DgbvUdpF8Ma8nHJ4JEJNGtreuYjOgf2smUFyc0uAImuqmGeJrEHY/arfaEnyF/U7/HGCPCn3Yotpxdiv34VA5i+cuQeYxw841TQ0iwyUrMezYE2aGNpmVnbvu/imGVHpLR8H4cAg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=TwFJQZiX; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=vxEQek9D; arc=fail smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61R4os9D2367068;
+	Fri, 27 Feb 2026 09:58:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=PODMain02222019; bh=h8cdWiTQowG9Wtj13i
+	cgNjTqPC1+CjUUXuQxcNaliy4=; b=TwFJQZiXdXrSPjkpNm4tX3rKqMZ3mwdGCS
+	gL2AnfVXSybAdkDcl4Ah9m+VcVzvv5C+9GeOgKF2Y97l+52ZCoU5IjMHcRHaOCyZ
+	fEq5lmneai5V8egsjB9EVLrzDPdOSf+kloP/jplksvMiCjBPeB2ml6YEnGjJdbqd
+	/0wgJcagKreB7Z5bG+eXdv6EZz6GfAAUzbRg9KcWVntb1NW+MlTBV3DyjZcKrF6Q
+	bTw8UDUW/B/0aclzaaznzUDXNzyqHzE5RFvLMU1CggVXGtAC0iTKf1k2yE+6WG+M
+	PxscbgdRaOt23oXsKHwWvMQX8Q4qGKmlNNf/vb3WsKXwWT/X3IsA==
+Received: from dm1pr04cu001.outbound.protection.outlook.com (mail-centralusazon11020123.outbound.protection.outlook.com [52.101.61.123])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 4cjmds1qep-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 27 Feb 2026 09:58:23 -0600 (CST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JftOqfTV+vdBtHpRt77hJV0shNu/oecctNNO8/qIBSD+fs0Yxz06wWrPQM1ovy8xn52tn/Fkhkk0bqadsg36ED5NQT9rfguKYJa6XqlmAx/j4S4IjAv7LxAnQJOoUD7sB2It3BaJhA7B5gx9l03PPNVf+ZjzQpQhNGSiBKW30qRUahoBKRuZK2kbt2w9wHRqpc47KbvacJ3SPiGl0Zjha4h+gRL0/V4PlHjIdxMLP9BXm1KEajH0ffL26w5E1eWWpBdlWySsE/6/Ivj6YcpxHYyhaFPLOchXxHUSkYqrP9mCDJUtIdZkKab9hTqYEFCHBfGGOGHYvFXLjQIYg6/8lQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h8cdWiTQowG9Wtj13icgNjTqPC1+CjUUXuQxcNaliy4=;
+ b=yeeA63PIE5DJKHVG1egwFxjPfqslB3qFvOs7jYtc0hd/iC9I2Z3Lp46ERDscuMXvHN/p0UczcOytYfse/zmZmtWoU7Tdr/+ybOfGxVQ05MKRBD30cit2PRFmT7CKTMrX5HdWggFv8bRwVAt4mnHNqFIbMFwOfVxrrzLE56tCzp/LOuvfZuexTsaT9WAYDf/OFfdSEd3YvUxnYoMDZCOH2IxWvSSsPetIhDnuvGGTQJ5D9cfO8t52w7NUgdbJd14KaSqfXy9MJtPKoQs5uqeWwqL3EOSiP7bL8xQoRotsj6a+p7wURd1MF0OY38GO720bjGQuUwYBKAu7UqIsY99/ww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 84.19.233.75) smtp.rcpttodomain=stgolabs.net
+ smtp.mailfrom=opensource.cirrus.com; dmarc=fail (p=reject sp=reject pct=100)
+ action=oreject header.from=opensource.cirrus.com; dkim=none (message not
+ signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772207898; x=1772812698; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LSaVT+wqzbV7fk4kyE3UAeW85/3qS5cH+OXtTqOEZgk=;
-        b=eP9UMpl/Ml75Ok5ZjP262wcOWWd6OC4wuD4AF9utuscnhrsD6iAvLUau0hhhaXQR+z
-         /33ztz3I7RV8t+722bVTTomJmxrckKCPXVywQ9dQFg3/YjJwO0w4v6adPbNfX3Wf5IQy
-         /s78+0+zuAvztijyZ74gLf7CIIOxmymmOoj6WJjaIUSRaUmGhEE9ClTgXeup5gVDxeXG
-         JDfFafB33V4ANb4TcziDobs87ql0RkzGyhMQ0q5eyODo1TFCIXZx37WQdcCfHRJFIJWg
-         7585uDp4c4HRMYeDpP0NjyOa4f+uP53HMvZINXvykG0FcRHdv4zp3YC06E6EhD0oyXkO
-         Q4eQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772207898; x=1772812698;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=LSaVT+wqzbV7fk4kyE3UAeW85/3qS5cH+OXtTqOEZgk=;
-        b=KVzR/CqWmoc2qcttmn/ut2qL1EGk4d4iW0mFk70tsaO9zpdAI+DR+6aFIunQeIXjTR
-         NP1ajoJN5otTOqRFzjEH+Iky9KYAh3Ca5UvwNBeW4YVQBypBXKXDu4PxcbeqZW3T9wvV
-         IUUIq0cM13BSPRBsPshWXEMqQnS2JDrzDMbYO97N1z0rEiC5zVYEHxEN1DFJubPMBihk
-         iTYoHvKsSxOGSBQdr8PBAEELSVUQmM5bvW7gtzdaix+9NafyLSqWSunpDT9V1ZkOsdg4
-         4YhpmGhrBUbMZ/3mY1Y/0Qr3zPP2Rw+whjQqPu+FJiIOQQgHljOF8en0k5Uhxx6p5a3A
-         3KUw==
-X-Gm-Message-State: AOJu0Yz1uAtNr3BzRoBDsAI2KKZdVVXpObgH3r5TGC0z6JtTR68LcHI3
-	/umLIn7V5hntI/CCAmROSAx9EZXFRh8mP8Bw2I9nBLBBSUk33bV2nqILS8Swlw==
-X-Gm-Gg: ATEYQzwSH2EbJO8wbbB6pKBRzkRZWxWvunomisw2k5Xe4Mcw8BS4VpFFQRUQVFQ6Nd4
-	jmlTpdeLZovN/bSYPbA3lIEU/78E3aK66SuFRpmeYWXn1INerMUraR00jwTNWQVAr85SF85QTJs
-	P2hITc0HaYmfE07X0yBA6pC0c/BNtVff7anDa/uTdKW053cSk/YDVWu5iN9VlAEJ490zYtc2tGf
-	1rOYqoz1XIwnLMSztTDRp5sdsJesH0feW8nydL2+ipSHrfOLagV7JpFbTQelyWzkatwpeiNeLwy
-	4Zw6SSbxf7UUkbfJEFhxsZ8/PP0fd+D4TiSAZVGHxW9F7dRqFJuJFlCY+t3ppGAqipb59rbOqys
-	ctf0gqIS8QTUSTMvrZ99ncfplfrLpl7UgyLACdDKsGm+1eKUANvod3SvODjZBzCa+31iedCTbfZ
-	TLRGpTaSW/yRgr6M1sjsXUryo7sPprp7QSJyfG/jQN4fV60uMLabl9P+F4lGpygWNNr8Y2G/zz
-X-Received: by 2002:a05:7300:aca8:b0:2ba:7b0b:e20a with SMTP id 5a478bee46e88-2bde1edf3a2mr1277424eec.37.1772207898211;
-        Fri, 27 Feb 2026 07:58:18 -0800 (PST)
-Received: from arch.localdomain ([149.34.251.245])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2bdd1cf0115sm3833508eec.8.2026.02.27.07.58.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Feb 2026 07:58:17 -0800 (PST)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	wens@kernel.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	mripard@kernel.org,
-	Jun Yan <jerrysteve1101@gmail.com>
-Subject: [PATCH v2 3/3] arm64: dts: allwinner: h6: Add TaiqiCat (TQC) A01 support
-Date: Fri, 27 Feb 2026 23:58:00 +0800
-Message-ID: <20260227155801.211376-4-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260227155801.211376-1-jerrysteve1101@gmail.com>
-References: <20260227155801.211376-1-jerrysteve1101@gmail.com>
+ d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h8cdWiTQowG9Wtj13icgNjTqPC1+CjUUXuQxcNaliy4=;
+ b=vxEQek9DGGx4P6FyYB4YJmYIHMTFJAm8eHDjpWpIYWdq821anGKyNniB5tsYUw1HN56jJWWPsRqy5dN67F4PaaK8JYiHM8QxndgOrnsOJdq0er2clBjbD3DBQUpOP5YTCzS7e6X52DNNW8VetMXk0QEikYjtpzVvHffBcY12GN0=
+Received: from SJ0PR03CA0249.namprd03.prod.outlook.com (2603:10b6:a03:3a0::14)
+ by BLAPR19MB4466.namprd19.prod.outlook.com (2603:10b6:208:299::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.16; Fri, 27 Feb
+ 2026 15:58:19 +0000
+Received: from SJ1PEPF000026C7.namprd04.prod.outlook.com
+ (2603:10b6:a03:3a0:cafe::86) by SJ0PR03CA0249.outlook.office365.com
+ (2603:10b6:a03:3a0::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.25 via Frontend Transport; Fri,
+ 27 Feb 2026 15:58:18 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 84.19.233.75)
+ smtp.mailfrom=opensource.cirrus.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=oreject header.from=opensource.cirrus.com;
+Received-SPF: Fail (protection.outlook.com: domain of opensource.cirrus.com
+ does not designate 84.19.233.75 as permitted sender)
+ receiver=protection.outlook.com; client-ip=84.19.233.75;
+ helo=edirelay1.ad.cirrus.com;
+Received: from edirelay1.ad.cirrus.com (84.19.233.75) by
+ SJ1PEPF000026C7.mail.protection.outlook.com (10.167.244.104) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.16
+ via Frontend Transport; Fri, 27 Feb 2026 15:58:18 +0000
+Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id AB1BC406541;
+	Fri, 27 Feb 2026 15:58:16 +0000 (UTC)
+Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPSA id 8E61682024B;
+	Fri, 27 Feb 2026 15:58:16 +0000 (UTC)
+Date: Fri, 27 Feb 2026 15:58:15 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kalle Niemi <kaleposti@gmail.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Danilo Krummrich <dakr@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
+        Saravana Kannan <saravanak@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Linus Walleij <linusw@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Davidlohr Bueso <dave@stgolabs.net>,
+        Jonathan Cameron <jonathan.cameron@huawei.com>,
+        Dave Jiang <dave.jiang@intel.com>,
+        Alison Schofield <alison.schofield@intel.com>,
+        Vishal Verma <vishal.l.verma@intel.com>,
+        Ira Weiny <ira.weiny@intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Shawn Guo <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>,
+        linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
+        imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-sound@vger.kernel.org, patches@opensource.cirrus.com,
+        linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-cxl@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 09/28] pinctrl: cs42l43: Use fw_devlink_set_device()
+Message-ID: <aaG/F3JKIpsefS5f@opensource.cirrus.com>
+References: <20260227135428.783983-1-herve.codina@bootlin.com>
+ <20260227135428.783983-10-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260227135428.783983-10-herve.codina@bootlin.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C7:EE_|BLAPR19MB4466:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1048c8dd-3d67-45bc-46b8-08de76190680
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|61400799027|36860700013|82310400026|54012099003;
+X-Microsoft-Antispam-Message-Info:
+	KqTRJQ7H2aPhnSK38lLqGtxxHhOUh406CiKOo63Ta4T9BC2Q8m6k2EkRFfiSW8o4OWFAv4OJNjsSXzp2ikTh5GNTrCxcyGTEB0h242oWBBDyaTXDrirExCGzfZ/5QGSJRYOOkHeb10hz9nDnYTBwyBtJ2BWqISV3eGO3CO0XdhWFvSGCjIrmB6glSrJyrTJ6v/R+pPOuwbdEJfx26y2eY98akJXPYIH2QJS8F6G+HjGidRxvnFlbwKzfDyO3QgVVD2+vJxq11XxrmpE04KluC/XOxIY5GIbuC/s/QGpQ2XnmY/0deFA3PWYFP9g4v65vHMUhHvzdvfLFDIK5bA6aHYqrFTuKOUR7Sb048hntRpwEZXO5v/A17ybdRr0m5RdgIE2eLaS1s/hI37U4yXLwxosX+l6SB67R6eaen7G+iB4WkAQQ+/EpiogxEC+9Qgn9yxfda5cqH//31RS+wBZ7FNjM3m2shc9bnyw7LUbjVNz5oWhCpGUD+ShMorjoytQ09fvhWdq/OZd8dN2YHGACVt3f225YMqkVoi+duDT6sm5pTxu1/r6nJ0K/258k96ppFNgjXbFR2JgKD6E0KI5N6APDDhgQbXiAjVOH68ax9iIbLkJwqdcJ3PJup3kbuVBj04D4CNTvo9Ce/nBeyu3OXoyf0tHhouL2VfBIZyhGtzS2YLAifdagk92gh38iuAzaicppy2avk5ouSDhEWispZkjLxeEkurqzdOcag0iK71CKQRkChq8vVMEvQXHRuaiAWzdP5pTEJ7CRHuaPhNreBr+YfArB9EPIm0tJIrB0ZUYteyBAdWbYJSfzps2IEfnOlqL6ESHCt1CjLApjQpefVQ==
+X-Forefront-Antispam-Report:
+	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(61400799027)(36860700013)(82310400026)(54012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	qIv2880b4PziF90kXI4TPyyFDV3tPqhooEDvHel4ULVhZ2Je/a+FozWykUiGyzWKCSX3wxJXlwVQQHvCa96is18BZppgRNqt2kJVdhQAxM0SbrxSlDWl0p7dlMzLax41uV8577cWLmVlb3sE1S/58zhkvI8BU/lxVTozM/gjyjfIUT8Xh7BI92eLmL6Nue0nHzN7TCJ3F0Krxsd7BjD+kGwHcnzG2RKyNWZv51KVt2RYZouXhPfRxC77A/JuMUOXstm8nZNTQQN/LSOzhMBcRsTr8dYag4WzconsTMo6I6hYvYcVCV4OAs8usqj9FhFu4WFfBnwSFFzT6VWB5QUcPJyCQi1JUtarzu52aEBVG5rQiGYBJj1AsBmolb2E6nI3hrJzIWy1zF4xehJwKIOtpr1sDkfIQ6pT+cLUfoD64YrQntmIl0pM5GI9HD53ei6E
+X-OriginatorOrg: opensource.cirrus.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 15:58:18.5261
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1048c8dd-3d67-45bc-46b8-08de76190680
+X-MS-Exchange-CrossTenant-Id: bec09025-e5bc-40d1-a355-8e955c307de8
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bec09025-e5bc-40d1-a355-8e955c307de8;Ip=[84.19.233.75];Helo=[edirelay1.ad.cirrus.com]
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-SJ1PEPF000026C7.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR19MB4466
+X-Authority-Analysis: v=2.4 cv=dO2rWeZb c=1 sm=1 tr=0 ts=69a1bf1f cx=c_pps
+ a=FbtOodId46Ol6SGOFNJvpw==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=kj9zAlcOel0A:10 a=HzLeVaNsDn8A:10 a=s63m1ICgrNkA:10 a=RWc_ulEos4gA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=iX4cTi3TZMoOKdANLEfx:22 a=Dj2-6B8FqX4mGL0U3gbX:22
+ a=P-IC7800AAAA:8 a=QyXUC8HyAAAA:8 a=w1d2syhTAAAA:8 a=nQlXo20cr35tWbDzT6YA:9
+ a=CjuIK1q_8ugA:10 a=d3PnA9EDa4IxuAV0gXij:22
+X-Proofpoint-GUID: KuKW_utk8Rmwdqs4O54vos19QWturA2o
+X-Proofpoint-ORIG-GUID: KuKW_utk8Rmwdqs4O54vos19QWturA2o
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI3MDE0MiBTYWx0ZWRfX+R/yExiaOXbu
+ LKD5evsq6QDwSsCu8HGulcnFa5ThrGyziPhtsZ2KS8oOSdWilpGIQBfJnM6KbTdAqpQRrsTVGPt
+ LY/M/j5iZW05a8chJ1WzfQEagpibgAT4uYO12bA06TgYMpfpZNL4TARaDogsAtFaptdIi/mBsF4
+ TqIdZwjJOtUr72YafA7nPItWBeE7h0JrkGtCwfk4KNGKvlckqoYL2J6EJvmu2laWurmzYcwQk8q
+ Pn5ecsbhAXK1aFTX+5oGCHY3TCfImx6G+lHcb/RF4nSsn/mDPAid87Jmpf+ve+OBRHKX+LEfNI+
+ aumcRMl0dqnJMIw5LzlDZuwd0q0T6+JCdFVmIbZyz4kiPDCtthBaz/Ph7FnKYmQDLhxK+H8DnEJ
+ BUN7Y02VcoNJO70XehIGNm+ZYl9V2VQZbXSxdbQWInTTxh1fPc1skeaCikDEhmNj6qF9ykFh/zJ
+ rvZI96rAaKzf6erQ2Pg==
+X-Proofpoint-Spam-Reason: safe
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[cirrus.com,reject];
+	R_DKIM_ALLOW(-0.20)[cirrus.com:s=PODMain02222019,cirrus4.onmicrosoft.com:s=selector2-cirrus4-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org];
+	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,glider.be,gmail.com,linuxfoundation.org,nxp.com,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,google.com,opensource.cirrus.com,cirrus.com,linaro.org,linux.intel.com,stgolabs.net,huawei.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com,bootlin.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:email,intel.com:email,cirrus.com:email,cirrus.com:dkim,cirrus4.onmicrosoft.com:dkim,opensource.cirrus.com:mid];
+	DKIM_TRACE(0.00)[cirrus.com:+,cirrus4.onmicrosoft.com:+];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269351-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269352-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ckeepax@opensource.cirrus.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[62];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.36:email];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,archive.org:url,0.0.0.1:email]
-X-Rspamd-Queue-Id: 8B9381BA977
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 4BFAC1BA988
 X-Rspamd-Action: no action
 
-TaiqiCat (TQC) A01 is a set-top box powered by an Allwinner H6 SoC,
-equipped with an AXP305 PMIC, 1GB LPDDR3 RAM, 8GB eMMC, an AP6212
-WiFi/BT combo module, one 100M Ethernet port, one USB 3.0 Type-A port,
-one USB 2.0 Type-A port, one Micro USB port, HDMI, SPDIF, Micro-SD, and
-infrared input.
+On Fri, Feb 27, 2026 at 02:54:06PM +0100, Herve Codina wrote:
+> The code set directly fwnode->dev field.
+> 
+> Use the dedicated fw_devlink_set_device() helper to perform this
+> operation.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
 
-It was released by Ultrapower(UQSoft) as a blockchain-based terminal and is
-now discontinued and no longer supported.
+Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-  https://web.archive.org/web/20190409213228/https://tq.ultrapower.com.cn/product.html
-
-Hardware schematics are not available at this time; however, the
-dts from the vendor firmware is provided for reference [1].
-
-Based on the PCB silkscreen marking "AZW-KT02 2.0", the ODM/OEM
-can be confirmed as AZW, and the overall hardware circuit design
-is highly similar to the Beelink GS1.
-
-Tested, works:
-- debug UART
-- status LED
-- USB 3.0 Type-A port
-- USB 2.0 Type-A port
-- Micro USB port (Host)
-- MicroSD
-- eMMC
-- WiFi/Bluetooth
-- HDMI video output
-
-Does not work:
-- Ethernet (requires AC200 MFD/EPHY driver)
-- HDMI audio
-
-Untested:
-- SPDIF
-- IR receiver
-
-[1] https://archive.org/download/tqc-a01-stock-fw/tqc-a01-stock-fw.dts
-
-Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../dts/allwinner/sun50i-h6-taiqicat-a01.dts  | 361 ++++++++++++++++++
- 2 files changed, 362 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
-
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 2edfa7bf4ab3..d116864b6c2b 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -38,6 +38,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-taiqicat-a01.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h313-tanix-tx1.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
-new file mode 100644
-index 000000000000..381479553f5f
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
-@@ -0,0 +1,361 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (C) 2026 Jun Yan <jerrysteve1101@gmail.com>
-+
-+/dts-v1/;
-+
-+#include "sun50i-h6.dtsi"
-+#include "sun50i-h6-cpu-opp.dtsi"
-+#include "sun50i-h6-gpu-opp.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "TaiqiCat (TQC) A01";
-+	compatible = "ultrapower,taiqicat-a01", "allwinner,sun50i-h6";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	connector {
-+		compatible = "hdmi-connector";
-+		ddc-en-gpios = <&pio 7 2 GPIO_ACTIVE_HIGH>; /* PH2 */
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
-+	ext_osc32k: ext-osc32k-clk {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <32768>;
-+		clock-output-names = "ext_osc32k";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "taiqicat:blue:power";
-+			gpios = <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
-+			default-state = "on";
-+		};
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the DC jack */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	sound-spdif {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "sun50i-h6-spdif";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&spdif>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&spdif_out>;
-+		};
-+	};
-+
-+	spdif_out: spdif-out {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "ext_clock";
-+		reset-gpios = <&r_pio 0 8 GPIO_ACTIVE_LOW>; /* PL8 */
-+		post-power-on-delay-ms = <200>;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&dwc3 {
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci3 {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
-+&hdmi {
-+	hvcc-supply = <&reg_bldo2>;
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_cldo1>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	bus-width = <4>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	vmmc-supply = <&reg_cldo3>;
-+	vqmmc-supply = <&reg_bldo3>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	bus-width = <4>;
-+	non-removable;
-+	keep-power-in-suspend;
-+	status = "okay";
-+
-+	brcm: sdio-wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm43430a1-fmac", "brcm,bcm4329-fmac";
-+		interrupt-parent = <&r_pio>;
-+		interrupts = <1 0 IRQ_TYPE_LEVEL_LOW>; /* PM0 */
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&mmc2 {
-+	vmmc-supply = <&reg_cldo1>;
-+	vqmmc-supply = <&reg_bldo2>;
-+	cap-mmc-hw-reset;
-+	non-removable;
-+	mmc-hs200-1_8v;
-+	bus-width = <8>;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci3 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_bldo2>;
-+	vcc-pd-supply = <&reg_cldo1>;
-+	vcc-pg-supply = <&reg_bldo3>;
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp805: pmic@36 {
-+		compatible = "x-powers,axp805", "x-powers,axp806";
-+		reg = <0x36>;
-+		interrupt-parent = <&r_intc>;
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+		x-powers,self-working-mode;
-+		vina-supply = <&reg_vcc5v>;
-+		vinb-supply = <&reg_vcc5v>;
-+		vinc-supply = <&reg_vcc5v>;
-+		vind-supply = <&reg_vcc5v>;
-+		vine-supply = <&reg_vcc5v>;
-+		aldoin-supply = <&reg_vcc5v>;
-+		bldoin-supply = <&reg_vcc5v>;
-+		cldoin-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-pl-led-ir-pg-pm-ts";
-+			};
-+
-+			reg_aldo2: aldo2 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-ac200";
-+				regulator-enable-ramp-delay = <100000>;
-+			};
-+
-+			aldo3 {
-+				/* unused */
-+			};
-+
-+			reg_bldo1: bldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc18-dram-bias-pll";
-+			};
-+
-+			reg_bldo2: bldo2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-pc-emmc-efuse-hdmi";
-+			};
-+
-+			reg_bldo3: bldo3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-pg-wifiio";
-+			};
-+
-+			bldo4 {
-+				/* unused */
-+			};
-+
-+			reg_cldo1: cldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc33-io-pd-emmc-sd-usb-uart";
-+			};
-+
-+			/* This regulator is connected with CLDO3 */
-+			reg_cldo2: cldo2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-wifi-1";
-+			};
-+
-+			reg_cldo3: cldo3 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-wifi-2";
-+			};
-+
-+			reg_dcdca: dcdca {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1160000>;
-+				regulator-ramp-delay = <2500>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-ramp-delay = <2500>;
-+				regulator-name = "vdd-gpu";
-+			};
-+
-+			reg_dcdcd: dcdcd {
-+				regulator-always-on;
-+				regulator-min-microvolt = <960000>;
-+				regulator-max-microvolt = <960000>;
-+				regulator-name = "vdd-sys-hdmi-usb";
-+			};
-+
-+			reg_dcdce: dcdce {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vcc-dram";
-+			};
-+
-+			sw {
-+				/* unused */
-+			};
-+		};
-+	};
-+};
-+
-+&r_ir {
-+	status = "okay";
-+};
-+
-+&r_pio {
-+	/*
-+	 * PL0 and PL1 are used for PMIC I2C
-+	 * don't enable the pl-supply else
-+	 * it will fail at boot
-+	 *
-+	 * vcc-pl-supply = <&reg_aldo1>;
-+	 */
-+	vcc-pm-supply = <&reg_aldo1>;
-+};
-+
-+&rtc {
-+	clocks = <&ext_osc32k>;
-+};
-+
-+&spdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spdif_tx_pin>;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43430a1-bt";
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "lpo";
-+		vbat-supply = <&reg_cldo3>;
-+		vddio-supply = <&reg_bldo3>;
-+		device-wakeup-gpios = <&r_pio 1 2 GPIO_ACTIVE_HIGH>; /* PM2 */
-+		host-wakeup-gpios = <&r_pio 1 1 GPIO_ACTIVE_HIGH>; /* PM1 */
-+		shutdown-gpios = <&r_pio 1 4 GPIO_ACTIVE_HIGH>; /* PM4 */
-+		max-speed = <1500000>;
-+	};
-+};
-+
-+&usb2otg {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usb2phy {
-+	usb0_vbus-supply = <&reg_vcc5v>;
-+	usb3_vbus-supply = <&reg_vcc5v>;
-+	status = "okay";
-+};
-+
-+&usb3phy {
-+	status = "okay";
-+};
--- 
-2.53.0
-
+Thanks,
+Charles
 
