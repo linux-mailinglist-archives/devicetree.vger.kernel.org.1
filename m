@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-269228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EB3QKm2WoWl8ugQAu9opvQ
-	(envelope-from <devicetree+bounces-269228-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:04:45 +0100
+	id +NQrAsmZoWl8ugQAu9opvQ
+	(envelope-from <devicetree+bounces-269229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:19:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D80451B7736
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:04:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6210B1B7894
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:19:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 03250305A0C8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:03:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78B5E3089992
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:17:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05C23F0779;
-	Fri, 27 Feb 2026 13:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7931E3DED;
+	Fri, 27 Feb 2026 13:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WzXrqXv/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PqrDTLp5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2163F0765
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 13:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8161D5CD1;
+	Fri, 27 Feb 2026 13:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772197430; cv=none; b=GqXMq6uIHqQw9qCgExj1q7FQIIgDNLexmNwbIpsMoUweGl1ZmYoOVCtydMo8kK2mLodvnBDFDmAILVm99jWXnun0BjmNvvndPWBnf2K2WTC0SCTvMnMDnlegS8m7qLmUvOawIewzoTkFSQnc/RIeVuurQVK58kWAZtnBIOCDg9I=
+	t=1772198238; cv=none; b=bTd4IxqO5kz3R8aKElWo1d8SauZmObUdOhEI9LqpXesIqIy/aEprIayqgi1d3rDrpXtfkdfzKYedh/PJjbOsQ8R4zYSAUNIRmXJo/UYNCQWq6uVysO2CDRBitwIk8JLq4IeU2MwogwWFLFmc/pBO+JgqxiSp796q7BQNlXzQVxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772197430; c=relaxed/simple;
-	bh=RvdTySkH8gpjf9hGTptapQlYfsSjjAaR4voJ88Dhjjs=;
+	s=arc-20240116; t=1772198238; c=relaxed/simple;
+	bh=oB71LjVfkYOpcf4QOL8NCshfC3gI3O7vOzZLbyM+U3s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cH8vCW58Q9fp7KVIj1kn7byu6r2y00pomVlc1tqUO5hH4mWtXowqEl3TAxEvZI7CJV5U99ppYp7QL+lhsr/LqXAlh1VCG+KmvEdG35VMIoQ5s+vdfEy8v0HVzUWp1MKJPeSsjZ1DH5ONWoHdXS7Edrcqb4kmTJUlxyEJlM5Ax8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WzXrqXv/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02F61C116C6;
-	Fri, 27 Feb 2026 13:03:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NWqy7nx2a/CKx6Zgs9dsYbUKbasHGhTeQQza8tzXyKgZwIvRxpY5hvWz+SLn+L3sf48Ic5l+IkotQ6fQ5nDnsL3eMMbZ0Kz10Sge9sN7byVJRrAQyCzakigzLd8opFqEn43Av8oOKYOHCFFxAjMzSSqRWFty8tNQNR284FLrQOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PqrDTLp5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0C5C116C6;
+	Fri, 27 Feb 2026 13:17:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772197430;
-	bh=RvdTySkH8gpjf9hGTptapQlYfsSjjAaR4voJ88Dhjjs=;
+	s=k20201202; t=1772198237;
+	bh=oB71LjVfkYOpcf4QOL8NCshfC3gI3O7vOzZLbyM+U3s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WzXrqXv/LOBwDJcHss9Jff6v7fbE9V/+Dm9N1D3c1MrRyuKcUkmbR3lWvM3Qohpej
-	 gA2xE1BC6Blv0dHnyQXc+wpOzSW3OvAYPSramxCWkUyjmOiS/NJStEhz5ss6RN0yRT
-	 PxNCcIciXP3HdVUp+sMdn9ptSiuln4pamm/ky+HWeMswLwJoylAEv5bZmaqtmScRtN
-	 WmXmNbUAiZCeAKD0As1D+LTS2h+5cNitZ1u9xGG9ea5k04No/T+Zkqf5yauGJKUeKn
-	 8qhujC25zsQRR3OKlDOIF92ku4Kwe/z5nGGcgPVhdkDkYsSRgPv916TcqnjaBWAN1G
-	 GL5adp8vXcvPw==
-Message-ID: <33db9f72-b803-45af-af2a-04ebbbf3ce46@kernel.org>
-Date: Fri, 27 Feb 2026 14:03:47 +0100
+	b=PqrDTLp52oWgicEwooMb0EUQ8x97mRXlKQcGEESR6FNmKO6qEDafIZ+jtVTDPHCu7
+	 YqUnTkEzUx1KDuMoyKa/JjToZHkj3abr0t8K+gMCpePWaqAdSwvzrQUw5cj4U5cdCP
+	 dVbkq/RQksGelYJP2xHebzaA2PvCQbc9zicHvUH8NWMgE3k8zqTTgKIE+yU34KCq8j
+	 FKDMbZf/FymkzQ+yfv36QrMd5kZDQGqwlGfHa50NBCfxLJ/m7K9NGBdGOI8jC3MxwP
+	 SXArg8/L+r9zJwpKY5YWe6A0UbdHqr3ifDHL7b3DYd7Q9ybwTCuNTB+5E2Dts8LzDO
+	 a//kvyv3OYfkg==
+Message-ID: <66dd6354-2752-4b8f-8631-cbbfd36e4de1@kernel.org>
+Date: Fri, 27 Feb 2026 14:17:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,12 +53,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: intel: Add Agilex5 SoCFPGA modular board
-To: Dinh Nguyen <dinguyen@kernel.org>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
- Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
-References: <20260226052145.75639-1-dinguyen@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: glymur-crd: Enable bluetooth
+To: Zijun Hu <zijun.hu@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Zijun Hu <zijun_hu@icloud.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260226-bt_glymur-v1-1-838fcbfaa767@oss.qualcomm.com>
+ <65d15750-64f4-4abf-a62c-519510ab3968@kernel.org>
+ <a2b64ff0-38d6-4153-899a-b1e5a620eac2@oss.qualcomm.com>
+ <a72b1f27-1bea-4930-a8f5-b0ae22675920@kernel.org>
+ <8c18682d-18f4-4fc8-a3bb-5abb6303ff66@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,7 +110,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260226052145.75639-1-dinguyen@kernel.org>
+In-Reply-To: <8c18682d-18f4-4fc8-a3bb-5abb6303ff66@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -113,43 +119,54 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269228-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[icloud.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-269229-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.981];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: D80451B7736
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6210B1B7894
 X-Rspamd-Action: no action
 
-On 26/02/2026 06:21, Dinh Nguyen wrote:
-> Add compatible for Agilex5 SoCFPGA modular board.
+On 27/02/2026 12:58, Zijun Hu wrote:
+> On 2/27/2026 7:43 PM, Krzysztof Kozlowski wrote:
+>>> yes.
+>>> the git repo is a private one, so nobody will notice and code review it if this change is not posted to https://lore.kernel.org.
+>> No, it is not true. The repo is public.
+>>
 > 
-> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
->  Documentation/devicetree/bindings/arm/altera.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> The 'private' i mean is that the repo is not mentioned in kernel tree.
+> so it is not known by public.
+
+Entire Qualcomm Glymur work was coordinated through that repo, so what
+do you mean "it is not known"?
+
+>> I am asking why are you duplicating the work, why you are asked even to
+>> work on something which was already finished/prepared?
 > 
+> actually, both i and many colleagues does not notice the change obviously.
+> so cause duplicated effort.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Then I think your team or colleagues or managers should look there first
+or ask points of contact for Glymur upstreaming, so you will not be
+doing same work again.
 
 Best regards,
 Krzysztof
