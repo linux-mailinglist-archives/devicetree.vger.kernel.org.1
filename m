@@ -1,180 +1,211 @@
-Return-Path: <devicetree+bounces-269141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269142-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IOBdJPNfoWmksQQAu9opvQ
-	(envelope-from <devicetree+bounces-269141-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:12:19 +0100
+	id eIS8FHVioWnIsQQAu9opvQ
+	(envelope-from <devicetree+bounces-269142-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:23:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA8B11B4F7F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:12:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A70241B53B3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 10378300D305
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:09:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DE22E30713C0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A373ACEE3;
-	Fri, 27 Feb 2026 09:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C4C53603DD;
+	Fri, 27 Feb 2026 09:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Embk+7Be"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N00Hr+qT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF692D249E;
-	Fri, 27 Feb 2026 09:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296122D4B40;
+	Fri, 27 Feb 2026 09:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772183394; cv=none; b=RB8JXmWFv+K946+Gdl/Lwsefrj0IS1v2g/6ociKYJCAaZ5ekKP1+qIJHBd2DlFLdWzdOBvpet0eCFwE3gX+wO6NacCe8eG+R7KUDbpZAHbcMAkTCu0byjnt0RVG+Hn0UvnlANYcq2PxhHQVPhNCfq/jTx96nVXo0p4JIu6/fXIA=
+	t=1772183922; cv=none; b=OGklkzkTTYOSGvBQfk7HW3iKl9NLgsZaRyObKxGlIbRxwrqmXsA1f3IxZQj43qIGapyLW9NjeVyagj4pOUZ0Q74nyxDUhS79D19vwGMRBk3rX9u98bRcyeqFAfNjcGOdI/r0BbevY/aSgNQV7yYRltFKnDtpeAzJ8GpI9N1lWo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772183394; c=relaxed/simple;
-	bh=x286f3Mp4XCBrFvPbHHuGFDa6SzN+2L0b/Rah4ouQhU=;
+	s=arc-20240116; t=1772183922; c=relaxed/simple;
+	bh=tiOquXN+Z2n7DVUsWeoujnFyOYIp0Oz9W9Dq52IUj30=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lSjblLFQcHo3SyjLPwr2oTtad2C8tUxbkfzRQhK6nMawIfqSO/ddWn2o4Z/u2BvDCiSnFXdgsGGui83r0VfPx0tDZS4/f02VWLE2wRWhp5grIAgXNUFBooJz8Jmma/U9/u7UdYlRsSP5250WLN/cft+JvKCLcQo4goIIFmX3KfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Embk+7Be; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B3BC116C6;
-	Fri, 27 Feb 2026 09:09:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aGzFovWCNEnWaVapbYBorT73EWsX4yFUlM8vRY3K0moED6NHaghgf5781M+yeHMrW1qpUO5UT5hok2JtKSgiU0lPES8hS/wyEF/mz7OCLUE/MYYwivG5zGgqO/qotiU6oRYuScAXifsOYWxhCCEdSJavSKbaKr9WJX9Vo2IiRP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N00Hr+qT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46A56C116C6;
+	Fri, 27 Feb 2026 09:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772183394;
-	bh=x286f3Mp4XCBrFvPbHHuGFDa6SzN+2L0b/Rah4ouQhU=;
+	s=k20201202; t=1772183921;
+	bh=tiOquXN+Z2n7DVUsWeoujnFyOYIp0Oz9W9Dq52IUj30=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Embk+7Be8h3rgcr/CwJ58R7uBXxt/TiEvB2SxDRm4a036pbPnfGPvM77gZrFm5bwj
-	 9lJpfLiqvue+mPulypgz6yrFfG+Cr8lNfWRvRqMGvdDk4kwe4IkeWYyeRZJeG3ji43
-	 KSONJiLoUKmOQbdE9wOeb9oKTd2Be4vt+4MAj5kYsqNMP+Q4BNVGujtwEtTu6vgApG
-	 JD9xSc2RVodMAK3qNxVvKnTnoZDNslqukt+7l2nfLYUzfirnCIPQz7ZZjqFw4a3VIR
-	 QTKfp9uDdnd0gq2ZtraLMlR6GQlyh1tRJjKFWNc9a6QSrtntGjQxWgDtUFSNcqfwby
-	 hAMsVymVOcQRg==
-Date: Fri, 27 Feb 2026 09:09:48 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add
- alternative reg-names order for RK35{76,88}
-Message-ID: <20260227-talisman-confused-ce08d476acd5@spud>
-References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
- <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
- <20260226-salute-threaten-a3eabb232396@spud>
- <429f3c7aa22eccffedbf8db6aa91bee3dd13814a.camel@collabora.com>
- <20260226-snide-foil-a05e1aa156a8@spud>
- <3d28c699e47f606bad46bb6447785badace37793.camel@collabora.com>
- <20260226-ferocious-saturday-0e1f9bb28ec5@spud>
- <20260227-overjoyed-unyielding-mosquito-7bfbe3@quoll>
+	b=N00Hr+qT1p3/4l0FSOCPGBOhwYAqyLTzuSj7hvaFsKLwgUgPf8H2LkdERoSCvNWqU
+	 lGau7hW3v+4PA9jTmb8/sdnLNc7aOa/OPeBiSWvq6UswBw1yh0o0rR6j45FRaX4hrW
+	 6I439fWLHyHHfbYRdZ0yvjdW7K6vyk2rS0DLKMYr2AXxq63IgCL4BEbNti4SsrjCjB
+	 mA4E02f8KpVD1j6bUVOqRRrKra5C04f/WDf3CUDb4dNgIO8TSKztmxDGaHeAvAlCrP
+	 8O5wUUVWIzHpVgZOEKzqCAw7oMP2h/plwjypo35eiIlhIu3CO+aiFE1l3C5/v7GDf2
+	 1Mg6RMWr77HWQ==
+Date: Fri, 27 Feb 2026 10:18:39 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: dma: Add Amlogic A9 SoC DMA
+Message-ID: <20260227-crafty-just-cheetah-7ef8a2@quoll>
+References: <20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com>
+ <20260227-amlogic-dma-v4-1-f25e4614e9b7@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="x2dlAfuzH1dyuK2M"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260227-overjoyed-unyielding-mosquito-7bfbe3@quoll>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260227-amlogic-dma-v4-1-f25e4614e9b7@amlogic.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269141-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269142-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EA8B11B4F7F
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fe400000:email,amlogic.com:email]
+X-Rspamd-Queue-Id: A70241B53B3
 X-Rspamd-Action: no action
 
-
---x2dlAfuzH1dyuK2M
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Feb 27, 2026 at 08:38:13AM +0100, Krzysztof Kozlowski wrote:
-> On Thu, Feb 26, 2026 at 10:15:49PM +0000, Conor Dooley wrote:
-> > >=20
-> > >=20
-> > > 	if (rkvdec->variant->has_single_reg_region) {
-> > > 		rkvdec->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> > > 		if (IS_ERR(rkvdec->regs))
-> > > 			return PTR_ERR(rkvdec->regs);
-> > > 	} else {
-> > > 		rkvdec->regs =3D devm_platform_ioremap_resource_byname(pdev, "funct=
-ion");
-> > > 		if (IS_ERR(rkvdec->regs))
-> > > 			return PTR_ERR(rkvdec->regs);
-> > >=20
-> > > 		rkvdec->link =3D devm_platform_ioremap_resource_byname(pdev, "link"=
-);
-> > > 		if (IS_ERR(rkvdec->link))
-> > > 			return PTR_ERR(rkvdec->link);
-> > > 	}
-> > >=20
-> > >=20
-> > > Where for RK35xx variants, it only pick the resources by name. I don'=
-t see the
-> > > bug that you see, but I believe this was just a supposition, that you=
- didn't
-> > > check the code.
-> >=20
-> > Busy reading path of exile patch notes, so sniping this comment only...
-> >=20
-> > This is a bug, not a supposition, and it's that snippet from the
-> > driver that prompted my comment.. That code requires that if
-> > ->has_single_reg_region is set that the dts provides reg-names, but the
+On Fri, Feb 27, 2026 at 07:20:53AM +0000, Xianwei Zhao wrote:
+> Add documentation describing the Amlogic A9 SoC DMA. And add
+> the properties specific values defines into a new include file.
 >=20
-> No, the opposite. With has_single_reg_region you take first entry and
-> ignore names.
-
-Right, that's of course what I meant, I just a word ;)
-
-> > binding does not mandate reg-names for rk3576-vdec and rk3588-vdec, so
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../devicetree/bindings/dma/amlogic,a9-dma.yaml    | 65 ++++++++++++++++=
+++++++
+>  include/dt-bindings/dma/amlogic-dma.h              |  8 +++
+>  2 files changed, 73 insertions(+)
 >=20
-> Best regards,
-> Krzysztof
->=20
+> diff --git a/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml b/=
+Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
+> new file mode 100644
+> index 000000000000..efd7b2602c33
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/amlogic,a9-dma.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/amlogic,a9-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic general DMA controller
+> +
+> +description:
+> +  This is a general-purpose peripheral DMA controller. It currently supp=
+orts
+> +  major peripherals including I2C, I3C, PIO, and CAN-BUS. Transmit and r=
+eceive
+> +  for the same peripheral use two separate channels, controlled by diffe=
+rent
+> +  register sets. I2C and I3C transfer data in 1-byte units, while PIO and
+> +  CAN-BUS transfer data in 4-byte units. From the controller=E2=80=99s p=
+erspective,
+> +  there is no significant difference.
+> +
+> +maintainers:
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a9-dma
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: sys
+> +
+> +  '#dma-cells':
+> +    const: 2
+> +
+> +  dma-channels:
+> +    maximum: 64
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - '#dma-cells'
+> +  - dma-channels
+> +
+> +allOf:
+> +  - $ref: dma-controller.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    dma-controller@fe400000{
+> +        compatible =3D "amlogic,a9-dma";
+> +        reg =3D <0xfe400000 0x4000>;
+> +        interrupts =3D <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>;
+> +        clocks =3D <&clkc 45>;
+> +        #dma-cells =3D <2>;
+> +        dma-channels =3D <28>;
+> +    };
+> diff --git a/include/dt-bindings/dma/amlogic-dma.h b/include/dt-bindings/=
+dma/amlogic-dma.h
 
---x2dlAfuzH1dyuK2M
-Content-Type: application/pgp-signature; name="signature.asc"
+Filename must be the same as binding file.
 
------BEGIN PGP SIGNATURE-----
+> new file mode 100644
+> index 000000000000..025ecc42e395
+> --- /dev/null
+> +++ b/include/dt-bindings/dma/amlogic-dma.h
+> @@ -0,0 +1,8 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +
+> +#ifndef __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+> +#define __DT_BINDINGS_DMA_AMLOGIC_DMA_H__
+> +
+> +#define AML_DMA_TYPE_TX		0
+> +#define AML_DMA_TYPE_RX		1
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaFfXAAKCRB4tDGHoIJi
-0hv5AP4/TGZbOVeZ0Wp1eV5S4zHnzu5a4AU6VfD/n3/sb9IhvQEAyl00zdxwl4vi
-Sm+5PkjtLK5aV4wt1kV3QbcZQ1yKcg0=
-=dqra
------END PGP SIGNATURE-----
+You sure you need AML prefix? Your clock constants do not have AML
+prefixes. What other constants do you expect here?
 
---x2dlAfuzH1dyuK2M--
+Best regards,
+Krzysztof
+
 
