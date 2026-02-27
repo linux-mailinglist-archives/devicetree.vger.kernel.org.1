@@ -1,333 +1,201 @@
-Return-Path: <devicetree+bounces-269288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269289-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aE49NJOvoWk3vgQAu9opvQ
-	(envelope-from <devicetree+bounces-269288-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:52:03 +0100
+	id SHHOMdevoWmMvgQAu9opvQ
+	(envelope-from <devicetree+bounces-269289-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:53:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72BD81B93FA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:52:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE701B9444
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:53:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D878B300F13B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:52:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C76D6301252B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF4C426D15;
-	Fri, 27 Feb 2026 14:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B2342848C;
+	Fri, 27 Feb 2026 14:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="ByR2b/L5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VeSyfGtR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F3341C30F;
-	Fri, 27 Feb 2026 14:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E51F41B340;
+	Fri, 27 Feb 2026 14:53:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772203920; cv=none; b=I3SuaGs5dWxRfNc7v/jbDZfPy6Y/u/haVRkrHqVHdfo93P0JLf00uUdDkjk28Plr1z7JEUgRFp6Rdh6mBWtsYeo2UrCOUHfpaMz7TLTFIDXuC+Fb/8QyqQ/N5uSpqE61wW7VETjMbKjW5heBeoPxH2jSqV63dWo1S6iwhfcGWTc=
+	t=1772203989; cv=none; b=sMUpVvlTUDV4sMe6kjfjA5tWGUaKqEnq05NIz5apNxZtHsoHwpPGHjV30PbR/hXgNCmKvFFhjfdb+Y8fvQSHbqyDo06Geudwtk9Nvgptif917WLY1iH3+mJjmuMm+nWU14D5PBIg1X4N86fiWxIhEfjUurI+Rq9R+pAxHzx877M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772203920; c=relaxed/simple;
-	bh=hViJa3hYVACQc1SlepA/SC0Hg+Lv+tTyMfLzILur9m8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Mq12jhyV43/hkJbU+OFViybLl2dRizCVxxcevYOTnx3R3Hs6FTM3anvks/D//opygZf/qs92dBj7KkpPTln/gpu26qfErCWy7bMmgaVEVGKuuUiXthF8bKuxeJsHldEdJH4uogTvSGunoUEXmy1SLsJpAJNH5tfanFUfHIiKc9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=ByR2b/L5; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61RDxhAZ1234657;
-	Fri, 27 Feb 2026 14:51:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=jtWeGY
-	tlIhoBNrUU/Rn3atorlcVCPhoOvUEbiO3QIXw=; b=ByR2b/L5/X53xebYC874SN
-	HUg5T4h+cAVrJ6EU3KJMhkisdx64KFdBPRf4Ngk4eCfYjBXIU3lARM5+RnKDCkF/
-	xS88gjyrnPJuuAUezDY0ksb8yQtnJA0q4B6chYE3eE9Nymj0w3Y3CV2rpGVOQoJF
-	uA3euifftQjmzNNQd4QBHDwFegtEEeQW/UBG0UClfaK4ALFEgkECCz9OOXqrJR3v
-	1pb/SLKT+VEXkjtEh/Q4dR7zFSO+eS0ELvx7MzYTivFyg319JhcS2A/vvEe68LbF
-	VEiQX2tjyf5yvQEJl5liX/pP+LF1mnLNtudgLXLWCDkbYNEy/kt6r+ZZ6TtGOzMw
-	==
-Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4cf4crd6nn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Feb 2026 14:50:59 +0000 (GMT)
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 61REM4lC001653;
-	Fri, 27 Feb 2026 14:50:57 GMT
-Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
-	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4cfr1njpn4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Feb 2026 14:50:57 +0000
-Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 61REorr350004244
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 27 Feb 2026 14:50:53 GMT
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 988E92004B;
-	Fri, 27 Feb 2026 14:50:53 +0000 (GMT)
-Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 2724020043;
-	Fri, 27 Feb 2026 14:50:36 +0000 (GMT)
-Received: from [9.124.211.61] (unknown [9.124.211.61])
-	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 27 Feb 2026 14:50:35 +0000 (GMT)
-Message-ID: <3576865b-65bd-4289-babc-975a543eb775@linux.ibm.com>
-Date: Fri, 27 Feb 2026 20:20:34 +0530
+	s=arc-20240116; t=1772203989; c=relaxed/simple;
+	bh=jX6WmKtuN6T2VpqyIezKKD+/Ad5MsTZIssF/fg+tWn8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EXuP2l71vAZMMQjSAXD1dty7xjfov4lKndkSwfNCD/ai4fx85RdWxkLqPdrJY+uggN64kLL1zp1126nZHETGPIe7AWUhcXPZsjDzWEIFl9qqKgIJxcGrTMHrdbC5YHbXdwC3kP2SySDhSdo4dYu4znqMSGS1K8KMlg4wvLT8LqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VeSyfGtR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 961FCC116C6;
+	Fri, 27 Feb 2026 14:53:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772203988;
+	bh=jX6WmKtuN6T2VpqyIezKKD+/Ad5MsTZIssF/fg+tWn8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=VeSyfGtRm1j7SmiqAAty+SxdjG62YxV/HCIdWW4nOuwDqUnmzdR0N1I8BI+AsDOeA
+	 59KLm0CXu4Qd+g7VaHjOpD6oE3QOtu9+3knRhhrFvsZ/C1SE1V6kcQI8XcHPqvcQDO
+	 4Px6DS4hYTqUiqnLOj891BESEM3hdlNXXzapDoME+y8FFOuRt9fgRwC1BV+jkwOPcJ
+	 QNdnKVcPRd4hw0n+8mRkOxu3vWF6UtohsWNA9ugcFQN2LP+FYNkP72ZP+RxLsSytDP
+	 AYWj41DNWnOizEI+3jSeBgjG8wCdyHfRhw6SqVj/nJkx61BmFMdv2p/BdFGDk7L781
+	 IBbPojHJbe1ng==
+From: Conor Dooley <conor@kernel.org>
+To: linux-gpio@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC v11 0/4] PolarFire SoC GPIO interrupt support
+Date: Fri, 27 Feb 2026 14:52:26 +0000
+Message-ID: <20260227-ajar-wolverine-7ce1ebd79821@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/5] crash: Use crash_exclude_core_ranges() on powerpc
-To: Jinjie Ruan <ruanjinjie@huawei.com>, corbet@lwn.net,
-        skhan@linuxfoundation.org, catalin.marinas@arm.com, will@kernel.org,
-        chenhuacai@kernel.org, kernel@xen0n.name, maddy@linux.ibm.com,
-        mpe@ellerman.id.au, npiggin@gmail.com, chleroy@kernel.org,
-        pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-        alex@ghiti.fr, tglx@kernel.org, mingo@redhat.com, bp@alien8.de,
-        dave.hansen@linux.intel.com, hpa@zytor.com, robh@kernel.org,
-        saravanak@kernel.org, akpm@linux-foundation.org, bhe@redhat.com,
-        vgoyal@redhat.com, dyoung@redhat.com, pmladek@suse.com,
-        rdunlap@infradead.org, dapeng1.mi@linux.intel.com, kees@kernel.org,
-        paulmck@kernel.org, lirongqing@baidu.com, arnd@arndb.de,
-        rppt@kernel.org, ardb@kernel.org, leitao@debian.org, jbohac@suse.cz,
-        cfsworks@gmail.com, ryan.roberts@arm.com, tangyouling@kylinos.cn,
-        ritesh.list@gmail.com, hbathini@linux.ibm.com, eajames@linux.ibm.com,
-        songshuaishuai@tinylab.org, samuel.holland@sifive.com,
-        kevin.brodsky@arm.com, vishal.moola@gmail.com,
-        junhui.liu@pigmoral.tech, coxu@redhat.com, liaoyuanhong@vivo.com,
-        brgerst@gmail.com, fuqiang.wang@easystack.cn, x86@kernel.org,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
-        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, kexec@lists.infradead.org
-References: <20260226130437.1867658-1-ruanjinjie@huawei.com>
- <20260226130437.1867658-4-ruanjinjie@huawei.com>
-Content-Language: en-US
-From: Sourabh Jain <sourabhjain@linux.ibm.com>
-In-Reply-To: <20260226130437.1867658-4-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4301; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=mfPuD7/X4c6UDjnGwLM+ANCIFBHCdBf6P3/wkC/hOA8=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkL16/5e3/7XX6jBovpz84ILtj94QY/y2mG171X9SceL dp3O8UuoaOUhUGMi0FWTJEl8XZfi9T6Py47nHvewsxhZQIZwsDFKQATcRRnZLg6T9ZQRfhEwNOj 554tXGTX7p7FpxQik1pwk+PXrNetE/4zMnTWK/63vO9wVWY2X5dt4bUFL48ZnkwwXXNhT6K9bWq hNh8A
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-ORIG-GUID: 8g6pYP6-zbkoGqYlCGxh4H1YVcGADYjR
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI3MDEzMCBTYWx0ZWRfX30qX6zxbkgBu
- HpVyQ0dsZ1e/hMjf+YXrY/Y7l96+F6Gq/L7EP3s7O+PsvAQrNEOfynr0kGzxpzEyR+LT4GZoDno
- LodhkSjypbg71KtoOKEnOWF8jH31sHW6uu6bhcydiALmeqzWL81zeSzk1IGU/eJZ4a65VsTjivX
- 8euHfVyd4ayhP2VXikByN9kDAe8bSJPSLecJ6zyxOpr7D2rY029FW+OGtOcFyLfk3L3Xs+jCFor
- bsaadJIIP7URf3sbJRtO69rQDj8WHIm7iA6maQ8C1SQuRVSNGAiBlWoLDncv301jGSftzY18Dsy
- nNUn7bBREX85qibTDI3thHoqZbz64JGb9R2FihBUK06S08oIQC+4veA0SrZ/YzcwaP8qNbBHl9D
- I/ao1ILtxtGkG9oHacZ7POqXB2GPtYWb+lm4FZqKRCBnKXIeUunEcpOaN+Ip55VwRiEfDlXToUk
- 96zssSDnSpwHJRDYYlg==
-X-Proofpoint-GUID: IvuRiAQp0mvX7PMUGo7_TumVon-lPwvd
-X-Authority-Analysis: v=2.4 cv=bbBmkePB c=1 sm=1 tr=0 ts=69a1af53 cx=c_pps
- a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
- a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=VwQbUJbxAAAA:8
- a=VnNF1IyMAAAA:8 a=i0EeH86SAAAA:8 a=WpLmoQzK6mnfzqVyAaEA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-27_02,2026-02-27_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 suspectscore=0 clxscore=1015 phishscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602270130
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[huawei.com,lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,suse.com,infradead.org,baidu.com,arndb.de,debian.org,suse.cz,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
+	TAGGED_FROM(0.00)[bounces-269289-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269288-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ibm.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.ibm.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sourabhjain@linux.ibm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_GT_50(0.00)[61];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_SEVEN(0.00)[11]
-X-Rspamd-Queue-Id: 72BD81B93FA
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6BE701B9444
 X-Rspamd-Action: no action
 
-Resend of: 
-https://lore.kernel.org/all/19cf18b5-362d-4ff2-8b85-e2e72809250c@linux.ibm.com/
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On 26/02/26 18:34, Jinjie Ruan wrote:
-> The crash memory exclude of crashk_res and crashk_cma memory on powerpc
-> are almost identical to the generic crash_exclude_core_ranges().
->
-> By introducing the architecture-specific arch_crash_exclude_mem_range()
-> function with a default implementation of crash_exclude_mem_range(),
-> and using crash_exclude_mem_range_guarded as powerpc's separate
-> implementation, the generic crash_exclude_core_ranges() helper function
-> can be reused.
->
-> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> ---
->   arch/powerpc/kexec/ranges.c | 16 ++++------------
->   include/linux/crash_core.h  |  4 ++++
->   kernel/crash_core.c         | 19 +++++++++++++------
->   3 files changed, 21 insertions(+), 18 deletions(-)
->
-> diff --git a/arch/powerpc/kexec/ranges.c b/arch/powerpc/kexec/ranges.c
-> index 6c58bcc3e130..e5fea23b191b 100644
-> --- a/arch/powerpc/kexec/ranges.c
-> +++ b/arch/powerpc/kexec/ranges.c
-> @@ -553,9 +553,9 @@ int get_usable_memory_ranges(struct crash_mem **mem_ranges)
->   #endif /* CONFIG_KEXEC_FILE */
->   
->   #ifdef CONFIG_CRASH_DUMP
-> -int crash_exclude_mem_range_guarded(struct crash_mem **mem_ranges,
-> -					   unsigned long long mstart,
-> -					   unsigned long long mend)
-> +int arch_crash_exclude_mem_range(struct crash_mem **mem_ranges,
-> +				 unsigned long long mstart,
-> +				 unsigned long long mend)
+In 2024 I sent a v7 of adding support for the GPIOs on PolarFire SoC,
+which relied on an irqchip driver for a mux sitting between the GPIO
+controllers and the main interrupt controller on the chip:
+https://lore.kernel.org/all/20240723-flatworm-cornflake-8023212f6584@wendy/
 
+Some feedback I got from Thomas there ended up being a complete black
+hole for time spent, and I never managed to make the change he wanted,
+as a house of cards collapsed whenever I tried it. I eventually
+abandoned my attempt to upstream the GPIO driver with interrupt support
+and cut it out of the driver to make progress. I've been carrying what
+Thomas deemed incorrect downstream since.
 
-update_crash_elfcorehdr() in arch/powerpc/kexec/crash.c still calls
-crash_exclude_mem_range_guarded(), causing a build failure.
+Recently Hervé upstreamed a patchset for a Renesas chip that deals with
+a mux sitting between a GPIO controller and the platform interrupt
+controller by way of interrupt-map. I saw the opportunity to copy what
+he did, so have gone from an irqchip driver that read the mux setting
+that firmware had configured, to trivial driver that reads the mux
+configuration from devicetree and sets the hardware up to match.
 
-ld: arch/powerpc/kexec/crash.o: in function `update_crash_elfcorehdr':
-/root/linux/arch/powerpc/kexec/crash.c:454: undefined reference to 
-`crash_exclude_mem_range_guarded'
+This gets rid entirely of the irqchip driver, so resolves Thomas'
+complaint, but I don't love how the GPIO side of things turned out quite
+as much. The hardware has 41 interrupts but 70 GPIO lines. 38 of these
+are 1:1, direct connections to a dedicated line on the interrupt
+controller and 3 are shared.
+With the parent mux driver, the GPIO driver's interrupt handler was only
+called either for specific direct interrupt or for only the subset that
+are fed into the shared interrupt for that controller. Without the
+parent irqchip from mux driver, and using interrupt-map, I lost the
+ability to use mux driver to selectively call the handler, so now the
+GPIO controller attempts to handle interrupts on all lines.
+Probably this is ultimately not a big deal, it just feels bad to do.
 
+Going RFC here, since it's an entirely different approach. The version
+number is a continuation from before, since the patchset linked above
+got merged at v10 when I stripped the interrupt support.
 
-To fix this:
---------------
-diff --git a/arch/powerpc/kexec/crash.c b/arch/powerpc/kexec/crash.c
-index 898742a5205c..e59e909c369d 100644
---- a/arch/powerpc/kexec/crash.c
-+++ b/arch/powerpc/kexec/crash.c
-@@ -451,7 +451,7 @@ static void update_crash_elfcorehdr(struct kimage 
-*image, struct memory_notify *
-                 base_addr = PFN_PHYS(mn->start_pfn);
-                 size = mn->nr_pages * PAGE_SIZE;
-                 end = base_addr + size - 1;
--               ret = crash_exclude_mem_range_guarded(&cmem, base_addr, 
-end);
-+              ret = arch_crash_exclude_mem_range(&cmem, base_addr, end);
-                 if (ret) {
-                         pr_err("Failed to remove hot-unplugged memory 
-from crash memory ranges\n");
-                         goto out;
+The mux driver has moved from irqchip to soc, since that's where Hervé's
+ended up.
 
-With the above change included, things are working fine on powerpc.
+Cheers,
+Conor.
 
+CC: Thomas Gleixner <tglx@linutronix.de>
+CC: Herve Codina <herve.codina@bootlin.com>
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Paul Walmsley <pjw@kernel.org>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Albert Ou <aou@eecs.berkeley.edu>
+CC: Alexandre Ghiti <alex@ghiti.fr>
+CC: Linus Walleij <linusw@kernel.org>
+CC: Bartosz Golaszewski <brgl@kernel.org>
+CC: linux-riscv@lists.infradead.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-gpio@vger.kernel.org
 
->   {
->   	struct crash_mem *tmem = *mem_ranges;
->   
-> @@ -604,18 +604,10 @@ int get_crash_memory_ranges(struct crash_mem **mem_ranges)
->   			sort_memory_ranges(*mem_ranges, true);
->   	}
->   
-> -	/* Exclude crashkernel region */
-> -	ret = crash_exclude_mem_range_guarded(mem_ranges, crashk_res.start, crashk_res.end);
-> +	ret = crash_exclude_core_ranges(mem_ranges);
->   	if (ret)
->   		goto out;
->   
-> -	for (i = 0; i < crashk_cma_cnt; ++i) {
-> -		ret = crash_exclude_mem_range_guarded(mem_ranges, crashk_cma_ranges[i].start,
-> -					      crashk_cma_ranges[i].end);
-> -		if (ret)
-> -			goto out;
-> -	}
-> -
->   	/*
->   	 * FIXME: For now, stay in parity with kexec-tools but if RTAS/OPAL
->   	 *        regions are exported to save their context at the time of
-> diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
-> index 033b20204aca..dbec826dc53b 100644
-> --- a/include/linux/crash_core.h
-> +++ b/include/linux/crash_core.h
-> @@ -68,6 +68,7 @@ extern int crash_prepare_elf64_headers(struct crash_mem *mem, int need_kernel_ma
->   				       void **addr, unsigned long *sz);
->   extern int crash_prepare_headers(int need_kernel_map, void **addr,
->   				 unsigned long *sz, unsigned long *nr_mem_ranges);
-> +extern int crash_exclude_core_ranges(struct crash_mem **cmem);
->   
->   struct kimage;
->   struct kexec_segment;
-> @@ -88,6 +89,9 @@ extern int kimage_crash_copy_vmcoreinfo(struct kimage *image);
->   extern unsigned int arch_get_system_nr_ranges(void);
->   extern int arch_crash_populate_cmem(struct crash_mem *cmem);
->   extern int arch_crash_exclude_ranges(struct crash_mem *cmem);
-> +extern int arch_crash_exclude_mem_range(struct crash_mem **mem,
-> +					unsigned long long mstart,
-> +					unsigned long long mend);
->   
->   #else /* !CONFIG_CRASH_DUMP*/
->   struct pt_regs;
-> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
-> index 96a96e511f5a..300d44ad5471 100644
-> --- a/kernel/crash_core.c
-> +++ b/kernel/crash_core.c
-> @@ -287,24 +287,31 @@ unsigned int __weak arch_get_system_nr_ranges(void) { return 0; }
->   int __weak arch_crash_populate_cmem(struct crash_mem *cmem) { return -1; }
->   int __weak arch_crash_exclude_ranges(struct crash_mem *cmem) { return 0; }
->   
-> -static int crash_exclude_core_ranges(struct crash_mem *cmem)
-> +int __weak arch_crash_exclude_mem_range(struct crash_mem **mem,
-> +					unsigned long long mstart,
-> +					unsigned long long mend)
-> +{
-> +	return crash_exclude_mem_range(*mem, mstart, mend);
-> +}
-> +
-> +int crash_exclude_core_ranges(struct crash_mem **cmem)
->   {
->   	int ret, i;
->   
->   	/* Exclude crashkernel region */
-> -	ret = crash_exclude_mem_range(cmem, crashk_res.start, crashk_res.end);
-> +	ret = arch_crash_exclude_mem_range(cmem, crashk_res.start, crashk_res.end);
->   	if (ret)
->   		return ret;
->   
->   	if (crashk_low_res.end) {
-> -		ret = crash_exclude_mem_range(cmem, crashk_low_res.start, crashk_low_res.end);
-> +		ret = arch_crash_exclude_mem_range(cmem, crashk_low_res.start, crashk_low_res.end);
->   		if (ret)
->   			return ret;
->   	}
->   
->   	for (i = 0; i < crashk_cma_cnt; ++i) {
-> -		ret = crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
-> -					      crashk_cma_ranges[i].end);
-> +		ret = arch_crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
-> +						   crashk_cma_ranges[i].end);
->   		if (ret)
->   			return ret;
->   	}
-> @@ -331,7 +338,7 @@ int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
->   	if (ret)
->   		goto out;
->   
-> -	ret = crash_exclude_core_ranges(cmem);
-> +	ret = crash_exclude_core_ranges(&cmem);
->   	if (ret)
->   		goto out;
->   
+Conor Dooley (4):
+  gpio: mpfs: Add interrupt support
+  dt-bindings: soc: microchip: document PolarFire SoC's gpio interrupt
+    mux
+  soc: microchip: add mpfs gpio interrupt mux driver
+  riscv: dts: microchip: update mpfs gpio interrupts to better match the
+    SoC
+
+ .../soc/microchip/microchip,mpfs-irqmux.yaml  |  76 ++++++++
+ .../microchip,mpfs-mss-top-sysreg.yaml        |   4 +
+ MAINTAINERS                                   |   2 +-
+ .../boot/dts/microchip/mpfs-beaglev-fire.dts  |  29 +++
+ .../boot/dts/microchip/mpfs-disco-kit.dts     |  43 +++--
+ .../dts/microchip/mpfs-icicle-kit-common.dtsi |  37 +++-
+ .../boot/dts/microchip/mpfs-m100pfsevp.dts    |  41 +++--
+ .../boot/dts/microchip/mpfs-polarberry.dts    |  29 +++
+ .../riscv/boot/dts/microchip/mpfs-sev-kit.dts |  37 +++-
+ .../riscv/boot/dts/microchip/mpfs-tysom-m.dts |  35 +++-
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  37 +++-
+ drivers/gpio/Kconfig                          |   1 +
+ drivers/gpio/gpio-mpfs.c                      | 125 ++++++++++++-
+ drivers/soc/microchip/Kconfig                 |  11 ++
+ drivers/soc/microchip/Makefile                |   1 +
+ drivers/soc/microchip/mpfs-irqmux.c           | 167 ++++++++++++++++++
+ 16 files changed, 620 insertions(+), 55 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.yaml
+ create mode 100644 drivers/soc/microchip/mpfs-irqmux.c
+
+-- 
+2.51.0
 
 
