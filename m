@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-269437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269438-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kO67H30Vomk0zAQAu9opvQ
-	(envelope-from <devicetree+bounces-269437-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:06:53 +0100
+	id CGz1Dt8VommizAQAu9opvQ
+	(envelope-from <devicetree+bounces-269438-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:08:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBAD41BE77E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:06:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF6561BE801
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:08:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A9DB130068C9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 22:06:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AB4A3305EEA3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 22:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B9F478E4B;
-	Fri, 27 Feb 2026 22:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1AAE46AEEC;
+	Fri, 27 Feb 2026 22:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jhCOfcDT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gdaK3WVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC5D1E5724
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 22:06:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C9C478E49
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 22:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772230010; cv=none; b=AIklBGO/dblnWYmStrbf4/6AoyeSVOdRF/J1aQvjqLrYnErfgdDdybPPBs2K3j2cFDCYicVZd5Yqzxdv5SIFriB2b4El9nJfAZRQeLxi1YaW9385UUTb07HLm5P1sntusUOGsjYSM66lrjunNCNBkLoHSlT8UhQ6WJcG8rV7I78=
+	t=1772230087; cv=none; b=cRXSzHhnSEMXEz7S6rSLQPK4q4LA76t6Wgjo2Gt3zkuJwR1QomjWeFFnX5bM6wJgWWKgjg9iT6hgA/zeNtg1ngZjGxXum4gs/1X9DxOaj/nzGjCgBMGtcub3M6yTou4U1pEcB9BimAcBxWkGGiLSW0rlcbmKAVTSk+EM3LYlhIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772230010; c=relaxed/simple;
-	bh=IIOCEw2t+0l72LMoF+mobRrMZmX5NBn1xnXPFaoBKs0=;
+	s=arc-20240116; t=1772230087; c=relaxed/simple;
+	bh=tMJ8f5DPdRMekZbxffsBirzyWQULA5uML/MikBv/obs=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AGGa2x3lJWln4fbL9/4auhP2ZCiVGFzm3wNIiNt9IJNAraxk5vxxdf3QyUTAS3bi+i/Ts5Vm+mSUH2N5kxeF8pL472pCtjhII2c6XePaMRx6ZrI5nrT5LqUhQ8M6JqGSsZREa/PzrCsGsaQZ3ePwEPlFZPNfDpDvNr4348H2ye8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jhCOfcDT; arc=none smtp.client-ip=209.85.128.42
+	 Content-Type:MIME-Version; b=iwEPVE7zLjwtAAjVJm2o3/j+uXhHW3bb8rOWKj/iEmoU6GBRA0Djhm3TkE2sV4uh0icKjJeonuGscBNwVq+xa+DqKYvwoxiSDk0u6nyG9OhgWWXkD7N7aRgZGO3dV/zSgYaaP9r1dJmEuMl5gG2fnuCE7OKhx8huipQZsVq+Ct0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gdaK3WVw; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-482f454be5bso33474175e9.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:06:49 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-43987b97701so1969012f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:08:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772230008; x=1772834808; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1772230084; x=1772834884; darn=vger.kernel.org;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=89iRGH0zqziCtR4XYNUtyhFhnoYfn28eiRVuc9YsATM=;
-        b=jhCOfcDTHshPuWlToF+gdN8VogLay6L6JIl4340gZZsqjn3RlKADwuZicfS3beBvlY
-         9MXWozCmHar8Ft26xBD2NqTdUMm4IdOxwfrCCanYS4vj2AOkEDI24BIFkOQbrbSudCSj
-         YfqR2eae5QP16kf6mFBVUgr1JF/sCH9jpKzmxZzn1byTj0tN40Rap6zt8sYfk8KC7GAZ
-         zVilwSlA81FcqISPIMRBnDYGzfks717ObK/VsuaYE/IS5sFCRPMjDHBMOY1fV1SPt0D1
-         BON/wHrI6JM4uoZRHa5ngE8C2Jm3dOZVAWW5uzaVfogbjh7r4ThKaGsambkiDNobshNl
-         E8fQ==
+        bh=HgpWCIEAXYCKG3dNcgQ8wee+NuBqJAXrkSxrYQnWihQ=;
+        b=gdaK3WVwLnVtPEKuXbfNJrmMr+K9024i6iPqO1O6f+hGAzqwMsW/1upa5DxQbCW6gd
+         +zgqxjThXh4tbbkHP8pl80J1W3gR5fCZJcnxk3O+U5Qk8sWvKES/ZQ+WOdYrHj2Qfffy
+         ThLCUub/uH0dLIdDtiQX4nerZXF0WoCrkHBm9MI1z3zfDlXLyoFvS1hsRk77nYsl8gYU
+         LJkr/qsHrh+MquPLMZX10iLlY297cehJ2OqelfThwenTxxbMwbykOR2S/v6F6xLZFWoV
+         HVDpQE/v/Lz8v6/5bRAp/LG+mb0l7H6NMe2QmNPRNaIcQtzW6Wd2ylsur/Ya8bMF+byz
+         sbkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772230008; x=1772834808;
+        d=1e100.net; s=20230601; t=1772230084; x=1772834884;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=89iRGH0zqziCtR4XYNUtyhFhnoYfn28eiRVuc9YsATM=;
-        b=UzuglX4Dn1QPMSfnEbP5CYWVpSvX+K9Luhd0GWMyjcRFYEeA2fYck+SqC+LhVq22Yt
-         IMWRscIYNz/pAqX1dKnE2edt/jLu7WkEGSywtkdveS/xhwTpT+MQtNUOvzDJQVtAXnD1
-         4cC1HV64IVU7wFTZS3vs9CbU4x60CU4Ky7GVLRnpIUJstxWTAfKGNNtXDtv2PE/04gpV
-         xDKzrCzUVJxdXztzj/pAHcNoIIIsOCxWWPRszwqHEycymKpy8maB4aWhCtYsxpOPfeVr
-         k0qB9Kn4NbE7UgGB0SCOIk7cAowQcno6eq7yFu3WgYPJ7SjH1XlQuYTlFDy98lFLKDt5
-         KNZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXfhOWEbt0UnGzquD5yhb56EaxfJzmXRQ16Npk51Ry2iWXsq+I8zTNX5lszm9R+BjGcqfmuU3JHI893@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuL1YYckcQzv7i0mNuNj9yYSdv+MesCZQpmYAgGSesvskLVcNZ
-	yoHxbXYKVS6o+p0AJPYVScnrXo0VMPjrB6BX25ehAezcCO5w+2kWBtMV5YZjCrOOlac=
-X-Gm-Gg: ATEYQzxgXTpx+h25urmIBglrWbsyP7GcLVDiz/OxDtQtb/C2ZcBcAKmCMvF3LMMiN4v
-	m7Tp690KTHWUluQyZ8LEti/BUO/DHWrOE53SUAc6RBeFV9MGPsgc0xQ6DAIr4CGJuMwlvF4Pqa+
-	IgtH63pEGBlzIA79EcK+BzYC9k/l5C233FvEIRQqW9ujs6+Rk99GVr+361xHA9p283eXb5c7YLl
-	wCSdJHSVGLAoAlzdQS0Q0sE7uTPufQvdMFeIJCjZZY9QIjtgxSpF5vv+8v0BzWuY9lh/v05rn9+
-	PcICPzAMOaew+frPhPgJF6ejoExLg9dhDUAZ1PLbr9udkTwQbKhbHF/2yqjbMybYb0SC1EK8lCw
-	Efn59pi/8ROmJ9bCgi475zFmXCSd0V7+9vHWiWmX9Sba+YJrFyoprHd4x0/oCDqRgPYKk1cL5Jz
-	1TAYNtq+5wUNKJzSOVS/Gwi7seiLT3lJY2TVyAVGdDilYI0X6ecdPpSpS+/5maBdOO4M/IycDyk
-	RcY4A0505IyUtpf2pVID/Z0uQIsMqHlPhM=
-X-Received: by 2002:a05:600c:608a:b0:47e:e2b8:66e6 with SMTP id 5b1f17b1804b1-483c9934dd3mr76689115e9.14.1772230007672;
-        Fri, 27 Feb 2026 14:06:47 -0800 (PST)
+        bh=HgpWCIEAXYCKG3dNcgQ8wee+NuBqJAXrkSxrYQnWihQ=;
+        b=aZxISfX/aR0PHHyg8pcMPfiPX3kGnSThgJOy7QRgy6wNmZ6GL6mabwWxCrM1wPInOG
+         I9Q/P8YlsyyilZrY//46CdDmCDVp2swT5IsGyB16KfV1xWHAWP4CBPOS9pNXsEs46LAi
+         ZN4W3BnSLD0+K3GSm9jj2OHNLj2WqnhnCpSxqAHxQQ6E84yMMf6DGXmJmOI2yzpdY9hX
+         lTipywvY0txpGrr+dhPZo89QScOHhhk9mWLgT+b1S7GY1O+9osD7+QfNaO7AVIij/6AA
+         QR/AisK5LZK0HNeLBOXHBSqUhfyhMFrh2sMSNI+5rxvmlHRy8pj/NC0ZTekeT6uS3HuW
+         iB6w==
+X-Forwarded-Encrypted: i=1; AJvYcCVd+xUc4UzFqGj20sqyKqtCp0QrPFjnMGg0DnJTsGGCXCVLTtJ0tBFeSI2ULBo8pfEsw4wWyRMskxn6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJUNJKpgjycdTA6U4QF9bfDjoy/puAxS7HcMb5Mql2y9RGZIJu
+	7uyshmFDuaa1ycY9Yn4d5Y32PtoKVskt/7xgmRrI8tLcJAjeuBP27px81NwNdteOfV4=
+X-Gm-Gg: ATEYQzza9mCXyDG63hH594x4ojPVW5aNuL0frk27JEXAbFUI4nW+NhhInUtxbcMmz/h
+	ftgVLrWtEAtFxP262srAZBC1Y0IM0h+XwkHXNdAQcxBIIntjds0Y6dkID5ZZ1S/Mve3S6N0/Ksy
+	zjtc66mn0hyKzF7T2pf9HRCKvcnq9Ibs/ehxDagCma1dis3XSjTNFF2CdfEtcRs+yDcQQE8uDwd
+	JcuD5Qrur6Vzf2RYo6s4ZrpLn+0mLZPF8UF54UGZdahw+7GwCLSpyjPTY5XseKzbrq0Vef2Sj/l
+	ZbT5F0Usb8W3owXrdA/6FcVmaLo+qgjdWFJRmjV3tq/AHkWH+eOhxAcZgPmMmWNeWrLQqOO4OCk
+	n1FLQszSgDcuVSPyBRdnNYLRuATGoD/yNE+xXDz1pLiGEdvoEbSRoFAwT0KwQJZD8sb48KzUeAg
+	gofQ8QL8efw/QSeOrgHTNhG1gOIUz/HLw+MXm/meQrTfaqzE3rBoTPm1OhbWoRGpU3dSakeoWU7
+	pCHzV/Xqinkh9KaQl3nMmPd
+X-Received: by 2002:a05:600c:828c:b0:482:dbd7:a1c1 with SMTP id 5b1f17b1804b1-483c9c23c72mr64791835e9.34.1772230084419;
+        Fri, 27 Feb 2026 14:08:04 -0800 (PST)
 Received: from [192.168.16.154] (host86-188-11-239.range86-188.btcentralplus.com. [86.188.11.239])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bd75df90sm246321165e9.14.2026.02.27.14.06.47
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfb776b0sm71746555e9.1.2026.02.27.14.08.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Feb 2026 14:06:47 -0800 (PST)
-Message-ID: <148be140e22947a1f3524f24d8f55218650d3f2e.camel@linaro.org>
-Subject: Re: [PATCH v8 13/18] arm64: dts: qcom: x1e80100-crd: Add ov08x40
- RGB sensor on CSIPHY4
+        Fri, 27 Feb 2026 14:08:04 -0800 (PST)
+Message-ID: <485524056b1c9588e81793964ff6bc0458401148.camel@linaro.org>
+Subject: Re: [PATCH v8 15/18] arm64: dts: qcom: x1e80100-t14s: Add on
+ ov02c10 RGB sensor on CSIPHY4
 From: Christopher Obbard <christopher.obbard@linaro.org>
 To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Bjorn Andersson	
  <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
@@ -92,11 +92,11 @@ To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Bjorn Andersson
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Date: Fri, 27 Feb 2026 22:06:46 +0000
-In-Reply-To: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-13-95517393bcb2@linaro.org>
+Date: Fri, 27 Feb 2026 22:08:03 +0000
+In-Reply-To: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-15-95517393bcb2@linaro.org>
 References: 
 	<20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-0-95517393bcb2@linaro.org>
-	 <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-13-95517393bcb2@linaro.org>
+	 <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-15-95517393bcb2@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-8 
@@ -115,13 +115,13 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-269437-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269438-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -129,36 +129,35 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[christopher.obbard@linaro.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_PROHIBIT(0.00)[0.0.0.3:email];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.36:email,0.0.0.0:email]
-X-Rspamd-Queue-Id: EBAD41BE77E
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.36:email,linaro.org:mid,linaro.org:dkim,linaro.org:email,0.0.0.3:email,0.0.0.0:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BF6561BE801
 X-Rspamd-Action: no action
 
 Hi Bryan,
 
 On Wed, 2026-02-25 at 15:11 +0000, Bryan O'Donoghue wrote:
-> Define ov08x40 on cci1_i2c1. The RGB sensor appears on the AON CCI pins
-> connected to CSIPHY4 in four lane mode.
+> Switch on the ov02c10 RGB sensor on CSIPHY4.
 >=20
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
 
 Reviewed-by: Christopher Obbard <christopher.obbard@linaro.org>
+Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
 
->  arch/arm64/boot/dts/qcom/x1-crd.dtsi | 76 ++++++++++++++++++++++++++++++=
+>  .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 77 ++++++++++++++++=
 ++++++
->  1 file changed, 76 insertions(+)
+>  1 file changed, 77 insertions(+)
 >=20
-> diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/q=
-com/x1-crd.dtsi
-> index c89f5ad0aed56..d47404c71b80b 100644
-> --- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
-> @@ -6,6 +6,7 @@
+> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi =
+b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+> index ee49785c9d005..54bf21f1c6f37 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+> @@ -9,6 +9,7 @@
 >  #include <dt-bindings/gpio/gpio.h>
 >  #include <dt-bindings/input/gpio-keys.h>
 >  #include <dt-bindings/input/input.h>
@@ -166,8 +165,8 @@ com/x1-crd.dtsi
 >  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
 >  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
 > =20
-> @@ -901,6 +902,65 @@ &gpu {
->  	status =3D "okay";
+> @@ -866,6 +867,66 @@ vreg_l7m_2p8: ldo7 {
+> =20
 >  };
 > =20
 > +&camss {
@@ -183,8 +182,8 @@ com/x1-crd.dtsi
 > +		port@3 {
 > +			camss_csiphy4_inep0: endpoint@0 {
 > +				clock-lanes =3D <7>;
-> +				data-lanes =3D <0 1 2 3>;
-> +				remote-endpoint =3D <&ov08x40_ep>;
+> +				data-lanes =3D <0 1>;
+> +				remote-endpoint =3D <&ov02c10_ep>;
 > +			};
 > +		};
 > +	};
@@ -196,12 +195,12 @@ com/x1-crd.dtsi
 > +
 > +&cci1_i2c1 {
 > +	camera@36 {
-> +		compatible =3D "ovti,ov08x40";
+> +		compatible =3D "ovti,ov02c10";
 > +		reg =3D <0x36>;
 > +
 > +		reset-gpios =3D <&tlmm 237 GPIO_ACTIVE_LOW>;
-> +		pinctrl-0 =3D <&cam_rgb_default>;
 > +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&cam_rgb_default>;
 > +
 > +		clocks =3D <&camcc CAM_CC_MCLK4_CLK>;
 > +		assigned-clocks =3D <&camcc CAM_CC_MCLK4_CLK>;
@@ -209,12 +208,13 @@ com/x1-crd.dtsi
 > +
 > +		orientation =3D <0>; /* front facing */
 > +
-> +		avdd-supply =3D <&vreg_l7b_2p8>;
-> +		dovdd-supply =3D <&vreg_l3m_1p8>;
+> +		avdd-supply =3D <&vreg_l7m_2p8>;
+> +		dvdd-supply =3D <&vreg_l2m_1p2>;
+> +		dovdd-supply =3D <&vreg_l4m_1p8>;
 > +
 > +		port {
-> +			ov08x40_ep: endpoint {
-> +				data-lanes =3D <1 2 3 4>;
+> +			ov02c10_ep: endpoint {
+> +				data-lanes =3D <1 2>;
 > +				link-frequencies =3D /bits/ 64 <400000000>;
 > +				remote-endpoint =3D <&camss_csiphy4_inep0>;
 > +			};
@@ -229,11 +229,11 @@ com/x1-crd.dtsi
 > +	status =3D "okay";
 > +};
 > +
->  &i2c0 {
->  	clock-frequency =3D <400000>;
-> =20
-> @@ -1515,6 +1575,22 @@ &tlmm {
->  			       <44 4>, /* SPI (TPM) */
+>  &gpu {
+>  	status =3D "okay";
+>  };
+> @@ -1447,6 +1508,22 @@ &tlmm {
+>  			       <72 2>, /* Secure EC I2C connection (?) */
 >  			       <238 1>; /* UFS Reset */
 > =20
 > +	cam_rgb_default: cam-rgb-default-state {
@@ -252,7 +252,7 @@ com/x1-crd.dtsi
 > +		};
 > +	};
 > +
->  	edp_reg_en: edp-reg-en-state {
->  		pins =3D "gpio70";
+>  	ec_int_n_default: ec-int-n-state {
+>  		pins =3D "gpio66";
 >  		function =3D "gpio";
 
