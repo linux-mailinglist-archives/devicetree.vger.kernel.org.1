@@ -1,266 +1,212 @@
-Return-Path: <devicetree+bounces-269143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269144-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2GkVAxBjoWnIsQQAu9opvQ
-	(envelope-from <devicetree+bounces-269143-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:25:36 +0100
+	id eFoiGm1koWnIsQQAu9opvQ
+	(envelope-from <devicetree+bounces-269144-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:31:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5C41B549C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:25:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1C5C1B5534
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 10:31:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1C975315450D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:20:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F470303FDE7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 09:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC53438F924;
-	Fri, 27 Feb 2026 09:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD94136493B;
+	Fri, 27 Feb 2026 09:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fqs6Y0J9"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="A7M5kOfP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011046.outbound.protection.outlook.com [52.101.65.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D15389E08
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772184026; cv=none; b=FGiE3WRWXZL2FRPh0Pz3CLNjnDYyti21zDTooPJs+JGdxR1AuHG1lWxOYmEeS1Doyqh3ET39xKUpxZLIf433s5Sd4Pbwxjq4RgXSqLxyWG1eSfemuAXxq4hyc4ALNmwVH9OvJGZ5g+6Tjt+d/Mq1uiZ7Gpytrw/J2Qbx7cgUudU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772184026; c=relaxed/simple;
-	bh=S1nQyU+OxaqI2tjVc/itA3ceL+9l9+iwZz8vzA2HlYA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EQSZfv036u36hOt4/YIhUeWktNHuG9S1fPLUQiNZPt7GTD69zET6pJuwpHdskcYKeRpq+el4LmcTDCmEqq+ZhMrLyAuJqnOqMjTgQ4urqW+t5BR8juin4unxvQd0tiUOS0D+wlNUILkoQCI/1fuwRf90ZZyEK1KFT3emVMPRZbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fqs6Y0J9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4AA6C2BCB3
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:20:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772184026;
-	bh=S1nQyU+OxaqI2tjVc/itA3ceL+9l9+iwZz8vzA2HlYA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=fqs6Y0J99hDAK5/9IL3Jc+BV1ftykSYk2DNp4qZSZokW12vdYHifa+mDgDkNTN0+n
-	 1nAVBNl/MuJHUH7TE0erioPA8+LUjzvXsXgnu9623fjE+u7uukdAZuUVVOuIdXcvAU
-	 Zb7xLSCB8hdlwOuD/MvHRJK9e/9weEWYSr/vePjWTHVpAFl+ZZu6IfaJ6OfkDVw3Pb
-	 +PY9qMvvQnD4Ayiuir1jjwPwRqd3cyNcOpVgR0+3b9hNJNToqdjg8Zi5yRgpI94/6U
-	 +y05i577oifpw3DvWrVggvebPgYCsnz7fKxyAyNZwn999VDUngzqhyYAkqefYf8Zn5
-	 SZ9NGNAmVMU7A==
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-79868cde1eeso19650027b3.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 01:20:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXWy2yFpdxwinRBRipApeB4oZWQxwUN0+OhDc0JcBcuOUm9OQC0wkDiC+BZ6xlsdmJnbzzQnluiVhl8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGtczPVyxwfMoUnYsBfGwekHmYvMcwrwhB2ccGBSdB6SxLWTzB
-	DuHb3HxKSCM3qpi+3sc8RorqjcV6leJWdUHGl5MZM+odnM0Gbq6W9588MKFGYHtQV7iTwmb1o30
-	4FaGIVMViT2Eri8SUuim4xnStZvj0T3Y=
-X-Received: by 2002:a05:690c:62c4:b0:796:3917:7291 with SMTP id
- 00721157ae682-7988560f22dmr18735227b3.58.1772184025950; Fri, 27 Feb 2026
- 01:20:25 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9C825B1C7;
+	Fri, 27 Feb 2026 09:30:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772184650; cv=fail; b=ORiASbN9V7wojiUx6oqklMETnXhhtfoXqrVYKI3GlhZg8vDNKXGaoA7n8p24tV1IHNpem1HminN44i3Wpe8vfDOV5iUaD48+B1R+WWmXGfGfa8Fl5S1Vk1lKPzKI34NAG5VSmMJUdnicgn0DH5r1Q8vZYozur5x1Ty3A20w9U5s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772184650; c=relaxed/simple;
+	bh=3/qTwmWlhByNbTeq7JejyyTt6miv87eV0NybCm2F1UA=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=ffJS/KoquyKCnlcTURU2D+H02IYXopbVrqFw4QwtAYBNOkLUJq28MiXz+KchjjSgevyqTpJbKYz27CxYK5vWaHMorEI2S0fHf2U0NnRUfvdBed2Ea1W0pxbBfadoBEVMtlKhz6Hf3z8JBJOg28UR1h5Ha4HcVodtT55o8V9wpBs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=A7M5kOfP; arc=fail smtp.client-ip=52.101.65.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=psN4tuea1/Uin6Fa7noqzY6t03B5TkUy7Kiw3ZsDJ3znwzmRwD70JAbImACZfaRJtFNmc+UqzFD3/ClUKfnh9Y+2hJG+F0GnpNhtT3p9ljBIbAORJ4yHIid4mcEC9dPLBozFoAbui8sc5P6gEu/MG69JscTM/yal4Fgs3ZgZ6d+teC6X1GiceLPug/5gRqFMXVZ3q4WZmIKxcLcKGw2r7OQgupIi5NEdPQaaTqHVx53uyKl6JT/9R1pDKpSgoSCNgmgQN3Pp0ROearArEz+jaBwnbDYC/qS5ObqXmMQEY2zywVjcwAozBw0GBPUJdgCWthFwBQQxsiWgF4jQpw2O+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8nxLeUtN0CIB9UZwmQhlzFoPSSx4bIprmSZhpF07GIY=;
+ b=S5pKNqLY7+az68U+pcKPpstOem4JiEQFBQ9XmWQp+hqLeGsVtgdBK8pyq9ckK9+lQPaAz+bBUScT5DuyILbvtH83GHhahrUiStx+ggPYnoDFCNokZ3rA9Ejch1DmbR+gv5/QH3bE2/wA5GSTwbgY0b4m8by61RbJBh22E4Q7och+mCi1vlAjAn776MtxMlHYXmphO7XeesjfUcVi8mMSctS99ghcj9yWGEOf5sWqoGU1ew0dO1j6rRA5Dm88Ql5s+DflPlUXaKZk20Ss73zQeMfeOQZI3B33lMj0KuE5BV+QJ22Ob9p5e+yr0HdfKWAsTIqv9fnUcGikCdVIHjbNfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8nxLeUtN0CIB9UZwmQhlzFoPSSx4bIprmSZhpF07GIY=;
+ b=A7M5kOfPCVEya45JjPyvVF72xJfU71T7poLUUXQMJmCyR3hS3gpJqfXjI6wtKPfLe8rk6zSewHhfu92s39wrPCeiNyfn40HymRnc/E1K7ZO/5ZpUqsI2w/NiSasStcaR97n+fP0Po6bF0D29YyB0GkhnWoywgW+VSK0KGjcFhUat7j83UWf40or4ctDAT5BMMPUtzZ+u1xPC1fez0uPUwii65FCpAmeRe2ELnT48kshvGyIHPxD1bkyk4EY1vLW9VV6NwEjmOcGejWLX7e8jPEZIFwMB1rrqk/Zq7EHfwjgC5CffRGqLvK79TLme/TYB23W035VOpBSl+Rh0AgixQw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AM8PR04MB7316.eurprd04.prod.outlook.com (2603:10a6:20b:1c7::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.15; Fri, 27 Feb
+ 2026 09:30:44 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64%4]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
+ 09:30:44 +0000
+From: Liu Ying <victor.liu@nxp.com>
+Subject: [PATCH 0/2] drm/panel: simple: Add Tianma TM050RDH03 panel
+Date: Fri, 27 Feb 2026 17:31:34 +0800
+Message-Id: <20260227-tianma-tm050rdh03-v1-0-cab78a0d765d@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHZkoWkC/x3MQQqAIBBA0avErBMmtYSuEi0sp5xFFhoRiHdPW
+ r7F/xkSRaYEY5Mh0sOJz1DRtQ2s3oadBLtqkCgHlNKIm204rLgP7DE6j0o4cosxWlmtFdTuirT
+ x+z+nuZQPWfNfLmMAAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Liu Ying <victor.liu@nxp.com>
+X-Mailer: b4 0.13.0
+X-ClientProxiedBy: MA5PR01CA0123.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1a7::13) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260225-pinctrl-mux-v2-0-1436a25fa454@nxp.com> <20260225-pinctrl-mux-v2-4-1436a25fa454@nxp.com>
-In-Reply-To: <20260225-pinctrl-mux-v2-4-1436a25fa454@nxp.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 27 Feb 2026 10:20:14 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkT83xz+PSzZZv_Mv+Mqx_+W30d_xk68EDG-sdmFF3x3A@mail.gmail.com>
-X-Gm-Features: AaiRm508vRiGuZWaxCw9uIk2jsJypknsSz-JUmqErGl52ejGnezFiN87PTsKfa8
-Message-ID: <CAD++jLkT83xz+PSzZZv_Mv+Mqx_+W30d_xk68EDG-sdmFF3x3A@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] pinctrl: add generic board-level pinctrl driver
- using mux framework
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Haibo Chen <haibo.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM8PR04MB7316:EE_
+X-MS-Office365-Filtering-Correlation-Id: edbefcff-ec39-4ff8-14e3-08de75e2e1a5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|19092799006|366016|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	tjU051Dj0BP6hbfjnetJrlQ8/2GidwNesQuO1MGNis1AgqR/3kpPi5C3lv1LMv2saDSuDySuZMLRG3qOn3PU8TvGPZSxkLHFow0d/yvd5v6uz5mznlqE72LNsQECxnUZbfWzijCFtbNeYZL6ILjAI2foZ+MKjzdDSWkMwHK9dBLghOx/qe4feQR5Z7fiCwRkmyzWcuUTxURRf5XpCWTsgNvy/53eMQBZNBLpvtAT3C4hbXtEj4jknKwoNEvAZjjy0+ERTs8QanI0jYo2JU6R4Ut1qyosrc8HoFKP+XFGRRtDaq8MantmYS7D1LMcTzlypzZ9p+tbHOthuu/YJy8+56urUIAeQdbAh2Z2ibv4qWItKe+TpqA3XoWUEoP+ABsK4VOjob894FqIX8ftO3hOkxTIZNxIgJ+lhzz4COqq0UspQsy788QZbFI581qTK2rIjl1YMFdtrriMXd4dJnCZYbYtG2Z94frD84uLzhxq8r6eBxMEZ0PwsWXU49wVGkYUxAqfmwciDsutcvLCMzZyGQ/UoHRv9z/QMdQW1ovrJIL8/bqd09iEZ+2PuF2gyNq8MNPNEsCSBq9yjbl/25oicO82wukj4NvJhFfRO681XYQAf4NRXLZvVMgJe2Bb8FCZ0mCzjxsOraVD2qbsldtZfHXuHBQz878+VV9RQkBkxhnNwnKcgE4f0TwnBDyqaoTagfpwCSytQFUb95foAiOtBiLB1qUDHljuH2V73m/TxZzV1i02yT/KKIfbPAZ2OIoAmV/adXDfvZcNtiOXBhopqA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(19092799006)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UGh0U1NXeXdhZ1VjQUNxMXZOOGtjNDZFMnlaSTdmYlFaS2xCMHRxZ21kM0My?=
+ =?utf-8?B?QnQzK1pXblVYcjd3ZWVPWVNTMWg2NzlJbzRDUUNRNTZjWGNkclg2ZnpqNkgz?=
+ =?utf-8?B?TTdBd3ZQS1R6NlBUcVJTN3c1WDVabi9OWEc1NHkxeXV2NC8rcXRxcnNIbjJB?=
+ =?utf-8?B?SDMyZXRIelYyS3FEcjBmMzBFQlRiSlZybDd1c1pwYXI3UUNUdk1NZU0vci85?=
+ =?utf-8?B?NG9ZQ1p0VjhkVzBPNW8vb2t5RC8vWWUyRFhPZGl2SlFHcVNpVWd0QXdINU1s?=
+ =?utf-8?B?UG5vTDE1V3I4OU1hcGFVbnd0UENGRTBldEc5SlcxS1dtUnJoQU5QUFZlUE45?=
+ =?utf-8?B?TWpCS0xPbS8walh5YUlhR1d4M2VaMzNGTVdBWVFzVTVBT0kvL0dzS1c3U3Mx?=
+ =?utf-8?B?Nk50V3pzVFFPWDA4cmVNWC8rOExLSGovMmt5enhTL2xUSHBpQVliWER1dFBO?=
+ =?utf-8?B?Nk54U3BMeWZEelliVmpiakg0aXhNTXcwVkFacElqdlNCUXZoa1duNkNHc2s1?=
+ =?utf-8?B?VlZCN1ZVeXUyTkNaYjhFUzBZRFU4a3FRT0hpR3Y0R3NpVnFCRTdFUkVzUWZp?=
+ =?utf-8?B?OEpyNXkwTWpTOVVsMUo2MXhPNm5WNmJ3ZExVeTcyZmJMRTVlWGQ4cWF1SnNJ?=
+ =?utf-8?B?OHdiYzV5Z1lUdXU3ZHFsQ1I2QVZSeG40aVIrR1pGVVZSMnFCQldSQlpYYmlJ?=
+ =?utf-8?B?NWg1cFJXOXcrQzNQT0c3clFXajhwbUtmUlphTE9jUGQvWndIOTBxdzFBZzBh?=
+ =?utf-8?B?WXFMZ3h4clQ3aGJSWWpUVWhjYVNrdDRlNVQwbXVSZ1RaQ2t1TFg2YTdNTm91?=
+ =?utf-8?B?L1BBcklZUkJyNHlEYUJUVEpGeXVwdzN6eENJbUpFNVdETUhNdCtabjVZRzVI?=
+ =?utf-8?B?TUFtZ3F6dTkyc1M4V0RiYW9qNExCSjVRTmhVL3J4bWxaTjFtNEtrSlYvN3VL?=
+ =?utf-8?B?MnhEWUhrZTRGNkszZC9PTTNsZThScUt5a1p4amZqcFVwTWRvM2JkOE1NWlVi?=
+ =?utf-8?B?WnZodTNuUG9rbHpCNi9tQlRhVXFHbmxOZ29HVENuVzVQdGQwVHJmdUIxUU9a?=
+ =?utf-8?B?QVN6cTBIdGExcGFrOHhJNE1Gd1k0a3daV3dRREdhbTRUeENqUi9HV3pCcHFv?=
+ =?utf-8?B?VnRvZ2ZRclZqUUZUNEZWcGNDR2RaajREYnlKSlJPNXhyMVgwN1BNYXMxTldW?=
+ =?utf-8?B?SzBkM3pYTytUcyttaTE4L20xK3pSQXd6a3B6T2RaYTdCdXpXYzZvU1M1bFNt?=
+ =?utf-8?B?aEN6RDF4ZGdGVGp5SlQwUnZlMnJlQ3dGdWlHNHlYa1JTVE9sWWlXZ0FVQmdo?=
+ =?utf-8?B?VGFLa0xYK3c2eGw5YjhjeU82VWhsTkZnVGpTSldSaEhrYkpHcEhWaUc3YTk5?=
+ =?utf-8?B?TVFZYlA1QnhPazlzNGg4b1JZclp3RXM4NHByS3JxZm15bEJvbnFUWEVUUjUw?=
+ =?utf-8?B?dWpReVh5WkxtZXdNaGtJc0JFZDM3bmdEY1V2dnlqWHBPTG10ckoyMHowNjFM?=
+ =?utf-8?B?RUNCYmpuUFpzczUyYkZBazhFcU5OQWJDUWVKWlFiWUt6SW5xdXVTZlh0azVJ?=
+ =?utf-8?B?VU0xOVByNit4ZVkyK01FN3RhMDVjQVZhdVNON05SYitmQkN0d1YvV2laVUFQ?=
+ =?utf-8?B?bTR5MUhLNEVQZkVSMmJiNmpKZFhIUU1lbUFVVW84bTl3RkRqbzhuOThDRndO?=
+ =?utf-8?B?Wk42NlV1Y055aXFoZ0FqbjN6VlhoaGR2RjlnYmkreTk1UldhU0xaWnc4N0pw?=
+ =?utf-8?B?WTJYK2M4dVZsYU9zVmlNNEJ6ZG1WdFJSc0NZa0dldFhjYWFKampESkhCK2Zy?=
+ =?utf-8?B?bHNRaERIbDlyT2MvcTVNSW9Lc0xqdmtKUHZvY0hGSFc5Z2NQM3FGV2lXM1Z5?=
+ =?utf-8?B?TFU4Rk9QNi9OaWpCQnVDNmFOQWxsVmxXZENDS2YzbHl6SlJHZXptVzl0MUZq?=
+ =?utf-8?B?SU5qVGZoYms2bU1mR1YvRDRzVUlUUG5Qcm9pVmo0ZW52SzRLMjFyaVVSTFVo?=
+ =?utf-8?B?MEpzM2pzaU96V1BUN25YTWxLa3B5MlkzTGtMZDA0c082RVY2aXdITUFERDFm?=
+ =?utf-8?B?Q25vOVJCOVU1UFhvVjBkcUM2SE9VZmJOTmg0QjljTmh4bzFXOUpzOEU1Rlkw?=
+ =?utf-8?B?TXkxalcrYVdONzl4a1draHUxK253WU14d0JCM0UvUGd0bXpKRmp0SDUvUW9w?=
+ =?utf-8?B?bjM1YStxa0pVSGVpVkpDRHJaQ3NXTVBnY1ZGTHV5RktkSnB2Z3crUkNSaHpO?=
+ =?utf-8?B?V1JSdllDUG1OckNKSm5ZME9PQ1hvb0ZOSGZDdlcrZVdXZTNZNlRtM0NJK3BD?=
+ =?utf-8?B?MVhVTW14K1gwL3B4N0NUTnpVY3dydGVEbHVBVy9CRVRDNDFxWVBDQT09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: edbefcff-ec39-4ff8-14e3-08de75e2e1a5
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 09:30:44.3278
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0vzQY+U10Dny5eke9jwYtxKrOcBTOnztM0QG3bbTnvkIsAhkqw9/F0rvt+8yr7Uzc8njkbEa3rNV9qvgU+TuTQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7316
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269143-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[axentia.se,kernel.org,milecki.pl,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269144-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[victor.liu@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 5D5C41B549C
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:mid,nxp.com:dkim,nxp.com:url,nxp.com:email]
+X-Rspamd-Queue-Id: C1C5C1B5534
 X-Rspamd-Action: no action
 
-Hi Frank,
+Hi,
 
-thanks for your patch!
+This patch series adds Tianma Micro-electronics TM050RDH03 5.0" WVGA
+TFT LCD panel support.  The panel can connect with i.MX93 9x9 QSB board.
+The panel's data sheet[1] can be found with a random Google search.
+NXP website has a link[2] which contains a picture of the panel together
+with an adapter board to connect with the QSB board.
 
-On Thu, Feb 26, 2026 at 12:55=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wrote:
+[1] www.jetone.com.tw/uploadfiles/327/datasheet/tianma/tianma-panel-tm050rdh03-41.pdf
+[2] www.nxp.com/design/design-center/development-boards-and-designs/parallel-lcd-display:TM050RDH03-41
 
-> Many boards use on-board mux chips (often controlled by GPIOs from an I2C
-> expander) to switch shared signals between peripherals.
->
-> Add a generic pinctrl driver built on top of the mux framework to
-> centralize mux handling and avoid probe ordering issues. Keep board-level
-> routing out of individual drivers and supports boot-time only mux
-> selection.
->
-> Ensure correct probe ordering, especially when the GPIO expander is probe=
-d
-> later.
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-(...)
+Signed-off-by: Liu Ying <victor.liu@nxp.com>
+---
+Liu Ying (2):
+      dt-bindings: display: simple: Add Tianma TM050RDH03 panel
+      drm/panel: simple: Add Tianma TM050RDH03 panel
 
-> +static int
-> +mux_pinmux_dt_node_to_map(struct pinctrl_dev *pctldev,
-> +                         struct device_node *np_config,
-> +                         struct pinctrl_map **map, unsigned int *num_map=
-s)
-> +{
-> +       struct mux_pinctrl *mpctl =3D pinctrl_dev_get_drvdata(pctldev);
-> +       struct mux_pin_function *function;
-> +       struct device *dev =3D mpctl->dev;
-> +       const char **pgnames;
-> +       int selector;
-> +       int group;
-> +       int ret;
-> +
-> +       *map =3D devm_kcalloc(dev, 1, sizeof(**map), GFP_KERNEL);
-> +       if (!*map)
-> +               return -ENOMEM;
-> +
-> +       *num_maps =3D 0;
-> +
-> +       function =3D devm_kzalloc(dev, sizeof(*function), GFP_KERNEL);
-> +       if (!function) {
-> +               ret =3D -ENOMEM;
-> +               goto err_func;
-> +       }
-> +
-> +       pgnames =3D devm_kzalloc(dev, sizeof(*pgnames), GFP_KERNEL);
-> +       if (!pgnames) {
-> +               ret =3D -ENOMEM;
-> +               goto err_pgnames;
-> +       }
-> +
-> +       pgnames[0] =3D np_config->name;
-> +
-> +       guard(mutex)(&mpctl->lock);
-> +
-> +       selector =3D pinmux_generic_add_function(mpctl->pctl, np_config->=
-name,
-> +                                              pgnames, 1, function);
-> +       if (selector < 0) {
-> +               ret =3D selector;
-> +               goto err_add_func;
-> +       }
-> +
-> +       group =3D pinctrl_generic_add_group(mpctl->pctl, np_config->name,=
- NULL, 0, mpctl);
-> +       if (group < 0) {
-> +               ret =3D group;
-> +               goto err_add_group;
-> +       }
-> +
-> +       function->mux_state =3D devm_mux_state_get_from_np(pctldev->dev, =
-NULL, np_config);
-> +       if (IS_ERR(function->mux_state)) {
-> +               ret =3D PTR_ERR(function->mux_state);
-> +               goto err_mux_state_get;
-> +       }
-> +
-> +       (*map)->type =3D PIN_MAP_TYPE_MUX_GROUP;
-> +       (*map)->data.mux.group =3D np_config->name;
-> +       (*map)->data.mux.function =3D np_config->name;
-> +
-> +       *num_maps =3D 1;
-> +
-> +       return 0;
-> +
-> +err_mux_state_get:
-> +       pinctrl_generic_remove_group(mpctl->pctl, group);
-> +err_add_group:
-> +       pinmux_generic_remove_function(mpctl->pctl, selector);
-> +err_add_func:
-> +       devm_kfree(dev, pgnames);
-> +err_pgnames:
-> +       devm_kfree(dev, function);
-> +err_func:
-> +       devm_kfree(dev, *map);
-> +
-> +       return ret;
-> +}
+ Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
+ drivers/gpu/drm/panel/panel-simple.c                              | 3 +++
+ 2 files changed, 5 insertions(+)
+---
+base-commit: 877552aa875839314afad7154b5a561889e87ea9
+change-id: 20260227-tianma-tm050rdh03-dedb7743a443
 
-This is so close to the pinctrl-internal helpers that you better work with
-those instead.
+Best regards,
+-- 
+Liu Ying <victor.liu@nxp.com>
 
-Can't you just use pinctrl_generic_pins_function_dt_node_to_map()?
-It was added in the last merge window in
-commit 43722575e5cdcc6c457bfe81fae9c3ad343ea031
-"pinctrl: add generic functions + pins mapper"
-
-There are problems with the above, for example this is only called
-on the probe() path so you would not need any devm_*free calls,
-as you can see in the generic helpers.
-
-I think you need to look into using or extending the existing helpers for t=
-his,
-
-> +static void
-> +mux_pinmux_dt_free_map(struct pinctrl_dev *pctldev, struct pinctrl_map *=
-map,
-> +                      unsigned int num_maps)
-> +{
-> +       struct mux_pinctrl *mpctl =3D pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       devm_kfree(mpctl->dev, map);
-> +}
-
-Just use pinctrl_utils_free_map().
-
-> +static void mux_pinmux_release_mux(struct pinctrl_dev *pctldev,
-> +                                  unsigned int func_selector,
-> +                                  unsigned int group_selector)
-> +{
-> +       struct mux_pinctrl *mpctl =3D pinctrl_dev_get_drvdata(pctldev);
-> +       const struct function_desc *function;
-> +       struct mux_pin_function *func;
-> +
-> +       guard(mutex)(&mpctl->lock);
-> +
-> +       function =3D pinmux_generic_get_function(pctldev, func_selector);
-> +       func =3D function->data;
-> +
-> +       mux_state_deselect(func->mux_state);
-> +
-> +       mpctl->cur_select =3D -1;
-> +}
-
-As mentioned I have my doubts about this, explain why this hardware
-is so different that this is needed.
-
-Other than that I like the concept!
-
-Yours,
-Linus Walleij
 
