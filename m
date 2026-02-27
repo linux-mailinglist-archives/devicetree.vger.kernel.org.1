@@ -1,317 +1,163 @@
-Return-Path: <devicetree+bounces-269354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269355-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2ACeOOfFoWkVwQQAu9opvQ
-	(envelope-from <devicetree+bounces-269354-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:27:19 +0100
+	id SJeGNdDLoWnbwQQAu9opvQ
+	(envelope-from <devicetree+bounces-269355-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:52:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C54B1BAC8B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:27:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3C91BB091
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:52:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6B0853025A70
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:22:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 59AA63181BBB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4A944B672;
-	Fri, 27 Feb 2026 16:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BAF134EEEC;
+	Fri, 27 Feb 2026 16:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="rswczSH1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SOBloC6T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433B044A70E;
-	Fri, 27 Feb 2026 16:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772209351; cv=none; b=GN6/oMKD6yaGW064JZuWHZsaUtKA7UkrTF98U167tMH3cK3uYnXNDz33Geg497om0k+e/tKy5wEodqfLkLqnqa00esVTQ6H+4r+tRRTs4hUZ7LksePyww3ckPcGlFGjEEcvNWy/yX1Ldr+LCkCoCu4ek6aEpdFU0QeHFFGC1weI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772209351; c=relaxed/simple;
-	bh=kYPUvF4UEQ6LF3Cfn1dMvg5ZhqaE6uddWpC2I5dOrE4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UEkS/VQrKJFFmI3pCwpjCuQwUaKa488i9lc+GMGcCF/sD2eOyYxYYQzJDcfaFpC6p+WhsyRwoDf26br2yCNDz+tCJmXW1KmDBI61aDXkxPiJbLNPJ0YS2JVGc9A4OM6ButH/oJ5eswmrLlyr4LFvH/zWnvWKLSRa+n0DFeZPtZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=rswczSH1; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id C182B4E411FB;
-	Fri, 27 Feb 2026 16:22:22 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 960485FE46;
-	Fri, 27 Feb 2026 16:22:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 300941036949A;
-	Fri, 27 Feb 2026 17:22:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772209341; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=7EMUj9J2lzttg45PIgu6IItFeqZqS9pqZ7OM/QVePFo=;
-	b=rswczSH1SlJ3ib4UceTBt2QrNTLqbu4jgZYIpkBLsPk28uhMaBBr0lmoF630EXDn/cVVad
-	Rj2a59zPf4cPE1o332uykUPvr1hND4ki0kPYpG8gMA3ZQO3F3A7kXF4/eQOuEKXZilBpdl
-	S3WocPtJBzBp3nB7Mimj0wSrQUCSctSFx+J4pwHmabJxlKopj52QuZ+w8saELtVeCmwofs
-	yfSnU+1p+9eB5NAJxsoc8SGems/k7hkq1xmWhDHo+A/hR2ZbEeDwkN52yRShCiOZUOPTfI
-	lWtYs/QmnzjrL293Im+XZRxo05cW2I+QXfB9Kr27Ihq4lx7BatRM+DxCcbexpQ==
-Message-ID: <b64c6beb-afac-4df0-b687-5ab1e2b4baaf@bootlin.com>
-Date: Fri, 27 Feb 2026 17:22:14 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80C5347FEC
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 16:47:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772210855; cv=pass; b=sCLRqvAcAGaUuNm60FOiucHGsQwnQJgBh5VO6wQClhcVaAYaM33YBlxfIs78XDjEZ19JNUNcKgGGRr6uhaX/zu9JemAe2HQ/yG3cjvOp5oqBEfOPPOzQsXPLkHmAdmAeaAxjeP54quVIXdt+QKpceht8cxaYTiEREGfl/qL0LkY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772210855; c=relaxed/simple;
+	bh=ZWqPJD4dtCJD2sUc3tRg4PY4l8nI5GuVuIvnfZjfnEo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bSvOFhuxwW2H1cnAh5whO1APyk1f5LXTFlPX3oPiSW9h/N2rPxyGD6bSD9Ba5xj2Qh+kZSv2+yjtaQ7kuddvmciEqgKAfQ5/2kXFQ8I1mp8K4oWkmZdBn+djakNBpBDZe/MC6WGzwH1/vfIILUHsqAAR9ey4Mu7yUFHSHeX3AEQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SOBloC6T; arc=pass smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-65c5a778923so3664250a12.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 08:47:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772210852; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DXc+eh1nTPgDWSP/AWUuDFQ3wMXCVipbmey4WTX+R1jytDbw0jmXqQMfR9OEL9IXqX
+         fSR53wX57JllC9T2WxvlcnQnIqEEpALllLhmy7Lus79wdTQJ0v4RV4akVzl2Fyv/MPCQ
+         7Lxzc52cx1ptg7w5chwSwuf45u/vAQQ8xSL6u5r+ymdKP0iJeybQpJTdopzAt3sDxHMc
+         VI5WoE151oIZDLNouJCX1qMdRiJ8Cbf+Nciqj0VjXkOwDKL1x7Jvn+6s257x3gvMwZ5t
+         KN7S7bgVRaVHLEFoV0tWtX/cz1z6ZvauKbAdzoB28nH9H+hcHcZ1qumh8VhsK+FiUuX0
+         bVog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ZWqPJD4dtCJD2sUc3tRg4PY4l8nI5GuVuIvnfZjfnEo=;
+        fh=bftAC4EHzt9sAAR0VE86wsipQia8/U+AeQmRhDN3ck8=;
+        b=ao1ttXau4SeI78wxrdjXLveOFVKM01U7DBaecRwEatB1EBkqPJ+TECjt3Tw9sUqi+8
+         Kt+IHIdlZBlJhUxu06y0ict5rOIk5Ja97/W6nG4a/wgiET8j6qgfVOc4fhCjAo7pWuH4
+         MJUM5Z4c9pFUACqtFptEW7WnQx3+HFFhh72ASrPDoE+SfWZ/n2Qh3DcFM39TV5aDcv6/
+         tyPmdY6lmVCSDhpQS03hGWauSLHhhMgri7OSx+KYHhsiCE0PjgYtI7rHQMK7d+JrKyLp
+         m+FjbvcmMzoJdb7RoUYc6VMMuHNlT9mv+MQvO+3l97cot4ngHPXKvMsyRT6nwbrGMwAG
+         0/rQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772210852; x=1772815652; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZWqPJD4dtCJD2sUc3tRg4PY4l8nI5GuVuIvnfZjfnEo=;
+        b=SOBloC6ThKf32IB3RfiUQt7Q0R2p4oPO5JC7JtOdVcLkMWJaZQwhdsK4WOfORlrrCe
+         Uxu/ueXyI4eMpoJ1nt4Sj+Lia9IG3Bmt0oDZY13Yfi/rl6gWeWU30o6p3ZmtTa0ZPwUM
+         lU4DsZjrIFqB2EXmZTMXUPLaWRQdkpuR+mEouF31+pIpFPoM36FPeOkweGZI2F577177
+         NvLBdm7NyuWxiQepoCF8LCPyb8rXQAEwbXzMRc+uxZdY3tMoum68kBkDRRLKM3or+TaY
+         H54bYUIK2huuti5TMOG9xOs9a9hukZvVY+IX2PXnI3fEfhbE58hapo3x7Jn2+n+dQMN2
+         vu+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772210852; x=1772815652;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ZWqPJD4dtCJD2sUc3tRg4PY4l8nI5GuVuIvnfZjfnEo=;
+        b=XpRWbwF7Qm0/x4zCbrGvMEaT+eDHzwtslaKhdTtmKSRKqG2KNqwp0LAsdLs+Gvlg2O
+         EQ5iOIBX4l7IxtfTXA1KVmsaCf857ceEJSF2sP+PLXaq90o+ZlBxOeQ3wTjzlrvI4eDv
+         bPJY09aawmtR/4HD/hX+OzX3Di8bsSW4GskXGeYu25XJOOizUvEHnJJA3VGocZqqTFSy
+         tOrTnLoe+l+QgBov+TDeL2xe/Yh8bPLGawbqqgrYnhUSUyX+8dia8CUbogQGB35qjDWT
+         Jz3MQbKaYXtfhEccz6vS0ExXfU0XnieRdbh0JbX75vhO7ee4raMguUeLSqAcyq4+QLHa
+         sXVg==
+X-Forwarded-Encrypted: i=1; AJvYcCVlvo/XJ1HHoBAkKUacfJ9aNkprNLNeq2/EKT71tXB6iOeMkUUOc6AR92ULIBkDBDSsDWc9J0FkjvJH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8sHv19PEqosSjlzeM9slVl+W/Arq2M5fs+Ze0+FYdmcpC6YG0
+	Ms2diAE9In/ZYpkBV8ujiHZmCllLnGjKYNThBxMbQMV5eQEtLUYCWTHhHFvpyBCoBH7IVkxQ+HR
+	pnDuA2CXPxAMQ5209Z6E4ZP/57cnTK2jhXg7y6qNbIg==
+X-Gm-Gg: ATEYQzzu2ftsqW3CvdmXvXCOVu2OHX5/CTa0wUuoWuPuqddqfjSfQukJ6byV4ilYWlc
+	Tm+V669YxMX4IyLNXIHy3J4NmWKM7fD6WEqRIp3SYHdXb99iqeUiHaTWEYJKxYzsETC5TitxrJZ
+	y2N1E7+Qka7RCbt8fz8hNFxBWvcuvGjkLjex9PRqA1l1OIj4V2fuFPdAnZ82KamjVyScM1BstuF
+	0kX57ymiG2fE1ENCALKx7CrLJ0HxlorsXWZjaT/KlQcZ6+/Dimk232nHyYypA3CJ9eBOnKxMm66
+	foQafogBs+X3xk05wBUSUQ==
+X-Received: by 2002:a05:6402:1456:b0:658:b837:7953 with SMTP id
+ 4fb4d7f45d1cf-65fdd6ef9f8mr2486945a12.12.1772210852025; Fri, 27 Feb 2026
+ 08:47:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] pwm: sun50i: Add H616 PWM support
-To: Philipp Zabel <p.zabel@pengutronix.de>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-Cc: Paul Kocialkowski <paulk@sys-base.io>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20260123093322.1327389-1-richard.genoud@bootlin.com>
- <20260123093322.1327389-3-richard.genoud@bootlin.com>
- <2938bcbbb46fdec1fd2629e11c28ce9cf09eee27.camel@pengutronix.de>
-From: Richard GENOUD <richard.genoud@bootlin.com>
-Content-Language: en-US, fr
-Organization: Bootlin
-In-Reply-To: <2938bcbbb46fdec1fd2629e11c28ce9cf09eee27.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20260227-max77759-fg-v2-0-e50be5f191f0@linaro.org> <20260227-max77759-fg-v2-7-e50be5f191f0@linaro.org>
+In-Reply-To: <20260227-max77759-fg-v2-7-e50be5f191f0@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 27 Feb 2026 16:47:19 +0000
+X-Gm-Features: AaiRm537N-V30eF26zS-TiG5KL9R7J4CN3hLB0hASqzawD4ChaDSinIj6d4HiQM
+Message-ID: <CADrjBPr2zOOCQtnMkwb1srq=SnpwcXcck0YTbmH3+3nbF4AXLQ@mail.gmail.com>
+Subject: Re: [PATCH v2 07/11] power: supply: max17042: time to empty is
+ meaningless when charging
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+	Amit Sunil Dhamne <amitsd@google.com>, kernel-team@android.com, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269354-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[pengutronix.de,baylibre.com,kernel.org,csie.org,gmail.com,sholland.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-269355-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[richard.genoud@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 5C54B1BAC8B
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3A3C91BB091
 X-Rspamd-Action: no action
 
-Le 26/02/2026 à 15:12, Philipp Zabel a écrit :
-> On Fr, 2026-01-23 at 10:33 +0100, Richard Genoud wrote:
->> Add driver for Allwinner H616 PWM controller, supporting up to 6
->> channels.
->> Those channels output can be either a PWM signal output or a clock
->> output, thanks to the bypass.
->>
->> The channels are paired (0/1, 2/3 and 4/5) and each pair has a
->> prescaler/mux/gate.
->> Moreover, each channel has its own prescaler and bypass.
->>
->> The clock provider part of this driver is needed not only because the
->> H616 PWM controller provides also clocks when bypass is enabled, but
->> really because pwm-clock isn't fit to handle all cases here.
->> pwm-clock would work if the 100MHz clock is requested, but if a lower
->> clock is requested (like 24MHz), it will request a 42ns period to the
->> PWM driver which will happily serve, with the 100MHz clock as input a
->> 25MHz frequency and a duty cycle adjustable in the range [0-4]/4,
->> because that is a sane thing to do for a PWM.
->> The information missing is that a real clock is resquested, not a PWM.
->>
->> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
->> ---
->>   drivers/pwm/Kconfig           |  12 +
->>   drivers/pwm/Makefile          |   1 +
->>   drivers/pwm/pwm-sun50i-h616.c | 959 ++++++++++++++++++++++++++++++++++
->>   3 files changed, 972 insertions(+)
->>   create mode 100644 drivers/pwm/pwm-sun50i-h616.c
->>
-> [...]
->> diff --git a/drivers/pwm/pwm-sun50i-h616.c b/drivers/pwm/pwm-sun50i-h616.c
->> new file mode 100644
->> index 000000000000..02a8e2d39f86
->> --- /dev/null
->> +++ b/drivers/pwm/pwm-sun50i-h616.c
->> @@ -0,0 +1,959 @@
-> [...]
->> +static int h616_pwm_init_clocks(struct platform_device *pdev,
->> +				struct h616_pwm_chip *h616chip)
->> +{
->> +	struct clk_pwm_pdata *pdata;
->> +	struct device *dev = &pdev->dev;
->> +	int num_clocks = 0;
->> +	int ret;
->> +
->> +	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
->> +	if (!pdata)
->> +		return dev_err_probe(dev, -ENOMEM,
->> +				     "Failed to allocate clk_pwm_pdata\n");
->> +
->> +	while (pwmcc_data[num_clocks].name)
->> +		num_clocks++;
->> +
->> +	pdata->hw_data = devm_kzalloc(dev, struct_size(pdata->hw_data, hws, num_clocks),
->> +				      GFP_KERNEL);
->> +	if (!pdata->hw_data)
->> +		return dev_err_probe(dev, -ENOMEM,
->> +				     "Failed to allocate hw clocks\n");
->> +
->> +	pdata->hw_data->num = num_clocks;
->> +	pdata->reg = h616chip->base;
->> +
->> +	spin_lock_init(&pdata->lock);
->> +
->> +	for (int i = 0; i < num_clocks; i++) {
->> +		struct clk_hw **hw = &pdata->hw_data->hws[i];
->> +
->> +		ret = h616_add_composite_clk(&pwmcc_data[i], pdata->reg,
->> +					     &pdata->lock, dev, hw);
->> +		if (ret) {
->> +			dev_err_probe(dev, ret,
->> +				      "Failed to register hw clock %s\n",
->> +				      pwmcc_data[i].name);
->> +			for (i--; i >= 0; i--)
->> +				clk_hw_unregister_composite(pdata->hw_data->hws[i]);
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	h616chip->clk_pdata = pdata;
->> +
->> +	return 0;
->> +}
->> +
->> +static int h616_pwm_probe(struct platform_device *pdev)
->> +{
->> +	const struct h616_pwm_data *data;
->> +	struct device *dev = &pdev->dev;
->> +	struct h616_pwm_chip *h616chip;
->> +	struct pwm_chip *chip;
->> +	int ret;
->> +
->> +	data = of_device_get_match_data(dev);
->> +	if (!data)
->> +		return dev_err_probe(dev, -ENODEV,
->> +				     "Missing specific data structure\n");
->> +
->> +	chip = devm_pwmchip_alloc(dev, data->npwm, sizeof(*h616chip));
->> +	if (IS_ERR(chip))
->> +		return dev_err_probe(dev, PTR_ERR(chip),
->> +				     "Failed to allocate pwmchip\n");
->> +
->> +	h616chip = h616_pwm_from_chip(chip);
->> +	h616chip->data = data;
->> +	h616chip->base = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(h616chip->base))
->> +		return dev_err_probe(dev, PTR_ERR(h616chip->base),
->> +				     "Failed to get PWM base address\n");
->> +
->> +	h616chip->bus_clk = devm_clk_get_enabled(dev, "bus");
->> +	if (IS_ERR(h616chip->bus_clk))
->> +		return dev_err_probe(dev, PTR_ERR(h616chip->bus_clk),
->> +				     "Failed to get bus clock\n");
->> +
->> +	h616chip->channels = devm_kmalloc_array(dev, data->npwm,
->> +						sizeof(*(h616chip->channels)),
->> +						GFP_KERNEL);
->> +	if (!h616chip->channels)
->> +		return dev_err_probe(dev, -ENOMEM,
->> +				     "Failed to allocate %d channels array\n",
->> +				     data->npwm);
->> +
->> +	h616chip->rst = devm_reset_control_get_shared(dev, NULL);
->> +	if (IS_ERR(h616chip->rst))
->> +		return dev_err_probe(dev, PTR_ERR(h616chip->rst),
->> +				     "Failed to get reset control\n");
->> +
->> +	chip->ops = &h616_pwm_ops;
->> +
->> +	ret = h616_pwm_init_clocks(pdev, h616chip);
->> +	if (ret)
->> +		return ret;
->> +
->> +	for (unsigned int i = 0; i < data->npwm; i++) {
->> +		struct h616_pwm_channel *chan = &h616chip->channels[i];
->> +		struct clk_hw **hw = &h616chip->clk_pdata->hw_data->hws[i];
->> +
->> +		chan->pwm_clk = devm_clk_hw_get_clk(dev, *hw, NULL);
->> +		if (IS_ERR(chan->pwm_clk)) {
->> +			ret = dev_err_probe(dev, PTR_ERR(chan->pwm_clk),
->> +					    "Failed to register PWM clock %d\n", i);
->> +			goto err_get_clk;
->> +		}
->> +		chan->mode = H616_PWM_MODE_NONE;
->> +	}
->> +
->> +	ret = devm_of_clk_add_hw_provider(dev, h616_pwm_of_clk_get, h616chip);
->> +	if (ret) {
->> +		dev_err_probe(dev, ret, "Failed to add HW clock provider\n");
->> +		goto err_add_clk_provider;
->> +	}
->> +
->> +	/* Deassert reset */
->> +	ret = reset_control_deassert(h616chip->rst);
->> +	if (ret) {
->> +		dev_err_probe(dev, ret, "Cannot deassert reset control\n");
->> +		goto err_ctrl_deassert;
->> +	}
->> +
->> +	ret = pwmchip_add(chip);
->> +	if (ret < 0) {
->> +		dev_err_probe(dev, ret, "Failed to add PWM chip\n");
->> +		goto err_pwm_add;
->> +	}
->> +
->> +	platform_set_drvdata(pdev, chip);
->> +
->> +	return 0;
->> +
->> +err_pwm_add:
->> +	reset_control_assert(h616chip->rst);
->> +
->> +err_ctrl_deassert:
->> +err_add_clk_provider:
->> +err_get_clk:
->> +	for (unsigned int i = 0; i < h616chip->clk_pdata->hw_data->num; i++)
->> +		clk_hw_unregister_composite(h616chip->clk_pdata->hw_data->hws[i]);
-> 
-> Won't this try to unregister the clk_hw before the pwm_clk derived from
-> it? You could place this in a devres action to correct the cleanup
-> order and get rid of the duplicated cleanup in h616_pwm_remove().
-Ah! You're right!
+On Fri, 27 Feb 2026 at 07:15, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+>
+> When charging, the fuel gauge reports U16_MAX as time to empty.
+> Ignoring this special case (as this driver currently does), causes the
+> remaining time to be reported as ~102hours, which is incorrect.
+>
+> Update the code to not return anything in this case.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
 
-> 
-> I think you could even use devm_pwmchip_add() and
-> devm_reset_control_get_shared_deasserted() and remove h616_pwm_remove
-> entirely.
-Nice!
-I'll do that.
-
-Thanks!
-
-Regards,
-Richard
-
-> 
-> regards
-> Philipp
-
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
