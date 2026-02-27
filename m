@@ -1,241 +1,202 @@
-Return-Path: <devicetree+bounces-269333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269335-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oIJ9IyS8oWlhwAQAu9opvQ
-	(envelope-from <devicetree+bounces-269333-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:45:40 +0100
+	id sCk5JEO8oWmswAQAu9opvQ
+	(envelope-from <devicetree+bounces-269335-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:46:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 043041BA2D6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:45:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B18F1BA32E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:46:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C53C130C8B8D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:36:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 571B83184917
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CD243DA2D;
-	Fri, 27 Feb 2026 15:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B5A439017;
+	Fri, 27 Feb 2026 15:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="WxIAhqIV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jCWljCye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012044.outbound.protection.outlook.com [52.101.66.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0286328B78;
-	Fri, 27 Feb 2026 15:35:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772206540; cv=fail; b=VzglkUYtVBvc2SDp4BNHBhx7hUP7CeAk5QmatXbXlK9t3eGiSPVHK/0EykP5yEDJNYp1ewZ60vbP4MY0EwK+hNVfkqPW/2sVm1viYrob7QJU+50y1gF0y5lInGbagjVb+gjZ24N935cPLh69br08S7/1O6TjtH6prOxX/8S0/ig=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772206540; c=relaxed/simple;
-	bh=G1l+9kw31I6jYCqCAkqRZuNHKNOWXaXNrzf+SaW2j30=;
-	h=From:To:CC:Subject:In-Reply-To:References:Message-ID:Date:
-	 MIME-Version:Content-Type; b=sqEVW/yygAbw7cuA7h+S1JQjM1U6VptTTDp/pR2E7HcSbUPtoHXgxfJq7IwIg3KR5ndfx/kHeujuaD3YACl+JCCLnmF3qIGg0eHfhp8GDjr/R+FOBrS6von4ISuvVlGVyXvK7SPnOcwSARQkCTy2g/2uI68/111F32sbo0OxhM0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=WxIAhqIV; arc=fail smtp.client-ip=52.101.66.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U8jZ6VlWKUHo5C286T3sUrQaETgVch9hpKUWzslzT+tRfDycbZ3o1qmcKNEdC4npARXUwEFckEP3QhimZdqzHC9J6mLDPZvyACtVGPtYgNeThsUIJuJRMiKku3MA1OyJj/YXT/oMOei4OQmhPfLCpa3LGPQ1dbZxsMQk271O8KzV1Oshurb5s4gaqXE8f0SDbI0mF6IKSUju7nZ9rUhr5n4ffJDzKwvkAZO45KnoUfVO9QguLTrIeujnXgBK9ud85uLviJOoMTzRc9GrOg7ASFGt2lnz1Yl/rupNbXURlhW4LgjHdl0Ykv5+th7Uy/Lm+3aDNO+lufc+b0iV0oix1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PGkP6f7O//mReZGEElYWBw730xNZdVLnRgEygn46rbw=;
- b=p0V5p96QO5W+cDioDi6WdHZNGBkunjtsuB7mCq47XRNpnCo/lCV6hQheY1dny9wWTCWxs2dHESl6cLl/poOf0CXbqFBF2OGj+wZsh40iJDIXnT+6/LYMvJmzfymvEXcqf1xoiMkgt2FtXq6grA+GOrsPmcUrICsxy2bs358mANn4zHjpvKQPTjFAnchcMj6ZyCtOK6dkJkwn761hGJV3rnCgU1VZTpi2vU4fBizD6hs0YKZ6H1N76c/l8Zpu5lnwOsBfT02CeI8YcCtMXrrw6mvuluixpLwDrZg37+LTBbrVaWG7UczkWFQynlP5lTCT9cQryCFWi8RdxyfAbRQb4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PGkP6f7O//mReZGEElYWBw730xNZdVLnRgEygn46rbw=;
- b=WxIAhqIVLIM/UTguyxOnwWZ0O2H/8NgQVLcrl2cjAw4eHfDU35iao8rd9swuXCzJRdC8neHpb7E+3n90xSVNG5XCqCrLaGphCl44A4xlVXzwvkyE6anXel+IAxF7eJcD87jvGP3y8Dqnrk0mHb8nBJokXTyZskNDvY8ZDvrZxHE=
-Received: from AS4P189CA0032.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:5dd::18)
- by DB5PR02MB11961.eurprd02.prod.outlook.com (2603:10a6:10:64e::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.16; Fri, 27 Feb
- 2026 15:35:35 +0000
-Received: from AMS0EPF000001A9.eurprd05.prod.outlook.com
- (2603:10a6:20b:5dd:cafe::ca) by AS4P189CA0032.outlook.office365.com
- (2603:10a6:20b:5dd::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.27 via Frontend Transport; Fri,
- 27 Feb 2026 15:35:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AMS0EPF000001A9.mail.protection.outlook.com (10.167.16.149) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Fri, 27 Feb 2026 15:35:35 +0000
-Received: from pc52311-2249 (10.4.0.13) by se-mail10w.axis.com (10.20.40.10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Fri, 27 Feb
- 2026 16:35:33 +0100
-From: Waqar Hameed <waqar.hameed@axis.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@axis.com>, <linux-pm@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [RFC PATCH 1/2] dt-bindings: power: supply: Add TI BQ25630 charger
-In-Reply-To: <cover.1772201049.git.waqar.hameed@axis.com>
-References: <cover.1772201049.git.waqar.hameed@axis.com>
-User-Agent: a.out
-Message-ID: <65f55d19b4bcf8f07300df5922ba1605bb669138.1772201049.git.waqar.hameed@axis.com>
-Date: Fri, 27 Feb 2026 16:35:33 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B2043DA3E
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 15:36:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772206587; cv=none; b=CcnyXxpYpCIYUcShi8Kjm1z/uXjzoz7YNog68qwlCT+7lFQLr2Ono/ER0y4hHXu+5rc+GDpmjPe2JvR81CfWpgelulS7DLFmFfOl1/aDsAonkyoSrxWtk6x8+zHs/jTTo76IMafIc+D/GMn2LxY+JezKoCVAiRG3PK+8pgaHfZU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772206587; c=relaxed/simple;
+	bh=UWqymA4e7LYMuMduy+UkKVG1WqyH3ZdKw++6sgj83H4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rOw0gMKHc0yFQVfppVD2Ul55Fhwk0aNPxobRZtHYR34WxepEjw8LFilqSZHCTcGOMm6L0QGrjfYtsntRjDK36OKugc1lLLqJWeqq1NDpSHPu7ZsAtC7tDvNhUZJ4eu4kkIhOVg4sjqAoRG8nRqeIo00fjs6Xl49+di4jHD3NNXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jCWljCye; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-82742aa5a3eso970661b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:36:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772206584; x=1772811384; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WTtIa50EX2gBjUIgh/4hqiDtH9jDI9dvjYOsiss415w=;
+        b=jCWljCyesaYPmp3YIl2lHqvyaeeIG+/XvTkxMU6PYbBdPCtLIJEDTps6aA/Kkl15OH
+         737RGJ5nGVveCY9j/Q1hnW9tguqKYS89H+vkR2U3jAuf7Av4pPfvlhrvGrWdNfIA5ryW
+         Kb58kYuNxs7xkxGpQmbn7KTJaf5akxa5nltQKH2pGo2NfJDggcCc9RYoZlfg6wWXFOXE
+         1X7BWOkUgGxh9TytR8AB1nBnLlCHf8EHtTdvvZreQcvFol1J2ggh+j5LDbVtu1IIxIbV
+         Z1WLatPzJ8z1BiJT/+rwpPzkXcn8hAkNe38FLXoMJKm/rIwuXYTy6AsHDnb+CVYQ5gL5
+         mjuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772206584; x=1772811384;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WTtIa50EX2gBjUIgh/4hqiDtH9jDI9dvjYOsiss415w=;
+        b=GDwdkkxL/o5uW4u/ZF8zqlOujqtqbOePumBtoxDZME2j3fgbEKX/tWG55ksvGLpYad
+         GrLCeP0CdpD45YtVqFdfxQ6SzZ3f81ImJvExh0eL7gUaVxRBae7QupyeTOwCDdgGRnr6
+         Hxq2SsYNG/CD2/RpJQdBU8a+uRvRVHTLnl9w9rqQyRbjDkxJHST5uRDjJimsy6fzMsP5
+         fpgSGXN92dlVCIy/u6Sl28kwUAiBmSLBL4EGo/lsCzOgZNa9GX3mMyI1N0DP9CFWKsB1
+         OmJwh7Ypz3RWiH1TZ5coEFOz080pQothJSmqywG8ErLOjccdzrIbwutabb1TR3fxj39q
+         FvAg==
+X-Forwarded-Encrypted: i=1; AJvYcCWQdcHoTMK+Jlf9+NEsyNMTpGtIzD6Wn+IbDfmkgw1+n6hhJIKzbLSGwLS1QinUQgFbYfbn/Ssj6HVQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+TNAC4HtNOI9naejMBUaGMrBmDGpV0Qtj6I9EeI4FCkqhlNhR
+	FXqe4uHlvEL89h1qeKwtjfIlPSVNYCN2fnv2OPQXsDjTBEb2ZDpnMak2
+X-Gm-Gg: ATEYQzz1hqqoeXdp6bXB34OJ679ih4t9XBSOU2tbuwsO9t750rzrYfnGKYi3FqJiWXP
+	xZCIw/Du/r084u0FB829GspbEiR5gOR9cP6vEVvSBvlIW0K0+xg4B+vhJVZdIBA9e9PywXDL6MX
+	Jb3GbOB46ZA3uuVFXBQ6IOl7nzUKSdZxVpNliYrcfXmjO7vEM4Tz+9415+XCTZvKaNRbUfuZnfY
+	lyd5MY5LLGGp96MWoD3862udaM/9EFn5QxrqgUFkKUSImBovNTnOZ+bM53u9p27sdFegugXyaLH
+	4J+F8nwwYhPBTthghowZXePFawItgS+xe3XKC6Sg+VhBtStBtsTtS4k1F9vonRLq+LCM1JwsAh2
+	biGx8s12soIeEqGspAIPdw3qZRCXVpx/EfVPm6xOIzgxS1mfye0pS2s0OM8i8reLnlX4tZ53VQU
+	ok2xXYopx3Ug8UoJ3E+rwbTGOaYneeoQ5klqkMPljrtHRSnM4bRuw0ssQi0F7mMCPpTIL7JClv4
+	gNRaPfn210=
+X-Received: by 2002:a05:6a00:ab02:b0:81f:3afe:281e with SMTP id d2e1a72fcca58-8274d92e2a4mr2562694b3a.3.1772206583901;
+        Fri, 27 Feb 2026 07:36:23 -0800 (PST)
+Received: from ?IPV6:2401:4900:8f4d:f11c:79e4:e568:8dbe:778e? ([2401:4900:8f4d:f11c:79e4:e568:8dbe:778e])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82739d8bcb2sm5413525b3a.22.2026.02.27.07.36.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Feb 2026 07:36:23 -0800 (PST)
+Message-ID: <f6d4dd37-3817-45b1-a642-8a07405f505d@gmail.com>
+Date: Fri, 27 Feb 2026 21:06:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: se-mail11w.axis.com (10.20.40.11) To se-mail10w.axis.com
- (10.20.40.10)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AMS0EPF000001A9:EE_|DB5PR02MB11961:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e447868-023a-434d-2d6b-08de7615d9ee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	El959GB191LpnukURfxzPYYzzh9jjH3+Gn+4Kk0qUOhXdgRiXUIyvuOLzNgt8It0f1fSzoqTdXTgsDjIYWxGh+5C7k/+FEFQk7CPNzjmmoI53kk526hH5t5BVvSJO0h7xcMPBZKbiEtyG109noQf2OKEorRenG2XOXONllI41VYLaGtXCKb+lsTiZluVOZ9RZhYZjn3gBo2DRaQcXOo8yQmiwu2mQvBLdQn9EiEsqg3RL11SYUylZx6X4oX+7GWvJNRPCEp2PBEAuKfqsvzqd50MMItWShROtP0SvPD8WYgRGk7vcoKUJah0m5Gy8vbVzEjOlHdMAvb6IcIC3P6eAzWhl+GP8qGsX1MTAVJnJ36NbI/jXzcRlgkI+FluytzXfr8AKtwSwSXQ/jBqIA7e4V07UnSj3kOu+xaZ4d/2sC29QvohkCVO43+x017zh6C9LwfxV/CljWxN2QiDcBVtJudte8eAToXw/edTyEwWYpwMRB3YR9E7xsd3qBR4QwxO30Vciktn2hqoaRfcwVxubqGIe3/GcxuePWxCW/aLZKIAYdLaxVUz/krujnaOTBx61+uccowr5MWG2lg0Fr/N/OVD9+XbJlgSDdzKS1OHs3822FFnRGSOCNj83sOTetJvNUe8r5BWNM8q1mCf7etTuOCSCKAkKLanMQ5rhWQUx8OjK4mLsXGyxPbZrJGt26+2hNdDJzFxTCqvgvUkO/6zMOUtyKZ7ClF49UZVyswGU2ofcINbvksjAcxoUTUoNmTCMCMwcUdV7qq24eQ4xkSVlA==
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	mdSXBc4mBtAc0Ukc78CXynQ3RwwYa2k/sQ77Sp2PtoIQDhhvesMCZx0nhuN5WWI/fN9AIZiFpX6V1qIL5WMGa8VKpTaxxSWbodwKW5ZZRW5d6wlQq6zsoKMmM1LWuKklqH5XX/oA9FiJa4mdGCLf9WtTff24RFW6PFys7RLDbdgV+VycNP907llzo6N13um2Jc5245gvXzCGAsm0R66OIz7EfH7Lc8IBljF/izgUgpVn/SqLdeoC8ktm2twSEltX9xB4axBc8KL6bwjx6n48dLaoqMRfB9Rxbx/16AlbqFhz05Qhtpp+ItcB2ImsaYBLVtJLlKASERysrP2dDfgwxU07D2dpWUhrG00KD9/Nmgqwa+6FNgCfe307ZFSdo7uxd825MP+H0PQN2JXiS5MTJyn7JN5h5ASO0LMkDSGq2vhzNDUyIjmQ/DxYiM9sjV53
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 15:35:35.5304
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e447868-023a-434d-2d6b-08de7615d9ee
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AMS0EPF000001A9.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5PR02MB11961
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] dt-bindings: arm: atmel,at91rm9200-sdramc: convert
+ to DT schema
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260226-arm-microchip-v3-0-0bda15abd922@gmail.com>
+ <20260226-arm-microchip-v3-5-0bda15abd922@gmail.com>
+ <20260226-escapade-staff-4f2842222b3e@spud>
+Content-Language: en-US
+From: Akhila YS <akhilayalmati@gmail.com>
+In-Reply-To: <20260226-escapade-staff-4f2842222b3e@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.85 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[axis.com,none];
-	R_DKIM_ALLOW(-0.20)[axis.com:s=selector1];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269333-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,ti.com:url,6b:email];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269335-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[axis.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 043041BA2D6
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tuxon.dev:email]
+X-Rspamd-Queue-Id: 0B18F1BA32E
 X-Rspamd-Action: no action
 
-Add devicetree bindings for the TI BQ25630 battery charger. It's I2C
-controlled and sends interrupts.
 
-Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
----
- .../bindings/power/supply/bq25630.yaml        | 68 +++++++++++++++++++
- 1 file changed, 68 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/bq25630.=
-yaml
+On 26-02-2026 23:42, Conor Dooley wrote:
+> On Thu, Feb 26, 2026 at 04:13:37PM +0000, Akhila YS wrote:
+>> Convert RAMC SDRAM/DDR controller binding to YAML format.
+>>
+>> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+>> ---
+>>  .../bindings/arm/atmel,at91rm9200-sdramc.yaml      | 67 ++++++++++++++++++++++
+>>  .../devicetree/bindings/arm/atmel-sysregs.txt      | 20 -------
+>>  2 files changed, 67 insertions(+), 20 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/atmel,at91rm9200-sdramc.yaml b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-sdramc.yaml
+>> new file mode 100644
+>> index 000000000000..1516fc8e09e1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/atmel,at91rm9200-sdramc.yaml
+>> @@ -0,0 +1,67 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/atmel,at91rm9200-sdramc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Microchip (Atmel) SDRAM / DDR Controller (RAMC / DDRAMC / UDDRC)
+>> +
+>> +maintainers:
+>> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+>> +  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
+>> +
+>> +description:
+>> +  The SDRAM/DDR Controller (often called RAMC or DDRAMC) in various
+>> +  Atmel/Microchip ARM9 and Cortex-A5/A7 SoCs  manages external
+>> +  SDRAM / DDR memory. It is typically exposed as a syscon node for
+>> +  register access from other drivers (e.g. for initialization or mode
+>> +  configuration). No interrupts or clocks are usually required in the
+>> +  binding.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - const: atmel,at91rm9200-sdramc
+>> +          - const: syscon
+>> +      - items:
+>> +          - const: microchip,sama7d65-uddrc
+>> +          - const: microchip,sama7g5-uddrc
+>> +      - items:
+>> +          enum:
+> Whoops, sorry for not noticing this earlier, but an items list with one
+> entry can be reduced to that one entry. For you here that means that
+> "- items enum:" becomes "- enum:".
 
-diff --git a/Documentation/devicetree/bindings/power/supply/bq25630.yaml b/=
-Documentation/devicetree/bindings/power/supply/bq25630.yaml
-new file mode 100644
-index 0000000000000..57e4286dac7e9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/bq25630.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/supply/bq25630.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI BQ25630 battery charger
-+
-+maintainers:
-+  - Waqar Hameed <waqar.hameed@axis.com>
-+
-+description: |
-+  I2C controlled single cell Li-ion and Li-polymer 5A buck charger.
-+  Datasheet: https://www.ti.com/lit/gpn/bq25630
-+
-+allOf:
-+  - $ref: power-supply.yaml#
-+
-+properties:
-+  compatible:
-+    const: ti,bq25630
-+
-+  reg:
-+    const: 0x6b
-+    description:
-+      Device I2C address.
-+
-+  interrupts:
-+    maxItems: 1
-+    description: |
-+      Device sends active low 256 =C2=B5s pulse. Type should therefore be
-+      IRQ_TYPE_EDGE_FALLING.
-+
-+  monitored-battery: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - monitored-battery
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    bat: battery {
-+        compatible =3D "simple-battery";
-+        voltage-min-design-microvolt =3D <1800000>;
-+        constant-charge-current-max-microamp =3D <1344000>;
-+        constant-charge-voltage-max-microvolt =3D <3700000>;
-+        charge-term-current-microamp =3D <128000>;
-+        precharge-current-microamp =3D <1000000>;
-+    };
-+
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        charger@6b {
-+            compatible =3D "ti,bq25630";
-+            reg =3D <0x6b>;
-+            interrupts =3D <13 IRQ_TYPE_EDGE_FALLING>;
-+            monitored-battery =3D <&bat>;
-+        };
-+    };
-+...
---=20
-2.39.5
+
+Hi, i changed patch as per your suggestion, but i found some errors
+with  dtbs_check, anyway i sent  a v4 patch.
+
+let me know if any  changes required.
+
+-- 
+Best Regards,
+Akhila.
 
 
