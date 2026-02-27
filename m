@@ -1,114 +1,186 @@
-Return-Path: <devicetree+bounces-269366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269367-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIW2ItfRoWkfwgQAu9opvQ
-	(envelope-from <devicetree+bounces-269366-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:18:15 +0100
+	id WAGRLtzRoWlLwgQAu9opvQ
+	(envelope-from <devicetree+bounces-269367-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:18:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D769A1BB537
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:18:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C711BB562
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:18:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7D81303A920
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:15:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AB12E302316C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80D8B374174;
-	Fri, 27 Feb 2026 17:15:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46696413253;
+	Fri, 27 Feb 2026 17:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="laxgkdEB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jBdhI7K7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42AC43F0741;
-	Fri, 27 Feb 2026 17:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF8541324D;
+	Fri, 27 Feb 2026 17:18:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772212556; cv=none; b=e+QQyTAQ9y7Ad4AF5oImeCMU5pOttnRHS99+MRYxLbB7geWgsAsvbLV2EQ/a7iWgIvsVZRhTh8XLOUagKG0e5ifFxUJvN+/WsnCI5cT230uzrZ7OeoONAunXiUASP0My5FLvUPmP25LW9O3jKktPNbElVxdWOa4MHus6GxN2TE4=
+	t=1772212697; cv=none; b=jSN+4/J5cjHDI8UaMwMx3HVX024XndZ6AyQVwe7iZtEtTT0Acpkb1bm99DHDT3fvkewcYaKNuDU3fFSWf3YQon939xC6lqPvZtiqOzYwwDvpC3gaVfkLRoVjAQlEtK6bESOxl1os0a0077vHLFUtm2vWn0urfFOEXiwd7FhlFPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772212556; c=relaxed/simple;
-	bh=vY2PEim4h8ry91UAbejDugjqrXW6xhJuFeaKNWdNl4s=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=r7eFM5yWPULkEC/aJQmUEvR6fVuP8JaVG2IsKvVbitVwxCWtLw59mWkbdCKTG4qqkoJFcCPgMcfJ7X2CBmhiFUugxS3/K4ulkCWOsYUQdkElFr5fEkJKMFSc6N2wpC8deo8hjFOg7MYiA0aPdmOUQcAGgFCZsZYyP7hFPq61TPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=laxgkdEB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 526EEC116C6;
-	Fri, 27 Feb 2026 17:15:55 +0000 (UTC)
+	s=arc-20240116; t=1772212697; c=relaxed/simple;
+	bh=3mbceozugLiHmArMcxTVzkMFCimRUS9Tx3RUhhcr7RY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ol3kKWQgYoET0BKBcib4x0KqSJX1qhcgRPGrS2JdTrdaJdudx2+rthRzJKEpnh5sFPcLaGr8o3MUv2coFZLmxqF8AhHSSWajFIjAyDqRHelt9oBZr67iLWeczXHF7G9VMSYolEf0ppOWIJUDO3AUXbWT6ZjZz+l7SYwGYR6aXDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jBdhI7K7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27F53C116C6;
+	Fri, 27 Feb 2026 17:18:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772212555;
-	bh=vY2PEim4h8ry91UAbejDugjqrXW6xhJuFeaKNWdNl4s=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=laxgkdEBO/NEZ7oIKJ1DHXEcv+D/BVuHOyjPm6vn0a7bZxBhxw6mZCFTBa96PAgyU
-	 TpXaM7jazcFHTer7LsgecaBHJWfr60r/jHwN0iCM9UsseGyEQ/6SJg7uxf5YJj4zD/
-	 z+C7dn2mAYWLG/3DeygIS2Dx5ANhAQ0pSIJaEYTUMjElu/wnxVRAaMg7eX0aVa918a
-	 AbjvBAjjEU6J7+EsK5gikPmwXD8JupWTmoUHi5fBA508a4/n23LQvanx/adBVmxbm8
-	 lntvclv59aZ6XVN7jQUO2m3zuLmrOfmVVHK2IlzvYtVMuRFqVeucHQRqKNgNuEMfoM
-	 xWCKZHVw9NXkw==
-Date: Fri, 27 Feb 2026 11:15:54 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: zhangsenchuan@eswincomputing.com
-Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	robh@kernel.org, p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, shradha.t@samsung.com,
-	krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
-	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v11 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <20260227171554.GA3898780@bhelgaas>
+	s=k20201202; t=1772212697;
+	bh=3mbceozugLiHmArMcxTVzkMFCimRUS9Tx3RUhhcr7RY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jBdhI7K7JLku13dodPnOKu6IfC3mAD5SCrenwHX6d4Wh0WD5tViOVjnQNFBB8kdX5
+	 5eSKQNJS0rug5WYOY0XlY2VY5holHW6rCfLhDpEMETbcNV44Mke5rpaqATYd7gFHqW
+	 BNq+Kv/p55WVxoFbjkUonlEaFXzdn/lAQIVT97IJDIzyZLRqUnm0sFyByGF/kDYEyu
+	 d0llaJbk7xrrsJCPQ7bg9xdM6y/WxBWBG3MGCTDFVU7XviGHHyVghRL9myUjkEeY52
+	 TPJ7xGySsRnPgfWLy/3ITaRBFAnOFEM2egTjZ3X/uB3tae1iJsWo7K+A4M9dro1fVV
+	 sk4Jqxw7jzIyQ==
+Date: Fri, 27 Feb 2026 17:18:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	linux-media@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add
+ alternative reg-names order for RK35{76,88}
+Message-ID: <20260227-atonable-glamorous-920cfd832bc1@spud>
+References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
+ <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
+ <20260226-salute-threaten-a3eabb232396@spud>
+ <429f3c7aa22eccffedbf8db6aa91bee3dd13814a.camel@collabora.com>
+ <20260226-snide-foil-a05e1aa156a8@spud>
+ <3d28c699e47f606bad46bb6447785badace37793.camel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vYHIxUdYf3Z5HD0e"
 Content-Disposition: inline
-In-Reply-To: <20260227111808.1996-1-zhangsenchuan@eswincomputing.com>
+In-Reply-To: <3d28c699e47f606bad46bb6447785badace37793.camel@collabora.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269366-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
+	TAGGED_FROM(0.00)[bounces-269367-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D769A1BB537
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 64C711BB562
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 07:18:08PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> 
-> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
-> supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> interrupts.
 
-Does "4 channels" mean "4 lanes", i.e., what we typically call a "x4
-link"?
+--vYHIxUdYf3Z5HD0e
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Feb 26, 2026 at 04:56:30PM -0500, Nicolas Dufresne wrote:
+> Le jeudi 26 f=E9vrier 2026 =E0 20:59 +0000, Conor Dooley a =E9crit=A0:
+> > On Thu, Feb 26, 2026 at 02:45:11PM -0500, Nicolas Dufresne wrote:
+> > > Le jeudi 26 f=E9vrier 2026 =E0 18:43 +0000, Conor Dooley a =E9crit=A0:
+
+> > > > Deprecating the order also makes little sense to me, given that som=
+e of
+> > > > these devices only have one reg entry, which as far as I can tell f=
+rom
+> > > > looking at the driver *is* the "function" region, so it can never be
+> > > > entirely deprecated.
+> > >=20
+> > > What I'd like to see, is a binding expression that behave like a set,=
+ not a
+> > > list, and leave the ordering open. As people keep repeating, there is=
+ nothing in
+> > > a binding that assist to define the right ordering (its not address o=
+r base
+> > > addres aware). That basically means, we can't as reviewer see that or=
+dering is
+> > > going to imposing using a base address in the unit name (which is a c=
+onvenience,
+> > > not a rule I suppose) that differ from the vendor documented base add=
+ress.
+> > >=20
+> > > By explicitly removing the ordering in the binding, we create a stric=
+t rule that
+> > > driver should retrieve this by name, and never assume the ordering, w=
+hich I
+> > > personally like.
+> > >=20
+> > > thoughts ?
+> >=20
+> > Yeah, you can do this, but to avoid potential breaks you have to do it
+> > from the start, not after the fact. Probably there's bindings that get
+> > acked every day that do do this. Even the retcon is okay to do when
+> > reg-names is mandated by the binding and the users use reg-names in my
+> > opinion.
+>=20
+> I think from the above analyses, since the usage only starts in rc1, we h=
+ave
+> room for improving it knowing we aren't creating problem for anyone. Note=
+ that I
+> have no idea what the syntax is to "do this", and I doubt either Detlev or
+> Cristian have a clue.
+
+I think this is the only bit that really still needs a reply, this can
+be solved by adding reg-names as "required" to the existing conditional
+portion of the binding. There's probably hundreds of examples if one
+does a search for "then:\n.*required:" to use a basis for the change
+here. Probably should be an independent change, since it is needed even
+without the re-order given the bug I brought up.
+
+--vYHIxUdYf3Z5HD0e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaHR0wAKCRB4tDGHoIJi
+0r6WAP9VK7+6OaP5sOcidYjpySG5XxQ5RJ952PgFal1Lp3jyHgEAuWV27vyRLAcU
+T2nCuQzy1OAWqV7CIe2IDkNISVDIuAM=
+=MFt2
+-----END PGP SIGNATURE-----
+
+--vYHIxUdYf3Z5HD0e--
 
