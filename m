@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-269226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269228-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KN1oKEmXoWl8ugQAu9opvQ
-	(envelope-from <devicetree+bounces-269226-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:08:25 +0100
+	id EB3QKm2WoWl8ugQAu9opvQ
+	(envelope-from <devicetree+bounces-269228-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:04:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27871B77A1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:08:24 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D80451B7736
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:04:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 81BEC310D755
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:03:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 03250305A0C8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16CA23EFD37;
-	Fri, 27 Feb 2026 13:03:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05C23F0779;
+	Fri, 27 Feb 2026 13:03:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T7AihO16"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WzXrqXv/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6FAE1A3164;
-	Fri, 27 Feb 2026 13:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2163F0765
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 13:03:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772197416; cv=none; b=rYjNl+vRQ+xEuOPIJW64swl1IoFzvCcqO1rAv4vmLJMl/1FOye2ZVYWu1E1P2RrhzuL03rmAjJf7yAOQSJBhvBFZXKn1n61DlTH1NUIlCoguHhkOQd9wYt7278QRO/PZoPBeLxqIpaokYjj8PXB2s7B2NFisdTMMJZsTi/MTKIg=
+	t=1772197430; cv=none; b=GqXMq6uIHqQw9qCgExj1q7FQIIgDNLexmNwbIpsMoUweGl1ZmYoOVCtydMo8kK2mLodvnBDFDmAILVm99jWXnun0BjmNvvndPWBnf2K2WTC0SCTvMnMDnlegS8m7qLmUvOawIewzoTkFSQnc/RIeVuurQVK58kWAZtnBIOCDg9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772197416; c=relaxed/simple;
-	bh=bERn3UGgISbC0PbmUnSEW/5x9liqJFQrKwBEdBhysS8=;
+	s=arc-20240116; t=1772197430; c=relaxed/simple;
+	bh=RvdTySkH8gpjf9hGTptapQlYfsSjjAaR4voJ88Dhjjs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NO2P3Ltav5KH0X0ysefcKtAVR6JUMrhmu1Rs62hk0tuG+6e7tEAXi4Qk/pnoabjydPxke1ihmvHd2bIDR8ox73N89NunyPGPtFswb8Cv5xsrBPRZp+YV9MagtqX2OLJcNz5M9R6fA4/mz5hMxOLtg4zxhF8TKSQNHMRlBaOeCg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T7AihO16; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C71C116C6;
-	Fri, 27 Feb 2026 13:03:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cH8vCW58Q9fp7KVIj1kn7byu6r2y00pomVlc1tqUO5hH4mWtXowqEl3TAxEvZI7CJV5U99ppYp7QL+lhsr/LqXAlh1VCG+KmvEdG35VMIoQ5s+vdfEy8v0HVzUWp1MKJPeSsjZ1DH5ONWoHdXS7Edrcqb4kmTJUlxyEJlM5Ax8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WzXrqXv/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02F61C116C6;
+	Fri, 27 Feb 2026 13:03:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772197415;
-	bh=bERn3UGgISbC0PbmUnSEW/5x9liqJFQrKwBEdBhysS8=;
+	s=k20201202; t=1772197430;
+	bh=RvdTySkH8gpjf9hGTptapQlYfsSjjAaR4voJ88Dhjjs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T7AihO16oQoaRbGruNs+3F1qNdA1xBl134oPZnqO+JybZGbiDiOXqaOrNO6J/nIPs
-	 WwCIiAqY1sOYDs1qeN7jfy82R9I1rU+9V/FmrGDDMVO4HiP2X0M3G5yCP6s/AsHufn
-	 EoYXkND1bCNkl1+wHlvoF0gpMM5BVQIvvc3jB2XrrM7uXH6Ds7Qp5PIJIjnzRF3kZi
-	 qemM2LAB9KVdXMn0AwgyI8gnLbyLB+Fg57oyYs1DBtpF6FRYmOy5c3JYmsCgpUc589
-	 MQVmaaFtT2R25LyecUJ9s0KebZ+ff1WKAJ2vvgWkpcsloBBFtGMeqKloHcmHZnxwd9
-	 uYeI+Enc6HPBQ==
-Message-ID: <dc2e9e13-165f-4ca1-be29-aabdbf133856@kernel.org>
-Date: Fri, 27 Feb 2026 14:03:30 +0100
+	b=WzXrqXv/LOBwDJcHss9Jff6v7fbE9V/+Dm9N1D3c1MrRyuKcUkmbR3lWvM3Qohpej
+	 gA2xE1BC6Blv0dHnyQXc+wpOzSW3OvAYPSramxCWkUyjmOiS/NJStEhz5ss6RN0yRT
+	 PxNCcIciXP3HdVUp+sMdn9ptSiuln4pamm/ky+HWeMswLwJoylAEv5bZmaqtmScRtN
+	 WmXmNbUAiZCeAKD0As1D+LTS2h+5cNitZ1u9xGG9ea5k04No/T+Zkqf5yauGJKUeKn
+	 8qhujC25zsQRR3OKlDOIF92ku4Kwe/z5nGGcgPVhdkDkYsSRgPv916TcqnjaBWAN1G
+	 GL5adp8vXcvPw==
+Message-ID: <33db9f72-b803-45af-af2a-04ebbbf3ce46@kernel.org>
+Date: Fri, 27 Feb 2026 14:03:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,23 +53,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add alternative
- reg-names order for RK35{76,88}
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
-References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
- <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
- <20260227-observant-roaring-ara-ef7eb0@quoll>
- <adbbdbb1-b126-4807-821c-c9850befd695@collabora.com>
+Subject: Re: [PATCH] dt-bindings: intel: Add Agilex5 SoCFPGA modular board
+To: Dinh Nguyen <dinguyen@kernel.org>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+ Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
+References: <20260226052145.75639-1-dinguyen@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,7 +104,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <adbbdbb1-b126-4807-821c-c9850befd695@collabora.com>
+In-Reply-To: <20260226052145.75639-1-dinguyen@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -124,97 +113,43 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269226-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269228-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TO_DN_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D27871B77A1
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: D80451B7736
 X-Rspamd-Action: no action
 
-On 27/02/2026 12:37, Cristian Ciocaltea wrote:
-> Hi Krzysztof, Conor,
+On 26/02/2026 06:21, Dinh Nguyen wrote:
+> Add compatible for Agilex5 SoCFPGA modular board.
 > 
-> On 2/27/26 9:46 AM, Krzysztof Kozlowski wrote:
->> On Thu, Feb 26, 2026 at 12:46:53PM +0200, Cristian Ciocaltea wrote:
->>> With the introduction of the RK3588 SoC, and RK3576 afterwards, two more
->>> register blocks have been provided for the video decoder unit.
->>>
->>> However, the binding does not properly describe the new hardware layout,
->>
->> As you shown me last time with excerpt of address spaces from
->> datasheet/manual, the binding correctly describes the hardware and above
->> sentence is not true.
->>
->>> as it breaks the convention expecting the unit address to indicate the
->>> start of the first register range, i.e. 'function' block is listed
->>
->> Imprecise wording. "start of the main or primary register range"
->>
->> (if you have 0x1000 with one reg and 0x20000000 with everything, the
->> unit address will be 0x20000000).
->>
->>> before 'link' instead of the opposite.
->>>
->>> Since the binding changes have been already released and a fix would
->>> bring up an ABI break, mark the current 'reg-names' ordering as
->>> deprecated and introduce an alternative 'link,function,cache' listing
->>> which follows the address-based ordering according to the TRM.
->>>
->>> Additionally, drop the 'reg' description items as the order is not fixed
->>> anymore, while the information they offer is not very relevant anyway.
->>
->> This is fine for me.
+> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/arm/altera.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Thanks for the additional feedback!
-> 
-> If I'm not mistaken (please correct me), the only remaining (hard)
-> blocker for the series would be to improve this commit message.
-> 
-> How about the following:
-> 
->     With the introduction of the RK3588 SoC, and RK3576 afterwards, three
->     register blocks have been provided for the video decoder unit instead of
->     just one, which are further referenced in the datasheet by 'link table',
->     'function' and 'cache'.  The former is present at the top of the
->     listing, starting at video decoder unit base address.
-> 
->     However, while documenting RK3588, the binding broke the convention
->     expecting the unit address to indicate the start of the primary register
->     range, i.e. the 'function' block got listed before the 'link' one.
-> 
->     Since the binding changes have been already released and a fix would
->     bring up an ABI break, mark the current 'reg-names' ordering as
->     deprecated and introduce an alternative 'link,function,cache' listing
->     which follows the address-based ordering according to the TRM.
-> 
->     Additionally, drop the 'reg' description items as the order is not fixed
->     anymore, while the information they offer is not very relevant anyway.
 
-Yes, it's fine. My comments were actually not blocking, I just wanted to
-wait if discussion with Conor resolves somehow.
 
-But for me anyway:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
