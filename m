@@ -1,211 +1,353 @@
-Return-Path: <devicetree+bounces-269435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269434-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCnNEDUWomnFzAQAu9opvQ
-	(envelope-from <devicetree+bounces-269435-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:09:57 +0100
+	id /ui+LB0WomnFzAQAu9opvQ
+	(envelope-from <devicetree+bounces-269434-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:09:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB8D1BE889
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:09:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E5B1BE85B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:09:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9B89231A3EAE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 22:05:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4BB1319E6D3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 22:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD33C35A3A0;
-	Fri, 27 Feb 2026 22:05:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6D347AF6E;
+	Fri, 27 Feb 2026 22:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="wEPd05/i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g+hs2y0U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8163647A0D7
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 22:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD0447A0A6
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 22:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772229932; cv=none; b=QDoxhMeqXqZwklBqJx5FLrMbengauqnA0xTjK8dW8Z0Nv7Tmb81DNvsyxtYh+v2SPAiGbUmE/NDk/P7dK3303QA7PJ2Co6kTsDFGzX+BVws/Of/a68SaWFXFAO2pCsHCY/J3PT8J9kDKmbBqmCvE4+MN8yfEBHUUb6ESkcFxO8E=
+	t=1772229926; cv=none; b=S/rs705vrK+sqKhMZW1GkDy7yG8RTQnGZy8NjJyIrDgXeGw2IdM+Rpehp3RoHFyiQIORTCnJcpA4OpTDf8u1PlOZIiynJ1B9/MnOt/lCcZYs8EUpoVxJ5ZHx1AngPIJgnf9gPj2MKCxaM4U32vi3IcDI6Srlt7a0xyx4QRDeyeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772229932; c=relaxed/simple;
-	bh=I2+/CauqTdPKwPQVJ0n1qP6TsrR2qijPOlq2MinwQ3g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DSW3eurm+3zOz1AxLoMRa31NV/9fhqQLsTmeL5OjUKxXI1mfi+B3gkDjx+JAoAVHP9CfwlR4Ce+cx2sSjIoG+h59/59aRpcMVfOZ9XsqnMEPBEia1pZ65Zq8/rXQxFOfRC5m8uDGahS9ByLEvmICmvf7qGTqCfPvtCNq3KDNjQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=wEPd05/i; arc=none smtp.client-ip=95.215.58.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Fri, 27 Feb 2026 15:05:03 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1772229916;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pnFl0/AYbq6JvLPKWpr7Jr/uWHcZ5P72Xj8c/j2ZcHQ=;
-	b=wEPd05/i1jVU9Tot4uyyDaeJFQib1QkA9YFMYNZ+1Qg7UrJea1gEORnGQBe4wP2MQHePng
-	ZhwLHqzfaHSxhGnIMCTF4lhsVoVGCkRkOC/ssHrik3sIZqS+hbmdnUO5zyGbIS5Csz9K4h
-	wphMaNLiKVPFOpGIgGt/tBA/1XAN7eI=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Russ Weight <russ.weight@linux.dev>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kamel Bouhara <kamel.bouhara@bootlin.com>, 
-	Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
-	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] firmware_loader: expand firmware error codes with
- up-to-date error
-Message-ID: <do22h6yblkb4ni25epccmuaw74aefh4f252ffgleoat7hxgkur@lmrnsjikbg6w>
-References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
- <20260111-v6-10-topic-touchscreen-axiom-v5-1-f94e0ae266cb@pengutronix.de>
- <s24u6ojnflb4nvpssgshjmgir77wpoos6qinypqac564fzcjyy@yilnrsy266er>
- <3ohould4vufzfqau4e7vg2ztks3gflmfosyaizggwzufbwvx2f@yqsgim7ash3x>
+	s=arc-20240116; t=1772229926; c=relaxed/simple;
+	bh=IDj5Rn0oQ9xMORXPoJgzk06haI8L0G7nxe79nTKJ9Vc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=FsHcwFKUxJDnNeHK6KDiW8/xvV/jMAqXWERwCX4LoYVHJ2zx81cdhorrneY3M5am5lv6wNQDYffj29c2DknKspd57GQYc77P7mFeZ3kutVVfSE5vk4fQL9ewG5VJ0QfqTDBp1cvOmYiRlnjCZiGkledH6gT+E6DD8WxUku2eAAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g+hs2y0U; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-4377174e1ebso1802383f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:05:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772229921; x=1772834721; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rBgTyc0JwXy7Q9otY3P3GvJm6ra8p82NpxJLudZ+C20=;
+        b=g+hs2y0UnHQbARsipKAazQO5Pka6hyiiKq2rNIeG0VyAyiSYHFLeFYAbg8znWd0E6l
+         NmXyrB4t4aBAzoGOMHlQgqRIoDwn0zeAzKf+yslECisJGDXxC5Rjp5UVDd74A+vqPUPU
+         GYz6VxOYPnCVeXjbV0iLOGsy3JueRzhN9ewDq2OWx7n1Zg8dcTsvZRoDyVJ2eXKVfh1E
+         fx5Z1l0+2jNMeZsLEDHw160KyQ4yjh1b0jcR3IJ+1DlTxFhnLwfopQKPPQO127TanibL
+         RteZ/jw0LSBpjB585yQY6eZCYVPNTJufJvpEr4BoFoOKyBfvSMLV+RVpmtGdqxFT7y60
+         wRrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772229921; x=1772834721;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rBgTyc0JwXy7Q9otY3P3GvJm6ra8p82NpxJLudZ+C20=;
+        b=icnQWhZKbrJLXHyjcnsDzZC9mDgrDdMTJSTcqu+ssb201qwUt6FG9mo6cQR+UDukQ/
+         yUEqRYdll7WKEokAYPFsbigE4b6ih5YBx58ssl93tzSUAw0vFN1kBb0xzb+XH34/9oiW
+         ziKFbpLWBzrAHvkIDQOwHmL5hjVnMpC0w+GN/IwHIh6oTmnjCFVu/vJb7zxm2ZmVcGnr
+         73lXQR8hnDp6sCEVon06LcTrI2lWjMkEQTJA2nmbaz37sJ7EwiQ1ejKJFgA2iE9vlwU+
+         mZucH4MK3ny37S/cRhKVopQomV5Kys1/YETaLI7iJkTHmNKtIUzh0/8anMVHA87Ur3Dl
+         y/Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCUxLSPAJlGrC3eL+zb0eiYTLSxuAyF2GbA3vUkQ+PKZ1fhKTXyrvg2OVfGQAZOH/YK366c1qcqeHCFJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCGdJ8KLEHl1ni283hP5wktYJggCUa+OSHdtG1I+oC8H1bokK9
+	01cOmZDaH/M24n4HeJvtPP3fbKDish7yYwzJfpUuTSuml4gpnAxq4Rv1hRwoNSYCAkY=
+X-Gm-Gg: ATEYQzym/Ryjg2XXwQn3m6v11Cw1FNnqhqWUalvv0FvWdvM5TfsFhayL34Oo27ts8/H
+	LsNdWD/u4P+8dQBH090rDxQ8y6I9oooGHGh8gLOmU2/FpgXWjJmQLIAEV17hO3lk8VgTK2D98KH
+	9ZkQO9TAw/n0G1KIyTixnyg5Xe+zdLD6BYfjmH82jxMBNEG1XwRyPLDzdE077GdVm6T1Zz0LwT6
+	/ZuENuz/SxbDb/lb5U0XJ8Paf6/IMZUIBl06ZXb3pFqmXgFyA8Sa+E+1BW1oXbHJ4eJKvw0lkJe
+	UI80emnVlRbNJE8DfQjmvFT7bTCGThnD67aUY38Gpj8PEhIQPMAN1tM4ZvBWeRcRpNiR+8xxk39
+	dVgp+ikTXzEVeL1boaNmYHNfi9U0M3gknpyRGnBEkiYRiiVs6Ulpk39AvNw8Arl1kbOeHzzClom
+	zLTEpzwJOJPOCrOcD9pm26mMsY5rVsfD9k0oKW4NMuWz2QFIuZV+pSL/tTm9x9UA1WFfwvhmPuW
+	T75OJHbdDu1kFl2+qWf79Te
+X-Received: by 2002:a5d:5d0b:0:b0:439:94a7:5164 with SMTP id ffacd0b85a97d-4399de36b02mr7099438f8f.48.1772229921417;
+        Fri, 27 Feb 2026 14:05:21 -0800 (PST)
+Received: from [192.168.16.154] (host86-188-11-239.range86-188.btcentralplus.com. [86.188.11.239])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4399c71ad07sm9794155f8f.16.2026.02.27.14.05.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Feb 2026 14:05:21 -0800 (PST)
+Message-ID: <051f77c615de15302ff7835757c130197df954a9.camel@linaro.org>
+Subject: Re: [PATCH v8 11/18] arm64: dts: qcom: x1e80100: Add CAMSS block
+ definition
+From: Christopher Obbard <christopher.obbard@linaro.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Bjorn Andersson	
+ <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Robert
+ Foss	 <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, Mauro Carvalho
+ Chehab	 <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Bryan O'Donoghue
+ <bod@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Date: Fri, 27 Feb 2026 22:05:20 +0000
+In-Reply-To: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-11-95517393bcb2@linaro.org>
+References: 
+	<20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-0-95517393bcb2@linaro.org>
+	 <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-11-95517393bcb2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-8 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3ohould4vufzfqau4e7vg2ztks3gflmfosyaizggwzufbwvx2f@yqsgim7ash3x>
-X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-269434-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269435-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[russ.weight@linux.dev,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,linux.dev:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:url,pengutronix.de:email]
-X-Rspamd-Queue-Id: 9BB8D1BE889
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christopher.obbard@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:mid,linaro.org:dkim,linaro.org:email,0.0.0.0:email,0.0.0.3:email,0.0.0.1:email,ace4000:email,acb6000:email,0.0.0.2:email]
+X-Rspamd-Queue-Id: 13E5B1BE85B
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 11:39:02AM +0100, Marco Felsch wrote:
-> Hi Russ,
-> 
-> On 26-02-19, Russ Weight wrote:
-> > On Sun, Jan 11, 2026 at 04:05:44PM +0100, Marco Felsch wrote:
-> > > Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
-> > > framework that the update is not required. This can be the case if the
-> > > user provided firmware matches the current running firmware.
-> > > 
-> > > Sync lib/test_firmware.c accordingly.
-> > > 
-> > > Reviewed-by: Russ Weight <russ.weight@linux.dev>
-> > > Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > ---
-> > >  drivers/base/firmware_loader/sysfs_upload.c | 1 +
-> > >  include/linux/firmware.h                    | 2 ++
-> > >  lib/test_firmware.c                         | 1 +
-> > >  3 files changed, 4 insertions(+)
-> > > 
-> > > diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
-> > > index c3797b93c5f5a2ecf2ae34707893c89eb7773154..9e93070b2c24179986b868a24b09cf051776c644 100644
-> > > --- a/drivers/base/firmware_loader/sysfs_upload.c
-> > > +++ b/drivers/base/firmware_loader/sysfs_upload.c
-> > > @@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
-> > >  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
-> > >  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
-> > >  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-> > > +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
-> > >  };
-> > 
-> > Hi Marco,
-> > 
-> > There is a corresponding change that should be made to
-> > lib/test_firmware.c. You can look at the recent change for
-> > FW_UPLOAD_ERR_FW_INVALID as an example.
-> 
-> Can you elaborate a bit more please? I've added the
-> FW_UPLOAD_ERR_DUPLICATE to lib/test_firmware.c with this patchset and I
-> don't know what you want me todo.
+Hi Bryan,
 
-Hi Marco,
+On Wed, 2026-02-25 at 15:11 +0000, Bryan O'Donoghue wrote:
+> Add dtsi to describe the xe180100 CAMSS block
+>=20
+> 4 x CSIPHY
+> 3 x TPG
+> 2 x CSID
+> 2 x CSID Lite
+> 2 x IFE
+> 2 x IFE Lite
+>=20
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
 
-Please disregard. I didn't remember that test_firmware.c was updated
-in the same patch as sysfs_upload.c. It looks good as is.
+Reviewed-by: Christopher Obbard <christopher.obbard@linaro.org>
+Tested-by: Christopher Obbard <christopher.obbard@linaro.org>
 
-- Russ
-
-> 
-> Regards,
->   Marco
-> 
-> 
-> > 
-> > - Russ
-> > 
-> > >  
-> > >  static const char *fw_upload_progress(struct device *dev,
-> > > diff --git a/include/linux/firmware.h b/include/linux/firmware.h
-> > > index aae1b85ffc10e20e9c3c9b6009d26b83efd8cb24..fe7797be4c08cd62cdad9617b8f70095d5e0af2f 100644
-> > > --- a/include/linux/firmware.h
-> > > +++ b/include/linux/firmware.h
-> > > @@ -29,6 +29,7 @@ struct firmware {
-> > >   * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
-> > >   * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
-> > >   * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
-> > > + * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
-> > >   * @FW_UPLOAD_ERR_MAX: Maximum error code marker
-> > >   */
-> > >  enum fw_upload_err {
-> > > @@ -41,6 +42,7 @@ enum fw_upload_err {
-> > >  	FW_UPLOAD_ERR_RW_ERROR,
-> > >  	FW_UPLOAD_ERR_WEAROUT,
-> > >  	FW_UPLOAD_ERR_FW_INVALID,
-> > > +	FW_UPLOAD_ERR_DUPLICATE,
-> > >  	FW_UPLOAD_ERR_MAX
-> > >  };
-> > >  
-> > > diff --git a/lib/test_firmware.c b/lib/test_firmware.c
-> > > index be4f93124901e5faac41f48a66dabe6da56be0ca..952ec1cb03102911dbea9abd648ab9d9e0112a46 100644
-> > > --- a/lib/test_firmware.c
-> > > +++ b/lib/test_firmware.c
-> > > @@ -1134,6 +1134,7 @@ static const char * const fw_upload_err_str[] = {
-> > >  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
-> > >  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
-> > >  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
-> > > +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
-> > >  };
-> > >  
-> > >  static void upload_err_inject_error(struct test_firmware_upload *tst,
-> > > 
-> > > -- 
-> > > 2.47.3
-> > > 
-> > 
-> 
-> -- 
-> #gernperDu 
-> #CallMeByMyFirstName
-> 
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+>  arch/arm64/boot/dts/qcom/hamoa.dtsi | 171 ++++++++++++++++++++++++++++++=
+++++++
+>  1 file changed, 171 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qc=
+om/hamoa.dtsi
+> index 9c5ebe1b48ecd..5fac814ce0f6b 100644
+> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+> @@ -16,6 +16,7 @@
+>  #include <dt-bindings/interconnect/qcom,x1e80100-rpmh.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+> +#include <dt-bindings/phy/phy.h>
+>  #include <dt-bindings/phy/phy-qcom-qmp.h>
+>  #include <dt-bindings/power/qcom,rpmhpd.h>
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+> @@ -5562,6 +5563,176 @@ cci1_i2c1: i2c-bus@1 {
+>  			};
+>  		};
+> =20
+> +		camss: isp@acb6000 {
+> +			compatible =3D "qcom,x1e80100-camss";
+> +
+> +			reg =3D <0 0x0acb6000 0 0x1000>,
+> +			      <0 0x0acb7000 0 0x2000>,
+> +			      <0 0x0acb9000 0 0x2000>,
+> +			      <0 0x0acbb000 0 0x2000>,
+> +			      <0 0x0acc6000 0 0x1000>,
+> +			      <0 0x0acca000 0 0x1000>,
+> +			      <0 0x0acf6000 0 0x1000>,
+> +			      <0 0x0acf7000 0 0x1000>,
+> +			      <0 0x0acf8000 0 0x1000>,
+> +			      <0 0x0ac62000 0 0x4000>,
+> +			      <0 0x0ac71000 0 0x4000>,
+> +			      <0 0x0acc7000 0 0x2000>,
+> +			      <0 0x0accb000 0 0x2000>;
+> +
+> +			reg-names =3D "csid_wrapper",
+> +				    "csid0",
+> +				    "csid1",
+> +				    "csid2",
+> +				    "csid_lite0",
+> +				    "csid_lite1",
+> +				    "csitpg0",
+> +				    "csitpg1",
+> +				    "csitpg2",
+> +				    "vfe0",
+> +				    "vfe1",
+> +				    "vfe_lite0",
+> +				    "vfe_lite1";
+> +
+> +			clocks =3D <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
+> +				 <&camcc CAM_CC_CAMNOC_AXI_RT_CLK>,
+> +				 <&camcc CAM_CC_CORE_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_CPHY_RX_CLK_SRC>,
+> +				 <&camcc CAM_CC_CSID_CLK>,
+> +				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
+> +				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
+> +				 <&gcc GCC_CAMERA_SF_AXI_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
+> +
+> +			clock-names =3D "camnoc_nrt_axi",
+> +				      "camnoc_rt_axi",
+> +				      "core_ahb",
+> +				      "cpas_ahb",
+> +				      "cpas_fast_ahb",
+> +				      "cpas_vfe0",
+> +				      "cpas_vfe1",
+> +				      "cpas_vfe_lite",
+> +				      "cphy_rx_clk_src",
+> +				      "csid",
+> +				      "csid_csiphy_rx",
+> +				      "gcc_axi_hf",
+> +				      "gcc_axi_sf",
+> +				      "vfe0",
+> +				      "vfe0_fast_ahb",
+> +				      "vfe1",
+> +				      "vfe1_fast_ahb",
+> +				      "vfe_lite",
+> +				      "vfe_lite_ahb",
+> +				      "vfe_lite_cphy_rx",
+> +				      "vfe_lite_csid";
+> +
+> +			interrupts =3D <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 431 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 359 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 360 IRQ_TYPE_EDGE_RISING>;
+> +
+> +			interrupt-names =3D "csid0",
+> +					  "csid1",
+> +					  "csid2",
+> +					  "csid_lite0",
+> +					  "csid_lite1",
+> +					  "vfe0",
+> +					  "vfe1",
+> +					  "vfe_lite0",
+> +					  "vfe_lite1";
+> +
+> +			interconnects =3D <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONL=
+Y
+> +					 &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+> +					<&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&mmss_noc MASTER_CAMNOC_ICP QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names =3D "ahb",
+> +					     "hf_mnoc",
+> +					     "sf_mnoc",
+> +					     "sf_icp_mnoc";
+> +
+> +			iommus =3D <&apps_smmu 0x800 0x60>,
+> +				 <&apps_smmu 0x860 0x60>,
+> +				 <&apps_smmu 0x1860 0x60>,
+> +				 <&apps_smmu 0x18e0 0x00>,
+> +				 <&apps_smmu 0x19a0 0x20>;
+> +
+> +			phys =3D <&csiphy0 PHY_TYPE_DPHY>, <&csiphy1 PHY_TYPE_DPHY>,
+> +			       <&csiphy2 PHY_TYPE_DPHY>, <&csiphy4 PHY_TYPE_DPHY>;
+> +			phy-names =3D "csiphy0", "csiphy1",
+> +				    "csiphy2", "csiphy4";
+> +
+> +			power-domains =3D <&camcc CAM_CC_IFE_0_GDSC>,
+> +					<&camcc CAM_CC_IFE_1_GDSC>,
+> +					<&camcc CAM_CC_TITAN_TOP_GDSC>;
+> +			power-domain-names =3D "ife0",
+> +					     "ife1",
+> +					     "top";
+> +
+> +			status =3D "disabled";
+> +
+> +			ports {
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <0>;
+> +
+> +				port@0 {
+> +					reg =3D <0>;
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +					camss_csiphy0_inep0: endpoint@0 {
+> +						reg =3D <0>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg =3D <1>;
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +					camss_csiphy1_inep0: endpoint@0 {
+> +						reg =3D <0>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg =3D <2>;
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +					camss_csiphy2_inep0: endpoint@0 {
+> +						reg =3D <0>;
+> +					};
+> +				};
+> +
+> +				port@3 {
+> +					reg =3D <3>;
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +					camss_csiphy4_inep0: endpoint@0 {
+> +						reg =3D <0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+>  		csiphy0: csiphy@ace4000 {
+>  			compatible =3D "qcom,x1e80100-csi2-phy";
+>  			reg =3D <0 0x0ace4000 0 0x2000>;
 
