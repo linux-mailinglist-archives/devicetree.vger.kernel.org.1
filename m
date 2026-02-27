@@ -1,185 +1,138 @@
-Return-Path: <devicetree+bounces-269299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269306-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOG/BAK2oWm+vwQAu9opvQ
-	(envelope-from <devicetree+bounces-269299-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:19:30 +0100
+	id oLvWHeu2oWm+vwQAu9opvQ
+	(envelope-from <devicetree+bounces-269306-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:23:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7C451B99C3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:19:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C74081B9B0F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:23:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 17DC33077F27
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:12:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 803EE302B205
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7193D3006;
-	Fri, 27 Feb 2026 15:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698F5436353;
+	Fri, 27 Feb 2026 15:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="hJCuxZJy"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ovejl7fM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B65E2472A6;
-	Fri, 27 Feb 2026 15:11:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36C9342B75D;
+	Fri, 27 Feb 2026 15:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772205121; cv=none; b=Fv7wiYEbyz6/4eGg6Gpl3kP52RYMRGwmYYg0wG0WIgJwHUMwwe9ybNdq8A3UuIIKIgf2b5XfPbwknDYyqyEsxKEHR7LvH8IKJnevcgVAR9rlbzV8icq31Rj6aL06ZO8NIlbhqnsK+RPE5Wvii6TGFMqh761rLxVpXaL4Jb6piQA=
+	t=1772205417; cv=none; b=E+Yd5z5dxrpBzEVsPsDoa2fJHl40y8HfnCienK9Vc2EvtyOYiPr5n+ppyBqSm5uM5BvtApG36Du0Lb1XV6o3YiO3KSI3wGkNzz2wK9S15GP8BjLmLi/4hYQh/Ee0mC34vFR6wKM1b5jp8cvq4BKZ2loQAwBBVqrp6P804EQVq/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772205121; c=relaxed/simple;
-	bh=irR3JYp0TTVgm0qtqdE0bAHioGjEPqy0Cdw4ZxZ7UnM=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=FtGSH1TVYface7A/yCF9clfqoaolje0qfFQXPLvA2i7egYrsCFJY6hNqgcOaxIgrcy7UtXcsWM+XH9MgIKkoiODAoMlkcwVSAspzqznGWhxuHZOJmRuYmz40yBy6vqbRQ+0qTDNFGJsFArb5Ztjewrqb3QDeAQ0ElHFBYRe3F48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=hJCuxZJy; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 529272602D;
-	Fri, 27 Feb 2026 16:11:57 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id XAbdgqFAuMAv; Fri, 27 Feb 2026 16:11:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1772205116; bh=irR3JYp0TTVgm0qtqdE0bAHioGjEPqy0Cdw4ZxZ7UnM=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To;
-	b=hJCuxZJy3yGznOny6+ryfErku1V5Gb/V0QeuXGfywmX/YoPpk5knFFIT8TZB9J0+T
-	 1lpQ8pwsj+oDBTs57WoVXZubcl5g7Ssj6nOeqynazyRPA/5Ewan7VJWgpOzjmW3TXs
-	 gB+OhlSsOf7UsxO9JrjfH1bTXpCTkE3x+DRowE7qXe1+13bAgK9+t+DcTx4fSIBCbK
-	 9g4K9looklH1bJdN/fHMTp9OlrtMqJYrC+Oh12eS43O/2gt1y7JcsNU6LeQOpWG8Np
-	 Vuv6yxDDZ9TD9FSaAcGlY3l2l10Sqm395aAVxnpuThBaIJW9bUe/hOsIPnwBPzU3OY
-	 OH7lhkLshI/hQ==
+	s=arc-20240116; t=1772205417; c=relaxed/simple;
+	bh=X7wBPTeN5Jcarc1LFGnTR9WMnaXfAgR8dPgPJW7oSIg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e66/go7G1CvIyuZUfXtR2O/uDvVwVLor1gNAGoToHaI5FzM/4TO6+WsCPQmEnG+qCaPzafzGIIizv79Oin1Ue94GEU1IpIxbWrn+7Suqt4KegQtQh+zRHQTIB3KXZLkaspw6wc6W6HpGLEbzjkn5F8MExKawWevRadW3swRQ29Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ovejl7fM; arc=none smtp.client-ip=220.197.31.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=hV
+	f/sLLyMfBbOFMouNBS3a/wY4p35CZfpPTEALfC59E=; b=ovejl7fMMWqfiqOUD9
+	2OlhRjKmEAnmTTxFaebBWmIEvb+XCUQdhCeS7UeUrSTdFkxcO9wkpETIZFhmLcPA
+	7GFLaEiep5dkYMwScwkzYXKL2MGGAQwAIkAsnUTivpbugnKWRDz3QyJ+bBxllM22
+	F/P4FXo5s6mtFQPbWNmWFlccw=
+Received: from haiyue-pc.localdomain (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id PCgvCgD39_A2taFpCwnpPg--.7205S2;
+	Fri, 27 Feb 2026 23:16:09 +0800 (CST)
+From: Haiyue Wang <haiyuewa@163.com>
+To: linux-aspeed@lists.ozlabs.org
+Cc: Haiyue Wang <haiyuewa@163.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil+cisco@kernel.org>,
+	Jammy Huang <jammy_huang@aspeedtech.com>,
+	linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2 1/2] dt-bindings: clock: ast2600: Add reset definition for video
+Date: Fri, 27 Feb 2026 23:13:14 +0800
+Message-ID: <20260227151602.829-1-haiyuewa@163.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 27 Feb 2026 20:41:46 +0530
-Message-Id: <DGPUA2NC5ZJI.O10VWM5D15B3@disroot.org>
-Cc: <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <linux-samsung-soc@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
- <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v3 03/13] dt-bindings: extcon: document Samsung S2M
- series PMIC extcon device
-From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-To: "Kaustabh Chakraborty" <kauschluss@disroot.org>, "Lee Jones"
- <lee@kernel.org>, "Pavel Machek" <pavel@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "MyungJoo Ham" <myungjoo.ham@samsung.com>,
- "Chanwoo Choi" <cw00.choi@samsung.com>, "Sebastian Reichel"
- <sre@kernel.org>, "Krzysztof Kozlowski" <krzk@kernel.org>,
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, "Alexandre
- Belloni" <alexandre.belloni@bootlin.com>, "Jonathan Corbet"
- <corbet@lwn.net>, "Shuah Khan" <skhan@linuxfoundation.org>, "Nam Tran"
- <trannamatk@gmail.com>
-References: <20260225-s2mu005-pmic-v3-0-b4afee947603@disroot.org>
- <20260225-s2mu005-pmic-v3-3-b4afee947603@disroot.org>
-In-Reply-To: <20260225-s2mu005-pmic-v3-3-b4afee947603@disroot.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:PCgvCgD39_A2taFpCwnpPg--.7205S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWrKr4rWr1kur17try3uFykKrg_yoWkGwc_C3
+	srZw4DJr1fZrZ5KFs0yF4DJw4rt34UAF9aqr90vrnIkrWYyrn0gFs5XrZIy3W8Gan3AF97
+	AasYgw1fZFs7GjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRpyIUUUUUUU==
+X-CM-SenderInfo: 5kdl53xhzdqiywtou0bp/xtbCzRo+qWmhtTo0-QAA3O
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-269306-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[163.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269299-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[disroot.org,kernel.org,samsung.com,linaro.org,bootlin.com,lwn.net,linuxfoundation.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[163.com:+];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:mid,disroot.org:dkim,disroot.org:email,devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C7C451B99C3
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[haiyuewa@163.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[163.com,baylibre.com,kernel.org,aspeedtech.com,vger.kernel.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: C74081B9B0F
 X-Rspamd-Action: no action
 
-On 2026-02-25 00:45 +05:30, Kaustabh Chakraborty wrote:
-> Certain Samsung S2M series PMICs have a MUIC device which reports
-> various cable states by measuring the ID-GND resistance with an internal
-> ADC. Document the devicetree schema for this device.
->
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  .../bindings/extcon/samsung,s2mu005-muic.yaml      | 39 ++++++++++++++++=
-++++++
->  1 file changed, 39 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/extcon/samsung,s2mu005-mui=
-c.yaml b/Documentation/devicetree/bindings/extcon/samsung,s2mu005-muic.yaml
-> new file mode 100644
-> index 0000000000000..e047e8cbc264e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/extcon/samsung,s2mu005-muic.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/extcon/samsung,s2mu005-muic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MUIC Device for Samsung S2M series PMICs
-> +
-> +maintainers:
-> +  - Kaustabh Chakraborty <kauschluss@disroot.org>
-> +
-> +description: |
-> +  The Samsung S2M series PMIC MUIC device is a USB port accessory
-> +  detector. It reports multiple states depending on the ID-GND
-> +  resistance measured by an internal ADC.
-> +
-> +  This is a part of device tree bindings for S2M and S5M family of Power
-> +  Management IC (PMIC).
-> +
-> +  See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml fo=
-r
-> +  additional information and example.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,s2mu005-muic
-> +
-> +  connector:
-> +    $ref: /schemas/connector/usb-connector.yaml#
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
+Add ASPEED_RESET_VIDEO reset definition to the ast2600-clock binding
+header. It is required for proper reset control of the video on the
+AST2600 SoC for aspeed-video driver.
 
-A v1 review from Conor says:
+Fixes: e83f8dd668ea ("media: aspeed: Fix dram hang at res-change")
+Signed-off-by: Haiyue Wang <haiyuewa@163.com>
+---
+v2:
+  - Fix checkpatch.pl warning, and send dt-bindings as single patch as
+    the submitting-patches guide.
+v1: https://lore.kernel.org/all/20260227123837.70079-1-haiyuewa@163.com/
+---
+ include/dt-bindings/clock/ast2600-clock.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-  Why does this need a dedicated child node for just a port property?
-
-In v3, connector is added. This now has the same properties as
-maxim,max14526. If this still applies, it would be nice to have more
-insight...
-
-> +
-> +required:
-> +  - compatible
-> +  - connector
-> +  - port
-> +
-> +additionalProperties: false
+diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
+index f60fff261130..7b9b80c38a8b 100644
+--- a/include/dt-bindings/clock/ast2600-clock.h
++++ b/include/dt-bindings/clock/ast2600-clock.h
+@@ -124,6 +124,7 @@
+ #define ASPEED_RESET_PCIE_RC_OEN	18
+ #define ASPEED_RESET_MAC2		12
+ #define ASPEED_RESET_MAC1		11
++#define ASPEED_RESET_VIDEO		6
+ #define ASPEED_RESET_PCI_DP		5
+ #define ASPEED_RESET_HACE		4
+ #define ASPEED_RESET_AHB		1
+-- 
+2.53.0
 
 
