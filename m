@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-269127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269128-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UErDEIROoWkfsAQAu9opvQ
-	(envelope-from <devicetree+bounces-269127-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:57:56 +0100
+	id CGkVKbFOoWkfsAQAu9opvQ
+	(envelope-from <devicetree+bounces-269128-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:58:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91EA51B42A9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF211B42E1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 08:58:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 761263034295
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:57:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 77EC1307E25A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 07:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9919636495C;
-	Fri, 27 Feb 2026 07:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C6936C5BD;
+	Fri, 27 Feb 2026 07:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D+Oww696"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fTm+0k5n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665FD361DD1
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:57:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C59C36E46E
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 07:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772179066; cv=none; b=sSpl1OaesSrhKJFvYEWa/I9cFG6yqRTInO8kkQqBVDQnxxvrVkQB4Tm1pQ+UobtYS5uwiQr3s8N1i90pbU3dTrdMSQ+u98JW4B92gPSSyrTF8+qDUr0UQkDr8F0NOwl1xFCwBYJNSR/fUe6+xNIvpCCCgNl2RwsGK5g2qe3WHl0=
+	t=1772179071; cv=none; b=A066gMYCz01vgAmnhMropClgCN7S458/jh2RKjeiYPD07ZyDtOeybjxSMANoWkNXKvT//2xK4CRuHAjh2c2MlMD5ZlMNYI/4v9l4HfUW0bE7JH3DFAXqGqe/0XvNC5Y3bud94JqtsDCZABHfcwamLKOj4sfZZ/JqRImb2ld3Yng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772179066; c=relaxed/simple;
-	bh=9VnXD3q/1y0ffqPsUhIGxefsynZ71Ka+JpVBrhahLCs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ps9H60mD9W2e7xjjMmGi5PUEhuh8ybEfuEKqu6tudIwE/REiF4sUDePLDbkFZmthQgKurDS3X0na5LNEUs+hthZ6pJfP5ME+DaUKNw8o7DfdqPa3I2IjTV0O6GytOhCrXv7T8kHb1SOKloqF0UJGttCO/lG3N5Vd4ZBcS6fnapE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D+Oww696; arc=none smtp.client-ip=209.85.215.181
+	s=arc-20240116; t=1772179071; c=relaxed/simple;
+	bh=9Lx08UaLnU7Uwnp2XhPN2FqDgQsacRlyZD2mwcG3pic=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=D1nO2k44pXSoIqxaaiqkTE5E0ScOY10GqpcjH6Mc3qtLDdwEgAsKjSQmX0iNw5DdRbDbbGe8AXovY0cgIfy1xjan/TmXhkbP/PRKF+vHWEWIEK7X69VGtIZfxvDlkJV2WffPfM+XF3JhCPBlHRjW7mGxbxXgr1+Dg2VDmcPfZM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fTm+0k5n; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-c6e23cb81f4so718237a12.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 23:57:45 -0800 (PST)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-824a3509a12so833752b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Feb 2026 23:57:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772179065; x=1772783865; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dClJOFMkUNppxkXbFtmk3M5XyyWUhWhukdTkp6L74rE=;
-        b=D+Oww696+opTqpJ+DMkzb55+mRFdooq4bwsAtRpSkUfuA6IkvTX5YJgsjEAlNmJraq
-         4YtV1BrHP/gar4qEdkKcI9gR7iaZS0yGm0irCoLOJuWV6hqCe91VfPKYmpmexc6hDISJ
-         qEZKuj0cOVX5cZ/igMA8skke2+AwbAEuheEdD8oGTkHIPnwK/p3lSGZxVmTjARNjjdSX
-         cbWMoEsRydR8lrXSftiKAE//G1FyNtuaHL8lQPgA/UA+Su1xnbRs4S1Mm95zUNjoFUob
-         IQDnXBKiStSuOVLy4Jp5z0GrgoV/ktpjblNUbJJpGbTGf9bUWR7Uqpw/lEFln5g1r8KU
-         Egdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772179065; x=1772783865;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1772179069; x=1772783869; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dClJOFMkUNppxkXbFtmk3M5XyyWUhWhukdTkp6L74rE=;
-        b=QmoXh3eVxJFYeROSzRi/VsfMBbUNfNdXhV/x9QpZFHrCB1MvWjNq1xd//sywOUUsIz
-         BJlPEShgBG0px+FIpCjspi1oqx25h9doxtGUk2nPiz7KhD/ueUoKRE8jYTiyg8XXx3py
-         P7zxtgqzZ2iA8ADV4SfrUbHYMxxZvkSHpBPXw2CdynraNvfIRb0gQt6L9yrC4SSZooEH
-         OBs1TV9P+somZJCKYHd/sVgQQKcx/Ck2nXAWubWBqofk5TRr3tIPkEYt/GHK647Z5CfD
-         ENNqICuRAVr++fGG3pHKPZ7nrTxREuorD1+1sQsoxF501ou9aBVw15kAk1t8fbbML060
-         PeEg==
-X-Forwarded-Encrypted: i=1; AJvYcCWk138QDmP9oHcM5hISGAmEWrto/LhTNKA26QZ8KKFWf4KHkwZl7vsYMWrbDXNiShW5A1VIeyplaJVH@vger.kernel.org
-X-Gm-Message-State: AOJu0YydlzvUsBdIEo5/TNTjysehnWKAtVIF3FyfKVWnAund63tLuB+K
-	XY9lqJyhJ37G+1bn4apZWZl0ar693lV/5RmAK4ANHvF5Df2vZn+RtnZL6H6NeRzq
-X-Gm-Gg: ATEYQzwusb5IxNmbiz/OPjBW9hGivVil+/5qCnPB55N6Ei/0Y3j3aHjnael1KKuFPOG
-	ZGnAnijP+IrcjwnnPW4stgBq7MW4mJ/Vkq4nxMixpkRDmQOWphKOVigKnBuEHqCwKQ/ooA6aCbZ
-	JTUJ4P6WrKW3nVqdQZls5wO6mwPUm1T+pw8d5/rurHBfODZOQANUv7MXXukh3NdQo4+VAyTaVQp
-	w/gzaU2HkMLhw+te1NCVhA2DS3KI/czkGus6BElEdwKjldXCCORQdtjGUsLkL7FGM2Jg+JVwdy5
-	SiNpgWohv66jPr2iKtr119ONqzwOzCUllRP0pMKbfC/TrRshfw04AVnVoRXcDUq6IVwIBC2wH0B
-	K/wdddiIGop4pzzNT+mwOySvOOrdmec/Pj5HSRR5OprNh9Db8Nry7a6PGAN5zSzl2ImdStuFelz
-	oW1LPqZROh6XJlEyDi9S139w==
-X-Received: by 2002:a17:902:c950:b0:2ae:1ce5:61a9 with SMTP id d9443c01a7336-2ae2e02ac6fmr18274345ad.0.1772179064707;
-        Thu, 26 Feb 2026 23:57:44 -0800 (PST)
+        bh=Lg9NTb0IKxx8ei5NoCGpVXrMa9Lq0kjbSYaE4R3/gIE=;
+        b=fTm+0k5nq6qPfPlg8+aMPL7LeUbYIA4x9wp2J8fv+07hu78V/j7Jau8Aa2MzwHg9w4
+         x9xSpJwDsig1JEhy5oKtZaENHBR7aF89J7L0iqtoQY1Yr8nWRxTpndiyb/k0Zg3RcREA
+         AjajjioHuEtxtYb3MPqsJ1u1kApL52g+OZQS5o0tEGlBTEtCpABYfPEHNBPYs5crXyaV
+         CL2RtqSm3Fl4kqhogG80sJ0f3SvMK4iWOOXSRTfI+xc3rEFq2y4qp4RRQHZvOmLTYtZT
+         o7zdrLUfwaOhIyKL4Yub9qU1l5c7I+GlmfSPCYbVsZfYw8CRFavFcxPyyJf2XXt7ylWs
+         SSKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772179069; x=1772783869;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Lg9NTb0IKxx8ei5NoCGpVXrMa9Lq0kjbSYaE4R3/gIE=;
+        b=pJVSm8Kw4ar4guVe68f/c+XolGcxxe1JpWg4WIDiU5iS4eXL2hmULrah+nmoKSu/rb
+         AMOMGPWq3HfnY1x/Xm63e7Yx9upUjFJlSaFZQjSf0jmHhnrAfd7wrOTEhoFwid/6NUr2
+         Am+btE0qxkEog4qHE+/g7eeNK35CO8asOyZkTofDOBSCnmJYlhquioz/nsfy8L1JdbDE
+         KWiFc6RGykUWQ66xn7Aqe+lCR9hYVcDH399WmLmuig8r6JqRPJPMCx0ZWusIKVNVxN+E
+         1ocruHW1COO/w9nkp+lap4qy0ZG49LEtNWHsilM6Aj7CQ6LnrgiSxGsh51QhTBcZylWX
+         73Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWT0twu3dbd29BC8H6zC8gBo9kccXDIq/t6Vq2aMBAvv2Cm5ahxVhwYQExYVe7hVK6SmBlfJTO0hPi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmklnwPNhiFjxRVdwiST+yq8NL6f49Io/m7cP96EHpWI7wdo1/
+	NP0gaphvK6CUI5KElTNLOurM2LO7C29d0UhDhitQ6FmCB3UcpNunnsAp
+X-Gm-Gg: ATEYQzwhDY+FmOFQxHGwTqJZKQBDzMCZsKHNNS0IVQNTgRWmcmu8znpMm0mpgtnCiPg
+	HqdcigrbIDf62KPRtp+9ldQgG5RM6s7Hhz1nREEvWreOURHmytnqnaL531dhNhZCgDo0wbGjUek
+	zexz94+NFfMM7iudWFp7z9ket6H0bxmoB+VDY0uGSUGR/9bMxlZ7jMu+/D3w2SpbRiHvxufsPvG
+	qkUoA12w6ytuTi+hCuDiFAQB4bPcA6qOHfAWqmAitVWhfwBKRP7LY9kiS5xcWhe5lFOvm46SneM
+	IBh0/80xnLZECUuR9PiirIYz4d80ETZ2k9rsC4/SVQx0gAVk6XxPKfXFPqo2vOL9HlYhRdozCdS
+	kziAfvSzNz2zpIhqGzQgt58HBeZJRpTVj9Yyrc/llyw73SUjU8jbYc3gC0bOG7h+IHBG9H5uTUL
+	jUrtc61aK6WWX+Rhojo73CFw==
+X-Received: by 2002:a05:6a00:1a19:b0:7b9:ef46:ec61 with SMTP id d2e1a72fcca58-8274d97a3cdmr1844514b3a.26.1772179069377;
+        Thu, 26 Feb 2026 23:57:49 -0800 (PST)
 Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb69fb4dsm72024035ad.42.2026.02.26.23.57.43
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82739d4c5e9sm4315422b3a.2.2026.02.26.23.57.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Feb 2026 23:57:44 -0800 (PST)
+        Thu, 26 Feb 2026 23:57:49 -0800 (PST)
 From: Inochi Amaoto <inochiama@gmail.com>
 To: Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
@@ -113,10 +115,12 @@ Cc: netdev@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Yixun Lan <dlan@gentoo.org>,
 	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH net-next v5 0/3] riscv: spacemit: Add ethernet support for K3
-Date: Fri, 27 Feb 2026 15:57:14 +0800
-Message-ID: <20260227075718.2243818-1-inochiama@gmail.com>
+Subject: [PATCH net-next v5 1/3] dt-bindings: net: Add support for Spacemit K3 dwmac
+Date: Fri, 27 Feb 2026 15:57:15 +0800
+Message-ID: <20260227075718.2243818-2-inochiama@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260227075718.2243818-1-inochiama@gmail.com>
+References: <20260227075718.2243818-1-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -137,7 +141,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269127-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269128-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
@@ -153,74 +157,156 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.997];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 91EA51B42A9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 0DF211B42E1
 X-Rspamd-Action: no action
 
-Add initial support for ethernet controller of the Spacemit K3 SoC.
-This ethernet controller is almost a standard Synopsys DesignWare
-MAC (version 5.40a). This controller require a syscon device to
-configure some basic features, like interface type and internal delay.
+The GMAC IP on Spacemit K3 is almost a standard Synopsys DesignWare
+MAC (version 5.40a) with some extra clock.
 
-Change from v4:
-- https://lore.kernel.org/netdev/20260130022705.1059214-1-inochiama@gmail.com
-patch 1:
-1 Apply Rob's tag.
-2 Adjust clock description according to Russell's suggestion.
-patch 3:
-1. Add set_phy_intf_sel() and get_interfaces() hook, suggested by Russell.
+Add necessary compatible string for this device.
 
-Change from v3:
-- https://lore.kernel.org/netdev/20260128072931.875041-1-inochiama@gmail.com
-patch 1:
-1. fix the uncorrect compatible string postion
-patch 3:
-1. add "CTRL_" prefix to all ctrl register definition
-2. only use delay config 0 to calculate delay code.
-3. fix typo in the comment
-
-Change from v2:
-- https://lore.kernel.org/netdev/20260121071315.940130-1-inochiama@gmail.com
-patch 1:
-1. remove not needed compatible for select
-2. drop empty line in "spacemit,apmu" properties
-3. add spacemit,apmu properties to required.
-patch 3:
-1. remove misused phy_fix_phy_mode_for_mac_delays.
-2. use local tx clock instead of the clk_tx_i in the dwmac.
-
-Change from v1:
-- https://lore.kernel.org/netdev/20260120043609.910302-1-inochiama@gmail.com
-patch 1:
-1. remove phy clock
-patch 3:
-1. improve comment and include something special about Spacmit K3 dwmac
-2. reorder the included file
-3. fix wrong delay macro used in spacemit_dwmac_set_delay.
-4. add check for maximum supported delay.
-5. use DIV_ROUND_CLOSEST to calculate best delay configuration.
-6. use assign for the ctrl register initial value.
-7. fix input when calling of_property_read_u32().
-
-Inochi Amaoto (3):
-  dt-bindings: net: Add support for Spacemit K3 dwmac
-  net: stmmac: platform: Add snps,dwmac-5.40a IP compatible string
-  net: stmmac: Add glue layer for Spacemit K3 SoC
-
+Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
  .../devicetree/bindings/net/snps,dwmac.yaml   |   2 +
- .../bindings/net/spacemit,k3-dwmac.yaml       | 103 ++++++++
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 226 ++++++++++++++++++
- .../ethernet/stmicro/stmmac/stmmac_platform.c |   1 +
- 6 files changed, 345 insertions(+)
+ .../bindings/net/spacemit,k3-dwmac.yaml       | 103 ++++++++++++++++++
+ 2 files changed, 105 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
 
---
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index 38bc34dc4f09..98ebb6276bc6 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -109,6 +109,7 @@ properties:
+         - snps,dwmac-5.10a
+         - snps,dwmac-5.20
+         - snps,dwmac-5.30a
++        - snps,dwmac-5.40a
+         - snps,dwxgmac
+         - snps,dwxgmac-2.10
+         - sophgo,sg2042-dwmac
+@@ -656,6 +657,7 @@ allOf:
+                 - snps,dwmac-5.10a
+                 - snps,dwmac-5.20
+                 - snps,dwmac-5.30a
++                - snps,dwmac-5.40a
+                 - snps,dwxgmac
+                 - snps,dwxgmac-2.10
+                 - st,spear600-gmac
+diff --git a/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml b/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+new file mode 100644
+index 000000000000..274f446b5e5e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+@@ -0,0 +1,103 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/spacemit,k3-dwmac.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Spacemit K3 DWMAC glue layer
++
++maintainers:
++  - Inochi Amaoto <inochiama@gmail.com>
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: spacemit,k3-dwmac
++  required:
++    - compatible
++
++properties:
++  compatible:
++    items:
++      - const: spacemit,k3-dwmac
++      - const: snps,dwmac-5.40a
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: GMAC application clock
++      - description: PTP clock
++      - description: TX clock
++
++  clock-names:
++    items:
++      - const: stmmaceth
++      - const: ptp_ref
++      - const: tx
++
++  interrupts:
++    minItems: 1
++    items:
++      - description: MAC interrupt
++      - description: MAC wake interrupt
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - const: macirq
++      - const: eth_wake_irq
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: stmmaceth
++
++  spacemit,apmu:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to the syscon node which control the glue register
++          - description: offset of the control register
++          - description: offset of the dline register
++    description:
++      A phandle to syscon with offset to control registers for this MAC
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++  - interrupt-names
++  - resets
++  - reset-names
++  - spacemit,apmu
++
++allOf:
++  - $ref: snps,dwmac.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    ethernet@cac80000 {
++      compatible = "spacemit,k3-dwmac", "snps,dwmac-5.40a";
++      reg = <0xcac80000 0x2000>;
++      clocks = <&syscon_apmu 66>, <&syscon_apmu 68>,
++               <&syscon_apmu 69>;
++      clock-names = "stmmaceth", "ptp_ref", "tx";
++      interrupts = <131 IRQ_TYPE_LEVEL_HIGH>, <276 IRQ_TYPE_LEVEL_HIGH>;
++      interrupt-names = "macirq", "eth_wake_irq";
++      phy-mode = "rgmii-id";
++      phy-handle = <&phy0>;
++      resets = <&syscon_apmu 67>;
++      reset-names = "stmmaceth";
++      spacemit,apmu = <&syscon_apmu 0x384 0x38c>;
++    };
++
+-- 
 2.53.0
 
 
