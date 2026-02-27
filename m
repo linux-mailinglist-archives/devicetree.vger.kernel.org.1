@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-269440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269441-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFo7JgwWommizAQAu9opvQ
-	(envelope-from <devicetree+bounces-269440-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:09:16 +0100
+	id +GjiJS8WomnFzAQAu9opvQ
+	(envelope-from <devicetree+bounces-269441-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:09:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBC6F1BE83E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:09:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA62E1BE871
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 23:09:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AF6EA3026D9F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 22:08:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 435A13054057
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 22:09:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB23B47A0CD;
-	Fri, 27 Feb 2026 22:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDA847AF4E;
+	Fri, 27 Feb 2026 22:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WgbcI9S2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b6r6vM59"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ED5647AF4E
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 22:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9693347A0CD
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 22:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772230131; cv=none; b=jaSEh7H4j+BxXBH0YOUXgSBimP+eTsg1+mZd/wSzLpCYoLzmRb3wD3fYZP2szErYmv0v9mzFInHVbHsZFuIOcqr2so8ww6mBFkoK1Fq30+qf/yp6ZPFDKyQ9qp0qFfOSrMILUfUdTqdpfKA/ZFEgQdrwb/nIwDgiTCfLTzRUA8U=
+	t=1772230149; cv=none; b=CvVPw/Vg+augMeywnmhBI027xbX6HLM+vqdJXrIx7pl9cbDYWdyWUnkaB9wbU4tjh8zavfJFXLsHBT78xD8rxf5FFx/ZEvkX5VHBxoJig35y1WqKHOQy+8hxJ+0ir2xx6j0kAs/xfgTyNWzGF1WbRN1T51u+b1CZRhfrpVyhNpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772230131; c=relaxed/simple;
-	bh=iNSxSIh+ll79sf4TNG2hK58H2dS4Xk6YssNMKaMP+fY=;
+	s=arc-20240116; t=1772230149; c=relaxed/simple;
+	bh=98AkFDXlrR4iB9QpwA3UCjqYK/P3OoGUgzoZ5+HkqJA=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cB9BTHBL8xeX9oIk5ghY8jb5JuvJU8gpL1m/3PSE7Cxkog4ZqqG6IzKxiqzkyUcOoRQUTlN6fIEhmTOiuVo75NnQRPwsoHUBuNy92uU2kzmeGkH8dF/zORPBSkaRNCUf6zkMxvV+owwpOFoE3UtAiLgxM1AYGdp9oef1o0UIu3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WgbcI9S2; arc=none smtp.client-ip=209.85.128.51
+	 Content-Type:MIME-Version; b=hgXuAMAOj81K6MLSMn82qpDtzin9o0ZIL7f2u9CTejmzgKUkd7iEIq0wNZyirGFzHHYINwAxOAEjgchAzzY0T04ImkEjAwd4Yp1Ue/naU747ca6q1OdBiQJBeI/2j908d0E0pf9xIVFFikIJQ4C2qovuW/Xpjfmdvc8lP4h7gCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b6r6vM59; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso21248145e9.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:08:50 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4837f27cf2dso21952465e9.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 14:09:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772230129; x=1772834929; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1772230146; x=1772834946; darn=vger.kernel.org;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=5jgh0ia5KAYwXdV6WzubAimlSgIWZXu7hr9crI9YEOI=;
-        b=WgbcI9S2wbLLbpaGOETf5fJaqkGxJ04SN2tQQinMal6ImkiaKMD0ac8IDGENgh3/Is
-         +CotPYn7+GkPGqz3ZouuCG1zhhnH77+Yk7wyAKdNpDxzK1aDpJlTBcZmesUnz5217uR4
-         wc7mSb9DbJb74t7UHVA20HIlNwSmS3Y5rmqTZRPSbYfnsVQhow0T/HjKpBA3tg7QbAMd
-         8vEyJjIm2EEryPXKg4ERpue180FrTr62Mn5k11pqDlQQ9S40Z9UJRDu0rWyZPy7vedE8
-         aSQhBwb4mWQYXOrOhbuUouln0/nezPL5niRj0NErSwoD9kcpfBGJ33rVu/Ui9PFL5ABb
-         p+Uw==
+        bh=Z7RecgdQ+C16NSEzjvh/jMB3DYPgqDT/tnpgvTYFMx8=;
+        b=b6r6vM5959f7MFQ6SU+hHYn4BDOI73DUOFn8WWqhV9LXOioOcmhT+w8ZWomJqrKumH
+         hUCrGzhYqPF/MIAiqzdQGBp0M8IdiBeF/gtFzCoO6Cd81RbzJsZVXN0Sbr9Stu0A7xDv
+         7xGOd3PRdqlnP+huXi169tTcM75OfDtnQCTisKCZOvv0vM3utlHYUI+sdsPpRphjcgfQ
+         Xor5s9siT6u8dRrfhJphd7WuWmV/S4/wg+KG5vI4UGy2ClPnxgzQWXkJf2U7Fkl1uHwV
+         kwxBknLSpzgsCtFUU40jdVPEuTUdzTP2Q+6Y0ETgGLkO+DGTRUKQL8KxjrYD8EJZqOP2
+         bA2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772230129; x=1772834929;
+        d=1e100.net; s=20230601; t=1772230146; x=1772834946;
         h=mime-version:user-agent:content-transfer-encoding:references
          :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5jgh0ia5KAYwXdV6WzubAimlSgIWZXu7hr9crI9YEOI=;
-        b=stc+31wA/SMqLvpoUC/taXnFconIUTHhevPOGrV5oQ+rUf75URJnsHUJEjKfWoV0+X
-         Yya3sphWl4ANe7HnIcvRj+tmrIekhJ3Q2ZteDXEhusqCzyALjVyT6e3B8O31r8htTmcL
-         6CRn3szrVanIRM2ayPNySIsZwJzS4+Xcutq4SynsG0bY8CHF51IDC8AdLfKp2nboDm2J
-         2pCiZ/4GDWOVbkTbRiKTU9+Ypb9AkOcB83UhgAoxExclmXvJ9PGHnTYAstYGy2Fu40pC
-         W+CSas3qWplGQGjdYkXCF7CkOQt7YJTUMlWoxnLvRKJj8xoUbdCaif03l5oLe1ldYgxI
-         tDyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/hXog8zhwuuSKwKhZEH+3CXvVNkEKVgl8+I4fz/ILPO7WBZpu5BEHjNbEOix/K0GuiP1vDTvwj2cG@vger.kernel.org
-X-Gm-Message-State: AOJu0YytYqd3brY2mvkvEbD72FUopAcp0h+M0YPPqv9atYAiD6LZyMKY
-	KU9uVNa89MZKde4G0dvosPYw1vJGCssl/mlLPkKrlLBeA+yiTnccuoyCnEH1NzvGUM8=
-X-Gm-Gg: ATEYQzyiiga6Y86RQK2/Rt+k0lZKowPfvwfMQ9zYDj0JWIBDC5oWiL7E5CcNVNnrRo9
-	rJxviU9RAJnS9auc36KRZbDTG14g3xNwEksuHSAZ4Yidxv/CCmB1mjOcy3rb7WFKSzNI5Gpfgt8
-	4oNN+eMKFhTqihN1y8oT0DwGarbR3vbbgfP85EPgM37RgVFGvuJ8H5sorWadhITRg9qskXRPAII
-	+Z93vk1HbIs3WO/avBotlOlr9MStV4BFSvitQ3rBlRHnHio0gegr6oC5pOJ0Hkw8Gm9qSYAJ16T
-	Cp6sJjfIm9buPbsasRh/x8bZr6MThuJRf4kjmoH/nMDYkpzNyWkeAPRxRospO99ILsLSDRg7YGt
-	4s3bvQOpovBPf/Ba65Qj803gPTVYMUhEKxJRhABaQBLw0hgS6a/dFV8JixKd9GB1OaXcK7haBk4
-	EIkstS//d3duFsRRv5uq71gpQV3UkaTpxcthlCBcTYFEdpGaOg8D/MUNvazAsVXl9JmhjCrbBmx
-	KKfAgDVepmy1Jide7Wv2XdG
-X-Received: by 2002:a05:600c:4fc8:b0:480:4a90:1b00 with SMTP id 5b1f17b1804b1-483c9bead27mr64166715e9.20.1772230128544;
-        Fri, 27 Feb 2026 14:08:48 -0800 (PST)
+        bh=Z7RecgdQ+C16NSEzjvh/jMB3DYPgqDT/tnpgvTYFMx8=;
+        b=IMRj/ZTpXSw2ytwtFZFA0yp4aN7QvQrwv/ZoQNQ4YtlnV+jkGJw98Esgx/Zv7pQXrQ
+         dMpvIS9Rgc8AC0By88PvYZYRa1A0pldniWyWQItG8zf9JqNqflAzbnrdgbmrQJjR4VoO
+         wEMnHEETBZU0wCOlndRRIlaT6YB8EFXG2xgQppDdBTx126djMLvFwvfvRG57RYFU5/5H
+         98q8qMFuN5iN+kX48voeu6cUtIINQ/Ya9gCHhUimmPMFK2BxQdBnRerjHkUK9xLO0gN/
+         n4sqKHhemyGDm+cRP6JLC6p2TfyzvglCSacdRyCeHOJuzscI8FnLnsDDJyZpvw4gWpUJ
+         h0IQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVmiK8U6R24qq4ot4H++JqD2hONv2R/aoqg4BGEhTHJEKugWXrVn7HO2lS7Rskw8G5l+bBvxS3YdV8D@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhjSOG636SD5PI4vGyAFdCw965X+Ovm+pkjXRYbdMlSCGE7xo2
+	kqZ8j+GDojPx3p6XcVF3/+5mMHWrmsXQpRbFdIDF5WulLXxl1aTSJTYMdmuaz+Uuuns=
+X-Gm-Gg: ATEYQzyuX8Rg6cwd2CM9siK/TNy4hFqXglxD19a4+d411mqoebu7pGoh3zzf+Wu7jbg
+	xIygl19/IdHNYY4d+p237xSluQdsF3Is4yUCsHMQHTKJoLJawsCcmTfMAvNNEksPT72iDNUbCpK
+	TJNFxopgh+I3cBBrw1XNVjmvelOSKK17ijtphj50VAPZ2S/f3ShKaKNgCMBl9OMljQMDV5hEcvX
+	CRaBfxWsNL+ch5/dVqyyrADTMisood/qVnzMWLBjDFGOs2WqwN6RyzvELNF+HAdvig1anTfStS0
+	9sihX61iGq6YIiNYaG4OsNd2Dv6CEhpq5f3EsUkw9HuIpUn9Niqyuqd9kl922csBOs6YwRSzZVG
+	jQHveUtQhgKDuQIfXknz1GJP3cpt2cVSmu/+hlI5+rwQ8i4KDs8SBBRv89YZggSTe4wnA9i7/KM
+	jX7fNlk9ZEAfVoUrQfczW3R/BEW47Fd92//9UmgSlWA1AgPlXklRLBvHFUG9//3eZE2oF5kgubd
+	vrsalN5HeIrWXtkhxepdcsq
+X-Received: by 2002:a05:600c:1f06:b0:483:c12b:fe3c with SMTP id 5b1f17b1804b1-483c9bc555dmr63260965e9.4.1772230145893;
+        Fri, 27 Feb 2026 14:09:05 -0800 (PST)
 Received: from [192.168.16.154] (host86-188-11-239.range86-188.btcentralplus.com. [86.188.11.239])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfb987b0sm66574165e9.13.2026.02.27.14.08.47
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4399c7645b9sm8751392f8f.27.2026.02.27.14.09.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Feb 2026 14:08:48 -0800 (PST)
-Message-ID: <2932da190f788d2a11f6743bd87b6ff4a61938ca.camel@linaro.org>
-Subject: Re: [PATCH v8 17/18] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x:
- Add ov02c10 RGB sensor on CSIPHY4
+        Fri, 27 Feb 2026 14:09:05 -0800 (PST)
+Message-ID: <27ecee1c897683c7b49b7ac8e31523b41d401668.camel@linaro.org>
+Subject: Re: [PATCH v8 18/18] arm64: dts: qcom:
+ x1e80100-dell-inspiron14-7441: Switch on CAMSS RGB sensor
 From: Christopher Obbard <christopher.obbard@linaro.org>
 To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Bjorn Andersson	
  <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
@@ -92,11 +92,11 @@ To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Bjorn Andersson
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Date: Fri, 27 Feb 2026 22:08:47 +0000
-In-Reply-To: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-17-95517393bcb2@linaro.org>
+Date: Fri, 27 Feb 2026 22:09:04 +0000
+In-Reply-To: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-18-95517393bcb2@linaro.org>
 References: 
 	<20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-0-95517393bcb2@linaro.org>
-	 <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-17-95517393bcb2@linaro.org>
+	 <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-18-95517393bcb2@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-8 
@@ -115,7 +115,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269440-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269441-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -133,39 +133,41 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.36:email,linaro.org:mid,linaro.org:dkim,linaro.org:email,0.0.0.3:email,0.0.0.0:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BBC6F1BE83E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,linaro.org:mid,linaro.org:dkim,linaro.org:email,0.0.0.3:email,0.0.0.10:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BA62E1BE871
 X-Rspamd-Action: no action
 
 Hi Bryan,
 
 On Wed, 2026-02-25 at 15:11 +0000, Bryan O'Donoghue wrote:
-> Add in the RGB sensor on CSIPHY4.
+> Inspiron14 has a ov02e10 sensor on CSIPHY4. Enable the list of dependenci=
+es
+> now.
 >=20
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
 
 Reviewed-by: Christopher Obbard <christopher.obbard@linaro.org>
 
->  .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 77 ++++++++++++++++=
+>  arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi | 61 +++++++++++++++++++++++=
 ++++++
->  1 file changed, 77 insertions(+)
+>  1 file changed, 61 insertions(+)
 >=20
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/a=
-rch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> index f10dff1da7f8e..f3f4841ad2c83 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> @@ -7,6 +7,7 @@
-> =20
->  #include <dt-bindings/gpio/gpio.h>
+> diff --git a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi b/arch/arm64/boo=
+t/dts/qcom/x1-dell-thena.dtsi
+> index bf04a12b16bc9..d21963e52ee48 100644
+> --- a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
+> @@ -10,6 +10,7 @@
 >  #include <dt-bindings/input/gpio-keys.h>
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/leds/common.h>
 > +#include <dt-bindings/phy/phy.h>
 >  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
 > =20
->  #include "hamoa.dtsi"
-> @@ -856,6 +857,66 @@ &gpu_zap_shader {
->  	firmware-name =3D "qcom/x1e80100/LENOVO/83ED/qcdxkmsuc8380.mbn";
+>  #include "hamoa-pmics.dtsi"
+> @@ -792,6 +793,66 @@ vreg_l3j_0p8: ldo3 {
+>  	};
 >  };
 > =20
 > +&camss {
@@ -182,7 +184,7 @@ rch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
 > +			camss_csiphy4_inep0: endpoint@0 {
 > +				clock-lanes =3D <7>;
 > +				data-lanes =3D <0 1>;
-> +				remote-endpoint =3D <&ov02c10_ep>;
+> +				remote-endpoint =3D <&ov02e10_ep>;
 > +			};
 > +		};
 > +	};
@@ -193,9 +195,9 @@ rch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
 > +};
 > +
 > +&cci1_i2c1 {
-> +	camera@36 {
-> +		compatible =3D "ovti,ov02c10";
-> +		reg =3D <0x36>;
+> +	camera@10 {
+> +		compatible =3D "ovti,ov02e10";
+> +		reg =3D <0x10>;
 > +
 > +		reset-gpios =3D <&tlmm 237 GPIO_ACTIVE_LOW>;
 > +		pinctrl-names =3D "default";
@@ -207,14 +209,14 @@ rch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
 > +
 > +		orientation =3D <0>; /* front facing */
 > +
-> +		avdd-supply =3D <&vreg_l7m_2p8>;
-> +		dvdd-supply =3D <&vreg_l2m_1p2>;
-> +		dovdd-supply =3D <&vreg_l4m_1p8>;
+> +		avdd-supply =3D <&vreg_l7b_2p8>;
+> +		dvdd-supply =3D <&vreg_l7b_2p8>;
+> +		dovdd-supply =3D <&vreg_cam_1p8>;
 > +
 > +		port {
-> +			ov02c10_ep: endpoint {
+> +			ov02e10_ep: endpoint {
 > +				data-lanes =3D <1 2>;
-> +				link-frequencies =3D /bits/ 64 <400000000>;
+> +				link-frequencies =3D /bits/ 64 <360000000>;
 > +				remote-endpoint =3D <&camss_csiphy4_inep0>;
 > +			};
 > +		};
@@ -231,27 +233,4 @@ rch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
 >  &i2c0 {
 >  	clock-frequency =3D <400000>;
 > =20
-> @@ -1403,6 +1464,22 @@ &tlmm {
->  			       <44 4>, /* SPI (TPM) */
->  			       <238 1>; /* UFS Reset */
-> =20
-> +	cam_rgb_default: cam-rgb-default-state {
-> +		mclk-pins {
-> +			pins =3D "gpio100";
-> +			function =3D "cam_aon";
-> +			drive-strength =3D <16>;
-> +			bias-disable;
-> +		};
-> +
-> +		reset-n-pins {
-> +			pins =3D "gpio237";
-> +			function =3D "gpio";
-> +			drive-strength =3D <2>;
-> +			bias-disable;
-> +		};
-> +	};
-> +
->  	edp_reg_en: edp-reg-en-state {
->  		pins =3D "gpio70";
->  		function =3D "gpio";
 
