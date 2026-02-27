@@ -1,143 +1,203 @@
-Return-Path: <devicetree+bounces-269235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +IGHMAmioWnEvAQAu9opvQ
-	(envelope-from <devicetree+bounces-269235-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:54:17 +0100
+	id 0GwyIgekoWlxvQQAu9opvQ
+	(envelope-from <devicetree+bounces-269244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:02:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5874F1B7F4D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:54:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F651B840A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:02:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B646F30244C6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:54:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7C9713109292
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 13:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2DB3F0754;
-	Fri, 27 Feb 2026 13:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7EC2374733;
+	Fri, 27 Feb 2026 13:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="usTixHt5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="wfttePbG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FCF239E7E;
-	Fri, 27 Feb 2026 13:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9888540B6D6
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 13:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772200453; cv=none; b=X9KVv72jvyjEZPKnXNpM0sy9dOsaWsdHhTvxs1piKt5HC+/2SZ9GWvnRk7jIC1j3YSbfnjMbVkzhtnUUKZGTNQycLoU6NY2FzhlBgzDMB289b2DMfOFKg+4mqA9taX6Jmvn6GLWN9pP2891GAuxQ3Ijdiv4DZXOmGwz9OwupRSs=
+	t=1772200654; cv=none; b=rUTpeyL55WeTJMz7iDTrOCAFQIkT58OE6F+cFM8QiQE9kGzh4m6sC2NUWPIxkrSUH87LWqKHKLYaLUZXom5TGgS/QD37JSAooJwauIUG5JZ4p8WvKwVnCKy0L1itx/tBBG6JmvKh6ZP5QrG/6a5xCJc8ll6FlU4ObMTSeknHsnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772200453; c=relaxed/simple;
-	bh=HsjLgo8nupcZsn81ESLUwM7KBpJUSJar+k7ZGZ1dnoo=;
+	s=arc-20240116; t=1772200654; c=relaxed/simple;
+	bh=cjTs9Teo7h9jcgAtLf5zal+hTqCKlI8fBzAdsiIQ7PY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=msBuWaPy4vQ7t5QPiXemF+8OIDrkCISSBl0OGtTjjJ2jVF27rXJqpJJ6OeNjXXm19dpLgE42A7WUb48t6wQ+hVwXnm26jmb+gMc6EVSGBFwz83qYjb2pA6NFdTS+NSy3xuoHzaFu7TwZ+17i0nvwnsdlhK1KsT5NGHAIFMFRHos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=usTixHt5; arc=none smtp.client-ip=185.246.84.56
+	 MIME-Version; b=KMsTE1WJ6/MhU594oyl1/KvcCxuwq+LXshlwrSGAaxFPyZi+BTLagwa+mpT1DMdrpN5icOyhjvNDhZZ+gXGXYLkQLP7KvLC9yv+kC8/sdurvFG+Tg/1qqjrfAGPKGN7ZIJgFwqRdNxfdErUMjiCTE0WM83CTeKYDwvnkTCMbnUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=wfttePbG; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id A5B851A1830;
-	Fri, 27 Feb 2026 13:54:09 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 65ED51A118A;
+	Fri, 27 Feb 2026 13:57:29 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7A9AC5FE46;
-	Fri, 27 Feb 2026 13:54:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1896A1036945B;
-	Fri, 27 Feb 2026 14:54:04 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 3615A5FE46;
+	Fri, 27 Feb 2026 13:57:29 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5A84610369455;
+	Fri, 27 Feb 2026 14:57:09 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772200448; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1772200645; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=678J9mnuEHgouwiIbacSQJNgyLiVuCk4U+ok8i9vyDw=;
-	b=usTixHt596HcttfoqUxtD1TpRqMCOhEObhRjOotEMCvFQC4458MhyCKKV/U33bO0QSsDYX
-	4qtwDmQ7mk6WaJS6fTo0fTXmaT2sO/Jmyu83avYqKxbe3GZg56nWAsD7NhE36g1Oq7QMOI
-	PzsKyHkJUOAioDteoszuHoEqayj9JgHqWFuKWHetbTVJk17q9VyYadXdkWGPg1we3+yf9Q
-	oS5N5YY6rjpcD+sPIzva5tWEzRizelfbO5iSvFYmccxxpPMhs6+cNvHfEsIvBqke5+3y6s
-	b9WWqsGYQzu0l1Ob1CzPBfbkLy5NlIBaoki5IIr9LptONk3mRsX/JyqVKpegLg==
-From: =?UTF-8?B?QmVub8OudA==?= Monin <benoit.monin@bootlin.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 00/13] Introducing the Mobileye EyeQ6Lplus SoC
-Date: Fri, 27 Feb 2026 14:54:04 +0100
-Message-ID: <5262868.Qq0lBPeGtt@benoit.monin>
-In-Reply-To:
- <CAD++jLmEU=PkmsPOksF9dtV5UpH3S9X=VJey8ZEf5wdsPbsNvg@mail.gmail.com>
-References:
- <20260226-eyeq6lplus-v3-0-9cbeb59268b0@bootlin.com>
- <CAD++jLmEU=PkmsPOksF9dtV5UpH3S9X=VJey8ZEf5wdsPbsNvg@mail.gmail.com>
+	bh=qSi45MAHHZxO1b8V/Yy/dsNXbhVRxpFDFOrJhmV0YL0=;
+	b=wfttePbGMZnRtaettI5ju+ccNdECB0zUB96MetgSTzIuX7Il1NyzYdg/KvzF47JxhA3+4+
+	H1cLBwxY/ZMmXHyeKyf4gzYWoGd4QDou2/uFd+hzmzMrhSoDeg2SlGJHfwDNYbB6CclRu6
+	6feWg7oXwgxzKzrcGVHP7aufMjoA0MX5CkqxTtqAFmZ7M0k3oBMCIuzrK8M4I2B27H9wF3
+	RFcGJxx5pwfKfDk/j1BHaVT7dCxulAtAJfLo3k7BT6mwaHXCpEHEyQq7fmdbwihWrY5Wsl
+	zB18vqbstZoZowoD33/XJkhK1zQjzz/GNikzrhgkHRvznG7VkNxoBYeKJKlDfQ==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Kalle Niemi <kaleposti@gmail.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@axentia.se>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Charles Keepax <ckeepax@opensource.cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Mark Brown <broonie@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Davidlohr Bueso <dave@stgolabs.net>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Alison Schofield <alison.schofield@intel.com>,
+	Vishal Verma <vishal.l.verma@intel.com>,
+	Ira Weiny <ira.weiny@intel.com>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Wolfram Sang <wsa@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	driver-core@lists.linux.dev,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	patches@opensource.cirrus.com,
+	linux-gpio@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	linux-cxl@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v5 08/28] drivers: core: Use fw_devlink_set_device()
+Date: Fri, 27 Feb 2026 14:54:05 +0100
+Message-ID: <20260227135428.783983-9-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260227135428.783983-1-herve.codina@bootlin.com>
+References: <20260227135428.783983-1-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269235-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[lunn.ch,kernel.org,glider.be,gmail.com,linuxfoundation.org,nxp.com,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,bootlin.com,google.com,opensource.cirrus.com,cirrus.com,linaro.org,linux.intel.com,stgolabs.net,huawei.com,intel.com];
+	TAGGED_FROM(0.00)[bounces-269244-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[benoit.monin@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_GT_50(0.00)[63];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:url,bootlin.com:email]
-X-Rspamd-Queue-Id: 5874F1B7F4D
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,bootlin.com:email,intel.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email]
+X-Rspamd-Queue-Id: 40F651B840A
 X-Rspamd-Action: no action
 
-Hi Linus,
+The code set directly fwnode->dev field.
 
-On Friday, 27 February 2026 at 01:14:32 CET, Linus Walleij wrote:
-> Hi Benoit,
->=20
-> On Thu, Feb 26, 2026 at 2:34=E2=80=AFPM Beno=C3=AEt Monin <benoit.monin@b=
-ootlin.com> wrote:
->=20
-> >       pinctrl: eyeq5: Use match data
-> >       pinctrl: eyeq5: Add Mobileye EyeQ6Lplus OLB
->=20
-> Can I just apply these two to the pinctrl tree?
->=20
-> Yours,
-> Linus Walleij
->=20
-Yes you can, they apply and build cleanly on their own.
+Use the dedicated fw_devlink_set_device() helper to perform this
+operation.
 
-Best regards,
-=2D-=20
-Beno=C3=AEt Monin, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+---
+ drivers/base/core.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
+diff --git a/drivers/base/core.c b/drivers/base/core.c
+index a290bc8d2845..3f3a909306d2 100644
+--- a/drivers/base/core.c
++++ b/drivers/base/core.c
+@@ -3748,7 +3748,7 @@ int device_add(struct device *dev)
+ 	 * device and the driver sync_state callback is called for this device.
+ 	 */
+ 	if (dev->fwnode && !dev->fwnode->dev) {
+-		dev->fwnode->dev = dev;
++		fw_devlink_set_device(dev->fwnode, dev);
+ 		fw_devlink_link_device(dev);
+ 	}
+ 
+@@ -3908,7 +3908,7 @@ void device_del(struct device *dev)
+ 	device_unlock(dev);
+ 
+ 	if (dev->fwnode && dev->fwnode->dev == dev)
+-		dev->fwnode->dev = NULL;
++		fw_devlink_set_device(dev->fwnode, NULL);
+ 
+ 	/* Notify clients of device removal.  This call must come
+ 	 * before dpm_sysfs_remove().
+-- 
+2.53.0
 
 
