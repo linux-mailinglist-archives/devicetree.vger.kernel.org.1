@@ -1,271 +1,179 @@
-Return-Path: <devicetree+bounces-269363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269364-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IHWDMqPPoWn3wQQAu9opvQ
-	(envelope-from <devicetree+bounces-269363-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:08:51 +0100
+	id GOjuM/fPoWkfwgQAu9opvQ
+	(envelope-from <devicetree+bounces-269364-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:10:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F9081BB3A5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:08:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17BAB1BB407
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:10:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CC7CE311FFB2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:01:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04A98314800B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92DF935A391;
-	Fri, 27 Feb 2026 17:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E2C7332903;
+	Fri, 27 Feb 2026 17:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FLVeTTs/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nYgwhsj5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8480F358D0E
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 17:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1833435A3A7
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 17:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.179
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772211708; cv=pass; b=N6PhA9oJnoGutOZvjN5nUX0S0X+ARTCTsVTaHxCgQwHWmUiYxC+YMQ4xid7UQF9wFO9QNa7pCLy6kDT98uPNsqg2hlzbvMQLv8nquytjTGMkarxbzBaTrSfuVHPdrHKnZoJFARZtqbu3u4EaLXdf+AuXMpWFavrCfgKA40Sf/ag=
+	t=1772211938; cv=pass; b=LESpF7VdJut+APuIG7Kvq3HfkO+9RTMAP+kk9d/lhY8kaFanOwqwaX7hf7SltffgxGW6cELAlZeKR14yNeWuWXn417BKAoRCWgv4e6oHBa2d7O+Rj1/DWkVObGmHC/OTm6BSh+aSyWhbao8fHUoOV0pD3/oTUvFI3oryRQP33CA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772211708; c=relaxed/simple;
-	bh=ZIYRl3u7bmaLRT8SRm9rQ3lQCf0ntfMkORxThMWjq60=;
+	s=arc-20240116; t=1772211938; c=relaxed/simple;
+	bh=6UXnrwOPUjL2E6250sd/ClfPcfdLjBvvqjWcKYXcETY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aRHROGolOExjXivaSiRKNHOLHjQJrAPqr8jSRsT2cfRwajOd9eE8FfuSf4rTofbQ8WWwfhPI+6svUAVzvj51EnadRvXDjRn4Js7pFrSvzcmnDoCQn/vH9y+ZEFQGd2wh231asWNWGohonmfcBGROlXtE9W0io6tzlRC9oqZ9Gec=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FLVeTTs/; arc=pass smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-65c20dc9577so4177837a12.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:01:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772211705; cv=none;
+	 To:Cc:Content-Type; b=HK3lReL8LFwsOVk1e3KPA4taGNptrxww+KpKWNP73jwDVnatoSmXR7+5L1gYgLzJ6hiL1PT7BtiI9EoNz8h+XOGnpXtm8KajKTHN2FjGVEPEtWD7qwQymxYVLxy50VvwfEMAHRMlunIndrjiyDnYsyCHXyP7ieDC6cSr0WCPf6g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nYgwhsj5; arc=pass smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-389fac627c9so25273391fa.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:05:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772211935; cv=none;
         d=google.com; s=arc-20240605;
-        b=cP18mFjuQhYsTUHsduroNbhfNoX2cdbRnHWESvfPneApcHPJbi2clK7o7KXaqAcvlW
-         Pvkj5s//SwShi/MLC2mOc5geNPEEScOmrO5ylnDUptbuBubdtcphn+IG1eSJPNTJp7N3
-         ML27GuqKgsaOv8xbu+mTCFqMQNwKT94grl+YKUdQYEWC54maTj2/R+k8pc1GB571Wij1
-         KwKgKxdjygVijylKgZ6xi+HuX0kTjMCQ16KFhQYVpm1/slZpvjIRrgboRAVScb7rbAD2
-         Zs5epbwudJDq98kqU8IjKy+arvdfUIab0kCKt+VxPmakreIjYaPY+8NlvypveyB5MOtQ
-         SRCw==
+        b=iZgdfE0BbpBYc4AUxhMiwWX11PGtAgncBtC3kjBQxx8EXeSdJJyetpyeRGVu3ty3b7
+         FRPNJ+jAhBiSwrrhW5HYDJ0ZCMpTrbU1U3z74WU1B5xBay6oWk9aAzxE0bR1zFBpE33p
+         LLzjckod1D38mwB8OP2k2lbrSJVuBAduAVCp5ho21xLHJGPzm7zjp/o521kbnHYDtTyI
+         r6qwkCF9VkHefFZGtzccHHey3NuRl27xPQiFj/Ej/6YcsjeWHts3U4mlcKXGyfUCRBpw
+         0BwEe4SDxd+g2v7ZOhM2XA12WVRhksKeB29lYax2D9hiH1JOvydRck6L0sGkQrxpY3r9
+         P32Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=CW5KUGgoFn5q9gXUzCWImq5omL1f1unPYVtcaICmZNk=;
-        fh=7Au8mS/faYys+OL+h9RJKPMmwBmNeKwrT5iJ/WHQjW8=;
-        b=T/4q7/gQ3WfR7jJsgq/fXtg/lCXInImQQYf4upExf2Cot89zvf8rgCxjHsmE5MPXJ/
-         g0iwEimcrENyifCBFOfYpsVPdEwukA8tCYJw0hnnlSBRb4BM0bDm9jS6SV5c2Ply4iUA
-         Q19QMBg9XT2kV8/icE7XhfdGqwPXdCzo0VK8V3UlNp5wwI18s4kemg4+PfDy4WoQf/Hr
-         7TMN9oWgkXWZOw5he+JofQTY6OhgAwDLlDb7EuPF1AaV893BR6/x9kWs52PAZ87ArJwS
-         m1fMhhbcDHr8hm6PJB5LHycKUFSI1/22hdKsmI4uBYQK+SRB+QGEQznsMRxh0kkFI84s
-         Uiqg==;
+        bh=jfT43a+fQbphg7vfjqYU7GmKspMnchPetUK5Jg7ieIQ=;
+        fh=1Cwqtm/SBNM8d5mZTsWRlpL0a91D2dBRuxlXppzMWqQ=;
+        b=I9e414tFJkPV9EH0/o/KQlr30/sdgtjO7dbt40/Qw9HgVJnnktn+J+mWmSAo+B63Mz
+         geKPnj1++HbHFr/BtPCu8AqB9vi4efh56ore6tN3ZFNhbOuCvw5HfedFvm6ZPsz8oHz+
+         f0HnwbPqY5WKqQyPl0MWE31gsW+tLdHYrP32YeA66lB600Z6z3rJ5VWyCALaIdia5yF+
+         7SjNO589vO2j6kMoPgu5L2tIjyLg1fUV0jFJUucpIi1obbLaxwqjGofomxGoSrZQKnxy
+         JZGxHY8eNgIRqQm1yp/BqbuMVEHbAw/E7L7AcYR5luvpgxQTmrihMyUIaeRB16ObQCXh
+         IAjA==;
         darn=vger.kernel.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772211705; x=1772816505; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772211935; x=1772816735; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CW5KUGgoFn5q9gXUzCWImq5omL1f1unPYVtcaICmZNk=;
-        b=FLVeTTs/BboDTLBfA/su+JwV0Jr7c0Sxtv1LwXCn7RJeg2M+TcmZTlin3PRQSmhZLv
-         gtcmGsXHbJbhJEqKYymGuXPPKuyIw8tUtf156eXBwhGLgO45WJdttCn6saSbJcAkAoZ8
-         wfb6kYeS4tWRaiCw7rtdeV3E4vKFjXik/OuP1S9fPRwTDRnH0sqpy+c7VR5c+qofchbV
-         veFmTALO7r6zhlc86UFGT3wXypu44pkIB7vpUV6/QUO0UuF0vl1GVvKVrYXuMJbaolr4
-         zDL4yKLUTVB0L5em8ukwjzpXCNq+bHgV33YeNYbqV87GZ43nJubl1O/STV/KvXm0Ojk8
-         TsdQ==
+        bh=jfT43a+fQbphg7vfjqYU7GmKspMnchPetUK5Jg7ieIQ=;
+        b=nYgwhsj5gB2eMJLrUlVSFgzT1e3yMLOSouQ8Apk7++ijHsW7d10a9RX927S+qvVZly
+         AHEBmycsS2cWpSJGbooTyyA3sg1DwxUoffrSYmKG6VDfIEAAGDtoeJ8oRmDldLR8z5gp
+         39F5nhGEG5V3I5/qkCbI3ztZBE85r77/i+CSWYVcxjbBQkgIS47ZLvASqXDYma0jBdAp
+         eacHbgQH7HR4OWbWp7iTuTx7YkElGYMRFJd/NEVJ5HQnUlxWsUq4S4ppDgW1fPNexYPG
+         Xk9U4g7BLoqr4KWhytdKZW/6KhWnlFMPY3V0Y4lK3oAP2lJMb86pt65vnOwQY/0gpiix
+         x8rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772211705; x=1772816505;
+        d=1e100.net; s=20230601; t=1772211935; x=1772816735;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=CW5KUGgoFn5q9gXUzCWImq5omL1f1unPYVtcaICmZNk=;
-        b=ksnL+TiHOiDiIBhIf61CA7p8gN4KtXtOM4QfopAF9tYpBq6FFfwdMmf3JHG9lF5JtU
-         zTe11Hhl+iUr9alEMTnSTit/KA8MBlR0QMgoVh+Px3WfecqhlrzKtZE0EeCMJV3sGb4i
-         5ySvyByB3sJuL4IO0ecQwAKUpHR+8INykdUbhJ4maC7MXqIaJjjWsjyNtuJ1x5h00tpZ
-         Ibq/s660Mxjo+BbqUnLfiLePiNinaJnVeXCdn0Zyh7iNRbd52wQsUvwI9gK35NmWpnJj
-         1Yoz4nXelLXaJh/D4tzsaGiYOTne9sA8ff3Mor4dL+LirxTAHjUx3AxOU4SmO51/cLBw
-         TAug==
-X-Forwarded-Encrypted: i=1; AJvYcCXWCjVIH0NNO5KK+cft3TM3e/5UsBAxCjrO6y3KjjuBCSyZz6B9+oMxD7Ugf1C+CQMZzuThlsbYZVMe@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnbqV7uX5SarUcPJflVNPN+r7radD2fMo5jxwUrnyjPeilM8iV
-	G0wFmX02DNZQqY3rR6tQA2OBvahS5qpEaLlTEUhuKBWSVxUaNHsOPV9D9LCKPqN0yvTLh4wb5a0
-	1kaYQCGFNY1KyH3m1MyAbkWGRn/+CzXOSqnlAwRhwJw==
-X-Gm-Gg: ATEYQzxJ5Wk7TC40J7M99dLGbhBcWzVHan5bpsdDggkusx8CyxiTLp6wWDfFxfw6S1N
-	kpL4rQJUNsK1nvtIruQ+DRXMPuVfxl+mH0sgX8p7MCbBGgAkIv23roQzRjQ0q6uTHigka2DTvLW
-	POsUU0Q30k4bksVU5GyWUGjWvZ+Srm8f9UZnqs0ekEpJ+U9KIumGghyW3lms2z5sB1Fow6HWEaZ
-	5MZPIDdB5fsCPbxJjhxMxA5vfFoE1PoG4l40E/PdswmfYFJ3loZv9ypXS9JOaP2Ytga5dFxokmy
-	lCu34GpZPessaXpZhJi+Ew==
-X-Received: by 2002:a05:6402:270a:b0:65b:a76d:6fe5 with SMTP id
- 4fb4d7f45d1cf-65fde4c9357mr2418868a12.30.1772211704672; Fri, 27 Feb 2026
- 09:01:44 -0800 (PST)
+        bh=jfT43a+fQbphg7vfjqYU7GmKspMnchPetUK5Jg7ieIQ=;
+        b=bDR/UdcGGeaVE5ip76eGjCtcOfDamvkFOAa6I7Q8FR85OFxXMip1a+Z79a0rhJ5wUK
+         eU0tivA1i/wpotA0XpKRDUem9TJZiH54NAycIVgaIfRbl+hd5RLq+CmMFSyZxKX9BNgv
+         DFLr1yxmcpXFpvxiKtaV8hfk5vDHREuEAbtJuDn9gJwca4XY3Lyie85Dxu5/r03VpVZh
+         22GeR82pqfjWD8Ympkfl6TC09c+TyTUg1vYVP+rejJzwm8mvRy2/2Ek8bt9wMGBHqCn3
+         QXe5+4HY2SXQoOS62Yn0a1l8gfS9krs8CbFmknBJg6xpVI/O7dralSmTfnfCNnyVz3Ro
+         U8kA==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ2By3IS7O8evGuozxKaTgewSgXtrqjSk6RXAu3Y+9+6uUHuXblq3jOWoJrA7WShZHBRRzj5o46eG7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxozHd7rLu4ORaEnfJrhD9J3GJGjwtVWmOocCMc6ZwaGN0AS+O8
+	+qeTQ1dz9bjxFve7w8N1Y4jX0pMUyne5FRg7EReIAXaoI22pKQOOeyo1N5crtI0uXGKmulHTMNz
+	hCa/57760S+JYi+BNPpAamLTj7AAGkWk=
+X-Gm-Gg: ATEYQzyZjmsE8+7wYg/0Bsut11zRw2j4ecfxUt4Wyrq2+xFwOMttyVjmj4qHHN0wyJS
+	MwrB+HE+xP/kNs5bfIgwZOQ94yxjkudskc7rVUl02YtNdD4yxgQto/QivG0CfQt8bOgKiZ5kfXh
+	syymg7nz0kjUOQF+10XGQoL+ZoUgPwGp+gc1uGnZGJnE8LpGFoB1yIOEoaRlHatFcSrmuU93GhK
+	x6xjJANDnYY5LI3gfrEeXwLSAS3ZXGGdfazK/fgrQm73yV9yhVWMekd79ZW5t/Oubr9zNyEzaE9
+	VQ0ttjxdptc37Yt2RTu10cpgjL2pbDWhtY1dAbrizgj/PWryxiybBX/kQpb0gD37bv1HDreEXhI
+	Z5u8aNhY=
+X-Received: by 2002:a05:651c:4211:b0:387:176e:68f5 with SMTP id
+ 38308e7fff4ca-389ff35b4famr22558011fa.26.1772211934931; Fri, 27 Feb 2026
+ 09:05:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260227-max77759-fg-v2-0-e50be5f191f0@linaro.org> <20260227-max77759-fg-v2-10-e50be5f191f0@linaro.org>
-In-Reply-To: <20260227-max77759-fg-v2-10-e50be5f191f0@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Fri, 27 Feb 2026 17:01:33 +0000
-X-Gm-Features: AaiRm50je7Jyz9A7BguKdOxcDEnGvNXfC21AHwJKgBl8f23M-dLNvVvogDhwjVc
-Message-ID: <CADrjBPrqmyZGNVzV2Qk3yLqG2CLQi0J=rD4vHP9N1ftjDV8UOg@mail.gmail.com>
-Subject: Re: [PATCH v2 10/11] power: supply: max17042: consider task period (max77759)
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
-	Amit Sunil Dhamne <amitsd@google.com>, kernel-team@android.com, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260227165836.3445577-1-Frank.Li@nxp.com>
+In-Reply-To: <20260227165836.3445577-1-Frank.Li@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 27 Feb 2026 14:05:23 -0300
+X-Gm-Features: AaiRm53taJAwYmks0zdsuCd09L6pF6yl_1O7CbjkcLe8Epc_edKZ22mV78f2GrE
+Message-ID: <CAOMZO5AGwAAU3j0t62CaqNZF7tmyKoWv38ymB1i5i+xnprwJWQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: auxdisplay: Use unevaluatedProperties
+ to fix common property warning
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Robin van der Gracht <robin@protonic.nl>, Andy Shevchenko <andy@kernel.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Miguel Ojeda <ojeda@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	imx@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269363-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-269364-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,linaro.org:dkim,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2F9081BB3A5
+	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,0.0.0.70:email]
+X-Rspamd-Queue-Id: 17BAB1BB407
 X-Rspamd-Action: no action
 
-On Fri, 27 Feb 2026 at 07:15, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
- wrote:
+On Fri, Feb 27, 2026 at 1:59=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 >
-> Several (register) values reported by the fuel gauge depend on its
-> internal task period and it needs to be taken into account when
-> calculating results. All relevant example formulas in the data sheet
-> assume the default task period (of 5760) and final results need to be
-> adjusted based on the task period in effect.
+> Change additionalProperties to unevaluatedProperties because it refs to
+> /schemas/input/matrix-keymap.yaml.
 >
-> Update the code as and where necessary.
+> Fix below CHECK_DTBS warnings:
+> arch/arm/boot/dts/nxp/imx/imx6dl-victgo.dtb: keypad@70 (holtek,ht16k33): =
+'keypad,num-columns', 'keypad,num-rows' do not match any of the regexes: '^=
+pinctrl-[0-9]+$'
+>         from schema $id: http://devicetree.org/schemas/auxdisplay/holtek,=
+ht16k33.yaml#
 >
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> Fixes: f12b457c6b25c ("dt-bindings: auxdisplay: ht16k33: Convert to json-=
+schema")
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
+> Change in v2
+>         - Add Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>         - Add fixes tags
+>
+> Resend include Rob's Ack tag:
+>         Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Rob's Acked at
+> https://lore.kernel.org/imx/175796984570.3379405.7210704746413204244.robh=
+@kernel.org/
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-
-> While I do believe this should apply to all devices supported by this
-> driver, given the register description in max17042_battery.h, I've made
-> this change specific to max77759, as I have no way to confirm this
-> works as expected on those. I've found a data sheet for
-> max17047/max17050 online, which does describe the relevant register
-> 0x3c as 'reserved', hence I'm a bit hesitant to enable this for all.
->
-> v2:
-> * update commit message subject prefix
-> ---
->  drivers/power/supply/max17042_battery.c | 20 ++++++++++++++++++++
->  include/linux/power/max17042_battery.h  |  1 +
->  2 files changed, 21 insertions(+)
->
-> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supp=
-ly/max17042_battery.c
-> index 44626abdab34..89909b140cf9 100644
-> --- a/drivers/power/supply/max17042_battery.c
-> +++ b/drivers/power/supply/max17042_battery.c
-> @@ -61,6 +61,7 @@ struct max17042_chip {
->         struct work_struct work;
->         int    init_complete;
->         int    irq;
-> +       int    task_period;
->  };
->
->  static enum power_supply_property max17042_battery_props[] =3D {
-> @@ -335,6 +336,8 @@ static int max17042_get_property(struct power_supply =
-*psy,
->                         return ret;
->
->                 data64 =3D data * 5000000ll;
-> +               data64 *=3D chip->task_period;
-> +               do_div(data64, MAX17042_DEFAULT_TASK_PERIOD);
->                 do_div(data64, chip->pdata->r_sns);
->                 val->intval =3D data64;
->                 break;
-> @@ -344,6 +347,8 @@ static int max17042_get_property(struct power_supply =
-*psy,
->                         return ret;
->
->                 data64 =3D data * 5000000ll;
-> +               data64 *=3D chip->task_period;
-> +               do_div(data64, MAX17042_DEFAULT_TASK_PERIOD);
->                 do_div(data64, chip->pdata->r_sns);
->                 val->intval =3D data64;
->                 break;
-> @@ -353,6 +358,8 @@ static int max17042_get_property(struct power_supply =
-*psy,
->                         return ret;
->
->                 data64 =3D data * 5000000ll;
-> +               data64 *=3D chip->task_period;
-> +               do_div(data64, MAX17042_DEFAULT_TASK_PERIOD);
->                 do_div(data64, chip->pdata->r_sns);
->                 val->intval =3D data64;
->                 break;
-> @@ -362,6 +369,8 @@ static int max17042_get_property(struct power_supply =
-*psy,
->                         return ret;
->
->                 data64 =3D sign_extend64(data, 15) * 5000000ll;
-> +               data64 *=3D chip->task_period;
-> +               data64 =3D div_s64(data64, MAX17042_DEFAULT_TASK_PERIOD);
->                 val->intval =3D div_s64(data64, chip->pdata->r_sns);
->                 break;
->         case POWER_SUPPLY_PROP_TEMP:
-> @@ -1146,6 +1155,17 @@ static int max17042_probe(struct i2c_client *clien=
-t, struct device *dev, int irq
->                 regmap_write(chip->regmap, MAX17042_LearnCFG, 0x0007);
->         }
->
-> +       chip->task_period =3D MAX17042_DEFAULT_TASK_PERIOD;
-> +       if (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX77759) {
-> +               ret =3D regmap_read(chip->regmap, MAX17042_TaskPeriod, &v=
-al);
-> +               if (ret)
-> +                       return dev_err_probe(dev, ret,
-> +                                            "failed to read task period\=
-n");
-> +               chip->task_period =3D val;
-> +       }
-> +       dev_dbg(dev, "task period: %#.4x (%d)\n", chip->task_period,
-> +               chip->task_period);
-> +
->         chip->battery =3D devm_power_supply_register(dev, max17042_desc,
->                                                    &psy_cfg);
->         if (IS_ERR(chip->battery))
-> diff --git a/include/linux/power/max17042_battery.h b/include/linux/power=
-/max17042_battery.h
-> index 05097f08ea36..d5b08313cf11 100644
-> --- a/include/linux/power/max17042_battery.h
-> +++ b/include/linux/power/max17042_battery.h
-> @@ -17,6 +17,7 @@
->  #define MAX17042_DEFAULT_VMAX          (4500) /* LiHV cell max */
->  #define MAX17042_DEFAULT_TEMP_MIN      (0)    /* For sys without temp se=
-nsor */
->  #define MAX17042_DEFAULT_TEMP_MAX      (700)  /* 70 degrees Celcius */
-> +#define MAX17042_DEFAULT_TASK_PERIOD   (5760)
->
->  /* Consider RepCap which is less then 10 units below FullCAP full */
->  #define MAX17042_FULL_THRESHOLD                10
->
-> --
-> 2.53.0.473.g4a7958ca14-goog
->
+Rob's Ack is still missing.
 
