@@ -1,201 +1,163 @@
-Return-Path: <devicetree+bounces-269384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269385-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CEszEOXYoWlcwgQAu9opvQ
-	(envelope-from <devicetree+bounces-269384-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:48:21 +0100
+	id UN9eNbzXoWlcwgQAu9opvQ
+	(envelope-from <devicetree+bounces-269385-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:43:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE721BB9BD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:48:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 523181BB927
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:43:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A2BEA30160CB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:42:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 66488304A542
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC8E944B66D;
-	Fri, 27 Feb 2026 17:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40C244CACC;
+	Fri, 27 Feb 2026 17:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IdnW9gYr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sFlc3WsZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC85361DC8;
-	Fri, 27 Feb 2026 17:42:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A82144B68C;
+	Fri, 27 Feb 2026 17:43:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772214177; cv=none; b=NFcb0F7sWTc709BYW+52M5ykFYpEGBgrbyWy9CErKnJnFY4hRmkM8xdKdjlCe2XF6k4EBIHF9wrrS9fXiSCf6dMTZmLNWE8+8MAHcWy016BWDZ+B3BEVq+xH73hgu/cr7vgsUhHCZfxlJ3nZJa3cgDk6mHo7WAnVTNoQLY9i66A=
+	t=1772214195; cv=none; b=VUDGbYoKzRJV3Q+AMgzkLaH1TupIeKrbpNw77ouB+H9dh0BAZ/7Fxr+elKwFZdMnO0sLXBvGO/8PX19br6CXmK4Mau4hIMAN0SLFHv3l71C1wMC+4flvnnByyO9vxY6l6PTIjV2tQeVkrIwGBnUyaSUWLtWpI5gkMZdpzgnC6EU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772214177; c=relaxed/simple;
-	bh=aDAKaw20C2di4uN7BXhImcGDLjfd5fyDY9Dh/9GzZsg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bsniXEqxl25wRuGyhWEl5f6NA4uadm+sFZXsWLwhoHUOoWZGFgp3KWIyudnk7MEvlGVsiPeJgrT4kOB3GRV3Gtc61yiEaxMzOme8ZZeA+cNnlfZboCUzYKiFWkKoM3jOzEP/CSoezBMCChPOSW3wl6VrBB7kG34MbOFNLb3yVVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IdnW9gYr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1772214174;
-	bh=aDAKaw20C2di4uN7BXhImcGDLjfd5fyDY9Dh/9GzZsg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IdnW9gYrbNJfc/RG3EWyuzv7sY7WI/C7ZO2Uvr1qDCKyf8QvO0tjrmFG980Azn9I1
-	 JXm4kMMICJ5c17MkWlEpUdsQw40imN+QoZzH+oExhDQXIbON74Ve09LPnqLbLEXal7
-	 mMUaDCgzBR/Zd9Xjf3eUmNatNRb9Q8zNAXalmAZ3Kc5ypyQyoZ5K/Acuh5pmRwIvGB
-	 ULCQIj+9ZnBZX7h62KIwO8aHTEs8UO+yeW8NsZ77hk1HrfJYU2TUzCjOQVyD3cN3e6
-	 u9ciT268ZhvsGdlGkAhv2wyNt/OzUGUWJkx1zP7qgfYmFcIRFN3cqRRJF5sDWzuZiC
-	 sFnyxihP3TOSg==
-Received: from [192.168.1.90] (unknown [86.123.23.225])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 23A4817E03E5;
-	Fri, 27 Feb 2026 18:42:54 +0100 (CET)
-Message-ID: <3ab4f91e-37d0-4950-af88-01920705d31a@collabora.com>
-Date: Fri, 27 Feb 2026 19:42:53 +0200
+	s=arc-20240116; t=1772214195; c=relaxed/simple;
+	bh=nK5MybJn/XvDpajqRRToeWC1XErQ1cBYZqWZ3L55jIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fDjC57BUl/HdOOFt14r6b14fvBynitXEAmx8fGpRA7KF6rJ+0wVXvKmNw/Mmz2wL8wjE2Vx5vuhRgM60KgMRpQAKwIYHEjMOLedFdMFfPHKiZJbXMBCnJPR8mF56/cVDRu+RX6YZV5d24s4EDGqKSPWDWy5kU4ny2ekoceQ+dtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sFlc3WsZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E07EEC116C6;
+	Fri, 27 Feb 2026 17:43:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772214194;
+	bh=nK5MybJn/XvDpajqRRToeWC1XErQ1cBYZqWZ3L55jIE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sFlc3WsZCFn7wxvkkE6nVyurfXEdP194XRm4ohkbVDAsskyFtWeGO/PXhWI54reyq
+	 A1R2KkazcmNN69o7DkH3aKOLIJd9HLsk8W0Se9+xQt33GqykTgFBnjSQa55YkEQtR8
+	 qINBB0lvTjZMUHn+DagtwoeAa1ZqOvJ8K4UqIjVzkGqbAkj9TXP9CEpkpZ3ePV2KrY
+	 qZlxLm4/uIrxR3F2wJtM4TxyAd4c/4vQOEsEBbtjLyCjRLxTT2akotktNuefTml+ti
+	 lak0WXV6sppqyEDO8Bnjp6S1Rm4cfd5G8BoqrEK4y67i1+WRc0HMmsE86NtqqePqDt
+	 RSzQA4FNSCfkg==
+Date: Fri, 27 Feb 2026 17:43:09 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Gabor Juhos <j4g8y7@gmail.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: marvell,armada3710-xb-pinctrl: add
+ missing items keyword
+Message-ID: <20260227-baggy-blinker-049989803a36@spud>
+References: <20260227-a3720-pinctlr-missing-items-v1-1-e476e4df1ad6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add alternative
- reg-names order for RK35{76,88}
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
-References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
- <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
- <20260227-observant-roaring-ara-ef7eb0@quoll>
- <adbbdbb1-b126-4807-821c-c9850befd695@collabora.com>
- <20260227-omission-stoic-417d7109ad4d@spud>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20260227-omission-stoic-417d7109ad4d@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6YJUzQ+JEhq2LKUP"
+Content-Disposition: inline
+In-Reply-To: <20260227-a3720-pinctlr-missing-items-v1-1-e476e4df1ad6@gmail.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-269385-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269384-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,bootlin.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:mid,collabora.com:dkim]
-X-Rspamd-Queue-Id: 9AE721BB9BD
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email,devicetree.org:url,0.0.53.232:email]
+X-Rspamd-Queue-Id: 523181BB927
 X-Rspamd-Action: no action
 
-On 2/27/26 7:13 PM, Conor Dooley wrote:
-> On Fri, Feb 27, 2026 at 01:37:17PM +0200, Cristian Ciocaltea wrote:
->> Hi Krzysztof, Conor,
->>
->> On 2/27/26 9:46 AM, Krzysztof Kozlowski wrote:
->>> On Thu, Feb 26, 2026 at 12:46:53PM +0200, Cristian Ciocaltea wrote:
->>>> With the introduction of the RK3588 SoC, and RK3576 afterwards, two more
->>>> register blocks have been provided for the video decoder unit.
->>>>
->>>> However, the binding does not properly describe the new hardware layout,
->>>
->>> As you shown me last time with excerpt of address spaces from
->>> datasheet/manual, the binding correctly describes the hardware and above
->>> sentence is not true.
->>>
->>>> as it breaks the convention expecting the unit address to indicate the
->>>> start of the first register range, i.e. 'function' block is listed
->>>
->>> Imprecise wording. "start of the main or primary register range"
->>>
->>> (if you have 0x1000 with one reg and 0x20000000 with everything, the
->>> unit address will be 0x20000000).
->>>
->>>> before 'link' instead of the opposite.
->>>>
->>>> Since the binding changes have been already released and a fix would
->>>> bring up an ABI break, mark the current 'reg-names' ordering as
->>>> deprecated and introduce an alternative 'link,function,cache' listing
->>>> which follows the address-based ordering according to the TRM.
->>>>
->>>> Additionally, drop the 'reg' description items as the order is not fixed
->>>> anymore, while the information they offer is not very relevant anyway.
->>>
->>> This is fine for me.
->>
->> Thanks for the additional feedback!
->>
->> If I'm not mistaken (please correct me), the only remaining (hard)
->> blocker for the series would be to improve this commit message.
-> 
-> No, you also need to fix the problem I pointed out about reg-names being
-> optional on the devices you're relying on reg-names for. 
 
-My only concern is that by marking reg-names as required we would break the ABI,
-since the RK3588 related changes in the binding (not the DTS ones) got already
-released (i.e. since v6.17). That's also the reason we went with this deprecated
-order approach.
+--6YJUzQ+JEhq2LKUP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> The new commit
-> message I am happy with, provided you also add the information Nicolas
-> provided about the impact on users.
+On Fri, Feb 27, 2026 at 03:15:54PM +0100, Gabor Juhos wrote:
+> Even though the type of the 'groups' property of a pinmux node is
+> specified as string-array in pinmux-node.yaml, but trying to use
+> multiple strings causes dtbs_check warnings.
+>=20
+> For example, checking the following dts ...
+>=20
+>   $ cat arch/arm64/boot/dts/marvell/armada-3720-test.dts
+>   /dts-v1/;
+>=20
+>   #include "armada-372x.dtsi"
+>=20
+>   &pinctrl_nb {
+>           pwm-gpio-pins {
+>                   groups =3D "pwm0", "pwm1", "pwm2", "pwm3";
+>                   function =3D "gpio";
+>           };
+>   };
+>=20
+> ... results in this warning:
+>=20
+>   arch/arm64/boot/dts/marvell/armada-3720-test.dtb: pinctrl@13800 (marvel=
+l,armada3710-nb-pinctrl): pwm-gpio-pins:groups: ['pwm0', 'pwm1', 'pwm2', 'p=
+wm3'] is too long
+> 	  from schema $id: http://devicetree.org/schemas/pinctrl/marvell,armada3=
+710-xb-pinctrl.yaml
+>=20
+> Add the missing 'items' keyword to the schema to allow using multiple
+> strings without such warnings. Also adjust the indentation of the next
+> statements accordingly.
+>=20
+> Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
 
-Nicolas, can you please provide here the statement so that we can agree on the
-wording?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Fixes: c1c9641a04e83 ("dt-bindings: pinctrl: Convert marvell,armada-3710-(s=
+b|nb)-pinctrl to DT schema")
+pw-bot: not-applicable
 
-Thanks,
-Cristian
+--6YJUzQ+JEhq2LKUP
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
->>
->> How about the following:
->>
->>     With the introduction of the RK3588 SoC, and RK3576 afterwards, three
->>     register blocks have been provided for the video decoder unit instead of
->>     just one, which are further referenced in the datasheet by 'link table',
->>     'function' and 'cache'.  The former is present at the top of the
->>     listing, starting at video decoder unit base address.
->>
->>     However, while documenting RK3588, the binding broke the convention
->>     expecting the unit address to indicate the start of the primary register
->>     range, i.e. the 'function' block got listed before the 'link' one.
->>
->>     Since the binding changes have been already released and a fix would
->>     bring up an ABI break, mark the current 'reg-names' ordering as
->>     deprecated and introduce an alternative 'link,function,cache' listing
->>     which follows the address-based ordering according to the TRM.
->>
->>     Additionally, drop the 'reg' description items as the order is not fixed
->>     anymore, while the information they offer is not very relevant anyway.
->>
->> Regards,
->> Cristian
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaHXrQAKCRB4tDGHoIJi
+0vv9AQDKh/I4FbujKH6JgScXHVGKSkwuqogOuVHDUnt9bSyFeAD/XK+1OQC92k6C
+8Pk7BLlg9HBnVTH1H+71AzHkM+h8tA8=
+=wgpI
+-----END PGP SIGNATURE-----
+
+--6YJUzQ+JEhq2LKUP--
 
