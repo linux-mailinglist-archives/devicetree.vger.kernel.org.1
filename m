@@ -1,294 +1,318 @@
-Return-Path: <devicetree+bounces-269286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269287-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2KfDBxCsoWm1vQQAu9opvQ
-	(envelope-from <devicetree+bounces-269286-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:37:04 +0100
+	id SFQHEQ6uoWk3vgQAu9opvQ
+	(envelope-from <devicetree+bounces-269287-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:45:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74CF31B916A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:37:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D94531B92B2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 15:45:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 994033018D61
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:32:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1A4973012238
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 14:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C660D2C0266;
-	Fri, 27 Feb 2026 14:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B5794266AE;
+	Fri, 27 Feb 2026 14:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="vlocsZij"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="pkitHSgw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011034.outbound.protection.outlook.com [52.101.125.34])
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9189270568;
-	Fri, 27 Feb 2026 14:32:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.34
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772202760; cv=fail; b=Lnte6g8istmmGRBgwj0MCyFbqkkK/lGafo7K2V4i6I4D38yirWNFSkVNCYLRx6cbJ4chDdBMmZsCRANxu4TQVs0TCIaOZAcwzRw7k3c2Al6jAQYZnK7sM7JBPzAhHFceROpFXI7MYqs15q8+Z+2WcZR/DKz25Ox/chdhTtOyR+8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772202760; c=relaxed/simple;
-	bh=OZ60ghbUNjoiO1VdblWBzb7XZfAC4LJ/ZQCVcuMVB/4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=cppoMbpWaieVRcBgKq4JmtAY0/QLO5atwUUSFktSt3WuxG3Xk8LJD/4XBgJeOACcllFWc93kHFDO1FaMY25Hlk/Es1G4JhrjbnO0VyV/zHzMqrNwpB+TOs8Z5iaDRriseotHl9EFL1CNFiXEEH4WcCetQ9drkS7Ovl0FgZqB9GY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=vlocsZij; arc=fail smtp.client-ip=52.101.125.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CIjJJKBTqQ4Re6kQG6mrRvPh9vObssTqSQKmPEd1FLTss9UqzMlkQeQMufnQM/etb9EwENiaDGK4w7X8AqTxr3jjiAKMSBoklTC+Z1cvY31Xoccyp51M0kD+Wo4FTlfLLsI1NKAxHgV8A8NrAf6fbkjCq6Qv8zSgFaM7DhaEGtrtUCc1hB/YDkmmoK5oV119PCVWMgpIib3hXQdZxWAnygNZ+t7gw+fkyReBKZqBXxoH/30BVedSW1QUmmUbWAA0cx5JIdYyLO6/rXhS7bs89Kl0DszKZd20o1VzUCmEHoRgqq/9p6+v9MS7n6Im45bTybtJy6oJgspc9ETh8w0M4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ENWclE/VxDdewBN3BQ0dpZRMn+4IXFeDo3nWf0LdcsQ=;
- b=kRVNMtKLP4MTq2C5sNfXNzmaXdavbNXkThRLaD6+OULGhhR5HRLYGCtcXxCAIjkupOgrI6RD3SebEEngb4RdCnhzRRY0FDPN/sSJDDHWGgKzSDUg0AoEwObzx6djwQEzBf40SV9grovThYX/4CGkegBLqiuWndapEmWNUoyZu9vNzRSO++75hK7OCaiubiBG8oaou9whVwoe7YdrTZ4tW7RwdIjGFTG5CJmzA5u6pBJtzaif8dztWAshKBakAJyTtHrcd0G9QFtUTqdd0mVVGKFDzx28W17l0+aZ1CiW+PLtUVpCims/lIHi0gxF9dlAnnmtScMY/kWpb3NW8BbtPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ENWclE/VxDdewBN3BQ0dpZRMn+4IXFeDo3nWf0LdcsQ=;
- b=vlocsZijaYH6rjO/f5vPATd4iNSdWjOxT1XRwPJOMmVT3ngxPtH9V03nm8H/KwDL6HONwiPYY7/JQLagJZSDheW7esIRTKSWtv6Y3Fnwj3WngtrG+X/1GgzibwNpMbgdKBprAyuvBCRUOKimDInBK0ufiB9B+1I32uU7jOSQ2j4=
-Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com (2603:1096:405:35b::6)
- by TY4PR01MB14563.jpnprd01.prod.outlook.com (2603:1096:405:238::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Fri, 27 Feb
- 2026 14:32:32 +0000
-Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com
- ([fe80::f373:26d6:86c4:6aa3]) by TY6PR01MB17377.jpnprd01.prod.outlook.com
- ([fe80::f373:26d6:86c4:6aa3%4]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
- 14:32:31 +0000
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>, Claudiu Beznea
-	<claudiu.beznea.uj@bp.renesas.com>, "lpieralisi@kernel.org"
-	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
-	"mani@kernel.org" <mani@kernel.org>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com"
-	<bhelgaas@google.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	magnus.damm <magnus.damm@gmail.com>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "john.madieu@gmail.com" <john.madieu@gmail.com>
-Subject: RE: [PATCH v6 11/16] PCI: rzg3s-host: Explicitly set class code for
- RZ/G3E compatibility
-Thread-Topic: [PATCH v6 11/16] PCI: rzg3s-host: Explicitly set class code for
- RZ/G3E compatibility
-Thread-Index: AQHcofBJZRfdCHLVEEKSNsUxz8rOc7WLR8QAgAtbH0A=
-Date: Fri, 27 Feb 2026 14:32:31 +0000
-Message-ID:
- <TY6PR01MB17377D03E5B473D43B9EEA50DFF73A@TY6PR01MB17377.jpnprd01.prod.outlook.com>
-References: <20260219223542.6364-1-john.madieu.xa@bp.renesas.com>
- <20260219223542.6364-12-john.madieu.xa@bp.renesas.com>
- <TY3PR01MB113465A6DF24308C10019193B8668A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To:
- <TY3PR01MB113465A6DF24308C10019193B8668A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Accept-Language: en-US, en-GB
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY6PR01MB17377:EE_|TY4PR01MB14563:EE_
-x-ms-office365-filtering-correlation-id: fc4e0b01-f0fb-4e3b-a882-08de760d0aa9
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|7053199007|38070700021;
-x-microsoft-antispam-message-info:
- YrgTrMBkXOTGbtBG+rYNfwbMM5b1WfIkacBiw908Ko+oWzoCyuoLUNDdhT6XJIb42FjHOrz5HHENQMoNbeTJqYA2bxcaPLC0unZyRMEiL8ShXQCAtGqnRyyajMTZOqPtgs0tvAQ2vEUfTjcAee/Cg6EWf9x2Y/H2SyxVrqhufNR+KkXAddeOGpgjUchdcPPYgWpnkFiefooVGr8hYEWzwdNm6YRkeBJ6dTkuRwo/QuhpCMk6DZB/i/AjPedRkuStQM+X4rbrb4AHTxE1PoTITF3CWsEDS5DwwPk2OHQFRY4AzzZ0N5/51z99dOQQxgGYwYMMOGrwQl0iY5IpaI3oaN9PdUh2/VwWPEnRN55veZ0CWvY0sLWoMi4pJd4AVtcyoqSHP6GXZZXOs3Uu2lgzw5lPaC16BT9cD9DxS68Tby+r/btF5qFYp8xhhu8yI+wJGZTXBmr1sc4cPJ7/lPD/Tq+LvJcXCOr1uZ2BUO6RS/r/k0X4BD6ZwKedCwzaI8Xg9Hh0IbMn5pFz3tber3rw2pqCIQMyDHwWg8VmbmSbweG6y13i+mWzehHqRCGnZGjnLOo5e0xJH1sAPExFcOQE82KHjQYvipDs2QuKUdlrfti8NSgpE/Dm6yHzMvMkQlQUY8lAPoXjwUGthbCgvmnimHSeMVZNDfS48ncg6qUEdgui2bPsGtNv6xKXf6ZQ7nF/vKo6oVqa9DfANQXVjM5kScPg1CUu4QY7ZKbvnNUZzzXHf8PF8QqXirC+C52BFPBW
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY6PR01MB17377.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(7053199007)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?vz/A4976tja5qWAvEwcX/1FIhUvaWNIp7IYVoJ58LbzBvin/afosYegcaaKX?=
- =?us-ascii?Q?R6c3KOjkRxtKdK6aeb6+ambnmN+DP8EN9DXye5PaRxQFm9oWwXLrcE42pQtN?=
- =?us-ascii?Q?sHiwvklpNmhVKfD+6d76W3oYIbwJMLqFo4iGYGJqO6uQ3zKZjAOL53anByEQ?=
- =?us-ascii?Q?gimgeKYkRu83KqVMqKXT+BB08DalJxJbHNf+pmFOood9tvjcVY+sMxztIwu1?=
- =?us-ascii?Q?1WHb6t4kwuAg6ouZyZUCS9HS9gEP+sLUiaVuvEg+aItxeG1oWxnS+S2qKWUn?=
- =?us-ascii?Q?dsc6+7qxL+UvQpXWslOBRY0EoHBKeBUHVsY6NOu1LZ+oBV9AY1fXEUtfGSqh?=
- =?us-ascii?Q?aRrQkiu2T/qbMz90g2tALyfmFMLL6ayCcg9SrAeWVST16PJAn0zrfAP8wVbu?=
- =?us-ascii?Q?HQbYtPiOiF6omGbq//2GSJi+MdQ680IC+YhHGdZqZEmLFaxPdjtFmPQVLbrK?=
- =?us-ascii?Q?ugu+vCkxNrcgUUSkBS3wtoynVvwtOrk9kWBXEC4XLhMxdCsBUd9h1tM9r1Bv?=
- =?us-ascii?Q?rg0yyEh9rFdBASs5boW39TlG3c9NYFMgWq/hYc0ZaVwtwMoNW1lBIBn81ABT?=
- =?us-ascii?Q?4e09qPMnvRL2Mt79W4ouCqU3OSVhhqEoiBQ8r1UtHFi6lGHPKWXDga+OhdXK?=
- =?us-ascii?Q?i4x6a/1jvdBdFLfxnbsUxsgs8+VZjNgO0anLeRwU66f8m36gI51igzDu6XUF?=
- =?us-ascii?Q?QbbcUIZz1Bn+zynYUEg9EUKT+4VzhKdHInJBW5WnuiKEjWLVL4yRI+1wd5F9?=
- =?us-ascii?Q?6Y6Yx3Cg5P5V4xQGHMN4JYLbFHpMFA9rvveTOnCaE3rGUjcQL8lMMzR2uJPu?=
- =?us-ascii?Q?m1y7ocoXmrfjb5Z3Z8YOk51rWGHzz7P7WE1zL4F/G9YGJ7vkrxhBfPM1kkG2?=
- =?us-ascii?Q?eihvC0FLcbNzj+PY8I48yP/+nyLkInvB96C7vLQjXMwKCTNQtm0t4LsehzSk?=
- =?us-ascii?Q?kW1fHngyEN0C+xn6wxI+VXayhjYLK/skTdu0zxXhL6hQ5Jp7pQNwSLvIAS7q?=
- =?us-ascii?Q?Wrop8UMhw1Q7GYnkE3pZQj+WB54TFNQHyL/lRy4N9SfCUJAgs+QkhUHwRp8a?=
- =?us-ascii?Q?qNDAufSXmhDFkLdy/FVbshRWKY2UC/X+hWoO1p7G1hTF/Fpj4lUkylN8jfOk?=
- =?us-ascii?Q?tVugcG38DmBEyt2+rPt0YrK2W1sPbSYAjQUsWAOMRVD+P9i5Zw+i1PdtQzq1?=
- =?us-ascii?Q?p1B64F1k+d9VR8tW2zngNVXrB+34fHQqXonAqA6z5FDfKHbzff9mbxPZzrz2?=
- =?us-ascii?Q?8H4mKvsoSTPqp1P1ffHRDZYztmj1VXlbaSxVfL+1/1Cpmp0oK1DkuxuIt2rB?=
- =?us-ascii?Q?9DAGnZ6lKxCFhCGS8RInvgbttfx3OblNDw3WX5kgg7joR0b/gvICsr0/4KF4?=
- =?us-ascii?Q?mLrYecFcVyKlZIzYGhJQ7oV5/4VBXUnAD/KjFJcbOMbH0boTy38rMHlY9fIG?=
- =?us-ascii?Q?c3avfrb/8QQ0Xa3vNnUPV3Gj6UgsRLZC0RGOTY9oFde4P5VBTVMsgxuHBLWj?=
- =?us-ascii?Q?eF7N68fsQAOsoPYUn7lVefm/ru/74ROdJuJDVyzCW1/LJqfRBOGpEEw88PP5?=
- =?us-ascii?Q?chKANSrtt8KRzwpDOug9QrploGWkYFDwJTekgcDrFgTcLb1rqtybD6BEMdEo?=
- =?us-ascii?Q?X57LWYsuSicZaa2ZpHDPYvYht4VRUFIdHZF9xgVRIchxCIv1HLg14/kP9lb1?=
- =?us-ascii?Q?0ng30UswQqUKQZoP3j7UiTxqtYZPdv86URxapH/SBqhXUZz9O3wHCujEzMfO?=
- =?us-ascii?Q?F8BirsAzMwGl6s2iRPzguJkC6baimt4=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE55E42669B;
+	Fri, 27 Feb 2026 14:45:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772203532; cv=none; b=Uzk/P9/QzOlhSCcz6LG3baS5/+qLrk7A+sH7xqVOOqRahB42U1S3YymB0VFz7OU6Kn8SNgUrV8zkfw/aDQiKKfpIwUYIxDoN0zgNbZhJGDDzrF3LoYI+ouFoqyMjVKZBgWjYfdPK/df/VYA3sQjFSW7zGLBWhOYqGtpD+vErcw0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772203532; c=relaxed/simple;
+	bh=GWljyIJTzepTA8IxUMxaJgHKXtmwGk55UDR8re5N4jU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Iic1LZQaqc0ws2FGKdXOFpb54+Fk2mGt+dRI58JpVpG4dUp8x7CaSzhLwdNNMKrlccg91kIvFmlIMXrscwjXpWVqg2cUZlOpc8O6FGaHVeI3X/iboCO06w4d9w7hdnK6dnbuxk8dRoS34Vywds9dyihbP/8YILJFV+JwA0w258Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=pkitHSgw; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61RCCXLK2582842;
+	Fri, 27 Feb 2026 14:44:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=vv6I0k
+	y+vPPs0At65EIiqJlz5ngSThX4t8eVUQua22s=; b=pkitHSgwPEC4BLFFExJyoN
+	frl47XfH3xBEp9RlR6L9JmpQyI0aTZKXwXaYirvFpzvhJONWIjBryT8H3DL/KKUT
+	I9wpjg//ptjJ8eeL0zwKUAXTwZcTycm9mkNH5Nf3Dr+45kbYM5xrogfyzjRwuPYx
+	/jvOxj9+yxZUyVHcL7/336/x2EKtEIGgaciXWCpYqbdJ9xU4Z2/gNvcWo83SOUNL
+	fYXzL7vIMiAqlthTKV+NTKYv9vhmb2qWVkuIA28obOVMZTHAWki/4VPl0WCjQ14D
+	7cKVMuY8dLVfR33+XEbVkptJphb1HZolSmeMl+GlMoayC0f6Xrun8wGqtcWSohxw
+	==
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4cf24gvchh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Feb 2026 14:44:20 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 61RB1Y5V030414;
+	Fri, 27 Feb 2026 14:44:19 GMT
+Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4cfrhktjbb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Feb 2026 14:44:18 +0000
+Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
+	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 61REiErm40894766
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 27 Feb 2026 14:44:15 GMT
+Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id CE00B20043;
+	Fri, 27 Feb 2026 14:44:14 +0000 (GMT)
+Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 8F9C520040;
+	Fri, 27 Feb 2026 14:43:57 +0000 (GMT)
+Received: from [9.124.211.61] (unknown [9.124.211.61])
+	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 27 Feb 2026 14:43:57 +0000 (GMT)
+Message-ID: <19cf18b5-362d-4ff2-8b85-e2e72809250c@linux.ibm.com>
+Date: Fri, 27 Feb 2026 20:13:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY6PR01MB17377.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc4e0b01-f0fb-4e3b-a882-08de760d0aa9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2026 14:32:31.8342
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IRelGP1x3fyeqFA4oeKPHYu+5t6P8osBNG5GcSwMt4Obc5L4Qda95jm729Ppg4KN/xU0PyoKjlnJUiwtswsl+Dlh9zbi4vy1nRZvC6Bds/U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB14563
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/5] crash: Use crash_exclude_core_ranges() on powerpc
+To: Jinjie Ruan <ruanjinjie@huawei.com>, corbet@lwn.net,
+        skhan@linuxfoundation.org, catalin.marinas@arm.com, will@kernel.org,
+        chenhuacai@kernel.org, kernel@xen0n.name, maddy@linux.ibm.com,
+        mpe@ellerman.id.au, npiggin@gmail.com, chleroy@kernel.org,
+        pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+        alex@ghiti.fr, tglx@kernel.org, mingo@redhat.com, bp@alien8.de,
+        dave.hansen@linux.intel.com, hpa@zytor.com, robh@kernel.org,
+        saravanak@kernel.org, akpm@linux-foundation.org, bhe@redhat.com,
+        vgoyal@redhat.com, dyoung@redhat.com, pmladek@suse.com,
+        rdunlap@infradead.org, dapeng1.mi@linux.intel.com, kees@kernel.org,
+        paulmck@kernel.org, lirongqing@baidu.com, arnd@arndb.de,
+        rppt@kernel.org, ardb@kernel.org, leitao@debian.org, jbohac@suse.cz,
+        cfsworks@gmail.com, ryan.roberts@arm.com, tangyouling@kylinos.cn,
+        ritesh.list@gmail.com, hbathini@linux.ibm.com, eajames@linux.ibm.com,
+        songshuaishuai@tinylab.org, samuel.holland@sifive.com,
+        kevin.brodsky@arm.com, vishal.moola@gmail.com,
+        junhui.liu@pigmoral.tech, coxu@redhat.com, liaoyuanhong@vivo.com,
+        brgerst@gmail.com, fuqiang.wang@easystack.cn, x86@kernel.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
+        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, kexec@lists.infradead.org
+References: <20260226130437.1867658-1-ruanjinjie@huawei.com>
+ <20260226130437.1867658-4-ruanjinjie@huawei.com>
+Content-Language: en-US
+From: Sourabh Jain <sourabhjain@linux.ibm.com>
+In-Reply-To: <20260226130437.1867658-4-ruanjinjie@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Authority-Analysis: v=2.4 cv=TNRIilla c=1 sm=1 tr=0 ts=69a1adc4 cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Mpw57Om8IfrbqaoTuvik:22 a=GgsMoib0sEa3-_RKJdDe:22 a=VwQbUJbxAAAA:8
+ a=i0EeH86SAAAA:8 a=FCicKRf1_97IgsoL-ogA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: udSiOUEwTIGg3568z9G18Y-U7dmzZ22v
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI3MDEzMCBTYWx0ZWRfX+rwqwLNyDm+7
+ Kajbzb/4AHH4a0DSb/UEdBx/rv6XBUQzSiid96euM8aA0Q6jzFDbCjQS4cfoJG/lcTutc53Mwb8
+ J1Yn/mbs+LpLsBVigvCFaUEB9UelGkME6/WqhQahftj0wGt8YxBmcWeNiTuwUzZ7m/dhUdzCdkP
+ jJlr6L/ZKn+tNqQ8wy32A8WWTz0FKbZJhOgWkkfCwa0eZhHM7zbnX7NTxrAReQR1OEYFtMyX8fS
+ 4mNzZB9aItG7Ksf1TukqcucNtKxQKiED5xIA5TMIce+USq1bXaJjT9y9zUtR5UCZbexVNoTt1fd
+ yDQjKAFfSMEaNjD74DlnFHPvy5L5dSXcfaPBuMQdrpKq7JW1HnWvIrE0uDcQHj5xsLRezCSwIzm
+ hiaRXveMvDdCSFq6eMKazmG6c8NOSzaWZFJtbzLan6djpFtrVRINIHqqiG7kScpI+m+rrUi38pC
+ HpLRaUjj93ZBhUOqE0g==
+X-Proofpoint-ORIG-GUID: RLOZoEp-Mbkrhtnbi26juVMkAhb1FcWs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-27_02,2026-02-27_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 adultscore=0 priorityscore=1501 impostorscore=0
+ spamscore=0 clxscore=1011 bulkscore=0 lowpriorityscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2601150000 definitions=main-2602270130
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269286-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[huawei.com,lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,suse.com,infradead.org,baidu.com,arndb.de,debian.org,suse.cz,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269287-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[ibm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,huawei.com:email,linux.ibm.com:mid];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sourabhjain@linux.ibm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_GT_50(0.00)[61];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 74CF31B916A
+	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_SEVEN(0.00)[11]
+X-Rspamd-Queue-Id: D94531B92B2
 X-Rspamd-Action: no action
 
-Hi Biju,
 
-> -----Original Message-----
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: Friday, February 20, 2026 9:49 AM
-> To: John Madieu <john.madieu.xa@bp.renesas.com>; Claudiu Beznea
-> <claudiu.beznea.uj@bp.renesas.com>; lpieralisi@kernel.org;
-> kwilczynski@kernel.org; mani@kernel.org; geert+renesas@glider.be;
-> krzk+dt@kernel.org
-> Cc: robh@kernel.org; bhelgaas@google.com; conor+dt@kernel.org;
-> magnus.damm <magnus.damm@gmail.com>; linux-pci@vger.kernel.org; linux-
-> renesas-soc@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> clk@vger.kernel.org; john.madieu@gmail.com; John Madieu
-> <john.madieu.xa@bp.renesas.com>
-> Subject: RE: [PATCH v6 11/16] PCI: rzg3s-host: Explicitly set class code
-> for RZ/G3E compatibility
->=20
-> Hi John Madieu,
->=20
-> Thanks for the patch
->=20
-> > -----Original Message-----
-> > From: John Madieu <john.madieu.xa@bp.renesas.com>
-> > Sent: 19 February 2026 22:36
-> > Subject: [PATCH v6 11/16] PCI: rzg3s-host: Explicitly set class code
-> > for RZ/G3E compatibility
-> >
-> > Program the class code register explicitly during PCIe configuration
-> > initialization. RZ/G3E requires this register to be set, while RZ/G3S
-> has these values as hardware defaults.
-> >
-> > This configuration is harmless for RZ/G3S where these match the
-> > hardware defaults, and necessary for RZ/G3E to properly identify the
-> device as a PCI bridge.
-> >
-> > Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> > ---
-> >
-> > Changes:
-> >
-> > v6: Collected Rb tag from Claudiu
-> > v5:
-> >  - Used field_prep for non-constant mask to fix test robot warnings
-> >
-> > v4: No changes
-> > v3: No changes
-> > v2: No changes
-> >
-> >  drivers/pci/controller/pcie-rzg3s-host.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/drivers/pci/controller/pcie-rzg3s-host.c
-> > b/drivers/pci/controller/pcie-rzg3s-host.c
-> > index c66532a3dae0..f7c23a56da5f 100644
-> > --- a/drivers/pci/controller/pcie-rzg3s-host.c
-> > +++ b/drivers/pci/controller/pcie-rzg3s-host.c
-> > @@ -1065,6 +1065,7 @@ static int rzg3s_pcie_set_max_link_speed(struct
-> > rzg3s_pcie_host *host)  static int rzg3s_pcie_config_init(struct
-> rzg3s_pcie_host *host)  {
-> >  	struct pci_host_bridge *bridge =3D pci_host_bridge_from_priv(host);
-> > +	u32 mask =3D GENMASK(31, 8);
-> >  	struct resource_entry *ft;
-> >  	struct resource *bus;
-> >  	u8 subordinate_bus;
-> > @@ -1088,6 +1089,13 @@ static int rzg3s_pcie_config_init(struct
-> rzg3s_pcie_host *host)
-> >  	writel_relaxed(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00L);
-> >  	writel_relaxed(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00U);
-> >
-> > +	/*
-> > +	 * Explicitly program class code. RZ/G3E requires this
-> configuration.
-> > +	 * Harmless for RZ/G3S where this matches the hardware default.
-> > +	 */
-> > +	rzg3s_pcie_update_bits(host->pcie, PCI_CLASS_REVISION, mask,
->=20
-> If it is RZ/G3E register specific, Maybe better to define this mask at
-> top level??
->=20
 
-Most drivers are using the same approach, defining the class
-instead of using hardcoded value, especially since the register
-is from specification.
+On 26/02/26 18:34, Jinjie Ruan wrote:
+> The crash memory exclude of crashk_res and crashk_cma memory on powerpc
+> are almost identical to the generic crash_exclude_core_ranges().
+>
+> By introducing the architecture-specific arch_crash_exclude_mem_range()
+> function with a default implementation of crash_exclude_mem_range(),
+> and using crash_exclude_mem_range_guarded as powerpc's separate
+> implementation, the generic crash_exclude_core_ranges() helper function
+> can be reused.
+>
+> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+> ---
+>   arch/powerpc/kexec/ranges.c | 16 ++++------------
+>   include/linux/crash_core.h  |  4 ++++
+>   kernel/crash_core.c         | 19 +++++++++++++------
+>   3 files changed, 21 insertions(+), 18 deletions(-)
+>
+> diff --git a/arch/powerpc/kexec/ranges.c b/arch/powerpc/kexec/ranges.c
+> index 6c58bcc3e130..e5fea23b191b 100644
+> --- a/arch/powerpc/kexec/ranges.c
+> +++ b/arch/powerpc/kexec/ranges.c
+> @@ -553,9 +553,9 @@ int get_usable_memory_ranges(struct crash_mem **mem_ranges)
+>   #endif /* CONFIG_KEXEC_FILE */
+>   
+>   #ifdef CONFIG_CRASH_DUMP
+> -int crash_exclude_mem_range_guarded(struct crash_mem **mem_ranges,
+> -					   unsigned long long mstart,
+> -					   unsigned long long mend)
+> +int arch_crash_exclude_mem_range(struct crash_mem **mem_ranges,
+> +				 unsigned long long mstart,
+> +				 unsigned long long mend)
+>   {
+>   	struct crash_mem *tmem = *mem_ranges;
 
-See RCar [1] and Mediatek [2] examples.
+update_crash_elfcorehdr() in arch/powerpc/kexec/crash.c still calls
+crash_exclude_mem_range_guarded(), causing a build failure. ld: 
+arch/powerpc/kexec/crash.o: in function `update_crash_elfcorehdr': 
+/root/linux/arch/powerpc/kexec/crash.c:454: undefined reference to 
+`crash_exclude_mem_range_guarded' To fix this: diff --git 
+a/arch/powerpc/kexec/crash.c b/arch/powerpc/kexec/crash.c index 
+898742a5205c..e59e909c369d 100644 --- a/arch/powerpc/kexec/crash.c +++ 
+b/arch/powerpc/kexec/crash.c @@ -451,7 +451,7 @@ static void 
+update_crash_elfcorehdr(struct kimage *image, struct memory_notify * 
+base_addr = PFN_PHYS(mn->start_pfn); size = mn->nr_pages * PAGE_SIZE; 
+end = base_addr + size - 1; - ret = 
+crash_exclude_mem_range_guarded(&cmem, base_addr, end); + ret = 
+arch_crash_exclude_mem_range(&cmem, base_addr, end); if (ret) { 
+pr_err("Failed to remove hot-unplugged memory from crash memory 
+ranges\n"); goto out; With the above change included, things are working 
+fine on powerpc.
 
-[1]: https://elixir.bootlin.com/linux/v6.19.3/source/drivers/pci/controller=
-/pcie-rcar-host.c#L448
-[2]: https://elixir.bootlin.com/linux/v6.19.3/source/drivers/pci/controller=
-/pcie-mediatek-gen3.c#L451
 
-Regards,
-John
-
-> Cheers,
-> Biju
->=20
-> > +			       field_prep(mask, PCI_CLASS_BRIDGE_PCI_NORMAL));
-> > +
-> >  	/* Disable access control to the CFGU */
-> >  	writel_relaxed(0, host->axi + RZG3S_PCI_PERM);
-> >
-> > --
-> > 2.25.1
+>   
+> @@ -604,18 +604,10 @@ int get_crash_memory_ranges(struct crash_mem **mem_ranges)
+>   			sort_memory_ranges(*mem_ranges, true);
+>   	}
+>   
+> -	/* Exclude crashkernel region */
+> -	ret = crash_exclude_mem_range_guarded(mem_ranges, crashk_res.start, crashk_res.end);
+> +	ret = crash_exclude_core_ranges(mem_ranges);
+>   	if (ret)
+>   		goto out;
+>   
+> -	for (i = 0; i < crashk_cma_cnt; ++i) {
+> -		ret = crash_exclude_mem_range_guarded(mem_ranges, crashk_cma_ranges[i].start,
+> -					      crashk_cma_ranges[i].end);
+> -		if (ret)
+> -			goto out;
+> -	}
+> -
+>   	/*
+>   	 * FIXME: For now, stay in parity with kexec-tools but if RTAS/OPAL
+>   	 *        regions are exported to save their context at the time of
+> diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
+> index 033b20204aca..dbec826dc53b 100644
+> --- a/include/linux/crash_core.h
+> +++ b/include/linux/crash_core.h
+> @@ -68,6 +68,7 @@ extern int crash_prepare_elf64_headers(struct crash_mem *mem, int need_kernel_ma
+>   				       void **addr, unsigned long *sz);
+>   extern int crash_prepare_headers(int need_kernel_map, void **addr,
+>   				 unsigned long *sz, unsigned long *nr_mem_ranges);
+> +extern int crash_exclude_core_ranges(struct crash_mem **cmem);
+>   
+>   struct kimage;
+>   struct kexec_segment;
+> @@ -88,6 +89,9 @@ extern int kimage_crash_copy_vmcoreinfo(struct kimage *image);
+>   extern unsigned int arch_get_system_nr_ranges(void);
+>   extern int arch_crash_populate_cmem(struct crash_mem *cmem);
+>   extern int arch_crash_exclude_ranges(struct crash_mem *cmem);
+> +extern int arch_crash_exclude_mem_range(struct crash_mem **mem,
+> +					unsigned long long mstart,
+> +					unsigned long long mend);
+>   
+>   #else /* !CONFIG_CRASH_DUMP*/
+>   struct pt_regs;
+> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+> index 96a96e511f5a..300d44ad5471 100644
+> --- a/kernel/crash_core.c
+> +++ b/kernel/crash_core.c
+> @@ -287,24 +287,31 @@ unsigned int __weak arch_get_system_nr_ranges(void) { return 0; }
+>   int __weak arch_crash_populate_cmem(struct crash_mem *cmem) { return -1; }
+>   int __weak arch_crash_exclude_ranges(struct crash_mem *cmem) { return 0; }
+>   
+> -static int crash_exclude_core_ranges(struct crash_mem *cmem)
+> +int __weak arch_crash_exclude_mem_range(struct crash_mem **mem,
+> +					unsigned long long mstart,
+> +					unsigned long long mend)
+> +{
+> +	return crash_exclude_mem_range(*mem, mstart, mend);
+> +}
+> +
+> +int crash_exclude_core_ranges(struct crash_mem **cmem)
+>   {
+>   	int ret, i;
+>   
+>   	/* Exclude crashkernel region */
+> -	ret = crash_exclude_mem_range(cmem, crashk_res.start, crashk_res.end);
+> +	ret = arch_crash_exclude_mem_range(cmem, crashk_res.start, crashk_res.end);
+>   	if (ret)
+>   		return ret;
+>   
+>   	if (crashk_low_res.end) {
+> -		ret = crash_exclude_mem_range(cmem, crashk_low_res.start, crashk_low_res.end);
+> +		ret = arch_crash_exclude_mem_range(cmem, crashk_low_res.start, crashk_low_res.end);
+>   		if (ret)
+>   			return ret;
+>   	}
+>   
+>   	for (i = 0; i < crashk_cma_cnt; ++i) {
+> -		ret = crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
+> -					      crashk_cma_ranges[i].end);
+> +		ret = arch_crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
+> +						   crashk_cma_ranges[i].end);
+>   		if (ret)
+>   			return ret;
+>   	}
+> @@ -331,7 +338,7 @@ int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
+>   	if (ret)
+>   		goto out;
+>   
+> -	ret = crash_exclude_core_ranges(cmem);
+> +	ret = crash_exclude_core_ranges(&cmem);
+>   	if (ret)
+>   		goto out;
+>   
 
 
