@@ -1,62 +1,66 @@
-Return-Path: <devicetree+bounces-269379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269380-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IHcfEsnVoWlcwgQAu9opvQ
-	(envelope-from <devicetree+bounces-269379-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:35:05 +0100
+	id sNJoFGHWoWlcwgQAu9opvQ
+	(envelope-from <devicetree+bounces-269380-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:37:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FD2D1BB843
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FBB01BB86F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:37:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B23231664AD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:31:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE0FB3053DD9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:33:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B1043D50C;
-	Fri, 27 Feb 2026 17:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5532343DA56;
+	Fri, 27 Feb 2026 17:33:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ThvwsFHv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fWFy41pT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1512743CEEF;
-	Fri, 27 Feb 2026 17:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B03C41323A;
+	Fri, 27 Feb 2026 17:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772213471; cv=none; b=U1qqtTIZ+AtJM9WzZKe4pX/TU9qHFNPjCiS6H/Mv2orufF6xfZW9eH6HcGoIZQC7nNV5I329MFastsW33P55I1ltjKW1DIzYtVL1lbcFkDCmaNVW0DaajwYeBB6SGwouB45v+OPLnuiPPHRY2u5jZBipsHe8+H58XfLZWvU0ATE=
+	t=1772213612; cv=none; b=Aj6xf5tBnvzuRHaQkK4A2zuMhlb9kykwcJ18y1NqUcMZUynV8TNSQcBQXFj6wmhq31h/LDFxECoS83te2c4Z1HRAsF85UgWmeJ8BOnW3Qhuay727qah+npBEQSlekisoc/FA+4v82QYM6usZkwj41/sd78vs3hkHWol5OIu5iBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772213471; c=relaxed/simple;
-	bh=+kQN8hx2nUovoqqKkfYdch+3i2snTC4fUUuhOffl+Ng=;
+	s=arc-20240116; t=1772213612; c=relaxed/simple;
+	bh=RWIw2XbMdqDRicGEL0YDWL0cD+Khc6u5UWrGRAKiQU4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LMzK2+jJCnWvsKVP3m7UPyvoGZXXyRIC1SzNRaWW2YfEYoqD7bEawFO+iHD9Ys/5t8J3mZ6WWEErO52h9m5EHWhSQo85dVcxisZnzQbH6KZR/ZVrpVSSKB0mHxifIEA0jbAb2NTFQPVobjv22HtJZ56pYVh2PhXkCpXDzJ0hHKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ThvwsFHv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D885FC116C6;
-	Fri, 27 Feb 2026 17:31:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CWo4s5+HfnjTltC/EB30vf/8KKBDA07xPBj+5SMbhR+7emfTXdTfFSWyQyLxaWcTw9eQTcQsjgFcxPwS9gl0x0uSN+YSK0CWDWro29oS1U6TUZJyAGo0zG6EgVrH/1GtvkYUlzT1Ci14nFsrDtOM+GoRuy3VLHwrn5jeeaExWHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fWFy41pT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C973C116C6;
+	Fri, 27 Feb 2026 17:33:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772213470;
-	bh=+kQN8hx2nUovoqqKkfYdch+3i2snTC4fUUuhOffl+Ng=;
+	s=k20201202; t=1772213611;
+	bh=RWIw2XbMdqDRicGEL0YDWL0cD+Khc6u5UWrGRAKiQU4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ThvwsFHvfP5CcvaWwMjoXaBAxrEliA0Lfs650S8dgdLX1Xh5jhu5yO4Q1LULgCTUy
-	 2rMCOkqdOUKEqVLsBdUmglCXziJ9kHMqELZRb1OJc7sa5jZcA0+80ODM60Hvk52tKu
-	 ++GFqUcAN18czydcHQV/g7ufKCZ5rndk5d4kD++ioI68Ly5pgleaWCBqJcAGIXa1xU
-	 Afa88JMRngWQ7h6+ltNo0I1lo4aDuousOa2QYvGRI5fvuM/K6dhZzyW9CtwBIX4r6/
-	 OxTmNGfp4ZudbQ9Kj2G/yr1Xfgj6YuTpXeOmJjNz1wfjZ+gBmZPulkopvHljTvbhlk
-	 6ZfgSB4zyaj6g==
-Date: Fri, 27 Feb 2026 17:31:06 +0000
+	b=fWFy41pTOMD/9pJ517nQN5PTE0puGxWrnW1MFm0j0g9Lss2dfK/1U8XdJCfMJBnmX
+	 jCgWj0Msb3BLjiNHfnf1u9bjKPnBzYg3dgHnDjlMG7OPHizjPZAYVV77McRu9Morv0
+	 i5K8UmA7AoN8x6AdMHIzi8wQqBAWaugmrFnwFmNKnoLCBAvCM7Dy36z1OJ/8tbkZHS
+	 vZvvUSu1flSeLNMN8UJWZEzpa1ON3I0Tiwu2AIehj2eC0MnCKJ0dZLEqDvv0PjqF/c
+	 coEMNWEvZdTL0uS46TibvhXU18GjUghGYiG6/5DUhWaQd5avReNJeMM9jI9skkBmby
+	 Q9Nkc73XwOcHg==
+Date: Fri, 27 Feb 2026 17:33:27 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Waqar Hameed <waqar.hameed@axis.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Haiyue Wang <haiyuewa@163.com>
+Cc: linux-aspeed@lists.ozlabs.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@axis.com,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/2] dt-bindings: power: supply: Add TI BQ25630
- charger
-Message-ID: <20260227-percolate-armful-ac15f947b2ff@spud>
-References: <cover.1772201049.git.waqar.hameed@axis.com>
- <65f55d19b4bcf8f07300df5922ba1605bb669138.1772201049.git.waqar.hameed@axis.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil+cisco@kernel.org>,
+	Jammy Huang <jammy_huang@aspeedtech.com>,
+	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: ast2600: Add reset definition
+ for video
+Message-ID: <20260227-smooth-carefully-f427e242ce58@spud>
+References: <20260227151602.829-1-haiyuewa@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,161 +68,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qVBVKByzpOXcn9gg"
+	protocol="application/pgp-signature"; boundary="/NuwEW3VcqbDOFRB"
 Content-Disposition: inline
-In-Reply-To: <65f55d19b4bcf8f07300df5922ba1605bb669138.1772201049.git.waqar.hameed@axis.com>
+In-Reply-To: <20260227151602.829-1-haiyuewa@163.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269379-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269380-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[163.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,6b:email,devicetree.org:url,ti.com:url]
-X-Rspamd-Queue-Id: 9FD2D1BB843
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9FBB01BB86F
 X-Rspamd-Action: no action
 
 
---qVBVKByzpOXcn9gg
-Content-Type: text/plain; charset=iso-8859-1
+--/NuwEW3VcqbDOFRB
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 27, 2026 at 04:35:33PM +0100, Waqar Hameed wrote:
-> Add devicetree bindings for the TI BQ25630 battery charger. It's I2C
-> controlled and sends interrupts.
+On Fri, Feb 27, 2026 at 11:13:14PM +0800, Haiyue Wang wrote:
+> Add ASPEED_RESET_VIDEO reset definition to the ast2600-clock binding
+> header. It is required for proper reset control of the video on the
+> AST2600 SoC for aspeed-video driver.
 >=20
-> Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
+> Fixes: e83f8dd668ea ("media: aspeed: Fix dram hang at res-change")
+
+How can a binding change be a fix for a driver one?
+
+> Signed-off-by: Haiyue Wang <haiyuewa@163.com>
 > ---
->  .../bindings/power/supply/bq25630.yaml        | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/bq2563=
-0.yaml
+> v2:
+>   - Fix checkpatch.pl warning, and send dt-bindings as single patch as
+>     the submitting-patches guide.
+> v1: https://lore.kernel.org/all/20260227123837.70079-1-haiyuewa@163.com/
+> ---
+>  include/dt-bindings/clock/ast2600-clock.h | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/bq25630.yaml =
-b/Documentation/devicetree/bindings/power/supply/bq25630.yaml
-> new file mode 100644
-> index 0000000000000..57e4286dac7e9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/bq25630.yaml
-
-Filename is missing "ti," to match the compatible.
-
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/bq25630.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI BQ25630 battery charger
-> +
-> +maintainers:
-> +  - Waqar Hameed <waqar.hameed@axis.com>
-> +
-> +description: |
-> +  I2C controlled single cell Li-ion and Li-polymer 5A buck charger.
-> +  Datasheet: https://www.ti.com/lit/gpn/bq25630
-> +
-> +allOf:
-> +  - $ref: power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,bq25630
-> +
-> +  reg:
-> +    const: 0x6b
-> +    description:
-> +      Device I2C address.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: |
-> +      Device sends active low 256 =B5s pulse. Type should therefore be
-> +      IRQ_TYPE_EDGE_FALLING.
-> +
-> +  monitored-battery: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - monitored-battery
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    bat: battery {
-> +        compatible =3D "simple-battery";
-> +        voltage-min-design-microvolt =3D <1800000>;
-> +        constant-charge-current-max-microamp =3D <1344000>;
-> +        constant-charge-voltage-max-microvolt =3D <3700000>;
-> +        charge-term-current-microamp =3D <128000>;
-> +        precharge-current-microamp =3D <1000000>;
-> +    };
-
-This whole battery node can go, the tooling will falsify the phandle.
-
-I wouldn't ack this anyway cos you're looking for RFC feedback, but the
-binding looks pretty sane (although when it's simple enough it should!).
-Marking it cr from a dt pov cos of the filename.
-pw-bot: changes-requested
-
-Cheers,
-Conor.
-
-> +
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        charger@6b {
-> +            compatible =3D "ti,bq25630";
-> +            reg =3D <0x6b>;
-> +            interrupts =3D <13 IRQ_TYPE_EDGE_FALLING>;
-> +            monitored-battery =3D <&bat>;
-> +        };
-> +    };
-> +...
+> diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindi=
+ngs/clock/ast2600-clock.h
+> index f60fff261130..7b9b80c38a8b 100644
+> --- a/include/dt-bindings/clock/ast2600-clock.h
+> +++ b/include/dt-bindings/clock/ast2600-clock.h
+> @@ -124,6 +124,7 @@
+>  #define ASPEED_RESET_PCIE_RC_OEN	18
+>  #define ASPEED_RESET_MAC2		12
+>  #define ASPEED_RESET_MAC1		11
+> +#define ASPEED_RESET_VIDEO		6
+>  #define ASPEED_RESET_PCI_DP		5
+>  #define ASPEED_RESET_HACE		4
+>  #define ASPEED_RESET_AHB		1
 > --=20
-> 2.39.5
+> 2.53.0
 >=20
 
---qVBVKByzpOXcn9gg
+--/NuwEW3VcqbDOFRB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaHU2gAKCRB4tDGHoIJi
-0sSdAP96U45vLk+yncOzGl+zVZkQKMeK0L3cY7aeZWiSalffEgD/Qrmx3FrByUwK
-RaxD2MkEyd5p8/5LwuIlOud6yHB7kg8=
-=Fo/2
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaHVZwAKCRB4tDGHoIJi
+0v8lAQCW2Ed+aChACjPUAODW7TWzNWwDP3rAPWm+A2fLCUB3DgEAik6lKaZxDq1I
+c8ghmP/y1HVCuZ5bT0LrcmzClD0egQw=
+=o4Ct
 -----END PGP SIGNATURE-----
 
---qVBVKByzpOXcn9gg--
+--/NuwEW3VcqbDOFRB--
 
