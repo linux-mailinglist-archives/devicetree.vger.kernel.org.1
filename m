@@ -1,212 +1,380 @@
-Return-Path: <devicetree+bounces-269361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269362-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mI30F+3NoWkGwgQAu9opvQ
-	(envelope-from <devicetree+bounces-269361-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:01:33 +0100
+	id MGSCEbrNoWn3wQQAu9opvQ
+	(envelope-from <devicetree+bounces-269362-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:00:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6CE1BB237
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:01:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4491BB216
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 18:00:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 98FCF30A3CF7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:59:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C2A033060B15
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF0B350A3D;
-	Fri, 27 Feb 2026 16:59:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCE3356A2B;
+	Fri, 27 Feb 2026 17:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="NtH9KKuw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HpsN0kU0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012069.outbound.protection.outlook.com [52.101.66.69])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F4C346AF4;
-	Fri, 27 Feb 2026 16:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.69
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85013242BD
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 17:00:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.44
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772211543; cv=fail; b=V47t/OLDlcFexvadaV59z11DefgB6V8IhA9sODbToJQxIKwFe4vDoDCdp4ccdolwE/qp3so/Z53385zpYP6tI8bDxY6LqS/cyaoyHi4itp+Tlce7Vl80k334TvKIn4oziU7iLGHWll0By9nqLrPwnHnLOmSTY5jcJBWhxNFSy9Q=
+	t=1772211632; cv=pass; b=cx3xn4YVtEsGePQOWtBGquiHzK7SVjupq5xUTFOGBBvchY36o8YYsfFRTxTb8i6sB0lai/MMRfuHYzLTwuIw/bblSD71Aowdgshe3Ye+S9/VuvVv0H7K2PeWzOoEzypBixBkGPaVzdTevyrEo7VPKvlX873wk8gXx8wCkS0TaKs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772211543; c=relaxed/simple;
-	bh=kKPWPRY4TE3lNb6aQ2vXxbon5ZylFd1HJ7HO1klf6ds=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=t5PxgVVTryUm0dRSWgDHI8+iDk0eMZBnR1TXXLy4fGtl1Jqe+CjniFJd9e0dxKeqm03yeubkkaBo4/at6ks1XQ1v0kSrMVBoB7PDqJbrXDnMvr/0IFbULxvhpldmpj9SukML2EC8yqK0TuKj6R6OyJ4/r6oKzwAjZKQvaEKhVcU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=NtH9KKuw; arc=fail smtp.client-ip=52.101.66.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sIiYXM7VFu42mFCUnwlMnWDVsT/rGQXfPoBZNhUWT2MZCgnYXqdo8ifllJA9rEqJnALqlmnOQGe4ur5cxw9VOXWRQfuuAAw1fdNj3itJPn4wVmW3gmoDH6MWznpPRyvLxlHfagUJYB5B1/hxTD4v+bIKlgeTOxnN2DdONt5/0mDyBb2rADUVx6R/Dl4CWhz80itrGzteBaAul+r99GlIoKoxjgQ126h5MQy4u3sRJ+ng4JaSskA+D+E//qHnEAt9tVbcfoDMWTKRQ+dKHEXTosTZ1DZlF0OXZWEIgxy8ulFPWltbzYTAdumEVOjCwMyD2jnveHL96jCx7vpPCz5g6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f45aZtpy3cTeVT1UQXxlzhxfsH0SvbAoPnonEW3BDkE=;
- b=PGx2kdnYej0B06ljxDnKpjpdIxhP5n/hRXFSjcw+AVwr7aVxD7ZspNnHnrm/v0GXPQnyiCLbxclu2e2QOp5zOkns50xRRUvP9SmF5l1jdp2fHQsHKO9c14fqjgMJiI5zZO7BLN1lfKy6MrLdUvXXmIhCMxC88OoRvOKmG5CyEC9n1tj/7eFQs9U+Qo5qh5FHKFDt+Nb8f8CjxDm1exBOJIImIEBN2dKtptZ06PkW/yvqfaNKccTvhYQ5jqp4MCD+E/o095jclqZLeMA+2n0MbPka8FncvpIWV/4Amf09RXJhjy6bh7IC6inJ5zo461ooY0TVIKS/O2q/RyqQLQRPaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f45aZtpy3cTeVT1UQXxlzhxfsH0SvbAoPnonEW3BDkE=;
- b=NtH9KKuwHCJjgfwo+1/4C33hWfc7hAVAIS3gRsyjO/vqM7y6XSUnU2fs+i6tCfBGAv9dJgw+SgSWX4p3Gsn2nTbGPUU7BDymEC8fI+Hf0WCiOD5QM7jMTIwUskWv556ricBKqtPzv8sOhJyVZAJV2V5zLTb2ja2IhdbGKABG6d/sg9ylEoHxllXLPHxNwFp8dgAt4apz6M0Ndtq+mUnuoDoz+/Bu9FavyM+1nR9eULR2MT5cwxGuGNfPsBcsgW/7aQV5uLVdEEjkOdjHz4EpEGS2b9iv+S1vhdsrGxl4/0sPxZnKkYUytb0kx4lDqpw9XGQXBVdEOqVNrO2LEqq7Wg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU0PR04MB9372.eurprd04.prod.outlook.com (2603:10a6:10:35b::7)
- by VI2PR04MB10148.eurprd04.prod.outlook.com (2603:10a6:800:224::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
- 2026 16:58:56 +0000
-Received: from DU0PR04MB9372.eurprd04.prod.outlook.com
- ([fe80::4f6:1e57:c3b9:62b4]) by DU0PR04MB9372.eurprd04.prod.outlook.com
- ([fe80::4f6:1e57:c3b9:62b4%4]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
- 16:58:56 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Robin van der Gracht <robin@protonic.nl>,
-	Andy Shevchenko <andy@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev,
-	Frank Li <Frank.Li@nxp.com>
-Subject: [PATCH v2 1/1] dt-bindings: auxdisplay: Use unevaluatedProperties to fix common property warning
-Date: Fri, 27 Feb 2026 11:58:34 -0500
-Message-ID: <20260227165836.3445577-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.43.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0044.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::19) To DU0PR04MB9372.eurprd04.prod.outlook.com
- (2603:10a6:10:35b::7)
+	s=arc-20240116; t=1772211632; c=relaxed/simple;
+	bh=I4x6DOk2cPSVl5wi5wU4uIp+LHt0Dmmaq3gwfuy85kU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GbFq+Jr8tTtutIvkiYqRGTZRmnRYuT4LwRUznZULJ7sMffZLMBQZRX3CefmHnB3l/hitR32B7K52fqdITd76h/QiFrv3sVhqiLybTlsfGDKA0TpiiOgDG4qPL4+UGGN4L/S8om+hkjekQzsOl13rCF/YbOocStQdBHgOzW2IaL0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HpsN0kU0; arc=pass smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-65c5a778923so3685433a12.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 09:00:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772211629; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SZuM9l171kOy1I2XDaOr13bomItU9wpl5VW1Nz5rPm/lzuHkIjhRy3jeGnPxbkUsTR
+         to+1gbCB8P8WPpWQZocNN0PSi5AQWrAtiha7BT0+otX1EJk+xmz6oXzgGuy2nALWuTV0
+         RpQR0nLl4L+ghyML8EHN3onjTXQvC8oLb35GJiXSAi87N3CDw0G5g0ofxsM8xuizZydf
+         O6L3bomanhudwu1Co/8zk1KuXLsV7tAxdYSvMK7NYbz29lJtuziCj2MfjtBDINqe+G8k
+         b+Sdko8fF+EHyp03KNhbdDlOLzRpWZzvROjmx8MnKXlxr/9+xyVJBY/8bYe/o3qjKWVQ
+         wSNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=hLWMlnv2U7TOk00daGoljagYqYJc1c1eO9SPI/R+a/4=;
+        fh=pksuLEazetzuksbrDBaYUUYJpzN2bd5jCgMv1SxAVp0=;
+        b=Bi5BsThVmHr/pxUbtKPN0SmLtLErCgA1DOqyGVLaXQxCCjVKMm4M6OufV+tqmhKfx0
+         TOP+J3XuZyfNqdleW+UBTiD5SyvWQWQfZ46pT8T8xiwn5+q0vYXia3GAFiFdKmRQPw6/
+         Fn0fG5bL2g28fh0/cCyffK97NoXAaSMaJTvwRwXpxUqEsGdRBL5oN7/3uB9B+363evAA
+         3aEqqwlvmMgZEquET5SWbNNbVgp5g3nIN0dmlnnN/wFIJIt+0jzoBaYBrFK1y1lYLviq
+         40H/xCxGiHT1yDpBP4bFjdsRbdT/A/ipCqsCmgKjOgOYVI6HkidsSIlDCQMQF1pPl76K
+         I5iA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772211629; x=1772816429; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hLWMlnv2U7TOk00daGoljagYqYJc1c1eO9SPI/R+a/4=;
+        b=HpsN0kU087m9Xadit0IMPsvIRTD6UWJvZPU+dlPVDgfpBRZ/A/R0RaCwbXxqrQbSxM
+         m16n3bo+1Z+JYz8XXNDHta0PFMc5k0gcS909oCpz757jm9Pr8OHeXmXVnyXj7r9yP7Us
+         1SlYwZnVw9eIrRXdmIKtckn9siLharOJsyCrPpmZhvGpjI0oj4IHse8bRawlM20GAfDS
+         4wTt5HcMrB4uXYAZODMKAo8uyZF9QkdMcUn1pQN0bZ5rpUWMrbDkolik0hKTaiMGPlVD
+         R+60z2o1lJtcbrBZcOh1BAXJ5sVRZaw5DpQImCqxe1+6rwS2mU04KmnFHQ+DHvZN3zOJ
+         gB1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772211629; x=1772816429;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=hLWMlnv2U7TOk00daGoljagYqYJc1c1eO9SPI/R+a/4=;
+        b=XHejI/w2gV40TbWivdQuYjZfZrnm6vlHirCfTBZFITQpJEvCjNZq3gv72VtN03CrBt
+         16Ht2LC8CCMS3ZXWZYSZDo1rswH5tH8VjnkA28h1XSmFYT3lLpVihx6RHNJU8o+sRGEF
+         TJWPjwmMDDEJOgqJ4j+XWTXN8tdU06LPdnUnmrs73cw4EmgvfNCxWnyqLsWyFQdlPu0j
+         16S0vwZYRy5ryTZE3Fzgbg51DPyZgwQzM/LHcaGUlVycV+aSSIYj22eClO9ZIC+CXnmW
+         UcIr4b+h+fxAMrReg51HBRe6ojHCoJeXzK6KsmvJRyZgbgxVb/hQWPzW4C6LnCchkKvD
+         xfoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVaU3RcNynru1cgO2D6GPEv6E1UslD+MWMCrEiYSC4bSIx2UvqYAbUpZMVr+HS+A0SuBDhmCydrYA+n@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpzFiXNSI29zNOKle+vnObDVqpeAS/zqXEFt20sFapVSLlfKXY
+	cxaOfDjI9qAqTcO2NYHCC6BtbGyCelo3IEDwrRh6zpN1CULNhk5M9DB27KPXF9cRE8Xah+hx1gm
+	zN6U0aVvsRD4+dNLKXOmqcELpEi+5jQXV7L/ki6cONw==
+X-Gm-Gg: ATEYQzz9w2xmUHXIQl4ys3KlSTleLePRAIhxPKpgpU+Ll6RJ6Fajxwd18YfsRETNefh
+	5rfh9DrLh1yRQgTf/gcP8UCpK/sHhkXbOjmTSLpqMQXfc/UrbBHC6p9yyI9fm8WMkA963yHgN9c
+	lNyomNmub+aNF1fFEaSdLppstB+riDaC46bflhWfEJcer4n1uQ4t4hDrX9Z2CK3kfql3jd68AxY
+	YsUvh8inYlpQQ3q95Sl4mjEfoF7cMWbyp8iJJxOVAIenIvqbFyLNg9Ak8OqqXDsZ4mKiPFGEC0g
+	zfmR//4feuFpL1r1lnLCTClnPmvaBDxG
+X-Received: by 2002:a05:6402:1e8e:b0:658:d18e:e8 with SMTP id
+ 4fb4d7f45d1cf-65fde4c92e6mr2188556a12.27.1772211628966; Fri, 27 Feb 2026
+ 09:00:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9372:EE_|VI2PR04MB10148:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b7590a9-86a8-473d-9d5f-08de76217e96
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|19092799006|7416014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	4ynDJBTCdID6D8Omr34CH5ATZzU+eO6UhDDJQLOf7UrZPlKy77uCl1OMerwufmqZs8nHMvSsb1ZYBNSK+4csQtiFuzFCx8esvR4g5OQV57Wa36+6iqlvoE1gxN4WxlMPmTrUfAwyX9xU1Cjjhtpd2twz/bilFK1fs2l4XVFz7f1EMfr9w3mgMKDKlKKzDKlXhZaRXB2fGynTL9pQdZY6n8d+npZHX3WQNVKolqlibVr9+7i+Q9B71raU6lGVxB4dmlPUBWFKm2lSzsqN5DbeqBBlT3UdNgHHxBXGuqQoiBxYHrQrE1mzTaUPckZIRC45H4pnTEg4oeQOOlpWBJmwt9xfiXCaXFA9dRkQNbfTDKD5EBLrMZRURcgV4KtfU/jIiZyTtTSXXqZhNnxK2GGJbs2/FMVerQjctWCII9aSvtr/7nmCp6+gJ9T/CLthXrWclbbqYSdIqO+SIjoReMttOlpNk3b3QAcAb8p/kPGgpO4y47a5jajmq0uOc9nnP+h0wj9Iocm1/nHpIjNnXtKLHXkwlujYvhp+DQBeCk3VtoV2nX7CBwlNspam+q3ratv4vBqjLTuZgmQb4p8m7fehgmMsUZXHgNJAR6ZWJ5nb5I4EttZwfTZ6SB4Q++FImjCvVXXfdB9SUDC2sYgXbHnvo4CO5t5ygft/XTy0/pUkZ29JIQbLUsWtw+Phg9htprTDhm1aSdOuyLuwuC3GLpjCaJeogaKbj0nCxvrQp9fzt1/DBhdBGIPs9CWIw35qkUgi
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9372.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(19092799006)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?XrM4bHEmLWTFBYGXk9e9CRlRwniZbFO95qzybqFu6ri3SaYA73u7/QmVCoSx?=
- =?us-ascii?Q?YVf5LuGTNopAUS3+Q/DXxWL+QxM5vg+81MpjdHB3oZ7XLu9pmwmBSVm86qr+?=
- =?us-ascii?Q?pT9SeetqN6r+XRxs6xz3NdpiQIyqNcWuOnj5fQYsIzqAuruZ/An0JqBVs5Oe?=
- =?us-ascii?Q?oMjBYg54EnbaCaCzZvG20MxbJ/LPO+p9Yz5r7oGLKws05GlmDWB6/AXOPbNu?=
- =?us-ascii?Q?WIx5XdMxVzTSOOy3v4bzgldWHVniGTZJg/dKfASvg56cWYmDFCyUAOuH881Q?=
- =?us-ascii?Q?vn5a0JcOC/aC5jEkkujZkJ/5nxNZ/8zQ01EzfeqYDG76XEbW49tyfhJNFlvv?=
- =?us-ascii?Q?sn6tOPN0RME49n5jeMkg8hr8kkxvbwXxe73GdtuLqkfM+bAhfn2oS/sAwpCt?=
- =?us-ascii?Q?2FtQFdmDRfiPMZ2mSYQJhP19zQQJdP2eq4gzlYMfQ86bp0kLuYiSSKtRIRNt?=
- =?us-ascii?Q?q2ta7cR1gq80DxVDk741kCz6LTnZHju7Ynske3DThzcwr0dcSeQbTd3DBb1Y?=
- =?us-ascii?Q?kSaBrlXaVby+vseehmTTbNeVJ9sPORdPGEkEdfLMq6BdniAZJF5wDPVnTM0+?=
- =?us-ascii?Q?0fMO35sTBhPeVJDvH5XAvrx2YgOwOx4GKP63/fK2Suom/AVDyICvfJvCSvuZ?=
- =?us-ascii?Q?qhH0jjh5VVafNqbqeXQBTE+vqrWugOyRniV4QhDxDYUg9PHzYasHux8DBIsq?=
- =?us-ascii?Q?Sgi9vJnQhw7o6XQtvtAp9pV0zqmuPql04+boMYyxAtw10yfpM7yTWmBrHuRF?=
- =?us-ascii?Q?S1tv7f6mMbHnQ4sYlAl/4qBYw9g3KEhHt98oRU2lg8LAhlT3y1MqHEt2m99w?=
- =?us-ascii?Q?fZPIKVdx9mwPhusrGapJK/MNLT/P3dGEut6FGyRXUCMOzAOtw0CwvgidOJ9c?=
- =?us-ascii?Q?cTKVntlbrW7uc77xACX3OXy6W0lbcZV08PzHX5E1cTrJFyJeyoHnJuZXNzq9?=
- =?us-ascii?Q?pHragEDFlOWv+8vCwg2DlImThdx44u5zSsMCPGjOEyRQBBHsK3Xg4ITYre0L?=
- =?us-ascii?Q?gtxQOdj/MlT/pSvBjdl37/iY1t/mZPUy08a8I3d3C2mj0YEwa4kWAAXgBCpL?=
- =?us-ascii?Q?0rK4e2X2hMJA+56t3kGqoXQJYu60x+7lGvq6LmMiGwwjh5DF2/NX4PeItI+L?=
- =?us-ascii?Q?trVVEeLcRyfz9QdHil5KWDd5043E6LLMNBHkUiyi052TozRMqdsJRjZcHPtz?=
- =?us-ascii?Q?Ye4NAz9lisQi1cyyCLauV4jEmHle0vxj12mH9fY93qY+9CgWFIaNrNnJGUHh?=
- =?us-ascii?Q?FWaOkrtRFaFXdulXAQpxdxPs5B9xKCqKzyEZr1UauKacxqrok83yW4RNnZLC?=
- =?us-ascii?Q?xHd6WLRiirOkevWadCNMr8MxbLhWsso9kv3i3v4Vr1439P7xZAUJX/nA2AjY?=
- =?us-ascii?Q?qNG6EUgrFTvmnXNiN/VjfPhrtaODb0zvGIrcvxzYOPINNwRmUca+al8mINMh?=
- =?us-ascii?Q?FUQ2INvMtQqj/FRyVGAL+erxWq0Y00KCXHJVjywEsIv8Hn5SHY6yPPiWC/PO?=
- =?us-ascii?Q?EQ7dYWqgINynY3AP4OceDzs9nMyK21I+7twqjtPRSdl+JcUzR1bFR4Hz930v?=
- =?us-ascii?Q?2NNODmuv/TGTmPBU5FJq1FVkIL5o/wt3AzqlQWVzYGJiBvqLU6+jsiVg0vLg?=
- =?us-ascii?Q?rMJASDK21nNTI1uILzREGTLSmGg076vq0yKkH2xFMfvbk6l4TxfRZNv/v7ov?=
- =?us-ascii?Q?6FwAYsdxsIp1MlczOJdbKQBWnnPH7hBBzYy51J6i96d9sn9C?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b7590a9-86a8-473d-9d5f-08de76217e96
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9372.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 16:58:56.5699
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SEJp2e+aAFoUk8klXIky40de4v435CgCSFHG7iMzN9kfIL7IAcn8UBbqV51UhDhzmWC+4KbOAHFBU5PwMGjiFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10148
+References: <20260227-max77759-fg-v2-0-e50be5f191f0@linaro.org> <20260227-max77759-fg-v2-9-e50be5f191f0@linaro.org>
+In-Reply-To: <20260227-max77759-fg-v2-9-e50be5f191f0@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 27 Feb 2026 17:00:17 +0000
+X-Gm-Features: AaiRm51_hTA37XjdCfno31Y5GnQDl6D_8iR_DXyKyfcVXTMh4GcfcDJcYSRKYgY
+Message-ID: <CADrjBPqo0+=GrVSxv_sg5=sCGXZiK9uHjr1FgwXuy-g8FzhJKg@mail.gmail.com>
+Subject: Re: [PATCH v2 09/11] power: supply: max17042: initial support for
+ Maxim MAX77759
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+	Amit Sunil Dhamne <amitsd@google.com>, kernel-team@android.com, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269361-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-269362-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	RSPAMD_EMAILBL_FAIL(0.00)[frank.li.nxp.com:query timed out,keypad.0.0.0.70:query timed out];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.997];
-	DBL_PROHIBIT(0.00)[0.0.0.70:email];
+	RSPAMD_EMAILBL_FAIL(0.00)[andre.draszik.linaro.org:query timed out];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 0B6CE1BB237
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linaro.org:email,linaro.org:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2D4491BB216
 X-Rspamd-Action: no action
 
-Change additionalProperties to unevaluatedProperties because it refs to
-/schemas/input/matrix-keymap.yaml.
+On Fri, 27 Feb 2026 at 07:15, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+>
+> The Maxim MAX77759 is a companion PMIC intended for use in mobile
+> phones and tablets. It is used on Google Pixel 6 and 6 Pro (oriole and
+> raven). Amongst others, it contains a fuel gauge that is similar to the
+> ones supported by this driver.
+>
+> The fuel gauge can measure battery charge and discharge current,
+> battery voltage, battery temperature, and the Type C connector's
+> temperature.
+>
+> The MAX77759 incorporates the Maxim ModelGauge m5 algorithm. It, as
+> well as previous generations like m3 on max17047/max17050, requires
+> the host to save/restore some register values across power cycles to
+> maintain full accuracy. Extending the driver for such support is out of
+> scope in this initial commit.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+>
+> ---
 
-Fix below CHECK_DTBS warnings:
-arch/arm/boot/dts/nxp/imx/imx6dl-victgo.dtb: keypad@70 (holtek,ht16k33): 'keypad,num-columns', 'keypad,num-rows' do not match any of the regexes: '^pinctrl-[0-9]+$'
-        from schema $id: http://devicetree.org/schemas/auxdisplay/holtek,ht16k33.yaml#
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-Fixes: f12b457c6b25c ("dt-bindings: auxdisplay: ht16k33: Convert to json-schema")
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change in v2
-	- Add Acked-by: Rob Herring (Arm) <robh@kernel.org>
-	- Add fixes tags
-
-Resend include Rob's Ack tag:
-	Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Rob's Acked at
-https://lore.kernel.org/imx/175796984570.3379405.7210704746413204244.robh@kernel.org/
----
- .../devicetree/bindings/auxdisplay/holtek,ht16k33.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-index b90eec2077b4b..fe1272e86467e 100644
---- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-+++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-@@ -66,7 +66,7 @@ then:
-   required:
-     - refresh-rate-hz
-
--additionalProperties: false
-+unevaluatedProperties: false
-
- examples:
-   - |
---
-2.43.0
-
+> v2: fix typo MAX77759_T_convert -> MAX77759_Tconvert
+> ---
+>  drivers/power/supply/max17042_battery.c | 59 +++++++++++++++++++++++++++=
++++---
+>  include/linux/power/max17042_battery.h  | 24 ++++++++++++--
+>  2 files changed, 77 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supp=
+ly/max17042_battery.c
+> index 823533ea5a17..44626abdab34 100644
+> --- a/drivers/power/supply/max17042_battery.c
+> +++ b/drivers/power/supply/max17042_battery.c
+> @@ -654,7 +654,8 @@ static void max17042_write_config_regs(struct max1704=
+2_chip *chip)
+>         regmap_write(map, MAX17042_RelaxCFG, config->relax_cfg);
+>         if (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17047 ||
+>                         chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17050=
+ ||
+> -                       chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17055=
+)
+> +                       chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17055=
+ ||
+> +                       chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX77759=
+)
+>                 regmap_write(map, MAX17047_FullSOCThr,
+>                                                 config->full_soc_thresh);
+>  }
+> @@ -791,7 +792,8 @@ static inline void max17042_override_por_values(struc=
+t max17042_chip *chip)
+>
+>         if ((chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17042) ||
+>             (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17047) ||
+> -           (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17050)) {
+> +           (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17050) ||
+> +           (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX77759)) {
+>                 max17042_override_por(map, MAX17042_IAvg_empty, config->i=
+avg_empty);
+>                 max17042_override_por(map, MAX17042_TempNom, config->temp=
+_nom);
+>                 max17042_override_por(map, MAX17042_TempLim, config->temp=
+_lim);
+> @@ -800,7 +802,8 @@ static inline void max17042_override_por_values(struc=
+t max17042_chip *chip)
+>
+>         if ((chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17047) ||
+>             (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17050) ||
+> -           (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17055)) {
+> +           (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX17055) ||
+> +           (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX77759)) {
+>                 max17042_override_por(map, MAX17047_V_empty, config->vemp=
+ty);
+>         }
+>  }
+> @@ -1023,6 +1026,45 @@ static const struct regmap_config max17042_regmap_=
+config =3D {
+>         .val_format_endian =3D REGMAP_ENDIAN_NATIVE,
+>  };
+>
+> +static const struct regmap_range max77759_fg_registers[] =3D {
+> +       regmap_reg_range(MAX17042_STATUS, MAX77759_MixAtFull),
+> +       regmap_reg_range(MAX17042_VFSOC0Enable, MAX17042_VFSOC0Enable),
+> +       regmap_reg_range(MAX17042_MLOCKReg1, MAX17042_MLOCKReg2),
+> +       regmap_reg_range(MAX17042_MODELChrTbl, MAX17055_TimerH),
+> +       regmap_reg_range(MAX77759_IIn, MAX77759_IIn),
+> +       regmap_reg_range(MAX17055_AtQResidual, MAX17055_AtAvCap),
+> +       regmap_reg_range(MAX17042_OCVInternal, MAX17042_OCVInternal),
+> +       regmap_reg_range(MAX17042_VFSOC, MAX17042_VFSOC),
+> +};
+> +
+> +static const struct regmap_range max77759_fg_ro_registers[] =3D {
+> +       regmap_reg_range(MAX17042_FSTAT, MAX17042_FSTAT),
+> +       regmap_reg_range(MAX17042_OCVInternal, MAX17042_OCVInternal),
+> +       regmap_reg_range(MAX17042_VFSOC, MAX17042_VFSOC),
+> +};
+> +
+> +static const struct regmap_access_table max77759_fg_write_table =3D {
+> +       .yes_ranges =3D max77759_fg_registers,
+> +       .n_yes_ranges =3D ARRAY_SIZE(max77759_fg_registers),
+> +       .no_ranges =3D max77759_fg_ro_registers,
+> +       .n_no_ranges =3D ARRAY_SIZE(max77759_fg_ro_registers),
+> +};
+> +
+> +static const struct regmap_access_table max77759_fg_rd_table =3D {
+> +       .yes_ranges =3D max77759_fg_registers,
+> +       .n_yes_ranges =3D ARRAY_SIZE(max77759_fg_registers),
+> +};
+> +
+> +static const struct regmap_config max77759_fg_regmap_cfg =3D {
+> +       .reg_bits =3D 8,
+> +       .val_bits =3D 16,
+> +       .max_register =3D 0xff,
+> +       .wr_table =3D &max77759_fg_write_table,
+> +       .rd_table =3D &max77759_fg_rd_table,
+> +       .val_format_endian =3D REGMAP_ENDIAN_NATIVE,
+> +       .cache_type =3D REGCACHE_NONE,
+> +};
+> +
+>  static const struct power_supply_desc max17042_psy_desc =3D {
+>         .name           =3D "max170xx_battery",
+>         .type           =3D POWER_SUPPLY_TYPE_BATTERY,
+> @@ -1049,6 +1091,7 @@ static int max17042_probe(struct i2c_client *client=
+, struct device *dev, int irq
+>  {
+>         struct i2c_adapter *adapter =3D client->adapter;
+>         const struct power_supply_desc *max17042_desc =3D &max17042_psy_d=
+esc;
+> +       const struct regmap_config *regmap_config;
+>         struct power_supply_config psy_cfg =3D {};
+>         struct max17042_chip *chip;
+>         int ret;
+> @@ -1064,7 +1107,12 @@ static int max17042_probe(struct i2c_client *clien=
+t, struct device *dev, int irq
+>
+>         chip->dev =3D dev;
+>         chip->chip_type =3D chip_type;
+> -       chip->regmap =3D devm_regmap_init_i2c(client, &max17042_regmap_co=
+nfig);
+> +
+> +       if (chip->chip_type =3D=3D MAXIM_DEVICE_TYPE_MAX77759)
+> +               regmap_config =3D &max77759_fg_regmap_cfg;
+> +       else
+> +               regmap_config =3D &max17042_regmap_config;
+> +       chip->regmap =3D devm_regmap_init_i2c(client, regmap_config);
+>         if (IS_ERR(chip->regmap))
+>                 return dev_err_probe(dev, PTR_ERR(chip->regmap),
+>                                      "Failed to initialize regmap\n");
+> @@ -1245,6 +1293,8 @@ static const struct of_device_id max17042_dt_match[=
+] __used =3D {
+>                 .data =3D (void *) MAXIM_DEVICE_TYPE_MAX17055 },
+>         { .compatible =3D "maxim,max77705-battery",
+>                 .data =3D (void *) MAXIM_DEVICE_TYPE_MAX17047 },
+> +       { .compatible =3D "maxim,max77759-fg",
+> +               .data =3D (void *) MAXIM_DEVICE_TYPE_MAX77759 },
+>         { .compatible =3D "maxim,max77849-battery",
+>                 .data =3D (void *) MAXIM_DEVICE_TYPE_MAX17047 },
+>         { },
+> @@ -1257,6 +1307,7 @@ static const struct i2c_device_id max17042_id[] =3D=
+ {
+>         { "max17047", MAXIM_DEVICE_TYPE_MAX17047 },
+>         { "max17050", MAXIM_DEVICE_TYPE_MAX17050 },
+>         { "max17055", MAXIM_DEVICE_TYPE_MAX17055 },
+> +       { "max77759-fg", MAXIM_DEVICE_TYPE_MAX77759 },
+>         { "max77849-battery", MAXIM_DEVICE_TYPE_MAX17047 },
+>         { }
+>  };
+> diff --git a/include/linux/power/max17042_battery.h b/include/linux/power=
+/max17042_battery.h
+> index c417abd2ab70..05097f08ea36 100644
+> --- a/include/linux/power/max17042_battery.h
+> +++ b/include/linux/power/max17042_battery.h
+> @@ -105,7 +105,7 @@ enum max17042_register {
+>
+>         MAX17042_OCV            =3D 0xEE,
+>
+> -       MAX17042_OCVInternal    =3D 0xFB,  /* MAX17055 VFOCV */
+> +       MAX17042_OCVInternal    =3D 0xFB, /* MAX17055/77759 VFOCV */
+>
+>         MAX17042_VFSOC          =3D 0xFF,
+>  };
+> @@ -156,7 +156,7 @@ enum max17055_register {
+>         MAX17055_AtAvCap        =3D 0xDF,
+>  };
+>
+> -/* Registers specific to max17047/50/55 */
+> +/* Registers specific to max17047/50/55/77759 */
+>  enum max17047_register {
+>         MAX17047_QRTbl00        =3D 0x12,
+>         MAX17047_FullSOCThr     =3D 0x13,
+> @@ -167,12 +167,32 @@ enum max17047_register {
+>         MAX17047_QRTbl30        =3D 0x42,
+>  };
+>
+> +enum max77759_register {
+> +       MAX77759_AvgTA0         =3D 0x26,
+> +       MAX77759_AtTTF          =3D 0x33,
+> +       MAX77759_Tconvert       =3D 0x34,
+> +       MAX77759_AvgCurrent0    =3D 0x3B,
+> +       MAX77759_THMHOT         =3D 0x40,
+> +       MAX77759_CTESample      =3D 0x41,
+> +       MAX77759_ISys           =3D 0x43,
+> +       MAX77759_AvgVCell0      =3D 0x44,
+> +       MAX77759_RlxSOC         =3D 0x47,
+> +       MAX77759_AvgISys        =3D 0x4B,
+> +       MAX77759_QH0            =3D 0x4C,
+> +       MAX77759_MixAtFull      =3D 0x4F,
+> +       MAX77759_VSys           =3D 0xB1,
+> +       MAX77759_TAlrtTh2       =3D 0xB2,
+> +       MAX77759_VByp           =3D 0xB3,
+> +       MAX77759_IIn            =3D 0xD0,
+> +};
+> +
+>  enum max170xx_chip_type {
+>         MAXIM_DEVICE_TYPE_UNKNOWN       =3D 0,
+>         MAXIM_DEVICE_TYPE_MAX17042,
+>         MAXIM_DEVICE_TYPE_MAX17047,
+>         MAXIM_DEVICE_TYPE_MAX17050,
+>         MAXIM_DEVICE_TYPE_MAX17055,
+> +       MAXIM_DEVICE_TYPE_MAX77759,
+>
+>         MAXIM_DEVICE_TYPE_NUM
+>  };
+>
+> --
+> 2.53.0.473.g4a7958ca14-goog
+>
 
