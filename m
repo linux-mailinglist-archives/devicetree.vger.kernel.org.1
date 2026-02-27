@@ -1,297 +1,215 @@
-Return-Path: <devicetree+bounces-269359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269358-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJCOBPbMoWn3wQQAu9opvQ
-	(envelope-from <devicetree+bounces-269359-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:57:26 +0100
+	id qOavLxbNoWn3wQQAu9opvQ
+	(envelope-from <devicetree+bounces-269358-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:57:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5F71BB156
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:57:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21DF71BB19E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 17:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 67B56302E846
-	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:57:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D0BDB30715F9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Feb 2026 16:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6568A355F5A;
-	Fri, 27 Feb 2026 16:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6224C346E5F;
+	Fri, 27 Feb 2026 16:53:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IqqREgXB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 216283242BD
-	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 16:57:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772211441; cv=none; b=XnRy6+Kj8dCJLPWFWhQUNDt22BC0HaqUH7rwl3Q6zF43gvOBfKHNXKo9C3ycTitTZfYb+LY3yTzHVLw69JinkWodOGGBC1C92PY15wJnESFeSz9jItUJ8uuPwNcS/oMvFvYWdmt6aNfHk0d/Q/dIbHfXy8CutEpGCMkhgA59jBA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772211441; c=relaxed/simple;
-	bh=8QooufOo4pPMQ94Tm+1S+IKUXQJzBKWDChzX4qil09A=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5B034A3D2
+	for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 16:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772211214; cv=pass; b=YfMjGg0/dZ3QpBujCEjQFt86lWcyF1oYCFr+u5IM7dyEmOEz1Lu0KdGgAH8n7JbG4Icv8VPCV9CwIGUZwYGV0v7+aAJIi7N9rMRLdrkRU+b8u+Aj3bqhsV2GjOeHP4hoKTbOCneBvHis/1koy5YQMKzOCoWrJpqpIa5l+u+8Mo4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772211214; c=relaxed/simple;
+	bh=KZngnYUFiL9iC7PfOpmHfHOayoaMJPuP6405Q5pqqfQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZwA0rLHkBoISTCvJNRPcWnTRVH1d+tpoxEd2sw9gHj8dyaVFCqTHmTUowFMTcsTzMFbfXUOvrieVvo9W32TIBag/UBf6JXGbjLlIV01jEI/LxzxnrveW44N8s/mU0HoaRozHxuOurxgZRJRGl7LMgN49ZeUoynWzMqpzXAzF3Ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-c70e27e2b74so800614a12.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 08:57:20 -0800 (PST)
+	 To:Cc:Content-Type; b=GtG7zzwyWqWikDSrz810RfD0uitzox7unt+lmjIbESvIk1F9BHVtsA9UFDFgswMbqcFJqAFdR2vhx6+zT2fqtuvoKOVrHpscR0i9uX6L0ceUe45JZOicgGszYbmbb0aw10Y1WoTNeEMRRZT+CaTjENgU/nYa0xIcZiKSix0+cnY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IqqREgXB; arc=pass smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-65c5a778923so3674289a12.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 08:53:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772211211; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UEWAQUYewWmMK71cNqq0RyE+yLItr9AlZLGO3UCEedka5e54M5Am1IwtoJpqXY5BRo
+         eEaOdNotwSUFJeWfU4ZArpO+FOrGxOT/IApfJrlAduMt3nwfqFwcYmAzHF7pD9H6b9wX
+         4tpfFUntlfzTyI7A4tQdwf9QwxPRABfV7GtPGGTB3KAjnx5/KPckE+dsoEtUnghV+Qsn
+         Bz2q4N7wpOPVQSKlf+LsbwBmfMNQNRvPEpNu10RWixXFPZyEzi7EaokxU3dkqose9oTv
+         tINgfg+ewNGIpsuUQRoF8TJh6zMBNkNn/uvkxOmOTk4A4qA9YdjdjHphADr88GSHXe2C
+         r1tg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=YnQBstCl1AwhiM2ywlP8p0cFY97sOWrrQ4M1rwGrcGg=;
+        fh=42Tz2CUWdVAPCukuYiECuxiFf2fW8rLB6rHsyUCh98U=;
+        b=dxtBTU0IbcE2c+q8GOFkeouHDIV3CxtHUGSM4dSsvKcGF/4fAM25u7MqfeYB1NRwnT
+         vIUUoR/jJ5a1RUw+vlNt0svpQONp6kPD5UT0hk4K+LfgbzqBwsSaO0IYmJe8FDVD59J/
+         JHgv4GReO86aGuXH5FUd6leiRyrNcthg05bcx2goQhgFASn5pSCS04KfC2isnYw6lSRf
+         aAVFJTZLeNSl1onM8cyYjRgUtj1lVfBTBCVENdwWjmdEWa6Y3hiwALdLkQZ7/mhfMvYQ
+         YMH0D+KiHyCRBCBZxL+Tcoxmv6MB5K/S2Zvf71CyfJllK54tVOahOoBfnVgOTOH8AjoI
+         /DSw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772211211; x=1772816011; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YnQBstCl1AwhiM2ywlP8p0cFY97sOWrrQ4M1rwGrcGg=;
+        b=IqqREgXBjpI80Bmudspq923mrD9H0Uyxxjm9wxO2zjrA9LL/WTtYakC/YDSKmrEUnQ
+         mHGUVxwNGSdac7wNU22ZOWQoU1ExKRNx6RY8/Y0tHNmi0tIT0muaJ7ugDOwLto4Y5dlt
+         9mwfRDZTJuzjnTl9LD2faIZtTV5mkBWs560iWZYLNe8GCe2xepGjpHmGBerf0FsWDSY1
+         VZOwFJLdkx1fq+B8ui2UexiE6VdG/gmx+BXJa5wsiW2HJwTTYNaUyaSWt42mEn3c7QEB
+         9exqAJBiGsb2qLcQ8GhXBvCNuZncQ3tYv7kKr/sLYE9usXuX975szK1uPnRaUkYpLEUI
+         dg5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772211439; x=1772816239;
+        d=1e100.net; s=20230601; t=1772211211; x=1772816011;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=AIGPgG8NajjCLfKfqfkEsLDhUiGu4xrfbhUgqAmvE/8=;
-        b=BOB6U9/65vjtUQf7/lhi8BGma8ZKEDQlaCkSbef2n4WFjf6Qn4nokAlKIKSMPzyREP
-         R46gGe4U/tAziDdBiI2MdWQMyMCqwLqg7l6uFfd5LO1UemSMKmRmJDOsRbC6HXKdX/10
-         kmjYtktOEgFHtdJbedZujQT0aw/+N1w50bW7VU2Q35h1h7nOpUJT/uGyI2ppwsFYOYoM
-         gHFzn3k1Epz+D65HLojPah6uNYICPyu2SrHX/9oOtg/VA9OyV8hk0Uu4Yu3p9xXR1HyI
-         nn2X97neFlYOsm9KgMPHONZRjCF9L+ug/nVkllO0dDwOlT882wsuNvjr3NEPcRre0xlq
-         RHhg==
-X-Forwarded-Encrypted: i=1; AJvYcCVJ3+FzbUiIQPJq9enalw+m0+61xh8lGmTTwhI5z4kVmBPCDvgTZ4HH0gKqG+jPdnjZ1jAEvbo5n3R7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCP7qdAiKcIDfO6JMgD5qtsD/ugV0VJxlXFvgPQXu6FLdqES5Z
-	ycpWBtgKRyzBRm+HbYEkIxyS85Fnq3p4u3emAKDfUWTxeXYdpm61kDf/wUGQBYxza20=
-X-Gm-Gg: ATEYQzx2qoXaPHSodivmFXRplpkiawEFKrhbNQ/QQACxv3FPj+zcf9p7h8aBofQzEqv
-	ZtNcyJqIvnFPLNgFR9GS73OZSdjqGwQfhSk51fyDC/UvEhTyX/qlbswXKSHuRBxNHIIScqU09vG
-	d54bpfHILqnwHNUTrDOBSiqtf+EiD7UvceWUCN2nAtLZ9RGc3dIlQeA2MTjiAB6s0IHGGV3So4L
-	r9r+iwMY/lUG4visyMe3F+f2/FFHb/miwK1ka2nwcHcEU49jko39+yfzSqec2F1yTBycJULL2PP
-	wVo7D0gMsEFoBSuPfuRJBgsOL5kP+cMlG53WTEUaRz1S10nKsl6YAqTY1IcYG1StDnv0p4ees48
-	HUwlVHbmzbBeJMTYzPIR6E2pWxPbQDfeBEvDjct4PE4hKFKZI8ZTfJP4FhpqqwHVanZdTxkasnb
-	pPxXNq0hyUAFJTI2LFTtnfRncyuNxEhyp2nH6Loz20sxhuqFfS/lTcGeX8tbH4fNo=
-X-Received: by 2002:a17:90b:588d:b0:353:356c:6821 with SMTP id 98e67ed59e1d1-35965c3d12dmr3094778a91.8.1772211439314;
-        Fri, 27 Feb 2026 08:57:19 -0800 (PST)
-Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com. [74.125.82.180])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3593dcc94desm5090825a91.7.2026.02.27.08.57.18
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Feb 2026 08:57:18 -0800 (PST)
-Received: by mail-dy1-f180.google.com with SMTP id 5a478bee46e88-2bddf5091c0so2192137eec.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 08:57:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVjkE4kaVuxKWXNywiq+X6Ego3KoEGjmJDUhIHQjK7iBLDxkJBb4Vdg5DBmJlW+zTQrzykFEW40lIJe@vger.kernel.org
-X-Received: by 2002:a05:6102:c01:b0:5f5:33c9:c9b3 with SMTP id
- ada2fe7eead31-5ff32536408mr1676835137.29.1772211026292; Fri, 27 Feb 2026
- 08:50:26 -0800 (PST)
+        bh=YnQBstCl1AwhiM2ywlP8p0cFY97sOWrrQ4M1rwGrcGg=;
+        b=ciGFn3oTiMs77WZSQS3N0id3jsfC5g/zt75HSuWYr5NrStRFtTzFsnvdCCl/vnjAcl
+         ibFgbKF/YDBseIi+Ft+lP3+f6mAvGMO7GWIUsvMKnGnM5SZNWyPWlDBUZIRYSXlS6E9p
+         FUCU7TXA9f/KS5PgcVvbd0zmgDstAKGrJ9lAz9CNNGTNAWmuNT7GWhKZo8zxOna6JnzQ
+         RptQIyBc0+f1iQ5R/Y1sE+WecwjK8ByCGg29Pel99lpzfV2MNROo/rdFnSUKzDv3QdAd
+         CqVL498jhUFe+XMi+GZQGkZsg42mtRgF3jxo1lQjVtcz9odxZA6qGdQLS8LViX+kdDcA
+         W9fg==
+X-Forwarded-Encrypted: i=1; AJvYcCWN3O60zGuDzm9ksxAzN0js0zSh8kmKaj/AZvnUIzJLw2ZN349XedxCWZESeOHblwvqkbG4Ow0+bddV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8P9GsbeGshaZp6niug614nPmKeZ6RbcGmrHEB3/4RDk/iGhpC
+	PTniyJ7eifP78Lgfw40CORzZ0Lu66CqWz0UVDQjcPdUWqmm+TDyWoxeMH04dpNZmeDvZNF4CC7N
+	l57nwiu0I79sS0HZP64P361tSt1GP+kh/Gz86BM4qvA==
+X-Gm-Gg: ATEYQzzDNiqjSvRJdFj2NkehhSDLDIE6UjvtUlQ5AK1heGIccSoHaQVWY8tA/7RhVgP
+	WKbSuSvNsnx4HOeBepsr4fCaSf7Ij54bW/unLdsLptk6nqtj3Nfi6vPncZ4B2WehTNj0u1eGtey
+	IAflcv393tLXnBqB33pMWjSvKFILPJULmqa8Ap8BrhRvfs3TYW34nEx1vIYwP9ti+LYs9n68tc2
+	MXY1/O+lf3OTU/KDowO6nWwJ8IEgts73U57f/MXHFiIZ9RXVv2kSzr7nOQV8vZc82qV2ec15/dL
+	FI40ZkP2sk5Bb3mOS2BI3A==
+X-Received: by 2002:a05:6402:4493:b0:660:475:93f2 with SMTP id
+ 4fb4d7f45d1cf-660047594bemr437404a12.18.1772211211217; Fri, 27 Feb 2026
+ 08:53:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260227135428.783983-1-herve.codina@bootlin.com> <20260227135428.783983-4-herve.codina@bootlin.com>
-In-Reply-To: <20260227135428.783983-4-herve.codina@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 27 Feb 2026 17:50:14 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUAHXNbGfJFcUMQbzPqRS0S_RErU8u7t=AdmX0ZFQMjhQ@mail.gmail.com>
-X-Gm-Features: AaiRm53ZqgozcqNHytSHwR_CUbVuY8sQSeRMANHqThlNEOeyZsxQir9SPbAYLBo
-Message-ID: <CAMuHMdUAHXNbGfJFcUMQbzPqRS0S_RErU8u7t=AdmX0ZFQMjhQ@mail.gmail.com>
-Subject: Re: [PATCH v5 03/28] of: dynamic: Fix overlayed devices not probing
- because of fw_devlink
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kalle Niemi <kaleposti@gmail.com>, Matti Vaittinen <mazziesaccount@gmail.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
-	Arnd Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Charles Keepax <ckeepax@opensource.cirrus.com>, 
-	Richard Fitzgerald <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, 
-	Linus Walleij <linusw@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Davidlohr Bueso <dave@stgolabs.net>, 
-	Jonathan Cameron <jonathan.cameron@huawei.com>, Dave Jiang <dave.jiang@intel.com>, 
-	Alison Schofield <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, 
-	Ira Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>, linux-kernel@vger.kernel.org, 
-	driver-core@lists.linux.dev, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-sound@vger.kernel.org, 
-	patches@opensource.cirrus.com, linux-gpio@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, 
-	Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Saravana Kannan <saravanak@google.com>
+References: <20260227-max77759-fg-v2-0-e50be5f191f0@linaro.org> <20260227-max77759-fg-v2-11-e50be5f191f0@linaro.org>
+In-Reply-To: <20260227-max77759-fg-v2-11-e50be5f191f0@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 27 Feb 2026 16:53:19 +0000
+X-Gm-Features: AaiRm53V_nRNAsdqihybXB9OG23TzesOAxPFDxCpIlU-WABHWGF_CL5bChRorMU
+Message-ID: <CADrjBPpYd+9jYt6ec-VF-ZS6Vjt0Lu0jo2T7B9TO=AQmcjL1dg@mail.gmail.com>
+Subject: Re: [PATCH v2 11/11] power: supply: max17042: report time to full
+ (max17055 & max77759)
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+	Amit Sunil Dhamne <amitsd@google.com>, kernel-team@android.com, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,gmail.com,linuxfoundation.org,nxp.com,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,google.com,opensource.cirrus.com,cirrus.com,linaro.org,linux.intel.com,stgolabs.net,huawei.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com,bootlin.com];
-	TAGGED_FROM(0.00)[bounces-269359-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269358-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_GT_50(0.00)[63];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.986];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux-m68k.org:email,mail.gmail.com:mid,glider.be:email,bootlin.com:email]
-X-Rspamd-Queue-Id: 7E5F71BB156
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email,linaro.org:dkim]
+X-Rspamd-Queue-Id: 21DF71BB19E
 X-Rspamd-Action: no action
 
-Hi Herv=C3=A9,
-
-On Fri, 27 Feb 2026 at 14:56, Herve Codina <herve.codina@bootlin.com> wrote=
-:
-> From: Saravana Kannan <saravanak@google.com>
+On Fri, 27 Feb 2026 at 07:15, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
 >
-> When an overlay is applied, if the target device has already probed
-> successfully and bound to a device, then some of the fw_devlink logic
-> that ran when the device was probed needs to be rerun. This allows newly
-> created dangling consumers of the overlayed device tree nodes to be
-> moved to become consumers of the target device.
+> Report the remaining time to full as calculated by the firmware for
+> devices that implement this.
+> Similar to time to empty, the reported value is only meaningful when
+> charging, i.e. if it is !=3D U16_MAX.
 >
-> Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
-> Reported-by: Herve Codina <herve.codina@bootlin.com>
-> Closes: https://lore.kernel.org/lkml/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8=
-x6=3D9F9rZ+-KzjOg@mail.gmail.com/
-> Closes: https://lore.kernel.org/all/20240221095137.616d2aaa@bootlin.com/
-> Closes: https://lore.kernel.org/lkml/20240312151835.29ef62a0@bootlin.com/
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> Link: https://lore.kernel.org/lkml/20240411235623.1260061-3-saravanak@goo=
-gle.com/
-> [Herve: Rebase on top of recent kernel and use get_device_from_fwnode()]
-> [Herve: Add the call to driver_deferred_probe_trigger()]
-
-Thanks, that last change did the trick, finally!
-
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -235,6 +235,79 @@ static void __fw_devlink_pickup_dangling_consumers(s=
-truct fwnode_handle *fwnode,
->                 __fw_devlink_pickup_dangling_consumers(child, new_sup);
->  }
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 >
-> +static void fw_devlink_pickup_dangling_consumers(struct device *dev)
-> +{
-> +       struct fwnode_handle *child;
-> +
-> +       guard(mutex)(&fwnode_link_lock);
-> +
-> +       fwnode_for_each_available_child_node(dev->fwnode, child)
-> +               __fw_devlink_pickup_dangling_consumers(child, dev->fwnode=
-);
-> +       __fw_devlink_link_to_consumers(dev);
-> +}
-> +
-> +/**
-> + * fw_devlink_refresh_fwnode - Recheck the tree under this firmware node
-> + * @fwnode: The fwnode under which the fwnode tree has changed
-> + *
-> + * This function is mainly meant to adjust the supplier/consumer depende=
-ncies
-> + * after a fwnode tree overlay has occurred.
-> + */
-> +void fw_devlink_refresh_fwnode(struct fwnode_handle *fwnode)
-> +{
-> +       struct device *dev;
-> +
-> +       /*
-> +        * Find the closest ancestor fwnode that has been converted to a =
-device
-> +        * that can bind to a driver (bus device).
-> +        */
-> +       fwnode_handle_get(fwnode);
-> +       do {
-> +               if (fwnode->flags & FWNODE_FLAG_NOT_DEVICE)
-> +                       continue;
-> +
-> +               dev =3D get_device_from_fwnode(fwnode);
-> +               if (!dev)
-> +                       continue;
-> +
-> +               if (dev->bus)
-> +                       break;
-> +
-> +               put_device(dev);
-> +       } while ((fwnode =3D fwnode_get_next_parent(fwnode)));
-> +
-> +       /*
-> +        * If none of the ancestor fwnodes have (yet) been converted to a=
- device
-> +        * that can bind to a driver, there's nothing to fix up.
-> +        */
-> +       if (!fwnode)
-> +               return;
-> +
-> +       WARN(device_is_bound(dev) && dev->links.status !=3D DL_DEV_DRIVER=
-_BOUND,
-> +            "Don't multithread overlaying and probing the same device!\n=
-");
-> +
-> +       /*
-> +        * If the device has already bound to a driver, then we need to r=
-edo
-> +        * some of the work that was done after the device was bound to a
-> +        * driver. If the device hasn't bound to a driver, running thing =
-too
+> ---
 
-things
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-> +        * soon would incorrectly pick up consumers that it shouldn't.
-> +        */
-> +       if (dev->links.status =3D=3D DL_DEV_DRIVER_BOUND) {
-> +               fw_devlink_pickup_dangling_consumers(dev);
-> +               /*
-> +                * Some of dangling consumers could have been put previou=
-sly in
-> +                * the deferred probe list due to the unavailability of t=
-heir
-> +                * suppliers. Those consumers have been picked up and som=
-e of
-> +                * their suppliers links have been update. Time to re-try=
- their
-
-updated
-
-> +                * probe sequence.
-> +                */
-> +               driver_deferred_probe_trigger();
-> +       }
-> +
-> +       put_device(dev);
-> +       fwnode_handle_put(fwnode);
-> +}
-> +
->  static DEFINE_MUTEX(device_links_lock);
->  DEFINE_STATIC_SRCU(device_links_srcu);
+> v2:
+> - limit to max17055 & max77759, the datasheet for max17047 and max17050
+>   describes the register as 'reserved'. I was mislead by the comment
+>   and enum ordering in max17042_battery.h
+> - report as POWER_SUPPLY_PROP_TIME_TO_FULL_NOW (not _AVG). The max17050
+>   datasheet is a bit clearer than the max77759 one on that.
+> ---
+>  drivers/power/supply/max17042_battery.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 >
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supp=
+ly/max17042_battery.c
+> index 89909b140cf9..770d806033b9 100644
+> --- a/drivers/power/supply/max17042_battery.c
+> +++ b/drivers/power/supply/max17042_battery.c
+> @@ -89,6 +89,7 @@ static enum power_supply_property max17042_battery_prop=
+s[] =3D {
+>         POWER_SUPPLY_PROP_HEALTH,
+>         POWER_SUPPLY_PROP_SCOPE,
+>         POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW,
+> +       POWER_SUPPLY_PROP_TIME_TO_FULL_NOW,
+>         // these two have to be at the end on the list
+>         POWER_SUPPLY_PROP_CURRENT_NOW,
+>         POWER_SUPPLY_PROP_CURRENT_AVG,
+> @@ -447,6 +448,21 @@ static int max17042_get_property(struct power_supply=
+ *psy,
+>                 if (data =3D=3D U16_MAX)
+>                         return -ENODATA;
+>
+> +               val->intval =3D data * 5625 / 1000;
+> +               break;
+> +       case POWER_SUPPLY_PROP_TIME_TO_FULL_NOW:
+> +               if (chip->chip_type !=3D MAXIM_DEVICE_TYPE_MAX17055 &&
+> +                   chip->chip_type !=3D MAXIM_DEVICE_TYPE_MAX77759)
+> +                       return -EINVAL;
+> +
+> +               ret =3D regmap_read(map, MAX17055_TTF, &data);
+> +               if (ret < 0)
+> +                       return ret;
+> +
+> +               /* when discharging, the value is not meaningful */
+> +               if (data =3D=3D U16_MAX)
+> +                       return -ENODATA;
+> +
+>                 val->intval =3D data * 5625 / 1000;
+>                 break;
+>         default:
+>
+> --
+> 2.53.0.473.g4a7958ca14-goog
+>
 
