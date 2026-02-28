@@ -1,379 +1,127 @@
-Return-Path: <devicetree+bounces-269514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269515-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APAxBlC9omkS5QQAu9opvQ
-	(envelope-from <devicetree+bounces-269514-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:02:56 +0100
+	id 4LOeHay/omk+5QQAu9opvQ
+	(envelope-from <devicetree+bounces-269515-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:13:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EF771C1DE5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:02:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E5A31C1E80
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:13:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 526343032761
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:02:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6D632303300B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:12:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A9B41322E;
-	Sat, 28 Feb 2026 10:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581AB410D3C;
+	Sat, 28 Feb 2026 10:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JaYhH3br"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF1040FDB9;
-	Sat, 28 Feb 2026 10:02:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B63A12B94;
+	Sat, 28 Feb 2026 10:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772272936; cv=none; b=tEdiC8jKQ0Pp5ATuKTtqFWEWSKBT4cvW7OfkDhFlT4SFImqOm/+xvxTpXuws+812WODpIGPz0bRFPi+sfVmgtFQNRYzuG7LovYBY9e5J2UwskQMkRZuSnOo76FS43ggi/9dOsfNFDl8E5hRXIfID0eW018FLp2l3lTxzU0WQm9A=
+	t=1772273576; cv=none; b=FLsh1W2lPmsC2QY7lUEmP9exlNa0UuIMLMPTzzh0CmBzSLDME0weIy8s/9YOnzYwnZ1HY3teiHL5T+QkmgT+uInaUjnst1AY6SPMWiEQNch+7MsNgXmizO8T/E+jlMMfbMAqcIfsx9GutpOAu2JFyMnzJmy7jj3nSERZ3vst1m0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772272936; c=relaxed/simple;
-	bh=gHAYjGuzKIIzMTh9KpW3XkTBBkFCYuilZ6sBOsT0NiE=;
+	s=arc-20240116; t=1772273576; c=relaxed/simple;
+	bh=Wyd/XL1w2AqP4PQ2aLzCjy6EZ0rWFJ6/fVMDwvM4h40=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PJU1Scq0GbQk4u9Jern7WuRhpy6B7uCWZ3XelRzQ74yBwjQIZRnuxjjuftPPyj8j8vbPIueO/zClshB9Q+e/DQL+U6dWd2emXMHLHJ+eME1NhDVoGHVXonSrrSqXz5Ka5X5lPxhNYZBIz/tX2epv9YMuG8g2vTmdRCMsUF+pfr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 69E081516;
-	Sat, 28 Feb 2026 02:02:05 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 24DCF3F73B;
-	Sat, 28 Feb 2026 02:02:07 -0800 (PST)
-Date: Sat, 28 Feb 2026 10:02:04 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Sebin Francis <sebin.francis@ti.com>,
-	Brian Masney <bmasney@redhat.com>, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v7 6/6] clk: scmi: Add i.MX95 OEM extension support for
- SCMI clock driver
-Message-ID: <aaK9HOMWNCb0wzq_@pluto>
-References: <20251231-clk-ssc-v7-1-v7-0-380e8b58f9e3@nxp.com>
- <20251231-clk-ssc-v7-1-v7-6-380e8b58f9e3@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZfyYSsdExeWoZMm8vugvcqChOgCOcDWFVosKmo56fMzeg3xpNcdpaqH90ZDSQeun89LqxiNXM2oBrDIrjLijRl9++HGkp+cZgwO9MMSum0oXSjAnDgtcoadgaJAAu2QeynuMSJ2E6f40X2BKcjCt8dF9BDX8M0AhppeX/defJlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JaYhH3br; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F494C116D0;
+	Sat, 28 Feb 2026 10:12:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772273575;
+	bh=Wyd/XL1w2AqP4PQ2aLzCjy6EZ0rWFJ6/fVMDwvM4h40=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JaYhH3brmyBLj65Rz+wBOkADmItRpehvX+EIYcMuIofweofOF2HgKK1EELKXNinW3
+	 WyMdjesIfpSXwb6S/KUfm5fTFrYGIUOU6GpNoR2T3JbiO1ZNQMF1fck/bybH7OM1eU
+	 h4wMwkIlGafCWzVyux3bHtYqPQHYYrOFI/hDXp6UAB+zSWwy92IuzraNXayLws8VIv
+	 4gQvWRba/XEdaxLM7fPSCZu9MxBKOYJ8N/GubCtqVJ2XGVEPGj1ED7cMDk/p6SrEyT
+	 6ogPRJtbnJcmJpvMj/BHPXmY6eLwb9gxUjk/Li41pM0L41yDDtKPxzPE8KuxA4DWL4
+	 5sn4pINItIEtg==
+Date: Sat, 28 Feb 2026 11:12:53 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "ping.gao" <ping.gao@samsung.com>, ulf.hansson@linaro.org, 
+	jh80.chung@samsung.com
+Cc: shawn.lin@rock-chips.com, krzk+dt@kernel.org, robh@kernel.org, 
+	conor+dt@kernel.org, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kwangwon.min@samsung.com, hy50.seo@samsung.com
+Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: synopsys-dw-mshc: relax clocks
+ constraint
+Message-ID: <20260228-pygmy-cricket-of-chemistry-54a9ea@quoll>
+References: <20260228062457.3210099-1-ping.gao@samsung.com>
+ <CGME20260228062024epcas5p4a9f901ea58ead972a352cb4546464c1c@epcas5p4.samsung.com>
+ <20260228062457.3210099-2-ping.gao@samsung.com>
+ <69da7192-e2c5-407c-a8d5-4739d10197f5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251231-clk-ssc-v7-1-v7-6-380e8b58f9e3@nxp.com>
+In-Reply-To: <69da7192-e2c5-407c-a8d5-4739d10197f5@kernel.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.64 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269514-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269515-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.marussi@arm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.836];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:email,ti.com:email]
-X-Rspamd-Queue-Id: 6EF771C1DE5
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email]
+X-Rspamd-Queue-Id: 0E5A31C1E80
 X-Rspamd-Action: no action
 
-On Wed, Dec 31, 2025 at 06:12:53PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Sat, Feb 28, 2026 at 10:44:03AM +0100, Krzysztof Kozlowski wrote:
+> On 28/02/2026 07:24, ping.gao wrote:
+> > From: Ping Gao <ping.gao@samsung.com>
+> > 
+> > In some SoC designs (e.g., certain Samsung Exynos platforms), the Bus
+> > Interface Unit (BIU) and Card Interface Unit (CIU) clocks are tied
 > 
->  - Introduce 'clk-scmi-oem.c' to support vendor-specific OEM extensions
->    for the SCMI clock driver, allows clean integration of vendor-specific
->    features without impacting the core SCMI clock driver logic.
->  - Extend 'clk-scmi.h' with 'scmi_clk_oem' structure and related
->    declarations.
->  - Initialize OEM extensions via 'scmi_clk_oem_init()'.
->  - Support querying OEM-specific features and setting spread spectrum.
->  - Pass 'scmi_device' to 'scmi_clk_ops_select()' for OEM data access.
-
-Hi,
-
+> Again, no.
 > 
-> Reviewed-by: Sebin Francis <sebin.francis@ti.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/clk/Makefile       |   2 +-
->  drivers/clk/clk-scmi-oem.c | 103 +++++++++++++++++++++++++++++++++++++++++++++
->  drivers/clk/clk-scmi.c     |  19 +++++++--
->  drivers/clk/clk-scmi.h     |  11 +++++
->  4 files changed, 131 insertions(+), 4 deletions(-)
+> Read and respond to previous feedback. It's like third version where you
+> did not do it...
 > 
-> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> index cb10156db2a37e1956d84113d1711e23d9d864ab..8e0e03a79f793ffab6c8636b7796c067287e1712 100644
-> --- a/drivers/clk/Makefile
-> +++ b/drivers/clk/Makefile
-> @@ -95,7 +95,7 @@ obj-$(CONFIG_COMMON_CLK_RP1)            += clk-rp1.o
->  obj-$(CONFIG_COMMON_CLK_RPMI)		+= clk-rpmi.o
->  obj-$(CONFIG_COMMON_CLK_HI655X)		+= clk-hi655x.o
->  obj-$(CONFIG_COMMON_CLK_S2MPS11)	+= clk-s2mps11.o
-> -obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o
-> +obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o clk-scmi-oem.o
->  obj-$(CONFIG_COMMON_CLK_SCPI)           += clk-scpi.o
->  obj-$(CONFIG_COMMON_CLK_SI5341)		+= clk-si5341.o
->  obj-$(CONFIG_COMMON_CLK_SI5351)		+= clk-si5351.o
-> diff --git a/drivers/clk/clk-scmi-oem.c b/drivers/clk/clk-scmi-oem.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..fd81aca7bfca254669ee117ebd51e481a74cdcb4
-> --- /dev/null
-> +++ b/drivers/clk/clk-scmi-oem.c
-> @@ -0,0 +1,103 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * The Vendor OEM extension for System Control and Power Interface (SCMI)
-> + * Protocol based clock driver
-> + *
-> + * Copyright 2025 NXP
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/of.h>
-> +#include <linux/scmi_imx_protocol.h>
-> +#include <linux/scmi_protocol.h>
-> +
-> +#include "clk-scmi.h"
-> +
-> +#define SCMI_CLOCK_CFG_IMX_SSC			0x80
-> +#define SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK	GENMASK(7, 0)
-> +#define SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK		GENMASK(23, 8)
-> +#define SCMI_CLOCK_IMX_SS_ENABLE_MASK		BIT(24)
-> +
-> +struct scmi_clk_oem_info {
-> +	char *vendor_id;
-> +	char *sub_vendor_id;
-> +	char *compatible;
+> Samsung Exynos platforms have all two clocks. Look at the sources.
 
-I suppose different OEM per impl_ver is overkill...and maybe better
-to be trated as a bug if it happens leveraging the Quirk framework..
+And to clarify before you respond "but my downstream Exynos 999999 has
+one clock": downstream does not exist. We don't care about it. I advise
+to fix your downstream if that's the problem you are having.
 
-> +	const void *data;
-> +};
-> +
-> +static int
-> +scmi_clk_imx_set_spread_spectrum(struct clk_hw *hw,
-> +				 const struct clk_spread_spectrum *ss_conf)
-> +{
-> +	struct scmi_clk *clk = to_scmi_clk(hw);
-> +	int ret;
-> +	u32 val;
-> +
-> +	/*
-> +	 * extConfigValue[7:0]   - spread percentage (%)
-> +	 * extConfigValue[23:8]  - Modulation Frequency
-> +	 * extConfigValue[24]    - Enable/Disable
-> +	 * extConfigValue[31:25] - Reserved
-> +	 */
-> +	val = FIELD_PREP(SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK, ss_conf->spread_bp / 10000);
-> +	val |= FIELD_PREP(SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK, ss_conf->modfreq_hz);
-> +	if (ss_conf->method != CLK_SPREAD_NO)
-> +		val |= SCMI_CLOCK_IMX_SS_ENABLE_MASK;
-> +	ret = scmi_proto_clk_ops->config_oem_set(clk->ph, clk->id,
-> +						 SCMI_CLOCK_CFG_IMX_SSC,
-> +						 val, false);
-> +	if (ret)
-> +		dev_warn(clk->dev,
-> +			 "Failed to set spread spectrum(%u,%u,%u) for clock ID %d\n",
-> +			 ss_conf->modfreq_hz, ss_conf->spread_bp, ss_conf->method,
-> +			 clk->id);
-> +
-> +	return ret;
-> +}
-> +
-> +static int
-> +scmi_clk_imx_query_oem_feats(const struct scmi_protocol_handle *ph, u32 id,
-> +			     unsigned int *feats_key)
-> +{
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret = scmi_proto_clk_ops->config_oem_get(ph, id,
-> +						 SCMI_CLOCK_CFG_IMX_SSC,
-> +						 &val, NULL, false);
-> +	if (!ret)
-> +		*feats_key |= BIT(SCMI_CLK_EXT_OEM_SSC_SUPPORTED);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct scmi_clk_oem scmi_clk_oem_imx = {
-> +	.query_ext_oem_feats = scmi_clk_imx_query_oem_feats,
-> +	.set_spread_spectrum = scmi_clk_imx_set_spread_spectrum,
-> +};
-> +
-> +const struct scmi_clk_oem_info info[] = {
+If you keep sending the same for sixth time without responding to
+feedback, I might get inpatient and NAK it without giving arguments,
+because I already feel like this is wasting my time.
 
-Any reason why this cannot be made static too ?
-Given that you just embed it with set_drvdata and then get_drvdata
-back from the main clk driver...
+Best regards,
+Krzysztof
 
-> +	{ SCMI_IMX_VENDOR, SCMI_IMX_SUBVENDOR, NULL, &scmi_clk_oem_imx },
-> +};
-> +
-> +int scmi_clk_oem_init(struct scmi_device *sdev)
-> +{
-> +	const struct scmi_handle *handle = sdev->handle;
-> +	int i, size = ARRAY_SIZE(info);
-> +
-> +	for (i = 0; i < size; i++) {
-> +		if (strcmp(handle->version->vendor_id, info[i].vendor_id) ||
-> +		    strcmp(handle->version->sub_vendor_id, info[i].sub_vendor_id))
-> +			continue;
-> +		if (info[i].compatible &&
-> +		    !of_machine_is_compatible(info[i].compatible))
-> +			continue;
-> +
-> +		break;
-> +	}
-> +
-> +	if (i < size)
-> +		dev_set_drvdata(&sdev->dev, (void *)info[i].data);
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/clk/clk-scmi.c b/drivers/clk/clk-scmi.c
-> index bf85924d61985eb9e596419349eb883e3817de73..1ed2091e3d4a951c8662db4c94dee4b9c98b8326 100644
-> --- a/drivers/clk/clk-scmi.c
-> +++ b/drivers/clk/clk-scmi.c
-> @@ -14,6 +14,8 @@
->  #include <linux/scmi_protocol.h>
->  #include <asm/div64.h>
->  
-> +#include "clk-scmi.h"
-> +
->  const struct scmi_clk_proto_ops *scmi_proto_clk_ops;
->  
->  static unsigned long scmi_clk_recalc_rate(struct clk_hw *hw,
-> @@ -242,6 +244,7 @@ static int scmi_clk_ops_init(struct device *dev, struct scmi_clk *sclk,
->  static const struct clk_ops *
->  scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
->  {
-> +	struct scmi_clk_oem *oem_data = dev_get_drvdata(dev);
->  	struct clk_ops *ops;
->  
->  	ops = devm_kzalloc(dev, sizeof(*ops), GFP_KERNEL);
-> @@ -288,11 +291,15 @@ scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
->  		ops->set_duty_cycle = scmi_clk_set_duty_cycle;
->  	}
->  
-> +	if (oem_data && (feats_key & BIT(SCMI_CLK_EXT_OEM_SSC_SUPPORTED)))
-> +		ops->set_spread_spectrum = oem_data->set_spread_spectrum;
-> +
->  	return ops;
->  }
->  
->  /**
->   * scmi_clk_ops_select() - Select a proper set of clock operations
-> + * @sdev: pointer to the SCMI device
->   * @sclk: A reference to an SCMI clock descriptor
->   * @atomic_capable: A flag to indicate if atomic mode is supported by the
->   *		    transport
-> @@ -317,8 +324,8 @@ scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
->   *	   NULL otherwise.
->   */
->  static const struct clk_ops *
-> -scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
-> -		    unsigned int atomic_threshold_us,
-> +scmi_clk_ops_select(struct scmi_device *sdev, struct scmi_clk *sclk,
-> +		    bool atomic_capable, unsigned int atomic_threshold_us,
->  		    const struct clk_ops **clk_ops_db, size_t db_size)
->  {
->  	int ret;
-> @@ -326,6 +333,7 @@ scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
->  	const struct scmi_clock_info *ci = sclk->info;
->  	unsigned int feats_key = 0;
->  	const struct clk_ops *ops;
-> +	struct scmi_clk_oem *oem_data = dev_get_drvdata(&sdev->dev);
->  
->  	/*
->  	 * Note that when transport is atomic but SCMI protocol did not
-> @@ -350,6 +358,9 @@ scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
->  						 &val, NULL, false);
->  		if (!ret)
->  			feats_key |= BIT(SCMI_CLK_DUTY_CYCLE_SUPPORTED);
-> +
-> +		if (oem_data && oem_data->query_ext_oem_feats)
-> +			oem_data->query_ext_oem_feats(sclk->ph, sclk->id, &feats_key);
->  	}
->  
->  	if (WARN_ON(feats_key >= db_size))
-> @@ -407,6 +418,8 @@ static int scmi_clocks_probe(struct scmi_device *sdev)
->  	clk_data->num = count;
->  	hws = clk_data->hws;
->  
-> +	scmi_clk_oem_init(sdev);
-> +
->  	transport_is_atomic = handle->is_transport_atomic(handle,
->  							  &atomic_threshold_us);
->  
-> @@ -438,7 +451,7 @@ static int scmi_clocks_probe(struct scmi_device *sdev)
->  		 * to avoid sharing the devm_ allocated clk_ops between multiple
->  		 * SCMI clk driver instances.
->  		 */
-> -		scmi_ops = scmi_clk_ops_select(sclk, transport_is_atomic,
-> +		scmi_ops = scmi_clk_ops_select(sdev, sclk, transport_is_atomic,
->  					       atomic_threshold_us,
->  					       scmi_clk_ops_db,
->  					       ARRAY_SIZE(scmi_clk_ops_db));
-> diff --git a/drivers/clk/clk-scmi.h b/drivers/clk/clk-scmi.h
-> index 6ef6adc77c836dc2d599ff852cdc941f217ee388..d7f63f36c56d155f728325efd6bcf7fe2585b170 100644
-> --- a/drivers/clk/clk-scmi.h
-> +++ b/drivers/clk/clk-scmi.h
-> @@ -7,6 +7,7 @@
->  #define __SCMI_CLK_H
->  
->  #include <linux/bits.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/scmi_protocol.h>
->  #include <linux/types.h>
->  
-> @@ -19,6 +20,7 @@ enum scmi_clk_feats {
->  	SCMI_CLK_RATE_CTRL_SUPPORTED,
->  	SCMI_CLK_PARENT_CTRL_SUPPORTED,
->  	SCMI_CLK_DUTY_CYCLE_SUPPORTED,
-> +	SCMI_CLK_EXT_OEM_SSC_SUPPORTED,
->  	SCMI_CLK_FEATS_COUNT
->  };
->  
-> @@ -37,4 +39,13 @@ struct scmi_clk {
->  
->  extern const struct scmi_clk_proto_ops *scmi_proto_clk_ops;
->  
-> +struct scmi_clk_oem {
-> +	int (*query_ext_oem_feats)(const struct scmi_protocol_handle *ph,
-> +				   u32 id, unsigned int *feats_key);
-> +	int (*set_spread_spectrum)(struct clk_hw *hw,
-> +				   const struct clk_spread_spectrum *ss_conf);
-> +};
-> +
-> +int scmi_clk_oem_init(struct scmi_device *dev);
-> +
->  #endif
->
-
-Other than the above, LGTM.
-
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-
-Thanks,
-Cristian
 
