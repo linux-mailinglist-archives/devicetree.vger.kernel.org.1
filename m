@@ -1,73 +1,60 @@
-Return-Path: <devicetree+bounces-269505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269506-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJsGLgauomln4wQAu9opvQ
-	(envelope-from <devicetree+bounces-269505-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 09:57:42 +0100
+	id AEpiOt+womkC5AQAu9opvQ
+	(envelope-from <devicetree+bounces-269506-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:09:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A5621C18F9
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 09:57:41 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD3A1C1994
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:09:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 781E43022627
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 08:57:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 16FE730398EF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 09:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86BFB3E8C6F;
-	Sat, 28 Feb 2026 08:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b="WYi5Fj19"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 451CF3EF0DA;
+	Sat, 28 Feb 2026 09:09:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AFFD1F2B88;
-	Sat, 28 Feb 2026 08:57:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.181.231.80
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8102D2749C1;
+	Sat, 28 Feb 2026 09:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772269058; cv=none; b=a8LMpZZdOrdmnUZggEQb9DxZyBxmYqSNMNKjyfxkfv4/9FooHfW0CifNr+RmzmdYqrU3R3X3aApur6qKIjV9N0Yphd955Im4yQE1mu9bFZmSQUCHnDFs+b3TyuJlmqRTiR3qOqGWGNohVjZ9QUhZb4z3WqOV9uVk2QsDBv2X4Hs=
+	t=1772269788; cv=none; b=fgvb4ZRLDzJJOOGM+3Orr8JPIF8adXM6XcRT2Kbr6rEhLh/nOOUt3B6F9bul6H+797+sYJDfMzjR+JTJ9TXpNW150Nb+DfDxUULxNnyh2NeRGJLlzG8apHohtU6YMV11ODLun98Qi+CTGHfBDWFqYvc1YW+JWnlbGChtEpzwwHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772269058; c=relaxed/simple;
-	bh=wHkGGRKT1DvJCaDIVkIqM68dxQAF3VVQWH1ZOfqNdPE=;
+	s=arc-20240116; t=1772269788; c=relaxed/simple;
+	bh=7ZFpYep6aV/YCf44FSP53Ao9kuQMPkzoPVsuqTfi6pI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=suuOISQh3vqV0eyk/f3QfzRQP103ZHwqj8Gea15rRvFnYH9EmrwE3yDMRp9v9clP9eFk5j5VCbXvOtT2YDIWdXt7kpSgEnxprNZBxNygs+Hme8Iv6xTavIRCwr02V255VOFvVehYCgrYF5MZUWtFbFHVXDgzB7S0zOoiOQDcI8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b=WYi5Fj19; arc=none smtp.client-ip=180.181.231.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
-	from:content-type:reply-to; bh=bCU2ngREEoQR8r3kCCgKGjlvPXvc1aTerf/ElVfvglA=; 
-	b=WYi5Fj19FNknyzhCUAfQ3fQakDIB1433kp1RWcCoHYhc40gVlSXxyISsqRp50vmSPg/uKVLZzQL
-	88FF2L9mhmeExvYbEqubnbdptCP77894jUt4ISlH1/FlU05Y75ixt68dqTKOaiFJPB2RAorgOJfv8
-	bjD0s98zq3tJhDWQQe4gIXcu1xggHWEcjGuSz73ZUPjvTHY0mC+vjrZIeAid5G+0YEliCpuChKnE6
-	Ar0ZHjbhc2fzDWdcKqtWEh8BLYqLMFrezwHHsDY3nZEHQlQepdylTIujqS/Yr6VtWrIFiIDqy2L6Q
-	v79TiKvhH5jZhFDENgsKRUa4zuTxh0SgDVqQ==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1vwG8a-00ADzc-0S;
-	Sat, 28 Feb 2026 16:57:25 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 28 Feb 2026 17:57:24 +0900
-Date: Sat, 28 Feb 2026 17:57:24 +0900
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jEPqilRPEwn+ptushTmDpjvbOtaLJNmfjR8F0dT9HQnho8FvOX4Au4jmw5D8lLQnp1gcuzsjOncgY0OqI2zm0kiKEKEyxH0qYhwqNrbg5uw9+2nEtzs5hLFL71ca0TZ+lSjO7LV5N4IR1YPIO0Bsdf6hfzf6qzoUhK+Qb9WcRvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0BAC91516;
+	Sat, 28 Feb 2026 01:09:33 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 49CA33F73B;
+	Sat, 28 Feb 2026 01:09:36 -0800 (PST)
+Date: Sat, 28 Feb 2026 09:09:28 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
-	"Martin K. Petersen" <martin.petersen@oracle.com>,
-	Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v6 1/4] dt-bindings: crypto: ice: add operating-points-v2
- property for QCOM ICE
-Message-ID: <aaKt9PET6lVkBcif@gondor.apana.org.au>
-References: <20260219-enable-ufs-ice-clock-scaling-v6-0-0c5245117d45@oss.qualcomm.com>
- <20260219-enable-ufs-ice-clock-scaling-v6-1-0c5245117d45@oss.qualcomm.com>
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Sebin Francis <sebin.francis@ti.com>,
+	Brian Masney <bmasney@redhat.com>, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v7 5/6] clk: scmi: Introduce common header for SCMI clock
+ interface
+Message-ID: <aaKwyDXtqdx-ysRy@pluto>
+References: <20251231-clk-ssc-v7-1-v7-0-380e8b58f9e3@nxp.com>
+ <20251231-clk-ssc-v7-1-v7-5-380e8b58f9e3@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,59 +63,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260219-enable-ufs-ice-clock-scaling-v6-1-0c5245117d45@oss.qualcomm.com>
+In-Reply-To: <20251231-clk-ssc-v7-1-v7-5-380e8b58f9e3@nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[apana.org.au,quarantine];
-	R_DKIM_ALLOW(-0.20)[gondor.apana.org.au:s=h01];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269505-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269506-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gondor.apana.org.au:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[cristian.marussi@arm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.872];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[apana.org.au:url,apana.org.au:email,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,gondor.apana.org.au:mid,gondor.apana.org.au:dkim]
-X-Rspamd-Queue-Id: 1A5621C18F9
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,nxp.com:email]
+X-Rspamd-Queue-Id: 8DD3A1C1994
 X-Rspamd-Action: no action
 
-On Thu, Feb 19, 2026 at 03:09:13PM +0530, Abhinaba Rakshit wrote:
-> Add support for specifying OPPs for the Qualcomm Inline Crypto Engine
-> by allowing the use of the standard "operating-points-v2" property in
-> the ICE device node.
+On Wed, Dec 31, 2025 at 06:12:52PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> ICE clock management was handled by the storage drivers in legacy
-> bindings, so the ICE driver itself had no mechanism for clock scaling.
-> With the introduction of the new standalone ICE device node, clock
-> control must now be performed directly by the ICE driver. Enabling
-> operating-points-v2 allows the driver to describe and manage the
-> frequency and voltage requirements for proper DVFS operation.
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-> ---
->  .../bindings/crypto/qcom,inline-crypto-engine.yaml | 26 ++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
+> Added a new header file 'clk-scmi.h' to define common structures and
+> interfaces for the SCMI clock driver. This header will also be used by
+> OEM-specific extensions to ensure consistency and reusability.
 
-Patch applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Hi,
+
+> 
+> Moved relevant structure definitions from the driver implementation to
+> 'clk-scmi.h' to facilitate shared usage.
+> 
+> Reviewed-by: Sebin Francis <sebin.francis@ti.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+
+
+LGTM.
+
+Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+
+Thanks,
+Cristian
 
