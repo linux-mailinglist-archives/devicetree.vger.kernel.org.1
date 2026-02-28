@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-269611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269612-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uIYGBohLo2nW/AQAu9opvQ
-	(envelope-from <devicetree+bounces-269611-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:09:44 +0100
+	id QNcKFZJLo2nW/AQAu9opvQ
+	(envelope-from <devicetree+bounces-269612-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:09:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02FA1C7F65
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:09:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F321C7F76
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:09:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 98E01311CAA4
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 19:59:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E4CB4311FC0E
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 19:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727023FB060;
-	Sat, 28 Feb 2026 19:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B65993FD126;
+	Sat, 28 Feb 2026 19:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SQkLfZSK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tvilz9KY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 006763F9AA4
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 19:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636323FD123
+	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 19:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772305927; cv=none; b=YTHWdsShDt9nOR/4XWskkrTbnvqZsiuyJRaNgl5hQem5nrkX0Lf7wV46RdP08cXY1lTHlRHxF5CsAoyoBUZ2gfFjRVLWenXCTmBYWKLtzO02k2x3E83MkHCQ6IiLs3+n0ZecfLHTQ3UKoK37JUAdePaHbXq4n8LHCpwMIVzWELI=
+	t=1772305976; cv=none; b=VSzR2B4bFKkoIxpbfgcniDEnJAcpybvGbSEwq+s0GUN+JngPAgyp5Rx32aWsL6vrabvmbCS4qdxvqUOWnyab2wjC405RxdAd4Z8g7yz9MOq0EJuk6pvdtp6g6H3N8FtRjBaKdvjSMo+ndZutAfW7Xza3uFUFytaqi3jZvZozGaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772305927; c=relaxed/simple;
-	bh=uCBZJM2fAnD/3wRO5BCr9InnsCPcuxyUKxMyds7Z81A=;
+	s=arc-20240116; t=1772305976; c=relaxed/simple;
+	bh=7vHUIFMe6aqv8rNlp8GpXSth7AdqP3Jvt63LGxY7hZA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VFebfxrWbHVgpf9O/+JYxqQm6T/5JUoUCEQAoDGuo87qTKIfliMxW64MEGjGFhXrNuHHIcmYqPGS5FPUFRQzgJP0fjm0BRy/7PO1sAZZbK1v4ErZ8xRXXakPVKb8qIbzbsUDn8q/1CbezUw1sKMbpcAiVuy25nEclV0RlDcxCxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SQkLfZSK; arc=none smtp.client-ip=209.85.128.51
+	 MIME-Version:Content-Type; b=dt5L2/lBMYfbyPKhBilfPmgv0QVaVWxxK6ahOBnic1vU509q9+R5M2yHEP/BHnuurBpE6OSn32AsH+NVyVixViQge4PDW4ujG0VcZ2Zzt8xMdwvZf/AezeNM1gIlHtSFZwCEbATQAtousBIfWn9/lMufz6KzVQxvAw/LqHfmxDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tvilz9KY; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4806bf39419so30294975e9.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 11:12:05 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48069a48629so34108325e9.0
+        for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 11:12:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772305924; x=1772910724; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772305974; x=1772910774; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uCBZJM2fAnD/3wRO5BCr9InnsCPcuxyUKxMyds7Z81A=;
-        b=SQkLfZSKUEUiyZOu/DT+48Hqtd/QfftiPRBfuakTnNfDnwQC17iF8dq9gE+C2rzluJ
-         ra55f3ktqYYLNMqY6+Meo5sL3zWPYvKBdUZfy5WrxDsNms3W0rZhkks0kZpHt19Uwc0w
-         XkJ2ke6fGMRBxZtwWWmHchtrEPy1JYYZ3lp4HZAH/XbrXpMtd7zr9wuIkrs9RTC2dL83
-         95IhPffdGnfD0PlggdVqNk8qPI52nb+2Z4XyNSWhLtlGhDla8HogLi+D2xySzaAL+WCo
-         FBWS4XZrno3Qt078i2deFa911Evq5swVi2LeesSs2GvjW7/tzY4KEOxb+YB0t8XrfRl2
-         XCrw==
+        bh=7vHUIFMe6aqv8rNlp8GpXSth7AdqP3Jvt63LGxY7hZA=;
+        b=Tvilz9KYpvIy98x5mEsAFMwEkE94In17AmiHNfuoN0P014uktifJ+s77I6HiYf9oMB
+         5l70JVOSZGX6Nz+r0sch0oMqkZY7OJqJTgfyatepXJutWF0RIelrgtqp8FODr3aJ5RVL
+         Vam4gmZUbP6npkbu+C+w+doUytlTM/yCh0N160LrlDlI0Zdnv56WB0pQOEmuvDguBEj+
+         T36SJOovQYZyKFxlZGv6CCq2wPCLLTN9vpHPeyw2PewxtufG+PWRh+M8O7Iae7hjxERl
+         83n0Gdi8/XkE9djOXh7G74Yu6xYw85OFpXzkG9XgnSEYwx2oKRTm/HeZx3o3V+5lr6PU
+         9LSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772305924; x=1772910724;
+        d=1e100.net; s=20230601; t=1772305974; x=1772910774;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=uCBZJM2fAnD/3wRO5BCr9InnsCPcuxyUKxMyds7Z81A=;
-        b=oyBlT65B/jJvxSbWIz2gEl8uUiWGo1sMTMaP4P+V1tdVNO13jyQprwZxdGQXthKXV7
-         nf0jcaKaJhTOn9EWSgYiZbHfpILfgF976yZf0DFW2iTrY06k32CSDGpl4EwouJEM56lt
-         ohmfNudGy2ZyTaujCgezgVmsSsAFc9AtvpEjmixv4Mwkv5UyqrpkOaBJcYnClPj21VW+
-         1syERv53NkFi6sIAxgvYhBMI6hi6dZzQwfgQf1+S1KZK7WWouDSifFQIb72i+++FFmRP
-         UEVBaMvsmhOiAb3FpuGct4fb1wQ75OUwmJ7bDZYNzGv3ZwDcvGyaYMmi4Cu9Nnr3A3IM
-         1ilw==
-X-Forwarded-Encrypted: i=1; AJvYcCW8sv5v4ADlL+hNYR1PjkpWvUylN+I2CW2Hlg++jhQxJ4Q4wY8O2KmWuSWpg0nbnQIC8ihWt6/fkpq9@vger.kernel.org
-X-Gm-Message-State: AOJu0YztH2UBuhKjnvr+V2frAmFuwJP+veapEYnmcCXmAw1VIa6crM6H
-	zIlHLrYULh0M3OvbT5seWACTW3wnV5eYCU0+bsahMq3PEuNyaOd3naoQ
-X-Gm-Gg: ATEYQzwfR7mMC7+Fyr7pRJEe6BfNMOjXEW7tSziri7iqbkvVRTU7xZ/+3YNNMGI9Vqy
-	xozHozQgjfQWnNqT2n+K9+7nFNPfS042NFwcH79GTCr8V0sVF9KMADVkKvzsdo29eqzIsuzyygf
-	l4B+x+CzLQYPeIHWjKjUbrcJKEBicR7CjG8xCuV8HoWQwrsWQ8yPJJEJuy7ositgWHXOO8/bxUo
-	aHr/8OcuUAPFlOyaHiO1VUSKACpoMH4Uyv34XkiR3KHvElZBDKM7Bi/zowCSAWNSI3xiGa3xzZG
-	pT/7AisAMY6ViLZ1iM7zyNwZtvS23gbpqtOypj618KZ5mKXd72t9Wl30DR2gBVJoNsrL4hZhhgA
-	a4mb9WglxkVhdzPMXZo5ZYk8Y/wC7alJyNeOmAJm7Puhj2Ebb1bA/ov8nb8btpaNKieWGXaLB4Y
-	8tEsTtusUuSAT8T4Sc++ABnyntmXC4Q2TuJy2iq7EiraNc
-X-Received: by 2002:a05:600c:4e15:b0:483:29f4:26b3 with SMTP id 5b1f17b1804b1-483c9906a11mr129611565e9.1.1772305924223;
-        Sat, 28 Feb 2026 11:12:04 -0800 (PST)
+        bh=7vHUIFMe6aqv8rNlp8GpXSth7AdqP3Jvt63LGxY7hZA=;
+        b=PWWhO+lFQCcHbHOzkOcvuu714U779QZvZQsvAocVAV9g+3pxcJrakGlcLPQpBknfoY
+         PsdIFVYUefSkAuWtIFq15b0Ul8a7IxtIoBv8Uvl+3zuubq9U5881AfVPLhl55+BakZoS
+         biIy27iKKC4VWvpLk4EiRlWmemI2OXraIp3Ptg04WuRo6F+dIaJ1wkeDeq2+dTs8Qmtm
+         eTaVukychM6GzZUu33PpYoCLgaVp7X/ht/s0+08GkB2XbnL2ChOJfKswvLtXWa4ZYwTS
+         esO70dWjdgMb/0My4zyMBMHvDexmGrjBmuMZeN0kCs0R+875YgSvN3IsUBbPAhiAoyRH
+         5mKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5Ux+pB+AHxE2mOouPLIJ8BguLVV/pUbAMlW3gjXTIpsIqgEeDS8GcKpGn/LTUiRm3x1LlY5npZeWB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1nAGfoFjsQrWk64A0+vgCHO9NmNzCc1OPAUHKKrURlxEdHduR
+	OoE4LJTJCTwz29rYMzFZanWIxdfaD1Il24ms+ZnhvHQgf7txE60fy6GW
+X-Gm-Gg: ATEYQzytfjoC3r/lmeX71PLwpw0FkMzSJRnRo7zGgZ69XKVXbOsIOJfIMVRUKz81x8E
+	ED3wjXAhucIj8VOvFeYNLoN3q4Ofs2zVHJEMUvhWpbZbPvMFDyFR+sohQB18+J8kClCPfL67pWK
+	6eVrwhpZCL1x03GTAXHSOzsYFseo1RFtDiYdmyCWVoJ0Ev5Sc663gz1U7vCpO9SCrTqZauJyKDu
+	tTWDAw6KLq9fq4CPLOcPuNRVn3Qz3RZrKRaL29DwyEFlt7LewcAmDeIAkA0b7pjphrY3kEo5EKu
+	XZuhGH3QxYJtWVZJFXlj7I+XF9321fq3LqZlXMxIFY6EIwlqpLJl8WQy827R8ypVbx8TiDXhQ7B
+	pJllwPQLNAvHg8yvIEQNJKHfeFdfc6Aj5JfrLNhilgBPyUid939GkTjkxjdTLPEGA5p+ZHzokeV
+	orkmcFm34Me47pMYnhnjCzh0wqvBf/K/6oEgkyMsN++xDd
+X-Received: by 2002:a05:600c:8106:b0:477:b0b9:3129 with SMTP id 5b1f17b1804b1-483c9bb6573mr114108805e9.3.1772305973660;
+        Sat, 28 Feb 2026 11:12:53 -0800 (PST)
 Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfb85c58sm89513845e9.9.2026.02.28.11.12.03
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfcb318fsm141401095e9.6.2026.02.28.11.12.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Feb 2026 11:12:03 -0800 (PST)
+        Sat, 28 Feb 2026 11:12:52 -0800 (PST)
 From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To: Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej@kernel.org>,
  Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
@@ -85,14 +85,13 @@ Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
  linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 Subject:
- Re: [PATCH 2/3] arm64: dts: allwinner: sun55i-a523: Add pinmux for spi0 on PJ
- pins
-Date: Sat, 28 Feb 2026 20:12:01 +0100
-Message-ID: <5968992.DvuYhMxLoT@jernej-laptop>
-In-Reply-To: <20260227175157.2339758-3-wens@kernel.org>
+ Re: [PATCH 3/3] arm64: dts: allwinner: sun55i-t527: avaota-a1: Add SPI NAND
+Date: Sat, 28 Feb 2026 20:12:49 +0100
+Message-ID: <5079872.31r3eYUQgx@jernej-laptop>
+In-Reply-To: <20260227175157.2339758-4-wens@kernel.org>
 References:
  <20260227175157.2339758-1-wens@kernel.org>
- <20260227175157.2339758-3-wens@kernel.org>
+ <20260227175157.2339758-4-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,12 +107,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269611-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269612-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
@@ -129,22 +128,22 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B02FA1C7F65
+X-Rspamd-Queue-Id: 32F321C7F76
 X-Rspamd-Action: no action
 
-Dne petek, 27. februar 2026 ob 18:51:54 Srednjeevropski standardni =C4=8Das=
+Dne petek, 27. februar 2026 ob 18:51:55 Srednjeevropski standardni =C4=8Das=
  je Chen-Yu Tsai napisal(a):
-> The Avaota A1 board uses spi0 on the PJ pins to connect a SPI NAND
-> chip.
+> The Avaota A1 board has a SPI NAND chip connected to spi0 on the PJ
+> pins with support for QSPI.
 >=20
-> Add the full set of pins. Even though this board doesn't use CS1, other
-> boards may do so in the future.
+> Enable spi0 and add a device node for the SPI NAND chip.
 >=20
 > Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Best regards,
 Jernej
