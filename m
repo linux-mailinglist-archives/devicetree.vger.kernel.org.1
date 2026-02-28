@@ -1,135 +1,272 @@
-Return-Path: <devicetree+bounces-269589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269598-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oBOgASD/omkJ8wQAu9opvQ
-	(envelope-from <devicetree+bounces-269589-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:43:44 +0100
+	id 8K+DO2EBo2kJ8wQAu9opvQ
+	(envelope-from <devicetree+bounces-269598-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:53:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 782451C39C5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:43:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5146E1C3B68
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:53:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B7F2E3034781
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:43:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 397AF31766A3
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E5D333440;
-	Sat, 28 Feb 2026 14:43:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23E4643E9D0;
+	Sat, 28 Feb 2026 14:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+MolcBB"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="cdUhVrAn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F36532695A;
-	Sat, 28 Feb 2026 14:43:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5952143E9DF;
+	Sat, 28 Feb 2026 14:47:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772289818; cv=none; b=KHiRIj0cuhwpwqpcPA67zwzTJS5Rw4uQyHBbAFurqCpOTkWxhbwRR2d7mTSlvrFtgpwC57+R6nwkxlSls34AmxbGwWR0YI1ZkXFzL4HdWUrwNG4FK4Fb5lHU6a+ivjLqiKk7O5rNW/ZinLMFWbTSvpLyeKJNgQoayw5+7RMYAFs=
+	t=1772290044; cv=none; b=Yzm06WTpWi/19U3myQ67C0GmKe2Ypn3bfut+3hflbz4dyyLugHJx3beGaBpXy48c+uSYGOsPN0GLFf3rOTLUvAS2/eBckuRCSogNO5FjVMsWgNzMg/GO00+7k0Edp5BGGrL3L7VRi8b4PJnaVenPT4kGpaS4kA7L2W3aOXC3NQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772289818; c=relaxed/simple;
-	bh=CfsfHc2IZvizVqWXqW65hOnIoVPxOt9iivCaVzIk/Mo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LVTLXDfPTKO6zPFOan6PVe1Itwf9iDIcshvqWQtT1iiyUYoZXpaSlhOzizbkvMs4QVesDo219EZCTjVo+aHOKLpnzWuy4dYj3W/4gGdGgXW6R+jn7c6Elki5tcTA9PIktpqORiQeIX1AwHHFYsDAZ7Nzmxszjr1DLc39W6+mn3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+MolcBB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3396CC19424;
-	Sat, 28 Feb 2026 14:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772289818;
-	bh=CfsfHc2IZvizVqWXqW65hOnIoVPxOt9iivCaVzIk/Mo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=m+MolcBByd47Ey7eT4TjLfGewAgb47Al4Ru5uuvyAruYPN0bqQq+kKCrKljfm6gs/
-	 kC+0DBIplXr7nrlYU5WFk+IPQZ98y73BCLdbUVjt4cx9KOfctQtVjcRgzPnW6py2rs
-	 iVKEzuDd9YmD94q6HHQWeFTg4x6SKJDgC2aUPHdQqwZXzJ7d2pkgMwE81ywZoV+LWr
-	 bhSEbiMd7hmsoFtRfYiVZPitrDdRRGkYo6WvnELY+GGyt7w4eN6qvywVeTZd9xYKCo
-	 yTnwjRcVfIRSu38IUd3RN5mDTntkILKawTVmKLZlslXZyfl4xls5suhd+Oo9TnFuU+
-	 L5zdka5GkPY7w==
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: s.nawrocki@samsung.com,
-	cw00.choi@samsung.com,
-	alim.akhtar@samsung.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	sunyeal.hong@samsung.com,
-	shin.son@samsung.com,
-	Raghav Sharma <raghav.s@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
+	s=arc-20240116; t=1772290044; c=relaxed/simple;
+	bh=AsKvI+ijqHjQa3sgDY1PPryHZxIup6q2dSFasj6EQXI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G7p/fzXeRMtZKqrg3r3pLYWIyaLl6QIZBfg78fmTGtGCeJJAoON7wcJPFfq18VuJscsu2tvkN61M+QfOi+PvJr3WF9gf0oNzhBXFRDrT5GrRaYnudvO5TVtJXAD9lZ6GuGdfuB+Xsl9I6bIgIpXOH9/Hf0wXTzrsvCfWYUDHO+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=cdUhVrAn; arc=none smtp.client-ip=54.207.22.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1772289841;
+	bh=VFpZj6jKARnaID1I10ixu24mzXdyy5SN61+au0Q3ZPc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=cdUhVrAnVOsRvbB2eYzrKAnB/tna4valCaKOwSU3723n/f9Z3LaOK2hkRHthFr7G2
+	 m8/LKDODnIeHfcQq+/lWH70XKFuH6we3HHbboG3dtEBDwqhXC20xILcCepsow2D7Qv
+	 1kgzcewL/SUKNm3jYn0/nxIUzOxrj58QsMOXNOUM=
+X-QQ-mid: zesmtpsz3t1772289839t48d62097
+X-QQ-Originating-IP: +vVQa2LLG+FVJ/e80s+itn7Z14UcwpwT8kcqAcUN2/M=
+Received: from SurfaceBook2-B.localdomain ( [183.193.112.19])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Sat, 28 Feb 2026 22:43:54 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 10233903411919513478
+EX-QQ-RecipientCnt: 33
+From: Lv Zheng <lv.zheng@linux.spacemit.com>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>,
+	Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	James Clark <james.clark@linaro.org>,
+	Yixun Lan <dlan@kernel.org>
+Cc: Jingyu Li <joey.li@spacemit.com>,
+	Lv Zheng <lv.zheng@linux.spacemit.com>,
+	Zong Li <zong.li@sifive.com>,
+	Yaxing Guo <guoyaxing@bosc.ac.cn>,
+	Zhijian Chen <zhijian@spacemit.com>,
+	iommu@lists.linux.dev,
+	linux-perf-users@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	chandan.vn@samsung.com,
-	dev.tailor@samsung.com,
-	karthik.sun@samsung.com
-Subject: Re: (subset) [PATCH 2/3] clk: samsung: exynosautov920: add block G3D clock support
-Date: Sat, 28 Feb 2026 15:43:22 +0100
-Message-ID: <177228975881.54431.9547973271595973650.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260202103555.2089376-3-raghav.s@samsung.com>
-References: <20260202103555.2089376-1-raghav.s@samsung.com> <CGME20260202101957epcas5p224b18e84c561e542c39096b2bd7f29a7@epcas5p2.samsung.com> <20260202103555.2089376-3-raghav.s@samsung.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/8] iommu/riscv: Add HPM support for RISC-V IOMMU
+Date: Sat, 28 Feb 2026 22:43:38 +0800
+Message-ID: <0CA1C3965143B3A7+cover.1772289741.git.lv.zheng@linux.spacemit.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=570; i=krzk@kernel.org; h=from:subject:message-id; bh=M3/w8Kjaa5+4q1BF5CF5iRHUViQIxQUsXUslcUtgoRs=; b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpov8MKoFI6cn9WQaNzBpeerXBWEmeDuz0Frz2a bysmdIAUL+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaaL/DAAKCRDBN2bmhouD 13dAD/sEl5lanhP3VthwFPk4bqJxrtZ+Cr9iyE3xQ+CvyagHWK+vu0GVWAqOK6h/hDeIzHjgQ1h O9LuN85PTNVa5DCPVy2BOm4hqNuhf1+jbptO9UslNExVYnMA7Ob6XSpmwvPBOkVWrbMHa48GoSs D3StuQdBSTvMv06FPesw45CJF7izooDuB7RHZMrnVJzyauKKr4Cte3UHZSBY+BsrEPUwp3mC6c5 eekGhTIT5kixVFMgMO8iH6igL9lgrrIv4zBuCiDhyxbat2Lxa2YgwY/owl3sEW741BbqVq6Qg0i biBPGeMjJwjxXquKIPY5VqgIW4elkUfw0RJGIPi5HlvOnqRl9PfKMqdHbIQcbLJQpLuQTENKKdP 0CC7AeKPcAkRVfwcANFLNIRB4LIW4/twRf19M/7KZoc/tmDGegJWooK7gXLCXou7xrCGL5qwy4r 0tHAK/U0UuvNfsMAKPiFK41ekWvSHEHjVa/wnxA7CKCCHXW9NPzwnloNUuXQZkC56s/3JIvQ7uR r1XvORtJkzi7VZnxOfmEHg1x6GwrVBElehHs9YolwHJQFv8z7P78L+vzo6YUpvep7F+9Hw5167m JvWO1KiLSTps2NCqQ6B2yl4WhvPndquM6zlPuPFw2DinfvFyN3sDMnW7I464hXudxX8sFuD+LiT rpXGjsnuPnWcaO
- A==
-X-Developer-Key: i=krzk@kernel.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz5b-1
+X-QQ-XMAILINFO: MSZecc01IPj5diyjRvIOeQg2lFZZ003e583DDRseQoWTiEz7vBEAgPMa
+	noYsdDxSZUPD3IL+brT+9sNb90GW/OpWvOsDs+wGGZ/TPvf6+igYfwXB4Kegqbu9ajzlR7S
+	tjb2jXOUPxDJptG8lb1jIqrJPzFMMgPF/l+JGpeHWAQkAe6AqrU08FmJ0xim2GfqwuEBvtt
+	Zsh9WjeTV9m7f53sU4JgMPg0suHsIGbW/+yR3ltOFZg/bj6QR/eDHyMhSbgIS8X4RucXugZ
+	/MgqVNPmALUqsZ4Eld/ACd+dZLva9CoOaLHxjgfPr4xu7sSWIflrUErPYhS7sCs5jt+d4dd
+	CgUlo4Sl+8erx8vj7G1QWC6gd4jsphwmv0OeUxhYRZhQ57cCoOR1Y33RNKt/xdIUxQjcjmF
+	EOQL/XGo+YNheCz7fMzaCF59PiL+QgZ/uagWD6k3lkEWjuckdHZeP4FdkxMSMVWb5/KmlgT
+	QI5IFishcGXozF54/G2PurI128vQebvTEk0u4qkY1WJFH4HUwoids+5h0XSJpXQAuJ5qc5m
+	6IKHb8PIvxgwE1UHFUopRICPA/qYSM3bCcSMvsZ0fwfAiakqdfF8JEUy08gEvci6FPWwi/L
+	14UQRsHdvzTsqdkovmFKd40kfi6N9RKmIXi6H228dEHh3yK3fiTRmceaI0HYMLDSokKdM4c
+	+DrsO38KmiGkkgZPox+YZWrPrprAUvmIG3yWjUEQtSLtm8RgvwEKslLLoNwxHSPp6c2T0wJ
+	WXt8aHfV8fRsuo105LAh/6Dh1yqMlBRzReZa6VSiqx/lbgK12Ox1ryV+MJvNaapUIccMQw7
+	njXtnZSqJjBVJjtb1woNipOX+PP5vwiwifXfy+D0lLDsTcANvndIjDh1irGdlZs5yItXu73
+	xKdhdr4QRdXriJdG5Q1vJqrvczlaS4Ap6pGDtzM51i6Z8wlDA9dJ1UotCc7nW75cF24qMP2
+	y6adiLIEulIWFWpBs9Oq5ZI7gu6cNqRzfWZIi3EXAeV3j7vi09Ghyr9j0pLw0cfZTudgzi2
+	7gBIhFCFFvnwMLggx5ZXf1HVfEPkELJJbOLJGgfQTXSef1tVTqkB7CubBFjhFn7JJ4fFr0H
+	nra7bdb2udXyF1/iE8KxGOx0Bz4E2kYiJSOJ6g5oSb0
+X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
+X-QQ-RECHKSPAM: 0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269589-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-269598-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[spacemit.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 782451C39C5
+	FROM_NEQ_ENVFROM(0.00)[lv.zheng@linux.spacemit.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.997];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:mid,linux.spacemit.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sdfirm:email]
+X-Rspamd-Queue-Id: 5146E1C3B68
 X-Rspamd-Action: no action
 
+Includes HPM support for RISC-V IOMMU. The HPM hardware mechanism can be
+found in the recent announced SpacemiT SoCs (K3, V100), where T100
+(SpacemiT distributed IOMMU) is shipped. 
 
-On Mon, 02 Feb 2026 16:05:54 +0530, Raghav Sharma wrote:
-> Add support for CMU_G3D which provides clocks to G3D block, and
-> register the required compatible and cmu_info for the same.
-> 
-> 
+The RISC-V IOMMU specification defines optional HPM registers (IOHPMEVT,
+IOHPMCTR, etc.) for performance monitoring of transactions through the
+IOMMU. SpacemiT T100 implements this specification with a distributed
+architecture: the main IOMMU (IOATS) is complemented by up to 64 IOATC
+units that cache IOTLBs adjacent to DMA masters. Each IOATC has its own
+HPM counters and PMIV interrupt.
 
-You have checkpatch warnings:
-CHECK: Alignment should match open parenthesis
+This series introduces an auxiliary bus framework to allow the HPM
+functionality to be implemented as a separate perf driver, keeping the
+IOMMU core focused on translation. Vendor-specific extensions (SpacemiT
+T100) are layered on top of the generic HPM infrastructure.
 
-You should fix them before my scripts or my CI sees them.
+History:
+The first revision of this series is posted without the awareness of
+other on-going discussions. There are other postings providing same
+functionality as [PATCH 2-3] in this thread:
+1. Zong Li:
+   https://lore.kernel.org/all/20250115030306.29735-1-zong.li@sifive.com/
+   We aligned with Zong in the community here:
+   https://lore.kernel.org/all/CANXhq0q8N5eHx9ytabZR97Y7AULKwgS2-uEGhcaOOGp9mvbtRQ@mail.gmail.com/
+   >> Perhaps I can first post my next revision to the mailing list (hope
+   >> it won't waste the community resource), so that you could have a
+   >> chance to review it and see whether that version is architecturally
+   >> closer to what the community is looking for, while also addressing
+   >> your issue. If you also feel that my next revision meets your needs,
+   >> perhaps you could append your additional implementations on top of
+   >> it.
+   >> Of course, if the community would prefer to go your version, I'm
+   >> perfectly fine with that as well.
+   His newest version can be found here:
+   https://lore.kernel.org/all/20260208063848.3547817-1-zong.li@sifive.com/
+2. Yaxing Guo:
+   https://lore.kernel.org/all/20250915020911.1313-1-guoyaxing@bosc.ac.cn/
+   Yaxing and Zong aligned each other in the community here:
+   https://lore.kernel.org/linux-iommu/2ce9d8be-10b3-48dd-b99e-7358347fc171@bosc.ac.cn/
+   >> Hi Zong Li,
+   >> Of course yes, absolutely - I wasn't aware of your earlier
+   >> submission. Please go ahead with your version.
+This is the newest revision of this patchset, and [PATCH 2-3] is the one
+that is competing with other contributions.
 
-Applied, thanks!
+Revisions:
+v1
+ Initial release.
+v2 (sent as v1.1)
+ Split and cleanup DT-bindings.
+v3
+ 1. Refactor using vendor specific compatible.
+ 2. Implement vendor events with a userspace identifier.
+v4
+ 1. Drop ICVEC check which is not that usful as WSI device tree can use
+    only 1 vector for IOATS CIV/FIV/PIV/PMIV.
+ 2. Solve DT binding check of "interrupts/maxItems" attribute.
+ 3. Address Robin's comments for an old revision sent by "Zong Li".
+ 4. Limit IOATC enumeration by referencing spacemit,riscv-iommu.
+v5:
+ 1. Use correct style SoC/IP specific compatible.
+ 2. Address all on-going comments in other threads.
+ 3. Split compatible into SoC specific and IP specific.
+ 4. Switch to use auxiliary device framework.
 
-[2/3] clk: samsung: exynosautov920: add block G3D clock support
-      https://git.kernel.org/krzk/linux/c/5e5f3286d66712fb49264da20e3d89534754d707
+The tested result can be found as follows:
 
-Best regards,
+ root@sdfirm:# perf stat --timeout 5000 -a -e spacemit_ioats_hpm_0/dd_walk,config1=0x20c0010000000000/ dmatest; sleep 1
+ [  453.426404] dmatest: Started 1 threads using dma0chan0
+ [  453.437152] dmatest: dma0chan0-copy0: summary 1 tests, 0 failures 212.04 iops 212 KB/s (0)
+ 
+  Performance counter stats for 'system wide':
+ 
+                  3      spacemit_ioats_hpm_0/dd_walk,config1=0x20c0010000000000/                                      
+ 
+        0.190412000 seconds time elapsed
+ 
+ root@sdfirm:~# perf stat --timeout 5000 -a -e spacemit_ioatc_hpm_1/tlb_mis,config1=0x20c0010000000000/ dmatest; sleep 1
+ [  117.599620] dmatest: Started 1 threads using dma0chan0
+ [  117.610698] dmatest: dma0chan0-copy0: summary 1 tests, 0 failures 186.07 iops 186 KB/s (0)
+ 
+  Performance counter stats for 'system wide':
+ 
+                  7      spacemit_ioatc_hpm_1/tlb_mis,config1=0x20c0010000000000/                                      
+ 
+        0.196982000 seconds time elapsed
+
+Jingyu Li (3):
+  iommu/riscv: Enable IOMMU DMA mapping support
+  iommu/riscv: Add auxiliary bus framework and HPM device support
+  iommu/riscv: Add HPM support for performance monitoring
+
+Lv Zheng (5):
+  dt-bindings: iommu: Add spacemit/t100 features
+  spacemit/t100: Add global filter awareness for RISC-V IOMMU HPM
+  iommu/riscv: Add SpacemiT T100 IOATC HPM support
+  iommu/riscv: Add vendor event support for RISC-V IOMMU HPM
+  perf vendor events riscv: Add SpacemiT T100 HPM event aliases
+
+ .../bindings/iommu/riscv,iommu.yaml           |   58 +-
+ MAINTAINERS                                   |    5 +
+ drivers/iommu/Kconfig                         |    2 +-
+ drivers/iommu/riscv/Kconfig                   |    1 +
+ drivers/iommu/riscv/iommu-bits.h              |   12 +
+ drivers/iommu/riscv/iommu-pci.c               |    8 +-
+ drivers/iommu/riscv/iommu-platform.c          |    7 +-
+ drivers/iommu/riscv/iommu.c                   |  306 +++++
+ drivers/iommu/riscv/iommu.h                   |   25 +-
+ drivers/perf/Kconfig                          |    9 +
+ drivers/perf/Makefile                         |    1 +
+ drivers/perf/riscv_iommu_hpm.c                | 1012 +++++++++++++++++
+ include/linux/riscv_iommu.h                   |   83 ++
+ .../arch/riscv/spacemit/iommu/sys/ioatc.json  |   30 +
+ .../arch/riscv/spacemit/iommu/sys/ioats.json  |  163 +++
+ 15 files changed, 1715 insertions(+), 7 deletions(-)
+ create mode 100644 drivers/perf/riscv_iommu_hpm.c
+ create mode 100644 include/linux/riscv_iommu.h
+ create mode 100644 tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioatc.json
+ create mode 100644 tools/perf/pmu-events/arch/riscv/spacemit/iommu/sys/ioats.json
+
 -- 
-Krzysztof Kozlowski <krzk@kernel.org>
+2.43.0
+
 
