@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-269616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269618-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2BytEjRjo2myBQUAu9opvQ
-	(envelope-from <devicetree+bounces-269616-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:50:44 +0100
+	id OF5QAChjo2myBQUAu9opvQ
+	(envelope-from <devicetree+bounces-269618-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:50:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9781C94B1
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:50:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 931C21C949B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:50:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7747E314E60C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 20:47:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4CD9D31A9BE2
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 20:47:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC462F1FEC;
-	Sat, 28 Feb 2026 20:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94FF92FF657;
+	Sat, 28 Feb 2026 20:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="NBK2DHWQ"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="p0kA8oKH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04BA243387
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 20:47:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12723002D1
+	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 20:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772311643; cv=none; b=ieIssaE8or6y9mRcf4nU0+nzv8j2oBaJqYKWL3zNbegQTPj9tVEeMnSIl8RWn6SArVq8hOxcfkXkQ3nrnAz9H2OVc7a5HuG1BQl6PnDND51nPN+e+WrDMmzRYsX9eaXYiez8zLfAPUOC1WkNshGN4YIAHyFayGbyu8pecAdHZFw=
+	t=1772311649; cv=none; b=jJWlf3+okGkDwEs4uAyzAItY8LflF3Oire2aKsewW+JLajbfXm6TuFd23gS/TC9STPFCTlcgmd/k/HhqKzR77vToiog9TbYpsErHMQxXMz3crfyljCSPUj0hxVRKv86CDmn5lLpwtMUDHUDSE9S9qHikh9dc6/38rw2areT1hJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772311643; c=relaxed/simple;
-	bh=q2B2Ljgs5Ws079qJ03QnY0pPOMhYQcO46xILryodcrg=;
+	s=arc-20240116; t=1772311649; c=relaxed/simple;
+	bh=XUGN+GnOejal3C8oiuZa9mM7ZV/xkp7Jj6M5/UwS7M4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J95zaVZcLpSZztUj6MOuu8OUr+pwfL110jX7zlVePWDTxpaZ19Fvp8guTHw82R7nSmJyyPimP5VMhuSeH4WsGExAb0L5nMHg0k0ZxpILm15z12t5oiK1sNa0SIkXSC55gielszjnES0EWNmmCH0fCaRQa1XFUJsL0y301exlG/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=NBK2DHWQ; arc=none smtp.client-ip=91.218.175.186
+	 MIME-Version; b=K8AzyaMKo/g6CZHnfpaIBI4tdcrsqi74sqaFypi9EWjPk5MCjXh/kzDbH3KuOAXL1IrDa3UsjhWZj/7SDH89DvocHBRUt3ebPuXr2peM9wlCyHlBMOw/j17Lo8zp/SJqKudvmt5NPkHxhWcpSOvafY0MB7lwzT6vxST2KdIop6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=p0kA8oKH; arc=none smtp.client-ip=91.218.175.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1772311639;
+	s=key1; t=1772311645;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=fZ4YCYZelX6xrgCcTEYuiYxr56vs8RNwPeKvzB3MVZM=;
-	b=NBK2DHWQWSYe0nAGnvxSHCMvur5X+VTXIVhTLbIL8H0awrd1rKSBub5hQOdsQCq7QRlC78
-	iN2H8Szoh6ccacMOYeOfYEwWbXTnR3enb/faANe5Xl6wTUavzLJk1+wKbl93+BMh1BkeUf
-	VzYgN1yd/x15/UdIkIDsQF+HCntqPTlXPbnfOWZR0HI/5jzov+4ANRBuj7iG2ZIsFc/RIR
-	NWHQTOtO6LT0HsTGQI8xfW/E8vVEwmZ/V4XPHd04HMVowTMO5do0sN/T9jWTQ+1jILTfAi
-	AZj+i0P9DaXAYTbVUmNITPYSXmSEwxvlvrDZwUQ0Gn0hdrv689b1IziXTAcGHw==
+	bh=GjzkTi2eTl1DSbdR7B9YM2t9btgxa+XI7HMUFcZbvJ8=;
+	b=p0kA8oKHfIvc3UHi9pPildv1J/1dXlYpiJdj1JSxwmhNB+YLHPu69PbJNLW9GCV5LqJKY2
+	dUtlV1prEWtrak8ucrD3gDkkoxRfHadowT5U04JPSb84Bckk08upj54jMbRyYcFNdrbdy+
+	xoSKBn+hTUAtPUXcekid2x3Y191E0PFiQZjTmAQoVkauSe3j6DLBa/THamEQCbBgk9JEW/
+	GtC2nm3ps67XqvbKoJO3NAQ0Hr8Aw0UMzoOOoxkb4hUuHA6YazBSwg8ko96f7Nw9f4R2v2
+	DyJ15/Jh90rKqghJrg73spOLpNMqE3olmHZwDpqb2TclVGut2goD8ksXSNV4uw==
 From: Val Packett <val@packett.cool>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -55,17 +55,20 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Adam Skladowski <a39.skl@gmail.com>
+	Adam Skladowski <a39.skl@gmail.com>,
+	Martin Botka <martin.botka@somainline.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>
 Cc: Val Packett <val@packett.cool>,
 	linux-arm-msm@vger.kernel.org,
 	phone-devel@vger.kernel.org,
 	~postmarketos/upstreaming@lists.sr.ht,
 	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/6] dt-bindings: clock: qcom,sm6115-dispcc: Define MDSS resets
-Date: Sat, 28 Feb 2026 17:41:27 -0300
-Message-ID: <20260228204638.11705-2-val@packett.cool>
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2 2/6] dt-bindings: clock: qcom,dispcc-sm6125: Define MDSS resets
+Date: Sat, 28 Feb 2026 17:41:28 -0300
+Message-ID: <20260228204638.11705-3-val@packett.cool>
 In-Reply-To: <20260228204638.11705-1-val@packett.cool>
 References: <20260228204638.11705-1-val@packett.cool>
 Precedence: bulk
@@ -83,16 +86,16 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269616-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-269618-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,gmail.com];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,gmail.com,somainline.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -101,12 +104,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[packett.cool:+];
-	NEURAL_HAM(-0.00)[-0.944];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.931];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,packett.cool:mid,packett.cool:dkim,packett.cool:email]
-X-Rspamd-Queue-Id: DF9781C94B1
+X-Rspamd-Queue-Id: 931C21C949B
 X-Rspamd-Action: no action
 
 Add the missing defines for MDSS resets, which are necessary to reset
@@ -115,28 +118,27 @@ from the bootloader.
 
 While here, align comment style with other SoCs.
 
-Fixes: 38557c6fc077 ("dt-bindings: clock: add QCOM SM6115 display clock bindings")
+Fixes: 8397c9c0c26b ("dt-bindings: clock: add QCOM SM6125 display clock bindings")
 Signed-off-by: Val Packett <val@packett.cool>
 ---
- include/dt-bindings/clock/qcom,sm6115-dispcc.h | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ include/dt-bindings/clock/qcom,dispcc-sm6125.h | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/include/dt-bindings/clock/qcom,sm6115-dispcc.h b/include/dt-bindings/clock/qcom,sm6115-dispcc.h
-index d1a6c45b5029..ab8d312ade37 100644
---- a/include/dt-bindings/clock/qcom,sm6115-dispcc.h
-+++ b/include/dt-bindings/clock/qcom,sm6115-dispcc.h
-@@ -6,7 +6,7 @@
- #ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6115_H
- #define _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6115_H
+diff --git a/include/dt-bindings/clock/qcom,dispcc-sm6125.h b/include/dt-bindings/clock/qcom,dispcc-sm6125.h
+index 4ff974f4fcc3..f58b85d2c814 100644
+--- a/include/dt-bindings/clock/qcom,dispcc-sm6125.h
++++ b/include/dt-bindings/clock/qcom,dispcc-sm6125.h
+@@ -6,6 +6,7 @@
+ #ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6125_H
+ #define _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6125_H
  
--/* DISP_CC clocks */
 +/* Clocks */
  #define DISP_CC_PLL0			0
- #define DISP_CC_PLL0_OUT_MAIN		1
- #define DISP_CC_MDSS_AHB_CLK		2
-@@ -30,7 +30,10 @@
- #define DISP_CC_SLEEP_CLK		20
- #define DISP_CC_SLEEP_CLK_SRC		21
+ #define DISP_CC_MDSS_AHB_CLK		1
+ #define DISP_CC_MDSS_AHB_CLK_SRC	2
+@@ -35,7 +36,10 @@
+ #define DISP_CC_MDSS_VSYNC_CLK_SRC	26
+ #define DISP_CC_XO_CLK			27
  
 -/* DISP_CC GDSCR */
 +/* Resets */
