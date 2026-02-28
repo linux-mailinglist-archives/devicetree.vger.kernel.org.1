@@ -1,172 +1,207 @@
-Return-Path: <devicetree+bounces-269467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269470-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iLWtMktJomkp1gQAu9opvQ
-	(envelope-from <devicetree+bounces-269467-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:47:55 +0100
+	id MAqXEA5MommH1gQAu9opvQ
+	(envelope-from <devicetree+bounces-269470-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:59:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3211A1BFC77
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:47:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ECED1BFD5F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:59:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B1B903048551
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 01:47:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F411302BE8C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 01:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29BB2FDC26;
-	Sat, 28 Feb 2026 01:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257922FDC37;
+	Sat, 28 Feb 2026 01:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sin5BcY6"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="skQqWODi";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="6OzVfiiy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com [74.125.82.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7502A19D8A8
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 01:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1978B1DF736;
+	Sat, 28 Feb 2026 01:58:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772243254; cv=none; b=Y3zy4OCbdPSqTIFgRCCCkzmDvd6AuEqHTedIjQ2e5xO6h+1vAOtOjtEz6H1a4HgT0fyqMLZDs1rACnZoue85Gjgi6SYuGSgt+ArumkcTHrBG5CJ/+tgtw2Rh+malO9zsOTmZo/CVtNrcyLVrGW8fpa+XPVYPxbWneZHbGhRM+p0=
+	t=1772243911; cv=none; b=uYH3QEN6/WC/z0nughnWBQuBcL631eSi0pT6PpjsxIW6H2rULuiTSrOBERWMC5CLZBbN14y0lqPRhXhDL1q992x8FAOu6yogIS/kw4G3qCCtYqaMdGnVVZqKtstTmOC989MvjhkzZSpGvn1Ft6Bu80inivrKx4Fv4tdoRsJmzJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772243254; c=relaxed/simple;
-	bh=kzLke4p4CBWVI/C3pxjA5vKdqdSS/ijW2W88xu76WA0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fxFgKukxaQzoZcfVqRf4S+I0kBozAQ8/bo7DITfEd5fNCXQUp3eEPubyMcdtVfxr1Qwyck5pnvE6KPdwF3UutqERYa6X2uAge9jVaCy9sS5B2Q0FtNJf4c0USUTe5tHWeTfEy1JHFTdiScAUCdMh0OFofvlxtw5X8Fhfdx+45fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sin5BcY6; arc=none smtp.client-ip=74.125.82.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f175.google.com with SMTP id 5a478bee46e88-2bdca815fdfso1399803eec.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 17:47:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772243252; x=1772848052; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nYm62l7h9IssC8pYlAqoKgXtyHZXXq6P9yH72X8r6sw=;
-        b=Sin5BcY6Dnfs2uHgnQGdY1/M1VQPWh94AD06GMcgbWaehAw8mrsiJJKy4WRwUQn4Wz
-         GvIlhjfJ/92t+8oU3VxblOzvFXCVu5YmeVI6B2A9xVzkIpzluU0kjyDF5UQZysvfrMnd
-         nLvWru5EApw1Cr1ammWgbUEmk5sbj6GKyBEvmicUYEWNFml7lMxDBD1AXOVxGAOegYp1
-         kqQXhiH415CkadGI4IRD9xDQApsOTIPBh48IvljKK4JPvjre/xYyEL0WVlWwt11hnYHC
-         4Pi2KL0c5cA27y6FxfvnrqEAXc9C9vttYgJXueuflWrPlIsj4AlvNYEvexJzf4A19/gt
-         uJtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772243252; x=1772848052;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=nYm62l7h9IssC8pYlAqoKgXtyHZXXq6P9yH72X8r6sw=;
-        b=L1bf3FZQIIqo3erPH0Xz4M1MVt11Iv/Z4uiv3ckqhOegQtduc/R3svZcQSoG9wVqN4
-         I7nnNFf0W+qkcHsrbI0ctlXhjcGocUtwpWNJBp8xEGYREzQR8fdCbqucxW9wbYE1DmRx
-         /BHbzIicOs9PprVtz5t4+ofYm+V12lodIkbyxFHIlFZa7d2EZaP+k/lgVOZ/+jPsaBUM
-         giGAk5vnCE2+maZFG2mch3Vek1YoCSExcglQkTReNYrU+BtKvfC57KI3juZ3E77lk+0/
-         RWu3QCu8geeinVq0CFMlMT+JvC5buPz1apgyI61tahcw4likHf5CPR6EOrW0Z0jsfmft
-         N35g==
-X-Forwarded-Encrypted: i=1; AJvYcCX2A5BRkdUt2fD/DRsISaulX0flJWu8YUlBTf1k6Q3TF74WKmTOU1h0HiKxtquKmd3Q9pyOs8tva3VE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxt8Pj3kbCJGjasaRAUCAqfmI397vtQnsR8Hk05X1F7TnZbnvZ0
-	TBQ+7MN92+RjrI5uWewaieiehELkFR/KSFBOJjpNK551o43UuF7FJSLD
-X-Gm-Gg: ATEYQzxmgtLXsTHPWtRwjK1nydAnm046SQ0bN9DkGYXxCqc6BOs8/W86UWHls1sJ4qH
-	zraOvRyefOHxscLVBfRi1VMVHSRcVPsPod3bdlmOweppno1ObY5lJpgh4lhr4nCkfo6oQfLGvKw
-	3NTmuoXWG3Fe9zpTni9/d2hOOpchzLz5nD0R9ryR2dpJx68jGprHR58VBAcdDusDwy3AxNlI8m0
-	ssKsyqmC2Oz93cMDZSIyY/C7KKmWL/7di1I7BiEszgTmakP9U2bTInC38SiKbU7VJTVMSgi4Tk2
-	LX5WcPyeOlcsjCNkSPNXF8LDc9jdUlDFO8CGaIShyqsAiuqcNJ1IKXadtVzf3PAoXss1NjSMqWX
-	wDEfyEZe9D+pO86kjq7vgZ1a7ZAp6gnI1v8SHj7KQuczr5kjxMtIFIacQ/gKR/hCLH2xQoAUBI1
-	JG1yX8d01XTmE9FilBvNfIQnHFfZ2SM/yQVfCHqyMZuGUkHNAVgoL/DyftgZImfiv4qkf/J5Od
-X-Received: by 2002:a05:7022:20d:b0:121:9f05:7e4c with SMTP id a92af1059eb24-1278fc5c3demr2053905c88.16.1772243252369;
-        Fri, 27 Feb 2026 17:47:32 -0800 (PST)
-Received: from arch.localdomain ([149.34.251.245])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12789a43a18sm7734470c88.13.2026.02.27.17.47.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Feb 2026 17:47:32 -0800 (PST)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: jerrysteve1101@gmail.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	jernej.skrabec@gmail.com,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	mripard@kernel.org,
-	robh@kernel.org,
-	samuel@sholland.org,
-	wens@kernel.org
-Subject: Re: [PATCH v2 0/3] board: sunxi: Add TaiqiCat (TQC) A01
-Date: Sat, 28 Feb 2026 09:47:24 +0800
-Message-ID: <20260228014726.258796-1-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260227155801.211376-1-jerrysteve1101@gmail.com>
-References: <20260227155801.211376-1-jerrysteve1101@gmail.com>
+	s=arc-20240116; t=1772243911; c=relaxed/simple;
+	bh=cLgyYZx2LVuFoYWfY9qI8TNHhSz9ZSWEXYKchDUK7pU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VICPZF4hrjSqHpUdSul4ISchTSCLHyesOYZHykJejl9eMglyyL0kkeqxH/xDZ7mvczKAAGe2/Q271s4PMYbMJYWebqV7KWB29y2JeVZe6rz6fY7Xd8EahLw3fxc6n/GDhkhsTeLDjc07onuEANhYdXpMl2M5fSCRHsRZnTKWi7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=skQqWODi; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=6OzVfiiy; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1772243805; bh=GyGt7iIax2oZy8Pp31uLaWp
+	bRrGdWuS18JUfT6+mHDM=; b=skQqWODiPt0QFGfyw8b/bVPQDfbYkNecjjDpzaOt1TKO3ewVtc
+	CvZpG7IZkDl8tbtsZBXmI7Scovg33rRItCqSwLtxnUyf8D6iWcSK/X646JznnKVX1rm+l8ni1qz
+	v2YDJJnEYT+Xi+2j80v+SJIogpLsJ9EvF/pGleGDNCH0Y7kJoXXgxd53WypURsUwvY6BFXwr825
+	7U6GDjnw8ME4aMfdP9QHHZVt1j2WCm8abIlyjejkN4f7gMpk7rxIlcqU9R6ZqRXcYeyzb5RWBU+
+	d5XSsx6qhxTpRNoycSw6Q1WVkSUy7qZRHSLvVOL1bEeeQqE0K4j2ZYmVrL92p746C0Q==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1772243805; bh=GyGt7iIax2oZy8Pp31uLaWp
+	bRrGdWuS18JUfT6+mHDM=; b=6OzVfiiy73VrafmNZ235Xs/6WAI6+pWiLGsq4D2jJAwMvXVuTC
+	NX1ItY7RrusCtzCNTEPjXFCT2z15Mtauk8BA==;
+From: Aelin Reidel <aelin@mainlining.org>
+Subject: [PATCH v2 0/3] Input: add initial support for Goodix GTX8
+ touchscreen ICs
+Date: Sat, 28 Feb 2026 02:56:09 +0100
+Message-Id: <20260228-gtx8-v2-0-3a408c365f6c@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WMQQ7CIBQFr9KwFgPoF3DlPUwXFJD+RKGBpqlpe
+ ndpd+pyXt7MQorP6Au5NgvJfsKCKVYQh4bY3sTgKbrKRDABTHNFwzgrCtoAs9ZJZYDU65D9A+c
+ 9c28r91jGlN97deLb+hOYOGXUdkZJbdVZSri9DMYnRozhmHLYotW4MPFlMAcSupPzzv4Z7bquH
+ 7iMRWPPAAAA
+X-Change-ID: 20250918-gtx8-59a50ccd78a5
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux@mainlining.org, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Aelin Reidel <aelin@mainlining.org>, 
+ Piyush Raj Chouhan <pc1598@mainlining.org>, 
+ Alexander Koskovich <AKoskovich@pm.me>
+X-Mailer: b4 0.14.2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,lists.infradead.org,lists.linux.dev,sholland.org];
-	URIBL_MULTI_FAIL(0.00)[archive.org:server fail,sea.lore.kernel.org:server fail];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-269467-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-269470-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,bitmath.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[aelin@mainlining.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mainlining.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3211A1BFC77
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:mid,mainlining.org:dkim,mainlining.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9ECED1BFD5F
 X-Rspamd-Action: no action
 
-> This series adds support for the TaiqiCat (TQC) A01 — 
-> a set-top box based on the Allwinner H6 SoC. 
-> Originally released by Ultrapower(UQSoft) as a blockchain terminal, 
-> the device has been discontinued and is no longer officially
-> supported.
->   
->   https://web.archive.org/web/20190409213228/https://tq.ultrapower.com.cn/product.html
+These ICs support SPI and I2C interfaces, up to 10 finger touch, stylus
+and gesture events.
 
-My apologies for not including the Changes section.
+This driver is derived from the Goodix gtx8_driver_linux available at
+[1] and only supports the GT9886 and GT9896 ICs present in the Xiaomi
+Mi 9T and Xiaomi Redmi Note 10 Pro smartphones.
 
-Changes in v2:                                                                                                                                                                         
-- Replace "UQSoft" with "Ultrapower", and add relevant explanations.
-- Link to v1: https://lore.kernel.org/all/20260226084850.417731-1-jerrysteve1101@gmail.com
+The current implementation only supports Normandy and Yellowstone type
+ICs, aka only GT9886 and GT9896. It is also limited to I2C only, since I
+don't have a device with GTX8 over SPI at hand. Adding support for SPI
+should be fairly easy in the future, since the code uses a regmap.
 
-> 
-> Jun Yan (3):
->   dt-bindings: vendor-prefixes: Add Beijing Ultrapower Software Co.,
->     Ltd.
->   dt-bindings: arm: sunxi: Add TaiqiCat (TQC) A01
->   arm64: dts: allwinner: h6: Add TaiqiCat (TQC) A01 support
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../dts/allwinner/sun50i-h6-taiqicat-a01.dts  | 361 ++++++++++++++++++
->  4 files changed, 369 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
-> 
-> -- 
-> 2.53.0
+Support for advanced features like:
+- Firmware updates
+- Stylus events
+- Gesture events
+- Nanjing IC support
+is not included in current version.
 
+The current support requires a previously flashed firmware to be
+present.
+
+As I did not have access to datasheets for these ICs, I extracted the
+addresses from a couple of config files using a small tool [2]. The
+addresses are identical for the same IC families in all configs I
+observed, however not all of them make sense and I stubbed out firmware
+request support due to this.
+
+I've taken a lot of inspiration from the goodix_berlin driver, but the 
+Berlin and GTX8 series of touchscreen ICs differ quite a bit. The driver 
+architecture is the same overall, i.e. the power-up sequence and general 
+concepts are the mostly same, but it is very clear that they are 
+different generations when looking at it in more detail.
+
+Some of the differences:
+- There is no equivalent to the bootoption reg that I can find in the 
+public GTX8 drivers
+- Firmware version struct layout is different yet again
+- GTX8 does not expose IC information at runtime as far as I can tell
+- The checksum method differs yet again
+- The vendor driver reads only 1 touch upfront rather than 2
+- Register addresses are 16-bit on GTX8 and 32-bit on Berlin
+- Firmware requests don't appear to really exist on GTX8
+
+From what I can tell, the evolution seems to be:
+Normandy -> Yellowstone -> Berlin
+since Normandy and Yellowstone are already quite different (especially 
+with the way checksums work) and Yellowstone has a couple of things 
+(checksum, fw_version) that appear similar to Berlin series ICs.
+
+I've tried to make the Berlin driver work for GTX8 ICs before, but 
+they're so different (and I lack documentation for registers to perhaps 
+make some parts work on GTX8) that I'd rather support these ICs in a new 
+and tiny driver. I hope that makes sense. I took heavy inspiration from 
+the Berlin driver, but the only parts that are really common between 
+them are very trivial things like e.g. the input dev config or power on, 
+which I don't think are worth putting in a separate header.
+
+[1] https://github.com/goodix/gtx8_driver_linux
+[2] https://github.com/sm7150-mainline/goodix-cfg-bin
+
+Signed-off-by: Aelin Reidel <aelin@mainlining.org>
+---
+Changes in v2:
+- Fix compilation issues found by Intel's kernel test robot
+- Add Alexander's T-b to the driver patch
+- Link to v1: https://lore.kernel.org/r/20260218-gtx8-v1-0-0d575b3dedc5@mainlining.org
+
+Changes in v1 (post-RFC):
+- Drop RFC prefix, the series has been tested enough and works well
+  as-is
+- Update my name and email address
+- Add some reasoning for a new driver to the cover letter
+- Add Rob's R-b on the dt-bindings patch
+- Add Piyush's T-b to the driver patch
+- Link to RFC: https://lore.kernel.org/r/20250918-gtx8-v1-0-cba879c84775@mainlining.org
+
+---
+Aelin Reidel (3):
+      dt-bindings: input: document Goodix GTX8 Touchscreen ICs
+      Input: add support for Goodix GTX8 Touchscreen ICs
+      MAINTAINERS: add an entry for Goodix GTX8 Touchscreen driver
+
+ .../bindings/input/touchscreen/goodix,gt9886.yaml  |  71 +++
+ MAINTAINERS                                        |   7 +
+ drivers/input/touchscreen/Kconfig                  |  15 +
+ drivers/input/touchscreen/Makefile                 |   1 +
+ drivers/input/touchscreen/goodix_gtx8.c            | 563 +++++++++++++++++++++
+ drivers/input/touchscreen/goodix_gtx8.h            | 141 ++++++
+ 6 files changed, 798 insertions(+)
+---
+base-commit: 3fa5e5702a82d259897bd7e209469bc06368bf31
+change-id: 20250918-gtx8-59a50ccd78a5
+
+Best regards,
+-- 
+Aelin Reidel <aelin@mainlining.org>
 
 
