@@ -1,143 +1,175 @@
-Return-Path: <devicetree+bounces-269626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269627-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EDpqFGRko2myBQUAu9opvQ
-	(envelope-from <devicetree+bounces-269626-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:55:48 +0100
+	id sJ8+EpFko2myBQUAu9opvQ
+	(envelope-from <devicetree+bounces-269627-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:56:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF7311C9556
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:55:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1DE1C9566
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:56:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C30330A156E
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:18:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 630F33067FFE
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3B7276050;
-	Sat, 28 Feb 2026 21:18:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D30317150;
+	Sat, 28 Feb 2026 21:28:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ew5g5c8t"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="inrtWo1o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B013175A80;
-	Sat, 28 Feb 2026 21:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9B72FBE1F
+	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 21:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772313528; cv=none; b=nBJx6CtdOhVkDu60gzAWSLvjeQ46h74j3p1MPKTxVNCZPrqT9y+sEGnDttY1q/jaeMMpa5IofHDeG05f6nmhpNDn2TVIR059gbNDOylkTOMnnFkyfQ3vcUd9HdeeCrjb8l/fa5WgjehdcFHZjp3qRzvxHT7ed6JQeOAnJupPnno=
+	t=1772314108; cv=none; b=RQN03feQeCESzHMViTw9gJdFwnWe9BswLpE2NYNi0/eJaOrkZW+EIhzkBq1fMJCY3ezcy5DhZmvGAdSmKSSIxZGrDAVae3a/gyu//mS479YpIPEyuD73RuBiwiipHhl6qwQoGl/Ox1NyBrtznoizsIVYp2DswVd1+ZdnPj/CUqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772313528; c=relaxed/simple;
-	bh=LrGT6mNI+jCfEdEtzYEm5ownAK+ham3iPLxI8Va3x6I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EszHQ9RNLioqn2HgX5IUwQzUB5KwB8Jx9ZY37Cq+VfDsIG8YsuMKNtt01xNK0EyZQgmPalgG/XkEYwfGPz/h9VwxSjHUuuxMJVDABUGhC1UB9xiblRzl/8BAoeg+/gmDnb9qb3Af8zVoDU8Nv6pLmGjbP23xmf9RjyVvgDo1Iic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ew5g5c8t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 361BFC116D0;
-	Sat, 28 Feb 2026 21:18:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772313527;
-	bh=LrGT6mNI+jCfEdEtzYEm5ownAK+ham3iPLxI8Va3x6I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ew5g5c8tzhBv5k8g1mFuy03Thy+F5AuRIn5yAWi6HNFtQv56oq1bs9bzo03rTCdns
-	 5ztCwasRq6mudOLB9siqGZycUc16wcm5QZ1B1TxiWUg3IgDAyqw8+XehIMUtMeetPq
-	 p2aG7roHkxbBwDGcjGL4QbUj86OrIKbMdR/YtvkVtI598ms6Ljd+UU1rRJBTZmF/QY
-	 Bvd+8BZgAbsbjiEjS38dOameD66tzEhzeS28OOQzeSvOo2oZ+K+X0tfA+rTWId+g4+
-	 IIGgvxEygphcugx6YHcfaUdz4ieS3mOu77DEXncjwKKns4Ra87Va0+phlJS0pZ47sW
-	 f5fWCxoljvdEA==
-Date: Sat, 28 Feb 2026 13:18:45 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan
- <dlan@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre
- Torgue <alexandre.torgue@foss.st.com>, Richard Cochran
- <richardcochran@gmail.com>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
- <alex@ghiti.fr>, "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Yao
- Zi <me@ziyao.cc>, Yanteng Si <siyanteng@cqsoftware.com.cn>, Choong Yong
- Liang <yong.liang.choong@linux.intel.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Shangjuan Wei
- <weishangjuan@eswincomputing.com>, Chen-Yu Tsai <wens@kernel.org>, Boon
- Khai Ng <boon.khai.ng@altera.com>, Maxime Chevallier
- <maxime.chevallier@bootlin.com>, Quentin Schulz <quentin.schulz@cherry.de>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jose Abreu
- <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin
- Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next v5 3/3] net: stmmac: Add glue layer for
- Spacemit K3 SoC
-Message-ID: <20260228131845.70421792@kernel.org>
-In-Reply-To: <20260227075718.2243818-4-inochiama@gmail.com>
-References: <20260227075718.2243818-1-inochiama@gmail.com>
-	<20260227075718.2243818-4-inochiama@gmail.com>
+	s=arc-20240116; t=1772314108; c=relaxed/simple;
+	bh=JHfkwcQgJSlz2GM0sgnpNaNxj1ZXE/S9TRi/hKsJgrI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eMkLF6V+56FZfIBlJW59w6EHbOXzzYvASXTYUpPPgfMKGcvdeW6cSKwgF2kMDXA4eDB4xrR9HJDDykAXRcUsKqXejDD2PV51Ujo3TKSVJ5g2bgE/nzqr/zd9Zl2+Nbzyo34RPiaHqx/0FH0NqxjAxYoSHFJQ3/yb4GVharifQEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=inrtWo1o; arc=none smtp.client-ip=91.218.175.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+Message-ID: <ad2c1f24-d205-4fb8-a79c-b955c0d08d40@packett.cool>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1772314102;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2drmw23LMhAgqnFvPZArzH0QWWWznsj4GGf5ZiSEOsg=;
+	b=inrtWo1ogxteJXPqsWDrYMM3i44qox2INfkGkt0RqUdMGn9W2FQe87It27cRrU/p2IspfU
+	uj3iT56Bouh/7gJ9tCykH1XFiVZEHHtZvXN/JA9xgGLwK1moFpPItdNZmCFapakhmOgPYU
+	ufUHMOe2EtsNlHQcwfNYXW/KXastyHjbK44eVlXrqPGX4kfQHJxyEe/wvBKZj/lDbk+mA0
+	KMffRQKyV+6ozSeDIRTFFGEkhWVM98Ej9uiFh6M0zaMvenmmLEFkOLkgZm+G63QSIyVcXh
+	P8snT4+pm0uVcQXB6iNWEmDqzm0pX6FCdGPOFdoiwUt8WCHLnmmL6l6DZ4vcMg==
+Date: Sat, 28 Feb 2026 18:28:13 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Fix DTBO boot failure
+To: Aaron Kling <webgeek1234@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kumar Sharma <quic_vksharma@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+References: <20260207-sm8550-abl-dtbo-v2-1-83afaa6f3ce9@gmail.com>
+ <d4faaf8d-1517-4187-8801-a2dd52d8dde3@kernel.org>
+ <CALHNRZ9k3yxXb9OfYXMSfEwyYKU8Rrrrjb-hPqLgU90X9YBP8g@mail.gmail.com>
+ <487e4605-0a21-48d6-8b77-9ce2799ad212@kernel.org>
+ <CALHNRZ8sqCpUMyCFP99b7nHu2onojZ0EY6YGQZ9RMP0kH8jWzw@mail.gmail.com>
+ <gd7puun6xy5bh4q73mqc5ooza2kzla3rtov6d2723zc6tw7qwi@gxbsnloi2qcw>
+ <CALHNRZ87j=j5LEMA=P=D73vOz1C-p+BDKcXV2bH7rcPDtAx9JQ@mail.gmail.com>
+ <dczz4uvcq4hc6p3zb6xnrsgmfeomwliagwhf36tewdz4z6mndp@afbxzhjziiwv>
+ <CALHNRZ9eT+mEqaAbj0-My4DriKWP+WPy4M21caXhOJPQuuVNhA@mail.gmail.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+In-Reply-To: <CALHNRZ9eT+mEqaAbj0-My4DriKWP+WPy4M21caXhOJPQuuVNhA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
+	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269626-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,redhat.com,kernel.org,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,ziyao.cc,cqsoftware.com.cn,linux.intel.com,bp.renesas.com,eswincomputing.com,altera.com,bootlin.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gentoo.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-269627-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.992];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[packett.cool:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AF7311C9556
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,packett.cool:mid,packett.cool:dkim]
+X-Rspamd-Queue-Id: 6E1DE1C9566
 X-Rspamd-Action: no action
 
-On Fri, 27 Feb 2026 15:57:17 +0800 Inochi Amaoto wrote:
-> The ethernet controller on Spacemit K3 SoC is Synopsys DesignWare
-> MAC (version 5.40a), with the following special points:
-> 1. The rate of the tx clock line is auto changed when the mac speed
->    rate is changed, and no need for changing the input tx clock.
-> 2. This controller require a extra syscon device to configure the
->    interface type, enable wake up interrupt and delay configuration
->    if needed.
 
-checkpatch says:
+On 2/16/26 11:27 PM, Aaron Kling wrote:
+> On Fri, Feb 13, 2026 at 10:02 PM Bjorn Andersson <andersson@kernel.org> wrote:
+>> On Fri, Feb 13, 2026 at 04:50:25PM -0600, Aaron Kling wrote:
+>>> On Fri, Feb 13, 2026 at 2:34 PM Bjorn Andersson <andersson@kernel.org> wrote:
+>>>> On Wed, Feb 11, 2026 at 09:10:39AM -0600, Aaron Kling wrote:
+>>>>> On Mon, Feb 9, 2026 at 1:51 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+[…]
+>>>>> My use case here is an open source Android rom. I would like to think
+>>>>> that android would be a supported use case. Not necessarily a driving
+>>>>> force for decisions, but at least supported. And I'm using the
+>>>>> standard boot image v4 setup with dtb on vendor_boot and dtbo's on the
+>>>>> dedicated partition. This isn't some weird and wacko setup, it's what
+>>>>> the vast majority of devices this soc is used in are designed for.
+>>>> Android isn't a weird and wacko setup; but I'm guessing that the
+>>>> proposed changes aren't related to running Android, nor are they related
+>>>> to dependencies of the overlays, but it rather relate to some
+>>>> runtime-generated overlay that ABL wants to apply?
+>>> I honestly can't say what the underlying cause is. A couple of us have
+>>> looked at the public abl source and weren't able to find what causes
+>>> this issue. We just know that this issue happens when abl tries to
+>>> apply a dtbo off the dtbo partition. So yes, in technicality this is
+>>> not an android specific issue. I mention android because having a dtbo
+>>> is generally expected in the aosp setup. In my specific use case, I
+>>> have four devices from the same odm, where it's simple to split the
+>>> common part into a dts, then the device specific parts into dtso's,
+>>> allowing for a single software build to support all four devices.
+>>> Requiring everything to be baked into a dts would require separate
+>>> vendor_boot images per device, and thus completely separate build
+>>> targets.
+[…]
+>> Sounds like it, but I don't know what it is that ABL is expecting to be
+>> able to insert. [0] seems to mostly say "I added this and then it works"
+>> :(
 
-ERROR: "foo* bar" should be "foo *bar"
-#110: FILE: drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c:45:
-+static int spacemit_dwmac_set_delay(struct spacmit_dwmac* dwmac,
+What everyone (well, postmarketOS community at least) has been doing 
+when running mainline kernels on ABL devices is `fastboot erase 
+dtbo`(*). Which is why we don't have any DTBO target nodes anywhere 
+upstream.
 
-ERROR: "foo* bar" should be "foo *bar"
-#148: FILE: drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c:83:
-+static int spacemit_dwmac_fix_delay(struct spacmit_dwmac* dwmac,
+If you want to intentionally use ABL DTBO, and you're absolutely sure 
+you **don't** reference these nodes in the DTBOs you're making, then 
+indeed it might be some "runtime overlay" coming from ABL code.. but 
+have you tried adding these nodes in the DTBOs themselves?
 
-WARNING: line length of 99 exceeds 80 columns
-#243: FILE: drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c:178:
-+	apmu = syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node, "spacemit,apmu", 2, offset);
--- 
-pw-bot: cr
+Wait, also, what is the build process for your DTBOs? Could there be 
+some weird Android build thing that inserts references to these nodes? 
+Have you tried decompiling them with dtc and looking at the resulting dts?
+
+Also have you looked into intermediate bootloaders as an alternative? 
+postmarketOS uses lk2nd on ancient devices and U-Boot on modern ones; 
+these bootloaders can dynamically choose (or even modify) a DTB based on 
+runtime detection (like ABL cmdline). Might be hard/strange to fit that 
+into the Android world but well, that's Android's fault :)
+
+
+(*) except on some old SoCs where we need a "blank" dtbo that just has 
+qcom,board-id! https://github.com/barni2000/dtbo-lk2nd (cursed)
+
+~val
+
 
