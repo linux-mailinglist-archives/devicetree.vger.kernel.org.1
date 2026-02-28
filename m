@@ -1,152 +1,152 @@
-Return-Path: <devicetree+bounces-269612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269613-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QNcKFZJLo2nW/AQAu9opvQ
-	(envelope-from <devicetree+bounces-269612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:09:54 +0100
+	id YEbvNx9Mo2nW/AQAu9opvQ
+	(envelope-from <devicetree+bounces-269613-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:12:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F321C7F76
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B9081C8021
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:12:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E4CB4311FC0E
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 19:59:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 342C431287D1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 20:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B65993FD126;
-	Sat, 28 Feb 2026 19:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E8A401498;
+	Sat, 28 Feb 2026 19:15:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tvilz9KY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m5Ae7O2d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636323FD123
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 19:12:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C0D277C81;
+	Sat, 28 Feb 2026 19:15:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772305976; cv=none; b=VSzR2B4bFKkoIxpbfgcniDEnJAcpybvGbSEwq+s0GUN+JngPAgyp5Rx32aWsL6vrabvmbCS4qdxvqUOWnyab2wjC405RxdAd4Z8g7yz9MOq0EJuk6pvdtp6g6H3N8FtRjBaKdvjSMo+ndZutAfW7Xza3uFUFytaqi3jZvZozGaY=
+	t=1772306144; cv=none; b=K4NLueo7IsUniBqY4syCXuo0T0Y9tkL0yWPnH5vc7MIIZNehVcAVD2LrURQDL4pCj2SYEbwvgDCaCqTw3jyXvDJ5LmlUFItQ4DqjIAw5nZS4s4TQljdnM8UoJPVt8w1Q5D+wSpfLZtifGt97mrkoGP2sNiC0XyZ/rsVgtGv58GA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772305976; c=relaxed/simple;
-	bh=7vHUIFMe6aqv8rNlp8GpXSth7AdqP3Jvt63LGxY7hZA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dt5L2/lBMYfbyPKhBilfPmgv0QVaVWxxK6ahOBnic1vU509q9+R5M2yHEP/BHnuurBpE6OSn32AsH+NVyVixViQge4PDW4ujG0VcZ2Zzt8xMdwvZf/AezeNM1gIlHtSFZwCEbATQAtousBIfWn9/lMufz6KzVQxvAw/LqHfmxDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tvilz9KY; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48069a48629so34108325e9.0
-        for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 11:12:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772305974; x=1772910774; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7vHUIFMe6aqv8rNlp8GpXSth7AdqP3Jvt63LGxY7hZA=;
-        b=Tvilz9KYpvIy98x5mEsAFMwEkE94In17AmiHNfuoN0P014uktifJ+s77I6HiYf9oMB
-         5l70JVOSZGX6Nz+r0sch0oMqkZY7OJqJTgfyatepXJutWF0RIelrgtqp8FODr3aJ5RVL
-         Vam4gmZUbP6npkbu+C+w+doUytlTM/yCh0N160LrlDlI0Zdnv56WB0pQOEmuvDguBEj+
-         T36SJOovQYZyKFxlZGv6CCq2wPCLLTN9vpHPeyw2PewxtufG+PWRh+M8O7Iae7hjxERl
-         83n0Gdi8/XkE9djOXh7G74Yu6xYw85OFpXzkG9XgnSEYwx2oKRTm/HeZx3o3V+5lr6PU
-         9LSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772305974; x=1772910774;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=7vHUIFMe6aqv8rNlp8GpXSth7AdqP3Jvt63LGxY7hZA=;
-        b=PWWhO+lFQCcHbHOzkOcvuu714U779QZvZQsvAocVAV9g+3pxcJrakGlcLPQpBknfoY
-         PsdIFVYUefSkAuWtIFq15b0Ul8a7IxtIoBv8Uvl+3zuubq9U5881AfVPLhl55+BakZoS
-         biIy27iKKC4VWvpLk4EiRlWmemI2OXraIp3Ptg04WuRo6F+dIaJ1wkeDeq2+dTs8Qmtm
-         eTaVukychM6GzZUu33PpYoCLgaVp7X/ht/s0+08GkB2XbnL2ChOJfKswvLtXWa4ZYwTS
-         esO70dWjdgMb/0My4zyMBMHvDexmGrjBmuMZeN0kCs0R+875YgSvN3IsUBbPAhiAoyRH
-         5mKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5Ux+pB+AHxE2mOouPLIJ8BguLVV/pUbAMlW3gjXTIpsIqgEeDS8GcKpGn/LTUiRm3x1LlY5npZeWB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1nAGfoFjsQrWk64A0+vgCHO9NmNzCc1OPAUHKKrURlxEdHduR
-	OoE4LJTJCTwz29rYMzFZanWIxdfaD1Il24ms+ZnhvHQgf7txE60fy6GW
-X-Gm-Gg: ATEYQzytfjoC3r/lmeX71PLwpw0FkMzSJRnRo7zGgZ69XKVXbOsIOJfIMVRUKz81x8E
-	ED3wjXAhucIj8VOvFeYNLoN3q4Ofs2zVHJEMUvhWpbZbPvMFDyFR+sohQB18+J8kClCPfL67pWK
-	6eVrwhpZCL1x03GTAXHSOzsYFseo1RFtDiYdmyCWVoJ0Ev5Sc663gz1U7vCpO9SCrTqZauJyKDu
-	tTWDAw6KLq9fq4CPLOcPuNRVn3Qz3RZrKRaL29DwyEFlt7LewcAmDeIAkA0b7pjphrY3kEo5EKu
-	XZuhGH3QxYJtWVZJFXlj7I+XF9321fq3LqZlXMxIFY6EIwlqpLJl8WQy827R8ypVbx8TiDXhQ7B
-	pJllwPQLNAvHg8yvIEQNJKHfeFdfc6Aj5JfrLNhilgBPyUid939GkTjkxjdTLPEGA5p+ZHzokeV
-	orkmcFm34Me47pMYnhnjCzh0wqvBf/K/6oEgkyMsN++xDd
-X-Received: by 2002:a05:600c:8106:b0:477:b0b9:3129 with SMTP id 5b1f17b1804b1-483c9bb6573mr114108805e9.3.1772305973660;
-        Sat, 28 Feb 2026 11:12:53 -0800 (PST)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfcb318fsm141401095e9.6.2026.02.28.11.12.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Feb 2026 11:12:52 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 3/3] arm64: dts: allwinner: sun55i-t527: avaota-a1: Add SPI NAND
-Date: Sat, 28 Feb 2026 20:12:49 +0100
-Message-ID: <5079872.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20260227175157.2339758-4-wens@kernel.org>
-References:
- <20260227175157.2339758-1-wens@kernel.org>
- <20260227175157.2339758-4-wens@kernel.org>
+	s=arc-20240116; t=1772306144; c=relaxed/simple;
+	bh=DWW76vcfVwuwoF60EnAL2u6JzTUPFdmM/12fzoqr6tY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=boe66BQMq3MnHY7ZPFLZLXWnICXDQBS144a+m2f1v66gh56psw0y4/u+0fB4Dq7BHvYKLQr5sVpk4CdGTytW8Q7Cg8l/kQHEY0mJwwMmV8+mHOr/gO5JNXhc2vrEfaiMkjaEbraxdy2VBx4zPKp5NqT4ISDL2McD+hk7n7hrw/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m5Ae7O2d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18C94C116D0;
+	Sat, 28 Feb 2026 19:15:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772306144;
+	bh=DWW76vcfVwuwoF60EnAL2u6JzTUPFdmM/12fzoqr6tY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=m5Ae7O2dMFtvPV2fbqtIjrgaDgiDdGT6FvHNN22LpyAggbitlxFrN18KQjWICLO0Y
+	 pdEH/vixseMC8yIbhcpscSUiLlDXA2dqpDdimbXznss7WjWLnWw4dhaCOGM8uUAlMs
+	 kBGWy/EzXD/ym/WU616+Wz9fgYaeKIbqN0WuDIILce+idB0xYC4a1a19ZBVq9H91MR
+	 TJGfW3fJGcVXGSwIa2f1gbqJxMc5MbBOT44GgO79MGvle4Ac19eLrwBJElt5uzzS/S
+	 oCdDebc9lbim2KhzQS6/dMLq/UXnB1yNM9pHcwMmgJ4GDHSsrIeBblNGkM1+P65YJG
+	 HFilUQcC4Z89Q==
+Date: Sat, 28 Feb 2026 19:15:33 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <michael.hennerich@analog.com>, <nuno.sa@analog.com>,
+ <eblanc@baylibre.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>
+Subject: Re: [PATCH v10 0/6] Add SPI offload support to AD4030
+Message-ID: <20260228191533.62fa1f15@jic23-huawei>
+In-Reply-To: <cover.1771865684.git.marcelo.schmitt@analog.com>
+References: <cover.1771865684.git.marcelo.schmitt@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-269613-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269612-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[vger.kernel.org,analog.com,baylibre.com,kernel.org,lwn.net,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 32F321C7F76
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 9B9081C8021
 X-Rspamd-Action: no action
 
-Dne petek, 27. februar 2026 ob 18:51:55 Srednjeevropski standardni =C4=8Das=
- je Chen-Yu Tsai napisal(a):
-> The Avaota A1 board has a SPI NAND chip connected to spi0 on the PJ
-> pins with support for QSPI.
->=20
-> Enable spi0 and add a device node for the SPI NAND chip.
->=20
-> Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
+On Mon, 23 Feb 2026 14:08:50 -0300
+Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
 
+> Hello,
+> 
+> This is v10 of high speed data capture support for AD4030/AD4630 and similar ADCs.
+> It also adds support for ADAQ4216 and ADAQ4224.
+> 
+> Rebased on top of IIO testing.
+Series applied to the togreg branch of iio.git and pushed out as testing.
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Thanks!
 
-Best regards,
-Jernej
+J
 
+> 
+> Looks like a devm_pwm_get_disabled() interface might not get accepted so I
+> didn't change the handling of PWM initialization on v10.
+> 
+> Change log v9 -> v10
+> [DT]
+> - No changes.
+> [IIO]
+> - Explained the need of PWM in commint message.
+> - Fixed off-by-one bug.
+> - Use in-loop counter declaration.
+> - Correctly prepared patches, dropping unsupported bindings for input gain control.
+> - Skipped the patches applied from previous version.
+> - Initialize iio_scan_type struct fields on same order they are on structure definition.
+> 
+> Link to v9: https://lore.kernel.org/linux-iio/cover.1771253601.git.marcelo.schmitt@analog.com/
+> 
+> Thanks,
+> Marcelo
+> 
+> Marcelo Schmitt (6):
+>   Docs: iio: ad4030: Add double PWM SPI offload doc
+>   dt-bindings: iio: adc: adi,ad4030: Add PWM
+>   iio: adc: ad4030: Add SPI offload support
+>   dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216 and ADAQ4224
+>   iio: adc: ad4030: Add support for ADAQ4216 and ADAQ4224
+>   iio: adc: ad4030: Support common-mode channels with SPI offloading
+> 
+>  .../bindings/iio/adc/adi,ad4030.yaml          |  62 ++
+>  Documentation/iio/ad4030.rst                  |  39 ++
+>  drivers/iio/adc/Kconfig                       |   5 +
+>  drivers/iio/adc/ad4030.c                      | 641 +++++++++++++++++-
+>  4 files changed, 726 insertions(+), 21 deletions(-)
+> 
+> 
+> base-commit: 0be8a2716187607daaa8ba80687a926438d88432
 
 
