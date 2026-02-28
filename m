@@ -1,361 +1,892 @@
-Return-Path: <devicetree+bounces-269606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AJ7HEs9Mo2nW/AQAu9opvQ
-	(envelope-from <devicetree+bounces-269606-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:15:11 +0100
+	id YLFGKt1Jo2kF/QQAu9opvQ
+	(envelope-from <devicetree+bounces-269607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:02:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9681C815F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:15:10 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53B681C7CFA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:02:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 03716313AA87
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 19:43:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 37F5030D34F6
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 19:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5865835A3A0;
-	Sat, 28 Feb 2026 17:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1627A3D6CB6;
+	Sat, 28 Feb 2026 18:52:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="KcK/87jo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XSrumuKF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA775355049;
-	Sat, 28 Feb 2026 17:49:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EB133D6D3;
+	Sat, 28 Feb 2026 18:52:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772300981; cv=none; b=MIP4Vv3NXo0YlMjVuNRQDYKbX8emNDx3UsWH6RTrVdv3r+dNyz9tukxjUgxjfitLAmF0DZ4OshqG9AX6ZhKXz2kIytlGbwnIVACIbNxK4raAghZuGa74yunPNndUdsCGmgg7OEIvYCpV2DEbX7iiIjhqmFMZRTvqi+JkpJ1HMuk=
+	t=1772304734; cv=none; b=eDEIGj5rEjpHolpUvFLefPf/L6+g4rsCJkDW+bR2IJUJKpDNVkWcqy5y0Uj3mQ12Va2Kg+HRmYU46doNMqN489z4euG3jEzsZdv/KJCyADKNiiP69k+kWD/TVeieOr81w91CebZ9rBtISJ8uZ9qMKLtxZZRhn9BC/njZljHV+xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772300981; c=relaxed/simple;
-	bh=Nj4t1bqJGwHOl+uPHiBVtLOrr5MgH4gBdosWwkNc2z4=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=VJpuolo4WhOKoZJVB2bEW9OOlr0wHf2TXYcpi7Hqu8dMyx5yuCI7PiK5dInbi4MIR+s7uTVmG2VbwKjtRDTfx25nHgszMAaxdx0D+shYV9HmshYmhuPGmgAL9qyOyfeK4Wr9kreq1TudIm//osmhJ30QNAUkRRat0M+fjdjN4C0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=KcK/87jo; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c30:320d:fec:f64:f37:a9c9])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 281892D7;
-	Sat, 28 Feb 2026 18:48:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1772300910;
-	bh=Nj4t1bqJGwHOl+uPHiBVtLOrr5MgH4gBdosWwkNc2z4=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=KcK/87jo7vc12uDZbUh0xkspuDNWkp04IiK6DP+HOaXyRQHaVMPKSQxPiEgZF4tgQ
-	 n1gJx5DiS3GaJz5cjPePtptyaTxvP9GS2wfHBNWaRRim/Dl6J1jKuLqkzdqicjmi9e
-	 d+2lzHUwzxcmnV47NkULNjNzZdoPzGG3FVW6XiOI=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1772304734; c=relaxed/simple;
+	bh=9JUOdKhs+7nAfGHKcbV2HtDPPvJzHBA2GAPggl8y2VQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dZB7+jMv/1EsHeEr/5VtPvn24NqIea2QJjgwxFF5El+062HDurDL8fE/YF2iMoPGklNZyVgDywFITR5YrYvKQkzsGU3ofCIZbIICYWadUfWducckz437PyWrCZf1oeRDHph1c2Q4CvbY93cQQuHCDVIveH5cPgw9LOsMRRZ4FHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XSrumuKF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66CCFC19423;
+	Sat, 28 Feb 2026 18:52:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772304733;
+	bh=9JUOdKhs+7nAfGHKcbV2HtDPPvJzHBA2GAPggl8y2VQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=XSrumuKFU8mhhspbfei4ag8xodeG+YORibjzmOgsGRb74euq7FiznsVPVtga97A3z
+	 +V8hA7kK2uCePSfzWYgUJtxKaki27brM+wphfvAUKA7wf5TLFldbTqzaiHdXJAdUZb
+	 qIqgCfIvSNzZQuccWqkzSTRXnfVCGAiVk2Gi5yZ9Da5/FjWdsDV0O10yc2u9ebzlFR
+	 77Cx6BWSgb+bFqueCWymjeoSYkmWVAMU1O6NWNHIfT3gavaehvKUId9g/ERLBL6T7a
+	 QZ8wtz640+9UCMuGZkihy5EZYYWyssxXtT+uoNddyCJ148Va3oOZ96+B7DzvwF9ql/
+	 kVtyesf8atPoQ==
+Date: Sat, 28 Feb 2026 18:52:02 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+ dlechner@baylibre.com, jean-baptiste.maneyrol@tdk.com,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 2/3] iio: imu: inv_icm42607: add new inv_icm42607 driver
+Message-ID: <20260228185202.13d09e27@jic23-huawei>
+In-Reply-To: <20260224163109.370930-3-macroalpha82@gmail.com>
+References: <20260224163109.370930-1-macroalpha82@gmail.com>
+	<20260224163109.370930-3-macroalpha82@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260122095308.GF209830@killaraus>
-References: <20251230083220.2405247-1-r-donadkar@ti.com> <20251230083220.2405247-7-r-donadkar@ti.com> <ee8152c0-daf5-48dd-a2d1-2fafcfeca797@ideasonboard.com> <176845899846.9154.18009615769864845946@freya> <d9f3335a-d8f4-40cc-b4c4-a93b797a89fd@ideasonboard.com> <20260120232521.GE173080@killaraus> <8b8e603f-5d04-44ce-91ab-85df8fe0ae94@ideasonboard.com> <20260121105232.GD382676@killaraus> <176906483058.9154.2619844247504630480@freya> <20260122095308.GF209830@killaraus>
-Subject: Re: [PATCH v9 06/19] media: ti: j721e-csi2rx: add a subdev for the core device
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, jai.luthra@linux.dev, mripard@kernel.org
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Rishikesh Donadkar <r-donadkar@ti.com>
-Date: Sat, 28 Feb 2026 23:19:23 +0530
-Message-ID: <177230096349.14753.15918424997579751616@freya>
-User-Agent: alot/0.13.dev20+g31692a239
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269606-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	TAGGED_FROM(0.00)[bounces-269607-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jai.luthra@ideasonboard.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,ti.com,kernel.org,pengutronix.de,xs4all.nl,starfivetech.com,collabora.com,linaro.org,vger.kernel.org,linux.dev];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ideasonboard.com:dkim,ti.com:email]
-X-Rspamd-Queue-Id: 9E9681C815F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 53B681C7CFA
 X-Rspamd-Action: no action
 
-Quoting Laurent Pinchart (2026-01-22 15:23:08)
-> On Thu, Jan 22, 2026 at 12:23:50PM +0530, Jai Luthra wrote:
-> > Quoting Laurent Pinchart (2026-01-21 16:22:32)
-> > > On Wed, Jan 21, 2026 at 09:38:29AM +0200, Tomi Valkeinen wrote:
-> > > > On 21/01/2026 01:25, Laurent Pinchart wrote:
-> > > > > On Thu, Jan 15, 2026 at 02:56:21PM +0200, Tomi Valkeinen wrote:
-> > > > >> On 15/01/2026 08:36, Jai Luthra wrote:
-> > > > >>> Quoting Tomi Valkeinen (2026-01-14 20:51:49)
-> > > > >>>> On 30/12/2025 10:32, Rishikesh Donadkar wrote:
-> > > > >>>>> From: Jai Luthra <j-luthra@ti.com>
-> > > > >>>>>
-> > > > >>>>> With single stream capture, it was simpler to use the video d=
-evice as
-> > > > >>>>> the media entity representing the main TI CSI2RX device. Now =
-with multi
-> > > > >>>>> stream capture coming into the picture, the model has shifted=
- to each
-> > > > >>>>> video device having a link to the main device's subdev. The r=
-outing
-> > > > >>>>> would then be set on this subdev.
-> > > > >>>>>
-> > > > >>>>> Add this subdev, link each context to this subdev's entity an=
-d link the
-> > > > >>>>> subdev's entity to the source. Also add an array of media pad=
-s. It will
-> > > > >>>>> have one sink pad and source pads equal to the number of cont=
-exts.
-> > > > >>>>>
-> > > > >>>>> Support the new enable_stream()/disable_stream() APIs in the =
-subdev
-> > > > >>>>> instead of s_stream() hook.
-> > > > >>>>>
-> > > > >>>>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.co=
-m>
-> > > > >>>>> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
-> > > > >>>>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > > > >>>>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > > > >>>>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> > > > >>>>> ---
-> > > > >>>
-> > > > >>> [...]
-> > > > >>>
-> > > > >>>>> @@ -981,48 +1138,52 @@ static int ti_csi2rx_link_validate(str=
-uct media_link *link)
-> > > > >>>>>       struct ti_csi2rx_ctx *ctx =3D container_of(vdev, struct=
- ti_csi2rx_ctx, vdev);
-> > > > >>>>>       struct ti_csi2rx_dev *csi =3D ctx->csi;
-> > > > >>>>>       struct v4l2_pix_format *csi_fmt =3D &ctx->v_fmt.fmt.pix;
-> > > > >>>>> -     struct v4l2_subdev_format source_fmt =3D {
-> > > > >>>>> -             .which  =3D V4L2_SUBDEV_FORMAT_ACTIVE,
-> > > > >>>>> -             .pad    =3D link->source->index,
-> > > > >>>>> -     };
-> > > > >>>>> +     struct v4l2_mbus_framefmt *format;
-> > > > >>>>> +     struct v4l2_subdev_state *state;
-> > > > >>>>>       const struct ti_csi2rx_fmt *ti_fmt;
-> > > > >>>>> -     int ret;
-> > > > >>>>> =20
-> > > > >>>>> -     ret =3D v4l2_subdev_call_state_active(csi->source, pad,
-> > > > >>>>> -                                         get_fmt, &source_fm=
-t);
-> > > > >>>>> -     if (ret)
-> > > > >>>>> -             return ret;
-> > > > >>>>> +     state =3D v4l2_subdev_lock_and_get_active_state(&csi->s=
-ubdev);
-> > > > >>>>> +     format =3D v4l2_subdev_state_get_format(state, link->so=
-urce->index, 0);
-> > > > >>>>> +     v4l2_subdev_unlock_state(state);
-> > > > >>>>> =20
-> > > > >>>>> -     if (source_fmt.format.width !=3D csi_fmt->width) {
-> > > > >>>>> +     if (!format) {
-> > > > >>>>> +             dev_dbg(csi->dev,
-> > > > >>>>> +                     "Skipping validation as no format prese=
-nt on \"%s\":%u:0\n",
-> > > > >>>>> +                     link->source->entity->name, link->sourc=
-e->index);
-> > > > >>>>> +             return 0;
-> > > > >>>>
-> > > > >>>> Isn't this an error?
-> > > > >>>
-> > > > >>> Well, the j7 shim subdev introduced here has immutable and acti=
-ve links to
-> > > > >>> all the video nodes, for each DMA channel (taken from DT), many=
- of which
-> > > > >>> may be unused for certain setups, and thus there might not be a=
-ny valid
-> > > > >>> format on the subdev source pad corresponding to an unused vide=
-o node.
-> > > > >>>
-> > > > >>> Jacopo had a similar comment on v2, see this discussion (grep f=
-or Mali):
-> > > > >>> https://lore.kernel.org/linux-media/4mnlnsj4co3agvln4qsasmgvgwi=
-yoo7yu2h5wyh4rmzzafhm5u@avhnbw7iknms/
-> > > > >>>
-> > > > >>> I know other drivers use a different approach with mutable link=
-s, so it
-> > > > >>> would be good if you/Laurent/Sakari can give your opinions on i=
-f only one
-> > > > >>> of these two approaches should be taken for multi-stream pipeli=
-nes.
-> > > > >>
-> > > > >> I see.
-> > > > >>
-> > > > >> Well, I don't have a definite answer. With some thinking both op=
-tions
-> > > > >> make certain sense. It makes sense to keep the links immutable a=
-nd
-> > > > >> always enabled, as there's no configuration that can be done. On=
- the
-> > > > >> other hand, it makes sense to require the unused links to be dis=
-abled,
-> > > > >> as, well, they are not used.
-> > > > >=20
-> > > > > I'm not familiar with the implications this would have on this dr=
-iver,
-> > > > > but generally speaking, if a stream is added to the media pipelin=
-e by
-> > > > > the pipeline build algorithm, then it is expected that applicatio=
-ns
-> > > > > would have configured it correctly. Streams that are not used are
-> > > > > expected to be disabled if they would otherwise be added to the
-> > > > > pipeline.
-> > > >=20
-> > > > I think the thing here is that the driver creates immutable
-> > > > always-enabled media links between the videodevs and the first subd=
-ev.
-> > > > Then, say, if only one stream is being used, only one of those link=
-s is
-> > > > actually used, and for every other link the above check fails as th=
-ere's
-> > > > no stream, so no format.
-> > > >=20
-> > > > In TI CAL driver the links were mutable, and unused links had to be
-> > > > disabled. There it made sense as the links had to be configurable (=
-there
-> > > > were two PHYs). Here, there's no configuration needed, so immutable
-> > > > links make sense, but then they're enabled even when actually not u=
-sed.
-> > >=20
-> > > If the routing table in the subdev does not contain any route that go=
-es
-> > > towards a video node, then that video node should not be added to the
-> > > pipeline by the validation code, and no validation will be attempted.=
- At
-> > > least that's the theory.
-> >=20
-> > Okay that sounds reasonable. I can take a look into the media pipeline
-> > validation code next week. @Rishikesh, given you already have a working
-> > setup, feel free to test if the link_validate callback is triggered on
-> > video nodes that don't have any streams/routes pointing to them.
+On Tue, 24 Feb 2026 10:31:04 -0600
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-I finally got time to check this out, and yes, the subdev pads with no
-route going to them are added in the pipeline currently, as the subdev is
-missing the .has_pad_interdep operation. Using the framework helper, which
-marks two pads as interdependent only if they have an active route, fixes i=
-t.
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add a new driver for the Invensense ICM42607 IMU. This device is
+> extremely similar to the existing ICM42600 but with a very different
+> register layout.
+> 
+> This driver was built based on the existing icm42600 along with
+> the datasheet from Invensense and out-of-tree sources included
+> in the LineageOS kernels [1] and Rockchip kernels [2], both derived
+> from sources provided by Invensense. The driver is structured
+> identically to the in-tree ICM42600 driver.
+> 
+> It should work for the ICM42607 and ICM42607P on both the I2C and
+> SPI busses, however only the ICM42607P over I2C has been tested
+> as it is the only hardware I have available.
+> 
+> [1] https://github.com/LineageOS/android_kernel_nvidia_kernel-nx/tree/lineage-23.0/drivers/iio/imu/inv_icm42607x
+> [2] https://github.com/rockchip-linux/kernel/tree/develop-6.6/drivers/iio/imu/inv_icm42670
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Hi Chris,
 
-Rishikesh, can you please apply the following before you post v12 of your
-series:
+I decided to take a quick look to hopefully be able to point out some minor
+things that make sense to fix for your split up version.
 
----------
-diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/driver=
-s/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-index f126649ba36c..42da8bd6b53c 100644
---- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-+++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-@@ -1340,10 +1340,10 @@ static int ti_csi2rx_link_validate(struct media_lin=
-k *link)
-        v4l2_subdev_unlock_state(state);
+Jonathan
 
-        if (!format) {
--               dev_dbg(csi->dev,
--                       "Skipping validation as no format present on \"%s\"=
-:%u:0\n",
-+               dev_err(csi->dev,
-+                       "No format present on \"%s\":%u:0\n",
-                        link->source->entity->name, link->source->index);
--               return 0;
-+               return -EPIPE;
-        }
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607.h b/drivers/iio/imu/inv_icm42607/inv_icm42607.h
+> new file mode 100644
+> index 000000000000..a275f24bf291
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607.h
+> @@ -0,0 +1,472 @@
 
-        if (format->width !=3D csi_fmt->width) {
-@@ -1389,6 +1389,7 @@ static const struct media_entity_operations ti_csi2rx=
-_video_entity_ops =3D {
+> +
+> +/* ODR values */
+> +enum inv_icm42607_odr {
+> +	INV_ICM42607_ODR_1600HZ = 5,
+> +	INV_ICM42607_ODR_800HZ,
+> +	INV_ICM42607_ODR_400HZ,
+> +	INV_ICM42607_ODR_200HZ,
+> +	INV_ICM42607_ODR_100HZ,
+> +	INV_ICM42607_ODR_50HZ,
+> +	INV_ICM42607_ODR_25HZ,
+> +	INV_ICM42607_ODR_12_5HZ,
+> +	INV_ICM42607_ODR_6_25HZ_LP,
+> +	INV_ICM42607_ODR_3_125HZ_LP,
+> +	INV_ICM42607_ODR_1_5625HZ_LP,
+> +	INV_ICM42607_ODR_NB,
+This is another type of terminating entry, so no comma.
+(see below for more on this and make sure to fix all the cases of the same thing)
+> +};
 
- static const struct media_entity_operations ti_csi2rx_subdev_entity_ops =
-=3D {
-        .link_validate =3D v4l2_subdev_link_validate,
-+       .has_pad_interdep =3D v4l2_subdev_has_pad_interdep,
- };
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c b/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c
+> new file mode 100644
+> index 000000000000..92cf7ffe5077
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.c
+> @@ -0,0 +1,566 @@
 
- static int ti_csi2rx_init_dma(struct ti_csi2rx_ctx *ctx)
----------
+> +
+> +static size_t inv_icm42607_get_packet_size(unsigned int fifo_en)
+> +{
+> +	size_t packet_size;
+> +
+> +	if ((fifo_en & INV_ICM42607_SENSOR_GYRO) &&
+> +	    (fifo_en & INV_ICM42607_SENSOR_ACCEL))
+> +		packet_size = INV_ICM42607_FIFO_2SENSORS_PACKET_SIZE;
+> +	else
+> +		packet_size = INV_ICM42607_FIFO_1SENSOR_PACKET_SIZE;
+> +
+> +	return packet_size;
+Not a lot of point in the local variable. I'd get rid of it and just do
+		return INV_ICM42607_FIFO_2SENSORS_PACKET_SIZE;
+> +}
+> +
+>
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.h b/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.h
+> new file mode 100644
+> index 000000000000..6d8d7fa7bd13
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_buffer.h
 
-And while above alone fixes this issue, I saw cdns-csi2rx pads that are unu=
-sed
-also get added to the pipeline, which seems wrong even if it doesn't break
-anything. So please apply the below in the patch that adds multistream supp=
-ort
-for cdns-csi2rx:
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+> new file mode 100644
+> index 000000000000..9b69ccb1d101
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+> @@ -0,0 +1,811 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2026 InvenSense, Inc.
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/device.h>
+> +#include <linux/module.h>
+> +#include <linux/slab.h>
+> +#include <linux/delay.h>
+> +#include <linux/mutex.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include <linux/iio/iio.h>
+> +
+> +#include "inv_icm42607.h"
+> +#include "inv_icm42607_buffer.h"
+> +
+> +static const struct regmap_range_cfg inv_icm42607_regmap_ranges[] = {
+> +	{
+> +		.name = "user bank",
+> +		.range_min = 0x0000,
+> +		.range_max = 0x00FF,
+> +		.selector_reg = 0, /* not used */
+> +		.selector_mask = 0, /* not used */
+> +		.selector_shift = 0, /* not used */
 
----------
-diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/p=
-latform/cadence/cdns-csi2rx.c
-index 7164a7d6f4a1..18737d00a7d7 100644
---- a/drivers/media/platform/cadence/cdns-csi2rx.c
-+++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-@@ -803,6 +803,7 @@ static const struct v4l2_subdev_internal_ops csi2rx_int=
-ernal_ops =3D {
- static const struct media_entity_operations csi2rx_media_ops =3D {
-        .link_validate =3D v4l2_subdev_link_validate,
-        .get_fwnode_pad =3D v4l2_subdev_get_fwnode_pad_1_to_1,
-+       .has_pad_interdep =3D v4l2_subdev_has_pad_interdep,
- };
+The defaults of these are otherwise 0.  So what's the point in setting
+them explicitly here?  I don't mind if it provides useful educational value.
 
- static int csi2rx_async_bound(struct v4l2_async_notifier *notifier,
----------
+> +		.window_start = 0,
+> +		.window_len = 0x0100,
+> +	},
+> +};
+>
+> +
+> +u32 inv_icm42607_odr_to_period(enum inv_icm42607_odr odr)
+> +{
+> +	static u32 odr_periods[INV_ICM42607_ODR_NB] = {
+> +		/* Reserved values */
+> +		0, 0, 0, 0, 0,
+> +		/* 1600Hz */
 
-Thanks,
-Jai
+As below I'd add comments to line with the value they are referring to.
 
-> >=20
-> > > I see that this driver implements .link_validate() as a
-> > > media_entity_operations, not a subdev operation. I wonder if that cou=
-ld
-> > > explain the issue.
-> >=20
-> > Well earlier I was partially confused, now I'm fully confused :-)
-> >=20
-> > How is v4l2_subdev_pad_ops.link_validate different from
-> > media_entity_operations.link_validate?
->=20
-> media_entity_operations.link_validate() is the entry point, called by
-> the media pipeline validation code that is agnostic to entity types. It
-> is called on the sink entity of each link.
->=20
-> When the sink is a subdev, the common practice is to implement
-> media_entity_operations.link_validate() using
-> v4l2_subdev_link_validate(), which iterates over streams and validate
-> them individually with v4l2_subdev_pad_ops.link_validate(). That
-> operation can be left out if the default implementation
-> v4l2_subdev_link_validate_default() is enough, or a custom
-> .link_validate() operation can be provided that calls
-> v4l2_subdev_link_validate_default() and performs additional checks (or
-> implements all checks manually without calling
-> v4l2_subdev_link_validate_default() for very uncommon cases).
->=20
-> In this case, though, the sink is a video device, so
-> v4l2_subdev_link_validate() can't be used. I overlooked that in my
-> previous reply, sorry about it. As a link to a video node can only carry
-> a single stream, it seems that the issue here is caused by the link
-> being included in the media pipeline in the first place.
-> drivers/media/mc/mc-entity.c contains detailed debug messages that
-> explain how a pipeline is constructed, I would start by enabling them
-> and investigating what happens.
->=20
-> > I see mc-core.rst and v4l2-subdev.rst both talk about their own variant,
-> > without making it clear which should be used for a subdev.
-> >=20
-> > Anyway, I'll try to dig through the framework code to understand what's
-> > going wrong.
->=20
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
+> +		625000,
+> +		/* 800Hz */
+> +		1250000,
+> +		/* 400Hz */
+> +		2500000,
+> +		/* 200Hz */
+> +		5000000,
+> +		/* 100 Hz */
+> +		10000000,
+> +		/* 50Hz */
+> +		20000000,
+> +		/* 25Hz */
+> +		40000000,
+> +		/* 12.5Hz */
+> +		80000000,
+> +		/* 6.25Hz */
+> +		160000000,
+> +		/* 3.125Hz */
+> +		320000000,
+> +		/* 1.5625Hz */
+> +		640000000,
+> +	};
+> +
+> +	return odr_periods[odr];
+> +}
+
+> +static irqreturn_t inv_icm42607_irq_handler(int irq, void *_data)
+> +{
+> +	struct inv_icm42607_state *st = _data;
+> +	struct device *dev = regmap_get_device(st->map);
+> +	unsigned int status;
+> +	int ret;
+> +
+> +	mutex_lock(&st->lock);
+
+guard() and direct returns should make this easier to read.
+
+
+> +
+> +	if (st->apex.on) {
+> +		unsigned int status2, status3;
+> +
+> +		/* read INT_STATUS2 and INT_STATUS3 in 1 operation */
+> +		ret = regmap_bulk_read(st->map, INV_ICM42607_REG_INT_STATUS2, st->buffer, 2);
+> +		if (ret)
+> +			goto out_unlock;
+> +		status2 = st->buffer[0];
+> +		status3 = st->buffer[1];
+> +		inv_icm42607_accel_handle_events(st->indio_accel, status2, status3,
+> +						 st->timestamp.accel);
+> +	}
+> +
+> +	ret = regmap_read(st->map, INV_ICM42607_REG_INT_STATUS, &status);
+> +	if (ret)
+> +		goto out_unlock;
+> +
+> +	if (status & INV_ICM42607_INT_STATUS_FIFO_FULL)
+> +		dev_warn(dev, "FIFO full data lost!\n");
+> +
+> +	if (status & INV_ICM42607_INT_STATUS_FIFO_THS) {
+> +		ret = inv_icm42607_buffer_fifo_read(st, 0);
+> +		if (ret) {
+> +			dev_err(dev, "FIFO read error %d\n", ret);
+> +			goto out_unlock;
+> +		}
+> +		ret = inv_icm42607_buffer_fifo_parse(st);
+> +		if (ret)
+> +			dev_err(dev, "FIFO parsing error %d\n", ret);
+> +	}
+> +
+> +out_unlock:
+> +	mutex_unlock(&st->lock);
+> +	return IRQ_HANDLED;
+> +}
+
+> +
+> +static int inv_icm42607_runtime_suspend(struct device *dev)
+> +{
+> +	struct inv_icm42607_state *st = dev_get_drvdata(dev);
+> +	int ret = 0;
+
+always set, so don't initialise here.
+
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	ret = inv_icm42607_set_pwr_mgmt0(st, INV_ICM42607_SENSOR_MODE_OFF,
+> +					 INV_ICM42607_SENSOR_MODE_OFF, false,
+> +					 NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regulator_disable(st->vddio_supply);
+> +
+> +	return 0;
+> +}
+
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c b/drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+> new file mode 100644
+> index 000000000000..e3a873185569
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+> @@ -0,0 +1,578 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2026 InvenSense, Inc.
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/device.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/delay.h>
+> +#include <linux/math64.h>
+> +
+> +#include <linux/iio/buffer.h>
+> +#include <linux/iio/common/inv_sensors_timestamp.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/kfifo_buf.h>
+
+Some of these seem unlikely. Make sure they are all used in this
+file. I haven't checked, so may be fine.
+
+> +
+> +static const struct iio_chan_spec_ext_info inv_icm42607_gyro_ext_infos[] = {
+> +	IIO_MOUNT_MATRIX(IIO_SHARED_BY_ALL, inv_icm42607_get_mount_matrix),
+> +	{},
+
+	{ }
+
+> +};
+
+> +/*
+> + * IIO buffer data: size must be a power of 2 and timestamp aligned
+> + * 16 bytes: 6 bytes angular velocity, 2 bytes temperature, 8 bytes timestamp
+> + */
+> +struct inv_icm42607_gyro_buffer {
+> +	struct inv_icm42607_fifo_sensor_data gyro;
+> +	s16 temp;
+> +	aligned_s64 timestamp;
+> +};
+
+> +static const unsigned long inv_icm42607_gyro_scan_masks[] = {
+> +	/* 3-axis gyro + temperature */
+> +	INV_ICM42607_SCAN_MASK_GYRO_3AXIS | INV_ICM42607_SCAN_MASK_TEMP,
+> +	0,
+It's a terminating entry so drop the comma (more below) - note that
+I review backwards so sometimes review comments may feel odd if you
+read them forwards.
+
+> +};
+> +
+> +/* enable gyroscope sensor and FIFO write */
+> +static int inv_icm42607_gyro_update_scan_mode(struct iio_dev *indio_dev,
+> +					      const unsigned long *scan_mask)
+> +{
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+> +	struct inv_icm42607_sensor_conf conf = INV_ICM42607_SENSOR_CONF_INIT;
+> +	unsigned int fifo_en = 0;
+> +	unsigned int sleep_gyro = 0;
+> +	unsigned int sleep_temp = 0;
+> +	unsigned int sleep;
+> +	int ret;
+> +
+> +	mutex_lock(&st->lock);
+> +
+> +	if (*scan_mask & INV_ICM42607_SCAN_MASK_TEMP) {
+> +		/* enable temp sensor */
+> +		ret = inv_icm42607_set_temp_conf(st, true, &sleep_temp);
+> +		if (ret)
+> +			goto out_unlock;
+> +		fifo_en |= INV_ICM42607_SENSOR_TEMP;
+> +	}
+> +
+> +	if (*scan_mask & INV_ICM42607_SCAN_MASK_GYRO_3AXIS) {
+> +		/* enable gyro sensor */
+> +		conf.mode = INV_ICM42607_SENSOR_MODE_LOW_NOISE;
+> +		ret = inv_icm42607_set_gyro_conf(st, &conf, &sleep_gyro);
+> +		if (ret)
+> +			goto out_unlock;
+> +		fifo_en |= INV_ICM42607_SENSOR_GYRO;
+> +	}
+> +
+> +	/* update data FIFO write */
+> +	ret = inv_icm42607_buffer_set_fifo_en(st, fifo_en | st->fifo.en);
+> +	if (ret)
+> +		goto out_unlock;
+Why. It's right there.  Drop this gotot.  
+> +
+> +out_unlock:
+> +	mutex_unlock(&st->lock);
+> +	/* sleep maximum required time */
+> +	sleep = max(sleep_gyro, sleep_temp);
+> +	if (sleep)
+> +		msleep(sleep);
+> +	return ret;
+> +}
+> +
+
+
+> +
+> +static int inv_icm42607_gyro_write_scale(struct iio_dev *indio_dev,
+> +					 int val, int val2)
+> +{
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+> +	struct inv_icm42607_sensor_state *gyro_st = iio_priv(indio_dev);
+> +	struct device *dev = regmap_get_device(st->map);
+> +	unsigned int idx;
+> +	struct inv_icm42607_sensor_conf conf = INV_ICM42607_SENSOR_CONF_INIT;
+> +	int ret;
+> +
+> +	for (idx = 0; idx < gyro_st->scales_len; idx += 2) {
+> +		if (val == gyro_st->scales[idx] &&
+> +		    val2 == gyro_st->scales[idx + 1])
+> +			break;
+> +	}
+> +	if (idx >= gyro_st->scales_len)
+> +		return -EINVAL;
+> +
+> +	conf.fs = idx / 2;
+> +
+> +	pm_runtime_get_sync(dev);
+Firstly can always fail so these all need checks.
+Secondly this would be neater with the scoped based runtime pm stuff I mention
+below
+> +
+> +	scoped_guard(mutex, &st->lock)
+After the other change use
+	guard(mutex)(&st->lock);
+	return inv_icm...
+
+Applies in at least a few other places.
+
+
+> +		ret = inv_icm42607_set_gyro_conf(st, &conf, NULL);
+> +
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	return ret;
+> +}
+> +
+> +/* IIO format int + micro */
+> +static const int inv_icm42607_gyro_odr[] = {
+> +	/* 12.5Hz */
+> +	12, 500000,
+
+	12, 500000, /* 12.5Hz */
+
+etc if you do want to add the comments. Too much scrolling otherwise!
+> +	/* 25Hz */
+> +	25, 0,
+> +	/* 50Hz */
+> +	50, 0,
+> +	/* 100Hz */
+> +	100, 0,
+> +	/* 200Hz */
+> +	200, 0,
+> +	/* 400Hz */
+> +	400, 0,
+> +	/* 800Hz */
+> +	800, 0,
+> +	/* 1600Hz */
+> +	1600, 0,
+> +};
+>
+> +
+> +static int inv_icm42607_gyro_write_odr(struct iio_dev *indio_dev,
+> +				       int val, int val2)
+> +{
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+> +	struct inv_icm42607_sensor_state *gyro_st = iio_priv(indio_dev);
+> +	struct inv_sensors_timestamp *ts = &gyro_st->ts;
+> +	struct device *dev = regmap_get_device(st->map);
+> +	unsigned int idx;
+> +	struct inv_icm42607_sensor_conf conf = INV_ICM42607_SENSOR_CONF_INIT;
+> +	int ret;
+> +
+> +	for (idx = 0; idx < ARRAY_SIZE(inv_icm42607_gyro_odr); idx += 2) {
+> +		if (val == inv_icm42607_gyro_odr[idx] &&
+> +			val2 == inv_icm42607_gyro_odr[idx + 1])
+Align as
+		if (val ==...
+		    val2 == ...
+
+> +			break;
+> +	}
+> +	if (idx >= ARRAY_SIZE(inv_icm42607_gyro_odr))
+> +		return -EINVAL;
+> +
+> +	conf.odr = inv_icm42607_gyro_odr_conv[idx / 2];
+> +
+> +	pm_runtime_get_sync(dev);
+> +	mutex_lock(&st->lock);
+> +
+> +	ret = inv_sensors_timestamp_update_odr(ts, inv_icm42607_odr_to_period(conf.odr),
+> +					       iio_buffer_enabled(indio_dev));
+> +	if (ret)
+> +		goto out_unlock;
+> +
+> +	ret = inv_icm42607_set_gyro_conf(st, &conf, NULL);
+> +	if (ret)
+> +		goto out_unlock;
+> +	inv_icm42607_buffer_update_fifo_period(st);
+> +	inv_icm42607_buffer_update_watermark(st);
+> +
+> +out_unlock:
+> +	mutex_unlock(&st->lock);
+> +	pm_runtime_put_autosuspend(dev);
+As below. Look at whether you can use guard() and the runtime PM acquire
+to simplify the code flow in this function.
+
+> +
+> +	return ret;
+> +}
+
+> +struct iio_dev *inv_icm42607_gyro_init(struct inv_icm42607_state *st)
+> +{
+> +	struct device *dev = regmap_get_device(st->map);
+> +	const char *name;
+> +	struct inv_icm42607_sensor_state *gyro_st;
+> +	struct inv_sensors_timestamp_chip ts_chip;
+
+If no other order makes sense, reverse xmas tree is usually fine for kernel code.
+What we don't like is lack of an obvious reason for the order.
+
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	name = devm_kasprintf(dev, GFP_KERNEL, "%s-gyro", st->name);
+> +	if (!name)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*gyro_st));
+> +	if (!indio_dev)
+> +		return ERR_PTR(-ENOMEM);
+> +	gyro_st = iio_priv(indio_dev);
+> +
+> +	gyro_st->scales = inv_icm42607_gyro_scale;
+> +	gyro_st->scales_len = ARRAY_SIZE(inv_icm42607_gyro_scale);
+> +
+> +	/*
+> +	 * clock period is 32kHz (31250ns)
+> +	 * jitter is +/- 2% (20 per mille)
+> +	 */
+> +	ts_chip.clock_period = 31250;
+> +	ts_chip.jitter = 20;
+> +	ts_chip.init_period = inv_icm42607_odr_to_period(st->conf.accel.odr);
+> +	inv_sensors_timestamp_init(&gyro_st->ts, &ts_chip);
+> +
+> +	iio_device_set_drvdata(indio_dev, st);
+> +	indio_dev->name = name;
+> +	indio_dev->info = &inv_icm42607_gyro_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
+> +	indio_dev->channels = inv_icm42607_gyro_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(inv_icm42607_gyro_channels);
+> +	indio_dev->available_scan_masks = inv_icm42607_gyro_scan_masks;
+> +	indio_dev->setup_ops = &inv_icm42607_buffer_ops;
+> +
+> +	ret = devm_iio_kfifo_buffer_setup(dev, indio_dev,
+> +					  &inv_icm42607_buffer_ops);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	return indio_dev;
+> +}
+> +
+> +int inv_icm42607_gyro_parse_fifo(struct iio_dev *indio_dev)
+> +{
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+> +	struct inv_icm42607_sensor_state *gyro_st = iio_priv(indio_dev);
+> +	struct inv_sensors_timestamp *ts = &gyro_st->ts;
+> +	ssize_t i, size;
+> +	unsigned int no;
+> +	const void *accel, *gyro, *timestamp;
+> +	const s8 *temp;
+> +	unsigned int odr;
+> +	s64 ts_val;
+> +	struct inv_icm42607_gyro_buffer buffer = { };
+> +
+> +	/* parse all fifo packets */
+> +	for (i = 0, no = 0; i < st->fifo.count; i += size, ++no) {
+
+	for (ssize_t i = 0, unsigned int no = 0; i < ...
+
+Plus reduce the scope of some of the variables above to inside this loop
+by declaring them here.
+
+> +		size = inv_icm42607_fifo_decode_packet(&st->fifo.data[i],
+> +				&accel, &gyro, &temp, &timestamp, &odr);
+> +		/* quit if error or FIFO is empty */
+> +		if (size <= 0)
+> +			return size;
+> +
+> +		/* skip packet if no gyro data or data is invalid */
+> +		if (gyro == NULL || !inv_icm42607_fifo_is_data_valid(gyro))
+> +			continue;
+> +
+> +		/* update odr */
+> +		if (odr & INV_ICM42607_SENSOR_GYRO) {
+> +			inv_sensors_timestamp_apply_odr(ts, st->fifo.period,
+> +							st->fifo.nb.total, no);
+> +		}
+> +
+> +		memcpy(&buffer.gyro, gyro, sizeof(buffer.gyro));
+> +		/* convert 8 bits FIFO temperature in high resolution format */
+> +		buffer.temp = temp ? (*temp * 64) : 0;
+> +		ts_val = inv_sensors_timestamp_pop(ts);
+> +		iio_push_to_buffers_with_timestamp(indio_dev, &buffer, ts_val);
+
+Please use iio_push_to_buffers_with_ts() in new code.
+
+> +	}
+> +
+> +	return 0;
+> +}
+
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c b/drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c
+> new file mode 100644
+> index 000000000000..51ce3deeb706
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c
+> @@ -0,0 +1,100 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2026 InvenSense, Inc.
+> + */
+> +
+> +#include <linux/kernel.h>
+
+Look at what is actually used. It is rare a modern driver should be including the
+catch all headers kernel.h and device.h.  There are much more specific headers
+that are normally an improvement.
+
+> +#include <linux/device.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/regmap.h>
+> +#include <linux/property.h>
+
+Not seeing this used.  Check for other headers and make sure they are
+only included where things they define are included.
+
+
+> +
+> +#include "inv_icm42607.h"
+> +
+> +static int inv_icm42607_spi_bus_setup(struct inv_icm42607_state *st)
+> +{
+> +	unsigned int mask, val;
+> +	int ret;
+> +
+> +	ret = regmap_update_bits(st->map, INV_ICM42607_REG_DEVICE_CONFIG,
+> +				 INV_ICM42607_DEVICE_CONFIG_SPI_AP_4WIRE,
+> +				 INV_ICM42607_DEVICE_CONFIG_SPI_AP_4WIRE);
+
+regmap_set_bits() avoids duplicating that field mask.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(st->map, INV_ICM42607_REG_INTF_CONFIG1,
+> +				 INV_ICM42607_INTF_CONFIG1_I3C_DDR_EN |
+> +				 INV_ICM42607_INTF_CONFIG1_I3C_SDR_EN, 0);
+regmap_clear_bits() lets you drop the 0.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	mask = INV_ICM42607_DRIVE_CONFIG3_SPI_MASK;
+> +	val = INV_ICM42607_DRIVE_CONFIG3_SPI(INV_ICM42607_SLEW_RATE_INF_2NS);
+Even though it will be a long line, I'd put at least the mask inline
+and probably even val, just to keep things consistent with other calls
+around this.  As long as it is under 100 chars and helps readability it is fine
+to go a little wild.
+
+> +	ret = regmap_update_bits(st->map, INV_ICM42607_REG_DRIVE_CONFIG3,
+> +				 mask, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return regmap_update_bits(st->map, INV_ICM42607_REG_INTF_CONFIG0,
+> +				  INV_ICM42607_INTF_CONFIG0_UI_SIFS_CFG_MASK,
+> +				  INV_ICM42607_INTF_CONFIG0_UI_SIFS_CFG_I2C_DIS);
+> +}
+> +
+> +static int inv_icm42607_probe(struct spi_device *spi)
+> +{
+> +	const void *match;
+> +	enum inv_icm42607_chip chip;
+> +	struct regmap *regmap;
+> +
+> +	match = device_get_match_data(&spi->dev);
+spi_get_device_match_data() - which will only work if you stop using an enum
+below.
+> +	if (!match)
+> +		return -EINVAL;
+> +	chip = (uintptr_t)match;
+> +
+> +	regmap = devm_regmap_init_spi(spi, &inv_icm42607_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(regmap),
+> +				     "Failed to register spi regmap %ld\n",
+> +				     PTR_ERR(regmap));
+> +
+> +	return inv_icm42607_core_probe(regmap, chip,
+> +				       inv_icm42607_spi_bus_setup);
+> +}
+> +
+> +static const struct of_device_id inv_icm42607_of_matches[] = {
+> +	{
+> +		.compatible = "invensense,icm42607",
+> +		.data = (void *)INV_CHIP_ICM42607,
+
+Use a pointer to the structure, not an enum value.  
+We used to do this enum thing a lot. Experience showed it is harder
+to read and encourages people to use the enum to makes stuff 'code'
+that should have been 'data'.  + it breaks spi_get_device_match_data()
+which relies on NULL meaning no match.
+
+> +	},
+> +	{
+> +		.compatible = "invensense,icm42607p",
+> +		.data = (void *)INV_CHIP_ICM42607P,
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, inv_icm42607_of_matches);
+> +
+> +static const struct spi_device_id inv_icm42607_spi_id_table[] = {
+> +	{ "icm42607", INV_CHIP_ICM42607 },
+> +	{ "icm42607p", INV_CHIP_ICM42607P },
+> +	{ },
+No trailing comma for these terminating entries.
+
+> +};
+> +MODULE_DEVICE_TABLE(spi, inv_icm42607_spi_id_table);
+
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c b/drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c
+> new file mode 100644
+> index 000000000000..ae382352c861
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c
+> @@ -0,0 +1,82 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2026 InvenSense, Inc.
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/device.h>
+> +#include <linux/mutex.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/iio/iio.h>
+> +
+> +#include "inv_icm42607.h"
+> +#include "inv_icm42607_temp.h"
+> +
+> +static int inv_icm42607_temp_read(struct inv_icm42607_state *st, s16 *temp)
+> +{
+> +	struct device *dev = regmap_get_device(st->map);
+> +	__be16 *raw;
+> +	int ret;
+> +
+> +	pm_runtime_get_sync(dev);
+Can fail.  Note we have some cleanup.h magic now to help with this.
+Look at PM_RUNTIME_ACQUIRE_AUTOSUSPEND() / PM_RUNTIME_ACQUIRE_ERR()
+
+
+
+> +	mutex_lock(&st->lock);
+With the acquire stuff in use for runtime PM, this can be handled
+via guard(mutex)(&st->lock);
+
+> +
+> +	ret = inv_icm42607_set_temp_conf(st, true, NULL);
+> +	if (ret)
+> +		goto exit;
+And after we have cleanup.h handling for all the cleanup, this can be
+simply return ret;
+
+> +
+> +	raw = (__be16 *)&st->buffer[0];
+I'm not sure why we need the pointer...
+
+> +	ret = regmap_bulk_read(st->map, INV_ICM42607_REG_TEMP_DATA1, raw, sizeof(*raw));
+> +	if (ret)
+> +		goto exit;
+> +
+> +	*temp = (s16)be16_to_cpup(raw);
+
+I'd just use the unaligned_get_be16() path here so the code here isn't making
+alignment assumptions that are in a structure defined elsewhere.
+Or, use a union so we can have the right type of buffer.
+
+> +	if (*temp == INV_ICM42607_DATA_INVALID)
+> +		ret = -EINVAL;
+> +
+> +exit:
+> +	mutex_unlock(&st->lock);
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	return ret;
+> +}
+> +
+> +int inv_icm42607_temp_read_raw(struct iio_dev *indio_dev,
+> +				struct iio_chan_spec const *chan,
+> +				int *val, int *val2, long mask)
+> +{
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+
+I'd expect to get to this via a pointer stashed in the structure
+we get from iio_priv() rather than drvdata.
+
+> +	s16 temp;
+> +	int ret;
+> +
+> +	if (chan->type != IIO_TEMP)
+
+Given the function name, this feels like an overly paranoid check.
+If it's needed, add a comment on why.
+
+> +		return -EINVAL;
+> +
+
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_temp.h b/drivers/iio/imu/inv_icm42607/inv_icm42607_temp.h
+> new file mode 100644
+> index 000000000000..d0bd6c460ff2
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_temp.h
+> @@ -0,0 +1,30 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/*
+> + * Copyright (C) 2026 InvenSense, Inc.
+Hi Chris,
+
+Are you working for InvenSense to upstream this driver?  Or is your thought
+that this is based closely on existing code so should reflect that?
+
+If it's the latter then add comments to describe that and provide the cross
+references in the driver.
+
+> + */
 
