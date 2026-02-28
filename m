@@ -1,154 +1,130 @@
-Return-Path: <devicetree+bounces-269615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269617-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iH2OFtxPo2nW/AQAu9opvQ
-	(envelope-from <devicetree+bounces-269615-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:28:12 +0100
+	id oBPIJDljo2myBQUAu9opvQ
+	(envelope-from <devicetree+bounces-269617-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:50:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D082B1C85E2
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:28:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF761C94C0
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:50:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 467B5301A2B7
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 20:15:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4BD4431A3E84
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 20:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89CEB1A3154;
-	Sat, 28 Feb 2026 20:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CE062F6562;
+	Sat, 28 Feb 2026 20:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="W6XiScxm"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="WwsxoxIG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF61175A61;
-	Sat, 28 Feb 2026 20:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913702FD665
+	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 20:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772309755; cv=none; b=QA1CKrttktVgpR2Bn0aFWKPcG6vg+PTlsR9a9ymoxfRSarDCvR7ObMJtHnyAVw7Jkui9GrRAXfZHth63J2hNIG3nqLIW6O6GWClmm9T0uxvR/Cd/3DruvZP1TE++w268LQEhhePhpEeQHeFD8TRpb4bKnFsoaC7NxSiJjWcskvo=
+	t=1772311648; cv=none; b=XUuH2bGmaibHap1LKY0x1MltTdJz3+xQ98VNt1nd6PGU6TEVpsj2aa8xPjTgtCr+uMPAHnMGR5eY/POd9L6SK/ij6gZJr7Y9M07JjuDm96B1ljLhXoevVMZKFr959Rp393lGg2lDwcTJMWVV97CgkUAk9NemHKTY/JpoPzwF+Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772309755; c=relaxed/simple;
-	bh=Pf2ZqDiNTaVpou8OCsl9k0nAKVHkTrsQ8rYWDuqHje8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VxLDLOmgiZDf7yvNLtwE2zxjwhPTjTpt52LznqaCyAJeLMuHKgjnN3uccbgb9Uidt0t/MWosuNXG8MLFtMUDjEIuILIHT19MPhBGL2+3x3XV4S42tLsTsBKBwMcx4IpTq7PpLvFDkGiNDVA/MpduOOFK/yoe3rUh1rX1WYwO+O4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=W6XiScxm; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772309754; x=1803845754;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Pf2ZqDiNTaVpou8OCsl9k0nAKVHkTrsQ8rYWDuqHje8=;
-  b=W6XiScxmEOz2bHSeC6zCjlHfu3o9oRI6AafLrmzeu2xxYVLN0t/trisy
-   GOZmoPo7M14BzRZwPkOZkJgwIfOgs1oOhy4/TxR5o3Pc1By1svIdCx1OD
-   J5n0vHmyH6vlcCaGtIij/aalIZn6E4EK4ALt54ZMFtp5omNCy3+K+aKGQ
-   2Mnx9nWRqaHnVip7+7FFxyQxFRBPnbN9LEY/7CaKc5QF1qc83KWHw1+dx
-   xcKr4WAQX4AycP9B7yKzy0tkfQKBpEZZ12Sp57K7Cb4Dj4zLFm4xNjzQj
-   yrKz2KP+EIUCjf/5ni4VE5Ub1PDqxl4TUmlyysIhrpVVYSbJAu+2ME4ju
-   A==;
-X-CSE-ConnectionGUID: ijS5lK04QcGQKP+ykBsPeg==
-X-CSE-MsgGUID: BZAdaNeKT3qRNPlHP0nxoA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11715"; a="84001425"
-X-IronPort-AV: E=Sophos;i="6.21,316,1763452800"; 
-   d="scan'208";a="84001425"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2026 12:15:53 -0800
-X-CSE-ConnectionGUID: +7+h/CCuRO2AFQu/kS6OeQ==
-X-CSE-MsgGUID: ekF6cjXETo6a1NGSKrOlSw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,316,1763452800"; 
-   d="scan'208";a="214980288"
-Received: from lkp-server01.sh.intel.com (HELO 59784f1c7b2a) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 28 Feb 2026 12:15:50 -0800
-Received: from kbuild by 59784f1c7b2a with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vwQj5-0000000009v-0A1G;
-	Sat, 28 Feb 2026 20:15:47 +0000
-Date: Sun, 1 Mar 2026 04:15:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Badhri Jagan Sridharan <badhri@google.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
+	s=arc-20240116; t=1772311648; c=relaxed/simple;
+	bh=wpilwaKapWp43wsjfCFYHhbY0oyQXChRrcmHY3NSCQI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pnrzF4yrFCVJQ91Fp2CtKUvlVZCWupKFL9J+9lHnlJajnBJCptfj0fF3+kx9Wqej1t3csc+FLPAxht7DGwHivihaBTHWA/H1GLaUg4vo8ks9rohZopPipZIpHSJHz4uU1ocI5YnXmbcSFz13ZqUj/R8BTAE6CIjVQI1A110NfbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=WwsxoxIG; arc=none smtp.client-ip=91.218.175.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1772311634;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=JY8ah5sntkqwYsnjRryTUayuLGKdO7gmIkWN0EIBh8Q=;
+	b=WwsxoxIGhM4p6ubmxG95hoOAI1yTdJ49aE2SpnU7ZKX21oAS0H5KAgbS+qCvxef4z/iA1R
+	513TQ7qSVX5Rrch06cm0vP84t41yIMNTsZ+aCsTe7zzdJVAkgl3L5nIUk4RrkyEFAjlYPc
+	uTDev8DLe7Qen9D2XauFK2sHlAYZBmbpDKckGe3FWL3SLcmPIAuvRiGyC/whRRSysKGJUD
+	NmTq9GIl4PdzBTyt2REJawNtNm8+rJ+izDYrUy/oPdP0qNKy2hqNDr1O+dDkSGWaXRMl6x
+	jiC8Yh3XBmsbgLB/jsLxZOmAcmbftSiAqYp7LsA7eAvlmxVtcpwOR4m2TGLQ8A==
+From: Val Packett <val@packett.cool>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, amitsd@google.com,
-	Badhri Jagan Sridharan <badhri@google.com>
-Subject: Re: [PATCH v2] arm64: dts: exynos: gs101: Enable AVS APDO
-Message-ID: <202603010422.kDnbXirr-lkp@intel.com>
-References: <20260227083954.3529857-1-badhri@google.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Adam Skladowski <a39.skl@gmail.com>
+Cc: Val Packett <val@packett.cool>,
+	linux-arm-msm@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/6] SM6115/SM6125 MDSS core reset
+Date: Sat, 28 Feb 2026 17:41:26 -0300
+Message-ID: <20260228204638.11705-1-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260227083954.3529857-1-badhri@google.com>
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269615-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-269617-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:mid,intel.com:dkim,intel.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D082B1C85E2
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[packett.cool:+];
+	NEURAL_HAM(-0.00)[-0.720];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,packett.cool:mid,packett.cool:dkim]
+X-Rspamd-Queue-Id: 0FF761C94C0
 X-Rspamd-Action: no action
 
-Hi Badhri,
+v2: Collect R-b/T-b, expand commit messages to describe the issue everywhere
+v1: https://lore.kernel.org/all/20260216233600.13098-2-val@packett.cool/
 
-kernel test robot noticed the following build errors:
+Val Packett (6):
+  dt-bindings: clock: qcom,sm6115-dispcc: Define MDSS resets
+  dt-bindings: clock: qcom,dispcc-sm6125: Define MDSS resets
+  clk: qcom: dispcc-sm6115: Add missing MDSS resets
+  clk: qcom: dispcc-sm6125: Add missing MDSS resets
+  arm64: dts: qcom: sm6115: Add missing MDSS core reset
+  arm64: dts: qcom: sm6125: Add missing MDSS core reset
 
-[auto build test ERROR on 5d692f20de6311fa507c952adc3487c641edee00]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Badhri-Jagan-Sridharan/arm64-dts-exynos-gs101-Enable-AVS-APDO/20260227-164153
-base:   5d692f20de6311fa507c952adc3487c641edee00
-patch link:    https://lore.kernel.org/r/20260227083954.3529857-1-badhri%40google.com
-patch subject: [PATCH v2] arm64: dts: exynos: gs101: Enable AVS APDO
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20260301/202603010422.kDnbXirr-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260301/202603010422.kDnbXirr-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603010422.kDnbXirr-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   Lexical error: arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi:177.10-30 Unexpected 'PDO_SPR_AVS_SNK_APDO'
-   Error: arch/arm64/boot/dts/exynos/google/gs101-pixel-common.dtsi:177.35-36 syntax error
->> FATAL ERROR: Unable to parse input tree
+ arch/arm64/boot/dts/qcom/sm6115.dtsi           | 2 ++
+ arch/arm64/boot/dts/qcom/sm6125.dtsi           | 3 +++
+ drivers/clk/qcom/dispcc-sm6115.c               | 7 +++++++
+ drivers/clk/qcom/dispcc-sm6125.c               | 7 +++++++
+ include/dt-bindings/clock/qcom,dispcc-sm6125.h | 6 +++++-
+ include/dt-bindings/clock/qcom,sm6115-dispcc.h | 7 +++++--
+ 6 files changed, 29 insertions(+), 3 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.52.0
+
 
