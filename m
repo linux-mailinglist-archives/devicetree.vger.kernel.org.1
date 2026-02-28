@@ -1,777 +1,348 @@
-Return-Path: <devicetree+bounces-269554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269562-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDmAGj/oomlG8AQAu9opvQ
-	(envelope-from <devicetree+bounces-269554-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:06:07 +0100
+	id GDzcH7zpomlG8AQAu9opvQ
+	(envelope-from <devicetree+bounces-269562-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:12:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCB61C319B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:06:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE2E11C3293
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:12:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 01C27302A9EA
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 13:06:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D0FD930848FA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 13:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4369043E48D;
-	Sat, 28 Feb 2026 13:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539AB429831;
+	Sat, 28 Feb 2026 13:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r0ZUTeQo"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="Hk0p4k/6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2036843DA32;
-	Sat, 28 Feb 2026 13:06:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE69643E483;
+	Sat, 28 Feb 2026 13:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772283965; cv=none; b=L/kx/omhRO8bT84iPYDvpz3XAk1sANEwE4DsRY1aBqfJyoowwlS/vO22xgT10yyWqg5r+zr7EzBkWhdxss+GaPrZzryXaC1V78tbxsWi3bCqawC1/du1PLN6R9Tqc4eJFO8dLeuwHOEjhhgfNnt1Zdsem0A/Sdhwg2vlwN5zMz4=
+	t=1772284179; cv=none; b=mC1gn+X5q9VHzrQxkdgOdF+OdV42pe8HnoDBNZxOepvToGaAT1hzFVFmwNJVuVAP3QEzmbxZLMrtEN07CeKyzs6O6BjyYhk7v7cwcxXlihjAIWmDa5wp4rNLfwSgb/+bIoDXNB4PDudsjCucMvGhjQ/WBn34kx2KI80e+ZAnHag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772283965; c=relaxed/simple;
-	bh=oi7/362Nu4qtKLX/yc/nGD8St7Yg23Ena4EFxgIb9iY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WCTByJXVRzOydikNOBaC8aDxn7gWVbbo8W64/2j0o2YO0cbqQK6sGVYMMyQmFsWYNt4W8hmnakQM4ybasMIMWwo3BV8rSa59GZKsdO3HlVOtKF7x+himZUQvgkAXAR5Cq4YeIATCuP/mrHMSbA27E1lG08oxF4577ISVDSYkzXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r0ZUTeQo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D9CC116D0;
-	Sat, 28 Feb 2026 13:06:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772283965;
-	bh=oi7/362Nu4qtKLX/yc/nGD8St7Yg23Ena4EFxgIb9iY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=r0ZUTeQovFV8bbe4lZA1hS9N967gtdfkjOAa/cfk5mh3Ab/EMP5RoJ3BF7ojBWT3a
-	 xkFojGCijm+7Ri4nqpGxClWcRNVIKrWJyDqpswZseZcvbQoAhpSgDDUVa1NbjSM9mV
-	 hqRU1lkjd1fByqI0Uon1oFOqx1/gEmlCaxCk4ocABESZsitCoAgr1wUhDMDvalsIor
-	 REjqMhRLYPAFWZTLfo2+a5WiUvSMlr9yBKV9nJpSLnGYzKw728uCcwb5pQK35I4xnm
-	 AyzQoIuIIG7Q+lxAYOTPGslbgtL05dJsJuiYKZcw0ZxBZqS907/qcpJEkAFrOA7JO3
-	 MhIOfsY4LlP/Q==
-Date: Sat, 28 Feb 2026 13:05:56 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>
-Subject: Re: [PATCH 2/2] iio: temperature: add ADI MAX30210 driver
-Message-ID: <20260228130556.25782f89@jic23-huawei>
-In-Reply-To: <20260226163041.169786-3-johnerasmusmari.geronimo@analog.com>
-References: <20260226163041.169786-1-johnerasmusmari.geronimo@analog.com>
-	<20260226163041.169786-3-johnerasmusmari.geronimo@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772284179; c=relaxed/simple;
+	bh=SaMKHBYp2dfxGW8qzLy1AfLYK9+TCSyaBdSiplrdslA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=eaRK4AvPluOyER4UDSbFPQ/YahQGgEDkdX/ZHlcWh5A/B1jnAErVDnOOssQk5WJxmS+hqwVMFt/RbKxJxk9ajintSVd4AsgYCAy3tNdhJ6nRVg2wRDNwS543zojA45T1TJ5V3KxniRvo9/ISOIw4kIMa/3tT0oPDk0s77i9TpjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=Hk0p4k/6; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61S8lkMb2447252;
+	Sat, 28 Feb 2026 13:08:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=e3h6lK
+	PADkarDnV9tMxKLLerzBFFSfZGDUJSV7g45+k=; b=Hk0p4k/6smPydLZ9oUzc20
+	aNTzGjk1n/5sgfK0KV4ceX9Dm6YdaNab5b1xrnIszlnopxp+JuFjIuM4KxxW2b5U
+	g4Te7MHDdwLeRg1DOwpHofxhauRWgj/IGpkdZMt+xF/8spsQoq+vYFcXCX/Uc4AF
+	//BBJN0zoOPhizc3V1fVdyHvI2kPKjxQrA0Ihf44i4KIRnJa1rCS/8l2887pLJEm
+	kn52QT4bWE0Mo6EWHldILKR39ExM+V63Ytbcz5lJOw0wanVZr0VVULqjuqbHSYI3
+	ylroQUGK5swb/FPlIkCy3wGLjHl2NC1+MT3VSz9iGV/pIks7OMaQTrpjHOxLZ8sw
+	==
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4cksrhrwsf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 28 Feb 2026 13:08:21 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 61SAMWO5013438;
+	Sat, 28 Feb 2026 13:08:20 GMT
+Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4cfqdypsva-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 28 Feb 2026 13:08:20 +0000
+Received: from smtpav03.fra02v.mail.ibm.com (smtpav03.fra02v.mail.ibm.com [10.20.54.102])
+	by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 61SD8GuF57278852
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Sat, 28 Feb 2026 13:08:16 GMT
+Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 0C9A920040;
+	Sat, 28 Feb 2026 13:08:16 +0000 (GMT)
+Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id D495B20043;
+	Sat, 28 Feb 2026 13:07:57 +0000 (GMT)
+Received: from [9.124.209.149] (unknown [9.124.209.149])
+	by smtpav03.fra02v.mail.ibm.com (Postfix) with ESMTP;
+	Sat, 28 Feb 2026 13:07:57 +0000 (GMT)
+Message-ID: <c20e22cd-e1bf-4993-9ee8-bce62a5c0879@linux.ibm.com>
+Date: Sat, 28 Feb 2026 18:37:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/5] crash: Use crash_exclude_core_ranges() on powerpc
+To: Jinjie Ruan <ruanjinjie@huawei.com>, corbet@lwn.net,
+        skhan@linuxfoundation.org, catalin.marinas@arm.com, will@kernel.org,
+        chenhuacai@kernel.org, kernel@xen0n.name, maddy@linux.ibm.com,
+        mpe@ellerman.id.au, npiggin@gmail.com, chleroy@kernel.org,
+        pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+        alex@ghiti.fr, tglx@kernel.org, mingo@redhat.com, bp@alien8.de,
+        dave.hansen@linux.intel.com, hpa@zytor.com, robh@kernel.org,
+        saravanak@kernel.org, akpm@linux-foundation.org, bhe@redhat.com,
+        vgoyal@redhat.com, dyoung@redhat.com, pmladek@suse.com,
+        rdunlap@infradead.org, dapeng1.mi@linux.intel.com, kees@kernel.org,
+        paulmck@kernel.org, lirongqing@baidu.com, arnd@arndb.de,
+        rppt@kernel.org, ardb@kernel.org, leitao@debian.org, jbohac@suse.cz,
+        cfsworks@gmail.com, ryan.roberts@arm.com, tangyouling@kylinos.cn,
+        ritesh.list@gmail.com, hbathini@linux.ibm.com, eajames@linux.ibm.com,
+        songshuaishuai@tinylab.org, samuel.holland@sifive.com,
+        kevin.brodsky@arm.com, vishal.moola@gmail.com,
+        junhui.liu@pigmoral.tech, coxu@redhat.com, liaoyuanhong@vivo.com,
+        brgerst@gmail.com, fuqiang.wang@easystack.cn, x86@kernel.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
+        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, kexec@lists.infradead.org
+References: <20260226130437.1867658-1-ruanjinjie@huawei.com>
+ <20260226130437.1867658-4-ruanjinjie@huawei.com>
+ <3576865b-65bd-4289-babc-975a543eb775@linux.ibm.com>
+ <0a776b5f-5a88-2c71-7305-d30d9240c2cb@huawei.com>
+Content-Language: en-US
+From: Sourabh Jain <sourabhjain@linux.ibm.com>
+In-Reply-To: <0a776b5f-5a88-2c71-7305-d30d9240c2cb@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Authority-Analysis: v=2.4 cv=Rp/I7SmK c=1 sm=1 tr=0 ts=69a2e8c6 cx=c_pps
+ a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
+ a=IkcTkHD0fZMA:10 a=HzLeVaNsDn8A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VwQbUJbxAAAA:8
+ a=VnNF1IyMAAAA:8 a=i0EeH86SAAAA:8 a=SqbkEvhUw2NNNf05Xa8A:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI4MDEyMSBTYWx0ZWRfX071lBZNc4yPs
+ a+VvK7FC4ZLJ83ujFSxE4qKrT2im2H45r5MaQT28kHvEJTqd6pJVaAyuSjQ3NuM6wUa0qEH2alF
+ P1jCkPqkp6CqN0DKLbWKVk21rKn8njj0UZAYJeaU8TzE/4SPRd0l4Zs1QS7ZiiOL/7qs3FoMu6G
+ 5csaG6FOvpwfilpgha8+Qro/2ZkMmOh4FsC3nEWvKPC+6uws9ppkA2uxtJuI7qYY4767PsvsYoF
+ EsF4NUtz447QS7ih5aGhLRWxZs0pYsfIx4JJJmsUkfBQZzN4/aNXD+3Qe9CGx4E+D7TcSZtBXEI
+ XFXUL1muBf1u/clq8TG8N1+SmISXqsyGVdsRfh4SMvQngoVyIAT0YOagP6M0o6qk6U4uLYL2oHz
+ 3Abjnl6QdWdZlzi3KOhcXYOhHL66mqa0R9Vsau62cBWDsTUfJyfY4QGts602vgdSDGI5+I3b7Rt
+ tTiPIRyq15vMDpnE3VQ==
+X-Proofpoint-GUID: VU3eDeJEliDLLLNFpw6e5qki7AdYAUd0
+X-Proofpoint-ORIG-GUID: qiO9pP1xveZBu3XCkKWBR8dO855n6A-Q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-02-28_04,2026-02-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 spamscore=0 phishscore=0 adultscore=0
+ bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602280121
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269554-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_TO(0.00)[huawei.com,lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,suse.com,infradead.org,baidu.com,arndb.de,debian.org,suse.cz,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269562-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[ibm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,huawei.com:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[sourabhjain@linux.ibm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[61];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: EDCB61C319B
+	RCVD_COUNT_SEVEN(0.00)[11]
+X-Rspamd-Queue-Id: CE2E11C3293
 X-Rspamd-Action: no action
 
-On Fri, 27 Feb 2026 00:30:41 +0800
-John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com> wrote:
 
-> MAX30210 =C2=B10.1=C2=B0C Accurate Ultra-Small Low-Power Digital Temperat=
-ure Sensor
 
-For a temperature sensor, this description doesn't give enough detail
-on why you are proposing an IIO driver rather than a hwmon one.
-
-Please add more for v2.  Focus on what the part is and features you are sup=
-porting
-that don't have a path to being supporting in hwmon. E.g. the fifo.
-
-The other thing to add a brief note on is why this support cannot be easily
-added to an existing driver.
->=20
-> Signed-off-by: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analo=
-g.com>
-Various additional comments inline from me.
-
-Welcome to IIO!
-
-Jonathan
-
-
-> diff --git a/drivers/iio/temperature/max30210.c b/drivers/iio/temperature=
-/max30210.c
-> new file mode 100644
-> index 000000000000..aaa3a26be131
-> --- /dev/null
-> +++ b/drivers/iio/temperature/max30210.c
-> @@ -0,0 +1,758 @@
-
-> +
-> +#define MAX30210_STATUS_REG		0x00
-> +#define MAX30210_INT_EN_REG		0x02
-> +#define MAX30210_FIFO_DATA_REG		0x08
-> +#define MAX30210_FIFO_CONF_1_REG	0x09
-> +#define MAX30210_FIFO_CONF_2_REG	0x0A
-> +#define MAX30210_SYS_CONF_REG		0x11
-> +#define MAX30210_PIN_CONF_REG		0x12
-> +#define MAX30210_TEMP_ALM_HI_REG	0x22
-> +#define MAX30210_TEMP_ALM_LO_REG	0x24
-> +#define MAX30210_TEMP_INC_THRESH_REG	0x26
-> +#define MAX30210_TEMP_DEC_THRESH_REG	0x27
-> +#define MAX30210_TEMP_CONF_1_REG	0x28
-> +#define MAX30210_TEMP_CONF_2_REG	0x29
-> +#define MAX30210_TEMP_CONV_REG		0x2A
-> +#define MAX30210_TEMP_DATA_REG		0x2B
-> +#define MAX30210_TEMP_SLOPE_REG		0x2D
-> +#define MAX30210_UNIQUE_ID_REG		0x30
-> +#define MAX30210_PART_ID_REG		0xFF
-> +
-> +#define MAX30210_A_FULL_MASK   BIT(7)
-
-I'm very keen that field names reflect which register they are in.
-That makes it much easier to review whether they are being correctly
-used.  Usual way to do that is have a prefix that incorporates enough=20
-of the register name to work out that mapping.
-
-> +#define MAX30210_TEMP_RDY_MASK BIT(6)
-> +#define MAX30210_TEMP_DEC_MASK BIT(5)
-> +#define MAX30210_TEMP_INC_MASK BIT(4)
-> +#define MAX30210_TEMP_LO_MASK  BIT(3)
-> +#define MAX30210_TEMP_HI_MASK  BIT(2)
-> +#define MAX30210_PWR_RDY_MASK  BIT(0)
-> +
-> +#define MAX30210_FLUSH_FIFO_MASK BIT(4)
-> +
-> +#define MAX30210_EXT_CNV_EN_MASK	BIT(7)
-> +#define MAX30210_EXT_CVT_ICFG_MASK	BIT(6)
-> +#define MAX30210_INT_FCFG_MASK		GENMASK(3, 2)
-> +#define MAX30210_INT_OCFG_MASK		GENMASK(1, 0)
-> +
-> +#define MAX30210_CHG_DET_EN_MASK	BIT(3)
-> +#define MAX30210_RATE_CHG_FILTER_MASK	GENMASK(2, 0)
-> +
-> +#define MAX30210_TEMP_PERIOD_MASK	GENMASK(3, 0)
-> +#define MAX30210_ALERT_MODE_MASK	BIT(7)
-> +
-> +#define MAX30210_AUTO_MASK	BIT(1)
-> +#define MAX30210_CONV_T_MASK	BIT(0)
-> +
-> +#define MAX30210_PART_ID		0x45
-> +#define MAX30210_FIFO_SIZE		64
-> +#define MAX30210_FIFO_INVAL_DATA	GENMASK(23, 0)
-> +#define MAX30210_WATERMARK_DEFAULT	(0x40 - 0x1F)
-> +
-> +#define MAX30210_INT_EN(state, mask)	((state) ? (mask) : 0x0)
-Use regmap_assign_bits() to replace this macro.
-
-
-> +
-> +struct max30210_state {
-> +	/*
-> +	 * Prevent simultaneous access to the i2c client.
-Why does that matter?  I'd imagine you have some read / modify write
-sequences or need to not change the mode whilst something else is going
-on?
-
-> +	 */
-> +	struct mutex lock;
-> +	struct regmap *regmap;
-> +	struct iio_trigger *trig;
-> +	struct gpio_desc *powerdown_gpio;
-> +	u8 watermark;
-> +	u8 data[3 * MAX30210_FIFO_SIZE]  __aligned(IIO_DMA_MINALIGN);
-> +};
-
-> +static int max30210_read_temp(struct regmap *regmap, unsigned int reg,
-> +			      int *temp)
-> +{
-> +	u8 uval[2] __aligned(IIO_DMA_MINALIGN);
-
-As below, forcing alignment on the stack doesn't work for this purpose.
-Needs to be on the heap. Put it next to data in the _state structure.
-
-However, this is an i2c driver. I2C doesn't have any such requirements
-on buffer alignment because it always bounce buffers data if needed.
-
-
-> +	int ret;
-> +
-> +	ret =3D regmap_bulk_read(regmap, reg, uval, 2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*temp =3D sign_extend32(get_unaligned_be16(uval), 15);
-> +
-> +	return IIO_VAL_INT;
-> +}
-> +
-> +static int max30210_write_temp(struct regmap *regmap, unsigned int reg,
-> +			       int temp)
-> +{
-> +	u8 uval[2] __aligned(IIO_DMA_MINALIGN);
-
-You've miss understood the purpose of IIO_DMA_MINALIGN.
-Make sure to look into that but the short answer is you can't do it on the =
-stack.
-
-> +
-> +	put_unaligned_be16(temp, uval);
-> +
-> +	return regmap_bulk_write(regmap, reg, uval, 2);
-Use a __be16 type for the buffer and then sizeof() for the 2
-
-> +}
-> +
-> +static void max30210_fifo_read(struct iio_dev *indio_dev)
-> +{
-> +	struct max30210_state *st =3D iio_priv(indio_dev);
-> +	u32 samp;
-> +	int ret, i, j;
-> +
-> +	ret =3D regmap_bulk_read(st->regmap, MAX30210_FIFO_DATA_REG,
-> +			       st->data, 3 * st->watermark);
-> +	if (ret < 0)
-> +		return dev_err(&indio_dev->dev, "Failed to read from fifo.\n");
-> +
-> +	for (i =3D 0; i < st->watermark; i++) {
-
-		u32 samp =3D 0;
-
-> +		samp =3D 0;
-> +
-> +		for (j =3D 0; j < 3; j++) {
-> +			samp <<=3D 8;
-> +			samp |=3D st->data[3 * i + j];
-
-Looks like get_unaligned_be24() or similar. Use that instead of opencoding
-the endian conversion.  However, you are claiming this is a big endian chan=
-nel
-and this is an endian conversion so something is wrong.  If you keep it as
-a big endian channel, this probably wants to be simply memcpy()
-
-
-
-
-> +		}
-> +
-> +		if (samp =3D=3D MAX30210_FIFO_INVAL_DATA) {
-> +			dev_err(&indio_dev->dev, "Invalid data\n");
-> +			continue;
-> +		}
-> +
-> +		iio_push_to_buffers(indio_dev, &samp);
-> +	}
-> +}
-> +
-> +static irqreturn_t max30210_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf =3D p;
-> +	struct iio_dev *indio_dev =3D pf->indio_dev;
-> +	struct max30210_state *st =3D iio_priv(indio_dev);
-> +	unsigned int status;
-> +	int ret;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	ret =3D regmap_read(st->regmap, MAX30210_STATUS_REG, &status);
-> +	if (ret) {
-> +		dev_err(&indio_dev->dev, "Status byte read error\n");
-> +		goto exit_irq;
-> +	}
-> +
-> +	if (status & MAX30210_PWR_RDY_MASK) {
-> +		dev_info(&indio_dev->dev, "power-on\n");
-
-dev_dbg() at most.
-
-> +		st->watermark =3D MAX30210_WATERMARK_DEFAULT;
-> +	}
-> +
-> +	if (status & MAX30210_A_FULL_MASK)
-> +		max30210_fifo_read(indio_dev);
-> +
-> +	if (status & MAX30210_TEMP_HI_MASK)
-This is unusual.  If you have a single interrupt for both trigger
-and thresholds then you can't use iio_trigger_generic_data_rdy_poll()
-
-The main interrupt handler needs to work out what has happened then
-ultimately use iio_trigger_poll_nested() to fire of the data capture.
-
-However, there is a hardware fifo going on here. So what benefit
-is the trigger providing?  Triggers are optional and often not appropriate
-when there are hardware fifos present because it is not useful to use
-them to capture data from other devices etc.  So just drop the trigger
-here and have this as the main irq handler.
-
-> +		iio_push_event(indio_dev,
-> +			       IIO_UNMOD_EVENT_CODE(IIO_TEMP, 0,
-> +						    IIO_EV_TYPE_THRESH,
-> +						    IIO_EV_DIR_RISING),
-> +			       iio_get_time_ns(indio_dev));
-> +
-> +	if (status & MAX30210_TEMP_LO_MASK)
-> +		iio_push_event(indio_dev,
-> +			       IIO_UNMOD_EVENT_CODE(IIO_TEMP, 0,
-> +						    IIO_EV_TYPE_THRESH,
-> +						    IIO_EV_DIR_FALLING),
-> +			       iio_get_time_ns(indio_dev));
-> +
-> +exit_irq:
-
-Whilst this is not buggy the advice (see cleanup.h comments) is never
-combine gotos and guard() / __free() in one function. There are some evil c=
-orner
-case and GCC at least doesn't catch them all.  Various ways to refactor
-the code to avoid the mix.
-
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +	return IRQ_HANDLED;
-> +}
-
-> +
-> +static int max30210_validate_trigger(struct iio_dev *indio_dev,
-> +				     struct iio_trigger *trig)
-> +{
-> +	struct max30210_state *st =3D iio_priv(indio_dev);
-> +
-> +	if (st->trig !=3D trig)
-> +		return -EINVAL;
-Can you use iio_validate_own_trigger()?
-They should both have the same parent.
-
-> +
-> +	return 0;
-
-> +static int max30210_write_event(struct iio_dev *indio_dev,
-> +				const struct iio_chan_spec *chan,
-> +				enum iio_event_type type,
-> +				enum iio_event_direction dir,
-> +				enum iio_event_info info, int val, int val2)
-> +{
-> +	struct max30210_state *st =3D iio_priv(indio_dev);
-> +
-> +	if (info =3D=3D IIO_EV_INFO_VALUE) {
-Can flip the logic to reduce indent.
-	if (info !=3D IIO_EV_INFO_VALUE)
-		return -EINVAL;
-
-	switch()
-
-> +		switch (dir) {
-> +		case IIO_EV_DIR_RISING:
-> +			switch (type) {
-> +			case IIO_EV_TYPE_THRESH:
-> +				return max30210_write_temp(st->regmap,
-> +							   MAX30210_TEMP_ALM_HI_REG, val);
-> +			default:
-> +				return -EINVAL;
-> +			}
-> +			break;
-
-As below (check for other instances of this)
-
-> +		case IIO_EV_DIR_FALLING:
-> +			switch (type) {
-> +			case IIO_EV_TYPE_THRESH:
-> +				return max30210_write_temp(st->regmap,
-> +							   MAX30210_TEMP_ALM_LO_REG, val);
-> +			default:
-> +				return -EINVAL;
-> +			}
-> +			break;
-
-Can't get here so drop the break.
-
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-> +
-> +static int max30210_read_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan, int *val,
-> +			     int *val2, long mask)
-> +{
-> +	struct max30210_state *st =3D iio_priv(indio_dev);
-> +	unsigned int uval;
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val =3D 5;
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		ret =3D regmap_read(st->regmap, MAX30210_TEMP_CONF_2_REG, &uval);
-> +		if (ret)
-> +			return ret;
-> +
-> +		uval =3D FIELD_GET(MAX30210_TEMP_PERIOD_MASK, uval);
-> +
-> +		*val =3D 8;
-> +
-> +		/**
-
-/*=20
-See below and run a W=3D1 build which will probably complain about this.
-
-> +		 * register values 0x9 or above have the same sample
-> +		 * rate of 8Hz
-> +		 */
-> +		*val2 =3D uval >=3D 0x9 ? 1 : BIT(0x9 - uval);
-> +
-> +		return IIO_VAL_FRACTIONAL;
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret =3D iio_device_claim_direct_mode(indio_dev);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret =3D regmap_write(st->regmap, MAX30210_TEMP_CONV_REG,
-> +				   MAX30210_CONV_T_MASK);
-> +		if (ret)
-> +			goto release_dmode;
-> +
-> +		fsleep(8000);
-
-Add a spec reference for this.
-
-> +
-> +		ret =3D max30210_read_temp(st->regmap, MAX30210_TEMP_DATA_REG, val);
-> +
-> +release_dmode:
-
-Labels for gotos inside a switch are not a good thing to do for readability.
-We have the new ACQUIRE() stuff that David mentioned, but if that isn't app=
-ropriate
-I'd suggest factoring out some of the code here so you can avoid the goto.
-
-> +		iio_device_release_direct_mode(indio_dev);
-> +		return ret;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-> +}
-> +
-> +static int max30210_write_raw(struct iio_dev *indio_dev,
-> +			      struct iio_chan_spec const *chan, int val,
-> +			      int val2, long mask)
-> +{
-> +	struct max30210_state *st =3D iio_priv(indio_dev);
-> +	u64 data;
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		ret =3D iio_device_claim_direct_mode(indio_dev);
-
-Others pointed out this needs to be based on upstream where that
-particular function has gone away.
-
-> +		if (ret)
-> +			return ret;
-> +
-> +		/**
-Not kernel-doc style so /*
-
-> +		 * micro_value =3D val * 1000000 + val2
-> +		 * reg_value =3D ((micro_value * 64) / 1000000) - 1
-
-Except that's not the reg_val, because you then call fls() on it.
-
-> +		 */
-> +		data =3D (val * MICRO + val2) << 6;
-> +		do_div(data, MICRO);
-> +
-> +		data =3D fls_long(data - 1);
-
-This is unusual enough I'd add a comment on the maths.
-
-> +		data =3D FIELD_PREP(MAX30210_TEMP_PERIOD_MASK, data);
-
-Use a different variable of the appropriate type to store the result.
-That way no need for a cast below.
-
-> +
-> +		ret =3D regmap_update_bits(st->regmap, MAX30210_TEMP_CONF_2_REG,
-> +					 MAX30210_TEMP_PERIOD_MASK,
-> +					 (unsigned int)data);
-> +
-> +		iio_device_release_direct_mode(indio_dev);
-> +		return ret;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-
-> +
-> +static const struct iio_dev_attr *max30210_fifo_attributes[] =3D {
-> +	&iio_dev_attr_hwfifo_watermark_min,
-> +	&iio_dev_attr_hwfifo_watermark_max,
-> +	&iio_dev_attr_hwfifo_watermark,
-> +	NULL,
-
-No comma for a null terminator.  Doesn't add anything useful and
-makes it easier to put things after this (which is obviously a bug).
-
-> +};
-> +
-> +static int max30210_buffer_preenable(struct iio_dev *indio_dev)
-> +{
-> +	struct max30210_state *st =3D iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret =3D regmap_update_bits(st->regmap, MAX30210_INT_EN_REG,
-> +				 MAX30210_A_FULL_MASK, MAX30210_A_FULL_MASK);
-
-regmap_set_bits() just avoids repeating the mask.
-
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_update_bits(st->regmap, MAX30210_FIFO_CONF_2_REG,
-> +				 MAX30210_FLUSH_FIFO_MASK,
-> +				 MAX30210_FLUSH_FIFO_MASK);
-
-set bits is fine here.  I assume it auto-clears?
-
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_write(st->regmap, MAX30210_TEMP_CONV_REG,
-> +			   MAX30210_AUTO_MASK | MAX30210_CONV_T_MASK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-
-return regmap_write()
-
-> +}
-> +
-> +static int max30210_buffer_postdisable(struct iio_dev *indio_dev)
-> +{
-> +	struct max30210_state *st =3D iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret =3D regmap_update_bits(st->regmap, MAX30210_INT_EN_REG,
-> +				 MAX30210_A_FULL_MASK, 0x0);
-Tiny bit simpler as
-	ret =3D regmap_clear_bits(st->regmap, MAX30210_INT_EN_REG,
-				MAX30210_A_FULL_MASK);
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_update_bits(st->regmap, MAX30210_FIFO_CONF_2_REG,
-> +				 MAX30210_FLUSH_FIFO_MASK,
-> +				 MAX30210_FLUSH_FIFO_MASK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_write(st->regmap, MAX30210_TEMP_CONV_REG, 0x0);
-
-return regmap_write();
-
-I'm a bit surprised by the ordering in here (I haven't looked at the datash=
-eet).
-Mostly we'd expect the tear down of settings to be the reverse of setup. He=
-re
-that probably means that final write belongs before the flushing of the fif=
-o.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct iio_buffer_setup_ops max30210_buffer_ops =3D {
-> +	.preenable =3D max30210_buffer_preenable,
-> +	.postdisable =3D max30210_buffer_postdisable,
-> +};
-> +
-> +static const struct iio_info max30210_info =3D {
-> +	.read_raw =3D max30210_read_raw,
-> +	.read_avail =3D max30210_read_avail,
-> +	.write_raw =3D max30210_write_raw,
-> +	.write_raw_get_fmt =3D max30210_write_raw_get_fmt,
-> +	.hwfifo_set_watermark =3D max30210_set_watermark,
-> +	.debugfs_reg_access =3D &max30210_reg_access,
-
-Why & for some function pointers and not others?
-
-> +	.validate_trigger =3D &max30210_validate_trigger,
-> +	.read_event_value =3D max30210_read_event,
-> +	.write_event_value =3D max30210_write_event,
-> +	.write_event_config =3D max30210_write_event_config,
-> +	.read_event_config =3D max30210_read_event_config,
-> +};
-
-> +
-> +static const struct iio_chan_spec max30210_channels =3D {
-> +	.type =3D IIO_TEMP,
-> +	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
-> +			      BIT(IIO_CHAN_INFO_SCALE) |
-> +			      BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +	.info_mask_separate_available =3D BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +	.output =3D 0,
-
-0 is a natural default for a boolean type thing like .output, so
-no need to specify it. Let the C spec guarantees around zeroing all
-fields deal with it for you.
-
-> +	.scan_index =3D 0,
-> +	.event_spec =3D max30210_events,
-> +	.num_event_specs =3D ARRAY_SIZE(max30210_events),
-> +	.scan_type =3D {
-> +		.sign =3D 's',
-> +		.realbits =3D 16,
-> +		.storagebits =3D 32,
-> +		.shift =3D 8,
-> +		.endianness =3D IIO_BE,
-> +	},
-> +};
-
-> +static int max30210_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev =3D &client->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct max30210_state *st;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA))
-> +		return -EOPNOTSUPP;
-> +
-> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st =3D iio_priv(indio_dev);
-> +
-> +	mutex_init(&st->lock);
-
-	ret =3D devm_mutex_init(&st->lock);
-	if (ret)
-		return ret;
-
-Look at what that does.  We don't care a lot about lock lifetime debugging
-but given it's easy to do, why not enable it for the driver.
-
-
-> +
-> +	ret =3D devm_regulator_get_enable(dev, "vdd");
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "Failed to enable vdd regulator.\n");
-> +
-> +	st->regmap =3D devm_regmap_init_i2c(client, &max30210_regmap);
-> +	if (IS_ERR(st->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(st->regmap),
-> +				     "Failed to allocate regmap.\n");
-> +
-> +	ret =3D max30210_setup(st, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> +	indio_dev->channels =3D &max30210_channels;
-> +	indio_dev->num_channels =3D 1;
-> +	indio_dev->name =3D "max30210";
-> +	indio_dev->info =3D &max30210_info;
-> +
-> +	ret =3D devm_iio_triggered_buffer_setup_ext(dev, indio_dev, NULL,
-> +						  max30210_trigger_handler,
-> +						  IIO_BUFFER_DIRECTION_IN,
-> +						  &max30210_buffer_ops,
-> +						  max30210_fifo_attributes);
-> +	if (ret < 0)
-> +		return ret;
-
-For consistency, if (ret) should be fine here.  I don't think any
-IIO core calls return positive integers.
-
-> +
-> +	if (client->irq) {
-> +		st->trig =3D devm_iio_trigger_alloc(dev, "%s-dev%d",
-> +						  indio_dev->name,
-> +						  iio_device_id(indio_dev));
-> +		if (!st->trig)
-> +			return -ENOMEM;
-> +
-> +		st->trig->ops =3D &max30210_trigger_ops;
-> +		iio_trigger_set_drvdata(st->trig, indio_dev);
-> +		ret =3D devm_iio_trigger_register(dev, st->trig);
-> +		if (ret)
-> +			return ret;
-> +
-> +		indio_dev->trig =3D st->trig;
-> +		ret =3D devm_request_threaded_irq(dev, client->irq,
-> +						iio_trigger_generic_data_rdy_poll,
-> +						NULL, IRQF_TRIGGER_FALLING,
-
-So we have an unfortunate history of drivers that specify the interrupt
-polarity that we can't fix, but for new drivers, that is a job for firmware
-not the driver (because there may be an inverter in the path or similar).
-Hence most likely flags here should be IRQF_NO_THREAD.
-
-There is no thread, so devm_request_irq() is enough.
-However, note that iio_trigger_generic_data_ready_poll() is ultimately kick=
-ing
-of activity on an interrupt chip (software one) that is buried in the
-IIO core. That can't be done correctly from a thread.  Hence the IRQF_NO_TH=
-READ.
-
-> +						indio_dev->name, st->trig);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret =3D devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-
-	return devm_iio_device_register();
-
-> +}
-> +
-> +static const struct i2c_device_id max30210_id[] =3D {
-> +	{ "max30210", 0 },
-No point in the 0, so  just
-	{ "max30210" },
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, max30210_id);
+On 28/02/26 06:51, Jinjie Ruan wrote:
+>
+> On 2026/2/27 22:50, Sourabh Jain wrote:
+>> Resend of:
+>> https://lore.kernel.org/all/19cf18b5-362d-4ff2-8b85-e2e72809250c@linux.ibm.com/
+>>
+>> On 26/02/26 18:34, Jinjie Ruan wrote:
+>>> The crash memory exclude of crashk_res and crashk_cma memory on powerpc
+>>> are almost identical to the generic crash_exclude_core_ranges().
+>>>
+>>> By introducing the architecture-specific arch_crash_exclude_mem_range()
+>>> function with a default implementation of crash_exclude_mem_range(),
+>>> and using crash_exclude_mem_range_guarded as powerpc's separate
+>>> implementation, the generic crash_exclude_core_ranges() helper function
+>>> can be reused.
+>>>
+>>> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+>>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>>> ---
+>>>    arch/powerpc/kexec/ranges.c | 16 ++++------------
+>>>    include/linux/crash_core.h  |  4 ++++
+>>>    kernel/crash_core.c         | 19 +++++++++++++------
+>>>    3 files changed, 21 insertions(+), 18 deletions(-)
+>>>
+>>> diff --git a/arch/powerpc/kexec/ranges.c b/arch/powerpc/kexec/ranges.c
+>>> index 6c58bcc3e130..e5fea23b191b 100644
+>>> --- a/arch/powerpc/kexec/ranges.c
+>>> +++ b/arch/powerpc/kexec/ranges.c
+>>> @@ -553,9 +553,9 @@ int get_usable_memory_ranges(struct crash_mem
+>>> **mem_ranges)
+>>>    #endif /* CONFIG_KEXEC_FILE */
+>>>      #ifdef CONFIG_CRASH_DUMP
+>>> -int crash_exclude_mem_range_guarded(struct crash_mem **mem_ranges,
+>>> -                       unsigned long long mstart,
+>>> -                       unsigned long long mend)
+>>> +int arch_crash_exclude_mem_range(struct crash_mem **mem_ranges,
+>>> +                 unsigned long long mstart,
+>>> +                 unsigned long long mend)
+>>
+>> update_crash_elfcorehdr() in arch/powerpc/kexec/crash.c still calls
+>> crash_exclude_mem_range_guarded(), causing a build failure.
+>>
+>> ld: arch/powerpc/kexec/crash.o: in function `update_crash_elfcorehdr':
+>> /root/linux/arch/powerpc/kexec/crash.c:454: undefined reference to
+>> `crash_exclude_mem_range_guarded'
+>>
+>>
+>> To fix this:
+>> --------------
+>> diff --git a/arch/powerpc/kexec/crash.c b/arch/powerpc/kexec/crash.c
+>> index 898742a5205c..e59e909c369d 100644
+>> --- a/arch/powerpc/kexec/crash.c
+>> +++ b/arch/powerpc/kexec/crash.c
+>> @@ -451,7 +451,7 @@ static void update_crash_elfcorehdr(struct kimage
+>> *image, struct memory_notify *
+>>                  base_addr = PFN_PHYS(mn->start_pfn);
+>>                  size = mn->nr_pages * PAGE_SIZE;
+>>                  end = base_addr + size - 1;
+>> -               ret = crash_exclude_mem_range_guarded(&cmem, base_addr,
+>> end);
+>> +              ret = arch_crash_exclude_mem_range(&cmem, base_addr, end);
+>>                  if (ret) {
+>>                          pr_err("Failed to remove hot-unplugged memory
+>> from crash memory ranges\n");
+>>                          goto out;
+>>
+>> With the above change included, things are working fine on powerpc.
+> It seems the declaration of crash_exclude_mem_range_guarded() added in
+> arch/powerpc/include/asm/kexec_ranges.h can also be removed.
+
+Yes, lets remove it.
+
+>
+>>
+>>>    {
+>>>        struct crash_mem *tmem = *mem_ranges;
+>>>    @@ -604,18 +604,10 @@ int get_crash_memory_ranges(struct crash_mem
+>>> **mem_ranges)
+>>>                sort_memory_ranges(*mem_ranges, true);
+>>>        }
+>>>    -    /* Exclude crashkernel region */
+>>> -    ret = crash_exclude_mem_range_guarded(mem_ranges,
+>>> crashk_res.start, crashk_res.end);
+>>> +    ret = crash_exclude_core_ranges(mem_ranges);
+>>>        if (ret)
+>>>            goto out;
+>>>    -    for (i = 0; i < crashk_cma_cnt; ++i) {
+>>> -        ret = crash_exclude_mem_range_guarded(mem_ranges,
+>>> crashk_cma_ranges[i].start,
+>>> -                          crashk_cma_ranges[i].end);
+>>> -        if (ret)
+>>> -            goto out;
+>>> -    }
+>>> -
+>>>        /*
+>>>         * FIXME: For now, stay in parity with kexec-tools but if RTAS/OPAL
+>>>         *        regions are exported to save their context at the time of
+>>> diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
+>>> index 033b20204aca..dbec826dc53b 100644
+>>> --- a/include/linux/crash_core.h
+>>> +++ b/include/linux/crash_core.h
+>>> @@ -68,6 +68,7 @@ extern int crash_prepare_elf64_headers(struct
+>>> crash_mem *mem, int need_kernel_ma
+>>>                           void **addr, unsigned long *sz);
+>>>    extern int crash_prepare_headers(int need_kernel_map, void **addr,
+>>>                     unsigned long *sz, unsigned long *nr_mem_ranges);
+>>> +extern int crash_exclude_core_ranges(struct crash_mem **cmem);
+>>>      struct kimage;
+>>>    struct kexec_segment;
+>>> @@ -88,6 +89,9 @@ extern int kimage_crash_copy_vmcoreinfo(struct
+>>> kimage *image);
+>>>    extern unsigned int arch_get_system_nr_ranges(void);
+>>>    extern int arch_crash_populate_cmem(struct crash_mem *cmem);
+>>>    extern int arch_crash_exclude_ranges(struct crash_mem *cmem);
+>>> +extern int arch_crash_exclude_mem_range(struct crash_mem **mem,
+>>> +                    unsigned long long mstart,
+>>> +                    unsigned long long mend);
+>>>      #else /* !CONFIG_CRASH_DUMP*/
+>>>    struct pt_regs;
+>>> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+>>> index 96a96e511f5a..300d44ad5471 100644
+>>> --- a/kernel/crash_core.c
+>>> +++ b/kernel/crash_core.c
+>>> @@ -287,24 +287,31 @@ unsigned int __weak
+>>> arch_get_system_nr_ranges(void) { return 0; }
+>>>    int __weak arch_crash_populate_cmem(struct crash_mem *cmem) { return
+>>> -1; }
+>>>    int __weak arch_crash_exclude_ranges(struct crash_mem *cmem) {
+>>> return 0; }
+>>>    -static int crash_exclude_core_ranges(struct crash_mem *cmem)
+>>> +int __weak arch_crash_exclude_mem_range(struct crash_mem **mem,
+>>> +                    unsigned long long mstart,
+>>> +                    unsigned long long mend)
+>>> +{
+>>> +    return crash_exclude_mem_range(*mem, mstart, mend);
+>>> +}
+>>> +
+>>> +int crash_exclude_core_ranges(struct crash_mem **cmem)
+>>>    {
+>>>        int ret, i;
+>>>          /* Exclude crashkernel region */
+>>> -    ret = crash_exclude_mem_range(cmem, crashk_res.start,
+>>> crashk_res.end);
+>>> +    ret = arch_crash_exclude_mem_range(cmem, crashk_res.start,
+>>> crashk_res.end);
+>>>        if (ret)
+>>>            return ret;
+>>>          if (crashk_low_res.end) {
+>>> -        ret = crash_exclude_mem_range(cmem, crashk_low_res.start,
+>>> crashk_low_res.end);
+>>> +        ret = arch_crash_exclude_mem_range(cmem,
+>>> crashk_low_res.start, crashk_low_res.end);
+>>>            if (ret)
+>>>                return ret;
+>>>        }
+>>>          for (i = 0; i < crashk_cma_cnt; ++i) {
+>>> -        ret = crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
+>>> -                          crashk_cma_ranges[i].end);
+>>> +        ret = arch_crash_exclude_mem_range(cmem,
+>>> crashk_cma_ranges[i].start,
+>>> +                           crashk_cma_ranges[i].end);
+>>>            if (ret)
+>>>                return ret;
+>>>        }
+>>> @@ -331,7 +338,7 @@ int crash_prepare_headers(int need_kernel_map,
+>>> void **addr, unsigned long *sz,
+>>>        if (ret)
+>>>            goto out;
+>>>    -    ret = crash_exclude_core_ranges(cmem);
+>>> +    ret = crash_exclude_core_ranges(&cmem);
+>>>        if (ret)
+>>>            goto out;
+>>>    
 
 
