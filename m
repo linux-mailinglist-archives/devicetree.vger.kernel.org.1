@@ -1,155 +1,301 @@
-Return-Path: <devicetree+bounces-269463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269464-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SOROFk5Domlz1QQAu9opvQ
-	(envelope-from <devicetree+bounces-269463-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:22:22 +0100
+	id oDwxAVJDomlz1QQAu9opvQ
+	(envelope-from <devicetree+bounces-269464-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:22:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B56C01BFB32
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:22:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF961BFB41
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:22:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1337E3037E62
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3BE6E303D30D
 	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 01:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E4E2EBBB2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD67C2EC57F;
 	Sat, 28 Feb 2026 01:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="c7NKEmmp"
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="y33XKsOj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+Received: from canpmsgout03.his.huawei.com (canpmsgout03.his.huawei.com [113.46.200.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B87525F78F;
-	Sat, 28 Feb 2026 01:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F002D7DE2;
+	Sat, 28 Feb 2026 01:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772241709; cv=none; b=IVjgK9J9jdfRrw7Ym2Af4U9W/UjZBn5HUMElRBxppUECU5MHE+hN66c5MuXp+iqResf5HBN5uuRt5ndkVaNAWc1kiM2wQfr0iXEn06gkZpqtWaHRlxvEmvOxoZyNzi0YZRAqyWeF0jOeiBzK66M8ebP5ZnmuNXwnC1UYr8BIlcc=
+	t=1772241709; cv=none; b=CX0klPyr4D8kiGuPuUaMuUOzoWUZu+Z5X2daV4HS5pulxloBTicUly2aLiYbAXVMvg/ucTPXSz9OWArW8xsflawlcllhgI5mjzKKcmn7fS/iNZ9bD63bQ3eV4LAjaaje3vetLnslV3jxfseeB4T1I+ssn3OFj4p4GbDXKpFUUBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1772241709; c=relaxed/simple;
-	bh=560pz722u0kmHP3nR6xpDHBPEv+1wxjHOQQC03qjMME=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FE9nSoXpIx8H4Q44GTkd8K4ifSl1VxdIeEEX/1i0dlbDRvyfqLidVghcTxGZ572pJN/HyesKrKK0g92hn+cE7X5luLH079quUfWxlEd2mz9q6ontB5n9T20bez7tF9hbo3puak7AJkbzofeksViveG0wdkBb6UfGF5ouSEU62ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=c7NKEmmp; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=IVtwgUEgU7viJhk9iZiDp027XYkfTYNp3airlT7p+P4=;
-	b=c7NKEmmpmGseHyrobxDU25LdmCA0lhUitkXjxWgCPl3goVF2/0IpRQmv/HMlKa
-	hZkf7MipfWkAzZu2FEGHyNW+if36YcSqUzRPzWrtYGe9LX1OS5uLVODrnL1lk5ay
-	HE4fQGhqocnre53PwTfQ9mP8UMHWCRwtMfRRFQBO+Q7iY=
-Received: from [192.168.11.65] (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id PSgvCgBn3935QqJp+sDLTQ--.20842S2;
-	Sat, 28 Feb 2026 09:20:58 +0800 (CST)
-Message-ID: <16a430a2-fdc9-41eb-945c-0727feb7b9d6@163.com>
-Date: Sat, 28 Feb 2026 09:20:56 +0800
+	bh=m3CUB5p1ZWEbLXxicZyLqnVQuSFlfJeUB8OB7n6Zwjw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=msVRhFPS+vJk9NlkFVQWS8iE0O0Sm/z5RUMEox4h3RtmGexItspntqyrOCX1Sw/dtIOEihPJXkH02IV1MZMqbkyyQ59QVqYSDlwichw5Mmz7k0vSiYR+mFgKcU95RoorIY6wx9u5/WK8ZgY49sj1YlhvJPJ/Yg65/ERpfPBwDXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=y33XKsOj; arc=none smtp.client-ip=113.46.200.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=g3ZfEIXgV3HlWkTi5COZHl8zAZUARnL7AI5EioOhi5c=;
+	b=y33XKsOjrl1QPprmFk09CWLS91eyuVn46hY5LCz9lV646qeLi/6dMSMulXugarz9N8ILeIO+N
+	bJLJXGjfRFU2PrRMleHTL4N1wZXFSd63gZzNuj1Fd5HTVKu8Q/eD9yscO5RcmIvCjgwCn0Mf3jK
+	U8P3Rbs9yf6dM6kXmFYTB9E=
+Received: from mail.maildlp.com (unknown [172.19.162.197])
+	by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4fN6jV3JjXzpT0X;
+	Sat, 28 Feb 2026 09:16:46 +0800 (CST)
+Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
+	by mail.maildlp.com (Postfix) with ESMTPS id 53C4740569;
+	Sat, 28 Feb 2026 09:21:38 +0800 (CST)
+Received: from [10.67.109.254] (10.67.109.254) by
+ dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Sat, 28 Feb 2026 09:21:34 +0800
+Message-ID: <0a776b5f-5a88-2c71-7305-d30d9240c2cb@huawei.com>
+Date: Sat, 28 Feb 2026 09:21:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: ast2600: Add reset definition
- for video
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-aspeed@lists.ozlabs.org, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil
- <hverkuil+cisco@kernel.org>, Jammy Huang <jammy_huang@aspeedtech.com>,
- "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20260227151602.829-1-haiyuewa@163.com>
- <20260227-smooth-carefully-f427e242ce58@spud>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v7 3/5] crash: Use crash_exclude_core_ranges() on powerpc
+To: Sourabh Jain <sourabhjain@linux.ibm.com>, <corbet@lwn.net>,
+	<skhan@linuxfoundation.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
+	<chenhuacai@kernel.org>, <kernel@xen0n.name>, <maddy@linux.ibm.com>,
+	<mpe@ellerman.id.au>, <npiggin@gmail.com>, <chleroy@kernel.org>,
+	<pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+	<alex@ghiti.fr>, <tglx@kernel.org>, <mingo@redhat.com>, <bp@alien8.de>,
+	<dave.hansen@linux.intel.com>, <hpa@zytor.com>, <robh@kernel.org>,
+	<saravanak@kernel.org>, <akpm@linux-foundation.org>, <bhe@redhat.com>,
+	<vgoyal@redhat.com>, <dyoung@redhat.com>, <pmladek@suse.com>,
+	<rdunlap@infradead.org>, <dapeng1.mi@linux.intel.com>, <kees@kernel.org>,
+	<paulmck@kernel.org>, <lirongqing@baidu.com>, <arnd@arndb.de>,
+	<rppt@kernel.org>, <ardb@kernel.org>, <leitao@debian.org>, <jbohac@suse.cz>,
+	<cfsworks@gmail.com>, <ryan.roberts@arm.com>, <tangyouling@kylinos.cn>,
+	<ritesh.list@gmail.com>, <hbathini@linux.ibm.com>, <eajames@linux.ibm.com>,
+	<songshuaishuai@tinylab.org>, <samuel.holland@sifive.com>,
+	<kevin.brodsky@arm.com>, <vishal.moola@gmail.com>,
+	<junhui.liu@pigmoral.tech>, <coxu@redhat.com>, <liaoyuanhong@vivo.com>,
+	<brgerst@gmail.com>, <fuqiang.wang@easystack.cn>, <x86@kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <loongarch@lists.linux.dev>,
+	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <kexec@lists.infradead.org>
+References: <20260226130437.1867658-1-ruanjinjie@huawei.com>
+ <20260226130437.1867658-4-ruanjinjie@huawei.com>
+ <3576865b-65bd-4289-babc-975a543eb775@linux.ibm.com>
 Content-Language: en-US
-From: Haiyue Wang <haiyuewa@163.com>
-In-Reply-To: <20260227-smooth-carefully-f427e242ce58@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:PSgvCgBn3935QqJp+sDLTQ--.20842S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KFWxZFW3Gw4fZr4fGFy5XFb_yoW8WFyUpF
-	sYyF1ktr4UZFWYk3yIq3WxtF1kWw15JF1Ygry5Wa4jya1rW3Wjg3yIgryY9a4DWr4fur12
-	yFnFgFWDCFyIy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UsjjgUUUUU=
-X-CM-SenderInfo: 5kdl53xhzdqiywtou0bp/xtbCzRrRPWmiQvoI7gAA3u
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <3576865b-65bd-4289-babc-975a543eb775@linux.ibm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
+ dggpemf500011.china.huawei.com (7.185.36.131)
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269463-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[huawei.com:+];
+	FREEMAIL_TO(0.00)[linux.ibm.com,lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,suse.com,infradead.org,baidu.com,arndb.de,debian.org,suse.cz,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
+	TAGGED_FROM(0.00)[bounces-269464-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[163.com];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[haiyuewa@163.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[163.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_GT_50(0.00)[61];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: B56C01BFB32
+X-Rspamd-Queue-Id: 9FF961BFB41
 X-Rspamd-Action: no action
 
 
 
-On 2/28/2026 1:33 AM, Conor Dooley wrote:
-> On Fri, Feb 27, 2026 at 11:13:14PM +0800, Haiyue Wang wrote:
->> Add ASPEED_RESET_VIDEO reset definition to the ast2600-clock binding
->> header. It is required for proper reset control of the video on the
->> AST2600 SoC for aspeed-video driver.
->>
->> Fixes: e83f8dd668ea ("media: aspeed: Fix dram hang at res-change")
+On 2026/2/27 22:50, Sourabh Jain wrote:
+> Resend of:
+> https://lore.kernel.org/all/19cf18b5-362d-4ff2-8b85-e2e72809250c@linux.ibm.com/
 > 
-> How can a binding change be a fix for a driver one?
+> On 26/02/26 18:34, Jinjie Ruan wrote:
+>> The crash memory exclude of crashk_res and crashk_cma memory on powerpc
+>> are almost identical to the generic crash_exclude_core_ranges().
+>>
+>> By introducing the architecture-specific arch_crash_exclude_mem_range()
+>> function with a default implementation of crash_exclude_mem_range(),
+>> and using crash_exclude_mem_range_guarded as powerpc's separate
+>> implementation, the generic crash_exclude_core_ranges() helper function
+>> can be reused.
+>>
+>> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>> ---
+>>   arch/powerpc/kexec/ranges.c | 16 ++++------------
+>>   include/linux/crash_core.h  |  4 ++++
+>>   kernel/crash_core.c         | 19 +++++++++++++------
+>>   3 files changed, 21 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/arch/powerpc/kexec/ranges.c b/arch/powerpc/kexec/ranges.c
+>> index 6c58bcc3e130..e5fea23b191b 100644
+>> --- a/arch/powerpc/kexec/ranges.c
+>> +++ b/arch/powerpc/kexec/ranges.c
+>> @@ -553,9 +553,9 @@ int get_usable_memory_ranges(struct crash_mem
+>> **mem_ranges)
+>>   #endif /* CONFIG_KEXEC_FILE */
+>>     #ifdef CONFIG_CRASH_DUMP
+>> -int crash_exclude_mem_range_guarded(struct crash_mem **mem_ranges,
+>> -                       unsigned long long mstart,
+>> -                       unsigned long long mend)
+>> +int arch_crash_exclude_mem_range(struct crash_mem **mem_ranges,
+>> +                 unsigned long long mstart,
+>> +                 unsigned long long mend)
 > 
+> 
+> update_crash_elfcorehdr() in arch/powerpc/kexec/crash.c still calls
+> crash_exclude_mem_range_guarded(), causing a build failure.
+> 
+> ld: arch/powerpc/kexec/crash.o: in function `update_crash_elfcorehdr':
+> /root/linux/arch/powerpc/kexec/crash.c:454: undefined reference to
+> `crash_exclude_mem_range_guarded'
+> 
+> 
+> To fix this:
+> --------------
+> diff --git a/arch/powerpc/kexec/crash.c b/arch/powerpc/kexec/crash.c
+> index 898742a5205c..e59e909c369d 100644
+> --- a/arch/powerpc/kexec/crash.c
+> +++ b/arch/powerpc/kexec/crash.c
+> @@ -451,7 +451,7 @@ static void update_crash_elfcorehdr(struct kimage
+> *image, struct memory_notify *
+>                 base_addr = PFN_PHYS(mn->start_pfn);
+>                 size = mn->nr_pages * PAGE_SIZE;
+>                 end = base_addr + size - 1;
+> -               ret = crash_exclude_mem_range_guarded(&cmem, base_addr,
+> end);
+> +              ret = arch_crash_exclude_mem_range(&cmem, base_addr, end);
+>                 if (ret) {
+>                         pr_err("Failed to remove hot-unplugged memory
+> from crash memory ranges\n");
+>                         goto out;
+> 
+> With the above change included, things are working fine on powerpc.
 
-https://git.kernel.org/torvalds/c/9897831de614
+It seems the declaration of crash_exclude_mem_range_guarded() added in
+arch/powerpc/include/asm/kexec_ranges.h can also be removed.
 
-If squashed into one patch as v1 does, it will have patch format warning:
-./scripts/checkpatch.pl ...patch
-WARNING: DT binding docs and includes should be a separate patch. See: 
-Documentation/devicetree/bindings/submitting-patches.rst
-
->> Signed-off-by: Haiyue Wang <haiyuewa@163.com>
->> ---
->> v2:
->>    - Fix checkpatch.pl warning, and send dt-bindings as single patch as
->>      the submitting-patches guide.
->> v1: https://lore.kernel.org/all/20260227123837.70079-1-haiyuewa@163.com/
->> ---
->>   include/dt-bindings/clock/ast2600-clock.h | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
->> index f60fff261130..7b9b80c38a8b 100644
->> --- a/include/dt-bindings/clock/ast2600-clock.h
->> +++ b/include/dt-bindings/clock/ast2600-clock.h
->> @@ -124,6 +124,7 @@
->>   #define ASPEED_RESET_PCIE_RC_OEN	18
->>   #define ASPEED_RESET_MAC2		12
->>   #define ASPEED_RESET_MAC1		11
->> +#define ASPEED_RESET_VIDEO		6
->>   #define ASPEED_RESET_PCI_DP		5
->>   #define ASPEED_RESET_HACE		4
->>   #define ASPEED_RESET_AHB		1
->> -- 
->> 2.53.0
->>
-
+> 
+> 
+>>   {
+>>       struct crash_mem *tmem = *mem_ranges;
+>>   @@ -604,18 +604,10 @@ int get_crash_memory_ranges(struct crash_mem
+>> **mem_ranges)
+>>               sort_memory_ranges(*mem_ranges, true);
+>>       }
+>>   -    /* Exclude crashkernel region */
+>> -    ret = crash_exclude_mem_range_guarded(mem_ranges,
+>> crashk_res.start, crashk_res.end);
+>> +    ret = crash_exclude_core_ranges(mem_ranges);
+>>       if (ret)
+>>           goto out;
+>>   -    for (i = 0; i < crashk_cma_cnt; ++i) {
+>> -        ret = crash_exclude_mem_range_guarded(mem_ranges,
+>> crashk_cma_ranges[i].start,
+>> -                          crashk_cma_ranges[i].end);
+>> -        if (ret)
+>> -            goto out;
+>> -    }
+>> -
+>>       /*
+>>        * FIXME: For now, stay in parity with kexec-tools but if RTAS/OPAL
+>>        *        regions are exported to save their context at the time of
+>> diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
+>> index 033b20204aca..dbec826dc53b 100644
+>> --- a/include/linux/crash_core.h
+>> +++ b/include/linux/crash_core.h
+>> @@ -68,6 +68,7 @@ extern int crash_prepare_elf64_headers(struct
+>> crash_mem *mem, int need_kernel_ma
+>>                          void **addr, unsigned long *sz);
+>>   extern int crash_prepare_headers(int need_kernel_map, void **addr,
+>>                    unsigned long *sz, unsigned long *nr_mem_ranges);
+>> +extern int crash_exclude_core_ranges(struct crash_mem **cmem);
+>>     struct kimage;
+>>   struct kexec_segment;
+>> @@ -88,6 +89,9 @@ extern int kimage_crash_copy_vmcoreinfo(struct
+>> kimage *image);
+>>   extern unsigned int arch_get_system_nr_ranges(void);
+>>   extern int arch_crash_populate_cmem(struct crash_mem *cmem);
+>>   extern int arch_crash_exclude_ranges(struct crash_mem *cmem);
+>> +extern int arch_crash_exclude_mem_range(struct crash_mem **mem,
+>> +                    unsigned long long mstart,
+>> +                    unsigned long long mend);
+>>     #else /* !CONFIG_CRASH_DUMP*/
+>>   struct pt_regs;
+>> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+>> index 96a96e511f5a..300d44ad5471 100644
+>> --- a/kernel/crash_core.c
+>> +++ b/kernel/crash_core.c
+>> @@ -287,24 +287,31 @@ unsigned int __weak
+>> arch_get_system_nr_ranges(void) { return 0; }
+>>   int __weak arch_crash_populate_cmem(struct crash_mem *cmem) { return
+>> -1; }
+>>   int __weak arch_crash_exclude_ranges(struct crash_mem *cmem) {
+>> return 0; }
+>>   -static int crash_exclude_core_ranges(struct crash_mem *cmem)
+>> +int __weak arch_crash_exclude_mem_range(struct crash_mem **mem,
+>> +                    unsigned long long mstart,
+>> +                    unsigned long long mend)
+>> +{
+>> +    return crash_exclude_mem_range(*mem, mstart, mend);
+>> +}
+>> +
+>> +int crash_exclude_core_ranges(struct crash_mem **cmem)
+>>   {
+>>       int ret, i;
+>>         /* Exclude crashkernel region */
+>> -    ret = crash_exclude_mem_range(cmem, crashk_res.start,
+>> crashk_res.end);
+>> +    ret = arch_crash_exclude_mem_range(cmem, crashk_res.start,
+>> crashk_res.end);
+>>       if (ret)
+>>           return ret;
+>>         if (crashk_low_res.end) {
+>> -        ret = crash_exclude_mem_range(cmem, crashk_low_res.start,
+>> crashk_low_res.end);
+>> +        ret = arch_crash_exclude_mem_range(cmem,
+>> crashk_low_res.start, crashk_low_res.end);
+>>           if (ret)
+>>               return ret;
+>>       }
+>>         for (i = 0; i < crashk_cma_cnt; ++i) {
+>> -        ret = crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
+>> -                          crashk_cma_ranges[i].end);
+>> +        ret = arch_crash_exclude_mem_range(cmem,
+>> crashk_cma_ranges[i].start,
+>> +                           crashk_cma_ranges[i].end);
+>>           if (ret)
+>>               return ret;
+>>       }
+>> @@ -331,7 +338,7 @@ int crash_prepare_headers(int need_kernel_map,
+>> void **addr, unsigned long *sz,
+>>       if (ret)
+>>           goto out;
+>>   -    ret = crash_exclude_core_ranges(cmem);
+>> +    ret = crash_exclude_core_ranges(&cmem);
+>>       if (ret)
+>>           goto out;
+>>   
+> 
 
