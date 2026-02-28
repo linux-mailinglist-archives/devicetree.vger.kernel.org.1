@@ -1,175 +1,193 @@
-Return-Path: <devicetree+bounces-269627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269628-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJ8+EpFko2myBQUAu9opvQ
-	(envelope-from <devicetree+bounces-269627-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:56:33 +0100
+	id AN0TD8Jko2myBQUAu9opvQ
+	(envelope-from <devicetree+bounces-269628-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:57:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1DE1C9566
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:56:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90BE81C9587
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 22:57:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 630F33067FFE
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:28:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0579D316987B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 21:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D30317150;
-	Sat, 28 Feb 2026 21:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC85C2D2491;
+	Sat, 28 Feb 2026 21:35:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="inrtWo1o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L8Oej7sk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9B72FBE1F
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 21:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C779E27F010;
+	Sat, 28 Feb 2026 21:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772314108; cv=none; b=RQN03feQeCESzHMViTw9gJdFwnWe9BswLpE2NYNi0/eJaOrkZW+EIhzkBq1fMJCY3ezcy5DhZmvGAdSmKSSIxZGrDAVae3a/gyu//mS479YpIPEyuD73RuBiwiipHhl6qwQoGl/Ox1NyBrtznoizsIVYp2DswVd1+ZdnPj/CUqI=
+	t=1772314526; cv=none; b=gmuCroIhYwBeb9IZqzZ5l6KbzOVUX49Zc6GrRWf5+1QcimoSzB5dxI/CjSM38gr62v0tnp7KeKxXQpjXR2qCU3mAqxArtprzcXJOU0dq/bNF32ad4mxOTcIW6LhzRnFNdOm1i7XnffRLzas40Hc2eT8S5MlqYW4NvvjIbeVR0I4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772314108; c=relaxed/simple;
-	bh=JHfkwcQgJSlz2GM0sgnpNaNxj1ZXE/S9TRi/hKsJgrI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eMkLF6V+56FZfIBlJW59w6EHbOXzzYvASXTYUpPPgfMKGcvdeW6cSKwgF2kMDXA4eDB4xrR9HJDDykAXRcUsKqXejDD2PV51Ujo3TKSVJ5g2bgE/nzqr/zd9Zl2+Nbzyo34RPiaHqx/0FH0NqxjAxYoSHFJQ3/yb4GVharifQEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=inrtWo1o; arc=none smtp.client-ip=91.218.175.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Message-ID: <ad2c1f24-d205-4fb8-a79c-b955c0d08d40@packett.cool>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1772314102;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2drmw23LMhAgqnFvPZArzH0QWWWznsj4GGf5ZiSEOsg=;
-	b=inrtWo1ogxteJXPqsWDrYMM3i44qox2INfkGkt0RqUdMGn9W2FQe87It27cRrU/p2IspfU
-	uj3iT56Bouh/7gJ9tCykH1XFiVZEHHtZvXN/JA9xgGLwK1moFpPItdNZmCFapakhmOgPYU
-	ufUHMOe2EtsNlHQcwfNYXW/KXastyHjbK44eVlXrqPGX4kfQHJxyEe/wvBKZj/lDbk+mA0
-	KMffRQKyV+6ozSeDIRTFFGEkhWVM98Ej9uiFh6M0zaMvenmmLEFkOLkgZm+G63QSIyVcXh
-	P8snT4+pm0uVcQXB6iNWEmDqzm0pX6FCdGPOFdoiwUt8WCHLnmmL6l6DZ4vcMg==
-Date: Sat, 28 Feb 2026 18:28:13 -0300
+	s=arc-20240116; t=1772314526; c=relaxed/simple;
+	bh=uE+NY26oLrKW+yztywRPuIT9/z0NETykFwOtblclvtM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pp83kdnj6YsU6HGtNwAykEVp6/8sX/5VQ4DBaSQJoOkqfb2O731tyLCBHDPYTce8/pdaLsQXUwRzF/qePRKsIrcKG9ruu/TpMYMrEo/u+SqxfJEsn3kfi0Np9RMXM+N6jwbW1B7cB2wjPF2UBShT3jqenfMenKw15nm0oNYlVpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L8Oej7sk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2271DC116D0;
+	Sat, 28 Feb 2026 21:35:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772314526;
+	bh=uE+NY26oLrKW+yztywRPuIT9/z0NETykFwOtblclvtM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L8Oej7sk73HAJfyxRZvzVKcQAKmPIkq4fCNxQfOFS7UUa1vixkF7JZc9o2s8oOP80
+	 Uz4oYrtshFQMGJk8HzzD4vGd+lBvBSoNSpsqhYL69pUBWqHa7uBJDf2AQxFNGfPUog
+	 BKTPDaydA3JvPcd5oeAutnfEaENsxpqywrh0S4Y5+vQ4OHfKtzKxpuTYSWlz578Ldx
+	 JJGA4nslyioZh2rfHOipND6OKARHmyk1IALOzgkxYh3sw0EVcJBV4ibTuZvkzXxn2x
+	 csk8XYXZAx5ULBypR7aG18tz7SUCFAEYUk2fx0hMoTZZI4Jt/T7qgq6KKJ+O2yZ+kS
+	 43I1cvKsKmCng==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 251761AC597D; Sat, 28 Feb 2026 21:35:23 +0000 (GMT)
+Date: Sat, 28 Feb 2026 21:35:22 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v4 0/5] iio: adc: ad4080: add support for AD4880
+ dual-channel ADC
+Message-ID: <aaNfmu8Wubizo5Go@sirena.co.uk>
+References: <20260223162110.156746-1-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Fix DTBO boot failure
-To: Aaron Kling <webgeek1234@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kumar Sharma <quic_vksharma@quicinc.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-References: <20260207-sm8550-abl-dtbo-v2-1-83afaa6f3ce9@gmail.com>
- <d4faaf8d-1517-4187-8801-a2dd52d8dde3@kernel.org>
- <CALHNRZ9k3yxXb9OfYXMSfEwyYKU8Rrrrjb-hPqLgU90X9YBP8g@mail.gmail.com>
- <487e4605-0a21-48d6-8b77-9ce2799ad212@kernel.org>
- <CALHNRZ8sqCpUMyCFP99b7nHu2onojZ0EY6YGQZ9RMP0kH8jWzw@mail.gmail.com>
- <gd7puun6xy5bh4q73mqc5ooza2kzla3rtov6d2723zc6tw7qwi@gxbsnloi2qcw>
- <CALHNRZ87j=j5LEMA=P=D73vOz1C-p+BDKcXV2bH7rcPDtAx9JQ@mail.gmail.com>
- <dczz4uvcq4hc6p3zb6xnrsgmfeomwliagwhf36tewdz4z6mndp@afbxzhjziiwv>
- <CALHNRZ9eT+mEqaAbj0-My4DriKWP+WPy4M21caXhOJPQuuVNhA@mail.gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-In-Reply-To: <CALHNRZ9eT+mEqaAbj0-My4DriKWP+WPy4M21caXhOJPQuuVNhA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="TMuLw1nB3GMyikBv"
+Content-Disposition: inline
+In-Reply-To: <20260223162110.156746-1-antoniu.miclaus@analog.com>
+X-Cookie: Think big.  Pollute the Mississippi.
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
-	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269627-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-269628-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[packett.cool:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,packett.cool:mid,packett.cool:dkim]
-X-Rspamd-Queue-Id: 6E1DE1C9566
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sirena.co.uk:mid]
+X-Rspamd-Queue-Id: 90BE81C9587
 X-Rspamd-Action: no action
 
 
-On 2/16/26 11:27 PM, Aaron Kling wrote:
-> On Fri, Feb 13, 2026 at 10:02 PM Bjorn Andersson <andersson@kernel.org> wrote:
->> On Fri, Feb 13, 2026 at 04:50:25PM -0600, Aaron Kling wrote:
->>> On Fri, Feb 13, 2026 at 2:34 PM Bjorn Andersson <andersson@kernel.org> wrote:
->>>> On Wed, Feb 11, 2026 at 09:10:39AM -0600, Aaron Kling wrote:
->>>>> On Mon, Feb 9, 2026 at 1:51 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-[…]
->>>>> My use case here is an open source Android rom. I would like to think
->>>>> that android would be a supported use case. Not necessarily a driving
->>>>> force for decisions, but at least supported. And I'm using the
->>>>> standard boot image v4 setup with dtb on vendor_boot and dtbo's on the
->>>>> dedicated partition. This isn't some weird and wacko setup, it's what
->>>>> the vast majority of devices this soc is used in are designed for.
->>>> Android isn't a weird and wacko setup; but I'm guessing that the
->>>> proposed changes aren't related to running Android, nor are they related
->>>> to dependencies of the overlays, but it rather relate to some
->>>> runtime-generated overlay that ABL wants to apply?
->>> I honestly can't say what the underlying cause is. A couple of us have
->>> looked at the public abl source and weren't able to find what causes
->>> this issue. We just know that this issue happens when abl tries to
->>> apply a dtbo off the dtbo partition. So yes, in technicality this is
->>> not an android specific issue. I mention android because having a dtbo
->>> is generally expected in the aosp setup. In my specific use case, I
->>> have four devices from the same odm, where it's simple to split the
->>> common part into a dts, then the device specific parts into dtso's,
->>> allowing for a single software build to support all four devices.
->>> Requiring everything to be baked into a dts would require separate
->>> vendor_boot images per device, and thus completely separate build
->>> targets.
-[…]
->> Sounds like it, but I don't know what it is that ABL is expecting to be
->> able to insert. [0] seems to mostly say "I added this and then it works"
->> :(
+--TMuLw1nB3GMyikBv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-What everyone (well, postmarketOS community at least) has been doing 
-when running mainline kernels on ABL devices is `fastboot erase 
-dtbo`(*). Which is why we don't have any DTBO target nodes anywhere 
-upstream.
+On Mon, Feb 23, 2026 at 06:20:59PM +0200, Antoniu Miclaus wrote:
+> Add support for the AD4880, a dual-channel 20-bit 40MSPS SAR ADC from
+> the same family as AD4080.
 
-If you want to intentionally use ABL DTBO, and you're absolutely sure 
-you **don't** reference these nodes in the DTBOs you're making, then 
-indeed it might be some "runtime overlay" coming from ABL code.. but 
-have you tried adding these nodes in the DTBOs themselves?
+The following changes since commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f:
 
-Wait, also, what is the build process for your DTBOs? Could there be 
-some weird Android build thing that inserts references to these nodes? 
-Have you tried decompiling them with dtc and looking at the resulting dts?
+  Linux 7.0-rc1 (2026-02-22 13:18:59 -0800)
 
-Also have you looked into intermediate bootloaders as an alternative? 
-postmarketOS uses lk2nd on ancient devices and U-Boot on modern ones; 
-these bootloaders can dynamically choose (or even modify) a DTB based on 
-runtime detection (like ABL cmdline). Might be hard/strange to fit that 
-into the Android world but well, that's Android's fault :)
+are available in the Git repository at:
 
+  https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git tags/spi-devm-ancilliary
 
-(*) except on some old SoCs where we need a "blank" dtbo that just has 
-qcom,board-id! https://github.com/barni2000/dtbo-lk2nd (cursed)
+for you to fetch changes up to e02902dd493bf9c9b05353c761737ac514ad7a5c:
 
-~val
+  spi: add devm_spi_new_ancillary_device() (2026-02-24 17:41:42 +0000)
 
+----------------------------------------------------------------
+spi: add devm_spi_new_ancillary_device()
+
+Add a managed version of spi_new_ancillary_device()
+
+----------------------------------------------------------------
+Alain Volmat (1):
+      spi: stm32: fix rx DMA request error handling
+
+Andy Shevchenko (1):
+      spi: pxa2xx: use min() instead of min_t()
+
+Antoni Pokusinski (1):
+      spi: omap2-mcspi: add support for 3-wire transfers
+
+Antoniu Miclaus (2):
+      spi: allow ancillary devices to share parent's chip selects
+      spi: add devm_spi_new_ancillary_device()
+
+Charles Keepax (1):
+      spi: cs42l43: Don't support sidecar properties on device tree systems
+
+Cosmin Tanislav (1):
+      spi: dt-bindings: renesas,rzv2h-rspi: allow multiple DMAs
+
+Krzysztof Kozlowski (1):
+      spi: stm32: Use NULL instead of 0 for pointer
+
+Patrice Chotard (1):
+      spi: stm32-ospi: Remove exec_op() callback debug log
+
+Pei Xiao (1):
+      spi: atcspi200: Remove redundant assignment to .owner
+
+ .../bindings/spi/renesas,rzv2h-rspi.yaml           | 16 ++++-
+ drivers/spi/spi-atcspi200.c                        |  1 -
+ drivers/spi/spi-cs42l43.c                          |  4 +-
+ drivers/spi/spi-omap2-mcspi.c                      | 17 ++++--
+ drivers/spi/spi-pxa2xx.c                           | 11 ++--
+ drivers/spi/spi-stm32-ospi.c                       |  5 --
+ drivers/spi/spi-stm32.c                            | 10 ++--
+ drivers/spi/spi.c                                  | 69 ++++++++++++++++++++--
+ include/linux/spi/spi.h                            |  1 +
+ 9 files changed, 101 insertions(+), 33 deletions(-)
+
+--TMuLw1nB3GMyikBv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmjX5oACgkQJNaLcl1U
+h9D+TAf+Ipw8Gc/+B70hMbEpqZhtsYP7GT49dptCsIuN0RBputuTYeqcfujd+mNs
+psu87ms4bHWnarM7TseX1h2QqCF4q5kbZFfLxalWKzuk/99jsBSIZGOUYi0y/DJP
+PeCCXBEj4OWUK7cRGUISyDHTe5TpB4kQMpL79GuODzifE0z6d2HwIXywUmUBcIlD
+mHxXyRQGiuRmPVcaVEIGJCdiADujd7+cL6sjPP4r2iz0FD9gYtlGtgLU2/I5/ECi
+li8nxM9cqvREqAk0u2zv/0HTnXrdtyQVZHFO5gzUXKE9K0EwrQTYyNpAvvPnmVJH
+BF/SDVfqiPmhvQlVhSp95yMy+/a/jg==
+=hOiC
+-----END PGP SIGNATURE-----
+
+--TMuLw1nB3GMyikBv--
 
