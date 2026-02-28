@@ -1,174 +1,179 @@
-Return-Path: <devicetree+bounces-269535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269536-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uAcQNfbPomnW5gQAu9opvQ
-	(envelope-from <devicetree+bounces-269535-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 12:22:30 +0100
+	id IEb5MTPQomnW5gQAu9opvQ
+	(envelope-from <devicetree+bounces-269536-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 12:23:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85C701C2899
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 12:22:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26BA31C28A3
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 12:23:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E72B630101F3
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:22:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D1D44302A2E3
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:23:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1364B42DFF2;
-	Sat, 28 Feb 2026 11:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642B842DFF5;
+	Sat, 28 Feb 2026 11:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ywOq+IXh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGbphPbT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93754423A7F
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 11:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E311DF258;
+	Sat, 28 Feb 2026 11:23:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772277749; cv=none; b=DukTDu/MmFAyeJ/GCTfnEDLHuwU9N5xW+pCeRMiGI9ZXBrByaaG4GgbKIju4q0H3zHq/AHRXo2SLrl8TzCucYMqFg27W3pzaP/6PqtCnstjmHRGp+6FfkU+63yMbHrWlfYxYdnyX7wSp14P781XpmS9gKPBzraIKWpo34eoDjlY=
+	t=1772277809; cv=none; b=N/Lk7H8JbVXuKJyBWXfz4V1a+S/QCDka15HzjDgjx7/Os3QOJ/cxwFrNynjO8f89vBVvYRGY2t4noMd+nGpJqBwUB5qSUR59l28G9epdF43VWSyp33P+0LBSoIKO9PK2pf1IZPUffBgigMujWoYm+JdAaRez406XAS+TKiPKwWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772277749; c=relaxed/simple;
-	bh=C+sfOTthVWYAsmxzvHSDXHnyBjqjv5fm9/IRCp46bzU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X9aGWjrKE5Ww7GQgjQLB/wpYza2NKP0azpjV3rvx7o8jZyvzYtaG6SdeAl2EVo0yC2DsEgzCp21MWZyFSJdkfotvcvG+V03Rzjc9Tj1tlKxnlu+Kq1AZ/euktmWlSb1el3P/CMsHGA4GSa7weOfdHRUc5KQzpqaqgNRG71hUynY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ywOq+IXh; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4838c15e3cbso25124205e9.3
-        for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 03:22:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772277746; x=1772882546; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=isAbEiLpfLN3mIWVHPphfERAokwE3nCBTgU9KXPJdSk=;
-        b=ywOq+IXhirMjEjXGNru7n8ZFGJiktVDdiGrZx3OJah72fJVx3HCnNDP+yMGSS0DAM2
-         4vSIwesB28TGx+/LVta5fpHDlVzZ4P3HiU/W3Zf3NLX+n3gXopQBy3xvnZE4irWLhpBN
-         dNIAbsUSX3aYBjHPK5+Kl66nkWLPYPBV2Ih0A8F73T7DqVp6LLV9ZiIgBdrJRDMoXbwI
-         bKbhHhfeAWRTc3br56+7kwEtQngoscVh8PgYIGgq99RpxhaftPGAKx3BXLOOXvA7WusN
-         mDTh37La1t1qbVOWpy6mc3L/xWNFIV/6//vu5o6TLDPsbxjz4cPK5wRetvYujY4cCU7g
-         Wb3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772277746; x=1772882546;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=isAbEiLpfLN3mIWVHPphfERAokwE3nCBTgU9KXPJdSk=;
-        b=gEyImUMcDKvsSOIfXfzujDxAuwQxFUeJCPEAQPJ/9QuAkbXX0X8WE16TlvQijnKJEf
-         4bU74nwoveh/zeA9fOOaQaGazurj7mKjlUJrbDti7BveNeTvWe/pWue3c/r3o5AkD7RK
-         rOn4+D4VXgsKKAWxxONVh70owsY1CHKRgdjNDHNkEkJ+p1Tgp6i3JicgV60icmJ2GXp0
-         U4nwEJUsHkRLD34T5iKzMzcRMcMy95bKoEqjC4BVTrbvLa/fMOSaCdiUoUaGgUHnxBc3
-         loX6NSQAEmBrJMdNnTngdROzHIQPI7BqNmYhOfIxm2bDb5z7+i+sCLydSIW0cFyYzaJ2
-         rgSw==
-X-Forwarded-Encrypted: i=1; AJvYcCUFtq9LauOsyZ81jX0JZvdte0rfvGziHaDo1njIe2z0+v3zk2XZbBKnRQj6rB4dViJ883SBnyqMIgFU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/iMCOgu2u0Yy/ejjFfjNmQ+vRAEQsXBipytg4eELwrYsRN6TR
-	8bY867wI8Vy6MxCUE9efBYxD0803H3s9/54zs2IZz4rzgm9gKz01NSsOOvzlOAtO1oU=
-X-Gm-Gg: ATEYQzz81tY+rfOK7DTa42msa6tOH4h7fY6L4yMysT2KO3w6twJ2n65rruE8rrwjadb
-	LWv94xPAUz20fTQ06xuh+ArE5gpEeYu+Xrg0fkZU+P0/2ltGHrfcMJ803gm3KYSgv/LTKcjbCVc
-	fzDIGJCyfUnG8yjWxX6vCoqRHtIZEwxL568emL8LJnPosM4R3YNIwpu3ckYoYFvIIWk2cfrtU5u
-	UiCoGAVfjlZdobjx5l30FtMehb2/VOSIGLseZtAi1pc1TYfzt+o2QEUCnWAyRINt1LlxHkV/usi
-	k4fVkKCeHtdZajNw1VRe2+1lI29sqAVD9Eqn1jgpgYxgmQCvgTo8nl1C/NM1HJVm1oYYqFWAB/1
-	Bc7uSBWg7BiUULDeskN5TsG1tXKfpczKw8R4lZT0k0phMi0HjE2HWYs+Gh5CHMPkpph8Lh2l75r
-	Oe0NisWjWA/0K7ESIl4UA73/HMTKs1
-X-Received: by 2002:a05:600c:1c28:b0:471:14af:c715 with SMTP id 5b1f17b1804b1-483c9bc5643mr105380795e9.3.1772277745834;
-        Sat, 28 Feb 2026 03:22:25 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfccd7b6sm82361655e9.24.2026.02.28.03.22.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Feb 2026 03:22:25 -0800 (PST)
-Date: Sat, 28 Feb 2026 14:22:22 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Lucas Faria Mendes <lucas.fariamo08@gmail.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ovidiu.panait.oss@gmail.com,
-	devicetree@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 3/3] staging: axis-fifo: fix alignment and handle
- boolean properties
-Message-ID: <aaLP7tXHSNyf5ZoU@stanley.mountain>
-References: <20260227-unboxed-customary-7ce6eda1858c@spud>
- <20260227181051.36207-1-lucas.fariamo08@gmail.com>
- <20260227181051.36207-4-lucas.fariamo08@gmail.com>
+	s=arc-20240116; t=1772277809; c=relaxed/simple;
+	bh=Ls9Pq9hUIqEe6xD9d0PXw3VoiEEfRlOXlemOfB1MxqE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AWNeehytTfGD4Bimjig7IIpcyeRNZ3yeoJo00hc8Kg66Blp3hByfEKDlOQnBP71l76lBeWLm2LA34mY31Wi1tetzTJ40aq1SaIimOJ7cgJdm7Ifa3gn9j0UWshTf02u0VnOOaKjdaLuqZ5qPhveBnVaAcbFtvF20FqYP24q5nvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oGbphPbT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0113AC116D0;
+	Sat, 28 Feb 2026 11:23:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772277808;
+	bh=Ls9Pq9hUIqEe6xD9d0PXw3VoiEEfRlOXlemOfB1MxqE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oGbphPbTclCJxctrQSS9vvXkBcKa5yfK48hNjgI9hedFWN4ooIx4ElyunFzuUTYEq
+	 6VJem7+ZnEbd82rnaT7Hq12nn8lw/rLZcoOugL98mMdJCagWS/xXwk9UHfberzfnpw
+	 om6MM29n6pVY11zgR8zq0j18oLZ9wtbhDIqH8h2PbZtWSEC33e3jt56U6mATB5Fvv1
+	 p2OUIJxC/fFAWCI4amw5Ml4dzCsXSYP+8WBxqog5E7jBHnNH9bUbnMtseUTCKg2ZKI
+	 GbZ7awukIefvcQ/RTu9UNiV7F476hOsMhxvnQR7MFVZKV890vqGeSV0iZ6yNwcBaek
+	 A2TxVIDbnpoFA==
+Message-ID: <a8ebfb42-52ae-4f4a-ac34-f33d82f11a31@kernel.org>
+Date: Sat, 28 Feb 2026 12:23:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260227181051.36207-4-lucas.fariamo08@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] Input: add initial support for Goodix GTX8
+ touchscreen ICs
+To: Aelin Reidel <aelin@mainlining.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Henrik Rydberg <rydberg@bitmath.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux@mainlining.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Piyush Raj Chouhan <pc1598@mainlining.org>,
+ Alexander Koskovich <AKoskovich@pm.me>
+References: <20260228-gtx8-v2-0-3a408c365f6c@mainlining.org>
+From: Hans de Goede <hansg@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <20260228-gtx8-v2-0-3a408c365f6c@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,gmail.com,vger.kernel.org,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-269535-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269536-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[mainlining.org,gmail.com,kernel.org,linaro.org,bitmath.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hansg@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,stanley.mountain:mid,linaro.org:dkim]
-X-Rspamd-Queue-Id: 85C701C2899
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: 26BA31C28A3
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 03:10:45PM -0300, Lucas Faria Mendes wrote:
-> Signed-off-by: Lucas Faria Mendes <lucas.fariamo08@gmail.com>
-> ---
->  drivers/staging/axis-fifo/axis-fifo.c | 55 +++++++--------------------
->  1 file changed, 13 insertions(+), 42 deletions(-)
+Hi,
+
+On 28-Feb-26 02:56, Aelin Reidel wrote:
+> These ICs support SPI and I2C interfaces, up to 10 finger touch, stylus
+> and gesture events.
 > 
-> diff --git a/drivers/staging/axis-fifo/axis-fifo.c b/drivers/staging/axis-fifo/axis-fifo.c
-> index c64a7249feca..4b2cab2f8357 100644
-> --- a/drivers/staging/axis-fifo/axis-fifo.c
-> +++ b/drivers/staging/axis-fifo/axis-fifo.c
-> @@ -387,66 +387,37 @@ static void axis_fifo_debugfs_init(struct axis_fifo *fifo)
->  
->  static int axis_fifo_parse_dt(struct axis_fifo *fifo)
->  {
-> -	int ret;
-> -	unsigned int value;
->  	struct device_node *node = fifo->dt_device->of_node;
-> -
-> -	ret = of_property_read_u32(node, "xlnx,axi-str-rxd-tdata-width",
-> -				   &value);
-> +	int ret;
-> +	
-> +	ret = of_property_read_u32(node, "xlnx,axi-str-rxd-tdata-width", &ret);
-        ^^^                                                              ^^^^
+> This driver is derived from the Goodix gtx8_driver_linux available at
+> [1] and only supports the GT9886 and GT9896 ICs present in the Xiaomi
+> Mi 9T and Xiaomi Redmi Note 10 Pro smartphones.
+> 
+> The current implementation only supports Normandy and Yellowstone type
+> ICs, aka only GT9886 and GT9896. It is also limited to I2C only, since I
+> don't have a device with GTX8 over SPI at hand. Adding support for SPI
+> should be fairly easy in the future, since the code uses a regmap.
+> 
+> Support for advanced features like:
+> - Firmware updates
+> - Stylus events
+> - Gesture events
+> - Nanjing IC support
+> is not included in current version.
+> 
+> The current support requires a previously flashed firmware to be
+> present.
+> 
+> As I did not have access to datasheets for these ICs, I extracted the
+> addresses from a couple of config files using a small tool [2]. The
+> addresses are identical for the same IC families in all configs I
+> observed, however not all of them make sense and I stubbed out firmware
+> request support due to this.
+> 
+> I've taken a lot of inspiration from the goodix_berlin driver, but the 
+> Berlin and GTX8 series of touchscreen ICs differ quite a bit. The driver 
+> architecture is the same overall, i.e. the power-up sequence and general 
+> concepts are the mostly same, but it is very clear that they are 
+> different generations when looking at it in more detail.
+
+Right, this answers my main question about this driver which was:
+"why another goodix driver?" (this would be the third one).
+
+I've also compared this driver with the original goodix.c touchscreen
+driver (which I know well) and the protocol is somewhat closer
+to the original goodix.c driver then it is to goodix_berlin, but still
+different enough that having a separate driver is the best option IMHO.
+
+...
+
+> From what I can tell, the evolution seems to be:
+> Normandy -> Yellowstone -> Berlin
+> since Normandy and Yellowstone are already quite different (especially 
+> with the way checksums work) and Yellowstone has a couple of things 
+> (checksum, fw_version) that appear similar to Berlin series ICs.
+
+You forgot the original goodix.c driver, adding that it seems
+the evolution is:
+
+GTx1/GTx2/GTx6 -> Normandy -> Yellowstone -> Berlin
+
+With GTx1/GTx2/GTx6 having no checksum at all (and 16 bit
+registers) and some of the original GTx1/GTx2/GTx6 don't have
+nvram for the firmware, so Linux must upload firmware every boot.
+
+Anyways I agree that these are different enough from the existing
+goodix and goodix_berlin drivers, so based on that (and only on that):
+
+Acked-by: Hans de Goede <johannes.goede@oss.qualcomm.com>
+
+Regards,
+
+Hans
 
 
->  	if (ret) {
->  		dev_err(fifo->dt_device, "missing xlnx,axi-str-rxd-tdata-width property\n");
-> -		goto end;
-> -	} else if (value != 32) {
-> -		dev_err(fifo->dt_device, "xlnx,axi-str-rxd-tdata-width only supports 32 bits\n");
-> -		ret = -EIO;
-> -		goto end;
-> +		return -EINVAL;
->  	}
-
-What?  I'm so puzzled by this patch.  It's totally wrong.
-
-regards,
-dan carpenter
 
 
