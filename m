@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-269580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269581-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qPRCJTf5omn18QQAu9opvQ
-	(envelope-from <devicetree+bounces-269580-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:18:31 +0100
+	id OMImIEP5omn18QQAu9opvQ
+	(envelope-from <devicetree+bounces-269581-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:18:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19CE11C37CA
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:18:30 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14BA01C37E1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:18:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CAADA305E39B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:18:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 11EA0305CE29
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958AA3033F8;
-	Sat, 28 Feb 2026 14:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632C33939AA;
+	Sat, 28 Feb 2026 14:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nwe/vGj+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X7QHUKd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907E72FE060
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 14:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E553371048
+	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 14:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772288309; cv=none; b=KozKU10WqFz47Bp0/5jFn9YJeQ+T9FRg6Oc6PoOlHtMa3gHtImqJmgX+jiyDIvsZCS131VkL8qUZxYngvoiF7pUoaDJRHiNC0zmMWYm6hFKbUSJicvGtNsdYxOVCqx6Ffy2nHotYo7xXWser+sRPiHBENuN3+O0chIn+oLCgIi8=
+	t=1772288321; cv=none; b=MR/fatLuh2WwyblXINCHXyAlD21HB1v+V8fCWdSmcKovxrfMbm099ZCTIdZl9aYi4IwpD4qpI/RM0Cygo9DuCVhuNalpmcR83QkopIn8ckbj3GUorZx0+cezh4GzMTz/q073ZWP6dQpNz75wplHleVgCJbWWsacTBxlyI9XFOHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772288309; c=relaxed/simple;
-	bh=RWQyBn1FSHsoa5cyD1Wi2Kj5838ft5vCv8mMkb3RhaI=;
+	s=arc-20240116; t=1772288321; c=relaxed/simple;
+	bh=1x+yEo+WJPeaUg2iqLovDoJtSFY7lrzzMEON//GNxJE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WtR/agf+NODzXW27lHl/HcyhSRb7PZzEThM5yI2r489jIpEiMRbpGIdvJW347NY3pxw11t3J04rQ4EbpCxEt8cseNjbUePq7SDiIasdDLBSSpSneNGZwEewEM8Z39A7n7dcZkpL6cOHjqhuzL9HiHCPQlzqGrtqyf53AXxDRp4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nwe/vGj+; arc=none smtp.client-ip=209.85.214.175
+	 MIME-Version; b=iIG2Q3i1etlxprMo9sMDCzG/MyTh/+ZUMwQV8cSu2XNljBcpN7YJGdhkzyleUSwYRh98o99KUSryP7GgKAEFsjuzFd7E/639ZMiwNgvo2Z2TCzbvOo6xY/jWJJU8/mzJB+JtxW0tkXjwVfRs2xhM75jZ34aHcyB/u1q8qyDq/b0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X7QHUKd3; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2ade574f05eso20941395ad.3
-        for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 06:18:27 -0800 (PST)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2ae239bd19eso10445055ad.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 06:18:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772288307; x=1772893107; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772288320; x=1772893120; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IRK4ytllLFpElYCVfnglLAksecVZvWpzoSUosFjJO34=;
-        b=Nwe/vGj+HsQTZRT6lTQVGxIpK8h0j1aCXrfWVWzYf6wecGWgJLLPuaGsVW3aQsyVgo
-         geybBje1gUlxjPOHUISp0DZ4xQqrBXdPik633SxRs2gdwXgqQ72c3WRluzBzkw+3GYAi
-         T9znMvDBHB0CEw5mpHmtQorcQ1GZw882/QWLQBrZCDmxaaUorBGpQDZb+A1AcgfW4KnR
-         Wd9GdncXfBdCRBgFUwfc/utRHVkA6Ww4sZmn3vjsHVYyHoLFM3QWv9xEcXfsqve2rRvc
-         /hfw4ECSkEcJGpX91vwZfsPm/XoSQ6Do6Xvl2fh5oIuS/Zhe71SCHUSe6Tip21AyWJij
-         eg7w==
+        bh=q9q4+vzHqt/9/I9Wl5SgvfIE9/kAMERYBCx5YTj2gss=;
+        b=X7QHUKd3WKjtMRJoUclEoxH+FIXRsfpDP1xbXLgR/96/S6QmDlUHpP8xWvhnYiniu6
+         gG4FiZgntSkaCgwIRDqZJeLTVrJNgWMWTdRJ6F+4CLcnWQufYBx/cLPd1idgz+BN//I/
+         uLr2y+mdCq/cmRYVerxOov9NhmM5ScKD+yp+fmhjgypLhnUj3WEdvi+CL1oYfCS7eL6+
+         +BCUs//FDT2VXBzL8l9zrClLvoBCn0ri+eWZo7iVEhJRhDmHjZ/ENj7wavi0EUq/wwLJ
+         QQ8ceJWWfu4Fu9TZytAtZcQATD3AJA/cUlgXWeDykuv0TvlfATUmw8NtFqe8vQdYut9j
+         +Fdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772288307; x=1772893107;
+        d=1e100.net; s=20230601; t=1772288320; x=1772893120;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=IRK4ytllLFpElYCVfnglLAksecVZvWpzoSUosFjJO34=;
-        b=nmtoLjYe50N2+fvU62ZDFz+VgfaILQIAEbyYczNV+ZNyueb5Hbq1ngPCJeFXMsyFYK
-         R2ePpYpsnKg7lFlVCSCVtKLhNK+Kd6FVkTFoczB6X85MicTQf006c0i1YFHPBLDE/98u
-         TTBkgRtP5pONwPE7tTRxRNH9f+m2nVP71Dk3wo4QrhO5nRDlFeqplrMR+4jwH+MX/+X+
-         ht3KmmrzslMix27ulkgAEJ8ZpmNDWpokCh5SKEkdEwqwdgUY48+6tquMwGivIiQAq5xC
-         WdGjM74dABOZ5XYux7CHbvtg7G2OlEezjL4La5fxAAqpgCv+KIfPCnCeDHjGcT4/j1Qr
-         jFsg==
-X-Forwarded-Encrypted: i=1; AJvYcCVghlmwxxP5mUaCUkdLQLVlrwKEP73TH/aVmIjAHinJ3yRzxSKSCBRDlZ/HHTE5Hs32LGcnmTGuxufX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwU0P8ULJEeIHt/wnYTZIM8Wt5GrHeTiDpZOSRcS0XmFZpHHqOs
-	2LJ7gUGL5yzIZS1Lxh5MAG6g0dVQtCcrtZ6A9rHhDKfETh7o6asThFWU
-X-Gm-Gg: ATEYQzyWm3bZnuqLsXxrFmWKaYSURobAOd3RfaP6Qkw4ZAlIo4XfXFFSzbIQEB43OYJ
-	1p9xV/sTkfpMbyWgGpBMH00D5P08R94S4eH3hGQncnQffWdtEa3+cTTAZhgSxd5aEwlGMOq0IOs
-	FMTFwq+VoESsS5U11Ha0cwX8xEzCYDCV7qir4hcXmk489TB9kVT7XefWykeQgsj+dvO/jWU9GCC
-	SJ26GPepN9VKM95ybMo2OET89p+sUTpeWI5urw9TbFdpe7fdNSj2lL76PeajAli/A3Dn9P3k39F
-	Jx+C1wg9dcAsvou/ZmfMJOCfbkd8ZQSG8PNDd8U3dnl4Hqy3pq2m/zpJJATdMJTMOCY3QnavuWf
-	KxCobc1pstkgIYYxwD1IfNKZlIYif4UYZEYsOIS3MTKixEgz/g/NMUzWnRN8gnZihCRexjV6huG
-	1PYf8clzq9J4ondPJFDKai
-X-Received: by 2002:a17:902:f68d:b0:2ad:e535:36c5 with SMTP id d9443c01a7336-2ae2e4b55b9mr64065355ad.40.1772288306828;
-        Sat, 28 Feb 2026 06:18:26 -0800 (PST)
+        bh=q9q4+vzHqt/9/I9Wl5SgvfIE9/kAMERYBCx5YTj2gss=;
+        b=TM2ShSUzV1B9ZvR01l8Fxke6bV8YpY+3kMVPiB6VXBy+TNF1kGk1qJa8bOQ7ZpuuNM
+         4NUcUQxJE8qVL7D3pEe+SH/Mr1c6vDoPlz8JLXGV+9kV5o5YCcv6k0P8sOtvUQz8qIqn
+         RgzeQPFzLKhbnwemGlKXW1L+iRu20SG6SmFDiNI2We6ei0pTL+4NoS0BTTMGyUbBh9U4
+         ihznSCUQhNNLi0povZt3vGK/KvQ6y9SyJrZe30tmTtDqxhS+9Td197k7z6fekC8k9oT2
+         aa97RNO2mojMqPRjiAWmoCMlHGReCnudhziC25d5zfNonWr+X7BMVldipHccV0XiZENb
+         Irmg==
+X-Forwarded-Encrypted: i=1; AJvYcCVSXei64HWHfR+2+JmPyJOlI3jppPS0+cqkgV9F/63nfyNuTVJySp6ycqOWzy2H3/fYCBkt5uneGeGV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYhez6dSWj9wyDuJmh+z/Lwt0zma2XoVOwP+u+udU1SoNfd+/a
+	+y395mXpzxu9y61fHmMHxg7FdViGs/02JwhKmKwsiXQOh7UUO4YAu3K4
+X-Gm-Gg: ATEYQzzSoYIb9YUVeMZitnK8zaP5BdLJKVOwKzrvvFO0FBiSSF5lGW6mZqgLtwAKFO7
+	/y6aaJvVS3EhyCjxlYljkumiBifeiN1u12/HcgWSQWf9UB1ftNDzddz97mXXl2Ee3O/kuLKdDBz
+	kMuEBedERBAVVzIJwGzmjytEJ6YITz7u9k4kqA+6pz+gwp2XZZqQu0txb7WOjf50q8Wq8UHFXZY
+	WReBNUkOk5uWpC0eeN+le3rLq9IduLsYOlLrT60aeZmN/Kp+IdKDVanvUqGTzwYt2ZSVM1civbw
+	SLEIoqVPeytHp5vL/btyjzV3OSEA6ZsCadwjBczSvt3/eG3SsjSGZ1+pLrrh3Xj6fJWx0qhIakA
+	WrcdFljWtvoE96mvtbEPWBsKSy64v3I5EVPq6YI0SPGTOdQo3mS4hkezPHS6JNPAZi1+fQcUiTZ
+	5az2B2tq+XquJ79rQcO6mH
+X-Received: by 2002:a17:902:ce11:b0:2ad:c337:5a32 with SMTP id d9443c01a7336-2ae2e4b0d31mr59227405ad.28.1772288319526;
+        Sat, 28 Feb 2026 06:18:39 -0800 (PST)
 Received: from nuvole ([2408:844d:b08:3702:16a4:72fd:8170:4ed3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae3d1b2c5esm18697235ad.6.2026.02.28.06.18.14
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae3d1b2c5esm18697235ad.6.2026.02.28.06.18.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Feb 2026 06:18:26 -0800 (PST)
+        Sat, 28 Feb 2026 06:18:39 -0800 (PST)
 From: Pengyu Luo <mitltlatltl@gmail.com>
 To: Rob Clark <robin.clark@oss.qualcomm.com>,
 	Dmitry Baryshkov <lumag@kernel.org>,
@@ -103,9 +103,9 @@ Cc: linux-arm-msm@vger.kernel.org,
 	Tianyu Gao <gty0622@gmail.com>,
 	White Lewis <liu224806@gmail.com>,
 	Pengyu Luo <mitltlatltl@gmail.com>
-Subject: [PATCH v3 1/4] dt-bindings: display: msm-dsi-phy-7nm: Add SC8280XP
-Date: Sat, 28 Feb 2026 22:17:12 +0800
-Message-ID: <20260228141715.35307-2-mitltlatltl@gmail.com>
+Subject: [PATCH v3 2/4] dt-bindings: display/msm: dsi-controller-main: Add SC8280XP
+Date: Sat, 28 Feb 2026 22:17:13 +0800
+Message-ID: <20260228141715.35307-3-mitltlatltl@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260228141715.35307-1-mitltlatltl@gmail.com>
 References: <20260228141715.35307-1-mitltlatltl@gmail.com>
@@ -124,13 +124,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,gmail.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-269580-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269581-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[26];
@@ -145,32 +145,32 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 19CE11C37CA
+X-Rspamd-Queue-Id: 14BA01C37E1
 X-Rspamd-Action: no action
 
-Since SC8280XP and SA8775P have the same values for the REVISION_ID
-registers, then we fallback to SA8775P compatible.
+Since SC8280XP and SA8775P have the same DSI version(2.5.1), then we
+fallback to SA8775P compatible.
 
 Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
 ---
- Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 +
+ .../devicetree/bindings/display/msm/dsi-controller-main.yaml     | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-index 9a9a6c4ab..532f37182 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-@@ -32,6 +32,7 @@ properties:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index eb6d38dab..617dd110d 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -49,6 +49,7 @@ properties:
        - items:
            - enum:
-               - qcom,qcs8300-dsi-phy-5nm
-+              - qcom,sc8280xp-dsi-phy-5nm
-           - const: qcom,sa8775p-dsi-phy-5nm
- 
-   reg:
+               - qcom,qcs8300-dsi-ctrl
++              - qcom,sc8280xp-dsi-ctrl
+           - const: qcom,sa8775p-dsi-ctrl
+           - const: qcom,mdss-dsi-ctrl
+       - enum:
 -- 
 2.53.0
 
