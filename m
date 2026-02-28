@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-269508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269509-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QCpmBxq5omnX5AQAu9opvQ
-	(envelope-from <devicetree+bounces-269508-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:44:58 +0100
+	id kNCAAMm5omnZ5AQAu9opvQ
+	(envelope-from <devicetree+bounces-269509-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:47:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F441C1C8D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:44:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 551B81C1CE1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:47:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A8F433013C43
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 09:44:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A7DB30166FE
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 09:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C41E3E95AA;
-	Sat, 28 Feb 2026 09:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4BAC407592;
+	Sat, 28 Feb 2026 09:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="puwyPt45"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxMsgzNd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3817120D4E9;
-	Sat, 28 Feb 2026 09:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8010E2C187;
+	Sat, 28 Feb 2026 09:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772271892; cv=none; b=uvuPHDwvYLYwF20NJ2OvMJeMVjin0sOrqqARGu3Q1Ty2um5qeSZBQ4G1TK8GuaAZB6WapApGhcrI+0KmfBHeyiiJ3rQx6gluaJxJFbwhaiRN6K595GMh2n6+iBbMcLb/R3C3n1peaaMhQ+5Dr5T9hvtmZDpUJEQCFV1fOGXs0xg=
+	t=1772272022; cv=none; b=tP7Zs1q/QNXYfcIDD5jXgOisgZwJVr+uuoN113NEzHJCzTh15JHFpJKOUNuAYrWjtNblpQvQnnvIDoiCGN1LNtVp1oXvThHZQkEVEE/8VYzQvnGVEFxFg2gAvOYLW4Y8fFJvdaPCnoeHw0cV1DXBOL0aOykLtmkdaXlIE+lOh2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772271892; c=relaxed/simple;
-	bh=y6yGv+3xLq3mHF4HcTTFRg568IOhN9mbLfJF7QR8lgw=;
+	s=arc-20240116; t=1772272022; c=relaxed/simple;
+	bh=1YmMv1zrvdB3pBbPlPqG15aDtmyC1m4RyAjx+bmFJjY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KeN70XvUdX61RXXZV8M26+ZeUgaaM9K97UPCDIHQ4f/WhVR+O5C7ACDSl8D8C/sehNEeNeZJww2evVTKMob6x1lbtW0sI/ksRByuANKAVEgPWMiQnv4M1Q6PY/k/1oCzHLRvwaWee9fgJFmnK7MGv6iP7u/9fSx3qaYwkCSliOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=puwyPt45; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59028C116D0;
-	Sat, 28 Feb 2026 09:44:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qYUDSxN7KDSD12EUsfX6M0/JuVSJl6AhB0cjKAZk4vFKytA6g7OGiOWhbIroWAklmJFkww7BTlfU1ahjt4O1PwJ9GDqn3zDVkhVi78rmZG2Xhn+FaRoht33XjPErzHn1PGdU+Sf4RTIAc+Ule3rE9lPdKxhwDZ/q3JTYc0eSXxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxMsgzNd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3564BC116D0;
+	Sat, 28 Feb 2026 09:46:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772271891;
-	bh=y6yGv+3xLq3mHF4HcTTFRg568IOhN9mbLfJF7QR8lgw=;
+	s=k20201202; t=1772272022;
+	bh=1YmMv1zrvdB3pBbPlPqG15aDtmyC1m4RyAjx+bmFJjY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=puwyPt451zgA0zZON0ISKxzNH9BtSRyxJ0MVw3njH0LGH1Cbra/UEzoXEyZqH3hGg
-	 8gRL+1+KJyHJi8kjMQEMozBeqBsJmHi3+bUOEqeT/TuSzZgMtnP2bSXXJbC5hyugWD
-	 YQe7qqFakguPzXNyibNijFI0bmJgy0e6ShbAMJsSQQcPoQ95qjHADKs0MgH5WZNXnf
-	 FhDfvynUWjWz0MtoRucT7AbRdEvjmRZmUzYInWa+LQc5I4nUaDO/WIZ+NFnmNZ/Jz6
-	 GilJ16tJpaJpPVnoAvvrqJ2hQjc3DI7EfHfEupOJTi7muLo5afIJwIKL9DVTVhyEP7
-	 c+J/3xlMrseMQ==
-Message-ID: <b3352f81-89bf-4b9d-be96-2b45dfb3b9f3@kernel.org>
-Date: Sat, 28 Feb 2026 10:44:47 +0100
+	b=WxMsgzNdzrzPvdcaW3KMzGEI49CM1VRBu5i8l3CQxH8YV4BHIee+DROz5hhK0m1Lu
+	 2AKFyfiISkfcVKsFBXL44nSSH4AOmUSRGb0lt/Y7+HMCCc4MrdxOZBnonCVNUio7IQ
+	 gY2uZVi55jX2kKnYUZ69pxs4bV0Atxywo3Jg+VOUgcuPRpgvgQ4juk8m9q9m4UvLy9
+	 1yEkjmRi/usZ7VBTKLFFqOSv2Aj6KMJe3u76px31hjlbmoN5qwL+7Ja3QQABUNgWEN
+	 Wgpo8kmpblKN5SE+woA19tEQ+TG5fKECFR9ZXW1Qoqzg1/UV/FwgvcHJYpux+sLK7N
+	 kseAhJ2pf3KaA==
+Message-ID: <acbbddb4-f45a-42c8-a35b-457e82f002a2@kernel.org>
+Date: Sat, 28 Feb 2026 10:46:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,16 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] mmc: dw_mmc: Using devm_clk_get_optional() for
- biu_clk
-To: "ping.gao" <ping.gao@samsung.com>, ulf.hansson@linaro.org,
- jh80.chung@samsung.com
-Cc: shawn.lin@rock-chips.com, krzk+dt@kernel.org, robh@kernel.org,
- conor+dt@kernel.org, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kwangwon.min@samsung.com, hy50.seo@samsung.com
-References: <20260228062457.3210099-1-ping.gao@samsung.com>
- <CGME20260228062026epcas5p2389be640a10d12934ce8696fbf6286c7@epcas5p2.samsung.com>
- <20260228062457.3210099-4-ping.gao@samsung.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: mmc: synopsys-dw-mshc: No need to
+ enforce setting two clocks
+To: "ping.gao" <ping.gao@samsung.com>
+Cc: shawn.lin@rock-chips.com, ulf.hansson@linaro.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, robh@kernel.org, jh80.chung@samsung.com,
+ linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, hy50.seo@samsung.com, kwangwon.min@samsung.com
+References: <CGME20260123085150epcas5p42f2cc04843ae7657380b2968261246cb@epcas5p4.samsung.com>
+ <20260228031350.3209721-1-ping.gao@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,7 +107,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260228062457.3210099-4-ping.gao@samsung.com>
+In-Reply-To: <20260228031350.3209721-1-ping.gao@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -117,18 +116,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269508-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269509-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[12];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -138,31 +137,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 49F441C1C8D
+X-Rspamd-Queue-Id: 551B81C1CE1
 X-Rspamd-Action: no action
 
-On 28/02/2026 07:24, ping.gao wrote:
-> From: Ping Gao <ping.gao@samsung.com>
+On 28/02/2026 04:13, ping.gao wrote:
+> Hi Krzysztof,
 > 
-> By using devm_clk_get_optional, if clk is optional for device and not define in dts
-> it will return NULL, then clk_prepare_enable/clk_disable_unprepare for biu_clk is safe to
-> bail out internally.
+> My apologies for the messy threading and duplicate postings. I had a
+> misconfiguration in my mail client settings.
 > 
-> before biu_clk in dwmmc driver devm_clk_get fail, but it's ERR_PTR,
-> not null,it will panic when call clk_prepare
-> log is below:
-> [7:   binder:436_2: 4998] Unable to handle kernel paging request at virtual address fffffffffffffffe
-> [7:   binder:436_2: 4998] Mem abort info:
-> [7:   binder:436_2: 4998]   ESR = 0x0000000096000005
-> [7:   binder:436_2: 4998]   EC = 0x25: DABT (current EL), IL = 32 bits
-> [7:   binder:436_2: 4998]   SET = 0, FnV = 0
-> [7:   binder:436_2: 4998]   EA = 0, S1PTW = 0
-> [7:   binder:436_2: 4998]   FSC = 0x05: level 1 translation fault
+> I will slow down, re-evaluate the hardware requirements, fix the YAML
+> schema synchronization, and send a clean v4 as a brand-new thread.
 
-
-No, we don't support here your downstream kernel.
-
-Start working on upstream instead, please.
+Respond inline - I have no clue which feedback you do address and which
+one you decide to ignore. Judging by v4 you still ignore some.
 
 Best regards,
 Krzysztof
