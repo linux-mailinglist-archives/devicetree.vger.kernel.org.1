@@ -1,186 +1,115 @@
-Return-Path: <devicetree+bounces-269544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOY8Lrvcoml06AQAu9opvQ
-	(envelope-from <devicetree+bounces-269544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 13:16:59 +0100
+	id 0LqVOQXdomn17AQAu9opvQ
+	(envelope-from <devicetree+bounces-269545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 13:18:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 633091C2E62
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 13:16:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4309F1C2E98
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 13:18:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C5B77302D9FB
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 12:16:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E52C3062233
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 12:18:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7045936B054;
-	Sat, 28 Feb 2026 12:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D2C342B75E;
+	Sat, 28 Feb 2026 12:18:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YtbXngux"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cPhuStHl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D36E25F78F;
-	Sat, 28 Feb 2026 12:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC63292B2E;
+	Sat, 28 Feb 2026 12:18:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772281015; cv=none; b=u0E8r0LoYFmImpjzyQl4lR+wI/+li1N44Y5is+7/fUU8+jFJvx0o79EyC8yNZeg2SH8MNK4fYsSDN95E9rosSDGzdhFQ5mSw7tZWKQOQvBd32EBi2MiGoTfQbAi5Mk1jqisg0NPXdJ5RvvRwj1M9t0n9FbsN8QBAcvhdXe6X21Q=
+	t=1772281090; cv=none; b=iXYcyTmcjRjVJGqgxsAviKvA9BQWiH7cQV8bVSoNwVMmWBEXlSv2/kjauzT3i32zT6/oD07dWe8RRQOmUaw/TKexozp0TeFesB8SRSXcPKR+oitPaMcMLfbh5nDMKMvy9BJ8qIDEcUSUEW+FHeQiXf5TCZVQnK3e0YDPGnWEDbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772281015; c=relaxed/simple;
-	bh=eKfWdtF1f8rgeMqH6Rg4gSPSLAuvp8Ejd2HbndMRVlA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MbEvZ/Pv/G59ub4TEEoxYaG97UBAfblubyz2Dz3HoadQxJfkY9FtTH804CILmnwit/giI6ZAyE0+MiWH558NUsBSPRqTjePBlIzWJPENfnNDKsIFeoXSobTAAQcnXRSFe2HnJ5c/Gw1VHHBYArHZLHXhhBNUtJqkXle44xB1KYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YtbXngux; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3C73C116D0;
-	Sat, 28 Feb 2026 12:16:52 +0000 (UTC)
+	s=arc-20240116; t=1772281090; c=relaxed/simple;
+	bh=btO/35fh6342fKn+LsRICf7YhIHDNsiednytwNkvtuI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hoS1SSyxGQPH1g9gQh/U60qtJGR/x8XLj1wvt/M+kg5pTky81eapiK+BYWWPK6mxsBh9YjcMRP4j1R1BDGJNnZ7gnmCI9o78b0N5VroEKqr0ol1MLk5XFAYvn61YdHVoxD55ixhU0GZ1mx1i1R6RKZr018w8r4vHonRXjK24vco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cPhuStHl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DF65C116D0;
+	Sat, 28 Feb 2026 12:18:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772281015;
-	bh=eKfWdtF1f8rgeMqH6Rg4gSPSLAuvp8Ejd2HbndMRVlA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YtbXnguxTm7DWEOff7Ou0m+dXJUWhKOCdT4kpXC5lXnCi4e6zYNcevBrWR5OWbkpg
-	 CTonEHikHwJbQATZFzSiBqbOAd8+dmUjmGIf85504Fa6UXDp3r1fE0ISg7eG7ohL+C
-	 YET5Ul0ktj1UwePxGoKmG0l3YO9rjp+FMX1bzUOlw7FVkrwJYSfmJRm+xCJ6UKW9UD
-	 sgeoKqWIqJalg3THL7Nkd0t+Z2IIZwlYRueqHaNnyA0DdR13WjORPREO5oYgx1erk/
-	 Bx1SXrdevQr9TdAA6pfg6rP34NH6jHbj6FptTgtX9AgtAIbAGl8rrnI9zO8ZrpULaI
-	 vw3tK06BNfF/Q==
-Date: Sat, 28 Feb 2026 12:16:50 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Haiyue Wang <haiyuewa@163.com>
-Cc: linux-aspeed@lists.ozlabs.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil+cisco@kernel.org>,
-	Jammy Huang <jammy_huang@aspeedtech.com>,
-	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: ast2600: Add reset definition
- for video
-Message-ID: <20260228-entourage-awoke-92c61c5b1544@spud>
-References: <20260227151602.829-1-haiyuewa@163.com>
- <20260227-smooth-carefully-f427e242ce58@spud>
- <16a430a2-fdc9-41eb-945c-0727feb7b9d6@163.com>
+	s=k20201202; t=1772281089;
+	bh=btO/35fh6342fKn+LsRICf7YhIHDNsiednytwNkvtuI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cPhuStHlH8clhOd8kLe2GFjcsv902Z9dLVeokOlAIdJmW3STWrLonMRQH6viCSg3Z
+	 OyxAuEI4vmg7EbnChznIN4LiWn47U+QsrONZ6+C6AAppomNGUWHski3ghq+0Py7c7E
+	 8ktxrW+DQig0ObtiGECm/QVAvEteXbR/Uh/Ci8TFxHjSVkoMhnSP0K0sR7rib68uC7
+	 JsmyWl3ysym3s9MsIFyGc7vycjGtsIUOLNH5H8sPvFITOc9Ua+Y0lQx44tBHnh47Bl
+	 WMwlJn/Ooeon06DEZG9+KPcF89KjnHu+krvqAB1uldmHsPHHi2EosXestzmQx2mfic
+	 cH6Hq05Zk6MvQ==
+Date: Sat, 28 Feb 2026 12:18:00 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: temperature: add ADI MAX30210
+Message-ID: <20260228121800.2b137667@jic23-huawei>
+In-Reply-To: <8ff054f9-c22a-4108-8a9b-6ddb49e18dcc@baylibre.com>
+References: <20260226163041.169786-1-johnerasmusmari.geronimo@analog.com>
+	<20260226163041.169786-2-johnerasmusmari.geronimo@analog.com>
+	<8ff054f9-c22a-4108-8a9b-6ddb49e18dcc@baylibre.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="snTcT9PcFEKvQmUU"
-Content-Disposition: inline
-In-Reply-To: <16a430a2-fdc9-41eb-945c-0727feb7b9d6@163.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269544-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269545-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[163.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 633091C2E62
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email]
+X-Rspamd-Queue-Id: 4309F1C2E98
 X-Rspamd-Action: no action
 
+On Thu, 26 Feb 2026 12:33:38 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
---snTcT9PcFEKvQmUU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> When there is more than one patch in a series, please include a cover letter.
+Looks like different patches got different CC lists.
 
-On Sat, Feb 28, 2026 at 09:20:56AM +0800, Haiyue Wang wrote:
->=20
->=20
-> On 2/28/2026 1:33 AM, Conor Dooley wrote:
-> > On Fri, Feb 27, 2026 at 11:13:14PM +0800, Haiyue Wang wrote:
-> > > Add ASPEED_RESET_VIDEO reset definition to the ast2600-clock binding
-> > > header. It is required for proper reset control of the video on the
-> > > AST2600 SoC for aspeed-video driver.
-> > >=20
-> > > Fixes: e83f8dd668ea ("media: aspeed: Fix dram hang at res-change")
-> >=20
-> > How can a binding change be a fix for a driver one?
-> >=20
->=20
-> https://git.kernel.org/torvalds/c/9897831de614
->=20
-> If squashed into one patch as v1 does, it will have patch format warning:
-> ./scripts/checkpatch.pl ...patch
-> WARNING: DT binding docs and includes should be a separate patch. See:
-> Documentation/devicetree/bindings/submitting-patches.rst
+For a small series like this just +CC the same folk on all emails
+including the cover letter that David didn't get
 
-Adding a fixes tag implies that the change you have here should have
-been done in the patch you're citing. If you had done it in that patch,
-you would get a checkpatch warning there too. This is a separate change
-that is needed for your dts changes, but is not a fix for the driver
-change.
+Thanks,
 
->=20
-> > > Signed-off-by: Haiyue Wang <haiyuewa@163.com>
-> > > ---
-> > > v2:
-> > >    - Fix checkpatch.pl warning, and send dt-bindings as single patch =
-as
-> > >      the submitting-patches guide.
-> > > v1: https://lore.kernel.org/all/20260227123837.70079-1-haiyuewa@163.c=
-om/
-> > > ---
-> > >   include/dt-bindings/clock/ast2600-clock.h | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > >=20
-> > > diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-b=
-indings/clock/ast2600-clock.h
-> > > index f60fff261130..7b9b80c38a8b 100644
-> > > --- a/include/dt-bindings/clock/ast2600-clock.h
-> > > +++ b/include/dt-bindings/clock/ast2600-clock.h
-> > > @@ -124,6 +124,7 @@
-> > >   #define ASPEED_RESET_PCIE_RC_OEN	18
-> > >   #define ASPEED_RESET_MAC2		12
-> > >   #define ASPEED_RESET_MAC1		11
-> > > +#define ASPEED_RESET_VIDEO		6
-> > >   #define ASPEED_RESET_PCI_DP		5
-> > >   #define ASPEED_RESET_HACE		4
-> > >   #define ASPEED_RESET_AHB		1
-> > > --=20
-> > > 2.53.0
-> > >=20
->=20
-
---snTcT9PcFEKvQmUU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaLcrgAKCRB4tDGHoIJi
-0qIzAP0fCpQvHKxzjpBO3i3FwHRprWGH7sA7u2Vc1d8vbM7pAAD9Gas2h7A6tW3J
-h4bNYkprIt1F73c2ydusMJO0tnEhwg0=
-=kgT7
------END PGP SIGNATURE-----
-
---snTcT9PcFEKvQmUU--
+Jonathan
 
