@@ -1,159 +1,299 @@
-Return-Path: <devicetree+bounces-269592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269602-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6LAlNwcAo2kJ8wQAu9opvQ
-	(envelope-from <devicetree+bounces-269592-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:47:35 +0100
+	id OH7TDHEEo2kJ8wQAu9opvQ
+	(envelope-from <devicetree+bounces-269602-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 16:06:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A26B1C3A73
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:47:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 851301C3CCF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 16:06:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A348730AE0B2
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:46:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E85B306BC30
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 15:05:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30488429825;
-	Sat, 28 Feb 2026 14:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFF7244D03A;
+	Sat, 28 Feb 2026 15:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KEhPPWTW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ch1Gg2yA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C98C41C2E6;
-	Sat, 28 Feb 2026 14:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C02944D019;
+	Sat, 28 Feb 2026 15:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772289960; cv=none; b=K/GcRSeMD7ZZU+kKb+qCwtC0kt5jZ/uWsUs9J6i3pNQzj7J/ZWVR8iVFAG/dO69gNzbDvRSLPP81IuFVH7qSqmY6v0jSvjcLg5OOx0G5qx2ueJrltpCsqXq5G5a+F2MS2Ed7p/zKaFAIO85a5t3lVSdXjPFdrjOZazu5V5Gq5wU=
+	t=1772291143; cv=none; b=CF+doGGRQq7zXyaiKzjjLnlCmPgGtIuCY7cZYWRHkFw6lXI8LF6cq4rF5DJ7lEK9j4KQpGU4/aDfjmrHiGR2E8SxYE7vvlRzF4L3iJFmNzrka6yUy5gkpLckAb6/4rQl23viQjgBLlJhtCXWzzrzJm7YR0LI7pE/onivu9cZw3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772289960; c=relaxed/simple;
-	bh=WQbRkgcn5OMMUdD1MQ+fwxepba97Vxjidwr1/Ijr39Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ayX3OGaK+r/3tiklelSqmRkS+yNtxFY6gHzEipT7bYXq5CGyoSW/2rGxODOha1cyPhHBPxtRwo+VIluxYgjZg3gc6jye7ci+k6WCeyThn2XzGYNpca+R2N29WqyfMJofi3dImxwwWeeNADh7ZKTSepQH2PlIo/cG1UigDpJlsrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KEhPPWTW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87E1CC116D0;
-	Sat, 28 Feb 2026 14:45:57 +0000 (UTC)
+	s=arc-20240116; t=1772291143; c=relaxed/simple;
+	bh=0OxJIGMPv76RywmKCdOMvITmwAh2+4ivhDnHMnZnzag=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uPuJK2ivuAPxu4pR989LFyivE1hWTRpEOua0LJ5MuOlxN12KLKZIosDFMnGfy1QgAZYsHcB6BexoVH7zi7NYtQdDN0emroQxlefwuDyDvDfn3AN8GN97qVG+YClcKEgeUJ6ZIu/akW6ne5BowBJMpaMM9j1S4j87BK0kuM+xUIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ch1Gg2yA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF0AC19424;
+	Sat, 28 Feb 2026 15:05:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772289959;
-	bh=WQbRkgcn5OMMUdD1MQ+fwxepba97Vxjidwr1/Ijr39Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KEhPPWTWVliyjqWwsH/SE5YTKh+CTfJOm07NzqieVsdCBvq/BeskmI6XpxQzGn8dZ
-	 xHSQFFncJSjhargCtsVDrJ69zRyq7gn1ad9P04hhB7d49FNbcnwpdqBCdtqvlPqhlu
-	 /+ZTn3vWOSZ1mV1ls8t5gV9i7vkWbPT698zWgsDzSC741rDBlU8X+w00E4ylmscEix
-	 +TAM7G8ugZvh7pNJO1jLq0IfbogkF5vvYMWkI4QrKNmmHnveAeFYWrklODN86e8GDP
-	 JOpHwBchdq56KCO6np7dg9NwCf/mvj0+XF+FQuc5+/30roOOALVqgJjdRSTuQEsygQ
-	 1BBq3hkNzRivQ==
-Message-ID: <af259780-2d8f-4780-ac21-015f48e46a2e@kernel.org>
-Date: Sat, 28 Feb 2026 15:45:55 +0100
+	s=k20201202; t=1772291143;
+	bh=0OxJIGMPv76RywmKCdOMvITmwAh2+4ivhDnHMnZnzag=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ch1Gg2yAQ1PMpheX8+vCmGY8HMEwDFC/hs8l0hqgf2x2w4fkDrBVkS26fABBzrX/b
+	 tOatzn+ODy9Qfl2iFvAMrPoYNA+dETAbqE+ZlRgx1BD2n7lQss9UtXusRO8re9CrBJ
+	 rHCOJrUGjqjs63PyTMZX8TYRgFZtNaIQ9nkKlmSUxlFAOVucxN28nOVrpCUvGWimnn
+	 e2piRZmLR58wfKxdi4IeBlId6JdYpvNAJHF5ttgVRkGXomCi1qr0YQx16DDnr0RuLD
+	 vJQmNUVaI0xEw/yJmMFtcNI0HnGHZUvrJjMj/Pqk2lvcHu9uI0mWUxMTqrHC3Fea4m
+	 izPytNjE6AS7A==
+Date: Sat, 28 Feb 2026 20:35:26 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Hongxing Zhu <hongxing.zhu@nxp.com>
+Cc: Sherry Sun <sherry.sun@nxp.com>, 
+	"l.stach@pengutronix.de" <l.stach@pengutronix.de>, Frank Li <frank.li@nxp.com>, 
+	"bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>, 
+	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
+	"imx@lists.linux.dev" <imx@lists.linux.dev>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V5 02/12] PCI: host-generic: Add common helpers for
+ parsing Root Port properties
+Message-ID: <2pxztu4pnngj55bqvrqjukaeatzcr6t267trfimlnctgznocsz@svgi3dyvcme2>
+References: <20260213040852.3340547-1-sherry.sun@nxp.com>
+ <20260213040852.3340547-3-sherry.sun@nxp.com>
+ <woglgacwnhpzy3wrevjs4am4rs754tajzmhvndli4u2fycmzuf@rvbwfzcgnsrf>
+ <VI0PR04MB12114C1EF27CE2314B2E789EE9274A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+ <dzykdgno7cuy5pc6gcooq7s2dbdzb5p2tktuswk6uiyrnx5fzi@nv7hbkodrxce>
+ <VI0PR04MB12114F7059ED27ABAB51FDBE99272A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+ <AS8PR04MB8833F7D36FFA325DD87023308C70A@AS8PR04MB8833.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: samsung: exynos-sysreg: Add hsi0
- for ExynosAutov920
-To: Sanghoon Bae <sh86.bae@samsung.com>, robh@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, alim.akhtar@samsung.com,
- kishon@kernel.org
-Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- sowon.na@samsung.com
-References: <20260212082105.1878720-1-sh86.bae@samsung.com>
- <CGME20260212082119epcas2p34791b0d7ad5ea3b50c6bcfe03cf0f16a@epcas2p3.samsung.com>
- <20260212082105.1878720-2-sh86.bae@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260212082105.1878720-2-sh86.bae@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AS8PR04MB8833F7D36FFA325DD87023308C70A@AS8PR04MB8833.eurprd04.prod.outlook.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269592-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269602-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com,lists.linux.dev,vger.kernel.org,lists.infradead.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,samsung.com:email]
-X-Rspamd-Queue-Id: 0A26B1C3A73
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 851301C3CCF
 X-Rspamd-Action: no action
 
-On 12/02/2026 09:21, Sanghoon Bae wrote:
-> Add hsi0 compatible on samsung,exynos-sysreg
-> To support ExynosAutov920 PCIe settings:
-> - PCIe PHY power control
-> - PLL settings for PCIe
-> - PCIe device direction (RC/EP)
-> 
-> Signed-off-by: Sanghoon Bae <sh86.bae@samsung.com>
-> ---
+On Sat, Feb 28, 2026 at 01:58:43AM +0000, Hongxing Zhu wrote:
+> > -----Original Message-----
+> > From: Sherry Sun <sherry.sun@nxp.com>
+> > Sent: 2026年2月26日 11:40
+> > To: Manivannan Sadhasivam <mani@kernel.org>
+> > Cc: Hongxing Zhu <hongxing.zhu@nxp.com>; l.stach@pengutronix.de; Frank
+> > Li <frank.li@nxp.com>; bhelgaas@google.com; lpieralisi@kernel.org;
+> > kwilczynski@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
+> > imx@lists.linux.dev; kernel@pengutronix.de; linux-pci@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org
+> > Subject: RE: [PATCH V5 02/12] PCI: host-generic: Add common helpers for
+> > parsing Root Port properties
+> > 
+> > > Subject: Re: [PATCH V5 02/12] PCI: host-generic: Add common helpers
+> > > for parsing Root Port properties
+> > >
+> > > On Tue, Feb 24, 2026 at 10:24:41AM +0000, Sherry Sun wrote:
+> > > > > Subject: Re: [PATCH V5 02/12] PCI: host-generic: Add common
+> > > > > helpers for parsing Root Port properties
+> > > > >
+> > > > > On Fri, Feb 13, 2026 at 12:08:42PM +0800, Sherry Sun wrote:
+> > > > > > Introduce generic helper functions to parse Root Port device
+> > > > > > tree nodes and extract common properties like reset GPIOs. This
+> > > > > > allows multiple PCI host controller drivers to share the same parsing
+> > logic.
+> > > > > >
+> > > > > > Define struct pci_host_port to hold common Root Port properties
+> > > > > > (currently only reset GPIO descriptor) and add
+> > > > > > pci_host_common_parse_ports() to parse Root Port nodes from
+> > > > > > device
+> > > > > tree.
+> > > > > >
+> > > > > > Also add the 'ports' list to struct pci_host_bridge for better
+> > > > > > maintain parsed Root Port information.
+> > > > > >
+> > > > > > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> > > > > > ---
+> > > > > >  drivers/pci/controller/pci-host-common.c | 58
+> > > > > > ++++++++++++++++++++++++
+> > > > > > ++++++++++++++++++++++++ drivers/pci/controller/pci-host-common.
+> > > > > > ++++++++++++++++++++++++ h
+> > > > > > ++++++++++++++++++++++++ |
+> > > > > 15 ++++++
+> > > > > >  drivers/pci/probe.c                      |  2 +
+> > > > > >  include/linux/pci.h                      |  1 +
+> > > > > >  4 files changed, 76 insertions(+)
+> > > > > >
+> > > > > > diff --git a/drivers/pci/controller/pci-host-common.c
+> > > > > > b/drivers/pci/controller/pci-host-common.c
+> > > > > > index d6258c1cffe5..0c35907a5076 100644
+> > > > > > --- a/drivers/pci/controller/pci-host-common.c
+> > > > > > +++ b/drivers/pci/controller/pci-host-common.c
+> > > > > > @@ -9,6 +9,7 @@
+> > > > > >
+> > > > > >  #include <linux/kernel.h>
+> > > > > >  #include <linux/module.h>
+> > > > > > +#include <linux/gpio/consumer.h>
+> > > > > >  #include <linux/of.h>
+> > > > > >  #include <linux/of_address.h>
+> > > > > >  #include <linux/of_pci.h>
+> > > > > > @@ -17,6 +18,63 @@
+> > > > > >
+> > > > > >  #include "pci-host-common.h"
+> > > > > >
+> > > > > > +/**
+> > > > > > + * pci_host_common_parse_port - Parse a single Root Port node
+> > > > > > + * @bridge: PCI host bridge
+> > > > > > + * @node: Device tree node of the Root Port
+> > > > > > + *
+> > > > > > + * Returns: 0 on success, negative error code on failure  */
+> > > > > > +static int pci_host_common_parse_port(struct pci_host_bridge
+> > *bridge,
+> > > > > > +                                 struct device_node *node) {
+> > > > > > +   struct device *dev = &bridge->dev;
+> > > > > > +   struct pci_host_port *port;
+> > > > > > +   struct gpio_desc *reset;
+> > > > > > +
+> > > > > > +   reset = devm_fwnode_gpiod_get(dev, of_fwnode_handle(node),
+> > > > > > +                                 "reset", GPIOD_OUT_HIGH,
+> > > > > > + "PERST#");
+> > > > >
+> > > > > For usecases like link retention from bootloader to kernel, this
+> > > > > could be requested as GPIOD_ASIS:
+> > > > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2F
+> > > > > lo
+> > > > >
+> > > re.ke%2F&data=05%7C02%7Csherry.sun%40nxp.com%7C7957eace8620494e
+> > > da250
+> > > > >
+> > >
+> > 8de74700adc%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63907
+> > > 622173
+> > > > >
+> > >
+> > 6969266%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiO
+> > > iIwLjAu
+> > > > >
+> > >
+> > MDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%
+> > > 7C%7
+> > > > >
+> > >
+> > C&sdata=S6ME9QOAFR5OC8w5WRjFeHW46t4OAxVkVz6E3pCJWQk%3D&rese
+> > > rved=0
+> > > > > rnel.org%2Flinux-pci%2F20260109-link_retain-v1-3-
+> > > > >
+> > >
+> > 7e6782230f4b%40oss.qualcomm.com%2F&data=05%7C02%7Csherry.sun%40
+> > > > >
+> > >
+> > nxp.com%7C55c78c3dde694150dd1408de6d778ccd%7C686ea1d3bc2b4c6fa9
+> > > > >
+> > >
+> > 2cd99c5c301635%7C0%7C0%7C639068557422583280%7CUnknown%7CTWFp
+> > > > >
+> > >
+> > bGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4z
+> > > > >
+> > > MiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=zZAzwcH
+> > > > > U2y8kH4YP0OoTVN66tUlCEq6m2aAKkWCFeTM%3D&reserved=0
+> > > > >
+> > > >
+> > > > Hi Manivannan,
+> > > >
+> > > > I understand the concern about supporting use‑cases where the PCIe
+> > > > link is intentionally retained from bootloader to kernel. However,
+> > > > relying on GPIOD_ASIS may introduces a practical problem: it removes
+> > > > any guarantee about the PERST# level during the early power‑on
+> > window.
+> > > >
+> > > > According to the PCIe initialization requirements, PERST# must
+> > > > remain asserted until power rails and REFCLK are valid. If we
+> > > > request the GPIO as GPIOD_ASIS, the kernel no longer controls or
+> > > > even knows the actual state of PERST# at probe time, which means the
+> > > > device may observe a deassert reset before power/clock stable, it is
+> > > > risky even
+> > > > xx_pcie_host_init() asserts/deasserts PERST# again after enable
+> > > > power rails hoping to reset the device cleanly. Once PERST# is
+> > > > released before power or clock rails are fully valid, the device may
+> > > > already have entered undefined or partially‑initialized states. Even
+> > > > if the driver asserts PERST# later, this does not guarantee that all
+> > > > internal domains return to a well‑defined reset state. Some
+> > > > implementations do not route PERST# to all functional blocks, or
+> > > > early deassert during unstable power/clock conditions can leave the
+> > > > PCIe controller or endpoint
+> > > PHY/LTSSM in inconsistent conditions. Consequently, such a sequence
+> > > can still lead to undefined device state, failed link training, or
+> > > inconsistent enumeration behavior.
+> > > >
+> > >
+> > > I don't think this is true. Even if you request PERST# as GPIOD_ASIS,
+> > > if you explicitly assert it *before* doing the controller
+> > > initialization, net result would be the same.
+> > >
+> > > Like,
+> > > 	devm_fwnode_gpiod_get(GPIOD_ASIS)
+> > > 	...
+> > > 	assert_perst()
+> > > 	(perform controller initialization and enable resources)
+> > > 	deassert_perst()
+> > >
+> > > So if you request PERST# as GPIOD_OUT_HIGH, the first assert_perst()
+> > > becomes a NOP, otherwise, the endpoint gets asserted right before the
+> > > controller initialization.
+> > >
+> > Hi Manivannan,
+> > Got your point, seems there are some issues in the order of assert/deassert
+> > and power/clk enable in pci-imx6 driver. Maybe I need to readjust the
+> > sequence internal imx_pcie_host_init().
+> > 
+> > Thanks, will change to use GPIOD_ASIS in next version.
+> If the GPIOD_ASIS is used, the PERST# should be asserted before vpcie3v3
+>  or vpcie3v3aux is turned on.
+> That's the reason why GPIOD_OUT_HIGH is set in the probe of pci-imx6.c
+>  driver currently.
 
-Does not apply, please rebase.
+That's fine. We can add a separate PERST# assert before enabling 3.3v
+regulator.
 
-Best regards,
-Krzysztof
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
