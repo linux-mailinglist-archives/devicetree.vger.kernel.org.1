@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-269565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269566-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0KHwLgbtomnT8AQAu9opvQ
-	(envelope-from <devicetree+bounces-269565-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:26:30 +0100
+	id 6QtiM3Ptomni8AQAu9opvQ
+	(envelope-from <devicetree+bounces-269566-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:28:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45891C338D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:26:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 214A01C3397
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 14:28:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A2E0430095CC
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 13:26:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 72B90301950B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 13:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B119B26D4CD;
-	Sat, 28 Feb 2026 13:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A2C284665;
+	Sat, 28 Feb 2026 13:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TSOS8yM/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g4U1Yu4+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890BB243367;
-	Sat, 28 Feb 2026 13:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9012126A1B5;
+	Sat, 28 Feb 2026 13:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772285182; cv=none; b=QxuU7NQtr+K88hevrYxQyXDX8AZp80g2/8nwBYtKao8UxIdfRXr+eWIPNV2p80k0xWI3KugbZDyEtiW4VNiw21TQQm5MVvGmN9qprAjc0b2tbeYbzOXQ79xQQT5uZ2qXU7yrq17hekdpJJax/JxFiTFD6I/HNLWEKfs8tjT5vis=
+	t=1772285296; cv=none; b=q2r1CKR820yqZ2utT51XmkneQ/vV70Xt68PuhABS0AhTltfbjj3hp1tNmnYM3e6u4VeQKwjw+OTQqnoOxOILnG86OvCFYsLG50/PyYJS0yjB8bik4OtYliLnzA8tocUxZRPdiNPExHCuZwKIpRpLVwolAQdE/XCmU8Zs5r4Mfnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772285182; c=relaxed/simple;
-	bh=6DXwNPA65k+7EadP/D86GEpH/gXZm5YIq6LUsaaw9g8=;
+	s=arc-20240116; t=1772285296; c=relaxed/simple;
+	bh=UBCk3rzkDHKIaczXyfNWGpsGgF1btNYSyUx4UegJgAc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X+cacrMTHuyXudWyJ/EuQ3xP/PkyjWKjj+JObBTvjiyCg1IlVaOb1sY+AZdjyH8G4LuYNHmh+bjbFwQNI0dJTedXN3x2gsIgINolRwgicdLsKd2GTZBOXtMKtN9jlyX0eG44JvVw1KfjAXS6glLNji31usaDQ0KiZQpKln9yCH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TSOS8yM/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F5C7C116D0;
-	Sat, 28 Feb 2026 13:26:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TFPmvnH0MHjKBMKrX05/OsB7Ve0zo5BBIukcDuI2yFBodtSj+kdYAI4IIIH497qokpqf2DXY115ljPkGRtfmeU/LH9T4JCE/8GTGxMui9HHsGD1VGid2t3ZK6AOxW/0UdgWqh7d1axn3xjTidgJlM1C3QAYwxyd5bB3kIfpSwBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g4U1Yu4+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87E8FC116D0;
+	Sat, 28 Feb 2026 13:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772285182;
-	bh=6DXwNPA65k+7EadP/D86GEpH/gXZm5YIq6LUsaaw9g8=;
+	s=k20201202; t=1772285296;
+	bh=UBCk3rzkDHKIaczXyfNWGpsGgF1btNYSyUx4UegJgAc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TSOS8yM/8Q3VBPTxI3n9STOIvXhVw2W9sUo1TRqUcmcwNWJTmSdhOi1qoTjf6Kuu/
-	 jQh2vvnxhYW0NCNWHfZbwpoEEm77iFQ3r6XraTBxNVDhz5HJDYg6ZBPgW6yb3L6331
-	 tkwbDJOM7KoiImjSL8gssv2sgsi6SqBW/kuUabqNBcXghWr7gRzdwNIc1U1H8185wN
-	 xAHIfjPlYVua8XMbzxP91tLwXi1LclIYiLwIvVeZ0iskYrWj0Vw8rWYeawGCNBnlrT
-	 qkJ5T51mspbOyljmWGPVr+VnbZejfPFDPnvgqOu+p8/VzvYxidtLXJudUpSHZVfBXe
-	 JbwCmjKug2cjQ==
-Message-ID: <4a772a56-2d00-4f57-b7c0-87d98c495222@kernel.org>
-Date: Sat, 28 Feb 2026 14:26:18 +0100
+	b=g4U1Yu4+A2Q5H8lgKDDIslCYzTqxvin3VDNqVO73/djB5jNeStnObzhp8vkyQXlBN
+	 yEKfP54V5veY87IwNLIL3cDn/IhspyoceUaFbFLympr9AQDQtqIb6W1A1iQi7az+gs
+	 jrvpZade9+lJlA+nqsUpgPgT0oNT1jj4/E0Pj8sOWDs1/BN7Vy+V+F53J6g5gsBILp
+	 g5IYLZEV7+eDyN6uqsec37HIajRedHo2zWyvugB1Parhfrv1sx59yoPZIJlicD04Gc
+	 zh955xblQqBvhW90mZw4Q/L7y5xjIxwFWYd0UsDw3Rpo86riJF7vsa55FOyEsTX92j
+	 Kphzz/af778DA==
+Message-ID: <fd83752b-8714-41a9-a61a-c4b1f8d62d34@kernel.org>
+Date: Sat, 28 Feb 2026 14:28:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,13 +53,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: rtc: isl12026: convert to YAML schema
-To: Piyush Patle <piyushpatle228@gmail.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260228131311.37169-1-piyushpatle228@gmail.com>
+Subject: Re: [PATCH v8 02/18] dt-bindings: media: qcom,x1e80100-camss: Convert
+ from inline PHY definitions to PHY handles
+To: Christopher Obbard <christopher.obbard@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bryan O'Donoghue <bod@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-0-95517393bcb2@linaro.org>
+ <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-2-95517393bcb2@linaro.org>
+ <e6a277cfecc1fb94e1819944ce72e0a03ae0a9fe.camel@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,60 +117,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260228131311.37169-1-piyushpatle228@gmail.com>
+In-Reply-To: <e6a277cfecc1fb94e1819944ce72e0a03ae0a9fe.camel@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269565-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,bootlin.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269566-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D45891C338D
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:email]
+X-Rspamd-Queue-Id: 214A01C3397
 X-Rspamd-Action: no action
 
-On 28/02/2026 14:13, Piyush Patle wrote:
-> Convert the ISL12026 RTC binding from text format to YAML schema.
-> Remove the legacy text binding.
+On 27/02/2026 23:01, Christopher Obbard wrote:
+> Hi Bryan,
 > 
-> The new schema enables dtbs_check validation.
+> On Wed, 2026-02-25 at 15:11 +0000, Bryan O'Donoghue wrote:
+>> We currently do not have an upstream user of the x1e CAMSS schema which
+>> allows us to make this the first platform to treat the CSI PHYs as separate
+>> devices in much the same way as we treat the CCI block as separate devices.
+>>
+>> Convert the embedded CSIPHY node data to simple phys = <> removing all of
+>> the PHY specific stuff previously embedded.
+>>
+>> I gave some serious thought to making the Test Pattern Generators TPGs into
+>> PHY nodes also but, unlike the CSIPHYs the TPGs have no dedicated external
+>> pins nor regulators.
+>>
+>> The CSIPHYs OTOH have dedicated in-fact generally unmuxed pins on Qualcomm
+>> SoCs and each CSIPHY has its own set of input power rails usually 0p8 and
+>> 1p2.
+>>
+>> Instead of defining the CSIPHYs as children of the CAMSS block, we take the
+>> same approach as the CCI/I2C bus dedicated to CAMSS and define the CSIPHYs
+>> as their own nodes.
+>>
+>> Remove the embedded CSIPHY specific data and give CAMSS regular,
+>> bog-standard phys = <>;
+>>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > 
-> Signed-off-by: Piyush Patle <piyushpatle228@gmail.com>
-> 
-> ---
-> 
-> Changes in v3:
+> Reviewed-by: Christopher Obbard <christopher.obbard@linaro.org>
 
 
-You already sent it and you got review, so now that duplicate posting
-AFTER my review basically removes it.
+This is surprising since I clearly object to these patches and pointed
+out issues.
 
-I will not be doing work twice.
-
-NAK for this patch
+This is also obsolete version, thus your review will not apply to new
+one (it's different).
 
 Best regards,
 Krzysztof
