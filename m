@@ -1,301 +1,197 @@
-Return-Path: <devicetree+bounces-269464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269465-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oDwxAVJDomlz1QQAu9opvQ
-	(envelope-from <devicetree+bounces-269464-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:22:26 +0100
+	id KI50AuxFomn31QQAu9opvQ
+	(envelope-from <devicetree+bounces-269465-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:33:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF961BFB41
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:22:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 532CB1BFBF8
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 02:33:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BE6E303D30D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 01:21:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6F1F308F639
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 01:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD67C2EC57F;
-	Sat, 28 Feb 2026 01:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB390225760;
+	Sat, 28 Feb 2026 01:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="y33XKsOj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NhlLmxRq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout03.his.huawei.com (canpmsgout03.his.huawei.com [113.46.200.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F002D7DE2;
-	Sat, 28 Feb 2026 01:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79AC323AB98
+	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 01:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772241709; cv=none; b=CX0klPyr4D8kiGuPuUaMuUOzoWUZu+Z5X2daV4HS5pulxloBTicUly2aLiYbAXVMvg/ucTPXSz9OWArW8xsflawlcllhgI5mjzKKcmn7fS/iNZ9bD63bQ3eV4LAjaaje3vetLnslV3jxfseeB4T1I+ssn3OFj4p4GbDXKpFUUBw=
+	t=1772242388; cv=none; b=J2sgvgJzI6Jqf/1biDyuUN8qV7CSKnFB4XQaiIFe/mFndLyYL5DhNm1vBYt5VNqAccSjm2rf1yBFlDQDnMI2+FGDSI3dCpBk+sl7jX+sSEXYpmnRWYX6mkcscLAHQwpXC1NFrsfmecCDeDP9pntkXKNXsBDeycH0F1az9CoJcJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772241709; c=relaxed/simple;
-	bh=m3CUB5p1ZWEbLXxicZyLqnVQuSFlfJeUB8OB7n6Zwjw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=msVRhFPS+vJk9NlkFVQWS8iE0O0Sm/z5RUMEox4h3RtmGexItspntqyrOCX1Sw/dtIOEihPJXkH02IV1MZMqbkyyQ59QVqYSDlwichw5Mmz7k0vSiYR+mFgKcU95RoorIY6wx9u5/WK8ZgY49sj1YlhvJPJ/Yg65/ERpfPBwDXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=y33XKsOj; arc=none smtp.client-ip=113.46.200.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=g3ZfEIXgV3HlWkTi5COZHl8zAZUARnL7AI5EioOhi5c=;
-	b=y33XKsOjrl1QPprmFk09CWLS91eyuVn46hY5LCz9lV646qeLi/6dMSMulXugarz9N8ILeIO+N
-	bJLJXGjfRFU2PrRMleHTL4N1wZXFSd63gZzNuj1Fd5HTVKu8Q/eD9yscO5RcmIvCjgwCn0Mf3jK
-	U8P3Rbs9yf6dM6kXmFYTB9E=
-Received: from mail.maildlp.com (unknown [172.19.162.197])
-	by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4fN6jV3JjXzpT0X;
-	Sat, 28 Feb 2026 09:16:46 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id 53C4740569;
-	Sat, 28 Feb 2026 09:21:38 +0800 (CST)
-Received: from [10.67.109.254] (10.67.109.254) by
- dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Sat, 28 Feb 2026 09:21:34 +0800
-Message-ID: <0a776b5f-5a88-2c71-7305-d30d9240c2cb@huawei.com>
-Date: Sat, 28 Feb 2026 09:21:33 +0800
+	s=arc-20240116; t=1772242388; c=relaxed/simple;
+	bh=RbSWrvnFmeHMz6dyt5hCR4sPG8nwFgL+L2LORwJue+8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LhPW/nR4ey6oYrWMLIQB1IFUlgZPwj6ia9Wy0G/p3DTavsFrFskIR+6p/s/PCdQs7f/PsWPLFrh4nYQoXIesfVdq3Py654b/YO2J2DUfZsWh01p8TEVjYm/hbqCLd8B2V84n0wsW0HQF9/5siYV+XlKDudoByk2+GT0OfMmGQkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NhlLmxRq; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-56a857578a8so940272e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Feb 2026 17:33:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772242386; x=1772847186; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ypXMFVhzt8vhHA0jPR3q8crLwJ28xwCmkdh+GFTjYb0=;
+        b=NhlLmxRq1gkW67jNcE6a3VpBeYkEKYGrE9Y/wL8G/HfjQIWKAcvzkD6oROM7ZTCwBY
+         RvOyIE53aVB9dfbee+K+bsAxqH5QjZfBsxK6YvJoebhg1gZTJqTg9P1jD9LnmYm60hYv
+         8o5iXn/0SR8bPksviLougx9kqVdNTL1gvWOUuIEvjvfdGSwHqfbUfmLCgfeQrwCDhF4+
+         DltU0JRaLwsgsSYkjP8p7sgzv0M6brGKILTMv17X87E0KXjpDGsjg0QLDaJjVqIxYOG3
+         xWqK+6WNIoU1X+twlCppI4ruPpMyvww28sT8XAWbVCTdhr4jInRX2iVqvCcDzVRLfJDT
+         /Vnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772242386; x=1772847186;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ypXMFVhzt8vhHA0jPR3q8crLwJ28xwCmkdh+GFTjYb0=;
+        b=q2rH/u4m4FS9Ky+i5hpl9Esuxn5kPDeqnZxM9nRjrVjanZ/fA4oy5W8WfKKIysG6L4
+         7nReznA4+GFAs9KmvQzjBI4Gp8xzaTV8/iEmO1zSzA1EVXzDdeJGYngDsAkTrBHxpNw0
+         FZt1OE/rxcxmtapM+siIwMgXMbdp+nXRDjYbwn+KA+JWW+4Nz8stf/bxTMGAYEcRVknI
+         i/7dLxk/duKNxVU/eUEYmA3vQUIksU/dN2knJOJQWHYnZnZeDM6ewz4BRdtNTrXc0GCo
+         WtPKMwjok3pDVHcI7BQFXFHTmUzAa7WY/PVGRrocfY6/3dGhNwTK+OSJ4xxiXDlB0S8D
+         XoAA==
+X-Forwarded-Encrypted: i=1; AJvYcCXqTGcTt5Am1jDWAkafok7W6DhFGhuIAKaj8mAKNcggTou0mV67zEbdut58lBOw7ZAytArT7aSdecvz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQOs9aOs4zSoRnEayzoQQcEzHdJKyB6EYOC733Ox10TYGo3if7
+	PQPpdiQEg5xnfpKv8d7K919Qt+pFVAni8m8VMmg4iBz4NRW/8fXaPxA5+YFjjg==
+X-Gm-Gg: ATEYQzxCktydydjVd1JUdCsivmfuRr5880xt1Z6TOncW6eW+1tnw4QUXctjvFVGBbyh
+	T0ekBdGYmZUbsR61P63SxctV7xUBoSCtbZ0uniiEBa6Gk+mHYwBtgykMr4BaNlIxbHBy9GTf/Pn
+	sskwutziA+mNzDT+CUecN8dg27aFjFhQuIirbitazipSmqCIqSLAr4zjP61D1oCiy0ur+kjoBcB
+	sFR7wL47ENobYIVcWfFfeAdwYCnMyDz/lVmYVcTDdPR4IQq5S+LHtNPrELch7aNCIfHCknAtADW
+	qEzVIaTU6k02xcH4B20q/YOFscgZ7uYqAnM9NSt6IqJYLCC1HRQnGYZ+YG9YvYuDu6Sq+uD59Ek
+	GhKo6Tu98TYQFcvE4Ea5XtsZhX9cRjSEDJ8NaCv5rVV1D+UHvNFxXt9jMC0R03jHojSZUnLyiOH
+	8oiij/QyJUQPMM6du9ycr3IwZu42d+MUKxSoaI4r7zULCIcKJqCVARr7x2GrtgVJhFZYjz
+X-Received: by 2002:a05:6122:e145:b0:563:702b:e2a7 with SMTP id 71dfb90a1353d-56aa0ab1c3bmr2230694e0c.19.1772242386359;
+        Fri, 27 Feb 2026 17:33:06 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:1b3:a802:8875:2e2b:437e:ccf6:b644])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56a91b8c7a8sm8950597e0c.4.2026.02.27.17.33.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Feb 2026 17:33:05 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH 1/2] ARM: dts: rockchip: rk3036: Move PHY reset to ethernet-phy node
+Date: Fri, 27 Feb 2026 22:32:56 -0300
+Message-Id: <20260228013257.256973-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v7 3/5] crash: Use crash_exclude_core_ranges() on powerpc
-To: Sourabh Jain <sourabhjain@linux.ibm.com>, <corbet@lwn.net>,
-	<skhan@linuxfoundation.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-	<chenhuacai@kernel.org>, <kernel@xen0n.name>, <maddy@linux.ibm.com>,
-	<mpe@ellerman.id.au>, <npiggin@gmail.com>, <chleroy@kernel.org>,
-	<pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
-	<alex@ghiti.fr>, <tglx@kernel.org>, <mingo@redhat.com>, <bp@alien8.de>,
-	<dave.hansen@linux.intel.com>, <hpa@zytor.com>, <robh@kernel.org>,
-	<saravanak@kernel.org>, <akpm@linux-foundation.org>, <bhe@redhat.com>,
-	<vgoyal@redhat.com>, <dyoung@redhat.com>, <pmladek@suse.com>,
-	<rdunlap@infradead.org>, <dapeng1.mi@linux.intel.com>, <kees@kernel.org>,
-	<paulmck@kernel.org>, <lirongqing@baidu.com>, <arnd@arndb.de>,
-	<rppt@kernel.org>, <ardb@kernel.org>, <leitao@debian.org>, <jbohac@suse.cz>,
-	<cfsworks@gmail.com>, <ryan.roberts@arm.com>, <tangyouling@kylinos.cn>,
-	<ritesh.list@gmail.com>, <hbathini@linux.ibm.com>, <eajames@linux.ibm.com>,
-	<songshuaishuai@tinylab.org>, <samuel.holland@sifive.com>,
-	<kevin.brodsky@arm.com>, <vishal.moola@gmail.com>,
-	<junhui.liu@pigmoral.tech>, <coxu@redhat.com>, <liaoyuanhong@vivo.com>,
-	<brgerst@gmail.com>, <fuqiang.wang@easystack.cn>, <x86@kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <loongarch@lists.linux.dev>,
-	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <kexec@lists.infradead.org>
-References: <20260226130437.1867658-1-ruanjinjie@huawei.com>
- <20260226130437.1867658-4-ruanjinjie@huawei.com>
- <3576865b-65bd-4289-babc-975a543eb775@linux.ibm.com>
-Content-Language: en-US
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <3576865b-65bd-4289-babc-975a543eb775@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
- dggpemf500011.china.huawei.com (7.185.36.131)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	FREEMAIL_TO(0.00)[linux.ibm.com,lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,suse.com,infradead.org,baidu.com,arndb.de,debian.org,suse.cz,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	TAGGED_FROM(0.00)[bounces-269464-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.infradead.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_FROM(0.00)[bounces-269465-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[3.147.135.0:email];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_GT_50(0.00)[61];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 9FF961BFB41
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.0:email]
+X-Rspamd-Queue-Id: 532CB1BFBF8
 X-Rspamd-Action: no action
 
+According to rockchip,emac.yaml, 'phy-reset-duration' and 'phy-reset-gpios'
+are not valid properties.
 
+Use the valid 'reset-gpios' and 'reset-assert-us' properties under
+the etherne-phy node.
 
-On 2026/2/27 22:50, Sourabh Jain wrote:
-> Resend of:
-> https://lore.kernel.org/all/19cf18b5-362d-4ff2-8b85-e2e72809250c@linux.ibm.com/
-> 
-> On 26/02/26 18:34, Jinjie Ruan wrote:
->> The crash memory exclude of crashk_res and crashk_cma memory on powerpc
->> are almost identical to the generic crash_exclude_core_ranges().
->>
->> By introducing the architecture-specific arch_crash_exclude_mem_range()
->> function with a default implementation of crash_exclude_mem_range(),
->> and using crash_exclude_mem_range_guarded as powerpc's separate
->> implementation, the generic crash_exclude_core_ranges() helper function
->> can be reused.
->>
->> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
->> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
->> ---
->>   arch/powerpc/kexec/ranges.c | 16 ++++------------
->>   include/linux/crash_core.h  |  4 ++++
->>   kernel/crash_core.c         | 19 +++++++++++++------
->>   3 files changed, 21 insertions(+), 18 deletions(-)
->>
->> diff --git a/arch/powerpc/kexec/ranges.c b/arch/powerpc/kexec/ranges.c
->> index 6c58bcc3e130..e5fea23b191b 100644
->> --- a/arch/powerpc/kexec/ranges.c
->> +++ b/arch/powerpc/kexec/ranges.c
->> @@ -553,9 +553,9 @@ int get_usable_memory_ranges(struct crash_mem
->> **mem_ranges)
->>   #endif /* CONFIG_KEXEC_FILE */
->>     #ifdef CONFIG_CRASH_DUMP
->> -int crash_exclude_mem_range_guarded(struct crash_mem **mem_ranges,
->> -                       unsigned long long mstart,
->> -                       unsigned long long mend)
->> +int arch_crash_exclude_mem_range(struct crash_mem **mem_ranges,
->> +                 unsigned long long mstart,
->> +                 unsigned long long mend)
-> 
-> 
-> update_crash_elfcorehdr() in arch/powerpc/kexec/crash.c still calls
-> crash_exclude_mem_range_guarded(), causing a build failure.
-> 
-> ld: arch/powerpc/kexec/crash.o: in function `update_crash_elfcorehdr':
-> /root/linux/arch/powerpc/kexec/crash.c:454: undefined reference to
-> `crash_exclude_mem_range_guarded'
-> 
-> 
-> To fix this:
-> --------------
-> diff --git a/arch/powerpc/kexec/crash.c b/arch/powerpc/kexec/crash.c
-> index 898742a5205c..e59e909c369d 100644
-> --- a/arch/powerpc/kexec/crash.c
-> +++ b/arch/powerpc/kexec/crash.c
-> @@ -451,7 +451,7 @@ static void update_crash_elfcorehdr(struct kimage
-> *image, struct memory_notify *
->                 base_addr = PFN_PHYS(mn->start_pfn);
->                 size = mn->nr_pages * PAGE_SIZE;
->                 end = base_addr + size - 1;
-> -               ret = crash_exclude_mem_range_guarded(&cmem, base_addr,
-> end);
-> +              ret = arch_crash_exclude_mem_range(&cmem, base_addr, end);
->                 if (ret) {
->                         pr_err("Failed to remove hot-unplugged memory
-> from crash memory ranges\n");
->                         goto out;
-> 
-> With the above change included, things are working fine on powerpc.
+This fixes the following dt-schema warning:
 
-It seems the declaration of crash_exclude_mem_range_guarded() added in
-arch/powerpc/include/asm/kexec_ranges.h can also be removed.
+Unevaluated properties are not allowed ('phy-reset-duration',
+'phy-reset-gpios' were unexpected)
 
-> 
-> 
->>   {
->>       struct crash_mem *tmem = *mem_ranges;
->>   @@ -604,18 +604,10 @@ int get_crash_memory_ranges(struct crash_mem
->> **mem_ranges)
->>               sort_memory_ranges(*mem_ranges, true);
->>       }
->>   -    /* Exclude crashkernel region */
->> -    ret = crash_exclude_mem_range_guarded(mem_ranges,
->> crashk_res.start, crashk_res.end);
->> +    ret = crash_exclude_core_ranges(mem_ranges);
->>       if (ret)
->>           goto out;
->>   -    for (i = 0; i < crashk_cma_cnt; ++i) {
->> -        ret = crash_exclude_mem_range_guarded(mem_ranges,
->> crashk_cma_ranges[i].start,
->> -                          crashk_cma_ranges[i].end);
->> -        if (ret)
->> -            goto out;
->> -    }
->> -
->>       /*
->>        * FIXME: For now, stay in parity with kexec-tools but if RTAS/OPAL
->>        *        regions are exported to save their context at the time of
->> diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
->> index 033b20204aca..dbec826dc53b 100644
->> --- a/include/linux/crash_core.h
->> +++ b/include/linux/crash_core.h
->> @@ -68,6 +68,7 @@ extern int crash_prepare_elf64_headers(struct
->> crash_mem *mem, int need_kernel_ma
->>                          void **addr, unsigned long *sz);
->>   extern int crash_prepare_headers(int need_kernel_map, void **addr,
->>                    unsigned long *sz, unsigned long *nr_mem_ranges);
->> +extern int crash_exclude_core_ranges(struct crash_mem **cmem);
->>     struct kimage;
->>   struct kexec_segment;
->> @@ -88,6 +89,9 @@ extern int kimage_crash_copy_vmcoreinfo(struct
->> kimage *image);
->>   extern unsigned int arch_get_system_nr_ranges(void);
->>   extern int arch_crash_populate_cmem(struct crash_mem *cmem);
->>   extern int arch_crash_exclude_ranges(struct crash_mem *cmem);
->> +extern int arch_crash_exclude_mem_range(struct crash_mem **mem,
->> +                    unsigned long long mstart,
->> +                    unsigned long long mend);
->>     #else /* !CONFIG_CRASH_DUMP*/
->>   struct pt_regs;
->> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
->> index 96a96e511f5a..300d44ad5471 100644
->> --- a/kernel/crash_core.c
->> +++ b/kernel/crash_core.c
->> @@ -287,24 +287,31 @@ unsigned int __weak
->> arch_get_system_nr_ranges(void) { return 0; }
->>   int __weak arch_crash_populate_cmem(struct crash_mem *cmem) { return
->> -1; }
->>   int __weak arch_crash_exclude_ranges(struct crash_mem *cmem) {
->> return 0; }
->>   -static int crash_exclude_core_ranges(struct crash_mem *cmem)
->> +int __weak arch_crash_exclude_mem_range(struct crash_mem **mem,
->> +                    unsigned long long mstart,
->> +                    unsigned long long mend)
->> +{
->> +    return crash_exclude_mem_range(*mem, mstart, mend);
->> +}
->> +
->> +int crash_exclude_core_ranges(struct crash_mem **cmem)
->>   {
->>       int ret, i;
->>         /* Exclude crashkernel region */
->> -    ret = crash_exclude_mem_range(cmem, crashk_res.start,
->> crashk_res.end);
->> +    ret = arch_crash_exclude_mem_range(cmem, crashk_res.start,
->> crashk_res.end);
->>       if (ret)
->>           return ret;
->>         if (crashk_low_res.end) {
->> -        ret = crash_exclude_mem_range(cmem, crashk_low_res.start,
->> crashk_low_res.end);
->> +        ret = arch_crash_exclude_mem_range(cmem,
->> crashk_low_res.start, crashk_low_res.end);
->>           if (ret)
->>               return ret;
->>       }
->>         for (i = 0; i < crashk_cma_cnt; ++i) {
->> -        ret = crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
->> -                          crashk_cma_ranges[i].end);
->> +        ret = arch_crash_exclude_mem_range(cmem,
->> crashk_cma_ranges[i].start,
->> +                           crashk_cma_ranges[i].end);
->>           if (ret)
->>               return ret;
->>       }
->> @@ -331,7 +338,7 @@ int crash_prepare_headers(int need_kernel_map,
->> void **addr, unsigned long *sz,
->>       if (ret)
->>           goto out;
->>   -    ret = crash_exclude_core_ranges(cmem);
->> +    ret = crash_exclude_core_ranges(&cmem);
->>       if (ret)
->>           goto out;
->>   
-> 
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ arch/arm/boot/dts/rockchip/rk3036-evb.dts   | 4 ++--
+ arch/arm/boot/dts/rockchip/rk3036-kylin.dts | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/rockchip/rk3036-evb.dts b/arch/arm/boot/dts/rockchip/rk3036-evb.dts
+index becdc0b664bf..c8100dc4c7ce 100644
+--- a/arch/arm/boot/dts/rockchip/rk3036-evb.dts
++++ b/arch/arm/boot/dts/rockchip/rk3036-evb.dts
+@@ -16,8 +16,6 @@ memory@60000000 {
+ 
+ &emac {
+ 	phy = <&phy0>;
+-	phy-reset-duration = <10>; /* millisecond */
+-	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_xfer>, <&emac_mdio>;
+ 	status = "okay";
+@@ -28,6 +26,8 @@ mdio {
+ 
+ 		phy0: ethernet-phy@0 {
+ 			reg = <0>;
++			reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <10000>;
+ 		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
+index ae2f84a4e922..bc6e6468fcc4 100644
+--- a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
++++ b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
+@@ -102,8 +102,6 @@ &acodec {
+ 
+ &emac {
+ 	phy = <&phy0>;
+-	phy-reset-duration = <10>; /* millisecond */
+-	phy-reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>; /* PHY_RST */
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emac_xfer>, <&emac_mdio>;
+ 	status = "okay";
+@@ -114,6 +112,8 @@ mdio {
+ 
+ 		phy0: ethernet-phy@0 {
+ 			reg = <0>;
++			reset-gpios = <&gpio2 RK_PC6 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <10000>;
+ 		};
+ 	};
+ };
+-- 
+2.34.1
+
 
