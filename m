@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-269515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269516-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4LOeHay/omk+5QQAu9opvQ
-	(envelope-from <devicetree+bounces-269515-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:13:00 +0100
+	id 0av6Ks3Aomlk5QQAu9opvQ
+	(envelope-from <devicetree+bounces-269516-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:17:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E5A31C1E80
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:13:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F8FA1C1EEA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6D632303300B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:12:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 354363048116
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581AB410D3C;
-	Sat, 28 Feb 2026 10:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2554741C2E8;
+	Sat, 28 Feb 2026 10:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JaYhH3br"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OCL+/l+Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B63A12B94;
-	Sat, 28 Feb 2026 10:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001F41B424F;
+	Sat, 28 Feb 2026 10:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772273576; cv=none; b=FLsh1W2lPmsC2QY7lUEmP9exlNa0UuIMLMPTzzh0CmBzSLDME0weIy8s/9YOnzYwnZ1HY3teiHL5T+QkmgT+uInaUjnst1AY6SPMWiEQNch+7MsNgXmizO8T/E+jlMMfbMAqcIfsx9GutpOAu2JFyMnzJmy7jj3nSERZ3vst1m0=
+	t=1772273864; cv=none; b=hEl9/S6pxBrFKMfvlVevyucyZhth6whsierrUXAlxnNCXJX78IPmlfMk/qrKteUUwsnQluxRYELJb1i2aK9srnN/7+c8cbXl7L8XLkednB9fLM3O+3jGEFXj/j2cxdxYQPLWp1DNaSw7yUPKtyYWlZLCQXBIq+ZU4ZxH2eKMtL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772273576; c=relaxed/simple;
-	bh=Wyd/XL1w2AqP4PQ2aLzCjy6EZ0rWFJ6/fVMDwvM4h40=;
+	s=arc-20240116; t=1772273864; c=relaxed/simple;
+	bh=EckrghYgO+qfxkWHzcIKDRTlZk9IpJptkpYgpiRxzR0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZfyYSsdExeWoZMm8vugvcqChOgCOcDWFVosKmo56fMzeg3xpNcdpaqH90ZDSQeun89LqxiNXM2oBrDIrjLijRl9++HGkp+cZgwO9MMSum0oXSjAnDgtcoadgaJAAu2QeynuMSJ2E6f40X2BKcjCt8dF9BDX8M0AhppeX/defJlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JaYhH3br; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F494C116D0;
-	Sat, 28 Feb 2026 10:12:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MsKbPh0xRutk89xyX0EhS17waaRCWRq0rT0HBdEB8Ff+BxH3Q+oS9ctJOEv7QmcUnpgHRNOqwsZhfvW2coXQDvJfKjWGZCGHpf7VfFFag0cyl2Pw48/DiR11tXubRxQVULMNoT7+liHXHTaE77j/Wt+U6W6g5zKbaXLxDxOG/tI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OCL+/l+Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 130C3C19425;
+	Sat, 28 Feb 2026 10:17:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772273575;
-	bh=Wyd/XL1w2AqP4PQ2aLzCjy6EZ0rWFJ6/fVMDwvM4h40=;
+	s=k20201202; t=1772273863;
+	bh=EckrghYgO+qfxkWHzcIKDRTlZk9IpJptkpYgpiRxzR0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JaYhH3brmyBLj65Rz+wBOkADmItRpehvX+EIYcMuIofweofOF2HgKK1EELKXNinW3
-	 WyMdjesIfpSXwb6S/KUfm5fTFrYGIUOU6GpNoR2T3JbiO1ZNQMF1fck/bybH7OM1eU
-	 h4wMwkIlGafCWzVyux3bHtYqPQHYYrOFI/hDXp6UAB+zSWwy92IuzraNXayLws8VIv
-	 4gQvWRba/XEdaxLM7fPSCZu9MxBKOYJ8N/GubCtqVJ2XGVEPGj1ED7cMDk/p6SrEyT
-	 6ogPRJtbnJcmJpvMj/BHPXmY6eLwb9gxUjk/Li41pM0L41yDDtKPxzPE8KuxA4DWL4
-	 5sn4pINItIEtg==
-Date: Sat, 28 Feb 2026 11:12:53 +0100
+	b=OCL+/l+Z6xUpmf+hoGp/Xp5+7kceLNkgzqwP+zsknztiAYQXgOHqlnrfUQDeLZTYL
+	 JTAKnm3DOG7Chc7I3+9RIJRTiLs52JF9/VfSLHmVeg7X6IAADoGbgq3jVJxs0KFHvl
+	 2XXm0+aufa+GdgZExg95q1j4nsVXjvv2Z36OOEfB26l9YtKneVw/3i7j73fTX4zkHy
+	 SwKzl1ipvkiHnItZbVR+Z55kh+9Pqn/Ylefahm8xnqCMSSfGcZlWU8+OJPeDQS1aw3
+	 Wtn4Egk0zndHsvSfIxx+W3fZczQBgBLWz4wp8RVv/EmYY+VNA4btb8i4tKM9/TpevV
+	 v/sDdC3yhP1Yg==
+Date: Sat, 28 Feb 2026 11:17:41 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "ping.gao" <ping.gao@samsung.com>, ulf.hansson@linaro.org, 
-	jh80.chung@samsung.com
-Cc: shawn.lin@rock-chips.com, krzk+dt@kernel.org, robh@kernel.org, 
-	conor+dt@kernel.org, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kwangwon.min@samsung.com, hy50.seo@samsung.com
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: synopsys-dw-mshc: relax clocks
- constraint
-Message-ID: <20260228-pygmy-cricket-of-chemistry-54a9ea@quoll>
-References: <20260228062457.3210099-1-ping.gao@samsung.com>
- <CGME20260228062024epcas5p4a9f901ea58ead972a352cb4546464c1c@epcas5p4.samsung.com>
- <20260228062457.3210099-2-ping.gao@samsung.com>
- <69da7192-e2c5-407c-a8d5-4739d10197f5@kernel.org>
+To: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: power: reset: qcom-pon: Add new
+ compatible PMM8654AU
+Message-ID: <20260228-polite-swine-of-potency-56e61a@quoll>
+References: <20260227-b4-add_pwrkey_and_resin-v3-0-61c5bb2cdda9@oss.qualcomm.com>
+ <20260227-b4-add_pwrkey_and_resin-v3-1-61c5bb2cdda9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,60 +66,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <69da7192-e2c5-407c-a8d5-4739d10197f5@kernel.org>
+In-Reply-To: <20260227-b4-add_pwrkey_and_resin-v3-1-61c5bb2cdda9@oss.qualcomm.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269515-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-269516-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email]
-X-Rspamd-Queue-Id: 0E5A31C1E80
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4F8FA1C1EEA
 X-Rspamd-Action: no action
 
-On Sat, Feb 28, 2026 at 10:44:03AM +0100, Krzysztof Kozlowski wrote:
-> On 28/02/2026 07:24, ping.gao wrote:
-> > From: Ping Gao <ping.gao@samsung.com>
-> > 
-> > In some SoC designs (e.g., certain Samsung Exynos platforms), the Bus
-> > Interface Unit (BIU) and Card Interface Unit (CIU) clocks are tied
+On Fri, Feb 27, 2026 at 06:02:28PM +0530, Rakesh Kota wrote:
+> PMM8654AU is a different PMIC from PMM8650AU, even though both share
+> the same PMIC subtype. Add PON compatible string for PMM8654AU PMIC
+> variant.
 > 
-> Again, no.
-> 
-> Read and respond to previous feedback. It's like third version where you
-> did not do it...
-> 
-> Samsung Exynos platforms have all two clocks. Look at the sources.
+> The PMM8654AU PON block is compatible with the PMK8350 PON
+> implementation, but PMM8654AU also implements additional PON registers
 
-And to clarify before you respond "but my downstream Exynos 999999 has
-one clock": downstream does not exist. We don't care about it. I advise
-to fix your downstream if that's the problem you are having.
+So does that mean that PMM8654AU has 2 address spaces and PMK8350 has
+only one? At least it looks, so I expect fixing the last if:then: - you
+need to drop contains from PMK8350 if clause and add new if:then: for
+PMM8654AU.
 
-If you keep sending the same for sixth time without responding to
-feedback, I might get inpatient and NAK it without giving arguments,
-because I already feel like this is wasting my time.
+Although the binding says "pbs" and here you say "PON".
+
+
+> beyond the baseline. Use the PMM8654AU naming to match the compatible
+> string already present in the upstream pinctrl-spmi-gpio driver, keeping
+> device tree and kernel driver naming consistent.
+
+And all this is partially confusing. This is reset/PON, not SPMI Pinctrl
+GPIO binding.
 
 Best regards,
 Krzysztof
