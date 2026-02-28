@@ -1,225 +1,379 @@
-Return-Path: <devicetree+bounces-269513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269514-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wK/MNpa8omkS5QQAu9opvQ
-	(envelope-from <devicetree+bounces-269513-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:59:50 +0100
+	id APAxBlC9omkS5QQAu9opvQ
+	(envelope-from <devicetree+bounces-269514-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:02:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7001C1D99
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:59:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF771C1DE5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 11:02:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C8389302CE9F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 09:59:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 526343032761
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 10:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7F3396D3D;
-	Sat, 28 Feb 2026 09:59:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZJeE+RtN";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dTmaxdAH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A9B41322E;
+	Sat, 28 Feb 2026 10:02:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E941D5CC9
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 09:59:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF1040FDB9;
+	Sat, 28 Feb 2026 10:02:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772272788; cv=none; b=OPbFTuLZlIR636v9wkL0+e2RuHn+7DZ+bQxfZwBt7yOuAmJskkh0ls/3lqvheC5XDoOLY7uSft+OpVLL4FGezlmtVwnoAMVAy9c+jhgPIEJg2E9CE+oDO2trHN2xjUJhuzO3e0C4NxkJYY0quAAEgBobnpqOxd3nUNyGbAVDtbo=
+	t=1772272936; cv=none; b=tEdiC8jKQ0Pp5ATuKTtqFWEWSKBT4cvW7OfkDhFlT4SFImqOm/+xvxTpXuws+812WODpIGPz0bRFPi+sfVmgtFQNRYzuG7LovYBY9e5J2UwskQMkRZuSnOo76FS43ggi/9dOsfNFDl8E5hRXIfID0eW018FLp2l3lTxzU0WQm9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772272788; c=relaxed/simple;
-	bh=lJ0jJU4tc7DuvZ1i7dNHVS+DrIzvVhKRJn3GLb3Tn1U=;
+	s=arc-20240116; t=1772272936; c=relaxed/simple;
+	bh=gHAYjGuzKIIzMTh9KpW3XkTBBkFCYuilZ6sBOsT0NiE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T7ZOpGUYM8KjR2ym34AUzsFJzIsyiRnuv0p44Pjdu/108Nuh5eVKD0qxpZmK4UpN1xF/fHb/r6st/bAQpidLXjQO7ZhPnkJ1+FogJTOSc3cJ2HIY6t5qSvOIYwjqrc7uW1IZxM0aT57uGMK1XM1uYl1hPYHDAMeYl8zUhsml3b4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZJeE+RtN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dTmaxdAH; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 61S90AEj4137605
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 09:59:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oeUyHl+z+24C+mBajKJ/XFxOl45rVre6JxTCTLkK/jo=; b=ZJeE+RtNNCCleEtV
-	7XKwcIjJ+ZFq9TNiqyPv7kT2DmqXB/ka2Ki0KREGjNabQBFQdhI8ykcz1PO1orsS
-	4MWL3Ycspoccda+v2kuALOOR2mM1l8eTxWsjt2ZCnjlkc3zuKvxJk7VviMR+crAa
-	UFgJVMCUbASkjDu9ACwWd4Mz1S3l2ldXgmH6Tg766S8B3mEaDsn+GVGCKAezAgBj
-	3lPanOjiIDZhYEhFe6F41EBrSwmX8IlMT+fIx7m+7gSAPJzECmdBlJ8k0FgGmDih
-	A3Nza6I9bwsrWW/J8C+KWYqS+EgjDY0IK02djzV5OKKyQsHU7wSbvHx7P4jxweyo
-	dv4LzA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cksf8gqcf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 09:59:46 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8cb3d11b913so2376645485a.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Feb 2026 01:59:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772272786; x=1772877586; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oeUyHl+z+24C+mBajKJ/XFxOl45rVre6JxTCTLkK/jo=;
-        b=dTmaxdAH/vtjMH19pCOlP6rqjXQFTPRNbASo1Sl+vxrn+yLh5V/lVc+bXABsd3p+W0
-         2Q6aZWOfzh6Z+RMhIRksbNqEiyORNNfew8pDn+SgbnzAxo/rCeWWDhj+yDy4I/BgoAQV
-         7d5AiyGcoIJqaf5N+PQSi9+vWzfpXO1wUJHVhRF7pMvOhqQM1BwtVBF0kRNU8scq+9Oc
-         P7my1Z8O+YuisPoBMKkOnOIkVXKOEgqQiH9fP+o++0HET+l6vQkQwzrXaaOoQP8Om/Jp
-         mGQD7xsBKAnmTuqR6b6jV41gMmFx/mhmLcaOUDOQL840LWud0Hc4H8J5Eqj18pb7Drgz
-         vhXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772272786; x=1772877586;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oeUyHl+z+24C+mBajKJ/XFxOl45rVre6JxTCTLkK/jo=;
-        b=OvcMkUBhH0SOfh7mBluo16X4tfn+05e+1RG6RRDJTkXbR666cqHrBbELa03A2L49u6
-         nFzbBddEY4FOw3pn8nvGEHHN0Ca+I8MwyKbwDISGQiSpKFbVmBx6bxfIamwtvukAZlJH
-         jd3lr8JmHNJZNX4d1asl6y3kyiYFASqrH0mWJzZITdqMFqyPihB6Ala93AvpaxI0F3uU
-         j7uBOwNnCRHTQb8OFE4qL+0aC1BxB4N9L+CjS2iJPM8s5DIDqDJ+Lrpmrak3vO6HPEzx
-         RyZhi6p/kZWEPtZZNZuk/LH00TkTfLf2OeKeo8dALnCYyUhs7WVkhDThGi8V67EhHGtc
-         KtWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX8MQLD56laHYFjRAfFkrSqlAoLlTVHRf819+El0XcghJP9JbDruJidoXevNv0VR6vSwZxmjVbWJFkO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJIYqJtQjPu3ik+SQDUNzAC7yTxYgnEsKqMVyZObWs2IVLhsU2
-	JCm5b96fNhiFu8Ck7oS1UZFcmkCsOrS98aja3LLAHu2OrHdBgyedfht/CZ4v/rfRjvayWQw/ZZ6
-	bQIdeXIrcihlnWIYK56eZw6XI/7kRe3EDGUZK6oxW+F8yyCeee5mWBz01oqWEE6KN
-X-Gm-Gg: ATEYQzyEFyfBmviK9MBX3JHm8YOs+Srei5Pv9CCn5Ooa4ovqw05AgpDeWFVDGaLdeHM
-	bq6NGCOb6VMGCooLwZTpAExTDDwUUzdbR8HqfOos2ToPAtE0vhMLSZR5SCJ6Oo7Js3k5oWoS47Y
-	GlT+NehHurak9fNdGyIG0AqBq7Fo6eI9+gqnLl+LnRUlXK3LUi9AbfZ+U5n/Fo82mfuNZbmVD7s
-	s2EWH1RA95PKbSDbWkW62ytNE284q1XMgxgd/c1NuWqo3Yx0BPmpMWmQTpNLIBSDdlGylU1mbrG
-	Usos1Y9AUCHy5PTebltEK+WYJ/dh38KuIXK0Zyyjz2GuIhW9LShtvT9xHS6Z+oPsoUPcmsFl3sZ
-	lFfJnKFhGGErxJFSA9ZH05Yug7kOH31Zy5J3h5yLWs8vDv5pRWlIAwKzW9cgq/davG04uNXpVUP
-	7NTW5Z8NC4XztmKJH+ST8se2UAChJrG0MehR4=
-X-Received: by 2002:a05:620a:280d:b0:8ca:4288:b179 with SMTP id af79cd13be357-8cbc8dc28c9mr707121885a.5.1772272785801;
-        Sat, 28 Feb 2026 01:59:45 -0800 (PST)
-X-Received: by 2002:a05:620a:280d:b0:8ca:4288:b179 with SMTP id af79cd13be357-8cbc8dc28c9mr707119685a.5.1772272785318;
-        Sat, 28 Feb 2026 01:59:45 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a115bc9fb4sm481670e87.23.2026.02.28.01.59.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Feb 2026 01:59:44 -0800 (PST)
-Date: Sat, 28 Feb 2026 11:59:42 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: lemans-evk: Enable the tertiary
- USB controller
-Message-ID: <uwmxnps6b3przlwzoapf4lfmtrhslvvxikiukeoy3edzs5jjd7@m3hcnyayqvmq>
-References: <20260226060835.608239-1-swati.agarwal@oss.qualcomm.com>
- <20260226060835.608239-4-swati.agarwal@oss.qualcomm.com>
- <ogtehltf7onbtwnn7kvkjhjyfoh4zhjltgzq4gf3f3lwoyhkmt@le3lrprfdvgw>
- <CAHz4bYuP6KnfEwvEucoE_50G1-CjhMHQXhxbK+jee1XyCKJDDg@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PJU1Scq0GbQk4u9Jern7WuRhpy6B7uCWZ3XelRzQ74yBwjQIZRnuxjjuftPPyj8j8vbPIueO/zClshB9Q+e/DQL+U6dWd2emXMHLHJ+eME1NhDVoGHVXonSrrSqXz5Ka5X5lPxhNYZBIz/tX2epv9YMuG8g2vTmdRCMsUF+pfr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 69E081516;
+	Sat, 28 Feb 2026 02:02:05 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 24DCF3F73B;
+	Sat, 28 Feb 2026 02:02:07 -0800 (PST)
+Date: Sat, 28 Feb 2026 10:02:04 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Sebin Francis <sebin.francis@ti.com>,
+	Brian Masney <bmasney@redhat.com>, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v7 6/6] clk: scmi: Add i.MX95 OEM extension support for
+ SCMI clock driver
+Message-ID: <aaK9HOMWNCb0wzq_@pluto>
+References: <20251231-clk-ssc-v7-1-v7-0-380e8b58f9e3@nxp.com>
+ <20251231-clk-ssc-v7-1-v7-6-380e8b58f9e3@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHz4bYuP6KnfEwvEucoE_50G1-CjhMHQXhxbK+jee1XyCKJDDg@mail.gmail.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMjI4MDA5MiBTYWx0ZWRfXzEKt4zP8KnYn
- Df+fb86mI5Qa02hUG3fPO84b7K2dj4XVLjc/zMCgiKKIQ87ucOC1mxJj51fWBA8zz6bpbDjNzrj
- 3ZNj/pgLdl+hcVb/c0h8x2/qdsO5GPa9QNmvyOMyZjaRVDZCAL3BjAA0oS3Kro9/uYyYuYVogdA
- 0hLQXIL9lV5YC6F2nNELC26utmK63d0bs4Z3v1yhWoEOJ3SHGLf4iUlGGVmoQd7ckOP9YgWSlqA
- jRZMeyc7GHjgsEEJ0DQCAnJ0x/aui3kwuT0/lv8PtPO7tYSxhzGHmgXvr8ktajq5hg3eV2RA96I
- /yjJZCjd52SUIBnMMwWHd5W6G7WvpDhke6zFavQhwI1wscO6sgd+Zs2QRXTXQn240vVMOhOXbcR
- gJVLgQrP3E22dNmOVm36r6CtUBEAjPC1hUqEAdjfo2dJ51Gy0WBzAYlskitLsRvjXCyuYHc6GlO
- FlZan4jpx7knrpQJVSg==
-X-Proofpoint-ORIG-GUID: JjdVCS3JreK9SalpRBh-ALGn-HkZqNtb
-X-Proofpoint-GUID: JjdVCS3JreK9SalpRBh-ALGn-HkZqNtb
-X-Authority-Analysis: v=2.4 cv=I5dohdgg c=1 sm=1 tr=0 ts=69a2bc92 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=HzLeVaNsDn8A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=EUspDBNiAAAA:8
- a=OU6IiKEG9ziWOZ1dIgkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-02-28_03,2026-02-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0 priorityscore=1501
- adultscore=0 clxscore=1015 phishscore=0 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2602280092
+In-Reply-To: <20251231-clk-ssc-v7-1-v7-6-380e8b58f9e3@nxp.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [0.64 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269513-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269514-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.marussi@arm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.836];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 6A7001C1D99
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:email,ti.com:email]
+X-Rspamd-Queue-Id: 6EF771C1DE5
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 11:26:07AM +0530, Swati Agarwal wrote:
-> On Thu, Feb 26, 2026 at 12:36 PM Dmitry Baryshkov
-> <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> >
-> > On Thu, Feb 26, 2026 at 11:38:35AM +0530, Swati Agarwal wrote:
-> > > Enable the tertiary usb controller connected to micro usb port in OTG mode
-> > > on Lemans EVK platform.
-> > >
-> > > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > > Signed-off-by: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/lemans-evk.dts | 52 +++++++++++++++++++++++++
-> > >  1 file changed, 52 insertions(+)
-> > >
-> > > @@ -132,6 +151,15 @@ platform {
-> > >               };
-> > >       };
-> > >
-> > > +     usb2_vbus: regulator-usb2-vbus {
-> >
-> > What is the name (and the label) for the VBus regulator for the first
-> > connector? It's visible just under your chunk. Why your chunk doesn't
-> > use a similar name?
-> Hi Dmitry,
+On Wed, Dec 31, 2025 at 06:12:53PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> As per Bjorn previous comment on v2 patch, "use supply name as per
-> schematics" so that's the reason I followed that and created a label
-> as per regulator name.
-> For eg:- if the regulator name is vmmc_sdc then label vmmc_sdc:
-> regulator-vmmc-sdc.
-> In my case the regulator name in schematics is usb2_vbus, then the
-> label I used is usb2_vbus: regulator-usb2-vbus .
+>  - Introduce 'clk-scmi-oem.c' to support vendor-specific OEM extensions
+>    for the SCMI clock driver, allows clean integration of vendor-specific
+>    features without impacting the core SCMI clock driver logic.
+>  - Extend 'clk-scmi.h' with 'scmi_clk_oem' structure and related
+>    declarations.
+>  - Initialize OEM extensions via 'scmi_clk_oem_init()'.
+>  - Support querying OEM-specific features and setting spread spectrum.
+>  - Pass 'scmi_device' to 'scmi_clk_ops_select()' for OEM data access.
 
-Then please add a commit, bringing the other VBUS supply into the shape.
-It doesn't look correct to have two VBUS supplies, which are defined
-differently.
+Hi,
 
 > 
-> Regards,
-> Swati
+> Reviewed-by: Sebin Francis <sebin.francis@ti.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/clk/Makefile       |   2 +-
+>  drivers/clk/clk-scmi-oem.c | 103 +++++++++++++++++++++++++++++++++++++++++++++
+>  drivers/clk/clk-scmi.c     |  19 +++++++--
+>  drivers/clk/clk-scmi.h     |  11 +++++
+>  4 files changed, 131 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index cb10156db2a37e1956d84113d1711e23d9d864ab..8e0e03a79f793ffab6c8636b7796c067287e1712 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -95,7 +95,7 @@ obj-$(CONFIG_COMMON_CLK_RP1)            += clk-rp1.o
+>  obj-$(CONFIG_COMMON_CLK_RPMI)		+= clk-rpmi.o
+>  obj-$(CONFIG_COMMON_CLK_HI655X)		+= clk-hi655x.o
+>  obj-$(CONFIG_COMMON_CLK_S2MPS11)	+= clk-s2mps11.o
+> -obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o
+> +obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o clk-scmi-oem.o
+>  obj-$(CONFIG_COMMON_CLK_SCPI)           += clk-scpi.o
+>  obj-$(CONFIG_COMMON_CLK_SI5341)		+= clk-si5341.o
+>  obj-$(CONFIG_COMMON_CLK_SI5351)		+= clk-si5351.o
+> diff --git a/drivers/clk/clk-scmi-oem.c b/drivers/clk/clk-scmi-oem.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..fd81aca7bfca254669ee117ebd51e481a74cdcb4
+> --- /dev/null
+> +++ b/drivers/clk/clk-scmi-oem.c
+> @@ -0,0 +1,103 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * The Vendor OEM extension for System Control and Power Interface (SCMI)
+> + * Protocol based clock driver
+> + *
+> + * Copyright 2025 NXP
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/scmi_imx_protocol.h>
+> +#include <linux/scmi_protocol.h>
+> +
+> +#include "clk-scmi.h"
+> +
+> +#define SCMI_CLOCK_CFG_IMX_SSC			0x80
+> +#define SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK	GENMASK(7, 0)
+> +#define SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK		GENMASK(23, 8)
+> +#define SCMI_CLOCK_IMX_SS_ENABLE_MASK		BIT(24)
+> +
+> +struct scmi_clk_oem_info {
+> +	char *vendor_id;
+> +	char *sub_vendor_id;
+> +	char *compatible;
 
--- 
-With best wishes
-Dmitry
+I suppose different OEM per impl_ver is overkill...and maybe better
+to be trated as a bug if it happens leveraging the Quirk framework..
+
+> +	const void *data;
+> +};
+> +
+> +static int
+> +scmi_clk_imx_set_spread_spectrum(struct clk_hw *hw,
+> +				 const struct clk_spread_spectrum *ss_conf)
+> +{
+> +	struct scmi_clk *clk = to_scmi_clk(hw);
+> +	int ret;
+> +	u32 val;
+> +
+> +	/*
+> +	 * extConfigValue[7:0]   - spread percentage (%)
+> +	 * extConfigValue[23:8]  - Modulation Frequency
+> +	 * extConfigValue[24]    - Enable/Disable
+> +	 * extConfigValue[31:25] - Reserved
+> +	 */
+> +	val = FIELD_PREP(SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK, ss_conf->spread_bp / 10000);
+> +	val |= FIELD_PREP(SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK, ss_conf->modfreq_hz);
+> +	if (ss_conf->method != CLK_SPREAD_NO)
+> +		val |= SCMI_CLOCK_IMX_SS_ENABLE_MASK;
+> +	ret = scmi_proto_clk_ops->config_oem_set(clk->ph, clk->id,
+> +						 SCMI_CLOCK_CFG_IMX_SSC,
+> +						 val, false);
+> +	if (ret)
+> +		dev_warn(clk->dev,
+> +			 "Failed to set spread spectrum(%u,%u,%u) for clock ID %d\n",
+> +			 ss_conf->modfreq_hz, ss_conf->spread_bp, ss_conf->method,
+> +			 clk->id);
+> +
+> +	return ret;
+> +}
+> +
+> +static int
+> +scmi_clk_imx_query_oem_feats(const struct scmi_protocol_handle *ph, u32 id,
+> +			     unsigned int *feats_key)
+> +{
+> +	int ret;
+> +	u32 val;
+> +
+> +	ret = scmi_proto_clk_ops->config_oem_get(ph, id,
+> +						 SCMI_CLOCK_CFG_IMX_SSC,
+> +						 &val, NULL, false);
+> +	if (!ret)
+> +		*feats_key |= BIT(SCMI_CLK_EXT_OEM_SSC_SUPPORTED);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct scmi_clk_oem scmi_clk_oem_imx = {
+> +	.query_ext_oem_feats = scmi_clk_imx_query_oem_feats,
+> +	.set_spread_spectrum = scmi_clk_imx_set_spread_spectrum,
+> +};
+> +
+> +const struct scmi_clk_oem_info info[] = {
+
+Any reason why this cannot be made static too ?
+Given that you just embed it with set_drvdata and then get_drvdata
+back from the main clk driver...
+
+> +	{ SCMI_IMX_VENDOR, SCMI_IMX_SUBVENDOR, NULL, &scmi_clk_oem_imx },
+> +};
+> +
+> +int scmi_clk_oem_init(struct scmi_device *sdev)
+> +{
+> +	const struct scmi_handle *handle = sdev->handle;
+> +	int i, size = ARRAY_SIZE(info);
+> +
+> +	for (i = 0; i < size; i++) {
+> +		if (strcmp(handle->version->vendor_id, info[i].vendor_id) ||
+> +		    strcmp(handle->version->sub_vendor_id, info[i].sub_vendor_id))
+> +			continue;
+> +		if (info[i].compatible &&
+> +		    !of_machine_is_compatible(info[i].compatible))
+> +			continue;
+> +
+> +		break;
+> +	}
+> +
+> +	if (i < size)
+> +		dev_set_drvdata(&sdev->dev, (void *)info[i].data);
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/clk/clk-scmi.c b/drivers/clk/clk-scmi.c
+> index bf85924d61985eb9e596419349eb883e3817de73..1ed2091e3d4a951c8662db4c94dee4b9c98b8326 100644
+> --- a/drivers/clk/clk-scmi.c
+> +++ b/drivers/clk/clk-scmi.c
+> @@ -14,6 +14,8 @@
+>  #include <linux/scmi_protocol.h>
+>  #include <asm/div64.h>
+>  
+> +#include "clk-scmi.h"
+> +
+>  const struct scmi_clk_proto_ops *scmi_proto_clk_ops;
+>  
+>  static unsigned long scmi_clk_recalc_rate(struct clk_hw *hw,
+> @@ -242,6 +244,7 @@ static int scmi_clk_ops_init(struct device *dev, struct scmi_clk *sclk,
+>  static const struct clk_ops *
+>  scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
+>  {
+> +	struct scmi_clk_oem *oem_data = dev_get_drvdata(dev);
+>  	struct clk_ops *ops;
+>  
+>  	ops = devm_kzalloc(dev, sizeof(*ops), GFP_KERNEL);
+> @@ -288,11 +291,15 @@ scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
+>  		ops->set_duty_cycle = scmi_clk_set_duty_cycle;
+>  	}
+>  
+> +	if (oem_data && (feats_key & BIT(SCMI_CLK_EXT_OEM_SSC_SUPPORTED)))
+> +		ops->set_spread_spectrum = oem_data->set_spread_spectrum;
+> +
+>  	return ops;
+>  }
+>  
+>  /**
+>   * scmi_clk_ops_select() - Select a proper set of clock operations
+> + * @sdev: pointer to the SCMI device
+>   * @sclk: A reference to an SCMI clock descriptor
+>   * @atomic_capable: A flag to indicate if atomic mode is supported by the
+>   *		    transport
+> @@ -317,8 +324,8 @@ scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
+>   *	   NULL otherwise.
+>   */
+>  static const struct clk_ops *
+> -scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
+> -		    unsigned int atomic_threshold_us,
+> +scmi_clk_ops_select(struct scmi_device *sdev, struct scmi_clk *sclk,
+> +		    bool atomic_capable, unsigned int atomic_threshold_us,
+>  		    const struct clk_ops **clk_ops_db, size_t db_size)
+>  {
+>  	int ret;
+> @@ -326,6 +333,7 @@ scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
+>  	const struct scmi_clock_info *ci = sclk->info;
+>  	unsigned int feats_key = 0;
+>  	const struct clk_ops *ops;
+> +	struct scmi_clk_oem *oem_data = dev_get_drvdata(&sdev->dev);
+>  
+>  	/*
+>  	 * Note that when transport is atomic but SCMI protocol did not
+> @@ -350,6 +358,9 @@ scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
+>  						 &val, NULL, false);
+>  		if (!ret)
+>  			feats_key |= BIT(SCMI_CLK_DUTY_CYCLE_SUPPORTED);
+> +
+> +		if (oem_data && oem_data->query_ext_oem_feats)
+> +			oem_data->query_ext_oem_feats(sclk->ph, sclk->id, &feats_key);
+>  	}
+>  
+>  	if (WARN_ON(feats_key >= db_size))
+> @@ -407,6 +418,8 @@ static int scmi_clocks_probe(struct scmi_device *sdev)
+>  	clk_data->num = count;
+>  	hws = clk_data->hws;
+>  
+> +	scmi_clk_oem_init(sdev);
+> +
+>  	transport_is_atomic = handle->is_transport_atomic(handle,
+>  							  &atomic_threshold_us);
+>  
+> @@ -438,7 +451,7 @@ static int scmi_clocks_probe(struct scmi_device *sdev)
+>  		 * to avoid sharing the devm_ allocated clk_ops between multiple
+>  		 * SCMI clk driver instances.
+>  		 */
+> -		scmi_ops = scmi_clk_ops_select(sclk, transport_is_atomic,
+> +		scmi_ops = scmi_clk_ops_select(sdev, sclk, transport_is_atomic,
+>  					       atomic_threshold_us,
+>  					       scmi_clk_ops_db,
+>  					       ARRAY_SIZE(scmi_clk_ops_db));
+> diff --git a/drivers/clk/clk-scmi.h b/drivers/clk/clk-scmi.h
+> index 6ef6adc77c836dc2d599ff852cdc941f217ee388..d7f63f36c56d155f728325efd6bcf7fe2585b170 100644
+> --- a/drivers/clk/clk-scmi.h
+> +++ b/drivers/clk/clk-scmi.h
+> @@ -7,6 +7,7 @@
+>  #define __SCMI_CLK_H
+>  
+>  #include <linux/bits.h>
+> +#include <linux/clk-provider.h>
+>  #include <linux/scmi_protocol.h>
+>  #include <linux/types.h>
+>  
+> @@ -19,6 +20,7 @@ enum scmi_clk_feats {
+>  	SCMI_CLK_RATE_CTRL_SUPPORTED,
+>  	SCMI_CLK_PARENT_CTRL_SUPPORTED,
+>  	SCMI_CLK_DUTY_CYCLE_SUPPORTED,
+> +	SCMI_CLK_EXT_OEM_SSC_SUPPORTED,
+>  	SCMI_CLK_FEATS_COUNT
+>  };
+>  
+> @@ -37,4 +39,13 @@ struct scmi_clk {
+>  
+>  extern const struct scmi_clk_proto_ops *scmi_proto_clk_ops;
+>  
+> +struct scmi_clk_oem {
+> +	int (*query_ext_oem_feats)(const struct scmi_protocol_handle *ph,
+> +				   u32 id, unsigned int *feats_key);
+> +	int (*set_spread_spectrum)(struct clk_hw *hw,
+> +				   const struct clk_spread_spectrum *ss_conf);
+> +};
+> +
+> +int scmi_clk_oem_init(struct scmi_device *dev);
+> +
+>  #endif
+>
+
+Other than the above, LGTM.
+
+Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+
+Thanks,
+Cristian
 
