@@ -1,120 +1,150 @@
-Return-Path: <devicetree+bounces-269500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269504-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iE73LAafomko4gQAu9opvQ
-	(envelope-from <devicetree+bounces-269500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 08:53:42 +0100
+	id cMb9DMqfomko4gQAu9opvQ
+	(envelope-from <devicetree+bounces-269504-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 08:56:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C63BC1C146E
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 08:53:41 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F1D1C14ED
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 08:56:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F39B63046EBF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 07:53:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 278C5303DDCC
+	for <lists+devicetree@lfdr.de>; Sat, 28 Feb 2026 07:56:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 488DD2D738A;
-	Sat, 28 Feb 2026 07:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079A739E6D4;
+	Sat, 28 Feb 2026 07:56:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rIfcP+q4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.168.213])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0461C3BFC;
-	Sat, 28 Feb 2026 07:53:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.168.213
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D017A39901C;
+	Sat, 28 Feb 2026 07:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772265219; cv=none; b=PEPvBhReE8F5E4ey0zrVHclWDiNDjiIv8A5Eqi4TZRTP53ilDSe83P54oK1sUNGk7ku1iYa/8U7uykMwe7yk3gM5mPT5mwMV8Ragz8rnvjYCLBk74r7uqG4zCkjLFI3xIxZ8QnNEuevkYz4U6iGcgojVlfgKDNhtWrb/FX7Sb0M=
+	t=1772265411; cv=none; b=DFSwx3cdcK5diiAfgaENm+X3FYNz/CPcCxMme9fkyX2dGI5kEVloCqAbLOWevdJMmN9/VtH2S9u6QhVezgAG3xFTHItjB1gcv9+vLA8p+OIh1Gzprzi7AM/5cKmN8WS5sIa2wjBVgHDhZEljzaBr+eSpFnO1pHvknAq3aQ5uwgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772265219; c=relaxed/simple;
-	bh=YcQaWVETeuorH9WRE8v62/lxkYK2PUPHzqpTlZcKWd4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=eSWNH45DHzIYpIldJopt5Gha6eKLheEOytmswpgoyHh6tIgw5kVQiFybB5iAY9K/qnFwFe2QkvolEqTNz3i7S++YpU7iukK2NFQJPTjZKerYWtZ/cYY/KoarhGIuUI2MmbsWY3jCltADwXT8p3PnqHACSxgP6CZBIKX0KUrI8l4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.168.213
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
- ajax-webmail-app2 (Coremail) ; Sat, 28 Feb 2026 15:53:09 +0800 (GMT+08:00)
-Date: Sat, 28 Feb 2026 15:53:09 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-To: "Bjorn Helgaas" <helgaas@kernel.org>
-Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	robh@kernel.org, p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, shradha.t@samsung.com,
-	krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
-	inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	ouyanghui@eswincomputing.com
-Subject: Re: Re: [PATCH v11 2/2] PCI: eic7700: Add Eswin PCIe host
- controller driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <20260227171554.GA3898780@bhelgaas>
-References: <20260227171554.GA3898780@bhelgaas>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1772265411; c=relaxed/simple;
+	bh=OVzZ4dnEVWocRNtfND2tDhbl7RIBn27b3hByZQ/BmAw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g6NFvNJZc2UWMDcZw4UJSJuZjBp1hPpmuCRD2kOe0U5aVJk51ekcS/CEvbi12opHVe9iYi94KpT+Y6YTWHI7hY7BRAY4EKEzkT+Hw9m9TDD8/LXdkDvLwL6gejyKLCJauORRTJ0CfWvyQzHdKXUffW94lrnflAuoJ2iZoVox/6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rIfcP+q4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 66F6FC116D0;
+	Sat, 28 Feb 2026 07:56:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772265411;
+	bh=OVzZ4dnEVWocRNtfND2tDhbl7RIBn27b3hByZQ/BmAw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=rIfcP+q4k78lkohmaSrtESLBqm/EEuKHZhINLPjyN/U0bpfR8XfFSLJY14SIFbYB0
+	 bmssZxLBf2jiNzARa1Efp2tWweQ8s5MBagKC/jxxaAvLGJHp5ObVHrkyzeQ6CW3+pb
+	 5LXEeW1AQmGrm1v6ACksKjvyCF0srRciycqWHxN6/sATDgKNGtqvgvRqaAa2cCZsud
+	 NSofUhGu5UAOX653MuCQwCJ+Llu0CHCxvaarRO9FVaeMyT4uoTWASWjMwIMb36i1L+
+	 hdUwM88jvhJ9p1pTwvofklrfWN6/8LtN/xrsonSSVI01aiB1Yqibvu4zsEmfT3wjkR
+	 BHmvnT1C4RitQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F7D8FEE4CE;
+	Sat, 28 Feb 2026 07:56:51 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/3] basic devicetree support for Amlogic A9
+Date: Sat, 28 Feb 2026 07:56:13 +0000
+Message-Id: <20260228-a9-baisc-dts-v2-0-47489d5cc1a8@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <28f8d39b.3add.19ca33cb23a.Coremail.zhangsenchuan@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TQJkCgAnPqHlnqJpmGMEAA--.1105W
-X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgEMBmmhx
-	4YVtQAAsg
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ2fomkC/3XMQQ6CMBCF4auQWTumnQiKK+9hWLRlCpMIJS0hG
+ tK7W9m7/F/yvh0SR+EE92qHyJskCXMJOlXgRjMPjNKXBlLUKFI1mhatkeSwXxM6ay0TK+1vCsp
+ liezlfXDPrvQoaQ3xc+ib/q1/oE2jQk2a7KXxbW2uDzO9wiDu7MIEXc75C/aCAGGqAAAA
+X-Change-ID: 20260205-a9-baisc-dts-cbbbe2e01f80
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772265409; l=1030;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=OVzZ4dnEVWocRNtfND2tDhbl7RIBn27b3hByZQ/BmAw=;
+ b=LfbpQ1fdBBhJoJV0uW17gUrr4WPIh//xfGOnTRXHTvsk/AyKgS9It4f9KiyUA4g2mdNfhkwL+
+ 0vq6Q+WUSJ8DPR+KgC0bP5bGvdXPEQt2jdehos09j0lQ8nh42iP5zI+
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269504-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269500-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[eswincomputing.com];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com,einfochips.com];
-	NEURAL_HAM(-0.00)[-0.997];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangsenchuan@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,googlemail.com,baylibre.com,linuxfoundation.org];
 	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,eswincomputing.com:mid,eswincomputing.com:email]
-X-Rspamd-Queue-Id: C63BC1C146E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,amlogic.com:mid,amlogic.com:email,amlogic.com:replyto]
+X-Rspamd-Queue-Id: 14F1D1C14ED
 X-Rspamd-Action: no action
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIHYxMSAyLzJdIFBDSTogZWljNzcwMDogQWRkIEVzd2luIFBD
-SWUgaG9zdCBjb250cm9sbGVyIGRyaXZlcgo+IAo+IE9uIEZyaSwgRmViIDI3LCAyMDI2IGF0IDA3
-OjE4OjA4UE0gKzA4MDAsIHpoYW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29tIHdyb3RlOgo+
-ID4gRnJvbTogU2VuY2h1YW4gWmhhbmcgPHpoYW5nc2VuY2h1YW5AZXN3aW5jb21wdXRpbmcuY29t
-Pgo+ID4gCj4gPiBBZGQgZHJpdmVyIGZvciB0aGUgRXN3aW4gRUlDNzcwMCBQQ0llIGhvc3QgY29u
-dHJvbGxlciwgd2hpY2ggaXMgYmFzZWQgb24KPiA+IHRoZSBEZXNpZ25XYXJlIFBDSWUgY29yZSwg
-SVAgcmV2aXNpb24gNS45NmEuIFRoZSBQQ0llIEdlbi4zIGNvbnRyb2xsZXIKPiA+IHN1cHBvcnRz
-IGEgZGF0YSByYXRlIG9mIDggR1QvcyBhbmQgNCBjaGFubmVscywgc3VwcG9ydCBJTlR4IGFuZCBN
-U0kKPiA+IGludGVycnVwdHMuCj4gCj4gRG9lcyAiNCBjaGFubmVscyIgbWVhbiAiNCBsYW5lcyIs
-IGkuZS4sIHdoYXQgd2UgdHlwaWNhbGx5IGNhbGwgYSAieDQKPiBsaW5rIj8KCkhpIEJqb3JuLAoK
-IjQgY2hhbm5lbHMiIGluZGVlZCByZWZlcnMgdG8gIjQgbGFuZXMiLCBpbiB0aGUgbmV4dCB2ZXJz
-aW9uIG9mIHRoZSBwYXRjaCwgaQp3aWxsIHVwZGF0ZSB0aGUgY29tbWVudHMsIGNoYW5naW5nICI0
-IGNoYW5uZWxzIiB0byAiNCBsYW5lcyIuIEFwYXJ0IGZyb20gdGhpcyAKaXNzdWUsIGRvIHlvdSBo
-YXZlIGFueSBvdGhlciBzdWdnZXN0aW9ucz8gTWF5IEkgc2VuZCB0aGUgbmV4dCBwYXRjaD8KCktp
-bmQgcmVnYXJkcywKU2VuY2h1YW4=
+Add the new A9 SoC/board device tree and related bindings.
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v2:
+- Move default interrupt-parent into dtsi.
+- Link to v1: https://lore.kernel.org/r/20260205-a9-baisc-dts-v1-0-1212b46f95a7@amlogic.com
+
+---
+Xianwei Zhao (3):
+      dt-bindings: arm: amlogic: add A311Y3 support
+      dt-bindings: serial: amlogic,meson-uart: Add compatible string for A9
+      arm64: dts: add support for A9 based Amlogic BY401
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   6 +
+ .../bindings/serial/amlogic,meson-uart.yaml        |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../boot/dts/amlogic/amlogic-a9-a311y3-by401.dts   |  40 +++++++
+ arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        | 129 +++++++++++++++++++++
+ 5 files changed, 177 insertions(+)
+---
+base-commit: e3194dfb772304a1b7ca3bcfccacefec3468b7bf
+change-id: 20260205-a9-baisc-dts-cbbbe2e01f80
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
