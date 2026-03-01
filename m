@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-269725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269726-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EFd5KV9GpGlecAUAu9opvQ
-	(envelope-from <devicetree+bounces-269725-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:59:59 +0100
+	id kPLYIZdGpGlecAUAu9opvQ
+	(envelope-from <devicetree+bounces-269726-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 15:00:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8011D00EE
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:59:58 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331A81D00F8
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 15:00:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8B37C300530A
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 13:59:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 64C14300B580
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 14:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315F131715F;
-	Sun,  1 Mar 2026 13:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3AE32B9A1;
+	Sun,  1 Mar 2026 14:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qyrc9MqN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJHetkCo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D36F2D592C;
-	Sun,  1 Mar 2026 13:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC312C0F84;
+	Sun,  1 Mar 2026 14:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772373592; cv=none; b=RHU8YQWPjoEugqIdUvuPFtDyBd1wOLJVFFtuqyVO5bgOZpddjHGsbIn98TTAAbPRxsgCpaXURTo+XVJvYCqXQs3WRAC6dyyiEFc3b+krWcFMaEW5UNFxzxgPsfY86p8nIaM6fJvDZ6IcuSOWUN8u336eaWSUHZM9mAo542FlrPs=
+	t=1772373652; cv=none; b=quieOMbwGUjDpnn26kBtAesI7WFGsMYHLtUuWREF1Pk96Go51ASAn33g4jmNe/tCj3eIlvjmvy9cTFVBLma5vBAqauPXv2SyzMc+Lq7ysEmE8/7Ezb++t2x0D7isZvhoLfkv7+u334rbYZyF+Rhp/qmNqKVJFY+SXUxhtCahJVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772373592; c=relaxed/simple;
-	bh=kZ81LTEIWDX5qMRjETGl+EdCtjtT/+JxR1+V3ftul+c=;
+	s=arc-20240116; t=1772373652; c=relaxed/simple;
+	bh=9FkwOMEB58b/EdwlM6D8D482qRf4ibRXEkNY4oawu0E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hsG/yO0kv9FP3Z9uOJ9XsMWCXrLVxjlZoseKbAUGeNWiR8wcfIoK/MMe5oJbJucBRhII1gGMnzRnT+j7cdpE8wmWbrsqfRyNzfr1ZYibE0KiksMLz4A0eopRrXCMewLUsNiZtQEl5zJcNSK+6wkfRwUSN89wfvyquH7lCKKGh1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qyrc9MqN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B480DC116C6;
-	Sun,  1 Mar 2026 13:59:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=c6h1Wo0QurUXHclPVDoRifB5AH2QzWKypZ1sJSIY5xvgDWUIuzJq639FgZxOnFBOyHnHxz+Se9PKwcqGjaiC/JVbz1UWCE/4C/HOhv8pxBWBx7N6ETwFDQWG6cfMNjum0vVuzdnbpGx+KfLP3tSVbV2XrXtKLoxWlqi5ShEzYPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJHetkCo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADE24C116C6;
+	Sun,  1 Mar 2026 14:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772373591;
-	bh=kZ81LTEIWDX5qMRjETGl+EdCtjtT/+JxR1+V3ftul+c=;
+	s=k20201202; t=1772373651;
+	bh=9FkwOMEB58b/EdwlM6D8D482qRf4ibRXEkNY4oawu0E=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qyrc9MqNrbW5NX4b3d4tyxM4RijPSDDW6VEcM/H3VcFahKc5FNP/TYbBCZI/Vj61b
-	 uYIfcS9WGZMv4UzfeAjHuObtbAs9i5f524OGyKS7MRXEhiQeI8IZAqYtDQQsHlxUvI
-	 chYGFyw5JtgE5+Wf/xM5+isoj4fv2q/1LQzEQQV0ODhhCt7EP0ViShcHHIUP75i4Go
-	 +rcV603BBGN14exfUaAoM31wZrPxheWAyUJvcU5vPlNJGlrrjqBq1nxTqetccjRsRj
-	 npmZ3jTDgNNOvam/63M0mzsNe9HxzcKnUKUIV515iim46Yzff+Gt4R70bvtw71cpu5
-	 yprCVnVPf8+jg==
-Message-ID: <d902cd11-7509-4173-ba67-d9ef48379f85@kernel.org>
-Date: Sun, 1 Mar 2026 14:59:46 +0100
+	b=gJHetkCoFjG4yMpQmnkb1n0kzrYPTDGPWjy9ypzB/jO+hvGqzB7/XeE540N84Kxy/
+	 KWv+CODohWCoGcp48HV5Pi7KlfnZSMx0G3cKpN3GwxAbeSr2fyquAjm4e5FNw8TM+X
+	 ZnSWxg2UBVTS19BW/oJwsZnX81NQOXgW35lCPtYgdXQY+I7aMQjHsyRzMPuAvClTdr
+	 FOV5nufSDJpyPYZ6/Vvh3ayPOKc6iswd5Y6mLKPHZrpZ0sShoVmkd0158O8dSJC74r
+	 rzdD8qtJiXeLBT3wbkSlYMmglL71HxefCvPtqKbA/XYcSG53eWRM5kLnb1rqbSwZtN
+	 yCV3gAX5/nS8A==
+Message-ID: <9739f859-6acc-47b6-bbe0-d7d9195487a3@kernel.org>
+Date: Sun, 1 Mar 2026 15:00:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,7 +53,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] MAINTAINERS: Update Axiado reviewer
+Subject: Re: [PATCH v3 1/2] arm64: dts: axiado: Use lowercase hex
 To: Karthikeyan Mitran <kmitran@axiado.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Prasad Bolisetty <pbolisetty@axiado.com>,
@@ -62,9 +62,9 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Linus Walleij <linus.walleij@linaro.org>, Drew Fustini <fustini@kernel.org>,
- Harshit Shah <hshah@axiado.com>
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 References: <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-0-a3b095989823@axiado.com>
- <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-2-a3b095989823@axiado.com>
+ <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-1-a3b095989823@axiado.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,7 +110,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-2-a3b095989823@axiado.com>
+In-Reply-To: <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-1-a3b095989823@axiado.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
@@ -119,18 +119,18 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269725-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269726-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
@@ -140,21 +140,26 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: AD8011D00EE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,axiado.com:email]
+X-Rspamd-Queue-Id: 331A81D00F8
 X-Rspamd-Action: no action
 
 On 27/02/2026 01:31, Karthikeyan Mitran wrote:
-> From: Prasad Bolisetty <pbolisetty@axiado.com>
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 > 
-> Adding 3 new maintainers Prasad,Tzu-Hao, and Karthikeyan
-> also adding a group reviewer entry for review coverage.
+> The DTS code coding style expects lowercase hex for values and unit
+> addresses.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Reviewed-by: Tzu-Hao Wei <twei@axiado.com>
+> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
+> Signed-off-by: Karthikeyan Mitran <kmitran@axiado.com>
 
-Same comments as before. You are doing much more in the patch which is
-not explained at all.
+It is not a big deal, but I just don't understand what are you doing
+here with my patch. I sent it, it got reviewed, so why are you posting
+it again for review?
 
-You received comments, so respond or implement them, not just send the same.
-
+What is the point of this posting?
 
 Best regards,
 Krzysztof
