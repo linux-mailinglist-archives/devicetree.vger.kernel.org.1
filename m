@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-269758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269760-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKJCE/q9pGn1qQUAu9opvQ
-	(envelope-from <devicetree+bounces-269758-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 23:30:18 +0100
+	id aMZaFwO+pGn1qQUAu9opvQ
+	(envelope-from <devicetree+bounces-269760-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 23:30:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40DAB1D1DB1
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 23:30:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2015B1D1DEE
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 23:30:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DE1B43004D8C
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 22:30:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 254C730160F9
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 22:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1902F6577;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72E6137648D;
 	Sun,  1 Mar 2026 22:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ROvCFj24"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nt2aEYsQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F01375AC8;
-	Sun,  1 Mar 2026 22:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE6E375AD5;
+	Sun,  1 Mar 2026 22:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772404211; cv=none; b=O+USWlaEzHSnnjVIj64narIpZKaDu7aO+AE3s+jYVlLFclfKfw1tcUWmrZdQtN0tuYOquNatIzLFgCZafqc4B4LKUntVh1DeZ3+rCUDyeUVVuen3k9/FbLIqH6G2XPdE0OtDkzTo0h3RCs9lv6zpH4N779uQBegFBcJUgJmd9Cg=
+	t=1772404211; cv=none; b=D8LDB/bmxqz/y45tiC+R+Ka6j3ktfF9JVzBQh5aa3k0JJT4l0EeQU+3fmL1flcjV45gdOCfZSYqlDYjqCoZh3To8ANXTza7PZDVCdLGMUpMz5BSgt6isFERtatotYvnOTwxToH4n22I9t1mVLes9NjvwrJeAKzuzpXk4kPRsnmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1772404211; c=relaxed/simple;
-	bh=52pKGNN4TNlSrHich7NbfKBBk9fwTK/SXR3zBV3FT3E=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NIWKdIVVEdjnfS4R/VPakkr4zvw/YQY0q0REXVbk2QQKIUJFCCIOBhcCvChB3diiV5qt1sHnCdO/OuX+GBkTG7S37XB9CNIx4DVwAUXKEncp9VDeOcIuFK4NgwxJlnno+ieU+WZSN1/23uDat5AjueoDNvmeTOrIN0RrBtiZvVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ROvCFj24; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B69A8C2BC87;
+	bh=1VjOIV+JF8y9xJlqX2nPiZnivzjhq0ajPuN1W3AoOaw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=QD3dXI+Aom5s11fXFIa/CxDXFCsmeMLUzhidI+UfVBrGWYun5mXm2vaDf/2YC8zZWq6nml9G3zt3jjJeNm6dYNd1N+ZeDHa64j3LCe1Xv8pT5ztwYia2eU+Xtp993rgcF+fU84COnOLdrmFOOKcO1c0XGGjvR1O13HavtXjKX8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nt2aEYsQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DAC0FC2BCB3;
 	Sun,  1 Mar 2026 22:30:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1772404210;
-	bh=52pKGNN4TNlSrHich7NbfKBBk9fwTK/SXR3zBV3FT3E=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=ROvCFj24eYksrgSGv4Y2fMx5OGeZGdeOF6yGfdP/1Vye99AynKPQHjlCWuvixq7Kj
-	 Ro3aq4IxBugIb2dBmWmenH6SiBWkDgwxI6f23VNhsyuDOfxIklI6CiTTt/8gFOXCLQ
-	 OCsrLjPOT+vakrTiaRiD+1mcgo4uOlmR3GhjlqDdqeDdXCiVYkP6apZSt3cx1j8Lw8
-	 qvgXP+bcBvVD8qPsL1U9qL8bsu6nzhJJHBc0aS59aeEKz7Gc06nmgoBTUSAp0d2YNz
-	 0cqpA9LpPSEJvZ6krrgF6fIe8I3cZ+iOJx1xdB/zuqj7utZ38xiKrF3jLZxtl3u0OF
-	 TNhnMA5+rOtJg==
+	bh=1VjOIV+JF8y9xJlqX2nPiZnivzjhq0ajPuN1W3AoOaw=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=Nt2aEYsQNDMYdgrb5ZuHS23bUQyM/opF99p8RhsrrAjaLNXgGaPdC0dNqW63QuWL4
+	 Kz94nEdFDoqSAjAWETtuhqib6PT66i10q68JLZamWjz5eJHNTaGkwQY4BLxUPW1NdE
+	 6wFcam4SvgseKfNJ5jkQqQhhu0UcAdk23SwmRKTipeDdfUxqmYnfn7xYMhxUnWokUd
+	 pa6jbci3JpqHLDiLPQKFQV4bOp6WMbz5bRT1GDGHCZLMmVtaJ8gfCAoTP39RniDd1m
+	 5Ntrb+GKJSkCXjlYDsVAH5qeafjdfKXf+PuGulDjvMDZa34d73daKR1kPpJIoDFmst
+	 WDiYxKd90+5KQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 971F9FD0076;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B1893FD0078;
 	Sun,  1 Mar 2026 22:30:10 +0000 (UTC)
 From: Paul Adam via B4 Relay <devnull+adamp.posteo.de@kernel.org>
-Subject: [PATCH v3 0/3] Add wiko-chuppito devictree
-Date: Sun, 01 Mar 2026 23:29:16 +0100
-Message-Id: <20260301-wiko-chuppito-v3-0-9b36a2a7aed5@posteo.de>
+Date: Sun, 01 Mar 2026 23:29:17 +0100
+Subject: [PATCH v3 1/3] dt-bindings: vendor-prefixes: add WIKO SAS
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,11 +58,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALy9pGkC/3XMQQ6CMBCF4auQrq1pp1gLK+9hXBQYZGJCmxarh
- nB3Cyti4vK95PtnFjEQRlYXMwuYKJIb81CHgrWDHe/IqcubgQAtQJ74ix6Ot8PTe5oct2hsX5p
- SoT6zbHzAnt5b73rLe6A4ufDZ8kmu779SklzwClE3ptJCW3HxLk7ojh2ytZRgp0H+ashaK6Ub2
- UhQptrrZVm+Q6YRKugAAAA=
-X-Change-ID: 20260215-wiko-chuppito-ae8af4843e67
+Message-Id: <20260301-wiko-chuppito-v3-1-9b36a2a7aed5@posteo.de>
+References: <20260301-wiko-chuppito-v3-0-9b36a2a7aed5@posteo.de>
+In-Reply-To: <20260301-wiko-chuppito-v3-0-9b36a2a7aed5@posteo.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>
@@ -71,11 +69,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  phone-devel@vger.kernel.org, Paul Adam <adamp@posteo.de>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772404208; l=2007;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772404208; l=846;
  i=adamp@posteo.de; s=20260215; h=from:subject:message-id;
- bh=52pKGNN4TNlSrHich7NbfKBBk9fwTK/SXR3zBV3FT3E=;
- b=G5ivJgRS1w6zpqGb+Rwwp67XJVl/Qfvv9Uy/aAIO2PJrFCb4Jnsy258R0mJmsr474HiaXltNw
- lpYskhgGTCaADjkVbJ4iE3dGeujLXlKhNy5Yh29yPcZltW1mEsuGYzl
+ bh=p71bdLWPgJx8YbZwRJN3OjH5dKZ2Biw/XlIKc8Hj8V8=;
+ b=1LHDjfbVlTUvyGfWI8i3GzuYp8uMOPpAK4SX6qW1yvLQ3/sMQml1QIe7Ze+hVljzuIs3+0tlv
+ e7BQLcG68EKDEGdYMXdJVYVzKyBDLoicIdFw5QBJIet1c6h2g23Pq8q
 X-Developer-Key: i=adamp@posteo.de; a=ed25519;
  pk=mtrPhSn7htywc4S5zrKNrWM6laAdfnaJzIs0BDiCyAs=
 X-Endpoint-Received: by B4 Relay for adamp@posteo.de/20260215 with
@@ -88,12 +86,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269758-lists,devicetree=lfdr.de,adamp.posteo.de];
+	TAGGED_FROM(0.00)[bounces-269760-lists,devicetree=lfdr.de,adamp.posteo.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
@@ -107,78 +105,39 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 40DAB1D1DB1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2015B1D1DEE
 X-Rspamd-Action: no action
 
-Add bindings vor Wiko SAS and wiko-chuppito
-which are used in the devicetree.
+From: Paul Adam <adamp@posteo.de>
 
-Then introduce an initial device tree for Wiko PULP 4G.
-Includes support for:
-- UART
-- USB (no OTG)
-- Internal storage
-- MicroSD
-- Volume keys + Power button
-- Touchscreen
-- Backlight
-- Accelerometer: Invensense MPU6880
-- Magnetometer: Asahi Kasei AK09911
-- Hall sensor: Rohm BU52021HFV
-- Proximity sensor
-- Vibrator
-- Earpiece
-- Microphone 1
-- Headphones
-- Wifi
-- Bluetooth
-- GPU
+Wiko is a french smartphone company: https://wiko.com
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Paul Adam <adamp@posteo.de>
 ---
-Changes in v3:
-- add a short description of the device to the patch adding the binding
-- removed unused backlight pinctrl state
-- readd gpio prefix for some nodes, instead remove it from the labels
-- add newline before status properties
-- reorder nodes alphabetically
-- rename rmi4 node to touchscreen
-- Link to v2:
-https://lore.kernel.org/r/20260221-wiko-chuppito-v2-0-6336b1b12389@posteo.de
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v2:
-- changed company website link to wiko.com (which is just the chinese
-version, changing the language redirects to wikomobile.com)
-- fix minor dts styling issues
-- drop gpio prefix for some nodes
-- confirmed stk3310 to be correct
-- remove l6: regulator-always-on
-- remove gcc node
-- Link to v1:
-https://lore.kernel.org/r/20260215-wiko-chuppito-v1-0-9ee6b89606a0@posteo.de
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index edbce100cae4..187089eef983 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1819,6 +1819,8 @@ patternProperties:
+     description: Wi2Wi, Inc.
+   "^widora,.*":
+     description: Beijing Widora Technology Co., Ltd.
++  "^wiko,.*":
++    description: Wiko SAS
+   "^wiligear,.*":
+     description: Wiligear, Ltd.
+   "^willsemi,.*":
 
----
-Paul Adam (3):
-      dt-bindings: vendor-prefixes: add WIKO SAS
-      dt-bindings: arm: qcom: add wiko,chuppito compatible string
-      arm64: dts: qcom: msm8916-wiko-chuppito: add initial devicetree
-
- Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts | 356 +++++++++++++++++++++
- 4 files changed, 360 insertions(+)
----
-base-commit: cee73b1e840c154f64ace682cb477c1ae2e29cc4
-change-id: 20260215-wiko-chuppito-ae8af4843e67
-
-Best regards,
 -- 
-Paul Adam <adamp@posteo.de>
+2.53.0
 
 
 
