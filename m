@@ -1,162 +1,246 @@
-Return-Path: <devicetree+bounces-269713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YEcFHHo0pGmnaQUAu9opvQ
-	(envelope-from <devicetree+bounces-269713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 13:43:38 +0100
+	id ED8HE0A2pGldagUAu9opvQ
+	(envelope-from <devicetree+bounces-269714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 13:51:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C900A1CFAB2
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 13:43:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7001CFB3F
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 13:51:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 214E0300DF79
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 12:42:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8194B300DA44
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 12:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7AC53246E1;
-	Sun,  1 Mar 2026 12:42:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7E0277035;
+	Sun,  1 Mar 2026 12:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A1386cb/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TEjnJze7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77E5BE54B
-	for <devicetree@vger.kernel.org>; Sun,  1 Mar 2026 12:42:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163AC430B97;
+	Sun,  1 Mar 2026 12:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772368928; cv=none; b=SbaTJq0RJag+2yQkFKl5BW5LJ1dhfvxOcdHB/DeCCw9mp0U7SpZB3KwLjTDJ9Lr/K9zsjBJe8W1ljyhrTf2qxvhzcF94HQlLNSFXS0e/APUhLiRoXUuk1VkP2VH0rQXvXTeSBJhLLc+2Ge1BZ7sEi0DE98wQTgnW9uN8wo5Mbtg=
+	t=1772369468; cv=none; b=H9FEKlJDBi2T5WGYdKEp03z7H1enRrktIoDGwsFCrrO9ET1iuvUgh3RFh443we3mUFZs35LtPC4fiCJ5h0VU/whhipPvSe9fWoeVS2YPw05PGAEX0xAg2Y+jnJAmktkqVoFjieQVIwcZoTgUj/xTv1ox6zPL3WQbV7YCovHcGnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772368928; c=relaxed/simple;
-	bh=68TTOitMU7bAIrRMPZbF/qMfnanWwr3FiJEjmQRSAQs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Xvo3jM/pmcgVasR37n2ijzvRrfhibFJl0AmuqO2sWH/9HhTXQg+jsXnTsYHWD8EvvhCvOfUYF1nVvADEwkw0KduIX7S+bXwP3nGvSB7UU12PZRaXfB5BkwJ+glMOLCDP8Q8Q+ofwE77gNwEP0fnkiFAT4fR7LpE77RDLRi+A42I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A1386cb/; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-56aa0de09e0so1159075e0c.2
-        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2026 04:42:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772368925; x=1772973725; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5okoGK4HOYT70Ij2zZZqq2yIlW9aGSZvFtA+KNZ5d8Q=;
-        b=A1386cb/bqhjF4TAw0HqZgPEEXRj3fw2G4MaaP4l0MCdDzWG+dR49LaaDDaBqaPEEt
-         8k8COA3gtFJjyc3M0j2JzuIVOFUONj/DIuQnTkxadK9OT1D206+YwWhZlWfG6Ll4PRNq
-         ly5Z9wHx1TNXpP5Qg8p9mhuZyJe7miKHn7zFhuZVd9faz1usB3yxLt0SoLtk6N0m9/Of
-         +4ketFOXVRCgO7BglVjJ/gWb5w0UQehRcVlHgHvFCvkaqJ9KG5v/UpliOsFGvKBJ6sJG
-         wDOqTzvV0Dn0RTd8KhTiUejDWlCWw2bLRk6fHI47NN+SOBh7M/g+KS1gl8EMQFZ3fl0o
-         yr7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772368925; x=1772973725;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5okoGK4HOYT70Ij2zZZqq2yIlW9aGSZvFtA+KNZ5d8Q=;
-        b=aVvXlExtqH60hSqyyPxvWOBVCXVE90bGvMU4JgneyB8mu6g4FPUNGy0opGZjb8N3cb
-         zIMtQVhNQboaQS58nIyCG/O5h6AbgCIJyQZtREI8mhpNweJtQISgBzgbYWPCPV8FMCPr
-         auoA8OuMM3A8+MYfGejrjlNo2LzINUBQfKcyX3JBAjJs5wJd2utZeCd4helbniEqVgEI
-         GTsOEHDEyP3pycn5bX3W/ic6Ao1kikvmUW9rWg4miMzhZkfczV0rMQ/nne05Dg76Ww3A
-         8KEYrLRcH/aWVnsJq4+ylZEm/+NpLSIRV1kX5WnCWqB3xlX5y7rEwFq/le4k08g+kLj8
-         WJeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWSXtIvAscvL104yVGXpy4M9QS32L3UAy5uu71HxgNKXZ+MJb/gQo6Jbex7NxKHUeoDzvwUR0whzZiY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgkwvoyyfC82Kcyk1szIRz495RjIJrW275aYHUwVJ9sU5CGKDs
-	iRcHdLciOAnUM7IPT4Y573tvz2nVrDLtX28xrEAs163/RH2brOaPSrde2z2tXw==
-X-Gm-Gg: ATEYQzz35YqpxmT9Tw1MfsU3vG90xHItwIWuyjyvOQRiHsmACHAEoJIXyuMWTqgPi1K
-	kUJ1iHbGYD8QGuFSAebdBdmbJ6YvZUm0YzMy8JcEZz4iVTgtisSQQ5UbWEnGgvdGzaSylNs90oc
-	qj+xF+SM1F9oho3+svsJA5ADBDTwDhLgmfBpTHg9MXff4tMB7EMt59/4RIFNUa1FynYEd1hn9yU
-	cHPKgh0tuHUK9tYp19C/2Ar8vdbpn0U1Cu/9niVTIUxus3FmVOsZ5su9MdLviJaVfXcgBYS0aVP
-	pN2SoaBoA/+g3QllfVyplie8kJxN8y2slWRZ0c2DHpo6uFEppfKjVGE48lcHHRrkf47OjuU2r25
-	OroCCb08MpE5Tq/psYtqVT/zra5GLufl3PTkIicWpv5aF9SKI8E/EPYaPvluKOCo5yaA4F3H/Wp
-	odWEvqf8kgW7nTfnNNGBumNEdT6d2r6GHW6EDkwEd6F8hUmdkYO3x+S6ouAThHHe+NCRQ=
-X-Received: by 2002:a05:6102:418d:b0:5f5:6dc0:e50f with SMTP id ada2fe7eead31-5ff324b58f1mr3169537137.21.1772368925396;
-        Sun, 01 Mar 2026 04:42:05 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:1b3:a802:8875:2168:1b6:3f93:373f])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ff1e845aabsm10495317137.7.2026.03.01.04.42.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Mar 2026 04:42:04 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH] ARM: dts: rockchip: Fix RTC compatible on rk3288-phycore-rdk
-Date: Sun,  1 Mar 2026 09:41:56 -0300
-Message-Id: <20260301124156.473862-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1772369468; c=relaxed/simple;
+	bh=hiaRyu2SX1TbEgbGhCvcmjdGPKQq2hv7PnIpBVdQ+SI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=omSDcZfyf+AZon7HNyyDL1Zx7O9ezFXxtNNkZwTjeiZTveySSipnqYwEWlYMSNhGc+ggvlVOH5+1AxhtspLb0fVfkIrWTN1XaQfefzAQybEIs1khng/gw3u7Sn7NxTuzDDup4rc6GkroMrkFo196DY+O/oYXXz4ofpBqcgsfb7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TEjnJze7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77213C116C6;
+	Sun,  1 Mar 2026 12:51:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772369467;
+	bh=hiaRyu2SX1TbEgbGhCvcmjdGPKQq2hv7PnIpBVdQ+SI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=TEjnJze7K11rtqes0ILKN1Q50RSOPLJRlFakp0WH/ZqEGtDOGq46Nd/AZLFLAQ7BB
+	 oBOHn6KWj23iiT3ps/c+X1RS3Dj1CNKFffvb1TwObZ9nYmwV32GZk7CN5RhrUwzXWH
+	 InXMITEzRt2t0ztbfYGdvlyImlkG+xMaV4KTnAmAxMxlhyKCBPxTnvl6H09tTGn48R
+	 oRZAJ2rtwAPP5ZEvRctNqFRacrEgRqbJ9/JYwEhJ63NsjHCQPKFAQet8061VEe6o7y
+	 k70leV1cU1jJesWDBAV2Uyf3SKhWqC/tg70wepnHO6x15+CY7WMpkgouQ2+QPgMQYK
+	 Sd8Bdyygmz8FA==
+Date: Sun, 1 Mar 2026 12:50:57 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
+ Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH RFC 1/8] dt-bindings: iio: frequency: add ad9910
+Message-ID: <20260301125057.3b06fd0a@jic23-huawei>
+In-Reply-To: <20260220-ad9910-iio-driver-v1-1-3b264aa48a10@analog.com>
+References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
+	<20260220-ad9910-iio-driver-v1-1-3b264aa48a10@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-269714-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269713-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,0.0.0.64:email,0.0.0.68:email]
-X-Rspamd-Queue-Id: C900A1CFAB2
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: BD7001CFB3F
 X-Rspamd-Action: no action
 
-According to st,m41t80.yaml, the correct compatible for the RV4162 RTC
-is "microcrystal,rv4162".
+On Fri, 20 Feb 2026 16:46:05 +0000
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
-Fix it accordingly.
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> DT-bindings for AD9910, a 1 GSPS DDS with 14-bit DAC. It includes
+> configurations for the reference clock path, DAC current, reset and basic
+> GPIO control.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Hi Rodrigo,
 
-This fixes the following dt-schema warning:
+A few comments from me inline.
 
-rtc@68: failed to match any schema with compatible: ['rv4162']
+Thanks,
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Jonathan
 
-diff --git a/arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts b/arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts
-index 10ce0554d4fc..a878a2632de0 100644
---- a/arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts
-+++ b/arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts
-@@ -94,7 +94,7 @@ adc@64 {
- 	};
- 
- 	i2c_rtc: rtc@68 {
--		compatible = "rv4162";
-+		compatible = "microcrystal,rv4162";
- 		reg = <0x68>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&i2c_rtc_int>;
--- 
-2.34.1
+> ---
+>  .../bindings/iio/frequency/adi,ad9910.yaml         | 236 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 +
+>  2 files changed, 243 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.yaml
+> new file mode 100644
+> index 000000000000..43b21d1428ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,ad9910.yaml
+
+> +  adi,pll-vco-select:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 5
+> +    description: |
+> +      VCO frequency range selection (0-5). When not specified and the PLL
+> +      is enabled, the VCO range is automatically selected based on the
+> +      computed system clock frequency. Typical VCO frequency ranges are:
+
+Given this automatic mode. Why would need to override it?
+
+> +      - Range 0: 370 MHz to 510 MHz (Auto-selected when <= 465 MHz)
+> +      - Range 1: 420 MHz to 590 MHz (Auto-selected when > 465 MHz and <= 545 MHz)
+> +      - Range 2: 500 MHz to 700 MHz (Auto-selected when > 545 MHz and <= 650 MHz)
+> +      - Range 3: 600 MHz to 880 MHz (Auto-selected when > 650 MHz and <= 790 MHz)
+> +      - Range 4: 700 MHz to 950 MHz (Auto-selected when > 790 MHz and <= 885 MHz)
+> +      - Range 5: 820 MHz to 1050 MHz (Auto-selected when > 885 MHz)
+> +
+> +  adi,charge-pump-current-microamp:
+> +    minimum: 212
+> +    maximum: 387
+> +    default: 387
+> +    description:
+> +      PLL charge pump current in microamps. Only applicable when the PLL
+> +      is enabled. The value is rounded to the nearest supported step.
+> +
+> +  adi,refclk-out-drive-strength:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [ disabled, low, medium, high ]
+> +    default: disabled
+> +    description:
+> +      Reference clock output (DRV0) drive strength. Only applicable when
+> +      the PLL is enabled.
+> +
+> +  adi,reference-div2-enable:
+> +    type: boolean
+> +    description:
+> +      Enable the reference clock input divider. When enabled, the input
+> +      reference frequency is halved before deriving the system clock.
+> +      This is only applicable when the PLL is bypassed.
+Often for these they can be derived from what the desired output
+frequencies are. There tends to be a right answer for any combination on
+input clocks and output frequency so we don't normally need them
+in DT. If there is a reason we do here, needs more explanation.
+
+> +
+> +  adi,inverse-sinc-enable:
+> +    type: boolean
+> +    description:
+> +      Enable the inverse sinc filter that compensates for the sinc roll-off
+> +      of the DAC output. When it is enabled, the filter introduces up to 3 dB
+> +      of insertion loss.
+
+We probably need to improve our userspace filter controls for this one.
+Why would it need to be in DT?  Maybe we even just decide to always
+enable this one despite the attenuation.  I'm not sure how the term
+insertion loss applies to a filter being enabled or not.
+
+> +
+> +  adi,sine-output-enable:
+> +    type: boolean
+> +    description:
+> +      Select sine wave output from the DDS core. When not set, the
+> +      output is a cosine wave.
+
+That sounds like a userspace thing probably represented as a phase
+offset.
+
+> +
+> +  adi,sync-clk-disable:
+> +    type: boolean
+> +    description:
+> +      Disable the SYNC_CLK output pin. SYNC_CLK runs at one quarter
+> +      of the system clock frequency.
+> +
+> +  adi,pdclk-disable:
+> +    type: boolean
+> +    description:
+> +      Disable the parallel data clock (PDCLK) output. PDCLK runs at
+> +      one quarter of the system clock frequency.
+> +
+> +  adi,pdclk-invert:
+> +    type: boolean
+> +    description:
+> +      Invert the polarity of the PDCLK output.
+
+Others have commented on these as clock providers. I think that
+will make more sense.
+
+> +
+> +  adi,tx-enable-invert:
+> +    type: boolean
+> +    description:
+> +      Invert the polarity of the TX_ENABLE input pin.
+
+It's an input, so I assume you are referring to some chip control
+that allows us to change what is expected on this pin from
+active high to active low or similar?
+
+Is this hooked up to the backend fpga signal and that has some
+fixed output polarity?
+
+> +
+> +  adi,dac-output-current-microamp:
+> +    minimum: 8640
+> +    maximum: 31590
+> +    default: 20070
+> +    description:
+> +      DAC full-scale output current in microamps.
+
+Needs an explanation of why this is in DT.
+
+
 
 
