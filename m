@@ -1,182 +1,426 @@
-Return-Path: <devicetree+bounces-269718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269719-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wKE6LC88pGlnawUAu9opvQ
-	(envelope-from <devicetree+bounces-269718-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:16:31 +0100
+	id aIpwFTs9pGlnawUAu9opvQ
+	(envelope-from <devicetree+bounces-269719-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:20:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 503801CFDA7
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E588B1CFE63
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:20:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4898A3014842
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 13:16:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 793E8300E3D6
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 13:20:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7365932470E;
-	Sun,  1 Mar 2026 13:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249F8328243;
+	Sun,  1 Mar 2026 13:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uVJl5Jwe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nwRCF3Ru"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BF1715539A;
-	Sun,  1 Mar 2026 13:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DDA1CD1E4;
+	Sun,  1 Mar 2026 13:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772370989; cv=none; b=b2OV366Wr9kxvDjQ4/rYzjYE5Se206kFS66WMByJXiEtVOCyyLi8NHkAseTXsKIq9qokC2EH4tFQKsu5vmqXj8wc2g5F7BiXumHSiU/n+GPPovi0S4jQ3k6PyXQege6Ve3Tfw+HnPwEhh1Hcg02NT0k1+3s4ystaQ4l2psq5xto=
+	t=1772371215; cv=none; b=mB7wgEW72gvoft2q4LvumCn2/OUCeULVP5VmNUNUQ9pDX2Gi/VG3mfagzjqrTQYZkNznetOsyD1ZDC4Io77gkwe+vJcSTBtApzUjtzHXlqqoXTTIIikxl1iHSuR+7jxMwjMYadFNdA7gHczr1AVFUflUcZrPrEIoj/3wTO4pffQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772370989; c=relaxed/simple;
-	bh=FGfeqjtECVNzxbooKpgWV4xdf4FqAp8dxDgzYrwxQ1E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GCdsQnT3HGZK0g9VqnTNXkA9Xwr3diH7EMeAbuIR8ulgxIWi1+DZo2VE05hrVBp5AiTg6U3aQNBsc0/nGj5saHyjq/pgpoIuiQjyH5e4LnERjuOMwLiy/mU8W4ZsAHXzTA2mVGZTPtiy0hTSUJ2f1LmCyU43DO70v1uhYVRHkqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uVJl5Jwe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BAC4C116C6;
-	Sun,  1 Mar 2026 13:16:25 +0000 (UTC)
+	s=arc-20240116; t=1772371215; c=relaxed/simple;
+	bh=gpngj2HAvgyPNEXXX+2KPhZl8mqWYg7VMQ7T7RLeJmg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lACTSzV0hdSK9I2JlK2/rY0cH+q9bWyDKURp6YlYMFARe8QcX33kAZcZOEOoB5Kkw4xxYy8KWZIjDHNXQ3AS6w9kUnq9/cEn6zhhUgFLp+i5TMKmAKeMP11VstyQFgHqDRLDyHNNDLxxGH08ItMGB6h7cx0iC+JbrbY0gbDQd+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nwRCF3Ru; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3EBFC116C6;
+	Sun,  1 Mar 2026 13:20:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772370988;
-	bh=FGfeqjtECVNzxbooKpgWV4xdf4FqAp8dxDgzYrwxQ1E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uVJl5JweAHk3F8qVPzWzHy9hiqFoqeni5NUhs7WZO3lScnfPeh6/DXoFhJahvjwWx
-	 hmFBv6Wr5hR77iUKvuB9CBl8z5pjki8yUnj9XSku/wFKygYxZ7fmWBDTYwJw+DU1RS
-	 3aCPP2cqEDTOyfQ9s2kWCK9vWS0Tr9THn3LhJ9r+CBqcTtweEZK9LtKMkhVCmaIKCX
-	 fGyv7nPFfphrQliEQquj5VF6AwwAhoJCMWgKGvf8NSEmLrvkuCl7bes2Wjuqc2wuLA
-	 F2VkRdsS2dYp807zfxkH220dxyZPmrvVf0orA0rzpm2f/oOtJ5zbmEkKi7UWWluKmY
-	 swg85UGJVSIDw==
-Message-ID: <76f707b7-ff2a-43e1-9bba-d3efd801c58a@kernel.org>
-Date: Sun, 1 Mar 2026 14:16:23 +0100
+	s=k20201202; t=1772371214;
+	bh=gpngj2HAvgyPNEXXX+2KPhZl8mqWYg7VMQ7T7RLeJmg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=nwRCF3RuqMYgxOOjzW7PtA67uVM2RPBz7aQGn6SYo7oBhTsB8kwjEeT0zOubQjrZm
+	 hzEck+QTJfhUirpVrO7tEiTSkxcjHf+M+iNTGhl9Uz3P+GopPzOyDanue8OnEXc2cv
+	 KL12eC4Jj6/aCPmKTNsk8mKKQhP7JDMogSJwEr+mEfAiI7ZHiBC5nm7gKHRwMeuaME
+	 WoZKW9YkxBN1ZtEtHJuUXIQztNlD6uDLRLZj+hvKQiPoSIJCbsEsedTIFr4SIM9AkP
+	 +o/rkYsV6I2GW5Yatc5GvCMYkKb1NEcRHZu9O4uriJECd91b89tLoGZ3liX/n9wePW
+	 H7XDYlxlL2NQQ==
+Date: Sun, 1 Mar 2026 13:20:04 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp
+ Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH RFC 2/8] iio: frequency: ad9910: initial driver
+ implementation
+Message-ID: <20260301132004.3e00a53d@jic23-huawei>
+In-Reply-To: <20260220-ad9910-iio-driver-v1-2-3b264aa48a10@analog.com>
+References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
+	<20260220-ad9910-iio-driver-v1-2-3b264aa48a10@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: clock: qcom,sm6115-dispcc: Define
- MDSS resets
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Val Packett <val@packett.cool>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Adam Skladowski <a39.skl@gmail.com>,
- linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260228204638.11705-1-val@packett.cool>
- <20260228204638.11705-2-val@packett.cool>
- <20260301-sophisticated-quizzical-serval-ccbf8b@quoll>
- <uqfdlsgc3ct23hgpul7l5towiry3p2ouneuaikbzi7x5h6hxy4@5l2hhc2m5t6l>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <uqfdlsgc3ct23hgpul7l5towiry3p2ouneuaikbzi7x5h6hxy4@5l2hhc2m5t6l>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269718-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269719-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[packett.cool,kernel.org,baylibre.com,gmail.com,vger.kernel.org,lists.sr.ht];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 503801CFDA7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E588B1CFE63
 X-Rspamd-Action: no action
 
-On 01/03/2026 14:14, Dmitry Baryshkov wrote:
-> On Sun, Mar 01, 2026 at 12:52:57PM +0100, Krzysztof Kozlowski wrote:
->> On Sat, Feb 28, 2026 at 05:41:27PM -0300, Val Packett wrote:
->>> Add the missing defines for MDSS resets, which are necessary to reset
->>> the display subsystem in order to avoid issues caused by state left over
->>> from the bootloader.
->>>
->>> While here, align comment style with other SoCs.
->>>
->>> Fixes: 38557c6fc077 ("dt-bindings: clock: add QCOM SM6115 display clock bindings")
->>
->> IMO this is still not fix. Missing feature in original posting is not a
->> bug, it's just incomplete posting which is in general accepted.
->>
->> Your commit msg tries to explain the bug and I see nothing relevant to
->> this binding. From that explanation I see nothing wrong in mentioned
->> fixed commit.
->>
->> Please drop fixes.
+On Fri, 20 Feb 2026 16:46:06 +0000
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > 
-> Here we have an interesting situation. Patches for the bindings and for
-> the clock driver are not fixes. The DT patch is a fix, because MDSS /
-> DPU can misbehave when switching from the bootloader configuration to
-> the running system.
+> Add the core AD9910 DDS driver infrastructure with single tone mode
+> support. This includes SPI register access, profile management via
+> GPIO pins, PLL/DAC configuration from firmware properties, and
+> single tone frequency/phase/amplitude control through IIO channels.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-If these are not fixes, then they should not carry a tag claiming they
-are fixes.
+Fairly superficial review below.
 
-Best regards,
-Krzysztof
+Obviously lots of open questions on this driver but I'm still
+trying to get a basic understanding on what is here.
+
+Thanks,
+
+Jonathan
+
+
+
+> diff --git a/drivers/iio/frequency/ad9910.c b/drivers/iio/frequency/ad9910.c
+> new file mode 100644
+> index 000000000000..82b817c05975
+> --- /dev/null
+> +++ b/drivers/iio/frequency/ad9910.c
+> @@ -0,0 +1,931 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * AD9910 SPI DDS (Direct Digital Synthesizer) driver
+> + *
+> + * Copyright 2026 Analog Devices Inc.
+> + */
+
+> +
+> +/* Register addresses */
+> +#define AD9910_REG_CFR1			0x00
+> +#define AD9910_REG_CFR2			0x01
+> +#define AD9910_REG_CFR3			0x02
+> +#define AD9910_REG_AUX_DAC		0x03
+> +#define AD9910_REG_IO_UPDATE_RATE	0x04
+> +#define AD9910_REG_FTW			0x07
+> +#define AD9910_REG_POW			0x08
+> +#define AD9910_REG_ASF			0x09
+> +#define AD9910_REG_MULTICHIP_SYNC	0x0A
+> +#define AD9910_REG_DRG_LIMIT		0x0B
+> +#define AD9910_REG_DRG_STEP		0x0C
+> +#define AD9910_REG_DRG_RATE		0x0D
+> +#define AD9910_REG_PROFILE0		0x0E
+> +#define AD9910_REG_PROFILE1		0x0F
+> +#define AD9910_REG_PROFILE2		0x10
+> +#define AD9910_REG_PROFILE3		0x11
+> +#define AD9910_REG_PROFILE4		0x12
+> +#define AD9910_REG_PROFILE5		0x13
+> +#define AD9910_REG_PROFILE6		0x14
+> +#define AD9910_REG_PROFILE7		0x15
+> +#define AD9910_REG_RAM			0x16
+> +
+> +#define AD9910_REG_NUM_CACHED		0x16
+
+> +
+> +#define AD9910_REG_PROFILE(x)		(AD9910_REG_PROFILE0 + (x))
+> +#define AD9910_REG_HIGH32_FLAG		0x100
+> +#define AD9910_REG_HIGH32_MSK		GENMASK_ULL(63, 32)
+> +#define AD9910_REG_LOW32_MSK		GENMASK_ULL(31, 0)
+
+I'd rather see the GENMASK_ULL inline for these so it is really obvious
+what is going on.
+
+
+> +struct ad9910_state {
+> +	struct spi_device *spi;
+> +	struct clk *refclk;
+> +
+> +	struct gpio_desc *gpio_pwdown;
+> +	struct gpio_desc *gpio_update;
+> +	struct gpio_descs *gpio_profile;
+> +
+> +	/* cached registers */
+> +	union {
+> +		u64 val64;
+> +		u32 val32;
+> +		u16 val16;
+> +	} reg[AD9910_REG_NUM_CACHED];
+> +
+> +	/*
+> +	 * Lock for accessing device registers and state variables.
+Single line comment should be fine here.
+
+> +	 */
+> +	struct mutex lock;
+> +
+> +	struct ad9910_data data;
+> +	u8 profile;
+> +
+> +	/*
+> +	 * DMA (thus cache coherency maintenance) requires the transfer
+> +	 * buffers to live in their own cache lines.
+> +	 */
+> +	u8 buf[AD9910_SPI_MESSAGE_LEN_MAX] __aligned(IIO_DMA_MINALIGN);
+> +};
+
+
+> +static inline int ad9910_spi_read(struct ad9910_state *st, u8 reg, size_t len)
+> +{
+> +	st->buf[0] = AD9910_SPI_READ | (reg & AD9910_SPI_ADDR_MASK);
+
+Use FIELD_PREP() for that reg & ... as then we don't have to care about the
+shift of that mask (which I assume is 0).
+
+> +	return spi_write_then_read(st->spi, &st->buf[0], 1,
+
+I'd use a pair of buffers.  Tiny one for rx and the buf you have already for the
+tx.  As you are using spi_write_then_read() neither has to be dma safe
+(will be bounced anyway).  So the tx buffer can be on the stack.
+I'm not that keen on the rx value having to be extracted from the storage
+in st->buf[1] etc by the caller. I think it would be more elegant
+to copy it out in here.
+
+
+> +				   &st->buf[AD9910_SPI_DATA_IDX], len);
+> +}
+> +
+> +static inline int ad9910_spi_write(struct ad9910_state *st, u8 reg, size_t len,
+> +				   bool update)
+> +{
+> +	int ret;
+> +
+> +	st->buf[0] = reg & AD9910_SPI_ADDR_MASK;
+> +	ret = spi_write(st->spi, st->buf, AD9910_SPI_DATA_IDX + len);
+
+The buffers are small so you can just use spi_write_then_read() here with
+no need for DMA safe buffers (rx length can be 0).
+
+
+> +	if (!ret && update)
+> +		return ad9910_io_update(st);
+> +
+> +	return ret;
+> +}
+> +
+> +#define AD9910_REG_READ_FN(nb)						\
+> +static inline int ad9910_reg##nb##_read(struct ad9910_state *st,	\
+> +					u8 reg, u##nb * data)		\
+> +{									\
+> +	int ret;							\
+> +									\
+> +	ret = ad9910_spi_read(st, reg, sizeof(*data));			\
+> +	if (ret)							\
+> +		return ret;						\
+> +									\
+> +	*data = get_unaligned_be##nb(&st->buf[AD9910_SPI_DATA_IDX]);	\
+
+with the suggested split of the buffer storage above (into tx and rx)
+this can then be aligned data.
+
+I'm not that keen on this set of macros but a triple regmap solution isn't
+really clean either.
+
+> +	return ret;							\
+> +}
+> +
+> +AD9910_REG_READ_FN(16)
+> +AD9910_REG_READ_FN(32)
+> +AD9910_REG_READ_FN(64)
+
+> +
+> +#define AD9910_EXT_INFO(_name, _ident, _shared) { \
+> +	.name = _name, \
+> +	.read = ad9910_ext_info_read, \
+> +	.write = ad9910_ext_info_write, \
+> +	.private = _ident, \
+> +	.shared = _shared, \
+> +}
+For me this macro doesn't feel worthwhile. I'd rather see the assignments below
+even if it takes a few more lines.
+
+> +
+> +static const struct iio_chan_spec_ext_info ad9910_shared_ext_info[] = {
+> +	AD9910_EXT_INFO("profile", AD9910_PROFILE, IIO_SHARED_BY_TYPE),
+
+This needs documentation as new ABI. That will make it easier to discuss
+how this might otherwise be done.
+
+Something in Documentation/ABI/testing/sysfs-bus-iio-ad9910
+
+
+> +	AD9910_EXT_INFO("powerdown", AD9910_POWERDOWN, IIO_SHARED_BY_TYPE),
+> +	{ },
+No trailing comma as it terminates this array.
+
+> +};
+
+
+> +static int ad9910_reg_access(struct iio_dev *indio_dev,
+> +			     unsigned int reg,
+> +			     unsigned int writeval,
+> +			     unsigned int *readval)
+> +{
+> +	struct ad9910_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +	u64 tmp64;
+> +	u32 tmp32;
+> +	u16 tmp16;
+> +	bool high32 = !!(reg & AD9910_REG_HIGH32_FLAG);
+
+I'd use FIELD_GET() but not really important.
+
+This splitting 64 bit registers in two for the debugfs read/write interface
+needs to be documented somewhere.
+
+> +
+> +	reg &= ~AD9910_REG_HIGH32_FLAG;
+> +	if (reg >= AD9910_REG_RAM)
+> +		return -EINVAL;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	switch (reg) {
+> +	case AD9910_REG_DRG_LIMIT:
+> +	case AD9910_REG_DRG_STEP:
+> +	case AD9910_REG_PROFILE0:
+> +	case AD9910_REG_PROFILE1:
+> +	case AD9910_REG_PROFILE2:
+> +	case AD9910_REG_PROFILE3:
+> +	case AD9910_REG_PROFILE4:
+> +	case AD9910_REG_PROFILE5:
+> +	case AD9910_REG_PROFILE6:
+> +	case AD9910_REG_PROFILE7:
+> +		if (readval) {
+> +			ret = ad9910_reg64_read(st, reg, &tmp64);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			if (high32)
+> +				*readval = upper_32_bits(tmp64);
+> +			else
+> +				*readval = lower_32_bits(tmp64);
+> +		} else {
+> +			tmp64 = st->reg[reg].val64;
+> +			if (high32)
+> +				FIELD_MODIFY(AD9910_REG_HIGH32_MSK, &tmp64, writeval);
+> +			else
+> +				FIELD_MODIFY(AD9910_REG_LOW32_MSK, &tmp64, writeval);
+> +
+> +			return ad9910_reg64_write(st, reg, tmp64, true);
+> +		}
+> +		break;
+> +	case AD9910_REG_POW:
+> +		if (!readval)
+> +			return ad9910_reg16_write(st, reg, writeval, true);
+> +
+> +		ret = ad9910_reg16_read(st, reg, &tmp16);
+> +		if (ret < 0)
+> +			return ret;
+> +		*readval = tmp16;
+> +		break;
+> +	default:
+> +		if (!readval)
+> +			return ad9910_reg32_write(st, reg, writeval, true);
+> +
+> +		ret = ad9910_reg32_read(st, reg, &tmp32);
+> +		if (ret < 0)
+> +			return ret;
+> +		*readval = tmp32;
+> +		break;
+> +	}
+> +
+> +	return ret;
+> +}
+
+> +
+> +static int ad9910_probe(struct spi_device *spi)
+> +{
+> +	struct reset_control *dev_rst, *io_rst;
+> +	struct gpio_desc *io_rst_gpio;
+> +	struct device *dev = &spi->dev;
+> +	struct iio_dev *indio_dev;
+> +	struct ad9910_state *st;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +	st->spi = spi;
+> +
+> +	spi_set_drvdata(spi, indio_dev);
+
+I'm not immediately spotting where this is used. If it is only needed
+after some later patch, bring it in there.
+
+> +
+> +	st->refclk = devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(st->refclk))
+> +		return dev_err_probe(dev, PTR_ERR(st->refclk),
+> +				     "Failed to get reference clock\n");
+
+...
+
+> +
+> +static const struct spi_device_id ad9910_id[] = {
+> +	{"ad9910", 0},
+> +	{}
+	{ "ad9910" },
+	{ }
+
+Both because that's the preferred formatting for IIO and because
+it's consistent with the of_device_id table below.
+
+> +};
+> +MODULE_DEVICE_TABLE(spi, ad9910_id);
+> +
+> +static const struct of_device_id ad9910_of_match[] = {
+> +	{ .compatible = "adi,ad9910" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ad9910_of_match);
+>
 
