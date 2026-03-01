@@ -1,166 +1,189 @@
-Return-Path: <devicetree+bounces-269726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPLYIZdGpGlecAUAu9opvQ
-	(envelope-from <devicetree+bounces-269726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 15:00:55 +0100
+	id +HiTD75GpGlecAUAu9opvQ
+	(envelope-from <devicetree+bounces-269727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 15:01:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331A81D00F8
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 15:00:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 958801D00FF
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 15:01:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 64C14300B580
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 14:00:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 36854300B067
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 14:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3AE32B9A1;
-	Sun,  1 Mar 2026 14:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9905331220;
+	Sun,  1 Mar 2026 14:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJHetkCo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cGXTTNyB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC312C0F84;
-	Sun,  1 Mar 2026 14:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0C6330D23;
+	Sun,  1 Mar 2026 14:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772373652; cv=none; b=quieOMbwGUjDpnn26kBtAesI7WFGsMYHLtUuWREF1Pk96Go51ASAn33g4jmNe/tCj3eIlvjmvy9cTFVBLma5vBAqauPXv2SyzMc+Lq7ysEmE8/7Ezb++t2x0D7isZvhoLfkv7+u334rbYZyF+Rhp/qmNqKVJFY+SXUxhtCahJVw=
+	t=1772373688; cv=none; b=uBrG2uzLnE9iqmpnooyfSaWoJLlcyW0QrWj+sDDoAoSOsme/7JM8Nz7m5uXhDljJf9ZwMuhYVUTwRgmrMER41ALWjWz0RI4dm/mvEdAbKKPH76ffPXas5wJs6AhiJ41uJyuALwNN08QOjMzj8ivVUwH0/uy+5+VD710YIj+1FZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772373652; c=relaxed/simple;
-	bh=9FkwOMEB58b/EdwlM6D8D482qRf4ibRXEkNY4oawu0E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c6h1Wo0QurUXHclPVDoRifB5AH2QzWKypZ1sJSIY5xvgDWUIuzJq639FgZxOnFBOyHnHxz+Se9PKwcqGjaiC/JVbz1UWCE/4C/HOhv8pxBWBx7N6ETwFDQWG6cfMNjum0vVuzdnbpGx+KfLP3tSVbV2XrXtKLoxWlqi5ShEzYPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJHetkCo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADE24C116C6;
-	Sun,  1 Mar 2026 14:00:48 +0000 (UTC)
+	s=arc-20240116; t=1772373688; c=relaxed/simple;
+	bh=UkBj1fdmtvPjwtZegWWzCtYjCqUCWuBNOkweq8/Mwi4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rzYhxs6xqC9SBP2PGaerlvAppZIXoICnqkUfYX8oW2FrteXZfMnBye9ZWIEU0OVwsMbEerZ1AoDKSHN9Qed9/XBKTUxJiYF5bui86IoKtDl48V+kIi2Mz+0m/HdIOCcZl9mADTOvg9fQRQokcg16u6oFWG1rdT9HpEHSFt2g1JQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cGXTTNyB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E186C116C6;
+	Sun,  1 Mar 2026 14:01:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772373651;
-	bh=9FkwOMEB58b/EdwlM6D8D482qRf4ibRXEkNY4oawu0E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gJHetkCoFjG4yMpQmnkb1n0kzrYPTDGPWjy9ypzB/jO+hvGqzB7/XeE540N84Kxy/
-	 KWv+CODohWCoGcp48HV5Pi7KlfnZSMx0G3cKpN3GwxAbeSr2fyquAjm4e5FNw8TM+X
-	 ZnSWxg2UBVTS19BW/oJwsZnX81NQOXgW35lCPtYgdXQY+I7aMQjHsyRzMPuAvClTdr
-	 FOV5nufSDJpyPYZ6/Vvh3ayPOKc6iswd5Y6mLKPHZrpZ0sShoVmkd0158O8dSJC74r
-	 rzdD8qtJiXeLBT3wbkSlYMmglL71HxefCvPtqKbA/XYcSG53eWRM5kLnb1rqbSwZtN
-	 yCV3gAX5/nS8A==
-Message-ID: <9739f859-6acc-47b6-bbe0-d7d9195487a3@kernel.org>
-Date: Sun, 1 Mar 2026 15:00:46 +0100
+	s=k20201202; t=1772373688;
+	bh=UkBj1fdmtvPjwtZegWWzCtYjCqUCWuBNOkweq8/Mwi4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cGXTTNyBmnlKyu44XrDMcP6siXQEcE1rTkKz44S352nCoKVYzDHTizYoQYkdPaQv7
+	 Tdc2cXxNwYr0PLkwc2wA9iRwLyk2LNzHCmLr1WfErPDg+MSpZGpF0jUmB/Iccm4hln
+	 UKVi/T4tlUzyzAaDFLxxoC+WgQdVPwPyD7al/qmb5gieOo/yrAqDwapzRI5WufVhL5
+	 AXYHoJI+CB0uj7IeiJ7bYqvfZAie0z0Fn5A547Fhp+3QOOIdjmJhgx/0wux4FM0YBe
+	 I1/IYSYfL/mjQMq26y7UsuJYo8je+pofw9d6n3UydO7IaajkA17cj4LYar2gxH5itN
+	 CjQ9MCqPspwDA==
+Date: Sun, 1 Mar 2026 14:01:20 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Lv Zheng <lv.zheng@linux.spacemit.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Tomasz Jeznach <tjeznach@rivosinc.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	James Clark <james.clark@linaro.org>, Yixun Lan <dlan@kernel.org>,
+	Jingyu Li <joey.li@spacemit.com>, Zong Li <zong.li@sifive.com>,
+	Yaxing Guo <guoyaxing@bosc.ac.cn>, iommu@lists.linux.dev,
+	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/8] dt-bindings: iommu: Add spacemit/t100 features
+Message-ID: <20260301-acclimate-suburb-fc46da7e0cea@spud>
+References: <cover.1772289741.git.lv.zheng@linux.spacemit.com>
+ <D8CE6E5B1001D797+a6f36da0272ac18fff2a992976b1defc3bb01af6.1772289741.git.lv.zheng@linux.spacemit.com>
+ <177231592262.848068.18080490567217057666@spud>
+ <CAB7A310CE95B577+5f5c0825-25dd-4035-9316-db940c00216b@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] arm64: dts: axiado: Use lowercase hex
-To: Karthikeyan Mitran <kmitran@axiado.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prasad Bolisetty <pbolisetty@axiado.com>,
- Tzu-Hao Wei <twei@axiado.com>, Axiado Reviewers <linux-maintainer@axiado.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Linus Walleij <linus.walleij@linaro.org>, Drew Fustini <fustini@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-0-a3b095989823@axiado.com>
- <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-1-a3b095989823@axiado.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-1-a3b095989823@axiado.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6IVfBrCiv9PlDrY6"
+Content-Disposition: inline
+In-Reply-To: <CAB7A310CE95B577+5f5c0825-25dd-4035-9316-db940c00216b@linux.spacemit.com>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269726-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269727-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[33];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,axiado.com:email]
-X-Rspamd-Queue-Id: 331A81D00F8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 958801D00FF
 X-Rspamd-Action: no action
 
-On 27/02/2026 01:31, Karthikeyan Mitran wrote:
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
-> The DTS code coding style expects lowercase hex for values and unit
-> addresses.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Reviewed-by: Tzu-Hao Wei <twei@axiado.com>
-> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
-> Signed-off-by: Karthikeyan Mitran <kmitran@axiado.com>
 
-It is not a big deal, but I just don't understand what are you doing
-here with my patch. I sent it, it got reviewed, so why are you posting
-it again for review?
+--6IVfBrCiv9PlDrY6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-What is the point of this posting?
+On Sun, Mar 01, 2026 at 11:48:37AM +0800, Lv Zheng wrote:
+> On 3/1/2026 5:58 AM, Conor Dooley wrote:
+> > On Sat, 28 Feb 2026 22:44:49 +0800, Lv Zheng <lv.zheng@linux.spacemit.c=
+om> wrote:
+> > > Adds device tree bindings for SpacemiT T100 specific features by
+> > > introducing spacemit,t100 compatible. T100 contains distributed IOATC=
+s,
+> > > each of which exposes pmiv interrupt.
+> > >=20
+> > > Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+> > > Signed-off-by: Jingyu Li <joey.li@spacemit.com>
+> >=20
+> > Patch content here is fine, but the signoff chain on this patch is not
+> > right. What did Jingyu do? You're author and submitter so either Jingyu
+> > did nothing and should be removed, or is a co-developer which requires
+> > attribution via the co-developed-by tag. If the latter, their signoff
+> > should be before yours (the submitter is always last).
+> >=20
+> > pw-bot: changes-requested
+>=20
+> She is responsible for the common HPM part, and I just gave my comments to
+> help to improve the quality of that implementation.
+> I was just focusing on enabling and maintaining the T100 specific feature=
+s.
+>=20
+> Our patches will go each other's local repository, leaving such tracks. T=
+hat
+> means the patch from me is Reviewed-and-tested-by her.
+> And I'm responsible for sending the whole patchset for upstreaming.
 
-Best regards,
-Krzysztof
+Then you need to either fix your email setup (because it's not inserting
+=46rom: Jingyu Li <joey.li@spacemit.com>) so that she is marked as the
+author or actually set her to the author in git if you haven't.
+Currently it looks like this when applied:
+commit 872978c875731be43e84bec38798cb8ecd42b7a0
+Author: Lv Zheng <lv.zheng@linux.spacemit.com>
+Date:   Sat Feb 28 22:44:49 2026 +0800
+
+    dt-bindings: iommu: Add spacemit/t100 features
+   =20
+    Adds device tree bindings for SpacemiT T100 specific features by
+    introducing spacemit,t100 compatible. T100 contains distributed IOATCs,
+    each of which exposes pmiv interrupt.
+   =20
+    Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+    Signed-off-by: Jingyu Li <joey.li@spacemit.com>
+
+In both cases, you need to change the order of signoffs so that yours is
+last as the submitter.
+
+--6IVfBrCiv9PlDrY6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaRGlAAKCRB4tDGHoIJi
+0mn2AP9rkEy4Ug5UediDg3aHRB/C9s3CSKAV8D0oiZ4Ym/UFnAD/UGK6en/VYMcZ
+uBeeFSlzBPwP3I39ikzedY+nhp68sQE=
+=VAxN
+-----END PGP SIGNATURE-----
+
+--6IVfBrCiv9PlDrY6--
 
