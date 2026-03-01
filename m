@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-269651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269652-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4LMbHhqZo2neHgUAu9opvQ
-	(envelope-from <devicetree+bounces-269651-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:40:42 +0100
+	id uL4NJvCao2kwIAUAu9opvQ
+	(envelope-from <devicetree+bounces-269652-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:48:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 212381CB4CE
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:40:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E08A1CBD3B
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:48:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A9EDD301A500
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:40:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 297BB30A02EC
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B5B72FD7BE;
-	Sun,  1 Mar 2026 01:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6E86277C9D;
+	Sun,  1 Mar 2026 01:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jLSirBKo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hOTbw38O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3811A2DF12A;
-	Sun,  1 Mar 2026 01:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A497E1A3165;
+	Sun,  1 Mar 2026 01:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772329171; cv=none; b=GbIf9jfrlaIiSn91DWQ5mTXqKv+ZdkDi1vZddv2148FkGjKvehiYcg9iotJ8f0PKpTG57bqc4tbGZkzSUJe1RxGs0hrR0mo40/CpAJ0Hx1PAnH1e3x4hEZ0IDgKvVtwoLsKDUNAe5nGTEAV9emBpWqOZ/XSb8Q79qforZNlayx8=
+	t=1772329362; cv=none; b=TXxr76rK2dfsDt2zBb6IqOH7dhR/lhDbQTpUlRO5gnRUXtCQ479SlHSWS+80dS/rd1rSZXtEwelCwTp/+KYWlg9S65neCGG5FSHn7xgzuq11sHKi0/ef4awQ7AoAXLTCj9ZfQLpJr8qftTXosq26PSruCaPNgsiR+xAjE24Lazs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772329171; c=relaxed/simple;
-	bh=ko9fHYcXPgW9Yu5KL70TWNOLqAo2KPcVQ9OgI1jhV94=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SIXXCKxudTIuo8Dn/Qiueq9f2a3Ah/8EQFWZEuzgDuGddpjS0b1vrDvA7obrHV0gKeBg31k9hCLJpfADriHERGaKD4AfumEqRU0PwUm3h9KFsgwAYv784BBbWotnfc/NzH1gXj/K6Jt/8ik1lgKXZwiU+U8Xqo5GXYO0hq1hs18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jLSirBKo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47B1FC19421;
-	Sun,  1 Mar 2026 01:39:30 +0000 (UTC)
+	s=arc-20240116; t=1772329362; c=relaxed/simple;
+	bh=eYTLjnC2N0hlb2f/E2AZzfdoA2wbpnn/w0ubB5styxE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JBDaMoh6Wlltq5jHgvcZJBGAm9vdeAw8pmb6tHwQGrvErPIILEbRTLbqfPVL02xwlo2gCk2CwrR4tFBIMSdqXRNstB+sb1ug28r2FhBRa68m8GMajAnsSycWd+qOKywgIqaNqXNZwoVJUf/PJzMeryy2FBPRfHybh5K2Vsei+e8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hOTbw38O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78D12C19421;
+	Sun,  1 Mar 2026 01:42:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772329171;
-	bh=ko9fHYcXPgW9Yu5KL70TWNOLqAo2KPcVQ9OgI1jhV94=;
+	s=k20201202; t=1772329362;
+	bh=eYTLjnC2N0hlb2f/E2AZzfdoA2wbpnn/w0ubB5styxE=;
 	h=From:To:Cc:Subject:Date:From;
-	b=jLSirBKoCewwyC3XLRPK3+meGY8Z7gDf0kEDuoIYNwyYqcpn0FjlVB/ICaqhOPzc3
-	 HRAZfxPRrTIGacFCa0dVeVHHxeXizXLLGJMPlqWzm2fM5nISRabj4Ym/rNybgDDWZD
-	 K80Ph0WqDiwKqa+bL4UB5Wrm3xOy7XmmkK9kTjEpyuvqdGKAEvv+QQFohcX3isaiP7
-	 cKrcNANcZ/AmNXKx9uiL+xYVX9ZwS252aFGCKgigH54CdWVawV7AFuFIs6nWjoLUKP
-	 XtBfdwPOaMo4LQmI1ska56wMIy6A+ULbl1jXTckv33hTy6fKUVXmHvCjT1vpSf0X9j
-	 euVwQIxX3uXTg==
+	b=hOTbw38OnOwIC2KasvDkRHHTaWdR5emPyOKMw911I/QtRlyai/iYt2aRZwqpJqPol
+	 9QoNsfnSy9jFLHOrz0vTsuFjmr3LVs9lh8gQvkm71Ah4+8jBfj91wpuRDOkYCNA7lc
+	 +0BWTIwLiIX254PhCSaBw1vdGKPAdXLj5ujDeqDph65g6cn0+7aYnXML41q/XgT6Hk
+	 xgGhP/KGRuuS69OXDzt5/qmgVsGN2Zead9De1aC+2n7ryJWZc+ro/09chNw4ER5eXV
+	 dbuVfhJjWKFgKtlSOUq+Xd5yZQO02W/hJ0lt25s4xkWp+PCqn0PNr4blvrUIoK7UhO
+	 N2j1lrgDwk/aA==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
-	shengjiu.wang@nxp.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Mark Brown <broonie@kernel.org>, Junichi@web.codeaurora.org,
-	Mihai@web.codeaurora.org, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: FAILED: Patch "ASoC: dt-bindings: asahi-kasei,ak5558: Fix the supply names" failed to apply to 6.6-stable tree
-Date: Sat, 28 Feb 2026 20:39:28 -0500
-Message-ID: <20260301013929.1700488-1-sashal@kernel.org>
+	jerrysteve1101@gmail.com
+Cc: Peter Robinson <pbrobinson@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: FAILED: Patch "arm64: dts: rockchip: Do not enable hdmi_sound node on Pinebook Pro" failed to apply to 6.1-stable tree
+Date: Sat, 28 Feb 2026 20:42:40 -0500
+Message-ID: <20260301014240.1704581-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,37 +66,39 @@ X-Patchwork-Hint: ignore
 X-stable: review
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:subspace.kernel.org:reject}];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_SPAM(0.00)[0.997];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269651-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	R_DKIM_REJECT(0.00)[kernel.org:s=k20201202];
+	FREEMAIL_CC(0.00)[gmail.com,manjaro.org,sntech.de,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-269652-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:-];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 212381CB4CE
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:email,manjaro.org:email,pine64.org:url,msgid.link:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3E08A1CBD3B
 X-Rspamd-Action: no action
 
-The patch below does not apply to the 6.6-stable tree.
+The patch below does not apply to the 6.1-stable tree.
 If someone wants it applied there, or to any other stable or longterm
 tree, then please email the backport, including the original git commit
 id to <stable@vger.kernel.org>.
@@ -104,45 +108,50 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From 80ca113671a005430207d351cb403c1637106212 Mon Sep 17 00:00:00 2001
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-Date: Thu, 12 Feb 2026 10:18:29 +0800
-Subject: [PATCH] ASoC: dt-bindings: asahi-kasei,ak5558: Fix the supply names
+From b18247f9dab735c9c2d63823d28edc9011e7a1ad Mon Sep 17 00:00:00 2001
+From: Jun Yan <jerrysteve1101@gmail.com>
+Date: Fri, 16 Jan 2026 23:12:53 +0800
+Subject: [PATCH] arm64: dts: rockchip: Do not enable hdmi_sound node on
+ Pinebook Pro
 
-In the original txt format binding document ak4458.txt, the supply names
-are 'AVDD-supply', 'DVDD-supply', and they are also used in driver. But in
-the commit converting to yaml format, they are changed to 'avdd-supply',
-'dvdd-supply'. After search all the dts file, these names 'AVDD-supply',
-'DVDD-supply', 'avdd-supply', 'dvdd-supply' are not used in any dts
-file. So it is safe to fix the yaml binding document.
+Remove the redundant enabling of the hdmi_sound node in the Pinebook Pro
+board dts file, because the HDMI output is unused on this device. [1][2]
 
-Fixes: 829d78e3ea32 ("ASoC: dt-bindings: ak5558: Convert to dtschema")
+This change also eliminates the following kernel log warning, which is
+caused by the unenabled dependent node of hdmi_sound that ultimately
+results in the node's probe failure:
+
+  platform hdmi-sound: deferred probe pending: asoc-simple-card: parse error
+
+[1] https://files.pine64.org/doc/PinebookPro/pinebookpro_v2.1_mainboard_schematic.pdf
+[2] https://files.pine64.org/doc/PinebookPro/pinebookpro_schematic_v21a_20220419.pdf
+
 Cc: stable@vger.kernel.org
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Link: https://patch.msgid.link/20260212021829.3244736-4-shengjiu.wang@nxp.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
+Fixes: 5a65505a69884 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
+Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+Link: https://patch.msgid.link/20260116151253.9223-1-jerrysteve1101@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 ---
- .../devicetree/bindings/sound/asahi-kasei,ak5558.yaml         | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak5558.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak5558.yaml
-index 5c2f131c86c3f..18919d9112a3f 100644
---- a/Documentation/devicetree/bindings/sound/asahi-kasei,ak5558.yaml
-+++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak5558.yaml
-@@ -19,10 +19,10 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index eaaca08a76018..a6ac89567bafe 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -421,10 +421,6 @@ &gpu {
+ 	status = "okay";
+ };
  
--  avdd-supply:
-+  AVDD-supply:
-     description: A 1.8V supply that powers up the AVDD pin.
- 
--  dvdd-supply:
-+  DVDD-supply:
-     description: A 1.2V supply that powers up the DVDD pin.
- 
-   reset-gpios:
+-&hdmi_sound {
+-	status = "okay";
+-};
+-
+ &i2c0 {
+ 	clock-frequency = <400000>;
+ 	i2c-scl-falling-time-ns = <4>;
 -- 
 2.51.0
 
