@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-269635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269636-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6DSzB7STo2lpHQUAu9opvQ
-	(envelope-from <devicetree+bounces-269635-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:17:40 +0100
+	id eKrTHfWTo2lpHQUAu9opvQ
+	(envelope-from <devicetree+bounces-269636-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:18:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F3C1CA146
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:17:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C231CA23E
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:18:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CEBF43007A61
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:17:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 70903300DEF0
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:18:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480AC23C4F2;
-	Sun,  1 Mar 2026 01:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1884F1E4AF;
+	Sun,  1 Mar 2026 01:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QoTfRMyp"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3P79KI0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C943A1C9;
-	Sun,  1 Mar 2026 01:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9755430BA3;
+	Sun,  1 Mar 2026 01:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772327823; cv=none; b=hOWh8Y8GBUCY8I38p3YN9UMU+FxB5lgeXiecG6dEjTNiwbp8eWepqUiWMu/3M0EZGMFjl33wcUdLMu8RZdJFJXUL1nV3/6VnQhgseC3KfehnfHv+twBvljQdTVjN0S4mGgrUxcSE/b/CXakJag8Ul2C3OF5Flbxp+LAf7OGB584=
+	t=1772327924; cv=none; b=WjMFWWbIivbOx52z9hjT44CqWq6qepOgbwBnfYt/ePrpbku/kk8rP5B4fcllbolnbyi78nGEs45jHN+yfuSBLLpcIMOH+8hX11WpHid2GxrBrIUDkPjNrlzQC+/nsxusCQLRGt0BXuBRKgh4Pg3zuQT8QgD10eIG/5DEy7lWPHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772327823; c=relaxed/simple;
-	bh=WFjBZmZT8Ljz8xNlXhLMjkBe3KDvvU4/6E+qmB7lTmg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R28XqxfowI74iRt1g2ip5WAy9qQJUOdW2y5FYBkbLXQCR4bYLOqdZvPVlb2W/eLbyuAQGrhh+eqjcwVX8yuVAm34nmpFnm+IWKfwdqm/hzk8RFqBZYT3m2AEe1c7A2+QHQJUISCxIhIa6cH8+sou5ru15Dolyhs0tENjwq+Jh08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QoTfRMyp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41D22C19421;
-	Sun,  1 Mar 2026 01:17:02 +0000 (UTC)
+	s=arc-20240116; t=1772327924; c=relaxed/simple;
+	bh=J7nL2l1pFFeFXMVeZ1FKffbj2Mtyo0xsjmncKkXHccA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s714EgEomyKj5HR+x9zhBRRi3fRsAdgAC2p9f1OCymQM0F5+wFev1rZRdNxCddj9hMvXBXyOnMtYY8MBxdF4nHrPFRCghthW9LX4Gz5Pj68YA97zJzQ7ij1UnPsIB+l1U9AlUXEgr8+fZ0jpAa0tMv6XDQOWPlyeIm9g/um9U44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b3P79KI0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD7FEC19424;
+	Sun,  1 Mar 2026 01:18:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772327823;
-	bh=WFjBZmZT8Ljz8xNlXhLMjkBe3KDvvU4/6E+qmB7lTmg=;
+	s=k20201202; t=1772327923;
+	bh=J7nL2l1pFFeFXMVeZ1FKffbj2Mtyo0xsjmncKkXHccA=;
 	h=From:To:Cc:Subject:Date:From;
-	b=QoTfRMyp3X/aIwEnj/E1zl/3vUBy/vr4/0t4OB4UJuh47eAs3yYmhW2Uyji9Z8my8
-	 2ZGx7BugGPVAOqfIdGfrmMuDnI6hNWGHZMWV/4/3DOuVAa5OGtRWGczHKKTpiohOcv
-	 a26VLvEuYNQU4EdmGeHrsYjp8xlkuvdzC6ccxYPnqjlN4zpKjGTaWaH/FOB52phaLO
-	 a9XcocwGcqugFe++sLGKQig2OP0wNgUNX8alAh7fObGGbt/BtjvKJ1PKXlltMHUB9q
-	 mtx/LwB0mi3tkQUbbrfmCBzf30wgSjHesapl2ODhtyU+FiB/laMDng/shJthQ8KDVq
-	 9Zy0D49aFNBMg==
+	b=b3P79KI0lS47lqgKFK/IXN2IKS7WbHanFfwoYmnvpAPn0qKboJQltp+in2t1tzVV7
+	 SS/PCsq4w7o/ug66blwQFyINpp5tnaigvn18FFi2fCpmhDOkODzfzArrMd+DgwJegw
+	 zOsAdEeImEQSqJPjWmHIXG/KvLP+3azn0FaTNbIlZffnaIIMnyKiv/JqGwimxC4J7t
+	 YoL0dq7IqyNdq9ERBsXxZ8lNUpZ0iZ/UQb9cTdTP/qwtOljAlcid4a1RXCJMyUhBXc
+	 DEphpf3QAbAhBpOP+C8Kl4KHUfmn3pcv6uUjBk1AjX8hPRw7qbuWBKK+S/E2XY+FwL
+	 wXpKn3sTeHf0Q==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
-	shawn.lin@rock-chips.com
-Cc: Andrew Powers-Holmes <aholmes@omnom.net>,
-	Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: FAILED: Patch "arm64: dts: rockchip: Fix rk356x PCIe range mappings" failed to apply to 6.18-stable tree
-Date: Sat, 28 Feb 2026 20:17:00 -0500
-Message-ID: <20260301011701.1670793-1-sashal@kernel.org>
+	abelvesa@kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+	Bjorn@web.codeaurora.org, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: FAILED: Patch "dt-bindings: phy: qcom-edp: Add missing clock for X Elite" failed to apply to 6.12-stable tree
+Date: Sat, 28 Feb 2026 20:18:41 -0500
+Message-ID: <20260301011841.1673141-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,37 +65,38 @@ X-Patchwork-Hint: ignore
 X-stable: review
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:subspace.kernel.org:reject}];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	NEURAL_SPAM(0.00)[0.995];
+	R_DKIM_REJECT(0.00)[kernel.org:s=k20201202];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269635-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269636-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree];
 	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:-];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,rock-chips.com:email,sntech.de:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,fe270000:email]
-X-Rspamd-Queue-Id: 32F3C1CA146
+	TAGGED_RCPT(0.00)[devicetree];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 19C231CA23E
 X-Rspamd-Action: no action
 
-The patch below does not apply to the 6.18-stable tree.
+The patch below does not apply to the 6.12-stable tree.
 If someone wants it applied there, or to any other stable or longterm
 tree, then please email the backport, including the original git commit
 id to <stable@vger.kernel.org>.
@@ -105,63 +106,83 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From f63ea193a404481f080ca2958f73e9f364682db9 Mon Sep 17 00:00:00 2001
-From: Shawn Lin <shawn.lin@rock-chips.com>
-Date: Mon, 5 Jan 2026 16:15:28 +0800
-Subject: [PATCH] arm64: dts: rockchip: Fix rk356x PCIe range mappings
+From 6b99eeacf6abb1ff2d6463c84e490343f39cf11a Mon Sep 17 00:00:00 2001
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Wed, 24 Dec 2025 12:53:27 +0200
+Subject: [PATCH] dt-bindings: phy: qcom-edp: Add missing clock for X Elite
 
-The pcie bus address should be mapped 1:1 to the cpu side MMIO address, so
-that there is no same address allocated from normal system memory. Otherwise
-it's broken if the same address assigned to the EP for DMA purpose.Fix it to
-sync with the vendor BSP.
+On X Elite platform, the eDP PHY uses one more clock called ref.
 
-Fixes: 568a67e742df ("arm64: dts: rockchip: Fix rk356x PCIe register and range mappings")
-Fixes: 66b51ea7d70f ("arm64: dts: rockchip: Add rk3568 PCIe2x1 controller")
-Cc: stable@vger.kernel.org
-Cc: Andrew Powers-Holmes <aholmes@omnom.net>
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-Link: https://patch.msgid.link/1767600929-195341-1-git-send-email-shawn.lin@rock-chips.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+The current X Elite devices supported upstream work fine without this
+clock, because the boot firmware leaves this clock enabled. But we should
+not rely on that. Also, even though this change breaks the ABI, it is
+needed in order to make the driver disables this clock along with the
+other ones, for a proper bring-down of the entire PHY.
+
+So attach the this ref clock to the PHY.
+
+Cc: stable@vger.kernel.org # v6.10
+Fixes: 5d5607861350 ("dt-bindings: phy: qcom-edp: Add X1E80100 PHY compatibles")
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Link: https://patch.msgid.link/20251224-phy-qcom-edp-add-missing-refclk-v5-1-3f45d349b5ac@oss.qualcomm.com
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 4 ++--
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/phy/qcom,edp-phy.yaml | 28 ++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index e719a3df126c5..658097ed69714 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -185,7 +185,7 @@ pcie3x1: pcie@fe270000 {
- 		      <0x0 0xf2000000 0x0 0x00100000>;
- 		ranges = <0x01000000 0x0 0xf2100000 0x0 0xf2100000 0x0 0x00100000>,
- 			 <0x02000000 0x0 0xf2200000 0x0 0xf2200000 0x0 0x01e00000>,
--			 <0x03000000 0x0 0x40000000 0x3 0x40000000 0x0 0x40000000>;
-+			 <0x03000000 0x3 0x40000000 0x3 0x40000000 0x0 0x40000000>;
- 		reg-names = "dbi", "apb", "config";
- 		resets = <&cru SRST_PCIE30X1_POWERUP>;
- 		reset-names = "pipe";
-@@ -238,7 +238,7 @@ pcie3x2: pcie@fe280000 {
- 		      <0x0 0xf0000000 0x0 0x00100000>;
- 		ranges = <0x01000000 0x0 0xf0100000 0x0 0xf0100000 0x0 0x00100000>,
- 			 <0x02000000 0x0 0xf0200000 0x0 0xf0200000 0x0 0x01e00000>,
--			 <0x03000000 0x0 0x40000000 0x3 0x80000000 0x0 0x40000000>;
-+			 <0x03000000 0x3 0x80000000 0x3 0x80000000 0x0 0x40000000>;
- 		reg-names = "dbi", "apb", "config";
- 		resets = <&cru SRST_PCIE30X2_POWERUP>;
- 		reset-names = "pipe";
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-index 8893b7b6cc9ff..a2c4957a58992 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-@@ -1022,7 +1022,7 @@ pcie2x1: pcie@fe260000 {
- 		power-domains = <&power RK3568_PD_PIPE>;
- 		ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
- 			 <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x01e00000>,
--			 <0x03000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
-+			 <0x03000000 0x3 0x00000000 0x3 0x00000000 0x0 0x40000000>;
- 		resets = <&cru SRST_PCIE20_POWERUP>;
- 		reset-names = "pipe";
- 		#address-cells = <3>;
+diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+index eb97181cbb957..bfc4d75f50ff9 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+@@ -37,12 +37,15 @@ properties:
+       - description: PLL register block
+ 
+   clocks:
+-    maxItems: 2
++    minItems: 2
++    maxItems: 3
+ 
+   clock-names:
++    minItems: 2
+     items:
+       - const: aux
+       - const: cfg_ahb
++      - const: ref
+ 
+   "#clock-cells":
+     const: 1
+@@ -64,6 +67,29 @@ required:
+   - "#clock-cells"
+   - "#phy-cells"
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,x1e80100-dp-phy
++    then:
++      properties:
++        clocks:
++          minItems: 3
++          maxItems: 3
++        clock-names:
++          minItems: 3
++          maxItems: 3
++    else:
++      properties:
++        clocks:
++          minItems: 2
++          maxItems: 2
++        clock-names:
++          minItems: 2
++          maxItems: 2
++
+ additionalProperties: false
+ 
+ examples:
 -- 
 2.51.0
 
