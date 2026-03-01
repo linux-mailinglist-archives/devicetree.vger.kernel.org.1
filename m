@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-269704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269705-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJzcFyQnpGkiYwUAu9opvQ
-	(envelope-from <devicetree+bounces-269704-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 12:46:44 +0100
+	id GFMuKn0npGmMYwUAu9opvQ
+	(envelope-from <devicetree+bounces-269705-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 12:48:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B45871CF6C0
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 12:46:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0731CF708
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 12:48:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4BA97300DF64
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 11:46:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A365C300F119
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 11:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85BEE2E7621;
-	Sun,  1 Mar 2026 11:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8218279355;
+	Sun,  1 Mar 2026 11:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a0Yawvhh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jhGs5ict"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6279023B62B;
-	Sun,  1 Mar 2026 11:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8561C175A8C;
+	Sun,  1 Mar 2026 11:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772365571; cv=none; b=SPXYjSGo7D2cT8Tg95NjfhJOF7/wlMuZJsJL2/0WEFRQqV41TfgDSg5aD17DEfGf2ZdbIpiIcxYWfFBNPoVn1OtNcLTPqnwAI/ySAYEzNeGnrRSel9PRwP/zSKBnRDiySV4R+oCMc2I1IDztoubg+u9pLlkNp6S4JOJQCn4uUJs=
+	t=1772365622; cv=none; b=SBG1uYsC4azZ9S+bwsDRckQ3QnGqLp52/KSCxx2yrzhymlZcYUJv0T08zSiREcR+286gVLBg62HaYaFy/wEDuI3Pxh2DdYx0yJshseMIDZT+jBTxzR5c6kcbbGkX3zHh3Zds1+VTOyOty2aBXNwpsD2/lOX6W3//JQ0nC0TA3hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772365571; c=relaxed/simple;
-	bh=+XZKJXFT4PEKoofH3TKDD6zGgMTeWZwTquLp4VBrWbM=;
+	s=arc-20240116; t=1772365622; c=relaxed/simple;
+	bh=qGRzuc3oANw33O3JPgPilhxFmX7kQJQ5e2pabeiKj44=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V0xpDL8eqpd7rd3Jag7dhPZmk5E8RQaSByNYqv6Cu6SCWwqeygHjqeuhoawK5kL9wmQu+UJwnZOamHYnifv6hAcorivAtpVGTzeqPLGL8sMwma0Xi8uc02fuakMGdSrrhG0j3qe+SEATZSwmQKzTPdcZEgYVGmVDuOqEX5ULbbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a0Yawvhh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70D5DC116C6;
-	Sun,  1 Mar 2026 11:46:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cwra4Cjd1rMnmeUHSf3GAokPgkAJv6geIow0Os1DqwP/m0zlc9tdsaXIXfCEhJfjO7P/C3Q5Rhn4OxchoQdgDN5Icruv/4gFFWIJqnnFfEzsroQdy7IOy6RzwbZTbMFJoqLuPUjwyh4Xrd2zWZKwdfw1rPMfpl71Q7mxUVcZrL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jhGs5ict; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA5BFC116C6;
+	Sun,  1 Mar 2026 11:47:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772365571;
-	bh=+XZKJXFT4PEKoofH3TKDD6zGgMTeWZwTquLp4VBrWbM=;
+	s=k20201202; t=1772365622;
+	bh=qGRzuc3oANw33O3JPgPilhxFmX7kQJQ5e2pabeiKj44=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a0YawvhhHdZRa3u3l7Yure9yI5WqDmbLax8BIorPxc/Yo9Xn1DL1+EO9BRkBxViNp
-	 62FsfPSum4XOdn6qLCXfXMGgqLSwEB9WQ8PcW6S+gWhTWpUMDXvBVcYBMgDVGk9rJs
-	 lj5Jfs/ofxvEanfhRGCBe8yRNvh7BzO3tvrFptsj9xsODhjvO1jiGUR9iTcqe69BRH
-	 SyzTNKFIgci4XVXsvJfRwJaJU4w3VzbbQ5MLGXMxEcKcBCugrjt7X6Sfa2XfXv5C8m
-	 2ei7Rg39tR5B4rwssTXOumlakYJazMNHnJYDQwQxIag+sijjXA0u+nNYvuPgifLDcZ
-	 R0Jj1uvWBYWAQ==
-Date: Sun, 1 Mar 2026 12:46:08 +0100
+	b=jhGs5ictJokYFSc4R08m9s3/Ib77NelGLxMV2vy7Sbg1X1f6S+NlaXeYD2stLVD26
+	 CG/4xVLYuV8sF29SblgxaEtQhjbbMBLc2cUprav5tFz8SqgctAJqiCRwc9P46bOL+w
+	 G6u+bou2E/tdqKQofhHxMG6d/Fc1sEgJ3Um25D4jgB2XjX5v1e4n5ReDf88aPo2+8Y
+	 msv1ZfmOfGoxzcWO+gpT276O+c/4kPv2mXurfcrMJ/d0lQQrF7gYy7bovf7c+VFxCL
+	 4Oi8+yjABnQB4r1vLO4jZbLhAkxlGw3SMO6QX1qWCuIUJjfamh/GnBmXtDRb4j9tr3
+	 OEcPSJQn7WKMg==
+Date: Sun, 1 Mar 2026 12:46:59 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Pengyu Luo <mitltlatltl@gmail.com>
 Cc: Rob Clark <robin.clark@oss.qualcomm.com>, 
@@ -59,11 +59,11 @@ Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
 	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Tianyu Gao <gty0622@gmail.com>, 
 	White Lewis <liu224806@gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: display: msm: Document DSI
- controller and DSI PHY on SC8280XP
-Message-ID: <20260301-calculating-glistening-bird-ed0ef2@quoll>
+Subject: Re: [PATCH v3 2/4] dt-bindings: display/msm: dsi-controller-main:
+ Add SC8280XP
+Message-ID: <20260301-oarfish-of-illegal-hurricane-e696a3@quoll>
 References: <20260228141715.35307-1-mitltlatltl@gmail.com>
- <20260228141715.35307-4-mitltlatltl@gmail.com>
+ <20260228141715.35307-3-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,7 +72,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260228141715.35307-4-mitltlatltl@gmail.com>
+In-Reply-To: <20260228141715.35307-3-mitltlatltl@gmail.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -86,7 +86,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269704-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269705-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -104,16 +104,17 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: B45871CF6C0
+X-Rspamd-Queue-Id: 0F0731CF708
 X-Rspamd-Action: no action
 
-On Sat, Feb 28, 2026 at 10:17:14PM +0800, Pengyu Luo wrote:
-> Document DSI controller and DSI phy on SC8280XP platform.
+On Sat, Feb 28, 2026 at 10:17:13PM +0800, Pengyu Luo wrote:
+> Since SC8280XP and SA8775P have the same DSI version(2.5.1), then we
+> fallback to SA8775P compatible.
 > 
 > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
 > ---
->  .../display/msm/qcom,sc8280xp-mdss.yaml       | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
+>  .../devicetree/bindings/display/msm/dsi-controller-main.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
