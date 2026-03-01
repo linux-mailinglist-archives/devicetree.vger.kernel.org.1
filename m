@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-269636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269637-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eKrTHfWTo2lpHQUAu9opvQ
-	(envelope-from <devicetree+bounces-269636-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:18:45 +0100
+	id GIguLEeVo2n3HQUAu9opvQ
+	(envelope-from <devicetree+bounces-269637-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:24:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19C231CA23E
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:18:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E9391CA6FA
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:24:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 70903300DEF0
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:18:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6E907303A91D
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1884F1E4AF;
-	Sun,  1 Mar 2026 01:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3979172631;
+	Sun,  1 Mar 2026 01:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3P79KI0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RZ6qolNz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9755430BA3;
-	Sun,  1 Mar 2026 01:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1696B24A076;
+	Sun,  1 Mar 2026 01:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772327924; cv=none; b=WjMFWWbIivbOx52z9hjT44CqWq6qepOgbwBnfYt/ePrpbku/kk8rP5B4fcllbolnbyi78nGEs45jHN+yfuSBLLpcIMOH+8hX11WpHid2GxrBrIUDkPjNrlzQC+/nsxusCQLRGt0BXuBRKgh4Pg3zuQT8QgD10eIG/5DEy7lWPHs=
+	t=1772327942; cv=none; b=XIdzUP4NLfBm3M0UwL6N8HKlbC/IgOTXkYmkssoshkfoecAl5V2UVukhjCcF1Z2g02n26bYy6Ak/K6nPvOXHB7pKIr+vU7fM5PR0gTA7fkPVSS6dpUZSIdAQ/3eSmS8m7oX5NUIud/p/3CPnSiNRmTVVjiW2pEHWBC4qRDh8mE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772327924; c=relaxed/simple;
-	bh=J7nL2l1pFFeFXMVeZ1FKffbj2Mtyo0xsjmncKkXHccA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s714EgEomyKj5HR+x9zhBRRi3fRsAdgAC2p9f1OCymQM0F5+wFev1rZRdNxCddj9hMvXBXyOnMtYY8MBxdF4nHrPFRCghthW9LX4Gz5Pj68YA97zJzQ7ij1UnPsIB+l1U9AlUXEgr8+fZ0jpAa0tMv6XDQOWPlyeIm9g/um9U44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b3P79KI0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD7FEC19424;
-	Sun,  1 Mar 2026 01:18:42 +0000 (UTC)
+	s=arc-20240116; t=1772327942; c=relaxed/simple;
+	bh=UjAzZ2KRBnSlhhiqG1iN7IwjVD1fMhKONsQjSkYLGBI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g0G+AszrEaxlgJbsnmmW1/cBPPiT70WLx+QB+FUVgfiYzZwIiXqA/KrQoL4fQaQXixl+aXlpEwghMS3H7JUjjkKvYWJlxMP5QP3a8k3TeN6dvf+6ZsoJ78bUAE5Te8PXfzjILUGC4TCvm8dx7AOu177DtnZFelPO49CMsOpDiFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RZ6qolNz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C78BC19421;
+	Sun,  1 Mar 2026 01:19:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772327923;
-	bh=J7nL2l1pFFeFXMVeZ1FKffbj2Mtyo0xsjmncKkXHccA=;
+	s=k20201202; t=1772327942;
+	bh=UjAzZ2KRBnSlhhiqG1iN7IwjVD1fMhKONsQjSkYLGBI=;
 	h=From:To:Cc:Subject:Date:From;
-	b=b3P79KI0lS47lqgKFK/IXN2IKS7WbHanFfwoYmnvpAPn0qKboJQltp+in2t1tzVV7
-	 SS/PCsq4w7o/ug66blwQFyINpp5tnaigvn18FFi2fCpmhDOkODzfzArrMd+DgwJegw
-	 zOsAdEeImEQSqJPjWmHIXG/KvLP+3azn0FaTNbIlZffnaIIMnyKiv/JqGwimxC4J7t
-	 YoL0dq7IqyNdq9ERBsXxZ8lNUpZ0iZ/UQb9cTdTP/qwtOljAlcid4a1RXCJMyUhBXc
-	 DEphpf3QAbAhBpOP+C8Kl4KHUfmn3pcv6uUjBk1AjX8hPRw7qbuWBKK+S/E2XY+FwL
-	 wXpKn3sTeHf0Q==
+	b=RZ6qolNzZbPjhABC5WSRoDpH0VFZ+LQeqFhxv05ALclLUXTATtLLEDFs8JF8duQl8
+	 1N36bga6jZdKYYzbrFJ/uyxJmksE4JLekaVoTO7M+17AOqfquP3sxjpzz8qunlUM88
+	 C03bUbOBAbzbfLMaAciVvEalSVD1A4MU3QRifVEPbiwIu585t+guXBNqDFy+jcAdfX
+	 Yn8MtdDemdQSARCX6PNXApdzpeuoti9sX7EPcMYGxGzVW0WphfL8+bXh4hdZTNbLLM
+	 1+GzU+JFhGk12WQaUG4Funhk5uPujIjKpbn6p8FxfX+pJ6rwVu3Cyhtsz4bCGpyhmT
+	 2UQft4D7TmzxQ==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	abelvesa@kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>, Vinod Koul <vkoul@kernel.org>,
-	Bjorn@web.codeaurora.org, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: FAILED: Patch "dt-bindings: phy: qcom-edp: Add missing clock for X Elite" failed to apply to 6.12-stable tree
-Date: Sat, 28 Feb 2026 20:18:41 -0500
-Message-ID: <20260301011841.1673141-1-sashal@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: FAILED: Patch "arm64: dts: qcom: x1e80100: Add missing TCSR ref clock to the DP PHYs" failed to apply to 6.12-stable tree
+Date: Sat, 28 Feb 2026 20:18:59 -0500
+Message-ID: <20260301011900.1673538-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,35 +64,34 @@ X-Patchwork-Hint: ignore
 X-stable: review
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:subspace.kernel.org:reject}];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	NEURAL_SPAM(0.00)[0.995];
-	R_DKIM_REJECT(0.00)[kernel.org:s=k20201202];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269637-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-269636-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:-];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 19C231CA23E
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aec2a00:email]
+X-Rspamd-Queue-Id: 2E9391CA6FA
 X-Rspamd-Action: no action
 
 The patch below does not apply to the 6.12-stable tree.
@@ -106,12 +104,14 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From 6b99eeacf6abb1ff2d6463c84e490343f39cf11a Mon Sep 17 00:00:00 2001
+From 0907cab01ff9746ecf08592edd9bd85d2636be58 Mon Sep 17 00:00:00 2001
 From: Abel Vesa <abel.vesa@linaro.org>
-Date: Wed, 24 Dec 2025 12:53:27 +0200
-Subject: [PATCH] dt-bindings: phy: qcom-edp: Add missing clock for X Elite
+Date: Wed, 24 Dec 2025 12:53:29 +0200
+Subject: [PATCH] arm64: dts: qcom: x1e80100: Add missing TCSR ref clock to the
+ DP PHYs
 
-On X Elite platform, the eDP PHY uses one more clock called ref.
+The DP PHYs on X1E80100 need the ref clock which is provided by the
+TCSR CC.
 
 The current X Elite devices supported upstream work fine without this
 clock, because the boot firmware leaves this clock enabled. But we should
@@ -119,70 +119,50 @@ not rely on that. Also, even though this change breaks the ABI, it is
 needed in order to make the driver disables this clock along with the
 other ones, for a proper bring-down of the entire PHY.
 
-So attach the this ref clock to the PHY.
+So lets attach it to each of the DP PHYs in order to do that.
 
-Cc: stable@vger.kernel.org # v6.10
-Fixes: 5d5607861350 ("dt-bindings: phy: qcom-edp: Add X1E80100 PHY compatibles")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: stable@vger.kernel.org # v6.9
+Fixes: 1940c25eaa63 ("arm64: dts: qcom: x1e80100: Add display nodes")
 Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-Link: https://patch.msgid.link/20251224-phy-qcom-edp-add-missing-refclk-v5-1-3f45d349b5ac@oss.qualcomm.com
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Link: https://lore.kernel.org/r/20251224-phy-qcom-edp-add-missing-refclk-v5-3-3f45d349b5ac@oss.qualcomm.com
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
 ---
- .../devicetree/bindings/phy/qcom,edp-phy.yaml | 28 ++++++++++++++++++-
- 1 file changed, 27 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/hamoa.dtsi | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-index eb97181cbb957..bfc4d75f50ff9 100644
---- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-@@ -37,12 +37,15 @@ properties:
-       - description: PLL register block
+diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+index 51ad2b2e6375f..03629639dcfb6 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
++++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+@@ -5929,9 +5929,11 @@ mdss_dp2_phy: phy@aec2a00 {
+ 			      <0 0x0aec2000 0 0x1c8>;
  
-   clocks:
--    maxItems: 2
-+    minItems: 2
-+    maxItems: 3
+ 			clocks = <&dispcc DISP_CC_MDSS_DPTX2_AUX_CLK>,
+-				 <&dispcc DISP_CC_MDSS_AHB_CLK>;
++				 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++				 <&tcsr TCSR_EDP_CLKREF_EN>;
+ 			clock-names = "aux",
+-				      "cfg_ahb";
++				      "cfg_ahb",
++				      "ref";
  
-   clock-names:
-+    minItems: 2
-     items:
-       - const: aux
-       - const: cfg_ahb
-+      - const: ref
+ 			power-domains = <&rpmhpd RPMHPD_MX>;
  
-   "#clock-cells":
-     const: 1
-@@ -64,6 +67,29 @@ required:
-   - "#clock-cells"
-   - "#phy-cells"
+@@ -5949,9 +5951,11 @@ mdss_dp3_phy: phy@aec5a00 {
+ 			      <0 0x0aec5000 0 0x1c8>;
  
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - qcom,x1e80100-dp-phy
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+          maxItems: 3
-+        clock-names:
-+          minItems: 3
-+          maxItems: 3
-+    else:
-+      properties:
-+        clocks:
-+          minItems: 2
-+          maxItems: 2
-+        clock-names:
-+          minItems: 2
-+          maxItems: 2
-+
- additionalProperties: false
+ 			clocks = <&dispcc DISP_CC_MDSS_DPTX3_AUX_CLK>,
+-				 <&dispcc DISP_CC_MDSS_AHB_CLK>;
++				 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++				 <&tcsr TCSR_EDP_CLKREF_EN>;
+ 			clock-names = "aux",
+-				      "cfg_ahb";
++				      "cfg_ahb",
++				      "ref";
  
- examples:
+ 			power-domains = <&rpmhpd RPMHPD_MX>;
+ 
 -- 
 2.51.0
 
