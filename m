@@ -1,254 +1,161 @@
-Return-Path: <devicetree+bounces-269724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269725-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UOVFOUtBpGkgbQUAu9opvQ
-	(envelope-from <devicetree+bounces-269724-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:38:19 +0100
+	id EFd5KV9GpGlecAUAu9opvQ
+	(envelope-from <devicetree+bounces-269725-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:59:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65BB51CFFA9
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:38:19 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD8011D00EE
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 14:59:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 50523301486A
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 13:38:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8B37C300530A
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 13:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DCF3329C73;
-	Sun,  1 Mar 2026 13:38:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315F131715F;
+	Sun,  1 Mar 2026 13:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MFfBvq5I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qyrc9MqN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 693381CD1E4;
-	Sun,  1 Mar 2026 13:38:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D36F2D592C;
+	Sun,  1 Mar 2026 13:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772372297; cv=none; b=YWDvguVXCnm8z1BQM3R/tw48o6xkF0Aqy4xV9lW3Gllj2L04/hlteKGhjhAs0qRnZkkV0pi2jKJfzT0/e3CAIwViHJRw5dVaf3o+JsO48A7vSvYHb4XvJ7RFAH4QaEZK14f6YpDdvpg1Nk0E6aG8xCNFXP3fNq7E8bVkIRt71A4=
+	t=1772373592; cv=none; b=RHU8YQWPjoEugqIdUvuPFtDyBd1wOLJVFFtuqyVO5bgOZpddjHGsbIn98TTAAbPRxsgCpaXURTo+XVJvYCqXQs3WRAC6dyyiEFc3b+krWcFMaEW5UNFxzxgPsfY86p8nIaM6fJvDZ6IcuSOWUN8u336eaWSUHZM9mAo542FlrPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772372297; c=relaxed/simple;
-	bh=NUZn7+RAjq13eKxiv+DR0KFxNowIwap+6p5q8pf4yNw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GG4w5FI39Y2AUwPezi25yjjBZKFkeZe0U39tu3zXLus1lOpt66fHMnotAJpR1ddJQd5wjm3lwJCXMSUFrKaKV1Z7csqW1ToGDTjF+32GtYXoMQiv0FsMyS/y/SEF9St0D8VnfInAx1Bal2LRaj+zAL/RnGeWppP1R1WDpE9N2Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MFfBvq5I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2A15C116C6;
-	Sun,  1 Mar 2026 13:38:11 +0000 (UTC)
+	s=arc-20240116; t=1772373592; c=relaxed/simple;
+	bh=kZ81LTEIWDX5qMRjETGl+EdCtjtT/+JxR1+V3ftul+c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hsG/yO0kv9FP3Z9uOJ9XsMWCXrLVxjlZoseKbAUGeNWiR8wcfIoK/MMe5oJbJucBRhII1gGMnzRnT+j7cdpE8wmWbrsqfRyNzfr1ZYibE0KiksMLz4A0eopRrXCMewLUsNiZtQEl5zJcNSK+6wkfRwUSN89wfvyquH7lCKKGh1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qyrc9MqN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B480DC116C6;
+	Sun,  1 Mar 2026 13:59:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772372297;
-	bh=NUZn7+RAjq13eKxiv+DR0KFxNowIwap+6p5q8pf4yNw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MFfBvq5IHcLWi6eoUmcJ2JD2FM3wUGlK/KhpAd0zuzSicgvkyBlOBpvDpyRiVcmxP
-	 qkQ7Skv633kOkI3pp0KcBVsixO+ObjOrYwloX57LdFRMZMssJmOjwGfzrmrmAIaT1z
-	 jr+mMecJdngvV+GBX8UvtF4SzIrHb955XoewMHA7cKcrXbC0C3fn7V5kqrnH2I1BGJ
-	 GT2Oft7Fxhejrn46LtUpmtr1+ZT5/cgucxVlnm1e3cooOcemvHnHUESmeBeznWk4Kh
-	 D/ak+V5fxxJ8gt+TrzvPsmI6LTMMWqkLm2H7qID4++8J3BIwC6aAPi0xXaBWnz7P/q
-	 96WBHNzgdjoUg==
-Date: Sun, 1 Mar 2026 13:38:06 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Rodrigo Alencar 
- <455.rodrigo.alencar@gmail.com>, rodrigo.alencar@analog.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich	 <Michael.Hennerich@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel
- <p.zabel@pengutronix.de>
-Subject: Re: [PATCH RFC 0/8] AD9910 Direct Digital Synthesizer
-Message-ID: <20260301133806.5e706756@jic23-huawei>
-In-Reply-To: <9392fea00a9c3b23d1bc9468faa1b3cc20904398.camel@gmail.com>
-References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
-	<a72b2d62-3b91-4789-a1b1-ff1429e80ed5@baylibre.com>
-	<2k4ouimpaxjuhnk67qmrues2375zj43ehru7h5as6w6kf7yak3@2ndr72co5trh>
-	<bdc973e5-df74-48f2-8884-439b03565940@baylibre.com>
-	<9392fea00a9c3b23d1bc9468faa1b3cc20904398.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1772373591;
+	bh=kZ81LTEIWDX5qMRjETGl+EdCtjtT/+JxR1+V3ftul+c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qyrc9MqNrbW5NX4b3d4tyxM4RijPSDDW6VEcM/H3VcFahKc5FNP/TYbBCZI/Vj61b
+	 uYIfcS9WGZMv4UzfeAjHuObtbAs9i5f524OGyKS7MRXEhiQeI8IZAqYtDQQsHlxUvI
+	 chYGFyw5JtgE5+Wf/xM5+isoj4fv2q/1LQzEQQV0ODhhCt7EP0ViShcHHIUP75i4Go
+	 +rcV603BBGN14exfUaAoM31wZrPxheWAyUJvcU5vPlNJGlrrjqBq1nxTqetccjRsRj
+	 npmZ3jTDgNNOvam/63M0mzsNe9HxzcKnUKUIV515iim46Yzff+Gt4R70bvtw71cpu5
+	 yprCVnVPf8+jg==
+Message-ID: <d902cd11-7509-4173-ba67-d9ef48379f85@kernel.org>
+Date: Sun, 1 Mar 2026 14:59:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] MAINTAINERS: Update Axiado reviewer
+To: Karthikeyan Mitran <kmitran@axiado.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Prasad Bolisetty <pbolisetty@axiado.com>,
+ Tzu-Hao Wei <twei@axiado.com>, Axiado Reviewers <linux-maintainer@axiado.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Drew Fustini <fustini@kernel.org>,
+ Harshit Shah <hshah@axiado.com>
+References: <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-0-a3b095989823@axiado.com>
+ <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-2-a3b095989823@axiado.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260226-maintainers-addition-and-axiado-ax3000_dtsi-update-v3-2-a3b095989823@axiado.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269724-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269725-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[baylibre.com,gmail.com,analog.com,vger.kernel.org,metafoo.de,kernel.org,pengutronix.de];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 65BB51CFFA9
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: AD8011D00EE
 X-Rspamd-Action: no action
 
-On Mon, 23 Feb 2026 10:02:00 +0000
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+On 27/02/2026 01:31, Karthikeyan Mitran wrote:
+> From: Prasad Bolisetty <pbolisetty@axiado.com>
+> 
+> Adding 3 new maintainers Prasad,Tzu-Hao, and Karthikeyan
+> also adding a group reviewer entry for review coverage.
 
-> On Sun, 2026-02-22 at 14:32 -0600, David Lechner wrote:
-> > On 2/22/26 4:01 AM, Rodrigo Alencar wrote: =20
-> > > On 26/02/21 02:16PM, David Lechner wrote: =20
-> > > > On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote: =20
-> > > > > This patch series adds support for the Analog Devices AD9910 DDS.
-> > > > > This is an RFC so that we can agree/discuss on the design that fo=
-llows:
-> > > > >  =20
-> >=20
-> > ...
-> >  =20
-> > > > > represents a distinct signal path into the DDS accumulator, so th=
-e driver
-> > > > > models them as separate IIO output channels (all IIO_ALTVOLTAGE t=
-ype). =20
-> > > >=20
-> > > > Generally IIO channels represent the physical input/output, not the
-> > > > internal channels. =20
-> > >=20
-> > > That is part of the reason for this RFC. Dividing those top-level mod=
-es
-> > > into channels allows for better organization, as they can operate tog=
-ether,
-> > > i.e., phase or scale can be provided by single-tone profile, while
-> > > frequency is controlled by the digital ramp generator (see Mode Prior=
-ity
-> > > section in the datasheet). Also, it allows to explore the most of sta=
-ndard
-> > > ABIs like, scale, frequency, phase, sampling_frequency and enable.
-> > > Putting everything into a single channel would make things a lot messy
-> > > to interface with.
-> > >  =20
-> > > > Ideally we would just have the one channel here with a mode selecti=
-on
-> > > > attribute. Documentation can tell us which modes use which attribut=
-es.
-> > > >  =20
-> > > > > This per-channel separation allows userspace to configure each mo=
-de
-> > > > > independently through its own set of sysfs attributes, and to
-> > > > > enable/disable modes individually via IIO_CHAN_INFO_ENABLE, relyi=
-ng on
-> > > > > the hardware's own mode selection architecture.
-> > > > >  =20
-> >=20
-> > Looking at Table 5 in the datasheet really helped me understand this be=
-tter.
-> > I think this series could benefit from a documentation patch that expla=
-ins
-> > more about how the driver works with some diagrams.
-> >=20
-> > So really what we have here are a bunch of digital data generators rath=
-er
-> > than a bunch of altvotlage output channels. And the same data channels =
-can be
-> > mixed and match as the source for up to 3 different components of the o=
-utput
-> > (frequency, phase, amplitude) depending on the priority rules defined in
-> > Table 5. =20
->=20
-> More bellow... But note that all of the (or most of it) generators are go=
-ing to
-> be feed into a DAC. Your output is altvoltage but maybe we can treat the
-> internals as voltage. Not sure.
-> =20
-> >=20
-> > Digital data sources are really more like a buffer in IIO terms than a
-> > channel. And before we added the IIO backend stuff, there wasn't really
-> > any other digital data source/sink that I am aware of other than buffers
-> > (but there are certainly a lot of odd corners of IIO that I haven't exp=
-lored
-> > yet, so maybe I missed some).
-> >=20
-> > In a recent discussion, the idea of possibly needing a way to provide
-> > some userspace interface to be able to tweak knobs of an IIO backend
-> > was also brought up.
-> >=20
-> > Putting those ideas together, I'm wondering if we need some new channel
-> > type or even a whole new interface (e.g. a new sysfs directory like buf=
-fers
-> > and events) for managing these digital data sources/sinks that are not =
-an
-> > IIO buffer.
-> >  =20
->=20
-> But what would be that channel? In the end of the day, we typically have =
-voltage or
-> current DACs and a DDS primary function is indeed to generate alternating=
- waveforms
-> that you then typically feed into a DAC (and in some cases from the DAC i=
-nto a
-> power amplifier). So the DDS is just part of the data/signal path. Anyway=
-s, not sure
-> on the new type and I think we already have the "blocks" in IIO for deali=
-ng with this:
->=20
-> . frequency
-> . phase
-> . amplitude (raw + scale + offset)
->=20
-> But you're right that maybe it's time to think in a better way to fit the=
-m together.=C2=A0
-> Maybe a new type (as buffers or events) can make sense where the above ar=
-e treated as, example, scan
-> elements. Maybe it's overcomplicating, not sure. It surely needs  discuss=
-ion and thinking :).
->=20
-> And spoiler alert, as you might have guessed already, the parallel port s=
-tuff is to be
-> used with DMA buffers (and IIO backends). At least, that was the plan IIR=
-C. But Rodrigo
-> can confirm it.
->=20
-> > I think we've seen enough of these already to know that things like a
-> > "tone generator" and a "ramp generator" are going to be common and could
-> > share some standard attributes.=20
-> >  =20
->=20
-> I tend to agree. For example, there already some DACs (with dithering) th=
-at make use of a similar
-> interface (but with a custom prefix). Though the end goal is different, t=
-he interface is not that
-> far off:
->=20
->=20
-> https://elixir.bootlin.com/linux/v6.19.3/source/Documentation/ABI/testing=
-/sysfs-bus-iio-dac-ltc2688
->=20
-> Anyways, I knew this one would be an interesting one for upstream :)
+Same comments as before. You are doing much more in the patch which is
+not explained at all.
 
-For history buffs, we had a bunch of DDS chips in staging at one point and =
-never
-manage to figure out the questions being raised here :(  They are complex
-beasts.  Clarity of ABI proposal and documentation is going to be key to dr=
-iving
-this series forwards. In a sense the code is the easy part.
+You received comments, so respond or implement them, not just send the same.
 
-Jonathan
 
->=20
-> - Nuno S=C3=A1
->=20
-
+Best regards,
+Krzysztof
 
