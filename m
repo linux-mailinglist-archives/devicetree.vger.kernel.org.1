@@ -1,317 +1,279 @@
-Return-Path: <devicetree+bounces-269687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269688-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GKXJANQOpGlgWAUAu9opvQ
-	(envelope-from <devicetree+bounces-269687-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 11:03:00 +0100
+	id 4VzNEp0PpGnSWAUAu9opvQ
+	(envelope-from <devicetree+bounces-269688-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 11:06:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773301CF035
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 11:02:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 933E41CF064
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 11:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 10CA130157EA
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 10:02:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E72413016EC5
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 10:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF72A335081;
-	Sun,  1 Mar 2026 10:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C8C132E126;
+	Sun,  1 Mar 2026 10:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IiiSrQMx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pm0mxr6h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7376275AF0;
-	Sun,  1 Mar 2026 10:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 187F4430BBE;
+	Sun,  1 Mar 2026 10:06:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772359373; cv=none; b=PvypQ8fTXsnqLATdy/JPtRnYdiye8jmiDP4ZoofAPfDTPof0rvoMaxP/3/kGWmoRi/yup/lqmb+q3OObIEoiyWg3lfxMzwyOKuKVXY70k17UJuCMHZahaNTXyKstIuPMv11QlbWy5Wx0nf8vosVuJWFamdc4+KuFxy1BFW82tT0=
+	t=1772359578; cv=none; b=dLH6Ufpnxddr68X+Iulx51J5a+jSEiWkFGF2wkXHS6pR2sFmfMiJi6U5m8SMmJuyU4/bvl6mHVObYlKaqUKkp+DmHn3PeMd9fFHk1wsznoBhImiywPsihk0cTkGRC88fxypAdyiEP/Mmithm0ryZTUcYIgr8hlhXg5QGLkkhQGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772359373; c=relaxed/simple;
-	bh=vtpZN1m1i7JB60bMgpFDRckohYAe2rTfHOUBY7CPkt8=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XBSsgrUseoVhx7Ovkj4ku8l4m3TOjfH8IbVF8W0Wg/JDrHHKU4NyduVJwvWcb2BhGUdrUmPZUb8OkliOp/BwIl4i9g0pyqwKdrg+vouVZ7dlGazY1rUJDSQd4KC1+r2o1OB4N0LPaQwjjhEfneRpmZ7B6iw424DV7DaZ4kC4hoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IiiSrQMx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6B71C116C6;
-	Sun,  1 Mar 2026 10:02:52 +0000 (UTC)
+	s=arc-20240116; t=1772359578; c=relaxed/simple;
+	bh=fbudWWtSDtbaamUQSG6OMvnlgBAE0SiRayr4RJ2OiUo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OubPVqHQ8e3vJKMrwuIoOGqnBrdIXAycGjX8NTrHR4j97ytlU7gEtBWKxp8mjzf7hQ+YuLnu3LNUhCWkwDKtC+fqoEfhkdTebI7beIl7dEdderzu6nJpMc23XIhaG2GYHEVTM+GXSe9bedEvEvHR9P2WjUQ98QwQiFnwNrqSz6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pm0mxr6h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECFE7C116C6;
+	Sun,  1 Mar 2026 10:06:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772359373;
-	bh=vtpZN1m1i7JB60bMgpFDRckohYAe2rTfHOUBY7CPkt8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=IiiSrQMxEXvnAmwK9OX3matQowi1OfBQGfa4wsnqZv0VCq9h4hi+Zz6eWNcJvyp/v
-	 NKNEiJfQkOpipGT7qicIxsVx6iBqj9gkjCFVtdAyeuy4KsPdv7YgEPy/0IUfd+Ky6T
-	 FCIvl841AaG7hzOLpmL6YDHKu58OOkeozdhjL/90dmjbHUQMOOhRvblZPdRLY9Ht+m
-	 0UTfWVjWsewWXaC4++PUlDwCrawhx8s8fCQGvLTqMuOFiahVk0+ZI2X+c5Au/hCvwb
-	 EQlrFqjagExB54Zt8V/LeB5iU4ngXho+Wv2XfBowHcX8X6MjHXzRljnh73mzuLFo8+
-	 j55rBYk5pnByQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1vwddS-0000000Ev2N-1H9X;
-	Sun, 01 Mar 2026 10:02:50 +0000
-Date: Sun, 01 Mar 2026 10:02:49 +0000
-Message-ID: <861pi3amuu.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-Cc: Nipun Gupta <nipun.gupta@amd.com>,	Nikhil Agarwal
- <nikhil.agarwal@amd.com>,	Joerg Roedel <joro@8bytes.org>,	Will Deacon
- <will@kernel.org>,	Robin Murphy <robin.murphy@arm.com>,	Lorenzo Pieralisi
- <lpieralisi@kernel.org>,	Thomas Gleixner <tglx@kernel.org>,	Rob Herring
- <robh@kernel.org>,	Saravana Kannan <saravanak@kernel.org>,	Richard Zhu
- <hongxing.zhu@nxp.com>,	Lucas Stach <l.stach@pengutronix.de>,	Krzysztof
- =?UTF-8?B?V2lsY3p5xYRza2k=?= <kwilczynski@kernel.org>,	Manivannan
- Sadhasivam <mani@kernel.org>,	Bjorn Helgaas <bhelgaas@google.com>,	Frank Li
- <Frank.Li@nxp.com>,	Sascha Hauer <s.hauer@pengutronix.de>,	Pengutronix
- Kernel Team <kernel@pengutronix.de>,	Fabio Estevam <festevam@gmail.com>,
-	Juergen Gross <jgross@suse.com>,	Stefano Stabellini
- <sstabellini@kernel.org>,	Oleksandr Tyshchenko
- <oleksandr_tyshchenko@epam.com>,	Dmitry Baryshkov
- <dmitry.baryshkov@oss.qualcomm.com>,	Konrad Dybcio
- <konrad.dybcio@oss.qualcomm.com>,	Bjorn Andersson
- <bjorn.andersson@oss.qualcomm.com>,	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,	Prakash Gupta
- <prakash.gupta@oss.qualcomm.com>,	Vikash Garodia
- <vikash.garodia@oss.qualcomm.com>,	linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev,	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,	linux-pci@vger.kernel.org,	imx@lists.linux.dev,
-	xen-devel@lists.xenproject.org,	linux-arm-msm@vger.kernel.org,	Charan Teja
- Kalla <charan.kalla@oss.qualcomm.com>
-Subject: Re: [PATCH v9 2/3] of: factor arguments passed to of_map_id() into a struct
-In-Reply-To: <20260301-parse_iommu_cells-v9-2-4d1bceecc5e1@oss.qualcomm.com>
-References: <20260301-parse_iommu_cells-v9-0-4d1bceecc5e1@oss.qualcomm.com>
-	<20260301-parse_iommu_cells-v9-2-4d1bceecc5e1@oss.qualcomm.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1772359577;
+	bh=fbudWWtSDtbaamUQSG6OMvnlgBAE0SiRayr4RJ2OiUo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Pm0mxr6hT3zrGQKfL1psKmGT9eH95h5wOZAWW570zFCOkpq1oJrC7cc8dGupSSSpa
+	 aGWN9RGspOY1lRn6/PJ9dQsoF12OMYHYV6qQm4iKMOv+Q/JP0QSsA++ZiZiF27KV4o
+	 MJyL54mtTo+YBD8nRPfDN9aUlzt/OPgVybZLc9NC+WozWtLDxwRRS6SyjBOkQMAc/3
+	 Wt6LwRQnUd6aSMmSPK68uzy8p4E/cU47wrlLe2y6Dvs+FIn1h94QgsBPmzke8UQq3z
+	 3QnUEy/GvQLQUB59cesnI3kwm0EkaAzPlWFl2DDmVoRK1bmyBvbVPyYtIiVSV8PsPV
+	 pPxQGZUZE0ctw==
+Message-ID: <f7b854e4-c1cc-4444-93f8-2a815b890d68@kernel.org>
+Date: Sun, 1 Mar 2026 11:06:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: vijayanand.jitta@oss.qualcomm.com, nipun.gupta@amd.com, nikhil.agarwal@amd.com, joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, lpieralisi@kernel.org, tglx@kernel.org, robh@kernel.org, saravanak@kernel.org, hongxing.zhu@nxp.com, l.stach@pengutronix.de, kwilczynski@kernel.org, mani@kernel.org, bhelgaas@google.com, Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, jgross@suse.com, sstabellini@kernel.org, oleksandr_tyshchenko@epam.com, dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com, conor+dt@kernel.org, krzk+dt@kernel.org, prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com, linux-kernel@vger.kernel.org, iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, imx@lists.linux.dev, xen-devel@lists.xenproject.org, linux-arm-msm@vger.kernel.org, charan.kalla@oss.qualcomm.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: greybus: Document google,arche-platform
+To: Soham Kute <officialsohamkute@gmail.com>, hvaibhav.linux@gmail.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260301050343.23258-1-officialsohamkute@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260301050343.23258-1-officialsohamkute@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	FREEMAIL_CC(0.00)[amd.com,8bytes.org,kernel.org,arm.com,nxp.com,pengutronix.de,google.com,gmail.com,suse.com,epam.com,oss.qualcomm.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.xenproject.org];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269687-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269688-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maz@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email]
-X-Rspamd-Queue-Id: 773301CF035
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 933E41CF064
 X-Rspamd-Action: no action
 
-On Sun, 01 Mar 2026 08:34:20 +0000,
-Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com> wrote:
+On 01/03/2026 06:03, Soham Kute wrote:
+> Document the Google Arche platform which enables the Unipro
+> link between the application processor and the SVC in a
+> Greybus-based system.
 > 
-> From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-> 
-> Change of_map_id() to take a pointer to struct of_phandle_args
-> instead of passing target device node and translated IDs separately.
-> Update all callers accordingly.
-> 
-> Subsequent patch will make use of the args_count field in
-> struct of_phandle_args.
-> 
-> Suggested-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+> Signed-off-by: Soham Kute <officialsohamkute@gmail.com>
 > ---
->  drivers/iommu/of_iommu.c              |  2 +-
->  drivers/of/base.c                     | 37 +++++++++++++++++------------------
->  drivers/pci/controller/dwc/pci-imx6.c |  8 +++++++-
->  drivers/pci/controller/pcie-apple.c   |  4 +++-
->  drivers/xen/grant-dma-ops.c           |  2 +-
->  include/linux/of.h                    | 21 +++++++++++++-------
->  6 files changed, 44 insertions(+), 30 deletions(-)
+>  .../greybus/google,arche-platform.yaml        | 71 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/greybus/google,arche-platform.yaml
 > 
-> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> index a511ecf21fcd..d255d0f58e8c 100644
-> --- a/drivers/iommu/of_iommu.c
-> +++ b/drivers/iommu/of_iommu.c
-> @@ -48,7 +48,7 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
->  	struct of_phandle_args iommu_spec = { .args_count = 1 };
->  	int err;
->  
-> -	err = of_map_iommu_id(master_np, *id, &iommu_spec.np, iommu_spec.args);
-> +	err = of_map_iommu_id(master_np, *id, &iommu_spec);
->  	if (err)
->  		return err;
->  
-> diff --git a/drivers/of/base.c b/drivers/of/base.c
-> index 57420806c1a2..6c3628255908 100644
-> --- a/drivers/of/base.c
-> +++ b/drivers/of/base.c
-> @@ -2102,8 +2102,11 @@ int of_find_last_cache_level(unsigned int cpu)
->   * @id: device ID to map.
->   * @map_name: property name of the map to use.
->   * @map_mask_name: optional property name of the mask to use.
-> - * @target: optional pointer to a target device node.
-> - * @id_out: optional pointer to receive the translated ID.
-> + * @arg: of_phandle_args structure,
-> + *	which includes:
-> + *	np: pointer to the target device node
-> + *	args_count: number of arguments
-
-Number of arguments *to what*? Isn't that the size of args[] instead?
-
-> + *	args[]: array to receive the translated ID(s).
->   *
->   * Given a device ID, look up the appropriate implementation-defined
->   * platform ID and/or the target device which receives transactions on that
-> @@ -2117,21 +2120,21 @@ int of_find_last_cache_level(unsigned int cpu)
->   */
->  int of_map_id(const struct device_node *np, u32 id,
->  	       const char *map_name, const char *map_mask_name,
-> -	       struct device_node **target, u32 *id_out)
-> +	       struct of_phandle_args *arg)
->  {
->  	u32 map_mask, masked_id;
->  	int map_len;
->  	const __be32 *map = NULL;
->  
-> -	if (!np || !map_name || (!target && !id_out))
-> +	if (!np || !map_name || !arg)
->  		return -EINVAL;
->  
->  	map = of_get_property(np, map_name, &map_len);
->  	if (!map) {
-> -		if (target)
-> +		if (arg->np)
->  			return -ENODEV;
->  		/* Otherwise, no map implies no translation */
-> -		*id_out = id;
-> +		arg->args[0] = id;
-
-What if args_count is 0? Given that you place no restriction on the
-way this can be called, that'd be entirely legitimate, and you'd
-corrupt something you're not supposed to touch.
-
->  		return 0;
->  	}
->  
-> @@ -2173,18 +2176,15 @@ int of_map_id(const struct device_node *np, u32 id,
->  		if (!phandle_node)
->  			return -ENODEV;
->  
-> -		if (target) {
-> -			if (*target)
-> -				of_node_put(phandle_node);
-> -			else
-> -				*target = phandle_node;
-> +		if (arg->np)
-> +			of_node_put(phandle_node);
-> +		else
-> +			arg->np = phandle_node;
->  
-> -			if (*target != phandle_node)
-> -				continue;
-> -		}
-> +		if (arg->np != phandle_node)
-> +			continue;
->  
-> -		if (id_out)
-> -			*id_out = masked_id - id_base + out_base;
-> +		arg->args[0] = masked_id - id_base + out_base;
->  
->  		pr_debug("%pOF: %s, using mask %08x, id-base: %08x, out-base: %08x, length: %08x, id: %08x -> %08x\n",
->  			np, map_name, map_mask, id_base, out_base,
-> @@ -2193,11 +2193,10 @@ int of_map_id(const struct device_node *np, u32 id,
->  	}
->  
->  	pr_info("%pOF: no %s translation for id 0x%x on %pOF\n", np, map_name,
-> -		id, target && *target ? *target : NULL);
-> +		id, arg->np ? arg->np : NULL);
->  
->  	/* Bypasses translation */
-> -	if (id_out)
-> -		*id_out = id;
-> +	arg->args[0] = id;
->  	return 0;
->  }
->  EXPORT_SYMBOL_GPL(of_map_id);
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index bff8289f804a..74fc603b3f84 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -1139,12 +1139,18 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
->  {
->  	struct device *dev = imx_pcie->pci->dev;
->  	struct device_node *target;
-> +	struct of_phandle_args iommu_spec = { .args_count = 1 };
->  	u32 sid_i, sid_m;
->  	int err_i, err_m;
->  	u32 sid = 0;
->  
->  	target = NULL;
-> -	err_i = of_map_iommu_id(dev->of_node, rid, &target, &sid_i);
-> +	err_i = of_map_iommu_id(dev->of_node, rid, &iommu_spec);
-> +	if (!err_i) {
-> +		target = iommu_spec.np;
-> +		sid_i = iommu_spec.args[0];
-> +	}
+> diff --git a/Documentation/devicetree/bindings/greybus/google,arche-platform.yaml b/Documentation/devicetree/bindings/greybus/google,arche-platform.yaml
+> new file mode 100644
+> index 000000000000..6e176efc264a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/greybus/google,arche-platform.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/greybus/google,arche-platform.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  	if (target) {
->  		of_node_put(target);
->  	} else {
-> diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
-> index a0937b7b3c4d..e1d4b37d200d 100644
-> --- a/drivers/pci/controller/pcie-apple.c
-> +++ b/drivers/pci/controller/pcie-apple.c
-> @@ -755,6 +755,7 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
->  {
->  	u32 sid, rid = pci_dev_id(pdev);
->  	struct apple_pcie_port *port;
-> +	struct of_phandle_args iommu_spec = { .args_count = 1 };
->  	int idx, err;
->  
->  	port = apple_pcie_get_port(pdev);
-> @@ -764,10 +765,11 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
->  	dev_dbg(&pdev->dev, "added to bus %s, index %d\n",
->  		pci_name(pdev->bus->self), port->idx);
->  
-> -	err = of_map_iommu_id(port->pcie->dev->of_node, rid, NULL, &sid);
-> +	err = of_map_iommu_id(port->pcie->dev->of_node, rid, &iommu_spec);
->  	if (err)
->  		return err;
->  
-> +	sid = iommu_spec.args[0];
+> +title: Google Arche Platform
+> +
+> +maintainers:
+> +  - Vaibhav Hiremath <hvaibhav.linux@gmail.com>
+> +
+> +description:
+> +  The Arche platform driver enables the Unipro link between the
 
-I find this stuff absolutely unreadable. You're fishing the SID in a
-random position of a random structure, without any documentation of
-how this is supposed to work. This really needs a wrapper that hides
-this implementation detail.
+You need to describe hardware, not drivers.
 
-Thanks,
+This wasn't tested, so limited review.
 
-	M.
+> +  application processor and the SVC (Supervisory Controller) in
+> +  a Greybus-based system.
+> +
+> +properties:
+> +  compatible:
+> +    const: google,arche-platform
 
--- 
-Without deviation from the norm, progress is not possible.
+Your description is insufficient. Is this SoC? Is this device?
+Compatible is way too generic and "platform" is not correct in the
+compatible. Everything can be a platform.
+
+> +
+> +  svc,reset-gpios:
+
+No, use standard properties.
+
+There is no such company as svc.
+
+> +    description: GPIO used to reset the SVC
+> +    maxItems: 1
+> +
+> +  svc,sysboot-gpios:
+> +    description: GPIO used for SVC sysboot signal
+> +    maxItems: 1
+> +
+> +  svc,refclk-req-gpios:
+> +    description: GPIO used to request the SVC reference clock
+> +    maxItems: 1
+> +
+> +  svc,wake-detect-gpios:
+> +    description: Bidirectional GPIO for wake/detect signal between AP and SVC
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: SVC reference clock
+
+What is SVC?
+
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: svc_ref_clk
+
+Drop names
+
+> +
+> +  svc,reset-active-high:
+> +    description: Present if the SVC reset GPIO is active high
+> +    type: boolean
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - svc,reset-gpios
+> +  - svc,sysboot-gpios
+> +  - svc,refclk-req-gpios
+> +  - svc,wake-detect-gpios
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    arche-platform {
+
+Again, what is arche-platform?
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +        compatible = "google,arche-platform";
+> +        svc,reset-gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
+> +        svc,sysboot-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
+> +        svc,refclk-req-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
+> +        svc,wake-detect-gpios = <&gpio 3 GPIO_ACTIVE_HIGH>;
+> +        clocks = <&svc_ref_clk>;
+> +        clock-names = "svc_ref_clk";
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e08767323763..46cb6825f4d6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10886,6 +10886,7 @@ S:	Maintained
+>  F:	drivers/staging/greybus/arche-apb-ctrl.c
+>  F:	drivers/staging/greybus/arche-platform.c
+>  F:	drivers/staging/greybus/arche_platform.h
+> +F:	Documentation/devicetree/bindings/greybus/google,arche-platform.yaml
+
+Don't send bindings to match staging code. This is not the correct
+process. You must come with proper bindings for hardware, following
+standard review process like there was nothing in the staging. It's
+second bindings this week, is this some sort of GSoC again without any
+supervision?
+
+
+Best regards,
+Krzysztof
 
