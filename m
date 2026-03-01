@@ -1,74 +1,57 @@
-Return-Path: <devicetree+bounces-269649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269650-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHDZNzKbo2l4IAUAu9opvQ
-	(envelope-from <devicetree+bounces-269649-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:49:38 +0100
+	id 8BGCCP+co2nDIQUAu9opvQ
+	(envelope-from <devicetree+bounces-269650-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:57:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487961CBE7C
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:49:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CEA91CC5D5
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:57:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 576F6323AB76
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:36:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A244632B7D63
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2F229D270;
-	Sun,  1 Mar 2026 01:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF3BF2F83AC;
+	Sun,  1 Mar 2026 01:39:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BcWuQgQZ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="en5n2Xqm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB64F13B58A;
-	Sun,  1 Mar 2026 01:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA362D838A;
+	Sun,  1 Mar 2026 01:39:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772328906; cv=none; b=LbfUOK0mBm1NDYTAMSd8D8Djz1YuOz3fZxClYhfoYLRhb2KlbCCaMPMrJEhAlHUYdlwm14FCe2oB3Cj6P4y5HCxktoTydbOiWc5wjMCQvd0yF2P4V5O4AQeY179EWIkOEHuShAivPpco6KfMHdfH7m0MnXrdA37qx2afl17NE/Q=
+	t=1772329168; cv=none; b=MbmrTt4/v09R4wsJv/tX/zY4+wWIymRycxAjPeR8F4POXLwB2+51bmy4GL3zhTX5XfI52LNamgIesLG/4e8dddT2Ctm2PuKr8Ac4NYA8xJFTQfZdAiW5oxvsdQYrMoMlcIUUMkFc5K/EJ/3Px/nSkUDf/7U/GikhrSrrBu8OoIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772328906; c=relaxed/simple;
-	bh=g0NMfMMbeDJwj2doTKxCYu4tYJcSzjOnwwonHzsqPMc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xdi3DnjkWKevVoq1J+RlnOm9VPb72smj4gyFNgr9xwKqYBh1vN8DGY4hjiBE2zOap29lgsb+ykkHhtss9xqwDe2BJxFTLgtHf+FOt8i0l5N4lcG0rjSjIuY3yoBgI+Ab6/J3lMHbgeG7tkrCG1iWkJP8r4qf2O4XMuuQ73XliWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BcWuQgQZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2599C4AF0D;
-	Sun,  1 Mar 2026 01:35:03 +0000 (UTC)
+	s=arc-20240116; t=1772329168; c=relaxed/simple;
+	bh=gdcyUrN+ICOriwujZVrmtZcPmJjpRmveLri9zQ/JwLA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AN91ENgZJU21KWgYLCR6vs4QoH7Od0X369HFvdses+5QPFBGwB5pVRW7EhcB1BCdH2937o+o8QTkAvnyULo7S0c+zbuuyHTt+vtFeZ9+hhWnoqKhEBbI8MBBPRuFtVF6bx6xhjD+2SNzZEqst33e2r4JtiWxTpElhaGFTo5Szro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=en5n2Xqm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C189BC19421;
+	Sun,  1 Mar 2026 01:39:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772328905;
-	bh=g0NMfMMbeDJwj2doTKxCYu4tYJcSzjOnwwonHzsqPMc=;
+	s=k20201202; t=1772329168;
+	bh=gdcyUrN+ICOriwujZVrmtZcPmJjpRmveLri9zQ/JwLA=;
 	h=From:To:Cc:Subject:Date:From;
-	b=BcWuQgQZ2pzqnTtpYW6kXaOg5lqO4jpWOWtWjdaRqaTNxGLT3Yvufe5xOLjxsuPNA
-	 fcWCygrEevVzFuPTHMlDNwQf4S2/o2oMYIDeHF1BXAzEMM6OL7OiHbtnt2CfZX9p1+
-	 x1Y8DM/zR4DXVA6KXaSnNZrwNj/yGyPUi5WT/E8FILqDjw9ooZfsX4nCbKcysClPS1
-	 EjLWGZ4Xp0Dc5sbpxPrvZ3PUBwHutgSPEYlutrZJkN8sYguHt8VSHTjQQK/mZ2vAwG
-	 Xgztu2ZM4cI+QGq89KCBBWuwbhs0QOmfZ9O3vcV5AJfmVSnl6dfKtP0crcuxdkybxi
-	 6jwe7rG0ioInQ==
+	b=en5n2Xqm7Yrp294bboYX4Mf9X+f1N5qf+tZVEng6/UosknpozLTCGTJHKvRTMYzQD
+	 QtVwjdNsDao2otHOvmL9wYSqJehZZAP4iQvQVUkjtfSagFwnoih7nTf3qYBjLVkoa0
+	 aOQ34MkUCTjwyY8bG8jiQi29/V0wf/WI0UyjcWd+PXQwcOH8qhn0RpxgzBbhQcOtnK
+	 CIxIPX5toeZBZTBmw8mfJXDl7aTlbZ+iOPcSYpF06NuqgDBLKNc0tId9Fp6XF4583z
+	 cw3MSIroMpOT+NQVHlEJYs/nhSEAcKYccwzNEb8R3MznNq403eDympgVHotyMla1fy
+	 YptpL2WWV072g==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
-	harshit.m.mogalapalli@oracle.com
-Cc: Mimi Zohar <zohar@linux.ibm.com>,
-	Alexander Graf <graf@amazon.com>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Baoquan He <bhe@redhat.com>,
-	Borislav Betkov <bp@alien8.de>,
-	guoweikang <guoweikang.kernel@gmail.com>,
-	Henry Willard <henry.willard@oracle.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Ingo Molnar <mingo@redhat.com>,
-	Jiri Bohac <jbohac@suse.cz>,
-	Joel Granados <joel.granados@kernel.org>,
-	Jonathan McDowell <noodles@fb.com>,
-	Mike Rapoport <rppt@kernel.org>,
-	Paul Webb <paul.x.webb@oracle.com>,
-	Sohil Mehta <sohil.mehta@intel.com>,
-	Sourabh Jain <sourabhjain@linux.ibm.com>,
-	Thomas Gleinxer <tglx@linutronix.de>,
-	Yifei Liu <yifei.l.liu@oracle.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	devicetree@vger.kernel.org
-Subject: FAILED: Patch "of/kexec: refactor ima_get_kexec_buffer() to use ima_validate_range()" failed to apply to 6.6-stable tree
-Date: Sat, 28 Feb 2026 20:35:02 -0500
-Message-ID: <20260301013502.1694624-1-sashal@kernel.org>
+	shengjiu.wang@nxp.com
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Mark Brown <broonie@kernel.org>, Shengjiu@web.codeaurora.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org
+Subject: FAILED: Patch "ASoC: dt-bindings: asahi-kasei,ak4458: Fix the supply names" failed to apply to 6.6-stable tree
+Date: Sat, 28 Feb 2026 20:39:26 -0500
+Message-ID: <20260301013926.1700439-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -80,36 +63,35 @@ X-Patchwork-Hint: ignore
 X-stable: review
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:subspace.kernel.org:reject}];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linux.ibm.com,amazon.com,kernel.org,redhat.com,alien8.de,gmail.com,oracle.com,zytor.com,suse.cz,fb.com,intel.com,linutronix.de,linux-foundation.org,vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.997];
+	R_DKIM_REJECT(0.00)[kernel.org:s=k20201202];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-269649-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269650-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[kernel.org:-];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 487961CBE7C
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,msgid.link:url,qualcomm.com:email]
+X-Rspamd-Queue-Id: 8CEA91CC5D5
 X-Rspamd-Action: no action
 
 The patch below does not apply to the 6.6-stable tree.
@@ -122,74 +104,45 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From 4d02233235ed0450de9c10fcdcf3484e3c9401ce Mon Sep 17 00:00:00 2001
-From: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
-Date: Tue, 30 Dec 2025 22:16:08 -0800
-Subject: [PATCH] of/kexec: refactor ima_get_kexec_buffer() to use
- ima_validate_range()
+From e570a5ca307f6d7a6acd080fc219db2ce3c0737b Mon Sep 17 00:00:00 2001
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+Date: Thu, 12 Feb 2026 10:18:28 +0800
+Subject: [PATCH] ASoC: dt-bindings: asahi-kasei,ak4458: Fix the supply names
 
-Refactor the OF/DT ima_get_kexec_buffer() to use a generic helper to
-validate the address range.  No functional change intended.
+In the original txt format binding document ak4458.txt, the supply names
+are 'AVDD-supply', 'DVDD-supply', and they are also used in driver. But in
+the commit converting to yaml format, they are changed to 'avdd-supply',
+'dvdd-supply'. After search all the dts file, these names 'AVDD-supply',
+'DVDD-supply', 'avdd-supply', 'dvdd-supply' are not used in any dts
+file. So it is safe to fix this yaml binding document.
 
-Link: https://lkml.kernel.org/r/20251231061609.907170-3-harshit.m.mogalapalli@oracle.com
-Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
-Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
-Cc: Alexander Graf <graf@amazon.com>
-Cc: Ard Biesheuvel <ardb@kernel.org>
-Cc: Baoquan He <bhe@redhat.com>
-Cc: Borislav Betkov <bp@alien8.de>
-Cc: guoweikang <guoweikang.kernel@gmail.com>
-Cc: Henry Willard <henry.willard@oracle.com>
-Cc: "H. Peter Anvin" <hpa@zytor.com>
-Cc: Ingo Molnar <mingo@redhat.com>
-Cc: Jiri Bohac <jbohac@suse.cz>
-Cc: Joel Granados <joel.granados@kernel.org>
-Cc: Jonathan McDowell <noodles@fb.com>
-Cc: Mike Rapoport <rppt@kernel.org>
-Cc: Paul Webb <paul.x.webb@oracle.com>
-Cc: Sohil Mehta <sohil.mehta@intel.com>
-Cc: Sourabh Jain <sourabhjain@linux.ibm.com>
-Cc: Thomas Gleinxer <tglx@linutronix.de>
-Cc: Yifei Liu <yifei.l.liu@oracle.com>
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Fixes: 009e83b591dd ("ASoC: dt-bindings: ak4458: Convert to dtschema")
+Cc: stable@vger.kernel.org
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Link: https://patch.msgid.link/20260212021829.3244736-3-shengjiu.wang@nxp.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- drivers/of/kexec.c | 15 +++------------
- 1 file changed, 3 insertions(+), 12 deletions(-)
+ .../devicetree/bindings/sound/asahi-kasei,ak4458.yaml         | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index 1ee2d31816aeb..c4cf3552c0183 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -128,7 +128,6 @@ int __init ima_get_kexec_buffer(void **addr, size_t *size)
- {
- 	int ret, len;
- 	unsigned long tmp_addr;
--	unsigned long start_pfn, end_pfn;
- 	size_t tmp_size;
- 	const void *prop;
+diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+index 259e97b7a3c0f..3a3313ea0890a 100644
+--- a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4458.yaml
+@@ -21,10 +21,10 @@ properties:
+   reg:
+     maxItems: 1
  
-@@ -144,17 +143,9 @@ int __init ima_get_kexec_buffer(void **addr, size_t *size)
- 	if (!tmp_size)
- 		return -ENOENT;
+-  avdd-supply:
++  AVDD-supply:
+     description: Analog power supply
  
--	/*
--	 * Calculate the PFNs for the buffer and ensure
--	 * they are with in addressable memory.
--	 */
--	start_pfn = PHYS_PFN(tmp_addr);
--	end_pfn = PHYS_PFN(tmp_addr + tmp_size - 1);
--	if (!page_is_ram(start_pfn) || !page_is_ram(end_pfn)) {
--		pr_warn("IMA buffer at 0x%lx, size = 0x%zx beyond memory\n",
--			tmp_addr, tmp_size);
--		return -EINVAL;
--	}
-+	ret = ima_validate_range(tmp_addr, tmp_size);
-+	if (ret)
-+		return ret;
+-  dvdd-supply:
++  DVDD-supply:
+     description: Digital power supply
  
- 	*addr = __va(tmp_addr);
- 	*size = tmp_size;
+   reset-gpios:
 -- 
 2.51.0
 
