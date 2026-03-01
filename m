@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-269647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269648-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eKTVCCaYo2neHgUAu9opvQ
-	(envelope-from <devicetree+bounces-269647-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:36:38 +0100
+	id EDBrIiuYo2lIHwUAu9opvQ
+	(envelope-from <devicetree+bounces-269648-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:36:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E19ED1CB1EB
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:36:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA3D1CB20B
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:36:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 85468301A9DE
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:35:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AB759302524A
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8602DCBFA;
-	Sun,  1 Mar 2026 01:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089E92E1EE5;
+	Sun,  1 Mar 2026 01:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gq6QKhLD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Se3d2dwo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7F62D8796;
-	Sun,  1 Mar 2026 01:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A6E29B793;
+	Sun,  1 Mar 2026 01:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772328853; cv=none; b=Rh2Ff2TuJhKp2sw1MlaKP7STD7Mjk+Reszojx2hhKo2UrsonNGesHw0E9tT8WgtYzzjEf4U9UPeOUQLLpwoCzO9VawFJPwHx+9Pj/eTJkh6HGtQX+Uz9IIlO4f+99/8Yun31NPicF+gaFst+ZhxksNeZxqlqJ0bJJN4bg4RooXs=
+	t=1772328857; cv=none; b=Ffc1ZC4Lqam5WU10gVHCPTzTPTbLM/kRvxMyeUH1JJEsuhlCvXF/bFOEvorTybyqvJv6/SBPSd6P60orHqtSvZze1yVkTedd0ge/OCGoCS3GlpwVCWnapW334zzp87DmBIUiUlI1AapY83mNFZ38226kcwhI2a+puWPEwVctjx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772328853; c=relaxed/simple;
-	bh=CGYWZTh+50X7ujXaVbiMQc3r3HA55d1id6kLK8MGTco=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GXEIvmGMWr7CZpgehU2655JW91utBY4dT9DS9nrJVap6oSYDqH65QZkcskXG5u36+Uun2p5q5RLLgrfP0thd1mOeXLQSSEeINDTjiZovufypXdIafiW2qWhBxxwinbqDeCBUwpBwUOcMMVbX5E2sPA3EMKzRCa6kPMrrIkmQQT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gq6QKhLD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19764C19421;
-	Sun,  1 Mar 2026 01:34:12 +0000 (UTC)
+	s=arc-20240116; t=1772328857; c=relaxed/simple;
+	bh=0+cHeFH6bN3+Ii6nC3yaqGh3RNXA5v2GFSIX2DBpzrc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Txqpjl5hy12bSun21CuxbT/tGRWbpudfyk0AEtmbTbDO/ZiEVGCfeCqpVAXoplOJjj47jhNbLfIWyaB4443Si8C1f4uDy5XxUkseFWk5Ny4zXmirvs2ORnLh7KEUdHgrWImGmhSc3IDkl2QQpb0+yen7N+R3Qdpv8+dPo7jgkSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Se3d2dwo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 098F2C19425;
+	Sun,  1 Mar 2026 01:34:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772328852;
-	bh=CGYWZTh+50X7ujXaVbiMQc3r3HA55d1id6kLK8MGTco=;
+	s=k20201202; t=1772328857;
+	bh=0+cHeFH6bN3+Ii6nC3yaqGh3RNXA5v2GFSIX2DBpzrc=;
 	h=From:To:Cc:Subject:Date:From;
-	b=gq6QKhLDW169gm5m9M9aWoVtTuVc9rSjIHD15nl775V6ewP7nn+5i1z03Ue69Afhn
-	 /EI/fd2p0MHEJzZS5cvqTIzrKroEZGMCiIZcj2pnlemmMu1dkptzwhZk5qUBPjDLFJ
-	 X9HmaGPQi2iH7ufRovdmsLEztKkGLEZ3WFPiED3kefid5PP/fGNo9s034oNLFC7osj
-	 hpq4otVTavlfsadncmoamyFYqwoWpl4VjMo0hfAOnEWdSeBkkd35d67WD1odH4otui
-	 QE3TjKgbOtMYGpvMhzaHp60zAJk+cGzergEbeJlQMr6KGOfWMK7M8fWuSO+jRJ+kU5
-	 vj5t6ViwNl7IQ==
+	b=Se3d2dwoHH54bmA8OcXdW00cm8CWsGRhuJOP+aNu0XexPq1UcMssVgg/HEt/ko8jZ
+	 +IIadqJhIqhk56HQxVUDbTmgEEsCk6G711frQoI47q/Kb3hR9kepkYZ5wqpRn2UH6Z
+	 5KrqMfTa81EaL0WD3sPb5FQXNcjeLvcl3kIQNfsoGyR99Uj3DwHbK1qYoYJHrCrdUQ
+	 4jq4rzlnWLmI1987gnDtZ4FoIcfqsxL73oipPwqwJMt4oyPRWFmH8dNg4+v6k/gJDw
+	 mEGLdUEBE6TEJK6fiKO6kBPu7fwpv2hFGzPTiKy1xjFtGY2mWli9q8p2WFchq8R1CU
+	 5FDZt7+lFbhdA==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	shawn.lin@rock-chips.com
-Cc: Andrew Powers-Holmes <aholmes@omnom.net>,
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
 	Heiko Stuebner <heiko@sntech.de>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org
-Subject: FAILED: Patch "arm64: dts: rockchip: Fix rk356x PCIe range mappings" failed to apply to 6.6-stable tree
-Date: Sat, 28 Feb 2026 20:34:10 -0500
-Message-ID: <20260301013411.1693589-1-sashal@kernel.org>
+Subject: FAILED: Patch "arm64: dts: rockchip: Fix rk3588 PCIe range mappings" failed to apply to 6.6-stable tree
+Date: Sat, 28 Feb 2026 20:34:15 -0500
+Message-ID: <20260301013415.1693700-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -78,7 +78,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269647-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269648-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
@@ -91,7 +91,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: E19ED1CB1EB
+X-Rspamd-Queue-Id: 4BA3D1CB20B
 X-Rspamd-Action: no action
 
 The patch below does not apply to the 6.6-stable tree.
@@ -104,63 +104,81 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From f63ea193a404481f080ca2958f73e9f364682db9 Mon Sep 17 00:00:00 2001
+From 46c56b737161060dfa468f25ae699749047902a2 Mon Sep 17 00:00:00 2001
 From: Shawn Lin <shawn.lin@rock-chips.com>
-Date: Mon, 5 Jan 2026 16:15:28 +0800
-Subject: [PATCH] arm64: dts: rockchip: Fix rk356x PCIe range mappings
+Date: Mon, 5 Jan 2026 16:15:29 +0800
+Subject: [PATCH] arm64: dts: rockchip: Fix rk3588 PCIe range mappings
 
 The pcie bus address should be mapped 1:1 to the cpu side MMIO address, so
 that there is no same address allocated from normal system memory. Otherwise
 it's broken if the same address assigned to the EP for DMA purpose.Fix it to
 sync with the vendor BSP.
 
-Fixes: 568a67e742df ("arm64: dts: rockchip: Fix rk356x PCIe register and range mappings")
-Fixes: 66b51ea7d70f ("arm64: dts: rockchip: Add rk3568 PCIe2x1 controller")
+Fixes: 0acf4fa7f187 ("arm64: dts: rockchip: add PCIe3 support for rk3588")
+Fixes: 8d81b77f4c49 ("arm64: dts: rockchip: add rk3588 PCIe2 support")
 Cc: stable@vger.kernel.org
-Cc: Andrew Powers-Holmes <aholmes@omnom.net>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
 Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-Link: https://patch.msgid.link/1767600929-195341-1-git-send-email-shawn.lin@rock-chips.com
+Link: https://patch.msgid.link/1767600929-195341-2-git-send-email-shawn.lin@rock-chips.com
 Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 ---
- arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 4 ++--
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi  | 4 ++--
+ arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi | 6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index e719a3df126c5..658097ed69714 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -185,7 +185,7 @@ pcie3x1: pcie@fe270000 {
- 		      <0x0 0xf2000000 0x0 0x00100000>;
- 		ranges = <0x01000000 0x0 0xf2100000 0x0 0xf2100000 0x0 0x00100000>,
- 			 <0x02000000 0x0 0xf2200000 0x0 0xf2200000 0x0 0x01e00000>,
--			 <0x03000000 0x0 0x40000000 0x3 0x40000000 0x0 0x40000000>;
-+			 <0x03000000 0x3 0x40000000 0x3 0x40000000 0x0 0x40000000>;
- 		reg-names = "dbi", "apb", "config";
- 		resets = <&cru SRST_PCIE30X1_POWERUP>;
- 		reset-names = "pipe";
-@@ -238,7 +238,7 @@ pcie3x2: pcie@fe280000 {
- 		      <0x0 0xf0000000 0x0 0x00100000>;
- 		ranges = <0x01000000 0x0 0xf0100000 0x0 0xf0100000 0x0 0x00100000>,
- 			 <0x02000000 0x0 0xf0200000 0x0 0xf0200000 0x0 0x01e00000>,
--			 <0x03000000 0x0 0x40000000 0x3 0x80000000 0x0 0x40000000>;
-+			 <0x03000000 0x3 0x80000000 0x3 0x80000000 0x0 0x40000000>;
- 		reg-names = "dbi", "apb", "config";
- 		resets = <&cru SRST_PCIE30X2_POWERUP>;
- 		reset-names = "pipe";
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-index 8893b7b6cc9ff..a2c4957a58992 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-@@ -1022,7 +1022,7 @@ pcie2x1: pcie@fe260000 {
- 		power-domains = <&power RK3568_PD_PIPE>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+index aa74e8d7b4e95..f79e54c14ff0a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+@@ -2019,7 +2019,7 @@ pcie2x1l1: pcie@fe180000 {
+ 		power-domains = <&power RK3588_PD_PCIE>;
+ 		ranges = <0x01000000 0x0 0xf3100000 0x0 0xf3100000 0x0 0x00100000>,
+ 			 <0x02000000 0x0 0xf3200000 0x0 0xf3200000 0x0 0x00e00000>,
+-			 <0x03000000 0x0 0x40000000 0x9 0xc0000000 0x0 0x40000000>;
++			 <0x03000000 0x9 0xc0000000 0x9 0xc0000000 0x0 0x40000000>;
+ 		reg = <0xa 0x40c00000 0x0 0x00400000>,
+ 		      <0x0 0xfe180000 0x0 0x00010000>,
+ 		      <0x0 0xf3000000 0x0 0x00100000>;
+@@ -2071,7 +2071,7 @@ pcie2x1l2: pcie@fe190000 {
+ 		power-domains = <&power RK3588_PD_PCIE>;
  		ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
- 			 <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x01e00000>,
--			 <0x03000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
-+			 <0x03000000 0x3 0x00000000 0x3 0x00000000 0x0 0x40000000>;
- 		resets = <&cru SRST_PCIE20_POWERUP>;
- 		reset-names = "pipe";
- 		#address-cells = <3>;
+ 			 <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x00e00000>,
+-			 <0x03000000 0x0 0x40000000 0xa 0x00000000 0x0 0x40000000>;
++			 <0x03000000 0xa 0x00000000 0xa 0x00000000 0x0 0x40000000>;
+ 		reg = <0xa 0x41000000 0x0 0x00400000>,
+ 		      <0x0 0xfe190000 0x0 0x00010000>,
+ 		      <0x0 0xf4000000 0x0 0x00100000>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
+index 6e5a58428bbab..a2640014ee042 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
+@@ -375,7 +375,7 @@ pcie3x4: pcie@fe150000 {
+ 		power-domains = <&power RK3588_PD_PCIE>;
+ 		ranges = <0x01000000 0x0 0xf0100000 0x0 0xf0100000 0x0 0x00100000>,
+ 			 <0x02000000 0x0 0xf0200000 0x0 0xf0200000 0x0 0x00e00000>,
+-			 <0x03000000 0x0 0x40000000 0x9 0x00000000 0x0 0x40000000>;
++			 <0x03000000 0x9 0x00000000 0x9 0x00000000 0x0 0x40000000>;
+ 		reg = <0xa 0x40000000 0x0 0x00400000>,
+ 		      <0x0 0xfe150000 0x0 0x00010000>,
+ 		      <0x0 0xf0000000 0x0 0x00100000>;
+@@ -462,7 +462,7 @@ pcie3x2: pcie@fe160000 {
+ 		power-domains = <&power RK3588_PD_PCIE>;
+ 		ranges = <0x01000000 0x0 0xf1100000 0x0 0xf1100000 0x0 0x00100000>,
+ 			 <0x02000000 0x0 0xf1200000 0x0 0xf1200000 0x0 0x00e00000>,
+-			 <0x03000000 0x0 0x40000000 0x9 0x40000000 0x0 0x40000000>;
++			 <0x03000000 0x9 0x40000000 0x9 0x40000000 0x0 0x40000000>;
+ 		reg = <0xa 0x40400000 0x0 0x00400000>,
+ 		      <0x0 0xfe160000 0x0 0x00010000>,
+ 		      <0x0 0xf1000000 0x0 0x00100000>;
+@@ -512,7 +512,7 @@ pcie2x1l0: pcie@fe170000 {
+ 		power-domains = <&power RK3588_PD_PCIE>;
+ 		ranges = <0x01000000 0x0 0xf2100000 0x0 0xf2100000 0x0 0x00100000>,
+ 			 <0x02000000 0x0 0xf2200000 0x0 0xf2200000 0x0 0x00e00000>,
+-			 <0x03000000 0x0 0x40000000 0x9 0x80000000 0x0 0x40000000>;
++			 <0x03000000 0x9 0x80000000 0x9 0x80000000 0x0 0x40000000>;
+ 		reg = <0xa 0x40800000 0x0 0x00400000>,
+ 		      <0x0 0xfe170000 0x0 0x00010000>,
+ 		      <0x0 0xf2000000 0x0 0x00100000>;
 -- 
 2.51.0
 
