@@ -1,164 +1,149 @@
-Return-Path: <devicetree+bounces-269752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269753-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iGWSFqGBpGliiwUAu9opvQ
-	(envelope-from <devicetree+bounces-269752-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 19:12:49 +0100
+	id 0KyqKLqUpGmxkwUAu9opvQ
+	(envelope-from <devicetree+bounces-269753-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 20:34:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D63DE1D10C5
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 19:12:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B27481D15B4
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 20:34:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2FF44300C919
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 18:12:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D7BEA3004D17
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 19:34:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B532E03F1;
-	Sun,  1 Mar 2026 18:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA142D3EF2;
+	Sun,  1 Mar 2026 19:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bEMndagJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVPauTa9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BF2175A89;
-	Sun,  1 Mar 2026 18:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF7019CCF7;
+	Sun,  1 Mar 2026 19:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772388761; cv=none; b=oV9F8vSEsc5qP0Wf3eThxJQsCuKOzq6V4OIpwt5jhCh02C20FZNQRjZR85nmqhx7+fPmkH/Q8HEikQMhlrgkIINYYkssWlHvugIx37Zz6HVEX3q3WKNbapiwvdhavAnGw7C5j/zPAmcJzO/hwRhnKrdTGIhUGcWkk6x2Izyr0mM=
+	t=1772393651; cv=none; b=fzbIKvOa0MBHiX7gtDznUMSSJ+M4ibD0awgawwPGKTeaNzrJ9c6HMdWnnUEeshPufF2CHhkretUQkkR+/xueJZrcq+Z2NSa2O2/MDZR9DmJPw9HHJgKjbXs8py570d4+I57K5fB06cgE5JfYEsnREkyu8R8FR/1PJQ4GXwQlVGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772388761; c=relaxed/simple;
-	bh=2tBYxDnTTDmwYplUfxuZm8q55vkRHX1ktadnQoNR0rQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CF8x1k5lZiW/Fzgwndjar2D/JJyNDtYYOhSJaUh9AeobreOY1zQ9TlKVdLFrBt00vyP3lKDB1+hLG/PY3xmZQOpLLT2ZqyU9NTTV8VkUtrCo7TDEBVybJyobzsmAXpCEL2rtHmlkbFvjvVmVVhUUGmdEd8HPaVWp+WahM7SojGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bEMndagJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D20A8C116C6;
-	Sun,  1 Mar 2026 18:12:35 +0000 (UTC)
+	s=arc-20240116; t=1772393651; c=relaxed/simple;
+	bh=7rbVOD75vPzOlqdIY0xNu9uaaRvyRGffFSeHa031auU=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Cpl2VsFLfGkAs3l2B8cwb1UjpOHe+1s/Tie2n9x0rpl2gq9MABRq3n44h1vHgCp+TnnjMAiR7HdZtokboVtXZvASo4McReT6E/yHuztBhRc3dVuTzdXtpzyKSNGbePbMG3W+sSoUwDPlzcb3a1MbFSSEzWxEBCiKg45nZjwfETc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVPauTa9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92D72C2BC86;
+	Sun,  1 Mar 2026 19:34:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772388761;
-	bh=2tBYxDnTTDmwYplUfxuZm8q55vkRHX1ktadnQoNR0rQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bEMndagJnw30yQE+6GEDfRZo6V64zCPvYR6jfCNLWmxRqLfBWlrQhzu1QVZVoOPb/
-	 Ddvcdhs9LVG1JSilSt0TYdu6UVJj7lX+nm65zYRwKnNdKL0A1AMIyQiLa0dgLXU4VE
-	 XhsDLjsDlQYrkYKVw0fOW+ojc+aE5tNbS93bZXDvIxYgOmSNClDOrSoJyk11oSsFgR
-	 zD87GosuvuycJ6n4lUYNeoXgnxVBkMd4YnXJ1TSOfQpytje26ch8QmxzHdhAto+Dnj
-	 fJ3emgzcGlTLPn3SjTH9ai16xRuLTbSmBtfRsiwg+ekJiFajw5MieEGQSeFVrx01/h
-	 KHr32JdamrivA==
-Date: Sun, 1 Mar 2026 18:12:33 +0000
-From: Simon Horman <horms@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: netdev@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Valentina.FernandezAlanis@microchip.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Neil Armstrong <narmstrong@baylibre.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
-	Abin Joseph <abin.joseph@amd.com>,
-	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH net-next v2 5/8] net: macb: timer adjust mode is not
- supported
-Message-ID: <aaSBkVkhNTbQHkmI@horms.kernel.org>
-References: <20260226-snowshoe-amusable-6716d4ddea11@spud>
- <20260226-dollop-maturing-9e3c83192ee5@spud>
+	s=k20201202; t=1772393650;
+	bh=7rbVOD75vPzOlqdIY0xNu9uaaRvyRGffFSeHa031auU=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=qVPauTa9GxT9y6KpV/kICjl+slqdqbPZ8z6sTszN2ExQwwLOSMFkdXAEkRrcMk5v+
+	 qlBiyS7UUMcdBCqjM0hdH1czuXF+PC2BkXKMrXoGcfTgeTppbgdT2qNWKn+hThkZLI
+	 0aU0xSo5SL3TxiyiuO2aUJXC0dMkhQA2nHUpxULIXqvRdQJW8GoJHklahpKIxElcXs
+	 mg5QoJeyGrq237T9nfFEaGg+/rjNKy4ePKPIacVuU7L9PB9i7OGHL6Xov5W4FnAwvD
+	 iupM/vdrhb16pAF+U5s6lmoOZCUyz8V/A1Z+mz9SsYHTZSC9aMfk2NokYN1c3GPz8e
+	 kgfpfmXa8QeVw==
+Date: Sun, 01 Mar 2026 13:34:09 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260226-dollop-maturing-9e3c83192ee5@spud>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Petr Hodina <petr.hodina@protonmail.com>, linux-arm-msm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org, 
+ linux-input@vger.kernel.org, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, phone-devel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: David Heidelberg <david@ixit.cz>
+In-Reply-To: <20260301-stmfts5-v1-8-22c458b9ac68@ixit.cz>
+References: <20260301-stmfts5-v1-0-22c458b9ac68@ixit.cz>
+ <20260301-stmfts5-v1-8-22c458b9ac68@ixit.cz>
+Message-Id: <177239364971.730877.1130326937114423321.robh@kernel.org>
+Subject: Re: [PATCH 08/10] dt-bindings: input: touchscreen: st,stmfts:
+ Introduce STM FTS5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269752-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[protonmail.com,vger.kernel.org,kernel.org,bitmath.org,gmail.com,st-md-mailman.stormreply.com,foss.st.com,lists.infradead.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,tuxon.dev,gmail.com,sifive.com,lists.infradead.org,baylibre.com,raspberrypi.com,linux.dev,amd.com,bootlin.com];
-	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269753-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[horms@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D63DE1D10C5
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: B27481D15B4
 X-Rspamd-Action: no action
 
-On Thu, Feb 26, 2026 at 11:03:20AM +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+
+On Sun, 01 Mar 2026 18:51:22 +0100, David Heidelberg wrote:
+> Introduce more recent STM FTS5 touchscreen support.
 > 
-> The ptp portion of this driver controls the tsu's timer using the
-> controls for "increment mode", which is not compatible with the hardware
-> trying to control it via the gem_tsu_inc_ctrl and gem_tsu_ms inputs in
-> "timer adjust mode". Abort probe if the property signalling that the
-> relevant signals have been wired up is present.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  drivers/net/ethernet/cadence/macb_main.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/input/touchscreen/st,stmfts.yaml           | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index ddbb0c327b303..fa55e6e7036f2 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -5535,6 +5535,12 @@ static int macb_probe(struct platform_device *pdev)
->  
->  	bp->usrio = macb_config->usrio;
->  
-> +	if (of_property_read_bool(bp->pdev->dev.of_node, "cdns,timer-adjust") &&
-> +			IS_ENABLED(CONFIG_MACB_USE_HWSTAMP)) {
-> +		dev_err(&pdev->dev, "Timer adjust mode is not supported\n");
 
-Hi Conor,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Assuming this is an error condition I think that err should
-be set to an negative error value here. Else the function will return 0.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml:58:1: [error] duplication of key "allOf" in mapping (key-duplicates)
 
-Flagged by Smatch.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml:58:1: found duplicate key "allOf" with value "[]" (original value: "[]")
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/input/touchscreen/st,stmfts.example.dts'
+Documentation/devicetree/bindings/input/touchscreen/st,stmfts.yaml:58:1: found duplicate key "allOf" with value "[]" (original value: "[]")
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/input/touchscreen/st,stmfts.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1597: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-> +		goto err_out_free_netdev;
-> +	}
-> +
->  	/* By default we set to partial store and forward mode for zynqmp.
->  	 * Disable if not set in devicetree.
->  	 */
-> -- 
-> 2.51.0
-> 
-> 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260301-stmfts5-v1-8-22c458b9ac68@ixit.cz
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
