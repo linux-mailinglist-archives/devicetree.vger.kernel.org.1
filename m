@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-269645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269646-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OHrYLqmZo2ksIAUAu9opvQ
-	(envelope-from <devicetree+bounces-269645-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:43:05 +0100
+	id QDSHHZKno2mWJAUAu9opvQ
+	(envelope-from <devicetree+bounces-269646-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 03:42:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1DB71CB710
-	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 02:43:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC8B1CDD3D
+	for <lists+devicetree@lfdr.de>; Sun, 01 Mar 2026 03:42:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09FEB31D8D24
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:31:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 222293220F5F
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2026 01:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 059361EDA0F;
-	Sun,  1 Mar 2026 01:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838092D9EF4;
+	Sun,  1 Mar 2026 01:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SUSRy5IL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iv+n6jeB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70AE1E0B86;
-	Sun,  1 Mar 2026 01:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603EF27281D;
+	Sun,  1 Mar 2026 01:33:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772328686; cv=none; b=tKq0lR/qfYGhd84aK0B+4m5Q2rwU2kpFW5W8SvhcFVaQYq9kmWnBo0J0QBmgBFKMccn3E8EsUap5e/Uv7YdaWnqoQ0/XtpxCc7ZpbkcNinPd8v10kKkSQsEkEJmfqnh+t7kJBznL8E2Aa5GZAnMGvMto5HH7DCZNVYcOfBu7hvE=
+	t=1772328821; cv=none; b=Q5s6nO8G4kvEVnBVkhXc7/X9/Ftz+HGcFJbF0E/8OG7mJ1WhhGgZrb2dylnFK79IuGjX5wUTn4/Y0w/s0t8QsY/vR+nNjR7PpyU0uS80YCIQrB9UiIA1Il4VYK4Uo5XyTroKVFoPLoRQhOG5T/PMcoZunp8+zirRzza2HWuqTKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772328686; c=relaxed/simple;
-	bh=3aQtDx+2cCjgV7uZVtTouLmMk08pqxbkGzltDW3hhO8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AIEbiWi4Ubxrr7EsLAuzeCCIJk7QS//fgga/IPTovYVOZ1X3/as2HhzgI4lWjD4x9d7/NX8yMJ9gu0ja3Etk6BKn24CSuiZ1ql5Xw6lfJUswueMkRH7hlp64akWjqdYnDLi4hX1IYP0qT9/RV0wgF4y3AZARjE3irJai+BS7gGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SUSRy5IL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7221C19421;
-	Sun,  1 Mar 2026 01:31:25 +0000 (UTC)
+	s=arc-20240116; t=1772328821; c=relaxed/simple;
+	bh=cqIU2G+iAY4RBM8mwGYWDbIlF407slftIXTAd+BOewA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mHoqbSJTmiEv4i6qMXIP9R+FSo6VG+8Cj8Bnzp/Eng9jc3HPQOt1Zvkw1izSIpBe9UaLlgSiofxN/pD1UCc+9bEcOrmAkD90HHspFtsxQO9AHDxzpMtYeqhAkYIEMSNwh89C7KMkz+uuYXAPmJFm5k8WUsYURuPCEo9C3i+di1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Iv+n6jeB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72C1BC19421;
+	Sun,  1 Mar 2026 01:33:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772328686;
-	bh=3aQtDx+2cCjgV7uZVtTouLmMk08pqxbkGzltDW3hhO8=;
+	s=k20201202; t=1772328821;
+	bh=cqIU2G+iAY4RBM8mwGYWDbIlF407slftIXTAd+BOewA=;
 	h=From:To:Cc:Subject:Date:From;
-	b=SUSRy5ILxsKJjN/ZLMe11Ubk4PmgWFwrqXsbrSofGCOyiqkMjFZKzu/R0kLDXLMvq
-	 w0/ut9MO0BfirkqvExSivsCBMuIH67GtOGfoA3siCKYqVfGsK23CmYQPq4bNV2y1+n
-	 Odyt9AdtcC8AvD3h1Kz70N+5Rjs1+hjbv2FObDgcov8kIsJb0fAo/vwEyPWcf+mpt4
-	 vgHI6v+IV0A2nGxjVQh1upwtDrRzBrLYRXFj6eCd/JqfwVCePwsYCr7sCd4NhQnJLm
-	 sfivKHLI0ZOyFLUP6MNvn02dqSXdP7VdnZz0+SnxpSiDNy/GzEEle6k88jIR2sztOq
-	 MUGdIaMMCni/A==
+	b=Iv+n6jeB5JnGUay/35akdQcrnUeqfhwXk/l61coV6QLwUuh2EMovA27kIAb9eB2sf
+	 dvdPmH3AGKbaNUG7m67bLpsWwDz/ynZ06EjGZdzgsPAMzicPkPAfOxhPrT12Och4rn
+	 890OwOOctJF+7y1hpKNBYIg0iYLNLTmu1EU5+Mb9moobw0WpXNOowhtC9hJ+vnVA34
+	 5rIaa7PCscoUCYK8r1F6naPsv3zhO2yVLgUYsnidIKnkfgnVYt5xfQ0quX3CN8pZXw
+	 Ju66OhD6347hH+utce0Lkr+rJ2b496vRJrKaeonKLEWsDAuAEIkLnPJg2H/by/pP95
+	 dc0TwsQkGlBDA==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
-	j@jannau.net
-Cc: Sven Peter <sven@kernel.org>,
-	asahi@lists.linux.dev,
+	jerrysteve1101@gmail.com
+Cc: Peter Robinson <pbrobinson@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: FAILED: Patch "arm64: dts: apple: t8112-j473: Keep the HDMI port powered on" failed to apply to 6.6-stable tree
-Date: Sat, 28 Feb 2026 20:31:24 -0500
-Message-ID: <20260301013124.1689908-1-sashal@kernel.org>
+	linux-rockchip@lists.infradead.org
+Subject: FAILED: Patch "arm64: dts: rockchip: Do not enable hdmi_sound node on Pinebook Pro" failed to apply to 6.6-stable tree
+Date: Sat, 28 Feb 2026 20:33:39 -0500
+Message-ID: <20260301013339.1692933-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -74,11 +76,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269645-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,manjaro.org,sntech.de,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-269646-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[vger.kernel.org,gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -87,11 +90,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,msgid.link:url,jannau.net:email]
-X-Rspamd-Queue-Id: E1DB71CB710
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sntech.de:email,manjaro.org:email]
+X-Rspamd-Queue-Id: DCC8B1CDD3D
 X-Rspamd-Action: no action
 
 The patch below does not apply to the 6.6-stable tree.
@@ -104,63 +108,50 @@ Sasha
 
 ------------------ original commit in Linus's tree ------------------
 
-From 3e4e729325131fe6f7473a0673f7d8cdde53f5a0 Mon Sep 17 00:00:00 2001
-From: Janne Grunau <j@jannau.net>
-Date: Thu, 8 Jan 2026 22:04:01 +0100
-Subject: [PATCH] arm64: dts: apple: t8112-j473: Keep the HDMI port powered on
+From b18247f9dab735c9c2d63823d28edc9011e7a1ad Mon Sep 17 00:00:00 2001
+From: Jun Yan <jerrysteve1101@gmail.com>
+Date: Fri, 16 Jan 2026 23:12:53 +0800
+Subject: [PATCH] arm64: dts: rockchip: Do not enable hdmi_sound node on
+ Pinebook Pro
 
-Add the display controller and DPTX phy power-domains to the framebuffer
-node to keep the framebuffer and display out working after device probing
-finished.
-The OS has more control about the display pipeline used for the HDMI
-output on M2 based devices. The HDMI output is driven by an integrated
-DisplayPort to HDMI converter (Parade PS190). The DPTX phy is now
-controlled by the OS and no longer by firmware running on the display
-co-processor. This allows using the second display controller on the
-second USB type-c port or tunneling 2 DisplayPort connections over
-USB4/Thunderbolt.
-The m1n1 bootloader uses the second display controller to drive the HDMI
-output. Adjust for this difference compared to the notebooks as well.
+Remove the redundant enabling of the hdmi_sound node in the Pinebook Pro
+board dts file, because the HDMI output is unused on this device. [1][2]
 
-Fixes: 2d5ce3fbef32 ("arm64: dts: apple: t8112: Initial t8112 (M2) device trees")
+This change also eliminates the following kernel log warning, which is
+caused by the unenabled dependent node of hdmi_sound that ultimately
+results in the node's probe failure:
+
+  platform hdmi-sound: deferred probe pending: asoc-simple-card: parse error
+
+[1] https://files.pine64.org/doc/PinebookPro/pinebookpro_v2.1_mainboard_schematic.pdf
+[2] https://files.pine64.org/doc/PinebookPro/pinebookpro_schematic_v21a_20220419.pdf
+
 Cc: stable@vger.kernel.org
-Signed-off-by: Janne Grunau <j@jannau.net>
-Link: https://patch.msgid.link/20260108-apple-dt-pmgr-fixes-v1-1-cfdce629c0a8@jannau.net
-Signed-off-by: Sven Peter <sven@kernel.org>
+Fixes: 5a65505a69884 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
+Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+Link: https://patch.msgid.link/20260116151253.9223-1-jerrysteve1101@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 ---
- arch/arm64/boot/dts/apple/t8112-j473.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/apple/t8112-j473.dts b/arch/arm64/boot/dts/apple/t8112-j473.dts
-index a05951e91a022..bfa959023a0db 100644
---- a/arch/arm64/boot/dts/apple/t8112-j473.dts
-+++ b/arch/arm64/boot/dts/apple/t8112-j473.dts
-@@ -22,6 +22,25 @@ aliases {
- 	};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index eaaca08a76018..a6ac89567bafe 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -421,10 +421,6 @@ &gpu {
+ 	status = "okay";
  };
  
-+/*
-+ * Keep the power-domains used for the HDMI port on.
-+ */
-+&framebuffer0 {
-+	power-domains = <&ps_dispext_cpu0>, <&ps_dptx_ext_phy>;
-+};
-+
-+/*
-+ * The M2 Mac mini uses dispext for the HDMI output so it's not necessary to
-+ * keep disp0 power-domains always-on.
-+ */
-+&ps_disp0_sys {
-+	/delete-property/ apple,always-on;
-+};
-+
-+&ps_disp0_fe {
-+	/delete-property/ apple,always-on;
-+};
-+
- /*
-  * Force the bus number assignments so that we can declare some of the
-  * on-board devices and properties that are populated by the bootloader
+-&hdmi_sound {
+-	status = "okay";
+-};
+-
+ &i2c0 {
+ 	clock-frequency = <400000>;
+ 	i2c-scl-falling-time-ns = <4>;
 -- 
 2.51.0
 
