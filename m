@@ -1,161 +1,309 @@
-Return-Path: <devicetree+bounces-270053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270055-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MCW/I3afpWl5CwAAu9opvQ
-	(envelope-from <devicetree+bounces-270053-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:32:22 +0100
+	id gBzILNegpWmyCwAAu9opvQ
+	(envelope-from <devicetree+bounces-270055-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:38:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 560081DADE1
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:32:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD8F81DAFEA
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:38:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9512C3030FC6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 14:21:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C1566309E282
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 14:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333523FFAB0;
-	Mon,  2 Mar 2026 14:21:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DBA93F23D9;
+	Mon,  2 Mar 2026 14:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="gzuwePIF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mVodOTIX";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FgzB2rU1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCAD43FD130;
-	Mon,  2 Mar 2026 14:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333C532142B
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 14:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772461267; cv=none; b=aqdhQ4UPnMDwSUpd4wD/T/4J3Ap63hWuKzfeCS/jUq5PsC1e3e3c44XwTb3knvRtazOyyxZc4/kqZisQOsO/zmVM4OdbHKEVyI+Z8dgaMOrIT02mTJv5/tFVkEcANzpXKI1wQS22nqTHnIp3PxDdWx7Lx59o8iOP8adiV0NPAGE=
+	t=1772461464; cv=none; b=sgQHqnHTd/NGJJyG4nif62xOZMsl3jf8zVD2IRwfhmzUM32ArTzXzwGWy54qpE/Bv4J7V/Rc2o+gI07ZzMmI7GG+cBybQfZpcXlRtdGUIo+Wevp0DGL436Th8nnZvjTI+8g0Y9Isaz5qYLavnEl1DdK5IVcjVA6x2TKV1hKG9So=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772461267; c=relaxed/simple;
-	bh=HJY0wdSVelljhVy5XonzAMfl6FFec1mLbXSyxYUN/sQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ozwYV4H9oRrWL9Ll/mvDG46z30iO+vRhmwesNyq1UqoNr1s+7gUZjDlCzDXBPQ9sp0Xwsu4+YHf980pstdJWTv3gxQt9Gssap2x6i9ZSVDvxDZacoiAFMpix+GCvgbz+22rAepG402Fjq5fr9idW1LTqGK+x1US4uuyEBq7rygQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=gzuwePIF; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772461265; x=1803997265;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=HJY0wdSVelljhVy5XonzAMfl6FFec1mLbXSyxYUN/sQ=;
-  b=gzuwePIF47Y/HiUuYA8+b38+VjP/lPZ21rCKHYauaFkmJGgrYvMfyh05
-   4cIIyj2gv3ejFOiAtpKqYgPAVklgIsedsCnAAUvYH9BJ7Dqkl17LTArRy
-   cMSwHMUwWRWnh9YMBHTj+QNWyJOD4ycnom9onNCxdFFTs7T2nXtaRdwOR
-   QU8ul6kDLzRoGBiRR9X82fhDAS8MrykWJBL0O0VF4pd3iDHU0GSG4NTIL
-   o2vz+R2LUJ+MBJ6FOzDNEEbiyGNK6xsbf/27SSOVGsjgZa9l+0DRE/Sjn
-   JC7tuKnwfhuG0yPUrQmk9LcEjp54xYzvOPQtcji2VB7oE1ke8QSeXTsaw
-   A==;
-X-CSE-ConnectionGUID: QKICduWAQ5ynFNkWd4cNxQ==
-X-CSE-MsgGUID: zY7Ptu/AQQyv8r4ZKbZDKw==
-X-IronPort-AV: E=Sophos;i="6.21,320,1763449200"; 
-   d="scan'208";a="221349855"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 07:20:57 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Mon, 2 Mar 2026 07:20:33 -0700
-Received: from archlinux.mchp-main.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Mon, 2 Mar 2026 07:20:29 -0700
-From: Mihai Sain <mihai.sain@microchip.com>
-To: <mturquette@baylibre.com>, <sboyd@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <varshini.rajendran@microchip.com>,
-	<cristian.birsan@microchip.com>, <balamanikandan.gunasundar@microchip.com>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<ryan.wanner@microchip.com>, Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH 4/4] ARM: dts: microchip: sam9x7: fix GMAC clock configuration
-Date: Mon, 2 Mar 2026 16:20:08 +0200
-Message-ID: <20260302142008.3253-5-mihai.sain@microchip.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260302142008.3253-1-mihai.sain@microchip.com>
-References: <20260302142008.3253-1-mihai.sain@microchip.com>
+	s=arc-20240116; t=1772461464; c=relaxed/simple;
+	bh=4jfQvlciuMjy/CGMW0lPybxsFeoSnX+mXDnzu6Hwbo4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ctCn++Mmd3K3frlc0avNM7asHwQw8Ef7efsCMQWQ/kM+fhrggAA/cpTc9DuvEK5vVK6c0xN6KYzl8A6CDelww6xo0duo+q+nhv76NTVscFwAZl5UqnV7JgnKWxZG1b3IMNXdk6JwjxAsnroyeb256cG0C9WrzJH4b6awNKjG5dM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mVodOTIX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FgzB2rU1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62294aUL3753087
+	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 14:24:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=PwqDGUZPNmd33w7jgDewuxkJ
+	lTOdaUeW/d4uXiakUEc=; b=mVodOTIXEWD90WlEVZOWOk3uljMCs6H3BvJat6HV
+	fOeljIwFQBsMIVOypR4WB90zODsSotFDnFtcxt370fiau9jb2+3Yyy2tHzJsLYao
+	13sYkwM3piWjg2PGH4j0SG1op17+6Kc/EraRumhzsl9OHOudJ4ZYxEkI2oNWkAay
+	RP3hd6FgaEVo3MWfS8xG5uVbwk0wA7f1i61qJ7tU53uDEmkzBUFuXbrQm75N3K/e
+	bDi74S9Pi9/17Ix6D2zQ1qiaFRWBDeyXDz2KxY2MmULSxqvNQW0hlfpVdORuend8
+	nhI37zvHYzRAHKDa4zbm6W35PhUmJpf5zZdnhSZiW+XdiQ==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cn7kq92wv-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 14:24:22 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2ae53ec06b0so32365125ad.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 06:24:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772461462; x=1773066262; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PwqDGUZPNmd33w7jgDewuxkJlTOdaUeW/d4uXiakUEc=;
+        b=FgzB2rU1GJzSYqJEYihTHJrNP4dI0WrN/Kj7bVjdCBi36nbppggfawCZH93YpvjnzC
+         UioHnrnDEE0LEQtXGkf/jsJeQoHeJnkuwiJ8GG2b2XfqeZr4TCgPwcnQhyaqoG1B7lPW
+         p/P+789oDIiZePJChtI1cG0wRCafM5BNvKmvJHhMXu/ZcDWJxSUGzXcoKo7dPHcGXluW
+         /rKXQFqi0sZzsxDrt+NFInh9QhPz0dRjYNLh6iKhV8mAlnb+0MZevixtGkMozFM+gT/z
+         /R6fyNdjon0rzF80MXRsGotRyBu3mNlMtwbZ4bNhqedQT5HTskN54aG6I+CqMowAsXVm
+         GPpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772461462; x=1773066262;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PwqDGUZPNmd33w7jgDewuxkJlTOdaUeW/d4uXiakUEc=;
+        b=Z5guE4Eocn3fb9p0PzCjaQivATxRL2iNn2cbtjNcg/5RAV46c9UH5+ddWWmf5XxvQO
+         dPh/8OQoXxhV6WWdjJVFOEfxd9OWdxBzvzc75asXuv296oFiBmYm7YBDv4qW56XsJCdz
+         wbNzbfrpPQ4xP8Nc+W4uRFlN+SbxuHXp1WxhRcB24hT6qz81OTt0zoWIDRQrrz567LAE
+         IsXnG6PVJ+hXlknPKrvsTmTndrTuzQmIjBRcJ/Hwv7ita6BNHbN/Em5096R9EqQBIrqv
+         jOZjilAN3GPSb8iNYj2gi/pR73oUWVZvMkjZmUWzvuqciPlB9kqsfQF+krR0FaaASncl
+         TOCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWqX9FGasRBRES+hLGePd5b8GDcLd69ill6w6wHedoFkM4ck38DvHdTooIIoQanLR0LtVr+Rpzd2Vn4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPVezyGVn4GvJTVwMLPAh7BSwKlDB9lMPcGlw1I4kP1kvuAAdA
+	DclrGzihSjl21Z3/fJ+UTApAdmC693YApG2qKGLjOd44iA5j5aQw9PFFwycfcfbVXPNcTpf+uhn
+	oRMkJaluQ+1h2S5R3ZkZomaTBYW1uotqZBoIkU70jKl34X0qKhS70eJKBT8TVwQYLQ+pF/doI
+X-Gm-Gg: ATEYQzy1Urxb3reC/NZDrLGRkWsndx5oHDgU7Vo9/Yphy0EYRAZo1nifSPWExGUuxXS
+	ycgHSlcPWR5NFFEpT2nxqhdtBVMlhwQHGWnXHhSMaz92dsYtnqbeIvI07x35DnWp3ocZQtoUJRa
+	JW4qLLbDHPhhp3y45tISZ8GSX4cTmw0uLra/rWrpJYG1cAJAgDgXgM+PpKuQJaF29ZrX/SXTu5q
+	8HYl39ilM3K4H3zLH9gzfipOQg5XgJJ3EzG4Xfx+aU/M3yh5jzY92FRn80AueT+ZSU0OsWVADj2
+	qXwL1OmqGf0u/TIrV0EnrJ7hZ3v7h38Z7XEBhNvXrIM1CkskP74awE1JkCxk9/kmZ0Yex/6arLo
+	GVXzRIILIQQ64ZXuLjt/iZCP/aRsteIEu/EOe4Kq8/WL34KysP7VRumut
+X-Received: by 2002:a17:903:1a30:b0:2ae:5104:5721 with SMTP id d9443c01a7336-2ae510458bemr28735535ad.6.1772461461566;
+        Mon, 02 Mar 2026 06:24:21 -0800 (PST)
+X-Received: by 2002:a17:903:1a30:b0:2ae:5104:5721 with SMTP id d9443c01a7336-2ae510458bemr28735175ad.6.1772461461050;
+        Mon, 02 Mar 2026 06:24:21 -0800 (PST)
+Received: from hu-mchunara-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5c20d3sm201423135ad.25.2026.03.02.06.24.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Mar 2026 06:24:20 -0800 (PST)
+Date: Mon, 2 Mar 2026 19:54:14 +0530
+From: Monish Chunara <monish.chunara@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, mani@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sarthak.garg@oss.qualcomm.com,
+        pradeep.pragallapati@oss.qualcomm.com, nitin.rawat@oss.qualcomm.com
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: monaco-evk: Enable SDHCI for SD
+ Card via overlay
+Message-ID: <aaWdjuqvhpJb1oSX@hu-mchunara-hyd.qualcomm.com>
+References: <20260227105055.2364348-1-monish.chunara@oss.qualcomm.com>
+ <20260227105055.2364348-3-monish.chunara@oss.qualcomm.com>
+ <2ra2apfephjl2au6wel25gbxoxyvohf2ysq4yzaufp3xb7mtoi@g5p6asbk2fqe>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Rspamd-Queue-Id: 560081DADE1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2ra2apfephjl2au6wel25gbxoxyvohf2ysq4yzaufp3xb7mtoi@g5p6asbk2fqe>
+X-Proofpoint-ORIG-GUID: BAi96BwQd5xHpT7gZmhmsMR2m0ISxVOt
+X-Proofpoint-GUID: BAi96BwQd5xHpT7gZmhmsMR2m0ISxVOt
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDEyMSBTYWx0ZWRfXxAt1Kh1qxNuk
+ xZ4VsXJ7C3J3aubQx/LKoFUkVM3goIqL/pvnigXvO+qDcTTYYSSH7bM0WnZ5yMivzaC/zrUD7Go
+ PsZjJ+XZQgLjU+A1Svm8FMzloMnA+jRkgC5IvkKdjO5ppHLQVTe5y/2rK/ry6p+l7rddDpJoy07
+ qsI1gFHKd4LNSq+AVsuh5RUnPL/SNvFKzH2WAOJCrZiyRuxzQH9J6Tmvptrkmmi03Vb10tMElBZ
+ UcDzMI06+A7vE8pHBD2kVBrW6+EQLkOSqTfAuqP+i3tm2F5GQWK1Ybo5djEEQlpI2jZYs1Uq1xs
+ FzBpRlfhydoeZQSoK9VPANs88ea2p+UoFAGkl1BBI/Q+NxQxSX3v+3+KrB22ZXkcH1pGrTOwsLd
+ jHLTeYzBlB8iRWhLRPWT5Z++N9YuIXMn0kBAL34VlvFer+ufxTRyxCS7FAPTDqig01XFqxOPVqi
+ CTkCP+OSMh9CY95nrsQ==
+X-Authority-Analysis: v=2.4 cv=GLkF0+NK c=1 sm=1 tr=0 ts=69a59d96 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=EUspDBNiAAAA:8 a=37xXzHZQKsG2Q0yfkbAA:9 a=CjuIK1q_8ugA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_03,2026-03-02_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 impostorscore=0 spamscore=0 adultscore=0
+ phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020121
+X-Rspamd-Queue-Id: BD8F81DAFEA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-270053-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270055-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mihai.sain@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[monish.chunara@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-The GMAC node incorrectly listed four clocks, including a separate
-tx_clk and a TSU GCK clock sourced from ID 67.
-According to the SAM9X7 clocking scheme, the GMAC uses only three
-clocks: HCLK, PCLK, and the TSU GCK derived from the GMAC peripheral
-clock (ID 24).
+On Fri, Feb 27, 2026 at 10:03:10PM +0200, Dmitry Baryshkov wrote:
+> On Fri, Feb 27, 2026 at 04:20:54PM +0530, Monish Chunara wrote:
+> > The monaco EVK board supports either eMMC or SD-card, but only one
+> > can be active at a time.
+> > 
+> > Enable the SD Host Controller Interface (SDHCI) on the monaco EVK board
+> > to support SD Card for storage via a device tree overlay. This allows
+> > eMMC support to be enabled through a separate overlay when required.
+> > 
+> > Signed-off-by: Monish Chunara <monish.chunara@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile             |  4 ++
+> >  .../boot/dts/qcom/monaco-evk-sd-card.dtso     | 72 +++++++++++++++++++
+> >  2 files changed, 76 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/monaco-evk-sd-card.dtso
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 317af937d038..c86242a1631d 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -46,6 +46,10 @@ lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
+> > +
+> > +monaco-evk-sd-card-dtbs := monaco-evk.dtb monaco-evk-sd-card.dtbo
+> > +dtb-$(CONFIG_ARCH_QCOM) += monaco-evk-sd-card.dtb
+> > +
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/monaco-evk-sd-card.dtso b/arch/arm64/boot/dts/qcom/monaco-evk-sd-card.dtso
+> > new file mode 100644
+> > index 000000000000..a0bc5c47d40b
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/monaco-evk-sd-card.dtso
+> > @@ -0,0 +1,72 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +
+> > +/ {
+> > +        vmmc_sdc: regulator-dummy {
+> 
+> No dummy regulators, please.
 
-This patch removes the unused tx_clk, updates the clock-names accordingly,
-and corrects the assigned clock to use GCK 24 instead of GCK 67.
-This aligns the device tree with the actual hardware clock topology
-and prevents misconfiguration of the GMAC clock tree.
+ACK, these will be renamed as per the schematic. Since these are direct supplies
+on hardware, used fixed-regulator configuration.
 
-[root@SAM9X75 ~]$ cat /sys/kernel/debug/clk/clk_summary | grep gmac
+> 
+> > +                compatible = "regulator-fixed";
+> > +
+> > +                regulator-name = "vmmc_sdc";
+> > +                regulator-min-microvolt = <2950000>;
+> > +                regulator-max-microvolt = <2950000>;
+> > +        };
+> > +
+> > +        vreg_sdc: regulator-sdc {
+> > +		compatible = "regulator-gpio";
+> > +
+> > +		regulator-name = "vreg_sdc";
+> > +		regulator-type = "voltage";
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <2950000>;
+> > +
+> > +		gpios = <&expander1 7 GPIO_ACTIVE_HIGH>;
+> > +		states = <1800000 1>, <2950000 0>;
+> > +
+> > +		startup-delay-us = <100>;
+> > +        };
+> > +};
+> > +
+> > +&sdhc_1 {
+> > +	vmmc-supply = <&vmmc_sdc>;
+> > +	vqmmc-supply = <&vreg_sdc>;
+> > +
+> > +	pinctrl-0 = <&sdc1_state_on>, <&sd_cd>;
+> > +	pinctrl-1 = <&sdc1_state_off>, <&sd_cd>;
+> > +	pinctrl-names = "default", "sleep";
+> > +
+> > +	cap-sd-highspeed;
+> > +	no-1-8-v;
+> > +
+> > +	bus-width = <4>;
+> > +	cd-gpios = <&tlmm 11 GPIO_ACTIVE_LOW>;
+> > +	no-mmc;
+> > +	no-sdio;
+> > +
+> > +	status = "okay";
+> > +};
+> > +
+> > +&sdhc1_opp_table {
+> 
+> Why? Is it specific to the device or to the chip? In the latter case,
+> please define a separate table in the monaco.dtsi and switch to it here.
+> 
 
-gmac_gclk      1       1        1        266666666   0          0     50000      Y         f802c000.ethernet           tsu_clk
-                                                                                           f802c000.ethernet           tsu_clk
-gmac_clk       2       2        0        266666666   0          0     50000      Y         f802c000.ethernet           hclk
-                                                                                           f802c000.ethernet           pclk
+As per the previous review, it was suggested to use an existing table. But yes,
+this is specific to the Host controller and the corresponding voltage corners on
+the chip and can be defined as a separate entity for SD card use-case.
 
-Fixes: 41af45af8bc3 ("ARM: dts: at91: sam9x7: add device tree for SoC")
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
----
- arch/arm/boot/dts/microchip/sam9x7.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+> > +	opp-100000000 {
+> > +		opp-hz = /bits/ 64 <100000000>;
+> > +		required-opps = <&rpmhpd_opp_low_svs>;
+> > +	};
+> > +
+> > +	opp-202000000 {
+> > +		opp-hz = /bits/ 64 <202000000>;
+> > +		required-opps = <&rpmhpd_opp_svs_l1>;
+> > +	};
+> > +};
+> > +
+> > +&tlmm {
+> > +        sd_cd: sd-cd-state {
+> > +                pins = "gpio11";
+> > +                function = "gpio";
+> > +                bias-pull-up;
+> > +        };
+> > +};
+> > -- 
+> > 2.34.1
+> > 
+> 
+> -- 
+> With best wishes
+> Dmitry
 
-diff --git a/arch/arm/boot/dts/microchip/sam9x7.dtsi b/arch/arm/boot/dts/microchip/sam9x7.dtsi
-index 46dacbbd201d..a42716e18da3 100644
---- a/arch/arm/boot/dts/microchip/sam9x7.dtsi
-+++ b/arch/arm/boot/dts/microchip/sam9x7.dtsi
-@@ -990,9 +990,9 @@ gmac: ethernet@f802c000 {
- 				     <62 IRQ_TYPE_LEVEL_HIGH 3>,	/* Queue 3 */
- 				     <63 IRQ_TYPE_LEVEL_HIGH 3>,	/* Queue 4 */
- 				     <64 IRQ_TYPE_LEVEL_HIGH 3>;	/* Queue 5 */
--			clocks = <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_GCK 24>, <&pmc PMC_TYPE_GCK 67>;
--			clock-names = "hclk", "pclk", "tx_clk", "tsu_clk";
--			assigned-clocks = <&pmc PMC_TYPE_GCK 67>;
-+			clocks = <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_PERIPHERAL 24>, <&pmc PMC_TYPE_GCK 24>;
-+			clock-names = "hclk", "pclk", "tsu_clk";
-+			assigned-clocks = <&pmc PMC_TYPE_GCK 24>;
- 			assigned-clock-rates = <266666666>;
- 			status = "disabled";
- 		};
--- 
-2.53.0
-
+Regards,
+Monish
 
