@@ -1,387 +1,211 @@
-Return-Path: <devicetree+bounces-270036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270037-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGZrIqOSpWmoDgYAu9opvQ
-	(envelope-from <devicetree+bounces-270036-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 14:37:39 +0100
+	id IDvINj2UpWnXEAYAu9opvQ
+	(envelope-from <devicetree+bounces-270037-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 14:44:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C5E1D9ECE
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 14:37:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CCA01DA024
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 14:44:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 99418302C2A8
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 13:36:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 99CD130172F7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 13:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1363FD13C;
-	Mon,  2 Mar 2026 13:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358B53D9024;
+	Mon,  2 Mar 2026 13:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="NUXW1pJU"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="hTsfgut8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011051.outbound.protection.outlook.com [40.107.130.51])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012051.outbound.protection.outlook.com [52.101.66.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B248E3FD12C;
-	Mon,  2 Mar 2026 13:35:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7A736C9D0;
+	Mon,  2 Mar 2026 13:44:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772458540; cv=fail; b=gxvP7cNRkDtgzyUGLpodyNy9RH5zbFq52C7MTik2ynJMFIoHh/PD97eHWIkZZqy2aClwPQjZ6Oxy0IiPVk9AYZllywPa1/SRswfQWdA9PM9Qp609guhBZtLJV4oAnEqTknM79V6LPw7QwOmLPqx9e/ms7f47oLBOvezZEjZIgZU=
+	t=1772459067; cv=fail; b=ffR558fsAmp0WctdmVRv4J8MB/4ucfcYTGRxLLqBRMlotmw0UD10CVjaKwC2S7+Y6lo7YVUKaZelnRtLjfCUn2XWm7NaEoVsCI2npOoYDnpoEFvUem/XXO7wP16CLXKgKRIb+5Ynkxdt1BI3FgXhZG3K1G4RMjnKJvmpeGaxslY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772458540; c=relaxed/simple;
-	bh=t1Ci0T7Y25+qXwFBJr/zj9/kjSffdqAejvLv9uUlwFA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cTaYM/AtflReOt3epZv/HoG4k8qoAknXXlpQ0IGbqsFSr9M38OFiiaRGfcOgVYBpLZ4tj6fwcluKaRWDzlpEt6Yko8RC32+eg73gnPKl0QM8M9FMADgAHjLMffls0mdlWlFYMeNJskFNTpBXYs4Z61LUxFlcL1MrltZSpVBxkns=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=NUXW1pJU; arc=fail smtp.client-ip=40.107.130.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1772459067; c=relaxed/simple;
+	bh=zzwmvuc3tuFF1xmmxr0EP4trFgSxy8d1jmLOK+UJ0SA=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Qf9UT3t48ASCyXnrHqiOaiS0qbPyFLv7E49Gc59ODNTQ2ycer13kxSsS3uK9+FqPFAhaCjif9LMsXxdI9pQBHjrf2eeL3FM9mnNRWiqw92sEFb8uFWXhpq43nFeTNTvNs2efB7UiE7nz/MHeSdB3g5huCsBfiNmCPFqyTg4hI5I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=hTsfgut8; arc=fail smtp.client-ip=52.101.66.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qpLLnkPGMUipXA2XTVzWgusMqtIcDIVTotaIEW39yBltrY0Tl89/lwMFpdgoaeuuGv0mDK94EaHdNS+LOeI9CTafiee0F/ugVniqKvnDoTC0ikYTp5e7uZW8KShzmCU9/4RDhfwj0SvtZ9BAAN4uLB8Ak5todZAq7oC1i2gPv34waE3qfMckQ/3YYHK4hQfQw0IVkSuxDs4UWmLEpHE2geeKDSgaT++zGI77JDYHszwlhWnehVOJeN3wP3VwxQVzpPryxW6/VA6ADWvXT2CMHSXI56s4oP76FtiJ6sDE9RwlZtCxOZtkHUtp+2sKfV4w+EenW1HiCEkEYowCOdckuw==
+ b=Kra9JkECajwZUctfYwS0WgVZ9icE6d1hnmUDGXrPsF4h9sx/kYGFjJAQ3kJVMmyxaYWpVDQdn0m38IGuDigGdr3sAmvK0uyLk5hKSHkTsPVGE81F+nAF2WOvadokbE1jOC+Ms4h7K0Giv54PsqhL6g4AGw5ziJIZpNoWnO6qFBeam9zosU3zVJ53qaDrt9HW1SWMliUXh2/fWqGeloYCi81sK+vGzFvmOkfReh+jSx9SwfrcDKdkzAkKYiIlyX6pnF2iW2Ziyam6WumCkj5epyQOZu5bj4QxHdsKPKVaqsU6sDTV+6tHrPoLfsb9Q5Hn3zyvEIXBQPD02S8R62NRFg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gG+c4Z6XW7+T+lZeSY1bDwdwtIjNuGJbyuR6nZ13QAM=;
- b=Lb4qJbX2ilnvpG75FRuyLOodQpsfu+k5JJkrVgUHbpdxYdaGoI5DG01Em51wh/u5wnv++nOxkQQ+O7CNaZL6zRlPIsMP1GO6C/Xx0qN7mYoR7ZKIpGu5PetjhA6R4XYvsdqk6GG/J1bhnbqtH0Pa24/ec5cCb8/I/3B0VsSagUg++FzK7KlaeGXyFjvMg/6Rs/1et6llp8rH6EDFZC/98QuPm+06fdnAd5EqgDXRsQHAlqCzWleeobPtD3ZJ70j0DnsbCjorAA1TmEb4bq4E2gO1DwnfSmvjfWHQngqUr5dlyK0eZiZcOpVnR+CQQEbGsR0ZxnCkcpaPaGmTekWD3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=+J9Uc/yms6A5wwaCm60MJAQvQTNwB315gCmLz+FqcA4=;
+ b=B+vOCQcqmymGZxgCVcrg1SSpi8+pnqOVwKE0ow/GcSHk5ErVkfPfsP/Ad/cfPJmp9RlUXrd0Rc1oeW09ZYp0pZTJEYbjn9ettncHG7ZeXjNnocRS32GjUPv2Aww9atQiebwBKrQZoqld3QXayZg+Czj5X/21ijcP3ESjbgGGtbQc8dVfJ7VZspfYZSVDNJpEJF4zsNLvLrwIeope7Ex41o9AqUTntX0dIHTR2mliwI+GfPtBQc8i79WdIo4xCKmwbhRyyYMJd527iqKI7mNDjlLMGlUOuUYMwB5WR5jS6P2YR1QY3bgAFsida8eltBqRl8NqGIdpBlXYv8TFcQE3EQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gG+c4Z6XW7+T+lZeSY1bDwdwtIjNuGJbyuR6nZ13QAM=;
- b=NUXW1pJU0IECmJ7gC9P1zlHQ4pGejFV91jEfDs0GZQ4Uipa4dz+YcHB01Wis7E04vkmzwUl9LhQWfDsFpt2byzug4lCLPFLS3qArrAY/opWbsScKX8pIfE20CYoUXVYwzDErlJCFLMDi39yZXtgC+aEg2lYgR7m6sXlSNPyYuYCOMWY47oD+gqq1oI++QVGXOyWHqNufluEvTHh9Ny2Gz4LTOpdIaene91CENP4G5LW8w3eg87ERzUA7exkkqmBvOKXDUnRNxREXjavq6fBDqpZ1JlVIRHouTyLlR+xMKR1k4lUkfmODkJQ1ld/Kbi1+X+em+1Q1S3n7wZZXDwLoOA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com (2603:10a6:20b:3f2::13)
- by VI0PR04MB10758.eurprd04.prod.outlook.com (2603:10a6:800:25c::10) with
+ bh=+J9Uc/yms6A5wwaCm60MJAQvQTNwB315gCmLz+FqcA4=;
+ b=hTsfgut8o1qf6xOjFZsa3YuBdH07/aY95y1rxKq1ePQjBtcyreoUXvhvA/rcDBtpHV3nfuNdJz1wdsvg6ba5q24O8aYYu7jExoVDuyerjwdt02HtRUDCWMwATi63Zr/h6RavAZQNCOEpEu9iI1mCZRPtSd7UQg4d6XKkSueKAZk=
+Received: from AM6P193CA0068.EURP193.PROD.OUTLOOK.COM (2603:10a6:209:8e::45)
+ by PR3PR02MB6219.eurprd02.prod.outlook.com (2603:10a6:102:74::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Mon, 2 Mar
- 2026 13:35:33 +0000
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::e99:f504:ce75:9bed]) by AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::e99:f504:ce75:9bed%3]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
- 13:35:33 +0000
-From: Daniel Baluta <daniel.baluta@nxp.com>
-To: Frank.Li@nxp.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	maudspierings@gocontroll.com,
-	Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH v2 2/2] arm64: dts: imx8mp-frdm: Use symbolic macros for IOMUXC_SW_PAD_CTL_PAD
-Date: Mon,  2 Mar 2026 15:38:05 +0200
-Message-ID: <20260302133806.76191-3-daniel.baluta@nxp.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260302133806.76191-1-daniel.baluta@nxp.com>
-References: <20260302133806.76191-1-daniel.baluta@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AS4P191CA0040.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:657::9) To AS8PR04MB8247.eurprd04.prod.outlook.com
- (2603:10a6:20b:3f2::13)
+ 2026 13:44:21 +0000
+Received: from AM2PEPF0001C715.eurprd05.prod.outlook.com
+ (2603:10a6:209:8e:cafe::12) by AM6P193CA0068.outlook.office365.com
+ (2603:10a6:209:8e::45) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.18 via Frontend Transport; Mon,
+ 2 Mar 2026 13:44:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ AM2PEPF0001C715.mail.protection.outlook.com (10.167.16.185) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 13:44:20 +0000
+Received: from pc52311-2249 (10.4.0.13) by se-mail10w.axis.com (10.20.40.10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Mon, 2 Mar
+ 2026 14:44:19 +0100
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<kernel@axis.com>, <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: power: supply: Add TI BQ25630 charger
+In-Reply-To: <20260227-percolate-armful-ac15f947b2ff@spud> (Conor Dooley's
+	message of "Fri, 27 Feb 2026 17:31:06 +0000")
+References: <cover.1772201049.git.waqar.hameed@axis.com>
+	<65f55d19b4bcf8f07300df5922ba1605bb669138.1772201049.git.waqar.hameed@axis.com>
+	<20260227-percolate-armful-ac15f947b2ff@spud>
+User-Agent: a.out
+Date: Mon, 2 Mar 2026 14:44:19 +0100
+Message-ID: <pnd8qcawdl8.a.out@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain
+X-ClientProxiedBy: se-mail10w.axis.com (10.20.40.10) To se-mail10w.axis.com
+ (10.20.40.10)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8247:EE_|VI0PR04MB10758:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff733bc2-5520-47ae-0b20-08de78609478
+X-MS-TrafficTypeDiagnostic: AM2PEPF0001C715:EE_|PR3PR02MB6219:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ac7e6ff-6c29-4e36-a1bc-08de7861ce90
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|19092799006|366016|1800799024|38350700014;
+	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026;
 X-Microsoft-Antispam-Message-Info:
-	5BP0lMXhlbjmdY4F/w4ZjWuxH9iH8AdrzzQhCscpeq3wimuR1xNoxmdAwqq3bIRnFJnoh1E5Oxslnfh8+9p1RyQFPFetdimaGYXrIX+ew2ZaCEZS1mzGawOMppEm8ksgrAxammwhjx6pu0HlTJqWXY8RmAcmRHqwdGg1wX3Ak1eysMbxY8N9adBqPAqQ7Nd2tXjtpcZayRJQzk5Q8SwH3N3aV81jXfLzz5EtYcxFofxlr0yIWfSO+Zz+t58DIbwe+cpL25Ch7XwLUSiAaIaW6jJziL5U4+wzAS8MIuXD8Vjv/2Gmf9050fYAe1JmwW2F3vrsLd3J7OhOL0zYtlNhDJlCsZJAGcXs5q331cf7Jm2JS+wwqG+DxXsfz/iT6G4ECrY6a9G1/vktVHoVgpLfYXDrHTOItMaLJiCKaeNIZ4/wdFN1SHEr4iNyzCQBN41h1fC4v53Z9oaE05IaUDGkS1LZ2S/oHPMDRCjhRq4rxvOgTqpTTC7xPnWTlizK9m++tdnTdwZC5QBxghsWWn4t1JILSBR629erB65Q94TgP6qz6oPUetp1/qxb3q3fcD/taC6g3RqWfFnfor2nG8GbCiZX/widJoxkV8Y+lxNCk4/NebmKx2jLHBRoyCIeosq+1oY70J0BwpP2a3nF5EDW90QOUTaByOAK5HcJ4hxVjT5g1RTZpF3sDYxNzrNzSY8n3gMraxHBClfVQDLaWtPtO9yYgnDjMblUGhcLxIbQ91F4qP/8InnnrPdZyORHNF/VCKAnfMxnUjWPUz+KBokUy7654es9D8ZIjltwozp3NQY=
+	S989OxN4fdE5+pr3S+LUFsVhbwI23IhOAzwrpp2zwI8nCcdXahz+wkzDTF+FRqEgMr9/HUcnOLmqwaTRXJu+yoIKDh3JZt+MUB2USyI4cqpBaH5f/oLsYf1EVqjTz2+zM3vD+GiGXpbg7ynNTHurJ+XYjpAP3hh1AHR9v9aWmQPB+UirRxZxrWN2QNIyasxx8vsQvpSTs1CxkiWiLDPAUvT8bIC2zQCPT5CgUXoGOtS2n3IcbNk3roPZee8QfIEHl6OFcDD1UZOfW97qyKGurZQQ8AupLCdDavMjVT+1VB/9zuRDDNW+8eherWY/UQaMY6fpXFt9ryYG43lUEBoB0EAKagoacdxJ4RbE0iRgavDdMjX+malQMiqpUrZItlkkvqKSmsSAZZJe0yuCw7ldiNftxkNM4o8KSmp4pmguHe1qkcix3fKOUn628edZ1BRpws8+g2yX9cIOY8dcKxHeo85phMlX8TTAIWRY0d7EyxiBlCKiMmqxOf4tfRvZ1voxnAUX/wwhvupJDohRCRPk7sWtqnpGUFoeIOfVaQtIFRpd1jommkqm/l7Ag+atfjWvdSrCjxyM6EcsTdHQ8osnL8dmkRshylaEUUl/iO9ZeBLOlBnwPsYTCjrhzJa7MDnpF+LR3IKzSn0NuYVr0UbFypjIIQAlWWgxhKKENiKt00SwDRhRG7/UqurI6W0/AhkanGHHB5yZiMPJBE7QFOVmvGLcoQ7rtNka7N6utSqD972IR71b34NEgTk6wMfV/m1K/Lf1V6zeA5TNE5c3ZO/16e5OtVpyjNdo1fJQgiJ2ZdnaSFojvQpEYKtIb+QwA+CALHgxMrcr8wXNriYFjX2bFA==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8247.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(19092799006)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?rpT0l0JKLlMW6xSC2k5qsHF1o/DCIO2EbPYzeh8EJjkGEJ23l8Sx3q/xEMDa?=
- =?us-ascii?Q?VRadehQzpzpxLrk8fvXJ5LdIoQtQAHebjPMfAzS4DM8tBrkmrNsvqbGagps7?=
- =?us-ascii?Q?MyTmltRlW6Ru/XccDpBnp8QB06PnnPfKA1Zvj95JiV227xO8K+Ppk6NGTM+B?=
- =?us-ascii?Q?jI7uSvJl59MFW64Gpcq6X2SFMsJAEXBdKf2y1Ect0e48UGX6xBU7mPHOvkGy?=
- =?us-ascii?Q?u+8vf9rLjai+ZhnGuatsov+1pwyRQ/tVaJxQYw9HUpXq7W5VDZvy3L1HkxJX?=
- =?us-ascii?Q?UZf7WTT4jRzPsfAFXUoGBRLnE38wr5anSRr3lwVOYtHrLow7yJnoUSHIa4JG?=
- =?us-ascii?Q?lI0zOzLv8vGHh8Ci/pIUfrsWDPhJKaeipCeBOsTqpM3S7ecXDqsQbPjD0BXg?=
- =?us-ascii?Q?xvbEXvJSTJArPGAsic7vxZ2bpRMvva2fpyPEeY3590ZMEW20jhv4YrHogAi8?=
- =?us-ascii?Q?klTkfBdSY5EKf7RZ6KpaCkw111jd7RmdWdhtA5TeCOus2aTZ3tbGehAf/Nd0?=
- =?us-ascii?Q?2c6mTg1FWN6Ebu6W3LWkDT3yjVQmOcm5MEercAE3gJeHRqEzyOd5YvT9PaXV?=
- =?us-ascii?Q?XqGbyleKDfbj3PV7FFEn59ZSYCVwdIlE347mhKX3VqK1TUbZ3XKRbM/jPT/e?=
- =?us-ascii?Q?1KZVURSP1E0tnbA6C3CPKcFWQsaE9QfKze6cyQpDapJzOrhbkYjwsztPZCph?=
- =?us-ascii?Q?Amg1L5jLha3RHXQdwSuNZZojdwKTlRaR6XY/yxyNo9NUA0EQt8mhsr+pLlMD?=
- =?us-ascii?Q?KdYSQP6pNCbgYEMuyhlAwDMpxKD/UCfdCS4K3IP23NQvAmVIUUeu/EPPweNo?=
- =?us-ascii?Q?JZM5pTgFaykkDMWSSZ7ihwx9+qNRqKKLbS/564Z/pBBvZaTKRG4r6YgQJxy8?=
- =?us-ascii?Q?h5lgg2go6G+J0WLyL7aN71C3FHj5d8nh/TQiYzr9idMYDvGZ7A7oL7v5pQkP?=
- =?us-ascii?Q?txoo5CV5MT8yjCJuDaV4tsGEfWTHdS+XiitxVpFDbJgnyVwPNfqbVcZhJsyG?=
- =?us-ascii?Q?gG5OSuEFNJOXuQ84zJc4nhwpcaASzu7QkeTCIgSrqP7AiJINQuxOCbuFaUEE?=
- =?us-ascii?Q?tbPRGcfRGjzCxOyx3sDaBaGEQemLi5373l/xfJUAJGPuBPeaYJZCJTTDHA35?=
- =?us-ascii?Q?C2lso483ISJ4IeR/im81xbAPDWI698VuBR7Qbz/2OOY9gsiUGqCPXBkYDzgX?=
- =?us-ascii?Q?BkyUY3QbrpGudq77fftUF+teWWolEByakTO+Rx5hGWoVzvKptO2m5HyTWejS?=
- =?us-ascii?Q?Mssqqkmtdmefq2OZeyLBo4r8Xv2BfJIOkD7ENW4WlDepAr7Y3ceKDyb7TZgX?=
- =?us-ascii?Q?f/dveWEsinMEoQeK6NdCGGYyvulButJEAlU+PPilEDqabrnnLgBvv9i151w0?=
- =?us-ascii?Q?lbvoZGEjnhJmlGDVpj38SnwwScyQISJFTdEK0bekKgOb+jo15O+XserFdhCQ?=
- =?us-ascii?Q?A+3jnR0nYYfx93TzS3Z8o8II1Vi+2bByeb8rdCj7+2yj0Qqgu/4qwqBtKsQd?=
- =?us-ascii?Q?niyCAl3hBpAYTV1jjvIIwOPtjS1JFvEqKKLkqx3zTTrXZfAFMMBfRHxdUl8y?=
- =?us-ascii?Q?c+t9Eh0LgDh/I/UAKAr11D5HFOtmxVURU4K76LmIlITdptNDQev4I0TzgIZl?=
- =?us-ascii?Q?Xm4mQAhoG1dOz/2iGjIYh+YIY0n6ggP4ZeFYkpP/HQR4fj+eRypjBu8GH/mX?=
- =?us-ascii?Q?GCAOIQALVP1+pqH1ug+cK+mw0OwJzn1TEkCiuzrhjcfaStU8gJeVTe9hPJ8v?=
- =?us-ascii?Q?/7Dq6+D/ZA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff733bc2-5520-47ae-0b20-08de78609478
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8247.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 13:35:33.8155
+	Z29lVJq191eZ7+o+zxGU77EPALBL09e3Cvhgryo3SpnlLRpHhIEz7PR7m3iXM5iqoFanFA5fmefPWLZenvVnysrjBgbWOMq/aysIPa3xYCgGJnwFlx79VO8C51R7Sh8gcsWDRxru5HNeQF3IxBfa7W7Tth2FWD0t4DmuwA0L8QVsRitjAT2s/DMPT1Et13rPWyX4Xc/2u+kRxGDq2WbflNoQYMLT0CJt7mc/JqGLFR94KMMRmReSTpB5BIw4fZF7DOzliCKYtgQDh0brfzr0odN3hB5W/fub+oR3WlsdLeL6xjcwwI35etQbdLUD181qz/LeN5TrfaVnzY9hwABibCIX9ce+ExoTv+JJTMth3iq2iA5hDlTHJDoblMYqtgGV7ofRvaYydlo8QEe3Oq2vC2+bns9ND50HOvVGZVLbs60JU1WwFa0H/CRoZWa+56u9
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 13:44:20.5543
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cejUsrxa7xinIHvF//bavZoDcsSvRi5rrMK2OQjpuG+Qx2iMGq/DEA4SVWiGl6u7EoscGwQKWNKLk8lsC7wB0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10758
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ac7e6ff-6c29-4e36-a1bc-08de7861ce90
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM2PEPF0001C715.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR02MB6219
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.35 / 15.00];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[axis.com,none];
+	R_DKIM_ALLOW(-0.20)[axis.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,gocontroll.com,nxp.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-270036-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	XM_UA_NO_VERSION(0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.baluta@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270037-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[axis.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:dkim,nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 36C5E1D9ECE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 7CCA01DA024
 X-Rspamd-Action: no action
 
-Currently, in order to configure IOMUXC_SW_PAD_CTL_PAD a magic raw value
-is written in this register. This makes code not obvious to read and
-modify.
+On Fri, Feb 27, 2026 at 17:31 +0000 Conor Dooley <conor@kernel.org> wrote:
 
-Use symbolic macros instead of the magic values to improve code
-readability.
+> On Fri, Feb 27, 2026 at 04:35:33PM +0100, Waqar Hameed wrote:
+>> Add devicetree bindings for the TI BQ25630 battery charger. It's I2C
+>> controlled and sends interrupts.
+>> 
+>> Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
+>> ---
+>>  .../bindings/power/supply/bq25630.yaml        | 68 +++++++++++++++++++
+>>  1 file changed, 68 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/power/supply/bq25630.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/power/supply/bq25630.yaml b/Documentation/devicetree/bindings/power/supply/bq25630.yaml
+>> new file mode 100644
+>> index 0000000000000..57e4286dac7e9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/supply/bq25630.yaml
+>
+> Filename is missing "ti," to match the compatible.
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-frdm.dts | 132 +++++++++++-------
- 1 file changed, 84 insertions(+), 48 deletions(-)
+The majority of TI devices in this folder do not contain the `ti,`
+prefix, so I just followed that. But I'll make sure to add it in the
+next version then!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-index 55690f5e53d7e..d69d78fed4e1b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-frdm.dts
-@@ -252,104 +252,140 @@ &usdhc3 {
- &iomuxc {
- 	pinctrl_i2c1: i2c1grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL	0x400001c2
--			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA	0x400001c2
-+			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
-+			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
- 		>;
- 	};
- 
- 	pinctrl_i2c2: i2c2grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL	0x400001c2
--			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA	0x400001c2
-+			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
-+			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
- 		>;
- 	};
- 
- 	pinctrl_i2c3: i2c3grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL	0x400001c2
--			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA	0x400001c2
-+			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
-+			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA	(MX8MP_DSE_X4 | MX8MP_I2C_DEFAULT)
- 		>;
- 	};
- 
- 	pinctrl_pmic: pmicgrp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03	0x000001c0
-+			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03
-+				(MX8MP_PULL_UP | MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_pcal6416_0_int: pcal6416-0-int-grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x146
-+			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16
-+				(MX8MP_DSE_X6 | MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_pcal6416_1_int: pcal6416-1-int-grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x146
-+			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11
-+				(MX8MP_DSE_X6 | MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+
- 		>;
- 	};
- 
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
--			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x140
-+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+
- 		>;
- 	};
- 
- 	pinctrl_uart3: uart3grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_ECSPI1_SCLK__UART3_DCE_RX	0x140
--			MX8MP_IOMUXC_ECSPI1_MOSI__UART3_DCE_TX	0x140
--			MX8MP_IOMUXC_ECSPI1_SS0__UART3_DCE_RTS	0x140
--			MX8MP_IOMUXC_ECSPI1_MISO__UART3_DCE_CTS	0x140
-+			MX8MP_IOMUXC_ECSPI1_SCLK__UART3_DCE_RX	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_ECSPI1_MOSI__UART3_DCE_TX	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_ECSPI1_SS0__UART3_DCE_RTS	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_ECSPI1_MISO__UART3_DCE_CTS	(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_usdhc3: usdhc3grp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
--			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
--			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
--			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
--			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
--			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
--			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
--			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
--			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
--			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
--			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK
-+				(MX8MP_FSEL_FAST | MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD
-+				(MX8MP_FSEL_FAST | MX8MP_PULL_UP |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	MX8MP_USDHC_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	MX8MP_USDHC_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	MX8MP_USDHC_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	MX8MP_USDHC_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	MX8MP_USDHC_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	MX8MP_USDHC_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	MX8MP_USDHC_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	MX8MP_USDHC_DATA_DEFAULT
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE
-+				(MX8MP_FSEL_FAST | MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
--			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
--			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
--			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
--			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
--			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
--			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
--			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
--			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
--			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
--			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK
-+				(MX8MP_DSE_X2 | MX8MP_FSEL_FAST |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7
-+				(MX8MP_DSE_X2 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE
-+				(MX8MP_DSE_X2 | MX8MP_FSEL_FAST |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- 
- 	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
- 		fsl,pins = <
--			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
--			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
--			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
--			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
--			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
--			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
--			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
--			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
--			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
--			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
--			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK
-+				(MX8MP_DSE_X6 | MX8MP_FSEL_FAST |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD
-+				(MX8MP_DSE_X6 | MX8MP_FSEL_FAST | MX8MP_PULL_UP |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0
-+				(MX8MP_DSE_X6 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1
-+				(MX8MP_DSE_X6 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2
-+				(MX8MP_DSE_X6 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3
-+				(MX8MP_DSE_X6 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4
-+				(MX8MP_DSE_X6 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5
-+				(MX8MP_DSE_X6 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6
-+				(MX8MP_DSE_X6 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7
-+				(MX8MP_DSE_X6 | MX8MP_USDHC_DATA_DEFAULT)
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE
-+				(MX8MP_DSE_X6 | MX8MP_FSEL_FAST |
-+				MX8MP_HYS_SCHMITT | MX8MP_PULL_ENABLE)
- 		>;
- 	};
- };
--- 
-2.45.2
+[...]
+
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    bat: battery {
+>> +        compatible = "simple-battery";
+>> +        voltage-min-design-microvolt = <1800000>;
+>> +        constant-charge-current-max-microamp = <1344000>;
+>> +        constant-charge-voltage-max-microvolt = <3700000>;
+>> +        charge-term-current-microamp = <128000>;
+>> +        precharge-current-microamp = <1000000>;
+>> +    };
+>
+> This whole battery node can go, 
+
+Alright, will remove in the next version!
+
+> the tooling will falsify the phandle.
+
+I'm guessing you mean that when extracting the example, the insertion of
+`/plugin/` to the `*.example.dts`-file will "falsify the phandle"?
+
+There are some other examples in this folder that include this node. Not
+sure if it's worth the churn to fix those as well to help the next
+person?
+
+[...]
 
 
