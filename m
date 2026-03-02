@@ -1,170 +1,250 @@
-Return-Path: <devicetree+bounces-269881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269882-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIUoGexjpWn0/QUAu9opvQ
-	(envelope-from <devicetree+bounces-269881-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:18:20 +0100
+	id eIakETpkpWn0/QUAu9opvQ
+	(envelope-from <devicetree+bounces-269882-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:19:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAB821D64A2
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:18:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D741C1D650D
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:19:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6D90A3030D2B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:12:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 81F5D30488B5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE7738F655;
-	Mon,  2 Mar 2026 10:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A9B39900A;
+	Mon,  2 Mar 2026 10:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lNrmHv2R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BbvClqdN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED47B366055
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E217395D8E
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:14:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772446359; cv=none; b=tng04VMvbo1xFOU6ukaktjHsckF0bMj7kKkaFxyz1eUqH9qf+qPXV95Sw5nGGCDIzrEYxnXdlmHUu5d8jKq6UMAEKFyW2/qNHN4IsOsR4Z04VaHvwoutUi4q2UqWKSI1/ZQ0ks3EEiwi5elSQYUKI6qfbsQDV8AyZoTlV/UDex4=
+	t=1772446445; cv=none; b=LQ0wV4r7XnxTyCaQHxDO6r/suxpwk0uBD2ihhxOJrq357OjALG1mTfqBu5/93xWmo4PfF3pwEzQT/ShFnPOVPa/amt4Kh9+AjGR/QQLCjSIpYb1ySPuvUW2+LvQ3bMiAkUvasXIWzEOwduGxlQHDKPU2baCi05tMiGIBXjAhTr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772446359; c=relaxed/simple;
-	bh=dmKKCEMChf9iozh5/BFVZZx9ALF9hCLR/Z/vU9qXNm8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SqxQ160XcBxTWaVgdW3yr8pUzM3qMmcB5yCUAjMc3RARnWiEIrjzhjSW4g/q1J0EtVB6mwFFyxqZyBxH3pO31XicCT+l+acIaTTDXXQE30KahDgUMwIQ9I1KHAqy3quds4a8BbJHNc+Z7/5KqxQauY6Q3Ek9FZFFQIYfEEbNAPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lNrmHv2R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2DB5C2BCB4
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:12:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772446358;
-	bh=dmKKCEMChf9iozh5/BFVZZx9ALF9hCLR/Z/vU9qXNm8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=lNrmHv2R3N5gLRM45Ge37DwjBvl8fEeCAwiLFtsgFARHWInrtuSzjeI1k8R8bR4se
-	 jEQybZnkIfE+ljHL10eZPvLwVpH/pRrgDP54Jrzvjwd8pppqu8KDrhTJKgDphlKV13
-	 hThAk/25e3y9U81XEjVO9qMIpIUEs09pg3Zs7zBPNEx7FWyay4Pcgw3akrQBisZzUR
-	 ZdnuIpxonzXdr36o2YT7dumrt/DKri0homViNn8ATmhpSkXFn8aVHwi4qmkSk+WMBS
-	 icnHnEm33h8Jjf0IrW9JvbiflGZAi3PdCL0+2Zdr429FsXF3ONjciYL7a5fLh7kmvu
-	 vkrE1tlBjMPMg==
-Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-64ad46a44easo3494446d50.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:12:38 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUGpQl8yKmHMSO9/abYhThOhZE8vGdSHeY4FEolp0cN0isAtw/7j9uZW9cTDbcn5Lz+ZlQP2AMC86F7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0jc6XfLr9QH9akm1LqAdWEQXKnVCS2czSLsx4x6D3OAvP+GrZ
-	ToDaZFj6xspxYyYu6tCREvQc0qepNcxD51BzPloRSVsPzAmd0JgUwvKhpzCzXYyPPf5qFM+anub
-	3pMtxQ+G1IsMwYlMTCSeZWKzAeW31nIw=
-X-Received: by 2002:a05:690e:175c:b0:64c:97ad:17dc with SMTP id
- 956f58d0204a3-64cc22c28damr6768085d50.66.1772446358117; Mon, 02 Mar 2026
- 02:12:38 -0800 (PST)
+	s=arc-20240116; t=1772446445; c=relaxed/simple;
+	bh=iLH8tcewwnAd83nG68sHys9PIlmAkraa6eQd/lWE/eU=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oZE7gGGup6FxEtBltZm42A7lFjg31P/7shT17kp0TuaDIvSHAA9bPSThjxbP6ZtD7l2WWXMXQJHE632V8Mu4ZvM1c8RukfAc6b4gGwF8PqK+nUMbBzY7JCnI4hzJFCpxtsASAms8EL00GyOLNwcimfzS1rV6gRI/URLnZbNslU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BbvClqdN; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-899fb030812so9820086d6.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:14:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772446443; x=1773051243; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=F0R0FHok1ZjJPUxXlY2o5kEpjOjt+LYzwp5EsM9Prls=;
+        b=BbvClqdNtmqh9LGy565JTqKiOYLDLIdlhtOEIH4bZ5ueICxH+z+mDtPry+luRLmoYh
+         vRX8jaB2Z9nEVdBT5aGZJARvV6Te7lHpzBitc8B6h+gfQzoTcmS7hrnyHkWKtztoC5cW
+         2yBunDRtpwtWvxLDtziyiw/xrK/XCdPcyYaF4VRx0NUySSUq50sFVOaAIpk4i1Q20iq6
+         1C1Id0rEehMwG7dwcejf/+0FUjZcje4JkaS/neusKcTRtBp6q7Eu+kxGYxX3Eg1iFGsa
+         rRWI74vi9K28PsSXqpBjj6/d4xEKFQPMnpBBtYKk6ZAk44iwImyn5wn4NDgo9EnedM7+
+         44IA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772446443; x=1773051243;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F0R0FHok1ZjJPUxXlY2o5kEpjOjt+LYzwp5EsM9Prls=;
+        b=VKObJGk8p7ABNp3ExcQv0VxDhgzlVY0iX/hJNSYezxCGS4QCnNpmUAMcm7BvsYkSqq
+         n0vPXGO8nX/YK5AeZyASDK8LQW6odsIj0GxZzrVV4OvrURwxhQ6Sq8EPnl8gbpctN5Z4
+         Rt9RRp2DHZd54XKhTrKlfMSY66xmJq2ru1hpDI4X+AHKcZ9MQwgnNM/ID8c9gMRWuPio
+         deqSBIaxdToCpHwgcxd6E6UefPxFfP6+XbbRks4tsHzAWD6/l5inCAquIyMq+3K0Q8Bk
+         wbkYRr89TnrJaaOKmUVZRxLVMBVdNpGWh+U48xijYFvYo5kHySM6SiwAAcG4xvoz4evQ
+         GW8w==
+X-Forwarded-Encrypted: i=1; AJvYcCV+JVw6qfvuNGe68gKyFpp8boi0DQm+kl9TfT+gDJp3o5KIh8SyCVyykeAOl8wEKeC6AQpxY19+8z+R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2YHyxIBkyYI6B/wKHy9dHc4GXNET7LLt7NT0VUDKv3/eXh5g+
+	aVh1BqMwlP7Mt1kO1bUzXVtx8TcXNpK8GugYyZaxkVIz/p1gRrotFFzk
+X-Gm-Gg: ATEYQzwQmMr41ZspoouTKPGCulxGpNSlgdxfkL92xpCCbecN9REnkUQhj4T8GHOFL4f
+	Osbyrv2PxG6/doOsKvCjrLMzwd6Pgx+YNWb5CKIePHCse2IDPIxoFKM91ZQCWrgzbRT13cLsLQv
+	dV36rHf88eiNhPLn4Lethv34cHaEojDVIAVIKFA1FTsSXH/2y2VZMqD95OHake8RLUa2oyrKYIT
+	6OjOeBYoH/pkHOU/apPK0VPRlGB7spySwmMm7L8nxVlsFYDZ3QPECO4aYiN2U57WPFz+UY6V6iW
+	NB1CtLCY5rLXEfj2tIyna1jrDpMJ2pvJtPSpPP97SQ/kZMFZu1JUeyTzCL5oLxYPR+NqeQ20wqu
+	xVmu1hQhKLrkVKsWHzpXqOpmtset86WfDOJzCqo7OpS7NEYE5eRpOrKXlvTBgbx8cCaQeCbRwP2
+	n8sAugogXqmBiuG5/bsJFJVYDkqNu4U5BFfzRfhCVL9M6LQlIh5YqV1TdheWXdpRkX6NkwNuyZZ
+	XhocoyGvyHCa9Kgk+x/LuRVcx66hk81q+pBIXImLnTwYMNZPO8=
+X-Received: by 2002:a05:622a:4d:b0:501:40af:96bf with SMTP id d75a77b69052e-50752989987mr166147711cf.68.1772446443158;
+        Mon, 02 Mar 2026 02:14:03 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-507449a66f1sm114236241cf.12.2026.03.02.02.13.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Mar 2026 02:14:02 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Mon, 2 Mar 2026 10:13:52 +0000
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>, 
+	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>, rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	Dmitry Antipov <dmantipov@yandex.ru>
+Subject: Re: [PATCH v7 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <imtqtaakbz4c4pmlmb3gh2r5sjvso2fymdy4poyjvds2noqzdr@d4ia6rml6jzf>
+References: <20260216-adf41513-iio-driver-v7-0-b0ed387ab559@analog.com>
+ <20260216-adf41513-iio-driver-v7-2-b0ed387ab559@analog.com>
+ <20260222172912.60a103c0@jic23-huawei>
+ <aZwYshRxNgSh3CWk@smile.fi.intel.com>
+ <zb752y7tnjzsc35na572o4sip6efwv3i4lha4ls6fhdrr52h5v@bfgy65cmae4p>
+ <CAHp75VdSV2QDMR0DueCuP=Ds-5A1NsNjqPWtmRbG4NvoJ=LjXQ@mail.gmail.com>
+ <20260301122340.3fedf64e@jic23-huawei>
+ <aaVKDbB_XIFmxCEM@ashevche-desk.local>
+ <ct2r5wvvfowqcfe44fawbi4blkjpfle7etvaunwbsxevejsr2s@3g43wru5n6jh>
+ <aaVZdgvZhaWDgU2X@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260225-pinctrl-mux-v2-0-1436a25fa454@nxp.com>
- <20260225-pinctrl-mux-v2-3-1436a25fa454@nxp.com> <CAD++jLkhH566rqkkQfWnOiAokxB8mLXw=eqrVN_pgs+dd8TkxQ@mail.gmail.com>
- <aaG5DpyET-vri-Vj@lizhi-Precision-Tower-5810>
-In-Reply-To: <aaG5DpyET-vri-Vj@lizhi-Precision-Tower-5810>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 2 Mar 2026 11:12:27 +0100
-X-Gmail-Original-Message-ID: <CAD++jLnVXgvKjF-8QdZONTBX6WK2q=XidZix0LSsyS2Sjq9tBA@mail.gmail.com>
-X-Gm-Features: AaiRm53iWIXpU3ZbOeuRosqaBYYTRiks42ceJwmNYd1HTxwTkyNjI2SuJYHEfX4
-Message-ID: <CAD++jLnVXgvKjF-8QdZONTBX6WK2q=XidZix0LSsyS2Sjq9tBA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] pinctrl: add optional .release_mux() callback
-To: Frank Li <Frank.li@nxp.com>
-Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Haibo Chen <haibo.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aaVZdgvZhaWDgU2X@ashevche-desk.local>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269881-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[axentia.se,kernel.org,milecki.pl,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-269882-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[intel.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,yandex.ru];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,mail.gmail.com:mid,nxp.com:email]
-X-Rspamd-Queue-Id: DAB821D64A2
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D741C1D650D
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 4:32=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
-> On Fri, Feb 27, 2026 at 10:07:05AM +0100, Linus Walleij wrote:
-> > On Thu, Feb 26, 2026 at 12:55=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wr=
-ote:
-> >
-> > > Add an optional .release_mux() callback to the pinmux_ops.
-> > >
-> > > Some devices require releasing resources that were previously acquire=
-d in
-> > > .set_mux(). Providing a dedicated .release_mux() callback allows driv=
-ers to
-> > > properly clean up hardware state or associated resources when a mux
-> > > function is no longer active.
-> > >
-> > > The callback is optional and does not affect existing drivers.
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> >
-> > Can you explain why you need this custom code for this?
-> >
-> > Nominally pin control defines and puts the hardware into a
-> > number of states such as:
-> > "default"
-> > "idle"
-> > "sleep"
-> > "init"
-> >
-> > Usually (at least for silicon) what .release_mux() would to
-> > is semantically equivalent to a transition into the "init" or
-> > "sleep" state. And if these are not descriptive enough you can
-> > even define a "released" state.
-> >
-> > Is it not possible to reach the set-up of the hardware that you
-> > are desiring by just defining such a relaxed state?
->
-> I am not familiar with pinctrl code. I just need a place to call a callba=
-ck
-> which do opposite work at .set_mux() function.
->
-> I see pair function pinmux_enable_setting() call .set_mux() and
->  pinmux_disable_setting() just missing do oppsite work of .set_mux();
->
-> I may think too simple. I just do insmod/rmmod test. Any suggestion where
-> is good place to put it?
->
-> Does it call pair pinmux_enable(disable)_setting when switch state?
+On 26/03/02 11:33AM, Andy Shevchenko wrote:
+> On Mon, Mar 02, 2026 at 09:19:42AM +0000, Rodrigo Alencar wrote:
+> > On 26/03/02 10:27AM, Andy Shevchenko wrote:
+> > > On Sun, Mar 01, 2026 at 12:23:40PM +0000, Jonathan Cameron wrote:
+> > > > On Mon, 23 Feb 2026 12:41:45 +0200
+> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > > > On Mon, Feb 23, 2026 at 12:37 PM Rodrigo Alencar
+> > > > > <455.rodrigo.alencar@gmail.com> wrote:
+> > > > > > On 26/02/23 11:06AM, Andy Shevchenko wrote:  
+> > > > > > > On Sun, Feb 22, 2026 at 05:29:12PM +0000, Jonathan Cameron wrote:  
+> 
+> ...
+> 
+> > > > > > > It all depends on the series from Dmitry Antipov.
+> > > > > > > Can somebody help reviewing the patch 1 there?
+> > > > > > > https://lore.kernel.org/linux-hardening/20260212125628.739276-1-dmantipov@yandex.ru/  
+> > > 
+> > > FWIW, Andrew picked them up for Linux Next. Please, test!
+> > 
+> > The patch looks ok, but I am not seeing it solving my problem here.
+> > Here is the v8:
+> > https://lore.kernel.org/linux-hardening/aZXDSbyH8tWmTPPL@smile.fi.intel.com/T/#t
+> > 
+> > I would have to use simple_strtoull() and it would clamp the value at
+> > ULLONG_MAX in case of overflow, but it would not say that an overflow
+> > happened. Would that be fine? I understand that addressing the FIXME
+> > in simple_strntoull() is not a subject of this patch.
+> >  
+> > > > > > can we push for the exposure of that function to kernel modules?
+> > > > > > We have discussed that in v6, and I understand that:
+> > > > > >
+> > > > > > EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
+> > > > > > in lib/kstrtox.c;
+> > > > > >
+> > > > > > #include "../../lib/kstrtox.h"
+> > > > > > in drivers/iio/industrialio-core.c
+> > > > > >
+> > > > > > is not a good call...  
+> > > > > 
+> > > > > Yep, because it's a temporary band-aid. The proper solution is to have
+> > > > > shared code provided by the lib/. So, the wrapper to parse 64-bit out
+> > > > > from the constant string literal should be part of the lib/ in the
+> > > > > result.
+> > > > > 
+> > > > > > > When it's in, we can continue on this one. TL;DR: for me this is on hold.
+> > > > > > > But if you see the need to have the driver being in IIO, please add a big
+> > > > > > > fat FIXME to make sure we will get this all being sorted out in the
+> > > > > > > (nearest?) future.  
+> > > > > >
+> > > > > > I could add the FIXME into iio_safe_strntou64() doc header. It explains
+> > > > > > the context:
+> > > > > >  
+> > > > > > > + * The implementation of this function is similar to _parse_integer_limit()
+> > > > > > > + * available in lib/kstrtox.h, but that header/function is not available to be
+> > > > > > > + * used in kernel modules. Hence, this implementation may need to change or
+> > > > > > > + * removed to reuse a new suitable helper that is properly exposed.  
+> > > > > 
+> > > > > Up to Jonathan, I hope we can move the above mentioned series forward.
+> > > > > Without that, as I pointed out, this one sounds to me suboptimal and
+> > > > > unneeded double effort.
+> > > > > 
+> > > > I don't want to hold this series for another cycle, but we are still
+> > > > fairly early in this one, so some focus on moving that forwards seems
+> > > > sensible.  If we are running out of time, we can fallback to a loud
+> > > > FIXME and a plan to move to the generic version in the library next cycle.
+> > > > So let's set a rough deadline of rc5 and see how things are going then.
+> > > 
+> > > Taking into account the above, can we actually develop something
+> > > based on that?  Or at least having a temporary solution for this
+> > > cycle followed up by the better one for the next?
+> > 
+> > As mentioned above, I am not sure how consume what Andrew has over there.
+> > It seems address lib/ internal stuff. The interfaces are still the same.
+> 
+> I think it will be third time I'm repeating that this needs a wrapper in the
+> lib/. Just add the one (like with safe_strtoull() naming schema) with properly
+> formed prototype that returns an error and the result in different variables
+> 
+> int safe_strtoull(..., *result)
+> {
+> 	...
+> }
+> EXPORT_SYMBOL_GPL(safe_strtoull);
+> 
+> (Also some test cases have to be added.)
 
-The pinmux states are more like a state machine, you transition
-between different states.
+I really understood that I would need to use Andrew's work as is, but
+in fact, you encouraging me to add what we need on top of it.
 
-I think in this case you may want your driver or the device driver
-core to transition to the "init" state to release the mux, see
-my other reply.
+Assuming that this would increase the scope of this patch series, I suppose
+that would need to be included in a separate one.
+can we just not export simple_strntoull() from lib/vsprintf.c? I mean,
+addressing its FIXME and changing its prototype?
 
-Yours,
-Linus Walleij
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
