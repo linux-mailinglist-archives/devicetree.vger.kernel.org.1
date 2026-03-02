@@ -1,157 +1,121 @@
-Return-Path: <devicetree+bounces-269947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269948-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SJ8OLUF3pWkNBgYAu9opvQ
-	(envelope-from <devicetree+bounces-269947-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:40:49 +0100
+	id qE16CMR3pWkNBgYAu9opvQ
+	(envelope-from <devicetree+bounces-269948-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:43:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ECEC1D7A37
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:40:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D8B01D7B05
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:42:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0EA493059FF0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 11:36:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DDE8330743C6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 11:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BB5359A69;
-	Mon,  2 Mar 2026 11:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E8536308A;
+	Mon,  2 Mar 2026 11:40:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RIvAurmb"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="i4pxbl/E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23D6515539A;
-	Mon,  2 Mar 2026 11:36:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28ACF350D4F;
+	Mon,  2 Mar 2026 11:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772451382; cv=none; b=lL+otZQc/fi6TyTnu1Qhla60P6dLRNfGd8UyQBEHNgpdnBHe2bZwa3v5N9xvXZck2fj2xvh5hxMX5JjEBr82sy8mCltM79gojBg4LQcTh92Q3q6VU1euCYsD5UAQCP1+ZPlzX7Dp5muhSfWbqcRZe6MkPbgbZY637S9SC4ZrYGk=
+	t=1772451606; cv=none; b=pH/Ekdzu5yuxdlTp8HeiYyarHlrAQ8rpUV+s+kM2ur8L3ZnkLHO6I07Na+q5XBoyxFi/0j8h9MNTO2ukQN19YlgeagZlj9PIqttRChczFbqMHMAI+O5UU3tzMtjfqUN6ITJ9ZzG9lI5jZ5VlB0tWpYiHaxLX/I1MUwf6pRnrV8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772451382; c=relaxed/simple;
-	bh=je7AHfZfavvqP+W/PwJsmQocTkj+MwgzQ6Kl9KEtShk=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=XCJFQ5IqUi61PUVoHJOt4wju6BV9R6HjJebgf+qeG9bJ01k0MExKlyIs9fh48LENyj8kOKp3Lg4hhBbSErKDWop41mr3l3BOoeFdDzX7oYP9PKX6W2yqCD4AYZlW9xwxAxp1A3vGZvkeQBZWia8Meouh6VkepkTZcd2BGKSoTbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RIvAurmb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BECAC19423;
-	Mon,  2 Mar 2026 11:36:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772451381;
-	bh=je7AHfZfavvqP+W/PwJsmQocTkj+MwgzQ6Kl9KEtShk=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=RIvAurmbUy0ZBUYQHZgFZBjnoByxYWjxWDxCsu+qxCUvZIgX7sqVM7aJ9HL7KNoM0
-	 WnHBDYluamSmRgAPs2oCAZFbYeq+z/tugyvsCu061dUJg7pmqtLopkJQQWhUZJ5/2L
-	 L2EqAXkqd5JSJem2M/+b4hJe8EoM3WfS6DyWbeXg5yLbTJtrYxTK83M2SfUTULw0np
-	 Y8j4Vm0QgTsVCoG93DZAoYNn12Rs+Y2liDhyWSgGemDy251XKPJNwYLtjb5p0nPheF
-	 rXcqhCwCTisGBz20Z15YzV+DcszlUXCv8HZ9lKsWrCOPYUrjz8WaDxmXWcwl49m+CP
-	 3OjcVK7K0/3rw==
-Date: Mon, 02 Mar 2026 05:36:20 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1772451606; c=relaxed/simple;
+	bh=tBqER7TkkEWSyxlqxllvRX3AFT9ZJI4Jaur60a2WB1c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ssOXntRxaVewaq6vNBCG3kSr1T9MNZ1o/yx6MGZOKIDFYBF06N8bGTsmWCDC0ubljW0BGrZsYhpIPFMKTYLOEtpIqFjjA3r5VtSNZk3nWxeMYaRJHUVekXVS8/YEeqGBm63/pFoF+rJA0vCzLpRIgje/WTYylghEsijV3SjMUWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=i4pxbl/E; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=X6SbFLc4f+0AUJqjR/btDT2FjgfxgT/jHR66a8XfvPI=; b=i4pxbl/EziIQJQ95nSQYiOuP0Y
+	8J3wCX42+B7zdlERRorGAoeX4/7/12mb6stlJG5v8IadafTiVYDmdkVdUKdWKW3WElIVbofNupyY1
+	pncxKs7tnlMKKUwHubUV1HxU00F8adyPqfuLrEpbskvRXymdU73fdwEg/dBPv7c++nhqLCAUphTjp
+	Ea2qQ7eqIqlS/RcqAsdWv4NJIZRQQ+o2NqrdQluuBih6d2CozW6FMk5Xo4FI7otRWVEqatdOCfXPl
+	c7TpAOKK2TZSXPALa1I62pbDhPhaEI+3lWoUaKP0ztwdvsvtKP/NDxO7DJUWS+wqL/CHjEBlBk0Me
+	bGYbUceg==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/2] ARM: dts: rockchip: rk3036: Move PHY reset to ethernet-phy node
+Date: Mon,  2 Mar 2026 12:39:52 +0100
+Message-ID: <177245158235.769695.1602082585848546152.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260228013257.256973-1-festevam@gmail.com>
+References: <20260228013257.256973-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, stable@vger.kernel.org, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Kuogee Hsieh <quic_khsieh@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Simona Vetter <simona@ffwll.ch>, Dmitry Baryshkov <lumag@kernel.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
- Abel Vesa <abelvesa@kernel.org>, David Airlie <airlied@gmail.com>, 
- freedreno@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>, 
- Rob Clark <robin.clark@oss.qualcomm.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Abhinav Kumar <abhinav.kumar@linux.dev>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-In-Reply-To: <20260302-glymur-fix-dp-bindings-reg-clocks-v3-1-8fe49ac1f556@oss.qualcomm.com>
-References: <20260302-glymur-fix-dp-bindings-reg-clocks-v3-0-8fe49ac1f556@oss.qualcomm.com>
- <20260302-glymur-fix-dp-bindings-reg-clocks-v3-1-8fe49ac1f556@oss.qualcomm.com>
-Message-Id: <177245138068.2323365.8449103832927911049.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display: msm: Fix reg ranges and
- clocks on Glymur
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,somainline.org,quicinc.com,oss.qualcomm.com,ffwll.ch,gmail.com,poorly.run,lists.freedesktop.org,suse.de,linux.dev,linux.intel.com];
-	TAGGED_FROM(0.00)[bounces-269947-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269948-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ae90000:email,devicetree.org:url,qualcomm.com:email]
-X-Rspamd-Queue-Id: 1ECEC1D7A37
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sntech.de:mid,sntech.de:dkim,sntech.de:email]
+X-Rspamd-Queue-Id: 7D8B01D7B05
 X-Rspamd-Action: no action
 
 
-On Mon, 02 Mar 2026 11:58:35 +0200, Abel Vesa wrote:
-> The Glymur platform has four DisplayPort controllers. All the
-> controllers support four streams (MST). However, the first three only
-> have two streams wired up physically to the display subsystem, while the
-> fourth controller has only one stream (SST).
+On Fri, 27 Feb 2026 22:32:56 -0300, Fabio Estevam wrote:
+> According to rockchip,emac.yaml, 'phy-reset-duration' and 'phy-reset-gpios'
+> are not valid properties.
 > 
-> So add a dedicated clause for Glymur compatible to enforce reg ranges to
-> describing all four streams while allowing either one pixel clock, for the
-> third DP controller, or two pixel clocks, for the rest of them.
+> Use the valid 'reset-gpios' and 'reset-assert-us' properties under
+> the etherne-phy node.
 > 
-> Cc: <stable@vger.kernel.org> # v6.19
-> Fixes: 8f63bf908213 ("dt-bindings: display: msm: Document the Glymur DiplayPort controller")
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> ---
->  .../bindings/display/msm/dp-controller.yaml         | 21 ++++++++++++++++++++-
->  1 file changed, 20 insertions(+), 1 deletion(-)
+> This fixes the following dt-schema warning:
 > 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/2] ARM: dts: rockchip: rk3036: Move PHY reset to ethernet-phy node
+      commit: 6b56706cde50f64382df90a244e9fd3c345c9917
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,glymur-mdss.example.dtb: displayport-controller@ae90000 (qcom,glymur-dp): reg: [[183042048, 512], [183042560, 512], [183043072, 1536], [183046144, 1024], [183047168, 1024]] is too short
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260302-glymur-fix-dp-bindings-reg-clocks-v3-1-8fe49ac1f556@oss.qualcomm.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
