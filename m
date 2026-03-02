@@ -1,51 +1,84 @@
-Return-Path: <devicetree+bounces-269841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269842-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MExWGcZSpWkR9AUAu9opvQ
-	(envelope-from <devicetree+bounces-269841-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:05:10 +0100
+	id kGpDDVBTpWkR9AUAu9opvQ
+	(envelope-from <devicetree+bounces-269842-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:07:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84871D536D
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:05:09 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D16381D53FA
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DCDB830056E1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:04:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 362313014A1E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFAA938B7D6;
-	Mon,  2 Mar 2026 09:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A98379EE6;
+	Mon,  2 Mar 2026 09:07:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jPONdLoY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uEfZ/9Yy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ABD732AAA7;
-	Mon,  2 Mar 2026 09:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B35A38CFFE
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772442249; cv=none; b=BVxt/K4YpCQHRswCD1YUG+y11U2udCDxhRpSnxk08J7Wy9r7nXEoAt+AVNtEm8MJYpdLP5B9Zo831oblokiaiHpZGq6wjZt7BtwuMzf7KwqysztLmDcAoebWzu18Rm2lO1LNupbJ+aQnh2mvxnHIJBZZW1FZWvh7XXiy5cJoLJA=
+	t=1772442446; cv=none; b=buVl5n9zq3yh1DaUSl96uv7E1v6PgFjffYMPlviKfUy0ME5p7gcYbtSQlbAjBaxUp0zG9pcAgp7RfaU1B8hq7Qt6jQNhfjpux50FMHVS2G0vVJF8W/MJ1rHy7/+j2oEeE8WxuG0ReCZNgLiqzK1Dsu9JagaDFVgW2lEJLqKobmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772442249; c=relaxed/simple;
-	bh=iQBz+7qJ+Vib0hgib9uOQYUG+N0tzSYhavXFT+171t8=;
+	s=arc-20240116; t=1772442446; c=relaxed/simple;
+	bh=1Hlh3tnJvRQvGvsfO4Noy/pZx4WjfAthD2cgeDPBDSU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rUjoKy+wJ/T6Oi1U+/0anhRgWb2v4Y0CWolUl5yCkWvgki4glEAgPs4HBVxXPpmS2p0CwRIUjGWjSyqwMan3SFIW27h49lcGrWmVkH9ZyVGATNyN0p8pi+zC32zHwLxoLFW6oR5Q2ThcxvHcOBh0MflDlSxdKFE0diLhTsz7Fj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jPONdLoY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FBCCC19423;
-	Mon,  2 Mar 2026 09:04:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772442249;
-	bh=iQBz+7qJ+Vib0hgib9uOQYUG+N0tzSYhavXFT+171t8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jPONdLoY8Szf5rdtT2rWfLjSZMeRMwQu0ywvoaaTMF8l2hguNS60JHv/NdAtfWEVd
-	 Vdz7lzWXxxPrI1eUT4UURqfZlnUALRSDviccXCtPvp0zwErHHne0cWD0Fs71zBMJEB
-	 K4n/JWudMuAlJ3Gb9ChiBygdHZC9cE3FhoW5OujJm9KFuAi0IrkFt6AWFsoWHRy02N
-	 NdsBGJnh0f+sfaU/uumBR4FCzIsHOM7whcHg2XNKESfBuS60+C4wBJv1q7yWGQ+0di
-	 0G5TFx5Xjtu2CfaN0mGu75XGB/OOZe0tkdVc4KZjDdaajrADs+NNj33fGBAh+/p1k3
-	 99NF3c74Epn/A==
-Message-ID: <7447fde1-7eae-4bbc-b36e-fc0da9609c8c@kernel.org>
-Date: Mon, 2 Mar 2026 10:04:03 +0100
+	 In-Reply-To:Content-Type; b=WevI+BfLzIs7xcmjUPi/HRNdw6lS13Ply/q4VLmdKaltZ44bK9U0WIMM+MLeKt0h7bhlm2q0A7nqNExOJEjQzSSOfOend5VtdhGYd/5kyxQcSVyDRnJrzaoYENC3ZNjtQ+ccTs50sjpOLgyjxu2xybjnqh7op0GHGzC4aSJmCa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uEfZ/9Yy; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-48329eb96a7so27665065e9.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:07:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772442442; x=1773047242; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ltNDP6q2mUdMtPqpRgX6YzMyjY4kZxSKj4nBNx4rkj4=;
+        b=uEfZ/9YyQsBmcX0cM+Uk0yjd09CVydlp96acEAYG5n6jM7w8s5HuZ//F/umP3rL0oT
+         jsHdXRduiMNSeNK0XmylLirZKnaTPv7jSlBjobg9ORNfa0Ni7Y/Vp9xM1QZj7oRofn3C
+         rkMDEpAAiLv+nnFDqWLYJ6L25VilF1jq2qNlc2q7icBXlvnmsM8gMrDoKsA785a7FtrW
+         ApWcYB6yah325EIQ/e7O/zCkvitLJ7yCqjugL1N/Xqvd3TY3j//AHel6CS3mq/xs3cGf
+         32LsnONpzlHt7s7gKGoij6I5xz1ChkL+x+SY13nttIFkEtmtfqhVJwqmRqDj/NELca7R
+         vwSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772442442; x=1773047242;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ltNDP6q2mUdMtPqpRgX6YzMyjY4kZxSKj4nBNx4rkj4=;
+        b=JFT3OLfASe9WcaPxXvx08igZ8QAp4nkCOZNpYQ6Ji5V/wYGYJBOsZ9WHEvmAoLoO27
+         cJRT9KqXA+79VBqCFBgxNmJuCFINhcLmCLzhcTwpB5pvyQl+7PaP0CudzGBU2XspWWFi
+         GbjsPbVu7Cr4sx4aUot71NaumgRWK8GUmNUiWRbhW6/ndIkx8DeYo/DmaZUMbCSq4UhU
+         Gfph/PYyNUPGTjYSqcZNanjBwAsQwQY8wMs8ynk0uRlLzR3TxBjf0NN/A36qS+CanE8G
+         MoMGgM+SwadZVaYjr/KzjZGpSl2sdAXq/1glYKRtF95iOeviZCIBWMjPeSLzjRrj04RW
+         6YAg==
+X-Forwarded-Encrypted: i=1; AJvYcCWlrV1GT02U551PPBQqXjnBFckQNhrk0lTYZ37tJWFzFgPHwxTGFi52FftCH0B0SNGQ/ehC8ceD3kk6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGM+Y56I17yupELiLC+N3EclL7dFz+6TXPc/Usj32DiFdPxUQ6
+	+tpC04y/N1wEmzCGSDowtc+JeWnSyCmem24afKyryY3f04H3g3ay9n2bKox8CDCfMK0=
+X-Gm-Gg: ATEYQzzDRNJwP2qCkXO4q2x01d6khFg4S8wnD8aQamUypc13Bl2XyRoZBv98wMcv74L
+	Hd6UQ9AmNJA8rzWiO1sMGG21UAx4nl9EPNkkpFmW4wkxo/PjhBW6JzFvz40x+o+THSejwkkpWs1
+	yeAKiqgz5yKTOrbA+29wES7OVcDA68pAslGhsdlIg6B4jsugs/uhJ0sjnrhIcFuuwU+Ups/imF0
+	kLxTL1BBdhe94TA4h4KnAvsoN5kbAvm2Z47Bq18OaeKtchdGrsaVX3owSStExJdvVcyKJ/w+WAU
+	UaLMKXjl2ERdfjjlEjYszeRHOM/RcDiy0XNTmry4VExb2N8Ky4IYSA6WbJ8Y90N54YwPd1XONTr
+	3sMcy+AZqkym0egOQs7gzWPIdepzd4LnhdfXz54KY8h7WBAXO8PXPrm4E1BO+DQCrScctLHFOOo
+	OkHIAbyPmfMHiwVQPptazMIpBbSCXsj8o=
+X-Received: by 2002:a05:600c:8289:b0:480:1e9e:f9c with SMTP id 5b1f17b1804b1-483c9ba7cbdmr202248045e9.10.1772442442277;
+        Mon, 02 Mar 2026 01:07:22 -0800 (PST)
+Received: from [10.11.12.108] ([79.115.63.77])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b89c99sm271364845e9.15.2026.03.02.01.07.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Mar 2026 01:07:21 -0800 (PST)
+Message-ID: <b1f5be90-62eb-4482-bf42-f331739733ad@linaro.org>
+Date: Mon, 2 Mar 2026 11:07:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,125 +86,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ASoC: tegra: Add support for Tegra238 soundcard
-To: "Sheetal ." <sheetal@nvidia.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@kernel.org>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Sameer Pujar <spujar@nvidia.com>,
- Mohan kumar <mkumard@nvidia.com>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, Aditya Bavanari <abavanari@nvidia.com>
-References: <20260302085323.3139571-1-sheetal@nvidia.com>
- <20260302085323.3139571-3-sheetal@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 0/7] thermal: samsung: Add support for Google GS101 TMU
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org
+References: <20260119-acpm-tmu-v2-0-e02a834f04c6@linaro.org>
+ <DGR3X53FPO88.3C2UO0HGRVQGF@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260302085323.3139571-3-sheetal@nvidia.com>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <DGR3X53FPO88.3C2UO0HGRVQGF@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269841-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nvidia.com,gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,intel.com,arm.com,kernel.org,samsung.com,gmail.com,google.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-269842-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nvidia.com:email]
-X-Rspamd-Queue-Id: D84871D536D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: D16381D53FA
 X-Rspamd-Action: no action
 
-On 02/03/2026 09:53, Sheetal . wrote:
-> From: Sheetal <sheetal@nvidia.com>
-> 
-> Tegra238 platforms use different clock rates for plla and
-> plla_out0 clocks. Add Tegra238 support in the Tegra
-> sound card driver to apply specific clock configurations.
-> 
-> Signed-off-by: Aditya Bavanari <abavanari@nvidia.com>
-> Signed-off-by: Sheetal <sheetal@nvidia.com>
-> ---
->  sound/soc/tegra/tegra_audio_graph_card.c | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/sound/soc/tegra/tegra_audio_graph_card.c b/sound/soc/tegra/tegra_audio_graph_card.c
-> index 94b5ab77649b..b6dadd6a3d3d 100644
-> --- a/sound/soc/tegra/tegra_audio_graph_card.c
-> +++ b/sound/soc/tegra/tegra_audio_graph_card.c
-> @@ -1,5 +1,5 @@
->  // SPDX-License-Identifier: GPL-2.0-only
-> -// SPDX-FileCopyrightText: Copyright (c) 2020-2025 NVIDIA CORPORATION. All rights reserved.
-> +// SPDX-FileCopyrightText: Copyright (c) 2020-2026 NVIDIA CORPORATION. All rights reserved.
-
-If updating it, you should rather drop it and use standard copyright.
-This tag is not supported in kernel in general and I document it only
-because it already spread all over.
 
 
-Best regards,
-Krzysztof
+On 3/1/26 4:57 AM, Alexey Klimov wrote:
+> On Mon Jan 19, 2026 at 12:08 PM GMT, Tudor Ambarus wrote:
+>> Add support for the Thermal Management Unit (TMU) on the Google GS101
+>> SoC.
+>>
+>> The GS101 TMU implementation utilizes a hybrid architecture where
+>> management is shared between the kernel and the Alive Clock and
+>> Power Manager (ACPM) firmware.
+> 
+> [..]
+> 
+>> Sensor Mapping (One-to-Many)
+>> ============================
+>>
+>> The SoC contains multiple physical temperature sensors, but the ACPM
+>> firmware abstracts these into logical groups (Clusters) for reporting:
+>>
+>> - ACPM Sensor 0 (Big Cluster): Aggregates physical sensors 0, 6, 7, 8, 9.
+>> - ACPM Sensor 1 (Mid Cluster): Aggregates physical sensors 4, 5.
+>> - ACPM Sensor 2 (Little Cluster): Aggregates physical sensors 1, 2.
+> 
+> What about other non-CPU devices? Are there no sensors or implementation
+> currently doesn't support them?
+
+The implementation currently doesn't support them. On GS101 other sensors
+are for GPU, ISP, TPU, and AUR.
+> 
+> Is this implementation and ACPM TMU support exclusive only to GS101 SoC?
+
+no, it can be extended for other Samsung SoCs.
+
+> IIRC, mapping could be different for other SoCs and, for instance, last
+> sensors could be non-CPU devices.
+
+right.
+
+Cheers,
+ta
 
