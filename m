@@ -1,248 +1,259 @@
-Return-Path: <devicetree+bounces-269890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269891-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAnHG75mpWmx+wUAu9opvQ
-	(envelope-from <devicetree+bounces-269890-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:30:22 +0100
+	id INUyKOtmpWmx+wUAu9opvQ
+	(envelope-from <devicetree+bounces-269891-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:31:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE64F1D686F
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:30:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083C01D689C
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:31:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 195953078FFC
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:21:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB7063070157
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1027F39B95E;
-	Mon,  2 Mar 2026 10:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1854F396D2E;
+	Mon,  2 Mar 2026 10:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VRdC2N/m";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="C6PMCiiU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cXwd6fDx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B74BF395DA0
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:21:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A67A5379EDF
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772446889; cv=none; b=kQBe9YmwAqqCMlDum87oKV43n8fQ/QIrIYYhGckX9onH/XFsje9XF8jFsST+FNtwBihzCbhir6/Q1M/kiLcXxqpW2/Qh6GTmcIQ0qDxLYPj03vOxFcHpAZCOsIxQC0vNGs5GPDyIpYCZVJADxcqpPny3e0Fbb4RGOJIEWL1vjcs=
+	t=1772446976; cv=none; b=p1CEtg5E0IVDDNUqI/Vr3va0ZAYOM5c+QhIRw26RCZLLlBvFTwXSmZUvjvnmj38NHTlCQMW1w3lt8e58I9Qkt+IufdiuQho7EYFlVhekbN7SWTAZo/F0o3dVvHlZBwLbdbGdtPho2DdP1QgUEhULgfk0ck92zRE84YvFKZY67Ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772446889; c=relaxed/simple;
-	bh=YzPtYSXIsrY/B+gtkEtbaoVWBU8jVlBRjvOq6AnGucQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O4eFSrlRTOJ5o53q9NiNj/SOl77S12RSdU2K2VL214RTE4pCVVm2hdGthJ2bRc4gZXk57JGo8n9ejygIz6o4kNiedgYLsfaz3SqQWTKxkj9miTThmShILOK9yj8dNuVJmBYI+w3iV2HjgwrrDafA3jLB/64pZInnWs19uTn4KfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VRdC2N/m; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=C6PMCiiU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6228Ewfn2066736
-	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 10:21:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=qc+PQLcGoUUce2r4NCoYXsIY
-	gtlY85TRmH7qlp00OJA=; b=VRdC2N/mHMU+RzmszYje2TKYjxmdBvnTa9NpRZIs
-	YYeQCxEx0hSIB0nu0vYpzKLRrSv1Q2JwypMlqzLYjQFb+xk/R785GokIuSTFRpT9
-	JyeYY8ei53SUYZvd8epFTDerrVFtOJ6NWysUd0oZp0rZvNmnJ9OprKjYYc42HdwZ
-	EZeJL4QJ7wFot5TOE8iEMVdp6xx8nFo0xv0PBB3zOZ7fK2bW+36wbmg/yPtCgI5X
-	mLUpU/N1yWWisT3RtLUc4WFS8d5HNcV4HZqcUVjTeB75x7llLvR/jrhpYwup7xSn
-	6cQBjiptV9eCJNOcUVnoZ+ezZwC2n3vlB1GQu2QbYAY4wQ==
-Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com [209.85.210.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cksfd553n-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 10:21:27 +0000 (GMT)
-Received: by mail-ot1-f71.google.com with SMTP id 46e09a7af769-7d18e95c658so27197876a34.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:21:27 -0800 (PST)
+	s=arc-20240116; t=1772446976; c=relaxed/simple;
+	bh=J7bNN++52MtPbiftgLapTMmJCVCOA8RSnKRGQal5Pis=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bQQIKm3ITAzNOjRchW09jV4OX7OorkwYQHGeKmmUaQxpx4j7mymd9CPnHTcKzSMjpXMBUFV0GHT9AKu+kMzpSPAIFmD8kYj8/6JFTthiJeIb6vFbHE2MGgmmOAfemA76fIXcAwdfl6CWg+H8czsYXUTc2tOGZ6TCSld6fFSdZEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cXwd6fDx; arc=none smtp.client-ip=209.85.219.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-89a05955720so453886d6.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:22:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772446887; x=1773051687; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qc+PQLcGoUUce2r4NCoYXsIYgtlY85TRmH7qlp00OJA=;
-        b=C6PMCiiUzT3A62H1pKoQUa2EtBTaFs4Jq4AnDBM5i/Twk1hznPGnOPMM4sbfhbq3qB
-         GAvO4SEKZJ95+0vWlnECr6L6NOBonS6rjfCJAIboPAZiFeo8wRhbQN9BaMR+osz9YfHi
-         /ar4b33NuMe2AXwlCvwFRHpoIeX0Jhtl7JAca07RKGqh1XiXOT4jpJb1EPxRLCUHlz6n
-         Bkk4uABMnZ0nmWvBuPvQQ1KwU4uAXuEOs9t3cfeH0kpKPkCmI++kC/JPGweZ/dg9fgOI
-         KOyZZhTRhTBiXMXEcYEd1xmr/ez4V0+iGNkIQlsbglzuFcFyNYai3IILZAxFdhLG72eJ
-         Oaaw==
+        d=gmail.com; s=20230601; t=1772446974; x=1773051774; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2oEf6kTo+qvuMm/iqeLErDs82+PDnWEosmtOR9rmcfM=;
+        b=cXwd6fDxTgoxQrcODmYvNNZy+bDJoWKr9FJn/MJmt7YTnsv4ZTlOSCEAaH1aLLygbk
+         6OSTFRirkWXZ9XSJTP0d5i/eFWKrqopV2j+t+AwMQWTdOpQ6CoEbu5VC1xbnS1BEQFNm
+         ONz/XaDSTYlWtcRnBKXcMc9285G6mLIS5yEL+ZXqqj/LsAqxGTQzWyzdsK8wvRzhmN1p
+         Ba8Tvu4FJXNyAzvBTv12+CqjqGtbWGVxg/OjFO981hzboqWWogVVdhTiggQQiVhT7BiV
+         sv/RNxVfrAuwrJ2XJIoJakTLrXNZG524eX/OdnuHV32o0zuFM6U65trzCfhlXd5SPgnU
+         PLhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772446887; x=1773051687;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qc+PQLcGoUUce2r4NCoYXsIYgtlY85TRmH7qlp00OJA=;
-        b=wqyIya5IlX90/zl0hv90fEHpdc1hR3oIb4+vyztvnSzBFsi7b2eKMRLE5dKL5K1w1r
-         rnSuW1LHB8fNSG1n6CjmKToA2tfE/awNYINIauvWJTx3w16SSTp6rqyVrQMw0KfIupeP
-         8Nma9qZF0CC6Nyv/F5iAUSlb1HVoMU1Rd2Xojork0WV+UVtm77r/AV1JFKZ4GraQNUcW
-         nWbm7KlkmZOZSgAz2xb/NueIcUrp8ycTUNHQ6KXCsFQSCj7QFqQzHx6nieM24HRHflUw
-         q4ADN88gfOcO6j/h4sCwoFG15babJQmdywlSpF5xkVGvmwE2HT2GEZ/IwI5Dyz7/jwYP
-         PmzA==
-X-Forwarded-Encrypted: i=1; AJvYcCWtR/Wrn6DtMmFXe1AUksQIkeELa4tKqaAfmdiDU+hxoXzs0ICpFj22wipTWR1xQx8YhmRG5DRUxk0x@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1JS6femjAwsyCEtROP216gokL7d+g7esFlqsYSvmefRpu5laM
-	hglKbkWZQUob7PBVj5YL5jPh7fqwanWwZD7OkFvbpm0kIxTrLCuk6I9MNswqAemrIYgsR0c9GNy
-	RQx+7cNJEakBNGXWs4uKk1gcRmxgt44shnZYAy2eDci68ijWrU7Zi/quncYiLtbat
-X-Gm-Gg: ATEYQzx6IU9ZoFBnd2zY5uvWjOiA9sdSVXm9rTx5fq+nWqyPG9qwXWtRBj6xbXnLRu0
-	utQQLfoLg4jGIZPE/5LciOYclESue3NIBZ8PUJxAahitUmqBwyJ8pGIof4h6Gwb7nRJWWoK0kN7
-	m7FLp1LnAdcx0rqcAuvvfU2KHcOTP1km7yk55eh+eZ35U3ih8fRkaPwLAMBDQEloVZ1+p/EUKH3
-	auf4lWOznsY/cda9QOKoyzgxmmuXeQCnKJItpzbHrp1VBwyxBTd8V2RxkAGJb5o0npPquXOLVsn
-	f26WBAk/PIPYiBfruXEdbCYY6JebQJfIv/ZJezhi3qDEUvHgX5QmfFTAQ/uxrXeypBSlmYhvIps
-	FOZNM6PTLOLaL5tshsF8LeGU45JxIXJXzLaMXpln1gR+Df1DVpAd+fR4NZwguAi3dOFHL
-X-Received: by 2002:a05:6871:3309:b0:3fa:ef4:3e3f with SMTP id 586e51a60fabf-41626f9aa80mr7482824fac.33.1772446886939;
-        Mon, 02 Mar 2026 02:21:26 -0800 (PST)
-X-Received: by 2002:a05:6871:3309:b0:3fa:ef4:3e3f with SMTP id 586e51a60fabf-41626f9aa80mr7482812fac.33.1772446886550;
-        Mon, 02 Mar 2026 02:21:26 -0800 (PST)
-Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4160d21196csm11368443fac.12.2026.03.02.02.21.25
+        d=1e100.net; s=20230601; t=1772446974; x=1773051774;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2oEf6kTo+qvuMm/iqeLErDs82+PDnWEosmtOR9rmcfM=;
+        b=xIC5Ra9ISPOVNSEXp55TZIk+ovxLb1Tq5m2X2ckZn7lpm5wGhrh90dj9PzuRdhNci2
+         nUWTh3vGl7APMxpe9G956GOx495acb220ZHGTkAEOMy0AA9waZ6gWFgK6HTV2C/ZnJOF
+         Qlllchp5YPakYB6wJjO3j6iL9Q5pdis4aj8R/30RdLHWNnGiTNpYJBVxTZNjeduwfvvt
+         ly1q+6GD0AQH2UNVBBgOFZXVBx72NLCy+z9s7gpggh8LexbzeToLh97DuAr5zkO/Jc+l
+         axrYTXULG2SVvUl7dIOJO/YMzqJvLUP8BR4FqElXnOJsJGJlJJ2fNS6PwB+4oGh3H7Oc
+         uX7g==
+X-Forwarded-Encrypted: i=1; AJvYcCWTtefWEPBi8WjwB/S1trDLeGRoupe/dwrgdam6hjKEWXU2EvLHD8rlfF0g8uTU6DQQFiDSoTEhCvv5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6iIHkaKNf0TUrRVikAvVx9nYTidZoScC1RHuCWP69cqeCYpyo
+	37x1RdWZWvg99jKwkrL4+YGCNpnp8kmKHxrJ/n61Cwn9BBXn5vF9SKpF
+X-Gm-Gg: ATEYQzz/to0u3gQQBYwIjj4eQD3b4gxaGCKuZVu7uen4cU8gi8uyHWQudPldJQR+iTR
+	Eevf1fOW77iDlZ+EjhhKCnyIZbKyfngwgs27ba2Gc6eOhuUdcKKSnnxTRUayixnw3wokz3tVcHq
+	IZOpqp5SUi4bXKhr+TJp6MUTZCxS9IxAUU8n8kRvDH5XBzwfge9iZ+Wgl8T/W2IwG4JHln+pm3/
+	j+ufoXPNE36jddmSSEf/q3nL0B3D+Iw3LENSsTigHyteYLTX3Pm37bBXvj9KCob7V1SpL9/ktKx
+	X/+8UNgqgiHkcY8DLozolQk17RExYUIcn/XaPUGmyAGLPw3EXhr6yRw7pfRYxlsZaVxH9aQc7ym
+	TJpb2gwn0RD7I3p7rmKduXoxWe+AzmlVQeO9ppCzocXXiXNghMcfkRtbxROMckvIYria12GRVNU
+	mh6rCr1XVa5W5GUWvNEg17GfEpep2XtjpJsWLl+R8pjdmT8vx13mdMvaaky1peDJR9l1b2/8rGN
+	c/vhkH7djBWFrxgK8v+CQ2WNqX6f0oekVLSf0ZRWV7cjcG4Es48MFHsA5RbTw==
+X-Received: by 2002:ad4:5fc8:0:b0:899:b004:134 with SMTP id 6a1803df08f44-899d1ef698fmr160300976d6.51.1772446973452;
+        Mon, 02 Mar 2026 02:22:53 -0800 (PST)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-899f47819ffsm29897096d6.37.2026.03.02.02.22.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 02:21:26 -0800 (PST)
-Date: Mon, 2 Mar 2026 02:21:24 -0800
-From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Add
- vdda-refgen supply for Glymur
-Message-ID: <aaVkpKZcrNM7k4Xm@hu-qianyu-lv.qualcomm.com>
-References: <20260208-refgen-v1-0-87ca84fd78b3@oss.qualcomm.com>
- <20260208-refgen-v1-1-87ca84fd78b3@oss.qualcomm.com>
- <20260209-magic-conscious-seahorse-b81c8b@quoll>
- <aY1Jx5J8x/OALk5M@hu-qianyu-lv.qualcomm.com>
- <hcslao22elcihjw56ltu4yo54lotheqpikzsrq6tia33di4fs4@2ygrbwhcfx2a>
+        Mon, 02 Mar 2026 02:22:52 -0800 (PST)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Mon, 2 Mar 2026 10:22:47 +0000
+To: Jonathan Cameron <jic23@kernel.org>, 
+	Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, 
+	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, rodrigo.alencar@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH RFC 0/8] AD9910 Direct Digital Synthesizer
+Message-ID: <pohirub7gjqu7xtq5qakkmr3wlek2rgj6kdgltjvir6g4jwgbr@hmjflsplni4o>
+References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
+ <a72b2d62-3b91-4789-a1b1-ff1429e80ed5@baylibre.com>
+ <2k4ouimpaxjuhnk67qmrues2375zj43ehru7h5as6w6kf7yak3@2ndr72co5trh>
+ <bdc973e5-df74-48f2-8884-439b03565940@baylibre.com>
+ <9392fea00a9c3b23d1bc9468faa1b3cc20904398.camel@gmail.com>
+ <20260301133806.5e706756@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <hcslao22elcihjw56ltu4yo54lotheqpikzsrq6tia33di4fs4@2ygrbwhcfx2a>
-X-Proofpoint-ORIG-GUID: xxKGbPKgt_y7uSWNnCKbcevZLbRj6lfe
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDA4NSBTYWx0ZWRfXxe9bWQ0Xdes7
- HgfD01bBUgcl/ZtNk4erkRuocS7s+ZSeURfcQXESS9kY9LdqOHP4AiQfjcnzrjRGT5hA1NhfC3k
- 8oDLUomFSJfeALcjWL9yMBlkpX59szvrkkfbpfPh6lCI/tsArLrQ4h02e/oRzsuGsB82yivYXpA
- 67NRldQhMqYV03ov9ksy0nnkAMb2u8tN/rIhQnNsIbqWYTqQ8ydhJqGUTo9tcA+uVfyzasPIpkA
- wliYZAluJZ7gjY3yLkDicVgB0FQnBlI09TXI2eCk55J/vT52HkvPReSJvIdQl/0awO4+fxR4dq0
- vF42LQCBuueAHkHbL+lCGHm/ER9IE1/Wl68BCkECihKsSialp6GDw2E3e5zKq7fRJWlmw9CqWpJ
- luyCxXLeEItH9gbfsIZvewtTbUh4h0KBi4fLARrOv4U4beSWifii1HlRA3mCPoexCFb7a81D5T7
- uMZIMddtFBaGjWLQUcg==
-X-Authority-Analysis: v=2.4 cv=HKDO14tv c=1 sm=1 tr=0 ts=69a564a7 cx=c_pps
- a=OI0sxtj7PyCX9F1bxD/puw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=Mqtz4aph0Rek3LVAYukA:9 a=CjuIK1q_8ugA:10 a=Z1Yy7GAxqfX1iEi80vsk:22
-X-Proofpoint-GUID: xxKGbPKgt_y7uSWNnCKbcevZLbRj6lfe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-02_02,2026-02-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 impostorscore=0 adultscore=0
- spamscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020085
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260301133806.5e706756@jic23-huawei>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269890-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269891-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,hu-qianyu-lv.qualcomm.com:mid];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[baylibre.com,gmail.com,analog.com,vger.kernel.org,metafoo.de,kernel.org,pengutronix.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[qiang.yu@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: DE64F1D686F
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 083C01D689C
 X-Rspamd-Action: no action
 
-On Fri, Feb 13, 2026 at 07:47:36PM +0200, Dmitry Baryshkov wrote:
-> On Wed, Feb 11, 2026 at 07:32:23PM -0800, Qiang Yu wrote:
-> > On Mon, Feb 09, 2026 at 09:06:23AM +0100, Krzysztof Kozlowski wrote:
-> > > On Sun, Feb 08, 2026 at 08:49:39PM -0800, Qiang Yu wrote:
-> > > > The PCIe QMP PHYs on Glymur require stable reference voltage provided by
-> > > > refgen. The refgen itself requires two separate power supplies:
-> > > > vdda-refgen0p9 and vdda-refgen1p2.
+On 26/03/01 01:38PM, Jonathan Cameron wrote:
+> On Mon, 23 Feb 2026 10:02:00 +0000
+> Nuno Sá <noname.nuno@gmail.com> wrote:
+> 
+> > On Sun, 2026-02-22 at 14:32 -0600, David Lechner wrote:
+> > > On 2/22/26 4:01 AM, Rodrigo Alencar wrote:  
+> > > > On 26/02/21 02:16PM, David Lechner wrote:  
+> > > > > On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote:  
+> > > > > > This patch series adds support for the Analog Devices AD9910 DDS.
+> > > > > > This is an RFC so that we can agree/discuss on the design that follows:
+> > > > > >   
+> > > 
+> > > ...
+> > >   
+> > > > > > represents a distinct signal path into the DDS accumulator, so the driver
+> > > > > > models them as separate IIO output channels (all IIO_ALTVOLTAGE type).  
+> > > > > 
+> > > > > Generally IIO channels represent the physical input/output, not the
+> > > > > internal channels.  
 > > > > 
-> > > > Since there is no dedicated driver for REFGEN, add vdda-refgen0p9-supply
+> > > > That is part of the reason for this RFC. Dividing those top-level modes
+> > > > into channels allows for better organization, as they can operate together,
+> > > > i.e., phase or scale can be provided by single-tone profile, while
+> > > > frequency is controlled by the digital ramp generator (see Mode Priority
+> > > > section in the datasheet). Also, it allows to explore the most of standard
+> > > > ABIs like, scale, frequency, phase, sampling_frequency and enable.
+> > > > Putting everything into a single channel would make things a lot messy
+> > > > to interface with.
+> > > >   
+> > > > > Ideally we would just have the one channel here with a mode selection
+> > > > > attribute. Documentation can tell us which modes use which attributes.
+> > > > >   
+> > > > > > This per-channel separation allows userspace to configure each mode
+> > > > > > independently through its own set of sysfs attributes, and to
+> > > > > > enable/disable modes individually via IIO_CHAN_INFO_ENABLE, relying on
+> > > > > > the hardware's own mode selection architecture.
+> > > > > >   
 > > > 
-> > > How does the driver matter for the bindings? If I add dedicated driver
-> > > for refgen, then I change the bindings?
+> > > Looking at Table 5 in the datasheet really helped me understand this better.
+> > > I think this series could benefit from a documentation patch that explains
+> > > more about how the driver works with some diagrams.
+> > > 
+> > > So really what we have here are a bunch of digital data generators rather
+> > > than a bunch of altvotlage output channels. And the same data channels can be
+> > > mixed and match as the source for up to 3 different components of the output
+> > > (frequency, phase, amplitude) depending on the priority rules defined in
+> > > Table 5.  
 > > 
-> > Yeah, I know that dt-bindings should describe hardware, not software. But
-> > what I meant to say is that the refgen is different from qref which is
-> > controlled via TCSR registers and its LDOs are requested to vote in
-> > tcsrcc driver. The refgen doesn't required register setting and it doesn't
-> > have dedicated driver, so we vote its LDOs in phy driver. I will avoid
-> > this statement in next version.
-> 
-> I must admit, I could not find references to the refgen in any of Glymur
-> PCIe-related HPGs.
-> 
+> > More bellow... But note that all of the (or most of it) generators are going to
+> > be feed into a DAC. Your output is altvoltage but maybe we can treat the
+> > internals as voltage. Not sure.
+> >  
+> > > 
+> > > Digital data sources are really more like a buffer in IIO terms than a
+> > > channel. And before we added the IIO backend stuff, there wasn't really
+> > > any other digital data source/sink that I am aware of other than buffers
+> > > (but there are certainly a lot of odd corners of IIO that I haven't explored
+> > > yet, so maybe I missed some).
+> > > 
+> > > In a recent discussion, the idea of possibly needing a way to provide
+> > > some userspace interface to be able to tweak knobs of an IIO backend
+> > > was also brought up.
+> > > 
+> > > Putting those ideas together, I'm wondering if we need some new channel
+> > > type or even a whole new interface (e.g. a new sysfs directory like buffers
+> > > and events) for managing these digital data sources/sinks that are not an
+> > > IIO buffer.
+> > >   
 > > 
-> > > 
-> > > There is qcom,sc8280xp-refgen-regulator so why there cannot be
-> > > qcom,x1e-refgen-regulator?
+> > But what would be that channel? In the end of the day, we typically have voltage or
+> > current DACs and a DDS primary function is indeed to generate alternating waveforms
+> > that you then typically feed into a DAC (and in some cases from the DAC into a
+> > power amplifier). So the DDS is just part of the data/signal path. Anyways, not sure
+> > on the new type and I think we already have the "blocks" in IIO for dealing with this:
 > > 
-> > I think we can and it seems better because the refgen for pcie phy also
-> > supplies reference voltage to other modules like usb. But I checked the
-> > qcom-refgen-regulator.c, it contains some register settings and there is
-> > no LDOs voting. I'm not sure what does those register do, maybe Konrad
-> > can provide some backgroud.
-> 
-> Those regs provide voting for refgen, because on those platforms DSI
-> block doesn't have a hardware vote for refgen.
-
-Hi Konrad, Dmitry
-
-I tried to model the reference voltage as a fixed regulator but the fixed
-regulator driver only supports a single vin-supply. However, the refgen
-block requires two separate power supplies (1.2V and 0.9V LDOs).
-
-Would it be appropriate to modify the qcom-refgen-regulator.c driver to
-handle LDO voting for both the 1.2V and 0.9V supplies? In the regulator's
-enable/disable callbacks, we could vote for and unvote these two LDOs
-instead of performing register operations.
-
-- Qiang Yu
-> 
-> > But on Glymur, we only need to vote LDOs. So
-> > what if we use a fixed regulator in the device tree to represent refgen?
-> > We could set refgen0p9 and refgen1p2 as its input supplies, then the PCIe
-> > PHY would just need one refgen supply reference.
+> > . frequency
+> > . phase
+> > . amplitude (raw + scale + offset)
 > > 
-> > - Qiang Yu
-> > > 
-> > > 
-> > > > and vdda-refgen1p2-supply properties to the PCIe PHY dt-bindings. Use
-> > > > conditional schema to restrict these properties to only Glymur PCIe QMP
-> > > > PHYs.
-> > > 
-> > > Best regards,
-> > > Krzysztof
-> > > 
+> > But you're right that maybe it's time to think in a better way to fit them together. 
+> > Maybe a new type (as buffers or events) can make sense where the above are treated as, example, scan
+> > elements. Maybe it's overcomplicating, not sure. It surely needs  discussion and thinking :).
+> > 
+> > And spoiler alert, as you might have guessed already, the parallel port stuff is to be
+> > used with DMA buffers (and IIO backends). At least, that was the plan IIRC. But Rodrigo
+> > can confirm it.
+> > 
+> > > I think we've seen enough of these already to know that things like a
+> > > "tone generator" and a "ramp generator" are going to be common and could
+> > > share some standard attributes. 
+> > >   
+> > 
+> > I tend to agree. For example, there already some DACs (with dithering) that make use of a similar
+> > interface (but with a custom prefix). Though the end goal is different, the interface is not that
+> > far off:
+> > 
+> > 
+> > https://elixir.bootlin.com/linux/v6.19.3/source/Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
+> > 
+> > Anyways, I knew this one would be an interesting one for upstream :)
 > 
-> -- 
-> With best wishes
-> Dmitry
+> For history buffs, we had a bunch of DDS chips in staging at one point and never
+> manage to figure out the questions being raised here :(  They are complex
+> beasts.  Clarity of ABI proposal and documentation is going to be key to driving
+> this series forwards. In a sense the code is the easy part.
+
+Does that mean that once good documentation is provided, the presented design can
+be accepted? Even though data generators/sources might not be interpreted as
+altvoltage channels?
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
