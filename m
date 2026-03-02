@@ -1,84 +1,67 @@
-Return-Path: <devicetree+bounces-269842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269843-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kGpDDVBTpWkR9AUAu9opvQ
-	(envelope-from <devicetree+bounces-269842-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:07:28 +0100
+	id 2FwBH/1TpWnR9AUAu9opvQ
+	(envelope-from <devicetree+bounces-269843-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:10:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16381D53FA
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:07:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADAE91D5512
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:10:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 362313014A1E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:07:27 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A076C3004D36
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A98379EE6;
-	Mon,  2 Mar 2026 09:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA4438B7AD;
+	Mon,  2 Mar 2026 09:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uEfZ/9Yy"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="G5ML0Rjp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B35A38CFFE
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:07:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E99634CFD4;
+	Mon,  2 Mar 2026 09:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772442446; cv=none; b=buVl5n9zq3yh1DaUSl96uv7E1v6PgFjffYMPlviKfUy0ME5p7gcYbtSQlbAjBaxUp0zG9pcAgp7RfaU1B8hq7Qt6jQNhfjpux50FMHVS2G0vVJF8W/MJ1rHy7/+j2oEeE8WxuG0ReCZNgLiqzK1Dsu9JagaDFVgW2lEJLqKobmw=
+	t=1772442607; cv=none; b=q6lafjltmCPsa2FN8du+d7qpvvh0pFjMLtfh/rLCqJPf2Ou622jf3+H3Ysruud0BIlamzPXEMFi3BDiw/D9N5t6u0xjAykfINeLoMRl9wVVfowAgWRpOPw88B7XZLUSlYn7VAcRdtePX3jEtslKZ25rZnJd5d3l5VrbxOTNMME0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772442446; c=relaxed/simple;
-	bh=1Hlh3tnJvRQvGvsfO4Noy/pZx4WjfAthD2cgeDPBDSU=;
+	s=arc-20240116; t=1772442607; c=relaxed/simple;
+	bh=e2tpTFdMX/3gIuwgJ2igzz1nxPtReRSI7K4bqcD3kPU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WevI+BfLzIs7xcmjUPi/HRNdw6lS13Ply/q4VLmdKaltZ44bK9U0WIMM+MLeKt0h7bhlm2q0A7nqNExOJEjQzSSOfOend5VtdhGYd/5kyxQcSVyDRnJrzaoYENC3ZNjtQ+ccTs50sjpOLgyjxu2xybjnqh7op0GHGzC4aSJmCa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uEfZ/9Yy; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-48329eb96a7so27665065e9.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:07:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772442442; x=1773047242; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ltNDP6q2mUdMtPqpRgX6YzMyjY4kZxSKj4nBNx4rkj4=;
-        b=uEfZ/9YyQsBmcX0cM+Uk0yjd09CVydlp96acEAYG5n6jM7w8s5HuZ//F/umP3rL0oT
-         jsHdXRduiMNSeNK0XmylLirZKnaTPv7jSlBjobg9ORNfa0Ni7Y/Vp9xM1QZj7oRofn3C
-         rkMDEpAAiLv+nnFDqWLYJ6L25VilF1jq2qNlc2q7icBXlvnmsM8gMrDoKsA785a7FtrW
-         ApWcYB6yah325EIQ/e7O/zCkvitLJ7yCqjugL1N/Xqvd3TY3j//AHel6CS3mq/xs3cGf
-         32LsnONpzlHt7s7gKGoij6I5xz1ChkL+x+SY13nttIFkEtmtfqhVJwqmRqDj/NELca7R
-         vwSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772442442; x=1773047242;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ltNDP6q2mUdMtPqpRgX6YzMyjY4kZxSKj4nBNx4rkj4=;
-        b=JFT3OLfASe9WcaPxXvx08igZ8QAp4nkCOZNpYQ6Ji5V/wYGYJBOsZ9WHEvmAoLoO27
-         cJRT9KqXA+79VBqCFBgxNmJuCFINhcLmCLzhcTwpB5pvyQl+7PaP0CudzGBU2XspWWFi
-         GbjsPbVu7Cr4sx4aUot71NaumgRWK8GUmNUiWRbhW6/ndIkx8DeYo/DmaZUMbCSq4UhU
-         Gfph/PYyNUPGTjYSqcZNanjBwAsQwQY8wMs8ynk0uRlLzR3TxBjf0NN/A36qS+CanE8G
-         MoMGgM+SwadZVaYjr/KzjZGpSl2sdAXq/1glYKRtF95iOeviZCIBWMjPeSLzjRrj04RW
-         6YAg==
-X-Forwarded-Encrypted: i=1; AJvYcCWlrV1GT02U551PPBQqXjnBFckQNhrk0lTYZ37tJWFzFgPHwxTGFi52FftCH0B0SNGQ/ehC8ceD3kk6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGM+Y56I17yupELiLC+N3EclL7dFz+6TXPc/Usj32DiFdPxUQ6
-	+tpC04y/N1wEmzCGSDowtc+JeWnSyCmem24afKyryY3f04H3g3ay9n2bKox8CDCfMK0=
-X-Gm-Gg: ATEYQzzDRNJwP2qCkXO4q2x01d6khFg4S8wnD8aQamUypc13Bl2XyRoZBv98wMcv74L
-	Hd6UQ9AmNJA8rzWiO1sMGG21UAx4nl9EPNkkpFmW4wkxo/PjhBW6JzFvz40x+o+THSejwkkpWs1
-	yeAKiqgz5yKTOrbA+29wES7OVcDA68pAslGhsdlIg6B4jsugs/uhJ0sjnrhIcFuuwU+Ups/imF0
-	kLxTL1BBdhe94TA4h4KnAvsoN5kbAvm2Z47Bq18OaeKtchdGrsaVX3owSStExJdvVcyKJ/w+WAU
-	UaLMKXjl2ERdfjjlEjYszeRHOM/RcDiy0XNTmry4VExb2N8Ky4IYSA6WbJ8Y90N54YwPd1XONTr
-	3sMcy+AZqkym0egOQs7gzWPIdepzd4LnhdfXz54KY8h7WBAXO8PXPrm4E1BO+DQCrScctLHFOOo
-	OkHIAbyPmfMHiwVQPptazMIpBbSCXsj8o=
-X-Received: by 2002:a05:600c:8289:b0:480:1e9e:f9c with SMTP id 5b1f17b1804b1-483c9ba7cbdmr202248045e9.10.1772442442277;
-        Mon, 02 Mar 2026 01:07:22 -0800 (PST)
-Received: from [10.11.12.108] ([79.115.63.77])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b89c99sm271364845e9.15.2026.03.02.01.07.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Mar 2026 01:07:21 -0800 (PST)
-Message-ID: <b1f5be90-62eb-4482-bf42-f331739733ad@linaro.org>
-Date: Mon, 2 Mar 2026 11:07:18 +0200
+	 In-Reply-To:Content-Type; b=q8yZuViWsGzURr9SfIIl7tmDDOkNg34dirCInaB2Vl8LoBdMyFtz7WkMUBnSw0W37TYAQHFguCUMEWw57BD9rDmKUt3ZwVODYTna7vc8W91Yc0cVWbn/9F/ABOJZ6BvkldwzF8VQ2grLZvNswIhZoa0vXfEpo2damIK/qt+HE7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=G5ML0Rjp; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 7D7526002984;
+	Mon,  2 Mar 2026 09:10:04 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id I03Mb2ac7psX; Mon,  2 Mar 2026 09:10:02 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 458D16002985;
+	Mon,  2 Mar 2026 09:10:01 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1772442601;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=F8Tz4FFQl5iQc1XWMkYIGnjVlMkJFC7GVijqzDIR/RQ=;
+	b=G5ML0RjpomBDzOtL9Y7bQJQFLkgFLjejj5UGjbfvqGGgli8hzII95UwsPxZIsUDR/Owf0F
+	MzTIausAYhI3ueZk7ZMaUn8/u64a/e47gMU4YrzOcc+VYWjvfWbNNHdmO9kBThvKb3vh3i
+	T06GU881j+a6hrWI+HnYlKuRXnVdkehHTo5zZyeBiiO/pD/2aBHomIoqv4bOwWCmu6wYkU
+	Pmy2H/cFAJvd0BozClXKsPrWTXtTuo98Wt9JbyD5zSQYpZVQSDynA9gUsu5ZyytMfB+FMY
+	kISfVIrtA3NLdyDavw1NQ2+LP9lkGmgj1w7lTaFw3uP/E6uMNYYM2J90SZ/Z+Q==
+Received: from [IPV6:2001:8a0:fbec:a900:2c09:2fb0:9be7:36e0] (unknown [IPv6:2001:8a0:fbec:a900:2c09:2fb0:9be7:36e0])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id EEC0D36013C;
+	Mon,  2 Mar 2026 09:10:00 +0000 (WET)
+Message-ID: <34d43310-1358-4a03-b70b-330f90956532@tecnico.ulisboa.pt>
+Date: Mon, 2 Mar 2026 09:09:49 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,99 +69,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] thermal: samsung: Add support for Google GS101 TMU
-To: Alexey Klimov <alexey.klimov@linaro.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org
-References: <20260119-acpm-tmu-v2-0-e02a834f04c6@linaro.org>
- <DGR3X53FPO88.3C2UO0HGRVQGF@linaro.org>
+Subject: Re: [PATCH] arm64: tegra: smaug: Enable SPI-NOR flash
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260203-smaug-spi_flash-v1-1-a6d477ac7055@tecnico.ulisboa.pt>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <DGR3X53FPO88.3C2UO0HGRVQGF@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <20260203-smaug-spi_flash-v1-1-a6d477ac7055@tecnico.ulisboa.pt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[tecnico.ulisboa.pt,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[tecnico.ulisboa.pt:s=mail2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[linaro.org,intel.com,arm.com,kernel.org,samsung.com,gmail.com,google.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-269842-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269843-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,nvidia.com];
+	DKIM_TRACE(0.00)[tecnico.ulisboa.pt:+];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,4.50.95.16:email,tecnico.ulisboa.pt:mid,tecnico.ulisboa.pt:dkim];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[diogo.ivo@tecnico.ulisboa.pt,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D16381D53FA
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: ADAE91D5512
 X-Rspamd-Action: no action
 
+Hello,
 
+Gentle ping on this patch.
 
-On 3/1/26 4:57 AM, Alexey Klimov wrote:
-> On Mon Jan 19, 2026 at 12:08 PM GMT, Tudor Ambarus wrote:
->> Add support for the Thermal Management Unit (TMU) on the Google GS101
->> SoC.
->>
->> The GS101 TMU implementation utilizes a hybrid architecture where
->> management is shared between the kernel and the Alive Clock and
->> Power Manager (ACPM) firmware.
+Best regards,
+Diogo
+
+On 2/3/26 17:01, Diogo Ivo wrote:
+> Add support for the SPI-NOR flash found in Pixel C devices.
 > 
-> [..]
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> ---
+>   arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
 > 
->> Sensor Mapping (One-to-Many)
->> ============================
->>
->> The SoC contains multiple physical temperature sensors, but the ACPM
->> firmware abstracts these into logical groups (Clusters) for reporting:
->>
->> - ACPM Sensor 0 (Big Cluster): Aggregates physical sensors 0, 6, 7, 8, 9.
->> - ACPM Sensor 1 (Mid Cluster): Aggregates physical sensors 4, 5.
->> - ACPM Sensor 2 (Little Cluster): Aggregates physical sensors 1, 2.
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> index b88428aa831e..f0b8c2c80aa5 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
+> @@ -1892,6 +1892,18 @@ interrupt-controller@702f9000 {
+>   		};
+>   	};
+>   
+> +	spi@70410000 {
+> +		status = "okay";
+> +
+> +		flash@0 {
+> +			compatible = "jedec,spi-nor";
+> +			reg = <0>;
+> +			spi-max-frequency = <104000000>;
+> +			spi-tx-bus-width = <2>;
+> +			spi-rx-bus-width = <2>;
+> +		};
+> +	};
+> +
+>   	clk32k_in: clock-32k {
+>   		compatible = "fixed-clock";
+>   		clock-frequency = <32768>;
 > 
-> What about other non-CPU devices? Are there no sensors or implementation
-> currently doesn't support them?
-
-The implementation currently doesn't support them. On GS101 other sensors
-are for GPU, ISP, TPU, and AUR.
+> ---
+> base-commit: 9a55406e2eb67b27eb5bb0f2d5a3afdea7d1f5df
+> change-id: 20260203-smaug-spi_flash-c51faa6c1022
 > 
-> Is this implementation and ACPM TMU support exclusive only to GS101 SoC?
-
-no, it can be extended for other Samsung SoCs.
-
-> IIRC, mapping could be different for other SoCs and, for instance, last
-> sensors could be non-CPU devices.
-
-right.
-
-Cheers,
-ta
+> Best regards,
 
