@@ -1,159 +1,199 @@
-Return-Path: <devicetree+bounces-269835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDHuDbFQpWnS8QUAu9opvQ
-	(envelope-from <devicetree+bounces-269835-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:56:17 +0100
+	id 8JbeMOhQpWnS8QUAu9opvQ
+	(envelope-from <devicetree+bounces-269836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:57:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A210A1D5067
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:56:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A4D41D50F4
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:57:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B3470302446F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 08:55:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C4A6F3012508
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 08:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA3938B7BA;
-	Mon,  2 Mar 2026 08:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB2638B7C1;
+	Mon,  2 Mar 2026 08:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JHGl83/E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jmeYP5rT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8987B389DE3
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 08:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482641BCA1C;
+	Mon,  2 Mar 2026 08:57:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772441715; cv=none; b=qPM8KvVJP0pPfcKIyFKwgEtrsT21x4VwAHTTcREiUzrk6xQNRqRyp8aKa8BdNgQ0D8dFYcopxQ0gILCrn6tZIx8XzocUiyCWgDT/ZjTv4+Dtlx/PMinkkeoPmhMZ8UegvobZBonXKyoUvuIaSBBrdpon0J60KPZNHG7IzfAw4hI=
+	t=1772441829; cv=none; b=n121RrbS1bDhO56ZwU4ayBPWWiCGXD2Xfz3zrDi53eqGuBi9OuHxW5j4B99oH+6ylJcH858f9F9I0scBgpbtynqb5m7bihR85jT5ST3Z6Wb4hdJiR5FZtVHVzh5u77PwY9kBPJTpHMQkXkIWTFl3aabEzfaqGvIBxQKabZhP1bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772441715; c=relaxed/simple;
-	bh=fWKHZnhM2AFgK2NZeDXJFryewoq1HSjdJbh/M57qUy0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=enNaP6pnPhaJZ/qd0KSbyJapsN1gn3EdWeUov486iZ9g3cnr/QAXaZbJPbZENgnm6/1SShTVc7UU3xMs8sKsmKuCzpU/7abnzKQ/5Fx9XMxiTjRfPICIaBQVJpOOktRtZ7R+e+Ky/+YOl/4jbsG/pIE1xZBX7vPvRoJzSZfqMuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JHGl83/E; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id C01CA4E424D9;
-	Mon,  2 Mar 2026 08:55:10 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8A7635FE89;
-	Mon,  2 Mar 2026 08:55:10 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A417410369514;
-	Mon,  2 Mar 2026 09:55:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772441709; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=GolTPQTz/JkLYWONicK1ZiOMxmW8WOdbYREGhj5V2VE=;
-	b=JHGl83/EukVWIZ/SFdAWt9yhzJriahQdYX09JxyQMGmtBSCskhZN7xckRr17bc2Vw62UfB
-	qcGKw/ehj38y6m8ranUWNvyq3NRat6jfinq37P9NycrZiU/fSo6zR+MAJiG9AhmJ7KC/l4
-	pBFI+KMgG5bhtUnvQCPWwENae2cpXhV2+vViIDxFpYE7xo882EU8nRvBOjJ0gdwpsXhLqI
-	sRiEnHGjGE2s52NWpuK1u5OwsdRnqI2clKShjvkoUZcd+o/kBWHnQdvFWe0ePY9nwbq5ui
-	iQ6Wugpy3aHWjvYrs8kRkNbHf2N86vXCFfVQ/+D6u5JeWKdfRBxrq2xPO8mA1Q==
-Date: Mon, 2 Mar 2026 09:55:01 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Thomas Gleixner <tglx@linutronix.de>, Daire McNamara
- <daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Linus Walleij <linusw@kernel.org>, Bartosz
- Golaszewski <brgl@kernel.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC v11 1/4] gpio: mpfs: Add interrupt support
-Message-ID: <20260302095501.3104146f@bootlin.com>
-In-Reply-To: <20260227-divinely-drift-93307c6763d8@spud>
-References: <20260227-ajar-wolverine-7ce1ebd79821@spud>
-	<20260227-divinely-drift-93307c6763d8@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1772441829; c=relaxed/simple;
+	bh=yfzmIq3omYFPWQCygqaPvYtSwpJQ2fhfLnMRka6Ufko=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=MVOOws23o1e1RZAKodViQPzXSdUJsHHZLLgv56cnTnLlmCY9QGHf6y8r8ho5XGrvY485HEUX4U1AEvcZiYLZ5Ofn4c1KB9vNhAz0k5HBKb8tdw7UNsiwdslgfPV/rYFCVrS78HMqLEePaAvbM3/O0MVnX5/xEIXAiPd0F5p8lvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jmeYP5rT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0DB8C2BCC4;
+	Mon,  2 Mar 2026 08:57:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772441828;
+	bh=yfzmIq3omYFPWQCygqaPvYtSwpJQ2fhfLnMRka6Ufko=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=jmeYP5rTlK307nsa5nZooErlAZXNwn8HbjuoT/ZdILjp3kBRhKOnJMZW3RFZT4yyO
+	 +6BwoKyVFLs36A8iH0yge9xj3IUhas6y+ORgg/VxxBvNhgO55KQsEW691jj9byUXdz
+	 csx++7FNSWg/1bei00/MhoOmyUs3wBtxhfz8EEPAm3xvC5kdaXGlThCYJNMqvkxw+T
+	 reust4EyIdo3hpPOSiYHIgVDZz/sgfWHx/+2/j5+aEPuOoUzLmMmNQ00y20VFtqdNl
+	 e+ga2GPQR1JUL8Z22jr6hIeaZ3lwsQ3d7KKw/OKuDUI/iDLBnU29goJvKKurkDI6bh
+	 kg6vVnFlCdGvQ==
+Message-ID: <32b7763b-ba44-4341-8528-be97d6607354@kernel.org>
+Date: Mon, 2 Mar 2026 09:57:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+ Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+References: <20260217052526.2335759-1-neeraj.soni@oss.qualcomm.com>
+ <20260217052526.2335759-2-neeraj.soni@oss.qualcomm.com>
+ <20260217-berserk-puma-of-focus-bcbe82@quoll>
+ <e3ac0681-605d-c1df-e4f0-78a2c142fa66@oss.qualcomm.com>
+ <21a87714-cd11-4217-a2aa-82fddc3a8530@kernel.org>
+ <544925d0-cf32-6b2a-548e-d6f7cc517581@oss.qualcomm.com>
+ <01085021-c116-46de-a0ce-730455620cb2@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <01085021-c116-46de-a0ce-730455620cb2@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269835-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269836-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: A210A1D5067
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6A4D41D50F4
 X-Rspamd-Action: no action
 
-Hi Conor,
-
-On Fri, 27 Feb 2026 14:52:27 +0000
-Conor Dooley <conor@kernel.org> wrote:
-
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 02/03/2026 08:48, Krzysztof Kozlowski wrote:
+> On 02/03/2026 08:45, Neeraj Soni wrote:
+>>
+>>
+>> On 2/19/2026 1:57 PM, Krzysztof Kozlowski wrote:
+>>> On 19/02/2026 06:38, Neeraj Soni wrote:
+>>>>>>  
+>>>>>> +  - if:
+>>>>>> +      required:
+>>>>>> +        - qcom,ice
+>>>>>> +    then:
+>>>>>> +      properties:
+>>>>>> +        reg-names:
+>>>>>> +          not:
+>>>>>> +            contains:
+>>>>>> +              const: ice
+>>>>>
+>>>>> And reg is still 4? This is not correct syntax. You need to define
+>>>>> proper and final constraints per each device. I would write example, but
+>>>>> why... more things you could just ignore.
+>>>>>
+>>>> I had included changes for reg in v3:
+>>>> https://lore.kernel.org/all/20260206112053.3287756-2-neeraj.soni@oss.qualcomm.com/
+>>>>
+>>>> but those were not reviewed so i assume them to be incorrect and dropped it.
+>>>> Will fix this in next patch and post.
+>>>>
+>>> Patch v3 was also not correct, because SDHCI v5 devices should have 1 or
+>>> 2 entries, not 1-3 as previous patch said.
+>>>
+>> This is not clear to me. Here:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n80
+>> it says the entries should be 1-4 and there are no v5 specific constraints.
 > 
-> Add support for interrupts to the PolarFire SoC GPIO driver. Each GPIO
-> has an independent interrupt that is wired to an interrupt mux that sits
-> between the controllers and the PLIC. The SoC has more GPIO lines than
-> connections from the mux to the PLIC, so some GPIOs must share PLIC
-> interrupts. The configuration is not static and is set at runtime,
-> conventionally by the platform's firmware. CoreGPIO, the version
-> intended for use in the FPGA fabric has two interrupt output ports, one
-> is IO_NUM bits wide, as is used in the hardened cores, and the other is
-> a single bit with all lines ORed together.
+> There are, just scroll.
+
+Here:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n212
+
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Doing the chained thing kinda covers all the bases at the expense of the
-> "direct" mode interrupts that have a dedicated connection to the PLIC.
+>> So i made it 1-3 while adding qcom-ice constraint.
+>>
+> 
+> 
+> Best regards,
+> Krzysztof
 
-
-Seems ok on my side.
-
-Just a nitpick in probe().
-
-Reviewed-by: Herve Codina <herve.codina@bootlin.com>
-
-...
->  static int mpfs_gpio_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> +	struct device_node *node = pdev->dev.of_node;
-
-dev->of_node instead of pdev->dev.of_node.
-
-or move 'struct device_node *node = pdev->dev.of_node;' at first position
-(reverse Xmas tree).
-
->  	struct mpfs_gpio_chip *mpfs_gpio;
-> +	struct gpio_irq_chip *girq;
 
 Best regards,
-Hervé
+Krzysztof
 
