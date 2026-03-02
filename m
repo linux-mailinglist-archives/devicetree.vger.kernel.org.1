@@ -1,67 +1,84 @@
-Return-Path: <devicetree+bounces-269844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269845-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kF0LL+FUpWnR9AUAu9opvQ
-	(envelope-from <devicetree+bounces-269844-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:14:09 +0100
+	id 2MNdMwtWpWnR9AUAu9opvQ
+	(envelope-from <devicetree+bounces-269845-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:19:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27ADD1D55CA
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:14:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 786591D56AF
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:19:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C9E53303FA8C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:10:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3890830075D4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9175E38D01A;
-	Mon,  2 Mar 2026 09:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB5238D01B;
+	Mon,  2 Mar 2026 09:16:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="kq6yykSq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eA3tzMte"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC69638D009;
-	Mon,  2 Mar 2026 09:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F0B38736B
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772442649; cv=none; b=sOJGPFxzG6ZFy5mNOohPBzXWmizqof4ekx596vccJdZOzqjTNU0i9HOCXYUUjqEEUVUGNJj7keeuURhrgu803q6jPFTF+0z6BxTrskqfXFBUYlddQzPHyHqIsKw2R5RnOei1/adO74MuGqtphH5QMeGfp9GdK2AFeHg1a33guvc=
+	t=1772443000; cv=none; b=FX+UlIX5P9VFFeBpUqFdbS5I2EHG5OzrYEiZgVSQNGGIeQHXM3nyZL2sAyN5a4NbIjunrLW3T17kUbmpBLl/OVUZLZPVMlxtjnNr+5ZmNsk7IbYx2C3MpCVsu3hYWKg3ytRFaWCfKepciPMV1m/rggSj6pTz7XzLmcYLHPLYxAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772442649; c=relaxed/simple;
-	bh=EbiUbBamIZ6iQCnBuNSz7FJjjmgw1YlSiC2B9C7jRP4=;
+	s=arc-20240116; t=1772443000; c=relaxed/simple;
+	bh=nIBLLWlywvbDHJl1jfJUWtsRmZwWr5mgqYdTBQwVYCU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k4o4ZljERrGKtlw+kzQrUGjSfCKKifP0cSID63+975nP/UIvPqz3HoMg+OQsMyMW+SmKq2Ww3lKZPiR2XAkboAehYTCtkoGD0A566hR4D1welXDxUIMMD/o02vbKAhFDdYP9mciA63C+uUavszCapvSeTj2P9yPTMWdYtOXOjoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=kq6yykSq; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 31F2B600298F;
-	Mon,  2 Mar 2026 09:10:46 +0000 (WET)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id 9zY3EXe9AjZ4; Mon,  2 Mar 2026 09:10:43 +0000 (WET)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 40B36600298D;
-	Mon,  2 Mar 2026 09:10:42 +0000 (WET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail2; t=1772442643;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ALlF6/vIv/5xuYr1Gfj3RVY3fMyDzf4HKQYtSC25+Y4=;
-	b=kq6yykSqCccGOyxQkZiYYRl4InB8BhUZ8Xs18tk1CsbLkx6x53sO9TssNNE4IQhab0mX6+
-	mb3f/niCWn5KWXeAD5nzC5awUAM303Ro18H9t/o5YH1z0MZuCK+pPUcOAct8XEZBfweJ6/
-	JaPuliwJ/uWR9AkGnIhkO7AEN5brKWsABtzVwup+36oZZO+MKN9STQ6AJeRxjf2235/aaf
-	Tvs7tkK8V+ZBYxYPq4cpM8wrosSRCEkYKrXw7A2U4RMH61DqyiywtVGIWr7xu6PDJDTPwS
-	rMiYO2GxfTgSTrUCfVfRW0WGtlsN4J0d2zzg9YBFMz81nTzxt0XULAhWB7ZrSw==
-Received: from [IPV6:2001:8a0:fbec:a900:2c09:2fb0:9be7:36e0] (unknown [IPv6:2001:8a0:fbec:a900:2c09:2fb0:9be7:36e0])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id D502136013D;
-	Mon,  2 Mar 2026 09:10:40 +0000 (WET)
-Message-ID: <1663dc81-0685-4de9-8cf7-6065a644e7af@tecnico.ulisboa.pt>
-Date: Mon, 2 Mar 2026 09:10:29 +0000
+	 In-Reply-To:Content-Type; b=hgUiUJCAmzcOKQAAp+lw2sxi7RFcAj2HX+udlAnv2ZnXdiTrqgvqfVkrLzI5t7nDh5TNOztWD36j61jPiAfYVjsgCOs/jY8hqqotNjE8aMU8JdbAL6cnciJIMI+O5bChIj9AgWONkCeFFYU0cKTkv/EiXwXQodlDqZ0EEKo09Ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eA3tzMte; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso34893485e9.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:16:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772442997; x=1773047797; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1ktr/JNOB3fV/EZRd7szBfJ+V3eeHkmzO1vLTnQ/4sY=;
+        b=eA3tzMteMsy6Qn5yTXt1XNfp/jsXQuQqtqn8ZHsbkm9xoROdFgvh/uUxZjk7lWWNoF
+         6YonUW19js4ImCBLcllImRvplTXbHYw6siG+C7mc8UMU7TeG1Q7prmseBXN7Hb0xlI+p
+         xvUcIkJzN7naTb3ooxwsOe0W24aIQuqtOQU8OfIfHNauPzZMxAHvrtZSLabQcy5r+0zN
+         1tCvM6QDSN8eGHHIZxL1qOjxUNohORBCh4b7SxGHE4INptectyS4hFALbil9Q3yeAUBq
+         geZzV19VyWPjvpVHHn3No2KDd2nsMfBuxOB9PIMUjBRaXceh4KcIY1KOgPjumQJbI/Dl
+         Qcmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772442997; x=1773047797;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1ktr/JNOB3fV/EZRd7szBfJ+V3eeHkmzO1vLTnQ/4sY=;
+        b=AwhgDF085QmApFJW2XuExo/x3+K5GYkLXxlPZA0WKowZIxNmfdNI17qJJBeUoXsVGH
+         GAYtmSu/KzMHO7kAL8qiwnyjfCb8evNtF8Di6XfgRCKF2pZjNzx+w0sTbea0tkmHyhZK
+         ve71yVRc1VvF6G8u1hHuoOyk65sCZsMI1QQIBBwllhC10sbCKfL9W/CFVNwCsMXu7pbV
+         2AUTpqGJm3UsRMix8kndjQY7Su5Tgbr8FY8epbz0eRyoCDC/vnWygY9ruxA4f9WIkj08
+         RYeVCRyFxXaY5MOoSQ68Z3LxEu+u2Xwq27v178XBeXpxXCproHtn4S5SL1tDQlYkSNvt
+         vIMw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3X/SbRaFt0gc8PqF9RZqAxvnltHLr9vLp4RV1Nq+CPVXz9zOCIemCOjkAGV9M0O+JIdfZKF1TGaOK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRg4VTZ3ts+SpOpFecA7RfS3T8dpeHhfZAUF/+Nj3AJRKCK5VC
+	9MdziwaVosS3vd/NaKbNN6ONNsEG1deSd6SVQIdeNi45gRHCO51r7/ovwfoTHTm6uhk=
+X-Gm-Gg: ATEYQzwRg/r0pZf1N+uBRcm1mJMZGnkxYojV0PklPKoKdK3bNU+7RS/swPPhw4s6Au8
+	ZdilkOE1f2QgMKJSHUV8BExhLOjyoz/aT7DMUmH7Xv+gDGiySr+uO7bGRk2YMwTR8p/hL2nHQkx
+	YAHTb2oYro+uqkoJFA+buHrvnI0I5wOU9u7uhW26jc/sa4GSYtI4zxIpCuhZOsMsAt4bye8vT5Q
+	qtTQS2gAbmkzKrXiiRWj4Jsj5EU6AayX/RryV0SoAw7hDA+Pm+NH30tPTEfC5eFDHwwP5t9AimN
+	vxvwYu+SQu1pnSASZXbLDu/w1J3Prz5PXS1b8ayQlIoo7OuqXlWKGglZqTxS6ULrNp15TxUj6Oy
+	ttoXBpjkINZWbOdzCazzmV9ABCtrfRSYmW7g3n8X5mlFcx4s5Df5Cm04vXkBchS7nQxk5628xXN
+	p9COVnVBfmkL3/UBMaQNVfwnr4Y4RM/4Q=
+X-Received: by 2002:a05:600c:4eca:b0:480:1e9e:f9b with SMTP id 5b1f17b1804b1-483c9beac6cmr219764705e9.16.1772442997213;
+        Mon, 02 Mar 2026 01:16:37 -0800 (PST)
+Received: from [10.11.12.108] ([79.115.63.77])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfabb84esm389964955e9.0.2026.03.02.01.16.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Mar 2026 01:16:35 -0800 (PST)
+Message-ID: <488f9257-94fd-4c5f-ba41-c9216bf0f7e5@linaro.org>
+Date: Mon, 2 Mar 2026 11:16:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,120 +86,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] Fixes to Tegra USB role switching and phy handling
-To: Mathias Nyman <mathias.nyman@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, JC Kuo <jckuo@nvidia.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, stable@vger.kernel.org
-References: <20260127-diogo-tegra_phy-v2-0-787b9eed3ed5@tecnico.ulisboa.pt>
+Subject: Re: [PATCH v2 4/7] thermal: samsung: Add support for GS101 TMU
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org
+References: <20260119-acpm-tmu-v2-0-e02a834f04c6@linaro.org>
+ <20260119-acpm-tmu-v2-4-e02a834f04c6@linaro.org>
+ <DGR4OFNJXOI2.3QACIHMM1V429@linaro.org>
 Content-Language: en-US
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-In-Reply-To: <20260127-diogo-tegra_phy-v2-0-787b9eed3ed5@tecnico.ulisboa.pt>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <DGR4OFNJXOI2.3QACIHMM1V429@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[tecnico.ulisboa.pt,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[tecnico.ulisboa.pt:s=mail2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269844-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[intel.com,linuxfoundation.org,gmail.com,nvidia.com,kernel.org,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tecnico.ulisboa.pt:mid,tecnico.ulisboa.pt:dkim,ulisboa.pt:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[diogo.ivo@tecnico.ulisboa.pt,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-269845-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[tecnico.ulisboa.pt:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,intel.com,arm.com,samsung.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 27ADD1D55CA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 786591D56AF
 X-Rspamd-Action: no action
 
-Hello,
 
-Gentle ping on this series.
 
-Best regards,
-Diogo
+On 3/1/26 5:33 AM, Alexey Klimov wrote:
+> On Mon Jan 19, 2026 at 12:08 PM GMT, Tudor Ambarus wrote:
+>> Add the thermal driver for the Google GS101 SoC.
+> 
+> Is this driver for GS101 platforms only or for all Exynos-based
+> platforms where we have deal with thermal unit via ACPM?
 
-On 1/27/26 15:11, Diogo Ivo wrote:
-> Hello,
+The driver can be extended for other Samsung Exynos SoCs.
+
 > 
-> This patch series contains fixes/improvements for USB role switching on the
-> Tegra210 and Tegra186 SoCs.
+>> The GS101 TMU utilizes a hybrid management model shared between the
+>> Application Processor (AP) and the ACPM (Alive Clock and Power Manager)
+>> firmware. The driver maintains direct memory-mapped access to the TMU
+>> interrupt pending registers to identify thermal events, while delegating
+>> functional tasks - such as sensor initialization, threshold configuration,
+>> and temperature acquisition - to the ACPM firmware via the ACPM IPC
+>> protocol.
+>>
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> ---
+>>  drivers/thermal/samsung/Kconfig    |  16 +
+>>  drivers/thermal/samsung/Makefile   |   2 +
+>>  drivers/thermal/samsung/acpm-tmu.c | 643 +++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 661 insertions(+)
+>>
+>> diff --git a/drivers/thermal/samsung/Kconfig b/drivers/thermal/samsung/Kconfig
+>> index f4eff5a41a84ce02b12abb85d6a0f8818031d0dc..5679dfa85f4079c7d40317ac231bd6a1af93c7e7 100644
+>> --- a/drivers/thermal/samsung/Kconfig
+>> +++ b/drivers/thermal/samsung/Kconfig
+>> @@ -9,3 +9,19 @@ config EXYNOS_THERMAL
+>>  	  the TMU, reports temperature and handles cooling action if defined.
+>>  	  This driver uses the Exynos core thermal APIs and TMU configuration
+>>  	  data from the supported SoCs.
+>> +
+>> +config EXYNOS_ACPM_THERMAL
+>> +	tristate "Exynos ACPM thermal management unit driver"
+>> +	depends on THERMAL_OF
+>> +	depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
+>> +	help
+>> +	  Support for the Thermal Management Unit (TMU) on Google GS101 SoC.
+>> +
+>> +	  The TMU on GS101 is managed through a hybrid architecture. This driver
+>> +	  handles direct register access for thermal interrupt status monitoring
+>> +	  and communicates with the Alive Clock and Power Manager (ACPM)
+>> +	  firmware via the ACPM IPC protocol for functional sensor control and
+>> +	  configuration.
+>> +
+>> +	  Select this if you want to monitor device temperature and enable
+>> +	  thermal mitigation on GS101 based devices.
 > 
-> The first patch addresses a wrong check on the logic that disables the
-> VBUS regulator.
+> I don't understand this. What this driver actually supports/implements?
+> Dealing with TMU over ACPM firmware is not exclusive to Google GS101 SoC,
+
+right
+
+> some other Exynos-based systems has this as well. However, it names
+> the config option EXYNOS_ACPM_THERMAL but a lot of other things say that
+> it is only for GS101, isn't it?
+
+right, because I'm currently adding support just for GS101. I wanted to be
+accurate and thought that when/if other SoCs will be supported by this
+driver, we can generalize the description.
+
+> Does it implement the generic layer dealing with TMU via ACPM (hence the name)
+> and adds specific things to support gs101?
+
+Right. I expect the sensor mask may differ from other Samsung Exynos SoCs.
+I remembered I compared the register set with e850, minor differences there.
+
 > 
-> The second patch removes a redundant mutex lock when setting the PHY
-> mode.
+> Should it be something like this (feel free to correct):
+> Support for the Thermal Management Unit (TMU) exported via ACPM.
 > 
-> The third patch guarantees proper ordering of events when switching PHY
-> roles.
+> This driver handles direct register access for thermal interrupt
+> status monitoring and communicates with the Alive Clock and Power
+> Manager (ACPM) firmware via the ACPM IPC protocol for functional
+> sensor control and configuration.
 > 
-> The remaining patches are included to standardize the PHY .set_mode()
-> callback between Tegra186 and Tegra210.
+> Select this if you want to monitor device temperature and enable
+> thermal mitigation on Exynos-based devices that implement dealing
+> with TMU via ACPM, for instance, GS101-based devices.
 > 
-> With this patch series this feature can only be controlled from userspace,
-> by writing the desired role to sysfs as
-> 
-> echo "role" > /sys/class/usb_role/usb2-0-role-switch/role
-> 
-> with role being one of {device, host, none}.
-> 
-> Further patches will enable automatic role switching via the 'cros_ec_typec'
-> driver which is currently broken on Smaug.
-> 
-> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-> ---
-> Changes in v2:
-> - Remove DT patches already taken to be upstreamed
-> - Add standardization between Tegra210 and Tegra186
-> - Address review comments from v1, detailed descriptions in each patch
-> - Link to v1: https://lore.kernel.org/r/20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt
-> 
-> ---
-> Diogo Ivo (6):
->        phy: tegra: xusb: Fix USB2 port regulator disable logic
->        usb: xhci: tegra: Remove redundant mutex when setting phy mode
->        phy: tegra: xusb: Fix ordering issue when switching roles on USB2 ports
->        phy: tegra: xusb: Add ID override support to padctl
->        phy: tegra: xusb: Move .set_mode() to a shared location
->        phy: tegra: xusb: Move T186 .set_mode() to common implementation
-> 
->   drivers/phy/tegra/xusb-tegra186.c   | 73 +++++----------------------------
->   drivers/phy/tegra/xusb-tegra210.c   | 42 +------------------
->   drivers/phy/tegra/xusb.c            | 80 +++++++++++++++++++++++++++++++++++++
->   drivers/phy/tegra/xusb.h            |  4 ++
->   drivers/usb/gadget/udc/tegra-xudc.c |  4 ++
->   drivers/usb/host/xhci-tegra.c       | 14 ++++---
->   include/linux/phy/tegra/xusb.h      |  3 ++
->   7 files changed, 111 insertions(+), 109 deletions(-)
-> ---
-> base-commit: b02a5530af8abe0d3cd4852ba48990716e962934
-> change-id: 20251201-diogo-tegra_phy-86c89cab7377
-> 
-> Best regards,
+
+I can generalize the description in v2.
+
+Thanks,
+ta
+
 
