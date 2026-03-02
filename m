@@ -1,85 +1,86 @@
-Return-Path: <devicetree+bounces-269909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269911-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kON+JklspWk4AgYAu9opvQ
-	(envelope-from <devicetree+bounces-269909-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:54:01 +0100
+	id mIbyG49rpWkaAQYAu9opvQ
+	(envelope-from <devicetree+bounces-269911-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:50:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0DA41D6E6F
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:54:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40A6F1D6D61
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:50:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C86B9301428C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:50:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5222C301A2FF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D9F35A39A;
-	Mon,  2 Mar 2026 10:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A1035AC3E;
+	Mon,  2 Mar 2026 10:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="0K9B4Lfb"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="jslYeGON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7FB5359A6F
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:50:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3751359A78
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:50:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772448631; cv=none; b=E84nkSpJ83h4olBb9hJ3T7gasItRzelYSZZsUVZzAI1c9Mch4KkVVo0oaUe5WYoSCUIP0z4sYOveSsxneohA9bknFUjNBOsbZKuXLLs9L5+7JF7Sc2aiKYJu2X+wFG4Z2+Jss3M6NHmb6t9pNgCwtdY3JoweZRnwcJ7OvzM4VFY=
+	t=1772448633; cv=none; b=aWapzSPwc9sR/2kkDQqJmvOCt2Xys6frE/z5DYS3bjRCPwI29cdWp8uORf2N1Xj+0Uvhd66WWgt2T9oBFqWQYvFaHeQquioYST2qQmwb2qKKpxdowlE3Se4WH6Te4nJs84sZre7alIwlneXT3F/2D2Z3BO491N7GrIVvFtpGWEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772448631; c=relaxed/simple;
-	bh=aHRIOIA82B5UmiYNaDuGLIuutpMS1GzM+k8Df5VuVF8=;
+	s=arc-20240116; t=1772448633; c=relaxed/simple;
+	bh=9bxMbM7mFlV9f4RAAhXlkjX34it3Khg4vmAogAbhbZo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZGaMj5azytJFJmh4HrpFoj7rl2gi4G1o1f0J8KnYUiBNcVs1We2LowPYV0DPQrMdC4UMrGw8hJsrUsVwggNPy1D6ZeHykezqI70Yy4YmSCK28mJCDVGlwhZ/IZlGUg/PG8HZKlwfBXYBKeVSgCOLNHNmY2ejpfdPGP+Dvx4k1c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=0K9B4Lfb; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:To:Cc; b=Av32+G2kgqmczScYGPEshh3bZM3P1O3rBSu/zihQBwZ2JdhaBtbseHJ1oleu6+6PelA4EkBK9wTR35YvssKK5AQ2WzFniVRoWIZ0n6PAN2BQoWH1oh4aDtnW4OLiDonDtWieFRA/EcdaG4ctSgGTHfvXJoHEJHMRUwF53Y90TRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=jslYeGON; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-65fb991d7e7so6158112a12.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:50:29 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b9381e78a31so426439566b.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:50:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1772448628; x=1773053428; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1772448629; x=1773053429; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0CDK4BH+OoJnVpsxs1bAWWhwEzUlZ60d996yFctMRUA=;
-        b=0K9B4LfbBsNqMeXrxpFxGOwU4vpOH+u4RbdDMFuLT8xd8qzPEzj58dIku2Yihw/Uqf
-         zfnSFTr4ir4RppBO9SmQjH8Mw/EzPUEpeGkTSvzGW6SRdHA0MtE/MjlenRLlphFuwpmf
-         dYDdvCf4WfthHVF9iOLY08BzXnb0cwrzJ2j/GRMVXgMoQtvWnTuNddVy9jK5JRMxcpTI
-         R0B7L0AAvH4lhebqsqISamERauouaoTi8+/7RMQWX8XhPwG6WWe94IFlM3Go2XeGGtAM
-         UeprBRqS41KSgVc5FZU8OPteNRZDJlbtLjtZMwH4HIr4HENGmEGCEN9jpz2UW2TsNd/0
-         AOlA==
+        bh=5UXVi5KrGAHXfY9KZhVckbPLTWLOqhGUCqeRbt5GfFg=;
+        b=jslYeGONl6vBw0Or2NFtX9gOwyiWY7DuM/R3Io28yHnmNC6aLjZ3e5pNv95BHtea+g
+         fuOIhSHXXoyCTZWLt6Qdd04oDRo3O2Gwocz8ib7PhMe118BrWya5lbkMy+QUkOniNQE7
+         LZgXOjDcdHXLS0EhCIbSoXywl124tOhG4OhNR8P09/mfQYMt69dyZFFV7GiXK3vb7ZB/
+         cHrIM65UmvP2DnhO6wPqRJPO5MrAfjXZkbwQ0MBOKNBcp4RQofatr9xw4smFwcckfkgr
+         IT7IOywN3wPjOIRWJfTAOL+mq95K9QYCPIeCCRe9A9Tor/T1tCoNRqi47A0VPICvxf6H
+         We6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772448628; x=1773053428;
+        d=1e100.net; s=20230601; t=1772448629; x=1773053429;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=0CDK4BH+OoJnVpsxs1bAWWhwEzUlZ60d996yFctMRUA=;
-        b=LopvZnb6pnTkryp2te/3q2oxXakg0k67ZGl13HDVweD9p2405PAGa+BeighrVCMxtZ
-         RVyhPycIdbo5XhDUjn1oiYAIqfpXSHvihKbrejOYPqkeGoiw3zqTumMcbBVqgVhoQMoc
-         16aAmQVSOI+4zShMnV0tMqULYUofRAvc+tpUWjpPoQfjn4d3U70glrqA0ckwMoFNf84p
-         M56qsSc1Qj7Uig7GVaHmYRdNJc5nTLw3732ht/lAALBXy9ZmYqHGmp+DU3YSJx2kg4ny
-         vlnsokcOgpCagMg/0hbNqBtGBjpo4GFg+zgD4nVfuThVBMF7/QZ+VPJBZkhKLV4nLKXE
-         6jxA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/nldqh1/LwY5ejnNAVf3pg1IUGPFbBjcaoQVuIoWDAfbccKeIXn3nyrVcAvO8OuaPTuGyVezvM+f6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3puffFGBfHNJMPd59kUUNWXNhJdw4ZHYa9RfhhMDsTCSRzn2b
-	lLwmizGpUEYMtzbn7YBXVgxcPDdFUYK5Js7+95Ts+jQBR94wGjtn348cd3LqdcZO3BI=
-X-Gm-Gg: ATEYQzzZvRDqtYrD2E83pCREJIA49v/7iStenLo7r5RA9rwmFehaobHhOEYSiQCsC79
-	yDPixCv220/vNZydJL5kdG7MDY1yNpvpNhkBGjNcueR28YUDYEHpoO/ip/7M7HthCQjNYkzOYAl
-	Sr6GRVv9Cbk7kOBC6sCH6MIrII3VLq+Cf5XX86e63Y7w2Iby3QMGrJgtwkk7mK3RBZABWlBnSgk
-	4MW+R/fts3CwFAedL5HHIRsf7h09WDyIf+Cqc7yoVxsRgSABOoAD5IRr4IfMLF2E+4ExlUHepAm
-	pGmCw9ZaP4X4sNUSVrFT83ss/nhJAZ5e9eTGkrm2QkY/YTLYZrUf6ApRp/1TE2jn4MvVT0jBLVE
-	HjTrSijj/TvvJH70y8GbhrI4MKgiB+7q66ymRez1tKu1STx4sKszw0RmRgWnRqRlEQfo+8PMukl
-	V9trSmSyXYPDP2yNw2xdt6CHzGIx/Wb/yojWOjnuGfoKEoemLIrYiviZjvJEpEEm2CvgRHbNonC
-	ZwZKcbjdw==
-X-Received: by 2002:a05:6402:270a:b0:65c:1483:a716 with SMTP id 4fb4d7f45d1cf-65fde4d2c45mr7809332a12.29.1772448628107;
-        Mon, 02 Mar 2026 02:50:28 -0800 (PST)
+        bh=5UXVi5KrGAHXfY9KZhVckbPLTWLOqhGUCqeRbt5GfFg=;
+        b=pdj4s+OJuCF0Ymt5AsFE/MvX3Fq1SGrbeSnxriThT/8RFpMQs/0vSMSIs0kl50+QmJ
+         Z/gdeylgr/WE0ARho2AEJyLs351IDdT//A67OIrUcgKgeFhamgUXdxuCVNrtZcOPHNpV
+         k6WIwBSY7J3/xqTWPqTmNojjZYOm5Xxu3FTnXQLAAjCTvMz74WSZ6IkunZkVIL/BJ6tR
+         odK/px3sVx02yGL9lDxQBspqjvvaIWe46dC/Pf8v39DhgePmLr/CPOxvGGK+FlN670E1
+         6H/VCOnWPuqxNd6Ll6Lre4vH63Q3yhWHGRLWbBvM1zDg8+3yXhpwouY68KZuZPvucE++
+         GXeg==
+X-Forwarded-Encrypted: i=1; AJvYcCXQyHbSAA5vy6zzP3sM8SOpxOZHb3riRme2Was4zYqpFBRPqpSeR2YeGad2Les0Pgyo8WKYSxNd6Ctj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRvAhGJ27atjOQ7Hrt5u7zE6nnycatl9RmH4r0mAOxJMUrrpD0
+	Gstqs5kfPNWTXK7xO5KnqfAQursXk+U0JX1zuJM18Io7XOY4K3vgnVY87XrEL4uUQU8=
+X-Gm-Gg: ATEYQzyyu2Yg7Sw/RH3k9UuEHYf6cfUnPY/I1J0aihQX1aLLWmkzD76S47P2AHDJq3K
+	/1lOUSdphJULhp44pAfmyR3X1WfZEFwH367Ao7v4jTkWskB1eG7gkrXP2NhAUmpRFZb5LvLOpPp
+	hYUztqL4sYS83KzpfHJDntxu+DA6mEIjrlH+asJyOcdA2AJUhuDTfj2O4ixDU315DInzDez55fr
+	10UDj2OXhWexeqCHo7AHtR672vpDe63qeKzcDjr3WI4vRmaj7OTX7jpfZpeQpmcB6xuwXibbGXz
+	iVKoW7qFBVqx+uXTGB421pVe1sxsfZ/8bMEw5hLNf9eowaOwcTJl9oBkpsHJ1Glczro1UVq0U/o
+	jugfm2H0ghDSJzyZdiHzCJ8A3fqMJBk8YYZbr2Itrx/XgW6C13ijTP4mGmixfjxrjav9aqRppXa
+	mChtt06T4ynAT7oBQDbfqkVBynI0ya369Z3EajVp103owqS5yyL4ygjiDMCIsgjZT725K8Uqa0X
+	zZNOLSugw==
+X-Received: by 2002:a17:906:284c:b0:b8f:ae35:cbdf with SMTP id a640c23a62f3a-b9376554a26mr593398166b.48.1772448629103;
+        Mon, 02 Mar 2026 02:50:29 -0800 (PST)
 Received: from [172.16.220.227] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65fabbd98bcsm3511769a12.0.2026.03.02.02.50.27
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-65fabbd98bcsm3511769a12.0.2026.03.02.02.50.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 02:50:27 -0800 (PST)
+        Mon, 02 Mar 2026 02:50:28 -0800 (PST)
 From: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-Date: Mon, 02 Mar 2026 11:50:25 +0100
-Subject: [PATCH v4 1/4] Input: aw86927 - respect vibration magnitude levels
+Date: Mon, 02 Mar 2026 11:50:26 +0100
+Subject: [PATCH v4 2/4] dt-bindings: input: awinic,aw86927: Add Awinic
+ AW86938
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260302-aw86938-driver-v4-1-92c865df9cca@fairphone.com>
+Message-Id: <20260302-aw86938-driver-v4-2-92c865df9cca@fairphone.com>
 References: <20260302-aw86938-driver-v4-0-92c865df9cca@fairphone.com>
 In-Reply-To: <20260302-aw86938-driver-v4-0-92c865df9cca@fairphone.com>
 To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
@@ -98,30 +99,31 @@ To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
  Luca Weiss <luca.weiss@fairphone.com>
 Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+ Griffin Kroah-Hartman <griffin.kroah@fairphone.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772448626; l=1926;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772448626; l=1245;
  i=griffin.kroah@fairphone.com; s=20250804; h=from:subject:message-id;
- bh=aHRIOIA82B5UmiYNaDuGLIuutpMS1GzM+k8Df5VuVF8=;
- b=QMUHIQaI7C7oB7r2/diS3hfpVF30i0LI3lK0cwpYVvIDTd0cQRED/RbflRKKga8SAU/4jkimw
- eC1wRcjWk1rAAPeFM+vtN7HNuSZC0ScZYhdrByBcr5bMHIou20tHfAp
+ bh=9bxMbM7mFlV9f4RAAhXlkjX34it3Khg4vmAogAbhbZo=;
+ b=5AJIgaZcjs8SFi9VrDwLO0PSnG39onXqNSyDYMzkAUmALF7AjCnAqyCV6ybrB5ZPJyrm+dl1I
+ fKjZReVm47/BoXuZYvdU46qqA90LpatPHk5pHPAEgYWYV8o459qyJTO
 X-Developer-Key: i=griffin.kroah@fairphone.com; a=ed25519;
  pk=drSBvqKFiR+xucmLWONHSq/wGrW+YvcVtBXFYnYzn8U=
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269909-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269911-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org,fairphone.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[fairphone.com:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -129,71 +131,45 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[griffin.kroah@fairphone.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,fairphone.com:mid,fairphone.com:dkim,fairphone.com:email]
-X-Rspamd-Queue-Id: E0DA41D6E6F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,fairphone.com:mid,fairphone.com:dkim,fairphone.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 40A6F1D6D61
 X-Rspamd-Action: no action
 
-Previously the gain value was hardcoded. Take the magnitude passed via
-the input API and configure the gain register accordingly.
+Add bindings for the Awinic AW86938 haptic chip which can be found in
+smartphones. These two chips require a similar devicetree configuration,
+but have a register layout that's not 100% compatible.
+Still, because chip model is fully detectable via ID register, these
+chips can be documnented in the same file.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
 ---
- drivers/input/misc/aw86927.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ Documentation/devicetree/bindings/input/awinic,aw86927.yaml | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/input/misc/aw86927.c b/drivers/input/misc/aw86927.c
-index 8ad361239cfe3a888628b15e4dbdeed0c9ca3d1a..7f8cadda7c456d7b5448d1e23edf6e3f2918ba32 100644
---- a/drivers/input/misc/aw86927.c
-+++ b/drivers/input/misc/aw86927.c
-@@ -180,7 +180,7 @@ struct aw86927_data {
- 	struct i2c_client *client;
- 	struct regmap *regmap;
- 	struct gpio_desc *reset_gpio;
--	bool running;
-+	__u16 level;
- };
+diff --git a/Documentation/devicetree/bindings/input/awinic,aw86927.yaml b/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
+index b7252916bd727486c1a98913d4ec3ef12422e4bd..bd74b81488f61d72b675b5701b321b30b3430be0 100644
+--- a/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
++++ b/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
+@@ -11,7 +11,12 @@ maintainers:
  
- static const struct regmap_config aw86927_regmap_config = {
-@@ -325,11 +325,12 @@ static int aw86927_haptics_play(struct input_dev *dev, void *data, struct ff_eff
- 	if (!level)
- 		level = effect->u.rumble.weak_magnitude;
+ properties:
+   compatible:
+-    const: awinic,aw86927
++    oneOf:
++      - const: awinic,aw86927
++      - items:
++          - enum:
++              - awinic,aw86938
++          - const: awinic,aw86927
  
--	/* If already running, don't restart playback */
--	if (haptics->running && level)
-+	/* If level does not change, don't restart playback */
-+	if (haptics->level == level)
- 		return 0;
- 
--	haptics->running = level;
-+	haptics->level = level;
-+
- 	schedule_work(&haptics->play_work);
- 
- 	return 0;
-@@ -376,8 +377,7 @@ static int aw86927_play_sine(struct aw86927_data *haptics)
- 	if (err)
- 		return err;
- 
--	/* set gain to value lower than 0x80 to avoid distorted playback */
--	err = regmap_write(haptics->regmap, AW86927_PLAYCFG2_REG, 0x7c);
-+	err = regmap_write(haptics->regmap, AW86927_PLAYCFG2_REG, haptics->level * 0x80 / 0xffff);
- 	if (err)
- 		return err;
- 
-@@ -409,7 +409,7 @@ static void aw86927_haptics_play_work(struct work_struct *work)
- 	struct device *dev = &haptics->client->dev;
- 	int err;
- 
--	if (haptics->running)
-+	if (haptics->level)
- 		err = aw86927_play_sine(haptics);
- 	else
- 		err = aw86927_stop(haptics);
+   reg:
+     maxItems: 1
 
 -- 
 2.43.0
