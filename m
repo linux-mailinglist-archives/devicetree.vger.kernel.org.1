@@ -1,165 +1,147 @@
-Return-Path: <devicetree+bounces-269863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269864-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIvTHVldpWlc+QUAu9opvQ
-	(envelope-from <devicetree+bounces-269863-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:50:17 +0100
+	id EK8dKNJdpWlc+QUAu9opvQ
+	(envelope-from <devicetree+bounces-269864-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:52:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6A41D5C16
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B80E1D5C86
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:52:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C5ABA300CE40
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:47:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C976F3047408
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C0638758F;
-	Mon,  2 Mar 2026 09:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF1538F643;
+	Mon,  2 Mar 2026 09:50:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WegT/50n"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="yy9nuxvi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F2D2741B5
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:47:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04B738CFEB;
+	Mon,  2 Mar 2026 09:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772444870; cv=none; b=npFWBnxqzb7LloIqotdl6qBFQKPwmMIgLz/i5F8TUf2+ZAdrL+TDvcA0dGyoTy6sR1y0T4FbDkpa0R7NaOqHI7rnRcKAVhILyXwlNeDFVZ1qIiFk5bzdkiCxjeWPflQd6czKm4Ztw5n1UUPeoXs7ZvVjOOrCckRK34+6QJqgW/Q=
+	t=1772445035; cv=none; b=Hc/XxrjkIXNKZIqfk8xXC1dSl5Vv0UpS8SOY9UuDl/Ug8s8er8efwSAytxoUa9XCeqS1WA+eFKbzpDaVNRF50MAURUvHv5pq7gAV4TcLBT7lOvGRR36yZv9AIahqB16pMQdqBII/fUAWG8O26VMNUlmgXcbqpSmgtJYIukeyoHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772444870; c=relaxed/simple;
-	bh=n0sVEjWNofsCxgzUtyk9/qTlFP36u11HIZHhHh3t5qE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W6JPT3EEp2X+qqMjKnuLKXKSlkLltu3bpMLVF92Q9CZcbXpPWUJ8b5BylpCoML4+V4k3Vy3SV+mk2N3g/LvJPrdTT0ir9sblEdvvznW1hMeVN0V/jPOIqEl7IccSZ0Oq3aP0+TywvVJjZUe3f1NdksHMy7Pd1V+2z3lREbOyen0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WegT/50n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15DB6C2BCB1
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:47:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772444870;
-	bh=n0sVEjWNofsCxgzUtyk9/qTlFP36u11HIZHhHh3t5qE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=WegT/50nZAqeMKls134gY/2OPItDepfzI1tSNMvGQNX53pkd8SR5d8r4BUs8Mn2Q6
-	 gZYnhiHDRHzWzOCgW49odepaGxm9gKPnpXLvzhpHzSx4JZazi9ZFHYwoCdvL5iVnTy
-	 kDN4Q6SWHV9ZS3iRDwjkfvQ7Noam4Pc3OIFFn98aZzAl2fli6ChTYpU3J/G7lKOS5L
-	 aPi4pupvmepegZoPbj+2pPXk6cd5UILo3Ox+eHRr+wH1Uxjk/wluY3MBK+Ieyqt0Ri
-	 PqrY5/ST0hEV7TxGEUo+MqcOVeQ4YRAfzVm7+SA86qOCI5Mhp17nlOBaZlkcEJvGIu
-	 fmgyOXZBcjaAw==
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-79801df3e42so50689877b3.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:47:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWl3A8nXcysfDGy+iWVqPf5gJItZB03aWebzFjxF6e8XrOcBRjM+hUic5JbCfH2Jo49n25VeI9Lizd6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6JCpoPf4mKubhWIZIXWAKPlcZ32d5DtvDinDiZ381mw5SojKo
-	r3Kp36SJvaqQOOx6XnQxnYnjKfO3RROBF9XJw5smFxvAT367ADl8tG5yuVJEI3ZXVpWyK35Hb6Y
-	T1qk+mFPErLtTWc3bZXinDh+1TCynn+I=
-X-Received: by 2002:a05:690c:3686:b0:797:d46b:e86e with SMTP id
- 00721157ae682-79874be88demr138701707b3.14.1772444868769; Mon, 02 Mar 2026
- 01:47:48 -0800 (PST)
+	s=arc-20240116; t=1772445035; c=relaxed/simple;
+	bh=NyMfMtRhobnbhhTa8wxHG744/QHuGG5OUzKRNx7qLZs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n4J0ELGRr1LkIZKBR5JG3NqwU8bIHzWVO5WdnpTySBqonMqCxsFX/o37Rz5IeYYfUuPzGH1l+E/5S6VNcPw28soDLEcAzDuDcV1pebdECrF+ioNesoes5d2HYvJ5SB8HLQ9KnCDys9bF3mR0vCWrJnkXmbHd6J8lxyu0PIXUnT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=yy9nuxvi; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 3EB1D4E424D9;
+	Mon,  2 Mar 2026 09:50:32 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id EFC905FE89;
+	Mon,  2 Mar 2026 09:50:31 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id ADF7B10369541;
+	Mon,  2 Mar 2026 10:50:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1772445030; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=NyMfMtRhobnbhhTa8wxHG744/QHuGG5OUzKRNx7qLZs=;
+	b=yy9nuxvixIDkfdT6D+bnnZJLkfisrqHiiN9ObFZNYi8zyLqZIbNFiGVAYCX1Ut/dpDCuk7
+	sUfHqMKMg8/sstMsgtB4MeOVqPWHw9nAF57/niUYYK9qmQDrr9fEPUfTrvDy0YyVGdXINX
+	iPqeHF7ANoUv0COIn4C6sDSuadT5NOMVjyo4Q7F1l2V+t6NhxUI+aJAUuw6Ug5isqa8+UQ
+	QRgfwtQ57T33DhKSnhkTZ/Ei82FoU4v3wxCBBHWOcM0QrzoAGI9LMMje78O+iitxOOcvSR
+	NQZze6x4HJIYYvfj/oIBCVBs9tsS7wPCMSV99WQZ5u4vAEnGaDNtFxVrQUKrhw==
+Date: Mon, 2 Mar 2026 10:50:21 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
+ <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
+ <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Bajjuri Praneeth <praneeth@ti.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Louis Chauvet
+ <louis.chauvet@bootlin.com>
+Subject: Re: [PATCH v2 0/3] Add support for Seeed Studio BeagleBone HDMI
+ cape overlay
+Message-ID: <20260302105021.400b9621@kmaincent-XPS-13-7390>
+In-Reply-To: <20260216-feature_bbge-v2-0-22805cfdbf62@bootlin.com>
+References: <20260216-feature_bbge-v2-0-22805cfdbf62@bootlin.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260227-ajar-wolverine-7ce1ebd79821@spud>
-In-Reply-To: <20260227-ajar-wolverine-7ce1ebd79821@spud>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 2 Mar 2026 10:47:38 +0100
-X-Gmail-Original-Message-ID: <CAD++jLmo91CE8Yia69trrHz3g=PXPsSW32F7+GQ-0JvrpKSFHA@mail.gmail.com>
-X-Gm-Features: AaiRm53MvmsLRrrHhVdWy25oztgLPBvp02xm93HhXnpSoyRADkEyceB1uibfank
-Message-ID: <CAD++jLmo91CE8Yia69trrHz3g=PXPsSW32F7+GQ-0JvrpKSFHA@mail.gmail.com>
-Subject: Re: [RFC v11 0/4] PolarFire SoC GPIO interrupt support
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Herve Codina <herve.codina@bootlin.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269863-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-269864-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,microchip.com:email]
-X-Rspamd-Queue-Id: DD6A41D5C16
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:url,bootlin.com:email,seeedstudio.com:url]
+X-Rspamd-Queue-Id: 0B80E1D5C86
 X-Rspamd-Action: no action
 
-Hi Conor,
+Hello,
 
-On Fri, Feb 27, 2026 at 3:53=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
+On Mon, 16 Feb 2026 17:55:51 +0100
+"Kory Maincent (TI)" <kory.maincent@bootlin.com> wrote:
 
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> In 2024 I sent a v7 of adding support for the GPIOs on PolarFire SoC,
-> which relied on an irqchip driver for a mux sitting between the GPIO
-> controllers and the main interrupt controller on the chip:
-> https://lore.kernel.org/all/20240723-flatworm-cornflake-8023212f6584@wend=
-y/
->
-> Some feedback I got from Thomas there ended up being a complete black
-> hole for time spent, and I never managed to make the change he wanted,
-> as a house of cards collapsed whenever I tried it. I eventually
-> abandoned my attempt to upstream the GPIO driver with interrupt support
-> and cut it out of the driver to make progress. I've been carrying what
-> Thomas deemed incorrect downstream since.
->
-> Recently Herv=C3=A9 upstreamed a patchset for a Renesas chip that deals w=
-ith
-> a mux sitting between a GPIO controller and the platform interrupt
-> controller by way of interrupt-map. I saw the opportunity to copy what
-> he did, so have gone from an irqchip driver that read the mux setting
-> that firmware had configured, to trivial driver that reads the mux
-> configuration from devicetree and sets the hardware up to match.
->
-> This gets rid entirely of the irqchip driver, so resolves Thomas'
-> complaint, but I don't love how the GPIO side of things turned out quite
-> as much. The hardware has 41 interrupts but 70 GPIO lines. 38 of these
-> are 1:1, direct connections to a dedicated line on the interrupt
-> controller and 3 are shared.
-> With the parent mux driver, the GPIO driver's interrupt handler was only
-> called either for specific direct interrupt or for only the subset that
-> are fed into the shared interrupt for that controller. Without the
-> parent irqchip from mux driver, and using interrupt-map, I lost the
-> ability to use mux driver to selectively call the handler, so now the
-> GPIO controller attempts to handle interrupts on all lines.
-> Probably this is ultimately not a big deal, it just feels bad to do.
->
-> Going RFC here, since it's an entirely different approach. The version
-> number is a continuation from before, since the patchset linked above
-> got merged at v10 when I stripped the interrupt support.
->
-> The mux driver has moved from irqchip to soc, since that's where Herv=C3=
-=A9's
-> ended up.
+> Add devicetree overlay for the Seeed Studio BeagleBone HDMI cape, which
+> provides HDMI output via an ITE IT66121 HDMI bridge and audio support
+> through McASP.
+>=20
+> https://www.seeedstudio.com/Seeed-Studio-BeagleBoner-Green-HDMI-Cape.html
+>=20
+> This overlay requires the recent tilcdc cleanup patch series that was mer=
+ged
+> to drm-misc-next to function properly:
+> https://lore.kernel.org/lkml/20260123-feature_tilcdc-v5-0-5a44d2aa3f6f@bo=
+otlin.com/
+>=20
+> With this DRM tree dependency I don't know if this series should land in
+> DRM tree or in OMAP tree.
 
-This surely looks acceptable, I had an inquiry about using proper
-chaining for the IRQs but other than that it looks fine to me.
+Any new on this patch series? After a few internal discussions I think it s=
+hould
+land in OMAP tree.
 
-Yours,
-Linus Walleij
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
