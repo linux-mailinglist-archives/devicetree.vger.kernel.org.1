@@ -1,83 +1,95 @@
-Return-Path: <devicetree+bounces-269854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269855-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EVSCt9ZpWlp+AUAu9opvQ
-	(envelope-from <devicetree+bounces-269854-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:35:27 +0100
+	id iAxdCYJZpWlp+AUAu9opvQ
+	(envelope-from <devicetree+bounces-269855-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:33:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EEAB1D59F3
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:35:26 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF1211D59C6
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:33:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6751F303A6FA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:33:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3CD6B300B9F1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A33C838F621;
-	Mon,  2 Mar 2026 09:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDC738F629;
+	Mon,  2 Mar 2026 09:33:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="h5vKZmAc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023111.outbound.protection.outlook.com [40.107.44.111])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F8EB30F934;
-	Mon,  2 Mar 2026 09:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.111
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772444025; cv=fail; b=WmpKRUZ2PxfVlQ3MyB/+OtNLxMR2QvTk5qQyu+J4fQCtdPTRpYV4MV42Pgf/LO6ym71e6bZHZHxV1TfVs3RYLVKpK3V6c0SU5Vcoc5XB4vPst2y2stK8+xhCIH4IwkenXe2AWUFJ4PkZjGDhPZLBEsWLeu+WYYuQTop2L5bqXn8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772444025; c=relaxed/simple;
-	bh=pEg2Xa6QYACYazz6zVfstMsmwt7m3+DRt9+LEDIYnmU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319D630F934;
+	Mon,  2 Mar 2026 09:33:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772444031; cv=none; b=gSzfYXAFps8m75KP9G8z5hsOkfUm2qbKnijET80gEmnFrnxUl+X6Fyc2IKFy1Q/ABsIUnij3lgrkAMkgB6ycxmPmKEl7nimZkCAqING3U4IAg3SJhCyYmz1DqkmKqehpFYvjp94Ig1taLstaoNScyraZtgC7gIqMeam/V7vS92s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772444031; c=relaxed/simple;
+	bh=L5wlsipJX/hRemiikjSCzNo6/d0K6+87GRLKe3dB9X4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R0U8a4G3wQeYvoEbtwnE2aUopoofspLl/kR0FSJ8LWs7UrE6E2o1mZs8r9KfCzzh7Dt269BywavyJOPWaafwPWN27XITquqk/NqbCxVWzWiDR/gKh/7LoK+3suuMG15/CNl4dkF7ECSp6DGWEGNdxBAw2RQl2cpCOrVdf7m5SSI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nTI8KUfk2R2EwXYTeZ2p0VCYwXOxIR8CuQ0yJGdMoU9fFBgHFzS0I10BczLUHBEXxYC5OHzHr7msR+N+NcaLspNpwib+g4zmMMoIdCMe0oCtq5831oryiHLaWQHTqoR/yCTKBqnYkzvg8kriTCdSvsZotHC/ttjRh80p/rFPoTWDXetTOU4IWBud3eIhfVIsegUU8127Ks8HLnOPli/c6giiIqA/4LVZkUahFVrQhV4Xi+WQ2LqOneqUw1hoWVGACCQkpHPSxEMrZXioysWDRSoAOjfAU4q72NBNte+ZPxvqHKD1CvHQwr/baa6D5xhPmuUP9h114KGCdo8S4CwufQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hbNfaXl3UJ3FaocfhPcPv5IBPHgF6yC9A03oIQjcHHY=;
- b=dRUKvhYdsRGY+eQaIwFaqAvuIAFA5rUnpDYpM2DSmZmusVVsI6huL+rAlXS9sWiUM2VnBgmkTMX4rcI2sR/20ElBDCk0qp2+7dWU8CKgBpS/T2TZ668rPyKHLsdcnAw0MsbQwcksni/FPRB/4JksL46Zh+Fed9SL0Xd6Fk88d5L+YjsPUPAIS7VTNfYCEjmgfC3shrQCi05L2yJLGEb67pIa/rfld7WFG0xzNWw45i9IvMvFYBNwp9rPvHJSgwSWwUf3xcPdJe5WgRGUtUufEB7bZdrntT88aa8yZxbZplZ8OzgCCLOBO5Eu+6ZL4fdl1hgUxkmp6NROnAcmKtlqFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SE2P216CA0150.KORP216.PROD.OUTLOOK.COM (2603:1096:101:2c1::11)
- by KU2PPFD98FF5817.apcprd06.prod.outlook.com (2603:1096:d18::4af) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Mon, 2 Mar
- 2026 09:33:40 +0000
-Received: from TY2PEPF0000AB84.apcprd03.prod.outlook.com
- (2603:1096:101:2c1:cafe::c5) by SE2P216CA0150.outlook.office365.com
- (2603:1096:101:2c1::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Mon,
- 2 Mar 2026 09:33:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB84.mail.protection.outlook.com (10.167.253.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 09:33:38 +0000
-Received: from nchen-desktop (unknown [172.16.64.25])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id E9C7540A5BD7;
-	Mon,  2 Mar 2026 17:33:37 +0800 (CST)
-Date: Mon, 2 Mar 2026 17:33:36 +0800
-From: Peter Chen <peter.chen@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	gregkh@linuxfoundation.org, pawell@cadence.com, rogerq@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH 2/2] dt-bindings: usb: cdns,usb3: Add support for USBSSP
-Message-ID: <aaVZcICRDPceoIot@nchen-desktop>
-References: <20260302030339.324196-1-peter.chen@cixtech.com>
- <20260302030339.324196-3-peter.chen@cixtech.com>
- <20260302-sly-shrewd-wasp-fbda1d@quoll>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VJUfc7gFGx4HIClHge3gym0E2AEvo1ePDq6opZt3Nij8V8jWbxNzheQ7O2OT9mM17y9VsguOPCs2trZSumYbkhZhTshfwmO5+2YA7twKbSmnTX7a/AzQBGBhW+Rp9jFMA8R/ha7e/Ylns+4wVdJBU3mSt6hUFKUP8sOHXw3phFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=h5vKZmAc; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772444030; x=1803980030;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=L5wlsipJX/hRemiikjSCzNo6/d0K6+87GRLKe3dB9X4=;
+  b=h5vKZmAczhj3Hvbs04xTuV6KQoiyeG2BrFeoRVg6xPg0dLoxXVwLoehU
+   vRgrqFYK9Go8QDqYjai0or4K5YdrQI8T/Z828ZK0a2IulLThOz4ABc7Xq
+   8w3dI/iUYKAUrD8sZwPj/6cHmdULehtD2pPz+VwnCuu+dpBAmjW384fig
+   Bg2Th+XhjRKMWOM7CuSlXEsGARRUgzfUnTcP4er4qxg53awMkviTupZyX
+   vd3sxRelpP/TadQk9GL1d2M0esy9SBmvo1k57yUWS/pq2VWY7s8EDN652
+   AQfXBeu7fXcUT0ln4sHaihCqqy8M4TzvKCH39T6Y1HV+ygSQYJCS9UChB
+   A==;
+X-CSE-ConnectionGUID: KvtwCNtMQIi4JMYWiVh7Lw==
+X-CSE-MsgGUID: eBz7/q1UST+fk7sVDFgq5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="84912219"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="84912219"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 01:33:49 -0800
+X-CSE-ConnectionGUID: HnQNMirVRBK07EBz+CwPTQ==
+X-CSE-MsgGUID: mFwFMDJWQJS5k3OVM56syw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="214089996"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.52])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 01:33:44 -0800
+Date: Mon, 2 Mar 2026 11:33:42 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>,
+	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Dmitry Antipov <dmantipov@yandex.ru>
+Subject: Re: [PATCH v7 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <aaVZdgvZhaWDgU2X@ashevche-desk.local>
+References: <20260216-adf41513-iio-driver-v7-0-b0ed387ab559@analog.com>
+ <20260216-adf41513-iio-driver-v7-2-b0ed387ab559@analog.com>
+ <20260222172912.60a103c0@jic23-huawei>
+ <aZwYshRxNgSh3CWk@smile.fi.intel.com>
+ <zb752y7tnjzsc35na572o4sip6efwv3i4lha4ls6fhdrr52h5v@bfgy65cmae4p>
+ <CAHp75VdSV2QDMR0DueCuP=Ds-5A1NsNjqPWtmRbG4NvoJ=LjXQ@mail.gmail.com>
+ <20260301122340.3fedf64e@jic23-huawei>
+ <aaVKDbB_XIFmxCEM@ashevche-desk.local>
+ <ct2r5wvvfowqcfe44fawbi4blkjpfle7etvaunwbsxevejsr2s@3g43wru5n6jh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,108 +98,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260302-sly-shrewd-wasp-fbda1d@quoll>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB84:EE_|KU2PPFD98FF5817:EE_
-X-MS-Office365-Filtering-Correlation-Id: a1b76c92-a8c0-4c38-da09-08de783ec908
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|36860700013|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	U4Eyzk7pXYg3sTKZdqxRbDRxIb/GJJ22tvogYr8tUljXQShCYaw+hZenK/NYVBpo7tsH+zCs02dEQja5hstdE2o8Ps5he/+/fyKEffbNfO2ky/nkROR3PwBfh5T+n2br6ncVG8wWwtWSIDxT1md3H/+aqu1rolszVP8n0zW/pBQP+lOFMBc8DaMDbi6rqm4R0aQRxhdYiVbkukGesnXxMW+F5fkE2I/WVcrxnK4vxwoxZ/PHRA4F5MYlDvCFVHnScFyZzhJaSmByu55Ck+8+Yg3qp0mmXmOBg6RVBPivlVs6ddVMRt/YaMd6e3IWXRd6AfsCGvZodFS+q482h95l1O1BxN3hlPH8/YaIKi3fkPAzVH4JbgFmsgDZSQ0ryCCw6AGlecArXMqqtvi7BRGUVjYV7ODk6SnDHHyiuovBEmpc+Q9DB3InFDvlLsXDVW2+y5mHYg8u9R2aF2XiTJVeQbqu8cIVrcvDg+EyDhXZIrJD/8PBvckcEh3Zg42f7GncI8ODHMMprpd6CsakFOxwOxKf+DEd7wjEFCao5tBBRnTfb37smIdbLvshXxdyQQC8t9USOJlsxzdGf6+uZX5z8CDsD5rCEIis+fY4JOV2KUsAPzNS80MgurkKh/AAcAGWAScitBi4/nonoLowiAiYvI8LV7h/Le6h9I0PE+/p5MyrYS5ih3IZa1FxF9d+8/nCVFqRYLakb2FNnyMCCKp1D5CqR88MDIoXqYCiSHsV32OZ3JPgbYcENLmBbtCeFQgw/9aWUKOGruhXHfONzacTkGQcCpR1q6HE0L8NrKyqNMJBS+Tl5hu6+cin9ty2hVZQZgdfcj/KniB5iEYKbqa7yw==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	47nL+U9+hAFPllDlux0wrkUoEt/9Uu6jQIcPV1h9WOJjiYXmOPVk4czu9SlodpQa6fAsCA/KbJ+/ZjUy/ia/3kO609nIBkBelctTp+yTvS06UUhoMDCXfTBmDBIgPluz83QF2Ph6C0BLoUE0dUwNQytrrm77tGCJnJrzRPet1hIPReo8739wIKhmIVd+VQ1vqa1UhKwc3KsvgvJqGS1c7lGNFp0LhhMj0eLQUMmpUkTfljQO7ebZddH02MJjFr0we1BzEd1bL1c7o/X1FKhM+pas/NkpU203cb6Ln41J6sXcraxSWF1sYhFMXTAgOS480hSX3c2++TKaLvDbqKJx7xeezQTsZDwjfY2kQGeCWM4egN9zDvLb/MoeFh9mEZvkmV1m3ceFvd2PMdjAbFP9zcgfg3OgR7YLjDmNk8+mEgMLqG0YRfcbytOdr++GG6Zh
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 09:33:38.7226
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1b76c92-a8c0-4c38-da09-08de783ec908
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	TY2PEPF0000AB84.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KU2PPFD98FF5817
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ct2r5wvvfowqcfe44fawbi4blkjpfle7etvaunwbsxevejsr2s@3g43wru5n6jh>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269854-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	DMARC_NA(0.00)[cixtech.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-269855-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,yandex.ru];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.925];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6EEAB1D59F3
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	NEURAL_HAM(-0.00)[-0.993];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: CF1211D59C6
 X-Rspamd-Action: no action
 
-On 26-03-02 08:29:40, Krzysztof Kozlowski wrote:
-> EXTERNAL EMAIL
-> 
-> On Mon, Mar 02, 2026 at 11:03:34AM +0800, Peter Chen wrote:
-> > Extend the Cadence USBSS DRD binding to also cover the USBSSP
-> > controller by adding "cdns,usbssp" to the compatible enum.
-> 
-> So here you explan what you did
-> 
-> >
-> > The USBSSP is the next-generation Cadence USB controller IP. It adds
-> > SuperSpeed Plus (USB 3.1 gen2x1, 10 Gbps) support and uses an
-> > XHCI-based device controller. The register layout and resource model
-> > (otg/xhci/dev memory regions; host/peripheral/otg interrupts) are
-> > identical to the USBSS, so both controllers share the same binding
-> 
-> Heh, identical but completely incompatible. If you are using Claude then
-> at least read its feedback - what does it say when devices are 100%
-> compatible?
+On Mon, Mar 02, 2026 at 09:19:42AM +0000, Rodrigo Alencar wrote:
+> On 26/03/02 10:27AM, Andy Shevchenko wrote:
+> > On Sun, Mar 01, 2026 at 12:23:40PM +0000, Jonathan Cameron wrote:
+> > > On Mon, 23 Feb 2026 12:41:45 +0200
+> > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > > On Mon, Feb 23, 2026 at 12:37 PM Rodrigo Alencar
+> > > > <455.rodrigo.alencar@gmail.com> wrote:
+> > > > > On 26/02/23 11:06AM, Andy Shevchenko wrote:  
+> > > > > > On Sun, Feb 22, 2026 at 05:29:12PM +0000, Jonathan Cameron wrote:  
 
-You are right, that was a contradictory statement. I have added both
-the same and differences at the last reply. I will rewrite the description
-to be accurate.
+...
 
+> > > > > > It all depends on the series from Dmitry Antipov.
+> > > > > > Can somebody help reviewing the patch 1 there?
+> > > > > > https://lore.kernel.org/linux-hardening/20260212125628.739276-1-dmantipov@yandex.ru/  
+> > 
+> > FWIW, Andrew picked them up for Linux Next. Please, test!
 > 
-> > and the same platform driver (cdns3-plat.c).
-> >
-> > Changes to the binding:
+> The patch looks ok, but I am not seeing it solving my problem here.
+> Here is the v8:
+> https://lore.kernel.org/linux-hardening/aZXDSbyH8tWmTPPL@smile.fi.intel.com/T/#t
 > 
-> And here. How many times more?
+> I would have to use simple_strtoull() and it would clamp the value at
+> ULLONG_MAX in case of overflow, but it would not say that an overflow
+> happened. Would that be fine? I understand that addressing the FIXME
+> in simple_strntoull() is not a subject of this patch.
+>  
+> > > > > can we push for the exposure of that function to kernel modules?
+> > > > > We have discussed that in v6, and I understand that:
+> > > > >
+> > > > > EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
+> > > > > in lib/kstrtox.c;
+> > > > >
+> > > > > #include "../../lib/kstrtox.h"
+> > > > > in drivers/iio/industrialio-core.c
+> > > > >
+> > > > > is not a good call...  
+> > > > 
+> > > > Yep, because it's a temporary band-aid. The proper solution is to have
+> > > > shared code provided by the lib/. So, the wrapper to parse 64-bit out
+> > > > from the constant string literal should be part of the lib/ in the
+> > > > result.
+> > > > 
+> > > > > > When it's in, we can continue on this one. TL;DR: for me this is on hold.
+> > > > > > But if you see the need to have the driver being in IIO, please add a big
+> > > > > > fat FIXME to make sure we will get this all being sorted out in the
+> > > > > > (nearest?) future.  
+> > > > >
+> > > > > I could add the FIXME into iio_safe_strntou64() doc header. It explains
+> > > > > the context:
+> > > > >  
+> > > > > > + * The implementation of this function is similar to _parse_integer_limit()
+> > > > > > + * available in lib/kstrtox.h, but that header/function is not available to be
+> > > > > > + * used in kernel modules. Hence, this implementation may need to change or
+> > > > > > + * removed to reuse a new suitable helper that is properly exposed.  
+> > > > 
+> > > > Up to Jonathan, I hope we can move the above mentioned series forward.
+> > > > Without that, as I pointed out, this one sounds to me suboptimal and
+> > > > unneeded double effort.
+> > > > 
+> > > I don't want to hold this series for another cycle, but we are still
+> > > fairly early in this one, so some focus on moving that forwards seems
+> > > sensible.  If we are running out of time, we can fallback to a loud
+> > > FIXME and a plan to move to the generic version in the library next cycle.
+> > > So let's set a rough deadline of rc5 and see how things are going then.
+> > 
+> > Taking into account the above, can we actually develop something
+> > based on that?  Or at least having a temporary solution for this
+> > cycle followed up by the better one for the next?
 > 
-> > - compatible: const -> enum with cdns,usb3 and cdns,usbssp
-> > - maximum-speed: add super-speed-plus
-> > - Add USBSSP example
-> 
-> Pointless. Explain WHY are you doing this, why do we even want this
-> generic compatible, not paste here Claude microslop output.
-> 
+> As mentioned above, I am not sure how consume what Andrew has over there.
+> It seems address lib/ internal stuff. The interfaces are still the same.
 
-Fair point. Will rewrite the commit message for v2 to focus on WHY.
-Thanks for the review.
+I think it will be third time I'm repeating that this needs a wrapper in the
+lib/. Just add the one (like with safe_strtoull() naming schema) with properly
+formed prototype that returns an error and the result in different variables
+
+int safe_strtoull(..., *result)
+{
+	...
+}
+EXPORT_SYMBOL_GPL(safe_strtoull);
+
+(Also some test cases have to be added.)
 
 -- 
+With Best Regards,
+Andy Shevchenko
 
-Best regards,
-Peter
+
 
