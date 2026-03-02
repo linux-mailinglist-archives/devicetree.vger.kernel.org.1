@@ -1,210 +1,204 @@
-Return-Path: <devicetree+bounces-270244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270245-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PtbFpsVpmnlJgAAu9opvQ
-	(envelope-from <devicetree+bounces-270244-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 23:56:27 +0100
+	id 4L6GOUIapmmeKQAAu9opvQ
+	(envelope-from <devicetree+bounces-270245-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:16:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F9B1E5FFA
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 23:56:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 442281E675E
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:16:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B51E730E92F1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 22:33:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 27A2D32A3A61
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 22:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E29433A70A;
-	Mon,  2 Mar 2026 22:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8814733F582;
+	Mon,  2 Mar 2026 22:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aISMIg8x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BZkucZxD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012006.outbound.protection.outlook.com [52.101.66.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4F131E855;
-	Mon,  2 Mar 2026 22:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772490774; cv=fail; b=kGkwsmWg7O+vrkECY/Rdmu8k07BunRrO0V6IyJiBgCiQPIxRJ/Hh5X8CN/xW2mCd36P5ddf5HOgzCfGuIfuPybp4uE0sjP0L0rd5PPcSUBztes/m1DgeB0VW7q+omhzpdyYjzeXwXbL7S7L6GxiF62wVkSa58p4Ro23hPfOMElk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772490774; c=relaxed/simple;
-	bh=HFln3DI6kGPbOIZiI/b+6v8pVOs/XDufizOFKVWbm7I=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 Content-Type:MIME-Version; b=pcaPeTOzln0ChZx079pCbmfCbC4P9L2UhvNOmgobuEhLcwG/OULWbaSfNRMFO7Wplbh/qKaXUudgF2n/HDmqoxqUQA472RZlijnRWLG9XzizAvrcme+MRhOmdx5cV6787nAKuGkWKw+bEue71xyvedfjUSqveZiPCTTwF0GOf+M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aISMIg8x; arc=fail smtp.client-ip=52.101.66.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RGHNxNp7sBwPgufgncJJ3Dy1gqM0t1qUGDmYpU7NEiYTbR+3vc8SLjQQQd8+kLXyHxAol5f4F1ABc65h8YAXrz3YyeA0ptFTzp2VHS+UYFdnAwFoc/J6kLaaPxLjGliGeLN4KQPcorbDg28EF54Mz0mO0THT1/leYeJLZLIOYJ56B6p5C+EB2qc2G5FevPdMYobvbWK2yZONBIdTVUpLh0F9pyXFFuTMTZioSg46EdFULn6KDes72B90Kwn3/QZHoQDUW0jE6/GvG4DcfszNa69VvpYdB29vagP46lFsVT3RY4rXTe5sNu9LnVipVOJqNl8tsdUqJ40UiVgOGf8iUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7bkNQBe03i7mSRMjIPXv2VdtQLJtscbe0mBI2W9fwGc=;
- b=FS1mLh3NkRliTPc+goum7NTbdBBMXNNLkdTZtrRxBOD9wz06PU0DMzXQ2+7zG98jfyWis6VRta9SqoAQ13Mzg+QojzqhNol6PbqjWp8pwH8vU/3yB6uyHngWd6qpdFb34/SGvJOOUPpV8gGc2dSJC9t/nj2CS7FD3bCQSTXTpm6d3boJVQoLw1Yr9d3TYZ2RLq6CQ8WRtyA/sPI2ORM/z/NdA3xnKlYWNRDanCUys4tub8P6ilYgcsFor2arZCVqW6PMYMS9j40ZcQ7ZXDkHRZtH8E0rMLXHXqvymDK7fywsqyiyYUXBeKJJX0bAjkpgiCvkLJedkFwg+I5MoKjpNQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7bkNQBe03i7mSRMjIPXv2VdtQLJtscbe0mBI2W9fwGc=;
- b=aISMIg8xVEpZbbujkGe9v4kToJwXu2Mx8zU7fy54g+m5Pz8L4FnPZ5hPJ4t1dwu+k17P8P3E5GkOw06nndOZAkZSgrGHkqbMU6H51vMz5gZV9VX4nunrEI7UegMWJPAbdE4mrx+kzx0k2baEi7Fcdh/3swfX35084TmV09ERHu7w/CIUxKCxHsJU4WBFi3QMfnvkEymG2AwTAXJxUUGzmyLs6+1bOp+s40A/quwhGh89ZdrO+bYGx+NG7+wjUfKoWV4LnHq/mDg9t/kBNlJs52UfuzKSnPX7607vGcvMTDURi68q+UYjIRMTmi7iprHiw8YENOm3MtZmzSDxypAyPA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by GV4PR04MB11942.eurprd04.prod.outlook.com (2603:10a6:150:2e7::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
- 2026 22:32:47 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
- 22:32:46 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, andrej.picej@norik.com, 
- primoz.fiser@norik.com, c.hemp@phytec.de, s.mueller-klieser@phytec.de, 
- n.wesp@phytec.de, c.stoidner@phytec.de, 
- Marco Felsch <m.felsch@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, kernel@pengutronix.de
-In-Reply-To: <20260113-v6-18-topic-imx93-phyboard-segin-av-02-display-v3-1-fcbb85b0fbe5@pengutronix.de>
-References: <20260113-v6-18-topic-imx93-phyboard-segin-av-02-display-v3-1-fcbb85b0fbe5@pengutronix.de>
-Subject: Re: [PATCH v3] arm64: dts: imx93-phyboard-segin: Add peb-av-02
- overlay
-Message-Id: <177249076263.2433368.17060007551245101938.b4-ty@nxp.com>
-Date: Mon, 02 Mar 2026 17:32:42 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: PH1PEPF000132E6.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:518:1::26) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326C731F9B6;
+	Mon,  2 Mar 2026 22:38:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772491086; cv=none; b=u+w20StNohNQ0fYZxoOCCyjyXVtlC2Syw1oPYFbTe1QvvoFeG4LP75tHgFWce3r9Ud5Uzr+tEMGb81IcWVN2uiMTJ+bcx8hwhGx1mJJf4U2UGBGPdvYOD5II6HZRK93+2T96FuyZD9E24E3dAZDpmppN4Sp537uihs1ulv+aqSg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772491086; c=relaxed/simple;
+	bh=68t5OIEMxY77Fq28mnKG3kcyRPmRItOFd7ujtleGQZk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bdr0gV3njuJbAOu9Hr7q95jXUZzkkdZMFFl338MJJpKE4jSIfDME17B0svUB+HM6iTynF4vQN5tORdmFHbSsyoCjtjBjirvyJJhGLOJabqnGwo8QQVFQ00j/7The223or38ccV31bnNiBJiLVh2jlXmIWNT/NVa3YDS8iAE7WMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BZkucZxD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E90C19423;
+	Mon,  2 Mar 2026 22:38:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772491085;
+	bh=68t5OIEMxY77Fq28mnKG3kcyRPmRItOFd7ujtleGQZk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BZkucZxDNFGuPU9SCSuMLEfMlasncGepkmMVtmm88jjrbeMmhAiSAJngM4Pj0BFjx
+	 7Od15qYYNB8XvtJflCF5sZjR+KTRIdB5kQj0ixEHyfKnE80E9rprTH+VbOw2qRAMor
+	 x/yoGexhoGOKfeYep9uzc2KgaQ7rDZwvdapTkYndfwCaGihKgSn0M9E8gxkiH3O96s
+	 VR4Qr+Uwska92y39hcooTewslioUa0EMxgoJ43xZswbYxFA18rVJsooZpwGju1vx5y
+	 99J6uU/pbA4hwveulHsIG1eSKkjmilviFrL4lyPnnV0u111z2jVNwfyXwvHAbjeGas
+	 MM7UNvvPHbm+Q==
+Date: Tue, 3 Mar 2026 06:38:03 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Iker Pedrosa <ikerpedrosam@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/10] dt-bindings: mmc: spacemit,sdhci: add AIB voltage
+ switching registers
+Message-ID: <20260302223803-GKB289813@kernel.org>
+References: <20260302-orangepi-sd-card-uhs-v1-0-89c219973c0c@gmail.com>
+ <20260302-orangepi-sd-card-uhs-v1-1-89c219973c0c@gmail.com>
+ <20260302-crewman-faster-9fd00b62e30c@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GV4PR04MB11942:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c0b6b98-a410-4ee3-6e2c-08de78aba0e5
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|52116014|19092799006|1800799024|366016|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
- FATrQs/c0DJ4yAvk4GG1Hb0C9bOyrD3s1TmbiW4waYM9AIWMMyptpKOxRM4s3fSLBAt9JXdiqS5YKzODG9TM5umqVXyDYZLlYJ2zIHU738BMHCgTRnAsflGGieIceKnHrcaTEhdW+Vmc5hX4lfrAGfuk5egl4qDx2HKviRYbzp+bUhnxooSdTkZBEaOiv651mRliOeWkzYcOaDlnl+ROoo2sMqlUMO5byzd9FWoRLl+O2T0+3kOn4MLVb+YeiK4OpiSSeREroRyfY5LniAH0rzYSd+mi/79xciHJkKvJie0c9fS5C/zQk3CBmKiqf32beN9CHkFxA5GXgFeEUeMEUwIwo3QyyE46YRDbVdjuXyPzMWD/fFYrzMEZbkjnS4VNDivuDgbO64K1PZYSaZunNK+JRGpa2XUEKxUBVxQrvbXHm2+ldau56XdqxfahE+gdBpseuSHtAKUmGHjoFLuNYwEqKgGvT4zubTdv2thf3YVXjZdLEQcQ9kNI3CIu34acYmTVUwNhB4PFpM7japFluI6eoFLWu9Dd/sKuSWTxmYhOXOBKi3ur5rF0TgkYopZdMWKt+rVzNwrCLXeSmyVVOQDcTeEClrwrcWWX6ZdMESHoG0YGPe1GLVvcLZRLIaeROSCatvTQSfrlec0cuCIspoMobjBC5u+4+uN4ae8jrccQEzLQ54J7Ziulv+kYMazX//SIgDgAGGMp+/3Ij7dqtF5l2JyDsMDcTAV7tjx8Uz8b8AVOAZezBlH7LLkhSWEKuKj3uVACmF8KAnLPhz1G0wiB4GvR7UIblF0y5zASE5isSFnbI+jBLT7yZND5533i
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(19092799006)(1800799024)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?SUR0ejhweGxrNmJoL2dLd0RRbm5odFJDSWpadG5mWUlTK0xkeWlkT3kydEZs?=
- =?utf-8?B?bjVUYnR3TUg3NUUrQTRvWTBldmd6MStXQWtsZ3VTYzd0dkhsdGR3TVdmRHJt?=
- =?utf-8?B?d3M2V2lUNXMxSERRdGMzOEV5UUVibHgxRk1yWk94WC9rSDM2dWVEdFFadzgx?=
- =?utf-8?B?MkFqWC9hSkhFaWdCSm5nQXJoazBEeWIwNEVmSGsxaXk0aTlMZjhjSlZkazlD?=
- =?utf-8?B?OXkwblVBODVkd2JHWVRWaHJlRkQvSXlwZEUwT2RNV0tZZjc1WUdXaTkyTWVG?=
- =?utf-8?B?a1hDbXVjajVmMkpkWkxtd0xwOTVWZVlSZEJhU1JIQ2Q2blRwaU1uTWJlK1M1?=
- =?utf-8?B?QzNvNG8yWEp3Nk51UEpSVUNqYlZycksrRmZYOTdpUXp2NUhaUDE3ZUplS0Vp?=
- =?utf-8?B?S3NOanZqQXkvNXYyTUhiKzkxcEJUTWVFdzEzTXdhSnhtcnNwdis5VFVUaklO?=
- =?utf-8?B?akV3SWJUajZuaVBBUDQ2ZFd3YWdKMVVOakwvY3RVcVlYYzFENzAxdGVSUXBJ?=
- =?utf-8?B?YkN4UlQwdUE2WHpDbVdKR21QcXhFNkRESHpaN0ZLV0VuRHJ3ZWYzR0FCUmE0?=
- =?utf-8?B?Ym1udXRRcHJDRC92ZVhKeERpYjFFbnpQdk1ndEJIMUFwdU1tL2I3YTN5Z3g4?=
- =?utf-8?B?MTR6cVdNSXJKY0dTWmZLVVJuc1FXQTFpM25TdEZiOC9XWkI2amRBY3o3b0ZL?=
- =?utf-8?B?WlVaTXJYNTZvRitkbEZRTk9FRmlURjBrTmZhN3NSQkJOdGJOUnhsQVFCWEc2?=
- =?utf-8?B?ZjQzdVJqZVgrbTM1Sll5QVZGN0YrSS9DUEpwbUFPRC81VVRpSXlaMEx4eWpr?=
- =?utf-8?B?Nk5WMWNPbFdjajhydkVsUXBvb0UxNTU3NE5IaTFnaVBXMDgvc0dTNmN1RUJ4?=
- =?utf-8?B?cjhxN05TYks0Yml1aG90T2hORnlFSTQyNS83V0hxQnRhMTJTVjVORGZTM2tz?=
- =?utf-8?B?YTNJTkJ1UDFPc0FFSWRDTFljdVpzU1pkMmw4dWNtUno3NkxXMWs3NkdVSUR1?=
- =?utf-8?B?T2RLN3ZwRFpEeThCenI2T3BzQzZmK3RMcE8wTjI5aTROT3NqcFpWWlNUYVNI?=
- =?utf-8?B?cThCY25hMDIxVWFvQ1RiOHVEWVlUWlhZVTlTNWNHZFNCdlNUZFQzdGE5TXR5?=
- =?utf-8?B?dVoxaGZJQzI0bzJwNktKNzExbndKYXVVejR2VXc3QXZFWUZ4SUhRdXVQU2x0?=
- =?utf-8?B?U0NhQldCMVRXUDJSL251M0U3NmV5Rmo3alNiRUcyNHZhdlVnNkF2enVlV2lN?=
- =?utf-8?B?cWxQSzdtOXJ6bldrcCs4S3VWUlloQXBCWFNCMXp6Rnk3NWxXb050WTd6U25J?=
- =?utf-8?B?Z1h2MVRVTzFlcWd4NUpEMmNncFlJV2phdm50TXl5a2RTUDZyZlc3VDJqNTkw?=
- =?utf-8?B?ZFVUWXlDUm5VZ0s1WWJSbmZDOEdVYk83eVoraU1TazRiMjdiczVBdEdUclh5?=
- =?utf-8?B?TWozVkVTSFN2V00zblgybmZPdW5IeFV4ckN1S1U4S2JqUkFhZVdNNTZteVQw?=
- =?utf-8?B?b3JIRU5jekcyVVJzNFFLbFFLbWFmdnhPSTcwaEhQSERrU0l5TVBtVWEycGlX?=
- =?utf-8?B?dDJ2Z3BYaFdsczVtM0dEalhMQWpCRUJjNkZXZDl4S1g3cEVDS1lzcU9TTGJj?=
- =?utf-8?B?OWJNTm5jWWtIUmRyVjFZK21hMnRMdmZjcUZpUEtrNjhCMHhZamlNOXNQeWVs?=
- =?utf-8?B?Y2xjQm81ODMxcllwZWh4VjhyRzBvWkc1bTRtcy9meXorQ0p4a0N2NndVNVVZ?=
- =?utf-8?B?SzlkeHZFdU1oWFk4R1NmSTN3QU5mazNFTktOeXZaY1JpUWM5OWtlVk5tNm9F?=
- =?utf-8?B?REpHM2JnaGxTdTZVN1Y5a1ozVzZGR2ErMkxSa0Vkd09XQmdPQTI5RHRIdVVw?=
- =?utf-8?B?dVJTSGZnU0g2aW5tYy9yQ2I1b0ladTd5R214dUlMaDF6NmhMckVQcFJhdHpB?=
- =?utf-8?B?TThBSk4rSFNtTHZEUWtTUkc2V0xjc3VFL2VjaC84djZHNkdwLzRGeGwwS1pP?=
- =?utf-8?B?ZDNYMGxDSnVmNC9SdG5teU5Qd2M4SzY1NkV3WHFGNjA1bzlVUnQrWVdTMklQ?=
- =?utf-8?B?eDVLRlFTRnkvZHRpbUkvR3pzOXZ5UWdmZ093UVo5TlBWbmRydVpSZkF5UE5W?=
- =?utf-8?B?dE9YemF5ZXFsSmlRa0lGYzRhSk9IYlVwNzVwY283VzdCVG1FcFdVU2ViRWpL?=
- =?utf-8?B?UHJlZnltMkIzV25CcTJsN2RnOWVhRnczNmtvLy9aUDB6cFhTZ1ROeTlva1Nm?=
- =?utf-8?B?THJWZWtHSnJGeklibkxSUmdTYjA3VVVIajN6eVhvU3JydExkampIOFdTK1k0?=
- =?utf-8?Q?xJ+aYVmpTqxxX9w8RM?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c0b6b98-a410-4ee3-6e2c-08de78aba0e5
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 22:32:46.9113
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bM4/sQxjPB52/ThXvmvLY+fngpJmeVXGx3HZNAH0t8gCYF7c/lk9FcSRIi4Vz1tv+Im7Qfxna2tAiG17HaVLSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV4PR04MB11942
-X-Rspamd-Queue-Id: 60F9B1E5FFA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260302-crewman-faster-9fd00b62e30c@spud>
+X-Rspamd-Queue-Id: 442281E675E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270244-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270245-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,baylibre.com,pengutronix.de,gmail.com,norik.com,phytec.de];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	FREEMAIL_CC(0.00)[gmail.com,linaro.org,kernel.org,gentoo.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.997];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,nxp.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,d401e000:email]
 X-Rspamd-Action: no action
 
+Hi Iker, Conor,
 
-On Tue, 13 Jan 2026 20:06:08 +0100, Marco Felsch wrote:
-> Add overlay for Audio-Video module PEB-AV-02. Add support for panel
-> display, capacitive touchscreen and backlight.
+On 18:25 Mon 02 Mar     , Conor Dooley wrote:
+> On Mon, Mar 02, 2026 at 04:13:22PM +0100, Iker Pedrosa wrote:
+> > Add SpacemiT K1 AIB register properties for UHS voltage switching
+> > support:
+> > 
+> > - spacemit,aib-mmc1-io-reg: AIB MMC1 IO register address for voltage
+> >   switching
+> > - spacemit,apbc-asfar-reg: APBC ASFAR register address for AIB access
+> > - spacemit,apbc-assar-reg: APBC ASSAR register address for AIB access
+> > 
+> > These properties enable the driver to perform voltage switching between
+> > 3.3V and 1.8V required for UHS SD card modes.
+> > 
+> > Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml b/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
+> > index 13d9382058fbc1c12be1024d1c550f04a825673c..4d6590aa8262009b6e5697a04b45cf3736c0fa42 100644
+> > --- a/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
+> > @@ -32,6 +32,18 @@ properties:
+> >        - const: core
+> >        - const: io
+> >  
+> > +  spacemit,aib-mmc1-io-reg:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: AIB MMC1 IO register address for voltage switching
+> > +
+> > +  spacemit,apbc-asfar-reg:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: APBC ASFAR register address for AIB access
+> > +
+> > +  spacemit,apbc-assar-reg:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: APBC ASSAR register address for AIB access
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -50,4 +62,7 @@ examples:
+> >        interrupt-parent = <&plic>;
+> >        clocks = <&clk_apmu 10>, <&clk_apmu 13>;
+> >        clock-names = "core", "io";
+> > +      spacemit,aib-mmc1-io-reg = <0xd401e81c>;
 > 
-> The pwm-backlight uses the GPIO based PWM implementation for now. Switch
-> to the FlexIO PWM support once available.
+> This looks very very wrong to me. This is part of the pinctrl
+> reservation:
+> 		pinctrl: pinctrl@d401e000 {
+> 			compatible = "spacemit,k1-pinctrl";
+> 			reg = <0x0 0xd401e000 0x0 0x1000>;
+> 			clocks = <&syscon_apbc CLK_AIB>,
+> 				 <&syscon_apbc CLK_AIB_BUS>;
+> 			clock-names = "func", "bus";
+> 			spacemit,apbc = <&syscon_apbc>;
+> 		};
+> so if you need to change something here, you need to do it via pinctrl.
 > 
+> > +      spacemit,apbc-asfar-reg = <0xd4015050>;
+> > +      spacemit,apbc-assar-reg = <0xd4015054>;
 > 
-> [...]
+> These two are the apbc syscon:
+> 		syscon_apbc: system-controller@d4015000 {
+> 			compatible = "spacemit,k1-syscon-apbc";
+> 			reg = <0x0 0xd4015000 0x0 0x1000>;
+> 			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
+> 				 <&vctcxo_24m>;
+> 			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
+> 				      "vctcxo_24m";
+> 			#clock-cells = <1>;
+> 			#reset-cells = <1>;
+> 		};
+> so add a phandle to the syscon (like the pinctrl currently has) and
+> access these via its regmap. What you've got here is a non-runner,
+> sorry.
 
-Applied, thanks!
+We've gained this support in pinctrl which already accepted in mainline,
+it's done as Conor suggested here, so you can drop these properties along
+with the patch [5/10], see 
 
-[1/1] arm64: dts: imx93-phyboard-segin: Add peb-av-02 overlay
-      (no commit info)
+https://lore.kernel.org/all/20260108-kx-pinctrl-aib-io-pwr-domain-v2-0-6bcb46146e53@linux.spacemit.com/
 
-Best regards,
---
-Frank Li <Frank.Li@nxp.com>
+> pw-bot: changes-requested
+> 
+> Thanks,
+> Conor.
 
+
+
+-- 
+Yixun Lan (dlan)
 
