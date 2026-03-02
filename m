@@ -1,456 +1,216 @@
-Return-Path: <devicetree+bounces-270077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270078-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNFhMNanpWngCwAAu9opvQ
-	(envelope-from <devicetree+bounces-270077-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:08:06 +0100
+	id aORiAEmopWngCwAAu9opvQ
+	(envelope-from <devicetree+bounces-270078-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:10:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A321DB758
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:08:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2ED1DB7E9
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:09:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7671F304B40B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:00:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4151530221D6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D9C411623;
-	Mon,  2 Mar 2026 15:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05CD3E714D;
+	Mon,  2 Mar 2026 15:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="h34zAlgy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G3h/JPJH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013050.outbound.protection.outlook.com [52.101.83.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205933FD149;
-	Mon,  2 Mar 2026 15:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772463619; cv=fail; b=h/rXgKtWRV+MWDX4Fw0w+OABKXE7oJ30kbJycz7p8fLg7OgIxiJJdpDg1btyCp7EKM4nHHWDguSGp4DTqQWFLG+yZc5AoWcLD1cN7m524sUBgO+MAd1wKBqdU0WiDnCZARu/dC+mDGyc4XAM95dcBpQMoWKhgV39hU/VwlOIjEA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772463619; c=relaxed/simple;
-	bh=tI1HX8mpSjejz+ZA/DNyPXDYqPBz6FdPtlCmDEoV/MI=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=U6O9uWBcSJD0C/z+ZQbDqfxIMJhhSPM5VfqY4DmqHuDP8jhs2p16zrka2TPGwCvT0X5uUwH9MYWh4RprXj5uuqI8zITmUY3Gy42pECPXOZnStDf7XYTQ7PcX8Dz4IUwkQzZsFUcOcsjOB344ye3ktf0ehPmFEfDd5zapf0w0fro=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=h34zAlgy; arc=fail smtp.client-ip=52.101.83.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C2Jo12MCoJ8JqkY63qmsT7bg406/RXf08xCG8F2zttanpyeBdjfFzE03lhFZqZdPAGkzdoRLwVy6g35v0zPm9hl2sICJhOYpi4M2UsJaeWPPmG22YaBXsvoBqvWrOfwt6XEY09Ae9QOoMjxjt/nAT6lQp/aWQvwmfYvPJOOaVGxUl7PfAc6dw3Fl7pTIJO9uHrYkGkqV3ZWcEgkIisSkYBXpS7N582rkL7Nxdv+ztNY/xU2gutnl6/2t58rzJuX1OsDuhDBYiskLyL1ryNCSxTS4CHMxr8vc/FJ76WRFo3qlnraCmxUWJbIWP/0a4i7SlPMhQ24oIyMjrty4WU/5pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K5hKP3FI0Rk214qRsw38EIaBcFaDuFDqNZgMi6bwa8s=;
- b=dv4DR4BollyRospAGDXuWQa8wDPVhPkvl6FJFuNI7LySk5/5UWsjCQo/oNtA5TS35G8KYo3Kgfy6qp44ZgOSWnUqlE2U3AICKGEoqmFczH2RDzV2zhL7+ozhuqVLni66QyYkTashaDTQUkFyukd/6HqJsnaiHQRCLJMz+kbdQs5Y/q6/x9XBvU+10rjtDA+88J7wRwpHICOIS1ceZ6Hb07duWK/aanspW35H9FJv5bl3YEQPW3ZTFzZ9p3jd509OH/3qArS3r/dH0jA9HLeDrfaiPH5hfp2LYjtCGu19bCUvTsn/AvLF5a9c8rou4EUXjlIeC9NnHIVsAKsWuHkEqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K5hKP3FI0Rk214qRsw38EIaBcFaDuFDqNZgMi6bwa8s=;
- b=h34zAlgybkm64FqyXYXgrxafHCCu+Bbei8dK5C4lHdE6WHY8b9yHUWXszNfNFGHiNbsvraMcYjPF9WdNIx7zksnl7YCy1Hdt3k3JGTaH1UKzIfJOg27YJcXk7TJPyteYvXHF/3kN9B32jyze4I44cBZNJRZRbSO2zggtoTIZLxhU72QdOxG0+23rhuwVFlqotnXyU62cXlbpGTQpS1sDM2OsqHgQL79weggQCYL9xZGfrTdny+ewRYgNpangCxRfrFPCC95SvhjF6NvjG9zLK8+G9MUmND/sDyPSBQiKWK/y98Oog31dJ5FBGqNL58rnMDZzM+CwgzcGFhjJ8yla9g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AM0PR04MB6980.eurprd04.prod.outlook.com (2603:10a6:208:17e::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.18; Mon, 2 Mar
- 2026 15:00:15 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e%7]) with mapi id 15.20.9632.017; Mon, 2 Mar 2026
- 15:00:14 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Mon, 02 Mar 2026 23:01:20 +0800
-Subject: [PATCH v8 6/6] clk: scmi: Add i.MX95 OEM extension support for
- SCMI clock driver
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260302-clk-ssc-v7-1-v8-6-2356443a7e4c@nxp.com>
-References: <20260302-clk-ssc-v7-1-v8-0-2356443a7e4c@nxp.com>
-In-Reply-To: <20260302-clk-ssc-v7-1-v8-0-2356443a7e4c@nxp.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Cristian Marussi <cristian.marussi@arm.com>, 
- Sebin Francis <sebin.francis@ti.com>, Brian Masney <bmasney@redhat.com>, 
- Sudeep Holla <sudeep.holla@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, arm-scmi@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SGBP274CA0008.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::20)
- To PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AA1401483
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 15:01:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772463706; cv=none; b=KhT8/QQrTJuqpGDeEFXNuobwijFfqwr4avO7I6xgjelCIjsAu1YZGRTycwWcfawMpb4E2wI0nCJzsQoi7pJzU7awifDQYo1N2OKjey9g0M767xXPGYdA58CoDhmLGlTGSQ1Hg5x0xoc7dfWMlioX3ibEinoc6puwB1/ONbC3+LQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772463706; c=relaxed/simple;
+	bh=mKs/oQ0Rnsuj5cP+O1Gpy55Hcjn0bN/KHfaqqoU3m0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lzySDmGoyf+h0zdUaePAWgIgsub6KHc5TyHoVAJ8j9sSodcN0QdZhq/ix3DySZC+aaUrLqgGCTV3B1lD/i/J4afp7pkvwQ7r1IV3Yl/WsDHzJFbhkWYcSIL5OBZnje3fk683L3doq0jDcLY0dhoUlFD82i3dtLSeExuiQEcR9Zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G3h/JPJH; arc=none smtp.client-ip=74.125.82.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-12758ce1e8dso5341263c88.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 07:01:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772463704; x=1773068504; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=1vG0eUB+BXVNy5l5QbQ3naGo0+KpxvXNf2LpxhkuGQ8=;
+        b=G3h/JPJH2X8Fs3IvXmMWaLK+sGkh1a9TB/231jwkZxkxn6X7FPYiT9x8zSqPXbZnkX
+         w6GDYelIPoTafBOX+V2wQ25ssE6k5pUK7YhD8Yrmmm+SPfL0JBsONvsIwtvaREFfM02Y
+         nHwiRtYqASdeOscYK7XaWR9GnGXzrevL6rqgzCjYJbrcS6VUQeX9vxWBnbJ0oD1cC8EQ
+         RGk+aVTxvE0MAoiz1tVOF1UIv0X/0rYf5P9l82UdM8GVEz8nY0RzOKl9X/gEkoJZl6Lf
+         SNrW21GMWigpy0Rn79+1PInd3hu4SnmgAyIaJ+qXdKvUwOhAvbRedG+fIYckuhATxPaB
+         imkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772463704; x=1773068504;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1vG0eUB+BXVNy5l5QbQ3naGo0+KpxvXNf2LpxhkuGQ8=;
+        b=vMP60H1LUCkyh0OcmyIBXpQhLrrnLYLy0cz4Eyrk9YOjEDlhPSjvDuiCAJcR62ydkL
+         FSGjXbKcqTSbi7r2DvOMCKDYu/Dv6nSsjZVFcBm8vLHz6zWm/YfFA4Zwb6FqPT5cGgkL
+         OItCTsTg36dCHglFAZ4cJ5mBbu/P6rVKtoMB/Cmc8MwMiLoy5XH2tTPhlUQOq+ylhCKm
+         3zePdft0IRd8fcy6EZoCN2YOdj+CFS/23CozMpvZDD9csF6GfKHpzqcmB8m3lLX4iv7+
+         hxaHJPXDSdMZFoESQxlbmA4fEtc0V8b+HX2+5Kn3qu8b2d5dWelSpMuO+9BNZ23ei+P9
+         OCgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhPlDMFsrVx0YPdSB1NEDb4SGpsczW4fdIdCufSsml9hTgDcrrDiZo5/RCXa5ydxX6F27KUdBmIdF8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzs/Oipd+nhJEqIcJNXy1vAVOmKIt8tfu0miou6qMP/TQwAgKS0
+	KyNnE94NeNf4pW24CdZGT6tXYoeOrSDdyKXkX11NHD6XA4NaHgFptSau
+X-Gm-Gg: ATEYQzwMmFu+1IUI1KGqaXccTuxJntUprHAGom6iOJJiE7gSs6/ywJ1RdkeoeLd0fRQ
+	ZrvbVOFFaM0AfPIYi84pVUKGnQlfGxC6UrU3hRU1RsaZI22GZOA2kNKB8fl75oo093ByEW1M+eO
+	1A+K1sME1jOYkDlvqK0Tg3acIvajtDKgjJNJtMV3wUrmuE5PXx3JyL6LHSDpXO205OWd7anVJN4
+	Oxxwcdrv52dwn7Zi/zuh8Eg0SRDCxAadAU/NqqoG3ysbWiFMnsqwcX6BiUHIzDdkNe51IX18Vag
+	opEOfAhZz4l+NsCIDHypXAxklY0eXWuS1gfoDyDPBuGog58NwML9TKP33K1Hfpde0wpLWA7hbvq
+	yrMYUgFVpU8YERum4qOkUp6n+9u3SEE+306jywwG0hxoY3VlezghiKnRZgetRwuHqvClLP5TQoG
+	Q0wyU/ui/mu5oXXwnQKNQCy5nvM+34PtTvkmB/sOqs2yEthRlmb1GDSPbnO0JRxRG94Flsf3Bo
+X-Received: by 2002:a05:7022:523:b0:124:9acd:3b15 with SMTP id a92af1059eb24-1278fd71cadmr5654701c88.39.1772463702082;
+        Mon, 02 Mar 2026 07:01:42 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12789a43a18sm17528376c88.13.2026.03.02.07.01.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Mar 2026 07:01:41 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <f124b200-09e3-4e73-a100-f47007732e8f@roeck-us.net>
+Date: Mon, 2 Mar 2026 07:01:38 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AM0PR04MB6980:EE_
-X-MS-Office365-Filtering-Correlation-Id: f7c2ca11-62f4-424a-f0f6-08de786c68fe
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|376014|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	fxPwGu8o4sva4g4fOLxSWC19MMTBds2St6uLNIXiccaDzz9+MMMtHsL6emh6G0NoycvAgh07fVory9wLSV5vBkDiYp6PFawcQM6uf2/Cs7qmJOvYY9CE3j+caJI5i0FgqwapuWNGbZEB/L2z5uE201bY1SrL3eerFd7AAB5b8tbowpXInwIo8C+jfqoDKyQGFZGGauDMR3Ix+3pqEc6Jp6XA+1n5K0ZMIrSdJQSkfTJCMa5vBqJ5q8N2X+hZv6B5SfelrYqh8louuFHMzqqPBra98emM356sqYJxhxz2/aXiOMma13KG3Fa85ue+8s0G2PJlcLeh3sf6UM11d1yvDMglY51LvHX82w+YQhZzV47JxRN7oflPfNfGue55cCvozLdMcQPRhKIZrEhCgOTOdlNKEgR3DLMkOh7qsP88TrB7wMfUgO6PDzoCo6FIXC5z1P03wHz4yI8mnAnIPOGB8QTSjb93OeCRTWnStiPxL8uFVpdC9X/vaGH8a4MkBtmRACNdL5/RlNaxM5a3O5tkkSP5kgHsD4F5sHVkcfTgmxSqkqmyM2DWf0URQKE2aEYnfotOX9iRoW4WJXSijhOvitcgSlVLJUwjcruY74jPhXVK5k8qaJGU0wK1UdMmZ6eOPmGPvbfUJ+0cHK2JPCtaynt9B8NZ+ME6jXZIS/AOtD2ZkjG1S05knIB/z0MTL5sCULBN3LOenhpF9Ti2tST57RDPCe6CA/bGi/BEGbo4dARBklT4o4vVpBXP+IzTilTM09CZninTKH2DNqQCFPMNmcHE7ke3z3n9kSr0l1JIilM=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Y0ZSWXFGdHNWZTRVMUVPVVpaT2w0dnd2eVc5Y1ZtSXNoU1JuUS96cjFvY29Y?=
- =?utf-8?B?ZUg5ZGwvUjZxN0ZJWmtJZENMVUVsVjhIR0lha0xYejZ6Tk1pTEJMekhaaUpB?=
- =?utf-8?B?TGdaYVQ3eFpiTWZUVWZFMEpWdjlNUHpwbkQxR1F2TWREWXNXb2lMclVyS091?=
- =?utf-8?B?YTlaY1NITC9IVGdSejJtZFhlc2NwSDljN3lCczNhSE0zMUNvRzR4QWR0c2dQ?=
- =?utf-8?B?aUlCR3RoLzVqTTlaSXBrZ255TC9RSHpwczVnMzJyWGxkZ1prbnRBbGhrNndQ?=
- =?utf-8?B?WVpJVDY3dGw1NG9NTHlNNVh5UWtlZy9iRStvN2E1ZTV5dVBENUF0RDVxRG02?=
- =?utf-8?B?ZFRESDZYckVpT21Hb2g4aGFmR3VRZUpOMldaRGRNTWlTcTU0cGVSL2FuNlJZ?=
- =?utf-8?B?Mm5mYmFNR2JCZGN2MnRUeXRKcW1CVkJ3Yjl4QlpLeTlaRENraW5LZHAxYkc2?=
- =?utf-8?B?RFBIVU4yTU04eDdkOU12dWU2SHBGS09RRDB0c2JwZThRK1czeHNNcU1jSEZo?=
- =?utf-8?B?OHE0Ly9kYTI5dklZdTYybXJOejhkT1hMT0tZK2I4QlRaYStMc3RIaEgrazlI?=
- =?utf-8?B?OGpCczRoYkxYVThVK1hFYTRjT3lCc3hvV3VYWVFiOXF6ZklzVGV6VS90R0FI?=
- =?utf-8?B?RmR1VkJyclJ3VlhSTFI4c1FFR0dua0UrRkRQdHhYYnEzUUx4c25GaTdSNEZW?=
- =?utf-8?B?SXlTaVNQZC9WR2kwQkMxMTlRazdVZVNVUkZIbGhsWGJZTUtudDVZdnRMand2?=
- =?utf-8?B?ajVteFcwZTk1UjNZRjNHUlpXcWZ3czFuU2NMT3RoSmFrVy95YlhVRmV6SzBI?=
- =?utf-8?B?TWRRdUJvTzJQSXdiR2NiSVNmN1ArbkVzM3RoTGVpWjlDc1h4OFFJS3RNV0NI?=
- =?utf-8?B?cjJEdmRVTXpIbndLdEFUdjhxdUZXVHNSVWUvM1JCOUhUcGlqTkczT2h2RXR5?=
- =?utf-8?B?dWtuVkpKeUUzNXBXUzVQVW5TNUFOZ0NFdHNPY3pTa0ZlWSs5dEFmb0hUZzNw?=
- =?utf-8?B?Y0NuM2gvUG5BM1gzdHhyMDZ6OExYSXhiMTJYSDlaaXpaTHV6d1BKb1hEcWVo?=
- =?utf-8?B?NW52L3pGdEg2R1NBU1VpUkt4RUlaTi9hdnNFWlFOUTZ3VG5RZjd6KzBzaFJL?=
- =?utf-8?B?UHpEelZHQ3hnMGRwbHIvc3RmQlJJd1lWZ0V1WlhFUHh0NFhJcG5tT05SdEpK?=
- =?utf-8?B?c3JaVTR6OENFc051Wk0wVm9zL0lna2Q2TWtmK0Ywckc4UWZ2ZDFWTGhrTWFu?=
- =?utf-8?B?V0l0czZXMWd6bVJxaUFxbktuNk82V2I4cEZSL0ZpalpTYTNNT0JxLzBNbWN1?=
- =?utf-8?B?UmwxQkZSMXVYY3JEN1VZR2VyL1JNU1pFV1FsS0ZrMW02Wmd3NlhkNXFwRlFv?=
- =?utf-8?B?dXo4cnk5NzdQd3B4ck1nR3ZpUExXTHlYL1k0SkNCR1N0bFpTWk53YmpweS9j?=
- =?utf-8?B?d3RXTGtadHBTQjNESDV3N0FKWVNPTDFENm1ta0Vsc201MFFkc3JLZ3FmZlcx?=
- =?utf-8?B?cTBJZkhzaFlGRndhUzAwRGJ6MjF6OERBYjZIM2tUOTJNeE5JU1pUbXFFaldD?=
- =?utf-8?B?QjhudmN2c3J6WjQrTEtiU1E3WWF4YUc0Y1o1R2NsRG5oSXNJcGxJdXpMOFFX?=
- =?utf-8?B?V1BwR25naHFKSjlBdG55V1pEQVJSLytFY3FIRVpIQnN4KzRLQWtrOVUxRTdR?=
- =?utf-8?B?emdNSnh5Qi9OVU1PUGRoM25BVW9sLytQM1g3L0F1b2dqbHhZb3pTQUpnK0Va?=
- =?utf-8?B?dDVZTEZRK1ZQOVNSWWVtVnd6ZldQSU02YVVXaEFubFpaMHFYNVAxOHN6WUsw?=
- =?utf-8?B?T2F0SUxHbFJJODd2aFFRZ2JBQURUdk9rNFllOEw2b2J0aHZPdGVSc2x1MWw1?=
- =?utf-8?B?RXJOa3FQaUtjczVtbVVraWgrS2tnRitib3l2QXUzWWlGc1lTRkJBV2RpbU84?=
- =?utf-8?B?WCs1RE51YkU3dkFmNHdleUNCNUxPNGZqRmlNR285ZnBWOW8rWXJHeVFBZmhS?=
- =?utf-8?B?Vk9DbTBFbWw0UUs2OWxFYXA1aWY3NzRKaC9BWkYvVGRBeExBTFFoYjFWNVRR?=
- =?utf-8?B?REdDOUFLMkRianM5Y21hTzdBU0xwa1VRV2pNamRvL2ZNUnZhUTZFS1pjdW5v?=
- =?utf-8?B?RWxLa3hZVS9SS1NkeittUWZneVF2aVkyMHlDMmRvV2Jhdjg5OE92OVMvL1JS?=
- =?utf-8?B?VXZBblZUYVJyaUdkZWt0cVZwajdvTjVJdEVaWnVva2RTNU52ZStmZElqQVZG?=
- =?utf-8?B?bDFmUnFwVTFXQzJVbXBYazJNZkR1T2VWVjNyVElHU0NlYnpsLzlJbzBIbXVq?=
- =?utf-8?B?VWpPMXUxVjJ5aWNHRGIrNFkwSUdZZkVSNDNCamdmZEVLUTd5a0hFUT09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7c2ca11-62f4-424a-f0f6-08de786c68fe
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 15:00:14.8280
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qhb8QG5r3HDGURKD0qw5Q0OnM0Oh8lGkhItr8lIc1s1+xY6BjNpmY+4+9cKRPjncbJEYk9Tvop6fksUfNoJUpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6980
-X-Rspamd-Queue-Id: E5A321DB758
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/7] dt-bindings: watchdog: Drop SMARC-sAM67 support
+To: Michael Walle <mwalle@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-doc@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20260302122540.1377444-1-mwalle@kernel.org>
+ <20260302122540.1377444-7-mwalle@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20260302122540.1377444-7-mwalle@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 0C2ED1DB7E9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.94 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270077-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-270078-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,NXP1.onmicrosoft.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nxp.com:mid,nxp.com:email,arm.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,roeck-us.net:mid,roeck-us.net:email,microchip.com:email]
 X-Rspamd-Action: no action
 
-From: Peng Fan <peng.fan@nxp.com>
+On 3/2/26 04:24, Michael Walle wrote:
+> I was just informed that this product is discontinued (without being
+> ever released to the market). Pull the plug and let's not waste any more
+> maintainers time and revert commit 354f31e9d2a3 ("dt-bindings: watchdog:
+> Add SMARC-sAM67 support").
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
 
- - Introduce 'clk-scmi-oem.c' to support vendor-specific OEM extensions
-   for the SCMI clock driver, allows clean integration of vendor-specific
-   features without impacting the core SCMI clock driver logic.
- - Extend 'clk-scmi.h' with 'scmi_clk_oem' structure and related
-   declarations.
- - Initialize OEM extensions via 'scmi_clk_oem_init()'.
- - Support querying OEM-specific features and setting spread spectrum.
- - Pass 'scmi_device' to 'scmi_clk_ops_select()' for OEM data access.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Reviewed-by: Sebin Francis <sebin.francis@ti.com>
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/clk/Makefile       |   2 +-
- drivers/clk/clk-scmi-oem.c | 108 +++++++++++++++++++++++++++++++++++++++++++++
- drivers/clk/clk-scmi.c     |  19 ++++++--
- drivers/clk/clk-scmi.h     |  11 +++++
- 4 files changed, 136 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index e053303984b8d61d5c74dc4cdb582eb2692f4ca1..ae069836f29c2af373e56d66f4e1d6ffa32be7b5 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -93,7 +93,7 @@ obj-$(CONFIG_COMMON_CLK_RP1)            += clk-rp1.o
- obj-$(CONFIG_COMMON_CLK_RPMI)		+= clk-rpmi.o
- obj-$(CONFIG_COMMON_CLK_HI655X)		+= clk-hi655x.o
- obj-$(CONFIG_COMMON_CLK_S2MPS11)	+= clk-s2mps11.o
--obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o
-+obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o clk-scmi-oem.o
- obj-$(CONFIG_COMMON_CLK_SCPI)           += clk-scpi.o
- obj-$(CONFIG_COMMON_CLK_SI5341)		+= clk-si5341.o
- obj-$(CONFIG_COMMON_CLK_SI5351)		+= clk-si5351.o
-diff --git a/drivers/clk/clk-scmi-oem.c b/drivers/clk/clk-scmi-oem.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..be11d359b4ec3633868f33bb429c7cfec9f1e48e
---- /dev/null
-+++ b/drivers/clk/clk-scmi-oem.c
-@@ -0,0 +1,108 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * The Vendor OEM extension for System Control and Power Interface (SCMI)
-+ * Protocol based clock driver
-+ *
-+ * Copyright 2025 NXP
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of.h>
-+#include <linux/scmi_imx_protocol.h>
-+#include <linux/scmi_protocol.h>
-+
-+#include "clk-scmi.h"
-+
-+#define SCMI_CLOCK_CFG_IMX_SSC			0x80
-+#define SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK	GENMASK(7, 0)
-+#define SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK		GENMASK(23, 8)
-+#define SCMI_CLOCK_IMX_SS_ENABLE_MASK		BIT(24)
-+
-+/*
-+ * Selection is based on SCMI vendor_id/sub_vendor_id and optional machine
-+ * compatible string, without involving impl_ver. impl_ver‑specific behavior
-+ * should be considered a bug and handled via SCMI Quirk framework.
-+ */
-+struct scmi_clk_oem_info {
-+	char *vendor_id;
-+	char *sub_vendor_id;
-+	char *compatible;
-+	const void *data;
-+};
-+
-+static int
-+scmi_clk_imx_set_spread_spectrum(struct clk_hw *hw,
-+				 const struct clk_spread_spectrum *ss_conf)
-+{
-+	struct scmi_clk *clk = to_scmi_clk(hw);
-+	int ret;
-+	u32 val;
-+
-+	/*
-+	 * extConfigValue[7:0]   - spread percentage (%)
-+	 * extConfigValue[23:8]  - Modulation Frequency
-+	 * extConfigValue[24]    - Enable/Disable
-+	 * extConfigValue[31:25] - Reserved
-+	 */
-+	val = FIELD_PREP(SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK, ss_conf->spread_bp / 10000);
-+	val |= FIELD_PREP(SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK, ss_conf->modfreq_hz);
-+	if (ss_conf->method != CLK_SPREAD_NO)
-+		val |= SCMI_CLOCK_IMX_SS_ENABLE_MASK;
-+	ret = scmi_proto_clk_ops->config_oem_set(clk->ph, clk->id,
-+						 SCMI_CLOCK_CFG_IMX_SSC,
-+						 val, false);
-+	if (ret)
-+		dev_warn(clk->dev,
-+			 "Failed to set spread spectrum(%u,%u,%u) for clock ID %d\n",
-+			 ss_conf->modfreq_hz, ss_conf->spread_bp, ss_conf->method,
-+			 clk->id);
-+
-+	return ret;
-+}
-+
-+static int
-+scmi_clk_imx_query_oem_feats(const struct scmi_protocol_handle *ph, u32 id,
-+			     unsigned int *feats_key)
-+{
-+	int ret;
-+	u32 val;
-+
-+	ret = scmi_proto_clk_ops->config_oem_get(ph, id,
-+						 SCMI_CLOCK_CFG_IMX_SSC,
-+						 &val, NULL, false);
-+	if (!ret)
-+		*feats_key |= BIT(SCMI_CLK_EXT_OEM_SSC_SUPPORTED);
-+
-+	return 0;
-+}
-+
-+static const struct scmi_clk_oem scmi_clk_oem_imx = {
-+	.query_ext_oem_feats = scmi_clk_imx_query_oem_feats,
-+	.set_spread_spectrum = scmi_clk_imx_set_spread_spectrum,
-+};
-+
-+static const struct scmi_clk_oem_info info[] = {
-+	{ SCMI_IMX_VENDOR, SCMI_IMX_SUBVENDOR, NULL, &scmi_clk_oem_imx },
-+};
-+
-+int scmi_clk_oem_init(struct scmi_device *sdev)
-+{
-+	const struct scmi_handle *handle = sdev->handle;
-+	int i, size = ARRAY_SIZE(info);
-+
-+	for (i = 0; i < size; i++) {
-+		if (strcmp(handle->version->vendor_id, info[i].vendor_id) ||
-+		    strcmp(handle->version->sub_vendor_id, info[i].sub_vendor_id))
-+			continue;
-+		if (info[i].compatible &&
-+		    !of_machine_is_compatible(info[i].compatible))
-+			continue;
-+
-+		break;
-+	}
-+
-+	if (i < size)
-+		dev_set_drvdata(&sdev->dev, (void *)info[i].data);
-+
-+	return 0;
-+}
-diff --git a/drivers/clk/clk-scmi.c b/drivers/clk/clk-scmi.c
-index bf85924d61985eb9e596419349eb883e3817de73..1ed2091e3d4a951c8662db4c94dee4b9c98b8326 100644
---- a/drivers/clk/clk-scmi.c
-+++ b/drivers/clk/clk-scmi.c
-@@ -14,6 +14,8 @@
- #include <linux/scmi_protocol.h>
- #include <asm/div64.h>
- 
-+#include "clk-scmi.h"
-+
- const struct scmi_clk_proto_ops *scmi_proto_clk_ops;
- 
- static unsigned long scmi_clk_recalc_rate(struct clk_hw *hw,
-@@ -242,6 +244,7 @@ static int scmi_clk_ops_init(struct device *dev, struct scmi_clk *sclk,
- static const struct clk_ops *
- scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
- {
-+	struct scmi_clk_oem *oem_data = dev_get_drvdata(dev);
- 	struct clk_ops *ops;
- 
- 	ops = devm_kzalloc(dev, sizeof(*ops), GFP_KERNEL);
-@@ -288,11 +291,15 @@ scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
- 		ops->set_duty_cycle = scmi_clk_set_duty_cycle;
- 	}
- 
-+	if (oem_data && (feats_key & BIT(SCMI_CLK_EXT_OEM_SSC_SUPPORTED)))
-+		ops->set_spread_spectrum = oem_data->set_spread_spectrum;
-+
- 	return ops;
- }
- 
- /**
-  * scmi_clk_ops_select() - Select a proper set of clock operations
-+ * @sdev: pointer to the SCMI device
-  * @sclk: A reference to an SCMI clock descriptor
-  * @atomic_capable: A flag to indicate if atomic mode is supported by the
-  *		    transport
-@@ -317,8 +324,8 @@ scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
-  *	   NULL otherwise.
-  */
- static const struct clk_ops *
--scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
--		    unsigned int atomic_threshold_us,
-+scmi_clk_ops_select(struct scmi_device *sdev, struct scmi_clk *sclk,
-+		    bool atomic_capable, unsigned int atomic_threshold_us,
- 		    const struct clk_ops **clk_ops_db, size_t db_size)
- {
- 	int ret;
-@@ -326,6 +333,7 @@ scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
- 	const struct scmi_clock_info *ci = sclk->info;
- 	unsigned int feats_key = 0;
- 	const struct clk_ops *ops;
-+	struct scmi_clk_oem *oem_data = dev_get_drvdata(&sdev->dev);
- 
- 	/*
- 	 * Note that when transport is atomic but SCMI protocol did not
-@@ -350,6 +358,9 @@ scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
- 						 &val, NULL, false);
- 		if (!ret)
- 			feats_key |= BIT(SCMI_CLK_DUTY_CYCLE_SUPPORTED);
-+
-+		if (oem_data && oem_data->query_ext_oem_feats)
-+			oem_data->query_ext_oem_feats(sclk->ph, sclk->id, &feats_key);
- 	}
- 
- 	if (WARN_ON(feats_key >= db_size))
-@@ -407,6 +418,8 @@ static int scmi_clocks_probe(struct scmi_device *sdev)
- 	clk_data->num = count;
- 	hws = clk_data->hws;
- 
-+	scmi_clk_oem_init(sdev);
-+
- 	transport_is_atomic = handle->is_transport_atomic(handle,
- 							  &atomic_threshold_us);
- 
-@@ -438,7 +451,7 @@ static int scmi_clocks_probe(struct scmi_device *sdev)
- 		 * to avoid sharing the devm_ allocated clk_ops between multiple
- 		 * SCMI clk driver instances.
- 		 */
--		scmi_ops = scmi_clk_ops_select(sclk, transport_is_atomic,
-+		scmi_ops = scmi_clk_ops_select(sdev, sclk, transport_is_atomic,
- 					       atomic_threshold_us,
- 					       scmi_clk_ops_db,
- 					       ARRAY_SIZE(scmi_clk_ops_db));
-diff --git a/drivers/clk/clk-scmi.h b/drivers/clk/clk-scmi.h
-index 6ef6adc77c836dc2d599ff852cdc941f217ee388..d7f63f36c56d155f728325efd6bcf7fe2585b170 100644
---- a/drivers/clk/clk-scmi.h
-+++ b/drivers/clk/clk-scmi.h
-@@ -7,6 +7,7 @@
- #define __SCMI_CLK_H
- 
- #include <linux/bits.h>
-+#include <linux/clk-provider.h>
- #include <linux/scmi_protocol.h>
- #include <linux/types.h>
- 
-@@ -19,6 +20,7 @@ enum scmi_clk_feats {
- 	SCMI_CLK_RATE_CTRL_SUPPORTED,
- 	SCMI_CLK_PARENT_CTRL_SUPPORTED,
- 	SCMI_CLK_DUTY_CYCLE_SUPPORTED,
-+	SCMI_CLK_EXT_OEM_SSC_SUPPORTED,
- 	SCMI_CLK_FEATS_COUNT
- };
- 
-@@ -37,4 +39,13 @@ struct scmi_clk {
- 
- extern const struct scmi_clk_proto_ops *scmi_proto_clk_ops;
- 
-+struct scmi_clk_oem {
-+	int (*query_ext_oem_feats)(const struct scmi_protocol_handle *ph,
-+				   u32 id, unsigned int *feats_key);
-+	int (*set_spread_spectrum)(struct clk_hw *hw,
-+				   const struct clk_spread_spectrum *ss_conf);
-+};
-+
-+int scmi_clk_oem_init(struct scmi_device *dev);
-+
- #endif
-
--- 
-2.37.1
+> ---
+>   .../devicetree/bindings/watchdog/kontron,sl28cpld-wdt.yaml | 7 +------
+>   1 file changed, 1 insertion(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/kontron,sl28cpld-wdt.yaml b/Documentation/devicetree/bindings/watchdog/kontron,sl28cpld-wdt.yaml
+> index 0821ba0e84a3..872a8471ef65 100644
+> --- a/Documentation/devicetree/bindings/watchdog/kontron,sl28cpld-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/kontron,sl28cpld-wdt.yaml
+> @@ -18,12 +18,7 @@ allOf:
+>   
+>   properties:
+>     compatible:
+> -    oneOf:
+> -      - items:
+> -          - enum:
+> -              - kontron,sa67mcu-wdt
+> -          - const: kontron,sl28cpld-wdt
+> -      - const: kontron,sl28cpld-wdt
+> +    const: kontron,sl28cpld-wdt
+>   
+>     reg:
+>       maxItems: 1
 
 
