@@ -1,142 +1,156 @@
-Return-Path: <devicetree+bounces-269930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269931-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFNgHRhwpWmSBAYAu9opvQ
-	(envelope-from <devicetree+bounces-269930-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:10:16 +0100
+	id sD4QC4twpWlXAgYAu9opvQ
+	(envelope-from <devicetree+bounces-269931-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:12:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB50D1D73EB
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8095A1D7436
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:12:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E437304E833
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 11:08:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 755813021732
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 11:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1A43603C3;
-	Mon,  2 Mar 2026 11:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Ksmu/jun"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60AF73603DD;
+	Mon,  2 Mar 2026 11:10:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC17935F61C;
-	Mon,  2 Mar 2026 11:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A543430B94;
+	Mon,  2 Mar 2026 11:10:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772449702; cv=none; b=oM/UtV3apjrCs2j94MBGMFISomZdSCpz03XMWTaCY0yANRMnHiZLPTJEJ2wqggniCyv3aw3KixG/que1jQF/aeu9EQmO1YIM4OG/MOK5Q0z/Zo2ssyuto6vwSnL/CBFRfRlWvyKqh3qLGRYvNq6HszJ542pZiHcpNORl++d1gZo=
+	t=1772449818; cv=none; b=pEeNie29ffrpkoQoByiO17oktOf85A8QTVukHpPJ32ahAFjBtlbhFcfF/z4jwpQWO3Lw29Tvpr+XlMVMs12UAqm+UhjzT3XMyu97YOvI6DvGMoLv/V8YWxTAA2Fh9SEEurZtWVeGkylsMeVVUNW0XaWMSuwCNf/lPjXuwu3J37I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772449702; c=relaxed/simple;
-	bh=yDMWWLMS1/nTjcOgzviWbOPuhhO4mzc+lfRfkF+W9Uk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tqujRavzsYBpMeSMjaVKX5p6mfBzTV6PMB73c4oO5Z3fOJZYbq9GPT6yN4jLwXlp0muWKHIN7dMmHL9kT0uCypaHkfd9M5oMzYGK/XkmpdIf/mBpZSZIalp44u8++eAgrwYxGe7w6zpcm2HBftDXnT9Y3q+Ci8vSeXx1JvlG7oE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Ksmu/jun; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=WJ6Fp+6ND9bT9YLc0KTOaJB8aEFzkS2JdOdry7EMlC0=; b=Ksmu/junNI891rI+Ldwlu8ZOJY
-	USTaEE9SRmuxDtB7tw1boBq1aKDP9VOpYkyP1KF8JJ8W0bsTfqSl+oFOoYEeT7netLIqrKUViXeOg
-	s/WIYF7opi46e4TX8s0ltxDLp42GZL1CIygKM1hHpk2ksDaxM3hjdpjDRH/zQkuuOwB1QBmNKF2V3
-	xuh33WUrtEjXPVYQ7V014Qpx1ssy/hUE3qPNvnjNSsWrSMJZnw/x1gvTr8+rjaQ0+vMcJGncIGLKp
-	fms8+QIHeP7QE3LBFcXiCgZ1Jxnq0YwXUaZnhZ/FOO8gtFWVz68oy1alLKIHf/iWkFq2GHrTkvQhv
-	Zcc/KD4Q==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, david@ixit.cz
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Martin Filla <freebsd@sysctl.cz>, David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix PCIe v3 pinctrl for BPI-R2-Pro
-Date: Mon, 02 Mar 2026 12:08:14 +0100
-Message-ID: <3404271.44csPzL39Z@phil>
-In-Reply-To: <20260301-rk3568-bri-r2-pro-fix-pcie-v1-1-b9ed318b4a77@ixit.cz>
-References: <20260301-rk3568-bri-r2-pro-fix-pcie-v1-1-b9ed318b4a77@ixit.cz>
+	s=arc-20240116; t=1772449818; c=relaxed/simple;
+	bh=IMLbpLHh+OZryH2zk5skJVRCsFclDWXDZE/iQRUHdz4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R6Gu5kkMxzNDkJ1xUSzCYJe+kjM9uhCkl/9WRu15TTkoYnxT3bsr3O5oFDXNA92ozKcqwl2FteQXZdGxNH0b13qcZBFC+QsX6W38NPMLQ8i3zHjT5aFEUtPv/bBmNdUHRYqdjzwoXNnWLPqT2KN4DBAOoDQapjI4bleFoPifWGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4481D14BF;
+	Mon,  2 Mar 2026 03:10:10 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F2B063F73B;
+	Mon,  2 Mar 2026 03:10:12 -0800 (PST)
+Date: Mon, 2 Mar 2026 11:09:50 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Sebin Francis <sebin.francis@ti.com>,
+	Brian Masney <bmasney@redhat.com>, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v7 6/6] clk: scmi: Add i.MX95 OEM extension support for
+ SCMI clock driver
+Message-ID: <aaVv35RJH_hgoxQu@pluto>
+References: <20251231-clk-ssc-v7-1-v7-0-380e8b58f9e3@nxp.com>
+ <20251231-clk-ssc-v7-1-v7-6-380e8b58f9e3@nxp.com>
+ <aaK9HOMWNCb0wzq_@pluto>
+ <aaVN5lr3JBi6LwYX@shlinux89>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aaVN5lr3JBi6LwYX@shlinux89>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269930-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269931-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sntech.de:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ixit.cz:email,sysctl.cz:email,diodes.com:url]
-X-Rspamd-Queue-Id: CB50D1D73EB
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian.marussi@arm.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.916];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8095A1D7436
 X-Rspamd-Action: no action
 
-Hi David,
+On Mon, Mar 02, 2026 at 04:44:22PM +0800, Peng Fan wrote:
+> Hi Cristian,
+> 
 
-Am Sonntag, 1. M=C3=A4rz 2026, 16:54:41 Mitteleurop=C3=A4ische Normalzeit s=
-chrieb David Heidelberg via B4 Relay:
-> From: David Heidelberg <david@ixit.cz>
->=20
-> Add missing pinctrl for PD4 (PI6C PCIe clock enable,
-> PCIE_CLKEN_H_GPIO0_D4) and set output high.
->=20
-> This does fix freeze at initialization due pinctrl being in input
-> state.
->=20
-> Reported-by: Martin Filla <freebsd@sysctl.cz> # reported by private messa=
-ge
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> index 4d3ebe50b90ba..b4c8abe37d1f3 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> @@ -121,6 +121,8 @@ vcc3v3_pi6c_05: regulator-vcc3v3-pi6c-05 {
->  		regulator-max-microvolt =3D <3300000>;
->  		enable-active-high;
->  		gpios =3D <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-0 =3D <&pi6cpcie_enable_h>;
-> +		pinctrl-names =3D "default";
+Hi,
 
-please model hardware not how you want to use it.
+> Thanks for reviewing!
+> 
+> On Sat, Feb 28, 2026 at 10:02:04AM +0000, Cristian Marussi wrote:
+> >On Wed, Dec 31, 2025 at 06:12:53PM +0800, Peng Fan (OSS) wrote:
+> >> +
+> >> +struct scmi_clk_oem_info {
+> >> +	char *vendor_id;
+> >> +	char *sub_vendor_id;
+> >> +	char *compatible;
+> >
+> >I suppose different OEM per impl_ver is overkill...and maybe better
+> >to be trated as a bug if it happens leveraging the Quirk framework..
+> 
+> Hope I not get you wrong. impl_ver is not used here.
+> compatible is machine compatible string.
+> 
 
-The pi6c in the pin-name suggests, that this is a Diodes clock-generator
-that creates the 100MHz frequency for PCIe [0] .
+Yes.
+> The OEM matching introduced in this patch is strictly based
+> on SCMI vendor_id and sub_vendor_id as reported by the firmware. There is no
+> dependency on impl_ver, nor do we intend to distinguish OEM behavior based on
+> implementation version.
+> 
 
-Please see [1] for one possible variant to model this.
+Ok, good, I was just checking my understanding was correct and we are on
+the same page and this is how you intended to use all of the above..
 
+> If in the future any firmware shows inconsistent behavior across different
+> impl_ver, we agree that this should be treated as a firmware bug and
+> handled through the existing SCMI quirk framework.
+> 
 
-Heiko
+Ok.
 
-[0] https://www.diodes.com/part/view/PI6CG33602C or some variant of it
-[1] http://lore.kernel.org/all/20260210080303.680403-1-heiko@sntech.de
+> I could add a comment for the structure in next version:
+> /*
+>  * Selection is based on SCMI vendor_id/sub_vendor_id and optional machine
+>  * comaptible string, without involving impl_ver. impl_ver‑specific behavior
+>  * should be handled via the SCMI Quirk framework
 
+maybe...
 
+    "should be considered a bug and handled via SCMI Quirk..."
 
+BUT I have no strong opinion about the need of this comment...do it as you
+wish, with or without for me is fine.
+
+Thanks,
+Cristian
 
