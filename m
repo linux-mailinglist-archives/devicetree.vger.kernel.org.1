@@ -1,170 +1,142 @@
-Return-Path: <devicetree+bounces-270129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270130-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wECyM3m7pWnNFQAAu9opvQ
-	(envelope-from <devicetree+bounces-270129-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 17:31:53 +0100
+	id wD+jOf+7pWnNFQAAu9opvQ
+	(envelope-from <devicetree+bounces-270130-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 17:34:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ABCB1DCE0B
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 17:31:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 650451DCEE0
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 17:34:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7397A30AF5A6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 16:25:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 878B0307AFCD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 16:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7AA3CC9EC;
-	Mon,  2 Mar 2026 16:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B323A407573;
+	Mon,  2 Mar 2026 16:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NybzX7s7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EECPcWKZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0963093B2
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 16:25:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7D63FD13D;
+	Mon,  2 Mar 2026 16:28:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772468726; cv=none; b=rznh+9nzEBgIqO6MCGanwpskNie2c6c5Gft5Thg64UaF/0jC0KaCILFf3fm8KgCaFSeJZofnHFGUYVAlx7u128Y8gocaJ7lH07mlVoE4/Ah/o6goCWAErG5qTIEGv0bre0ibf10LpiHkjFSIq1YIab3mUfb2GRYt/y0NWIfokIo=
+	t=1772468900; cv=none; b=a+5fhvTMsRoUe/LlEuTmjgb+X04lQ8oeOANv7Z94BL4Z2U1+ylx5JC5EE2b6OgrySKhB7vS98Sq6oZqZBDwhAzLob0l9glx/hMi56HpT4Q4aAteZ7Xvwp80KcF0iZxOZdQIAqXrbTTeZccnEnx4PhUAATNbHexNvBJeCj4WAHwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772468726; c=relaxed/simple;
-	bh=w0JfEAL8UQJ6mwvoIym34kQuZstRGM9t3S3tUgFM7p8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uqpFvhSEArVd0G1KuRTdQXzvZPb5yh5YpovdYDkxUNQhLfKQkaVF6VbPnDa2uHEK9u6nieGWrRsyiqibbW4Q/rrt5MDCIU3W/WYyT2gRjvajE8RG6QmuPgpeu2MWTXvkPkrz6w8V4rkyYLJxtkQIDDsuFO70rvIJYPYne1GSNvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NybzX7s7; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-439b9b1900bso691371f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 08:25:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1772468724; x=1773073524; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zsRF/yJZ5HdWuSiQ8L7Xgp4L8TnqAkrXaWtbBnRsnSw=;
-        b=NybzX7s7FTuQY3g/l0A65lOcwxaR2inYaNu8p9A3zaC0tf9hayJC6WzIb88ea8wx6I
-         WJnkyovdWgzi8cdVZHSNLuErCv/hiAT+gmPVz1AvOxxUbADQ+44TWD+whbw/xiYgWcYk
-         CrS+l47SQid4pDb/4GFAahuIcZqojAsT7rHc/GPNeRiJpbzrDY9GuH6hNW/RZiHd46/+
-         8mv74ZI8ZEz5Gol6HjzoxqVDA3jO4O8DC0UzEp5iHXLO2isiIDvzZG7/xwS1o6ICPVzY
-         gE69PrqTHuFPhzTU+Gb9drGfmMSS8eb8EhusyvkIDwxOP5JHn0x4in5ZQiFrhYjGfwO6
-         f/qQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772468724; x=1773073524;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zsRF/yJZ5HdWuSiQ8L7Xgp4L8TnqAkrXaWtbBnRsnSw=;
-        b=evqfNsdtdtrJzx7vjkJ9rjKc36Op1iX9e85bAN+lON0V+V5CB6F0sWDCz20ZI8qgGL
-         Kow2sJps4vc6LKAolDpSu3OcXAWyM6X/r+9tnSbi68RE1StUULH3u65Lz9fz8zhxrGst
-         /fV2zR7r8WXqVCFdfegSz4x7sCoBwfbcbyWLJrR8AA+flx6ztWgrpV7D4/LKxAu+i6cg
-         SFDQvfPs/9U5M/R/6hDBzJZDMq2V7njxd7OAvqXCDTsOYX4KaL9x7cnRaw2TlmCJH6vz
-         KwLz1I4hOh7mMnygkPmPFEM2KrRhESgfEsq+FqnnxHlB+66HQQNQKeQy1qTKMJfQtEjF
-         5ZFw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5KwgjThnLZ8PFW9FghdMiWZojrEgbI1WYyLO3s6KorS1O6xQR6+EgV3kGhZTZysUObzEYcYnYKpzm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxnq97eueEmFrZQGRDpRDZEaH4/XoqLgwNgffBHjYG2b0gxE0mp
-	F56QGDuLVn1G/CskqTPF1E6ku/eG7Kgb6HlRnNzW4A8r+iWeNzNGR8PVo+sOgEhX4VA=
-X-Gm-Gg: ATEYQzz0wVPRxK61ia7QpvQUmOrHQhPBNfk9dkOQEA4YGbz0B8DHbKoTZ5zvw0G8rYk
-	X91Jz5VQhrVC2poNVyhu6vJnUE9tmz5jyRXojz1ovvbPtxfrG/tNduFN9aioSwiczzRkJzp3tVW
-	OpmztANIaPCGKHx+DIaNezHMsdEcg3JND23Phm3fMJmkWzNSp3Qd5Q2XVhPP28hDJDDutGw5QFz
-	N5EyoscvlryqgJP4wP2661+ayjZr49U3mNwygbz4gvnsM/n/85qdFVsBhEOBLRvjaDX7zTcQVSW
-	e0l+s/XF4Y8cX4JLAwYpwiRVqPB1GEDPRikWRsYQjuDEZTBeIDpuRTcl5hVJyqwGhmSk36Ul4m3
-	wdW+Zf0k/byRAIVnidrYmKqdyYrr/kklnfRqCbyx0jEaVM8ea4lKRnIWcLL3I0vuNqy1HPAEvWw
-	+Pz+jRAxY6qVuY+Itxl3p1A8z4V5SZ8S4gemgDTfLTQlaS/XI=
-X-Received: by 2002:a05:6000:1acb:b0:437:6629:9b82 with SMTP id ffacd0b85a97d-4399de3aacfmr21667465f8f.52.1772468724121;
-        Mon, 02 Mar 2026 08:25:24 -0800 (PST)
-Received: from [172.19.170.194] ([213.233.104.147])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439ba2a5970sm5477752f8f.33.2026.03.02.08.25.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Mar 2026 08:25:23 -0800 (PST)
-Message-ID: <3b30df38-3a68-4d1b-9e61-77a80d3fe8a2@tuxon.dev>
-Date: Mon, 2 Mar 2026 18:25:19 +0200
+	s=arc-20240116; t=1772468900; c=relaxed/simple;
+	bh=DrTr4BdPO63/kSfkoOJCxr1R25ldxCtHea75ckboYk0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rtQrEFgEmI4sToGy/itpkQ9I8gc6Q/CBiGNzqYZLSft2NllmwLRPGVvIwDwdEGJf7+2BsbhzmkTAQFOpBW8u8Bt0C2bqtbuhL1apEj1BC/o0govl4rWsBp0wa0+x8xjLacKc/JaoWJzsaeEDHbPW/03IgnW+rodSpxnNgoek7DU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EECPcWKZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93ACEC2BC86;
+	Mon,  2 Mar 2026 16:28:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772468899;
+	bh=DrTr4BdPO63/kSfkoOJCxr1R25ldxCtHea75ckboYk0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EECPcWKZhtK9HHOYZku04jjVDyu1w06van8Quc/dBidmzCg3JH1CE2cpzRK55NF0D
+	 jJktZqNBlVahReJIdzxWkQBYz4AzP8LtH9CwzORYAdLqK9j7SE4e2iYFZnB7viUrdM
+	 O9GoHsLr4omsw/jjWzhjQ9nW06X7hwRPhMSVQFSydv1gyZpnOGrvb54t9tW5uu1Jt7
+	 zk3u3QBOQht9PR77N/kG8K5XZjmPQYUvn/NqwBW7wIFsI655NmSmlpRQDfs82kti3N
+	 9DcVbajMcpXNjGENpd+J3E+eMd+sQPaWc+XKoA8qiCIwmVEye2fanCAbZBEt9LIuA4
+	 77QO0yAcgYIRg==
+Date: Mon, 2 Mar 2026 16:28:13 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 3/6] regulator: dt-bindings: sc2731: Deprecate compatible
+ property
+Message-ID: <5dbdbd4a-5446-4e67-8cd2-b2abbba4f68f@sirena.org.uk>
+References: <20260222-sc27xx-mfd-cells-v1-0-69526fe74c77@abscue.de>
+ <20260222-sc27xx-mfd-cells-v1-3-69526fe74c77@abscue.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 11/15] PCI: rzg3s-host: Add PCIe Gen3 (8.0 GT/s) link
- speed support
-To: John Madieu <john.madieu.xa@bp.renesas.com>,
- claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org,
- kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be,
- krzk+dt@kernel.org
-Cc: robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
- magnus.damm@gmail.com, biju.das.jz@bp.renesas.com,
- linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
-References: <20260227153236.55988-1-john.madieu.xa@bp.renesas.com>
- <20260227153236.55988-12-john.madieu.xa@bp.renesas.com>
-Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260227153236.55988-12-john.madieu.xa@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 7ABCB1DCE0B
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Kf6USxJBZ4GjMAJH"
+Content-Disposition: inline
+In-Reply-To: <20260222-sc27xx-mfd-cells-v1-3-69526fe74c77@abscue.de>
+X-Cookie: You love peace.
+X-Rspamd-Queue-Id: 650451DCEE0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270129-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[tuxon.dev];
+	TAGGED_FROM(0.00)[bounces-270130-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,bp.renesas.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,gmail.com,linux.alibaba.com,vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[tuxon.dev:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi, John,
 
-Something got wrong with the patch description for this version. See below.
+--Kf6USxJBZ4GjMAJH
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2/27/26 17:32, John Madieu wrote:
-> Extend the link speed configuration to support Gen3 (8.0 GT/s) in
-> additionvto Gen2 (5.0 GT/s). This is required for RZ/G3E PCIe host
+On Sun, Feb 22, 2026 at 02:16:47PM +0100, Otto Pfl=FCger wrote:
+> The node containing the regulators is always a child of the main PMIC
+> node, which already has a compatible property identifying the type of
+> PMIC. This makes the compatible in the child node redundant. Mark it
+> as deprecated and remove it from the required property list and the
+> examples.
 
-s/additionvto/addition to
+Acked-by: Mark Brown <broonie@kernel.org>
 
-> support, which is Gen3 capable.
-> 
-> Instead of relying on DT max-link-speed for configuration, read the
-> hardware capabilities from the PCI_EXP_LNKCAP register to determine the
-> maximumvsupported speed. The DT max-link-speed property is now only used
+--Kf6USxJBZ4GjMAJH
+Content-Type: application/pgp-signature; name="signature.asc"
 
-s/maximumvsupported/maximum supported
+-----BEGIN PGP SIGNATURE-----
 
-> as anvoptional limit when explicitly specified, which aligns with PCIe
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmlup0ACgkQJNaLcl1U
+h9DcBwf/dRolwDx+gvFvuRwyQUpj6eDFz5cV8azndvu23rnyNIoAUQAvyBxcOGRF
+X1Dnlyx6Ye+SbxnPfQenncP9FIuRRzf7fzFjQ1C7oW0zqoiRKlzHWYwneo4gcG+B
+YzdyiS5UxIEHOG0hrtngKU6gb19QVaKNHkHTgf0aMGfRZQg/6hzj2RAo0zSNtGeq
+BeyvWxOQdocX+aMkP01CdZa7HpBbJkzugXtF1JM4rTAoGnqN5YEs2HSLgJI2BHUp
+XM8OJo4FIddXPOeKq1QioqcB2SDwDNLa/CnqRfvqy/S+VNypPnRTDq6oL+/TsD3i
+pLpcJYWGM0qZ35zIHBtWfH/dP7j2XQ==
+=NlVv
+-----END PGP SIGNATURE-----
 
-s/anvoptional/an optional
-
-> subsystemvexpectations.
-
-s/subsystemvexpectations/subsystem expectations
-
-Thank you,
-Claudiu
-
-> 
-> Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+--Kf6USxJBZ4GjMAJH--
 
