@@ -1,245 +1,248 @@
-Return-Path: <devicetree+bounces-269889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269890-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OJWzKUFmpWmx+wUAu9opvQ
-	(envelope-from <devicetree+bounces-269889-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:28:17 +0100
+	id yAnHG75mpWmx+wUAu9opvQ
+	(envelope-from <devicetree+bounces-269890-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:30:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435091D67A0
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:28:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE64F1D686F
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:30:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2299530825DF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:21:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 195953078FFC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0CF139B96F;
-	Mon,  2 Mar 2026 10:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1027F39B95E;
+	Mon,  2 Mar 2026 10:21:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eQt4EnOt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VRdC2N/m";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="C6PMCiiU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB1A396B85;
-	Mon,  2 Mar 2026 10:20:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B74BF395DA0
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:21:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772446844; cv=none; b=CI2PjwJjcX+1UH3M70hFAf7k/Go4QpjBldMsKwboXzEHvMbtYrk13aA2e94/S0Pm/ggCleEta2CQROk9lLd4vTKQUWYRkQjs8/etC0KepSKLrNvZj2YgW9mrwrDXOaq+DN1Z4Mjh1/8pdGVGfguB4RFhEVJjRCZFgRytdQsf1M8=
+	t=1772446889; cv=none; b=kQBe9YmwAqqCMlDum87oKV43n8fQ/QIrIYYhGckX9onH/XFsje9XF8jFsST+FNtwBihzCbhir6/Q1M/kiLcXxqpW2/Qh6GTmcIQ0qDxLYPj03vOxFcHpAZCOsIxQC0vNGs5GPDyIpYCZVJADxcqpPny3e0Fbb4RGOJIEWL1vjcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772446844; c=relaxed/simple;
-	bh=JD4YIPNcb+y88+5wOOif7V+1YNyKxExUlQlWm1SJGBs=;
+	s=arc-20240116; t=1772446889; c=relaxed/simple;
+	bh=YzPtYSXIsrY/B+gtkEtbaoVWBU8jVlBRjvOq6AnGucQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qCpDR73V93HzWPMLRjNSltUrp240RgHCXvCrgmcq6j1kglwgNn9bRdnuVHf1NNcUj6DW/quBr9JdcmDmIE8gqEwUkDs1s+5KQXCiUUM0ECEKPTACd+ubRlZyeumVNiQyc1AYLq7Cors0C1nEfb3rayeXdS6UGngihYoJDgGv2Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eQt4EnOt; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772446843; x=1803982843;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=JD4YIPNcb+y88+5wOOif7V+1YNyKxExUlQlWm1SJGBs=;
-  b=eQt4EnOtpzi+25W42SljVewy8R+w1OgMAHlObAcSX+HVhJostpjVAkiJ
-   RBbYEDIGz9vlTG+Bs/ZkQpC0ZllGH6CoSnSxDFvKX/JSeh3n6AaKjsDny
-   ykQHVtx6FhBr49b5GxR1WTGPlCzksXcsAutPXEPilBt/LMgQbXwLQ7Btl
-   ZJCh12t1odxxAWB5vSPgjL9IbGtGYGkDxFpVNQrVD6AbU4KakjLvu4uTQ
-   J9N3wyn04oFmR9iiLP2NZyxIjn3AndMV3v9OxPgVChxwUsfgoGTFgFlfc
-   DTPX8/qXvjp67qqjNuR1uKBez2tWHeQj+mOXHpaZwFRcmRGAznkVh0rUS
-   Q==;
-X-CSE-ConnectionGUID: KZdEgPp8R7SXy0iwUvM+pg==
-X-CSE-MsgGUID: JqwsviTLRFyyVV5e0Edi/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="61020262"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
-   d="scan'208";a="61020262"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 02:20:42 -0800
-X-CSE-ConnectionGUID: syDccVPRTzm0V3agw43T/Q==
-X-CSE-MsgGUID: XHLoCzA3Qie8dWjHLpFG0w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
-   d="scan'208";a="221764078"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.52])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 02:20:38 -0800
-Date: Mon, 2 Mar 2026 12:20:35 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>,
-	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Dmitry Antipov <dmantipov@yandex.ru>
-Subject: Re: [PATCH v7 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <aaVkcw0g79pnXU_z@ashevche-desk.local>
-References: <20260216-adf41513-iio-driver-v7-2-b0ed387ab559@analog.com>
- <20260222172912.60a103c0@jic23-huawei>
- <aZwYshRxNgSh3CWk@smile.fi.intel.com>
- <zb752y7tnjzsc35na572o4sip6efwv3i4lha4ls6fhdrr52h5v@bfgy65cmae4p>
- <CAHp75VdSV2QDMR0DueCuP=Ds-5A1NsNjqPWtmRbG4NvoJ=LjXQ@mail.gmail.com>
- <20260301122340.3fedf64e@jic23-huawei>
- <aaVKDbB_XIFmxCEM@ashevche-desk.local>
- <ct2r5wvvfowqcfe44fawbi4blkjpfle7etvaunwbsxevejsr2s@3g43wru5n6jh>
- <aaVZdgvZhaWDgU2X@ashevche-desk.local>
- <imtqtaakbz4c4pmlmb3gh2r5sjvso2fymdy4poyjvds2noqzdr@d4ia6rml6jzf>
+	 Content-Type:Content-Disposition:In-Reply-To; b=O4eFSrlRTOJ5o53q9NiNj/SOl77S12RSdU2K2VL214RTE4pCVVm2hdGthJ2bRc4gZXk57JGo8n9ejygIz6o4kNiedgYLsfaz3SqQWTKxkj9miTThmShILOK9yj8dNuVJmBYI+w3iV2HjgwrrDafA3jLB/64pZInnWs19uTn4KfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VRdC2N/m; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=C6PMCiiU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6228Ewfn2066736
+	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 10:21:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=qc+PQLcGoUUce2r4NCoYXsIY
+	gtlY85TRmH7qlp00OJA=; b=VRdC2N/mHMU+RzmszYje2TKYjxmdBvnTa9NpRZIs
+	YYeQCxEx0hSIB0nu0vYpzKLRrSv1Q2JwypMlqzLYjQFb+xk/R785GokIuSTFRpT9
+	JyeYY8ei53SUYZvd8epFTDerrVFtOJ6NWysUd0oZp0rZvNmnJ9OprKjYYc42HdwZ
+	EZeJL4QJ7wFot5TOE8iEMVdp6xx8nFo0xv0PBB3zOZ7fK2bW+36wbmg/yPtCgI5X
+	mLUpU/N1yWWisT3RtLUc4WFS8d5HNcV4HZqcUVjTeB75x7llLvR/jrhpYwup7xSn
+	6cQBjiptV9eCJNOcUVnoZ+ezZwC2n3vlB1GQu2QbYAY4wQ==
+Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com [209.85.210.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cksfd553n-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 10:21:27 +0000 (GMT)
+Received: by mail-ot1-f71.google.com with SMTP id 46e09a7af769-7d18e95c658so27197876a34.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:21:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772446887; x=1773051687; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qc+PQLcGoUUce2r4NCoYXsIYgtlY85TRmH7qlp00OJA=;
+        b=C6PMCiiUzT3A62H1pKoQUa2EtBTaFs4Jq4AnDBM5i/Twk1hznPGnOPMM4sbfhbq3qB
+         GAvO4SEKZJ95+0vWlnECr6L6NOBonS6rjfCJAIboPAZiFeo8wRhbQN9BaMR+osz9YfHi
+         /ar4b33NuMe2AXwlCvwFRHpoIeX0Jhtl7JAca07RKGqh1XiXOT4jpJb1EPxRLCUHlz6n
+         Bkk4uABMnZ0nmWvBuPvQQ1KwU4uAXuEOs9t3cfeH0kpKPkCmI++kC/JPGweZ/dg9fgOI
+         KOyZZhTRhTBiXMXEcYEd1xmr/ez4V0+iGNkIQlsbglzuFcFyNYai3IILZAxFdhLG72eJ
+         Oaaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772446887; x=1773051687;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qc+PQLcGoUUce2r4NCoYXsIYgtlY85TRmH7qlp00OJA=;
+        b=wqyIya5IlX90/zl0hv90fEHpdc1hR3oIb4+vyztvnSzBFsi7b2eKMRLE5dKL5K1w1r
+         rnSuW1LHB8fNSG1n6CjmKToA2tfE/awNYINIauvWJTx3w16SSTp6rqyVrQMw0KfIupeP
+         8Nma9qZF0CC6Nyv/F5iAUSlb1HVoMU1Rd2Xojork0WV+UVtm77r/AV1JFKZ4GraQNUcW
+         nWbm7KlkmZOZSgAz2xb/NueIcUrp8ycTUNHQ6KXCsFQSCj7QFqQzHx6nieM24HRHflUw
+         q4ADN88gfOcO6j/h4sCwoFG15babJQmdywlSpF5xkVGvmwE2HT2GEZ/IwI5Dyz7/jwYP
+         PmzA==
+X-Forwarded-Encrypted: i=1; AJvYcCWtR/Wrn6DtMmFXe1AUksQIkeELa4tKqaAfmdiDU+hxoXzs0ICpFj22wipTWR1xQx8YhmRG5DRUxk0x@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1JS6femjAwsyCEtROP216gokL7d+g7esFlqsYSvmefRpu5laM
+	hglKbkWZQUob7PBVj5YL5jPh7fqwanWwZD7OkFvbpm0kIxTrLCuk6I9MNswqAemrIYgsR0c9GNy
+	RQx+7cNJEakBNGXWs4uKk1gcRmxgt44shnZYAy2eDci68ijWrU7Zi/quncYiLtbat
+X-Gm-Gg: ATEYQzx6IU9ZoFBnd2zY5uvWjOiA9sdSVXm9rTx5fq+nWqyPG9qwXWtRBj6xbXnLRu0
+	utQQLfoLg4jGIZPE/5LciOYclESue3NIBZ8PUJxAahitUmqBwyJ8pGIof4h6Gwb7nRJWWoK0kN7
+	m7FLp1LnAdcx0rqcAuvvfU2KHcOTP1km7yk55eh+eZ35U3ih8fRkaPwLAMBDQEloVZ1+p/EUKH3
+	auf4lWOznsY/cda9QOKoyzgxmmuXeQCnKJItpzbHrp1VBwyxBTd8V2RxkAGJb5o0npPquXOLVsn
+	f26WBAk/PIPYiBfruXEdbCYY6JebQJfIv/ZJezhi3qDEUvHgX5QmfFTAQ/uxrXeypBSlmYhvIps
+	FOZNM6PTLOLaL5tshsF8LeGU45JxIXJXzLaMXpln1gR+Df1DVpAd+fR4NZwguAi3dOFHL
+X-Received: by 2002:a05:6871:3309:b0:3fa:ef4:3e3f with SMTP id 586e51a60fabf-41626f9aa80mr7482824fac.33.1772446886939;
+        Mon, 02 Mar 2026 02:21:26 -0800 (PST)
+X-Received: by 2002:a05:6871:3309:b0:3fa:ef4:3e3f with SMTP id 586e51a60fabf-41626f9aa80mr7482812fac.33.1772446886550;
+        Mon, 02 Mar 2026 02:21:26 -0800 (PST)
+Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4160d21196csm11368443fac.12.2026.03.02.02.21.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Mar 2026 02:21:26 -0800 (PST)
+Date: Mon, 2 Mar 2026 02:21:24 -0800
+From: Qiang Yu <qiang.yu@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Add
+ vdda-refgen supply for Glymur
+Message-ID: <aaVkpKZcrNM7k4Xm@hu-qianyu-lv.qualcomm.com>
+References: <20260208-refgen-v1-0-87ca84fd78b3@oss.qualcomm.com>
+ <20260208-refgen-v1-1-87ca84fd78b3@oss.qualcomm.com>
+ <20260209-magic-conscious-seahorse-b81c8b@quoll>
+ <aY1Jx5J8x/OALk5M@hu-qianyu-lv.qualcomm.com>
+ <hcslao22elcihjw56ltu4yo54lotheqpikzsrq6tia33di4fs4@2ygrbwhcfx2a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <imtqtaakbz4c4pmlmb3gh2r5sjvso2fymdy4poyjvds2noqzdr@d4ia6rml6jzf>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <hcslao22elcihjw56ltu4yo54lotheqpikzsrq6tia33di4fs4@2ygrbwhcfx2a>
+X-Proofpoint-ORIG-GUID: xxKGbPKgt_y7uSWNnCKbcevZLbRj6lfe
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDA4NSBTYWx0ZWRfXxe9bWQ0Xdes7
+ HgfD01bBUgcl/ZtNk4erkRuocS7s+ZSeURfcQXESS9kY9LdqOHP4AiQfjcnzrjRGT5hA1NhfC3k
+ 8oDLUomFSJfeALcjWL9yMBlkpX59szvrkkfbpfPh6lCI/tsArLrQ4h02e/oRzsuGsB82yivYXpA
+ 67NRldQhMqYV03ov9ksy0nnkAMb2u8tN/rIhQnNsIbqWYTqQ8ydhJqGUTo9tcA+uVfyzasPIpkA
+ wliYZAluJZ7gjY3yLkDicVgB0FQnBlI09TXI2eCk55J/vT52HkvPReSJvIdQl/0awO4+fxR4dq0
+ vF42LQCBuueAHkHbL+lCGHm/ER9IE1/Wl68BCkECihKsSialp6GDw2E3e5zKq7fRJWlmw9CqWpJ
+ luyCxXLeEItH9gbfsIZvewtTbUh4h0KBi4fLARrOv4U4beSWifii1HlRA3mCPoexCFb7a81D5T7
+ uMZIMddtFBaGjWLQUcg==
+X-Authority-Analysis: v=2.4 cv=HKDO14tv c=1 sm=1 tr=0 ts=69a564a7 cx=c_pps
+ a=OI0sxtj7PyCX9F1bxD/puw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=Mqtz4aph0Rek3LVAYukA:9 a=CjuIK1q_8ugA:10 a=Z1Yy7GAxqfX1iEi80vsk:22
+X-Proofpoint-GUID: xxKGbPKgt_y7uSWNnCKbcevZLbRj6lfe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_02,2026-02-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 impostorscore=0 adultscore=0
+ spamscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020085
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-269889-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,yandex.ru];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269890-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	NEURAL_HAM(-0.00)[-0.993];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,hu-qianyu-lv.qualcomm.com:mid];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[qiang.yu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: 435091D67A0
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: DE64F1D686F
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 10:13:52AM +0000, Rodrigo Alencar wrote:
-> On 26/03/02 11:33AM, Andy Shevchenko wrote:
-> > On Mon, Mar 02, 2026 at 09:19:42AM +0000, Rodrigo Alencar wrote:
-> > > On 26/03/02 10:27AM, Andy Shevchenko wrote:
-> > > > On Sun, Mar 01, 2026 at 12:23:40PM +0000, Jonathan Cameron wrote:
-> > > > > On Mon, 23 Feb 2026 12:41:45 +0200
-> > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > > On Mon, Feb 23, 2026 at 12:37 PM Rodrigo Alencar
-> > > > > > <455.rodrigo.alencar@gmail.com> wrote:
-> > > > > > > On 26/02/23 11:06AM, Andy Shevchenko wrote:  
-> > > > > > > > On Sun, Feb 22, 2026 at 05:29:12PM +0000, Jonathan Cameron wrote:  
-
-...
-
-> > > > > > > > It all depends on the series from Dmitry Antipov.
-> > > > > > > > Can somebody help reviewing the patch 1 there?
-> > > > > > > > https://lore.kernel.org/linux-hardening/20260212125628.739276-1-dmantipov@yandex.ru/  
+On Fri, Feb 13, 2026 at 07:47:36PM +0200, Dmitry Baryshkov wrote:
+> On Wed, Feb 11, 2026 at 07:32:23PM -0800, Qiang Yu wrote:
+> > On Mon, Feb 09, 2026 at 09:06:23AM +0100, Krzysztof Kozlowski wrote:
+> > > On Sun, Feb 08, 2026 at 08:49:39PM -0800, Qiang Yu wrote:
+> > > > The PCIe QMP PHYs on Glymur require stable reference voltage provided by
+> > > > refgen. The refgen itself requires two separate power supplies:
+> > > > vdda-refgen0p9 and vdda-refgen1p2.
 > > > > 
-> > > > FWIW, Andrew picked them up for Linux Next. Please, test!
+> > > > Since there is no dedicated driver for REFGEN, add vdda-refgen0p9-supply
 > > > 
-> > > The patch looks ok, but I am not seeing it solving my problem here.
-> > > Here is the v8:
-> > > https://lore.kernel.org/linux-hardening/aZXDSbyH8tWmTPPL@smile.fi.intel.com/T/#t
-> > > 
-> > > I would have to use simple_strtoull() and it would clamp the value at
-> > > ULLONG_MAX in case of overflow, but it would not say that an overflow
-> > > happened. Would that be fine? I understand that addressing the FIXME
-> > > in simple_strntoull() is not a subject of this patch.
-> > >  
-> > > > > > > can we push for the exposure of that function to kernel modules?
-> > > > > > > We have discussed that in v6, and I understand that:
-> > > > > > >
-> > > > > > > EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
-> > > > > > > in lib/kstrtox.c;
-> > > > > > >
-> > > > > > > #include "../../lib/kstrtox.h"
-> > > > > > > in drivers/iio/industrialio-core.c
-> > > > > > >
-> > > > > > > is not a good call...  
-> > > > > > 
-> > > > > > Yep, because it's a temporary band-aid. The proper solution is to have
-> > > > > > shared code provided by the lib/. So, the wrapper to parse 64-bit out
-> > > > > > from the constant string literal should be part of the lib/ in the
-> > > > > > result.
-> > > > > > 
-> > > > > > > > When it's in, we can continue on this one. TL;DR: for me this is on hold.
-> > > > > > > > But if you see the need to have the driver being in IIO, please add a big
-> > > > > > > > fat FIXME to make sure we will get this all being sorted out in the
-> > > > > > > > (nearest?) future.  
-> > > > > > >
-> > > > > > > I could add the FIXME into iio_safe_strntou64() doc header. It explains
-> > > > > > > the context:
-> > > > > > >  
-> > > > > > > > + * The implementation of this function is similar to _parse_integer_limit()
-> > > > > > > > + * available in lib/kstrtox.h, but that header/function is not available to be
-> > > > > > > > + * used in kernel modules. Hence, this implementation may need to change or
-> > > > > > > > + * removed to reuse a new suitable helper that is properly exposed.  
-> > > > > > 
-> > > > > > Up to Jonathan, I hope we can move the above mentioned series forward.
-> > > > > > Without that, as I pointed out, this one sounds to me suboptimal and
-> > > > > > unneeded double effort.
-> > > > > > 
-> > > > > I don't want to hold this series for another cycle, but we are still
-> > > > > fairly early in this one, so some focus on moving that forwards seems
-> > > > > sensible.  If we are running out of time, we can fallback to a loud
-> > > > > FIXME and a plan to move to the generic version in the library next cycle.
-> > > > > So let's set a rough deadline of rc5 and see how things are going then.
-> > > > 
-> > > > Taking into account the above, can we actually develop something
-> > > > based on that?  Or at least having a temporary solution for this
-> > > > cycle followed up by the better one for the next?
-> > > 
-> > > As mentioned above, I am not sure how consume what Andrew has over there.
-> > > It seems address lib/ internal stuff. The interfaces are still the same.
+> > > How does the driver matter for the bindings? If I add dedicated driver
+> > > for refgen, then I change the bindings?
 > > 
-> > I think it will be third time I'm repeating that this needs a wrapper in the
-> > lib/. Just add the one (like with safe_strtoull() naming schema) with properly
-> > formed prototype that returns an error and the result in different variables
-> > 
-> > int safe_strtoull(..., *result)
-> > {
-> > 	...
-> > }
-> > EXPORT_SYMBOL_GPL(safe_strtoull);
-> > 
-> > (Also some test cases have to be added.)
+> > Yeah, I know that dt-bindings should describe hardware, not software. But
+> > what I meant to say is that the refgen is different from qref which is
+> > controlled via TCSR registers and its LDOs are requested to vote in
+> > tcsrcc driver. The refgen doesn't required register setting and it doesn't
+> > have dedicated driver, so we vote its LDOs in phy driver. I will avoid
+> > this statement in next version.
 > 
-> I really understood that I would need to use Andrew's work as is, but
-> in fact, you encouraging me to add what we need on top of it.
+> I must admit, I could not find references to the refgen in any of Glymur
+> PCIe-related HPGs.
 > 
-> Assuming that this would increase the scope of this patch series, I suppose
-> that would need to be included in a separate one.
-> can we just not export simple_strntoull() from lib/vsprintf.c? I mean,
-> addressing its FIXME and changing its prototype?
+> > 
+> > > 
+> > > There is qcom,sc8280xp-refgen-regulator so why there cannot be
+> > > qcom,x1e-refgen-regulator?
+> > 
+> > I think we can and it seems better because the refgen for pcie phy also
+> > supplies reference voltage to other modules like usb. But I checked the
+> > qcom-refgen-regulator.c, it contains some register settings and there is
+> > no LDOs voting. I'm not sure what does those register do, maybe Konrad
+> > can provide some backgroud.
+> 
+> Those regs provide voting for refgen, because on those platforms DSI
+> block doesn't have a hardware vote for refgen.
 
-I do not understand why we have to stick with the scope of IIO and make an
-unneeded churn and double effort. We have a code that you need. Yes, it
-requires an additional change that adds a glue (exported) function. How is it
-out of the scope? If we hurry up with that code to be added, it increases
-the chances to get the rest in sooner.
+Hi Konrad, Dmitry
 
--- 
-With Best Regards,
-Andy Shevchenko
+I tried to model the reference voltage as a fixed regulator but the fixed
+regulator driver only supports a single vin-supply. However, the refgen
+block requires two separate power supplies (1.2V and 0.9V LDOs).
 
+Would it be appropriate to modify the qcom-refgen-regulator.c driver to
+handle LDO voting for both the 1.2V and 0.9V supplies? In the regulator's
+enable/disable callbacks, we could vote for and unvote these two LDOs
+instead of performing register operations.
 
+- Qiang Yu
+> 
+> > But on Glymur, we only need to vote LDOs. So
+> > what if we use a fixed regulator in the device tree to represent refgen?
+> > We could set refgen0p9 and refgen1p2 as its input supplies, then the PCIe
+> > PHY would just need one refgen supply reference.
+> > 
+> > - Qiang Yu
+> > > 
+> > > 
+> > > > and vdda-refgen1p2-supply properties to the PCIe PHY dt-bindings. Use
+> > > > conditional schema to restrict these properties to only Glymur PCIe QMP
+> > > > PHYs.
+> > > 
+> > > Best regards,
+> > > Krzysztof
+> > > 
+> 
+> -- 
+> With best wishes
+> Dmitry
 
