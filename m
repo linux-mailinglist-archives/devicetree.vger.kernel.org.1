@@ -1,228 +1,189 @@
-Return-Path: <devicetree+bounces-269855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269856-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iAxdCYJZpWlp+AUAu9opvQ
-	(envelope-from <devicetree+bounces-269855-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:33:54 +0100
+	id cEFkA8FZpWlp+AUAu9opvQ
+	(envelope-from <devicetree+bounces-269856-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:34:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF1211D59C6
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:33:53 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0AD11D59E4
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:34:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3CD6B300B9F1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:33:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 853DA3004DBA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:34:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDC738F629;
-	Mon,  2 Mar 2026 09:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE8230F934;
+	Mon,  2 Mar 2026 09:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="h5vKZmAc"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CrE7Igiv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010038.outbound.protection.outlook.com [52.101.46.38])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319D630F934;
-	Mon,  2 Mar 2026 09:33:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772444031; cv=none; b=gSzfYXAFps8m75KP9G8z5hsOkfUm2qbKnijET80gEmnFrnxUl+X6Fyc2IKFy1Q/ABsIUnij3lgrkAMkgB6ycxmPmKEl7nimZkCAqING3U4IAg3SJhCyYmz1DqkmKqehpFYvjp94Ig1taLstaoNScyraZtgC7gIqMeam/V7vS92s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772444031; c=relaxed/simple;
-	bh=L5wlsipJX/hRemiikjSCzNo6/d0K6+87GRLKe3dB9X4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VJUfc7gFGx4HIClHge3gym0E2AEvo1ePDq6opZt3Nij8V8jWbxNzheQ7O2OT9mM17y9VsguOPCs2trZSumYbkhZhTshfwmO5+2YA7twKbSmnTX7a/AzQBGBhW+Rp9jFMA8R/ha7e/Ylns+4wVdJBU3mSt6hUFKUP8sOHXw3phFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=h5vKZmAc; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772444030; x=1803980030;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=L5wlsipJX/hRemiikjSCzNo6/d0K6+87GRLKe3dB9X4=;
-  b=h5vKZmAczhj3Hvbs04xTuV6KQoiyeG2BrFeoRVg6xPg0dLoxXVwLoehU
-   vRgrqFYK9Go8QDqYjai0or4K5YdrQI8T/Z828ZK0a2IulLThOz4ABc7Xq
-   8w3dI/iUYKAUrD8sZwPj/6cHmdULehtD2pPz+VwnCuu+dpBAmjW384fig
-   Bg2Th+XhjRKMWOM7CuSlXEsGARRUgzfUnTcP4er4qxg53awMkviTupZyX
-   vd3sxRelpP/TadQk9GL1d2M0esy9SBmvo1k57yUWS/pq2VWY7s8EDN652
-   AQfXBeu7fXcUT0ln4sHaihCqqy8M4TzvKCH39T6Y1HV+ygSQYJCS9UChB
-   A==;
-X-CSE-ConnectionGUID: KvtwCNtMQIi4JMYWiVh7Lw==
-X-CSE-MsgGUID: eBz7/q1UST+fk7sVDFgq5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="84912219"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
-   d="scan'208";a="84912219"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 01:33:49 -0800
-X-CSE-ConnectionGUID: HnQNMirVRBK07EBz+CwPTQ==
-X-CSE-MsgGUID: mFwFMDJWQJS5k3OVM56syw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
-   d="scan'208";a="214089996"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.52])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 01:33:44 -0800
-Date: Mon, 2 Mar 2026 11:33:42 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>,
-	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Dmitry Antipov <dmantipov@yandex.ru>
-Subject: Re: [PATCH v7 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <aaVZdgvZhaWDgU2X@ashevche-desk.local>
-References: <20260216-adf41513-iio-driver-v7-0-b0ed387ab559@analog.com>
- <20260216-adf41513-iio-driver-v7-2-b0ed387ab559@analog.com>
- <20260222172912.60a103c0@jic23-huawei>
- <aZwYshRxNgSh3CWk@smile.fi.intel.com>
- <zb752y7tnjzsc35na572o4sip6efwv3i4lha4ls6fhdrr52h5v@bfgy65cmae4p>
- <CAHp75VdSV2QDMR0DueCuP=Ds-5A1NsNjqPWtmRbG4NvoJ=LjXQ@mail.gmail.com>
- <20260301122340.3fedf64e@jic23-huawei>
- <aaVKDbB_XIFmxCEM@ashevche-desk.local>
- <ct2r5wvvfowqcfe44fawbi4blkjpfle7etvaunwbsxevejsr2s@3g43wru5n6jh>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10BB72631;
+	Mon,  2 Mar 2026 09:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.46.38
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772444091; cv=fail; b=Yf8KKXCyhnH7vKitt1Rngy7OcIcAgI9IeYTVQEgyJWr8ekwiOQmxZ83Xh94uxb/4gW6IcmTi98K3+DkTHlBWK9OU1b2qPGUKCIOPpL5n/Tgpidzo96xEQVm7n9ZpFDeEZ4gFQ36XDZaUXLpxitwTADPLqbjwLXvqpfYZvQtdXX4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772444091; c=relaxed/simple;
+	bh=fQBI1gggnFjDzOMUnU3gBqNzPjTjz5meSubLNotbtjk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jmsjAdo8GQiUSIGFwHtk4/530SqnniyDFGArv7uW6zCWrKrQ4/xWe9YKS6oUDsMtFie4xkLuAUJ6hCxTPYAvosZIKgGwhMw9XdCNoVhdCzZ+OlFhlHIv/qMhMh9SDiXVYSQlnBOzNaWTMF1vx5WPMx8fQipaKZdTN3l9fWHDOnA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CrE7Igiv; arc=fail smtp.client-ip=52.101.46.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=m/PH+Pvni6G7Bxm782j8LqsA1QEz2Jst2QsDV/7Z2Srq3X7RywYWT1SGLh4/FbI7Wktm8Q6RjjfimRDpTpkluANUDM37Ir4yBvK29V3R6EoxzMHpZPPuAAtA5qF+mKNXX8d2+zXcNN8SCZg2YJzYSdYvoTJ1QONPX1JvCSSFrDGibCdaiauBDiD1s91ijpM8VPCVcVExdFlwBJZXa4vnMArGWx/QOYt13WExwexP/tAQ8bK8wOhjM1GEMQLlF58gYvHa2vPV1u00QkTzXz/qryO4Vrdat0qCd112lkll2+5NISDbav4ZP4iHTWAWSeDFfbi0RgqtR2vXj2upvGt3Zw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GDpwjrP92roIetOnlHygAJxfgi+JMRMatyYYaVWjm/Q=;
+ b=BsFCwjw7TmpzYvUbTfFsHN+Fq3G04wDukylo8LyK8ABiU7aEunH0UnHzDakvMWbrF2AABlhuhR4quiQuzARiGC28ZWnFjhXBUDkMH47Db4W+TygqWDUpK6gOQZVsri4cBPqDbCRBQupXXXfo6Cn5HUAM41SO8pbb9rfY4y+iw81Gbk3dvcOdWXwzPhuZ5hwmHoeEmMBHyQml+W+SzDyTszV216gb1faP6KETTbsyh2WF+mkecR6EnVaoA9C+5M3HqbWFczVIaumkxY4whn4QswuZ+lRafaMYJNduxTedc7CEnOVKSK5/t5s2bHkD4GfNqaGiMAB/DfgET0+ylsaFQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GDpwjrP92roIetOnlHygAJxfgi+JMRMatyYYaVWjm/Q=;
+ b=CrE7IgiviljKubMrF456kbKjq/Bo0KSL1a2+J6uNYRy7uX4x47XM7BFKpH6eak4M4+2ETDzNr0bwkGy6EBCHptWp3OeVuLCUIWOcyXEb1+BjQrUL8k3J+kUfCwRGrxqwBpwIQKE4rYT0dFo21eyyRnWlSwudmwESWAfa32M8i9c=
+Received: from SJ0PR03CA0158.namprd03.prod.outlook.com (2603:10b6:a03:338::13)
+ by SJ5PPF2BC420A1B.namprd10.prod.outlook.com (2603:10b6:a0f:fc02::797) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.15; Mon, 2 Mar
+ 2026 09:34:47 +0000
+Received: from CO1PEPF00012E65.namprd05.prod.outlook.com
+ (2603:10b6:a03:338:cafe::19) by SJ0PR03CA0158.outlook.office365.com
+ (2603:10b6:a03:338::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Mon,
+ 2 Mar 2026 09:34:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ CO1PEPF00012E65.mail.protection.outlook.com (10.167.249.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 09:34:46 +0000
+Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
+ 2026 03:34:45 -0600
+Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
+ 2026 03:34:45 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 2 Mar 2026 03:34:45 -0600
+Received: from [10.249.48.175] ([10.249.48.175])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6229Yhse546005;
+	Mon, 2 Mar 2026 03:34:44 -0600
+Message-ID: <f59045d3-c8de-9a76-b58a-e4531f550f4a@ti.com>
+Date: Mon, 2 Mar 2026 03:34:43 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ct2r5wvvfowqcfe44fawbi4blkjpfle7etvaunwbsxevejsr2s@3g43wru5n6jh>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/4] dt-bindings: remoteproc: k3-dsp: Add C7xv dsp variant
+ for J722S
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <andersson@kernel.org>, <mathieu.poirier@linaro.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
+	<s-anna@ti.com>, <b-padhi@ti.com>, <linux-remoteproc@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<kristo@kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20260213001151.17370-1-hnagalla@ti.com>
+ <20260213001151.17370-2-hnagalla@ti.com>
+ <20260213-poised-archetypal-trout-fcb5d2@quoll>
+ <f54bd097-d56b-4f87-926f-4778476a96d5@kernel.org>
+From: Hari Nagalla <hnagalla@ti.com>
+In-Reply-To: <f54bd097-d56b-4f87-926f-4778476a96d5@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00012E65:EE_|SJ5PPF2BC420A1B:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb2f613a-4755-4375-3a60-08de783ef11c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|34020700016|82310400026|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	Y/0YMz6HRZIIYlicDhz1G0sOh+VaQxwf7jjld8Xm/C0J+lWOu6lmBMRxmPpSe3gjBOOjDjWON57cf4q3tP/wrAsnwQG5kUdNf3XgP2M13q1MJN66HZDgi86O33hpItel7t2VGb8kSOSbdzAQtF2Q3QLqmmdCRDc0q0S9fTA6JhhJvly4V3Aq6YYIEMWKi/CzviNB6BHmXymcubMYgJsKaKtvi3hiAhnO1yRTppgRvkwWTdkaqH/uweZZc8YPDG8r6xCNQnjF7fhz66mj0SR72OIdg9t/MPh2nQ3AOtH1GGo8p76XjjLH4ffCW1SSMxHUAkd9H8gZx/TD5Q1k58RIkmrlV+dik6hV/feO3/s5V4e/9bTU5ukOx/sGPbUrXzpewia3U/lgo9tL9pG6wGd3i1bINvqcJ383ob0h84xChQMpv1n/2RqcggflTrcG7ZadNluMJXJUfTOoYNpzmSn22+D6tGsI2xXFftpdYmz+usZjBnp7UeCKcrJLKi0UXmY/mmFNKAHcZ9IAcAbjUqmsDpoTJtky7oKsXu/sisjDHUcdaoUExF4cRvpMi6zEweXV3BeagbK/RDFr8OIwbU3g4NCe7w6npJdACUG5EIYYv5nqbNLshLRuTNuVyW3zlPwKxZN+4yEkhk9W/P6vSv4qcQwtAoO1n2gj56MXeN00fbmLkplpuBaCy82++lzRUnscy1n0OGoCjbnZCBwnVLB1vDewBZIfKn39WOj2jpZZsu8iLFw1zW93eG/kD1dMcXjtMRYRHpeiOTjIHfqy31RRiVfdbf14IFecF7zGeBjcBg1Xvxa2hp5SJV+LA+cETeBQ/Lr4MzvK0uzLu6au7bwb3Q==
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(34020700016)(82310400026)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	ylXvBzl6z3ziaktBAXqzZ3KCr3l6mxMCzjqQctzZRA9rMRFPMoFD1eblf1NexxQ/egRAuKneVP14RBiRLCyJAiD/zcsXm6NaifxkBwu7kPXYlBTWnHROKjPbeEjvLrhXeWRrLHz++xs0+oDtrNZ6Ix1YHNwqj9HRVPIzAquN29cdJyY0wl0jGnB1wjfE6BIpLBB28t7dGgX7ue4c5LP0li33r6scDZ37DezL4IVR6tZWYiKHtFhFij2FaVD+Huf4ogKwgs9eAO/Hm3PKdz4MdHuTyZTFLxLV4QBN4cGNGWDm7083XjFkxZSy9PAYrC8LmgMIM7ObHRVDumx8QwBRQfgV9tvJSBV3NSBmT6FIYp9v138V1ZIhVx1c8R57MBS6AahrrcnQSJeXkTqnsKqzmYjwops+pUJrQwQ2IfPbYK8FnlHmjgCla6AczE3aUPue
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 09:34:46.0357
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb2f613a-4755-4375-3a60-08de783ef11c
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF00012E65.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF2BC420A1B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-269855-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,yandex.ru];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-269856-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,ti.com:mid,ti.com:dkim];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	NEURAL_HAM(-0.00)[-0.993];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: CF1211D59C6
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hnagalla@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: F0AD11D59E4
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 09:19:42AM +0000, Rodrigo Alencar wrote:
-> On 26/03/02 10:27AM, Andy Shevchenko wrote:
-> > On Sun, Mar 01, 2026 at 12:23:40PM +0000, Jonathan Cameron wrote:
-> > > On Mon, 23 Feb 2026 12:41:45 +0200
-> > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > On Mon, Feb 23, 2026 at 12:37 PM Rodrigo Alencar
-> > > > <455.rodrigo.alencar@gmail.com> wrote:
-> > > > > On 26/02/23 11:06AM, Andy Shevchenko wrote:  
-> > > > > > On Sun, Feb 22, 2026 at 05:29:12PM +0000, Jonathan Cameron wrote:  
-
-...
-
-> > > > > > It all depends on the series from Dmitry Antipov.
-> > > > > > Can somebody help reviewing the patch 1 there?
-> > > > > > https://lore.kernel.org/linux-hardening/20260212125628.739276-1-dmantipov@yandex.ru/  
-> > 
-> > FWIW, Andrew picked them up for Linux Next. Please, test!
+On 2/13/26 03:34, Krzysztof Kozlowski wrote:
+>> This does not explain lack of compatibility. You ALWAYS add new
+>> compatible string. ALWAYS. Drop the last sentence and fix the patch.
+>>
 > 
-> The patch looks ok, but I am not seeing it solving my problem here.
-> Here is the v8:
-> https://lore.kernel.org/linux-hardening/aZXDSbyH8tWmTPPL@smile.fi.intel.com/T/#t
+> And by "fix" I meant express compatibility or explain better why local
+> reset is different than resets property, which applies to new device.
+> The entire picture made by commit msg and existing binding is just very
+> confusing.
 > 
-> I would have to use simple_strtoull() and it would clamp the value at
-> ULLONG_MAX in case of overflow, but it would not say that an overflow
-> happened. Would that be fine? I understand that addressing the FIXME
-> in simple_strntoull() is not a subject of this patch.
->  
-> > > > > can we push for the exposure of that function to kernel modules?
-> > > > > We have discussed that in v6, and I understand that:
-> > > > >
-> > > > > EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
-> > > > > in lib/kstrtox.c;
-> > > > >
-> > > > > #include "../../lib/kstrtox.h"
-> > > > > in drivers/iio/industrialio-core.c
-> > > > >
-> > > > > is not a good call...  
-> > > > 
-> > > > Yep, because it's a temporary band-aid. The proper solution is to have
-> > > > shared code provided by the lib/. So, the wrapper to parse 64-bit out
-> > > > from the constant string literal should be part of the lib/ in the
-> > > > result.
-> > > > 
-> > > > > > When it's in, we can continue on this one. TL;DR: for me this is on hold.
-> > > > > > But if you see the need to have the driver being in IIO, please add a big
-> > > > > > fat FIXME to make sure we will get this all being sorted out in the
-> > > > > > (nearest?) future.  
-> > > > >
-> > > > > I could add the FIXME into iio_safe_strntou64() doc header. It explains
-> > > > > the context:
-> > > > >  
-> > > > > > + * The implementation of this function is similar to _parse_integer_limit()
-> > > > > > + * available in lib/kstrtox.h, but that header/function is not available to be
-> > > > > > + * used in kernel modules. Hence, this implementation may need to change or
-> > > > > > + * removed to reuse a new suitable helper that is properly exposed.  
-> > > > 
-> > > > Up to Jonathan, I hope we can move the above mentioned series forward.
-> > > > Without that, as I pointed out, this one sounds to me suboptimal and
-> > > > unneeded double effort.
-> > > > 
-> > > I don't want to hold this series for another cycle, but we are still
-> > > fairly early in this one, so some focus on moving that forwards seems
-> > > sensible.  If we are running out of time, we can fallback to a loud
-> > > FIXME and a plan to move to the generic version in the library next cycle.
-> > > So let's set a rough deadline of rc5 and see how things are going then.
-> > 
-> > Taking into account the above, can we actually develop something
-> > based on that?  Or at least having a temporary solution for this
-> > cycle followed up by the better one for the next?
+> Best regards,
+> Krzysztof
 > 
-> As mentioned above, I am not sure how consume what Andrew has over there.
-> It seems address lib/ internal stuff. The interfaces are still the same.
+Understood. Thanks for the review. I'll submit a v2 with a better 
+explanation of the local reset vs resets property distinction.
 
-I think it will be third time I'm repeating that this needs a wrapper in the
-lib/. Just add the one (like with safe_strtoull() naming schema) with properly
-formed prototype that returns an error and the result in different variables
-
-int safe_strtoull(..., *result)
-{
-	...
-}
-EXPORT_SYMBOL_GPL(safe_strtoull);
-
-(Also some test cases have to be added.)
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best Regards,
+Hari
 
