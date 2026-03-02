@@ -1,155 +1,137 @@
-Return-Path: <devicetree+bounces-270247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270248-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wBN3Cs8WpmnZKAAAu9opvQ
-	(envelope-from <devicetree+bounces-270247-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:01:35 +0100
+	id MPI5NYIdpmmeKQAAu9opvQ
+	(envelope-from <devicetree+bounces-270248-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:30:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E1D1E62C4
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:01:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F511E6AAF
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:30:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 27AAF3021B84
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 23:01:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A33631026F9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 23:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BA7931E84D;
-	Mon,  2 Mar 2026 23:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="uPDCu8EG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E33320A00;
+	Mon,  2 Mar 2026 23:07:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDD4315D40
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 23:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D7A62F9D82;
+	Mon,  2 Mar 2026 23:07:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772492475; cv=none; b=BdbTPP3DKmbAXDx5OQgIlOb5bZUA/ZievScDBB3ngyZQlySTUUcS3ydCZ1GQGSln3aylZ1wPIuVgojubS5tF+6rLEU4395AtTfT4TqMsT4+mFNS65ANbwAcyydhdi5e+t80pTuNkv1lewO6QSejxph3Ivp77ds7w9A6hHKuNVDc=
+	t=1772492843; cv=none; b=BJh3woD+oAQysERRbcuaSJ2KCPzAgU0vR9OICLm/i6TEO4YOVBXUKbO/DNJDGjyBiB3bt+HXlSmSKTJVdPe4yXznPq1HrnMz/tPHEEC1L8y+EgYjW/GaDFaIszLztKET75hBTkmtqBXzctDsvz58LPK6Owt/m81cDc+fNHXHaYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772492475; c=relaxed/simple;
-	bh=08Lo2Lp5hpnOLtmrS9ICWTId2kHrCWoTqvqJgGYWbLE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uqN/RiXzJIeGhKIibkfWKiNFZ64uT56xXiT1yOXRxxJ7vbMJu6dpHL2fKaPoyhuJ/seYv4T7Imzm4PcTYJpVieOx1rkqZtdkvTiNc1KP2sEbhJDMpmIt2xn2azAYKhnpyaXHCYRMdu5pfltKknLyzNweSesN7ix/wI97O8nf9Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=uPDCu8EG; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 22820 invoked from network); 3 Mar 2026 00:01:05 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1772492465; bh=9xOvgBccEPgIHRjW7JLhRF8m7AtAmIUXTMKnuXsqjv0=;
-          h=From:To:Cc:Subject;
-          b=uPDCu8EGqedIL+PL3QJTUaKpbw8mc9u4Adh4qLbQ0gOUrYLrxbN+GiEgeKuBjTj/7
-           Fi9ba5J7Xp5O8MkXikCaZNTlwlRLa2kv+VACQoaI8BUjWJ4iDGcSperU8oB9lY8OhW
-           SnzdCOCb9h8ALncOtIntqzoUiPxnZzr8mzpAiJ2aKU6HVulCWGH4c6E3HfdtY1Piej
-           tpFOl0QBybyb8V4DoMysJGU4cNBop9HSlgyrTpEL+mOIqlYKb1L5yRoVuCZ+pXQJto
-           bGUPFYEppE5Km6+M+WtdwM6zESP/KV273KVnLhc2cyhHrYJYLAEvSAiKhL799ToRzn
-           LoEV4691wW/Yg==
-Received: from 83.24.116.171.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.116.171])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with TLS_AES_256_GCM_SHA384 encrypted SMTP
-          for <herbert@gondor.apana.org.au>; 3 Mar 2026 00:01:05 +0100
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: herbert@gondor.apana.org.au,
-	davem@davemloft.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	atenart@kernel.org,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH v2 2/2] arm64: dts: mediatek: add crypto offload support on MT7981
-Date: Tue,  3 Mar 2026 00:00:39 +0100
-Message-ID: <20260302230100.70240-2-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260302230100.70240-1-olek2@wp.pl>
-References: <20260302230100.70240-1-olek2@wp.pl>
+	s=arc-20240116; t=1772492843; c=relaxed/simple;
+	bh=DHRjIFWCxvU8ccmBew/DyUv9QrerN2fu1cwXZDjBu/I=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=TseN2dHrtwZCx73uJ8C92/DokjOQHUjkP9EB5NwoXsS3q5dbTbFgULqUX3Qz7lyW4Tjf62UEFaKNbf0L1EWubHzHmkgmxuQ5lO3Gh8dPXn9tWOOhSBLCLYtnyUVidOAMaf/Hb2R6K3z1iMUitDDoa7ysldx3ivTwrTP2E72EzfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDAF9C19423;
+	Mon,  2 Mar 2026 23:07:22 +0000 (UTC)
+Received: by venus (Postfix, from userid 1000)
+	id D94F3181254; Tue, 03 Mar 2026 00:07:20 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+ Purism Kernel Team <kernel@puri.sm>, Sebastian Reichel <sre@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Ramakrishna Pallala <ramakrishna.pallala@intel.com>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+ Amit Sunil Dhamne <amitsd@google.com>, kernel-team@android.com, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ stable@vger.kernel.org
+In-Reply-To: <20260302-max77759-fg-v3-0-3c5f01dbda23@linaro.org>
+References: <20260302-max77759-fg-v3-0-3c5f01dbda23@linaro.org>
+Subject: Re: [PATCH v3 00/11] power: supply: max17042: support Maxim
+ MAX77759 fuel gauge
+Message-Id: <177249284087.588775.13895048096276647752.b4-ty@collabora.com>
+Date: Tue, 03 Mar 2026 00:07:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                                      
-X-WP-MailID: c21ac2b7c0b21cfc22d068621eec5de7
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000009 [4Wq0]                               
-X-Rspamd-Queue-Id: B8E1D1E62C4
+X-Mailer: b4 0.14.3
+X-Rspamd-Queue-Id: 13F511E6AAF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[wp.pl,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[wp.pl:s=20241105];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[collabora.com : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270247-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[wp.pl];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	DKIM_TRACE(0.00)[wp.pl:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olek2@wp.pl,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[wp.pl];
-	DBL_PROHIBIT(0.00)[0.153.167.240:email,0.157.120.128:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,0.167.224.144:email]
+	TAGGED_FROM(0.00)[bounces-270248-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.979];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-The MT7981 as well as the MT7986 have a built-in EIP-97 crypto accelerator.
-This commit adds the missing entry in the dts.
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- arch/arm64/boot/dts/mediatek/mt7981b.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On Mon, 02 Mar 2026 13:31:59 +0000, André Draszik wrote:
+> This series adds support for the fuel gauge integrated into the Maxim
+> MAX77759, which is a companion PMIC intended for use in mobile phones
+> and tablets and is used on Google Pixel 6 and 6 Pro (oriole and raven).
+> 
+> Amongst others, the PMIC contains a fuel gauge employing the Maxim
+> ModelGauge m5 algorithm, that is similar to the ones supported by the
+> max17042 driver and binding.
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-index 4084f4dfa3e5..94c7bf0050fc 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-@@ -150,6 +150,21 @@ sgmiisys1: syscon@10070000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		crypto@10320000 {
-+			compatible = "mediatek,mt7981-crypto",
-+				"inside-secure,safexcel-eip97ies";
-+			reg = <0 0x10320000 0 0x40000>;
-+			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "ring0", "ring1", "ring2", "ring3";
-+			clocks = <&topckgen CLK_TOP_EIP97B>;
-+			clock-names = "core";
-+			assigned-clocks = <&topckgen CLK_TOP_EIP97B_SEL>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_CB_NET1_D5>;
-+		};
-+
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt7981-uart", "mediatek,mt6577-uart";
- 			reg = <0 0x11002000 0 0x100>;
+Applied, thanks!
+
+[01/11] dt-bindings: power: supply: max17042: add support for max77759
+        commit: 7a9ae6e2457d654cb3b2597882d61297ce9652c3
+[02/11] dt-bindings: power: supply: max17042: support shunt-resistor-micro-ohms
+        commit: cb850494d77ab8bf1ebe40a1e6c709724a899e87
+[03/11] dt-bindings: power: supply: max17042: drop formatting specifier |
+        commit: ef67048dca6a94ecd874565a48f023dead25d7b7
+[04/11] power: supply: max17042: fix a comment typo (then -> than)
+        commit: 62b5cb32f0beed13cf6d7cf4605e09eb92f2f64c
+[05/11] power: supply: max17042: use dev_err_probe() where appropriate
+        commit: 092a518f8e8f97aa4e50c413600a849dcd0a8705
+[06/11] power: supply: max17042: avoid overflow when determining health
+        commit: 1c6b480642c8457e477867f348d1347ac2f6bb82
+[07/11] power: supply: max17042: time to empty is meaningless when charging
+        commit: c4ff06590c3149fa5cc3061c7877cd75df4351e9
+[08/11] power: supply: max17042: support standard shunt-resistor-micro-ohms DT property
+        commit: 460f54cd8dee5f048fe33d1858db919566c73d0e
+[09/11] power: supply: max17042: initial support for Maxim MAX77759
+        commit: 4ece9d5d7fcd176821f41a278dfa9efd87544afd
+[10/11] power: supply: max17042: consider task period (max77759)
+        commit: add02276239b8af842f2e761774fcd8a861c2d48
+[11/11] power: supply: max17042: report time to full (max17055 & max77759)
+        commit: bb42637516d058c412d2acabab4cd2a455ecd769
+
+Best regards,
 -- 
-2.47.3
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
