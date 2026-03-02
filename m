@@ -1,152 +1,207 @@
-Return-Path: <devicetree+bounces-269884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269886-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHmpBoNkpWmx+wUAu9opvQ
-	(envelope-from <devicetree+bounces-269884-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:20:51 +0100
+	id QF7yCgFkpWn0/QUAu9opvQ
+	(envelope-from <devicetree+bounces-269886-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:18:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83B8D1D6571
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:20:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C83D51D64DF
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:18:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 93E903073A90
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:15:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ECD67304BCF1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:17:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0382539B971;
-	Mon,  2 Mar 2026 10:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74972396D2E;
+	Mon,  2 Mar 2026 10:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lvhvdtzP"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="YqivmQ56"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx-relay36-hz2.antispameurope.com (mx-relay36-hz2.antispameurope.com [94.100.136.236])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848B039B974
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772446496; cv=none; b=VBrdqMsE9ot8qZlfCuVeraXev9AFeD+Vy1mGew4hJWJfbEd8iXXSUPn/hrLNCX5tVI/Mki+vCwU9Jkkmit1yAeei4K6uyiFJYFICx7HxRPI3rDZnzt11smDfqcL+890mRGROXVEnpxsT+5Iyk7OAuyLzo9yjEt6FC5sV8umfvcM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772446496; c=relaxed/simple;
-	bh=yL9eUJXHi4REduqyWswfkgW16JkoDI/iPoZz8fNv0BE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZOQWh961saoUVM4+kddmk1/gjsgUFa7zUdpdYFQq5ZTX1CestnUcZpt39NsVLdBzIuTH12J37UnpunPHlX48ZpgYC4szCB8MYdl6Td3nIuGercB4PGElB4lUZxN/hO3XNNCH2BFE1GU828JeAYvd3Tva1lQVnihpt7snL9HRLoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lvhvdtzP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04D0CC2BCB0
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:14:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772446496;
-	bh=yL9eUJXHi4REduqyWswfkgW16JkoDI/iPoZz8fNv0BE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=lvhvdtzP0FEiKCUc4jExgViUpuhyJK6fzcxJAobspM/IAfx8U/hdb8EI27FH9fgf2
-	 PE4w+rwuRgU0pBjeeieyZdzdxhkbkAC5vm79R8zpAqht+v5plHLlCrzVvdaUUdS9z0
-	 Jm/YZ7ij9CEUdL9z1D9BLqZxWkr/KLemt3XXFxpT+Xy3UVbmkUtby2cWwBLUdequUV
-	 QOtoe/BfbyPdM7ZnWXVV/P3Od8kOOMHGAAoH6nr80DDYmI0oe6EcWQxbRgSn0LAN2w
-	 ogKEsoO4WCdCStkJBdKra0nx+qvFCQ/wK8TfGnXI1cwhDfVMVn3QbUtR9ZWDoaR62L
-	 Mf6SyJe74W7Nw==
-Received: by mail-yx1-f48.google.com with SMTP id 956f58d0204a3-64ca1ba0089so3527192d50.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:14:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUBdoXowacWfl34XivkSoG0Imz73pD/zpNa2UgirTlhbvImqpF8dgejf68PkrKfGwEghXO6ZFmiW5lp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2MxJjWSYVLnvhqG/RGvOQxcn6+YOaQfTTesrwiDoec+CLbm1y
-	j+eWvRf9QJgr3MRgZvNDmCfGUUu+S5dAWE81URE2VZ7vebHfekN55x+Z9xgzgj2krbdhyKquicL
-	j8YZkSSxpb/5HjeKq0w+QoWAubgHsgTo=
-X-Received: by 2002:a53:ee42:0:b0:641:f5bc:69a4 with SMTP id
- 956f58d0204a3-64cc236a35amr7180230d50.82.1772446495327; Mon, 02 Mar 2026
- 02:14:55 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D24E392800
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.136.236
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772446627; cv=pass; b=DxKndKjMGD5lb9e/sNq4A63yfuBlDoJr7GO/SIfnpy9MvUn4FwlhyeSXo9Ops4rwgF/kla5NwljLswxjZW+9pFk2NCF1SDQ74R4W03kE9GCNwsU42DpyDDI3QjsAc9bDFpnw/ZD0GCxBFsGuw+LsVD+F/eYuscmETCbsNqgd0G0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772446627; c=relaxed/simple;
+	bh=OV7pJ+9HBJ0Be3o5qKAi4LgF9LQYpxxkZiVdHkjvHwI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=q9ksKEvyM883SPyIbYHVnVelSh2RxU6PCxhwD5nVfeidytRNg3KNv2dwCDJOFR6XT4FXVD9Ly8+jpL6ygD6/BIk3CfcL6LLkg/9fuM8HI8l7ajDNrPcPe7KWgnvLWB2ZkF8wdgo4s5JI57LYhjBtTzzk6ZXB3WrP2DqloZUVjjw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=YqivmQ56; arc=pass smtp.client-ip=94.100.136.236
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate36-hz2.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out02-hz1.hornetsecurity.com;
+ dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=l6VEiHbbXrSXnpEA233x9tN4NxHrbql59kNg3szndqg=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1772446575;
+ b=njrBBPXyHM/9QH/MC9Yd3PYPiUtqNm/AsfWkYLmtvPqIust9KhhuXEtTNSodh0BJYRWhasUf
+ U4oVRRtSoBwsRDED5LmvoZBQEbZ+2eW95I5tPksLrkCvnveis6tK+RTeZaxM0D/kR5UlPRpIOel
+ qmWMkNnL50pXXe/nl2flWg1eQ3u7WwSwppLrUeX8ci0lXHf1EgFFPz+riz4Mlo85/fwX/UlMNCO
+ MlPmsRXZvDDm8augI3z8fmd1V0vLuLo3242JYYrEm0YAqVFQQKZRdqfRlVSzA6OS+SD16lN7uXw
+ 54TzW2cOMNKi93OPf+clJJOassnJVlafYXqN/fW//f5+A==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1772446575;
+ b=I6Wm67DZeX1oELlm8HuETok7DxoL9+fggkDCqEiIjGnp0ABOB8/70YK56bL1iDgSoADj59Ix
+ iiB5reDb7BYOyNNVsOY/wy2ek3nqgiqgaM6PnZp2+y1ii5KJNEYGR5+9ZfxU+yx3lQYJ2bX3Yv8
+ 6oZpNqYMS8nzIT3K57BmZsB/d12y39p+nnDdtBKpjgco0nL6n+1Fwg7P4SCNP4jrNr/rRvdvH7U
+ fe5UsN36rcQ14L0IUHpoMch2pq1BFKgj/kPC+epQB+7+0bTcjMUojAIO6O3XepgH6Qr/RtIypB4
+ vwK06m2hHkedGXnhghVDgKnR5VhSp4Fz4gRoR/+dE0f+g==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay36-hz2.antispameurope.com;
+ Mon, 02 Mar 2026 11:16:15 +0100
+Received: from schifferm-ubuntu.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: nora.schiffer@ew.tq-group.com)
+	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 123A45A0951;
+	Mon,  2 Mar 2026 11:16:10 +0100 (CET)
+From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kees Cook <kees@kernel.org>,
+	Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	Nora Schiffer <nora.schiffer@ew.tq-group.com>
+Subject: [PATCH v6 0/2] TQ-Systems TQMa62xx SoM and MBa62xx board
+Date: Mon,  2 Mar 2026 11:14:57 +0100
+Message-ID: <cover.1772443991.git.nora.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260227-a3720-pinctlr-missing-items-v1-1-e476e4df1ad6@gmail.com>
-In-Reply-To: <20260227-a3720-pinctlr-missing-items-v1-1-e476e4df1ad6@gmail.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 2 Mar 2026 11:14:44 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkiuGxDbMr=w+ADcwvhr9a8h+ryE1cmrnWw9L4kE4Op0w@mail.gmail.com>
-X-Gm-Features: AaiRm50-e86imS0v4p4bAzBL_z2ShkagB8FlB4mx63CF_zWh3_u5uWJJFfQZkZU
-Message-ID: <CAD++jLkiuGxDbMr=w+ADcwvhr9a8h+ryE1cmrnWw9L4kE4Op0w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: marvell,armada3710-xb-pinctrl: add
- missing items keyword
-To: Gabor Juhos <j4g8y7@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:nora.schiffer@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: nora.schiffer@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay36-hz2.antispameurope.com with 4fPZZy6kLjz1S5RV
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:34f64186f7d5f0be3b0549b866decb73
+X-cloud-security:scantime:1.753
+DKIM-Signature: a=rsa-sha256;
+ bh=l6VEiHbbXrSXnpEA233x9tN4NxHrbql59kNg3szndqg=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1772446575; v=1;
+ b=YqivmQ56QAFgsNOVokRXw9/51A+7gVlvLGe9Q3X5x0DXVrARrIklHYvGqPoKTgPcXpEM8N1k
+ H23vv0IkqD67uFxLsvboH2ygy75vvcbm99JSFk+bW+68P2rZjW2BJBhcFFqQdQyxPuiQbKY30ex
+ ZwvXQ7dfxhWK/PEuriAYSgR0DGfSuJhpuHw6SEIPj3UQ5TyodIh42F76jdeUZA1opKx6yE3MpS7
+ wY5mytjf8rAZOJxPKWygeskVQNjOQzf8gIIAxxE0Ipyn3sZ92E7ibEtQ38JY8w2xXQTVsgEWkRt
+ BDY01P4UuzHv8csqQMqhxmATJCgHeG4ZBVFRTEfiUbXDA==
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,bootlin.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-269884-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-269886-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.53.232:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.961];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 83B8D1D6571
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ew.tq-group.com:mid,ew.tq-group.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tq-group.com:url]
+X-Rspamd-Queue-Id: C83D51D64DF
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 3:16=E2=80=AFPM Gabor Juhos <j4g8y7@gmail.com> wrot=
-e:
+This adds Device Trees for our AM62x-based SoM TQMa62xx and its
+reference carrier board MBa62xx.
 
-> Even though the type of the 'groups' property of a pinmux node is
-> specified as string-array in pinmux-node.yaml, but trying to use
-> multiple strings causes dtbs_check warnings.
->
-> For example, checking the following dts ...
->
->   $ cat arch/arm64/boot/dts/marvell/armada-3720-test.dts
->   /dts-v1/;
->
->   #include "armada-372x.dtsi"
->
->   &pinctrl_nb {
->           pwm-gpio-pins {
->                   groups =3D "pwm0", "pwm1", "pwm2", "pwm3";
->                   function =3D "gpio";
->           };
->   };
->
-> ... results in this warning:
->
->   arch/arm64/boot/dts/marvell/armada-3720-test.dtb: pinctrl@13800 (marvel=
-l,armada3710-nb-pinctrl): pwm-gpio-pins:groups: ['pwm0', 'pwm1', 'pwm2', 'p=
-wm3'] is too long
->           from schema $id: http://devicetree.org/schemas/pinctrl/marvell,=
-armada3710-xb-pinctrl.yaml
->
-> Add the missing 'items' keyword to the schema to allow using multiple
-> strings without such warnings. Also adjust the indentation of the next
-> statements accordingly.
->
-> Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
+Not yet included are overlays to enable LVDS display output and MIPI-CSI
+camera input.
 
-Patch applied!
+Changed in v6:
+- Update author information following name change
+- Rebase onto latest ti-k3-dts-next
+- Disable incomplete panel node
+- Add various comments to explain why nodes are disabled
+- Extend comment explaining disabled 1400MHz OPP
+- Use consistent comment style for pinmux
 
-Yours,
-Linus Walleij
+Changes in v5:
+- Rebase onto latest ti-k3-dts-next
+
+Changes in v4:
+- Rebase onto latest ti-k3-dts-next
+- Reorder boot phase tags after other standard DT properties
+- Add missing supply regulators in SPI-NOR flash and USB hub
+- Set status = "okay" in &cpsw3g, as it is disabled in k3-am62-main.dtsi
+  now
+- Add disabled 1400MHz OPP entry (will be enabled by bootloader if
+  supported by PMIC configuration)
+- Update copyright years in new files
+
+Changes in v3:
+- Rebased onto ti-k3-dt-for-v6.18
+- 3 of the 5 patches in v2 have been applied already and are dropped
+- Include k3-am62-ti-ipc-firmware.dtsi, drop now redundant configuration
+- Change node name for MCU reserved memory to 'memory'
+- Use rgmii-id PHY mode
+- Drop now redundant ti,rx-internal-delay
+- Update simple-audio-card,name to match other TQ SOMs with compatible
+  configuration
+- Reference dss_pins in dss node (actual display support will be added
+  in a follow-up patch series)
+- Consistently use GPIO_ACTIVE_HIGH define
+- Drop unneeded usb0 quirk flags
+- Add boot phase tags
+
+Changes in v2:
+- Collected acks and reviews
+- Rebased onto v6.13-rc1
+
+
+Nora Schiffer (2):
+  dt-bindings: arm: ti: Add compatible for AM625-based TQMa62xx SOM
+    family and carrier board
+  arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and MBa62xx carrier board
+    Device Trees
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |    7 +
+ arch/arm64/boot/dts/ti/Makefile               |    1 +
+ .../boot/dts/ti/k3-am625-tqma62xx-mba62xx.dts | 1034 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi |  360 ++++++
+ 4 files changed, 1402 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-tqma62xx-mba62xx.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-tqma62xx.dtsi
+
+-- 
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
+
 
