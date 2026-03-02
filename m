@@ -1,307 +1,239 @@
-Return-Path: <devicetree+bounces-269870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269871-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8BcQBlFfpWlc+QUAu9opvQ
-	(envelope-from <devicetree+bounces-269870-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:58:41 +0100
+	id cPiILGVfpWmx+wUAu9opvQ
+	(envelope-from <devicetree+bounces-269871-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:59:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8125E1D5D5D
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:58:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A15A1D5DB2
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:59:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 711B4301F796
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:58:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6CCCF300B138
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:58:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22893921DC;
-	Mon,  2 Mar 2026 09:58:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14743921DF;
+	Mon,  2 Mar 2026 09:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Bx8avbq7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JyXpO75x";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fWWojCWz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55893B2A0
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5AF532AACB
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772445518; cv=none; b=NgTkPEHSaxjwTWhFQh7G12KKNksuPNErx081aeFEY6rzT1GOqw5Sj1R334QCbzDLEA4gmpQyOJr63/fMi2zMfsAX8NL17SL+B3Xvv3sN8fIy+67dMICbKV9t1h02QQYhzJq01ceHjlMnRZrkjBTYX4Ob0b8bZQJqcmxP8Wcs0vM=
+	t=1772445530; cv=none; b=YoNhxRv0Fi37I45vcawOourZ7zDUFd1n/KPrTwkNnFTsZ1vJ6omhISWXjdG+EceoSNdWaouqMB4gSSaAOpp5IohFm0Sj+ALcvrGX0+eNDnD7d7Xje+2Pd59kbZEujDsncoJV3V85SiNPNXt81eIWxxb/b6mFLGJBCgq0eXy7a78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772445518; c=relaxed/simple;
-	bh=ervvysCEd8cOIl5h8mlgyhiDmmnkn6l/quiCDWX+pw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kJ6fMXGOOresmQ5VIJ87j5VTnkCZKy5wbObbIUVGB7gASGaYPfaBDEr1QWBsGT8QNZVMb7wXVQHYiJnV+M/PWDZsFox3lruCgbFm4yF57lx1ImfXOV43aJeqxj+L7Yy5vpSd6y3vh1LNalwXSvePaW0RUGLhi1yXYr2qdZq1us0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Bx8avbq7; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 659071A1D5A;
-	Mon,  2 Mar 2026 09:58:34 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3414D5FE89;
-	Mon,  2 Mar 2026 09:58:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 53D22102F1C60;
-	Mon,  2 Mar 2026 10:58:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772445513; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=iwiEelWhER4t/r6sMqYxG5Tn4/kBZkljoQa9dHWraG0=;
-	b=Bx8avbq7O2QjyfWCKDige+h5z6avm9Hn+oW8VyBuWAp146RJvoz2j36FaZxWyr2s2bpzAt
-	gc6wPz0ry+CYsFVFKZjh/zfGOJLQlnqvYG9BJqZR8LTu/Izql7WToJ+UoxbU5ZhNwICWjy
-	ZuCAWu/4e9DR7GlTHvVlOOUgJ1k5h8HloF9nCNHi+GI+6d0LmN8PbBiQvbLlYfCvJH5/Wu
-	aRv4W7Ib71+KuEGiQdr7+sczm4aHDgECw9dCQlwEtCWiaZzZ7JCytanTqtiYCi+jpoqlQX
-	rQR1wwDeS1kvV5S1zzoQvHkHv7EYV0wadGeklDekf20hSIGMme4+JxluKVhqCQ==
-Date: Mon, 2 Mar 2026 10:58:24 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Thomas Gleixner <tglx@linutronix.de>, Daire McNamara
- <daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Linus Walleij <linusw@kernel.org>, Bartosz
- Golaszewski <brgl@kernel.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC v11 3/4] soc: microchip: add mpfs gpio interrupt mux
- driver
-Message-ID: <20260302105824.21b5c7d6@bootlin.com>
-In-Reply-To: <20260227-flashing-overcast-85ff59b2e82c@spud>
-References: <20260227-ajar-wolverine-7ce1ebd79821@spud>
-	<20260227-flashing-overcast-85ff59b2e82c@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1772445530; c=relaxed/simple;
+	bh=X+mySEiLj/X2N40KikSw3L+Zg2B3m4zZp1U8WaBFubs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WfGUaNtiwVuver0KtwsGqp85U+kwHCc+7l+hVAaWsTbXCyLinnQ9+BJNZPxIUi03ezjb5vPSulE09d19iEFOL6WTh/5MAh7ZNbHlP04lWOeg5y9x/zycVsKG/LfjDou19fNbgOLMpGBPgHVwGi0EYr1mAX6DRKpm/uc8h2drZb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JyXpO75x; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fWWojCWz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6228M5SH3223961
+	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 09:58:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=iCtSXsUWu7OcMOBhOgieiO
+	gHacTyjFYNQ4EssgN+P2M=; b=JyXpO75x/l1GelWNo/vOobT2f1+C+ejGeOWVI5
+	yOGeLdY91dk+GKj9aVLEhkpKm55ii03+inQ5VYfIuQr40jFbJu4ZspOCPuCkyjSx
+	oFm7tInAHl9ghiwPBTLdlJ8xUETJZqmL0l7oQE4p9A+xFRTGzde8MqOaQkzzi8lj
+	ZaprTjVlSF1cMXbOxzW4YkBrvd2t1Fckb7xA0fMDF0G8h7mA5pPf4rd7oI/XoD22
+	/nybL6aEfp0XHxTNECPavRuyM3I3JMcBuVXsgl6j4eABLm8m5hLx22WscT6reAUJ
+	Jjh6GDFl1lTXq3f1Acnh62nqgt2Xn2ugJ+D/9qrEAkH/M/0w==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cn0b1hner-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 09:58:49 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cb390a0c4eso2888541285a.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:58:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772445528; x=1773050328; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iCtSXsUWu7OcMOBhOgieiOgHacTyjFYNQ4EssgN+P2M=;
+        b=fWWojCWzs4GKYMpdJKEVHnFdIJh7rcrttYrz6yfiAd85+6JqgRb3zdlEkiAJUI1wUV
+         QuUMRspORv2+7GEc0ACfR6GmT6q+15a9S7oBGplp4s65FGezsOXd8CuB4TWPsA6TQjrH
+         5evDfUUqkEfR5B58fIxZkm49FGxGHBxBKg5Th7Yehi15mqMDPHz4jxyLNYHpD2RCvdyO
+         hW0zL2mlQ/n/A0NkP7tgw2cS/3bnH8Ah2PF9Qc0VjtUIQ0LI2BQfJoJNpWmpF/NDLRKk
+         60tosHthX2LuoZKmFzcZyyyPfM4bw3pWcn8jLTJtbUZCUgjJrxcFjPHHA6+xNe+arfep
+         xpzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772445528; x=1773050328;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iCtSXsUWu7OcMOBhOgieiOgHacTyjFYNQ4EssgN+P2M=;
+        b=mTMOhB7a752E9eUO8dZj0V/qveH9hUH8p/28aWNzt3FnuCgh1giL8tquBO7qTezyPV
+         QaT186YUMHyMDeL8B9JNU2eYy4uQSMOyy4dBoyUn3WyDVwHHIiWBaN/CJVs5CeRM6nbH
+         W3cVIIvWZsoWFxXgzskOnqJ+mmJ1pfEn17GqoJCh0GT6hZzNMfjanTOtTXf4yp4H8MTZ
+         CdXoTG2AtfxF9SZdNV1JMuWv8zva7uO2D5X+CNQXit9AkIw7nd1Ho5jrQhD5+2XALfF5
+         poj6dKMXgA/EJKLn4USECUgFvIgspYQazRsseiw3PQj+sIkJgvgdVgfeQdqGtPqNx650
+         52og==
+X-Forwarded-Encrypted: i=1; AJvYcCVc9IucqrM2poF2ZP5jEXzdKrm8FyqGm67qutkt/IjgkL/kFGcn44dJ/xPxD4dbn0++qdmlmOg9RwXv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzhx+nHCebABaWg8cXUHal4dNvbuz+dxL0k+Zxwkdy+Va8Fsshm
+	TMos6AcVz9J5zJBrLQFK+o/zuwdRUBV3JXHNuDHEvWrG+sAfm/4xBXF8miiQGamAOHJ18WZfFt2
+	bZtZsTLGLcqYLU87RwJtndeHpCHHNsfkcSodz9M16wDO1lHVFtfQFbdx4LXx+Pki6
+X-Gm-Gg: ATEYQzzRk7P3NgB1PJajH4iV5RLmvC8cK/1LCMdrcHTGkzI0T24cf6Z7BdU6iBDUXW2
+	LtIxwuYN4zSHH3MEfMnsuqeeClMsWcLcEHWPXhqOpfBmx4svYAlYZMnhPt8egw7rZ4W1MMzeUK9
+	Pm6hjhfYZPzN6L8Bp4MJ8vp1yBpZMPuNH08YjVWQIdzCFShu+gJMk/dE5+FTLDH1h3ZfKnk1xfy
+	6OXsF23TOm+9GtHqvQ6hoGqNaJlqVWtOm/Z57+qE2MfnxPesK4QK4dd2C78Ui+c4K95d0UZss6d
+	CLIRcFl9dmDQcJSYAzPgSmp1awJQsOsqL2YlactXacRY15stJ/SDGDnRA66iz8+ojhqAjbdf4Tk
+	8LcrHxvIMwc4OW7AsWGgIYsAPyUzO2w==
+X-Received: by 2002:a05:620a:471e:b0:8ca:20e8:f444 with SMTP id af79cd13be357-8cbc8df09c5mr1659273185a.51.1772445527939;
+        Mon, 02 Mar 2026 01:58:47 -0800 (PST)
+X-Received: by 2002:a05:620a:471e:b0:8ca:20e8:f444 with SMTP id af79cd13be357-8cbc8df09c5mr1659269785a.51.1772445527303;
+        Mon, 02 Mar 2026 01:58:47 -0800 (PST)
+Received: from hackbox.lan ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439b55d15besm9523027f8f.30.2026.03.02.01.58.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Mar 2026 01:58:46 -0800 (PST)
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Subject: [PATCH v3 0/2] dt-bindings: display: msm: Fix Glymur DP controller
+ reg ranges and clock
+Date: Mon, 02 Mar 2026 11:58:34 +0200
+Message-Id: <20260302-glymur-fix-dp-bindings-reg-clocks-v3-0-8fe49ac1f556@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEpfpWkC/5WOTQqDMBSEryJZ90mMUrGr3qO4yM8zplVj81Qq4
+ t0b7Qm6GfjgY2Y2RhgcErslGwu4OHJ+iJBfEqZbOVgEZyIzwcWVC1GC7dZ+DtC4D5gRlBuMGyx
+ BQAu68/pFUPLCcK0VYlOx2DMGjPa58ah/TLN6op6O4sNoHU0+rOeJJTu8f/aWDDKoqqZUhVBFL
+ uXdE6XvWXba930ag9X7vn8BChVuresAAAA=
+X-Change-ID: 20260227-glymur-fix-dp-bindings-reg-clocks-704d0ccbeef9
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Abel Vesa <abelvesa@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>, stable@vger.kernel.org
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1314;
+ i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
+ bh=X+mySEiLj/X2N40KikSw3L+Zg2B3m4zZp1U8WaBFubs=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBppV9RxSQpE808cNLAeohVls5YT8Atr4vGjY4XU
+ NnnCUza1/+JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaaVfUQAKCRAbX0TJAJUV
+ VtPYEAC9wmhC4eBN9sCIQphv+PrNEUqfswJf8Ynvzuf7D2LAwghKFVSoYQCAmARFbplJGhOI7+0
+ 4GQjcYp7AmWEhxf8dQd96DToCQkqfigo+TgN+gjXy89CkJdYgYxvJmJSdUm7cPAQIT7bq74XxrT
+ 9b8k5c9F3oodNlfUsdtYQs49HUe5VH+HMYryXMUxJfS1BbQRJ06rgWgL9FWSuUAN6/rlM8KMKFc
+ R4SabTBroB6sug9oVzHbiEoGZiiAGnSJSVxnkm7yppPsoCbJOn8yzA4PFfQCTy66+7euj2FbYEh
+ G2en1qi2+u2cAvBvhUiRWvtX3TAqgJTIPUIsg7KjgHv43WOgbl+uFNtS9HFkM94r7bOP2Q7ZBM7
+ T2zYFEuONYfxW1HpOASPtWg5tiMVNfGETYfDA94RfaxHHsuitk2kVAjkwbK5glUxeKrvA2H/uKE
+ lxLNrElrL56cVsqMECjSTXQO59pcQCUpNCCPQB3+T0sUdUJ239iT+aSeiNmRcVgBKq8c5ATC0Du
+ MOR1kRxCDpsCWBfFdDiqwGbke9ZicQxk9LXsRaObib87NqN811/HkEwmtxAuTwvhylNVU8jSVzy
+ LmDvI37hY1NRYvBd03Jco/KAknNeI2EqtxDke/7HM4gHM5h+yJCAA5GvzDhOx6mPlCUaq3qYViG
+ CzmAxD60c2BQ3UA==
+X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-Proofpoint-GUID: 26NFpXl63JKwa2iXUalCausXjjc9Lw48
+X-Authority-Analysis: v=2.4 cv=Hol72kTS c=1 sm=1 tr=0 ts=69a55f59 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=zEcBLWh7pef_YpQEXFYA:9 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-ORIG-GUID: 26NFpXl63JKwa2iXUalCausXjjc9Lw48
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDA4MiBTYWx0ZWRfX9DVcAfFKXB9S
+ U8tKeXGKLbc76VxN/dgdc/7w4pHR+CmgmUjktpLLn65nyjcjp7q69KFJeSvYm7h4KLjnuFnztrP
+ kDGg6517tuCO0OkJWEjtO2guN8M4qrvxBBNEEe4vgtmC0AKv0iHl9KIGVVcwHyc7h/1cJLNy61X
+ AcBA6VLytWJmPniD+z6FcS9eCHEuVpTbql9IcDp/GtUSn+aeKerNEF7aAyEj7esCj58BQooLf1a
+ 6qUHIGDbKDpNc8KcQLSBUCS3wXN5RXVH75V2C73tQykA8HVserymPDEtuU84jYBdJ0/aUw2ogC0
+ xh/7RmV81SJCij0MswkXQ0dW2fLk5/hOboeTjFMu6HBfNUPPyj6YwBBDolJPMkaXFm0wEQO/R7m
+ 53Fxm9G60PdX1fzviVpweIsvPQciIKuu1+4d0JVPRhhp30k573X6R4HoGB2vjzHuFOxO+kcYVaY
+ yobsk1JE2ggXypzn9+w==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_02,2026-02-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 malwarescore=0 adultscore=0 suspectscore=0
+ lowpriorityscore=0 phishscore=0 priorityscore=1501 bulkscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020082
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-269870-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269871-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,msgid.link:url,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,linux.intel.com,suse.de,ffwll.ch,quicinc.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,bootlin.com:mid,bootlin.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8125E1D5D5D
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 3A15A1D5DB2
 X-Rspamd-Action: no action
 
-Hi Conor,
+When display patches were initially submitted, they did not include the
+p2, p3, mst2link and mst3link reg ranges. The devicetreedisplay nodes for
+Glymur are still being reviewed and have not been merged yet.
 
-On Fri, 27 Feb 2026 14:52:29 +0000
-Conor Dooley <conor@kernel.org> wrote:
+This fix resulted from review comments on the devicetree nodes.
 
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> On PolarFire SoC there are more GPIO interrupts than there are interrupt
-> lines available on the PLIC, and a runtime configurable mux is used to
-> decide which interrupts are assigned direct connections to the PLIC &
-> which are relegated to sharing a line.
-> 
-> Add a driver so that Linux can set the mux based on the interrupt
-> mapping in the devicetree.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-...
+Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+---
+Changes in v3:
+- Fixed the reg ranges in the example node in qcom,glymur-mdss.yaml as well.
+- Link to v2: https://patch.msgid.link/20260302-glymur-fix-dp-bindings-reg-clocks-v2-0-e99b6f871e3b@oss.qualcomm.com
 
-> --- a/drivers/soc/microchip/Kconfig
-> +++ b/drivers/soc/microchip/Kconfig
-> @@ -1,3 +1,14 @@
-> +config POLARFIRE_SOC_IRQ_MUX
-> +	bool "Microchip PolarFire SoC's GPIO IRQ Mux"
-> +	depends on ARCH_MICROCHIP
-> +	select REGMAP
-> +	select REGMAP_MMIO
-> +	default y
-> +	help
-> +	  Support for the interrupt mux on Polarfire SoC. It sits between
-> +	  the GPIO controllers and the PLIC, as only 35 interrupts are shared
-> +	  between 3 GPIO controllers with 32 interrupts each.
+Changes in v2:
+- mistakenly sent without cover subject line. Please ignore.
+- Link to v1: https://patch.msgid.link/20260227-glymur-fix-dp-bindings-reg-clocks-v1-1-99f7b42b43aa@oss.qualcomm.com
 
-35 interrupts ?
+---
+Abel Vesa (2):
+      dt-bindings: display: msm: Fix reg ranges and clocks on Glymur
+      dt-bindings: display: msm: Fix reg ranges for DP example node
 
-Previously (other patches) you mentionned 41 (38 + 3).
-
-Also 32 interrutps on each (3 * 32 = 96) but you talked about 70 on previous
-patches.
-
-Can you double check or clarify those numbers ?
-
-...
-> +++ b/drivers/soc/microchip/mpfs-irqmux.c
-> @@ -0,0 +1,167 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Largely copied from rzn1_irqmux.c
-> + */
-> +
-> +#include <linux/bitmap.h>
-> +#include <linux/bitops.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#define MPFS_IRQMUX_CR		0x54
-> +#define MPFS_IRQMUX_NUM_OUTPUTS	70
-
-Is 70 really the outputs ?
-
-According to previous patches, I would say 41 (38+3).
-
-...
-> +static int mpfs_irqmux_probe(struct platform_device *pdev)
-> +{
-> +	DECLARE_BITMAP(line_done, MPFS_IRQMUX_NUM_OUTPUTS) = {};
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct of_imap_parser imap_parser;
-> +	struct of_imap_item imap_item;
-> +	struct regmap *regmap;
-> +	int ret, direct_mode, line, controller, gpio;
-
-Reverse Xmas tree.
-
-> +	u32 tmp, val = 0, old;
-
-...
-> +	for_each_of_imap_item(&imap_parser, &imap_item) {
-> +
-> +		direct_mode = mpfs_irqmux_is_direct_mode(dev, &imap_item.parent_args);
-> +		if (direct_mode < 0) {
-> +			of_node_put(imap_item.parent_args.np);
-> +			return direct_mode;
-> +		}
-> +
-> +		line = imap_item.child_imap[0];
-> +		gpio = line % 32;
-> +		controller = line / 32;
-> +
-> +		if (controller > 2) {
-> +			of_node_put(imap_item.parent_args.np);
-> +			dev_err(dev, "child interrupt number too large: %d\n", line);
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (test_and_set_bit(line, line_done)) {
-
-Your bitmap size is MPFS_IRQMUX_NUM_OUTPUTS but you your line variable can
-have values from 0 to 95.
-
-Maybe some checks on imap_item.child_imap[0] or line could be added in
-order to be be sure that line value will fit in the bitmap.
-
-
-> +			of_node_put(imap_item.parent_args.np);
-> +			dev_err(dev, "Mux output line %d already defined in interrupt-map\n",
-> +				line);
-
-line is computed from imap_item.child_imap[0]. It is the input and not the
-output.
-
-In rzn1-irqmux.c, the bitmap is used to avoid multiple input lines using the same
-output line. Bitmap bits represent outputs.
-
-> +			return -EINVAL;
-> +		}
-> +
-> +		/*
-> +		 * There are 41 interrupts assigned to GPIOs, of which 38 are "direct". Since the
-> +		 * mux has 32 bits only, 6 of these exclusive/"direct" interrupts remain. These
-> +		 * are used by GPIO controller 1's lines 18 to 23. Nothing needs to be done
-> +		 * for these interrupts.
-> +		 */
-> +		if (controller == 1 && gpio >= 18)
-> +			continue;
-> +
-> +		/*
-> +		 * The mux has a single register, where bits 0 to 13 mux between GPIO controller
-> +		 * 1's 14 GPIOs and GPIO controller 2's first 14 GPIOs. The remaining bits mux
-> +		 * between the first 18 GPIOs of controller 1 and the last 18 GPIOS of
-> +		 * controller 2. If a bit in the mux's control register is set, the
-> +		 * corresponding interrupt line for GPIO controller 0 or 1 will be put in
-> +		 * "non-direct" mode. If cleared, the "fabric" controller's will.
-> +		 *
-> +		 * Register layout:
-> +		 *    GPIO 1 interrupt line 17 | mux bit 31 | GPIO 2 interrupt line 31
-> +		 *    ...                      | ...        | ...
-> +		 *    ...                      | ...        | ...
-> +		 *    GPIO 1 interrupt line  0 | mux bit 14 | GPIO 2 interrupt line 14
-> +		 *    GPIO 0 interrupt line 13 | mux bit 13 | GPIO 2 interrupt line 13
-> +		 *    ...                      | ...        | ...
-> +		 *    ...                      | ...        | ...
-> +		 *    GPIO 0 interrupt line  0 | mux bit  0 | GPIO 2 interrupt line  0
-> +		 *
-> +		 * As the binding mandates 70 items, one for each GPIO line, there's no need to
-> +		 * handle anything for GPIO controller 2, since the bit will be set for the
-> +		 * corresponding line in GPIO controller 0 or 1.
-
-Hum, what happen if the interrupts property is set in the GPIO controller 2 and not
-GPIO controllers 0 or 1.
-
-Is it legit ?
-
-If so, should lines coming from GPIO controller 2 be took into account ?
-
-Maybe my comment is not relevant due to some misunderstanding in the not
-so obvious mapping.
-
-> +		 */
-> +		if (controller == 2)
-> +			continue;
-> +
-> +		/*
-> +		 * If in direct mode, the bit is cleared, nothing needs to be done as val is zero
-> +		 * initialised and that's the direct mode setting for GPIO controller 0 and 1.
-> +		 */
-> +		if (direct_mode)
-> +			continue;
-> +
-> +		if (controller == 0)
-> +			val |= 1U << gpio;
-> +		else
-> +			val |= 1U << (gpio + 14);
-> +	}
-> +
-> +	regmap_read(regmap, MPFS_IRQMUX_CR, &old);
-> +	regmap_write(regmap, MPFS_IRQMUX_CR, val);
-> +
-> +	if (val != old)
-> +		dev_info(dev, "firmware mux setting of 0x%x overwritten to 0x%x\n", old, val);
-> +
-> +	return 0;
-> +}
-> +
+ .../bindings/display/msm/dp-controller.yaml         | 21 ++++++++++++++++++++-
+ .../bindings/display/msm/qcom,glymur-mdss.yaml      | 16 ++++++++++------
+ 2 files changed, 30 insertions(+), 7 deletions(-)
+---
+base-commit: 7c21b660e919698b10efa8bdb120f0f9bc3d3832
+change-id: 20260227-glymur-fix-dp-bindings-reg-clocks-704d0ccbeef9
 
 Best regards,
-Hervé
+--  
+Abel Vesa <abel.vesa@oss.qualcomm.com>
+
 
