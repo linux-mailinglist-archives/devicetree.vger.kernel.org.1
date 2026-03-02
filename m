@@ -1,157 +1,182 @@
-Return-Path: <devicetree+bounces-269892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269893-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJacN7tnpWmx+wUAu9opvQ
-	(envelope-from <devicetree+bounces-269892-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:34:35 +0100
+	id GJ48MMxnpWkeAAYAu9opvQ
+	(envelope-from <devicetree+bounces-269893-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:34:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41F201D69A2
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:34:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30CE51D69C8
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:34:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5697430879F0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:24:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 55118302E909
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232DF399036;
-	Mon,  2 Mar 2026 10:24:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4D739B95B;
+	Mon,  2 Mar 2026 10:24:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E329C39B962
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:24:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D865F39A81C;
+	Mon,  2 Mar 2026 10:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772447067; cv=none; b=p6iNet8HSs4dw1owlB8qEVd9o3vbZPSwKcieGYCOrbiJs9A6TEOnbwjOoe7VTEE4+4RsmQAynX8hNNTaidAZqzZTl21p72v/VX1PQh3jDNBabBnOt1sEXx5yCTlvYg0dvmtcQyMaj1k7/nyxUtHPzMDrQsM5pAJQ9d1FHMQYOso=
+	t=1772447080; cv=none; b=mkSNqLHzpS2vuCB6hIuoYqvcbpYaVx8bfc1TJUEqwAKCQePGwZZ9W1yGNFNc5vS4Ax6IZhaB/SMZtCBxDkR3xVE68eEolYBFhZuLnOJVqpUQLyKLh+QBwL1irnwNbFwTv7nn2rjAKy/G4tMdqMDYWyE3SjhHaAm5myvyKL6Hu8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772447067; c=relaxed/simple;
-	bh=x/JPmKMpl9B76cHoeYrYmU9vcZQiUMxDoJ1jEnJhn+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uGGVHdI+p5WpTZbM3GRlPtIpJjkv44sE3JlHmvekO/VYQ/9OK7Kgb9BbsQ+bScTZzQP7hAdFWzR1/JaDOYiFNQvlG4ROJiZri2ZBz7upql9DuY9ihCX8EVuNThqIMxs6n6ibshGIVpGim8P4BxAdXc1qUBrewao1rBgjPzLedmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vx0Rk-0003LN-I6; Mon, 02 Mar 2026 11:24:16 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vx0Ri-003MZu-2o;
-	Mon, 02 Mar 2026 11:24:16 +0100
-Received: from pengutronix.de (p4ffb2dc6.dip0.t-ipconnect.de [79.251.45.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id BD6624F5071;
-	Mon, 02 Mar 2026 10:24:15 +0000 (UTC)
-Date: Mon, 2 Mar 2026 11:24:15 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Vincent Mailhol <mailhol@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wolfgang Grandegger <wg@grandegger.com>, "open list:CAN NETWORK DRIVERS" <linux-can@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/1] dt-bindings: net: can: nxp,sja1000: add reference
- to mc-peripheral-props.yaml
-Message-ID: <20260302-didactic-neon-ara-91dabe-mkl@pengutronix.de>
-X-AI: stop_reason: "refusal"
-References: <20260212163000.1195586-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1772447080; c=relaxed/simple;
+	bh=eWVFKW3A7MKx5p5Dxot9aQIkqN7okMarVB1Y+6uExOA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=kjekh/pd7jfGcKDVmm5JXMQUb5FdvgzKsYwMVtAu4feAVd/9WqKDMvTkT6llhK94wG/rrBeiYHUcGMKzlz/S8/DRyU83La6oaTEf5bc9+1RzgknG9VaFDn/2ZQ9T8E3HZKtQMV1a6C1ixJugJ9VC+hzm7UyBJvkpAUuJ7//m7wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 2 Mar
+ 2026 18:24:30 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 2 Mar 2026 18:24:30 +0800
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+Subject: [PATCH net-next v6 0/5] Add AST2600 RGMII delay into ftgmac100
+Date: Mon, 2 Mar 2026 18:24:27 +0800
+Message-ID: <20260302-rgmii_delay_2600-v6-0-68319a4c4110@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3xheu2vifpjpnbcm"
-Content-Disposition: inline
-In-Reply-To: <20260212163000.1195586-1-Frank.Li@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFtlpWkC/4XRwWrDMAwG4FcpPs9BlmM73WnvMUpwbaXx1iZdk
+ oaGkneflsI6aGAnI8T/GUk30VOXqBevm5voaEx9ahsu7MtGhNo3B5Ipci0Q0CjQSnaHU0plpKO
+ fSrQA0gPsAfMiOLKCY+eOqnRdyHfR0CAbug5ix5069UPbTctfo1r6Pyyrjp8tYqYM2q12UskPH
+ z6nMtTt5c33Z6I4UKiz0J4WacRHulAarNagMq2Lwqj/w/o3rHik54lGLUES+gqtsZWLblXJ/yg
+ KVpScFRN81BicZWdVMQ8FwawohpV9xAKBpeiflfm+846+Lny94b743Tx/A56cdT3bAQAA
+X-Change-ID: 20251031-rgmii_delay_2600-a00b0248c7e6
+To: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Po-Yu Chuang <ratbert@faraday-tech.com>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <taoren@meta.com>, Jacky Chou
+	<jacky_chou@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772447070; l=3669;
+ i=jacky_chou@aspeedtech.com; s=20251031; h=from:subject:message-id;
+ bh=eWVFKW3A7MKx5p5Dxot9aQIkqN7okMarVB1Y+6uExOA=;
+ b=6pvceYIVye2BfNotK79vvawC/nSneY5yAm8dVU1hEUqBkfrHg+QV7ZvBEiOwZWteK1lI8d4dj
+ t2y1LsqEvh8CXYR6CroaDyZjuU05z/WnPqtcLMfjh4Y1sMdAk1GhQIu
+X-Developer-Key: i=jacky_chou@aspeedtech.com; a=ed25519;
+ pk=8XBx7KFM1drEsfCXTH9QC2lbMlGU4XwJTA6Jt9Mabdo=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.06 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MISSING_XM_UA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_FROM(0.00)[bounces-269892-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269893-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mkl@pengutronix.de,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.4:email];
+	FROM_NEQ_ENVFROM(0.00)[jacky_chou@aspeedtech.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.954];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
-X-Rspamd-Queue-Id: 41F201D69A2
+	NEURAL_HAM(-0.00)[-0.967];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,aspeedtech.com:mid,aspeedtech.com:email]
+X-Rspamd-Queue-Id: 30CE51D69C8
 X-Rspamd-Action: no action
 
+This patch series adds support for configuring RGMII internal delays for the
+Aspeed AST2600 FTGMAC100 Ethernet MACs. It introduces new compatible strings to
+distinguish between MAC0/1 and MAC2/3, as their delay chains and configuration
+units differ.
+The device tree bindings are updated to restrict the allowed phy-mode and delay
+properties for each MAC type. Corresponding changes are made to the device tree
+source files and the FTGMAC100 driver to support the new delay configuration.
 
---3xheu2vifpjpnbcm
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 1/1] dt-bindings: net: can: nxp,sja1000: add reference
- to mc-peripheral-props.yaml
-MIME-Version: 1.0
+This enables precise RGMII timing configuration for AST2600-based platforms,
+improving interoperability with various PHYs
 
-On 12.02.2026 11:30:00, Frank Li wrote:
-> Add a reference to mc-peripheral-props.yaml to allow vendor-specific
-> properties for memory access timings.
->
-> Fix below CHECK_DTBS warings:
-> arch/arm/boot/dts/nxp/imx/imx27-phytec-phycore-rdk.dtb: can@4,0 (nxp,sja1=
-000): Unevaluated properties are not allowed ('fsl,weim-cs-timing' was unex=
-pected)
->         from schema $id: http://devicetree.org/schemas/net/can/nxp,sja100=
-0.yaml
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+---
+Changes in v6:
+- Adjustments made according to net: ftgmac100: Various probe cleanups.
+- Split [net-next,v5,3/4] net: ftgmac100: Add RGMII delay support for AST2600.
+  1. Confgure RGMII delay value according to rx/tx-internal-delay-ps from dts
+  2. Keep RGMII delay value for old dts
+- Link to v5: https://lore.kernel.org/r/20251205-rgmii_delay_2600-v5-0-bd2820ad3da7@aspeedtech.com
 
-Applied to linux-can.
+Changes in v5:
+- Remove the new property, "aspeed,rgmii-delay-ps" from yaml and driver
+- Add aspeed,scu to aspeed-g6 dtsi back
+- Determine delay value from bootloader and tx/rx-internal-delay-ps to
+  configure RGMII delay value with phy-mode
+- Add a helper for AST2600 to get phy driver handle
+- Link to v4: https://lore.kernel.org/r/20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com
 
-regards,
-Marc
+Changes in v4:
+- Remove the compatible "aspeed,ast2600-mac01" and
+  "aspeed,ast2600-mac23"
+- Add new property to specify the RGMII delay step for each MACs
+- Add default value of rx/tx-internal-delay-ps
+- For legacy dts, a warning message reminds users to update phy-mode
+- If lack rx/tx-internal-delay-ps, driver will use default value to
+  configure the RGMII delay
+- Link to v3: https://lore.kernel.org/r/20251103-rgmii_delay_2600-v3-0-e2af2656f7d7@aspeedtech.com
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Changes in v3:
+- Add new item on compatible property for new compatible strings
+- Remove the new compatible and scu handle of MAC from aspeed-g6.dtsi
+- Add new compatible and scu handle to MAC node in
+  aspeed-ast2600-evb.dts
+- Change all phy-mode of MACs to "rgmii-id"
+- Keep "aspeed,ast2600-mac" compatible in ftgmac100.c and configure the
+  rgmii delay with "aspeed,ast2600-mac01" and "aspeed,ast2600-mac23"
+- Link to v2: https://lore.kernel.org/r/20250813063301.338851-1-jacky_chou@aspeedtech.com
 
---3xheu2vifpjpnbcm
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v2:
+- added new compatible strings for MAC0/1 and MAC2/3
+- updated device tree bindings to restrict phy-mode and delay properties
+- refactored driver code to handle rgmii delay configuration
+- Link to v1: https://lore.kernel.org/r/20250317025922.1526937-1-jacky_chou@aspeedtech.com
 
------BEGIN PGP SIGNATURE-----
+---
+Jacky Chou (5):
+      dt-bindings: net: ftgmac100: Add delay properties for AST2600
+      ARM: dts: aspeed-g6: add aspeed,scu property for MAC
+      net: ftgmac100: Add RGMII delay support for AST2600
+      net: ftgmac100: Support rgmii delay in old dts with AST2600
+      ARM: dts: aspeed: ast2600-evb: Configure RGMII delay for MAC
 
-iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCaaVlTQAKCRDMOmT6rpmt
-0hV8AQDLbjBMOU3liC2+KNR/C1BDNT2Yf0FVuMUud3z5t4H+FgEAtLu6taoyRf/I
-vHxV2hgCJE4w5SqT3nANcwejnBwvBAQ=
-=7CYj
------END PGP SIGNATURE-----
+ .../devicetree/bindings/net/faraday,ftgmac100.yaml |  42 ++-
+ arch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dts    |  20 +-
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi            |   4 +
+ drivers/net/ethernet/faraday/ftgmac100.c           | 318 ++++++++++++++++++++-
+ drivers/net/ethernet/faraday/ftgmac100.h           |  25 ++
+ 5 files changed, 388 insertions(+), 21 deletions(-)
+---
+base-commit: 01857fc712f6469cab9cc578120cdc80f1c2a634
+change-id: 20251031-rgmii_delay_2600-a00b0248c7e6
 
---3xheu2vifpjpnbcm--
+Best regards,
+-- 
+Jacky Chou <jacky_chou@aspeedtech.com>
+
 
