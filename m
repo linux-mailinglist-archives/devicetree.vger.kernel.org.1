@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-269836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269837-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8JbeMOhQpWnS8QUAu9opvQ
-	(envelope-from <devicetree+bounces-269836-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:57:12 +0100
+	id cD9FJLVRpWmU8wUAu9opvQ
+	(envelope-from <devicetree+bounces-269837-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:00:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4D41D50F4
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:57:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED031D5261
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:00:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C4A6F3012508
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 08:57:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6DB883047437
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 08:58:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB2638B7C1;
-	Mon,  2 Mar 2026 08:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13A8738CFF3;
+	Mon,  2 Mar 2026 08:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jmeYP5rT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ko8G8iX4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482641BCA1C;
-	Mon,  2 Mar 2026 08:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C9C38CFEE;
+	Mon,  2 Mar 2026 08:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772441829; cv=none; b=n121RrbS1bDhO56ZwU4ayBPWWiCGXD2Xfz3zrDi53eqGuBi9OuHxW5j4B99oH+6ylJcH858f9F9I0scBgpbtynqb5m7bihR85jT5ST3Z6Wb4hdJiR5FZtVHVzh5u77PwY9kBPJTpHMQkXkIWTFl3aabEzfaqGvIBxQKabZhP1bY=
+	t=1772441911; cv=none; b=o56bj1bVgosdo6sxjC2chb4FDcc1LxV1TjG8iMUMkNja6P5+mCvIgAgN7dQUsKlolRqGW+6cc/kpqL9QwWZ2BBm5A3Akz5fn4NA7nbPCwvdTqIB1/APyNwlbjfNL6jAKSjLDXcyDa5LNI/f6AqyOwRsOCiT/1NreAUlgtxc1v0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772441829; c=relaxed/simple;
-	bh=yfzmIq3omYFPWQCygqaPvYtSwpJQ2fhfLnMRka6Ufko=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=MVOOws23o1e1RZAKodViQPzXSdUJsHHZLLgv56cnTnLlmCY9QGHf6y8r8ho5XGrvY485HEUX4U1AEvcZiYLZ5Ofn4c1KB9vNhAz0k5HBKb8tdw7UNsiwdslgfPV/rYFCVrS78HMqLEePaAvbM3/O0MVnX5/xEIXAiPd0F5p8lvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jmeYP5rT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0DB8C2BCC4;
-	Mon,  2 Mar 2026 08:57:05 +0000 (UTC)
+	s=arc-20240116; t=1772441911; c=relaxed/simple;
+	bh=ABCA5+IUsI6syzkKsP94i/DRJfBN6155VIt9H+qtr/k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YbDg4FmvK69nqgxOJUnNDaVfV5IXa8Avii5LxDdrnN+wTo21IxANQaNrhRbI/Nf9E2oqwjde0iT/6twNrqxP4E1QYg0IJSbi9Wm5bHdHioRzext/yqstSelNPVbZmWnN3jK5p6CLIxpMccS0aonnkMevIJsaY0qNUYRYnnSzZp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ko8G8iX4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 113DAC2BC87;
+	Mon,  2 Mar 2026 08:58:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772441828;
-	bh=yfzmIq3omYFPWQCygqaPvYtSwpJQ2fhfLnMRka6Ufko=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=jmeYP5rTlK307nsa5nZooErlAZXNwn8HbjuoT/ZdILjp3kBRhKOnJMZW3RFZT4yyO
-	 +6BwoKyVFLs36A8iH0yge9xj3IUhas6y+ORgg/VxxBvNhgO55KQsEW691jj9byUXdz
-	 csx++7FNSWg/1bei00/MhoOmyUs3wBtxhfz8EEPAm3xvC5kdaXGlThCYJNMqvkxw+T
-	 reust4EyIdo3hpPOSiYHIgVDZz/sgfWHx/+2/j5+aEPuOoUzLmMmNQ00y20VFtqdNl
-	 e+ga2GPQR1JUL8Z22jr6hIeaZ3lwsQ3d7KKw/OKuDUI/iDLBnU29goJvKKurkDI6bh
-	 kg6vVnFlCdGvQ==
-Message-ID: <32b7763b-ba44-4341-8528-be97d6607354@kernel.org>
-Date: Mon, 2 Mar 2026 09:57:03 +0100
+	s=k20201202; t=1772441910;
+	bh=ABCA5+IUsI6syzkKsP94i/DRJfBN6155VIt9H+qtr/k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ko8G8iX49Q+4O5OtGJBNkF1+e689C3f1XRL2TFXs/I3bESEPP8S441u4M58+GLzWv
+	 QCq7DF65xYdNdq5qBNtatZyjMXWdtqs6+CuLH99/5tG7YHLO+TnRiw5gw7lmFT6yQA
+	 wkgrVqYDPk20VEOr0nBApwd0pOJuFeEygthk4a2hr6dRzLLNdhZseMfjYGlrNcDofy
+	 K1vXhXAnHat/bi1FyN/TcRqlmRStBBfJVdueTBcVjGwd/qVt3uwNty2/J50PSkZ0cT
+	 RI5//4liLLQsJvVSMJXdmpxhFwxgo4FMl0PZPo3dDO8vpWhguXIxCu1uUdmz1Gibgz
+	 2zPvieVzmGWMw==
+Message-ID: <3cfa4036-e7a7-4cde-9dab-a171a63bdee3@kernel.org>
+Date: Mon, 2 Mar 2026 09:58:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,21 +53,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
+Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
+To: "Xu, Baojun" <baojun.xu@ti.com>
+Cc: "broonie@kernel.org" <broonie@kernel.org>, "tiwai@suse.de"
+ <tiwai@suse.de>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ "13916275206@139.com" <13916275206@139.com>,
+ "Ding, Shenghao" <shenghao-ding@ti.com>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "Yi, Ken" <k-yi@ti.com>, "Lo, Henry" <henry.lo@ti.com>,
+ "Chen, Robin" <robinchen@ti.com>, "Wang, Will" <will-wang@ti.com>,
+ "jim.shil@goertek.com" <jim.shil@goertek.com>,
+ "toastcheng@google.com" <toastcheng@google.com>,
+ "chinkaiting@google.com" <chinkaiting@google.com>
+References: <20260226075737.405-1-baojun.xu@ti.com>
+ <20260226075737.405-2-baojun.xu@ti.com>
+ <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
+ <9f861c7df09c4434a98a203ecff913bc@ti.com>
+ <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
+ <a7316acf9ba248f9ad1fab0313a95654@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-References: <20260217052526.2335759-1-neeraj.soni@oss.qualcomm.com>
- <20260217052526.2335759-2-neeraj.soni@oss.qualcomm.com>
- <20260217-berserk-puma-of-focus-bcbe82@quoll>
- <e3ac0681-605d-c1df-e4f0-78a2c142fa66@oss.qualcomm.com>
- <21a87714-cd11-4217-a2aa-82fddc3a8530@kernel.org>
- <544925d0-cf32-6b2a-548e-d6f7cc517581@oss.qualcomm.com>
- <01085021-c116-46de-a0ce-730455620cb2@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -112,87 +122,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <01085021-c116-46de-a0ce-730455620cb2@kernel.org>
+In-Reply-To: <a7316acf9ba248f9ad1fab0313a95654@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-269837-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269836-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,suse.de,linux.intel.com,139.com,ti.com,vger.kernel.org,gmail.com,goertek.com,google.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 6A4D41D50F4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EED031D5261
 X-Rspamd-Action: no action
 
-On 02/03/2026 08:48, Krzysztof Kozlowski wrote:
-> On 02/03/2026 08:45, Neeraj Soni wrote:
->>
->>
->> On 2/19/2026 1:57 PM, Krzysztof Kozlowski wrote:
->>> On 19/02/2026 06:38, Neeraj Soni wrote:
->>>>>>  
->>>>>> +  - if:
->>>>>> +      required:
->>>>>> +        - qcom,ice
->>>>>> +    then:
->>>>>> +      properties:
->>>>>> +        reg-names:
->>>>>> +          not:
->>>>>> +            contains:
->>>>>> +              const: ice
->>>>>
->>>>> And reg is still 4? This is not correct syntax. You need to define
->>>>> proper and final constraints per each device. I would write example, but
->>>>> why... more things you could just ignore.
->>>>>
->>>> I had included changes for reg in v3:
->>>> https://lore.kernel.org/all/20260206112053.3287756-2-neeraj.soni@oss.qualcomm.com/
+On 02/03/2026 09:24, Xu, Baojun wrote:
 >>>>
->>>> but those were not reviewed so i assume them to be incorrect and dropped it.
->>>> Will fix this in next patch and post.
+>>>>>  MODULE_DEVICE_TABLE(i2c, tasdevice_id);
+>>>>> @@ -144,6 +145,7 @@ static const struct of_device_id tasdevice_of_match[] = {
+>>>>>       { .compatible = "ti,tas5827" },
+>>>>>       { .compatible = "ti,tas5828" },
+>>>>>       { .compatible = "ti,tas5830" },
+>>>>> +     { .compatible = "ti,tas5832" },
 >>>>
->>> Patch v3 was also not correct, because SDHCI v5 devices should have 1 or
->>> 2 entries, not 1-3 as previous patch said.
+>>>> So it is fully compatible with tas5830 and most of the changes here are
+>>>> not needed?
 >>>
->> This is not clear to me. Here:
->> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n80
->> it says the entries should be 1-4 and there are no v5 specific constraints.
-> 
-> There are, just scroll.
-
-Here:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n212
-
-> 
->> So i made it 1-3 while adding qcom-ice constraint.
+>>> Yes, it's fully compatible with tas5827/28/30.
 >>
+>> Then above hunk and many others are not needed.
 > 
-> 
-> Best regards,
-> Krzysztof
+> Hi, because those chips have different on the voltage, so the parameters
+> is different, have to use different firmware binary, so we must identify
+> every chip in the driver.
 
+That would explain other ID tables (and should be briefly mentioned in
+the commit msg), but not this one, because here you do not customize the
+binary at all.
 
 Best regards,
 Krzysztof
