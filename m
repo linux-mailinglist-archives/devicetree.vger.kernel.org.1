@@ -1,134 +1,131 @@
-Return-Path: <devicetree+bounces-269818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269819-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPhzCCQ9pWne6QUAu9opvQ
-	(envelope-from <devicetree+bounces-269818-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:32:52 +0100
+	id AD1MA3c/pWm36gUAu9opvQ
+	(envelope-from <devicetree+bounces-269819-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:42:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F3F31D3F82
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:32:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6184D1D4140
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:42:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2694A3006946
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 07:32:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82C543008A6D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 07:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17F6383C78;
-	Mon,  2 Mar 2026 07:32:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uhyHdBHN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B10383C97;
+	Mon,  2 Mar 2026 07:42:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3B43803D1;
-	Mon,  2 Mar 2026 07:32:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D1BD30C353;
+	Mon,  2 Mar 2026 07:42:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772436720; cv=none; b=tjDlCiNJSdLAradM0BEHNrnYOd+oaNLVvTd2xk/8nJgTs6T2GRAwVwPkRJnsTBnoAZTQ4deOlJcRtCRl/r1f38VhPd/qyeKMK4DaB9zIpl1XFwM6H9vZCcgxeQBp0vfFfYeGX+aDaaZvNDrhS0mlQmwICeMhN/OvTPMg4RvvJxE=
+	t=1772437362; cv=none; b=gpPmRjsIgFhJ/VVwcY81JkdVGThQEbMkx2q1aGT2U3wzAGw4p7MZqc7qVqQHzgbDEccwhnSH7ef8tgw8AQGFpMLoJ3IK6D0mfkaBFCmqhybDhbxEAfewPzp1FlJ+7mtZiPm3kVQZN8+/jxH8HJiuuoaXPKpquf3KAo7RdC1jK6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772436720; c=relaxed/simple;
-	bh=WAHARe+Z+diQ+iFBEceRcnn4xGWcGm9TG07E8ie+9/I=;
+	s=arc-20240116; t=1772437362; c=relaxed/simple;
+	bh=1qUC6s+UyJSk47Q6no4N7KTAtBbdFnjO20xN89QX5ko=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cD3B8xb54jRe9/VCcpV0P7pggPYmGaZKJmtq3C7+lhqTk5sbrVwZsDJt/7z3zb0KolbPOWoxspkf/9brEpEdlq1eoSWgKA29TZVqo5/Kv25vW1vktpLWq3n8WEBy7gCGqUEaqmq93k/GHQULliZlVI2U+OZsa1LV5Yd2pUEslZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uhyHdBHN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8243C19423;
-	Mon,  2 Mar 2026 07:31:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772436720;
-	bh=WAHARe+Z+diQ+iFBEceRcnn4xGWcGm9TG07E8ie+9/I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uhyHdBHN6XO7UczfoTRpLDjMfk7+7qGBZADpOk5a0KDr/YQYKyuoFi859EJrf4NTe
-	 SLXKaXyXxnh7W1Hb9ku6gYdT+HoPR02c9JhW9dkqI4WsE3JhfmsZAWKHCsKKeg78jG
-	 UEaX762Q0ORizBVH0b93QN7hHmIFmsOV8UIM2kiKq+N9IAlM4aXYTEX3EutK0imu+2
-	 O5YZ6mPFDWNgCvFiyBn2mAxoNalfrvsBzjo01iYs4cq0FDXWFmY4stwPit6ZpiSTO8
-	 0xWyhp2paXWfI1LWmyXnm7HMXiLAIcvFh74D92KqM1ShpC5nKmbfiv/6yw0mw5JkGh
-	 PbNl4O0ul3Sgg==
-Date: Mon, 2 Mar 2026 08:31:57 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, pawell@cadence.com, rogerq@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH 1/2] usb: cdns3: Add USBSSP platform driver support
-Message-ID: <20260302-brave-cockle-of-bliss-a8dde5@quoll>
-References: <20260302030339.324196-1-peter.chen@cixtech.com>
- <20260302030339.324196-2-peter.chen@cixtech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OKQcstUkppR3fmUr/b/UA+9EjB8ukw6FAxAOJAT6h0NqdHBlhNYTuiaOZMpnCGwqB7NDi4fhwPqqrPKz85CLlc1+PXjBOe3ScLl8UY/rNTKVFk9xjjaUr4ll8uOEjkBYswZmv2yc4sDy7prPiTIRlXhRO3pkTc9YB2dmQKq6h34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.232])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 1572F341E82;
+	Mon, 02 Mar 2026 07:42:39 +0000 (UTC)
+Date: Mon, 2 Mar 2026 15:42:35 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: alex@ghiti.fr, aou@eecs.berkeley.edu, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, dlan@kernel.org, krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com, pjw@kernel.org, robh@kernel.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/1] riscv: dts: spacemit: Add 'linux,pci-domain' to PCIe
+ nodes for K1
+Message-ID: <20260302074235-GYB288339@gentoo.org>
+References: <20260202100000.19176-1-amadeus@jmu.edu.cn>
+ <20260302071502.63672-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260302030339.324196-2-peter.chen@cixtech.com>
+In-Reply-To: <20260302071502.63672-1-amadeus@jmu.edu.cn>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269818-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269819-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cadence.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 4F3F31D3F82
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.982];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 6184D1D4140
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 11:03:33AM +0800, Peter Chen wrote:
-> -	cdns->gadget_init = cdns3_gadget_init;
-> +	if (device_get_match_data(dev) == &cdnsp_plat)
-> +		cdns->gadget_init = cdnsp_gadget_init;
-> +	else
-> +		cdns->gadget_init = cdns3_gadget_init;
->  
->  	ret = cdns_init(cdns);
->  	if (ret)
-> @@ -317,7 +325,8 @@ static const struct dev_pm_ops cdns3_pm_ops = {
->  
->  #ifdef CONFIG_OF
->  static const struct of_device_id of_cdns3_match[] = {
-> -	{ .compatible = "cdns,usb3" },
-> +	{ .compatible = "cdns,usb3", .data = &cdns3_plat },
-> +	{ .compatible = "cdns,usbssp", .data = &cdnsp_plat },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, of_cdns3_match);
-> @@ -336,6 +345,7 @@ static struct platform_driver cdns3_driver = {
->  module_platform_driver(cdns3_driver);
->  
->  MODULE_ALIAS("platform:cdns3");
-> +MODULE_ALIAS("platform:cdnsp");
+Hi Chukun,
 
-You do not need this at all. Fix your DTS or platforms or this
-driver.
+On 15:15 Mon 02 Mar     , Chukun Pan wrote:
+> Hi,
+> 
+> > The SpacemiT K1 SoC has 3 PCIe EP controller nodes. Add the
+> > 'linux,pci-domain' property to assign a PCI domain number to
+> > each of the controllers instead of assigning it randomly.
+> 
+> Does anyone have any thoughts on this?
+> Without this patch, the PCI domain number is random.
+> 
+You describe what's has been done here, but no why?
+Can you add description about why problem with random domain,
+and the motivation of the change behind?
 
->  MODULE_AUTHOR("Pawel Laszczak <pawell@cadence.com>");
->  MODULE_LICENSE("GPL v2");
->  MODULE_DESCRIPTION("Cadence USB3 DRD Controller Driver");
+from my understanding of reading DT document, either way seems
+fine..
 
-Best regards,
-Krzysztof
+> ```
+> /# find /sys/devices -name net
+> /sys/devices/platform/soc/soc:pcie-bus/ca800000.pcie/pci0001:00/0001:00:00.0/0001:01:00.0/net
+> /sys/devices/platform/soc/soc:pcie-bus/ca400000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/net
+> 
+> /# find /sys/devices -name net
+> /sys/devices/platform/soc/soc:pcie-bus/ca800000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/net
+> /sys/devices/platform/soc/soc:pcie-bus/ca400000.pcie/pci0001:00/0001:00:00.0/0001:01:00.0/net
+> ```
+> 
+> Thanks,
+> Chukun
+> 
 
+-- 
+Yixun Lan (dlan)
 
