@@ -1,204 +1,152 @@
-Return-Path: <devicetree+bounces-270245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270246-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4L6GOUIapmmeKQAAu9opvQ
-	(envelope-from <devicetree+bounces-270245-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:16:18 +0100
+	id ADhmJekXpmkCKQAAu9opvQ
+	(envelope-from <devicetree+bounces-270246-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:06:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442281E675E
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:16:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1069E1E648A
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 00:06:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 27A2D32A3A61
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 22:38:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1AAD6305847C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 23:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8814733F582;
-	Mon,  2 Mar 2026 22:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E89331715D;
+	Mon,  2 Mar 2026 23:01:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BZkucZxD"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="h7+VrX8J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326C731F9B6;
-	Mon,  2 Mar 2026 22:38:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83D02D3EE5
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 23:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772491086; cv=none; b=u+w20StNohNQ0fYZxoOCCyjyXVtlC2Syw1oPYFbTe1QvvoFeG4LP75tHgFWce3r9Ud5Uzr+tEMGb81IcWVN2uiMTJ+bcx8hwhGx1mJJf4U2UGBGPdvYOD5II6HZRK93+2T96FuyZD9E24E3dAZDpmppN4Sp537uihs1ulv+aqSg=
+	t=1772492474; cv=none; b=DxG3xNkTCf0tfhvwP8dCm5n+ZKhDgpazxpqcJuAsMXGUvQpwUiqDwyg2Vgwtr6gRMYRvtHHcVrLS2viSSuTOyekoPoaImLfHFvOCWobgT5LvkAlU9gZHs7grWN1ouB+WRe5nQkwOt8zxX6xdvJEx6p6id0tpG6JrPCGvZ+XLeco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772491086; c=relaxed/simple;
-	bh=68t5OIEMxY77Fq28mnKG3kcyRPmRItOFd7ujtleGQZk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bdr0gV3njuJbAOu9Hr7q95jXUZzkkdZMFFl338MJJpKE4jSIfDME17B0svUB+HM6iTynF4vQN5tORdmFHbSsyoCjtjBjirvyJJhGLOJabqnGwo8QQVFQ00j/7The223or38ccV31bnNiBJiLVh2jlXmIWNT/NVa3YDS8iAE7WMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BZkucZxD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E90C19423;
-	Mon,  2 Mar 2026 22:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772491085;
-	bh=68t5OIEMxY77Fq28mnKG3kcyRPmRItOFd7ujtleGQZk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BZkucZxDNFGuPU9SCSuMLEfMlasncGepkmMVtmm88jjrbeMmhAiSAJngM4Pj0BFjx
-	 7Od15qYYNB8XvtJflCF5sZjR+KTRIdB5kQj0ixEHyfKnE80E9rprTH+VbOw2qRAMor
-	 x/yoGexhoGOKfeYep9uzc2KgaQ7rDZwvdapTkYndfwCaGihKgSn0M9E8gxkiH3O96s
-	 VR4Qr+Uwska92y39hcooTewslioUa0EMxgoJ43xZswbYxFA18rVJsooZpwGju1vx5y
-	 99J6uU/pbA4hwveulHsIG1eSKkjmilviFrL4lyPnnV0u111z2jVNwfyXwvHAbjeGas
-	 MM7UNvvPHbm+Q==
-Date: Tue, 3 Mar 2026 06:38:03 +0800
-From: Yixun Lan <dlan@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Iker Pedrosa <ikerpedrosam@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/10] dt-bindings: mmc: spacemit,sdhci: add AIB voltage
- switching registers
-Message-ID: <20260302223803-GKB289813@kernel.org>
-References: <20260302-orangepi-sd-card-uhs-v1-0-89c219973c0c@gmail.com>
- <20260302-orangepi-sd-card-uhs-v1-1-89c219973c0c@gmail.com>
- <20260302-crewman-faster-9fd00b62e30c@spud>
+	s=arc-20240116; t=1772492474; c=relaxed/simple;
+	bh=AdFjy5dAsuSKmw2qXAWig0EInTGotX0ZMxBmhs88nLg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mZzpOX03A9DQhzwFRkC9c1U3X1QKNyptPWZOnNz9VQXnMajqyEYZj3PiNktCNXgpRjv0pOf4OSW+ovg0sNF4rZ7PTgo/L4RuRpIRwNyTfuz7eFnB4P1n1sAGDWHgh+l2J4ZMD9w1NDtqIdX+FKIzwD/Qi+D2LcmSUVhtTzNXNAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=h7+VrX8J; arc=none smtp.client-ip=212.77.101.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 21305 invoked from network); 3 Mar 2026 00:01:02 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1772492462; bh=7+cweu98TOcNO2fC2HKsiZqjaNg+7ppVWQ+2CpDVZbg=;
+          h=From:To:Cc:Subject;
+          b=h7+VrX8JF7VAf1BQwDmjpfLsuhB07MJnKuPBo+NocsvngfY51YBcYWwFXDEBNbohA
+           xrTqSvXfz5Vf/Y8tyXi6wDF6oBtsjY5M4mH9mydRviOT1wKvR0X2vqWGtCl3eAXEgF
+           hUeOgVQhxxzLTh9lHd9YAP5AqyUVEYdCLfc2WpBqAk0r050TYPFlikhh+9A8XEoTXF
+           7mrlFG4VTCHkOxNoOLc70mT+hCqqhvP2tjVaMVNatTHpTlU8v0/5Azkgr6dsk4QB93
+           PjCk5kX30g11wptGqAS7q6MGSnwlPpeWO+fNCfhPk6+GqYzhJuVoNvh4n3x+v6eu6u
+           PSVaxrzGj5GxQ==
+Received: from 83.24.116.171.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.116.171])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with TLS_AES_256_GCM_SHA384 encrypted SMTP
+          for <herbert@gondor.apana.org.au>; 3 Mar 2026 00:01:02 +0100
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: herbert@gondor.apana.org.au,
+	davem@davemloft.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	atenart@kernel.org,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
+Subject: [PATCH v2 1/2] dt-bindings: crypto: inside-secure,safexcel: add compatible for MT7981
+Date: Tue,  3 Mar 2026 00:00:38 +0100
+Message-ID: <20260302230100.70240-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260302-crewman-faster-9fd00b62e30c@spud>
-X-Rspamd-Queue-Id: 442281E675E
+Content-Transfer-Encoding: 8bit
+X-WP-DKIM-Status: good (id: wp.pl)                                                      
+X-WP-MailID: d08f458a8f4368eeb35a8e26834207f2
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 0000009 [kFNB]                               
+X-Rspamd-Queue-Id: 1069E1E648A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[wp.pl,none];
+	R_DKIM_ALLOW(-0.20)[wp.pl:s=20241105];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270245-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,linaro.org,kernel.org,gentoo.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	FREEMAIL_FROM(0.00)[wp.pl];
+	TAGGED_FROM(0.00)[bounces-270246-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[wp.pl];
+	FROM_NEQ_ENVFROM(0.00)[olek2@wp.pl,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[wp.pl:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,d401e000:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Iker, Conor,
+The MT7981 as well as the MT7986 have a built-in EIP-97 crypto accelerator.
+This commit adds a compatible string for MT7981.
 
-On 18:25 Mon 02 Mar     , Conor Dooley wrote:
-> On Mon, Mar 02, 2026 at 04:13:22PM +0100, Iker Pedrosa wrote:
-> > Add SpacemiT K1 AIB register properties for UHS voltage switching
-> > support:
-> > 
-> > - spacemit,aib-mmc1-io-reg: AIB MMC1 IO register address for voltage
-> >   switching
-> > - spacemit,apbc-asfar-reg: APBC ASFAR register address for AIB access
-> > - spacemit,apbc-assar-reg: APBC ASSAR register address for AIB access
-> > 
-> > These properties enable the driver to perform voltage switching between
-> > 3.3V and 1.8V required for UHS SD card modes.
-> > 
-> > Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml b/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
-> > index 13d9382058fbc1c12be1024d1c550f04a825673c..4d6590aa8262009b6e5697a04b45cf3736c0fa42 100644
-> > --- a/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
-> > @@ -32,6 +32,18 @@ properties:
-> >        - const: core
-> >        - const: io
-> >  
-> > +  spacemit,aib-mmc1-io-reg:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: AIB MMC1 IO register address for voltage switching
-> > +
-> > +  spacemit,apbc-asfar-reg:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: APBC ASFAR register address for AIB access
-> > +
-> > +  spacemit,apbc-assar-reg:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: APBC ASSAR register address for AIB access
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -50,4 +62,7 @@ examples:
-> >        interrupt-parent = <&plic>;
-> >        clocks = <&clk_apmu 10>, <&clk_apmu 13>;
-> >        clock-names = "core", "io";
-> > +      spacemit,aib-mmc1-io-reg = <0xd401e81c>;
-> 
-> This looks very very wrong to me. This is part of the pinctrl
-> reservation:
-> 		pinctrl: pinctrl@d401e000 {
-> 			compatible = "spacemit,k1-pinctrl";
-> 			reg = <0x0 0xd401e000 0x0 0x1000>;
-> 			clocks = <&syscon_apbc CLK_AIB>,
-> 				 <&syscon_apbc CLK_AIB_BUS>;
-> 			clock-names = "func", "bus";
-> 			spacemit,apbc = <&syscon_apbc>;
-> 		};
-> so if you need to change something here, you need to do it via pinctrl.
-> 
-> > +      spacemit,apbc-asfar-reg = <0xd4015050>;
-> > +      spacemit,apbc-assar-reg = <0xd4015054>;
-> 
-> These two are the apbc syscon:
-> 		syscon_apbc: system-controller@d4015000 {
-> 			compatible = "spacemit,k1-syscon-apbc";
-> 			reg = <0x0 0xd4015000 0x0 0x1000>;
-> 			clocks = <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>,
-> 				 <&vctcxo_24m>;
-> 			clock-names = "osc", "vctcxo_1m", "vctcxo_3m",
-> 				      "vctcxo_24m";
-> 			#clock-cells = <1>;
-> 			#reset-cells = <1>;
-> 		};
-> so add a phandle to the syscon (like the pinctrl currently has) and
-> access these via its regmap. What you've got here is a non-runner,
-> sorry.
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+v2:
+- just add compatible strings
+---
+ .../devicetree/bindings/crypto/inside-secure,safexcel.yaml  | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-We've gained this support in pinctrl which already accepted in mainline,
-it's done as Conor suggested here, so you can drop these properties along
-with the patch [5/10], see 
-
-https://lore.kernel.org/all/20260108-kx-pinctrl-aib-io-pwr-domain-v2-0-6bcb46146e53@linux.spacemit.com/
-
-> pw-bot: changes-requested
-> 
-> Thanks,
-> Conor.
-
-
-
+diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+index 3dc6c5f89d32..6c797b7ce603 100644
+--- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
++++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+@@ -18,6 +18,7 @@ properties:
+       - items:
+           - enum:
+               - marvell,armada-3700-crypto
++              - mediatek,mt7981-crypto
+               - mediatek,mt7986-crypto
+           - const: inside-secure,safexcel-eip97ies
+       - const: inside-secure,safexcel-eip197b
+@@ -80,7 +81,10 @@ allOf:
+         compatible:
+           not:
+             contains:
+-              const: mediatek,mt7986-crypto
++              oneOf:
++                - enum:
++                    - mediatek,mt7981-crypto
++                    - mediatek,mt7986-crypto
+     then:
+       properties:
+         interrupts:
 -- 
-Yixun Lan (dlan)
+2.47.3
+
 
