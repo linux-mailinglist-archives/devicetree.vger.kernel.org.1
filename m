@@ -1,218 +1,416 @@
-Return-Path: <devicetree+bounces-270058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270059-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MAhnH+OhpWmuCAAAu9opvQ
-	(envelope-from <devicetree+bounces-270058-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:42:43 +0100
+	id WPKVOAKhpWmuCAAAu9opvQ
+	(envelope-from <devicetree+bounces-270059-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:38:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DEBE1DB107
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:42:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333CF1DB011
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:38:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2162D30639EA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 14:31:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6018E303E486
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 14:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9FB13FFAC9;
-	Mon,  2 Mar 2026 14:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC913FD145;
+	Mon,  2 Mar 2026 14:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kI4rGNmP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SskVTc+l"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="OXUi8jNk";
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="OXUi8jNk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11020128.outbound.protection.outlook.com [52.101.84.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B373FFAC6
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 14:31:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772461908; cv=none; b=NSTeEzeFivVJKOHAaAikh2otjmgZ9LG1ZmhUnpfEgt0xPWKPfh/cKCyCc7UvlUGEypMUCtSbB+/ixrR/VdZ8la5iGe6twJFYUSCRWW/peIe8q1i0sU7MOIiFP3dyRveuoIcsg8buSmaog3hyq/nbS9EJouKpxkFrW82LeB/6FsA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772461908; c=relaxed/simple;
-	bh=23t18syiBuaDoyiGLjw/6hW3FPf0nlgMaKXF5rCREmY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YDE1huslNexd+zCINpewRgDUSemPWFKUwu8E5FkZ3ofU/e6nUYytJ25n8G7XREtbe6gOk7UfFfZoeAARMa2e/eAY4W1HKJAjP5GwM0PGPmzzOT3PlkIywx/5lrixTQ7HPOf1SI8ICUYXBCJzxmvBmY6R6pARSciwAOqZZd9qKto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kI4rGNmP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SskVTc+l; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62294WmT3752736
-	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 14:31:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UFWaxQWimcPR+QbxBkE20FFlYIXJCYxgEXio4txi5ag=; b=kI4rGNmPBH2yeV07
-	TaSKxIpv6inGfxq03xOSrYTQUdPDZze+gfNMivzlfbuk/oWYS5ELJQKP5MdGJAJ1
-	dUhoD9W6aU55EFujyVrnowiuVWlzkKNGpS/+U//tO3l9kbZW9EUsvkW63lkeTtiC
-	sU0CnRy9gXku9E6uzlCxtskRls30I4qYhOdfopvtxTne6t8APaaXoDny9C2VCW7W
-	32B/YM4xcwA8CthwZ9eZD6K2EShGI1RsivjxRoZzoGCXl2rwFHOsse6cXCnuKZQk
-	wLvz1l6jv719IB9YLIGKBG1yfqua4euPmK/AgqpmASyxkqktG9mr6VuVNNkwcyVn
-	c/oyvg==
-Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com [209.85.221.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cn7kq93p2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 14:31:46 +0000 (GMT)
-Received: by mail-vk1-f198.google.com with SMTP id 71dfb90a1353d-56a8dca68cfso48381574e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 06:31:46 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA06127603F;
+	Mon,  2 Mar 2026 14:35:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.128
+ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772462160; cv=fail; b=nWtAr1c5ugFvVfYSZKCupyPH5NM6jyWYQauygpcJ1kAwBc9sUPcnClxDa22iYQDCRsW8nF0aKKwXwEvQTbMmPvfj84ao7k+g2v2A+azn2jJ3ubdiy3IvY+qCwsmTWelAOdwRS7ydTIhS3BIgr7RATq2asA45NOw+w/6aouiFpj8=
+ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772462160; c=relaxed/simple;
+	bh=9S1CcgB36Sb4u6gSYvuC+e6OSyddyh7DIxBJuxvTo5E=;
+	h=From:Date:Subject:Content-Type:Message-Id:To:Cc:MIME-Version; b=nK8rTPzHJOvlilVDFiuR0UjSlBzkh1zYAoX05x/DGHJs5YOZF+Dcq2t7+gSdVXidaxmV7j+UCoUaadbBVH8EGT+LNYPmC3EpnKUEd7Fu4RYuQLNGnlD0BRa4vScqb8+doCDNlX9biOmMru8upAEzzAFY4n5DKS6A+e7aZDjSs6k=
+ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=OXUi8jNk; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=OXUi8jNk; arc=fail smtp.client-ip=52.101.84.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=vyQN1NHOSmDCD5JDxfXpaK+IfK5EsoqV4JwWUISKrxJ3EQcXC5dHVc++cqCBJrW2JJpETPkstnimR7ZG5U2zAU2sXgafUn6H49oHwbZeTsMVm7K0kZneE8Z8H1iwpB3IC+n0Kim8QE7dAI3JbiinY97rgvqw6d1jU06RHXXb2mjnnYXm/9XmDq9Ch2sIjlKmJttaAcoWbSRHweYKTsm0pqnyksALHKPmAoM1tjnH/Omj/oyjxAYxP7PH5IQw0Fj/rxA0HrV8QN7b7NSPHWofFotyhp6GLpITeBDcerCF+f6ZAUSXYYFSqahG/cTSPUQF+1qwJmbPCW+LnKquHPXKNA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ebMFLcRR2BijqRx/a1fW5gtsUt6hxUsHtPGiq0bM8yk=;
+ b=ZRJvAu7OP24LBFNaQDUbFnpm3mNG1bCWiugXD7KOL0/pskoWbOfEmxiq7qVQMEa/WjXPwfxh8B01MU4Hg2sfHMIBlInvy74ndc+SCE7OjyXgqDMHrJ/eOoknPtblQNP0EHoY302Dlpik3vecCEOMNrG/uINUkfclSKQYocAD3V3W4k0MyImrbhMgoh+qfaPx/57EqxE8y32MVVMsmFV7YZPpSkb/UoJU1o3TpjCDUArzzXQGTQV24PBGgISzjMtC0a7EMVWGhjFkyI8p5+012A6cWK1kCFKZE7yi9ifs0L2YaIwTtg80o1sftDsQtEMHD0GFBW3uT8MF51M3jHxhZg==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=softfail (sender ip
+ is 52.17.62.50) smtp.rcpttodomain=kernel.org smtp.mailfrom=solid-run.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=solid-run.com;
+ dkim=pass (signature was verified) header.d=solidrn.onmicrosoft.com; arc=pass
+ (0 oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=solid-run.com]
+ dkim=[1,1,header.d=solid-run.com] dmarc=[1,1,header.from=solid-run.com])
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772461906; x=1773066706; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UFWaxQWimcPR+QbxBkE20FFlYIXJCYxgEXio4txi5ag=;
-        b=SskVTc+lSAeQGCtpsglMpQro2RZ1zQcLPoOs4I1+/B2QDXXXfN33HDfNjmZyjQaQvh
-         Jq3HifDo77rropWKoCpP4jv9MfTFdNPXsdj6UHLSW2c1D6aWWoFZh8u/ccSmnlqpA23d
-         388dYseFjQji3zU/9DLjq2hGCDAv5osDqAFxI9p+W+1WtqEh+9GE4RWHpKQH/9xHwXr8
-         vDFs0r5UiW/Q1dJqiB9Ttf6gi/mCyt/xbkTwLwAEEcbqCQkHTsbhE6QEHkaNbhoa+LDA
-         KNQC3Wx87irh2FGgCbxSvxsVUTNotTKXATYkJm5W7jaVa+KOfK4leeCr5ptpvm2unsov
-         9pvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772461906; x=1773066706;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UFWaxQWimcPR+QbxBkE20FFlYIXJCYxgEXio4txi5ag=;
-        b=HQB5a4Jb8hmQ/TVrAQ8fzDS0YK5zelsnJw8guxyWWIwDISv+Y9D/7P3xPhTxpE2XBw
-         n/XWG+VOhcQ2sKTLsBeO1Y726zB7KiClZAako2XPDgfEq7kVrFXqJAz7zex4hU4zY099
-         w8tu5fkn3NnXP8/EOW/UljMxkggcJY+uvaluU2J3c/OVrmGNS7VdWPvnacdBpd2+P2C9
-         dmhDP337JDxnma9OuFo7EblF3EsomVJDq+J+jYNG9dkfkNbDnMFyfZADf1t/UrWB8awS
-         +OsX0TJytAWLX7OhEncpQRU0RbQjzGFoD+oANhxu1jXxbhzXuc+MKeLNlntkb/6TeXqp
-         sqvA==
-X-Forwarded-Encrypted: i=1; AJvYcCU51Z1IFMn+LtPB/+S18RI7ZOl5rZmujp6sE/t4gQ4/MDdlS+0t1oFpXA6h7wHtcJSXrqHawUv2ptLk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRTjUA2teMuU/slAjofqt7+UpR9SkFBw6YhGNl6XwgQFMXwEg0
-	ljS7AcmbOWcsVI9pHAAbig8fjXogaPTnJmolPs8pjymkqysuRnayg9qKRjqMGk7j76rxd5ZbFtC
-	w57YQ1+NpKo9+OePbSI4ClUlQ6LrQB1wqXqlCPX0ixjb80xlMiHJLgI+5AtFibBAQ
-X-Gm-Gg: ATEYQzx7TSmoMrX7F2jTqnSea60Wy3pf8+Vw4c8vQS2GMtcNu0XOdUG/PjYacoreI4i
-	V3S/AZQj83OOR9mqSy2d4JtU/ZkxcU2ft8K5EuZAEBt6Ofdws+leuc8TcPtXisCzCzGBEAQjxSl
-	7FISZ19cCSLkLCtisoX/yZFZpSQjmJ3LA+m6O0nGH23IbxCGzXiI2Mr5SmcghxEzC5y9XxOK6SE
-	olvIFdcLs9raDypMljsVNqiYrdrObvizVJeqw4HTYvkSrLoXeWWaKgFpQ+FCoebQ26o/3GLYGxs
-	kDqkWw8eEJbo4apJANrusMWcuJuxe1lN0G405QIaYUd/6C6liCAn5iU2K/RX3J+c2VdJNT0L2uS
-	8SEuyhYJQytxk7pgdK0iy+6EL7ZLfvO/jlp1jXhMjqrA6vI/D79wRW+/1hTxWdMqaiuyTkluXpo
-	KInIjJmtKWEzBmRr0/guPca3TBsx6VLC4J1bc=
-X-Received: by 2002:a05:6122:1d90:b0:567:fb8:c7ea with SMTP id 71dfb90a1353d-56a90a02e5amr7560039e0c.8.1772461905785;
-        Mon, 02 Mar 2026 06:31:45 -0800 (PST)
-X-Received: by 2002:a05:6122:1d90:b0:567:fb8:c7ea with SMTP id 71dfb90a1353d-56a90a02e5amr7559990e0c.8.1772461905278;
-        Mon, 02 Mar 2026 06:31:45 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a115bd238fsm1630119e87.11.2026.03.02.06.31.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 06:31:43 -0800 (PST)
-Date: Mon, 2 Mar 2026 16:31:42 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_jingyw@quicinc.com
-Subject: Re: [PATCH] arm64: dts: qcom: monaco: Reserve full Gunyah metadata
- region
-Message-ID: <3f4jhmdavfzp4mv3o3mw4ie2i3zvhvyvertpab37zxc6yluzyi@byem7vs7kv33>
-References: <20260302142603.1113355-1-loic.poulain@oss.qualcomm.com>
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ebMFLcRR2BijqRx/a1fW5gtsUt6hxUsHtPGiq0bM8yk=;
+ b=OXUi8jNkioABGuKKroC6r5AFrTmC3hsycmh0H8iaPzQaIcd7mgTKbXTVdp1cWxBTp4/6OKVYbPxhWarO7dh64R3Vqj1OpPT2v+poJSqOnmde2t1MhGkvhLqjvKByPtq44zDu+d2czcXkNdatvOuDwsyC2vI4UZTesKaY0+YOpOs=
+Received: from DU2PR04CA0153.eurprd04.prod.outlook.com (2603:10a6:10:2b0::8)
+ by AM8PR04MB7827.eurprd04.prod.outlook.com (2603:10a6:20b:247::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
+ 2026 14:35:55 +0000
+Received: from DB1PEPF000509E4.eurprd03.prod.outlook.com
+ (2603:10a6:10:2b0:cafe::bc) by DU2PR04CA0153.outlook.office365.com
+ (2603:10a6:10:2b0::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.20 via Frontend Transport; Mon,
+ 2 Mar 2026 14:35:51 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 52.17.62.50)
+ smtp.mailfrom=solid-run.com; dkim=pass (signature was verified)
+ header.d=solidrn.onmicrosoft.com;dmarc=fail action=none
+ header.from=solid-run.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ solid-run.com discourages use of 52.17.62.50 as permitted sender)
+Received: from eu-dlp.cloud-sec-av.com (52.17.62.50) by
+ DB1PEPF000509E4.mail.protection.outlook.com (10.167.242.54) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.12
+ via Frontend Transport; Mon, 2 Mar 2026 14:35:55 +0000
+Received: from emails-9223048-12-mt-prod-cp-eu-2.checkpointcloudsec.com (ip-10-20-5-166.eu-west-1.compute.internal [10.20.5.166])
+	by mta-outgoing-dlp-141-mt-prod-cp-eu-2.checkpointcloudsec.com (Postfix) with ESMTPS id 934D77FFE4;
+	Mon,  2 Mar 2026 14:35:55 +0000 (UTC)
+X-Mailbox-Line: From b'josua@solid-run.com' Mon Mar  2 14:35:48 2026
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Vcw5RWAL0QjqAgUqXRm0jt25r6Dk6q7XrRjSPblQe4r9w/3IPOsSQwDPK+hauIjMQ1ZFaWbZD0S5AGVedOLQfAiQl5z2c5USokuEkxSfPAhg4XcQIxn5K39OeHv5VHfU0ExygEhEQ/Cys7cRsDEr0tVjavP0sGs9Wp9iNacgGghAjgU5G0YJRuLA+5J528m6+/5UH51stIzYSN+KYg2TkRGBVGUrCweQYyW2DwyZQAjM3kOjOrBN2H2ZYYeNgynJ3IdtqGTEPPis53AZB3uUi5+ncBvpujZMvo5s98Av9rdCqkY0G7Buco44l8u1uj1DzaRfKzZQoNKhYmwyVRG2Mw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ebMFLcRR2BijqRx/a1fW5gtsUt6hxUsHtPGiq0bM8yk=;
+ b=MhJzSgXzMPn7QeBDJMKMjVtZGyxuAmmyAUsQwtbMAwgQ5O3e7GEEUwZiFO//fTTOjqAjn+aI4q0Oz45ri4vvFZ4WJmUNSc6Os9N+BnIjQm6sn2KtRnQpdRmiryR4JrpYptufVuPYTYvB9Rmyve44UmYKzaC2LbXQDN8TxgJaomrgF4+PAhWwE0kiLjuC7KvsEyh3pl54RHbIRkXssHnfVJEywxpO6ucn7wSISF9gzYblc32xHBdxmU2W/NgMb9ZJhPzEmUX/ojrC/h6mB7Cw5q0XS9KoVqzXZRNCbS0Fn1ChxgJOL6ZxvJbVtEb+H640MjQPmMe6r4QrXvxuwfqRwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ebMFLcRR2BijqRx/a1fW5gtsUt6hxUsHtPGiq0bM8yk=;
+ b=OXUi8jNkioABGuKKroC6r5AFrTmC3hsycmh0H8iaPzQaIcd7mgTKbXTVdp1cWxBTp4/6OKVYbPxhWarO7dh64R3Vqj1OpPT2v+poJSqOnmde2t1MhGkvhLqjvKByPtq44zDu+d2czcXkNdatvOuDwsyC2vI4UZTesKaY0+YOpOs=
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+Received: from PAXPR04MB8749.eurprd04.prod.outlook.com (2603:10a6:102:21f::22)
+ by PAWPR04MB9936.eurprd04.prod.outlook.com (2603:10a6:102:38b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
+ 2026 14:35:45 +0000
+Received: from PAXPR04MB8749.eurprd04.prod.outlook.com
+ ([fe80::d782:fbb2:be9a:43f1]) by PAXPR04MB8749.eurprd04.prod.outlook.com
+ ([fe80::d782:fbb2:be9a:43f1%3]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
+ 14:35:45 +0000
+From: Josua Mayer <josua@solid-run.com>
+Date: Mon, 02 Mar 2026 15:35:37 +0100
+Subject: [PATCH v4] arm64: dts: lx2160a: extend 32-bit, and add 16 & 64-bit
+ pci regions
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260302-lx2160-pci-v4-1-30a30dc47ec6@solid-run.com>
+X-B4-Tracking: v=1; b=H4sIADigpWkC/23NsQ7CIBCA4VcxzGI4oEdx0rg4OrgZB6FUSbQ1o
+ I2m6btLSIzWON5dvv96El3wLpL5pCfBdT76tkmDnE6IPR2ao6O+SjPhjEsGUNLzgwMyerWeSlM
+ Z0OiKshYkgWtwtX/k2I5sltvVmuzT+uTjrQ3P/KKDfMw1weG71gEFKlAJxcpaOYOL2J59RcO9m
+ dn2klMd/3DJ9YjzxMFoWSiskKP4x8WbF0wzNeIicWMQrZVgylr/8mEYXv5kXs4tAQAA
+X-Change-ID: 20240118-lx2160-pci-4bdb196e58f3
+To: Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>
+Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
+ Jon Nettleton <jon@solid-run.com>, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Josua Mayer <josua@solid-run.com>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: FR4P281CA0031.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c7::15) To PAXPR04MB8749.eurprd04.prod.outlook.com
+ (2603:10a6:102:21f::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260302142603.1113355-1-loic.poulain@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: 2IvCKuKk-lfpQQC-RBLNeQCxHT6Gc0bC
-X-Proofpoint-GUID: 2IvCKuKk-lfpQQC-RBLNeQCxHT6Gc0bC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDEyMiBTYWx0ZWRfX4Ldw/AmPI1Od
- MJWwF3EDVRg3A8lyoCX4/9dYyyEOYxbLIriocDgpzQt+p7ywEhWNNeIzCYZgVVqcBfIh+m79vr1
- 8r9jIH8LrotFH3NljjFknp0/urA4S5k6G4i404unmrx+3dJmnLtLL4XMlCdsUzM6J44kuwIHTFY
- eIA8hq8DPI0tYG97hzMd8Na66R/KVQYqdA1uHmCsmD0MtSTyQKIwAL/F1a+RhOChTEwWvYuovTb
- wW+bp6+H7ROt/kvDMCAAXgK4jaqK4yUilSDb8fjxd51Mxw8t90icrCdpwl/udSAawGhZF291a/Y
- HdOhrBhgmNrKPHS5PtSr1KHeBBpDg7pspAXYQOZCB7/bKFDtwmXNQZqdg2mAeb2bc8JC4+gThK5
- o8g4iSaowiaMmlWJBqwvKbJTpdHetdxw7ogcsd8UOEFIXuw0YqSrNOTxM+0SiqezcvW9bHQeda8
- JqXESt3OBYqCBNgc2cw==
-X-Authority-Analysis: v=2.4 cv=GLkF0+NK c=1 sm=1 tr=0 ts=69a59f52 cx=c_pps
- a=1Os3MKEOqt8YzSjcPV0cFA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22 a=EUspDBNiAAAA:8
- a=ddBjuLbzpIDlxO-QRmcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=hhpmQAJR8DioWGSBphRh:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-02_03,2026-03-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 impostorscore=0 spamscore=0 adultscore=0
- phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020122
-X-Rspamd-Queue-Id: 6DEBE1DB107
+X-MS-TrafficTypeDiagnostic:
+	PAXPR04MB8749:EE_|PAWPR04MB9936:EE_|DB1PEPF000509E4:EE_|AM8PR04MB7827:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4e4d7755-554d-4d4c-18f8-08de78690367
+X-CLOUD-SEC-AV-Info: solidrun,office365_emails,sent,inline
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info-Original:
+ 9/D9e02k3AKr1Dq7ArNR6bTEfw4vckft3POo7PNSsfAuFGi/h4LZOY8QYLWAhFsDLbawiE3niFiHMB8d6Gvbd/5o+jtGIS+hrb+RB+J25Zi1Or5JLVM4oIGoIVH7NHhiZbvr5/8+8jG6H5Hf6vkselNDpaMGe37rdcrct9dqoFk/aFVUjpXu4MW81g7JfMyNbyNlglqaI40wc8IhlaQfY+cQDKb3kX/zc7btntGw6bT8Km98qFyTyD5tXqsT7Ty8d1QJWwWb8uN6CJnBwPdWZc3iGimeEG5nrQiG9c3wW39zVnRrQ7Aw6d8ArOu1DB5uyM36CDvqB0Yd6A5rx0NUqsk9DBP4wzOwRkNV7oInQgVA1NR4TTUdUfZxRjZ1E6OvFlIwmNQb0TUOYLvYVet9beGtJQqfmoMorZeGdtE1IMZ5nZ9U2NkHbVbyr2Veilm+0tQ5gvj2/Vz9I2DFQPV8ckpYC7580X7QbJZrIRZb8+UXdrzQmCmsfJzf97uHoLi4BTvScgcYZuRU542gBmYJlyjIN8fTPgEDzi7+3T4+qAH5KizlF9X1oemj7N6PlYjKdQx1cQIS4PqecmnukBY0Qjy0pgCUAlTTFKtluFOfJMkLyDTGXUJnlAU/2UwDfF8XG9S8Ngyl6D4PXEpJPdYJgnWGpuerxOFYBNiKixsE44eN0ToAhEWfIDjwu9v9TW9l5+/N0Fp5kJvJh72URuFLcxOLBZ9THFj3+JNVyn5idCz2LxpuScVc5DuQKLDxMCBibX8x8sEmbMwh+35CWvwScudg6GiqtKEi7KL9iovYG4o=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8749.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9936
+X-CLOUD-SEC-AV-INT-Relay: sent<mta-outgoing-dlp-mt-prod-cp-eu-2.checkpointcloudsec.com>
+X-CLOUD-SEC-AV-UUID: 89e18fb82c5a429cae4c296d5f3b93f1:solidrun,office365_emails,sent,inline:6d23539786243f1fd58b5a96b214b980
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ DB1PEPF000509E4.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	ccc5f9dd-3917-4fb9-7f17-08de7868fcf3
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|35042699022|7416014|376014|14060799003|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	2tFKJ8dP0mXSXLlJkhzmk9/M8r2zaban88ri+IOkJGOI9CWLS6fHZ+c2k37zpnWrMWEr7SVgp7+R4dQ/4ThiIuJ4MW2BpFf5BHdHDXqC+f1TnjPbdpqztxeI4/C9aQ13lFSWAQzwTC3cOhbzI2Uo4LSdGPpPWOrP8esJMQ/HJM+sWHbayxUJlZI423ZThEyGBD1z5Ol74wzojxMJlGHb6PkLP3cpirN28oQHIi0GsYsGHQSD4vPuSYlVtGld+0JtQ7NEovboo0yefgLtHo3K/Siv1gkofmbNvS01CioyxR6V9d6HPUfDF4n5x9d4kNVQEnipZGEwxArhtYgG2TY17g9tAXQnYFLazAB1PsYLoHlIEGBFsukyeUKiMdHWy/XMF+QuItzFG0qnnm2KgB1MiGoXaCYc5EQa9f+yQD61zDnAmVfXc3QR7tIPk/Ww/qXYVbOCGDlAzjjGBSbc5UqvYEVdgUlo2tmjtziocEQANHaJFKsP6PErwoXuM7DmBRIQwkS1iu32qNkbyvnlQZmI0WCCdgtfBrMJhQbkt1nAehqobHcXxc53cIL4BX6Moa1z11JsguG4WH8yu1ggXEeWRs9vag6LAbx7psp4gb6640sKiGrjuqVE7VmheVyeZKcCtAuDI2r/kb6s8a5JP27xuF94JEJEa6QzMQDFcmy3Yentm2U1I9voTGYG7pixaAgN3ZgeI8XIIxUktoInsR6CAj+Ft0Vb4KjfI5Ma8VO8NzewkYxdmmXJRitib+v9BF9Dtu5JsR7oU76YLoGh56WYGhESzUjczVWhEOW0pNzfZ9FbguiCiY1LAloLSAXTSAW3CUXDJxjDjtAD2rVcVRg8MA==
+X-Forefront-Antispam-Report:
+	CIP:52.17.62.50;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu-dlp.cloud-sec-av.com;PTR:eu-dlp.cloud-sec-av.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(35042699022)(7416014)(376014)(14060799003)(36860700013);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	Q0CVG8beju9mLBxSStE6iJcN+9luu40Y2ufMQzdOcQ83r1PFcuOpgvlfFQ+ehnJzb53UMeiU2dLrlER510cHVcsOM/mVSYK7trrQ1BJjgx6aKreNJUcPmk75V28pRAeJGMqJ9qXb64MHgsBARD9NkKsHxZG6YOHZRzNLWhXJ5NSI+zsW5EE8UJDlix83npnYuQ4Lcfnd11AiJSfulH3PNbbkJ66cWlwE49QOSZzLjFkYh1L3XQ4gJz23JjaQykEzMylko/S1xGVRZnSnl5SJivdPmLvBjTSLHRikP0DosU/ApKFYOW8b2duPleE0PK1gN6hIUOf23uTgmhl64FhUvp3uTdc4/f7V4TjpPUYMeH3ITmFJHRdy6aZl56bqTybL+Hp+4Ic4Wr6vMtyXY5gnvk6I9E7r+yvUdi9Lc6wTwdR54HzeSIaMCL4G15fVOXgP
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 14:35:55.6742
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e4d7755-554d-4d4c-18f8-08de78690367
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a4a8aaf3-fd27-4e27-add2-604707ce5b82;Ip=[52.17.62.50];Helo=[eu-dlp.cloud-sec-av.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF000509E4.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7827
+X-Rspamd-Queue-Id: 333CF1DB011
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+X-Spamd-Result: default: False [0.44 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=3];
+	R_DKIM_ALLOW(-0.20)[solidrn.onmicrosoft.com:s=selector1-solidrn-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[solid-run.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270058-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DKIM_TRACE(0.00)[solidrn.onmicrosoft.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NEQ_ENVFROM(0.00)[josua@solid-run.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270059-lists,devicetree=lfdr.de];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 03:26:03PM +0100, Loic Poulain wrote:
-> We observe spurious "Synchronous External Abort" exceptions
-> (ESR=0x96000010) and kernel crashes on Monaco-based platforms.
-> These faults are caused by the kernel inadvertently accessing
-> hypervisor-owned memory that is not properly marked as reserved.
-> 
-> From boot log, The Qualcomm hypervisor reports the memory range
-> at 0x91a80000 of size 0x80000 (512 KiB) as hypervisor-owned:
-> qhee_hyp_assign_remove_memory: 0x91a80000/0x80000 -> ret 0
-> 
-> However, the EFI memory map provided by firmware only reserves the
-> subrange 0x91a40000–0x91a87fff (288 KiB). The remaining portion
-> (0x91a88000–0x91afffff) is incorrectly reported as conventional
-> memory (from efi debug):
-> efi:   0x000091a40000-0x000091a87fff [Reserved...]
-> efi:   0x000091a88000-0x0000938fffff [Conventional...]
-> 
-> As a result, the allocator may hand out PFNs inside the hypervisor
-> owned region, causing fatal aborts when the kernel accesses those
-> addresses.
-> 
-> Add a reserved-memory carveout for the Gunyah hypervisor metadata
-> at 0x91a80000 (512 KiB) and mark it as no-map so Linux does not
-> map or allocate from this area.
-> 
-> For the record:
-> Hyp version: gunyah-e78adb36e debug (2025-11-17 05:38:05 UTC)
-> UEFI Ver: 6.0.260122.BOOT.MXF.1.0.c1-00449-KODIAKLA-1
-> 
-> Fixes: 7be190e4bdd2 ("arm64: dts: qcom: add QCS8300 platform")
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/monaco.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+LX2160 SoC pci-e controller supports 64-bit memory regions up to 16GB,
+32-bit regions up to 3GB and 16-bit regions up to 64k.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+For each pci-e controller:
+- extend the existing 32-bit regions to 3GB size
+- add 16-bit region
+- add 64-bit region
+See [1] amd [2] for boot messages showing ranges before and after.
 
-Interesting, will that fix some of the issues we observe in the CI?
+The 64-bit area flags are very particular:
+- IORESOURCE_AUTO: ensures of_bus_pci_get_flags sets prefetch flag
+  (avoids "Memory resource size exceeds max for 32 bits" error during
+   boot, generated by pci_parse_request_of_pci_ranges)
+- IORESOURCE_SYSRAM_DRIVER_MANAGED: ensures IORESOURCE_MEM flag is not
+  cleared, as required by devm_of_pci_get_host_bridge_resources to print
+  correct resource type during boot:
+  MEM 0xa700000000..0xa7ffffffff -> 0xa700000000 (with this flag)
+  err 0xa700000000..0xa7ffffffff -> 0xa700000000 (without)
+- IORESOURCE_MEM_64: pci address space is 64-bit
+- IORESOURCE_PREFETCH: is prefetchable
+- IORESOURCE_MEM: is memory (set implicitly when omitted in dts)
 
+IORESOURCE_BUSY is dropped since it has no effect when specified in dts.
+
+The 16GB 64-bit area is split into 4 pieces because the layerscape pcie
+driver fails to program atu for larger ranges [3].
+
+The range for 16-bit io window was defined by Jon Nettleton, and
+includes flag IORESOURCE_EXT_TYPE_BITS to support multiport io cards.
+
+Similar memory allocation with similar flags was tested with UEFI and ACPI
+on pcie3 and pcie5.
+
+This specific set of ranges was tested with nxp bsp versions lsdk-21.08,
+ls-5.15.71-2.2.0, ls-6.6.52-2.2.0, Debian 13 (v6.12.41), mainline v7.0-rc2,
+using u-boot:
+- pcie5 with a Radeon Pro WX2100 with Gnome Desktop
+- pcie3 with an ADATA NVME
+
+This fixes allocation of large, and 64-bit BARs as requested by many pci
+cards - especially graphics processors or AI accelerators, e.g.:
+
+[    2.941187] pci 0000:01:00.0: BAR 0: no space for [mem size 0x200000000 64bit pref]
+[    2.948834] pci 0000:01:00.0: BAR 0: failed to assign [mem size 0x200000000 64bit pref]
+
+[1] example of new allocations (pcie5):
+[    1.716942] layerscape-pcie 3800000.pcie: host bridge /soc/pcie@3800000 ranges:
+[    1.724261] layerscape-pcie 3800000.pcie:      MEM 0xa700000000..0xa7ffffffff -> 0xa700000000
+[    1.732795] layerscape-pcie 3800000.pcie:      MEM 0xa600000000..0xa6ffffffff -> 0xa600000000
+[    1.741325] layerscape-pcie 3800000.pcie:      MEM 0xa500000000..0xa5ffffffff -> 0xa500000000
+[    1.749861] layerscape-pcie 3800000.pcie:      MEM 0xa400000000..0xa4ffffffff -> 0xa400000000
+[    1.758389] layerscape-pcie 3800000.pcie:      MEM 0xa040000000..0xa0ffffffff -> 0x0040000000
+[    1.766915] layerscape-pcie 3800000.pcie:       IO 0xa010000000..0xa01000ffff -> 0x0000000000
+[    1.776141] layerscape-pcie 3800000.pcie: iATU: unroll F, 256 ob, 24 ib, align 4K, limit 4G
+[    1.880382] layerscape-pcie 3800000.pcie: PCIe Gen.3 x8 link up
+[    1.886349] layerscape-pcie 3800000.pcie: PCI host bridge to bus 0001:00
+[    1.893046] pci_bus 0001:00: root bus resource [bus 00-ff]
+[    1.898525] pci_bus 0001:00: root bus resource [mem 0xa700000000-0xa7ffffffff pref]
+[    1.906174] pci_bus 0001:00: root bus resource [mem 0xa600000000-0xa6ffffffff pref]
+[    1.913822] pci_bus 0001:00: root bus resource [mem 0xa500000000-0xa5ffffffff pref]
+[    1.921471] pci_bus 0001:00: root bus resource [mem 0xa400000000-0xa4ffffffff pref]
+[    1.929120] pci_bus 0001:00: root bus resource [mem 0xa040000000-0xa0ffffffff] (bus address [0x40000000-0xffffffff])
+[    1.939633] pci_bus 0001:00: root bus resource [io  0x0000-0xffff]
+[    1.945824] pci 0001:00:00.0: [1957:8d80] type 01 class 0x060400 PCIe Root Port
+[    1.953146] pci 0001:00:00.0: PCI bridge to [bus 01-ff]
+[    1.958369] pci 0001:00:00.0:   bridge window [io  0x1000-0x1fff]
+[    1.964456] pci 0001:00:00.0:   bridge window [mem 0xa040000000-0xa0502fffff]
+
+[2] example of previous allocations (pcie5):
+[    1.716744] layerscape-pcie 3800000.pcie: host bridge /soc/pcie@3800000 ranges:
+[    1.724060] layerscape-pcie 3800000.pcie:      MEM 0xa040000000..0xa07fffffff -> 0x0040000000
+[    1.733277] layerscape-pcie 3800000.pcie: iATU: unroll F, 256 ob, 24 ib, align 4K, limit 4G
+[    1.836220] layerscape-pcie 3800000.pcie: PCIe Gen.3 x8 link up
+[    1.842186] layerscape-pcie 3800000.pcie: PCI host bridge to bus 0001:00
+[    1.848883] pci_bus 0001:00: root bus resource [bus 00-ff]
+[    1.854363] pci_bus 0001:00: root bus resource [mem 0xa040000000-0xa07fffffff] (bus address [0x40000000-0x7fffffff])
+[    1.864892] pci 0001:00:00.0: [1957:8d80] type 01 class 0x060400 PCIe Root Port
+[    1.872216] pci 0001:00:00.0: PCI bridge to [bus 01-ff]
+[    1.877438] pci 0001:00:00.0:   bridge window [io  0x1000-0x1fff]
+[    1.883526] pci 0001:00:00.0:   bridge window [mem 0xa040000000-0xa0502fffff]
+
+[3] error programming atu beyond 4GB:
+[    1.716762] layerscape-pcie 3800000.pcie: host bridge /soc/pcie@3800000 ranges:
+[    1.724080] layerscape-pcie 3800000.pcie:      MEM 0xa400000000..0xa7ffffffff -> 0xa400000000
+[    1.732615] layerscape-pcie 3800000.pcie:      MEM 0xa040000000..0xa0ffffffff -> 0x0040000000
+[    1.741142] layerscape-pcie 3800000.pcie:       IO 0xa010000000..0xa01000ffff -> 0x0000000000
+[    1.750379] layerscape-pcie 3800000.pcie: iATU: unroll F, 256 ob, 24 ib, align 4K, limit 4G
+[    1.759089] layerscape-pcie 3800000.pcie: Failed to set MEM range [mem 0xa400000000-0xa7ffffffff flags 0x2200]
+[    1.769089] layerscape-pcie 3800000.pcie: probe with driver layerscape-pcie failed with error -22
+
+Signed-off-by: Josua Mayer <josua@solid-run.com>
+---
+Changes in v4
+- dropped accidentally added empty line at top of file:
+- actually drop RFC prefix
+- rebased on v7.0-rc1 and re-tested on v7.0-rc2
+- Link to v3: https://lore.kernel.org/r/20250907-lx2160-pci-v3-1-bb66cc41b8f9@solid-run.com
+
+Changes in v3:
+- dropped rfc label
+- adjusted flags
+- split 16GB area into 4x4GB sections.
+- enhance commit description with details explanation
+- Link to v2: https://lore.kernel.org/r/20240429-lx2160-pci-v2-1-1b94576d6263@solid-run.com
+
+Changes in v2:
+- adjusted flags to fix several errors during probe and bar allocation
+- explicitly tested with 2 pci cards on Debian (Linux 6.1)
+- still rfc because a limitation in designware pci driver
+- Link to v1: https://lore.kernel.org/r/20240321-lx2160-pci-v1-1-3673708f7eb6@solid-run.com
+---
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 42 ++++++++++++++++++++++----
+ 1 file changed, 36 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index 853b01452813a..5b48de0c853a8 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -1185,7 +1185,12 @@ pcie1: pcie@3400000 {
+ 			apio-wins = <8>;
+ 			ppio-wins = <8>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0x80 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x42102200 0x87 0x00000000 0x87 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x86 0x00000000 0x86 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x85 0x00000000 0x85 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x84 0x00000000 0x84 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x02000200 0x00 0x40000000 0x80 0x40000000 0x00 0xc0000000>, /* 32-Bit - non-prefetchable */
++				 <0x01200100 0x00 0x00000000 0x80 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its 0>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1213,7 +1218,12 @@ pcie2: pcie@3500000 {
+ 			apio-wins = <8>;
+ 			ppio-wins = <8>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0x88 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x42102200 0x8f 0x00000000 0x8f 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x8e 0x00000000 0x8e 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x8d 0x00000000 0x8d 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x8c 0x00000000 0x8c 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x02000200 0x00 0x40000000 0x88 0x40000000 0x00 0xc0000000>, /* 32-Bit - non-prefetchable */
++				 <0x01200100 0x00 0x00000000 0x88 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its 0>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1241,7 +1251,12 @@ pcie3: pcie@3600000 {
+ 			apio-wins = <256>;
+ 			ppio-wins = <24>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0x90 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x42102200 0x97 0x00000000 0x97 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x96 0x00000000 0x96 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x95 0x00000000 0x95 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x94 0x00000000 0x94 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x02000200 0x00 0x40000000 0x90 0x40000000 0x00 0xc0000000>, /* 32-Bit - non-prefetchable */
++				 <0x01200100 0x00 0x00000000 0x90 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its 0>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1269,7 +1284,12 @@ pcie4: pcie@3700000 {
+ 			apio-wins = <8>;
+ 			ppio-wins = <8>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0x98 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x42102200 0x9f 0x00000000 0x9f 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x9e 0x00000000 0x9e 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x9d 0x00000000 0x9d 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0x9c 0x00000000 0x9c 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x02000200 0x00 0x40000000 0x98 0x40000000 0x00 0xc0000000>, /* 32-Bit - non-prefetchable */
++				 <0x01200100 0x00 0x00000000 0x98 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its 0>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1297,7 +1317,12 @@ pcie5: pcie@3800000 {
+ 			apio-wins = <256>;
+ 			ppio-wins = <24>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0xa0 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x42102200 0xa7 0x00000000 0xa7 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0xa6 0x00000000 0xa6 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0xa5 0x00000000 0xa5 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0xa4 0x00000000 0xa4 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x02000200 0x00 0x40000000 0xa0 0x40000000 0x00 0xc0000000>, /* 32-Bit - non-prefetchable */
++				 <0x01200100 0x00 0x00000000 0xa0 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its 0>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+@@ -1325,7 +1350,12 @@ pcie6: pcie@3900000 {
+ 			apio-wins = <8>;
+ 			ppio-wins = <8>;
+ 			bus-range = <0x0 0xff>;
+-			ranges = <0x82000000 0x0 0x40000000 0xa8 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
++			ranges = <0x42102200 0xaf 0x00000000 0xaf 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0xae 0x00000000 0xae 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0xad 0x00000000 0xad 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x42102200 0xac 0x00000000 0xac 0x00000000 0x01 0x00000000>, /* 64-Bit - prefetchable - 4GB chunk */
++				 <0x02000200 0x00 0x40000000 0xa8 0x40000000 0x00 0xc0000000>, /* 32-Bit - non-prefetchable */
++				 <0x01200100 0x00 0x00000000 0xa8 0x10000000 0x00 0x00010000>; /* 16-Bit IO Window */
+ 			msi-parent = <&its 0>;
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20240118-lx2160-pci-4bdb196e58f3
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Josua Mayer <josua@solid-run.com>
+
 
