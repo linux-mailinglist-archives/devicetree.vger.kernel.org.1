@@ -1,324 +1,204 @@
-Return-Path: <devicetree+bounces-270143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270145-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aJgIH6+8pWn8FQAAu9opvQ
-	(envelope-from <devicetree+bounces-270143-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 17:37:03 +0100
+	id iBZlOA6+pWn8FQAAu9opvQ
+	(envelope-from <devicetree+bounces-270145-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 17:42:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CFA51DCFCF
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 17:37:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E4311DD176
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 17:42:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id ABE3F3034614
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 16:32:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 90B9C3078160
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 16:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B84B2FE58F;
-	Mon,  2 Mar 2026 16:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2242C421F1F;
+	Mon,  2 Mar 2026 16:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="C+s9xaCV"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Ent29sw/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013017.outbound.protection.outlook.com [52.101.72.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2F12E6CAB
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 16:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772469141; cv=none; b=SKMh6dHOhCCz1+8GKj6KNQUResZRBGxX5ykuyfKnTkbmqLIstH2ho4Ejwv25Vlr0B7F4A4ygYbJBMKuGDBkImKXIh6ady54J9FvWqP0gMsqIHUuajQLGXhpaFZPoaAj5zrHrx6pKN63hyhpzaE92ngyx47Ng46Gopnv+cw7yzsU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772469141; c=relaxed/simple;
-	bh=WTJ3pzdwIneOX06IoFSpJpP/ij3N5ThgvRmHQQVgZdw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BlnrjycAh/hf5Gw69Kopl9yBBd3QsD24mUF6NgZKD0yMLIR2gqvM5Qocd+mtyg+mlB0VpUGPDewh2PMIbiMfabVfbX77yHCHPDa/HS+8puH0pa1uaxEUIDBddff3ofbtN65S3JjgXrWN35+d4qPPixvg2VS8uI4mC/U02HZffEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=C+s9xaCV; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48375f1defeso35357285e9.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 08:32:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1772469138; x=1773073938; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6vgVgq/PKL42P9mqoX80JnTj9f0Sx394ufpp39qX55w=;
-        b=C+s9xaCVLFQDE5pK8Sk8Y/tOCYGcF+EmfdMaf9f31qd7lRzfaNiQ/7pOgXAMWuXdeW
-         l07YTl6mk83iSTWbwzi2T8ddWxNQz+mzVZcvHoiAz5eMN0nxSqU4DZJ1L5eKJjG6VGI8
-         MZzPHS6K4BYznLWO/FWGGJyJ7EI+4yoFy4Wc7URl8U1msGnFnC55aiB/vw/LOPa7Kf4R
-         f8qShO+/eKfv33mXCazLIzA7Qnc7fqnHiYnT+vYm3XPZH8s6oa6QqXEwJHJqmH24KWi4
-         f/8ok7qkh6MwZ/y3hWMW8p5SGdIo4pFa5f89zZJBbjSxFTxjTV+tIHB3KFR2rxZzT981
-         YwXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772469138; x=1773073938;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6vgVgq/PKL42P9mqoX80JnTj9f0Sx394ufpp39qX55w=;
-        b=HN7uMVZesncdnTwO1X2ZoZnSWOyVtfqG6aq9W8qnwiKCn0OgaGNgnKGNPLGz6sFs8a
-         5wKTa/DVR0klCRMuJaxJxsVIufwzio2fCAD6mpoilfJAskLR/FxD/Dd+m3ZF47Kb3aoe
-         q6GkclBLUOIUAh0jZc7RcuEgMzKBMnu6Y/nygVES5vfOSBopdweW2wClftFnYcvKJbV9
-         hDGtFHNPNmgk+d7r6x9jQSoTB+teHOdrH2WLLxEbYYXnr3dS1B22sjQJr8E7YC7m4mmz
-         HPlWfoXwi2vQjaIL/13IimkmznB8wgYYGncjj1AqPrA/qGCn/OP11ee7+xooeJvz1cPd
-         xtgA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhk01RZzZ5xbH7Tsh9Mfyz/0YoZ0poRVGSHIzIHJMM4JAuUq/Geiqe0wG16llY9hEQkupXzMsm5AdC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3oU0tjUL0zUMYaQEHuR7hTyhi7FEiE2vR29Ac3rQ9TH74f3s6
-	voJBlajlScU4oAI109YopzV2zQ6ZnQh+bh3GtCasE+7VWmkqGl7b3je0tSv3nVREDzKYAGS2KRm
-	ixNpK
-X-Gm-Gg: ATEYQzyDnTP7Sl6er67QyAGs/YpwZZHAz3YKhd77iJxqvSYZZz70C7xCaOnf6qj+Am4
-	CNjz3kfBheCB81qYl4gAKhsSBltqGhipt8mRPF+w2iNvOYtmw8As9POkccRG0/0WT2W+VUgkJlp
-	i3koK/Faz+GN/N4GPKmaEPtu2sYuLnQFgSpZwljE80olqQiTzuXt8XZIGwsUGIosoNN0vRMgnYY
-	n9leyi1+sAsMrhTpg6yZNjNYZHjlJZsxxmv6T6PYV/S2JFJwSqIWFDk/X0qAHo+ilP0jn/fboUL
-	vVqP3HbMAMLR8AMAqKI0KMzEdQ5TInWtCC3kz/vtGvFGFeQNFLbiihAZiEsWq+E37pd2hX0DcOo
-	q+FvDgG8bovT4Cs4Hy5AZ6GEIkqKV3sN2FOx17tn6Re/cnlP8GDpiG12S2+CSpwSi9AV5nVqEwq
-	v7sYJFR5WRJAlHiQNbP9yZCw63uHueMV5EScJc
-X-Received: by 2002:a05:6000:402c:b0:439:b55d:b0e3 with SMTP id ffacd0b85a97d-439b55db2e6mr9320134f8f.42.1772469137917;
-        Mon, 02 Mar 2026 08:32:17 -0800 (PST)
-Received: from [172.19.170.194] ([213.233.104.147])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439b503424fsm11923248f8f.22.2026.03.02.08.32.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Mar 2026 08:32:16 -0800 (PST)
-Message-ID: <712feb0d-2855-444b-852b-49920ebfa4e9@tuxon.dev>
-Date: Mon, 2 Mar 2026 18:32:14 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690ED2F5328;
+	Mon,  2 Mar 2026 16:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.17
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772469205; cv=fail; b=BgofXqXNUWLHoZUd40eNeuicMbn3ZPVqCX8GrxJ03ffkD9E7RIiSVFYSeoCSMUNbAXFQleTBi5lCkFjmLqgZ/OiLE4O/uAQIu+UNMJooubD3ub4sR704CW9CsSNn6ZU+MKQvmdO4VGosXF+ORKDmFzYRlJs6GuCWR59fEz2ynT0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772469205; c=relaxed/simple;
+	bh=QFy2it39cMEvPRHGulc+E6IylTR9DV5cXER5ms2Esng=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 Content-Type:MIME-Version; b=og91s26ZwEc6+1tK8Wht7Pf9NC408WYt9q5Z8xz/q8z186/K9jQC8JOq2OAeKQr8chsEngvJR3UmWZ2NITG8tfMMxy+RaGGImEiGCzTUTahV/Bf49pMPEkM/awmRXj5UiZaD9TA7NRJSsWJlVLQKbt5XqfykHX1bln9mtQKAvcU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Ent29sw/; arc=fail smtp.client-ip=52.101.72.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TIeXPJTzax4oy4ShjpYSqn8caaBa2cLAimgDCnuKw7w2fnME3GKNCiPi4IA7tlYtJw/II6Kzt7X8USyL0tpJfv9L4J94wBgcjDNDqYZngqH/yCzE0cMberve3xLFMhy3InwxmJo+llcJlIZlcKuEZHXAmWHuq5MeKEbEwjRidyztvMCsvWKtX2i8ScpMM7ntYJOW57hjq6Pew2F2hULY903Ci97190W3XjlzsKGSSjkZ28orzNUswFxTYKbYOn/iHgjzTzkUrTZDna5K7MeqVYbvQjMpo+hN8Ex6PsxH9Zzy1v6puLHNmjD4L+v5bEy1/wgVs8mOHKSTrEC9MGCb8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iLI6HHDtIbPQYF+JGH/PutU89i39MSgIovkGyuo5Fqg=;
+ b=tRIWBEba/Fyqt5UvoE/TQr/Qk1zXVBynB5j3zP6kQWcwDPZ8os/9ku9VIvLFeAoBH8K+Bb6kkXVUnk+/stx/GFUbaqd6I1AT+838C/Qs0ITQ+r41ve/WMqbIBQa9P25wk+qYnaw7xnVhhuLbaoiVuJ8xcmacYnJqbTvF4gkeEo5ywgpll7QWxNZUvJ1TBOofPRORq4wrKcRx5IZMaWn0+mT0qFHUqJgdmNlOMuYfwyo2+7iCL440QZoxv+g7EW1dDhcLIAoPLyV3ZidFIrY5r3TdodvLxDPQmtuveeYgaDE6b5CIg7GUwafnzo6968BPpqXBXw0TDOmm1axf97pjiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iLI6HHDtIbPQYF+JGH/PutU89i39MSgIovkGyuo5Fqg=;
+ b=Ent29sw/vkfA0ja9SRQxWq8uJ2lqy8vHXNF0E0nulGqy92UWofb/h+EOnNPEs2G2LfC24b304RefrwJ+hLs7c1bwzZt/Vnpeh/5ntD52KXu9qWUQFFNvMaCb9AgKVHa0ueRm4Q8LYLIdSzkwnEgy0bZ3ow9uwS93Jlm+9NmO6/YyqyQHoGT5PdwFhoSxg/B23B+LL3p5SwVnO4vninIEA3DdX8bNZkBXNAl6mgqNrqXXaHQGMGP5Bsdzsrv+P1aWnH++OAAkiu4HNTIh+Plw8SwexObpAERGRUzahvd3352gDGnxxRBGaUhhqNXR0OO94pnPyBWN4IiuKa5x2wzTTw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by VE1PR04MB7295.eurprd04.prod.outlook.com (2603:10a6:800:1ac::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Mon, 2 Mar
+ 2026 16:33:18 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
+ 16:33:18 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: frank.li@nxp.com, sherry.sun@nxp.com, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+ s.hauer@pengutronix.de, festevam@gmail.com, 
+ Richard Zhu <hongxing.zhu@nxp.com>
+Cc: kernel@pengutronix.de, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20260209055745.1545129-1-hongxing.zhu@nxp.com>
+References: <20260209055745.1545129-1-hongxing.zhu@nxp.com>
+Subject: Re: [PATCH v2 0/3] Add i.MX943 PCIe supports
+Message-Id: <177246919562.2086883.17926195087426226216.b4-ty@nxp.com>
+Date: Mon, 02 Mar 2026 11:33:15 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: PH7P221CA0081.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:328::33) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 06/15] dt-bindings: PCI: renesas,r9a08g045s33-pcie:
- Document RZ/G3E SoC
-To: John Madieu <john.madieu.xa@bp.renesas.com>,
- claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org,
- kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be,
- krzk+dt@kernel.org
-Cc: robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
- magnus.damm@gmail.com, biju.das.jz@bp.renesas.com,
- linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, john.madieu@gmail.com
-References: <20260227153236.55988-1-john.madieu.xa@bp.renesas.com>
- <20260227153236.55988-7-john.madieu.xa@bp.renesas.com>
-Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260227153236.55988-7-john.madieu.xa@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 3CFA51DCFCF
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|VE1PR04MB7295:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0f3b0bef-d5d7-4321-19c1-08de78796919
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|19092799006|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	0E93UTuOYDpC2dxzcqao1nfvqX+isfX2QpFGXSNGWDtsa4SCA3G6InuhG4092uxLjWAJeunLtWxhHnFMvbSFWMweN9EJwp0+6D3jk83An2eAMfzFJjx9A++1h1Dq6o4LUsR9t5GAX2hvHjD6dclQ7i5BR2zU8b7HXJoBqzbiJUvgg95VaS8Olh/LwiUdIVNVNv8H5XyPrs8R4n15ApadARwypIvpR6cF8WtKOkYVYjmupHQy+AaRQBLq+VHZ9Ag+1yOZD1bTuyysmB1LRbbcHizKqxbxB9w4lU9Dwsub16Hrq7+v1vfgqmyXNtfqUwLY7K1Tp/VhKF1UVogydsmISvPVzcftP3x7NVDKJw35wF40Lj0tNkGkqp7+nSKMgo9V0hwJUZW9PNItqxd/j2xH/WWxvqgrTTzO75d2rEKTci+ANBE1vW9J4nKBF0LG1JLOFuk5zyrWtPiOhw+BzqW6XQb7AXX30J9rKbQavajJuwMNpzzZ2PTS14Lw/xoqTLCJGWjTfWqw1zMipxL9h0h/4ErepNdyEsh8U5j1aoGr+6kDe6G80UyPZzolFyJZNNqj7nUgGknfp+IDGSJ0GBIuBpyV1gdDUom2WOXlDEGo+S95rH0PNueSHYA1a8mPPQHyv5bk8iKpo+rTCE//WphJP1B8M15F3bA5aVeTkR3oe+ZZDfDFLq3Sop7WKKMLfPti7Q//bdg5Moh9yop5RWsiRVdpdSP47FqVjzZ2xUhdHlJ1l2+yrYzpvylWSSApF8QW+9purdqaKBok8PfEYEjwwG7W1rd7ipCD//0un/Zc7Og=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Y1BSMU4zWnFCU1lBWUdUTXczd25BQzFGcUxYQ1MvcnUwaC9wVGU5K20yNUpl?=
+ =?utf-8?B?VTBvbkhEQ2M0ck9RdmJPWjQ3VTRrZnBIZjY3dzVqU0FkczN3KzhaSUlocHpU?=
+ =?utf-8?B?Tno1SjNhQzJOdWZOZTZ4MG5VY3daVGVtTS9Nd0hZdTdobURVZXRsTkpOM1Zx?=
+ =?utf-8?B?TXIwZGE5UEZzY2ZDbFB0SHdnWFJqUWJndkhwbm82YVZYVU5OQzNyckQ4MGxK?=
+ =?utf-8?B?Q0NFckphQ3Y0ZnN5MjRyWUk4N0lja0dOSUE5aDR1NHFOQzJqOGh6eENCcHFa?=
+ =?utf-8?B?S1lLb0JDMWE4dEI2a2lQNENoVkNxWWpZelVZTlhncld1bThYUE1SREQ0T0tE?=
+ =?utf-8?B?Z1QyUG10MWdDRmQ4ZUxWTmIxeXAxU29kWHNGK0h6Ny9NdXQxYXQyT2laRlRY?=
+ =?utf-8?B?VVpsbTUzQThHTENPYWxHSkJlYUtCYkIxbTlDZU93YUx5QXhSVGpMdkdwRmJ3?=
+ =?utf-8?B?R1BVQ1lod1RtTUhsa2hESXdOOEhhcFpGSXROaGxCSTR5NUlZQkpYa3cvYU9M?=
+ =?utf-8?B?S1dIb1d0ZTFKRmtlaDEveTRDUmZJWVREeld6NXZHRUY4ZlpmU2t5M0V2MHJY?=
+ =?utf-8?B?THl3OHZQZ20zenZVa01qMm1RQ1BsS0xkall4ZGJrUHY1QmJ0cEZkZE5ONzNQ?=
+ =?utf-8?B?WFhzZUwxeEtwMmVqR3BzdFI4UmZaVmxJZDNmK2VQWG5EZmxpTGFuOVVGb0VP?=
+ =?utf-8?B?MlJWSnNJZlhEWk1mQ2pOK1VFNVFNblJxa0xpa243eDAyNFI0aUkwM2YwclpD?=
+ =?utf-8?B?MllwWmtzcU1zYVk4ZGxZc3dBRjU0RUZwUWZNRUhNdkJiWkw5R2NuSGVadk1l?=
+ =?utf-8?B?VktjYUNCK1BtNmw2YXlOR0sySTh4S0pwYkNKUjdOSjdPc1hhTjdRemkzMzY3?=
+ =?utf-8?B?NW9qM2plMnR2M29aS1FWb0kvYnJUTEFuZy8yc1FnMmhFTm14N0pNckNqenFp?=
+ =?utf-8?B?Q3BualVIME5YY2FiaG5xaUtWdTJXa213Z0Yvd3VDYUZSRjdwSUxXMjdheThT?=
+ =?utf-8?B?dTJGQVNPQUE4UTF4R3JqckZiSjNGZldrMUxuanZNd3dnZ3BjSjQvbDZEcWtt?=
+ =?utf-8?B?b3dyaDlheVNya1h2bk5hWTU2dDNKYjFHZmdld2o5azBJcEdkSTRuQjk0U0dM?=
+ =?utf-8?B?UGNMOWMvM2RTSit2dk5OK0xNRU15bEx2b3pIeTVDK0dhZHhvVml6OGU2SS83?=
+ =?utf-8?B?Q3ViTzE2SFd6NDlJR0FhUUF6NWZkdCs2YTloaDFsUmxuSm5JdVlJRGN2SlZo?=
+ =?utf-8?B?VVN6Q0Q3R1pUSGNxbzVjNEN1R0xQbnkyQ0Vhc0xlcFNab2lZcXpRbm95TE50?=
+ =?utf-8?B?MzRBajBrTmV5TEgwNHFuMHRSSnlWMlNuUG1pc1RTKzdycE9taVk3cWxQMHZs?=
+ =?utf-8?B?eXUrRmJQbm8wM1BaUFlWZWJacjEwRU1tcG9JVkFqWXpyVjY4bHdReXpia2NV?=
+ =?utf-8?B?aFkwaUdTeURROWViclNuYXFvNWVHbDh5VVAwTFBzSEJzYWk3WUNMdDV3aHhL?=
+ =?utf-8?B?ZVhqcHVvclRFeTZSZWx1OXFNUVQxeUpGcWc2eXZqQ3VYTzB2b3lNdmlCUGR5?=
+ =?utf-8?B?YUI5dmluRXo1L0hyT2xGbjJYcWJLNzMwTWVxSlRyYUxSMHhxeE16ZE1UcEFY?=
+ =?utf-8?B?cmlDNDY4S3pGb1JmZnltSkhJM3B4djdQUnBNUTlqZmFYYjJUZFQrRm9WWTR1?=
+ =?utf-8?B?RVdrb3FBZzdBTGNpakxzcmIra2JXOVZOVXlYWXBhL1BWcmNCMEhhRUtkdnpz?=
+ =?utf-8?B?eHArVmJkQkNad2NRWnFqMDJiR1FVdm1GbVZYd2hVOUkrNC8xYTNCb3FmcTB3?=
+ =?utf-8?B?WDhXeDdKcGZzT2hGL3RqRUtYbmZJRDQvUkNXTlc4RE5kcjFWUmViR3Y0Sjhv?=
+ =?utf-8?B?ZzhnbXRMTit6WTdhQVVNMU5NOEx5djFNY1VHczVOYnUxZXU1VG1kR2pxZlNk?=
+ =?utf-8?B?OUVmcVBPU2dIbW8vd0VLa3R5NythVU9hc1Q2UFJGOU14WWZxQW92WTBOUjRw?=
+ =?utf-8?B?dUZDVjVXT0piRGFrbkRZTmRFNGNYR2VpOERVL0NyUnNKT0kyOHBNTndEMnhK?=
+ =?utf-8?B?L0x5RzV0MVh6dzFyZnJyaEEyWjJQVGY4dm9zRTFnVmMyaXJGQ0FzOS9EazdY?=
+ =?utf-8?B?azFFMitMM05tVDBUMkowaTliUFFjVDVJMHRxM0RGNzJwWEVocDI3UC9iUHR1?=
+ =?utf-8?B?R1FlaUxQMUZhWXpJdzFOUnF3bTY4U3pybngyLy9wY0doMzJWWHBnZE8wMzFX?=
+ =?utf-8?B?ZkJnMDR5UGYyK1d5TitHL2FGUXNydmhmaVRIMUtYaFNCcEdmV09UVmRGY1FQ?=
+ =?utf-8?Q?ib3woip6J1v7Lm+Jbr?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0f3b0bef-d5d7-4321-19c1-08de78796919
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 16:33:18.5892
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pC8qwWN3afU1gaIt0ZswR/GuCVP5FomvcCBG7QKtjIgaUJ8z1idFQQzBmvfAVL5M4kNjrIsF8ocu7cCYVDdhAw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7295
+X-Rspamd-Queue-Id: 5E4311DD176
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
-	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,bp.renesas.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270143-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270145-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[tuxon.dev];
-	DKIM_TRACE(0.00)[tuxon.dev:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
 
+On Mon, 09 Feb 2026 13:57:42 +0800, Richard Zhu wrote:
+> This patch-set adds i.MX943 PCIe supports on EVK board. Please pay
+> attention to that it relies on the patch-set[1], and the PCIe1 port on
+> the EVK board relies on the {2].
+> 
+> Both of them are queuing up to be included in the coming 6.20 kernel.
+> [1] https://lore.kernel.org/imx/176649331066.523506.9443864112044699350.b4-ty@kernel.org/
+> [2] https://lore.kernel.org/imx/inzg46tc2fwsajxq4vzdyuiq7krzy6xtcg2mjaieninz7zsmgm@mtdjr4tuegpq/
+> 
+> [...]
 
-On 2/27/26 17:32, John Madieu wrote:
-> Extend the existing device tree bindings for Renesas RZ/G3S PCIe
-> controller to include support for the RZ/G3E (renesas,r9a09g047e57-pcie) PCIe
+Applied, thanks!
 
-Still a checkpatch warning:
+[1/3] arm64: dts: imx94: add pcie0 and pcie0-ep supports
+      (no commit info)
+[2/3] arm64: dts: imx943: add pcie1 and pcie1-ep supports
+      (no commit info)
+[3/3] arm64: dts: imx943-evk: Add pcie[0,1] and pcie-ep[0,1] support
+      (no commit info)
 
-WARNING: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#8:
-controller to include support for the RZ/G3E (renesas,r9a09g047e57-pcie) PCIe
-
-> controller. The RZ/G3E PCIe controller is similar to RZ/G3S but has some key
-> differences:
-> 
->   - Uses a different device ID
->   - Supports PCIe Gen3 (8.0 GT/s) link speeds
->   - Uses a different clock naming (clkpmu vs clkl1pm)
->   - Has a different set of interrupts, interrupt ordering, and reset signals
-> 
-> Add device tree bindings for renesas,r9a09g047e57-pcie compatible IPs.
-> 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
-> 
-> Changes:
-> 
-> v7: No changes
-> v6: Collected Rb tag from Claudiu
-> v5: Collected Rb tag from Rob
-> v4: Fixed clock name constraint using enum
-> 
-> v3:
->   - Moved interrupt/clock description in distinct PATCH
->   - Fixed clock name constraints
->   - Updated clock descriptions
-> 
-> v2: Reuse G3S names
-> 
->   .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 73 +++++++++++++++++--
->   1 file changed, 67 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> index d1eb92995e2c..a67108c48feb 100644
-> --- a/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/renesas,r9a08g045-pcie.yaml
-> @@ -10,17 +10,21 @@ maintainers:
->     - Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->   
->   description:
-> -  Renesas RZ/G3S PCIe host controller complies with PCIe Base Specification
-> -  4.0 and supports up to 5 GT/s (Gen2).
-> +  Renesas RZ/G3{E,S} PCIe host controllers comply with PCIe
-> +  Base Specification 4.0 and support up to 5 GT/s (Gen2) for RZ/G3S and
-> +  up to 8 GT/s (Gen3) for RZ/G3E.
->   
->   properties:
->     compatible:
-> -    const: renesas,r9a08g045-pcie # RZ/G3S
-> +    enum:
-> +      - renesas,r9a08g045-pcie # RZ/G3S
-> +      - renesas,r9a09g047-pcie # RZ/G3E
->   
->     reg:
->       maxItems: 1
->   
->     interrupts:
-> +    minItems: 16
->       items:
->         - description: System error interrupt
->         - description: System error on correctable error interrupt
-> @@ -38,8 +42,16 @@ properties:
->         - description: PCIe event interrupt
->         - description: Message interrupt
->         - description: All interrupts
-> +      - description: Link equalization request interrupt
-> +      - description: Turn off event interrupt
-> +      - description: PMU power off interrupt
-> +      - description: D3 event function 0 interrupt
-> +      - description: D3 event function 1 interrupt
-> +      - description: Configuration PMCSR write clear function 0 interrupt
-> +      - description: Configuration PMCSR write clear function 1 interrupt
->   
->     interrupt-names:
-> +    minItems: 16
->       items:
->         - const: serr
->         - const: serr_cor
-> @@ -57,20 +69,28 @@ properties:
->         - const: pcie_evt
->         - const: msg
->         - const: all
-> +      - const: link_equalization_request
-> +      - const: turn_off_event
-> +      - const: pmu_poweroff
-> +      - const: d3_event_f0
-> +      - const: d3_event_f1
-> +      - const: cfg_pmcsr_writeclear_f0
-> +      - const: cfg_pmcsr_writeclear_f1
->   
->     interrupt-controller: true
->   
->     clocks:
->       items:
->         - description: System clock
-> -      - description: PM control clock
-> +      - description: PM control clock or clock for L1 substate handling
->   
->     clock-names:
->       items:
->         - const: aclk
-> -      - const: pm
-> +      - enum: [pm, pmu]
->   
->     resets:
-> +    minItems: 1
->       items:
->         - description: AXI2PCIe Bridge reset
->         - description: Data link layer/transaction layer reset
-> @@ -81,6 +101,7 @@ properties:
->         - description: Configuration register reset
->   
->     reset-names:
-> +    minItems: 1
->       items:
->         - const: aresetn
->         - const: rst_b
-> @@ -128,7 +149,9 @@ patternProperties:
->           const: 0x1912
->   
->         device-id:
-> -        const: 0x0033
-> +        enum:
-> +          - 0x0033
-> +          - 0x0039
->   
->         clocks:
->           items:
-> @@ -167,6 +190,44 @@ required:
->   
->   allOf:
->     - $ref: /schemas/pci/pci-host-bridge.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a08g045-pcie
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 16
-> +        interrupt-names:
-> +          maxItems: 16
-> +        clock-names:
-> +          items:
-> +            - const: aclk
-> +            - const: pm
-> +        resets:
-> +          minItems: 7
-> +        reset-names:
-> +          minItems: 7
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g047-pcie
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 23
-> +        interrupt-names:
-> +          minItems: 23
-> +        clock-names:
-> +          items:
-> +            - const: aclk
-> +            - const: pmu
-> +        resets:
-> +          maxItems: 1
-> +        reset-names:
-> +          maxItems: 1
->   
->   unevaluatedProperties: false
->   
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
 
 
