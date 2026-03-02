@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-269775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269776-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sAzPMp/xpGlTwQUAu9opvQ
-	(envelope-from <devicetree+bounces-269775-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 03:10:39 +0100
+	id gMysEKfxpGlTwQUAu9opvQ
+	(envelope-from <devicetree+bounces-269776-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 03:10:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB58E1D26B9
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 03:10:38 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F02C1D26C7
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 03:10:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CAB93300720A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 02:10:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 66A8030055C1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 02:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E32C283FEA;
-	Mon,  2 Mar 2026 02:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D59283FEA;
+	Mon,  2 Mar 2026 02:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AmQXkVyM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IUcopOE+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C752A2820C6
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 02:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A382A283FDD
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 02:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772417435; cv=none; b=fCmfzE43q4WP9yGLRGAreuYHab+fVoqcc4PDi9MeuKRGRjQzCeBLBRjjoxIS/d7vUkesgMhvhnhw59L0oxBjZ5J5nolz+8xd55+noiOc+RJZlsCpZOXkEI4omzn7v4quem3JFTX4rfJMfo5pOUtIqRU4w3B0p/MaVWydpID3rgA=
+	t=1772417441; cv=none; b=kq3BlSQvXw+cAoLB8WnV/JgFCJBJ+ZhgWK7+yMo60q9SKtnTVvZwGbRE0oKclfqVdAm8XZxwjZVecLEKwjUb/GU41AiM9SvHGKBOUxGUnwK2YNb9du0m5J4V99aHy7Kd3lfzuxl1R2v7Rw5mCTfND2htMPhtgiwaw4mWNJISdfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772417435; c=relaxed/simple;
-	bh=XdTfbdlFopslMwOZRNBOxZKx7xvKU+sQAg/JqNo3kh8=;
+	s=arc-20240116; t=1772417441; c=relaxed/simple;
+	bh=ihWtm6BNeZIdHJPxSWdVbPBlhVDJEp9hB8t4Ho65JDw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ND+0eFHhAxOL0bvecKc7P82LNLLH+g8PxK8Ngza+Juzsq/7cWdAtgW4cY05JTq0pfwG1q64tZxAP3sRAuls8+fUQTtY+ln94nSnYlzxLfiOOVsUQ/xI4u2aZD2vQH7M4uh3pP4DXJG4V4WTabD0RLLzsEu+mOOiZse6jk7dxonk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AmQXkVyM; arc=none smtp.client-ip=209.85.128.48
+	 MIME-Version:Content-Type; b=Hw93FRcPAZ1alSRTqbXc/j6/d79RxOr3njr2rkzCwZo2chgiPofY6jyF1kilu46R3gIdUaPB8OIdoeQcuXBf9JTq3D2x7kcq95IXPw4DgunNiNP+Ru1RgR3WLAbsDxDFdm5xBNNlYqOkYMzhNZWmHVF39hzSuzTYhHeYS47Hsjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IUcopOE+; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4806cc07ce7so43731395e9.1
-        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2026 18:10:33 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-48374014a77so46538915e9.3
+        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2026 18:10:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772417432; x=1773022232; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772417437; x=1773022237; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uA7ZHCoOg+iN91Yh0fD8Ot2D5G2O/zSpqiwS7NE95K0=;
-        b=AmQXkVyM1w0flvlqX8+P0k/BWqhxyIdZvSNqHBwj2VjxybLik7f6LU3AOAe7Jjg+xP
-         W2w+CG1NopZgr2Pr72EIJAL8aTEPDCb1q1A9oAQyHSfUCHS/re2Ja2SOapf1n/XQLC7S
-         TJja89WdFjGY9MdQpP2L6E8qCYxqrIIGef1NoAsawu5kSPP0r2R7fgT5couSCxjwNmP6
-         UHef4YyEA474D6Tje710tzXnJly59qbFn9ea0sAw44DFu95AVNb7KTLaCyB3A810TGT2
-         g6ZeiaN62c4jQLXdlkF7cgg1svqiVWNw6htsb1mxK0qOIi61X0ANLHsJcTp755gF8NR/
-         BoYg==
+        bh=5OSdZggynsJBsU/qtiL9Wji3B58q5QjoIHphGlxLwaA=;
+        b=IUcopOE+vcKSMnNHLKvdGfkWX79ojAQ5PiVFtn9oL6FtYqyIel3DuXOG+NzgHfzWuK
+         INDyRX2M+7vnvv0onKjLhHUrTmza8ZiyMjRpxmF+NZWrfvDNHokyrHB3PlBp1l1yhktZ
+         bhVG2VoOcC7eyzM+RENm5/ePkuB/DE35hcEZ9LnyS792grzSFghwyVViuzHyNM78IMUj
+         iNaFX5h14cp5Sw8i3/ndmz4z0jHtJNo/GcKiF4WWu0YQhIFRZdQwkMi3QZAWvi4edFXF
+         r4cdd+DO29WN3mx06YzXmFBgmeeWO0+3KOXFTSUaNziscM0f2cLB0WsKT62nr7FtmWAo
+         o4HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772417432; x=1773022232;
+        d=1e100.net; s=20230601; t=1772417437; x=1773022237;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=uA7ZHCoOg+iN91Yh0fD8Ot2D5G2O/zSpqiwS7NE95K0=;
-        b=dK70wxsmwFJ6lmge2ySXXah4KLE/ijziNUQhvNLt59vguQZovillBelyju0/O18khj
-         b+WBxOOZgNMhHg39uvavSY6+oYOmABlT6AS7LsMQhykPQAqOpQOXOrSBOkFyeddN8MnX
-         RRXocifx/mrX+qvwgvqGG9v8gaa2hwk+jLPEtbydLL4RrLf2sGDD53fe7UXdY9fSUD6Y
-         2i8zEqTP5RM8dXDHO8NXYP9hprM6DOXE6TMnRCahZQqXVsP9NYxYQBdYVkT9bmCkVABF
-         GVOpeUwerFERVtwRWWjhK47Tt0Dihh+S9DG1yiRxrIOf22jsq4mJHnBeN5hrKnKZLslI
-         2tDQ==
-X-Gm-Message-State: AOJu0YzDQMMfZjuCg66wJoDID0aMYJ8CFkck8fCuHf7xdbup5MMZa4xH
-	IDMtRPIw46ovPKp55633PFpH7BoyJCraMqWgqB+6btkAjCdWr2RoxH8EGQW4Ui3/PWs=
-X-Gm-Gg: ATEYQzwG3A2gQkpp849g9pXmKaerLhrvswRa4SfB+OCSCmm8pLxRGymZXdzxmlZjKGG
-	csOxhR5POv0C145YF5zK5ATBImPUCRx7hW8vuOc5eQBPo3Pp2CKuQJVUvSPcbf7aPYrXMyKpPU9
-	+3y2xs4YeXA8pvSl0bz8O1AmGRZWmrfk22aSoTffXEKSoOJJDPogPe8qQKVmn5AMtU9SVNE5vjm
-	RS1OYAIQ1U0SWDYhMNCWVSwPEUIuT2ZHKZqMXec1az7rat9Z4C3ZfSCFPgOmNy1novw8ksQLjYP
-	SF3kdSJ6+cW7y8Es/T8Z5PVJk2y1UfbPENAcTvIBBk5xzePXDod/d6Ux2paaNwAFAqQw1wEAFlb
-	6PE5QknD+4t+h8/GtVbyiQD7xbR0gPfCO85dnjKXs9DG/CoQ8E8CVCFyYU0G0QJVwvNNmCoFGFg
-	X3l6vxlpoMtOcACUDlw7oT
-X-Received: by 2002:a05:600c:190c:b0:477:9814:6882 with SMTP id 5b1f17b1804b1-483c9ba7d51mr193315775e9.5.1772417431943;
-        Sun, 01 Mar 2026 18:10:31 -0800 (PST)
+        bh=5OSdZggynsJBsU/qtiL9Wji3B58q5QjoIHphGlxLwaA=;
+        b=kAEpsis4Rg3w2NhSZ/2jj7Sw5M+VNY3HxsM9I0N4R9OrTo3ZIJimbLnBUtBu/rUQ4c
+         tli6zkZweRvYvRvoQBjn5BmV4eSj1sqo1PZdSLqk02TObTJcw2ONXhLbZEh1qXOFAsEx
+         ijab8uPTlGFYZJyLKAbUwQP6oDFR2jXInP9lmlf/+qyGUF1XkEaIWGPbZ/edlgc4mRUh
+         johhMWpY4D8h7QYXK82EcOgusS13Pdj1lx8mYj6ONYRLbsquQzRovpC0YyIj7vG8BR5s
+         7FVD8WII3UeJTsMU/meg7ePGUwrcEnFCO17QHfClNYmCgKXmObL5dauDGJuDMPUGtXTr
+         Xbqg==
+X-Gm-Message-State: AOJu0YwwB18r2qMea07r6+wVsD4FtJrtag4eY0aCaNcPqpDhnxb0992Y
+	WynMafiLQc1qrsTiw3VftS2r+mBeulnJ4n2eHDIhTs55HR1OLQ2CZuiteCHScACA5MA=
+X-Gm-Gg: ATEYQzwmAIeD2t/sBbnKK4iOK7uNcA78hW3v92PDT0qf2gvQDkfZZxt0mExxrrtDLMq
+	0HwAg6KVIn+23CVSLFUVvXODekQLuIZXLn+4xTnNNPzIbo7zfmvsEl4z3MorzFXfNFQkmX7KQSa
+	b2P7wObzSyTXC5CpY7ptn3nap0Rea8LQpSlkKNH8BO4P8DgLjpxIPCCS5Tl+mNWMUwsdH0g745m
+	yzLgsKvuhs1872cSLZY852hNtGiYP56drs9HGJshK/rwi0Gl4OjZFwQvqEgUiW3PBvYv4Lnsz0B
+	A7wNGP0xSVVukXIczNIOuHcLvkdK6JD5uydD0T8Kvlmwir5QUfAEnBRYQQEgB9FCKFpP6iOlHlw
+	u5Hq7jl9xkOQtCpD2JbNID+DKKOHhWtxGHQOXxcVpzH6znsL4SFfmk5kb4pe5HAUQI8czkZoxho
+	Dva2j2XsxT43u2ichQAhqw
+X-Received: by 2002:a05:600c:c490:b0:480:20f1:7abd with SMTP id 5b1f17b1804b1-483c9c204b0mr180073705e9.31.1772417436800;
+        Sun, 01 Mar 2026 18:10:36 -0800 (PST)
 Received: from arch.localdomain ([2409:8a28:a55:9af1::1002])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfcb9b97sm194451105e9.7.2026.03.01.18.10.28
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfcb9b97sm194451105e9.7.2026.03.01.18.10.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Mar 2026 18:10:31 -0800 (PST)
+        Sun, 01 Mar 2026 18:10:36 -0800 (PST)
 From: Jun Yan <jerrysteve1101@gmail.com>
 To: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -89,9 +89,9 @@ Cc: robh@kernel.org,
 	andre.przywara@arm.com,
 	Jun Yan <jerrysteve1101@gmail.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add Beijing Ultrapower Software Co., Ltd.
-Date: Mon,  2 Mar 2026 10:09:54 +0800
-Message-ID: <20260302020956.96424-2-jerrysteve1101@gmail.com>
+Subject: [PATCH v3 2/3] dt-bindings: arm: sunxi: Add TaiqiCat (TQC) A01
+Date: Mon,  2 Mar 2026 10:09:55 +0800
+Message-ID: <20260302020956.96424-3-jerrysteve1101@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260302020956.96424-1-jerrysteve1101@gmail.com>
 References: <20260302020956.96424-1-jerrysteve1101@gmail.com>
@@ -109,14 +109,14 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,arm.com,oss.qualcomm.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-269775-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269776-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
@@ -131,16 +131,18 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[archive.org:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,uqsoft.com:url]
-X-Rspamd-Queue-Id: CB58E1D26B9
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,archive.org:url,uqsoft.com:url,qualcomm.com:email]
+X-Rspamd-Queue-Id: 3F02C1D26C7
 X-Rspamd-Action: no action
 
-Beijing Ultrapower Software Co., Ltd. is a company focusing on global
-mobile games, ICT services, cloud computing, and artificial intelligence
-solutions.
+TaiqiCat (TQC) A01 is a set-top box powered by an Allwinner H6 SoC,
+equipped with an AXP305 PMIC, 1GB LPDDR3 RAM, 8GB eMMC, an AP6212
+WiFi/BT combo module, one 100M Ethernet port, one USB 3.0 Type-A port,
+one USB 2.0 Type-A port, one Micro USB port, HDMI, SPDIF, Micro-SD, and
+infrared input.
 
-TaiqiCat A01 is a blockchain-based terminal product launched by UQSoft
+It is a blockchain-based terminal product launched by UQSoft
 (Beijing UQSoft Interactive Technology Co., Ltd.), a wholly-owned
 subsidiary of Ultrapower. Its dedicated product homepage[1] was once
 hosted on Ultrapower’s official website[2].
@@ -153,24 +155,27 @@ operational, and the company appears to have been discontinued.
 [3] http://www.uqsoft.com
 
 Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index ee7fd3cfe203..bb16ae90a4f6 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1731,6 +1731,8 @@ patternProperties:
-     description: Ufi Space Co., Ltd.
-   "^ugoos,.*":
-     description: Ugoos Industrial Co., Ltd.
-+  "^ultrapower,.*":
-+    description: Beijing Ultrapower Software Co., Ltd.
-   "^uni-t,.*":
-     description: Uni-Trend Technology (China) Co., Ltd.
-   "^uniwest,.*":
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 9e4627f97d7e..e6443c266fa1 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -901,6 +901,11 @@ properties:
+           - const: allwinner,sl631
+           - const: allwinner,sun8i-v3
+ 
++      - description: TaiqiCat A01
++        items:
++          - const: ultrapower,taiqicat-a01
++          - const: allwinner,sun50i-h6
++
+       - description: Tanix TX1
+         items:
+           - const: oranth,tanix-tx1
 -- 
 2.53.0
 
