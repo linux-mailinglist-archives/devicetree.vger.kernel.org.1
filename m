@@ -1,212 +1,120 @@
-Return-Path: <devicetree+bounces-270181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270182-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qOkFLJ7OpWm1GwAAu9opvQ
-	(envelope-from <devicetree+bounces-270181-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 18:53:34 +0100
+	id aH1kBojQpWm1GwAAu9opvQ
+	(envelope-from <devicetree+bounces-270182-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 19:01:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ECF51DE1D2
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 18:53:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6381DE2C2
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 19:01:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31CFB304EA82
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 17:53:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 90552303A3D0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 18:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7435341B37F;
-	Mon,  2 Mar 2026 17:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73DE630DD22;
+	Mon,  2 Mar 2026 18:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+AEWwv+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="gGtDOT+Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DCE330BBB8;
-	Mon,  2 Mar 2026 17:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47EE5277035;
+	Mon,  2 Mar 2026 18:01:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772474002; cv=none; b=BDAGQrmgq+9swOJSRCDNSTriUBGvhT7ZX5MIOTDr0G55FWs7bdocuZ83U3OL59tI5qmnVZvmNtw86NciEdIqHsKB2wH3zJHIP2ikbwMoTUIXPlpflVJ1cYJZd997l/ae4T/WtssXpBvHeyfwSfIthWqDtISPxzNxuczS5rAMbb4=
+	t=1772474499; cv=none; b=MzUqTInzOLjwCxujpc01bV793fQGY/wNAN4aFLL0aENsohg7mt2wQfPKFAXHZXnT+o9oEaJJTajYBoBs+xnwLBWV99/BGJQYC6cbfM2M4VjklGRDW60qLZTBidKm9CsGp/J7Jfla1B/AQbTlawyUpoOEct3/h3BAceXz9fWV7XE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772474002; c=relaxed/simple;
-	bh=vhDHla+zJiCxWn7+ZSZE11bQ1FNt76Ap+xB09PlL9cw=;
+	s=arc-20240116; t=1772474499; c=relaxed/simple;
+	bh=F47aI2Jg9+VkUKB1QAIKB1gqgTBlbVQDpUe7PE+d7ZY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SORjDYhZLVKRYzssuxQMNFS2mi7wuJ6acQazAuyi3Y5xq02o0genu2srbswIjL7ztB+xYOT99U8TIX1ohp9VV5hRROhcrdyHmF3FqFwCM5sLZ4/D8dvXjgGar2sBdtirnlhuy2HRXZnCuasCDOHUNrG0oo9o5EnPeKqXW/RRGak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+AEWwv+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61DCCC19423;
-	Mon,  2 Mar 2026 17:53:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772474002;
-	bh=vhDHla+zJiCxWn7+ZSZE11bQ1FNt76Ap+xB09PlL9cw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o+AEWwv+jmzgY1erzPnHWxkX3AlnObHZo5pe1wzC5RmpeQHAvqUg/Lsy7SjWk7qTO
-	 7syyv87bwfpmtUFjdF86NQGqR8d7SF0YHRnk2pK4wXJMcGBvjXj4NuEWzAWJrkDFPe
-	 BGVQgvtg+Q1xuibe1C46QzpnqlpcUOgd5T/rCca7k2mP8070Bd2cNwwjMrImOdbEY5
-	 i2uvePt+G4BgarGffz5JzPiBl979bOcBt0dFrOyMDn5XVxzui5u4WMA752C75SN0RF
-	 xrne9rRo80jLSQTD8A5E7W60PU5YZ9SeeMjSvzquU3WYyXBzBsg6lieDQhW15q4nqT
-	 bqkp3jzTJupnA==
-Date: Mon, 2 Mar 2026 17:53:13 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Lv Zheng <lv.zheng@linux.spacemit.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Tomasz Jeznach <tjeznach@rivosinc.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=U2OVlx8UqhrQDfyfxpOMuoiLarLCcFhoDGGPf5G3roeG288OLqH47MiND2E5X418aD2fHT63YZjYLFeGoz1tHzgSg2jlBWKnfFSqOr6408E2ULyA4nGffZbL8h1FoirwM0fDA+nOkHQJWZWeHk8/OYtkdTx60w4EaiH4TiLMFIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=gGtDOT+Q; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=3XVxUv9VFGIs66kBS1ywELCiYjFlBgmw/wMttbaL4lM=; b=gGtDOT+Qt9xtniDHEqZTXpL5qE
+	q02Tcwgb3cHkjMblOBuBCbnaCjoXE4LWITTF6Pbgt3mOd0CUE3tpHk1aIKfaXPJWMi0G7ieaQPr6E
+	iNMRM8hf+ka/Mvo37+L2xxLWHCKicGbduW6+B4dkJBjyyCfSre6dmbfp0B1MdAmooAxE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vx7a3-009iZ2-HU; Mon, 02 Mar 2026 19:01:19 +0100
+Date: Mon, 2 Mar 2026 19:01:19 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	James Clark <james.clark@linaro.org>, Yixun Lan <dlan@kernel.org>,
-	Jingyu Li <joey.li@spacemit.com>, Zong Li <zong.li@sifive.com>,
-	Yaxing Guo <guoyaxing@bosc.ac.cn>, iommu@lists.linux.dev,
-	linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/8] dt-bindings: iommu: Add spacemit/t100 features
-Message-ID: <20260302-constrain-untrue-71626a545008@spud>
-References: <cover.1772289741.git.lv.zheng@linux.spacemit.com>
- <D8CE6E5B1001D797+a6f36da0272ac18fff2a992976b1defc3bb01af6.1772289741.git.lv.zheng@linux.spacemit.com>
- <177231592262.848068.18080490567217057666@spud>
- <CAB7A310CE95B577+5f5c0825-25dd-4035-9316-db940c00216b@linux.spacemit.com>
- <20260301-acclimate-suburb-fc46da7e0cea@spud>
- <B8675026D2F6DF58+946ff82a-2e2e-4abb-a3c4-26fe67c43ab8@linux.spacemit.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, taoren@meta.com
+Subject: Re: [PATCH net-next v6 4/5] net: ftgmac100: Support rgmii delay in
+ old dts with AST2600
+Message-ID: <4a3975a5-f002-4c32-b45f-0f04edbfd25f@lunn.ch>
+References: <20260302-rgmii_delay_2600-v6-0-68319a4c4110@aspeedtech.com>
+ <20260302-rgmii_delay_2600-v6-4-68319a4c4110@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bIo31++ptAE9jI+O"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <B8675026D2F6DF58+946ff82a-2e2e-4abb-a3c4-26fe67c43ab8@linux.spacemit.com>
-X-Rspamd-Queue-Id: 3ECF51DE1D2
+In-Reply-To: <20260302-rgmii_delay_2600-v6-4-68319a4c4110@aspeedtech.com>
+X-Rspamd-Queue-Id: 7E6381DE2C2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270181-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270182-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[33];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,spacemit.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid]
 X-Rspamd-Action: no action
 
+>  static int ftgmac100_set_ast2600_rgmii_delay(struct ftgmac100 *priv,
+> -					     u32 rgmii_tx_delay,
+> -					     u32 rgmii_rx_delay,
+> -					     phy_interface_t phy_intf)
+> +					     s32 rgmii_tx_delay,
+> +					     s32 rgmii_rx_delay,
 
---bIo31++ptAE9jI+O
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You introduced these parameters in the previous patch. Please get the
+types correct from the start.
 
-On Mon, Mar 02, 2026 at 09:41:55AM +0800, Lv Zheng wrote:
-> On 3/1/2026 10:01 PM, Conor Dooley wrote:
-> > On Sun, Mar 01, 2026 at 11:48:37AM +0800, Lv Zheng wrote:
-> > > On 3/1/2026 5:58 AM, Conor Dooley wrote:
-> > > > On Sat, 28 Feb 2026 22:44:49 +0800, Lv Zheng <lv.zheng@linux.spacem=
-it.com> wrote:
-> > > > > Adds device tree bindings for SpacemiT T100 specific features by
-> > > > > introducing spacemit,t100 compatible. T100 contains distributed I=
-OATCs,
-> > > > > each of which exposes pmiv interrupt.
-> > > > >=20
-> > > > > Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
-> > > > > Signed-off-by: Jingyu Li <joey.li@spacemit.com>
-> > > >=20
-> > > > Patch content here is fine, but the signoff chain on this patch is =
-not
-> > > > right. What did Jingyu do? You're author and submitter so either Ji=
-ngyu
-> > > > did nothing and should be removed, or is a co-developer which requi=
-res
-> > > > attribution via the co-developed-by tag. If the latter, their signo=
-ff
-> > > > should be before yours (the submitter is always last).
-> > > >=20
-> > > > pw-bot: changes-requested
-> > >=20
-> > > She is responsible for the common HPM part, and I just gave my commen=
-ts to
-> > > help to improve the quality of that implementation.
-> > > I was just focusing on enabling and maintaining the T100 specific fea=
-tures.
-> > >=20
-> > > Our patches will go each other's local repository, leaving such track=
-s. That
-> > > means the patch from me is Reviewed-and-tested-by her.
-> > > And I'm responsible for sending the whole patchset for upstreaming.
-> >=20
-> > Then you need to either fix your email setup (because it's not inserting
-> > From: Jingyu Li <joey.li@spacemit.com>) so that she is marked as the
-> > author or actually set her to the author in git if you haven't.
-> > Currently it looks like this when applied:
-> > commit 872978c875731be43e84bec38798cb8ecd42b7a0
-> > Author: Lv Zheng <lv.zheng@linux.spacemit.com>
-> > Date:   Sat Feb 28 22:44:49 2026 +0800
-> >=20
-> >      dt-bindings: iommu: Add spacemit/t100 features
-> >      Adds device tree bindings for SpacemiT T100 specific features by
-> >      introducing spacemit,t100 compatible. T100 contains distributed IO=
-ATCs,
-> >      each of which exposes pmiv interrupt.
-> >      Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
-> >      Signed-off-by: Jingyu Li <joey.li@spacemit.com>
-> >=20
-> > In both cases, you need to change the order of signoffs so that yours is
-> > last as the submitter.
->=20
-> BTW, since this version of this patch has been worked out all due your
-> constructive feedback and suggestions. Now that it has functionally
-> converged to what the community requested, can I add "Reviewed-by: Conor
-> Dooley <conor@kernel.org>" for its next version?
-
-No, as I said the previous time you asked, I will provide one when I am
-happy with the patch. I have not yet reached a point with you were I am
-comfortable providing tags with the assumption that you will make the
-correct changes. There's no need to hassle me for one at this point
-anyway, because you have to send a v6 anyway. If v6 is satisfactory to
-the maintainers, they'll grab my tag when they apply the series.
-
-Cheers,
-Conor.
-
---bIo31++ptAE9jI+O
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaXOiQAKCRB4tDGHoIJi
-0poHAQDxsjjLOPKOtb2IC4WJzgt1JbGia7F26+iLWwTvK6+FLwEAzjWz3FACYBYP
-Z2zqTAghSNd/jVb4Yr4Ozyd2TMj26Ao=
-=tGDQ
------END PGP SIGNATURE-----
-
---bIo31++ptAE9jI+O--
+	Andrew
 
