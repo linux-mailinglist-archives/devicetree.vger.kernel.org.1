@@ -1,250 +1,389 @@
-Return-Path: <devicetree+bounces-269882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269883-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eIakETpkpWn0/QUAu9opvQ
-	(envelope-from <devicetree+bounces-269882-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:19:38 +0100
+	id qEf4CGZkpWn0/QUAu9opvQ
+	(envelope-from <devicetree+bounces-269883-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:20:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D741C1D650D
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:19:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88BC51D6551
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:20:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 81F5D30488B5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:14:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E1BF7306C7C1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A9B39900A;
-	Mon,  2 Mar 2026 10:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FD739C623;
+	Mon,  2 Mar 2026 10:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BbvClqdN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YfL8jdZ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E217395D8E
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:14:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A76539B962;
+	Mon,  2 Mar 2026 10:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772446445; cv=none; b=LQ0wV4r7XnxTyCaQHxDO6r/suxpwk0uBD2ihhxOJrq357OjALG1mTfqBu5/93xWmo4PfF3pwEzQT/ShFnPOVPa/amt4Kh9+AjGR/QQLCjSIpYb1ySPuvUW2+LvQ3bMiAkUvasXIWzEOwduGxlQHDKPU2baCi05tMiGIBXjAhTr8=
+	t=1772446482; cv=none; b=g3Sy7TbuLVicTnuBZ7pfB0V/OwfIQQWSiY8ynlzzr6l8RnTsADre/1HpcvxWe04mwoToWwFHLfclOcfHB9F/mjbm1TsPMbT8wg10e2AojYviyJ7ZKqo3ktw98rEaKZ7F9fSlndKFIx+ROp/7TsDbPLz9VgMXWYtB00t7f4Ol8B4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772446445; c=relaxed/simple;
-	bh=iLH8tcewwnAd83nG68sHys9PIlmAkraa6eQd/lWE/eU=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oZE7gGGup6FxEtBltZm42A7lFjg31P/7shT17kp0TuaDIvSHAA9bPSThjxbP6ZtD7l2WWXMXQJHE632V8Mu4ZvM1c8RukfAc6b4gGwF8PqK+nUMbBzY7JCnI4hzJFCpxtsASAms8EL00GyOLNwcimfzS1rV6gRI/URLnZbNslU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BbvClqdN; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-899fb030812so9820086d6.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:14:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772446443; x=1773051243; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=F0R0FHok1ZjJPUxXlY2o5kEpjOjt+LYzwp5EsM9Prls=;
-        b=BbvClqdNtmqh9LGy565JTqKiOYLDLIdlhtOEIH4bZ5ueICxH+z+mDtPry+luRLmoYh
-         vRX8jaB2Z9nEVdBT5aGZJARvV6Te7lHpzBitc8B6h+gfQzoTcmS7hrnyHkWKtztoC5cW
-         2yBunDRtpwtWvxLDtziyiw/xrK/XCdPcyYaF4VRx0NUySSUq50sFVOaAIpk4i1Q20iq6
-         1C1Id0rEehMwG7dwcejf/+0FUjZcje4JkaS/neusKcTRtBp6q7Eu+kxGYxX3Eg1iFGsa
-         rRWI74vi9K28PsSXqpBjj6/d4xEKFQPMnpBBtYKk6ZAk44iwImyn5wn4NDgo9EnedM7+
-         44IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772446443; x=1773051243;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F0R0FHok1ZjJPUxXlY2o5kEpjOjt+LYzwp5EsM9Prls=;
-        b=VKObJGk8p7ABNp3ExcQv0VxDhgzlVY0iX/hJNSYezxCGS4QCnNpmUAMcm7BvsYkSqq
-         n0vPXGO8nX/YK5AeZyASDK8LQW6odsIj0GxZzrVV4OvrURwxhQ6Sq8EPnl8gbpctN5Z4
-         Rt9RRp2DHZd54XKhTrKlfMSY66xmJq2ru1hpDI4X+AHKcZ9MQwgnNM/ID8c9gMRWuPio
-         deqSBIaxdToCpHwgcxd6E6UefPxFfP6+XbbRks4tsHzAWD6/l5inCAquIyMq+3K0Q8Bk
-         wbkYRr89TnrJaaOKmUVZRxLVMBVdNpGWh+U48xijYFvYo5kHySM6SiwAAcG4xvoz4evQ
-         GW8w==
-X-Forwarded-Encrypted: i=1; AJvYcCV+JVw6qfvuNGe68gKyFpp8boi0DQm+kl9TfT+gDJp3o5KIh8SyCVyykeAOl8wEKeC6AQpxY19+8z+R@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2YHyxIBkyYI6B/wKHy9dHc4GXNET7LLt7NT0VUDKv3/eXh5g+
-	aVh1BqMwlP7Mt1kO1bUzXVtx8TcXNpK8GugYyZaxkVIz/p1gRrotFFzk
-X-Gm-Gg: ATEYQzwQmMr41ZspoouTKPGCulxGpNSlgdxfkL92xpCCbecN9REnkUQhj4T8GHOFL4f
-	Osbyrv2PxG6/doOsKvCjrLMzwd6Pgx+YNWb5CKIePHCse2IDPIxoFKM91ZQCWrgzbRT13cLsLQv
-	dV36rHf88eiNhPLn4Lethv34cHaEojDVIAVIKFA1FTsSXH/2y2VZMqD95OHake8RLUa2oyrKYIT
-	6OjOeBYoH/pkHOU/apPK0VPRlGB7spySwmMm7L8nxVlsFYDZ3QPECO4aYiN2U57WPFz+UY6V6iW
-	NB1CtLCY5rLXEfj2tIyna1jrDpMJ2pvJtPSpPP97SQ/kZMFZu1JUeyTzCL5oLxYPR+NqeQ20wqu
-	xVmu1hQhKLrkVKsWHzpXqOpmtset86WfDOJzCqo7OpS7NEYE5eRpOrKXlvTBgbx8cCaQeCbRwP2
-	n8sAugogXqmBiuG5/bsJFJVYDkqNu4U5BFfzRfhCVL9M6LQlIh5YqV1TdheWXdpRkX6NkwNuyZZ
-	XhocoyGvyHCa9Kgk+x/LuRVcx66hk81q+pBIXImLnTwYMNZPO8=
-X-Received: by 2002:a05:622a:4d:b0:501:40af:96bf with SMTP id d75a77b69052e-50752989987mr166147711cf.68.1772446443158;
-        Mon, 02 Mar 2026 02:14:03 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-507449a66f1sm114236241cf.12.2026.03.02.02.13.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 02:14:02 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Mon, 2 Mar 2026 10:13:52 +0000
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>, rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Dmitry Antipov <dmantipov@yandex.ru>
-Subject: Re: [PATCH v7 2/8] iio: core: add fixed point parsing with 64-bit
- parts
-Message-ID: <imtqtaakbz4c4pmlmb3gh2r5sjvso2fymdy4poyjvds2noqzdr@d4ia6rml6jzf>
-References: <20260216-adf41513-iio-driver-v7-0-b0ed387ab559@analog.com>
- <20260216-adf41513-iio-driver-v7-2-b0ed387ab559@analog.com>
- <20260222172912.60a103c0@jic23-huawei>
- <aZwYshRxNgSh3CWk@smile.fi.intel.com>
- <zb752y7tnjzsc35na572o4sip6efwv3i4lha4ls6fhdrr52h5v@bfgy65cmae4p>
- <CAHp75VdSV2QDMR0DueCuP=Ds-5A1NsNjqPWtmRbG4NvoJ=LjXQ@mail.gmail.com>
- <20260301122340.3fedf64e@jic23-huawei>
- <aaVKDbB_XIFmxCEM@ashevche-desk.local>
- <ct2r5wvvfowqcfe44fawbi4blkjpfle7etvaunwbsxevejsr2s@3g43wru5n6jh>
- <aaVZdgvZhaWDgU2X@ashevche-desk.local>
+	s=arc-20240116; t=1772446482; c=relaxed/simple;
+	bh=cm+gQb+Ff1wi2vrfUxgKpSyYLxhvw06uD6cNoSXrE2Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aAxTs7tXQjOJPVi1+za5IPuAZ+NYk6xmLHo3L0uWfWIiiBKuZYqUbnj6JrfXmwJkRp3GTI7DxBC9Ng5Tn74q/KkQAY+OfRLPSrltdrcIrUnAr7rMPj4/TF9qPH2P0o/Xm9TmPDFa0xEtS8DUCEgGVW50vbtDeqyTUYafF293SQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YfL8jdZ0; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772446477; x=1803982477;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cm+gQb+Ff1wi2vrfUxgKpSyYLxhvw06uD6cNoSXrE2Y=;
+  b=YfL8jdZ0yJteWTefiWZHr89SwcevONnMNHnmKDWn8UJ5mCE3lGHPruTD
+   v1aWrvuyTyy4j+Uk7/fDOrnquaVp71cDzDyAzGwuqTrDNzIBEiX20AU2X
+   c4LKBmUgaW0TtXrFIHVko/KGCvMKgyLDr3P7ggldvBky8jjUfXgLLcKdv
+   QOlmX6UCm0bZygL7N8wrHa0Z84jPctWJkacq9fPOdR57P2RJSkWeI0IIo
+   DOWkOVgPkar6RKIloiHHCbzP6JC5l8PeKravMOP7hTFe+Ou1/09ohlM7O
+   YcGqgi538sIiCDdoWHjkLndWiWM9lR/KZGrFr+PIT4VghCv/fRDcxwDsk
+   w==;
+X-CSE-ConnectionGUID: fOk0ArX8SMSV7AojV9Fxpg==
+X-CSE-MsgGUID: LFbJrWWrRuGw6d8imaPKYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="77288608"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="77288608"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 02:14:36 -0800
+X-CSE-ConnectionGUID: +2oRPrdUTXyeVMJh7n/9vw==
+X-CSE-MsgGUID: 3ZNxpxOITAeF3rmPhrFEgg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="217631877"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.52])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 02:14:34 -0800
+Date: Mon, 2 Mar 2026 12:14:31 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Zhu Ling <1536943441@qq.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl, andy@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	chenbaozi@phytium.com.cn
+Subject: Re: [PATCH v1 2/3] gpio: add support for Phytium platform GPIO
+ controller
+Message-ID: <aaVjB15jAJden4UR@ashevche-desk.local>
+References: <20260302095147.2483-1-1536943441@qq.com>
+ <tencent_C88C86C89249067BA4D394FC9CCC1AB62406@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aaVZdgvZhaWDgU2X@ashevche-desk.local>
+In-Reply-To: <tencent_C88C86C89249067BA4D394FC9CCC1AB62406@qq.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269882-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269883-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[intel.com,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,yandex.ru];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[qq.com];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D741C1D650D
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ashevche-desk.local:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 88BC51D6551
 X-Rspamd-Action: no action
 
-On 26/03/02 11:33AM, Andy Shevchenko wrote:
-> On Mon, Mar 02, 2026 at 09:19:42AM +0000, Rodrigo Alencar wrote:
-> > On 26/03/02 10:27AM, Andy Shevchenko wrote:
-> > > On Sun, Mar 01, 2026 at 12:23:40PM +0000, Jonathan Cameron wrote:
-> > > > On Mon, 23 Feb 2026 12:41:45 +0200
-> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > On Mon, Feb 23, 2026 at 12:37 PM Rodrigo Alencar
-> > > > > <455.rodrigo.alencar@gmail.com> wrote:
-> > > > > > On 26/02/23 11:06AM, Andy Shevchenko wrote:  
-> > > > > > > On Sun, Feb 22, 2026 at 05:29:12PM +0000, Jonathan Cameron wrote:  
-> 
-> ...
-> 
-> > > > > > > It all depends on the series from Dmitry Antipov.
-> > > > > > > Can somebody help reviewing the patch 1 there?
-> > > > > > > https://lore.kernel.org/linux-hardening/20260212125628.739276-1-dmantipov@yandex.ru/  
-> > > 
-> > > FWIW, Andrew picked them up for Linux Next. Please, test!
-> > 
-> > The patch looks ok, but I am not seeing it solving my problem here.
-> > Here is the v8:
-> > https://lore.kernel.org/linux-hardening/aZXDSbyH8tWmTPPL@smile.fi.intel.com/T/#t
-> > 
-> > I would have to use simple_strtoull() and it would clamp the value at
-> > ULLONG_MAX in case of overflow, but it would not say that an overflow
-> > happened. Would that be fine? I understand that addressing the FIXME
-> > in simple_strntoull() is not a subject of this patch.
-> >  
-> > > > > > can we push for the exposure of that function to kernel modules?
-> > > > > > We have discussed that in v6, and I understand that:
-> > > > > >
-> > > > > > EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
-> > > > > > in lib/kstrtox.c;
-> > > > > >
-> > > > > > #include "../../lib/kstrtox.h"
-> > > > > > in drivers/iio/industrialio-core.c
-> > > > > >
-> > > > > > is not a good call...  
-> > > > > 
-> > > > > Yep, because it's a temporary band-aid. The proper solution is to have
-> > > > > shared code provided by the lib/. So, the wrapper to parse 64-bit out
-> > > > > from the constant string literal should be part of the lib/ in the
-> > > > > result.
-> > > > > 
-> > > > > > > When it's in, we can continue on this one. TL;DR: for me this is on hold.
-> > > > > > > But if you see the need to have the driver being in IIO, please add a big
-> > > > > > > fat FIXME to make sure we will get this all being sorted out in the
-> > > > > > > (nearest?) future.  
-> > > > > >
-> > > > > > I could add the FIXME into iio_safe_strntou64() doc header. It explains
-> > > > > > the context:
-> > > > > >  
-> > > > > > > + * The implementation of this function is similar to _parse_integer_limit()
-> > > > > > > + * available in lib/kstrtox.h, but that header/function is not available to be
-> > > > > > > + * used in kernel modules. Hence, this implementation may need to change or
-> > > > > > > + * removed to reuse a new suitable helper that is properly exposed.  
-> > > > > 
-> > > > > Up to Jonathan, I hope we can move the above mentioned series forward.
-> > > > > Without that, as I pointed out, this one sounds to me suboptimal and
-> > > > > unneeded double effort.
-> > > > > 
-> > > > I don't want to hold this series for another cycle, but we are still
-> > > > fairly early in this one, so some focus on moving that forwards seems
-> > > > sensible.  If we are running out of time, we can fallback to a loud
-> > > > FIXME and a plan to move to the generic version in the library next cycle.
-> > > > So let's set a rough deadline of rc5 and see how things are going then.
-> > > 
-> > > Taking into account the above, can we actually develop something
-> > > based on that?  Or at least having a temporary solution for this
-> > > cycle followed up by the better one for the next?
-> > 
-> > As mentioned above, I am not sure how consume what Andrew has over there.
-> > It seems address lib/ internal stuff. The interfaces are still the same.
-> 
-> I think it will be third time I'm repeating that this needs a wrapper in the
-> lib/. Just add the one (like with safe_strtoull() naming schema) with properly
-> formed prototype that returns an error and the result in different variables
-> 
-> int safe_strtoull(..., *result)
-> {
-> 	...
-> }
-> EXPORT_SYMBOL_GPL(safe_strtoull);
-> 
-> (Also some test cases have to be added.)
+On Mon, Mar 02, 2026 at 05:51:46PM +0800, Zhu Ling wrote:
+> Add support for the Phytium platform GPIO controller with:
+> - shared core helpers and irqchip implementation
+> - platform probe path for OF/ACPI
+> - Kconfig/Makefile integration
 
-I really understood that I would need to use Andrew's work as is, but
-in fact, you encouraging me to add what we need on top of it.
+Why you can't use one of the gpio-regmap, gpio-mmio?
 
-Assuming that this would increase the scope of this patch series, I suppose
-that would need to be included in a separate one.
-can we just not export simple_strntoull() from lib/vsprintf.c? I mean,
-addressing its FIXME and changing its prototype?
+> The driver supports GPIO direction and value configuration, plus
+> interrupt delivery for platform devices.
+
+...
+
+> +/*
+> + * Copyright (c) 2019-2023, Phytium Technology Co., Ltd.
+
+My calendar shows 2026...
+
+> + */
+
+...
+
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/irq.h>
+> +#include <linux/module.h>
+> +#include <linux/bitops.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/interrupt.h>
+
+Follow IWYU principle.
+
+...
+
+I'm not going to review the rest as gpio-remap (or gpio-mmio) should make this
+driver much better and smaller.
+
+Take your time to study existing cases.
+
+...
+
+> +EXPORT_SYMBOL_GPL(phytium_gpio_irq_disable);
+
+No way.  And if it's really needed, must be namespaced.
+
+Btw, why the three files and not a standalone single one?
+
+...
+
+> + * Derived from drivers/gpio/gpio-pl061.c
+
+Why? Does it uses the same or similar register layout?
+
+> + *   Copyright (C) 2008, 2009 Provigent Ltd.
+> + */
+> +
+> +#include <linux/acpi.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/irq.h>
+
+> +#include <linux/kernel.h>
+
+No way this header should be anyhow needed in this driver.
+
+> +#include <linux/module.h>
+
+> +#include <linux/of.h>
+
+
+
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +
+> +#include "gpio-phytium-core.h"
+
+...
+
+> +static const struct of_device_id phytium_gpio_of_match[] = {
+> +	{ .compatible = "phytium,gpio", },
+
+No inner comma.
+
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, phytium_gpio_of_match);
+> +
+> +static const struct acpi_device_id phytium_gpio_acpi_match[] = {
+> +	{ "PHYT0001", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(acpi, phytium_gpio_acpi_match);
+
+These tables should be moved closer to their user.
+
+...
+
+> +	struct device *dev = &pdev->dev;
+> +	struct resource *res;
+> +	struct phytium_gpio *gpio;
+> +	struct gpio_irq_chip *girq;
+> +	struct fwnode_handle *fwnode;
+
+> +	int i;
+
+Why is 'i' signed?
+
+> +	int err, irq_count;
+
+...
+
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	gpio->regs = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(gpio->regs))
+> +		return PTR_ERR(gpio->regs);
+
+There is a combined call devm_platform_...().
+
+
+> +	if (!device_get_child_node_count(dev))
+> +		return -ENODEV;
+
+Why?!
+
+...
+
+> +	device_for_each_child_node(dev, fwnode) {
+
+Use _scoped() variant
+
+> +		int idx;
+> +
+> +		if (fwnode_property_read_u32(fwnode, "reg", &idx) ||
+> +		    idx >= MAX_NPORTS) {
+> +			dev_err(dev, "missing/invalid port index\n");
+
+			return dev_err_probe(...);
+
+> +			fwnode_handle_put(fwnode);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if ((fwnode_property_read_u32(fwnode, "ngpios",
+> +					      &gpio->ngpio[idx])) &&
+> +		    (fwnode_property_read_u32(fwnode, "nr-gpios",
+> +					      &gpio->ngpio[idx]))) {
+> +			dev_info(dev,
+> +				 "failed to get number of gpios for Port%c\n",
+> +				 idx ? 'B' : 'A');
+
+It rings a bell. Do you really have to create a brand new driver? Please check
+existing ones and clarify why the brand new driver is required.
+
+> +			gpio->ngpio[idx] = NGPIO_DEFAULT;
+> +		}
+> +	}
+
+...
+
+> +	dev_info(dev, "Phytium GPIO controller @%pa registered\n",
+> +		 &res->start);
+
+The successfully probed device is kept silent in the logs.
+
+...
+
+> +#ifdef CONFIG_PM_SLEEP
+
+No way, please, use modern PM macros from pm.h.
+
+> +static int phytium_gpio_suspend(struct device *dev)
+> +{
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	struct phytium_gpio *gpio = platform_get_drvdata(pdev);
+
+dev_get_drvdata()
+
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&gpio->lock, flags);
+> +
+> +	gpio->ctx.swporta_dr = readl(gpio->regs + GPIO_SWPORTA_DR);
+> +	gpio->ctx.swporta_ddr = readl(gpio->regs + GPIO_SWPORTA_DDR);
+> +	gpio->ctx.swportb_dr = readl(gpio->regs + GPIO_SWPORTB_DR);
+> +	gpio->ctx.swportb_ddr = readl(gpio->regs + GPIO_SWPORTB_DDR);
+> +
+> +	gpio->ctx.inten = readl(gpio->regs + GPIO_INTEN);
+> +	gpio->is_resuming = 1;
+> +	gpio->ctx.intmask = readl(gpio->regs + GPIO_INTMASK);
+> +	gpio->ctx.inttype_level = readl(gpio->regs + GPIO_INTTYPE_LEVEL);
+> +	gpio->ctx.int_polarity = readl(gpio->regs + GPIO_INT_POLARITY);
+> +	gpio->ctx.debounce = readl(gpio->regs + GPIO_DEBOUNCE);
+> +
+> +	writel(~gpio->wake_en, gpio->regs + GPIO_INTMASK);
+> +	writel(gpio->wake_en, gpio->regs + GPIO_INTEN);
+> +	raw_spin_unlock_irqrestore(&gpio->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int phytium_gpio_resume(struct device *dev)
+> +{
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	struct phytium_gpio *gpio = platform_get_drvdata(pdev);
+
+Ditto.
+
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&gpio->lock, flags);
+
+Use guard()().
+
+> +	writel(gpio->ctx.swporta_dr, gpio->regs + GPIO_SWPORTA_DR);
+> +	writel(gpio->ctx.swporta_ddr, gpio->regs + GPIO_SWPORTA_DDR);
+> +	writel(gpio->ctx.swportb_dr, gpio->regs + GPIO_SWPORTB_DR);
+> +	writel(gpio->ctx.swportb_ddr, gpio->regs + GPIO_SWPORTB_DDR);
+> +
+> +	writel(gpio->ctx.intmask, gpio->regs + GPIO_INTMASK);
+> +	writel(gpio->ctx.inttype_level, gpio->regs + GPIO_INTTYPE_LEVEL);
+> +	writel(gpio->ctx.int_polarity, gpio->regs + GPIO_INT_POLARITY);
+> +	writel(gpio->ctx.debounce, gpio->regs + GPIO_DEBOUNCE);
+> +
+> +	writel(GPIO_CLEAR_IRQ, gpio->regs + GPIO_PORTA_EOI);
+> +
+> +	writel(gpio->ctx.inten, gpio->regs + GPIO_INTEN);
+> +	gpio->is_resuming = 0;
+> +
+> +	raw_spin_unlock_irqrestore(&gpio->lock, flags);
+> +
+> +	return 0;
+> +}
+> +#endif
+
+...
+
+> +static SIMPLE_DEV_PM_OPS(phytium_gpio_pm_ops, phytium_gpio_suspend,
+> +			 phytium_gpio_resume);
+
+Use new PM macros.
+
+...
+
+> +static struct platform_driver phytium_gpio_driver = {
+> +	.driver		= {
+> +		.name	= "gpio-phytium-platform",
+> +		.pm	= &phytium_gpio_pm_ops,
+
+> +		.of_match_table = of_match_ptr(phytium_gpio_of_match),
+> +		.acpi_match_table = ACPI_PTR(phytium_gpio_acpi_match),
+
+No way of_match_ptr() and/or ACPI_PTR() should appear in a new code.
+
+> +	},
+> +	.probe		= phytium_gpio_probe,
+> +};
+
+> +
+
+Redundant blank line.
+
+> +module_platform_driver(phytium_gpio_driver);
 
 -- 
-Kind regards,
+With Best Regards,
+Andy Shevchenko
 
-Rodrigo Alencar
+
 
