@@ -1,188 +1,210 @@
-Return-Path: <devicetree+bounces-269822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269823-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cDGJIPVApWm36gUAu9opvQ
-	(envelope-from <devicetree+bounces-269822-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:49:09 +0100
+	id AEpSEztCpWkg7AUAu9opvQ
+	(envelope-from <devicetree+bounces-269823-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:54:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D6091D423F
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:49:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F5E31D430C
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:54:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 249413018C1C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 07:49:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E75F0300BEAF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 07:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A16383C97;
-	Mon,  2 Mar 2026 07:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D491387348;
+	Mon,  2 Mar 2026 07:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kLCgYMx2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CVyPVkGg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0F15212B0A;
-	Mon,  2 Mar 2026 07:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772437742; cv=none; b=JR1PtT89o9G6mhUXieuW/xWPG2yF+CbXgtZRCrUktvB+OgV2MxiPOkl32MhPzO/hPXBByD3f/zlytCDFCmt9MSnFxaWPqBsHYNLVQlRvcps1+f+LSq7L75Vk1x9nm+PCX/hQZ646hrhUL0C8DrqF7yMAtdSxX9p5/tLWTFJZMrE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772437742; c=relaxed/simple;
-	bh=VnrufIu548/V3zU/GEz7QtACk4a9Iz6PZQe3ke7V7B8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g5ZL9+72C+IRlj4g6EpBSUkrOtrRK0iENYiWTRTqzzKFcUMouYWvLZdbcxjvngPLhOE7bhJg99nutH4Jx0xTOfU6twH5M+vulKjM2f9kgalftxOcmsPeqrT/mAHv1Ise6ZlMfGCnBPKES4E2LdDhe8d59rlcmYWE5u9qgAzDksA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kLCgYMx2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C21B9C19423;
-	Mon,  2 Mar 2026 07:48:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772437742;
-	bh=VnrufIu548/V3zU/GEz7QtACk4a9Iz6PZQe3ke7V7B8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kLCgYMx2EDOIGdFFLO14uznHT5tQZmQeTZOSX8GiTb/2vj/lg1c02GAQB4LGyZlX1
-	 6y2I02c23MuF5Ee/HDPng9XZiQOmOs8BPgigokyA1CXU7q7Em5CpiLrcCqIpWOUDV1
-	 kpMF4vcbUhYmSsvr3/VBHoipHFLNShcNx/spgMSUjynxx/wZSnAs+DmSD1NX9o2HRJ
-	 +4eZ7RFpLXzT/ovDmsiQJxPkuPkFwn4a8ZZu6ka8LhH1d3m1opy0sGeXS5Q71rgeY/
-	 HHQhaycUeuvuaf6bFmtAeej1M3uFwpcUbjXY0ECXrghZkKGwGbnSq8YG//vlzGdCHY
-	 ve9g/MQnUI2fw==
-Message-ID: <01085021-c116-46de-a0ce-730455620cb2@kernel.org>
-Date: Mon, 2 Mar 2026 08:48:57 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAAE337BB8
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 07:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772438052; cv=pass; b=AMySF4vsPEYo6GvGvdb2TvntLYhGwKURhdYVb3G066s7ckkZHN29ADzVm/4Qox0Gcslfl4c0KwMetq07Qfo8SrfgcC+4yTmsJOamlp7HZr+m37Y7k4r2mXL1FGwdIkIY6OM/XLnaWVyL7ITlKiYqqi12+WkZA/ssmYBGWzq8HTo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772438052; c=relaxed/simple;
+	bh=uPb8XLMAB/eVIC8z/PoFZsfbo9bqAYSJ86y6yBPVFa4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=My8gbGBfm1sVbxklUV2YKjGF89nxba60jJh4+Mq6bVA1SHqOhJF+pjizDqax4f2KEJDdNbAcbnkB/qnHh/oq68sAz6KD2R6WMMDOXT6ZDIvzLWr2Dur6taZvDRHqYoXsGnFq+2elFVfCdKeCvdz/9Y8MIhTzt8jHRujqhkLNG6c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CVyPVkGg; arc=pass smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4807068eacbso33617345e9.2
+        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2026 23:54:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772438049; cv=none;
+        d=google.com; s=arc-20240605;
+        b=CM6Qb9qo1kVIBAIh0lnV1rwyqCIAeeKajHbjSBeEUyn9be4Gij0pesGFo/2GlLS4pd
+         T6NeWEakzo4nTBHrhjc1JanCUNxMmhQJouja+d80q7v1OHim6R3MfyODj7qORC7fnznw
+         HYznBjWHzBqkFLp7qEkzdk2HXf3sIYTpPjsISX3EHh5ACFHw3b+FrOhlD209b5qli4IK
+         24BLpQujj96kwQso+AFpQenqa0+0fOxYQKy+Nu/E+gWbXIl/fQTmBp/7+73mt4IPSSI6
+         T52JSoGpDBM2kiQqzf4Sb3p2Eqa7lXsTfEk3t/yTXolWTupqZktB1BV6SuZpTAxDgMlf
+         vvjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=P5+6YqPpCYHdcREtIIaueUQZcnbsY/k4IiVYquZqQ4g=;
+        fh=1ZQho50yWz8lLuHR9pUj43EITSbIkptLMyskQLLXw7g=;
+        b=NmQXUwfRm91EhMievwa5efuK9Ccx/riUtE0aqLVFTA7LF6Rk/QAXDIURpdkHBgqwUJ
+         eewks87KGX+F+s6Zrk5aSUaE7iZH8jxF4xuIkryBuO65sAPkMUjKh5qLmM0RXTdQUFNC
+         Kts9ISgbcqovUXx2rDi0BFaJGu1uU7kPEe4fK5E/Zs2vYDayZFD4z8WUNP602N3+LSCa
+         2qZwQf3bnbuTmGqrH0rWYkjR8rL3wrCJeLSlVCqPahQE+FcVNOSbaqsdZOB+wVHSJQvH
+         XoDMGoSI4h94ScQWEuff7dQm9vLNUcgZ2E0HUJS1e2PAGLo1azbCWlrho7P+D7ax3qJY
+         5mQQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772438049; x=1773042849; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P5+6YqPpCYHdcREtIIaueUQZcnbsY/k4IiVYquZqQ4g=;
+        b=CVyPVkGgj7Y6CGG+CbKhrIra/DfATw7TNcy2XdPlsJm2Y2vS9lK2wNR7mViZPOA6Ws
+         i4ToZ/nyjMtHIohguHIC5jBHgz8rd+E/8Dx9lA/FilKPCpAsWVHDMjBltyTAuinw8ODo
+         wbctY/Q15j9zYczFPIF+7zeMzR4+2TQ2CjjtB7XTYHaAZZBNFqnZD6xT3tBUgkcf8lR8
+         jtXT6Aw7GErhMQ61uEm+c1agLH5IaPr4SpV3cRhQSmxqp+j6KaROnQcg4NiRO2L8D4Iw
+         gzKt6PQQs36Zt1SO8onI00d6WLlOPeJ1I3J2pWes60lXExlra2sEtKgnSjejjb9M2Q3p
+         vi2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772438049; x=1773042849;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=P5+6YqPpCYHdcREtIIaueUQZcnbsY/k4IiVYquZqQ4g=;
+        b=HV+qXK+D36td+6jbX57qiZbe4l18LsGqTAw3VuaMonuKZzbaWDSVcN50uJY7U9WeV6
+         fd+hcZZljWVq/S+74nxu/2hUTGX1DxF6nxhMCxRfXzfxc4WHWgrQUwqj+Nk++FRwz6CJ
+         sOMJPBWT486Ydsl6wTnjSr1aQAsBgsOBkGfBjwEcznpb9QOOcr2+83bieBZathrWB8NI
+         YHhaVunEIYxPZFh4wCFd/XpvCGu4fcElYikP1ss9IqhdYN21lxtoZM/NeaGfd+Kd3NvO
+         HxOAPEcJNDEoyxwEfXk2KyUq1GXenuSkr/lc47jWDrLICMtZSK16xjwwbzIezlbIApfW
+         uSQw==
+X-Gm-Message-State: AOJu0YwMIB0y+QeKgjQOlwkc68qTsjYv/WQ1/Dxrs3VIf6uJ+exL56VG
+	0VhRe2DKN80NuN3yZPI9qmFu39sNsy97Cb5HCzwmn4RkF03LVeA2NOk3PGFpUq/qeD0zFTiBmUH
+	Vt+fNNZqY6hgXXXBmlWTn2AGt4B+oMaw=
+X-Gm-Gg: ATEYQzzW6d1C/Mg58gZXJGk8OWxoERTo9E/brqkZu1O8t+c44qZcwLrKLAs+p8Ydl6k
+	p2UbSx0j71NDpUKSM6EkbxrX1YtP5ppP1WacdGbTyXYxzMP66K+4HTYxqdAfsPckHWlkdKdu79c
+	zurMQmbQc2vfgcsTJ6PCjjwFDSpiKow7tqYYFzwJLyBuVNbbpDLoxzA4GwxGgdUdlcG4UZtp3iv
+	OFjE0moZkDlrvqmiCly3L51roofnpTe0zZ7rcvs1aH8HVmArXCuSEd2mM2bDxcBYzctMrQLoKR7
+	iGcKsXcl
+X-Received: by 2002:a05:600c:34d0:b0:45d:d97c:236c with SMTP id
+ 5b1f17b1804b1-483c9beac83mr219348415e9.21.1772438049446; Sun, 01 Mar 2026
+ 23:54:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
-To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-References: <20260217052526.2335759-1-neeraj.soni@oss.qualcomm.com>
- <20260217052526.2335759-2-neeraj.soni@oss.qualcomm.com>
- <20260217-berserk-puma-of-focus-bcbe82@quoll>
- <e3ac0681-605d-c1df-e4f0-78a2c142fa66@oss.qualcomm.com>
- <21a87714-cd11-4217-a2aa-82fddc3a8530@kernel.org>
- <544925d0-cf32-6b2a-548e-d6f7cc517581@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <544925d0-cf32-6b2a-548e-d6f7cc517581@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260126101018.24450-1-clamor95@gmail.com>
+In-Reply-To: <20260126101018.24450-1-clamor95@gmail.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Mon, 2 Mar 2026 09:53:58 +0200
+X-Gm-Features: AaiRm506qvRoGF6DoCpl6P5GcPjJm7j_vQK9_TMbHPXN7jmVA73dHMx5lkNgJTI
+Message-ID: <CAPVz0n23ZW--SMO0qM9eKVcWQSAPgXKdz5Xb9_RAAU4d2Ft5-A@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] ARM: tegra: lg-x3: add missing nodes
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Svyatoslav Ryhel <clamor95@gmail.com>, =?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269822-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269823-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,nvidia.com,yahoo.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1D6091D423F
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3F5E31D430C
 X-Rspamd-Action: no action
 
-On 02/03/2026 08:45, Neeraj Soni wrote:
-> 
-> 
-> On 2/19/2026 1:57 PM, Krzysztof Kozlowski wrote:
->> On 19/02/2026 06:38, Neeraj Soni wrote:
->>>>>  
->>>>> +  - if:
->>>>> +      required:
->>>>> +        - qcom,ice
->>>>> +    then:
->>>>> +      properties:
->>>>> +        reg-names:
->>>>> +          not:
->>>>> +            contains:
->>>>> +              const: ice
->>>>
->>>> And reg is still 4? This is not correct syntax. You need to define
->>>> proper and final constraints per each device. I would write example, but
->>>> why... more things you could just ignore.
->>>>
->>> I had included changes for reg in v3:
->>> https://lore.kernel.org/all/20260206112053.3287756-2-neeraj.soni@oss.qualcomm.com/
->>>
->>> but those were not reviewed so i assume them to be incorrect and dropped it.
->>> Will fix this in next patch and post.
->>>
->> Patch v3 was also not correct, because SDHCI v5 devices should have 1 or
->> 2 entries, not 1-3 as previous patch said.
->>
-> This is not clear to me. Here:
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n80
-> it says the entries should be 1-4 and there are no v5 specific constraints.
+=D0=BF=D0=BD, 26 =D1=81=D1=96=D1=87. 2026=E2=80=AF=D1=80. =D0=BE 12:15 Svya=
+toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> With the recent kernel updates, Tegra30-based LG smartphones now support
+> several additional features, including an RGB-DSI bridge, DSI panels,
+> MUIC, a charger, a battery temperature sensor, OTG mode, and capacitive
+> buttons on the P895. Add required nodes to device trees.
+>
+> ---
+> Changes in v2:
+> - fixed dw9714 and tx13d100vm0eaa nodes
+> - added video device pipes graph
+>
+> Regarding CHECK_DTBS output in v2:
+> - nvidia,tegra30-pcie, nvidia,tegra30-gmi, nvidia,tegra30-kbc,
+>   nvidia,tegra20-kbc, nvidia,tegra30-ahub are not documented yet
+> - nvidia,tegra30-vi was adjusted and applied, change did not apper yet
+>   (https://lore.kernel.org/lkml/176860988748.1688420.11717122647073678.b4=
+-ty@nvidia.com/)
+> - st,m24c08 appers undocumented though it seems to be different from
+>   st,24c08, at least they google as separate devices. atmel,24c08 is not
+>   documented, though it is widey used in linux device trees and is
+>   supported by driver. Here is one of examples:
+>   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tre=
+e/arch/arm/boot/dts/allwinner/sun7i-a20-linutronix-testbox-v2.dts?h=3Dnext-=
+20260123#n33
+> - onnn,mt9m114 does not have 'orientation' property, though it should
+>   include it since it is generic for camera devices
+> - ti,lp8720 and maxim,max77663 have txt documentation and are not yet
+>   converted to DT schema
+> - backlight in panel nodes was not added since lm3533 has no DT support
+> - missing '#io-channel-cells' in ti,tsc2007 addressed in
+>   https://lore.kernel.org/lkml/20260122193549.29858-2-clamor95@gmail.com/
+> - missing dsi controller properties of ssd2825 addressed in
+>   https://lore.kernel.org/lkml/20260123073411.7736-2-clamor95@gmail.com/
+> - missing '#io-channel-cells' in generic-adc-thermal was proposed in but =
+rejected
+>   https://lore.kernel.org/lkml/20250310075638.6979-2-clamor95@gmail.com/
+> ---
+>
+> Svyatoslav Ryhel (4):
+>   ARM: tegra: lg-x3: add panel and bridge nodes
+>   ARM: tegra: lg-x3: add USB and power related nodes
+>   ARM: tegra: lg-x3: add node for capacitive buttons
+>   ARM: tegra: lg-x3: complete video device graph
+>
+>  arch/arm/boot/dts/nvidia/tegra30-lg-p880.dts |  39 +++
+>  arch/arm/boot/dts/nvidia/tegra30-lg-p895.dts |  79 +++++
+>  arch/arm/boot/dts/nvidia/tegra30-lg-x3.dtsi  | 328 ++++++++++++++++++-
+>  3 files changed, 429 insertions(+), 17 deletions(-)
+>
 
-There are, just scroll.
+Hello Thierry!
 
-> So i made it 1-3 while adding qcom-ice constraint.
-> 
-
+May these patches be picked if everyone is fine with them?
 
 Best regards,
-Krzysztof
+Svyatoslav R.
+
+> --
+> 2.51.0
+>
 
