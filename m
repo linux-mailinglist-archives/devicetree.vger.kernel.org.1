@@ -1,270 +1,380 @@
-Return-Path: <devicetree+bounces-269858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269859-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aFkEF7tapWlp+AUAu9opvQ
-	(envelope-from <devicetree+bounces-269858-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:39:07 +0100
+	id EEmBLxdbpWlc+QUAu9opvQ
+	(envelope-from <devicetree+bounces-269859-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:40:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B831D5A84
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:39:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 558C81D5AC4
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:40:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 960CE3031AF2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:37:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A980A30338B4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA55038E5F9;
-	Mon,  2 Mar 2026 09:37:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 702FF38F628;
+	Mon,  2 Mar 2026 09:40:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="P7sYM5PL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PHGKVgWb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazhn15012046.outbound.protection.outlook.com [52.102.140.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2355F2741B5;
-	Mon,  2 Mar 2026 09:37:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.140.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772444275; cv=fail; b=HXRP5cawjoU86D08IeUZwWvNW3z1m4Tlmm8gqoRiJWruGdjpOVIz1KYd293QuiUIE3QpTDEXa9R68mJmsoORr0R5/u/2iZl2APq3vE/EThvV8usKAYcu3waW3tqiOhNd/r2hm4jH44+Fxx47SGt6HK6LClBve/kCH6RNzh2+E4E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772444275; c=relaxed/simple;
-	bh=6AnvJijqFAJDBZSMuFmOpA8BZ/Z3VstNd+uMXliW0hw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=uLUGucS9zNvz31VwzsBcDJfuG5QdLFnKSmUXjzQnOuPhTEdV4U2sIh7GlKFvmJRuAP/nu0Q869Llqi37PHcEwQ0mA7L+Qd6T9B8o45oSoU0mh05bafvHR1EWHn7VsMcraBUTr0EnfO5HIlJxcgn5a7JxIyF+SC0koNj3hsfHICM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=P7sYM5PL; arc=fail smtp.client-ip=52.102.140.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qJWQhg6YHv5m0gk6qE532uTzypakVAtTebbC9MpXoHJOpZhbivFVcAr+pvX9dHAnoQ8po9LwgVVtRhk1Dbes5FN5hXYc0ij3ekQBRUO7A6uBJobRgsuNtQnMRzAYsIjISMj/IRQe/fD6m5Pre87HYtSXyzdJFzSbT90Iugdh7RYXba0dH8N3tzy+1JJDG0c+6qU6d8J0GV8aETKBejSvzzk2BW0YheP4BkSBZxMxVfGKnh95XjUksCsWZ70kZxMGj4qz3Eh97i63Ll6P5B54vcYAYbAKRvrM1LaztHcnqDpruvHkPAARmxOu1vuDag4suRjQJW+F5d7FanFKH5y6bQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BI9jBkLk2GsaijQSbprGN2vKxypsOzxd7FjpY5WqAgg=;
- b=iPPAg7avd4BuOgs+Lh33YrIcpRMfLkCpoNobOW3VB7tdgAT05Z56rAHHLRkv0FRP/vnSNxC+BxfhNCYJSyhXa/93vOzqrp5vZ6OEI21uxmPzBZds7fbmifSBk6E9VXMwcbsVB8F/Ogf5FviPZXeb4SE8RpP27LerDUFG2cXC3Kgy4NZO73gGn4MmMmJS2EASybNrwIfiIHiBfPdB8X9KlaIynocQhpwpkgiPeJn5HbbwQZt7dVBP7qVYfEovEggL0Ud4d1TLdbavt74YO+ar2JOOGkwn6RjvxdgjxYk2M8bzRN54WEaR8nGcA+VTt5ae08vWFkiH8hLYeQPdkjKsyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BI9jBkLk2GsaijQSbprGN2vKxypsOzxd7FjpY5WqAgg=;
- b=P7sYM5PLVqCfqv9UHYMTZg5HIue2iZukkBVAN1StnTYUbARPcWfkdqflRqzqGXcqwpM/oRl5JLL/PF1p9ovslA1HdDqhkUtTkzn+YARS+2tmY+PybnQ+rLO17P3hElQAmfgetQKK2FWljNTswoCFJmjkJurtMzmJuoobnpIwjIU=
-Received: from MN0P220CA0003.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:52e::32)
- by DS7PR10MB7228.namprd10.prod.outlook.com (2603:10b6:8:e3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Mon, 2 Mar
- 2026 09:37:51 +0000
-Received: from MN1PEPF0000ECDA.namprd02.prod.outlook.com
- (2603:10b6:208:52e:cafe::ca) by MN0P220CA0003.outlook.office365.com
- (2603:10b6:208:52e::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Mon,
- 2 Mar 2026 09:37:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- MN1PEPF0000ECDA.mail.protection.outlook.com (10.167.242.134) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 09:37:50 +0000
-Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
- 2026 03:37:30 -0600
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
- 2026 03:37:29 -0600
-Received: from DLEE209.ent.ti.com ([fe80::9756:3b42:e53b:3cbe]) by
- DLEE209.ent.ti.com ([fe80::9756:3b42:e53b:3cbe%7]) with mapi id
- 15.02.2562.020; Mon, 2 Mar 2026 03:37:29 -0600
-From: "Xu, Baojun" <baojun.xu@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "broonie@kernel.org" <broonie@kernel.org>, "tiwai@suse.de"
-	<tiwai@suse.de>, "andriy.shevchenko@linux.intel.com"
-	<andriy.shevchenko@linux.intel.com>, "13916275206@139.com"
-	<13916275206@139.com>, "Ding, Shenghao" <shenghao-ding@ti.com>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "Yi, Ken" <k-yi@ti.com>, "Lo, Henry"
-	<henry.lo@ti.com>, "Chen, Robin" <robinchen@ti.com>, "Wang, Will"
-	<will-wang@ti.com>, "jim.shil@goertek.com" <jim.shil@goertek.com>,
-	"toastcheng@google.com" <toastcheng@google.com>, "chinkaiting@google.com"
-	<chinkaiting@google.com>
-Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-Thread-Topic: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-Thread-Index: AQHcpvWtoQyt5WTP+EmgFSOStkCYv7WWv+mA//+cDzWAAGc+AIAEJ+hdgABw/wD//5/rkYAAaE2A//+cj+w=
-Date: Mon, 2 Mar 2026 09:37:29 +0000
-Message-ID: <ff6d64fd8f954e82832e7470e20f955e@ti.com>
-References: <20260226075737.405-1-baojun.xu@ti.com>
- <20260226075737.405-2-baojun.xu@ti.com>
- <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
- <9f861c7df09c4434a98a203ecff913bc@ti.com>
- <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
- <a7316acf9ba248f9ad1fab0313a95654@ti.com>
- <3cfa4036-e7a7-4cde-9dab-a171a63bdee3@kernel.org>
- <4865c7f626a340d7847354512367577e@ti.com>,<596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
-In-Reply-To: <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
-Accept-Language: en-GB, zh-CN, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-c2processedorg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041742D248D
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:39:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772444400; cv=none; b=Ds2RNaS8T+fJjnRUXNdhttkqypEs023oMSshq/y1QVJSyzbXg+7K0QskJI3/MaaRe4HhbWAHKzspeVTl0WqXKrWL6p2qoVPq8EYUofXnADd32/t1Hgdv9HkdTeb9EhXfr0vrMoc5MMd7BJ/r/vdFcfV4yPN6PRYq9MIJEYIggQI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772444400; c=relaxed/simple;
+	bh=NvpPswBntIduciU9ML/fmmpOmy17gd0JhmiIgAokKSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lMD5JRScpUi8/v2VpaFURpD78kxe6iJpYWH24VjmqnP+DlPH32DRiTfccjmRqfxfvUZT1L9+XrvVo1HKhGEZu4yQ8tg7E6JymykFSfhYWfapjvd6+qFnRqyhseh4fMC2ozT+HCGtZE7pRU90EhSPqs/CjUsuGlt0tnyuRES9va8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PHGKVgWb; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2aaf43014d0so33514805ad.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:39:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772444398; x=1773049198; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wX0OGsPu0Cxlv0PiFeBEE73XuyzU5Okzie1/FOEP9ag=;
+        b=PHGKVgWbxdYSfhVGzMFuVHmfE+JD/lOM/h0cpaKrvHyJTDbehiVzrZZm6Mk2aiY6xA
+         JfeAw5warDloDxeQMATcskbLyj76TSHAGzHdJQZ9UlFh4XvVuiHzxGXrmcqYbEki5f/l
+         BznZKzwx3rMH88CcNdzZlju3XC1JAKbQhXb5FBR+5XNfQNX0meBTEiAHS3a/jBMyFN1o
+         30biFoD75gPzU5rGXnx7bzkXGC5Plrpag4E2o01ZT8aCc71MpkMIX5n4yjZ/oO7eWhCS
+         dkBUrrGHwfdmn6FCyzxbirtovqmY7xhJxtCnIxuMvYh7PH26N7Fh4ia85GKTE8CO/bJL
+         tnUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772444398; x=1773049198;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wX0OGsPu0Cxlv0PiFeBEE73XuyzU5Okzie1/FOEP9ag=;
+        b=v1BS1jyXzpEndpPe8NtsaaZoHctSime37N5fPuMZG2pXRjhM8sCxOoPjk3Y6qK6KdU
+         1+f1dMQHtQ07MYxD8upZC+drCxK0aNSm72XbdR27k7aq/MmBp0w3XO2nO+geu5E2d53O
+         9uAdMnywfK+inOR25hAJIc0zK99zE39krS8030e6sgSUvfRKopl8gKhLug8qWD2X6swU
+         U8/JfLnu5ZPI4LD9XCw7sIilNgvolSTIddGBT5NOUFdlItKYMHGq7tkExpuOeGOxWwwt
+         S4WQt8nid4cw/iQAz+URfCxyWwwXzafZNfa6b+ydkWylXk1SiiWxpEgKHWrdJJjHBM7h
+         3Huw==
+X-Forwarded-Encrypted: i=1; AJvYcCWk6qimwBfSdT5+ca4kNSV0vHsSk9XAetv30KakotC3hJk1wKuLpMYZAlKdGnkUsJer1G3Eq1rUPCGd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJQZeC5NIKOcDasx40agp23XKDjPpAhHnxpgZwc+gPGAP8BbTT
+	UM6ockp5y5zDnsFT3AHicdgoxDJ7pElRV0W1gDIEBjx8/qytFjwrNhkp
+X-Gm-Gg: ATEYQzwS+UgBtY65GQtITRrVpM16nm+hFoPNdDPr96LkX07S2t5ri/apn35P8UPb6bM
+	K6Slf7d3jQP+9+Ir+mVkAy3Pf2Z1HhqjVuIfSQDBD7c61Beodh6Lcvfziu2ABzFMZWJFW5jKqkI
+	Ht9cMdxs9CMd553U88hA+hBtYhNrzJy3aah1Ef768kP88KRhk0c7IK9aYB/NqC0PhSHRITzpHnm
+	CqFbuuE5QSGFf0gaH/i4oDlDJ8iYUfdQTwgPtLAt1oLA6iDph5tBsGU8K4faSQFqBgfxGJYSz5R
+	JCsO4MrTWAqnoXLNfgul2RS3715OCpZ5cISylM106J1W/NksIShTktWqTa2KBolpQYqFPQLPdre
+	W5+kdAh2mNduChRJHpDO7whpm9pW1PHnS/hVEphxlqQ8m4ErqEH2jPyN2j/6h3Kq/yGWpv9jouZ
+	CjjMTA+BnYISsZowXe1Km7rYcx5+x72ckx8Sc6+OVR45POCJ93bWx51l2RLHc2xCl27xxi0Bo=
+X-Received: by 2002:a17:902:e852:b0:2ad:ad0f:bbd2 with SMTP id d9443c01a7336-2ae2e4b54d3mr114451445ad.39.1772444398205;
+        Mon, 02 Mar 2026 01:39:58 -0800 (PST)
+Received: from [172.19.1.48] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae399acba4sm70151475ad.67.2026.03.02.01.39.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Mar 2026 01:39:57 -0800 (PST)
+Message-ID: <eb013eda-7e3c-492a-9d69-915f1564f522@gmail.com>
+Date: Mon, 2 Mar 2026 17:39:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECDA:EE_|DS7PR10MB7228:EE_
-X-MS-Office365-Filtering-Correlation-Id: 876c1a48-7fd7-4029-8693-08de783f5ed8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|82310400026|36860700013|34020700016|1800799024|7053199007|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	oPphCQhV/7qlA5gUJ+sY90gUp5JtMibiz3io6ZBQ1QYgB0nW5pM8ou5AZAUTeBGnZf3PBWz1nD1oFAwPfd+ZJbE/SX8WXAWMJ8h+FqcgidKyzE8VXYXDLeyIWbGCCpRMYsgne27trNkF4cR+t3NBhvd0lk/i+C/MtfktgSQmepsMtgB0amOdzYjL9WP+czeC+tRWGDSTwA/8zrAL25+B1TQ1T03zEf+Ex84c+ye3cvfKD/KXNyMKMokAToixnxPy3rw+DHgjbYKxz9+Um2AYLL6pxmBo4m/sLDsFm/k1sv/AYbZO2hE8cHvNeWz6juE3V7tCIdnrAIxwbW/V4upVHCwUlwaNaD8cQ3YTfqWr0QTh5mqhk6EvSGIBHBpHZbfALi/doe76NvJwQZa2oYxFtwTwuiDQYcq7xogyRATpqciw/vuyX0UiZsHvccxd9rVqWoO/ndA5xKuIl+yx+FqwaRWvAX+2BXR3QP2obSPLYG3yGGgwq4rg0e7jcCklE6Eaa/CJOi/DeuHY8xg57nuc9CdO02JR43IhAr/00YQoNTJmUSIsuhnQ6Y020Ohi5ESX82eV6uQuFB6YgK2OdJari59wTAnXIHIUIUjxtYs3K4gQqjAtaCOTAdEe+2tH0SjVGsXxE2hwMkPJ2pKJYKKSgJWIF2GWqrdUGHkIbQBYI+WfvKzNvxcUOAK66YPtk2zJ8buiId3GW0+3lTH713kJOPXjvpQXFbJa2LHlz6vKFWpivlP8qC3YZahmiTmnrzl7R7/kFWoTb/OSBN8NcB1+A+PirhIGyD1F1OrwSky1umRzzBRtL0WMG18aMLwePzUxBspJM65OpZlqIqiDaGzNAA==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(36860700013)(34020700016)(1800799024)(7053199007)(12100799066);DIR:OUT;SFP:1501;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	Pl3+uBSioJ3efHYph2rsE7WUg+kEueGDvphfuvhbiodUXsqUev05ZrnvwbW/hUeBKXvJzGjwtvk6fBVNus50RuIxm8FUjmq3sktB+Lbk3wAweeESk86SA3s9ONQdRQg2M7DbGAL3bdsvHIlZTvAE+CtiJrZuZH4rlKhuDJCobzKpM9tw/9/oKA9r1ekDOuSDSbN7xi5HwufsCcc3F9CTF8yBkagcxsLIX6nDlF0blJDRJO+A8ImaPjsQ39RSNL9JloMAWfNT5hnDiMjy7uBvOJXEbaD5RTwOz2SfEw3CnjRWdnfot4uqOdrLsvVYZRhWDA2KHrBa5un7aIE5RU4Th5zRkKeW+d3tCrZHcVDhODbwYIoHV3YwU6IOPl1YRkqld30dkna3rdFIK7OViVwSrZErnjUQIkXqIR+RmiGDpdnSTJKvsi+LmwVmtqqSQYYN
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 09:37:50.1445
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 876c1a48-7fd7-4029-8693-08de783f5ed8
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000ECDA.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB7228
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] i2c: ma35d1: Add Nuvoton MA35D1 I2C driver support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: andi.shyti@kernel.org, ychuang3@nuvoton.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20260302020822.13936-1-zychennvt@gmail.com>
+ <20260302020822.13936-3-zychennvt@gmail.com>
+ <20260302-spiffy-capuchin-of-completion-e8c5b2@quoll>
+Content-Language: en-US
+From: zychen <zychennvt@gmail.com>
+In-Reply-To: <20260302-spiffy-capuchin-of-completion-e8c5b2@quoll>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,suse.de,linux.intel.com,139.com,ti.com,vger.kernel.org,gmail.com,goertek.com,google.com];
-	TAGGED_FROM(0.00)[bounces-269858-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,139.com:email,suse.de:email];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ti.com:+];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[baojun.xu@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269859-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: B4B831D5A84
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 558C81D5AC4
 X-Rspamd-Action: no action
 
->=20
-> ________________________________________
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 02 March 2026 17:27
-> To: Xu, Baojun
-> Cc: broonie@kernel.org; tiwai@suse.de; andriy.shevchenko@linux.intel.com;=
- 13916275206@139.com; Ding, Shenghao; linux-sound@vger.kernel.org; linux-ke=
-rnel@vger.kernel.org; lgirdwood@gmail.com; robh@kernel.org; krzk+dt@kernel.=
-org; conor+dt@kernel.org; devicetree@vger.kernel.org; Yi, Ken; Lo, Henry; C=
-hen, Robin; Wang, Will; jim.shil@goertek.com; toastcheng@google.com; chinka=
-iting@google.com
-> Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 sup=
-port
->=20
-> On 02/03/2026 10:22, Xu, Baojun wrote:
-> >>
-> >> ________________________________________
-> >> From: Krzysztof Kozlowski <krzk@kernel.org>
-> >> Sent: 02 March 2026 16:58
-> >> To: Xu, Baojun
-> >> Cc: broonie@kernel.org; tiwai@suse.de; andriy.shevchenko@linux.intel.c=
-om; 13916275206@139.com; Ding, Shenghao; linux-sound@vger.kernel.org; linux=
--kernel@vger.kernel.org; lgirdwood@gmail.com; robh@kernel.org; krzk+dt@kern=
-el.org; conor+dt@kernel.org; devicetree@vger.kernel.org; Yi, Ken; Lo, Henry=
-; Chen, Robin; Wang, Will; jim.shil@goertek.com; toastcheng@google.com; chi=
-nkaiting@google.com
-> >> Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 =
-support
-> >>
-> >> On 02/03/2026 09:24, Xu, Baojun wrote:
-> >>>>>>
-> >>>>>>>  MODULE_DEVICE_TABLE(i2c, tasdevice_id);
-> >>>>>>> @@ -144,6 +145,7 @@ static const struct of_device_id tasdevice_of=
-_match[] =3D {
-> >>>>>>>       { .compatible =3D "ti,tas5827" },
-> >>>>>>>       { .compatible =3D "ti,tas5828" },
-> >>>>>>>       { .compatible =3D "ti,tas5830" },
-> >>>>>>> +     { .compatible =3D "ti,tas5832" },
-> >>>>>>
-> >>>>>> So it is fully compatible with tas5830 and most of the changes her=
-e are
-> >>>>>> not needed?
-> >>>>>
-> >>>>> Yes, it's fully compatible with tas5827/28/30.
-> >>>>
-> >>>> Then above hunk and many others are not needed.
-> >>>
-> >>> Hi, because those chips have different on the voltage, so the paramet=
-ers
-> >>> is different, have to use different firmware binary, so we must ident=
-ify
-> >>> every chip in the driver.
-> >>
-> >> That would explain other ID tables (and should be briefly mentioned in
-> >> the commit msg), but not this one, because here you do not customize t=
-he
-> >> binary at all.
-> >>
-> >
-> > Hi, we save the chip_id in the dev_name:
-> > strscpy(tas_priv->dev_name, tasdevice_id[tas_priv->chip_id].name,
-> >       sizeof(tas_priv->dev_name));
->=20
-> And where do you see the name in above table?
->=20
-Hi, in the patch of first email, I has added "tas5832" in array tasdevice_i=
-d.
+Hi Krzysztof,
+	Thank you for the review.
 
-diff --git a/sound/soc/codecs/tas2781-i2c.c b/sound/soc/codecs/tas2781-i2c.=
-c
-index 41b89fcc69c3..9228b3b6383b 100644
---- a/sound/soc/codecs/tas2781-i2c.c
-+++ b/sound/soc/codecs/tas2781-i2c.c
-@@ -119,6 +119,7 @@ static const struct i2c_device_id tasdevice_id[] =3D {
- 	{ "tas5827", TAS5827 },
- 	{ "tas5828", TAS5828 },
- 	{ "tas5830", TAS5830 },
-+	{ "tas5832", TAS5832 },
- 	{}
- };
-=20
-Best Regards
-Jim
+Krzysztof Kozlowski 於 2026/3/2 下午 03:24 寫道:
+> On Mon, Mar 02, 2026 at 02:08:21AM +0000, Zi-Yu Chen wrote:
+>> Add I2C support for Nuvoton MA35D1 SoC.
+>> The controller supports standard, fast and fast-plus modes,
+>> and provides master/slave functionality.
+>>
+>> Signed-off-by: Zi-Yu Chen <zychennvt@gmail.com>
+>> ---
+>>  drivers/i2c/busses/Kconfig      |  13 +
+>>  drivers/i2c/busses/Makefile     |   1 +
+>>  drivers/i2c/busses/i2c-ma35d1.c | 819 ++++++++++++++++++++++++++++++++
+>>  3 files changed, 833 insertions(+)
+>>  create mode 100644 drivers/i2c/busses/i2c-ma35d1.c
+>>
+>> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+>> index e11d50750e63..6bf8be1d2575 100644
+>> --- a/drivers/i2c/busses/Kconfig
+>> +++ b/drivers/i2c/busses/Kconfig
+>> @@ -1589,4 +1589,17 @@ config I2C_VIRTIO
+>>            This driver can also be built as a module. If so, the module
+>>            will be called i2c-virtio.
+>>  
+>> +config I2C_MA35D1
+>> +	tristate "Nuvoton MA35D1 I2C driver"
+>> +	depends on ARCH_MA35
+> 
+> 
+> Missing COMPILE_TEST
+Will add || COMPILE_TEST to the dependency in v2.
+> 
+> ...
+> 
+>> +	/* Setup info block for the I2C core */
+>> +	strscpy(i2c->adap.name, "ma35d1-i2c", sizeof(i2c->adap.name));
+>> +	i2c->adap.owner = THIS_MODULE;
+>> +	i2c->adap.algo = &ma35d1_i2c_algorithm;
+>> +	i2c->adap.retries = 2;
+>> +	i2c->adap.algo_data = i2c;
+>> +	i2c->adap.dev.parent = &pdev->dev;
+>> +	i2c->adap.dev.of_node = pdev->dev.of_node;
+>> +	i2c_set_adapdata(&i2c->adap, i2c);
+>> +
+>> +	ret = of_property_read_u32(pdev->dev.of_node, "clock-frequency",
+>> +				   &busfreq);
+>> +	if (ret) {
+>> +		dev_err(i2c->dev, "clock-frequency not specified in DT\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Calculate divider based on the current peripheral clock rate */
+>> +	clkdiv = DIV_ROUND_CLOSEST(clk_get_rate(i2c->clk), busfreq * 4) - 1;
+>> +	if (clkdiv < 0 || clkdiv > 0xffff) {
+>> +		dev_err(dev, "invalid clkdiv value: %d\n", clkdiv);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	i2c->irq = platform_get_irq(pdev, 0);
+>> +	if (i2c->irq < 0)
+>> +		return i2c->irq;
+>> +
+>> +	platform_set_drvdata(pdev, i2c);
+>> +
+>> +	pm_runtime_set_autosuspend_delay(dev, I2C_PM_TIMEOUT);
+>> +	pm_runtime_use_autosuspend(dev);
+>> +	pm_runtime_set_active(dev);
+>> +	pm_runtime_enable(dev);
+>> +
+>> +	ret = pm_runtime_get_sync(dev);
+>> +	if (ret < 0)
+>> +		goto rpm_disable;
+>> +
+>> +	writel(clkdiv & 0xffff, i2c->regs + MA35_CLKDIV);
+>> +
+>> +	ret = devm_request_irq(dev, i2c->irq, ma35d1_i2c_irq, IRQF_SHARED,
+>> +			       dev_name(dev), i2c);
+>> +
+> 
+> No blank line ever between call and if()
+Acknowledged. Will fix in v2.
+> 
+>> +	if (ret != 0) {
+> 
+> Write simple and obvious code.
+> 
+> if (ret)
+> 
+Acknowledged. I will simplify the error check to if (ret) in v2.
+>> +		dev_err(dev, "cannot claim IRQ %d\n", i2c->irq);
+>> +		goto rpm_disable;
+>> +	}
+>> +
+>> +	/* Give it another chance if pinctrl used is not ready yet */
+>> +	if (ret == -EPROBE_DEFER)
+> 
+> Pointless and dead code.
+Acknowledged. I will remove the redundant -EPROBE_DEFER check and its associated comment in v2
+> 
+>> +		goto rpm_disable;
+>> +
+>> +	ret = i2c_add_adapter(&i2c->adap);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to add bus to i2c core: %d\n", ret);
+>> +		goto rpm_disable;
+>> +	}
+>> +
+>> +	pm_runtime_put_autosuspend(dev);
+>> +
+>> +	return 0;
+>> +
+>> +rpm_disable:
+>> +	pm_runtime_put_noidle(dev);
+>> +	pm_runtime_disable(dev);
+>> +	pm_runtime_set_suspended(dev);
+>> +	pm_runtime_dont_use_autosuspend(dev);
+>> +	return ret;
+>> +}
+>> +
+>> +static void ma35d1_i2c_remove(struct platform_device *pdev)
+>> +{
+>> +	struct ma35d1_i2c *i2c = platform_get_drvdata(pdev);
+>> +
+>> +	i2c_del_adapter(&i2c->adap);
+>> +	pm_runtime_disable(&pdev->dev);
+>> +}
+>> +
+>> +static int ma35d1_i2c_suspend(struct device *dev)
+>> +{
+>> +	struct ma35d1_i2c *i2c = dev_get_drvdata(dev);
+>> +	unsigned int val;
+>> +
+>> +	spin_lock_irq(&i2c->lock);
+>> +
+>> +	/* Prepare for wake-up from I2C events if slave mode is active */
+>> +	if (i2c->slave) {
+>> +		val = readl(i2c->regs + MA35_CTL0);
+>> +		val |= (MA35_CTL_SI | MA35_CTL_AA);
+>> +		writel(val, i2c->regs + MA35_CTL0);
+>> +		ma35d1_i2c_enable_irq(i2c);
+>> +	}
+>> +
+>> +	spin_unlock_irq(&i2c->lock);
+>> +
+>> +	/* Setup wake-up control */
+>> +	writel(0x1, i2c->regs + MA35_WKCTL);
+>> +
+>> +	/* Clear pending wake-up flags */
+>> +	val = readl(i2c->regs + MA35_WKSTS);
+>> +	writel(val, i2c->regs + MA35_WKSTS);
+>> +
+>> +	enable_irq_wake(i2c->irq);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ma35d1_i2c_resume(struct device *dev)
+>> +{
+>> +	struct ma35d1_i2c *i2c = dev_get_drvdata(dev);
+>> +	unsigned int val;
+>> +
+>> +	/* Disable wake-up */
+>> +	writel(0x0, i2c->regs + MA35_WKCTL);
+>> +
+>> +	/* Clear pending wake-up flags */
+>> +	val = readl(i2c->regs + MA35_WKSTS);
+>> +	writel(val, i2c->regs + MA35_WKSTS);
+>> +
+>> +	disable_irq_wake(i2c->irq);
+>> +	return 0;
+>> +}
+>> +
+>> +static int ma35d1_i2c_runtime_suspend(struct device *dev)
+>> +{
+>> +	struct ma35d1_i2c *i2c = dev_get_drvdata(dev);
+>> +	unsigned int val;
+>> +
+>> +	/* Disable I2C controller */
+>> +	val = readl(i2c->regs + MA35_CTL0);
+>> +	val &= ~MA35_CTL_I2CEN;
+>> +	writel(val, i2c->regs + MA35_CTL0);
+>> +
+>> +	clk_disable_unprepare(i2c->clk);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ma35d1_i2c_runtime_resume(struct device *dev)
+>> +{
+>> +	struct ma35d1_i2c *i2c = dev_get_drvdata(dev);
+>> +	unsigned int val;
+>> +	int ret;
+>> +
+>> +	ret = clk_prepare_enable(i2c->clk);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable clock in resume\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Enable I2C controller */
+>> +	val = readl(i2c->regs + MA35_CTL0);
+>> +	val |= MA35_CTL_I2CEN;
+>> +	writel(val, i2c->regs + MA35_CTL0);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct dev_pm_ops ma35d1_i2c_pmops = {
+>> +	SYSTEM_SLEEP_PM_OPS(ma35d1_i2c_suspend, ma35d1_i2c_resume)
+>> +		RUNTIME_PM_OPS(ma35d1_i2c_runtime_suspend,
+>> +			       ma35d1_i2c_runtime_resume, NULL)
+>> +};
+>> +
+>> +static const struct of_device_id ma35d1_i2c_of_match[] = {
+>> +	{ .compatible = "nuvoton,ma35d1-i2c" },
+>> +	{},
+>> +};
+>> +MODULE_DEVICE_TABLE(of, ma35d1_i2c_of_match);
+>> +
+>> +static struct platform_driver ma35d1_i2c_driver = {
+>> +	.probe      = ma35d1_i2c_probe,
+>> +	.remove     = ma35d1_i2c_remove,
+>> +	.driver     = {
+>> +		.name   = "ma35d1-i2c",
+>> +		.owner  = THIS_MODULE,
+> 
+> Do not upstream 12-year-old code. We fixed all these issues long time.
+> Please write your driver from scratch, so you will not
+> repeat/reintroduce all the issues which we already fixed.
+> 
+I will address these issues in V2 by:
 
+Removing the redundant .owner = THIS_MODULE.
+
+Reviewing the entire driver to ensure all APIs and patterns align with current upstream standards.
+
+I am performing a "from-scratch" review to eliminate legacy patterns.
+>> +		.of_match_table = ma35d1_i2c_of_match,
+>> +		.pm = pm_ptr(&ma35d1_i2c_pmops),
+>> +	},
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
