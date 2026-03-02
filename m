@@ -1,156 +1,129 @@
-Return-Path: <devicetree+bounces-270098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270099-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iEsSM5itpWmpDgAAu9opvQ
-	(envelope-from <devicetree+bounces-270098-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:32:40 +0100
+	id 6DjyLcGrpWmpDgAAu9opvQ
+	(envelope-from <devicetree+bounces-270099-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:24:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC291DBE41
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:32:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2647A1DBC4D
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:24:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F11B03010903
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:22:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A470A30498E6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D1040B6DB;
-	Mon,  2 Mar 2026 15:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671DC40F8E6;
+	Mon,  2 Mar 2026 15:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Sp1XOY7M"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5A4V46mp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D6C38F62E;
-	Mon,  2 Mar 2026 15:22:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F057040F8D8;
+	Mon,  2 Mar 2026 15:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772464922; cv=none; b=qfyCqv/xQQDJ0PXpfcR8r2y4l7CXMWs5nbYzqjj18pEVhu0MwExawMv5dzfDUV80mMD8sRc0r/vtOBEBldc5Hz4T6i33mLQ44ZeE8uHuAEPBB4w6fBvoFzskMmv1RdeBqGxPo0Wog24DuIWtyNpmNj/W3nW/EcS6creLA2CHstM=
+	t=1772464998; cv=none; b=K7PDruDOsBcFjSRUcaPN59arHlmTwfn+k2KxqxgsyP6GveTR1Eflyx2p8uFrla/SFJ/q9QmjtNS6fZYBR9nKh3lx0vrpV/ut7UsE9s8CX5rf+cEx/+IhDOmWfl1wp0MUuSbzetqOga5qrnitu91FjRFveXT9FivKoPfK0EubqBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772464922; c=relaxed/simple;
-	bh=thvntZTQipQ90OEnlP5d4+3JWJJD2y/hGnLtVDAEoFQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Ii+hi5Ldjj5rFUWa1t+W+ovkhsuRIRbDBc0HMCYAgQeaJAdhwv/M20kl6kzDgXh80OYdfnYMvQUw4T7Ug49VnqTvOIKr6vQMlhyalMcgTRdxtoz1Iqkmdq335SfhQ0vFCcH7eqyftA8TW2BXBjUbcS4gIVLvvg9zPPtge5Frym8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Sp1XOY7M; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 3DD7EC40F86;
-	Mon,  2 Mar 2026 15:22:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DCE165FE89;
-	Mon,  2 Mar 2026 15:21:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4EF7A10369578;
-	Mon,  2 Mar 2026 16:21:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772464917; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=KX8LyfkGSnwWJK3wQK4qJ9fwSRGCapjjd7Xu/oRsfOY=;
-	b=Sp1XOY7MQ1zk8WE2oJ+NgQVnj6orYIwfCpXq7fcStXzRAPTbHwZTbSH8QtKq1g+tMuTPoR
-	Mjg6O+5U53e/cPQwYf9mVbpUvimmSclHJv5EjRqr936QS6GKL9dG6JD9zX4kt7VSstXWlL
-	8yNbfNU1k6OVyVzbK6SdVdXFOilEsc5yJFHuNiIdzwcvds9f+oJe57k/PXR+VfjUsEGYOQ
-	hHRsQOmWmNsRfznGmfO+FL+gPnYuZdvwnqXlcXl9XE9coe9XrTJlX+WX4sbycwRLCKLiG9
-	IlqwafFJsvgP7m40PNNPE8vIGi8n77wA76IfYR7VLEstJIWCYy+Zswr53wtmDg==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Robert Marko <robert.marko@sartura.hr>, andrew@lunn.ch,
- sebastian.hesselbarth@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Robert Marko <robert.marko@sartura.hr>, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: uDPU: add ethernet aliases
-In-Reply-To: <20260127123250.527714-1-robert.marko@sartura.hr>
-References: <20260127123250.527714-1-robert.marko@sartura.hr>
-Date: Mon, 02 Mar 2026 16:21:54 +0100
-Message-ID: <87v7fefe99.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1772464998; c=relaxed/simple;
+	bh=EVYwK15dduGoyeZ0r5hvbbMoJyoIUeqNEStYXt32qlg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MujfXyx9TxKCDi8UYTn9P230o8lx+jPjX2Q8CA2bYHxuYMJAKPCBklmrrSRbiMMaru3a04yk/Z0fwRZy9GyINK8G5UVUp0S2JuDwqTaYUu2V5SeBqYpSGU+Bj7Fgm8ycKXyTidyO1P4iVHx3SuwBXYtekYoc5xMHBcwGRZdJhY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5A4V46mp; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Z/L1RsM3ifNpNZNp4Aw/HlURvPThVG1lk4TYHvWSF78=; b=5A4V46mpge7k4Q/0orHLQoyri9
+	blKLRtS4agjMpmaalW+TWwrHoBTOWJaHLult03tudMjFWdWQvfAXS9V+unyuhg2E9GuebFc83lqOO
+	54Hx+w4Qa6jy1jvIsmGXdvzKYUlha0ocSzDAtAimxVhLfpHB8lE6nVHnDaNVd1LBqD68=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vx56e-009h7F-Ej; Mon, 02 Mar 2026 16:22:48 +0100
+Date: Mon, 2 Mar 2026 16:22:48 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] net: phy: Handle PHY reset during initial PHY
+ ID read
+Message-ID: <9c29300b-a8f9-4b92-bb38-c75a6b56e793@lunn.ch>
+References: <20260302144458.3180702-1-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: CDC291DBE41
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260302144458.3180702-1-wens@kernel.org>
+X-Rspamd-Queue-Id: 2647A1DBC4D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270098-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-270099-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[sartura.hr,lunn.ch,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregory.clement@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.994];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sartura.hr:email]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid]
 X-Rspamd-Action: no action
 
-Robert Marko <robert.marko@sartura.hr> writes:
+On Mon, Mar 02, 2026 at 10:44:57PM +0800, Chen-Yu Tsai wrote:
+> The mdio device core handles reset GPIOs and controls for PHYs and
+> MDIOs after the MDIO or PHY device is created. However this does not
+> cover the initial PHY ID read _before_ the PHY device is created, since
+> the PHY ID is needed for the PHY device. This causes PHY devices that
+> have reset GPIOs or controls to not work after a reboot if the GPIO
+> is left in the reset state; neither will it work if the reset GPIO is
+> by default (for example, missing a pull-up) in the reset state.
+> 
+> One possible workaround is to place the reset GPIO or control property
+> under the MDIO bus instead of under the PHY. However the common PHY
+> device tree bindings already allow a reset for the PHY, so we should
+> make some effort to support this.
 
-> On eDPU plus, which is an updated revision of eDPU which uses an external
-> MV88E6361 switch we are relying on U-Boot to detect the board, and then
-> enable and disable the required nodes for that revision.
->
-> However, it seems that I missed adding the required aliases for ethernet
-> controllers, and this worked as in OpenWrt we had added those locally.
->
-> Cc: stable@vger.kernel.org
-> Fixes: 660b8b2f3944 ("arm64: dts: marvell: eDPU: add support for version =
-with external switch")
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Please either:
 
-Applied on mvebu/dt64
+1) Add the ID to the DT
 
-Thanks,
+2) Work on driver/base, and add generic power on sequencing code which
+can handle reset GPIOs, reset controllers, regulators, clocks etc. A
+solution which works for PCIe, USB, SATA, and other enumerable
+devices.  And then modify phylib to use this generic code.
 
-Gregory
-> ---
->  arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi b/arch/arm=
-64/boot/dts/marvell/armada-3720-uDPU.dtsi
-> index 242820845707..cd856c0aba71 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtsi
-> @@ -15,6 +15,11 @@
->  #include "armada-372x.dtsi"
->=20=20
->  / {
-> +	aliases {
-> +		ethernet0 =3D &eth0;
-> +		ethernet1 =3D &eth1;
-> +	};
-> +
->  	chosen {
->  		stdout-path =3D "serial0:115200n8";
->  	};
-> --=20
-> 2.52.0
->
+    Andrew
 
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+---
+pw-bot: cr
 
