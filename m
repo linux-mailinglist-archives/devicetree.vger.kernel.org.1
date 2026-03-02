@@ -1,112 +1,68 @@
-Return-Path: <devicetree+bounces-270060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270062-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cBi7B7mgpWmyCwAAu9opvQ
-	(envelope-from <devicetree+bounces-270060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:37:45 +0100
+	id QMEZIUGjpWngCwAAu9opvQ
+	(envelope-from <devicetree+bounces-270062-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:48:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1411DAFB6
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:37:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F12B71DB235
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 15:48:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 085AA3005A8C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 14:37:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 170A33080C0F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 14:42:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAEFE3FFAB6;
-	Mon,  2 Mar 2026 14:37:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SKIVQpJ7";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KeNCzGK+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D782798F3;
+	Mon,  2 Mar 2026 14:42:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C083FD156
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 14:37:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D37B3F075A
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 14:42:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772462254; cv=none; b=uwbIt0XHBu3Y85mOeVL7osL3SSasXmRyILbthQ8kfvWip7psdWF9zqpbpJRqJlR1mYZmLceb216VFhMzQtw2/vQelbCRXLmyg78frVrNSj/FUx2RgckPUfqMViDqVaWhNSRIlNKn3Cky2FbKtC0B9OE3PNdZVKO3a0SNYBN2xUk=
+	t=1772462564; cv=none; b=Kaow5QBY1HkxhA0VXG/YwazhCZHiJJJTa5NowWIj6048NosMZbrgxH5p7hgZ8S9HxsmeDOEw1Yk4oVcOheY+HxydXFArt01lmsavxSfOFadP+v5VsyPxYRcbrjtiZ6xOWnyEaIlf6mhWr7LfSf5ISWVvGVsPa5xhgklI33hV27M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772462254; c=relaxed/simple;
-	bh=uhmZOAonJxvgIVsaIjWMu5kW5c56z8Y/QRgKebmd5CY=;
+	s=arc-20240116; t=1772462564; c=relaxed/simple;
+	bh=IG50v+hrHGT9nfHnk4YBSpvz1amBrkz1mY2gh8hcuyw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CiePmHkMAr5tqzjJMK5KbMa5cWLV7wFRivdxw/MW+ib4HvGvVRUO8Y6ByotLIsiC7Nvwzf4A4q4t5ONZ/IUl70R1Qai6XaxBsUV0FoPEArbBQrIrCW4N4LXT0zfRyTuEKOi+b2H/QY42FjSPuymcR8dyQcKClv+4aL8TAKqyY3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SKIVQpJ7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KeNCzGK+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 622EO5do2732643
-	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 14:37:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=OMzhOSPZAkPm6DsCJVirv509
-	Szfr1rXCfmzumJhk5v4=; b=SKIVQpJ7tT+ky/J4IcQs3/qpR8VFrt+ykzEUiGpB
-	PVrCHN8UoLhk1deP5TEv9HBbKn70fMFXQUbvZ8TFUHIARL0QU/N0jZyufyH14rYG
-	p2wnz6LAiJYCqCmzQKKVurQ90+hmm62GVfxh+jX4uozhOKZFjvAZwzV276Hwho1m
-	qYlj+MV9Qi1AAVQamvZFw5gcozzUqTDqnFL6t0CLBqUOhrhnb/ZDiHq0tCaLcqEl
-	Bvf/HGmpIuYe7+XC05FQhb3EwnkOdkl42qNFXFYLQ9MFFBHknkio8gZrneYtY1an
-	PIVwqODXGNtGI/r5p1s/hAiyIETg1BEZUy1j1gl4BQq+YA==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cmgbauqm8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 14:37:32 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3598d4b19deso3739961a91.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 06:37:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772462252; x=1773067052; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OMzhOSPZAkPm6DsCJVirv509Szfr1rXCfmzumJhk5v4=;
-        b=KeNCzGK+Clc5aMDpFqOV8kWJg49nnhJ4kdHhF/DmZUXVclNAlgs+9qXIvzEtL8SS04
-         O25YM/1Bx8fhatfYdT6/2WUQYfZxWBrQKsbSahMbr1dl5CSlgQT8VJCWkMKDAlDLNCNW
-         lUSQ0NyV0Ggp3Ih/9YHk0ULVTtNeZyhX+mA22wrlAEjA5zJiuKg8zbqubMIIgfKqyUbe
-         LRq7a26bGMDI0TRCzSOIeWsdYWinSwC06E83fR1V+r9ySQpyDGbhIplHf9Fa4QQa4dVs
-         ifVbfWEfyFFxN8DO3yI5JAGKhEFNsgnGdCfx8C9Q9VNv0b5VyW6ypySFo5n4zm3TznC9
-         DVEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772462252; x=1773067052;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OMzhOSPZAkPm6DsCJVirv509Szfr1rXCfmzumJhk5v4=;
-        b=nmFyic3VTn/N1e2m9bsktx9+UZkg/zZAD9vIHEJi2rlDrAlwBpMZLobA4swGHrAhC6
-         dlUtdwux5LvfpN+FtQD+IwWhJOrQ2gpIE0GL+hgZxVirFqjC2421OZ0zA/b25ldTTUJ9
-         PwLjR6JwqPVmKRtI7xH7JtTPbrlM82LV5wkDBtKDKNaUgoc8Q02WHcYbXUOqXcem7ZQH
-         4DR5hfGTgNCo5aukYYDOvRNlTSo56XrY2fvQJHOmRrlZT+G//MOZwWryV/PnVBElC9sP
-         d0rKezcUdlK/2uxcvhMe1/nk9cDlpiTetOFPAdcFcK/p4BWVbAgvwPqpQrVZY4GPzz4v
-         dBhg==
-X-Forwarded-Encrypted: i=1; AJvYcCW8lbXkCV8Gk90jBoVj437wvVI8UAjL4BBbA47edICr489imfzqJKz9kBTN4xkASO4GagQaDd8oyk5g@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuDiI0wOMC++0LcgD4trXvGIMsRjTwH/2QlM9ji8iqMYacoDLA
-	x+KDRWlRIA/IFHPvvS0gBeCsTBuD736ITsSwQPKTq4B+Yh0Sh+xl7QKkpKUgaE5L8vQAQLD8pDN
-	M7EZBNqt42+zkoNJOLmb33IyV20DR3K0E3tnIbQmMY8igjNS4mT5xPFMNMTrtqt85
-X-Gm-Gg: ATEYQzzYL6JVvPoWmrTXOpzHEnfnb4rx292kxLbR+7HDvqoyHgpPP9E04ojosdoj/E6
-	uHqs0XY7FmHshJV/c3cG6CSU6PI98TFPWREvOZlP/6V6bsezBINo/tbtgk8b2LIcIDF7y+WqCP4
-	kghUQXaRGFv21sECZTFb+OWcbvjEgTO77nD2DgxcRwjH/6hMxh3eV9o4fd6r1lcc1GzFmg0Wnaf
-	E1QXfGUs9JhugGxILR3vBu48hBhSuZOtPVl/6U+17ApRqRrjz19peZ12+d8xduzhHYPke6SYqKl
-	B7U6rGna9W7wRqlvsO1qJrjsoZNJvRLubpEEpLGoEVHreNPKrSWjdJpp7YXzqbW7MbAYp5ZNBR0
-	WeiaCwrOLrYgg7ZJvoNvDPVusYIZnJU7jdgjAEJ1rY3UKMmlY555RaB3y
-X-Received: by 2002:a17:90b:4b50:b0:354:a662:47ff with SMTP id 98e67ed59e1d1-35965d188d6mr10849587a91.35.1772462251252;
-        Mon, 02 Mar 2026 06:37:31 -0800 (PST)
-X-Received: by 2002:a17:90b:4b50:b0:354:a662:47ff with SMTP id 98e67ed59e1d1-35965d188d6mr10849565a91.35.1772462250634;
-        Mon, 02 Mar 2026 06:37:30 -0800 (PST)
-Received: from hu-mchunara-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3598ef9177dsm2870948a91.12.2026.03.02.06.37.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 06:37:29 -0800 (PST)
-Date: Mon, 2 Mar 2026 20:07:23 +0530
-From: Monish Chunara <monish.chunara@oss.qualcomm.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, mani@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sarthak.garg@oss.qualcomm.com,
-        pradeep.pragallapati@oss.qualcomm.com, nitin.rawat@oss.qualcomm.com
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: monaco: Enable SDHCI storage
- support
-Message-ID: <aaWgo/FYDhCVvaX/@hu-mchunara-hyd.qualcomm.com>
-References: <20260227105055.2364348-1-monish.chunara@oss.qualcomm.com>
- <ltuoonopd2fmxhxnfmezflwqicyagha3jchxl3inputbtnpvhm@gsgnsccr62pk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=eLQdkjjCu6Dp7vBXjJ1IqM6OwhssPd/ONcKCrg+/UBAOSMQlPtIItRa3YYlGKFmI0XG2g/QgPBrAsJCToHLKdEDi8qHRIXcx3aqlKbRHyss65uSW/bF8ap2160Afy6KXjXYON+ZWRHk512r4y8zrap+iQgtYXE0pIpI/qXADA6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vx4Sh-0005yf-7l; Mon, 02 Mar 2026 15:41:31 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vx4Se-003OgQ-20;
+	Mon, 02 Mar 2026 15:41:29 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vx4Sf-0000000EFWv-3Xl9;
+	Mon, 02 Mar 2026 15:41:29 +0100
+Date: Mon, 2 Mar 2026 15:41:29 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, andrej.picej@norik.com, 
+	primoz.fiser@norik.com, c.hemp@phytec.de, s.mueller-klieser@phytec.de, n.wesp@phytec.de, 
+	c.stoidner@phytec.de, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: imx93-phyboard-segin: Add peb-av-02
+ overlay
+Message-ID: <qhkhjjlhleg5hb4md35djnstzi2zfb3kyzgzs3uj6jwo2rr52v@dd74kclcxop2>
+References: <20260113-v6-18-topic-imx93-phyboard-segin-av-02-display-v3-1-fcbb85b0fbe5@pengutronix.de>
+ <aZ3AnxbjO8YDTPP7@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,104 +71,266 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ltuoonopd2fmxhxnfmezflwqicyagha3jchxl3inputbtnpvhm@gsgnsccr62pk>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDEyMiBTYWx0ZWRfX4DFvX2q+Nb+J
- U0IoctfzbISM82bOyfPdN7p8QWW9SxJ2ked1UsqYsmtkhvXu02EiXFz7mNbC7KBx3hlQYluxxJH
- /LK14Q1zNv8MIn70SwOtrtD0ok9n06wHX/lUByrU/X58nV8F3gZaFi8X/D1vkd4Lat5PxOnROBU
- 5f6lfH2Tu7R6KrRyCglh6HcKffyinSWCZe/TWFvGyaGtLnR1K22sc9Sgr+CWkPdeO8QQQRhNd3I
- DNppv/Z5gjl9P5lmkSE8LXIyW3kvakowwdIhGX3NWGTkUtqRoAagoaoDoPIDuJlvDBgtPrtRdwF
- otSxY7K1Qpwi6s/wq9pilB8bHOxM+GnIyuIKO9306TbBGxdb3yG8s+YGH/V87z68ebSWFdtFrNC
- 8erqTR8VcOL//X66bMcojLLTxjlxG6+HNEhteHj9cM3qGay3wTVwaAPpACAHUM474l0UXKCSF43
- zCzAnuDx8mhB8y42Nqw==
-X-Authority-Analysis: v=2.4 cv=QfVrf8bv c=1 sm=1 tr=0 ts=69a5a0ac cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=U2YZr0DjLyW8uJ9i07MA:9 a=CjuIK1q_8ugA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-ORIG-GUID: IIHa-39zzmt5nK2QMC2WNVJy5Wznic9J
-X-Proofpoint-GUID: IIHa-39zzmt5nK2QMC2WNVJy5Wznic9J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-02_03,2026-03-02_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 spamscore=0 bulkscore=0 clxscore=1015
- adultscore=0 lowpriorityscore=0 phishscore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020122
-X-Rspamd-Queue-Id: 0A1411DAFB6
+In-Reply-To: <aZ3AnxbjO8YDTPP7@lizhi-Precision-Tower-5810>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: F12B71DB235
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270060-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270062-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,baylibre.com,pengutronix.de,gmail.com,norik.com,phytec.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[monish.chunara@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	DBL_PROHIBIT(0.00)[0.0.0.38:email];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.678];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,norik.com:email]
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 10:05:32PM +0200, Dmitry Baryshkov wrote:
-> On Fri, Feb 27, 2026 at 04:20:52PM +0530, Monish Chunara wrote:
-> > This series enables SDHCI storage support for both SD Card and eMMC on the
-> > Qualcomm Monaco EVK platform.
-> > 
-> > The Monaco SoC shares the SDHCI controller between SD Card and eMMC use
-> > cases. Previously, the common SoC dtsi unconditionally enabled the
-> > 'supports-cqe' property. This causes regression for SD cards, resulting
-> > in timeouts and initialization failures during the probe sequence, as
-> > the driver attempts to enable Command Queueing (CQE) logic incompatible
-> > with the SD protocol.
-> > 
-> > To resolve this and enable full storage support, this series:
-> > 
-> > 1. Moves the 'supports-cqe' property out of the common SoC dtsi. It is
-> >    now only enabled in the specific eMMC configuration where it is
-> >    supported.
-> > 2. Adds a device tree overlay to enable SD Card support (SDR/DDR modes).
-> > 3. Adds a device tree overlay to enable eMMC support. This configuration
-> >    also explicitly disables the UFS controller to prevent power leakage,
-> >    as the VCC regulator is shared between the UFS and eMMC rails on this
-> >    platform.
-> > 
-> > Validated on Qualcomm Monaco EVK with both SD Card and eMMC modules.
-> > 
-> > Monish Chunara (3):
-> >   arm64: dts: qcom: monaco: Move eMMC CQE support from SoC to board DT
-> >   arm64: dts: qcom: monaco-evk: Enable SDHCI for SD Card via overlay
-> >   arm64: dts: qcom: monaco-evk: Add SDHCI support for eMMC via overlay
-> 
-> You are adding two overlays. But what does it mean? Does EVK has no uSD
-> / eMMC at all, having both attachable via some kind of mezzanine? Is one
-> of them attachable? Or are both cases present onboard with the correct
-> one being selected by the DIP switch?
-> 
+Hi Frank,
 
-The monaco EVK has both storage devices present onboard and the desired one is
-selected via a DIP switch. The overlay selection logic would be based on a
-fitImage metadata entry that gets populated at UEFI level by determining the
-currently selected storage device (eMMC/SD) on the device.
+On 26-02-24, Frank Li wrote:
 
-Hence, this approach becomes robust to enable the user for using either of the
-two mediums, without any additional requirement of reflashing any images.
+...
+
+> On Tue, Jan 13, 2026 at 08:06:08PM +0100, Marco Felsch wrote:
+> >  arch/arm64/boot/dts/freescale/Makefile             |   2 +
+> >  .../freescale/imx93-phyboard-segin-peb-av-02.dtso  | 146 +++++++++++++++++++++
+> >  2 files changed, 148 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > index f30d3fd724d0ce6b38f7bef10e3970ac34f70f4a..a850cf5d8c0298c1bcfbff0fe857c39745ac7a6c 100644
+> > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > @@ -384,12 +384,14 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
+> >  imx93-phyboard-nash-jtag-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-jtag.dtbo
+> >  imx93-phyboard-nash-peb-wlbt-07-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-peb-wlbt-07.dtbo
+> >  imx93-phyboard-nash-pwm-fan-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-pwm-fan.dtbo
+> > +imx93-phyboard-segin-peb-av-02-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-av-02.dtbo
+> >  imx93-phyboard-segin-peb-eval-01-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-eval-01.dtbo
+> >  imx93-phyboard-segin-peb-wlbt-05-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-wlbt-05.dtbo
+> >  imx93-phycore-rpmsg-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-segin.dtb imx93-phycore-rpmsg.dtbo
+> >  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-jtag.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-peb-wlbt-07.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-pwm-fan.dtb
+> > +dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-av-02.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-eval-01.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-wlbt-05.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-rpmsg.dtb
+> 
+> I get build error
+> 
+> Failed to apply 'arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-02.dtbo': FDT_ERR_NOTFOUND
+
+I couldn't reproduce your error on my site:
+
+make ARCH=arm64 O=dtb defconfig
+make ARCH=arm64 O=dtb -j dtbs|grep imx93-phyboard-segin
+  DTC     arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dtb
+  DTC     arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-02.dtbo
+  DTC     arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtbo
+  DTC     arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-wlbt-05.dtbo
+  OVL     arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-02.dtb
+  OVL     arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtb
+  OVL     arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-wlbt-05.dtb
 
 Regards,
-Monish
+  Marco
+
+
+> 
+> Frank
+> 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-02.dtso b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-02.dtso
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..af330756abfd127f2dd0a7e54c2e141300462889
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-02.dtso
+> > @@ -0,0 +1,146 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (C) 2025 PHYTEC Messtechnik GmbH
+> > + * Copyright (C) 2025 Pengutronix
+> > + *
+> > + * Author: Andrej Picej <andrej.picej@norik.com>
+> > + * Author: Marco Felsch <kernel@pengutronix.de>
+> > + */
+> > +
+> > +#include <dt-bindings/clock/imx93-clock.h>
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +#include "imx93-pinfunc.h"
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +&{/} {
+> > +	backlight: backlight {
+> > +		compatible = "pwm-backlight";
+> > +		brightness-levels = <0 4 8 16 32 64 128 255>;
+> > +		default-brightness-level = <5>;
+> > +		power-supply = <&reg_vcc_3v3_con>;
+> > +		pwms = <&pwm7 0 5000000 0>;
+> > +	};
+> > +
+> > +	panel {
+> > +		compatible = "edt,etm0700g0edh6";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_panel>;
+> > +
+> > +		backlight = <&backlight>;
+> > +		enable-gpios = <&gpio4 29 GPIO_ACTIVE_HIGH>;
+> > +		power-supply = <&reg_vcc_3v3_con>;
+> > +
+> > +		port {
+> > +			panel_in: endpoint {
+> > +				remote-endpoint = <&dpi_to_panel>;
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	/* TODO: Convert to FlexIO PWM once supported */
+> > +	pwm7: pwm-7 {
+> > +		compatible = "pwm-gpio";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_pwm7>;
+> > +		gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+> > +		#pwm-cells = <3>;
+> > +	};
+> > +
+> > +	reg_vcc_3v3_con: regulator-vcc-3v3-con {
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "VCC3V3_CON";
+> > +		regulator-max-microvolt = <3300000>;
+> > +		regulator-min-microvolt = <3300000>;
+> > +	};
+> > +};
+> > +
+> > +&dpi_bridge {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&dpi_to_panel {
+> > +	remote-endpoint = <&panel_in>;
+> > +};
+> > +
+> > +&lcdif {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_lcdif>;
+> > +	assigned-clocks = <&clk IMX93_CLK_VIDEO_PLL>;
+> > +	assigned-clock-rates = <332600000>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&lpi2c2 {
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +
+> > +	touchscreen@38 {
+> > +		compatible = "edt,edt-ft5406";
+> > +		reg = <0x38>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_touchscreen>;
+> > +		interrupt-parent = <&gpio4>;
+> > +		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
+> > +		reset-gpios = <&gpio4 1 GPIO_ACTIVE_LOW>;
+> > +		vcc-supply = <&reg_vcc_3v3_con>;
+> > +		iovcc-supply = <&reg_vcc_3v3_con>;
+> > +		touchscreen-size-x = <1792>;
+> > +		touchscreen-size-y = <1024>;
+> > +		wakeup-source;
+> > +	};
+> > +};
+> > +
+> > +&media_blk_ctrl {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&iomuxc {
+> > +	pinctrl_lcdif: lcdifgrp {
+> > +		fsl,pins = <
+> > +			MX93_PAD_GPIO_IO00__MEDIAMIX_DISP_CLK		0x50e
+> > +			MX93_PAD_GPIO_IO01__MEDIAMIX_DISP_DE		0x50e
+> > +			MX93_PAD_GPIO_IO02__MEDIAMIX_DISP_VSYNC		0x50e
+> > +			MX93_PAD_GPIO_IO03__MEDIAMIX_DISP_HSYNC		0x50e
+> > +			MX93_PAD_GPIO_IO04__MEDIAMIX_DISP_DATA00	0x50e
+> > +			MX93_PAD_GPIO_IO05__MEDIAMIX_DISP_DATA01	0x50e
+> > +			MX93_PAD_GPIO_IO06__MEDIAMIX_DISP_DATA02	0x50e
+> > +			MX93_PAD_GPIO_IO07__MEDIAMIX_DISP_DATA03	0x50e
+> > +			MX93_PAD_GPIO_IO08__MEDIAMIX_DISP_DATA04	0x50e
+> > +			MX93_PAD_GPIO_IO09__MEDIAMIX_DISP_DATA05	0x51e
+> > +			MX93_PAD_GPIO_IO10__MEDIAMIX_DISP_DATA06	0x50e
+> > +			MX93_PAD_GPIO_IO11__MEDIAMIX_DISP_DATA07	0x50e
+> > +			MX93_PAD_GPIO_IO12__MEDIAMIX_DISP_DATA08	0x50e
+> > +			MX93_PAD_GPIO_IO13__MEDIAMIX_DISP_DATA09	0x50e
+> > +			MX93_PAD_GPIO_IO14__MEDIAMIX_DISP_DATA10	0x50e
+> > +			MX93_PAD_GPIO_IO15__MEDIAMIX_DISP_DATA11	0x50e
+> > +			MX93_PAD_GPIO_IO16__MEDIAMIX_DISP_DATA12	0x506
+> > +			MX93_PAD_GPIO_IO17__MEDIAMIX_DISP_DATA13	0x506
+> > +			MX93_PAD_GPIO_IO18__MEDIAMIX_DISP_DATA14	0x506
+> > +			MX93_PAD_GPIO_IO19__MEDIAMIX_DISP_DATA15	0x506
+> > +			MX93_PAD_GPIO_IO20__MEDIAMIX_DISP_DATA16	0x506
+> > +			MX93_PAD_GPIO_IO21__MEDIAMIX_DISP_DATA17	0x506
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_panel: panelgrp {
+> > +		fsl,pins = <
+> > +			MX93_PAD_CCM_CLKO4__GPIO4_IO29			0x1133e
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_pwm7: pwm7grp {
+> > +		fsl,pins = <
+> > +			MX93_PAD_CCM_CLKO3__GPIO4_IO28			0x1133e
+> > +		>;
+> > +	};
+> > +
+> > +	pinctrl_touchscreen: touchscreengrp {
+> > +		fsl,pins = <
+> > +			MX93_PAD_ENET1_MDIO__GPIO4_IO01			0x11e
+> > +			MX93_PAD_ENET1_RD2__GPIO4_IO12			0x1133e
+> > +		>;
+> > +	};
+> > +};
+> >
+> > ---
+> > base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+> > change-id: 20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-c1687aa1ccf4
+> >
+> > Best regards,
+> > --
+> > Marco Felsch <m.felsch@pengutronix.de>
+> >
+> 
+
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
