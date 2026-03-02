@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-269815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269816-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGQ0J2A7pWmk6QUAu9opvQ
-	(envelope-from <devicetree+bounces-269815-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:25:20 +0100
+	id 6Nq5Mhc8pWne6QUAu9opvQ
+	(envelope-from <devicetree+bounces-269816-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:28:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240591D3DF2
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:25:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35F551D3E61
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 08:28:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D5D893008E17
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 07:25:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D047C301BF73
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 07:28:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9332DAFBB;
-	Mon,  2 Mar 2026 07:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E97323815FC;
+	Mon,  2 Mar 2026 07:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CKhkESAV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KjrpJuT1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC372430BAC;
-	Mon,  2 Mar 2026 07:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66253803F2;
+	Mon,  2 Mar 2026 07:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772436317; cv=none; b=XzTIH1Q+bHHH4C7FxiqOVcv1gHzJklCAnyGg+Jc5h9+/aslMvmjx/SEsY/GY8wHrUzWruJMGLsUOacTVommebMnmbt838WnLztUKOzukO7287q8kTSSkekJ//uM4kfxuBk03NaUS4oXQGZ0+CXHWtVJQVQ5WhilciKWdCXhGbOU=
+	t=1772436489; cv=none; b=ff5lbaCAXKMrQVowiD7mrF4+6p1+g2bENo2Qc6a5NWwg1Yzy3qXc7nKYy2naM2OgTjXAE78xl533kFu45ngMyvDTa5pQCtORak5AfBG1hLzCn3vCaj5S+OvOwosXLaJgT/UJ9SaTBMF+7pYM9uHZUuwm6R87jUhDFjt5TTRT21w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772436317; c=relaxed/simple;
-	bh=7gVoKDdC5aVPTpZDUql6knM+f5JpIj34CLV1tjGpOxA=;
+	s=arc-20240116; t=1772436489; c=relaxed/simple;
+	bh=ly8HT51Rpj1MK01hp0bH0zBk7g8xc2eK/NzfIj5fkzk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tsYfMf76aprb/fxlNzS27IdE6R0t2cA+MUFI+fGR0azzmdH1xoH+ejAuhK7lWvzhDfOpMtCasuUooHMZvoR80w30LsNgeaeUjpG1Bx3DZqxWA09Jcaw81L4aGeOJy9UmyYuLRre0IbWAtbeWi2APiZjvhvdUm9C7BZZY8EXhjS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CKhkESAV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0B29C19423;
-	Mon,  2 Mar 2026 07:25:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z7KDnUdKUjFLAK49gKnRTiZRoFPexj+Ugsw/2jTPlxDB0CTBCX1jxif7Rc8JZxr49BCLr1nZ7G4VUGNkorMmUOmunuZRjr71tJz+IplSjWOO1NVYCVM01ALHyc65Y22pjPGzadlB0G+Wek/v68WcTxxB0m1q1upQdG0dVyLDPt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KjrpJuT1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFFC9C2BC9E;
+	Mon,  2 Mar 2026 07:28:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772436317;
-	bh=7gVoKDdC5aVPTpZDUql6knM+f5JpIj34CLV1tjGpOxA=;
+	s=k20201202; t=1772436489;
+	bh=ly8HT51Rpj1MK01hp0bH0zBk7g8xc2eK/NzfIj5fkzk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CKhkESAVIg3bAHWkpKjB9O3rV9eK766cVLOVveUzBuBVA7dfZNKt0z9AFBxGbjwyH
-	 YGxJw2U1FI40PLjSl9UdWh/HNYpH9D7zjoysyXjc8Va/zklHypgcWwro6xYZaoXz3Y
-	 FfpyNsrbWTCcKabkXLleXMJV3qkwtTdXxGVYqsKLTnAp4MuiRQSPO/7+J9nmj7FUOq
-	 1VDOJmHl68M1+j5XV2o32rBv9bZGhaIu38c6MGGVQ2PZgXCMa5GOv9wfAeywoHzIPJ
-	 jhv5bhjVIICI/bQAeSVSakv7GlKELOxDtWgAqxMxYqek4LJJwnYKxS5rJ5pNIJLppH
-	 nrRiN/Ci7se9A==
-Date: Mon, 2 Mar 2026 08:25:15 +0100
+	b=KjrpJuT1ApWRTzEvi26BSgWCrT0v9YW5HqBUL3NqbAD0203eG0lEG3zqF7Rz9MaFW
+	 bgFnHgTR5xSMquOOVdhLE42OXMJaieL1LMDdwybtoeGC1iLxnwMMPXZoJ0vNe2WbkR
+	 eOWhUu0F9L2uHW7SYkP9y0x4PzxMD4kI7KGyxWNONzjnVIIBNvl/PU1iC6CoC8BDka
+	 fgLzm4T5Csps77KNaEzMoXyd6wIguhLvuXBCcfUmsCoYwWVhTCRBA0rHoJprvuZrGu
+	 zQ0Kn7f/I95aGB2ccW+/xdbThHAChwxjsfl0NXbUWh3FPR0qU05qZmhnCc9bD5n2oZ
+	 kEgA3S5dM25Hg==
+Date: Mon, 2 Mar 2026 08:28:07 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zi-Yu Chen <zychennvt@gmail.com>
-Cc: andi.shyti@kernel.org, ychuang3@nuvoton.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] arm64: dts: nuvoton: Add I2C nodes for MA35D1 SoC
-Message-ID: <20260302-amiable-rugged-mastiff-ccded3@quoll>
-References: <20260302020822.13936-1-zychennvt@gmail.com>
- <20260302020822.13936-4-zychennvt@gmail.com>
+To: Peter Chen <peter.chen@cixtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, pawell@cadence.com, rogerq@kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH 2/2] dt-bindings: usb: cdns,usb3: Add support for USBSSP
+Message-ID: <20260302-vengeful-delicate-macaw-e8dc8c@quoll>
+References: <20260302030339.324196-1-peter.chen@cixtech.com>
+ <20260302030339.324196-3-peter.chen@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260302020822.13936-4-zychennvt@gmail.com>
+In-Reply-To: <20260302030339.324196-3-peter.chen@cixtech.com>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -70,171 +71,122 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-269816-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269815-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[2.111.82.80:email,2.111.43.64:email,2.111.199.128:email];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[2.110.182.16:email,2.111.4.48:email,2.110.221.32:email,407f0000:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 240591D3DF2
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url]
+X-Rspamd-Queue-Id: 35F551D3E61
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 02:08:22AM +0000, Zi-Yu Chen wrote:
-> Add I2C controller nodes to the MA35D1 SoC dtsi.
-> Also enable the I2C interfaces on the MA35D1 SOM board
-> to allow communication with onboard peripherals.
+On Mon, Mar 02, 2026 at 11:03:34AM +0800, Peter Chen wrote:
+> Extend the Cadence USBSS DRD binding to also cover the USBSSP
+> controller by adding "cdns,usbssp" to the compatible enum.
 > 
-> Signed-off-by: Zi-Yu Chen <zychennvt@gmail.com>
+> The USBSSP is the next-generation Cadence USB controller IP. It adds
+> SuperSpeed Plus (USB 3.1 gen2x1, 10 Gbps) support and uses an
+> XHCI-based device controller. The register layout and resource model
+> (otg/xhci/dev memory regions; host/peripheral/otg interrupts) are
+> identical to the USBSS, so both controllers share the same binding
+> and the same platform driver (cdns3-plat.c).
+> 
+> Changes to the binding:
+> - compatible: const -> enum with cdns,usb3 and cdns,usbssp
+> - maximum-speed: add super-speed-plus
+> - Add USBSSP example
+> 
+> This patch was developed with assistance from Anthropic Claude Opus 4.6.
+
+Use proper tag, but expect pushback of microslop crap.
+
+> 
+> Signed-off-by: Peter Chen <peter.chen@cixtech.com>
 > ---
->  .../boot/dts/nuvoton/ma35d1-som-256m.dts      | 14 ++++
->  arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 65 +++++++++++++++++++
->  2 files changed, 79 insertions(+)
+>  .../devicetree/bindings/usb/cdns,usb3.yaml    | 36 +++++++++++++++++--
+>  1 file changed, 33 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-> index f6f20a17e501..2a8f0fd90ded 100644
-> --- a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-> @@ -98,6 +98,14 @@ pinctrl_uart16: uart16-pins {
->  			power-source = <1>;
->  		};
->  	};
-
-Missing blank line
-
-> +	i2c-grp {
-> +		pinctrl_i2c1: i2c1-pins {
-> +			nuvoton,pins = <1 10 12>,
-> +				       <1 11 12>;
-> +			bias-disable;
-> +		};
-> +
-> +	};
->  };
+> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+> index f454ddd9bbaa..f79333e7fc1f 100644
+> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+> @@ -4,14 +4,22 @@
+>  $id: http://devicetree.org/schemas/usb/cdns,usb3.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
 >  
->  &uart0 {
-> @@ -129,3 +137,9 @@ &uart16 {
->  	pinctrl-0 = <&pinctrl_uart16>;
->  	status = "okay";
->  };
-> +
-> +&i2c1 {
-
-Why 'i' is after 'u'? Please read DTS coding style.
-
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-> index e51b98f5bdce..36bd19e37b57 100644
-> --- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-> +++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-> @@ -17,6 +17,10 @@ / {
->  	#address-cells = <2>;
->  	#size-cells = <2>;
+> -title: Cadence USBSS-DRD controller
+> +title: Cadence USBSS/USBSSP DRD controller
 >  
-> +	aliases {
-> +		i2c0 = &i2c2;
-
-Not a property of DTSI, but DTS.
-
-> +	};
-> +
->  	cpus {
->  		#address-cells = <2>;
->  		#size-cells = <0>;
-> @@ -372,6 +376,66 @@ uart15: serial@407f0000 {
->  			status = "disabled";
->  		};
+>  maintainers:
+>    - Pawel Laszczak <pawell@cadence.com>
 >  
-> +		i2c1: i2c@40810000 {
-> +			compatible = "nuvoton,ma35d1-i2c";
-> +			reg = <0x0 0x40810000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk I2C1_GATE>;
-> +			clock-frequency = <100000>;
-> +			resets = <&sys MA35D1_RESET_I2C1>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		i2c2: i2c@40820000 {
-> +			compatible = "nuvoton,ma35d1-i2c";
-> +			reg = <0x0 0x40820000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk I2C2_GATE>;
-> +			clock-frequency = <100000>;
-> +			resets = <&sys MA35D1_RESET_I2C2>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		i2c3: i2c@40830000 {
-> +			compatible = "nuvoton,ma35d1-i2c";
-> +			reg = <0x0 0x40830000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk I2C3_GATE>;
-> +			clock-frequency = <100000>;
-> +			resets = <&sys MA35D1_RESET_I2C3>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		i2c4: i2c@40840000 {
-> +			compatible = "nuvoton,ma35d1-i2c";
-> +			reg = <0x0 0x40840000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk I2C4_GATE>;
-> +			clock-frequency = <100000>;
-> +			resets = <&sys MA35D1_RESET_I2C4>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c5: i2c@40850000 {
-> +			compatible = "nuvoton,ma35d1-i2c";
-> +			reg = <0x0 0x40850000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk I2C5_GATE>;
-> +			clock-frequency = <100000>;
-> +			resets = <&sys MA35D1_RESET_I2C5>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->  		uart16: serial@40880000 {
->  			compatible = "nuvoton,ma35d1-uart";
->  			reg = <0x0 0x40880000 0x0 0x100>;
-> @@ -379,5 +443,6 @@ uart16: serial@40880000 {
->  			clocks = <&clk UART16_GATE>;
->  			status = "disabled";
->  		};
-> +
+> +description:
+> +  Cadence USB dual-role controllers. USBSS (cdns,usb3) supports up to
+> +  SuperSpeed (USB 3.0). USBSSP (cdns,usbssp) is the next generation with
+> +  SuperSpeed Plus (USB 3.1 gen2x1) and XHCI-based device controller. Both
+> +  share the same register layout and resource model.
 
-Why? Do not introduce random changes.
+So are compatible or not?
+
+> +
+>  properties:
+>    compatible:
+> -    const: cdns,usb3
+> +    enum:
+> +      - cdns,usb3
+> +      - cdns,usbssp
+
+Why do we need another generic compatible?
+
+And why do you add it now to each of device schemas using this one?
+
+
+>  
+>    reg:
+>      items:
+> @@ -49,7 +57,7 @@ properties:
+>        cdns3 to type C connector.
+>  
+>    maximum-speed:
+> -    enum: [super-speed, high-speed, full-speed]
+> +    enum: [super-speed-plus, super-speed, high-speed, full-speed]
+>  
+>    phys:
+>      minItems: 1
+> @@ -90,6 +98,7 @@ unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+> +    // USBSS example (SuperSpeed)
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      bus {
+>          #address-cells = <2>;
+> @@ -109,3 +118,24 @@ examples:
+>              dr_mode = "otg";
+>          };
+>      };
+> +  - |
+> +    // USBSSP example (SuperSpeed Plus)
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    bus {
+
+No, drop entire example. It's the same as other.
 
 Best regards,
 Krzysztof
