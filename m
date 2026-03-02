@@ -1,50 +1,56 @@
-Return-Path: <devicetree+bounces-269765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269767-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJ4PGULlpGmquwUAu9opvQ
-	(envelope-from <devicetree+bounces-269765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 02:17:54 +0100
+	id yGdqGvvqpGkTvwUAu9opvQ
+	(envelope-from <devicetree+bounces-269767-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 02:42:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74FD21D2473
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 02:17:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E971D2573
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 02:42:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BE5D1300720E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 01:17:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8C4AD300BDB6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 01:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7B221771B;
-	Mon,  2 Mar 2026 01:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FCAF1AA1D2;
+	Mon,  2 Mar 2026 01:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="qawb5h6m"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="uZucenRs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6428927707;
-	Mon,  2 Mar 2026 01:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B483175A65
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 01:42:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772414264; cv=none; b=Ablg3mksNFFS1Z/vh1C5RwYL17FkyFgP+sZ702giYxZLdwmGlsEb6cYPHScliiylvliyJxIf3ERbSnNfL4qZ/ar5pDjJKsq0rYUlD5ARrWiezBExG8s5fnrGiTpSP4TM8OoilYYuAhNjye2oQMg2YYEFZ0e7BDkV8LO5p1kEySk=
+	t=1772415736; cv=none; b=nf/6qrMRrUUHBT6Qg9TvMBzCbPaSFAkHlzkCHGeO2w3OVJB035r/rNAu4QinfUGM1ZUVOjR4hlyHgCgJGXSGMvZOQdupQzaAstyiL6qVbWrHrwkFgjhzx4twdnvbYGZfPmJLz4eS6zEaKiHJgsjNmzN8wORRRRRtmXsVthF2Tik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772414264; c=relaxed/simple;
-	bh=/t95DuvdqDxsHQh83Y0eJolT6pvmkoaP23sjVxeu4qE=;
+	s=arc-20240116; t=1772415736; c=relaxed/simple;
+	bh=vUOHHdyEXrPGEk8AvCusVmyfpwCI2ekAWq+T8PVRPV0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OcyE6MRWABU5wcdlwlTISeIIBoW7TySg+Q1GEKMf5h6/XRLDY4NIXS8iuD++rDwBFENmBCe8pXs+ASiwzMSm6njQqURy5wecUrNa4iksTsyj5VZuqzxtKqu2OFA+x2275Slao/gwGncSvwVQbJHY1kV/wJotphkXA02OD0AK1Dk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=qawb5h6m; arc=none smtp.client-ip=220.197.31.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
-	Content-Type; bh=IOB2Nx1FFQsmhOZ1L0aw7W6Ht+6NJ15/zle1Yf0fd5Q=;
-	b=qawb5h6mej9FkOXKCDUPFAThVxktWlRUKK4w8VWLpXapBeFFOpkODaBI8duc3v
-	7vL4fvOFVqruEMrz8qmg96yxXrH+LBxhUXAhk3w92G32Ly48yQ2Hm0Y9gbw6ywLS
-	WOIjS1IVHQ0Il88CUUeaqE2VJkCHXDw5A1MdKq2wvOuXg=
-Received: from [192.168.11.65] (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgD3nZoQ5aRpgA8OQw--.11S2;
-	Mon, 02 Mar 2026 09:17:08 +0800 (CST)
-Message-ID: <9674c8c6-4248-48f5-8669-93959484072d@163.com>
-Date: Mon, 2 Mar 2026 09:17:03 +0800
+	 In-Reply-To:Content-Type; b=UjyNLjmPCmpDS2kL773oSC1/wVHWSUvyV3fyQvjPxJ3cG9Fhj40qgPpZ5ytlwRBh6ZSU9RZXLfZC8nLDiulsXjunhGIUAo6JBPOaLjHCQRgKaLXuDa7DjIiI3KOGJk/iK0zU2h86SJ29kXkKvtY4dFaVFY84d0PsZeb/5Vgl4iY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=uZucenRs; arc=none smtp.client-ip=18.132.163.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1772415728;
+	bh=kRDQRl2R+LRWm2HggZ4Cj1vYHy4GXuClk7m0o1am4dw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=uZucenRsptxU+zKdwuC5Eotcl/BUar8S6A1wBy8i9If0Tn8MCreMCpecpAV9BhhWz
+	 ymBCSSOODDAyEesyQexD9mjhHfbJpVN2A6WkKm9XE3ZXNsgSZMAlF+lJXwlYJf7KM/
+	 BSKwEbfrqLM/1rVT94E2jiwW7t3Uw/R40wq3oKXc=
+X-QQ-mid: zesmtpsz8t1772415723tcf6f7fb4
+X-QQ-Originating-IP: w6IfNoMZkeVc0lyzIsKr9uYgMmtkBko/Qpg4ezv6sio=
+Received: from [10.2.99.140] ( [116.237.103.163])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 02 Mar 2026 09:41:59 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4156359098192319691
+Message-ID: <B8675026D2F6DF58+946ff82a-2e2e-4abb-a3c4-26fe67c43ab8@linux.spacemit.com>
+Date: Mon, 2 Mar 2026 09:41:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,124 +58,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: ast2600: Add reset definition
- for video
-Content-Language: en-US
+Subject: Re: [PATCH v5 4/8] dt-bindings: iommu: Add spacemit/t100 features
 To: Conor Dooley <conor@kernel.org>
-Cc: linux-aspeed@lists.ozlabs.org, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil
- <hverkuil+cisco@kernel.org>, Jammy Huang <jammy_huang@aspeedtech.com>,
- "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20260227151602.829-1-haiyuewa@163.com>
- <20260227-smooth-carefully-f427e242ce58@spud>
- <16a430a2-fdc9-41eb-945c-0727feb7b9d6@163.com>
- <20260228-entourage-awoke-92c61c5b1544@spud>
-From: Haiyue Wang <haiyuewa@163.com>
-In-Reply-To: <20260228-entourage-awoke-92c61c5b1544@spud>
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+ Adrian Hunter <adrian.hunter@intel.com>, James Clark
+ <james.clark@linaro.org>, Yixun Lan <dlan@kernel.org>,
+ Jingyu Li <joey.li@spacemit.com>, Zong Li <zong.li@sifive.com>,
+ Yaxing Guo <guoyaxing@bosc.ac.cn>, iommu@lists.linux.dev,
+ linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <cover.1772289741.git.lv.zheng@linux.spacemit.com>
+ <D8CE6E5B1001D797+a6f36da0272ac18fff2a992976b1defc3bb01af6.1772289741.git.lv.zheng@linux.spacemit.com>
+ <177231592262.848068.18080490567217057666@spud>
+ <CAB7A310CE95B577+5f5c0825-25dd-4035-9316-db940c00216b@linux.spacemit.com>
+ <20260301-acclimate-suburb-fc46da7e0cea@spud>
+Content-Language: en-US
+From: Lv Zheng <lv.zheng@linux.spacemit.com>
+In-Reply-To: <20260301-acclimate-suburb-fc46da7e0cea@spud>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:PygvCgD3nZoQ5aRpgA8OQw--.11S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7KFWxAFWrCF17AFy7ur18AFb_yoW8tF4DpF
-	4YyF1kKr4UZFWFk3yIq3WxtFnYgw15JF15Wry5Xw1jv3Z0q3W2gr4IgrWUua4DWrs3ur12
-	yF12qF9a9FyIvw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UxuciUUUUU=
-X-CM-SenderInfo: 5kdl53xhzdqiywtou0bp/xtbC8BQCbWmk5RS9IwAA3p
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz5b-1
+X-QQ-XMAILINFO: OHTF91J1Rz8hwOyR4d5IbQ5FDyEf9XbLsk0HrNrQMvvx5MUzGCR4RjUR
+	3Am8X1Jc5PmZ5KJCzYqJsL2zYh70gSU4QOPOg/vMRZhSHmxus5crOHJwT+pnl1LpkVKsUN3
+	1Su/CHWinAVcYDF1ANwpkKtZT74Q1eDzipNKzjuCCdB/1q4l3siOjF9wVe206gcVrZr5Egm
+	bkaBo9jqRIZL/mhf8OoWP4ebKNBApTD1MeUi5ZVnzYIWrDwWd7ZTlxX8wG+7Zgw/t7Ntdjm
+	fS7/BLq+PH1YH2ztrfWRjW0A2ESDo98nGcd5JzGwIYGXI9gaRoY9Z7N8b4IXI9BfHY7I9iv
+	qGeornxvyi70MDOWWIS6uhcpfS9DGoTOdrjws7fZkaeZiHUnDBAHYGN00mwBUr6JxleTdXt
+	VweVrA18QJXnhHBCXQ3Fm2Z182UtDnr+roOAHb40ZrGFcMdB/C+OdepKVViXcPEhW7+XC8O
+	MhiaHxcEfatxjd9MY0SLiDx2nFwqSWOMux5npNG4MKXM4mwZK83E2p12JTj/aJkzcXI4y56
+	z344ccQxn/vfDFwsq8/IP7fwlrMX50eTtopGoK1DO/jC4utbSE/NSX+Y4tZhbf7LncliWKi
+	FwtZUwUbdsz/5ZT5TxxGOgtkYf+hTzqw6s8eovHoQE6tiDLj0LIA8InWnpHDsqXzSqjdhZ5
+	fBfrpxsCd6dka+GeMo1ciII2miL6pf7fHm9UBPeLhYHfoihZjKIH8ZxlgbLn0wSFcx18uDP
+	IBfY0Hkjb1A0o62ub8QrmjBUcAWjQJmiUZjT2lS5AtNFm/Ik5TM4AXGmdgR+dfSzLcbQW4W
+	JU79et+EzgYWSErSlS1FpkvytCoMoPEEzeFJaJE0TFDHsuJnCoq1yjWAXobbOb3+auO4bqZ
+	JQ261cRKvaKzEDAYaG+Kb4xRwzfcmhvgtaSTsrNJm8pZBMhDPvI7NyEFKacxqREzJHLZ5oQ
+	og4k6lNXBGzkamnkoNu2xjjOGf6HvTME5/LCAGetmFqLuBIJeGZw+TdAF3h/UgbTTKV5uvi
+	weMuAMniOFJZsqBNN9
+X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
+X-QQ-RECHKSPAM: 0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[linux.spacemit.com:s=mxsw2412];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269765-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[163.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-269767-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[spacemit.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_MUA_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linux.spacemit.com:+];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[haiyuewa@163.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[163.com:+];
+	FROM_NEQ_ENVFROM(0.00)[lv.zheng@linux.spacemit.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[checkpatch.pl:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 74FD21D2473
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.spacemit.com:mid,linux.spacemit.com:dkim]
+X-Rspamd-Queue-Id: 28E971D2573
 X-Rspamd-Action: no action
 
-
-
-On 2/28/2026 8:16 PM, Conor Dooley wrote:
-> On Sat, Feb 28, 2026 at 09:20:56AM +0800, Haiyue Wang wrote:
->>
->>
->> On 2/28/2026 1:33 AM, Conor Dooley wrote:
->>> On Fri, Feb 27, 2026 at 11:13:14PM +0800, Haiyue Wang wrote:
->>>> Add ASPEED_RESET_VIDEO reset definition to the ast2600-clock binding
->>>> header. It is required for proper reset control of the video on the
->>>> AST2600 SoC for aspeed-video driver.
+On 3/1/2026 10:01 PM, Conor Dooley wrote:
+> On Sun, Mar 01, 2026 at 11:48:37AM +0800, Lv Zheng wrote:
+>> On 3/1/2026 5:58 AM, Conor Dooley wrote:
+>>> On Sat, 28 Feb 2026 22:44:49 +0800, Lv Zheng <lv.zheng@linux.spacemit.com> wrote:
+>>>> Adds device tree bindings for SpacemiT T100 specific features by
+>>>> introducing spacemit,t100 compatible. T100 contains distributed IOATCs,
+>>>> each of which exposes pmiv interrupt.
 >>>>
->>>> Fixes: e83f8dd668ea ("media: aspeed: Fix dram hang at res-change")
+>>>> Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+>>>> Signed-off-by: Jingyu Li <joey.li@spacemit.com>
 >>>
->>> How can a binding change be a fix for a driver one?
+>>> Patch content here is fine, but the signoff chain on this patch is not
+>>> right. What did Jingyu do? You're author and submitter so either Jingyu
+>>> did nothing and should be removed, or is a co-developer which requires
+>>> attribution via the co-developed-by tag. If the latter, their signoff
+>>> should be before yours (the submitter is always last).
 >>>
+>>> pw-bot: changes-requested
 >>
->> https://git.kernel.org/torvalds/c/9897831de614
+>> She is responsible for the common HPM part, and I just gave my comments to
+>> help to improve the quality of that implementation.
+>> I was just focusing on enabling and maintaining the T100 specific features.
 >>
->> If squashed into one patch as v1 does, it will have patch format warning:
->> ./scripts/checkpatch.pl ...patch
->> WARNING: DT binding docs and includes should be a separate patch. See:
->> Documentation/devicetree/bindings/submitting-patches.rst
+>> Our patches will go each other's local repository, leaving such tracks. That
+>> means the patch from me is Reviewed-and-tested-by her.
+>> And I'm responsible for sending the whole patchset for upstreaming.
 > 
-> Adding a fixes tag implies that the change you have here should have
-> been done in the patch you're citing. If you had done it in that patch,
-> you would get a checkpatch warning there too. This is a separate change
-> that is needed for your dts changes, but is not a fix for the driver
-> change.
+> Then you need to either fix your email setup (because it's not inserting
+> From: Jingyu Li <joey.li@spacemit.com>) so that she is marked as the
+> author or actually set her to the author in git if you haven't.
+> Currently it looks like this when applied:
+> commit 872978c875731be43e84bec38798cb8ecd42b7a0
+> Author: Lv Zheng <lv.zheng@linux.spacemit.com>
+> Date:   Sat Feb 28 22:44:49 2026 +0800
 > 
+>      dt-bindings: iommu: Add spacemit/t100 features
+>      
+>      Adds device tree bindings for SpacemiT T100 specific features by
+>      introducing spacemit,t100 compatible. T100 contains distributed IOATCs,
+>      each of which exposes pmiv interrupt.
+>      
+>      Signed-off-by: Lv Zheng <lv.zheng@linux.spacemit.com>
+>      Signed-off-by: Jingyu Li <joey.li@spacemit.com>
+> 
+> In both cases, you need to change the order of signoffs so that yours is
+> last as the submitter.
 
- From this point of view, yes, a little strange to add "Fixes".
+OK.
 
-Drop this tag in V3, please review.
+BTW, since this version of this patch has been worked out all due your 
+constructive feedback and suggestions. Now that it has functionally 
+converged to what the community requested, can I add "Reviewed-by: Conor 
+Dooley <conor@kernel.org>" for its next version?
 
->>
->>>> Signed-off-by: Haiyue Wang <haiyuewa@163.com>
->>>> ---
->>>> v2:
->>>>     - Fix checkpatch.pl warning, and send dt-bindings as single patch as
->>>>       the submitting-patches guide.
->>>> v1: https://lore.kernel.org/all/20260227123837.70079-1-haiyuewa@163.com/
->>>> ---
->>>>    include/dt-bindings/clock/ast2600-clock.h | 1 +
->>>>    1 file changed, 1 insertion(+)
->>>>
->>>> diff --git a/include/dt-bindings/clock/ast2600-clock.h b/include/dt-bindings/clock/ast2600-clock.h
->>>> index f60fff261130..7b9b80c38a8b 100644
->>>> --- a/include/dt-bindings/clock/ast2600-clock.h
->>>> +++ b/include/dt-bindings/clock/ast2600-clock.h
->>>> @@ -124,6 +124,7 @@
->>>>    #define ASPEED_RESET_PCIE_RC_OEN	18
->>>>    #define ASPEED_RESET_MAC2		12
->>>>    #define ASPEED_RESET_MAC1		11
->>>> +#define ASPEED_RESET_VIDEO		6
->>>>    #define ASPEED_RESET_PCI_DP		5
->>>>    #define ASPEED_RESET_HACE		4
->>>>    #define ASPEED_RESET_AHB		1
->>>> -- 
->>>> 2.53.0
->>>>
->>
+Best regards,
+Lv
 
 
