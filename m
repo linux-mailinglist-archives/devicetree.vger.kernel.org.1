@@ -1,235 +1,140 @@
-Return-Path: <devicetree+bounces-269845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MNdMwtWpWnR9AUAu9opvQ
-	(envelope-from <devicetree+bounces-269845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:19:07 +0100
+	id MBagI2lXpWlR9wUAu9opvQ
+	(envelope-from <devicetree+bounces-269846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:24:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786591D56AF
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:19:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4691D5830
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:24:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3890830075D4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:16:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EDAA13044BA3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB5238D01B;
-	Mon,  2 Mar 2026 09:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A9838D01C;
+	Mon,  2 Mar 2026 09:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eA3tzMte"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NaSaYEwv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F0B38736B
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:16:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E62038CFEE
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772443000; cv=none; b=FX+UlIX5P9VFFeBpUqFdbS5I2EHG5OzrYEiZgVSQNGGIeQHXM3nyZL2sAyN5a4NbIjunrLW3T17kUbmpBLl/OVUZLZPVMlxtjnNr+5ZmNsk7IbYx2C3MpCVsu3hYWKg3ytRFaWCfKepciPMV1m/rggSj6pTz7XzLmcYLHPLYxAA=
+	t=1772443180; cv=none; b=gt69IiZidRq+odg7QrQHDZa/ohv2wEX87i4HLH5hWBWq6YCo6b9Udrd7/99Du+Q+ecShLN4Fh2vREdB+zNI86fTYSA3LLcNJGOAeQ/meIzsnAtu+cqC/3kK2egLp/3g0ldkKfkNBodzHd+nFJ5wy62+M1mv/+r97lHj/Ig0NAdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772443000; c=relaxed/simple;
-	bh=nIBLLWlywvbDHJl1jfJUWtsRmZwWr5mgqYdTBQwVYCU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hgUiUJCAmzcOKQAAp+lw2sxi7RFcAj2HX+udlAnv2ZnXdiTrqgvqfVkrLzI5t7nDh5TNOztWD36j61jPiAfYVjsgCOs/jY8hqqotNjE8aMU8JdbAL6cnciJIMI+O5bChIj9AgWONkCeFFYU0cKTkv/EiXwXQodlDqZ0EEKo09Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eA3tzMte; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso34893485e9.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:16:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772442997; x=1773047797; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1ktr/JNOB3fV/EZRd7szBfJ+V3eeHkmzO1vLTnQ/4sY=;
-        b=eA3tzMteMsy6Qn5yTXt1XNfp/jsXQuQqtqn8ZHsbkm9xoROdFgvh/uUxZjk7lWWNoF
-         6YonUW19js4ImCBLcllImRvplTXbHYw6siG+C7mc8UMU7TeG1Q7prmseBXN7Hb0xlI+p
-         xvUcIkJzN7naTb3ooxwsOe0W24aIQuqtOQU8OfIfHNauPzZMxAHvrtZSLabQcy5r+0zN
-         1tCvM6QDSN8eGHHIZxL1qOjxUNohORBCh4b7SxGHE4INptectyS4hFALbil9Q3yeAUBq
-         geZzV19VyWPjvpVHHn3No2KDd2nsMfBuxOB9PIMUjBRaXceh4KcIY1KOgPjumQJbI/Dl
-         Qcmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772442997; x=1773047797;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1ktr/JNOB3fV/EZRd7szBfJ+V3eeHkmzO1vLTnQ/4sY=;
-        b=AwhgDF085QmApFJW2XuExo/x3+K5GYkLXxlPZA0WKowZIxNmfdNI17qJJBeUoXsVGH
-         GAYtmSu/KzMHO7kAL8qiwnyjfCb8evNtF8Di6XfgRCKF2pZjNzx+w0sTbea0tkmHyhZK
-         ve71yVRc1VvF6G8u1hHuoOyk65sCZsMI1QQIBBwllhC10sbCKfL9W/CFVNwCsMXu7pbV
-         2AUTpqGJm3UsRMix8kndjQY7Su5Tgbr8FY8epbz0eRyoCDC/vnWygY9ruxA4f9WIkj08
-         RYeVCRyFxXaY5MOoSQ68Z3LxEu+u2Xwq27v178XBeXpxXCproHtn4S5SL1tDQlYkSNvt
-         vIMw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3X/SbRaFt0gc8PqF9RZqAxvnltHLr9vLp4RV1Nq+CPVXz9zOCIemCOjkAGV9M0O+JIdfZKF1TGaOK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRg4VTZ3ts+SpOpFecA7RfS3T8dpeHhfZAUF/+Nj3AJRKCK5VC
-	9MdziwaVosS3vd/NaKbNN6ONNsEG1deSd6SVQIdeNi45gRHCO51r7/ovwfoTHTm6uhk=
-X-Gm-Gg: ATEYQzwRg/r0pZf1N+uBRcm1mJMZGnkxYojV0PklPKoKdK3bNU+7RS/swPPhw4s6Au8
-	ZdilkOE1f2QgMKJSHUV8BExhLOjyoz/aT7DMUmH7Xv+gDGiySr+uO7bGRk2YMwTR8p/hL2nHQkx
-	YAHTb2oYro+uqkoJFA+buHrvnI0I5wOU9u7uhW26jc/sa4GSYtI4zxIpCuhZOsMsAt4bye8vT5Q
-	qtTQS2gAbmkzKrXiiRWj4Jsj5EU6AayX/RryV0SoAw7hDA+Pm+NH30tPTEfC5eFDHwwP5t9AimN
-	vxvwYu+SQu1pnSASZXbLDu/w1J3Prz5PXS1b8ayQlIoo7OuqXlWKGglZqTxS6ULrNp15TxUj6Oy
-	ttoXBpjkINZWbOdzCazzmV9ABCtrfRSYmW7g3n8X5mlFcx4s5Df5Cm04vXkBchS7nQxk5628xXN
-	p9COVnVBfmkL3/UBMaQNVfwnr4Y4RM/4Q=
-X-Received: by 2002:a05:600c:4eca:b0:480:1e9e:f9b with SMTP id 5b1f17b1804b1-483c9beac6cmr219764705e9.16.1772442997213;
-        Mon, 02 Mar 2026 01:16:37 -0800 (PST)
-Received: from [10.11.12.108] ([79.115.63.77])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfabb84esm389964955e9.0.2026.03.02.01.16.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Mar 2026 01:16:35 -0800 (PST)
-Message-ID: <488f9257-94fd-4c5f-ba41-c9216bf0f7e5@linaro.org>
-Date: Mon, 2 Mar 2026 11:16:32 +0200
+	s=arc-20240116; t=1772443180; c=relaxed/simple;
+	bh=7ckUxNu6Er/vlKjRLTGYQicGp10gUC8i4ulwH0qnW6Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tiB6hG3YBX7qYO50wK0PPfuaPKVZEWrjiEPPH+GagZCvRM90N1QjV1pGmaiwCmnMNxgCXdrwW2qP1C9PTOrUC8TPHhNgiQ/48GdVuaSIBXmdre/bQXlNKx79aSrhDKs+opj2CdK0TQ14EC/eulqQR1gyONj1xcCsbTAdyp1S4Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NaSaYEwv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C304CC2BCB0
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:19:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772443179;
+	bh=7ckUxNu6Er/vlKjRLTGYQicGp10gUC8i4ulwH0qnW6Q=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=NaSaYEwv6W5X/DgCkkxrsPmp/GhAulMTl+hZiRTxUxtDDakDwwhsiq+R5pTeHAsZM
+	 OIbDNM1DveCGwTAONAxVOu/KcPk0lRkgP8WI72/xqx6lOfBbBbU7RSaOQijai8aXqE
+	 Iph6v21mAHpkVFT2/v4EuO4Hhul4HjChQ0pU6S5v1tJDVMm/uPsy5B3zye42S5H+L/
+	 zwlbLDCwfPC/QUd2hC418X1y4CHEeXuHxZmckZMzg2mhCGvn6A7YncTJHd8Xnsxo18
+	 hpZQvhGk41Vg43V6LhnmHFk3tZjPopY4U+BtxJI2mm4cH+mtHH+mP3OJ27P/d5fZMb
+	 f6zFXUS0FBF8g==
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-7987531082aso38938987b3.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:19:39 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWNNhRlf2BkYd+4+KUSbfnlOzqD8Gydhm2w3sbVIbd4bFck3PUkGrxeIEtMJg57kqoCbEMYS6gyhTj6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiNHqkJp/ochxT95whCPtwnIehBs5tKxibO63qbLSe/V3IL81L
+	jU01k9Jahfwug8A28A6M37B+C0XnPrr4nwFv4IXLGyFsSINMRAZtQqDj7l1l6GXMD+XYEcqOtk1
+	lmKuA/7kDBYWIBTf1InEfeMRc9JizqP0=
+X-Received: by 2002:a05:690c:385:b0:798:6c28:dd57 with SMTP id
+ 00721157ae682-7988554de07mr102205297b3.28.1772443179061; Mon, 02 Mar 2026
+ 01:19:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] thermal: samsung: Add support for GS101 TMU
-To: Alexey Klimov <alexey.klimov@linaro.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org
-References: <20260119-acpm-tmu-v2-0-e02a834f04c6@linaro.org>
- <20260119-acpm-tmu-v2-4-e02a834f04c6@linaro.org>
- <DGR4OFNJXOI2.3QACIHMM1V429@linaro.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <DGR4OFNJXOI2.3QACIHMM1V429@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260226-eyeq6lplus-v3-0-9cbeb59268b0@bootlin.com>
+ <CAD++jLmEU=PkmsPOksF9dtV5UpH3S9X=VJey8ZEf5wdsPbsNvg@mail.gmail.com> <5262868.Qq0lBPeGtt@benoit.monin>
+In-Reply-To: <5262868.Qq0lBPeGtt@benoit.monin>
+From: Linus Walleij <linusw@kernel.org>
+Date: Mon, 2 Mar 2026 10:19:27 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=aQwj3vfGQcJQGoFGneKyDPTMWik1zVhhoH3BM42odug@mail.gmail.com>
+X-Gm-Features: AaiRm52IPrnZjaOF5tFQCgs0uPwRGDpKCfSWJ4D7JFeg9UWmQRrGRVgXGFakAgc
+Message-ID: <CAD++jL=aQwj3vfGQcJQGoFGneKyDPTMWik1zVhhoH3BM42odug@mail.gmail.com>
+Subject: Re: [PATCH v3 00/13] Introducing the Mobileye EyeQ6Lplus SoC
+To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269845-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-269846-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[linaro.org,kernel.org,intel.com,arm.com,samsung.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 786591D56AF
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 2F4691D5830
 X-Rspamd-Action: no action
 
+On Fri, Feb 27, 2026 at 2:54=E2=80=AFPM Beno=C3=AEt Monin <benoit.monin@boo=
+tlin.com> wrote:
+> On Friday, 27 February 2026 at 01:14:32 CET, Linus Walleij wrote:
+> > Hi Benoit,
+> >
+> > On Thu, Feb 26, 2026 at 2:34=E2=80=AFPM Beno=C3=AEt Monin <benoit.monin=
+@bootlin.com> wrote:
+> >
+> > >       pinctrl: eyeq5: Use match data
+> > >       pinctrl: eyeq5: Add Mobileye EyeQ6Lplus OLB
+> >
+> > Can I just apply these two to the pinctrl tree?
+> >
+> > Yours,
+> > Linus Walleij
+> >
+> Yes you can, they apply and build cleanly on their own.
 
+I applied patches 5 & 6 to the pin control tree.
 
-On 3/1/26 5:33 AM, Alexey Klimov wrote:
-> On Mon Jan 19, 2026 at 12:08 PM GMT, Tudor Ambarus wrote:
->> Add the thermal driver for the Google GS101 SoC.
-> 
-> Is this driver for GS101 platforms only or for all Exynos-based
-> platforms where we have deal with thermal unit via ACPM?
+The corresponding DT binding is in patch 1, and since that
+is already ACKed by Rob I positively expect it to be merged
+for v7.1.
 
-The driver can be extended for other Samsung Exynos SoCs.
-
-> 
->> The GS101 TMU utilizes a hybrid management model shared between the
->> Application Processor (AP) and the ACPM (Alive Clock and Power Manager)
->> firmware. The driver maintains direct memory-mapped access to the TMU
->> interrupt pending registers to identify thermal events, while delegating
->> functional tasks - such as sensor initialization, threshold configuration,
->> and temperature acquisition - to the ACPM firmware via the ACPM IPC
->> protocol.
->>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->> ---
->>  drivers/thermal/samsung/Kconfig    |  16 +
->>  drivers/thermal/samsung/Makefile   |   2 +
->>  drivers/thermal/samsung/acpm-tmu.c | 643 +++++++++++++++++++++++++++++++++++++
->>  3 files changed, 661 insertions(+)
->>
->> diff --git a/drivers/thermal/samsung/Kconfig b/drivers/thermal/samsung/Kconfig
->> index f4eff5a41a84ce02b12abb85d6a0f8818031d0dc..5679dfa85f4079c7d40317ac231bd6a1af93c7e7 100644
->> --- a/drivers/thermal/samsung/Kconfig
->> +++ b/drivers/thermal/samsung/Kconfig
->> @@ -9,3 +9,19 @@ config EXYNOS_THERMAL
->>  	  the TMU, reports temperature and handles cooling action if defined.
->>  	  This driver uses the Exynos core thermal APIs and TMU configuration
->>  	  data from the supported SoCs.
->> +
->> +config EXYNOS_ACPM_THERMAL
->> +	tristate "Exynos ACPM thermal management unit driver"
->> +	depends on THERMAL_OF
->> +	depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
->> +	help
->> +	  Support for the Thermal Management Unit (TMU) on Google GS101 SoC.
->> +
->> +	  The TMU on GS101 is managed through a hybrid architecture. This driver
->> +	  handles direct register access for thermal interrupt status monitoring
->> +	  and communicates with the Alive Clock and Power Manager (ACPM)
->> +	  firmware via the ACPM IPC protocol for functional sensor control and
->> +	  configuration.
->> +
->> +	  Select this if you want to monitor device temperature and enable
->> +	  thermal mitigation on GS101 based devices.
-> 
-> I don't understand this. What this driver actually supports/implements?
-> Dealing with TMU over ACPM firmware is not exclusive to Google GS101 SoC,
-
-right
-
-> some other Exynos-based systems has this as well. However, it names
-> the config option EXYNOS_ACPM_THERMAL but a lot of other things say that
-> it is only for GS101, isn't it?
-
-right, because I'm currently adding support just for GS101. I wanted to be
-accurate and thought that when/if other SoCs will be supported by this
-driver, we can generalize the description.
-
-> Does it implement the generic layer dealing with TMU via ACPM (hence the name)
-> and adds specific things to support gs101?
-
-Right. I expect the sensor mask may differ from other Samsung Exynos SoCs.
-I remembered I compared the register set with e850, minor differences there.
-
-> 
-> Should it be something like this (feel free to correct):
-> Support for the Thermal Management Unit (TMU) exported via ACPM.
-> 
-> This driver handles direct register access for thermal interrupt
-> status monitoring and communicates with the Alive Clock and Power
-> Manager (ACPM) firmware via the ACPM IPC protocol for functional
-> sensor control and configuration.
-> 
-> Select this if you want to monitor device temperature and enable
-> thermal mitigation on Exynos-based devices that implement dealing
-> with TMU via ACPM, for instance, GS101-based devices.
-> 
-
-I can generalize the description in v2.
-
-Thanks,
-ta
-
+Yours,
+Linus Walleij
 
