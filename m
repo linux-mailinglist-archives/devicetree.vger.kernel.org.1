@@ -1,206 +1,146 @@
-Return-Path: <devicetree+bounces-270156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270157-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INs4Ej/EpWnEFgAAu9opvQ
-	(envelope-from <devicetree+bounces-270156-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 18:09:19 +0100
+	id wOn/HhzEpWnEFgAAu9opvQ
+	(envelope-from <devicetree+bounces-270157-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 18:08:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE251DD8E7
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 18:09:18 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74DA01DD8AA
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 18:08:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE65F3161DB9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 16:54:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 78A723017026
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 16:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF5D421885;
-	Mon,  2 Mar 2026 16:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="DV5i3Itm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2B3421885;
+	Mon,  2 Mar 2026 16:54:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013062.outbound.protection.outlook.com [52.101.83.62])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9AB02FD7BE;
-	Mon,  2 Mar 2026 16:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772470460; cv=fail; b=LtMHfiPN3DnSauzK+o4Js3PlDVw3PUgIJbfGRrQgFicvtCrH0jwPFuotXEfKJ1a46k6c//zjduxtHc3nk7RVbH6YwxcQJ/8Mz3N6YXwI6aSI718B1kZnYUFQATyAAw4xq8QHqQF2pPuJA5HtEnYCPRC9/B29IA5i2daxKWXPZGI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772470460; c=relaxed/simple;
-	bh=/HXxilkaHJXO90EdvWtGwGZHd+dV+y4nRORNcTl5Uv8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 Content-Type:MIME-Version; b=lpHDAN+mzb/WCQKGvofOckVsk6L6lgH8Zi0A/A1ngPjkdkcNd/C8WoI8Vv1YnPSXzmKv6ejMGDbJTAvJRdQGFEArvZQPhd+j7oiGypi8gmoKXv4S90uhsA6w5usDf5LIIISzKgtDvBHYiSno/dVWiFWfYntW379lvLwXohEAUZ0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=DV5i3Itm; arc=fail smtp.client-ip=52.101.83.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Zi2wgnK09w6b8zmS3EFfwQ+t6jZ2WNyWmWpoKMDaBm+UX4s6s23qbCuzeklJdk5qACCIQ1mpB0ceHO6hl/fVDIAel2DOzTyOUGfM8qiXiRMEE4YS5M8txWNRtsdqPzECQw2nx4gpd3aTXjaeBSLzlmjKQ7Yii8JULd24uzY9yN3V4bG3bLvgke+qF3HuvYyoUAMVH9g0k8cAcpKI1kIx95N9GRZbcrnpGf3fsn9CS++6oeLyjxZNqJEWOeASvHiexBhD/jhAYHpsJdYQVEjDAXvSxRZbAWJeLqXtA7PJkTDBYgq9KiHFT/L4bEuW3XzYXkv6NPCqkzjI0UUd71ljYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nAL44IC9GkAjW/05yleT8IcJw/x2lj/wDLzkSovDySE=;
- b=pSJL7TkH1quo07gwljra5fsMAiyn0QfMXmM8tHOMfq8lyf+sGvUn6D0Y5bn6+IAtKWyIoKs6WqWye4/dtzYDZqurw1s9GimTcsCsXJuZfXHVWBARz3iov2VUWTPGmYeyOEbtsjYSmWP2Qur5zkrwQgg6vm9sLOAC/VIrvndNdW/y+S+9/gTqJ95SRRgiphXADGf+IRzu5ooLpVDwuybhbhAFHmB3r1oDt6LN2Kv3hzsAsbgb9BbE+z9P+JB9zDc6phGs8CMiZmEQsKFRtxu0rh5GrxVzIjGg2/Vwva9LzlCZpbvu1qujTvwxhkg6GdgprH3dUJMIFUXocTr7/wFY2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nAL44IC9GkAjW/05yleT8IcJw/x2lj/wDLzkSovDySE=;
- b=DV5i3ItmCOnd4L2LPX1kkjgk5FAG+hKQ9VPzX7OJd2K5B9im0zHip51dqb1bOy6x8tN9R2pJ+R6Nwrdbj0slU8MYBzGtzbgJhzVWOwbhx+Ntn8x1tLfkOFE2lORW3c+AkDkxArWbt7ERB2hFkP4pq4FqFHHO831xx+6VMcNezL838/bK42u23yhrO03A1sh7NDZs58+9DuCFt4LVhuB0RmZ+wWk877iBkoTiQXukLc7N+oYdyllQFzpXGoc/N7ezjE2khUfEk/rIvlkyei3oCHb8QBPzgLCLMEvJvsAzZ5h5zcJpFmQ4C0H8brvqjfmbVdPVGGWEwbURzWdxobVOEQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by DBAPR04MB7334.eurprd04.prod.outlook.com (2603:10a6:10:1aa::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
- 2026 16:54:14 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
- 16:54:14 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Matti Vaittinen <mazziesaccount@gmail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Maud Spierings <maudspierings@gocontroll.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20260216-mini_iv-v8-0-8d528e7cb454@gocontroll.com>
-References: <20260216-mini_iv-v8-0-8d528e7cb454@gocontroll.com>
-Subject: Re: (subset) [PATCH v8 0/5] arm64: dts: freescale: add support for
- the GOcontroll Moduline IV/Mini
-Message-Id: <177247045170.2117969.14385993648984511959.b4-ty@nxp.com>
-Date: Mon, 02 Mar 2026 11:54:11 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SA1PR02CA0010.namprd02.prod.outlook.com
- (2603:10b6:806:2cf::16) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADBC3D7D78;
+	Mon,  2 Mar 2026 16:54:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772470497; cv=none; b=go5n6c5GYIZhacPFOSccft3cNn2HFqpW98UjYeraqiZtZcDDQDdO8TzFgkTR4Hm1Nz4yOzEzm7ZX3fCZ+T3xLWSSjKTb3tYqCD6to+9VM3/upy8xsQKxb0Uapgj2mH0+nmS4iwVJ+01cmi6dxlFPpcGnxPlHdLDcMjT1IwDnr1U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772470497; c=relaxed/simple;
+	bh=M+KWW9jtWNzuJh3BnQ4NQ9icmYIMfuXtVW2CigPCsx8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=It9xlxUt62RCDZcjOkI8dfL+C+R6VnHd4yh7qSBfRokHwLLkH02danC2GglXpFWdtJvrO6cOKV/MTOn+GUXvj9eoGW9KmxSiWdHLqAHXOK0wLdpnfE2K4t7uLncFk2s85QYKNFmUK84Lc+DaqByPX2NRlTiR9inDGzdRMe8Ly1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: FwUjZZ3OTgaAZhCtl+FtyA==
+X-CSE-MsgGUID: NDMpaP98T8apridYVDL24w==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 03 Mar 2026 01:54:47 +0900
+Received: from vm01.adwin.renesas.com (unknown [10.226.92.15])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 53FEF401C226;
+	Tue,  3 Mar 2026 01:54:43 +0900 (JST)
+From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+To: geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	biju.das.jz@bp.renesas.com,
+	fabrizio.castro.jz@renesas.com
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v4 0/7] Add versaclock3 support for RZ/V2H
+Date: Mon,  2 Mar 2026 16:54:34 +0000
+Message-ID: <20260302165441.4457-1-ovidiu.panait.rb@renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DBAPR04MB7334:EE_
-X-MS-Office365-Filtering-Correlation-Id: d94d5e5f-c961-4327-87c6-08de787c55c0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|1800799024|366016|376014|7416014|52116014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	oOAse4dfN+Gwa2d7X0kYI6EpHs3Azal7Zpd2ZEAVOuiUKLxcr2JqAxGeXrqNqHuIRgHkMqC/US9IUjLdXBZMu6bG4UD+MT80YCR0CQ3jqrwsLY5vDqGp0HjqpZkvcGjb+wIxnl1DsQJUPJedMOYJGRUjKmWwKxIeq7KZJKZWyl8kKelSet/Gt0J4s0rXpy8nmA5dpaPefPKPTOoM7O2N/+A5SxCQYRtlINXM22BcPXDadwXo4r+oY40raFDd3YlccIdY4S/Pll7LTKzoyMzpuZGA8get084Gj+hlMohPUoc2/KyMtfSwgP2YWzASiVDkR6wZWLWv/IfB/qgYtsSPk/5PVv7op1AtP+5lYP64S1FaITSOR2S9xSyzNfuI4yZGFIXrE+tgbMQfC7QhqNE7hqDJO4QbB3PyP0081ZR8NSYtgB2uP5gyNFX4/FYJB0P3o41Dh3eyJRoi1zKXxd5jjne+wIlom6yZNdLWJjgh0j0e4lSW3XuFZtK/TFXKv2g2+P1H20lrFayNJZWGXD/D9eZ2iWDMIFnRTZYAy+bh4dAX8B0mCWLW5Lc/FB729uN5EHbJl4lKip9bIiwRMeJym8zJ9x3LT6qS0xr95rdHXkS3PHlKDN1KrjcOgnctRzY+ucfCphLiOiAaV2UMW73Bv8UsqnOWqpkM6WEH/UO4iZ8ckQSi+MuYKAC8V1eHR/csyk5hSADyGaMSIdZSvC2gtOn4HRLZeuW/Yvj0YvoSM+FTTeYk5QIsx3KuWxRXiMYLnGggYZxWzu9ux1uJ5PvJViWVK/8ucnenL010wGjIhPzLEfQd4A1il0RmYIF7FS88
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?b3pjdDBoekFWV0dCcW0ydm9CeWRsaGdkM3ljZHl1VWs3V1pOaGEzV1paY21X?=
- =?utf-8?B?dHJ1UXRQaWpzb1dsWS9VdHZrakdNS05xN3g4YitPYktEU0ttVS9OTnRLV21W?=
- =?utf-8?B?eUZwUzFpR2Z0Z1FBU1crcmQ0dFdXc0NsMWpuYkJRNWpUVC83L2hUak9lNGJQ?=
- =?utf-8?B?Y3FGREN6cmVmdU8rWjhVU1laYi9OOGprcWw0UEIzaEJuK2NHb25jYmZiZ2wr?=
- =?utf-8?B?T291c0Z4eHBJZlUweTI2ZWVWclh0UjAzRjZTV0JzSXRaZ28zY2pLdzZmUEFP?=
- =?utf-8?B?ZUxMWmU0OFRqcTNLK3VpcjhYdEhWU0Z2ZlpPYnowSjhndmk1SFlaNkRianJG?=
- =?utf-8?B?elFWbER1bnNhakpPOXoreHhCM3NObFRwc2Z2NTJvRE4vK1N3WnEzUkNQaWE1?=
- =?utf-8?B?L3dNQ2lwTi9ncWRqam5HRm9LVUZEdGRmV2hzVzdOZFYydXhFMmw2eG9nM1Qv?=
- =?utf-8?B?cE5MTHcvYldIMjhiTDBzRVlYeEZWV0g5UFQ0UTZmekFpMEJTZllwdVowQjJC?=
- =?utf-8?B?Si84WHRzRHpaUHVHT1BSekN4N2J4TmVaZUFla0xPVzgwVFc3R05CQVJPakFN?=
- =?utf-8?B?QmdERWplWWMrQ0dkc3BXVnVZMDRlZnY0R2J3dERZSHd2ODhmem53NXROelpt?=
- =?utf-8?B?QzVqWS9UN2hRdy9NRXp0K1ZvNlBwK0Y0d2gvSmE2OENXWGpTU1JTejRiUGE3?=
- =?utf-8?B?S01hcFRVVmZpYjdWSTd6QjN3RnNUcnViR3BXeCtuTWpoVXdxODd3cHI3a3Vo?=
- =?utf-8?B?NndES1dJNFNhd3NCTlRyTjRYdXBwaWt4VzRFdmw2Q3FCSXE1cVlMVEFtYVdL?=
- =?utf-8?B?cVBzUWFuNmJwNVF6aWc3N1lpVlFZd3pWRzJnVDhad0JIcVVhRTAyOVVNRWU4?=
- =?utf-8?B?NnJiSzNCZ1FyaDdmWEJwaFl5SEVsUUl4WXhoN1ZDTzR5THlQQUNhOTBUYUti?=
- =?utf-8?B?dUVucmJ3WlRQOC9yaGVuQ29wV01FSFFML3crVC9WVW1KV3hNQS9PcXNxblF0?=
- =?utf-8?B?UUtna0d1eDJqQk13T24xeG1lUWZpZHUvenpQTXpaSDhWQ1hobTBuNUNrVERm?=
- =?utf-8?B?SFVNSHpDMm1Zb0x4NW81Qi8yL3hCWktrMXVGbzlGZEtXUlZYaDJjZ2p1VjAr?=
- =?utf-8?B?b3JpdnFrd2NGY0RPSXlBSnFPT1hLNHBuL3o1cGVvMnd4TE5GRG42ZU1WQmdY?=
- =?utf-8?B?U2gyMGhlQ2thSitndDZnajA5bndUNVNnWmU5Z1JBVHlhQWY0SU16NkhuYTdI?=
- =?utf-8?B?Rlh5WURzY1dCYkJacGpjclVOdHBPTW1EcFVIR2psb3h6QWl1WHBpKzhjc2ZJ?=
- =?utf-8?B?cDhBNG54Qy9nbVpBWjJpT3dJRnArWi9jTmNEemQ3cFI5MlMyV3NVNnp4SUJr?=
- =?utf-8?B?QTd4NFQybXJ6NkhIUmNmUHpWZW5JS1NlSUlqRnNxVWZrYjJHMGlWV1FNdkRi?=
- =?utf-8?B?aHZwWUdsVmN2ZEM1cmtNTVFGbXNNYmsvRmxPOVJZbERNVWNzdkc1REIxeG9X?=
- =?utf-8?B?dHVZaTdxVFV0QzEvcE90MUVyUGo5TUZNUklVMmFoazVmM05MbFZiRlkrMUxJ?=
- =?utf-8?B?b2lBU2RnalZiVS9ObTRXejVRWWhiYUwyV3pWQ1pWTFRwbjA1OGdxeXkzeDZz?=
- =?utf-8?B?TS90NjJMVzROWWJWREM5WU5ienQ5bWpIRUtZRFAwR2xMbCtNK0lXK3VLSHI2?=
- =?utf-8?B?NnJGUm9BbytIT1NXTUpOdEVkR2ZndW1hcVJHbG96bTNySER4QjFsNjBqMnhx?=
- =?utf-8?B?ZVFYOENBNkg4UGRoRktnTnZUeDJpcml4VW91ellSU3lLeGRaSUJwZ2xnMW80?=
- =?utf-8?B?bWhJeEFRYlBFR1BIb2ZUeVNtVThWVkl4Ly82cVluS0Y5T1BRUVMxY0w1ZmdT?=
- =?utf-8?B?Skx3N0wxNUJONmZJR08wWlIrMFNQRFZ0M2NTZzljdUxHMFl2WnlrSm9PZDdu?=
- =?utf-8?B?cWpRYU05bTVRUHh2L2NaUUdVajllaGhvWWR6LzR0Y2RxenhEM1RuMGJYSHdu?=
- =?utf-8?B?d3RSU0JHU1VMWk9qU053OTVQYzlPR3IwMTFHdWR3VFBKVHljdlBhYWVTTklu?=
- =?utf-8?B?SVNoZlpiNXFxV3hpaW1pZGZpZzVsMEdvZVBObStVYjU2R0Rmb0wrSGF1R1Rh?=
- =?utf-8?B?Z044dG0yQUxkaHVGeW04bXFWNC9ZOWhZYU1CK0lVN2RHYmdEeG11dEJmQ0lN?=
- =?utf-8?B?Uy9zbEFVK25QWmRGQmQ4Y0hwOFZSUnRQNkY1TVRMVXlSSDMyaU5USEVnTEVr?=
- =?utf-8?B?c29TUjFSOTFQTlV5ajVTOHdKOEo0d0E3TjQ3c2tRR1dmQUtISlZ3MVRhZ25h?=
- =?utf-8?Q?GOd8gXwBWHe8YmFLxW?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d94d5e5f-c961-4327-87c6-08de787c55c0
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 16:54:14.5849
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7Xi1VUrI9fq09havKVpzvXvqlHkeM8/l1j+uNyz5jh7R3xFuFkX1hXu8jlLvICdSD4fLGgnGWoJ4PHkg7Vj6/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7334
-X-Rspamd-Queue-Id: 9EE251DD8E7
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 74DA01DD8AA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270156-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,gocontroll.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270157-lists,devicetree=lfdr.de];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,baylibre.com,bp.renesas.com,renesas.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[ovidiu.panait.rb@renesas.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.816];
 	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:mid]
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,renesas.com:mid]
 X-Rspamd-Action: no action
 
+Hi,
 
-On Mon, 16 Feb 2026 14:07:07 +0100, Maud Spierings wrote:
-> Add initial support for the Moduline IV and Moduline Mini embedded
-> controllers.
-> 
-> These systems are powered by the Ka-Ro Electronics tx8m-1610 COM, which
-> features an imx8mm SoC.
-> 
-> 
-> [...]
+This series extends the versaclock3 driver to support registering multiple
+devices at the same time, and adds support for the internal freerunning
+32.768 kHz clock. The 32k clock is used on the Renesas RZ/V2H SoC as RTC
+counter clock.
 
-Applied, thanks!
-
-[1/5] dt-bindings: arm: fsl: Add GOcontroll Moduline IV/Mini
-      (no commit info)
+The dts nodes for the RZ/V2H EVK was updated to describe the versa3
+devices found on the boards.
 
 Best regards,
---
-Frank Li <Frank.Li@nxp.com>
+Ovidiu
+
+v4:
+- Used the I2C device name to make the clock names unique, instaed of the
+  dts node name.
+- Dropped the RZ/V2N dts patch from this series, as the latest RZ/V2N EVK
+  board revision (v2) does not connect the versa3 chip to the I2C bus
+  anymore. The PCIe and audio cloks will be added when support for those
+  respective interfaces is added.
+
+v3: https://lore.kernel.org/all/20260203135139.28151-1-ovidiu.panait.rb@renesas.com/
+- Fixed a NULL pointer dereference on the error paths.
+- Added support for registering multiple versa3 instances at the same time.
+- Made clock names unique by prefixing them with the DT node name.
+- Rebased the internal 32k clock patch to match the new logic.
+- Added comments in RZ/V2H and RZ/V2N board dts to document rtxin_clk and
+  qextal_clk routing.
+
+v2: https://lore.kernel.org/all/20260120150606.7356-1-ovidiu.panait.rb@renesas.com/
+- Added versaclock3 dts node for RZ/V2N EVK.
+
+v1: https://lore.kernel.org/all/20251021175311.19611-1-ovidiu.panait.rb@renesas.com/
+
+Ovidiu Panait (7):
+  clk: versaclock3: Fix NULL pointer dereference in error path
+  clk: versaclock3: Remove unused SE2 clock select macro
+  clk: versaclock3: Reference parent clocks by type and index
+  clk: versaclock3: Add per-device clock data structure
+  clk: versaclock3: Prefix clock names with device name
+  clk: versaclock3: Add freerunning 32.768kHz clock support
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Add versa3 clock
+    generator node
+
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  25 +
+ drivers/clk/clk-versaclock3.c                 | 618 +++++++++++++-----
+ 2 files changed, 481 insertions(+), 162 deletions(-)
+
+-- 
+2.51.0
 
 
