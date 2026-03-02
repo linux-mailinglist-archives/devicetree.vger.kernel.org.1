@@ -1,219 +1,201 @@
-Return-Path: <devicetree+bounces-270220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270221-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aEL/FBb7pWljIgAAu9opvQ
-	(envelope-from <devicetree+bounces-270220-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:03:18 +0100
+	id oGIeEdj+pWljIwAAu9opvQ
+	(envelope-from <devicetree+bounces-270221-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:19:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF841E18AA
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:03:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D441E263F
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:19:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1AFF93097575
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 20:56:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C5E84315934B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 20:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4B239FCB8;
-	Mon,  2 Mar 2026 20:36:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2352847DFB6;
+	Mon,  2 Mar 2026 20:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CD7YMhMr"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="AWyve1Gv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013001.outbound.protection.outlook.com [52.101.72.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB4A39FCB2;
-	Mon,  2 Mar 2026 20:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772483809; cv=none; b=PfsPUeCmo9BV7W3r5NdN0wHY645ubj4ejKzPyTTfGe23knwSPEdmwd48tSfc3h5lym5ykULniWvOa9+uWnuW8XgkIbQt827s1vtSKzpOv/FayAXJwrAtYDQnWL9pMUPOSl8L2qnblL1j+h870TQk+pteJw/zxUbdnXQmGDN4Ptk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772483809; c=relaxed/simple;
-	bh=PD5DFa8i5X5/nP8y7O1qKeKc96AFlt8mvgh/gSZz72U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PsbnFuqMNL9N2/e8tPfVS+65giJoD37bHLj5tlnpXD3px4b8ixqaie7gRE8rjGRhDvQnR5D2+dYjLbnrEXITw71wxIHwaURGpHa3+2pk+N76ilVXuDW9MdWVJ0dpODYcdHBVR8wu7zC3wBW+S41Y/jnTTeof0MrnBky+6H4mCDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CD7YMhMr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48C20C19423;
-	Mon,  2 Mar 2026 20:36:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772483809;
-	bh=PD5DFa8i5X5/nP8y7O1qKeKc96AFlt8mvgh/gSZz72U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=CD7YMhMrlTqxc1hvPQy2J2I725MolzFjbolfs/Zjf/xMKljWzmn2xviKExmUrR25b
-	 joCIAe0vWYJvrfT5uoMctXnpZ0joUQS5c9Ya5iaHjtvjF4kD/Qf633uqabTn5QemTB
-	 jjmtrsXZi+qihD6XWid+G57WPW0betj5Ba9dA8kDf2w9NQLvbgRg9fvZwwuXuTM12n
-	 Pzl1XxrBo9fP60D0e91KPgn8M8fGEZLBEdTmyn5NPHDqcoTbufigBu/HbzzE3dRNQ/
-	 Lojs3JGUlMuft41VVu8czExNs5/zu9QHr1Ef6sRO8JMoSI3FjGPToYDXAa8OKrSEdA
-	 TEqgrJun7Jd8g==
-Date: Mon, 2 Mar 2026 20:36:39 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Marcelo Schmitt
- <marcelo.schmitt@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- "David Lechner" <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>,
- "Rob Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, Petre Rodan
- <petre.rodan@subdimension.ro>, Jorge Marques <jorge.marques@analog.com>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/3] iio: accel: adxl372: add support for ADXL371
-Message-ID: <20260302203639.1fcec771@jic23-huawei>
-In-Reply-To: <20260302122116.1282-4-antoniu.miclaus@analog.com>
-References: <20260302122116.1282-1-antoniu.miclaus@analog.com>
-	<20260302122116.1282-4-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2FBC3A2576;
+	Mon,  2 Mar 2026 20:37:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.1
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772483831; cv=fail; b=GS8snJ5PCPYFdqYczxHFK90RiFPz5wxYzmLPHykk4OVgyRYNV3qJeNiQpQSyR9nMITJZ53XGMMEq53EbScXPl5jUR9VokHhDhnKYHloHFosWN4vDgbEaaXvUQovTb3cOGb9nTagZyqBVATH7LZ/dcsMeULCl/GaACJlYB6YXPxI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772483831; c=relaxed/simple;
+	bh=EuOpwFPev3uA+ZcJ6CcFPJco+cD0r/lp0Fzv6PicnU8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Qwnuc57isYho1I2qIDuLVmr5848o7edRZ8N3doGTCXS2oX5PqqeXMJmxIqOUpQwOvDt81TsXbl0o6ryGLtYu26tfVRVx77v8NoZzlT1pJF31/PNSn4dqH8GvAz41VXFHDiRQyxAy7vV0e+qmzPH29+DY7ikyTCeMJs2+85gs3sc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=AWyve1Gv; arc=fail smtp.client-ip=52.101.72.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pPktjBNUfmUWtjoFYYfcdff472zy6cqqjIDqsFif3pQJyPBUb1DTs+hpHlVaNgLkhNu471EU2JsbPv3uuv6p09akBjVP/nxtFs9jPzh83jJ552TdlXCx3Xk3/ykyzdhMl+DxdU2+Nl0wm1t1rrm8Sbxm9zgAC7+AHw26qUJo5v7xiCVr1iq4mZTWm4f3hCvH8yZT3MeRJ0yDwmJ2oinaQlxw7pkfXJ3sdjI1InNu17qs09zEfJqawANkDFMSX+Fjs3Sa/rhiBfUc89X076qSFg/ov+JGSdKLijiwDVyiLUm4oXYJWf8blsUmw2dfDbR0AQVOmWHdSE2Qh1yq36Np8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tg2ZTu6aOX72dQDAWrZhwPo+4zsQYTvhwY6z2RLpA1E=;
+ b=Gh3LSb68+U2Irwrh6H3p4XpDzSujhgMQvbP5CtyZ5h8dDRxrwvF4ONixIodw7t+RxnljllbTaQi/qSMG+IezISX0ZvObfsvIS/RbORLEoqMi0DBcLV4m5MvC6df2MKOjJiac9TtslyKHtk21zF2v8b80nDWWOPbDNpJUJrVtok/gAB+k+SK234zOMnWbda0DGA3nYAcm4QhzANwyYn/ffGWjKqaEZQhciCmcUb0MkQKhNkaGjrfNfojxl0Ldui9sdPQZ6TPz5Mu/OfP7gnmUnm+8PuP4L/OISKRyVheCplMfiJYiBwAvRDOcRUe255GmoO3JrAAknrDeW6hiTlc02A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tg2ZTu6aOX72dQDAWrZhwPo+4zsQYTvhwY6z2RLpA1E=;
+ b=AWyve1GvdVIcyuwOIadhkHBV8b945yi7u8ZVQzhvgtBHMkhonIgEL/M5GfTWJFzJeTb3AL6ZH7ca6U/VcpjPT5nAmfAmr4gB1rDvW59Bt5FVTFrHkh1lCPlhYz/x3ETB0LjFAi5RVob36x0TyFjl9984Y5WUKbqQ4kY7gf1mXC6z/mMAxtz67eqQ5x4hqV0ydsTe4mPS66FAJ8UqnQv3EhbGyahks84eZEU420QfWZ7Z8bx1eOScBBZGvjzbAAsfO56RECaNMlWP9zCL+RJGyL4JaOlQXLbDr9a02tgZxV00yCWu509KfXVQ3CnwpXYxUJ8RLkeQCGEw7AWdGOIiEg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by PA2PR04MB10445.eurprd04.prod.outlook.com (2603:10a6:102:41f::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
+ 2026 20:37:05 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
+ 20:37:05 +0000
+Date: Mon, 2 Mar 2026 15:36:56 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: sherry.sun@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	festevam@gmail.com, Richard Zhu <hongxing.zhu@nxp.com>
+Cc: kernel@pengutronix.de, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] Add i.MX943 PCIe supports
+Message-ID: <aaX06NS_XpPYYHlc@lizhi-Precision-Tower-5810>
+References: <20260209055745.1545129-1-hongxing.zhu@nxp.com>
+ <177246919562.2086883.17926195087426226216.b4-ty@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <177246919562.2086883.17926195087426226216.b4-ty@nxp.com>
+X-ClientProxiedBy: BY5PR03CA0005.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::15) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 0AF841E18AA
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA2PR04MB10445:EE_
+X-MS-Office365-Filtering-Correlation-Id: a96a9a86-a5b3-40d8-a9ad-08de789b77bb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|19092799006|366016|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	qQD2aj8pLm3EkjmFJ342w4hXeZ+Re/zg/G9uXRiOx08BJpw/JkAROpVw2qBSxpqf4X/VlJ7QFg+buucSCoGb1vBbYvYODmUZVz79uzOiGHMbBkKLSivzgrmfG+m+AHIe8YMcSrvrp2+TtE9p1z5JKC1UxMs0bt60eBmroxvE+K9ZWN0/jbtO1xiR9zF0cuXBRAAr7a+Qkj6hWdc73UBYQK3eNXZ3xhSOlqaxaeprBH6+OwCe2odq3wsHZc8eYIs65FG4mcQhcTu9cfKNe9HMVbsKjKeaokfV5tgFPb4DBPn3iYjarxwUjnJdt6KjZVPs6GGnDY2FULj/7HoKEVKtw7gvP6MO4vuOH6Iz5l90P9D/RRSmDqAyxxC+sf0UgOzW8CXQ8X4R+vukxBTgrbyfg2ypMlQtuOivRhd5I963K+oi06EC5I4WliqAjPwPlVqXSo4BO18hLZuK6zcLNkDp6+5VuC7VK6JC1ZwAgC1M9d+ewB91nQ5C7c/FXKP9bEWkiR8VLQkPrZhHjX9vkIznYEvQry7ErxzQPzfH/D0db/9xBhexXaEhqPZKTt10iHbJ5kEVpPdTdHnGsbTtlakJMjtzpYi1ARRPIlOrAwyW2LvkLaV6oHOGTkWx04uYMa3VX0O3BnYpg/J/NfnPRKyiA3CTLMlbro3If6bF4BoEP7zy6d7lTGcXdiKFpPF1ObijX/kxCdBIbk4wlhLiLxSRC7KfbZYwJMj9B44JLbpK4A+pFS6uE1/1M//kNGdB7uMpBEMjxxbCvyNn+EeyikOjjryWibmVe7g0wMDWW6Daih8=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qKQ8tK4YCCWA4Hq+1GM6wuJd1mqYsmF5opi025kwyTFceUe/W2LRgjisllge?=
+ =?us-ascii?Q?TwML8SFOis7AY3UATgvZq6ieDKqWV/oBAtvtMIa+ElBl9B5rxPTzEJ9aE/hV?=
+ =?us-ascii?Q?lwvsHrYilfrQ7zGKHIrSKq3jbyl3DM3hk0ijCqB35talOxy0r/9vCBKchldr?=
+ =?us-ascii?Q?hFX4f+jpX0OWLsMeoo92OGp1sWsfiJO+I2KRCOf0Zo5MyCjVKiS4hMt3fUjT?=
+ =?us-ascii?Q?lWAzU8+/NlA6gLp4LCA5k+aDT1HpyPEeiAoOLDVPiQWQPaFhsz2aGpPF4IWC?=
+ =?us-ascii?Q?tfwN3UcmwTOJl/6V6NxH+pLSXEt4g0PBnWrxQDH4EEGVr/79ucdWbM+daykN?=
+ =?us-ascii?Q?0vozeQeFGgzekHSwydxbQIaH75Of5OsQXYBeFyI0Dg9Tv0HOuRGoNroZ8oTq?=
+ =?us-ascii?Q?JdydAoyRw1de0R+Ciwog6dYIwXh8wvKW9E7x7bGXQ9p7+VMR+mVwe+7m3zZh?=
+ =?us-ascii?Q?UfY9ndcZRSFBYJK7Qizoo9v4WfR2wJSH9vp2uRN8ednBtAAw1bUdPD3vRBu/?=
+ =?us-ascii?Q?hkXZG/tei9dd/rwAkhbW/egplBmo9v/m0QVDjRIvqL5ZzSnsLL5eFcbc0y/V?=
+ =?us-ascii?Q?rcGbPvf+D0KgTfmJh8Vs+XdUefGA4IgnNSDfsMOU9viTv58Z6UYYML9YbCEd?=
+ =?us-ascii?Q?8TD/usi5ggcYx9ic+NCelkXBjgTnjkWG5DPaF17jzERrHlvVxYr46ZZH2KE6?=
+ =?us-ascii?Q?PSAQ3N81QKM0l0Iu0aTOVuMpDgWNSeuLJy8X37hFe0BKHduFkj8w0a6n3w/j?=
+ =?us-ascii?Q?ibryQcIPqSpcliWd2z4C1b42lwZe8G5+xRjVYrip82/EIwbxioWV7jTcdjWB?=
+ =?us-ascii?Q?mOIMNYUetwaajDgX0ftFncRjbopvlBe1kzbPvzdAbU9+loESrRLTQBO/e1dE?=
+ =?us-ascii?Q?jZJ4JkYBDclKViUG+Dqi31DBGykQsYhSwPjOKFMBKXQPhYoZb8nWfji2B5Sq?=
+ =?us-ascii?Q?AUWAPcQIVgas4DmPSuX6zsvfgW35kppQmjrnMGLlHPB8gvLgG6DgpaFXI56W?=
+ =?us-ascii?Q?9g3FIcDCMoaM/xD7ChdYhYXBqeUso4h4V2vglXI9vskmFetxdNhEFjaqZKxq?=
+ =?us-ascii?Q?KOPAIcIouEwOOiioEo1up8zp8DOmG7uBoCBPSOl3U3urkXR1hyEGfbdWBVtD?=
+ =?us-ascii?Q?ftFW5n2kKlIBcOgJlFzD6xHCkWG+LtEwXC078NuJVRyQqzhhu/gem5tUESiF?=
+ =?us-ascii?Q?EZeJJRhHGthim66X98EzhSbUj2u4/e+amlr1v8paodWXmv3hTxwg03JbOWVo?=
+ =?us-ascii?Q?S5MW4MNf06RNyxCT0k7mwXD7y+zEa+ZiXtU339F55lnEMKZmiomIOn+tF9jn?=
+ =?us-ascii?Q?Arg7TPW4wDmQBJ8oVfKlcmrJDBYcM3hgLR9oEsNMR23meaFO1BRBqgnv89DX?=
+ =?us-ascii?Q?ntQpG3nSAOsoR7PnHJEERUiK0LMYfFHOuHewHe5jKS7UoRgiezPUNVM+xpTl?=
+ =?us-ascii?Q?t7yf+7Jn/xPYO086DpFG+Ohu1mb1y84YGs9mFQHMGqqe1NRsf29t7yHybz9E?=
+ =?us-ascii?Q?9UWDnfBDMUVXdTzOhdPua9epVkY/7S0TzkBVXmpUp3+Mxtk7FQyPA9PBgBpB?=
+ =?us-ascii?Q?3AuHmbUvYP0k4FmqhbZvyHwrfdzkG6Ceogh+DLggI/ZjMGSH9Ei88Txr/2GW?=
+ =?us-ascii?Q?7nhkTWty1eUd1+7irgbrB5xHcerMti1j0siw+zUUPu0GkvgVfYy8fU9KZWja?=
+ =?us-ascii?Q?iOh6RXEYu27AJ8Kf4xf0txcD84PlbSWnG9oZKgu7Cgd/vJCh?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a96a9a86-a5b3-40d8-a9ad-08de789b77bb
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 20:37:05.8777
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AaPPDFPLBUC63xoBGgug+nGrVsCNd4pRLb06AK7A2dKAL18Qvm3hasDqGZSqQ847863HugoZxOdE3omlqD1oPw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10445
+X-Rspamd-Queue-Id: B9D441E263F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270220-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270221-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On Mon, 2 Mar 2026 14:20:59 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On Mon, Mar 02, 2026 at 11:33:15AM -0500, Frank Li wrote:
+>
+> On Mon, 09 Feb 2026 13:57:42 +0800, Richard Zhu wrote:
+> > This patch-set adds i.MX943 PCIe supports on EVK board. Please pay
+> > attention to that it relies on the patch-set[1], and the PCIe1 port on
+> > the EVK board relies on the {2].
+> >
+> > Both of them are queuing up to be included in the coming 6.20 kernel.
+> > [1] https://lore.kernel.org/imx/176649331066.523506.9443864112044699350.b4-ty@kernel.org/
+> > [2] https://lore.kernel.org/imx/inzg46tc2fwsajxq4vzdyuiq7krzy6xtcg2mjaieninz7zsmgm@mtdjr4tuegpq/
+> >
+> > [...]
+>
+> Applied, thanks!
+>
+> [1/3] arm64: dts: imx94: add pcie0 and pcie0-ep supports
+>       (no commit info)
+> [2/3] arm64: dts: imx943: add pcie1 and pcie1-ep supports
+>       (no commit info)
+> [3/3] arm64: dts: imx943-evk: Add pcie[0,1] and pcie-ep[0,1] support
+>       (no commit info)
 
-> Add support for the Analog Devices ADXL371, a +-200g 3-axis MEMS
-> accelerometer sharing the same register map as the ADXL372 but with
-> different ODR values (320/640/1280/2560/5120 Hz vs 400/800/1600/3200/
-> 6400 Hz), different bandwidth values, and different timer scale
-> factors for activity/inactivity detection.
-> 
-> Due to a silicon anomaly (er001) causing FIFO data misalignment on
-> all current ADXL371 silicon, FIFO and triggered buffer support is
-> disabled for the ADXL371 - only direct mode reads are supported.
+Sorry, I dropped these 3 patch because there are DTB_CHECK warnings. If
+there are extra dt_binding dependence, let me know.
 
-Ouch.
+Frank
 
-> 
-
-> diff --git a/drivers/iio/accel/adxl372.c b/drivers/iio/accel/adxl372.c
-> index d1f957adea64..10eb5bf14dad 100644
-> --- a/drivers/iio/accel/adxl372.c
-> +++ b/drivers/iio/accel/adxl372.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0+
->  /*
-> - * ADXL372 3-Axis Digital Accelerometer core driver
-> + * ADXL371/ADXL372 3-Axis Digital Accelerometer core driver
->   *
->   * Copyright 2018 Analog Devices Inc.
->   */
-> @@ -182,6 +182,14 @@ enum adxl372_odr {
->  	ADXL372_ODR_6400HZ,
->  };
->  
-> +enum adxl371_odr {
-> +	ADXL371_ODR_320HZ,
-> +	ADXL371_ODR_640HZ,
-> +	ADXL371_ODR_1280HZ,
-> +	ADXL371_ODR_2560HZ,
-> +	ADXL371_ODR_5120HZ,
-> +};
-> +
->  enum adxl372_bandwidth {
->  	ADXL372_BW_200HZ,
->  	ADXL372_BW_400HZ,
-> @@ -222,6 +230,29 @@ static const int adxl372_bw_freq_tbl[5] = {
->  	200, 400, 800, 1600, 3200,
->  };
->  
-> +static const int adxl371_samp_freq_tbl[5] = {
-> +	320, 640, 1280, 2560, 5120,
-It might be a good idea to make the association of ordering an element
-explicit via
-	[ADXL371_ODR_320HZ] = 320,
-etc
-
-> +};
-> +
-> +static const int adxl371_bw_freq_tbl[5] = {
-
-I assume these are indexed off the odr enum. If so then
-	[ADXL371_ODR_320HZ] = 160, 
-etc here may make sense as well.
-
-> +	160, 320, 640, 1280, 2560,
-> +};
-
-> +		if (st->irq) {
-It might be worth factoring out this block (maybe the earlier bit as well)
-as a helper function in a precursor patch.  
-The indent is getting rather large for such long lines.
-
-> +			st->dready_trig = devm_iio_trigger_alloc(dev,
-> +								 "%s-dev%d",
-> +								 indio_dev->name,
-> +								 iio_device_id(indio_dev));
-> +			if (!st->dready_trig)
-> +				return -ENOMEM;
-> +
-> +			st->peak_datardy_trig = devm_iio_trigger_alloc(dev,
-> +								       "%s-dev%d-peak",
-> +								       indio_dev->name,
-> +								       iio_device_id(indio_dev));
-> +			if (!st->peak_datardy_trig)
-> +				return -ENOMEM;
-> +
-> +			st->dready_trig->ops = &adxl372_trigger_ops;
-> +			st->peak_datardy_trig->ops = &adxl372_peak_data_trigger_ops;
-> +			iio_trigger_set_drvdata(st->dready_trig, indio_dev);
-> +			iio_trigger_set_drvdata(st->peak_datardy_trig, indio_dev);
-> +			ret = devm_iio_trigger_register(dev, st->dready_trig);
-> +			if (ret < 0)
-> +				return ret;
-> +
-> +			ret = devm_iio_trigger_register(dev, st->peak_datardy_trig);
-> +			if (ret < 0)
-> +				return ret;
->  
-> -		indio_dev->trig = iio_trigger_get(st->dready_trig);
-> +			indio_dev->trig = iio_trigger_get(st->dready_trig);
->  
-> -		ret = devm_request_irq(dev, st->irq,
-> -				       iio_trigger_generic_data_rdy_poll,
-> -				       IRQF_TRIGGER_RISING | IRQF_NO_THREAD,
-> -				       indio_dev->name, st->dready_trig);
-> -		if (ret < 0)
-> -			return ret;
-> +			ret = devm_request_irq(dev, st->irq,
-> +					       iio_trigger_generic_data_rdy_poll,
-> +					       IRQF_TRIGGER_RISING | IRQF_NO_THREAD,
-> +					       indio_dev->name, st->dready_trig);
-> +			if (ret < 0)
-> +				return ret;
-> +		}
->  	}
->  
->  	return devm_iio_device_register(dev, indio_dev);
+>
+> Best regards,
+> --
+> Frank Li <Frank.Li@nxp.com>
+>
 
