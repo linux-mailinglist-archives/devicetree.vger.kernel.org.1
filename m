@@ -1,124 +1,219 @@
-Return-Path: <devicetree+bounces-270185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270186-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kMTJCUPSpWk0HAAAu9opvQ
-	(envelope-from <devicetree+bounces-270185-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 19:09:07 +0100
+	id sPquI9TSpWk0HAAAu9opvQ
+	(envelope-from <devicetree+bounces-270186-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 19:11:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 791F61DE444
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 19:09:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E48721DE495
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 19:11:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0968330525F1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 18:08:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 158B3304BCD0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 18:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5A434F48C;
-	Mon,  2 Mar 2026 18:08:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4602330D23;
+	Mon,  2 Mar 2026 18:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XRRBkTEc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XCThIaT+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3507531B13B;
-	Mon,  2 Mar 2026 18:08:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912AE280A5B;
+	Mon,  2 Mar 2026 18:11:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772474913; cv=none; b=Qv7MlWs45grsHGs2WjS6EWCaw/pryuW3FMcr0A2I5YLow2g/MWiWP0L3lFVnl6SkY9wZF30a1fma7UCuvz17oAEf4Eeo0Xuru8yAhWp6HUZMyrBfLcnYy25XEOjkzicyFbC441hEhV6JpS4n5z39rP5BdM02FYa2y9hBk/56l4U=
+	t=1772475066; cv=none; b=nRnRVnrfNLDJuiLO4cYM4B0GBHi9cNiKer2RJivd2hSFjp+tHREvs5Ea7l1J1yttNJ9EXtMBT/53kfboKOlFH1RfuyJ+cJpUKdk7r/zaTO9AQ+VeA18uEDz+CyMUtqmJM749lNwPTpwAuEox9p0U4czriy12nZSbL+xyJR95uPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772474913; c=relaxed/simple;
-	bh=oulVRINFDT/6gDGtV3K6TJRIxGyRS4NjQHz7UJPaAOw=;
+	s=arc-20240116; t=1772475066; c=relaxed/simple;
+	bh=9vMp8oVY9ly+koARXC2CDFt7G+bOzmkjyESC8o/h6PE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mjwfe3WhFN+9ftl12rC3flf6HLeFhp1QT75Zh+oZCqdq/R0WmUGj2vP/LAOqXG/iXFsFQl2gRa9Fb9Psou18FIs/ef3DbSE2Ee+Gh6XaKhDCBk3AeIzwd9HBxt/VA0NOgVLYsDN5jFApNaCy2KW3CpRGTqR/UAYAOMMB2P2/LZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XRRBkTEc; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=CLPUXhVrrl5QkMzjH5mUtpnyTmkgWM8SI70aL7C8RrU=; b=XRRBkTEc7bDHuakd9vZCJt1Y9V
-	lmFV+qXLMCNS+d3/vQGdUf6hoC3xENg1EfuBry1YYdFrL0yFAZ24Ng0TTYhcp02X0XVBKSOseFIwY
-	8ACEGFnOmF/iz2Li8QsKlwljsx5Z2EgReewomye0gve3PHj2RrDE60S1OvVBNIPiEM5Y=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vx7gj-009idt-Cp; Mon, 02 Mar 2026 19:08:13 +0100
-Date: Mon, 2 Mar 2026 19:08:13 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Po-Yu Chuang <ratbert@faraday-tech.com>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, taoren@meta.com
-Subject: Re: [PATCH net-next v6 0/5] Add AST2600 RGMII delay into ftgmac100
-Message-ID: <81c7c39f-8e52-4749-9f87-0ea707114821@lunn.ch>
-References: <20260302-rgmii_delay_2600-v6-0-68319a4c4110@aspeedtech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=q4ewhnqyx7DFGCjC12jnVNjHAj10fb2EpX7I6pgxFhkYe7AxXy/snPBD75NTzwGfeld2a2T7gtZz+4RfN0tdwlTt/CT/P5Pdab8fwJaIh9riMRMDoESbd6qPhUnTkEWfb3cUxpTUYyjK0Qoq9nJj1UHZ3AAzXUKD7hwsmMwbfus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XCThIaT+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFB33C2BCAF;
+	Mon,  2 Mar 2026 18:11:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772475065;
+	bh=9vMp8oVY9ly+koARXC2CDFt7G+bOzmkjyESC8o/h6PE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XCThIaT+vkO8MNEptzSfjE8GU7VO97Um4ozCagAenO6aTvoowkOptMN5DJflr8Iw4
+	 1Fziczj1/mxZoJTXL7ofEKJ5lHHYs1owsVXCRfPbs1eG3rZsYX4MZ70h1T8TPgOTVF
+	 N7V876RrEG0k7Hqh0mmxAMSbgbqa8sAuFO6euRnvFxfJjHmQD8EDcCCSNjHefpAUap
+	 /R7kG63cIyP1yb77zLxeLTB9onoPM5rZzwtYKrnaoPgufk/R9k04aFBSy/cu/VqnuG
+	 QWEFAPY8h/iAjnlWtv7YYl7/N6yUiPNQ9KiiF6HuqaHT7UIKhFnbUe89ZfUeH2se7/
+	 Yf6b9egFtYtjw==
+Date: Mon, 2 Mar 2026 18:11:00 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Chukun Pan <amadeus@jmu.edu.cn>, dlan@kernel.org, alex@ghiti.fr,
+	aou@eecs.berkeley.edu, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, elder@riscstar.com, krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com, pjw@kernel.org, robh@kernel.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH] riscv: dts: spacemit: pcie: fix missing power regulator
+Message-ID: <20260302-glamorous-undivided-08b11b794939@spud>
+References: <20260226-k1-pcie-fix-pwr-v1-1-94b493cd27e5@kernel.org>
+ <20260302030511.30566-1-amadeus@jmu.edu.cn>
+ <20260302033655-GYA288339@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="0Cad6xDtBs6YbbZc"
 Content-Disposition: inline
-In-Reply-To: <20260302-rgmii_delay_2600-v6-0-68319a4c4110@aspeedtech.com>
-X-Rspamd-Queue-Id: 791F61DE444
+In-Reply-To: <20260302033655-GYA288339@gentoo.org>
+X-Rspamd-Queue-Id: E48721DE495
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270185-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270186-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 06:24:27PM +0800, Jacky Chou wrote:
-> This patch series adds support for configuring RGMII internal delays for the
-> Aspeed AST2600 FTGMAC100 Ethernet MACs. It introduces new compatible strings to
-> distinguish between MAC0/1 and MAC2/3, as their delay chains and configuration
-> units differ.
-> The device tree bindings are updated to restrict the allowed phy-mode and delay
-> properties for each MAC type. Corresponding changes are made to the device tree
-> source files and the FTGMAC100 driver to support the new delay configuration.
-> 
-> This enables precise RGMII timing configuration for AST2600-based platforms,
-> improving interoperability with various PHYs
 
-Please add more about backwards compatibility. With just a quick look,
-i'm not convinced it is. So it is missing text in the commit message
-and probably comments in the code explaining how it works.
+--0Cad6xDtBs6YbbZc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-    Andrew
+On Mon, Mar 02, 2026 at 11:36:55AM +0800, Yixun Lan wrote:
+> Hi Chukun,
+>=20
+> Sorry, I missed your mail due recent problem of my client..
+> On 11:05 Mon 02 Mar     , Chukun Pan wrote:
+> > Hi,
+> >=20
+> > > &pcie1_port {
+> > >  	phys =3D <&pcie1_phy>;
+> > > +	vpcie3v3-supply =3D <&pcie_vcc_3v3>;
+> > >  };
+> > >=20
+> > >  &pcie1 {
+> > > @@ -320,6 +321,7 @@ &pcie2_phy {
+> > >=20
+> > >  &pcie2_port {
+> > >  	phys =3D <&pcie2_phy>;
+> > > +	vpcie3v3-supply =3D <&pcie_vcc_3v3>;
+> > >  };
+> >=20
+> > ```
+> > &pcie1 {
+> > 	vpcie3v3-supply =3D <&pcie_vcc_3v3>;
+> > 	status =3D "okay";
+> > };
+> > ```
+> >=20
+> > According to DT binding, the vpcie3v3-supply of the &pciex node should
+> > be moved to the &pciex_port node. This is simply a duplication of the
+> > property.
+> >=20
+> I have confidence that pcie port need to add a regulator to provide=20
+> supply for devices..
+>=20
+> But, I'm not sure whether it's ok to remove regulator from &pciex node,
+> it's possibly a 'yes' answer, but to convince me, I'd like to see a real
+> test case to prove it: e.g, power supply for pciex is actually off before=
+=20
+> the driver initialization, then run regular procedure as it should, if
+> all works fine
+
+I'm not really sure what this is about. Whether the supply can be off
+before driver probe has nothing to do with what node the supply should
+be in. If you're concerned about removing it from the pcie node causing
+it to not be enabled during probe, then the driver should probably reach
+into the port node, get the regulator and call enable() on it?
+As I said when reporting this, either you need to change the driver and
+dts, or change the binding. If the supply actually is provided to the
+controller and port, then you need to change the binding to have a
+supply in the controller node and change the driver to make sure that
+both the controller node supply and the port node supply are enabled as
+someone could opt to provide them from different regulators.
+
+Looking at the bpif3 schematic
+https://drive.google.com/file/d/19iLJ5xnCB_oK8VeQjkPGjzAn39WYyylv/view
+I see nowhere where that 3v3 supply is actually provided to the k1,
+which I would expect if it were the supply for the controller itself.
+Instead, the m2 and minipcie slots are where I see that supply provided
+in the schematic. To me, that sounds like the port is what needs the
+supply, not the controller, but I'm not super familiar with pci
+devicetree stuff unfortunately.
+
+> Btw, different drivers request same regulator is ok, and is quite normal,
+> can't draw a conclusion that it's a duplication, as they may be used for
+> different reasons
+>=20
+> > But do we really need this pcie_port (PCIe bridge)?
+> >=20
+> > The PCIe bridge node (pcie@0) was treated as a platform device, but it
+> > did not define the interrupts property, which resulted in the following
+> > warning: `[    2.897980] irq: no irq domain found for pcie@0 !`
+> >=20
+> > Would it be better to submit a patch to remove this pcie_port?
+> >=20
+> > ```
+> > -       ret =3D k1_pcie_parse_port(k1);
+> > -       if (ret)
+> > -               return dev_err_probe(dev, ret, "failed to parse root po=
+rt\n");
+> > +       k1->phy =3D devm_phy_get(dev, "pcie-phy");
+> > +       if (IS_ERR(k1->phy))
+> > +               return dev_err_probe(dev, PTR_ERR(k1->phy), "missing PH=
+Y\n");
+> > ```
+>=20
+> I've not really looked at this, and not an expert on this area, so will
+> leave this to Alex or PCIe maintainers..
+>=20
+> > I have tested this change and it works.
+> >=20
+> > Thanks,
+> > Chukun
+> >=20
+>=20
+> --=20
+> Yixun Lan (dlan)
+
+--0Cad6xDtBs6YbbZc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaXStAAKCRB4tDGHoIJi
+0lPgAQCTClU5vis2+9tJyIZfKTjWOd7YSjjJVly2CSagyY0jSwD/QaQ7vxm86Sgy
+owyfMcezZaRHlgKA8IjooEkHjVJuswc=
+=MISq
+-----END PGP SIGNATURE-----
+
+--0Cad6xDtBs6YbbZc--
 
