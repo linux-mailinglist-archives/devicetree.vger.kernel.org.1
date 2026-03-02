@@ -1,613 +1,429 @@
-Return-Path: <devicetree+bounces-270229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270230-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yKtkJ/oFpmlVJAAAu9opvQ
-	(envelope-from <devicetree+bounces-270229-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:49:46 +0100
+	id mMg1D78FpmkzJAAAu9opvQ
+	(envelope-from <devicetree+bounces-270230-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:48:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F2A1E41D1
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:49:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DCA31E411D
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:48:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 904373065114
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 21:39:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6410D35EABE4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 21:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A593A32E5;
-	Mon,  2 Mar 2026 21:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2139D39F17C;
+	Mon,  2 Mar 2026 21:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="brU5p6kX"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jrO25vSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013065.outbound.protection.outlook.com [52.101.72.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6C21A6803;
-	Mon,  2 Mar 2026 21:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772485676; cv=none; b=u/V/tnD87EoXRCnFLSsORZuLacepbFY8L5/Av5Rw3lxj3dKPWdjFBGvnE+7p6lGQ43KMBb6Gau9IkMyu7tAD72CbqLBQsJ84jAWFc3Foue27w5xk3UOA4ya35BWSiyUnN6XY82pHMU1IaJ1xav4mf5iPZvZE6d77o2U2FRiIUAw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772485676; c=relaxed/simple;
-	bh=z6cDaCxakhYk9lnEw/J3l48JO3VUQQPoI8dgWVOHqoY=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=dlmZeObo2s7llwFWRXZbH2SYypUAIrL6Z8nM1VQGjYVkCDwaJ028FMBAnvXAAnslySb+coAs7XECoFi5mK4AN+JHX7ZigiV3yeCBP3w3dgcBqCxg6DJts34QlXpaw3i7xTFZGNyi4aVSloJXr2HjUvzhy0LINiot2WT7fXoof14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=brU5p6kX; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=bcZ+zkLgY4SHu1gDEZdS3P2i8ZjyXJ6YtFso0ztzr1k=; b=brU5p6kXCW23gcvGs8eZs0M7+H
-	sjPaMbNiXM97DsvAmC9vfD0zW+v88JBvPGFgLdbTWijI+q748bJTDk40wyzRfgmMZoCw/xFGjb+UM
-	+iJ7a8hvUJzZWzPYuFilPrL8hPLi7YV3gNn1jIsFyrO3eP+nNrsdMKVAVkx+XzUBfKak=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:39142 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vxAUG-0004Ko-JP; Mon, 02 Mar 2026 16:07:33 -0500
-Date: Mon, 2 Mar 2026 16:07:31 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- shawnguo@kernel.org, laurent.pinchart+renesas@ideasonboard.com,
- antonin.godard@bootlin.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>
-Message-Id: <20260302160731.0b6dd8fc1709a91236289fea@hugovil.com>
-In-Reply-To: <aaX4DYzfR2HifTtf@lizhi-Precision-Tower-5810>
-References: <20260302190953.669325-1-hugo@hugovil.com>
-	<20260302190953.669325-8-hugo@hugovil.com>
-	<aaX4DYzfR2HifTtf@lizhi-Precision-Tower-5810>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B3E388E79;
+	Mon,  2 Mar 2026 21:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772486080; cv=fail; b=YFISX1o5WveVC+AkeDxqfiwA+Bbb4S6O8lzBSSivhdkTIBuTiXEtSht3YyFFsQSgWg+TlEUbn8eoYWfioQ6R5EXS72Wsos3n2KB9yPIMOOjccR4p5LZ3JLmmQUqzlrW7TD72YQ9kEzSjtecjMRspnkOJLqppakGp+dnFuBx+Cak=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772486080; c=relaxed/simple;
+	bh=m0ifbLyOY5oM351k4QIpRxIqFq0JEBeVpUsqYKMotNU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=KJp0SeT0W7JGEbI2hl8oU2ID89zC2UcBhMz90jRmoliLgvwRd/hJd7o4lI/FaIYwc/mQba4HRjBoF26eHaVtqsrSi03wpVZNmenW6jH8ayC7XaW4i+bVH3MS9upgUeKAyiRwHg8VtVKI4RyzuSOh2oqOjrhNA3rr08OHMk3JCog=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jrO25vSc; arc=fail smtp.client-ip=52.101.72.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=brc5XszxH4peYVtNpZftDf6GTfAsrgmuUmUAO8yt0iz3pWemeh3kQfCtNO4fwGLZGpS8wZ196NycXxweGMPLOEAsZDzJsFGlsWLdgeoxNNMxYmKwqfGOwhOKp7MZpIFimYDB1Ml2G+qnWyzTy2G6sw/lC2HqC5MnLeZj+gWfuI2IqSSIthx21D0LLtRRwIcHurIKfT6YFXM3kkxDmaPu5vs8CPvaL0GGQJvRIe6O0gjjENU0RksaMuLBzovr4o46e6rDZdzES8Sl7H7xiPE+mrdrWAlVf1nbEhb3WH920HqJX+Ld5kckmGyHkBDeso11V5pvSTt22MQnMCZJ/fq0Vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AueXEUvfb8faKZk3L1uws7lstA96auNi1n2MgBR/xlc=;
+ b=MyuLVhI1uYEa/uBSoZrQ/BJJFs3wdpxjkAfBsymlCi16wp2RGEhC74L1Hya5bSYgkT6duwk+Noe3RXy5pQ5K+ISstTT029jpwFHSyDIeBcSMb8ppFA5z5xrlyGaknw/nQag9qLn+iCk5ghHGuopF8x+poOOXDQk/yMtZ+EziDQhp29jlNBxy8m5FSDJK0RoEp5UEbfaXfVphDqp2lI/MmaHqaVoQ3iwlmYFETczCQCCjrP0N3CSrsl3EuL5Akjt6tI/Ht+aMhNVTOclcN2RHeypi1+ZEHRtdMHXroYAbVsegz+RhlLUPzMLjhNE74eB2d4fEonz/QCuJEDhoHNCD5Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AueXEUvfb8faKZk3L1uws7lstA96auNi1n2MgBR/xlc=;
+ b=jrO25vScnAb2pKZSXgyl9PMiUHh7HceDVERUhjVFocIhUStZ2t1niFAKDI7a5T6DPmof78naufe20bTXuv/KK4qG0tjtHLn2EOtLxPnegYqiaBiRF73Cin1QkOi6IwBKljcO67R3Mxli/EBHGtGEYHjqb6l0guJUe1OGnbcMiqQ7wt/7r3cuEV+qtOwZjXmhYE0dUA2M9GU7VrASf4yylcIoyg/CzSykqFG2GKV7Kss2uV96ETepWesQ4RP/anWnOICYYEpgzk2Dg1k1UWuXkPI5cmi9U3zsFh4iehi4UudQ4JoILO5zrYc3glmKXrH6aFeKYDP+TuOrd0pcNJQKlg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DB9PR04MB9889.eurprd04.prod.outlook.com (2603:10a6:10:4ef::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
+ 2026 21:14:34 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
+ 21:14:34 +0000
+Date: Mon, 2 Mar 2026 16:14:25 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/9] dmaengine: tegra: Support address width > 39 bits
+Message-ID: <aaX9sfdDORWIqYos@lizhi-Precision-Tower-5810>
+References: <20260302123239.68441-1-akhilrajeev@nvidia.com>
+ <20260302123239.68441-6-akhilrajeev@nvidia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260302123239.68441-6-akhilrajeev@nvidia.com>
+X-ClientProxiedBy: SJ0PR13CA0090.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::35) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.0 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH 07/14] ARM: dts: imx6ul-var-som-concerto: Factor out
- common parts for all CPU variants
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: 49F2A1E41D1
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DB9PR04MB9889:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a4af5c2-8c7b-4823-8c61-08de78a0b3f2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|19092799006|366016|376014|7416014|52116014|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	/2QVINHh9HLVVdCA4fi9fQhHzQ6NxDfzBLDHqA/vEVtxmNtkaHOuWMamSag7n8gb4ZTVQyqOMtvgoc7kauI8JRmSExoQUMW1P+F2QWK7r8JTlz3G3IdhmfZIq0P/pqIAZd2kv+p6q/vAchqpz4VVFRQLMSUdIc6UU3OhcfH7X1gWi8BUKDhlWWU0NYuURZxvBOLPn+OrbCg/+uzDOSU/jfy3CZA9TM+vbEUucVCmTUCqoH1I5FFJd8t0nmu+WfyzPSOtBJtrNvaFuH3FfbmqezWzbn+Gk6MszEwiDAhS72qOUGnUdMeSD0fMCeZItW0enCKTJssqqjnDqPm/XJdGjhx0qvL2BQ8ZsvFxLO+XhtFlOzbhJ93kPujm/O+H5KZ0jSyRnwDMFHdAfXwyZKe28Xvju5P3ALwJvbJe2tWZSlTOkZrE8EwBtOnVuCRLV8kzkgdUZeJ7yz+QL0ur0JZZfjdVFSMLaTSufxfr41gZEz4Lc01GKoBKX4oyCS/GtNc3DyPAaZ8SwwqEZfsBrw2uX9O9VLkUfYrEQ4GsWgV78DZonTDcX3r5SkYAABCc1HdVzyK1AuTPyJZ8LC7mfv1dx6G/NBbsOLgzUW6cPTsD2n8t43fEgNSpqBaOjhp1f3jCazIGI81DqJA+N3BwfPAeG9ODJofFFbdoepqUQKC6fdvwsvz3bjNX3lLJwd297pMFzBkRSHfMOJYjTpaUbIpRnWjPoytgSue09e2A0FemvAmgJ/s9lBb7+87G8FyoXiSYnDELuDtn7/hWxv9F6iOd7DqNCEdLAfB2vgD9ObG3lHI=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(376014)(7416014)(52116014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?IazcVo2AHqp8jeyGSuB5yb189sggutYELVdNo6EALR2kAjpOv+6DLy2iDObV?=
+ =?us-ascii?Q?7fZMJGv8ZY3uMOd5jiyYYU75tgC/QchsSDe/IHZKNE9C9dvt9ew2VXHnkFZt?=
+ =?us-ascii?Q?hM0G6iKYV5CczFoyXyg+eHGP4U/gvnQsuV6hJjd31fyVct1hgl9S3gM5vnd4?=
+ =?us-ascii?Q?bhlXv1K/pgZQRVINMdAjK0aAvqnPbzpYm4h1bGyBTnyZxE9OILWt/cdfSzbC?=
+ =?us-ascii?Q?vP00v57KPV8GvOXmu5HLlcbF2LJiRVvljGEuI1NuTownM+EoTij0cG2jqszI?=
+ =?us-ascii?Q?Lcqj728VNNT7Wcd1JkkHfiQnCPuuNELQ3MoUie2MNn/Tq49wz1qZCAvMmOrR?=
+ =?us-ascii?Q?caiyPhhOsAzq6VY4t2PVCKBHAs/JCsYWu5O5O7evBzVY6kS+6+GuG23MymoI?=
+ =?us-ascii?Q?j60HD1MArcclyBHN5MYY9OWc/v5GDXVW10f0jgceVlBxJ8+hWwdeGX5Atbwc?=
+ =?us-ascii?Q?Iy3/t5VzWQ0M/v45LkfLMofPfDmEl5DdyTUnvRpGgCqgC3mEQ17VLD7BVvlc?=
+ =?us-ascii?Q?de+8iNzyxDtfQfbe+PGOMKVTQo4tXKOLgzSNAuPFaZrBxFqglWk9h22TtrEY?=
+ =?us-ascii?Q?3LpkkCd1f76duoxhL1rrVLjzWyCadNKfSBcLiugXfc7bDy9qdNPo7lqOal1o?=
+ =?us-ascii?Q?RDA6mKErKolCg0bmO+v4HTDJTH7yOv9tCsLEAyASrnLUslZw4YN72vrZDDHD?=
+ =?us-ascii?Q?Pit7IHrJ834rGLG0InkGpw/AEqi2P8jtPkcptaizzXhg7ZTI0dZJwWwIy43b?=
+ =?us-ascii?Q?HHlJZxwUwjEKrKotN6Vo+n7GL0q0Jf9jGwMuWa4HaP22ff687n09tqr5Ekfs?=
+ =?us-ascii?Q?IqBtmFkM3n+EvWyRIWyYbuxrk4DpjRC7f5JotWpiazI8tJ4pb1HTujI43g6V?=
+ =?us-ascii?Q?HfnP2VvW7mJRI6JXpX6qjtL7Ug1afOAeFPW1KAJWR3YzUJwTHAmScZCoYWwZ?=
+ =?us-ascii?Q?DTRjoJtpkBERGPK904y4JeCWVw2p5nVpPWPfciEu8Z70+wRDof1cTYpFS+aZ?=
+ =?us-ascii?Q?e23xfwQe03SwAuc14wsotuQ16D7XzOcxPRytsw1EvhO0R9XyyB9TC8zELUmr?=
+ =?us-ascii?Q?kccavHWTZn9SYgCzaQmljVWr4iNuKFGa6YF0UJwgB0SI/uMSKIrvLyxpV9Z8?=
+ =?us-ascii?Q?uZKLqL6sKyXOelrH7XsQ9x3oXwZ0rrKacC1asP0tr/eGqVRozxFRjz6YAktu?=
+ =?us-ascii?Q?OiTbmleDWB8ubZxmRxc9H2/LR1fDA9GtjYawNjG0gGiHIYyPcxenI5BtSxsg?=
+ =?us-ascii?Q?tBTLh641xURNQA/LWJM0gOzlRdAdu9SS5w85fo0e6omNThaNYiaODdo6B6nN?=
+ =?us-ascii?Q?/164Ge2kZVTzG7OCLyAkHmvZznMY0uoY/QvAjguzkvLSjlNlLTYnfRczD/BJ?=
+ =?us-ascii?Q?xKDrFHA/IfeK8GVJ4ndE/Uj85pPj1JCoVAWXa8XAcYEhFENJMPOGEZRpek88?=
+ =?us-ascii?Q?kT+2o5bHQXLktsVcIe7CREehz+4xeGnOnj19VFlEViU/+QEhPHfqfLxhf1yJ?=
+ =?us-ascii?Q?cJpptGOeh9LiHD/DMWh2sTXSZwtyQaGqhoC6V/gH8Ipp4RaG16If6WNQqB4h?=
+ =?us-ascii?Q?CgQnYvpBs3FGfEZfEQWq1U0ynwzZqhHsox0CZglsUbYHu447ByJ45q7KAhcS?=
+ =?us-ascii?Q?O4jdG4NP6t+jgFw//cXVdjmSThUB1yvb/2+/vSjPFCJbJOx1He7E2Vu7V24h?=
+ =?us-ascii?Q?3lAEjSalC3fx1DseJu85zTP1kaz6kJRXOvO2gdZE9T84SoI4Za9Y2eKjGbaA?=
+ =?us-ascii?Q?xvSsfo7VaQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a4af5c2-8c7b-4823-8c61-08de78a0b3f2
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 21:14:34.5978
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 31jgh3mUrYLIIi20otQ2oS8T5NmYtRBL3WoC2SQsmSVuucg4rBRHqPjzOK8vFBIO7slZB1SU4SNqChVHMzO0dw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9889
+X-Rspamd-Queue-Id: 8DCA31E411D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270229-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
+	TAGGED_FROM(0.00)[bounces-270230-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[27];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.68:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,hugovil.com:dkim,hugovil.com:mid,nxp.com:email,0.0.0.3:email,dimonoff.com:email]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Frank,
+On Mon, Mar 02, 2026 at 06:02:35PM +0530, Akhil R wrote:
+> Tegra264 supports address width of 41 bits. Unlike older SoCs which use
+> a common high_addr register for upper address bits, Tegra264 has separate
+> src_high and dst_high registers to accommodate this wider address space.
+>
+> Add an addr_bits property to the device data structure to specify the
+> number of address bits supported on each device and use that to program
+> the appropriate registers.
+>
+> Update the sg_req struct to remove the high_addr field and use
+> dma_addr_t for src and dst to store the complete addresses. Extract
+> the high address bits only when programming the registers.
+>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> ---
+>  drivers/dma/tegra186-gpc-dma.c | 87 ++++++++++++++++++++++------------
+>  1 file changed, 56 insertions(+), 31 deletions(-)
+>
+> diff --git a/drivers/dma/tegra186-gpc-dma.c b/drivers/dma/tegra186-gpc-dma.c
+> index 09ba2755c06d..753e86d05a02 100644
+> --- a/drivers/dma/tegra186-gpc-dma.c
+> +++ b/drivers/dma/tegra186-gpc-dma.c
+> @@ -151,6 +151,7 @@ struct tegra_dma_channel;
+>   */
+>  struct tegra_dma_chip_data {
+>  	bool hw_support_pause;
+> +	unsigned int addr_bits;
+>  	unsigned int nr_channels;
+>  	unsigned int channel_reg_size;
+>  	unsigned int max_dma_count;
+> @@ -166,6 +167,8 @@ struct tegra_dma_channel_regs {
+>  	u32 src;
+>  	u32 dst;
+>  	u32 high_addr;
+> +	u32 src_high;
+> +	u32 dst_high;
+>  	u32 mc_seq;
+>  	u32 mmio_seq;
+>  	u32 wcount;
+> @@ -186,10 +189,9 @@ struct tegra_dma_channel_regs {
+>   */
+>  struct tegra_dma_sg_req {
+>  	unsigned int len;
+> +	dma_addr_t src;
+> +	dma_addr_t dst;
+>  	u32 csr;
+> -	u32 src;
+> -	u32 dst;
+> -	u32 high_addr;
+>  	u32 mc_seq;
+>  	u32 mmio_seq;
+>  	u32 wcount;
+> @@ -273,6 +275,25 @@ static inline struct device *tdc2dev(struct tegra_dma_channel *tdc)
+>  	return tdc->vc.chan.device->dev;
+>  }
+>
+> +static void tegra_dma_program_addr(struct tegra_dma_channel *tdc,
+> +				   struct tegra_dma_sg_req *sg_req)
+> +{
+> +	tdc_write(tdc, tdc->regs->src, lower_32_bits(sg_req->src));
+> +	tdc_write(tdc, tdc->regs->dst, lower_32_bits(sg_req->dst));
+> +
+> +	if (tdc->tdma->chip_data->addr_bits > 39) {
+> +		tdc_write(tdc, tdc->regs->src_high, upper_32_bits(sg_req->src));
+> +		tdc_write(tdc, tdc->regs->dst_high, upper_32_bits(sg_req->dst));
+> +	} else {
+> +		u32 src_high = FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_SRC_PTR,
+> +					      upper_32_bits(sg_req->src));
+> +		u32 dst_high = FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_DST_PTR,
+> +					      upper_32_bits(sg_req->dst));
+> +
+> +		tdc_write(tdc, tdc->regs->high_addr, src_high | dst_high);
+> +	}
+> +}
+> +
+>  static void tegra_dma_dump_chan_regs(struct tegra_dma_channel *tdc)
+>  {
+>  	dev_dbg(tdc2dev(tdc), "DMA Channel %d name %s register dump:\n",
+> @@ -281,10 +302,20 @@ static void tegra_dma_dump_chan_regs(struct tegra_dma_channel *tdc)
+>  		tdc_read(tdc, tdc->regs->csr),
+>  		tdc_read(tdc, tdc->regs->status),
+>  		tdc_read(tdc, tdc->regs->csre));
+> -	dev_dbg(tdc2dev(tdc), "SRC %x DST %x HI ADDR %x\n",
+> -		tdc_read(tdc, tdc->regs->src),
+> -		tdc_read(tdc, tdc->regs->dst),
+> -		tdc_read(tdc, tdc->regs->high_addr));
+> +
+> +	if (tdc->tdma->chip_data->addr_bits > 39) {
+> +		dev_dbg(tdc2dev(tdc), "SRC %x SRC HI %x DST %x DST HI %x\n",
+> +			tdc_read(tdc, tdc->regs->src),
+> +			tdc_read(tdc, tdc->regs->src_high),
+> +			tdc_read(tdc, tdc->regs->dst),
+> +			tdc_read(tdc, tdc->regs->dst_high));
+> +	} else {
+> +		dev_dbg(tdc2dev(tdc), "SRC %x DST %x HI ADDR %x\n",
+> +			tdc_read(tdc, tdc->regs->src),
+> +			tdc_read(tdc, tdc->regs->dst),
+> +			tdc_read(tdc, tdc->regs->high_addr));
+> +	}
+> +
+>  	dev_dbg(tdc2dev(tdc), "MCSEQ %x IOSEQ %x WCNT %x XFER %x WSTA %x\n",
+>  		tdc_read(tdc, tdc->regs->mc_seq),
+>  		tdc_read(tdc, tdc->regs->mmio_seq),
+> @@ -487,9 +518,7 @@ static void tegra_dma_configure_next_sg(struct tegra_dma_channel *tdc)
+>  	sg_req = &dma_desc->sg_req[dma_desc->sg_idx];
+>
+>  	tdc_write(tdc, tdc->regs->wcount, sg_req->wcount);
+> -	tdc_write(tdc, tdc->regs->src, sg_req->src);
+> -	tdc_write(tdc, tdc->regs->dst, sg_req->dst);
+> -	tdc_write(tdc, tdc->regs->high_addr, sg_req->high_addr);
+> +	tegra_dma_program_addr(tdc, sg_req);
+>
+>  	/* Start DMA */
+>  	tdc_write(tdc, tdc->regs->csr,
+> @@ -517,11 +546,9 @@ static void tegra_dma_start(struct tegra_dma_channel *tdc)
+>
+>  	sg_req = &dma_desc->sg_req[dma_desc->sg_idx];
+>
+> +	tegra_dma_program_addr(tdc, sg_req);
+>  	tdc_write(tdc, tdc->regs->wcount, sg_req->wcount);
+>  	tdc_write(tdc, tdc->regs->csr, 0);
+> -	tdc_write(tdc, tdc->regs->src, sg_req->src);
+> -	tdc_write(tdc, tdc->regs->dst, sg_req->dst);
+> -	tdc_write(tdc, tdc->regs->high_addr, sg_req->high_addr);
+>  	tdc_write(tdc, tdc->regs->fixed_pattern, sg_req->fixed_pattern);
+>  	tdc_write(tdc, tdc->regs->mmio_seq, sg_req->mmio_seq);
+>  	tdc_write(tdc, tdc->regs->mc_seq, sg_req->mc_seq);
+> @@ -826,7 +853,7 @@ static unsigned int get_burst_size(struct tegra_dma_channel *tdc,
+>
+>  static int get_transfer_param(struct tegra_dma_channel *tdc,
+>  			      enum dma_transfer_direction direction,
+> -			      u32 *apb_addr,
+> +			      dma_addr_t *apb_addr,
+>  			      u32 *mmio_seq,
+>  			      u32 *csr,
+>  			      unsigned int *burst_size,
+> @@ -904,11 +931,9 @@ tegra_dma_prep_dma_memset(struct dma_chan *dc, dma_addr_t dest, int value,
+>  	dma_desc->bytes_req = len;
+>  	dma_desc->sg_count = 1;
+>  	sg_req = dma_desc->sg_req;
+> -
+>  	sg_req[0].src = 0;
+>  	sg_req[0].dst = dest;
+> -	sg_req[0].high_addr =
+> -			FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_DST_PTR, (dest >> 32));
+> +
+>  	sg_req[0].fixed_pattern = value;
+>  	/* Word count reg takes value as (N +1) words */
+>  	sg_req[0].wcount = ((len - 4) >> 2);
+> @@ -976,10 +1001,7 @@ tegra_dma_prep_dma_memcpy(struct dma_chan *dc, dma_addr_t dest,
+>
+>  	sg_req[0].src = src;
+>  	sg_req[0].dst = dest;
+> -	sg_req[0].high_addr =
+> -		FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_SRC_PTR, (src >> 32));
+> -	sg_req[0].high_addr |=
+> -		FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_DST_PTR, (dest >> 32));
+> +
+>  	/* Word count reg takes value as (N +1) words */
+>  	sg_req[0].wcount = ((len - 4) >> 2);
+>  	sg_req[0].csr = csr;
+> @@ -999,7 +1021,8 @@ tegra_dma_prep_slave_sg(struct dma_chan *dc, struct scatterlist *sgl,
+>  	struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
+>  	unsigned int max_dma_count = tdc->tdma->chip_data->max_dma_count;
+>  	enum dma_slave_buswidth slave_bw = DMA_SLAVE_BUSWIDTH_UNDEFINED;
+> -	u32 csr, mc_seq, apb_ptr = 0, mmio_seq = 0;
+> +	u32 csr, mc_seq, mmio_seq = 0;
+> +	dma_addr_t apb_ptr = 0;
+>  	struct tegra_dma_sg_req *sg_req;
+>  	struct tegra_dma_desc *dma_desc;
+>  	struct scatterlist *sg;
+> @@ -1087,13 +1110,9 @@ tegra_dma_prep_slave_sg(struct dma_chan *dc, struct scatterlist *sgl,
+>  		if (direction == DMA_MEM_TO_DEV) {
+>  			sg_req[i].src = mem;
+>  			sg_req[i].dst = apb_ptr;
+> -			sg_req[i].high_addr =
+> -				FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_SRC_PTR, (mem >> 32));
+>  		} else if (direction == DMA_DEV_TO_MEM) {
+>  			sg_req[i].src = apb_ptr;
+>  			sg_req[i].dst = mem;
+> -			sg_req[i].high_addr =
+> -				FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_DST_PTR, (mem >> 32));
+>  		}
+>
+>  		/*
+> @@ -1117,7 +1136,8 @@ tegra_dma_prep_dma_cyclic(struct dma_chan *dc, dma_addr_t buf_addr, size_t buf_l
+>  			  unsigned long flags)
+>  {
+>  	enum dma_slave_buswidth slave_bw = DMA_SLAVE_BUSWIDTH_UNDEFINED;
+> -	u32 csr, mc_seq, apb_ptr = 0, mmio_seq = 0, burst_size;
+> +	u32 csr, mc_seq, mmio_seq = 0, burst_size;
+> +	dma_addr_t apb_ptr = 0;
+>  	unsigned int max_dma_count, len, period_count, i;
+>  	struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
+>  	struct tegra_dma_desc *dma_desc;
+> @@ -1209,13 +1229,9 @@ tegra_dma_prep_dma_cyclic(struct dma_chan *dc, dma_addr_t buf_addr, size_t buf_l
+>  		if (direction == DMA_MEM_TO_DEV) {
+>  			sg_req[i].src = mem;
+>  			sg_req[i].dst = apb_ptr;
+> -			sg_req[i].high_addr =
+> -				FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_SRC_PTR, (mem >> 32));
+>  		} else if (direction == DMA_DEV_TO_MEM) {
+>  			sg_req[i].src = apb_ptr;
+>  			sg_req[i].dst = mem;
+> -			sg_req[i].high_addr =
+> -				FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_DST_PTR, (mem >> 32));
+>  		}
+>  		/*
+>  		 * Word count register takes input in words. Writing a value
+> @@ -1314,6 +1330,7 @@ static const struct tegra_dma_channel_regs tegra186_reg_offsets = {
+>
+>  static const struct tegra_dma_chip_data tegra186_dma_chip_data = {
+>  	.nr_channels = 32,
+> +	.addr_bits = 39,
+>  	.channel_reg_size = SZ_64K,
+>  	.max_dma_count = SZ_1G,
+>  	.hw_support_pause = false,
+> @@ -1323,6 +1340,7 @@ static const struct tegra_dma_chip_data tegra186_dma_chip_data = {
+>
+>  static const struct tegra_dma_chip_data tegra194_dma_chip_data = {
+>  	.nr_channels = 32,
+> +	.addr_bits = 39,
+>  	.channel_reg_size = SZ_64K,
+>  	.max_dma_count = SZ_1G,
+>  	.hw_support_pause = true,
+> @@ -1332,6 +1350,7 @@ static const struct tegra_dma_chip_data tegra194_dma_chip_data = {
+>
+>  static const struct tegra_dma_chip_data tegra234_dma_chip_data = {
+>  	.nr_channels = 32,
+> +	.addr_bits = 39,
+>  	.channel_reg_size = SZ_64K,
+>  	.max_dma_count = SZ_1G,
+>  	.hw_support_pause = true,
+> @@ -1443,6 +1462,12 @@ static int tegra_dma_probe(struct platform_device *pdev)
+>  		tdc->stream_id = stream_id;
+>  	}
+>
+> +	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(cdata->addr_bits));
 
-On Mon, 2 Mar 2026 15:50:21 -0500
-Frank Li <Frank.li@nxp.com> wrote:
+when bit mask >= 32, dma_set_mask_and_coherent() never return failure. So
+needn't check return value.
 
-> On Mon, Mar 02, 2026 at 02:03:43PM -0500, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >
-> > Export common parts to the Variscite VAR-SOM-6UL dtsi so that they can be
-> > reused on other boards.
-> >
-> > This will simplify adding future dedicated device tree files for each CPU
-> > variant.
-> 
-> Simplify adding ...
-> 
-> >
-> > Add i2c1 pinctrl to var-som dtsi pinmux, so that it can be reused by other
-> > boards.
-> >
-> > Reorder pinctrl_gpio_leds to respect alphabetical order.
-> 
-> this one use new patch.
-
-I'm not sure what you mean by that? Do you mean to move this change to a
-separate patch?
-
-
-> 
-> >
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > ---
-> >  arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
-> >  .../dts/nxp/imx/imx6ul-var-som-common.dtsi    |   7 +
-> >  ...ts => imx6ul-var-som-concerto-common.dtsi} |  17 +-
-> >  .../dts/nxp/imx/imx6ul-var-som-concerto.dts   | 312 +-----------------
-> >  .../dts/nxp/imx/imx6ull-var-som-concerto.dts  |  17 +
-> >  5 files changed, 33 insertions(+), 321 deletions(-)
-> >  copy arch/arm/boot/dts/nxp/imx/{imx6ul-var-som-concerto.dts => imx6ul-var-som-concerto-common.dtsi} (95%)
-> >  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-> > index de4142e8f3ce8..bc534d0fb1412 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/Makefile
-> > +++ b/arch/arm/boot/dts/nxp/imx/Makefile
-> > @@ -376,6 +376,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
-> >  	imx6ull-tarragon-slavext.dtb \
-> >  	imx6ull-tqma6ull2-mba6ulx.dtb \
-> >  	imx6ull-tqma6ull2l-mba6ulx.dtb \
-> > +	imx6ull-var-som-concerto.dtb \
-> 
-> keep alphabet order
-
-Ok
-
-> 
-> Frank
-> >  	imx6ull-uti260b.dtb \
-> >  	imx6ulz-14x14-evk.dtb \
-> >  	imx6ulz-bsh-smm-m2.dtb
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-common.dtsi
-> > index 2072e8ba4d469..22b0c4e0725a5 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-common.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-common.dtsi
-> > @@ -104,6 +104,13 @@ MX6UL_PAD_SNVS_TAMPER6__GPIO5_IO06	0x03029	/* WLAN Enable */
-> >  		>;
-> >  	};
-> >
-> > +	pinctrl_i2c1: i2c1grp {
-> > +		fsl,pins = <
-> > +			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001b8b0
-> > +			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001b8b0
-> > +		>;
-> > +	};
-> > +
-> >  	pinctrl_sai2: sai2grp {
-> >  		fsl,pins = <
-> >  			MX6UL_PAD_JTAG_TDI__SAI2_TX_BCLK	0x17088
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
-> > similarity index 95%
-> > copy from arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-> > copy to arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
-> > index d16e75164fd18..10a23ae104359 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
-> > @@ -1,19 +1,15 @@
-> >  // SPDX-License-Identifier: GPL-2.0+
-> >  /*
-> >   * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-6UL
-> > - * Variscite SoM mounted on it
-> > + * Variscite SoM mounted on it, for all CPU variants.
-> >   *
-> >   * Copyright 2019 Variscite Ltd.
-> >   * Copyright 2025 Bootlin
-> >   */
-> >
-> > -#include "imx6ul-var-som.dtsi"
-> >  #include <dt-bindings/leds/common.h>
-> >
-> >  / {
-> > -	model = "Variscite VAR-SOM-6UL Concerto Board";
-> > -	compatible = "variscite,mx6ulconcerto", "variscite,var-som-imx6ul", "fsl,imx6ul";
-> > -
-> >  	chosen {
-> >  		stdout-path = &uart1;
-> >  	};
-> > @@ -144,22 +140,15 @@ MX6UL_PAD_NAND_CE1_B__GPIO4_IO14	0x17059
-> >  		>;
-> >  	};
-> >
-> > -	pinctrl_gpio_leds: gpio-ledsgrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0	/* GPLED2 */
-> > -		>;
-> > -	};
-> > -
-> >  	pinctrl_gpio_key_wakeup: gpio-keys-wakeupgrp {
-> >  		fsl,pins = <
-> >  			MX6UL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x17059
-> >  		>;
-> >  	};
-> >
-> > -	pinctrl_i2c1: i2c1grp {
-> > +	pinctrl_gpio_leds: gpio-ledsgrp {
-> >  		fsl,pins = <
-> > -			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001b8b0
-> > -			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001b8b0
-> > +			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0	/* GPLED2 */
-> >  		>;
-> >  	};
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-> > index d16e75164fd18..11b45f105b7ad 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-> > @@ -1,320 +1,18 @@
-> >  // SPDX-License-Identifier: GPL-2.0+
-> >  /*
-> >   * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-6UL
-> > - * Variscite SoM mounted on it
-> > + * Variscite SoM mounted on it (6UL CPU variant).
-> >   *
-> >   * Copyright 2019 Variscite Ltd.
-> >   * Copyright 2025 Bootlin
-> >   */
-> >
-> > +/dts-v1/;
-> > +
-> >  #include "imx6ul-var-som.dtsi"
-> > -#include <dt-bindings/leds/common.h>
-> > +#include "imx6ul-var-som-concerto-common.dtsi"
-> >
-> >  / {
-> > -	model = "Variscite VAR-SOM-6UL Concerto Board";
-> > +	model = "Variscite VAR-SOM-6UL Concerto Board (6UL CPU)";
-> >  	compatible = "variscite,mx6ulconcerto", "variscite,var-som-imx6ul", "fsl,imx6ul";
-> > -
-> > -	chosen {
-> > -		stdout-path = &uart1;
-> > -	};
-> > -
-> > -	gpio-keys {
-> > -		compatible = "gpio-keys";
-> > -		pinctrl-names = "default";
-> > -		pinctrl-0 = <&pinctrl_gpio_key_back>, <&pinctrl_gpio_key_wakeup>;
-> > -
-> > -		key-back {
-> > -			gpios = <&gpio4 14 GPIO_ACTIVE_LOW>;
-> > -			linux,code = <KEY_BACK>;
-> > -		};
-> > -
-> > -		key-wakeup {
-> > -			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
-> > -			linux,code = <KEY_WAKEUP>;
-> > -			wakeup-source;
-> > -		};
-> > -	};
-> > -
-> > -	leds {
-> > -		compatible = "gpio-leds";
-> > -		pinctrl-names = "default";
-> > -		pinctrl-0 = <&pinctrl_gpio_leds>;
-> > -
-> > -		led-0 {
-> > -			function = LED_FUNCTION_STATUS;
-> > -			color = <LED_COLOR_ID_GREEN>;
-> > -			label = "gpled2";
-> > -			gpios = <&gpio1 25 GPIO_ACTIVE_HIGH>;
-> > -			linux,default-trigger = "heartbeat";
-> > -		};
-> > -	};
-> > -};
-> > -
-> > -&can1 {
-> > -	pinctrl-names = "default";
-> > -	pinctrl-0 = <&pinctrl_flexcan1>;
-> > -	status = "okay";
-> > -};
-> > -
-> > -&fec1 {
-> > -	status = "disabled";
-> > -};
-> > -
-> > -&fec2 {
-> > -	pinctrl-names = "default";
-> > -	pinctrl-0 = <&pinctrl_enet2>, <&pinctrl_enet2_gpio>, <&pinctrl_enet2_mdio>;
-> > -	phy-mode = "rmii";
-> > -	phy-handle = <&ethphy1>;
-> > -	status = "okay";
-> > -
-> > -	mdio {
-> > -		#address-cells = <1>;
-> > -		#size-cells = <0>;
-> > -
-> > -		ethphy1: ethernet-phy@3 {
-> > -			compatible = "ethernet-phy-ieee802.3-c22";
-> > -			reg = <3>;
-> > -			clocks = <&rmii_ref_clk>;
-> > -			clock-names = "rmii-ref";
-> > -			reset-gpios = <&gpio5 5 GPIO_ACTIVE_LOW>;
-> > -			reset-assert-us = <100000>;
-> > -			micrel,led-mode = <0>;
-> > -			micrel,rmii-reference-clock-select-25-mhz;
-> > -		};
-> > -	};
-> > -};
-> > -
-> > -&i2c1 {
-> > -	clock-frequency = <100000>;
-> > -	pinctrl-names = "default";
-> > -	pinctrl-0 = <&pinctrl_i2c1>;
-> > -	status = "okay";
-> > -
-> > -	rtc@68 {
-> > -		/*
-> > -		 * To actually use this interrupt
-> > -		 * connect pins J14.8 & J14.10 on the Concerto-Board.
-> > -		 */
-> > -		compatible = "dallas,ds1337";
-> > -		reg = <0x68>;
-> > -		pinctrl-names = "default";
-> > -		pinctrl-0 = <&pinctrl_rtc>;
-> > -		interrupt-parent = <&gpio1>;
-> > -		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
-> > -	};
-> > -};
-> > -
-> > -&iomuxc {
-> > -	pinctrl_enet2: enet2grp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN	0x1b0b0
-> > -			MX6UL_PAD_ENET2_RX_ER__ENET2_RX_ER	0x1b0b0
-> > -			MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00	0x1b0b0
-> > -			MX6UL_PAD_ENET2_RX_DATA1__ENET2_RDATA01	0x1b0b0
-> > -			MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN	0x1b0b0
-> > -			MX6UL_PAD_ENET2_TX_DATA0__ENET2_TDATA00	0x1b0b0
-> > -			MX6UL_PAD_ENET2_TX_DATA1__ENET2_TDATA01	0x1b0b0
-> > -			MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2	0x4001b031
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_enet2_gpio: enet2-gpiogrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x1b0b0 /* fec2 reset */
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_enet2_mdio: enet2-mdiogrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
-> > -			MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_flexcan1: flexcan1grp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x1b020
-> > -			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x1b020
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_gpio_key_back: gpio-key-backgrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_NAND_CE1_B__GPIO4_IO14	0x17059
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_gpio_leds: gpio-ledsgrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0	/* GPLED2 */
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_gpio_key_wakeup: gpio-keys-wakeupgrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x17059
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_i2c1: i2c1grp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001b8b0
-> > -			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001b8b0
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_pwm4: pwm4grp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_GPIO1_IO05__PWM4_OUT		0x110b0
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_rtc: rtcgrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_JTAG_MOD__GPIO1_IO10		0x1b0b0 /* RTC alarm IRQ */
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_uart1: uart1grp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
-> > -			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_uart5: uart5grp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_CSI_DATA00__UART5_DCE_TX	0x1b0b1
-> > -			MX6UL_PAD_CSI_DATA01__UART5_DCE_RX	0x1b0b1
-> > -			MX6UL_PAD_GPIO1_IO09__UART5_DCE_CTS	0x1b0b1
-> > -			MX6UL_PAD_GPIO1_IO08__UART5_DCE_RTS	0x1b0b1
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_usb_otg1_id: usbotg1idgrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_UART3_TX_DATA__ANATOP_OTG1_ID	0x17059
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_usdhc1: usdhc1grp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
-> > -			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x17059
-> > -			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
-> > -			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
-> > -			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
-> > -			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
-> > -			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
-> > -			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170b9
-> > -			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
-> > -			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
-> > -			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
-> > -			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
-> > -			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170f9
-> > -			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
-> > -			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
-> > -			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_usdhc1_gpio: usdhc1-gpiogrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x1b0b1 /* CD */
-> > -		>;
-> > -	};
-> > -
-> > -	pinctrl_wdog: wdoggrp {
-> > -		fsl,pins = <
-> > -			MX6UL_PAD_GPIO1_IO01__WDOG1_WDOG_B	0x78b0
-> > -		>;
-> > -	};
-> > -};
-> > -
-> > -&pwm4 {
-> > -	pinctrl-names = "default";
-> > -	pinctrl-0 = <&pinctrl_pwm4>;
-> > -	status = "okay";
-> > -};
-> > -
-> > -&snvs_pwrkey {
-> > -	status = "disabled";
-> > -};
-> > -
-> > -&snvs_rtc {
-> > -	status = "disabled";
-> > -};
-> > -
-> > -&tsc {
-> > -	/*
-> > -	 * Conflics with wdog1 ext-reset-output & SD CD pins,
-> > -	 * so we keep it disabled by default.
-> > -	 */
-> > -	status = "disabled";
-> > -};
-> > -
-> > -/* Console UART */
-> > -&uart1 {
-> > -	pinctrl-names = "default";
-> > -	pinctrl-0 = <&pinctrl_uart1>;
-> > -	status = "okay";
-> > -};
-> > -
-> > -/* ttymxc4 UART */
-> > -&uart5 {
-> > -	pinctrl-names = "default";
-> > -	pinctrl-0 = <&pinctrl_uart5>;
-> > -	uart-has-rtscts;
-> > -	status = "okay";
-> > -};
-> > -
-> > -&usbotg1 {
-> > -	pinctrl-names = "default";
-> > -	pinctrl-0 = <&pinctrl_usb_otg1_id>;
-> > -	dr_mode = "otg";
-> > -	disable-over-current;
-> > -	srp-disable;
-> > -	hnp-disable;
-> > -	adp-disable;
-> > -	status = "okay";
-> > -};
-> > -
-> > -&usbotg2 {
-> > -	dr_mode = "host";
-> > -	disable-over-current;
-> > -	status = "okay";
-> > -};
-> > -
-> > -&usdhc1 {
-> > -	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> > -	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_usdhc1_gpio>;
-> > -	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_usdhc1_gpio>;
-> > -	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_usdhc1_gpio>;
-> > -	cd-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
-> > -	no-1-8-v;
-> > -	keep-power-in-suspend;
-> > -	wakeup-source;
-> > -	status = "okay";
-> > -};
-> > -
-> > -&wdog1 {
-> > -	pinctrl-names = "default";
-> > -	pinctrl-0 = <&pinctrl_wdog>;
-> > -	/*
-> > -	 * To actually use ext-reset-output
-> > -	 * connect pins J17.3 & J17.8 on the Concerto-Board
-> > -	 */
-> > -	fsl,ext-reset-output;
-> >  };
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
-> > new file mode 100644
-> > index 0000000000000..7c601af2657d7
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
-> > @@ -0,0 +1,17 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-6UL
-> > + * Variscite SoM mounted on it (6ULL CPU variant).
-> > + *
-> > + * Copyright 2026 Dimonoff
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "imx6ull-var-som.dtsi"
-> > +#include "imx6ul-var-som-concerto-common.dtsi"
-> > +
-> > +/ {
-> > +	model = "Variscite VAR-SOM-6UL Concerto Board (6ULL CPU)";
-> > +	compatible = "variscite,mx6ullconcerto", "variscite,var-som-imx6ull", "fsl,imx6ull";
-> > +};
-> > --
-> > 2.47.3
-> >
-> 
-
-
--- 
-Hugo Villeneuve
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Failed to set DMA mask: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+>  	dma_cap_set(DMA_SLAVE, tdma->dma_dev.cap_mask);
+>  	dma_cap_set(DMA_PRIVATE, tdma->dma_dev.cap_mask);
+>  	dma_cap_set(DMA_MEMCPY, tdma->dma_dev.cap_mask);
+> --
+> 2.50.1
+>
 
