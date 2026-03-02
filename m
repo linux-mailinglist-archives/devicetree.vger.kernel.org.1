@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-270109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270110-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +JBfF12wpWkiEgAAu9opvQ
-	(envelope-from <devicetree+bounces-270109-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:44:29 +0100
+	id AL2UK5uwpWkiEgAAu9opvQ
+	(envelope-from <devicetree+bounces-270110-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:45:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C6E31DC13D
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:44:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E4E81DC19F
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:45:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 82ED33012528
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:44:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 76B3230059B9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D478411639;
-	Mon,  2 Mar 2026 15:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8167B41B35A;
+	Mon,  2 Mar 2026 15:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gHKEgrGf"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mzKnAyth"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C182411623
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 15:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7613B413231
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 15:45:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772466251; cv=none; b=VJ9b8lUHip6WAUjiWcWqKgNoRnMsXH8bSDcAVhokpO1j3br7nOnCMwlN8zi3KOKRhQphqik57DXi9z1RUKU4IQjHDbxLBaTIRMl2ADSwYYHExFAhLSCQqsYl1H5j0T+SN1xeG9pnJ8nxy4iigbscVJAP5lTmxuefjSodG5TUg1w=
+	t=1772466324; cv=none; b=HEDjshR++u1U0jtLIhwzrXWJxeCkBUk0G9QqfMy/9SaN7iWLtA6wwvL5GSL7OEehPcdztvENaixPhoIF/x1MBgOTj4d2Wm2LoCswYsPJCyDMPvtqnr0nwfhmvwrb6YR/+pTbI+VV1czMRMR6WSYFTtgoEWygPn4qABYDTeuQSvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772466251; c=relaxed/simple;
-	bh=XCJBoz0V0rROm1IjEjfMWPy3a7Ftpl9omP9rEJQ8J2M=;
+	s=arc-20240116; t=1772466324; c=relaxed/simple;
+	bh=YZWwdlC9tnWkiECBWT3z3qgV2ylbsjE7vfaiz9liT/0=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=gPomdCYq4MrF3CqThQ5sDuG7TJoSt6hO2umUCWgbJFG4VkYt9n+/CSGTmv23NZDajWb3tCkUlK/xT/xLhvF1BwITdWqkY8WFXv1ywIZB77Iv+5kho19LMoYpqUKpIZJlOOAbfKGzcENvKK8Fv9VpzMEdzWA0QTUuy+J+L+rELV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gHKEgrGf; arc=none smtp.client-ip=185.246.85.4
+	 MIME-Version:Content-Type; b=c8krMkbx9lCnutFAJBj4DxHV1/oLrglcIQI+254xPwv2lhh8G7EAmYkVLmK9ISDfoWe4BE96boUDF7mUbxde+Q0/kIFENSTJRZ3vl7QHXsSZkFv30zQ72jyJdRd/Etpht3YZjFBqbu8l3RE9PNpG+0ggzmMbrXElLwGSYmcZZr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mzKnAyth; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 788384E410F8;
-	Mon,  2 Mar 2026 15:44:06 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id E1BA61A1F34;
+	Mon,  2 Mar 2026 15:45:20 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 433085FE89;
-	Mon,  2 Mar 2026 15:44:06 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5CA2210369568;
-	Mon,  2 Mar 2026 16:43:58 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B63885FE89;
+	Mon,  2 Mar 2026 15:45:20 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6756F1036959D;
+	Mon,  2 Mar 2026 16:45:18 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772466245; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1772466319; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=W5xwiPDxpnLRrto5XuQ9eP4pT2QR6waC8wrl3JKLmpQ=;
-	b=gHKEgrGf+6vb22Bi0/bGEo3oh/7e81dAYsSkyWRz7gT0Yis7830W/0KoOfxUPtV75ORiOt
-	gpsPjc8ye/Za2Dk3o3uROoZ6Ulw7HdGXbYhY/wwqdXfdzkS96lLcw1vx0kxq9jiTV96TrQ
-	/qrijjvK8vD/sg0MQq2FcmsgAjgji4JasOu3eh+u/n2XV7PLvaFXHDOvdFBeDX4UUGOmrD
-	zULR79Jq1uR/Yt+riL2JPPXPB+WeMvrbqk57eYd8K8/qHH5yTUeD5uIF69DnxJo1rxRhJF
-	6jDkbSCsmcr6exQCfRaYlHUnG2g5Kw4iQE9S5JsJadTvL9uiSqd6bi/do2HkSw==
+	bh=FYAWwVXpESUSi/WobVHvguowQxIxeIjbkgDoK4X/Hz4=;
+	b=mzKnAythfuXX+WDnpsNLgQVAAYTlL8oXpMwt6iPjxdCgXscB9QcXL2ZKovd+VIFWuWoRyT
+	AUAZj3dV1Y2KCOpxL1LHOH324mvVz5I/zTOtaN+TD8IwwpQuyeq7PZBx03WXBO6ygxpwRk
+	kP9okf0lbAlhyonKkJzoO1lfu1uDvLv9G+uy4VsgIYaBHZydQAE3v5zYkgp4k5fqa8/NQ0
+	ugyr5SzBWWjti4vZUDwpB3KgbQPdpEwg2D0vO444JzO87ucA4IPCin6WNAEuTvOhfF6qGy
+	T3LMYm+wd8lw+UYVuhOfUXP2hyNgAQ6I5tYlr61SBrPh+HlRwFiz0vJQCP0xdg==
 From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
- sebastian.hesselbarth@gmail.com, pali@kernel.org, mrkiko.rs@gmail.com,
- chris.packham@alliedtelesis.co.nz, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: enachman@marvell.com
-Subject: Re: [PATCH 1/3] dt-bindings: arm64: add Marvell 7k COMe boards
-In-Reply-To: <20260122165923.2316510-2-enachman@marvell.com>
-References: <20260122165923.2316510-1-enachman@marvell.com>
- <20260122165923.2316510-2-enachman@marvell.com>
-Date: Mon, 02 Mar 2026 16:43:58 +0100
-Message-ID: <87ms0qfd8h.fsf@BLaptop.bootlin.com>
+To: Gabor Juhos <j4g8y7@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Sebastian
+ Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Gabor Juhos <j4g8y7@gmail.com>
+Subject: Re: [PATCH] arm64: dts: marvell: armada-37xx: align 'phy-names' of
+ EHCI node with DT schema
+In-Reply-To: <20260220-armada-37xx-fix-ehci-phy-name-v1-1-27c9907aab8e@gmail.com>
+References: <20260220-armada-37xx-fix-ehci-phy-name-v1-1-27c9907aab8e@gmail.com>
+Date: Mon, 02 Mar 2026 16:45:18 +0100
+Message-ID: <87jyvufd69.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,86 +73,121 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 0C6E31DC13D
+X-Rspamd-Queue-Id: 9E4E81DC19F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270109-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-270110-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[marvell.com,kernel.org,linaro.org,lunn.ch,gmail.com,alliedtelesis.co.nz,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	MSBL_EBL_FAIL(0.00)[usb@5e000:query timed out];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[gregory.clement@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,BLaptop.bootlin.com:mid,bootlin.com:dkim,bootlin.com:url]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:url,devicetree.org:url,BLaptop.bootlin.com:mid,5e000:email]
 X-Rspamd-Action: no action
 
-Elad Nachman <enachman@marvell.com> writes:
+Gabor Juhos <j4g8y7@gmail.com> writes:
 
-> From: Elad Nachman <enachman@marvell.com>
+> According to the 'generic-ehci.yaml' schema, the name of the first phy
+> in an EHCI node must be "usb", however the 'usb@5e000' node in the
+> 'armada-37xx.dtsi' uses "usb2-utmi-host-phy" instead.
 >
-> Add dt bindings for:
-> Armada 7020 COM Express CPU module
-> Falcon DB-98CX85x0 COM Express type 7 Carrier board
-> Falcon DB-98CX85x0 COM Express type 7 Carrier board
-> with an Armada 7020 COM Express CPU module
+> This causes dtbs_check warnings like the following ones:
 >
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
+>   arch/arm64/boot/dts/marvell/armada-3720-atlas-v5.dtb: usb@5e000 (marvel=
+l,armada-3700-ehci): phy-names:0: 'usb' was expected
+>       from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml
+>   arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@5e000 (marvell,arma=
+da-3700-ehci): phy-names:0: 'usb' was expected
+>       from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml
+>   arch/arm64/boot/dts/marvell/armada-3720-eDPU.dtb: usb@5e000 (marvell,ar=
+mada-3700-ehci): phy-names:0: 'usb' was expected
+>       from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml
+>   ...
+>
+> Use "usb" as a name for the phy to avoid the warnings.
+>
+> No functional change, the USB interface works after the change:
+>
+>     [    1.472393] orion-ehci d005e000.usb: EHCI Host Controller
+>     [    1.477847] orion-ehci d005e000.usb: new USB bus registered, assig=
+ned bus number 1
+>     [    1.487127] orion-ehci d005e000.usb: irq 40, io mem 0xd005e000
+>     [    1.505759] orion-ehci d005e000.usb: USB 2.0 started, EHCI 1.00
+>     [    1.512493] hub 1-0:1.0: USB hub found
+>     [    1.516434] hub 1-0:1.0: 1 port detected
+>     ...
+>     [    4.175746] usb 1-1: new high-speed USB device number 2 using orio=
+n-ehci
+>     [    4.347643] usb-storage 1-1:1.0: USB Mass Storage device detected
+>     [    4.359972] scsi host0: usb-storage 1-1:1.0
+>     [    5.367100] scsi 0:0:0:0: Direct-Access     ADATA    USB Flash Dri=
+ve  1.00 PQ: 0 ANSI: 6
+>     [    5.387091] sd 0:0:0:0: [sda] 30869504 512-byte logical blocks: (1=
+5.8 GB/14.7 GiB)
+>     [    5.398420] sd 0:0:0:0: [sda] Write Protect is off
+>     [    5.408108] sd 0:0:0:0: [sda] Write cache: disabled, read cache: d=
+isabled, doesn't support DPO or FUA
+>     [    5.477359]  sda: sda1
+>     [    5.480037] sd 0:0:0:0: [sda] Attached SCSI removable disk
+>
+> Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
 
-Applied on mvebu/dt64
+Applied on mvebu/dt
 
 Thanks,
 
 Gregory
 > ---
->  .../devicetree/bindings/arm/marvell/armada-7k-8k.yaml | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.y=
-aml b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
-> index 4bc7454a5d3a..7e77310da626 100644
-> --- a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
-> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
-> @@ -21,6 +21,17 @@ properties:
->            - const: marvell,armada-ap806-dual
->            - const: marvell,armada-ap806
+> diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/bo=
+ot/dts/marvell/armada-37xx.dtsi
+> index 87f9367aec1227c2c6de52f358d51bcff758c147..a8d10e4de81619c44ccbe0f08=
+e69707dc28005a3 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+> @@ -396,7 +396,7 @@ usb2: usb@5e000 {
+>  				marvell,usb-misc-reg =3D <&usb2_syscon>;
+>  				interrupts =3D <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+>  				phys =3D <&usb2_utmi_host_phy>;
+> -				phy-names =3D "usb2-utmi-host-phy";
+> +				phy-names =3D "usb";
+>  				status =3D "disabled";
+>  			};
 >=20=20
-> +      - description:
-> +          Falcon (DB-98CX85x0) Development board COM Express Carrier plus
-> +          Armada 7020 SoC COM Express CPU module
-> +        items:
-> +          - const: marvell,armada7020-falcon-carrier
-> +          - const: marvell,db-falcon-carrier
-> +          - const: marvell,armada7020-cpu-module
-> +          - const: marvell,armada7020
-> +          - const: marvell,armada-ap806-dual
-> +          - const: marvell,armada-ap806
-> +
->        - description: Armada 7040 SoC
->          items:
->            - enum:
+>
+> ---
+> base-commit: fcaf733ca526b69595ed1d227e2cc59ddd24eff7
+> change-id: 20260217-armada-37xx-fix-ehci-phy-name-cdfc108b2473
+>
+> Best regards,
 > --=20
-> 2.25.1
+> Gabor Juhos <j4g8y7@gmail.com>
 >
 
 --=20
