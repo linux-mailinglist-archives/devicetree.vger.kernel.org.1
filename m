@@ -1,190 +1,144 @@
-Return-Path: <devicetree+bounces-270233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270234-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uM+0IrUMpmlkJgAAu9opvQ
-	(envelope-from <devicetree+bounces-270233-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 23:18:29 +0100
+	id MN3QEjsNpmmFJgAAu9opvQ
+	(envelope-from <devicetree+bounces-270234-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 23:20:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3FF1E5290
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 23:18:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC4BB1E5355
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 23:20:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 50E883388D9C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 21:44:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4E4FB31D4F0F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 21:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DE137DE8D;
-	Mon,  2 Mar 2026 21:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B5E3845BB;
+	Mon,  2 Mar 2026 21:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BnWl7lCv"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Dfz5DyTB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D2E933F580
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 21:31:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB853175A6E;
+	Mon,  2 Mar 2026 21:35:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772487090; cv=none; b=p2GkBXC61wLm9vTKqpsEIpmVmFgGRFSu/3ULJdhwuofciDxTvnd4Qmdmv4XVNkUUPvBH4UpFlheZEjJEKpDseCqNPZp3QRgkqRYcMK5lUydD+RgJj12eHJcoRfnmj/BMr4jeEqE0eJMYiN9SSWOT6yU6wGgNx2nv9Wpz9z3IM18=
+	t=1772487349; cv=none; b=nYLisd3Vkf3zC/Vu1QdCzsBogNEJ9wgnq414Ifvsf3uELZ53AqKazr9PXmyzch7VcBlRrcEkNlOMewPm+f+YG8Kxo0axQ2htJ6LIanSzOR47Q7R3UbUFma6K+f3620tqloy+0/563ztSgIgvi1RM8C49USmZyfVO/M6mUxptKow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772487090; c=relaxed/simple;
-	bh=lj+j+ZIDkkNeZV0D5vcdutP+M5ePO2d5rcp1CL1YgvU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dB75f7BmmJs2BjgljJ8qKh5U/JgfDzSRjDgKcIzZaM7exGao16jGi8vuUjfoKS/dLC05ua8U2NqYFwzdZGv/BebzGucyMTco+sac/Cyj5YHXNaGXS8d8LqdfABEsyN5J1WmO3kMsB9CY2VRjaldE5cGf0RfAmPrj7np/gDa4kZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BnWl7lCv; arc=none smtp.client-ip=74.125.82.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-2bdcada445fso3086751eec.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 13:31:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1772487088; x=1773091888; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=y2weksujUd1WsP1i8nse0Bn0OZL0MTS4I7qfVTSrOJk=;
-        b=BnWl7lCv5PfQpFONCDJupUj6ug6LjDDOni5b1XYkTOhyi/M+0mL37QPTf2GPDmT96x
-         I6H+onUkDqEN3ZJofYCfaOCYk8fbMuyyJ+qy9XAxO9EtbXNp189GM8UvwgFDCXjcx+BC
-         etDHq2tlAZNKuDK1IBSN8DcZE5b3BxOH2q2UU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772487088; x=1773091888;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y2weksujUd1WsP1i8nse0Bn0OZL0MTS4I7qfVTSrOJk=;
-        b=OZE936g+PHggdU1eaUa+nEVA72OnkdCSiIwavB02V6A+2FV78LT+WsYMDZyATEfOhq
-         yxFPao3gLXjj22s8P9MKse6FfsxS2Z4RR5GSfy5l9Wf6FfVl4ljjmj4zLoCVmKNEaRY+
-         HNAv1cJR8yYD/86RYM2lGtUeZ+KFOK85JlooM/CADKJAJKVhRF/rcJkk1zqI/GSFr59g
-         I6vkzs4xBBMEW6/MrehaTDl7tAqbg6+aKiCqkq2lnkOc750cFruzEW/x8JwWYjCOY4yV
-         aONRV0gyFDxGDYoH+Ind8LW/c9Pem05la++9u3B2nKoIlO+N1pbHU5Z7EB+TgaziKyJj
-         c+qA==
-X-Forwarded-Encrypted: i=1; AJvYcCW+0nAjqX+67xOSmYQUmcuQYBNmxBk94PHhZnY23BgGJobJ0Va0vH6LCnixpef97yRY247FwdKEoto3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD21HZMKepvQGOQLOcdjvkDcumSG0+/vAzYrYrLH1NCHozqw3L
-	pwO+BQhMs4lF60OPP8pzNJQSfiPddy5kqxzjNSVvao1Hkm+IJxMY9DOW5xGNXz6qcQ==
-X-Gm-Gg: ATEYQzzHdYI+Va/e79TgVbzA8vmJn18CS0t8rQqg7MP2j0/+5uFZdcTz9VGRsqVjOFl
-	FZ2IzEb8BWCdHhzpHNfVSu+hT/B8DDS/e7bSgVXHhLv0f+19hhz7vkzW6caF1G9dDomTpEYI5hx
-	zXiThtnDPdylKtNEXK21gy4T7Uq/InOrQQBFAYWaVji8dJT+SRN7UgCqQud8xdE5QtCep4Tm0uz
-	1h+UDeH+P8ku2gWagun6LLeUzC7513/c3L5JNzcBIHPfaqsIPr21mfXb62+2QyPlp4DoLQMtVDq
-	L5md+HKYdXojm6fGiCKz60B4u18VX1av1mMl7AVFWrJTQOJ2eupcNlElxbVo3ZsZHutOJfqaDWZ
-	gl4bajuQpGa+yUILJZc4jQAWfMoOZfBu78nGA5vCBsVXlRGMUpfCRiWHD7NP6FgmyOpOWScuBVp
-	YfDdtYIaqkgyRhg9qs1hYhYvrm5b92x+v/66sAJZp544Kfrk8+/gRgVzP9uDs9DA==
-X-Received: by 2002:a05:7300:cb0a:b0:2ba:7b2a:6a5f with SMTP id 5a478bee46e88-2bdd0ed191amr5782832eec.8.1772487087946;
-        Mon, 02 Mar 2026 13:31:27 -0800 (PST)
-Received: from localhost ([2a00:79e0:2e7c:8:4382:5835:2fef:2d89])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-2bdd1f49d96sm11395477eec.27.2026.03.02.13.31.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Mar 2026 13:31:27 -0800 (PST)
-Date: Mon, 2 Mar 2026 13:31:25 -0800
-From: Brian Norris <briannorris@chromium.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Odelu Kukatla <quic_okukatla@quicinc.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Drop aggre{1,2}_noc QOS
- clocks on Herobrine
-Message-ID: <aaYBrQlaSSf4aWpz@google.com>
-References: <20250825155557.v2.1.I018984907c1e6322cf4710bd1ce805580ed33261@changeid>
- <20250825155557.v2.2.Idebf1d8bd8ff507462fef9dc1ff47e84c01e9b60@changeid>
- <90b13660-1844-4701-8e63-7fde2f093db0@oss.qualcomm.com>
- <aMMcNn82AmSavJYf@google.com>
- <b51e1230-d366-4d0f-adc8-fac01b5de655@oss.qualcomm.com>
- <aMR2diG8zwvPRSXR@google.com>
- <aWBM5zl1kgvCZdnV@google.com>
- <8d334226-b8a3-4e22-9257-e6aa60fe2d47@oss.qualcomm.com>
+	s=arc-20240116; t=1772487349; c=relaxed/simple;
+	bh=MXrnbhwOtZ1tGNCzYX4BW2BB/uWvHFbq7kaPs9bC5uY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=SgeJWXSB0jb5i25NbQLv90Sh+LLVbFlNY2egCoZlgBz+9aHYhx+hxSJeBWV3ZQFsxv9Tn6S2C/PIzkKF7aN83eVpDCg3ciYiI7Gmr90KLkLMs/fqXk+ytwVvtdJTlxe74/nBkO6hdCHBlyCFMD5NJmziS9x9HLKRat6VWAOZtsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Dfz5DyTB; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4fPsfy5NNCz9smr;
+	Mon,  2 Mar 2026 22:35:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1772487339;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4NIL6uWapbdqpgG2p/sw1LyDcO+MB0fwXIJZ+3kK7fM=;
+	b=Dfz5DyTB1FJq7VJSjg7agABbEOTueivJOUnVhKT9L3mn1zdf1G7UeV+uZlfH0YDVTpkzht
+	4QNaZRCZp8Ia0CWWtIzE/AJt4zLSmPdLYDrfcQazk6RuUJdckEASwDRr6tvZAOpO7zoq4T
+	80JYUhSZzoyw7RM9RINEHI9bqNvp2L2vnBOvqDyc/H0zz0PRG/QMQdSGsDtP7QqWduJCry
+	EggVpojN17RR5eu1w7gebHGJJsmSj5BLSjf7H165qevABqb0+pdtcRH9UiriHZ6waTPPtT
+	J7vN+zOLvri/dcVcHcDk0PUJDQo7N/a4WkpqXwuAvlFfltd5xg09OLRtvH+ylA==
+Message-ID: <fe436c72-deae-41af-87ea-726fe4801e7b@mailbox.org>
+Date: Mon, 2 Mar 2026 22:35:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8d334226-b8a3-4e22-9257-e6aa60fe2d47@oss.qualcomm.com>
-X-Rspamd-Queue-Id: 0A3FF1E5290
+Subject: Re: [PATCH v2 2/2] drm/bridge: waveshare-dsi: Add support for 1..4
+ DSI data lanes
+From: Marek Vasut <marek.vasut@mailbox.org>
+To: dri-devel@lists.freedesktop.org
+Cc: Joseph Guo <qijian.guo@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>
+References: <20260115024004.660986-1-marek.vasut+renesas@mailbox.org>
+ <20260115024004.660986-2-marek.vasut+renesas@mailbox.org>
+ <3af09657-78ce-4bc6-b8d5-b346a3b86c5b@mailbox.org>
+Content-Language: en-US
+In-Reply-To: <3af09657-78ce-4bc6-b8d5-b346a3b86c5b@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: dkqf49gjzjuakfhs31ap9sy1mc6uzb4y
+X-MBO-RS-ID: 06d59b41ff50c3666a5
+X-Rspamd-Queue-Id: BC4BB1E5355
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270233-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270234-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_CC(0.00)[nxp.com,intel.com,kernel.org,gmail.com,kwiboo.se,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org,bootlin.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[briannorris@chromium.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:dkim,mailbox.org:email,mailbox.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email]
 X-Rspamd-Action: no action
 
-Hi Konrad,
-
-On Tue, Feb 17, 2026 at 11:46:19AM +0100, Konrad Dybcio wrote:
-> On 1/9/26 1:33 AM, Brian Norris wrote:
-> > Hi Konrad,
-> > 
-> > On Fri, Sep 12, 2025 at 12:37:29PM -0700, Brian Norris wrote:
-> >> On Fri, Sep 12, 2025 at 03:10:16PM +0200, Konrad Dybcio wrote:
-> >>> As I attempt to find a board that would boot with your sw stack,
-> >>> could I ask you to check if commenting any of the three writes in
-> >>>
-> >>> drivers/interconnect/qcom/icc-rpmh.c : qcom_icc_set_qos()
-> >>>
-> >>> specifically causes the crash?
-> >>>
-> >>> FWIW they're supposed to be independent so you don't have to test
-> >>> all possible combinations
-> >>
-> >> It seems as if any one of them will cause the crash. I had to comment
-> >> out all 3 to avoid crashing.
-> > 
-> > I'm curious if you had any follow-up here. Are you still looking for an
-> > alternative to this patch?
+On 2/6/26 12:48 PM, Marek Vasut wrote:
+> On 1/15/26 3:39 AM, Marek Vasut wrote:
+>> Parse the data lane count out of DT. Limit the supported data lanes
+>> to 1..4 which is the maximum available DSI pairs on the connector of
+>> any known panels which may use this bridge. Internally, this bridge
+>> is an ChipOne ICN6211 which loads its register configuration from a
+>> dedicated storage and its I2C does not seem to be accessible. The
+>> ICN6211 also supports up to 4 DSI lanes, so this is a hard limit.
+>>
+>> To avoid any breakage on old DTs where the parsing of data lanes from
+>> DT may fail, fall back to the original hard-coded value of 2 lanes and
+>> warn user.
+>>
+>> The lane configuration is preconfigured in the bridge for each of the
+>> WaveShare panels. The 13.3" DSI panel works with 4-lane configuration,
+>> others seem to use 2-lane configuration. This is a hardware property,
+>> so the actual count should come from DT.
+>>
+>> Reviewed-by: Joseph Guo <qijian.guo@nxp.com>
+>> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 > 
-> Sorry Brian, it seems like all the "ready to grab" firmware image links
-> for this platform are dead where I would normally look, which prevented
-> me from being able to poke at this..
+> Is it OK to apply these two patches now ?
 
-I'll say, I'm not really surprised. The firmware here is probably not in
-any maintained nor widely used state.
-
-> Would there happen to be another place where I can grab them from,
-> perhaps some CrOS CI?
-
-I don't really know of one right now. I expect the CI is not active.
-
-To speak practically here: there are likely no real users of this
-development board, and if I'm the only one actively trying to use it
-with upstream Linux as a development vehicle, I can simply carry this
-change locally. It's probably not worth a lot of people bending over
-backward for it, unless I'm wrong and there are more people using it. I
-was just hopeful that I could reduce some friction for myself, and the
-limited (possibly zero) population who might also run into problems
-here.
-
-Unless you really want to move forward, I'll move this from my mental
-back burner to cold storage :)
-
-Thanks for your time,
-Brian
+Can this be applied now ?
 
