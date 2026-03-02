@@ -1,129 +1,146 @@
-Return-Path: <devicetree+bounces-270099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270100-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6DjyLcGrpWmpDgAAu9opvQ
-	(envelope-from <devicetree+bounces-270099-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:24:49 +0100
+	id gJbeHqWupWmnEQAAu9opvQ
+	(envelope-from <devicetree+bounces-270100-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:37:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2647A1DBC4D
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:24:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A69B1DBF75
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A470A30498E6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:23:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 14B6B301AA8B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671DC40F8E6;
-	Mon,  2 Mar 2026 15:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44B9040149B;
+	Mon,  2 Mar 2026 15:27:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5A4V46mp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OthBj7Jy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F057040F8D8;
-	Mon,  2 Mar 2026 15:23:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F8B286D7D;
+	Mon,  2 Mar 2026 15:27:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772464998; cv=none; b=K7PDruDOsBcFjSRUcaPN59arHlmTwfn+k2KxqxgsyP6GveTR1Eflyx2p8uFrla/SFJ/q9QmjtNS6fZYBR9nKh3lx0vrpV/ut7UsE9s8CX5rf+cEx/+IhDOmWfl1wp0MUuSbzetqOga5qrnitu91FjRFveXT9FivKoPfK0EubqBo=
+	t=1772465258; cv=none; b=uViW3HLK2z9v563/Pcoy1pnd9ei8yvVGEja3Pw+I+uS0MB3/3ZWBaiXOuddYQLNt6oCBN8CkwUdCMAC0GrpBQTdliZGWlCISUkhLHFlEJUNvO1aQuHCkcb/PJaNreV5xkroDzDV8/oaYrb7Fx6sUpQqmd88eSzRj3NQ61Cswcv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772464998; c=relaxed/simple;
-	bh=EVYwK15dduGoyeZ0r5hvbbMoJyoIUeqNEStYXt32qlg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MujfXyx9TxKCDi8UYTn9P230o8lx+jPjX2Q8CA2bYHxuYMJAKPCBklmrrSRbiMMaru3a04yk/Z0fwRZy9GyINK8G5UVUp0S2JuDwqTaYUu2V5SeBqYpSGU+Bj7Fgm8ycKXyTidyO1P4iVHx3SuwBXYtekYoc5xMHBcwGRZdJhY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5A4V46mp; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Z/L1RsM3ifNpNZNp4Aw/HlURvPThVG1lk4TYHvWSF78=; b=5A4V46mpge7k4Q/0orHLQoyri9
-	blKLRtS4agjMpmaalW+TWwrHoBTOWJaHLult03tudMjFWdWQvfAXS9V+unyuhg2E9GuebFc83lqOO
-	54Hx+w4Qa6jy1jvIsmGXdvzKYUlha0ocSzDAtAimxVhLfpHB8lE6nVHnDaNVd1LBqD68=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vx56e-009h7F-Ej; Mon, 02 Mar 2026 16:22:48 +0100
-Date: Mon, 2 Mar 2026 16:22:48 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next] net: phy: Handle PHY reset during initial PHY
- ID read
-Message-ID: <9c29300b-a8f9-4b92-bb38-c75a6b56e793@lunn.ch>
-References: <20260302144458.3180702-1-wens@kernel.org>
+	s=arc-20240116; t=1772465258; c=relaxed/simple;
+	bh=U1LVZKiOs+6bdtnsgEbKMpwzp18gX4CvEKWahajFxIs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iPJB1gK5A+dhS01uYaFfMOsbBegQArFU4elIvsQL16ibH32cP28F++LsdfATSvlBWWp+PAhL0PlIGtzLpT+xI7pSuJSJrBUHaSEWa6cIoP7GeQwD+sQu7XGZpvK+240z7Si16OKHh0kZYBfLJC2MP+PcSygviikTdy3W67HfkiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OthBj7Jy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A6BDC19423;
+	Mon,  2 Mar 2026 15:27:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772465257;
+	bh=U1LVZKiOs+6bdtnsgEbKMpwzp18gX4CvEKWahajFxIs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=OthBj7JyQNqVdWBa+tKkfsYwNOE/jnS2htS8O+CFjl6ketwgSJoNjVhwLQTZL6V0G
+	 CjuUrsCOhwpRItGRBVRaal/b7rZ6XONV0bGXnv9P0BToxAGW+PPTCCZ5DHMUzBz8E2
+	 5pLo17vIyLBMJxvkuqR/HjAGvq8/ymI0fKGro0jcs0fXLWPhLhdDI6R0/g7+IhvItV
+	 jfRaBHEidcdTb6L7Vsoz0kJAEJBA2xEBKvU3ILPk0I3xnvZGe9nz8cvnz7/xBEbwmO
+	 IDOKTpqX9MpDWbz1IU6NBHsr2BahWRhGxMUyU+IgGAjhtytAn3o7kCYU5JjN2bfd6W
+	 Pi0jz+yf2l4ew==
+Received: by wens.tw (Postfix, from userid 1000)
+	id 0B27D5FCAC; Mon, 02 Mar 2026 23:27:35 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>
+Cc: Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: [PATCH v2 0/3] arm64: dts: allwinner: sun55i-t527: avaota-a1: Enable LEDs
+Date: Mon,  2 Mar 2026 23:27:19 +0800
+Message-ID: <20260302152724.3197587-1-wens@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260302144458.3180702-1-wens@kernel.org>
-X-Rspamd-Queue-Id: 2647A1DBC4D
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 7A69B1DBF75
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-270099-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_FROM(0.00)[bounces-270100-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 10:44:57PM +0800, Chen-Yu Tsai wrote:
-> The mdio device core handles reset GPIOs and controls for PHYs and
-> MDIOs after the MDIO or PHY device is created. However this does not
-> cover the initial PHY ID read _before_ the PHY device is created, since
-> the PHY ID is needed for the PHY device. This causes PHY devices that
-> have reset GPIOs or controls to not work after a reboot if the GPIO
-> is left in the reset state; neither will it work if the reset GPIO is
-> by default (for example, missing a pull-up) in the reset state.
-> 
-> One possible workaround is to place the reset GPIO or control property
-> under the MDIO bus instead of under the PHY. However the common PHY
-> device tree bindings already allow a reset for the PHY, so we should
-> make some effort to support this.
+Hi folks,
 
-Please either:
+This is v2 of my A523 LED controller enablement series.
 
-1) Add the ID to the DT
+Changes since v1:
+- Rebased onto next-20260226 to get rid of unmerged context
+- Collected tags
+- Link to v1:
+  https://lore.kernel.org/linux-sunxi/20260225160828.1687643-1-wens@kernel.org/
 
-2) Work on driver/base, and add generic power on sequencing code which
-can handle reset GPIOs, reset controllers, regulators, clocks etc. A
-solution which works for PCIe, USB, SATA, and other enumerable
-devices.  And then modify phylib to use this generic code.
+This series enables the RGB LEDs found on the Avaota A1 board. The LEDs
+are connected in series to the SoC's LED controller.
 
-    Andrew
+Patch 1 adds a new compatible string for the LED controller found in the
+Allwinner A523 SoC family.
 
----
-pw-bot: cr
+Patch 2 adds a device node for the LED controller to the dtsi file.
+
+Patch 3 enables the LEDs found on the Avaota A1 board.
+
+
+Please have a look.
+
+
+Thanks
+ChenYu
+
+
+Chen-Yu Tsai (3):
+  dt-bindings: leds: sun50i-a100: Add compatible for Allwinner A523 SoC
+  arm64: dts: allwinner: sun55i-a523: Add LED controller
+  arm64: dts: allwinner: sun55i-t527: avaota-a1: Enable LEDs
+
+ .../leds/allwinner,sun50i-a100-ledc.yaml      |  1 +
+ .../arm64/boot/dts/allwinner/sun55i-a523.dtsi | 22 ++++++++++
+ .../dts/allwinner/sun55i-t527-avaota-a1.dts   | 41 +++++++++++++++++++
+ 3 files changed, 64 insertions(+)
+
+-- 
+2.47.3
+
 
