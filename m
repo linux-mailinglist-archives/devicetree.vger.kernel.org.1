@@ -1,198 +1,165 @@
-Return-Path: <devicetree+bounces-269862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269863-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDsRJE1cpWlc+QUAu9opvQ
-	(envelope-from <devicetree+bounces-269862-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:45:49 +0100
+	id OIvTHVldpWlc+QUAu9opvQ
+	(envelope-from <devicetree+bounces-269863-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:50:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1436C1D5B8E
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:45:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6A41D5C16
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:50:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 34F3F303A862
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:45:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C5ABA300CE40
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A3D38F64A;
-	Mon,  2 Mar 2026 09:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C0638758F;
+	Mon,  2 Mar 2026 09:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mLb60bEl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WegT/50n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0F938F645;
-	Mon,  2 Mar 2026 09:44:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F2D2741B5
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:47:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772444698; cv=none; b=W/a4biXjET3tWLMTceNwTpOWL9ATq0yYFtPJh3H1amCXcT8FGWwGJHLdy9QUVbkSRR4yn1abJOaLtlJIhMLqmr+nD/0Qqykxl583Eqgkyy+26pJS5l2iMdLftdVlZV8spQM0s5AcCbiVVSdkKuN+CMiKJQN4YNxx7XdbPpF0f0c=
+	t=1772444870; cv=none; b=npFWBnxqzb7LloIqotdl6qBFQKPwmMIgLz/i5F8TUf2+ZAdrL+TDvcA0dGyoTy6sR1y0T4FbDkpa0R7NaOqHI7rnRcKAVhILyXwlNeDFVZ1qIiFk5bzdkiCxjeWPflQd6czKm4Ztw5n1UUPeoXs7ZvVjOOrCckRK34+6QJqgW/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772444698; c=relaxed/simple;
-	bh=YgrilhQNpe9Lj6ukah4A+zh/1X64Yb8snFI0f/+CLA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fh6iuLow5piWpa3FN4oYQHwF15Fpll3FHP0b8CmvzoYbSJ9ejrMCDNbnLyz7KvX3j+kuoIhzUhYqxmOyER5thKUxKbpaJlAz7SWzROozLtHPpF4ClOcbxfuVZmXFUrxaSEkMDOZYAHJu4VghVdgxRy+sQZKvbEAAp35qYsRdu/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mLb60bEl; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772444695; x=1803980695;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=YgrilhQNpe9Lj6ukah4A+zh/1X64Yb8snFI0f/+CLA4=;
-  b=mLb60bElbKV+DPxID3K+se/XTRFxhfNOvEXrTA4o3SGHvSibZYO6VwrZ
-   tpVMQHUrwZqqGcixDefux08LLEX0slvhh/X1CSxarAGL7q3qCq7SzRSc4
-   FpWR5semx7oEcbwhpVuSmnsFDFJw8fLVhKkGJ3enIFmd74bHb9PQmR6Pc
-   bOjjFCYMUuWyAMfKEiGkeIavuMue7HWOyflu6DisY7adxb2dLP04xz+Aa
-   SB79qjeV/7TADj3CUmcShsIc7t7ulRp/nNVg/RZ+ZVeIgsCGNV5baP7B5
-   8t0wrW5k0KRV6ukzGtxrVh8QKY5TTL8GEE90SBjs7VtrAfbMrk7s66bvH
-   A==;
-X-CSE-ConnectionGUID: VEF4jYCeQwq2c8We155hMg==
-X-CSE-MsgGUID: 7qqGpIlSTwGoW9JaiyDkOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="96064454"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
-   d="scan'208";a="96064454"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 01:44:54 -0800
-X-CSE-ConnectionGUID: ReacdULBQP6op7Tn3RSdVQ==
-X-CSE-MsgGUID: 136BOjurRWOSDHlTh0O8gw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
-   d="scan'208";a="222105255"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.52])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 01:44:49 -0800
-Date: Mon, 2 Mar 2026 11:44:46 +0200
-From: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "Xu, Baojun" <baojun.xu@ti.com>,
-	"broonie@kernel.org" <broonie@kernel.org>,
-	"tiwai@suse.de" <tiwai@suse.de>,
-	"13916275206@139.com" <13916275206@139.com>,
-	"Ding, Shenghao" <shenghao-ding@ti.com>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"Yi, Ken" <k-yi@ti.com>, "Lo, Henry" <henry.lo@ti.com>,
-	"Chen, Robin" <robinchen@ti.com>, "Wang, Will" <will-wang@ti.com>,
-	"jim.shil@goertek.com" <jim.shil@goertek.com>,
-	"toastcheng@google.com" <toastcheng@google.com>,
-	"chinkaiting@google.com" <chinkaiting@google.com>
-Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-Message-ID: <aaVcDvYvi28wFR2S@ashevche-desk.local>
-References: <20260226075737.405-1-baojun.xu@ti.com>
- <20260226075737.405-2-baojun.xu@ti.com>
- <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
- <9f861c7df09c4434a98a203ecff913bc@ti.com>
- <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
- <a7316acf9ba248f9ad1fab0313a95654@ti.com>
- <3cfa4036-e7a7-4cde-9dab-a171a63bdee3@kernel.org>
- <4865c7f626a340d7847354512367577e@ti.com>
- <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
+	s=arc-20240116; t=1772444870; c=relaxed/simple;
+	bh=n0sVEjWNofsCxgzUtyk9/qTlFP36u11HIZHhHh3t5qE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=W6JPT3EEp2X+qqMjKnuLKXKSlkLltu3bpMLVF92Q9CZcbXpPWUJ8b5BylpCoML4+V4k3Vy3SV+mk2N3g/LvJPrdTT0ir9sblEdvvznW1hMeVN0V/jPOIqEl7IccSZ0Oq3aP0+TywvVJjZUe3f1NdksHMy7Pd1V+2z3lREbOyen0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WegT/50n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15DB6C2BCB1
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:47:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772444870;
+	bh=n0sVEjWNofsCxgzUtyk9/qTlFP36u11HIZHhHh3t5qE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=WegT/50nZAqeMKls134gY/2OPItDepfzI1tSNMvGQNX53pkd8SR5d8r4BUs8Mn2Q6
+	 gZYnhiHDRHzWzOCgW49odepaGxm9gKPnpXLvzhpHzSx4JZazi9ZFHYwoCdvL5iVnTy
+	 kDN4Q6SWHV9ZS3iRDwjkfvQ7Noam4Pc3OIFFn98aZzAl2fli6ChTYpU3J/G7lKOS5L
+	 aPi4pupvmepegZoPbj+2pPXk6cd5UILo3Ox+eHRr+wH1Uxjk/wluY3MBK+Ieyqt0Ri
+	 PqrY5/ST0hEV7TxGEUo+MqcOVeQ4YRAfzVm7+SA86qOCI5Mhp17nlOBaZlkcEJvGIu
+	 fmgyOXZBcjaAw==
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-79801df3e42so50689877b3.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:47:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWl3A8nXcysfDGy+iWVqPf5gJItZB03aWebzFjxF6e8XrOcBRjM+hUic5JbCfH2Jo49n25VeI9Lizd6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6JCpoPf4mKubhWIZIXWAKPlcZ32d5DtvDinDiZ381mw5SojKo
+	r3Kp36SJvaqQOOx6XnQxnYnjKfO3RROBF9XJw5smFxvAT367ADl8tG5yuVJEI3ZXVpWyK35Hb6Y
+	T1qk+mFPErLtTWc3bZXinDh+1TCynn+I=
+X-Received: by 2002:a05:690c:3686:b0:797:d46b:e86e with SMTP id
+ 00721157ae682-79874be88demr138701707b3.14.1772444868769; Mon, 02 Mar 2026
+ 01:47:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260227-ajar-wolverine-7ce1ebd79821@spud>
+In-Reply-To: <20260227-ajar-wolverine-7ce1ebd79821@spud>
+From: Linus Walleij <linusw@kernel.org>
+Date: Mon, 2 Mar 2026 10:47:38 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmo91CE8Yia69trrHz3g=PXPsSW32F7+GQ-0JvrpKSFHA@mail.gmail.com>
+X-Gm-Features: AaiRm53MvmsLRrrHhVdWy25oztgLPBvp02xm93HhXnpSoyRADkEyceB1uibfank
+Message-ID: <CAD++jLmo91CE8Yia69trrHz3g=PXPsSW32F7+GQ-0JvrpKSFHA@mail.gmail.com>
+Subject: Re: [RFC v11 0/4] PolarFire SoC GPIO interrupt support
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Herve Codina <herve.codina@bootlin.com>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	FROM_DN_EQ_ADDR(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269862-lists,devicetree=lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[ti.com,kernel.org,suse.de,139.com,vger.kernel.org,gmail.com,goertek.com,google.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-269863-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
-X-Rspamd-Queue-Id: 1436C1D5B8E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid,microchip.com:email]
+X-Rspamd-Queue-Id: DD6A41D5C16
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 10:27:49AM +0100, Krzysztof Kozlowski wrote:
-> On 02/03/2026 10:22, Xu, Baojun wrote:
-> >> From: Krzysztof Kozlowski <krzk@kernel.org>
-> >> Sent: 02 March 2026 16:58
-> >> On 02/03/2026 09:24, Xu, Baojun wrote:
+Hi Conor,
 
-...
+On Fri, Feb 27, 2026 at 3:53=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
 
-> >>>>>>> static const struct of_device_id tasdevice_of_match[] = {
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> In 2024 I sent a v7 of adding support for the GPIOs on PolarFire SoC,
+> which relied on an irqchip driver for a mux sitting between the GPIO
+> controllers and the main interrupt controller on the chip:
+> https://lore.kernel.org/all/20240723-flatworm-cornflake-8023212f6584@wend=
+y/
+>
+> Some feedback I got from Thomas there ended up being a complete black
+> hole for time spent, and I never managed to make the change he wanted,
+> as a house of cards collapsed whenever I tried it. I eventually
+> abandoned my attempt to upstream the GPIO driver with interrupt support
+> and cut it out of the driver to make progress. I've been carrying what
+> Thomas deemed incorrect downstream since.
+>
+> Recently Herv=C3=A9 upstreamed a patchset for a Renesas chip that deals w=
+ith
+> a mux sitting between a GPIO controller and the platform interrupt
+> controller by way of interrupt-map. I saw the opportunity to copy what
+> he did, so have gone from an irqchip driver that read the mux setting
+> that firmware had configured, to trivial driver that reads the mux
+> configuration from devicetree and sets the hardware up to match.
+>
+> This gets rid entirely of the irqchip driver, so resolves Thomas'
+> complaint, but I don't love how the GPIO side of things turned out quite
+> as much. The hardware has 41 interrupts but 70 GPIO lines. 38 of these
+> are 1:1, direct connections to a dedicated line on the interrupt
+> controller and 3 are shared.
+> With the parent mux driver, the GPIO driver's interrupt handler was only
+> called either for specific direct interrupt or for only the subset that
+> are fed into the shared interrupt for that controller. Without the
+> parent irqchip from mux driver, and using interrupt-map, I lost the
+> ability to use mux driver to selectively call the handler, so now the
+> GPIO controller attempts to handle interrupts on all lines.
+> Probably this is ultimately not a big deal, it just feels bad to do.
+>
+> Going RFC here, since it's an entirely different approach. The version
+> number is a continuation from before, since the patchset linked above
+> got merged at v10 when I stripped the interrupt support.
+>
+> The mux driver has moved from irqchip to soc, since that's where Herv=C3=
+=A9's
+> ended up.
 
-> >>>>>>>       { .compatible = "ti,tas5827" },
-> >>>>>>>       { .compatible = "ti,tas5828" },
-> >>>>>>>       { .compatible = "ti,tas5830" },
-> >>>>>>> +     { .compatible = "ti,tas5832" },
-> >>>>>>
-> >>>>>> So it is fully compatible with tas5830 and most of the changes here are
-> >>>>>> not needed?
-> >>>>>
-> >>>>> Yes, it's fully compatible with tas5827/28/30.
-> >>>>
-> >>>> Then above hunk and many others are not needed.
-> >>>
-> >>> Hi, because those chips have different on the voltage, so the parameters
-> >>> is different, have to use different firmware binary, so we must identify
-> >>> every chip in the driver.
-> >>
-> >> That would explain other ID tables (and should be briefly mentioned in
-> >> the commit msg), but not this one, because here you do not customize the
-> >> binary at all.
-> > 
-> > Hi, we save the chip_id in the dev_name:
-> > strscpy(tas_priv->dev_name, tasdevice_id[tas_priv->chip_id].name,
-> > 	sizeof(tas_priv->dev_name));
-> 
-> And where do you see the name in above table?
+This surely looks acceptable, I had an inquiry about using proper
+chaining for the IRQs but other than that it looks fine to me.
 
-I don't know what you are trying to get from them, but I²C enumeration
-on DT platforms works in a way that it takes two tables into account,
-hence, if there is no compatible (with given part number) there will be
-no matching name.
-
-AFAIK it has to have a compatible to make it work in such a case.
-What did I miss?
-
-The code in question is i2c_of_match_device_sysfs() call in
-i2c_of_match_device() which does this magic.
-
-> > And get firmware binary from this dev_name:
-> > scnprintf(tas_priv->rca_binaryname, 64, "%sRCA%d.bin",
-> > 	tas_priv->dev_name, tas_priv->ndev);
-> 
-> Or here?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Yours,
+Linus Walleij
 
