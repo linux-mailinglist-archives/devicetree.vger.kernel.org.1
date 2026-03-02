@@ -1,228 +1,178 @@
-Return-Path: <devicetree+bounces-269801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269802-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDgUFvIJpWlb0AUAu9opvQ
-	(envelope-from <devicetree+bounces-269801-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 04:54:26 +0100
+	id 2VelAQ0QpWlS1QUAu9opvQ
+	(envelope-from <devicetree+bounces-269802-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 05:20:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1D8B1D2C8C
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 04:54:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6249C1D2E64
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 05:20:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7FA393008C2F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 03:54:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 87525300A7E2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 04:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D6DD2F1FED;
-	Mon,  2 Mar 2026 03:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0692BCF7F;
+	Mon,  2 Mar 2026 04:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="P/ctHr74"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GF8EXgvs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout06.his.huawei.com (canpmsgout06.his.huawei.com [113.46.200.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A853C2E265A;
-	Mon,  2 Mar 2026 03:54:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632F8430BB6
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 04:20:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772423642; cv=none; b=M6beWBD0Mc8Afr92GCHxVzLoW1Hpx1vbYARnfEBKV40d+bImx/JIZFLZXzzjoySMUjjTpE53le6RP1mnsg0Er3ySqzrTSpTQyk/mS/tBHFw1wPfG5/OM6FLoo7230v7mRo++08e8UAqjwjihUpq2zwx7QkpSsqLcyOq1x7yA9Zk=
+	t=1772425223; cv=none; b=DAakVBc3PjbusTGINXBUb+ylePN6UFeIFIPEPgxugUIV0WN6hLKhBRRkCX8sveZk46+RYZXC9H3O6cWfgu8VErd0bKNRwolHzR+I9Ul5QyZlK8vVdtfe4N5MTvJJuZMB0d7GnTm3fHH7AYr7jtIz9AJ1GlJDOkttS4By48/tE8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772423642; c=relaxed/simple;
-	bh=Yy7TYOq9+DLW5lTV5qgrvxr0Wq43dOTY3mD9Ti2H2g8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XnE5IygLKdf5gupcpdp7FKjDPdHoTmzAlXtsEIF9U/aIZTNM2yVCc3uwkAbTSgwwJnIu510UbcHXnjjW1tmWWFM5oeU8YXCvSb6QWp5YLJLHJs5o2aPX2adJUWiX9sKoEnUEKvHWwda5w6cjnJy9ypkriMcnfyPtbuWgAXyU+10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=P/ctHr74; arc=none smtp.client-ip=113.46.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=5KMCn7a2GKKaDXYDNep+ArUoPi23K/kWIYh5pBL8RVE=;
-	b=P/ctHr74UaOq4A6mzMooorWBwvIH3h5TwQ3bYTUJ73OQ+qtkfUMG+xT/SWoMOl18gSo+wfLw8
-	ZQ5Vy7bUgT7ZR6HUShJjraNXtT93za/waZsQN/NSvUikGNxQidB9Ulfr8DutOIDeGB2Onhj8b4u
-	7sFx9+hyKvTa+Iz5UpvTSGM=
-Received: from mail.maildlp.com (unknown [172.19.162.140])
-	by canpmsgout06.his.huawei.com (SkyGuard) with ESMTPS id 4fPQ0J0M9mzRhSF;
-	Mon,  2 Mar 2026 11:49:04 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id 199702012A;
-	Mon,  2 Mar 2026 11:53:53 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by dggpemf500011.china.huawei.com
- (7.185.36.131) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 2 Mar
- 2026 11:53:49 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
-	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
-	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
-	<dyoung@redhat.com>, <rdunlap@infradead.org>, <pmladek@suse.com>,
-	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <paulmck@kernel.org>,
-	<lirongqing@baidu.com>, <fvdl@google.com>, <rppt@kernel.org>,
-	<ardb@kernel.org>, <leitao@debian.org>, <sourabhjain@linux.ibm.com>,
-	<jbohac@suse.cz>, <cfsworks@gmail.com>, <osandov@fb.com>,
-	<tangyouling@kylinos.cn>, <ritesh.list@gmail.com>, <hbathini@linux.ibm.com>,
-	<eajames@linux.ibm.com>, <songshuaishuai@tinylab.org>,
-	<kevin.brodsky@arm.com>, <samuel.holland@sifive.com>,
-	<vishal.moola@gmail.com>, <junhui.liu@pigmoral.tech>, <coxu@redhat.com>,
-	<liaoyuanhong@vivo.com>, <fuqiang.wang@easystack.cn>, <brgerst@gmail.com>,
-	<x86@kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kexec@lists.infradead.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [PATCH v8 5/5] riscv: kexec: Add support for crashkernel CMA reservation
-Date: Mon, 2 Mar 2026 11:53:15 +0800
-Message-ID: <20260302035315.3892241-6-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260302035315.3892241-1-ruanjinjie@huawei.com>
-References: <20260302035315.3892241-1-ruanjinjie@huawei.com>
+	s=arc-20240116; t=1772425223; c=relaxed/simple;
+	bh=5gILMaGdI1v5nQ4lLFzK5CdL3aZ4jAwq3TDemRpn7yM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=p8HPK79rc//E0EBEf2k0s6D8BFf4Q7jGsErmlLl7YX2WoMk7UJYd7b19tRB2v197/11ioOt2VxsaKvcE6S1W+wTk7MUENCWyYJbUOT5O0RwCh6Qnq4eEWg3E44y+S64cEiLowgziruFGTgQF36Vcp56qz5lDkmP/uKZKLg/mNIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GF8EXgvs; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-3567e2b4159so2099824a91.0
+        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2026 20:20:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772425222; x=1773030022; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=g9G7fxfmzVlIi5Fr50mSQN2bdN4kcLFoj1561/FSzpQ=;
+        b=GF8EXgvs+a186U4t329jEOrVllR0wFE3FZj5xw8c2cHixB2xrDqpYBi/BMeNQWS8a5
+         2nntNBGPhdXqH6NxKoWYail/ck0DEJ5tZQuzChQNPDYawVNE/9zEdrfZDzD3N9Dx1KSd
+         7SmVJ32EmKOmeKagSbyUqFwL9lGlnVm4LXR/Z2u1Nb6M5I/5tUHj9thAUa5em80Trcan
+         2UVIMtZAvQ+uGfosA6CF4sw+U7JIky6DCclFoIvqCgkA/YweKUuEYGqT7e3AK1NWdAWE
+         uGZeY36WWaQJknkcDN6A/JSFQjZXXPZQvqQi59AgTxWtPxXM8etUJn4ZdzKHMD8dHR7h
+         zm1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772425222; x=1773030022;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g9G7fxfmzVlIi5Fr50mSQN2bdN4kcLFoj1561/FSzpQ=;
+        b=jyg94zpzIPChpzw0XKJEObr1eBXOmJLABlFXTda77bYBZioL24S5cAb0hkj92Xzb5P
+         fQnJteiyBg2kuEM8TFB160zQ6gxKscGhok+FdU5K7hibbPRb69t13qDBf0V5pXcaKSLz
+         9Hkhn21QE2NrtAwqkpZSmorx2Q36dv9KxrRUkOsmoYzDcP3LpEYg8m1ilPqIoJk02XT7
+         D6jrQdXuLShi5W2XIwNK8hAQjyJxe6A4qpMvySupw+lMnsUfV0V3zqj5F7pnuglgLE4r
+         y12zmBm9hyu3/LJUoRGneY6IWK1SMEWyF7Qdf2XuZh1tN8DfuQz7H6efbZ8+q9QGJg2m
+         f1gQ==
+X-Gm-Message-State: AOJu0YyLqWGrmnGs6Yeu19hArtgjl4iAGNI11IFAsju0TUXiYhQH/Q31
+	T+Id95AOg7AEcvF+a2KrjU5bxQTD3klsM+zCsBxYhknzDgxjzVoNBm2h
+X-Gm-Gg: ATEYQzzsvB/FiYqROQrkUxl50yPzxXSJct+dig4040BRYNxyr7som6FiIf7XKHYTTvH
+	PGmvrJKtm0Mb5g5f0wG8ZVSkf2NJ2WLmQZR0+zCh+zCGdvHzRhq9NlAPRucdNwUiOpHt6uMa854
+	uT//lgHwyW4QyFaCQRzNrenL2KZlvBkErJkMsCWupwlss6CTYgGEmUd3ECCTo+6/Yb8oMVvWcrY
+	Tz2cWmVUdCjyH8H/y9MT9xRHeyaob8ixvuG+EWKYY3JMroJPY8kKx2pgX50pIS+7bldfV1XthI+
+	xqVxByeVeCCgsiB50VW0K/wjYqGU/cZN+sbh615PsjAaX+DZwDAqcLqpS8b88iZ35Wv03xlhrUt
+	fko/AijcgIPCAj0LKBwsYfFKIpST6SFExu/AzvGEBkr/L9Rkm+RqvI1y+pyp/OVEfO0rwnT0QpY
+	usewsyQX5IRyMDFqRjt2+db46UBJ0lFg==
+X-Received: by 2002:a17:90b:3d10:b0:359:9083:3661 with SMTP id 98e67ed59e1d1-3599083392fmr961910a91.15.1772425221617;
+        Sun, 01 Mar 2026 20:20:21 -0800 (PST)
+Received: from [127.0.1.1] ([218.32.81.133])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3593ddd737fsm16355794a91.13.2026.03.01.20.20.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Mar 2026 20:20:21 -0800 (PST)
+From: Colin Huang <u8813345@gmail.com>
+Date: Mon, 02 Mar 2026 12:20:01 +0800
+Subject: [PATCH] ARM: dts: aspeed: anacapa: Add eeprom device node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems200001.china.huawei.com (7.221.188.67) To
- dggpemf500011.china.huawei.com (7.185.36.131)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260302-add-new-eeprom-node-v1-1-2bcf87bc22e4@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAPEPpWkC/x3MOwqAMBBF0a3I1A7EKP62IhbBPHUKE0lABcneD
+ ZanuPeliCCINBYvBVwSxbuMqixo2Y3bwGKzSSvdqlppNtayw83AGfzBzltw1xutTLc0/VBTLs+
+ AVZ7/Os0pfVqL4pZlAAAA
+X-Change-ID: 20260302-add-new-eeprom-node-78a20a7c4893
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ colin.huang2@amd.com, Colin Huang <u8813345@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772425219; l=1109;
+ i=u8813345@gmail.com; s=20260202; h=from:subject:message-id;
+ bh=5gILMaGdI1v5nQ4lLFzK5CdL3aZ4jAwq3TDemRpn7yM=;
+ b=Lu2BNkUYsAir1qaAPj6PiWZAitwbLnlXMKIMJchEYxY5pYd47YiouzudhsnMoLL/B+oVJfW5Q
+ D+kdN8Sb79fDEG51sYs3sXbU8apew5tWFmTKD+DKi5JRdpkhfM5znsa
+X-Developer-Key: i=u8813345@gmail.com; a=ed25519;
+ pk=Zlg0WqpCw4qbswOqamTBTXIchwR/3SnYZpy7rjaGMdQ=
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,suse.com,baidu.com,google.com,debian.org,suse.cz,fb.com,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	TAGGED_FROM(0.00)[bounces-269801-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_GT_50(0.00)[62];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	TO_DN_NONE(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.ozlabs.org,amd.com,gmail.com];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:mid,huawei.com:dkim,huawei.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F1D8B1D2C8C
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269802-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.51:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[u8813345@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,0.0.0.56:email,0.0.0.50:email]
+X-Rspamd-Queue-Id: 6249C1D2E64
 X-Rspamd-Action: no action
 
-Commit 35c18f2933c5 ("Add a new optional ",cma" suffix to the
-crashkernel= command line option") and commit ab475510e042 ("kdump:
-implement reserve_crashkernel_cma") added CMA support for kdump
-crashkernel reservation. This allows the kernel to dynamically allocate
-contiguous memory for crash dumping when needed, rather than permanently
-reserving a fixed region at boot time.
+eeprom address changed (0x50 to 0x51) in DCSCM rev D
+To support previous rev (B/C) and rev D,
+add eeprom device node for DCSCM rev D.
 
-So extend crashkernel CMA reservation support to riscv. The following
-changes are made to enable CMA reservation:
-
-- Parse and obtain the CMA reservation size along with other crashkernel
-  parameters.
-- Call reserve_crashkernel_cma() to allocate the CMA region for kdump.
-- Include the CMA-reserved ranges for kdump kernel to use, which was
-  already done in of_kexec_alloc_and_setup_fdt().
-- Exclude the CMA-reserved ranges from the crash kernel memory to
-  prevent them from being exported through /proc/vmcore, which was
-  already done in the crash core.
-
-Update kernel-parameters.txt to document CMA support for crashkernel on
-riscv architecture.
-
-Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Acked-by: Paul Walmsley <pjw@kernel.org> # arch/riscv
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Signed-off-by: Colin Huang <u8813345@gmail.com>
 ---
- Documentation/admin-guide/kernel-parameters.txt | 16 ++++++++--------
- arch/riscv/kernel/machine_kexec_file.c          |  2 +-
- arch/riscv/mm/init.c                            |  5 +++--
- 3 files changed, 12 insertions(+), 11 deletions(-)
+DCSCM rev D changed the eeprom address from 0x50 t0 0x51
+To support previous rev(B/C) and rev D.
+add new eeprom node for devscm rev d.
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index afb3112510f7..3fe5724d6e39 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -1121,14 +1121,14 @@ Kernel parameters
- 			It will be ignored when crashkernel=X,high is not used
- 			or memory reserved is below 4G.
- 	crashkernel=size[KMG],cma
--			[KNL, X86, ARM64, PPC] Reserve additional crash kernel memory from
--			CMA. This reservation is usable by the first system's
--			userspace memory and kernel movable allocations (memory
--			balloon, zswap). Pages allocated from this memory range
--			will not be included in the vmcore so this should not
--			be used if dumping of userspace memory is intended and
--			it has to be expected that some movable kernel pages
--			may be missing from the dump.
-+			[KNL, X86, ARM64, RISCV, PPC] Reserve additional crash
-+			kernel memory from CMA. This reservation is usable by
-+			the first system's userspace memory and kernel movable
-+			allocations (memory balloon, zswap). Pages allocated
-+			from this memory range will not be included in the vmcore
-+			so this should not be used if dumping of userspace memory
-+			is intended and it has to be expected that some movable
-+			kernel pages may be missing from the dump.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+index 2cb7bd128d24..680108b00664 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+@@ -586,6 +586,11 @@ eeprom@50 {
+ 		reg = <0x50>;
+ 	};
  
- 			A standard crashkernel reservation, as described above,
- 			is still needed to hold the crash kernel and initrd.
-diff --git a/arch/riscv/kernel/machine_kexec_file.c b/arch/riscv/kernel/machine_kexec_file.c
-index d0e331d87155..297b910e4116 100644
---- a/arch/riscv/kernel/machine_kexec_file.c
-+++ b/arch/riscv/kernel/machine_kexec_file.c
-@@ -46,7 +46,7 @@ static int get_nr_ram_ranges_callback(struct resource *res, void *arg)
- 
- unsigned int arch_get_system_nr_ranges(void)
- {
--	unsigned int nr_ranges = 1; /* For exclusion of crashkernel region */
-+	unsigned int nr_ranges = 1 + crashk_cma_cnt; /* For exclusion of crashkernel region */
- 
- 	walk_system_ram_res(0, -1, &nr_ranges, get_nr_ram_ranges_callback);
- 
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 811e03786c56..4cd49afa9077 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -1398,7 +1398,7 @@ static inline void setup_vm_final(void)
-  */
- static void __init arch_reserve_crashkernel(void)
- {
--	unsigned long long low_size = 0;
-+	unsigned long long low_size = 0, cma_size = 0;
- 	unsigned long long crash_base, crash_size;
- 	bool high = false;
- 	int ret;
-@@ -1408,11 +1408,12 @@ static void __init arch_reserve_crashkernel(void)
- 
- 	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
- 				&crash_size, &crash_base,
--				&low_size, NULL, &high);
-+				&low_size, &cma_size, &high);
- 	if (ret)
- 		return;
- 
- 	reserve_crashkernel_generic(crash_size, crash_base, low_size, high);
-+	reserve_crashkernel_cma(cma_size);
- }
- 
- void __init paging_init(void)
++	eeprom@51 {
++		compatible = "atmel,24c128";
++		reg = <0x51>;
++	};
++
+ 	// BSM FRU
+ 	eeprom@56 {
+ 		compatible = "atmel,24c64";
+
+---
+base-commit: 710dbb13377c80a6e39ef049a517665841e3221e
+change-id: 20260302-add-new-eeprom-node-78a20a7c4893
+
+Best regards,
 -- 
-2.34.1
+Colin Huang <u8813345@gmail.com>
 
 
