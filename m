@@ -1,238 +1,199 @@
-Return-Path: <devicetree+bounces-269826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269827-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aHWsFklJpWlj7wUAu9opvQ
-	(envelope-from <devicetree+bounces-269826-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:24:41 +0100
+	id OKmjOSlKpWn17wUAu9opvQ
+	(envelope-from <devicetree+bounces-269827-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:28:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAB141D49A1
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:24:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 575171D49F5
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 09:28:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 387E4302A68F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 08:24:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B8044300D175
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 08:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A41379ECD;
-	Mon,  2 Mar 2026 08:24:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D4D379EFB;
+	Mon,  2 Mar 2026 08:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qCa+GZT7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XycG/f4f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazhn15011022.outbound.protection.outlook.com [52.102.139.22])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE101377028;
-	Mon,  2 Mar 2026 08:24:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.139.22
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772439851; cv=fail; b=Aj9mChgYM7EIvICwLvKG47hCTQx7yDW45f0y3qwttZbuJH4f1/zbJ/AdDld9uZM/5CXvpXggn/4lj/V/N1NbJL5OncVEmbHXm9c3oGweoHltZcA9OG3RXF4Tr7Wbm+317G5qNuxWT4vSHghV7h2oSb44LMInJkKPh8g7Fr89jC8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772439851; c=relaxed/simple;
-	bh=24obxlTergEPj0WV+9EtSTmSGLYVT4eTH8S3ARj0wPI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=QMD/w6Db0UsLZAWgLNqNbXiwZmz4LDggQ8rtmHrKgt6rBqaRlORj3gAB6HK1hztvPtBHWsZNSm9B6oOKKinN4PR5EVR1MdfB2mK7hfMjv7f+MThRibN7fzLDXOWu51i4vXBc9fANCpt4tvH+QMljXvFNK3IGg4UtOPYBq9bpBAI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qCa+GZT7; arc=fail smtp.client-ip=52.102.139.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VU5fjlvTjVnMNQ2Df8Ve1NY85p+U5AuYFwOddyFiM3zFOnaPpLd4zQ0KT20qhch7SlkzZuSwX9pd8apuYOgELOb2m4lhnEUs9aqF9AqmHPRJYkxHlPjMo5ClS9PgcYn48PiSATLLPHXjtQYwrLxv6mTIf2/pNBHhJuo4EP8OQgA4AfQaH7EeC2NxVXDjMQ/brdzDzTsTwoTK10DpF5TqUxcNPt200rr7+k8tfdKeJUNLG0JF1y5bByx7nL4V5BBXG9KJcSrmplK/PCIYLNXEyClt3G7zf7V20RhlES/9MD3vPsXekcwS2HiIe60AWVjPZy7MXbDiMm8t2o+7Tng5xA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2mCdDgd2dXsub5ofpDlfgbB5ji9n8IGm5aR+a0yWzT4=;
- b=VsLLCky2mLiC4V0IBCGJXRorknxzj6NPiK4uJrVcWQ50lyhM78Z82IU0BOHZZGXGfZp0b9tkHty7vxW71wkWsPGQWvuLvaMAGueRpGA4zQKtiuTVJF0FC24r2jsYfnjyiU0pqYMnIJ5HR3wEF9OCIhXYmUgUzlsYweuDQmAv7+iDLcsRQgYGvov6hIQ2TEQ6/aFnAiA2EjisB01fae1kVhMCPirFdB4nAnTkb4iJtUA1ldR/BCaA8GFWPuDemTkgZJLWwTNHZcB8EA0Bgg3D8y8xafj8IiXiM1Imr0D9QEIXBzZ2qbjsSpXFhx/i50srmJgBiUsv5xEe7/RQcDoF3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2mCdDgd2dXsub5ofpDlfgbB5ji9n8IGm5aR+a0yWzT4=;
- b=qCa+GZT7W4V4fvr6wf/XhwL4w5aUe0JMA3ywyo3JL32f25gbZ/S3UKjA5p4Rbn1j1zpRlXqyZ3eL/O+pQZyAVvB7Q+e0rWGc0tk1X2KPLHKlCtsruJ6B4+IlE6FpZButx6IGhFclnvNEgNn3LBwe7IfNqu5Wb/nGXiPqyr/vAvI=
-Received: from BN9PR03CA0578.namprd03.prod.outlook.com (2603:10b6:408:10d::13)
- by PH3PPF44A241B91.namprd10.prod.outlook.com (2603:10b6:518:1::798) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.14; Mon, 2 Mar
- 2026 08:24:07 +0000
-Received: from BN1PEPF00005FFF.namprd05.prod.outlook.com
- (2603:10b6:408:10d:cafe::8c) by BN9PR03CA0578.outlook.office365.com
- (2603:10b6:408:10d::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.20 via Frontend Transport; Mon,
- 2 Mar 2026 08:24:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BN1PEPF00005FFF.mail.protection.outlook.com (10.167.243.231) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 08:24:07 +0000
-Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
- 2026 02:24:06 -0600
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
- 2026 02:24:06 -0600
-Received: from DLEE209.ent.ti.com ([fe80::9756:3b42:e53b:3cbe]) by
- DLEE209.ent.ti.com ([fe80::9756:3b42:e53b:3cbe%7]) with mapi id
- 15.02.2562.020; Mon, 2 Mar 2026 02:24:06 -0600
-From: "Xu, Baojun" <baojun.xu@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "broonie@kernel.org" <broonie@kernel.org>, "tiwai@suse.de"
-	<tiwai@suse.de>, "andriy.shevchenko@linux.intel.com"
-	<andriy.shevchenko@linux.intel.com>, "13916275206@139.com"
-	<13916275206@139.com>, "Ding, Shenghao" <shenghao-ding@ti.com>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "Yi, Ken" <k-yi@ti.com>, "Lo, Henry"
-	<henry.lo@ti.com>, "Chen, Robin" <robinchen@ti.com>, "Wang, Will"
-	<will-wang@ti.com>, "jim.shil@goertek.com" <jim.shil@goertek.com>,
-	"toastcheng@google.com" <toastcheng@google.com>, "chinkaiting@google.com"
-	<chinkaiting@google.com>
-Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-Thread-Topic: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-Thread-Index: AQHcpvWtoQyt5WTP+EmgFSOStkCYv7WWv+mA//+cDzWAAGc+AIAEJ+hd
-Date: Mon, 2 Mar 2026 08:24:06 +0000
-Message-ID: <a7316acf9ba248f9ad1fab0313a95654@ti.com>
-References: <20260226075737.405-1-baojun.xu@ti.com>
- <20260226075737.405-2-baojun.xu@ti.com>
- <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
- <9f861c7df09c4434a98a203ecff913bc@ti.com>,<63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
-In-Reply-To: <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
-Accept-Language: en-GB, zh-CN, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-c2processedorg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3C1B379996;
+	Mon,  2 Mar 2026 08:28:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772440087; cv=none; b=A8m7ePZRKzx8RJECuHb1jM3zXdsvabh0YpxBA+a6jmk05ozJygt2xhaZ6CtOCNpACPkpQwiqmZ6JQJbWIYaAvmA9/GfCROunuRfbJmyZDv09G9pzTfDT9cftkuutLmF2WnfaCc0R1AZf3hOWICG9oI7Z128UyY04Sanu/dLe7j0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772440087; c=relaxed/simple;
+	bh=7FhWh7BgFISEsCBVfcdH3CNGUtd9ft2tykGuXcbos3A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cmeE6Pwh+fP1kYbtvPKcMAYsO/LiwP2l8vys9bRU/hcoqqyx+DXaZxqhWirxxzfUKdTi0H4GNYkFFhDvnk3SNyBYk7Z5EiRqG9iJWhATPVF9kw5wKHanb1yyd4yxaLXivl2JFFVXj6n/vqYeeOP2tCnJHnVBOVEZ7Bdjo2GzMvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XycG/f4f; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772440085; x=1803976085;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=7FhWh7BgFISEsCBVfcdH3CNGUtd9ft2tykGuXcbos3A=;
+  b=XycG/f4flVGwY4WMHTNmTsTuDQ20qgCy6rdmliVDyUD+xdIBk9A7JH1t
+   guv5BPoFs7q3n19YPbfncb3KnGAhy25XX2P7GTKnL+RhUZ8Ud0HXiIkhg
+   9h96fikGPltn1lVKf6FLUwCHlfnzq5p8suL2Rbph+2qmFEYGCdeS/wjoL
+   tgaSEM93Ntdkw2RULLuxiMyeLlj1Rs9c7wWAnzpGltHPQCENGwW27ZJum
+   OLMs/kgfaMMzRbZcWl9jptJVxsV79isz87D26WlSuB166Gd5xgH8yRtCK
+   jbjBWs9R1pVO4DGPNGqDoUjxtRPYl8wV9g6Iu73Tu31lFsKlGe0YnW9Pz
+   w==;
+X-CSE-ConnectionGUID: lxBgH/Q2TU2Tg+LFwi2twg==
+X-CSE-MsgGUID: WLkfxbY2QlGwLa95VhyhkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="73145121"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="73145121"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 00:28:04 -0800
+X-CSE-ConnectionGUID: 8rcFrIUzT+2A00I1eMUuRQ==
+X-CSE-MsgGUID: 2IZf6wnnSbyoBzutePaK4w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="240599069"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.52])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 00:27:59 -0800
+Date: Mon, 2 Mar 2026 10:27:57 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
+	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>,
+	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Dmitry Antipov <dmantipov@yandex.ru>
+Subject: Re: [PATCH v7 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <aaVKDbB_XIFmxCEM@ashevche-desk.local>
+References: <20260216-adf41513-iio-driver-v7-0-b0ed387ab559@analog.com>
+ <20260216-adf41513-iio-driver-v7-2-b0ed387ab559@analog.com>
+ <20260222172912.60a103c0@jic23-huawei>
+ <aZwYshRxNgSh3CWk@smile.fi.intel.com>
+ <zb752y7tnjzsc35na572o4sip6efwv3i4lha4ls6fhdrr52h5v@bfgy65cmae4p>
+ <CAHp75VdSV2QDMR0DueCuP=Ds-5A1NsNjqPWtmRbG4NvoJ=LjXQ@mail.gmail.com>
+ <20260301122340.3fedf64e@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00005FFF:EE_|PH3PPF44A241B91:EE_
-X-MS-Office365-Filtering-Correlation-Id: dfc43832-f106-4de9-12b0-08de783512a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|7416014|376014|36860700013|34020700016|7053199007|12100799066;
-X-Microsoft-Antispam-Message-Info:
-	nQw6cORzGVrqb/Jp8NRlbgXofkPiCRHKJw/nqSHgVn/C556xWtg37p+U04F2AwPvvYvQjh2w6SUNN30eR/anKVs55gumeVwizTl8zbz5Tqh4gBs9D6Z8ufMhoPjGmzwJr6zQ/jSfpGD1bYt2z0r0uihPpiYe7tg7OvKZriOtFSxRQl+G57Uw+6Xfg9dwCV9aoKk0I4dPp87OM1VELFKvEVnpkU2E/V/s3IsKq45paZsp78wrWedPDv2+dp1ZvMDdK3lqp+i50ZfIRKrtcaOQRV4hDOKVm6SRlo+Uba8Le1LLcdW3By6fDlIbGPBpDSqfxU1gTxvg3iNEy/bScIhPATq6vhABIliSVAk6bGQY7fa4WnU9JTtDJARZzvR5vUECPM1BO9AT2k/rSfkjtbjt4p7/ggjAHFWieLcXSp7vd+yP9kef8dFPatb5zp689fJo68b9AAP1xetY2uOopnyiYYNWEyMYcqx3MdsalSakiYwYfebxVPRknHiAVeRb6JqvQZ0mBvBK8VF95IcF1F3Kfvr2JeXxI9kCMUTpwCdSJljeyOldjiS3bH0Riuc7gnXD1NqdeyvB1pXX6+LwxqV8+0oNGV718Cm6MirsFpaE4a35p+5KdnN4odZJ6e7Whdg7QNBRE9RDGav+oUEUJncUIMNram4or4bT8DU1HdNtMfJ7je8zgciIu/I4m1HgI7hZhQaa5PY38+gqet59/WnUvUB28zkRey05ZueEuXeCkd1T9gtbYlcAUtutVhNL1JbLTykrmPIrg8hgE4ueYJr1Tal42pFh5ZXnBXEESFZAO4/QfR+o8qxohYHhYDgIHvcN3tMNF7/0MDuLEWekAxzA/g==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(7416014)(376014)(36860700013)(34020700016)(7053199007)(12100799066);DIR:OUT;SFP:1501;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	rsMnjViE8M+b1zHAvjtD9KDCjzj6HR3azm9N9T49hCbU9B2BjSjBmhBU8FZ/919ChOTEbvbU5sO2/FiR8JzMdj0QgARhywTGYoxRqp7U9hLfFPsroYpJk2m4P4WV402teeWrw9pJWWVHtFRkPz9N7I4jCdPBXOUy/buB+MSXH6J1nhFW0/2/mpQviVUk+d+w/UgkFWcma3RH2cmOwOKonX4jSfvRiggx1SH+2RUPLRIBGgZQKRFpJrrlkER0YDIw+e8MlK3qH3Ll0GWWrqGiqhPtWg0ukc0GXptsITlIN+6v3imz257jF7EOH6vLP3sjIrhgIzYy8AifjF7Nqun7vICby4h87ZVAmgtZiT9kWpLJDkXRSmrnM533dhKm4C1ZcjXmF95fsPvKCh72Fbevht8tsjjTFeROFDUNoe2b2DBUmZWaJzabd19qjiBtKaMs
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 08:24:07.3200
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfc43832-f106-4de9-12b0-08de783512a1
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN1PEPF00005FFF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF44A241B91
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260301122340.3fedf64e@jic23-huawei>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,suse.de,linux.intel.com,139.com,ti.com,vger.kernel.org,gmail.com,goertek.com,google.com];
-	TAGGED_FROM(0.00)[bounces-269826-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,yandex.ru];
+	TAGGED_FROM(0.00)[bounces-269827-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ti.com:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[baojun.xu@ti.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
 	NEURAL_HAM(-0.00)[-0.998];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: AAB141D49A1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim]
+X-Rspamd-Queue-Id: 575171D49F5
 X-Rspamd-Action: no action
 
->=20
-> ________________________________________
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 27 February 2026 18:46
-> To: Xu, Baojun
-> Cc: broonie@kernel.org; tiwai@suse.de; andriy.shevchenko@linux.intel.com;=
- 13916275206@139.com; Ding, Shenghao; linux-sound@vger.kernel.org; linux-ke=
-rnel@vger.kernel.org; lgirdwood@gmail.com; robh@kernel.org; krzk+dt@kernel.=
-org; conor+dt@kernel.org; devicetree@vger.kernel.org; Yi, Ken; Lo, Henry; C=
-hen, Robin; Wang, Will; jim.shil@goertek.com; toastcheng@google.com; chinka=
-iting@google.com
-> Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 sup=
-port
->=20
-> On 27/02/2026 11:40, Xu, Baojun wrote:
-> >
-> > ________________________________________
-> >> From: Krzysztof Kozlowski <krzk@kernel.org>
-> >> Sent: 27 February 2026 18:34
-> >> To: Xu, Baojun
-> >> Cc: broonie@kernel.org; tiwai@suse.de; andriy.shevchenko@linux.intel.c=
-om; 13916275206@139.com; Ding, Shenghao; linux-sound@vger.kernel.org; linux=
--kernel@vger.kernel.org; lgirdwood@gmail.com; robh@kernel.org; krzk+dt@kern=
-el.org; conor+dt@kernel.org; devicetree@vger.kernel.org; Yi, Ken; Lo, Henry=
-; Chen, Robin; Wang, Will; jim.shil@goertek.com; toastcheng@google.com; chi=
-nkaiting@google.com
-> >> Subject: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 supp=
-ort
-> >>
-> >>>  MODULE_DEVICE_TABLE(i2c, tasdevice_id);
-> >>> @@ -144,6 +145,7 @@ static const struct of_device_id tasdevice_of_mat=
-ch[] =3D {
-> >>>       { .compatible =3D "ti,tas5827" },
-> >>>       { .compatible =3D "ti,tas5828" },
-> >>>       { .compatible =3D "ti,tas5830" },
-> >>> +     { .compatible =3D "ti,tas5832" },
-> >>
-> >> So it is fully compatible with tas5830 and most of the changes here ar=
-e
-> >> not needed?
-> >
-> > Yes, it's fully compatible with tas5827/28/30.
->=20
-> Then above hunk and many others are not needed.
+On Sun, Mar 01, 2026 at 12:23:40PM +0000, Jonathan Cameron wrote:
+> On Mon, 23 Feb 2026 12:41:45 +0200
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > On Mon, Feb 23, 2026 at 12:37 PM Rodrigo Alencar
+> > <455.rodrigo.alencar@gmail.com> wrote:
+> > > On 26/02/23 11:06AM, Andy Shevchenko wrote:  
+> > > > On Sun, Feb 22, 2026 at 05:29:12PM +0000, Jonathan Cameron wrote:  
 
-Hi, because those chips have different on the voltage, so the parameters
-is different, have to use different firmware binary, so we must identify
-every chip in the driver.
+...
 
->=20
-> Best regards,
-> Krzysztof
->=20
->=20
+> > > > It all depends on the series from Dmitry Antipov.
+> > > > Can somebody help reviewing the patch 1 there?
+> > > > https://lore.kernel.org/linux-hardening/20260212125628.739276-1-dmantipov@yandex.ru/  
 
-Best Regards
-Jim
+FWIW, Andrew picked them up for Linux Next. Please, test!
+
+> > > can we push for the exposure of that function to kernel modules?
+> > > We have discussed that in v6, and I understand that:
+> > >
+> > > EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
+> > > in lib/kstrtox.c;
+> > >
+> > > #include "../../lib/kstrtox.h"
+> > > in drivers/iio/industrialio-core.c
+> > >
+> > > is not a good call...  
+> > 
+> > Yep, because it's a temporary band-aid. The proper solution is to have
+> > shared code provided by the lib/. So, the wrapper to parse 64-bit out
+> > from the constant string literal should be part of the lib/ in the
+> > result.
+> > 
+> > > > When it's in, we can continue on this one. TL;DR: for me this is on hold.
+> > > > But if you see the need to have the driver being in IIO, please add a big
+> > > > fat FIXME to make sure we will get this all being sorted out in the
+> > > > (nearest?) future.  
+> > >
+> > > I could add the FIXME into iio_safe_strntou64() doc header. It explains
+> > > the context:
+> > >  
+> > > > + * The implementation of this function is similar to _parse_integer_limit()
+> > > > + * available in lib/kstrtox.h, but that header/function is not available to be
+> > > > + * used in kernel modules. Hence, this implementation may need to change or
+> > > > + * removed to reuse a new suitable helper that is properly exposed.  
+> > 
+> > Up to Jonathan, I hope we can move the above mentioned series forward.
+> > Without that, as I pointed out, this one sounds to me suboptimal and
+> > unneeded double effort.
+> > 
+> I don't want to hold this series for another cycle, but we are still
+> fairly early in this one, so some focus on moving that forwards seems
+> sensible.  If we are running out of time, we can fallback to a loud
+> FIXME and a plan to move to the generic version in the library next cycle.
+> So let's set a rough deadline of rc5 and see how things are going then.
+
+Taking into account the above, can we actually develop something
+based on that?  Or at least having a temporary solution for this
+cycle followed up by the better one for the next?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
