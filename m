@@ -1,384 +1,250 @@
-Return-Path: <devicetree+bounces-269943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269944-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AGSDGCFzpWlsBQYAu9opvQ
-	(envelope-from <devicetree+bounces-269943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:23:13 +0100
+	id SMF0ItBzpWkNBgYAu9opvQ
+	(envelope-from <devicetree+bounces-269944-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:26:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B4E31D7677
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:23:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A171D770E
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 12:26:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0AED53004D2E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 11:22:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AD38B301707E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 11:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF0F361DDA;
-	Mon,  2 Mar 2026 11:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1474E362139;
+	Mon,  2 Mar 2026 11:26:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CR72+dyb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="g5yBSvmM";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KxHeqeYT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9468361DA8;
-	Mon,  2 Mar 2026 11:22:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D402D3603ED
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 11:26:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772450572; cv=none; b=jZKeYDup/Bdp/t5xQm/4iZ8CUweBDwpe3Jypv6G3BRdMQrsEybeOdFdhWtEMFYCS5e43sFIo+mSs+apJ1hFFHSbBA/wCMQCztsGVhP36Eijcbzy9XotTVP96zsewDAq6FAIIp6sK51xSoHSAaaMUKSv2Anb5gEWR0u3B5/02S+g=
+	t=1772450765; cv=none; b=WGIIuXZm+IuL/qQF9BHZcJ7ZGexyaCYBEYyDvMNkr6H3TjC/WlKY1pzADeyKW25QJc1YjuGvo8KzWIkqA2sMaCmUdQSmX8xBPCt1FNbN//EPx51pyVfzFVaQ9fKjjTZiG5SY7jyl2f6pHa+7hsTBqGH8RGi7MrmsgonmL7Dlk9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772450572; c=relaxed/simple;
-	bh=F0RpYt/xYTOulkmg02m2V9erbUhS84/fAQaXNHW+3g8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bPRk0cVrGGg1YK+FsfBghBt3l24FaHyFQfvIM2saya7YmL96lakRNZ91/0Wl+JqrmrcTS4ScNrxwJ8PIIxsKWGRX472WFc1MFbIqtIqZXy56DQ2mOU/5+bJ0jVeHisHZCLvVzG2YVv59mOFGPABYo7czx9J6Lv8WnWszrw3Yv8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CR72+dyb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41594C19423;
-	Mon,  2 Mar 2026 11:22:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772450572;
-	bh=F0RpYt/xYTOulkmg02m2V9erbUhS84/fAQaXNHW+3g8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CR72+dybgJuzcXVs9t6MsaU3kgYio0aW4iyiq+8DDBa4Hp0xPahs91KnZzNlJi+39
-	 q+1F19YAAddZapkFrbdppsoi/fWeqctM2ZSRDpbPyoAEkvbFCVdWlhLMpPceTE9RyT
-	 p4PRJzG2AuS98u3GcUGem0WxKdf1DPdf6lij4dIlPizzG+bBiEWWwhoaEIc4eQiz6p
-	 +WbdF3pEke1x6IZS53RH4XiiR86KAi2PiShsMHesUgX1WW3n92NHjwHwHFeFdU3KcQ
-	 rXhs7Mb+oePBHvBR5NiUCVb2hb3SZrF41baleICzesAHEBzRyoKuEszi/e/b7tZPvT
-	 H+1N1uDeoatBg==
-Date: Mon, 2 Mar 2026 11:22:46 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC v11 3/4] soc: microchip: add mpfs gpio interrupt mux driver
-Message-ID: <20260302-spoiling-bullring-9b7fcdd805ee@spud>
-References: <20260227-ajar-wolverine-7ce1ebd79821@spud>
- <20260227-flashing-overcast-85ff59b2e82c@spud>
- <20260302105824.21b5c7d6@bootlin.com>
+	s=arc-20240116; t=1772450765; c=relaxed/simple;
+	bh=zkf4rTc+nc5uIOrgr5u4Jb6syRr+y5A/JyBO+FBgAJ4=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=BEYoai4THiCVgXGUT60TrYkutw9/hCQY0b/dECkvrqq4exZ5KqTtguuzI8mJurbKrvwALfs2id75tM0Nib8qsCZha6R2LVivGUf8hwN88qpzlUiIPfPY4RxnyTmgBXBFalIaS2FKK0Mnq797bj4WQlETN3caiPcPmmnjU94zftQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g5yBSvmM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KxHeqeYT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6229Jrsw3742605
+	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 11:26:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	kL0GBX3M5EUOIFB3IDifGu35iWJBpOeIwSooFpQIjkE=; b=g5yBSvmMJOgYj5ON
+	Pd+3rgUXlqnhmfw+Awv7xsVnl0e8rS4asBaTpYGU8D5N4aQbLYBzI/qOtRo/RBfV
+	utH6daqpFI7q2hG6HK3cCRdqEdrQLS+D4Asq2+dXtwO5EOlvTAX56fNruni96pP2
+	uDUAf9ObBdMRqhoaK8IqacwP6Rdr6Gt09RXJ4NJwRArdlELhDDSSChsBnd0pjbvY
+	95t/BXNPx+Z5gAce6qRE9CrzhDMeFlLV2WRe8WBQMnDxMbrsilGJvrlUKKymKJbX
+	zq/W2sE0os73/Cu3gKiviQQ0mCQ2+IefQKW7zFTFdU6NikMv1bgTRUq/jBgtBFki
+	0EwosA==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cn7trge7q-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 11:26:03 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3594620fe97so23347844a91.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 03:26:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772450762; x=1773055562; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kL0GBX3M5EUOIFB3IDifGu35iWJBpOeIwSooFpQIjkE=;
+        b=KxHeqeYTPWsaQ3TC7XYU1UCYujNnjghAW2A0WbS7rzSmJ538T7cB4EYeCELI/2mWDD
+         rY4kmD0dF7gfrimR0q1USNBSuCWf7BhtR1ShrKGqN363Z61iXUztdVEsPPHfoM4We4+H
+         3PgJwzzUSuQIdGth1fN/wgxrJZLYKpEZXaZOHHTpj27zXH9dZsz/hdThvze9e2HQtVkl
+         DTypHZ4KKnad1/Qr1EFEMRJ2gFH+G4VpY8tcM/WsLRmlRZFgheM3A5LgtVcQvi7kurPQ
+         MQ0fplvSD+TxxLRU51HXTvbZViBCMVCpn/Kdp/eL1Vmt5cXNuZ16OOvYHPKh3dnFsRTH
+         FlkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772450762; x=1773055562;
+        h=content-transfer-encoding:content-language:in-reply-to:mime-version
+         :user-agent:date:message-id:from:references:cc:to:subject:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kL0GBX3M5EUOIFB3IDifGu35iWJBpOeIwSooFpQIjkE=;
+        b=UtBCV9WueUp4piOdFI+9LG1OY+Mfvng3SvBg64Rl54PKMjCGLkvG5T7BQHafvM0wmd
+         lCKND1aRAlyqkeJZ8Jc5vbcXTBcwqaDvD84qQby6iq2bpaiyZ/3NJUn7Iw6u4EK3Fk6l
+         AELWLV5nep26WfKxW76iUuKOtgx+ZVPV2KnYctq85LxCwKrUIpaH1dPrl0jGtKE1VIku
+         93piFbXCjJkHbzUNwoKkvRJozpm/zA5Z49yoiCYCo9+Tbtpnx+DjPtk8yyb6ja6EdcyC
+         UrJgyzWl9z2JERoxN+fiCa0xcO6WOD+V8eBCcyDTy6/VYbQbiQbJp9KTwMJhbXHiwPnw
+         SsNA==
+X-Forwarded-Encrypted: i=1; AJvYcCVfb6Z/4kLFFlbvFzFPtrGTUR22W23WEvjmIt57fU/4dwqWB/Y3l/kgm7eFaJKyELfnR7s1SPzIj266@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpJBzoFjkW7JdVYOzwHq5PmwXE7larkg99L2WQKjwzNL8AIXxw
+	SR89BWz/4yI5UcgK+nsHfINQPa1XEOkj/QSn30fIL3GI3jkAEsXIiwWwJNXLhYy1X8Rxnp759G1
+	Oarr6YYoENf3Ft919dp8Xlh6p5ygg/PJuTiHEDyFVFbFE/bI4hJAaj6PI0J+1jcNRlPcekDgq
+X-Gm-Gg: ATEYQzwr3dK94ujlEsN945rGAw5PcAx4QGBcSejPCvNoViNE8v2WhstnufoNVIm3rfN
+	fkMZilNDZW+oNBhcsBC4rP35KBCFRlzJQSaY3ogRhTR+jrBGJ5ZIXZAXEtT5QXvdGOQ6sRl+jkU
+	/VWjPuBBtehZ8Mm4eBVf3jL9wNWDZMyFHmzscOG/aWdGFtq6PGqS+P0R2tuNtrcDoN9tTwnSO1L
+	y/fYBl90u0vDRxISdvsAWBHR31mS75niYZm97+WXNqR72DZ13fgbDFnOoIZbue4gkNcneCapWFz
+	6WmGGHcbTfjoMPtUuOhhYXTqdmTCEw4k0aSyeA+71IxZ70SG6Qr/wQbSv2rtmdgryIxY2fLlQHk
+	IfD4tF5tFjrQtI/2n4C7r93V3xCdkaDCEXQISszG3qnc2J17njw==
+X-Received: by 2002:a17:90b:590e:b0:354:a57c:65ec with SMTP id 98e67ed59e1d1-35965c9043dmr8800984a91.20.1772450762134;
+        Mon, 02 Mar 2026 03:26:02 -0800 (PST)
+X-Received: by 2002:a17:90b:590e:b0:354:a57c:65ec with SMTP id 98e67ed59e1d1-35965c9043dmr8800958a91.20.1772450761672;
+        Mon, 02 Mar 2026 03:26:01 -0800 (PST)
+Received: from [10.217.222.63] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-359858ca871sm4552392a91.10.2026.03.02.03.25.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Mar 2026 03:26:01 -0800 (PST)
+Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+        Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+References: <20260217052526.2335759-1-neeraj.soni@oss.qualcomm.com>
+ <20260217052526.2335759-2-neeraj.soni@oss.qualcomm.com>
+ <20260217-berserk-puma-of-focus-bcbe82@quoll>
+ <e3ac0681-605d-c1df-e4f0-78a2c142fa66@oss.qualcomm.com>
+ <21a87714-cd11-4217-a2aa-82fddc3a8530@kernel.org>
+ <544925d0-cf32-6b2a-548e-d6f7cc517581@oss.qualcomm.com>
+ <01085021-c116-46de-a0ce-730455620cb2@kernel.org>
+ <32b7763b-ba44-4341-8528-be97d6607354@kernel.org>
+From: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Message-ID: <06967254-7fa6-218e-db8a-8e4a118a7d24@oss.qualcomm.com>
+Date: Mon, 2 Mar 2026 16:55:56 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jaZPhkjkO4quy2lU"
-Content-Disposition: inline
-In-Reply-To: <20260302105824.21b5c7d6@bootlin.com>
+In-Reply-To: <32b7763b-ba44-4341-8528-be97d6607354@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDA5NSBTYWx0ZWRfX9N/LzF3sT8HP
+ kkIBj/Wt0+vdex2yx/XbddBmcbiFNTpeJx/d6YOCqNCFx/jVW20mDQeMHCO68g2s1ZuTe9s6rJv
+ EG7esaxYkOqYgpJ8RvNG5V34GGFTz70pwU125/iVsX5P4u0CCyqBaEwL0BLyheG7617YThNMaf1
+ SMTRql2w9tdsMBW0Sn6kXhaQaceix0hLOSRJ9ANp1uGsfzzpgdLGvpwyr0zq3krk4nuDrh+/JsR
+ fFSdKVNuQpcxcrCvRO4x972IWr0btXVoYkuj1PHGsH7iRfVCeKB6Tpa8levrvGdTkKqIde5gzGU
+ 5zk00peIr6nHHYuwt6hhxldLyZ8Pykmy043ypecAxYFoMyGVyj8xCczJTc/GhReWvUjt22adcpp
+ /evB+tJxMAMmHSRbjMwRZsr3e7jXgXjYJb3Dmlpfy2EK3YHyPqfKQF/PMCFd5TwUQpT7z9T6VVO
+ iWV0rxQDy1tmRdycu2A==
+X-Authority-Analysis: v=2.4 cv=TNhIilla c=1 sm=1 tr=0 ts=69a573cb cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=RyUJWM3ohA95taQL8aIA:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-ORIG-GUID: 4eqzTzbKsmsebIf1xzQvadKFcyrDbuZH
+X-Proofpoint-GUID: 4eqzTzbKsmsebIf1xzQvadKFcyrDbuZH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_03,2026-02-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 phishscore=0 suspectscore=0 impostorscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603020095
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269943-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-269944-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 6B4E31D7677
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neeraj.soni@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: E7A171D770E
 X-Rspamd-Action: no action
 
 
---jaZPhkjkO4quy2lU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 02, 2026 at 10:58:24AM +0100, Herve Codina wrote:
-> Hi Conor,
->=20
-> On Fri, 27 Feb 2026 14:52:29 +0000
-> Conor Dooley <conor@kernel.org> wrote:
->=20
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > On PolarFire SoC there are more GPIO interrupts than there are interrupt
-> > lines available on the PLIC, and a runtime configurable mux is used to
-> > decide which interrupts are assigned direct connections to the PLIC &
-> > which are relegated to sharing a line.
-> >=20
-> > Add a driver so that Linux can set the mux based on the interrupt
-> > mapping in the devicetree.
-> >=20
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> ...
->=20
-> > --- a/drivers/soc/microchip/Kconfig
-> > +++ b/drivers/soc/microchip/Kconfig
-> > @@ -1,3 +1,14 @@
-> > +config POLARFIRE_SOC_IRQ_MUX
-> > +	bool "Microchip PolarFire SoC's GPIO IRQ Mux"
-> > +	depends on ARCH_MICROCHIP
-> > +	select REGMAP
-> > +	select REGMAP_MMIO
-> > +	default y
-> > +	help
-> > +	  Support for the interrupt mux on Polarfire SoC. It sits between
-> > +	  the GPIO controllers and the PLIC, as only 35 interrupts are shared
-> > +	  between 3 GPIO controllers with 32 interrupts each.
->=20
-> 35 interrupts ?
+On 3/2/2026 2:27 PM, Krzysztof Kozlowski wrote:
+> On 02/03/2026 08:48, Krzysztof Kozlowski wrote:
+>> On 02/03/2026 08:45, Neeraj Soni wrote:
+>>>
+>>>
+>>> On 2/19/2026 1:57 PM, Krzysztof Kozlowski wrote:
+>>>> On 19/02/2026 06:38, Neeraj Soni wrote:
+>>>>>>>  
+>>>>>>> +  - if:
+>>>>>>> +      required:
+>>>>>>> +        - qcom,ice
+>>>>>>> +    then:
+>>>>>>> +      properties:
+>>>>>>> +        reg-names:
+>>>>>>> +          not:
+>>>>>>> +            contains:
+>>>>>>> +              const: ice
+>>>>>>
+>>>>>> And reg is still 4? This is not correct syntax. You need to define
+>>>>>> proper and final constraints per each device. I would write example, but
+>>>>>> why... more things you could just ignore.
+>>>>>>
+>>>>> I had included changes for reg in v3:
+>>>>> https://lore.kernel.org/all/20260206112053.3287756-2-neeraj.soni@oss.qualcomm.com/
+>>>>>
+>>>>> but those were not reviewed so i assume them to be incorrect and dropped it.
+>>>>> Will fix this in next patch and post.
+>>>>>
+>>>> Patch v3 was also not correct, because SDHCI v5 devices should have 1 or
+>>>> 2 entries, not 1-3 as previous patch said.
+>>>>
+>>> This is not clear to me. Here:
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n80
+>>> it says the entries should be 1-4 and there are no v5 specific constraints.
+>>
+>> There are, just scroll.
+> 
+> Here:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n212
+> 
+Yes i had looked at this but, as i understand, this constraints the minItems: not the
+maxItems: and in your comment here:
 
-I copy-pasted this from Kconfig text for the other mux implementation
-that's been floating around since 6.10. I should have double checked
-it. I think the 35 came from 32 + 3, not realising that there are 6
-lines on GPIO controller 1 that are always in "direct" mode. When I
-wrote that description I must have thought those 6 were always in
-"non-direct" mode.
+https://lore.kernel.org/all/21a87714-cd11-4217-a2aa-82fddc3a8530@kernel.org/
 
-> Previously (other patches) you mentionned 41 (38 + 3).
->=20
-> Also 32 interrutps on each (3 * 32 =3D 96) but you talked about 70 on pre=
-vious
-> patches.
->=20
-> Can you double check or clarify those numbers ?
+you expect v5 entries to be constrained to 1-2 and not 1-3. So, as i understand from here:
 
-Yeah, this whole description is not good, 70 and 38 + 3 are correct.
-The controllers have 14, 24 and 32 lines.
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml#n78
 
-> ...
-> > +++ b/drivers/soc/microchip/mpfs-irqmux.c
-> > @@ -0,0 +1,167 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Largely copied from rzn1_irqmux.c
-> > + */
-> > +
-> > +#include <linux/bitmap.h>
-> > +#include <linux/bitops.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_irq.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#define MPFS_IRQMUX_CR		0x54
-> > +#define MPFS_IRQMUX_NUM_OUTPUTS	70
->=20
-> Is 70 really the outputs ?
->=20
-> According to previous patches, I would say 41 (38+3).
-
-I guess in my head the direction was PLIC -> MUX -> GPIO, cos that's the
-way the software follows the chain, so the mux would have 41 inputs and
-70 outputs.
-
-> ...
-> > +static int mpfs_irqmux_probe(struct platform_device *pdev)
-> > +{
-> > +	DECLARE_BITMAP(line_done, MPFS_IRQMUX_NUM_OUTPUTS) =3D {};
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct device_node *np =3D dev->of_node;
-> > +	struct of_imap_parser imap_parser;
-> > +	struct of_imap_item imap_item;
-> > +	struct regmap *regmap;
-> > +	int ret, direct_mode, line, controller, gpio;
->=20
-> Reverse Xmas tree.
->=20
-> > +	u32 tmp, val =3D 0, old;
->=20
-> ...
-> > +	for_each_of_imap_item(&imap_parser, &imap_item) {
-> > +
-> > +		direct_mode =3D mpfs_irqmux_is_direct_mode(dev, &imap_item.parent_ar=
-gs);
-> > +		if (direct_mode < 0) {
-> > +			of_node_put(imap_item.parent_args.np);
-> > +			return direct_mode;
-> > +		}
-> > +
-> > +		line =3D imap_item.child_imap[0];
-> > +		gpio =3D line % 32;
-> > +		controller =3D line / 32;
-> > +
-> > +		if (controller > 2) {
-> > +			of_node_put(imap_item.parent_args.np);
-> > +			dev_err(dev, "child interrupt number too large: %d\n", line);
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		if (test_and_set_bit(line, line_done)) {
->=20
-> Your bitmap size is MPFS_IRQMUX_NUM_OUTPUTS but you your line variable can
-> have values from 0 to 95.
-
-I think this is one of the things that kinda made sense when I started
-copying your work, but by the time I was done I had diverged enough that
-it didn't really make sense any more. Probably I should keep the check,
-but increase the bitmap to 96, not as if packing is going to make a
-worthwhile saving.
-
-> Maybe some checks on imap_item.child_imap[0] or line could be added in
-> order to be be sure that line value will fit in the bitmap.
->=20
->=20
-> > +			of_node_put(imap_item.parent_args.np);
-> > +			dev_err(dev, "Mux output line %d already defined in interrupt-map\n=
-",
-> > +				line);
->=20
-> line is computed from imap_item.child_imap[0]. It is the input and not the
-> output.
-
-That's the starting point being the PLIC versus the GPIO controller. I
-should probably swap that stuff around I guess?
-
->=20
-> In rzn1-irqmux.c, the bitmap is used to avoid multiple input lines using =
-the same
-> output line. Bitmap bits represent outputs.
-
-I considered checking the other side too, but excluding the 3 shared
-interrupts. Do you think that is worthwhile here? Reuse of what you call
-"output lines" is obviously something that I allow, I wanted to make
-sure that, as I mandated 70 entries in the property, that they were all
-unique.
-
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		/*
-> > +		 * There are 41 interrupts assigned to GPIOs, of which 38 are "direc=
-t". Since the
-> > +		 * mux has 32 bits only, 6 of these exclusive/"direct" interrupts re=
-main. These
-> > +		 * are used by GPIO controller 1's lines 18 to 23. Nothing needs to =
-be done
-> > +		 * for these interrupts.
-> > +		 */
-> > +		if (controller =3D=3D 1 && gpio >=3D 18)
-> > +			continue;
-> > +
-> > +		/*
-> > +		 * The mux has a single register, where bits 0 to 13 mux between GPI=
-O controller
-> > +		 * 1's 14 GPIOs and GPIO controller 2's first 14 GPIOs. The remainin=
-g bits mux
-> > +		 * between the first 18 GPIOs of controller 1 and the last 18 GPIOS =
-of
-> > +		 * controller 2. If a bit in the mux's control register is set, the
-> > +		 * corresponding interrupt line for GPIO controller 0 or 1 will be p=
-ut in
-> > +		 * "non-direct" mode. If cleared, the "fabric" controller's will.
-> > +		 *
-> > +		 * Register layout:
-> > +		 *    GPIO 1 interrupt line 17 | mux bit 31 | GPIO 2 interrupt line =
-31
-> > +		 *    ...                      | ...        | ...
-> > +		 *    ...                      | ...        | ...
-> > +		 *    GPIO 1 interrupt line  0 | mux bit 14 | GPIO 2 interrupt line =
-14
-> > +		 *    GPIO 0 interrupt line 13 | mux bit 13 | GPIO 2 interrupt line =
-13
-> > +		 *    ...                      | ...        | ...
-> > +		 *    ...                      | ...        | ...
-> > +		 *    GPIO 0 interrupt line  0 | mux bit  0 | GPIO 2 interrupt line =
- 0
-> > +		 *
-> > +		 * As the binding mandates 70 items, one for each GPIO line, there's=
- no need to
-> > +		 * handle anything for GPIO controller 2, since the bit will be set =
-for the
-> > +		 * corresponding line in GPIO controller 0 or 1.
->=20
-> Hum, what happen if the interrupts property is set in the GPIO controller=
- 2 and not
-> GPIO controllers 0 or 1.
->=20
-> Is it legit ?
->=20
-> If so, should lines coming from GPIO controller 2 be took into account ?
->=20
-> Maybe my comment is not relevant due to some misunderstanding in the not
-> so obvious mapping.
-
-My logic here was that what is done in the controller nodes doesn't
-matter, because I will always mandate that if the map property is
-provided in the mux node that it has 70 items. Even if controller 0 and
-1 are not used, this driver will still be able to read the mappings for
-them and set the mux correctly. Whether or not there's an interrupts
-property in any of the controllers shouldn't matter here at all, when it
-comes to writing the mux, right?
-
-Thanks for taking a look at the series :+1:
-
-Cheers,
-Conor.
-
->=20
-> > +		 */
-> > +		if (controller =3D=3D 2)
-> > +			continue;
-> > +
-> > +		/*
-> > +		 * If in direct mode, the bit is cleared, nothing needs to be done a=
-s val is zero
-> > +		 * initialised and that's the direct mode setting for GPIO controlle=
-r 0 and 1.
-> > +		 */
-> > +		if (direct_mode)
-> > +			continue;
-> > +
-> > +		if (controller =3D=3D 0)
-> > +			val |=3D 1U << gpio;
-> > +		else
-> > +			val |=3D 1U << (gpio + 14);
-> > +	}
-> > +
-> > +	regmap_read(regmap, MPFS_IRQMUX_CR, &old);
-> > +	regmap_write(regmap, MPFS_IRQMUX_CR, val);
-> > +
-> > +	if (val !=3D old)
-> > +		dev_info(dev, "firmware mux setting of 0x%x overwritten to 0x%x\n", =
-old, val);
-> > +
-> > +	return 0;
-> > +}
-> > +
-
-
---jaZPhkjkO4quy2lU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaVzBgAKCRB4tDGHoIJi
-0guBAP4vIUOOxg9ScxoguhFsRG4Y9tA56aRMtey847+h1+MqmAEAjoxupnv3mR5g
-9yUWvt9idB6qe/LPGkLbHgqN+rzfpAg=
-=WPAE
------END PGP SIGNATURE-----
-
---jaZPhkjkO4quy2lU--
+the v5 can have 1-4 entries without "qcom,ice" and 1-3 with it which is what i had posted.
+ 
+>>
+>>> So i made it 1-3 while adding qcom-ice constraint.
+>>>
+>>
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
