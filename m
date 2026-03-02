@@ -1,134 +1,613 @@
-Return-Path: <devicetree+bounces-270228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KH+5K6YGpmkzJAAAu9opvQ
-	(envelope-from <devicetree+bounces-270228-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:52:38 +0100
+	id yKtkJ/oFpmlVJAAAu9opvQ
+	(envelope-from <devicetree+bounces-270229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:49:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55E7C1E431A
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:52:38 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F2A1E41D1
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:49:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CD9B230F8C0B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 21:39:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 904373065114
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 21:39:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626A9386C1E;
-	Mon,  2 Mar 2026 21:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A593A32E5;
+	Mon,  2 Mar 2026 21:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFQWY2Fy"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="brU5p6kX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8DF1A6804;
-	Mon,  2 Mar 2026 21:07:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6C21A6803;
+	Mon,  2 Mar 2026 21:07:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772485641; cv=none; b=o+tqW09Kw6h+lARQrEawkXLghvKrS8x2901QayLIOLl4IsC/BqkrX9KX3Xkfc3w3mOLuAVFxoyl6XCbM7FkEL3O3MaQQc+o5nliOxxHzkBfmcYZMh6HQWa04qM2yBGRhOSWiu4CzduHHrCXFBTq2+FsBvI/E5/7+pDCIvJ4xyk0=
+	t=1772485676; cv=none; b=u/V/tnD87EoXRCnFLSsORZuLacepbFY8L5/Av5Rw3lxj3dKPWdjFBGvnE+7p6lGQ43KMBb6Gau9IkMyu7tAD72CbqLBQsJ84jAWFc3Foue27w5xk3UOA4ya35BWSiyUnN6XY82pHMU1IaJ1xav4mf5iPZvZE6d77o2U2FRiIUAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772485641; c=relaxed/simple;
-	bh=ZcpbPZzjAcuhP9CCScbDLc4UsNaN0uJXOcl33J21nmQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DJTIWr0U+hKaoK4a9I68yOuiCPVCmFo6vujmjKrEXi/6jwAGQqqokY5gjNN3EeXxs+hX68fvvdy3SC4TqH6WjW/yj7l/g2P936ikQO2LYG/oNfKHV44rbvp4YBWeIhZygC2ImAVknVtFZoaHQp3FJG29wz/SumBIObuai03hJtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFQWY2Fy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 910F5C19423;
-	Mon,  2 Mar 2026 21:07:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772485640;
-	bh=ZcpbPZzjAcuhP9CCScbDLc4UsNaN0uJXOcl33J21nmQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KFQWY2FyxX5PaAiE/GN/Yz6HIMf+rSSjFge/XIeaf62XPaHEuUca2DyAVV78Xex5r
-	 w2iKQuFHkfuf6o9uElF1h0m9GIG43S2c4Bli4SOycfQQfPKjz6FMZvLd3/aYlO9184
-	 2LTVqkdAmf1b0PgYi5BO5sU5NZauwO/5TVvCYqa6n/juIlwackWz8v+s6U984XEN7T
-	 jgiTI9gXzCDQw34wDcbRPtMz893/S9GB1jMm28ZaEFCx/2dcv65FA9zgQv/RZPeNaj
-	 6H+fmSitUCDw10m1ns8GZ3SDuM7lnKWdTbJ1uo7bq39ZyJIgp20yQkXBYLJRIORPrd
-	 DI387Bl1/bBFw==
-Date: Mon, 2 Mar 2026 21:07:15 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Maciej Strozek <mstrozek@opensource.cirrus.com>
-Cc: Takashi Iwai <tiwai@suse.com>, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 RESEND 3/4] mfd: cs42l43: Add support for the B variant
-Message-ID: <a141da68-35a7-491e-bb6f-ca9b448030ff@sirena.org.uk>
-References: <20260227130120.3070893-1-mstrozek@opensource.cirrus.com>
- <20260227130120.3070893-4-mstrozek@opensource.cirrus.com>
+	s=arc-20240116; t=1772485676; c=relaxed/simple;
+	bh=z6cDaCxakhYk9lnEw/J3l48JO3VUQQPoI8dgWVOHqoY=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=dlmZeObo2s7llwFWRXZbH2SYypUAIrL6Z8nM1VQGjYVkCDwaJ028FMBAnvXAAnslySb+coAs7XECoFi5mK4AN+JHX7ZigiV3yeCBP3w3dgcBqCxg6DJts34QlXpaw3i7xTFZGNyi4aVSloJXr2HjUvzhy0LINiot2WT7fXoof14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=brU5p6kX; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=bcZ+zkLgY4SHu1gDEZdS3P2i8ZjyXJ6YtFso0ztzr1k=; b=brU5p6kXCW23gcvGs8eZs0M7+H
+	sjPaMbNiXM97DsvAmC9vfD0zW+v88JBvPGFgLdbTWijI+q748bJTDk40wyzRfgmMZoCw/xFGjb+UM
+	+iJ7a8hvUJzZWzPYuFilPrL8hPLi7YV3gNn1jIsFyrO3eP+nNrsdMKVAVkx+XzUBfKak=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:39142 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vxAUG-0004Ko-JP; Mon, 02 Mar 2026 16:07:33 -0500
+Date: Mon, 2 Mar 2026 16:07:31 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ shawnguo@kernel.org, laurent.pinchart+renesas@ideasonboard.com,
+ antonin.godard@bootlin.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>
+Message-Id: <20260302160731.0b6dd8fc1709a91236289fea@hugovil.com>
+In-Reply-To: <aaX4DYzfR2HifTtf@lizhi-Precision-Tower-5810>
+References: <20260302190953.669325-1-hugo@hugovil.com>
+	<20260302190953.669325-8-hugo@hugovil.com>
+	<aaX4DYzfR2HifTtf@lizhi-Precision-Tower-5810>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VVwGhJdQXqV/B+G5"
-Content-Disposition: inline
-In-Reply-To: <20260227130120.3070893-4-mstrozek@opensource.cirrus.com>
-X-Cookie: You love peace.
-X-Rspamd-Queue-Id: 55E7C1E431A
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.0 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH 07/14] ARM: dts: imx6ul-var-som-concerto: Factor out
+ common parts for all CPU variants
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+X-Rspamd-Queue-Id: 49F2A1E41D1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270228-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270229-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[hugovil.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_PROHIBIT(0.00)[0.0.0.68:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[hugovil.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sirena.org.uk:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,hugovil.com:dkim,hugovil.com:mid,nxp.com:email,0.0.0.3:email,dimonoff.com:email]
 X-Rspamd-Action: no action
 
+Hi Frank,
 
---VVwGhJdQXqV/B+G5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, 2 Mar 2026 15:50:21 -0500
+Frank Li <Frank.li@nxp.com> wrote:
 
-On Fri, Feb 27, 2026 at 01:01:00PM +0000, Maciej Strozek wrote:
-> Introducing CS42L43B codec, a variant of CS42L43 which can be driven by
-> the same driver.
+> On Mon, Mar 02, 2026 at 02:03:43PM -0500, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> >
+> > Export common parts to the Variscite VAR-SOM-6UL dtsi so that they can be
+> > reused on other boards.
+> >
+> > This will simplify adding future dedicated device tree files for each CPU
+> > variant.
+> 
+> Simplify adding ...
+> 
+> >
+> > Add i2c1 pinctrl to var-som dtsi pinmux, so that it can be reused by other
+> > boards.
+> >
+> > Reorder pinctrl_gpio_leds to respect alphabetical order.
+> 
+> this one use new patch.
 
-Lee, this seems like it's mostly an ASoC series - does it make sense for
-me to apply this along with everything else and send a tag (assuming
-it's OK of course, I just scanned this patch very quickly rather than
-reviewing it)?
+I'm not sure what you mean by that? Do you mean to move this change to a
+separate patch?
 
---VVwGhJdQXqV/B+G5
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+> 
+> >
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
+> >  .../dts/nxp/imx/imx6ul-var-som-common.dtsi    |   7 +
+> >  ...ts => imx6ul-var-som-concerto-common.dtsi} |  17 +-
+> >  .../dts/nxp/imx/imx6ul-var-som-concerto.dts   | 312 +-----------------
+> >  .../dts/nxp/imx/imx6ull-var-som-concerto.dts  |  17 +
+> >  5 files changed, 33 insertions(+), 321 deletions(-)
+> >  copy arch/arm/boot/dts/nxp/imx/{imx6ul-var-som-concerto.dts => imx6ul-var-som-concerto-common.dtsi} (95%)
+> >  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
+> >
+> > diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
+> > index de4142e8f3ce8..bc534d0fb1412 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/Makefile
+> > +++ b/arch/arm/boot/dts/nxp/imx/Makefile
+> > @@ -376,6 +376,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+> >  	imx6ull-tarragon-slavext.dtb \
+> >  	imx6ull-tqma6ull2-mba6ulx.dtb \
+> >  	imx6ull-tqma6ull2l-mba6ulx.dtb \
+> > +	imx6ull-var-som-concerto.dtb \
+> 
+> keep alphabet order
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmml/AMACgkQJNaLcl1U
-h9CrNQf9FGCObA8+p4zISGqfaM9g+jILUSgdkilYduwDYgJpyNrFIk6vLY3yQvK/
-33d7CvXQp8FZQfWLlMGais6i1lpAwu4KKE7NbqV+7EYeNRwia7a8lfNDSvpIGft7
-I6xWVYWslDWti7VVCTjwzkgSaVXqQSZrz9N6a3QYCyc5ZFSqgoow+Xf+Hl9jBKWy
-rtCYH7zZJbdwy3FBloHJ5d1Ec+KLuROJdfMVkq64cadfenB2/RMdC8IrytBpLhJy
-5uqRQDmsRMDExnIlpz8TcTTigRCv+oBT8dEKtPWRmLR91fAb+Wjp6MHXmiob7kML
-b19MoLv+rX2mihcE3zIzQkQE71Zm5A==
-=h1F1
------END PGP SIGNATURE-----
+Ok
 
---VVwGhJdQXqV/B+G5--
+> 
+> Frank
+> >  	imx6ull-uti260b.dtb \
+> >  	imx6ulz-14x14-evk.dtb \
+> >  	imx6ulz-bsh-smm-m2.dtb
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-common.dtsi
+> > index 2072e8ba4d469..22b0c4e0725a5 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-common.dtsi
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-common.dtsi
+> > @@ -104,6 +104,13 @@ MX6UL_PAD_SNVS_TAMPER6__GPIO5_IO06	0x03029	/* WLAN Enable */
+> >  		>;
+> >  	};
+> >
+> > +	pinctrl_i2c1: i2c1grp {
+> > +		fsl,pins = <
+> > +			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001b8b0
+> > +			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001b8b0
+> > +		>;
+> > +	};
+> > +
+> >  	pinctrl_sai2: sai2grp {
+> >  		fsl,pins = <
+> >  			MX6UL_PAD_JTAG_TDI__SAI2_TX_BCLK	0x17088
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
+> > similarity index 95%
+> > copy from arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
+> > copy to arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
+> > index d16e75164fd18..10a23ae104359 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
+> > @@ -1,19 +1,15 @@
+> >  // SPDX-License-Identifier: GPL-2.0+
+> >  /*
+> >   * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-6UL
+> > - * Variscite SoM mounted on it
+> > + * Variscite SoM mounted on it, for all CPU variants.
+> >   *
+> >   * Copyright 2019 Variscite Ltd.
+> >   * Copyright 2025 Bootlin
+> >   */
+> >
+> > -#include "imx6ul-var-som.dtsi"
+> >  #include <dt-bindings/leds/common.h>
+> >
+> >  / {
+> > -	model = "Variscite VAR-SOM-6UL Concerto Board";
+> > -	compatible = "variscite,mx6ulconcerto", "variscite,var-som-imx6ul", "fsl,imx6ul";
+> > -
+> >  	chosen {
+> >  		stdout-path = &uart1;
+> >  	};
+> > @@ -144,22 +140,15 @@ MX6UL_PAD_NAND_CE1_B__GPIO4_IO14	0x17059
+> >  		>;
+> >  	};
+> >
+> > -	pinctrl_gpio_leds: gpio-ledsgrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0	/* GPLED2 */
+> > -		>;
+> > -	};
+> > -
+> >  	pinctrl_gpio_key_wakeup: gpio-keys-wakeupgrp {
+> >  		fsl,pins = <
+> >  			MX6UL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x17059
+> >  		>;
+> >  	};
+> >
+> > -	pinctrl_i2c1: i2c1grp {
+> > +	pinctrl_gpio_leds: gpio-ledsgrp {
+> >  		fsl,pins = <
+> > -			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001b8b0
+> > -			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001b8b0
+> > +			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0	/* GPLED2 */
+> >  		>;
+> >  	};
+> >
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
+> > index d16e75164fd18..11b45f105b7ad 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
+> > @@ -1,320 +1,18 @@
+> >  // SPDX-License-Identifier: GPL-2.0+
+> >  /*
+> >   * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-6UL
+> > - * Variscite SoM mounted on it
+> > + * Variscite SoM mounted on it (6UL CPU variant).
+> >   *
+> >   * Copyright 2019 Variscite Ltd.
+> >   * Copyright 2025 Bootlin
+> >   */
+> >
+> > +/dts-v1/;
+> > +
+> >  #include "imx6ul-var-som.dtsi"
+> > -#include <dt-bindings/leds/common.h>
+> > +#include "imx6ul-var-som-concerto-common.dtsi"
+> >
+> >  / {
+> > -	model = "Variscite VAR-SOM-6UL Concerto Board";
+> > +	model = "Variscite VAR-SOM-6UL Concerto Board (6UL CPU)";
+> >  	compatible = "variscite,mx6ulconcerto", "variscite,var-som-imx6ul", "fsl,imx6ul";
+> > -
+> > -	chosen {
+> > -		stdout-path = &uart1;
+> > -	};
+> > -
+> > -	gpio-keys {
+> > -		compatible = "gpio-keys";
+> > -		pinctrl-names = "default";
+> > -		pinctrl-0 = <&pinctrl_gpio_key_back>, <&pinctrl_gpio_key_wakeup>;
+> > -
+> > -		key-back {
+> > -			gpios = <&gpio4 14 GPIO_ACTIVE_LOW>;
+> > -			linux,code = <KEY_BACK>;
+> > -		};
+> > -
+> > -		key-wakeup {
+> > -			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
+> > -			linux,code = <KEY_WAKEUP>;
+> > -			wakeup-source;
+> > -		};
+> > -	};
+> > -
+> > -	leds {
+> > -		compatible = "gpio-leds";
+> > -		pinctrl-names = "default";
+> > -		pinctrl-0 = <&pinctrl_gpio_leds>;
+> > -
+> > -		led-0 {
+> > -			function = LED_FUNCTION_STATUS;
+> > -			color = <LED_COLOR_ID_GREEN>;
+> > -			label = "gpled2";
+> > -			gpios = <&gpio1 25 GPIO_ACTIVE_HIGH>;
+> > -			linux,default-trigger = "heartbeat";
+> > -		};
+> > -	};
+> > -};
+> > -
+> > -&can1 {
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_flexcan1>;
+> > -	status = "okay";
+> > -};
+> > -
+> > -&fec1 {
+> > -	status = "disabled";
+> > -};
+> > -
+> > -&fec2 {
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_enet2>, <&pinctrl_enet2_gpio>, <&pinctrl_enet2_mdio>;
+> > -	phy-mode = "rmii";
+> > -	phy-handle = <&ethphy1>;
+> > -	status = "okay";
+> > -
+> > -	mdio {
+> > -		#address-cells = <1>;
+> > -		#size-cells = <0>;
+> > -
+> > -		ethphy1: ethernet-phy@3 {
+> > -			compatible = "ethernet-phy-ieee802.3-c22";
+> > -			reg = <3>;
+> > -			clocks = <&rmii_ref_clk>;
+> > -			clock-names = "rmii-ref";
+> > -			reset-gpios = <&gpio5 5 GPIO_ACTIVE_LOW>;
+> > -			reset-assert-us = <100000>;
+> > -			micrel,led-mode = <0>;
+> > -			micrel,rmii-reference-clock-select-25-mhz;
+> > -		};
+> > -	};
+> > -};
+> > -
+> > -&i2c1 {
+> > -	clock-frequency = <100000>;
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_i2c1>;
+> > -	status = "okay";
+> > -
+> > -	rtc@68 {
+> > -		/*
+> > -		 * To actually use this interrupt
+> > -		 * connect pins J14.8 & J14.10 on the Concerto-Board.
+> > -		 */
+> > -		compatible = "dallas,ds1337";
+> > -		reg = <0x68>;
+> > -		pinctrl-names = "default";
+> > -		pinctrl-0 = <&pinctrl_rtc>;
+> > -		interrupt-parent = <&gpio1>;
+> > -		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
+> > -	};
+> > -};
+> > -
+> > -&iomuxc {
+> > -	pinctrl_enet2: enet2grp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN	0x1b0b0
+> > -			MX6UL_PAD_ENET2_RX_ER__ENET2_RX_ER	0x1b0b0
+> > -			MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00	0x1b0b0
+> > -			MX6UL_PAD_ENET2_RX_DATA1__ENET2_RDATA01	0x1b0b0
+> > -			MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN	0x1b0b0
+> > -			MX6UL_PAD_ENET2_TX_DATA0__ENET2_TDATA00	0x1b0b0
+> > -			MX6UL_PAD_ENET2_TX_DATA1__ENET2_TDATA01	0x1b0b0
+> > -			MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2	0x4001b031
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_enet2_gpio: enet2-gpiogrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x1b0b0 /* fec2 reset */
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_enet2_mdio: enet2-mdiogrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
+> > -			MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_flexcan1: flexcan1grp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x1b020
+> > -			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x1b020
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_gpio_key_back: gpio-key-backgrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_NAND_CE1_B__GPIO4_IO14	0x17059
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_gpio_leds: gpio-ledsgrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0	/* GPLED2 */
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_gpio_key_wakeup: gpio-keys-wakeupgrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x17059
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_i2c1: i2c1grp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001b8b0
+> > -			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001b8b0
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_pwm4: pwm4grp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_GPIO1_IO05__PWM4_OUT		0x110b0
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_rtc: rtcgrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_JTAG_MOD__GPIO1_IO10		0x1b0b0 /* RTC alarm IRQ */
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_uart1: uart1grp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
+> > -			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_uart5: uart5grp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_CSI_DATA00__UART5_DCE_TX	0x1b0b1
+> > -			MX6UL_PAD_CSI_DATA01__UART5_DCE_RX	0x1b0b1
+> > -			MX6UL_PAD_GPIO1_IO09__UART5_DCE_CTS	0x1b0b1
+> > -			MX6UL_PAD_GPIO1_IO08__UART5_DCE_RTS	0x1b0b1
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_usb_otg1_id: usbotg1idgrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_UART3_TX_DATA__ANATOP_OTG1_ID	0x17059
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_usdhc1: usdhc1grp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
+> > -			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x17059
+> > -			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
+> > -			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
+> > -			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
+> > -			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
+> > -			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
+> > -			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170b9
+> > -			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
+> > -			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
+> > -			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
+> > -			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
+> > -			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170f9
+> > -			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
+> > -			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
+> > -			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_usdhc1_gpio: usdhc1-gpiogrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x1b0b1 /* CD */
+> > -		>;
+> > -	};
+> > -
+> > -	pinctrl_wdog: wdoggrp {
+> > -		fsl,pins = <
+> > -			MX6UL_PAD_GPIO1_IO01__WDOG1_WDOG_B	0x78b0
+> > -		>;
+> > -	};
+> > -};
+> > -
+> > -&pwm4 {
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_pwm4>;
+> > -	status = "okay";
+> > -};
+> > -
+> > -&snvs_pwrkey {
+> > -	status = "disabled";
+> > -};
+> > -
+> > -&snvs_rtc {
+> > -	status = "disabled";
+> > -};
+> > -
+> > -&tsc {
+> > -	/*
+> > -	 * Conflics with wdog1 ext-reset-output & SD CD pins,
+> > -	 * so we keep it disabled by default.
+> > -	 */
+> > -	status = "disabled";
+> > -};
+> > -
+> > -/* Console UART */
+> > -&uart1 {
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_uart1>;
+> > -	status = "okay";
+> > -};
+> > -
+> > -/* ttymxc4 UART */
+> > -&uart5 {
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_uart5>;
+> > -	uart-has-rtscts;
+> > -	status = "okay";
+> > -};
+> > -
+> > -&usbotg1 {
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_usb_otg1_id>;
+> > -	dr_mode = "otg";
+> > -	disable-over-current;
+> > -	srp-disable;
+> > -	hnp-disable;
+> > -	adp-disable;
+> > -	status = "okay";
+> > -};
+> > -
+> > -&usbotg2 {
+> > -	dr_mode = "host";
+> > -	disable-over-current;
+> > -	status = "okay";
+> > -};
+> > -
+> > -&usdhc1 {
+> > -	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> > -	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_usdhc1_gpio>;
+> > -	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_usdhc1_gpio>;
+> > -	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_usdhc1_gpio>;
+> > -	cd-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+> > -	no-1-8-v;
+> > -	keep-power-in-suspend;
+> > -	wakeup-source;
+> > -	status = "okay";
+> > -};
+> > -
+> > -&wdog1 {
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&pinctrl_wdog>;
+> > -	/*
+> > -	 * To actually use ext-reset-output
+> > -	 * connect pins J17.3 & J17.8 on the Concerto-Board
+> > -	 */
+> > -	fsl,ext-reset-output;
+> >  };
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
+> > new file mode 100644
+> > index 0000000000000..7c601af2657d7
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
+> > @@ -0,0 +1,17 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-6UL
+> > + * Variscite SoM mounted on it (6ULL CPU variant).
+> > + *
+> > + * Copyright 2026 Dimonoff
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "imx6ull-var-som.dtsi"
+> > +#include "imx6ul-var-som-concerto-common.dtsi"
+> > +
+> > +/ {
+> > +	model = "Variscite VAR-SOM-6UL Concerto Board (6ULL CPU)";
+> > +	compatible = "variscite,mx6ullconcerto", "variscite,var-som-imx6ull", "fsl,imx6ull";
+> > +};
+> > --
+> > 2.47.3
+> >
+> 
+
+
+-- 
+Hugo Villeneuve
 
