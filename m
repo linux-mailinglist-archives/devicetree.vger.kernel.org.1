@@ -1,240 +1,134 @@
-Return-Path: <devicetree+bounces-270227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270228-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ODIfOrYFpmkzJAAAu9opvQ
-	(envelope-from <devicetree+bounces-270227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:48:38 +0100
+	id KH+5K6YGpmkzJAAAu9opvQ
+	(envelope-from <devicetree+bounces-270228-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:52:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813E21E410D
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:48:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E7C1E431A
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 22:52:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 80462309363D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 21:38:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CD9B230F8C0B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 21:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1831A681D;
-	Mon,  2 Mar 2026 21:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626A9386C1E;
+	Mon,  2 Mar 2026 21:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bDoDU96Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFQWY2Fy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E171A6821
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 21:04:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.215.182
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772485448; cv=pass; b=o82EjfCUyV2ow+29VrvDV4MqPEeKgqQpS4y67dAr35znMqFLUtHYcVajJtu8s2pmgYAqCByTr27uQ8wh2X5qIUGIq5ufERIB54/7cpvEBrHjFh9YX9HJqVYDTEbi5SrnTcFZnowfCrETaT7Y7W9Pu3Ss8ink0/KMJrKhiQjidRo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772485448; c=relaxed/simple;
-	bh=CWJKF9SpIjh9pmmYfzTqY7v0sHyXHPNvu82TC+RYFA0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VEW3hkiM3FglVW7x7jnk9iSbCDT+Pr3xGTSc3NlSS6TgRlOLgcr8rJF1QPpuH6h0Bpv2FEIybcrOZKPgIQSGW1FKtPBC5d86nGBu56bDRexplHdNGyrIAV6WY3m48AjIOyeNV3fS5vJOxM88UUnWfvv4r0h0GxYUf39+aoC9Zxc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=bDoDU96Q; arc=pass smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-c6e77ace76aso1854160a12.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 13:04:07 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772485447; cv=none;
-        d=google.com; s=arc-20240605;
-        b=gRzQQXjp9kd6y/KgKrTUEovLfi/nGoy4om9Ny0ImeJz3Ppy7lARSYIL2BdiKsgUyWL
-         JCGbvoKDfwJyL/7c1b2PXvv0EROb1jt6EeVNuA4adCbN5JrQBT+sbPPrzhc2d3mKw+av
-         nOEDiuxuUesBFFwiP9sI8wJHE7U7evyBVMxR6YVGszmKp+AJuS88TPKEdwRw2fxsGJcK
-         Asug5T/Rbl/85RKkPlb2TqL+1rsl3ytXqaOfIk/OqOsrhQzSaWdLwHl5LzqWIvX9ajIP
-         bxsNlOEkpUMGN84WXq0Yvb0bayzh2y5dDJk0ZJTaaQx1j/2W62Bw3NsnBXfoZTMQzY2K
-         Qhrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=S0B/W9oEfTx3Mdx8y1qNKPKD50lO55YEDov361/4WoA=;
-        fh=NMUY5pWgh1HV50eweQKXeItgAq4VIILpzzUOoCkt2KQ=;
-        b=bwEqDDd8pgbkTk9CY7c7UdKS7XLNwNaxIQsDZQvbbB1gwQN3VKSoqYt3VwNSLw1EGy
-         QaSFB72Fb9zKPm4R/ROC6u/eRp2NvQ9RHBBB/+qgU7QQIp5A0ZDRHrdq+1ggrR7i8Z4r
-         rZFin68IBysx0ExJwZTvv36bqhtglbikSFV5AsrFwJ9sh/6CdIdKw8n+UZsh+YnSkR/8
-         76ds3Zz5Zeegj3Q+c384zNf1eZT8QKtUFMZvMoq8TKgpGxDGsg1AqFKxCrIXqoDHw2it
-         agzBcas7Ml22mGCkmtoTa2P/ZiNHP+0ozAKxHbWGVpBVqOAelSfLGVnTKbL45bvUWwRi
-         SQAw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1772485447; x=1773090247; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S0B/W9oEfTx3Mdx8y1qNKPKD50lO55YEDov361/4WoA=;
-        b=bDoDU96Qj8MJyBOdnA6aQbCDVdDQyoEAqiI7jUOaTPmVDu50AXsPvM44QnliDfct/F
-         PG2WrxT4QoDeUnsqom0DRKYnMj4e65xMxXuayfD2zZ5cNSCT+p/yp2kZdXM7JPFSBoOm
-         JG4Jsh7IeAdXw+lhAubeNGo6lXndVwDSha+xCtB1Px9XY1nzpI7f9ltkmq74lmc+bdFr
-         ebsIvTW86xfRrYb2264HuVYQ/yq0d1Fmtwtk7Syu6nW6D9u2J2KrB4PEyqiIY76QYX1J
-         bMg7WprCJtyncRk03/7UBK3McoHZFDJ1UZYUela9u7l42sqDNcTxVDF5bvIuFxzhLtPm
-         i8Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772485447; x=1773090247;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=S0B/W9oEfTx3Mdx8y1qNKPKD50lO55YEDov361/4WoA=;
-        b=gbVz6dh0bAQ/ELVaa3w/VSqVa8iqPf5fklpP4a2pcFwXnM+UtnCjt29jEhYZvMFFCo
-         IFZRtjG055mfjaoftzss/B5tlRT5VO5wRFP7H6JU5xQiY5Xay50TLGJrmmKoNIY7SOcj
-         k1uwphaLoUEkHjxjqiawA7FDIm9957GALxsex3vlG9Abj+w1lKKRV8PsLdl8iGwO4Gi7
-         r2rFkHWhT0l5ASOf47aiaE/Ot4P0kUcKpj0zMbHusWQnO44aK3UBK0kqt+gynQQR/BMT
-         XVviE1qHBpTMukjpNOF9T/TXkscO8ltBHgvUBWK6lT3zVLx1291VXif5VX6OqEKUeNvD
-         7Rbw==
-X-Forwarded-Encrypted: i=1; AJvYcCWinOyi4XOCWdbjgG1g8tgTjDZi5HESI82I5EaZd7hzOj0A62cJibJgbkOBLhXcfwKymqsrtLrbWSfb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNFBsT/7ER6xi0KCJ8UiEBBohzYSIN5KcfcBZlbMvtkNsORtRz
-	KLX30kbG0RRcxxTEdkGDRa/k9WaRgxiVluupMm5K/psfQ8C+gT4NSSFY4kb6h1ruEJ1KvrTjFRI
-	z1kUg+xwNJViEotL0+l6FqFBLHLRpOQU=
-X-Gm-Gg: ATEYQzz0BhiBvqPIm6uD6hevGBsFoBxW5vMYnypjnXUW5g4g45Pg4lJNYiPdxQ7OKoQ
-	sA8TmgI1rh63Lx9ZTlF4+7v3BD9tcI2r5BvmuEdxoUjLieFanl6ji0hxhT853S6wzhidcI4v5b8
-	Jj3WwPqABXsxMIfRsPXAQWKBRPCfm+88wk/DJZVjOY/6lUTXHQtqw3E4yFDFrOC79ZVPKwKS6FH
-	RECrPSjRhCfmXBTWVGEics9UZCQFes9c6e96w/2ROPjqD3LjWKR4c4mwKmPTxanZNmb9OnVu/d8
-	A4XO6DwloOnsaWk//wnUjZW08jzeRiD0wxBA4Hh3
-X-Received: by 2002:a17:902:ccc8:b0:2ae:5628:a170 with SMTP id
- d9443c01a7336-2ae5628afe4mr43796855ad.46.1772485446798; Mon, 02 Mar 2026
- 13:04:06 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8DF1A6804;
+	Mon,  2 Mar 2026 21:07:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772485641; cv=none; b=o+tqW09Kw6h+lARQrEawkXLghvKrS8x2901QayLIOLl4IsC/BqkrX9KX3Xkfc3w3mOLuAVFxoyl6XCbM7FkEL3O3MaQQc+o5nliOxxHzkBfmcYZMh6HQWa04qM2yBGRhOSWiu4CzduHHrCXFBTq2+FsBvI/E5/7+pDCIvJ4xyk0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772485641; c=relaxed/simple;
+	bh=ZcpbPZzjAcuhP9CCScbDLc4UsNaN0uJXOcl33J21nmQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DJTIWr0U+hKaoK4a9I68yOuiCPVCmFo6vujmjKrEXi/6jwAGQqqokY5gjNN3EeXxs+hX68fvvdy3SC4TqH6WjW/yj7l/g2P936ikQO2LYG/oNfKHV44rbvp4YBWeIhZygC2ImAVknVtFZoaHQp3FJG29wz/SumBIObuai03hJtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFQWY2Fy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 910F5C19423;
+	Mon,  2 Mar 2026 21:07:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772485640;
+	bh=ZcpbPZzjAcuhP9CCScbDLc4UsNaN0uJXOcl33J21nmQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KFQWY2FyxX5PaAiE/GN/Yz6HIMf+rSSjFge/XIeaf62XPaHEuUca2DyAVV78Xex5r
+	 w2iKQuFHkfuf6o9uElF1h0m9GIG43S2c4Bli4SOycfQQfPKjz6FMZvLd3/aYlO9184
+	 2LTVqkdAmf1b0PgYi5BO5sU5NZauwO/5TVvCYqa6n/juIlwackWz8v+s6U984XEN7T
+	 jgiTI9gXzCDQw34wDcbRPtMz893/S9GB1jMm28ZaEFCx/2dcv65FA9zgQv/RZPeNaj
+	 6H+fmSitUCDw10m1ns8GZ3SDuM7lnKWdTbJ1uo7bq39ZyJIgp20yQkXBYLJRIORPrd
+	 DI387Bl1/bBFw==
+Date: Mon, 2 Mar 2026 21:07:15 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Maciej Strozek <mstrozek@opensource.cirrus.com>
+Cc: Takashi Iwai <tiwai@suse.com>, Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 RESEND 3/4] mfd: cs42l43: Add support for the B variant
+Message-ID: <a141da68-35a7-491e-bb6f-ca9b448030ff@sirena.org.uk>
+References: <20260227130120.3070893-1-mstrozek@opensource.cirrus.com>
+ <20260227130120.3070893-4-mstrozek@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260228065840.702651-1-nick@khadas.com> <20260228065840.702651-2-nick@khadas.com>
- <20260228-quirky-lemon-reindeer-1045f6@quoll> <CAFBinCAkxO4HoN0Cw0Fc2B3KRLLJqso1p5+qjNN_E0c26VOf2g@mail.gmail.com>
- <49b3a87d-7ea0-4da1-871e-35ddf5d5b454@kernel.org>
-In-Reply-To: <49b3a87d-7ea0-4da1-871e-35ddf5d5b454@kernel.org>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 2 Mar 2026 22:03:54 +0100
-X-Gm-Features: AaiRm50TpdWh3Y_pvxvTMNOeIVTyBRxIzdF8SrzpLj8ML0Xjz_0wayl9w2nZ3rY
-Message-ID: <CAFBinCDyhvzWO3gOL=GtnH56Guh2fkZyhmSjn2k3iJdhtmTdBA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/4] dt-bindings: iio: adc: amlogic,meson-saradc: add
- S4 compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Nick Xie <nick@khadas.com>, neil.armstrong@linaro.org, khilman@baylibre.com, 
-	jbrunet@baylibre.com, krzk+dt@kernel.org, jic23@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, 
-	linux-iio@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, xieqinick@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 813E21E410D
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="VVwGhJdQXqV/B+G5"
+Content-Disposition: inline
+In-Reply-To: <20260227130120.3070893-4-mstrozek@opensource.cirrus.com>
+X-Cookie: You love peace.
+X-Rspamd-Queue-Id: 55E7C1E431A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_ALLOW(-0.20)[googlemail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270228-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-270227-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[googlemail.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[googlemail.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[martinblumenstingl@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[khadas.com,linaro.org,baylibre.com,kernel.org,analog.com,vger.kernel.org,lists.infradead.org,gmail.com];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,googlemail.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sirena.org.uk:mid]
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
 
-On Mon, Mar 2, 2026 at 2:59=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 02/03/2026 12:58, Martin Blumenstingl wrote:
-> > Hi Krzysztof,
-> >
-> > On Sat, Feb 28, 2026 at 12:18=E2=80=AFPM Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> >>
-> >> On Sat, Feb 28, 2026 at 02:58:37PM +0800, Nick Xie wrote:
-> >>> Add the compatible string for the SARADC (Successive Approximation
-> >>> Register ADC) IP block found in the Amlogic Meson S4 SoC.
-> >>
-> >> ... which is fully compatible with g12a?
-> >>
-> >> Write proper explanations.
-> > Would you be fine with:
-> > "There are no known differences between the SARADC on S4 and the one
-> > on G12A. In the past differences between SARADC on the different SoCs
-> > generations have been uncovered late, meaning that a dedicated
-> > compatible string has proven to be useful."
->
-> No, last sentence is redundant. You do not need to explain in the commit
-> msg rules of bindings, because they are obvious/known. You need to
-> explain the hardware, e.g. in this case the compatibility between devices=
-.
-Understood, thanks.
+--VVwGhJdQXqV/B+G5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> >
-> > Do you also require Nick to add amlogic,meson-g12a-saradc as fallback
-> > compatible string for amlogic,meson-s4-saradc?
-> >
-> >>>
-> >>> Signed-off-by: Nick Xie <nick@khadas.com>
-> >>> ---
-> >>>  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml        | 1=
- +
-> >>>  1 file changed, 1 insertion(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-=
-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-sarad=
-c.yaml
-> >>> index bb9825e7346dd..5496a0dc714aa 100644
-> >>> --- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.=
-yaml
-> >>> +++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.=
-yaml
-> >>> @@ -27,6 +27,7 @@ properties:
-> >>>                - amlogic,meson-gxm-saradc
-> >>>                - amlogic,meson-axg-saradc
-> >>>                - amlogic,meson-g12a-saradc
-> >>> +              - amlogic,meson-s4-saradc
-> >>
-> >> If this is compatible with other device, you need proper fallback.
-> >>
-> >>>            - const: amlogic,meson-saradc
-> >>
-> >> And this one is now kind of fake - how does this device use it?
-> > As you have noticed later, it is currently not used.
-> > Can you please confirm that my understanding of the next steps is corre=
-ct:
-> > - you're expecting Nick to omit the amlogic,meson-saradc fallback
-> > compatible string for amlogic,meson-s4-saradc
->
-> Not omit but replace with proper fallback to specific compatible.
-So in this case we need to end up with:
-compatible =3D "amlogic,meson-s4-saradc", "amlogic,meson-g12a-saradc"
-Stating that the S4 SARADC IP is compatible with the G12A SARADC IP.
-Any S4 specific quirks that we need (in case we ever find something)
-can then be managed in the driver.
+On Fri, Feb 27, 2026 at 01:01:00PM +0000, Maciej Strozek wrote:
+> Introducing CS42L43B codec, a variant of CS42L43 which can be driven by
+> the same driver.
 
-> > - and you would like to see amlogic,meson-saradc removed (from the
-> > bindings and .dts files that are already upstream) - I will take care
-> > of this once S4 support lands upstream
->
-> This no. It's an ABI, you cannot change it. Not worth it, either.
-You suggested adding a comment stating that future bindings must not
-use the "amlogic,meson-saradc" compatible string anymore.
-Since it's part of ABI we need to keep it. So adding a comment is all I'll =
-do.
+Lee, this seems like it's mostly an ASoC series - does it make sense for
+me to apply this along with everything else and send a tag (assuming
+it's OK of course, I just scanned this patch very quickly rather than
+reviewing it)?
 
+--VVwGhJdQXqV/B+G5
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Martin
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmml/AMACgkQJNaLcl1U
+h9CrNQf9FGCObA8+p4zISGqfaM9g+jILUSgdkilYduwDYgJpyNrFIk6vLY3yQvK/
+33d7CvXQp8FZQfWLlMGais6i1lpAwu4KKE7NbqV+7EYeNRwia7a8lfNDSvpIGft7
+I6xWVYWslDWti7VVCTjwzkgSaVXqQSZrz9N6a3QYCyc5ZFSqgoow+Xf+Hl9jBKWy
+rtCYH7zZJbdwy3FBloHJ5d1Ec+KLuROJdfMVkq64cadfenB2/RMdC8IrytBpLhJy
+5uqRQDmsRMDExnIlpz8TcTTigRCv+oBT8dEKtPWRmLR91fAb+Wjp6MHXmiob7kML
+b19MoLv+rX2mihcE3zIzQkQE71Zm5A==
+=h1F1
+-----END PGP SIGNATURE-----
+
+--VVwGhJdQXqV/B+G5--
 
