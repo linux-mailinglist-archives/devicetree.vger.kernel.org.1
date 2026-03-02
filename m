@@ -1,224 +1,198 @@
-Return-Path: <devicetree+bounces-269861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269862-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mOTpDD9cpWlc+QUAu9opvQ
-	(envelope-from <devicetree+bounces-269861-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:45:35 +0100
+	id CDsRJE1cpWlc+QUAu9opvQ
+	(envelope-from <devicetree+bounces-269862-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:45:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CE01D5B71
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:45:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1436C1D5B8E
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 10:45:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B0AAE30086D6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:44:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 34F3F303A862
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 09:45:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C53D838D01A;
-	Mon,  2 Mar 2026 09:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A3D38F64A;
+	Mon,  2 Mar 2026 09:44:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gF6det0y"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mLb60bEl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15FD28000B
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:44:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0F938F645;
+	Mon,  2 Mar 2026 09:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772444697; cv=none; b=bSqEpLqgifns929KJ7FQdquHBXYT+PEGIxmIASOkYiOuAiyPrzar3NWwnuoTZ4UREagXyn6vHTWCAOmm1lKh0DqRAXLuzh47OUBrayl/Qt7P3UElf2c+6ZRO1NeomYBglgXwtczds9V40Z5CQjPCTvhSuT/kSwtWBP84Cufd+qI=
+	t=1772444698; cv=none; b=W/a4biXjET3tWLMTceNwTpOWL9ATq0yYFtPJh3H1amCXcT8FGWwGJHLdy9QUVbkSRR4yn1abJOaLtlJIhMLqmr+nD/0Qqykxl583Eqgkyy+26pJS5l2iMdLftdVlZV8spQM0s5AcCbiVVSdkKuN+CMiKJQN4YNxx7XdbPpF0f0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772444697; c=relaxed/simple;
-	bh=KtgZoRvJ0nh+HBWT+KzjiQv/JSn/meKDvckzfxiJPZc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sslG4oi5Uxz+GISRPym6mAhq8qHM5EixwM3AzY8q0qGMvM+6PWODgvjcELSCYjp0uEbQZ8zWklHcgmNWRy9JCCA9QxJfpPPjbht6+NEogtpWRo1WOhd1NlNulvjJHyw79zvBf5VAJdYLk7aHh5iy44OXselAH+g+d3kynFsLv7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gF6det0y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BE39C2BCAF
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 09:44:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772444697;
-	bh=KtgZoRvJ0nh+HBWT+KzjiQv/JSn/meKDvckzfxiJPZc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=gF6det0yvwTW7FoOa9cMo5EFngwACw9WvncrYKSrC8DSQWESzMAFoI3rni6fXpcYk
-	 l8lQzh8H5tSCSpXHQRB/W2O8yXoXYpjwSFzMJsTOXB8SD6hm6oMEp0NaEGK6GtA6h1
-	 Ew1X3iCj3uUNO2UTzb7NxSh+/hqkj3uGs2pj2rVBCGHGqpLKG9byAG5aChKr/UkGIP
-	 BlZpt2SZMadp+jM6GGqG6VgYEdb8G03MancppsawjyT5G513JjFEtmO/qG/xmwnvSx
-	 ZkbOG5cRQZCilEM3cOarex0KNOEyIpUfBOII44SmG+yDB35KoRk/YR4nuLTEhIPaKG
-	 nyjjbhXIXX1Bw==
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-7985d11da10so41481057b3.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 01:44:57 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUzgp+OaTwJ4/DPshe+ZO3DwGEwarQDr8rZMofEdUDbnRXnA1ZFN67vwwWFPLxIPs6oC5gF1hqXF2KB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7aUz7hhhz/QabnNyJip++7lLZOZi18+zcgb/1XjWxMYNnpNG3
-	iXu5YtUChpofWSQRm9uQJoVL67pPtsrAh4dzjTsg5dwwBNX2Wg2ZcwK6ghZCAZGGEH72qbsLw/v
-	BekzK3rH3JNNx+FUz/JireK+XEPYuRQU=
-X-Received: by 2002:a05:690c:4884:b0:797:a162:f7fc with SMTP id
- 00721157ae682-798854a4831mr78300347b3.16.1772444696576; Mon, 02 Mar 2026
- 01:44:56 -0800 (PST)
+	s=arc-20240116; t=1772444698; c=relaxed/simple;
+	bh=YgrilhQNpe9Lj6ukah4A+zh/1X64Yb8snFI0f/+CLA4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fh6iuLow5piWpa3FN4oYQHwF15Fpll3FHP0b8CmvzoYbSJ9ejrMCDNbnLyz7KvX3j+kuoIhzUhYqxmOyER5thKUxKbpaJlAz7SWzROozLtHPpF4ClOcbxfuVZmXFUrxaSEkMDOZYAHJu4VghVdgxRy+sQZKvbEAAp35qYsRdu/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mLb60bEl; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772444695; x=1803980695;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=YgrilhQNpe9Lj6ukah4A+zh/1X64Yb8snFI0f/+CLA4=;
+  b=mLb60bElbKV+DPxID3K+se/XTRFxhfNOvEXrTA4o3SGHvSibZYO6VwrZ
+   tpVMQHUrwZqqGcixDefux08LLEX0slvhh/X1CSxarAGL7q3qCq7SzRSc4
+   FpWR5semx7oEcbwhpVuSmnsFDFJw8fLVhKkGJ3enIFmd74bHb9PQmR6Pc
+   bOjjFCYMUuWyAMfKEiGkeIavuMue7HWOyflu6DisY7adxb2dLP04xz+Aa
+   SB79qjeV/7TADj3CUmcShsIc7t7ulRp/nNVg/RZ+ZVeIgsCGNV5baP7B5
+   8t0wrW5k0KRV6ukzGtxrVh8QKY5TTL8GEE90SBjs7VtrAfbMrk7s66bvH
+   A==;
+X-CSE-ConnectionGUID: VEF4jYCeQwq2c8We155hMg==
+X-CSE-MsgGUID: 7qqGpIlSTwGoW9JaiyDkOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="96064454"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="96064454"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 01:44:54 -0800
+X-CSE-ConnectionGUID: ReacdULBQP6op7Tn3RSdVQ==
+X-CSE-MsgGUID: 136BOjurRWOSDHlTh0O8gw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="222105255"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.52])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 01:44:49 -0800
+Date: Mon, 2 Mar 2026 11:44:46 +0200
+From: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "Xu, Baojun" <baojun.xu@ti.com>,
+	"broonie@kernel.org" <broonie@kernel.org>,
+	"tiwai@suse.de" <tiwai@suse.de>,
+	"13916275206@139.com" <13916275206@139.com>,
+	"Ding, Shenghao" <shenghao-ding@ti.com>,
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"Yi, Ken" <k-yi@ti.com>, "Lo, Henry" <henry.lo@ti.com>,
+	"Chen, Robin" <robinchen@ti.com>, "Wang, Will" <will-wang@ti.com>,
+	"jim.shil@goertek.com" <jim.shil@goertek.com>,
+	"toastcheng@google.com" <toastcheng@google.com>,
+	"chinkaiting@google.com" <chinkaiting@google.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
+Message-ID: <aaVcDvYvi28wFR2S@ashevche-desk.local>
+References: <20260226075737.405-1-baojun.xu@ti.com>
+ <20260226075737.405-2-baojun.xu@ti.com>
+ <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
+ <9f861c7df09c4434a98a203ecff913bc@ti.com>
+ <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
+ <a7316acf9ba248f9ad1fab0313a95654@ti.com>
+ <3cfa4036-e7a7-4cde-9dab-a171a63bdee3@kernel.org>
+ <4865c7f626a340d7847354512367577e@ti.com>
+ <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260227-ajar-wolverine-7ce1ebd79821@spud> <20260227-divinely-drift-93307c6763d8@spud>
-In-Reply-To: <20260227-divinely-drift-93307c6763d8@spud>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 2 Mar 2026 10:44:45 +0100
-X-Gmail-Original-Message-ID: <CAD++jLn4MP41oLhJfc5gjKh=n_RBDA=EMQ4vN8avM4KNCMATzg@mail.gmail.com>
-X-Gm-Features: AaiRm51-O4cXM6imi0U2BVf4r9igtWiiuA-2J8jrQ61OgiEpKoBDiD9pA6ep1Yk
-Message-ID: <CAD++jLn4MP41oLhJfc5gjKh=n_RBDA=EMQ4vN8avM4KNCMATzg@mail.gmail.com>
-Subject: Re: [RFC v11 1/4] gpio: mpfs: Add interrupt support
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Herve Codina <herve.codina@bootlin.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Bartosz Golaszewski <brgl@kernel.org>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	FROM_DN_EQ_ADDR(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269861-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-269862-lists,devicetree=lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[ti.com,kernel.org,suse.de,139.com,vger.kernel.org,gmail.com,goertek.com,google.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 94CE01D5B71
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:dkim,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: 1436C1D5B8E
 X-Rspamd-Action: no action
 
-Hi Conor,
+On Mon, Mar 02, 2026 at 10:27:49AM +0100, Krzysztof Kozlowski wrote:
+> On 02/03/2026 10:22, Xu, Baojun wrote:
+> >> From: Krzysztof Kozlowski <krzk@kernel.org>
+> >> Sent: 02 March 2026 16:58
+> >> On 02/03/2026 09:24, Xu, Baojun wrote:
 
-overall this looks okay, but one detail here:
+...
 
-On Fri, Feb 27, 2026 at 3:53=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
+> >>>>>>> static const struct of_device_id tasdevice_of_match[] = {
 
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Add support for interrupts to the PolarFire SoC GPIO driver. Each GPIO
-> has an independent interrupt that is wired to an interrupt mux that sits
-> between the controllers and the PLIC. The SoC has more GPIO lines than
-> connections from the mux to the PLIC, so some GPIOs must share PLIC
-> interrupts. The configuration is not static and is set at runtime,
-> conventionally by the platform's firmware. CoreGPIO, the version
-> intended for use in the FPGA fabric has two interrupt output ports, one
-> is IO_NUM bits wide, as is used in the hardened cores, and the other is
-> a single bit with all lines ORed together.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Doing the chained thing kinda covers all the bases at the expense of the
-> "direct" mode interrupts that have a dedicated connection to the PLIC.
+> >>>>>>>       { .compatible = "ti,tas5827" },
+> >>>>>>>       { .compatible = "ti,tas5828" },
+> >>>>>>>       { .compatible = "ti,tas5830" },
+> >>>>>>> +     { .compatible = "ti,tas5832" },
+> >>>>>>
+> >>>>>> So it is fully compatible with tas5830 and most of the changes here are
+> >>>>>> not needed?
+> >>>>>
+> >>>>> Yes, it's fully compatible with tas5827/28/30.
+> >>>>
+> >>>> Then above hunk and many others are not needed.
+> >>>
+> >>> Hi, because those chips have different on the voltage, so the parameters
+> >>> is different, have to use different firmware binary, so we must identify
+> >>> every chip in the driver.
+> >>
+> >> That would explain other ID tables (and should be briefly mentioned in
+> >> the commit msg), but not this one, because here you do not customize the
+> >> binary at all.
+> > 
+> > Hi, we save the chip_id in the dev_name:
+> > strscpy(tas_priv->dev_name, tasdevice_id[tas_priv->chip_id].name,
+> > 	sizeof(tas_priv->dev_name));
+> 
+> And where do you see the name in above table?
 
-Chained kinda thing, OK...
+I don't know what you are trying to get from them, but I²C enumeration
+on DT platforms works in a way that it takes two tables into account,
+hence, if there is no compatible (with given part number) there will be
+no matching name.
+
+AFAIK it has to have a compatible to make it work in such a case.
+What did I miss?
+
+The code in question is i2c_of_match_device_sysfs() call in
+i2c_of_match_device() which does this magic.
+
+> > And get firmware binary from this dev_name:
+> > scnprintf(tas_priv->rca_binaryname, 64, "%sRCA%d.bin",
+> > 	tas_priv->dev_name, tas_priv->ndev);
+> 
+> Or here?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-> +static irqreturn_t mpfs_gpio_irq_handler(int irq, void *data)
-
-static void mpfs_gpio_irq_handler(struct irq_desc *desc)
-
-> +{
-> +       struct mpfs_gpio_chip *mpfs_gpio =3D data;
-> +       unsigned int handled =3D 0;
-> +       unsigned long status;
-> +       u32 val;
-> +       int i;
-> +
-struct irq_chip *irqchip =3D irq_desc_get_chip(desc);
-
-chained_irq_enter(irqchip, desc)
-
-> +       regmap_read(mpfs_gpio->regs, MPFS_IRQ_REG, &val);
-> +       status =3D val;
-> +       for_each_set_bit(i, &status, MPFS_MAX_NUM_GPIO) {
-> +               regmap_write(mpfs_gpio->regs, MPFS_IRQ_REG, BIT(i));
-> +               generic_handle_domain_irq(mpfs_gpio->gc.irq.domain, i);
-> +               handled++;
-> +       }
-
-chained_irq_exit(irqchip, desc)
-
-(no return value)
-
->  static int mpfs_gpio_probe(struct platform_device *pdev)
->  {
->         struct device *dev =3D &pdev->dev;
-> +       struct device_node *node =3D pdev->dev.of_node;
->         struct mpfs_gpio_chip *mpfs_gpio;
-> +       struct gpio_irq_chip *girq;
->         struct clk *clk;
->         void __iomem *base;
-> -       int ngpios;
-> +       int ngpios, nirqs, ret;
->
->         mpfs_gpio =3D devm_kzalloc(dev, sizeof(*mpfs_gpio), GFP_KERNEL);
->         if (!mpfs_gpio)
-> @@ -157,6 +243,39 @@ static int mpfs_gpio_probe(struct platform_device *p=
-dev)
->         mpfs_gpio->gc.parent =3D dev;
->         mpfs_gpio->gc.owner =3D THIS_MODULE;
->
-> +       nirqs =3D of_irq_count(node);
-> +       if (nirqs > MPFS_MAX_NUM_GPIO)
-> +               return -ENXIO;
-> +
-> +       girq =3D &mpfs_gpio->gc.irq;
-> +       girq->num_parents =3D nirqs;
-> +
-> +       if (girq->num_parents) {
-> +               gpio_irq_chip_set_chip(girq, &mpfs_gpio_irqchip);
-> +
-> +               girq->parents =3D devm_kcalloc(&pdev->dev, girq->num_pare=
-nts,
-> +                                            sizeof(*girq->parents), GFP_=
-KERNEL);
-> +               if (!girq->parents)
-> +                       return -ENOMEM;
-> +
-> +               for (int i =3D 0; i < girq->num_parents; i++) {
-> +                       ret =3D platform_get_irq(pdev, i);
-> +                       if (ret < 0)
-> +                               return ret;
-> +
-> +                       girq->parents[i] =3D ret;
-> +                       ret =3D devm_request_irq(dev, girq->parents[i], m=
-pfs_gpio_irq_handler,
-> +                                              IRQF_SHARED, NULL, mpfs_gp=
-io);
-> +                       if (ret)
-> +                               return dev_err_probe(dev, ret,
-> +                                                    "failed to request i=
-rq for line %u\n",
-> +                                                    i);
-> +               }
-
-Why do this instead of letting the core do the multi-parent chaining withou=
-t
-explicitly requesting the IRQs like e.g. gpio-dwapb.c does for the
-multi-parent case?
-
-Yours,
-Linus Walleij
 
