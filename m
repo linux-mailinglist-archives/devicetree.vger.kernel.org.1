@@ -1,335 +1,253 @@
-Return-Path: <devicetree+bounces-269805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269809-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJ/WGYcnpWm14AUAu9opvQ
-	(envelope-from <devicetree+bounces-269805-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 07:00:39 +0100
+	id wCM5BtcxpWli5gUAu9opvQ
+	(envelope-from <devicetree+bounces-269809-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 07:44:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE21F1D358D
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 07:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4DBE1D38A1
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 07:44:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79803301AD27
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 06:00:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB2BE301BF69
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 06:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 526DD379EC9;
-	Mon,  2 Mar 2026 06:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="igNw4I9s"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9922937E314;
+	Mon,  2 Mar 2026 06:44:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023130.outbound.protection.outlook.com [40.107.44.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9DCE37703B;
-	Mon,  2 Mar 2026 06:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772431235; cv=none; b=h6XMpUBON9tvwERiDslPPC0Pp3asIjBns3Q1XETvXmQF4EPaJIfTZ6k+tZUNp9QcJnzhkknB9G51mfAmAZu6q6QKo0qB1JVHxUvVpA5vyQdEDe34a4lR/oF3ZCQzg0mzoHot8q5tQC8y2s9NVhnAmrgfvSDa9k1fmZ5/sLbe3ug=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772431235; c=relaxed/simple;
-	bh=QCta3AJItVwn9YLezdbbc438V7KJrJYgvpInVBQ9+YA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=XsEPVc4Aoi7x0b/0WwvkZJfmqU0htwT2oKg/XglkvLS592R4dBshRi38NYFNVtJKTUgdqi96Chg2idgUJz26xCOjMD9i64mteTeVaY6sgW8IXY23X8y8BLach4P5B+8tdZ5gKiPo8ExMtj7frLRB3mEOyZ0FIomQF/oUYYyj9b8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=igNw4I9s; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 621MR8KR2020243;
-	Mon, 2 Mar 2026 05:59:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=RXfRpY
-	8UMxxOmHGDKB9MNwVYZZszpBs4+WasORA5OW0=; b=igNw4I9sJQ6ckC0QKTNTg8
-	OBxVihkrI6c8vj7gNHna/Gpb4eQaRC6gMHKpm3ijOSwCIuMjov57donQ3k+mVFo2
-	dG8haBqrIQbgr4wcgQtqqBayqEXBCjEoF9lShA/zzY5feHMz8NjJeAggfoJcjI5D
-	UNiLPvv7+JsFV1udMmNFSsLPLOWjCjhP2yOkvswkehSeFNCOkrJenyha7Qwtuan7
-	NvLuttvsDWAXhxPl2T0zT3m3hfQRdUt1sG8VTmYW8VySGQltQWmXxJafMvF6em03
-	pXb9oYWkWNWG23Gj6IWfj4pF26FzvtFnQqdqiUAfJSj/HuzUVGQ10mAcMWrUzhxw
-	==
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4ckskbmx3n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 02 Mar 2026 05:59:24 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 6224jVJj003266;
-	Mon, 2 Mar 2026 05:59:24 GMT
-Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4cmb2xvkw1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 02 Mar 2026 05:59:23 +0000
-Received: from smtpav06.fra02v.mail.ibm.com (smtpav06.fra02v.mail.ibm.com [10.20.54.105])
-	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6225xJK751511590
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 2 Mar 2026 05:59:20 GMT
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id D50C920049;
-	Mon,  2 Mar 2026 05:59:19 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 0ABF120040;
-	Mon,  2 Mar 2026 05:59:08 +0000 (GMT)
-Received: from [9.109.204.116] (unknown [9.109.204.116])
-	by smtpav06.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Mon,  2 Mar 2026 05:59:07 +0000 (GMT)
-Message-ID: <19bac132-4cf7-42af-9d1e-e3c4fb54168d@linux.ibm.com>
-Date: Mon, 2 Mar 2026 11:29:06 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD24327C00;
+	Mon,  2 Mar 2026 06:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.130
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772433856; cv=fail; b=TMZK/IhmHpf5dENJufvQlpXYQdC8ia6jm9Ni9uRyDNph31Beje849m0f+iAJ+goXTL7filTH2EbdFX7mIhVGB7+QtRhZ9s81Yi/y0oDZdm7pXameYTLE0WUyyE953OABq5m8x5aruI8SsuF6G/49+LYAatkWDBSe9vKbUniR04Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772433856; c=relaxed/simple;
+	bh=W/dp6iem1JcLk14QsW0h+mJHZS92UUPHl2W31iCRP9k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ajOrjdk6SUxazkQa9JtRKnnNlBEjhNDYzvigUAActYvlAkeG/eceL0GDho1JFEV9JU0dmHs4ma7M8j8DokGkLybKKU1h60ls3F0KGHXEBsfaVR/AurF808bp+So/yGwy6l2MT5Pz9285HRZODYzlxDP4eJdRw6g5pCO9ap66qvM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=L/wWwpzRrGZylFe9m73Gy3xtCarfPhfrvayYICHVbtE0EZaiyUTFZIUIVtCzoLewKQV31Z7mwXW24BDTMI9uuTQy2GIlP9dgD9o0o0N26cJdk9xY7kqvsDomda7+qQNN1bbV0leOVrRKQyzSNyxJ2VKnYppmDXOLKL/di12hKTne9DTq2E4/93ILqza9FVhZWcfjjdi9DXsyJWUMkrZyoq/ttnjlMwtZkNOe4QfucLyLF6jjdXJfKlsgQ4ghIwsxFr6bUiNE0fpRBsjXDwY06MB1kfZwiZREvgM8IaVx48kCVQs+ERSgj0JpYwGVsnJN4nn4hqoRSen4hJ8suolOGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w79wJ539UYqY33b9NPFqPaczASsn25ss7nSm38YbuyA=;
+ b=P9AfynXWOXoiaC65M2WUxjO5RSbmwwznjxdqnrwQ9iJrwUllu1R7zPoZ5GsRs/9tTwkYOVMo/JnWe4KSssGgZXtgQi3F278SetTbo0T11bbLXmb5zX7qgcnAAqt/BYZ73jQl8h1DhK2nOXpzXGXB/1AQwQC/4frRd5ZPvUKRzIaDthT2zci94GisDFF+wkFjhhdxZl/1EnIcVUTJdLxdYMppS0itibtwdHgW7IMgTk7qqqAKAKW0LL6aK7jMB00lZ6iCjX/Ssgx260JaR0i8xzPillcgBBkiQGf+87tED3VPkH/LLprBxw5xBxaRVt8naq8puNVmS7OPHzhyfWzNzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR01CA0043.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::12) by TY0PR06MB5150.apcprd06.prod.outlook.com
+ (2603:1096:400:1b1::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.19; Mon, 2 Mar
+ 2026 06:44:10 +0000
+Received: from OSA0EPF000000C9.apcprd02.prod.outlook.com
+ (2603:1096:4:193:cafe::10) by SI2PR01CA0043.outlook.office365.com
+ (2603:1096:4:193::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.20 via Frontend Transport; Mon,
+ 2 Mar 2026 06:44:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000C9.mail.protection.outlook.com (10.167.240.55) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 06:44:09 +0000
+Received: from localhost.localdomain (unknown [172.16.64.196])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 288A841604E2;
+	Mon,  2 Mar 2026 14:44:08 +0800 (CST)
+From: Gary Yang <gary.yang@cixtech.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	peter.chen@cixtech.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com,
+	Gary Yang <gary.yang@cixtech.com>
+Subject: [PATCH v10 0/3] Add support for Cix Sky1 resets
+Date: Mon,  2 Mar 2026 14:44:04 +0800
+Message-ID: <20260302064407.1914014-1-gary.yang@cixtech.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/5] crash: Use crash_exclude_core_ranges() on powerpc
-To: Jinjie Ruan <ruanjinjie@huawei.com>, corbet@lwn.net,
-        skhan@linuxfoundation.org, catalin.marinas@arm.com, will@kernel.org,
-        chenhuacai@kernel.org, kernel@xen0n.name, maddy@linux.ibm.com,
-        mpe@ellerman.id.au, npiggin@gmail.com, chleroy@kernel.org,
-        pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-        alex@ghiti.fr, tglx@kernel.org, mingo@redhat.com, bp@alien8.de,
-        dave.hansen@linux.intel.com, hpa@zytor.com, robh@kernel.org,
-        saravanak@kernel.org, akpm@linux-foundation.org, bhe@redhat.com,
-        vgoyal@redhat.com, dyoung@redhat.com, rdunlap@infradead.org,
-        pmladek@suse.com, dapeng1.mi@linux.intel.com, kees@kernel.org,
-        paulmck@kernel.org, lirongqing@baidu.com, fvdl@google.com,
-        rppt@kernel.org, ardb@kernel.org, leitao@debian.org, jbohac@suse.cz,
-        cfsworks@gmail.com, osandov@fb.com, tangyouling@kylinos.cn,
-        ritesh.list@gmail.com, hbathini@linux.ibm.com, eajames@linux.ibm.com,
-        songshuaishuai@tinylab.org, kevin.brodsky@arm.com,
-        samuel.holland@sifive.com, vishal.moola@gmail.com,
-        junhui.liu@pigmoral.tech, coxu@redhat.com, liaoyuanhong@vivo.com,
-        fuqiang.wang@easystack.cn, brgerst@gmail.com, x86@kernel.org,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
-        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, kexec@lists.infradead.org
-References: <20260302035315.3892241-1-ruanjinjie@huawei.com>
- <20260302035315.3892241-4-ruanjinjie@huawei.com>
-Content-Language: en-US
-From: Sourabh Jain <sourabhjain@linux.ibm.com>
-In-Reply-To: <20260302035315.3892241-4-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-ORIG-GUID: BMZp4xfDlNqh-vX_Fyssc2drEKv9urt9
-X-Authority-Analysis: v=2.4 cv=b66/I9Gx c=1 sm=1 tr=0 ts=69a5273d cx=c_pps
- a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VnNF1IyMAAAA:8
- a=VwQbUJbxAAAA:8 a=i0EeH86SAAAA:8 a=OOSq9K7-CKCezHrCz9oA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDA0NyBTYWx0ZWRfX0EI2bclQv+It
- vamD9NxRO5crMqF/ntjGtSizcDmvwcBC8KcYFhNtRyQ5VVQS6dKJrqvtW1aX42H4R47tyAHWjbJ
- d1EO5RHhhK/QkZbEkAet2yMhkyT5G8/5BkK8hAasgEg10+eduRj/Iw9IMxZUo1inpK+/Q+1l8Cl
- ojSsESxZw88uiXKRssAAdqyh6ycUNO45PLgyiA62PIIFlykFelCHalCDQJ0mTE5JiBFTi0HzIUr
- C8M+EbZ4gQAggC7cuIDaHVT+K1U2x8CVMRYaneG1E9Jg6PnHaSeWUsEMI9Qzt4iVA7hIHoogyMf
- 0ZLkmaRYnYP99aFQ9zVLC1yr/pJZfwG3EuPk9DUMC423tx/lOGGiyBqfEq24pJo90CxIOFJCoGH
- L+CCSe9Bj6I5RSRFuYTejCEiA8kMvhT2uoCa8+25eQVSNT8Or3iCnGFEhGvyhg4idfd7d+h3w5/
- 0qmBc5/WsxG1EY6RMRA==
-X-Proofpoint-GUID: fxuaIa5Xmleq54BLBXxF9sm88Fn-pKzf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-02_02,2026-02-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 adultscore=0
- bulkscore=0 impostorscore=0 malwarescore=0 spamscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020047
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C9:EE_|TY0PR06MB5150:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 0a9baddc-2979-4355-2df7-08de78271bf5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|376014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	irf2CNC+G+Ot9siUBpfly4BSKxmOQUupSsUgpTrrUY8QA7sIxvG03C/ebfGPbxgI2jfsP4tZcEZOpPd4lFAYWHzMcQhoye06q5gcy/DfrNpzES9wqrbWPA06MFnhnbn7BjZkFY+/2sEcCZ6cGZxh0oy2jwOvfkvXmc0yWGAxkAEOtGuyJJzBHhkY+f+LvakKoCGB1iWT+D4x5/m48ajao1g/H7GpCk8v0raqxvLTHwAyR0zUHt+zkEp/t3sQCe+nomnY1QutC7vbmZjxUkioSOFjaQ/AJnjEWVWa/YgD2S8/6n528bWVKUkDsX+VZwC3CLKGj6oASYiTswP0CNLcK3J7we71hmk5rSleyn5WJKLbKxxxDiLrA9d+GJrQYABotpKEOXDdI9mNzmRA2zJMhC7p+Pwa0RK00AI7zhRET/KPQr0kH+aIdC1N4Fw3+mv5wtGNtB4JoLOQnuHk80dfMI03tFxabj1+1jEhXRWDoXI10JY0Op6BE3gODeJFqVT8jdf0JxM29/5LDIUx06GY0gb8wfhKkLl0/edPhhxyRUDy87IP++hD/f5/qyHAskV5gcM4g76OcqSxl+myXb65svSgAg2YrG4CwgNW8yRqRDw/fFh3zx7WoccEuZLL92vaUVX+stcj6IpMkvPgGl+q6frkf+OWfpF6gQ6LH8vH3pIkd+jG+Z4s5BIDJTjXqOYw7b5VGSKeNDgt/82mA7sgw1OFIJypMBY37HHOhS9OQqU/zOERhVMcRn7pBx7czUW1egvUMz6dTxSD0uopQS4pM3fB48eBdSOPGOhMMIVhbj5WChOVCsxfmpVeFWE4f+Fa4FiH5fYZb2lZeeKJa5incQ==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	o82of1ZFyYK95LIsxYvGgw7Nd8dhvDNLJ4oLpLO0UHT5mbm6IoxUPix7+GnhIMowzSxP7w2ppL7Z+SiNGDN9C20W7lBBv30AA9+Kqu13qDczLJi4OkqBF0AiAmKQRBVgeiMlenTMAFhSD6YJufIfypl6CwVo2Z5XQK1w8CSrBro/kAx/9Y/acHRXF48r+mPuzHDC/u4DNkmZVbeFG6wGps0OqaAgjOQkuIoVFliEJXP8OfojEoR3ID+N29cWYPtbnHlAt/mOvv+6GuYLPfaIRjiWf5Gk1WqBcIH5XqXcdDTYlPooQvQIMVWO+ojnRkIAeCl/1EtUxSLF/GNc66jo6U8qlEkbI57jQcBKWp8XQnSkaIumDEVP1KIVmSdUud3SsA30oDYYcmxeADUtEptF2HDhPX1k+WA4jtRV0SuYw3OcN9au9NfSRSPXRhoAnbMt
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 06:44:09.9191
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a9baddc-2979-4355-2df7-08de78271bf5
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000C9.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5150
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[huawei.com,lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,suse.com,baidu.com,google.com,debian.org,suse.cz,fb.com,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-269805-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ibm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux.ibm.com:mid,huawei.com:email];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sourabhjain@linux.ibm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269809-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_GT_50(0.00)[61];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_SEVEN(0.00)[11]
-X-Rspamd-Queue-Id: BE21F1D358D
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.974];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A4DBE1D38A1
 X-Rspamd-Action: no action
 
+Patch 1: Add yaml file for Cix Sky1 resets
+Patch 2: Add driver codes for Cix Sky1 resets
+Patch 3: Add dts nodes for Cix Sky1 resets
 
-Changes look good to me.
-I tested this on LPAR and QEMU, and dump capture works fine with these 
-changes.
-I even tried reserving kdump memory using crashkernel=xxM,cma.
+v10 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- rename dt-bindings header file
 
-Reviewed-by: Sourabh Jain <sourabhjain@linux.ibm.com>
+v9 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
 
+v8 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- remove "simple-mfd" strings
 
-On 02/03/26 09:23, Jinjie Ruan wrote:
-> The crash memory exclude of crashk_res and crashk_cma memory on powerpc
-> are almost identical to the generic crash_exclude_core_ranges().
->
-> By introducing the architecture-specific arch_crash_exclude_mem_range()
-> function with a default implementation of crash_exclude_mem_range(),
-> and using crash_exclude_mem_range_guarded as powerpc's separate
-> implementation, the generic crash_exclude_core_ranges() helper function
-> can be reused.
->
-> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> ---
->   arch/powerpc/include/asm/kexec_ranges.h |  3 ---
->   arch/powerpc/kexec/crash.c              |  2 +-
->   arch/powerpc/kexec/ranges.c             | 16 ++++------------
->   include/linux/crash_core.h              |  4 ++++
->   kernel/crash_core.c                     | 19 +++++++++++++------
->   5 files changed, 22 insertions(+), 22 deletions(-)
->
-> diff --git a/arch/powerpc/include/asm/kexec_ranges.h b/arch/powerpc/include/asm/kexec_ranges.h
-> index ad95e3792d10..8489e844b447 100644
-> --- a/arch/powerpc/include/asm/kexec_ranges.h
-> +++ b/arch/powerpc/include/asm/kexec_ranges.h
-> @@ -7,9 +7,6 @@
->   void sort_memory_ranges(struct crash_mem *mrngs, bool merge);
->   struct crash_mem *realloc_mem_ranges(struct crash_mem **mem_ranges);
->   int add_mem_range(struct crash_mem **mem_ranges, u64 base, u64 size);
-> -int crash_exclude_mem_range_guarded(struct crash_mem **mem_ranges,
-> -				    unsigned long long mstart,
-> -				    unsigned long long mend);
->   int get_exclude_memory_ranges(struct crash_mem **mem_ranges);
->   int get_reserved_memory_ranges(struct crash_mem **mem_ranges);
->   int get_crash_memory_ranges(struct crash_mem **mem_ranges);
-> diff --git a/arch/powerpc/kexec/crash.c b/arch/powerpc/kexec/crash.c
-> index 898742a5205c..e59e909c369d 100644
-> --- a/arch/powerpc/kexec/crash.c
-> +++ b/arch/powerpc/kexec/crash.c
-> @@ -451,7 +451,7 @@ static void update_crash_elfcorehdr(struct kimage *image, struct memory_notify *
->   		base_addr = PFN_PHYS(mn->start_pfn);
->   		size = mn->nr_pages * PAGE_SIZE;
->   		end = base_addr + size - 1;
-> -		ret = crash_exclude_mem_range_guarded(&cmem, base_addr, end);
-> +		ret = arch_crash_exclude_mem_range(&cmem, base_addr, end);
->   		if (ret) {
->   			pr_err("Failed to remove hot-unplugged memory from crash memory ranges\n");
->   			goto out;
-> diff --git a/arch/powerpc/kexec/ranges.c b/arch/powerpc/kexec/ranges.c
-> index 6c58bcc3e130..e5fea23b191b 100644
-> --- a/arch/powerpc/kexec/ranges.c
-> +++ b/arch/powerpc/kexec/ranges.c
-> @@ -553,9 +553,9 @@ int get_usable_memory_ranges(struct crash_mem **mem_ranges)
->   #endif /* CONFIG_KEXEC_FILE */
->   
->   #ifdef CONFIG_CRASH_DUMP
-> -int crash_exclude_mem_range_guarded(struct crash_mem **mem_ranges,
-> -					   unsigned long long mstart,
-> -					   unsigned long long mend)
-> +int arch_crash_exclude_mem_range(struct crash_mem **mem_ranges,
-> +				 unsigned long long mstart,
-> +				 unsigned long long mend)
->   {
->   	struct crash_mem *tmem = *mem_ranges;
->   
-> @@ -604,18 +604,10 @@ int get_crash_memory_ranges(struct crash_mem **mem_ranges)
->   			sort_memory_ranges(*mem_ranges, true);
->   	}
->   
-> -	/* Exclude crashkernel region */
-> -	ret = crash_exclude_mem_range_guarded(mem_ranges, crashk_res.start, crashk_res.end);
-> +	ret = crash_exclude_core_ranges(mem_ranges);
->   	if (ret)
->   		goto out;
->   
-> -	for (i = 0; i < crashk_cma_cnt; ++i) {
-> -		ret = crash_exclude_mem_range_guarded(mem_ranges, crashk_cma_ranges[i].start,
-> -					      crashk_cma_ranges[i].end);
-> -		if (ret)
-> -			goto out;
-> -	}
-> -
->   	/*
->   	 * FIXME: For now, stay in parity with kexec-tools but if RTAS/OPAL
->   	 *        regions are exported to save their context at the time of
-> diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
-> index 033b20204aca..dbec826dc53b 100644
-> --- a/include/linux/crash_core.h
-> +++ b/include/linux/crash_core.h
-> @@ -68,6 +68,7 @@ extern int crash_prepare_elf64_headers(struct crash_mem *mem, int need_kernel_ma
->   				       void **addr, unsigned long *sz);
->   extern int crash_prepare_headers(int need_kernel_map, void **addr,
->   				 unsigned long *sz, unsigned long *nr_mem_ranges);
-> +extern int crash_exclude_core_ranges(struct crash_mem **cmem);
->   
->   struct kimage;
->   struct kexec_segment;
-> @@ -88,6 +89,9 @@ extern int kimage_crash_copy_vmcoreinfo(struct kimage *image);
->   extern unsigned int arch_get_system_nr_ranges(void);
->   extern int arch_crash_populate_cmem(struct crash_mem *cmem);
->   extern int arch_crash_exclude_ranges(struct crash_mem *cmem);
-> +extern int arch_crash_exclude_mem_range(struct crash_mem **mem,
-> +					unsigned long long mstart,
-> +					unsigned long long mend);
->   
->   #else /* !CONFIG_CRASH_DUMP*/
->   struct pt_regs;
-> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
-> index 96a96e511f5a..300d44ad5471 100644
-> --- a/kernel/crash_core.c
-> +++ b/kernel/crash_core.c
-> @@ -287,24 +287,31 @@ unsigned int __weak arch_get_system_nr_ranges(void) { return 0; }
->   int __weak arch_crash_populate_cmem(struct crash_mem *cmem) { return -1; }
->   int __weak arch_crash_exclude_ranges(struct crash_mem *cmem) { return 0; }
->   
-> -static int crash_exclude_core_ranges(struct crash_mem *cmem)
-> +int __weak arch_crash_exclude_mem_range(struct crash_mem **mem,
-> +					unsigned long long mstart,
-> +					unsigned long long mend)
-> +{
-> +	return crash_exclude_mem_range(*mem, mstart, mend);
-> +}
-> +
-> +int crash_exclude_core_ranges(struct crash_mem **cmem)
->   {
->   	int ret, i;
->   
->   	/* Exclude crashkernel region */
-> -	ret = crash_exclude_mem_range(cmem, crashk_res.start, crashk_res.end);
-> +	ret = arch_crash_exclude_mem_range(cmem, crashk_res.start, crashk_res.end);
->   	if (ret)
->   		return ret;
->   
->   	if (crashk_low_res.end) {
-> -		ret = crash_exclude_mem_range(cmem, crashk_low_res.start, crashk_low_res.end);
-> +		ret = arch_crash_exclude_mem_range(cmem, crashk_low_res.start, crashk_low_res.end);
->   		if (ret)
->   			return ret;
->   	}
->   
->   	for (i = 0; i < crashk_cma_cnt; ++i) {
-> -		ret = crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
-> -					      crashk_cma_ranges[i].end);
-> +		ret = arch_crash_exclude_mem_range(cmem, crashk_cma_ranges[i].start,
-> +						   crashk_cma_ranges[i].end);
->   		if (ret)
->   			return ret;
->   	}
-> @@ -331,7 +338,7 @@ int crash_prepare_headers(int need_kernel_map, void **addr, unsigned long *sz,
->   	if (ret)
->   		goto out;
->   
-> -	ret = crash_exclude_core_ranges(cmem);
-> +	ret = crash_exclude_core_ranges(&cmem);
->   	if (ret)
->   		goto out;
->   
+v7 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- fix build warning
+
+v6 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-control.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- fix dt-bindings style
+
+v5 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-system-controller.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- refine reset driver
+- fix dt-bindings style
+
+v4 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- add syscon
+- refine reset driver
+- fix dt-bindings style
+
+v3 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- remove syscon
+
+v2 changes:
+- Pass dts build check with below commands:
+make O=$OUTKNL dt_binding_check
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-rst.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+scripts/checkpatch.pl 000*.patch
+- fix dt-bindings style
+- refine reset driver
+
+Gary Yang (3):
+  dt-bindings: soc: cix: document the syscon on Sky1 SoC
+  reset: add Sky1 soc reset support
+  arm64: dts: cix: add support for cix sky1 resets
+
+ .../soc/cix/cix,sky1-system-control.yaml      |  42 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             |  12 +
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sky1.c                    | 367 ++++++++++++++++++
+ .../reset/cix,sky1-s5-system-control.h        | 163 ++++++++
+ .../reset/cix,sky1-system-control.h           |  41 ++
+ 7 files changed, 633 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml
+ create mode 100644 drivers/reset/reset-sky1.c
+ create mode 100644 include/dt-bindings/reset/cix,sky1-s5-system-control.h
+ create mode 100644 include/dt-bindings/reset/cix,sky1-system-control.h
+
+-- 
+2.49.0
 
 
