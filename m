@@ -1,568 +1,238 @@
-Return-Path: <devicetree+bounces-269777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cGpgBqbxpGlTwQUAu9opvQ
-	(envelope-from <devicetree+bounces-269777-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 03:10:46 +0100
+	id 0PxbLGP3pGkExAUAu9opvQ
+	(envelope-from <devicetree+bounces-269778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 03:35:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8772F1D26C0
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 03:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B471D27E0
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 03:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6F86F300E178
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 02:10:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8772D30154B3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 02:35:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387F3283FEA;
-	Mon,  2 Mar 2026 02:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D71E27FD4F;
+	Mon,  2 Mar 2026 02:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QwDi2KTh"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k2d043Eu";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VJsXAXuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C092848A1
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 02:10:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4BC920D4FF
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 02:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772417444; cv=none; b=VuJbxaUXVSnp8eLAJIYpLetaeQuySc6AY0DmUm4St1t0+f01XwAHe/eJ98Bh4EDCq3Y373hJG1XdBhVj3sgA4u5iTaFpvxibHwUJxi28keAW74E7nq8tmRTKhPahMtPRl2rh/8wmiSKs2Dw67iLaEpAPRFdEM9/TiWw33FHwRbA=
+	t=1772418903; cv=none; b=ITVpVxqlR+I0532CQ3guHXRXwDBp8BLq4W5TRHZFpnuhsLmyU0PPRodDs6K5ZNhncRBUwC7akverAsFw+lkAtLGkJ/3Bt/60EZRx4peqlsocrv9GjNfa7T0PcRaorPVeoLId5DlEgfMnsDltcfI+s2eI4390n8ChCKo8B4fzHQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772417444; c=relaxed/simple;
-	bh=/jrFbojjUVf7ONakTzwO8Ozg6n8+cOQxnVEzbfRhV9M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WE3mejiNJi9GhW96S5j5G45y4XTJIRwJ+xy+I01dcH5lj6A+SeZY+pw8yeU/24B9YuhozsLNzA2oF7eZ4Fp0BAujpgOTP639rkF/ppqSYmR9eAeOXuLEkM/BeljjSP3GHVo/5TtsWMnapnPs6YlsoYf5PlCXqkAagkNDngSghJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QwDi2KTh; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-483770e0b25so34051655e9.0
-        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2026 18:10:42 -0800 (PST)
+	s=arc-20240116; t=1772418903; c=relaxed/simple;
+	bh=Xs8kJot3WRbpDNItkcNVq8Y7Uyd9/cwu8VHxLBqVH40=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qoZ0O4kOWp4RvAdxf/u5qwnjlQgdbZ62XbHTgmHsmRPzsMScTI4uE7XVkoGsv/fOEdjE7H30HI4HM08vD+6ULFx+zK8uy7ig1eClDJ3ZgAiw5h3DceLkkU+3MFjbpIBSVYU9Aet7qf3AaMoELZGYj26XgCDT99wLlf1Le59IEIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k2d043Eu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VJsXAXuF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 621KY5WP2018828
+	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 02:35:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4DqqZkXLphrWO5J1IJC0ojtVAG7Macz0jvAFX5TiYAw=; b=k2d043Eu0CqLN2DW
+	Kn6jO8ZlRztn92pkrbRSNJb4P/qh06cLPxF06HvFvNRnXw1rE3HRc2oRyTgLwJaP
+	0VPsNkMLIq8ZUc4YUuEL2lqGo/zUPcjWJKbPds0sa9paxErImXrkGIDSOwxvXpm0
+	g+7im50yTUsyyUZ3QwqYhY+0gTNJIOuplr9Ezglok3qO0mr3R1M7UWe/XMBlMjri
+	p6rZ3i2+viL6qZvBv/CH36+s4dtOFYLjBsbW/EzDKTo1R9DTWM1qHmi0VaUc9UOL
+	VGvgwtAPyTgtio6m53xlDBD5qlKEq9BLlYGkwnzezkdgFvXJ/kbxiYJiNddBb5JZ
+	FgsASg==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cksfd3nj6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:35:00 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3598f390129so70252a91.1
+        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2026 18:35:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772417441; x=1773022241; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KwCutTpNf6ifG9SAmX44tqMP8TE8P/7XXDyl59hedWg=;
-        b=QwDi2KThKnse3DVqJTNVisROeX3klPVKMwpKOijv/FyC4mrtRBpGeCLNn9B8aqsIvw
-         r1O2OKs79Jj//Vmkhwf4YLVqbcsoSfDWHoTiQPKn7MZnnRKa1lyGxsK6HfclYVAiHWN+
-         2/r+srEMwojLQdOrwE7po+uuShf7yI6F9bV3kH1Wp3GLGAHvpJa1nIYPy88+jLm93SOb
-         zPPF+PB5/HNPu8CQbQvUrL7TFDCxBNwJT2r6KuPCFgdoiBYLXymyXT6uoE/KKLe8LWfi
-         jD8Hfu3/U7THrz37ZbbQVM9/DPq/Dq5cXXeaoFHk5FmDnRHFYFnGVhWaepwPzu33bz8D
-         XYLA==
+        d=oss.qualcomm.com; s=google; t=1772418900; x=1773023700; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4DqqZkXLphrWO5J1IJC0ojtVAG7Macz0jvAFX5TiYAw=;
+        b=VJsXAXuFTM4o2ZVTypkm5k+0LdgcRrxBh0k8UYPxHV6V2Mzn20FzktHDXDRLQtCqn0
+         f2Dl+VAGFqVf2hehZNaWfO0v4EZ5H9NztFMB+LcmSu3CMTODp/SDBF/6wGsYgcXzLdZN
+         GaJuNQvDFGlcHMf8WWDSsbKf8VC7qq9LItjzW7AR9nnXIMrZNqyt5mvFWuegTLuorNKv
+         DPRX0s0KMsn9ckaHx49EDcFq77beyI+57aklEA7FqAEmMQBcHAZq1+EA1TeWmL8XzMlh
+         JuoymuWUNSnGP6YcwM3eruQO2iJUF9pnoE2pcnnUyjRUVQX4zcyv1ZTmA2fNpyMMvftf
+         P5wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772417441; x=1773022241;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=KwCutTpNf6ifG9SAmX44tqMP8TE8P/7XXDyl59hedWg=;
-        b=dHS5TVt91An2tdsIptoD5zCGCfsSeBLNdKZLWaQbjzY0JXUvuyo1PYcML+L0W2vQA7
-         Y9VluWMfJUwfslp42dYpn90DmTfK4IAVXVApPOsJWzYCm97Qq5Z4hVlydNe9dGLPqMNW
-         68lMLL3NmSZnCciRfxuCgvB47w1g3zWaI7o7bLJgBXDQXU5mL63kCqXYy2UTb7LdE283
-         Su1HymmpEyuMcLqW8W45bRCv67V188V6zAeg1hbg0Zo5H1jWsPgjIgHF0DkFIXhzfxJR
-         2VEAfHHwPvCMef8/xldRtWwehMOStSIahu+a5YRiYiLVGrNATU2L2JNLSfbaQLHzanir
-         d3nA==
-X-Gm-Message-State: AOJu0Yyuu/XwvB7ux0oyL6VZCyS8cAvAsZN9jGKWVaDQlozF+7un+Zy9
-	md174dLmeLGozjDtZlzjHfT1o1Qi5frKuSwGW5JmxYzHz1xLk6OqgZ07VyTT1X7nbdo=
-X-Gm-Gg: ATEYQzwnh/EbkZePJygcQFY9rdfAGVPiISiuvJHC2ZlbhL2YjfR/Xx0CkYGHghStOvG
-	JK/DGhX+bKkCqiwXjCgBrBVF6utFb+VFWLD2+9YPB8Yv6+K7HqT/VvDfJ0iXRAzYI4dHG+e8L/A
-	qCht01cfFcwdXHqvBG0KN9wVuRGxgbukFBN0i4Sp2VpygwzJ7nguPwz8C+h58oVPeMbsmc/dUpF
-	75kkU7csVjOBeYFAhv+kUg9fr+qoHATnr4yRXBkMUYbYz2LZ0kSGP/LJz+aNrarPeEmZZ4TGADH
-	TpNPQo5iNVOBuvCd4fsE3V3TVRjS81sWCq4ebXCw/lGtF/khtUH9+4NOKsLmLvGYy2zL8uAGm3r
-	VdhEZrFLD0nqvjAEEJNXBVPSYOuoYh9seNhWHvKJGsXU4nKP3nblgOGND4de53hHDzu4G9gaxv1
-	HDpD6ItH1aX5ZlcAQjo6NY
-X-Received: by 2002:a05:600c:4592:b0:480:52fd:d2e4 with SMTP id 5b1f17b1804b1-483c9b78c20mr199672795e9.0.1772417440636;
-        Sun, 01 Mar 2026 18:10:40 -0800 (PST)
-Received: from arch.localdomain ([2409:8a28:a55:9af1::1002])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bfcb9b97sm194451105e9.7.2026.03.01.18.10.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Mar 2026 18:10:40 -0800 (PST)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	wens@kernel.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	mripard@kernel.org,
-	andre.przywara@arm.com,
-	Jun Yan <jerrysteve1101@gmail.com>
-Subject: [PATCH v3 3/3] arm64: dts: allwinner: h6: Add TaiqiCat (TQC) A01 support
-Date: Mon,  2 Mar 2026 10:09:56 +0800
-Message-ID: <20260302020956.96424-4-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260302020956.96424-1-jerrysteve1101@gmail.com>
-References: <20260302020956.96424-1-jerrysteve1101@gmail.com>
+        d=1e100.net; s=20230601; t=1772418900; x=1773023700;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4DqqZkXLphrWO5J1IJC0ojtVAG7Macz0jvAFX5TiYAw=;
+        b=CexLLn153BYV3mMFM0J3cTTSWT4GuXNXtEth8Kit881nS8oxh9fPPr0v9hlPj1uMyK
+         zMwnd/ENLHzxpLQdXqSbH0r/ksTSx1M6mgVnZPTgY8lCCK0JfWJCDEUu81Xaa0f4OgUU
+         zRO2IiVIyjHYkohOcv39X3MOEpLhZAwe14xyz6V/XhK3jEsknlW7kMcCCkmL+Zq939hY
+         qgK/SsxQ+paChIvoxJHv7oiIIQBmn0Tg835ikLB+iataWbOJM3bAH+tfiMeN1Aj6fop4
+         HhqMx76pqz69A30JnfGLZ6lYvbliesnMVaNLj+YiOpGSozuKPUQJF90khWvvp4nAYLcQ
+         5yUw==
+X-Forwarded-Encrypted: i=1; AJvYcCVeOsd2G2+eyhwl5DnHB3DWQgQ0SxL9XEH3UAxg3cXkEzIHlurtmGIl7lxrrDgGRE4Z7hRjLRmg9p5R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyr4k6mQtTjU2rcMDLi9k/DYeq2hny1zFD+Znc+iMar20pS0s/6
+	1n1/xfoJY9wUuewbaGMpCkXdxNe+fS+tH0A6pFoF1FyoH1M1RndFemlQRp69bZYnLOnVRrwnlbs
+	f4QzoAOr3OYLvWMdF/DkV5UGWICeBkkQgxc1tyZurD1eYkDliZoHtz6w3YHnCK2SS
+X-Gm-Gg: ATEYQzzVRPHCTZ9IS+f5L9Drtg3lon91pq2DBqiFU8NrkZfST9gRU4Ekm4PkxLjsil0
+	xiAa2D31B1dlywXw+HCQnEMBUZhVBc7O+VBQO22E5CB+fqf0LieWfpCAtcKrTwk9urOvEr7Q0rh
+	f7ho6aPkpCXwz2x4gr2XaMVY6LeYDpQQ6LvEzcUmEFDzgjeqfRgY+16A+Pqe3iPZVzcIQlyu8B/
+	8otmsCZVx9XOcZtQJ4z6OCLaXS0NyfJXSCdl55v0i9lsY9kSUV7Qr2Q3bAq+ZE4Ngvz72VRauPY
+	/TDaWdy2XV3AKALJBJ9ImPo6Kjb414F+gpkokoKYL6quzqKvMxEXLJxTq7Hg6kKWaufYeG0uTtL
+	JtgUs2vytY3nnvWzVHjuwZkacXCHfiCM1PMvDBDOWFgs=
+X-Received: by 2002:a17:90b:5688:b0:356:1dad:1b04 with SMTP id 98e67ed59e1d1-35965ccbadfmr6626668a91.3.1772418899740;
+        Sun, 01 Mar 2026 18:34:59 -0800 (PST)
+X-Received: by 2002:a17:90b:5688:b0:356:1dad:1b04 with SMTP id 98e67ed59e1d1-35965ccbadfmr6626641a91.3.1772418899135;
+        Sun, 01 Mar 2026 18:34:59 -0800 (PST)
+Received: from [10.253.34.61] ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3598e71565asm1011530a91.15.2026.03.01.18.34.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Mar 2026 18:34:58 -0800 (PST)
+Message-ID: <5559144f-cd46-4fa1-89a2-8d54a627ed04@oss.qualcomm.com>
+Date: Mon, 2 Mar 2026 10:34:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3] arm64: dts: qcom: qcs8300-ride: Enable Bluetooth
+ support
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        linux-pm@vger.kernel.org, cheng.jiang@oss.qualcomm.com,
+        shuai.zhang@oss.qualcomm.com
+References: <20260225091700.286108-1-wei.deng@oss.qualcomm.com>
+ <954f6a53-b597-47dd-926a-adb5a7513edb@oss.qualcomm.com>
+ <c1355057-486d-4852-8fbd-f9916786de06@oss.qualcomm.com>
+ <e544645a-e113-4ff0-bb1a-3a6577d6a83b@oss.qualcomm.com>
+Content-Language: en-US
+From: Wei Deng <wei.deng@oss.qualcomm.com>
+In-Reply-To: <e544645a-e113-4ff0-bb1a-3a6577d6a83b@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: blcVFiqovgYgCs7LijuacJ-reFOOGvS4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDAyMiBTYWx0ZWRfX6UPIpK3PydGo
+ uVP49TTyybY3DoC7uoEkAWqssF4cowSdtioCOqSEiBzoDbmfp0fUfT5mvlx/Xwv7DH8CJF7mZUL
+ SMaeXwMfw1Iv7c0thGNFlq3IesCxoKT6EQlBo7gg7mgy7uEzi2kWlcWn8D/gIXseSVSDnox/DT/
+ B7HrA7/qUQ5ubDRpKBqMDb/lBGdg70kc3ZB60eBWG9SjSpG8SWcFNtv+nUpE3+WR8cBphEhPyZ+
+ Jyt+Im5knjYlXNZSGYtccQYYWZ0O8JUmN95pVOjZJudeagYOy7Msr4j1YzA+SaZxSIMyW2RYbHL
+ GFZbOT7lNOksn79oJrGNikWFVSNVynISXkXZxpUr6quE2tVIwOeDvSF3sqURY28T6NsSEg5ByLq
+ nXmLAuMKhWf4OZxV14kGSL8MwBGzfKf3GZmgrVgmj7C++/WHS7zl1OMgjahpbViGK9FWneJwAbn
+ bT1uo3uMD3e4uc2+yKw==
+X-Authority-Analysis: v=2.4 cv=HKDO14tv c=1 sm=1 tr=0 ts=69a4f754 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=1VQt4_GuLh9oJCfVlm4A:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-GUID: blcVFiqovgYgCs7LijuacJ-reFOOGvS4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_01,2026-02-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 impostorscore=0 adultscore=0
+ spamscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020022
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,arm.com];
+	TAGGED_FROM(0.00)[bounces-269778-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,holtmann.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-269777-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DBL_PROHIBIT(0.00)[0.0.0.36:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wei.deng@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,archive.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,arm.com:email]
-X-Rspamd-Queue-Id: 8772F1D26C0
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 28B471D27E0
 X-Rspamd-Action: no action
 
-TaiqiCat (TQC) A01 is a set-top box powered by an Allwinner H6 SoC,
-equipped with an AXP305 PMIC, 1GB LPDDR3 RAM, 8GB eMMC, an AP6212
-WiFi/BT combo module, one 100M Ethernet port, one USB 3.0 Type-A port,
-one USB 2.0 Type-A port, one Micro USB port, HDMI, SPDIF, Micro-SD, and
-infrared input.
+Hi Konrad,
 
-It was released by Ultrapower(UQSoft) as a blockchain-based terminal and is
-now discontinued and no longer supported.
+On 2/26/2026 8:15 PM, Konrad Dybcio wrote:
+> On 2/26/26 10:14 AM, Wei Deng wrote:
+>> Hi Konrad,
+>>
+>>
+>> On 2/25/2026 8:27 PM, Konrad Dybcio wrote:
+>>> On 2/25/26 10:17 AM, Wei Deng wrote:
+>>>> Enable BT on qcs8300-ride by adding a BT device tree node.
+>>>>
+>>>> Since the platform uses the QCA6698 Bluetooth chip. While
+>>>> the QCA6698 shares the same IP core as the WCN6855, it has
+>>>> different RF components and RAM sizes, requiring new firmware
+>>>> files. Use the firmware-name property to specify the NVM and
+>>>> rampatch firmware to load.
+>>>>
+>>>> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
+>>>> ---
+>>>> This patch depends on:
+>>>> - WLAN
+>>>> https://lore.kernel.org/all/20260122053624.4068718-1-wei.zhang@oss.qualcomm.com/
+>>>>
+>>>> Changes in v3:
+>>>> - Rebase patches
+>>>> - Remove unintended 'output-low' from bt-en-state pinctrl
+>>>> - Use prerequisite-message-id to replace prerequisite-patch-id (Konrad)
+>>>
+>>> Only now did I realize you're the author of both patches!
+>>>
+>>> Next time around, please keep them in the same series, for easier
+>>> tracking (since they're very much related)
+>>
+>> Just to clarify — are you referring to the below WLAN-related patch and this one? 
+>> https://lore.kernel.org/all/20260122053624.4068718-1-wei.zhang@oss.qualcomm.com/ 
+>> If so, they are authored by different people. This BT-related patch depend on it.
+> 
+> Right, I seem to only have read the first part of the name.. sorry about that!
 
-  https://web.archive.org/web/20190409213228/https://tq.ultrapower.com.cn/product.html
+No problem at all, thanks for the clarification!
+Appreciate you pointing this out — we’re aligned now.
+Thanks!
 
-Hardware schematics are not available at this time; however, the
-dts from the vendor firmware is provided for reference [1].
+> 
+> Konrad
 
-Based on the PCB silkscreen marking "AZW-KT02 2.0", the ODM/OEM
-can be confirmed as AZW, and the overall hardware circuit design
-is highly similar to the Beelink GS1.
-
-Tested, works:
-- debug UART
-- status LED
-- USB 3.0 Type-A port
-- USB 2.0 Type-A port
-- Micro USB port (Host)
-- MicroSD
-- eMMC
-- WiFi/Bluetooth
-- HDMI video output
-
-Does not work:
-- Ethernet (requires AC200 MFD/EPHY driver)
-- HDMI audio
-
-Untested:
-- SPDIF
-- IR receiver
-
-[1] https://archive.org/download/tqc-a01-stock-fw/tqc-a01-stock-fw.dts
-
-Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../dts/allwinner/sun50i-h6-taiqicat-a01.dts  | 361 ++++++++++++++++++
- 2 files changed, 362 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
-
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 2edfa7bf4ab3..d116864b6c2b 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -38,6 +38,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-taiqicat-a01.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h313-tanix-tx1.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
-new file mode 100644
-index 000000000000..3138292abb45
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
-@@ -0,0 +1,361 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (C) 2026 Jun Yan <jerrysteve1101@gmail.com>
-+
-+/dts-v1/;
-+
-+#include "sun50i-h6.dtsi"
-+#include "sun50i-h6-cpu-opp.dtsi"
-+#include "sun50i-h6-gpu-opp.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "TaiqiCat (TQC) A01";
-+	compatible = "ultrapower,taiqicat-a01", "allwinner,sun50i-h6";
-+
-+	aliases {
-+		ethernet0 = &sdio_wifi;
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	connector {
-+		compatible = "hdmi-connector";
-+		ddc-en-gpios = <&pio 7 2 GPIO_ACTIVE_HIGH>; /* PH2 */
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
-+	ext_osc32k: ext-osc32k-clk {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <32768>;
-+		clock-output-names = "ext_osc32k";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "taiqicat:blue:power";
-+			gpios = <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
-+			default-state = "on";
-+		};
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the DC jack */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	sound-spdif {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "sun50i-h6-spdif";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&spdif>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&spdif_out>;
-+		};
-+	};
-+
-+	spdif_out: spdif-out {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+	};
-+
-+	wifi_pwrseq: wifi-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "ext_clock";
-+		reset-gpios = <&r_pio 0 8 GPIO_ACTIVE_LOW>; /* PL8 */
-+		post-power-on-delay-ms = <200>;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&dwc3 {
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci3 {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
-+&hdmi {
-+	hvcc-supply = <&reg_bldo2>;
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_cldo1>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	bus-width = <4>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	vmmc-supply = <&reg_cldo3>;
-+	vqmmc-supply = <&reg_bldo3>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	bus-width = <4>;
-+	non-removable;
-+	keep-power-in-suspend;
-+	status = "okay";
-+
-+	sdio_wifi: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm43430a1-fmac", "brcm,bcm4329-fmac";
-+		interrupt-parent = <&r_pio>;
-+		interrupts = <1 0 IRQ_TYPE_LEVEL_LOW>; /* PM0 */
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&mmc2 {
-+	vmmc-supply = <&reg_cldo1>;
-+	vqmmc-supply = <&reg_bldo2>;
-+	cap-mmc-hw-reset;
-+	non-removable;
-+	mmc-hs200-1_8v;
-+	bus-width = <8>;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci3 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_bldo2>;
-+	vcc-pd-supply = <&reg_cldo1>;
-+	vcc-pg-supply = <&reg_bldo3>;
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp805: pmic@36 {
-+		compatible = "x-powers,axp805", "x-powers,axp806";
-+		reg = <0x36>;
-+		interrupt-parent = <&r_intc>;
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+		x-powers,self-working-mode;
-+		vina-supply = <&reg_vcc5v>;
-+		vinb-supply = <&reg_vcc5v>;
-+		vinc-supply = <&reg_vcc5v>;
-+		vind-supply = <&reg_vcc5v>;
-+		vine-supply = <&reg_vcc5v>;
-+		aldoin-supply = <&reg_vcc5v>;
-+		bldoin-supply = <&reg_vcc5v>;
-+		cldoin-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-pl-led-ir-pg-pm-ts";
-+			};
-+
-+			reg_aldo2: aldo2 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-ac200";
-+				regulator-enable-ramp-delay = <100000>;
-+			};
-+
-+			aldo3 {
-+				/* unused */
-+			};
-+
-+			reg_bldo1: bldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc18-dram-bias-pll";
-+			};
-+
-+			reg_bldo2: bldo2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-pc-emmc-efuse-hdmi";
-+			};
-+
-+			reg_bldo3: bldo3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-pg-wifiio";
-+			};
-+
-+			bldo4 {
-+				/* unused */
-+			};
-+
-+			reg_cldo1: cldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc33-io-pd-emmc-sd-usb-uart";
-+			};
-+
-+			/* This regulator is connected with CLDO3 */
-+			reg_cldo2: cldo2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-wifi-1";
-+			};
-+
-+			reg_cldo3: cldo3 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-wifi-2";
-+			};
-+
-+			reg_dcdca: dcdca {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1160000>;
-+				regulator-ramp-delay = <2500>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdcc: dcdcc {
-+				regulator-enable-ramp-delay = <32000>;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-ramp-delay = <2500>;
-+				regulator-name = "vdd-gpu";
-+			};
-+
-+			reg_dcdcd: dcdcd {
-+				regulator-always-on;
-+				regulator-min-microvolt = <960000>;
-+				regulator-max-microvolt = <960000>;
-+				regulator-name = "vdd-sys-hdmi-usb";
-+			};
-+
-+			reg_dcdce: dcdce {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vcc-dram";
-+			};
-+
-+			sw {
-+				/* unused */
-+			};
-+		};
-+	};
-+};
-+
-+&r_ir {
-+	status = "okay";
-+};
-+
-+&r_pio {
-+	/*
-+	 * PL0 and PL1 are used for PMIC I2C
-+	 * don't enable the pl-supply else
-+	 * it will fail at boot
-+	 *
-+	 * vcc-pl-supply = <&reg_aldo1>;
-+	 */
-+	vcc-pm-supply = <&reg_aldo1>;
-+};
-+
-+&rtc {
-+	clocks = <&ext_osc32k>;
-+};
-+
-+&spdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spdif_tx_pin>;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43430a1-bt";
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "lpo";
-+		vbat-supply = <&reg_cldo3>;
-+		vddio-supply = <&reg_bldo3>;
-+		device-wakeup-gpios = <&r_pio 1 2 GPIO_ACTIVE_HIGH>; /* PM2 */
-+		host-wakeup-gpios = <&r_pio 1 1 GPIO_ACTIVE_HIGH>; /* PM1 */
-+		shutdown-gpios = <&r_pio 1 4 GPIO_ACTIVE_HIGH>; /* PM4 */
-+		max-speed = <1500000>;
-+	};
-+};
-+
-+&usb2otg {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usb2phy {
-+	usb0_vbus-supply = <&reg_vcc5v>;
-+	usb3_vbus-supply = <&reg_vcc5v>;
-+	status = "okay";
-+};
-+
-+&usb3phy {
-+	status = "okay";
-+};
 -- 
-2.53.0
+Best Regards,
+Wei Deng
 
 
