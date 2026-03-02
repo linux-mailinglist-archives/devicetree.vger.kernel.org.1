@@ -1,144 +1,164 @@
-Return-Path: <devicetree+bounces-269982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269975-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QMEfIICEpWkeDAYAu9opvQ
-	(envelope-from <devicetree+bounces-269982-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 13:37:20 +0100
+	id GNRMF3OCpWltCwYAu9opvQ
+	(envelope-from <devicetree+bounces-269975-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 13:28:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1144D1D8B4B
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 13:37:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 074771D861A
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 13:28:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DA46B30B15A5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 12:28:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 13A9C30848C4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 12:24:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C7036E48C;
-	Mon,  2 Mar 2026 12:26:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxBWpeWY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFBE436CDE6;
+	Mon,  2 Mar 2026 12:24:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51E336CE06;
-	Mon,  2 Mar 2026 12:26:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E16D36C9C5;
+	Mon,  2 Mar 2026 12:24:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772454370; cv=none; b=QOlPFqxdqUm58lNh5iXs+rxr1dOYu+tO/yeGlj5Xxe8HhvDYgz7I9mOoSIfh7owYUNQ8ML8pkcVD1k+5ySfLPNkWBjp6/9C2BhflhQ1VwYA9u0Ipr1HE86KP5v1t+fsVo6diEVt0FDodt/0YvnjRdgZusjSXJnQDdi3vNpL0lwc=
+	t=1772454296; cv=none; b=sFG+ZKX1azKLtlt+wPLDPXjbsqOjKHNzi37yveuRd8y3gHNzq3T3ijmr8bRUbWU1OXUKxtBca/krx8EPz3UVBiyv+feEjFNc7pFspc3fiVbVWaoVKJqCkHVQvi87lvccuo+uPWuh53a3bwan+/8RZHYxJHAiBjXCRGWrkiOqJa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772454370; c=relaxed/simple;
-	bh=muNQEGPiM0J5Z3fR8UE87fSFRuBeMgXK4p4PO32Eoag=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AtH/fPIKNyy21m1RurN2aFVbIhQ2UFefa8BcIkMl50xHeVa6gV9qdkY33psrjBkxISuCOzHtBlFGjW4de7EnaPQ5M+SmDYQHiNz/29wlO81QZ9uthX731HaC0LIgnAaXkbRD01MjqMx8ZoI15HCouvFh0VrtJFug2bJQT0OrKEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxBWpeWY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66474C2BCB4;
-	Mon,  2 Mar 2026 12:26:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772454370;
-	bh=muNQEGPiM0J5Z3fR8UE87fSFRuBeMgXK4p4PO32Eoag=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oxBWpeWYB66i9HHzyo0YVHfcJm0p4FOpByMvmykrCeE1D8zOIz3yD7ogMjCdsTYLR
-	 xokj33qW/Ci056eU57dycdPjR7s26DvF+Ki5CKYdNLtHveU+I5Ou/bRZtbZwdNEs/Z
-	 Dnb1e3JF+gPj6A3daLCJ4w3JzX3y3ZfxVEZjMvrm8rfhLZPSF0f3AweBo8zHb1tNXS
-	 CiBKhUuGuArt+rZA2a5FlpakfSkOgKVYZxY0uq2jQiE2OmC9gJ/LyAe01PZtCcno5l
-	 ZW/78NImX8qPB1tbavFCrBECbdCFlwonDvJ8E5aNIshpD+OQda4vRzB7DYw0NAW0GB
-	 WU2RKZRRiJQ2A==
-From: Michael Walle <mwalle@kernel.org>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Michael Walle <mwalle@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 3/7] dt-bindings: mfd: sl28cpld: Drop sa67mcu compatible
-Date: Mon,  2 Mar 2026 13:24:48 +0100
-Message-ID: <20260302122540.1377444-4-mwalle@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260302122540.1377444-1-mwalle@kernel.org>
-References: <20260302122540.1377444-1-mwalle@kernel.org>
+	s=arc-20240116; t=1772454296; c=relaxed/simple;
+	bh=x7t/iAkWcnd9QyYdAw+6vUuJizpL9ieaOGsdRW/mZTI=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nARK7p/dt1QpDCYCUv5+4jhUqv33aIzcFdnKrAOdEKyFTVRHfSAX4L0ZC25tTaJNihoW1CLpnFY4YsBFWdHtMDp5To+/jwanNfvKP77y1CUOr7LR+lDiT/QqszsXZ9aQ1ucknHs+IRYX7pWdzzP3qDyo/VudTtP8+QgiQzZ0oEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.107])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4fPdQs3pfrzJ46p4;
+	Mon,  2 Mar 2026 20:24:21 +0800 (CST)
+Received: from dubpeml500005.china.huawei.com (unknown [7.214.145.207])
+	by mail.maildlp.com (Postfix) with ESMTPS id E1AB340584;
+	Mon,  2 Mar 2026 20:24:52 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml500005.china.huawei.com
+ (7.214.145.207) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 2 Mar
+ 2026 12:24:50 +0000
+Date: Mon, 2 Mar 2026 12:24:49 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Herve Codina <herve.codina@bootlin.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Geert
+ Uytterhoeven" <geert+renesas@glider.be>, Kalle Niemi <kaleposti@gmail.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Danilo
+ Krummrich <dakr@kernel.org>, Frank Li <Frank.Li@nxp.com>, "Sascha Hauer"
+	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, "Michael Turquette"
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, "Andi Shyti"
+	<andi.shyti@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@axentia.se>, "Arnd Bergmann" <arnd@arndb.de>, Saravana
+ Kannan <saravanak@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, Charles
+ Keepax <ckeepax@opensource.cirrus.com>, Richard Fitzgerald
+	<rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, "Linus
+ Walleij" <linusw@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, "Mark
+ Brown" <broonie@kernel.org>, Len Brown <lenb@kernel.org>, Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
+	<sakari.ailus@linux.intel.com>, Davidlohr Bueso <dave@stgolabs.net>, "Dave
+ Jiang" <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>,
+	Vishal Verma <vishal.l.verma@intel.com>, "Ira Weiny" <ira.weiny@intel.com>,
+	Dan Williams <dan.j.williams@intel.com>, "Shawn Guo" <shawnguo@kernel.org>,
+	Wolfram Sang <wsa@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<driver-core@lists.linux.dev>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-pci@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+	<patches@opensource.cirrus.com>, <linux-gpio@vger.kernel.org>,
+	<linux-pm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+	<linux-acpi@vger.kernel.org>, <linux-cxl@vger.kernel.org>, Allan Nielsen
+	<allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli
+	<luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 11/28] cxl/test: Use fw_devlink_set_device()
+Message-ID: <20260302122449.00006c77@huawei.com>
+In-Reply-To: <20260227135428.783983-12-herve.codina@bootlin.com>
+References: <20260227135428.783983-1-herve.codina@bootlin.com>
+	<20260227135428.783983-12-herve.codina@bootlin.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml100009.china.huawei.com (7.191.174.83) To
+ dubpeml500005.china.huawei.com (7.214.145.207)
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[huawei.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	TAGGED_FROM(0.00)[bounces-269982-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwalle@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,glider.be,gmail.com,linuxfoundation.org,nxp.com,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,google.com,opensource.cirrus.com,cirrus.com,linaro.org,linux.intel.com,stgolabs.net,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com,bootlin.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-269975-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 1144D1D8B4B
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonathan.cameron@huawei.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[62];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.950];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,fwnode.dev:url,bootlin.com:email,intel.com:email,huawei.com:mid,huawei.com:email]
+X-Rspamd-Queue-Id: 074771D861A
 X-Rspamd-Action: no action
 
-I was just informed that this product is discontinued (without being
-ever released to the market). Pull the plug and let's not waste any more
-maintainers time and revert commit a598ae45f48d ("dt-bindings: mfd:
-sl28cpld: Add sa67mcu compatible").
+On Fri, 27 Feb 2026 14:54:08 +0100
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- .../bindings/embedded-controller/kontron,sl28cpld.yaml     | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+> The code set directly fwnode.dev field.
+>=20
+> Use the dedicated fw_devlink_set_device() helper to perform this
+> operation.
+>=20
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Reviewed-by: Dave Jiang <dave.jiang@intel.com>
+Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
 
-diff --git a/Documentation/devicetree/bindings/embedded-controller/kontron,sl28cpld.yaml b/Documentation/devicetree/bindings/embedded-controller/kontron,sl28cpld.yaml
-index a77e67f6cb82..0b752f3baaa9 100644
---- a/Documentation/devicetree/bindings/embedded-controller/kontron,sl28cpld.yaml
-+++ b/Documentation/devicetree/bindings/embedded-controller/kontron,sl28cpld.yaml
-@@ -16,12 +16,7 @@ description: |
- 
- properties:
-   compatible:
--    oneOf:
--      - items:
--          - enum:
--              - kontron,sa67mcu
--          - const: kontron,sl28cpld
--      - const: kontron,sl28cpld
-+    const: kontron,sl28cpld
- 
-   reg:
-     description:
--- 
-2.47.3
+=46rom practical point of view, what path do you expect this to take?
+Is there urgency to make the change, or does it make more sense to
+add the helper this cycle and cleanup up the various places it can be
+used next?
+
+> ---
+>  tools/testing/cxl/test/cxl.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/tools/testing/cxl/test/cxl.c b/tools/testing/cxl/test/cxl.c
+> index 3d9107b2661c..7f232a869389 100644
+> --- a/tools/testing/cxl/test/cxl.c
+> +++ b/tools/testing/cxl/test/cxl.c
+> @@ -1137,7 +1137,7 @@ static void mock_companion(struct acpi_device *adev=
+, struct device *dev)
+>  	device_initialize(&adev->dev);
+>  	fwnode_init(&adev->fwnode, NULL);
+>  	device_set_node(dev, &adev->fwnode);
+> -	adev->fwnode.dev =3D dev;
+> +	fw_devlink_set_device(&adev->fwnode, dev);
+>  }
+> =20
+>  #ifndef SZ_64G
 
 
