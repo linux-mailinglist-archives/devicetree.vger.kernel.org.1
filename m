@@ -1,222 +1,176 @@
-Return-Path: <devicetree+bounces-269879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269880-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eHfrEANjpWmx+wUAu9opvQ
-	(envelope-from <devicetree+bounces-269879-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:14:27 +0100
+	id 2DqnJ1pjpWmx+wUAu9opvQ
+	(envelope-from <devicetree+bounces-269880-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:15:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFA1C1D62EE
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:14:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6551D63CA
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:15:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AE47C3036093
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:09:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 93F043002299
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D43A39527E;
-	Mon,  2 Mar 2026 10:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F87B395D92;
+	Mon,  2 Mar 2026 10:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ECAsY4eP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="utn49JxZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5941B30F94D;
-	Mon,  2 Mar 2026 10:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB3C375AD0
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772446156; cv=none; b=Jt0SpAVduPVAYSEc3G3kjhcL9OiY06taLL9AQZJ6NwO54K+HLpsj9wSRyYYXIldwwmaYB7+2wfRDUawUZa1Lrr9L+NqS2yn/TU2cU+kAkmH2Q5udjigVlcRd+vFoZWiTSoCe2WwZoJwmQogO5jyAqUK0l4NcZLlwklrzoBLZsSQ=
+	t=1772446272; cv=none; b=QsCTzX9e+v1GkjDnIN+GEq9hugeViA074UzF2ZfzmOL/uVEXjQW9YyZH8CoRQeNFFmbKA8n9/J1jWbyuQf+ua7PL9k+v6MHuQ5Bswd9yC7YNe7U+M+T8aeIu8rxMUaBifKmUi55by9U++f5Wi6xh8Gr4vrYyRnl3btAsHW9KoVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772446156; c=relaxed/simple;
-	bh=Q/2dawWj8HV7fckoHMuYhx7ud9jTLDCG2i6f32x0NOQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TVDpE7r7KKgdeh+EIVKQ18cTmBOrVivYvl+bcuo7xSxZfBLhYGhWGDm5TGTA4Qk6DRLvzAXXqioqYWwaUCh823t76cxQcazfGs59hYbkg88kAI/Yc0xZKNDO92rtfX2dBF8fp+HR8Fezd+0CDmhrSZYlLY+fiAJ3LnIVSroI9Pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ECAsY4eP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3274BC19423;
-	Mon,  2 Mar 2026 10:09:12 +0000 (UTC)
+	s=arc-20240116; t=1772446272; c=relaxed/simple;
+	bh=5rGx+CQxlmdX0QBjsQC9nBGMb/T8RhLBrNveef/NwRA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gp9zsXJs3MHMdcl8zYnaIGJ3t3iTH8GgQ3ssoQpkavgi+kmD4ImIELuuToScVF1XIXVQpM1U3gxJfACd4p1XiV8/vPmsoW5gvlB7uxCycTu3CXc7OJLSRlzrNNVIUfLK7k6vB36VrOz318Gsy+JlI0JALUIENI1oACfTMgAP2JQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=utn49JxZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08E9DC19425
+	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:11:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772446156;
-	bh=Q/2dawWj8HV7fckoHMuYhx7ud9jTLDCG2i6f32x0NOQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ECAsY4ePNHxrt1Wo3hJGWbatBBXLVFhPsXTX7wLP0XTQj8t4QsqQz7/U7U5TIIRBV
-	 bnCFm7wgQEnnwsssR3eJLNdwSSyo57Ga8FdX3/KSRP3l3q+Pz1PqvD2FalGPWLce3w
-	 cBCQQfH56uzgVHQBeyYwDN0eORb9kVO/LHFjPanxP1WOsfKrTp4hHRDDtysZieCE9n
-	 11JI1iZ9/jMLk6FeodFAIwOgDvSZ+rOuk+VEypQofh+W9UI9TqpKPPGsrK8e7NrJ0P
-	 G4Dx5N7V76PiMLiKeca6argAKVKefNZ/eoxw7uJZp1uP5HMFvMzr0k87knM+IAFvTp
-	 q/kN/+lu27YKw==
-Message-ID: <c46a8bf5-7a6a-41a9-b18f-9a7ad7a60bb9@kernel.org>
-Date: Mon, 2 Mar 2026 11:09:10 +0100
+	s=k20201202; t=1772446272;
+	bh=5rGx+CQxlmdX0QBjsQC9nBGMb/T8RhLBrNveef/NwRA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=utn49JxZm3uPD9TuLu1lY4whf2lgHQXpnN/5s4NwISLN4GnfGxTf40s5qVGHwpwzI
+	 EY1B1NPNrE1Szflo+Byk18yuFnfP9oHdoCxCbYqqx1vPu2Ite0EQlWI+gOJxuX3xhT
+	 l7orLlXC0GliBqKt7oLpsds9ACl6bDWw61yf1wmhBhn1eGKufZUYLanHsDbqJd+Nfw
+	 iYSMUULBuHCoqK0uW3yKl/wR7SngDqu+yEmySUQDgH+1c6PtwGV0E3olM20CBfmTL2
+	 FmENHzE1SCmgtFhNZQHlz02nZDCK55s0nPpCKw0YE3MUJ4hfAJL5lEwkuhLCDDVEUd
+	 BZRMryGbnqBxg==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-79801df3e42so50989107b3.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:11:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUmEhoLc9t2GAYITFsA24Z6gOFDnMhSWf4fPhDugjx8qjO/OzwynUOmfERNcQql++nfdYb8md4BK/jU@vger.kernel.org
+X-Gm-Message-State: AOJu0YysTkJb65bNnUbKoBLki6Ti4xsuzbm4X1IXqxapkeRcabuWBiPl
+	1Q6ZwjdqZ0pC+QqgkbTMpKNXf5uq9LhhnfttRQAxk1XVp5Abd2sKL9JnElRxYvn+depGnB8dpq3
+	S9r5DsEzZYwwCQrfMt1XxQ0fk3Hxovlw=
+X-Received: by 2002:a05:690c:3686:b0:797:d46b:e86e with SMTP id
+ 00721157ae682-79874be88demr139170977b3.14.1772446271443; Mon, 02 Mar 2026
+ 02:11:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-To: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-Cc: "Xu, Baojun" <baojun.xu@ti.com>, "broonie@kernel.org"
- <broonie@kernel.org>, "tiwai@suse.de" <tiwai@suse.de>,
- "13916275206@139.com" <13916275206@139.com>,
- "Ding, Shenghao" <shenghao-ding@ti.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "Yi, Ken" <k-yi@ti.com>, "Lo, Henry" <henry.lo@ti.com>,
- "Chen, Robin" <robinchen@ti.com>, "Wang, Will" <will-wang@ti.com>,
- "jim.shil@goertek.com" <jim.shil@goertek.com>,
- "toastcheng@google.com" <toastcheng@google.com>,
- "chinkaiting@google.com" <chinkaiting@google.com>
-References: <20260226075737.405-1-baojun.xu@ti.com>
- <20260226075737.405-2-baojun.xu@ti.com>
- <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
- <9f861c7df09c4434a98a203ecff913bc@ti.com>
- <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
- <a7316acf9ba248f9ad1fab0313a95654@ti.com>
- <3cfa4036-e7a7-4cde-9dab-a171a63bdee3@kernel.org>
- <4865c7f626a340d7847354512367577e@ti.com>
- <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
- <aaVcDvYvi28wFR2S@ashevche-desk.local>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aaVcDvYvi28wFR2S@ashevche-desk.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20260225-pinctrl-mux-v2-0-1436a25fa454@nxp.com>
+ <20260225-pinctrl-mux-v2-4-1436a25fa454@nxp.com> <CAD++jLkT83xz+PSzZZv_Mv+Mqx_+W30d_xk68EDG-sdmFF3x3A@mail.gmail.com>
+ <aaG2xQDnMVGGAOJE@lizhi-Precision-Tower-5810>
+In-Reply-To: <aaG2xQDnMVGGAOJE@lizhi-Precision-Tower-5810>
+From: Linus Walleij <linusw@kernel.org>
+Date: Mon, 2 Mar 2026 11:11:00 +0100
+X-Gmail-Original-Message-ID: <CAD++jLm=6pTh7N5UAXFaaYWCs5DhfQdb+8TnM5XLcYC886=kLw@mail.gmail.com>
+X-Gm-Features: AaiRm52VNn0UFirxG2TzpKTirdRC2cHuoSLXvPJ-P8L7Wd2YNQMbqv19Df0g77c
+Message-ID: <CAD++jLm=6pTh7N5UAXFaaYWCs5DhfQdb+8TnM5XLcYC886=kLw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] pinctrl: add generic board-level pinctrl driver
+ using mux framework
+To: Frank Li <Frank.li@nxp.com>
+Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, Haibo Chen <haibo.chen@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-269879-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[ti.com,kernel.org,suse.de,139.com,vger.kernel.org,gmail.com,goertek.com,google.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-269880-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[axentia.se,kernel.org,milecki.pl,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,intel.com:email]
-X-Rspamd-Queue-Id: AFA1C1D62EE
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1B6551D63CA
 X-Rspamd-Action: no action
 
-On 02/03/2026 10:44, andriy.shevchenko@linux.intel.com wrote:
-> On Mon, Mar 02, 2026 at 10:27:49AM +0100, Krzysztof Kozlowski wrote:
->> On 02/03/2026 10:22, Xu, Baojun wrote:
->>>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>>> Sent: 02 March 2026 16:58
->>>> On 02/03/2026 09:24, Xu, Baojun wrote:
-> 
-> ...
-> 
->>>>>>>>> static const struct of_device_id tasdevice_of_match[] = {
-> 
->>>>>>>>>       { .compatible = "ti,tas5827" },
->>>>>>>>>       { .compatible = "ti,tas5828" },
->>>>>>>>>       { .compatible = "ti,tas5830" },
->>>>>>>>> +     { .compatible = "ti,tas5832" },
->>>>>>>>
->>>>>>>> So it is fully compatible with tas5830 and most of the changes here are
->>>>>>>> not needed?
->>>>>>>
->>>>>>> Yes, it's fully compatible with tas5827/28/30.
->>>>>>
->>>>>> Then above hunk and many others are not needed.
->>>>>
->>>>> Hi, because those chips have different on the voltage, so the parameters
->>>>> is different, have to use different firmware binary, so we must identify
->>>>> every chip in the driver.
->>>>
->>>> That would explain other ID tables (and should be briefly mentioned in
->>>> the commit msg), but not this one, because here you do not customize the
->>>> binary at all.
->>>
->>> Hi, we save the chip_id in the dev_name:
->>> strscpy(tas_priv->dev_name, tasdevice_id[tas_priv->chip_id].name,
->>> 	sizeof(tas_priv->dev_name));
->>
->> And where do you see the name in above table?
-> 
-> I don't know what you are trying to get from them, but I²C enumeration
-> on DT platforms works in a way that it takes two tables into account,
-> hence, if there is no compatible (with given part number) there will be
-> no matching name.
-> 
-> AFAIK it has to have a compatible to make it work in such a case.
-> What did I miss?
+On Fri, Feb 27, 2026 at 4:23=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
+> On Fri, Feb 27, 2026 at 10:20:14AM +0100, Linus Walleij wrote:
+> > On Thu, Feb 26, 2026 at 12:55=E2=80=AFAM Frank Li <Frank.Li@nxp.com> wr=
+ote:
 
-Show me please then how the OF table is used here at all to get the name.
+> > > +static void mux_pinmux_release_mux(struct pinctrl_dev *pctldev,
+> > > +                                  unsigned int func_selector,
+> > > +                                  unsigned int group_selector)
+> > > +{
+> > > +       struct mux_pinctrl *mpctl =3D pinctrl_dev_get_drvdata(pctldev=
+);
+> > > +       const struct function_desc *function;
+> > > +       struct mux_pin_function *func;
+> > > +
+> > > +       guard(mutex)(&mpctl->lock);
+> > > +
+> > > +       function =3D pinmux_generic_get_function(pctldev, func_select=
+or);
+> > > +       func =3D function->data;
+> > > +
+> > > +       mux_state_deselect(func->mux_state);
+> > > +
+> > > +       mpctl->cur_select =3D -1;
+> > > +}
+> >
+> > As mentioned I have my doubts about this, explain why this hardware
+> > is so different that this is needed.
+>
+> As board mux (uart and flexcan) exist, for example, only one of UART and
+> FlexCAN work.
+>
+> when modprobe uart.ko,  mux_state_select called.
+>
+> So flexcan driver can't get such mux as expected.
+>
+> when remmod uart.ko, we need release mux_state, so flexcan driver can
+> get such resource.
+>
+> Genernally, DT may only enouble one of UART or flexcan.
+>
+> but insmod uart.ko
+>     rmmod uart.ko
+>
+>     insmod uart.ko (here also need release previous's state at prevous rm=
+mod).
 
-> 
-> The code in question is i2c_of_match_device_sysfs() call in
-> i2c_of_match_device() which does this magic.
+Can't you just enter the state "init"? This can be used
+explicitly on the uart .remove() path using pinctrl_pm_select_init_state().
 
-Added entry is not by i2c_of_match_device(), so if you use that as
-argument we can conclude - this is completely redundant, so remove it.
+Sure the device core does not do it automatically but this is a
+special case.
 
+If you want a generic solution without having to change any drivers,
+Add pinctrl_unbind_pins() to drivers/base/pinctrl.c and call on the
+generic .remove path for all drivers to put the device into "init"
+state during rmmod.
 
+This gives us better control of the actual hardware states I think?
 
-Best regards,
-Krzysztof
+Yours,
+Linus Walleij
 
