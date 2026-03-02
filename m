@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-270196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270203-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKuKCs3gpWkvHgAAu9opvQ
-	(envelope-from <devicetree+bounces-270196-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 20:11:09 +0100
+	id uCQIOfTgpWnDHgAAu9opvQ
+	(envelope-from <devicetree+bounces-270203-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 20:11:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE18A1DEA18
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 20:11:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5264E1DEAC3
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 20:11:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6343E3031CE0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 19:11:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6E15830699BD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 19:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A35B375ACE;
-	Mon,  2 Mar 2026 19:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7233F3859D9;
+	Mon,  2 Mar 2026 19:11:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="ZXHwQFf7"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="D4h9MOx5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24193359A8A;
-	Mon,  2 Mar 2026 19:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D9C369204;
+	Mon,  2 Mar 2026 19:11:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772478664; cv=none; b=JiQLPz4qd8wNWC5A4zXqokNDgdmx4O9Nm5Z24gn6eD+79M9aXclRdfcusdAMOmC5WEqcGDHP63Puk2niFCNQ2CWr2Ky1FoL+3A5bLXZ9pecjd7Ttt1F5XSxklyhxqIQzwjahP7WxLIoZqxgHNzxwadIyd/3C3jy63RdVR2K8bIw=
+	t=1772478668; cv=none; b=cuiOJP/afsSTMrbMH4UglfTKP93btLeb9v/MS7qVlYyZ6oqMPfuiOMtnVVwo19mJbBBhfYiGJb0ssi4RHti0WMwPleHcJkZMz48htAqkHw46ZvDP8Au8lUKMTaEhldYDRGgQArx6WEnut58MUPTv5fJgKuUbZsNaHs6avLF4tEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772478664; c=relaxed/simple;
-	bh=V8u3tYgw2th/H747Fo1Rwb/Zmj5VstI+Lo5MOIYEyoM=;
+	s=arc-20240116; t=1772478668; c=relaxed/simple;
+	bh=XM9t98xb89N1ZlhujZTmlv4c9tV1d43E3bTEhZWQM84=;
 	h=From:To:Cc:Date:Message-ID:In-Reply-To:References:MIME-Version:
-	 Subject; b=UywRz9z7DcttbJf7bew2g2MzuSMwCimM0jv8PEyCrJkVBK5gCOhFn/H/N3Tt9D/l1vKg8+6oMSf+TmQNzwh8q7jHfj6ustSPrg+aqRASU63F4k0IjJQOpLPzIK7jRLkv8R3C01Y69G6tKI2TONpVK7YgZ0BbPg2f11L/zYAEUnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=ZXHwQFf7; arc=none smtp.client-ip=162.243.120.170
+	 Subject; b=Ae8mpF1lA1nsrMVrnlhLRfmSlAvN9Dr164WbnMVxVLVZGA8ANMsPvO6hbcIVHR2nDLxr5ex3rq1/T6CcpxFMtBOoWX2WufwLryqcI/Uq4xRELS5NCg2BZRyBnWyWfYXpMXRe1v+19nNoYzoiJrqIh3URW55z3Wh9rC5C8/2yB7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=D4h9MOx5; arc=none smtp.client-ip=162.243.120.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
 	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
 	:From:subject:date:message-id:reply-to;
-	bh=IGz99reFYT/+DoaMSCYXt6fgEmntGIKGtzdIEBnIkNk=; b=ZXHwQFf7VaeR0eY/uwhlW0t05u
-	REMVN8NVMJboT/3KKpWhryca+FHMZil27faLxAQjYRm/XixQAvFGf9I6cE/9aQ5YPIlZungfLkcSl
-	DcEFLei7DyqxYCr2uUvkdw1yNhwHkrNfMKnQ+mFz/V193C2mRHJLryn5+Q4Pe2Bdg3VE=;
+	bh=RXeuyAaTvwAMCt0q3PFB8EJk7uqdNN6rk4nzvIkVw+E=; b=D4h9MOx5xJCrIvC98NK8rry24O
+	ktvWnAcFNA88e2f7miLu+vTHTNhf4Xv8DYgaqIZctUKK2gLVUXuuRj/H2Z2NUwvLzYNZoz/ucndBV
+	b1V7c7e3EfAdwxSQqX23gFAzlESv/zCXdqKUDZg38r7+D0UtaTnLWvRRR0S8jJmtP3i0=;
 Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:59962 helo=pettiford.lan)
 	by mail.hugovil.com with esmtpa (Exim 4.92)
 	(envelope-from <hugo@hugovil.com>)
-	id 1vx8f8-0007Wl-EJ; Mon, 02 Mar 2026 14:10:39 -0500
+	id 1vx8fA-0007Wl-5z; Mon, 02 Mar 2026 14:10:40 -0500
 From: Hugo Villeneuve <hugo@hugovil.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -72,10 +72,9 @@ Cc: devicetree@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	hugo@hugovil.com,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	stable@kernel.org
-Date: Mon,  2 Mar 2026 14:03:37 -0500
-Message-ID: <20260302190953.669325-2-hugo@hugovil.com>
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date: Mon,  2 Mar 2026 14:03:38 -0500
+Message-ID: <20260302190953.669325-3-hugo@hugovil.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260302190953.669325-1-hugo@hugovil.com>
 References: <20260302190953.669325-1-hugo@hugovil.com>
@@ -93,26 +92,26 @@ X-Spam-Report:
 	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Subject: [PATCH 01/14] ARM: dts: imx6ul-var-som: fix warning for non-existent dc-supply property
+Subject: [PATCH 02/14] ARM: dts: imx6ul-var-som: fix warning for boolean property with a value
 X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
 X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: DE18A1DEA18
+X-Rspamd-Queue-Id: 5264E1DEAC3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270196-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270203-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,nxp.com,pengutronix.de,bootlin.com];
 	DMARC_NA(0.00)[hugovil.com];
@@ -122,46 +121,61 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[hugovil.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.3:email];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.0:email,hugovil.com:dkim,hugovil.com:mid,devicetree.org:url,dimonoff.com:email]
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,dimonoff.com:email,20b4000:email,0.30.132.128:email,0.0.0.1:email,hugovil.com:dkim,hugovil.com:mid]
 X-Rspamd-Action: no action
 
 From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-The dc-supply property is non-existent in Linux now, nor when this DTS file
-was created when importing it from Variscite own kernel.
+dmesg warning:
 
-Therefore remove it to fix this warning:
+  OF: /soc/bus@2000000/ethernet@20b4000/mdio/ethernet-phy@3: Read of
+      boolean property 'micrel,rmii-reference-clock-select-25-mhz' with a
+      value.
 
-    imx6ul-var-som-concerto.dtb: cpu@0 (arm,cortex-a7): Unevaluated
-    properties are not allowed ('dc-supply' was unexpected)
-        from schema $id: http://devicetree.org/schemas/arm/cpus.yaml
+Using of_property_read_bool() for non-boolean properties is deprecated and
+results in a warning during runtime since commit c141ecc3cecd
+("of: Warn when of_property_read_bool() is used on non-boolean properties")
 
-Fixes: 9d6a67d9c7a9 ("ARM: dts: imx6ul: Add Variscite VAR-SOM-MX6UL SoM support")
-Cc: stable@kernel.org
+micrel,rmii-reference-clock-select-25-mhz is a boolean property and should
+not have a value, so remove it.
+
 Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 ---
- arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+ arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
+index 9ff3b374a2b31..085985356668f 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
+@@ -79,7 +79,7 @@ ethphy1: ethernet-phy@3 {
+ 			reset-gpios = <&gpio5 5 GPIO_ACTIVE_LOW>;
+ 			reset-assert-us = <100000>;
+ 			micrel,led-mode = <0>;
+-			micrel,rmii-reference-clock-select-25-mhz = <1>;
++			micrel,rmii-reference-clock-select-25-mhz;
+ 		};
+ 	};
+ };
 diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi
-index 4e536e0252def..3fb5e2fb68777 100644
+index 3fb5e2fb68777..30032be6fdd50 100644
 --- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi
 +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi
-@@ -45,10 +45,6 @@ &clks {
- 	assigned-clock-rates = <786432000>;
+@@ -64,7 +64,7 @@ ethphy0: ethernet-phy@1 {
+ 			reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+ 			reset-assert-us = <100000>;
+ 			micrel,led-mode = <1>;
+-			micrel,rmii-reference-clock-select-25-mhz = <1>;
++			micrel,rmii-reference-clock-select-25-mhz;
+ 		};
+ 	};
  };
- 
--&cpu0 {
--	dc-supply = <&reg_gpio_dvfs>;
--};
--
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_enet1>, <&pinctrl_enet1_gpio>, <&pinctrl_enet1_mdio>;
 -- 
 2.47.3
 
