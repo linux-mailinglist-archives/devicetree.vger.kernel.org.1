@@ -1,239 +1,339 @@
-Return-Path: <devicetree+bounces-270083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270084-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ON8kIyOppWmpDgAAu9opvQ
-	(envelope-from <devicetree+bounces-270083-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:13:39 +0100
+	id IE/pKaOppWmpDgAAu9opvQ
+	(envelope-from <devicetree+bounces-270084-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:15:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C261DB95B
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:13:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D19E1DB9DA
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 16:15:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0573730E0526
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:07:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2BF413015467
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 15:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C61A41161D;
-	Mon,  2 Mar 2026 15:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B294014AE;
+	Mon,  2 Mar 2026 15:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="vwiFfkU0"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="M2cyZHRT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013068.outbound.protection.outlook.com [52.101.72.68])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013006.outbound.protection.outlook.com [52.101.83.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E61C407592;
-	Mon,  2 Mar 2026 15:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D5D40148E;
+	Mon,  2 Mar 2026 15:10:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.6
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772464004; cv=fail; b=mWZpL+NRbGJz/eBmSqF7Ms2CjCJTU+pgltoozkyBHuIbYLf9AzewsJVte3jjxcFeWJdgrYozlXlkfxB5CCH0WFyac+v8xUzPWNG2Vl8PNrRAe3MRALItZ88c/5bYDiZz4/LocMw/AxEKmnGdP0OQwt6VqED1IZ9ghWTbaczeeAE=
+	t=1772464211; cv=fail; b=D5szP5CxafK7Q/lG6DwwSQnPyNAX0ryuYUBJfltLhj0dYfFIacwo9MOi6R0Uw3TMQ837G+Dlxzws2/txgldvp/5HnKU4kJq5hWGif2LPpFfwXFuAzGzo7HmGhMmhWITjz2tF95YVlBjRO1li223jRCEPMNGZY1rDuw1NvbaSe3Q=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772464004; c=relaxed/simple;
-	bh=s1gAtU06weceHFlv4eR/aHiBZYsXZRLgwZXwxLL2ALQ=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=ANBRwUZq0LANSNo9y+GeFTX3HBjS/QTBfaathBGeXqWquHx1tgKHRemAQxQUneM62jYNSC1bzMidRFS9xfpddZkzXgqOhZWJzTbeqzv81iAW/hbFQZFsiOC9OxHW1Rge5v3+5iS4wWIpe5YQ5RQ3JiEMVM2YMRHX7bkIYTWq8ro=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=vwiFfkU0; arc=fail smtp.client-ip=52.101.72.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+	s=arc-20240116; t=1772464211; c=relaxed/simple;
+	bh=I/yLrS8II29w434tqJOcOWcHpm8E2yJVByC9eHhEuoY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nAPf8q7l7w16PIP4NhfTEl7aAf6P7Ep5fTzgFSk+WFx1KVd5p7hGeGZ1UW9ucofOWXTG59JfVn6pZXz5ph9BT0EuKnH2MQp/VjycjU2Al/0SIU8LN0VA9AojOp5CnLg4sFKhnWeTgdT66FlFYdYCST62ScObIkbtlepKQvSFOy0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=M2cyZHRT; arc=fail smtp.client-ip=52.101.83.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B11BDMLqk5HzHzjcEO/hpYH/gJbi6Wq/+r4lAu1FStNIOhtXTwlEeqlqIoEi7KDN99MpeVZTvYx95Mctu7F1vwLi8TgZLbp2pjfHkv9JRPbgXjhGyETAwheUwppbEGsTonwAMk+y8/7Vpa+Gi8IfOZ2HRxPjMf2910YxKAqIprXtHlYefxX/I6qhLsqi8TrYGNY+wvjCUpIcW8fvADBEe9sZVld51xZ9S1U5243O9mGE2SyAWE/ZCweoD+6feXRUcENHPmxl/yYbB7VXhM9tF16cPH42yZyFFF0V4UWM1NJOr0EN0cB6FFpe/R/MpD6LF34hduEqqja/cGBOjTuETw==
+ b=nH7vHjswb7L+GhCBKqUPWoM6y18Z4Or+6u1LRa0FOjC//HvBp/+UeWu2u4qOQiexwr8cFPoJuuZiISS+roB+GrVczc1XTctbRnzHLTCIE9qBnudcZyBYggUVnp5EbMJzcPJrqxozr+5qvsj3TyBbZxjv9eJNF8U03r+f3Z7GoQdyHaKbdn4+bjaeJtGZzSADAr0CEaIpxF7rAdpPLSwcIHQeGP4RkFs1SP6DbzL3mKKkPTu2Usr3PYQoRL2o8cuQ3C6VHQxneK9NFwf434jfVEzEWpjYXU8UF57dbJfd1u3/F+zwHo87yauNU/ku8JjymMhQYbMr0std/XvRC0qAtQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Wadq2m+FmgXvrzGESbTc/1jxM8gXxmwbUbtOvbfuNBk=;
- b=kIiEX+bBju0xuYIZRVGJzJyU/dMiDiFGV0+i/2a9vKh7bwf6iA30CQ8EsTd12JIBioswW4+rT/+p5Pzq3S6EffgYv0fNukur++PTj1c882gGoIZit/+nB4nptDQkgT5VZOAvU2/eM2+5fp1/N/cCIf1YX00Ta48x/gVazF5ieSNjKJOlBerR1x2cr/e6F6lzQDcIj0KWIML8SSb9dq+mucKZ3MAZ04e7scljU3H03Y0HVfi6BPMqZ2cEzIRulibQYO13v+XZNt8OEc+b2ibfY2orzPrfHVQXtO7+v37otz6zvEUCXHjrVOECqkfjz/Mnzpf7a38/5cASRiB/VmuaVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
+ bh=Jwlvfs5SM7s2o/Ymy29yfn/oP0q6TH/NVjxbqqhxNlw=;
+ b=xwVEY6ZeogALL+RUVBoCB2T2OWG7YNuqB/kdU3GOCrP/im94yNnm4IXoYgkiz98gdbLuOONNzK8aYG6EpVPkphab6xYUEwISxzIEZxpTXDdwVDZktO/8YinUU767AUV1WG6jiJ/fRL+uzyYNuBWDuwfKtJ8OUTFAkK0Vw9AzXosoty034TYt9zTb45Za08maiMi9PbuThMSryQw8qHi0icQL62X9XhhGpZB3J0jsqu0rMdUv27ssZwk8uVlbXw7Ggw9SIsVbsxn5139lMFiT89mAG+vF/yh1fLSmvht1/mj98w+0DCFAsqq3hiQ1O2aMyJ4pY7xfMMiwmRCKgnwuqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Wadq2m+FmgXvrzGESbTc/1jxM8gXxmwbUbtOvbfuNBk=;
- b=vwiFfkU09TmaE3/xQVhWe/cUyeo3UErn0N9XeIP4qIX+D8JApEYYjLE01DKBhgBy25DPc7qa++5H1bG858gRI+532CVgoGdpSQItoL6LD1cUDuMhugctJZi5AvOSSeaM8cJhnl8ejYZ6+KaFovT39qpxK9PLT08GNI8Q46GwJ8C/gk+2YzOlZhLrUnyS2gI3a8soufLwchiyEqXRJKEb8WmuY+VroQqkRGc4Bvn67zpXv5vP0XrQs1qnZvkgZNCAYFLWsHjX49k1Cib4w13des1jxU76qVSuFh3x63rR798T5M5KHqnlYSCdMqYkgqh7stDqv08kJtI++lSUe13NSA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AM0PR04MB6980.eurprd04.prod.outlook.com (2603:10a6:208:17e::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.18; Mon, 2 Mar
- 2026 15:06:39 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::4972:7eaa:b9f6:7b5e%7]) with mapi id 15.20.9632.017; Mon, 2 Mar 2026
- 15:06:39 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Mon, 02 Mar 2026 23:07:42 +0800
-Subject: [PATCH v3 2/2] ARM: dts: imx7ulp: Add CPU clock and OPP table
- support
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260302-imx7ulp-v3-2-26b708aecc59@nxp.com>
-References: <20260302-imx7ulp-v3-0-26b708aecc59@nxp.com>
-In-Reply-To: <20260302-imx7ulp-v3-0-26b708aecc59@nxp.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, "A.s. Dong" <aisheng.dong@nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SG3P274CA0013.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::25)
- To PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ bh=Jwlvfs5SM7s2o/Ymy29yfn/oP0q6TH/NVjxbqqhxNlw=;
+ b=M2cyZHRTQOwvSbO9uzOsuThHlcDL2vAapjkmkEaSZT0jcmaizlRlDnIUMqstWLbzLoY9GHPYsJxU/vTf3UBmoDG/KS3EuYgVtYKslmUUpnaoI9ECg2l06dJ+56vrhodo8XN8fWaNtyz6G/5/p174ZyQ+emzC9VrJU6ORrxyIPhO/NC1j1pMoljduTUJIfITRlqWcSZOTplscvIWR3Ir0EsZB13hq4kkzV/Rpqlr33BpQi/OkE8KI2up2t5FTcFnV3Vfj3ocpeSffZo87tXgabPIs0J/j0gitSBv8Hc/DzVHY3vDUk6Lh8ZXXwZSIVM/m/n51Gyd6FG820E5oWrUbtQ==
+Received: from DUZPR01CA0074.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:3c2::20) by GV1PR10MB6291.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:150:91::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
+ 2026 15:10:01 +0000
+Received: from DU6PEPF0000A7E1.eurprd02.prod.outlook.com
+ (2603:10a6:10:3c2:cafe::8b) by DUZPR01CA0074.outlook.office365.com
+ (2603:10a6:10:3c2::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.21 via Frontend Transport; Mon,
+ 2 Mar 2026 15:09:58 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ DU6PEPF0000A7E1.mail.protection.outlook.com (10.167.8.40) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 15:10:01 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Mon, 2 Mar
+ 2026 16:12:10 +0100
+Received: from [10.48.86.212] (10.48.86.212) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Mon, 2 Mar
+ 2026 16:10:00 +0100
+Message-ID: <78be9de6-084d-4c3e-831d-a91fd0d1775e@foss.st.com>
+Date: Mon, 2 Mar 2026 16:09:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: soc: st: document the RISAB firewall
+ peripheral
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20260209-stm32_risab-v1-0-ef0b2b6a7e0a@foss.st.com>
+ <20260209-stm32_risab-v1-1-ef0b2b6a7e0a@foss.st.com>
+ <ee9759a6-1779-4891-8716-24c36134198a@kernel.org>
+ <516036b6-b825-4a29-a48a-5d3af3234968@foss.st.com>
+ <ac793499-bebb-477b-b27e-089529f3ee4b@kernel.org>
+ <66ecf6a5-cc1f-4872-971d-6bc32894dbac@foss.st.com>
+ <fd73947a-289a-43f9-9506-573fee935d12@kernel.org>
+ <ed0ab69f-7aff-423f-8b93-980e79705b6d@foss.st.com>
+ <c588720a-6a7d-4179-afb5-bb7e89e0e7e1@kernel.org>
+ <b535dfd6-e4a6-4831-a868-c152574144c8@foss.st.com>
+ <ae9962a4-b611-46e0-b124-5910e8708a20@kernel.org>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <ae9962a4-b611-46e0-b124-5910e8708a20@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AM0PR04MB6980:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b162d1a-32ef-45fe-f985-08de786d4e4f
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-TrafficTypeDiagnostic: DU6PEPF0000A7E1:EE_|GV1PR10MB6291:EE_
+X-MS-Office365-Filtering-Correlation-Id: fed0d8cf-7aa7-4444-3318-08de786dc694
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|376014|7416014|52116014|38350700014;
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014;
 X-Microsoft-Antispam-Message-Info:
-	KPKkKzoRWonBehne4LA2j9sHH+Om4beDCVY19qpVgACiLrfM5Qvgjeiuhj7DPV2bBmnnFbMStosiqTMrqxpVgUeREjjqGcikOa2CrV/X6zgMFPBg+HRyKws/1jXqYCygcgq14oc8WPuWNh0rM4Udg+VCYDAkUDU07NUsNPgJzRIQ7PlvIupWNAT8QjoPgYFuwwJZVa6RUqr8CefX2OvMJQ1Zv5vc9GL8X6RD3FeRs+wQnkLQ2ACeTm4g+nLTAA4EASMF+Ilrgwu7WBj/4GDgAGCrwFiQ/QpRHTzo7hhhwKTYFTkItAR7PtxPlPWDQ1HI7WkmhPwVispDugr4RwD7vypwiQCBswF01eGjS7hPl4ANtJnczOVxkDs2ZA2gSkyX7vLw++Ujt6PyzdoCOpgoI7L1QmnQVcvrMPmGqHEv6tDacG5YSMD6Dfh/c+57rMoGW5I3WNc53jM8R3d6cU9rARy6+zBLGgNYiHyRwubqWQTaEnTqRfFGDlkOeHmNS4ngXdBRSl1iTN9vtCQkivS11GvQHrB6fOW/wL0Pk28nWBO2dS56veI0IYi7ZVq1x9d9i26aA5gL8LBXjEKb2sCG1+7LNHVcrYyLWgvZko+8Py9D5gir4I6bM5uzOT3AhE71KyxgDlfY+IVsxcSWyVSMtHahRG9bN9yCGOyWZANrysGedkidRAEq4lj0ige4B8pUQTRczLbeiOENbA3/xbARGu+3WI4ss5RLEasPJG9kLLJOO5510/Kjv7QYumCOuUjJlP2gbkpgHyzThfk9rphCQwmrWjQEHqqEGf1AfuQBVEE=
+	ALi26ahkP4DtULcaMIdN/WKSs2jhaRx/E0LlJ3AvaqFay8RH51aC1LNv0o6v9Zr3aAX6QUK07dYCCM3uTiWM6ycHm8fQ1w9QBw/N2llOAqH99hN4CDYQ+O3X3+f+pg3+cbu8B+4KeA6gcMt11haX1nlzY+6fo9qimJn3JGNAtIDlUQXbBzd0VO6aqajUyxYyA725BLz3r4Mt7CMaHDrHlKIribIEUNlwWyhr2oFV6I6apEvTTFkgq19eweLDnfruATAEmGXehx180ze6DxRbMYJAeUm9CpueqEXed2CWkRqhXqaPryeo7nq/KKr4HxuKcN6WBib8W/SjxAJbHQdw2YSbUisgWu9zaSum+3RRG8RurTCyJKXP60aNmQOeqSFAIbJ9qtHXFvVyU7WRR0m90EkdwIkM+/aXpmNm1/nev0zUFzpFzocEgcXDeO8D4ccX6w22tPiaa4cV/ABecTubjXez0c5/sQscCInUQxkTtZFMx7ZRVfw+vZ8eEhm5TutGqiVdnzw/CMRyaf+6PgXZrSzJ65UZ7tUgcaHVa5JgasK5S+nb9SvsFRojaMW5x6rFB6emKe0Hn2z7gbA/JAxXxunpWbyfabNDUwC6Tzg+kq1XEUKgJYlYbdiiiCFk7lgI6+MjmTyaS3vDZZIH36wsj9noi7kL49to++0xbjch8wxRNi0EIPei8g8fCPolSi2BVwLHvRg28H1n48+EGJHDx5KTTJxMD3FBGWX58EtWqLXIahkBG17o2mydIZd6EOoTbZvuhluDCbq4GUu705f+5U8B7ch/fztCGt9u8gbEBzhMbpctZmZhGyDxL5EBkbmJA4vmZmwLZq0RrYYCd8IORw==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NTd6WFl6RXltbWhhazBNQkZrc2RWZ3BHaXNjL2Y3NzJQMFhsNE81OFA2bUZw?=
- =?utf-8?B?Nk9jeDJxd015UlZXTC84blpuNEZLRnhNQzBnWHNIc0pBb3lQcEdCaXF2YUZM?=
- =?utf-8?B?dWo1M3o1VE5ocm5GOG9XRW81WVpVeVNOc1JDME9ORW9tUk54anY2WmdxYzR5?=
- =?utf-8?B?RE1ta2thU0d5UkthSlkwVDlMMzlKSGQ5UGFvNTFyR0lVRmNGS1dnRlNPOEdJ?=
- =?utf-8?B?eHRrV1V2L1ptaTIrQzBFQmJQK0daa2pBM09KZEZHeWpGbjZVWCs3QkY0ZUY2?=
- =?utf-8?B?aUxXcTB2R0RKeHk4bG5yUjhBQXdSMDlRb0hES2RFbVpyNi92emZ3OWhPeFRM?=
- =?utf-8?B?VFJBYnlkUlR1OUFOWCtwajJlczhqazRQV3MwWXAvL3UvMXQ0bzV1NzkyRHdS?=
- =?utf-8?B?YjU1b3llSFJ2aGc1L0NZSVNYd2NJMmhpV2xGQU1xc0ZlUGpoK3FydlBVcHZJ?=
- =?utf-8?B?QSt1U1ZqeFFXSVFLUUZHUVAxVlVhUkI4bU5VNktWOVhpVUJPUXkzWSs0ZW0v?=
- =?utf-8?B?bGptblJVTDlYVndsWWU5aXFEdmtWd1VhR0tOeiszZ2Y1OFdPNHdHNld4bHJs?=
- =?utf-8?B?UUpuM3lhY056N0lucXRSTTNjQ2NXNitwaHNEQmg0TWQ0cXgySFJ6d05CKy9F?=
- =?utf-8?B?dFBVVlV5WTU1RkN6MWFZSUZyOGRIMGF6b01tT3VOVWQvNmlsWW84YWdoeWJR?=
- =?utf-8?B?MkV4S0FYZ1QyRkxrNml0MDg5VERuRW94aFRGRkdJV3A5MnU3SERPbld4c2d4?=
- =?utf-8?B?MUl5aS9Ca1g0YTcyd2JVSWhieEJLbEdSRHQ1VUllQ2JEZjR1ME1LdHhwcEZW?=
- =?utf-8?B?WksveW51Tk1mdmQ1STcrNXpVbS9KMm9OTnl6M2dKSGNjZW1DRlZRVWs5cGtu?=
- =?utf-8?B?ZngvS1lDYlROKzA2Y0hRYXpLdzJaaXRJSFhVaTVJbUlyQTZNNEx4cUxBV1RG?=
- =?utf-8?B?enhnd2d4S0IyK1lrVDJNREZtQ1RlcEhwL0VGaS9qeWdqQWtYT25ZOXBDWFVU?=
- =?utf-8?B?aUFCSVJIK0lOaGdaRHA2N1JFN1JsMzAzNUFLeXVsMlBONlppUDltcDN2NkJL?=
- =?utf-8?B?NFVoSURBMFI5czFTVEwyK1N3eWJTUCtMcGpNcEgxQmtEWW5QbFZFMWFnQ0F1?=
- =?utf-8?B?MDQ0MWk0NW0ybzBOcmUzVTMrWU5pY2k5SWxuSElwT1hZQnN0UkVackdkUGpZ?=
- =?utf-8?B?ZjVlVFFBQXovWC9rZTZ0RkNKbnczd3I4Z09BUVlBMGYvNFp6TXhZVFpTSVEz?=
- =?utf-8?B?MXRUSEFzWkxzdUU4Q0pnWXJXQi95SVYwblo5R1pYS1JQN1BPeW5aQkRPKzRa?=
- =?utf-8?B?YWd2RlUyWjJsKzFFdytoWXlTVmdpd0Z2bDVMN3VHc1hDU0NobHVuWFF4OFYx?=
- =?utf-8?B?WlZTVHVJalZZOCt3SlYrbEgwNkJTeit2VUpDRW5OemIxN3BEbWJNMHZCOHNT?=
- =?utf-8?B?VHhHZk1uaGQ4SW9aL2VKTTJ3dkxLbGVIcEhLNVh0ZnFtdjZ2cFlza1dYenhu?=
- =?utf-8?B?NG0wVGZqWit0YnB4Q2FlQ3gzaVgrZGhSVkVrd01FSWtqcGkzeW9Pd2x0WFc0?=
- =?utf-8?B?YURZbkxCQUVzNGFrU2JDWmY3RHVNRCtmdzJRWXpNSkVNZWtra3lDSkFqaWJP?=
- =?utf-8?B?UmxKUVd4YXFSVkpDeGl1MWk1QXc3QmpKQ211WXB4ZEJEZnlWV3I3bmZON25j?=
- =?utf-8?B?a3FFaG9CTm9yMkZpeDJTcVJhNkY5ZVZJUms5VHBCQWhKUGlWNzJrMHFHNkE3?=
- =?utf-8?B?bmhDODQ0bXdtczJ6SE5OWGh3eWhyZmxjWFdZRlRhM0JLUEJpRjdvYU1HK3ZS?=
- =?utf-8?B?Y0VoV1BTYmRhVUVHOEhSdzhreGxJVjhhRjBhRnFlcWE3M21EcG1oYXNWeGxF?=
- =?utf-8?B?QWJWaE5vVTE4MTB0amcwL1lvTHpxa0ttTjR6Q3ZaRGVIek1nU3o3YWJNYUh4?=
- =?utf-8?B?cVV0U015N0p2ZWsvMVVOOFZZZUFBZFNzQ0RseWNZQS85NW1PNDZaZnR4SHg1?=
- =?utf-8?B?dWtUay9lMjhDdng0Y2d5KzZLakhJWUovc3VId1dWOVVwaTh2VjYvVlFwdVMz?=
- =?utf-8?B?L2lrN1IwaHFTRE5EdHRweEROVnZEcWJLcWQrR2EzOXlOVlZXdEhJTU42UjZG?=
- =?utf-8?B?VTA4YXhUaFlEd0hCdU5kclpFVkhPYU5TSGM5NENQMjltRVNwYTFWcEFCeXlM?=
- =?utf-8?B?b0d0TUJEdXROSjMrL3RQYUx1U3pwTE5tUlVsZkUzT2RZUHAwZEQ3UFRSS2dw?=
- =?utf-8?B?eTNrYzZNazBBWDdvbjdJZkgrb0IrRlBiRk5CSTNxOUJUWm01Q3Yrc25sdC9H?=
- =?utf-8?B?NWl6VnpjM0QyN3Z3L2g4QnRmSnR2RDV1dU1hVC9vd0YvUUg4Y00vdz09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b162d1a-32ef-45fe-f985-08de786d4e4f
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 15:06:39.5038
+	O44YjadYbQ6EJ5iJOEzUhZTy6Ey+w55CQ2Swzd4utCQUEwWl05SDmIVFXLf5zUA8Yb07h1THgQ7hadfFgLJr2NZq7HImkIaorMNQnAO1f3/P2VG7KunXdXEEAAd+spTb6J4Fw314gm4WajhDSkRiAcCLs0sTPxU7mhGNWu4CwL+MDYyY3zZci7KN58xJHqfZyBimzZlG4zrV275k1Z9zAnANwhqkuVuhOdmOSkKFW9jFt6Yvw/ncsPbMleyjpgPZaAHBJXxPS3zYYfeGS5WjVVEw3xpcQkweHBC70lH1Mc8Zi6o8n6Xa3y66g/c+J3p4IYvdOB54jF+F4HPlHm4gnYxx8DaoY4nABr29IF6NUbanvonJ521yFlP9RvSbVDLdk3qIe1Ay38ZiPKpz5BFBVAc+gU5/fj4aqZdD1iTUsuMmLHyjvHHwWJr+5RAlwLJ+
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 15:10:01.0295
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i435ze0QLG7ynFadfz2xyBvjAO/NWEphoTI8PxjnYUdfahT6BM2uvlBu2HwN00QjL2EZYUAZ1VRTEtTdQ2ptYQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6980
-X-Rspamd-Queue-Id: E3C261DB95B
+X-MS-Exchange-CrossTenant-Network-Message-Id: fed0d8cf-7aa7-4444-3318-08de786dc694
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF0000A7E1.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR10MB6291
+X-Rspamd-Queue-Id: 0D19E1DB9DA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.94 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270084-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,4.210.111.160:email,foss.st.com:dkim,foss.st.com:mid,4.196.180.0:email];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270083-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[foss.st.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gatien.chevallier@foss.st.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	DBL_PROHIBIT(0.00)[4.198.58.160:email];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:email,NXP1.onmicrosoft.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,f00:email]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-From: Peng Fan <peng.fan@nxp.com>
 
-Add missing CPU clock definitions and operating-points-v2 table for the
-Cortex-A7 on i.MX7ULP to enable proper CPU frequency scaling and
-integration with the cpufreq/OPP frameworks.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+On 2/26/26 19:13, Krzysztof Kozlowski wrote:
+> On 19/02/2026 15:02, Gatien CHEVALLIER wrote:
+>> Just a small reintroduction of the issue:
+>> We need to provide three sets of information to the drivers of RISAx:
+>> - The registers of the RISAx device, handled through property "reg"
+>> - The global range of memory addresses protected by the RISAx devices
+>> (currently through the custom property "st,mem-map")
+>> - Each individual memory range protected, handled through property
+>> "memory-region" that points to children of "/reserved-memory". Memory
+>> regions may not cover the whole range covered by the RISAx.
+>>
+>> To replace the custom property, I have explored a few ways:
+>>
+>> 1) Describe the memory range covered by the memory firewall as a
+>> reserved memory: Cannot be done because, for the memory firewall
+>> covering the DDR, the reserved memory would overlap with the memory
+>> node used to describe the memory available for regular kernel use.
+>> The memory node represents part of the DDR in that case.
+> 
+> But isn't this the entire point of RISAB on main system memory? You want
+> to mark part of system memory one way or another. And now you say that
+> overlapping would be a problem.
+> 
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi b/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-index 880b9a4f32b0846a773dbf9ad30715c84ac2fda6..1355feda1aa72d88dcf56033dfdeaae631c108f8 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7ulp.dtsi
-@@ -41,6 +41,34 @@ cpu0: cpu@f00 {
- 			compatible = "arm,cortex-a7";
- 			device_type = "cpu";
- 			reg = <0xf00>;
-+			clocks = <&smc1 IMX7ULP_CLK_ARM>,
-+				 <&scg1 IMX7ULP_CLK_CORE>,
-+				 <&scg1 IMX7ULP_CLK_SYS_SEL>,
-+				 <&scg1 IMX7ULP_CLK_HSRUN_CORE>,
-+				 <&scg1 IMX7ULP_CLK_HSRUN_SYS_SEL>,
-+				 <&scg1 IMX7ULP_CLK_FIRC>;
-+			clock-names = "arm", "core", "scs_sel",
-+				      "hsrun_core", "hsrun_scs_sel",
-+				      "firc";
-+			operating-points-v2 = <&cpu0_opp_table>;
-+		};
-+	};
-+
-+	cpu0_opp_table: opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-500210000 {
-+			opp-hz = /bits/ 64 <500210000>;
-+			opp-microvolt = <1025000>;
-+			clock-latency-ns = <150000>;
-+			opp-suspend;
-+		};
-+
-+		opp-720000000 {
-+			opp-hz = /bits/ 64 <720000000>;
-+			opp-microvolt = <1125000>;
-+			clock-latency-ns = <150000>;
- 		};
- 	};
- 
+Hello Krzysztof,
 
--- 
-2.37.1
+I explored a bit more the possible usage of a memory region to describe
+the range covered by the RISAB/F peripherals.
+
+To describe both the range covered by the memory firewall using a memory
+region, I would need to have such node at SoC DT level:
+
+  	reserved-memory {
+  		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		/* Range covered by RISAF/B */
+  		ddr: ddr@80000000 {
+  			reg = <0x0 0x80000000 0x1 0x00000000>;
+  		};
+	};
+
+The RISAF/B peripherals need to reference memory regions contained in
+the range of the memory it protects in order to apply access rights
+to these region's ranges appropriately. Therefore, adding regions like:
+
+		tfm_code: tfm-code@80000000 {
+			reg = <0x0 0x80000000 0x0 0x100000>;
+			no-map;
+		};
+
+		cm33_cube_fw: cm33-cube-fw@80100000 {
+			reg = <0x0 0x80100000 0x0 0x800000>;
+			no-map;
+		};
+
+		tfm_data: tfm-data@80900000 {
+			reg = <0x0 0x80900000 0x0 0x100000>;
+			no-map;
+		};
+		...
+
+at board level. These are regions that can or cannot be accessed
+by the Linux kernel, depending on the access rights. Proceeding like
+this would also force the usage of memory-region-names to be able to
+differentiate the Range node from the actual memory regions. The
+RISAF/B node would look like:
+
+		risaf4: risaf@420d0000 {
+			compatible = "st,stm32mp25-risaf-enc";
+			reg = <0x420d0000 0x1000>;
+			clocks = <&rcc CK_BUS_RISAF4>;
+			memory-region = <&ddr>, <&tfm_code>, <&cm33_cube_fw>, <&tfm_data>
+			memory-region-names = "range", "tfm-code", ...
+		};
+
+Notice that the tfm_code region here share the same base address
+as the node used to describe the range covered. This would result
+in the following error from DTC:
+
+xxx.dtsi:109.21-112.5: Warning (unique_unit_address_if_enabled): 
+/reserved-memory/ddr@80000000: duplicate unit-address (also used in node 
+/reserved-memory/tfm-code@80000000).
+
+In order to use it that way, I would need to force-keep the ddr node
+disabled at all time and use it only to extract the reg it describes.
+Which feels weird to have a node that can never be enabled.
+
+Also note that, for our ecosystem, these 0x80000000 -> 0x84000000
+regions are inaccessible so it was simplified to (I'd prefer to
+describe them all BTW):
+
+		fw@80000000 {
+			compatible = "shared-dma-pool";
+			reg = <0x0 0x80000000 0x0 0x4000000>;
+			no-map;
+		};
+
+at board level (e.g: arch/arm64/boot/dts/st/stm32mp257f-ev1.dts).
+That is completely up to the user to define its memory mapping and its
+access rights per-region. One could use the lower DDR for some other
+usage.
+
+> You do understand you do not have to reserve the memory, right? You are
+> doing only your specific mapping for that region.
+> 
+
+Yes, understood.
+
+>>
+>> 	memory@80000000 {
+>> 		device_type = "memory";
+>> 		reg = <0x0 0x80000000 0x1 0x0>;
+>> 	};
+>>
+>> 	reserved-memory {
+>> 		#address-cells = <2>;
+>> 		#size-cells = <2>;
+>> 		ranges;
+>>
+>> 		risaf_range: risaf-range@80000000 {
+> 
+> There is no compatible here...
+
+There's no need for a compatible for a reserved memory?
+
+> 
+>> 			reg = <0x0 0x80000000 0x0 0x80000000>;
+>> 			no-map;
+> 
+> And why no-mapping? Isn't the point of the block is to have it as main
+> system memory?
+Main system memory is described using the memory node:
+
+	memory@80000000 {
+		device_type = "memory";
+		reg = <0x0 0x80000000 0x1 0x0>;
+	};
+
+this one is used to describe the possible memory range covered by the
+RISAF, which can be superior to the DDR size depending on the choice of
+the user for it's DDR, so we shouldn't map this region.
+
+As stated before, I need a way to describe the range covered by the 
+RISAB/F, which may not reflect what memory can be used or not by the
+current execution context. Hence using a proprietary property to avoid
+confusion in the DT and simplifying what is the range covered and what
+are the memory region actually configured.
+
+Best regards,
+Gatien
+
+> 
+>> 		};
+>> 	}
+>>
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
 
 
