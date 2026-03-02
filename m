@@ -1,222 +1,245 @@
-Return-Path: <devicetree+bounces-269888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-269889-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sFtsKD1mpWmx+wUAu9opvQ
-	(envelope-from <devicetree+bounces-269888-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:28:13 +0100
+	id OJWzKUFmpWmx+wUAu9opvQ
+	(envelope-from <devicetree+bounces-269889-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:28:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2215B1D6792
-	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:28:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 435091D67A0
+	for <lists+devicetree@lfdr.de>; Mon, 02 Mar 2026 11:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DC2B130B4689
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:21:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2299530825DF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2026 10:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 678E739B97E;
-	Mon,  2 Mar 2026 10:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0CF139B96F;
+	Mon,  2 Mar 2026 10:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YKxgqBwL";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EfI+dQCT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eQt4EnOt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B5339B4AD
-	for <devicetree@vger.kernel.org>; Mon,  2 Mar 2026 10:20:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB1A396B85;
+	Mon,  2 Mar 2026 10:20:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772446829; cv=none; b=YSxR2AfnMKwAFw97DimFyY8vUjkR7XY9bNQnsmI72S47tJMqdbIxupUuIqSH5nX/4McWVnfeVdZmgMzNvCUyBIJSxedwuJ+W+Kc6WHISRKyUcSK4D0KlmILKm95EVtKc1lwnz9sGRXRCztwLqj1n2FIblFqXgEi/F42YitfhZBY=
+	t=1772446844; cv=none; b=CI2PjwJjcX+1UH3M70hFAf7k/Go4QpjBldMsKwboXzEHvMbtYrk13aA2e94/S0Pm/ggCleEta2CQROk9lLd4vTKQUWYRkQjs8/etC0KepSKLrNvZj2YgW9mrwrDXOaq+DN1Z4Mjh1/8pdGVGfguB4RFhEVJjRCZFgRytdQsf1M8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772446829; c=relaxed/simple;
-	bh=CSwsYOD6drWBC+BpkO5jzAuz+Ok5L6cqTE/xt/LghKs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ffKCrtKd1ciYUFimMm78sO6hdlB8oN30fu7E/kP8ZCGaqDxPD6Z/znLJZ/5/TTzPBSPbD/+1enNuZbP6CVSsrIeq/KMxXxHpQGuC57zRNob7P/7S2w9iobFV/2KY+jgROY0HTGpgDCTzA2T4TUY3o4y4H372le8d7207sYY51kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YKxgqBwL; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EfI+dQCT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6226hADZ2504612
-	for <devicetree@vger.kernel.org>; Mon, 2 Mar 2026 10:20:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aDm37Yksdkf6+5HA//0dYI0M1pVt85JYFuBsUovDM5Q=; b=YKxgqBwLq2xVnD80
-	lFN1CVM0u+nyL27CQY4fVm8p/4W1dnw/SNo8KfgEhhgZA8UIhCNsm34iU6+TWaMc
-	dDemMH3DbzpHa/1vkLtpOZkD2nlXEyy2HdAXZrlEpP3T0YxXpG7IObzwHeWWk/Ru
-	BlQovogq8T8nqLdvHA4Kiz6eXlVfZNOyBcPKTILb6h1pvkA8Hw7J8Meg9mCjck3H
-	mxv/qCaKlftje9sgWYet2P21l1RUPE5wo8ogpA83A9PtkAarwaVxOTKqyOXCdTJ2
-	E0Pu2NURCjUscpIDGWEJ7TnO8iov4d6I6RG17ZE7rOzHt/Aj2/thECsN/QI8Xtgq
-	4Qhs3A==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cn5hertad-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 10:20:27 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8cb399597fbso331325985a.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 02:20:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772446826; x=1773051626; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aDm37Yksdkf6+5HA//0dYI0M1pVt85JYFuBsUovDM5Q=;
-        b=EfI+dQCTq48K0WyPV6u4Z9Jqt4ivJLk700KJ2qL76vDViu+325HWwKKEvICIfjT2xE
-         sR7ffpiLObmdy5F0Fyh2njyA2NmRBoHUXaRZQTjI9D2bTfN2EnzHdF9v4GRgl0spzcov
-         cXYk8pQatvupn0BKKxU+06iOI4vxuCyc2LNOOmCOS8hjUYueZVu9VaY8WCKg3IZ1kXfE
-         FkmJzjBLNUL3jjLltEtxNID1kwU/DTaEIIf65WGTQJX0LttRq86uTe4tbUvhBa5sQXwN
-         IZtH9a4fmvQbKf9H8Hy6YgrkNyaUjIT0NmlSAt/RSwwSAoDjwbFF2+2Qt4hgjvtojH1q
-         61Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772446826; x=1773051626;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aDm37Yksdkf6+5HA//0dYI0M1pVt85JYFuBsUovDM5Q=;
-        b=FLL+Cy0W9BxNX2qjhPQyC0jKW0bmbQSwOdj9FB8qSwFzmLzQe6QCl/P9gJgFKMr7kF
-         Js4VgerhenLRQ/hWTJlXIC7k2hPVFBNWPlNzmvugIqYzHDRCeLbIFt8k5l+SnhU2Cak8
-         3M8fhMcDYGVlzKZ0mhIsLQ9WS1SS2+vn/MsZMk0wyiWHnmU43YBDm7Q5KmlBq1qP3I0b
-         qJnVAgxTsl2gO4cRRaS1BG+TkgeG2N+ppoHuboA1F8HSy6wskGMKrtigvgtJ56cXcoxU
-         7ApCTQV/6DCfdXGNYfe4Cd+fP+8k9oxYqvN1qFWazDwR0huy+ZWzK1N4so9ziy9Hm7KK
-         0vbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUMMoQhqOOMAvthhJDYxaWuS8RAGGaMyKSPcJBcLuzaTapPUaIOtptMpqPioqp+ADaBI5LUS9VZo9qD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0amGSqHaXNKS373yS6SBAdtObGS5YHjlQY/8ybN37CvkKFekf
-	z41EExzybiNPo6LhaIdTP8HDUJky5WVmwSc8HDFJpJXJPoqgKqCR8WSG9y0g62wWA45EbQ3hO80
-	QklDHA10kmisuezD9wXGikNQVgUmzsJZwUiCag11GywIhxjm56txA4Po6IJzCMhLk
-X-Gm-Gg: ATEYQzxMhieTp/U4A5eIIDLZpeQR344Ow2k3oXNvW/bNm/5jg51ekIBKuTsLHvBOnm+
-	JnbOJle45HtR5oe9pHaS7XXVrpvIpU3prvtH8xTtRFtAXCsti7tRH/0aWEwNOeOMECZZiCXblnt
-	qSKXaoihPs9xi9Z0nEd/x6NqvzKz9kAZYdTIeXCTMmX5X30Np2BNmkSAeE6A9dEDmHwnj5e6nzV
-	b7Nb+Q7gpDZi8a3Zjn8bjamGvaiYFwppEmgJMlCMedFqOriDB2K1TaqcxsHFUoI5aJQkL/COLD6
-	EV0t9OztZ6F0LP8/aVw9fHvwoSdOtjoMMS00hMyw8rYL8yoaGX/mFz4sTulcXYuvn0GsT8vcGKL
-	oMYJ7OEXaPKa4moYejqp4PeUzT86WxjiIrMh5RuAtn0ZYLjvVFmhZ6Ng7yhpWVhy9zZpSpW5uOF
-	GYvnA=
-X-Received: by 2002:a05:620a:4628:b0:8c6:a719:d16f with SMTP id af79cd13be357-8cbc8e7c8e4mr1131129885a.4.1772446826534;
-        Mon, 02 Mar 2026 02:20:26 -0800 (PST)
-X-Received: by 2002:a05:620a:4628:b0:8c6:a719:d16f with SMTP id af79cd13be357-8cbc8e7c8e4mr1131127385a.4.1772446826043;
-        Mon, 02 Mar 2026 02:20:26 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b935ae613ddsm453210766b.33.2026.03.02.02.20.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Mar 2026 02:20:25 -0800 (PST)
-Message-ID: <6a304d0d-61b1-422f-bb65-8f8055095c39@oss.qualcomm.com>
-Date: Mon, 2 Mar 2026 11:20:23 +0100
+	s=arc-20240116; t=1772446844; c=relaxed/simple;
+	bh=JD4YIPNcb+y88+5wOOif7V+1YNyKxExUlQlWm1SJGBs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qCpDR73V93HzWPMLRjNSltUrp240RgHCXvCrgmcq6j1kglwgNn9bRdnuVHf1NNcUj6DW/quBr9JdcmDmIE8gqEwUkDs1s+5KQXCiUUM0ECEKPTACd+ubRlZyeumVNiQyc1AYLq7Cors0C1nEfb3rayeXdS6UGngihYoJDgGv2Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eQt4EnOt; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772446843; x=1803982843;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=JD4YIPNcb+y88+5wOOif7V+1YNyKxExUlQlWm1SJGBs=;
+  b=eQt4EnOtpzi+25W42SljVewy8R+w1OgMAHlObAcSX+HVhJostpjVAkiJ
+   RBbYEDIGz9vlTG+Bs/ZkQpC0ZllGH6CoSnSxDFvKX/JSeh3n6AaKjsDny
+   ykQHVtx6FhBr49b5GxR1WTGPlCzksXcsAutPXEPilBt/LMgQbXwLQ7Btl
+   ZJCh12t1odxxAWB5vSPgjL9IbGtGYGkDxFpVNQrVD6AbU4KakjLvu4uTQ
+   J9N3wyn04oFmR9iiLP2NZyxIjn3AndMV3v9OxPgVChxwUsfgoGTFgFlfc
+   DTPX8/qXvjp67qqjNuR1uKBez2tWHeQj+mOXHpaZwFRcmRGAznkVh0rUS
+   Q==;
+X-CSE-ConnectionGUID: KZdEgPp8R7SXy0iwUvM+pg==
+X-CSE-MsgGUID: JqwsviTLRFyyVV5e0Edi/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="61020262"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="61020262"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 02:20:42 -0800
+X-CSE-ConnectionGUID: syDccVPRTzm0V3agw43T/Q==
+X-CSE-MsgGUID: XHLoCzA3Qie8dWjHLpFG0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; 
+   d="scan'208";a="221764078"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.52])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2026 02:20:38 -0800
+Date: Mon, 2 Mar 2026 12:20:35 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>,
+	rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Dmitry Antipov <dmantipov@yandex.ru>
+Subject: Re: [PATCH v7 2/8] iio: core: add fixed point parsing with 64-bit
+ parts
+Message-ID: <aaVkcw0g79pnXU_z@ashevche-desk.local>
+References: <20260216-adf41513-iio-driver-v7-2-b0ed387ab559@analog.com>
+ <20260222172912.60a103c0@jic23-huawei>
+ <aZwYshRxNgSh3CWk@smile.fi.intel.com>
+ <zb752y7tnjzsc35na572o4sip6efwv3i4lha4ls6fhdrr52h5v@bfgy65cmae4p>
+ <CAHp75VdSV2QDMR0DueCuP=Ds-5A1NsNjqPWtmRbG4NvoJ=LjXQ@mail.gmail.com>
+ <20260301122340.3fedf64e@jic23-huawei>
+ <aaVKDbB_XIFmxCEM@ashevche-desk.local>
+ <ct2r5wvvfowqcfe44fawbi4blkjpfle7etvaunwbsxevejsr2s@3g43wru5n6jh>
+ <aaVZdgvZhaWDgU2X@ashevche-desk.local>
+ <imtqtaakbz4c4pmlmb3gh2r5sjvso2fymdy4poyjvds2noqzdr@d4ia6rml6jzf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: power: reset: qcom-pon: Add new
- compatible PMM8654AU
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260227-b4-add_pwrkey_and_resin-v3-0-61c5bb2cdda9@oss.qualcomm.com>
- <20260227-b4-add_pwrkey_and_resin-v3-1-61c5bb2cdda9@oss.qualcomm.com>
- <20260228-polite-swine-of-potency-56e61a@quoll>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260228-polite-swine-of-potency-56e61a@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=BI++bVQG c=1 sm=1 tr=0 ts=69a5646b cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=3-tsFgwzAueeEB3SUXoA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: CMF8sGu8h-igsNVCGkC6Pa-YbRzViIOE
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAyMDA4NSBTYWx0ZWRfXzx4ORQgRDc3n
- yusM2fzMBkfOzRLMqsQ0zbaTljuncZs72+HBfBtiXL1GWcqfiph4GdeT2wqycyrUmKU61VU4dGO
- icVuNjlD0oxOYVzl2k80IikCEDmlD8SB0geIMZSdlGpc/EvUbj0SxY5XvMGPy2BFokW4fexjiUP
- C1Vd86p5mrLgLv/XEPsiMeqitZ9KRERLUOkx0rJaVE0lrNLogUkhYJ7R2bcPWa7A8OiJWOqyySZ
- 3v1FzTiuu66bNvrT2VrR42nhawzar5P2PZepoqfMmKoFVevnllgBJhuB9bhs94b3dorAaVeUOmJ
- W/5AWQBuzSyaMo97o1B01O9yalPT0Y446q8SSR7CZuJIE9Nmc3223MW0nYscl8wEvwY0vwa95fD
- SXNhSWa9lpm4XSE50vSc+UQnX24IzFkBVD9IjK0gtk27WKqf9W//SmI7WSQF8P/Dv50vLAm1mu4
- JLqKeKIaP203arz3LzQ==
-X-Proofpoint-ORIG-GUID: CMF8sGu8h-igsNVCGkC6Pa-YbRzViIOE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-02_02,2026-02-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0 phishscore=0
- spamscore=0 adultscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603020085
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <imtqtaakbz4c4pmlmb3gh2r5sjvso2fymdy4poyjvds2noqzdr@d4ia6rml6jzf>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-269888-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-269889-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,analog.com,vger.kernel.org,baylibre.com,metafoo.de,lwn.net,yandex.ru];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	NEURAL_HAM(-0.00)[-0.993];
+	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 2215B1D6792
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: 435091D67A0
 X-Rspamd-Action: no action
 
-On 2/28/26 11:17 AM, Krzysztof Kozlowski wrote:
-> On Fri, Feb 27, 2026 at 06:02:28PM +0530, Rakesh Kota wrote:
->> PMM8654AU is a different PMIC from PMM8650AU, even though both share
->> the same PMIC subtype. Add PON compatible string for PMM8654AU PMIC
->> variant.
->>
->> The PMM8654AU PON block is compatible with the PMK8350 PON
->> implementation, but PMM8654AU also implements additional PON registers
-> 
-> So does that mean that PMM8654AU has 2 address spaces and PMK8350 has
-> only one? At least it looks, so I expect fixing the last if:then: - you
-> need to drop contains from PMK8350 if clause and add new if:then: for
-> PMM8654AU.
+On Mon, Mar 02, 2026 at 10:13:52AM +0000, Rodrigo Alencar wrote:
+> On 26/03/02 11:33AM, Andy Shevchenko wrote:
+> > On Mon, Mar 02, 2026 at 09:19:42AM +0000, Rodrigo Alencar wrote:
+> > > On 26/03/02 10:27AM, Andy Shevchenko wrote:
+> > > > On Sun, Mar 01, 2026 at 12:23:40PM +0000, Jonathan Cameron wrote:
+> > > > > On Mon, 23 Feb 2026 12:41:45 +0200
+> > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > > > > On Mon, Feb 23, 2026 at 12:37 PM Rodrigo Alencar
+> > > > > > <455.rodrigo.alencar@gmail.com> wrote:
+> > > > > > > On 26/02/23 11:06AM, Andy Shevchenko wrote:  
+> > > > > > > > On Sun, Feb 22, 2026 at 05:29:12PM +0000, Jonathan Cameron wrote:  
 
-The delta between them is such that within the already-described reg
-ranges, there is some additional bits and/or registers (can't remember
-but it doesn't matter for this point)
+...
 
-This doesn't impact the described size, as all QC PMIC peripherals are
-by design allocated 0x100-wide windows
+> > > > > > > > It all depends on the series from Dmitry Antipov.
+> > > > > > > > Can somebody help reviewing the patch 1 there?
+> > > > > > > > https://lore.kernel.org/linux-hardening/20260212125628.739276-1-dmantipov@yandex.ru/  
+> > > > 
+> > > > FWIW, Andrew picked them up for Linux Next. Please, test!
+> > > 
+> > > The patch looks ok, but I am not seeing it solving my problem here.
+> > > Here is the v8:
+> > > https://lore.kernel.org/linux-hardening/aZXDSbyH8tWmTPPL@smile.fi.intel.com/T/#t
+> > > 
+> > > I would have to use simple_strtoull() and it would clamp the value at
+> > > ULLONG_MAX in case of overflow, but it would not say that an overflow
+> > > happened. Would that be fine? I understand that addressing the FIXME
+> > > in simple_strntoull() is not a subject of this patch.
+> > >  
+> > > > > > > can we push for the exposure of that function to kernel modules?
+> > > > > > > We have discussed that in v6, and I understand that:
+> > > > > > >
+> > > > > > > EXPORT_SYMBOL_FOR_MODULES(_parse_integer_limit, "industrialio");
+> > > > > > > in lib/kstrtox.c;
+> > > > > > >
+> > > > > > > #include "../../lib/kstrtox.h"
+> > > > > > > in drivers/iio/industrialio-core.c
+> > > > > > >
+> > > > > > > is not a good call...  
+> > > > > > 
+> > > > > > Yep, because it's a temporary band-aid. The proper solution is to have
+> > > > > > shared code provided by the lib/. So, the wrapper to parse 64-bit out
+> > > > > > from the constant string literal should be part of the lib/ in the
+> > > > > > result.
+> > > > > > 
+> > > > > > > > When it's in, we can continue on this one. TL;DR: for me this is on hold.
+> > > > > > > > But if you see the need to have the driver being in IIO, please add a big
+> > > > > > > > fat FIXME to make sure we will get this all being sorted out in the
+> > > > > > > > (nearest?) future.  
+> > > > > > >
+> > > > > > > I could add the FIXME into iio_safe_strntou64() doc header. It explains
+> > > > > > > the context:
+> > > > > > >  
+> > > > > > > > + * The implementation of this function is similar to _parse_integer_limit()
+> > > > > > > > + * available in lib/kstrtox.h, but that header/function is not available to be
+> > > > > > > > + * used in kernel modules. Hence, this implementation may need to change or
+> > > > > > > > + * removed to reuse a new suitable helper that is properly exposed.  
+> > > > > > 
+> > > > > > Up to Jonathan, I hope we can move the above mentioned series forward.
+> > > > > > Without that, as I pointed out, this one sounds to me suboptimal and
+> > > > > > unneeded double effort.
+> > > > > > 
+> > > > > I don't want to hold this series for another cycle, but we are still
+> > > > > fairly early in this one, so some focus on moving that forwards seems
+> > > > > sensible.  If we are running out of time, we can fallback to a loud
+> > > > > FIXME and a plan to move to the generic version in the library next cycle.
+> > > > > So let's set a rough deadline of rc5 and see how things are going then.
+> > > > 
+> > > > Taking into account the above, can we actually develop something
+> > > > based on that?  Or at least having a temporary solution for this
+> > > > cycle followed up by the better one for the next?
+> > > 
+> > > As mentioned above, I am not sure how consume what Andrew has over there.
+> > > It seems address lib/ internal stuff. The interfaces are still the same.
+> > 
+> > I think it will be third time I'm repeating that this needs a wrapper in the
+> > lib/. Just add the one (like with safe_strtoull() naming schema) with properly
+> > formed prototype that returns an error and the result in different variables
+> > 
+> > int safe_strtoull(..., *result)
+> > {
+> > 	...
+> > }
+> > EXPORT_SYMBOL_GPL(safe_strtoull);
+> > 
+> > (Also some test cases have to be added.)
+> 
+> I really understood that I would need to use Andrew's work as is, but
+> in fact, you encouraging me to add what we need on top of it.
+> 
+> Assuming that this would increase the scope of this patch series, I suppose
+> that would need to be included in a separate one.
+> can we just not export simple_strntoull() from lib/vsprintf.c? I mean,
+> addressing its FIXME and changing its prototype?
 
-Konrad
+I do not understand why we have to stick with the scope of IIO and make an
+unneeded churn and double effort. We have a code that you need. Yes, it
+requires an additional change that adds a glue (exported) function. How is it
+out of the scope? If we hurry up with that code to be added, it increases
+the chances to get the rest in sooner.
 
-> 
-> Although the binding says "pbs" and here you say "PON".
-> 
-> 
->> beyond the baseline. Use the PMM8654AU naming to match the compatible
->> string already present in the upstream pinctrl-spmi-gpio driver, keeping
->> device tree and kernel driver naming consistent.
-> 
-> And all this is partially confusing. This is reset/PON, not SPMI Pinctrl
-> GPIO binding.
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
