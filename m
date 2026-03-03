@@ -1,205 +1,301 @@
-Return-Path: <devicetree+bounces-270679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270680-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oENDJJ0gp2mYeQAAu9opvQ
-	(envelope-from <devicetree+bounces-270679-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:55:41 +0100
+	id 2L5KHiwip2mMegAAu9opvQ
+	(envelope-from <devicetree+bounces-270680-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:02:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0276F1F4D71
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:55:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 775941F4E68
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:02:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9D95631387BC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 17:53:14 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4B3FE302C822
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 18:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6615B48124E;
-	Tue,  3 Mar 2026 17:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 570B1377EBB;
+	Tue,  3 Mar 2026 18:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qrz601Ch";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hpzqnhmJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cnLJ5h2H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2097A3CE48C
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 17:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FF71377EAF;
+	Tue,  3 Mar 2026 18:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772560394; cv=none; b=Md0Vd8So8oBmR1i4MoXhNBsw3wDPxeZdnXLWScxMOlcO2GpJoGauTTiglIhXk9+lI2Bf00iVe3K2eRrMjj+mUG6UktLeofj0KkK1DumyZC3rnmbVe+LEz2kWRYVHQJvcADLIiKkI2tWELKifgwgCy77VbbQm8VkFnCU4aGSDuIA=
+	t=1772560926; cv=none; b=aECmk4nssZAqWWefeGj7KsYnn1ka6vchbsq7/LoSYrdwNkyWbrngb33yI+K9lYD5j1qT06r1iYGGY7jlxcppOYz3E2tqj+R3VM5sNSrE19W+9f8Vn13flbVMBsG1IsNTXmk+li5bzaQA/DfrBPAuciRoPg7psEVk49Y1GMomk2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772560394; c=relaxed/simple;
-	bh=L4i9+NmLTenk9NvF5rvg09qhVWv026X/cuN748GZbcE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OPNvVM0n/5avSA9AnrQw64SYhEgzLAx2FPm3PWsNJAYVWhdM+Jdsml9hRT6rS/lm4vP7eQTWDZDux+rf9KU0IPFqNG4TWiLi2yQomnumIe/gcAttFAoc69yM1Kz5AYBF2STCYqMyPRTeFRS09fCsj/3lr1uP6rKMY6GN/A17FVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qrz601Ch; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hpzqnhmJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 623H0eQI4030500
-	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 17:53:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3IcyxQoUt0WKuaFn85P6nhvrEAnaAOqSDP6o0bqTd7c=; b=Qrz601ChTeX83kwv
-	htBd38SA9GJ2Sicjm2J0fwnT6HmYjd8rcfzuV2Q205pD//FXR6hDbMgBvmrAZcvX
-	cvr1nNxnkoDNMBXxNMqhewaDJjxSfvDhxvSZd0CDFcUEXm5fQIfDo7r12XWX9wZP
-	+uDHXRH4Hv602PJULROdgLsD/XqRj8l7GaqNtaTNqZId2QzTfPAMTer1pQBq8gYh
-	XVbhAML6XxJrnsbQwhVpscawiaLGo/8L/uo0lkzvfEIOv9WuMcJNP5YoN5Js/5oR
-	PVyXq58yn0cIPhJjHIuY+BTLKjLThV5cH+ysi4Qpa8UeDsI04bjelFFssYXV0A0j
-	fyhe4w==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnuqu1xaf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 17:53:11 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2ae57228f64so21503255ad.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 09:53:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772560391; x=1773165191; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3IcyxQoUt0WKuaFn85P6nhvrEAnaAOqSDP6o0bqTd7c=;
-        b=hpzqnhmJWPSlBL0+JC0DAos3f7ZSr71QFPJfYnWRNURrYpLllXE0wo++wPMO7CO3+f
-         h63HQIq8DhzbixNjtScS+86u4VMsPNLpZOCr34ZMgQ2qAPHRvoBkSaARkYukNE7DJsYY
-         FDVwe3UkfPKVthIqw0aK3vN6e2ct8X5gl7P/F1wsnhEqiPGE+bzLu77ue/kW2qFjLUos
-         0jaIunXajhZtA559M7RZbPsZ9/7ZxStWVjjT0sPGCnxEPOlF0mG9YdepuE1lNST7VvAi
-         pOPBYOSPjZi7KNNuBkMLNHDEs3JuzK2ORvqmFZ6VvnzrhjQ3YhqM/BPDIC1kRUyx+WiE
-         yGcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772560391; x=1773165191;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3IcyxQoUt0WKuaFn85P6nhvrEAnaAOqSDP6o0bqTd7c=;
-        b=uy7B3Ua6Fw/VUnXmGNfFljIiSc4LXj4cv6in3fJTLbSukY3z4D6vl7PhhEcc1RoJLE
-         y4bOYfUdZr1xOIxDYTh9yhHaz46cSJRcn6EjPrLCYUF74u7Y+fydqV+W6XtH5E1iuRJ4
-         Si3sJLn6I3ZLDUCAQaq3h8fqNZ1C5en+lbkfbIM71mhggF3Rc9d/r6JrJd6MsBv6nMB9
-         frNA/DcyprQMUGkepzMuWnGgmHLAoJrAdJlt3ms/D9fGsrtlX+SD20Imj8c+/EeUXJEZ
-         eeli9hrKtyhdOhIqLEqRx7DY9SFuCZKsqXDBMa9yhL4ylfvMed7xEgkL0ZEmBNWVfHTj
-         s+vg==
-X-Forwarded-Encrypted: i=1; AJvYcCWNNPyKl6xqqNOuLcw6BdzKcMgI2nVtRiiW0AwQz8QntrXeEXRpblC/slBQSgKVh/4boik0/dW/tBbN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1+9ykN4WPLP39Ov8HSesk/ESjQL/6DSz0k+U5a5/H7oKpoZvw
-	tyuQMxdKv+UO7dRm7gGLiwZN6GEqEl4Us2Z4NMkIxQL+aPGjxNyg9QVsCXtxus1mMVId+DuhlZK
-	mKOUSJQ147qyFoGMEQW7XOLLA+eSxuyeKErmFbnvJLO/L34ZDy4+FFypLsdEwP1yt
-X-Gm-Gg: ATEYQzxGC624cJXvsd440NFeVvssMROKG844E+wa0YSjEpNb2kHEzQQY37c9KdWMuYl
-	cUoP2TGWxEmmrAZe1CZ5rxhsaTumoABeaupuUM4STHoq8Q5WMhPGV5SVMJR8pP/KCVwrKohHmFR
-	NQlYfqY6AB5TvnjQ04LkQo6hIINwo4R58cncKdTYTD+FS6f/rAuVTSxawvJbmYCvs++U/1a4zB8
-	z2Glz4k3Dd7YeK4MVjK1D6BEmusiqKrAWzLzRI7NNxjPYCF6k0ETgobWpeZj+qHqON7DmzrGWAy
-	7dyfXAZcXNCK8jF9GVsDdZpbOmRysquuNfECOqUjCBdaltxzaZIQRnCs9oFt/ONkgwTZnxTxHUh
-	D04SnqMfGTZqwqRWtyEmMGZYUr6EM35rTv0Jce8o9mAdlqA==
-X-Received: by 2002:a17:903:3b8c:b0:29f:301a:f6cf with SMTP id d9443c01a7336-2ae2e4b0b6cmr163679945ad.35.1772560390961;
-        Tue, 03 Mar 2026 09:53:10 -0800 (PST)
-X-Received: by 2002:a17:903:3b8c:b0:29f:301a:f6cf with SMTP id d9443c01a7336-2ae2e4b0b6cmr163679635ad.35.1772560390496;
-        Tue, 03 Mar 2026 09:53:10 -0800 (PST)
-Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae3e4e34e6sm107140625ad.30.2026.03.03.09.53.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 09:53:10 -0800 (PST)
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-Date: Tue, 03 Mar 2026 23:22:52 +0530
-Subject: [PATCH v2 2/2] arm64: defconfig: Enable Qualcomm Glymur clock
- controllers
+	s=arc-20240116; t=1772560926; c=relaxed/simple;
+	bh=L6o1qFUQTP4oddulMbYBYh/EeWe1SJpi+VjvmKahXdA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FXhMgW3qqf8Xpw0KPvp5bJyHFT8kHKj1Qf+jLbH0+I8J2SLM6ob1D4VlykBGoTE+Q+cbqVotxl09WYXPvurxDxHSwaR2P1XRK5riCjTUm58E6hWTzSLRGdbNtvHTzDPJQvSe/Fqg89JayFL4uTm+/1u52B8xtWXlhWcmcyoVj4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cnLJ5h2H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1EEBC116C6;
+	Tue,  3 Mar 2026 18:02:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772560926;
+	bh=L6o1qFUQTP4oddulMbYBYh/EeWe1SJpi+VjvmKahXdA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cnLJ5h2HOatPK8cZcKiapmiu6SXhGmiB09791lnqMnVrlb35IVoOsBUa+hdU6LLUy
+	 6oeppaIx56oZROPV+N8sndNjxqe7TA4M57Ihg2q1eUsUBaWhh4tj6fZp0KUmNo0EsH
+	 1UOmbYX4WBywphNw9GwdN+USJEWWmE4QVB0sEbUn4lsZNcgoFlWNGvzT82z44xa8aW
+	 fDqAgTJVzyYvd+v4ogVtU/g2z72ER9ct/FW+lknWnNWV+YzSwEOIP6R9SJUViYQxLJ
+	 GEl5a5zWY44n9dYQ0T7951GVChmbCsLPlmgvWvkz3tF0GdhntDiLLzOMuOnZSw/9xs
+	 2gyu0IW38VqMQ==
+Date: Tue, 3 Mar 2026 18:01:58 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Ryan Wanner <ryan.wanner@microchip.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, andrew+netdev@lunn.ch,
+	richardcochran@gmail.com, abin.joseph@amd.com, robh@kernel.org,
+	edumazet@google.com, netdev@vger.kernel.org,
+	theo.lebrun@bootlin.com, pjw@kernel.org,
+	Valentina.FernandezAlanis@microchip.com, krzk+dt@kernel.org,
+	sean.anderson@linux.dev, aou@eecs.berkeley.edu,
+	linux-kernel@vger.kernel.org, alex@ghiti.fr,
+	devicetree@vger.kernel.org, palmer@dabbelt.com,
+	nicolas.ferre@microchip.com, vineeth.karumanchi@amd.com,
+	claudiu.beznea@tuxon.dev, samuel.holland@sifive.com,
+	daire.mcnamara@microchip.com, conor+dt@kernel.org,
+	dave.stevenson@raspberrypi.com, linux-riscv@lists.infradead.org,
+	davem@davemloft.net, conor.dooley@microchip.com,
+	narmstrong@baylibre.com, pabeni@redhat.com
+Subject: Re: [net-next,v2,2/8] net: macb: rename macb_default_usrio to
+ at91_default_usrio as not all platforms have mii mode control in usrio
+Message-ID: <20260303-stardust-shaky-c8a757ec149d@spud>
+References: <20260226-enjoyer-shock-e17f9dc7cbdb@spud>
+ <20260228232600.4187398-1-kuba@kernel.org>
+ <20260228-shopping-april-a8c4d2481cbe@spud>
+ <a1e36563-0e74-48b2-ae02-813cb28fc931@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260303-glymur_mmcc_dt_config_v2-v2-2-da9ded08c26f@oss.qualcomm.com>
-References: <20260303-glymur_mmcc_dt_config_v2-v2-0-da9ded08c26f@oss.qualcomm.com>
-In-Reply-To: <20260303-glymur_mmcc_dt_config_v2-v2-0-da9ded08c26f@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Taniya Das <taniya.das@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-aa3f6
-X-Authority-Analysis: v=2.4 cv=M85A6iws c=1 sm=1 tr=0 ts=69a72007 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=rO3wVDe-YCVyVCuK1RsA:9 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-GUID: n0dIfEq1FvvlisMdWQizLW0qawBI-hqN
-X-Proofpoint-ORIG-GUID: n0dIfEq1FvvlisMdWQizLW0qawBI-hqN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDE0MyBTYWx0ZWRfX6pmttOBvjzDn
- 7t5VxfkS9SSU0t4aOGRZmwkbyAz5rRAWiaJ3pbKeuclUcBwj+rn9faD7Ui2ix3e22HiLp7ziR49
- ONUeKgsFKBjV89cXLraMBmdCBIXB1mUpr0tJ0TzLnRC6F7GgJAz+7wb/31M9HB0rB0ZzJd3M7Dx
- fbAq9aVOknbCY+wCAWGut7RLMLEo9sL6rt58uPwZOXMO354sWvbZRGUYkBiOpJHNy4hQHpohfj0
- uP9qgKUx1dv43PEnkxJyb7x1146k57au6TQkzafbcsOk0IsWFNb50koOSiOUdYwVH7IcCL9AvJ4
- ynB+8sCFdRPDiGmm1hv9fJ4Gl4JNTLIqhlt90hzNTVMWpbDaMLDR2EVdcxlF5n68QFLp+PEqXnG
- lIWKIf7KKyxv2TtpT7pZ/ZGXmooNfdn3+eYICrmFpeBKtRuiB9rf+Mg9mhKnRgi1tSWfq+ZnRg3
- /WrgHIhqq+ZS2j80kyw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-03_02,2026-03-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 spamscore=0 malwarescore=0 adultscore=0
- priorityscore=1501 impostorscore=0 bulkscore=0 lowpriorityscore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603030143
-X-Rspamd-Queue-Id: 0276F1F4D71
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NYgeMk65ZDrXJJA6"
+Content-Disposition: inline
+In-Reply-To: <a1e36563-0e74-48b2-ae02-813cb28fc931@microchip.com>
+X-Rspamd-Queue-Id: 775941F4E68
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-270679-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270680-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,gmail.com,amd.com,google.com,vger.kernel.org,bootlin.com,microchip.com,linux.dev,eecs.berkeley.edu,ghiti.fr,dabbelt.com,tuxon.dev,sifive.com,raspberrypi.com,lists.infradead.org,davemloft.net,baylibre.com,redhat.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,linux.dev:url]
 X-Rspamd-Action: no action
 
-Enable the Glymur video and gpu clock controller for their respective
-functionalities on the Qualcomm Glymur CRD boards.
 
-Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+--NYgeMk65ZDrXJJA6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4ed70ab7ee854038fa7a756d8b650a609258bdb3..a607bf49c1563d22550c4b81a237d46fe4ea41ce 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1457,7 +1457,9 @@ CONFIG_COMMON_CLK_MT8192_VENCSYS=y
- CONFIG_COMMON_CLK_QCOM=y
- CONFIG_CLK_GLYMUR_DISPCC=m
- CONFIG_CLK_GLYMUR_GCC=y
-+CONFIG_CLK_GLYMUR_GPUCC=m
- CONFIG_CLK_GLYMUR_TCSRCC=m
-+CONFIG_CLK_GLYMUR_VIDEOCC=m
- CONFIG_CLK_KAANAPALI_GCC=y
- CONFIG_CLK_KAANAPALI_TCSRCC=m
- CONFIG_CLK_X1E80100_CAMCC=m
+On Tue, Mar 03, 2026 at 10:35:05AM -0700, Ryan Wanner wrote:
+> On 2/28/26 17:06, Conor Dooley wrote:
+> > Yo,
+> >=20
+> > On Sat, Feb 28, 2026 at 03:26:00PM -0800, Jakub Kicinski wrote:
+> >> This is an AI-generated review of your patch. The human sending this
+> >> email has considered the AI review valid, or at least plausible.
+> >>
+> >> For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-l=
+ocal.html
+> >> ---
+> >> net: macb: rename macb_default_usrio to at91_default_usrio as not all
+> >> platforms have mii mode control in usrio
+> >>
+> >> This patch renames macb_default_usrio to at91_default_usrio to better
+> >> reflect that the usrio configuration is platform-specific, and
+> >> introduces a new capability flag (MACB_CAPS_USRIO_HAS_MII) to gate MII
+> >> mode configuration code for platforms that actually support it.
+> >>
+> >>> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethern=
+et/cadence/macb.h
+> >>> --- a/drivers/net/ethernet/cadence/macb.h
+> >>> +++ b/drivers/net/ethernet/cadence/macb.h
+> >>> @@ -779,6 +779,7 @@ #define MACB_CAPS_DMA_64B			BIT(21)
+> >>>  #define MACB_CAPS_DMA_PTP			BIT(22)
+> >>>  #define MACB_CAPS_RSC				BIT(23)
+> >>>  #define MACB_CAPS_NO_LSO			BIT(24)
+> >>> +#define MACB_CAPS_USRIO_HAS_MII			BIT(25)
+> >>>
+> >>>  /* LSO settings */
+> >>>  #define MACB_LSO_UFO_ENABLE			0x01
+> >>> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/e=
+thernet/cadence/macb_main.c
+> >>> --- a/drivers/net/ethernet/cadence/macb_main.c
+> >>> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> >>> @@ -4614,13 +4614,15 @@
+> >>>
+> >>>  	if (!(bp->caps & MACB_CAPS_USRIO_DISABLED)) {
+> >>>  		val =3D 0;
+> >>> -		if (phy_interface_mode_is_rgmii(bp->phy_interface))
+> >>> -			val =3D bp->usrio->rgmii;
+> >>> -		else if (bp->phy_interface =3D=3D PHY_INTERFACE_MODE_RMII &&
+> >>> -			 (bp->caps & MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII))
+> >>> -			val =3D bp->usrio->rmii;
+> >>> -		else if (!(bp->caps & MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII))
+> >>> -			val =3D bp->usrio->mii;
+> >>> +		if (bp->caps & MACB_CAPS_USRIO_HAS_MII) {
+> >>> +			if (phy_interface_mode_is_rgmii(bp->phy_interface))
+> >>> +				val =3D bp->usrio->rgmii;
+> >>> +			else if (bp->phy_interface =3D=3D PHY_INTERFACE_MODE_RMII &&
+> >>> +				 (bp->caps & MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII))
+> >>> +				val =3D bp->usrio->rmii;
+> >>> +			else if (!(bp->caps & MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII))
+> >>> +				val =3D bp->usrio->mii;
+> >>> +		}
+> >>>
+> >>>  		if (bp->caps & MACB_CAPS_USRIO_HAS_CLKEN)
+> >>>  			val |=3D bp->usrio->refclk;
+> >>
+> >> Can bp->usrio be NULL here? The new MACB_CAPS_USRIO_HAS_MII capability
+> >> gates the MII-related dereferences of bp->usrio, but bp->usrio is also
+> >> dereferenced when MACB_CAPS_USRIO_HAS_CLKEN is set.
+> >>
+> >> With the change to default_gem_config later in this patch:
+> >>
+> >> static const struct macb_config default_gem_config =3D {
+> >> 	...
+> >> 	.usrio =3D NULL,
+> >> 	...
+> >> };
+> >>
+> >> A device that matches the generic 'cdns,macb' compatible string (witho=
+ut
+> >> specific .data) will get bp->usrio =3D NULL during probe. If the device
+> >> tree then has 'cdns,refclk-ext', macb_configure_caps() adds
+> >> MACB_CAPS_USRIO_HAS_CLKEN without checking if bp->usrio is valid:
+> >>
+> >> macb_configure_caps() {
+> >> 	...
+> >> 	if (of_property_read_bool(np, "cdns,refclk-ext"))
+> >> 		bp->caps |=3D MACB_CAPS_USRIO_HAS_CLKEN;
+> >> 	...
+> >> }
+> >>
+> >> Then in macb_init(), the code would dereference bp->usrio->refclk with
+> >> bp->usrio being NULL, causing a crash.
+> >>
+> >> The MACB_CAPS_USRIO_HAS_MII gate only protects the MII-related
+> >> dereferences above, not the CLKEN dereference.
+> >=20
+> > AI makes a good point here, but in one way this isn't even a problem
+> > with the patchset, it's actually another example of the sort of thing
+> > that I am trying to get rid of from the driver. As far as I can tell,
+> > this was added very recently, for the emac on sama7g5. The sama7g5-emac
+> > sets this cap in its match data, as do several other devices, so this
+> > code that sets the cap based on the dt property isn't needed.
+> >=20
+> > I would like to get rid of setting the cap based on the dt property,
+> > because it is inherently tied to how at91 have their USRIO set up.
+> > Other platforms that want to use this external refclk might use a
+> > different mechanism for the selection, or only support an external
+> > source. What USRIO does is very platform specific, so it should be
+> > something that is opted in to explicitly. I didn't ask for the property
+> > to be bound to only the at91 devices that use it when I reviewed the
+> > binding, because I figured other platforms might be able to reuse the
+> > property and that's also why I didn't ask for a microchip prefix on the
+> > property. For the driver to reflect that general use, it shouldn't then
+> > do at91-specific things when the property is present.
+> >=20
+> > Ryan, how does this property actually work now, given your removal
+> > of the cap from match data was reverted? I feel like it just doesn't do
+> > what you want it to do anymore? Before the revert, having the property
+> > meant that the value in sama7g5_usrio.refclk would be written to the
+> > hardware and not having the property meant that the bit would remain
+> > unset. You then had to revert to avoid breaking old devices, because
+> > your property changed the default behaviour for the emac, so now having
+> > the property means that the value in sama7g5_usrio.refclk is written to
+> > the hardware, but that also happens without the property because the cap
+> > is set in the match data.
+>=20
+> So even with the revert the patch still does what it is intended to do,
+> mainly for the sama7g5_gem and the newer SAM devices, sam9x75 and sama7d6=
+5.
 
--- 
-2.34.1
+Oh, the gems actually have this, but with the default the other way to
+the emacs? I had figured that only the emacs actually had it, given they
+were all added prior to your change. Obviously the property then cannot
+be removed if the gems need it.
 
+> Currently with the removal of the change to the emac there is no
+> functional difference. With the newer SAM devices that need this usrio
+> flexibility this patch still works.
+>=20
+> How this works now is for sama7g5_gmac configs, the default is to use
+> the internal clock for refclk then adding that dt property will set that
+> bit to 1 and refclk will be from an external source. For the
+> sama7g5_emac configs this has no effect due to ABI.
+> >=20
+> > Unless I am missing something, should we not actually revert
+> > dce32ece3bb8f ("net: cadence: macb: Expose REFCLK as a device tree
+> > property") and 1b7531c094c88 ("dt-bindings: net: cdns,macb: Add external
+> > REFCLK property"), and instead add a property like
+> > "microchip,refclk-internal", because that would actually let you
+> > override the default behaviour of the driver?
+>=20
+> I think this could be the better way to go as this keeps the existing
+> behavior for the legacy devices while still allowing the initial goal of
+> the patch series. Seems it would be more strait forward in the ABI sense
+> to have a "microchip,refclk-internal" property than an "refclk-ext"
+> property and having the risk of breaking older devices.
+
+By the sounds of things, you actually need both to be functional. The
+gems default to internal, so need refclk-external and the emacs default
+to external so need refclk-internal. Maybe it'd be better to have
+"microchip/cdns,refclk-source" that can be set to a string to deal with
+both cases?
+I'd also like to decouple setting the USRIO_HAS_CLKEN cap from what
+direction it is set in. That way, all devices with the bit in their
+USRIO would set the cap, but the value would come from either a default
+in match data or from the dt property if set. I think that's more
+natural behaviour for the capability, since the bit is in the usrio
+register regardless of which refclk source is used.
+
+Does that seem reasonable?
+
+Cheers,
+Conor.
+
+--NYgeMk65ZDrXJJA6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaciFgAKCRB4tDGHoIJi
+0iS9AQCjnsRz0NWqsRl5qWTu4E7GWND3l2ogy4YgZPpLy+kH3gD9EogI23o/sbVv
+KHKyLaStf6KjgJurlA7hGFDZkb4AmQY=
+=MaXN
+-----END PGP SIGNATURE-----
+
+--NYgeMk65ZDrXJJA6--
 
