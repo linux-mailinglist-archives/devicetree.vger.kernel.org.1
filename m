@@ -1,180 +1,172 @@
-Return-Path: <devicetree+bounces-270567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270569-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CC3dMxD0pmmgawAAu9opvQ
-	(envelope-from <devicetree+bounces-270567-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:45:36 +0100
+	id oKlPNBPzpmkzawAAu9opvQ
+	(envelope-from <devicetree+bounces-270569-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:41:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BBEC1F1BD8
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:45:36 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D32121F1ACC
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:41:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E378A3130075
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:39:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4413F30116AC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A354F439010;
-	Tue,  3 Mar 2026 14:39:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671154611D7;
+	Tue,  3 Mar 2026 14:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="MpUogbLV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Gl1K2c9y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay32-hz1.antispameurope.com (mx-relay32-hz1.antispameurope.com [94.100.133.208])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E626A430B99
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.133.208
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772548744; cv=pass; b=Q2UpXAE7u9k86KZ4q2PTsvLjyODOeB7MiURd2Ozz2flgoPfvHRJszWbsQsu6ZpJDCUaB2ICvsYs/NHiiNua4WlFgCeUUeGhOZcOPcYUSDRs4VfB5DNPCgk1COEmbnYjzTYP7F8vk30BZQ9uk/EDkVtMQxJeIogUvUqKHGMf3XXI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772548744; c=relaxed/simple;
-	bh=qnO7IRr0LlEJaNRBAGoo2LWcIhj9SGvdD+DC52MgbfA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yfk70mx1TVXxgKOcj383LqO5oV0V8+Zd27Bm6n+4joXUY4TMIFccbClzGqIEN7kRVHxJ8hAcCSkDXSxnnMiShsG/2TnzFsrxyT1klAExh5MEwkZ1gaZn4wWKemxSNAn9l/yAZq9JM4x9FO0QCPA9rIXcOupYGokFK1y5dDJ5Ym8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=MpUogbLV; arc=pass smtp.client-ip=94.100.133.208
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate32-hz1.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com
- smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
- header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=zT632VR0gROFa3F9kvU2rdhPuRa8nKqiAx8K/kUtGPY=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1772548678;
- b=VsqexbBmoNXIP9PnPDsdJs5QNnmVF9fLqm7iOXrrGBELbpbDTkdUSlS5IJW9NbRGNlpmYuZk
- 6T8aQj9TduEb6Q0PiDXM/mxv/6en2ObFI22bLdie6dF/mgkIx1j9V3F4DsO9ghXLzqxRPNcr/fS
- KgKST4ReoK9y1p9ChJMulGm9gsuRE8QmbU0m8bvIRBunc56dooTTLMcUgLJkqwP9EjmxeYHHTb0
- loDDUYeRrpU2Uo0/IILK5BkO3QTCuy5gwOlg8VXK2Q4dni2rFpAX4Z8c+jDVHq/fYNQIiD3fRkE
- j70cT3LWogFAUg6zObhKZwifzRyupojPdMk8jDuE21e1Q==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1772548678;
- b=N+B00EGz5H50tBTZFBW9aFyQepnF0H1BTGnKT6aAyhuUWjayEIdBLu6pMMV3wMLiJWAH2pSx
- oDtfKh0OlU2SetXR++Sci6+nioqYeue8u5TkA9ov32RO+q3ELT5FWNJJJzQG42JqBb2UVBH6FwG
- 32phQgYqKt/CF9NGCN5jHdP47z+F4l7mwxMeTVBLjL+Cuv74gzOERRuCtjKQwYbGmZIBPtryjhp
- a8Ceh0z0LsHe04Jh+Wa3qH5WtXr46HHCWlPKqgk5GZ36fullrQI5SRWgVATsCLG/wPCFSteSHna
- 8fLoqIjm31HN3PQ4FngPDrkS6ZpN6pr70VFlivS19J/pw==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay32-hz1.antispameurope.com;
- Tue, 03 Mar 2026 15:37:58 +0100
-Received: from [10.123.75.134] (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: max.merchel@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id A5C73CC0E07;
-	Tue,  3 Mar 2026 15:37:53 +0100 (CET)
-Message-ID: <ac506790-fbe4-4902-895a-a94822f11b39@ew.tq-group.com>
-Date: Tue, 3 Mar 2026 15:37:53 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612C545BD5E
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:41:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772548871; cv=none; b=RH+fGDxIEVGpqBci5I/BHma3l5w3oP2XBQnAptAnch3DmYFm6FqjsQqzm68FhHXALja31jFa7vT/Z7dC1RVtzeLCCkQPxHo4eUy9z/Ruwm509mnfbqNqVt6au0jr4lhJufFHGQbzdo/0MxeST/w1DoTz84Uj0BSP2AEe6WN90Uc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772548871; c=relaxed/simple;
+	bh=XYzYU09pP4RstlqiOmCC/nVdhgqDhNftVL9IxqbOfUA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Zc++Y0q9u+FJ03Lzq87islU70oGWBnofYBD6blifFYqtCsJe4IMOulGb3S2dwPhooXUwTnLhwR6o1T2ocwAxrNmk19Cq34uExKQFkszDXdAbot2Hzq1kibAZplO1nEoBZDH8E1bNeFE24RaSr/NS4t1mzijMdr0tuDyklfEg2Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Gl1K2c9y; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 9FF744E424F2;
+	Tue,  3 Mar 2026 14:41:05 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4D57E5FF29;
+	Tue,  3 Mar 2026 14:41:05 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5EE1910368F9A;
+	Tue,  3 Mar 2026 15:40:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1772548864; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=yXt2SpoaKxPoNpgzuP8qVzFuqEXwzGPBFDbnKw95iaM=;
+	b=Gl1K2c9ycssSLU6cc553AjoxxKOGp7poJ4J615WL580AvJ3OXQ4VhE2vmyemmwtfGJ0Li/
+	tpqRdGY6bX+x1dlVJiZOB42FHemyfZVmFJAVoJ/2Fi5HaMUhsitdOusWU/IaFUd9xE2WYu
+	xMasW6DoBLgTW1J11SKHMra4txz3mTp/L7eT30WuhPqRH8o24zwYmSc8LF4ag0pkRC2O5Z
+	PG7oNLctXZPPYoT3E08//En9Q7gCw9uV0S66xB4yJ+kya191rhDQCuykXZFYPOoKChesBG
+	zaUWvCU1YKdCGZuGoiLHgy4XaFACXBKSclNp0Zd2/OimKEJt5wiqhzVniFJHFw==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Russell King <linux@armlinux.org.uk>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter regulators
+Date: Tue, 03 Mar 2026 15:40:54 +0100
+Message-ID: <2344035.iZASKD2KPV@fw-rgant>
+In-Reply-To: <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
+References:
+ <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+ <20260303-sfp-regulators-v1-2-7101ae34cb84@bootlin.com>
+ <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] ARM: dts: TQMa6UL: modify for use in bootloaders
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: linux@ew.tq-group.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260220143107.186956-1-Max.Merchel@ew.tq-group.com>
-Content-Language: en-US
-From: Max Merchel <max.merchel@ew.tq-group.com>
-In-Reply-To: <20260220143107.186956-1-Max.Merchel@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:max.merchel@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: max.merchel@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay32-hz1.antispameurope.com with 4fQJLV27Cgz9022
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:f0f40d72e89aaf42e08c864d0bda316f
-X-cloud-security:scantime:1.450
-DKIM-Signature: a=rsa-sha256;
- bh=zT632VR0gROFa3F9kvU2rdhPuRa8nKqiAx8K/kUtGPY=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1772548678; v=1;
- b=MpUogbLVdQtfIQYGYmg0tBdU2mNGggBaKBvYwccPxdtYEuZIJzHzaimHkiLcNbURzJSXIRBk
- SvAi+3zwIpSNmvbdv4nhh6D5FLv0gEtI4O95qGVlNvlmsfheEM5yVHhT5zjsF/zxgL6XSd71qaY
- gDqOtprDmcY4oiqx/yXXL8OPJeGoJyX6S9bm3WCvMMqafdKUom80QRPmWLjgIzibisUUUfrUX0H
- p84RL7V6ufQ8n0+fmWUOXoKhzUjtG74earmlFkYU6ybeTOPEWPZiNtYj4EPEEKQpHfcf7G788X7
- EtvvAJ7wSigPRlu6uehEmHkfBvZDyiEpJu1RNSzt3Jrnw==
-X-Rspamd-Queue-Id: 1BBEC1F1BD8
+Content-Type: multipart/signed; boundary="nextPart2033668.PYKUYFuaPT";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: D32121F1ACC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270569-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[armlinux.org.uk,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	TAGGED_FROM(0.00)[bounces-270567-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[max.merchel@ew.tq-group.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
+--nextPart2033668.PYKUYFuaPT
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Mark Brown <broonie@kernel.org>
+Date: Tue, 03 Mar 2026 15:40:54 +0100
+Message-ID: <2344035.iZASKD2KPV@fw-rgant>
+In-Reply-To: <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
+MIME-Version: 1.0
 
-Am 20.02.26 um 15:31 schrieb Max Merchel:
-> This series contains modifications for using Linux device trees
-> in bootloaders. Changes from U-Boot bootloader are incorporated
-> directly into the Linux device trees.
-> 
-> Changes in v2:
-> Improved commit messages for commits that add boot-phase properties.
-> Add forgotten boot property for the spba-bus in imx6ul.dtsi.
-> 
-> Max Merchel (4):
->    ARM: dts: imx6ul/imx6ull: add boot phase properties
->    ARM: dts: imx6ul[l]-tqma6ul[l]: add boot phase properties
->    ARM: dts: mba6ulx: add boot phase properties
->    ARM: dts: tqma6ul[l]: correct spelling of TQ-Systems
-> 
->   arch/arm/boot/dts/nxp/imx/imx6ul-tqma6ul-common.dtsi   | 10 ++++++++++
->   arch/arm/boot/dts/nxp/imx/imx6ul-tqma6ul2.dtsi         |  1 +
->   arch/arm/boot/dts/nxp/imx/imx6ul-tqma6ul2l-mba6ulx.dts |  4 ++--
->   arch/arm/boot/dts/nxp/imx/imx6ul-tqma6ul2l.dtsi        |  1 +
->   arch/arm/boot/dts/nxp/imx/imx6ul-tqma6ulx-common.dtsi  |  1 +
->   arch/arm/boot/dts/nxp/imx/imx6ul-tqma6ulxl-common.dtsi |  1 +
->   arch/arm/boot/dts/nxp/imx/imx6ul.dtsi                  |  7 +++++++
->   arch/arm/boot/dts/nxp/imx/imx6ull-tqma6ull2.dtsi       |  1 +
->   .../boot/dts/nxp/imx/imx6ull-tqma6ull2l-mba6ulx.dts    |  2 +-
->   arch/arm/boot/dts/nxp/imx/imx6ull-tqma6ull2l.dtsi      |  3 ++-
->   arch/arm/boot/dts/nxp/imx/imx6ull.dtsi                 |  1 +
->   arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi                 |  6 ++++++
->   12 files changed, 34 insertions(+), 4 deletions(-)
-> 
+Hello Mark,
 
-Any further feedback on this?
+On Tuesday, 3 March 2026 15:22:40 CET Mark Brown wrote:
+> On Tue, Mar 03, 2026 at 02:54:27PM +0100, Romain Gantois wrote:
+> > If phandles to receiver and/or transmitter regulators for an SFP device
+> > are
+> > found, enable them at probe time.
+> 
+> The driver should unconditionally request whatever power the device
+> needs.
+
+Ok, I'll use devm_regulator_get_enable() instead then.
+
+Thanks,
 
 -- 
-Best regards,
-Max
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht München, HRB 105018
-Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+--nextPart2033668.PYKUYFuaPT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmmm8vYACgkQKCYAIARz
+eA71lA/+NBtoWMgEmJuWvgHcxU7Mkz3F5XFB3iQ5QA7mq5NPi2w+/4fJtoVxOOpx
+LiAlLYYlsaDGZQLQpawdeewaO2VdrkULOtgfNvpLuci7gQJa98mHPG2AGJBnv5ul
+FVNlYyQlNcsKDWW2BTpARemzOT1TeSe55LepS7Es9YuDW3aDPQa2b9x7DsCxCKVp
+WbSPBRipXbDciiMuaklVi3GH5PIKUaCoaLKDEcVF7W3z690fX997bc2lsq1NV8EN
+6wZEcAPI+6JuByJ3Oah2Scjwt1/vIvG8pk6RACfvsd7rYDareolVw1GPLGpcE0EF
+nvEwv6gmWzUGBzSr6dsoBwwcPnWmQ0LTouDjochyyARmv0weCAnI/LZ704rYb6ZO
+Stwco6UGPufuCwCPvnbCFVlVTBNz+IDUeTNSYWgzfxoEINBg5gtkMsSzBDPLw06K
+ZJukAlEmS1ZiTug3GSQ4hnTtiN1IXiD2W1MI3nOxr3RJANqRWPBxEzZplj1zxFMv
+q0ocI9pBghwRxJea56cj6UnQVd81GfgVfo534oHBJn1gAvxk8Sp0gjH6MF3kG9vM
+m764IBlj6Q6AmQJgHj4kXOB6p9haz7wWA0B3fnRxqgK0HqyTKqBE2WBxf5k3/yxr
+7Z+1K+Z9zPXD9CnPemAKXmqaeTWm5MHVO2Ku85L1bjWrXLtPFvw=
+=K8Dd
+-----END PGP SIGNATURE-----
+
+--nextPart2033668.PYKUYFuaPT--
+
+
 
 
