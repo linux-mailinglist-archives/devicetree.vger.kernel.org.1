@@ -1,263 +1,201 @@
-Return-Path: <devicetree+bounces-270534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270536-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHEnDjXppmnjZgAAu9opvQ
-	(envelope-from <devicetree+bounces-270534-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:59:17 +0100
+	id 4CeYFEXqpmnjZgAAu9opvQ
+	(envelope-from <devicetree+bounces-270536-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:03:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D531F1F0E42
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:59:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E53741F0FC1
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:03:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5EA38305E986
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:52:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1CB86319ADF8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C6A35F5EB;
-	Tue,  3 Mar 2026 13:51:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iFQ5+lEo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E216336656D;
+	Tue,  3 Mar 2026 13:53:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com [74.125.224.52])
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7204B35AC32
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:51:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.224.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772545899; cv=pass; b=OLWNW3KSBD7/Y5LUFB2CM/j9wRv7iCYF6U/9OELhyANkVNnkV55SKsiTz6GhEqfKdxp444GrZ7bfHR4sumKhaxckqmh8inTgWAzOLawv85PxzDvkmoiERlI7qw2XnAsfBYqnirRN3/0R7rvfR6reqov3ArkedKz1FnByNMauZKQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772545899; c=relaxed/simple;
-	bh=mjmj1erYg/zPkh28cbgKmeKfsU11/6Ku7tNZPAtZaFQ=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E3C36495D
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772546001; cv=none; b=X5jZjLswcCztZuy/TMBBhJsab7WdsP7nn4pL+z03EmYnU0Xbw+EaYX2+bZz5mbvtxjrQeJtX1xte/EEmR/7RxPCVokgJ+FJFX4260j+8oEoozdp8381zjtXRj4Yqznw6m7Vbkt5kH2Brwc7pibRMj6D0IkrK3ne3BJPZuTg+iqo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772546001; c=relaxed/simple;
+	bh=CLpy3oVfBpno5pNtd654a0t44zAg8ABNYi8W5CRKakE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RIrqy5FNZIf7GGvAdI7UFmmU7jSOiyimbdeTGj12QbNQoJhShRBJAMknq3avdzjVYXWPfSfXfBLGjvbrRJ4FVm7oXi1rcaIMBi47To4JiDck7aWPSdrSGAaqJv0AXQ1J0dtTpBm7oVzezUhnf/Kw4HS3HC0QUlrRb3+yybVqtPc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iFQ5+lEo; arc=pass smtp.client-ip=74.125.224.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=Gvs+qj7KIgmd8RU0+LgVbgQGzZ1opDL0INwoI9vwUxstbaM50FRrWn945yv6kYv77aRE7dDGPeQ7AaFl55MJ2bWT7K33ilIP93TTiF8mzMwfADRD9bZDV2zu9rAzaOL/YhVG12tw3mt0kLaYEqYcPpmuSvapj9trYIpCeYYUjxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-64ca09f2170so5727102d50.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:51:38 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772545897; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Ag75Ry2/+fpVjWIvhVITr9Ml1URnrW/Msos6qo+oe18vU3SZNjEjOnY2l8jcPipKSh
-         gGG8WfCKJarXtUljzc/nBAXnXH5DrJwiJ1hy0C52qrz12vo9XfssAjAWbcbFsYTzWsrp
-         OVpZOFVdUmY7vfvE7EluxmAL3pG4yyySfzH9L9+vxPIVeObkHa5BViE14PyoBlwNQERL
-         +YNS3qlyZ7Wp9jkqGLS/ZWRKvnjhehSS6lj/vo8Pdt3RUKrOF80Aa1wfJgPYP12tv3Zn
-         KwM7TgStrqljod4kZBG8ZoAl7yJ1VnIXBZ8tL/oC3ABPau7h+iazIx0F8HmJBvjsOxjl
-         svCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=aZn4gqDyUQYxhmDFWGYkcAn3/Qr9cauEsxLXdsoN45c=;
-        fh=1XxNmTuYXkqfeAU0z5dagz9IBtEFy8JOFT9Y42AtWao=;
-        b=kNm/gUIyCrwk7cMcRltDzXRYFza0Q33ylx8f2+3NaaD6yW+BoxLgg/pTRpwpsU15N2
-         CtCKmRdaBj+rDb8rQt5JYV/+QsUszaGtILqgRHKOgLybk+r6BxceZt54F+fUnp2+B75Q
-         HAImYSPaW2bQZuM7Ay2Ig9q0ucpd2yrPREnjzi0zasOPrMM0GkImjjgXO1cWrAOOyApE
-         mf4Y1l5Atzg7DYazDpRHR/wZ7CKEgQfCui2s9QZGzMiyKXkVUybSrAaNztDAiJ7NRmAg
-         j92L15xn1PoRI1MiPGLGlW80IAYSPwKJ/ZrFCSkV2nAF5uHZrMZCC8YpLqg4b+HV6Kwy
-         vGig==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772545897; x=1773150697; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aZn4gqDyUQYxhmDFWGYkcAn3/Qr9cauEsxLXdsoN45c=;
-        b=iFQ5+lEoB2el0avJWUiySiid7Xm3vF+lzTw7JeG21RlGZ/8F4+Aie8KJtOkqxkicwa
-         WjucLXv1JekG49umecD7nAW7NShY5NZblI3nfTCzxkYi/mn/aW0/kVaAtdJLF0+CdMP5
-         Ady10591p0R+MOEmpTf1Y+fNSp/gG16z9M7VpC4SGiyo71NGuQ4Pf4Cofa7uvqIX79Ae
-         C7hQnb0Z+yVebxys+1HKZEmhpJwpsnoOMVyezMllEMZr6kds9T03hjYu2joimDXsgfdW
-         r8NupcgBJLd+ZwEBusKn29a1R8Ma53Qo01yiF5KUE80+Q94+iyKb8TLCG+0683OwMCLi
-         OX3g==
+Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-56753dc51baso2422320e0c.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:53:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772545897; x=1773150697;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=aZn4gqDyUQYxhmDFWGYkcAn3/Qr9cauEsxLXdsoN45c=;
-        b=k94Tuu57vBm7kcxVy5vZ1V5RuFlevD0U7qxwm69pAwN41JIUjQyKFlziZ2qiUuMTja
-         IqYc2F2PymHTQRlTTWdjBV6dyuOgWq6rFM2se2BBECC/VFPD6Pijicsis6BzeGMGNN0O
-         BmuDL3IVtR67fmcZSkDfJ8xy8T0+gaNa6ra85k807HMf3Cu/TvFhcTGEi5eF6qBEal5Y
-         qgCenMy/JZPIlgUqFGLWHTvd5Iybaqcy5diItn4REMXVXgQ5WRYgtNjpfPkSWWRbC0Ws
-         KEuQEr5BgEUQ8F6kmRgroYtmQt6KIykjSOQGj6xkg6WcQzoS45YKEZYGhCn709HLSD7O
-         QPaw==
-X-Forwarded-Encrypted: i=1; AJvYcCXdFfa+JL8Xa8u+4JPkPQDA7ymJARhz1zPXWepWCNicTN/0tCYQBWQOubiP8Yf3bZnhpJvTaNSb/Nfj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdQz0A3+ZoxLgbgdqsX5XwD5aPaVfDygVBtktbE5oAQzpmZub+
-	ZwiB9nAgOtowMDhhOaxKUAIx70V1HDOuNDi4jefJNXltg8UCmr5nsfv6RpZ5/LKPYe0j2ZC0LDv
-	rAqZ2C458S0g97p4KDpt/cG+j1Rp1UEk=
-X-Gm-Gg: ATEYQzxYR3bqyy6dXxruWOGaMHfdw0goSErFD6Y7vYQT6MRYK9PuplknDrqGDg2q2PM
-	dc+vtLe4RIULO6W+j4KzQtxoIvHz+iU7qn48DTxU4eEijOQC7O2M/weeihtrLRXmvxphef2EXDN
-	F2JBYt/XifFLXcpuJuYnOAr6AqNbYTOnAehm2ZUmIF2oUbeKVoWZbwXfRpbUFXILphHFCUXevJ4
-	3W5o3MOzTK6/STtwjykQroIIzVVT4ctCH3+zXiOoQlQCVdYr0QAhTyvY3BfvhmHOnIWlmu5LOgy
-	ULlnKGJe
-X-Received: by 2002:a05:690e:90:b0:649:4997:3e94 with SMTP id
- 956f58d0204a3-64cc20833c8mr10119824d50.12.1772545897333; Tue, 03 Mar 2026
- 05:51:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772545999; x=1773150799;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ftlyiDWQ8XObPCVS8E03AqNdtSao1cmOMFUjNen6Yhc=;
+        b=LIvMxSYwGaBkWqyz4haX4SoW5yD7GM2iTXHqj8YFb6Da+0tKZuUxjBIl7Y5kFjUjyW
+         fTHRuaUQMXf+Kx4qnTLwCy3u8TWY9BUQ8M7lSZLg9qZdoH9ZEmQCNRzfs9YUqeqw9wYy
+         4OONZR+0gA4cBDADTSK84VCEV20RViT0qCa5OtBBpwO8osn8nrFd4IAOu7dUed3KSRTS
+         f/JNhehjP1uwicDxTqYu2gSahAp6+FSuFaWGvczzcmfcQYhaO2CVcZRQl/R94z1BIHGC
+         8OzwB5Q3wv6olMDIXYwSQqHHY/ElXa9LCAYjs3fcQhW/M2+CpdGMwoacJjfsSgxQqs1H
+         b4rA==
+X-Forwarded-Encrypted: i=1; AJvYcCW0iwYrxNfy3KqZXcOzbChzQsJx6QoUoa7e9j1tUlxzCpqJhX3sGnxaTJ4EjDEfDPWP6BQi8EufOtJl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvuXT6SW835cj/r+YK82dys334z0eVND6twVM0dw+MbqEs0QYb
+	kJBHizSGcikaMiLCo2/iTRi2det7IID+wgiCBsEzsFKfm1cnbMv7lpoynYHH2o5y
+X-Gm-Gg: ATEYQzw0sTRiq3hBxALM+046zsI/Pxpu+VoDLmLljHgek24k1uxXvkwVTj2+j6TdGBg
+	4wztrIXRS9YeGT1soID4uP6AV24gO194XlKMVxHOJOPwYSflMihNljmUGMMUAJEIgVKPeyVd3Io
+	DhPDkytGcPs/0Z02XOJbrWCBccB2VI/tkHQnuGV5Gd3HGXWbOtr3QsRiKkgbcjEl6M95USfqmIe
+	tTX8hR7H02QzmlT80KvIRMpm5Jd4Y6nSJFmjbU0VgbhmucjZ4HUbDJdkb8zRG6AMhkOUOLSNdBg
+	DsjvHUAf15nkC9rx1S+EaqWcj0LO69Z0Vr4GQX6ZW6Kest+Yz8/ls7ZdztJVSs99SSG8eyNEWQu
+	3VsRfBNLqwH84D59s/lJfGOM2Y/cXgwhicgch35sDUO/8FqDIh6UVBgl3dmD618t1ZTsJL/X6Mi
+	N3NBgq0q8E+17e08Lh+Y36G98/CaW3nXHHdiNWluq7LWP3tRufrsN+t0SPzjidtoeo
+X-Received: by 2002:a05:6122:3782:b0:567:499d:1fb8 with SMTP id 71dfb90a1353d-56aa0a9c30bmr7401380e0c.13.1772545999499;
+        Tue, 03 Mar 2026 05:53:19 -0800 (PST)
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56a92175e87sm19128150e0c.15.2026.03.03.05.53.16
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Mar 2026 05:53:17 -0800 (PST)
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-56a91a5e64eso2178873e0c.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:53:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW8cI0w83h2Pt5Sepz9nEGwf59XOjNHA2QcYLktGnG3tViRVEoFcalrALCQg2cBRIV1Hohf8PfxSZlN@vger.kernel.org
+X-Received: by 2002:a05:6122:7ca:b0:56a:9401:11eb with SMTP id
+ 71dfb90a1353d-56aa09f0b38mr6440166e0c.2.1772545995814; Tue, 03 Mar 2026
+ 05:53:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260302-orangepi-sd-card-uhs-v1-0-89c219973c0c@gmail.com>
- <20260302-orangepi-sd-card-uhs-v1-1-89c219973c0c@gmail.com>
- <20260302-crewman-faster-9fd00b62e30c@spud> <20260302223803-GKB289813@kernel.org>
-In-Reply-To: <20260302223803-GKB289813@kernel.org>
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Tue, 3 Mar 2026 14:51:25 +0100
-X-Gm-Features: AaiRm52NZmZiw1yUUKvM0Min02zDkPktW8qIv-Jsblu1CXoYU1NePFrvk318i6c
-Message-ID: <CABdCQ=Nd9ZW6OBnAiuki=2+DhVraW19bh_m8=LLQGUKN8TkEdQ@mail.gmail.com>
-Subject: Re: [PATCH 01/10] dt-bindings: mmc: spacemit,sdhci: add AIB voltage
- switching registers
-To: Yixun Lan <dlan@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yixun Lan <dlan@gentoo.org>, Adrian Hunter <adrian.hunter@intel.com>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
-	Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
+References: <20251014191121.368475-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251014191121.368475-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251014191121.368475-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 3 Mar 2026 14:53:04 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWQeOa5L9QAMDMy-KSH=HiZeOpLnq+VewSTVbvWHosygw@mail.gmail.com>
+X-Gm-Features: AaiRm503CgavmHGHdjX0Ja6Qo22cAvLU4FN50HhU_yNMMdgGQ2R4xUYUTQ3hqfw
+Message-ID: <CAMuHMdWQeOa5L9QAMDMy-KSH=HiZeOpLnq+VewSTVbvWHosygw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pinctrl: renesas: rzt2h: Add pin configuration support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: D531F1F0E42
+X-Rspamd-Queue-Id: E53741F0FC1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270536-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270534-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[linux-m68k.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ikerpedrosam@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,d4015000:email]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.124];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,renesas.com:email]
 X-Rspamd-Action: no action
 
-El lun, 2 mar 2026 a las 23:38, Yixun Lan (<dlan@kernel.org>) escribi=C3=B3=
-:
->
-> Hi Iker, Conor,
->
-> On 18:25 Mon 02 Mar     , Conor Dooley wrote:
-> > On Mon, Mar 02, 2026 at 04:13:22PM +0100, Iker Pedrosa wrote:
-> > > Add SpacemiT K1 AIB register properties for UHS voltage switching
-> > > support:
-> > >
-> > > - spacemit,aib-mmc1-io-reg: AIB MMC1 IO register address for voltage
-> > >   switching
-> > > - spacemit,apbc-asfar-reg: APBC ASFAR register address for AIB access
-> > > - spacemit,apbc-assar-reg: APBC ASSAR register address for AIB access
-> > >
-> > > These properties enable the driver to perform voltage switching betwe=
-en
-> > > 3.3V and 1.8V required for UHS SD card modes.
-> > >
-> > > Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml | 15 +++++=
-++++++++++
-> > >  1 file changed, 15 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yam=
-l b/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
-> > > index 13d9382058fbc1c12be1024d1c550f04a825673c..4d6590aa8262009b6e569=
-7a04b45cf3736c0fa42 100644
-> > > --- a/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
-> > > +++ b/Documentation/devicetree/bindings/mmc/spacemit,sdhci.yaml
-> > > @@ -32,6 +32,18 @@ properties:
-> > >        - const: core
-> > >        - const: io
-> > >
-> > > +  spacemit,aib-mmc1-io-reg:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: AIB MMC1 IO register address for voltage switching
-> > > +
-> > > +  spacemit,apbc-asfar-reg:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: APBC ASFAR register address for AIB access
-> > > +
-> > > +  spacemit,apbc-assar-reg:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: APBC ASSAR register address for AIB access
-> > > +
-> > >  required:
-> > >    - compatible
-> > >    - reg
-> > > @@ -50,4 +62,7 @@ examples:
-> > >        interrupt-parent =3D <&plic>;
-> > >        clocks =3D <&clk_apmu 10>, <&clk_apmu 13>;
-> > >        clock-names =3D "core", "io";
-> > > +      spacemit,aib-mmc1-io-reg =3D <0xd401e81c>;
-> >
-> > This looks very very wrong to me. This is part of the pinctrl
-> > reservation:
-> >               pinctrl: pinctrl@d401e000 {
-> >                       compatible =3D "spacemit,k1-pinctrl";
-> >                       reg =3D <0x0 0xd401e000 0x0 0x1000>;
-> >                       clocks =3D <&syscon_apbc CLK_AIB>,
-> >                                <&syscon_apbc CLK_AIB_BUS>;
-> >                       clock-names =3D "func", "bus";
-> >                       spacemit,apbc =3D <&syscon_apbc>;
-> >               };
-> > so if you need to change something here, you need to do it via pinctrl.
-> >
-> > > +      spacemit,apbc-asfar-reg =3D <0xd4015050>;
-> > > +      spacemit,apbc-assar-reg =3D <0xd4015054>;
-> >
-> > These two are the apbc syscon:
-> >               syscon_apbc: system-controller@d4015000 {
-> >                       compatible =3D "spacemit,k1-syscon-apbc";
-> >                       reg =3D <0x0 0xd4015000 0x0 0x1000>;
-> >                       clocks =3D <&osc_32k>, <&vctcxo_1m>, <&vctcxo_3m>=
-,
-> >                                <&vctcxo_24m>;
-> >                       clock-names =3D "osc", "vctcxo_1m", "vctcxo_3m",
-> >                                     "vctcxo_24m";
-> >                       #clock-cells =3D <1>;
-> >                       #reset-cells =3D <1>;
-> >               };
-> > so add a phandle to the syscon (like the pinctrl currently has) and
-> > access these via its regmap. What you've got here is a non-runner,
-> > sorry.
->
-> We've gained this support in pinctrl which already accepted in mainline,
-> it's done as Conor suggested here, so you can drop these properties along
-> with the patch [5/10], see
->
-> https://lore.kernel.org/all/20260108-kx-pinctrl-aib-io-pwr-domain-v2-0-6b=
-cb46146e53@linux.spacemit.com/
+Hi Prabhakar,
 
-Thanks for the pointer! I missed that these had already landed in
-mainline. I'll rebase the series, drop the redundant properties and
-patch [5/10], and send a v2 shortly.
+On Tue, 14 Oct 2025 at 21:11, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add pin configuration support for the Renesas RZ/T2H SoC. The RZ/T2H allows
+> configuring pin properties through the DRCTLm (I/O Buffer Function
+> Switching) registers, including:
+> - Drive strength (low/middle/high/ultra high)
+> - Pull-up/pull-down/no-bias configuration (3 options: no pull, pull-up,
+>   pull-down)
+> - Schmitt trigger control (enable/disable)
+> - Slew rate control (2 options: slow/fast)
+>
+> The drive strength configuration uses four discrete levels (low, middle,
+> high, ultra high) rather than the standard milliamp values. To properly
+> represent this hardware behavior, implement a custom device-tree binding
+> parameter "renesas,drive-strength" that accepts values 0-3 corresponding
+> to these discrete levels.
+>
+> The DRCTLm registers are accessed in 32-bit mode, with each port split
+> into two halves (bits 0-3 and bits 4-7) requiring separate register
+> offsets.
+>
+> Implement pinconf_ops to support:
+> - Getting/setting individual pin configurations
+> - Getting/setting pin group configurations
+> - Standard properties: bias-disable, bias-pull-up, bias-pull-down,
+>   input-schmitt-enable, slew-rate
+> - Custom property: renesas,drive-strength
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
->
-> > pw-bot: changes-requested
-> >
-> > Thanks,
-> > Conor.
->
->
->
-> --
-> Yixun Lan (dlan)
+Just a minor drive-by comment for a patch that is still WIP...
+
+> --- a/drivers/pinctrl/renesas/pinctrl-rzt2h.c
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
+
+> +static void rzt2h_drctl_rmw(struct rzt2h_pinctrl *pctrl, unsigned int pin,
+> +                           u32 mask, u32 val)
+> +{
+> +       u32 port = RZT2H_PIN_ID_TO_PORT(pin);
+> +       u8 bit = RZT2H_PIN_ID_TO_PIN(pin);
+> +       u32 offset = DRCTL(port);
+> +       unsigned long flags;
+> +       u32 drctl;
+> +
+> +       /* Access DRCTLm register in 32-bit mode */
+> +       if (bit >= 4)
+> +               offset += 4;
+> +
+> +       spin_lock_irqsave(&pctrl->lock, flags);
+
+Please use "guard(spinlock_irqsave)(&pctrl->lock);" instead, to match
+the style of the rest of the file.
+
+Note that that will become "raw_spinlock_irqsave" soon, due to
+"[PATCH v2] pinctrl: renesas: rzt2h: fix invalid wait context".
+
+> +       drctl = rzt2h_pinctrl_readl(pctrl, port, offset) & ~mask;
+> +       rzt2h_pinctrl_writel(pctrl, port, drctl | val, offset);
+> +       spin_unlock_irqrestore(&pctrl->lock, flags);
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
