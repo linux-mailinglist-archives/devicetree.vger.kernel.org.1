@@ -1,174 +1,169 @@
-Return-Path: <devicetree+bounces-270562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270563-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KMMCF1nxpmmSagAAu9opvQ
-	(envelope-from <devicetree+bounces-270562-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:34:01 +0100
+	id EG+yCgnzpmkzawAAu9opvQ
+	(envelope-from <devicetree+bounces-270563-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:41:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC721F18C0
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:33:56 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 984BA1F1AAF
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:41:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 60A3A3076B70
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:28:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3FC1E305148B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14224279F6;
-	Tue,  3 Mar 2026 14:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF954301CC;
+	Tue,  3 Mar 2026 14:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="d/O+JXo5"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Vr42Ak8x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mx-relay174-hz1.antispameurope.com (mx-relay174-hz1.antispameurope.com [94.100.132.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A64425CF5
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772548119; cv=none; b=RzaWcsj1PdVbieU0a9J8GpKYItwHLRV7VKHZbzctTS761j/jwWNN4CtGL+S2iUfjE2zPPAzzD0s3OnOKPRERR4zFhSJ+twwmGvIwLTU/GsAtRCC1Wx82kU1qc9cr3lrpde71lg8wDD/xT/lzkjAYVYxMgKsgXIojtF7AE8kMPNI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772548119; c=relaxed/simple;
-	bh=sFdspMKJumEMO4fDQc2+117471ZtpGFHB8cFzHcqV9k=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O8n8KdcANGeo5HgRhp7ATof0t1m3PSlrlvObMxNog3FLmh4gnm3KfYUejjZ27p1Y1F/lB9gi/D1MrzkeqCAC4bqrdUsKMmzBPHU8QKX7NF0mwW4DGqwh4wQvbPfRIX1W8WAZu2L6HKKwkuq54fmm/cu2pdv+TrItM7KtuC0j05o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=d/O+JXo5; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 4B2E21A233A;
-	Tue,  3 Mar 2026 14:28:36 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 1815E5FF29;
-	Tue,  3 Mar 2026 14:28:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2BC881036864C;
-	Tue,  3 Mar 2026 15:28:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772548112; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=GWUy5XUp50lxxjU1GZxGSJIelBHwpc1HiL3azJ0BLV4=;
-	b=d/O+JXo543vedMVvGLT5gKQytZfFXK8awsVgYA6R2ojxBslqYDSqG0VaRPH7bRUxFJlQN8
-	1vkegNiRGY41CrTbPRA1NgXIqSpHHXeFNACKcalOr4bzHngc7EbH0CSSUuvUxXHy5MVFSy
-	vEESymOX/4StaUul4BCuzjnEikImvMMtImKAjJiVJGCmUvbpNeHT+w2j0OOFIPwqXLeYpl
-	cStsMnmcoZTIpyS3EgJxQykjVvH8H5XHlQadKad7TsG6qk3H2sE9QULsdlhxCLsvdS6N3P
-	Oejd8rD6YiajdGxXjpbhWcTxEQM/3Nco4XUAiT9M4D/MHRwg24QTsSLti/Lp2w==
-Date: Tue, 3 Mar 2026 15:28:12 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Geert
- Uytterhoeven" <geert+renesas@glider.be>, Kalle Niemi <kaleposti@gmail.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Frank Li <Frank.Li@nxp.com>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "Michael
- Turquette" <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- "Andi Shyti" <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, "Arnd
- Bergmann" <arnd@arndb.de>, Saravana Kannan <saravanak@kernel.org>, "Bjorn
- Helgaas" <bhelgaas@google.com>, Charles Keepax
- <ckeepax@opensource.cirrus.com>, Richard Fitzgerald
- <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, "Linus
- Walleij" <linusw@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, "Mark
- Brown" <broonie@kernel.org>, Len Brown <lenb@kernel.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Davidlohr Bueso <dave@stgolabs.net>, "Dave
- Jiang" <dave.jiang@intel.com>, Alison Schofield
- <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, "Ira
- Weiny" <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>,
- "Shawn Guo" <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>,
- <linux-kernel@vger.kernel.org>, <driver-core@lists.linux.dev>,
- <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
- <linux-clk@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
- <linux-sound@vger.kernel.org>, <patches@opensource.cirrus.com>,
- <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <linux-spi@vger.kernel.org>, <linux-acpi@vger.kernel.org>,
- <linux-cxl@vger.kernel.org>, Allan Nielsen <allan.nielsen@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 11/28] cxl/test: Use fw_devlink_set_device()
-Message-ID: <20260303152812.5d699701@bootlin.com>
-In-Reply-To: <20260302122449.00006c77@huawei.com>
-References: <20260227135428.783983-1-herve.codina@bootlin.com>
-	<20260227135428.783983-12-herve.codina@bootlin.com>
-	<20260302122449.00006c77@huawei.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D65733F5AA
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.178
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772548566; cv=pass; b=VUaleFRemdQqMDz9I6WIsofOiIxdvxyzBD8q83+B2BmZ5HMQTuEryHlG/NDdC9twcOEqCy2rFVaFpV572BzemVLk1g9GCAG7xr6Rr3Q0m+d2GVXGX7K4KkKbkmV3U3Zxpfc+cYGvPYufLbtsGmVo3NHmPeL9wWAeaVTPWjHN1Qc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772548566; c=relaxed/simple;
+	bh=egZGhYjwThNRrvZQCfSh2suJgYb37CoeEYN7rjZ4Svc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PbKCnVu4oyjG5jxoV6Z8QEWnNZ/5gpWH5yK+rW9L/UinbGXfJHkB7vj/pY9N/FQAW+lDxmQRXeB5YMKQyK+WFr3FWp2Fjgt5mS7MYcLBSq+pzNtNEIephS7HLjlwzXGX7EpxiZCkJqHzOBWJ5DsOtchMEaghpjawQZ7qQUYoYa4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Vr42Ak8x; arc=pass smtp.client-ip=94.100.132.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate174-hz1.hornetsecurity.com 1;
+ spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com
+ smtp.helo=hmail-p-smtp01-out04-hz1.hornetsecurity.com; dmarc=pass
+ header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=/zWEK3bUPekqCIormKAKoaFmGzavt/Urm5uH3fAx8Eo=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1772548544;
+ b=JJrf205FDjvLxLnuyu4nOgbyf2GTL3A6D+dxAUEEXVVleijRdTDJY7mzLV4c1MooabBwhPlF
+ CB0a/u9LZwAoQOnYuUFWDlG/IEn9JIUniq80k/TYLd0V9+ReFObdAWnbjdPVty5zVot2yO0qrwk
+ 3CJAcb5H0EjwId0JWUBfu2hL9VuJzqsjPdvwyPFTBQbiQ2VTsyVq4Hk00w1Sdm7XxCDKjCatYY6
+ 1nTNl82CtA2vVxY4mbwrVvUb95j8B9LJSqoNWEbsUdMaDNLHKpkIhaNnoFbvd23UrDa8DbD4OfC
+ to6yZxkTcQ48XIjN7s6elcSYPrBJj6u2O/XfuMZTNHzxA==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1772548544;
+ b=TNn5mhi8OUOIG/5aqKpbJHY2Kuwe7pCOKmaiztNj/Ted/ReZ/lF39LvDtvhDmLAfVyqormTQ
+ u3eJtBA926fV1wdzEx9KxXh90/yidKDqlyq2NycO/oD/xOkNTD3EBAhW2Mc0qGmvpmaDDHi4tE7
+ L9H3as6RomKqwGQPu1qZAaJA/2w9dTAJOizMUU4jy26deCgBzW4LkXSqsTX+PLwKaZO8HjboMz/
+ TefOYkKTWvC/1MfmttnXOAb1WB8XeK18yLa1eHPFLuQwMN5qItsfXzIwPBJmFvIXpvLKCUsixr1
+ h+5EZ4FZav+8E4SWd/395AhIPF59tueAww5PlC2YtdHsg==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay174-hz1.antispameurope.com;
+ Tue, 03 Mar 2026 15:35:44 +0100
+Received: from [10.123.75.134] (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: max.merchel@ew.tq-group.com)
+	by hmail-p-smtp01-out04-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 60B85220490;
+	Tue,  3 Mar 2026 15:35:38 +0100 (CET)
+Message-ID: <94c02d85-cb49-4bca-9ebe-44ed4fec9f10@ew.tq-group.com>
+Date: Tue, 3 Mar 2026 15:35:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: arm: fsl: correct spelling of TQ-Systems and
+ TQMLS1012AL
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux@ew.tq-group.com
+References: <20260218132413.32250-1-Max.Merchel@ew.tq-group.com>
+Content-Language: en-US
+From: Max Merchel <max.merchel@ew.tq-group.com>
+In-Reply-To: <20260218132413.32250-1-Max.Merchel@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: DEC721F18C0
+X-cloud-security-sender:max.merchel@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: max.merchel@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay174-hz1.antispameurope.com with 4fQJHt5qR4z44T6W
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:11135722384407ca4cc209f80b928f75
+X-cloud-security:scantime:1.972
+DKIM-Signature: a=rsa-sha256;
+ bh=/zWEK3bUPekqCIormKAKoaFmGzavt/Urm5uH3fAx8Eo=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1772548543; v=1;
+ b=Vr42Ak8xB2JX1PVhVhGt+MmsLOnB0SAsLkMfIh0GEhTOoBIlbqkiJYGajgzghV0rnfho51Ef
+ Uh06/RFlcR9O/LGRSw3WDFIIo92TcKIl148cpxaTWew4qrxe1vhdwgt+M8GKPhADKS96DiF8Vme
+ 0GbujmUAM/gmwbS4hN0iTqn8JMwM+wsMoNi8IvbMacqtL3LtT+HMnvTYVNxeHYiciLOr1xHrfoZ
+ F+qhg0AXDfrfdOa/0/wk6O66fDZbTWzU2rLZUmGThLsUDAhxmkyltd05Wls73UOe5JIgPBGbwT4
+ SZv/TmT6gyj91DKMLdIWpWLY5FyGY5rwz/zHQjU9YtW1w==
+X-Rspamd-Queue-Id: 984BA1F1AAF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lunn.ch,kernel.org,glider.be,gmail.com,linuxfoundation.org,nxp.com,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,google.com,opensource.cirrus.com,cirrus.com,linaro.org,linux.intel.com,stgolabs.net,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com,bootlin.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270562-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	TAGGED_FROM(0.00)[bounces-270563-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_GT_50(0.00)[62];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[max.merchel@ew.tq-group.com,devicetree@vger.kernel.org];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Hi Jonathan,
 
-On Mon, 2 Mar 2026 12:24:49 +0000
-Jonathan Cameron <jonathan.cameron@huawei.com> wrote:
-
-> On Fri, 27 Feb 2026 14:54:08 +0100
-> Herve Codina <herve.codina@bootlin.com> wrote:
+Am 18.02.26 um 14:24 schrieb Max Merchel:
+> TQ-Systems is written with a hyphen. Correct the spelling.
+> The correct SoM name is TQMLS1012AL.
 > 
-> > The code set directly fwnode.dev field.
-> > 
-> > Use the dedicated fw_devlink_set_device() helper to perform this
-> > operation.
-> > 
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > Reviewed-by: Dave Jiang <dave.jiang@intel.com>  
-> Reviewed-by: Jonathan Cameron <jonathan.cameron@huawei.com>
+> Signed-off-by: Max Merchel <Max.Merchel@ew.tq-group.com>
+> ---
+>   Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> From practical point of view, what path do you expect this to take?
-> Is there urgency to make the change, or does it make more sense to
-> add the helper this cycle and cleanup up the various places it can be
-> used next?
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 5716d701292c..13e5d40cbb26 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1626,7 +1626,7 @@ properties:
+>                 - fsl,ls1012a-qds
+>             - const: fsl,ls1012a
+>   
+> -      - description: TQ Systems TQMLS12AL SoM on MBLS1012AL board
+> +      - description: TQ-Systems TQMLS1012AL SoM on MBLS1012AL board
+>           items:
+>             - const: tq,ls1012a-tqmls1012al-mbls1012al
+>             - const: tq,ls1012a-tqmls1012al
 
-I hoped to have patches 7 to 12 applied by one maintainer on his/her trees.
+Any feedback to this?
 
-As it is related to fw_devlink, I expect to have them applied by a driver
-core maintainer.
-
-Any other plan can work as well.
-
+-- 
 Best regards,
-Hervé
+Max
+
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
