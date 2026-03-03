@@ -1,162 +1,143 @@
-Return-Path: <devicetree+bounces-270415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270416-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sDs8IxK1pmk7TAAAu9opvQ
-	(envelope-from <devicetree+bounces-270415-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:16:50 +0100
+	id sD+gLo62pmk7TAAAu9opvQ
+	(envelope-from <devicetree+bounces-270416-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:23:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8181EC8B6
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:16:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3270D1EC984
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:23:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 72CF130325FE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:16:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6DBB1308870F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63BF39B954;
-	Tue,  3 Mar 2026 10:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74A139D6C0;
+	Tue,  3 Mar 2026 10:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="F5qPoP+y"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="sxfjVxt1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92392390208;
-	Tue,  3 Mar 2026 10:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772532994; cv=pass; b=KKpaDEDbTZqD4/wdTGj2BbjQ4/i/B2uOKgKSucbxv0XmFXvFXfNmYerRpv4x+SfOajVI3Us+a72+wwfd9F5/U0jIHAVieKDxkNQ19E/OD9vysi52G/dxNwSqmIxGQm7AgJAepKQjLidalJSb4VfJPIhsfnUQfgmYRQp4r/bq9Xo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772532994; c=relaxed/simple;
-	bh=hV7pmbruCuv2YT3GXeR/WB6MvDM5iYmpBJg+CzfkEy0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VLq608vbOCopJOTje6M57sKuVUA5W3q1f4VpN5su0kKEIeXfQKC+8Ry6cW1akNtNzBFG4RrYHkAeeHEa3HBqP0xuOUjmTejIKVE+z2n1p4PNwrsLLsf5A2bj3UZ24mtEOPEgukHcpbVssZUPL4iUrH0Ghii5jXVAUVatJk4mlNM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=F5qPoP+y; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1772532960; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Ld3WEFmDwMm4C8fsVqUW9jEYfexkJC1pErlxbI/bd/u9wIjtVtvEVj8KmR0gRsm98qMtTP6QY8zJumJp5cYAbNZWQ35InHNDLhk/8GhbAljJwLPwqVX4HhwIgZCxfoTb6rKos4yI3CDdMlV0qY8RELcbxWOIMcCzdIgBitH8UZQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1772532960; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=hV7pmbruCuv2YT3GXeR/WB6MvDM5iYmpBJg+CzfkEy0=; 
-	b=JtfUa7LseAVWU3UlSAtrwverfSpUtmpCjPEyafLJjiAK3vZ00o/14AaNVB0IC70ImJhgp7ji1aDL4FQEazN6WfPdPiJdPZoBhN524W9lLhn7hANpCraR/BdYv3XF6P96rXwCvpIsHE6aZPmY1cRXTN3ltHcCNeu19Hcogp4glyY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772532960;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=hV7pmbruCuv2YT3GXeR/WB6MvDM5iYmpBJg+CzfkEy0=;
-	b=F5qPoP+y66wlCndzg6MYVKVtavNrhdcVXA/icpMvQ4iG7XzaZ+AdmtKjIhnioEfD
-	CCg27jDedafjWLNPBfBCXN9pwPOraOvLcdYQVMKXZobzVBaGUxoDNoAY8wYQgSKj33g
-	tDgvFKaUVkCZ8FpdhOGOEpFy3i1HslBStZudJQac=
-Received: by mx.zohomail.com with SMTPS id 1772532958810282.7970747621265;
-	Tue, 3 Mar 2026 02:15:58 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>,
- Chunfeng Yun =?UTF-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>,
- "kishon@kernel.org" <kishon@kernel.org>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@hansenpartnership.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chaotian Jing =?UTF-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- Peter Wang =?UTF-8?B?KOeOi+S/oeWPiyk=?= <peter.wang@mediatek.com>
-Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- "kernel@collabora.com" <kernel@collabora.com>
-Subject:
- Re: [PATCH v7 20/23] scsi: ufs: mediatek: Back up idle timer in per-instance
- struct
-Date: Tue, 03 Mar 2026 11:15:51 +0100
-Message-ID: <3072176.mvXUDI8C0e@workhorse>
-In-Reply-To: <0bef3e1592e64f74e6a6fd8ef59129ac71b307e4.camel@mediatek.com>
-References:
- <20260216-mt8196-ufs-v7-0-b5f2907c6da7@collabora.com>
- <48e8f40b-f5f3-42b5-a97b-7a25d1dc0fb8@collabora.com>
- <0bef3e1592e64f74e6a6fd8ef59129ac71b307e4.camel@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F1539B94E;
+	Tue,  3 Mar 2026 10:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772533240; cv=none; b=IpYBTO2SU2K+BHRpce0wR9ry+hbqd7zhnmxqcCgCU+RrFRRlB3MwYki2YdVTU9qdOL4eCydpjzbMrMbpY/tPNwFH3AcsQtt/Vlmj0f2wL0IcobEBME7PkqFYJUD0N9xEEcS9DZ1pmn1df5wm2R4+QPCB/e8sNjCIJXXQjko4PgE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772533240; c=relaxed/simple;
+	bh=26dxNzDjY7CRlBAsERtAcTM0EaQVX2iVppkGlcMDxj8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MLoJd8MNXhWHyE3o30Ti+5yUUodkjLALX7ecZBAAsVFiTsWke/D9Z5UDTjHNJxq9QG7CUjBP9EMW+wdpxoLGaW+WcMYF1bdNOGiZFXT+cVDn5KZBJzJrkyFppv9zI7/tqnzOd6U89Bvc26wJ5NzenDd7PVMDtFFrogTOcRo3KIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sxfjVxt1; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id E52151A2381;
+	Tue,  3 Mar 2026 10:20:35 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B24845FF29;
+	Tue,  3 Mar 2026 10:20:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 20A5A103682C7;
+	Tue,  3 Mar 2026 11:20:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1772533234; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=b4i03LZAFmyOpibvX8KpgR/jnv1vu75TEt84f6RQncw=;
+	b=sxfjVxt1BXcUaLnzR5grqFZvZa1eT/9kKytOTyJPGHP/UIfwY/FAgopG6vuEa1FEKQDub+
+	owVaaEEe7lnlE+8o/HmZYkhybPwUJt7KufEZAqnGsZMmSMMdsCyHvmkDaBjLFPvhQoHfAf
+	95RAX+ky9eF0WCnNjCmO/HZrRvuUrPR/Rkf2LhYtZBmsgwjGoHvf8Wj3AQESLg1qg3k8v5
+	udrgNHvlGBlGyyhymBOI22xQ/rE/bPfZIXzFpuJ1668VpE1HZWeBgdRD7QzgW1dC+TPiuA
+	M3gvVmUK0ttLT+qbtHGm0fFi3RGAANy2cgP+0ULDo5Hc1JlHEi1RAy1gky1c6w==
+From: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	"Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Subject: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
+Date: Tue,  3 Mar 2026 11:20:29 +0100
+Message-ID: <20260303102029.147359-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Rspamd-Queue-Id: 5C8181EC8B6
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 3270D1EC984
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270415-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,mediatek.com,hansenpartnership.com,acm.org,collabora.com,pengutronix.de,samsung.com,linaro.org,wdc.com,oracle.com];
-	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-270416-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[sang-engineering.com,glider.be,gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,collabora.com:dkim]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[2.160.237.136:email];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tuesday, 3 March 2026 09:01:14 Central European Standard Time Peter Wang=
- (=E7=8E=8B=E4=BF=A1=E5=8F=8B) wrote:
-> On Thu, 2026-02-26 at 11:36 +0100, AngeloGioacchino Del Regno wrote:
-> >=20
-> > Okay, does "saved_auto_hibern8_idle_tmr" sound good for you instead?
-> >=20
-> > Regards,
-> > Angelo
-> >=20
-> >=20
->=20
-> Hi AngeloGioacchino,
->=20
-> I=E2=80=99m fine with saved_auto_hibern8_idle_tmr, but it is more=20
-> verbose compared to saved_ahit.
->=20
-> Thanks
-> Peter
->=20
+When checking dts involving the r9a06g032.dtsi file, the following kind
+of warnings are reported:
+   Missing property '#address-cells' in node xxx, using 0 as fallback
 
-Yeah no I won't change this, this is pointless bikeshedding.
+Indeed, #address-cells is not present in the GIC interrupt controller
+node.
 
+Fix it adding the missing property.
+
+No functional change.
+
+Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+---
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+index f4f760aff28b..6acf524174c7 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
++++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+@@ -507,6 +507,7 @@ gic: interrupt-controller@44101000 {
+ 			compatible = "arm,gic-400", "arm,cortex-a7-gic";
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
++			#address-cells = <0>;
+ 			reg = <0x44101000 0x1000>, /* Distributer */
+ 			      <0x44102000 0x2000>, /* CPU interface */
+ 			      <0x44104000 0x2000>, /* Virt interface control */
+-- 
+2.53.0
 
 
