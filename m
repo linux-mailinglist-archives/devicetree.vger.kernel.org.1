@@ -1,124 +1,86 @@
-Return-Path: <devicetree+bounces-270590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270591-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QOd/CDz9pmk7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270590-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:24:44 +0100
+	id CJdbI/z/pmk7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270591-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:36:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1ED81F280B
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:24:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DEA31F2C14
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:36:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E06DE3029A86
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:24:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0277A306FE0A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3D7F481643;
-	Tue,  3 Mar 2026 15:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9586148A2A1;
+	Tue,  3 Mar 2026 15:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g2lKT83P"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="oRxNYFkw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67814423175;
-	Tue,  3 Mar 2026 15:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B337481FC0;
+	Tue,  3 Mar 2026 15:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772551480; cv=none; b=G2yhSBmBykhXkJ/WADRSzsrTEd0rlpV7VNykf5oFDGhlFZvpJrFRjj/mcYHBYFR71I71Up5Zg3v9Qn85wVgDBHaXwVFBIuw9mbqAN5o7fVtKoe0ggLkHPF+njwf/uNIJJ7vBbSgbjSlVCRECTBlkqkYoLFLgpMpbk0MR4lx3o0M=
+	t=1772551549; cv=none; b=aXgKm7q3Xf43lHKPAdLYJj2ZPSsRrWKEhsavEtDX6FQFU2Te3N34Ob0hdJrD7onfvBWPY1n32qyoawjkAgS4AGYBbBXaLrl6wpw7ulFp1xZ2AXQ90XMvILgRtsJdef7yIzkc24TT1h1cjl4NEhovJoVGT7aUIwFHuklJBu4Z8ZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772551480; c=relaxed/simple;
-	bh=ezIjOizC8RAT3P5qFtSymLpkn/IPMdhnAN93KcIKjO8=;
+	s=arc-20240116; t=1772551549; c=relaxed/simple;
+	bh=/C26syC9Ise1LgUY53DQ4PRhbY3Zn4GqHjOxYplOics=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VxwCw/V3L3WL5bP8x+KQaF700SmT4y7MJTavj/5RcFrRo/lLgwf3wj51xRiEfteu6P9seotXxJIPQty+fb/dizFl70RwAz9Hrq93VUQ6NJ+KEMLU+XjJUt5lpc/Mcupq0KZtOl3fkmCRKw/1+cQ9QYTcY0YKangN3OsvXFaLkQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g2lKT83P; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772551479; x=1804087479;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ezIjOizC8RAT3P5qFtSymLpkn/IPMdhnAN93KcIKjO8=;
-  b=g2lKT83PCVDXdE/G1YlMMkkjIjJTI4SKcJyJYnBsc1VNm2dXL/VN/Zk2
-   lrtowPuerKv5i+UF0PagWc/6uFJI8RDqIvm/tpvufhahuM+lO19DD+dBb
-   mFmyzRT3FLICbmEjps6kb0cwYV25JZ6Qn7x+l+2uoxChuI4aHwUkZCM/L
-   aE6Sv7c+fy64QjAF+AoLXCO8cdp3op88BgyjeKPxsVFlBb47cZLPHcLbf
-   JcqIQ5LfPNqRcHMGuBiWouQi8/+7NQZH1NNprgM6KFLDFoJhYpKadpe0B
-   iN+GqlYZ5JMmw55z9MEj1DYNHexlddlah8iEr9bX2zqyjd6a3IiWTeBtF
-   A==;
-X-CSE-ConnectionGUID: xGE6+JdZQXyak+SI9MqpCQ==
-X-CSE-MsgGUID: m5NTSEq/SXy6lmorKSnlTg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="73505063"
-X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; 
-   d="scan'208";a="73505063"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2026 07:24:38 -0800
-X-CSE-ConnectionGUID: 8EDCa8VCSnelhlWlG1ZesA==
-X-CSE-MsgGUID: 5BGaqm/dSdmyx5dAFD99/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; 
-   d="scan'208";a="217269195"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.32])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2026 07:24:25 -0800
-Date: Tue, 3 Mar 2026 17:24:22 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=EXeMcl0of39LhPHMmzJoizqR5+zsAgqhNyUsUf8a3pozUhfd8EkpD54X1aOjPu/HJwStA0i5uPNimxRQ32RofdSoCy3p9raCopGSDb5BMMY+c97qP0db79EpP2FyOXXC3idU8kUsLM2fSQjj6HPQWkkfthRbJ959uMnoIYb31WQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=oRxNYFkw; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=YRbulbIhUbbvyG4w71EZHffhklu3RJDGWKEnLuozbpE=; b=oRxNYFkwzG+zI9Bl8vbdA6qtuD
+	8lKH0UFz8QGoDq7fjgg7pN+v30/HKStxd2DXz2Lhyn5HBFiKAi0N83GZsky/LMwmYT3eoOSSkq8PJ
+	53knfpSiPkHKi/+sCww4RyayEUKLknGlDTlijiyWcnGudqKGuE7G7pzu/voKDV1ZBO0wKV/c1TX6X
+	6M9CETfjQpJz6/I0NI3j4z/lKpEBWeTrAdyHnS9WSaLi7rJZEKU5H2zzzP+YD+ZqI4Byp6Qj1Divc
+	QMo/pMri7e4BxwUJxsCmjQfkJ6KN49MdS69ZuJKm6TglOf/ot8qSMdnqjvUjLB9esdH1Qn+swSF+a
+	5d/VHHmw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:60546)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vxRcv-000000005HC-2ojb;
+	Tue, 03 Mar 2026 15:25:37 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vxRct-0000000072J-3Vth;
+	Tue, 03 Mar 2026 15:25:35 +0000
+Date: Tue, 3 Mar 2026 15:25:35 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Mark Brown <broonie@kernel.org>
+Cc: Romain Gantois <romain.gantois@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Kalle Niemi <kaleposti@gmail.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Davidlohr Bueso <dave@stgolabs.net>,
-	Dave Jiang <dave.jiang@intel.com>,
-	Alison Schofield <alison.schofield@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Shawn Guo <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>,
-	linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-sound@vger.kernel.org, patches@opensource.cirrus.com,
-	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-cxl@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 07/28] driver core: fw_devlink: Introduce
- fw_devlink_set_device()
-Message-ID: <aab9Js6nRaeH3pn9@ashevche-desk.local>
-References: <20260227135428.783983-1-herve.codina@bootlin.com>
- <20260227135428.783983-8-herve.codina@bootlin.com>
- <20260302122336.00006bd8@huawei.com>
- <20260303151210.6e8462b8@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter
+ regulators
+Message-ID: <aab9bwKSubR6zxKG@shell.armlinux.org.uk>
+References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+ <20260303-sfp-regulators-v1-2-7101ae34cb84@bootlin.com>
+ <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
+ <aab6Tqo1z-8YQ4j6@shell.armlinux.org.uk>
+ <536e57fe-9738-4026-a9c9-fdb7135cbe2f@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -127,71 +89,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260303151210.6e8462b8@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: B1ED81F280B
+In-Reply-To: <536e57fe-9738-4026-a9c9-fdb7135cbe2f@sirena.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Rspamd-Queue-Id: 8DEA31F2C14
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[huawei.com,lunn.ch,kernel.org,glider.be,gmail.com,linuxfoundation.org,nxp.com,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,google.com,opensource.cirrus.com,cirrus.com,linaro.org,linux.intel.com,stgolabs.net,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com,bootlin.com];
-	TAGGED_FROM(0.00)[bounces-270590-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270591-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_SPAM(0.00)[0.246];
 	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[62];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:email,intel.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ashevche-desk.local:mid]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,shell.armlinux.org.uk:mid,armlinux.org.uk:url]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 03:12:10PM +0100, Herve Codina wrote:
-> On Mon, 2 Mar 2026 12:23:36 +0000
-> Jonathan Cameron <jonathan.cameron@huawei.com> wrote:
-> > On Fri, 27 Feb 2026 14:54:04 +0100
-> > Herve Codina <herve.codina@bootlin.com> wrote:
-> > 
-> > > Setting fwnode->dev is specific to fw_devlink.
-> > > 
-> > > In order to avoid having a direct 'fwnode->dev = dev;' in several
-> > > place in the kernel, introduce fw_devlink_set_device() helper to perform
-> > > this operation.
-> > >   
-> > I don't mind the helper, but the description could do with a little
-> > detail on why.  Is it just to avoid visibility of internal details, or
-> > is there a stronger reason?
+On Tue, Mar 03, 2026 at 03:14:02PM +0000, Mark Brown wrote:
+> On Tue, Mar 03, 2026 at 03:12:14PM +0000, Russell King (Oracle) wrote:
+> > On Tue, Mar 03, 2026 at 02:22:40PM +0000, Mark Brown wrote:
+> > > On Tue, Mar 03, 2026 at 02:54:27PM +0100, Romain Gantois wrote:
 > 
-> I think the idea was to avoid visibility.
+> > > > If phandles to receiver and/or transmitter regulators for an SFP device are
+> > > > found, enable them at probe time.
 > 
-> It cames from feedback received on my first iteration
->   https://lore.kernel.org/all/20250408145139.293c79a2@bootlin.com/
+> > > The driver should unconditionally request whatever power the device
+> > > needs.
 > 
-> I found the idea relevant and so I did the patch.
+> > ... and then we break everyone, just like you broke SATA, and I've
+> > never forgiven you for taking a principled line on this rather than a
+> > pragmatic approach. You're making the same mistake here.
+> 
+> Sorry, what's the breakage here?  The log messages, or something else?
 
-Yes, the idea is to hide the fwnode devlink related stuff behind the getters
-and setters. Ideally, everything in fwnode_handle related to devlinks should
-be marked as __private.
+... which then caused someone to "fix" DT by disabling devices to shut
+up those log messages, including for platforms where those devices were
+being used, which ultimately caused a boot failure.
+
+... and your argument that SATA PHYs need these supplies, which is false
+when the SATA PHY is integrated into the SoC and there's no details on
+what those supplies are or where they come from, or even if they are
+controllable.
+
+Yet you demand that a SATA PHY supply must be provided, and so we're
+stuck with:
+
+[    1.207484] ahci f2540000.sata: supply ahci not found, using dummy regulator
+[    1.213524] ahci f2540000.sata: supply phy not found, using dummy regulator
+[    1.219630] platform f2540000.sata:sata-port@1: supply target not found, using dummy regulator
+[    1.227800] ahci f4540000.sata: supply ahci not found, using dummy regulator
+[    1.233757] ahci f4540000.sata: supply phy not found, using dummy regulator
+[    1.239805] platform f4540000.sata:sata-port@0: supply target not found, using dummy regulator
+
+on every boot with no way to shut them up. These supplies *ARE*
+optional in terms of whether they can be described in DT.
+
+As I've told you before, we have no information by which to describe
+these supplies in DT on these platforms (not even with the data for
+the chip) so you are effectively forcing people to "make stuff up" in
+DT to shut up your warnings - blowing the whole idea that DT should
+describe the hardware out of the water. How can we describe this
+hardware if we don't have the internal design details of the chip?
+
+The only way is to make something up, and all because you've decided
+SATA supplies are no longer optional.
+
+As SFP cages have not had to describe these supplies, requiring them
+*now* will cause *regressions* because no one is going to be specifying
+them, which will lead to stuff breaking. Again.
+
+So, for the good of users of my SFP code, I will refuse any
+introduction of regulators into my code for as long as you're take
+the principled stance that regulators shall not be optional, rather
+than applying a sensible pragmatic approach. You give me no option
+here.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
