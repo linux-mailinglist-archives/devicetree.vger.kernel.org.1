@@ -1,52 +1,53 @@
-Return-Path: <devicetree+bounces-270736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270737-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IPgMHBM6p2mofwAAu9opvQ
-	(envelope-from <devicetree+bounces-270736-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:44:19 +0100
+	id IPFdJxw6p2mofwAAu9opvQ
+	(envelope-from <devicetree+bounces-270737-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:44:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECF511F6446
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:44:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35DD61F645E
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:44:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0E18D30B021D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 19:40:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0F4DC31037F9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 19:40:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7637E384250;
-	Tue,  3 Mar 2026 19:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2E6F3890F6;
+	Tue,  3 Mar 2026 19:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="cCbwc53b"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="E4FT7ZCm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2FB37C93D
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 19:39:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514CE384245
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 19:39:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772566769; cv=none; b=kJYTFwbs0LiTyqFDEMU1sC2HZzqXTwU8gtHVXDl/KQvXfdp7obsxbHLHvjDlbHJnBfh0RJUP1MYDo2QWrDb6GGCnFr3w2cPjL2HZWKEa+av1tUnNGgpiSh3TzSXFvMsST1TWUxb4AyTR33GiXCYyxsIPHJV3/qEwg9W9WCMPxaA=
+	t=1772566770; cv=none; b=mPA5A0znXfOBBUMXNuBYf76DUGG6AB8tMcikrxqduGB+L8KmRvPLZGZRFm/OXJWTuSqpc2p9NOuDmw9YpHOZ8Ayq9dVnXMHz1Kp11tFzsygAP7uOzBgOGbvrsDiddhU0bNdke+D8NBAxPcYSPbbeiLSX5Mjc2Y4dRNhTTxv5iGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772566769; c=relaxed/simple;
-	bh=8euL0IW+U1FjkfADxJnICOPAC6YEd9jyOgAv9YEVWiA=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=reSh9uzUFq/uzC6LilawY7NiWCZwg23TQ+2RmO3ktweLNSJBywEjx0URrslsDZR769xB8zJ55OnuL4DP07CBmY9c5X8BMPb0Z9vfg1ENe7EyoKPEFVWTos//pijUQNFfNJdpk9sH9aMOCGbpygGrHSMgRr8rlXr5FIkgf+NngUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=cCbwc53b; arc=none smtp.client-ip=212.77.101.9
+	s=arc-20240116; t=1772566770; c=relaxed/simple;
+	bh=EIuf9p9DGDerJYckqSEXvWNfidXj4lFLK+deyqe5Fm4=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=AS9ymBWeBM4hb1h1v9/lijdjzqUOWqD8LB03UFOb8SoACP/a0zEKxU3sMLImaA+Wgrr3EO12vrFeQrmDRbPewFOFENA+BbcJuP/0HOWgCqy6RM+BURiiHSoINu+JcYN5nexC4ZtXroSd7kD6lK/osBden/apQS06PuXttIMVC44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=E4FT7ZCm; arc=none smtp.client-ip=212.77.101.11
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 25368 invoked from network); 3 Mar 2026 20:39:25 +0100
+Received: (wp-smtpd smtp.wp.pl 27543 invoked from network); 3 Mar 2026 20:39:27 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1772566765; bh=V/WjAJijWZg2nQnR0Dw6GKJGN7hld0EpcPy+hJO8Aew=;
+          t=1772566767; bh=YKkgtekbPY1RubSw8KzAomOXLrhdGpkkWDAczAbTOhQ=;
           h=From:To:Subject;
-          b=cCbwc53bfA0nWMP4mTTDmQjVclbq/fKeM2VkCXwVjVgMXVSDM3Siu/ZCVv61wNwLp
-           IED2or1NJMjdaTJhiCjeJ0r7PbNadT0IUfrMK5YJoP3J+IHeWWI4BRXotnH30sRRFq
-           Y7EM69d14LjklIRi3tjR8EbuK+i0Mc9I0RCyJSH/gf5WHDwl82PwP3/XT46mkMghmu
-           4sre4mP/K3gzTZxcbrLxv03TrU4dQP2JPIksbJID5EPTf/6o5Dng4ObuB9zgKbl0F+
-           C6Ya+ifdF78ZIKi1jLlLM9XPOABg/SeaS56CPXpedOylWVV2SGcONX279dKKjw+qYG
-           rLTkNwRAxqXyg==
+          b=E4FT7ZCm02JgZguuxHAAIO4kAV7PgBOIGBRHZlrWgV/Fvvj+f3C1uwn9MPgXOsqbM
+           EtUSx3h+rvVR+JkyYEu9f1a0JsuHqxPmQVPQ1LJZH1h8aewuOR0mkfipk3eiC+BRAS
+           uDazu5gjK3ijGdrmDfuw8ZOtbllRBsE3UfJTmWvOpfdUU4PRbiKbKTLb1C2pvldPms
+           d6QYrc8HsIoJMSbkXNbbvkwNvpyUG7oNzrTBLSnbNV+Hkd/TZMSNebks5K9F6dEJ7U
+           ptQYT9owcL4zs/LoN8kFHPNbZrhDCsvtdxj9oG4T0Viy8E9PwlBGRDnG574+vBEq5o
+           YX4sk/Gcg0PqQ==
 Received: from 83.24.116.171.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.116.171])
           (envelope-sender <olek2@wp.pl>)
           by smtp.wp.pl (WP-SMTPD) with TLS_AES_256_GCM_SHA384 encrypted SMTP
-          for <ansuelsmth@gmail.com>; 3 Mar 2026 20:39:25 +0100
+          for <ansuelsmth@gmail.com>; 3 Mar 2026 20:39:27 +0100
 From: Aleksander Jan Bajkowski <olek2@wp.pl>
 To: ansuelsmth@gmail.com,
 	herbert@gondor.apana.org.au,
@@ -63,10 +64,12 @@ To: ansuelsmth@gmail.com,
 	linux-crypto@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: crypto: eip93: add clock gate and reset line
-Date: Tue,  3 Mar 2026 20:39:17 +0100
-Message-ID: <20260303193923.85242-1-olek2@wp.pl>
+Subject: [PATCH 2/2] arm64: dts: airoha: en7581: add crypto offload support
+Date: Tue,  3 Mar 2026 20:39:18 +0100
+Message-ID: <20260303193923.85242-2-olek2@wp.pl>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260303193923.85242-1-olek2@wp.pl>
+References: <20260303193923.85242-1-olek2@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,10 +77,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-WP-MailID: bc4a4ec882821cb528a87e98cbf1d0e6
+X-WP-MailID: fd91f4b048d23eafbae91f1322a9d673
 X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000009 [0epB]                               
-X-Rspamd-Queue-Id: ECF511F6446
+X-WP-SPAM: NO 0000009 [QRq0]                               
+X-Rspamd-Queue-Id: 35DD61F645E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -85,7 +88,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[wp.pl,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[wp.pl:s=20241105];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -93,7 +96,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_TO(0.00)[gmail.com,gondor.apana.org.au,davemloft.net,collabora.com,kernel.org,wp.pl,lists.infradead.org,vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270736-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270737-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -106,53 +109,42 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,wp.pl:dkim,wp.pl:email,wp.pl:mid]
 X-Rspamd-Action: no action
 
-Add the clock gate and reset line, both of which are available
-on the Airoha AN7581. Both properties are optional.
+Add support for the built-in cryptographic accelerator. This accelerator
+supports 3DES, AES (128/192/256 bit), ARC4, MD5, SHA1, SHA224, and SHA256.
+It also supports full IPSEC, SRTP and TLS offload.
 
 Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
 ---
- .../crypto/inside-secure,safexcel-eip93.yaml         | 12 ++++++++++++
+ arch/arm64/boot/dts/airoha/en7581.dtsi | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-index 997bf9717f9e..058454b679b4 100644
---- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-+++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-@@ -48,6 +48,12 @@ properties:
-   interrupts:
-     maxItems: 1
+diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
+index ff6908a76e8e..4931b704235a 100644
+--- a/arch/arm64/boot/dts/airoha/en7581.dtsi
++++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
+@@ -300,6 +300,18 @@ rng@1faa1000 {
+ 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
  
-+  clocks:
-+    maxItems: 1
++		crypto@1e004000 {
++			compatible = "airoha,en7581-eip93",
++				"inside-secure,safexcel-eip93ies";
++			reg = <0x0 0x1fb70000 0x0 0x1000>;
 +
-+  resets:
-+    maxItems: 1
++			clocks = <&scuclk EN7523_CLK_CRYPTO>;
 +
- required:
-   - compatible
-   - reg
-@@ -57,11 +63,17 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/clock/en7523-clk.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/airoha,en7581-reset.h>
- 
-     crypto@1e004000 {
-       compatible = "airoha,en7581-eip93", "inside-secure,safexcel-eip93ies";
-       reg = <0x1fb70000 0x1000>;
- 
-+      clocks = <&scuclk EN7523_CLK_CRYPTO>;
++			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
 +
-       interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
++			resets = <&scuclk EN7581_CRYPTO_RST>;
++		};
 +
-+      resets = <&scuclk EN7581_CRYPTO_RST>;
-     };
+ 		system-controller@1fbf0200 {
+ 			compatible = "airoha,en7581-gpio-sysctl", "syscon",
+ 				     "simple-mfd";
 -- 
 2.47.3
 
