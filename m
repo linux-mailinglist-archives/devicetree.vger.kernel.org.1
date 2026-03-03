@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-270316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270317-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNNIFMCCpmmIQgAAu9opvQ
-	(envelope-from <devicetree+bounces-270316-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:42:08 +0100
+	id EDiCF0qDpmlQQwAAu9opvQ
+	(envelope-from <devicetree+bounces-270317-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:44:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57AF1E9BCB
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:42:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B454F1E9BFA
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:44:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 836773008771
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:41:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65A1E304600C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCBF13845B7;
-	Tue,  3 Mar 2026 06:41:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F4A386421;
+	Tue,  3 Mar 2026 06:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t0Y3bwN+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBUe/JSu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C7339098E;
-	Tue,  3 Mar 2026 06:41:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE1033859D1;
+	Tue,  3 Mar 2026 06:44:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772520092; cv=none; b=k0sC2FGbd1kv5sW1lnSbpnFrMOJLaN+IOvWtqb46EHcmT42ecHLCEabp1f4SVn/esvjJpvxVGt5hq2tWOKAudKdAFRq91ROIqCPx/0sdHSn2iq1VC5fdpUn1ELBbIckqvnBkTX1KsJTCwXSHvfMJVz+WDdGpRna3IThmZPS46qc=
+	t=1772520248; cv=none; b=dnWhEcsswSASHWIWC/2lWqFhqyYFjgupGUgYcPYwY6rBlEm+ltKqRdAkOdkGb1f7OV60qj2Hnwz0Qb1l9lfUxrLKAQibSYvbqG3mRGV0tW/k20pwyZLzInVvi76lcHrwpx0WuqvGiHluG8wV93JPyLJ0Qi4vYBvF5N8pYC0jioc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772520092; c=relaxed/simple;
-	bh=5b01vw+dI31pEfzdNoEriDTH6BmcZYn60fZeCzwVL7g=;
+	s=arc-20240116; t=1772520248; c=relaxed/simple;
+	bh=9zYNNRI2Q7A4txbtHEUZ0XbB7KUSfcEmFITlL2iLQ38=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OmGLijegaKLG8aP9JngA/cg7jZXHtOat2uOBuKqabCBXDBHxXl8jMcqri6U0Z5sNWKQc6nHVdlsISo6k52OTpiglXwJhjGDOLTvg1WLfi5/Pbv3OD4dSOmzSjHnSP6fLPsphAVVF+4UhQ7Yhn8hV7BfTMLO4/Kv13HPhpwmyxLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t0Y3bwN+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FEEEC19425;
-	Tue,  3 Mar 2026 06:41:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tkM1rG/aS9eeRUz4cqqEpZElRs3XbNbNvJLynIkqaK0CnClEC+HfIdXMM1j1F0DW/agoTl1wdhVfmeNfnNUdwJE/J5a8+LY0f7nF0hBcaJkGZTvZtRz4slozA+CqjVcWnqQ0ovzow5qPyP8o9jAwmdN2HeFfV2xDkLOQ1PDo014=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rBUe/JSu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03677C116C6;
+	Tue,  3 Mar 2026 06:44:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772520092;
-	bh=5b01vw+dI31pEfzdNoEriDTH6BmcZYn60fZeCzwVL7g=;
+	s=k20201202; t=1772520247;
+	bh=9zYNNRI2Q7A4txbtHEUZ0XbB7KUSfcEmFITlL2iLQ38=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t0Y3bwN+sZmMhsd4N8pWUZxbF7mEl9yqlJdd0sP7dNLjfXbJn8bMLyphGGRSieZ4t
-	 qteQlXPwJ8pntMWt8Hh719HQTMdn3RhGCkM2uCEczMP9CuRX1KWTzppfoWpXqCheff
-	 l/i4KtamsXdW25ryJTLoC2zVipWpF1QCIpxpZXQJG0fN4VAPrpat07fCCPmtNt4TH1
-	 QxbhNsC3964gGognYhUYED+0dlUAQ7uTX+XrU2USONrJNJ+3FarX/eaaBraA1Ulu4L
-	 VwpsgDzCho5RVS37kmErb73EaJxmpeRpjlG4X4s++TnOFn4qW3L6VLe1cHRp/CHNk9
-	 EaeiKRY0noBhA==
-Date: Tue, 3 Mar 2026 07:41:29 +0100
+	b=rBUe/JSu+08xGAhX5bdw/+KOyZFqyiSky5ZMFVDFKo+6sJMzrQSXiE+oMLTrl9Q8W
+	 qy9xj2q9RW1aoPlGTSlpMDhWcYQGkm14UiNz7v8ccYAQlpxD/GY0c1vnTJhKrP4vHJ
+	 uPyuRyVh7++255oup1e00jxcf//n0J0aBkqSj+VjuR+HyZhKWzvq2FmWMi6dUGJ4Vt
+	 ydyyIpDaF4teM/y4iRgYung1XVvT1sJ7jTrrLrW98NC3YoB6J5YnrqfAzJSFQzMaRV
+	 IvAhF4251bSn9/PjiBxI0u5oTpM4F2MbyL0PSH9gmmP3FauLNXm/1NKAHGIbGNWJA2
+	 s944xsSdpcAlw==
+Date: Tue, 3 Mar 2026 07:44:05 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Aelin Reidel <aelin@mainlining.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux@mainlining.org, phone-devel@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/2] soc: qcom: socinfo: Add SoC IDs for SM7450 and
- SM7450P
-Message-ID: <20260303-imposing-modest-gecko-a9bcbc@quoll>
-References: <20260302-fillmore-socids-v2-0-e6c5ad167ec4@mainlining.org>
- <20260302-fillmore-socids-v2-2-e6c5ad167ec4@mainlining.org>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: herbert@gondor.apana.org.au, davem@davemloft.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, atenart@kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: crypto: inside-secure,safexcel: add
+ compatible for MT7981
+Message-ID: <20260303-brainy-dalmatian-of-proficiency-adbc3b@quoll>
+References: <20260302230100.70240-1-olek2@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,47 +64,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260302-fillmore-socids-v2-2-e6c5ad167ec4@mainlining.org>
-X-Rspamd-Queue-Id: E57AF1E9BCB
+In-Reply-To: <20260302230100.70240-1-olek2@wp.pl>
+X-Rspamd-Queue-Id: B454F1E9BFA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270316-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270317-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[wp.pl];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,wp.pl:email]
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 02:10:15PM +0100, Aelin Reidel wrote:
-> SM7450 and SM7450P are two SoCs in the 'fillmore' family.
+On Tue, Mar 03, 2026 at 12:00:38AM +0100, Aleksander Jan Bajkowski wrote:
+> The MT7981 as well as the MT7986 have a built-in EIP-97 crypto accelerator.
+> This commit adds a compatible string for MT7981.
 > 
-> Signed-off-by: Aelin Reidel <aelin@mainlining.org>
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
 > ---
->  drivers/soc/qcom/socinfo.c | 2 ++
->  1 file changed, 2 insertions(+)
+> v2:
+> - just add compatible strings
+> ---
+>  .../devicetree/bindings/crypto/inside-secure,safexcel.yaml  | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+> index 3dc6c5f89d32..6c797b7ce603 100644
+> --- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
+> @@ -18,6 +18,7 @@ properties:
+>        - items:
+>            - enum:
+>                - marvell,armada-3700-crypto
+> +              - mediatek,mt7981-crypto
+>                - mediatek,mt7986-crypto
+>            - const: inside-secure,safexcel-eip97ies
+>        - const: inside-secure,safexcel-eip197b
+> @@ -80,7 +81,10 @@ allOf:
+>          compatible:
+>            not:
+>              contains:
+> -              const: mediatek,mt7986-crypto
+> +              oneOf:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Drop oneOf, you have only one enum there. This is just enum directly.
 
 Best regards,
 Krzysztof
