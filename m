@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-270579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270580-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OHOuDxT7pmltbwAAu9opvQ
-	(envelope-from <devicetree+bounces-270579-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:15:32 +0100
+	id WPZsHCn8pmk7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270580-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:20:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 403721F24A9
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:15:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0F211F26AA
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3BB3F3030DDC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:12:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DB61730751B6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53EF6480969;
-	Tue,  3 Mar 2026 15:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83B11481656;
+	Tue,  3 Mar 2026 15:13:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="E2vVxtjf"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="tm7jhcaD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F13BC3A8736;
-	Tue,  3 Mar 2026 15:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE595480978;
+	Tue,  3 Mar 2026 15:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772550750; cv=none; b=d6owGrq8jPSkxcgqWWc44HSUoWHGzC+7uUz782h6gjXwW7aS7dN/2AybtLO5wldz1yxqkYKm7mhL8coyczTeJrJxRguWHWkt31ltLwxhDJPJ5VwvvSj1TcOkdVBchGs02E3uhcBlI9RcRWqZwlVYYH7DcpLQ1C7gEahZNEk0Csk=
+	t=1772550791; cv=none; b=LaG23/3IwsMX/Az6HGXvzzL80aMhY6+0vMmZbrr3XifFkv1HCMGvMarw8G2E3/Qn8dJGpm/fCVY/cvHMz0e5koMAz525jJBoUJywRm88oPdg8AdKPHRw+a4g/UBovNb1t1uAZwomu2sGNI4MJse1IbvMnEQbGIrwNBJhJaw1j74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772550750; c=relaxed/simple;
-	bh=4JEOj1Yv9JwueQS3GU/dm4CBVow7OUg+VKtl15NRjUM=;
+	s=arc-20240116; t=1772550791; c=relaxed/simple;
+	bh=ZUuBdXlabAKnNnIZ3Gl8Tm4xd9RNOR5maKUH0bsKVbY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SlxwSek+gxdyOqrxJuxDq35OXCYHy6tEvcILUuxxvhaT8XpgLYcf6uRQNeo9F7F0tKBc8yURnnoRa0xqj42fk/pO30VKs2DvnE2G/TxTm7s8b3MwHrjvdDqM2WDbgj2jJMisqsfsdPch+9TinXpZ8yZ31yrxwGrWhlDBxv+MMu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=E2vVxtjf; arc=none smtp.client-ip=78.32.30.218
+	 Content-Type:Content-Disposition:In-Reply-To; b=JKJOzd1TVCHXC2nCg8sCEVlu+eXgGEmiLqZuwyRur3jHGEsmb7APaxNfe22WXdtSHEWHlHMrQSqNOdYpblETGk9IcIdaIimx8k45iJcb+/nqHUvXvHy3gRiA+5nINsF4vAVI3YFlCHizuK6Y7vxJAO+Gl5UZo0HikhC6mATMdrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=tm7jhcaD; arc=none smtp.client-ip=78.32.30.218
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -40,27 +40,26 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
 	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=9HNWqW/5qWHN0QBEI80/r96WRbljDrLfozCnuqKtqBQ=; b=E2vVxtjfJQ4Z5xCAc75ygEl+L5
-	IIdWZgg+42iBkPmro0AfJ4Zntg3MubLvAQlkLOnpwhLfSZre649TjYJ+rDrzT7bpqkQnZodvsOqoj
-	HuHMV1P7Iac0kDX0whyjGQ5TeTK8sIsAhxV0wikH+bsCx6sgKdLzUa+1pGQvK5YaO7c04kaLQFT3y
-	QgsBaX6Ly9brinTTe/C+TiZsJ32T888nKyX02PSxUVjM5ou46vSBIZf0S6ZAqqSJlnIrprPmGSXjF
-	hoOCvFahbS7kGbdJ1aYwonfIUxyAWjEvvsFpK7YJBhGfSWKUShkI8kgG4OXCXYS8cmsSVLwFnIfKC
-	JFGOuqLw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:41570)
+	bh=rSM3jEZffCw3A4oMljmCNtPxUoaBFLdJTlI4x5TlvQM=; b=tm7jhcaDdh9zeIBPtz6c+Il+8a
+	Zk3vnR9L7eL8Q4f4X7FCo3R0j+x8RqlDKPw1ad6eeV4gaosRV0lB+8NcdhzczrAAushj3oq0VMsl6
+	Kj2e0sLArVNSevmBEkE2unbjE/3VOR1f2n4FM0NdYP58ahNiL4VhcwWNGowap1jivHb9rZF4kQV/W
+	39/CKoUpv5MgkaJoBPlZfj37JF0X34hYD9zQEEqeQMM0wplbPU3J4dvpW0UxsqQtqWNd2AZgHV/Rn
+	iG3qeNxOlbTpN6Wf6tgNqxc9jpdP/GuNbMN8GVeOZuDwOgXh3ui4zpEKxA5xMNUDuSWAvqb9wJMct
+	ng3R3eFQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45204)
 	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.98.2)
 	(envelope-from <linux@armlinux.org.uk>)
-	id 1vxRQ0-000000005FN-1IFP;
-	Tue, 03 Mar 2026 15:12:16 +0000
+	id 1vxRQf-000000005Fi-2EmF;
+	Tue, 03 Mar 2026 15:12:57 +0000
 Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
 	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vxRPy-0000000071n-4ABh;
-	Tue, 03 Mar 2026 15:12:15 +0000
-Date: Tue, 3 Mar 2026 15:12:14 +0000
+	id 1vxRQe-0000000071z-1F3j;
+	Tue, 03 Mar 2026 15:12:56 +0000
+Date: Tue, 3 Mar 2026 15:12:56 +0000
 From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Mark Brown <broonie@kernel.org>
-Cc: Romain Gantois <romain.gantois@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
@@ -75,10 +74,11 @@ Cc: Romain Gantois <romain.gantois@bootlin.com>,
 	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter
  regulators
-Message-ID: <aab6Tqo1z-8YQ4j6@shell.armlinux.org.uk>
+Message-ID: <aab6eAOi9ZT8TjDm@shell.armlinux.org.uk>
 References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
  <20260303-sfp-regulators-v1-2-7101ae34cb84@bootlin.com>
  <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
+ <2344035.iZASKD2KPV@fw-rgant>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,29 +87,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
+In-Reply-To: <2344035.iZASKD2KPV@fw-rgant>
 Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Rspamd-Queue-Id: 403721F24A9
+X-Rspamd-Queue-Id: E0F211F26AA
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270579-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270580-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[armlinux.org.uk:-];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_SPAM(0.00)[0.173];
+	NEURAL_SPAM(0.00)[0.142];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
@@ -118,26 +118,26 @@ X-Spamd-Result: default: False [1.14 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,armlinux.org.uk:url,shell.armlinux.org.uk:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,shell.armlinux.org.uk:mid]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 02:22:40PM +0000, Mark Brown wrote:
-> On Tue, Mar 03, 2026 at 02:54:27PM +0100, Romain Gantois wrote:
-> > If phandles to receiver and/or transmitter regulators for an SFP device are
-> > found, enable them at probe time.
+On Tue, Mar 03, 2026 at 03:40:54PM +0100, Romain Gantois wrote:
+> Hello Mark,
 > 
-> The driver should unconditionally request whatever power the device
-> needs.
+> On Tuesday, 3 March 2026 15:22:40 CET Mark Brown wrote:
+> > On Tue, Mar 03, 2026 at 02:54:27PM +0100, Romain Gantois wrote:
+> > > If phandles to receiver and/or transmitter regulators for an SFP device
+> > > are
+> > > found, enable them at probe time.
+> > 
+> > The driver should unconditionally request whatever power the device
+> > needs.
+> 
+> Ok, I'll use devm_regulator_get_enable() instead then.
 
-... and then we break everyone, just like you broke SATA, and I've
-never forgiven you for taking a principled line on this rather than a
-pragmatic approach. You're making the same mistake here.
-
-As we disagree, we're at a stalemate, the result of which will be a
-NACK to this patch set.
-
-Sorry.
+What Mark is suggesting will break existing users. So, I'm afraid we
+can't proceed with this proposal. Sorry.
 
 -- 
 RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
