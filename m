@@ -1,282 +1,169 @@
-Return-Path: <devicetree+bounces-270305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270306-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kNRbDfx9pmnhQQAAu9opvQ
-	(envelope-from <devicetree+bounces-270305-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:21:48 +0100
+	id SOSDIgV/pmnhQQAAu9opvQ
+	(envelope-from <devicetree+bounces-270306-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:26:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D21211E9933
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:21:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 060F41E998F
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:26:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42D77303714B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:17:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6BAEA302D58E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B427B377029;
-	Tue,  3 Mar 2026 06:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B063D374E5E;
+	Tue,  3 Mar 2026 06:26:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RadMwS5o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC8B374E78;
-	Tue,  3 Mar 2026 06:17:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6194A23;
+	Tue,  3 Mar 2026 06:26:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772518672; cv=none; b=lg1BmBXLUHPDUYudxwY/QSKcxmEtWKXHgQ47K2OFoAIOkdIP12zo4q5AzGXOC8xHeC7ni+F1MNeFCaURtaCNQeb8ZdQegBl0ndk7Em4IG7m46yJmiFiVTmAvz5xKcOmoHQ5KDwn6gk9a9yLXuO3dSJWzlgDnN6XCkkwjfSNmLJA=
+	t=1772519163; cv=none; b=lTB3PSVF7FxMyOUvWghK+/FX6k+Dcga/qAVuqWeTz0f1Nz6hJlYIYtW7DenXAOT1R36JXFTjVuOf0xDTyimlFA+/6svRVSed3+9yv9ktXehtXaSH5v/EPblsVA4gEL16zr4j84YUtVOyxC+BoZKjMTuB9/GPvPOG1cC+dzPv1EA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772518672; c=relaxed/simple;
-	bh=UWR+oiD02I8haxQYzdp3mBi3cN0XN9nqeNYehcSvgbI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=exwjtxZSrkMd9MwMSZWUqe2fMe63sSZVRBNBbME308/uiCEWVKFT4ZimUx3WYv9OOTORUnRu8ff05QTrZlL96oY9d4G+62OlNXYO3cVBTT5o32dkJLFlmEjDz8XWjAEQuah0TWVq2smyq8SprK00ipiZk0WIa0X/AcLU8m3Sh9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0004057DT.eswin.cn (unknown [10.11.96.26])
-	by app2 (Coremail) with SMTP id TQJkCgD3DaEAfaZpgzgFAA--.27688S2;
-	Tue, 03 Mar 2026 14:17:37 +0800 (CST)
-From: lizhi2@eswincomputing.com
-To: devicetree@vger.kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	netdev@vger.kernel.org,
-	pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	rmk+kernel@armlinux.org.uk,
-	wens@kernel.org,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	pritesh.patel@einfochips.com,
-	weishangjuan@eswincomputing.com,
-	Zhi Li <lizhi2@eswincomputing.com>
-Subject: [PATCH net-next v3 3/3] riscv: dts: eswin: eic7700-hifive-premier-p550: enable Ethernet controller
-Date: Tue,  3 Mar 2026 14:17:32 +0800
-Message-ID: <20260303061732.918-1-lizhi2@eswincomputing.com>
-X-Mailer: git-send-email 2.52.0.windows.1
-In-Reply-To: <20260303061525.846-1-lizhi2@eswincomputing.com>
-References: <20260303061525.846-1-lizhi2@eswincomputing.com>
+	s=arc-20240116; t=1772519163; c=relaxed/simple;
+	bh=1j50NqMw0tW39Khs7QiVUPmByJOtDY3ArZqGKQfTSnQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lE2iM2kOYb8xeZqgJDuHV2QGrr36BNuMS5Nf307/v2gn79k1HCWo64W1MAb6oe/gp5rnT9e5Oyc7dqC6XSyIKyGLzOvDmQ7xHoYoOBLaCFD3vpFMx1CReRVB0KBCOGDRUr6cx7msyr6ZX1OQ+/LVM48Xeid0VAoq+IkwKUVEMYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RadMwS5o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A765AC116C6;
+	Tue,  3 Mar 2026 06:25:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772519163;
+	bh=1j50NqMw0tW39Khs7QiVUPmByJOtDY3ArZqGKQfTSnQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RadMwS5oF7/zvteJ+Odk85B7kz5XlmH+EqCuO3YYNkbgN5HtUFGirIFT1vnwkEvBs
+	 fSidZGkzo40ELAN98+lR6KveBTWa74/X5jcOVHQUfRk4CWGZKi/cPrEmvgKP+evQIj
+	 P91mAh8sa8cau/ioZNmRdVyfEWyYpRM+jb5qXqvzVMOx3EGHPHmn3UvA05FFT1shFz
+	 417mjaDXbp/peMJ59gEJqGNdVHM0IpfwSjtE6fdikYyBGJrKTwK84ikn7zHM82Fwjv
+	 2FoTIxLQVxx+4jZZIDc2dHwUwTpKlHu2EqPBGYxguMnLmkrGiNW5GghNNYKhr3eNOg
+	 Pl+Vva7F/LJ7g==
+Message-ID: <1fe574f2-7157-4418-9589-2c152479c18e@kernel.org>
+Date: Tue, 3 Mar 2026 07:25:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgD3DaEAfaZpgzgFAA--.27688S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxCF4DWr1rKrW3tF4fGryrtFb_yoWrGFWkpF
-	47urZ5Xr4rWr1Iy34avFy09FZxJws7WF95Krn7tFyUGF4q9FWYvr1Yy3WfJF17ArWUX3y5
-	WFs3t34FkF4vy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBG14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4U
-	JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcV
-	C2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRdWrXUUUUU=
-X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/
-X-Rspamd-Queue-Id: D21211E9933
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/4] dt-bindings: iio: adc: amlogic,meson-saradc: add
+ S4 compatible
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Nick Xie <nick@khadas.com>, neil.armstrong@linaro.org,
+ khilman@baylibre.com, jbrunet@baylibre.com, krzk+dt@kernel.org,
+ jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, linux-iio@vger.kernel.org, robh@kernel.org,
+ conor+dt@kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, xieqinick@gmail.com
+References: <20260228065840.702651-1-nick@khadas.com>
+ <20260228065840.702651-2-nick@khadas.com>
+ <20260228-quirky-lemon-reindeer-1045f6@quoll>
+ <CAFBinCAkxO4HoN0Cw0Fc2B3KRLLJqso1p5+qjNN_E0c26VOf2g@mail.gmail.com>
+ <49b3a87d-7ea0-4da1-871e-35ddf5d5b454@kernel.org>
+ <CAFBinCDyhvzWO3gOL=GtnH56Guh2fkZyhmSjn2k3iJdhtmTdBA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAFBinCDyhvzWO3gOL=GtnH56Guh2fkZyhmSjn2k3iJdhtmTdBA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 060F41E998F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270305-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	DMARC_NA(0.00)[eswincomputing.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270306-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[3.19.90.128:email,0.0.0.0:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lizhi2@eswincomputing.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[googlemail.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[khadas.com,linaro.org,baylibre.com,kernel.org,analog.com,vger.kernel.org,lists.infradead.org,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.831];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[3.9.72.96:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,3.1.11.0:email,3.1.50.16:email,eswincomputing.com:mid,eswincomputing.com:email]
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: Zhi Li <lizhi2@eswincomputing.com>
+On 02/03/2026 22:03, Martin Blumenstingl wrote:
+>>> - and you would like to see amlogic,meson-saradc removed (from the
+>>> bindings and .dts files that are already upstream) - I will take care
+>>> of this once S4 support lands upstream
+>>
+>> This no. It's an ABI, you cannot change it. Not worth it, either.
+> You suggested adding a comment stating that future bindings must not
+> use the "amlogic,meson-saradc" compatible string anymore.
+> Since it's part of ABI we need to keep it. So adding a comment is all I'll do.
+> 
 
-Enable the on-board Gigabit Ethernet controller on the
-HiFive Premier P550 development board.
 
-Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
----
- .../dts/eswin/eic7700-hifive-premier-p550.dts | 50 +++++++++++++++++
- arch/riscv/boot/dts/eswin/eic7700.dtsi        | 54 +++++++++++++++++++
- 2 files changed, 104 insertions(+)
+Yes, comment would be useful.
 
-diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 131ed1fc6b2e..d558f0fdfb38 100644
---- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-+++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-@@ -13,6 +13,8 @@ / {
- 
- 	aliases {
- 		serial0 = &uart0;
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
- 	};
- 
- 	chosen {
-@@ -20,6 +22,54 @@ chosen {
- 	};
- };
- 
-+&gmac0 {
-+	phy-handle = <&gmac0_phy0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gpio106_pins>;
-+	rx-internal-delay-ps = <20>;
-+	tx-internal-delay-ps = <100>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gmac0_phy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-id001c.c916";
-+			reg = <0>;
-+			reset-gpios = <&gpioD 10 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <80000>;
-+		};
-+	};
-+};
-+
-+&gmac1 {
-+	phy-handle = <&gmac1_phy0>;
-+	phy-mode = "rgmii-rxid";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gpio111_pins>;
-+	rx-internal-delay-ps = <200>;
-+	tx-internal-delay-ps = <200>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gmac1_phy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-id001c.c916";
-+			reg = <0>;
-+			reset-gpios = <&gpioD 15 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <80000>;
-+		};
-+	};
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-index c3ed93008bca..c6f504f0d096 100644
---- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
-+++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-@@ -5,6 +5,8 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
-+
- / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
-@@ -295,6 +297,58 @@ uart4: serial@50940000 {
- 			status = "disabled";
- 		};
- 
-+		gmac0: ethernet@50400000 {
-+			compatible = "eswin,eic7700-qos-eth", "snps,dwmac-5.20";
-+			reg = <0x0 0x50400000 0x0 0x10000>;
-+			interrupts = <61>;
-+			interrupt-names = "macirq";
-+			clocks = <&clk 186>,
-+				 <&clk 171>,
-+				 <&clk 40>,
-+				 <&clk 193>;
-+			clock-names = "axi", "cfg", "stmmaceth", "tx";
-+			resets = <&reset 95>;
-+			reset-names = "stmmaceth";
-+			eswin,hsp-sp-csr = <&hsp_sp_csr 0x100 0x108 0x114 0x118 0x11c>;
-+			snps,aal;
-+			snps,fixed-burst;
-+			snps,tso;
-+			snps,axi-config = <&stmmac_axi_setup_gmac0>;
-+			status = "disabled";
-+
-+			stmmac_axi_setup_gmac0: stmmac-axi-config {
-+				snps,blen = <0 0 0 0 16 8 4>;
-+				snps,rd_osr_lmt = <2>;
-+				snps,wr_osr_lmt = <2>;
-+			};
-+		};
-+
-+		gmac1: ethernet@50410000 {
-+			compatible = "eswin,eic7700-qos-eth-clk-inversion", "snps,dwmac-5.20";
-+			reg = <0x0 0x50410000 0x0 0x10000>;
-+			interrupts = <70>;
-+			interrupt-names = "macirq";
-+			clocks = <&clk 186>,
-+				 <&clk 171>,
-+				 <&clk 40>,
-+				 <&clk 194>;
-+			clock-names = "axi", "cfg", "stmmaceth", "tx";
-+			resets = <&reset 94>;
-+			reset-names = "stmmaceth";
-+			eswin,hsp-sp-csr = <&hsp_sp_csr 0x200 0x208 0x214 0x218 0x21c>;
-+			snps,aal;
-+			snps,fixed-burst;
-+			snps,tso;
-+			snps,axi-config = <&stmmac_axi_setup_gmac1>;
-+			status = "disabled";
-+
-+			stmmac_axi_setup_gmac1: stmmac-axi-config {
-+				snps,blen = <0 0 0 0 16 8 4>;
-+				snps,rd_osr_lmt = <2>;
-+				snps,wr_osr_lmt = <2>;
-+			};
-+		};
-+
- 		gpio@51600000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0x0 0x51600000 0x0 0x80>;
--- 
-2.25.1
-
+Best regards,
+Krzysztof
 
