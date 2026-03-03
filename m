@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-270492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270493-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aATfIuHfpmlkYAAAu9opvQ
-	(envelope-from <devicetree+bounces-270492-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:19:29 +0100
+	id aF0sLDLfpmlkYAAAu9opvQ
+	(envelope-from <devicetree+bounces-270493-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:16:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6AFD1F015C
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:19:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 315431F00C5
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:16:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D4E56310DDBB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:13:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 476DC3095977
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51086425CCD;
-	Tue,  3 Mar 2026 13:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC0F1426690;
+	Tue,  3 Mar 2026 13:14:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE38E421F1F
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F423421F1F
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772543638; cv=none; b=BWjc76Be8gdhePMRXzGAQlLyQv/VDY4O5conuPd0agtjeACp8flLOP7SpC6wsNIcrQeu51iFVY3KqaSQghzbEf2ujt0y66RL8+aiwwSU8+wZ16IUv9pOqVap2CpaHghKpAf0OOy3pIxglc/5WGdBzIejT0VjNVw0oRuW2izhrx4=
+	t=1772543675; cv=none; b=rp1R98n6B8mLvKhG5A1mL0Fg1sa4rVVUkf58KvjhB1xG79DvGld+x1A0qqDLt2xxwKdX+MOFHklWb8P3mjj/ICfnlH5uSJfMbT3NgwChNWwLBydbvGlLL99OStyYr2J1aybOP1uub/R2jNIudBHsH5c3yumUENx14216yGU/dHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772543638; c=relaxed/simple;
-	bh=FEfFxP8X1sCVWYVq7jp9gZLcQaix0rbikm0t1pa0H6U=;
+	s=arc-20240116; t=1772543675; c=relaxed/simple;
+	bh=gcVKBhiWEywu8IVtdOHISgtMYk/liHzhW9EmtjMMR6k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oWeRRgzueIjoRhhooLBOQzHAubVYho2qUxkJFkGX7X19ymB2ZhL1QQ5OXratgAdhPOs7W5V7etVMmlCezcDRsDIoZVFrlzc73eqNG5BnQUZeWcbF4VsVlM/JXxaK10CqxloZyNIz0Lqa+fUTJ6DXcjU6OPMtP2ygeJS+VGOdcps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
+	 To:Cc:Content-Type; b=iQW6n2ZnCRm1YeHPl1T6/0dLYANdT0o5fIkleypLEhUnGz6P2ZDM1Q+2GBHpjrrFQYunmH9jsXOT7w89L6L16QslRGqs+1b3XpSQJ2a2+ZTCy1vpPB+CvC3sLZuEwrPMrNE+AUpu3rg6CdF8cPQMsLmIWUQTwN/wwx/Kr12M63E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-56a8584e3a2so4928972e0c.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:13:56 -0800 (PST)
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-56a8d7bb872so5299202e0c.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:14:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772543636; x=1773148436;
+        d=1e100.net; s=20230601; t=1772543673; x=1773148473;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lPbwvUGe/7JcxTYMUx4R8OK85eDDkFysVThEgmDwHLg=;
-        b=kNXFL/nyPyRorEBywAk6ikDoT6/VOHbft3//t+ThCQl4uG5X3K/dYwo8yRvuuAncx4
-         P/v1cP0E79DutOyWiAOb7jxsnDdCn9sDEakDqjobKA5cj3HpNxUMJNe47zJ9cXbV1EDN
-         KTcVSp0QTn9so7BMXH/+U+I1MMSA2mp7+3QSpTq+d9dSNe4Pweo5fMHMbB86C7HtwxTk
-         5HuP7zeoBAt98ah4fywM4DBeIkp2Kc4vf/9C57PlUSMBkJ1VyiK7DQ18kQ9tmaqJ97k9
-         WYscv/3WBHiW0GiX16Bo/HUfWaxpi2PASMG7jZ/P/uXrV5YwRhanyVjBKQgximiIl8Pc
-         aCDA==
-X-Forwarded-Encrypted: i=1; AJvYcCV9fZ2I7KIYm7h1fGhOBRCUxCNKyL4LmJ+gjrbYjjA+IB7tO4LPV4AvfKNdPHv5BPM6dnNz7F9EGsI3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl5P9vp1rdHGpKK1EA7sWLsUoqGOldtbF/trvLXxZrQeJbwI2b
-	o7E/3LA2q+aqkHO3q85gqZ0MdAM69E90DArDEMCoAlnB3uajca2kWIqM3XBA2/Dk
-X-Gm-Gg: ATEYQzymDpJsIXI/DBGuSbqW8MHWuKiT0giDxL2Pa3OI0c7rKBQoUCphsQNY1I2Iu0B
-	962Urr6kwEW9GH8usiHh5zPtbPQw76dMI2KlsbevAlx6JwFzyx7Gh5W83C8w+Bmqdq9qtNe3vnA
-	pyTAMirjBKFXhaJB2NBK6HPmsPQ6zmyzVr4C8N/3pnBP4YgXdL+BznE1Qv3JhTwVbaBOv97tjah
-	2iJFjYuBSR19cd64S5Pit7iYizsYt6z1FJM1BOOaXxUQbPwdAyowak0rwHE6h+a3JpvLaWkDanS
-	USx9g2CtH7SufBjIJNS7EHaGlybYX6P8s/5dN+PPeKo8SXbnvdSXbalc7OGtReEVIrNKxUCBLcH
-	gjORhRyo3qF+jpg9o536N8cDrnKshLqPwORa0oN3cq0m9Ul1rKRWycgmy/+Grf8wiobKGSp9z9c
-	EHUEVIPeTCjINiWrrjWQzpSCkMnvPN+MnS5L9ipsLJQbeLbhgmVZyb/BZPfXgY
-X-Received: by 2002:a05:6122:e265:b0:567:44f0:b076 with SMTP id 71dfb90a1353d-56aa0a89465mr7632774e0c.11.1772543635776;
-        Tue, 03 Mar 2026 05:13:55 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56a922afe47sm18912009e0c.20.2026.03.03.05.13.55
+        bh=T7piWhiIWgPegFcPXnZxv+AF8LrC/qNugfBvwGvY2QQ=;
+        b=HGvBpcnN7mfun9dVBkjHt3ZPX7dasCRG+UMKP+7bxwyFERIlxHuvYw3b49q73i7dQC
+         yWe6oLpXW8/hM5zd7TrCTb58WFZGbPh16JDNzVuT1dm1v+FNMdkHR5y5WoA6hdBb6m58
+         id9ip9m/L6DuUPjzb3xgM2UbJdQVJMwtIHQJC2y/OGJq2uXQBtwSOs2rB79wXqTqmK7k
+         RP2ElD3rLs96tXyEn8qAIjYmxK13RfNjyH2oWAX5DX+qKByChMdMCr/u2L018eXeG1gN
+         IaMRJh4rFwZZOwN62EtFTEAHoGoXT3E5jWyCpmLKRMa+cGd99ESv18FQM2cVjLIv900P
+         vqcA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLcUyssA9ZuOS/0mOmkx/I8KKDoYALDf5JQTyzj/WXW1D29hkXQP0tkjikQOMG4UfNxrsz8jn08hqe@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfdP7L70RtMRqDV4UjHDtd58E7MUv/oP312GmI4BbnrbSNFkUq
+	x6RjS6uQrUBP9H3hTWnCGhqCHHrsjgToBnUGZ1RBQAKbw9ls5WL/cKRe8EAGA1rz
+X-Gm-Gg: ATEYQzwSItTlVQQhiY5jNty1mbTq/zszNxuKqOOYmzhYH0JeFocR7bhb9dSA/03iR+P
+	2phM+jsbgzT4EaaIKIgGltMChHy+zoenV59CpXCYzc7pAU/leh21d2HfaeltwOJPDfg8zWFSt+5
+	OJdTeYuoNNRvK3wrRgqEW08SrBVC/szhJ+kaRTQiMZOjHEXye6XIoRe/vGaO28LWldwHatScfJS
+	pXosRBib6lYRdnUrF2I8PxT9EijHtbyHaMq2G3XiaecNswAC384i1AxewnJoq8tyt1GZ3dBwRiY
+	0nlwB1NaUVyUoj1x0H3u9eXDcEpkOZ+fNpK1NZtxWDmDX5hwcnFKqnoRiGqClZ8lU22NLaCIsyW
+	wVdlm8PJ/sK2HrlQDJu0o6iIXxRhTmbhSoPRFnX4mPE9uxD4upPHOD+m6EMmX0YW3ItpzffYFWI
+	tEtXqwl1sGiJhsy8c99rky8GEJ69ZVQXrOVpcmB3+M5uAiAfRwbdgiBT+QIrq8
+X-Received: by 2002:a05:6122:829f:b0:563:7062:2a75 with SMTP id 71dfb90a1353d-56aa0a169c4mr8144280e0c.8.1772543673584;
+        Tue, 03 Mar 2026 05:14:33 -0800 (PST)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56ab4aad2ebsm10364828e0c.17.2026.03.03.05.14.31
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Mar 2026 05:13:55 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-94dd6f452f0so3642748241.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:13:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVu1nafgkMrUm5/jwnJxAPIYxExqEI2z1NpDkUejzhUd6hYvOrst1HTsMhGoyUEX6VXiFF7Vcei0mdP@vger.kernel.org
-X-Received: by 2002:a05:6102:5091:b0:5f7:24e9:ece2 with SMTP id
- ada2fe7eead31-5ff3252136bmr8506725137.28.1772543634838; Tue, 03 Mar 2026
- 05:13:54 -0800 (PST)
+        Tue, 03 Mar 2026 05:14:32 -0800 (PST)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5ff9d225a0eso117956137.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:14:31 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW2c/TAf0TxbKc+OPdGa4hrM7kTGELF0brbRdajm/XR0mDCgEQIYCoanTEwFJfr/0zMYUK3kMHCQvZ3@vger.kernel.org
+X-Received: by 2002:a05:6102:32d1:b0:5ef:a59e:617a with SMTP id
+ ada2fe7eead31-5ff324e88d4mr7987495137.21.1772543670903; Tue, 03 Mar 2026
+ 05:14:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260123225957.1007089-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20260123225957.1007089-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260123225957.1007089-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260123225957.1007089-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260123225957.1007089-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 3 Mar 2026 14:13:43 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVEE3jsaPNjOsZUqd3GhJ7uhVGkp2RpPwGBBQoSEjWqmg@mail.gmail.com>
-X-Gm-Features: AaiRm51-XWLKyeuQxkB4PJ_YjrL_4uS9zAdF4loOr7hgqzaPzAPVuA7XYGBMCHY
-Message-ID: <CAMuHMdVEE3jsaPNjOsZUqd3GhJ7uhVGkp2RpPwGBBQoSEjWqmg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: renesas: rzt2h-n2h-evk: Add ramp delay
- for SD0 card regulator
+Date: Tue, 3 Mar 2026 14:14:19 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUKVXyyT-kB9BdZsgY1cUeXepcA3ZSc5k-yv8-dB9Unzg@mail.gmail.com>
+X-Gm-Features: AaiRm51CxZV-LXYs7xMcfTPengr0S-ob571jJ20tJGIKLTg8dNkzKwHWgTDa6o4
+Message-ID: <CAMuHMdUKVXyyT-kB9BdZsgY1cUeXepcA3ZSc5k-yv8-dB9Unzg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: renesas: rzv2-evk-cn15-sd: Add ramp delay
+ for SD0 regulator
 To: Prabhakar <prabhakar.csengg@gmail.com>
 Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -92,21 +92,21 @@ Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: E6AFD1F015C
+X-Rspamd-Queue-Id: 315431F00C5
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com,renesas.com];
-	TAGGED_FROM(0.00)[bounces-270492-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270493-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[linux-m68k.org];
 	FREEMAIL_TO(0.00)[gmail.com];
-	NEURAL_SPAM(0.00)[0.551];
+	NEURAL_SPAM(0.00)[0.526];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -115,36 +115,34 @@ X-Spamd-Result: default: False [-1.46 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,glider.be:email,mail.gmail.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid,glider.be:email,linux-m68k.org:email]
 X-Rspamd-Action: no action
 
 On Sat, 24 Jan 2026 at 00:00, Prabhakar <prabhakar.csengg@gmail.com> wrote:
 > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> Add a ramp delay of 60 uV/us to the vqmmc_sdhi0 voltage regulator to
-> fix UHS-I SD card detection failures.
+> Set an appropriate ramp delay for the SD0 I/O voltage regulator in the
+> CN15 SD overlay to make UHS-I voltage switching reliable during card
+> initialization.
 >
-> Measurements on CN78 pin 4 showed the actual voltage ramp time to be
-> 21.86ms when switching between 3.3V and 1.8V. A 25ms ramp delay has
-> been configured to provide adequate margin. The calculation is based
-> on the voltage delta of 1.5V (3.3V - 1.8V):
->   1500000 uV / 60 uV/us = 25000 us (25ms)
+> This issue was observed on the RZ/V2H EVK, while the same UHS-I cards
+> worked on the RZ/V2N EVK without problems. Adding the ramp delay makes
+> the behavior consistent and avoids SD init timeouts.
 >
-> Prior to this patch, UHS-I cards failed to initialize with:
+> Before this change SD0 could fail with:
+> [    2.646242] mmc0: error -110 whilst initialising SD card
 >
->   [   32.723914] mmc0: error -110 whilst initialising SD card
+> With the delay in place UHS-I cards enumerate correctly:
+> [    2.633493] mmc0: new UHS-I speed SDR104 SDXC card at address aaaa
+> [    2.641687] mmcblk0: mmc0:aaaa SR64G 59.5 GiB
+> [    2.651489]  mmcblk0: p1
 >
-> After this patch, UHS-I cards are properly detected on SD0:
->
->   [   28.379122] mmc0: new UHS-I speed SDR104 SDXC card at address aaaa
->   [   28.387239] mmcblk0: mmc0:aaaa SR64G 59.5 GiB
->
-> Fixes: d065453e5ee09("arm64: dts: renesas: rzt2h-rzn2h-evk: Enable SD card slot")
+> Fixes: 3d6c2bc7629c8("arm64: dts: renesas: Add CN15 eMMC and SD overlays for RZ/V2H and RZ/V2N EVKs")
 > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
