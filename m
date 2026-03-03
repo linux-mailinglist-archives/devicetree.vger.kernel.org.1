@@ -1,118 +1,72 @@
-Return-Path: <devicetree+bounces-270425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270426-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2IMtIcy5pmk7TAAAu9opvQ
-	(envelope-from <devicetree+bounces-270425-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:37:00 +0100
+	id CPhfMR67pmk7TAAAu9opvQ
+	(envelope-from <devicetree+bounces-270426-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:42:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22E391ECBBF
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:36:59 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25BCA1ECDC8
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:42:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 56316302EC93
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:36:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0CC56300B980
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C75B39B966;
-	Tue,  3 Mar 2026 10:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fbS4awTN";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Bx5RTu+0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E04939D6FD;
+	Tue,  3 Mar 2026 10:42:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FDD3822B5
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 10:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932EC39D6E3
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 10:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772534215; cv=none; b=fmkD49dwZ3fc8hXg9mj6i/wP0MS8mLKAbY0pyLSaMLVsF0HvT6imvpRFI6LE87pIKWaHH8XIfvJin5/TLItx1/mpStxgKOKDRqB2xG7DfT/ZYUpSGHHbjFnjq2fOjl5LtEF3Y864xPj9yKLs4UaNaVHXHlQjI8OPUsbNf+rmIG0=
+	t=1772534555; cv=none; b=XjbeE4XyVoihOyx8yWV4JKnUbS5PnpntTnLjopVa4b8uE4Mmm7q7bgFnVkzjjbHTAYoFJxRPImMrSKjqjIQOGJczDjtUKjmGFbCm6ievxeCI4YFBG+yIL58UNm440ynuK8+EQ4TPty5pZHoPKWAHLi0NAGeJ8exVlMa2df0gPJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772534215; c=relaxed/simple;
-	bh=57VyYJ9veAA/eqKT8waUydt9UuG26LoYl3nrMSnLAzk=;
+	s=arc-20240116; t=1772534555; c=relaxed/simple;
+	bh=SFyt0DxSZrmtvXM7OEdMhUTH7YCZzaYqBehW3DXnFCE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mxn8SxPzLKlDzk/7w6A/MRtYy3IeAzsW6SS7x9+pAj5cLRAxfETRP1SHgK0SPMdKFW1auZOhZNVJxtZuPsaAflR1BrHSpk3zZrZyINdJuRTE/xUNxCVD0No5PFv4Mccl11vZ3fiN49/DReVrMfezW8N0rSpeK76YKnmSvlFisnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fbS4awTN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Bx5RTu+0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6239mhHe3951769
-	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 10:36:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=3wST2dbTeo05QMXXy/34tAy2
-	8EoimV642Eodk8HyEbE=; b=fbS4awTNc0EESXyTUP7Mb5J6k5e2U7D7vlhMFDjl
-	5FsNKJSGxxqBDZ1wDasmtt8bx9utMfS086TF/HvJinT7ESFVSc/V1638xv7k7qYj
-	hxwwNFSL7JHcCeCOYtR4g4vcUc5qz8SHkPeVcHMhVKYChl6OKekvn9aFel/WcWYV
-	m0UCJT4WrxX613paXUA7lvDG1DRFMYLP4437zQOg3ux4+hudTBEb3xURGp21/T0u
-	9SXEQMD1SlhVrcLAM/9REXrH+/mnZvH0cdwsD9pb9ma4wxrfmCtokHlbdya8UY9M
-	sQEmfXfsYI69WyQQ/eRskH3u6H5MXUKYY9O9lTGqq4lN0Q==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnu3n8nnr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 10:36:52 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c881d0c617so3537992585a.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 02:36:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772534212; x=1773139012; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3wST2dbTeo05QMXXy/34tAy28EoimV642Eodk8HyEbE=;
-        b=Bx5RTu+0VPPua27TB95jVAJewiWgbb6kRLOKUGjzcJy9PAMQrCaILOwyCpqL7IamTk
-         mLl67QpJ3Eh4t4bpmVGMuHtnzrQ+xIrUHq8NI9c+a/wApQcp7IDJnLEjqQA3c4X2wGLN
-         s8sIcuIs4cslIoK1Y7nCx2exJHPjhMTDnZLQmFDh07PbD0VsilAleEyNm8KuSBCIH/tZ
-         5WA31ymIdhSOfZEtup8zKbfBdFQsQYjpgtWYQ1ldzQwBeE4K7ei94X6HQ8aRld6g6BsE
-         ASIkhYRaE+Ez+XloTanvkbE01wqDlT6Jh9y1q5GDyg8ARq9oKfUjPNaEBDCf8lzJ7DzC
-         6NLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772534212; x=1773139012;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3wST2dbTeo05QMXXy/34tAy28EoimV642Eodk8HyEbE=;
-        b=xLDw8k7Q7TAhk5Bbjn5/07CtPPWRIb6rHGb22x/Gd2kTCTkf8PVWVyncC4ISjtLVJm
-         WchFA7NP0VtuBYwGm398WLF4KiiucYwlenzoVkMHHbsQqtPIqA8sLc36UhyXHCOD4/d7
-         kHK1LttgEVyp5NJKmOKmW4PIm8Dbsl4Hd4hblLRWpPZI2PggFAU++TMwP3zhGrNDllGY
-         4vDv6b8QePisOI4pq7s45QD14LVP3neITGeEycX75DIb5QxcDS9SHvcLNSjMvYHAeyg7
-         cPcZxlPtz8P+StZ5qtmz3B4BioRWj/b1jYnc1bf2FA/EGlJoO7fndt+pE4IXOhCwONdx
-         iESw==
-X-Forwarded-Encrypted: i=1; AJvYcCVx2yQfBcLb97E71XNrOJQBxz9UAjpYbQu/MrdMNb7dt0rzK43ALPny1oP4btX/0feAuMRdong/F56U@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxe9g9b6gW/E/vkw4R85toB/x5xO7Bj4f/1bkmgXjpYpxk2HTCY
-	Ryi7XIMFOHcAHD2XN6R3z7kXATQZBarlUmpb5ycjFDtNdiLy2p2ynnJXRbJMENx/BY6kvYOwc+c
-	AHCMkdRoKAJd9fwcd4WoGMdZ8z/RJwUDwzZuXgfBMsa5VxkycK/wT8JBSgU5MHx7T
-X-Gm-Gg: ATEYQzxv3w45/n8dvujn1gCcgKd6VJti8ro2daojrg/8nl8Ztt5zsQKzPebMGH7WD0C
-	4x0n/CVVjHx76up5j/Y44y+OHW+S/pF4DH+oJ3n/xhxMcwQJqP+N0gfBigBumwFksu5Tweropv2
-	8n6o4dFpHinoTWE5LuH7EcgcSVkHWiDdD84ZyrgM+kCfLIyabGVkUkqvX0xtKPLkDzPe97wmUgM
-	QJcwaB3ujQaqJyom2QIRqTm+EoGPVmQ5SvTGnI4lw7Ny6AeJR6K9lyK3VsOIz1f6XzxzjSP+A0u
-	HO88UiUb3F243xG81zkCaq+iYSaSDksfzz0Wdtg3TDEQTuj5TQQcAwa9o4373aYKlRRn1RhA/BS
-	ghmbZ1NEppESEUBLyAU3j5kXIKcq1lq//Re8P
-X-Received: by 2002:a05:620a:3707:b0:8c8:807d:21b1 with SMTP id af79cd13be357-8cbc8e2d329mr1981614585a.70.1772534211950;
-        Tue, 03 Mar 2026 02:36:51 -0800 (PST)
-X-Received: by 2002:a05:620a:3707:b0:8c8:807d:21b1 with SMTP id af79cd13be357-8cbc8e2d329mr1981611985a.70.1772534211365;
-        Tue, 03 Mar 2026 02:36:51 -0800 (PST)
-Received: from oss.qualcomm.com ([86.121.162.109])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bd702e7bsm517107115e9.5.2026.03.03.02.36.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 02:36:50 -0800 (PST)
-Date: Tue, 3 Mar 2026 12:36:49 +0200
-From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Subject: Re: [PATCH RFT v3 3/3] arm64: dts: qcom: glymur-crd: Enable USB
- support
-Message-ID: <qqwerobprzxc3lels4u53i5sn2f6nks34ksdsuvfiaq4nvcahq@wldbrbdda7nf>
-References: <20260302-dts-qcom-glymur-add-usb-support-v3-0-883eb2691a0d@oss.qualcomm.com>
- <20260302-dts-qcom-glymur-add-usb-support-v3-3-883eb2691a0d@oss.qualcomm.com>
- <df538e4b-026d-48ef-a50a-7180cef9be84@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=V41dETpxa1snmfUP+hLXnV8CTPzKQ5XhFHWtZpX7xiN7toR2bgiOuxwgd8CKur+HOFbQkZPZ5W7o1oVsBaFyjzvz9m0CREP9oXMPab9Ckaz/7jX0g5+8lXUu7yvX3wAuEuG1gV3SQQplqxRSELXyO6/hNYq0P9qFkYAzLIbBpig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxNCc-0005f6-7X; Tue, 03 Mar 2026 11:42:10 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxNCZ-003X1T-2V;
+	Tue, 03 Mar 2026 11:42:09 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxNCa-0000000G2ij-47dc;
+	Tue, 03 Mar 2026 11:42:08 +0100
+Date: Tue, 3 Mar 2026 11:42:08 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, luca.ceresoli@bootlin.com, 
+	Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v11 3/3] arm64: dts: imx93: Add parallel display output
+ nodes
+Message-ID: <tyqgkbmkmenkdqdptb3baeizmvsdoyfjnaudlpb4jnz4py7cpb@oy64pijka2yz>
+References: <20260303-v6-18-topic-imx93-parallel-display-v11-0-1b03733c8461@pengutronix.de>
+ <20260303-v6-18-topic-imx93-parallel-display-v11-3-1b03733c8461@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -121,108 +75,176 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <df538e4b-026d-48ef-a50a-7180cef9be84@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=JaexbEKV c=1 sm=1 tr=0 ts=69a6b9c4 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
- a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=EUspDBNiAAAA:8 a=tyHzckWLDJUHuHEa2CwA:9 a=CjuIK1q_8ugA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-ORIG-GUID: Te0TylsNHcq-1anIAuBMv1Rr9YkUbqqF
-X-Proofpoint-GUID: Te0TylsNHcq-1anIAuBMv1Rr9YkUbqqF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDA4MSBTYWx0ZWRfX26PCNQiWv24R
- pYh167+7HqOHB5QFQ7wHoWcMJHSoim6gtMIyenW1jPSYlYlsx89DPDwnUC2bBsKE9QGH+jScK+a
- 0xVEvq8+MSTYOVNJRdmdxVVn0UNVzM/ic6J9HFTDtPjQMjp3B0T1ZrKwyqooW6A10m+93kFEZgg
- o01WMA6/BC9tF/3rS4Tuo6h7wQJeg1S8ByiLSnRU9FHwaDLkXPZJOsgZyKemga0GEUdnKT5ELCQ
- 2I3sOoo14PtYwuC1VTKTeUR04I/VCvxOOQBmon0YVYMukUN5RlgUIjJkdEveWY/4FhQoXS8quP7
- 2RiEc/dKqfURlhCOA3cDXgB9Dqoh4BVuKVj+7QkdIBcAMYnKBpfo9CNwhNYftIyI/XE0r8c1vQ0
- c0U1ZAtluqX2wM1HNFfpIVhucuFQpMoNSZb58DWcVgwiAKevhirfMZju/ZuiUbRqv+oln8UrKr4
- Lwo3/VOgTf3iyfvo+tw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-02_05,2026-03-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 impostorscore=0 malwarescore=0
- lowpriorityscore=0 adultscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603030081
-X-Rspamd-Queue-Id: 22E391ECBBF
+In-Reply-To: <20260303-v6-18-topic-imx93-parallel-display-v11-3-1b03733c8461@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: 25BCA1ECDC8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270425-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.47:email,qualcomm.com:dkim,qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:dkim];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	DMARC_NA(0.00)[pengutronix.de];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,bootlin.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270426-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.43:email];
+	NEURAL_HAM(-0.00)[-0.682];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	R_DKIM_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.0.0.0:email]
 X-Rspamd-Action: no action
 
-On 26-03-03 11:25:30, Konrad Dybcio wrote:
-> On 3/2/26 6:09 PM, Abel Vesa wrote:
-> > From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> > 
-> > The Qualcomm Glymur Compute Reference Device comes with 3 Type-C ports,
-> > one USB Type-A, and a fingerprint reader connected over USB. Each of these
-> > 3 Type-C ports are connected to one of the USB combo PHYs and one of the
-> > M31 eUSB2 PHYs. The Type-A is connected to the USB Multi-port controller
-> > via one of the M31 eUSB2 PHYs and one USB3 UNI PHY. The fingerprint reader
-> > is connected to the USB_2 controller. All M31 eUSB2 PHYs have associated
-> > eUSB2 to USB 2.0 repeaters, which are either part of SMB2370 PMICs or
-> > dedicated NXP PTN3222.
-> > 
-> > So enable all needed controllers, PHYs and repeaters, while describing
-> > their supplies. Also describe the PMIC glink graph for Type-C connectors.
-> > 
-> > Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> > Co-developed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> > Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> > ---
-> 
-> [...]
-> 
-> > +	ptn3222_0: redriver@43 {
-> > +		compatible = "nxp,ptn3222";
-> > +		reg = <0x43>;
-> > +
-> > +		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-> > +
-> > +		vdd3v3-supply = <&vreg_l8b_e0_1p50>;
-> > +		vdd1v8-supply = <&vreg_l15b_e0_1p8>;
-> > +
-> > +		#phy-cells = <0>;
-> > +	};
-> > +
-> > +	ptn3222_2: redriver@47 {
-> 
-> I'm not super content with the _2 suffix now, but it's not a big deal
+Hi Frank,
 
-Oups. No, you are correct, this needs to be fixed. Will respin.
-
+On 26-03-03, Marco Felsch wrote:
+> Add required OF nodes to support the i.MX93 parallel output (DPI) path.
 > 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> On the i.MX93 a single LCDIF is connected to three bridges: DPI, LVDS
+> LDB and the MIPI-DSI whereas the i.MX91 support only the DPI bridge.
+> 
+> Map endpoint@0 as DPI bridge output since the i.MX93 TRM (Figure 485.
+> MEDIAMIX block diagram) doesn't mention any port-number <-> bridge
+> combination.
+> 
+> Set the MEDIA-AXI and MEDIA-APB clocks to the overdrive (OD) values
+> since the i.MX93 and i.MX91 use the overdrive (OD) clk settings per
+> default.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 
-Thanks for reviewing.
+Please ignore this particular patch since you already applied this one.
+
+Next time we should align the apply with the rest of the patch series if
+dt-bindings and driver behaviors are involved. In such case the final
+integration patch should be merged at the end and not at the beginning
+:)
+
+Thanks,
+  Marco
+
+> ---
+>  arch/arm64/boot/dts/freescale/imx91_93_common.dtsi | 54 ++++++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx93.dtsi           | 12 +++++
+>  2 files changed, 66 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
+> index 7958cef353766a430df5e626ff2403dc05a974b1..5a8813df6bc993d559fb0b20fc742a106bfe6315 100644
+> --- a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
+> @@ -1122,8 +1122,62 @@ media_blk_ctrl: system-controller@4ac10000 {
+>  				 <&clk IMX93_CLK_MIPI_DSI_GATE>;
+>  			clock-names = "apb", "axi", "nic", "disp", "cam",
+>  				      "pxp", "lcdif", "isi", "csi", "dsi";
+> +			assigned-clocks = <&clk IMX93_CLK_MEDIA_AXI>,
+> +					  <&clk IMX93_CLK_MEDIA_APB>,
+> +					  <&clk IMX93_CLK_MEDIA_DISP_PIX>;
+> +			assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1>,
+> +						 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
+> +						 <&clk IMX93_CLK_VIDEO_PLL>;
+> +			assigned-clock-rates = <400000000>, <133333333>;
+>  			#power-domain-cells = <1>;
+>  			status = "disabled";
+> +
+> +			dpi_bridge: dpi-bridge {
+> +				compatible = "nxp,imx93-pdfc";
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						dpi_from_lcdif: endpoint {
+> +							remote-endpoint = <&lcdif_to_dpi>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +
+> +						dpi_to_panel: endpoint {
+> +						};
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		lcdif: display-controller@4ae30000 {
+> +			compatible = "fsl,imx93-lcdif";
+> +			reg = <0x4ae30000 0x23c>;
+> +			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clk IMX93_CLK_MEDIA_DISP_PIX>,
+> +				 <&clk IMX93_CLK_LCDIF_GATE>,
+> +				 <&clk IMX93_CLK_MEDIA_AXI>;
+> +			clock-names = "pix", "axi", "disp_axi";
+> +			power-domains = <&media_blk_ctrl IMX93_MEDIABLK_PD_LCDIF>;
+> +			status = "disabled";
+> +
+> +			port {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				lcdif_to_dpi: endpoint@0 {
+> +					reg = <0>;
+> +					remote-endpoint = <&dpi_from_lcdif>;
+> +				};
+> +			};
+>  		};
+>  
+>  		usbotg1: usb@4c100000 {
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index 7b27012dfcb564650882dc8c40e836e797b2fda1..5436b48b30e89eb1f939b398ce1bf105abe7e34b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -150,6 +150,18 @@ l3_cache: l3-cache {
+>  	};
+>  };
+>  
+> +&lcdif {
+> +	port {
+> +		lcdif_to_ldb: endpoint@1 {
+> +			reg = <1>;
+> +		};
+> +
+> +		lcdif_to_dsi: endpoint@2 {
+> +			reg = <2>;
+> +		};
+> +	};
+> +};
+> +
+>  &src {
+>  	mlmix: power-domain@44461800 {
+>  		compatible = "fsl,imx93-src-slice";
+> 
+> -- 
+> 2.47.3
+> 
+
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
