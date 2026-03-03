@@ -1,194 +1,399 @@
-Return-Path: <devicetree+bounces-270255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270256-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qELLIfwxpmnKMAAAu9opvQ
-	(envelope-from <devicetree+bounces-270255-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 01:57:32 +0100
+	id iJ/VJZkzpmlJMQAAu9opvQ
+	(envelope-from <devicetree+bounces-270256-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 02:04:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825F61E76BC
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 01:57:31 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8831E777B
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 02:04:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BA4903002F5A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 00:57:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4BB023025247
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 01:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB0B1BC08F;
-	Tue,  3 Mar 2026 00:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B641421B9DA;
+	Tue,  3 Mar 2026 01:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NYwgVdul"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cNN0XiJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B9257082D
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 00:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098D93D3B3
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 01:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772499445; cv=none; b=XpwehUEFTkqFKXWQ2bR0jAwEWnox50XNAsfm5fwg3epQACil0LzwOddbmsSmwpHpS6Rcc6GaU6jASdUAlpie/9TBWwue6YRpRqGSFpFEZzVFYx1HRFqowRkaFIdAlfCHJWPxvINou8urnwnRL4A8gI2f5+oU8IYtyrlfATy/rAI=
+	t=1772499858; cv=none; b=cMQH3jMrSz9DyjLV5TSj61SgjmNgn+nimFpawti/pZG0rHK2dL+jQG2ED5mKtwtMFmZKnYjGTlakJrydqDa7E1/jGkbcifnLO+qmZBg1ZelLXaepuU/LcDun5yu+tRvTGbjhmRQmdd6S774hUL1Q8jAfCnBTzaC5nWCuNEcJVYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772499445; c=relaxed/simple;
-	bh=KBCyFDfourMtNMGwjDFRmZB31hD2+jEkHKTpEnDx5GE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=npaZ4d5+/6icjFuGb28efMyaWsCmosQPl6X46xp1pHqORde03H+0lFFHnNB7GXR5RfLJ1F3SGYliuGpcxaiHni929nj549XmcA6151OlY2Nn5wooLpOzo0ne4E7FFehXPrQEAlv7ceuNv4dhiSSGawVPbpWr6SY9BTjex+segVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NYwgVdul; arc=none smtp.client-ip=209.85.214.181
+	s=arc-20240116; t=1772499858; c=relaxed/simple;
+	bh=CoXi3raZ8Hi+U1VVQqdGvWKzGnKswTm8aEYfEf9JBhY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NSD53BXrt8fIfw5e3kybqAzGSwz6qPq6qqQ7PwZ3vW+uUsE0L2M5fgSfMRP1FHsap4cUEVZlGWwYzSY7nWd1RqZExULsVspnlqKkeeXRPvscSOxu+yYpSndxtv5g0ywxnU2rX2tlzvBaWF5+y6PsoGhmaSNxeySSFwsMl08A638=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cNN0XiJa; arc=none smtp.client-ip=209.85.216.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2ae505619baso9152065ad.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 16:57:23 -0800 (PST)
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-3598df39444so928276a91.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 17:04:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772499442; x=1773104242; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+DbRpP4pGqX3L3KGnHSAdJ16AaJ96EbWxB7jPQsFqMQ=;
-        b=NYwgVdulSk/WfPGaSXH63OgfRIAVypjuzubpZ4A0eFbxWSRAAk3oz6zlqNnDPTycWb
-         Wa2UdMDoL+qdEaoAFlaEI25TfaM2VSDe8mwoErFWK5NCsnLQ2IHsR23mdE0sN0aa1WZf
-         kxxrfKI+mz/QVODvmOnGK/k3DL3wwpoSIggjy5WotMO2SsFZkB3VqMCYFMzixWe9i8kr
-         abuoHC2fKhqkwLyGKmirtI3/oZgATVM6wgDSIw+mJ688Zv+sB3e5Z60Jyv1wzIOTjNIX
-         8e3EKItkx9ZXLu2ZdQ9LgggceWH5pSXduSGoqrs1+Xalj7DBiouNeWcaPMQqo+HuZ5Cf
-         870Q==
+        d=gmail.com; s=20230601; t=1772499855; x=1773104655; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LJfO34USsvCpv1UH9qU1hYEgkmphxj2R3COc9IPiZ2A=;
+        b=cNN0XiJaDaFlURUq97QblI4lwas+h2r/t7GOYdSc52BQ66+bvcT1tqtKL1Nm2+yZuq
+         yX/tiKyUrTwjmxR9gr5HZW5+gCA2qNIGIJK3gFkqYmSIbyN9uqA9xiGtPK187Vpp0tp8
+         8tTBIlca2LmfafSz8Q6nR07U7N9o8quhm7p/j0cV7vrPMnV5b9ihxtexUYPqndHpjJQa
+         D/jcyZeSte6d/ABCla8dcO0jgcWimRSGIrYY0Zvk1pj76uqrLIdcjFDUibVzP4dlS3G+
+         DJD4Q+NXWAbO4dxTWlQA/iDRZ3FGhCM58X265x8kqeZ6nldS+GV7sEnvFoMKXH+PHiDX
+         cxWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772499442; x=1773104242;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+DbRpP4pGqX3L3KGnHSAdJ16AaJ96EbWxB7jPQsFqMQ=;
-        b=BC782Xd4swcnB6hijD4yS+aL9WSVCH5zIr+xGHhMS/tsY8ruBT2c91fONDzmcX1rOC
-         UyOK3V13UzZdD5msInTQyikfjTzs9BWEMc8RvOpWG83YB/zpATF+htU5BCt5Ll1DP7i3
-         tzvp285jEqLnKs7VGKHO4P3QFmbqRS6dCafud6ED9Ztt60o0HkYxyhAJ/3H6j1XdjYV4
-         sEY0SIfAsoQDKNm12YI/LtV5uTH9RLQOyojFq9NerUDQoSb5BWHMXOwIBOv3IUSkdORd
-         hA/t6+Uh9eKs4Bv3QCsLn+3GtlRAF2Zfl1UIXiOgqKImxm9j9hSMdQ2BysQTF/cYeqab
-         97lg==
-X-Forwarded-Encrypted: i=1; AJvYcCVkgv7EWitZDsH9lYM/uC1WXDthK6Z0VPxzzAcj4k5tosEDNbeHArMbBQH+VBpSi7uRbXLf4AFoT7T6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA1jZSnSmUF0wpBO9KHmnvYq2bh4Zn+ZKugAxZpshFJLYQTpIp
-	vxKbFTjSzzKDbIPLxUJ3wkLzS3TDAG20o8jZT/l9vg1OCH3cDHRVnX+d
-X-Gm-Gg: ATEYQzwl5vj5C61nCD9JYp0GIlYohJYUBcAM8Zyz+EnTzQobXZVVdy3r2esAhXnYrcZ
-	9GuExQT1VRO41JW4mGSiv/w3M8bc9NI9mFfftURO6r+s4U59azJEuaOdnENjBjLdnqW9KYZN9fC
-	AgwfK40yLZYx1bPiKZT8z4wMEzjAKCKofmUdXSA2b2GsfrapbHUAcI8d/sLGLuqsTSqiQZo35Op
-	dPxihBtX8nq3dQWrpmXD4MPvYetx16TWTSfYzIW6j0FKjgx9wkiTnpCnLGc+HqG3ellaP9L0UVH
-	lZsLod1PR96M7r8FP5okwb1TF0Za92tP2elrHgvcIf8o+kX9/Z9Uqal3UV2eUPvLGWSNQxWAQqe
-	uhbrP690OiG1vHYywA9KSmusYDcHYjvJT2hwKFPbhPt3uqprsm+OND4+y9r5uSMAWzOYp3RSDil
-	TDMFlks5hu7n8MaPP6WtStrUHFeSOa338umn8OQ994BRFUO/ROagtU3vDGokB3A8h+4w59NoA=
-X-Received: by 2002:a17:902:d484:b0:29e:c2de:4ad with SMTP id d9443c01a7336-2ae2e42233dmr126907975ad.24.1772499442458;
-        Mon, 02 Mar 2026 16:57:22 -0800 (PST)
-Received: from [172.19.1.48] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb5b22fesm207547505ad.2.2026.03.02.16.57.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Mar 2026 16:57:22 -0800 (PST)
-Message-ID: <1a6cbd56-2e07-42e0-b7e7-959fa2bf6315@gmail.com>
-Date: Tue, 3 Mar 2026 08:57:18 +0800
+        d=1e100.net; s=20230601; t=1772499855; x=1773104655;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LJfO34USsvCpv1UH9qU1hYEgkmphxj2R3COc9IPiZ2A=;
+        b=dqM0CvXTklEQG+wWTJiXes2Xd9VM7vQFoZOU/FM890vmXh2n93eFUapyhCNZ8h8lMY
+         BtlscCIBeh71a6j6nZ3jsTEr3r4+hqFOs3f07ShYIA6ju+Wc31H53hlAjZ5RJLxE1EpJ
+         AbwlOmyaS360ieGO52AdQWobR99eKXFbjBznRVzPde7DcuT+Ic9u9yEPTA4HfKfV8Kt8
+         ozE2Bew2sRSmz4T+MS8/Jwj8ASlMEzm7OavcC3ztXujw8i7PmAG2IpjSNKBKSPIEIRrS
+         BFf2jyHD/FTT1TSXae9K/v+N05qimcTh9MH6vwZHtQY/PSBvSf7aIo7slDKDuVPKMYIz
+         V8YA==
+X-Forwarded-Encrypted: i=1; AJvYcCXpZOYS+WBNfacjmhe6wG/sq6vtRydOSZPftw0QxOt994wdl4sG7vNaM/Ye8l/ksZGhwtJFjnKBZVB/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUiSIqy+2ctlz6EbOnCvr7TN4Wd7TCjXr7xgC8yyY0kKqtFg3u
+	0M/YhIijzyKSaQlh08LDbGcqFA8360/c63RfsS/YTnRE+Dz4WzPlxz0X
+X-Gm-Gg: ATEYQzy1AAkQSXLJqcF5XYaWkWG5GTRaKHSEiMP2t7HBuzT5VUENVxjVUkWB9JVnI92
+	ZpYR9jpqA41Fn3zo+u4sgjs5AwQcIeQaqiRSzccxd2JdUQoBehdvuQ7xYgAqHodJ4nSfFbe6GPK
+	2kB5QWOgmMLlekTHMHO4w88ATwkhRoXbvRoajkcJyVtuVKcgKjX8v3NM5VAjAclnKU3A+MonfYR
+	KVowkN3feFRPTesi9rlabA795eY9F+lTWG/YoCiIzt0Jn73kUGN9okuUQtR+nnsT0N1XNtGbcU8
+	lZPlFow2tEiQgLV6kXhX6I5rnkGBYYJL6PxfnZcNaqXgWS3vu6nHtKeI2Db84o+tz9NhyAB87jQ
+	I2KtZ0Clfu5xJi2j3Fut0ocYLk+tsKJOvHR1F1iUjHvAwTmG/TobcoG/pHC6nIQxiDzwEe/4Azs
+	RfLORA9MWWuWUQx8EscDi/zA==
+X-Received: by 2002:a17:90b:578d:b0:343:e2ba:e8be with SMTP id 98e67ed59e1d1-35965c3c945mr12250080a91.10.1772499855342;
+        Mon, 02 Mar 2026 17:04:15 -0800 (PST)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599c49eb5bsm361668a91.11.2026.03.02.17.04.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Mar 2026 17:04:14 -0800 (PST)
+Date: Tue, 3 Mar 2026 09:03:46 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, Boon Khai Ng <boon.khai.ng@altera.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Choong Yong Liang <yong.liang.choong@linux.intel.com>, 
+	Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Jose Abreu <joabreu@synopsys.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paolo Abeni <pabeni@redhat.com>, Paul Walmsley <pjw@kernel.org>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Richard Cochran <richardcochran@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
+	Yanteng Si <siyanteng@cqsoftware.com.cn>, Yao Zi <me@ziyao.cc>, Yixun Lan <dlan@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH net-next v5 0/3] riscv: spacemit: Add ethernet support
+ for K3
+Message-ID: <aaYyUAaz7cSnBXl9@inochi.infowork>
+References: <20260227075718.2243818-1-inochiama@gmail.com>
+ <CAJM55Z_soPhC9P03edfq_A-GN07PbGqu31aHgE_5kKhkQwkMmQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: i2c: nuvoton,ma35d1-i2c: Add MA35D1 I2C
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: andi.shyti@kernel.org, ychuang3@nuvoton.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20260302020822.13936-1-zychennvt@gmail.com>
- <20260302020822.13936-2-zychennvt@gmail.com>
- <20260302-agile-mighty-cassowary-ed972e@quoll>
-Content-Language: en-US
-From: zychen <zychennvt@gmail.com>
-In-Reply-To: <20260302-agile-mighty-cassowary-ed972e@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 825F61E76BC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJM55Z_soPhC9P03edfq_A-GN07PbGqu31aHgE_5kKhkQwkMmQ@mail.gmail.com>
+X-Rspamd-Queue-Id: 3E8831E777B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270255-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270256-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[canonical.com,armlinux.org.uk,eecs.berkeley.edu,ghiti.fr,foss.st.com,lunn.ch,altera.com,kernel.org,linux.intel.com,davemloft.net,google.com,st.com,gmail.com,synopsys.com,bp.renesas.com,bootlin.com,dabbelt.com,redhat.com,cherry.de,eswincomputing.com,cqsoftware.com.cn,ziyao.cc];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[39];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gentoo.org,gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,kernel,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[d4015000:email,inochi.infowork:mid,5.245.225.0:email,cac8e000:email,0.0.0.1:email,cac80000:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+On Mon, Mar 02, 2026 at 08:08:59AM -0500, Emil Renner Berthing wrote:
+> Quoting Inochi Amaoto (2026-02-27 08:57:14)
+> > Add initial support for ethernet controller of the Spacemit K3 SoC.
+> > This ethernet controller is almost a standard Synopsys DesignWare
+> > MAC (version 5.40a). This controller require a syscon device to
+> > configure some basic features, like interface type and internal delay.
+> 
+> I don't know how we can accept this when it can't be tested since it still
+> doesn't come with the device tree nodes. If you don't want it to be part of the
+> series, just share a tree where this code is working. There are plenty of free
+> public git hosting sites available.
+> 
 
+It seems like you have not read my reply before, I was forbidden from
+opening other's patch. So some dependency can not be satisfied. For me,
+the only thing I can open is the ethernet device node. The other things,
+like clock, pinctrl and gpio devices. You should collect by yourself and
+I can not provide.
 
-Krzysztof Kozlowski 於 2026/3/2 下午 03:20 寫道:
-> On Mon, Mar 02, 2026 at 02:08:20AM +0000, Zi-Yu Chen wrote:
->> Add device tree binding documentation for the I2C controller
->> found in the Nuvoton MA35D1 SoC.
->>
->> Signed-off-by: Zi-Yu Chen <zychennvt@gmail.com>
->> ---
->>  .../bindings/i2c/nuvoton,ma35d1-i2c.yaml      | 65 +++++++++++++++++++
->>  1 file changed, 65 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/i2c/nuvoton,ma35d1-i2c.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/nuvoton,ma35d1-i2c.yaml b/Documentation/devicetree/bindings/i2c/nuvoton,ma35d1-i2c.yaml
->> new file mode 100644
->> index 000000000000..fa8b01e2c5b1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/i2c/nuvoton,ma35d1-i2c.yaml
->> @@ -0,0 +1,65 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/i2c/nuvoton,ma35d1-i2c.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Nuvoton MA35D1 I2C Controller
->> +
->> +maintainers:
->> +  - Zi-Yu Chen <zychennvt@gmail.com>
->> +
->> +description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-will fix in v2.
-> 
->> +  The Nuvoton MA35D1 I2C controller supports master mode and optional
->> +  slave mode operation. The controller is configured via Device Tree
-> 
-> Use modern naming, not master/slave.
-> 
->> +  and supports interrupt-driven I2C transfers.
-> 
-> Drop "The controller is configured via Device Tree", because it is
-> completely irrelevant. Why telling in DT binding that you use DT? Can
-> you use ACPI here?
-> 
-> And with dropping this it could be one simple sentence.
-> 
-Acknowledged. I plan to simplify the description in v2 as follows:
+Here is the ethernet DTS patch
 
-'The Nuvoton MA35D1 I2C controller supports controller and optional target mode.'
-> With these changes:
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
-> Best regards,
-> Krzysztof
-> 
-Thanks!
+diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
+index b691304d4b74..1dfeef564ef3 100644
+--- a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
++++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include "k3.dtsi"
++#include "k3-pinctrl.dtsi"
+ 
+ / {
+ 	model = "SpacemiT K3 Pico-ITX";
+@@ -24,6 +25,25 @@ memory@100000000 {
+ 	};
+ };
+ 
++&eth0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&gmac0_cfg>;
++
++	phy-mode = "rgmii-id";
++	phy-handle = <&phy0>;
++	status = "okay";
++
++	mdio {
++		phy0: phy@1 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <1>;
++			reset-gpios = <&gpio 0 15 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <10000>;
++			reset-deassert-us = <10000>;
++		};
++	};
++};
++
+ &uart0 {
+ 	status = "okay";
+ };
+diff --git a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
+new file mode 100644
+index 000000000000..aa8e7cfd7efe
+--- /dev/null
++++ b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
+@@ -0,0 +1,56 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++
++#include <dt-bindings/gpio/gpio.h>
++
++#define K3_PADCONF(pin, func) (((pin) << 16) | (func))
++
++&pinctrl {
++	gmac0_cfg: gmac0-cfg {
++		/* Base pins: - Used by RMII directly */
++		gmac0_base_pins: gmac0-0-pins {
++			pinmux = <K3_PADCONF(0, 1)>,
++				 <K3_PADCONF(1, 1)>,
++				 <K3_PADCONF(2, 1)>,
++				 <K3_PADCONF(3, 1)>,
++				 <K3_PADCONF(6, 1)>,
++				 <K3_PADCONF(7, 1)>,
++				 <K3_PADCONF(11, 1)>,
++				 <K3_PADCONF(12, 1)>,
++				 <K3_PADCONF(13, 1)>;
++
++			bias-disable;
++			drive-strength = <25>;
++			power-source = <1800>;
++		};
++
++		/* RGMII extra pins: add on top of base pins */
++		gmac0_rgmii_add_pins: gmac0-1-pins {
++			pinmux = <K3_PADCONF(4, 1)>,
++				 <K3_PADCONF(5, 1)>,
++				 <K3_PADCONF(8, 1)>,
++				 <K3_PADCONF(9, 1)>,
++				 <K3_PADCONF(10, 1)>;
++
++			bias-disable;
++			drive-strength = <25>;
++			power-source = <1800>;
++		};
++
++		/* Optional int pins */
++		gmac0_int_pins: gmac0-3-pins {
++			pinmux = <K3_PADCONF(14, 1)>;
++
++			bias-disable;
++			drive-strength = <25>;
++			power-source = <1800>;
++		};
++
++		gmac0-6-pins {
++			pinmux = <K3_PADCONF(15, 0)>;
++
++			bias-disable;
++			drive-strength = <25>;
++			power-source = <1800>;
++		};
++	};
++};
+diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
+index 6cc31e94c13a..066006826e92 100644
+--- a/arch/riscv/boot/dts/spacemit/k3.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <dt-bindings/clock/spacemit,k3-clocks.h>
++#include <dt-bindings/reset/spacemit,k3-resets.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ 
+ /dts-v1/;
+@@ -437,6 +438,112 @@ soc: soc {
+ 		dma-noncoherent;
+ 		ranges;
+ 
++		gmac_axi_setup: stmmac-axi-config {
++			snps,wr_osr_lmt = <0xf>;
++			snps,rd_osr_lmt = <0xf>;
++			/* max axi burst len is 256 */
++			snps,blen = <256 128 64 32 16 0 0>;
++		};
++
++		eth0: ethernet@cac80000 {
++			compatible = "spacemit,k3-dwmac", "snps,dwmac-5.40a";
++			reg = <0x0 0xcac80000 0x0 0x2000>;
++			clocks = <&syscon_apmu CLK_APMU_EMAC0_BUS>,
++				 <&syscon_apmu CLK_APMU_EMAC0_1588>,
++				 <&syscon_apmu CLK_APMU_EMAC0_RGMII_TX>;
++			clock-names = "stmmaceth", "ptp_ref", "tx";
++			interrupt-parent = <&saplic>;
++			interrupts = <131 IRQ_TYPE_LEVEL_HIGH>,
++				     <276 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq", "eth_wake_irq";
++			resets = <&syscon_apmu RESET_APMU_EMAC0>;
++			reset-names = "stmmaceth";
++			rx-fifo-depth = <8192>;
++			tx-fifo-depth = <8192>;
++			snps,multicast-filter-bins = <64>;
++			snps,perfect-filter-entries = <32>;
++			snps,aal;
++			snps,tso;
++			snps,txpbl = <8>;
++			snps,rxpbl = <8>;
++			snps,force_sf_dma_mode;
++			snps,axi-config = <&gmac_axi_setup>;
++			spacemit,apmu = <&syscon_apmu 0x3e4 0x3e8>;
++			status = "disabled";
++
++			mdio {
++				compatible = "snps,dwmac-mdio";
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++		};
++
++		eth1: ethernet@cac82000 {
++			compatible = "spacemit,k3-dwmac", "snps,dwmac-5.40a";
++			reg = <0x0 0xcac82000 0x0 0x2000>;
++			clocks = <&syscon_apmu CLK_APMU_EMAC1_BUS>,
++				 <&syscon_apmu CLK_APMU_EMAC1_1588>,
++				 <&syscon_apmu CLK_APMU_EMAC1_RGMII_TX>;
++			clock-names = "stmmaceth", "ptp_ref", "tx";
++			interrupt-parent = <&saplic>;
++			interrupts = <133 IRQ_TYPE_LEVEL_HIGH>,
++				     <277 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq", "eth_wake_irq";
++			resets = <&syscon_apmu RESET_APMU_EMAC1>;
++			reset-names = "stmmaceth";
++			rx-fifo-depth = <8192>;
++			tx-fifo-depth = <8192>;
++			snps,multicast-filter-bins = <64>;
++			snps,perfect-filter-entries = <32>;
++			snps,aal;
++			snps,tso;
++			snps,txpbl = <8>;
++			snps,rxpbl = <8>;
++			snps,force_sf_dma_mode;
++			snps,axi-config = <&gmac_axi_setup>;
++			spacemit,apmu = <&syscon_apmu 0x3ec 0x3f0>;
++			status = "disabled";
++
++			mdio {
++				compatible = "snps,dwmac-mdio";
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++		};
++
++		eth2: ethernet@cac8e000 {
++			compatible = "spacemit,k3-dwmac", "snps,dwmac-5.40a";
++			reg = <0x0 0xcac8e000 0x0 0x2000>;
++			clocks = <&syscon_apmu CLK_APMU_EMAC2_BUS>,
++				 <&syscon_apmu CLK_APMU_EMAC2_1588>,
++				 <&syscon_apmu CLK_APMU_EMAC2_RGMII_TX>;
++			clock-names = "stmmaceth", "ptp_ref", "tx";
++			interrupt-parent = <&saplic>;
++			interrupts = <130 IRQ_TYPE_LEVEL_HIGH>,
++				     <278 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq", "eth_wake_irq";
++			resets = <&syscon_apmu RESET_APMU_EMAC2>;
++			reset-names = "stmmaceth";
++			rx-fifo-depth = <4096>;
++			tx-fifo-depth = <4096>;
++			snps,multicast-filter-bins = <64>;
++			snps,perfect-filter-entries = <32>;
++			snps,aal;
++			snps,tso;
++			snps,txpbl = <8>;
++			snps,rxpbl = <8>;
++			snps,force_sf_dma_mode;
++			snps,axi-config = <&gmac_axi_setup>;
++			spacemit,apmu = <&syscon_apmu 0x248 0x24c>;
++			status = "disabled";
++
++			mdio {
++				compatible = "snps,dwmac-mdio";
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++		};
++
+ 		syscon_apbc: system-controller@d4015000 {
+ 			compatible = "spacemit,k3-syscon-apbc";
+ 			reg = <0x0 0xd4015000 0x0 0x1000>;
+-- 
+2.53.0
+
+Inochi
+
 
