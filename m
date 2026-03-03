@@ -1,76 +1,82 @@
-Return-Path: <devicetree+bounces-270375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270377-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qEoiNr6kpmkTSQAAu9opvQ
-	(envelope-from <devicetree+bounces-270375-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:07:10 +0100
+	id MAMvJSulpmkTSQAAu9opvQ
+	(envelope-from <devicetree+bounces-270377-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:08:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8101EBA12
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:07:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28A8B1EBA73
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:08:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 84B1430210CE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 09:02:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C41AC305ACA5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 09:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AA138C2AE;
-	Tue,  3 Mar 2026 09:02:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="axM3jgiP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE36388E6D;
+	Tue,  3 Mar 2026 09:04:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70E45374E7E
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 09:02:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53AD33559E1
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 09:04:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772528544; cv=none; b=RB4ypvZ0AuDM/TO0DSj5CpRctsoSyItIpqCnJKwLqiqf2DG1tft0Pc5synX2juUqJG1CSqesbeTyytXkR1M9d+UmykJKmDM/oiIwKQVRvg1YA6xTbIMplMKjxAnHP3KamPt38qhIdW2p1iiSd1xm31SSNKOjou6BLK43VJnDc+w=
+	t=1772528660; cv=none; b=ctXi0wYvN/z/ZirGy65weQ/lsIxOdVSsf5LpX2UkOs3cia9Epzwfmye4PZcwb+wlTJhA2Y2p+i20G7MvZS0KO2L8KNXHM3K1ZtE85Cd1oPEkHBBRX2bX22l0959pj4t/YEOX+gJ/wdC15EhcTKb4fvYtjzNzyZBBi1RJJFDTWY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772528544; c=relaxed/simple;
-	bh=FMN/FjIaB5bn7tF5kXKzMgp9kUlFKZnuHuASP5kBlWA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=ag1+Fdo9a3ULAVPaaR3YxGej26Ufp+7H2gcjfYC6ya8eefnFfyj8K/LkXtwGEOyQV3h4ZYFM/xAufMeGwyzs/h7kyziNff3dh803WEkDZyWeeSSg0GwCtvLjh7uKDOp4SgXSlP0kU0Dv/Axga6E1znH8nHl0p114jeHJnyYHnAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=axM3jgiP; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260303090219euoutp028d466c2a39a8ed88ff3ef1c363433d76~ZSVDHiG1X0910809108euoutp02N
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 09:02:19 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260303090219euoutp028d466c2a39a8ed88ff3ef1c363433d76~ZSVDHiG1X0910809108euoutp02N
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1772528539;
-	bh=IJNlv8R6cZKXjL4l+PbkPgdf1L56XfT5lWaXnTIbLbg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=axM3jgiPiarTcnfNPfN00RCJmZPnJsMecJ+ZtsDwfEMzuXp/5QSgcarEoZMiOA5w/
-	 2NYj2nteNHTYxJzp/ClSoCzs6eF4IxxhPBLRH5c8GeEOovXOHViSxe6U3eRxZlTEPQ
-	 5+DBdOGL8bt27U+09haJ2YrzwocvTXVAP106F4HQ=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20260303090219eucas1p1711b5b0f0e8ae56bc421ad8f6e5bf365~ZSVCoyKyt2751827518eucas1p1V;
-	Tue,  3 Mar 2026 09:02:19 +0000 (GMT)
-Received: from AMDC4515.digital.local (unknown [106.120.51.28]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20260303090218eusmtip1b7cadd576d57e165c9f1292f8d94b5a8~ZSVB_eFnx1199911999eusmtip1c;
-	Tue,  3 Mar 2026 09:02:18 +0000 (GMT)
-From: Mateusz Majewski <m.majewski2@samsung.com>
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: Mateusz Majewski <m.majewski2@samsung.com>,
-	linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Bartlomiej Zolnierkiewicz
-	<bzolnier@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob
-	Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, Anand
-	Moon <linux.amoon@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v4 0/7] Add initial Exynos850 support to the thermal
- driver
-Date: Tue,  3 Mar 2026 10:02:09 +0100
-Message-ID: <20260303090211.673143-1-m.majewski2@samsung.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <DGIAUIFPUHN8.35B5MNEUK1JW5@linaro.org>
+	s=arc-20240116; t=1772528660; c=relaxed/simple;
+	bh=u/oB+juUyehiMTo86CuId9XkHNGUcsQAYMN/hj3QnKM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fSvATd227dApcfiomLwt7gn5hC/0N/xgDMu4sOGBoQ8CQFuZv2waVOVkG9nzoHZ7CGW6zY70vIqlT8pMwhMAbiQ4d0mVxONACGYgcQlD9rgbBgnDEw96FmIkfdX5xM9hcLBoPdqis68WVRWT/JjVHFpvOGCvL8zCEaFB+0K2+gI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-824a3509a12so2473024b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 01:04:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772528659; x=1773133459;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jOSOKW0kCqITngNEZ1ehcTCopjWs3+gJ5WzH0JONI+w=;
+        b=Ykg9R9PXpCtW6gHUW/Hhjn9rSzzlpfV23SyzTrinsW+dLlUVCU8dO+rHLYsqjs0JTp
+         PWyqGHxHQk3BzKzbA8FNM2mqHtXAqFIFo6DbMWiH/UNpMkR8uokNG2RNoP/9qdFGQeo7
+         w+l4g6VgTUEvyd/B32OYAqvnY31pd2133PnIYtZ+WInxDPFrU2Mhgieotoe+PMbAL2r/
+         73dYbJ/t+dXDt3Xjikfxz+RuvXzrfO8b4vsomR/Kgc4sg06wHqq/18/cEGjoYgpY2YO0
+         z425LyHhYG63KmBhE7RLgsydXiOdGLtsVs+EVf96FweSLwx0KCV5gPzxTUP0DxqCDyKs
+         HQBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUruCW+nO9m/wBuKGZXNeYkeKtC9zWlYOVBOO+9BDWMWgd5STzZZiAfxnfu9KbzR0GuABHgjKeRbScn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOCv9CTdrHOGwkd3qpUplrpWSVB8fykLye5OWppdjBFGA3PnPv
+	kw7u5hvEVflYexKYaT383PkvALZW2wJ+2dgu62CKXGYrKNABBKyoj4ALdp63E+yK3Jc=
+X-Gm-Gg: ATEYQzyi5YMcZHJoI18z+FvHCR5C7xHAkp5Um8OkiKBIoq3sj7II4+zkGsQ6RvNe0MB
+	sH1WYAV4jB4XaghL/x47ZlchnaT66MRDh8i/JgmfjaRBr6/XE+J+3qLW7mJ2NEc9KA5muNWUtiu
+	NynNkgG8fvY7PTixVG4G5pTBc3tJ0/euSuFu2AJQ8W6XV84zCSzu/52B/mi+GqGZpyNtQwLdJDb
+	ZUt+lgfE0B0OVPvdVApXfsmA6N6/8ok4YDEyU0uCWez3KK7jQUSGAnVFaKOkgCXOzcC2AWZf5vw
+	IcINshgaXwnziSM2vTsrfkgyvXB0O2YJMckh4kppb/Hdjqu1kwHLnYrwB+jaBX2LFBobX53fcSl
+	EdHnJbNt0I8dItDj0gUbdTB2OtN8ZfVzsuVAM5VaOtSxqo7x0QMsqaz+Sfk26kQK+BI5qTjmgXv
+	OuV4ZLK6T3WAEYxpEL
+X-Received: by 2002:a17:90a:f950:b0:356:22ef:57ba with SMTP id 98e67ed59e1d1-35965c17f28mr12237786a91.7.1772528658429;
+        Tue, 03 Mar 2026 01:04:18 -0800 (PST)
+Received: from archlinux ([59.152.111.50])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599c4c0792sm1638259a91.14.2026.03.03.01.04.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 01:04:18 -0800 (PST)
+From: Siratul Islam <email@sirat.me>
+To: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: jic23@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	Siratul Islam <email@sirat.me>
+Subject: [PATCH 0/3] iio: proximity: add driver for ST VL53L1X ToF sensor
+Date: Tue,  3 Mar 2026 15:02:39 +0600
+Message-ID: <20260303090253.42076-1-email@sirat.me>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,79 +84,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260303090219eucas1p1711b5b0f0e8ae56bc421ad8f6e5bf365
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20260303090219eucas1p1711b5b0f0e8ae56bc421ad8f6e5bf365
-X-EPHeader: CA
-X-CMS-RootMailID: 20260303090219eucas1p1711b5b0f0e8ae56bc421ad8f6e5bf365
-References: <CGME20260303090219eucas1p1711b5b0f0e8ae56bc421ad8f6e5bf365@eucas1p1.samsung.com>
-X-Rspamd-Queue-Id: 7C8101EBA12
+X-Rspamd-Queue-Id: 28A8B1EBA73
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[samsung.com,vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,linaro.org,intel.com,arm.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-270375-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270377-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[sirat.me];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.majewski2@samsung.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.975];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.153.167.240:email,samsung.com:dkim,samsung.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sirat.me:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hello and sorry for missing your mail, thankfully Marek pointed it out
-to me.
+This series adds support for the STMicroelectronics VL53L1X
+Time-of-Flight ranging sensor.
 
-> I applied the whole series locally, it applies fine on 6.19 but I didn't
-> check linux-next; and tested it on Exynos850 E850-96 board with the
-> following DT node:
-> 
-> tmuctrl_0: tmu@10070000 {
->     compatible = "samsung,exynos850-tmu";
->     reg = <0x10070000 0x800>;
->     interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
->     clocks = <&cmu_peri CLK_GOUT_BUSIF_TMU_PCLK>;
->     clock-names = "tmu_apbif";
->     #thermal-sensor-cells = <0>;
-> };
-> 
-> and thermal zones as you mentioned way back. It works just fine.
-> Temp goes up to 48 C with a loaded CPUs and settles at 36-37C when idle.
-> 
-> So for the whole series:
-> Tested-by: Alexey Klimov <alexey.klimov@linaro.org>
+The VL53L1X is a ToF laser-ranging sensor with I2C interface,
+capable of measuring distances up to 4 meters. The driver
+supports both interrupt-driven and polled operation.
 
-Thank you!
+Tested on Raspberry Pi 5 with a VL53L1X breakout board.
 
-> However, do you have plans to update it or re-submit?
-> Or any other plans working on it?
+Siratul Islam (3):
+  dt-bindings: iio: proximity: add ST VL53L1X ToF sensor
+  iio: proximity: add driver for ST VL53L1X ToF sensor
+  MAINTAINERS: add entry for ST VL53L1X ToF sensor driver
 
-Honestly not sure. If any other patches are merged that conflict with
-this series, I definitely can resolve the commits (for now it applies
-just fine to next-20260227, though I haven't compiled the result yet).
-Correct me if I am wrong, but I don't recall anything to be done in this
-series otherwise. If there is interest in this series, I can retest this
-on the other boards and re-submit this later this week.
+ .../bindings/iio/proximity/st,vl53l1x.yaml    |  49 +
+ MAINTAINERS                                   |   7 +
+ drivers/iio/proximity/Kconfig                 |  14 +
+ drivers/iio/proximity/Makefile                |   1 +
+ drivers/iio/proximity/vl53l1x-i2c.c           | 901 ++++++++++++++++++
+ 5 files changed, 972 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/st,vl53l1x.yaml
+ create mode 100644 drivers/iio/proximity/vl53l1x-i2c.c
 
-Kind regards,
-Mateusz Majewski
+
+base-commit: 39c633261414f12cb533a8b802ee57e2d2e3c482
+--
+2.53.0
+
 
