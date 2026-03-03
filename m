@@ -1,129 +1,171 @@
-Return-Path: <devicetree+bounces-270717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270718-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KPDkOZIyp2k/fwAAu9opvQ
-	(envelope-from <devicetree+bounces-270717-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:12:18 +0100
+	id UP+sNeQyp2k9fwAAu9opvQ
+	(envelope-from <devicetree+bounces-270718-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:13:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 735271F5BA1
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:12:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44B2D1F5C1B
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:13:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D38830FCA21
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 19:07:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 19CBD303B4FD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 19:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8679B3A8735;
-	Tue,  3 Mar 2026 19:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55645426EBE;
+	Tue,  3 Mar 2026 19:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYVUjjYM"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="Oy4kMsIK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 627872459C6;
-	Tue,  3 Mar 2026 19:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 008E53D75AB;
+	Tue,  3 Mar 2026 19:10:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772564845; cv=none; b=WQi91dggM48RwDgHI4tJ5v0rJGAEr68bpBnKG7anPQPIJUvZdBo9cnKvunLuSrO/GvPqcUj0D6gEyhL2PEzysFs2eihoWW+Qvy0Srxo8XOlx/QABqUrmjN21liA1W4hUWJQv9kZpWjOwMjSPbZ1MautWIqdaE8MhrFWpM5W+/EU=
+	t=1772565016; cv=none; b=tiYJSPVjGAV4sv2YebmA15LQI3xjy1DmZ3DToZ8XMhd24h+2yMaAO31V05kNFF0qVeYidIdO7F3xge5C/FkNZyHvH4IUQvx/v8DOmtZ5UYLpilYZ08YZDCMfCiJ8eWhE1X4rCxBls2/BUxi9VgBcVKkwso0/Pxx797/hg+QwFgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772564845; c=relaxed/simple;
-	bh=5ULvDVEqgQGDwaFAFPW0DuAG2LRnxp0XDjYdD4epkNM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S2iLMQwDUrQRNQAudDLSVrWe3IFHZ4Ef+FgPOkV8o+G31I2Oqd+AGf6Wgv+Hba02MdpwAzcspjqVKauh90NpxxGv48ypubX84R9BCdpJ94sTLbUyS8QJB3bEAFs+jb5bPItBp751VlArs1Jv0TkHPSFWgWkSoWGB7L8VNKqSOO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYVUjjYM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06798C116C6;
-	Tue,  3 Mar 2026 19:07:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772564845;
-	bh=5ULvDVEqgQGDwaFAFPW0DuAG2LRnxp0XDjYdD4epkNM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lYVUjjYM/FE2OyByy7fL8C43KXl9P3XqyhTKqyFWsmfpsvLtQvqQXT0wJJI2+lmd1
-	 l+DXdzLI9RjQq4a24fDGWLk/nLqUbDAtnjbdyHCrHIZdJa/fyFgvZPytsj1U1kaukf
-	 DufWxPcUnScPGAB6XcxIh5G2QuWx5lQ3Y3v15b13rXGXiY7jnQafgMaN95NXh6PZXg
-	 /igaRvr7xwuoMYkX9cWyyHN4//w0SlAK1u7douHjItpFBMHC/IKHHfNeiZlCMXGMT7
-	 mwSLHT4fS+ehmXYwepq92ne/zc8D0kyd3idnedg6mthBwDrHo8CrmWrtNImuxkYJKS
-	 3K1ujQ0kbwo/Q==
-Date: Tue, 3 Mar 2026 19:07:19 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Sheetal ." <sheetal@nvidia.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Sameer Pujar <spujar@nvidia.com>, Mohan kumar <mkumard@nvidia.com>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: tegra: Add compatible for
- Tegra238 sound card
-Message-ID: <20260303-frighten-landmark-f345560d25d0@spud>
-References: <20260303100249.3214529-1-sheetal@nvidia.com>
- <20260303100249.3214529-2-sheetal@nvidia.com>
+	s=arc-20240116; t=1772565016; c=relaxed/simple;
+	bh=o0Z85w/VI1CVGaEoDBkl1+BDW5F3aK86mCE2F+k5prQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=X1B+NpxqxFwcwqSKm+521lJbRuAwjyE2bLb49YxGibLnqEHQcleGkKz8QYxdfG687hoCk09qEQ7gDjxwdnyMaVDTtY++iX/MNe7qeQpwa691nMzLj96p+6HQxg8yFOpJEqcbGecAU9rDwThJtT3sdSxAq44O1KzZpfpfx0pbMDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=Oy4kMsIK; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6B8F120D516;
+	Tue,  3 Mar 2026 20:10:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1772565011; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=YeYcHOU6O1PcxMMN13wZpxAP+6Z+ixxDNPaLXhkt61M=;
+	b=Oy4kMsIKUpN1ifXgxMapAw9eWZUzib2dteeWem3sYhWyzFArKtUyf3n1hZsmH9IaTWEhV+
+	qPdtEvGKXnQOI+lDMeRoep+jsXV9Ya/XcNOY1r/bcjAbzjLiMQ8/KlJE7CmOVdDNVUOT8h
+	cDB0BJvRwLk3aTYOlu4wJaAc1s2L8z8qa0IzCemII+0ANfi56E8OqGT6ddYuocq6vNGHGU
+	uInyDrfuf93mq1wycS0x2/dHLdx751rIU1qQ03Yn08tWvIFAqIS5MP66vvn1tIs1QfPjX4
+	/1Yl4egPmk/AwaZJOJXUrulS8+zzWDOfb+m7Id0lV8qZzUHSHIHhIFyE26hc/g==
+From: Caleb James DeLisle <cjd@cjdns.fr>
+To: linux-mips@vger.kernel.org
+Cc: naseefkm@gmail.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	cjd@cjdns.fr,
+	tsbogend@alpha.franken.de,
+	ryder.lee@mediatek.com,
+	jianjun.wang@mediatek.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	bhelgaas@google.com,
+	vkoul@kernel.org,
+	neil.armstrong@linaro.org,
+	p.zabel@pengutronix.de,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	nbd@nbd.name,
+	ansuelsmth@gmail.com,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/8] mips: econet: Add clk/reset and PCIe support
+Date: Tue,  3 Mar 2026 19:09:40 +0000
+Message-Id: <20260303190948.694783-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eQybRr4RlYSyFv0W"
-Content-Disposition: inline
-In-Reply-To: <20260303100249.3214529-2-sheetal@nvidia.com>
-X-Rspamd-Queue-Id: 735271F5BA1
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 44B2D1F5C1B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270717-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[gmail.com,baylibre.com,kernel.org,cjdns.fr,alpha.franken.de,mediatek.com,google.com,linaro.org,pengutronix.de,collabora.com,nbd.name,vger.kernel.org,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,perex.cz,suse.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270718-lists,devicetree=lfdr.de];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:dkim,cjdns.fr:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+Add clock/reset and PCIe support to EcoNet EN751221 and related SoCs.
+This builds on the Airoha EN7523 clock driver and the Mediatek PCIe driver.
 
---eQybRr4RlYSyFv0W
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Patch 6 is upstreaming of Ahmed Naseef's work on EcoNet PCIe, which was
+developed to support the EN7528, but which works equally on the EN751221.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+There is also a workaround in patch 7 to gracefully handle PCI hardware
+which does not advertize a bridge window and instead always reads zero.
 
---eQybRr4RlYSyFv0W
-Content-Type: application/pgp-signature; name="signature.asc"
+Caleb James DeLisle (8):
+  dt-bindings: clock, reset: Add econet EN751221 bindings
+  clk: airoha: Add econet EN751221 clock/reset support to en7523-scu
+  dt-bindings: phy: Document PCIe PHY in EcoNet EN751221 and EN7528
+  phy: econet: Add PCIe PHY driver for EcoNet EN751221 and EN7528 SoCs.
+  dt-bindings: PCI: mediatek: Add support for EcoNet EN7528
+  PCI: mediatek: Add support for EcoNet EN7528 SoC
+  PCI: Skip bridge window reads when window is not supported
+  mips: dts: Add PCIe to EcoNet EN751221
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/clock/airoha,en7523-scu.yaml     |  19 +-
+ .../mips/econet,en751221-chip-scu.yaml        |  41 +++
+ .../bindings/pci/mediatek-pcie.yaml           |   1 +
+ .../phy/econet,en751221-pcie-phy.yaml         |  57 +++++
+ MAINTAINERS                                   |  10 +
+ arch/mips/boot/dts/econet/en751221.dtsi       | 114 +++++++++
+ .../econet/en751221_smartfiber_xp8421-b.dts   |  21 ++
+ arch/mips/econet/Kconfig                      |   2 +
+ drivers/clk/Kconfig                           |   6 +-
+ drivers/clk/clk-en7523.c                      | 236 +++++++++++++++++-
+ drivers/pci/controller/Kconfig                |   2 +-
+ drivers/pci/controller/pcie-mediatek.c        | 107 ++++++++
+ drivers/pci/probe.c                           |   6 +
+ drivers/phy/Kconfig                           |  12 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-econet-pcie.c                 | 180 +++++++++++++
+ .../dt-bindings/clock/econet,en751221-scu.h   |  15 ++
+ .../dt-bindings/reset/econet,en751221-scu.h   |  49 ++++
+ 18 files changed, 869 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/econet,en751221-pcie-phy.yaml
+ create mode 100644 drivers/phy/phy-econet-pcie.c
+ create mode 100644 include/dt-bindings/clock/econet,en751221-scu.h
+ create mode 100644 include/dt-bindings/reset/econet,en751221-scu.h
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaacxZwAKCRB4tDGHoIJi
-0nSbAQDT+UeupT7k5wMwJ7XmCVbs82Xikdgb8oY2XbPYEUbB3gD8DgUshC9QIAz3
-7yK4Y4R7JwMrcvRlN5gCz+O+x2OImQw=
-=bgj3
------END PGP SIGNATURE-----
 
---eQybRr4RlYSyFv0W--
+base-commit: 3fa5e5702a82d259897bd7e209469bc06368bf31
+-- 
+2.39.5
+
 
