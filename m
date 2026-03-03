@@ -1,164 +1,176 @@
-Return-Path: <devicetree+bounces-270596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270600-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YC3mE1z/pmk7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:33:48 +0100
+	id 4JVQFrD/pmk7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270600-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:35:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FD3B1F2B61
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:33:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F7A1F2BB9
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:35:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D45603011161
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:33:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C208B300D35F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:33:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32A348C8C2;
-	Tue,  3 Mar 2026 15:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6EB49253C;
+	Tue,  3 Mar 2026 15:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Phmrstvm"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="ZqqXRqwC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4E348C41B
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 15:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A9D49251A
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 15:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772551983; cv=none; b=WQJlzCbP45L70cYdD31y4ZUs+oEPfDQkAXs+f+ICwWYIbsqFUoVibqKd+ul75j03tNWwdPX7gxTUXm4jFa4C37G9iMbdNEiz8LiSNNSlSUL0TWiBhjfoxJaxXCTCiQTqBv5rcWMfaoquZaJo11Rix9RaFXaljlg9zGzKd1Qyato=
+	t=1772551991; cv=none; b=HZ//o1UAt0Q0Uxs4Vx2mRYUIr8kK5VEylOAst4yNh7rbS26RAbzAYJWzP9TJ69uxaWkpPeWTOUsVkY+v0e8h66xxeYmzQ5W+9CxBKit1vuk5ukB0fJDDtcD4OKsVoiAhWOotqcnkOBoRU4QDcMKwfVlq1M8bFhurBxgA0LVaxN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772551983; c=relaxed/simple;
-	bh=knwC9kgWxCDIFBJO3vP9PPOshHwAvt3OG83B1MAcs88=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tfk+wKSELbk33MUYDnGRYJLa8nT7lHRBy0q/fJQnDbmmpR7n2Z3AP0jG8wOFvVr8fcbN1eWRBsNzfxqiyT+jKJHFiSjbgTNK57YRxRgg5HWpmWIL2i/lpHostXwf9BIU4TZ9QPBuwegRoA/XjRD94sI3MRIl5wSON5o0ovYKdJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Phmrstvm; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-899fa9610bbso36049196d6.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 07:33:02 -0800 (PST)
+	s=arc-20240116; t=1772551991; c=relaxed/simple;
+	bh=boG9G+5QbeBW6aT+kko42e7K1ue9tm4B0o/XFrV9C0g=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=jxx0sjG0VviiQ0VZxpRRk8habYlWcZLWhAOgWn+5qYStm/dIWAS8bafO4hCGprd8vz3GyUo1aXe9yabZZVpk8DvFPqFqe1Y3/GXhCF8IcT5yw9Rvl0Lv3AudRgi1KkU3Hyooz7cXzXH4rkKbCuhwwDziJwYGYBoCOCgOyiUd7Vo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=ZqqXRqwC; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-436e8758b91so3807388f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 07:33:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772551981; x=1773156781; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wPgQdUkfXvNqe1a6vfoPwswDnD6ALDbRdn40tHYbZAE=;
-        b=Phmrstvmz+v8S/ut++d3KkKxW7MdTVBqTkAd7t2DhrB3DKpEFTh4o7dLITJqdJtHfZ
-         Gc0rh48A+HvBA6/oGinmUFS7dxTH4XV1dENC8kYosVIqS0jcKM3BJ5nUBYvIWRUUH/v0
-         9yssB+FilG7N6In2MXgHWqrMwf0ru6+1CjfbyxKXGGj9XpJAZL9KpETTc9xSZRZtvwtv
-         DJmFuKqln0OVESlsy1gFeX12JIW2wBNMR9uomm3NE99rCLMTs1E0sDBuZN9zGIvA3w6T
-         nBnpeJLCgIl0jffeUXD770QZ+ZsxnZlmVYoBQorzIBM/PdARlzlbTSAr+gy9X7vGfK0c
-         L1sQ==
+        d=flipper.net; s=google; t=1772551988; x=1773156788; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ewnwkW8aeBnRH/Jc82nMn2tCnapdMhZRN1gE49Tbo+w=;
+        b=ZqqXRqwChZtIdiLdJyzuFGh5FQpomexaL/qVXH2p5pJqAfWAhR5qXouJtpFb67XMEq
+         7k7U96tpXAiYNIskJEG3c24fOBok8srlEbwuAhOpxlFDVYurtjGTpRTxwADV0iobUX4B
+         S4TPmA40IwWMqEWMjRpGZx2bdAgyF9gBv4Y18rMExgRO3LKGnoBc5xMJxpfm3aYQnOF6
+         zs4UEhG5cHkmVbsyEbdxdPcSFBRZFQC1nMGv9VRABlitxvvGBQ7hiSe10FKK5HEvmjUN
+         KtIzMftfq/S/JiXCVI4UyLSgoNKo9xfNAu5XS9KYOr+iCHeC+TNK8X/SEQv5ZTtjwLAm
+         gpsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772551981; x=1773156781;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wPgQdUkfXvNqe1a6vfoPwswDnD6ALDbRdn40tHYbZAE=;
-        b=H7QfDc5TyOj9Vx+p39qSkJwlLs7ZjaYWQ9UI36Q5WGdo8HBaGKduXREy4GNCkEW6pq
-         YOLQgym5rl/s8Xgzb6ozvQa0aWMNC3XTQFuTzfQwXVFnTL1SxflX9c8z3aWA4rks4Bzh
-         A877PGMsRS+WpVy/uQevfYN8a4iy/RoXWbwMe72BYeLAv5V4lA1kwjSBVXEwOfX/96Zg
-         B1DjTb1wv8qnv/j0f8/9xqE2SCmHGJtYS3D6h3xIonRl0mGtHz6PDWdQZnmboEogOh4q
-         LRqHofXsrIQW3f0qpdsdMUyaXMGr2sYmBpvXAubCovquzzGH6hAk8yNGDt1xsasgNWvW
-         /lmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXMTSi0ypOUbuHbvz9kmFnUKILrlfjHyNhhvZ3oZzDjIZwmZODbss2Cr65bX3AXcMcWqGrbqYZVcHxf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6+fFhxFYtgLKX8SUHQuxtW81GYSZgi1HG5yuAIgIPNRSjVl5K
-	HI7O5n3QdhtjqQsSDrvg9l9ephCmI8mC2n2dNYbol17Sx4qdjq3k2O5K
-X-Gm-Gg: ATEYQzxCJ7AcbazJsi5n08hKCx+lV+4khSt8I5toot7tDrGkYO+l1P9YXYnfzHu2pDj
-	DlD11GmJU9YPXTZGl2aaHieiQvEiXw/7hw4N+zCYKwFC+wKH62TPOhTTxkmZ1y0rOigKcf7j4pO
-	g67+YeVXRHuTl4sPN169O0F34HQIvDGSn1GqT3BA6E3XXd39VjVp+1Nr2N8VS8E8RdkKrIcohyc
-	m2RzTsPrlkkJKI5G7tRK5gpboNcSQXm7tjohh0KtM94GHkbvStF0uyKR6yeD+lq5k4T4qtj6OCZ
-	Z47Rh3p38YYozBJwtPMPyPzLhgVZ+l6v79pEq0sJoTAFGVTSGxEopYI6CVHsUZSDCI1HKadBhqj
-	kbXv5a0vzlKF+QGikhAPA5+yoWHk9bHIha5U3U8SE3eGgTn8QUI0XWqOD9pKfStSjTsqJ5kDeGL
-	ULkANizOkdr2r3rW0rPJ/gZY1yzo16mZ/u1F+8c0/PeP3+JMepXgFtRGs9UJwQrG5eK56WbFVLM
-	/EFFsKrSAVGZDvxVFqQdbsiiqzpw9M/LsHFbkSoaekKhNPJbh8=
-X-Received: by 2002:a05:6214:19c2:b0:89a:360:3b72 with SMTP id 6a1803df08f44-89a0360409fmr84242466d6.46.1772551981046;
-        Tue, 03 Mar 2026 07:33:01 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89a04849cb3sm31946746d6.6.2026.03.03.07.32.57
+        d=1e100.net; s=20230601; t=1772551988; x=1773156788;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ewnwkW8aeBnRH/Jc82nMn2tCnapdMhZRN1gE49Tbo+w=;
+        b=MSGcTkcJ6WJeIOHfbHMD9iK+bGNPtdMV5to1Z0Szc3ug8NJbIJLSUVf9UhtOh5KqW7
+         iL2TNdC4SC4/rXVv3Ii1zO4pElmXq/89XdtOE0SETmuScp/xvyqyJRwK35OZvD223V8C
+         4veHiYln+Og2h3+cuCWKtD62eJcAPrMZB0PAykLXFxe3aUEyV6xB/LvaeQV14pLARTXP
+         H6978mqZVP/51GU6jlVa/gkFgPUyLFw2f0AYxZEcQmEf8KAYcQLWxg9vQwzBn9YY0moc
+         6IaGG1XEp4V5E29BWcANQI5jLKU9U9BEi5SHs1wOCFbB8tQHXPsxqxnH+20fVllMj2v9
+         VJzw==
+X-Gm-Message-State: AOJu0Yyku1edcHw/hwDuL6ja1YFO0WjXcM3dwwa9AcbVXzYTC7U80tqc
+	OJctZOCUCM1v/1G8KfEd+vebdvg7GFsZzRMfUmvw/9yaBNMgDuGxqp6sOA7G/NDfD5Q=
+X-Gm-Gg: ATEYQzzj/eOPdTLzgvpX8BrKNy6EubkgbVRCfqUH3ANYkt8fj7lsuGTjz5AaOQhoWhe
+	y+TtmwSrn7bIJSZN69CCevleZiUU8rsVx0VJGVWwzhAAc8uSN3RAxD1KW40mhLBoHYPPNB/dDsA
+	zzHOy+QyOE+ZhEyjtNgZMD2sDgbFpOZc0d0wUrdrniLlfxOgBNTigC1LlYYCXfqwo6hkdhaeCyE
+	B1XY13guTLdBJfenGoasZ53lcjcYZ7SnHFShPq+Kfnoc80RCwsTTN2Up54o5bcrN/VMLJaJDyEa
+	M0JOyIaLRt0nr/BQgkbGubsBatH/Lm6MpPCw9m/VV6SHfU16X8kbUS5tmSbQPTHthCx2lxNMQe6
+	0ZcQmJbsZ8IhU5Cx8AzLQj9NnwZKyD+IT0tmqxxKDy/gg9Ps5boSxTrqLcc7OViJJ1XhnKWQmgL
+	+pG0LC5qm8vNVgYPw1JozpoXY2ydjS+UYRC1rPFYGV0qxtzJdFhpmbqgzWZjccX4d9fUqK36MeI
+	ZY=
+X-Received: by 2002:a05:6000:26cb:b0:439:b3d2:376c with SMTP id ffacd0b85a97d-439b3d243f3mr15987799f8f.12.1772551987668;
+        Tue, 03 Mar 2026 07:33:07 -0800 (PST)
+Received: from alchark-surface.localdomain (bba-94-59-44-101.alshamil.net.ae. [94.59.44.101])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439b55d15besm19799447f8f.30.2026.03.03.07.33.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 07:33:00 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Tue, 3 Mar 2026 15:32:49 +0000
-To: Jonathan Cameron <jic23@kernel.org>, 
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH RFC 6/8] iio: frequency: ad9910: add RAM mode support
-Message-ID: <4rzqg6gax4r3symyoimekikz7p4pfwjzhfamjudk64f32675oj@nlrz53u56p55>
-References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
- <20260220-ad9910-iio-driver-v1-6-3b264aa48a10@analog.com>
- <20260301133153.7f2f8501@jic23-huawei>
+        Tue, 03 Mar 2026 07:33:07 -0800 (PST)
+From: Alexey Charkov <alchark@flipper.net>
+Date: Tue, 03 Mar 2026 19:32:49 +0400
+Subject: [PATCH 04/11] regulator: bq257xx: Make OTG enable GPIO really
+ optional
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260301133153.7f2f8501@jic23-huawei>
-X-Rspamd-Queue-Id: 0FD3B1F2B61
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260303-bq25792-v1-4-e6e5e0033458@flipper.net>
+References: <20260303-bq25792-v1-0-e6e5e0033458@flipper.net>
+In-Reply-To: <20260303-bq25792-v1-0-e6e5e0033458@flipper.net>
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Sebastian Reichel <sre@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ linux-pm@vger.kernel.org, Alexey Charkov <alchark@flipper.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1089; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=boG9G+5QbeBW6aT+kko42e7K1ue9tm4B0o/XFrV9C0g=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWQu+68WURDMHNEhvUVgxyKjhqM/b4oJrBCz5J+xo/7KW
+ ilWBxnbjoksDGJcDJZiiixzvy2xnWrEN2uXh8dXmDmsTCBDpEUaGICAhYEvNzGv1EjHSM9U21DP
+ 0FDHWMeIgYtTAKbadz3D/wCzdraafc/1beefL2ze8fVk9SHz3do/1u2askHu3Y8Xhi6MDLvKZ0+
+ 2Wrq4UtDP/lCJg1Je6F0xN7cu40W1RksM3398zg4A
+X-Developer-Key: i=alchark@flipper.net; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+X-Rspamd-Queue-Id: 20F7A1F2BB9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270596-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-270600-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,hotmail.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[flipper.net:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[flipper.net:dkim,flipper.net:email,flipper.net:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 26/03/01 01:31PM, Jonathan Cameron wrote:
-> On Fri, 20 Feb 2026 16:46:10 +0000
-> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-> 
-> > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > 
-> > Add RAM channel with support for profile-based control. This includes:
-> > - RAM data loading via binary sysfs attribute (ram_data);
-> 
-> I'm not sure that's a long term viable path.  We either need
-> to figure out how to do it as firmware file load, or via an output buffer.
+The bindings describe the OTG enable GPIO as optional, but the driver
+gets upset if it's not provided in the device tree.
 
-Could you develop on this? it is not viable because iio would drop that
-support? using sysfs_create_bin_file() directly would be better?
+Make the driver accept the absence of the GPIO, and just use register
+writes to handle OTG mode in that case, skipping the error message for
+-ENOENT.
 
-> Firmware load would probably be too static and I'm not sure quite
-> how we map these to IIO output buffers.
+Signed-off-by: Alexey Charkov <alchark@flipper.net>
+---
+ drivers/regulator/bq257xx-regulator.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-will investigate this buffer route. At this point, we can have multiple
-buffers, right? I have the DMA engine buffer working with the parallel port.
-
-... 
+diff --git a/drivers/regulator/bq257xx-regulator.c b/drivers/regulator/bq257xx-regulator.c
+index 674dae6109e9..0bb58ab4b8d4 100644
+--- a/drivers/regulator/bq257xx-regulator.c
++++ b/drivers/regulator/bq257xx-regulator.c
+@@ -126,6 +126,12 @@ static void bq257xx_reg_dt_parse_gpio(struct platform_device *pdev)
+ 	of_node_put(subchild);
+ 
+ 	if (IS_ERR(pdata->otg_en_gpio)) {
++		if (PTR_ERR(pdata->otg_en_gpio) == -ENOENT) {
++			/* No GPIO, will only use register writes for OTG */
++			pdata->otg_en_gpio = NULL;
++			return;
++		}
++
+ 		dev_err(&pdev->dev, "Error getting enable gpio: %ld\n",
+ 			PTR_ERR(pdata->otg_en_gpio));
+ 		return;
 
 -- 
-Kind regards,
+2.52.0
 
-Rodrigo Alencar
 
