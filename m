@@ -1,242 +1,479 @@
-Return-Path: <devicetree+bounces-270633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270634-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LlmFuwJp2kDcgAAu9opvQ
-	(envelope-from <devicetree+bounces-270633-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:18:52 +0100
+	id oAyvF8gKp2kDcgAAu9opvQ
+	(envelope-from <devicetree+bounces-270634-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:22:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE7391F38B1
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:18:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E00FC1F3A6D
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:22:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 10A223178682
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:12:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 08C08309597B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5008F4B8DFE;
-	Tue,  3 Mar 2026 16:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eBM61BXf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635A44C040D;
+	Tue,  3 Mar 2026 16:15:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4F94A2E34
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 16:11:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0544BCAA7
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 16:15:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772554316; cv=none; b=buzsKIxKtmt+v1ux18MlEqlen8mNmd1jea76ruX7urd0YiM9uCUYFOqyIGDKamvQkiISldKtQDek7ZlBhs/5jCUVoaMRnblqCu8XAw0mfdkKbEKe4HL10qH2UMpGU9Kkw/j4LRQEQPsFTsmC1Tltj0xRwDkRNCWJtmEx+UHW1EQ=
+	t=1772554512; cv=none; b=LRKOZbUWZ8eCkSyphXFg/rVzARwsTQXQPCUkTEcJ9KqKc4SK78nraIeVoBc5Sw7ct/uYuSmUOZ4IH4pgbuRqoQu/ljXH9pfFsvw5nYz5w0z+9obdV/SwyHn9YW2N1dVBUbmjP2q/8P9OogSDcJuVq/CZ3hgdS90Tm/uffL4wWrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772554316; c=relaxed/simple;
-	bh=N5wngUdyded7KLhNkbgdzRFgxGMoyVrZJXhVV1uEP6Y=;
+	s=arc-20240116; t=1772554512; c=relaxed/simple;
+	bh=g6wJXKdgwjdhbbJCQpY0n2URjxDo2iSh9vaWqgVlYPU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=grAQQNcy2pBuYLQZ1GIk4ol4kj39N22yBr51SGm1qfu483wnGa7uFXhfMxQDCX5JjBgnVIP8sojScKluHfSmO5+gLF4RnELYQ/ti4nMTa/s/kyqjBnm+DBpnt/+vUTf2WhSzEeeIvieRH2F54RA8V2n1Lf+TAZlO1oT+B2mF9hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eBM61BXf; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4830b67aa6bso6027225e9.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 08:11:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772554312; x=1773159112; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NDQRso0/6pRmOjXwAwr8jsWZ+364LBr9GQ56Vp8aC/g=;
-        b=eBM61BXfnbJy0UckVUXOhCU2cReA5ZyEYx5F5QGZ2cAyVYWVbHrvCfDJmiMczJbf8b
-         NyWvVsi4rBQgvwgHpv+e0O09JH0IIexCE84OsL6MzdMn+5YDdFiBI3cdqSOhBx6cRWC3
-         OTbkzdvZ8yXQUAjZkyphKXAxGGPidCwqlkcama0rYPC8ggaavExNYgg7u6BMyYE5pPK2
-         DP8amZtMEYd2hExifoU8raYbR3AGZOIXBCrRNyuCUYb9QsTWOiUR1jiGhMif22QinGhu
-         Awz5C2MqAIScdwaz2T4p4p1dprxkc29ZQFhnZlF7KIAin/5+F245He5ikHsL/LDg/EhV
-         ZCWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772554312; x=1773159112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NDQRso0/6pRmOjXwAwr8jsWZ+364LBr9GQ56Vp8aC/g=;
-        b=Vtev19fqVQt7n24+TytRhXP9ugrkm7xbv5EggqTiHFS1Xzl6/dsP5K2K900dj5sX8A
-         ttYbSXFxv+I/XKQDuIfH6BLGwipCHcgrlZnZrd90JeHMUHu97QNyttMexSm3hLjiXJ/d
-         lw/s1Wf12HlhKaiI5RJaFlR4Mz3HX/nQNOi44wnVutGj2iFJsMtRu1kDni+olucohJiU
-         pGWFViYWgBWsdJAW9BKOv0fycf1o6zGFsXIViEvRnT3ml87hnMb1TQN8+MSMPDM7RgMT
-         TtFleXAimT1EdsCCdKxXs/4lOKNgGREc9NhREEuZ1knFC+fSA4FGRGWnEUQbusBbb/jW
-         kbXA==
-X-Forwarded-Encrypted: i=1; AJvYcCX9n8aN0Acq2YFT+aRziAusEYbWshUVkoWS0c72Ji38VqLlc9/9Hv3YHRP+D9JNOJoceROI5wagZZzy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKxLiwprmCWHgMRDyqs0aPu58ImPX/UuRzNEeLMT3RwRK9ASZw
-	qkZu0E7fy4v/LMGAbhRY0mEzLyEp9mcdWxr5oC50bmFuPy5tFVcStNiE
-X-Gm-Gg: ATEYQzy8yxqpYtyDmEsfFLUUYWkbbLICNupznCd9dp8ET1Nco5XPN9gMUuTlG2rQDS2
-	USebBfjmlHMe8cvjRiFldjZKVaEiU7eovHyD7FG86QohskUuE00NzE44c7XNoQgJhcQtrfiGmfR
-	pCkWJj6OgB1Z43JIM3KUCoVsNsLTROtW707EmXVOpPpQRKfItb9GUTqQoAn2odZsKde2N6EK5W5
-	tL+dCj86qIQVir8HSRuDTvtppRf5RZSBgud7KFMj5DjXj6hRSJK6N+Li2ttd/7D3AXo43rfgzaD
-	/fAChM6wCwkqlp092XyH4RzvTu/BXyRK/vQ7IQP5RJxgurZ5qwqMQzq0wh+kqKNGTTMYIMt0aju
-	Lhkmy9omuxhIbIeXKbNcwuRFbtmb6QTWD57uNtASmRLOC1Yk15TV2D44qpBDqTzJtk1VVdHSuVt
-	ytMR1zmPJxloiROnw=
-X-Received: by 2002:a05:600c:34d0:b0:47b:d992:601e with SMTP id 5b1f17b1804b1-483c9ba712emr179672085e9.2.1772554311582;
-        Tue, 03 Mar 2026 08:11:51 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d00e:3600:2472:8e4a:cf12:bb30])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439b1116698sm23197781f8f.16.2026.03.03.08.11.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 08:11:50 -0800 (PST)
-Date: Tue, 3 Mar 2026 18:11:47 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Jens Emil Schulz =?utf-8?Q?=C3=98stergaard?= <jensemil.schulzostergaard@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/8] net: dsa: add tag driver for LAN9645X
-Message-ID: <20260303161147.bgbltslwrl2gtd7p@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-1-bff8ca1396f5@microchip.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kStg00we8AyU3tAeWTTzJjDQSXKAt7v2M3eUO9NuT+RYva50N0NiMY6UBPnU90GtoTp1TmtrDN6fPpfJC6alveqKaZxqtt2hoWcp4rSCT/bBSbquDTDySXV7HC0RdFuFQGPxgGYuHuH2GWTOac9ncs6xIAI0i9FP8lRswqAAmLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxSOQ-0000WO-Nm; Tue, 03 Mar 2026 17:14:42 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxSOO-003Zk0-1K;
+	Tue, 03 Mar 2026 17:14:41 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxSOP-0000000G7Sq-2dyJ;
+	Tue, 03 Mar 2026 17:14:41 +0100
+Date: Tue, 3 Mar 2026 17:14:41 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Andrew Thomas <andrew.thomas@touchnetix.com>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, 
+	Russ Weight <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Marco Felsch <kernel@pengutronix.de>, 
+	Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] Input: Add TouchNetix aXiom I2C Touchscreen
+ support
+Message-ID: <4x3dnedfzf3rqzsy3wjdoj6yaxmy6kop37xhxeao4vjer7ifdi@35ux42ztq3eb>
+References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
+ <20260111-v6-10-topic-touchscreen-axiom-v5-4-f94e0ae266cb@pengutronix.de>
+ <qoelgb5k77a4c4jodn622a6wauotzkeygy5fj54cjjnobb5g6c@ysxkou6nhkop>
+ <a7hajq5edw3w2pm5l3ytn65kmudjckvaj5relydayoua5i7oha@wsattyisot4s>
+ <lgpdkwl7hxz7ok7qtujzdhf3c3iehwvm5d7myxfewr4kgrcq5k@3s4v4sjus7go>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260303-dsa_lan9645x_switch_driver_base-v1-1-bff8ca1396f5@microchip.com>
-X-Rspamd-Queue-Id: EE7391F38B1
+In-Reply-To: <lgpdkwl7hxz7ok7qtujzdhf3c3iehwvm5d7myxfewr4kgrcq5k@3s4v4sjus7go>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: E00FC1F3A6D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270633-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270634-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[kernel.org,linux.dev,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.948];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[]
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,pengutronix.de:url]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 01:22:27PM +0100, Jens Emil Schulz Østergaard wrote:
-> Use long prefix on extraction (RX) and no prefix on injection (TX). A
-> long prefix on extraction helps get through the conduit port on host
-> side, since it will see a broadcast MAC.
-(...)
-> The format can be configured asymmetrically on RX and TX.
+Hi Andrew,
 
-Do you foresee a need to configure the prefix length? It would be
-possible to do that by changing the tagging protocol. But it implies
-that the "lan9645x" string as found in /sys/class/net/.../dsa/tagging
-becomes user ABI that is set in stone. It will mean long extraction
-prefix and no injection prefix. Otherwise user space will get very
-confused (libpcap, XDP, whatever else might get written).
+On 26-02-26, Andrew Thomas wrote:
+> On Wed, Feb 25, 2026 at 09:50:11PM +0100, Marco Felsch wrote:
 
-> +static inline u32 lan9645x_ifh_get(const u8 *ifh, size_t pos, size_t length)
-> +{
-> +	size_t end = (pos + length) - 1;
-> +	size_t start_u8 = pos >> 3;
-> +	size_t end_u8 = end >> 3;
-> +	size_t end_rem = end & 0x7;
-> +	size_t pos_rem = pos & 0x7;
-> +	u8 end_mask, start_mask;
-> +	const u8 *ptr;
-> +	u32 val;
-> +
-> +	end_mask = BTM_MSK(end_rem);
-> +	start_mask = TOP_MSK(pos_rem);
-> +
-> +	ptr = &ifh[LAN9645X_IFH_LEN - 1 - end_u8];
-> +
-> +	if (end_u8 == start_u8)
-> +		return (*ptr & end_mask & start_mask) >> pos_rem;
-> +
-> +	val = *ptr++ & end_mask;
-> +
-> +	for (size_t j = 1; j < end_u8 - start_u8; j++)
-> +		val = val << 8 | *ptr++;
-> +
-> +	return val << (8 - pos_rem) | (*ptr & start_mask) >> pos_rem;
-> +}
+...
 
-If performance isn't a huge concern, pack() and unpack() certainly seem
-simpler than having your own implementation.
-
-> +
-> +static inline void lan9645x_xmit_get_vlan_info(struct sk_buff *skb,
-> +					       struct net_device *br,
-> +					       u32 *vlan_tci, u32 *tag_type)
-> +{
-> +	struct vlan_ethhdr *hdr;
-> +	u16 proto, tci;
-> +
-> +	if (!br || !br_vlan_enabled(br)) {
-> +		*vlan_tci = 0;
-> +		*tag_type = LAN9645X_IFH_TAG_TYPE_C;
-> +		return;
-> +	}
-> +
-> +	hdr = (struct vlan_ethhdr *)skb_mac_header(skb);
-> +	br_vlan_get_proto(br, &proto);
-> +
-> +	if (ntohs(hdr->h_vlan_proto) == proto) {
-> +		vlan_remove_tag(skb, &tci);
-> +		*vlan_tci = tci;
-> +	} else {
-> +		rcu_read_lock();
-> +		br_vlan_get_pvid_rcu(br, &tci);
-> +		rcu_read_unlock();
-> +		*vlan_tci = tci;
-> +	}
-> +
-> +	*tag_type = (proto != ETH_P_8021Q) ? LAN9645X_IFH_TAG_TYPE_S :
-> +					     LAN9645X_IFH_TAG_TYPE_C;
-> +}
-> +
-> +#endif /* _NET_DSA_TAG_LAN9645X_H_ */
-
-Why do these need to live in a separate include file? Who else needs
-access to them other than the tagger?
-
-> +static const struct dsa_device_ops lan9645x_netdev_ops = {
-> +	.name = LAN9645X_NAME,
-> +	.proto = DSA_TAG_PROTO_LAN9645X,
-> +	.xmit = lan9645x_xmit,
-> +	.rcv = lan9645x_rcv,
-> +	.needed_headroom = LAN9645X_TOTAL_TAG_LEN,
-> +	.promisc_on_conduit = false,
-
-Initializing with false is unnecessary.
-
-> +};
-> +
-> +MODULE_DESCRIPTION("DSA tag driver for LAN9645x family of switches, using NPI port");
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_LAN9645X, LAN9645X_NAME);
-> +
-> +module_dsa_tag_driver(lan9645x_netdev_ops);
+> > > > +static int axiom_u02_enter_bootloader(struct axiom_data *ts)
+> > > > +{
+> > > > +	struct axiom_u02_rev1_system_manager_msg msg = { };
+> > > > +	struct device *dev = ts->dev;
+> > > > +	unsigned int val;
+> > > > +	int ret;
+> > > > +
+> > > > +	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	/*
+> > > > +	 * Enter the bootloader mode requires 3 consecutive messages so we can't
+> > > > +	 * check for the response.
+> > > > +	 */
+> > > > +	msg.command = cpu_to_le16(AXIOM_U02_REV1_CMD_ENTERBOOTLOADER);
+> > > > +	msg.parameters[0] = cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER_KEY1);
+> > > > +	ret = axiom_u02_send_msg(ts, &msg, false);
+> > > > +	if (ret) {
+> > > > +		dev_err(dev, "Failed to send bootloader-key1: %d\n", ret);
+> > > > +		return ret;
+> > > > +	}
+> > > 
+> > > A delay is required between commands. 10ms is fine.
+> > 
+> > Can I make use of the axiom_u02_wait_idle() logic which checks the
+> > AXIOM_U02_REV1_RESP_SUCCESS? Arbitrary delays are always a source of
+> > trouble.
 > 
-> -- 
-> 2.52.0
+> Yes, I tested with axiom_u02_wait_idle() which is OK.
+
+I tested it too, unfortunately I wasn't able to enter the bootlaoder
+mode with:
+  - axiom_u02_send_msg(.., .., true);
+
+This aligns with the "Programmer's Guide":
+| 
+| 0x000B: ENTERBOOTLOADER
+| 
+| This command must be sent sequentially, in 3 phases, with no other usage
+| accesses in between each phase...
+| 
+
+> I am slightly worried about too short a delay to axiom causing instability,
+> however this works fine.
+> It can unfortunately be an unstable device..
+
+That could be one issue. I've added a delay of 10ms between each
+enter-bootloader-cmd and tested the update. It turns out that the 10ms
+delay makes the "enter bootloader" process more unstable. Without the
+delay, I mostly enter the bootloader on the first attempt or at least
+after three attempts. With the delay I needed 5+ attempts sometimes.
+
+Therefore I would like to keep it as it is right now (no delay). Note:
+The "Programmer's Guide" mentions no timing contraints as well. I added
+a TODO comment to the driver.
+
+...
+
+> > > > +/* Custom regmap read/write handling is required due to the aXiom protocol */
+> > > > +static int axiom_regmap_read(void *context, const void *reg_buf, size_t reg_size,
+> > > > +			     void *val_buf, size_t val_size)
+> > > > +{
+> > > > +	struct device *dev = context;
+> > > > +	struct i2c_client *i2c = to_i2c_client(dev);
+> > > > +	struct axiom_data *ts = i2c_get_clientdata(i2c);
+> > > > +	struct axiom_cmd_header hdr;
+> > > > +	u16 xferlen, addr, baseaddr;
+> > > > +	struct i2c_msg xfer[2];
+> > > > +	int ret;
+> > > > +
+> > > > +	if (val_size > AXIOM_MAX_XFERLEN) {
+> > > > +		dev_err(ts->dev, "Exceed max xferlen: %zu > %u\n",
+> > > > +			val_size, AXIOM_MAX_XFERLEN);
+> > > > +		return -EINVAL;
+> > > > +	}
+> > > > +
+> > > > +	addr = *((u16 *)reg_buf);
+> > > > +	hdr.target_address = cpu_to_le16(addr);
+> > > > +	xferlen = FIELD_PREP(AXIOM_CMD_HDR_DIR_MASK, AXIOM_CMD_HDR_READ) |
+> > > > +		  FIELD_PREP(AXIOM_CMD_HDR_LEN_MASK, val_size);
+> > > > +	hdr.xferlen = cpu_to_le16(xferlen);
+> > > > +
+> > > > +	/* Verify that usage including the usage rev is supported */
+> > > > +	baseaddr = addr & AXIOM_USAGE_BASEADDR_MASK;
+> > > > +	if (!axiom_usage_supported(ts, baseaddr))
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	xfer[0].addr = i2c->addr;
+> > > > +	xfer[0].flags = 0;
+> > > > +	xfer[0].len = sizeof(hdr);
+> > > > +	xfer[0].buf = (u8 *)&hdr;
+> > > > +
+> > > > +	xfer[1].addr = i2c->addr;
+> > > > +	xfer[1].flags = I2C_M_RD;
+> > > > +	xfer[1].len = val_size;
+> > > > +	xfer[1].buf = val_buf;
+> > > > +
+> > > > +	ret = i2c_transfer(i2c->adapter, xfer, 2);
+> > > > +	if (ret == 2)
+> > > > +		return 0;
+> > > > +	else if (ret < 0)
+> > > > +		return ret;
+> > > > +	else
+> > > > +		return -EIO;
+> > > > +}
+> > > 
+> > > There needs to be atleast 40us holdoff between axiom bus transfers.
+> > > I am not sure that has been considered here.
+> > 
+> > Is this written somewhere within the datasheet/programming-guide?
 > 
+> In aXiom Comms Protocol in v4.8.9 if you have access to the webportal
+> it says to use 40us holdoff for report reading. Although this may apply
+> to all transactions.
+
+Okay this is new information :) TBH the paragraph is bit hard to read.
+Furthermore in POLL-mode the IRQ-pin can't be sampled :/ As already
+pointed out, I'm also not a fan of adding arbitrary delays. The driver
+has already enough delays.
+
+It's also not quite clear to me why the device keeps the IRQ line
+asserted till the I2C-STOP was received? It's like your postman is
+holding your door bell till you go to the door, open it, provide your
+signature and close the door. In other words, this sounds like a
+firmware bug.
+
+For polling there should be a simple 'is data-avaiable?' -> yes: do
+further processing; -> no: try again in N-poll-ms.
+
+> Doing comms while axiom is changing the DMA causes issues (NAKs), for the
+> driver I posted atleast, the holdoff was required otherwise I would receive
+> 0-length reports frequently.
+
+Yep in this is actually the case but the driver can handle 0-length
+reports just fine. I will add this new information as code comment.
+Also according "aXiom Comms Protocol v4.8.9":
+|
+| This will not result in a communications failure but the host will
+| read an empty report, as the device will not have had time to prepare
+| the next report.
+|
+it shouldn't be a problem.
+
+> It looks to be fine currently, however if there is unstability for users
+> we should consider adding this or something similar.
+
+I would like to use the same mechanism for polling and IRQ mode to check
+if the device POLL/IRQ is done or not. Since the driver can handle
+0-length reports just fine, there should be no issue.
+
+> > ...
+> > 
+> > > > +static enum fw_upload_err
+> > > > +axiom_cfg_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
+> > > > +{
+> > 
+> > ...
+> > 
+> > > > +	cur_runtime_crc = ts->crc[AXIOM_CRC_CUR].runtime;
+> > > > +	fw_runtime_crc = ts->crc[AXIOM_CRC_NEW].runtime;
+> > > > +	if (cur_runtime_crc != fw_runtime_crc) {
+> > > > +		dev_err(dev, "TH2CFG and device runtime CRC doesn't match: %#x != %#x\n",
+> > > > +			fw_runtime_crc, cur_runtime_crc);
+> > > > +		ret = FW_UPLOAD_ERR_FW_INVALID;
+> > > > +		goto out;
+> > > > +	}
+> > > 
+> > > The firmware CRCs dont need to match for a config load, only the usage revision/length.
+> > 
+> > What difference does it make? The firmware CRC implicit includes the
+> > usage revision and the length (register layout). So we can ensure that
+> > the configuration was made for the correct register layout without
+> > checking each register and revision.
+> 
+> Different firmware revisions/CRCs can have compatible usages.
+
+Yes this could be possible, but...
+
+> Aslong as the usage revisions match to u31 the usages will be compatible.
+
+isn't a th2cfg binary a complete register value update or can a th2cfg
+binary update only register parts?
+
+> For us atleast we have different CRCs for small firmware changes, therefore
+> if testing such firmware here we would always have to uncomment this section.
+
+So it's rather a feature used by you guys during development?
+
+> In the updated python I changed the check to the following:
+> 
+>     # Compare the firmware runtime CRC from the file with the CRC from the device.
+>     # Only proceed if the CRCs match.
+>     if not force:
+>         if u33_from_file.fld_runtime_crc != ax.u33.fld_runtime_crc:
+>             logging.error("Cannot load config file as it was saved from a different revision of firmware:")
+>             logging.error("Firmware info from device      : 0x{0:08X}, {1}".format(ax.u33.fld_runtime_crc, ax.u31.get_device_info_short()))
+>             logging.error("Firmware info from config file : 0x{0:08X}, {1}".format(u33_from_file.fld_runtime_crc, u31_from_file.get_device_info_short()))
+>             return ERROR_CFG_FILE_NOT_COMPATIBLE
+>     else:
+>         if u33_from_file.fld_runtime_crc != ax.u33.fld_runtime_crc:
+>             logging.warning("The config file was saved from a different revision of firmware therefore it may not be compatible:")
+>             logging.warning("Firmware info from device      : 0x{0:08X}, {1}".format(ax.u33.fld_runtime_crc, ax.u31.get_device_info_short()))
+>             logging.warning("Firmware info from config file : 0x{0:08X}, {1}".format(u33_from_file.fld_runtime_crc, u31_from_file.get_device_info_short()))
+> 
+>     # Now ensure the config is compatible with the device
+>     valid_cfg = False
+>     file_usage_table = u31_from_file.get_usage_table()
+> 
+>     for usage in usages.keys():
+>         if usage not in ax.u31.get_usages():
+>             logging.error(f"Usage u{usage:02x} unsupported on this device.")
+>             break
+
+I don't understand the logic here. Above you have a 'force' switch but
+here you perform the checks anyway. So it's more like a 'light-force'?
+
+Don't get me wrong I get your point but since this the mainline kernel
+and the kernel needs to ensure that everything is correct I would like
+to keep the simple firmware-crc check.
+
+>         usage_entry = ax.u31.get_usage_entry(usage)
+>         if usage_entry.start_page != file_usage_table[usage].start_page:
+>             logging.error(f"Incompatible config address for u{usage:02x}:")
+>             logging.error(f"  Device: 0x{usage_entry.start_page:02x}00  File: 0x{file_usage_table[usage].start_page:02x}00")
+>             break
+> 
+>         if ax.get_usage_length(usage) != len(usages[usage][2]):
+>             logging.error(f"Incompatible config length for u{usage:02x}:")
+>             logging.error(f"  Device: {ax.get_usage_length(usage)}  File: {len(usages[usage][2])}")
+>             break
+>     else:
+>         valid_cfg = True
+> 
+>     if not valid_cfg:
+>         logging.error("Cannot load config as the usages are incompatible with the device.")
+>         return ERROR_CFG_FILE_NOT_COMPATIBLE
+> 
+> Possibly we could add a force parameter to the sysfs like above?
+
+Yes :) But this would be a 'force' aka no CRC check at all. I would see
+this as addition which could be provided by you guys :)
+
+> > ...
+> > 
+> > > > +static enum fw_upload_err
+> > > > +axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
+> > > > +		   u32 size, u32 *written)
+> > > > +{
+> > 
+> > ....
+> > 
+> > > > +	/* Ensure that the chunks are written correctly */
+> > > > +	ret = axiom_verify_volatile_mem(ts);
+> > > > +	if (ret) {
+> > > > +		dev_err(dev, "Failed to verify written config, abort\n");
+> > > > +		goto err_swreset;
+> > > > +	}
+> > > > +
+> > > > +	ret = axiom_u02_save_config(ts);
+> > > > +	if (ret)
+> > > > +		goto err_swreset;
+> > > > +
+> > > > +	/*
+> > > > +	 * TODO: Check if u02 start would be sufficient to load the new config
+> > > > +	 * values
+> > > > +	 */
+> > > 
+> > > It is not necessarily needed.
+> > 
+> > What do you mean by this? Do we need the axiom_u02_swreset() or can we
+> > just start the system via u02 (without swreset)?
+> 
+> There is no need to do a reset after a config load you can just start the AE
+> with CMD_START, but we can keep it as is since it does the same thing.
+
+Okay, I will update the comment then.
+
+> > > > +	ret = axiom_u02_swreset(ts);
+> > > > +	if (ret) {
+> > > > +		dev_err(dev, "Soft reset failed\n");
+> > > > +		goto err_unlock;
+> > > > +	}
+> > 
+> > ....
+> > 
+> > > > +static ssize_t fw_variant_show(struct device *dev,
+> > > > +			       struct device_attribute *attr, char *buf)
+> > > > +{
+> > > > +	struct i2c_client *i2c = to_i2c_client(dev);
+> > > > +	struct axiom_data *ts = i2c_get_clientdata(i2c);
+> > > > +	const char *val;
+> > > > +
+> > > > +	switch (ts->fw_variant) {
+> > > > +	case 0:
+> > > > +		val = "3d";
+> > > > +		break;
+> > > > +	case 1:
+> > > > +		val = "2d";
+> > > > +		break;
+> > > > +	case 3:
+> > > > +		val = "force";
+> > > > +		break;
+> > > > +	default:
+> > > > +		val = "unknown";
+> > > > +		break;
+> > > > +	}
+> > > 
+> > > The following are all the variants we currently support in order:
+> > > FW_VARIANTS = ["3D", "2D", "FORCE", "0D", "XL"]
+> > 
+> > Means:
+> > 
+> > 0 == 3d
+> > 1 == 2d
+> > 3 == force
+> > 4 == 0d
+> > 5 == xl
+> > 
+> > ?
+> > 
+> > This is also something I can test on my site. Patches are welcome once
+> > this is mainline of course :)
+> 
+> It is like so:
+> #define DEVICE_BUILD_VARIANT_3D       (0U)
+> #define DEVICE_BUILD_VARIANT_2D       (1U)
+> #define DEVICE_BUILD_VARIANT_FORCE    (2U)
+> #define DEVICE_BUILD_VARIANT_0D       (3U)
+> #define DEVICE_BUILD_VARIANT_XL       (4U)
+
+...
+
+> I shall try to give a more prompt review once you have the new version up.
+
+Thanks for your input, but keep in mind, that you guys could add your
+additions ontop of our changes since our use-cases are fulfilled with
+the current driver. However I've added the 0d, xl fw_variants and
+updated the code comments.
+
+Regards,
+  Marco
+
+
+
+
+> 
+> Many Thanks,
+> Andrew
+> 
+> 
+
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
